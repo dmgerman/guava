@@ -150,6 +150,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -205,16 +219,6 @@ operator|.
 name|io
 operator|.
 name|Serializable
-import|;
-end_import
-
-begin_import
-import|import
-name|javax
-operator|.
-name|annotation
-operator|.
-name|CheckReturnValue
 import|;
 end_import
 
@@ -434,8 +438,6 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Creates a new {@code BloomFilter} that's a copy of this instance. The new instance is equal to    * this instance but shares no mutable state.    *    * @since 12.0    */
-annotation|@
-name|CheckReturnValue
 DECL|method|copy ()
 specifier|public
 name|BloomFilter
@@ -466,8 +468,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns {@code true} if the element<i>might</i> have been put in this Bloom filter,    * {@code false} if this is<i>definitely</i> not the case.    */
-annotation|@
-name|CheckReturnValue
 DECL|method|mightContain (T object)
 specifier|public
 name|boolean
@@ -497,8 +497,6 @@ annotation|@
 name|Deprecated
 annotation|@
 name|Override
-annotation|@
-name|CheckReturnValue
 DECL|method|apply (T input)
 specifier|public
 name|boolean
@@ -516,6 +514,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Puts an element into this {@code BloomFilter}. Ensures that subsequent invocations of    * {@link #mightContain(Object)} with the same element will always return {@code true}.    *    * @return true if the bloom filter's bits changed as a result of this operation. If the bits    *     changed, this is<i>definitely</i> the first time {@code object} has been added to the    *     filter. If the bits haven't changed, this<i>might</i> be the first time {@code object}    *     has been added to the filter. Note that {@code put(t)} always returns the    *<i>opposite</i> result to what {@code mightContain(t)} would have returned at the time    *     it is called."    * @since 12.0 (present in 11.0 with {@code void} return type})    */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|put (T object)
 specifier|public
 name|boolean
@@ -541,8 +541,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns the probability that {@linkplain #mightContain(Object)} will erroneously return    * {@code true} for an object that has not actually been put in the {@code BloomFilter}.    *    *<p>Ideally, this number should be close to the {@code fpp} parameter    * passed in {@linkplain #create(Funnel, int, double)}, or smaller. If it is    * significantly higher, it is usually the case that too many elements (more than    * expected) have been put in the {@code BloomFilter}, degenerating it.    *    * @since 14.0 (since 11.0 as expectedFalsePositiveProbability())    */
-annotation|@
-name|CheckReturnValue
 DECL|method|expectedFpp ()
 specifier|public
 name|double
@@ -586,8 +584,6 @@ argument_list|()
 return|;
 block|}
 comment|/**    * Determines whether a given bloom filter is compatible with this bloom filter. For two    * bloom filters to be compatible, they must:    *    *<ul>    *<li>not be the same instance    *<li>have the same number of hash functions    *<li>have the same bit size    *<li>have the same strategy    *<li>have equal funnels    *<ul>    *    * @param that The bloom filter to check for compatibility.    * @since 15.0    */
-annotation|@
-name|CheckReturnValue
 DECL|method|isCompatible (BloomFilter<T> that)
 specifier|public
 name|boolean
@@ -910,8 +906,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Creates a {@link BloomFilter BloomFilter<T>} with the expected number of    * insertions and expected false positive probability.    *    *<p>Note that overflowing a {@code BloomFilter} with significantly more elements    * than specified, will result in its saturation, and a sharp deterioration of its    * false positive probability.    *    *<p>The constructed {@code BloomFilter<T>} will be serializable if the provided    * {@code Funnel<T>} is.    *    *<p>It is recommended that the funnel be implemented as a Java enum. This has the    * benefit of ensuring proper serialization and deserialization, which is important    * since {@link #equals} also relies on object identity of funnels.    *    * @param funnel the funnel of T's that the constructed {@code BloomFilter<T>} will use    * @param expectedInsertions the number of expected insertions to the constructed    *     {@code BloomFilter<T>}; must be positive    * @param fpp the desired false positive probability (must be positive and less than 1.0)    * @return a {@code BloomFilter}    */
-annotation|@
-name|CheckReturnValue
 DECL|method|create ( Funnel<? super T> funnel, int expectedInsertions, double fpp)
 specifier|public
 specifier|static
@@ -954,8 +948,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Creates a {@link BloomFilter BloomFilter<T>} with the expected number of    * insertions and expected false positive probability.    *    *<p>Note that overflowing a {@code BloomFilter} with significantly more elements    * than specified, will result in its saturation, and a sharp deterioration of its    * false positive probability.    *    *<p>The constructed {@code BloomFilter<T>} will be serializable if the provided    * {@code Funnel<T>} is.    *    *<p>It is recommended that the funnel be implemented as a Java enum. This has the    * benefit of ensuring proper serialization and deserialization, which is important    * since {@link #equals} also relies on object identity of funnels.    *    * @param funnel the funnel of T's that the constructed {@code BloomFilter<T>} will use    * @param expectedInsertions the number of expected insertions to the constructed    *     {@code BloomFilter<T>}; must be positive    * @param fpp the desired false positive probability (must be positive and less than 1.0)    * @return a {@code BloomFilter}    * @since 19.0    */
-annotation|@
-name|CheckReturnValue
 DECL|method|create ( Funnel<? super T> funnel, long expectedInsertions, double fpp)
 specifier|public
 specifier|static
@@ -1150,8 +1142,6 @@ throw|;
 block|}
 block|}
 comment|/**    * Creates a {@link BloomFilter BloomFilter<T>} with the expected number of    * insertions and a default expected false positive probability of 3%.    *    *<p>Note that overflowing a {@code BloomFilter} with significantly more elements    * than specified, will result in its saturation, and a sharp deterioration of its    * false positive probability.    *    *<p>The constructed {@code BloomFilter<T>} will be serializable if the provided    * {@code Funnel<T>} is.    *    *<p>It is recommended that the funnel be implemented as a Java enum. This has the    * benefit of ensuring proper serialization and deserialization, which is important    * since {@link #equals} also relies on object identity of funnels.    *    * @param funnel the funnel of T's that the constructed {@code BloomFilter<T>} will use    * @param expectedInsertions the number of expected insertions to the constructed    *     {@code BloomFilter<T>}; must be positive    * @return a {@code BloomFilter}    */
-annotation|@
-name|CheckReturnValue
 DECL|method|create (Funnel<? super T> funnel, int expectedInsertions)
 specifier|public
 specifier|static
@@ -1189,8 +1179,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Creates a {@link BloomFilter BloomFilter<T>} with the expected number of    * insertions and a default expected false positive probability of 3%.    *    *<p>Note that overflowing a {@code BloomFilter} with significantly more elements    * than specified, will result in its saturation, and a sharp deterioration of its    * false positive probability.    *    *<p>The constructed {@code BloomFilter<T>} will be serializable if the provided    * {@code Funnel<T>} is.    *    *<p>It is recommended that the funnel be implemented as a Java enum. This has the    * benefit of ensuring proper serialization and deserialization, which is important    * since {@link #equals} also relies on object identity of funnels.    *    * @param funnel the funnel of T's that the constructed {@code BloomFilter<T>} will use    * @param expectedInsertions the number of expected insertions to the constructed    *     {@code BloomFilter<T>}; must be positive    * @return a {@code BloomFilter}    * @since 19.0    */
-annotation|@
-name|CheckReturnValue
 DECL|method|create (Funnel<? super T> funnel, long expectedInsertions)
 specifier|public
 specifier|static
@@ -1553,8 +1541,6 @@ expr_stmt|;
 block|}
 block|}
 comment|/**    * Reads a byte stream, which was written by {@linkplain #writeTo(OutputStream)}, into    * a {@code BloomFilter<T>}.    *    * The {@code Funnel} to be used is not encoded in the stream, so it must be provided here.    *<b>Warning:</b> the funnel provided<b>must</b> behave identically to the one used to    * populate the original Bloom filter!    *    * @throws IOException if the InputStream throws an {@code IOException}, or if its data does    *     not appear to be a BloomFilter serialized using the    *     {@linkplain #writeTo(OutputStream)} method.    */
-annotation|@
-name|CheckReturnValue
 DECL|method|readFrom (InputStream in, Funnel<T> funnel)
 specifier|public
 specifier|static

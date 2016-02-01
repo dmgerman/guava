@@ -46,6 +46,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
 name|junit
 operator|.
 name|framework
@@ -667,6 +681,8 @@ name|expected
 parameter_list|)
 block|{     }
 block|}
+annotation|@
+name|CanIgnoreReturnValue
 DECL|class|TestHasher
 specifier|private
 class|class

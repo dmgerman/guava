@@ -76,16 +76,6 @@ name|OutputStream
 import|;
 end_import
 
-begin_import
-import|import
-name|javax
-operator|.
-name|annotation
-operator|.
-name|CheckReturnValue
-import|;
-end_import
-
 begin_comment
 comment|/**  * An {@link OutputStream} that maintains a hash of the data written to it.  *  * @author Nick Piepmeier  * @since 16.0  */
 end_comment
@@ -219,8 +209,6 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Returns the {@link HashCode} based on the data written to this stream. The result is    * unspecified if this method is called more than once on the same instance.    */
-annotation|@
-name|CheckReturnValue
 DECL|method|hash ()
 specifier|public
 name|HashCode

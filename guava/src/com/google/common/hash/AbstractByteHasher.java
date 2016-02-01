@@ -106,6 +106,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|nio
@@ -129,6 +143,8 @@ comment|/**  * Abstract {@link Hasher} that handles converting primitives to byt
 end_comment
 
 begin_class
+annotation|@
+name|CanIgnoreReturnValue
 DECL|class|AbstractByteHasher
 specifier|abstract
 class|class

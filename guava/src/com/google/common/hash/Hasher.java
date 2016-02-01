@@ -32,6 +32,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|nio
@@ -59,6 +73,8 @@ end_comment
 begin_interface
 annotation|@
 name|Beta
+annotation|@
+name|CanIgnoreReturnValue
 DECL|interface|Hasher
 specifier|public
 interface|interface
@@ -235,6 +251,8 @@ annotation|@
 name|Override
 annotation|@
 name|Deprecated
+annotation|@
+name|CheckReturnValue
 DECL|method|hashCode ()
 name|int
 name|hashCode

@@ -2542,6 +2542,10 @@ name|HashFunction
 name|hashFunction
 parameter_list|)
 block|{
+block|{
+name|HashCode
+name|unused
+init|=
 name|hashFunction
 operator|.
 name|hashBytes
@@ -2556,9 +2560,13 @@ literal|0
 argument_list|,
 literal|0
 argument_list|)
-expr_stmt|;
+decl_stmt|;
+block|}
 try|try
 block|{
+name|HashCode
+name|unused
+init|=
 name|hashFunction
 operator|.
 name|hashBytes
@@ -2574,7 +2582,7 @@ literal|1
 argument_list|,
 literal|128
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|Assert
 operator|.
 name|fail
@@ -2589,6 +2597,9 @@ parameter_list|)
 block|{}
 try|try
 block|{
+name|HashCode
+name|unused
+init|=
 name|hashFunction
 operator|.
 name|hashBytes
@@ -2604,7 +2615,7 @@ argument_list|,
 literal|256
 comment|/* too long len */
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|Assert
 operator|.
 name|fail
@@ -2619,6 +2630,9 @@ parameter_list|)
 block|{}
 try|try
 block|{
+name|HashCode
+name|unused
+init|=
 name|hashFunction
 operator|.
 name|hashBytes
@@ -2634,7 +2648,7 @@ argument_list|,
 operator|-
 literal|1
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|Assert
 operator|.
 name|fail

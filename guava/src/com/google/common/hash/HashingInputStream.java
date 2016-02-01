@@ -48,6 +48,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -73,16 +87,6 @@ operator|.
 name|io
 operator|.
 name|InputStream
-import|;
-end_import
-
-begin_import
-import|import
-name|javax
-operator|.
-name|annotation
-operator|.
-name|CheckReturnValue
 import|;
 end_import
 
@@ -143,6 +147,8 @@ block|}
 comment|/**    * Reads the next byte of data from the underlying input stream and updates the hasher with    * the byte read.    */
 annotation|@
 name|Override
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|read ()
 specifier|public
 name|int
@@ -185,6 +191,8 @@ block|}
 comment|/**    * Reads the specified bytes of data from the underlying input stream and updates the hasher with    * the bytes read.    */
 annotation|@
 name|Override
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|read (byte[] bytes, int off, int len)
 specifier|public
 name|int
@@ -244,8 +252,6 @@ block|}
 comment|/**    * mark() is not supported for HashingInputStream    * @return {@code false} always    */
 annotation|@
 name|Override
-annotation|@
-name|CheckReturnValue
 DECL|method|markSupported ()
 specifier|public
 name|boolean
@@ -288,8 +294,6 @@ argument_list|)
 throw|;
 block|}
 comment|/**    * Returns the {@link HashCode} based on the data read from this stream. The result is    * unspecified if this method is called more than once on the same instance.    */
-annotation|@
-name|CheckReturnValue
 DECL|method|hash ()
 specifier|public
 name|HashCode

@@ -48,6 +48,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|nio
@@ -75,6 +89,16 @@ operator|.
 name|charset
 operator|.
 name|Charset
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckReturnValue
 import|;
 end_import
 
@@ -315,6 +339,8 @@ return|;
 block|}
 comment|/**    * A convenience base class for implementors of {@code Hasher}; handles accumulating data    * until an entire "chunk" (of implementation-dependent length) is ready to be hashed.    *    * @author Kevin Bourrillion    * @author Dimitris Andreou    */
 comment|// TODO(kevinb): this class still needs some design-and-document-for-inheritance love
+annotation|@
+name|CanIgnoreReturnValue
 DECL|class|AbstractStreamingHasher
 specifier|protected
 specifier|static
@@ -886,6 +912,8 @@ return|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|CheckReturnValue
 DECL|method|hash ()
 specifier|public
 specifier|final
