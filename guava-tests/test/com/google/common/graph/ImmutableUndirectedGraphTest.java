@@ -830,6 +830,8 @@ block|}
 comment|// Builder mutation methods
 annotation|@
 name|Override
+annotation|@
+name|Test
 DECL|method|addEdge_selfLoop ()
 specifier|public
 name|void

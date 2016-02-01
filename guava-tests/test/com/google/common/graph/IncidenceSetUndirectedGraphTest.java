@@ -879,6 +879,8 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|Test
 DECL|method|addEdge_selfLoop ()
 specifier|public
 name|void

@@ -149,6 +149,8 @@ return|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|Test
 DECL|method|nodes_checkReturnedSetMutability ()
 specifier|public
 name|void
@@ -209,6 +211,8 @@ block|}
 block|}
 annotation|@
 name|Override
+annotation|@
+name|Test
 DECL|method|edges_checkReturnedSetMutability ()
 specifier|public
 name|void
@@ -273,6 +277,8 @@ block|}
 block|}
 annotation|@
 name|Override
+annotation|@
+name|Test
 DECL|method|incidentEdges_checkReturnedSetMutability ()
 specifier|public
 name|void
@@ -346,6 +352,8 @@ block|}
 block|}
 annotation|@
 name|Override
+annotation|@
+name|Test
 DECL|method|incidentNodes_checkReturnedSetMutability ()
 specifier|public
 name|void
@@ -398,6 +406,8 @@ block|{     }
 block|}
 annotation|@
 name|Override
+annotation|@
+name|Test
 DECL|method|adjacentNodes_checkReturnedSetMutability ()
 specifier|public
 name|void
@@ -471,6 +481,8 @@ block|}
 block|}
 annotation|@
 name|Override
+annotation|@
+name|Test
 DECL|method|adjacentEdges_checkReturnedSetMutability ()
 specifier|public
 name|void
@@ -548,6 +560,8 @@ block|}
 block|}
 annotation|@
 name|Override
+annotation|@
+name|Test
 DECL|method|edgesConnecting_checkReturnedSetMutability ()
 specifier|public
 name|void
@@ -630,6 +644,8 @@ block|}
 block|}
 annotation|@
 name|Override
+annotation|@
+name|Test
 DECL|method|inEdges_checkReturnedSetMutability ()
 specifier|public
 name|void
@@ -703,6 +719,8 @@ block|}
 block|}
 annotation|@
 name|Override
+annotation|@
+name|Test
 DECL|method|outEdges_checkReturnedSetMutability ()
 specifier|public
 name|void
@@ -776,6 +794,8 @@ block|}
 block|}
 annotation|@
 name|Override
+annotation|@
+name|Test
 DECL|method|predecessors_checkReturnedSetMutability ()
 specifier|public
 name|void
@@ -849,6 +869,8 @@ block|}
 block|}
 annotation|@
 name|Override
+annotation|@
+name|Test
 DECL|method|successors_checkReturnedSetMutability ()
 specifier|public
 name|void
