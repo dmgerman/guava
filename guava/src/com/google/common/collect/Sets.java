@@ -1666,7 +1666,7 @@ name|set
 return|;
 block|}
 block|}
-comment|/**    * Returns an unmodifiable<b>view</b> of the union of two sets. The returned    * set contains all elements that are contained in either backing set.    * Iterating over the returned set iterates first over all the elements of    * {@code set1}, then over each element of {@code set2}, in order, that is not    * contained in {@code set1}.    *    *<p>Results are undefined if {@code set1} and {@code set2} are sets based on    * different equivalence relations (as {@link HashSet}, {@link TreeSet}, and    * the {@link Map#keySet} of an {@code IdentityHashMap} all are).    *    *<p><b>Note:</b> The returned view performs better when {@code set1} is the    * smaller of the two sets. If you have reason to believe one of your sets    * will generally be smaller than the other, pass it first.    */
+comment|/**    * Returns an unmodifiable<b>view</b> of the union of two sets. The returned    * set contains all elements that are contained in either backing set.    * Iterating over the returned set iterates first over all the elements of    * {@code set1}, then over each element of {@code set2}, in order, that is not    * contained in {@code set1}.    *    *<p>Results are undefined if {@code set1} and {@code set2} are sets based on    * different equivalence relations (as {@link HashSet}, {@link TreeSet}, and    * the {@link Map#keySet} of an {@code IdentityHashMap} all are).    */
 DECL|method|union (final Set<? extends E> set1, final Set<? extends E> set2)
 specifier|public
 specifier|static
