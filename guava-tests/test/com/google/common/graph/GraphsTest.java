@@ -1170,9 +1170,6 @@ parameter_list|()
 block|{
 try|try
 block|{
-name|GraphConfig
-name|unused
-init|=
 name|config
 argument_list|()
 operator|.
@@ -1181,7 +1178,7 @@ argument_list|(
 operator|-
 literal|1
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|fail
 argument_list|(
 name|ERROR_NEGATIVE_NODE_COUNT
@@ -1476,9 +1473,6 @@ parameter_list|()
 block|{
 try|try
 block|{
-name|GraphConfig
-name|unused
-init|=
 name|config
 argument_list|()
 operator|.
@@ -1487,7 +1481,7 @@ argument_list|(
 operator|-
 literal|1
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|fail
 argument_list|(
 name|ERROR_NEGATIVE_EDGE_COUNT

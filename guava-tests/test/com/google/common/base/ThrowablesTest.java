@@ -2138,19 +2138,13 @@ parameter_list|()
 block|{
 try|try
 block|{
-name|List
-argument_list|<
-name|Throwable
-argument_list|>
-name|unused
-init|=
 name|Throwables
 operator|.
 name|getCausalChain
 argument_list|(
 literal|null
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|fail
 argument_list|(
 literal|"Should have throw NPE"

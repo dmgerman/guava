@@ -413,9 +413,6 @@ parameter_list|()
 block|{
 try|try
 block|{
-name|String
-name|unused
-init|=
 name|Strings
 operator|.
 name|padStart
@@ -426,7 +423,7 @@ literal|5
 argument_list|,
 literal|'0'
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -645,9 +642,6 @@ parameter_list|()
 block|{
 try|try
 block|{
-name|String
-name|unused
-init|=
 name|Strings
 operator|.
 name|padEnd
@@ -658,7 +652,7 @@ literal|5
 argument_list|,
 literal|'0'
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -788,9 +782,6 @@ expr_stmt|;
 block|}
 try|try
 block|{
-name|String
-name|unused
-init|=
 name|Strings
 operator|.
 name|repeat
@@ -800,7 +791,7 @@ argument_list|,
 operator|-
 literal|1
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -814,9 +805,6 @@ block|{     }
 try|try
 block|{
 comment|// Massive string
-name|String
-name|unused
-init|=
 name|Strings
 operator|.
 name|repeat
@@ -831,7 +819,7 @@ operator|)
 operator|+
 literal|3
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -852,9 +840,6 @@ parameter_list|()
 block|{
 try|try
 block|{
-name|String
-name|unused
-init|=
 name|Strings
 operator|.
 name|repeat
@@ -863,7 +848,7 @@ literal|null
 argument_list|,
 literal|5
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;

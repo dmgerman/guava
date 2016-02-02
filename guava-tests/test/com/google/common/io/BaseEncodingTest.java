@@ -367,9 +367,6 @@ parameter_list|()
 block|{
 try|try
 block|{
-name|BaseEncoding
-name|unused
-init|=
 name|base64
 argument_list|()
 operator|.
@@ -379,7 +376,7 @@ literal|"="
 argument_list|,
 literal|3
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|fail
 argument_list|(
 literal|"Expected IllegalArgumentException"
@@ -394,9 +391,6 @@ parameter_list|)
 block|{}
 try|try
 block|{
-name|BaseEncoding
-name|unused
-init|=
 name|base64
 argument_list|()
 operator|.
@@ -411,7 +405,7 @@ literal|"!#!"
 argument_list|,
 literal|3
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|fail
 argument_list|(
 literal|"Expected IllegalArgumentException"
@@ -446,9 +440,6 @@ argument_list|)
 decl_stmt|;
 try|try
 block|{
-name|BaseEncoding
-name|unused
-init|=
 name|separated
 operator|.
 name|withSeparator
@@ -457,7 +448,7 @@ literal|"$"
 argument_list|,
 literal|4
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|fail
 argument_list|(
 literal|"Expected UnsupportedOperationException"
@@ -777,15 +768,12 @@ parameter_list|()
 block|{
 try|try
 block|{
-name|BaseEncoding
-name|unused
-init|=
 name|base64
 argument_list|()
 operator|.
 name|upperCase
 argument_list|()
-decl_stmt|;
+expr_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -807,15 +795,12 @@ parameter_list|()
 block|{
 try|try
 block|{
-name|BaseEncoding
-name|unused
-init|=
 name|base64
 argument_list|()
 operator|.
 name|lowerCase
 argument_list|()
-decl_stmt|;
+expr_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -2656,17 +2641,13 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
-name|byte
-index|[]
-name|unused
-init|=
 name|encoding
 operator|.
 name|decode
 argument_list|(
 name|cannotDecode
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|fail
 argument_list|(
 literal|"Expected IllegalArgumentException"
@@ -2703,17 +2684,13 @@ block|}
 block|}
 try|try
 block|{
-name|byte
-index|[]
-name|unused
-init|=
 name|encoding
 operator|.
 name|decodeChecked
 argument_list|(
 name|cannotDecode
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|fail
 argument_list|(
 literal|"Expected DecodingException"

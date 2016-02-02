@@ -310,14 +310,11 @@ parameter_list|()
 block|{
 try|try
 block|{
-name|int
-name|unused
-init|=
 name|UnsignedInts
 operator|.
 name|max
 argument_list|()
-decl_stmt|;
+expr_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -416,14 +413,11 @@ parameter_list|()
 block|{
 try|try
 block|{
-name|int
-name|unused
-init|=
 name|UnsignedInts
 operator|.
 name|min
 argument_list|()
-decl_stmt|;
+expr_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -923,9 +917,6 @@ parameter_list|()
 block|{
 try|try
 block|{
-name|int
-name|unused
-init|=
 name|UnsignedInts
 operator|.
 name|parseUnsignedInt
@@ -939,7 +930,7 @@ operator|<<
 literal|32
 argument_list|)
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|fail
 argument_list|(
 literal|"Expected NumberFormatException"
@@ -1095,9 +1086,6 @@ argument_list|,
 name|radix
 argument_list|)
 decl_stmt|;
-name|int
-name|unused
-init|=
 name|UnsignedInts
 operator|.
 name|parseUnsignedInt
@@ -1106,7 +1094,7 @@ name|overflowAsString
 argument_list|,
 name|radix
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -1129,9 +1117,6 @@ comment|// Valid radix values are Character.MIN_RADIX to Character.MAX_RADIX,
 comment|// inclusive.
 try|try
 block|{
-name|int
-name|unused
-init|=
 name|UnsignedInts
 operator|.
 name|parseUnsignedInt
@@ -1144,7 +1129,7 @@ name|MIN_RADIX
 operator|-
 literal|1
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -1157,9 +1142,6 @@ parameter_list|)
 block|{}
 try|try
 block|{
-name|int
-name|unused
-init|=
 name|UnsignedInts
 operator|.
 name|parseUnsignedInt
@@ -1172,7 +1154,7 @@ name|MAX_RADIX
 operator|+
 literal|1
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -1186,9 +1168,6 @@ block|{}
 comment|// The radix is used as an array index, so try a negative value.
 try|try
 block|{
-name|int
-name|unused
-init|=
 name|UnsignedInts
 operator|.
 name|parseUnsignedInt
@@ -1198,7 +1177,7 @@ argument_list|,
 operator|-
 literal|1
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -1311,16 +1290,13 @@ block|{
 try|try
 block|{
 comment|// One more than maximum value
-name|int
-name|unused
-init|=
 name|UnsignedInts
 operator|.
 name|decode
 argument_list|(
 literal|"0xfffffffff"
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -1333,16 +1309,13 @@ parameter_list|)
 block|{     }
 try|try
 block|{
-name|int
-name|unused
-init|=
 name|UnsignedInts
 operator|.
 name|decode
 argument_list|(
 literal|"-5"
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -1355,16 +1328,13 @@ parameter_list|)
 block|{     }
 try|try
 block|{
-name|int
-name|unused
-init|=
 name|UnsignedInts
 operator|.
 name|decode
 argument_list|(
 literal|"-0x5"
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -1377,16 +1347,13 @@ parameter_list|)
 block|{     }
 try|try
 block|{
-name|int
-name|unused
-init|=
 name|UnsignedInts
 operator|.
 name|decode
 argument_list|(
 literal|"-05"
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;

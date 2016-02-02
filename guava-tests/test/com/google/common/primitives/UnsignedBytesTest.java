@@ -416,16 +416,13 @@ parameter_list|)
 block|{
 try|try
 block|{
-name|byte
-name|unused
-init|=
 name|UnsignedBytes
 operator|.
 name|checkedCast
 argument_list|(
 name|value
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|fail
 argument_list|(
 literal|"Cast to byte should have failed: "
@@ -576,14 +573,11 @@ parameter_list|()
 block|{
 try|try
 block|{
-name|byte
-name|unused
-init|=
 name|UnsignedBytes
 operator|.
 name|max
 argument_list|()
-decl_stmt|;
+expr_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -674,14 +668,11 @@ parameter_list|()
 block|{
 try|try
 block|{
-name|byte
-name|unused
-init|=
 name|UnsignedBytes
 operator|.
 name|min
 argument_list|()
-decl_stmt|;
+expr_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -816,16 +807,13 @@ parameter_list|)
 block|{
 try|try
 block|{
-name|byte
-name|unused
-init|=
 name|UnsignedBytes
 operator|.
 name|parseUnsignedByte
 argument_list|(
 name|value
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -948,9 +936,6 @@ parameter_list|)
 block|{
 try|try
 block|{
-name|byte
-name|unused
-init|=
 name|UnsignedBytes
 operator|.
 name|parseUnsignedByte
@@ -959,7 +944,7 @@ name|value
 argument_list|,
 name|radix
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -1109,9 +1094,6 @@ comment|// Valid radix values are Character.MIN_RADIX to Character.MAX_RADIX,
 comment|// inclusive.
 try|try
 block|{
-name|byte
-name|unused
-init|=
 name|UnsignedBytes
 operator|.
 name|parseUnsignedByte
@@ -1124,7 +1106,7 @@ name|MIN_RADIX
 operator|-
 literal|1
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -1139,9 +1121,6 @@ comment|// expected
 block|}
 try|try
 block|{
-name|byte
-name|unused
-init|=
 name|UnsignedBytes
 operator|.
 name|parseUnsignedByte
@@ -1154,7 +1133,7 @@ name|MAX_RADIX
 operator|+
 literal|1
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -1170,9 +1149,6 @@ block|}
 comment|// The radix is used as an array index, so try a negative value.
 try|try
 block|{
-name|byte
-name|unused
-init|=
 name|UnsignedBytes
 operator|.
 name|parseUnsignedByte
@@ -1182,7 +1158,7 @@ argument_list|,
 operator|-
 literal|1
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;

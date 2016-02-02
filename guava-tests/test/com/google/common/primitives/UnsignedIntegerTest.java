@@ -1347,9 +1347,6 @@ block|{
 try|try
 block|{
 name|UnsignedInteger
-name|unused
-init|=
-name|UnsignedInteger
 operator|.
 name|fromIntBits
 argument_list|(
@@ -1362,7 +1359,7 @@ name|UnsignedInteger
 operator|.
 name|ZERO
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|fail
 argument_list|(
 literal|"Expected ArithmeticException"

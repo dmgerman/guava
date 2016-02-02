@@ -1475,9 +1475,6 @@ parameter_list|()
 block|{
 try|try
 block|{
-name|int
-name|unused
-init|=
 name|Hashing
 operator|.
 name|consistentHash
@@ -1486,7 +1483,7 @@ literal|5L
 argument_list|,
 literal|0
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -1774,9 +1771,6 @@ parameter_list|()
 block|{
 try|try
 block|{
-name|HashCode
-name|unused
-init|=
 name|Hashing
 operator|.
 name|combineOrdered
@@ -1789,7 +1783,7 @@ operator|>
 name|emptySet
 argument_list|()
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -2108,9 +2102,6 @@ parameter_list|()
 block|{
 try|try
 block|{
-name|HashCode
-name|unused
-init|=
 name|Hashing
 operator|.
 name|combineUnordered
@@ -2123,7 +2114,7 @@ operator|>
 name|emptySet
 argument_list|()
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;

@@ -1704,14 +1704,11 @@ parameter_list|()
 block|{
 try|try
 block|{
-name|float
-name|unused
-init|=
 name|Floats
 operator|.
 name|max
 argument_list|()
-decl_stmt|;
+expr_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -1867,14 +1864,11 @@ parameter_list|()
 block|{
 try|try
 block|{
-name|float
-name|unused
-init|=
 name|Floats
 operator|.
 name|min
 argument_list|()
-decl_stmt|;
+expr_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -2317,10 +2311,6 @@ parameter_list|()
 block|{
 try|try
 block|{
-name|float
-index|[]
-name|unused
-init|=
 name|Floats
 operator|.
 name|ensureCapacity
@@ -2332,7 +2322,7 @@ literal|1
 argument_list|,
 literal|1
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -2346,10 +2336,6 @@ block|{     }
 try|try
 block|{
 comment|// notice that this should even fail when no growth was needed
-name|float
-index|[]
-name|unused
-init|=
 name|Floats
 operator|.
 name|ensureCapacity
@@ -2361,7 +2347,7 @@ argument_list|,
 operator|-
 literal|1
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -2963,17 +2949,13 @@ argument_list|)
 decl_stmt|;
 try|try
 block|{
-name|float
-index|[]
-name|unused
-init|=
 name|Floats
 operator|.
 name|toArray
 argument_list|(
 name|list
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -4363,9 +4345,6 @@ parameter_list|()
 block|{
 try|try
 block|{
-name|float
-name|unused
-init|=
 name|Floats
 operator|.
 name|stringConverter
@@ -4375,7 +4354,7 @@ name|convert
 argument_list|(
 literal|"notanumber"
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -4571,16 +4550,13 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
-name|Float
-name|unused
-init|=
 name|Floats
 operator|.
 name|tryParse
 argument_list|(
 literal|null
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|fail
 argument_list|(
 literal|"Expected NPE"

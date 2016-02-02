@@ -385,14 +385,11 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
-name|HashCode
-name|unused
-init|=
 name|sha1
 operator|.
 name|hash
 argument_list|()
-decl_stmt|;
+expr_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;

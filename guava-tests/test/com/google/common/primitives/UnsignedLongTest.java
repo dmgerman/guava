@@ -1276,9 +1276,6 @@ block|{
 try|try
 block|{
 name|UnsignedLong
-name|unused
-init|=
-name|UnsignedLong
 operator|.
 name|fromLongBits
 argument_list|(
@@ -1291,7 +1288,7 @@ name|UnsignedLong
 operator|.
 name|ZERO
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|fail
 argument_list|(
 literal|"Expected ArithmeticException"
@@ -1415,9 +1412,6 @@ block|{
 try|try
 block|{
 name|UnsignedLong
-name|unused
-init|=
-name|UnsignedLong
 operator|.
 name|fromLongBits
 argument_list|(
@@ -1430,7 +1424,7 @@ name|UnsignedLong
 operator|.
 name|ZERO
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|fail
 argument_list|(
 literal|"Expected ArithmeticException"

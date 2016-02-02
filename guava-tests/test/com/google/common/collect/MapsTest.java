@@ -798,9 +798,6 @@ parameter_list|()
 block|{
 try|try
 block|{
-name|int
-name|unused
-init|=
 name|Maps
 operator|.
 name|capacity
@@ -808,7 +805,7 @@ argument_list|(
 operator|-
 literal|1
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|fail
 argument_list|(
 literal|"Negative expected size must result in IllegalArgumentException"

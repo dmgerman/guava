@@ -457,16 +457,13 @@ name|Exception
 block|{
 try|try
 block|{
-name|Object
-name|unused
-init|=
 name|firstNonNull
 argument_list|(
 literal|null
 argument_list|,
 literal|null
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|fail
 argument_list|(
 literal|"expected NullPointerException"

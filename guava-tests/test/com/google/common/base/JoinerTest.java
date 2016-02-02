@@ -492,16 +492,13 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
-name|String
-name|unused
-init|=
 name|J
 operator|.
 name|join
 argument_list|(
 name|ITERABLE_NULL
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -514,16 +511,13 @@ parameter_list|)
 block|{     }
 try|try
 block|{
-name|String
-name|unused
-init|=
 name|J
 operator|.
 name|join
 argument_list|(
 name|ITERABLE_1_NULL_2
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -536,9 +530,6 @@ parameter_list|)
 block|{     }
 try|try
 block|{
-name|String
-name|unused
-init|=
 name|J
 operator|.
 name|join
@@ -548,7 +539,7 @@ operator|.
 name|iterator
 argument_list|()
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -561,9 +552,6 @@ parameter_list|)
 block|{     }
 try|try
 block|{
-name|String
-name|unused
-init|=
 name|J
 operator|.
 name|join
@@ -573,7 +561,7 @@ operator|.
 name|iterator
 argument_list|()
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -1675,16 +1663,13 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
-name|String
-name|unused
-init|=
 name|j
 operator|.
 name|join
 argument_list|(
 name|mapWithNulls
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -1967,16 +1952,13 @@ argument_list|()
 decl_stmt|;
 try|try
 block|{
-name|String
-name|unused
-init|=
 name|j
 operator|.
 name|join
 argument_list|(
 name|entriesWithNulls
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -1989,9 +1971,6 @@ parameter_list|)
 block|{     }
 try|try
 block|{
-name|String
-name|unused
-init|=
 name|j
 operator|.
 name|join
@@ -2001,7 +1980,7 @@ operator|.
 name|iterator
 argument_list|()
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -2178,18 +2157,13 @@ argument_list|()
 decl_stmt|;
 try|try
 block|{
-name|Joiner
-operator|.
-name|MapJoiner
-name|unused
-init|=
 name|j
 operator|.
 name|withKeyValueSeparator
 argument_list|(
 literal|"/"
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;

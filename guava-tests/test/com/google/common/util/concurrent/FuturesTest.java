@@ -1826,12 +1826,6 @@ operator|.
 name|create
 argument_list|()
 decl_stmt|;
-name|ListenableFuture
-argument_list|<
-name|Object
-argument_list|>
-name|unused
-init|=
 name|Futures
 operator|.
 name|transform
@@ -1841,7 +1835,7 @@ argument_list|,
 name|identity
 argument_list|()
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|root
 operator|.
 name|set
@@ -3125,12 +3119,6 @@ operator|.
 name|create
 argument_list|()
 decl_stmt|;
-name|ListenableFuture
-argument_list|<
-name|Object
-argument_list|>
-name|unused
-init|=
 name|Futures
 operator|.
 name|transformAsync
@@ -3140,7 +3128,7 @@ argument_list|,
 name|asyncIdentity
 argument_list|()
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|root
 operator|.
 name|set

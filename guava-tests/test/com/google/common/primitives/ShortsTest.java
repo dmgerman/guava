@@ -493,16 +493,13 @@ parameter_list|)
 block|{
 try|try
 block|{
-name|short
-name|unused
-init|=
 name|Shorts
 operator|.
 name|checkedCast
 argument_list|(
 name|value
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|fail
 argument_list|(
 literal|"Cast to short should have failed: "
@@ -1613,14 +1610,11 @@ parameter_list|()
 block|{
 try|try
 block|{
-name|short
-name|unused
-init|=
 name|Shorts
 operator|.
 name|max
 argument_list|()
-decl_stmt|;
+expr_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -1719,14 +1713,11 @@ parameter_list|()
 block|{
 try|try
 block|{
-name|short
-name|unused
-init|=
 name|Shorts
 operator|.
 name|min
 argument_list|()
-decl_stmt|;
+expr_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -2149,9 +2140,6 @@ parameter_list|()
 block|{
 try|try
 block|{
-name|short
-name|unused
-init|=
 name|Shorts
 operator|.
 name|fromByteArray
@@ -2163,7 +2151,7 @@ block|{
 literal|0x01
 block|}
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -2438,10 +2426,6 @@ parameter_list|()
 block|{
 try|try
 block|{
-name|short
-index|[]
-name|unused
-init|=
 name|Shorts
 operator|.
 name|ensureCapacity
@@ -2453,7 +2437,7 @@ literal|1
 argument_list|,
 literal|1
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -2467,10 +2451,6 @@ block|{     }
 try|try
 block|{
 comment|// notice that this should even fail when no growth was needed
-name|short
-index|[]
-name|unused
-init|=
 name|Shorts
 operator|.
 name|ensureCapacity
@@ -2482,7 +2462,7 @@ argument_list|,
 operator|-
 literal|1
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -3084,17 +3064,13 @@ argument_list|)
 decl_stmt|;
 try|try
 block|{
-name|short
-index|[]
-name|unused
-init|=
 name|Shorts
 operator|.
 name|toArray
 argument_list|(
 name|list
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -3941,9 +3917,6 @@ parameter_list|()
 block|{
 try|try
 block|{
-name|short
-name|unused
-init|=
 name|Shorts
 operator|.
 name|stringConverter
@@ -3953,7 +3926,7 @@ name|convert
 argument_list|(
 literal|"notanumber"
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;

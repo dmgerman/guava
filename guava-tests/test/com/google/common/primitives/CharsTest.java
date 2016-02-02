@@ -468,16 +468,13 @@ parameter_list|)
 block|{
 try|try
 block|{
-name|char
-name|unused
-init|=
 name|Chars
 operator|.
 name|checkedCast
 argument_list|(
 name|value
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|fail
 argument_list|(
 literal|"Cast to char should have failed: "
@@ -1512,14 +1509,11 @@ parameter_list|()
 block|{
 try|try
 block|{
-name|char
-name|unused
-init|=
 name|Chars
 operator|.
 name|max
 argument_list|()
-decl_stmt|;
+expr_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -1618,14 +1612,11 @@ parameter_list|()
 block|{
 try|try
 block|{
-name|char
-name|unused
-init|=
 name|Chars
 operator|.
 name|min
 argument_list|()
-decl_stmt|;
+expr_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -1977,9 +1968,6 @@ parameter_list|()
 block|{
 try|try
 block|{
-name|char
-name|unused
-init|=
 name|Chars
 operator|.
 name|fromByteArray
@@ -1994,7 +1982,7 @@ operator|-
 literal|1
 index|]
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -2220,9 +2208,6 @@ parameter_list|()
 block|{
 try|try
 block|{
-name|char
-name|unused
-init|=
 name|Chars
 operator|.
 name|fromByteArray
@@ -2234,7 +2219,7 @@ block|{
 literal|0x11
 block|}
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -2348,10 +2333,6 @@ parameter_list|()
 block|{
 try|try
 block|{
-name|char
-index|[]
-name|unused
-init|=
 name|Chars
 operator|.
 name|ensureCapacity
@@ -2363,7 +2344,7 @@ literal|1
 argument_list|,
 literal|1
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -2377,10 +2358,6 @@ block|{     }
 try|try
 block|{
 comment|// notice that this should even fail when no growth was needed
-name|char
-index|[]
-name|unused
-init|=
 name|Chars
 operator|.
 name|ensureCapacity
@@ -2392,7 +2369,7 @@ argument_list|,
 operator|-
 literal|1
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -2953,17 +2930,13 @@ argument_list|)
 decl_stmt|;
 try|try
 block|{
-name|char
-index|[]
-name|unused
-init|=
 name|Chars
 operator|.
 name|toArray
 argument_list|(
 name|list
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;

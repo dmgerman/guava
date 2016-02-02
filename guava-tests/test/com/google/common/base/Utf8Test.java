@@ -758,16 +758,13 @@ parameter_list|)
 block|{
 try|try
 block|{
-name|int
-name|unused
-init|=
 name|Utf8
 operator|.
 name|encodedLength
 argument_list|(
 name|invalidString
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;

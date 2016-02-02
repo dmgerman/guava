@@ -140,20 +140,6 @@ name|common
 operator|.
 name|base
 operator|.
-name|Optional
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|base
-operator|.
 name|Predicate
 import|;
 end_import
@@ -1035,12 +1021,6 @@ decl_stmt|;
 try|try
 block|{
 name|FluentIterable
-argument_list|<
-name|Integer
-argument_list|>
-name|unused
-init|=
-name|FluentIterable
 operator|.
 name|concat
 argument_list|(
@@ -1050,7 +1030,7 @@ literal|null
 argument_list|,
 name|list2
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -3365,12 +3345,6 @@ argument_list|)
 decl_stmt|;
 try|try
 block|{
-name|Optional
-argument_list|<
-name|String
-argument_list|>
-name|unused
-init|=
 name|FluentIterable
 operator|.
 name|from
@@ -3380,7 +3354,7 @@ argument_list|)
 operator|.
 name|first
 argument_list|()
-decl_stmt|;
+expr_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -3645,12 +3619,6 @@ argument_list|)
 decl_stmt|;
 try|try
 block|{
-name|Optional
-argument_list|<
-name|String
-argument_list|>
-name|unused
-init|=
 name|FluentIterable
 operator|.
 name|from
@@ -3660,7 +3628,7 @@ argument_list|)
 operator|.
 name|last
 argument_list|()
-decl_stmt|;
+expr_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -4808,12 +4776,6 @@ block|{
 try|try
 block|{
 name|FluentIterable
-argument_list|<
-name|String
-argument_list|>
-name|unused
-init|=
-name|FluentIterable
 operator|.
 name|from
 argument_list|(
@@ -4832,7 +4794,7 @@ argument_list|(
 operator|-
 literal|1
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|fail
 argument_list|(
 literal|"Skipping negative number of elements should throw IllegalArgumentException."
@@ -6462,9 +6424,6 @@ parameter_list|()
 block|{
 try|try
 block|{
-name|String
-name|unused
-init|=
 name|FluentIterable
 operator|.
 name|from
@@ -6486,7 +6445,7 @@ argument_list|(
 operator|-
 literal|1
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -6499,9 +6458,6 @@ parameter_list|)
 block|{     }
 try|try
 block|{
-name|String
-name|unused
-init|=
 name|FluentIterable
 operator|.
 name|from
@@ -6522,7 +6478,7 @@ name|get
 argument_list|(
 literal|3
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -6547,16 +6503,13 @@ argument_list|>
 name|iterable
 parameter_list|)
 block|{
-name|Object
-name|unused
-init|=
 name|Iterables
 operator|.
 name|getLast
 argument_list|(
 name|iterable
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 block|}
 DECL|method|fluent (Integer... elements)
 specifier|private

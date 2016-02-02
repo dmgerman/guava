@@ -329,14 +329,11 @@ parameter_list|()
 block|{
 try|try
 block|{
-name|long
-name|unused
-init|=
 name|UnsignedLongs
 operator|.
 name|max
 argument_list|()
-decl_stmt|;
+expr_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -409,14 +406,11 @@ parameter_list|()
 block|{
 try|try
 block|{
-name|long
-name|unused
-init|=
 name|UnsignedLongs
 operator|.
 name|min
 argument_list|()
-decl_stmt|;
+expr_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -978,16 +972,13 @@ block|{
 try|try
 block|{
 comment|// One more than maximum value
-name|long
-name|unused
-init|=
 name|UnsignedLongs
 operator|.
 name|parseUnsignedLong
 argument_list|(
 literal|"18446744073709551616"
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -1100,16 +1091,13 @@ block|{
 try|try
 block|{
 comment|// One more than maximum value
-name|long
-name|unused
-init|=
 name|UnsignedLongs
 operator|.
 name|decode
 argument_list|(
 literal|"0xfffffffffffffffff"
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -1122,16 +1110,13 @@ parameter_list|)
 block|{     }
 try|try
 block|{
-name|long
-name|unused
-init|=
 name|UnsignedLongs
 operator|.
 name|decode
 argument_list|(
 literal|"-5"
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -1144,16 +1129,13 @@ parameter_list|)
 block|{     }
 try|try
 block|{
-name|long
-name|unused
-init|=
 name|UnsignedLongs
 operator|.
 name|decode
 argument_list|(
 literal|"-0x5"
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -1166,16 +1148,13 @@ parameter_list|)
 block|{     }
 try|try
 block|{
-name|long
-name|unused
-init|=
 name|UnsignedLongs
 operator|.
 name|decode
 argument_list|(
 literal|"-05"
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -1316,9 +1295,6 @@ argument_list|(
 name|radix
 argument_list|)
 decl_stmt|;
-name|long
-name|unused
-init|=
 name|UnsignedLongs
 operator|.
 name|parseUnsignedLong
@@ -1327,7 +1303,7 @@ name|overflowAsString
 argument_list|,
 name|radix
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -1370,9 +1346,6 @@ block|{
 comment|// Valid radix values are Character.MIN_RADIX to Character.MAX_RADIX, inclusive.
 try|try
 block|{
-name|long
-name|unused
-init|=
 name|UnsignedLongs
 operator|.
 name|parseUnsignedLong
@@ -1385,7 +1358,7 @@ name|MIN_RADIX
 operator|-
 literal|1
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -1398,9 +1371,6 @@ parameter_list|)
 block|{     }
 try|try
 block|{
-name|long
-name|unused
-init|=
 name|UnsignedLongs
 operator|.
 name|parseUnsignedLong
@@ -1413,7 +1383,7 @@ name|MAX_RADIX
 operator|+
 literal|1
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -1427,9 +1397,6 @@ block|{     }
 comment|// The radix is used as an array index, so try a negative value.
 try|try
 block|{
-name|long
-name|unused
-init|=
 name|UnsignedLongs
 operator|.
 name|parseUnsignedLong
@@ -1439,7 +1406,7 @@ argument_list|,
 operator|-
 literal|1
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;

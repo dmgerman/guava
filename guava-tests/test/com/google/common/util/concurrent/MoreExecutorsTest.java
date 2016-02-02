@@ -1777,31 +1777,13 @@ operator|.
 name|of
 argument_list|()
 decl_stmt|;
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
-comment|// guaranteed by invokeAll contract
-name|List
-argument_list|<
-name|ListenableFuture
-argument_list|<
-name|T
-argument_list|>
-argument_list|>
-name|unused
-init|=
-operator|(
-name|List
-operator|)
 name|executor
 operator|.
 name|invokeAll
 argument_list|(
 name|tasks
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 block|}
 DECL|method|testListeningDecorator ()
 specifier|public
