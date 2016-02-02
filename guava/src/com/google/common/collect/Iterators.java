@@ -258,6 +258,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|primitives
+operator|.
+name|Ints
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -758,10 +772,10 @@ argument_list|>
 name|iterator
 parameter_list|)
 block|{
-name|int
+name|long
 name|count
 init|=
-literal|0
+literal|0L
 decl_stmt|;
 while|while
 condition|(
@@ -781,7 +795,12 @@ operator|++
 expr_stmt|;
 block|}
 return|return
+name|Ints
+operator|.
+name|saturatedCast
+argument_list|(
 name|count
+argument_list|)
 return|;
 block|}
 comment|/**    * Returns {@code true} if {@code iterator} contains {@code element}.    */
