@@ -610,7 +610,7 @@ name|executor
 argument_list|)
 return|;
 block|}
-comment|/**    * Converts the given ThreadPoolExecutor into a ScheduledExecutorService that    * exits when the application is complete.  It does so by using daemon threads    * and adding a shutdown hook to wait for their completion.    *    *<p>This method waits 120 seconds before continuing with JVM termination,    * even if the executor has not finished its work.    *    *<p>This is mainly for fixed thread pools.    * See {@link Executors#newScheduledThreadPool(int)}.    *    * @param executor the executor to modify to make sure it exits when the    *        application is finished    * @return an unmodifiable version of the input which will not hang the JVM    */
+comment|/**    * Converts the given ScheduledThreadPoolExecutor into a    * ScheduledExecutorService that exits when the application is complete.  It    * does so by using daemon threads and adding a shutdown hook to wait for    * their completion.    *    *<p>This method waits 120 seconds before continuing with JVM termination,    * even if the executor has not finished its work.    *    *<p>This is mainly for fixed thread pools.    * See {@link Executors#newScheduledThreadPool(int)}.    *    * @param executor the executor to modify to make sure it exits when the    *        application is finished    * @return an unmodifiable version of the input which will not hang the JVM    */
 annotation|@
 name|Beta
 annotation|@
