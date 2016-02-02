@@ -132,6 +132,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -216,6 +230,8 @@ end_comment
 
 begin_class
 annotation|@
+name|CheckReturnValue
+annotation|@
 name|GwtCompatible
 argument_list|(
 name|emulated
@@ -281,8 +297,6 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Returns a fluent iterable that wraps {@code iterable}, or {@code iterable} itself if it    * is already a {@code FluentIterable}.    *    *<p><b>{@code Stream} equivalent:</b> {@code iterable.stream()} if {@code iterable} is a    * {@link Collection}; {@code StreamSupport.stream(iterable.spliterator(), false)} otherwise.    */
-annotation|@
-name|CheckReturnValue
 DECL|method|from (final Iterable<E> iterable)
 specifier|public
 specifier|static
@@ -350,8 +364,6 @@ block|}
 comment|/**    * Returns a fluent iterable containing {@code elements} in the specified order.    *    *<p>The returned iterable is an unmodifiable view of the input array.    *    *<p><b>{@code Stream} equivalent:</b> {@code Stream.of(elements)} or {@code    * Arrays.stream(elements)}.    *    * @since 20.0 (since 18.0 as an overload of {@code of})    */
 annotation|@
 name|Beta
-annotation|@
-name|CheckReturnValue
 DECL|method|from (E[] elements)
 specifier|public
 specifier|static
@@ -384,8 +396,6 @@ block|}
 comment|/**    * Construct a fluent iterable from another fluent iterable. This is obviously never necessary,    * but is intended to help call out cases where one migration from {@code Iterable} to    * {@code FluentIterable} has obviated the need to explicitly convert to a {@code FluentIterable}.    *    * @deprecated instances of {@code FluentIterable} don't need to be converted to    *     {@code FluentIterable}    */
 annotation|@
 name|Deprecated
-annotation|@
-name|CheckReturnValue
 DECL|method|from (FluentIterable<E> iterable)
 specifier|public
 specifier|static
@@ -415,8 +425,6 @@ block|}
 comment|/**    * Returns a fluent iterable that combines two iterables. The returned iterable has an iterator    * that traverses the elements in {@code a}, followed by the elements in {@code b}. The source    * iterators are not polled until necessary.    *    *<p>The returned iterable's iterator supports {@code remove()} when the corresponding input    * iterator supports it.    *    * @since 20.0    */
 annotation|@
 name|Beta
-annotation|@
-name|CheckReturnValue
 DECL|method|concat (Iterable<? extends T> a, Iterable<? extends T> b)
 specifier|public
 specifier|static
@@ -463,8 +471,6 @@ block|}
 comment|/**    * Returns a fluent iterable that combines three iterables. The returned iterable has an iterator    * that traverses the elements in {@code a}, followed by the elements in {@code b}, followed by    * the elements in {@code c}. The source iterators are not polled until necessary.    *    *<p>The returned iterable's iterator supports {@code remove()} when the corresponding input    * iterator supports it.    *    * @since 20.0    */
 annotation|@
 name|Beta
-annotation|@
-name|CheckReturnValue
 DECL|method|concat ( Iterable<? extends T> a, Iterable<? extends T> b, Iterable<? extends T> c)
 specifier|public
 specifier|static
@@ -521,8 +527,6 @@ block|}
 comment|/**    * Returns a fluent iterable that combines four iterables. The returned iterable has an iterator    * that traverses the elements in {@code a}, followed by the elements in {@code b}, followed by    * the elements in {@code c}, followed by the elements in {@code d}. The source iterators are not    * polled until necessary.    *    *<p>The returned iterable's iterator supports {@code remove()} when the corresponding input    * iterator supports it.    *    * @since 20.0    */
 annotation|@
 name|Beta
-annotation|@
-name|CheckReturnValue
 DECL|method|concat ( Iterable<? extends T> a, Iterable<? extends T> b, Iterable<? extends T> c, Iterable<? extends T> d)
 specifier|public
 specifier|static
@@ -589,8 +593,6 @@ block|}
 comment|/**    * Returns a fluent iterable that combines several iterables. The returned iterable has an    * iterator that traverses the elements of each iterable in {@code inputs}. The input iterators    * are not polled until necessary.    *    *<p>The returned iterable's iterator supports {@code remove()} when the corresponding input    * iterator supports it.    *    * @throws NullPointerException if any of the provided iterables is {@code null}    *    * @since 20.0    */
 annotation|@
 name|Beta
-annotation|@
-name|CheckReturnValue
 DECL|method|concat (Iterable<? extends T>.... inputs)
 specifier|public
 specifier|static
@@ -628,8 +630,6 @@ block|}
 comment|/**    * Returns a fluent iterable that combines several iterables. The returned iterable has an    * iterator that traverses the elements of each iterable in {@code inputs}. The input iterators    * are not polled until necessary.    *    *<p>The returned iterable's iterator supports {@code remove()} when the corresponding input    * iterator supports it. The methods of the returned iterable may throw    * {@code NullPointerException} if any of the input iterators is {@code null}.    *    * @since 20.0    */
 annotation|@
 name|Beta
-annotation|@
-name|CheckReturnValue
 DECL|method|concat ( final Iterable<? extends Iterable<? extends T>> inputs)
 specifier|public
 specifier|static
@@ -711,8 +711,6 @@ block|}
 comment|/**    * Returns a fluent iterable containing no elements.    *    *<p><b>{@code Stream} equivalent:</b> {@code Stream.empty()}.    *    * @since 20.0    */
 annotation|@
 name|Beta
-annotation|@
-name|CheckReturnValue
 DECL|method|of ()
 specifier|public
 specifier|static
@@ -744,8 +742,6 @@ block|}
 comment|/**    * Returns a fluent iterable containing {@code elements} in the specified order.    *    *<p>The returned iterable is modifiable, but modifications do not affect the input array.    *    *<p><b>{@code Stream} equivalent:</b> {@code Stream.of(elements)} or {@code    * Arrays.stream(elements)}.    *    * @deprecated Use {@link #from(E[])} instead (but note the differences in mutability). This    *     method will be removed in Guava release 21.0.    * @since 18.0    */
 annotation|@
 name|Beta
-annotation|@
-name|CheckReturnValue
 annotation|@
 name|Deprecated
 DECL|method|of (E[] elements)
@@ -780,8 +776,6 @@ block|}
 comment|/**    * Returns a fluent iterable containing the specified elements in order.    *    *<p><b>{@code Stream} equivalent:</b> {@code Stream.of(...)}.    *    * @since 20.0    */
 annotation|@
 name|Beta
-annotation|@
-name|CheckReturnValue
 DECL|method|of (@ullable E element, E... elements)
 specifier|public
 specifier|static
@@ -821,8 +815,6 @@ block|}
 comment|/**    * Returns a string representation of this fluent iterable, with the format    * {@code [e1, e2, ..., en]}.    *    *<p><b>{@code Stream} equivalent:</b> {@code stream.collect(Collectors.joining(", ", "[", "]"))}    * or (less efficiently) {@code collect(Collectors.toList()).toString()}.    */
 annotation|@
 name|Override
-annotation|@
-name|CheckReturnValue
 DECL|method|toString ()
 specifier|public
 name|String
@@ -839,8 +831,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns the number of elements in this fluent iterable.    *    *<p><b>{@code Stream} equivalent:</b> {@code stream.count()}.    */
-annotation|@
-name|CheckReturnValue
 DECL|method|size ()
 specifier|public
 specifier|final
@@ -858,8 +848,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns {@code true} if this fluent iterable contains any object for which    * {@code equals(target)} is true.    *    *<p><b>{@code Stream} equivalent:</b> {@code stream.anyMatch(Predicate.isEqual(target))}.    */
-annotation|@
-name|CheckReturnValue
 DECL|method|contains (@ullable Object target)
 specifier|public
 specifier|final
@@ -884,8 +872,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns a fluent iterable whose {@code Iterator} cycles indefinitely over the elements of    * this fluent iterable.    *    *<p>That iterator supports {@code remove()} if {@code iterable.iterator()} does. After    * {@code remove()} is called, subsequent cycles omit the removed element, which is no longer in    * this fluent iterable. The iterator's {@code hasNext()} method returns {@code true} until    * this fluent iterable is empty.    *    *<p><b>Warning:</b> Typical uses of the resulting iterator may produce an infinite loop. You    * should use an explicit {@code break} or be certain that you will eventually remove all the    * elements.    *    *<p><b>{@code Stream} equivalent:</b> if the source iterable has only a single element {@code    * element}, use {@code Stream.generate(() -> element)}. Otherwise, if the source iterable has    * a {@code stream} method (for example, if it is a {@link Collection}), use    * {@code Stream.generate(iterable::stream).flatMap(s -> s)}.    */
-annotation|@
-name|CheckReturnValue
 DECL|method|cycle ()
 specifier|public
 specifier|final
@@ -911,8 +897,6 @@ block|}
 comment|/**    * Returns a fluent iterable whose iterators traverse first the elements of this fluent iterable,    * followed by those of {@code other}. The iterators are not polled until necessary.    *    *<p>The returned iterable's {@code Iterator} supports {@code remove()} when the corresponding    * {@code Iterator} supports it.    *    *<p><b>{@code Stream} equivalent:</b> {@code Stream.concat(thisStream, otherStream)}.    *    * @since 18.0    */
 annotation|@
 name|Beta
-annotation|@
-name|CheckReturnValue
 DECL|method|append (Iterable<? extends E> other)
 specifier|public
 specifier|final
@@ -948,8 +932,6 @@ block|}
 comment|/**    * Returns a fluent iterable whose iterators traverse first the elements of this fluent iterable,    * followed by {@code elements}.    *    *<p><b>{@code Stream} equivalent:</b> {@code Stream.concat(thisStream, Stream.of(elements))}.    *    * @since 18.0    */
 annotation|@
 name|Beta
-annotation|@
-name|CheckReturnValue
 DECL|method|append (E... elements)
 specifier|public
 specifier|final
@@ -984,8 +966,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns the elements from this fluent iterable that satisfy a predicate. The    * resulting fluent iterable's iterator does not support {@code remove()}.    *    *<p><b>{@code Stream} equivalent:</b> {@code stream.filter(predicate)} (same).    */
-annotation|@
-name|CheckReturnValue
 DECL|method|filter (Predicate<? super E> predicate)
 specifier|public
 specifier|final
@@ -1022,8 +1002,6 @@ comment|/**    * Returns the elements from this fluent iterable that are instanc
 annotation|@
 name|GwtIncompatible
 comment|// Class.isInstance
-annotation|@
-name|CheckReturnValue
 DECL|method|filter (Class<T> type)
 specifier|public
 specifier|final
@@ -1058,8 +1036,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns {@code true} if any element in this fluent iterable satisfies the predicate.    *    *<p><b>{@code Stream} equivalent:</b> {@code stream.anyMatch(predicate)} (same).    */
-annotation|@
-name|CheckReturnValue
 DECL|method|anyMatch (Predicate<? super E> predicate)
 specifier|public
 specifier|final
@@ -1087,8 +1063,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns {@code true} if every element in this fluent iterable satisfies the predicate.    * If this fluent iterable is empty, {@code true} is returned.    *    *<p><b>{@code Stream} equivalent:</b> {@code stream.allMatch(predicate)} (same).    */
-annotation|@
-name|CheckReturnValue
 DECL|method|allMatch (Predicate<? super E> predicate)
 specifier|public
 specifier|final
@@ -1116,8 +1090,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns an {@link Optional} containing the first element in this fluent iterable that    * satisfies the given predicate, if such an element exists.    *    *<p><b>Warning:</b> avoid using a {@code predicate} that matches {@code null}. If {@code null}    * is matched in this fluent iterable, a {@link NullPointerException} will be thrown.    *    *<p><b>{@code Stream} equivalent:</b> {@code stream.filter(predicate).findFirst()}.    */
-annotation|@
-name|CheckReturnValue
 DECL|method|firstMatch (Predicate<? super E> predicate)
 specifier|public
 specifier|final
@@ -1148,8 +1120,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns a fluent iterable that applies {@code function} to each element of this    * fluent iterable.    *    *<p>The returned fluent iterable's iterator supports {@code remove()} if this iterable's    * iterator does. After a successful {@code remove()} call, this fluent iterable no longer    * contains the corresponding element.    *    *<p><b>{@code Stream} equivalent:</b> {@code stream.map(function)}.    */
-annotation|@
-name|CheckReturnValue
 DECL|method|transform (Function<? super E, T> function)
 specifier|public
 specifier|final
@@ -1188,8 +1158,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Applies {@code function} to each element of this fluent iterable and returns    * a fluent iterable with the concatenated combination of results.  {@code function}    * returns an Iterable of results.    *    *<p>The returned fluent iterable's iterator supports {@code remove()} if this    * function-returned iterables' iterator does. After a successful {@code remove()} call,    * the returned fluent iterable no longer contains the corresponding element.    *    *<p><b>{@code Stream} equivalent:</b> {@code stream.flatMap(function)} (using a function that    * produces streams, not iterables).    *    * @since 13.0 (required {@code Function<E, Iterable<T>>} until 14.0)    */
-annotation|@
-name|CheckReturnValue
 DECL|method|transformAndConcat ( Function<? super E, ? extends Iterable<? extends T>> function)
 specifier|public
 parameter_list|<
@@ -1235,8 +1203,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns an {@link Optional} containing the first element in this fluent iterable.    * If the iterable is empty, {@code Optional.absent()} is returned.    *    *<p><b>{@code Stream} equivalent:</b> if the goal is to obtain any element, {@code    * stream.findAny()}; if it must specifically be the<i>first</i> element, {@code    * stream.findFirst()}.    *    * @throws NullPointerException if the first element is null; if this is a possibility, use    *     {@code iterator().next()} or {@link Iterables#getFirst} instead.    */
-annotation|@
-name|CheckReturnValue
 DECL|method|first ()
 specifier|public
 specifier|final
@@ -1284,8 +1250,6 @@ argument_list|()
 return|;
 block|}
 comment|/**    * Returns an {@link Optional} containing the last element in this fluent iterable.    * If the iterable is empty, {@code Optional.absent()} is returned.    *    *<p><b>{@code Stream} equivalent:</b> {@code stream.reduce((a, b) -> b)}.    *    * @throws NullPointerException if the last element is null; if this is a possibility, use    *     {@link Iterables#getLast} instead.    */
-annotation|@
-name|CheckReturnValue
 DECL|method|last ()
 specifier|public
 specifier|final
@@ -1448,8 +1412,6 @@ block|}
 block|}
 block|}
 comment|/**    * Returns a view of this fluent iterable that skips its first {@code numberToSkip}    * elements. If this fluent iterable contains fewer than {@code numberToSkip} elements,    * the returned fluent iterable skips all of its elements.    *    *<p>Modifications to this fluent iterable before a call to {@code iterator()} are    * reflected in the returned fluent iterable. That is, the its iterator skips the first    * {@code numberToSkip} elements that exist when the iterator is created, not when {@code skip()}    * is called.    *    *<p>The returned fluent iterable's iterator supports {@code remove()} if the    * {@code Iterator} of this fluent iterable supports it. Note that it is<i>not</i>    * possible to delete the last skipped element by immediately calling {@code remove()} on the    * returned fluent iterable's iterator, as the {@code Iterator} contract states that a call    * to {@code * remove()} before a call to {@code next()} will throw an    * {@link IllegalStateException}.    *    *<p><b>{@code Stream} equivalent:</b> {@code stream.skip(numberToSkip)} (same).    */
-annotation|@
-name|CheckReturnValue
 DECL|method|skip (int numberToSkip)
 specifier|public
 specifier|final
@@ -1478,8 +1440,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Creates a fluent iterable with the first {@code size} elements of this    * fluent iterable. If this fluent iterable does not contain that many elements,    * the returned fluent iterable will have the same behavior as this fluent iterable.    * The returned fluent iterable's iterator supports {@code remove()} if this    * fluent iterable's iterator does.    *    *<p><b>{@code Stream} equivalent:</b> {@code stream.limit(maxSize)} (same).    *    * @param maxSize the maximum number of elements in the returned fluent iterable    * @throws IllegalArgumentException if {@code size} is negative    */
-annotation|@
-name|CheckReturnValue
 DECL|method|limit (int maxSize)
 specifier|public
 specifier|final
@@ -1508,8 +1468,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Determines whether this fluent iterable is empty.    *    *<p><b>{@code Stream} equivalent:</b> {@code !stream.findAny().isPresent()}.    */
-annotation|@
-name|CheckReturnValue
 DECL|method|isEmpty ()
 specifier|public
 specifier|final
@@ -1529,8 +1487,6 @@ argument_list|()
 return|;
 block|}
 comment|/**    * Returns an {@code ImmutableList} containing all of the elements from this fluent iterable in    * proper sequence.    *    *<p><b>{@code Stream} equivalent:</b> {@code ImmutableList.copyOf(stream.iterator())}.    *    * @since 14.0 (since 12.0 as {@code toImmutableList()}).    */
-annotation|@
-name|CheckReturnValue
 DECL|method|toList ()
 specifier|public
 specifier|final
@@ -1551,8 +1507,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns an {@code ImmutableList} containing all of the elements from this {@code    * FluentIterable} in the order specified by {@code comparator}.  To produce an {@code    * ImmutableList} sorted by its natural ordering, use {@code toSortedList(Ordering.natural())}.    *    *<p><b>{@code Stream} equivalent:</b>    * {@code ImmutableList.copyOf(stream.sorted(comparator).iterator())}.    *    * @param comparator the function by which to sort list elements    * @throws NullPointerException if any element is null    * @since 14.0 (since 13.0 as {@code toSortedImmutableList()}).    */
-annotation|@
-name|CheckReturnValue
 DECL|method|toSortedList (Comparator<? super E> comparator)
 specifier|public
 specifier|final
@@ -1586,8 +1540,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns an {@code ImmutableSet} containing all of the elements from this fluent iterable with    * duplicates removed.    *    *<p><b>{@code Stream} equivalent:</b> {@code ImmutableSet.copyOf(stream.iterator())}.    *    * @since 14.0 (since 12.0 as {@code toImmutableSet()}).    */
-annotation|@
-name|CheckReturnValue
 DECL|method|toSet ()
 specifier|public
 specifier|final
@@ -1608,8 +1560,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns an {@code ImmutableSortedSet} containing all of the elements from this {@code    * FluentIterable} in the order specified by {@code comparator}, with duplicates (determined by    * {@code comparator.compare(x, y) == 0}) removed. To produce an {@code ImmutableSortedSet} sorted    * by its natural ordering, use {@code toSortedSet(Ordering.natural())}.    *    *<p><b>{@code Stream} equivalent:</b>    * {@code ImmutableSortedSet.copyOf(comparator, stream.iterator())}.    *    * @param comparator the function by which to sort set elements    * @throws NullPointerException if any element is null    * @since 14.0 (since 12.0 as {@code toImmutableSortedSet()}).    */
-annotation|@
-name|CheckReturnValue
 DECL|method|toSortedSet (Comparator<? super E> comparator)
 specifier|public
 specifier|final
@@ -1640,8 +1590,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns an {@code ImmutableMultiset} containing all of the elements from this fluent iterable.    *    *<p><b>{@code Stream} equivalent:</b> {@code ImmutableMultiset.copyOf(stream.iterator())}.    *    * @since 19.0    */
-annotation|@
-name|CheckReturnValue
 DECL|method|toMultiset ()
 specifier|public
 specifier|final
@@ -1662,8 +1610,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns an immutable map whose keys are the distinct elements of this {@code FluentIterable}    * and whose value for each key was computed by {@code valueFunction}. The map's iteration order    * is the order of the first appearance of each key in this iterable.    *    *<p>When there are multiple instances of a key in this iterable, it is unspecified whether    * {@code valueFunction} will be applied to more than one instance of that key and, if it is,    * which result will be mapped to that key in the returned map.    *    *<p><b>{@code Stream} equivalent:</b> {@code    * ImmutableMap.copyOf(stream.collect(Collectors.toMap(k -> k, valueFunction)))} (but note that    * this may not preserve the order of entries).    *    * @throws NullPointerException if any element of this iterable is {@code null}, or if {@code    *     valueFunction} produces {@code null} for any key    * @since 14.0    */
-annotation|@
-name|CheckReturnValue
 DECL|method|toMap (Function<? super E, V> valueFunction)
 specifier|public
 specifier|final
@@ -1701,8 +1647,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Creates an index {@code ImmutableListMultimap} that contains the results of applying a    * specified function to each item in this {@code FluentIterable} of values. Each element of this    * iterable will be stored as a value in the resulting multimap, yielding a multimap with the same    * size as this iterable. The key used to store that value in the multimap will be the result of    * calling the function on that value. The resulting multimap is created as an immutable snapshot.    * In the returned multimap, keys appear in the order they are first encountered, and the values    * corresponding to each key appear in the same order as they are encountered.    *    * @param keyFunction the function used to produce the key for each value    * @throws NullPointerException if any of the following cases is true:    *<ul>    *<li>{@code keyFunction} is null    *<li>An element in this fluent iterable is null    *<li>{@code keyFunction} returns {@code null} for any element of this iterable    *</ul>    *    *<p><b>{@code Stream} equivalent:</b> {@code stream.collect(Collectors.groupingBy(keyFunction))}    * behaves similarly, but returns a mutable {@code Map<K, List<E>>} instead, and may not preserve    * the order of entries).    *    * @since 14.0    */
-annotation|@
-name|CheckReturnValue
 DECL|method|index (Function<? super E, K> keyFunction)
 specifier|public
 specifier|final
@@ -1740,8 +1684,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns a map with the contents of this {@code FluentIterable} as its {@code values}, indexed    * by keys derived from those values. In other words, each input value produces an entry in the    * map whose key is the result of applying {@code keyFunction} to that value. These entries appear    * in the same order as they appeared in this fluent iterable. Example usage:    *<pre>   {@code    *    *   Color red = new Color("red", 255, 0, 0);    *   ...    *   FluentIterable<Color> allColors = FluentIterable.from(ImmutableSet.of(red, green, blue));    *    *   Map<String, Color> colorForName = allColors.uniqueIndex(toStringFunction());    *   assertThat(colorForName).containsEntry("red", red);}</pre>    *    *<p>If your index may associate multiple values with each key, use {@link #index(Function)    * index}.    *    *<p><b>{@code Stream} equivalent:</b> {@code    * ImmutableMap.copyOf(stream.collect(Collectors.toMap(keyFunction, v -> v)))} (but note that this    * may not preserve the order of entries).    *    * @param keyFunction the function used to produce the key for each value    * @return a map mapping the result of evaluating the function {@code    *     keyFunction} on each value in this fluent iterable to that value    * @throws IllegalArgumentException if {@code keyFunction} produces the same    *     key for more than one value in this fluent iterable    * @throws NullPointerException if any elements of this fluent iterable is null, or    *     if {@code keyFunction} produces {@code null} for any value    * @since 14.0    */
-annotation|@
-name|CheckReturnValue
 DECL|method|uniqueIndex (Function<? super E, K> keyFunction)
 specifier|public
 specifier|final
@@ -1782,8 +1724,6 @@ comment|/**    * Returns an array containing all of the elements from this fluen
 annotation|@
 name|GwtIncompatible
 comment|// Array.newArray(Class, int)
-annotation|@
-name|CheckReturnValue
 DECL|method|toArray (Class<E> type)
 specifier|public
 specifier|final
@@ -1810,6 +1750,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Copies all the elements from this fluent iterable to {@code collection}. This is equivalent to    * calling {@code Iterables.addAll(collection, this)}.    *    *<p><b>{@code Stream} equivalent:</b> {@code stream.forEachOrdered(collection::add)} or    * {@code stream.forEach(collection::add)}.    *    * @param collection the collection to copy elements to    * @return {@code collection}, for convenience    * @since 14.0    */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|copyInto (C collection)
 specifier|public
 specifier|final
@@ -1881,8 +1823,6 @@ block|}
 comment|/**    * Returns a {@link String} containing all of the elements of this fluent iterable joined with    * {@code joiner}.    *    *<p><b>{@code Stream} equivalent:</b> {@code joiner.join(stream.iterator())}, or, if you are not    * using any optional {@code Joiner} features,    * {@code stream.collect(Collectors.joining(delimiter)}.    *    * @since 18.0    */
 annotation|@
 name|Beta
-annotation|@
-name|CheckReturnValue
 DECL|method|join (Joiner joiner)
 specifier|public
 specifier|final
@@ -1904,8 +1844,6 @@ return|;
 block|}
 comment|/**    * Returns the element at the specified position in this fluent iterable.    *    *<p><b>{@code Stream} equivalent:</b> {@code stream.skip(position).findFirst().get()} (but note    * that this throws different exception types, and throws an exception if {@code null} would be    * returned).    *    * @param position position of the element to return    * @return the element at the specified position in this fluent iterable    * @throws IndexOutOfBoundsException if {@code position} is negative or greater than or equal to    *     the size of this fluent iterable    */
 comment|// TODO(kevinb): add @Nullable?
-annotation|@
-name|CheckReturnValue
 DECL|method|get (int position)
 specifier|public
 specifier|final

@@ -841,6 +841,9 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+name|int
+name|unused
+init|=
 name|comparator
 operator|.
 name|compare
@@ -849,7 +852,7 @@ literal|1
 argument_list|,
 literal|null
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -862,6 +865,9 @@ parameter_list|)
 block|{}
 try|try
 block|{
+name|int
+name|unused
+init|=
 name|comparator
 operator|.
 name|compare
@@ -870,7 +876,7 @@ literal|null
 argument_list|,
 literal|2
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -883,6 +889,9 @@ parameter_list|)
 block|{}
 try|try
 block|{
+name|int
+name|unused
+init|=
 name|comparator
 operator|.
 name|compare
@@ -891,7 +900,7 @@ literal|null
 argument_list|,
 literal|null
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -1439,6 +1448,12 @@ block|{
 try|try
 block|{
 name|Ordering
+argument_list|<
+name|Integer
+argument_list|>
+name|unused
+init|=
+name|Ordering
 operator|.
 name|explicit
 argument_list|(
@@ -1452,7 +1467,7 @@ literal|4
 argument_list|,
 literal|2
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -3150,6 +3165,12 @@ argument_list|)
 decl_stmt|;
 try|try
 block|{
+name|List
+argument_list|<
+name|Integer
+argument_list|>
+name|unused
+init|=
 name|Ordering
 operator|.
 name|natural
@@ -3162,7 +3183,7 @@ name|immutableSortedCopy
 argument_list|(
 name|listWithNull
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -3652,6 +3673,12 @@ parameter_list|()
 block|{
 try|try
 block|{
+name|List
+argument_list|<
+name|Integer
+argument_list|>
+name|unused
+init|=
 name|numberOrdering
 operator|.
 name|leastOf
@@ -3673,7 +3700,7 @@ argument_list|,
 operator|-
 literal|1
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -3693,6 +3720,12 @@ parameter_list|()
 block|{
 try|try
 block|{
+name|List
+argument_list|<
+name|Integer
+argument_list|>
+name|unused
+init|=
 name|numberOrdering
 operator|.
 name|leastOf
@@ -3714,7 +3747,7 @@ argument_list|,
 operator|-
 literal|1
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;

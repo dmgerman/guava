@@ -92,6 +92,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -240,6 +254,16 @@ name|javax
 operator|.
 name|annotation
 operator|.
+name|CheckReturnValue
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
 name|Nullable
 import|;
 end_import
@@ -251,6 +275,8 @@ end_comment
 begin_class
 annotation|@
 name|GwtCompatible
+annotation|@
+name|CheckReturnValue
 DECL|class|Ordering
 specifier|public
 specifier|abstract
@@ -1124,6 +1150,9 @@ block|}
 comment|// Regular instance methods
 comment|// Override to add @Nullable
 annotation|@
+name|CanIgnoreReturnValue
+comment|// TODO(kak): Consider removing this
+annotation|@
 name|Override
 DECL|method|compare (@ullable T left, @Nullable T right)
 specifier|public
@@ -1143,6 +1172,9 @@ name|right
 parameter_list|)
 function_decl|;
 comment|/**    * Returns the least of the specified values according to this ordering. If    * there are multiple least values, the first of those is returned. The    * iterator will be left exhausted: its {@code hasNext()} method will return    * {@code false}.    *    * @param iterator the iterator whose minimum element is to be determined    * @throws NoSuchElementException if {@code iterator} is empty    * @throws ClassCastException if the parameters are not<i>mutually    *     comparable</i> under this ordering.    *    * @since 11.0    */
+annotation|@
+name|CanIgnoreReturnValue
+comment|// TODO(kak): Consider removing this
 DECL|method|min (Iterator<E> iterator)
 specifier|public
 parameter_list|<
@@ -1195,6 +1227,9 @@ name|minSoFar
 return|;
 block|}
 comment|/**    * Returns the least of the specified values according to this ordering. If    * there are multiple least values, the first of those is returned.    *    * @param iterable the iterable whose minimum element is to be determined    * @throws NoSuchElementException if {@code iterable} is empty    * @throws ClassCastException if the parameters are not<i>mutually    *     comparable</i> under this ordering.    */
+annotation|@
+name|CanIgnoreReturnValue
+comment|// TODO(kak): Consider removing this
 DECL|method|min (Iterable<E> iterable)
 specifier|public
 parameter_list|<
@@ -1223,6 +1258,9 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns the lesser of the two values according to this ordering. If the    * values compare as 0, the first is returned.    *    *<p><b>Implementation note:</b> this method is invoked by the default    * implementations of the other {@code min} overloads, so overriding it will    * affect their behavior.    *    * @param a value to compare, returned if less than or equal to b.    * @param b value to compare.    * @throws ClassCastException if the parameters are not<i>mutually    *     comparable</i> under this ordering.    */
+annotation|@
+name|CanIgnoreReturnValue
+comment|// TODO(kak): Consider removing this
 DECL|method|min (@ullable E a, @Nullable E b)
 specifier|public
 parameter_list|<
@@ -1262,6 +1300,9 @@ name|b
 return|;
 block|}
 comment|/**    * Returns the least of the specified values according to this ordering. If    * there are multiple least values, the first of those is returned.    *    * @param a value to compare, returned if less than or equal to the rest.    * @param b value to compare    * @param c value to compare    * @param rest values to compare    * @throws ClassCastException if the parameters are not<i>mutually    *     comparable</i> under this ordering.    */
+annotation|@
+name|CanIgnoreReturnValue
+comment|// TODO(kak): Consider removing this
 DECL|method|min (@ullable E a, @Nullable E b, @Nullable E c, E... rest)
 specifier|public
 parameter_list|<
@@ -1330,6 +1371,9 @@ name|minSoFar
 return|;
 block|}
 comment|/**    * Returns the greatest of the specified values according to this ordering. If    * there are multiple greatest values, the first of those is returned. The    * iterator will be left exhausted: its {@code hasNext()} method will return    * {@code false}.    *    * @param iterator the iterator whose maximum element is to be determined    * @throws NoSuchElementException if {@code iterator} is empty    * @throws ClassCastException if the parameters are not<i>mutually    *     comparable</i> under this ordering.    *    * @since 11.0    */
+annotation|@
+name|CanIgnoreReturnValue
+comment|// TODO(kak): Consider removing this
 DECL|method|max (Iterator<E> iterator)
 specifier|public
 parameter_list|<
@@ -1382,6 +1426,9 @@ name|maxSoFar
 return|;
 block|}
 comment|/**    * Returns the greatest of the specified values according to this ordering. If    * there are multiple greatest values, the first of those is returned.    *    * @param iterable the iterable whose maximum element is to be determined    * @throws NoSuchElementException if {@code iterable} is empty    * @throws ClassCastException if the parameters are not<i>mutually    *     comparable</i> under this ordering.    */
+annotation|@
+name|CanIgnoreReturnValue
+comment|// TODO(kak): Consider removing this
 DECL|method|max (Iterable<E> iterable)
 specifier|public
 parameter_list|<
@@ -1410,6 +1457,9 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns the greater of the two values according to this ordering. If the    * values compare as 0, the first is returned.    *    *<p><b>Implementation note:</b> this method is invoked by the default    * implementations of the other {@code max} overloads, so overriding it will    * affect their behavior.    *    * @param a value to compare, returned if greater than or equal to b.    * @param b value to compare.    * @throws ClassCastException if the parameters are not<i>mutually    *     comparable</i> under this ordering.    */
+annotation|@
+name|CanIgnoreReturnValue
+comment|// TODO(kak): Consider removing this
 DECL|method|max (@ullable E a, @Nullable E b)
 specifier|public
 parameter_list|<
@@ -1449,6 +1499,9 @@ name|b
 return|;
 block|}
 comment|/**    * Returns the greatest of the specified values according to this ordering. If    * there are multiple greatest values, the first of those is returned.    *    * @param a value to compare, returned if greater than or equal to the rest.    * @param b value to compare    * @param c value to compare    * @param rest values to compare    * @throws ClassCastException if the parameters are not<i>mutually    *     comparable</i> under this ordering.    */
+annotation|@
+name|CanIgnoreReturnValue
+comment|// TODO(kak): Consider removing this
 DECL|method|max (@ullable E a, @Nullable E b, @Nullable E c, E... rest)
 specifier|public
 parameter_list|<
@@ -2295,6 +2348,9 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns a<b>mutable</b> list containing {@code elements} sorted by this    * ordering; use this only when the resulting list may need further    * modification, or may contain {@code null}. The input is not modified. The    * returned list is serializable and has random access.    *    *<p>Unlike {@link Sets#newTreeSet(Iterable)}, this method does not discard    * elements that are duplicates according to the comparator. The sort    * performed is<i>stable</i>, meaning that such elements will appear in the    * returned list in the same order they appeared in {@code elements}.    *    *<p><b>Performance note:</b> According to our    * benchmarking    * on Open JDK 7, {@link #immutableSortedCopy} generally performs better (in    * both time and space) than this method, and this method in turn generally    * performs better than copying the list and calling {@link    * Collections#sort(List)}.    */
+annotation|@
+name|CanIgnoreReturnValue
+comment|// TODO(kak): Consider removing this
 DECL|method|sortedCopy (Iterable<E> elements)
 specifier|public
 parameter_list|<
@@ -2360,6 +2416,9 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns an<b>immutable</b> list containing {@code elements} sorted by this    * ordering. The input is not modified.    *    *<p>Unlike {@link Sets#newTreeSet(Iterable)}, this method does not discard    * elements that are duplicates according to the comparator. The sort    * performed is<i>stable</i>, meaning that such elements will appear in the    * returned list in the same order they appeared in {@code elements}.    *    *<p><b>Performance note:</b> According to our    * benchmarking    * on Open JDK 7, this method is the most efficient way to make a sorted copy    * of a collection.    *    * @throws NullPointerException if any of {@code elements} (or {@code    *     elements} itself) is null    * @since 3.0    */
+annotation|@
+name|CanIgnoreReturnValue
+comment|// TODO(kak): Consider removing this
 DECL|method|immutableSortedCopy (Iterable<E> elements)
 specifier|public
 parameter_list|<
