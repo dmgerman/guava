@@ -17,22 +17,6 @@ package|;
 end_package
 
 begin_import
-import|import static
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|truth
-operator|.
-name|Truth
-operator|.
-name|assertThat
-import|;
-end_import
-
-begin_import
 import|import
 name|com
 operator|.
@@ -43,16 +27,6 @@ operator|.
 name|testing
 operator|.
 name|AbstractPackageSanityTests
-import|;
-end_import
-
-begin_import
-import|import
-name|junit
-operator|.
-name|framework
-operator|.
-name|AssertionFailedError
 import|;
 end_import
 
@@ -273,50 +247,6 @@ comment|// graphs by passing different instances of GraphConfig into their const
 comment|// the GraphConfig instances are *not* used to determine equality for mutable graphs. Therefore,
 comment|// the tool ends up creating 2 equal mutable instances and it causes failures.
 comment|// However, the tool is still checking the nullability contracts of the mutable graphs.
-block|}
-annotation|@
-name|Override
-DECL|method|testNulls ()
-specifier|public
-name|void
-name|testNulls
-parameter_list|()
-throws|throws
-name|Exception
-block|{
-try|try
-block|{
-name|super
-operator|.
-name|testNulls
-argument_list|()
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|AssertionFailedError
-name|e
-parameter_list|)
-block|{
-name|assertThat
-argument_list|(
-name|e
-operator|.
-name|getCause
-argument_list|()
-operator|.
-name|getMessage
-argument_list|()
-argument_list|)
-operator|.
-name|contains
-argument_list|(
-name|AbstractGraphTest
-operator|.
-name|ERROR_ELEMENT_NOT_IN_GRAPH
-argument_list|)
-expr_stmt|;
-block|}
 block|}
 block|}
 end_class

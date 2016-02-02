@@ -156,7 +156,7 @@ name|Object
 name|edge
 parameter_list|)
 function_decl|;
-comment|/**    * Returns the edges that are {@linkplain #incidentEdges(Object) incident} in this graph    * to both nodes {@code node1} and {@code node2}.    *    *<p>If the graph is directed, the {@linkplain DirectedGraph#source(Object) source} and    * {@linkplain DirectedGraph#target(Object) target} of the edges returned must be {@code node1}    * and {@code node2}, respectively.    *    * @throws IllegalArgumentException if {@code node1} or {@code node2} is not an element    *     of this graph    */
+comment|/**    * Returns the edges that are {@linkplain #incidentEdges(Object) incident} in this graph    * to both nodes {@code node1} and {@code node2}.    *    *<p>If the graph is directed, the {@linkplain #source(Object) source} and    * {@linkplain DirectedGraph#target(Object) target} of the edges returned must be {@code node1}    * and {@code node2}, respectively.    *    * @throws IllegalArgumentException if {@code node1} or {@code node2} is not an element    *     of this graph    */
 DECL|method|edgesConnecting (Object node1, Object node2)
 name|Set
 argument_list|<

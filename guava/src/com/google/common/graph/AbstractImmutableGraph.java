@@ -136,7 +136,7 @@ name|N
 name|n
 parameter_list|)
 function_decl|;
-comment|/**      * Adds {@code e} to the graph being built, connecting {@code n1} and {@code n2};      * adds {@code n1} and {@code n2} if not already present.      *      * @return this {@code Builder} instance      * @throws IllegalArgumentException when {@code Graph.addEdge(e, n1, n2)} throws      *     on the graph being built      * @throws NullPointerException if {@code e}, {@code n1}, or {@code n2} is null      * @see Graph#addEdge      */
+comment|/**      * Adds {@code e} to the graph being built, connecting {@code n1} and {@code n2};      * adds {@code n1} and {@code n2} if not already present.      *      * @return this {@code Builder} instance      * @throws IllegalArgumentException when {@code Graph.addEdge(e, n1, n2)} throws      *     on the graph being built      * @throws NullPointerException if {@code e}, {@code n1}, or {@code n2} is null      * @see Graph#addEdge(E, N, N)      */
 DECL|method|addEdge (E e, N n1, N n2)
 name|Builder
 argument_list|<
