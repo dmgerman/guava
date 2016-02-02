@@ -212,6 +212,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -348,6 +362,16 @@ name|javax
 operator|.
 name|annotation
 operator|.
+name|CheckReturnValue
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
 name|Nullable
 import|;
 end_import
@@ -357,6 +381,8 @@ comment|/**  *<p>A builder of {@link ConcurrentMap} instances having any combina
 end_comment
 
 begin_class
+annotation|@
+name|CheckReturnValue
 annotation|@
 name|GwtCompatible
 argument_list|(
@@ -479,6 +505,8 @@ parameter_list|()
 block|{}
 comment|/**    * Sets a custom {@code Equivalence} strategy for comparing keys.    *    *<p>By default, the map uses {@link Equivalence#identity} to determine key equality when {@link    * #weakKeys} is specified, and {@link Equivalence#equals()} otherwise. The only place this is    * used is in {@link Interners.WeakInterner}.    */
 annotation|@
+name|CanIgnoreReturnValue
+annotation|@
 name|GwtIncompatible
 comment|// To be supported
 annotation|@
@@ -547,6 +575,8 @@ return|;
 block|}
 comment|/**    * Sets the minimum total size for the internal hash tables. For example, if the initial capacity    * is {@code 60}, and the concurrency level is {@code 8}, then eight segments are created, each    * having a hash table of size eight. Providing a large enough estimate at construction time    * avoids the need for expensive resizing operations later, but setting this value unnecessarily    * high wastes memory.    *    * @throws IllegalArgumentException if {@code initialCapacity} is negative    * @throws IllegalStateException if an initial capacity was already set    */
 annotation|@
+name|CanIgnoreReturnValue
+annotation|@
 name|Override
 DECL|method|initialCapacity (int initialCapacity)
 specifier|public
@@ -607,6 +637,8 @@ name|initialCapacity
 return|;
 block|}
 comment|/**    * Specifies the maximum number of entries the map may contain. Note that the map<b>may evict an    * entry before this limit is exceeded</b>. As the map size grows close to the maximum, the map    * evicts entries that are less likely to be used again. For example, the map may evict an entry    * because it hasn't been used recently or very often.    *    *<p>When {@code size} is zero, elements can be successfully added to the map, but are evicted    * immediately. This has the same effect as invoking {@link #expireAfterWrite    * expireAfterWrite}{@code (0, unit)} or {@link #expireAfterAccess expireAfterAccess}{@code (0,    * unit)}. It can be useful in testing, or to disable caching temporarily without a code change.    *    *<p>Caching functionality in {@code MapMaker} has been moved to    * {@link com.google.common.cache.CacheBuilder}.    *    * @param size the maximum size of the map    * @throws IllegalArgumentException if {@code size} is negative    * @throws IllegalStateException if a maximum size was already set    * @deprecated Caching functionality in {@code MapMaker} has been moved to    *     {@link com.google.common.cache.CacheBuilder}, with {@link #maximumSize} being    *     replaced by {@link com.google.common.cache.CacheBuilder#maximumSize}. Note that {@code    *     CacheBuilder} is simply an enhanced API for an implementation which was branched from    *     {@code MapMaker}.    */
+annotation|@
+name|CanIgnoreReturnValue
 annotation|@
 name|Deprecated
 annotation|@
@@ -678,6 +710,8 @@ return|;
 block|}
 comment|/**    * Guides the allowed concurrency among update operations. Used as a hint for internal sizing. The    * table is internally partitioned to try to permit the indicated number of concurrent updates    * without contention. Because assignment of entries to these partitions is not necessarily    * uniform, the actual concurrency observed may vary. Ideally, you should choose a value to    * accommodate as many threads as will ever concurrently modify the table. Using a significantly    * higher value than you need can waste space and time, and a significantly lower value can lead    * to thread contention. But overestimates and underestimates within an order of magnitude do not    * usually have much noticeable impact. A value of one permits only one thread to modify the map    * at a time, but since read operations can proceed concurrently, this still yields higher    * concurrency than full synchronization. Defaults to 4.    *    *<p><b>Note:</b> Prior to Guava release 9.0, the default was 16. It is possible the default will    * change again in the future. If you care about this value, you should always choose it    * explicitly.    *    * @throws IllegalArgumentException if {@code concurrencyLevel} is nonpositive    * @throws IllegalStateException if a concurrency level was already set    */
 annotation|@
+name|CanIgnoreReturnValue
+annotation|@
 name|Override
 DECL|method|concurrencyLevel (int concurrencyLevel)
 specifier|public
@@ -738,6 +772,8 @@ name|concurrencyLevel
 return|;
 block|}
 comment|/**    * Specifies that each key (not value) stored in the map should be wrapped in a {@link    * WeakReference} (by default, strong references are used).    *    *<p><b>Warning:</b> when this method is used, the resulting map will use identity ({@code ==})    * comparison to determine equality of keys, which is a technical violation of the {@link Map}    * specification, and may not be what you expect.    *    * @throws IllegalStateException if the key strength was already set    * @see WeakReference    */
+annotation|@
+name|CanIgnoreReturnValue
 annotation|@
 name|GwtIncompatible
 comment|// java.lang.ref.WeakReference
@@ -832,6 +868,8 @@ return|;
 block|}
 comment|/**    * Specifies that each value (not key) stored in the map should be wrapped in a    * {@link WeakReference} (by default, strong references are used).    *    *<p>Weak values will be garbage collected once they are weakly reachable. This makes them a poor    * candidate for caching; consider {@link #softValues} instead.    *    *<p><b>Warning:</b> when this method is used, the resulting map will use identity ({@code ==})    * comparison to determine equality of values. This technically violates the specifications of    * the methods {@link Map#containsValue containsValue},    * {@link ConcurrentMap#remove(Object, Object) remove(Object, Object)} and    * {@link ConcurrentMap#replace(Object, Object, Object) replace(K, V, V)}, and may not be what you    * expect.    *    * @throws IllegalStateException if the value strength was already set    * @see WeakReference    */
 annotation|@
+name|CanIgnoreReturnValue
+annotation|@
 name|GwtIncompatible
 comment|// java.lang.ref.WeakReference
 annotation|@
@@ -852,6 +890,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Specifies that each value (not key) stored in the map should be wrapped in a    * {@link SoftReference} (by default, strong references are used). Softly-referenced objects will    * be garbage-collected in a<i>globally</i> least-recently-used manner, in response to memory    * demand.    *    *<p><b>Warning:</b> in most circumstances it is better to set a per-cache {@linkplain    * #maximumSize maximum size} instead of using soft references. You should only use this method if    * you are well familiar with the practical consequences of soft references.    *    *<p><b>Warning:</b> when this method is used, the resulting map will use identity ({@code ==})    * comparison to determine equality of values. This technically violates the specifications of    * the methods {@link Map#containsValue containsValue},    * {@link ConcurrentMap#remove(Object, Object) remove(Object, Object)} and    * {@link ConcurrentMap#replace(Object, Object, Object) replace(K, V, V)}, and may not be what you    * expect.    *    * @throws IllegalStateException if the value strength was already set    * @see SoftReference    * @deprecated Caching functionality in {@code MapMaker} has been moved to {@link    *     com.google.common.cache.CacheBuilder}, with {@link #softValues} being replaced by {@link    *     com.google.common.cache.CacheBuilder#softValues}. Note that {@code CacheBuilder} is simply    *     an enhanced API for an implementation which was branched from {@code MapMaker}.    */
+annotation|@
+name|CanIgnoreReturnValue
 annotation|@
 name|Deprecated
 annotation|@
@@ -937,6 +977,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Specifies that each entry should be automatically removed from the map once a fixed duration    * has elapsed after the entry's creation, or the most recent replacement of its value.    *    *<p>When {@code duration} is zero, elements can be successfully added to the map, but are    * evicted immediately. This has a very similar effect to invoking {@link #maximumSize    * maximumSize}{@code (0)}. It can be useful in testing, or to disable caching temporarily without    * a code change.    *    *<p>Expired entries may be counted by {@link Map#size}, but will never be visible to read or    * write operations. Expired entries are currently cleaned up during write operations, or during    * occasional read operations in the absense of writes; though this behavior may change in the    * future.    *    * @param duration the length of time after an entry is created that it should be automatically    *     removed    * @param unit the unit that {@code duration} is expressed in    * @throws IllegalArgumentException if {@code duration} is negative    * @throws IllegalStateException if the time to live or time to idle was already set    * @deprecated Caching functionality in {@code MapMaker} has been moved to    *     {@link com.google.common.cache.CacheBuilder}, with {@link #expireAfterWrite} being    *     replaced by {@link com.google.common.cache.CacheBuilder#expireAfterWrite}. Note that {@code    *     CacheBuilder} is simply an enhanced API for an implementation which was branched from    *     {@code MapMaker}.    */
+annotation|@
+name|CanIgnoreReturnValue
 annotation|@
 name|Deprecated
 annotation|@
@@ -1068,6 +1110,8 @@ return|;
 block|}
 comment|/**    * Specifies that each entry should be automatically removed from the map once a fixed duration    * has elapsed after the entry's last read or write access.    *    *<p>When {@code duration} is zero, elements can be successfully added to the map, but are    * evicted immediately. This has a very similar effect to invoking {@link #maximumSize    * maximumSize}{@code (0)}. It can be useful in testing, or to disable caching temporarily without    * a code change.    *    *<p>Expired entries may be counted by {@link Map#size}, but will never be visible to read or    * write operations. Expired entries are currently cleaned up during write operations, or during    * occasional read operations in the absense of writes; though this behavior may change in the    * future.    *    * @param duration the length of time after an entry is last accessed that it should be    *     automatically removed    * @param unit the unit that {@code duration} is expressed in    * @throws IllegalArgumentException if {@code duration} is negative    * @throws IllegalStateException if the time to idle or time to live was already set    * @deprecated Caching functionality in {@code MapMaker} has been moved to    *     {@link com.google.common.cache.CacheBuilder}, with {@link #expireAfterAccess} being    *     replaced by {@link com.google.common.cache.CacheBuilder#expireAfterAccess}. Note that    *     {@code CacheBuilder} is simply an enhanced API for an implementation which was branched    *     from {@code MapMaker}.    */
 annotation|@
+name|CanIgnoreReturnValue
+annotation|@
 name|Deprecated
 annotation|@
 name|GwtIncompatible
@@ -1171,6 +1215,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Specifies a listener instance, which all maps built using this {@code MapMaker} will notify    * each time an entry is removed from the map by any means.    *    *<p>Each map built by this map maker after this method is called invokes the supplied listener    * after removing an element for any reason (see removal causes in {@link RemovalCause}). It will    * invoke the listener during invocations of any of that map's public methods (even read-only    * methods).    *    *<p><b>Important note:</b> Instead of returning<i>this</i> as a {@code MapMaker} instance,    * this method returns {@code GenericMapMaker<K, V>}. From this point on, either the original    * reference or the returned reference may be used to complete configuration and build the map,    * but only the "generic" one is type-safe. That is, it will properly prevent you from building    * maps whose key or value types are incompatible with the types accepted by the listener already    * provided; the {@code MapMaker} type cannot do this. For best results, simply use the standard    * method-chaining idiom, as illustrated in the documentation at top, configuring a {@code    * MapMaker} and building your {@link Map} all in a single statement.    *    *<p><b>Warning:</b> if you ignore the above advice, and use this {@code MapMaker} to build a map    * or cache whose key or value type is incompatible with the listener, you will likely experience    * a {@link ClassCastException} at some<i>undefined</i> point in the future.    *    * @throws IllegalStateException if a removal listener was already set    * @deprecated Caching functionality in {@code MapMaker} has been moved to    *     {@link com.google.common.cache.CacheBuilder}, with {@link #removalListener} being    *     replaced by {@link com.google.common.cache.CacheBuilder#removalListener}. Note that {@code    *     CacheBuilder} is simply an enhanced API for an implementation which was branched from    *     {@code MapMaker}.    */
+annotation|@
+name|CanIgnoreReturnValue
 annotation|@
 name|Deprecated
 annotation|@
