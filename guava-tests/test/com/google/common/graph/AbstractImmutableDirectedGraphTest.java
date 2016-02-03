@@ -76,6 +76,8 @@ argument_list|()
 decl_stmt|;
 annotation|@
 name|Override
+annotation|@
+name|Test
 DECL|method|nodes_checkReturnedSetMutability ()
 specifier|public
 specifier|final
@@ -105,6 +107,8 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|Test
 DECL|method|edges_checkReturnedSetMutability ()
 specifier|public
 specifier|final
@@ -134,6 +138,8 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|Test
 DECL|method|incidentEdges_checkReturnedSetMutability ()
 specifier|public
 specifier|final
@@ -170,6 +176,8 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|Test
 DECL|method|incidentNodes_checkReturnedSetMutability ()
 specifier|public
 specifier|final
@@ -210,6 +218,8 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|Test
 DECL|method|adjacentNodes_checkReturnedSetMutability ()
 specifier|public
 specifier|final
@@ -246,6 +256,8 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|Test
 DECL|method|adjacentEdges_checkReturnedSetMutability ()
 specifier|public
 specifier|final
@@ -286,6 +298,8 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|Test
 DECL|method|edgesConnecting_checkReturnedSetMutability ()
 specifier|public
 specifier|final
@@ -328,6 +342,8 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|Test
 DECL|method|inEdges_checkReturnedSetMutability ()
 specifier|public
 specifier|final
@@ -368,6 +384,8 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|Test
 DECL|method|outEdges_checkReturnedSetMutability ()
 specifier|public
 specifier|final
@@ -408,6 +426,8 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|Test
 DECL|method|predecessors_checkReturnedSetMutability ()
 specifier|public
 specifier|final
@@ -448,6 +468,8 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|Test
 DECL|method|successors_checkReturnedSetMutability ()
 specifier|public
 specifier|final
@@ -489,6 +511,8 @@ block|}
 comment|// Builder mutation methods only support addition, not removal, so these tests would fail.
 annotation|@
 name|Override
+annotation|@
+name|Test
 DECL|method|removeNode_existingNode ()
 specifier|public
 name|void
@@ -535,6 +559,8 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|Test
 DECL|method|removeEdge_existingEdge ()
 specifier|public
 name|void
@@ -558,6 +584,33 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|Test
+DECL|method|removeEdge_oneOfMany ()
+specifier|public
+name|void
+name|removeEdge_oneOfMany
+parameter_list|()
+block|{
+name|expectedException
+operator|.
+name|expect
+argument_list|(
+name|UnsupportedOperationException
+operator|.
+name|class
+argument_list|)
+expr_stmt|;
+name|super
+operator|.
+name|removeEdge_oneOfMany
+argument_list|()
+expr_stmt|;
+block|}
+annotation|@
+name|Override
+annotation|@
+name|Test
 DECL|method|removeEdge_invalidArgument ()
 specifier|public
 name|void
