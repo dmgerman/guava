@@ -158,6 +158,20 @@ name|com
 operator|.
 name|google
 operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
 name|j2objc
 operator|.
 name|annotations
@@ -300,6 +314,16 @@ name|Queue
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckReturnValue
+import|;
+end_import
+
 begin_comment
 comment|/**  * A double-ended priority queue, which provides constant-time access to both  * its least element and its greatest element, as determined by the queue's  * specified comparator. If no comparator is given at creation time, the  * natural order of elements is used. If no maximum size is given at creation time,  * the queue is unbounded.  *  *<p>Usage example:<pre>   {@code  *  *   MinMaxPriorityQueue<User> users = MinMaxPriorityQueue.orderedBy(userComparator)  *       .maximumSize(1000)  *       .create();}</pre>  *  *<p>As a {@link Queue} it functions exactly as a {@link PriorityQueue}: its  * head element -- the implicit target of the methods {@link #peek()}, {@link  * #poll()} and {@link #remove()} -- is defined as the<i>least</i> element in  * the queue according to the queue's comparator. But unlike a regular priority  * queue, the methods {@link #peekLast}, {@link #pollLast} and  * {@link #removeLast} are also provided, to act on the<i>greatest</i> element  * in the queue instead.  *  *<p>A min-max priority queue can be configured with a maximum size. If so,  * each time the size of the queue exceeds that value, the queue automatically  * removes its greatest element according to its comparator (which might be the  * element that was just added). This is different from conventional bounded  * queues, which either block or reject new elements when full.  *  *<p>This implementation is based on the  *<a href="http://portal.acm.org/citation.cfm?id=6621">min-max heap</a>  * developed by Atkinson, et al. Unlike many other double-ended priority queues,  * it stores elements in a single array, as compact as the traditional heap data  * structure used in {@link PriorityQueue}.  *  *<p>This class is not thread-safe, and does not accept null elements.  *  *<p><i>Performance notes:</i>  *  *<ul>  *<li>If you only access one end of the queue, and do use a maximum size,  *     this class will perform significantly worse than a {@code PriorityQueue}  *     with manual eviction above the maximum size.  In many cases  *     {@link Ordering#leastOf} may work for your use case with significantly  *     improved (and asymptotically superior) performance.  *<li>The retrieval operations {@link #peek}, {@link #peekFirst}, {@link  *     #peekLast}, {@link #element}, and {@link #size} are constant-time.  *<li>The enqueing and dequeing operations ({@link #offer}, {@link #add}, and  *     all the forms of {@link #poll} and {@link #remove()}) run in {@code  *     O(log n) time}.  *<li>The {@link #remove(Object)} and {@link #contains} operations require  *     linear ({@code O(n)}) time.  *<li>If you only access one end of the queue, and don't use a maximum size,  *     this class is functionally equivalent to {@link PriorityQueue}, but  *     significantly slower.  *</ul>  *  * @author Sverre Sundsdal  * @author Torbjorn Gannholm  * @since 8.0  */
 end_comment
@@ -309,6 +333,8 @@ comment|// TODO(kevinb): GWT compatibility
 end_comment
 
 begin_class
+annotation|@
+name|CheckReturnValue
 annotation|@
 name|Beta
 annotation|@
@@ -580,6 +606,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**      * Configures this builder to build min-max priority queues with an initial      * expected size of {@code expectedSize}.      */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|expectedSize (int expectedSize)
 specifier|public
 name|Builder
@@ -610,6 +638,8 @@ name|this
 return|;
 block|}
 comment|/**      * Configures this builder to build {@code MinMaxPriorityQueue} instances      * that are limited to {@code maximumSize} elements. Each time a queue grows      * beyond this bound, it immediately removes its greatest element (according      * to its comparator), which might be the element that was just added.      */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|maximumSize (int maximumSize)
 specifier|public
 name|Builder
@@ -901,6 +931,8 @@ return|;
 block|}
 comment|/**    * Adds the given element to this queue. If this queue has a maximum size,    * after adding {@code element} the queue will automatically evict its    * greatest element (according to its comparator), which may be {@code    * element} itself.    *    * @return {@code true} always    */
 annotation|@
+name|CanIgnoreReturnValue
+annotation|@
 name|Override
 DECL|method|add (E element)
 specifier|public
@@ -920,6 +952,8 @@ return|return
 literal|true
 return|;
 block|}
+annotation|@
+name|CanIgnoreReturnValue
 annotation|@
 name|Override
 DECL|method|addAll (Collection<? extends E> newElements)
@@ -964,6 +998,8 @@ name|modified
 return|;
 block|}
 comment|/**    * Adds the given element to this queue. If this queue has a maximum size,    * after adding {@code element} the queue will automatically evict its    * greatest element (according to its comparator), which may be {@code    * element} itself.    */
+annotation|@
+name|CanIgnoreReturnValue
 annotation|@
 name|Override
 DECL|method|offer (E element)
@@ -1017,6 +1053,8 @@ operator|!=
 name|element
 return|;
 block|}
+annotation|@
+name|CanIgnoreReturnValue
 annotation|@
 name|Override
 DECL|method|poll ()
@@ -1131,6 +1169,8 @@ return|;
 block|}
 block|}
 comment|/**    * Removes and returns the least element of this queue, or returns {@code    * null} if the queue is empty.    */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|pollFirst ()
 specifier|public
 name|E
@@ -1143,6 +1183,8 @@ argument_list|()
 return|;
 block|}
 comment|/**    * Removes and returns the least element of this queue.    *    * @throws NoSuchElementException if the queue is empty    */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|removeFirst ()
 specifier|public
 name|E
@@ -1167,6 +1209,8 @@ argument_list|()
 return|;
 block|}
 comment|/**    * Removes and returns the greatest element of this queue, or returns {@code    * null} if the queue is empty.    */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|pollLast ()
 specifier|public
 name|E
@@ -1187,6 +1231,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Removes and returns the greatest element of this queue.    *    * @throws NoSuchElementException if the queue is empty    */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|removeLast ()
 specifier|public
 name|E
@@ -1236,6 +1282,8 @@ block|}
 comment|/**    * Removes the element at position {@code index}.    *    *<p>Normally this method leaves the elements at up to {@code index - 1},    * inclusive, untouched.  Under these circumstances, it returns {@code null}.    *    *<p>Occasionally, in order to maintain the heap invariant, it must swap a    * later element of the list with one before {@code index}. Under these    * circumstances it returns a pair of elements as a {@link MoveDesc}. The    * first one is the element that was previously at the end of the heap and is    * now at some position before {@code index}. The second element is the one    * that was swapped down to replace the element at {@code index}. This fact is    * used by iterator.remove so as to visit elements during a traversal once and    * only once.    */
 annotation|@
 name|VisibleForTesting
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|removeAt (int index)
 name|MoveDesc
 argument_list|<
@@ -1917,6 +1965,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**      * Bubbles a value from {@code index} up the levels of this heap, and      * returns the index the element ended up at.      */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|bubbleUpAlternatingLevels (int index, E x)
 name|int
 name|bubbleUpAlternatingLevels
