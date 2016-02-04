@@ -49,22 +49,6 @@ import|;
 end_import
 
 begin_import
-import|import static
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|base
-operator|.
-name|Preconditions
-operator|.
-name|checkState
-import|;
-end_import
-
-begin_import
 import|import
 name|com
 operator|.
@@ -2195,8 +2179,8 @@ return|return
 literal|true
 return|;
 block|}
-comment|/**    * Returns a {@link Predicate} that returns {@code true} if the input edge is not a self-loop in    * {@code graph}. A self-loop is defined as an edge whose set of incident nodes has exactly one    * element. The predicate's {@code apply} method will throw a {@link IllegalStateException} if    * {@code graph} does not contain {@code edge}.    */
-DECL|method|noSelfLoopPredicate (final Graph<?, E> graph)
+comment|/**    * Returns a {@link Predicate} that returns {@code true} if the input edge is a self-loop in    * {@code graph}. A self-loop is defined as an edge whose set of incident nodes has exactly one    * element. The predicate's {@code apply} method will throw an {@link IllegalArgumentException} if    * {@code graph} does not contain {@code edge}.    */
+DECL|method|selfLoopPredicate (final Graph<?, E> graph)
 specifier|public
 specifier|static
 parameter_list|<
@@ -2206,7 +2190,7 @@ name|Predicate
 argument_list|<
 name|E
 argument_list|>
-name|noSelfLoopPredicate
+name|selfLoopPredicate
 parameter_list|(
 specifier|final
 name|Graph
@@ -2243,24 +2227,8 @@ name|E
 name|edge
 parameter_list|)
 block|{
-name|checkState
-argument_list|(
-name|graph
-operator|.
-name|edges
-argument_list|()
-operator|.
-name|contains
-argument_list|(
-name|edge
-argument_list|)
-argument_list|,
-literal|"Graph does not contain edge %s"
-argument_list|,
-name|edge
-argument_list|)
-expr_stmt|;
 return|return
+operator|(
 name|graph
 operator|.
 name|incidentNodes
@@ -2270,8 +2238,9 @@ argument_list|)
 operator|.
 name|size
 argument_list|()
-operator|!=
+operator|==
 literal|1
+operator|)
 return|;
 block|}
 block|}

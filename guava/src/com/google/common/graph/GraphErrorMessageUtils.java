@@ -63,7 +63,7 @@ specifier|final
 name|String
 name|ADDING_PARALLEL_EDGE
 init|=
-literal|"Nodes %s and %s are already connected by a different edge: %s"
+literal|"Nodes %s and %s are already connected by a different edge."
 decl_stmt|;
 DECL|field|SELF_LOOPS_NOT_ALLOWED
 specifier|static
