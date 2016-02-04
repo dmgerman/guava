@@ -62,6 +62,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|lang
@@ -88,6 +102,16 @@ name|javax
 operator|.
 name|annotation
 operator|.
+name|CheckReturnValue
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
 name|Nullable
 import|;
 end_import
@@ -97,6 +121,8 @@ comment|/**  * Static utility methods pertaining to object arrays.  *  * @author
 end_comment
 
 begin_class
+annotation|@
+name|CheckReturnValue
 annotation|@
 name|GwtCompatible
 argument_list|(
@@ -729,6 +755,8 @@ return|return
 name|result
 return|;
 block|}
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|fillArray (Iterable<?> elements, Object[] array)
 specifier|private
 specifier|static
@@ -816,6 +844,8 @@ operator|=
 name|temp
 expr_stmt|;
 block|}
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|checkElementsNotNull (Object... array)
 specifier|static
 name|Object
@@ -838,6 +868,8 @@ name|length
 argument_list|)
 return|;
 block|}
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|checkElementsNotNull (Object[] array, int length)
 specifier|static
 name|Object
@@ -884,6 +916,8 @@ return|;
 block|}
 comment|// We do this instead of Preconditions.checkNotNull to save boxing and array
 comment|// creation cost.
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|checkElementNotNull (Object element, int index)
 specifier|static
 name|Object
