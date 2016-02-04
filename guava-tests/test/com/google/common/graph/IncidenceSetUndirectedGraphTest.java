@@ -320,9 +320,6 @@ name|N1
 argument_list|,
 name|N2
 argument_list|)
-operator|.
-name|inOrder
-argument_list|()
 expr_stmt|;
 block|}
 annotation|@
@@ -533,9 +530,6 @@ name|E11
 argument_list|,
 name|E12
 argument_list|)
-operator|.
-name|inOrder
-argument_list|()
 expr_stmt|;
 block|}
 annotation|@
@@ -595,9 +589,6 @@ name|E11
 argument_list|,
 name|E12
 argument_list|)
-operator|.
-name|inOrder
-argument_list|()
 expr_stmt|;
 block|}
 annotation|@
@@ -657,9 +648,6 @@ name|N1
 argument_list|,
 name|N2
 argument_list|)
-operator|.
-name|inOrder
-argument_list|()
 expr_stmt|;
 block|}
 annotation|@
@@ -719,9 +707,6 @@ name|N1
 argument_list|,
 name|N2
 argument_list|)
-operator|.
-name|inOrder
-argument_list|()
 expr_stmt|;
 block|}
 annotation|@

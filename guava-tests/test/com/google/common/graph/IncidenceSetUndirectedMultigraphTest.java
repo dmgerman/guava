@@ -185,9 +185,6 @@ name|E12_A
 argument_list|,
 name|E21
 argument_list|)
-operator|.
-name|inOrder
-argument_list|()
 expr_stmt|;
 name|assertThat
 argument_list|(
@@ -209,9 +206,6 @@ name|E12_A
 argument_list|,
 name|E21
 argument_list|)
-operator|.
-name|inOrder
-argument_list|()
 expr_stmt|;
 block|}
 annotation|@
@@ -264,9 +258,6 @@ name|E11
 argument_list|,
 name|E11_A
 argument_list|)
-operator|.
-name|inOrder
-argument_list|()
 expr_stmt|;
 block|}
 annotation|@
@@ -335,9 +326,6 @@ name|E12_A
 argument_list|,
 name|E21
 argument_list|)
-operator|.
-name|inOrder
-argument_list|()
 expr_stmt|;
 block|}
 annotation|@
@@ -392,9 +380,6 @@ name|E11
 argument_list|,
 name|E11_A
 argument_list|)
-operator|.
-name|inOrder
-argument_list|()
 expr_stmt|;
 block|}
 annotation|@
@@ -460,9 +445,6 @@ name|E12
 argument_list|,
 name|E21
 argument_list|)
-operator|.
-name|inOrder
-argument_list|()
 expr_stmt|;
 block|}
 annotation|@

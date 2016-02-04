@@ -171,9 +171,6 @@ name|E12
 argument_list|,
 name|E12_A
 argument_list|)
-operator|.
-name|inOrder
-argument_list|()
 expr_stmt|;
 comment|// Passed nodes should be in the correct edge direction, first is the
 comment|// source node and the second is the target node
@@ -243,9 +240,6 @@ name|E11
 argument_list|,
 name|E11_A
 argument_list|)
-operator|.
-name|inOrder
-argument_list|()
 expr_stmt|;
 block|}
 annotation|@
@@ -300,9 +294,6 @@ name|E12
 argument_list|,
 name|E12_A
 argument_list|)
-operator|.
-name|inOrder
-argument_list|()
 expr_stmt|;
 block|}
 annotation|@
@@ -357,9 +348,6 @@ name|E11
 argument_list|,
 name|E11_A
 argument_list|)
-operator|.
-name|inOrder
-argument_list|()
 expr_stmt|;
 block|}
 annotation|@

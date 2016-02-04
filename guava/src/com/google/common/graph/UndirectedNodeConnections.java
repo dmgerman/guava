@@ -229,7 +229,7 @@ operator|.
 expr|<
 name|N
 operator|>
-name|newLinkedHashSet
+name|newHashSet
 argument_list|()
 argument_list|,
 name|Sets
@@ -237,7 +237,7 @@ operator|.
 expr|<
 name|E
 operator|>
-name|newLinkedHashSet
+name|newHashSet
 argument_list|()
 argument_list|)
 return|;
