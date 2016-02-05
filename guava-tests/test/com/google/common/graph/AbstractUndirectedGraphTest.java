@@ -105,7 +105,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Abstract base class for testing mutable implementations of  * {@link UndirectedGraph} interface.  *  *<p>This class is responsible for testing that an implementation of the interface  * {@code UndirectedGraph} is correctly handling undirected edges.  * Implementation-dependent test cases are left to subclasses. Test cases that  * do not require the graph to be undirected are found in superclasses.  *  */
+comment|/**  * Abstract base class for testing implementations of {@link UndirectedGraph} interface.  *  *<p>This class is responsible for testing that an implementation of the interface  * {@code UndirectedGraph} is correctly handling undirected edges.  * Implementation-dependent test cases are left to subclasses. Test cases that  * do not require the graph to be undirected are found in superclasses.  *  */
 end_comment
 
 begin_class

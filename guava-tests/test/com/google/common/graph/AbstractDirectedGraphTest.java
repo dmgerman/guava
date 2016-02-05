@@ -115,7 +115,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Abstract base class for testing mutable implementations of  * {@link DirectedGraph} interface.  *  *<p>This class is responsible for testing that an implementation of the interface  * {@code DirectedGraph} is correctly handling directed edges.  * Implementation-dependent test cases are left to subclasses. Test cases that  * do not require the graph to be directed are found in superclasses.  *  */
+comment|/**  * Abstract base class for testing implementations of {@link DirectedGraph} interface.  *  *<p>This class is responsible for testing that an implementation of the interface  * {@code DirectedGraph} is correctly handling directed edges.  * Implementation-dependent test cases are left to subclasses. Test cases that  * do not require the graph to be directed are found in superclasses.  *  */
 end_comment
 
 begin_class
@@ -198,6 +198,35 @@ name|node
 argument_list|)
 control|)
 block|{
+name|Integer
+name|oppositeNode
+init|=
+name|Graphs
+operator|.
+name|oppositeNode
+argument_list|(
+name|directedGraph
+argument_list|,
+name|inEdge
+argument_list|,
+name|node
+argument_list|)
+decl_stmt|;
+name|assertThat
+argument_list|(
+name|directedGraph
+operator|.
+name|source
+argument_list|(
+name|inEdge
+argument_list|)
+argument_list|)
+operator|.
+name|isEqualTo
+argument_list|(
+name|oppositeNode
+argument_list|)
+expr_stmt|;
 name|assertThat
 argument_list|(
 name|directedGraph
@@ -227,6 +256,20 @@ name|node
 argument_list|)
 control|)
 block|{
+name|Integer
+name|oppositeNode
+init|=
+name|Graphs
+operator|.
+name|oppositeNode
+argument_list|(
+name|directedGraph
+argument_list|,
+name|outEdge
+argument_list|,
+name|node
+argument_list|)
+decl_stmt|;
 name|assertThat
 argument_list|(
 name|directedGraph
@@ -240,6 +283,21 @@ operator|.
 name|isEqualTo
 argument_list|(
 name|node
+argument_list|)
+expr_stmt|;
+name|assertThat
+argument_list|(
+name|directedGraph
+operator|.
+name|target
+argument_list|(
+name|outEdge
+argument_list|)
+argument_list|)
+operator|.
+name|isEqualTo
+argument_list|(
+name|oppositeNode
 argument_list|)
 expr_stmt|;
 block|}
