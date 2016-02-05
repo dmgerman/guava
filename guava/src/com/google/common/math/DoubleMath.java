@@ -294,6 +294,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|math
@@ -1760,6 +1774,8 @@ block|}
 annotation|@
 name|GwtIncompatible
 comment|// com.google.common.math.DoubleUtils
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|checkFinite (double argument)
 specifier|private
 specifier|static

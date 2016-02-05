@@ -859,6 +859,9 @@ name|k
 index|]
 argument_list|)
 expr_stmt|;
+name|long
+name|unused
+init|=
 name|simpleBinomial
 argument_list|(
 name|LongMath
@@ -870,7 +873,7 @@ index|]
 argument_list|,
 name|k
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 comment|// mustn't throw
 if|if
 condition|(

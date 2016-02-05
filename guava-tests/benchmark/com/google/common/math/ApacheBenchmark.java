@@ -298,6 +298,9 @@ parameter_list|)
 block|{
 try|try
 block|{
+name|int
+name|unused
+init|=
 name|IntMath
 operator|.
 name|checkedAdd
@@ -306,7 +309,7 @@ name|a
 argument_list|,
 name|b
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 return|return
 literal|true
 return|;
@@ -337,6 +340,9 @@ parameter_list|)
 block|{
 try|try
 block|{
+name|long
+name|unused
+init|=
 name|LongMath
 operator|.
 name|checkedAdd
@@ -345,7 +351,7 @@ name|a
 argument_list|,
 name|b
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 return|return
 literal|true
 return|;
@@ -376,6 +382,9 @@ parameter_list|)
 block|{
 try|try
 block|{
+name|int
+name|unused
+init|=
 name|IntMath
 operator|.
 name|checkedMultiply
@@ -384,7 +393,7 @@ name|a
 argument_list|,
 name|b
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 return|return
 literal|true
 return|;
@@ -415,6 +424,9 @@ parameter_list|)
 block|{
 try|try
 block|{
+name|long
+name|unused
+init|=
 name|LongMath
 operator|.
 name|checkedMultiply
@@ -423,7 +435,7 @@ name|a
 argument_list|,
 name|b
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 return|return
 literal|true
 return|;
