@@ -93,14 +93,14 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An immutable set representing the nodes incident to an undirected edge.  *  * @author James Sexton  * @param<N> Node parameter type  */
+comment|/**  * An immutable set representing the nodes incident to an origin edge in a graph.  *  * @author James Sexton  * @param<N> Node parameter type  */
 end_comment
 
 begin_class
-DECL|class|UndirectedIncidentNodes
+DECL|class|IncidentNodes
 specifier|abstract
 class|class
-name|UndirectedIncidentNodes
+name|IncidentNodes
 parameter_list|<
 name|N
 parameter_list|>
@@ -115,7 +115,7 @@ specifier|static
 parameter_list|<
 name|N
 parameter_list|>
-name|UndirectedIncidentNodes
+name|IncidentNodes
 argument_list|<
 name|N
 argument_list|>
@@ -170,7 +170,7 @@ specifier|static
 parameter_list|<
 name|N
 parameter_list|>
-name|UndirectedIncidentNodes
+name|IncidentNodes
 argument_list|<
 name|N
 argument_list|>
@@ -244,7 +244,9 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"An edge in an undirected graph cannot be incident to "
+literal|"Hypergraphs are not currently supported. An edge in a"
+operator|+
+literal|" non-hypergraph cannot be incident to "
 operator|+
 name|nodes
 operator|.
@@ -270,6 +272,20 @@ operator|==
 literal|1
 return|;
 block|}
+comment|/**    * In the case of a directed graph, returns the source node of the origin edge. In the case of    * an undirected graph, returns an arbitrary (but consistent) endpoint of the origin edge.    */
+DECL|method|node1 ()
+specifier|abstract
+name|N
+name|node1
+parameter_list|()
+function_decl|;
+comment|/**    * Returns the node opposite to {@link #node1} along the origin edge. In the case of a directed    * graph, this will always be the target node of the origin edge.    */
+DECL|method|node2 ()
+specifier|abstract
+name|N
+name|node2
+parameter_list|()
+function_decl|;
 DECL|class|OneNode
 specifier|private
 specifier|static
@@ -280,7 +296,7 @@ parameter_list|<
 name|N
 parameter_list|>
 extends|extends
-name|UndirectedIncidentNodes
+name|IncidentNodes
 argument_list|<
 name|N
 argument_list|>
@@ -341,6 +357,28 @@ return|return
 literal|1
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|node1 ()
+name|N
+name|node1
+parameter_list|()
+block|{
+return|return
+name|node
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|node2 ()
+name|N
+name|node2
+parameter_list|()
+block|{
+return|return
+name|node
+return|;
+block|}
 block|}
 DECL|class|TwoNodes
 specifier|private
@@ -352,7 +390,7 @@ parameter_list|<
 name|N
 parameter_list|>
 extends|extends
-name|UndirectedIncidentNodes
+name|IncidentNodes
 argument_list|<
 name|N
 argument_list|>
@@ -442,6 +480,28 @@ parameter_list|()
 block|{
 return|return
 literal|2
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|node1 ()
+name|N
+name|node1
+parameter_list|()
+block|{
+return|return
+name|node1
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|node2 ()
+name|N
+name|node2
+parameter_list|()
+block|{
+return|return
+name|node2
 return|;
 block|}
 block|}

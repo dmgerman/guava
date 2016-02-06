@@ -245,7 +245,7 @@ name|ImmutableMap
 argument_list|<
 name|E
 argument_list|,
-name|DirectedIncidentNodes
+name|IncidentNodes
 argument_list|<
 name|N
 argument_list|>
@@ -380,7 +380,7 @@ name|Builder
 argument_list|<
 name|E
 argument_list|,
-name|DirectedIncidentNodes
+name|IncidentNodes
 argument_list|<
 name|N
 argument_list|>
@@ -403,13 +403,13 @@ name|edges
 argument_list|()
 control|)
 block|{
-name|DirectedIncidentNodes
+name|IncidentNodes
 argument_list|<
 name|N
 argument_list|>
 name|incidentNodes
 init|=
-name|DirectedIncidentNodes
+name|IncidentNodes
 operator|.
 name|of
 argument_list|(
@@ -551,13 +551,10 @@ name|edge
 parameter_list|)
 block|{
 return|return
-name|checkedEndpoints
+name|checkedIncidentNodes
 argument_list|(
 name|edge
 argument_list|)
-operator|.
-name|asImmutableSet
-argument_list|()
 return|;
 block|}
 annotation|@
@@ -942,12 +939,12 @@ name|edge
 parameter_list|)
 block|{
 return|return
-name|checkedEndpoints
+name|checkedIncidentNodes
 argument_list|(
 name|edge
 argument_list|)
 operator|.
-name|source
+name|node1
 argument_list|()
 return|;
 block|}
@@ -963,12 +960,12 @@ name|edge
 parameter_list|)
 block|{
 return|return
-name|checkedEndpoints
+name|checkedIncidentNodes
 argument_list|(
 name|edge
 argument_list|)
 operator|.
-name|target
+name|node2
 argument_list|()
 return|;
 block|}
@@ -1099,13 +1096,13 @@ return|return
 name|connections
 return|;
 block|}
-DECL|method|checkedEndpoints (Object edge)
+DECL|method|checkedIncidentNodes (Object edge)
 specifier|private
-name|DirectedIncidentNodes
+name|IncidentNodes
 argument_list|<
 name|N
 argument_list|>
-name|checkedEndpoints
+name|checkedIncidentNodes
 parameter_list|(
 name|Object
 name|edge
@@ -1118,11 +1115,11 @@ argument_list|,
 literal|"edge"
 argument_list|)
 expr_stmt|;
-name|DirectedIncidentNodes
+name|IncidentNodes
 argument_list|<
 name|N
 argument_list|>
-name|endpoints
+name|incidentNodes
 init|=
 name|edgeToIncidentNodes
 operator|.
@@ -1133,7 +1130,7 @@ argument_list|)
 decl_stmt|;
 name|checkArgument
 argument_list|(
-name|endpoints
+name|incidentNodes
 operator|!=
 literal|null
 argument_list|,
@@ -1143,7 +1140,7 @@ name|edge
 argument_list|)
 expr_stmt|;
 return|return
-name|endpoints
+name|incidentNodes
 return|;
 block|}
 comment|/**    * Returns a new builder. The generated builder is equivalent to the builder    * created by the {@code Builder} constructor.    */
@@ -1423,7 +1420,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**      * Adds all elements of {@code graph} to the graph being built.      *      * @throws IllegalArgumentException under either of two conditions:      *     (1) the {@code GraphConfig} objects held by the graph being built and by {@code graph}      *     are not compatible      *     (2) calling {@code Graph.addEdge(e, n1, n2)} on the graph being built throws IAE      * @see Graph#addEdge(e, n1, n2)      */
+comment|/**      * Adds all elements of {@code graph} to the graph being built.      *      * @throws IllegalArgumentException under either of two conditions:      *     (1) the {@code GraphConfig} objects held by the graph being built and by {@code graph}      *     are not compatible      *     (2) calling {@code Graph.addEdge(e, n1, n2)} on the graph being built throws IAE      * @see Graph#addEdge      */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|addGraph (DirectedGraph<N, E> graph)
