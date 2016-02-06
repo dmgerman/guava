@@ -1505,18 +1505,11 @@ name|toString
 parameter_list|()
 block|{
 return|return
-name|String
+name|Graphs
 operator|.
-name|format
+name|toString
 argument_list|(
-literal|"config: %s, nodes: %s, edges: %s"
-argument_list|,
-name|config
-argument_list|,
-name|nodes
-argument_list|()
-argument_list|,
-name|edgeToIncidentNodes
+name|this
 argument_list|)
 return|;
 block|}
