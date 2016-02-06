@@ -46,6 +46,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -74,11 +88,23 @@ name|NoSuchElementException
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckReturnValue
+import|;
+end_import
+
 begin_comment
 comment|/**  * A descriptor for a<i>discrete</i> {@code Comparable} domain such as all  * {@link Integer} instances. A discrete domain is one that supports the three basic  * operations: {@link #next}, {@link #previous} and {@link #distance}, according  * to their specifications. The methods {@link #minValue} and {@link #maxValue}  * should also be overridden for bounded types.  *  *<p>A discrete domain always represents the<i>entire</i> set of values of its  * type; it cannot represent partial domains such as "prime integers" or  * "strings of length 5."  *  *<p>See the Guava User Guide section on<a href=  * "https://github.com/google/guava/wiki/RangesExplained#discrete-domains">  * {@code DiscreteDomain}</a>.  *  * @author Kevin Bourrillion  * @since 10.0  */
 end_comment
 
 begin_class
+annotation|@
+name|CheckReturnValue
 annotation|@
 name|GwtCompatible
 annotation|@
@@ -739,6 +765,8 @@ name|end
 parameter_list|)
 function_decl|;
 comment|/**    * Returns the minimum value of type {@code C}, if it has one. The minimum    * value is the unique value for which {@link Comparable#compareTo(Object)}    * never returns a positive value for any input of type {@code C}.    *    *<p>The default implementation throws {@code NoSuchElementException}.    *    * @return the minimum value of type {@code C}; never null    * @throws NoSuchElementException if the type has no (practical) minimum    *     value; for example, {@link java.math.BigInteger}    */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|minValue ()
 specifier|public
 name|C
@@ -752,6 +780,8 @@ argument_list|()
 throw|;
 block|}
 comment|/**    * Returns the maximum value of type {@code C}, if it has one. The maximum    * value is the unique value for which {@link Comparable#compareTo(Object)}    * never returns a negative value for any input of type {@code C}.    *    *<p>The default implementation throws {@code NoSuchElementException}.    *    * @return the maximum value of type {@code C}; never null    * @throws NoSuchElementException if the type has no (practical) maximum    *     value; for example, {@link java.math.BigInteger}    */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|maxValue ()
 specifier|public
 name|C
