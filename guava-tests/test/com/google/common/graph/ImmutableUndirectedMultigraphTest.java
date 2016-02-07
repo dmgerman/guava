@@ -269,6 +269,8 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|Test
 DECL|method|addEdge_parallelEdge ()
 specifier|public
 name|void
@@ -334,6 +336,8 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|Test
 DECL|method|addEdge_parallelSelfLoopEdge ()
 specifier|public
 name|void

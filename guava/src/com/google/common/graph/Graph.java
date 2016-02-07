@@ -120,7 +120,7 @@ name|Object
 name|node
 parameter_list|)
 function_decl|;
-comment|/**    * Returns the nodes which are the endpoints of {@code edge} in this graph.    *    * @throws IllegalArgumentException if {@code edge} is not an element of this graph    */
+comment|/**    * Returns the nodes which are the endpoints of {@code edge} in this graph.    *    *<p>If {@code edge} is a self-loop, the returned set will only have a single node.    *    * @throws IllegalArgumentException if {@code edge} is not an element of this graph    */
 DECL|method|incidentNodes (Object edge)
 name|Set
 argument_list|<
@@ -156,7 +156,7 @@ name|Object
 name|edge
 parameter_list|)
 function_decl|;
-comment|/**    * Returns the edges that are {@linkplain #incidentEdges(Object) incident} in this graph    * to both nodes {@code node1} and {@code node2}.    *    *<p>If the graph is directed, the {@linkplain DirectedGraph#source(Object) source} and    * {@linkplain DirectedGraph#target(Object) target} of the edges returned must be {@code node1}    * and {@code node2}, respectively.    *    * @throws IllegalArgumentException if {@code node1} or {@code node2} is not an element    *     of this graph    */
+comment|/**    * Returns the edges that are {@linkplain #incidentEdges(Object) incident} in this graph    * to both nodes {@code node1} and {@code node2}.    *    * @throws IllegalArgumentException if {@code node1} or {@code node2} is not an element    *     of this graph    */
 DECL|method|edgesConnecting (Object node1, Object node2)
 name|Set
 argument_list|<
@@ -263,7 +263,7 @@ name|N
 name|node
 parameter_list|)
 function_decl|;
-comment|/**    * Adds {@code edge} to this graph, connecting {@code node1} and {@code node2}    * (optional operation).    *    *<p><b>Edges must be unique</b>, just as {@code Map} keys must be; they must also be non-null.    *    *<p>If the graph is directed, {@code node1} is {@code edge}'s source,    * {@code node2} is {@code edge}'s target, and {@code edge} is an outgoing edge of    * {@code node1} and an incoming edge of {@code node2}.    *    *<p>If {@code edge} already connects {@code node1} to {@code node2} in this graph    * (in the specified order if order is significant, as for directed graphs, else in any order),    * then this method will have no effect and will return {@code false}.    *    *<p>Behavior if {@code node1} and {@code node2} are not already elements of the graph is    * unspecified. Suggested behaviors include (a) silently adding {@code node1} and {@code node2}    * to the graph or (b) throwing {@code IllegalArgumentException}.    *    * @return {@code true} iff the graph was modified as a result of this call    * @throws IllegalArgumentException if {@code edge} already exists and connects nodes other than    *     {@code node1} and {@code node2}, or if the graph is not a multigraph and {@code node1} is    *     already connected to {@code node2}    * @throws UnsupportedOperationException if the add operation is not supported by this graph    */
+comment|/**    * Adds {@code edge} to this graph, connecting {@code node1} and {@code node2}    * (optional operation).    *    *<p><b>Edges must be unique</b>, just as {@code Map} keys must be; they must also be non-null.    *    *<p>If {@code edge} already connects {@code node1} to {@code node2} in this graph    * (in the specified order if order is significant, as for directed graphs, else in any order),    * then this method will have no effect and will return {@code false}.    *    *<p>Behavior if {@code node1} and {@code node2} are not already elements of the graph is    * unspecified. Suggested behaviors include (a) silently adding {@code node1} and {@code node2}    * to the graph or (b) throwing {@code IllegalArgumentException}.    *    * @return {@code true} iff the graph was modified as a result of this call    * @throws IllegalArgumentException if {@code edge} already exists and connects nodes other than    *     {@code node1} and {@code node2}, or if the graph is not a multigraph and {@code node1} is    *     already connected to {@code node2}    * @throws UnsupportedOperationException if the add operation is not supported by this graph    */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|addEdge (E edge, N node1, N node2)

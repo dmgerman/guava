@@ -30,6 +30,30 @@ name|Beta
 import|;
 end_import
 
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Set
+import|;
+end_import
+
 begin_comment
 comment|/**  * A subinterface of {@code Graph} for graphs whose edges are all directed.  *  * @author Joshua O'Madadhain  * @param<N> Node parameter type  * @param<E> Edge parameter type  * @since 20.0  */
 end_comment
@@ -70,6 +94,56 @@ name|target
 parameter_list|(
 name|Object
 name|edge
+parameter_list|)
+function_decl|;
+comment|/**    * {@inheritDoc}    *    *<p>If {@code edge} is not a self-loop, the iteration order will be    * {@code [source(edge), target(edge)]}.    *    */
+annotation|@
+name|Override
+DECL|method|incidentNodes (Object edge)
+name|Set
+argument_list|<
+name|N
+argument_list|>
+name|incidentNodes
+parameter_list|(
+name|Object
+name|edge
+parameter_list|)
+function_decl|;
+comment|/**    * {@inheritDoc}    *    *<p>The {@linkplain #source(Object) source} and {@linkplain #target(Object) target}    * of the edges returned must be {@code source} and {@code target}, respectively.    *    */
+annotation|@
+name|Override
+DECL|method|edgesConnecting (Object source, Object target)
+name|Set
+argument_list|<
+name|E
+argument_list|>
+name|edgesConnecting
+parameter_list|(
+name|Object
+name|source
+parameter_list|,
+name|Object
+name|target
+parameter_list|)
+function_decl|;
+comment|/**    * {@inheritDoc}    *    *<p>{@code edge} is an outgoing edge of {@code source} and an incoming edge of {@code target}.    */
+annotation|@
+name|Override
+annotation|@
+name|CanIgnoreReturnValue
+DECL|method|addEdge (E edge, N source, N target)
+name|boolean
+name|addEdge
+parameter_list|(
+name|E
+name|edge
+parameter_list|,
+name|N
+name|source
+parameter_list|,
+name|N
+name|target
 parameter_list|)
 function_decl|;
 block|}
