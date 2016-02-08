@@ -3363,6 +3363,8 @@ expr_stmt|;
 block|}
 block|}
 comment|/**    * Returns an iterator containing the elements of {@code array} in order. The    * returned iterator is a view of the array; subsequent changes to the array    * will be reflected in the iterator.    *    *<p><b>Note:</b> It is often preferable to represent your data using a    * collection type, for example using {@link Arrays#asList(Object[])}, making    * this method unnecessary.    *    *<p>The {@code Iterable} equivalent of this method is either {@link    * Arrays#asList(Object[])}, {@link ImmutableList#copyOf(Object[])}},    * or {@link ImmutableList#of}.    */
+annotation|@
+name|SafeVarargs
 DECL|method|forArray (final T... array)
 specifier|public
 specifier|static
