@@ -1539,6 +1539,8 @@ block|}
 return|;
 block|}
 comment|/**    * Returns an iterator that cycles indefinitely over the provided elements.    *    *<p>The returned iterator supports {@code remove()}. After {@code remove()}    * is called, subsequent cycles omit the removed    * element, but {@code elements} does not change. The iterator's    * {@code hasNext()} method returns {@code true} until all of the original    * elements have been removed.    *    *<p><b>Warning:</b> Typical uses of the resulting iterator may produce an    * infinite loop. You should use an explicit {@code break} or be certain that    * you will eventually remove all the elements.    */
+annotation|@
+name|SafeVarargs
 DECL|method|cycle (T... elements)
 specifier|public
 specifier|static
