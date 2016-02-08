@@ -573,43 +573,6 @@ return|return
 name|valueComparator
 return|;
 block|}
-comment|/*    * The following @GwtIncompatible methods override the methods in    * AbstractSortedKeySortedSetMultimap, so GWT will fall back to the ASKSSM implementations,    * which return SortedSets and SortedMaps.    */
-annotation|@
-name|Override
-annotation|@
-name|GwtIncompatible
-comment|// NavigableMap
-DECL|method|backingMap ()
-name|NavigableMap
-argument_list|<
-name|K
-argument_list|,
-name|Collection
-argument_list|<
-name|V
-argument_list|>
-argument_list|>
-name|backingMap
-parameter_list|()
-block|{
-return|return
-operator|(
-name|NavigableMap
-argument_list|<
-name|K
-argument_list|,
-name|Collection
-argument_list|<
-name|V
-argument_list|>
-argument_list|>
-operator|)
-name|super
-operator|.
-name|backingMap
-argument_list|()
-return|;
-block|}
 comment|/**    * @since 14.0 (present with return type {@code SortedSet} since 2.0)    */
 annotation|@
 name|Override
@@ -645,52 +608,9 @@ name|key
 argument_list|)
 return|;
 block|}
-annotation|@
-name|Override
-annotation|@
-name|GwtIncompatible
-comment|// NavigableSet
-DECL|method|wrapCollection (K key, Collection<V> collection)
-name|Collection
-argument_list|<
-name|V
-argument_list|>
-name|wrapCollection
-parameter_list|(
-name|K
-name|key
-parameter_list|,
-name|Collection
-argument_list|<
-name|V
-argument_list|>
-name|collection
-parameter_list|)
-block|{
-return|return
-operator|new
-name|WrappedNavigableSet
-argument_list|(
-name|key
-argument_list|,
-operator|(
-name|NavigableSet
-argument_list|<
-name|V
-argument_list|>
-operator|)
-name|collection
-argument_list|,
-literal|null
-argument_list|)
-return|;
-block|}
 comment|/**    * {@inheritDoc}    *    *<p>Because a {@code TreeMultimap} has unique sorted keys, this method    * returns a {@link NavigableSet}, instead of the {@link java.util.Set} specified    * in the {@link Multimap} interface.    *    * @since 14.0 (present with return type {@code SortedSet} since 2.0)    */
 annotation|@
 name|Override
-annotation|@
-name|GwtIncompatible
-comment|// NavigableSet
 DECL|method|keySet ()
 specifier|public
 name|NavigableSet
@@ -713,34 +633,9 @@ name|keySet
 argument_list|()
 return|;
 block|}
-annotation|@
-name|Override
-annotation|@
-name|GwtIncompatible
-comment|// NavigableSet
-DECL|method|createKeySet ()
-name|NavigableSet
-argument_list|<
-name|K
-argument_list|>
-name|createKeySet
-parameter_list|()
-block|{
-return|return
-operator|new
-name|NavigableKeySet
-argument_list|(
-name|backingMap
-argument_list|()
-argument_list|)
-return|;
-block|}
 comment|/**    * {@inheritDoc}    *    *<p>Because a {@code TreeMultimap} has unique sorted keys, this method    * returns a {@link NavigableMap}, instead of the {@link java.util.Map} specified    * in the {@link Multimap} interface.    *    * @since 14.0 (present with return type {@code SortedMap} since 2.0)    */
 annotation|@
 name|Override
-annotation|@
-name|GwtIncompatible
-comment|// NavigableMap
 DECL|method|asMap ()
 specifier|public
 name|NavigableMap
@@ -771,33 +666,6 @@ name|super
 operator|.
 name|asMap
 argument_list|()
-return|;
-block|}
-annotation|@
-name|Override
-annotation|@
-name|GwtIncompatible
-comment|// NavigableMap
-DECL|method|createAsMap ()
-name|NavigableMap
-argument_list|<
-name|K
-argument_list|,
-name|Collection
-argument_list|<
-name|V
-argument_list|>
-argument_list|>
-name|createAsMap
-parameter_list|()
-block|{
-return|return
-operator|new
-name|NavigableAsMap
-argument_list|(
-name|backingMap
-argument_list|()
-argument_list|)
 return|;
 block|}
 comment|/**    * @serialData key comparator, value comparator, number of distinct keys, and    *     then for each distinct key: the key, number of values for that key, and    *     key values    */
