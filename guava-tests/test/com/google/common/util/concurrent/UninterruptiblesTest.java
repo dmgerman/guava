@@ -1770,6 +1770,7 @@ argument_list|(
 name|MILLISECONDS
 argument_list|)
 decl_stmt|;
+comment|/*        * The "+ 5" below is to permit, say, sleep(10) to sleep only 9 milliseconds. We see such        * behavior sometimes when running these tests publicly as part of Guava. "+ 5" is probably        * more generous than it needs to be.        */
 name|assertTrue
 argument_list|(
 literal|"Expected elapsed millis to be>= "
@@ -1781,6 +1782,8 @@ operator|+
 name|elapsedMillis
 argument_list|,
 name|elapsedMillis
+operator|+
+literal|5
 operator|>=
 name|expectedMillis
 argument_list|)
