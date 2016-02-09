@@ -174,6 +174,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
 name|junit
 operator|.
 name|framework
@@ -12609,6 +12623,12 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 comment|// TODO(benyu): This should check equality to an expected value, see discussion in cl/98674873
+name|TypeToken
+argument_list|<
+name|?
+argument_list|>
+name|unused
+init|=
 name|superType
 operator|.
 name|getSubtype
@@ -12618,7 +12638,7 @@ operator|.
 name|getRawType
 argument_list|()
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 block|}
 end_function
 
@@ -13125,6 +13145,12 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 comment|// This returns a strange ? extends Sub2<Y> type, which isn't ideal.
+name|TypeToken
+argument_list|<
+name|?
+argument_list|>
+name|unused
+init|=
 operator|new
 name|TypeToken
 argument_list|<
@@ -16377,6 +16403,8 @@ block|}
 end_class
 
 begin_function
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|reserialize (T object)
 specifier|private
 specifier|static

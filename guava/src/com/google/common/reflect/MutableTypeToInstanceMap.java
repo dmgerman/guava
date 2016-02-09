@@ -132,6 +132,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -261,6 +275,8 @@ annotation|@
 name|Nullable
 annotation|@
 name|Override
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|putInstance (Class<T> type, @Nullable T value)
 specifier|public
 parameter_list|<
@@ -332,6 +348,8 @@ annotation|@
 name|Nullable
 annotation|@
 name|Override
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|putInstance (TypeToken<T> type, @Nullable T value)
 specifier|public
 parameter_list|<
@@ -366,7 +384,11 @@ name|value
 argument_list|)
 return|;
 block|}
-comment|/** Not supported. Use {@link #putInstance} instead. */
+comment|/**    * Not supported. Use {@link #putInstance} instead.    *    * @deprecated unsupported operation    * @throws UnsupportedOperationException always    */
+annotation|@
+name|CanIgnoreReturnValue
+annotation|@
+name|Deprecated
 DECL|method|put (TypeToken<? extends B> key, B value)
 annotation|@
 name|Override
@@ -394,7 +416,9 @@ literal|"Please use putInstance() instead."
 argument_list|)
 throw|;
 block|}
-comment|/** Not supported. Use {@link #putInstance} instead. */
+comment|/**    * Not supported. Use {@link #putInstance} instead.    *    * @deprecated unsupported operation    * @throws UnsupportedOperationException always    */
+annotation|@
+name|Deprecated
 DECL|method|putAll (Map<? extends TypeToken<? extends B>, ? extends B> map)
 annotation|@
 name|Override

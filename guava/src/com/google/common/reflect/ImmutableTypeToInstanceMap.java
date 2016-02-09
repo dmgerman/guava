@@ -60,6 +60,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -204,6 +218,8 @@ name|Builder
 parameter_list|()
 block|{}
 comment|/**      * Associates {@code key} with {@code value} in the built map. Duplicate      * keys are not allowed, and will cause {@link #build} to fail.      */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|put (Class<T> key, T value)
 specifier|public
 parameter_list|<
@@ -246,6 +262,8 @@ name|this
 return|;
 block|}
 comment|/**      * Associates {@code key} with {@code value} in the built map. Duplicate      * keys are not allowed, and will cause {@link #build} to fail.      */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|put (TypeToken<T> key, T value)
 specifier|public
 parameter_list|<
@@ -380,7 +398,11 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Guaranteed to throw an exception and leave the map unmodified.    *    * @throws UnsupportedOperationException always    */
+comment|/**    * Guaranteed to throw an exception and leave the map unmodified.    *    * @deprecated unsupported operation    * @throws UnsupportedOperationException always    */
+annotation|@
+name|CanIgnoreReturnValue
+annotation|@
+name|Deprecated
 DECL|method|putInstance (TypeToken<T> type, T value)
 annotation|@
 name|Override
@@ -440,7 +462,11 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Guaranteed to throw an exception and leave the map unmodified.    *    * @throws UnsupportedOperationException always    */
+comment|/**    * Guaranteed to throw an exception and leave the map unmodified.    *    * @deprecated unsupported operation    * @throws UnsupportedOperationException always    */
+annotation|@
+name|CanIgnoreReturnValue
+annotation|@
+name|Deprecated
 DECL|method|putInstance (Class<T> type, T value)
 annotation|@
 name|Override
@@ -461,6 +487,70 @@ name|type
 parameter_list|,
 name|T
 name|value
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|UnsupportedOperationException
+argument_list|()
+throw|;
+block|}
+comment|/**    * Guaranteed to throw an exception and leave the map unmodified.    *    * @deprecated unsupported operation    * @throws UnsupportedOperationException always    */
+annotation|@
+name|CanIgnoreReturnValue
+annotation|@
+name|Deprecated
+DECL|method|put (TypeToken<? extends B> key, B value)
+annotation|@
+name|Override
+specifier|public
+name|B
+name|put
+parameter_list|(
+name|TypeToken
+argument_list|<
+name|?
+extends|extends
+name|B
+argument_list|>
+name|key
+parameter_list|,
+name|B
+name|value
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|UnsupportedOperationException
+argument_list|()
+throw|;
+block|}
+comment|/**    * Guaranteed to throw an exception and leave the map unmodified.    *    * @deprecated unsupported operation    * @throws UnsupportedOperationException always    */
+annotation|@
+name|Deprecated
+DECL|method|putAll (Map<? extends TypeToken<? extends B>, ? extends B> map)
+annotation|@
+name|Override
+specifier|public
+name|void
+name|putAll
+parameter_list|(
+name|Map
+argument_list|<
+name|?
+extends|extends
+name|TypeToken
+argument_list|<
+name|?
+extends|extends
+name|B
+argument_list|>
+argument_list|,
+name|?
+extends|extends
+name|B
+argument_list|>
+name|map
 parameter_list|)
 block|{
 throw|throw

@@ -1849,6 +1849,9 @@ name|capture
 argument_list|()
 decl_stmt|;
 comment|// TODO(benyu): This should check equality to an expected value, see discussion in cl/98674873
+name|Type
+name|unused
+init|=
 operator|new
 name|TypeResolver
 argument_list|()

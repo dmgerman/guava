@@ -234,6 +234,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -3322,6 +3336,8 @@ comment|/**    * Ensures that this type token doesn't contain type variables, wh
 end_comment
 
 begin_function
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|rejectTypeVariables ()
 specifier|final
 name|TypeToken
@@ -5419,6 +5435,8 @@ argument_list|)
 return|;
 block|}
 comment|/** Collects all types to map, and returns the total depth from T up to Object. */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|collectTypes (K type, Map<? super K, Integer> map)
 specifier|private
 name|int

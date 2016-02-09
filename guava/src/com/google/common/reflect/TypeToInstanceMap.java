@@ -32,6 +32,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -99,6 +113,8 @@ function_decl|;
 comment|/**    * Maps the specified class to the specified value. Does<i>not</i> associate    * this value with any of the class's supertypes.    *     *<p>{@code putInstance(Foo.class, foo)} is equivalent to    * {@code putInstance(TypeToken.of(Foo.class), foo)}.    *    * @return the value previously associated with this class (possibly {@code null}),    *         or {@code null} if there was no previous entry.    */
 annotation|@
 name|Nullable
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|putInstance (Class<T> type, @Nullable T value)
 argument_list|<
 name|T
@@ -142,6 +158,8 @@ function_decl|;
 comment|/**    * Maps the specified type to the specified value. Does<i>not</i> associate    * this value with any of the type's supertypes.    *    * @return the value previously associated with this type (possibly {@code null}),    *         or {@code null} if there was no previous entry.    */
 annotation|@
 name|Nullable
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|putInstance (TypeToken<T> type, @Nullable T value)
 argument_list|<
 name|T
