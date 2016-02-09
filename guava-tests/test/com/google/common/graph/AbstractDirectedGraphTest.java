@@ -179,7 +179,7 @@ control|(
 name|Integer
 name|node
 range|:
-name|graph
+name|directedGraph
 operator|.
 name|nodes
 argument_list|()
@@ -190,7 +190,7 @@ control|(
 name|String
 name|inEdge
 range|:
-name|graph
+name|directedGraph
 operator|.
 name|inEdges
 argument_list|(
@@ -248,7 +248,7 @@ control|(
 name|String
 name|outEdge
 range|:
-name|graph
+name|directedGraph
 operator|.
 name|outEdges
 argument_list|(
