@@ -180,6 +180,20 @@ name|com
 operator|.
 name|google
 operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
 name|j2objc
 operator|.
 name|annotations
@@ -363,6 +377,9 @@ end_comment
 begin_class
 annotation|@
 name|Beta
+annotation|@
+name|CanIgnoreReturnValue
+comment|// TODO(cpovirk): Consider being more strict.
 annotation|@
 name|ThreadSafe
 annotation|@

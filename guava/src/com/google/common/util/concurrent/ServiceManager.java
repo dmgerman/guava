@@ -590,6 +590,20 @@ name|com
 operator|.
 name|google
 operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
 name|j2objc
 operator|.
 name|annotations
@@ -1096,6 +1110,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Initiates service {@linkplain Service#startAsync startup} on all the services being managed.    * It is only valid to call this method if all of the services are {@linkplain State#NEW new}.    *    * @return this    * @throws IllegalStateException if any of the Services are not {@link State#NEW new} when the    *     method is called.    */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|startAsync ()
 specifier|public
 name|ServiceManager
@@ -1225,6 +1241,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Initiates service {@linkplain Service#stopAsync shutdown} if necessary on all the services    * being managed.    *    * @return this    */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|stopAsync ()
 specifier|public
 name|ServiceManager

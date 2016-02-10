@@ -108,6 +108,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|lang
@@ -451,18 +465,12 @@ name|InvocationTargetException
 name|e
 parameter_list|)
 block|{
+throw|throw
 name|throwCause
 argument_list|(
 name|e
 argument_list|,
 literal|false
-argument_list|)
-expr_stmt|;
-throw|throw
-operator|new
-name|AssertionError
-argument_list|(
-literal|"can't get here"
 argument_list|)
 throw|;
 block|}
@@ -500,8 +508,10 @@ return|;
 block|}
 comment|// TODO: should this actually throw only ExecutionException?
 annotation|@
+name|CanIgnoreReturnValue
+annotation|@
 name|Override
-DECL|method|callWithTimeout (Callable<T> callable, long timeoutDuration, TimeUnit timeoutUnit, boolean amInterruptible)
+DECL|method|callWithTimeout ( Callable<T> callable, long timeoutDuration, TimeUnit timeoutUnit, boolean amInterruptible)
 specifier|public
 parameter_list|<
 name|T

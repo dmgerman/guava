@@ -62,6 +62,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -119,6 +133,8 @@ name|X
 argument_list|>
 block|{
 annotation|@
+name|CanIgnoreReturnValue
+annotation|@
 name|Override
 DECL|method|checkedGet ()
 specifier|public
@@ -136,6 +152,8 @@ name|checkedGet
 argument_list|()
 return|;
 block|}
+annotation|@
+name|CanIgnoreReturnValue
 annotation|@
 name|Override
 DECL|method|checkedGet (long timeout, TimeUnit unit)

@@ -910,7 +910,7 @@ name|GwtIncompatible
 comment|// used only in GwtIncomaptible tests
 DECL|method|awaitUnchecked (CyclicBarrier barrier)
 specifier|private
-name|int
+name|void
 name|awaitUnchecked
 parameter_list|(
 name|CyclicBarrier
@@ -919,12 +919,11 @@ parameter_list|)
 block|{
 try|try
 block|{
-return|return
 name|barrier
 operator|.
 name|await
 argument_list|()
-return|;
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(

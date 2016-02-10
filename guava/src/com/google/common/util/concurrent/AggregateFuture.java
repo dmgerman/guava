@@ -134,6 +134,20 @@ name|com
 operator|.
 name|google
 operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
 name|j2objc
 operator|.
 name|annotations
@@ -281,6 +295,8 @@ literal|null
 expr_stmt|;
 block|}
 comment|// TODO(cpovirk): Use maybePropagateCancellation() if the performance is OK and the code is clean.
+annotation|@
+name|CanIgnoreReturnValue
 annotation|@
 name|Override
 DECL|method|cancel (boolean mayInterruptIfRunning)
@@ -789,6 +805,10 @@ name|isCancelled
 argument_list|()
 condition|)
 block|{
+comment|// TODO(cpovirk): Think about whether we could/should use Verify to check this.
+name|boolean
+name|unused
+init|=
 name|addCausalChain
 argument_list|(
 name|seen
@@ -796,7 +816,7 @@ argument_list|,
 name|trustedGetException
 argument_list|()
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 block|}
 block|}
 comment|/**      * Handles the input at the given index completing.      */

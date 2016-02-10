@@ -116,6 +116,20 @@ name|com
 operator|.
 name|google
 operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
 name|j2objc
 operator|.
 name|annotations
@@ -926,6 +940,7 @@ throws|throws
 name|Exception
 block|{}
 comment|/**    * Returns the {@link Scheduler} object used to configure this service. This method will only be    * called once.    */
+comment|// TODO(cpovirk): @ForOverride
 DECL|method|scheduler ()
 specifier|protected
 specifier|abstract
@@ -1151,6 +1166,8 @@ return|;
 block|}
 comment|/**    * @since 15.0    */
 annotation|@
+name|CanIgnoreReturnValue
+annotation|@
 name|Override
 DECL|method|startAsync ()
 specifier|public
@@ -1169,6 +1186,8 @@ name|this
 return|;
 block|}
 comment|/**    * @since 15.0    */
+annotation|@
+name|CanIgnoreReturnValue
 annotation|@
 name|Override
 DECL|method|stopAsync ()
@@ -1717,6 +1736,7 @@ expr_stmt|;
 block|}
 block|}
 comment|/**      * Calculates the time at which to next invoke the task.      *      *<p>This is guaranteed to be called immediately after the task has completed an iteration and      * on the same thread as the previous execution of {@link      * AbstractScheduledService#runOneIteration}.      *      * @return a schedule that defines the delay before the next execution.      */
+comment|// TODO(cpovirk): @ForOverride
 DECL|method|getNextSchedule ()
 specifier|protected
 specifier|abstract

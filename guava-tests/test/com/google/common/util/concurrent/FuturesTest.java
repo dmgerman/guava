@@ -438,6 +438,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
 name|junit
 operator|.
 name|framework
@@ -1331,6 +1345,8 @@ specifier|final
 class|class
 name|CallerClass2
 block|{
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|get (ListenableFuture<V> future)
 specifier|static
 parameter_list|<
@@ -1826,6 +1842,12 @@ operator|.
 name|create
 argument_list|()
 decl_stmt|;
+name|ListenableFuture
+argument_list|<
+name|Object
+argument_list|>
+name|unused
+init|=
 name|Futures
 operator|.
 name|transform
@@ -1835,7 +1857,7 @@ argument_list|,
 name|identity
 argument_list|()
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|root
 operator|.
 name|set
@@ -3119,6 +3141,12 @@ operator|.
 name|create
 argument_list|()
 decl_stmt|;
+name|ListenableFuture
+argument_list|<
+name|Object
+argument_list|>
+name|unused
+init|=
 name|Futures
 operator|.
 name|transformAsync
@@ -3128,7 +3156,7 @@ argument_list|,
 name|asyncIdentity
 argument_list|()
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|root
 operator|.
 name|set
@@ -14770,6 +14798,8 @@ decl_stmt|;
 block|}
 comment|/**    * Very rough equivalent of a timed get, produced by calling the no-arg get method in another    * thread and waiting a short time for it.    *    *<p>We need this to test the behavior of no-arg get methods without hanging the main test thread    * forever in the case of failure.    */
 annotation|@
+name|CanIgnoreReturnValue
+annotation|@
 name|GwtIncompatible
 comment|// threads
 DECL|method|pseudoTimedGetUninterruptibly (final Future<V> input, long timeout, TimeUnit unit)
@@ -19594,6 +19624,8 @@ name|String
 argument_list|>
 block|{
 annotation|@
+name|CanIgnoreReturnValue
+annotation|@
 name|Override
 DECL|method|get ()
 specifier|public
@@ -19607,6 +19639,8 @@ name|RuntimeException
 argument_list|()
 throw|;
 block|}
+annotation|@
+name|CanIgnoreReturnValue
 annotation|@
 name|Override
 DECL|method|set (String v)

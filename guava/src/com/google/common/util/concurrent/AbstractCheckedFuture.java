@@ -48,6 +48,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -149,6 +163,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Translates from an {@link InterruptedException}, {@link CancellationException} or {@link    * ExecutionException} thrown by {@code get} to an exception of type {@code X} to be thrown by    * {@code checkedGet}. Subclasses must implement this method.    *    *<p>If {@code e} is an {@code InterruptedException}, the calling {@code checkedGet} method has    * already restored the interrupt after catching the exception. If an implementation of {@link    * #mapException(Exception)} wishes to swallow the interrupt, it can do so by calling {@link    * Thread#interrupted()}.    *    *<p>Subclasses may choose to throw, rather than return, a subclass of {@code RuntimeException}    * to allow creating a CheckedFuture that throws both checked and unchecked exceptions.    */
+comment|// We might like @ForOverride here, but some subclasses invoke this from their get() methods.
 DECL|method|mapException (Exception e)
 specifier|protected
 specifier|abstract
@@ -160,6 +175,8 @@ name|e
 parameter_list|)
 function_decl|;
 comment|/**    * {@inheritDoc}    *    *<p>This implementation calls {@link #get()} and maps that method's standard exceptions to    * instances of type {@code X} using {@link #mapException}.    *    *<p>In addition, if {@code get} throws an {@link InterruptedException}, this implementation will    * set the current thread's interrupt status before calling {@code mapException}.    *    * @throws X if {@link #get()} throws an {@link InterruptedException}, {@link    *     CancellationException}, or {@link ExecutionException}    */
+annotation|@
+name|CanIgnoreReturnValue
 annotation|@
 name|Override
 DECL|method|checkedGet ()
@@ -226,6 +243,8 @@ throw|;
 block|}
 block|}
 comment|/**    * {@inheritDoc}    *    *<p>This implementation calls {@link #get(long, TimeUnit)} and maps that method's standard    * exceptions (excluding {@link TimeoutException}, which is propagated) to instances of type    * {@code X} using {@link #mapException}.    *    *<p>In addition, if {@code get} throws an {@link InterruptedException}, this implementation will    * set the current thread's interrupt status before calling {@code mapException}.    *    * @throws X if {@link #get()} throws an {@link InterruptedException}, {@link    *     CancellationException}, or {@link ExecutionException}    */
+annotation|@
+name|CanIgnoreReturnValue
 annotation|@
 name|Override
 DECL|method|checkedGet (long timeout, TimeUnit unit)

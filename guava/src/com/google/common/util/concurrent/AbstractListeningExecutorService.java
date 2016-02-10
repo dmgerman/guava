@@ -48,6 +48,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -99,6 +113,8 @@ end_comment
 begin_class
 annotation|@
 name|Beta
+annotation|@
+name|CanIgnoreReturnValue
 annotation|@
 name|GwtIncompatible
 DECL|class|AbstractListeningExecutorService

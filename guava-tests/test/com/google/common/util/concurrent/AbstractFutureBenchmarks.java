@@ -36,6 +36,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -145,6 +159,8 @@ argument_list|<
 name|T
 argument_list|>
 block|{
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|set (T t)
 name|boolean
 name|set
@@ -153,6 +169,8 @@ name|T
 name|t
 parameter_list|)
 function_decl|;
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|setException (Throwable t)
 name|boolean
 name|setException
@@ -181,9 +199,11 @@ argument_list|<
 name|T
 argument_list|>
 block|{
-DECL|method|set (T t)
+annotation|@
+name|CanIgnoreReturnValue
 annotation|@
 name|Override
+DECL|method|set (T t)
 specifier|public
 name|boolean
 name|set
@@ -201,9 +221,11 @@ name|t
 argument_list|)
 return|;
 block|}
-DECL|method|setException (Throwable t)
+annotation|@
+name|CanIgnoreReturnValue
 annotation|@
 name|Override
+DECL|method|setException (Throwable t)
 specifier|public
 name|boolean
 name|setException
@@ -241,9 +263,11 @@ argument_list|<
 name|T
 argument_list|>
 block|{
-DECL|method|set (T t)
+annotation|@
+name|CanIgnoreReturnValue
 annotation|@
 name|Override
+DECL|method|set (T t)
 specifier|public
 name|boolean
 name|set
@@ -261,9 +285,11 @@ name|t
 argument_list|)
 return|;
 block|}
-DECL|method|setException (Throwable t)
+annotation|@
+name|CanIgnoreReturnValue
 annotation|@
 name|Override
+DECL|method|setException (Throwable t)
 specifier|public
 name|boolean
 name|setException
@@ -460,6 +486,8 @@ block|{}
 comment|/*      * Improve the documentation of when InterruptedException is thrown. Our      * behavior matches the JDK's, but the JDK's documentation is misleading.      */
 comment|/**      * {@inheritDoc}      *      *<p>The default {@link AbstractFuture} implementation throws {@code      * InterruptedException} if the current thread is interrupted before or during      * the call, even if the value is already available.      *      * @throws InterruptedException if the current thread was interrupted before      *     or during the call (optional but recommended).      * @throws CancellationException {@inheritDoc}      */
 annotation|@
+name|CanIgnoreReturnValue
+annotation|@
 name|Override
 DECL|method|get (long timeout, TimeUnit unit)
 specifier|public
@@ -495,6 +523,8 @@ return|;
 block|}
 comment|/*      * Improve the documentation of when InterruptedException is thrown. Our      * behavior matches the JDK's, but the JDK's documentation is misleading.      */
 comment|/**      * {@inheritDoc}      *      *<p>The default {@link AbstractFuture} implementation throws {@code      * InterruptedException} if the current thread is interrupted before or during      * the call, even if the value is already available.      *      * @throws InterruptedException if the current thread was interrupted before      *     or during the call (optional but recommended).      * @throws CancellationException {@inheritDoc}      */
+annotation|@
+name|CanIgnoreReturnValue
 annotation|@
 name|Override
 DECL|method|get ()
@@ -544,6 +574,8 @@ name|isCancelled
 argument_list|()
 return|;
 block|}
+annotation|@
+name|CanIgnoreReturnValue
 annotation|@
 name|Override
 DECL|method|cancel (boolean mayInterruptIfRunning)
@@ -636,6 +668,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**      * Subclasses should invoke this method to set the result of the computation      * to {@code value}.  This will set the state of the future to      * {@link OldAbstractFuture.Sync#COMPLETED} and invoke the listeners if the      * state was successfully changed.      *      * @param value the value that was the result of the task.      * @return true if the state was successfully changed.      */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|set (@ullable V value)
 specifier|protected
 name|boolean
@@ -673,6 +707,8 @@ name|result
 return|;
 block|}
 comment|/**      * Subclasses should invoke this method to set the result of the computation      * to an error, {@code throwable}.  This will set the state of the future to      * {@link OldAbstractFuture.Sync#COMPLETED} and invoke the listeners if the      * state was successfully changed.      *      * @param throwable the exception that the task failed with.      * @return true if the state was successfully changed.      */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|setException (Throwable throwable)
 specifier|protected
 name|boolean

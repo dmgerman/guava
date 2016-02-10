@@ -1439,6 +1439,9 @@ operator|++
 control|)
 block|{
 comment|// doesn't throw exception
+name|Object
+name|unused
+init|=
 name|striped
 operator|.
 name|getAt
@@ -1449,7 +1452,7 @@ name|MAX_VALUE
 operator|-
 name|i
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 block|}
 block|}
 block|}

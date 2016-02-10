@@ -182,6 +182,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|lang
@@ -3120,6 +3134,8 @@ block|}
 comment|/**    * Shuts down the given executor gradually, first disabling new submissions and later cancelling    * existing tasks.    *    *<p>The method takes the following steps:    *<ol>    *<li>calls {@link ExecutorService#shutdown()}, disabling acceptance of new submitted tasks.    *<li>waits for half of the specified timeout.    *<li>if the timeout expires, it calls {@link ExecutorService#shutdownNow()}, cancelling    *  pending tasks and interrupting running tasks.    *<li>waits for the other half of the specified timeout.    *</ol>    *    *<p>If, at any step of the process, the calling thread is interrupted, the method calls {@link    * ExecutorService#shutdownNow()} and returns.    *    * @param service the {@code ExecutorService} to shut down    * @param timeout the maximum time to wait for the {@code ExecutorService} to terminate    * @param unit the time unit of the timeout argument    * @return {@code true} if the {@code ExecutorService} was terminated successfully, {@code false}    *     the call timed out or was interrupted    * @since 17.0    */
 annotation|@
 name|Beta
+annotation|@
+name|CanIgnoreReturnValue
 annotation|@
 name|GwtIncompatible
 comment|// concurrency

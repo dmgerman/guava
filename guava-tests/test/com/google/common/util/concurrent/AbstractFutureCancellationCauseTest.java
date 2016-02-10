@@ -94,11 +94,18 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+comment|// Load the "normal" copy of SettableFuture and related classes.
+name|SettableFuture
+argument_list|<
+name|?
+argument_list|>
+name|unused
+init|=
 name|SettableFuture
 operator|.
 name|create
 argument_list|()
-expr_stmt|;
+decl_stmt|;
 comment|// Hack to load AbstractFuture et. al. in a new classloader so that it re-reads the cancellation
 comment|// cause system property.  This allows us to run with both settings of the property in one jvm
 comment|// without resorting to even crazier hacks to reset static final boolean fields.

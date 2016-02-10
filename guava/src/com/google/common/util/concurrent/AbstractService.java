@@ -278,6 +278,20 @@ name|com
 operator|.
 name|google
 operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
 name|j2objc
 operator|.
 name|annotations
@@ -941,6 +955,8 @@ name|doStop
 parameter_list|()
 function_decl|;
 annotation|@
+name|CanIgnoreReturnValue
+annotation|@
 name|Override
 DECL|method|startAsync ()
 specifier|public
@@ -1018,6 +1034,8 @@ return|return
 name|this
 return|;
 block|}
+annotation|@
+name|CanIgnoreReturnValue
 annotation|@
 name|Override
 DECL|method|stopAsync ()

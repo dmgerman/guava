@@ -34,6 +34,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -85,6 +99,9 @@ comment|/**  * An abstract {@code ScheduledExecutorService} that allows subclass
 end_comment
 
 begin_class
+annotation|@
+name|CanIgnoreReturnValue
+comment|// TODO(cpovirk): Consider being more strict.
 annotation|@
 name|GwtIncompatible
 DECL|class|WrappingScheduledExecutorService

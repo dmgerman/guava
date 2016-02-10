@@ -90,6 +90,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -274,6 +288,9 @@ block|}
 block|}
 comment|/**    * Invokes    * {@code latch.}{@link CountDownLatch#await(long, TimeUnit)    * await(timeout, unit)} uninterruptibly.    */
 annotation|@
+name|CanIgnoreReturnValue
+comment|// TODO(cpovirk): Consider being more strict.
+annotation|@
 name|GwtIncompatible
 comment|// concurrency
 DECL|method|awaitUninterruptibly (CountDownLatch latch, long timeout, TimeUnit unit)
@@ -445,6 +462,8 @@ block|}
 block|}
 block|}
 comment|/**    * Invokes {@code future.}{@link Future#get() get()} uninterruptibly.    * To get uninterruptibility and remove checked exceptions, see    * {@link Futures#getUnchecked}.    *    *<p>If instead, you wish to treat {@link InterruptedException} uniformly    * with other exceptions, see {@link Futures#getChecked(Future, Class)    * Futures.getChecked}.    *    * @throws ExecutionException if the computation threw an exception    * @throws CancellationException if the computation was cancelled    */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|getUninterruptibly (Future<V> future)
 specifier|public
 specifier|static
@@ -516,6 +535,8 @@ block|}
 block|}
 block|}
 comment|/**    * Invokes    * {@code future.}{@link Future#get(long, TimeUnit) get(timeout, unit)}    * uninterruptibly.    *    *<p>If instead, you wish to treat {@link InterruptedException} uniformly    * with other exceptions, see {@link Futures#getChecked(Future, Class)    * Futures.getChecked}.    *    * @throws ExecutionException if the computation threw an exception    * @throws CancellationException if the computation was cancelled    * @throws TimeoutException if the wait timed out    */
+annotation|@
+name|CanIgnoreReturnValue
 annotation|@
 name|GwtIncompatible
 comment|// TODO

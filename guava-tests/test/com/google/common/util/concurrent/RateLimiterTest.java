@@ -980,6 +980,11 @@ name|testCreateWarmupParameterValidation
 parameter_list|()
 block|{
 name|RateLimiter
+name|unused
+decl_stmt|;
+name|unused
+operator|=
+name|RateLimiter
 operator|.
 name|create
 argument_list|(
@@ -990,6 +995,8 @@ argument_list|,
 name|NANOSECONDS
 argument_list|)
 expr_stmt|;
+name|unused
+operator|=
 name|RateLimiter
 operator|.
 name|create

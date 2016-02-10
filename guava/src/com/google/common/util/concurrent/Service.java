@@ -48,6 +48,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -96,7 +110,9 @@ specifier|public
 interface|interface
 name|Service
 block|{
-comment|/**    * If the service state is {@link State#NEW}, this initiates service startup and returns    * immediately. A stopped service may not be restarted.    *     * @return this    * @throws IllegalStateException if the service is not {@link State#NEW}    *    * @since 15.0    */
+comment|/**    * If the service state is {@link State#NEW}, this initiates service startup and returns    * immediately. A stopped service may not be restarted.    *    * @return this    * @throws IllegalStateException if the service is not {@link State#NEW}    *    * @since 15.0    */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|startAsync ()
 name|Service
 name|startAsync
@@ -115,6 +131,8 @@ name|state
 parameter_list|()
 function_decl|;
 comment|/**    * If the service is {@linkplain State#STARTING starting} or {@linkplain State#RUNNING running},    * this initiates service shutdown and returns immediately. If the service is    * {@linkplain State#NEW new}, it is {@linkplain State#TERMINATED terminated} without having been    * started nor stopped. If the service has already been stopped, this method returns immediately    * without taking action.    *    * @return this    * @since 15.0    */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|stopAsync ()
 name|Service
 name|stopAsync

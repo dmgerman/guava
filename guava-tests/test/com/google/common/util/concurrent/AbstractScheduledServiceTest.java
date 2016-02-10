@@ -2047,6 +2047,12 @@ argument_list|,
 name|unit
 argument_list|)
 decl_stmt|;
+name|Future
+argument_list|<
+name|?
+argument_list|>
+name|unused
+init|=
 name|schedule
 operator|.
 name|schedule
@@ -2100,7 +2106,7 @@ block|}
 argument_list|,
 name|testRunnable
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|assertTrue
 argument_list|(
 name|called
@@ -2125,6 +2131,12 @@ argument_list|,
 name|unit
 argument_list|)
 decl_stmt|;
+name|Future
+argument_list|<
+name|?
+argument_list|>
+name|unused
+init|=
 name|schedule
 operator|.
 name|schedule
@@ -2178,7 +2190,7 @@ block|}
 argument_list|,
 name|testRunnable
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|assertTrue
 argument_list|(
 name|called

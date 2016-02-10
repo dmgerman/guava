@@ -112,6 +112,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|security
@@ -342,6 +356,8 @@ comment|// cancel in order to propagate cancellation to other futures.
 comment|// TODO(lukes): with maybePropagateCancellation this is no longer really true.  Track down the
 comment|// final few cases and eliminate their overrides of cancel()
 annotation|@
+name|CanIgnoreReturnValue
+annotation|@
 name|Override
 DECL|method|get ()
 specifier|public
@@ -361,6 +377,8 @@ name|get
 argument_list|()
 return|;
 block|}
+annotation|@
+name|CanIgnoreReturnValue
 annotation|@
 name|Override
 DECL|method|get (long timeout, TimeUnit unit)
@@ -1206,6 +1224,8 @@ comment|//   being unparked.
 comment|/*    * Improve the documentation of when InterruptedException is thrown. Our behavior matches the    * JDK's, but the JDK's documentation is misleading.    */
 comment|/**    * {@inheritDoc}    *    *<p>The default {@link AbstractFuture} implementation throws {@code InterruptedException} if the    * current thread is interrupted before or during the call, even if the value is already    * available.    *    * @throws InterruptedException if the current thread was interrupted before or during the call    *     (optional but recommended).    * @throws CancellationException {@inheritDoc}    */
 annotation|@
+name|CanIgnoreReturnValue
+annotation|@
 name|Override
 DECL|method|get (long timeout, TimeUnit unit)
 specifier|public
@@ -1538,6 +1558,8 @@ block|}
 comment|/*    * Improve the documentation of when InterruptedException is thrown. Our behavior matches the    * JDK's, but the JDK's documentation is misleading.    */
 comment|/**    * {@inheritDoc}    *    *<p>The default {@link AbstractFuture} implementation throws {@code InterruptedException} if the    * current thread is interrupted before or during the call, even if the value is already    * available.    *    * @throws InterruptedException if the current thread was interrupted before or during the call    *     (optional but recommended).    * @throws CancellationException {@inheritDoc}    */
 annotation|@
+name|CanIgnoreReturnValue
+annotation|@
 name|Override
 DECL|method|get ()
 specifier|public
@@ -1868,6 +1890,8 @@ return|;
 block|}
 comment|/**    * {@inheritDoc}    *    *<p>If a cancellation attempt succeeds on a {@code Future} that had previously been {@linkplain    * #setFuture set asynchronously}, then the cancellation will also be propagated to the delegate    * {@code Future} that was supplied in the {@code setFuture} call.    */
 annotation|@
+name|CanIgnoreReturnValue
+annotation|@
 name|Override
 DECL|method|cancel (boolean mayInterruptIfRunning)
 specifier|public
@@ -2154,6 +2178,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Sets the result of this {@code Future} unless this {@code Future} has already been cancelled or    * set (including {@linkplain #setFuture set asynchronously}). When a call to this method returns,    * the {@code Future} is guaranteed to be {@linkplain #isDone done}<b>only if</b> the call was    * accepted (in which case it returns {@code true}). If it returns {@code false}, the {@code    * Future} may have previously been set asynchronously, in which case its result may not be known    * yet. That result, though not yet known, cannot by overridden by a call to a {@code set*}    * method, only by a call to {@link #cancel}.    *    * @param value the value to be used as the result    * @return true if the attempt was accepted, completing the {@code Future}    */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|set (@ullable V value)
 specifier|protected
 name|boolean
@@ -2202,6 +2228,8 @@ literal|false
 return|;
 block|}
 comment|/**    * Sets the failed result of this {@code Future} unless this {@code Future} has already been    * cancelled or set (including {@linkplain #setFuture set asynchronously}). When a call to this    * method returns, the {@code Future} is guaranteed to be {@linkplain #isDone done}<b>only if</b>    * the call was accepted (in which case it returns {@code true}). If it returns {@code false}, the    * {@code Future} may have previously been set asynchronously, in which case its result may not be    * known yet. That result, though not yet known, cannot by overridden by a call to a {@code set*}    * method, only by a call to {@link #cancel}.    *    * @param throwable the exception to be used as the failed result    * @return true if the attempt was accepted, completing the {@code Future}    */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|setException (Throwable throwable)
 specifier|protected
 name|boolean
@@ -2251,6 +2279,8 @@ block|}
 comment|/**    * Sets the result of this {@code Future} to match the supplied input {@code Future} once the    * supplied {@code Future} is done, unless this {@code Future} has already been cancelled or set    * (including "set asynchronously," defined below).    *    *<p>If the supplied future is {@linkplain #isDone done} when this method is called and the call    * is accepted, then this future is guaranteed to have been completed with the supplied future by    * the time this method returns. If the supplied future is not done and the call is accepted, then    * the future will be<i>set asynchronously</i>. Note that such a result, though not yet known,    * cannot by overridden by a call to a {@code set*} method, only by a call to {@link #cancel}.    *    *<p>If the call {@code setFuture(delegate)} is accepted and this {@code Future} is later    * cancelled, cancellation will be propagated to {@code delegate}. Additionally, any call to    * {@code setFuture} after any cancellation will propagate cancellation to the supplied {@code    * Future}.    *    * @param future the future to delegate to    * @return true if the attempt was accepted, indicating that the {@code Future} was not previously    *     cancelled or set.    * @since 19.0    */
 annotation|@
 name|Beta
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|setFuture (ListenableFuture<? extends V> future)
 specifier|protected
 name|boolean
@@ -2374,6 +2404,9 @@ name|FALLBACK_INSTANCE
 expr_stmt|;
 block|}
 comment|// Note: The only way this CAS could fail is if cancel() has raced with us. That is ok.
+name|boolean
+name|unused
+init|=
 name|ATOMIC_HELPER
 operator|.
 name|casValue
@@ -2384,7 +2417,7 @@ name|valueToSet
 argument_list|,
 name|failure
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 block|}
 return|return
 literal|true
@@ -2426,6 +2459,8 @@ literal|false
 return|;
 block|}
 comment|/**    * Called when a future passed via setFuture has completed.    *    * @param future the done future to complete this future with.    * @param expected the expected value of the {@link #value} field.    */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|completeWithFuture (ListenableFuture<? extends V> future, Object expected)
 specifier|private
 name|boolean

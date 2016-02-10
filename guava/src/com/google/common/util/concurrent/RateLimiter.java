@@ -184,6 +184,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -565,6 +579,8 @@ name|doGetRate
 parameter_list|()
 function_decl|;
 comment|/**    * Acquires a single permit from this {@code RateLimiter}, blocking until the    * request can be granted. Tells the amount of time slept, if any.    *    *<p>This method is equivalent to {@code acquire(1)}.    *    * @return time spent sleeping to enforce rate, in seconds; 0.0 if not rate-limited    * @since 16.0 (present in 13.0 with {@code void} return type})    */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|acquire ()
 specifier|public
 name|double
@@ -579,6 +595,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Acquires the given number of permits from this {@code RateLimiter}, blocking until the    * request can be granted. Tells the amount of time slept, if any.    *    * @param permits the number of permits to acquire    * @return time spent sleeping to enforce rate, in seconds; 0.0 if not rate-limited    * @throws IllegalArgumentException if the requested number of permits is negative or zero    * @since 16.0 (present in 13.0 with {@code void} return type})    */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|acquire (int permits)
 specifier|public
 name|double
@@ -1012,7 +1030,7 @@ block|}
 DECL|method|checkPermits (int permits)
 specifier|private
 specifier|static
-name|int
+name|void
 name|checkPermits
 parameter_list|(
 name|int
@@ -1030,9 +1048,6 @@ argument_list|,
 name|permits
 argument_list|)
 expr_stmt|;
-return|return
-name|permits
-return|;
 block|}
 block|}
 end_class

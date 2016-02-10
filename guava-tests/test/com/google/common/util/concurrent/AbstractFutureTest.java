@@ -3587,7 +3587,7 @@ block|}
 DECL|method|awaitUnchecked (final CyclicBarrier barrier)
 specifier|private
 specifier|static
-name|int
+name|void
 name|awaitUnchecked
 parameter_list|(
 specifier|final
@@ -3597,12 +3597,11 @@ parameter_list|)
 block|{
 try|try
 block|{
-return|return
 name|barrier
 operator|.
 name|await
 argument_list|()
-return|;
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(

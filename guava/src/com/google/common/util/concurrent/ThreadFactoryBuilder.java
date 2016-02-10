@@ -66,6 +66,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|lang
@@ -124,11 +138,23 @@ name|AtomicLong
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckReturnValue
+import|;
+end_import
+
 begin_comment
 comment|/**  * A ThreadFactory builder, providing any combination of these features:  *<ul>  *<li> whether threads should be marked as {@linkplain Thread#setDaemon daemon}  * threads  *<li> a {@linkplain ThreadFactoryBuilder#setNameFormat naming format}  *<li> a {@linkplain Thread#setPriority thread priority}  *<li> an {@linkplain Thread#setUncaughtExceptionHandler uncaught exception  * handler}  *<li> a {@linkplain ThreadFactory#newThread backing thread factory}  *</ul>  *<p>If no backing thread factory is provided, a default backing thread factory is  * used as if by calling {@code setThreadFactory(}{@link  * Executors#defaultThreadFactory()}{@code )}.  *  * @author Kurt Alfred Kluever  * @since 4.0  */
 end_comment
 
 begin_class
+annotation|@
+name|CanIgnoreReturnValue
 annotation|@
 name|GwtIncompatible
 DECL|class|ThreadFactoryBuilder
@@ -332,6 +358,8 @@ name|this
 return|;
 block|}
 comment|/**    * Returns a new thread factory using the options supplied during the building    * process. After building, it is still possible to change the options used to    * build the ThreadFactory and/or build again. State is not shared amongst    * built instances.    *    * @return the fully constructed {@link ThreadFactory}    */
+annotation|@
+name|CheckReturnValue
 DECL|method|build ()
 specifier|public
 name|ThreadFactory

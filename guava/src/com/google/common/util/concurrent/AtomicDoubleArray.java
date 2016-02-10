@@ -62,6 +62,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -401,6 +415,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Atomically adds the given value to the element at index {@code i}.    *    * @param i the index    * @param delta the value to add    * @return the previous value    */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|getAndAdd (int i, double delta)
 specifier|public
 specifier|final
@@ -473,6 +489,8 @@ block|}
 block|}
 block|}
 comment|/**    * Atomically adds the given value to the element at index {@code i}.    *    * @param i the index    * @param delta the value to add    * @return the updated value    */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|addAndGet (int i, double delta)
 specifier|public
 name|double

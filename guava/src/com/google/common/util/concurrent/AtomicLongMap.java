@@ -78,6 +78,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -294,6 +308,8 @@ argument_list|()
 return|;
 block|}
 comment|/**    * Increments by one the value currently associated with {@code key}, and returns the new value.    */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|incrementAndGet (K key)
 specifier|public
 name|long
@@ -313,6 +329,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Decrements by one the value currently associated with {@code key}, and returns the new value.    */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|decrementAndGet (K key)
 specifier|public
 name|long
@@ -333,6 +351,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Adds {@code delta} to the value currently associated with {@code key}, and returns the new    * value.    */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|addAndGet (K key, long delta)
 specifier|public
 name|long
@@ -473,6 +493,8 @@ block|}
 block|}
 block|}
 comment|/**    * Increments by one the value currently associated with {@code key}, and returns the old value.    */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|getAndIncrement (K key)
 specifier|public
 name|long
@@ -492,6 +514,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Decrements by one the value currently associated with {@code key}, and returns the old value.    */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|getAndDecrement (K key)
 specifier|public
 name|long
@@ -512,6 +536,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Adds {@code delta} to the value currently associated with {@code key}, and returns the old    * value.    */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|getAndAdd (K key, long delta)
 specifier|public
 name|long
@@ -652,6 +678,8 @@ block|}
 block|}
 block|}
 comment|/**    * Associates {@code newValue} with {@code key} in this map, and returns the value previously    * associated with {@code key}, or zero if there was no such value.    */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|put (K key, long newValue)
 specifier|public
 name|long
@@ -841,6 +869,8 @@ expr_stmt|;
 block|}
 block|}
 comment|/**    * Removes and returns the value associated with {@code key}. If {@code key} is not in the map,    * this method has no effect and returns zero.    */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|remove (K key)
 specifier|public
 name|long

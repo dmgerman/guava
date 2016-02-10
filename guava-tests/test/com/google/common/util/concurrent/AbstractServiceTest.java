@@ -2430,13 +2430,17 @@ operator|new
 name|ManualSwitchedService
 argument_list|()
 decl_stmt|;
+comment|/*      * Set up a RecordingListener to perform its built-in assertions, even though we won't look at      * its state history.      */
+name|RecordingListener
+name|unused
+init|=
 name|RecordingListener
 operator|.
 name|record
 argument_list|(
 name|service
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|service
 operator|.
 name|startAsync

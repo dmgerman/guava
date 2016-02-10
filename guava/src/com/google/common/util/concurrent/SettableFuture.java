@@ -48,6 +48,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
 name|javax
 operator|.
 name|annotation
@@ -102,9 +116,11 @@ argument_list|>
 argument_list|()
 return|;
 block|}
-DECL|method|set (@ullable V value)
+annotation|@
+name|CanIgnoreReturnValue
 annotation|@
 name|Override
+DECL|method|set (@ullable V value)
 specifier|public
 name|boolean
 name|set
@@ -124,9 +140,11 @@ name|value
 argument_list|)
 return|;
 block|}
-DECL|method|setException (Throwable throwable)
+annotation|@
+name|CanIgnoreReturnValue
 annotation|@
 name|Override
+DECL|method|setException (Throwable throwable)
 specifier|public
 name|boolean
 name|setException
@@ -146,6 +164,8 @@ return|;
 block|}
 annotation|@
 name|Beta
+annotation|@
+name|CanIgnoreReturnValue
 annotation|@
 name|Override
 DECL|method|setFuture (ListenableFuture<? extends V> future)

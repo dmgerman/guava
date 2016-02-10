@@ -34,6 +34,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -121,6 +135,8 @@ comment|/**  * A bounded {@linkplain BlockingQueue blocking queue} backed by an 
 end_comment
 
 begin_class
+annotation|@
+name|CanIgnoreReturnValue
 DECL|class|MonitorBasedArrayBlockingQueue
 specifier|public
 class|class

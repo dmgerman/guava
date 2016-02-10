@@ -912,12 +912,19 @@ name|void
 name|testBuildTwice
 parameter_list|()
 block|{
+name|ThreadFactory
+name|unused
+decl_stmt|;
+name|unused
+operator|=
 name|builder
 operator|.
 name|build
 argument_list|()
 expr_stmt|;
 comment|// this is allowed
+name|unused
+operator|=
 name|builder
 operator|.
 name|build

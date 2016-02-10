@@ -120,6 +120,20 @@ name|com
 operator|.
 name|google
 operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
 name|j2objc
 operator|.
 name|annotations
@@ -290,6 +304,8 @@ specifier|final
 class|class
 name|FuturesGetChecked
 block|{
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|getChecked (Future<V> future, Class<X> exceptionClass)
 specifier|static
 parameter_list|<
@@ -330,6 +346,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Implementation of {@link Futures#getChecked(Future, Class)}.    */
+annotation|@
+name|CanIgnoreReturnValue
 annotation|@
 name|VisibleForTesting
 DECL|method|getChecked ( GetCheckedTypeValidator validator, Future<V> future, Class<X> exceptionClass)
@@ -423,6 +441,8 @@ throw|;
 block|}
 block|}
 comment|/**    * Implementation of {@link Futures#getChecked(Future, Class, long, TimeUnit)}.    */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|getChecked ( Future<V> future, Class<X> exceptionClass, long timeout, TimeUnit unit)
 specifier|static
 parameter_list|<
@@ -996,6 +1016,9 @@ parameter_list|)
 block|{
 try|try
 block|{
+name|Exception
+name|unused
+init|=
 name|newWithCause
 argument_list|(
 name|exceptionClass
@@ -1004,7 +1027,7 @@ operator|new
 name|Exception
 argument_list|()
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 return|return
 literal|true
 return|;
