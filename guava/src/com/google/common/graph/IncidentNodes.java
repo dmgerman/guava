@@ -28,22 +28,6 @@ name|base
 operator|.
 name|Preconditions
 operator|.
-name|checkArgument
-import|;
-end_import
-
-begin_import
-import|import static
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|base
-operator|.
-name|Preconditions
-operator|.
 name|checkNotNull
 import|;
 end_import
@@ -92,8 +76,18 @@ name|Set
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
-comment|/**  * An immutable set representing the nodes incident to an origin edge in a graph.  *  * @author James Sexton  * @param<N> Node parameter type  */
+comment|/**  * An immutable set representing the nodes incident to an edge in a graph.  *  * @author James Sexton  * @param<N> Node parameter type  */
 end_comment
 
 begin_class
@@ -272,14 +266,14 @@ operator|==
 literal|1
 return|;
 block|}
-comment|/**    * In the case of a directed graph, returns the source node of the origin edge. In the case of    * an undirected graph, returns an arbitrary (but consistent) endpoint of the origin edge.    */
+comment|/**    * In the case of a directed graph, returns the source node of the incident edge. In the case of    * an undirected graph, returns an arbitrary (but consistent) endpoint of the incident edge.    */
 DECL|method|node1 ()
 specifier|abstract
 name|N
 name|node1
 parameter_list|()
 function_decl|;
-comment|/**    * Returns the node opposite to {@link #node1} along the origin edge. In the case of a directed    * graph, this will always be the target node of the origin edge.    */
+comment|/**    * Returns the node opposite to {@link #node1} along the incident edge. In the case of a directed    * graph, this will always be the target node of the incident edge.    */
 DECL|method|node2 ()
 specifier|abstract
 name|N
@@ -322,6 +316,8 @@ operator|=
 name|checkNotNull
 argument_list|(
 name|node
+argument_list|,
+literal|"node"
 argument_list|)
 expr_stmt|;
 block|}
@@ -355,6 +351,28 @@ parameter_list|()
 block|{
 return|return
 literal|1
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|contains (@ullable Object object)
+specifier|public
+name|boolean
+name|contains
+parameter_list|(
+annotation|@
+name|Nullable
+name|Object
+name|object
+parameter_list|)
+block|{
+return|return
+name|node
+operator|.
+name|equals
+argument_list|(
+name|object
+argument_list|)
 return|;
 block|}
 annotation|@
@@ -407,6 +425,7 @@ specifier|final
 name|N
 name|node2
 decl_stmt|;
+comment|/**      * An immutable set with two non-equal nodes. Iterates as {@code node1}, {@code node2}.      */
 DECL|method|TwoNodes (N node1, N node2)
 specifier|private
 name|TwoNodes
@@ -425,6 +444,8 @@ operator|=
 name|checkNotNull
 argument_list|(
 name|node1
+argument_list|,
+literal|"node1"
 argument_list|)
 expr_stmt|;
 name|this
@@ -434,17 +455,8 @@ operator|=
 name|checkNotNull
 argument_list|(
 name|node2
-argument_list|)
-expr_stmt|;
-name|checkArgument
-argument_list|(
-operator|!
-name|node1
-operator|.
-name|equals
-argument_list|(
-name|node2
-argument_list|)
+argument_list|,
+literal|"node2"
 argument_list|)
 expr_stmt|;
 block|}
@@ -480,6 +492,35 @@ parameter_list|()
 block|{
 return|return
 literal|2
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|contains (@ullable Object object)
+specifier|public
+name|boolean
+name|contains
+parameter_list|(
+annotation|@
+name|Nullable
+name|Object
+name|object
+parameter_list|)
+block|{
+return|return
+name|node1
+operator|.
+name|equals
+argument_list|(
+name|object
+argument_list|)
+operator|||
+name|node2
+operator|.
+name|equals
+argument_list|(
+name|object
+argument_list|)
 return|;
 block|}
 annotation|@
