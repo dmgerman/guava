@@ -911,9 +911,6 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
-name|Integer
-name|unused
-init|=
 name|oppositeNode
 argument_list|(
 name|graph
@@ -922,7 +919,7 @@ name|E12
 argument_list|,
 name|N3
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|fail
 argument_list|(
 literal|"Should have rejected oppositeNode() called without a node incident to edge"
@@ -2684,14 +2681,6 @@ parameter_list|()
 block|{
 try|try
 block|{
-name|DirectedGraph
-argument_list|<
-name|Object
-argument_list|,
-name|Object
-argument_list|>
-name|unused
-init|=
 name|copyOf
 argument_list|(
 operator|(
@@ -2699,7 +2688,7 @@ name|DirectedGraph
 operator|)
 literal|null
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|fail
 argument_list|(
 literal|"Should have rejected a null graph"
@@ -2714,14 +2703,6 @@ parameter_list|)
 block|{     }
 try|try
 block|{
-name|UndirectedGraph
-argument_list|<
-name|Object
-argument_list|,
-name|Object
-argument_list|>
-name|unused
-init|=
 name|copyOf
 argument_list|(
 operator|(
@@ -2729,7 +2710,7 @@ name|UndirectedGraph
 operator|)
 literal|null
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|fail
 argument_list|(
 literal|"Should have rejected a null graph"

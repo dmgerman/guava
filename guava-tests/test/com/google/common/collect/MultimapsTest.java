@@ -6099,14 +6099,6 @@ argument_list|)
 decl_stmt|;
 try|try
 block|{
-name|Multimap
-argument_list|<
-name|Object
-argument_list|,
-name|Integer
-argument_list|>
-name|unused
-init|=
 name|Multimaps
 operator|.
 name|index
@@ -6118,7 +6110,7 @@ operator|.
 name|identity
 argument_list|()
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -6126,9 +6118,9 @@ block|}
 catch|catch
 parameter_list|(
 name|NullPointerException
-name|e
+name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testIndex_nullKey ()
 specifier|public
@@ -6153,14 +6145,6 @@ argument_list|)
 decl_stmt|;
 try|try
 block|{
-name|Multimap
-argument_list|<
-name|Object
-argument_list|,
-name|Integer
-argument_list|>
-name|unused
-init|=
 name|Multimaps
 operator|.
 name|index
@@ -6174,7 +6158,7 @@ argument_list|(
 literal|null
 argument_list|)
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -6182,9 +6166,9 @@ block|}
 catch|catch
 parameter_list|(
 name|NullPointerException
-name|e
+name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 annotation|@
 name|GwtIncompatible

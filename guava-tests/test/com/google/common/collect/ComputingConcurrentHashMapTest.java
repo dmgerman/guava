@@ -697,9 +697,6 @@ argument_list|)
 decl_stmt|;
 try|try
 block|{
-name|Object
-name|unused
-init|=
 name|map
 operator|.
 name|get
@@ -708,7 +705,7 @@ operator|new
 name|Object
 argument_list|()
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;

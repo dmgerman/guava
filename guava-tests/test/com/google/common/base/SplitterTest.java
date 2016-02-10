@@ -4845,14 +4845,6 @@ parameter_list|()
 block|{
 try|try
 block|{
-name|Map
-argument_list|<
-name|String
-argument_list|,
-name|String
-argument_list|>
-name|unused
-init|=
 name|COMMA_SPLITTER
 operator|.
 name|withKeyValueSeparator
@@ -4864,7 +4856,7 @@ name|split
 argument_list|(
 literal|"a=1,b,c=2"
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -5038,14 +5030,6 @@ parameter_list|()
 block|{
 try|try
 block|{
-name|Map
-argument_list|<
-name|String
-argument_list|,
-name|String
-argument_list|>
-name|unused
-init|=
 name|Splitter
 operator|.
 name|on
@@ -5062,7 +5046,7 @@ name|split
 argument_list|(
 literal|"a:1,b:2,a:3"
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;

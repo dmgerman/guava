@@ -504,20 +504,12 @@ block|{
 try|try
 block|{
 name|ImmutableUndirectedGraph
-argument_list|<
-name|Object
-argument_list|,
-name|Object
-argument_list|>
-name|unused
-init|=
-name|ImmutableUndirectedGraph
 operator|.
 name|copyOf
 argument_list|(
 literal|null
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|fail
 argument_list|(
 literal|"Should have rejected a null graph"
