@@ -120,7 +120,7 @@ name|Object
 name|node
 parameter_list|)
 function_decl|;
-comment|/**    * Returns the nodes which are the endpoints of {@code edge} in this graph.    *    *<p>If {@code edge} is a self-loop, the returned set will only have a single node.    *    * @throws IllegalArgumentException if {@code edge} is not an element of this graph    */
+comment|/**    * Returns the nodes which are the endpoints of {@code edge} in this graph.    *    *<p>For non-hypergraphs, the returned set will always contain either one    * (if {@code edge} is a self-loop) or two nodes.    *    * @throws IllegalArgumentException if {@code edge} is not an element of this graph    */
 DECL|method|incidentNodes (Object edge)
 name|Set
 argument_list|<
