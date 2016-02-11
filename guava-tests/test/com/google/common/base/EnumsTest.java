@@ -623,16 +623,18 @@ operator|.
 name|class
 argument_list|)
 expr_stmt|;
+comment|// We can't write Set<TestEnum> because that is a Set of the TestEnum from the original
+comment|// ClassLoader.
 name|Set
 argument_list|<
-name|TestEnum
+name|Object
 argument_list|>
 name|shadowConstants
 init|=
 operator|new
 name|HashSet
 argument_list|<
-name|TestEnum
+name|Object
 argument_list|>
 argument_list|()
 decl_stmt|;
@@ -688,6 +690,9 @@ name|assertEquals
 argument_list|(
 name|ImmutableSet
 operator|.
+expr|<
+name|Object
+operator|>
 name|copyOf
 argument_list|(
 name|shadowTestEnum
