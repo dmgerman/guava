@@ -2093,7 +2093,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/**    * Returns the elements of {@code unfiltered} that satisfy the input predicate    * {@code retainIfTrue}. The resulting iterable's iterator does not support {@code remove()}.    */
+comment|/**    * Returns a view of {@code unfiltered} containing all elements that satisfy    * the input predicate {@code retainIfTrue}. The returned iterable's iterator    * does not support {@code remove()}.    */
 annotation|@
 name|CheckReturnValue
 DECL|method|filter ( final Iterable<T> unfiltered, final Predicate<? super T> retainIfTrue)
@@ -2170,7 +2170,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/**    * Returns all elements in {@code unfiltered} that are of the type {@code desiredType}.    * The returned iterable's iterator does not support {@code remove()}.    *    * @param unfiltered an iterable containing objects of any type, to be filtered on    * @param desiredType the type of elements desired in the result iterable    * @return an unmodifiable iterable containing all elements of the original    *     iterable that were of the requested type    */
+comment|/**    * Returns a view of {@code unfiltered} containing all elements that are of    * the type {@code desiredType}. The returned iterable's iterator does not    * support {@code remove()}.    */
 annotation|@
 name|GwtIncompatible
 comment|// Class.isInstance
@@ -2496,7 +2496,7 @@ name|predicate
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an iterable that applies {@code function} to each element of {@code    * fromIterable}.    *    *<p>The returned iterable's iterator supports {@code remove()} if the    * provided iterator does. After a successful {@code remove()} call,    * {@code fromIterable} no longer contains the corresponding element.    *    *<p>If the input {@code Iterable} is known to be a {@code List} or other    * {@code Collection}, consider {@link Lists#transform} and {@link    * Collections2#transform}.    */
+comment|/**    * Returns a view containing the result of applying {@code function} to each    * element of {@code fromIterable}.    *    *<p>The returned iterable's iterator supports {@code remove()} if {@code    * fromIterable}'s iterator does. After a successful {@code remove()} call,    * {@code fromIterable} no longer contains the corresponding element.    *    *<p>If the input {@code Iterable} is known to be a {@code List} or other    * {@code Collection}, consider {@link Lists#transform} and {@link    * Collections2#transform}.    */
 annotation|@
 name|CheckReturnValue
 DECL|method|transform ( final Iterable<F> fromIterable, final Function<? super F, ? extends T> function)
@@ -3226,7 +3226,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/**    * Creates an iterable with the first {@code limitSize} elements of the given    * iterable. If the original iterable does not contain that many elements, the    * returned iterable will have the same behavior as the original iterable. The    * returned iterable's iterator supports {@code remove()} if the original    * iterator does.    *    * @param iterable the iterable to limit    * @param limitSize the maximum number of elements in the returned iterable    * @throws IllegalArgumentException if {@code limitSize} is negative    * @since 3.0    */
+comment|/**    * Returns a view of {@code iterable} containing its first {@code limitSize}    * elements. If {@code iterable} contains fewer than {@code limitSize}    * elements, the returned view contains all of its elements. The returned    * iterable's iterator supports {@code remove()} if {@code iterable}'s    * iterator does.    *    * @param iterable the iterable to limit    * @param limitSize the maximum number of elements in the returned iterable    * @throws IllegalArgumentException if {@code limitSize} is negative    * @since 3.0    */
 DECL|method|limit (final Iterable<T> iterable, final int limitSize)
 specifier|public
 specifier|static

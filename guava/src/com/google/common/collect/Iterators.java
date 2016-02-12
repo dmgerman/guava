@@ -2185,7 +2185,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/**    * Returns the elements of {@code unfiltered} that satisfy the input predicate    * {@code retainIfTrue}.    */
+comment|/**    * Returns a view of {@code unfiltered} containing all elements that satisfy    * the input predicate {@code retainIfTrue}.    */
 annotation|@
 name|CheckReturnValue
 DECL|method|filter ( final Iterator<T> unfiltered, final Predicate<? super T> retainIfTrue)
@@ -2281,7 +2281,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/**    * Returns all elements in {@code unfiltered} that are of the type {@code desiredType}.    *    * @param unfiltered an iterator containing objects of any type, to be filtered on    * @param desiredType the type of elements desired in the result iterator    * @return an unmodifiable iterator containing all elements of the original    *     iterator that were of the requested type    */
+comment|/**    * Returns a view of {@code unfiltered} containing all elements that are of    * the type {@code desiredType}.    */
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -2666,7 +2666,7 @@ operator|-
 literal|1
 return|;
 block|}
-comment|/**    * Returns an iterator that applies {@code function} to each element of {@code    * fromIterator}.    *    *<p>The returned iterator supports {@code remove()} if the provided iterator    * does. After a successful {@code remove()} call, {@code fromIterator} no    * longer contains the corresponding element.    */
+comment|/**    * Returns a view containing the result of applying {@code function} to each    * element of {@code fromIterator}.    *    *<p>The returned iterator supports {@code remove()} if {@code fromIterator}    * does. After a successful {@code remove()} call, {@code fromIterator} no    * longer contains the corresponding element.    */
 DECL|method|transform ( final Iterator<F> fromIterator, final Function<? super F, ? extends T> function)
 specifier|public
 specifier|static
@@ -3074,7 +3074,7 @@ return|return
 name|i
 return|;
 block|}
-comment|/**    * Creates an iterator returning the first {@code limitSize} elements of the    * given iterator. If the original iterator does not contain that many    * elements, the returned iterator will have the same behavior as the original    * iterator. The returned iterator supports {@code remove()} if the original    * iterator does.    *    * @param iterator the iterator to limit    * @param limitSize the maximum number of elements in the returned iterator    * @throws IllegalArgumentException if {@code limitSize} is negative    * @since 3.0    */
+comment|/**    * Returns a view containing the first {@code limitSize} elements of {@code    * iterator}. If {@code iterator} contains fewer than {@code limitSize}    * elements, the returned view contains all of its elements. The returned    * iterator supports {@code remove()} if {@code iterator} does.    *    * @param iterator the iterator to limit    * @param limitSize the maximum number of elements in the returned iterator    * @throws IllegalArgumentException if {@code limitSize} is negative    * @since 3.0    */
 DECL|method|limit (final Iterator<T> iterator, final int limitSize)
 specifier|public
 specifier|static
