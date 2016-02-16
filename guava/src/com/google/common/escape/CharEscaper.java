@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * Copyright (C) 2006 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License");  * you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+comment|/*  * Copyright (C) 2006 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except  * in compliance with the License. You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software distributed under the License  * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express  * or implied. See the License for the specific language governing permissions and limitations under  * the License.  */
 end_comment
 
 begin_package
@@ -61,7 +61,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An object that converts literal text into a format safe for inclusion in a particular context  * (such as an XML document). Typically (but not always), the inverse process of "unescaping" the  * text is performed automatically by the relevant parser.  *  *<p>For example, an XML escaper would convert the literal string {@code "Foo<Bar>"} into {@code  * "Foo&lt;Bar&gt;"} to prevent {@code "<Bar>"} from being confused with an XML tag. When the  * resulting XML document is parsed, the parser API will return this text as the original literal  * string {@code "Foo<Bar>"}.  *  *<p>A {@code CharEscaper} instance is required to be stateless, and safe when used concurrently by  * multiple threads.  *  *<p>Popular escapers are defined as constants in classes like {@link  * com.google.common.html.HtmlEscapers} and {@link com.google.common.xml.XmlEscapers}.  * To create your own escapers extend this class and implement the {@link  * #escape(char)} method.  *  * @author Sven Mawson  * @since 15.0  */
+comment|/**  * An object that converts literal text into a format safe for inclusion in a particular context  * (such as an XML document). Typically (but not always), the inverse process of "unescaping" the  * text is performed automatically by the relevant parser.  *  *<p>For example, an XML escaper would convert the literal string {@code "Foo<Bar>"} into {@code  * "Foo&lt;Bar&gt;"} to prevent {@code "<Bar>"} from being confused with an XML tag. When the  * resulting XML document is parsed, the parser API will return this text as the original literal  * string {@code "Foo<Bar>"}.  *  *<p>A {@code CharEscaper} instance is required to be stateless, and safe when used concurrently by  * multiple threads.  *  *<p>Popular escapers are defined as constants in classes like  * {@link com.google.common.html.HtmlEscapers} and {@link com.google.common.xml.XmlEscapers}. To  * create your own escapers extend this class and implement the {@link #escape(char)} method.  *  * @author Sven Mawson  * @since 15.0  */
 end_comment
 
 begin_class
@@ -84,9 +84,9 @@ name|CharEscaper
 parameter_list|()
 block|{}
 comment|/**    * Returns the escaped form of a given literal string.    *    * @param string the literal string to be escaped    * @return the escaped form of {@code string}    * @throws NullPointerException if {@code string} is null    */
-DECL|method|escape (String string)
 annotation|@
 name|Override
+DECL|method|escape (String string)
 specifier|public
 name|String
 name|escape
@@ -238,7 +238,9 @@ name|r
 operator|==
 literal|null
 condition|)
+block|{
 continue|continue;
+block|}
 name|int
 name|rlen
 init|=

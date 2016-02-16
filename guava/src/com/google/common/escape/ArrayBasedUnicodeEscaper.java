@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * Copyright (C) 2009 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License");  * you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+comment|/*  * Copyright (C) 2009 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except  * in compliance with the License. You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software distributed under the License  * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express  * or implied. See the License for the specific language governing permissions and limitations under  * the License.  */
 end_comment
 
 begin_package
@@ -81,7 +81,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link UnicodeEscaper} that uses an array to quickly look up replacement  * characters for a given code point. An additional safe range is provided that  * determines whether code points without specific replacements are to be  * considered safe and left unescaped or should be escaped in a general way.  *  *<p>A good example of usage of this class is for HTML escaping where the  * replacement array contains information about the named HTML entities  * such as {@code&amp;} and {@code&quot;} while {@link #escapeUnsafe} is  * overridden to handle general escaping of the form {@code&#NNNNN;}.  *  *<p>The size of the data structure used by {@link ArrayBasedUnicodeEscaper} is  * proportional to the highest valued code point that requires escaping.  * For example a replacement map containing the single character  * '{@code \}{@code u1000}' will require approximately 16K of memory. If you  * need to create multiple escaper instances that have the same character  * replacement mapping consider using {@link ArrayBasedEscaperMap}.  *  * @author David Beaumont  * @since 15.0  */
+comment|/**  * A {@link UnicodeEscaper} that uses an array to quickly look up replacement characters for a given  * code point. An additional safe range is provided that determines whether code points without  * specific replacements are to be considered safe and left unescaped or should be escaped in a  * general way.  *  *<p>A good example of usage of this class is for HTML escaping where the replacement array  * contains information about the named HTML entities such as {@code&amp;} and {@code&quot;} while  * {@link #escapeUnsafe} is overridden to handle general escaping of the form {@code&#NNNNN;}.  *  *<p>The size of the data structure used by {@link ArrayBasedUnicodeEscaper} is proportional to the  * highest valued code point that requires escaping. For example a replacement map containing the  * single character '{@code \}{@code u1000}' will require approximately 16K of memory. If you need  * to create multiple escaper instances that have the same character replacement mapping consider  * using {@link ArrayBasedEscaperMap}.  *  * @author David Beaumont  * @since 15.0  */
 end_comment
 
 begin_class
@@ -140,8 +140,8 @@ specifier|final
 name|char
 name|safeMaxChar
 decl_stmt|;
-comment|/**    * Creates a new ArrayBasedUnicodeEscaper instance with the given replacement    * map and specified safe range. If {@code safeMax< safeMin} then no code    * points are considered safe.    *    *<p>If a code point has no mapped replacement then it is checked against the    * safe range. If it lies outside that, then {@link #escapeUnsafe} is    * called, otherwise no escaping is performed.    *    * @param replacementMap a map of characters to their escaped representations    * @param safeMin the lowest character value in the safe range    * @param safeMax the highest character value in the safe range    * @param unsafeReplacement the default replacement for unsafe characters or    *     null if no default replacement is required    */
-DECL|method|ArrayBasedUnicodeEscaper (Map<Character, String> replacementMap, int safeMin, int safeMax, @Nullable String unsafeReplacement)
+comment|/**    * Creates a new ArrayBasedUnicodeEscaper instance with the given replacement map and specified    * safe range. If {@code safeMax< safeMin} then no code points are considered safe.    *    *<p>If a code point has no mapped replacement then it is checked against the safe range. If it    * lies outside that, then {@link #escapeUnsafe} is called, otherwise no escaping is performed.    *    * @param replacementMap a map of characters to their escaped representations    * @param safeMin the lowest character value in the safe range    * @param safeMax the highest character value in the safe range    * @param unsafeReplacement the default replacement for unsafe characters or null if no default    *        replacement is required    */
+DECL|method|ArrayBasedUnicodeEscaper ( Map<Character, String> replacementMap, int safeMin, int safeMax, @Nullable String unsafeReplacement)
 specifier|protected
 name|ArrayBasedUnicodeEscaper
 parameter_list|(
@@ -182,8 +182,8 @@ name|unsafeReplacement
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates a new ArrayBasedUnicodeEscaper instance with the given replacement    * map and specified safe range. If {@code safeMax< safeMin} then no code    * points are considered safe. This initializer is useful when explicit    * instances of ArrayBasedEscaperMap are used to allow the sharing of large    * replacement mappings.    *    *<p>If a code point has no mapped replacement then it is checked against the    * safe range. If it lies outside that, then {@link #escapeUnsafe} is    * called, otherwise no escaping is performed.    *    * @param escaperMap the map of replacements    * @param safeMin the lowest character value in the safe range    * @param safeMax the highest character value in the safe range    * @param unsafeReplacement the default replacement for unsafe characters or    *     null if no default replacement is required    */
-DECL|method|ArrayBasedUnicodeEscaper (ArrayBasedEscaperMap escaperMap, int safeMin, int safeMax, @Nullable String unsafeReplacement)
+comment|/**    * Creates a new ArrayBasedUnicodeEscaper instance with the given replacement map and specified    * safe range. If {@code safeMax< safeMin} then no code points are considered safe. This    * initializer is useful when explicit instances of ArrayBasedEscaperMap are used to allow the    * sharing of large replacement mappings.    *    *<p>If a code point has no mapped replacement then it is checked against the safe range. If it    * lies outside that, then {@link #escapeUnsafe} is called, otherwise no escaping is performed.    *    * @param escaperMap the map of replacements    * @param safeMin the lowest character value in the safe range    * @param safeMax the highest character value in the safe range    * @param unsafeReplacement the default replacement for unsafe characters or null if no default    *        replacement is required    */
+DECL|method|ArrayBasedUnicodeEscaper ( ArrayBasedEscaperMap escaperMap, int safeMin, int safeMax, @Nullable String unsafeReplacement)
 specifier|protected
 name|ArrayBasedUnicodeEscaper
 parameter_list|(
@@ -262,9 +262,9 @@ comment|// This is a bit of a hack but lets us do quicker per-character checks i
 comment|// the fast path code. The safe min/max values are very unlikely to extend
 comment|// into the range of surrogate characters, but if they do we must not test
 comment|// any values in that range. To see why, consider the case where:
-comment|//   safeMin<= {hi,lo}<= safeMax
+comment|// safeMin<= {hi,lo}<= safeMax
 comment|// where {hi,lo} are characters forming a surrogate pair such that:
-comment|//   codePointOf(hi, lo)> safeMax
+comment|// codePointOf(hi, lo)> safeMax
 comment|// which would result in the surrogate pair being (wrongly) considered safe.
 comment|// If we clip the safe range used during the per-character tests so it is
 comment|// below the values of characters in surrogate pairs, this cannot occur.
@@ -332,7 +332,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/*    * This is overridden to improve performance. Rough benchmarking shows that    * this almost doubles the speed when processing strings that do not require    * any escaping.    */
+comment|/*    * This is overridden to improve performance. Rough benchmarking shows that this almost doubles    * the speed when processing strings that do not require any escaping.    */
 annotation|@
 name|Override
 DECL|method|escape (String s)
@@ -487,7 +487,7 @@ return|return
 name|index
 return|;
 block|}
-comment|/**    * Escapes a single Unicode code point using the replacement array and safe    * range values. If the given character does not have an explicit replacement    * and lies outside the safe range then {@link #escapeUnsafe} is called.    */
+comment|/**    * Escapes a single Unicode code point using the replacement array and safe range values. If the    * given character does not have an explicit replacement and lies outside the safe range then    * {@link #escapeUnsafe} is called.    */
 annotation|@
 name|Override
 DECL|method|escape (int cp)
@@ -551,7 +551,7 @@ name|cp
 argument_list|)
 return|;
 block|}
-comment|/**    * Escapes a code point that has no direct explicit value in the replacement    * array and lies outside the stated safe range. Subclasses should override    * this method to provide generalized escaping for code points if required.    *    *<p>Note that arrays returned by this method must not be modified once they    * have been returned. However it is acceptable to return the same array    * multiple times (even for different input characters).    *    * @param cp the Unicode code point to escape    * @return the replacement characters, or {@code null} if no escaping was    *         required    */
+comment|/**    * Escapes a code point that has no direct explicit value in the replacement array and lies    * outside the stated safe range. Subclasses should override this method to provide generalized    * escaping for code points if required.    *    *<p>Note that arrays returned by this method must not be modified once they have been returned.    * However it is acceptable to return the same array multiple times (even for different input    * characters).    *    * @param cp the Unicode code point to escape    * @return the replacement characters, or {@code null} if no escaping was required    */
 DECL|method|escapeUnsafe (int cp)
 specifier|protected
 specifier|abstract
