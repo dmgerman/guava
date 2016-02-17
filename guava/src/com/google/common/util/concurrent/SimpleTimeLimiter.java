@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * Copyright (C) 2006 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License");  * you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+comment|/*  * Copyright (C) 2006 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except  * in compliance with the License. You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software distributed under the License  * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express  * or implied. See the License for the specific language governing permissions and limitations under  * the License.  */
 end_comment
 
 begin_package
@@ -263,7 +263,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A TimeLimiter that runs method calls in the background using an  * {@link ExecutorService}.  If the time limit expires for a given method call,  * the thread running the call will be interrupted.  *  * @author Kevin Bourrillion  * @since 1.0  */
+comment|/**  * A TimeLimiter that runs method calls in the background using an {@link ExecutorService}. If the  * time limit expires for a given method call, the thread running the call will be interrupted.  *  * @author Kevin Bourrillion  * @since 1.0  */
 end_comment
 
 begin_class
@@ -285,7 +285,7 @@ specifier|final
 name|ExecutorService
 name|executor
 decl_stmt|;
-comment|/**    * Constructs a TimeLimiter instance using the given executor service to    * execute proxied method calls.    *<p>    *<b>Warning:</b> using a bounded executor    * may be counterproductive!  If the thread pool fills up, any time callers    * spend waiting for a thread may count toward their time limit, and in    * this case the call may even time out before the target method is ever    * invoked.    *    * @param executor the ExecutorService that will execute the method calls on    *     the target objects; for example, a {@link    *     Executors#newCachedThreadPool()}.    */
+comment|/**    * Constructs a TimeLimiter instance using the given executor service to execute proxied method    * calls.    *    *<p><b>Warning:</b> using a bounded executor may be counterproductive! If the thread pool fills    * up, any time callers spend waiting for a thread may count toward their time limit, and in this    * case the call may even time out before the target method is ever invoked.    *    * @param executor the ExecutorService that will execute the method calls on the target objects;    *     for example, a {@link Executors#newCachedThreadPool()}.    */
 DECL|method|SimpleTimeLimiter (ExecutorService executor)
 specifier|public
 name|SimpleTimeLimiter
@@ -304,7 +304,7 @@ name|executor
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Constructs a TimeLimiter instance using a {@link    * Executors#newCachedThreadPool()} to execute proxied method calls.    *    *<p><b>Warning:</b> using a bounded executor may be counterproductive! If    * the thread pool fills up, any time callers spend waiting for a thread may    * count toward their time limit, and in this case the call may even time out    * before the target method is ever invoked.    */
+comment|/**    * Constructs a TimeLimiter instance using a {@link Executors#newCachedThreadPool()} to execute    * proxied method calls.    *    *<p><b>Warning:</b> using a bounded executor may be counterproductive! If the thread pool fills    * up, any time callers spend waiting for a thread may count toward their time limit, and in this    * case the call may even time out before the target method is ever invoked.    */
 DECL|method|SimpleTimeLimiter ()
 specifier|public
 name|SimpleTimeLimiter
@@ -321,7 +321,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|newProxy (final T target, Class<T> interfaceType, final long timeoutDuration, final TimeUnit timeoutUnit)
+DECL|method|newProxy ( final T target, Class<T> interfaceType, final long timeoutDuration, final TimeUnit timeoutUnit)
 specifier|public
 parameter_list|<
 name|T
@@ -868,7 +868,7 @@ literal|false
 return|;
 block|}
 comment|// TODO: replace with version in common.reflect if and when it's open-sourced
-DECL|method|newProxy ( Class<T> interfaceType, InvocationHandler handler)
+DECL|method|newProxy (Class<T> interfaceType, InvocationHandler handler)
 specifier|private
 specifier|static
 parameter_list|<

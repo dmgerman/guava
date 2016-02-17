@@ -246,25 +246,7 @@ return|return
 name|result
 return|;
 block|}
-comment|// Memory visibility of these fields.
-comment|// There are two cases to consider.
-comment|// 1. visibility of the writes to these fields to Fire.run
-comment|//    The initial write to delegateRef is made definitely visible via the semantics of
-comment|//    addListener/SES.schedule.  The later racy write in cancel() is not guaranteed to be
-comment|//    observed, however that is fine since the correctness is based on the atomic state in
-comment|//    our base class.
-comment|//    The initial write to timer is never definitely visible to Fire.run since it is assigned
-comment|//    after SES.schedule is called. Therefore Fire.run has to check for null.  However, it
-comment|//    should be visible if Fire.run is called by delegate.addListener since addListener is
-comment|//    called after the assignment to timer, and importantly this is the main situation in which
-comment|//    we need to be able to see the write.
-comment|// 2. visibility of the writes to cancel
-comment|//    Since these fields are non-final that means that TimeoutFuture is not being 'safely
-comment|//    published', thus a motivated caller may be able to expose the reference to another thread
-comment|//    that would then call cancel() and be unable to cancel the delegate.
-comment|//    There are a number of ways to solve this, none of which are very pretty, and it is
-comment|//    currently believed to be a purely theoretical problem (since the other actions should
-comment|//    supply sufficient write-barriers).
+comment|/*    * Memory visibility of these fields. There are two cases to consider.    *    * 1. visibility of the writes to these fields to Fire.run:    *    * The initial write to delegateRef is made definitely visible via the semantics of    * addListener/SES.schedule. The later racy write in cancel() is not guaranteed to be observed,    * however that is fine since the correctness is based on the atomic state in our base class. The    * initial write to timer is never definitely visible to Fire.run since it is assigned after    * SES.schedule is called. Therefore Fire.run has to check for null. However, it should be visible    * if Fire.run is called by delegate.addListener since addListener is called after the assignment    * to timer, and importantly this is the main situation in which we need to be able to see the    * write.    *    * 2. visibility of the writes to cancel:    *    * Since these fields are non-final that means that TimeoutFuture is not being 'safely published',    * thus a motivated caller may be able to expose the reference to another thread that would then    * call cancel() and be unable to cancel the delegate.    * There are a number of ways to solve this, none of which are very pretty, and it is currently    * believed to be a purely theoretical problem (since the other actions should supply sufficient    * write-barriers).    */
 DECL|field|delegateRef
 annotation|@
 name|Nullable
@@ -393,7 +375,7 @@ condition|)
 block|{
 return|return;
 block|}
-comment|/*        * If we're about to complete the TimeoutFuture, we want to release our reference to it.        * Otherwise, we'll pin it (and its result) in memory until the timeout task is GCed. (The        * need to clear our reference to the TimeoutFuture is the reason we use a *static* nested        * class with a manual reference back to the "containing" class.)        *        * This has the nice-ish side effect of limiting reentrancy: run() calls        * timeoutFuture.setException() calls run(). That reentrancy would already be harmless,        * since timeoutFuture can be set (and delegate cancelled) only once. (And "set only once"        * is important for other reasons: run() can still be invoked concurrently in different        * threads, even with the above null checks.)        */
+comment|/*        * If we're about to complete the TimeoutFuture, we want to release our reference to it.        * Otherwise, we'll pin it (and its result) in memory until the timeout task is GCed. (The        * need to clear our reference to the TimeoutFuture is the reason we use a *static* nested        * class with a manual reference back to the "containing" class.)        *        * This has the nice-ish side effect of limiting reentrancy: run() calls        * timeoutFuture.setException() calls run(). That reentrancy would already be harmless, since        * timeoutFuture can be set (and delegate cancelled) only once. (And "set only once" is        * important for other reasons: run() can still be invoked concurrently in different threads,        * even with the above null checks.)        */
 name|timeoutFutureRef
 operator|=
 literal|null

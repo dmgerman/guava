@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * Copyright (C) 2014 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License");  * you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+comment|/*  * Copyright (C) 2014 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except  * in compliance with the License. You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software distributed under the License  * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express  * or implied. See the License for the specific language governing permissions and limitations under  * the License.  */
 end_comment
 
 begin_package
@@ -123,7 +123,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link RunnableFuture} that also implements the {@link ListenableFuture}  * interface.  *   *<p>This should be used in preference to {@link ListenableFutureTask} when possible for   * performance reasons.  */
+comment|/**  * A {@link RunnableFuture} that also implements the {@link ListenableFuture} interface.  *  *<p>This should be used in preference to {@link ListenableFutureTask} when possible for  * performance reasons.  */
 end_comment
 
 begin_class
@@ -148,7 +148,7 @@ argument_list|<
 name|V
 argument_list|>
 block|{
-comment|/**    * Creates a {@code ListenableFutureTask} that will upon running, execute the    * given {@code Callable}.    *    * @param callable the callable task    */
+comment|/**    * Creates a {@code ListenableFutureTask} that will upon running, execute the given    * {@code Callable}.    *    * @param callable the callable task    */
 DECL|method|create (Callable<V> callable)
 specifier|static
 parameter_list|<
@@ -178,8 +178,8 @@ name|callable
 argument_list|)
 return|;
 block|}
-comment|/**    * Creates a {@code ListenableFutureTask} that will upon running, execute the    * given {@code Runnable}, and arrange that {@code get} will return the    * given result on successful completion.    *    * @param runnable the runnable task    * @param result the result to return on successful completion. If you don't    *     need a particular result, consider using constructions of the form:    *     {@code ListenableFuture<?> f = ListenableFutureTask.create(runnable,    *     null)}    */
-DECL|method|create ( Runnable runnable, @Nullable V result)
+comment|/**    * Creates a {@code ListenableFutureTask} that will upon running, execute the given    * {@code Runnable}, and arrange that {@code get} will return the given result on successful    * completion.    *    * @param runnable the runnable task    * @param result the result to return on successful completion. If you don't need a particular    *     result, consider using constructions of the form:    *     {@code ListenableFuture<?> f = ListenableFutureTask.create(runnable,    *     null)}    */
+DECL|method|create (Runnable runnable, @Nullable V result)
 specifier|static
 parameter_list|<
 name|V
@@ -243,9 +243,9 @@ name|callable
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|run ()
 annotation|@
 name|Override
+DECL|method|run ()
 specifier|public
 name|void
 name|run
@@ -270,9 +270,9 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-DECL|method|afterDone ()
 annotation|@
 name|Override
+DECL|method|afterDone ()
 specifier|protected
 specifier|final
 name|void
@@ -362,9 +362,9 @@ name|callable
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|runInterruptibly ()
 annotation|@
 name|Override
+DECL|method|runInterruptibly ()
 name|void
 name|runInterruptibly
 parameter_list|()
@@ -402,9 +402,9 @@ expr_stmt|;
 block|}
 block|}
 block|}
-DECL|method|wasInterrupted ()
 annotation|@
 name|Override
+DECL|method|wasInterrupted ()
 name|boolean
 name|wasInterrupted
 parameter_list|()

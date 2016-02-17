@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * Copyright (C) 2008 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License");  * you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+comment|/*  * Copyright (C) 2008 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except  * in compliance with the License. You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software distributed under the License  * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express  * or implied. See the License for the specific language governing permissions and limitations under  * the License.  */
 end_comment
 
 begin_package
@@ -115,7 +115,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Executor ensuring that all Runnables submitted are executed in order,  * using the provided Executor, and serially such that no two will ever  * be running at the same time.  *  *<p>Tasks submitted to {@link #execute(Runnable)} are executed in FIFO order.  *  *<p>Tasks can also be prepended to the queue to be executed in LIFO order before any other  * submitted tasks. Primarily intended for the currently executing task to be able to schedule a  * continuation task.  *  *<p>Execution on the queue can be {@linkplain #suspend suspended}, e.g. while waiting for an RPC,  * and execution can be {@linkplain #resume resumed} later.  *  *<p>The execution of tasks is done by one thread as long as there are tasks left in the queue and  * execution has not been suspended. (Even if one task is {@linkplain Thread#interrupt interrupted},  * execution of subsequent tasks continues.) {@code RuntimeException}s thrown by tasks are simply  * logged and the executor keeps trucking. If an {@code Error} is thrown, the error will propagate  * and execution will stop until it is restarted by external calls.  */
+comment|/**  * Executor ensuring that all Runnables submitted are executed in order, using the provided  * Executor, and serially such that no two will ever be running at the same time.  *  *<p>Tasks submitted to {@link #execute(Runnable)} are executed in FIFO order.  *  *<p>Tasks can also be prepended to the queue to be executed in LIFO order before any other  * submitted tasks. Primarily intended for the currently executing task to be able to schedule a  * continuation task.  *  *<p>Execution on the queue can be {@linkplain #suspend suspended}, e.g. while waiting for an RPC,  * and execution can be {@linkplain #resume resumed} later.  *  *<p>The execution of tasks is done by one thread as long as there are tasks left in the queue and  * execution has not been suspended. (Even if one task is {@linkplain Thread#interrupt interrupted},  * execution of subsequent tasks continues.) {@code RuntimeException}s thrown by tasks are simply  * logged and the executor keeps trucking. If an {@code Error} is thrown, the error will propagate  * and execution will stop until it is restarted by external calls.  */
 end_comment
 
 begin_class
@@ -229,7 +229,7 @@ name|executor
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Adds a task to the queue and makes sure a worker thread is running, unless the queue has been    * suspended.    *    *<p>If this method throws, e.g. a {@code RejectedExecutionException} from the delegate executor,    * execution of tasks will stop until a call to this method or to {@link #resume()} is    * made.    */
+comment|/**    * Adds a task to the queue and makes sure a worker thread is running, unless the queue has been    * suspended.    *    *<p>If this method throws, e.g. a {@code RejectedExecutionException} from the delegate executor,    * execution of tasks will stop until a call to this method or to {@link #resume()} is made.    */
 DECL|method|execute (Runnable task)
 specifier|public
 name|void
@@ -283,7 +283,7 @@ name|startQueueWorker
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * Suspends the running of tasks until {@link #resume()} is called. This can be called multiple    * times to increase the suspensions count and execution will not continue until {@link #resume}    * has been called the same number of times as {@code suspend} has been.    *    *<p>Any task that has already been pulled off the queue for execution will be completed    * before execution is suspended.    */
+comment|/**    * Suspends the running of tasks until {@link #resume()} is called. This can be called multiple    * times to increase the suspensions count and execution will not continue until {@link #resume}    * has been called the same number of times as {@code suspend} has been.    *    *<p>Any task that has already been pulled off the queue for execution will be completed before    * execution is suspended.    */
 DECL|method|suspend ()
 specifier|public
 name|void

@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * Copyright (C) 2011 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License");  * you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+comment|/*  * Copyright (C) 2011 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except  * in compliance with the License. You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software distributed under the License  * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express  * or implied. See the License for the specific language governing permissions and limitations under  * the License.  */
 end_comment
 
 begin_package
@@ -199,7 +199,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Utilities for treating interruptible operations as uninterruptible.  * In all cases, if a thread is interrupted during such a call, the call  * continues to block until the result is available or the timeout elapses,  * and only then re-interrupts the thread.  *  * @author Anthony Zana  * @since 10.0  */
+comment|/**  * Utilities for treating interruptible operations as uninterruptible. In all cases, if a thread is  * interrupted during such a call, the call continues to block until the result is available or the  * timeout elapses, and only then re-interrupts the thread.  *  * @author Anthony Zana  * @since 10.0  */
 end_comment
 
 begin_class
@@ -220,7 +220,7 @@ name|Uninterruptibles
 block|{
 comment|// Implementation Note: As of 3-7-11, the logic for each blocking/timeout
 comment|// methods is identical, save for method being invoked.
-comment|/**    * Invokes {@code latch.}{@link CountDownLatch#await() await()}    * uninterruptibly.    */
+comment|/**    * Invokes {@code latch.}{@link CountDownLatch#await() await()} uninterruptibly.    */
 annotation|@
 name|GwtIncompatible
 comment|// concurrency
@@ -286,7 +286,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**    * Invokes    * {@code latch.}{@link CountDownLatch#await(long, TimeUnit)    * await(timeout, unit)} uninterruptibly.    */
+comment|/**    * Invokes {@code latch.}{@link CountDownLatch#await(long, TimeUnit) await(timeout, unit)}    * uninterruptibly.    */
 annotation|@
 name|CanIgnoreReturnValue
 comment|// TODO(cpovirk): Consider being more strict.
@@ -461,7 +461,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**    * Invokes {@code future.}{@link Future#get() get()} uninterruptibly.    * To get uninterruptibility and remove checked exceptions, see    * {@link Futures#getUnchecked}.    *    *<p>If instead, you wish to treat {@link InterruptedException} uniformly    * with other exceptions, see {@link Futures#getChecked(Future, Class)    * Futures.getChecked}.    *    * @throws ExecutionException if the computation threw an exception    * @throws CancellationException if the computation was cancelled    */
+comment|/**    * Invokes {@code future.}{@link Future#get() get()} uninterruptibly. To get uninterruptibility    * and remove checked exceptions, see {@link Futures#getUnchecked}.    *    *<p>If instead, you wish to treat {@link InterruptedException} uniformly with other exceptions,    * see {@link Futures#getChecked(Future, Class) Futures.getChecked}.    *    * @throws ExecutionException if the computation threw an exception    * @throws CancellationException if the computation was cancelled    */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|getUninterruptibly (Future<V> future)
@@ -534,7 +534,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**    * Invokes    * {@code future.}{@link Future#get(long, TimeUnit) get(timeout, unit)}    * uninterruptibly.    *    *<p>If instead, you wish to treat {@link InterruptedException} uniformly    * with other exceptions, see {@link Futures#getChecked(Future, Class)    * Futures.getChecked}.    *    * @throws ExecutionException if the computation threw an exception    * @throws CancellationException if the computation was cancelled    * @throws TimeoutException if the wait timed out    */
+comment|/**    * Invokes {@code future.}{@link Future#get(long, TimeUnit) get(timeout, unit)} uninterruptibly.    *    *<p>If instead, you wish to treat {@link InterruptedException} uniformly with other exceptions,    * see {@link Futures#getChecked(Future, Class) Futures.getChecked}.    *    * @throws ExecutionException if the computation threw an exception    * @throws CancellationException if the computation was cancelled    * @throws TimeoutException if the wait timed out    */
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
@@ -652,7 +652,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**    * Invokes    * {@code unit.}{@link TimeUnit#timedJoin(Thread, long)    * timedJoin(toJoin, timeout)} uninterruptibly.    */
+comment|/**    * Invokes {@code unit.}{@link TimeUnit#timedJoin(Thread, long) timedJoin(toJoin, timeout)}    * uninterruptibly.    */
 annotation|@
 name|GwtIncompatible
 comment|// concurrency
@@ -837,7 +837,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**    * Invokes {@code queue.}{@link BlockingQueue#put(Object) put(element)}    * uninterruptibly.    *    * @throws ClassCastException if the class of the specified element prevents    *     it from being added to the given queue    * @throws IllegalArgumentException if some property of the specified element    *     prevents it from being added to the given queue    */
+comment|/**    * Invokes {@code queue.}{@link BlockingQueue#put(Object) put(element)} uninterruptibly.    *    * @throws ClassCastException if the class of the specified element prevents it from being added    *     to the given queue    * @throws IllegalArgumentException if some property of the specified element prevents it from    *     being added to the given queue    */
 annotation|@
 name|GwtIncompatible
 comment|// concurrency
@@ -915,7 +915,7 @@ block|}
 block|}
 block|}
 comment|// TODO(user): Support Sleeper somehow (wrapper or interface method)?
-comment|/**    * Invokes {@code unit.}{@link TimeUnit#sleep(long) sleep(sleepFor)}    * uninterruptibly.    */
+comment|/**    * Invokes {@code unit.}{@link TimeUnit#sleep(long) sleep(sleepFor)} uninterruptibly.    */
 annotation|@
 name|GwtIncompatible
 comment|// concurrency
@@ -1016,7 +1016,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**    * Invokes {@code semaphore.}{@link Semaphore#tryAcquire(int, long, TimeUnit)    * tryAcquire(1, timeout, unit)} uninterruptibly.    *    * @since 18.0    */
+comment|/**    * Invokes {@code semaphore.}{@link Semaphore#tryAcquire(int, long, TimeUnit) tryAcquire(1,    * timeout, unit)} uninterruptibly.    *    * @since 18.0    */
 annotation|@
 name|GwtIncompatible
 comment|// concurrency
@@ -1049,7 +1049,7 @@ name|unit
 argument_list|)
 return|;
 block|}
-comment|/**    * Invokes {@code semaphore.}{@link Semaphore#tryAcquire(int, long, TimeUnit)    * tryAcquire(permits, timeout, unit)} uninterruptibly.    *    * @since 18.0    */
+comment|/**    * Invokes {@code semaphore.}{@link Semaphore#tryAcquire(int, long, TimeUnit) tryAcquire(permits,    * timeout, unit)} uninterruptibly.    *    * @since 18.0    */
 annotation|@
 name|GwtIncompatible
 comment|// concurrency

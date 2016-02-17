@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * Copyright (C) 2010 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License");  * you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+comment|/*  * Copyright (C) 2010 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except  * in compliance with the License. You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software distributed under the License  * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express  * or implied. See the License for the specific language governing permissions and limitations under  * the License.  */
 end_comment
 
 begin_package
@@ -149,7 +149,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A ThreadFactory builder, providing any combination of these features:  *<ul>  *<li> whether threads should be marked as {@linkplain Thread#setDaemon daemon}  * threads  *<li> a {@linkplain ThreadFactoryBuilder#setNameFormat naming format}  *<li> a {@linkplain Thread#setPriority thread priority}  *<li> an {@linkplain Thread#setUncaughtExceptionHandler uncaught exception  * handler}  *<li> a {@linkplain ThreadFactory#newThread backing thread factory}  *</ul>  *<p>If no backing thread factory is provided, a default backing thread factory is  * used as if by calling {@code setThreadFactory(}{@link  * Executors#defaultThreadFactory()}{@code )}.  *  * @author Kurt Alfred Kluever  * @since 4.0  */
+comment|/**  * A ThreadFactory builder, providing any combination of these features:  *<ul>  *<li>whether threads should be marked as {@linkplain Thread#setDaemon daemon} threads  *<li>a {@linkplain ThreadFactoryBuilder#setNameFormat naming format}  *<li>a {@linkplain Thread#setPriority thread priority}  *<li>an {@linkplain Thread#setUncaughtExceptionHandler uncaught exception handler}  *<li>a {@linkplain ThreadFactory#newThread backing thread factory}  *</ul>  *<p>If no backing thread factory is provided, a default backing thread factory is used as if by  * calling {@code setThreadFactory(}{@link Executors#defaultThreadFactory()}{@code )}.  *  * @author Kurt Alfred Kluever  * @since 4.0  */
 end_comment
 
 begin_class
@@ -204,7 +204,7 @@ specifier|public
 name|ThreadFactoryBuilder
 parameter_list|()
 block|{}
-comment|/**    * Sets the naming format to use when naming threads ({@link Thread#setName})    * which are created with this ThreadFactory.    *    * @param nameFormat a {@link String#format(String, Object...)}-compatible    *     format String, to which a unique integer (0, 1, etc.) will be supplied    *     as the single parameter. This integer will be unique to the built    *     instance of the ThreadFactory and will be assigned sequentially. For    *     example, {@code "rpc-pool-%d"} will generate thread names like    *     {@code "rpc-pool-0"}, {@code "rpc-pool-1"}, {@code "rpc-pool-2"}, etc.    * @return this for the builder pattern    */
+comment|/**    * Sets the naming format to use when naming threads ({@link Thread#setName}) which are created    * with this ThreadFactory.    *    * @param nameFormat a {@link String#format(String, Object...)}-compatible format String, to which    *     a unique integer (0, 1, etc.) will be supplied as the single parameter. This integer will    *     be unique to the built instance of the ThreadFactory and will be assigned sequentially. For    *     example, {@code "rpc-pool-%d"} will generate thread names like {@code "rpc-pool-0"},    *     {@code "rpc-pool-1"}, {@code "rpc-pool-2"}, etc.    * @return this for the builder pattern    */
 DECL|method|setNameFormat (String nameFormat)
 specifier|public
 name|ThreadFactoryBuilder
@@ -235,7 +235,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**    * Sets daemon or not for new threads created with this ThreadFactory.    *    * @param daemon whether or not new Threads created with this ThreadFactory    *     will be daemon threads    * @return this for the builder pattern    */
+comment|/**    * Sets daemon or not for new threads created with this ThreadFactory.    *    * @param daemon whether or not new Threads created with this ThreadFactory will be daemon threads    * @return this for the builder pattern    */
 DECL|method|setDaemon (boolean daemon)
 specifier|public
 name|ThreadFactoryBuilder
@@ -255,7 +255,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**    * Sets the priority for new threads created with this ThreadFactory.    *    * @param priority the priority for new Threads created with this    *     ThreadFactory    * @return this for the builder pattern    */
+comment|/**    * Sets the priority for new threads created with this ThreadFactory.    *    * @param priority the priority for new Threads created with this ThreadFactory    * @return this for the builder pattern    */
 DECL|method|setPriority (int priority)
 specifier|public
 name|ThreadFactoryBuilder
@@ -311,7 +311,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**    * Sets the {@link UncaughtExceptionHandler} for new threads created with this    * ThreadFactory.    *    * @param uncaughtExceptionHandler the uncaught exception handler for new    *     Threads created with this ThreadFactory    * @return this for the builder pattern    */
+comment|/**    * Sets the {@link UncaughtExceptionHandler} for new threads created with this ThreadFactory.    *    * @param uncaughtExceptionHandler the uncaught exception handler for new Threads created with    *     this ThreadFactory    * @return this for the builder pattern    */
 DECL|method|setUncaughtExceptionHandler ( UncaughtExceptionHandler uncaughtExceptionHandler)
 specifier|public
 name|ThreadFactoryBuilder
@@ -334,8 +334,8 @@ return|return
 name|this
 return|;
 block|}
-comment|/**    * Sets the backing {@link ThreadFactory} for new threads created with this    * ThreadFactory. Threads will be created by invoking #newThread(Runnable) on    * this backing {@link ThreadFactory}.    *    * @param backingThreadFactory the backing {@link ThreadFactory} which will    *     be delegated to during thread creation.    * @return this for the builder pattern    *    * @see MoreExecutors    */
-DECL|method|setThreadFactory ( ThreadFactory backingThreadFactory)
+comment|/**    * Sets the backing {@link ThreadFactory} for new threads created with this ThreadFactory. Threads    * will be created by invoking #newThread(Runnable) on this backing {@link ThreadFactory}.    *    * @param backingThreadFactory the backing {@link ThreadFactory} which will be delegated to during    *     thread creation.    * @return this for the builder pattern    *    * @see MoreExecutors    */
+DECL|method|setThreadFactory (ThreadFactory backingThreadFactory)
 specifier|public
 name|ThreadFactoryBuilder
 name|setThreadFactory
@@ -357,7 +357,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**    * Returns a new thread factory using the options supplied during the building    * process. After building, it is still possible to change the options used to    * build the ThreadFactory and/or build again. State is not shared amongst    * built instances.    *    * @return the fully constructed {@link ThreadFactory}    */
+comment|/**    * Returns a new thread factory using the options supplied during the building process. After    * building, it is still possible to change the options used to build the ThreadFactory and/or    * build again. State is not shared amongst built instances.    *    * @return the fully constructed {@link ThreadFactory}    */
 annotation|@
 name|CheckReturnValue
 DECL|method|build ()

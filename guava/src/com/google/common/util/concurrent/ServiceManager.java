@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * Copyright (C) 2012 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License");  * you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+comment|/*  * Copyright (C) 2012 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except  * in compliance with the License. You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software distributed under the License  * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express  * or implied. See the License for the specific language governing permissions and limitations under  * the License.  */
 end_comment
 
 begin_package
@@ -864,7 +864,7 @@ expr_stmt|;
 block|}
 block|}
 decl_stmt|;
-comment|/**    * A listener for the aggregate state changes of the services that are under management. Users    * that need to listen to more fine-grained events (such as when each particular {@linkplain    * Service service} starts, or terminates), should attach {@linkplain Service.Listener service    * listeners} to each individual service.    *    * @author Luke Sandberg    * @since 15.0 (present as an interface in 14.0)    */
+comment|/**    * A listener for the aggregate state changes of the services that are under management. Users    * that need to listen to more fine-grained events (such as when each particular    * {@linkplain Service service} starts, or terminates), should attach {@linkplain Service.Listener    * service listeners} to each individual service.    *    * @author Luke Sandberg    * @since 15.0 (present as an interface in 14.0)    */
 annotation|@
 name|Beta
 comment|// Should come out of Beta when ServiceManager does
@@ -900,7 +900,7 @@ name|service
 parameter_list|)
 block|{}
 block|}
-comment|/**    * An encapsulation of all of the state that is accessed by the {@linkplain ServiceListener    * service listeners}.  This is extracted into its own object so that {@link ServiceListener}    * could be made {@code static} and its instances can be safely constructed and added in the    * {@link ServiceManager} constructor without having to close over the partially constructed    * {@link ServiceManager} instance (i.e. avoid leaking a pointer to {@code this}).    */
+comment|/**    * An encapsulation of all of the state that is accessed by the {@linkplain ServiceListener    * service listeners}. This is extracted into its own object so that {@link ServiceListener} could    * be made {@code static} and its instances can be safely constructed and added in the    * {@link ServiceManager} constructor without having to close over the partially constructed    * {@link ServiceManager} instance (i.e. avoid leaking a pointer to {@code this}).    */
 DECL|field|state
 specifier|private
 specifier|final
@@ -916,7 +916,7 @@ name|Service
 argument_list|>
 name|services
 decl_stmt|;
-comment|/**    * Constructs a new instance for managing the given services.    *    * @param services The services to manage    *    * @throws IllegalArgumentException if not all services are {@linkplain State#NEW new} or if there    * are any duplicate services.    */
+comment|/**    * Constructs a new instance for managing the given services.    *    * @param services The services to manage    *    * @throws IllegalArgumentException if not all services are {@linkplain State#NEW new} or if there    *     are any duplicate services.    */
 DECL|method|ServiceManager (Iterable<? extends Service> services)
 specifier|public
 name|ServiceManager
@@ -952,7 +952,7 @@ argument_list|()
 condition|)
 block|{
 comment|// Having no services causes the manager to behave strangely. Notably, listeners are never
-comment|// fired.  To avoid this we substitute a placeholder service.
+comment|// fired. To avoid this we substitute a placeholder service.
 name|logger
 operator|.
 name|log
@@ -1065,7 +1065,7 @@ name|markReady
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * Registers a {@link Listener} to be {@linkplain Executor#execute executed} on the given    * executor. The listener will not have previous state changes replayed, so it is    * suggested that listeners are added before any of the managed services are    * {@linkplain Service#startAsync started}.    *    *<p>{@code addListener} guarantees execution ordering across calls to a given listener but not    * across calls to multiple listeners. Specifically, a given listener will have its callbacks    * invoked in the same order as the underlying service enters those states. Additionally, at most    * one of the listener's callbacks will execute at once. However, multiple listeners' callbacks    * may execute concurrently, and listeners may execute in an order different from the one in which    * they were registered.    *    *<p>RuntimeExceptions thrown by a listener will be caught and logged. Any exception thrown    * during {@code Executor.execute} (e.g., a {@code RejectedExecutionException}) will be caught and    * logged.    *    *<p> For fast, lightweight listeners that would be safe to execute in any thread, consider    * calling {@link #addListener(Listener)}.    *    * @param listener the listener to run when the manager changes state    * @param executor the executor in which the listeners callback methods will be run.    */
+comment|/**    * Registers a {@link Listener} to be {@linkplain Executor#execute executed} on the given    * executor. The listener will not have previous state changes replayed, so it is suggested that    * listeners are added before any of the managed services are {@linkplain Service#startAsync    * started}.    *    *<p>{@code addListener} guarantees execution ordering across calls to a given listener but not    * across calls to multiple listeners. Specifically, a given listener will have its callbacks    * invoked in the same order as the underlying service enters those states. Additionally, at most    * one of the listener's callbacks will execute at once. However, multiple listeners' callbacks    * may execute concurrently, and listeners may execute in an order different from the one in which    * they were registered.    *    *<p>RuntimeExceptions thrown by a listener will be caught and logged. Any exception thrown    * during {@code Executor.execute} (e.g., a {@code RejectedExecutionException}) will be caught and    * logged.    *    *<p>For fast, lightweight listeners that would be safe to execute in any thread, consider    * calling {@link #addListener(Listener)}.    *    * @param listener the listener to run when the manager changes state    * @param executor the executor in which the listeners callback methods will be run.    */
 DECL|method|addListener (Listener listener, Executor executor)
 specifier|public
 name|void
@@ -1109,7 +1109,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Initiates service {@linkplain Service#startAsync startup} on all the services being managed.    * It is only valid to call this method if all of the services are {@linkplain State#NEW new}.    *    * @return this    * @throws IllegalStateException if any of the Services are not {@link State#NEW new} when the    *     method is called.    */
+comment|/**    * Initiates service {@linkplain Service#startAsync startup} on all the services being managed. It    * is only valid to call this method if all of the services are {@linkplain State#NEW new}.    *    * @return this    * @throws IllegalStateException if any of the Services are not {@link State#NEW new} when the    *     method is called.    */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|startAsync ()
@@ -1202,7 +1202,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**    * Waits for the {@link ServiceManager} to become {@linkplain #isHealthy() healthy}.  The manager    * will become healthy after all the component services have reached the {@linkplain State#RUNNING    * running} state.    *    * @throws IllegalStateException if the service manager reaches a state from which it cannot    *     become {@linkplain #isHealthy() healthy}.    */
+comment|/**    * Waits for the {@link ServiceManager} to become {@linkplain #isHealthy() healthy}. The manager    * will become healthy after all the component services have reached the {@linkplain State#RUNNING    * running} state.    *    * @throws IllegalStateException if the service manager reaches a state from which it cannot    *     become {@linkplain #isHealthy() healthy}.    */
 DECL|method|awaitHealthy ()
 specifier|public
 name|void
@@ -1215,7 +1215,7 @@ name|awaitHealthy
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * Waits for the {@link ServiceManager} to become {@linkplain #isHealthy() healthy} for no more    * than the given time.  The manager will become healthy after all the component services have    * reached the {@linkplain State#RUNNING running} state.    *    * @param timeout the maximum time to wait    * @param unit the time unit of the timeout argument    * @throws TimeoutException if not all of the services have finished starting within the deadline    * @throws IllegalStateException if the service manager reaches a state from which it cannot    *     become {@linkplain #isHealthy() healthy}.    */
+comment|/**    * Waits for the {@link ServiceManager} to become {@linkplain #isHealthy() healthy} for no more    * than the given time. The manager will become healthy after all the component services have    * reached the {@linkplain State#RUNNING running} state.    *    * @param timeout the maximum time to wait    * @param unit the time unit of the timeout argument    * @throws TimeoutException if not all of the services have finished starting within the deadline    * @throws IllegalStateException if the service manager reaches a state from which it cannot    *     become {@linkplain #isHealthy() healthy}.    */
 DECL|method|awaitHealthy (long timeout, TimeUnit unit)
 specifier|public
 name|void
@@ -1267,7 +1267,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**    * Waits for the all the services to reach a terminal state. After this method returns all    * services will either be {@linkplain Service.State#TERMINATED terminated} or {@linkplain    * Service.State#FAILED failed}.    */
+comment|/**    * Waits for the all the services to reach a terminal state. After this method returns all    * services will either be {@linkplain Service.State#TERMINATED terminated} or    * {@linkplain Service.State#FAILED failed}.    */
 DECL|method|awaitStopped ()
 specifier|public
 name|void
@@ -1376,9 +1376,9 @@ name|startupTimes
 argument_list|()
 return|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString
@@ -1505,7 +1505,7 @@ operator|.
 name|newIdentityHashMap
 argument_list|()
 decl_stmt|;
-comment|/**      * These two booleans are used to mark the state as ready to start.      * {@link #ready}: is set by {@link #markReady} to indicate that all listeners have been      *     correctly installed      * {@link #transitioned}: is set by {@link #transitionService} to indicate that some transition      *     has been performed.      *      *<p>Together, they allow us to enforce that all services have their listeners installed prior      * to any service performing a transition, then we can fail in the ServiceManager constructor      * rather than in a Service.Listener callback.      */
+comment|/**      * These two booleans are used to mark the state as ready to start.      *      *<p>{@link #ready}: is set by {@link #markReady} to indicate that all listeners have been      * correctly installed      *      *<p>{@link #transitioned}: is set by {@link #transitionService} to indicate that some      * transition has been performed.      *      *<p>Together, they allow us to enforce that all services have their listeners installed prior      * to any service performing a transition, then we can fail in the ServiceManager constructor      * rather than in a Service.Listener callback.      */
 annotation|@
 name|GuardedBy
 argument_list|(
@@ -1529,7 +1529,7 @@ specifier|final
 name|int
 name|numberOfServices
 decl_stmt|;
-comment|/**      * Controls how long to wait for all the services to either become healthy or reach a      * state from which it is guaranteed that it can never become healthy.      */
+comment|/**      * Controls how long to wait for all the services to either become healthy or reach a state from      * which it is guaranteed that it can never become healthy.      */
 DECL|field|awaitHealthGuard
 specifier|final
 name|Monitor
@@ -1566,9 +1566,9 @@ name|monitor
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|isSatisfied ()
 annotation|@
 name|Override
+DECL|method|isSatisfied ()
 specifier|public
 name|boolean
 name|isSatisfied
@@ -1645,9 +1645,9 @@ name|monitor
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|isSatisfied ()
 annotation|@
 name|Override
+DECL|method|isSatisfied ()
 specifier|public
 name|boolean
 name|isSatisfied
@@ -1704,7 +1704,7 @@ argument_list|>
 argument_list|()
 argument_list|)
 decl_stmt|;
-comment|/**      * It is implicitly assumed that all the services are NEW and that they will all remain NEW      * until all the Listeners are installed and {@link #markReady()} is called.  It is our caller's      * responsibility to only call {@link #markReady()} if all services were new at the time this      * method was called and when all the listeners were installed.      */
+comment|/**      * It is implicitly assumed that all the services are NEW and that they will all remain NEW      * until all the Listeners are installed and {@link #markReady()} is called. It is our caller's      * responsibility to only call {@link #markReady()} if all services were new at the time this      * method was called and when all the listeners were installed.      */
 DECL|method|ServiceManagerState (ImmutableCollection<Service> services)
 name|ServiceManagerState
 parameter_list|(
@@ -2853,7 +2853,7 @@ throw|;
 block|}
 block|}
 block|}
-comment|/**    * A {@link Service} that wraps another service and times how long it takes for it to start and    * also calls the {@link ServiceManagerState#transitionService(Service, State, State)},    * to record the state transitions.    */
+comment|/**    * A {@link Service} that wraps another service and times how long it takes for it to start and    * also calls the {@link ServiceManagerState#transitionService(Service, State, State)}, to record    * the state transitions.    */
 DECL|class|ServiceListener
 specifier|private
 specifier|static
@@ -2906,9 +2906,9 @@ operator|=
 name|state
 expr_stmt|;
 block|}
-DECL|method|starting ()
 annotation|@
 name|Override
+DECL|method|starting ()
 specifier|public
 name|void
 name|starting
@@ -2968,9 +2968,9 @@ expr_stmt|;
 block|}
 block|}
 block|}
-DECL|method|running ()
 annotation|@
 name|Override
+DECL|method|running ()
 specifier|public
 name|void
 name|running
@@ -3006,9 +3006,9 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-DECL|method|stopping (State from)
 annotation|@
 name|Override
+DECL|method|stopping (State from)
 specifier|public
 name|void
 name|stopping
@@ -3047,9 +3047,9 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-DECL|method|terminated (State from)
 annotation|@
 name|Override
+DECL|method|terminated (State from)
 specifier|public
 name|void
 name|terminated
@@ -3119,9 +3119,9 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-DECL|method|failed (State from, Throwable failure)
 annotation|@
 name|Override
+DECL|method|failed (State from, Throwable failure)
 specifier|public
 name|void
 name|failed
@@ -3198,7 +3198,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**    * A {@link Service} instance that does nothing.  This is only useful as a placeholder to    * ensure that the {@link ServiceManager} functions properly even when it is managing no services.    *    *<p>The use of this class is considered an implementation detail of ServiceManager and as such    * it is excluded from {@link #servicesByState}, {@link #startupTimes}, {@link #toString} and all    * logging statements.    */
+comment|/**    * A {@link Service} instance that does nothing. This is only useful as a placeholder to ensure    * that the {@link ServiceManager} functions properly even when it is managing no services.    *    *<p>The use of this class is considered an implementation detail of ServiceManager and as such    * it is excluded from {@link #servicesByState}, {@link #startupTimes}, {@link #toString} and all    * logging statements.    */
 DECL|class|NoOpService
 specifier|private
 specifier|static
@@ -3208,9 +3208,9 @@ name|NoOpService
 extends|extends
 name|AbstractService
 block|{
-DECL|method|doStart ()
 annotation|@
 name|Override
+DECL|method|doStart ()
 specifier|protected
 name|void
 name|doStart
@@ -3220,9 +3220,9 @@ name|notifyStarted
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|doStop ()
 annotation|@
 name|Override
+DECL|method|doStop ()
 specifier|protected
 name|void
 name|doStop

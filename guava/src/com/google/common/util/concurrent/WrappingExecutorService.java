@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * Copyright (C) 2011 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License");  * you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+comment|/*  * Copyright (C) 2011 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except  * in compliance with the License. You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software distributed under the License  * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express  * or implied. See the License for the specific language governing permissions and limitations under  * the License.  */
 end_comment
 
 begin_package
@@ -195,7 +195,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An abstract {@code ExecutorService} that allows subclasses to  * {@linkplain #wrapTask(Callable) wrap} tasks before they are submitted  * to the underlying executor.  *  *<p>Note that task wrapping may occur even if the task is never executed.  *  *<p>For delegation without task-wrapping, see  * {@link ForwardingExecutorService}.  *  * @author Chris Nokleberg  */
+comment|/**  * An abstract {@code ExecutorService} that allows subclasses to {@linkplain #wrapTask(Callable)  * wrap} tasks before they are submitted to the underlying executor.  *  *<p>Note that task wrapping may occur even if the task is never executed.  *  *<p>For delegation without task-wrapping, see {@link ForwardingExecutorService}.  *  * @author Chris Nokleberg  */
 end_comment
 
 begin_class
@@ -235,7 +235,7 @@ name|delegate
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Wraps a {@code Callable} for submission to the underlying executor. This    * method is also applied to any {@code Runnable} passed to the default    * implementation of {@link #wrapTask(Runnable)}.    */
+comment|/**    * Wraps a {@code Callable} for submission to the underlying executor. This method is also applied    * to any {@code Runnable} passed to the default implementation of {@link #wrapTask(Runnable)}.    */
 DECL|method|wrapTask (Callable<T> callable)
 specifier|protected
 specifier|abstract
@@ -255,7 +255,7 @@ argument_list|>
 name|callable
 parameter_list|)
 function_decl|;
-comment|/**    * Wraps a {@code Runnable} for submission to the underlying executor. The    * default implementation delegates to {@link #wrapTask(Callable)}.    */
+comment|/**    * Wraps a {@code Runnable} for submission to the underlying executor. The default implementation    * delegates to {@link #wrapTask(Callable)}.    */
 DECL|method|wrapTask (Runnable command)
 specifier|protected
 name|Runnable
@@ -323,7 +323,7 @@ block|}
 return|;
 block|}
 comment|/**    * Wraps a collection of tasks.    *    * @throws NullPointerException if any element of {@code tasks} is null    */
-DECL|method|wrapTasks ( Collection<? extends Callable<T>> tasks)
+DECL|method|wrapTasks (Collection<? extends Callable<T>> tasks)
 specifier|private
 specifier|final
 parameter_list|<
@@ -519,7 +519,7 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|invokeAll ( Collection<? extends Callable<T>> tasks)
+DECL|method|invokeAll (Collection<? extends Callable<T>> tasks)
 specifier|public
 specifier|final
 parameter_list|<
@@ -654,7 +654,7 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|invokeAny ( Collection<? extends Callable<T>> tasks, long timeout, TimeUnit unit)
+DECL|method|invokeAny (Collection<? extends Callable<T>> tasks, long timeout, TimeUnit unit)
 specifier|public
 specifier|final
 parameter_list|<
