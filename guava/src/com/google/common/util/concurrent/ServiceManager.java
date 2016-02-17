@@ -3152,14 +3152,19 @@ condition|)
 block|{
 comment|// Log before the transition, so that if the process exits in response to server failure,
 comment|// there is a higher likelihood that the cause will be in the logs.
-if|if
-condition|(
+name|boolean
+name|log
+init|=
 operator|!
 operator|(
 name|service
 operator|instanceof
 name|NoOpService
 operator|)
+decl_stmt|;
+if|if
+condition|(
+name|log
 condition|)
 block|{
 name|logger
