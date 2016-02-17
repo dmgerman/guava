@@ -158,6 +158,15 @@ name|N3
 init|=
 literal|3
 decl_stmt|;
+DECL|field|E11
+specifier|private
+specifier|static
+specifier|final
+name|String
+name|E11
+init|=
+literal|"1-1"
+decl_stmt|;
 DECL|field|E12
 specifier|private
 specifier|static
@@ -462,13 +471,13 @@ name|testEquals
 argument_list|()
 expr_stmt|;
 block|}
-comment|// Node/edge sets are the same, but types differ.
+comment|// Node/edge sets are the same, but node/edge connections differ due to graph type.
 annotation|@
 name|Test
-DECL|method|equals_typesDiffer ()
+DECL|method|equals_directedVsUndirected ()
 specifier|public
 name|void
-name|equals_typesDiffer
+name|equals_directedVsUndirected
 parameter_list|()
 block|{
 name|graph
@@ -482,7 +491,6 @@ argument_list|,
 name|N2
 argument_list|)
 expr_stmt|;
-comment|// Whatever graphType specifies, pick another type.
 name|Graph
 argument_list|<
 name|Integer
@@ -558,7 +566,100 @@ name|testEquals
 argument_list|()
 expr_stmt|;
 block|}
-comment|// Node/edge sets and graph type are the same, but node/edge connections differ.
+comment|// Node/edge sets and node/edge connections are the same, but types differ.
+comment|// (In this case the graphs are considered equal; the type differences are irrelevant.)
+annotation|@
+name|Test
+DECL|method|equals_selfLoop_directedVsUndirected ()
+specifier|public
+name|void
+name|equals_selfLoop_directedVsUndirected
+parameter_list|()
+block|{
+name|graph
+operator|.
+name|addEdge
+argument_list|(
+name|E11
+argument_list|,
+name|N1
+argument_list|,
+name|N1
+argument_list|)
+expr_stmt|;
+name|Graph
+argument_list|<
+name|Integer
+argument_list|,
+name|String
+argument_list|>
+name|g2
+decl_stmt|;
+switch|switch
+condition|(
+name|graphType
+condition|)
+block|{
+case|case
+name|UNDIRECTED
+case|:
+name|g2
+operator|=
+name|Graphs
+operator|.
+name|createDirected
+argument_list|()
+expr_stmt|;
+break|break;
+case|case
+name|DIRECTED
+case|:
+name|g2
+operator|=
+name|Graphs
+operator|.
+name|createUndirected
+argument_list|()
+expr_stmt|;
+break|break;
+default|default:
+throw|throw
+operator|new
+name|IllegalStateException
+argument_list|(
+literal|"Unexpected graph type: "
+operator|+
+name|graphType
+argument_list|)
+throw|;
+block|}
+name|g2
+operator|.
+name|addEdge
+argument_list|(
+name|E11
+argument_list|,
+name|N1
+argument_list|,
+name|N1
+argument_list|)
+expr_stmt|;
+operator|new
+name|EqualsTester
+argument_list|()
+operator|.
+name|addEqualityGroup
+argument_list|(
+name|graph
+argument_list|,
+name|g2
+argument_list|)
+operator|.
+name|testEquals
+argument_list|()
+expr_stmt|;
+block|}
+comment|// Node/edge sets are the same, but node/edge connections differ.
 annotation|@
 name|Test
 DECL|method|equals_connectionsDiffer ()
@@ -641,7 +742,7 @@ name|testEquals
 argument_list|()
 expr_stmt|;
 block|}
-comment|// Node/edge sets, graph type, and node/edge connections are the same, but GraphConfigs differ.
+comment|// Node/edge sets and node/edge connections are the same, but GraphConfigs differ.
 comment|// (In this case the graphs are considered equal; the config differences are irrelevant.)
 annotation|@
 name|Test
@@ -704,7 +805,7 @@ name|testEquals
 argument_list|()
 expr_stmt|;
 block|}
-comment|// Node/edge sets, graph type, and node/edge connections are the same, but edge order differs.
+comment|// Node/edge sets and node/edge connections are the same, but edge order differs.
 comment|// (In this case the graphs are considered equal; the edge add orderings are irrelevant.)
 annotation|@
 name|Test

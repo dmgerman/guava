@@ -30,14 +30,27 @@ name|N
 parameter_list|,
 name|E
 parameter_list|>
-implements|implements
-name|Graph
+extends|extends
+name|AbstractGraph
 argument_list|<
 name|N
 argument_list|,
 name|E
 argument_list|>
 block|{
+DECL|method|AbstractImmutableGraph (GraphConfig config)
+name|AbstractImmutableGraph
+parameter_list|(
+name|GraphConfig
+name|config
+parameter_list|)
+block|{
+name|super
+argument_list|(
+name|config
+argument_list|)
+expr_stmt|;
+block|}
 annotation|@
 name|Override
 DECL|method|addNode (N n)
