@@ -1102,9 +1102,6 @@ argument_list|)
 operator|.
 name|hasSize
 argument_list|(
-operator|(
-name|int
-operator|)
 name|graph
 operator|.
 name|degree
@@ -1182,9 +1179,6 @@ argument_list|)
 operator|.
 name|hasSize
 argument_list|(
-operator|(
-name|int
-operator|)
 name|graph
 operator|.
 name|inDegree
@@ -1262,9 +1256,6 @@ argument_list|)
 operator|.
 name|hasSize
 argument_list|(
-operator|(
-name|int
-operator|)
 name|graph
 operator|.
 name|outDegree

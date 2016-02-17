@@ -87,7 +87,7 @@ annotation|@
 name|Override
 DECL|method|degree (Object node)
 specifier|public
-name|long
+name|int
 name|degree
 parameter_list|(
 name|Object
@@ -108,7 +108,7 @@ annotation|@
 name|Override
 DECL|method|inDegree (Object node)
 specifier|public
-name|long
+name|int
 name|inDegree
 parameter_list|(
 name|Object
@@ -129,7 +129,7 @@ annotation|@
 name|Override
 DECL|method|outDegree (Object node)
 specifier|public
-name|long
+name|int
 name|outDegree
 parameter_list|(
 name|Object

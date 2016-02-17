@@ -222,27 +222,27 @@ function_decl|;
 comment|//
 comment|// Element-level queries
 comment|//
-comment|/**    * Returns the number of edges {@linkplain #incidentEdges(Object) incident} in this graph    * to {@code node}.    *    *<p>Equivalent to {@code incidentEdges(node).size()}.    *    * @throws IllegalArgumentException if {@code node} is not an element of this graph    */
+comment|/**    * Returns the number of edges {@linkplain #incidentEdges(Object) incident} in this graph    * to {@code node}.  If this node has more than {@code Integer.MAX_VALUE} incident edges    * in this graph, returns {@code Integer.MAX_VALUE}.    *    *<p>Equivalent to {@code incidentEdges(node).size()}.    *    * @throws IllegalArgumentException if {@code node} is not an element of this graph    */
 DECL|method|degree (Object node)
-name|long
+name|int
 name|degree
 parameter_list|(
 name|Object
 name|node
 parameter_list|)
 function_decl|;
-comment|/**    * Returns the number of {@linkplain #inEdges(Object) incoming edges} in this graph    * of {@code node}.    *    *<p>Equivalent to {@code inEdges(node).size()}.    *    * @throws IllegalArgumentException if {@code node} is not an element of this graph    */
+comment|/**    * Returns the number of {@linkplain #inEdges(Object) incoming edges} in this graph    * of {@code node}.  If this node has more than {@code Integer.MAX_VALUE} incoming edges    * in this graph, returns {@code Integer.MAX_VALUE}.    *    *<p>Equivalent to {@code inEdges(node).size()}.    *    * @throws IllegalArgumentException if {@code node} is not an element of this graph    */
 DECL|method|inDegree (Object node)
-name|long
+name|int
 name|inDegree
 parameter_list|(
 name|Object
 name|node
 parameter_list|)
 function_decl|;
-comment|/**    * Returns the number of {@linkplain #outEdges(Object) outgoing edges} in this graph    * of {@code node}.    *    *<p>Equivalent to {@code outEdges(node).size()}.    *    * @throws IllegalArgumentException if {@code node} is not an element of this graph    */
+comment|/**    * Returns the number of {@linkplain #outEdges(Object) outgoing edges} in this graph    * of {@code node}.  If this node has more than {@code Integer.MAX_VALUE} outgoing edges    * in this graph, returns {@code Integer.MAX_VALUE}.    *    *<p>Equivalent to {@code outEdges(node).size()}.    *    * @throws IllegalArgumentException if {@code node} is not an element of this graph    */
 DECL|method|outDegree (Object node)
-name|long
+name|int
 name|outDegree
 parameter_list|(
 name|Object
