@@ -236,8 +236,8 @@ block|}
 block|}
 DECL|field|delegate
 specifier|private
-specifier|transient
 specifier|final
+specifier|transient
 name|EnumMap
 argument_list|<
 name|K

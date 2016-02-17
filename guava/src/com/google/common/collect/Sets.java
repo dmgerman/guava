@@ -3772,8 +3772,8 @@ argument_list|>
 block|{
 DECL|field|axes
 specifier|private
-specifier|transient
 specifier|final
+specifier|transient
 name|ImmutableList
 argument_list|<
 name|ImmutableSet
@@ -3785,8 +3785,8 @@ name|axes
 decl_stmt|;
 DECL|field|delegate
 specifier|private
-specifier|transient
 specifier|final
+specifier|transient
 name|CartesianList
 argument_list|<
 name|E

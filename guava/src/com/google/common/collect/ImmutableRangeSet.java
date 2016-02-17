@@ -665,8 +665,8 @@ expr_stmt|;
 block|}
 DECL|field|ranges
 specifier|private
-specifier|transient
 specifier|final
+specifier|transient
 name|ImmutableList
 argument_list|<
 name|Range

@@ -285,8 +285,8 @@ argument_list|)
 decl_stmt|;
 DECL|field|elements
 specifier|private
-specifier|transient
 specifier|final
+specifier|transient
 name|ImmutableList
 argument_list|<
 name|E

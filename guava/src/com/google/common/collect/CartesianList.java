@@ -137,8 +137,8 @@ name|RandomAccess
 block|{
 DECL|field|axes
 specifier|private
-specifier|transient
 specifier|final
+specifier|transient
 name|ImmutableList
 argument_list|<
 name|List
@@ -150,8 +150,8 @@ name|axes
 decl_stmt|;
 DECL|field|axesSizeProduct
 specifier|private
-specifier|transient
 specifier|final
+specifier|transient
 name|int
 index|[]
 name|axesSizeProduct
