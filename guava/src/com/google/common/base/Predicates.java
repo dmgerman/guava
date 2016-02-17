@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * Copyright (C) 2007 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License");  * you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+comment|/*  * Copyright (C) 2007 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except  * in compliance with the License. You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software distributed under the License  * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express  * or implied. See the License for the specific language governing permissions and limitations under  * the License.  */
 end_comment
 
 begin_package
@@ -147,7 +147,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Static utility methods pertaining to {@code Predicate} instances.  *  *<p>All methods returns serializable predicates as long as they're given  * serializable parameters.  *  *<p>See the Guava User Guide article on<a href=  * "https://github.com/google/guava/wiki/FunctionalExplained">the  * use of {@code Predicate}</a>.  *  * @author Kevin Bourrillion  * @since 2.0  */
+comment|/**  * Static utility methods pertaining to {@code Predicate} instances.  *  *<p>All methods returns serializable predicates as long as they're given serializable parameters.  *  *<p>See the Guava User Guide article on  *<a href="https://github.com/google/guava/wiki/FunctionalExplained">the use of  * {@code Predicate}</a>.  *  * @author Kevin Bourrillion  * @since 2.0  */
 end_comment
 
 begin_class
@@ -231,7 +231,7 @@ name|withNarrowedType
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns a predicate that evaluates to {@code true} if the object reference    * being tested is null.    */
+comment|/**    * Returns a predicate that evaluates to {@code true} if the object reference being tested is    * null.    */
 annotation|@
 name|GwtCompatible
 argument_list|(
@@ -261,7 +261,7 @@ name|withNarrowedType
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns a predicate that evaluates to {@code true} if the object reference    * being tested is not null.    */
+comment|/**    * Returns a predicate that evaluates to {@code true} if the object reference being tested is not    * null.    */
 annotation|@
 name|GwtCompatible
 argument_list|(
@@ -291,7 +291,7 @@ name|withNarrowedType
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns a predicate that evaluates to {@code true} if the given predicate    * evaluates to {@code false}.    */
+comment|/**    * Returns a predicate that evaluates to {@code true} if the given predicate evaluates to    * {@code false}.    */
 DECL|method|not (Predicate<T> predicate)
 specifier|public
 specifier|static
@@ -322,7 +322,7 @@ name|predicate
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a predicate that evaluates to {@code true} if each of its    * components evaluates to {@code true}. The components are evaluated in    * order, and evaluation will be "short-circuited" as soon as a false    * predicate is found. It defensively copies the iterable passed in, so future    * changes to it won't alter the behavior of this predicate. If {@code    * components} is empty, the returned predicate will always evaluate to {@code    * true}.    */
+comment|/**    * Returns a predicate that evaluates to {@code true} if each of its components evaluates to    * {@code true}. The components are evaluated in order, and evaluation will be "short-circuited"    * as soon as a false predicate is found. It defensively copies the iterable passed in, so future    * changes to it won't alter the behavior of this predicate. If {@code    * components} is empty, the returned predicate will always evaluate to {@code    * true}.    */
 DECL|method|and (Iterable<? extends Predicate<? super T>> components)
 specifier|public
 specifier|static
@@ -363,7 +363,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a predicate that evaluates to {@code true} if each of its    * components evaluates to {@code true}. The components are evaluated in    * order, and evaluation will be "short-circuited" as soon as a false    * predicate is found. It defensively copies the array passed in, so future    * changes to it won't alter the behavior of this predicate. If {@code    * components} is empty, the returned predicate will always evaluate to {@code    * true}.    */
+comment|/**    * Returns a predicate that evaluates to {@code true} if each of its components evaluates to    * {@code true}. The components are evaluated in order, and evaluation will be "short-circuited"    * as soon as a false predicate is found. It defensively copies the array passed in, so future    * changes to it won't alter the behavior of this predicate. If {@code    * components} is empty, the returned predicate will always evaluate to {@code    * true}.    */
 DECL|method|and (Predicate<? super T>.... components)
 specifier|public
 specifier|static
@@ -400,7 +400,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a predicate that evaluates to {@code true} if both of its    * components evaluate to {@code true}. The components are evaluated in    * order, and evaluation will be "short-circuited" as soon as a false    * predicate is found.    */
+comment|/**    * Returns a predicate that evaluates to {@code true} if both of its components evaluate to    * {@code true}. The components are evaluated in order, and evaluation will be "short-circuited"    * as soon as a false predicate is found.    */
 DECL|method|and (Predicate<? super T> first, Predicate<? super T> second)
 specifier|public
 specifier|static
@@ -457,7 +457,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a predicate that evaluates to {@code true} if any one of its    * components evaluates to {@code true}. The components are evaluated in    * order, and evaluation will be "short-circuited" as soon as a    * true predicate is found. It defensively copies the iterable passed in, so    * future changes to it won't alter the behavior of this predicate. If {@code    * components} is empty, the returned predicate will always evaluate to {@code    * false}.    */
+comment|/**    * Returns a predicate that evaluates to {@code true} if any one of its components evaluates to    * {@code true}. The components are evaluated in order, and evaluation will be "short-circuited"    * as soon as a true predicate is found. It defensively copies the iterable passed in, so future    * changes to it won't alter the behavior of this predicate. If {@code    * components} is empty, the returned predicate will always evaluate to {@code    * false}.    */
 DECL|method|or (Iterable<? extends Predicate<? super T>> components)
 specifier|public
 specifier|static
@@ -498,7 +498,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a predicate that evaluates to {@code true} if any one of its    * components evaluates to {@code true}. The components are evaluated in    * order, and evaluation will be "short-circuited" as soon as a    * true predicate is found. It defensively copies the array passed in, so    * future changes to it won't alter the behavior of this predicate. If {@code    * components} is empty, the returned predicate will always evaluate to {@code    * false}.    */
+comment|/**    * Returns a predicate that evaluates to {@code true} if any one of its components evaluates to    * {@code true}. The components are evaluated in order, and evaluation will be "short-circuited"    * as soon as a true predicate is found. It defensively copies the array passed in, so future    * changes to it won't alter the behavior of this predicate. If {@code    * components} is empty, the returned predicate will always evaluate to {@code    * false}.    */
 DECL|method|or (Predicate<? super T>.... components)
 specifier|public
 specifier|static
@@ -535,7 +535,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a predicate that evaluates to {@code true} if either of its    * components evaluates to {@code true}. The components are evaluated in    * order, and evaluation will be "short-circuited" as soon as a    * true predicate is found.    */
+comment|/**    * Returns a predicate that evaluates to {@code true} if either of its components evaluates to    * {@code true}. The components are evaluated in order, and evaluation will be "short-circuited"    * as soon as a true predicate is found.    */
 DECL|method|or (Predicate<? super T> first, Predicate<? super T> second)
 specifier|public
 specifier|static
@@ -592,7 +592,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a predicate that evaluates to {@code true} if the object being    * tested {@code equals()} the given target or both are null.    */
+comment|/**    * Returns a predicate that evaluates to {@code true} if the object being tested {@code equals()}    * the given target or both are null.    */
 DECL|method|equalTo (@ullable T target)
 specifier|public
 specifier|static
@@ -636,7 +636,7 @@ name|target
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a predicate that evaluates to {@code true} if the object being    * tested is an instance of the given class. If the object being tested    * is {@code null} this predicate evaluates to {@code false}.    *    *<p>If you want to filter an {@code Iterable} to narrow its type, consider    * using {@link com.google.common.collect.Iterables#filter(Iterable, Class)}    * in preference.    *    *<p><b>Warning:</b> contrary to the typical assumptions about predicates (as    * documented at {@link Predicate#apply}), the returned predicate may not be    *<i>consistent with equals</i>. For example, {@code    * instanceOf(ArrayList.class)} will yield different results for the two equal    * instances {@code Lists.newArrayList(1)} and {@code Arrays.asList(1)}.    */
+comment|/**    * Returns a predicate that evaluates to {@code true} if the object being tested is an instance of    * the given class. If the object being tested is {@code null} this predicate evaluates to    * {@code false}.    *    *<p>If you want to filter an {@code Iterable} to narrow its type, consider using    * {@link com.google.common.collect.Iterables#filter(Iterable, Class)} in preference.    *    *<p><b>Warning:</b> contrary to the typical assumptions about predicates (as documented at    * {@link Predicate#apply}), the returned predicate may not be<i>consistent with equals</i>. For    * example, {@code instanceOf(ArrayList.class)} will yield different results for the two equal    * instances {@code Lists.newArrayList(1)} and {@code Arrays.asList(1)}.    */
 annotation|@
 name|GwtIncompatible
 comment|// Class.isInstance
@@ -664,7 +664,7 @@ name|clazz
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a predicate that evaluates to {@code true} if the class being    * tested is assignable from the given class.  The returned predicate    * does not allow null inputs.    *    * @since 10.0    */
+comment|/**    * Returns a predicate that evaluates to {@code true} if the class being tested is assignable from    * the given class. The returned predicate does not allow null inputs.    *    * @since 10.0    */
 annotation|@
 name|GwtIncompatible
 comment|// Class.isAssignableFrom
@@ -697,7 +697,7 @@ name|clazz
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a predicate that evaluates to {@code true} if the object reference    * being tested is a member of the given collection. It does not defensively    * copy the collection passed in, so future changes to it will alter the    * behavior of the predicate.    *    *<p>This method can technically accept any {@code Collection<?>}, but using    * a typed collection helps prevent bugs. This approach doesn't block any    * potential users since it is always possible to use {@code    * Predicates.<Object>in()}.    *    * @param target the collection that may contain the function input    */
+comment|/**    * Returns a predicate that evaluates to {@code true} if the object reference being tested is a    * member of the given collection. It does not defensively copy the collection passed in, so    * future changes to it will alter the behavior of the predicate.    *    *<p>This method can technically accept any {@code Collection<?>}, but using a typed collection    * helps prevent bugs. This approach doesn't block any potential users since it is always possible    * to use {@code Predicates.<Object>in()}.    *    * @param target the collection that may contain the function input    */
 DECL|method|in (Collection<? extends T> target)
 specifier|public
 specifier|static
@@ -730,7 +730,7 @@ name|target
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the composition of a function and a predicate. For every {@code x},    * the generated predicate returns {@code predicate(function(x))}.    *    * @return the composition of the provided function and predicate    */
+comment|/**    * Returns the composition of a function and a predicate. For every {@code x}, the generated    * predicate returns {@code predicate(function(x))}.    *    * @return the composition of the provided function and predicate    */
 DECL|method|compose ( Predicate<B> predicate, Function<A, ? extends B> function)
 specifier|public
 specifier|static
@@ -777,7 +777,7 @@ name|function
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a predicate that evaluates to {@code true} if the    * {@code CharSequence} being tested contains any match for the given    * regular expression pattern. The test used is equivalent to    * {@code Pattern.compile(pattern).matcher(arg).find()}    *    * @throws java.util.regex.PatternSyntaxException if the pattern is invalid    * @since 3.0    */
+comment|/**    * Returns a predicate that evaluates to {@code true} if the {@code CharSequence} being tested    * contains any match for the given regular expression pattern. The test used is equivalent to    * {@code Pattern.compile(pattern).matcher(arg).find()}    *    * @throws java.util.regex.PatternSyntaxException if the pattern is invalid    * @since 3.0    */
 annotation|@
 name|GwtIncompatible
 argument_list|(
@@ -806,7 +806,7 @@ name|pattern
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a predicate that evaluates to {@code true} if the    * {@code CharSequence} being tested contains any match for the given    * regular expression pattern. The test used is equivalent to    * {@code pattern.matcher(arg).find()}    *    * @since 3.0    */
+comment|/**    * Returns a predicate that evaluates to {@code true} if the {@code CharSequence} being tested    * contains any match for the given regular expression pattern. The test used is equivalent to    * {@code pattern.matcher(arg).find()}    *    * @since 3.0    */
 annotation|@
 name|GwtIncompatible
 argument_list|(

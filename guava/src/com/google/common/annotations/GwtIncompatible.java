@@ -77,7 +77,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * The presence of this annotation on an API indicates that the method may<em>not</em> be used with  * the<a href="http://www.gwtproject.org/">Google Web Toolkit</a> (GWT).  *  *<p>This annotation behaves identically to<a  * href="http://www.gwtproject.org/javadoc/latest/com/google/gwt/core/shared/GwtIncompatible.html">the  * {@code @GwtCompatible} annotation in GWT itself</a>.  *  * @author Charles Fry  */
+comment|/**  * The presence of this annotation on an API indicates that the method may<em>not</em> be used with  * the<a href="http://www.gwtproject.org/">Google Web Toolkit</a> (GWT).  *  *<p>This annotation behaves identically to<a href=  * "http://www.gwtproject.org/javadoc/latest/com/google/gwt/core/shared/GwtIncompatible.html">the  * {@code @GwtCompatible} annotation in GWT itself</a>.  *  * @author Charles Fry  */
 end_comment
 
 begin_annotation_defn
@@ -118,7 +118,7 @@ specifier|public
 annotation_defn|@interface
 name|GwtIncompatible
 block|{
-comment|/**    * Describes why the annotated element is incompatible with GWT. Since this is generally due to a    * dependence on a type/method which GWT doesn't support, it is sufficient to simply reference the    * unsupported type/method. E.g. "Class.isInstance".    *    *<p>As of Guava 20.0, this value is optional. We encourage authors who wish to describe why    * an API is {@code @GwtIncompatible} to instead leave an implementation comment.    */
+comment|/**    * Describes why the annotated element is incompatible with GWT. Since this is generally due to a    * dependence on a type/method which GWT doesn't support, it is sufficient to simply reference the    * unsupported type/method. E.g. "Class.isInstance".    *    *<p>As of Guava 20.0, this value is optional. We encourage authors who wish to describe why an    * API is {@code @GwtIncompatible} to instead leave an implementation comment.    */
 DECL|method|value ()
 name|String
 name|value

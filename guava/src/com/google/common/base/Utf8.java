@@ -99,7 +99,7 @@ specifier|final
 class|class
 name|Utf8
 block|{
-comment|/**    * Returns the number of bytes in the UTF-8-encoded form of {@code sequence}. For a string,    * this method is equivalent to {@code string.getBytes(UTF_8).length}, but is more efficient in    * both time and space.    *    * @throws IllegalArgumentException if {@code sequence} contains ill-formed UTF-16 (unpaired    *     surrogates)    */
+comment|/**    * Returns the number of bytes in the UTF-8-encoded form of {@code sequence}. For a string, this    * method is equivalent to {@code string.getBytes(UTF_8).length}, but is more efficient in both    * time and space.    *    * @throws IllegalArgumentException if {@code sequence} contains ill-formed UTF-16 (unpaired    *     surrogates)    */
 DECL|method|encodedLength (CharSequence sequence)
 specifier|public
 specifier|static

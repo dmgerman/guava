@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * Copyright (C) 2008 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License");  * you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+comment|/*  * Copyright (C) 2008 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except  * in compliance with the License. You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software distributed under the License  * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express  * or implied. See the License for the specific language governing permissions and limitations under  * the License.  */
 end_comment
 
 begin_package
@@ -141,7 +141,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Determines a true or false value for any Java {@code char} value, just as {@link Predicate} does  * for any {@link Object}. Also offers basic text processing methods based on this function.  * Implementations are strongly encouraged to be side-effect-free and immutable.  *  *<p>Throughout the documentation of this class, the phrase "matching character" is used to mean  * "any character {@code c} for which {@code this.matches(c)} returns {@code true}".  *  *<p><b>Note:</b> This class deals only with {@code char} values; it does not understand  * supplementary Unicode code points in the range {@code 0x10000} to {@code 0x10FFFF}. Such logical  * characters are encoded into a {@code String} using surrogate pairs, and a {@code CharMatcher}  * treats these just as two separate characters.  *  *<p>Example usages:<pre>  *   String trimmed = {@link #whitespace() whitespace()}.{@link #trimFrom trimFrom}(userInput);  *   if ({@link #ascii() ascii()}.{@link #matchesAllOf matchesAllOf}(s)) { ... }</pre>  *  *<p>See the Guava User Guide article on<a href=  * "https://github.com/google/guava/wiki/StringsExplained#charmatcher">  * {@code CharMatcher}</a>.  *  * @author Kevin Bourrillion  * @since 1.0  */
+comment|/**  * Determines a true or false value for any Java {@code char} value, just as {@link Predicate} does  * for any {@link Object}. Also offers basic text processing methods based on this function.  * Implementations are strongly encouraged to be side-effect-free and immutable.  *  *<p>Throughout the documentation of this class, the phrase "matching character" is used to mean  * "any character {@code c} for which {@code this.matches(c)} returns {@code true}".  *  *<p><b>Note:</b> This class deals only with {@code char} values; it does not understand  * supplementary Unicode code points in the range {@code 0x10000} to {@code 0x10FFFF}. Such logical  * characters are encoded into a {@code String} using surrogate pairs, and a {@code CharMatcher}  * treats these just as two separate characters.  *  *<p>Example usages:<pre>  *   String trimmed = {@link #whitespace() whitespace()}.{@link #trimFrom trimFrom}(userInput);  *   if ({@link #ascii() ascii()}.{@link #matchesAllOf matchesAllOf}(s)) { ... }</pre>  *  *<p>See the Guava User Guide article on  *<a href="https://github.com/google/guava/wiki/StringsExplained#charmatcher">{@code CharMatcher}  *</a>.  *  * @author Kevin Bourrillion  * @since 1.0  */
 end_comment
 
 begin_class
@@ -195,7 +195,7 @@ operator|.
 name|INSTANCE
 return|;
 block|}
-comment|/**    * Determines whether a character is whitespace according to the latest Unicode standard, as    * illustrated<a href="http://unicode.org/cldr/utility/list-unicodeset.jsp?a=%5Cp%7Bwhitespace%7D">here</a>.    * This is not the same definition used by other Java APIs. (See a<a    * href="http://spreadsheets.google.com/pub?key=pd8dAQyHbdewRsnE5x5GzKQ">comparison of several    * definitions of "whitespace"</a>.)    *    *<p><b>Note:</b> as the Unicode definition evolves, we will modify this matcher to keep it up    * to date.    *    * @since 19.0 (since 1.0 as constant {@code WHITESPACE})    */
+comment|/**    * Determines whether a character is whitespace according to the latest Unicode standard, as    * illustrated    *<a href="http://unicode.org/cldr/utility/list-unicodeset.jsp?a=%5Cp%7Bwhitespace%7D">here</a>.    * This is not the same definition used by other Java APIs. (See a    *<a href="http://spreadsheets.google.com/pub?key=pd8dAQyHbdewRsnE5x5GzKQ">comparison of several    * definitions of "whitespace"</a>.)    *    *<p><b>Note:</b> as the Unicode definition evolves, we will modify this matcher to keep it up to    * date.    *    * @since 19.0 (since 1.0 as constant {@code WHITESPACE})    */
 DECL|method|whitespace ()
 specifier|public
 specifier|static
@@ -237,7 +237,7 @@ operator|.
 name|INSTANCE
 return|;
 block|}
-comment|/**    * Determines whether a character is a digit according to    *<a href="http://unicode.org/cldr/utility/list-unicodeset.jsp?a=%5Cp%7Bdigit%7D">Unicode</a>.    * If you only care to match ASCII digits, you can use {@code inRange('0', '9')}.    *    * @since 19.0 (since 1.0 as constant {@code DIGIT})    */
+comment|/**    * Determines whether a character is a digit according to    *<a href="http://unicode.org/cldr/utility/list-unicodeset.jsp?a=%5Cp%7Bdigit%7D">Unicode</a>. If    * you only care to match ASCII digits, you can use {@code inRange('0', '9')}.    *    * @since 19.0 (since 1.0 as constant {@code DIGIT})    */
 DECL|method|digit ()
 specifier|public
 specifier|static
@@ -279,7 +279,7 @@ operator|.
 name|INSTANCE
 return|;
 block|}
-comment|/**    * Determines whether a character is a letter or digit according to {@linkplain    * Character#isLetterOrDigit(char) Java's definition}.    *    * @since 19.0 (since 1.0 as constant {@code JAVA_LETTER_OR_DIGIT}).    */
+comment|/**    * Determines whether a character is a letter or digit according to    * {@linkplain Character#isLetterOrDigit(char) Java's definition}.    *    * @since 19.0 (since 1.0 as constant {@code JAVA_LETTER_OR_DIGIT}).    */
 DECL|method|javaLetterOrDigit ()
 specifier|public
 specifier|static
@@ -293,7 +293,7 @@ operator|.
 name|INSTANCE
 return|;
 block|}
-comment|/**    * Determines whether a character is upper case according to {@linkplain    * Character#isUpperCase(char) Java's definition}.    *    * @since 19.0 (since 1.0 as constant {@code JAVA_UPPER_CASE})    */
+comment|/**    * Determines whether a character is upper case according to    * {@linkplain Character#isUpperCase(char) Java's definition}.    *    * @since 19.0 (since 1.0 as constant {@code JAVA_UPPER_CASE})    */
 DECL|method|javaUpperCase ()
 specifier|public
 specifier|static
@@ -307,7 +307,7 @@ operator|.
 name|INSTANCE
 return|;
 block|}
-comment|/**    * Determines whether a character is lower case according to {@linkplain    * Character#isLowerCase(char) Java's definition}.    *    * @since 19.0 (since 1.0 as constant {@code JAVA_LOWER_CASE})    */
+comment|/**    * Determines whether a character is lower case according to    * {@linkplain Character#isLowerCase(char) Java's definition}.    *    * @since 19.0 (since 1.0 as constant {@code JAVA_LOWER_CASE})    */
 DECL|method|javaLowerCase ()
 specifier|public
 specifier|static
@@ -321,7 +321,7 @@ operator|.
 name|INSTANCE
 return|;
 block|}
-comment|/**    * Determines whether a character is an ISO control character as specified by {@link    * Character#isISOControl(char)}.    *    * @since 19.0 (since 1.0 as constant {@code JAVA_ISO_CONTROL})    */
+comment|/**    * Determines whether a character is an ISO control character as specified by    * {@link Character#isISOControl(char)}.    *    * @since 19.0 (since 1.0 as constant {@code JAVA_ISO_CONTROL})    */
 DECL|method|javaIsoControl ()
 specifier|public
 specifier|static
@@ -365,7 +365,7 @@ return|;
 block|}
 comment|// Legacy constants
 comment|// TODO(cgdecker): Deprecate these so they can be removed eventually
-comment|/**    * Determines whether a character is whitespace according to the latest Unicode standard, as    * illustrated<a href="http://unicode.org/cldr/utility/list-unicodeset.jsp?a=%5Cp%7Bwhitespace%7D">here</a>.    * This is not the same definition used by other Java APIs. (See a<a    * href="http://spreadsheets.google.com/pub?key=pd8dAQyHbdewRsnE5x5GzKQ">comparison of several    * definitions of "whitespace"</a>.)    *    *<p><b>Note:</b> as the Unicode definition evolves, we will modify this constant to keep it up    * to date.    */
+comment|/**    * Determines whether a character is whitespace according to the latest Unicode standard, as    * illustrated    *<a href="http://unicode.org/cldr/utility/list-unicodeset.jsp?a=%5Cp%7Bwhitespace%7D">here</a>.    * This is not the same definition used by other Java APIs. (See a    *<a href="http://spreadsheets.google.com/pub?key=pd8dAQyHbdewRsnE5x5GzKQ">comparison of several    * definitions of "whitespace"</a>.)    *    *<p><b>Note:</b> as the Unicode definition evolves, we will modify this constant to keep it up    * to date.    */
 DECL|field|WHITESPACE
 specifier|public
 specifier|static
@@ -398,7 +398,7 @@ init|=
 name|ascii
 argument_list|()
 decl_stmt|;
-comment|/**    * Determines whether a character is a digit according to    *<a href="http://unicode.org/cldr/utility/list-unicodeset.jsp?a=%5Cp%7Bdigit%7D">Unicode</a>.    * If you only care to match ASCII digits, you can use {@code inRange('0', '9')}.    */
+comment|/**    * Determines whether a character is a digit according to    *<a href="http://unicode.org/cldr/utility/list-unicodeset.jsp?a=%5Cp%7Bdigit%7D">Unicode</a>. If    * you only care to match ASCII digits, you can use {@code inRange('0', '9')}.    */
 DECL|field|DIGIT
 specifier|public
 specifier|static
@@ -431,7 +431,7 @@ init|=
 name|javaLetter
 argument_list|()
 decl_stmt|;
-comment|/**    * Determines whether a character is a letter or digit according to {@linkplain    * Character#isLetterOrDigit(char) Java's definition}.    */
+comment|/**    * Determines whether a character is a letter or digit according to    * {@linkplain Character#isLetterOrDigit(char) Java's definition}.    */
 DECL|field|JAVA_LETTER_OR_DIGIT
 specifier|public
 specifier|static
@@ -442,7 +442,7 @@ init|=
 name|javaLetterOrDigit
 argument_list|()
 decl_stmt|;
-comment|/**    * Determines whether a character is upper case according to {@linkplain    * Character#isUpperCase(char) Java's definition}.    */
+comment|/**    * Determines whether a character is upper case according to    * {@linkplain Character#isUpperCase(char) Java's definition}.    */
 DECL|field|JAVA_UPPER_CASE
 specifier|public
 specifier|static
@@ -453,7 +453,7 @@ init|=
 name|javaUpperCase
 argument_list|()
 decl_stmt|;
-comment|/**    * Determines whether a character is lower case according to {@linkplain    * Character#isLowerCase(char) Java's definition}.    */
+comment|/**    * Determines whether a character is lower case according to    * {@linkplain Character#isLowerCase(char) Java's definition}.    */
 DECL|field|JAVA_LOWER_CASE
 specifier|public
 specifier|static
@@ -464,7 +464,7 @@ init|=
 name|javaLowerCase
 argument_list|()
 decl_stmt|;
-comment|/**    * Determines whether a character is an ISO control character as specified by {@link    * Character#isISOControl(char)}.    */
+comment|/**    * Determines whether a character is an ISO control character as specified by    * {@link Character#isISOControl(char)}.    */
 DECL|field|JAVA_ISO_CONTROL
 specifier|public
 specifier|static
@@ -823,7 +823,7 @@ name|MIN_VALUE
 operator|+
 literal|1
 decl_stmt|;
-comment|/**    * This is the actual implementation of {@link #precomputed}, but we bounce calls through a    * method on {@link Platform} so that we can have different behavior in GWT.    *    *<p>This implementation tries to be smart in a number of ways.  It recognizes cases where    * the negation is cheaper to precompute than the matcher itself; it tries to build small    * hash tables for matchers that only match a few characters, and so on.  In the worst-case    * scenario, it constructs an eight-kilobyte bit array and queries that.    * In many situations this produces a matcher which is faster to query than the original.    */
+comment|/**    * This is the actual implementation of {@link #precomputed}, but we bounce calls through a method    * on {@link Platform} so that we can have different behavior in GWT.    *    *<p>This implementation tries to be smart in a number of ways. It recognizes cases where the    * negation is cheaper to precompute than the matcher itself; it tries to build small hash tables    * for matchers that only match a few characters, and so on. In the worst-case scenario, it    * constructs an eight-kilobyte bit array and queries that. In many situations this produces a    * matcher which is faster to query than the original.    */
 annotation|@
 name|GwtIncompatible
 comment|// java.util.BitSet
@@ -1198,7 +1198,7 @@ name|sequence
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns {@code true} if a character sequence contains only matching characters.    *    *<p>The default implementation iterates over the sequence, invoking {@link #matches} for each    * character, until this returns {@code false} or the end is reached.    *    * @param sequence the character sequence to examine, possibly empty    * @return {@code true} if this matcher matches every character in the sequence, including when    *         the sequence is empty    */
+comment|/**    * Returns {@code true} if a character sequence contains only matching characters.    *    *<p>The default implementation iterates over the sequence, invoking {@link #matches} for each    * character, until this returns {@code false} or the end is reached.    *    * @param sequence the character sequence to examine, possibly empty    * @return {@code true} if this matcher matches every character in the sequence, including when    *     the sequence is empty    */
 DECL|method|matchesAllOf (CharSequence sequence)
 specifier|public
 name|boolean
@@ -1251,7 +1251,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/**    * Returns {@code true} if a character sequence contains no matching characters. Equivalent to    * {@code !matchesAnyOf(sequence)}.    *    *<p>The default implementation iterates over the sequence, invoking {@link #matches} for each    * character, until this returns {@code false} or the end is reached.    *    * @param sequence the character sequence to examine, possibly empty    * @return {@code true} if this matcher matches every character in the sequence, including when    *         the sequence is empty    */
+comment|/**    * Returns {@code true} if a character sequence contains no matching characters. Equivalent to    * {@code !matchesAnyOf(sequence)}.    *    *<p>The default implementation iterates over the sequence, invoking {@link #matches} for each    * character, until this returns {@code false} or the end is reached.    *    * @param sequence the character sequence to examine, possibly empty    * @return {@code true} if this matcher matches every character in the sequence, including when    *     the sequence is empty    */
 DECL|method|matchesNoneOf (CharSequence sequence)
 specifier|public
 name|boolean
@@ -1271,7 +1271,7 @@ operator|-
 literal|1
 return|;
 block|}
-comment|/**    * Returns the index of the first matching character in a character sequence, or {@code -1} if no    * matching character is present.    *    *<p>The default implementation iterates over the sequence in forward order calling {@link    * #matches} for each character.    *    * @param sequence the character sequence to examine from the beginning    * @return an index, or {@code -1} if no character matches    */
+comment|/**    * Returns the index of the first matching character in a character sequence, or {@code -1} if no    * matching character is present.    *    *<p>The default implementation iterates over the sequence in forward order calling    * {@link #matches} for each character.    *    * @param sequence the character sequence to examine from the beginning    * @return an index, or {@code -1} if no character matches    */
 DECL|method|indexIn (CharSequence sequence)
 specifier|public
 name|int
@@ -1290,7 +1290,7 @@ literal|0
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the index of the first matching character in a character sequence, starting from a    * given position, or {@code -1} if no character matches after that position.    *    *<p>The default implementation iterates over the sequence in forward order, beginning at {@code    * start}, calling {@link #matches} for each character.    *    * @param sequence the character sequence to examine    * @param start the first index to examine; must be nonnegative and no greater than {@code    *        sequence.length()}    * @return the index of the first matching character, guaranteed to be no less than {@code start},    *         or {@code -1} if no character matches    * @throws IndexOutOfBoundsException if start is negative or greater than {@code    *         sequence.length()}    */
+comment|/**    * Returns the index of the first matching character in a character sequence, starting from a    * given position, or {@code -1} if no character matches after that position.    *    *<p>The default implementation iterates over the sequence in forward order, beginning at {@code    * start}, calling {@link #matches} for each character.    *    * @param sequence the character sequence to examine    * @param start the first index to examine; must be nonnegative and no greater than {@code    *        sequence.length()}    * @return the index of the first matching character, guaranteed to be no less than {@code start},    *     or {@code -1} if no character matches    * @throws IndexOutOfBoundsException if start is negative or greater than {@code    *         sequence.length()}    */
 DECL|method|indexIn (CharSequence sequence, int start)
 specifier|public
 name|int
@@ -1356,7 +1356,7 @@ operator|-
 literal|1
 return|;
 block|}
-comment|/**    * Returns the index of the last matching character in a character sequence, or {@code -1} if no    * matching character is present.    *    *<p>The default implementation iterates over the sequence in reverse order calling {@link    * #matches} for each character.    *    * @param sequence the character sequence to examine from the end    * @return an index, or {@code -1} if no character matches    */
+comment|/**    * Returns the index of the last matching character in a character sequence, or {@code -1} if no    * matching character is present.    *    *<p>The default implementation iterates over the sequence in reverse order calling    * {@link #matches} for each character.    *    * @param sequence the character sequence to examine from the end    * @return an index, or {@code -1} if no character matches    */
 DECL|method|lastIndexIn (CharSequence sequence)
 specifier|public
 name|int
@@ -1612,7 +1612,7 @@ name|sequence
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a string copy of the input character sequence, with each character that matches this    * matcher replaced by a given replacement character. For example:<pre>   {@code    *    *   CharMatcher.is('a').replaceFrom("radar", 'o')}</pre>    *    * ... returns {@code "rodor"}.    *    *<p>The default implementation uses {@link #indexIn(CharSequence)} to find the first matching    * character, then iterates the remainder of the sequence calling {@link #matches(char)} for each    * character.    *    * @param sequence the character sequence to replace matching characters in    * @param replacement the character to append to the result string in place of each matching    *        character in {@code sequence}    * @return the new string    */
+comment|/**    * Returns a string copy of the input character sequence, with each character that matches this    * matcher replaced by a given replacement character. For example:<pre>   {@code    *    *   CharMatcher.is('a').replaceFrom("radar", 'o')}</pre>    *    * ... returns {@code "rodor"}.    *    *<p>The default implementation uses {@link #indexIn(CharSequence)} to find the first matching    * character, then iterates the remainder of the sequence calling {@link #matches(char)} for each    * character.    *    * @param sequence the character sequence to replace matching characters in    * @param replacement the character to append to the result string in place of each matching    *     character in {@code sequence}    * @return the new string    */
 DECL|method|replaceFrom (CharSequence sequence, char replacement)
 specifier|public
 name|String
@@ -1716,7 +1716,7 @@ name|chars
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a string copy of the input character sequence, with each character that matches this    * matcher replaced by a given replacement sequence. For example:<pre>   {@code    *    *   CharMatcher.is('a').replaceFrom("yaha", "oo")}</pre>    *    * ... returns {@code "yoohoo"}.    *    *<p><b>Note:</b> If the replacement is a fixed string with only one character, you are better    * off calling {@link #replaceFrom(CharSequence, char)} directly.    *    * @param sequence the character sequence to replace matching characters in    * @param replacement the characters to append to the result string in place of each matching    *        character in {@code sequence}    * @return the new string    */
+comment|/**    * Returns a string copy of the input character sequence, with each character that matches this    * matcher replaced by a given replacement sequence. For example:<pre>   {@code    *    *   CharMatcher.is('a').replaceFrom("yaha", "oo")}</pre>    *    * ... returns {@code "yoohoo"}.    *    *<p><b>Note:</b> If the replacement is a fixed string with only one character, you are better    * off calling {@link #replaceFrom(CharSequence, char)} directly.    *    * @param sequence the character sequence to replace matching characters in    * @param replacement the characters to append to the result string in place of each matching    *     character in {@code sequence}    * @return the new string    */
 DECL|method|replaceFrom (CharSequence sequence, CharSequence replacement)
 specifier|public
 name|String
@@ -2132,7 +2132,7 @@ return|return
 literal|""
 return|;
 block|}
-comment|/**    * Returns a string copy of the input character sequence, with each group of consecutive    * characters that match this matcher replaced by a single replacement character. For example:    *<pre>   {@code    *    *   CharMatcher.anyOf("eko").collapseFrom("bookkeeper", '-')}</pre>    *    * ... returns {@code "b-p-r"}.    *    *<p>The default implementation uses {@link #indexIn(CharSequence)} to find the first matching    * character, then iterates the remainder of the sequence calling {@link #matches(char)} for each    * character.    *    * @param sequence the character sequence to replace matching groups of characters in    * @param replacement the character to append to the result string in place of each group of    *        matching characters in {@code sequence}    * @return the new string    */
+comment|/**    * Returns a string copy of the input character sequence, with each group of consecutive    * characters that match this matcher replaced by a single replacement character. For example:    *<pre>   {@code    *    *   CharMatcher.anyOf("eko").collapseFrom("bookkeeper", '-')}</pre>    *    * ... returns {@code "b-p-r"}.    *    *<p>The default implementation uses {@link #indexIn(CharSequence)} to find the first matching    * character, then iterates the remainder of the sequence calling {@link #matches(char)} for each    * character.    *    * @param sequence the character sequence to replace matching groups of characters in    * @param replacement the character to append to the result string in place of each group of    *     matching characters in {@code sequence}    * @return the new string    */
 DECL|method|collapseFrom (CharSequence sequence, char replacement)
 specifier|public
 name|String

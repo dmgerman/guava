@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * Copyright (C) 2012 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License");  * you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+comment|/*  * Copyright (C) 2012 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except  * in compliance with the License. You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software distributed under the License  * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express  * or implied. See the License for the specific language governing permissions and limitations under  * the License.  */
 end_comment
 
 begin_package
@@ -71,7 +71,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An immutable version of CharMatcher for smallish sets of characters that uses a hash table  * with linear probing to check for matches.  *  * @author Christopher Swenson  */
+comment|/**  * An immutable version of CharMatcher for smallish sets of characters that uses a hash table with  * linear probing to check for matches.  *  * @author Christopher Swenson  */
 end_comment
 
 begin_class
@@ -232,7 +232,7 @@ name|DESIRED_LOAD_FACTOR
 init|=
 literal|0.5
 decl_stmt|;
-comment|/**    * Returns an array size suitable for the backing array of a hash table that    * uses open addressing with linear probing in its implementation.  The    * returned size is the smallest power of two that can hold setSize elements    * with the desired load factor.    */
+comment|/**    * Returns an array size suitable for the backing array of a hash table that uses open addressing    * with linear probing in its implementation. The returned size is the smallest power of two that    * can hold setSize elements with the desired load factor.    */
 annotation|@
 name|VisibleForTesting
 DECL|method|chooseTableSize (int setSize)
@@ -510,7 +510,6 @@ name|startingIndex
 decl_stmt|;
 do|do
 block|{
-comment|// Check for empty.
 if|if
 condition|(
 name|table
@@ -521,10 +520,10 @@ operator|==
 literal|0
 condition|)
 block|{
+comment|// Check for empty.
 return|return
 literal|false
 return|;
-comment|// Check for match.
 block|}
 elseif|else
 if|if
@@ -537,6 +536,7 @@ operator|==
 name|c
 condition|)
 block|{
+comment|// Check for match.
 return|return
 literal|true
 return|;

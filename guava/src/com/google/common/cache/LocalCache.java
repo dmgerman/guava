@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * Copyright (C) 2009 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License");  * you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+comment|/*  * Copyright (C) 2009 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except  * in compliance with the License. You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software distributed under the License  * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express  * or implied. See the License for the specific language governing permissions and limitations under  * the License.  */
 end_comment
 
 begin_package
@@ -883,7 +883,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * The concurrent hash map implementation built by {@link CacheBuilder}.  *  *<p>This implementation is heavily derived from revision 1.96 of<a  * href="http://tinyurl.com/ConcurrentHashMap">ConcurrentHashMap.java</a>.  *  * @author Charles Fry  * @author Bob Lee ({@code com.google.common.collect.MapMaker})  * @author Doug Lea ({@code ConcurrentHashMap})  */
+comment|/**  * The concurrent hash map implementation built by {@link CacheBuilder}.  *  *<p>This implementation is heavily derived from revision 1.96 of  *<a href="http://tinyurl.com/ConcurrentHashMap">ConcurrentHashMap.java</a>.  *  * @author Charles Fry  * @author Bob Lee ({@code com.google.common.collect.MapMaker})  * @author Doug Lea ({@code ConcurrentHashMap})  */
 end_comment
 
 begin_class
@@ -1122,16 +1122,16 @@ specifier|final
 name|EntryFactory
 name|entryFactory
 decl_stmt|;
-comment|/**    * Accumulates global cache statistics. Note that there are also per-segments stats counters    * which must be aggregated to obtain a global stats view.    */
+comment|/**    * Accumulates global cache statistics. Note that there are also per-segments stats counters which    * must be aggregated to obtain a global stats view.    */
 DECL|field|globalStatsCounter
 specifier|final
 name|StatsCounter
 name|globalStatsCounter
 decl_stmt|;
 comment|/**    * The default cache loader to use on loading operations.    */
+DECL|field|defaultLoader
 annotation|@
 name|Nullable
-DECL|field|defaultLoader
 specifier|final
 name|CacheLoader
 argument_list|<
@@ -3130,7 +3130,7 @@ block|,
 name|WEAK_ACCESS_WRITE
 block|,     }
 decl_stmt|;
-DECL|method|getFactory (Strength keyStrength, boolean usesAccessQueue, boolean usesWriteQueue)
+DECL|method|getFactory ( Strength keyStrength, boolean usesAccessQueue, boolean usesWriteQueue)
 specifier|static
 name|EntryFactory
 name|getFactory
@@ -3435,7 +3435,7 @@ name|V
 name|get
 parameter_list|()
 function_decl|;
-comment|/**      * Waits for a value that may still be loading. Unlike get(), this method can block (in the      * case of FutureValueReference).      *      * @throws ExecutionException if the loading thread throws an exception      * @throws ExecutionError if the loading thread throws an error      */
+comment|/**      * Waits for a value that may still be loading. Unlike get(), this method can block (in the case      * of FutureValueReference).      *      * @throws ExecutionException if the loading thread throws an exception      * @throws ExecutionError if the loading thread throws an error      */
 DECL|method|waitForValue ()
 name|V
 name|waitForValue
@@ -3492,7 +3492,7 @@ argument_list|>
 name|entry
 parameter_list|)
 function_decl|;
-comment|/**      * Notifify pending loads that a new value was set. This is only relevant to loading      * value references.      */
+comment|/**      * Notifify pending loads that a new value was set. This is only relevant to loading value      * references.      */
 DECL|method|notifyNewValue (@ullable V newValue)
 name|void
 name|notifyNewValue
@@ -3690,7 +3690,7 @@ operator|)
 name|UNSET
 return|;
 block|}
-comment|/**    * An entry in a reference map.    *    * Entries in the map can be in the following states:    *    * Valid:    * - Live: valid key/value are set    * - Loading: loading is pending    *    * Invalid:    * - Expired: time expired (key/value may still be set)    * - Collected: key/value was partially collected, but not yet cleaned up    * - Unset: marked as unset, awaiting cleanup or reuse    */
+comment|/**    * An entry in a reference map.    *    * Entries in the map can be in the following states:    *    * Valid:    *    * - Live: valid key/value are set    *    * - Loading: loading is pending    *    * Invalid:    *    * - Expired: time expired (key/value may still be set)    *    * - Collected: key/value was partially collected, but not yet cleaned up    *    * - Unset: marked as unset, awaiting cleanup or reuse    */
 DECL|interface|ReferenceEntry
 interface|interface
 name|ReferenceEntry
@@ -3818,7 +3818,7 @@ argument_list|>
 name|previous
 parameter_list|)
 function_decl|;
-comment|/*      * Implemented by entries that use write order. Write entries are maintained in a      * doubly-linked list. New entries are added at the tail of the list at write time and stale      * entries are expired from the head of the list.      */
+comment|/*      * Implemented by entries that use write order. Write entries are maintained in a doubly-linked      * list. New entries are added at the tail of the list at write time and stale entries are      * expired from the head of the list.      */
 comment|/**      * Returns the time that this entry was last written, in ns.      */
 DECL|method|getWriteTime ()
 name|long
@@ -5970,7 +5970,7 @@ argument_list|,
 name|V
 argument_list|>
 block|{
-DECL|method|WeakAccessEntry ( ReferenceQueue<K> queue, K key, int hash, @Nullable ReferenceEntry<K, V> next)
+DECL|method|WeakAccessEntry (ReferenceQueue<K> queue, K key, int hash, @Nullable ReferenceEntry<K, V> next)
 name|WeakAccessEntry
 parameter_list|(
 name|ReferenceQueue
@@ -6173,7 +6173,7 @@ argument_list|,
 name|V
 argument_list|>
 block|{
-DECL|method|WeakWriteEntry ( ReferenceQueue<K> queue, K key, int hash, @Nullable ReferenceEntry<K, V> next)
+DECL|method|WeakWriteEntry (ReferenceQueue<K> queue, K key, int hash, @Nullable ReferenceEntry<K, V> next)
 name|WeakWriteEntry
 parameter_list|(
 name|ReferenceQueue
@@ -7278,7 +7278,7 @@ specifier|final
 name|int
 name|weight
 decl_stmt|;
-DECL|method|WeightedWeakValueReference (ReferenceQueue<V> queue, V referent, ReferenceEntry<K, V> entry, int weight)
+DECL|method|WeightedWeakValueReference ( ReferenceQueue<V> queue, V referent, ReferenceEntry<K, V> entry, int weight)
 name|WeightedWeakValueReference
 parameter_list|(
 name|ReferenceQueue
@@ -7404,7 +7404,7 @@ specifier|final
 name|int
 name|weight
 decl_stmt|;
-DECL|method|WeightedSoftValueReference (ReferenceQueue<V> queue, V referent, ReferenceEntry<K, V> entry, int weight)
+DECL|method|WeightedSoftValueReference ( ReferenceQueue<V> queue, V referent, ReferenceEntry<K, V> entry, int weight)
 name|WeightedSoftValueReference
 parameter_list|(
 name|ReferenceQueue
@@ -7565,7 +7565,7 @@ name|weight
 return|;
 block|}
 block|}
-comment|/**    * Applies a supplemental hash function to a given hash code, which defends against poor quality    * hash functions. This is critical when the concurrent hash map uses power-of-two length hash    * tables, that otherwise encounter collisions for hash codes that do not differ in lower or    * upper bits.    *    * @param h hash code    */
+comment|/**    * Applies a supplemental hash function to a given hash code, which defends against poor quality    * hash functions. This is critical when the concurrent hash map uses power-of-two length hash    * tables, that otherwise encounter collisions for hash codes that do not differ in lower or upper    * bits.    *    * @param h hash code    */
 DECL|method|rehash (int h)
 specifier|static
 name|int
@@ -8354,7 +8354,7 @@ name|nullEntry
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Notifies listeners that an entry has been automatically removed due to expiration, eviction,    * or eligibility for garbage collection. This should be called every time expireEntries or    * evictEntry is called (once the lock is released).    */
+comment|/**    * Notifies listeners that an entry has been automatically removed due to expiration, eviction, or    * eligibility for garbage collection. This should be called every time expireEntries or    * evictEntry is called (once the lock is released).    */
 DECL|method|processPendingNotifications ()
 name|void
 name|processPendingNotifications
@@ -8463,7 +8463,7 @@ extends|extends
 name|ReentrantLock
 block|{
 comment|/*      * TODO(fry): Consider copying variables (like evictsBySize) from outer class into this class.      * It will require more memory but will reduce indirection.      */
-comment|/*      * Segments maintain a table of entry lists that are ALWAYS kept in a consistent state, so can      * be read without locking. Next fields of nodes are immutable (final). All list additions are      * performed at the front of each bin. This makes it easy to check changes, and also fast to      * traverse. When nodes would otherwise be changed, new nodes are created to replace them. This      * works well for hash tables since the bin lists tend to be short. (The average length is less      * than two.)      *      * Read operations can thus proceed without locking, but rely on selected uses of volatiles to      * ensure that completed write operations performed by other threads are noticed. For most      * purposes, the "count" field, tracking the number of elements, serves as that volatile      * variable ensuring visibility. This is convenient because this field needs to be read in many      * read operations anyway:      *      * - All (unsynchronized) read operations must first read the "count" field, and should not      * look at table entries if it is 0.      *      * - All (synchronized) write operations should write to the "count" field after structurally      * changing any bin. The operations must not take any action that could even momentarily      * cause a concurrent read operation to see inconsistent data. This is made easier by the      * nature of the read operations in Map. For example, no operation can reveal that the table      * has grown but the threshold has not yet been updated, so there are no atomicity requirements      * for this with respect to reads.      *      * As a guide, all critical volatile reads and writes to the count field are marked in code      * comments.      */
+comment|/*      * Segments maintain a table of entry lists that are ALWAYS kept in a consistent state, so can      * be read without locking. Next fields of nodes are immutable (final). All list additions are      * performed at the front of each bin. This makes it easy to check changes, and also fast to      * traverse. When nodes would otherwise be changed, new nodes are created to replace them. This      * works well for hash tables since the bin lists tend to be short. (The average length is less      * than two.)      *      * Read operations can thus proceed without locking, but rely on selected uses of volatiles to      * ensure that completed write operations performed by other threads are noticed. For most      * purposes, the "count" field, tracking the number of elements, serves as that volatile      * variable ensuring visibility. This is convenient because this field needs to be read in many      * read operations anyway:      *      * - All (unsynchronized) read operations must first read the "count" field, and should not look      * at table entries if it is 0.      *      * - All (synchronized) write operations should write to the "count" field after structurally      * changing any bin. The operations must not take any action that could even momentarily cause a      * concurrent read operation to see inconsistent data. This is made easier by the nature of the      * read operations in Map. For example, no operation can reveal that the table has grown but the      * threshold has not yet been updated, so there are no atomicity requirements for this with      * respect to reads.      *      * As a guide, all critical volatile reads and writes to the count field are marked in code      * comments.      */
 DECL|field|map
 annotation|@
 name|Weak
@@ -8492,7 +8492,7 @@ DECL|field|totalWeight
 name|long
 name|totalWeight
 decl_stmt|;
-comment|/**      * Number of updates that alter the size of the table. This is used during bulk-read methods to      * make sure they see a consistent snapshot: If modCounts change during a traversal of segments      * loading size or checking containsValue, then we might have an inconsistent view of state      * so (usually) must retry.      */
+comment|/**      * Number of updates that alter the size of the table. This is used during bulk-read methods to      * make sure they see a consistent snapshot: If modCounts change during a traversal of segments      * loading size or checking containsValue, then we might have an inconsistent view of state so      * (usually) must retry.      */
 DECL|field|modCount
 name|int
 name|modCount
@@ -8608,7 +8608,7 @@ specifier|final
 name|StatsCounter
 name|statsCounter
 decl_stmt|;
-DECL|method|Segment (LocalCache<K, V> map, int initialCapacity, long maxSegmentWeight, StatsCounter statsCounter)
+DECL|method|Segment ( LocalCache<K, V> map, int initialCapacity, long maxSegmentWeight, StatsCounter statsCounter)
 name|Segment
 parameter_list|(
 name|LocalCache
@@ -9959,7 +9959,7 @@ expr_stmt|;
 block|}
 block|}
 comment|// at most one of loadSync/loadAsync may be called for any given LoadingValueReference
-DECL|method|loadSync (K key, int hash, LoadingValueReference<K, V> loadingValueReference, CacheLoader<? super K, V> loader)
+DECL|method|loadSync ( K key, int hash, LoadingValueReference<K, V> loadingValueReference, CacheLoader<? super K, V> loader)
 name|V
 name|loadSync
 parameter_list|(
@@ -10018,7 +10018,7 @@ name|loadingFuture
 argument_list|)
 return|;
 block|}
-DECL|method|loadAsync (final K key, final int hash, final LoadingValueReference<K, V> loadingValueReference, CacheLoader<? super K, V> loader)
+DECL|method|loadAsync ( final K key, final int hash, final LoadingValueReference<K, V> loadingValueReference, CacheLoader<? super K, V> loader)
 name|ListenableFuture
 argument_list|<
 name|V
@@ -10137,7 +10137,7 @@ name|loadingFuture
 return|;
 block|}
 comment|/**      * Waits uninterruptibly for {@code newValue} to be loaded, and then records loading stats.      */
-DECL|method|getAndRecordStats (K key, int hash, LoadingValueReference<K, V> loadingValueReference, ListenableFuture<V> newValue)
+DECL|method|getAndRecordStats ( K key, int hash, LoadingValueReference<K, V> loadingValueReference, ListenableFuture<V> newValue)
 name|V
 name|getAndRecordStats
 parameter_list|(
@@ -10253,7 +10253,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-DECL|method|scheduleRefresh (ReferenceEntry<K, V> entry, K key, int hash, V oldValue, long now, CacheLoader<? super K, V> loader)
+DECL|method|scheduleRefresh ( ReferenceEntry<K, V> entry, K key, int hash, V oldValue, long now, CacheLoader<? super K, V> loader)
 name|V
 name|scheduleRefresh
 parameter_list|(
@@ -10456,7 +10456,7 @@ block|}
 comment|/**      * Returns a newly inserted {@code LoadingValueReference}, or null if the live value reference      * is already loading.      */
 annotation|@
 name|Nullable
-DECL|method|insertLoadingValueReference (final K key, final int hash, boolean checkTime)
+DECL|method|insertLoadingValueReference ( final K key, final int hash, boolean checkTime)
 name|LoadingValueReference
 argument_list|<
 name|K
@@ -11030,7 +11030,7 @@ condition|)
 block|{}
 block|}
 comment|// recency queue, shared by expiration and eviction
-comment|/**      * Records the relative order in which this read was performed by adding {@code entry} to the      * recency queue. At write-time, or when the queue is full past the threshold, the queue will      * be drained and the entries therein processed.      *      *<p>Note: locked reads should use {@link #recordLockedRead}.      */
+comment|/**      * Records the relative order in which this read was performed by adding {@code entry} to the      * recency queue. At write-time, or when the queue is full past the threshold, the queue will be      * drained and the entries therein processed.      *      *<p>Note: locked reads should use {@link #recordLockedRead}.      */
 DECL|method|recordRead (ReferenceEntry<K, V> entry, long now)
 name|void
 name|recordRead
@@ -11414,7 +11414,7 @@ name|GuardedBy
 argument_list|(
 literal|"this"
 argument_list|)
-DECL|method|enqueueNotification (@ullable K key, int hash, @Nullable V value, int weight, RemovalCause cause)
+DECL|method|enqueueNotification ( @ullable K key, int hash, @Nullable V value, int weight, RemovalCause cause)
 name|void
 name|enqueueNotification
 parameter_list|(
@@ -12181,7 +12181,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**      * This method is a convenience for testing. Code should call {@link      * LocalCache#containsValue} directly.      */
+comment|/**      * This method is a convenience for testing. Code should call {@link LocalCache#containsValue}      * directly.      */
 annotation|@
 name|VisibleForTesting
 DECL|method|containsValue (Object value)
@@ -12799,7 +12799,7 @@ condition|)
 block|{
 return|return;
 block|}
-comment|/*        * Reclassify nodes in each list to new Map. Because we are using power-of-two expansion, the        * elements from each bin must either stay at same index, or move with a power of two offset.        * We eliminate unnecessary node creation by catching cases where old nodes can be reused        * because their next fields won't change. Statistically, at the default threshold, only        * about one-sixth of them need cloning when a table doubles. The nodes they replace will be        * garbage collectable as soon as they are no longer referenced by any reader thread that may        * be in the midst of traversing table right now.        */
+comment|/*        * Reclassify nodes in each list to new Map. Because we are using power-of-two expansion, the        * elements from each bin must either stay at same index, or move with a power of two offset.        * We eliminate unnecessary node creation by catching cases where old nodes can be reused        * because their next fields won't change. Statistically, at the default threshold, only about        * one-sixth of them need cloning when a table doubles. The nodes they replace will be garbage        * collectable as soon as they are no longer referenced by any reader thread that may be in        * the midst of traversing table right now.        */
 name|int
 name|newCount
 init|=
@@ -14015,7 +14015,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-DECL|method|storeLoadedValue (K key, int hash, LoadingValueReference<K, V> oldValueReference, V newValue)
+DECL|method|storeLoadedValue ( K key, int hash, LoadingValueReference<K, V> oldValueReference, V newValue)
 name|boolean
 name|storeLoadedValue
 parameter_list|(
@@ -14931,7 +14931,7 @@ literal|"this"
 argument_list|)
 annotation|@
 name|Nullable
-DECL|method|removeValueFromChain (ReferenceEntry<K, V> first, ReferenceEntry<K, V> entry, @Nullable K key, int hash, V value, ValueReference<K, V> valueReference, RemovalCause cause)
+DECL|method|removeValueFromChain ( ReferenceEntry<K, V> first, ReferenceEntry<K, V> entry, @Nullable K key, int hash, V value, ValueReference<K, V> valueReference, RemovalCause cause)
 name|ReferenceEntry
 argument_list|<
 name|K
@@ -15047,7 +15047,7 @@ literal|"this"
 argument_list|)
 annotation|@
 name|Nullable
-DECL|method|removeEntryFromChain (ReferenceEntry<K, V> first, ReferenceEntry<K, V> entry)
+DECL|method|removeEntryFromChain ( ReferenceEntry<K, V> first, ReferenceEntry<K, V> entry)
 name|ReferenceEntry
 argument_list|<
 name|K
@@ -16085,7 +16085,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Performs routine cleanup prior to executing a write. This should be called every time a      * write thread acquires the segment lock, immediately after acquiring the lock.      *      *<p>Post-condition: expireEntries has been run.      */
+comment|/**      * Performs routine cleanup prior to executing a write. This should be called every time a write      * thread acquires the segment lock, immediately after acquiring the lock.      *      *<p>Post-condition: expireEntries has been run.      */
 annotation|@
 name|GuardedBy
 argument_list|(
@@ -16739,7 +16739,7 @@ return|;
 block|}
 block|}
 comment|// Queues
-comment|/**    * A custom queue for managing eviction order. Note that this is tightly integrated with {@code    * ReferenceEntry}, upon which it relies to perform its linking.    *    *<p>Note that this entire implementation makes the assumption that all elements which are in    * the map are also in this queue, and that all elements not in the queue are not in the map.    *    *<p>The benefits of creating our own queue are that (1) we can replace elements in the middle    * of the queue as part of copyWriteEntry, and (2) the contains method is highly optimized    * for the current model.    */
+comment|/**    * A custom queue for managing eviction order. Note that this is tightly integrated with {@code    * ReferenceEntry}, upon which it relies to perform its linking.    *    *<p>Note that this entire implementation makes the assumption that all elements which are in the    * map are also in this queue, and that all elements not in the queue are not in the map.    *    *<p>The benefits of creating our own queue are that (1) we can replace elements in the middle of    * the queue as part of copyWriteEntry, and (2) the contains method is highly optimized for the    * current model.    */
 DECL|class|WriteQueue
 specifier|static
 specifier|final
@@ -17365,7 +17365,7 @@ block|}
 return|;
 block|}
 block|}
-comment|/**    * A custom queue for managing access order. Note that this is tightly integrated with    * {@code ReferenceEntry}, upon which it reliese to perform its linking.    *    *<p>Note that this entire implementation makes the assumption that all elements which are in    * the map are also in this queue, and that all elements not in the queue are not in the map.    *    *<p>The benefits of creating our own queue are that (1) we can replace elements in the middle    * of the queue as part of copyWriteEntry, and (2) the contains method is highly optimized    * for the current model.    */
+comment|/**    * A custom queue for managing access order. Note that this is tightly integrated with    * {@code ReferenceEntry}, upon which it reliese to perform its linking.    *    *<p>Note that this entire implementation makes the assumption that all elements which are in the    * map are also in this queue, and that all elements not in the queue are not in the map.    *    *<p>The benefits of creating our own queue are that (1) we can replace elements in the middle of    * the queue as part of copyWriteEntry, and (2) the contains method is highly optimized for the    * current model.    */
 DECL|class|AccessQueue
 specifier|static
 specifier|final
@@ -18027,7 +18027,7 @@ name|boolean
 name|isEmpty
 parameter_list|()
 block|{
-comment|/*      * Sum per-segment modCounts to avoid mis-reporting when elements are concurrently added and      * removed in one segment while checking another, in which case the table was never actually      * empty at any point. (The sum ensures accuracy up through at least 1<<31 per-segment      * modifications before recheck.)  Method containsValue() uses similar constructions for      * stability checks.      */
+comment|/*      * Sum per-segment modCounts to avoid mis-reporting when elements are concurrently added and      * removed in one segment while checking another, in which case the table was never actually      * empty at any point. (The sum ensures accuracy up through at least 1<<31 per-segment      * modifications before recheck.) Method containsValue() uses similar constructions for      * stability checks.      */
 name|long
 name|sum
 init|=
@@ -20597,7 +20597,7 @@ argument_list|()
 return|;
 block|}
 block|}
-comment|/**    * Custom Entry class used by EntryIterator.next(), that relays setValue changes to the    * underlying map.    */
+comment|/**    * Custom Entry class used by EntryIterator.next(), that relays setValue changes to the underlying    * map.    */
 DECL|class|WriteThroughEntry
 specifier|final
 class|class
@@ -20772,9 +20772,9 @@ argument_list|()
 throw|;
 block|}
 comment|/**      * Returns a string representation of the form<code>{key}={value}</code>.      */
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString
@@ -21149,9 +21149,9 @@ operator|=
 name|map
 expr_stmt|;
 block|}
-DECL|method|size ()
 annotation|@
 name|Override
+DECL|method|size ()
 specifier|public
 name|int
 name|size
@@ -21164,9 +21164,9 @@ name|size
 argument_list|()
 return|;
 block|}
-DECL|method|isEmpty ()
 annotation|@
 name|Override
+DECL|method|isEmpty ()
 specifier|public
 name|boolean
 name|isEmpty
@@ -21179,9 +21179,9 @@ name|isEmpty
 argument_list|()
 return|;
 block|}
-DECL|method|clear ()
 annotation|@
 name|Override
+DECL|method|clear ()
 specifier|public
 name|void
 name|clear
@@ -21502,7 +21502,7 @@ return|;
 block|}
 block|}
 comment|// Serialization Support
-comment|/**    * Serializes the configuration of a LocalCache, reconsitituting it as a Cache using    * CacheBuilder upon deserialization. An instance of this class is fit for use by the writeReplace    * of LocalManualCache.    *    * Unfortunately, readResolve() doesn't get called when a circular dependency is present, so the    * proxy must be able to behave as the cache itself.    */
+comment|/**    * Serializes the configuration of a LocalCache, reconsitituting it as a Cache using CacheBuilder    * upon deserialization. An instance of this class is fit for use by the writeReplace of    * LocalManualCache.    *    * Unfortunately, readResolve() doesn't get called when a circular dependency is present, so the    * proxy must be able to behave as the cache itself.    */
 DECL|class|ManualSerializationProxy
 specifier|static
 class|class
@@ -22778,7 +22778,7 @@ argument_list|,
 name|V
 argument_list|>
 block|{
-DECL|method|LocalLoadingCache (CacheBuilder<? super K, ? super V> builder, CacheLoader<? super K, V> loader)
+DECL|method|LocalLoadingCache ( CacheBuilder<? super K, ? super V> builder, CacheLoader<? super K, V> loader)
 name|LocalLoadingCache
 parameter_list|(
 name|CacheBuilder

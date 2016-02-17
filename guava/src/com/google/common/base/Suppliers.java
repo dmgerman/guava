@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * Copyright (C) 2007 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License");  * you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+comment|/*  * Copyright (C) 2007 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except  * in compliance with the License. You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software distributed under the License  * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express  * or implied. See the License for the specific language governing permissions and limitations under  * the License.  */
 end_comment
 
 begin_package
@@ -91,7 +91,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Useful suppliers.  *  *<p>All methods return serializable suppliers as long as they're given  * serializable parameters.  *  * @author Laurence Gonsalves  * @author Harry Heymann  * @since 2.0  */
+comment|/**  * Useful suppliers.  *  *<p>All methods return serializable suppliers as long as they're given serializable parameters.  *  * @author Laurence Gonsalves  * @author Harry Heymann  * @since 2.0  */
 end_comment
 
 begin_class
@@ -108,7 +108,7 @@ specifier|private
 name|Suppliers
 parameter_list|()
 block|{}
-comment|/**    * Returns a new supplier which is the composition of the provided function    * and supplier. In other words, the new supplier's value will be computed by    * retrieving the value from {@code supplier}, and then applying    * {@code function} to that value. Note that the resulting supplier will not    * call {@code supplier} or invoke {@code function} until it is called.    */
+comment|/**    * Returns a new supplier which is the composition of the provided function and supplier. In other    * words, the new supplier's value will be computed by retrieving the value from {@code supplier},    * and then applying {@code function} to that value. Note that the resulting supplier will not    * call {@code supplier} or invoke {@code function} until it is called.    */
 DECL|method|compose (Function<? super F, T> function, Supplier<F> supplier)
 specifier|public
 specifier|static
@@ -371,7 +371,7 @@ init|=
 literal|0
 decl_stmt|;
 block|}
-comment|/**    * Returns a supplier which caches the instance retrieved during the first    * call to {@code get()} and returns that value on subsequent calls to    * {@code get()}. See:    *<a href="http://en.wikipedia.org/wiki/Memoization">memoization</a>    *    *<p>The returned supplier is thread-safe. The delegate's {@code get()}    * method will be invoked at most once. The supplier's serialized form does    * not contain the cached value, which will be recalculated when {@code get()}    * is called on the reserialized instance.    *    *<p>If {@code delegate} is an instance created by an earlier call to {@code    * memoize}, it is returned directly.    */
+comment|/**    * Returns a supplier which caches the instance retrieved during the first call to {@code get()}    * and returns that value on subsequent calls to {@code get()}. See:    *<a href="http://en.wikipedia.org/wiki/Memoization">memoization</a>    *    *<p>The returned supplier is thread-safe. The delegate's {@code get()} method will be invoked at    * most once. The supplier's serialized form does not contain the cached value, which will be    * recalculated when {@code get()} is called on the reserialized instance.    *    *<p>If {@code delegate} is an instance created by an earlier call to {@code    * memoize}, it is returned directly.    */
 DECL|method|memoize (Supplier<T> delegate)
 specifier|public
 specifier|static
@@ -548,7 +548,7 @@ init|=
 literal|0
 decl_stmt|;
 block|}
-comment|/**    * Returns a supplier that caches the instance supplied by the delegate and    * removes the cached value after the specified time has passed. Subsequent    * calls to {@code get()} return the cached value if the expiration time has    * not passed. After the expiration time, a new value is retrieved, cached,    * and returned. See:    *<a href="http://en.wikipedia.org/wiki/Memoization">memoization</a>    *    *<p>The returned supplier is thread-safe. The supplier's serialized form    * does not contain the cached value, which will be recalculated when {@code    * get()} is called on the reserialized instance.    *    * @param duration the length of time after a value is created that it    *     should stop being returned by subsequent {@code get()} calls    * @param unit the unit that {@code duration} is expressed in    * @throws IllegalArgumentException if {@code duration} is not positive    * @since 2.0    */
+comment|/**    * Returns a supplier that caches the instance supplied by the delegate and removes the cached    * value after the specified time has passed. Subsequent calls to {@code get()} return the cached    * value if the expiration time has not passed. After the expiration time, a new value is    * retrieved, cached, and returned. See:    *<a href="http://en.wikipedia.org/wiki/Memoization">memoization</a>    *    *<p>The returned supplier is thread-safe. The supplier's serialized form does not contain the    * cached value, which will be recalculated when {@code    * get()} is called on the reserialized instance.    *    * @param duration the length of time after a value is created that it should stop being returned    *     by subsequent {@code get()} calls    * @param unit the unit that {@code duration} is expressed in    * @throws IllegalArgumentException if {@code duration} is not positive    * @since 2.0    */
 DECL|method|memoizeWithExpiration ( Supplier<T> delegate, long duration, TimeUnit unit)
 specifier|public
 specifier|static
@@ -690,7 +690,7 @@ parameter_list|()
 block|{
 comment|// Another variant of Double Checked Locking.
 comment|//
-comment|// We use two volatile reads.  We could reduce this to one by
+comment|// We use two volatile reads. We could reduce this to one by
 comment|// putting our fields into a holder class, but (at least on x86)
 comment|// the extra memory consumption and indirection are more
 comment|// expensive than the extra volatile reads.
@@ -980,7 +980,7 @@ init|=
 literal|0
 decl_stmt|;
 block|}
-comment|/**    * Returns a supplier whose {@code get()} method synchronizes on    * {@code delegate} before calling it, making it thread-safe.    */
+comment|/**    * Returns a supplier whose {@code get()} method synchronizes on {@code delegate} before calling    * it, making it thread-safe.    */
 DECL|method|synchronizedSupplier (Supplier<T> delegate)
 specifier|public
 specifier|static
@@ -1104,7 +1104,7 @@ init|=
 literal|0
 decl_stmt|;
 block|}
-comment|/**    * Returns a function that accepts a supplier and returns the result of    * invoking {@link Supplier#get} on that supplier.    *    * @since 8.0    */
+comment|/**    * Returns a function that accepts a supplier and returns the result of invoking    * {@link Supplier#get} on that supplier.    *    * @since 8.0    */
 annotation|@
 name|Beta
 DECL|method|supplierFunction ()

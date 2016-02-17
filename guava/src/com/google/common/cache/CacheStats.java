@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * Copyright (C) 2011 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License");  * you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+comment|/*  * Copyright (C) 2011 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except  * in compliance with the License. You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software distributed under the License  * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express  * or implied. See the License for the specific language governing permissions and limitations under  * the License.  */
 end_comment
 
 begin_package
@@ -97,7 +97,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Statistics about the performance of a {@link Cache}. Instances of this class are immutable.  *  *<p>Cache statistics are incremented according to the following rules:  *  *<ul>  *<li>When a cache lookup encounters an existing cache entry {@code hitCount} is incremented.  *<li>When a cache lookup first encounters a missing cache entry, a new entry is loaded.  *<ul>  *<li>After successfully loading an entry {@code missCount} and {@code loadSuccessCount} are  *     incremented, and the total loading time, in nanoseconds, is added to  *     {@code totalLoadTime}.  *<li>When an exception is thrown while loading an entry, {@code missCount} and {@code  *     loadExceptionCount} are incremented, and the total loading time, in nanoseconds, is  *     added to {@code totalLoadTime}.  *<li>Cache lookups that encounter a missing cache entry that is still loading will wait  *     for loading to complete (whether successful or not) and then increment {@code missCount}.  *</ul>  *<li>When an entry is evicted from the cache, {@code evictionCount} is incremented.  *<li>No stats are modified when a cache entry is invalidated or manually removed.  *<li>No stats are modified by operations invoked on the {@linkplain Cache#asMap asMap} view of  *     the cache.  *</ul>  *   *<p>A lookup is specifically defined as an invocation of one of the methods   * {@link LoadingCache#get(Object)}, {@link LoadingCache#getUnchecked(Object)},   * {@link Cache#get(Object, Callable)}, or {@link LoadingCache#getAll(Iterable)}.  *  * @author Charles Fry  * @since 10.0  */
+comment|/**  * Statistics about the performance of a {@link Cache}. Instances of this class are immutable.  *  *<p>Cache statistics are incremented according to the following rules:  *  *<ul>  *<li>When a cache lookup encounters an existing cache entry {@code hitCount} is incremented.  *<li>When a cache lookup first encounters a missing cache entry, a new entry is loaded.  *<ul>  *<li>After successfully loading an entry {@code missCount} and {@code loadSuccessCount} are  *     incremented, and the total loading time, in nanoseconds, is added to {@code totalLoadTime}.  *<li>When an exception is thrown while loading an entry, {@code missCount} and {@code  *     loadExceptionCount} are incremented, and the total loading time, in nanoseconds, is added to  *     {@code totalLoadTime}.  *<li>Cache lookups that encounter a missing cache entry that is still loading will wait for  *     loading to complete (whether successful or not) and then increment {@code missCount}.  *</ul>  *<li>When an entry is evicted from the cache, {@code evictionCount} is incremented.  *<li>No stats are modified when a cache entry is invalidated or manually removed.  *<li>No stats are modified by operations invoked on the {@linkplain Cache#asMap asMap} view of the  *     cache.  *</ul>  *  *<p>A lookup is specifically defined as an invocation of one of the methods  * {@link LoadingCache#get(Object)}, {@link LoadingCache#getUnchecked(Object)},  * {@link Cache#get(Object, Callable)}, or {@link LoadingCache#getAll(Iterable)}.  *  * @author Charles Fry  * @since 10.0  */
 end_comment
 
 begin_class
@@ -146,7 +146,7 @@ name|long
 name|evictionCount
 decl_stmt|;
 comment|/**    * Constructs a new {@code CacheStats} instance.    *    *<p>Five parameters of the same type in a row is a bad thing, but this class is not constructed    * by end users and is too fine-grained for a builder.    */
-DECL|method|CacheStats (long hitCount, long missCount, long loadSuccessCount, long loadExceptionCount, long totalLoadTime, long evictionCount)
+DECL|method|CacheStats ( long hitCount, long missCount, long loadSuccessCount, long loadExceptionCount, long totalLoadTime, long evictionCount)
 specifier|public
 name|CacheStats
 parameter_list|(
@@ -272,7 +272,7 @@ return|return
 name|hitCount
 return|;
 block|}
-comment|/**    * Returns the ratio of cache requests which were hits. This is defined as    * {@code hitCount / requestCount}, or {@code 1.0} when {@code requestCount == 0}.    * Note that {@code hitRate + missRate =~ 1.0}.    */
+comment|/**    * Returns the ratio of cache requests which were hits. This is defined as    * {@code hitCount / requestCount}, or {@code 1.0} when {@code requestCount == 0}. Note that    * {@code hitRate + missRate =~ 1.0}.    */
 DECL|method|hitRate ()
 specifier|public
 name|double
@@ -313,7 +313,7 @@ return|return
 name|missCount
 return|;
 block|}
-comment|/**    * Returns the ratio of cache requests which were misses. This is defined as    * {@code missCount / requestCount}, or {@code 0.0} when {@code requestCount == 0}.    * Note that {@code hitRate + missRate =~ 1.0}. Cache misses include all requests which    * weren't cache hits, including requests which resulted in either successful or failed loading    * attempts, and requests which waited for other threads to finish loading. It is thus the case    * that {@code missCount&gt;= loadSuccessCount + loadExceptionCount}. Multiple    * concurrent misses for the same key will result in a single load operation.    */
+comment|/**    * Returns the ratio of cache requests which were misses. This is defined as    * {@code missCount / requestCount}, or {@code 0.0} when {@code requestCount == 0}. Note that    * {@code hitRate + missRate =~ 1.0}. Cache misses include all requests which weren't cache hits,    * including requests which resulted in either successful or failed loading attempts, and requests    * which waited for other threads to finish loading. It is thus the case that    * {@code missCount&gt;= loadSuccessCount + loadExceptionCount}. Multiple concurrent misses for    * the same key will result in a single load operation.    */
 DECL|method|missRate ()
 specifier|public
 name|double
@@ -343,7 +343,7 @@ operator|/
 name|requestCount
 return|;
 block|}
-comment|/**    * Returns the total number of times that {@link Cache} lookup methods attempted to load new    * values. This includes both successful load operations, as well as those that threw    * exceptions. This is defined as {@code loadSuccessCount + loadExceptionCount}.    */
+comment|/**    * Returns the total number of times that {@link Cache} lookup methods attempted to load new    * values. This includes both successful load operations, as well as those that threw exceptions.    * This is defined as {@code loadSuccessCount + loadExceptionCount}.    */
 DECL|method|loadCount ()
 specifier|public
 name|long
@@ -356,7 +356,7 @@ operator|+
 name|loadExceptionCount
 return|;
 block|}
-comment|/**    * Returns the number of times {@link Cache} lookup methods have successfully loaded a new value.    * This is usually incremented in conjunction with {@link #missCount}, though {@code missCount}    * is also incremented when an exception is encountered during cache loading (see    * {@link #loadExceptionCount}). Multiple concurrent misses for the same key will result in a    * single load operation. This may be incremented not in conjunction with {@code missCount}    * if the load occurs as a result of a refresh or if the cache loader returned more items    * than was requested. {@code missCount} may also be incremented not in conjunction with    * this (nor {@link #loadExceptionCount}) on calls to {@code getIfPresent}.     */
+comment|/**    * Returns the number of times {@link Cache} lookup methods have successfully loaded a new value.    * This is usually incremented in conjunction with {@link #missCount}, though {@code missCount} is    * also incremented when an exception is encountered during cache loading (see    * {@link #loadExceptionCount}). Multiple concurrent misses for the same key will result in a    * single load operation. This may be incremented not in conjunction with {@code missCount} if the    * load occurs as a result of a refresh or if the cache loader returned more items than was    * requested. {@code missCount} may also be incremented not in conjunction with this (nor    * {@link #loadExceptionCount}) on calls to {@code getIfPresent}.    */
 DECL|method|loadSuccessCount ()
 specifier|public
 name|long
@@ -367,7 +367,7 @@ return|return
 name|loadSuccessCount
 return|;
 block|}
-comment|/**    * Returns the number of times {@link Cache} lookup methods threw an exception while loading a    * new value. This is usually incremented in conjunction with {@code missCount}, though    * {@code missCount} is also incremented when cache loading completes successfully (see    * {@link #loadSuccessCount}). Multiple concurrent misses for the same key will result in a    * single load operation. This may be incremented not in conjunction with {@code missCount}    * if the load occurs as a result of a refresh or if the cache loader returned more items    * than was requested. {@code missCount} may also be incremented not in conjunction with    * this (nor {@link #loadSuccessCount}) on calls to {@code getIfPresent}.     */
+comment|/**    * Returns the number of times {@link Cache} lookup methods threw an exception while loading a new    * value. This is usually incremented in conjunction with {@code missCount}, though    * {@code missCount} is also incremented when cache loading completes successfully (see    * {@link #loadSuccessCount}). Multiple concurrent misses for the same key will result in a single    * load operation. This may be incremented not in conjunction with {@code missCount} if the load    * occurs as a result of a refresh or if the cache loader returned more items than was requested.    * {@code missCount} may also be incremented not in conjunction with this (nor    * {@link #loadSuccessCount}) on calls to {@code getIfPresent}.    */
 DECL|method|loadExceptionCount ()
 specifier|public
 name|long
@@ -378,7 +378,7 @@ return|return
 name|loadExceptionCount
 return|;
 block|}
-comment|/**    * Returns the ratio of cache loading attempts which threw exceptions. This is defined as    * {@code loadExceptionCount / (loadSuccessCount + loadExceptionCount)}, or    * {@code 0.0} when {@code loadSuccessCount + loadExceptionCount == 0}.    */
+comment|/**    * Returns the ratio of cache loading attempts which threw exceptions. This is defined as    * {@code loadExceptionCount / (loadSuccessCount + loadExceptionCount)}, or {@code 0.0} when    * {@code loadSuccessCount + loadExceptionCount == 0}.    */
 DECL|method|loadExceptionRate ()
 specifier|public
 name|double
@@ -409,7 +409,7 @@ operator|/
 name|totalLoadCount
 return|;
 block|}
-comment|/**    * Returns the total number of nanoseconds the cache has spent loading new values. This can be    * used to calculate the miss penalty. This value is increased every time    * {@code loadSuccessCount} or {@code loadExceptionCount} is incremented.    */
+comment|/**    * Returns the total number of nanoseconds the cache has spent loading new values. This can be    * used to calculate the miss penalty. This value is increased every time {@code loadSuccessCount}    * or {@code loadExceptionCount} is incremented.    */
 DECL|method|totalLoadTime ()
 specifier|public
 name|long
@@ -556,7 +556,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a new {@code CacheStats} representing the sum of this {@code CacheStats}    * and {@code other}.    *    * @since 11.0    */
+comment|/**    * Returns a new {@code CacheStats} representing the sum of this {@code CacheStats} and    * {@code other}.    *    * @since 11.0    */
 DECL|method|plus (CacheStats other)
 specifier|public
 name|CacheStats

@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * Copyright (C) 2008 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License");  * you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *  *      http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+comment|/*  * Copyright (C) 2008 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except  * in compliance with the License. You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software distributed under the License  * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express  * or implied. See the License for the specific language governing permissions and limitations under  * the License.  */
 end_comment
 
 begin_package
@@ -115,7 +115,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Thread that finalizes referents. All references should implement  * {@code com.google.common.base.FinalizableReference}.  *  *<p>While this class is public, we consider it to be *internal* and not part  * of our published API. It is public so we can access it reflectively across  * class loaders in secure environments.  *  *<p>This class can't depend on other Guava code. If we were  * to load this class in the same class loader as the rest of  * Guava, this thread would keep an indirect strong reference  * to the class loader and prevent it from being garbage collected. This  * poses a problem for environments where you want to throw away the class  * loader. For example, dynamically reloading a web application or unloading  * an OSGi bundle.  *  *<p>{@code com.google.common.base.FinalizableReferenceQueue} loads this class  * in its own class loader. That way, this class doesn't prevent the main  * class loader from getting garbage collected, and this class can detect when  * the main class loader has been garbage collected and stop itself.  */
+comment|/**  * Thread that finalizes referents. All references should implement  * {@code com.google.common.base.FinalizableReference}.  *  *<p>While this class is public, we consider it to be *internal* and not part of our published API.  * It is public so we can access it reflectively across class loaders in secure environments.  *  *<p>This class can't depend on other Guava code. If we were to load this class in the same class  * loader as the rest of Guava, this thread would keep an indirect strong reference to the class  * loader and prevent it from being garbage collected. This poses a problem for environments where  * you want to throw away the class loader. For example, dynamically reloading a web application or  * unloading an OSGi bundle.  *  *<p>{@code com.google.common.base.FinalizableReferenceQueue} loads this class in its own class  * loader. That way, this class doesn't prevent the main class loader from getting garbage  * collected, and this class can detect when the main class loader has been garbage collected and  * stop itself.  */
 end_comment
 
 begin_class
@@ -155,7 +155,7 @@ name|FINALIZABLE_REFERENCE
 init|=
 literal|"com.google.common.base.FinalizableReference"
 decl_stmt|;
-comment|/**    * Starts the Finalizer thread. FinalizableReferenceQueue calls this method    * reflectively.    *    * @param finalizableReferenceClass FinalizableReference.class.    * @param queue a reference queue that the thread will poll.    * @param frqReference a phantom reference to the FinalizableReferenceQueue, which will be    * queued either when the FinalizableReferenceQueue is no longer referenced anywhere, or when    * its close() method is called.    */
+comment|/**    * Starts the Finalizer thread. FinalizableReferenceQueue calls this method reflectively.    *    * @param finalizableReferenceClass FinalizableReference.class.    * @param queue a reference queue that the thread will poll.    * @param frqReference a phantom reference to the FinalizableReferenceQueue, which will be queued    *     either when the FinalizableReferenceQueue is no longer referenced anywhere, or when its    *     close() method is called.    */
 DECL|method|startFinalizer ( Class<?> finalizableReferenceClass, ReferenceQueue<Object> queue, PhantomReference<Object> frqReference)
 specifier|public
 specifier|static
@@ -181,7 +181,7 @@ argument_list|>
 name|frqReference
 parameter_list|)
 block|{
-comment|/*      * We use FinalizableReference.class for two things:      *      * 1) To invoke FinalizableReference.finalizeReferent()      *      * 2) To detect when FinalizableReference's class loader has to be garbage      * collected, at which point, Finalizer can stop running      */
+comment|/*      * We use FinalizableReference.class for two things:      *      * 1) To invoke FinalizableReference.finalizeReferent()      *      * 2) To detect when FinalizableReference's class loader has to be garbage collected, at which      * point, Finalizer can stop running      */
 if|if
 condition|(
 operator|!
@@ -435,7 +435,7 @@ comment|// ignore
 block|}
 block|}
 block|}
-comment|/**    * Cleans up a single reference. Catches and logs all throwables.    * @return true if the caller should continue, false if the associated FinalizableReferenceQueue    * is no longer referenced.    */
+comment|/**    * Cleans up a single reference. Catches and logs all throwables.    *    * @return true if the caller should continue, false if the associated FinalizableReferenceQueue    *     is no longer referenced.    */
 DECL|method|cleanUp (Reference<?> reference)
 specifier|private
 name|boolean
@@ -467,7 +467,7 @@ return|;
 block|}
 do|do
 block|{
-comment|/*        * This is for the benefit of phantom references. Weak and soft        * references will have already been cleared by this point.        */
+comment|/*        * This is for the benefit of phantom references. Weak and soft references will have already        * been cleared by this point.        */
 name|reference
 operator|.
 name|clear
@@ -480,7 +480,7 @@ operator|==
 name|frqReference
 condition|)
 block|{
-comment|/*          * The client no longer has a reference to the          * FinalizableReferenceQueue. We can stop.          */
+comment|/*          * The client no longer has a reference to the FinalizableReferenceQueue. We can stop.          */
 return|return
 literal|false
 return|;
@@ -515,7 +515,7 @@ name|t
 argument_list|)
 expr_stmt|;
 block|}
-comment|/*        * Loop as long as we have references available so as not to waste        * CPU looking up the Method over and over again.        */
+comment|/*        * Loop as long as we have references available so as not to waste CPU looking up the Method        * over and over again.        */
 block|}
 do|while
 condition|(
@@ -560,7 +560,7 @@ operator|==
 literal|null
 condition|)
 block|{
-comment|/*        * FinalizableReference's class loader was reclaimed. While there's a        * chance that other finalizable references could be enqueued        * subsequently (at which point the class loader would be resurrected        * by virtue of us having a strong reference to it), we should pretty        * much just shut down and make sure we don't keep it alive any longer        * than necessary.        */
+comment|/*        * FinalizableReference's class loader was reclaimed. While there's a chance that other        * finalizable references could be enqueued subsequently (at which point the class loader        * would be resurrected by virtue of us having a strong reference to it), we should pretty        * much just shut down and make sure we don't keep it alive any longer than necessary.        */
 return|return
 literal|null
 return|;

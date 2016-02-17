@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * Copyright (C) 2008 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License");  * you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+comment|/*  * Copyright (C) 2008 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except  * in compliance with the License. You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software distributed under the License  * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express  * or implied. See the License for the specific language governing permissions and limitations under  * the License.  */
 end_comment
 
 begin_package
@@ -147,7 +147,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An object which joins pieces of text (specified as an array, {@link Iterable}, varargs or even a  * {@link Map}) with a separator. It either appends the results to an {@link Appendable} or returns  * them as a {@link String}. Example:<pre>   {@code  *  *   Joiner joiner = Joiner.on("; ").skipNulls();  *    . . .  *   return joiner.join("Harry", null, "Ron", "Hermione");}</pre>  *  *<p>This returns the string {@code "Harry; Ron; Hermione"}. Note that all input elements are  * converted to strings using {@link Object#toString()} before being appended.  *  *<p>If neither {@link #skipNulls()} nor {@link #useForNull(String)} is specified, the joining  * methods will throw {@link NullPointerException} if any given element is null.  *  *<p><b>Warning: joiner instances are always immutable</b>; a configuration method such as {@code  * useForNull} has no effect on the instance it is invoked on! You must store and use the new joiner  * instance returned by the method. This makes joiners thread-safe, and safe to store as {@code  * static final} constants.<pre>   {@code  *  *   // Bad! Do not do this!  *   Joiner joiner = Joiner.on(',');  *   joiner.skipNulls(); // does nothing!  *   return joiner.join("wrong", null, "wrong");}</pre>  *  *<p>See the Guava User Guide article on<a href=  * "https://github.com/google/guava/wiki/StringsExplained#joiner">{@code Joiner}</a>.  *  * @author Kevin Bourrillion  * @since 2.0  */
+comment|/**  * An object which joins pieces of text (specified as an array, {@link Iterable}, varargs or even a  * {@link Map}) with a separator. It either appends the results to an {@link Appendable} or returns  * them as a {@link String}. Example:<pre>   {@code  *  *   Joiner joiner = Joiner.on("; ").skipNulls();  *    . . .  *   return joiner.join("Harry", null, "Ron", "Hermione");}</pre>  *  *<p>This returns the string {@code "Harry; Ron; Hermione"}. Note that all input elements are  * converted to strings using {@link Object#toString()} before being appended.  *  *<p>If neither {@link #skipNulls()} nor {@link #useForNull(String)} is specified, the joining  * methods will throw {@link NullPointerException} if any given element is null.  *  *<p><b>Warning: joiner instances are always immutable</b>; a configuration method such as {@code  * useForNull} has no effect on the instance it is invoked on! You must store and use the new joiner  * instance returned by the method. This makes joiners thread-safe, and safe to store as {@code  * static final} constants.<pre>   {@code  *  *   // Bad! Do not do this!  *   Joiner joiner = Joiner.on(',');  *   joiner.skipNulls(); // does nothing!  *   return joiner.join("wrong", null, "wrong");}</pre>  *  *<p>See the Guava User Guide article on  *<a href="https://github.com/google/guava/wiki/StringsExplained#joiner">{@code Joiner}</a>.  *  * @author Kevin Bourrillion  * @since 2.0  */
 end_comment
 
 begin_class
@@ -452,7 +452,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Appends the string representation of each of {@code parts}, using the previously configured    * separator between each, to {@code builder}. Identical to {@link #appendTo(Appendable,    * Iterable)}, except that it does not throw {@link IOException}.    */
+comment|/**    * Appends the string representation of each of {@code parts}, using the previously configured    * separator between each, to {@code builder}. Identical to    * {@link #appendTo(Appendable, Iterable)}, except that it does not throw {@link IOException}.    */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|appendTo (StringBuilder builder, Iterable<?> parts)
@@ -483,7 +483,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Appends the string representation of each of {@code parts}, using the previously configured    * separator between each, to {@code builder}. Identical to {@link #appendTo(Appendable,    * Iterable)}, except that it does not throw {@link IOException}.    *    * @since 11.0    */
+comment|/**    * Appends the string representation of each of {@code parts}, using the previously configured    * separator between each, to {@code builder}. Identical to    * {@link #appendTo(Appendable, Iterable)}, except that it does not throw {@link IOException}.    *    * @since 11.0    */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|appendTo (StringBuilder builder, Iterator<?> parts)
@@ -533,7 +533,7 @@ return|return
 name|builder
 return|;
 block|}
-comment|/**    * Appends the string representation of each of {@code parts}, using the previously configured    * separator between each, to {@code builder}. Identical to {@link #appendTo(Appendable,    * Iterable)}, except that it does not throw {@link IOException}.    */
+comment|/**    * Appends the string representation of each of {@code parts}, using the previously configured    * separator between each, to {@code builder}. Identical to    * {@link #appendTo(Appendable, Iterable)}, except that it does not throw {@link IOException}.    */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|appendTo (StringBuilder builder, Object[] parts)
@@ -1008,7 +1008,7 @@ name|keyValueSeparator
 argument_list|)
 return|;
 block|}
-comment|/**    * An object that joins map entries in the same manner as {@code Joiner} joins iterables and    * arrays. Like {@code Joiner}, it is thread-safe and immutable.    *    *<p>In addition to operating on {@code Map} instances, {@code MapJoiner} can operate on {@code    * Multimap} entries in two distinct modes:    *    *<ul>    *<li>To output a separate entry for each key-value pair, pass {@code multimap.entries()} to a    *     {@code MapJoiner} method that accepts entries as input, and receive output of the form    *     {@code key1=A&key1=B&key2=C}.    *<li>To output a single entry for each key, pass {@code multimap.asMap()} to a {@code MapJoiner}    *     method that accepts a map as input, and receive output of the form {@code    *     key1=[A, B]&key2=C}.    *</ul>    *    * @since 2.0    */
+comment|/**    * An object that joins map entries in the same manner as {@code Joiner} joins iterables and    * arrays. Like {@code Joiner}, it is thread-safe and immutable.    *    *<p>In addition to operating on {@code Map} instances, {@code MapJoiner} can operate on {@code    * Multimap} entries in two distinct modes:    *    *<ul>    *<li>To output a separate entry for each key-value pair, pass {@code multimap.entries()} to a    * {@code MapJoiner} method that accepts entries as input, and receive output of the form    * {@code key1=A&key1=B&key2=C}.    *<li>To output a single entry for each key, pass {@code multimap.asMap()} to a {@code MapJoiner}    * method that accepts a map as input, and receive output of the form {@code    *     key1=[A, B]&key2=C}.    *</ul>    *    * @since 2.0    */
 DECL|class|MapJoiner
 specifier|public
 specifier|static
@@ -1095,7 +1095,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**      * Appends the string representation of each entry of {@code map}, using the previously      * configured separator and key-value separator, to {@code builder}. Identical to {@link      * #appendTo(Appendable, Map)}, except that it does not throw {@link IOException}.      */
+comment|/**      * Appends the string representation of each entry of {@code map}, using the previously      * configured separator and key-value separator, to {@code builder}. Identical to      * {@link #appendTo(Appendable, Map)}, except that it does not throw {@link IOException}.      */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|appendTo (StringBuilder builder, Map<?, ?> map)
@@ -1368,7 +1368,7 @@ return|return
 name|appendable
 return|;
 block|}
-comment|/**      * Appends the string representation of each entry in {@code entries}, using the previously      * configured separator and key-value separator, to {@code builder}. Identical to {@link      * #appendTo(Appendable, Iterable)}, except that it does not throw {@link IOException}.      *      * @since 10.0      */
+comment|/**      * Appends the string representation of each entry in {@code entries}, using the previously      * configured separator and key-value separator, to {@code builder}. Identical to      * {@link #appendTo(Appendable, Iterable)}, except that it does not throw {@link IOException}.      *      * @since 10.0      */
 annotation|@
 name|Beta
 annotation|@
@@ -1407,7 +1407,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**      * Appends the string representation of each entry in {@code entries}, using the previously      * configured separator and key-value separator, to {@code builder}. Identical to {@link      * #appendTo(Appendable, Iterable)}, except that it does not throw {@link IOException}.      *      * @since 11.0      */
+comment|/**      * Appends the string representation of each entry in {@code entries}, using the previously      * configured separator and key-value separator, to {@code builder}. Identical to      * {@link #appendTo(Appendable, Iterable)}, except that it does not throw {@link IOException}.      *      * @since 11.0      */
 annotation|@
 name|Beta
 annotation|@

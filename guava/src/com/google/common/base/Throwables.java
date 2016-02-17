@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * Copyright (C) 2007 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License");  * you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+comment|/*  * Copyright (C) 2007 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except  * in compliance with the License. You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software distributed under the License  * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express  * or implied. See the License for the specific language governing permissions and limitations under  * the License.  */
 end_comment
 
 begin_package
@@ -207,7 +207,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Static utility methods pertaining to instances of {@link Throwable}.  *  *<p>See the Guava User Guide entry on<a href=  * "https://github.com/google/guava/wiki/ThrowablesExplained">Throwables</a>.  *  * @author Kevin Bourrillion  * @author Ben Yu  * @since 1.0  */
+comment|/**  * Static utility methods pertaining to instances of {@link Throwable}.  *  *<p>See the Guava User Guide entry on  *<a href="https://github.com/google/guava/wiki/ThrowablesExplained">Throwables</a>.  *  * @author Kevin Bourrillion  * @author Ben Yu  * @since 1.0  */
 end_comment
 
 begin_class
@@ -224,7 +224,7 @@ specifier|private
 name|Throwables
 parameter_list|()
 block|{}
-comment|/**    * Propagates {@code throwable} exactly as-is, if and only if it is an instance of {@code    * declaredType}.  Example usage:    *<pre>    *   try {    *     someMethodThatCouldThrowAnything();    *   } catch (IKnowWhatToDoWithThisException e) {    *     handle(e);    *   } catch (Throwable t) {    *     Throwables.propagateIfInstanceOf(t, IOException.class);    *     Throwables.propagateIfInstanceOf(t, SQLException.class);    *     throw Throwables.propagate(t);    *   }    *</pre>    */
+comment|/**    * Propagates {@code throwable} exactly as-is, if and only if it is an instance of {@code    * declaredType}. Example usage:    *    *<pre>    * try {    *   someMethodThatCouldThrowAnything();    * } catch (IKnowWhatToDoWithThisException e) {    *   handle(e);    * } catch (Throwable t) {    *   Throwables.propagateIfInstanceOf(t, IOException.class);    *   Throwables.propagateIfInstanceOf(t, SQLException.class);    *   throw Throwables.propagate(t);    * }    *</pre>    */
 DECL|method|propagateIfInstanceOf ( @ullable Throwable throwable, Class<X> declaredType)
 specifier|public
 specifier|static
@@ -275,7 +275,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Propagates {@code throwable} exactly as-is, if and only if it is an instance of {@link    * RuntimeException} or {@link Error}.  Example usage:    *<pre>    *   try {    *     someMethodThatCouldThrowAnything();    *   } catch (IKnowWhatToDoWithThisException e) {    *     handle(e);    *   } catch (Throwable t) {    *     Throwables.propagateIfPossible(t);    *     throw new RuntimeException("unexpected", t);    *   }    *</pre>    */
+comment|/**    * Propagates {@code throwable} exactly as-is, if and only if it is an instance of    * {@link RuntimeException} or {@link Error}. Example usage:    *    *<pre>    * try {    *   someMethodThatCouldThrowAnything();    * } catch (IKnowWhatToDoWithThisException e) {    *   handle(e);    * } catch (Throwable t) {    *   Throwables.propagateIfPossible(t);    *   throw new RuntimeException("unexpected", t);    * }    *</pre>    */
 DECL|method|propagateIfPossible (@ullable Throwable throwable)
 specifier|public
 specifier|static
@@ -307,7 +307,7 @@ name|class
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Propagates {@code throwable} exactly as-is, if and only if it is an instance of {@link    * RuntimeException}, {@link Error}, or {@code declaredType}. Example usage:    *<pre>    *   try {    *     someMethodThatCouldThrowAnything();    *   } catch (IKnowWhatToDoWithThisException e) {    *     handle(e);    *   } catch (Throwable t) {    *     Throwables.propagateIfPossible(t, OtherException.class);    *     throw new RuntimeException("unexpected", t);    *   }    *</pre>    *    * @param throwable the Throwable to possibly propagate    * @param declaredType the single checked exception type declared by the calling method    */
+comment|/**    * Propagates {@code throwable} exactly as-is, if and only if it is an instance of    * {@link RuntimeException}, {@link Error}, or {@code declaredType}. Example usage:    *    *<pre>    * try {    *   someMethodThatCouldThrowAnything();    * } catch (IKnowWhatToDoWithThisException e) {    *   handle(e);    * } catch (Throwable t) {    *   Throwables.propagateIfPossible(t, OtherException.class);    *   throw new RuntimeException("unexpected", t);    * }    *</pre>    *    * @param throwable the Throwable to possibly propagate    * @param declaredType the single checked exception type declared by the calling method    */
 DECL|method|propagateIfPossible ( @ullable Throwable throwable, Class<X> declaredType)
 specifier|public
 specifier|static
@@ -346,7 +346,7 @@ name|throwable
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Propagates {@code throwable} exactly as-is, if and only if it is an instance of {@link    * RuntimeException}, {@link Error}, {@code declaredType1}, or {@code declaredType2}. In the    * unlikely case that you have three or more declared checked exception types, you can handle them    * all by invoking these methods repeatedly. See usage example in {@link    * #propagateIfPossible(Throwable, Class)}.    *    * @param throwable the Throwable to possibly propagate    * @param declaredType1 any checked exception type declared by the calling method    * @param declaredType2 any other checked exception type declared by the calling method    */
+comment|/**    * Propagates {@code throwable} exactly as-is, if and only if it is an instance of    * {@link RuntimeException}, {@link Error}, {@code declaredType1}, or {@code declaredType2}. In    * the unlikely case that you have three or more declared checked exception types, you can handle    * them all by invoking these methods repeatedly. See usage example in    * {@link #propagateIfPossible(Throwable, Class)}.    *    * @param throwable the Throwable to possibly propagate    * @param declaredType1 any checked exception type declared by the calling method    * @param declaredType2 any other checked exception type declared by the calling method    */
 DECL|method|propagateIfPossible ( @ullable Throwable throwable, Class<X1> declaredType1, Class<X2> declaredType2)
 specifier|public
 specifier|static
@@ -404,7 +404,7 @@ name|declaredType2
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Propagates {@code throwable} as-is if it is an instance of {@link RuntimeException} or {@link    * Error}, or else as a last resort, wraps it in a {@code RuntimeException} and then propagates.    *<p>    * This method always throws an exception. The {@code RuntimeException} return type    * allows client code to signal to the compiler that statements after the call are    * unreachable. Example usage:    *<pre>    *   T doSomething() {    *     try {    *       return someMethodThatCouldThrowAnything();    *     } catch (IKnowWhatToDoWithThisException e) {    *       return handle(e);    *     } catch (Throwable t) {    *       throw Throwables.propagate(t);    *     }    *   }    *</pre>    *    * @param throwable the Throwable to propagate    * @return nothing will ever be returned; this return type is only for your convenience, as    *     illustrated in the example above    */
+comment|/**    * Propagates {@code throwable} as-is if it is an instance of {@link RuntimeException} or    * {@link Error}, or else as a last resort, wraps it in a {@code RuntimeException} and then    * propagates.    *    *<p>This method always throws an exception. The {@code RuntimeException} return type allows    * client code to signal to the compiler that statements after the call are unreachable. Example    * usage:    *    *<pre>    * T doSomething() {    *   try {    *     return someMethodThatCouldThrowAnything();    *   } catch (IKnowWhatToDoWithThisException e) {    *     return handle(e);    *   } catch (Throwable t) {    *     throw Throwables.propagate(t);    *   }    * }    *</pre>    *    * @param throwable the Throwable to propagate    * @return nothing will ever be returned; this return type is only for your convenience, as    *     illustrated in the example above    */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|propagate (Throwable throwable)
@@ -433,7 +433,7 @@ name|throwable
 argument_list|)
 throw|;
 block|}
-comment|/**    * Returns the innermost cause of {@code throwable}. The first throwable in a    * chain provides context from when the error or exception was initially    * detected. Example usage:    *<pre>    *   assertEquals("Unable to assign a customer id", Throwables.getRootCause(e).getMessage());    *</pre>    */
+comment|/**    * Returns the innermost cause of {@code throwable}. The first throwable in a chain provides    * context from when the error or exception was initially detected. Example usage:    *    *<pre>    * assertEquals("Unable to assign a customer id", Throwables.getRootCause(e).getMessage());    *</pre>    */
 DECL|method|getRootCause (Throwable throwable)
 specifier|public
 specifier|static
@@ -470,7 +470,7 @@ return|return
 name|throwable
 return|;
 block|}
-comment|/**    * Gets a {@code Throwable} cause chain as a list.  The first entry in the list will be {@code    * throwable} followed by its cause hierarchy.  Note that this is a snapshot of the cause chain    * and will not reflect any subsequent changes to the cause chain.    *    *<p>Here's an example of how it can be used to find specific types of exceptions in the cause    * chain:    *    *<pre>    * Iterables.filter(Throwables.getCausalChain(e), IOException.class));    *</pre>    *    * @param throwable the non-null {@code Throwable} to extract causes from    * @return an unmodifiable list containing the cause chain starting with {@code throwable}    */
+comment|/**    * Gets a {@code Throwable} cause chain as a list. The first entry in the list will be {@code    * throwable} followed by its cause hierarchy. Note that this is a snapshot of the cause chain and    * will not reflect any subsequent changes to the cause chain.    *    *<p>Here's an example of how it can be used to find specific types of exceptions in the cause    * chain:    *    *<pre>    * Iterables.filter(Throwables.getCausalChain(e), IOException.class));    *</pre>    *    * @param throwable the non-null {@code Throwable} to extract causes from    * @return an unmodifiable list containing the cause chain starting with {@code throwable}    */
 annotation|@
 name|Beta
 comment|// TODO(kevinb): decide best return type

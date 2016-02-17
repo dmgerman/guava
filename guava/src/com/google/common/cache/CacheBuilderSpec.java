@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * Copyright (C) 2011 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License");  * you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+comment|/*  * Copyright (C) 2011 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except  * in compliance with the License. You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software distributed under the License  * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express  * or implied. See the License for the specific language governing permissions and limitations under  * the License.  */
 end_comment
 
 begin_package
@@ -189,7 +189,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A specification of a {@link CacheBuilder} configuration.  *  *<p>{@code CacheBuilderSpec} supports parsing configuration off of a string, which  * makes it especially useful for command-line configuration of a {@code CacheBuilder}.  *  *<p>The string syntax is a series of comma-separated keys or key-value pairs,  * each corresponding to a {@code CacheBuilder} method.  *<ul>  *<li>{@code concurrencyLevel=[integer]}: sets {@link CacheBuilder#concurrencyLevel}.  *<li>{@code initialCapacity=[integer]}: sets {@link CacheBuilder#initialCapacity}.  *<li>{@code maximumSize=[long]}: sets {@link CacheBuilder#maximumSize}.  *<li>{@code maximumWeight=[long]}: sets {@link CacheBuilder#maximumWeight}.  *<li>{@code expireAfterAccess=[duration]}: sets {@link CacheBuilder#expireAfterAccess}.  *<li>{@code expireAfterWrite=[duration]}: sets {@link CacheBuilder#expireAfterWrite}.  *<li>{@code refreshAfterWrite=[duration]}: sets {@link CacheBuilder#refreshAfterWrite}.  *<li>{@code weakKeys}: sets {@link CacheBuilder#weakKeys}.  *<li>{@code softValues}: sets {@link CacheBuilder#softValues}.  *<li>{@code weakValues}: sets {@link CacheBuilder#weakValues}.  *<li>{@code recordStats}: sets {@link CacheBuilder#recordStats}.  *</ul>  *  *<p>The set of supported keys will grow as {@code CacheBuilder} evolves, but existing keys  * will never be removed.  *  *<p>Durations are represented by an integer, followed by one of "d", "h", "m",  * or "s", representing days, hours, minutes, or seconds respectively.  (There  * is currently no syntax to request expiration in milliseconds, microseconds,  * or nanoseconds.)  *  *<p>Whitespace before and after commas and equal signs is ignored.  Keys may  * not be repeated;  it is also illegal to use the following pairs of keys in  * a single value:  *<ul>  *<li>{@code maximumSize} and {@code maximumWeight}  *<li>{@code softValues} and {@code weakValues}  *</ul>  *  *<p>{@code CacheBuilderSpec} does not support configuring {@code CacheBuilder} methods  * with non-value parameters.  These must be configured in code.  *  *<p>A new {@code CacheBuilder} can be instantiated from a {@code CacheBuilderSpec} using  * {@link CacheBuilder#from(CacheBuilderSpec)} or {@link CacheBuilder#from(String)}.  *  * @author Adam Winer  * @since 12.0  */
+comment|/**  * A specification of a {@link CacheBuilder} configuration.  *  *<p>{@code CacheBuilderSpec} supports parsing configuration off of a string, which makes it  * especially useful for command-line configuration of a {@code CacheBuilder}.  *  *<p>The string syntax is a series of comma-separated keys or key-value pairs, each corresponding  * to a {@code CacheBuilder} method.  *<ul>  *<li>{@code concurrencyLevel=[integer]}: sets {@link CacheBuilder#concurrencyLevel}.  *<li>{@code initialCapacity=[integer]}: sets {@link CacheBuilder#initialCapacity}.  *<li>{@code maximumSize=[long]}: sets {@link CacheBuilder#maximumSize}.  *<li>{@code maximumWeight=[long]}: sets {@link CacheBuilder#maximumWeight}.  *<li>{@code expireAfterAccess=[duration]}: sets {@link CacheBuilder#expireAfterAccess}.  *<li>{@code expireAfterWrite=[duration]}: sets {@link CacheBuilder#expireAfterWrite}.  *<li>{@code refreshAfterWrite=[duration]}: sets {@link CacheBuilder#refreshAfterWrite}.  *<li>{@code weakKeys}: sets {@link CacheBuilder#weakKeys}.  *<li>{@code softValues}: sets {@link CacheBuilder#softValues}.  *<li>{@code weakValues}: sets {@link CacheBuilder#weakValues}.  *<li>{@code recordStats}: sets {@link CacheBuilder#recordStats}.  *</ul>  *  *<p>The set of supported keys will grow as {@code CacheBuilder} evolves, but existing keys will  * never be removed.  *  *<p>Durations are represented by an integer, followed by one of "d", "h", "m", or "s",  * representing days, hours, minutes, or seconds respectively. (There is currently no syntax to  * request expiration in milliseconds, microseconds, or nanoseconds.)  *  *<p>Whitespace before and after commas and equal signs is ignored. Keys may not be repeated; it is  * also illegal to use the following pairs of keys in a single value:  *<ul>  *<li>{@code maximumSize} and {@code maximumWeight}  *<li>{@code softValues} and {@code weakValues}  *</ul>  *  *<p>{@code CacheBuilderSpec} does not support configuring {@code CacheBuilder} methods with  * non-value parameters. These must be configured in code.  *  *<p>A new {@code CacheBuilder} can be instantiated from a {@code CacheBuilderSpec} using  * {@link CacheBuilder#from(CacheBuilderSpec)} or {@link CacheBuilder#from(String)}.  *  * @author Adam Winer  * @since 12.0  */
 end_comment
 
 begin_class
@@ -484,7 +484,7 @@ name|VisibleForTesting
 name|TimeUnit
 name|refreshTimeUnit
 decl_stmt|;
-comment|/** Specification;  used for toParseableString(). */
+comment|/** Specification; used for toParseableString(). */
 DECL|field|specification
 specifier|private
 specifier|final
@@ -898,7 +898,7 @@ return|return
 name|builder
 return|;
 block|}
-comment|/**    * Returns a string that can be used to parse an equivalent    * {@code CacheBuilderSpec}.  The order and form of this representation is    * not guaranteed, except that reparsing its output will produce    * a {@code CacheBuilderSpec} equal to this instance.    */
+comment|/**    * Returns a string that can be used to parse an equivalent {@code CacheBuilderSpec}. The order    * and form of this representation is not guaranteed, except that reparsing its output will    * produce a {@code CacheBuilderSpec} equal to this instance.    */
 DECL|method|toParsableString ()
 specifier|public
 name|String
@@ -909,7 +909,7 @@ return|return
 name|specification
 return|;
 block|}
-comment|/**    * Returns a string representation for this CacheBuilderSpec instance.    * The form of this representation is not guaranteed.    */
+comment|/**    * Returns a string representation for this CacheBuilderSpec instance. The form of this    * representation is not guaranteed.    */
 annotation|@
 name|Override
 DECL|method|toString ()
@@ -1180,10 +1180,10 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Converts an expiration duration/unit pair into a single Long for hashing and equality.    * Uses nanos to match CacheBuilder implementation.    */
-DECL|method|durationInNanos (long duration, @Nullable TimeUnit unit)
+comment|/**    * Converts an expiration duration/unit pair into a single Long for hashing and equality. Uses    * nanos to match CacheBuilder implementation.    */
 annotation|@
 name|Nullable
+DECL|method|durationInNanos (long duration, @Nullable TimeUnit unit)
 specifier|private
 specifier|static
 name|Long
@@ -1849,7 +1849,7 @@ name|DurationParser
 implements|implements
 name|ValueParser
 block|{
-DECL|method|parseDuration ( CacheBuilderSpec spec, long duration, TimeUnit unit)
+DECL|method|parseDuration (CacheBuilderSpec spec, long duration, TimeUnit unit)
 specifier|protected
 specifier|abstract
 name|void
@@ -2043,9 +2043,9 @@ name|AccessDurationParser
 extends|extends
 name|DurationParser
 block|{
-DECL|method|parseDuration (CacheBuilderSpec spec, long duration, TimeUnit unit)
 annotation|@
 name|Override
+DECL|method|parseDuration (CacheBuilderSpec spec, long duration, TimeUnit unit)
 specifier|protected
 name|void
 name|parseDuration
@@ -2093,9 +2093,9 @@ name|WriteDurationParser
 extends|extends
 name|DurationParser
 block|{
-DECL|method|parseDuration (CacheBuilderSpec spec, long duration, TimeUnit unit)
 annotation|@
 name|Override
+DECL|method|parseDuration (CacheBuilderSpec spec, long duration, TimeUnit unit)
 specifier|protected
 name|void
 name|parseDuration
@@ -2143,9 +2143,9 @@ name|RefreshDurationParser
 extends|extends
 name|DurationParser
 block|{
-DECL|method|parseDuration (CacheBuilderSpec spec, long duration, TimeUnit unit)
 annotation|@
 name|Override
+DECL|method|parseDuration (CacheBuilderSpec spec, long duration, TimeUnit unit)
 specifier|protected
 name|void
 name|parseDuration
