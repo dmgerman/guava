@@ -2086,7 +2086,7 @@ name|sb
 operator|.
 name|append
 argument_list|(
-literal|'\u2025'
+literal|".."
 argument_list|)
 expr_stmt|;
 name|upperBound

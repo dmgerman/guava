@@ -312,7 +312,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"(4\u20258)"
+literal|"(4..8)"
 argument_list|,
 name|range
 operator|.
@@ -473,7 +473,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"[5\u20257]"
+literal|"[5..7]"
 argument_list|,
 name|range
 operator|.
@@ -613,7 +613,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"(4\u20257]"
+literal|"(4..7]"
 argument_list|,
 name|range
 operator|.
@@ -725,7 +725,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"[5\u20258)"
+literal|"[5..8)"
 argument_list|,
 name|range
 operator|.
@@ -1091,7 +1091,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"[4\u20254]"
+literal|"[4..4]"
 argument_list|,
 name|range
 operator|.
@@ -1228,7 +1228,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"[4\u20254)"
+literal|"[4..4)"
 argument_list|,
 name|range
 operator|.
@@ -1365,7 +1365,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"(4\u20254]"
+literal|"(4..4]"
 argument_list|,
 name|range
 operator|.
@@ -1476,7 +1476,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"(-\u221e\u20255)"
+literal|"(-\u221e..5)"
 argument_list|,
 name|range
 operator|.
@@ -1587,7 +1587,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"(5\u2025+\u221e)"
+literal|"(5..+\u221e)"
 argument_list|,
 name|range
 operator|.
@@ -1698,7 +1698,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"[6\u2025+\u221e)"
+literal|"[6..+\u221e)"
 argument_list|,
 name|range
 operator|.
@@ -1809,7 +1809,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"(-\u221e\u20254]"
+literal|"(-\u221e..4]"
 argument_list|,
 name|range
 operator|.
@@ -1884,7 +1884,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"(-\u221e\u2025+\u221e)"
+literal|"(-\u221e..+\u221e)"
 argument_list|,
 name|range
 operator|.
