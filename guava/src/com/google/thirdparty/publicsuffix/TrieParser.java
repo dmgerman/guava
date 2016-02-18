@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * Copyright (C) 2008 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License");  * you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+comment|/*  * Copyright (C) 2008 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except  * in compliance with the License. You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software distributed under the License  * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express  * or implied. See the License for the specific language governing permissions and limitations under  * the License.  */
 end_comment
 
 begin_package
@@ -108,7 +108,7 @@ argument_list|(
 literal|""
 argument_list|)
 decl_stmt|;
-comment|/**    * Parses a serialized trie representation of a map of reversed public    * suffixes into an immutable map of public suffixes.    */
+comment|/**    * Parses a serialized trie representation of a map of reversed public suffixes into an immutable    * map of public suffixes.    */
 DECL|method|parseTrie (CharSequence encoded)
 specifier|static
 name|ImmutableMap
@@ -190,7 +190,7 @@ name|build
 argument_list|()
 return|;
 block|}
-comment|/**    * Parses a trie node and returns the number of characters consumed.    *    * @param stack The prefixes that preceed the characters represented by this    *     node. Each entry of the stack is in reverse order.    * @param encoded The serialized trie.    * @param builder A map builder to which all entries will be added.    * @return The number of characters consumed from {@code encoded}.    */
+comment|/**    * Parses a trie node and returns the number of characters consumed.    *    * @param stack The prefixes that preceed the characters represented by this node. Each entry of    *     the stack is in reverse order.    * @param encoded The serialized trie.    * @param builder A map builder to which all entries will be added.    * @return The number of characters consumed from {@code encoded}.    */
 DECL|method|doParseTrieToBuilder ( List<CharSequence> stack, CharSequence encoded, ImmutableMap.Builder<String, PublicSuffixType> builder)
 specifier|private
 specifier|static
