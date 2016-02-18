@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * Copyright (C) 2011 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License");  * you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+comment|/*  * Copyright (C) 2011 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except  * in compliance with the License. You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software distributed under the License  * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express  * or implied. See the License for the specific language governing permissions and limitations under  * the License.  */
 end_comment
 
 begin_package
@@ -731,7 +731,7 @@ return|return
 name|mediaType
 return|;
 block|}
-comment|/*    * The following constants are grouped by their type and ordered alphabetically by the constant    * name within that type. The constant name should be a sensible identifier that is closest to the    * "common name" of the media.  This is often, but not necessarily the same as the subtype.    *    * Be sure to declare all constants with the type and subtype in all lowercase. For types that    * take a charset (e.g. all text/* types), default to UTF-8 and suffix the constant name with    * "_UTF_8".    */
+comment|/*    * The following constants are grouped by their type and ordered alphabetically by the constant    * name within that type. The constant name should be a sensible identifier that is closest to the    * "common name" of the media. This is often, but not necessarily the same as the subtype.    *    * Be sure to declare all constants with the type and subtype in all lowercase. For types that    * take a charset (e.g. all text/* types), default to UTF-8 and suffix the constant name with    * "_UTF_8".    */
 DECL|field|ANY_TYPE
 specifier|public
 specifier|static
@@ -916,7 +916,7 @@ argument_list|,
 literal|"javascript"
 argument_list|)
 decl_stmt|;
-comment|/**    *<a href="http://www.iana.org/assignments/media-types/text/tab-separated-values">    * Tab separated values</a>.    *    * @since 15.0    */
+comment|/**    *<a href="http://www.iana.org/assignments/media-types/text/tab-separated-values">Tab separated    * values</a>.    *    * @since 15.0    */
 DECL|field|TSV_UTF_8
 specifier|public
 specifier|static
@@ -1060,7 +1060,7 @@ argument_list|,
 literal|"png"
 argument_list|)
 decl_stmt|;
-comment|/**    * The media type for the Photoshop File Format ({@code psd} files) as defined by<a href=    * "http://www.iana.org/assignments/media-types/image/vnd.adobe.photoshop">IANA</a>, and found in    * {@code /etc/mime.types}, e.g.<a href=    * "http://svn.apache.org/repos/asf/httpd/httpd/branches/1.3.x/conf/mime.types"></a> of the Apache    *<a href="http://httpd.apache.org/">HTTPD project</a>; for the specification, see    *<href="http://www.adobe.com/devnet-apps/photoshop/fileformatashtml/PhotoshopFileFormats.htm">    * Adobe Photoshop Document Format</a> and<a href=    * "http://en.wikipedia.org/wiki/Adobe_Photoshop#File_format">Wikipedia</a>; this is the regular    * output/input of Photoshop (which can also export to various image formats; note that files with    * extension "PSB" are in a distinct but related format).    *<p>This is a more recent replacement for the older, experimental type    * {@code x-photoshop}:<a href="http://tools.ietf.org/html/rfc2046#section-6">RFC-2046.6</a>.    *    * @since 15.0    */
+comment|/**    * The media type for the Photoshop File Format ({@code psd} files) as defined by    *<a href="http://www.iana.org/assignments/media-types/image/vnd.adobe.photoshop">IANA</a>, and    * found in {@code /etc/mime.types}, e.g.    *<a href="http://svn.apache.org/repos/asf/httpd/httpd/branches/1.3.x/conf/mime.types"></a> of    * the Apache<a href="http://httpd.apache.org/">HTTPD project</a>; for the specification, see    *<href="http://www.adobe.com/devnet-apps/photoshop/fileformatashtml/PhotoshopFileFormats.htm">    * Adobe Photoshop Document Format</a> and    *<a href="http://en.wikipedia.org/wiki/Adobe_Photoshop#File_format">Wikipedia</a>; this is the    * regular output/input of Photoshop (which can also export to various image formats; note that    * files with extension "PSB" are in a distinct but related format).<p>This is a more recent    * replacement for the older, experimental type {@code x-photoshop}:    *<a href="http://tools.ietf.org/html/rfc2046#section-6">RFC-2046.6</a>.    *    * @since 15.0    */
 DECL|field|PSD
 specifier|public
 specifier|static
@@ -1174,7 +1174,7 @@ argument_list|,
 literal|"webm"
 argument_list|)
 decl_stmt|;
-comment|/**    * Media type for L24 audio, as defined by    *<a href="https://tools.ietf.org/html/rfc3190">RFC 3190</a>.    *    * @since 20.0    */
+comment|/**    * Media type for L24 audio, as defined by<a href="https://tools.ietf.org/html/rfc3190">RFC    * 3190</a>.    *    * @since 20.0    */
 DECL|field|L24_AUDIO
 specifier|public
 specifier|static
@@ -1219,7 +1219,7 @@ argument_list|,
 literal|"aac"
 argument_list|)
 decl_stmt|;
-comment|/**    * Media type for Vorbis Audio, as defined by    *<a href="http://tools.ietf.org/html/rfc5215">RFC 5215</a>.    *    * @since 20.0    */
+comment|/**    * Media type for Vorbis Audio, as defined by<a href="http://tools.ietf.org/html/rfc5215">RFC    * 5215</a>.    *    * @since 20.0    */
 DECL|field|VORBIS_AUDIO
 specifier|public
 specifier|static
@@ -1234,7 +1234,7 @@ argument_list|,
 literal|"vorbis"
 argument_list|)
 decl_stmt|;
-comment|/**    * Media type for Windows Media Audio. For more information, see    *<a href="https://msdn.microsoft.com/en-us/library/windows/desktop/dd562994(v=vs.85).aspx"    *>file name extensions for Windows Media metafiles</a>.    *    * @since 20.0    */
+comment|/**    * Media type for Windows Media Audio. For more information, see    *<a href="https://msdn.microsoft.com/en-us/library/windows/desktop/dd562994(v=vs.85).aspx">file    * name extensions for Windows Media metafiles</a>.    *    * @since 20.0    */
 DECL|field|WMA_AUDIO
 specifier|public
 specifier|static
@@ -1249,7 +1249,7 @@ argument_list|,
 literal|"x-ms-wma"
 argument_list|)
 decl_stmt|;
-comment|/**    * Media type for Windows Media metafiles. For more information, see    *<a href="https://msdn.microsoft.com/en-us/library/windows/desktop/dd562994(v=vs.85).aspx"    *>file name extensions for Windows Media metafiles</a>.    *    * @since 20.0    */
+comment|/**    * Media type for Windows Media metafiles. For more information, see    *<a href="https://msdn.microsoft.com/en-us/library/windows/desktop/dd562994(v=vs.85).aspx">file    * name extensions for Windows Media metafiles</a>.    *    * @since 20.0    */
 DECL|field|WAX_AUDIO
 specifier|public
 specifier|static
@@ -1279,7 +1279,7 @@ argument_list|,
 literal|"vnd.rn-realaudio"
 argument_list|)
 decl_stmt|;
-comment|/**    * Media type for WAVE format, as defined by    *<a href="https://tools.ietf.org/html/rfc2361">RFC 2361</a>.    *    * @since 20.0    */
+comment|/**    * Media type for WAVE format, as defined by<a href="https://tools.ietf.org/html/rfc2361">RFC    * 2361</a>.    *    * @since 20.0    */
 DECL|field|VND_WAVE_AUDIO
 specifier|public
 specifier|static
@@ -1379,7 +1379,7 @@ argument_list|,
 literal|"x-ms-wmv"
 argument_list|)
 decl_stmt|;
-comment|/**    * Media type for Flash video. For more information, see    *<a href="http://help.adobe.com/en_US/ActionScript/3.0_ProgrammingAS3/WS5b3ccc516d4fbf351e63e3d118a9b90204-7d48.html"    *>this link</a>.    *    * @since 20.0    */
+comment|/**    * Media type for Flash video. For more information, see<a href=    * "http://help.adobe.com/en_US/ActionScript/3.0_ProgrammingAS3/WS5b3ccc516d4fbf351e63e3d118a9b90204-7d48.html"    *>this link</a>.    *    * @since 20.0    */
 DECL|field|FLV_VIDEO
 specifier|public
 specifier|static
@@ -1394,7 +1394,7 @@ argument_list|,
 literal|"x-flv"
 argument_list|)
 decl_stmt|;
-comment|/**    * Media type for the 3GP multimedia container format. For more information, see    *<a href="ftp://www.3gpp.org/tsg_sa/TSG_SA/TSGS_23/Docs/PDF/SP-040065.pdf#page=10"    *>3GPP TS 26.244</a>.    *    * @since 20.0    */
+comment|/**    * Media type for the 3GP multimedia container format. For more information, see    *<a href="ftp://www.3gpp.org/tsg_sa/TSG_SA/TSGS_23/Docs/PDF/SP-040065.pdf#page=10">3GPP TS    * 26.244</a>.    *    * @since 20.0    */
 DECL|field|THREE_GPP_VIDEO
 specifier|public
 specifier|static
@@ -1409,7 +1409,7 @@ argument_list|,
 literal|"3gpp"
 argument_list|)
 decl_stmt|;
-comment|/**    * Media type for the 3G2 multimedia container format. For more information, see    *<a href="http://www.3gpp2.org/Public_html/specs/C.S0050-B_v1.0_070521.pdf#page=16"    *>3GPP2 C.S0050-B</a>.    *    * @since 20.0    */
+comment|/**    * Media type for the 3G2 multimedia container format. For more information, see    *<a href="http://www.3gpp2.org/Public_html/specs/C.S0050-B_v1.0_070521.pdf#page=16">3GPP2    * C.S0050-B</a>.    *    * @since 20.0    */
 DECL|field|THREE_GPP2_VIDEO
 specifier|public
 specifier|static
@@ -1557,7 +1557,7 @@ argument_list|,
 literal|"pkcs12"
 argument_list|)
 decl_stmt|;
-comment|/**    * This is a non-standard media type, but is commonly used in serving hosted binary files as it is    *<a href="http://code.google.com/p/browsersec/wiki/Part2#Survey_of_content_sniffing_behaviors">    * known not to trigger content sniffing in current browsers</a>. It<i>should not</i> be used in    * other situations as it is not specified by any RFC and does not appear in the<a href=    * "http://www.iana.org/assignments/media-types">/IANA MIME Media Types</a> list. Consider    * {@link #OCTET_STREAM} for binary data that is not being served to a browser.    *    *    * @since 14.0    */
+comment|/**    * This is a non-standard media type, but is commonly used in serving hosted binary files as it is    *<a href="http://code.google.com/p/browsersec/wiki/Part2#Survey_of_content_sniffing_behaviors">    * known not to trigger content sniffing in current browsers</a>. It<i>should not</i> be used in    * other situations as it is not specified by any RFC and does not appear in the    *<a href="http://www.iana.org/assignments/media-types">/IANA MIME Media Types</a> list. Consider    * {@link #OCTET_STREAM} for binary data that is not being served to a browser.    *    * @since 14.0    */
 DECL|field|APPLICATION_BINARY
 specifier|public
 specifier|static
@@ -1586,7 +1586,7 @@ argument_list|,
 literal|"x-gzip"
 argument_list|)
 decl_stmt|;
-comment|/**     *<a href="http://www.rfc-editor.org/rfc/rfc4329.txt">RFC 4329</a> declares this to be the     * correct media type for JavaScript, but {@link #TEXT_JAVASCRIPT_UTF_8 text/javascript} may be     * necessary in certain situations for compatibility.     */
+comment|/**    *<a href="http://www.rfc-editor.org/rfc/rfc4329.txt">RFC 4329</a> declares this to be the    * correct media type for JavaScript, but {@link #TEXT_JAVASCRIPT_UTF_8 text/javascript} may be    * necessary in certain situations for compatibility.    */
 DECL|field|JAVASCRIPT_UTF_8
 specifier|public
 specifier|static
@@ -1615,7 +1615,7 @@ argument_list|,
 literal|"json"
 argument_list|)
 decl_stmt|;
-comment|/**    * Media type for the    *<a href="http://www.w3.org/TR/appmanifest/">Manifest for a web application</a>.    *    * @since 19.0    */
+comment|/**    * Media type for the<a href="http://www.w3.org/TR/appmanifest/">Manifest for a web    * application</a>.    *    * @since 19.0    */
 DECL|field|MANIFEST_JSON_UTF_8
 specifier|public
 specifier|static
@@ -1672,7 +1672,7 @@ argument_list|,
 literal|"mbox"
 argument_list|)
 decl_stmt|;
-comment|/**    * Media type for    *<a href="http://goo.gl/1pGBFm">Apple over-the-air mobile configuration profiles</a>.    *    * @since 18.0    */
+comment|/**    * Media type for<a href="http://goo.gl/1pGBFm">Apple over-the-air mobile configuration    * profiles</a>.    *    * @since 18.0    */
 DECL|field|APPLE_MOBILE_CONFIG
 specifier|public
 specifier|static
@@ -1926,7 +1926,7 @@ argument_list|,
 literal|"rtf"
 argument_list|)
 decl_stmt|;
-comment|/**    * Media type for SFNT fonts (which includes    *<a href="http://en.wikipedia.org/wiki/TrueType/">TrueType</a> and    *<a href="http://en.wikipedia.org/wiki/OpenType/">OpenType</a> fonts). This is    *<a href="http://www.iana.org/assignments/media-types/application/font-sfnt">registered</a>    * with the IANA.    *    * @since 17.0    */
+comment|/**    * Media type for SFNT fonts (which includes    *<a href="http://en.wikipedia.org/wiki/TrueType/">TrueType</a> and    *<a href="http://en.wikipedia.org/wiki/OpenType/">OpenType</a> fonts). This is    *<a href="http://www.iana.org/assignments/media-types/application/font-sfnt">registered</a> with    * the IANA.    *    * @since 17.0    */
 DECL|field|SFNT
 specifier|public
 specifier|static
@@ -1998,7 +1998,7 @@ argument_list|,
 literal|"x-tar"
 argument_list|)
 decl_stmt|;
-comment|/**    * Media type for the    *<a href="http://en.wikipedia.org/wiki/Web_Open_Font_Format">Web Open Font Format</a> (WOFF)    *<a href="http://www.w3.org/TR/WOFF/">defined</a> by the W3C. This is    *<a href="http://www.iana.org/assignments/media-types/application/font-woff">registered</a>    * with the IANA.    *    * @since 17.0    */
+comment|/**    * Media type for the<a href="http://en.wikipedia.org/wiki/Web_Open_Font_Format">Web Open Font    * Format</a> (WOFF)<a href="http://www.w3.org/TR/WOFF/">defined</a> by the W3C. This is    *<a href="http://www.iana.org/assignments/media-types/application/font-woff">registered</a> with    * the IANA.    *    * @since 17.0    */
 DECL|field|WOFF
 specifier|public
 specifier|static
@@ -2027,7 +2027,7 @@ argument_list|,
 literal|"xhtml+xml"
 argument_list|)
 decl_stmt|;
-comment|/**    * Media type for Extensible Resource Descriptors. This is not yet registered with the IANA, but    * it is specified by OASIS in the    *<a href="http://docs.oasis-open.org/xri/xrd/v1.0/cd02/xrd-1.0-cd02.html"> XRD definition</a>    * and implemented in projects such as    *<a href="http://code.google.com/p/webfinger/">WebFinger</a>.    */
+comment|/**    * Media type for Extensible Resource Descriptors. This is not yet registered with the IANA, but    * it is specified by OASIS in the    *<a href="http://docs.oasis-open.org/xri/xrd/v1.0/cd02/xrd-1.0-cd02.html">XRD definition</a> and    * implemented in projects such as<a href="http://code.google.com/p/webfinger/">WebFinger</a>.    */
 DECL|field|XRD_UTF_8
 specifier|public
 specifier|static
@@ -2127,7 +2127,7 @@ operator|=
 name|parameters
 expr_stmt|;
 block|}
-comment|/** Returns the top-level media type.  For example, {@code "text"} in {@code "text/plain"}. */
+comment|/** Returns the top-level media type. For example, {@code "text"} in {@code "text/plain"}. */
 DECL|method|type ()
 specifier|public
 name|String
@@ -2138,7 +2138,7 @@ return|return
 name|type
 return|;
 block|}
-comment|/** Returns the media subtype.  For example, {@code "plain"} in {@code "text/plain"}. */
+comment|/** Returns the media subtype. For example, {@code "plain"} in {@code "text/plain"}. */
 DECL|method|subtype ()
 specifier|public
 name|String
@@ -2552,7 +2552,7 @@ name|subtype
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns {@code true} if this instance falls within the range (as defined by    *<a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html">the HTTP Accept header</a>)    * given by the argument according to three criteria:    *    *<ol>    *<li>The type of the argument is the wildcard or equal to the type of this instance.    *<li>The subtype of the argument is the wildcard or equal to the subtype of this instance.    *<li>All of the parameters present in the argument are present in this instance.    *</ol>    *    *<p>For example:<pre>   {@code    *   PLAIN_TEXT_UTF_8.is(PLAIN_TEXT_UTF_8) // true    *   PLAIN_TEXT_UTF_8.is(HTML_UTF_8) // false    *   PLAIN_TEXT_UTF_8.is(ANY_TYPE) // true    *   PLAIN_TEXT_UTF_8.is(ANY_TEXT_TYPE) // true    *   PLAIN_TEXT_UTF_8.is(ANY_IMAGE_TYPE) // false    *   PLAIN_TEXT_UTF_8.is(ANY_TEXT_TYPE.withCharset(UTF_8)) // true    *   PLAIN_TEXT_UTF_8.withoutParameters().is(ANY_TEXT_TYPE.withCharset(UTF_8)) // false    *   PLAIN_TEXT_UTF_8.is(ANY_TEXT_TYPE.withCharset(UTF_16)) // false}</pre>    *    *<p>Note that while it is possible to have the same parameter declared multiple times within a    * media type this method does not consider the number of occurrences of a parameter.  For    * example, {@code "text/plain; charset=UTF-8"} satisfies    * {@code "text/plain; charset=UTF-8; charset=UTF-8"}.    */
+comment|/**    * Returns {@code true} if this instance falls within the range (as defined by    *<a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html">the HTTP Accept header</a>)    * given by the argument according to three criteria:    *    *<ol>    *<li>The type of the argument is the wildcard or equal to the type of this instance.    *<li>The subtype of the argument is the wildcard or equal to the subtype of this instance.    *<li>All of the parameters present in the argument are present in this instance.    *</ol>    *    *<p>For example:<pre>   {@code    *   PLAIN_TEXT_UTF_8.is(PLAIN_TEXT_UTF_8) // true    *   PLAIN_TEXT_UTF_8.is(HTML_UTF_8) // false    *   PLAIN_TEXT_UTF_8.is(ANY_TYPE) // true    *   PLAIN_TEXT_UTF_8.is(ANY_TEXT_TYPE) // true    *   PLAIN_TEXT_UTF_8.is(ANY_IMAGE_TYPE) // false    *   PLAIN_TEXT_UTF_8.is(ANY_TEXT_TYPE.withCharset(UTF_8)) // true    *   PLAIN_TEXT_UTF_8.withoutParameters().is(ANY_TEXT_TYPE.withCharset(UTF_8)) // false    *   PLAIN_TEXT_UTF_8.is(ANY_TEXT_TYPE.withCharset(UTF_16)) // false}</pre>    *    *<p>Note that while it is possible to have the same parameter declared multiple times within a    * media type this method does not consider the number of occurrences of a parameter. For example,    * {@code "text/plain; charset=UTF-8"} satisfies    * {@code "text/plain; charset=UTF-8; charset=UTF-8"}.    */
 DECL|method|is (MediaType mediaTypeRange)
 specifier|public
 name|boolean
@@ -2625,7 +2625,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Creates a new media type with the given type and subtype.    *    * @throws IllegalArgumentException if type or subtype is invalid or if a wildcard is used for the    * type, but not the subtype.    */
+comment|/**    * Creates a new media type with the given type and subtype.    *    * @throws IllegalArgumentException if type or subtype is invalid or if a wildcard is used for the    *     type, but not the subtype.    */
 DECL|method|create (String type, String subtype)
 specifier|public
 specifier|static
@@ -2753,7 +2753,7 @@ name|subtype
 argument_list|)
 return|;
 block|}
-DECL|method|create (String type, String subtype, Multimap<String, String> parameters)
+DECL|method|create ( String type, String subtype, Multimap<String, String> parameters)
 specifier|private
 specifier|static
 name|MediaType
@@ -3470,9 +3470,9 @@ operator|)
 return|;
 block|}
 block|}
-DECL|method|equals (@ullable Object obj)
 annotation|@
 name|Override
+DECL|method|equals (@ullable Object obj)
 specifier|public
 name|boolean
 name|equals
@@ -3555,9 +3555,9 @@ literal|false
 return|;
 block|}
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -3618,10 +3618,10 @@ argument_list|(
 literal|"="
 argument_list|)
 decl_stmt|;
-comment|/**    * Returns the string representation of this media type in the format described in<a    * href="http://www.ietf.org/rfc/rfc2045.txt">RFC 2045</a>.    */
-DECL|method|toString ()
+comment|/**    * Returns the string representation of this media type in the format described in    *<a href="http://www.ietf.org/rfc/rfc2045.txt">RFC 2045</a>.    */
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString

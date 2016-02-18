@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * Copyright (C) 2008 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License");  * you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+comment|/*  * Copyright (C) 2008 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except  * in compliance with the License. You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software distributed under the License  * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express  * or implied. See the License for the specific language governing permissions and limitations under  * the License.  */
 end_comment
 
 begin_package
@@ -75,7 +75,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@code UnicodeEscaper} that escapes some set of Java characters using a  * UTF-8 based percent encoding scheme. The set of safe characters (those which  * remain unescaped) can be specified on construction.  *  *<p>This class is primarily used for creating URI escapers in {@link  * UrlEscapers} but can be used directly if required. While URI escapers impose  * specific semantics on which characters are considered 'safe', this class has  * a minimal set of restrictions.  *  *<p>When escaping a String, the following rules apply:  *<ul>  *<li>All specified safe characters remain unchanged.  *<li>If {@code plusForSpace} was specified, the space character " " is  *     converted into a plus sign {@code "+"}.  *<li>All other characters are converted into one or more bytes using UTF-8  *     encoding and each byte is then represented by the 3-character string  *     "%XX", where "XX" is the two-digit, uppercase, hexadecimal representation  *     of the byte value.  *</ul>  *  *<p>For performance reasons the only currently supported character encoding of  * this class is UTF-8.  *  *<p><b>Note:</b> This escaper produces uppercase hexadecimal sequences. From  *<a href="http://www.ietf.org/rfc/rfc3986.txt">RFC 3986</a>:<br>  *<i>"URI producers and normalizers should use uppercase hexadecimal digits  * for all percent-encodings."</i>  *  * @author David Beaumont  * @since 15.0  */
+comment|/**  * A {@code UnicodeEscaper} that escapes some set of Java characters using a UTF-8 based percent  * encoding scheme. The set of safe characters (those which remain unescaped) can be specified on  * construction.  *  *<p>This class is primarily used for creating URI escapers in {@link UrlEscapers} but can be used  * directly if required. While URI escapers impose specific semantics on which characters are  * considered 'safe', this class has a minimal set of restrictions.  *  *<p>When escaping a String, the following rules apply:  *<ul>  *<li>All specified safe characters remain unchanged.  *<li>If {@code plusForSpace} was specified, the space character " " is converted into a plus sign  *     {@code "+"}.  *<li>All other characters are converted into one or more bytes using UTF-8 encoding and each byte  *     is then represented by the 3-character string "%XX", where "XX" is the two-digit, uppercase,  *     hexadecimal representation of the byte value.  *</ul>  *  *<p>For performance reasons the only currently supported character encoding of this class is  * UTF-8.  *  *<p><b>Note:</b> This escaper produces uppercase hexadecimal sequences. From  *<a href="http://www.ietf.org/rfc/rfc3986.txt">RFC 3986</a>:<br>  *<i>"URI producers and normalizers should use uppercase hexadecimal digits for all  * percent-encodings."</i>  *  * @author David Beaumont  * @since 15.0  */
 end_comment
 
 begin_class
@@ -125,7 +125,7 @@ specifier|final
 name|boolean
 name|plusForSpace
 decl_stmt|;
-comment|/**    * An array of flags where for any {@code char c} if {@code safeOctets[c]} is    * true then {@code c} should remain unmodified in the output. If    * {@code c> safeOctets.length} then it should be escaped.    */
+comment|/**    * An array of flags where for any {@code char c} if {@code safeOctets[c]} is true then {@code c}    * should remain unmodified in the output. If {@code c> safeOctets.length} then it should be    * escaped.    */
 DECL|field|safeOctets
 specifier|private
 specifier|final
@@ -133,7 +133,7 @@ name|boolean
 index|[]
 name|safeOctets
 decl_stmt|;
-comment|/**    * Constructs a percent escaper with the specified safe characters and    * optional handling of the space character.    *    *<p>Not that it is allowed, but not necessarily desirable to specify {@code %}    * as a safe character. This has the effect of creating an escaper which has no    * well defined inverse but it can be useful when escaping additional characters.    *    * @param safeChars a non null string specifying additional safe characters    *        for this escaper (the ranges 0..9, a..z and A..Z are always safe and    *        should not be specified here)    * @param plusForSpace true if ASCII space should be escaped to {@code +}    *        rather than {@code %20}    * @throws IllegalArgumentException if any of the parameters were invalid    */
+comment|/**    * Constructs a percent escaper with the specified safe characters and optional handling of the    * space character.    *    *<p>Not that it is allowed, but not necessarily desirable to specify {@code %} as a safe    * character. This has the effect of creating an escaper which has no well defined inverse but it    * can be useful when escaping additional characters.    *    * @param safeChars a non null string specifying additional safe characters for this escaper (the    *     ranges 0..9, a..z and A..Z are always safe and should not be specified here)    * @param plusForSpace true if ASCII space should be escaped to {@code +} rather than {@code %20}    * @throws IllegalArgumentException if any of the parameters were invalid    */
 DECL|method|PercentEscaper (String safeChars, boolean plusForSpace)
 specifier|public
 name|PercentEscaper
@@ -168,19 +168,13 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"Alphanumeric characters are always 'safe' and should not be "
-operator|+
-literal|"explicitly specified"
+literal|"Alphanumeric characters are always 'safe' and should not be explicitly specified"
 argument_list|)
 throw|;
 block|}
 name|safeChars
 operator|+=
-literal|"abcdefghijklmnopqrstuvwxyz"
-operator|+
-literal|"ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-operator|+
-literal|"0123456789"
+literal|"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
 expr_stmt|;
 comment|// Avoid ambiguous parameters. Safe characters are never modified so if
 comment|// space is a safe character then setting plusForSpace is meaningless.
@@ -220,7 +214,7 @@ name|safeChars
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates a boolean array with entries corresponding to the character values    * specified in safeChars set to true. The array is as small as is required to    * hold the given character information.    */
+comment|/**    * Creates a boolean array with entries corresponding to the character values specified in    * safeChars set to true. The array is as small as is required to hold the given character    * information.    */
 DECL|method|createSafeOctets (String safeChars)
 specifier|private
 specifier|static
@@ -299,7 +293,7 @@ return|return
 name|octets
 return|;
 block|}
-comment|/*    * Overridden for performance. For unescaped strings this improved the    * performance of the uri escaper from ~760ns to ~400ns as measured by    * {@link CharEscapersBenchmark}.    */
+comment|/*    * Overridden for performance. For unescaped strings this improved the performance of the uri    * escaper from ~760ns to ~400ns as measured by {@link CharEscapersBenchmark}.    */
 annotation|@
 name|Override
 DECL|method|nextEscapeIndex (CharSequence csq, int index, int end)
@@ -365,7 +359,7 @@ return|return
 name|index
 return|;
 block|}
-comment|/*    * Overridden for performance. For unescaped strings this improved the    * performance of the uri escaper from ~400ns to ~170ns as measured by    * {@link CharEscapersBenchmark}.    */
+comment|/*    * Overridden for performance. For unescaped strings this improved the performance of the uri    * escaper from ~400ns to ~170ns as measured by {@link CharEscapersBenchmark}.    */
 annotation|@
 name|Override
 DECL|method|escape (String s)
