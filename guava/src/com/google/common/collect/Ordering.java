@@ -613,6 +613,7 @@ argument_list|)
 comment|// TODO(kevinb): ?
 DECL|field|uids
 specifier|private
+specifier|final
 name|Map
 argument_list|<
 name|Object

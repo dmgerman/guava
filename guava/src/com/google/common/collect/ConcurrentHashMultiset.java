@@ -1887,6 +1887,7 @@ argument_list|>
 argument_list|()
 block|{
 specifier|private
+specifier|final
 name|Iterator
 argument_list|<
 name|Map

@@ -1853,6 +1853,7 @@ implements|implements
 name|Serializable
 block|{
 DECL|field|comparator
+specifier|final
 name|Comparator
 argument_list|<
 name|?
@@ -1862,11 +1863,13 @@ argument_list|>
 name|comparator
 decl_stmt|;
 DECL|field|elements
+specifier|final
 name|E
 index|[]
 name|elements
 decl_stmt|;
 DECL|field|counts
+specifier|final
 name|int
 index|[]
 name|counts

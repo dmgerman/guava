@@ -10247,6 +10247,7 @@ name|V
 argument_list|>
 block|{
 DECL|field|unfiltered
+specifier|final
 name|Map
 argument_list|<
 name|K
@@ -10256,6 +10257,7 @@ argument_list|>
 name|unfiltered
 decl_stmt|;
 DECL|field|predicate
+specifier|final
 name|Predicate
 argument_list|<
 name|?
@@ -10549,6 +10551,7 @@ name|V
 argument_list|>
 block|{
 DECL|field|keyPredicate
+specifier|final
 name|Predicate
 argument_list|<
 name|?

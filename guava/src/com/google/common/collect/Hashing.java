@@ -146,6 +146,7 @@ block|}
 DECL|field|MAX_TABLE_SIZE
 specifier|private
 specifier|static
+specifier|final
 name|int
 name|MAX_TABLE_SIZE
 init|=
