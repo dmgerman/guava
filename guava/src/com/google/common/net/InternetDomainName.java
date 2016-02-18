@@ -1046,7 +1046,7 @@ name|name
 argument_list|)
 return|;
 block|}
-comment|/**    * Indicates whether the argument is a syntactically valid domain name using lenient validation.    * Specifically, validation against<a href="http://www.ietf.org/rfc/rfc3490.txt">RFC 3490</a> (    * "Internationalizing Domain Names in Applications") is skipped.    *    *<p>The following two code snippets are equivalent:    *    *<pre>   {@code    *   domainName = InternetDomainName.isValid(name)    *       ? InternetDomainName.from(name)    *       : DEFAULT_DOMAIN;}</pre>    *    *<pre>   {@code    *   try {    *     domainName = InternetDomainName.from(name);    *   } catch (IllegalArgumentException e) {    *     domainName = DEFAULT_DOMAIN;    *   }}</pre>    *    * @since 8.0 (previously named {@code isValidLenient})    */
+comment|/**    * Indicates whether the argument is a syntactically valid domain name using lenient validation.    * Specifically, validation against<a href="http://www.ietf.org/rfc/rfc3490.txt">RFC 3490</a>    * ("Internationalizing Domain Names in Applications") is skipped.    *    *<p>The following two code snippets are equivalent:    *    *<pre>   {@code    *   domainName = InternetDomainName.isValid(name)    *       ? InternetDomainName.from(name)    *       : DEFAULT_DOMAIN;}</pre>    *    *<pre>   {@code    *   try {    *     domainName = InternetDomainName.from(name);    *   } catch (IllegalArgumentException e) {    *     domainName = DEFAULT_DOMAIN;    *   }}</pre>    *    * @since 8.0 (previously named {@code isValidLenient})    */
 DECL|method|isValid (String name)
 specifier|public
 specifier|static
