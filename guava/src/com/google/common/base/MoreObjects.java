@@ -212,6 +212,7 @@ name|className
 decl_stmt|;
 DECL|field|holderHead
 specifier|private
+specifier|final
 name|ValueHolder
 name|holderHead
 init|=
