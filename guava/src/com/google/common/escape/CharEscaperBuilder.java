@@ -62,6 +62,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -285,6 +299,8 @@ argument_list|()
 expr_stmt|;
 block|}
 comment|/**    * Add a new mapping from an index to an object to the escaping.    */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|addEscape (char c, String r)
 specifier|public
 name|CharEscaperBuilder
@@ -326,6 +342,8 @@ name|this
 return|;
 block|}
 comment|/**    * Add multiple mappings at once for a particular index.    */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|addEscapes (char[] cs, String r)
 specifier|public
 name|CharEscaperBuilder

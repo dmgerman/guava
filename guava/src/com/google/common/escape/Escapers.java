@@ -62,6 +62,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -246,6 +260,8 @@ name|Builder
 parameter_list|()
 block|{}
 comment|/**      * Sets the safe range of characters for the escaper. Characters in this range that have no      * explicit replacement are considered 'safe' and remain unescaped in the output. If      * {@code safeMax< safeMin} then the safe range is empty.      *      * @param safeMin the lowest 'safe' character      * @param safeMax the highest 'safe' character      * @return the builder instance      */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|setSafeRange (char safeMin, char safeMax)
 specifier|public
 name|Builder
@@ -275,6 +291,8 @@ name|this
 return|;
 block|}
 comment|/**      * Sets the replacement string for any characters outside the 'safe' range that have no explicit      * replacement. If {@code unsafeReplacement} is {@code null} then no replacement will occur, if      * it is {@code ""} then the unsafe characters are removed from the output.      *      * @param unsafeReplacement the string to replace unsafe chracters      * @return the builder instance      */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|setUnsafeReplacement (@ullable String unsafeReplacement)
 specifier|public
 name|Builder
@@ -297,6 +315,8 @@ name|this
 return|;
 block|}
 comment|/**      * Adds a replacement string for the given input character. The specified character will be      * replaced by the given string whenever it occurs in the input, irrespective of whether it lies      * inside or outside the 'safe' range.      *      * @param c the character to be replaced      * @param replacement the string to replace the given character      * @return the builder instance      * @throws NullPointerException if {@code replacement} is null      */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|addEscape (char c, String replacement)
 specifier|public
 name|Builder

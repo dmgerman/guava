@@ -9,6 +9,11 @@ end_comment
 
 begin_annotation
 annotation|@
+name|CheckReturnValue
+end_annotation
+
+begin_annotation
+annotation|@
 name|ParametersAreNonnullByDefault
 end_annotation
 
@@ -24,6 +29,16 @@ operator|.
 name|html
 package|;
 end_package
+
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckReturnValue
+import|;
+end_import
 
 begin_import
 import|import
