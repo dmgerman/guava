@@ -495,6 +495,12 @@ return|return
 literal|true
 return|;
 block|}
+DECL|method|interruptTask ()
+specifier|protected
+name|void
+name|interruptTask
+parameter_list|()
+block|{}
 annotation|@
 name|Override
 DECL|method|isCancelled ()
