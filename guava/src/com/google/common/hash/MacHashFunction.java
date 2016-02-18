@@ -176,12 +176,7 @@ name|this
 operator|.
 name|bits
 operator|=
-name|getMac
-argument_list|(
-name|algorithmName
-argument_list|,
-name|key
-argument_list|)
+name|prototype
 operator|.
 name|getMacLength
 argument_list|()
