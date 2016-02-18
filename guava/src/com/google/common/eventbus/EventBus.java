@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * Copyright (C) 2007 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License");  * you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+comment|/*  * Copyright (C) 2007 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except  * in compliance with the License. You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software distributed under the License  * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express  * or implied. See the License for the specific language governing permissions and limitations under  * the License.  */
 end_comment
 
 begin_package
@@ -145,7 +145,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Dispatches events to listeners, and provides ways for listeners to register  * themselves.  *  *<p>The EventBus allows publish-subscribe-style communication between  * components without requiring the components to explicitly register with one  * another (and thus be aware of each other).  It is designed exclusively to  * replace traditional Java in-process event distribution using explicit  * registration. It is<em>not</em> a general-purpose publish-subscribe system,  * nor is it intended for interprocess communication.  *  *<h2>Receiving Events</h2>  *<p>To receive events, an object should:  *<ol>  *<li>Expose a public method, known as the<i>event subscriber</i>, which accepts  *     a single argument of the type of event desired;</li>  *<li>Mark it with a {@link Subscribe} annotation;</li>  *<li>Pass itself to an EventBus instance's {@link #register(Object)} method.  *</li>  *</ol>  *  *<h2>Posting Events</h2>  *<p>To post an event, simply provide the event object to the  * {@link #post(Object)} method.  The EventBus instance will determine the type  * of event and route it to all registered listeners.  *  *<p>Events are routed based on their type&mdash; an event will be delivered  * to any subscriber for any type to which the event is<em>assignable.</em>  This  * includes implemented interfaces, all superclasses, and all interfaces  * implemented by superclasses.  *  *<p>When {@code post} is called, all registered subscribers for an event are run  * in sequence, so subscribers should be reasonably quick.  If an event may trigger  * an extended process (such as a database load), spawn a thread or queue it for  * later.  (For a convenient way to do this, use an {@link AsyncEventBus}.)  *  *<h2>Subscriber Methods</h2>  *<p>Event subscriber methods must accept only one argument: the event.  *  *<p>Subscribers should not, in general, throw.  If they do, the EventBus will  * catch and log the exception.  This is rarely the right solution for error  * handling and should not be relied upon; it is intended solely to help find  * problems during development.  *  *<p>The EventBus guarantees that it will not call a subscriber method from  * multiple threads simultaneously, unless the method explicitly allows it by  * bearing the {@link AllowConcurrentEvents} annotation.  If this annotation is  * not present, subscriber methods need not worry about being reentrant, unless  * also called from outside the EventBus.  *  *<h2>Dead Events</h2>  *<p>If an event is posted, but no registered subscribers can accept it, it is  * considered "dead."  To give the system a second chance to handle dead events,  * they are wrapped in an instance of {@link DeadEvent} and reposted.  *  *<p>If a subscriber for a supertype of all events (such as Object) is registered,  * no event will ever be considered dead, and no DeadEvents will be generated.  * Accordingly, while DeadEvent extends {@link Object}, a subscriber registered to  * receive any Object will never receive a DeadEvent.  *  *<p>This class is safe for concurrent use.  *   *<p>See the Guava User Guide article on<a href=  * "https://github.com/google/guava/wiki/EventBusExplained">  * {@code EventBus}</a>.  *  * @author Cliff Biffle  * @since 10.0  */
+comment|/**  * Dispatches events to listeners, and provides ways for listeners to register themselves.  *  *<p>The EventBus allows publish-subscribe-style communication between components without requiring  * the components to explicitly register with one another (and thus be aware of each other). It is  * designed exclusively to replace traditional Java in-process event distribution using explicit  * registration. It is<em>not</em> a general-purpose publish-subscribe system, nor is it intended  * for interprocess communication.  *  *<h2>Receiving Events</h2>  *  *<p>To receive events, an object should:  *<ol>  *<li>Expose a public method, known as the<i>event subscriber</i>, which accepts a single argument  *     of the type of event desired;  *<li>Mark it with a {@link Subscribe} annotation;  *<li>Pass itself to an EventBus instance's {@link #register(Object)} method.  *</ol>  *  *<h2>Posting Events</h2>  *  *<p>To post an event, simply provide the event object to the {@link #post(Object)} method. The  * EventBus instance will determine the type of event and route it to all registered listeners.  *  *<p>Events are routed based on their type&mdash; an event will be delivered to any subscriber for  * any type to which the event is<em>assignable.</em> This includes implemented interfaces, all  * superclasses, and all interfaces implemented by superclasses.  *  *<p>When {@code post} is called, all registered subscribers for an event are run in sequence, so  * subscribers should be reasonably quick. If an event may trigger an extended process (such as a  * database load), spawn a thread or queue it for later. (For a convenient way to do this, use an  * {@link AsyncEventBus}.)  *  *<h2>Subscriber Methods</h2>  *  *<p>Event subscriber methods must accept only one argument: the event.  *  *<p>Subscribers should not, in general, throw. If they do, the EventBus will catch and log the  * exception. This is rarely the right solution for error handling and should not be relied upon; it  * is intended solely to help find problems during development.  *  *<p>The EventBus guarantees that it will not call a subscriber method from multiple threads  * simultaneously, unless the method explicitly allows it by bearing the  * {@link AllowConcurrentEvents} annotation. If this annotation is not present, subscriber methods  * need not worry about being reentrant, unless also called from outside the EventBus.  *  *<h2>Dead Events</h2>  *  *<p>If an event is posted, but no registered subscribers can accept it, it is considered "dead."  * To give the system a second chance to handle dead events, they are wrapped in an instance of  * {@link DeadEvent} and reposted.  *  *<p>If a subscriber for a supertype of all events (such as Object) is registered, no event will  * ever be considered dead, and no DeadEvents will be generated. Accordingly, while DeadEvent  * extends {@link Object}, a subscriber registered to receive any Object will never receive a  * DeadEvent.  *  *<p>This class is safe for concurrent use.  *  *<p>See the Guava User Guide article on  *<a href="https://github.com/google/guava/wiki/EventBusExplained">{@code EventBus}</a>.  *  * @author Cliff Biffle  * @since 10.0  */
 end_comment
 
 begin_class
@@ -223,7 +223,7 @@ literal|"default"
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates a new EventBus with the given {@code identifier}.    *    * @param identifier  a brief name for this bus, for logging purposes.  Should    *                    be a valid Java identifier.    */
+comment|/**    * Creates a new EventBus with the given {@code identifier}.    *    * @param identifier a brief name for this bus, for logging purposes. Should be a valid Java    *     identifier.    */
 DECL|method|EventBus (String identifier)
 specifier|public
 name|EventBus
@@ -252,7 +252,7 @@ name|INSTANCE
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates a new EventBus with the given {@link SubscriberExceptionHandler}.    *     * @param exceptionHandler Handler for subscriber exceptions.    * @since 16.0    */
+comment|/**    * Creates a new EventBus with the given {@link SubscriberExceptionHandler}.    *    * @param exceptionHandler Handler for subscriber exceptions.    * @since 16.0    */
 DECL|method|EventBus (SubscriberExceptionHandler exceptionHandler)
 specifier|public
 name|EventBus
@@ -279,7 +279,7 @@ name|exceptionHandler
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|EventBus (String identifier, Executor executor, Dispatcher dispatcher, SubscriberExceptionHandler exceptionHandler)
+DECL|method|EventBus ( String identifier, Executor executor, Dispatcher dispatcher, SubscriberExceptionHandler exceptionHandler)
 name|EventBus
 parameter_list|(
 name|String
@@ -424,7 +424,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Registers all subscriber methods on {@code object} to receive events.    *    * @param object  object whose subscriber methods should be registered.    */
+comment|/**    * Registers all subscriber methods on {@code object} to receive events.    *    * @param object object whose subscriber methods should be registered.    */
 DECL|method|register (Object object)
 specifier|public
 name|void
@@ -442,7 +442,7 @@ name|object
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Unregisters all subscriber methods on a registered {@code object}.    *    * @param object  object whose subscriber methods should be unregistered.    * @throws IllegalArgumentException if the object was not previously registered.    */
+comment|/**    * Unregisters all subscriber methods on a registered {@code object}.    *    * @param object object whose subscriber methods should be unregistered.    * @throws IllegalArgumentException if the object was not previously registered.    */
 DECL|method|unregister (Object object)
 specifier|public
 name|void
@@ -460,7 +460,7 @@ name|object
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Posts an event to all registered subscribers.  This method will return    * successfully after the event has been posted to all subscribers, and    * regardless of any exceptions thrown by subscribers.    *    *<p>If no subscribers have been subscribed for {@code event}'s class, and    * {@code event} is not already a {@link DeadEvent}, it will be wrapped in a    * DeadEvent and reposted.    *    * @param event  event to post.    */
+comment|/**    * Posts an event to all registered subscribers. This method will return successfully after the    * event has been posted to all subscribers, and regardless of any exceptions thrown by    * subscribers.    *    *<p>If no subscribers have been subscribed for {@code event}'s class, and {@code event} is not    * already a {@link DeadEvent}, it will be wrapped in a DeadEvent and reposted.    *    * @param event event to post.    */
 DECL|method|post (Object event)
 specifier|public
 name|void
