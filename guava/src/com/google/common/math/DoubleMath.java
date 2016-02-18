@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * Copyright (C) 2011 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License");  * you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+comment|/*  * Copyright (C) 2011 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except  * in compliance with the License. You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software distributed under the License  * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express  * or implied. See the License for the specific language governing permissions and limitations under  * the License.  */
 end_comment
 
 begin_package
@@ -354,7 +354,7 @@ specifier|final
 class|class
 name|DoubleMath
 block|{
-comment|/*    * This method returns a value y such that rounding y DOWN (towards zero) gives the same result    * as rounding x according to the specified mode.    */
+comment|/*    * This method returns a value y such that rounding y DOWN (towards zero) gives the same result as    * rounding x according to the specified mode.    */
 annotation|@
 name|GwtIncompatible
 comment|// #isMathematicalInteger, com.google.common.math.DoubleUtils
@@ -590,7 +590,7 @@ argument_list|()
 throw|;
 block|}
 block|}
-comment|/**    * Returns the {@code int} value that is equal to {@code x} rounded with the specified rounding    * mode, if possible.    *    * @throws ArithmeticException if    *<ul>    *<li>{@code x} is infinite or NaN    *<li>{@code x}, after being rounded to a mathematical integer using the specified    *         rounding mode, is either less than {@code Integer.MIN_VALUE} or greater than {@code    *         Integer.MAX_VALUE}    *<li>{@code x} is not a mathematical integer and {@code mode} is    *         {@link RoundingMode#UNNECESSARY}    *</ul>    */
+comment|/**    * Returns the {@code int} value that is equal to {@code x} rounded with the specified rounding    * mode, if possible.    *    * @throws ArithmeticException if    *<ul>    *<li>{@code x} is infinite or NaN    *<li>{@code x}, after being rounded to a mathematical integer using the specified rounding    *         mode, is either less than {@code Integer.MIN_VALUE} or greater than {@code    *         Integer.MAX_VALUE}    *<li>{@code x} is not a mathematical integer and {@code mode} is    *         {@link RoundingMode#UNNECESSARY}    *</ul>    */
 annotation|@
 name|GwtIncompatible
 comment|// #roundIntermediate
@@ -660,7 +660,7 @@ literal|0x1p31
 operator|-
 literal|1.0
 decl_stmt|;
-comment|/**    * Returns the {@code long} value that is equal to {@code x} rounded with the specified rounding    * mode, if possible.    *    * @throws ArithmeticException if    *<ul>    *<li>{@code x} is infinite or NaN    *<li>{@code x}, after being rounded to a mathematical integer using the specified    *         rounding mode, is either less than {@code Long.MIN_VALUE} or greater than {@code    *         Long.MAX_VALUE}    *<li>{@code x} is not a mathematical integer and {@code mode} is    *         {@link RoundingMode#UNNECESSARY}    *</ul>    */
+comment|/**    * Returns the {@code long} value that is equal to {@code x} rounded with the specified rounding    * mode, if possible.    *    * @throws ArithmeticException if    *<ul>    *<li>{@code x} is infinite or NaN    *<li>{@code x}, after being rounded to a mathematical integer using the specified rounding    *         mode, is either less than {@code Long.MIN_VALUE} or greater than {@code    *         Long.MAX_VALUE}    *<li>{@code x} is not a mathematical integer and {@code mode} is    *         {@link RoundingMode#UNNECESSARY}    *</ul>    */
 annotation|@
 name|GwtIncompatible
 comment|// #roundIntermediate
@@ -717,7 +717,7 @@ init|=
 operator|-
 literal|0x1p63
 decl_stmt|;
-comment|/*    * We cannot store Long.MAX_VALUE as a double without losing precision.  Instead, we store    * Long.MAX_VALUE + 1 == -Long.MIN_VALUE, and then offset all comparisons by 1.    */
+comment|/*    * We cannot store Long.MAX_VALUE as a double without losing precision. Instead, we store    * Long.MAX_VALUE + 1 == -Long.MIN_VALUE, and then offset all comparisons by 1.    */
 DECL|field|MAX_LONG_AS_DOUBLE_PLUS_ONE
 specifier|private
 specifier|static
@@ -728,13 +728,9 @@ init|=
 literal|0x1p63
 decl_stmt|;
 comment|/**    * Returns the {@code BigInteger} value that is equal to {@code x} rounded with the specified    * rounding mode, if possible.    *    * @throws ArithmeticException if    *<ul>    *<li>{@code x} is infinite or NaN    *<li>{@code x} is not a mathematical integer and {@code mode} is    *         {@link RoundingMode#UNNECESSARY}    *</ul>    */
+comment|// #roundIntermediate, java.lang.Math.getExponent, com.google.common.math.DoubleUtils
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"#roundIntermediate, java.lang.Math.getExponent, "
-operator|+
-literal|"com.google.common.math.DoubleUtils"
-argument_list|)
 DECL|method|roundToBigInteger (double x, RoundingMode mode)
 specifier|public
 specifier|static
@@ -898,7 +894,7 @@ argument_list|(
 literal|2
 argument_list|)
 decl_stmt|;
-comment|/**    * Returns the base 2 logarithm of a double value, rounded with the specified rounding mode to an    * {@code int}.    *    *<p>Regardless of the rounding mode, this is faster than {@code (int) log2(x)}.    *    * @throws IllegalArgumentException if {@code x<= 0.0}, {@code x} is NaN, or {@code x} is    *         infinite    */
+comment|/**    * Returns the base 2 logarithm of a double value, rounded with the specified rounding mode to an    * {@code int}.    *    *<p>Regardless of the rounding mode, this is faster than {@code (int) log2(x)}.    *    * @throws IllegalArgumentException if {@code x<= 0.0}, {@code x} is NaN, or {@code x} is    *     infinite    */
 annotation|@
 name|GwtIncompatible
 comment|// java.lang.Math.getExponent, com.google.common.math.DoubleUtils
@@ -1129,7 +1125,7 @@ argument_list|)
 operator|)
 return|;
 block|}
-comment|/**    * Returns {@code n!}, that is, the product of the first {@code n} positive    * integers, {@code 1} if {@code n == 0}, or {@code n!}, or    * {@link Double#POSITIVE_INFINITY} if {@code n!> Double.MAX_VALUE}.    *    *<p>The result is within 1 ulp of the true value.    *    * @throws IllegalArgumentException if {@code n< 0}    */
+comment|/**    * Returns {@code n!}, that is, the product of the first {@code n} positive integers, {@code 1} if    * {@code n == 0}, or {@code n!}, or {@link Double#POSITIVE_INFINITY} if    * {@code n!> Double.MAX_VALUE}.    *    *<p>The result is within 1 ulp of the true value.    *    * @throws IllegalArgumentException if {@code n< 0}    */
 DECL|method|factorial (int n)
 specifier|public
 specifier|static
@@ -1208,9 +1204,9 @@ index|]
 return|;
 block|}
 block|}
+DECL|field|MAX_FACTORIAL
 annotation|@
 name|VisibleForTesting
-DECL|field|MAX_FACTORIAL
 specifier|static
 specifier|final
 name|int
@@ -1265,7 +1261,7 @@ literal|0x1
 literal|.95d5f3d928edep945
 block|}
 decl_stmt|;
-comment|/**    * Returns {@code true} if {@code a} and {@code b} are within {@code tolerance} of each other.    *    *<p>Technically speaking, this is equivalent to    * {@code Math.abs(a - b)<= tolerance || Double.valueOf(a).equals(Double.valueOf(b))}.    *    *<p>Notable special cases include:    *<ul>    *<li>All NaNs are fuzzily equal.    *<li>If {@code a == b}, then {@code a} and {@code b} are always fuzzily equal.    *<li>Positive and negative zero are always fuzzily equal.    *<li>If {@code tolerance} is zero, and neither {@code a} nor {@code b} is NaN, then    * {@code a} and {@code b} are fuzzily equal if and only if {@code a == b}.    *<li>With {@link Double#POSITIVE_INFINITY} tolerance, all non-NaN values are fuzzily equal.    *<li>With finite tolerance, {@code Double.POSITIVE_INFINITY} and {@code    * Double.NEGATIVE_INFINITY} are fuzzily equal only to themselves.    *</li>    *    *<p>This is reflexive and symmetric, but<em>not</em> transitive, so it is<em>not</em> an    * equivalence relation and<em>not</em> suitable for use in {@link Object#equals}    * implementations.    *    * @throws IllegalArgumentException if {@code tolerance} is {@code< 0} or NaN    * @since 13.0    */
+comment|/**    * Returns {@code true} if {@code a} and {@code b} are within {@code tolerance} of each other.    *    *<p>Technically speaking, this is equivalent to    * {@code Math.abs(a - b)<= tolerance || Double.valueOf(a).equals(Double.valueOf(b))}.    *    *<p>Notable special cases include:    *<ul>    *<li>All NaNs are fuzzily equal.    *<li>If {@code a == b}, then {@code a} and {@code b} are always fuzzily equal.    *<li>Positive and negative zero are always fuzzily equal.    *<li>If {@code tolerance} is zero, and neither {@code a} nor {@code b} is NaN, then {@code a}    *     and {@code b} are fuzzily equal if and only if {@code a == b}.    *<li>With {@link Double#POSITIVE_INFINITY} tolerance, all non-NaN values are fuzzily equal.    *<li>With finite tolerance, {@code Double.POSITIVE_INFINITY} and {@code    *     Double.NEGATIVE_INFINITY} are fuzzily equal only to themselves.</li>    *    *<p>This is reflexive and symmetric, but<em>not</em> transitive, so it is<em>not</em> an    * equivalence relation and<em>not</em> suitable for use in {@link Object#equals}    * implementations.    *    * @throws IllegalArgumentException if {@code tolerance} is {@code< 0} or NaN    * @since 13.0    */
 DECL|method|fuzzyEquals (double a, double b, double tolerance)
 specifier|public
 specifier|static
@@ -1330,7 +1326,7 @@ argument_list|)
 operator|)
 return|;
 block|}
-comment|/**    * Compares {@code a} and {@code b} "fuzzily," with a tolerance for nearly-equal values.    *    *<p>This method is equivalent to    * {@code fuzzyEquals(a, b, tolerance) ? 0 : Double.compare(a, b)}. In particular, like    * {@link Double#compare(double, double)}, it treats all NaN values as equal and greater than all    * other values (including {@link Double#POSITIVE_INFINITY}).    *    *<p>This is<em>not</em> a total ordering and is<em>not</em> suitable for use in    * {@link Comparable#compareTo} implementations.  In particular, it is not transitive.    *    * @throws IllegalArgumentException if {@code tolerance} is {@code< 0} or NaN    * @since 13.0    */
+comment|/**    * Compares {@code a} and {@code b} "fuzzily," with a tolerance for nearly-equal values.    *    *<p>This method is equivalent to    * {@code fuzzyEquals(a, b, tolerance) ? 0 : Double.compare(a, b)}. In particular, like    * {@link Double#compare(double, double)}, it treats all NaN values as equal and greater than all    * other values (including {@link Double#POSITIVE_INFINITY}).    *    *<p>This is<em>not</em> a total ordering and is<em>not</em> suitable for use in    * {@link Comparable#compareTo} implementations. In particular, it is not transitive.    *    * @throws IllegalArgumentException if {@code tolerance} is {@code< 0} or NaN    * @since 13.0    */
 DECL|method|fuzzyCompare (double a, double b, double tolerance)
 specifier|public
 specifier|static
@@ -1415,9 +1411,9 @@ block|}
 comment|/**    * Returns the<a href="http://en.wikipedia.org/wiki/Arithmetic_mean">arithmetic mean</a> of    * {@code values}.    *    *<p>If these values are a sample drawn from a population, this is also an unbiased estimator of    * the arithmetic mean of the population.    *    * @param values a nonempty series of values    * @throws IllegalArgumentException if {@code values} is empty or contains any non-finite value    * @deprecated Use {@link Stats#meanOf} instead, noting the less strict handling of non-finite    *     values. This method will be removed in February 2018.    */
 annotation|@
 name|Deprecated
+comment|// com.google.common.math.DoubleUtils
 annotation|@
 name|GwtIncompatible
-comment|// com.google.common.math.DoubleUtils
 DECL|method|mean (double... values)
 specifier|public
 specifier|static
@@ -1652,9 +1648,9 @@ block|}
 comment|/**    * Returns the<a href="http://en.wikipedia.org/wiki/Arithmetic_mean">arithmetic mean</a> of    * {@code values}.    *    *<p>If these values are a sample drawn from a population, this is also an unbiased estimator of    * the arithmetic mean of the population.    *    * @param values a nonempty series of values, which will be converted to {@code double} values    *     (this may cause loss of precision)    * @throws IllegalArgumentException if {@code values} is empty or contains any non-finite value    * @deprecated Use {@link Stats#meanOf} instead, noting the less strict handling of non-finite    *     values. This method will be removed in February 2018.    */
 annotation|@
 name|Deprecated
+comment|// com.google.common.math.DoubleUtils
 annotation|@
 name|GwtIncompatible
-comment|// com.google.common.math.DoubleUtils
 DECL|method|mean (Iterable<? extends Number> values)
 specifier|public
 specifier|static
@@ -1683,9 +1679,9 @@ block|}
 comment|/**    * Returns the<a href="http://en.wikipedia.org/wiki/Arithmetic_mean">arithmetic mean</a> of    * {@code values}.    *    *<p>If these values are a sample drawn from a population, this is also an unbiased estimator of    * the arithmetic mean of the population.    *    * @param values a nonempty series of values, which will be converted to {@code double} values    *     (this may cause loss of precision)    * @throws IllegalArgumentException if {@code values} is empty or contains any non-finite value    * @deprecated Use {@link Stats#meanOf} instead, noting the less strict handling of non-finite    *     values. This method will be removed in February 2018.    */
 annotation|@
 name|Deprecated
+comment|// com.google.common.math.DoubleUtils
 annotation|@
 name|GwtIncompatible
-comment|// com.google.common.math.DoubleUtils
 DECL|method|mean (Iterator<? extends Number> values)
 specifier|public
 specifier|static

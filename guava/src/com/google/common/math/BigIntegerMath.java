@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * Copyright (C) 2011 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License");  * you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+comment|/*  * Copyright (C) 2011 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except  * in compliance with the License. You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software distributed under the License  * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express  * or implied. See the License for the specific language governing permissions and limitations under  * the License.  */
 end_comment
 
 begin_package
@@ -225,7 +225,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A class for arithmetic on values of type {@code BigInteger}.  *  *<p>The implementations of many methods in this class are based on material from Henry S. Warren,  * Jr.'s<i>Hacker's Delight</i>, (Addison Wesley, 2002).  *  *<p>Similar functionality for {@code int} and for {@code long} can be found in  * {@link IntMath} and {@link LongMath} respectively.  *  * @author Louis Wasserman  * @since 11.0  */
+comment|/**  * A class for arithmetic on values of type {@code BigInteger}.  *  *<p>The implementations of many methods in this class are based on material from Henry S. Warren,  * Jr.'s<i>Hacker's Delight</i>, (Addison Wesley, 2002).  *  *<p>Similar functionality for {@code int} and for {@code long} can be found in {@link IntMath} and  * {@link LongMath} respectively.  *  * @author Louis Wasserman  * @since 11.0  */
 end_comment
 
 begin_class
@@ -279,7 +279,7 @@ operator|-
 literal|1
 return|;
 block|}
-comment|/**    * Returns the base-2 logarithm of {@code x}, rounded according to the specified rounding mode.    *    * @throws IllegalArgumentException if {@code x<= 0}    * @throws ArithmeticException if {@code mode} is {@link RoundingMode#UNNECESSARY} and {@code x}    *         is not a power of two    */
+comment|/**    * Returns the base-2 logarithm of {@code x}, rounded according to the specified rounding mode.    *    * @throws IllegalArgumentException if {@code x<= 0}    * @throws ArithmeticException if {@code mode} is {@link RoundingMode#UNNECESSARY} and {@code x}    *     is not a power of two    */
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -416,7 +416,10 @@ literal|1
 return|;
 block|}
 block|}
-comment|/*          * Since sqrt(2) is irrational, log2(x) - logFloor cannot be exactly 0.5          *          * To determine which side of logFloor.5 the logarithm is, we compare x^2 to 2^(2 *          * logFloor + 1).          */
+comment|// Since sqrt(2) is irrational, log2(x) - logFloor cannot be exactly 0.5
+comment|//
+comment|// To determine which side of logFloor.5 the logarithm is,
+comment|// we compare x^2 to 2^(2 * logFloor + 1).
 name|BigInteger
 name|x2
 init|=
@@ -473,9 +476,9 @@ name|SQRT2_PRECOMPUTE_THRESHOLD
 init|=
 literal|256
 decl_stmt|;
-DECL|field|SQRT2_PRECOMPUTED_BITS
 annotation|@
 name|VisibleForTesting
+DECL|field|SQRT2_PRECOMPUTED_BITS
 specifier|static
 specifier|final
 name|BigInteger
@@ -489,7 +492,7 @@ argument_list|,
 literal|16
 argument_list|)
 decl_stmt|;
-comment|/**    * Returns the base-10 logarithm of {@code x}, rounded according to the specified rounding mode.    *    * @throws IllegalArgumentException if {@code x<= 0}    * @throws ArithmeticException if {@code mode} is {@link RoundingMode#UNNECESSARY} and {@code x}    *         is not a power of ten    */
+comment|/**    * Returns the base-10 logarithm of {@code x}, rounded according to the specified rounding mode.    *    * @throws IllegalArgumentException if {@code x<= 0}    * @throws ArithmeticException if {@code mode} is {@link RoundingMode#UNNECESSARY} and {@code x}    *     is not a power of ten    */
 annotation|@
 name|GwtIncompatible
 comment|// TODO
@@ -589,7 +592,7 @@ operator|>
 literal|0
 condition|)
 block|{
-comment|/*        * The code is written so that even completely incorrect approximations will still yield the        * correct answer eventually, but in practice this branch should almost never be entered,        * and even then the loop should not run more than once.        */
+comment|/*        * The code is written so that even completely incorrect approximations will still yield the        * correct answer eventually, but in practice this branch should almost never be entered, and        * even then the loop should not run more than once.        */
 do|do
 block|{
 name|approxLog10
@@ -839,7 +842,7 @@ argument_list|(
 literal|2
 argument_list|)
 decl_stmt|;
-comment|/**    * Returns the square root of {@code x}, rounded with the specified rounding mode.    *    * @throws IllegalArgumentException if {@code x< 0}    * @throws ArithmeticException if {@code mode} is {@link RoundingMode#UNNECESSARY} and    *         {@code sqrt(x)} is not an integer    */
+comment|/**    * Returns the square root of {@code x}, rounded with the specified rounding mode.    *    * @throws IllegalArgumentException if {@code x< 0}    * @throws ArithmeticException if {@code mode} is {@link RoundingMode#UNNECESSARY} and    *     {@code sqrt(x)} is not an integer    */
 annotation|@
 name|GwtIncompatible
 comment|// TODO
@@ -1016,7 +1019,7 @@ argument_list|(
 name|sqrtFloor
 argument_list|)
 decl_stmt|;
-comment|/*          * We wish to test whether or not x<= (sqrtFloor + 0.5)^2 = halfSquare + 0.25. Since both          * x and halfSquare are integers, this is equivalent to testing whether or not x<=          * halfSquare.          */
+comment|/*          * We wish to test whether or not x<= (sqrtFloor + 0.5)^2 = halfSquare + 0.25. Since both x          * and halfSquare are integers, this is equivalent to testing whether or not x<=          * halfSquare.          */
 return|return
 operator|(
 name|halfSquare
@@ -1240,7 +1243,7 @@ name|HALF_EVEN
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the result of dividing {@code p} by {@code q}, rounding using the specified    * {@code RoundingMode}.    *    * @throws ArithmeticException if {@code q == 0}, or if {@code mode == UNNECESSARY} and {@code a}    *         is not an integer multiple of {@code b}    */
+comment|/**    * Returns the result of dividing {@code p} by {@code q}, rounding using the specified    * {@code RoundingMode}.    *    * @throws ArithmeticException if {@code q == 0}, or if {@code mode == UNNECESSARY} and {@code a}    *     is not an integer multiple of {@code b}    */
 annotation|@
 name|GwtIncompatible
 comment|// TODO
@@ -1294,7 +1297,7 @@ name|toBigIntegerExact
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns {@code n!}, that is, the product of the first {@code n} positive    * integers, or {@code 1} if {@code n == 0}.    *    *<p><b>Warning:</b> the result takes<i>O(n log n)</i> space, so use cautiously.    *    *<p>This uses an efficient binary recursive algorithm to compute the factorial    * with balanced multiplies.  It also removes all the 2s from the intermediate    * products (shifting them back in at the end).    *    * @throws IllegalArgumentException if {@code n< 0}    */
+comment|/**    * Returns {@code n!}, that is, the product of the first {@code n} positive integers, or {@code 1}    * if {@code n == 0}.    *    *<p><b>Warning:</b> the result takes<i>O(n log n)</i> space, so use cautiously.    *    *<p>This uses an efficient binary recursive algorithm to compute the factorial with balanced    * multiplies. It also removes all the 2s from the intermediate products (shifting them back in at    * the end).    *    * @throws IllegalArgumentException if {@code n< 0}    */
 DECL|method|factorial (int n)
 specifier|public
 specifier|static

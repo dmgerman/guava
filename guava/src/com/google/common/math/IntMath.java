@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * Copyright (C) 2011 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License");  * you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+comment|/*  * Copyright (C) 2011 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except  * in compliance with the License. You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software distributed under the License  * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express  * or implied. See the License for the specific language governing permissions and limitations under  * the License.  */
 end_comment
 
 begin_package
@@ -237,7 +237,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A class for arithmetic on values of type {@code int}. Where possible, methods are defined and  * named analogously to their {@code BigInteger} counterparts.  *  *<p>The implementations of many methods in this class are based on material from Henry S. Warren,  * Jr.'s<i>Hacker's Delight</i>, (Addison Wesley, 2002).  *  *<p>Similar functionality for {@code long} and for {@link BigInteger} can be found in  * {@link LongMath} and {@link BigIntegerMath} respectively.  For other common operations on  * {@code int} values, see {@link com.google.common.primitives.Ints}.  *  * @author Louis Wasserman  * @since 11.0  */
+comment|/**  * A class for arithmetic on values of type {@code int}. Where possible, methods are defined and  * named analogously to their {@code BigInteger} counterparts.  *  *<p>The implementations of many methods in this class are based on material from Henry S. Warren,  * Jr.'s<i>Hacker's Delight</i>, (Addison Wesley, 2002).  *  *<p>Similar functionality for {@code long} and for {@link BigInteger} can be found in  * {@link LongMath} and {@link BigIntegerMath} respectively. For other common operations on  * {@code int} values, see {@link com.google.common.primitives.Ints}.  *  * @author Louis Wasserman  * @since 11.0  */
 end_comment
 
 begin_class
@@ -319,7 +319,7 @@ literal|1
 operator|)
 return|;
 block|}
-comment|/**    * Returns the base-2 logarithm of {@code x}, rounded according to the specified rounding mode.    *    * @throws IllegalArgumentException if {@code x<= 0}    * @throws ArithmeticException if {@code mode} is {@link RoundingMode#UNNECESSARY} and {@code x}    *         is not a power of two    */
+comment|/**    * Returns the base-2 logarithm of {@code x}, rounded according to the specified rounding mode.    *    * @throws IllegalArgumentException if {@code x<= 0}    * @throws ArithmeticException if {@code mode} is {@link RoundingMode#UNNECESSARY} and {@code x}    *     is not a power of two    */
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -475,7 +475,7 @@ name|MAX_POWER_OF_SQRT2_UNSIGNED
 init|=
 literal|0xB504F333
 decl_stmt|;
-comment|/**    * Returns the base-10 logarithm of {@code x}, rounded according to the specified rounding mode.    *    * @throws IllegalArgumentException if {@code x<= 0}    * @throws ArithmeticException if {@code mode} is {@link RoundingMode#UNNECESSARY} and {@code x}    *         is not a power of ten    */
+comment|/**    * Returns the base-10 logarithm of {@code x}, rounded according to the specified rounding mode.    *    * @throws IllegalArgumentException if {@code x<= 0}    * @throws ArithmeticException if {@code mode} is {@link RoundingMode#UNNECESSARY} and {@code x}    *     is not a power of ten    */
 annotation|@
 name|GwtIncompatible
 comment|// need BigIntegerMath to adequately test
@@ -602,7 +602,7 @@ name|int
 name|x
 parameter_list|)
 block|{
-comment|/*      * Based on Hacker's Delight Fig. 11-5, the two-table-lookup, branch-free implementation.      *      * The key idea is that based on the number of leading zeros (equivalently, floor(log2(x))),      * we can narrow the possible floor(log10(x)) values to two.  For example, if floor(log2(x))      * is 6, then 64<= x< 128, so floor(log10(x)) is either 1 or 2.      */
+comment|/*      * Based on Hacker's Delight Fig. 11-5, the two-table-lookup, branch-free implementation.      *      * The key idea is that based on the number of leading zeros (equivalently, floor(log2(x))), we      * can narrow the possible floor(log10(x)) values to two. For example, if floor(log2(x)) is 6,      * then 64<= x< 128, so floor(log10(x)) is either 1 or 2.      */
 name|int
 name|y
 init|=
@@ -632,9 +632,9 @@ argument_list|)
 return|;
 block|}
 comment|// maxLog10ForLeadingZeros[i] == floor(log10(2^(Long.SIZE - i)))
-DECL|field|maxLog10ForLeadingZeros
 annotation|@
 name|VisibleForTesting
+DECL|field|maxLog10ForLeadingZeros
 specifier|static
 specifier|final
 name|byte
@@ -709,9 +709,9 @@ block|,
 literal|0
 block|}
 decl_stmt|;
-DECL|field|powersOf10
 annotation|@
 name|VisibleForTesting
+DECL|field|powersOf10
 specifier|static
 specifier|final
 name|int
@@ -741,9 +741,9 @@ literal|1000000000
 block|}
 decl_stmt|;
 comment|// halfPowersOf10[i] = largest int less than 10^(i + 0.5)
-DECL|field|halfPowersOf10
 annotation|@
 name|VisibleForTesting
+DECL|field|halfPowersOf10
 specifier|static
 specifier|final
 name|int
@@ -970,7 +970,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**    * Returns the square root of {@code x}, rounded with the specified rounding mode.    *    * @throws IllegalArgumentException if {@code x< 0}    * @throws ArithmeticException if {@code mode} is {@link RoundingMode#UNNECESSARY} and    *         {@code sqrt(x)} is not an integer    */
+comment|/**    * Returns the square root of {@code x}, rounded with the specified rounding mode.    *    * @throws IllegalArgumentException if {@code x< 0}    * @throws ArithmeticException if {@code mode} is {@link RoundingMode#UNNECESSARY} and    *     {@code sqrt(x)} is not an integer    */
 annotation|@
 name|GwtIncompatible
 comment|// need BigIntegerMath to adequately test
@@ -1070,7 +1070,7 @@ name|sqrtFloor
 operator|+
 name|sqrtFloor
 decl_stmt|;
-comment|/*          * We wish to test whether or not x<= (sqrtFloor + 0.5)^2 = halfSquare + 0.25. Since both          * x and halfSquare are integers, this is equivalent to testing whether or not x<=          * halfSquare. (We have to deal with overflow, though.)          *          * If we treat halfSquare as an unsigned int, we know that          *            sqrtFloor^2<= x< (sqrtFloor + 1)^2          * halfSquare - sqrtFloor<= x< halfSquare + sqrtFloor + 1          * so |x - halfSquare|<= sqrtFloor.  Therefore, it's safe to treat x - halfSquare as a          * signed int, so lessThanBranchFree is safe for use.          */
+comment|/*          * We wish to test whether or not x<= (sqrtFloor + 0.5)^2 = halfSquare + 0.25. Since both x          * and halfSquare are integers, this is equivalent to testing whether or not x<=          * halfSquare. (We have to deal with overflow, though.)          *          * If we treat halfSquare as an unsigned int, we know that          *            sqrtFloor^2<= x< (sqrtFloor + 1)^2          * halfSquare - sqrtFloor<= x< halfSquare + sqrtFloor + 1          * so |x - halfSquare|<= sqrtFloor.  Therefore, it's safe to treat x - halfSquare as a          * signed int, so lessThanBranchFree is safe for use.          */
 return|return
 name|sqrtFloor
 operator|+
@@ -1113,7 +1113,7 @@ name|x
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the result of dividing {@code p} by {@code q}, rounding using the specified    * {@code RoundingMode}.    *    * @throws ArithmeticException if {@code q == 0}, or if {@code mode == UNNECESSARY} and {@code a}    *         is not an integer multiple of {@code b}    */
+comment|/**    * Returns the result of dividing {@code p} by {@code q}, rounding using the specified    * {@code RoundingMode}.    *    * @throws ArithmeticException if {@code q == 0}, or if {@code mode == UNNECESSARY} and {@code a}    *     is not an integer multiple of {@code b}    */
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -1353,7 +1353,7 @@ else|:
 name|div
 return|;
 block|}
-comment|/**    * Returns {@code x mod m}, a non-negative value less than {@code m}.    * This differs from {@code x % m}, which might be negative.    *    *<p>For example:<pre> {@code    *    * mod(7, 4) == 3    * mod(-7, 4) == 1    * mod(-1, 4) == 3    * mod(-8, 4) == 0    * mod(8, 4) == 0}</pre>    *    * @throws ArithmeticException if {@code m<= 0}    * @see<a href="http://docs.oracle.com/javase/specs/jls/se7/html/jls-15.html#jls-15.17.3">    *      Remainder Operator</a>    */
+comment|/**    * Returns {@code x mod m}, a non-negative value less than {@code m}. This differs from    * {@code x % m}, which might be negative.    *    *<p>For example:<pre> {@code    *    * mod(7, 4) == 3    * mod(-7, 4) == 1    * mod(-1, 4) == 3    * mod(-8, 4) == 0    * mod(8, 4) == 0}</pre>    *    * @throws ArithmeticException if {@code m<= 0}    * @see<a href="http://docs.oracle.com/javase/specs/jls/se7/html/jls-15.html#jls-15.17.3">    *     Remainder Operator</a>    */
 DECL|method|mod (int x, int m)
 specifier|public
 specifier|static
@@ -1421,7 +1421,7 @@ name|int
 name|b
 parameter_list|)
 block|{
-comment|/*      * The reason we require both arguments to be>= 0 is because otherwise, what do you return on      * gcd(0, Integer.MIN_VALUE)? BigInteger.gcd would return positive 2^31, but positive 2^31      * isn't an int.      */
+comment|/*      * The reason we require both arguments to be>= 0 is because otherwise, what do you return on      * gcd(0, Integer.MIN_VALUE)? BigInteger.gcd would return positive 2^31, but positive 2^31 isn't      * an int.      */
 name|checkNonNegative
 argument_list|(
 literal|"a"
@@ -1462,7 +1462,7 @@ name|a
 return|;
 comment|// similar logic
 block|}
-comment|/*      * Uses the binary GCD algorithm; see http://en.wikipedia.org/wiki/Binary_GCD_algorithm.      * This is>40% faster than the Euclidean algorithm in benchmarks.      */
+comment|/*      * Uses the binary GCD algorithm; see http://en.wikipedia.org/wiki/Binary_GCD_algorithm. This is      *>40% faster than the Euclidean algorithm in benchmarks.      */
 name|int
 name|aTwos
 init|=
@@ -1502,7 +1502,7 @@ condition|)
 block|{
 comment|// both a, b are odd
 comment|// The key to the binary GCD algorithm is as follows:
-comment|// Both a and b are odd.  Assume a> b; then gcd(a - b, b) = gcd(a, b).
+comment|// Both a and b are odd. Assume a> b; then gcd(a - b, b) = gcd(a, b).
 comment|// But in gcd(a - b, b), a - b is even and b is odd, so we can divide out powers of two.
 comment|// We bend over backwards to avoid branching, adapting a technique from
 comment|// http://graphics.stanford.edu/~seander/bithacks.html#IntegerMinOrMax
@@ -1692,7 +1692,7 @@ operator|)
 name|result
 return|;
 block|}
-comment|/**    * Returns the {@code b} to the {@code k}th power, provided it does not overflow.    *    *<p>{@link #pow} may be faster, but does not check for overflow.    *    * @throws ArithmeticException if {@code b} to the {@code k}th power overflows in signed    *         {@code int} arithmetic    */
+comment|/**    * Returns the {@code b} to the {@code k}th power, provided it does not overflow.    *    *<p>{@link #pow} may be faster, but does not check for overflow.    *    * @throws ArithmeticException if {@code b} to the {@code k}th power overflows in signed    *     {@code int} arithmetic    */
 DECL|method|checkedPow (int b, int k)
 specifier|public
 specifier|static
@@ -1958,7 +1958,7 @@ name|b
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the product of {@code a} and {@code b} unless it would overflow or underflow in    * which case {@code Integer.MAX_VALUE} or {@code Integer.MIN_VALUE} is returned, respectively.    *    * @since 20.0    */
+comment|/**    * Returns the product of {@code a} and {@code b} unless it would overflow or underflow in which    * case {@code Integer.MAX_VALUE} or {@code Integer.MIN_VALUE} is returned, respectively.    *    * @since 20.0    */
 DECL|method|saturatedMultiply (int a, int b)
 specifier|public
 specifier|static
@@ -1986,7 +1986,7 @@ name|b
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the {@code b} to the {@code k}th power, unless it would overflow or underflow in    * which case {@code Integer.MAX_VALUE} or {@code Integer.MIN_VALUE} is returned, respectively.    *    * @since 20.0    */
+comment|/**    * Returns the {@code b} to the {@code k}th power, unless it would overflow or underflow in which    * case {@code Integer.MAX_VALUE} or {@code Integer.MIN_VALUE} is returned, respectively.    *    * @since 20.0    */
 DECL|method|saturatedPow (int b, int k)
 specifier|public
 specifier|static
@@ -2254,7 +2254,7 @@ name|FLOOR_SQRT_MAX_INT
 init|=
 literal|46340
 decl_stmt|;
-comment|/**    * Returns {@code n!}, that is, the product of the first {@code n} positive    * integers, {@code 1} if {@code n == 0}, or {@link Integer#MAX_VALUE} if the    * result does not fit in a {@code int}.    *    * @throws IllegalArgumentException if {@code n< 0}    */
+comment|/**    * Returns {@code n!}, that is, the product of the first {@code n} positive integers, {@code 1} if    * {@code n == 0}, or {@link Integer#MAX_VALUE} if the result does not fit in a {@code int}.    *    * @throws IllegalArgumentException if {@code n< 0}    */
 DECL|method|factorial (int n)
 specifier|public
 specifier|static
@@ -2603,9 +2603,9 @@ return|;
 block|}
 block|}
 comment|// binomial(biggestBinomials[k], k) fits in an int, but not binomial(biggestBinomials[k]+1,k).
-DECL|field|biggestBinomials
 annotation|@
 name|VisibleForTesting
+DECL|field|biggestBinomials
 specifier|static
 name|int
 index|[]
@@ -2651,7 +2651,7 @@ block|,
 literal|33
 block|}
 decl_stmt|;
-comment|/**    * Returns the arithmetic mean of {@code x} and {@code y}, rounded towards    * negative infinity. This method is overflow resilient.    *    * @since 14.0    */
+comment|/**    * Returns the arithmetic mean of {@code x} and {@code y}, rounded towards negative infinity. This    * method is overflow resilient.    *    * @since 14.0    */
 DECL|method|mean (int x, int y)
 specifier|public
 specifier|static

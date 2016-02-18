@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * Copyright (C) 2011 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License");  * you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+comment|/*  * Copyright (C) 2011 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except  * in compliance with the License. You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software distributed under the License  * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express  * or implied. See the License for the specific language governing permissions and limitations under  * the License.  */
 end_comment
 
 begin_package
@@ -156,7 +156,7 @@ DECL|method|DoubleUtils ()
 specifier|private
 name|DoubleUtils
 parameter_list|()
-block|{   }
+block|{}
 DECL|method|nextDown (double d)
 specifier|static
 name|double
@@ -365,7 +365,7 @@ name|BigInteger
 name|x
 parameter_list|)
 block|{
-comment|// This is an extremely fast implementation of BigInteger.doubleValue().  JDK patch pending.
+comment|// This is an extremely fast implementation of BigInteger.doubleValue(). JDK patch pending.
 name|BigInteger
 name|absX
 init|=
@@ -420,7 +420,7 @@ operator|*
 name|POSITIVE_INFINITY
 return|;
 block|}
-comment|/*      * We need the top SIGNIFICAND_BITS + 1 bits, including the "implicit" one bit. To make      * rounding easier, we pick out the top SIGNIFICAND_BITS + 2 bits, so we have one to help us      * round up or down. twiceSignifFloor will contain the top SIGNIFICAND_BITS + 2 bits, and      * signifFloor the top SIGNIFICAND_BITS + 1.      *      * It helps to consider the real number signif = absX * 2^(SIGNIFICAND_BITS - exponent).      */
+comment|/*      * We need the top SIGNIFICAND_BITS + 1 bits, including the "implicit" one bit. To make rounding      * easier, we pick out the top SIGNIFICAND_BITS + 2 bits, so we have one to help us round up or      * down. twiceSignifFloor will contain the top SIGNIFICAND_BITS + 2 bits, and signifFloor the      * top SIGNIFICAND_BITS + 1.      *      * It helps to consider the real number signif = absX * 2^(SIGNIFICAND_BITS - exponent).      */
 name|int
 name|shift
 init|=
@@ -515,7 +515,7 @@ name|bits
 operator|+=
 name|signifRounded
 expr_stmt|;
-comment|/*      * If signifRounded == 2^53, we'd need to set all of the significand bits to zero and add 1 to      * the exponent. This is exactly the behavior we get from just adding signifRounded to bits      * directly.  If the exponent is MAX_DOUBLE_EXPONENT, we round up (correctly) to      * Double.POSITIVE_INFINITY.      */
+comment|/*      * If signifRounded == 2^53, we'd need to set all of the significand bits to zero and add 1 to      * the exponent. This is exactly the behavior we get from just adding signifRounded to bits      * directly. If the exponent is MAX_DOUBLE_EXPONENT, we round up (correctly) to      * Double.POSITIVE_INFINITY.      */
 name|bits
 operator||=
 name|x
