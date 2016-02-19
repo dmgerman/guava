@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * Copyright (C) 2012 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License");  * you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+comment|/*  * Copyright (C) 2012 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except  * in compliance with the License. You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software distributed under the License  * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express  * or implied. See the License for the specific language governing permissions and limitations under  * the License.  */
 end_comment
 
 begin_package
@@ -87,7 +87,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Abstract implementation of {@link InvocationHandler} that handles {@link Object#equals},  * {@link Object#hashCode} and {@link Object#toString}. For example:<pre>  * class Unsupported extends AbstractInvocationHandler {  *   protected Object handleInvocation(  *       Object proxy, Method method, Object[] args) {  *     throw new UnsupportedOperationException();  *   }  * }  *  * CharSequence unsupported = Reflection.newProxy(CharSequence.class, new Unsupported());  *</pre>  *  * @author Ben Yu  * @since 12.0  */
+comment|/**  * Abstract implementation of {@link InvocationHandler} that handles {@link Object#equals},  * {@link Object#hashCode} and {@link Object#toString}. For example:<pre>  * class Unsupported extends AbstractInvocationHandler {  *   protected Object handleInvocation(Object proxy, Method method, Object[] args) {  *     throw new UnsupportedOperationException();  *   }  * }  *  * CharSequence unsupported = Reflection.newProxy(CharSequence.class, new Unsupported());  *</pre>  *  * @author Ben Yu  * @since 12.0  */
 end_comment
 
 begin_class
@@ -111,10 +111,10 @@ name|NO_ARGS
 init|=
 block|{}
 decl_stmt|;
-comment|/**    * {@inheritDoc}    *    *<p><ul>    *<li>{@code proxy.hashCode()} delegates to {@link AbstractInvocationHandler#hashCode}    *<li>{@code proxy.toString()} delegates to {@link AbstractInvocationHandler#toString}    *<li>{@code proxy.equals(argument)} returns true if:<ul>    *<li>{@code proxy} and {@code argument} are of the same type    *<li>and {@link AbstractInvocationHandler#equals} returns true for the {@link    *       InvocationHandler} of {@code argument}    *</ul>    *<li>other method calls are dispatched to {@link #handleInvocation}.    *</ul>    */
-DECL|method|invoke (Object proxy, Method method, @Nullable Object[] args)
+comment|/**    * {@inheritDoc}    *    *<ul>    *<li>{@code proxy.hashCode()} delegates to {@link AbstractInvocationHandler#hashCode}    *<li>{@code proxy.toString()} delegates to {@link AbstractInvocationHandler#toString}    *<li>{@code proxy.equals(argument)} returns true if:    *<ul>    *<li>{@code proxy} and {@code argument} are of the same type    *<li>and {@link AbstractInvocationHandler#equals} returns true for the    *       {@link InvocationHandler} of {@code argument}    *</ul>    *<li>other method calls are dispatched to {@link #handleInvocation}.    *</ul>    */
 annotation|@
 name|Override
+DECL|method|invoke (Object proxy, Method method, @Nullable Object[] args)
 specifier|public
 specifier|final
 name|Object
@@ -289,7 +289,7 @@ name|args
 argument_list|)
 return|;
 block|}
-comment|/**    * {@link #invoke} delegates to this method upon any method invocation on the proxy instance,    * except {@link Object#equals}, {@link Object#hashCode} and {@link Object#toString}. The result    * will be returned as the proxied method's return value.    *     *<p>Unlike {@link #invoke}, {@code args} will never be null. When the method has no parameter,    * an empty array is passed in.    */
+comment|/**    * {@link #invoke} delegates to this method upon any method invocation on the proxy instance,    * except {@link Object#equals}, {@link Object#hashCode} and {@link Object#toString}. The result    * will be returned as the proxied method's return value.    *    *<p>Unlike {@link #invoke}, {@code args} will never be null. When the method has no parameter,    * an empty array is passed in.    */
 DECL|method|handleInvocation (Object proxy, Method method, Object[] args)
 specifier|protected
 specifier|abstract
@@ -309,10 +309,10 @@ parameter_list|)
 throws|throws
 name|Throwable
 function_decl|;
-comment|/**    * By default delegates to {@link Object#equals} so instances are only equal if they are    * identical. {@code proxy.equals(argument)} returns true if:<ul>    *<li>{@code proxy} and {@code argument} are of the same type    *<li>and this method returns true for the {@link InvocationHandler} of {@code argument}    *</ul>    *<p>Subclasses can override this method to provide custom equality.    */
-DECL|method|equals (Object obj)
+comment|/**    * By default delegates to {@link Object#equals} so instances are only equal if they are    * identical. {@code proxy.equals(argument)} returns true if:    *    *<ul>    *<li>{@code proxy} and {@code argument} are of the same type    *<li>and this method returns true for the {@link InvocationHandler} of {@code argument}    *</ul>    *    *<p>Subclasses can override this method to provide custom equality.    */
 annotation|@
 name|Override
+DECL|method|equals (Object obj)
 specifier|public
 name|boolean
 name|equals
@@ -331,9 +331,9 @@ argument_list|)
 return|;
 block|}
 comment|/**    * By default delegates to {@link Object#hashCode}. The dynamic proxies' {@code hashCode()} will    * delegate to this method. Subclasses can override this method to provide custom equality.    */
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -347,9 +347,9 @@ argument_list|()
 return|;
 block|}
 comment|/**    * By default delegates to {@link Object#toString}. The dynamic proxies' {@code toString()} will    * delegate to this method. Subclasses can override this method to provide custom string    * representation for the proxies.    */
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString

@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * Copyright (C) 2011 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License");  * you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+comment|/*  * Copyright (C) 2011 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except  * in compliance with the License. You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software distributed under the License  * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express  * or implied. See the License for the specific language governing permissions and limitations under  * the License.  */
 end_comment
 
 begin_package
@@ -572,7 +572,7 @@ name|componentType
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a type where {@code rawType} is parameterized by    * {@code arguments} and is owned by {@code ownerType}.    */
+comment|/**    * Returns a type where {@code rawType} is parameterized by {@code arguments} and is owned by    * {@code ownerType}.    */
 DECL|method|newParameterizedTypeWithOwner ( @ullable Type ownerType, Class<?> rawType, Type... arguments)
 specifier|static
 name|ParameterizedType
@@ -642,7 +642,7 @@ name|arguments
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a type where {@code rawType} is parameterized by    * {@code arguments}.    */
+comment|/**    * Returns a type where {@code rawType} is parameterized by {@code arguments}.    */
 DECL|method|newParameterizedType (Class<?> rawType, Type... arguments)
 specifier|static
 name|ParameterizedType
@@ -757,9 +757,9 @@ block|}
 block|}
 block|}
 block|;
-DECL|method|getOwnerType (Class<?> rawType)
 annotation|@
 name|Nullable
+DECL|method|getOwnerType (Class<?> rawType)
 specifier|abstract
 name|Class
 argument_list|<
@@ -864,7 +864,7 @@ argument_list|()
 throw|;
 block|}
 block|}
-comment|/**    * Returns a new {@link TypeVariable} that belongs to {@code declaration} with    * {@code name} and {@code bounds}.    */
+comment|/**    * Returns a new {@link TypeVariable} that belongs to {@code declaration} with {@code name} and    * {@code bounds}.    */
 DECL|method|newArtificialTypeVariable ( D declaration, String name, Type... bounds)
 specifier|static
 parameter_list|<
@@ -918,9 +918,9 @@ argument_list|)
 return|;
 block|}
 comment|/** Returns a new {@link WildcardType} with {@code upperBound}. */
-DECL|method|subtypeOf (Type upperBound)
 annotation|@
 name|VisibleForTesting
+DECL|method|subtypeOf (Type upperBound)
 specifier|static
 name|WildcardType
 name|subtypeOf
@@ -949,9 +949,9 @@ argument_list|)
 return|;
 block|}
 comment|/** Returns a new {@link WildcardType} with {@code lowerBound}. */
-DECL|method|supertypeOf (Type lowerBound)
 annotation|@
 name|VisibleForTesting
+DECL|method|supertypeOf (Type lowerBound)
 specifier|static
 name|WildcardType
 name|supertypeOf
@@ -982,7 +982,7 @@ block|}
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns human readable string representation of {@code type}.    *<ul>    *<li> For array type {@code Foo[]}, {@code "com.mypackage.Foo[]"} are    * returned.    *<li> For any class, {@code theClass.getName()} are returned.    *<li> For all other types, {@code type.toString()} are returned.    *</ul>    */
+comment|/**    * Returns human readable string representation of {@code type}.    *<ul>    *<li>For array type {@code Foo[]}, {@code "com.mypackage.Foo[]"} are returned.    *<li>For any class, {@code theClass.getName()} are returned.    *<li>For all other types, {@code type.toString()} are returned.    *</ul>    */
 DECL|method|toString (Type type)
 specifier|static
 name|String
@@ -1018,9 +1018,9 @@ name|toString
 argument_list|()
 return|;
 block|}
-DECL|method|getComponentType (Type type)
 annotation|@
 name|Nullable
+DECL|method|getComponentType (Type type)
 specifier|static
 name|Type
 name|getComponentType
@@ -1159,9 +1159,9 @@ argument_list|()
 return|;
 block|}
 comment|/**    * Returns {@code ? extends X} if any of {@code bounds} is a subtype of {@code X[]}; or null    * otherwise.    */
-DECL|method|subtypeOfComponentType (Type[] bounds)
 annotation|@
 name|Nullable
+DECL|method|subtypeOfComponentType (Type[] bounds)
 specifier|private
 specifier|static
 name|Type
@@ -1281,9 +1281,9 @@ name|componentType
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|getGenericComponentType ()
 annotation|@
 name|Override
+DECL|method|getGenericComponentType ()
 specifier|public
 name|Type
 name|getGenericComponentType
@@ -1293,9 +1293,9 @@ return|return
 name|componentType
 return|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString
@@ -1312,9 +1312,9 @@ operator|+
 literal|"[]"
 return|;
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -1327,9 +1327,9 @@ name|hashCode
 argument_list|()
 return|;
 block|}
-DECL|method|equals (Object obj)
 annotation|@
 name|Override
+DECL|method|equals (Object obj)
 specifier|public
 name|boolean
 name|equals
@@ -1417,7 +1417,7 @@ name|?
 argument_list|>
 name|rawType
 decl_stmt|;
-DECL|method|ParameterizedTypeImpl ( @ullable Type ownerType, Class<?> rawType, Type[] typeArguments)
+DECL|method|ParameterizedTypeImpl (@ullable Type ownerType, Class<?> rawType, Type[] typeArguments)
 name|ParameterizedTypeImpl
 parameter_list|(
 annotation|@
@@ -1488,9 +1488,9 @@ name|typeArguments
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|getActualTypeArguments ()
 annotation|@
 name|Override
+DECL|method|getActualTypeArguments ()
 specifier|public
 name|Type
 index|[]
@@ -1504,9 +1504,9 @@ name|argumentsList
 argument_list|)
 return|;
 block|}
-DECL|method|getRawType ()
 annotation|@
 name|Override
+DECL|method|getRawType ()
 specifier|public
 name|Type
 name|getRawType
@@ -1516,9 +1516,9 @@ return|return
 name|rawType
 return|;
 block|}
-DECL|method|getOwnerType ()
 annotation|@
 name|Override
+DECL|method|getOwnerType ()
 specifier|public
 name|Type
 name|getOwnerType
@@ -1528,9 +1528,9 @@ return|return
 name|ownerType
 return|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString
@@ -1570,6 +1570,7 @@ literal|'.'
 argument_list|)
 expr_stmt|;
 block|}
+return|return
 name|builder
 operator|.
 name|append
@@ -1604,17 +1605,14 @@ name|append
 argument_list|(
 literal|'>'
 argument_list|)
-expr_stmt|;
-return|return
-name|builder
 operator|.
 name|toString
 argument_list|()
 return|;
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -1645,9 +1643,9 @@ name|hashCode
 argument_list|()
 return|;
 block|}
-DECL|method|equals (Object other)
 annotation|@
 name|Override
+DECL|method|equals (Object other)
 specifier|public
 name|boolean
 name|equals
@@ -1801,7 +1799,7 @@ return|return
 name|typeVariable
 return|;
 block|}
-comment|/**    * Invocation handler to work around a compatibility problem between Java 7 and Java 8.    *    *<p>Java 8 introduced a new method {@code getAnnotatedBounds()} in the {@link TypeVariable}    * interface, whose return type {@code AnnotatedType[]} is also new in Java 8. That means that we    * cannot implement that interface in source code in a way that will compile on both Java 7 and    * Java 8. If we include the {@code getAnnotatedBounds()} method then its return type means    * it won't compile on Java 7, while if we don't include the method then the compiler will    * complain that an abstract method is unimplemented. So instead we use a dynamic proxy to    * get an implementation. If the method being called on the {@code TypeVariable} instance has    * the same name as one of the public methods of {@link TypeVariableImpl}, the proxy calls    * the same method on its instance of {@code TypeVariableImpl}. Otherwise it throws {@link    * UnsupportedOperationException}; this should only apply to {@code getAnnotatedBounds()}. This    * does mean that users on Java 8 who obtain an instance of {@code TypeVariable} from {@link    * TypeResolver#resolveType} will not be able to call {@code getAnnotatedBounds()} on it, but that    * should hopefully be rare.    *    *<p>This workaround should be removed at a distant future time when we no longer support Java    * versions earlier than 8.    */
+comment|/**    * Invocation handler to work around a compatibility problem between Java 7 and Java 8.    *    *<p>Java 8 introduced a new method {@code getAnnotatedBounds()} in the {@link TypeVariable}    * interface, whose return type {@code AnnotatedType[]} is also new in Java 8. That means that we    * cannot implement that interface in source code in a way that will compile on both Java 7 and    * Java 8. If we include the {@code getAnnotatedBounds()} method then its return type means it    * won't compile on Java 7, while if we don't include the method then the compiler will complain    * that an abstract method is unimplemented. So instead we use a dynamic proxy to get an    * implementation. If the method being called on the {@code TypeVariable} instance has the same    * name as one of the public methods of {@link TypeVariableImpl}, the proxy calls the same method    * on its instance of {@code TypeVariableImpl}. Otherwise it throws    * {@link UnsupportedOperationException}; this should only apply to {@code getAnnotatedBounds()}.    * This does mean that users on Java 8 who obtain an instance of {@code TypeVariable} from    * {@link TypeResolver#resolveType} will not be able to call {@code getAnnotatedBounds()} on it,    * but that should hopefully be rare.    *    *<p>This workaround should be removed at a distant future time when we no longer support Java    * versions earlier than 8.    */
 DECL|class|TypeVariableInvocationHandler
 specifier|private
 specifier|static
@@ -1935,9 +1933,9 @@ operator|=
 name|typeVariableImpl
 expr_stmt|;
 block|}
-DECL|method|invoke (Object proxy, Method method, Object[] args)
 annotation|@
 name|Override
+DECL|method|invoke (Object proxy, Method method, Object[] args)
 specifier|public
 name|Object
 name|invoke
@@ -2147,9 +2145,9 @@ return|return
 name|name
 return|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString
@@ -2159,9 +2157,9 @@ return|return
 name|name
 return|;
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -2179,9 +2177,9 @@ name|hashCode
 argument_list|()
 return|;
 block|}
-DECL|method|equals (Object obj)
 annotation|@
 name|Override
+DECL|method|equals (Object obj)
 specifier|public
 name|boolean
 name|equals
@@ -2415,9 +2413,9 @@ name|upperBounds
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|getLowerBounds ()
 annotation|@
 name|Override
+DECL|method|getLowerBounds ()
 specifier|public
 name|Type
 index|[]
@@ -2431,9 +2429,9 @@ name|lowerBounds
 argument_list|)
 return|;
 block|}
-DECL|method|getUpperBounds ()
 annotation|@
 name|Override
+DECL|method|getUpperBounds ()
 specifier|public
 name|Type
 index|[]
@@ -2447,9 +2445,9 @@ name|upperBounds
 argument_list|)
 return|;
 block|}
-DECL|method|equals (Object obj)
 annotation|@
 name|Override
+DECL|method|equals (Object obj)
 specifier|public
 name|boolean
 name|equals
@@ -2509,9 +2507,9 @@ return|return
 literal|false
 return|;
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -2529,9 +2527,9 @@ name|hashCode
 argument_list|()
 return|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString
@@ -3203,7 +3201,7 @@ block|}
 end_class
 
 begin_comment
-comment|/**    * Per https://code.google.com/p/guava-libraries/issues/detail?id=1635,    * In JDK 1.7.0_51-b13, TypeVariableImpl.equals() is changed to no longer be equal to custom    * TypeVariable implementations. As a result, we need to make sure our TypeVariable implementation    * respects symmetry.    * Moreover, we don't want to reconstruct a native type variable<A> using our implementation    * unless some of its bounds have changed in resolution. This avoids creating unequal TypeVariable    * implementation unnecessarily. When the bounds do change, however, it's fine for the synthetic    * TypeVariable to be unequal to any native TypeVariable anyway.    */
+comment|/**    * Per https://code.google.com/p/guava-libraries/issues/detail?id=1635, In JDK 1.7.0_51-b13,    * TypeVariableImpl.equals() is changed to no longer be equal to custom TypeVariable    * implementations. As a result, we need to make sure our TypeVariable implementation respects    * symmetry. Moreover, we don't want to reconstruct a native type variable<A> using our    * implementation unless some of its bounds have changed in resolution. This avoids creating    * unequal TypeVariable implementation unnecessarily. When the bounds do change, however, it's    * fine for the synthetic TypeVariable to be unequal to any native TypeVariable anyway.    */
 end_comment
 
 begin_class

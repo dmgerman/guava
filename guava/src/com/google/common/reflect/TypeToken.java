@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * Copyright (C) 2006 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License");  * you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+comment|/*  * Copyright (C) 2006 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except  * in compliance with the License. You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software distributed under the License  * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express  * or implied. See the License for the specific language governing permissions and limitations under  * the License.  */
 end_comment
 
 begin_package
@@ -391,7 +391,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link Type} with generics.  *  *<p>Operations that are otherwise only available in {@link Class} are implemented to support  * {@code Type}, for example {@link #isSubtypeOf}, {@link #isArray} and {@link #getComponentType}.  * It also provides additional utilities such as {@link #getTypes}, {@link #resolveType}, etc.  *  *<p>There are three ways to get a {@code TypeToken} instance:<ul>  *<li>Wrap a {@code Type} obtained via reflection. For example: {@code  * TypeToken.of(method.getGenericReturnType())}.  *<li>Capture a generic type with a (usually anonymous) subclass. For example:<pre>   {@code  *   new TypeToken<List<String>>() {}}</pre>  *<p>Note that it's critical that the actual type argument is carried by a subclass.  * The following code is wrong because it only captures the {@code<T>} type variable  * of the {@code listType()} method signature; while {@code<String>} is lost in erasure:  *<pre>   {@code  *   class Util {  *     static<T> TypeToken<List<T>> listType() {  *       return new TypeToken<List<T>>() {};  *     }  *   }  *  *   TypeToken<List<String>> stringListType = Util.<String>listType();}</pre>  *<li>Capture a generic type with a (usually anonymous) subclass and resolve it against  * a context class that knows what the type parameters are. For example:<pre>   {@code  *   abstract class IKnowMyType<T> {  *     TypeToken<T> type = new TypeToken<T>(getClass()) {};  *   }  *   new IKnowMyType<String>() {}.type => String}</pre>  *</ul>  *  *<p>{@code TypeToken} is serializable when no type variable is contained in the type.  *  *<p>Note to Guice users: {@code} TypeToken is similar to Guice's {@code TypeLiteral} class  * except that it is serializable and offers numerous additional utility methods.  *  * @author Bob Lee  * @author Sven Mawson  * @author Ben Yu  * @since 12.0  */
+comment|/**  * A {@link Type} with generics.  *  *<p>Operations that are otherwise only available in {@link Class} are implemented to support  * {@code Type}, for example {@link #isSubtypeOf}, {@link #isArray} and {@link #getComponentType}.  * It also provides additional utilities such as {@link #getTypes}, {@link #resolveType}, etc.  *  *<p>There are three ways to get a {@code TypeToken} instance:  *  *<ul>  *  *<li>Wrap a {@code Type} obtained via reflection. For example:  *     {@code TypeToken.of(method.getGenericReturnType())}.  *  *<li>Capture a generic type with a (usually anonymous) subclass. For example:<pre>   {@code  *   new TypeToken<List<String>>() {}}</pre>  *  *<p>Note that it's critical that the actual type argument is carried by a subclass. The  *     following code is wrong because it only captures the {@code<T>} type variable of the {@code  *     listType()} method signature; while {@code<String>} is lost in erasure:  *  *<pre>   {@code  *   class Util {  *     static<T> TypeToken<List<T>> listType() {  *       return new TypeToken<List<T>>() {};  *     }  *   }  *  *   TypeToken<List<String>> stringListType = Util.<String>listType();}</pre>  *  *<li>Capture a generic type with a (usually anonymous) subclass and resolve it against a context  *     class that knows what the type parameters are. For example:<pre>   {@code  *   abstract class IKnowMyType<T> {  *     TypeToken<T> type = new TypeToken<T>(getClass()) {};  *   }  *   new IKnowMyType<String>() {}.type => String}</pre>  *  *</ul>  *  *<p>{@code TypeToken} is serializable when no type variable is contained in the type.  *  *<p>Note to Guice users: {@code} TypeToken is similar to Guice's {@code TypeLiteral} class except  * that it is serializable and offers numerous additional utility methods.  *  * @author Bob Lee  * @author Sven Mawson  * @author Ben Yu  * @since 12.0  */
 end_comment
 
 begin_class
@@ -432,7 +432,7 @@ specifier|transient
 name|TypeResolver
 name|typeResolver
 decl_stmt|;
-comment|/**    * Constructs a new type token of {@code T}.    *    *<p>Clients create an empty anonymous subclass. Doing so embeds the type    * parameter in the anonymous class's type hierarchy so we can reconstitute    * it at runtime despite erasure.    *    *<p>For example:<pre>   {@code    *   TypeToken<List<String>> t = new TypeToken<List<String>>() {};}</pre>    */
+comment|/**    * Constructs a new type token of {@code T}.    *    *<p>Clients create an empty anonymous subclass. Doing so embeds the type parameter in the    * anonymous class's type hierarchy so we can reconstitute it at runtime despite erasure.    *    *<p>For example:<pre>   {@code    *   TypeToken<List<String>> t = new TypeToken<List<String>>() {};}</pre>    */
 DECL|method|TypeToken ()
 specifier|protected
 name|TypeToken
@@ -468,7 +468,7 @@ name|runtimeType
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Constructs a new type token of {@code T} while resolving free type variables in the context of    * {@code declaringClass}.    *    *<p>Clients create an empty anonymous subclass. Doing so embeds the type    * parameter in the anonymous class's type hierarchy so we can reconstitute    * it at runtime despite erasure.    *    *<p>For example:<pre>   {@code    *   abstract class IKnowMyType<T> {    *     TypeToken<T> getMyType() {    *       return new TypeToken<T>(getClass()) {};    *     }    *   }    *    *   new IKnowMyType<String>() {}.getMyType() => String}</pre>    */
+comment|/**    * Constructs a new type token of {@code T} while resolving free type variables in the context of    * {@code declaringClass}.    *    *<p>Clients create an empty anonymous subclass. Doing so embeds the type parameter in the    * anonymous class's type hierarchy so we can reconstitute it at runtime despite erasure.    *    *<p>For example:<pre>   {@code    *   abstract class IKnowMyType<T> {    *     TypeToken<T> getMyType() {    *       return new TypeToken<T>(getClass()) {};    *     }    *   }    *    *   new IKnowMyType<String>() {}.getMyType() => String}</pre>    */
 DECL|method|TypeToken (Class<?> declaringClass)
 specifier|protected
 name|TypeToken
@@ -665,7 +665,7 @@ return|return
 name|runtimeType
 return|;
 block|}
-comment|/**    *<p>Returns a new {@code TypeToken} where type variables represented by {@code typeParam}    * are substituted by {@code typeArg}. For example, it can be used to construct    * {@code Map<K, V>} for any {@code K} and {@code V} type:<pre>   {@code    *   static<K, V> TypeToken<Map<K, V>> mapOf(    *       TypeToken<K> keyType, TypeToken<V> valueType) {    *     return new TypeToken<Map<K, V>>() {}    *         .where(new TypeParameter<K>() {}, keyType)    *         .where(new TypeParameter<V>() {}, valueType);    *   }}</pre>    *    * @param<X> The parameter type    * @param typeParam the parameter type variable    * @param typeArg the actual type to substitute    */
+comment|/**    *<p>Returns a new {@code TypeToken} where type variables represented by {@code typeParam} are    * substituted by {@code typeArg}. For example, it can be used to construct {@code Map<K, V>} for    * any {@code K} and {@code V} type:<pre>   {@code    *   static<K, V> TypeToken<Map<K, V>> mapOf(    *       TypeToken<K> keyType, TypeToken<V> valueType) {    *     return new TypeToken<Map<K, V>>() {}    *         .where(new TypeParameter<K>() {}, keyType)    *         .where(new TypeParameter<V>() {}, valueType);    *   }}</pre>    *    * @param<X> The parameter type    * @param typeParam the parameter type variable    * @param typeArg the actual type to substitute    */
 DECL|method|where (TypeParameter<X> typeParam, TypeToken<X> typeArg)
 specifier|public
 specifier|final
@@ -737,7 +737,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    *<p>Returns a new {@code TypeToken} where type variables represented by {@code typeParam}    * are substituted by {@code typeArg}. For example, it can be used to construct    * {@code Map<K, V>} for any {@code K} and {@code V} type:<pre>   {@code    *   static<K, V> TypeToken<Map<K, V>> mapOf(    *       Class<K> keyType, Class<V> valueType) {    *     return new TypeToken<Map<K, V>>() {}    *         .where(new TypeParameter<K>() {}, keyType)    *         .where(new TypeParameter<V>() {}, valueType);    *   }}</pre>    *    * @param<X> The parameter type    * @param typeParam the parameter type variable    * @param typeArg the actual type to substitute    */
+comment|/**    *<p>Returns a new {@code TypeToken} where type variables represented by {@code typeParam} are    * substituted by {@code typeArg}. For example, it can be used to construct {@code Map<K, V>} for    * any {@code K} and {@code V} type:<pre>   {@code    *   static<K, V> TypeToken<Map<K, V>> mapOf(    *       Class<K> keyType, Class<V> valueType) {    *     return new TypeToken<Map<K, V>>() {}    *         .where(new TypeParameter<K>() {}, keyType)    *         .where(new TypeParameter<V>() {}, valueType);    *   }}</pre>    *    * @param<X> The parameter type    * @param typeParam the parameter type variable    * @param typeArg the actual type to substitute    */
 DECL|method|where (TypeParameter<X> typeParam, Class<X> typeArg)
 specifier|public
 specifier|final
@@ -775,7 +775,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    *<p>Resolves the given {@code type} against the type context represented by this type.    * For example:<pre>   {@code    *   new TypeToken<List<String>>() {}.resolveType(    *       List.class.getMethod("get", int.class).getGenericReturnType())    *   => String.class}</pre>    */
+comment|/**    *<p>Resolves the given {@code type} against the type context represented by this type. For    * example:<pre>   {@code    *   new TypeToken<List<String>>() {}.resolveType(    *       List.class.getMethod("get", int.class).getGenericReturnType())    *   => String.class}</pre>    */
 DECL|method|resolveType (Type type)
 specifier|public
 specifier|final
@@ -915,7 +915,7 @@ return|return
 name|supertype
 return|;
 block|}
-comment|/**    * Returns the generic superclass of this type or {@code null} if the type represents    * {@link Object} or an interface. This method is similar but different from {@link    * Class#getGenericSuperclass}. For example, {@code    * new TypeToken<StringArrayList>() {}.getGenericSuperclass()} will return {@code    * new TypeToken<ArrayList<String>>() {}}; while {@code    * StringArrayList.class.getGenericSuperclass()} will return {@code ArrayList<E>}, where {@code E}    * is the type variable declared by class {@code ArrayList}.    *    *<p>If this type is a type variable or wildcard, its first upper bound is examined and returned    * if the bound is a class or extends from a class. This means that the returned type could be a    * type variable too.    */
+comment|/**    * Returns the generic superclass of this type or {@code null} if the type represents    * {@link Object} or an interface. This method is similar but different from    * {@link Class#getGenericSuperclass}. For example, {@code new TypeToken<StringArrayList>()    * {}.getGenericSuperclass()} will return {@code new TypeToken<ArrayList<String>>() {}}; while    * {@code StringArrayList.class.getGenericSuperclass()} will return {@code ArrayList<E>}, where    * {@code E} is the type variable declared by class {@code ArrayList}.    *    *<p>If this type is a type variable or wildcard, its first upper bound is examined and returned    * if the bound is a class or extends from a class. This means that the returned type could be a    * type variable too.    */
 annotation|@
 name|Nullable
 DECL|method|getGenericSuperclass ()
@@ -1035,9 +1035,9 @@ return|return
 name|superToken
 return|;
 block|}
-DECL|method|boundAsSuperclass (Type bound)
 annotation|@
 name|Nullable
+DECL|method|boundAsSuperclass (Type bound)
 specifier|private
 name|TypeToken
 argument_list|<
@@ -1105,7 +1105,7 @@ return|return
 name|superclass
 return|;
 block|}
-comment|/**    * Returns the generic interfaces that this type directly {@code implements}. This method is    * similar but different from {@link Class#getGenericInterfaces()}. For example, {@code    * new TypeToken<List<String>>() {}.getGenericInterfaces()} will return a list that contains    * {@code new TypeToken<Iterable<String>>() {}}; while {@code List.class.getGenericInterfaces()}    * will return an array that contains {@code Iterable<T>}, where the {@code T} is the type    * variable declared by interface {@code Iterable}.    *    *<p>If this type is a type variable or wildcard, its upper bounds are examined and those that    * are either an interface or upper-bounded only by interfaces are returned. This means that the    * returned types could include type variables too.    */
+comment|/**    * Returns the generic interfaces that this type directly {@code implements}. This method is    * similar but different from {@link Class#getGenericInterfaces()}. For example, {@code new    * TypeToken<List<String>>() {}.getGenericInterfaces()} will return a list that contains    * {@code new TypeToken<Iterable<String>>() {}}; while {@code List.class.getGenericInterfaces()}    * will return an array that contains {@code Iterable<T>}, where the {@code T} is the type    * variable declared by interface {@code Iterable}.    *    *<p>If this type is a type variable or wildcard, its upper bounds are examined and those that    * are either an interface or upper-bounded only by interfaces are returned. This means that the    * returned types could include type variables too.    */
 DECL|method|getGenericInterfaces ()
 specifier|final
 name|ImmutableList
@@ -1351,7 +1351,7 @@ name|TypeSet
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns the generic form of {@code superclass}. For example, if this is    * {@code ArrayList<String>}, {@code Iterable<String>} is returned given the    * input {@code Iterable.class}.    */
+comment|/**    * Returns the generic form of {@code superclass}. For example, if this is    * {@code ArrayList<String>}, {@code Iterable<String>} is returned given the input    * {@code Iterable.class}.    */
 DECL|method|getSupertype (Class<? super T> superclass)
 specifier|public
 specifier|final
@@ -1490,7 +1490,7 @@ return|return
 name|supertype
 return|;
 block|}
-comment|/**    * Returns subtype of {@code this} with {@code subclass} as the raw class.    * For example, if this is {@code Iterable<String>} and {@code subclass} is {@code List},    * {@code List<String>} is returned.    */
+comment|/**    * Returns subtype of {@code this} with {@code subclass} as the raw class. For example, if this is    * {@code Iterable<String>} and {@code subclass} is {@code List}, {@code List<String>} is    * returned.    */
 DECL|method|getSubtype (Class<?> subclass)
 specifier|public
 specifier|final
@@ -1618,7 +1618,7 @@ return|return
 name|subtype
 return|;
 block|}
-comment|/**    * Returns true if this type is a supertype of the given {@code type}. "Supertype" is defined    * according to<a href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-4.html#jls-4.5.1"    *>the rules for type arguments</a> introduced with Java generics.    *    * @since 19.0    */
+comment|/**    * Returns true if this type is a supertype of the given {@code type}. "Supertype" is defined    * according to    *<a href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-4.html#jls-4.5.1">the rules for    * type arguments</a> introduced with Java generics.    *    * @since 19.0    */
 DECL|method|isSupertypeOf (TypeToken<?> type)
 specifier|public
 specifier|final
@@ -1642,7 +1642,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns true if this type is a supertype of the given {@code type}. "Supertype" is defined    * according to<a href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-4.html#jls-4.5.1"    *>the rules for type arguments</a> introduced with Java generics.    *    * @since 19.0    */
+comment|/**    * Returns true if this type is a supertype of the given {@code type}. "Supertype" is defined    * according to    *<a href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-4.html#jls-4.5.1">the rules for    * type arguments</a> introduced with Java generics.    *    * @since 19.0    */
 DECL|method|isSupertypeOf (Type type)
 specifier|public
 specifier|final
@@ -1666,7 +1666,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns true if this type is a subtype of the given {@code type}. "Subtype" is defined    * according to<a href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-4.html#jls-4.5.1"    *>the rules for type arguments</a> introduced with Java generics.    *    * @since 19.0    */
+comment|/**    * Returns true if this type is a subtype of the given {@code type}. "Subtype" is defined    * according to    *<a href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-4.html#jls-4.5.1">the rules for    * type arguments</a> introduced with Java generics.    *    * @since 19.0    */
 DECL|method|isSubtypeOf (TypeToken<?> type)
 specifier|public
 specifier|final
@@ -1690,7 +1690,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns true if this type is a subtype of the given {@code type}. "Subtype" is defined    * according to<a href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-4.html#jls-4.5.1"    *>the rules for type arguments</a> introduced with Java generics.    *    * @since 19.0    */
+comment|/**    * Returns true if this type is a subtype of the given {@code type}. "Subtype" is defined    * according to    *<a href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-4.html#jls-4.5.1">the rules for    * type arguments</a> introduced with Java generics.    *    * @since 19.0    */
 DECL|method|isSubtypeOf (Type supertype)
 specifier|public
 specifier|final
@@ -2067,9 +2067,9 @@ name|this
 return|;
 block|}
 comment|/**    * Returns the array component type if this type represents an array ({@code int[]}, {@code T[]},    * {@code<? extends Map<String, Integer>[]>} etc.), or else {@code null} is returned.    */
-DECL|method|getComponentType ()
 annotation|@
 name|Nullable
+DECL|method|getComponentType ()
 specifier|public
 specifier|final
 name|TypeToken
@@ -2459,9 +2459,9 @@ name|ClassSet
 argument_list|()
 return|;
 block|}
-DECL|method|delegate ()
 annotation|@
 name|Override
+DECL|method|delegate ()
 specifier|protected
 name|Set
 argument_list|<
@@ -2671,9 +2671,9 @@ operator|=
 name|allTypes
 expr_stmt|;
 block|}
-DECL|method|delegate ()
 annotation|@
 name|Override
+DECL|method|delegate ()
 specifier|protected
 name|Set
 argument_list|<
@@ -2737,9 +2737,9 @@ name|result
 return|;
 block|}
 block|}
-DECL|method|interfaces ()
 annotation|@
 name|Override
+DECL|method|interfaces ()
 specifier|public
 name|TypeSet
 name|interfaces
@@ -2749,9 +2749,9 @@ return|return
 name|this
 return|;
 block|}
-DECL|method|rawTypes ()
 annotation|@
 name|Override
+DECL|method|rawTypes ()
 specifier|public
 name|Set
 argument_list|<
@@ -2845,9 +2845,9 @@ function|.toSet
 parameter_list|()
 function|;
 block|}
-DECL|method|classes ()
 annotation|@
 name|Override
+DECL|method|classes ()
 specifier|public
 name|TypeSet
 name|classes
@@ -2910,9 +2910,9 @@ argument_list|>
 argument_list|>
 name|classes
 decl_stmt|;
-DECL|method|delegate ()
 annotation|@
 name|Override
+DECL|method|delegate ()
 specifier|protected
 name|Set
 argument_list|<
@@ -3013,9 +3013,9 @@ name|result
 return|;
 block|}
 block|}
-DECL|method|classes ()
 annotation|@
 name|Override
+DECL|method|classes ()
 specifier|public
 name|TypeSet
 name|classes
@@ -3025,9 +3025,9 @@ return|return
 name|this
 return|;
 block|}
-DECL|method|rawTypes ()
 annotation|@
 name|Override
+DECL|method|rawTypes ()
 specifier|public
 name|Set
 argument_list|<
@@ -3087,9 +3087,9 @@ name|collectedTypes
 argument_list|)
 return|;
 block|}
-DECL|method|interfaces ()
 annotation|@
 name|Override
+DECL|method|interfaces ()
 specifier|public
 name|TypeSet
 name|interfaces
@@ -3213,9 +3213,9 @@ comment|/**    * Returns true if {@code o} is another {@code TypeToken} that rep
 end_comment
 
 begin_function
-DECL|method|equals (@ullable Object o)
 annotation|@
 name|Override
+DECL|method|equals (@ullable Object o)
 specifier|public
 name|boolean
 name|equals
@@ -3265,9 +3265,9 @@ block|}
 end_function
 
 begin_function
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -3283,9 +3283,9 @@ block|}
 end_function
 
 begin_function
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString
@@ -3830,7 +3830,7 @@ block|}
 end_function
 
 begin_comment
-comment|/**    * Return true if any of the following conditions is met:<ul>    *<li>'this' and {@code formalType} are equal    *<li>{@code formalType} is {@code<? extends Foo>} and 'this' is a subtype of {@code Foo}    *<li>{@code formalType} is {@code<? super Foo>} and 'this' is a supertype of {@code Foo}    *</ul>    */
+comment|/**    * Return true if any of the following conditions is met:    *    *<ul>    *<li>'this' and {@code formalType} are equal    *<li>{@code formalType} is {@code<? extends Foo>} and 'this' is a subtype of {@code Foo}    *<li>{@code formalType} is {@code<? super Foo>} and 'this' is a supertype of {@code Foo}    *</ul>    */
 end_comment
 
 begin_function
@@ -4299,9 +4299,9 @@ comment|/**    * Returns the type token representing the generic type declaratio
 end_comment
 
 begin_function
-DECL|method|toGenericType (Class<T> cls)
 annotation|@
 name|VisibleForTesting
+DECL|method|toGenericType (Class<T> cls)
 specifier|static
 parameter_list|<
 name|T
@@ -4953,7 +4953,7 @@ block|}
 end_function
 
 begin_comment
-comment|/**    * Creates an array class if {@code componentType} is a class, or else, a    * {@link GenericArrayType}. This is what Java7 does for generic array type    * parameters.    */
+comment|/**    * Creates an array class if {@code componentType} is a class, or else, a    * {@link GenericArrayType}. This is what Java7 does for generic array type parameters.    */
 end_comment
 
 begin_function
@@ -5478,6 +5478,7 @@ return|return
 name|existing
 return|;
 block|}
+comment|// Interfaces should be listed before Object.
 name|int
 name|aboveMe
 init|=
@@ -5490,7 +5491,6 @@ name|isInterface
 argument_list|()
 condition|?
 literal|1
-comment|// interfaces should be listed before Object
 else|:
 literal|0
 decl_stmt|;
@@ -5554,7 +5554,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/*        * TODO(benyu): should we include Object for interface?        * Also, CharSequence[] and Object[] for String[]?        *        */
+comment|/*        * TODO(benyu): should we include Object for interface? Also, CharSequence[] and Object[] for        * String[]?        *        */
 name|map
 operator|.
 name|put
@@ -5692,9 +5692,9 @@ name|K
 name|type
 parameter_list|)
 function_decl|;
-DECL|method|getSuperclass (K type)
 annotation|@
 name|Nullable
+DECL|method|getSuperclass (K type)
 specifier|abstract
 name|K
 name|getSuperclass
@@ -5743,9 +5743,9 @@ operator|=
 name|delegate
 expr_stmt|;
 block|}
-DECL|method|getRawType (K type)
 annotation|@
 name|Override
+DECL|method|getRawType (K type)
 name|Class
 argument_list|<
 name|?
@@ -5765,9 +5765,9 @@ name|type
 argument_list|)
 return|;
 block|}
-DECL|method|getInterfaces (K type)
 annotation|@
 name|Override
+DECL|method|getInterfaces (K type)
 name|Iterable
 argument_list|<
 name|?
@@ -5789,9 +5789,9 @@ name|type
 argument_list|)
 return|;
 block|}
-DECL|method|getSuperclass (K type)
 annotation|@
 name|Override
+DECL|method|getSuperclass (K type)
 name|K
 name|getSuperclass
 parameter_list|(

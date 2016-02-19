@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * Copyright (C) 2012 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License");  * you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+comment|/*  * Copyright (C) 2012 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except  * in compliance with the License. You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software distributed under the License  * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express  * or implied. See the License for the specific language governing permissions and limitations under  * the License.  */
 end_comment
 
 begin_package
@@ -215,7 +215,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Wrapper around either a {@link Method} or a {@link Constructor}.  * Convenience API is provided to make common reflective operation easier to deal with,  * such as {@link #isPublic}, {@link #getParameters} etc.  *  *<p>In addition to convenience methods, {@link TypeToken#method} and {@link  * TypeToken#constructor} will resolve the type parameters of the method or constructor in the  * context of the owner type, which may be a subtype of the declaring class. For example:  *  *<pre>   {@code  *   Method getMethod = List.class.getMethod("get", int.class);  *   Invokable<List<String>, ?> invokable = new TypeToken<List<String>>() {}.method(getMethod);  *   assertEquals(TypeToken.of(String.class), invokable.getReturnType()); // Not Object.class!  *   assertEquals(new TypeToken<List<String>>() {}, invokable.getOwnerType());}</pre>  *   * @param<T> the type that owns this method or constructor.  * @param<R> the return type of (or supertype thereof) the method or the declaring type of the  *            constructor.  * @author Ben Yu  * @since 14.0  */
+comment|/**  * Wrapper around either a {@link Method} or a {@link Constructor}. Convenience API is provided to  * make common reflective operation easier to deal with, such as {@link #isPublic},  * {@link #getParameters} etc.  *  *<p>In addition to convenience methods, {@link TypeToken#method} and {@link TypeToken#constructor}  * will resolve the type parameters of the method or constructor in the context of the owner type,  * which may be a subtype of the declaring class. For example:  *  *<pre>   {@code  *   Method getMethod = List.class.getMethod("get", int.class);  *   Invokable<List<String>, ?> invokable = new TypeToken<List<String>>() {}.method(getMethod);  *   assertEquals(TypeToken.of(String.class), invokable.getReturnType()); // Not Object.class!  *   assertEquals(new TypeToken<List<String>>() {}, invokable.getOwnerType());}</pre>  *   * @param<T> the type that owns this method or constructor.  * @param<R> the return type of (or supertype thereof) the method or the declaring type of the  *     constructor.  * @author Ben Yu  * @since 14.0  */
 end_comment
 
 begin_class
@@ -332,7 +332,7 @@ name|boolean
 name|isVarArgs
 parameter_list|()
 function_decl|;
-comment|/**    * Invokes with {@code receiver} as 'this' and {@code args} passed to the underlying method    * and returns the return value; or calls the underlying constructor with {@code args} and returns    * the constructed instance.    *    * @throws IllegalAccessException if this {@code Constructor} object enforces Java language    *         access control and the underlying method or constructor is inaccessible.    * @throws IllegalArgumentException if the number of actual and formal parameters differ;    *         if an unwrapping conversion for primitive arguments fails; or if, after possible    *         unwrapping, a parameter value cannot be converted to the corresponding formal    *         parameter type by a method invocation conversion.    * @throws InvocationTargetException if the underlying method or constructor throws an exception.    */
+comment|/**    * Invokes with {@code receiver} as 'this' and {@code args} passed to the underlying method and    * returns the return value; or calls the underlying constructor with {@code args} and returns the    * constructed instance.    *    * @throws IllegalAccessException if this {@code Constructor} object enforces Java language access    *     control and the underlying method or constructor is inaccessible.    * @throws IllegalArgumentException if the number of actual and formal parameters differ; if an    *     unwrapping conversion for primitive arguments fails; or if, after possible unwrapping, a    *     parameter value cannot be converted to the corresponding formal parameter type by a method    *     invocation conversion.    * @throws InvocationTargetException if the underlying method or constructor throws an exception.    */
 comment|// All subclasses are owned by us and we'll make sure to get the R type right.
 annotation|@
 name|SuppressWarnings
@@ -713,9 +713,9 @@ argument_list|(
 literal|"unchecked"
 argument_list|)
 comment|// The declaring class is T's raw class, or one of its supertypes.
-DECL|method|getDeclaringClass ()
 annotation|@
 name|Override
+DECL|method|getDeclaringClass ()
 specifier|public
 specifier|final
 name|Class
@@ -750,9 +750,9 @@ argument_list|(
 literal|"unchecked"
 argument_list|)
 comment|// The declaring class is T.
-DECL|method|getOwnerType ()
 annotation|@
 name|Override
+DECL|method|getOwnerType ()
 specifier|public
 name|TypeToken
 argument_list|<
@@ -864,9 +864,9 @@ operator|=
 name|method
 expr_stmt|;
 block|}
-DECL|method|invokeInternal (@ullable Object receiver, Object[] args)
 annotation|@
 name|Override
+DECL|method|invokeInternal (@ullable Object receiver, Object[] args)
 specifier|final
 name|Object
 name|invokeInternal
@@ -896,9 +896,9 @@ name|args
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getGenericReturnType ()
-annotation|@
-name|Override
 name|Type
 name|getGenericReturnType
 parameter_list|()
@@ -910,9 +910,9 @@ name|getGenericReturnType
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getGenericParameterTypes ()
-annotation|@
-name|Override
 name|Type
 index|[]
 name|getGenericParameterTypes
@@ -925,9 +925,9 @@ name|getGenericParameterTypes
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getGenericExceptionTypes ()
-annotation|@
-name|Override
 name|Type
 index|[]
 name|getGenericExceptionTypes
@@ -940,9 +940,9 @@ name|getGenericExceptionTypes
 argument_list|()
 return|;
 block|}
-DECL|method|getParameterAnnotations ()
 annotation|@
 name|Override
+DECL|method|getParameterAnnotations ()
 specifier|final
 name|Annotation
 index|[]
@@ -957,9 +957,9 @@ name|getParameterAnnotations
 argument_list|()
 return|;
 block|}
-DECL|method|getTypeParameters ()
 annotation|@
 name|Override
+DECL|method|getTypeParameters ()
 specifier|public
 specifier|final
 name|TypeVariable
@@ -977,9 +977,9 @@ name|getTypeParameters
 argument_list|()
 return|;
 block|}
-DECL|method|isOverridable ()
 annotation|@
 name|Override
+DECL|method|isOverridable ()
 specifier|public
 specifier|final
 name|boolean
@@ -1011,9 +1011,9 @@ argument_list|)
 operator|)
 return|;
 block|}
-DECL|method|isVarArgs ()
 annotation|@
 name|Override
+DECL|method|isVarArgs ()
 specifier|public
 specifier|final
 name|boolean
@@ -1073,9 +1073,9 @@ operator|=
 name|constructor
 expr_stmt|;
 block|}
-DECL|method|invokeInternal (@ullable Object receiver, Object[] args)
 annotation|@
 name|Override
+DECL|method|invokeInternal (@ullable Object receiver, Object[] args)
 specifier|final
 name|Object
 name|invokeInternal
@@ -1125,9 +1125,9 @@ throw|;
 block|}
 block|}
 comment|/** If the class is parameterized, such as ArrayList, this returns ArrayList<E>. */
-DECL|method|getGenericReturnType ()
 annotation|@
 name|Override
+DECL|method|getGenericReturnType ()
 name|Type
 name|getGenericReturnType
 parameter_list|()
@@ -1180,9 +1180,9 @@ name|declaringClass
 return|;
 block|}
 block|}
-DECL|method|getGenericParameterTypes ()
 annotation|@
 name|Override
+DECL|method|getGenericParameterTypes ()
 name|Type
 index|[]
 name|getGenericParameterTypes
@@ -1264,9 +1264,9 @@ return|return
 name|types
 return|;
 block|}
-DECL|method|getGenericExceptionTypes ()
 annotation|@
 name|Override
+DECL|method|getGenericExceptionTypes ()
 name|Type
 index|[]
 name|getGenericExceptionTypes
@@ -1279,9 +1279,9 @@ name|getGenericExceptionTypes
 argument_list|()
 return|;
 block|}
-DECL|method|getParameterAnnotations ()
 annotation|@
 name|Override
+DECL|method|getParameterAnnotations ()
 specifier|final
 name|Annotation
 index|[]
@@ -1296,10 +1296,10 @@ name|getParameterAnnotations
 argument_list|()
 return|;
 block|}
-comment|/**      * {@inheritDoc}      *      * {@code [<E>]} will be returned for ArrayList's constructor. When both the class and the      * constructor have type parameters, the class parameters are prepended before those of the      * constructor's. This is an arbitrary rule since no existing language spec mandates one way or      * the other. From the declaration syntax, the class type parameter appears first, but the      * call syntax may show up in opposite order such as {@code new<A>Foo<B>()}.      */
-DECL|method|getTypeParameters ()
+comment|/**      * {@inheritDoc}      *      * {@code [<E>]} will be returned for ArrayList's constructor. When both the class and the      * constructor have type parameters, the class parameters are prepended before those of the      * constructor's. This is an arbitrary rule since no existing language spec mandates one way or      * the other. From the declaration syntax, the class type parameter appears first, but the call      * syntax may show up in opposite order such as {@code new<A>Foo<B>()}.      */
 annotation|@
 name|Override
+DECL|method|getTypeParameters ()
 specifier|public
 specifier|final
 name|TypeVariable
@@ -1397,9 +1397,9 @@ return|return
 name|result
 return|;
 block|}
-DECL|method|isOverridable ()
 annotation|@
 name|Override
+DECL|method|isOverridable ()
 specifier|public
 specifier|final
 name|boolean
@@ -1410,9 +1410,9 @@ return|return
 literal|false
 return|;
 block|}
-DECL|method|isVarArgs ()
 annotation|@
 name|Override
+DECL|method|isVarArgs ()
 specifier|public
 specifier|final
 name|boolean

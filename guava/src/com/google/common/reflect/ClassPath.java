@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * Copyright (C) 2012 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License");  * you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+comment|/*  * Copyright (C) 2012 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except  * in compliance with the License. You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software distributed under the License  * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express  * or implied. See the License for the specific language governing permissions and limitations under  * the License.  */
 end_comment
 
 begin_package
@@ -553,7 +553,7 @@ operator|=
 name|resources
 expr_stmt|;
 block|}
-comment|/**    * Returns a {@code ClassPath} representing all classes and resources loadable from {@code    * classloader} and its parent class loaders.    *    *<p><b>Warning:</b> Currently only {@link URLClassLoader} and only {@code file://} urls are    * supported.    *    * @throws IOException if the attempt to read class path resources (jar files or directories)    *         failed.    */
+comment|/**    * Returns a {@code ClassPath} representing all classes and resources loadable from {@code    * classloader} and its parent class loaders.    *    *<p><b>Warning:</b> Currently only {@link URLClassLoader} and only {@code file://} urls are    * supported.    *    * @throws IOException if the attempt to read class path resources (jar files or directories)    *     failed.    */
 DECL|method|from (ClassLoader classloader)
 specifier|public
 specifier|static
@@ -997,9 +997,9 @@ return|return
 name|resourceName
 return|;
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -1012,9 +1012,9 @@ name|hashCode
 argument_list|()
 return|;
 block|}
-DECL|method|equals (Object obj)
 annotation|@
 name|Override
+DECL|method|equals (Object obj)
 specifier|public
 name|boolean
 name|equals
@@ -1060,9 +1060,9 @@ literal|false
 return|;
 block|}
 comment|// Do not change this arbitrarily. We rely on it for sorting ResourceInfo.
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString
@@ -1229,7 +1229,7 @@ return|return
 name|className
 return|;
 block|}
-comment|/**      * Loads (but doesn't link or initialize) the class.      *      * @throws LinkageError when there were errors in loading classes that this class depends on.      *         For example, {@link NoClassDefFoundError}.      */
+comment|/**      * Loads (but doesn't link or initialize) the class.      *      * @throws LinkageError when there were errors in loading classes that this class depends on.      *     For example, {@link NoClassDefFoundError}.      */
 DECL|method|load ()
 specifier|public
 name|Class
@@ -1266,9 +1266,9 @@ argument_list|)
 throw|;
 block|}
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString
@@ -1382,9 +1382,9 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-DECL|method|scan (File file, ClassLoader classloader)
 annotation|@
 name|VisibleForTesting
+DECL|method|scan (File file, ClassLoader classloader)
 specifier|final
 name|void
 name|scan
@@ -1558,13 +1558,13 @@ parameter_list|(
 name|IOException
 name|ignored
 parameter_list|)
-block|{}
+block|{         }
 block|}
 block|}
 comment|/**      * Returns the class path URIs specified by the {@code Class-Path} manifest attribute, according      * to      *<a href="http://docs.oracle.com/javase/8/docs/technotes/guides/jar/jar.html#Main_Attributes">      * JAR File Specification</a>. If {@code manifest} is null, it means the jar file has no      * manifest, and an empty set will be returned.      */
-DECL|method|getClassPathFromManifest ( File jarFile, @Nullable Manifest manifest)
 annotation|@
 name|VisibleForTesting
+DECL|method|getClassPathFromManifest (File jarFile, @Nullable Manifest manifest)
 specifier|static
 name|ImmutableSet
 argument_list|<
@@ -1718,9 +1718,9 @@ name|build
 argument_list|()
 return|;
 block|}
-DECL|method|getClassPathEntries ( ClassLoader classloader)
 annotation|@
 name|VisibleForTesting
+DECL|method|getClassPathEntries (ClassLoader classloader)
 specifier|static
 name|ImmutableMap
 argument_list|<
@@ -1859,9 +1859,9 @@ argument_list|)
 return|;
 block|}
 comment|/**      * Returns the absolute uri of the Class-Path entry value as specified in      *<a href="http://docs.oracle.com/javase/8/docs/technotes/guides/jar/jar.html#Main_Attributes">      * JAR File Specification</a>. Even though the specification only talks about relative urls,      * absolute urls are actually supported too (for example, in Maven surefire plugin).      */
-DECL|method|getClassPathEntry (File jarFile, String path)
 annotation|@
 name|VisibleForTesting
+DECL|method|getClassPathEntry (File jarFile, String path)
 specifier|static
 name|URL
 name|getClassPathEntry
@@ -1892,9 +1892,9 @@ argument_list|)
 return|;
 block|}
 block|}
-DECL|class|DefaultScanner
 annotation|@
 name|VisibleForTesting
+DECL|class|DefaultScanner
 specifier|static
 specifier|final
 class|class
@@ -1991,9 +1991,9 @@ name|build
 argument_list|()
 return|;
 block|}
-DECL|method|scanJarFile (ClassLoader classloader, JarFile file)
 annotation|@
 name|Override
+DECL|method|scanJarFile (ClassLoader classloader, JarFile file)
 specifier|protected
 name|void
 name|scanJarFile
@@ -2071,9 +2071,9 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-DECL|method|scanDirectory (ClassLoader classloader, File directory)
 annotation|@
 name|Override
+DECL|method|scanDirectory (ClassLoader classloader, File directory)
 specifier|protected
 name|void
 name|scanDirectory
@@ -2097,7 +2097,7 @@ literal|""
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|scanDirectory ( File directory, ClassLoader classloader, String packagePrefix)
+DECL|method|scanDirectory (File directory, ClassLoader classloader, String packagePrefix)
 specifier|private
 name|void
 name|scanDirectory
@@ -2219,9 +2219,9 @@ block|}
 block|}
 block|}
 block|}
-DECL|method|getClassName (String filename)
 annotation|@
 name|VisibleForTesting
+DECL|method|getClassName (String filename)
 specifier|static
 name|String
 name|getClassName

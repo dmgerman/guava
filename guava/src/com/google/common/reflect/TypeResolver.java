@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * Copyright (C) 2009 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License");  * you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+comment|/*  * Copyright (C) 2009 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except  * in compliance with the License. You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software distributed under the License  * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express  * or implied. See the License for the specific language governing permissions and limitations under  * the License.  */
 end_comment
 
 begin_package
@@ -311,7 +311,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a new {@code TypeResolver} with type variables in {@code formal} mapping to types in    * {@code actual}.    *    *<p>For example, if {@code formal} is a {@code TypeVariable T}, and {@code actual} is {@code    * String.class}, then {@code new TypeResolver().where(formal, actual)} will {@linkplain    * #resolveType resolve} {@code ParameterizedType List<T>} to {@code List<String>}, and resolve    * {@code Map<T, Something>} to {@code Map<String, Something>} etc. Similarly, {@code formal} and    * {@code actual} can be {@code Map<K, V>} and {@code Map<String, Integer>} respectively, or they    * can be {@code E[]} and {@code String[]} respectively, or even any arbitrary combination    * thereof.    *    * @param formal The type whose type variables or itself is mapped to other type(s). It's almost    *        always a bug if {@code formal} isn't a type variable and contains no type variable. Make    *        sure you are passing the two parameters in the right order.    * @param actual The type that the formal type variable(s) are mapped to. It can be or contain yet    *        other type variables, in which case these type variables will be further resolved if    *        corresponding mappings exist in the current {@code TypeResolver} instance.    */
+comment|/**    * Returns a new {@code TypeResolver} with type variables in {@code formal} mapping to types in    * {@code actual}.    *    *<p>For example, if {@code formal} is a {@code TypeVariable T}, and {@code actual} is {@code    * String.class}, then {@code new TypeResolver().where(formal, actual)} will    * {@linkplain #resolveType resolve} {@code ParameterizedType List<T>} to {@code List<String>},    * and resolve {@code Map<T, Something>} to {@code Map<String, Something>} etc. Similarly,    * {@code formal} and {@code actual} can be {@code Map<K, V>} and {@code Map<String, Integer>}    * respectively, or they can be {@code E[]} and {@code String[]} respectively, or even any    * arbitrary combination thereof.    *    * @param formal The type whose type variables or itself is mapped to other type(s). It's almost    *     always a bug if {@code formal} isn't a type variable and contains no type variable. Make    *     sure you are passing the two parameters in the right order.    * @param actual The type that the formal type variable(s) are mapped to. It can be or contain yet    *     other type variables, in which case these type variables will be further resolved if    *     corresponding mappings exist in the current {@code TypeResolver} instance.    */
 DECL|method|where (Type formal, Type actual)
 specifier|public
 name|TypeResolver
@@ -833,7 +833,7 @@ name|from
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Resolves all type variables in {@code type} and all downstream types and    * returns a corresponding type with type variables resolved.    */
+comment|/**    * Resolves all type variables in {@code type} and all downstream types and returns a    * corresponding type with type variables resolved.    */
 DECL|method|resolveType (Type type)
 specifier|public
 name|Type
@@ -1615,8 +1615,8 @@ operator|.
 name|newHashMap
 argument_list|()
 decl_stmt|;
-comment|/**      * Returns type mappings using type parameters and type arguments found in      * the generic superclass and the super interfaces of {@code contextClass}.      */
-DECL|method|getTypeMappings ( Type contextType)
+comment|/**      * Returns type mappings using type parameters and type arguments found in the generic      * superclass and the super interfaces of {@code contextClass}.      */
+DECL|method|getTypeMappings (Type contextType)
 specifier|static
 name|ImmutableMap
 argument_list|<
@@ -1660,9 +1660,9 @@ name|mappings
 argument_list|)
 return|;
 block|}
-DECL|method|visitClass (Class<?> clazz)
 annotation|@
 name|Override
+DECL|method|visitClass (Class<?> clazz)
 name|void
 name|visitClass
 parameter_list|(
@@ -1690,9 +1690,9 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|visitParameterizedType (ParameterizedType parameterizedType)
 annotation|@
 name|Override
+DECL|method|visitParameterizedType (ParameterizedType parameterizedType)
 name|void
 name|visitParameterizedType
 parameter_list|(
@@ -1798,9 +1798,9 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|visitTypeVariable (TypeVariable<?> t)
 annotation|@
 name|Override
+DECL|method|visitTypeVariable (TypeVariable<?> t)
 name|void
 name|visitTypeVariable
 parameter_list|(
@@ -1820,9 +1820,9 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|visitWildcardType (WildcardType t)
 annotation|@
 name|Override
+DECL|method|visitWildcardType (WildcardType t)
 name|void
 name|visitWildcardType
 parameter_list|(
@@ -2278,7 +2278,7 @@ name|result
 return|;
 block|}
 block|}
-comment|/**    * Wraps around {@code TypeVariable<?>} to ensure that any two type variables are equal as long as    * they are declared by the same {@link java.lang.reflect.GenericDeclaration} and have the same    * name, even if their bounds differ.    *    *<p>While resolving a type variable from a {var -> type} map, we don't care whether the    * type variable's bound has been partially resolved. As long as the type variable "identity"    * matches.    *    *<p>On the other hand, if for example we are resolving List<A extends B> to    * List<A extends String>, we need to compare that<A extends B> is unequal to    *<A extends String> in order to decide to use the transformed type instead of the original    * type.    */
+comment|/**    * Wraps around {@code TypeVariable<?>} to ensure that any two type variables are equal as long as    * they are declared by the same {@link java.lang.reflect.GenericDeclaration} and have the same    * name, even if their bounds differ.    *    *<p>While resolving a type variable from a {var -> type} map, we don't care whether the type    * variable's bound has been partially resolved. As long as the type variable "identity" matches.    *    *<p>On the other hand, if for example we are resolving List<A extends B> to List<A extends    * String>, we need to compare that<A extends B> is unequal to<A extends String> in order to    * decide to use the transformed type instead of the original type.    */
 DECL|class|TypeVariableKey
 specifier|static
 specifier|final
@@ -2314,9 +2314,9 @@ name|var
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -2339,9 +2339,9 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-DECL|method|equals (Object obj)
 annotation|@
 name|Override
+DECL|method|equals (Object obj)
 specifier|public
 name|boolean
 name|equals
@@ -2381,9 +2381,9 @@ literal|false
 return|;
 block|}
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString
@@ -2434,7 +2434,7 @@ literal|null
 return|;
 block|}
 block|}
-comment|/**      * Returns true if {@code type} is a {@code TypeVariable} with the same name and declared by      * the same {@code GenericDeclaration}.      */
+comment|/**      * Returns true if {@code type} is a {@code TypeVariable} with the same name and declared by the      * same {@code GenericDeclaration}.      */
 DECL|method|equalsType (Type type)
 name|boolean
 name|equalsType
