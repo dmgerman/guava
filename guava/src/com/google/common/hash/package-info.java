@@ -8,7 +8,7 @@ comment|// TODO(user): when things stabilize, flesh this out
 end_comment
 
 begin_comment
-comment|/**  * Hash functions and related structures.  *  *<p>See the Guava User Guide article on<a href=  * "https://github.com/google/guava/wiki/HashingExplained">  * hashing</a>.  */
+comment|/**  * Hash functions and related structures.  *  *<p>See the Guava User Guide article on  *<a href="https://github.com/google/guava/wiki/HashingExplained">hashing</a>.  */
 end_comment
 
 begin_annotation

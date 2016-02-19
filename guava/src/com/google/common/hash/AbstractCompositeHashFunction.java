@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * Copyright (C) 2011 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License");  * you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+comment|/*  * Copyright (C) 2011 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except  * in compliance with the License. You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software distributed under the License  * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express  * or implied. See the License for the specific language governing permissions and limitations under  * the License.  */
 end_comment
 
 begin_package
@@ -91,7 +91,7 @@ operator|=
 name|functions
 expr_stmt|;
 block|}
-comment|/**    * Constructs a {@code HashCode} from the {@code Hasher} objects of the functions. Each of them    * has consumed the entire input and they are ready to output a {@code HashCode}. The order of    * the hashers are the same order as the functions given to the constructor.    */
+comment|/**    * Constructs a {@code HashCode} from the {@code Hasher} objects of the functions. Each of them    * has consumed the entire input and they are ready to output a {@code HashCode}. The order of the    * hashers are the same order as the functions given to the constructor.    */
 comment|// this could be cleaner if it passed HashCode[], but that would create yet another array...
 DECL|method|makeHash (Hasher[] hashers)
 comment|/* protected */

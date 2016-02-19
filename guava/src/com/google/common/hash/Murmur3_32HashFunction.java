@@ -113,7 +113,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * See http://smhasher.googlecode.com/svn/trunk/MurmurHash3.cpp  * MurmurHash3_x86_32  *  * @author Austin Appleby  * @author Dimitris Andreou  * @author Kurt Alfred Kluever  */
+comment|/**  * See MurmurHash3_x86_32 in<a href="http://smhasher.googlecode.com/svn/trunk/MurmurHash3.cpp">the  * C++ implementation</a>.  *  * @author Austin Appleby  * @author Dimitris Andreou  * @author Kurt Alfred Kluever  */
 end_comment
 
 begin_class

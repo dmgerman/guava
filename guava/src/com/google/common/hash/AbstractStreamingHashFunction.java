@@ -103,7 +103,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Skeleton implementation of {@link HashFunction}. Provides default implementations which  * invokes the appropriate method on {@link #newHasher()}, then return the result of  * {@link Hasher#hash}.  *  *<p>Invocations of {@link #newHasher(int)} also delegate to {@linkplain #newHasher()}, ignoring  * the expected input size parameter.  *  * @author Kevin Bourrillion  */
+comment|/**  * Skeleton implementation of {@link HashFunction}. Provides default implementations which invokes  * the appropriate method on {@link #newHasher()}, then return the result of {@link Hasher#hash}.  *  *<p>Invocations of {@link #newHasher(int)} also delegate to {@linkplain #newHasher()}, ignoring  * the expected input size parameter.  *  * @author Kevin Bourrillion  */
 end_comment
 
 begin_class
@@ -337,7 +337,7 @@ name|newHasher
 argument_list|()
 return|;
 block|}
-comment|/**    * A convenience base class for implementors of {@code Hasher}; handles accumulating data    * until an entire "chunk" (of implementation-dependent length) is ready to be hashed.    *    * @author Kevin Bourrillion    * @author Dimitris Andreou    */
+comment|/**    * A convenience base class for implementors of {@code Hasher}; handles accumulating data until an    * entire "chunk" (of implementation-dependent length) is ready to be hashed.    *    * @author Kevin Bourrillion    * @author Dimitris Andreou    */
 comment|// TODO(kevinb): this class still needs some design-and-document-for-inheritance love
 annotation|@
 name|CanIgnoreReturnValue
@@ -371,7 +371,7 @@ specifier|final
 name|int
 name|chunkSize
 decl_stmt|;
-comment|/**      * Constructor for use by subclasses. This hasher instance will process chunks of the specified      * size.      *      * @param chunkSize the number of bytes available per {@link #process(ByteBuffer)} invocation;      *        must be at least 4      */
+comment|/**      * Constructor for use by subclasses. This hasher instance will process chunks of the specified      * size.      *      * @param chunkSize the number of bytes available per {@link #process(ByteBuffer)} invocation;      *     must be at least 4      */
 DECL|method|AbstractStreamingHasher (int chunkSize)
 specifier|protected
 name|AbstractStreamingHasher
@@ -388,7 +388,7 @@ name|chunkSize
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Constructor for use by subclasses. This hasher instance will process chunks of the specified      * size, using an internal buffer of {@code bufferSize} size, which must be a multiple of      * {@code chunkSize}.      *      * @param chunkSize the number of bytes available per {@link #process(ByteBuffer)} invocation;      *        must be at least 4      * @param bufferSize the size of the internal buffer. Must be a multiple of chunkSize      */
+comment|/**      * Constructor for use by subclasses. This hasher instance will process chunks of the specified      * size, using an internal buffer of {@code bufferSize} size, which must be a multiple of      * {@code chunkSize}.      *      * @param chunkSize the number of bytes available per {@link #process(ByteBuffer)} invocation;      *     must be at least 4      * @param bufferSize the size of the internal buffer. Must be a multiple of chunkSize      */
 DECL|method|AbstractStreamingHasher (int chunkSize, int bufferSize)
 specifier|protected
 name|AbstractStreamingHasher
@@ -456,7 +456,7 @@ name|ByteBuffer
 name|bb
 parameter_list|)
 function_decl|;
-comment|/**      * This is invoked for the last bytes of the input, which are not enough to      * fill a whole chunk. The passed {@code ByteBuffer} is guaranteed to be      * non-empty.      *      *<p>This implementation simply pads with zeros and delegates to      * {@link #process(ByteBuffer)}.      */
+comment|/**      * This is invoked for the last bytes of the input, which are not enough to fill a whole chunk.      * The passed {@code ByteBuffer} is guaranteed to be non-empty.      *      *<p>This implementation simply pads with zeros and delegates to {@link #process(ByteBuffer)}.      */
 DECL|method|processRemaining (ByteBuffer bb)
 specifier|protected
 name|void
@@ -743,7 +743,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/*      * Note: hashString(CharSequence, Charset) is intentionally not overridden.      *      * While intuitively, using CharsetEncoder to encode the CharSequence directly to the buffer      * (or even to an intermediate buffer) should be considerably more efficient than potentially      * copying the CharSequence to a String and then calling getBytes(Charset) on that String, in      * reality there are optimizations that make the getBytes(Charset) approach considerably faster,      * at least for commonly used charsets like UTF-8.      */
+comment|/*      * Note: hashString(CharSequence, Charset) is intentionally not overridden.      *      * While intuitively, using CharsetEncoder to encode the CharSequence directly to the buffer (or      * even to an intermediate buffer) should be considerably more efficient than potentially      * copying the CharSequence to a String and then calling getBytes(Charset) on that String, in      * reality there are optimizations that make the getBytes(Charset) approach considerably faster,      * at least for commonly used charsets like UTF-8.      */
 annotation|@
 name|Override
 DECL|method|putByte (byte b)

@@ -17,7 +17,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * This class generates a CRC32C checksum, defined by RFC 3720, Section 12.1.  * The generator polynomial for this checksum is {@code 0x11EDC6F41}.  *  * @author Kurt Alfred Kluever  */
+comment|/**  * This class generates a CRC32C checksum, defined by RFC 3720, Section 12.1. The generator  * polynomial for this checksum is {@code 0x11EDC6F41}.  *  * @author Kurt Alfred Kluever  */
 end_comment
 
 begin_class

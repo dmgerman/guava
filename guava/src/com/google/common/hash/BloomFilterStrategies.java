@@ -105,7 +105,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Collections of strategies of generating the k * log(M) bits required for an element to  * be mapped to a BloomFilter of M bits and k hash functions. These  * strategies are part of the serialized form of the Bloom filters that use them, thus they must be  * preserved as is (no updates allowed, only introduction of new versions).  *  * Important: the order of the constants cannot change, and they cannot be deleted - we depend  * on their ordinal for BloomFilter serialization.  *  * @author Dimitris Andreou  * @author Kurt Alfred Kluever  */
+comment|/**  * Collections of strategies of generating the k * log(M) bits required for an element to be mapped  * to a BloomFilter of M bits and k hash functions. These strategies are part of the serialized form  * of the Bloom filters that use them, thus they must be preserved as is (no updates allowed, only  * introduction of new versions).  *  * Important: the order of the constants cannot change, and they cannot be deleted - we depend on  * their ordinal for BloomFilter serialization.  *  * @author Dimitris Andreou  * @author Kurt Alfred Kluever  */
 end_comment
 
 begin_enum
@@ -117,7 +117,7 @@ name|BloomFilter
 operator|.
 name|Strategy
 block|{
-comment|/**    * See "Less Hashing, Same Performance: Building a Better Bloom Filter" by Adam Kirsch and    * Michael Mitzenmacher. The paper argues that this trick doesn't significantly deteriorate the    * performance of a Bloom filter (yet only needs two 32bit hash functions).    */
+comment|/**    * See "Less Hashing, Same Performance: Building a Better Bloom Filter" by Adam Kirsch and Michael    * Mitzenmacher. The paper argues that this trick doesn't significantly deteriorate the    * performance of a Bloom filter (yet only needs two 32bit hash functions).    */
 DECL|enumConstant|MURMUR128_MITZ_32
 DECL|method|MURMUR128_MITZ_32 ()
 name|MURMUR128_MITZ_32
@@ -394,7 +394,7 @@ return|;
 block|}
 block|}
 block|,
-comment|/**    * This strategy uses all 128 bits of {@link Hashing#murmur3_128} when hashing. It looks    * different than the implementation in MURMUR128_MITZ_32 because we're avoiding the    * multiplication in the loop and doing a (much simpler) += hash2. We're also changing the    * index to a positive number by AND'ing with Long.MAX_VALUE instead of flipping the bits.    */
+comment|/**    * This strategy uses all 128 bits of {@link Hashing#murmur3_128} when hashing. It looks different    * than the implementation in MURMUR128_MITZ_32 because we're avoiding the multiplication in the    * loop and doing a (much simpler) += hash2. We're also changing the index to a positive number by    * AND'ing with Long.MAX_VALUE instead of flipping the bits.    */
 DECL|enumConstant|MURMUR128_MITZ_64
 DECL|method|MURMUR128_MITZ_64 ()
 name|MURMUR128_MITZ_64

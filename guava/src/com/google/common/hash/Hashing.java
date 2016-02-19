@@ -343,7 +343,7 @@ operator|.
 name|currentTimeMillis
 argument_list|()
 decl_stmt|;
-comment|/**    * Returns a hash function implementing the    *<a href="http://smhasher.googlecode.com/svn/trunk/MurmurHash3.cpp">    * 32-bit murmur3 algorithm, x86 variant</a> (little-endian variant),    * using the given seed value.    *    *<p>The exact C++ equivalent is the MurmurHash3_x86_32 function (Murmur3A).    */
+comment|/**    * Returns a hash function implementing the    *<a href="http://smhasher.googlecode.com/svn/trunk/MurmurHash3.cpp">32-bit murmur3 algorithm,    * x86 variant</a> (little-endian variant), using the given seed value.    *    *<p>The exact C++ equivalent is the MurmurHash3_x86_32 function (Murmur3A).    */
 DECL|method|murmur3_32 (int seed)
 specifier|public
 specifier|static
@@ -362,7 +362,7 @@ name|seed
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a hash function implementing the    *<a href="http://smhasher.googlecode.com/svn/trunk/MurmurHash3.cpp">    * 32-bit murmur3 algorithm, x86 variant</a> (little-endian variant),    * using a seed value of zero.    *    *<p>The exact C++ equivalent is the MurmurHash3_x86_32 function (Murmur3A).    */
+comment|/**    * Returns a hash function implementing the    *<a href="http://smhasher.googlecode.com/svn/trunk/MurmurHash3.cpp">32-bit murmur3 algorithm,    * x86 variant</a> (little-endian variant), using a seed value of zero.    *    *<p>The exact C++ equivalent is the MurmurHash3_x86_32 function (Murmur3A).    */
 DECL|method|murmur3_32 ()
 specifier|public
 specifier|static
@@ -407,7 +407,7 @@ name|GOOD_FAST_HASH_SEED
 argument_list|)
 decl_stmt|;
 block|}
-comment|/**    * Returns a hash function implementing the    *<a href="http://smhasher.googlecode.com/svn/trunk/MurmurHash3.cpp">    * 128-bit murmur3 algorithm, x64 variant</a> (little-endian variant),    * using the given seed value.    *    *<p>The exact C++ equivalent is the MurmurHash3_x64_128 function (Murmur3F).    */
+comment|/**    * Returns a hash function implementing the    *<a href="http://smhasher.googlecode.com/svn/trunk/MurmurHash3.cpp">128-bit murmur3 algorithm,    * x64 variant</a> (little-endian variant), using the given seed value.    *    *<p>The exact C++ equivalent is the MurmurHash3_x64_128 function (Murmur3F).    */
 DECL|method|murmur3_128 (int seed)
 specifier|public
 specifier|static
@@ -426,7 +426,7 @@ name|seed
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a hash function implementing the    *<a href="http://smhasher.googlecode.com/svn/trunk/MurmurHash3.cpp">    * 128-bit murmur3 algorithm, x64 variant</a> (little-endian variant),    * using a seed value of zero.    *    *<p>The exact C++ equivalent is the MurmurHash3_x64_128 function (Murmur3F).    */
+comment|/**    * Returns a hash function implementing the    *<a href="http://smhasher.googlecode.com/svn/trunk/MurmurHash3.cpp">128-bit murmur3 algorithm,    * x64 variant</a> (little-endian variant), using a seed value of zero.    *    *<p>The exact C++ equivalent is the MurmurHash3_x64_128 function (Murmur3F).    */
 DECL|method|murmur3_128 ()
 specifier|public
 specifier|static
@@ -471,7 +471,7 @@ name|GOOD_FAST_HASH_SEED
 argument_list|)
 decl_stmt|;
 block|}
-comment|/**    * Returns a hash function implementing the    *<a href="https://131002.net/siphash/">64-bit SipHash-2-4 algorithm</a>    * using a seed value of {@code k = 00 01 02 ...}.    *    * @since 15.0    */
+comment|/**    * Returns a hash function implementing the<a href="https://131002.net/siphash/">64-bit    * SipHash-2-4 algorithm</a> using a seed value of {@code k = 00 01 02 ...}.    *    * @since 15.0    */
 DECL|method|sipHash24 ()
 specifier|public
 specifier|static
@@ -510,7 +510,7 @@ literal|0x0f0e0d0c0b0a0908L
 argument_list|)
 decl_stmt|;
 block|}
-comment|/**    * Returns a hash function implementing the    *<a href="https://131002.net/siphash/">64-bit SipHash-2-4 algorithm</a>    * using the given seed.    *    * @since 15.0    */
+comment|/**    * Returns a hash function implementing the<a href="https://131002.net/siphash/">64-bit    * SipHash-2-4 algorithm</a> using the given seed.    *    * @since 15.0    */
 DECL|method|sipHash24 (long k0, long k1)
 specifier|public
 specifier|static
@@ -538,7 +538,7 @@ name|k1
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a hash function implementing the MD5 hash algorithm (128 hash bits) by delegating to    * the MD5 {@link MessageDigest}.    *    *<p><b>Warning:</b> MD5 is not cryptographically secure or collision-resistant and is not    * recommended for use in new code.  It should be used for legacy compatibility reasons only.    * Please consider using a hash function in the SHA-2 family of functions (e.g., SHA-256).    */
+comment|/**    * Returns a hash function implementing the MD5 hash algorithm (128 hash bits) by delegating to    * the MD5 {@link MessageDigest}.    *    *<p><b>Warning:</b> MD5 is not cryptographically secure or collision-resistant and is not    * recommended for use in new code. It should be used for legacy compatibility reasons only.    * Please consider using a hash function in the SHA-2 family of functions (e.g., SHA-256).    */
 DECL|method|md5 ()
 specifier|public
 specifier|static
@@ -608,7 +608,7 @@ literal|"Hashing.sha1()"
 argument_list|)
 decl_stmt|;
 block|}
-comment|/**    * Returns a hash function implementing the SHA-256 algorithm (256 hash bits) by delegating to    * the SHA-256 {@link MessageDigest}.    */
+comment|/**    * Returns a hash function implementing the SHA-256 algorithm (256 hash bits) by delegating to the    * SHA-256 {@link MessageDigest}.    */
 DECL|method|sha256 ()
 specifier|public
 specifier|static
@@ -643,7 +643,7 @@ literal|"Hashing.sha256()"
 argument_list|)
 decl_stmt|;
 block|}
-comment|/**    * Returns a hash function implementing the SHA-384 algorithm (384 hash bits) by delegating to    * the SHA-384 {@link MessageDigest}.    *    * @since 19.0    */
+comment|/**    * Returns a hash function implementing the SHA-384 algorithm (384 hash bits) by delegating to the    * SHA-384 {@link MessageDigest}.    *    * @since 19.0    */
 DECL|method|sha384 ()
 specifier|public
 specifier|static
@@ -713,7 +713,7 @@ literal|"Hashing.sha512()"
 argument_list|)
 decl_stmt|;
 block|}
-comment|/**    * Returns a hash function implementing the Message Authentication Code (MAC) algorithm, using    * the MD5 (128 hash bits) hash function and the given secret key.    *    *    * @param key the secret key    * @throws IllegalArgumentException if the given key is inappropriate for initializing this MAC    * @since 20.0    */
+comment|/**    * Returns a hash function implementing the Message Authentication Code (MAC) algorithm, using the    * MD5 (128 hash bits) hash function and the given secret key.    *    *    * @param key the secret key    * @throws IllegalArgumentException if the given key is inappropriate for initializing this MAC    * @since 20.0    */
 DECL|method|hmacMd5 (Key key)
 specifier|public
 specifier|static
@@ -741,7 +741,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a hash function implementing the Message Authentication Code (MAC) algorithm, using    * the MD5 (128 hash bits) hash function and a {@link SecretSpecKey} created from the given    * byte array and the MD5 algorithm.    *    *    * @param key the key material of the secret key    * @since 20.0    */
+comment|/**    * Returns a hash function implementing the Message Authentication Code (MAC) algorithm, using the    * MD5 (128 hash bits) hash function and a {@link SecretSpecKey} created from the given byte array    * and the MD5 algorithm.    *    *    * @param key the key material of the secret key    * @since 20.0    */
 DECL|method|hmacMd5 (byte[] key)
 specifier|public
 specifier|static
@@ -769,7 +769,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a hash function implementing the Message Authentication Code (MAC) algorithm, using    * the SHA-1 (160 hash bits) hash function and the given secret key.    *    *    * @param key the secret key    * @throws IllegalArgumentException if the given key is inappropriate for initializing this MAC    * @since 20.0    */
+comment|/**    * Returns a hash function implementing the Message Authentication Code (MAC) algorithm, using the    * SHA-1 (160 hash bits) hash function and the given secret key.    *    *    * @param key the secret key    * @throws IllegalArgumentException if the given key is inappropriate for initializing this MAC    * @since 20.0    */
 DECL|method|hmacSha1 (Key key)
 specifier|public
 specifier|static
@@ -797,7 +797,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a hash function implementing the Message Authentication Code (MAC) algorithm, using    * the SHA-1 (160 hash bits) hash function and a {@link SecretSpecKey} created from the given    * byte array and the SHA-1 algorithm.    *    *    * @param key the key material of the secret key    * @since 20.0    */
+comment|/**    * Returns a hash function implementing the Message Authentication Code (MAC) algorithm, using the    * SHA-1 (160 hash bits) hash function and a {@link SecretSpecKey} created from the given byte    * array and the SHA-1 algorithm.    *    *    * @param key the key material of the secret key    * @since 20.0    */
 DECL|method|hmacSha1 (byte[] key)
 specifier|public
 specifier|static
@@ -825,7 +825,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a hash function implementing the Message Authentication Code (MAC) algorithm, using    * the SHA-256 (256 hash bits) hash function and the given secret key.    *    *    * @param key the secret key    * @throws IllegalArgumentException if the given key is inappropriate for initializing this MAC    * @since 20.0    */
+comment|/**    * Returns a hash function implementing the Message Authentication Code (MAC) algorithm, using the    * SHA-256 (256 hash bits) hash function and the given secret key.    *    *    * @param key the secret key    * @throws IllegalArgumentException if the given key is inappropriate for initializing this MAC    * @since 20.0    */
 DECL|method|hmacSha256 (Key key)
 specifier|public
 specifier|static
@@ -853,7 +853,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a hash function implementing the Message Authentication Code (MAC) algorithm, using    * the SHA-256 (256 hash bits) hash function and a {@link SecretSpecKey} created from the given    * byte array and the SHA-256 algorithm.    *    *    * @param key the key material of the secret key    * @since 20.0    */
+comment|/**    * Returns a hash function implementing the Message Authentication Code (MAC) algorithm, using the    * SHA-256 (256 hash bits) hash function and a {@link SecretSpecKey} created from the given byte    * array and the SHA-256 algorithm.    *    *    * @param key the key material of the secret key    * @since 20.0    */
 DECL|method|hmacSha256 (byte[] key)
 specifier|public
 specifier|static
@@ -881,7 +881,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a hash function implementing the Message Authentication Code (MAC) algorithm, using    * the SHA-512 (512 hash bits) hash function and the given secret key.    *    *    * @param key the secret key    * @throws IllegalArgumentException if the given key is inappropriate for initializing this MAC    * @since 20.0    */
+comment|/**    * Returns a hash function implementing the Message Authentication Code (MAC) algorithm, using the    * SHA-512 (512 hash bits) hash function and the given secret key.    *    *    * @param key the secret key    * @throws IllegalArgumentException if the given key is inappropriate for initializing this MAC    * @since 20.0    */
 DECL|method|hmacSha512 (Key key)
 specifier|public
 specifier|static
@@ -909,7 +909,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a hash function implementing the Message Authentication Code (MAC) algorithm, using    * the SHA-512 (512 hash bits) hash function and a {@link SecretSpecKey} created from the given    * byte array and the SHA-512 algorithm.    *    *    * @param key the key material of the secret key    * @since 20.0    */
+comment|/**    * Returns a hash function implementing the Message Authentication Code (MAC) algorithm, using the    * SHA-512 (512 hash bits) hash function and a {@link SecretSpecKey} created from the given byte    * array and the SHA-512 algorithm.    *    *    * @param key the key material of the secret key    * @since 20.0    */
 DECL|method|hmacSha512 (byte[] key)
 specifier|public
 specifier|static
@@ -1183,7 +1183,7 @@ name|get
 parameter_list|()
 function_decl|;
 block|}
-comment|/**    * Returns a hash function implementing FarmHash's Fingerprint64, an open-source algorithm.    *<p>    * This is designed for generating persistent fingerprints of strings.  It isn't cryptographically    * secure, but it produces a high-quality hash with fewer collisions than some alternatives we've    * used in the past.  FarmHashFingerprints generated using this are byte-wise identical to those    * created using the C++ version, but note that this uses unsigned integers (see    * {@link com.google.common.primitives.UnsignedInts}).  Comparisons between the two should take    * this into account.    *    * @since 20.0    */
+comment|/**    * Returns a hash function implementing FarmHash's Fingerprint64, an open-source algorithm.    *    *<p>This is designed for generating persistent fingerprints of strings. It isn't    * cryptographically secure, but it produces a high-quality hash with fewer collisions than some    * alternatives we've used in the past. FarmHashFingerprints generated using this are byte-wise    * identical to those created using the C++ version, but note that this uses unsigned integers    * (see {@link com.google.common.primitives.UnsignedInts}). Comparisons between the two should    * take this into account.    *    * @since 20.0    */
 DECL|method|farmHashFingerprint64 ()
 specifier|public
 specifier|static
@@ -1330,7 +1330,7 @@ return|;
 block|}
 block|}
 block|}
-comment|/**    * Returns a hash code, having the same bit length as each of the input hash codes,    * that combines the information of these hash codes in an ordered fashion. That    * is, whenever two equal hash codes are produced by two calls to this method, it    * is<i>as likely as possible</i> that each was computed from the<i>same</i>    * input hash codes in the<i>same</i> order.    *    * @throws IllegalArgumentException if {@code hashCodes} is empty, or the hash codes    *     do not all have the same bit length    */
+comment|/**    * Returns a hash code, having the same bit length as each of the input hash codes, that combines    * the information of these hash codes in an ordered fashion. That is, whenever two equal hash    * codes are produced by two calls to this method, it is<i>as likely as possible</i> that each    * was computed from the<i>same</i> input hash codes in the<i>same</i> order.    *    * @throws IllegalArgumentException if {@code hashCodes} is empty, or the hash codes do not all    *     have the same bit length    */
 DECL|method|combineOrdered (Iterable<HashCode> hashCodes)
 specifier|public
 specifier|static
@@ -1468,7 +1468,7 @@ name|resultBytes
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a hash code, having the same bit length as each of the input hash codes,    * that combines the information of these hash codes in an unordered fashion. That    * is, whenever two equal hash codes are produced by two calls to this method, it    * is<i>as likely as possible</i> that each was computed from the<i>same</i>    * input hash codes in<i>some</i> order.    *    * @throws IllegalArgumentException if {@code hashCodes} is empty, or the hash codes    *     do not all have the same bit length    */
+comment|/**    * Returns a hash code, having the same bit length as each of the input hash codes, that combines    * the information of these hash codes in an unordered fashion. That is, whenever two equal hash    * codes are produced by two calls to this method, it is<i>as likely as possible</i> that each    * was computed from the<i>same</i> input hash codes in<i>some</i> order.    *    * @throws IllegalArgumentException if {@code hashCodes} is empty, or the hash codes do not all    *     have the same bit length    */
 DECL|method|combineUnordered (Iterable<HashCode> hashCodes)
 specifier|public
 specifier|static
@@ -1619,7 +1619,7 @@ operator|~
 literal|31
 return|;
 block|}
-comment|/**    * Returns a hash function which computes its hash code by concatenating the hash codes of the    * underlying hash functions together. This can be useful if you need to generate hash codes    * of a specific length.    *    *<p>For example, if you need 1024-bit hash codes, you could join two {@link Hashing#sha512}    * hash functions together: {@code Hashing.concatenating(Hashing.sha512(), Hashing.sha512())}.    *    * @since 19.0    */
+comment|/**    * Returns a hash function which computes its hash code by concatenating the hash codes of the    * underlying hash functions together. This can be useful if you need to generate hash codes of a    * specific length.    *    *<p>For example, if you need 1024-bit hash codes, you could join two {@link Hashing#sha512} hash    * functions together: {@code Hashing.concatenating(Hashing.sha512(), Hashing.sha512())}.    *    * @since 19.0    */
 DECL|method|concatenating ( HashFunction first, HashFunction second, HashFunction... rest)
 specifier|public
 specifier|static
@@ -1698,7 +1698,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a hash function which computes its hash code by concatenating the hash codes of the    * underlying hash functions together. This can be useful if you need to generate hash codes    * of a specific length.    *    *<p>For example, if you need 1024-bit hash codes, you could join two {@link Hashing#sha512}    * hash functions together: {@code Hashing.concatenating(Hashing.sha512(), Hashing.sha512())}.    *    * @since 19.0    */
+comment|/**    * Returns a hash function which computes its hash code by concatenating the hash codes of the    * underlying hash functions together. This can be useful if you need to generate hash codes of a    * specific length.    *    *<p>For example, if you need 1024-bit hash codes, you could join two {@link Hashing#sha512} hash    * functions together: {@code Hashing.concatenating(Hashing.sha512(), Hashing.sha512())}.    *    * @since 19.0    */
 DECL|method|concatenating (Iterable<HashFunction> hashFunctions)
 specifier|public
 specifier|static
@@ -2010,7 +2010,7 @@ name|bits
 return|;
 block|}
 block|}
-comment|/**    * Linear CongruentialGenerator to use for consistent hashing.    * See http://en.wikipedia.org/wiki/Linear_congruential_generator    */
+comment|/**    * Linear CongruentialGenerator to use for consistent hashing. See    * http://en.wikipedia.org/wiki/Linear_congruential_generator    */
 DECL|class|LinearCongruentialGenerator
 specifier|private
 specifier|static

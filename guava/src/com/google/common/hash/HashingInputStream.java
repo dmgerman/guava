@@ -144,7 +144,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Reads the next byte of data from the underlying input stream and updates the hasher with    * the byte read.    */
+comment|/**    * Reads the next byte of data from the underlying input stream and updates the hasher with the    * byte read.    */
 annotation|@
 name|Override
 annotation|@
@@ -249,7 +249,7 @@ return|return
 name|numOfBytesRead
 return|;
 block|}
-comment|/**    * mark() is not supported for HashingInputStream    * @return {@code false} always    */
+comment|/**    * mark() is not supported for HashingInputStream    *    * @return {@code false} always    */
 annotation|@
 name|Override
 DECL|method|markSupported ()
@@ -274,7 +274,7 @@ name|int
 name|readlimit
 parameter_list|)
 block|{}
-comment|/**    * reset() is not supported for HashingInputStream.    * @throws IOException this operation is not supported    */
+comment|/**    * reset() is not supported for HashingInputStream.    *    * @throws IOException this operation is not supported    */
 annotation|@
 name|Override
 DECL|method|reset ()
@@ -293,7 +293,7 @@ literal|"reset not supported"
 argument_list|)
 throw|;
 block|}
-comment|/**    * Returns the {@link HashCode} based on the data read from this stream. The result is    * unspecified if this method is called more than once on the same instance.    */
+comment|/**    * Returns the {@link HashCode} based on the data read from this stream. The result is unspecified    * if this method is called more than once on the same instance.    */
 DECL|method|hash ()
 specifier|public
 name|HashCode

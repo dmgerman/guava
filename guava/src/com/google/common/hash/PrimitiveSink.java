@@ -89,7 +89,7 @@ index|[]
 name|bytes
 parameter_list|)
 function_decl|;
-comment|/**    * Puts a chunk of an array of bytes into this sink. {@code bytes[off]} is the first byte written,    * {@code bytes[off + len - 1]} is the last.    *    * @param bytes a byte array    * @param off the start offset in the array    * @param len the number of bytes to write    * @return this instance    * @throws IndexOutOfBoundsException if {@code off< 0} or {@code off + len> bytes.length} or    *   {@code len< 0}    */
+comment|/**    * Puts a chunk of an array of bytes into this sink. {@code bytes[off]} is the first byte written,    * {@code bytes[off + len - 1]} is the last.    *    * @param bytes a byte array    * @param off the start offset in the array    * @param len the number of bytes to write    * @return this instance    * @throws IndexOutOfBoundsException if {@code off< 0} or {@code off + len> bytes.length} or    *     {@code len< 0}    */
 DECL|method|putBytes (byte[] bytes, int off, int len)
 name|PrimitiveSink
 name|putBytes

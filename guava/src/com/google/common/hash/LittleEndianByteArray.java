@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * Copyright (C) 2015 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License");  * you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+comment|/*  * Copyright (C) 2015 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except  * in compliance with the License. You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software distributed under the License  * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express  * or implied. See the License for the specific language governing permissions and limitations under  * the License.  */
 end_comment
 
 begin_package
@@ -68,7 +68,7 @@ specifier|final
 name|LittleEndianBytes
 name|byteArray
 decl_stmt|;
-comment|/**    * Load 8 bytes into long in a little endian manner, from the substring between position    * and position + 8.  The array must have at least 8 bytes from offset (inclusive).    *    * @param input the input bytes    * @param offset the offset into the array at which to start    * @return a long of a concatenated 8 bytes    */
+comment|/**    * Load 8 bytes into long in a little endian manner, from the substring between position and    * position + 8. The array must have at least 8 bytes from offset (inclusive).    *    * @param input the input bytes    * @param offset the offset into the array at which to start    * @return a long of a concatenated 8 bytes    */
 DECL|method|load64 (byte[] input, int offset)
 specifier|static
 name|long
@@ -104,7 +104,7 @@ name|offset
 argument_list|)
 return|;
 block|}
-comment|/**    * Similar to load64, but allows offset + 8> input.length, padding the result with zeroes.  This    * has to explicitly reverse the order of the bytes as it packs them into the result which makes    * it slower than the native version.    *    * @param input the input bytes    * @param offset the offset into the array at which to start reading    * @param length the number of bytes from the input to read    * @return a long of a concatenated 8 bytes    */
+comment|/**    * Similar to load64, but allows offset + 8> input.length, padding the result with zeroes. This    * has to explicitly reverse the order of the bytes as it packs them into the result which makes    * it slower than the native version.    *    * @param input the input bytes    * @param offset the offset into the array at which to start reading    * @param length the number of bytes from the input to read    * @return a long of a concatenated 8 bytes    */
 DECL|method|load64Safely (byte[] input, int offset, int length)
 specifier|static
 name|long
@@ -296,7 +296,7 @@ literal|24
 operator|)
 return|;
 block|}
-comment|/**    * Indicates that the loading of Unsafe was successful and the load and store operations will be    * very efficient.  May be useful for calling code to fall back on an alternative implementation    * that is slower than Unsafe.get/store but faster than the pure-Java mask-and-shift.    */
+comment|/**    * Indicates that the loading of Unsafe was successful and the load and store operations will be    * very efficient. May be useful for calling code to fall back on an alternative implementation    * that is slower than Unsafe.get/store but faster than the pure-Java mask-and-shift.    */
 DECL|method|usingUnsafe ()
 specifier|static
 name|boolean
@@ -345,7 +345,7 @@ name|value
 parameter_list|)
 function_decl|;
 block|}
-comment|/**    * The only reference to Unsafe is in this nested class. We set things up so that    * if Unsafe.theUnsafe is inaccessible, the attempt to load the nested class fails,    * and the outer class's static initializer can fall back on a non-Unsafe version.    */
+comment|/**    * The only reference to Unsafe is in this nested class. We set things up so that if    * Unsafe.theUnsafe is inaccessible, the attempt to load the nested class fails, and the outer    * class's static initializer can fall back on a non-Unsafe version.    */
 DECL|enum|UnsafeByteArray
 specifier|private
 enum|enum
@@ -530,7 +530,7 @@ specifier|final
 name|int
 name|BYTE_ARRAY_BASE_OFFSET
 decl_stmt|;
-comment|/**      * Returns a sun.misc.Unsafe.  Suitable for use in a 3rd party package.      * Replace with a simple call to Unsafe.getUnsafe when integrating      * into a jdk.      *      * @return a sun.misc.Unsafe instance if successful      */
+comment|/**      * Returns a sun.misc.Unsafe. Suitable for use in a 3rd party package. Replace with a simple      * call to Unsafe.getUnsafe when integrating into a jdk.      *      * @return a sun.misc.Unsafe instance if successful      */
 DECL|method|getUnsafe ()
 specifier|private
 specifier|static

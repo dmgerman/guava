@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * Copyright (C) 2015 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License");  * you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+comment|/*  * Copyright (C) 2015 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except  * in compliance with the License. You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software distributed under the License  * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express  * or implied. See the License for the specific language governing permissions and limitations under  * the License.  */
 end_comment
 
 begin_package
@@ -91,7 +91,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Implementation of FarmHash Fingerprint64, an open-source fingerprinting algorithm for strings.  *<p>  * Its speed is comparable to CityHash64, and its quality of hashing is at least as good.  *<p>  * Note to maintainers: This implementation relies on signed arithmetic being  * bit-wise equivalent to unsigned arithmetic in all cases except:  *<ul>  *<li> comparisons (signed values can be negative)  *<li> division (avoided here)  *<li> shifting (right shift must be unsigned)  *</ul>  *  * @author Kyle Maddison  * @author Geoff Pike  */
+comment|/**  * Implementation of FarmHash Fingerprint64, an open-source fingerprinting algorithm for strings.  *  *<p>Its speed is comparable to CityHash64, and its quality of hashing is at least as good.  *  *<p>Note to maintainers: This implementation relies on signed arithmetic being bit-wise equivalent  * to unsigned arithmetic in all cases except:  *  *<ul>  *<li>comparisons (signed values can be negative)  *<li>division (avoided here)  *<li>shifting (right shift must be unsigned)  *</ul>  *  * @author Kyle Maddison  * @author Geoff Pike  */
 end_comment
 
 begin_class
@@ -374,7 +374,7 @@ return|return
 name|b
 return|;
 block|}
-comment|/**    * Computes intermediate hash of 32 bytes of byte array from the given offset.  Results are    * returned in the output array because when we last measured, this was 12% faster than    * allocating new arrays every time.    */
+comment|/**    * Computes intermediate hash of 32 bytes of byte array from the given offset. Results are    * returned in the output array because when we last measured, this was 12% faster than allocating    * new arrays every time.    */
 DECL|method|weakHashLength32WithSeeds ( byte[] bytes, int offset, long seedA, long seedB, long[] output)
 specifier|private
 specifier|static
@@ -1129,7 +1129,7 @@ name|seed
 init|=
 literal|81
 decl_stmt|;
-comment|// For strings over 64 bytes we loop.  Internal state consists of 56 bytes: v, w, x, y, and z.
+comment|// For strings over 64 bytes we loop. Internal state consists of 56 bytes: v, w, x, y, and z.
 name|long
 name|x
 init|=
