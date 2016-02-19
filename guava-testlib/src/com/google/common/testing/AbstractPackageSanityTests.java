@@ -400,6 +400,7 @@ begin_class
 annotation|@
 name|Beta
 comment|// TODO: Switch to JUnit 4 and use @Parameterized and @BeforeClass
+comment|// Note: @Test annotations are deliberate, as some subclasses specify @RunWith(JUnit4).
 annotation|@
 name|GwtIncompatible
 annotation|@
