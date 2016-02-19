@@ -441,7 +441,7 @@ name|expectedEdgeCount
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns true iff the configuration defined by this object is<i>compatible with</i> the    * configuration defined by {@code that}.  Intuitively, this checks for structural properties    * and ignores non-structural properties.  Specifically, this method checks whether the    * configurations have compatible support for:    *<ul>    *<li>parallel edges    *<li>self-loops    *</ul>    *    *<p>It does not compare expected values for numbers of edges or nodes,    * and it is not equivalent to {@code Object.equals}.    */
+comment|/**    * Returns true iff the configuration defined by this object is<i>compatible with</i> the    * configuration defined by {@code that}.  Intuitively, this checks for structural properties    * and ignores non-structural properties.  Specifically, this method checks whether the    * configurations have compatible support for:    *<ul>    *<li>parallel edges    *<li>self-loops    *</ul>    *    * By "compatible with", we mean that this instance must be at least as permissive as the input    * config ({@code that}).  Thus, for example, if the input permits parallel edges, this instance    * must also permit parallel edges in order for the configurations to be compatible.    *    *<p>It does not compare expected values for numbers of edges or nodes,    * and it is not equivalent to {@code Object.equals}.    */
 DECL|method|compatibleWith (GraphConfig that)
 specifier|public
 name|boolean
@@ -458,22 +458,40 @@ argument_list|,
 literal|"that"
 argument_list|)
 expr_stmt|;
-return|return
-name|this
-operator|.
-name|multigraph
-operator|==
+if|if
+condition|(
 name|that
 operator|.
 name|multigraph
 operator|&&
+operator|!
 name|this
 operator|.
-name|selfLoopsAllowed
-operator|==
+name|multigraph
+condition|)
+block|{
+return|return
+literal|false
+return|;
+block|}
+if|if
+condition|(
 name|that
 operator|.
 name|selfLoopsAllowed
+operator|&&
+operator|!
+name|this
+operator|.
+name|selfLoopsAllowed
+condition|)
+block|{
+return|return
+literal|false
+return|;
+block|}
+return|return
+literal|true
 return|;
 block|}
 annotation|@
