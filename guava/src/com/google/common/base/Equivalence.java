@@ -81,7 +81,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A strategy for determining whether two instances are considered equivalent. Examples of  * equivalences are the {@linkplain #identity() identity equivalence} and {@linkplain #equals equals  * equivalence}.  *  * @author Bob Lee  * @author Ben Yu  * @author Gregory Kick  * @since 10.0 (<a href="https://github.com/google/guava/wiki/Compatibility">mostly  *     source-compatible</a> since 4.0)  */
+comment|/**  * A strategy for determining whether two instances are considered equivalent. Examples of  * equivalences are the {@linkplain #identity() identity equivalence} and {@linkplain #equals equals  * equivalence}.  *  *<h3>For Java 8+ users</h3>  *  *<p>A future version of this class will implement {@code BiPredicate<T, T>}. In the meantime, to  * use an equivalence (say, named {@code equivalence}) as a bi-predicate, use the method reference  * {@code equivalence::equivalent}.  *   * @author Bob Lee  * @author Ben Yu  * @author Gregory Kick  * @since 10.0 (<a href="https://github.com/google/guava/wiki/Compatibility">mostly  *     source-compatible</a> since 4.0)  */
 end_comment
 
 begin_class
