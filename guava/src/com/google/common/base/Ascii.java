@@ -95,7 +95,7 @@ name|Ascii
 parameter_list|()
 block|{}
 comment|/* The ASCII control characters, per RFC 20. */
-comment|/**    * Null ('\0'): The all-zeros character which may serve to accomplish time fill and media fill.    * Normally used as a C string terminator.<p>Although RFC 20 names this as "Null", note that it    * is distinct from the C/C++ "NULL" pointer.    *    * @since 8.0    */
+comment|/**    * Null ('\0'): The all-zeros character which may serve to accomplish time fill and media fill.    * Normally used as a C string terminator.    *    *<p>Although RFC 20 names this as "Null", note that it is distinct from the C/C++ "NULL"    * pointer.    *    * @since 8.0    */
 DECL|field|NUL
 specifier|public
 specifier|static
