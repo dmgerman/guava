@@ -563,8 +563,6 @@ name|Object
 name|key
 parameter_list|)
 block|{
-name|key
-operator|=
 name|checkNotNull
 argument_list|(
 name|key
@@ -684,15 +682,11 @@ name|V
 name|value
 parameter_list|)
 block|{
-name|key
-operator|=
 name|checkNotNull
 argument_list|(
 name|key
 argument_list|)
 expr_stmt|;
-name|value
-operator|=
 name|checkNotNull
 argument_list|(
 name|value
@@ -1567,8 +1561,6 @@ name|Object
 name|key
 parameter_list|)
 block|{
-name|key
-operator|=
 name|checkNotNull
 argument_list|(
 name|key
@@ -2075,8 +2067,6 @@ name|Object
 name|key
 parameter_list|)
 block|{
-name|key
-operator|=
 name|checkNotNull
 argument_list|(
 name|key
