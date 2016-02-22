@@ -6479,13 +6479,16 @@ argument_list|>
 name|iterable
 parameter_list|)
 block|{
-name|Iterables
-operator|.
-name|getLast
-argument_list|(
+for|for
+control|(
+name|Object
+name|unused
+range|:
 name|iterable
-argument_list|)
-expr_stmt|;
+control|)
+block|{
+comment|// do nothing
+block|}
 block|}
 DECL|method|fluent (Integer... elements)
 specifier|private

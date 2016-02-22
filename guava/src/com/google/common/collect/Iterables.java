@@ -150,6 +150,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -263,6 +277,8 @@ comment|/**  * This class contains static utility methods that operate on or ret
 end_comment
 
 begin_class
+annotation|@
+name|CheckReturnValue
 annotation|@
 name|GwtCompatible
 argument_list|(
@@ -555,6 +571,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Removes, from an iterable, every element that belongs to the provided    * collection.    *    *<p>This method calls {@link Collection#removeAll} if {@code iterable} is a    * collection, and {@link Iterators#removeAll} otherwise.    *    * @param removeFrom the iterable to (potentially) remove elements from    * @param elementsToRemove the elements to remove    * @return {@code true} if any element was removed from {@code iterable}    */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|removeAll (Iterable<?> removeFrom, Collection<?> elementsToRemove)
 specifier|public
 specifier|static
@@ -613,6 +631,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Removes, from an iterable, every element that does not belong to the    * provided collection.    *    *<p>This method calls {@link Collection#retainAll} if {@code iterable} is a    * collection, and {@link Iterators#retainAll} otherwise.    *    * @param removeFrom the iterable to (potentially) remove elements from    * @param elementsToRetain the elements to retain    * @return {@code true} if any element was removed from {@code iterable}    */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|retainAll (Iterable<?> removeFrom, Collection<?> elementsToRetain)
 specifier|public
 specifier|static
@@ -671,6 +691,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Removes, from an iterable, every element that satisfies the provided    * predicate.    *    *<p>Removals may or may not happen immediately as each element is tested    * against the predicate.  The behavior of this method is not specified if    * {@code predicate} is dependent on {@code removeFrom}.    *    * @param removeFrom the iterable to (potentially) remove elements from    * @param predicate a predicate that determines whether an element should    *     be removed    * @return {@code true} if any elements were removed from the iterable    *    * @throws UnsupportedOperationException if the iterable does not support    *     {@code remove()}.    * @since 2.0    */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|removeIf (Iterable<T> removeFrom, Predicate<? super T> predicate)
 specifier|public
 specifier|static
@@ -1443,6 +1465,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Adds all elements in {@code iterable} to {@code collection}.    *    * @return {@code true} if {@code collection} was modified as a result of this    *     operation.    */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|addAll (Collection<T> addTo, Iterable<? extends T> elementsToAdd)
 specifier|public
 specifier|static
