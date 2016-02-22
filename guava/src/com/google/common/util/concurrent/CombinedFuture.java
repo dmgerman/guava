@@ -278,8 +278,6 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|WeakOuter
 DECL|class|CombinedFutureRunningState
 specifier|private
 specifier|final
