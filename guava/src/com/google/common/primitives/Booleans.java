@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * Copyright (C) 2008 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License");  * you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+comment|/*  * Copyright (C) 2008 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except  * in compliance with the License. You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software distributed under the License  * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express  * or implied. See the License for the specific language governing permissions and limitations under  * the License.  */
 end_comment
 
 begin_package
@@ -199,7 +199,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Static utility methods pertaining to {@code boolean} primitives, that are not  * already found in either {@link Boolean} or {@link Arrays}.  *  *<p>See the Guava User Guide article on<a href=  * "https://github.com/google/guava/wiki/PrimitivesExplained">  * primitive utilities</a>.  *  * @author Kevin Bourrillion  * @since 1.0  */
+comment|/**  * Static utility methods pertaining to {@code boolean} primitives, that are not already found in  * either {@link Boolean} or {@link Arrays}.  *  *<p>See the Guava User Guide article on  *<a href="https://github.com/google/guava/wiki/PrimitivesExplained">primitive utilities</a>.  *  * @author Kevin Bourrillion  * @since 1.0  */
 end_comment
 
 begin_class
@@ -235,7 +235,7 @@ else|:
 literal|1237
 return|;
 block|}
-comment|/**    * Compares the two specified {@code boolean} values in the standard way    * ({@code false} is considered less than {@code true}). The sign of the    * value returned is the same as that of {@code ((Boolean) a).compareTo(b)}.    *    *<p><b>Note for Java 7 and later:</b> this method should be treated as    * deprecated; use the equivalent {@link Boolean#compare} method instead.    *    * @param a the first {@code boolean} to compare    * @param b the second {@code boolean} to compare    * @return a positive number if only {@code a} is {@code true}, a negative    *     number if only {@code b} is true, or zero if {@code a == b}    */
+comment|/**    * Compares the two specified {@code boolean} values in the standard way ({@code false} is    * considered less than {@code true}). The sign of the value returned is the same as that of    * {@code ((Boolean) a).compareTo(b)}.    *    *<p><b>Note for Java 7 and later:</b> this method should be treated as deprecated; use the    * equivalent {@link Boolean#compare} method instead.    *    * @param a the first {@code boolean} to compare    * @param b the second {@code boolean} to compare    * @return a positive number if only {@code a} is {@code true}, a negative number if only    *     {@code b} is true, or zero if {@code a == b}    */
 DECL|method|compare (boolean a, boolean b)
 specifier|public
 specifier|static
@@ -268,7 +268,7 @@ literal|1
 operator|)
 return|;
 block|}
-comment|/**    * Returns {@code true} if {@code target} is present as an element anywhere in    * {@code array}.    *    *<p><b>Note:</b> consider representing the array as a {@link    * java.util.BitSet} instead, replacing {@code Booleans.contains(array, true)}    * with {@code !bitSet.isEmpty()} and {@code Booleans.contains(array, false)}    * with {@code bitSet.nextClearBit(0) == sizeOfBitSet}.    *    * @param array an array of {@code boolean} values, possibly empty    * @param target a primitive {@code boolean} value    * @return {@code true} if {@code array[i] == target} for some value of {@code    *     i}    */
+comment|/**    * Returns {@code true} if {@code target} is present as an element anywhere in {@code array}.    *    *<p><b>Note:</b> consider representing the array as a {@link java.util.BitSet} instead,    * replacing {@code Booleans.contains(array, true)} with {@code !bitSet.isEmpty()} and    * {@code Booleans.contains(array, false)} with {@code bitSet.nextClearBit(0) == sizeOfBitSet}.    *    * @param array an array of {@code boolean} values, possibly empty    * @param target a primitive {@code boolean} value    * @return {@code true} if {@code array[i] == target} for some value of {@code    *     i}    */
 DECL|method|contains (boolean[] array, boolean target)
 specifier|public
 specifier|static
@@ -307,7 +307,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/**    * Returns the index of the first appearance of the value {@code target} in    * {@code array}.    *    *<p><b>Note:</b> consider representing the array as a {@link    * java.util.BitSet} instead, and using {@link    * java.util.BitSet#nextSetBit(int)} or {@link    * java.util.BitSet#nextClearBit(int)}.    *    * @param array an array of {@code boolean} values, possibly empty    * @param target a primitive {@code boolean} value    * @return the least index {@code i} for which {@code array[i] == target}, or    *     {@code -1} if no such index exists.    */
+comment|/**    * Returns the index of the first appearance of the value {@code target} in {@code array}.    *    *<p><b>Note:</b> consider representing the array as a {@link java.util.BitSet} instead, and    * using {@link java.util.BitSet#nextSetBit(int)} or {@link java.util.BitSet#nextClearBit(int)}.    *    * @param array an array of {@code boolean} values, possibly empty    * @param target a primitive {@code boolean} value    * @return the least index {@code i} for which {@code array[i] == target}, or {@code -1} if no    *     such index exists.    */
 DECL|method|indexOf (boolean[] array, boolean target)
 specifier|public
 specifier|static
@@ -393,7 +393,7 @@ operator|-
 literal|1
 return|;
 block|}
-comment|/**    * Returns the start position of the first occurrence of the specified {@code    * target} within {@code array}, or {@code -1} if there is no such occurrence.    *    *<p>More formally, returns the lowest index {@code i} such that {@code    * java.util.Arrays.copyOfRange(array, i, i + target.length)} contains exactly    * the same elements as {@code target}.    *    * @param array the array to search for the sequence {@code target}    * @param target the array to search for as a sub-sequence of {@code array}    */
+comment|/**    * Returns the start position of the first occurrence of the specified {@code    * target} within {@code array}, or {@code -1} if there is no such occurrence.    *    *<p>More formally, returns the lowest index {@code i} such that {@code    * Arrays.copyOfRange(array, i, i + target.length)} contains exactly the same elements as    * {@code target}.    *    * @param array the array to search for the sequence {@code target}    * @param target the array to search for as a sub-sequence of {@code array}    */
 DECL|method|indexOf (boolean[] array, boolean[] target)
 specifier|public
 specifier|static
@@ -507,7 +507,7 @@ operator|-
 literal|1
 return|;
 block|}
-comment|/**    * Returns the index of the last appearance of the value {@code target} in    * {@code array}.    *    * @param array an array of {@code boolean} values, possibly empty    * @param target a primitive {@code boolean} value    * @return the greatest index {@code i} for which {@code array[i] == target},    *     or {@code -1} if no such index exists.    */
+comment|/**    * Returns the index of the last appearance of the value {@code target} in {@code array}.    *    * @param array an array of {@code boolean} values, possibly empty    * @param target a primitive {@code boolean} value    * @return the greatest index {@code i} for which {@code array[i] == target}, or {@code -1} if no    *     such index exists.    */
 DECL|method|lastIndexOf (boolean[] array, boolean target)
 specifier|public
 specifier|static
@@ -595,7 +595,7 @@ operator|-
 literal|1
 return|;
 block|}
-comment|/**    * Returns the values from each provided array combined into a single array.    * For example, {@code concat(new boolean[] {a, b}, new boolean[] {}, new    * boolean[] {c}} returns the array {@code {a, b, c}}.    *    * @param arrays zero or more {@code boolean} arrays    * @return a single array containing all the values from the source arrays, in    *     order    */
+comment|/**    * Returns the values from each provided array combined into a single array. For example,    * {@code concat(new boolean[] {a, b}, new boolean[] {}, new boolean[] {c}} returns the array    * {@code {a, b, c}}.    *    * @param arrays zero or more {@code boolean} arrays    * @return a single array containing all the values from the source arrays, in order    */
 DECL|method|concat (boolean[]... arrays)
 specifier|public
 specifier|static
@@ -682,7 +682,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/**    * Returns an array containing the same values as {@code array}, but    * guaranteed to be of a specified minimum length. If {@code array} already    * has a length of at least {@code minLength}, it is returned directly.    * Otherwise, a new array of size {@code minLength + padding} is returned,    * containing the values of {@code array}, and zeroes in the remaining places.    *    * @param array the source array    * @param minLength the minimum length the returned array must guarantee    * @param padding an extra amount to "grow" the array by if growth is    *     necessary    * @throws IllegalArgumentException if {@code minLength} or {@code padding} is    *     negative    * @return an array containing the values of {@code array}, with guaranteed    *     minimum length {@code minLength}    */
+comment|/**    * Returns an array containing the same values as {@code array}, but guaranteed to be of a    * specified minimum length. If {@code array} already has a length of at least {@code minLength},    * it is returned directly. Otherwise, a new array of size {@code minLength + padding} is    * returned, containing the values of {@code array}, and zeroes in the remaining places.    *    * @param array the source array    * @param minLength the minimum length the returned array must guarantee    * @param padding an extra amount to "grow" the array by if growth is necessary    * @throws IllegalArgumentException if {@code minLength} or {@code padding} is negative    * @return an array containing the values of {@code array}, with guaranteed minimum length    *     {@code minLength}    */
 DECL|method|ensureCapacity (boolean[] array, int minLength, int padding)
 specifier|public
 specifier|static
@@ -746,7 +746,7 @@ else|:
 name|array
 return|;
 block|}
-comment|/**    * Returns a string containing the supplied {@code boolean} values separated    * by {@code separator}. For example, {@code join("-", false, true, false)}    * returns the string {@code "false-true-false"}.    *    * @param separator the text that should appear between consecutive values in    *     the resulting string (but not at the start or end)    * @param array an array of {@code boolean} values, possibly empty    */
+comment|/**    * Returns a string containing the supplied {@code boolean} values separated by {@code separator}.    * For example, {@code join("-", false, true, false)} returns the string    * {@code "false-true-false"}.    *    * @param separator the text that should appear between consecutive values in the resulting string    *     (but not at the start or end)    * @param array an array of {@code boolean} values, possibly empty    */
 DECL|method|join (String separator, boolean... array)
 specifier|public
 specifier|static
@@ -843,7 +843,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns a comparator that compares two {@code boolean} arrays    * lexicographically. That is, it compares, using {@link    * #compare(boolean, boolean)}), the first pair of values that follow any    * common prefix, or when one array is a prefix of the other, treats the    * shorter array as the lesser. For example,    * {@code []< [false]< [false, true]< [true]}.    *    *<p>The returned comparator is inconsistent with {@link    * Object#equals(Object)} (since arrays support only identity equality), but    * it is consistent with {@link Arrays#equals(boolean[], boolean[])}.    *    * @see<a href="http://en.wikipedia.org/wiki/Lexicographical_order">    *     Lexicographical order article at Wikipedia</a>    * @since 2.0    */
+comment|/**    * Returns a comparator that compares two {@code boolean} arrays<a    * href="http://en.wikipedia.org/wiki/Lexicographical_order">lexicographically</a>. That is, it    * compares, using {@link #compare(boolean, boolean)}), the first pair of values that follow any    * common prefix, or when one array is a prefix of the other, treats the shorter array as the    * lesser. For example, {@code []< [false]< [false, true]< [true]}.    *    *<p>The returned comparator is inconsistent with {@link Object#equals(Object)} (since arrays    * support only identity equality), but it is consistent with    * {@link Arrays#equals(boolean[], boolean[])}.    *    * @since 2.0    */
 DECL|method|lexicographicalComparator ()
 specifier|public
 specifier|static
@@ -975,7 +975,7 @@ literal|"Booleans.lexicographicalComparator()"
 return|;
 block|}
 block|}
-comment|/**    * Copies a collection of {@code Boolean} instances into a new array of    * primitive {@code boolean} values.    *    *<p>Elements are copied from the argument collection as if by {@code    * collection.toArray()}.  Calling this method is as thread-safe as calling    * that method.    *    *<p><b>Note:</b> consider representing the collection as a {@link    * java.util.BitSet} instead.    *    * @param collection a collection of {@code Boolean} objects    * @return an array containing the same values as {@code collection}, in the    *     same order, converted to primitives    * @throws NullPointerException if {@code collection} or any of its elements    *     is null    */
+comment|/**    * Copies a collection of {@code Boolean} instances into a new array of primitive {@code boolean}    * values.    *    *<p>Elements are copied from the argument collection as if by {@code    * collection.toArray()}. Calling this method is as thread-safe as calling that method.    *    *<p><b>Note:</b> consider representing the collection as a {@link java.util.BitSet} instead.    *    * @param collection a collection of {@code Boolean} objects    * @return an array containing the same values as {@code collection}, in the same order, converted    *     to primitives    * @throws NullPointerException if {@code collection} or any of its elements is null    */
 DECL|method|toArray (Collection<Boolean> collection)
 specifier|public
 specifier|static
@@ -1072,7 +1072,7 @@ return|return
 name|array
 return|;
 block|}
-comment|/**    * Returns a fixed-size list backed by the specified array, similar to {@link    * Arrays#asList(Object[])}. The list supports {@link List#set(int, Object)},    * but any attempt to set a value to {@code null} will result in a {@link    * NullPointerException}.    *    *<p>The returned list maintains the values, but not the identities, of    * {@code Boolean} objects written to or read from it.  For example, whether    * {@code list.get(0) == list.get(0)} is true for the returned list is    * unspecified.    *    * @param backingArray the array to back the list    * @return a list view of the array    */
+comment|/**    * Returns a fixed-size list backed by the specified array, similar to    * {@link Arrays#asList(Object[])}. The list supports {@link List#set(int, Object)}, but any    * attempt to set a value to {@code null} will result in a {@link NullPointerException}.    *    *<p>The returned list maintains the values, but not the identities, of {@code Boolean} objects    * written to or read from it. For example, whether {@code list.get(0) == list.get(0)} is true for    * the returned list is unspecified.    *    * @param backingArray the array to back the list    * @return a list view of the array    */
 DECL|method|asList (boolean... backingArray)
 specifier|public
 specifier|static

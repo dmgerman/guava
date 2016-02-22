@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * Copyright (C) 2007 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License");  * you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+comment|/*  * Copyright (C) 2007 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except  * in compliance with the License. You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software distributed under the License  * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express  * or implied. See the License for the specific language governing permissions and limitations under  * the License.  */
 end_comment
 
 begin_package
@@ -87,7 +87,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Contains static utility methods pertaining to primitive types and their  * corresponding wrapper types.  *  * @author Kevin Bourrillion  * @since 1.0  */
+comment|/**  * Contains static utility methods pertaining to primitive types and their corresponding wrapper  * types.  *  * @author Kevin Bourrillion  * @since 1.0  */
 end_comment
 
 begin_class
@@ -427,7 +427,7 @@ name|key
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Returns an immutable set of all nine primitive types (including {@code    * void}). Note that a simpler way to test whether a {@code Class} instance    * is a member of this set is to call {@link Class#isPrimitive}.    *    * @since 3.0    */
+comment|/**    * Returns an immutable set of all nine primitive types (including {@code    * void}). Note that a simpler way to test whether a {@code Class} instance is a member of this    * set is to call {@link Class#isPrimitive}.    *    * @since 3.0    */
 DECL|method|allPrimitiveTypes ()
 specifier|public
 specifier|static
@@ -448,7 +448,7 @@ name|keySet
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns an immutable set of all nine primitive-wrapper types (including    * {@link Void}).    *    * @since 3.0    */
+comment|/**    * Returns an immutable set of all nine primitive-wrapper types (including {@link Void}).    *    * @since 3.0    */
 DECL|method|allWrapperTypes ()
 specifier|public
 specifier|static
@@ -469,7 +469,7 @@ name|keySet
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns {@code true} if {@code type} is one of the nine    * primitive-wrapper types, such as {@link Integer}.    *    * @see Class#isPrimitive    */
+comment|/**    * Returns {@code true} if {@code type} is one of the nine primitive-wrapper types, such as    * {@link Integer}.    *    * @see Class#isPrimitive    */
 DECL|method|isWrapperType (Class<?> type)
 specifier|public
 specifier|static
@@ -495,7 +495,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the corresponding wrapper type of {@code type} if it is a primitive    * type; otherwise returns {@code type} itself. Idempotent.    *<pre>    *     wrap(int.class) == Integer.class    *     wrap(Integer.class) == Integer.class    *     wrap(String.class) == String.class    *</pre>    */
+comment|/**    * Returns the corresponding wrapper type of {@code type} if it is a primitive type; otherwise    * returns {@code type} itself. Idempotent.    *    *<pre>    *     wrap(int.class) == Integer.class    *     wrap(Integer.class) == Integer.class    *     wrap(String.class) == String.class    *</pre>    */
 DECL|method|wrap (Class<T> type)
 specifier|public
 specifier|static
@@ -557,7 +557,7 @@ else|:
 name|wrapped
 return|;
 block|}
-comment|/**    * Returns the corresponding primitive type of {@code type} if it is a    * wrapper type; otherwise returns {@code type} itself. Idempotent.    *<pre>    *     unwrap(Integer.class) == int.class    *     unwrap(int.class) == int.class    *     unwrap(String.class) == String.class    *</pre>    */
+comment|/**    * Returns the corresponding primitive type of {@code type} if it is a wrapper type; otherwise    * returns {@code type} itself. Idempotent.    *    *<pre>    *     unwrap(Integer.class) == int.class    *     unwrap(int.class) == int.class    *     unwrap(String.class) == String.class    *</pre>    */
 DECL|method|unwrap (Class<T> type)
 specifier|public
 specifier|static

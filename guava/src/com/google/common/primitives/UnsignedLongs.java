@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * Copyright (C) 2011 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except  * in compliance with the License. You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software distributed under the  * License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either  * express or implied. See the License for the specific language governing permissions and  * limitations under the License.  */
+comment|/*  * Copyright (C) 2011 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except  * in compliance with the License. You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software distributed under the License  * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express  * or implied. See the License for the specific language governing permissions and limitations under  * the License.  */
 end_comment
 
 begin_package
@@ -121,7 +121,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Static utility methods pertaining to {@code long} primitives that interpret values as  *<i>unsigned</i> (that is, any negative value {@code x} is treated as the positive value  * {@code 2^64 + x}). The methods for which signedness is not an issue are in {@link Longs}, as  * well as signed versions of methods for which signedness is an issue.  *  *<p>In addition, this class provides several static methods for converting a {@code long} to a  * {@code String} and a {@code String} to a {@code long} that treat the {@code long} as an unsigned  * number.  *  *<p>Users of these utilities must be<i>extremely careful</i> not to mix up signed and unsigned  * {@code long} values. When possible, it is recommended that the {@link UnsignedLong} wrapper  * class be used, at a small efficiency penalty, to enforce the distinction in the type system.  *  *<p>See the Guava User Guide article on<a href=  * "https://github.com/google/guava/wiki/PrimitivesExplained#unsigned-support">  * unsigned primitive utilities</a>.  *  * @author Louis Wasserman  * @author Brian Milch  * @author Colin Evans  * @since 10.0  */
+comment|/**  * Static utility methods pertaining to {@code long} primitives that interpret values as  *<i>unsigned</i> (that is, any negative value {@code x} is treated as the positive value  * {@code 2^64 + x}). The methods for which signedness is not an issue are in {@link Longs}, as well  * as signed versions of methods for which signedness is an issue.  *  *<p>In addition, this class provides several static methods for converting a {@code long} to a  * {@code String} and a {@code String} to a {@code long} that treat the {@code long} as an unsigned  * number.  *  *<p>Users of these utilities must be<i>extremely careful</i> not to mix up signed and unsigned  * {@code long} values. When possible, it is recommended that the {@link UnsignedLong} wrapper class  * be used, at a small efficiency penalty, to enforce the distinction in the type system.  *  *<p>See the Guava User Guide article on  *<a href="https://github.com/google/guava/wiki/PrimitivesExplained#unsigned-support">unsigned  * primitive utilities</a>.  *  * @author Louis Wasserman  * @author Brian Milch  * @author Colin Evans  * @since 10.0  */
 end_comment
 
 begin_class
@@ -151,7 +151,7 @@ operator|-
 literal|1L
 decl_stmt|;
 comment|// Equivalent to 2^64 - 1
-comment|/**    * A (self-inverse) bijection which converts the ordering on unsigned longs to the ordering on    * longs, that is, {@code a<= b} as unsigned longs if and only if {@code flip(a)<= flip(b)}    * as signed longs.    */
+comment|/**    * A (self-inverse) bijection which converts the ordering on unsigned longs to the ordering on    * longs, that is, {@code a<= b} as unsigned longs if and only if {@code flip(a)<= flip(b)} as    * signed longs.    */
 DECL|method|flip (long a)
 specifier|private
 specifier|static
@@ -170,7 +170,7 @@ operator|.
 name|MIN_VALUE
 return|;
 block|}
-comment|/**    * Compares the two specified {@code long} values, treating them as unsigned values between    * {@code 0} and {@code 2^64 - 1} inclusive.    *    * @param a the first unsigned {@code long} to compare    * @param b the second unsigned {@code long} to compare    * @return a negative value if {@code a} is less than {@code b}; a positive value if {@code a} is    *         greater than {@code b}; or zero if they are equal    */
+comment|/**    * Compares the two specified {@code long} values, treating them as unsigned values between    * {@code 0} and {@code 2^64 - 1} inclusive.    *    * @param a the first unsigned {@code long} to compare    * @param b the second unsigned {@code long} to compare    * @return a negative value if {@code a} is less than {@code b}; a positive value if {@code a} is    *     greater than {@code b}; or zero if they are equal    */
 DECL|method|compare (long a, long b)
 specifier|public
 specifier|static
@@ -201,7 +201,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the least value present in {@code array}, treating values as unsigned.    *    * @param array a<i>nonempty</i> array of unsigned {@code long} values    * @return the value present in {@code array} that is less than or equal to every other value in    *         the array according to {@link #compare}    * @throws IllegalArgumentException if {@code array} is empty    */
+comment|/**    * Returns the least value present in {@code array}, treating values as unsigned.    *    * @param array a<i>nonempty</i> array of unsigned {@code long} values    * @return the value present in {@code array} that is less than or equal to every other value in    *     the array according to {@link #compare}    * @throws IllegalArgumentException if {@code array} is empty    */
 DECL|method|min (long... array)
 specifier|public
 specifier|static
@@ -281,7 +281,7 @@ name|min
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the greatest value present in {@code array}, treating values as unsigned.    *    * @param array a<i>nonempty</i> array of unsigned {@code long} values    * @return the value present in {@code array} that is greater than or equal to every other value    *         in the array according to {@link #compare}    * @throws IllegalArgumentException if {@code array} is empty    */
+comment|/**    * Returns the greatest value present in {@code array}, treating values as unsigned.    *    * @param array a<i>nonempty</i> array of unsigned {@code long} values    * @return the value present in {@code array} that is greater than or equal to every other value    *     in the array according to {@link #compare}    * @throws IllegalArgumentException if {@code array} is empty    */
 DECL|method|max (long... array)
 specifier|public
 specifier|static
@@ -361,7 +361,7 @@ name|max
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a string containing the supplied unsigned {@code long} values separated by    * {@code separator}. For example, {@code join("-", 1, 2, 3)} returns the string {@code "1-2-3"}.    *    * @param separator the text that should appear between consecutive values in the resulting    *        string (but not at the start or end)    * @param array an array of unsigned {@code long} values, possibly empty    */
+comment|/**    * Returns a string containing the supplied unsigned {@code long} values separated by    * {@code separator}. For example, {@code join("-", 1, 2, 3)} returns the string {@code "1-2-3"}.    *    * @param separator the text that should appear between consecutive values in the resulting string    *     (but not at the start or end)    * @param array an array of unsigned {@code long} values, possibly empty    */
 DECL|method|join (String separator, long... array)
 specifier|public
 specifier|static
@@ -464,7 +464,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns a comparator that compares two arrays of unsigned {@code long} values    * lexicographically. That is, it compares, using {@link #compare(long, long)}), the first pair of    * values that follow any common prefix, or when one array is a prefix of the other, treats the    * shorter array as the lesser. For example, {@code []< [1L]< [1L, 2L]< [2L]< [1L<< 63]}.    *    *<p>The returned comparator is inconsistent with {@link Object#equals(Object)} (since arrays    * support only identity equality), but it is consistent with    * {@link Arrays#equals(long[], long[])}.    *    * @see<a href="http://en.wikipedia.org/wiki/Lexicographical_order">Lexicographical order    *      article at Wikipedia</a>    */
+comment|/**    * Returns a comparator that compares two arrays of unsigned {@code long} values<a    * href="http://en.wikipedia.org/wiki/Lexicographical_order">lexicographically</a>. That is, it    * compares, using {@link #compare(long, long)}), the first pair of values that follow any common    * prefix, or when one array is a prefix of the other, treats the shorter array as the lesser. For    * example, {@code []< [1L]< [1L, 2L]< [2L]< [1L<< 63]}.    *    *<p>The returned comparator is inconsistent with {@link Object#equals(Object)} (since arrays    * support only identity equality), but it is consistent with    * {@link Arrays#equals(long[], long[])}.    */
 DECL|method|lexicographicalComparator ()
 specifier|public
 specifier|static
@@ -657,7 +657,7 @@ operator|/
 name|divisor
 return|;
 block|}
-comment|/*      * Otherwise, approximate the quotient, check, and correct if necessary. Our approximation is      * guaranteed to be either exact or one less than the correct value. This follows from fact      * that floor(floor(x)/i) == floor(x/i) for any real x and integer i != 0. The proof is not      * quite trivial.      */
+comment|/*      * Otherwise, approximate the quotient, check, and correct if necessary. Our approximation is      * guaranteed to be either exact or one less than the correct value. This follows from fact that      * floor(floor(x)/i) == floor(x/i) for any real x and integer i != 0. The proof is not quite      * trivial.      */
 name|long
 name|quotient
 init|=
@@ -764,7 +764,7 @@ operator|%
 name|divisor
 return|;
 block|}
-comment|/*      * Otherwise, approximate the quotient, check, and correct if necessary. Our approximation is      * guaranteed to be either exact or one less than the correct value. This follows from fact      * that floor(floor(x)/i) == floor(x/i) for any real x and integer i != 0. The proof is not      * quite trivial.      */
+comment|/*      * Otherwise, approximate the quotient, check, and correct if necessary. Our approximation is      * guaranteed to be either exact or one less than the correct value. This follows from fact that      * floor(floor(x)/i) == floor(x/i) for any real x and integer i != 0. The proof is not quite      * trivial.      */
 name|long
 name|quotient
 init|=
@@ -808,7 +808,7 @@ literal|0
 operator|)
 return|;
 block|}
-comment|/**    * Returns the unsigned {@code long} value represented by the given decimal string.    *    * @throws NumberFormatException if the string does not contain a valid unsigned {@code long}    *         value    * @throws NullPointerException if {@code string} is null    *         (in contrast to {@link Long#parseLong(String)})    */
+comment|/**    * Returns the unsigned {@code long} value represented by the given decimal string.    *    * @throws NumberFormatException if the string does not contain a valid unsigned {@code long}    *     value    * @throws NullPointerException if {@code string} is null (in contrast to    *     {@link Long#parseLong(String)})    */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|parseUnsignedLong (String string)
@@ -830,7 +830,7 @@ literal|10
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the unsigned {@code long} value represented by the given string.    *    * Accepts a decimal, hexadecimal, or octal number given by specifying the following prefix:    *    *<ul>    *<li>{@code 0x}<i>HexDigits</i>    *<li>{@code 0X}<i>HexDigits</i>    *<li>{@code #}<i>HexDigits</i>    *<li>{@code 0}<i>OctalDigits</i>    *</ul>    *    * @throws NumberFormatException if the string does not contain a valid unsigned {@code long}    *         value    * @since 13.0    */
+comment|/**    * Returns the unsigned {@code long} value represented by the given string.    *    * Accepts a decimal, hexadecimal, or octal number given by specifying the following prefix:    *    *<ul>    *<li>{@code 0x}<i>HexDigits</i>    *<li>{@code 0X}<i>HexDigits</i>    *<li>{@code #}<i>HexDigits</i>    *<li>{@code 0}<i>OctalDigits</i>    *</ul>    *    * @throws NumberFormatException if the string does not contain a valid unsigned {@code long}    *     value    * @since 13.0    */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|decode (String stringValue)
@@ -897,7 +897,7 @@ name|decodeException
 throw|;
 block|}
 block|}
-comment|/**    * Returns the unsigned {@code long} value represented by a string with the given radix.    *    * @param s the string containing the unsigned {@code long} representation to be parsed.    * @param radix the radix to use while parsing {@code string}    * @throws NumberFormatException if the string does not contain a valid unsigned {@code long}    *         with the given radix, or if {@code radix} is not between {@link Character#MIN_RADIX}    *         and {@link Character#MAX_RADIX}.    * @throws NullPointerException if {@code string} is null    *         (in contrast to {@link Long#parseLong(String)})    */
+comment|/**    * Returns the unsigned {@code long} value represented by a string with the given radix.    *    * @param s the string containing the unsigned {@code long} representation to be parsed.    * @param radix the radix to use while parsing {@code string}    * @throws NumberFormatException if the string does not contain a valid unsigned {@code long} with    *     the given radix, or if {@code radix} is not between {@link Character#MIN_RADIX} and    *     {@link Character#MAX_RADIX}.    * @throws NullPointerException if {@code string} is null (in contrast to    *     {@link Long#parseLong(String)})    */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|parseUnsignedLong (String string, int radix)
@@ -962,7 +962,7 @@ argument_list|)
 throw|;
 block|}
 name|int
-name|max_safe_pos
+name|maxSafePos
 init|=
 name|maxSafeDigits
 index|[
@@ -1031,7 +1031,7 @@ if|if
 condition|(
 name|pos
 operator|>
-name|max_safe_pos
+name|maxSafePos
 operator|&&
 name|overflowInParse
 argument_list|(
@@ -1068,7 +1068,7 @@ return|return
 name|value
 return|;
 block|}
-comment|/**    * Returns true if (current * radix) + digit is a number too large to be represented by an    * unsigned long. This is useful for detecting overflow while parsing a string representation of    * a number. Does not verify whether supplied radix is valid, passing an invalid radix will give    * undefined results or an ArrayIndexOutOfBoundsException.    */
+comment|/**    * Returns true if (current * radix) + digit is a number too large to be represented by an    * unsigned long. This is useful for detecting overflow while parsing a string representation of a    * number. Does not verify whether supplied radix is valid, passing an invalid radix will give    * undefined results or an ArrayIndexOutOfBoundsException.    */
 DECL|method|overflowInParse (long current, int digit, int radix)
 specifier|private
 specifier|static
@@ -1157,7 +1157,7 @@ literal|10
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a string representation of {@code x} for the given radix, where {@code x} is treated    * as unsigned.    *    * @param x the value to convert to a string.    * @param radix the radix to use while working with {@code x}    * @throws IllegalArgumentException if {@code radix} is not between {@link Character#MIN_RADIX}    *         and {@link Character#MAX_RADIX}.    */
+comment|/**    * Returns a string representation of {@code x} for the given radix, where {@code x} is treated as    * unsigned.    *    * @param x the value to convert to a string.    * @param radix the radix to use while working with {@code x}    * @throws IllegalArgumentException if {@code radix} is not between {@link Character#MIN_RADIX}    *     and {@link Character#MAX_RADIX}.    */
 DECL|method|toString (long x, int radix)
 specifier|public
 specifier|static
