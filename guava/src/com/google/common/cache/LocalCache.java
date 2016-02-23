@@ -20771,7 +20771,6 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
-comment|/**      * Returns a string representation of the form<code>{key}={value}</code>.      */
 annotation|@
 name|Override
 DECL|method|toString ()
