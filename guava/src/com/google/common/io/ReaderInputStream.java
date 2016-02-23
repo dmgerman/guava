@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * Copyright (C) 2015 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License");  * you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+comment|/*  * Copyright (C) 2015 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except  * in compliance with the License. You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software distributed under the License  * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express  * or implied. See the License for the specific language governing permissions and limitations under  * the License.  */
 end_comment
 
 begin_package
@@ -392,9 +392,9 @@ name|bufferSize
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|close ()
 annotation|@
 name|Override
+DECL|method|close ()
 specifier|public
 name|void
 name|close
@@ -408,9 +408,9 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|read ()
 annotation|@
 name|Override
+DECL|method|read ()
 specifier|public
 name|int
 name|read
@@ -444,9 +444,9 @@ return|;
 block|}
 comment|// TODO(chrisn): Consider trying to encode/flush directly to the argument byte
 comment|// buffer when possible.
-DECL|method|read (byte[] b, int off, int len)
 annotation|@
 name|Override
+DECL|method|read (byte[] b, int off, int len)
 specifier|public
 name|int
 name|read
@@ -507,7 +507,7 @@ condition|(
 literal|true
 condition|)
 block|{
-comment|// We stay in draining mode until there are no bytes left in the output buffer.  Then we go
+comment|// We stay in draining mode until there are no bytes left in the output buffer. Then we go
 comment|// back to encoding/flushing.
 if|if
 condition|(
@@ -910,7 +910,7 @@ name|limit
 argument_list|()
 return|;
 block|}
-comment|/**    * Flips the buffer output buffer so we can start reading bytes from it.  If we are starting to    * drain because there was overflow, and there aren't actually any characters to drain, then the    * overflow must be due to a small output buffer.    */
+comment|/**    * Flips the buffer output buffer so we can start reading bytes from it. If we are starting to    * drain because there was overflow, and there aren't actually any characters to drain, then the    * overflow must be due to a small output buffer.    */
 DECL|method|startDraining (boolean overflow)
 specifier|private
 name|void

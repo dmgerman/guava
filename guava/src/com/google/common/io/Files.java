@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * Copyright (C) 2007 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License");  * you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+comment|/*  * Copyright (C) 2007 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except  * in compliance with the License. You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software distributed under the License  * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express  * or implied. See the License for the specific language governing permissions and limitations under  * the License.  */
 end_comment
 
 begin_package
@@ -89,20 +89,6 @@ operator|.
 name|annotations
 operator|.
 name|GwtIncompatible
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|base
-operator|.
-name|Charsets
 import|;
 end_import
 
@@ -404,6 +390,18 @@ begin_import
 import|import
 name|java
 operator|.
+name|nio
+operator|.
+name|charset
+operator|.
+name|StandardCharsets
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|util
 operator|.
 name|ArrayList
@@ -470,7 +468,7 @@ specifier|private
 name|Files
 parameter_list|()
 block|{}
-comment|/**    * Returns a buffered reader that reads from a file using the given    * character set.    *    * @param file the file to read from    * @param charset the charset used to decode the input stream; see {@link    *     Charsets} for helpful predefined constants    * @return the buffered reader    */
+comment|/**    * Returns a buffered reader that reads from a file using the given character set.    *    * @param file the file to read from    * @param charset the charset used to decode the input stream; see {@link StandardCharsets} for    *     helpful predefined constants    * @return the buffered reader    */
 DECL|method|newReader (File file, Charset charset)
 specifier|public
 specifier|static
@@ -514,7 +512,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a buffered writer that writes to a file using the given    * character set.    *    * @param file the file to write to    * @param charset the charset used to encode the output stream; see {@link    *     Charsets} for helpful predefined constants    * @return the buffered writer    */
+comment|/**    * Returns a buffered writer that writes to a file using the given character set.    *    * @param file the file to write to    * @param charset the charset used to encode the output stream; see {@link StandardCharsets} for    *     helpful predefined constants    * @return the buffered writer    */
 DECL|method|newWriter (File file, Charset charset)
 specifier|public
 specifier|static
@@ -794,8 +792,8 @@ literal|")"
 return|;
 block|}
 block|}
-comment|/**    * Reads a file of the given expected size from the given input stream, if    * it will fit into a byte array. This method handles the case where the file    * size changes between when the size is read and when the contents are read    * from the stream.    */
-DECL|method|readFile ( InputStream in, long expectedSize)
+comment|/**    * Reads a file of the given expected size from the given input stream, if it will fit into a byte    * array. This method handles the case where the file size changes between when the size is read    * and when the contents are read from the stream.    */
+DECL|method|readFile (InputStream in, long expectedSize)
 specifier|static
 name|byte
 index|[]
@@ -858,7 +856,7 @@ name|expectedSize
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a new {@link ByteSink} for writing bytes to the given file. The    * given {@code modes} control how the file is opened for writing. When no    * mode is provided, the file will be truncated before writing. When the    * {@link FileWriteMode#APPEND APPEND} mode is provided, writes will    * append to the end of the file without truncating it.    *    * @since 14.0    */
+comment|/**    * Returns a new {@link ByteSink} for writing bytes to the given file. The given {@code modes}    * control how the file is opened for writing. When no mode is provided, the file will be    * truncated before writing. When the {@link FileWriteMode#APPEND APPEND} mode is provided, writes    * will append to the end of the file without truncating it.    *    * @since 14.0    */
 DECL|method|asByteSink (File file, FileWriteMode... modes)
 specifier|public
 specifier|static
@@ -986,7 +984,7 @@ literal|")"
 return|;
 block|}
 block|}
-comment|/**    * Returns a new {@link CharSource} for reading character data from the given    * file using the given character set.    *    * @since 14.0    */
+comment|/**    * Returns a new {@link CharSource} for reading character data from the given file using the given    * character set.    *    * @since 14.0    */
 DECL|method|asCharSource (File file, Charset charset)
 specifier|public
 specifier|static
@@ -1012,7 +1010,7 @@ name|charset
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a new {@link CharSink} for writing character data to the given    * file using the given character set. The given {@code modes} control how    * the file is opened for writing. When no mode is provided, the file    * will be truncated before writing. When the    * {@link FileWriteMode#APPEND APPEND} mode is provided, writes will    * append to the end of the file without truncating it.    *    * @since 14.0    */
+comment|/**    * Returns a new {@link CharSink} for writing character data to the given file using the given    * character set. The given {@code modes} control how the file is opened for writing. When no mode    * is provided, the file will be truncated before writing. When the {@link FileWriteMode#APPEND    * APPEND} mode is provided, writes will append to the end of the file without truncating it.    *    * @since 14.0    */
 DECL|method|asCharSink (File file, Charset charset, FileWriteMode... modes)
 specifier|public
 specifier|static
@@ -1074,7 +1072,7 @@ literal|0
 index|]
 return|;
 block|}
-comment|/**    * Reads all bytes from a file into a byte array.    *    * @param file the file to read from    * @return a byte array containing all the bytes from file    * @throws IllegalArgumentException if the file is bigger than the largest    *     possible byte array (2^31 - 1)    * @throws IOException if an I/O error occurs    */
+comment|/**    * Reads all bytes from a file into a byte array.    *    * @param file the file to read from    * @return a byte array containing all the bytes from file    * @throws IllegalArgumentException if the file is bigger than the largest possible byte array    *     (2^31 - 1)    * @throws IOException if an I/O error occurs    */
 DECL|method|toByteArray (File file)
 specifier|public
 specifier|static
@@ -1098,7 +1096,7 @@ name|read
 argument_list|()
 return|;
 block|}
-comment|/**    * Reads all characters from a file into a {@link String}, using the given    * character set.    *    * @param file the file to read from    * @param charset the charset used to decode the input stream; see {@link    *     Charsets} for helpful predefined constants    * @return a string containing all the characters from the file    * @throws IOException if an I/O error occurs    */
+comment|/**    * Reads all characters from a file into a {@link String}, using the given character set.    *    * @param file the file to read from    * @param charset the charset used to decode the input stream; see {@link StandardCharsets} for    *     helpful predefined constants    * @return a string containing all the characters from the file    * @throws IOException if an I/O error occurs    */
 DECL|method|toString (File file, Charset charset)
 specifier|public
 specifier|static
@@ -1181,7 +1179,7 @@ name|to
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Copies all the bytes from one file to another.    *    *<p><b>Warning:</b> If {@code to} represents an existing file, that file    * will be overwritten with the contents of {@code from}. If {@code to} and    * {@code from} refer to the<i>same</i> file, the contents of that file    * will be deleted.    *    * @param from the source file    * @param to the destination file    * @throws IOException if an I/O error occurs    * @throws IllegalArgumentException if {@code from.equals(to)}    */
+comment|/**    * Copies all the bytes from one file to another.    *    *<p><b>Warning:</b> If {@code to} represents an existing file, that file will be overwritten    * with the contents of {@code from}. If {@code to} and {@code from} refer to the<i>same</i>    * file, the contents of that file will be deleted.    *    * @param from the source file    * @param to the destination file    * @throws IOException if an I/O error occurs    * @throws IllegalArgumentException if {@code from.equals(to)}    */
 DECL|method|copy (File from, File to)
 specifier|public
 specifier|static
@@ -1228,7 +1226,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Writes a character sequence (such as a string) to a file using the given    * character set.    *    * @param from the character sequence to write    * @param to the destination file    * @param charset the charset used to encode the output stream; see {@link    *     Charsets} for helpful predefined constants    * @throws IOException if an I/O error occurs    */
+comment|/**    * Writes a character sequence (such as a string) to a file using the given character set.    *    * @param from the character sequence to write    * @param to the destination file    * @param charset the charset used to encode the output stream; see {@link StandardCharsets} for    *     helpful predefined constants    * @throws IOException if an I/O error occurs    */
 DECL|method|write (CharSequence from, File to, Charset charset)
 specifier|public
 specifier|static
@@ -1260,7 +1258,7 @@ name|from
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Appends a character sequence (such as a string) to a file using the given    * character set.    *    * @param from the character sequence to append    * @param to the destination file    * @param charset the charset used to encode the output stream; see {@link    *     Charsets} for helpful predefined constants    * @throws IOException if an I/O error occurs    */
+comment|/**    * Appends a character sequence (such as a string) to a file using the given character set.    *    * @param from the character sequence to append    * @param to the destination file    * @param charset the charset used to encode the output stream; see {@link StandardCharsets} for    *     helpful predefined constants    * @throws IOException if an I/O error occurs    */
 DECL|method|append (CharSequence from, File to, Charset charset)
 specifier|public
 specifier|static
@@ -1291,7 +1289,7 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Private helper method. Writes a character sequence to a file,    * optionally appending.    *    * @param from the character sequence to append    * @param to the destination file    * @param charset the charset used to encode the output stream; see {@link    *     Charsets} for helpful predefined constants    * @param append true to append, false to overwrite    * @throws IOException if an I/O error occurs    */
+comment|/**    * Private helper method. Writes a character sequence to a file, optionally appending.    *    * @param from the character sequence to append    * @param to the destination file    * @param charset the charset used to encode the output stream; see {@link StandardCharsets} for    *     helpful predefined constants    * @param append true to append, false to overwrite    * @throws IOException if an I/O error occurs    */
 DECL|method|write (CharSequence from, File to, Charset charset, boolean append)
 specifier|private
 specifier|static
@@ -1331,7 +1329,7 @@ name|from
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Copies all characters from a file to an appendable object,    * using the given character set.    *    * @param from the source file    * @param charset the charset used to decode the input stream; see {@link    *     Charsets} for helpful predefined constants    * @param to the appendable object    * @throws IOException if an I/O error occurs    */
+comment|/**    * Copies all characters from a file to an appendable object, using the given character set.    *    * @param from the source file    * @param charset the charset used to decode the input stream; see {@link StandardCharsets} for    *     helpful predefined constants    * @param to the appendable object    * @throws IOException if an I/O error occurs    */
 DECL|method|copy (File from, Charset charset, Appendable to)
 specifier|public
 specifier|static
@@ -1407,7 +1405,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/*      * Some operating systems may return zero as the length for files      * denoting system-dependent entities such as devices or pipes, in      * which case we must fall back on comparing the bytes directly.      */
+comment|/*      * Some operating systems may return zero as the length for files denoting system-dependent      * entities such as devices or pipes, in which case we must fall back on comparing the bytes      * directly.      */
 name|long
 name|len1
 init|=
@@ -1458,7 +1456,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Atomically creates a new directory somewhere beneath the system's    * temporary directory (as defined by the {@code java.io.tmpdir} system    * property), and returns its name.    *    *<p>Use this method instead of {@link File#createTempFile(String, String)}    * when you wish to create a directory, not a regular file.  A common pitfall    * is to call {@code createTempFile}, delete the file and create a    * directory in its place, but this leads a race condition which can be    * exploited to create security vulnerabilities, especially when executable    * files are to be written into the directory.    *    *<p>This method assumes that the temporary volume is writable, has free    * inodes and free blocks, and that it will not be called thousands of times    * per second.    *    * @return the newly-created directory    * @throws IllegalStateException if the directory could not be created    */
+comment|/**    * Atomically creates a new directory somewhere beneath the system's temporary directory (as    * defined by the {@code java.io.tmpdir} system property), and returns its name.    *    *<p>Use this method instead of {@link File#createTempFile(String, String)} when you wish to    * create a directory, not a regular file. A common pitfall is to call {@code createTempFile},    * delete the file and create a directory in its place, but this leads a race condition which can    * be exploited to create security vulnerabilities, especially when executable files are to be    * written into the directory.    *    *<p>This method assumes that the temporary volume is writable, has free inodes and free blocks,    * and that it will not be called thousands of times per second.    *    * @return the newly-created directory    * @throws IllegalStateException if the directory could not be created    */
 DECL|method|createTempDir ()
 specifier|public
 specifier|static
@@ -1557,7 +1555,7 @@ literal|')'
 argument_list|)
 throw|;
 block|}
-comment|/**    * Creates an empty file or updates the last updated timestamp on the    * same as the unix command of the same name.    *    * @param file the file to create or update    * @throws IOException if an I/O error occurs    */
+comment|/**    * Creates an empty file or updates the last updated timestamp on the same as the unix command of    * the same name.    *    * @param file the file to create or update    * @throws IOException if an I/O error occurs    */
 DECL|method|touch (File file)
 specifier|public
 specifier|static
@@ -1606,7 +1604,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Creates any necessary but nonexistent parent directories of the specified    * file. Note that if this operation fails it may have succeeded in creating    * some (but not all) of the necessary parent directories.    *    * @throws IOException if an I/O error occurs, or if any necessary but    *     nonexistent parent directories of the specified file could not be    *     created.    * @since 4.0    */
+comment|/**    * Creates any necessary but nonexistent parent directories of the specified file. Note that if    * this operation fails it may have succeeded in creating some (but not all) of the necessary    * parent directories.    *    * @throws IOException if an I/O error occurs, or if any necessary but nonexistent parent    *     directories of the specified file could not be created.    * @since 4.0    */
 DECL|method|createParentDirs (File file)
 specifier|public
 specifier|static
@@ -1642,7 +1640,7 @@ operator|==
 literal|null
 condition|)
 block|{
-comment|/*        * The given directory is a filesystem root. All zero of its ancestors        * exist. This doesn't mean that the root itself exists -- consider x:\ on        * a Windows machine without such a drive -- or even that the caller can        * create it, but this method makes no such guarantees even for non-root        * files.        */
+comment|/*        * The given directory is a filesystem root. All zero of its ancestors exist. This doesn't        * mean that the root itself exists -- consider x:\ on a Windows machine without such a drive        * -- or even that the caller can create it, but this method makes no such guarantees even for        * non-root files.        */
 return|return;
 block|}
 name|parent
@@ -1670,7 +1668,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Moves a file from one path to another. This method can rename a file    * and/or move it to a different directory. In either case {@code to} must    * be the target path for the file itself; not just the new name for the    * file or the path to the new parent directory.    *    * @param from the source file    * @param to the destination file    * @throws IOException if an I/O error occurs    * @throws IllegalArgumentException if {@code from.equals(to)}    */
+comment|/**    * Moves a file from one path to another. This method can rename a file and/or move it to a    * different directory. In either case {@code to} must be the target path for the file itself; not    * just the new name for the file or the path to the new parent directory.    *    * @param from the source file    * @param to the destination file    * @throws IOException if an I/O error occurs    * @throws IllegalArgumentException if {@code from.equals(to)}    */
 DECL|method|move (File from, File to)
 specifier|public
 specifier|static
@@ -1771,7 +1769,7 @@ throw|;
 block|}
 block|}
 block|}
-comment|/**    * Reads the first line from a file. The line does not include    * line-termination characters, but does include other leading and    * trailing whitespace.    *    * @param file the file to read from    * @param charset the charset used to decode the input stream; see {@link    *     Charsets} for helpful predefined constants    * @return the first line, or null if the file is empty    * @throws IOException if an I/O error occurs    */
+comment|/**    * Reads the first line from a file. The line does not include line-termination characters, but    * does include other leading and trailing whitespace.    *    * @param file the file to read from    * @param charset the charset used to decode the input stream; see {@link StandardCharsets} for    *     helpful predefined constants    * @return the first line, or null if the file is empty    * @throws IOException if an I/O error occurs    */
 DECL|method|readFirstLine (File file, Charset charset)
 specifier|public
 specifier|static
@@ -1799,7 +1797,7 @@ name|readFirstLine
 argument_list|()
 return|;
 block|}
-comment|/**    * Reads all of the lines from a file. The lines do not include    * line-termination characters, but do include other leading and    * trailing whitespace.    *    *<p>This method returns a mutable {@code List}. For an    * {@code ImmutableList}, use    * {@code Files.asCharSource(file, charset).readLines()}.    *    * @param file the file to read from    * @param charset the charset used to decode the input stream; see {@link    *     Charsets} for helpful predefined constants    * @return a mutable {@link List} containing all the lines    * @throws IOException if an I/O error occurs    */
+comment|/**    * Reads all of the lines from a file. The lines do not include line-termination characters, but    * do include other leading and trailing whitespace.    *    *<p>This method returns a mutable {@code List}. For an {@code ImmutableList}, use    * {@code Files.asCharSource(file, charset).readLines()}.    *    * @param file the file to read from    * @param charset the charset used to decode the input stream; see {@link StandardCharsets} for    *     helpful predefined constants    * @return a mutable {@link List} containing all the lines    * @throws IOException if an I/O error occurs    */
 DECL|method|readLines (File file, Charset charset)
 specifier|public
 specifier|static
@@ -1888,7 +1886,7 @@ block|}
 argument_list|)
 return|;
 block|}
-comment|/**    * Streams lines from a {@link File}, stopping when our callback returns    * false, or we have read all of the lines.    *    * @param file the file to read from    * @param charset the charset used to decode the input stream; see {@link    *     Charsets} for helpful predefined constants    * @param callback the {@link LineProcessor} to use to handle the lines    * @return the output of processing the lines    * @throws IOException if an I/O error occurs    */
+comment|/**    * Streams lines from a {@link File}, stopping when our callback returns false, or we have read    * all of the lines.    *    * @param file the file to read from    * @param charset the charset used to decode the input stream; see {@link StandardCharsets} for    *     helpful predefined constants    * @param callback the {@link LineProcessor} to use to handle the lines    * @return the output of processing the lines    * @throws IOException if an I/O error occurs    */
 DECL|method|readLines (File file, Charset charset, LineProcessor<T> callback)
 specifier|public
 specifier|static
@@ -1927,7 +1925,7 @@ name|callback
 argument_list|)
 return|;
 block|}
-comment|/**    * Process the bytes of a file.    *    *<p>(If this seems too complicated, maybe you're looking for    * {@link #toByteArray}.)    *    * @param file the file to read    * @param processor the object to which the bytes of the file are passed.    * @return the result of the byte processor    * @throws IOException if an I/O error occurs    */
+comment|/**    * Process the bytes of a file.    *    *<p>(If this seems too complicated, maybe you're looking for {@link #toByteArray}.)    *    * @param file the file to read    * @param processor the object to which the bytes of the file are passed.    * @return the result of the byte processor    * @throws IOException if an I/O error occurs    */
 DECL|method|readBytes (File file, ByteProcessor<T> processor)
 specifier|public
 specifier|static
@@ -2018,7 +2016,7 @@ name|READ_ONLY
 argument_list|)
 return|;
 block|}
-comment|/**    * Fully maps a file in to memory as per    * {@link FileChannel#map(java.nio.channels.FileChannel.MapMode, long, long)}    * using the requested {@link MapMode}.    *    *<p>Files are mapped from offset 0 to its length.    *    *<p>This only works for files<= {@link Integer#MAX_VALUE} bytes.    *    * @param file the file to map    * @param mode the mode to use when mapping {@code file}    * @return a buffer reflecting {@code file}    * @throws FileNotFoundException if the {@code file} does not exist    * @throws IOException if an I/O error occurs    *    * @see FileChannel#map(MapMode, long, long)    * @since 2.0    */
+comment|/**    * Fully maps a file in to memory as per    * {@link FileChannel#map(java.nio.channels.FileChannel.MapMode, long, long)} using the requested    * {@link MapMode}.    *    *<p>Files are mapped from offset 0 to its length.    *    *<p>This only works for files<= {@link Integer#MAX_VALUE} bytes.    *    * @param file the file to map    * @param mode the mode to use when mapping {@code file}    * @return a buffer reflecting {@code file}    * @throws FileNotFoundException if the {@code file} does not exist    * @throws IOException if an I/O error occurs    *    * @see FileChannel#map(MapMode, long, long)    * @since 2.0    */
 DECL|method|map (File file, MapMode mode)
 specifier|public
 specifier|static
@@ -2078,7 +2076,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Maps a file in to memory as per    * {@link FileChannel#map(java.nio.channels.FileChannel.MapMode, long, long)}    * using the requested {@link MapMode}.    *    *<p>Files are mapped from offset 0 to {@code size}.    *    *<p>If the mode is {@link MapMode#READ_WRITE} and the file does not exist,    * it will be created with the requested {@code size}. Thus this method is    * useful for creating memory mapped files which do not yet exist.    *    *<p>This only works for files<= {@link Integer#MAX_VALUE} bytes.    *    * @param file the file to map    * @param mode the mode to use when mapping {@code file}    * @return a buffer reflecting {@code file}    * @throws IOException if an I/O error occurs    *    * @see FileChannel#map(MapMode, long, long)    * @since 2.0    */
+comment|/**    * Maps a file in to memory as per    * {@link FileChannel#map(java.nio.channels.FileChannel.MapMode, long, long)} using the requested    * {@link MapMode}.    *    *<p>Files are mapped from offset 0 to {@code size}.    *    *<p>If the mode is {@link MapMode#READ_WRITE} and the file does not exist, it will be created    * with the requested {@code size}. Thus this method is useful for creating memory mapped files    * which do not yet exist.    *    *<p>This only works for files<= {@link Integer#MAX_VALUE} bytes.    *    * @param file the file to map    * @param mode the mode to use when mapping {@code file}    * @return a buffer reflecting {@code file}    * @throws IOException if an I/O error occurs    *    * @see FileChannel#map(MapMode, long, long)    * @since 2.0    */
 DECL|method|map (File file, MapMode mode, long size)
 specifier|public
 specifier|static
@@ -2256,7 +2254,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Returns the lexically cleaned form of the path name,<i>usually</i> (but    * not always) equivalent to the original. The following heuristics are used:    *    *<ul>    *<li>empty string becomes .    *<li>. stays as .    *<li>fold out ./    *<li>fold out ../ when possible    *<li>collapse multiple slashes    *<li>delete trailing slashes (unless the path is just "/")    *</ul>    *    *<p>These heuristics do not always match the behavior of the filesystem. In    * particular, consider the path {@code a/../b}, which {@code simplifyPath}    * will change to {@code b}. If {@code a} is a symlink to {@code x}, {@code    * a/../b} may refer to a sibling of {@code x}, rather than the sibling of    * {@code a} referred to by {@code b}.    *    * @since 11.0    */
+comment|/**    * Returns the lexically cleaned form of the path name,<i>usually</i> (but not always) equivalent    * to the original. The following heuristics are used:    *    *<ul>    *<li>empty string becomes .    *<li>. stays as .    *<li>fold out ./    *<li>fold out ../ when possible    *<li>collapse multiple slashes    *<li>delete trailing slashes (unless the path is just "/")    *</ul>    *    *<p>These heuristics do not always match the behavior of the filesystem. In particular, consider    * the path {@code a/../b}, which {@code simplifyPath} will change to {@code b}. If {@code a} is a    * symlink to {@code x}, {@code a/../b} may refer to a sibling of {@code x}, rather than the    * sibling of {@code a} referred to by {@code b}.    *    * @since 11.0    */
 DECL|method|simplifyPath (String pathname)
 specifier|public
 specifier|static
@@ -2506,7 +2504,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/**    * Returns the<a href="http://en.wikipedia.org/wiki/Filename_extension">file    * extension</a> for the given file name, or the empty string if the file has    * no extension.  The result does not include the '{@code .}'.    *    * @since 11.0    */
+comment|/**    * Returns the<a href="http://en.wikipedia.org/wiki/Filename_extension">file extension</a> for    * the given file name, or the empty string if the file has no extension. The result does not    * include the '{@code .}'.    *    * @since 11.0    */
 DECL|method|getFileExtension (String fullName)
 specifier|public
 specifier|static
@@ -2622,7 +2620,7 @@ name|dotIndex
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a {@link TreeTraverser} instance for {@link File} trees.    *    *<p><b>Warning:</b> {@code File} provides no support for symbolic links, and as such there is no    * way to ensure that a symbolic link to a directory is not followed when traversing the tree.    * In this case, iterables created by this traverser could contain files that are outside of the    * given directory or even be infinite if there is a symbolic link loop.    *    * @since 15.0    */
+comment|/**    * Returns a {@link TreeTraverser} instance for {@link File} trees.    *    *<p><b>Warning:</b> {@code File} provides no support for symbolic links, and as such there is no    * way to ensure that a symbolic link to a directory is not followed when traversing the tree. In    * this case, iterables created by this traverser could contain files that are outside of the    * given directory or even be infinite if there is a symbolic link loop.    *    * @since 15.0    */
 DECL|method|fileTreeTraverser ()
 specifier|public
 specifier|static

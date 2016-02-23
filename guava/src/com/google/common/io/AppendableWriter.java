@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * Copyright (C) 2006 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License");  * you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+comment|/*  * Copyright (C) 2006 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except  * in compliance with the License. You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software distributed under the License  * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express  * or implied. See the License for the specific language governing permissions and limitations under  * the License.  */
 end_comment
 
 begin_package
@@ -97,7 +97,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Writer that places all output on an {@link Appendable} target. If the target  * is {@link Flushable} or {@link Closeable}, flush()es and close()s will also  * be delegated to the target.  *  * @author Alan Green  * @author Sebastian Kanthak  * @since 1.0  */
+comment|/**  * Writer that places all output on an {@link Appendable} target. If the target is {@link Flushable}  * or {@link Closeable}, flush()es and close()s will also be delegated to the target.  *  * @author Alan Green  * @author Sebastian Kanthak  * @since 1.0  */
 end_comment
 
 begin_class
@@ -139,9 +139,9 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/*    * Abstract methods from Writer    */
-DECL|method|write (char cbuf[], int off, int len)
 annotation|@
 name|Override
+DECL|method|write (char cbuf[], int off, int len)
 specifier|public
 name|void
 name|write
@@ -180,9 +180,9 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|flush ()
 annotation|@
 name|Override
+DECL|method|flush ()
 specifier|public
 name|void
 name|flush
@@ -212,9 +212,9 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-DECL|method|close ()
 annotation|@
 name|Override
+DECL|method|close ()
 specifier|public
 name|void
 name|close
@@ -247,10 +247,10 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/*    * Override a few functions for performance reasons to avoid creating    * unnecessary strings.    */
-DECL|method|write (int c)
+comment|/*    * Override a few functions for performance reasons to avoid creating unnecessary strings.    */
 annotation|@
 name|Override
+DECL|method|write (int c)
 specifier|public
 name|void
 name|write
@@ -275,9 +275,9 @@ name|c
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|write (@ullable String str)
 annotation|@
 name|Override
+DECL|method|write (@ullable String str)
 specifier|public
 name|void
 name|write
@@ -301,9 +301,9 @@ name|str
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|write (@ullable String str, int off, int len)
 annotation|@
 name|Override
+DECL|method|write (@ullable String str, int off, int len)
 specifier|public
 name|void
 name|write
@@ -340,9 +340,9 @@ name|len
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|append (char c)
 annotation|@
 name|Override
+DECL|method|append (char c)
 specifier|public
 name|Writer
 name|append
@@ -367,9 +367,9 @@ return|return
 name|this
 return|;
 block|}
-DECL|method|append (@ullable CharSequence charSeq)
 annotation|@
 name|Override
+DECL|method|append (@ullable CharSequence charSeq)
 specifier|public
 name|Writer
 name|append
@@ -396,9 +396,9 @@ return|return
 name|this
 return|;
 block|}
-DECL|method|append (@ullable CharSequence charSeq, int start, int end)
 annotation|@
 name|Override
+DECL|method|append (@ullable CharSequence charSeq, int start, int end)
 specifier|public
 name|Writer
 name|append

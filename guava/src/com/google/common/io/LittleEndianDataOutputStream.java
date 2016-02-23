@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * Copyright (C) 2007 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License");  * you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+comment|/*  * Copyright (C) 2007 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except  * in compliance with the License. You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software distributed under the License  * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express  * or implied. See the License for the specific language governing permissions and limitations under  * the License.  */
 end_comment
 
 begin_package
@@ -123,7 +123,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An implementation of {@link DataOutput} that uses little-endian byte ordering  * for writing {@code char}, {@code short}, {@code int}, {@code float}, {@code  * double}, and {@code long} values.  *<p>  *<b>Note:</b> This class intentionally violates the specification of its  * supertype {@code DataOutput}, which explicitly requires big-endian byte  * order.  *  * @author Chris Nokleberg  * @author Keith Bottner  * @since 8.0  */
+comment|/**  * An implementation of {@link DataOutput} that uses little-endian byte ordering for writing  * {@code char}, {@code short}, {@code int}, {@code float}, {@code double}, and {@code long} values.  *  *<p><b>Note:</b> This class intentionally violates the specification of its supertype  * {@code DataOutput}, which explicitly requires big-endian byte order.  *  * @author Chris Nokleberg  * @author Keith Bottner  * @since 8.0  */
 end_comment
 
 begin_class
@@ -164,9 +164,9 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|write (byte[] b, int off, int len)
 annotation|@
 name|Override
+DECL|method|write (byte[] b, int off, int len)
 specifier|public
 name|void
 name|write
@@ -197,9 +197,9 @@ name|len
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|writeBoolean (boolean v)
 annotation|@
 name|Override
+DECL|method|writeBoolean (boolean v)
 specifier|public
 name|void
 name|writeBoolean
@@ -223,9 +223,9 @@ name|v
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|writeByte (int v)
 annotation|@
 name|Override
+DECL|method|writeByte (int v)
 specifier|public
 name|void
 name|writeByte
@@ -249,12 +249,12 @@ name|v
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * @deprecated The semantics of {@code writeBytes(String s)} are considered    *             dangerous. Please use {@link #writeUTF(String s)},    *             {@link #writeChars(String s)} or another write method instead.    */
+comment|/**    * @deprecated The semantics of {@code writeBytes(String s)} are considered dangerous. Please use    *     {@link #writeUTF(String s)}, {@link #writeChars(String s)} or another write method instead.    */
 annotation|@
 name|Deprecated
-DECL|method|writeBytes (String s)
 annotation|@
 name|Override
+DECL|method|writeBytes (String s)
 specifier|public
 name|void
 name|writeBytes
@@ -278,10 +278,10 @@ name|s
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Writes a char as specified by {@link DataOutputStream#writeChar(int)},    * except using little-endian byte order.    *    * @throws IOException if an I/O error occurs    */
-DECL|method|writeChar (int v)
+comment|/**    * Writes a char as specified by {@link DataOutputStream#writeChar(int)}, except using    * little-endian byte order.    *    * @throws IOException if an I/O error occurs    */
 annotation|@
 name|Override
+DECL|method|writeChar (int v)
 specifier|public
 name|void
 name|writeChar
@@ -298,10 +298,10 @@ name|v
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Writes a {@code String} as specified by    * {@link DataOutputStream#writeChars(String)}, except each character is    * written using little-endian byte order.    *    * @throws IOException if an I/O error occurs    */
-DECL|method|writeChars (String s)
+comment|/**    * Writes a {@code String} as specified by {@link DataOutputStream#writeChars(String)}, except    * each character is written using little-endian byte order.    *    * @throws IOException if an I/O error occurs    */
 annotation|@
 name|Override
+DECL|method|writeChars (String s)
 specifier|public
 name|void
 name|writeChars
@@ -342,10 +342,10 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Writes a {@code double} as specified by    * {@link DataOutputStream#writeDouble(double)}, except using little-endian    * byte order.    *    * @throws IOException if an I/O error occurs    */
-DECL|method|writeDouble (double v)
+comment|/**    * Writes a {@code double} as specified by {@link DataOutputStream#writeDouble(double)}, except    * using little-endian byte order.    *    * @throws IOException if an I/O error occurs    */
 annotation|@
 name|Override
+DECL|method|writeDouble (double v)
 specifier|public
 name|void
 name|writeDouble
@@ -367,10 +367,10 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Writes a {@code float} as specified by    * {@link DataOutputStream#writeFloat(float)}, except using little-endian byte    * order.    *    * @throws IOException if an I/O error occurs    */
-DECL|method|writeFloat (float v)
+comment|/**    * Writes a {@code float} as specified by {@link DataOutputStream#writeFloat(float)}, except using    * little-endian byte order.    *    * @throws IOException if an I/O error occurs    */
 annotation|@
 name|Override
+DECL|method|writeFloat (float v)
 specifier|public
 name|void
 name|writeFloat
@@ -392,10 +392,10 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Writes an {@code int} as specified by    * {@link DataOutputStream#writeInt(int)}, except using little-endian byte    * order.    *    * @throws IOException if an I/O error occurs    */
-DECL|method|writeInt (int v)
+comment|/**    * Writes an {@code int} as specified by {@link DataOutputStream#writeInt(int)}, except using    * little-endian byte order.    *    * @throws IOException if an I/O error occurs    */
 annotation|@
 name|Override
+DECL|method|writeInt (int v)
 specifier|public
 name|void
 name|writeInt
@@ -455,10 +455,10 @@ operator|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Writes a {@code long} as specified by    * {@link DataOutputStream#writeLong(long)}, except using little-endian byte    * order.    *    * @throws IOException if an I/O error occurs    */
-DECL|method|writeLong (long v)
+comment|/**    * Writes a {@code long} as specified by {@link DataOutputStream#writeLong(long)}, except using    * little-endian byte order.    *    * @throws IOException if an I/O error occurs    */
 annotation|@
 name|Override
+DECL|method|writeLong (long v)
 specifier|public
 name|void
 name|writeLong
@@ -497,10 +497,10 @@ name|length
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Writes a {@code short} as specified by    * {@link DataOutputStream#writeShort(int)}, except using little-endian byte    * order.    *    * @throws IOException if an I/O error occurs    */
-DECL|method|writeShort (int v)
+comment|/**    * Writes a {@code short} as specified by {@link DataOutputStream#writeShort(int)}, except using    * little-endian byte order.    *    * @throws IOException if an I/O error occurs    */
 annotation|@
 name|Override
+DECL|method|writeShort (int v)
 specifier|public
 name|void
 name|writeShort
@@ -534,9 +534,9 @@ operator|)
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|writeUTF (String str)
 annotation|@
 name|Override
+DECL|method|writeUTF (String str)
 specifier|public
 name|void
 name|writeUTF
@@ -563,9 +563,9 @@ block|}
 comment|// Overriding close() because FilterOutputStream's close() method pre-JDK8 has bad behavior:
 comment|// it silently ignores any exception thrown by flush(). Instead, just close the delegate stream.
 comment|// It should flush itself if necessary.
-DECL|method|close ()
 annotation|@
 name|Override
+DECL|method|close ()
 specifier|public
 name|void
 name|close

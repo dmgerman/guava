@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * Copyright (C) 2007 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License");  * you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+comment|/*  * Copyright (C) 2007 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except  * in compliance with the License. You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software distributed under the License  * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express  * or implied. See the License for the specific language governing permissions and limitations under  * the License.  */
 end_comment
 
 begin_package
@@ -127,7 +127,7 @@ specifier|private
 name|Flushables
 parameter_list|()
 block|{}
-comment|/**    * Flush a {@link Flushable}, with control over whether an    * {@code IOException} may be thrown.    *    *<p>If {@code swallowIOException} is true, then we don't rethrow    * {@code IOException}, but merely log it.    *    * @param flushable the {@code Flushable} object to be flushed.    * @param swallowIOException if true, don't propagate IO exceptions    *     thrown by the {@code flush} method    * @throws IOException if {@code swallowIOException} is false and    *     {@link Flushable#flush} throws an {@code IOException}.    * @see Closeables#close    */
+comment|/**    * Flush a {@link Flushable}, with control over whether an {@code IOException} may be thrown.    *    *<p>If {@code swallowIOException} is true, then we don't rethrow {@code IOException}, but merely    * log it.    *    * @param flushable the {@code Flushable} object to be flushed.    * @param swallowIOException if true, don't propagate IO exceptions thrown by the {@code flush}    *     method    * @throws IOException if {@code swallowIOException} is false and {@link Flushable#flush} throws    *     an {@code IOException}.    * @see Closeables#close    */
 DECL|method|flush (Flushable flushable, boolean swallowIOException)
 specifier|public
 specifier|static
@@ -184,7 +184,7 @@ throw|;
 block|}
 block|}
 block|}
-comment|/**    * Equivalent to calling {@code flush(flushable, true)}, but with no    * {@code IOException} in the signature.    *    * @param flushable the {@code Flushable} object to be flushed.    */
+comment|/**    * Equivalent to calling {@code flush(flushable, true)}, but with no {@code IOException} in the    * signature.    *    * @param flushable the {@code Flushable} object to be flushed.    */
 DECL|method|flushQuietly (Flushable flushable)
 specifier|public
 specifier|static

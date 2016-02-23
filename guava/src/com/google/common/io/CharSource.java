@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * Copyright (C) 2012 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License");  * you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+comment|/*  * Copyright (C) 2012 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except  * in compliance with the License. You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software distributed under the License  * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express  * or implied. See the License for the specific language governing permissions and limitations under  * the License.  */
 end_comment
 
 begin_package
@@ -228,18 +228,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|regex
-operator|.
-name|Pattern
-import|;
-end_import
-
-begin_import
-import|import
 name|javax
 operator|.
 name|annotation
@@ -249,7 +237,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A readable source of characters, such as a text file. Unlike a {@link Reader}, a  * {@code CharSource} is not an open, stateful stream of characters that can be read and closed.  * Instead, it is an immutable<i>supplier</i> of {@code Reader} instances.  *  *<p>{@code CharSource} provides two kinds of methods:  *<ul>  *<li><b>Methods that return a reader:</b> These methods should return a<i>new</i>, independent  *   instance each time they are called. The caller is responsible for ensuring that the returned  *   reader is closed.  *<li><b>Convenience methods:</b> These are implementations of common operations that are  *   typically implemented by opening a reader using one of the methods in the first category,  *   doing something and finally closing the reader that was opened.  *</ul>  *  *<p>Several methods in this class, such as {@link #readLines()}, break the contents of the  * source into lines. Like {@link BufferedReader}, these methods break lines on any of {@code \n},  * {@code \r} or {@code \r\n}, do not include the line separator in each line and do not consider  * there to be an empty line at the end if the contents are terminated with a line separator.  *  *<p>Any {@link ByteSource} containing text encoded with a specific {@linkplain Charset character  * encoding} may be viewed as a {@code CharSource} using {@link ByteSource#asCharSource(Charset)}.  *  * @since 14.0  * @author Colin Decker  */
+comment|/**  * A readable source of characters, such as a text file. Unlike a {@link Reader}, a  * {@code CharSource} is not an open, stateful stream of characters that can be read and closed.  * Instead, it is an immutable<i>supplier</i> of {@code Reader} instances.  *  *<p>{@code CharSource} provides two kinds of methods:  *<ul>  *<li><b>Methods that return a reader:</b> These methods should return a<i>new</i>, independent  *     instance each time they are called. The caller is responsible for ensuring that the returned  *     reader is closed.  *<li><b>Convenience methods:</b> These are implementations of common operations that are typically  *     implemented by opening a reader using one of the methods in the first category, doing  *     something and finally closing the reader that was opened.  *</ul>  *  *<p>Several methods in this class, such as {@link #readLines()}, break the contents of the source  * into lines. Like {@link BufferedReader}, these methods break lines on any of {@code \n},  * {@code \r} or {@code \r\n}, do not include the line separator in each line and do not consider  * there to be an empty line at the end if the contents are terminated with a line separator.  *  *<p>Any {@link ByteSource} containing text encoded with a specific {@linkplain Charset character  * encoding} may be viewed as a {@code CharSource} using {@link ByteSource#asCharSource(Charset)}.  *  * @since 14.0  * @author Colin Decker  */
 end_comment
 
 begin_class
@@ -331,7 +319,7 @@ name|reader
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the size of this source in chars, if the size can be easily determined without    * actually opening the data stream.    *    *<p>The default implementation returns {@link Optional#absent}. Some sources, such as a    * {@code CharSequence}, may return a non-absent value. Note that in such cases, it is    *<i>possible</i> that this method will return a different number of chars than would be    * returned by reading all of the chars.    *    *<p>Additionally, for mutable sources such as {@code StringBuilder}s, a subsequent read    * may return a different number of chars if the contents are changed.    *    * @since 19.0    */
+comment|/**    * Returns the size of this source in chars, if the size can be easily determined without actually    * opening the data stream.    *    *<p>The default implementation returns {@link Optional#absent}. Some sources, such as a    * {@code CharSequence}, may return a non-absent value. Note that in such cases, it is    *<i>possible</i> that this method will return a different number of chars than would be returned    * by reading all of the chars.    *    *<p>Additionally, for mutable sources such as {@code StringBuilder}s, a subsequent read may    * return a different number of chars if the contents are changed.    *    * @since 19.0    */
 annotation|@
 name|Beta
 DECL|method|lengthIfKnown ()
@@ -350,7 +338,7 @@ name|absent
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns the length of this source in chars, even if doing so requires opening and traversing    * an entire stream. To avoid a potentially expensive operation, see {@link #lengthIfKnown}.    *    *<p>The default implementation calls {@link #lengthIfKnown} and returns the value if present.    * If absent, it will fall back to a heavyweight operation that will open a stream,    * {@link Reader#skip(long) skip} to the end of the stream, and return the total number of chars    * that were skipped.    *    *<p>Note that for sources that implement {@link #lengthIfKnown} to provide a more efficient    * implementation, it is<i>possible</i> that this method will return a different number of chars    * than would be returned by reading all of the chars.    *    *<p>In either case, for mutable sources such as files, a subsequent read may return a different    * number of chars if the contents are changed.    *    * @throws IOException if an I/O error occurs in the process of reading the length of this source    * @since 19.0    */
+comment|/**    * Returns the length of this source in chars, even if doing so requires opening and traversing an    * entire stream. To avoid a potentially expensive operation, see {@link #lengthIfKnown}.    *    *<p>The default implementation calls {@link #lengthIfKnown} and returns the value if present. If    * absent, it will fall back to a heavyweight operation that will open a stream,    * {@link Reader#skip(long) skip} to the end of the stream, and return the total number of chars    * that were skipped.    *    *<p>Note that for sources that implement {@link #lengthIfKnown} to provide a more efficient    * implementation, it is<i>possible</i> that this method will return a different number of chars    * than would be returned by reading all of the chars.    *    *<p>In either case, for mutable sources such as files, a subsequent read may return a different    * number of chars if the contents are changed.    *    * @throws IOException if an I/O error occurs in the process of reading the length of this source    * @since 19.0    */
 annotation|@
 name|Beta
 DECL|method|length ()
@@ -706,9 +694,9 @@ expr_stmt|;
 block|}
 block|}
 comment|/**    * Reads the first link of this source as a string. Returns {@code null} if this source is empty.    *    *<p>Like {@link BufferedReader}, this method breaks lines on any of {@code \n}, {@code \r} or    * {@code \r\n}, does not include the line separator in the returned line and does not consider    * there to be an extra empty line at the end if the content is terminated with a line separator.    *    * @throws IOException if an I/O error occurs in the process of reading from this source    */
-DECL|method|readFirstLine ()
 annotation|@
 name|Nullable
+DECL|method|readFirstLine ()
 specifier|public
 name|String
 name|readFirstLine
@@ -951,7 +939,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Returns whether the source has zero chars. The default implementation returns true if    * {@link #lengthIfKnown} returns zero, falling back to opening a stream and checking    * for EOF if the length is not known.    *    *<p>Note that, in cases where {@code lengthIfKnown} returns zero, it is<i>possible</i> that    * chars are actually available for reading. This means that a source may return {@code true} from    * {@code isEmpty()} despite having readable content.    *    * @throws IOException if an I/O error occurs    * @since 15.0    */
+comment|/**    * Returns whether the source has zero chars. The default implementation returns true if    * {@link #lengthIfKnown} returns zero, falling back to opening a stream and checking for EOF if    * the length is not known.    *    *<p>Note that, in cases where {@code lengthIfKnown} returns zero, it is<i>possible</i> that    * chars are actually available for reading. This means that a source may return {@code true} from    * {@code isEmpty()} despite having readable content.    *    * @throws IOException if an I/O error occurs    * @since 15.0    */
 DECL|method|isEmpty ()
 specifier|public
 name|boolean
@@ -1043,7 +1031,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Concatenates multiple {@link CharSource} instances into a single source. Streams returned from    * the source will contain the concatenated data from the streams of the underlying sources.    *    *<p>Only one underlying stream will be open at a time. Closing the  concatenated stream will    * close the open underlying stream.    *    * @param sources the sources to concatenate    * @return a {@code CharSource} containing the concatenated data    * @since 15.0    */
+comment|/**    * Concatenates multiple {@link CharSource} instances into a single source. Streams returned from    * the source will contain the concatenated data from the streams of the underlying sources.    *    *<p>Only one underlying stream will be open at a time. Closing the concatenated stream will    * close the open underlying stream.    *    * @param sources the sources to concatenate    * @return a {@code CharSource} containing the concatenated data    * @since 15.0    */
 DECL|method|concat (Iterable<? extends CharSource> sources)
 specifier|public
 specifier|static
@@ -1067,7 +1055,7 @@ name|sources
 argument_list|)
 return|;
 block|}
-comment|/**    * Concatenates multiple {@link CharSource} instances into a single source. Streams returned from    * the source will contain the concatenated data from the streams of the underlying sources.    *    *<p>Only one underlying stream will be open at a time. Closing the concatenated stream will    * close the open underlying stream.    *    *<p>Note: The input {@code Iterator} will be copied to an {@code ImmutableList} when this    * method is called. This will fail if the iterator is infinite and may cause problems if the    * iterator eagerly fetches data for each source when iterated (rather than producing sources    * that only load data through their streams). Prefer using the {@link #concat(Iterable)}    * overload if possible.    *    * @param sources the sources to concatenate    * @return a {@code CharSource} containing the concatenated data    * @throws NullPointerException if any of {@code sources} is {@code null}    * @since 15.0    */
+comment|/**    * Concatenates multiple {@link CharSource} instances into a single source. Streams returned from    * the source will contain the concatenated data from the streams of the underlying sources.    *    *<p>Only one underlying stream will be open at a time. Closing the concatenated stream will    * close the open underlying stream.    *    *<p>Note: The input {@code Iterator} will be copied to an {@code ImmutableList} when this method    * is called. This will fail if the iterator is infinite and may cause problems if the iterator    * eagerly fetches data for each source when iterated (rather than producing sources that only    * load data through their streams). Prefer using the {@link #concat(Iterable)} overload if    * possible.    *    * @param sources the sources to concatenate    * @return a {@code CharSource} containing the concatenated data    * @throws NullPointerException if any of {@code sources} is {@code null}    * @since 15.0    */
 DECL|method|concat (Iterator<? extends CharSource> sources)
 specifier|public
 specifier|static
@@ -1289,14 +1277,9 @@ name|LINE_SPLITTER
 init|=
 name|Splitter
 operator|.
-name|on
-argument_list|(
-name|Pattern
-operator|.
-name|compile
+name|onPattern
 argument_list|(
 literal|"\r\n|\n|\r"
-argument_list|)
 argument_list|)
 decl_stmt|;
 DECL|field|seq
@@ -1412,7 +1395,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**      * Returns an iterable over the lines in the string. If the string ends in      * a newline, a final empty string is not included to match the behavior of      * BufferedReader/LineReader.readLine().      */
+comment|/**      * Returns an iterable over the lines in the string. If the string ends in a newline, a final      * empty string is not included to match the behavior of BufferedReader/LineReader.readLine().      */
 DECL|method|lines ()
 specifier|private
 name|Iterable

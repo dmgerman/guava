@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * Copyright (C) 2007 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License");  * you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+comment|/*  * Copyright (C) 2007 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except  * in compliance with the License. You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software distributed under the License  * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express  * or implied. See the License for the specific language governing permissions and limitations under  * the License.  */
 end_comment
 
 begin_package
@@ -111,7 +111,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A class for reading lines of text. Provides the same functionality  * as {@link java.io.BufferedReader#readLine()} but for all {@link Readable}  * objects, not just instances of {@link Reader}.  *  * @author Chris Nokleberg  * @since 1.0  */
+comment|/**  * A class for reading lines of text. Provides the same functionality as  * {@link java.io.BufferedReader#readLine()} but for all {@link Readable} objects, not just  * instances of {@link Reader}.  *  * @author Chris Nokleberg  * @since 1.0  */
 end_comment
 
 begin_class
@@ -213,7 +213,7 @@ expr_stmt|;
 block|}
 block|}
 decl_stmt|;
-comment|/**    * Creates a new instance that will read lines from the given    * {@code Readable} object.    */
+comment|/**    * Creates a new instance that will read lines from the given {@code Readable} object.    */
 DECL|method|LineReader (Readable readable)
 specifier|public
 name|LineReader
@@ -249,7 +249,7 @@ else|:
 literal|null
 expr_stmt|;
 block|}
-comment|/**    * Reads a line of text. A line is considered to be terminated by any    * one of a line feed ({@code '\n'}), a carriage return    * ({@code '\r'}), or a carriage return followed immediately by a linefeed    * ({@code "\r\n"}).    *    * @return a {@code String} containing the contents of the line, not    *     including any line-termination characters, or {@code null} if the    *     end of the stream has been reached.    * @throws IOException if an I/O error occurs    */
+comment|/**    * Reads a line of text. A line is considered to be terminated by any one of a line feed    * ({@code '\n'}), a carriage return ({@code '\r'}), or a carriage return followed immediately by    * a linefeed ({@code "\r\n"}).    *    * @return a {@code String} containing the contents of the line, not including any    *     line-termination characters, or {@code null} if the end of the stream has been reached.    * @throws IOException if an I/O error occurs    */
 DECL|method|readLine ()
 specifier|public
 name|String

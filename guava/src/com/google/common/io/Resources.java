@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * Copyright (C) 2007 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License");  * you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+comment|/*  * Copyright (C) 2007 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except  * in compliance with the License. You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software distributed under the License  * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express  * or implied. See the License for the specific language governing permissions and limitations under  * the License.  */
 end_comment
 
 begin_package
@@ -181,7 +181,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Provides utility methods for working with resources in the classpath.  * Note that even though these methods use {@link URL} parameters, they  * are usually not appropriate for HTTP or other non-classpath resources.  *  *<p>All method parameters must be non-null unless documented otherwise.  *  * @author Chris Nokleberg  * @author Ben Yu  * @author Colin Decker  * @since 1.0  */
+comment|/**  * Provides utility methods for working with resources in the classpath. Note that even though these  * methods use {@link URL} parameters, they are usually not appropriate for HTTP or other  * non-classpath resources.  *  *<p>All method parameters must be non-null unless documented otherwise.  *  * @author Chris Nokleberg  * @author Ben Yu  * @author Colin Decker  * @since 1.0  */
 end_comment
 
 begin_class
@@ -287,7 +287,7 @@ literal|")"
 return|;
 block|}
 block|}
-comment|/**    * Returns a {@link CharSource} that reads from the given URL using the given    * character set.    *    * @since 14.0    */
+comment|/**    * Returns a {@link CharSource} that reads from the given URL using the given character set.    *    * @since 14.0    */
 DECL|method|asCharSource (URL url, Charset charset)
 specifier|public
 specifier|static
@@ -337,7 +337,7 @@ name|read
 argument_list|()
 return|;
 block|}
-comment|/**    * Reads all characters from a URL into a {@link String}, using the given    * character set.    *    * @param url the URL to read from    * @param charset the charset used to decode the input stream; see {@link    *     Charsets} for helpful predefined constants    * @return a string containing all the characters from the URL    * @throws IOException if an I/O error occurs.    */
+comment|/**    * Reads all characters from a URL into a {@link String}, using the given character set.    *    * @param url the URL to read from    * @param charset the charset used to decode the input stream; see {@link Charsets} for helpful    *     predefined constants    * @return a string containing all the characters from the URL    * @throws IOException if an I/O error occurs.    */
 DECL|method|toString (URL url, Charset charset)
 specifier|public
 specifier|static
@@ -365,7 +365,7 @@ name|read
 argument_list|()
 return|;
 block|}
-comment|/**    * Streams lines from a URL, stopping when our callback returns false, or we    * have read all of the lines.    *    * @param url the URL to read from    * @param charset the charset used to decode the input stream; see {@link    *     Charsets} for helpful predefined constants    * @param callback the LineProcessor to use to handle the lines    * @return the output of processing the lines    * @throws IOException if an I/O error occurs    */
+comment|/**    * Streams lines from a URL, stopping when our callback returns false, or we have read all of the    * lines.    *    * @param url the URL to read from    * @param charset the charset used to decode the input stream; see {@link Charsets} for helpful    *     predefined constants    * @param callback the LineProcessor to use to handle the lines    * @return the output of processing the lines    * @throws IOException if an I/O error occurs    */
 DECL|method|readLines (URL url, Charset charset, LineProcessor<T> callback)
 specifier|public
 specifier|static
@@ -404,7 +404,7 @@ name|callback
 argument_list|)
 return|;
 block|}
-comment|/**    * Reads all of the lines from a URL. The lines do not include    * line-termination characters, but do include other leading and trailing    * whitespace.    *    *<p>This method returns a mutable {@code List}. For an    * {@code ImmutableList}, use    * {@code Resources.asCharSource(url, charset).readLines()}.    *    * @param url the URL to read from    * @param charset the charset used to decode the input stream; see {@link    *     Charsets} for helpful predefined constants    * @return a mutable {@link List} containing all the lines    * @throws IOException if an I/O error occurs    */
+comment|/**    * Reads all of the lines from a URL. The lines do not include line-termination characters, but do    * include other leading and trailing whitespace.    *    *<p>This method returns a mutable {@code List}. For an {@code ImmutableList}, use    * {@code Resources.asCharSource(url, charset).readLines()}.    *    * @param url the URL to read from    * @param charset the charset used to decode the input stream; see {@link Charsets} for helpful    *     predefined constants    * @return a mutable {@link List} containing all the lines    * @throws IOException if an I/O error occurs    */
 DECL|method|readLines (URL url, Charset charset)
 specifier|public
 specifier|static
@@ -520,7 +520,7 @@ name|to
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Returns a {@code URL} pointing to {@code resourceName} if the resource is    * found using the {@linkplain Thread#getContextClassLoader() context class    * loader}. In simple environments, the context class loader will find    * resources from the class path. In environments where different threads can    * have different class loaders, for example app servers, the context class    * loader will typically have been set to an appropriate loader for the    * current thread.    *    *<p>In the unusual case where the context class loader is null, the class    * loader that loaded this class ({@code Resources}) will be used instead.    *     * @throws IllegalArgumentException if the resource is not found    */
+comment|/**    * Returns a {@code URL} pointing to {@code resourceName} if the resource is found using the    * {@linkplain Thread#getContextClassLoader() context class loader}. In simple environments, the    * context class loader will find resources from the class path. In environments where different    * threads can have different class loaders, for example app servers, the context class loader    * will typically have been set to an appropriate loader for the current thread.    *    *<p>In the unusual case where the context class loader is null, the class loader that loaded    * this class ({@code Resources}) will be used instead.    *    * @throws IllegalArgumentException if the resource is not found    */
 DECL|method|getResource (String resourceName)
 specifier|public
 specifier|static
@@ -579,7 +579,7 @@ return|return
 name|url
 return|;
 block|}
-comment|/**    * Given a {@code resourceName} that is relative to {@code contextClass},    * returns a {@code URL} pointing to the named resource.    *     * @throws IllegalArgumentException if the resource is not found    */
+comment|/**    * Given a {@code resourceName} that is relative to {@code contextClass}, returns a {@code URL}    * pointing to the named resource.    *    * @throws IllegalArgumentException if the resource is not found    */
 DECL|method|getResource (Class<?> contextClass, String resourceName)
 specifier|public
 specifier|static

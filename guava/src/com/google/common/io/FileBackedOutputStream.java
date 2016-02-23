@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * Copyright (C) 2008 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License");  * you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+comment|/*  * Copyright (C) 2008 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except  * in compliance with the License. You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software distributed under the License  * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express  * or implied. See the License for the specific language governing permissions and limitations under  * the License.  */
 end_comment
 
 begin_package
@@ -139,7 +139,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An {@link OutputStream} that starts buffering to a byte array, but  * switches to file buffering once the data reaches a configurable size.  *  *<p>This class is thread-safe.  *  * @author Chris Nokleberg  * @since 1.0  */
+comment|/**  * An {@link OutputStream} that starts buffering to a byte array, but switches to file buffering  * once the data reaches a configurable size.  *  *<p>This class is thread-safe.  *  * @author Chris Nokleberg  * @since 1.0  */
 end_comment
 
 begin_class
@@ -218,9 +218,9 @@ return|;
 block|}
 block|}
 comment|/** Returns the file holding the data (possibly null). */
-DECL|method|getFile ()
 annotation|@
 name|VisibleForTesting
+DECL|method|getFile ()
 specifier|synchronized
 name|File
 name|getFile
@@ -230,7 +230,7 @@ return|return
 name|file
 return|;
 block|}
-comment|/**    * Creates a new instance that uses the given file threshold, and does    * not reset the data when the {@link ByteSource} returned by    * {@link #asByteSource} is finalized.    *    * @param fileThreshold the number of bytes before the stream should    *     switch to buffering to a file    */
+comment|/**    * Creates a new instance that uses the given file threshold, and does not reset the data when the    * {@link ByteSource} returned by {@link #asByteSource} is finalized.    *    * @param fileThreshold the number of bytes before the stream should switch to buffering to a file    */
 DECL|method|FileBackedOutputStream (int fileThreshold)
 specifier|public
 name|FileBackedOutputStream
@@ -247,7 +247,7 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates a new instance that uses the given file threshold, and    * optionally resets the data when the {@link ByteSource} returned    * by {@link #asByteSource} is finalized.    *    * @param fileThreshold the number of bytes before the stream should    *     switch to buffering to a file    * @param resetOnFinalize if true, the {@link #reset} method will    *     be called when the {@link ByteSource} returned by {@link    *     #asByteSource} is finalized    */
+comment|/**    * Creates a new instance that uses the given file threshold, and optionally resets the data when    * the {@link ByteSource} returned by {@link #asByteSource} is finalized.    *    * @param fileThreshold the number of bytes before the stream should switch to buffering to a file    * @param resetOnFinalize if true, the {@link #reset} method will be called when the    *     {@link ByteSource} returned by {@link #asByteSource} is finalized    */
 DECL|method|FileBackedOutputStream (int fileThreshold, boolean resetOnFinalize)
 specifier|public
 name|FileBackedOutputStream
@@ -365,7 +365,7 @@ block|}
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Returns a readable {@link ByteSource} view of the data that has been    * written to this stream.    *    * @since 15.0    */
+comment|/**    * Returns a readable {@link ByteSource} view of the data that has been written to this stream.    *    * @since 15.0    */
 DECL|method|asByteSource ()
 specifier|public
 name|ByteSource
@@ -421,7 +421,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**    * Calls {@link #close} if not already closed, and then resets this    * object back to its initial state, for reuse. If data was buffered    * to a file, it will be deleted.    *    * @throws IOException if an I/O error occurred while deleting the file buffer    */
+comment|/**    * Calls {@link #close} if not already closed, and then resets this object back to its initial    * state, for reuse. If data was buffered to a file, it will be deleted.    *    * @throws IOException if an I/O error occurred while deleting the file buffer    */
 DECL|method|reset ()
 specifier|public
 specifier|synchronized
@@ -503,9 +503,9 @@ block|}
 block|}
 block|}
 block|}
-DECL|method|write (int b)
 annotation|@
 name|Override
+DECL|method|write (int b)
 specifier|public
 specifier|synchronized
 name|void
@@ -530,9 +530,9 @@ name|b
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|write (byte[] b)
 annotation|@
 name|Override
+DECL|method|write (byte[] b)
 specifier|public
 specifier|synchronized
 name|void
@@ -557,9 +557,9 @@ name|length
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|write (byte[] b, int off, int len)
 annotation|@
 name|Override
+DECL|method|write (byte[] b, int off, int len)
 specifier|public
 specifier|synchronized
 name|void
@@ -595,9 +595,9 @@ name|len
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|close ()
-annotation|@
-name|Override
 specifier|public
 specifier|synchronized
 name|void
@@ -612,9 +612,9 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|flush ()
-annotation|@
-name|Override
 specifier|public
 specifier|synchronized
 name|void
@@ -629,7 +629,7 @@ name|flush
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * Checks if writing {@code len} bytes would go over threshold, and    * switches to file buffering if so.    */
+comment|/**    * Checks if writing {@code len} bytes would go over threshold, and switches to file buffering if    * so.    */
 DECL|method|update (int len)
 specifier|private
 name|void

@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * Copyright (C) 2007 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License");  * you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+comment|/*  * Copyright (C) 2007 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except  * in compliance with the License. You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software distributed under the License  * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express  * or implied. See the License for the specific language governing permissions and limitations under  * the License.  */
 end_comment
 
 begin_package
@@ -41,7 +41,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Package-protected abstract class that implements the line reading  * algorithm used by {@link LineReader}. Line separators are per {@link  * java.io.BufferedReader}: line feed, carriage return, or carriage  * return followed immediately by a linefeed.  *  *<p>Subclasses must implement {@link #handleLine}, call {@link #add}  * to pass character data, and call {@link #finish} at the end of stream.  *  * @author Chris Nokleberg  * @since 1.0  */
+comment|/**  * Package-protected abstract class that implements the line reading algorithm used by  * {@link LineReader}. Line separators are per {@link java.io.BufferedReader}: line feed, carriage  * return, or carriage return followed immediately by a linefeed.  *  *<p>Subclasses must implement {@link #handleLine}, call {@link #add} to pass character data, and  * call {@link #finish} at the end of stream.  *  * @author Chris Nokleberg  * @since 1.0  */
 end_comment
 
 begin_class
@@ -68,7 +68,7 @@ specifier|private
 name|boolean
 name|sawReturn
 decl_stmt|;
-comment|/**    * Process additional characters from the stream. When a line separator    * is found the contents of the line and the line separator itself    * are passed to the abstract {@link #handleLine} method.    *    * @param cbuf the character buffer to process    * @param off the offset into the buffer    * @param len the number of characters to process    * @throws IOException if an I/O error occurs    * @see #finish    */
+comment|/**    * Process additional characters from the stream. When a line separator is found the contents of    * the line and the line separator itself are passed to the abstract {@link #handleLine} method.    *    * @param cbuf the character buffer to process    * @param off the offset into the buffer    * @param len the number of characters to process    * @throws IOException if an I/O error occurs    * @see #finish    */
 DECL|method|add (char[] cbuf, int off, int len)
 specifier|protected
 name|void
@@ -266,13 +266,9 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|handleLine
-argument_list|(
-name|line
-operator|.
-name|toString
-argument_list|()
-argument_list|,
+name|String
+name|separator
+init|=
 name|sawReturn
 condition|?
 operator|(
@@ -290,6 +286,15 @@ literal|"\n"
 else|:
 literal|""
 operator|)
+decl_stmt|;
+name|handleLine
+argument_list|(
+name|line
+operator|.
+name|toString
+argument_list|()
+argument_list|,
+name|separator
 argument_list|)
 expr_stmt|;
 name|line
@@ -306,7 +311,7 @@ return|return
 name|sawNewline
 return|;
 block|}
-comment|/**    * Subclasses must call this method after finishing character processing,    * in order to ensure that any unterminated line in the buffer is    * passed to {@link #handleLine}.    *    * @throws IOException if an I/O error occurs    */
+comment|/**    * Subclasses must call this method after finishing character processing, in order to ensure that    * any unterminated line in the buffer is passed to {@link #handleLine}.    *    * @throws IOException if an I/O error occurs    */
 DECL|method|finish ()
 specifier|protected
 name|void
@@ -334,7 +339,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Called for each line found in the character data passed to    * {@link #add}.    *    * @param line a line of text (possibly empty), without any line separators    * @param end the line separator; one of {@code "\r"}, {@code "\n"},    *     {@code "\r\n"}, or {@code ""}    * @throws IOException if an I/O error occurs    */
+comment|/**    * Called for each line found in the character data passed to {@link #add}.    *    * @param line a line of text (possibly empty), without any line separators    * @param end the line separator; one of {@code "\r"}, {@code "\n"}, {@code "\r\n"}, or {@code ""}    * @throws IOException if an I/O error occurs    */
 DECL|method|handleLine (String line, String end)
 specifier|protected
 specifier|abstract

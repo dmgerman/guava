@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * Copyright (C) 2012 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License");  * you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+comment|/*  * Copyright (C) 2012 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except  * in compliance with the License. You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software distributed under the License  * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express  * or implied. See the License for the specific language governing permissions and limitations under  * the License.  */
 end_comment
 
 begin_package
@@ -99,7 +99,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A destination to which characters can be written, such as a text file. Unlike a {@link Writer}, a  * {@code CharSink} is not an open, stateful stream that can be written to and closed. Instead, it  * is an immutable<i>supplier</i> of {@code Writer} instances.  *  *<p>{@code CharSink} provides two kinds of methods:  *<ul>  *<li><b>Methods that return a writer:</b> These methods should return a<i>new</i>,  *   independent instance each time they are called. The caller is responsible for ensuring that the  *   returned writer is closed.  *<li><b>Convenience methods:</b> These are implementations of common operations that are  *   typically implemented by opening a writer using one of the methods in the first category,  *   doing something and finally closing the writer that was opened.  *</ul>  *  *<p>Any {@link ByteSink} may be viewed as a {@code CharSink} with a specific {@linkplain Charset  * character encoding} using {@link ByteSink#asCharSink(Charset)}. Characters written to the  * resulting {@code CharSink} will written to the {@code ByteSink} as encoded bytes.  *  * @since 14.0  * @author Colin Decker  */
+comment|/**  * A destination to which characters can be written, such as a text file. Unlike a {@link Writer}, a  * {@code CharSink} is not an open, stateful stream that can be written to and closed. Instead, it  * is an immutable<i>supplier</i> of {@code Writer} instances.  *  *<p>{@code CharSink} provides two kinds of methods:  *<ul>  *<li><b>Methods that return a writer:</b> These methods should return a<i>new</i>, independent  *     instance each time they are called. The caller is responsible for ensuring that the returned  *     writer is closed.  *<li><b>Convenience methods:</b> These are implementations of common operations that are typically  *     implemented by opening a writer using one of the methods in the first category, doing  *     something and finally closing the writer that was opened.  *</ul>  *  *<p>Any {@link ByteSink} may be viewed as a {@code CharSink} with a specific {@linkplain Charset  * character encoding} using {@link ByteSink#asCharSink(Charset)}. Characters written to the  * resulting {@code CharSink} will written to the {@code ByteSink} as encoded bytes.  *  * @since 14.0  * @author Colin Decker  */
 end_comment
 
 begin_class
@@ -127,7 +127,7 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Opens a new buffered {@link Writer} for writing to this sink. The returned stream is not    * required to be a {@link BufferedWriter} in order to allow implementations to simply delegate    * to {@link #openStream()} when the stream returned by that method does not benefit from    * additional buffering. This method should return a new, independent writer each time it is    * called.    *    *<p>The caller is responsible for ensuring that the returned writer is closed.    *    * @throws IOException if an I/O error occurs in the process of opening the writer    * @since 15.0 (in 14.0 with return type {@link BufferedWriter})    */
+comment|/**    * Opens a new buffered {@link Writer} for writing to this sink. The returned stream is not    * required to be a {@link BufferedWriter} in order to allow implementations to simply delegate to    * {@link #openStream()} when the stream returned by that method does not benefit from additional    * buffering. This method should return a new, independent writer each time it is called.    *    *<p>The caller is responsible for ensuring that the returned writer is closed.    *    * @throws IOException if an I/O error occurs in the process of opening the writer    * @since 15.0 (in 14.0 with return type {@link BufferedWriter})    */
 DECL|method|openBufferedStream ()
 specifier|public
 name|Writer

@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * Copyright (C) 2007 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License");  * you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+comment|/*  * Copyright (C) 2007 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except  * in compliance with the License. You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software distributed under the License  * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express  * or implied. See the License for the specific language governing permissions and limitations under  * the License.  */
 end_comment
 
 begin_package
@@ -296,7 +296,7 @@ index|[
 name|BUF_SIZE
 index|]
 decl_stmt|;
-comment|/**    * There are three methods to implement {@link FileChannel#transferTo(long, long,    *  WritableByteChannel)}:    *    *<ol>    *<li> Use sendfile(2) or equivalent. Requires that both the input channel and the output channel    *    have their own file descriptors. Generally this only happens when both channels are files or    *    sockets. This performs zero copies - the bytes never enter userspace.</li>    *<li> Use mmap(2) or equivalent. Requires that either the input channel or the output channel    *    have file descriptors. Bytes are copied from the file into a kernel buffer, then directly    *    into the other buffer (userspace). Note that if the file is very large, a naive    *    implementation will effectively put the whole file in memory. On many systems with paging    *    and virtual memory, this is not a problem - because it is mapped read-only, the kernel can    *    always page it to disk "for free". However, on systems where killing processes happens all    *    the time in normal conditions (i.e., android) the OS must make a tradeoff between paging    *    memory and killing other processes - so allocating a gigantic buffer and then sequentially    *    accessing it could result in other processes dying. This is solvable via madvise(2), but    *    that obviously doesn't exist in java.</li>    *<li> Ordinary copy. Kernel copies bytes into a kernel buffer, from a kernel buffer into a    *    userspace buffer (byte[] or ByteBuffer), then copies them from that buffer into the    *    destination channel.</li>    *</ol>    *    * This value is intended to be large enough to make the overhead of system calls negligible,    * without being so large that it causes problems for systems with atypical memory management if    * approaches 2 or 3 are used.    */
+comment|/**    * There are three methods to implement    * {@link FileChannel#transferTo(long, long, WritableByteChannel)}:    *    *<ol>    *<li>Use sendfile(2) or equivalent. Requires that both the input channel and the output channel    *     have their own file descriptors. Generally this only happens when both channels are files    *     or sockets. This performs zero copies - the bytes never enter userspace.    *<li>Use mmap(2) or equivalent. Requires that either the input channel or the output channel    *     have file descriptors. Bytes are copied from the file into a kernel buffer, then directly    *     into the other buffer (userspace). Note that if the file is very large, a naive    *     implementation will effectively put the whole file in memory. On many systems with paging    *     and virtual memory, this is not a problem - because it is mapped read-only, the kernel can    *     always page it to disk "for free". However, on systems where killing processes happens all    *     the time in normal conditions (i.e., android) the OS must make a tradeoff between paging    *     memory and killing other processes - so allocating a gigantic buffer and then sequentially    *     accessing it could result in other processes dying. This is solvable via madvise(2), but    *     that obviously doesn't exist in java.    *<li>Ordinary copy. Kernel copies bytes into a kernel buffer, from a kernel buffer into a    *     userspace buffer (byte[] or ByteBuffer), then copies them from that buffer into the    *     destination channel.    *</ol>    *    * This value is intended to be large enough to make the overhead of system calls negligible,    * without being so large that it causes problems for systems with atypical memory management if    * approaches 2 or 3 are used.    */
 DECL|field|ZERO_COPY_CHUNK_SIZE
 specifier|private
 specifier|static
@@ -313,7 +313,7 @@ specifier|private
 name|ByteStreams
 parameter_list|()
 block|{}
-comment|/**    * Copies all bytes from the input stream to the output stream.    * Does not close or flush either stream.    *    * @param from the input stream to read from    * @param to the output stream to write to    * @return the number of bytes copied    * @throws IOException if an I/O error occurs    */
+comment|/**    * Copies all bytes from the input stream to the output stream. Does not close or flush either    * stream.    *    * @param from the input stream to read from    * @param to the output stream to write to    * @return the number of bytes copied    * @throws IOException if an I/O error occurs    */
 DECL|method|copy (InputStream from, OutputStream to)
 specifier|public
 specifier|static
@@ -399,7 +399,7 @@ return|return
 name|total
 return|;
 block|}
-comment|/**    * Copies all bytes from the readable channel to the writable channel.    * Does not close or flush either channel.    *    * @param from the readable channel to read from    * @param to the writable channel to write to    * @return the number of bytes copied    * @throws IOException if an I/O error occurs    */
+comment|/**    * Copies all bytes from the readable channel to the writable channel. Does not close or flush    * either channel.    *    * @param from the readable channel to read from    * @param to the writable channel to write to    * @return the number of bytes copied    * @throws IOException if an I/O error occurs    */
 DECL|method|copy (ReadableByteChannel from, WritableByteChannel to)
 specifier|public
 specifier|static
@@ -564,7 +564,7 @@ return|return
 name|total
 return|;
 block|}
-comment|/**    * Reads all bytes from an input stream into a byte array.    * Does not close the stream.    *    * @param in the input stream to read from    * @return a byte array containing all the bytes from the stream    * @throws IOException if an I/O error occurs    */
+comment|/**    * Reads all bytes from an input stream into a byte array. Does not close the stream.    *    * @param in the input stream to read from    * @return a byte array containing all the bytes from the stream    * @throws IOException if an I/O error occurs    */
 DECL|method|toByteArray (InputStream in)
 specifier|public
 specifier|static
@@ -614,8 +614,8 @@ name|toByteArray
 argument_list|()
 return|;
 block|}
-comment|/**    * Reads all bytes from an input stream into a byte array. The given    * expected size is used to create an initial byte array, but if the actual    * number of bytes read from the stream differs, the correct result will be    * returned anyway.    */
-DECL|method|toByteArray ( InputStream in, int expectedSize)
+comment|/**    * Reads all bytes from an input stream into a byte array. The given expected size is used to    * create an initial byte array, but if the actual number of bytes read from the stream differs,    * the correct result will be returned anyway.    */
+DECL|method|toByteArray (InputStream in, int expectedSize)
 specifier|static
 name|byte
 index|[]
@@ -802,7 +802,7 @@ name|FastByteArrayOutputStream
 extends|extends
 name|ByteArrayOutputStream
 block|{
-comment|/**      * Writes the contents of the internal buffer to the given array starting      * at the given offset. Assumes the array has space to hold count bytes.      */
+comment|/**      * Writes the contents of the internal buffer to the given array starting at the given offset.      * Assumes the array has space to hold count bytes.      */
 DECL|method|writeTo (byte[] b, int off)
 name|void
 name|writeTo
@@ -832,7 +832,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Returns a new {@link ByteArrayDataInput} instance to read from the {@code    * bytes} array from the beginning.    */
+comment|/**    * Returns a new {@link ByteArrayDataInput} instance to read from the {@code bytes} array from the    * beginning.    */
 DECL|method|newDataInput (byte[] bytes)
 specifier|public
 specifier|static
@@ -855,7 +855,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a new {@link ByteArrayDataInput} instance to read from the {@code    * bytes} array, starting at the given position.    *    * @throws IndexOutOfBoundsException if {@code start} is negative or greater    *     than the length of the array    */
+comment|/**    * Returns a new {@link ByteArrayDataInput} instance to read from the {@code bytes} array,    * starting at the given position.    *    * @throws IndexOutOfBoundsException if {@code start} is negative or greater than the length of    *     the array    */
 DECL|method|newDataInput (byte[] bytes, int start)
 specifier|public
 specifier|static
@@ -898,8 +898,8 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a new {@link ByteArrayDataInput} instance to read from the given    * {@code ByteArrayInputStream}. The given input stream is not reset before    * being read from by the returned {@code ByteArrayDataInput}.    *    * @since 17.0    */
-DECL|method|newDataInput ( ByteArrayInputStream byteArrayInputStream)
+comment|/**    * Returns a new {@link ByteArrayDataInput} instance to read from the given    * {@code ByteArrayInputStream}. The given input stream is not reset before being read from by the    * returned {@code ByteArrayDataInput}.    *    * @since 17.0    */
+DECL|method|newDataInput (ByteArrayInputStream byteArrayInputStream)
 specifier|public
 specifier|static
 name|ByteArrayDataInput
@@ -951,9 +951,9 @@ name|byteArrayInputStream
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|readFully (byte b[])
-annotation|@
-name|Override
 specifier|public
 name|void
 name|readFully
@@ -988,9 +988,9 @@ argument_list|)
 throw|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|readFully (byte b[], int off, int len)
-annotation|@
-name|Override
 specifier|public
 name|void
 name|readFully
@@ -1035,9 +1035,9 @@ argument_list|)
 throw|;
 block|}
 block|}
-DECL|method|skipBytes (int n)
 annotation|@
 name|Override
+DECL|method|skipBytes (int n)
 specifier|public
 name|int
 name|skipBytes
@@ -1072,9 +1072,9 @@ argument_list|)
 throw|;
 block|}
 block|}
-DECL|method|readBoolean ()
 annotation|@
 name|Override
+DECL|method|readBoolean ()
 specifier|public
 name|boolean
 name|readBoolean
@@ -1104,9 +1104,9 @@ argument_list|)
 throw|;
 block|}
 block|}
-DECL|method|readByte ()
 annotation|@
 name|Override
+DECL|method|readByte ()
 specifier|public
 name|byte
 name|readByte
@@ -1150,9 +1150,9 @@ argument_list|)
 throw|;
 block|}
 block|}
-DECL|method|readUnsignedByte ()
 annotation|@
 name|Override
+DECL|method|readUnsignedByte ()
 specifier|public
 name|int
 name|readUnsignedByte
@@ -1182,9 +1182,9 @@ argument_list|)
 throw|;
 block|}
 block|}
-DECL|method|readShort ()
 annotation|@
 name|Override
+DECL|method|readShort ()
 specifier|public
 name|short
 name|readShort
@@ -1214,9 +1214,9 @@ argument_list|)
 throw|;
 block|}
 block|}
-DECL|method|readUnsignedShort ()
 annotation|@
 name|Override
+DECL|method|readUnsignedShort ()
 specifier|public
 name|int
 name|readUnsignedShort
@@ -1246,9 +1246,9 @@ argument_list|)
 throw|;
 block|}
 block|}
-DECL|method|readChar ()
 annotation|@
 name|Override
+DECL|method|readChar ()
 specifier|public
 name|char
 name|readChar
@@ -1278,9 +1278,9 @@ argument_list|)
 throw|;
 block|}
 block|}
-DECL|method|readInt ()
 annotation|@
 name|Override
+DECL|method|readInt ()
 specifier|public
 name|int
 name|readInt
@@ -1310,9 +1310,9 @@ argument_list|)
 throw|;
 block|}
 block|}
-DECL|method|readLong ()
 annotation|@
 name|Override
+DECL|method|readLong ()
 specifier|public
 name|long
 name|readLong
@@ -1342,9 +1342,9 @@ argument_list|)
 throw|;
 block|}
 block|}
-DECL|method|readFloat ()
 annotation|@
 name|Override
+DECL|method|readFloat ()
 specifier|public
 name|float
 name|readFloat
@@ -1374,9 +1374,9 @@ argument_list|)
 throw|;
 block|}
 block|}
-DECL|method|readDouble ()
 annotation|@
 name|Override
+DECL|method|readDouble ()
 specifier|public
 name|double
 name|readDouble
@@ -1406,9 +1406,9 @@ argument_list|)
 throw|;
 block|}
 block|}
-DECL|method|readLine ()
 annotation|@
 name|Override
+DECL|method|readLine ()
 specifier|public
 name|String
 name|readLine
@@ -1438,9 +1438,9 @@ argument_list|)
 throw|;
 block|}
 block|}
-DECL|method|readUTF ()
 annotation|@
 name|Override
+DECL|method|readUTF ()
 specifier|public
 name|String
 name|readUTF
@@ -1488,7 +1488,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a new {@link ByteArrayDataOutput} instance sized to hold    * {@code size} bytes before resizing.    *    * @throws IllegalArgumentException if {@code size} is negative    */
+comment|/**    * Returns a new {@link ByteArrayDataOutput} instance sized to hold {@code size} bytes before    * resizing.    *    * @throws IllegalArgumentException if {@code size} is negative    */
 DECL|method|newDataOutput (int size)
 specifier|public
 specifier|static
@@ -1534,8 +1534,8 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a new {@link ByteArrayDataOutput} instance which writes to the    * given {@code ByteArrayOutputStream}. The given output stream is not reset    * before being written to by the returned {@code ByteArrayDataOutput} and    * new data will be appended to any existing content.    *    *<p>Note that if the given output stream was not empty or is modified after    * the {@code ByteArrayDataOutput} is created, the contract for    * {@link ByteArrayDataOutput#toByteArray} will not be honored (the bytes    * returned in the byte array may not be exactly what was written via calls to    * {@code ByteArrayDataOutput}).    *    * @since 17.0    */
-DECL|method|newDataOutput ( ByteArrayOutputStream byteArrayOutputSteam)
+comment|/**    * Returns a new {@link ByteArrayDataOutput} instance which writes to the given    * {@code ByteArrayOutputStream}. The given output stream is not reset before being written to by    * the returned {@code ByteArrayDataOutput} and new data will be appended to any existing content.    *    *<p>Note that if the given output stream was not empty or is modified after the    * {@code ByteArrayDataOutput} is created, the contract for    * {@link ByteArrayDataOutput#toByteArray} will not be honored (the bytes returned in the byte    * array may not be exactly what was written via calls to {@code ByteArrayDataOutput}).    *    * @since 17.0    */
+DECL|method|newDataOutput (ByteArrayOutputStream byteArrayOutputSteam)
 specifier|public
 specifier|static
 name|ByteArrayDataOutput
@@ -1602,9 +1602,9 @@ name|byteArrayOutputSteam
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|write (int b)
-annotation|@
-name|Override
 specifier|public
 name|void
 name|write
@@ -1638,9 +1638,9 @@ argument_list|)
 throw|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|write (byte[] b)
-annotation|@
-name|Override
 specifier|public
 name|void
 name|write
@@ -1675,9 +1675,9 @@ argument_list|)
 throw|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|write (byte[] b, int off, int len)
-annotation|@
-name|Override
 specifier|public
 name|void
 name|write
@@ -1722,9 +1722,9 @@ argument_list|)
 throw|;
 block|}
 block|}
-DECL|method|writeBoolean (boolean v)
 annotation|@
 name|Override
+DECL|method|writeBoolean (boolean v)
 specifier|public
 name|void
 name|writeBoolean
@@ -1758,9 +1758,9 @@ argument_list|)
 throw|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|writeByte (int v)
-annotation|@
-name|Override
 specifier|public
 name|void
 name|writeByte
@@ -1794,9 +1794,9 @@ argument_list|)
 throw|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|writeBytes (String s)
-annotation|@
-name|Override
 specifier|public
 name|void
 name|writeBytes
@@ -1830,9 +1830,9 @@ argument_list|)
 throw|;
 block|}
 block|}
-DECL|method|writeChar (int v)
 annotation|@
 name|Override
+DECL|method|writeChar (int v)
 specifier|public
 name|void
 name|writeChar
@@ -1866,9 +1866,9 @@ argument_list|)
 throw|;
 block|}
 block|}
-DECL|method|writeChars (String s)
 annotation|@
 name|Override
+DECL|method|writeChars (String s)
 specifier|public
 name|void
 name|writeChars
@@ -1902,9 +1902,9 @@ argument_list|)
 throw|;
 block|}
 block|}
-DECL|method|writeDouble (double v)
 annotation|@
 name|Override
+DECL|method|writeDouble (double v)
 specifier|public
 name|void
 name|writeDouble
@@ -1938,9 +1938,9 @@ argument_list|)
 throw|;
 block|}
 block|}
-DECL|method|writeFloat (float v)
 annotation|@
 name|Override
+DECL|method|writeFloat (float v)
 specifier|public
 name|void
 name|writeFloat
@@ -1974,9 +1974,9 @@ argument_list|)
 throw|;
 block|}
 block|}
-DECL|method|writeInt (int v)
 annotation|@
 name|Override
+DECL|method|writeInt (int v)
 specifier|public
 name|void
 name|writeInt
@@ -2010,9 +2010,9 @@ argument_list|)
 throw|;
 block|}
 block|}
-DECL|method|writeLong (long v)
 annotation|@
 name|Override
+DECL|method|writeLong (long v)
 specifier|public
 name|void
 name|writeLong
@@ -2046,9 +2046,9 @@ argument_list|)
 throw|;
 block|}
 block|}
-DECL|method|writeShort (int v)
 annotation|@
 name|Override
+DECL|method|writeShort (int v)
 specifier|public
 name|void
 name|writeShort
@@ -2082,9 +2082,9 @@ argument_list|)
 throw|;
 block|}
 block|}
-DECL|method|writeUTF (String s)
 annotation|@
 name|Override
+DECL|method|writeUTF (String s)
 specifier|public
 name|void
 name|writeUTF
@@ -2118,9 +2118,9 @@ argument_list|)
 throw|;
 block|}
 block|}
-DECL|method|toByteArray ()
 annotation|@
 name|Override
+DECL|method|toByteArray ()
 specifier|public
 name|byte
 index|[]
@@ -2156,7 +2156,7 @@ parameter_list|(
 name|int
 name|b
 parameter_list|)
-block|{         }
+block|{}
 comment|/** Discards the specified byte array. */
 annotation|@
 name|Override
@@ -2224,7 +2224,7 @@ return|return
 name|NULL_OUTPUT_STREAM
 return|;
 block|}
-comment|/**    * Wraps a {@link InputStream}, limiting the number of bytes which can be    * read.    *    * @param in the input stream to be wrapped    * @param limit the maximum number of bytes to be read    * @return a length-limited {@link InputStream}    * @since 14.0 (since 1.0 as com.google.common.io.LimitInputStream)    */
+comment|/**    * Wraps a {@link InputStream}, limiting the number of bytes which can be read.    *    * @param in the input stream to be wrapped    * @param limit the maximum number of bytes to be read    * @return a length-limited {@link InputStream}    * @since 14.0 (since 1.0 as com.google.common.io.LimitInputStream)    */
 DECL|method|limit (InputStream in, long limit)
 specifier|public
 specifier|static
@@ -2304,9 +2304,9 @@ operator|=
 name|limit
 expr_stmt|;
 block|}
-DECL|method|available ()
 annotation|@
 name|Override
+DECL|method|available ()
 specifier|public
 name|int
 name|available
@@ -2332,9 +2332,9 @@ argument_list|)
 return|;
 block|}
 comment|// it's okay to mark even if mark isn't supported, as reset won't work
-DECL|method|mark (int readLimit)
 annotation|@
 name|Override
+DECL|method|mark (int readLimit)
 specifier|public
 specifier|synchronized
 name|void
@@ -2356,9 +2356,9 @@ operator|=
 name|left
 expr_stmt|;
 block|}
-DECL|method|read ()
 annotation|@
 name|Override
+DECL|method|read ()
 specifier|public
 name|int
 name|read
@@ -2402,9 +2402,9 @@ return|return
 name|result
 return|;
 block|}
-DECL|method|read (byte[] b, int off, int len)
 annotation|@
 name|Override
+DECL|method|read (byte[] b, int off, int len)
 specifier|public
 name|int
 name|read
@@ -2479,9 +2479,9 @@ return|return
 name|result
 return|;
 block|}
-DECL|method|reset ()
 annotation|@
 name|Override
+DECL|method|reset ()
 specifier|public
 specifier|synchronized
 name|void
@@ -2533,9 +2533,9 @@ operator|=
 name|mark
 expr_stmt|;
 block|}
-DECL|method|skip (long n)
 annotation|@
 name|Override
+DECL|method|skip (long n)
 specifier|public
 name|long
 name|skip
@@ -2576,7 +2576,7 @@ name|skipped
 return|;
 block|}
 block|}
-comment|/**    * Attempts to read enough bytes from the stream to fill the given byte array,    * with the same behavior as {@link DataInput#readFully(byte[])}.    * Does not close the stream.    *    * @param in the input stream to read from.    * @param b the buffer into which the data is read.    * @throws EOFException if this stream reaches the end before reading all    *     the bytes.    * @throws IOException if an I/O error occurs.    */
+comment|/**    * Attempts to read enough bytes from the stream to fill the given byte array, with the same    * behavior as {@link DataInput#readFully(byte[])}. Does not close the stream.    *    * @param in the input stream to read from.    * @param b the buffer into which the data is read.    * @throws EOFException if this stream reaches the end before reading all the bytes.    * @throws IOException if an I/O error occurs.    */
 DECL|method|readFully (InputStream in, byte[] b)
 specifier|public
 specifier|static
@@ -2607,8 +2607,8 @@ name|length
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Attempts to read {@code len} bytes from the stream into the given array    * starting at {@code off}, with the same behavior as    * {@link DataInput#readFully(byte[], int, int)}. Does not close the    * stream.    *    * @param in the input stream to read from.    * @param b the buffer into which the data is read.    * @param off an int specifying the offset into the data.    * @param len an int specifying the number of bytes to read.    * @throws EOFException if this stream reaches the end before reading all    *     the bytes.    * @throws IOException if an I/O error occurs.    */
-DECL|method|readFully ( InputStream in, byte[] b, int off, int len)
+comment|/**    * Attempts to read {@code len} bytes from the stream into the given array starting at    * {@code off}, with the same behavior as {@link DataInput#readFully(byte[], int, int)}. Does not    * close the stream.    *    * @param in the input stream to read from.    * @param b the buffer into which the data is read.    * @param off an int specifying the offset into the data.    * @param len an int specifying the number of bytes to read.    * @throws EOFException if this stream reaches the end before reading all the bytes.    * @throws IOException if an I/O error occurs.    */
+DECL|method|readFully (InputStream in, byte[] b, int off, int len)
 specifier|public
 specifier|static
 name|void
@@ -2668,7 +2668,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Discards {@code n} bytes of data from the input stream. This method    * will block until the full amount has been skipped. Does not close the    * stream.    *    * @param in the input stream to read from    * @param n the number of bytes to skip    * @throws EOFException if this stream reaches the end before skipping all    *     the bytes    * @throws IOException if an I/O error occurs, or the stream does not    *     support skipping    */
+comment|/**    * Discards {@code n} bytes of data from the input stream. This method will block until the full    * amount has been skipped. Does not close the stream.    *    * @param in the input stream to read from    * @param n the number of bytes to skip    * @throws EOFException if this stream reaches the end before skipping all the bytes    * @throws IOException if an I/O error occurs, or the stream does not support skipping    */
 DECL|method|skipFully (InputStream in, long n)
 specifier|public
 specifier|static
@@ -2718,7 +2718,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Discards up to {@code n} bytes of data from the input stream. This method    * will block until either the full amount has been skipped or until the end    * of the stream is reached, whichever happens first. Returns the total number    * of bytes skipped.    */
+comment|/**    * Discards up to {@code n} bytes of data from the input stream. This method will block until    * either the full amount has been skipped or until the end of the stream is reached, whichever    * happens first. Returns the total number of bytes skipped.    */
 DECL|method|skipUpTo (InputStream in, final long n)
 specifier|static
 name|long
@@ -2823,7 +2823,7 @@ return|return
 name|totalSkipped
 return|;
 block|}
-comment|/**    * Attempts to skip up to {@code n} bytes from the given input stream, but not more than    * {@code in.available()} bytes. This prevents {@code FileInputStream} from skipping more bytes    * than actually remain in the file, something that it    * {@linkplain FileInputStream#skip(long) specifies} it can do in its Javadoc despite the fact    * that it is violating the contract of {@code InputStream.skip()}.    */
+comment|/**    * Attempts to skip up to {@code n} bytes from the given input stream, but not more than    * {@code in.available()} bytes. This prevents {@code FileInputStream} from skipping more bytes    * than actually remain in the file, something that it {@linkplain FileInputStream#skip(long)    * specifies} it can do in its Javadoc despite the fact that it is violating the contract of    * {@code InputStream.skip()}.    */
 DECL|method|skipSafely (InputStream in, long n)
 specifier|private
 specifier|static
@@ -2870,7 +2870,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Process the bytes of the given input stream using the given processor.    *    * @param input the input stream to process    * @param processor the object to which to pass the bytes of the stream    * @return the result of the byte processor    * @throws IOException if an I/O error occurs    * @since 14.0    */
-DECL|method|readBytes ( InputStream input, ByteProcessor<T> processor)
+DECL|method|readBytes (InputStream input, ByteProcessor<T> processor)
 specifier|public
 specifier|static
 parameter_list|<
@@ -2952,7 +2952,7 @@ name|getResult
 argument_list|()
 return|;
 block|}
-comment|/**    * Reads some bytes from an input stream and stores them into the buffer array    * {@code b}. This method blocks until {@code len} bytes of input data have    * been read into the array, or end of file is detected. The number of bytes    * read is returned, possibly zero. Does not close the stream.    *    *<p>A caller can detect EOF if the number of bytes read is less than    * {@code len}. All subsequent calls on the same stream will return zero.    *    *<p>If {@code b} is null, a {@code NullPointerException} is thrown. If    * {@code off} is negative, or {@code len} is negative, or {@code off+len} is    * greater than the length of the array {@code b}, then an    * {@code IndexOutOfBoundsException} is thrown. If {@code len} is zero, then    * no bytes are read. Otherwise, the first byte read is stored into element    * {@code b[off]}, the next one into {@code b[off+1]}, and so on. The number    * of bytes read is, at most, equal to {@code len}.    *    * @param in the input stream to read from    * @param b the buffer into which the data is read    * @param off an int specifying the offset into the data    * @param len an int specifying the number of bytes to read    * @return the number of bytes read    * @throws IOException if an I/O error occurs    */
+comment|/**    * Reads some bytes from an input stream and stores them into the buffer array {@code b}. This    * method blocks until {@code len} bytes of input data have been read into the array, or end of    * file is detected. The number of bytes read is returned, possibly zero. Does not close the    * stream.    *    *<p>A caller can detect EOF if the number of bytes read is less than {@code len}. All subsequent    * calls on the same stream will return zero.    *    *<p>If {@code b} is null, a {@code NullPointerException} is thrown. If {@code off} is negative,    * or {@code len} is negative, or {@code off+len} is greater than the length of the array    * {@code b}, then an {@code IndexOutOfBoundsException} is thrown. If {@code len} is zero, then no    * bytes are read. Otherwise, the first byte read is stored into element {@code b[off]}, the next    * one into {@code b[off+1]}, and so on. The number of bytes read is, at most, equal to    * {@code len}.    *    * @param in the input stream to read from    * @param b the buffer into which the data is read    * @param off an int specifying the offset into the data    * @param len an int specifying the number of bytes to read    * @return the number of bytes read    * @throws IOException if an I/O error occurs    */
 DECL|method|read (InputStream in, byte[] b, int off, int len)
 specifier|public
 specifier|static
