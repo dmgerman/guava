@@ -336,7 +336,7 @@ literal|"false"
 argument_list|)
 argument_list|)
 decl_stmt|;
-comment|/**    * A less abstract subclass of AbstractFuture.  This can be used to optimize setFuture by ensuring    * that {@link #get} calls exactly the implementation of {@link AbstractFuture#get}.    */
+comment|/**    * A less abstract subclass of AbstractFuture. This can be used to optimize setFuture by ensuring    * that {@link #get} calls exactly the implementation of {@link AbstractFuture#get}.    */
 DECL|class|TrustedFuture
 specifier|abstract
 specifier|static
@@ -353,7 +353,7 @@ argument_list|>
 block|{
 comment|// N.B. cancel is not overridden to be final, because many future utilities need to override
 comment|// cancel in order to propagate cancellation to other futures.
-comment|// TODO(lukes): with maybePropagateCancellation this is no longer really true.  Track down the
+comment|// TODO(lukes): with maybePropagateCancellation this is no longer really true. Track down the
 comment|// final few cases and eliminate their overrides of cancel()
 annotation|@
 name|CanIgnoreReturnValue
@@ -489,8 +489,8 @@ name|getName
 argument_list|()
 argument_list|)
 decl_stmt|;
-comment|// A heuristic for timed gets.  If the remaining timeout is less than this, spin instead of
-comment|// blocking.  This value is what AbstractQueuedSynchronizer uses.
+comment|// A heuristic for timed gets. If the remaining timeout is less than this, spin instead of
+comment|// blocking. This value is what AbstractQueuedSynchronizer uses.
 DECL|field|SPIN_THRESHOLD_NANOS
 specifier|private
 specifier|static
@@ -612,8 +612,8 @@ parameter_list|)
 block|{
 comment|// Some Android 5.0.x Samsung devices have bugs in JDK reflection APIs that cause
 comment|// getDeclaredField to throw a NoSuchFieldException when the field is definitely there.
-comment|// For these users fallback to a suboptimal implementation, based on synchronized.  This
-comment|// will be a definite performance hit to those users.
+comment|// For these users fallback to a suboptimal implementation, based on synchronized. This will
+comment|// be a definite performance hit to those users.
 name|log
 operator|.
 name|log
@@ -756,9 +756,9 @@ name|void
 name|unpark
 parameter_list|()
 block|{
-comment|// This is racy with removeWaiter.  The consequence of the race is that we may spuriously
-comment|// call unpark even though the thread has already removed itself from the list.  But even if
-comment|// we did use a CAS, that race would still exist (it would just be ever so slightly smaller).
+comment|// This is racy with removeWaiter. The consequence of the race is that we may spuriously call
+comment|// unpark even though the thread has already removed itself from the list. But even if we did
+comment|// use a CAS, that race would still exist (it would just be ever so slightly smaller).
 name|Thread
 name|w
 init|=
@@ -785,7 +785,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**    * Marks the given node as 'deleted' (null waiter) and then scans the list to unlink all deleted    * nodes.  This is an O(n) operation in the common case (and O(n^2) in the worst), but we are    * saved by two things.    *<ul>    *<li>This is only called when a waiting thread times out or is interrupted.  Both of which    *       should be rare.    *<li>The waiters list should be very short.    *</ul>    */
+comment|/**    * Marks the given node as 'deleted' (null waiter) and then scans the list to unlink all deleted    * nodes. This is an O(n) operation in the common case (and O(n^2) in the worst), but we are saved    * by two things.    *<ul>    *<li>This is only called when a waiting thread times out or is interrupted. Both of which should    *     be rare.    *<li>The waiters list should be very short.    *</ul>    */
 DECL|method|removeWaiter (Waiter node)
 specifier|private
 name|void
@@ -1172,7 +1172,7 @@ block|}
 block|}
 comment|// TODO(lukes): investigate using the @Contended annotation on these fields when jdk8 is
 comment|// available.
-comment|/**    * This field encodes the current state of the future.    *    *<p>The valid values are:    *<ul>    *<li>{@code null} initial state, nothing has happened.    *<li>{@link Cancellation} terminal state, {@code cancel} was called.    *<li>{@link Failure} terminal state, {@code setException} was called.    *<li>{@link SetFuture} intermediate state, {@code setFuture} was called.    *<li>{@link #NULL} terminal state, {@code set(null)} was called.    *<li>Any other non-null value, terminal state, {@code set} was called with a non-null    *       argument.    *</ul>    */
+comment|/**    * This field encodes the current state of the future.    *    *<p>The valid values are:    *<ul>    *<li>{@code null} initial state, nothing has happened.    *<li>{@link Cancellation} terminal state, {@code cancel} was called.    *<li>{@link Failure} terminal state, {@code setException} was called.    *<li>{@link SetFuture} intermediate state, {@code setFuture} was called.    *<li>{@link #NULL} terminal state, {@code set(null)} was called.    *<li>Any other non-null value, terminal state, {@code set} was called with a non-null argument.    *</ul>    */
 DECL|field|value
 specifier|private
 specifier|volatile
@@ -1209,18 +1209,18 @@ comment|// * Future completion can be observed if the waiters field contains a T
 comment|// Timed Get
 comment|// There are a few design constraints to consider
 comment|// * We want to be responsive to small timeouts, unpark() has non trivial latency overheads (I
-comment|//   have observed 12 micros on 64 bit linux systems to wake up a parked thread).  So if the
-comment|//   timeout is small we shouldn't park().  This needs to be traded off with the cpu overhead of
+comment|//   have observed 12 micros on 64 bit linux systems to wake up a parked thread). So if the
+comment|//   timeout is small we shouldn't park(). This needs to be traded off with the cpu overhead of
 comment|//   spinning, so we use SPIN_THRESHOLD_NANOS which is what AbstractQueuedSynchronizer uses for
 comment|//   similar purposes.
 comment|// * We want to behave reasonably for timeouts of 0
-comment|// * We are more responsive to completion than timeouts.  This is because parkNanos depends on
+comment|// * We are more responsive to completion than timeouts. This is because parkNanos depends on
 comment|//   system scheduling and as such we could either miss our deadline, or unpark() could be delayed
-comment|//   so that it looks like we timed out even though we didn't.  For comparison FutureTask respects
+comment|//   so that it looks like we timed out even though we didn't. For comparison FutureTask respects
 comment|//   completion preferably and AQS is non-deterministic (depends on where in the queue the waiter
-comment|//   is).  If we wanted to be strict about it, we could store the unpark() time in the Waiter
-comment|//   node and we could use that to make a decision about whether or not we timed out prior to
-comment|//   being unparked.
+comment|//   is). If we wanted to be strict about it, we could store the unpark() time in the Waiter node
+comment|//   and we could use that to make a decision about whether or not we timed out prior to being
+comment|//   unparked.
 comment|/*    * Improve the documentation of when InterruptedException is thrown. Our behavior matches the    * JDK's, but the JDK's documentation is misleading.    */
 comment|/**    * {@inheritDoc}    *    *<p>The default {@link AbstractFuture} implementation throws {@code InterruptedException} if the    * current thread is interrupted before or during the call, even if the value is already    * available.    *    * @throws InterruptedException if the current thread was interrupted before or during the call    *     (optional but recommended).    * @throws CancellationException {@inheritDoc}    */
 annotation|@
@@ -1405,7 +1405,7 @@ name|InterruptedException
 argument_list|()
 throw|;
 block|}
-comment|// Otherwise re-read and check doneness.  If we loop then it must have been a spurious
+comment|// Otherwise re-read and check doneness. If we loop then it must have been a spurious
 comment|// wakeup
 name|localValue
 operator|=
@@ -1690,7 +1690,7 @@ name|InterruptedException
 argument_list|()
 throw|;
 block|}
-comment|// Otherwise re-read and check doneness.  If we loop then it must have been a spurious
+comment|// Otherwise re-read and check doneness. If we loop then it must have been a spurious
 comment|// wakeup
 name|localValue
 operator|=
@@ -1746,7 +1746,7 @@ name|value
 argument_list|)
 return|;
 block|}
-comment|/**    * Unboxes {@code obj}.  Assumes that obj is not {@code null} or a {@link SetFuture}.    */
+comment|/**    * Unboxes {@code obj}. Assumes that obj is not {@code null} or a {@link SetFuture}.    */
 DECL|method|getDoneValue (Object obj)
 specifier|private
 name|V
@@ -1920,7 +1920,7 @@ operator|.
 name|SetFuture
 condition|)
 block|{
-comment|// Try to delay allocating the exception.  At this point we may still lose the CAS, but it is
+comment|// Try to delay allocating the exception. At this point we may still lose the CAS, but it is
 comment|// certainly less likely.
 comment|// TODO(lukes): this exception actually makes cancellation significantly more expensive :(
 comment|// I wonder if we should consider removing it or providing a mechanism to not do it.
@@ -2373,9 +2373,9 @@ name|Throwable
 name|t
 parameter_list|)
 block|{
-comment|// addListener has thrown an exception!  SetFuture.run can't throw any exceptions so this
-comment|// must have been caused by addListener itself.  The most likely explanation is a
-comment|// misconfigured mock.  Try to switch to Failure.
+comment|// addListener has thrown an exception! SetFuture.run can't throw any exceptions so this
+comment|// must have been caused by addListener itself. The most likely explanation is a
+comment|// misconfigured mock. Try to switch to Failure.
 name|Failure
 name|failure
 decl_stmt|;
@@ -2429,7 +2429,7 @@ name|value
 expr_stmt|;
 comment|// we lost the cas, fall through and maybe cancel
 block|}
-comment|// The future has already been set to something.  If it is cancellation we should cancel the
+comment|// The future has already been set to something. If it is cancellation we should cancel the
 comment|// incoming future.
 if|if
 condition|(
@@ -2714,7 +2714,7 @@ expr_stmt|;
 block|}
 comment|// We call this after the listeners on the theory that afterDone() will only be used for
 comment|// 'cleanup' oriented tasks (e.g. clearing fields) and so can wait behind listeners which may be
-comment|// executing more important work.  A counter argument would be that done() is trusted code and
+comment|// executing more important work. A counter argument would be that done() is trusted code and
 comment|// therefore it would be safe to run before potentially slow or poorly behaved listeners.
 comment|// Reevaluate this once we have more examples of afterDone() implementations.
 name|afterDone
@@ -2890,9 +2890,9 @@ name|RuntimeException
 name|e
 parameter_list|)
 block|{
-comment|// Log it and keep going, bad runnable and/or executor.  Don't
-comment|// punish the other runnables if we're given a bad one.  We only
-comment|// catch RuntimeException because we want Errors to propagate up.
+comment|// Log it and keep going -- bad runnable and/or executor. Don't punish the other runnables if
+comment|// we're given a bad one. We only catch RuntimeException because we want Errors to propagate
+comment|// up.
 name|log
 operator|.
 name|log
@@ -3800,7 +3800,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**    * {@link AtomicHelper} based on {@code synchronized} and volatile writes.    *    *<p>This is an implementation of last resort for when certain basic VM features are broken    * (like AtomicReferenceFieldUpdater).    */
+comment|/**    * {@link AtomicHelper} based on {@code synchronized} and volatile writes.    *    *<p>This is an implementation of last resort for when certain basic VM features are broken (like    * AtomicReferenceFieldUpdater).    */
 DECL|class|SynchronizedHelper
 specifier|private
 specifier|static

@@ -285,7 +285,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Base class for services that can implement {@link #startUp} and {@link #shutDown} but while in  * the "running" state need to perform a periodic task.  Subclasses can implement {@link #startUp},  * {@link #shutDown} and also a {@link #runOneIteration} method that will be executed periodically.  *  *<p>This class uses the {@link ScheduledExecutorService} returned from {@link #executor} to run  * the {@link #startUp} and {@link #shutDown} methods and also uses that service to schedule the  * {@link #runOneIteration} that will be executed periodically as specified by its {@link  * Scheduler}. When this service is asked to stop via {@link #stopAsync} it will cancel the periodic  * task (but not interrupt it) and wait for it to stop before running the {@link #shutDown} method.  *  *<p>Subclasses are guaranteed that the life cycle methods ({@link #runOneIteration}, {@link  * #startUp} and {@link #shutDown}) will never run concurrently. Notably, if any execution of {@link  * #runOneIteration} takes longer than its schedule defines, then subsequent executions may start  * late.  Also, all life cycle methods are executed with a lock held, so subclasses can safely  * modify shared state without additional synchronization necessary for visibility to later  * executions of the life cycle methods.  *  *<h3>Usage Example</h3>  *  *<p>Here is a sketch of a service which crawls a website and uses the scheduling capabilities to  * rate limit itself.<pre> {@code  * class CrawlingService extends AbstractScheduledService {  *   private Set<Uri> visited;  *   private Queue<Uri> toCrawl;  *   protected void startUp() throws Exception {  *     toCrawl = readStartingUris();  *   }  *  *   protected void runOneIteration() throws Exception {  *     Uri uri = toCrawl.remove();  *     Collection<Uri> newUris = crawl(uri);  *     visited.add(uri);  *     for (Uri newUri : newUris) {  *       if (!visited.contains(newUri)) { toCrawl.add(newUri); }  *     }  *   }  *  *   protected void shutDown() throws Exception {  *     saveUris(toCrawl);  *   }  *  *   protected Scheduler scheduler() {  *     return Scheduler.newFixedRateSchedule(0, 1, TimeUnit.SECONDS);  *   }  * }}</pre>  *  *<p>This class uses the life cycle methods to read in a list of starting URIs and save the set of  * outstanding URIs when shutting down. Also, it takes advantage of the scheduling functionality to  * rate limit the number of queries we perform.  *  * @author Luke Sandberg  * @since 11.0  */
+comment|/**  * Base class for services that can implement {@link #startUp} and {@link #shutDown} but while in  * the "running" state need to perform a periodic task. Subclasses can implement {@link #startUp},  * {@link #shutDown} and also a {@link #runOneIteration} method that will be executed periodically.  *  *<p>This class uses the {@link ScheduledExecutorService} returned from {@link #executor} to run  * the {@link #startUp} and {@link #shutDown} methods and also uses that service to schedule the  * {@link #runOneIteration} that will be executed periodically as specified by its {@link  * Scheduler}. When this service is asked to stop via {@link #stopAsync} it will cancel the periodic  * task (but not interrupt it) and wait for it to stop before running the {@link #shutDown} method.  *  *<p>Subclasses are guaranteed that the life cycle methods ({@link #runOneIteration}, {@link  * #startUp} and {@link #shutDown}) will never run concurrently. Notably, if any execution of {@link  * #runOneIteration} takes longer than its schedule defines, then subsequent executions may start  * late. Also, all life cycle methods are executed with a lock held, so subclasses can safely modify  * shared state without additional synchronization necessary for visibility to later executions of  * the life cycle methods.  *  *<h3>Usage Example</h3>  *  *<p>Here is a sketch of a service which crawls a website and uses the scheduling capabilities to  * rate limit itself.<pre> {@code  * class CrawlingService extends AbstractScheduledService {  *   private Set<Uri> visited;  *   private Queue<Uri> toCrawl;  *   protected void startUp() throws Exception {  *     toCrawl = readStartingUris();  *   }  *  *   protected void runOneIteration() throws Exception {  *     Uri uri = toCrawl.remove();  *     Collection<Uri> newUris = crawl(uri);  *     visited.add(uri);  *     for (Uri newUri : newUris) {  *       if (!visited.contains(newUri)) { toCrawl.add(newUri); }  *     }  *   }  *  *   protected void shutDown() throws Exception {  *     saveUris(toCrawl);  *   }  *  *   protected Scheduler scheduler() {  *     return Scheduler.newFixedRateSchedule(0, 1, TimeUnit.SECONDS);  *   }  * }}</pre>  *  *<p>This class uses the life cycle methods to read in a list of starting URIs and save the set of  * outstanding URIs when shutting down. Also, it takes advantage of the scheduling functionality to  * rate limit the number of queries we perform.  *  * @author Luke Sandberg  * @since 11.0  */
 end_comment
 
 begin_class
@@ -484,7 +484,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/** Schedules the task to run on the provided executor on behalf of the service.  */
+comment|/** Schedules the task to run on the provided executor on behalf of the service. */
 DECL|method|schedule ( AbstractService service, ScheduledExecutorService executor, Runnable runnable)
 specifier|abstract
 name|Future
@@ -549,7 +549,7 @@ name|executorService
 decl_stmt|;
 comment|// This lock protects the task so we can ensure that none of the template methods (startUp,
 comment|// shutDown or runOneIteration) run concurrently with one another.
-comment|// TODO(lukes):  why don't we use ListenableFuture to sequence things?  Then we could drop the
+comment|// TODO(lukes): why don't we use ListenableFuture to sequence things? Then we could drop the
 comment|// lock.
 DECL|field|lock
 specifier|private
@@ -848,7 +848,7 @@ operator|.
 name|STOPPING
 condition|)
 block|{
-comment|// This means that the state has changed since we were scheduled.  This implies
+comment|// This means that the state has changed since we were scheduled. This implies
 comment|// that an execution of runOneIteration has thrown an exception and we have
 comment|// transitioned to a failed state, also this means that shutDown has already
 comment|// been called, so we do not want to call it again.
@@ -998,7 +998,7 @@ name|ThreadFactoryImpl
 argument_list|()
 argument_list|)
 decl_stmt|;
-comment|// Add a listener to shutdown the executor after the service is stopped.  This ensures that the
+comment|// Add a listener to shutdown the executor after the service is stopped. This ensures that the
 comment|// JVM shutdown will not be prevented from exiting after this service has stopped or failed.
 comment|// Technically this listener is added after start() was called so it is a little gross, but it
 comment|// is called within doStart() so we know that the service cannot terminate or fail concurrently
@@ -1354,7 +1354,7 @@ operator|new
 name|ReentrantLock
 argument_list|()
 decl_stmt|;
-comment|/** The future that represents the next execution of this task.*/
+comment|/** The future that represents the next execution of this task. */
 annotation|@
 name|GuardedBy
 argument_list|(
@@ -1515,12 +1515,12 @@ name|e
 parameter_list|)
 block|{
 comment|// If an exception is thrown by the subclass then we need to make sure that the service
-comment|// notices and transitions to the FAILED state.  We do it by calling notifyFailed directly
+comment|// notices and transitions to the FAILED state. We do it by calling notifyFailed directly
 comment|// because the service does not monitor the state of the future so if the exception is not
 comment|// caught and forwarded to the service the task would stop executing but the service would
 comment|// have no idea.
 comment|// TODO(lukes): consider building everything in terms of ListenableScheduledFuture then
-comment|// the AbstractService could monitor the future directly.  Rescheduling is still hard...
+comment|// the AbstractService could monitor the future directly. Rescheduling is still hard...
 comment|// but it would help with some of these lock ordering issues.
 name|scheduleFailure
 operator|=

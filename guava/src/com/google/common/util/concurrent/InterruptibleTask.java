@@ -102,7 +102,7 @@ argument_list|,
 literal|"runner"
 argument_list|)
 decl_stmt|;
-comment|// These two fields are used to interrupt running tasks.  The thread executing the task publishes
+comment|// These two fields are used to interrupt running tasks. The thread executing the task publishes
 comment|// itself to the 'runner' field and the thread interrupting sets 'doneInterrupting' when it has
 comment|// finished interrupting.
 DECL|field|runner
@@ -161,11 +161,11 @@ name|wasInterrupted
 argument_list|()
 condition|)
 block|{
-comment|// We were interrupted, it is possible that the interrupted bit hasn't been set yet.  Wait
+comment|// We were interrupted, it is possible that the interrupted bit hasn't been set yet. Wait
 comment|// for the interrupting thread to set 'doneInterrupting' to true. See interruptTask().
 comment|// We want to wait so that we don't interrupt the _next_ thing run on the thread.
-comment|// Note. We don't reset the interrupted bit, just wait for it to be set.
-comment|// If this is a thread pool thread, the thread pool will reset it for us.  Otherwise, the
+comment|// Note: We don't reset the interrupted bit, just wait for it to be set.
+comment|// If this is a thread pool thread, the thread pool will reset it for us. Otherwise, the
 comment|// interrupted bit may have been intended for something else, so don't clear it.
 while|while
 condition|(
@@ -200,9 +200,9 @@ name|void
 name|interruptTask
 parameter_list|()
 block|{
-comment|// interruptTask is guaranteed to be called at most once and if runner is non-null when that
-comment|// happens then it must have been the first thread that entered run().  So there is no risk
-comment|// that we are interrupting the wrong thread.
+comment|// interruptTask is guaranteed to be called at most once, and if runner is non-null when that
+comment|// happens, then it must have been the first thread that entered run(). So there is no risk that
+comment|// we are interrupting the wrong thread.
 name|Thread
 name|currentRunner
 init|=

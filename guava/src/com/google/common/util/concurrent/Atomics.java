@@ -71,7 +71,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Static utility methods pertaining to classes in the  * {@code java.util.concurrent.atomic} package.  *  * @author Kurt Alfred Kluever  * @since 10.0  */
+comment|/**  * Static utility methods pertaining to classes in the {@code java.util.concurrent.atomic} package.  *  * @author Kurt Alfred Kluever  * @since 10.0  */
 end_comment
 
 begin_class

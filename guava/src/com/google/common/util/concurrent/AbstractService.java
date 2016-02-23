@@ -1270,7 +1270,7 @@ else|else
 block|{
 comment|// It is possible due to races the we are currently in the expected state even though we
 comment|// timed out. e.g. if we weren't event able to grab the lock within the timeout we would never
-comment|// even check the guard.  I don't think we care too much about this use case but it could lead
+comment|// even check the guard. I don't think we care too much about this use case but it could lead
 comment|// to a confusing error message.
 throw|throw
 operator|new
@@ -1370,7 +1370,7 @@ else|else
 block|{
 comment|// It is possible due to races the we are currently in the expected state even though we
 comment|// timed out. e.g. if we weren't event able to grab the lock within the timeout we would never
-comment|// even check the guard.  I don't think we care too much about this use case but it could lead
+comment|// even check the guard. I don't think we care too much about this use case but it could lead
 comment|// to a confusing error message.
 throw|throw
 operator|new
@@ -2177,19 +2177,19 @@ specifier|final
 class|class
 name|StateSnapshot
 block|{
-comment|/**      * The internal state, which equals external state unless      * shutdownWhenStartupFinishes is true.      */
+comment|/**      * The internal state, which equals external state unless shutdownWhenStartupFinishes is true.      */
 DECL|field|state
 specifier|final
 name|State
 name|state
 decl_stmt|;
-comment|/**      * If true, the user requested a shutdown while the service was still starting      * up.      */
+comment|/**      * If true, the user requested a shutdown while the service was still starting up.      */
 DECL|field|shutdownWhenStartupFinishes
 specifier|final
 name|boolean
 name|shutdownWhenStartupFinishes
 decl_stmt|;
-comment|/**      * The exception that caused this service to fail.  This will be {@code null}      * unless the service has failed.      */
+comment|/**      * The exception that caused this service to fail. This will be {@code null} unless the service      * has failed.      */
 DECL|field|failure
 annotation|@
 name|Nullable

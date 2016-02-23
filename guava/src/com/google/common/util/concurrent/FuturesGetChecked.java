@@ -998,7 +998,7 @@ name|cause
 argument_list|)
 throw|;
 block|}
-comment|/*    * TODO(user): FutureChecker interface for these to be static methods on? If    * so, refer to it in the (static-method) Futures.getChecked documentation    */
+comment|/*    * TODO(user): FutureChecker interface for these to be static methods on? If so, refer to it in    * the (static-method) Futures.getChecked documentation    */
 DECL|method|hasConstructorUsableByGetChecked ( Class<? extends Exception> exceptionClass)
 specifier|private
 specifier|static

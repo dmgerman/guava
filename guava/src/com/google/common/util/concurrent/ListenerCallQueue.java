@@ -339,7 +339,7 @@ name|callback
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Executes all listeners {@linkplain #add added} prior to this call, serially and in order.*/
+comment|/** Executes all listeners {@linkplain #add added} prior to this call, serially and in order. */
 DECL|method|execute ()
 name|void
 name|execute

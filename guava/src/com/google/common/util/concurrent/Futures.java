@@ -419,7 +419,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Static utility methods pertaining to the {@link Future} interface.  *  *<p>Many of these methods use the {@link ListenableFuture} API; consult the  * Guava User Guide article on<a href=  * "https://github.com/google/guava/wiki/ListenableFutureExplained">  * {@code ListenableFuture}</a>.  *  * @author Kevin Bourrillion  * @author Nishant Thakkar  * @author Sven Mawson  * @since 1.0  */
+comment|/**  * Static utility methods pertaining to the {@link Future} interface.  *  *<p>Many of these methods use the {@link ListenableFuture} API; consult the Guava User Guide  * article on<a href="https://github.com/google/guava/wiki/ListenableFutureExplained">  * {@code ListenableFuture}</a>.  *  * @author Kevin Bourrillion  * @author Nishant Thakkar  * @author Sven Mawson  * @since 1.0  */
 end_comment
 
 begin_class
@@ -453,18 +453,18 @@ comment|// For simplicity the rest of this description will discuss Futures.catc
 comment|// simplest instance, though very similar descriptions apply to many other classes in this file.
 comment|//
 comment|// In the constructor of AbstractCatchingFuture, the delegate future is assigned to a field
-comment|// 'inputFuture'. That field is non-final and non-volatile.  There are 2 places where the
+comment|// 'inputFuture'. That field is non-final and non-volatile. There are 2 places where the
 comment|// 'inputFuture' field is read and where we will have to consider visibility of the write
 comment|// operation in the constructor.
 comment|//
-comment|// 1. In the listener that performs the callback.  In this case it is fine since inputFuture is
+comment|// 1. In the listener that performs the callback. In this case it is fine since inputFuture is
 comment|//    assigned prior to calling addListener, and addListener happens-before any invocation of the
 comment|//    listener. Notably, this means that 'volatile' is unnecessary to make 'inputFuture' visible
 comment|//    to the listener.
 comment|//
-comment|// 2. In done() where we may propagate cancellation to the input.  In this case it is _not_ fine.
+comment|// 2. In done() where we may propagate cancellation to the input. In this case it is _not_ fine.
 comment|//    There is currently nothing that enforces that the write to inputFuture in the constructor is
-comment|//    visible to done().  This is because there is no happens before edge between the write and a
+comment|//    visible to done(). This is because there is no happens before edge between the write and a
 comment|//    (hypothetical) unsafe read by our caller. Note: adding 'volatile' does not fix this issue,
 comment|//    it would just add an edge such that if done() observed non-null, then it would also
 comment|//    definitely observe all earlier writes, but we still have no guarantee that done() would see
@@ -474,15 +474,15 @@ comment|// See: http://cs.oswego.edu/pipermail/concurrency-interest/2015-January
 comment|// For a (long) discussion about this specific issue and the general futility of life.
 comment|//
 comment|// For the time being we are OK with the problem discussed above since it requires a caller to
-comment|// introduce a very specific kind of data-race.  And given the other operations performed by these
-comment|// methods that involve volatile read/write operations, in practice there is no issue.  Also, the
+comment|// introduce a very specific kind of data-race. And given the other operations performed by these
+comment|// methods that involve volatile read/write operations, in practice there is no issue. Also, the
 comment|// way in such a visibility issue would surface is most likely as a failure of cancel() to
-comment|// propagate to the input.  Cancellation propagation is fundamentally racy so this is fine.
+comment|// propagate to the input. Cancellation propagation is fundamentally racy so this is fine.
 comment|//
 comment|// Future versions of the JMM may revise safe construction semantics in such a way that we can
 comment|// safely publish these objects and we won't need this whole discussion.
 comment|// TODO(user,lukes): consider adding volatile to all these fields since in current known JVMs
-comment|// that should resolve the issue.  This comes at the cost of adding more write barriers to the
+comment|// that should resolve the issue. This comes at the cost of adding more write barriers to the
 comment|// implementations.
 DECL|method|Futures ()
 specifier|private
@@ -2031,7 +2031,7 @@ return|;
 block|}
 comment|/*      * TODO(cpovirk): Evaluate demand for a run(Runnable) version. Would it allow us to remove      * @CanIgnoreReturnValue from the call() methods above?      * https://github.com/google/guava/issues/2371      */
 block|}
-comment|/**    * Creates a new {@code ListenableFuture} whose result is set from the supplied future when it    * completes.  Cancelling the supplied future will also cancel the returned future, but cancelling    * the returned future will have no effect on the supplied future.    *    * @since 15.0    */
+comment|/**    * Creates a new {@code ListenableFuture} whose result is set from the supplied future when it    * completes. Cancelling the supplied future will also cancel the returned future, but cancelling    * the returned future will have no effect on the supplied future.    *    * @since 15.0    */
 annotation|@
 name|GwtIncompatible
 comment|// TODO
@@ -2226,7 +2226,7 @@ literal|false
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a list of delegate futures that correspond to the futures received in the order    * that they complete. Delegate futures return the same value or throw the same exception    * as the corresponding input future returns/throws.    *    *<p>Cancelling a delegate future has no effect on any input future, since the delegate future    * does not correspond to a specific input future until the appropriate number of input    * futures have completed. At that point, it is too late to cancel the input future.    * The input future's result, which cannot be stored into the cancelled delegate future,    * is ignored.    *    * @since 17.0    */
+comment|/**    * Returns a list of delegate futures that correspond to the futures received in the order that    * they complete. Delegate futures return the same value or throw the same exception as the    * corresponding input future returns/throws.    *    *<p>Cancelling a delegate future has no effect on any input future, since the delegate future    * does not correspond to a specific input future until the appropriate number of input futures    * have completed. At that point, it is too late to cancel the input future. The input future's    * result, which cannot be stored into the cancelled delegate future, is ignored.    *    * @since 17.0    */
 annotation|@
 name|Beta
 annotation|@
@@ -2261,7 +2261,7 @@ argument_list|>
 name|futures
 parameter_list|)
 block|{
-comment|// A CLQ may be overkill here.  We could save some pointers/memory by synchronizing on an
+comment|// A CLQ may be overkill here. We could save some pointers/memory by synchronizing on an
 comment|// ArrayDeque
 specifier|final
 name|ConcurrentLinkedQueue
@@ -2299,7 +2299,7 @@ comment|// atomically and therefore that each returned future is guaranteed to b
 comment|// N.B. there are some cases where the use of this executor could have possibly surprising
 comment|// effects when input futures finish at approximately the same time _and_ the output futures
 comment|// have directExecutor listeners. In this situation, the listeners may end up running on a
-comment|// different thread than if they were attached to the corresponding input future.  We believe
+comment|// different thread than if they were attached to the corresponding input future. We believe
 comment|// this to be a negligible cost since:
 comment|// 1. Using the directExecutor implies that your callback is safe to run on any thread.
 comment|// 2. This would likely only be noticeable if you were doing something expensive or blocking on

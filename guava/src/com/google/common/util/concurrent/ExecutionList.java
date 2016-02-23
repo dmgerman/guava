@@ -194,8 +194,8 @@ name|Executor
 name|executor
 parameter_list|)
 block|{
-comment|// Fail fast on a null.  We throw NPE here because the contract of Executor states that it
-comment|// throws NPE on null listener, so we propagate that contract up into the add method as well.
+comment|// Fail fast on a null. We throw NPE here because the contract of Executor states that it throws
+comment|// NPE on null listener, so we propagate that contract up into the add method as well.
 name|checkNotNull
 argument_list|(
 name|runnable
@@ -210,7 +210,7 @@ argument_list|,
 literal|"Executor was null."
 argument_list|)
 expr_stmt|;
-comment|// Lock while we check state.  We must maintain the lock while adding the new pair so that
+comment|// Lock while we check state. We must maintain the lock while adding the new pair so that
 comment|// another thread can't run the list out from under us. We only add to the list if we have not
 comment|// yet started execution.
 synchronized|synchronized
@@ -240,7 +240,7 @@ return|return;
 block|}
 block|}
 comment|// Execute the runnable immediately. Because of scheduling this may end up getting called before
-comment|// some of the previously added runnables, but we're OK with that.  If we want to change the
+comment|// some of the previously added runnables, but we're OK with that. If we want to change the
 comment|// contract to guarantee ordering among runnables we'd have to modify the logic here to allow
 comment|// it.
 name|executeListener
@@ -289,12 +289,12 @@ literal|null
 expr_stmt|;
 comment|// allow GC to free listeners even if this stays around for a while.
 block|}
-comment|// If we succeeded then list holds all the runnables we to execute.  The pairs in the stack are
+comment|// If we succeeded then list holds all the runnables we to execute. The pairs in the stack are
 comment|// in the opposite order from how they were added so we need to reverse the list to fulfill our
 comment|// contract.
-comment|// This is somewhat annoying, but turns out to be very fast in practice.  Alternatively, we
-comment|// could drop the contract on the method that enforces this queue like behavior since depending
-comment|// on it is likely to be a bug anyway.
+comment|// This is somewhat annoying, but turns out to be very fast in practice. Alternatively, we could
+comment|// drop the contract on the method that enforces this queue like behavior since depending on it
+comment|// is likely to be a bug anyway.
 comment|// N.B. All writes to the list and the next pointers must have happened before the above
 comment|// synchronized block, so we can iterate the list without the lock held here.
 name|RunnableExecutorPair
@@ -387,8 +387,8 @@ name|RuntimeException
 name|e
 parameter_list|)
 block|{
-comment|// Log it and keep going, bad runnable and/or executor.  Don't punish the other runnables if
-comment|// we're given a bad one.  We only catch RuntimeException because we want Errors to propagate
+comment|// Log it and keep going -- bad runnable and/or executor. Don't punish the other runnables if
+comment|// we're given a bad one. We only catch RuntimeException because we want Errors to propagate
 comment|// up.
 name|log
 operator|.

@@ -201,8 +201,8 @@ comment|//    - getWaitingThreads(Guard) method
 comment|//    - implement Serializable
 comment|//    - redo the API to be as close to identical to ReentrantLock as possible,
 comment|//      since, after all, this class is also a reentrant mutual exclusion lock!?
-comment|/*    * One of the key challenges of this class is to prevent lost signals, while trying hard to    * minimize unnecessary signals.  One simple and correct algorithm is to signal some other    * waiter with a satisfied guard (if one exists) whenever any thread occupying the monitor    * exits the monitor, either by unlocking all of its held locks, or by starting to wait for a    * guard.  This includes exceptional exits, so all control paths involving signalling must be    * protected by a finally block.    *    * Further optimizations of this algorithm become increasingly subtle.  A wait that terminates    * without the guard being satisfied (due to timeout, but not interrupt) can then immediately    * exit the monitor without signalling.  If it timed out without being signalled, it does not    * need to "pass on" the signal to another thread.  If it *was* signalled, then its guard must    * have been satisfied at the time of signal, and has since been modified by some other thread    * to be non-satisfied before reacquiring the lock, and that other thread takes over the    * responsibility of signaling the next waiter.    *    * Unlike the underlying Condition, if we are not careful, an interrupt *can* cause a signal to    * be lost, because the signal may be sent to a condition whose sole waiter has just been    * interrupted.    *    * Imagine a monitor with multiple guards.  A thread enters the monitor, satisfies all the    * guards, and leaves, calling signalNextWaiter.  With traditional locks and conditions, all    * the conditions need to be signalled because it is not known which if any of them have    * waiters (and hasWaiters can't be used reliably because of a check-then-act race).  With our    * Monitor guards, we only signal the first active guard that is satisfied.  But the    * corresponding thread may have already been interrupted and is waiting to reacquire the lock    * while still registered in activeGuards, in which case the signal is a no-op, and the    * bigger-picture signal is lost unless interrupted threads take special action by    * participating in the signal-passing game.    */
-comment|/*    * Timeout handling is intricate, especially given our ambitious goals:    * - Avoid underflow and overflow of timeout values when specified timeouts are close to    *   Long.MIN_VALUE or Long.MAX_VALUE.    * - Favor responding to interrupts over timeouts.    * - System.nanoTime() is expensive enough that we want to call it the minimum required number of    *   times, typically once before invoking a blocking method.  This often requires keeping track    *   of the first time in a method that nanoTime() has been invoked, for which the special value    *   0L is reserved to mean "uninitialized".  If timeout is non-positive, then nanoTime need    *   never be called.    * - Keep behavior of fair and non-fair instances consistent.    */
+comment|/*    * One of the key challenges of this class is to prevent lost signals, while trying hard to    * minimize unnecessary signals. One simple and correct algorithm is to signal some other waiter    * with a satisfied guard (if one exists) whenever any thread occupying the monitor exits the    * monitor, either by unlocking all of its held locks, or by starting to wait for a guard. This    * includes exceptional exits, so all control paths involving signalling must be protected by a    * finally block.    *    * Further optimizations of this algorithm become increasingly subtle. A wait that terminates    * without the guard being satisfied (due to timeout, but not interrupt) can then immediately exit    * the monitor without signalling. If it timed out without being signalled, it does not need to    * "pass on" the signal to another thread. If it *was* signalled, then its guard must have been    * satisfied at the time of signal, and has since been modified by some other thread to be    * non-satisfied before reacquiring the lock, and that other thread takes over the responsibility    * of signaling the next waiter.    *    * Unlike the underlying Condition, if we are not careful, an interrupt *can* cause a signal to be    * lost, because the signal may be sent to a condition whose sole waiter has just been    * interrupted.    *    * Imagine a monitor with multiple guards. A thread enters the monitor, satisfies all the guards,    * and leaves, calling signalNextWaiter. With traditional locks and conditions, all the conditions    * need to be signalled because it is not known which if any of them have waiters (and hasWaiters    * can't be used reliably because of a check-then-act race). With our Monitor guards, we only    * signal the first active guard that is satisfied. But the corresponding thread may have already    * been interrupted and is waiting to reacquire the lock while still registered in activeGuards,    * in which case the signal is a no-op, and the bigger-picture signal is lost unless interrupted    * threads take special action by participating in the signal-passing game.    */
+comment|/*    * Timeout handling is intricate, especially given our ambitious goals:    * - Avoid underflow and overflow of timeout values when specified timeouts are close to    *   Long.MIN_VALUE or Long.MAX_VALUE.    * - Favor responding to interrupts over timeouts.    * - System.nanoTime() is expensive enough that we want to call it the minimum required number of    *   times, typically once before invoking a blocking method. This often requires keeping track of    *   the first time in a method that nanoTime() has been invoked, for which the special value 0L    *   is reserved to mean "uninitialized". If timeout is non-positive, then nanoTime need never be    *   called.    * - Keep behavior of fair and non-fair instances consistent.    */
 comment|/**    * A boolean condition for which a thread may wait. A {@code Guard} is associated with a single    * {@code Monitor}. The monitor may check the guard at arbitrary times from any thread occupying    * the monitor, so code should not be written to rely on how often a guard might or might not be    * checked.    *    *<p>If a {@code Guard} is passed into any method of a {@code Monitor} other than the one it is    * associated with, an {@link IllegalMonitorStateException} is thrown.    *    * @since 10.0    */
 annotation|@
 name|Beta
@@ -325,7 +325,7 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates a monitor with the given ordering policy.    *    * @param fair whether this monitor should use a fair ordering policy rather than a non-fair (but    *        fast) one    */
+comment|/**    * Creates a monitor with the given ordering policy.    *    * @param fair whether this monitor should use a fair ordering policy rather than a non-fair (but    *     fast) one    */
 DECL|method|Monitor (boolean fair)
 specifier|public
 name|Monitor
@@ -941,7 +941,7 @@ block|}
 block|}
 block|}
 block|}
-comment|/**    * Enters this monitor when the guard is satisfied. Blocks at most the given time, including    * both the time to acquire the lock and the time to wait for the guard to be satisfied.    *    * @return whether the monitor was entered, which guarantees that the guard is now satisfied    */
+comment|/**    * Enters this monitor when the guard is satisfied. Blocks at most the given time, including both    * the time to acquire the lock and the time to wait for the guard to be satisfied.    *    * @return whether the monitor was entered, which guarantees that the guard is now satisfied    */
 DECL|method|enterWhenUninterruptibly (Guard guard, long time, TimeUnit unit)
 specifier|public
 name|boolean
@@ -1221,7 +1221,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**    * Enters this monitor if the guard is satisfied. Blocks indefinitely acquiring the lock, but    * does not wait for the guard to be satisfied.    *    * @return whether the monitor was entered, which guarantees that the guard is now satisfied    */
+comment|/**    * Enters this monitor if the guard is satisfied. Blocks indefinitely acquiring the lock, but does    * not wait for the guard to be satisfied.    *    * @return whether the monitor was entered, which guarantees that the guard is now satisfied    */
 DECL|method|enterIf (Guard guard)
 specifier|public
 name|boolean
@@ -1609,7 +1609,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**    * Waits for the guard to be satisfied. Waits indefinitely, but may be interrupted. May be    * called only by a thread currently occupying this monitor.    *    * @throws InterruptedException if interrupted while waiting    */
+comment|/**    * Waits for the guard to be satisfied. Waits indefinitely, but may be interrupted. May be called    * only by a thread currently occupying this monitor.    *    * @throws InterruptedException if interrupted while waiting    */
 DECL|method|waitFor (Guard guard)
 specifier|public
 name|void
@@ -1717,7 +1717,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Waits for the guard to be satisfied. Waits at most the given time, and may be interrupted.    * May be called only by a thread currently occupying this monitor.    *    * @return whether the guard is now satisfied    * @throws InterruptedException if interrupted while waiting    */
+comment|/**    * Waits for the guard to be satisfied. Waits at most the given time, and may be interrupted. May    * be called only by a thread currently occupying this monitor.    *    * @return whether the guard is now satisfied    * @throws InterruptedException if interrupted while waiting    */
 DECL|method|waitFor (Guard guard, long time, TimeUnit unit)
 specifier|public
 name|boolean
@@ -2244,7 +2244,7 @@ else|:
 name|timeoutNanos
 return|;
 block|}
-comment|/**    * Returns System.nanoTime() unless the timeout has already elapsed.    * Returns 0L if and only if the timeout has already elapsed.    */
+comment|/**    * Returns System.nanoTime() unless the timeout has already elapsed. Returns 0L if and only if the    * timeout has already elapsed.    */
 DECL|method|initNanoTime (long timeoutNanos)
 specifier|private
 specifier|static
@@ -2329,7 +2329,7 @@ name|startTime
 operator|)
 return|;
 block|}
-comment|/**    * Signals some other thread waiting on a satisfied guard, if one exists.    *    * We manage calls to this method carefully, to signal only when necessary, but never losing a    * signal, which is the classic problem of this kind of concurrency construct.  We must signal if    * the current thread is about to relinquish the lock and may have changed the state protected by    * the monitor, thereby causing some guard to be satisfied.    *    * In addition, any thread that has been signalled when its guard was satisfied acquires the    * responsibility of signalling the next thread when it again relinquishes the lock.  Unlike a    * normal Condition, there is no guarantee that an interrupted thread has not been signalled,    * since the concurrency control must manage multiple Conditions.  So this method must generally    * be called when waits are interrupted.    *    * On the other hand, if a signalled thread wakes up to discover that its guard is still not    * satisfied, it does *not* need to call this method before returning to wait.  This can only    * happen due to spurious wakeup (ignorable) or another thread acquiring the lock before the    * current thread can and returning the guard to the unsatisfied state.  In the latter case the    * other thread (last thread modifying the state protected by the monitor) takes over the    * responsibility of signalling the next waiter.    *    * This method must not be called from within a beginWaitingFor/endWaitingFor block, or else the    * current thread's guard might be mistakenly signalled, leading to a lost signal.    */
+comment|/**    * Signals some other thread waiting on a satisfied guard, if one exists.    *    * We manage calls to this method carefully, to signal only when necessary, but never losing a    * signal, which is the classic problem of this kind of concurrency construct. We must signal if    * the current thread is about to relinquish the lock and may have changed the state protected by    * the monitor, thereby causing some guard to be satisfied.    *    * In addition, any thread that has been signalled when its guard was satisfied acquires the    * responsibility of signalling the next thread when it again relinquishes the lock. Unlike a    * normal Condition, there is no guarantee that an interrupted thread has not been signalled,    * since the concurrency control must manage multiple Conditions. So this method must generally be    * called when waits are interrupted.    *    * On the other hand, if a signalled thread wakes up to discover that its guard is still not    * satisfied, it does *not* need to call this method before returning to wait. This can only    * happen due to spurious wakeup (ignorable) or another thread acquiring the lock before the    * current thread can and returning the guard to the unsatisfied state. In the latter case the    * other thread (last thread modifying the state protected by the monitor) takes over the    * responsibility of signalling the next waiter.    *    * This method must not be called from within a beginWaitingFor/endWaitingFor block, or else the    * current thread's guard might be mistakenly signalled, leading to a lost signal.    */
 annotation|@
 name|GuardedBy
 argument_list|(
@@ -2378,7 +2378,7 @@ break|break;
 block|}
 block|}
 block|}
-comment|/**    * Exactly like signalNextWaiter, but caller guarantees that guardToSkip need not be considered,    * because caller has previously checked that guardToSkip.isSatisfied() returned false.    * An optimization for the case that guardToSkip.isSatisfied() may be expensive.    *    * We decided against using this method, since in practice, isSatisfied() is likely to be very    * cheap (typically one field read).  Resurrect this method if you find that not to be true.    */
+comment|/**    * Exactly like signalNextWaiter, but caller guarantees that guardToSkip need not be considered,    * because caller has previously checked that guardToSkip.isSatisfied() returned false. An    * optimization for the case that guardToSkip.isSatisfied() may be expensive.    *    * We decided against using this method, since in practice, isSatisfied() is likely to be very    * cheap (typically one field read). Resurrect this method if you find that not to be true.    */
 comment|//   @GuardedBy("lock")
 comment|//   private void signalNextWaiterSkipping(Guard guardToSkip) {
 comment|//     for (Guard guard = activeGuards; guard != null; guard = guard.next) {
@@ -2388,7 +2388,7 @@ comment|//         break;
 comment|//       }
 comment|//     }
 comment|//   }
-comment|/**    * Exactly like guard.isSatisfied(), but in addition signals all waiting threads in the    * (hopefully unlikely) event that isSatisfied() throws.    */
+comment|/**    * Exactly like guard.isSatisfied(), but in addition signals all waiting threads in the (hopefully    * unlikely) event that isSatisfied() throws.    */
 annotation|@
 name|GuardedBy
 argument_list|(
@@ -2611,7 +2611,7 @@ block|}
 block|}
 block|}
 block|}
-comment|/*    * Methods that loop waiting on a guard's condition until the guard is satisfied, while    * recording this fact so that other threads know to check our guard and signal us.    * It's caller's responsibility to ensure that the guard is *not* currently satisfied.    */
+comment|/*    * Methods that loop waiting on a guard's condition until the guard is satisfied, while recording    * this fact so that other threads know to check our guard and signal us. It's caller's    * responsibility to ensure that the guard is *not* currently satisfied.    */
 annotation|@
 name|GuardedBy
 argument_list|(

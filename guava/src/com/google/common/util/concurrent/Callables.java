@@ -402,8 +402,8 @@ name|Thread
 name|currentThread
 parameter_list|)
 block|{
-comment|// In AppEngine this will always fail, should we test for that explicitly using
-comment|// MoreExecutors.isAppEngine.  More generally, is there a way to see if we have the modifyThread
+comment|// In AppEngine, this will always fail. Should we test for that explicitly using
+comment|// MoreExecutors.isAppEngine? More generally, is there a way to see if we have the modifyThread
 comment|// permission without catching an exception?
 try|try
 block|{
