@@ -54,31 +54,6 @@ specifier|final
 class|class
 name|Platform
 block|{
-comment|/**    * Calls {@link Class#isInstance(Object)}.  Factored out so that it can be    * emulated in GWT.    *    *<p>This method always returns {@code true} in GWT.    */
-DECL|method|checkIsInstance (Class<?> clazz, Object obj)
-specifier|static
-name|boolean
-name|checkIsInstance
-parameter_list|(
-name|Class
-argument_list|<
-name|?
-argument_list|>
-name|clazz
-parameter_list|,
-name|Object
-name|obj
-parameter_list|)
-block|{
-return|return
-name|clazz
-operator|.
-name|isInstance
-argument_list|(
-name|obj
-argument_list|)
-return|;
-block|}
 DECL|method|clone (T[] array)
 specifier|static
 parameter_list|<

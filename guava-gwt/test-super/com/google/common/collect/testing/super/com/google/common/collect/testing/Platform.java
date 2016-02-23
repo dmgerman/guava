@@ -38,26 +38,6 @@ specifier|final
 class|class
 name|Platform
 block|{
-DECL|method|checkIsInstance (Class<?> clazz, Object obj)
-specifier|static
-name|boolean
-name|checkIsInstance
-parameter_list|(
-name|Class
-argument_list|<
-name|?
-argument_list|>
-name|clazz
-parameter_list|,
-name|Object
-name|obj
-parameter_list|)
-block|{
-comment|/*      * In GWT, we can't tell whether obj is an instance of clazz because GWT      * doesn't support reflections.  For testing purposes, we give up this      * particular assertion (so that we can keep the rest).      */
-return|return
-literal|true
-return|;
-block|}
 comment|// Class.cast is not supported in GWT.
 DECL|method|checkCast (Class<?> clazz, Object obj)
 specifier|static

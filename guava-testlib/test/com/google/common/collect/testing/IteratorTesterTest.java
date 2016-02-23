@@ -1410,16 +1410,18 @@ operator|.
 name|test
 argument_list|()
 expr_stmt|;
-name|fail
-argument_list|()
-expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
 name|AssertionFailedError
 name|expected
 parameter_list|)
-block|{     }
+block|{
+return|return;
+block|}
+name|fail
+argument_list|()
+expr_stmt|;
 block|}
 DECL|class|ThrowingIterator
 specifier|private
