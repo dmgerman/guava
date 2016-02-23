@@ -96,10 +96,15 @@ literal|20
 argument_list|,
 name|holder
 operator|.
-name|getAndAdd
+name|get
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|holder
+operator|.
+name|add
 argument_list|(
 literal|1
-argument_list|)
 argument_list|)
 expr_stmt|;
 name|assertEquals

@@ -93,29 +93,19 @@ return|return
 name|value
 return|;
 block|}
-DECL|method|getAndAdd (int delta)
+DECL|method|add (int delta)
 specifier|public
-name|int
-name|getAndAdd
+name|void
+name|add
 parameter_list|(
 name|int
 name|delta
 parameter_list|)
 block|{
-name|int
-name|result
-init|=
 name|value
-decl_stmt|;
-name|value
-operator|=
-name|result
-operator|+
+operator|+=
 name|delta
 expr_stmt|;
-return|return
-name|result
-return|;
 block|}
 DECL|method|addAndGet (int delta)
 specifier|public

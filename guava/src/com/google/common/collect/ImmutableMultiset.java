@@ -82,6 +82,20 @@ name|com
 operator|.
 name|google
 operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
 name|j2objc
 operator|.
 name|annotations
@@ -146,6 +160,16 @@ name|javax
 operator|.
 name|annotation
 operator|.
+name|CheckReturnValue
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
 name|Nullable
 import|;
 end_import
@@ -155,6 +179,8 @@ comment|/**  * A {@link Multiset} whose contents will never change, with many ot
 end_comment
 
 begin_class
+annotation|@
+name|CheckReturnValue
 annotation|@
 name|GwtCompatible
 argument_list|(
@@ -929,6 +955,8 @@ return|;
 block|}
 comment|/**    * Guaranteed to throw an exception and leave the collection unmodified.    *    * @throws UnsupportedOperationException always    * @deprecated Unsupported operation.    */
 annotation|@
+name|CanIgnoreReturnValue
+annotation|@
 name|Deprecated
 annotation|@
 name|Override
@@ -952,6 +980,8 @@ argument_list|()
 throw|;
 block|}
 comment|/**    * Guaranteed to throw an exception and leave the collection unmodified.    *    * @throws UnsupportedOperationException always    * @deprecated Unsupported operation.    */
+annotation|@
+name|CanIgnoreReturnValue
 annotation|@
 name|Deprecated
 annotation|@
@@ -977,6 +1007,8 @@ throw|;
 block|}
 comment|/**    * Guaranteed to throw an exception and leave the collection unmodified.    *    * @throws UnsupportedOperationException always    * @deprecated Unsupported operation.    */
 annotation|@
+name|CanIgnoreReturnValue
+annotation|@
 name|Deprecated
 annotation|@
 name|Override
@@ -1000,6 +1032,8 @@ argument_list|()
 throw|;
 block|}
 comment|/**    * Guaranteed to throw an exception and leave the collection unmodified.    *    * @throws UnsupportedOperationException always    * @deprecated Unsupported operation.    */
+annotation|@
+name|CanIgnoreReturnValue
 annotation|@
 name|Deprecated
 annotation|@
@@ -1756,6 +1790,8 @@ expr_stmt|;
 block|}
 comment|/**      * Adds {@code element} to the {@code ImmutableMultiset}.      *      * @param element the element to add      * @return this {@code Builder} object      * @throws NullPointerException if {@code element} is null      */
 annotation|@
+name|CanIgnoreReturnValue
+annotation|@
 name|Override
 DECL|method|add (E element)
 specifier|public
@@ -1784,6 +1820,8 @@ name|this
 return|;
 block|}
 comment|/**      * Adds a number of occurrences of an element to this {@code      * ImmutableMultiset}.      *      * @param element the element to add      * @param occurrences the number of occurrences of the element to add. May      *     be zero, in which case no change will be made.      * @return this {@code Builder} object      * @throws NullPointerException if {@code element} is null      * @throws IllegalArgumentException if {@code occurrences} is negative, or      *     if this operation would result in more than {@link Integer#MAX_VALUE}      *     occurrences of the element      */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|addCopies (E element, int occurrences)
 specifier|public
 name|Builder
@@ -1816,6 +1854,8 @@ name|this
 return|;
 block|}
 comment|/**      * Adds or removes the necessary occurrences of an element such that the      * element attains the desired count.      *      * @param element the element to add or remove occurrences of      * @param count the desired count of the element in this multiset      * @return this {@code Builder} object      * @throws NullPointerException if {@code element} is null      * @throws IllegalArgumentException if {@code count} is negative      */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|setCount (E element, int count)
 specifier|public
 name|Builder
@@ -1849,6 +1889,8 @@ return|;
 block|}
 comment|/**      * Adds each element of {@code elements} to the {@code ImmutableMultiset}.      *      * @param elements the elements to add      * @return this {@code Builder} object      * @throws NullPointerException if {@code elements} is null or contains a      *     null element      */
 annotation|@
+name|CanIgnoreReturnValue
+annotation|@
 name|Override
 DECL|method|add (E... elements)
 specifier|public
@@ -1875,6 +1917,8 @@ name|this
 return|;
 block|}
 comment|/**      * Adds each element of {@code elements} to the {@code ImmutableMultiset}.      *      * @param elements the {@code Iterable} to add to the {@code      *     ImmutableMultiset}      * @return this {@code Builder} object      * @throws NullPointerException if {@code elements} is null or contains a      *     null element      */
+annotation|@
+name|CanIgnoreReturnValue
 annotation|@
 name|Override
 DECL|method|addAll (Iterable<? extends E> elements)
@@ -1962,6 +2006,8 @@ name|this
 return|;
 block|}
 comment|/**      * Adds each element of {@code elements} to the {@code ImmutableMultiset}.      *      * @param elements the elements to add to the {@code ImmutableMultiset}      * @return this {@code Builder} object      * @throws NullPointerException if {@code elements} is null or contains a      *     null element      */
+annotation|@
+name|CanIgnoreReturnValue
 annotation|@
 name|Override
 DECL|method|addAll (Iterator<? extends E> elements)

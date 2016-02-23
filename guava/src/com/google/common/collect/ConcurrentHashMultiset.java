@@ -172,6 +172,20 @@ name|com
 operator|.
 name|google
 operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
 name|j2objc
 operator|.
 name|annotations
@@ -314,6 +328,16 @@ name|javax
 operator|.
 name|annotation
 operator|.
+name|CheckReturnValue
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
 name|Nullable
 import|;
 end_import
@@ -323,6 +347,8 @@ comment|/**  * A multiset that supports concurrent modifications and that provid
 end_comment
 
 begin_class
+annotation|@
+name|CheckReturnValue
 annotation|@
 name|GwtIncompatible
 DECL|class|ConcurrentHashMultiset
@@ -741,6 +767,8 @@ block|}
 comment|// Modification Operations
 comment|/**    * Adds a number of occurrences of the specified element to this multiset.    *    * @param element the element to add    * @param occurrences the number of occurrences to add    * @return the previous count of the element before the operation; possibly zero    * @throws IllegalArgumentException if {@code occurrences} is negative, or if    *     the resulting amount would exceed {@link Integer#MAX_VALUE}    */
 annotation|@
+name|CanIgnoreReturnValue
+annotation|@
 name|Override
 DECL|method|add (E element, int occurrences)
 specifier|public
@@ -961,6 +989,8 @@ block|}
 comment|/**    * Removes a number of occurrences of the specified element from this multiset. If the multiset    * contains fewer than this number of occurrences to begin with, all occurrences will be removed.    *    * @param element the element whose occurrences should be removed    * @param occurrences the number of occurrences of the element to remove    * @return the count of the element before the operation; possibly zero    * @throws IllegalArgumentException if {@code occurrences} is negative    */
 comment|/*    * TODO(cpovirk): remove and removeExactly currently accept null inputs only    * if occurrences == 0. This satisfies both NullPointerTester and    * CollectionRemoveTester.testRemove_nullAllowed, but it's not clear that it's    * a good policy, especially because, in order for the test to pass, the    * parameter must be misleadingly annotated as @Nullable. I suspect that    * we'll want to remove @Nullable, add an eager checkNotNull, and loosen up    * testRemove_nullAllowed.    */
 annotation|@
+name|CanIgnoreReturnValue
+annotation|@
 name|Override
 DECL|method|remove (@ullable Object element, int occurrences)
 specifier|public
@@ -1101,6 +1131,8 @@ block|}
 block|}
 block|}
 comment|/**    * Removes exactly the specified number of occurrences of {@code element}, or makes no    * change if this is not possible.    *    *<p>This method, in contrast to {@link #remove(Object, int)}, has no effect when the    * element count is smaller than {@code occurrences}.    *    * @param element the element to remove    * @param occurrences the number of occurrences of {@code element} to remove    * @return {@code true} if the removal was possible (including if {@code occurrences} is zero)    * @throws IllegalArgumentException if {@code occurrences} is negative    */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|removeExactly (@ullable Object element, int occurrences)
 specifier|public
 name|boolean
@@ -1227,6 +1259,8 @@ block|}
 block|}
 block|}
 comment|/**    * Adds or removes occurrences of {@code element} such that the {@link #count} of the    * element becomes {@code count}.    *    * @return the count of {@code element} in the multiset before this call    * @throws IllegalArgumentException if {@code count} is negative    */
+annotation|@
+name|CanIgnoreReturnValue
 annotation|@
 name|Override
 DECL|method|setCount (E element, int count)
@@ -1437,6 +1471,8 @@ block|}
 block|}
 block|}
 comment|/**    * Sets the number of occurrences of {@code element} to {@code newCount}, but only if    * the count is currently {@code expectedOldCount}. If {@code element} does not appear    * in the multiset exactly {@code expectedOldCount} times, no changes will be made.    *    * @return {@code true} if the change was successful. This usually indicates    *     that the multiset has been modified, but not always: in the case that    *     {@code expectedOldCount == newCount}, the method will return {@code true} if    *     the condition was met.    * @throws IllegalArgumentException if {@code expectedOldCount} or {@code newCount} is negative    */
+annotation|@
+name|CanIgnoreReturnValue
 annotation|@
 name|Override
 DECL|method|setCount (E element, int expectedOldCount, int newCount)

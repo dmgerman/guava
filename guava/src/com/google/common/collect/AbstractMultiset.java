@@ -66,6 +66,20 @@ name|com
 operator|.
 name|google
 operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
 name|j2objc
 operator|.
 name|annotations
@@ -120,6 +134,16 @@ name|javax
 operator|.
 name|annotation
 operator|.
+name|CheckReturnValue
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
 name|Nullable
 import|;
 end_import
@@ -129,6 +153,8 @@ comment|/**  * This class provides a skeletal implementation of the {@link Multi
 end_comment
 
 begin_class
+annotation|@
+name|CheckReturnValue
 annotation|@
 name|GwtCompatible
 DECL|class|AbstractMultiset
@@ -279,6 +305,8 @@ return|;
 block|}
 comment|// Modification Operations
 annotation|@
+name|CanIgnoreReturnValue
+annotation|@
 name|Override
 DECL|method|add (@ullable E element)
 specifier|public
@@ -303,6 +331,8 @@ literal|true
 return|;
 block|}
 annotation|@
+name|CanIgnoreReturnValue
+annotation|@
 name|Override
 DECL|method|add (@ullable E element, int occurrences)
 specifier|public
@@ -324,6 +354,8 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
+annotation|@
+name|CanIgnoreReturnValue
 annotation|@
 name|Override
 DECL|method|remove (@ullable Object element)
@@ -349,6 +381,8 @@ literal|0
 return|;
 block|}
 annotation|@
+name|CanIgnoreReturnValue
+annotation|@
 name|Override
 DECL|method|remove (@ullable Object element, int occurrences)
 specifier|public
@@ -370,6 +404,8 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
+annotation|@
+name|CanIgnoreReturnValue
 annotation|@
 name|Override
 DECL|method|setCount (@ullable E element, int count)
@@ -397,6 +433,8 @@ name|count
 argument_list|)
 return|;
 block|}
+annotation|@
+name|CanIgnoreReturnValue
 annotation|@
 name|Override
 DECL|method|setCount (@ullable E element, int oldCount, int newCount)
@@ -432,6 +470,8 @@ block|}
 comment|// Bulk Operations
 comment|/**    * {@inheritDoc}    *    *<p>This implementation is highly efficient when {@code elementsToAdd}    * is itself a {@link Multiset}.    */
 annotation|@
+name|CanIgnoreReturnValue
+annotation|@
 name|Override
 DECL|method|addAll (Collection<? extends E> elementsToAdd)
 specifier|public
@@ -459,6 +499,8 @@ argument_list|)
 return|;
 block|}
 annotation|@
+name|CanIgnoreReturnValue
+annotation|@
 name|Override
 DECL|method|removeAll (Collection<?> elementsToRemove)
 specifier|public
@@ -483,6 +525,8 @@ name|elementsToRemove
 argument_list|)
 return|;
 block|}
+annotation|@
+name|CanIgnoreReturnValue
 annotation|@
 name|Override
 DECL|method|retainAll (Collection<?> elementsToRetain)

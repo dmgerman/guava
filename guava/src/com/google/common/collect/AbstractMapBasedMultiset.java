@@ -124,6 +124,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -198,6 +212,16 @@ name|javax
 operator|.
 name|annotation
 operator|.
+name|CheckReturnValue
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
 name|Nullable
 import|;
 end_import
@@ -207,6 +231,8 @@ comment|/**  * Basic implementation of {@code Multiset<E>} backed by an instance
 end_comment
 
 begin_class
+annotation|@
+name|CheckReturnValue
 annotation|@
 name|GwtCompatible
 argument_list|(
@@ -891,6 +917,8 @@ block|}
 comment|// Optional Operations - Modification Operations
 comment|/**    * {@inheritDoc}    *    * @throws IllegalArgumentException if the call would result in more than    *     {@link Integer#MAX_VALUE} occurrences of {@code element} in this    *     multiset.    */
 annotation|@
+name|CanIgnoreReturnValue
+annotation|@
 name|Override
 DECL|method|add (@ullable E element, int occurrences)
 specifier|public
@@ -1006,7 +1034,7 @@ argument_list|)
 expr_stmt|;
 name|frequency
 operator|.
-name|getAndAdd
+name|add
 argument_list|(
 name|occurrences
 argument_list|)
@@ -1020,6 +1048,8 @@ return|return
 name|oldCount
 return|;
 block|}
+annotation|@
+name|CanIgnoreReturnValue
 annotation|@
 name|Override
 DECL|method|remove (@ullable Object element, int occurrences)
@@ -1121,7 +1151,7 @@ expr_stmt|;
 block|}
 name|frequency
 operator|.
-name|addAndGet
+name|add
 argument_list|(
 operator|-
 name|numberRemoved
@@ -1136,6 +1166,8 @@ name|oldCount
 return|;
 block|}
 comment|// Roughly a 33% performance improvement over AbstractMultiset.setCount().
+annotation|@
+name|CanIgnoreReturnValue
 annotation|@
 name|Override
 DECL|method|setCount (@ullable E element, int count)
@@ -1245,12 +1277,14 @@ return|return
 name|oldCount
 return|;
 block|}
-DECL|method|getAndSet (Count i, int count)
+DECL|method|getAndSet (@ullable Count i, int count)
 specifier|private
 specifier|static
 name|int
 name|getAndSet
 parameter_list|(
+annotation|@
+name|Nullable
 name|Count
 name|i
 parameter_list|,

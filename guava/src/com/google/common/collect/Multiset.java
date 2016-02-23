@@ -32,6 +32,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -86,6 +100,16 @@ name|javax
 operator|.
 name|annotation
 operator|.
+name|CheckReturnValue
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
 name|Nullable
 import|;
 end_import
@@ -95,6 +119,8 @@ comment|/**  * A collection that supports order-independent equality, like {@lin
 end_comment
 
 begin_interface
+annotation|@
+name|CheckReturnValue
 annotation|@
 name|GwtCompatible
 DECL|interface|Multiset
@@ -124,6 +150,8 @@ parameter_list|)
 function_decl|;
 comment|// Bulk Operations
 comment|/**    * Adds a number of occurrences of an element to this multiset. Note that if    * {@code occurrences == 1}, this method has the identical effect to {@link    * #add(Object)}. This method is functionally equivalent (except in the case    * of overflow) to the call {@code addAll(Collections.nCopies(element,    * occurrences))}, which would presumably perform much more poorly.    *    * @param element the element to add occurrences of; may be null only if    *     explicitly allowed by the implementation    * @param occurrences the number of occurrences of the element to add. May be    *     zero, in which case no change will be made.    * @return the count of the element before the operation; possibly zero    * @throws IllegalArgumentException if {@code occurrences} is negative, or if    *     this operation would result in more than {@link Integer#MAX_VALUE}    *     occurrences of the element    * @throws NullPointerException if {@code element} is null and this    *     implementation does not permit null elements. Note that if {@code    *     occurrences} is zero, the implementation may opt to return normally.    */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|add (@ullable E element, int occurrences)
 name|int
 name|add
@@ -138,6 +166,8 @@ name|occurrences
 parameter_list|)
 function_decl|;
 comment|/**    * Removes a number of occurrences of the specified element from this    * multiset. If the multiset contains fewer than this number of occurrences to    * begin with, all occurrences will be removed.  Note that if    * {@code occurrences == 1}, this is functionally equivalent to the call    * {@code remove(element)}.    *    * @param element the element to conditionally remove occurrences of    * @param occurrences the number of occurrences of the element to remove. May    *     be zero, in which case no change will be made.    * @return the count of the element before the operation; possibly zero    * @throws IllegalArgumentException if {@code occurrences} is negative    */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|remove (@ullable Object element, int occurrences)
 name|int
 name|remove
@@ -152,6 +182,8 @@ name|occurrences
 parameter_list|)
 function_decl|;
 comment|/**    * Adds or removes the necessary occurrences of an element such that the    * element attains the desired count.    *    * @param element the element to add or remove occurrences of; may be null    *     only if explicitly allowed by the implementation    * @param count the desired count of the element in this multiset    * @return the count of the element before the operation; possibly zero    * @throws IllegalArgumentException if {@code count} is negative    * @throws NullPointerException if {@code element} is null and this    *     implementation does not permit null elements. Note that if {@code    *     count} is zero, the implementor may optionally return zero instead.    */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|setCount (E element, int count)
 name|int
 name|setCount
@@ -164,6 +196,8 @@ name|count
 parameter_list|)
 function_decl|;
 comment|/**    * Conditionally sets the count of an element to a new value, as described in    * {@link #setCount(Object, int)}, provided that the element has the expected    * current count. If the current count is not {@code oldCount}, no change is    * made.    *    * @param element the element to conditionally set the count of; may be null    *     only if explicitly allowed by the implementation    * @param oldCount the expected present count of the element in this multiset    * @param newCount the desired count of the element in this multiset    * @return {@code true} if the condition for modification was met. This    *     implies that the multiset was indeed modified, unless    *     {@code oldCount == newCount}.    * @throws IllegalArgumentException if {@code oldCount} or {@code newCount} is    *     negative    * @throws NullPointerException if {@code element} is null and the    *     implementation does not permit null elements. Note that if {@code    *     oldCount} and {@code newCount} are both zero, the implementor may    *     optionally return {@code true} instead.    */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|setCount (E element, int oldCount, int newCount)
 name|boolean
 name|setCount
@@ -321,6 +355,8 @@ parameter_list|)
 function_decl|;
 comment|/**    * Adds a single occurrence of the specified element to this multiset.    *    *<p>This method refines {@link Collection#add}, which only<i>ensures</i>    * the presence of the element, to further specify that a successful call must    * always increment the count of the element, and the overall size of the    * collection, by one.    *    *<p>To both add the element and obtain the previous count of that element,    * use {@link #add(E, int) add}{@code (element, 1)} instead.    *    * @param element the element to add one occurrence of; may be null only if    *     explicitly allowed by the implementation    * @return {@code true} always, since this call is required to modify the    *     multiset, unlike other {@link Collection} types    * @throws NullPointerException if {@code element} is null and this    *     implementation does not permit null elements    * @throws IllegalArgumentException if {@link Integer#MAX_VALUE} occurrences    *     of {@code element} are already contained in this multiset    */
 annotation|@
+name|CanIgnoreReturnValue
+annotation|@
 name|Override
 DECL|method|add (E element)
 name|boolean
@@ -331,6 +367,8 @@ name|element
 parameter_list|)
 function_decl|;
 comment|/**    * Removes a<i>single</i> occurrence of the specified element from this    * multiset, if present.    *    *<p>This method refines {@link Collection#remove} to further specify that it    *<b>may not</b> throw an exception in response to {@code element} being null    * or of the wrong type.    *    *<p>To both remove the element and obtain the previous count of that element,    * use {@link #remove(E, int) remove}{@code (element, 1)} instead.    *    * @param element the element to remove one occurrence of    * @return {@code true} if an occurrence was found and removed    */
+annotation|@
+name|CanIgnoreReturnValue
 annotation|@
 name|Override
 DECL|method|remove (@ullable Object element)
@@ -345,6 +383,8 @@ parameter_list|)
 function_decl|;
 comment|/**    * {@inheritDoc}    *    *<p><b>Note:</b> This method ignores how often any element might appear in    * {@code c}, and only cares whether or not an element appears at all.    * If you wish to remove one occurrence in this multiset for every occurrence    * in {@code c}, see {@link Multisets#removeOccurrences(Multiset, Multiset)}.    *    *<p>This method refines {@link Collection#removeAll} to further specify that    * it<b>may not</b> throw an exception in response to any of {@code elements}    * being null or of the wrong type.    */
 annotation|@
+name|CanIgnoreReturnValue
+annotation|@
 name|Override
 DECL|method|removeAll (Collection<?> c)
 name|boolean
@@ -358,6 +398,8 @@ name|c
 parameter_list|)
 function_decl|;
 comment|/**    * {@inheritDoc}    *    *<p><b>Note:</b> This method ignores how often any element might appear in    * {@code c}, and only cares whether or not an element appears at all.    * If you wish to remove one occurrence in this multiset for every occurrence    * in {@code c}, see {@link Multisets#retainOccurrences(Multiset, Multiset)}.    *    *<p>This method refines {@link Collection#retainAll} to further specify that    * it<b>may not</b> throw an exception in response to any of {@code elements}    * being null or of the wrong type.    *    * @see Multisets#retainOccurrences(Multiset, Multiset)    */
+annotation|@
+name|CanIgnoreReturnValue
 annotation|@
 name|Override
 DECL|method|retainAll (Collection<?> c)
