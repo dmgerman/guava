@@ -242,6 +242,64 @@ specifier|final
 class|class
 name|BigIntegerMath
 block|{
+comment|/**    * Returns the smallest power of two greater than or equal to {@code x}.  This is equivalent to    * {@code BigInteger.valueOf(2).pow(log2(x, CEILING))}.    *    * @throws IllegalArgumentException if {@code x<= 0}    */
+DECL|method|ceilingPowerOfTwo (BigInteger x)
+specifier|public
+specifier|static
+name|BigInteger
+name|ceilingPowerOfTwo
+parameter_list|(
+name|BigInteger
+name|x
+parameter_list|)
+block|{
+return|return
+name|BigInteger
+operator|.
+name|ZERO
+operator|.
+name|setBit
+argument_list|(
+name|log2
+argument_list|(
+name|x
+argument_list|,
+name|RoundingMode
+operator|.
+name|CEILING
+argument_list|)
+argument_list|)
+return|;
+block|}
+comment|/**    * Returns the largest power of two less than or equal to {@code x}.  This is equivalent to    * {@code BigInteger.valueOf(2).pow(log2(x, FLOOR))}.    *    * @throws IllegalArgumentException if {@code x<= 0}    */
+DECL|method|floorPowerOfTwo (BigInteger x)
+specifier|public
+specifier|static
+name|BigInteger
+name|floorPowerOfTwo
+parameter_list|(
+name|BigInteger
+name|x
+parameter_list|)
+block|{
+return|return
+name|BigInteger
+operator|.
+name|ZERO
+operator|.
+name|setBit
+argument_list|(
+name|log2
+argument_list|(
+name|x
+argument_list|,
+name|RoundingMode
+operator|.
+name|FLOOR
+argument_list|)
+argument_list|)
+return|;
+block|}
 comment|/**    * Returns {@code true} if {@code x} represents a power of two.    */
 DECL|method|isPowerOfTwo (BigInteger x)
 specifier|public
