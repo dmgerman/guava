@@ -242,7 +242,7 @@ specifier|final
 class|class
 name|BigIntegerMath
 block|{
-comment|/**    * Returns the smallest power of two greater than or equal to {@code x}.  This is equivalent to    * {@code BigInteger.valueOf(2).pow(log2(x, CEILING))}.    *    * @throws IllegalArgumentException if {@code x<= 0}    */
+comment|/**    * Returns the smallest power of two greater than or equal to {@code x}.  This is equivalent to    * {@code BigInteger.valueOf(2).pow(log2(x, CEILING))}.    *    * @throws IllegalArgumentException if {@code x<= 0}    * @since 20.0    */
 DECL|method|ceilingPowerOfTwo (BigInteger x)
 specifier|public
 specifier|static
@@ -271,7 +271,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the largest power of two less than or equal to {@code x}.  This is equivalent to    * {@code BigInteger.valueOf(2).pow(log2(x, FLOOR))}.    *    * @throws IllegalArgumentException if {@code x<= 0}    */
+comment|/**    * Returns the largest power of two less than or equal to {@code x}.  This is equivalent to    * {@code BigInteger.valueOf(2).pow(log2(x, FLOOR))}.    *    * @throws IllegalArgumentException if {@code x<= 0}    * @since 20.0    */
 DECL|method|floorPowerOfTwo (BigInteger x)
 specifier|public
 specifier|static
