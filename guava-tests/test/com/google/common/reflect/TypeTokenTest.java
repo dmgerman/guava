@@ -16628,6 +16628,12 @@ name|testDespiteGenericSignatureFormatError
 parameter_list|()
 block|{
 name|ImmutableSet
+argument_list|<
+name|?
+argument_list|>
+name|unused
+init|=
+name|ImmutableSet
 operator|.
 name|copyOf
 argument_list|(
@@ -16650,7 +16656,7 @@ operator|.
 name|rawTypes
 argument_list|()
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 block|}
 end_function
 

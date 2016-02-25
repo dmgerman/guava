@@ -80,6 +80,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -154,6 +168,16 @@ name|javax
 operator|.
 name|annotation
 operator|.
+name|CheckReturnValue
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
 name|Nullable
 import|;
 end_import
@@ -163,6 +187,8 @@ comment|/**  * A {@link Collection} whose contents will never change, and which 
 end_comment
 
 begin_class
+annotation|@
+name|CheckReturnValue
 annotation|@
 name|GwtCompatible
 argument_list|(
@@ -262,6 +288,8 @@ name|result
 return|;
 block|}
 annotation|@
+name|CanIgnoreReturnValue
+annotation|@
 name|Override
 DECL|method|toArray (T[] other)
 specifier|public
@@ -355,6 +383,8 @@ parameter_list|)
 function_decl|;
 comment|/**    * Guaranteed to throw an exception and leave the collection unmodified.    *    * @throws UnsupportedOperationException always    * @deprecated Unsupported operation.    */
 annotation|@
+name|CanIgnoreReturnValue
+annotation|@
 name|Deprecated
 annotation|@
 name|Override
@@ -376,6 +406,8 @@ throw|;
 block|}
 comment|/**    * Guaranteed to throw an exception and leave the collection unmodified.    *    * @throws UnsupportedOperationException always    * @deprecated Unsupported operation.    */
 annotation|@
+name|CanIgnoreReturnValue
+annotation|@
 name|Deprecated
 annotation|@
 name|Override
@@ -396,6 +428,8 @@ argument_list|()
 throw|;
 block|}
 comment|/**    * Guaranteed to throw an exception and leave the collection unmodified.    *    * @throws UnsupportedOperationException always    * @deprecated Unsupported operation.    */
+annotation|@
+name|CanIgnoreReturnValue
 annotation|@
 name|Deprecated
 annotation|@
@@ -423,6 +457,8 @@ throw|;
 block|}
 comment|/**    * Guaranteed to throw an exception and leave the collection unmodified.    *    * @throws UnsupportedOperationException always    * @deprecated Unsupported operation.    */
 annotation|@
+name|CanIgnoreReturnValue
+annotation|@
 name|Deprecated
 annotation|@
 name|Override
@@ -446,6 +482,8 @@ argument_list|()
 throw|;
 block|}
 comment|/**    * Guaranteed to throw an exception and leave the collection unmodified.    *    * @throws UnsupportedOperationException always    * @deprecated Unsupported operation.    */
+annotation|@
+name|CanIgnoreReturnValue
 annotation|@
 name|Deprecated
 annotation|@
@@ -594,6 +632,8 @@ name|isPartialView
 parameter_list|()
 function_decl|;
 comment|/**    * Copies the contents of this immutable collection into the specified array at the specified    * offset.  Returns {@code offset + size()}.    */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|copyIntoArray (Object[] dst, int offset)
 name|int
 name|copyIntoArray
@@ -749,6 +789,8 @@ name|Builder
 parameter_list|()
 block|{}
 comment|/**      * Adds {@code element} to the {@code ImmutableCollection} being built.      *      *<p>Note that each builder class covariantly returns its own type from      * this method.      *      * @param element the element to add      * @return this {@code Builder} instance      * @throws NullPointerException if {@code element} is null      */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|add (E element)
 specifier|public
 specifier|abstract
@@ -763,6 +805,8 @@ name|element
 parameter_list|)
 function_decl|;
 comment|/**      * Adds each element of {@code elements} to the {@code ImmutableCollection}      * being built.      *      *<p>Note that each builder class overrides this method in order to      * covariantly return its own type.      *      * @param elements the elements to add      * @return this {@code Builder} instance      * @throws NullPointerException if {@code elements} is null or contains a      *     null element      */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|add (E... elements)
 specifier|public
 name|Builder
@@ -795,6 +839,8 @@ name|this
 return|;
 block|}
 comment|/**      * Adds each element of {@code elements} to the {@code ImmutableCollection}      * being built.      *      *<p>Note that each builder class overrides this method in order to      * covariantly return its own type.      *      * @param elements the elements to add      * @return this {@code Builder} instance      * @throws NullPointerException if {@code elements} is null or contains a      *     null element      */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|addAll (Iterable<? extends E> elements)
 specifier|public
 name|Builder
@@ -831,6 +877,8 @@ name|this
 return|;
 block|}
 comment|/**      * Adds each element of {@code elements} to the {@code ImmutableCollection}      * being built.      *      *<p>Note that each builder class overrides this method in order to      * covariantly return its own type.      *      * @param elements the elements to add      * @return this {@code Builder} instance      * @throws NullPointerException if {@code elements} is null or contains a      *     null element      */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|addAll (Iterator<? extends E> elements)
 specifier|public
 name|Builder
@@ -981,6 +1029,8 @@ expr_stmt|;
 block|}
 block|}
 annotation|@
+name|CanIgnoreReturnValue
+annotation|@
 name|Override
 DECL|method|add (E element)
 specifier|public
@@ -1018,6 +1068,8 @@ return|return
 name|this
 return|;
 block|}
+annotation|@
+name|CanIgnoreReturnValue
 annotation|@
 name|Override
 DECL|method|add (E... elements)
@@ -1074,6 +1126,8 @@ return|return
 name|this
 return|;
 block|}
+annotation|@
+name|CanIgnoreReturnValue
 annotation|@
 name|Override
 DECL|method|addAll (Iterable<? extends E> elements)

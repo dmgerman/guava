@@ -60,6 +60,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -136,6 +150,16 @@ name|javax
 operator|.
 name|annotation
 operator|.
+name|CheckReturnValue
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
 name|Nullable
 import|;
 end_import
@@ -145,6 +169,8 @@ comment|/**  * A {@link ListMultimap} whose contents will never change, with man
 end_comment
 
 begin_class
+annotation|@
+name|CheckReturnValue
 annotation|@
 name|GwtCompatible
 argument_list|(
@@ -702,6 +728,8 @@ name|Builder
 parameter_list|()
 block|{}
 annotation|@
+name|CanIgnoreReturnValue
+annotation|@
 name|Override
 DECL|method|put (K key, V value)
 specifier|public
@@ -734,6 +762,8 @@ name|this
 return|;
 block|}
 comment|/**      * {@inheritDoc}      *      * @since 11.0      */
+annotation|@
+name|CanIgnoreReturnValue
 annotation|@
 name|Override
 DECL|method|put (Entry<? extends K, ? extends V> entry)
@@ -771,6 +801,8 @@ name|this
 return|;
 block|}
 comment|/**      * {@inheritDoc}      *      * @since 19.0      */
+annotation|@
+name|CanIgnoreReturnValue
 annotation|@
 name|Beta
 annotation|@
@@ -815,6 +847,8 @@ name|this
 return|;
 block|}
 annotation|@
+name|CanIgnoreReturnValue
+annotation|@
 name|Override
 DECL|method|putAll (K key, Iterable<? extends V> values)
 specifier|public
@@ -852,6 +886,8 @@ name|this
 return|;
 block|}
 annotation|@
+name|CanIgnoreReturnValue
+annotation|@
 name|Override
 DECL|method|putAll (K key, V... values)
 specifier|public
@@ -884,6 +920,8 @@ return|return
 name|this
 return|;
 block|}
+annotation|@
+name|CanIgnoreReturnValue
 annotation|@
 name|Override
 DECL|method|putAll (Multimap<? extends K, ? extends V> multimap)
@@ -922,6 +960,8 @@ return|;
 block|}
 comment|/**      * {@inheritDoc}      *      * @since 8.0      */
 annotation|@
+name|CanIgnoreReturnValue
+annotation|@
 name|Override
 DECL|method|orderKeysBy (Comparator<? super K> keyComparator)
 specifier|public
@@ -954,6 +994,8 @@ name|this
 return|;
 block|}
 comment|/**      * {@inheritDoc}      *      * @since 8.0      */
+annotation|@
+name|CanIgnoreReturnValue
 annotation|@
 name|Override
 DECL|method|orderValuesBy (Comparator<? super V> valueComparator)
@@ -1504,6 +1546,8 @@ return|;
 block|}
 comment|/**    * Guaranteed to throw an exception and leave the multimap unmodified.    *    * @throws UnsupportedOperationException always    * @deprecated Unsupported operation.    */
 annotation|@
+name|CanIgnoreReturnValue
+annotation|@
 name|Deprecated
 annotation|@
 name|Override
@@ -1526,6 +1570,8 @@ argument_list|()
 throw|;
 block|}
 comment|/**    * Guaranteed to throw an exception and leave the multimap unmodified.    *    * @throws UnsupportedOperationException always    * @deprecated Unsupported operation.    */
+annotation|@
+name|CanIgnoreReturnValue
 annotation|@
 name|Deprecated
 annotation|@

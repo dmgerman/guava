@@ -94,6 +94,20 @@ name|com
 operator|.
 name|google
 operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
 name|j2objc
 operator|.
 name|annotations
@@ -210,6 +224,16 @@ name|javax
 operator|.
 name|annotation
 operator|.
+name|CheckReturnValue
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
 name|Nullable
 import|;
 end_import
@@ -219,6 +243,8 @@ comment|/**  * A {@link SetMultimap} whose contents will never change, with many
 end_comment
 
 begin_class
+annotation|@
+name|CheckReturnValue
 annotation|@
 name|GwtCompatible
 argument_list|(
@@ -797,6 +823,8 @@ expr_stmt|;
 block|}
 comment|/**      * Adds a key-value mapping to the built multimap if it is not already      * present.      */
 annotation|@
+name|CanIgnoreReturnValue
+annotation|@
 name|Override
 DECL|method|put (K key, V value)
 specifier|public
@@ -835,6 +863,8 @@ name|this
 return|;
 block|}
 comment|/**      * Adds an entry to the built multimap if it is not already present.      *      * @since 11.0      */
+annotation|@
+name|CanIgnoreReturnValue
 annotation|@
 name|Override
 DECL|method|put (Entry<? extends K, ? extends V> entry)
@@ -887,6 +917,8 @@ return|;
 block|}
 comment|/**      * {@inheritDoc}      *      * @since 19.0      */
 annotation|@
+name|CanIgnoreReturnValue
+annotation|@
 name|Beta
 annotation|@
 name|Override
@@ -929,6 +961,8 @@ return|return
 name|this
 return|;
 block|}
+annotation|@
+name|CanIgnoreReturnValue
 annotation|@
 name|Override
 DECL|method|putAll (K key, Iterable<? extends V> values)
@@ -993,6 +1027,8 @@ name|this
 return|;
 block|}
 annotation|@
+name|CanIgnoreReturnValue
+annotation|@
 name|Override
 DECL|method|putAll (K key, V... values)
 specifier|public
@@ -1026,6 +1062,8 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+annotation|@
+name|CanIgnoreReturnValue
 annotation|@
 name|Override
 DECL|method|putAll (Multimap<? extends K, ? extends V> multimap)
@@ -1099,6 +1137,8 @@ return|;
 block|}
 comment|/**      * {@inheritDoc}      *      * @since 8.0      */
 annotation|@
+name|CanIgnoreReturnValue
+annotation|@
 name|Override
 DECL|method|orderKeysBy (Comparator<? super K> keyComparator)
 specifier|public
@@ -1134,6 +1174,8 @@ return|;
 block|}
 comment|/**      * Specifies the ordering of the generated multimap's values for each key.      *      *<p>If this method is called, the sets returned by the {@code get()}      * method of the generated multimap and its {@link Multimap#asMap()} view      * are {@link ImmutableSortedSet} instances. However, serialization does not      * preserve that property, though it does maintain the key and value      * ordering.      *      * @since 8.0      */
 comment|// TODO: Make serialization behavior consistent.
+annotation|@
+name|CanIgnoreReturnValue
 annotation|@
 name|Override
 DECL|method|orderValuesBy (Comparator<? super V> valueComparator)
@@ -1881,6 +1923,8 @@ return|;
 block|}
 comment|/**    * Guaranteed to throw an exception and leave the multimap unmodified.    *    * @throws UnsupportedOperationException always    * @deprecated Unsupported operation.    */
 annotation|@
+name|CanIgnoreReturnValue
+annotation|@
 name|Deprecated
 annotation|@
 name|Override
@@ -1903,6 +1947,8 @@ argument_list|()
 throw|;
 block|}
 comment|/**    * Guaranteed to throw an exception and leave the multimap unmodified.    *    * @throws UnsupportedOperationException always    * @deprecated Unsupported operation.    */
+annotation|@
+name|CanIgnoreReturnValue
 annotation|@
 name|Deprecated
 annotation|@

@@ -96,6 +96,20 @@ name|com
 operator|.
 name|google
 operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
 name|j2objc
 operator|.
 name|annotations
@@ -226,6 +240,16 @@ name|javax
 operator|.
 name|annotation
 operator|.
+name|CheckReturnValue
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
 name|Nullable
 import|;
 end_import
@@ -235,6 +259,8 @@ comment|/**  * A {@link Multimap} whose contents will never change, with many ot
 end_comment
 
 begin_class
+annotation|@
+name|CheckReturnValue
 annotation|@
 name|GwtCompatible
 argument_list|(
@@ -677,6 +703,8 @@ name|builderMultimap
 expr_stmt|;
 block|}
 comment|/**      * Adds a key-value mapping to the built multimap.      */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|put (K key, V value)
 specifier|public
 name|Builder
@@ -715,6 +743,8 @@ name|this
 return|;
 block|}
 comment|/**      * Adds an entry to the built multimap.      *      * @since 11.0      */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|put (Entry<? extends K, ? extends V> entry)
 specifier|public
 name|Builder
@@ -754,6 +784,8 @@ argument_list|)
 return|;
 block|}
 comment|/**      * Adds entries to the built multimap.      *      * @since 19.0      */
+annotation|@
+name|CanIgnoreReturnValue
 annotation|@
 name|Beta
 DECL|method|putAll (Iterable<? extends Entry<? extends K, ? extends V>> entries)
@@ -812,6 +844,8 @@ name|this
 return|;
 block|}
 comment|/**      * Stores a collection of values with the same key in the built multimap.      *      * @throws NullPointerException if {@code key}, {@code values}, or any      *     element in {@code values} is null. The builder is left in an invalid      *     state.      */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|putAll (K key, Iterable<? extends V> values)
 specifier|public
 name|Builder
@@ -897,6 +931,8 @@ name|this
 return|;
 block|}
 comment|/**      * Stores an array of values with the same key in the built multimap.      *      * @throws NullPointerException if the key or any value is null. The builder      *     is left in an invalid state.      */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|putAll (K key, V... values)
 specifier|public
 name|Builder
@@ -930,6 +966,8 @@ argument_list|)
 return|;
 block|}
 comment|/**      * Stores another multimap's entries in the built multimap. The generated      * multimap's key and value orderings correspond to the iteration ordering      * of the {@code multimap.asMap()} view, with new keys and values following      * any existing keys and values.      *      * @throws NullPointerException if any key or value in {@code multimap} is      *     null. The builder is left in an invalid state.      */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|putAll (Multimap<? extends K, ? extends V> multimap)
 specifier|public
 name|Builder
@@ -1000,6 +1038,8 @@ name|this
 return|;
 block|}
 comment|/**      * Specifies the ordering of the generated multimap's keys.      *      * @since 8.0      */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|orderKeysBy (Comparator<? super K> keyComparator)
 specifier|public
 name|Builder
@@ -1033,6 +1073,8 @@ name|this
 return|;
 block|}
 comment|/**      * Specifies the ordering of the generated multimap's values for each key.      *      * @since 8.0      */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|orderValuesBy (Comparator<? super V> valueComparator)
 specifier|public
 name|Builder
@@ -1510,6 +1552,8 @@ block|}
 comment|// mutators (not supported)
 comment|/**    * Guaranteed to throw an exception and leave the multimap unmodified.    *    * @throws UnsupportedOperationException always    * @deprecated Unsupported operation.    */
 annotation|@
+name|CanIgnoreReturnValue
+annotation|@
 name|Deprecated
 annotation|@
 name|Override
@@ -1532,6 +1576,8 @@ argument_list|()
 throw|;
 block|}
 comment|/**    * Guaranteed to throw an exception and leave the multimap unmodified.    *    * @throws UnsupportedOperationException always    * @deprecated Unsupported operation.    */
+annotation|@
+name|CanIgnoreReturnValue
 annotation|@
 name|Deprecated
 annotation|@
@@ -1610,6 +1656,8 @@ parameter_list|()
 function_decl|;
 comment|/**    * Guaranteed to throw an exception and leave the multimap unmodified.    *    * @throws UnsupportedOperationException always    * @deprecated Unsupported operation.    */
 annotation|@
+name|CanIgnoreReturnValue
+annotation|@
 name|Deprecated
 annotation|@
 name|Override
@@ -1632,6 +1680,8 @@ argument_list|()
 throw|;
 block|}
 comment|/**    * Guaranteed to throw an exception and leave the multimap unmodified.    *    * @throws UnsupportedOperationException always    * @deprecated Unsupported operation.    */
+annotation|@
+name|CanIgnoreReturnValue
 annotation|@
 name|Deprecated
 annotation|@
@@ -1661,6 +1711,8 @@ throw|;
 block|}
 comment|/**    * Guaranteed to throw an exception and leave the multimap unmodified.    *    * @throws UnsupportedOperationException always    * @deprecated Unsupported operation.    */
 annotation|@
+name|CanIgnoreReturnValue
+annotation|@
 name|Deprecated
 annotation|@
 name|Override
@@ -1689,6 +1741,8 @@ argument_list|()
 throw|;
 block|}
 comment|/**    * Guaranteed to throw an exception and leave the multimap unmodified.    *    * @throws UnsupportedOperationException always    * @deprecated Unsupported operation.    */
+annotation|@
+name|CanIgnoreReturnValue
 annotation|@
 name|Deprecated
 annotation|@

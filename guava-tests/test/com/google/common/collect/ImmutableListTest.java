@@ -1803,6 +1803,15 @@ argument_list|)
 decl_stmt|;
 comment|// only verify that there is no compile warning
 name|ImmutableList
+argument_list|<
+name|List
+argument_list|<
+name|String
+argument_list|>
+argument_list|>
+name|unused
+init|=
+name|ImmutableList
 operator|.
 name|of
 argument_list|(
@@ -1810,7 +1819,7 @@ name|a
 argument_list|,
 name|a
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 block|}
 DECL|method|testCreation_arrayOfArray ()
 specifier|public
@@ -2679,12 +2688,18 @@ name|CountingIterable
 argument_list|()
 decl_stmt|;
 name|ImmutableList
+argument_list|<
+name|String
+argument_list|>
+name|unused
+init|=
+name|ImmutableList
 operator|.
 name|copyOf
 argument_list|(
 name|iterable
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|assertEquals
 argument_list|(
 literal|1

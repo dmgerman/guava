@@ -98,6 +98,20 @@ name|com
 operator|.
 name|google
 operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
 name|j2objc
 operator|.
 name|annotations
@@ -192,6 +206,16 @@ name|javax
 operator|.
 name|annotation
 operator|.
+name|CheckReturnValue
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
 name|Nullable
 import|;
 end_import
@@ -201,6 +225,8 @@ comment|/**  * A {@link Map} whose contents will never change, with many other i
 end_comment
 
 begin_class
+annotation|@
+name|CheckReturnValue
 annotation|@
 name|GwtCompatible
 argument_list|(
@@ -838,6 +864,8 @@ expr_stmt|;
 block|}
 block|}
 comment|/**      * Associates {@code key} with {@code value} in the built map. Duplicate      * keys are not allowed, and will cause {@link #build} to fail.      */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|put (K key, V value)
 specifier|public
 name|Builder
@@ -891,6 +919,8 @@ name|this
 return|;
 block|}
 comment|/**      * Adds the given {@code entry} to the map, making it immutable if      * necessary. Duplicate keys are not allowed, and will cause {@link #build}      * to fail.      *      * @since 11.0      */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|put (Entry<? extends K, ? extends V> entry)
 specifier|public
 name|Builder
@@ -930,6 +960,8 @@ argument_list|)
 return|;
 block|}
 comment|/**      * Associates all of the given map's keys and values in the built map.      * Duplicate keys are not allowed, and will cause {@link #build} to fail.      *      * @throws NullPointerException if any key or value in {@code map} is null      */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|putAll (Map<? extends K, ? extends V> map)
 specifier|public
 name|Builder
@@ -964,6 +996,8 @@ argument_list|)
 return|;
 block|}
 comment|/**      * Adds all of the given entries to the built map.  Duplicate keys are not      * allowed, and will cause {@link #build} to fail.      *      * @throws NullPointerException if any key, value, or entry is null      * @since 19.0      */
+annotation|@
+name|CanIgnoreReturnValue
 annotation|@
 name|Beta
 DECL|method|putAll (Iterable<? extends Entry<? extends K, ? extends V>> entries)
@@ -1048,6 +1082,8 @@ name|this
 return|;
 block|}
 comment|/**      * Configures this {@code Builder} to order entries by value according to the specified      * comparator.      *      *<p>The sort order is stable, that is, if two entries have values that compare      * as equivalent, the entry that was inserted first will be first in the built map's      * iteration order.      *      * @throws IllegalStateException if this method was already called      * @since 19.0      */
+annotation|@
+name|CanIgnoreReturnValue
 annotation|@
 name|Beta
 DECL|method|orderEntriesByValue (Comparator<? super V> valueComparator)
@@ -1714,6 +1750,8 @@ parameter_list|()
 block|{}
 comment|/**    * Guaranteed to throw an exception and leave the map unmodified.    *    * @throws UnsupportedOperationException always    * @deprecated Unsupported operation.    */
 annotation|@
+name|CanIgnoreReturnValue
+annotation|@
 name|Deprecated
 annotation|@
 name|Override
@@ -1737,6 +1775,8 @@ argument_list|()
 throw|;
 block|}
 comment|/**    * Guaranteed to throw an exception and leave the map unmodified.    *    * @throws UnsupportedOperationException always    * @deprecated Unsupported operation.    */
+annotation|@
+name|CanIgnoreReturnValue
 annotation|@
 name|Deprecated
 annotation|@
