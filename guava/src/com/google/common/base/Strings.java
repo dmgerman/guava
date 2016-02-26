@@ -78,16 +78,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Formatter
-import|;
-end_import
-
-begin_import
-import|import
 name|javax
 operator|.
 name|annotation
@@ -189,7 +179,7 @@ name|isEmpty
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns a string, of length at least {@code minLength}, consisting of {@code string} prepended    * with as many copies of {@code padChar} as are necessary to reach that length. For example,    *    *<ul>    *<li>{@code padStart("7", 3, '0')} returns {@code "007"}    *<li>{@code padStart("2010", 3, '0')} returns {@code "2010"}    *</ul>    *    *<p>See {@link Formatter} for a richer set of formatting capabilities.    *    * @param string the string which should appear at the end of the result    * @param minLength the minimum length the resulting string must have. Can be zero or negative, in    *     which case the input string is always returned.    * @param padChar the character to insert at the beginning of the result until the minimum length    *     is reached    * @return the padded string    */
+comment|/**    * Returns a string, of length at least {@code minLength}, consisting of {@code string} prepended    * with as many copies of {@code padChar} as are necessary to reach that length. For example,    *    *<ul>    *<li>{@code padStart("7", 3, '0')} returns {@code "007"}    *<li>{@code padStart("2010", 3, '0')} returns {@code "2010"}    *</ul>    *    *<p>See {@link java.util.Formatter} for a richer set of formatting capabilities.    *    * @param string the string which should appear at the end of the result    * @param minLength the minimum length the resulting string must have. Can be zero or negative, in    *     which case the input string is always returned.    * @param padChar the character to insert at the beginning of the result until the minimum length    *     is reached    * @return the padded string    */
 DECL|method|padStart (String string, int minLength, char padChar)
 specifier|public
 specifier|static
@@ -275,7 +265,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns a string, of length at least {@code minLength}, consisting of {@code string} appended    * with as many copies of {@code padChar} as are necessary to reach that length. For example,    *    *<ul>    *<li>{@code padEnd("4.", 5, '0')} returns {@code "4.000"}    *<li>{@code padEnd("2010", 3, '!')} returns {@code "2010"}    *</ul>    *    *<p>See {@link Formatter} for a richer set of formatting capabilities.    *    * @param string the string which should appear at the beginning of the result    * @param minLength the minimum length the resulting string must have. Can be zero or negative, in    *     which case the input string is always returned.    * @param padChar the character to append to the end of the result until the minimum length is    *     reached    * @return the padded string    */
+comment|/**    * Returns a string, of length at least {@code minLength}, consisting of {@code string} appended    * with as many copies of {@code padChar} as are necessary to reach that length. For example,    *    *<ul>    *<li>{@code padEnd("4.", 5, '0')} returns {@code "4.000"}    *<li>{@code padEnd("2010", 3, '!')} returns {@code "2010"}    *</ul>    *    *<p>See {@link java.util.Formatter} for a richer set of formatting capabilities.    *    * @param string the string which should appear at the beginning of the result    * @param minLength the minimum length the resulting string must have. Can be zero or negative, in    *     which case the input string is always returned.    * @param padChar the character to append to the end of the result until the minimum length is    *     reached    * @return the padded string    */
 DECL|method|padEnd (String string, int minLength, char padChar)
 specifier|public
 specifier|static
