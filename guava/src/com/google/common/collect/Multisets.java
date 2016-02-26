@@ -351,12 +351,12 @@ operator|instanceof
 name|ImmutableMultiset
 condition|)
 block|{
-comment|// Since it's unmodifiable, the covariant cast is safe
 annotation|@
 name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
+comment|// Since it's unmodifiable, the covariant cast is safe
 name|Multiset
 argument_list|<
 name|E
@@ -629,11 +629,6 @@ name|es
 return|;
 block|}
 annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
-annotation|@
 name|Override
 DECL|method|iterator ()
 specifier|public
@@ -644,16 +639,12 @@ argument_list|>
 name|iterator
 parameter_list|()
 block|{
-comment|// Safe because the returned Iterator is made unmodifiable
 return|return
-operator|(
-name|Iterator
-argument_list|<
-name|E
-argument_list|>
-operator|)
 name|Iterators
 operator|.
+expr|<
+name|E
+operator|>
 name|unmodifiableIterator
 argument_list|(
 name|delegate

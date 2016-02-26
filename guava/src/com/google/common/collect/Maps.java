@@ -2011,7 +2011,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-DECL|method|unmodifiableMap (Map<K, V> map)
+DECL|method|unmodifiableMap (Map<K, ? extends V> map)
 specifier|private
 specifier|static
 parameter_list|<
@@ -2031,6 +2031,8 @@ name|Map
 argument_list|<
 name|K
 argument_list|,
+name|?
+extends|extends
 name|V
 argument_list|>
 name|map

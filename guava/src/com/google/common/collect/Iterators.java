@@ -648,7 +648,7 @@ name|EMPTY_MODIFIABLE_ITERATOR
 return|;
 block|}
 comment|/** Returns an unmodifiable view of {@code iterator}. */
-DECL|method|unmodifiableIterator (final Iterator<T> iterator)
+DECL|method|unmodifiableIterator ( final Iterator<? extends T> iterator)
 specifier|public
 specifier|static
 parameter_list|<
@@ -663,6 +663,8 @@ parameter_list|(
 specifier|final
 name|Iterator
 argument_list|<
+name|?
+extends|extends
 name|T
 argument_list|>
 name|iterator
@@ -680,7 +682,18 @@ operator|instanceof
 name|UnmodifiableIterator
 condition|)
 block|{
-return|return
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
+comment|// Since it's unmodifiable, the covariant cast is safe
+name|UnmodifiableIterator
+argument_list|<
+name|T
+argument_list|>
+name|result
+init|=
 operator|(
 name|UnmodifiableIterator
 argument_list|<
@@ -688,6 +701,9 @@ name|T
 argument_list|>
 operator|)
 name|iterator
+decl_stmt|;
+return|return
+name|result
 return|;
 block|}
 return|return

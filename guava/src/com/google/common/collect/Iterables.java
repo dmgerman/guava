@@ -298,7 +298,7 @@ name|Iterables
 parameter_list|()
 block|{}
 comment|/** Returns an unmodifiable view of {@code iterable}. */
-DECL|method|unmodifiableIterable (final Iterable<T> iterable)
+DECL|method|unmodifiableIterable (final Iterable<? extends T> iterable)
 specifier|public
 specifier|static
 parameter_list|<
@@ -313,6 +313,8 @@ parameter_list|(
 specifier|final
 name|Iterable
 argument_list|<
+name|?
+extends|extends
 name|T
 argument_list|>
 name|iterable
@@ -334,8 +336,28 @@ operator|instanceof
 name|ImmutableCollection
 condition|)
 block|{
-return|return
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
+comment|// Since it's unmodifiable, the covariant cast is safe
+name|Iterable
+argument_list|<
+name|T
+argument_list|>
+name|result
+init|=
+operator|(
+name|Iterable
+argument_list|<
+name|T
+argument_list|>
+operator|)
 name|iterable
+decl_stmt|;
+return|return
+name|result
 return|;
 block|}
 return|return
@@ -398,16 +420,20 @@ specifier|private
 specifier|final
 name|Iterable
 argument_list|<
+name|?
+extends|extends
 name|T
 argument_list|>
 name|iterable
 decl_stmt|;
-DECL|method|UnmodifiableIterable (Iterable<T> iterable)
+DECL|method|UnmodifiableIterable (Iterable<? extends T> iterable)
 specifier|private
 name|UnmodifiableIterable
 parameter_list|(
 name|Iterable
 argument_list|<
+name|?
+extends|extends
 name|T
 argument_list|>
 name|iterable
