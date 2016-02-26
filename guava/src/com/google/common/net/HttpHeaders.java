@@ -376,7 +376,7 @@ name|REFERER
 init|=
 literal|"Referer"
 decl_stmt|;
-comment|/** The HTTP {@code Service-Worker} header field name. */
+comment|/**    * The HTTP<a href="https://www.w3.org/TR/service-workers/#update-algorithm">    * {@code Service-Worker}</a> header field name.    */
 DECL|field|SERVICE_WORKER
 specifier|public
 specifier|static
@@ -686,6 +686,16 @@ name|String
 name|SERVER
 init|=
 literal|"Server"
+decl_stmt|;
+comment|/**    * The HTTP<a href="https://www.w3.org/TR/service-workers/#update-algorithm">    * {@code Service-Worker-Allowed}</a> header field name.    *    * @since 20.0    */
+DECL|field|SERVICE_WORKER_ALLOWED
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|SERVICE_WORKER_ALLOWED
+init|=
+literal|"Service-Worker-Allowed"
 decl_stmt|;
 comment|/** The HTTP {@code Set-Cookie} header field name. */
 DECL|field|SET_COOKIE
