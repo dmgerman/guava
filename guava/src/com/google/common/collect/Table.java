@@ -46,6 +46,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -80,6 +94,16 @@ name|javax
 operator|.
 name|annotation
 operator|.
+name|CheckReturnValue
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
 name|Nullable
 import|;
 end_import
@@ -89,6 +113,8 @@ comment|/**  * A collection that associates an ordered pair of keys, called a ro
 end_comment
 
 begin_interface
+annotation|@
+name|CheckReturnValue
 annotation|@
 name|GwtCompatible
 DECL|interface|Table
@@ -212,6 +238,8 @@ parameter_list|()
 function_decl|;
 comment|/**    * Associates the specified value with the specified keys. If the table    * already contained a mapping for those keys, the old value is replaced with    * the specified value.    *    * @param rowKey row key that the value should be associated with    * @param columnKey column key that the value should be associated with    * @param value value to be associated with the specified keys    * @return the value previously associated with the keys, or {@code null} if    *     no mapping existed for the keys    */
 annotation|@
+name|CanIgnoreReturnValue
+annotation|@
 name|Nullable
 DECL|method|put (R rowKey, C columnKey, V value)
 name|V
@@ -250,6 +278,8 @@ name|table
 parameter_list|)
 function_decl|;
 comment|/**    * Removes the mapping, if any, associated with the given keys.    *    * @param rowKey row key of mapping to be removed    * @param columnKey column key of mapping to be removed    * @return the value previously associated with the keys, or {@code null} if    *     no such value existed    */
+annotation|@
+name|CanIgnoreReturnValue
 annotation|@
 name|Nullable
 DECL|method|remove (@ullable Object rowKey, @Nullable Object columnKey)

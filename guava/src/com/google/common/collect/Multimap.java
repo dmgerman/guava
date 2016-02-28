@@ -32,6 +32,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -76,6 +90,16 @@ name|javax
 operator|.
 name|annotation
 operator|.
+name|CheckReturnValue
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
 name|Nullable
 import|;
 end_import
@@ -85,6 +109,8 @@ comment|/**  * A collection that maps keys to values, similar to {@link Map}, bu
 end_comment
 
 begin_interface
+annotation|@
+name|CheckReturnValue
 annotation|@
 name|GwtCompatible
 DECL|interface|Multimap
@@ -150,6 +176,8 @@ parameter_list|)
 function_decl|;
 comment|// Modification Operations
 comment|/**    * Stores a key-value pair in this multimap.    *    *<p>Some multimap implementations allow duplicate key-value pairs, in which    * case {@code put} always adds a new key-value pair and increases the    * multimap size by 1. Other implementations prohibit duplicates, and storing    * a key-value pair that's already in the multimap has no effect.    *    * @return {@code true} if the method increased the size of the multimap, or    *     {@code false} if the multimap already contained the key-value pair and    *     doesn't allow duplicates    */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|put (@ullable K key, @Nullable V value)
 name|boolean
 name|put
@@ -166,6 +194,8 @@ name|value
 parameter_list|)
 function_decl|;
 comment|/**    * Removes a single key-value pair with the key {@code key} and the value    * {@code value} from this multimap, if such exists. If multiple key-value    * pairs in the multimap fit this description, which one is removed is    * unspecified.    *    * @return {@code true} if the multimap changed    */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|remove (@ullable Object key, @Nullable Object value)
 name|boolean
 name|remove
@@ -183,6 +213,8 @@ parameter_list|)
 function_decl|;
 comment|// Bulk Operations
 comment|/**    * Stores a key-value pair in this multimap for each of {@code values}, all    * using the same key, {@code key}. Equivalent to (but expected to be more    * efficient than):<pre>   {@code    *    *   for (V value : values) {    *     put(key, value);    *   }}</pre>    *    *<p>In particular, this is a no-op if {@code values} is empty.    *    * @return {@code true} if the multimap changed    */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|putAll (@ullable K key, Iterable<? extends V> values)
 name|boolean
 name|putAll
@@ -202,6 +234,8 @@ name|values
 parameter_list|)
 function_decl|;
 comment|/**    * Stores all key-value pairs of {@code multimap} in this multimap, in the    * order returned by {@code multimap.entries()}.    *    * @return {@code true} if the multimap changed    */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|putAll (Multimap<? extends K, ? extends V> multimap)
 name|boolean
 name|putAll
@@ -220,6 +254,8 @@ name|multimap
 parameter_list|)
 function_decl|;
 comment|/**    * Stores a collection of values with the same key, replacing any existing    * values for that key.    *    *<p>If {@code values} is empty, this is equivalent to    * {@link #removeAll(Object) removeAll(key)}.    *    * @return the collection of replaced values, or an empty collection if no    *     values were previously associated with the key. The collection    *<i>may</i> be modifiable, but updating it will have no effect on the    *     multimap.    */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|replaceValues (@ullable K key, Iterable<? extends V> values)
 name|Collection
 argument_list|<
@@ -242,6 +278,8 @@ name|values
 parameter_list|)
 function_decl|;
 comment|/**    * Removes all values associated with the key {@code key}.    *    *<p>Once this method returns, {@code key} will not be mapped to any values,    * so it will not appear in {@link #keySet()}, {@link #asMap()}, or any other    * views.    *    * @return the values that were removed (possibly empty). The returned    *     collection<i>may</i> be modifiable, but updating it will have no    *     effect on the multimap.    */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|removeAll (@ullable Object key)
 name|Collection
 argument_list|<
