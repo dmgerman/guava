@@ -272,6 +272,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -405,6 +419,8 @@ comment|/**  * This class contains static utility methods that operate on or ret
 end_comment
 
 begin_class
+annotation|@
+name|CheckReturnValue
 annotation|@
 name|GwtCompatible
 argument_list|(
@@ -851,6 +867,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Traverses an iterator and removes every element that belongs to the    * provided collection. The iterator will be left exhausted: its    * {@code hasNext()} method will return {@code false}.    *    * @param removeFrom the iterator to (potentially) remove elements from    * @param elementsToRemove the elements to remove    * @return {@code true} if any element was removed from {@code iterator}    */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|removeAll (Iterator<?> removeFrom, Collection<?> elementsToRemove)
 specifier|public
 specifier|static
@@ -883,6 +901,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Removes every element that satisfies the provided predicate from the    * iterator. The iterator will be left exhausted: its {@code hasNext()}    * method will return {@code false}.    *    * @param removeFrom the iterator to (potentially) remove elements from    * @param predicate a predicate that determines whether an element should    *     be removed    * @return {@code true} if any elements were removed from the iterator    * @since 2.0    */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|removeIf (Iterator<T> removeFrom, Predicate<? super T> predicate)
 specifier|public
 specifier|static
@@ -954,6 +974,8 @@ name|modified
 return|;
 block|}
 comment|/**    * Traverses an iterator and removes every element that does not belong to the    * provided collection. The iterator will be left exhausted: its    * {@code hasNext()} method will return {@code false}.    *    * @param removeFrom the iterator to (potentially) remove elements from    * @param elementsToRetain the elements to retain    * @return {@code true} if any element was removed from {@code iterator}    */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|retainAll (Iterator<?> removeFrom, Collection<?> elementsToRetain)
 specifier|public
 specifier|static
@@ -1114,6 +1136,9 @@ argument_list|()
 return|;
 block|}
 comment|/**    * Returns the single element contained in {@code iterator}.    *    * @throws NoSuchElementException if the iterator is empty    * @throws IllegalArgumentException if the iterator contains multiple    *     elements.  The state of the iterator is unspecified.    */
+annotation|@
+name|CanIgnoreReturnValue
+comment|// TODO(kak): Consider removing this?
 DECL|method|getOnlyElement (Iterator<T> iterator)
 specifier|public
 specifier|static
@@ -1236,6 +1261,9 @@ throw|;
 block|}
 comment|/**    * Returns the single element contained in {@code iterator}, or {@code    * defaultValue} if the iterator is empty.    *    * @throws IllegalArgumentException if the iterator contains multiple    *     elements.  The state of the iterator is unspecified.    */
 annotation|@
+name|CanIgnoreReturnValue
+comment|// TODO(kak): Consider removing this?
+annotation|@
 name|Nullable
 DECL|method|getOnlyElement (Iterator<? extends T> iterator, @Nullable T defaultValue)
 specifier|public
@@ -1328,6 +1356,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Adds all elements in {@code iterator} to {@code collection}. The iterator    * will be left exhausted: its {@code hasNext()} method will return    * {@code false}.    *    * @return {@code true} if {@code collection} was modified as a result of this    *         operation    */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|addAll (Collection<T> addTo, Iterator<? extends T> iterator)
 specifier|public
 specifier|static
@@ -2202,8 +2232,6 @@ block|}
 return|;
 block|}
 comment|/**    * Returns a view of {@code unfiltered} containing all elements that satisfy    * the input predicate {@code retainIfTrue}.    */
-annotation|@
-name|CheckReturnValue
 DECL|method|filter ( final Iterator<T> unfiltered, final Predicate<? super T> retainIfTrue)
 specifier|public
 specifier|static
@@ -2307,8 +2335,6 @@ comment|// can cast to<T> because non-Ts are removed
 annotation|@
 name|GwtIncompatible
 comment|// Class.isInstance
-annotation|@
-name|CheckReturnValue
 DECL|method|filter (Iterator<?> unfiltered, Class<T> desiredType)
 specifier|public
 specifier|static
@@ -3028,6 +3054,8 @@ name|defaultValue
 return|;
 block|}
 comment|/**    * Calls {@code next()} on {@code iterator}, either {@code numberToAdvance} times    * or until {@code hasNext()} returns {@code false}, whichever comes first.    *    * @return the number of elements the iterator was advanced    * @since 13.0 (since 3.0 as {@code Iterators.skip})    */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|advance (Iterator<?> iterator, int numberToAdvance)
 specifier|public
 specifier|static
