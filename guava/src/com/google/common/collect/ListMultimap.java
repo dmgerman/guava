@@ -32,6 +32,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -66,6 +80,16 @@ name|javax
 operator|.
 name|annotation
 operator|.
+name|CheckReturnValue
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
 name|Nullable
 import|;
 end_import
@@ -75,6 +99,8 @@ comment|/**  * A {@code Multimap} that can hold duplicate key-value pairs and th
 end_comment
 
 begin_interface
+annotation|@
+name|CheckReturnValue
 annotation|@
 name|GwtCompatible
 DECL|interface|ListMultimap
@@ -112,6 +138,8 @@ parameter_list|)
 function_decl|;
 comment|/**    * {@inheritDoc}    *    *<p>Because the values for a given key may have duplicates and follow the    * insertion ordering, this method returns a {@link List}, instead of the    * {@link java.util.Collection} specified in the {@link Multimap} interface.    */
 annotation|@
+name|CanIgnoreReturnValue
+annotation|@
 name|Override
 DECL|method|removeAll (@ullable Object key)
 name|List
@@ -127,6 +155,8 @@ name|key
 parameter_list|)
 function_decl|;
 comment|/**    * {@inheritDoc}    *    *<p>Because the values for a given key may have duplicates and follow the    * insertion ordering, this method returns a {@link List}, instead of the    * {@link java.util.Collection} specified in the {@link Multimap} interface.    */
+annotation|@
+name|CanIgnoreReturnValue
 annotation|@
 name|Override
 DECL|method|replaceValues (K key, Iterable<? extends V> values)
