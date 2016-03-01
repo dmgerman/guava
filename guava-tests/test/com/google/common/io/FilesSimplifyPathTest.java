@@ -1465,7 +1465,8 @@ name|on
 argument_list|(
 name|CharMatcher
 operator|.
-name|WHITESPACE
+name|whitespace
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|URL

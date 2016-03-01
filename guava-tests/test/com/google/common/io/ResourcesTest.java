@@ -28,7 +28,7 @@ name|base
 operator|.
 name|CharMatcher
 operator|.
-name|WHITESPACE
+name|whitespace
 import|;
 end_import
 
@@ -482,7 +482,8 @@ name|collector
 operator|.
 name|add
 argument_list|(
-name|WHITESPACE
+name|whitespace
+argument_list|()
 operator|.
 name|trimFrom
 argument_list|(

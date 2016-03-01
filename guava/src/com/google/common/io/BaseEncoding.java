@@ -1303,7 +1303,8 @@ name|checkArgument
 argument_list|(
 name|CharMatcher
 operator|.
-name|ASCII
+name|ascii
+argument_list|()
 operator|.
 name|matches
 argument_list|(
@@ -1488,7 +1489,8 @@ operator|+
 operator|(
 name|CharMatcher
 operator|.
-name|INVISIBLE
+name|invisible
+argument_list|()
 operator|.
 name|matches
 argument_list|(
@@ -1766,7 +1768,8 @@ block|{
 return|return
 name|CharMatcher
 operator|.
-name|ASCII
+name|ascii
+argument_list|()
 operator|.
 name|matches
 argument_list|(
@@ -1974,7 +1977,8 @@ operator|)
 condition|?
 name|CharMatcher
 operator|.
-name|NONE
+name|none
+argument_list|()
 else|:
 name|CharMatcher
 operator|.
