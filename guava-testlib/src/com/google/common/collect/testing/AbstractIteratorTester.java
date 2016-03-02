@@ -410,7 +410,6 @@ name|exception
 argument_list|)
 condition|)
 block|{
-comment|// TODO: use simple class names
 name|String
 name|message
 init|=
@@ -420,10 +419,14 @@ name|exception
 operator|.
 name|getClass
 argument_list|()
+operator|.
+name|getSimpleName
+argument_list|()
 operator|+
 literal|" was thrown; expected "
 operator|+
-name|this
+name|getMessage
+argument_list|()
 decl_stmt|;
 name|Helpers
 operator|.
@@ -435,19 +438,6 @@ name|message
 argument_list|)
 expr_stmt|;
 block|}
-block|}
-DECL|method|toString ()
-annotation|@
-name|Override
-specifier|public
-name|String
-name|toString
-parameter_list|()
-block|{
-return|return
-name|getMessage
-argument_list|()
-return|;
 block|}
 DECL|field|serialVersionUID
 specifier|private
