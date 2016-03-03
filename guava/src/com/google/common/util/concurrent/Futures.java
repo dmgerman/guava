@@ -42,6 +42,22 @@ name|google
 operator|.
 name|common
 operator|.
+name|base
+operator|.
+name|Preconditions
+operator|.
+name|checkState
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
 name|util
 operator|.
 name|concurrent
@@ -685,9 +701,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Creates a {@code ListenableFuture} which is cancelled immediately upon construction, so that    * {@code isCancelled()} always returns {@code true}.    *    * @since 14.0    */
-annotation|@
-name|GwtIncompatible
-comment|// TODO
 DECL|method|immediateCancelledFuture ()
 specifier|public
 specifier|static
@@ -2562,6 +2575,44 @@ name|executor
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**    * Returns the result of the input {@code Future}, which must have already completed.    *    *<p>The benefits of this method are twofold. First, the name "getDone" suggests to readers that    * the {@code Future} is already done. Second, if buggy code calls {@code getDone} on a {@code    * Future} that is still pending, the program will throw instead of block. This can be important    * for APIs like {@link whenAllComplete whenAllComplete(...)}{@code .}{@link    * FutureCombiner#call(Callable) call(...)}, where it is easy to use a new input from the {@code    * call} implementation but forget to add it to the arguments of {@code whenAllComplete}.    *    *<p>If you are looking for a method to determine whether a given {@code Future} is done, use the    * instance method {@link Future#isDone()}.    *    * @throws ExecutionException if the {@code Future} failed with an exception    * @throws CancellationException if the {@code Future} was cancelled    * @throws IllegalStateException if the {@code Future} is not done    * @since 20.0    */
+annotation|@
+name|CanIgnoreReturnValue
+comment|// TODO(cpovirk): Consider calling getDone() in our own code.
+DECL|method|getDone (Future<V> future)
+specifier|public
+specifier|static
+parameter_list|<
+name|V
+parameter_list|>
+name|V
+name|getDone
+parameter_list|(
+name|Future
+argument_list|<
+name|V
+argument_list|>
+name|future
+parameter_list|)
+throws|throws
+name|ExecutionException
+block|{
+comment|/*      * We throw IllegalStateException, since the call could succeed later. Perhaps we "should" throw      * IllegalArgumentException, since the call could succeed with a different argument. Those      * exceptions' docs suggest that either is acceptable. Google's Java Practices page recommends      * IllegalArgumentException here, in part to keep its recommendation simple: Static methods      * should throw IllegalStateException only when they use static state.      *      *      * Why do we deviate here? The answer: We want for fluentFuture.getDone() to throw the same      * exception as Futures.getDone(fluentFuture).      */
+name|checkState
+argument_list|(
+name|future
+operator|.
+name|isDone
+argument_list|()
+argument_list|)
+expr_stmt|;
+return|return
+name|getUninterruptibly
+argument_list|(
+name|future
+argument_list|)
+return|;
+block|}
 comment|/**    * Returns the result of {@link Future#get()}, converting most exceptions to a new instance of the    * given checked exception type. This reduces boilerplate for a common use of {@code Future} in    * which it is unnecessary to programmatically distinguish between exception types or to extract    * other information from the exception instance.    *    *<p>Exceptions from {@code Future.get} are treated as follows:    *<ul>    *<li>Any {@link ExecutionException} has its<i>cause</i> wrapped in an {@code X} if the cause is    *     a checked exception, an {@link UncheckedExecutionException} if the cause is a {@code    *     RuntimeException}, or an {@link ExecutionError} if the cause is an {@code Error}.    *<li>Any {@link InterruptedException} is wrapped in an {@code X} (after restoring the    *     interrupt).    *<li>Any {@link CancellationException} is propagated untouched, as is any other {@link    *     RuntimeException} (though {@code get} implementations are discouraged from throwing such    *     exceptions).    *</ul>    *    *<p>The overall principle is to continue to treat every checked exception as a checked    * exception, every unchecked exception as an unchecked exception, and every error as an error. In    * addition, the cause of any {@code ExecutionException} is wrapped in order to ensure that the    * new stack trace matches that of the current thread.    *    *<p>Instances of {@code exceptionClass} are created by choosing an arbitrary public constructor    * that accepts zero or more arguments, all of type {@code String} or {@code Throwable}    * (preferring constructors with at least one {@code String}) and calling the constructor via    * reflection. If the exception did not already have a cause, one is set by calling {@link    * Throwable#initCause(Throwable)} on it. If no such constructor exists, an {@code    * IllegalArgumentException} is thrown.    *    * @throws X if {@code get} throws any checked exception except for an {@code ExecutionException}    *     whose cause is not itself a checked exception    * @throws UncheckedExecutionException if {@code get} throws an {@code ExecutionException} with a    *     {@code RuntimeException} as its cause    * @throws ExecutionError if {@code get} throws an {@code ExecutionException} with an {@code    *     Error} as its cause    * @throws CancellationException if {@code get} throws a {@code CancellationException}    * @throws IllegalArgumentException if {@code exceptionClass} extends {@code RuntimeException} or    *     does not have a suitable constructor    * @since 19.0 (in 10.0 as {@code get})    */
 annotation|@
 name|CanIgnoreReturnValue
@@ -2851,6 +2902,43 @@ name|e
 argument_list|)
 return|;
 block|}
+block|}
+DECL|method|cancellationExceptionWithCause ( @ullable String message, @Nullable Throwable cause)
+specifier|static
+specifier|final
+name|CancellationException
+name|cancellationExceptionWithCause
+parameter_list|(
+annotation|@
+name|Nullable
+name|String
+name|message
+parameter_list|,
+annotation|@
+name|Nullable
+name|Throwable
+name|cause
+parameter_list|)
+block|{
+name|CancellationException
+name|exception
+init|=
+operator|new
+name|CancellationException
+argument_list|(
+name|message
+argument_list|)
+decl_stmt|;
+name|exception
+operator|.
+name|initCause
+argument_list|(
+name|cause
+argument_list|)
+expr_stmt|;
+return|return
+name|exception
+return|;
 block|}
 block|}
 end_class

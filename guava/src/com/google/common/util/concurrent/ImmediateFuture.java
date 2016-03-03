@@ -35,6 +35,24 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|Futures
+operator|.
+name|cancellationExceptionWithCause
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -551,9 +569,6 @@ argument_list|)
 throw|;
 block|}
 block|}
-annotation|@
-name|GwtIncompatible
-comment|// TODO
 DECL|class|ImmediateCancelledFuture
 specifier|static
 class|class
@@ -609,8 +624,6 @@ name|get
 parameter_list|()
 block|{
 throw|throw
-name|AbstractFuture
-operator|.
 name|cancellationExceptionWithCause
 argument_list|(
 literal|"Task was cancelled."

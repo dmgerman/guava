@@ -1100,13 +1100,40 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-annotation|@
-name|GwtIncompatible
-comment|// immediateCancelledFuture
-DECL|method|testImmediateCancelledFuture ()
+DECL|method|testImmediateCancelledFutureBasic ()
 specifier|public
 name|void
-name|testImmediateCancelledFuture
+name|testImmediateCancelledFutureBasic
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|ListenableFuture
+argument_list|<
+name|String
+argument_list|>
+name|future
+init|=
+name|CallerClass1
+operator|.
+name|immediateCancelledFuture
+argument_list|()
+decl_stmt|;
+name|assertTrue
+argument_list|(
+name|future
+operator|.
+name|isCancelled
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+annotation|@
+name|GwtIncompatible
+DECL|method|testImmediateCancelledFutureStack ()
+specifier|public
+name|void
+name|testImmediateCancelledFutureStack
 parameter_list|()
 throws|throws
 name|Exception
@@ -1324,9 +1351,6 @@ block|}
 block|}
 return|;
 block|}
-annotation|@
-name|GwtIncompatible
-comment|// used only in GwtIncompatible tests
 DECL|class|CallerClass1
 specifier|private
 specifier|static
@@ -1351,9 +1375,6 @@ argument_list|()
 return|;
 block|}
 block|}
-annotation|@
-name|GwtIncompatible
-comment|// used only in GwtIncompatible tests
 DECL|class|CallerClass2
 specifier|private
 specifier|static
@@ -1397,7 +1418,7 @@ class|class
 name|MyException
 extends|extends
 name|Exception
-block|{    }
+block|{   }
 annotation|@
 name|GwtIncompatible
 comment|// immediateCheckedFuture
