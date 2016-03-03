@@ -150,16 +150,6 @@ name|javax
 operator|.
 name|annotation
 operator|.
-name|CheckReturnValue
-import|;
-end_import
-
-begin_import
-import|import
-name|javax
-operator|.
-name|annotation
-operator|.
 name|Nullable
 import|;
 end_import
@@ -169,8 +159,6 @@ comment|/**  * A {@link ListMultimap} whose contents will never change, with man
 end_comment
 
 begin_class
-annotation|@
-name|CheckReturnValue
 annotation|@
 name|GwtCompatible
 argument_list|(

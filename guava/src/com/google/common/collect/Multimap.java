@@ -90,16 +90,6 @@ name|javax
 operator|.
 name|annotation
 operator|.
-name|CheckReturnValue
-import|;
-end_import
-
-begin_import
-import|import
-name|javax
-operator|.
-name|annotation
-operator|.
 name|Nullable
 import|;
 end_import
@@ -109,8 +99,6 @@ comment|/**  * A collection that maps keys to values, similar to {@link Map}, bu
 end_comment
 
 begin_interface
-annotation|@
-name|CheckReturnValue
 annotation|@
 name|GwtCompatible
 DECL|interface|Multimap

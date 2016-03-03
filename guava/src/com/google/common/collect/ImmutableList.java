@@ -226,16 +226,6 @@ name|javax
 operator|.
 name|annotation
 operator|.
-name|CheckReturnValue
-import|;
-end_import
-
-begin_import
-import|import
-name|javax
-operator|.
-name|annotation
-operator|.
 name|Nullable
 import|;
 end_import
@@ -245,8 +235,6 @@ comment|/**  * A {@link List} whose contents will never change, with many other 
 end_comment
 
 begin_class
-annotation|@
-name|CheckReturnValue
 annotation|@
 name|GwtCompatible
 argument_list|(

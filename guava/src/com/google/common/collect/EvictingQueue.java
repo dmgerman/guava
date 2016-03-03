@@ -134,16 +134,6 @@ name|Queue
 import|;
 end_import
 
-begin_import
-import|import
-name|javax
-operator|.
-name|annotation
-operator|.
-name|CheckReturnValue
-import|;
-end_import
-
 begin_comment
 comment|/**  * A non-blocking queue which automatically evicts elements from the head of the queue when  * attempting to add new elements onto the queue and it is full. This data structure is logically  * equivalent to a circular buffer (i.e., cyclic buffer or ring buffer).  *  *<p>An evicting queue must be configured with a maximum size. Each time an element is added  * to a full queue, the queue automatically removes its head element. This is different from  * conventional bounded queues, which either block or reject new elements when full.  *  *<p>This class is not thread-safe, and does not accept null elements.  *  * @author Kurt Alfred Kluever  * @since 15.0  */
 end_comment
@@ -153,8 +143,6 @@ annotation|@
 name|Beta
 annotation|@
 name|GwtCompatible
-annotation|@
-name|CheckReturnValue
 DECL|class|EvictingQueue
 specifier|public
 specifier|final

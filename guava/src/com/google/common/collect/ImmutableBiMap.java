@@ -88,23 +88,11 @@ name|Map
 import|;
 end_import
 
-begin_import
-import|import
-name|javax
-operator|.
-name|annotation
-operator|.
-name|CheckReturnValue
-import|;
-end_import
-
 begin_comment
 comment|/**  * A {@link BiMap} whose contents will never change, with many other important properties detailed  * at {@link ImmutableCollection}.  *  * @author Jared Levy  * @since 2.0  */
 end_comment
 
 begin_class
-annotation|@
-name|CheckReturnValue
 annotation|@
 name|GwtCompatible
 argument_list|(

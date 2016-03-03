@@ -276,16 +276,6 @@ name|TreeSet
 import|;
 end_import
 
-begin_import
-import|import
-name|javax
-operator|.
-name|annotation
-operator|.
-name|CheckReturnValue
-import|;
-end_import
-
 begin_comment
 comment|/**  * A builder for a multimap implementation that allows customization of the backing map and value  * collection implementations used in a particular multimap.  *  *<p>This can be used to easily configure multimap data structure implementations not provided  * explicitly in {@code com.google.common.collect}, for example:  *  *<pre>   {@code  *   ListMultimap<String, Integer> treeListMultimap =  *       MultimapBuilder.treeKeys().arrayListValues().build();  *   SetMultimap<Integer, MyEnum> hashEnumMultimap =  *       MultimapBuilder.hashKeys().enumSetValues(MyEnum.class).build();}</pre>  *  *<p>{@code MultimapBuilder} instances are immutable.  Invoking a configuration method has no  * effect on the receiving instance; you must store and use the new builder instance it returns  * instead.  *  *<p>The generated multimaps are serializable if the key and value types are serializable,  * unless stated otherwise in one of the configuration methods.  *  * @author Louis Wasserman  * @param<K0> An upper bound on the key type of the generated multimap.  * @param<V0> An upper bound on the value type of the generated multimap.  * @since 16.0  */
 end_comment
@@ -295,8 +285,6 @@ annotation|@
 name|Beta
 annotation|@
 name|GwtCompatible
-annotation|@
-name|CheckReturnValue
 DECL|class|MultimapBuilder
 specifier|public
 specifier|abstract

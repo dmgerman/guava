@@ -258,16 +258,6 @@ name|javax
 operator|.
 name|annotation
 operator|.
-name|CheckReturnValue
-import|;
-end_import
-
-begin_import
-import|import
-name|javax
-operator|.
-name|annotation
-operator|.
 name|Nullable
 import|;
 end_import
@@ -277,8 +267,6 @@ comment|/**  * This class contains static utility methods that operate on or ret
 end_comment
 
 begin_class
-annotation|@
-name|CheckReturnValue
 annotation|@
 name|GwtCompatible
 argument_list|(
@@ -1141,8 +1129,6 @@ literal|null
 return|;
 block|}
 comment|/**    * Determines whether two iterables contain equal elements in the same order.    * More specifically, this method returns {@code true} if {@code iterable1}    * and {@code iterable2} contain the same number of elements and every element    * of {@code iterable1} is equal to the corresponding element of    * {@code iterable2}.    */
-annotation|@
-name|CheckReturnValue
 DECL|method|elementsEqual (Iterable<?> iterable1, Iterable<?> iterable2)
 specifier|public
 specifier|static
@@ -2144,8 +2130,6 @@ block|}
 return|;
 block|}
 comment|/**    * Returns a view of {@code unfiltered} containing all elements that satisfy    * the input predicate {@code retainIfTrue}. The returned iterable's iterator    * does not support {@code remove()}.    */
-annotation|@
-name|CheckReturnValue
 DECL|method|filter ( final Iterable<T> unfiltered, final Predicate<? super T> retainIfTrue)
 specifier|public
 specifier|static
@@ -2224,8 +2208,6 @@ comment|/**    * Returns a view of {@code unfiltered} containing all elements th
 annotation|@
 name|GwtIncompatible
 comment|// Class.isInstance
-annotation|@
-name|CheckReturnValue
 DECL|method|filter (final Iterable<?> unfiltered, final Class<T> desiredType)
 specifier|public
 specifier|static
@@ -2547,8 +2529,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns a view containing the result of applying {@code function} to each    * element of {@code fromIterable}.    *    *<p>The returned iterable's iterator supports {@code remove()} if {@code    * fromIterable}'s iterator does. After a successful {@code remove()} call,    * {@code fromIterable} no longer contains the corresponding element.    *    *<p>If the input {@code Iterable} is known to be a {@code List} or other    * {@code Collection}, consider {@link Lists#transform} and {@link    * Collections2#transform}.    */
-annotation|@
-name|CheckReturnValue
 DECL|method|transform ( final Iterable<F> fromIterable, final Function<? super F, ? extends T> function)
 specifier|public
 specifier|static
