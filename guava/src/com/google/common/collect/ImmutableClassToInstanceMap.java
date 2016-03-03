@@ -62,6 +62,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -312,6 +326,8 @@ name|builder
 argument_list|()
 decl_stmt|;
 comment|/**      * Associates {@code key} with {@code value} in the built map. Duplicate      * keys are not allowed, and will cause {@link #build} to fail.      */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|put (Class<T> key, T value)
 specifier|public
 parameter_list|<
@@ -349,6 +365,8 @@ name|this
 return|;
 block|}
 comment|/**      * Associates all of {@code map's} keys and values in the built map.      * Duplicate keys are not allowed, and will cause {@link #build} to fail.      *      * @throws NullPointerException if any key or value in {@code map} is null      * @throws ClassCastException if any value is not an instance of the type      *     specified by its key      */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|putAll (Map<? extends Class<? extends T>, ? extends T> map)
 specifier|public
 parameter_list|<
@@ -725,6 +743,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Guaranteed to throw an exception and leave the map unmodified.    *    * @throws UnsupportedOperationException always    * @deprecated Unsupported operation.    */
+annotation|@
+name|CanIgnoreReturnValue
 annotation|@
 name|Deprecated
 annotation|@

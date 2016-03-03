@@ -32,6 +32,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -77,6 +91,8 @@ name|peek
 parameter_list|()
 function_decl|;
 comment|/**    * {@inheritDoc}    *    *<p>The objects returned by consecutive calls to {@link #peek()} then {@link    * #next()} are guaranteed to be equal to each other.    */
+annotation|@
+name|CanIgnoreReturnValue
 annotation|@
 name|Override
 DECL|method|next ()

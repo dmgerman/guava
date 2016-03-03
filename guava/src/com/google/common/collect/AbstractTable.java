@@ -36,6 +36,20 @@ name|com
 operator|.
 name|google
 operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
 name|j2objc
 operator|.
 name|annotations
@@ -421,6 +435,8 @@ argument_list|)
 expr_stmt|;
 block|}
 annotation|@
+name|CanIgnoreReturnValue
+annotation|@
 name|Override
 DECL|method|remove (@ullable Object rowKey, @Nullable Object columnKey)
 specifier|public
@@ -475,6 +491,8 @@ name|columnKey
 argument_list|)
 return|;
 block|}
+annotation|@
+name|CanIgnoreReturnValue
 annotation|@
 name|Override
 DECL|method|put (R rowKey, C columnKey, V value)

@@ -32,6 +32,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -241,6 +255,8 @@ return|;
 block|}
 comment|/**    * Removes all values associated with a given key. The returned collection is    * immutable.    *    *<p>Because a {@code SortedSetMultimap} has unique sorted values for a given    * key, this method returns a {@link SortedSet}, instead of the    * {@link Collection} specified in the {@link Multimap} interface.    */
 annotation|@
+name|CanIgnoreReturnValue
+annotation|@
 name|Override
 DECL|method|removeAll (@ullable Object key)
 specifier|public
@@ -272,6 +288,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Stores a collection of values with the same key, replacing any existing    * values for that key. The returned collection is immutable.    *    *<p>Because a {@code SortedSetMultimap} has unique sorted values for a given    * key, this method returns a {@link SortedSet}, instead of the    * {@link Collection} specified in the {@link Multimap} interface.    *    *<p>Any duplicates in {@code values} will be stored in the multimap once.    */
+annotation|@
+name|CanIgnoreReturnValue
 annotation|@
 name|Override
 DECL|method|replaceValues (@ullable K key, Iterable<? extends V> values)

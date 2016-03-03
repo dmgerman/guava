@@ -48,6 +48,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -135,6 +149,8 @@ name|computeNext
 parameter_list|()
 function_decl|;
 comment|/**    * Implementations of {@link #computeNext}<b>must</b> invoke this method when    * there are no elements left in the iteration.    *    * @return {@code null}; a convenience so your {@code computeNext}    *     implementation can use the simple statement {@code return endOfData();}    */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|endOfData ()
 specifier|protected
 specifier|final
@@ -152,6 +168,9 @@ return|return
 literal|null
 return|;
 block|}
+annotation|@
+name|CanIgnoreReturnValue
+comment|// TODO(kak): Should we remove this? Some people are using it to prefetch?
 annotation|@
 name|Override
 DECL|method|hasNext ()
@@ -235,6 +254,9 @@ return|return
 literal|false
 return|;
 block|}
+annotation|@
+name|CanIgnoreReturnValue
+comment|// TODO(kak): Should we remove this?
 annotation|@
 name|Override
 DECL|method|next ()

@@ -1030,9 +1030,12 @@ name|Integer
 name|computeNext
 parameter_list|()
 block|{
+name|boolean
+name|unused
+init|=
 name|hasNext
 argument_list|()
-expr_stmt|;
+decl_stmt|;
 return|return
 literal|null
 return|;

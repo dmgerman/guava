@@ -22,6 +22,20 @@ name|com
 operator|.
 name|google
 operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
 name|gwt
 operator|.
 name|user
@@ -207,6 +221,8 @@ name|build
 argument_list|()
 return|;
 block|}
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|populate ( SerializationStreamReader reader, Multimap<Object, Object> multimap)
 specifier|public
 specifier|static

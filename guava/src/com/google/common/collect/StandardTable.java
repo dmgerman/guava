@@ -238,6 +238,20 @@ name|com
 operator|.
 name|google
 operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
 name|j2objc
 operator|.
 name|annotations
@@ -753,6 +767,8 @@ name|map
 return|;
 block|}
 annotation|@
+name|CanIgnoreReturnValue
+annotation|@
 name|Override
 DECL|method|put (R rowKey, C columnKey, V value)
 specifier|public
@@ -798,6 +814,8 @@ name|value
 argument_list|)
 return|;
 block|}
+annotation|@
+name|CanIgnoreReturnValue
 annotation|@
 name|Override
 DECL|method|remove (@ullable Object rowKey, @Nullable Object columnKey)
@@ -891,6 +909,8 @@ return|return
 name|value
 return|;
 block|}
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|removeColumn (Object column)
 specifier|private
 name|Map
@@ -2199,6 +2219,8 @@ argument_list|)
 return|;
 block|}
 comment|/**      * Removes all {@code Column} mappings whose row key and value satisfy the      * given predicate.      */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|removeFromColumnIf (Predicate<? super Entry<R, V>> predicate)
 name|boolean
 name|removeFromColumnIf

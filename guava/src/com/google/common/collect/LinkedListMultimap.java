@@ -110,6 +110,20 @@ name|com
 operator|.
 name|google
 operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
 name|j2objc
 operator|.
 name|annotations
@@ -781,6 +795,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Adds a new node for the specified key-value pair before the specified    * {@code nextSibling} element, or at the end of the list if {@code    * nextSibling} is null. Note: if {@code nextSibling} is specified, it MUST be    * for an node for the same {@code key}!    */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|addNode (@ullable K key, @Nullable V value, @Nullable Node<K, V> nextSibling)
 specifier|private
 name|Node
@@ -1535,6 +1551,8 @@ literal|null
 return|;
 block|}
 annotation|@
+name|CanIgnoreReturnValue
+annotation|@
 name|Override
 DECL|method|next ()
 specifier|public
@@ -1651,6 +1669,8 @@ operator|!=
 literal|null
 return|;
 block|}
+annotation|@
+name|CanIgnoreReturnValue
 annotation|@
 name|Override
 DECL|method|previous ()
@@ -2220,6 +2240,8 @@ literal|null
 return|;
 block|}
 annotation|@
+name|CanIgnoreReturnValue
+annotation|@
 name|Override
 DECL|method|next ()
 specifier|public
@@ -2267,6 +2289,8 @@ operator|!=
 literal|null
 return|;
 block|}
+annotation|@
+name|CanIgnoreReturnValue
 annotation|@
 name|Override
 DECL|method|previous ()
@@ -2519,6 +2543,8 @@ block|}
 comment|// Modification Operations
 comment|/**    * Stores a key-value pair in the multimap.    *    * @param key key to store in the multimap    * @param value value to store in the multimap    * @return {@code true} always    */
 annotation|@
+name|CanIgnoreReturnValue
+annotation|@
 name|Override
 DECL|method|put (@ullable K key, @Nullable V value)
 specifier|public
@@ -2551,6 +2577,8 @@ return|;
 block|}
 comment|// Bulk Operations
 comment|/**    * {@inheritDoc}    *    *<p>If any entries for the specified {@code key} already exist in the    * multimap, their values are changed in-place without affecting the iteration    * order.    *    *<p>The returned list is immutable and implements    * {@link java.util.RandomAccess}.    */
+annotation|@
+name|CanIgnoreReturnValue
 annotation|@
 name|Override
 DECL|method|replaceValues (@ullable K key, Iterable<? extends V> values)
@@ -2716,6 +2744,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * {@inheritDoc}    *    *<p>The returned list is immutable and implements    * {@link java.util.RandomAccess}.    */
+annotation|@
+name|CanIgnoreReturnValue
 annotation|@
 name|Override
 DECL|method|removeAll (@ullable Object key)

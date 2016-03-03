@@ -32,6 +32,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -187,6 +201,8 @@ return|;
 block|}
 comment|/**    * {@inheritDoc}    *    *<p>Because the values for a given key may have duplicates and follow the    * insertion ordering, this method returns a {@link List}, instead of the    * {@link Collection} specified in the {@link Multimap} interface.    */
 annotation|@
+name|CanIgnoreReturnValue
+annotation|@
 name|Override
 DECL|method|removeAll (@ullable Object key)
 specifier|public
@@ -218,6 +234,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * {@inheritDoc}    *    *<p>Because the values for a given key may have duplicates and follow the    * insertion ordering, this method returns a {@link List}, instead of the    * {@link Collection} specified in the {@link Multimap} interface.    */
+annotation|@
+name|CanIgnoreReturnValue
 annotation|@
 name|Override
 DECL|method|replaceValues (@ullable K key, Iterable<? extends V> values)
@@ -260,6 +278,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Stores a key-value pair in the multimap.    *    * @param key key to store in the multimap    * @param value value to store in the multimap    * @return {@code true} always    */
+annotation|@
+name|CanIgnoreReturnValue
 annotation|@
 name|Override
 DECL|method|put (@ullable K key, @Nullable V value)

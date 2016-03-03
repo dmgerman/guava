@@ -112,6 +112,20 @@ name|com
 operator|.
 name|google
 operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
 name|j2objc
 operator|.
 name|annotations
@@ -347,6 +361,8 @@ name|delegate
 return|;
 block|}
 comment|/**    * Returns its input, or throws an exception if this is not a valid key.    */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|checkKey (@ullable K key)
 name|K
 name|checkKey
@@ -362,6 +378,8 @@ name|key
 return|;
 block|}
 comment|/**    * Returns its input, or throws an exception if this is not a valid value.    */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|checkValue (@ullable V value)
 name|V
 name|checkValue
@@ -500,6 +518,8 @@ return|;
 block|}
 comment|// Modification Operations
 annotation|@
+name|CanIgnoreReturnValue
+annotation|@
 name|Override
 DECL|method|put (@ullable K key, @Nullable V value)
 specifier|public
@@ -528,6 +548,8 @@ literal|false
 argument_list|)
 return|;
 block|}
+annotation|@
+name|CanIgnoreReturnValue
 annotation|@
 name|Override
 DECL|method|forcePut (@ullable K key, @Nullable V value)
@@ -714,6 +736,8 @@ argument_list|)
 expr_stmt|;
 block|}
 annotation|@
+name|CanIgnoreReturnValue
+annotation|@
 name|Override
 DECL|method|remove (@ullable Object key)
 specifier|public
@@ -740,6 +764,8 @@ else|:
 literal|null
 return|;
 block|}
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|removeFromBothMaps (Object key)
 specifier|private
 name|V

@@ -32,6 +32,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -95,6 +109,9 @@ name|delegate
 parameter_list|()
 function_decl|;
 annotation|@
+name|CanIgnoreReturnValue
+comment|// TODO(cpovirk): Consider removing this?
+annotation|@
 name|Override
 DECL|method|offer (E o)
 specifier|public
@@ -116,6 +133,9 @@ argument_list|)
 return|;
 block|}
 annotation|@
+name|CanIgnoreReturnValue
+comment|// TODO(cpovirk): Consider removing this?
+annotation|@
 name|Override
 DECL|method|poll ()
 specifier|public
@@ -131,6 +151,8 @@ name|poll
 argument_list|()
 return|;
 block|}
+annotation|@
+name|CanIgnoreReturnValue
 annotation|@
 name|Override
 DECL|method|remove ()

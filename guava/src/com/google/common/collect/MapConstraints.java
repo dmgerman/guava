@@ -66,6 +66,20 @@ name|com
 operator|.
 name|google
 operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
 name|j2objc
 operator|.
 name|annotations
@@ -1182,6 +1196,9 @@ return|return
 name|result
 return|;
 block|}
+annotation|@
+name|CanIgnoreReturnValue
+comment|// TODO(kak): Remove this?
 annotation|@
 name|Override
 DECL|method|put (K key, V value)

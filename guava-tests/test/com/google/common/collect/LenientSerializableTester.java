@@ -100,6 +100,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -130,6 +144,8 @@ class|class
 name|LenientSerializableTester
 block|{
 comment|/*    * TODO(cpovirk): move this to c.g.c.testing if we allow for c.g.c.annotations dependencies so    * that it can be GWTified?    */
+annotation|@
+name|CanIgnoreReturnValue
 annotation|@
 name|GwtIncompatible
 comment|// SerializableTester
@@ -180,6 +196,8 @@ return|return
 name|copy
 return|;
 block|}
+annotation|@
+name|CanIgnoreReturnValue
 annotation|@
 name|GwtIncompatible
 comment|// SerializableTester

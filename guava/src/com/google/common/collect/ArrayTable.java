@@ -142,6 +142,20 @@ name|com
 operator|.
 name|google
 operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
 name|j2objc
 operator|.
 name|annotations
@@ -1256,6 +1270,8 @@ index|]
 return|;
 block|}
 comment|/**    * Associates {@code value} with the specified row and column indices. The    * logic {@code    * put(rowKeyList().get(rowIndex), columnKeyList().get(columnIndex), value)}    * has the same behavior, but this method runs more quickly.    *    * @param rowIndex position of the row key in {@link #rowKeyList()}    * @param columnIndex position of the row key in {@link #columnKeyList()}    * @param value value to store in the table    * @return the previous value with the specified row and column    * @throws IndexOutOfBoundsException if either index is negative, {@code    *     rowIndex} is greater then or equal to the number of allowed row keys,    *     or {@code columnIndex} is greater then or equal to the number of    *     allowed column keys    */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|set (int rowIndex, int columnIndex, @Nullable V value)
 specifier|public
 name|V
@@ -1672,6 +1688,8 @@ return|;
 block|}
 comment|/**    * {@inheritDoc}    *    * @throws IllegalArgumentException if {@code rowKey} is not in {@link    *     #rowKeySet()} or {@code columnKey} is not in {@link #columnKeySet()}.    */
 annotation|@
+name|CanIgnoreReturnValue
+annotation|@
 name|Override
 DECL|method|put (R rowKey, C columnKey, @Nullable V value)
 specifier|public
@@ -1793,6 +1811,8 @@ expr_stmt|;
 block|}
 comment|/**    * Not supported. Use {@link #erase} instead.    *    * @throws UnsupportedOperationException always    * @deprecated Use {@link #erase}    */
 annotation|@
+name|CanIgnoreReturnValue
+annotation|@
 name|Override
 annotation|@
 name|Deprecated
@@ -1815,6 +1835,8 @@ argument_list|()
 throw|;
 block|}
 comment|/**    * Associates the value {@code null} with the specified keys, assuming both    * keys are valid. If either key is null or isn't among the keys provided    * during construction, this method has no effect.    *    *<p>This method is equivalent to {@code put(rowKey, columnKey, null)} when    * both provided keys are valid.    *    * @param rowKey row key of mapping to be erased    * @param columnKey column key of mapping to be erased    * @return the value previously associated with the keys, or {@code null} if    *     no mapping existed for the keys    */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|erase (@ullable Object rowKey, @Nullable Object columnKey)
 specifier|public
 name|V

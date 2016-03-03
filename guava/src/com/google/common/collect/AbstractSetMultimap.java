@@ -32,6 +32,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -226,6 +240,8 @@ return|;
 block|}
 comment|/**    * {@inheritDoc}    *    *<p>Because a {@code SetMultimap} has unique values for a given key, this    * method returns a {@link Set}, instead of the {@link Collection} specified    * in the {@link Multimap} interface.    */
 annotation|@
+name|CanIgnoreReturnValue
+annotation|@
 name|Override
 DECL|method|removeAll (@ullable Object key)
 specifier|public
@@ -257,6 +273,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * {@inheritDoc}    *    *<p>Because a {@code SetMultimap} has unique values for a given key, this    * method returns a {@link Set}, instead of the {@link Collection} specified    * in the {@link Multimap} interface.    *    *<p>Any duplicates in {@code values} will be stored in the multimap once.    */
+annotation|@
+name|CanIgnoreReturnValue
 annotation|@
 name|Override
 DECL|method|replaceValues (@ullable K key, Iterable<? extends V> values)
@@ -323,6 +341,8 @@ argument_list|()
 return|;
 block|}
 comment|/**    * Stores a key-value pair in the multimap.    *    * @param key key to store in the multimap    * @param value value to store in the multimap    * @return {@code true} if the method increased the size of the multimap, or    *     {@code false} if the multimap already contained the key-value pair    */
+annotation|@
+name|CanIgnoreReturnValue
 annotation|@
 name|Override
 DECL|method|put (@ullable K key, @Nullable V value)

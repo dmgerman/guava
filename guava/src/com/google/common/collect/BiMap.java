@@ -32,6 +32,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -87,6 +101,8 @@ block|{
 comment|// Modification Operations
 comment|/**    * {@inheritDoc}    *    * @throws IllegalArgumentException if the given value is already bound to a    *     different key in this bimap. The bimap will remain unmodified in this    *     event. To avoid this exception, call {@link #forcePut} instead.    */
 annotation|@
+name|CanIgnoreReturnValue
+annotation|@
 name|Override
 annotation|@
 name|Nullable
@@ -106,6 +122,8 @@ name|value
 parameter_list|)
 function_decl|;
 comment|/**    * An alternate form of {@code put} that silently removes any existing entry    * with the value {@code value} before proceeding with the {@link #put}    * operation. If the bimap previously contained the provided key-value    * mapping, this method has no effect.    *    *<p>Note that a successful call to this method could cause the size of the    * bimap to increase by one, stay the same, or even decrease by one.    *    *<p><b>Warning:</b> If an existing entry with this value is removed, the key    * for that entry is discarded and not returned.    *    * @param key the key with which the specified value is to be associated    * @param value the value to be associated with the specified key    * @return the value which was previously associated with the key, which may    *     be {@code null}, or {@code null} if there was no previous entry    */
+annotation|@
+name|CanIgnoreReturnValue
 annotation|@
 name|Nullable
 DECL|method|forcePut (@ullable K key, @Nullable V value)

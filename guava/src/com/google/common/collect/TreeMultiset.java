@@ -138,6 +138,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -1181,6 +1195,8 @@ return|;
 block|}
 block|}
 annotation|@
+name|CanIgnoreReturnValue
+annotation|@
 name|Override
 DECL|method|add (@ullable E element, int occurrences)
 specifier|public
@@ -1342,6 +1358,8 @@ index|]
 return|;
 block|}
 annotation|@
+name|CanIgnoreReturnValue
+annotation|@
 name|Override
 DECL|method|remove (@ullable Object element, int occurrences)
 specifier|public
@@ -1494,6 +1512,8 @@ index|]
 return|;
 block|}
 annotation|@
+name|CanIgnoreReturnValue
+annotation|@
 name|Override
 DECL|method|setCount (@ullable E element, int count)
 specifier|public
@@ -1622,6 +1642,8 @@ literal|0
 index|]
 return|;
 block|}
+annotation|@
+name|CanIgnoreReturnValue
 annotation|@
 name|Override
 DECL|method|setCount (@ullable E element, int oldCount, int newCount)

@@ -194,6 +194,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -2979,6 +2993,8 @@ argument_list|()
 expr_stmt|;
 block|}
 comment|/**      * Add the specified range to this builder.  Adjacent/abutting ranges are permitted, but      * empty ranges, or ranges with nonempty overlap, are forbidden.      *      * @throws IllegalArgumentException if {@code range} is empty or has nonempty intersection with      *         any ranges already added to the builder      */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|add (Range<C> range)
 specifier|public
 name|Builder
@@ -3089,6 +3105,8 @@ name|this
 return|;
 block|}
 comment|/**      * Add all ranges from the specified range set to this builder. Duplicate or connected ranges      * are permitted, and will be merged in the resulting immutable range set.      */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|addAll (RangeSet<C> ranges)
 specifier|public
 name|Builder

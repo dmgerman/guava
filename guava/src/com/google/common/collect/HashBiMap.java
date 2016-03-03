@@ -144,6 +144,20 @@ name|com
 operator|.
 name|google
 operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
 name|j2objc
 operator|.
 name|annotations
@@ -1381,6 +1395,8 @@ argument_list|)
 return|;
 block|}
 annotation|@
+name|CanIgnoreReturnValue
+annotation|@
 name|Override
 DECL|method|put (@ullable K key, @Nullable V value)
 specifier|public
@@ -1409,6 +1425,8 @@ literal|false
 argument_list|)
 return|;
 block|}
+annotation|@
+name|CanIgnoreReturnValue
 annotation|@
 name|Override
 DECL|method|forcePut (@ullable K key, @Nullable V value)
@@ -1987,6 +2005,8 @@ name|length
 index|]
 return|;
 block|}
+annotation|@
+name|CanIgnoreReturnValue
 annotation|@
 name|Override
 DECL|method|remove (@ullable Object key)

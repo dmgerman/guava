@@ -62,6 +62,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -644,6 +658,8 @@ name|Builder
 parameter_list|()
 block|{}
 comment|/**      * Specifies the ordering of the generated table's rows.      */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|orderRowsBy (Comparator<? super R> rowComparator)
 specifier|public
 name|Builder
@@ -679,6 +695,8 @@ name|this
 return|;
 block|}
 comment|/**      * Specifies the ordering of the generated table's columns.      */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|orderColumnsBy (Comparator<? super C> columnComparator)
 specifier|public
 name|Builder
@@ -714,6 +732,8 @@ name|this
 return|;
 block|}
 comment|/**      * Associates the ({@code rowKey}, {@code columnKey}) pair with {@code      * value} in the built table. Duplicate key pairs are not allowed and will      * cause {@link #build} to fail.      */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|put (R rowKey, C columnKey, V value)
 specifier|public
 name|Builder
@@ -755,6 +775,8 @@ name|this
 return|;
 block|}
 comment|/**      * Adds the given {@code cell} to the table, making it immutable if      * necessary. Duplicate key pairs are not allowed and will cause {@link      * #build} to fail.      */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|put (Cell<? extends R, ? extends C, ? extends V> cell)
 specifier|public
 name|Builder
@@ -879,6 +901,8 @@ name|this
 return|;
 block|}
 comment|/**      * Associates all of the given table's keys and values in the built table.      * Duplicate row key column key pairs are not allowed, and will cause      * {@link #build} to fail.      *      * @throws NullPointerException if any key or value in {@code table} is null      */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|putAll (Table<? extends R, ? extends C, ? extends V> table)
 specifier|public
 name|Builder
@@ -1414,6 +1438,8 @@ throw|;
 block|}
 comment|/**    * Guaranteed to throw an exception and leave the table unmodified.    *    * @throws UnsupportedOperationException always    * @deprecated Unsupported operation.    */
 annotation|@
+name|CanIgnoreReturnValue
+annotation|@
 name|Deprecated
 annotation|@
 name|Override
@@ -1474,6 +1500,8 @@ argument_list|()
 throw|;
 block|}
 comment|/**    * Guaranteed to throw an exception and leave the table unmodified.    *    * @throws UnsupportedOperationException always    * @deprecated Unsupported operation.    */
+annotation|@
+name|CanIgnoreReturnValue
 annotation|@
 name|Deprecated
 annotation|@

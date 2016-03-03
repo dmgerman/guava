@@ -4668,10 +4668,10 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**    * Removes all values for the provided key. Unlike {@link #removeAll}, it    * returns the number of removed mappings.    */
+comment|/**    * Removes all values for the provided key.    */
 DECL|method|removeValuesForKey (Object key)
 specifier|private
-name|int
+name|void
 name|removeValuesForKey
 parameter_list|(
 name|Object
@@ -4693,11 +4693,6 @@ argument_list|,
 name|key
 argument_list|)
 decl_stmt|;
-name|int
-name|count
-init|=
-literal|0
-decl_stmt|;
 if|if
 condition|(
 name|collection
@@ -4705,13 +4700,14 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|int
 name|count
-operator|=
+init|=
 name|collection
 operator|.
 name|size
 argument_list|()
-expr_stmt|;
+decl_stmt|;
 name|collection
 operator|.
 name|clear
@@ -4722,9 +4718,6 @@ operator|-=
 name|count
 expr_stmt|;
 block|}
-return|return
-name|count
-return|;
 block|}
 DECL|class|Itr
 specifier|private

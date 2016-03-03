@@ -78,6 +78,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -1353,6 +1367,8 @@ return|;
 block|}
 comment|/**    * {@inheritDoc}    *    *<p>This implementation is guaranteed to throw an {@link UnsupportedOperationException}.    *    * @throws UnsupportedOperationException always    * @deprecated Unsupported operation.    */
 annotation|@
+name|CanIgnoreReturnValue
+annotation|@
 name|Deprecated
 annotation|@
 name|Override
@@ -1373,6 +1389,8 @@ argument_list|()
 throw|;
 block|}
 comment|/**    * {@inheritDoc}    *    *<p>This implementation is guaranteed to throw an {@link UnsupportedOperationException}.    *    * @throws UnsupportedOperationException always    * @deprecated Unsupported operation.    */
+annotation|@
+name|CanIgnoreReturnValue
 annotation|@
 name|Deprecated
 annotation|@
@@ -1639,6 +1657,8 @@ expr_stmt|;
 block|}
 comment|/**      * Adds {@code element} to the {@code ImmutableSortedMultiset}.      *      * @param element the element to add      * @return this {@code Builder} object      * @throws NullPointerException if {@code element} is null      */
 annotation|@
+name|CanIgnoreReturnValue
+annotation|@
 name|Override
 DECL|method|add (E element)
 specifier|public
@@ -1664,6 +1684,8 @@ name|this
 return|;
 block|}
 comment|/**      * Adds a number of occurrences of an element to this {@code ImmutableSortedMultiset}.      *      * @param element the element to add      * @param occurrences the number of occurrences of the element to add. May be zero, in which      *        case no change will be made.      * @return this {@code Builder} object      * @throws NullPointerException if {@code element} is null      * @throws IllegalArgumentException if {@code occurrences} is negative, or if this operation      *         would result in more than {@link Integer#MAX_VALUE} occurrences of the element      */
+annotation|@
+name|CanIgnoreReturnValue
 annotation|@
 name|Override
 DECL|method|addCopies (E element, int occurrences)
@@ -1696,6 +1718,8 @@ return|;
 block|}
 comment|/**      * Adds or removes the necessary occurrences of an element such that the element attains the      * desired count.      *      * @param element the element to add or remove occurrences of      * @param count the desired count of the element in this multiset      * @return this {@code Builder} object      * @throws NullPointerException if {@code element} is null      * @throws IllegalArgumentException if {@code count} is negative      */
 annotation|@
+name|CanIgnoreReturnValue
+annotation|@
 name|Override
 DECL|method|setCount (E element, int count)
 specifier|public
@@ -1727,6 +1751,8 @@ return|;
 block|}
 comment|/**      * Adds each element of {@code elements} to the {@code ImmutableSortedMultiset}.      *      * @param elements the elements to add      * @return this {@code Builder} object      * @throws NullPointerException if {@code elements} is null or contains a null element      */
 annotation|@
+name|CanIgnoreReturnValue
+annotation|@
 name|Override
 DECL|method|add (E... elements)
 specifier|public
@@ -1753,6 +1779,8 @@ name|this
 return|;
 block|}
 comment|/**      * Adds each element of {@code elements} to the {@code ImmutableSortedMultiset}.      *      * @param elements the {@code Iterable} to add to the {@code ImmutableSortedMultiset}      * @return this {@code Builder} object      * @throws NullPointerException if {@code elements} is null or contains a null element      */
+annotation|@
+name|CanIgnoreReturnValue
 annotation|@
 name|Override
 DECL|method|addAll (Iterable<? extends E> elements)
@@ -1784,6 +1812,8 @@ name|this
 return|;
 block|}
 comment|/**      * Adds each element of {@code elements} to the {@code ImmutableSortedMultiset}.      *      * @param elements the elements to add to the {@code ImmutableSortedMultiset}      * @return this {@code Builder} object      * @throws NullPointerException if {@code elements} is null or contains a null element      */
+annotation|@
+name|CanIgnoreReturnValue
 annotation|@
 name|Override
 DECL|method|addAll (Iterator<? extends E> elements)

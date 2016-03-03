@@ -62,6 +62,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -286,6 +300,8 @@ block|}
 block|}
 empty_stmt|;
 annotation|@
+name|CanIgnoreReturnValue
+annotation|@
 name|Override
 DECL|method|putInstance (Class<T> type, T value)
 specifier|public
@@ -352,6 +368,8 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|cast (Class<T> type, B value)
 specifier|private
 specifier|static

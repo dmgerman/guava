@@ -32,6 +32,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -78,12 +92,15 @@ name|B
 argument_list|>
 block|{
 comment|/**    * Returns the value the specified class is mapped to, or {@code null} if no    * entry for this class is present. This will only return a value that was    * bound to this specific class, not a value that may have been bound to a    * subtype.    */
+annotation|@
+name|CanIgnoreReturnValue
+comment|// TODO(kak): Consider removing this?
 DECL|method|getInstance (Class<T> type)
-parameter_list|<
+argument_list|<
 name|T
 extends|extends
 name|B
-parameter_list|>
+argument_list|>
 name|T
 name|getInstance
 parameter_list|(
@@ -95,12 +112,14 @@ name|type
 parameter_list|)
 function_decl|;
 comment|/**    * Maps the specified class to the specified value. Does<i>not</i> associate    * this value with any of the class's supertypes.    *    * @return the value previously associated with this class (possibly {@code    *     null}), or {@code null} if there was no previous entry.    */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|putInstance (Class<T> type, @Nullable T value)
-parameter_list|<
+argument_list|<
 name|T
 extends|extends
 name|B
-parameter_list|>
+argument_list|>
 name|T
 name|putInstance
 parameter_list|(

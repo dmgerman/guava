@@ -110,6 +110,20 @@ name|com
 operator|.
 name|google
 operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
 name|j2objc
 operator|.
 name|annotations
@@ -1108,6 +1122,8 @@ return|;
 block|}
 comment|/**    * {@inheritDoc}    *    *<p>If {@code values} is not empty and the multimap already contains a    * mapping for {@code key}, the {@code keySet()} ordering is unchanged.    * However, the provided values always come last in the {@link #entries()} and    * {@link #values()} iteration orderings.    */
 annotation|@
+name|CanIgnoreReturnValue
+annotation|@
 name|Override
 DECL|method|replaceValues (@ullable K key, Iterable<? extends V> values)
 specifier|public
@@ -1982,6 +1998,8 @@ expr_stmt|;
 block|}
 block|}
 block|}
+annotation|@
+name|CanIgnoreReturnValue
 annotation|@
 name|Override
 DECL|method|remove (@ullable Object o)

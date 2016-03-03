@@ -46,6 +46,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -152,6 +166,8 @@ argument_list|()
 return|;
 block|}
 annotation|@
+name|CanIgnoreReturnValue
+annotation|@
 name|Override
 DECL|method|removeAll (Collection<?> collection)
 specifier|public
@@ -213,6 +229,8 @@ argument_list|)
 return|;
 block|}
 annotation|@
+name|CanIgnoreReturnValue
+annotation|@
 name|Override
 DECL|method|add (E element)
 specifier|public
@@ -233,6 +251,8 @@ name|element
 argument_list|)
 return|;
 block|}
+annotation|@
+name|CanIgnoreReturnValue
 annotation|@
 name|Override
 DECL|method|remove (Object object)
@@ -279,6 +299,8 @@ argument_list|)
 return|;
 block|}
 annotation|@
+name|CanIgnoreReturnValue
+annotation|@
 name|Override
 DECL|method|addAll (Collection<? extends E> collection)
 specifier|public
@@ -304,6 +326,8 @@ name|collection
 argument_list|)
 return|;
 block|}
+annotation|@
+name|CanIgnoreReturnValue
 annotation|@
 name|Override
 DECL|method|retainAll (Collection<?> collection)
@@ -360,6 +384,8 @@ name|toArray
 argument_list|()
 return|;
 block|}
+annotation|@
+name|CanIgnoreReturnValue
 annotation|@
 name|Override
 DECL|method|toArray (T[] array)

@@ -126,6 +126,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -637,6 +651,8 @@ argument_list|()
 expr_stmt|;
 block|}
 comment|/**      * Associates the specified range with the specified value.      *      * @throws IllegalArgumentException if {@code range} overlaps with any other ranges inserted      *         into this builder, or if {@code range} is empty      */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|put (Range<K> range, V value)
 specifier|public
 name|Builder
@@ -786,6 +802,8 @@ name|this
 return|;
 block|}
 comment|/**      * Copies all associations from the specified range map into this builder.      *      * @throws IllegalArgumentException if any of the ranges in {@code rangeMap} overlap with ranges      *         already in this builder      */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|putAll (RangeMap<K, ? extends V> rangeMap)
 specifier|public
 name|Builder

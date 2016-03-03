@@ -52,6 +52,20 @@ name|com
 operator|.
 name|google
 operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
 name|j2objc
 operator|.
 name|annotations
@@ -264,6 +278,8 @@ argument_list|)
 return|;
 block|}
 annotation|@
+name|CanIgnoreReturnValue
+annotation|@
 name|Override
 DECL|method|remove (@ullable Object key, @Nullable Object value)
 specifier|public
@@ -309,6 +325,8 @@ argument_list|)
 return|;
 block|}
 annotation|@
+name|CanIgnoreReturnValue
+annotation|@
 name|Override
 DECL|method|put (@ullable K key, @Nullable V value)
 specifier|public
@@ -338,6 +356,8 @@ name|value
 argument_list|)
 return|;
 block|}
+annotation|@
+name|CanIgnoreReturnValue
 annotation|@
 name|Override
 DECL|method|putAll (@ullable K key, Iterable<? extends V> values)
@@ -445,6 +465,8 @@ return|;
 block|}
 block|}
 annotation|@
+name|CanIgnoreReturnValue
+annotation|@
 name|Override
 DECL|method|putAll (Multimap<? extends K, ? extends V> multimap)
 specifier|public
@@ -511,6 +533,8 @@ return|return
 name|changed
 return|;
 block|}
+annotation|@
+name|CanIgnoreReturnValue
 annotation|@
 name|Override
 DECL|method|replaceValues (@ullable K key, Iterable<? extends V> values)

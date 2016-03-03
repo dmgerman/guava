@@ -32,6 +32,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -186,6 +200,9 @@ argument_list|()
 return|;
 block|}
 annotation|@
+name|CanIgnoreReturnValue
+comment|// TODO(cpovirk): Consider removing this?
+annotation|@
 name|Override
 DECL|method|offerFirst (E e)
 specifier|public
@@ -206,6 +223,9 @@ name|e
 argument_list|)
 return|;
 block|}
+annotation|@
+name|CanIgnoreReturnValue
+comment|// TODO(cpovirk): Consider removing this?
 annotation|@
 name|Override
 DECL|method|offerLast (E e)
@@ -260,6 +280,9 @@ argument_list|()
 return|;
 block|}
 annotation|@
+name|CanIgnoreReturnValue
+comment|// TODO(cpovirk): Consider removing this?
+annotation|@
 name|Override
 DECL|method|pollFirst ()
 specifier|public
@@ -276,6 +299,9 @@ argument_list|()
 return|;
 block|}
 annotation|@
+name|CanIgnoreReturnValue
+comment|// TODO(cpovirk): Consider removing this?
+annotation|@
 name|Override
 DECL|method|pollLast ()
 specifier|public
@@ -291,6 +317,8 @@ name|pollLast
 argument_list|()
 return|;
 block|}
+annotation|@
+name|CanIgnoreReturnValue
 annotation|@
 name|Override
 DECL|method|pop ()
@@ -328,6 +356,8 @@ argument_list|)
 expr_stmt|;
 block|}
 annotation|@
+name|CanIgnoreReturnValue
+annotation|@
 name|Override
 DECL|method|removeFirst ()
 specifier|public
@@ -344,6 +374,8 @@ argument_list|()
 return|;
 block|}
 annotation|@
+name|CanIgnoreReturnValue
+annotation|@
 name|Override
 DECL|method|removeLast ()
 specifier|public
@@ -359,6 +391,8 @@ name|removeLast
 argument_list|()
 return|;
 block|}
+annotation|@
+name|CanIgnoreReturnValue
 annotation|@
 name|Override
 DECL|method|removeFirstOccurrence (Object o)
@@ -380,6 +414,8 @@ name|o
 argument_list|)
 return|;
 block|}
+annotation|@
+name|CanIgnoreReturnValue
 annotation|@
 name|Override
 DECL|method|removeLastOccurrence (Object o)

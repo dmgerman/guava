@@ -46,6 +46,20 @@ name|GwtCompatible
 import|;
 end_import
 
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
 begin_comment
 comment|/**  * Precondition checks useful in collection implementations.  */
 end_comment
@@ -108,6 +122,8 @@ argument_list|)
 throw|;
 block|}
 block|}
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|checkNonnegative (int value, String name)
 specifier|static
 name|int

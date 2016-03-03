@@ -188,6 +188,20 @@ name|com
 operator|.
 name|google
 operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
 name|j2objc
 operator|.
 name|annotations
@@ -558,6 +572,10 @@ end_import
 
 begin_comment
 comment|/**  * The concurrent hash map implementation built by {@link MapMaker}.  *  *<p>This implementation is heavily derived from revision 1.96 of<a  * href="http://tinyurl.com/ConcurrentHashMap">ConcurrentHashMap.java</a>.  *  * @author Bob Lee  * @author Charles Fry  * @author Doug Lea ({@code ConcurrentHashMap})  */
+end_comment
+
+begin_comment
+comment|// TODO(kak/cpovirk): Consider removing @CanIgnoreReturnValue from this class.
 end_comment
 
 begin_class
@@ -11784,6 +11802,8 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|remove (Object key, int hash)
 name|V
 name|remove
@@ -12679,6 +12699,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**      * Removes an entry whose key has been garbage collected.      */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|reclaimKey (ReferenceEntry<K, V> entry, int hash)
 name|boolean
 name|reclaimKey
@@ -12866,6 +12888,8 @@ expr_stmt|;
 block|}
 block|}
 comment|/**      * Removes an entry whose value has been garbage collected.      */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|reclaimValue (K key, int hash, ValueReference<K, V> valueReference)
 name|boolean
 name|reclaimValue
@@ -13111,6 +13135,8 @@ block|}
 block|}
 block|}
 comment|/**      * Clears a value that has not yet been set, and thus does not require count to be modified.      */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|clearValue (K key, int hash, ValueReference<K, V> valueReference)
 name|boolean
 name|clearValue
@@ -13303,6 +13329,8 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|CanIgnoreReturnValue
 annotation|@
 name|GuardedBy
 argument_list|(
@@ -13998,6 +14026,8 @@ name|next
 return|;
 block|}
 annotation|@
+name|CanIgnoreReturnValue
+annotation|@
 name|Override
 annotation|@
 name|SuppressWarnings
@@ -14623,6 +14653,8 @@ return|return
 name|next
 return|;
 block|}
+annotation|@
+name|CanIgnoreReturnValue
 annotation|@
 name|Override
 annotation|@
@@ -15612,6 +15644,8 @@ literal|false
 return|;
 block|}
 annotation|@
+name|CanIgnoreReturnValue
+annotation|@
 name|Override
 DECL|method|put (K key, V value)
 specifier|public
@@ -15661,6 +15695,8 @@ literal|false
 argument_list|)
 return|;
 block|}
+annotation|@
+name|CanIgnoreReturnValue
 annotation|@
 name|Override
 DECL|method|putIfAbsent (K key, V value)
@@ -15767,6 +15803,8 @@ expr_stmt|;
 block|}
 block|}
 annotation|@
+name|CanIgnoreReturnValue
+annotation|@
 name|Override
 DECL|method|remove (@ullable Object key)
 specifier|public
@@ -15812,6 +15850,8 @@ name|hash
 argument_list|)
 return|;
 block|}
+annotation|@
+name|CanIgnoreReturnValue
 annotation|@
 name|Override
 DECL|method|remove (@ullable Object key, @Nullable Object value)
@@ -15869,6 +15909,8 @@ name|value
 argument_list|)
 return|;
 block|}
+annotation|@
+name|CanIgnoreReturnValue
 annotation|@
 name|Override
 DECL|method|replace (K key, @Nullable V oldValue, V newValue)
@@ -15935,6 +15977,8 @@ name|newValue
 argument_list|)
 return|;
 block|}
+annotation|@
+name|CanIgnoreReturnValue
 annotation|@
 name|Override
 DECL|method|replace (K key, V value)
