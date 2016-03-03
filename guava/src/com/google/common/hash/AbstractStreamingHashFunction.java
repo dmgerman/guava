@@ -92,16 +92,6 @@ name|Charset
 import|;
 end_import
 
-begin_import
-import|import
-name|javax
-operator|.
-name|annotation
-operator|.
-name|CheckReturnValue
-import|;
-end_import
-
 begin_comment
 comment|/**  * Skeleton implementation of {@link HashFunction}. Provides default implementations which invokes  * the appropriate method on {@link #newHasher()}, then return the result of {@link Hasher#hash}.  *  *<p>Invocations of {@link #newHasher(int)} also delegate to {@linkplain #newHasher()}, ignoring  * the expected input size parameter.  *  * @author Kevin Bourrillion  */
 end_comment
@@ -912,8 +902,6 @@ return|;
 block|}
 annotation|@
 name|Override
-annotation|@
-name|CheckReturnValue
 DECL|method|hash ()
 specifier|public
 specifier|final
