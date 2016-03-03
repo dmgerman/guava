@@ -19,6 +19,18 @@ package|;
 end_package
 
 begin_import
+import|import static
+name|java
+operator|.
+name|util
+operator|.
+name|Arrays
+operator|.
+name|asList
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -83,6 +95,24 @@ operator|.
 name|features
 operator|.
 name|MapFeature
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|collect
+operator|.
+name|testing
+operator|.
+name|testers
+operator|.
+name|MapEntrySetTester
 import|;
 end_import
 
@@ -519,10 +549,13 @@ name|suppressForConcurrentSkipListMap
 parameter_list|()
 block|{
 return|return
-name|Collections
+name|asList
+argument_list|(
+name|MapEntrySetTester
 operator|.
-name|emptySet
+name|getSetValueMethod
 argument_list|()
+argument_list|)
 return|;
 block|}
 DECL|method|testsForEmptyMap ()

@@ -136,6 +136,24 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|collect
+operator|.
+name|testing
+operator|.
+name|testers
+operator|.
+name|MapEntrySetTester
+import|;
+end_import
+
+begin_import
+import|import
 name|junit
 operator|.
 name|framework
@@ -1145,6 +1163,15 @@ argument_list|,
 name|MapFeature
 operator|.
 name|GENERAL_PURPOSE
+argument_list|)
+comment|/*              * StandardDescendingMap uses lowerEntry(), and TreeMap.lowerEntry() deliberately              * produces immutable entries.              *              * TODO(cpovirk): Consider making StandardDescendingMap return a ForwardingEntry that              * supports setValue().              */
+operator|.
+name|suppressing
+argument_list|(
+name|MapEntrySetTester
+operator|.
+name|getSetValueMethod
+argument_list|()
 argument_list|)
 operator|.
 name|createTestSuite
