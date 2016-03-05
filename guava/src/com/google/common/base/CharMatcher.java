@@ -409,7 +409,7 @@ init|=
 name|digit
 argument_list|()
 decl_stmt|;
-comment|/**    * Determines whether a character is a digit according to {@linkplain Character#isDigit(char)    * Java's definition}. If you only care to match ASCII digits, you can use {@code    * inRange('0', '9')}.    */
+comment|/**    * Determines whether a character is a digit according to    * {@linkplain Character#isDigit(char) Java's definition}. If you only care to match    * ASCII digits, you can use {@code inRange('0', '9')}.    */
 DECL|field|JAVA_DIGIT
 specifier|public
 specifier|static
@@ -486,7 +486,7 @@ init|=
 name|invisible
 argument_list|()
 decl_stmt|;
-comment|/**    * Determines whether a character is single-width (not double-width). When in doubt, this matcher    * errs on the side of returning {@code false} (that is, it tends to assume a character is    * double-width).    *    *<p><b>Note:</b> as the reference file evolves, we will modify this constant to keep it up to    * date.    */
+comment|/**    * Determines whether a character is single-width (not double-width). When in doubt,    * this matcher errs on the side of returning {@code false} (that is, it tends to    * assume a character is double-width).    *    *<p><b>Note:</b> as the reference file evolves, we will modify this constant to    * keep it up to date.    */
 DECL|field|SINGLE_WIDTH
 specifier|public
 specifier|static
