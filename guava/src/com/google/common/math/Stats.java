@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * Copyright (C) 2012 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except  * in compliance with the License. You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software distributed under the License  * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express  * or implied. See the License for the specific language governing permissions and limitations under  * the License.  */
+comment|/*  -* Copyright (C) 2012 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except  * in compliance with the License. You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software distributed under the License  * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express  * or implied. See the License for the specific language governing permissions and limitations under  * the License.  */
 end_comment
 
 begin_package
@@ -255,7 +255,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An immutable value object capturing some basic statistics about a collection of double values.  * Build instances with {@link #of} or {@link StatsAccumulator#snapshot}. If you only want to  * calculate the mean of a dataset, use {@link #meanOf} instead.  *  * @author Pete Gillin  * @author Kevin Bourrillion  * @since 20.0  */
+comment|/**  * A bundle of statistical summary values -- sum, count, mean/average, min and max, and several  * forms of variance -- that were computed from a single set of zero or more floating-point values.  *  *<p>There are two ways to obtain a {@code Stats} instance:  *  *<ul>  *<li>If all the values you want to summarize are already known, use the appropriate {@code  *     Stats.of} factory method below. Primitive arrays, iterables and iterators of any kind of  *     {@code Number}, and primitive varargs are supported.  *<li>Or, to avoid storing up all the data first, create a {@link StatsAccumulator} instance, feed  *     values to it as you get them, then call {@link StatsAccumulator#snapshot}.  *</ul>  *  *<p>Static convenience methods called {@code meanOf} are also provided for users who wish to  * calculate<i>only</i> the mean.  *  *<p><b>Java 8 users:</b> If you are not using any of the variance statistics, you may wish to use  * built-in JDK libraries instead of this class.  *  * @author Pete Gillin  * @author Kevin Bourrillion  * @since 20.0  */
 end_comment
 
 begin_class
