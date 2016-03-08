@@ -46,6 +46,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -72,6 +86,9 @@ name|T
 parameter_list|>
 block|{
 comment|/**    * This method will be called once for each line.    *    * @param line the line read from the input, without delimiter    * @return true to continue processing, false to stop    */
+annotation|@
+name|CanIgnoreReturnValue
+comment|// some uses know that their processor never returns false
 DECL|method|processLine (String line)
 name|boolean
 name|processLine

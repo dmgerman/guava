@@ -32,6 +32,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
 name|junit
 operator|.
 name|framework
@@ -718,6 +732,8 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|delete (File file)
 specifier|private
 name|boolean

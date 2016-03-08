@@ -32,6 +32,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -255,6 +269,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** Called when a line is complete. */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|finishLine (boolean sawNewline)
 specifier|private
 name|boolean

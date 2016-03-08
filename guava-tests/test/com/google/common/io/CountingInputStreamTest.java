@@ -392,6 +392,12 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"CheckReturnValue"
+argument_list|)
+comment|// calling read() to skip a byte
 DECL|method|testMark ()
 specifier|public
 name|void

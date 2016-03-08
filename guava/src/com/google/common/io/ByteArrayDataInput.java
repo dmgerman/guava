@@ -32,6 +32,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -92,6 +106,8 @@ name|int
 name|len
 parameter_list|)
 function_decl|;
+comment|// not guaranteed to skip n bytes so result should NOT be ignored
+comment|// use ByteStreams.skipFully or one of the read methods instead
 annotation|@
 name|Override
 DECL|method|skipBytes (int n)
@@ -103,12 +119,18 @@ name|n
 parameter_list|)
 function_decl|;
 annotation|@
+name|CanIgnoreReturnValue
+comment|// to skip a byte
+annotation|@
 name|Override
 DECL|method|readBoolean ()
 name|boolean
 name|readBoolean
 parameter_list|()
 function_decl|;
+annotation|@
+name|CanIgnoreReturnValue
+comment|// to skip a byte
 annotation|@
 name|Override
 DECL|method|readByte ()
@@ -117,12 +139,18 @@ name|readByte
 parameter_list|()
 function_decl|;
 annotation|@
+name|CanIgnoreReturnValue
+comment|// to skip a byte
+annotation|@
 name|Override
 DECL|method|readUnsignedByte ()
 name|int
 name|readUnsignedByte
 parameter_list|()
 function_decl|;
+annotation|@
+name|CanIgnoreReturnValue
+comment|// to skip some bytes
 annotation|@
 name|Override
 DECL|method|readShort ()
@@ -131,12 +159,18 @@ name|readShort
 parameter_list|()
 function_decl|;
 annotation|@
+name|CanIgnoreReturnValue
+comment|// to skip some bytes
+annotation|@
 name|Override
 DECL|method|readUnsignedShort ()
 name|int
 name|readUnsignedShort
 parameter_list|()
 function_decl|;
+annotation|@
+name|CanIgnoreReturnValue
+comment|// to skip some bytes
 annotation|@
 name|Override
 DECL|method|readChar ()
@@ -145,12 +179,18 @@ name|readChar
 parameter_list|()
 function_decl|;
 annotation|@
+name|CanIgnoreReturnValue
+comment|// to skip some bytes
+annotation|@
 name|Override
 DECL|method|readInt ()
 name|int
 name|readInt
 parameter_list|()
 function_decl|;
+annotation|@
+name|CanIgnoreReturnValue
+comment|// to skip some bytes
 annotation|@
 name|Override
 DECL|method|readLong ()
@@ -159,12 +199,18 @@ name|readLong
 parameter_list|()
 function_decl|;
 annotation|@
+name|CanIgnoreReturnValue
+comment|// to skip some bytes
+annotation|@
 name|Override
 DECL|method|readFloat ()
 name|float
 name|readFloat
 parameter_list|()
 function_decl|;
+annotation|@
+name|CanIgnoreReturnValue
+comment|// to skip some bytes
 annotation|@
 name|Override
 DECL|method|readDouble ()
@@ -173,12 +219,18 @@ name|readDouble
 parameter_list|()
 function_decl|;
 annotation|@
+name|CanIgnoreReturnValue
+comment|// to skip a line
+annotation|@
 name|Override
 DECL|method|readLine ()
 name|String
 name|readLine
 parameter_list|()
 function_decl|;
+annotation|@
+name|CanIgnoreReturnValue
+comment|// to skip a field
 annotation|@
 name|Override
 DECL|method|readUTF ()

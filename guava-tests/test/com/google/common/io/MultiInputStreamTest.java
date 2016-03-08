@@ -523,6 +523,12 @@ name|total
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"CheckReturnValue"
+argument_list|)
+comment|// these calls to skip always return 0
 DECL|method|testSkip ()
 specifier|public
 name|void
@@ -588,6 +594,10 @@ name|iterator
 argument_list|()
 argument_list|)
 decl_stmt|;
+name|assertEquals
+argument_list|(
+literal|0
+argument_list|,
 name|multi
 operator|.
 name|skip
@@ -595,7 +605,12 @@ argument_list|(
 operator|-
 literal|1
 argument_list|)
+argument_list|)
 expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|0
+argument_list|,
 name|multi
 operator|.
 name|skip
@@ -603,12 +618,18 @@ argument_list|(
 operator|-
 literal|1
 argument_list|)
+argument_list|)
 expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|0
+argument_list|,
 name|multi
 operator|.
 name|skip
 argument_list|(
 literal|0
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|ByteStreams

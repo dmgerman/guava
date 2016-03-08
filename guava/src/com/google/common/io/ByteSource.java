@@ -208,6 +208,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -745,7 +759,9 @@ return|return
 name|count
 return|;
 block|}
-comment|/**    * Copies the contents of this byte source to the given {@code OutputStream}. Does not close    * {@code output}.    *    * @throws IOException if an I/O error occurs in the process of reading from this source or    *     writing to {@code output}    */
+comment|/**    * Copies the contents of this byte source to the given {@code OutputStream}. Does not close    * {@code output}.    *    * @return the number of bytes copied    * @throws IOException if an I/O error occurs in the process of reading from this source or    *     writing to {@code output}    */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|copyTo (OutputStream output)
 specifier|public
 name|long
@@ -818,7 +834,9 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Copies the contents of this byte source to the given {@code ByteSink}.    *    * @throws IOException if an I/O error occurs in the process of reading from this source or    *     writing to {@code sink}    */
+comment|/**    * Copies the contents of this byte source to the given {@code ByteSink}.    *    * @return the number of bytes copied    * @throws IOException if an I/O error occurs in the process of reading from this source or    *     writing to {@code sink}    */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|copyTo (ByteSink sink)
 specifier|public
 name|long
@@ -971,6 +989,9 @@ block|}
 comment|/**    * Reads the contents of this byte source using the given {@code processor} to process bytes as    * they are read. Stops when all bytes have been read or the consumer returns {@code false}.    * Returns the result produced by the processor.    *    * @throws IOException if an I/O error occurs in the process of reading from this source or if    *     {@code processor} throws an {@code IOException}    * @since 16.0    */
 annotation|@
 name|Beta
+annotation|@
+name|CanIgnoreReturnValue
+comment|// some processors won't return a useful result
 DECL|method|read (ByteProcessor<T> processor)
 specifier|public
 parameter_list|<
@@ -2111,6 +2132,12 @@ return|return
 name|length
 return|;
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"CheckReturnValue"
+argument_list|)
+comment|// it doesn't matter what processBytes returns here
 annotation|@
 name|Override
 DECL|method|read (ByteProcessor<T> processor)

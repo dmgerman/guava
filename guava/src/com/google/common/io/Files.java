@@ -220,6 +220,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -1887,6 +1901,9 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Streams lines from a {@link File}, stopping when our callback returns false, or we have read    * all of the lines.    *    * @param file the file to read from    * @param charset the charset used to decode the input stream; see {@link StandardCharsets} for    *     helpful predefined constants    * @param callback the {@link LineProcessor} to use to handle the lines    * @return the output of processing the lines    * @throws IOException if an I/O error occurs    */
+annotation|@
+name|CanIgnoreReturnValue
+comment|// some processors won't return a useful result
 DECL|method|readLines (File file, Charset charset, LineProcessor<T> callback)
 specifier|public
 specifier|static
@@ -1926,6 +1943,9 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Process the bytes of a file.    *    *<p>(If this seems too complicated, maybe you're looking for {@link #toByteArray}.)    *    * @param file the file to read    * @param processor the object to which the bytes of the file are passed.    * @return the result of the byte processor    * @throws IOException if an I/O error occurs    */
+annotation|@
+name|CanIgnoreReturnValue
+comment|// some processors won't return a useful result
 DECL|method|readBytes (File file, ByteProcessor<T> processor)
 specifier|public
 specifier|static

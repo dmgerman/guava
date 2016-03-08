@@ -2042,6 +2042,12 @@ extends|extends
 name|FileByteSourceFactory
 block|{
 annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"CheckReturnValue"
+argument_list|)
+comment|// only using super.createSource to create a file
+annotation|@
 name|Override
 DECL|method|createSource (byte[] bytes)
 specifier|public
@@ -2087,6 +2093,12 @@ name|UrlCharSourceFactory
 extends|extends
 name|FileCharSourceFactory
 block|{
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"CheckReturnValue"
+argument_list|)
+comment|// only using super.createSource to create a file
 annotation|@
 name|Override
 DECL|method|createSource (String string)

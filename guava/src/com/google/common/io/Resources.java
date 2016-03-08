@@ -120,6 +120,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -366,6 +380,9 @@ argument_list|()
 return|;
 block|}
 comment|/**    * Streams lines from a URL, stopping when our callback returns false, or we have read all of the    * lines.    *    * @param url the URL to read from    * @param charset the charset used to decode the input stream; see {@link Charsets} for helpful    *     predefined constants    * @param callback the LineProcessor to use to handle the lines    * @return the output of processing the lines    * @throws IOException if an I/O error occurs    */
+annotation|@
+name|CanIgnoreReturnValue
+comment|// some processors won't return a useful result
 DECL|method|readLines (URL url, Charset charset, LineProcessor<T> callback)
 specifier|public
 specifier|static
@@ -521,6 +538,11 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Returns a {@code URL} pointing to {@code resourceName} if the resource is found using the    * {@linkplain Thread#getContextClassLoader() context class loader}. In simple environments, the    * context class loader will find resources from the class path. In environments where different    * threads can have different class loaders, for example app servers, the context class loader    * will typically have been set to an appropriate loader for the current thread.    *    *<p>In the unusual case where the context class loader is null, the class loader that loaded    * this class ({@code Resources}) will be used instead.    *    * @throws IllegalArgumentException if the resource is not found    */
+annotation|@
+name|CanIgnoreReturnValue
+comment|// being used to check if a resource exists
+comment|// TODO(cgdecker): maybe add a better way to check if a resource exists
+comment|// e.g. Optional<URL> tryGetResource or boolean resourceExists
 DECL|method|getResource (String resourceName)
 specifier|public
 specifier|static

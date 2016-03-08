@@ -62,6 +62,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -250,6 +264,9 @@ literal|null
 expr_stmt|;
 block|}
 comment|/**    * Reads a line of text. A line is considered to be terminated by any one of a line feed    * ({@code '\n'}), a carriage return ({@code '\r'}), or a carriage return followed immediately by    * a linefeed ({@code "\r\n"}).    *    * @return a {@code String} containing the contents of the line, not including any    *     line-termination characters, or {@code null} if the end of the stream has been reached.    * @throws IOException if an I/O error occurs    */
+annotation|@
+name|CanIgnoreReturnValue
+comment|// to skip a line
 DECL|method|readLine ()
 specifier|public
 name|String

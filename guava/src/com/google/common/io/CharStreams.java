@@ -78,6 +78,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -187,6 +201,8 @@ name|CharStreams
 parameter_list|()
 block|{}
 comment|/**    * Copies all characters between the {@link Readable} and {@link Appendable} objects. Does not    * close or flush either object.    *    * @param from the object to read from    * @param to the object to write to    * @return the number of characters copied    * @throws IOException if an I/O error occurs    */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|copy (Readable from, Appendable to)
 specifier|public
 specifier|static
@@ -391,6 +407,9 @@ name|result
 return|;
 block|}
 comment|/**    * Streams lines from a {@link Readable} object, stopping when the processor returns {@code false}    * or all lines have been read and returning the result produced by the processor. Does not close    * {@code readable}. Note that this method may not fully consume the contents of {@code readable}    * if the processor stops processing early.    *    * @throws IOException if an I/O error occurs    * @since 14.0    */
+annotation|@
+name|CanIgnoreReturnValue
+comment|// some processors won't return a useful result
 DECL|method|readLines (Readable readable, LineProcessor<T> processor)
 specifier|public
 specifier|static

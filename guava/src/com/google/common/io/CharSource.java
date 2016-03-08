@@ -146,6 +146,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -471,7 +485,9 @@ return|return
 name|count
 return|;
 block|}
-comment|/**    * Appends the contents of this source to the given {@link Appendable} (such as a {@link Writer}).    * Does not close {@code appendable} if it is {@code Closeable}.    *    * @throws IOException if an I/O error occurs in the process of reading from this source or    *     writing to {@code appendable}    */
+comment|/**    * Appends the contents of this source to the given {@link Appendable} (such as a {@link Writer}).    * Does not close {@code appendable} if it is {@code Closeable}.    *    * @return the number of characters copied    * @throws IOException if an I/O error occurs in the process of reading from this source or    *     writing to {@code appendable}    */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|copyTo (Appendable appendable)
 specifier|public
 name|long
@@ -544,7 +560,9 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Copies the contents of this source to the given sink.    *    * @throws IOException if an I/O error occurs in the process of reading from this source or    *     writing to {@code sink}    */
+comment|/**    * Copies the contents of this source to the given sink.    *    * @return the number of characters copied    * @throws IOException if an I/O error occurs in the process of reading from this source or    *     writing to {@code sink}    */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|copyTo (CharSink sink)
 specifier|public
 name|long
@@ -861,6 +879,9 @@ block|}
 comment|/**    * Reads lines of text from this source, processing each line as it is read using the given    * {@link LineProcessor processor}. Stops when all lines have been processed or the processor    * returns {@code false} and returns the result produced by the processor.    *    *<p>Like {@link BufferedReader}, this method breaks lines on any of {@code \n}, {@code \r} or    * {@code \r\n}, does not include the line separator in the lines passed to the {@code processor}    * and does not consider there to be an extra empty line at the end if the content is terminated    * with a line separator.    *    * @throws IOException if an I/O error occurs in the process of reading from this source or if    *     {@code processor} throws an {@code IOException}    * @since 16.0    */
 annotation|@
 name|Beta
+annotation|@
+name|CanIgnoreReturnValue
+comment|// some processors won't return a useful result
 DECL|method|readLines (LineProcessor<T> processor)
 specifier|public
 parameter_list|<

@@ -298,16 +298,6 @@ name|javax
 operator|.
 name|annotation
 operator|.
-name|CheckReturnValue
-import|;
-end_import
-
-begin_import
-import|import
-name|javax
-operator|.
-name|annotation
-operator|.
 name|Nullable
 import|;
 end_import
@@ -375,8 +365,6 @@ expr_stmt|;
 block|}
 block|}
 comment|/**    * Encodes the specified byte array, and returns the encoded {@code String}.    */
-annotation|@
-name|CheckReturnValue
 DECL|method|encode (byte[] bytes)
 specifier|public
 name|String
@@ -401,8 +389,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Encodes the specified range of the specified byte array, and returns the encoded    * {@code String}.    */
-annotation|@
-name|CheckReturnValue
 DECL|method|encode (byte[] bytes, int off, int len)
 specifier|public
 specifier|final
@@ -484,8 +470,6 @@ comment|/**    * Returns an {@code OutputStream} that encodes bytes using this e
 annotation|@
 name|GwtIncompatible
 comment|// Writer,OutputStream
-annotation|@
-name|CheckReturnValue
 DECL|method|encodingStream (Writer writer)
 specifier|public
 specifier|abstract
@@ -500,8 +484,6 @@ comment|/**    * Returns a {@code ByteSink} that writes base-encoded bytes to th
 annotation|@
 name|GwtIncompatible
 comment|// ByteSink,CharSink
-annotation|@
-name|CheckReturnValue
 DECL|method|encodingSink (final CharSink encodedSink)
 specifier|public
 specifier|final
@@ -607,8 +589,6 @@ return|;
 block|}
 block|}
 comment|/**    * Determines whether the specified character sequence is a valid encoded string according to this    * encoding.    */
-annotation|@
-name|CheckReturnValue
 DECL|method|canDecode (CharSequence chars)
 specifier|public
 specifier|abstract
@@ -620,8 +600,6 @@ name|chars
 parameter_list|)
 function_decl|;
 comment|/**    * Decodes the specified character sequence, and returns the resulting {@code byte[]}. This is the    * inverse operation to {@link #encode(byte[])}.    *    * @throws IllegalArgumentException if the input is not a valid encoded string according to this    *     encoding.    */
-annotation|@
-name|CheckReturnValue
 DECL|method|decode (CharSequence chars)
 specifier|public
 specifier|final
@@ -659,8 +637,6 @@ block|}
 block|}
 comment|/**    * Decodes the specified character sequence, and returns the resulting {@code byte[]}. This is the    * inverse operation to {@link #encode(byte[])}.    *    * @throws DecodingException if the input is not a valid encoded string according to this    *     encoding.    */
 DECL|method|decodeChecked (CharSequence chars)
-annotation|@
-name|CheckReturnValue
 specifier|final
 name|byte
 index|[]
@@ -721,8 +697,6 @@ comment|/**    * Returns an {@code InputStream} that decodes base-encoded input 
 annotation|@
 name|GwtIncompatible
 comment|// Reader,InputStream
-annotation|@
-name|CheckReturnValue
 DECL|method|decodingStream (Reader reader)
 specifier|public
 specifier|abstract
@@ -737,8 +711,6 @@ comment|/**    * Returns a {@code ByteSource} that reads base-encoded bytes from
 annotation|@
 name|GwtIncompatible
 comment|// ByteSource,CharSource
-annotation|@
-name|CheckReturnValue
 DECL|method|decodingSource (final CharSource encodedSource)
 specifier|public
 specifier|final
@@ -845,8 +817,6 @@ parameter_list|()
 function_decl|;
 comment|// Modified encoding generators
 comment|/**    * Returns an encoding that behaves equivalently to this encoding, but omits any padding    * characters as specified by<a href="http://tools.ietf.org/html/rfc4648#section-3.2">RFC 4648    * section 3.2</a>, Padding of Encoded Data.    */
-annotation|@
-name|CheckReturnValue
 DECL|method|omitPadding ()
 specifier|public
 specifier|abstract
@@ -855,8 +825,6 @@ name|omitPadding
 parameter_list|()
 function_decl|;
 comment|/**    * Returns an encoding that behaves equivalently to this encoding, but uses an alternate character    * for padding.    *    * @throws IllegalArgumentException if this padding character is already used in the alphabet or a    *     separator    */
-annotation|@
-name|CheckReturnValue
 DECL|method|withPadChar (char padChar)
 specifier|public
 specifier|abstract
@@ -868,8 +836,6 @@ name|padChar
 parameter_list|)
 function_decl|;
 comment|/**    * Returns an encoding that behaves equivalently to this encoding, but adds a separator string    * after every {@code n} characters. Any occurrences of any characters that occur in the separator    * are skipped over in decoding.    *    * @throws IllegalArgumentException if any alphabet or padding characters appear in the separator    *     string, or if {@code n<= 0}    * @throws UnsupportedOperationException if this encoding already uses a separator    */
-annotation|@
-name|CheckReturnValue
 DECL|method|withSeparator (String separator, int n)
 specifier|public
 specifier|abstract
@@ -884,8 +850,6 @@ name|n
 parameter_list|)
 function_decl|;
 comment|/**    * Returns an encoding that behaves equivalently to this encoding, but encodes and decodes with    * uppercase letters. Padding and separator characters remain in their original case.    *    * @throws IllegalStateException if the alphabet used by this encoding contains mixed upper- and    *     lower-case characters    */
-annotation|@
-name|CheckReturnValue
 DECL|method|upperCase ()
 specifier|public
 specifier|abstract
@@ -894,8 +858,6 @@ name|upperCase
 parameter_list|()
 function_decl|;
 comment|/**    * Returns an encoding that behaves equivalently to this encoding, but encodes and decodes with    * lowercase letters. Padding and separator characters remain in their original case.    *    * @throws IllegalStateException if the alphabet used by this encoding contains mixed upper- and    *     lower-case characters    */
-annotation|@
-name|CheckReturnValue
 DECL|method|lowerCase ()
 specifier|public
 specifier|abstract
@@ -921,8 +883,6 @@ literal|'='
 argument_list|)
 decl_stmt|;
 comment|/**    * The "base64" base encoding specified by    *<a href="http://tools.ietf.org/html/rfc4648#section-4">RFC 4648 section 4</a>, Base 64    * Encoding. (This is the same as the base 64 encoding from    *<a href="http://tools.ietf.org/html/rfc3548#section-3">RFC 3548</a>.)    *    *<p>The character {@code '='} is used for padding, but can be {@linkplain #omitPadding()    * omitted} or {@linkplain #withPadChar(char) replaced}.    *    *<p>No line feeds are added by default, as per    *<a href="http://tools.ietf.org/html/rfc4648#section-3.1">RFC 4648 section 3.1</a>, Line Feeds    * in Encoded Data. Line feeds may be added using {@link #withSeparator(String, int)}.    */
-annotation|@
-name|CheckReturnValue
 DECL|method|base64 ()
 specifier|public
 specifier|static
@@ -952,8 +912,6 @@ literal|'='
 argument_list|)
 decl_stmt|;
 comment|/**    * The "base64url" encoding specified by    *<a href="http://tools.ietf.org/html/rfc4648#section-5">RFC 4648 section 5</a>, Base 64 Encoding    * with URL and Filename Safe Alphabet, also sometimes referred to as the "web safe Base64." (This    * is the same as the base 64 encoding with URL and filename safe alphabet from    *<a href="http://tools.ietf.org/html/rfc3548#section-4">RFC 3548</a>.)    *    *<p>The character {@code '='} is used for padding, but can be {@linkplain #omitPadding()    * omitted} or {@linkplain #withPadChar(char) replaced}.    *    *<p>No line feeds are added by default, as per    *<a href="http://tools.ietf.org/html/rfc4648#section-3.1">RFC 4648 section 3.1</a>, Line Feeds    * in Encoded Data. Line feeds may be added using {@link #withSeparator(String, int)}.    */
-annotation|@
-name|CheckReturnValue
 DECL|method|base64Url ()
 specifier|public
 specifier|static
@@ -983,8 +941,6 @@ literal|'='
 argument_list|)
 decl_stmt|;
 comment|/**    * The "base32" encoding specified by<a href="http://tools.ietf.org/html/rfc4648#section-6">RFC    * 4648 section 6</a>, Base 32 Encoding. (This is the same as the base 32 encoding from    *<a href="http://tools.ietf.org/html/rfc3548#section-5">RFC 3548</a>.)    *    *<p>The character {@code '='} is used for padding, but can be {@linkplain #omitPadding()    * omitted} or {@linkplain #withPadChar(char) replaced}.    *    *<p>No line feeds are added by default, as per    *<a href="http://tools.ietf.org/html/rfc4648#section-3.1">RFC 4648 section 3.1</a>, Line Feeds    * in Encoded Data. Line feeds may be added using {@link #withSeparator(String, int)}.    */
-annotation|@
-name|CheckReturnValue
 DECL|method|base32 ()
 specifier|public
 specifier|static
@@ -1014,8 +970,6 @@ literal|'='
 argument_list|)
 decl_stmt|;
 comment|/**    * The "base32hex" encoding specified by    *<a href="http://tools.ietf.org/html/rfc4648#section-7">RFC 4648 section 7</a>, Base 32 Encoding    * with Extended Hex Alphabet. There is no corresponding encoding in RFC 3548.    *    *<p>The character {@code '='} is used for padding, but can be {@linkplain #omitPadding()    * omitted} or {@linkplain #withPadChar(char) replaced}.    *    *<p>No line feeds are added by default, as per    *<a href="http://tools.ietf.org/html/rfc4648#section-3.1">RFC 4648 section 3.1</a>, Line Feeds    * in Encoded Data. Line feeds may be added using {@link #withSeparator(String, int)}.    */
-annotation|@
-name|CheckReturnValue
 DECL|method|base32Hex ()
 specifier|public
 specifier|static
@@ -1043,8 +997,6 @@ literal|"0123456789ABCDEF"
 argument_list|)
 decl_stmt|;
 comment|/**    * The "base16" encoding specified by<a href="http://tools.ietf.org/html/rfc4648#section-8">RFC    * 4648 section 8</a>, Base 16 Encoding. (This is the same as the base 16 encoding from    *<a href="http://tools.ietf.org/html/rfc3548#section-6">RFC 3548</a>.) This is commonly known as    * "hexadecimal" format.    *    *<p>No padding is necessary in base 16, so {@link #withPadChar(char)} and {@link #omitPadding()}    * have no effect.    *    *<p>No line feeds are added by default, as per    *<a href="http://tools.ietf.org/html/rfc4648#section-3.1">RFC 4648 section 3.1</a>, Line Feeds    * in Encoded Data. Line feeds may be added using {@link #withSeparator(String, int)}.    */
-annotation|@
-name|CheckReturnValue
 DECL|method|base16 ()
 specifier|public
 specifier|static

@@ -90,6 +90,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -273,6 +287,8 @@ comment|// checkNotNull to satisfy null tests
 block|}
 comment|/**    * Registers the given {@code closeable} to be closed when this {@code Closer} is    * {@linkplain #close closed}.    *    * @return the given {@code closeable}    */
 comment|// close. this word no longer has any meaning to me.
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|register (@ullable C closeable)
 specifier|public
 parameter_list|<

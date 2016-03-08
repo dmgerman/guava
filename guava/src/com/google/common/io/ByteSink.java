@@ -48,6 +48,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -276,7 +290,9 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Writes all the bytes from the given {@code InputStream} to this sink. Does not close    * {@code input}.    *    * @throws IOException if an I/O occurs in the process of reading from {@code input} or writing to    *     this sink    */
+comment|/**    * Writes all the bytes from the given {@code InputStream} to this sink. Does not close    * {@code input}.    *    * @return the number of bytes written    * @throws IOException if an I/O occurs in the process of reading from {@code input} or writing to    *     this sink    */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|writeFrom (InputStream input)
 specifier|public
 name|long

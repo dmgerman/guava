@@ -46,6 +46,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -72,6 +86,9 @@ name|T
 parameter_list|>
 block|{
 comment|/**    * This method will be called for each chunk of bytes in an input stream. The implementation    * should process the bytes from {@code buf[off]} through {@code buf[off + len - 1]} (inclusive).    *    * @param buf the byte array containing the data to process    * @param off the initial offset into the array    * @param len the length of data to be processed    * @return true to continue processing, false to stop    */
+annotation|@
+name|CanIgnoreReturnValue
+comment|// some uses know that their processor never returns false
 DECL|method|processBytes (byte[] buf, int off, int len)
 name|boolean
 name|processBytes

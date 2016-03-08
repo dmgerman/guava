@@ -94,6 +94,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -314,6 +328,8 @@ name|ByteStreams
 parameter_list|()
 block|{}
 comment|/**    * Copies all bytes from the input stream to the output stream. Does not close or flush either    * stream.    *    * @param from the input stream to read from    * @param to the output stream to write to    * @return the number of bytes copied    * @throws IOException if an I/O error occurs    */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|copy (InputStream from, OutputStream to)
 specifier|public
 specifier|static
@@ -400,6 +416,8 @@ name|total
 return|;
 block|}
 comment|/**    * Copies all bytes from the readable channel to the writable channel. Does not close or flush    * either channel.    *    * @param from the readable channel to read from    * @param to the writable channel to write to    * @return the number of bytes copied    * @throws IOException if an I/O error occurs    */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|copy (ReadableByteChannel from, WritableByteChannel to)
 specifier|public
 specifier|static
@@ -2870,6 +2888,9 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Process the bytes of the given input stream using the given processor.    *    * @param input the input stream to process    * @param processor the object to which to pass the bytes of the stream    * @return the result of the byte processor    * @throws IOException if an I/O error occurs    * @since 14.0    */
+annotation|@
+name|CanIgnoreReturnValue
+comment|// some processors won't return a useful result
 DECL|method|readBytes (InputStream input, ByteProcessor<T> processor)
 specifier|public
 specifier|static
@@ -2953,6 +2974,10 @@ argument_list|()
 return|;
 block|}
 comment|/**    * Reads some bytes from an input stream and stores them into the buffer array {@code b}. This    * method blocks until {@code len} bytes of input data have been read into the array, or end of    * file is detected. The number of bytes read is returned, possibly zero. Does not close the    * stream.    *    *<p>A caller can detect EOF if the number of bytes read is less than {@code len}. All subsequent    * calls on the same stream will return zero.    *    *<p>If {@code b} is null, a {@code NullPointerException} is thrown. If {@code off} is negative,    * or {@code len} is negative, or {@code off+len} is greater than the length of the array    * {@code b}, then an {@code IndexOutOfBoundsException} is thrown. If {@code len} is zero, then no    * bytes are read. Otherwise, the first byte read is stored into element {@code b[off]}, the next    * one into {@code b[off+1]}, and so on. The number of bytes read is, at most, equal to    * {@code len}.    *    * @param in the input stream to read from    * @param b the buffer into which the data is read    * @param off an int specifying the offset into the data    * @param len an int specifying the number of bytes to read    * @return the number of bytes read    * @throws IOException if an I/O error occurs    */
+annotation|@
+name|CanIgnoreReturnValue
+comment|// Sometimes you don't care how many bytes you actually read, I guess.
+comment|// (You know that it's either going to read len bytes or stop at EOF.)
 DECL|method|read (InputStream in, byte[] b, int off, int len)
 specifier|public
 specifier|static

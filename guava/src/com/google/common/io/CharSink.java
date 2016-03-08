@@ -48,6 +48,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -370,7 +384,9 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Writes all the text from the given {@link Readable} (such as a {@link Reader}) to this sink.    * Does not close {@code readable} if it is {@code Closeable}.    *    * @throws IOException if an I/O error occurs in the process of reading from {@code readable} or    *     writing to this sink    */
+comment|/**    * Writes all the text from the given {@link Readable} (such as a {@link Reader}) to this sink.    * Does not close {@code readable} if it is {@code Closeable}.    *    * @return the number of characters written    * @throws IOException if an I/O error occurs in the process of reading from {@code readable} or    *     writing to this sink    */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|writeFrom (Readable readable)
 specifier|public
 name|long

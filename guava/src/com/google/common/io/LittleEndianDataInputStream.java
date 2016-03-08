@@ -88,6 +88,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -186,6 +200,9 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * This method will throw an {@link UnsupportedOperationException}.    */
+annotation|@
+name|CanIgnoreReturnValue
+comment|// to skip a line
 annotation|@
 name|Override
 DECL|method|readLine ()
@@ -286,6 +303,9 @@ argument_list|)
 return|;
 block|}
 annotation|@
+name|CanIgnoreReturnValue
+comment|// to skip a byte
+annotation|@
 name|Override
 DECL|method|readUnsignedByte ()
 specifier|public
@@ -321,6 +341,9 @@ name|b1
 return|;
 block|}
 comment|/**    * Reads an unsigned {@code short} as specified by {@link DataInputStream#readUnsignedShort()},    * except using little-endian byte order.    *    * @return the next two bytes of the input stream, interpreted as an unsigned 16-bit integer in    *     little-endian byte order    * @throws IOException if an I/O error occurs    */
+annotation|@
+name|CanIgnoreReturnValue
+comment|// to skip some bytes
 annotation|@
 name|Override
 DECL|method|readUnsignedShort ()
@@ -365,6 +388,9 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Reads an integer as specified by {@link DataInputStream#readInt()}, except using little-endian    * byte order.    *    * @return the next four bytes of the input stream, interpreted as an {@code int} in little-endian    *     byte order    * @throws IOException if an I/O error occurs    */
+annotation|@
+name|CanIgnoreReturnValue
+comment|// to skip some bytes
 annotation|@
 name|Override
 DECL|method|readInt ()
@@ -415,6 +441,9 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Reads a {@code long} as specified by {@link DataInputStream#readLong()}, except using    * little-endian byte order.    *    * @return the next eight bytes of the input stream, interpreted as a {@code long} in    *     little-endian byte order    * @throws IOException if an I/O error occurs    */
+annotation|@
+name|CanIgnoreReturnValue
+comment|// to skip some bytes
 annotation|@
 name|Override
 DECL|method|readLong ()
@@ -498,6 +527,9 @@ return|;
 block|}
 comment|/**    * Reads a {@code float} as specified by {@link DataInputStream#readFloat()}, except using    * little-endian byte order.    *    * @return the next four bytes of the input stream, interpreted as a {@code float} in    *     little-endian byte order    * @throws IOException if an I/O error occurs    */
 annotation|@
+name|CanIgnoreReturnValue
+comment|// to skip some bytes
+annotation|@
 name|Override
 DECL|method|readFloat ()
 specifier|public
@@ -519,6 +551,9 @@ return|;
 block|}
 comment|/**    * Reads a {@code double} as specified by {@link DataInputStream#readDouble()}, except using    * little-endian byte order.    *    * @return the next eight bytes of the input stream, interpreted as a {@code double} in    *     little-endian byte order    * @throws IOException if an I/O error occurs    */
 annotation|@
+name|CanIgnoreReturnValue
+comment|// to skip some bytes
+annotation|@
 name|Override
 DECL|method|readDouble ()
 specifier|public
@@ -538,6 +573,9 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+annotation|@
+name|CanIgnoreReturnValue
+comment|// to skip a field
 annotation|@
 name|Override
 DECL|method|readUTF ()
@@ -561,6 +599,9 @@ return|;
 block|}
 comment|/**    * Reads a {@code short} as specified by {@link DataInputStream#readShort()}, except using    * little-endian byte order.    *    * @return the next two bytes of the input stream, interpreted as a {@code short} in little-endian    *     byte order.    * @throws IOException if an I/O error occurs.    */
 annotation|@
+name|CanIgnoreReturnValue
+comment|// to skip some bytes
+annotation|@
 name|Override
 DECL|method|readShort ()
 specifier|public
@@ -580,6 +621,9 @@ return|;
 block|}
 comment|/**    * Reads a char as specified by {@link DataInputStream#readChar()}, except using little-endian    * byte order.    *    * @return the next two bytes of the input stream, interpreted as a {@code char} in little-endian    *     byte order    * @throws IOException if an I/O error occurs    */
 annotation|@
+name|CanIgnoreReturnValue
+comment|// to skip some bytes
+annotation|@
 name|Override
 DECL|method|readChar ()
 specifier|public
@@ -598,6 +642,9 @@ argument_list|()
 return|;
 block|}
 annotation|@
+name|CanIgnoreReturnValue
+comment|// to skip a byte
+annotation|@
 name|Override
 DECL|method|readByte ()
 specifier|public
@@ -615,6 +662,9 @@ name|readUnsignedByte
 argument_list|()
 return|;
 block|}
+annotation|@
+name|CanIgnoreReturnValue
+comment|// to skip a byte
 annotation|@
 name|Override
 DECL|method|readBoolean ()
