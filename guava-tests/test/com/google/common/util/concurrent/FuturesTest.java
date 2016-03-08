@@ -1855,6 +1855,9 @@ name|bar
 argument_list|)
 expr_stmt|;
 block|}
+comment|/*    * Android does not handle this stack overflow gracefully... though somehow some other    * stack-overflow tests work. It must depend on the exact place the error occurs.    */
+annotation|@
+name|AndroidIncompatible
 annotation|@
 name|GwtIncompatible
 comment|// StackOverflowError
@@ -3151,7 +3154,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/*    * Android does not handle this stack overflow gracefully... though somehow the other two    * stack-overflow tests work. It must depend on the exact place the error occurs.    */
+comment|/*    * Android does not handle this stack overflow gracefully... though somehow some other    * stack-overflow tests work. It must depend on the exact place the error occurs.    */
 annotation|@
 name|AndroidIncompatible
 annotation|@

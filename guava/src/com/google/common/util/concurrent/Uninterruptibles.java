@@ -461,7 +461,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**    * Invokes {@code future.}{@link Future#get() get()} uninterruptibly. To get uninterruptibility    * and remove checked exceptions, see {@link Futures#getUnchecked}.    *    *<p>If instead, you wish to treat {@link InterruptedException} uniformly with other exceptions,    * see {@link Futures#getChecked(Future, Class) Futures.getChecked}.    *    * @throws ExecutionException if the computation threw an exception    * @throws CancellationException if the computation was cancelled    */
+comment|/**    * Invokes {@code future.}{@link Future#get() get()} uninterruptibly.    *    *<p>Similar methods:    *    *<ul>    *<li>To retrieve a result from a {@code Future} that is already done, use    *     {@link Futures#getDone Futures.getDone}.    *<li>To treat {@link InterruptedException} uniformly with other exceptions, use    *     {@link Futures#getChecked(Future, Class) Futures.getChecked}.    *<li>To get uninterruptibility and remove checked exceptions, use {@link Futures#getUnchecked}.    *</ul>    *    * @throws ExecutionException if the computation threw an exception    * @throws CancellationException if the computation was cancelled    */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|getUninterruptibly (Future<V> future)
@@ -534,7 +534,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**    * Invokes {@code future.}{@link Future#get(long, TimeUnit) get(timeout, unit)} uninterruptibly.    *    *<p>If instead, you wish to treat {@link InterruptedException} uniformly with other exceptions,    * see {@link Futures#getChecked(Future, Class) Futures.getChecked}.    *    * @throws ExecutionException if the computation threw an exception    * @throws CancellationException if the computation was cancelled    * @throws TimeoutException if the wait timed out    */
+comment|/**    * Invokes {@code future.}{@link Future#get(long, TimeUnit) get(timeout, unit)} uninterruptibly.    *    *<p>Similar methods:    *    *<ul>    *<li>To retrieve a result from a {@code Future} that is already done, use    *     {@link Futures#getDone Futures.getDone}.    *<li>To treat {@link InterruptedException} uniformly with other exceptions, use    *     {@link Futures#getChecked(Future, Class, long, TimeUnit) Futures.getChecked}.    *<li>To get uninterruptibility and remove checked exceptions, use {@link Futures#getUnchecked}.    *</ul>    *    * @throws ExecutionException if the computation threw an exception    * @throws CancellationException if the computation was cancelled    * @throws TimeoutException if the wait timed out    */
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@

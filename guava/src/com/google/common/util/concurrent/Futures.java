@@ -2501,7 +2501,7 @@ try|try
 block|{
 name|value
 operator|=
-name|getUninterruptibly
+name|getDone
 argument_list|(
 name|future
 argument_list|)
@@ -2604,6 +2604,10 @@ name|future
 operator|.
 name|isDone
 argument_list|()
+argument_list|,
+literal|"Future was expected to be done: %s"
+argument_list|,
+name|future
 argument_list|)
 expr_stmt|;
 return|return

@@ -62,9 +62,9 @@ name|util
 operator|.
 name|concurrent
 operator|.
-name|MoreExecutors
+name|Futures
 operator|.
-name|directExecutor
+name|getDone
 import|;
 end_import
 
@@ -80,9 +80,9 @@ name|util
 operator|.
 name|concurrent
 operator|.
-name|Uninterruptibles
+name|MoreExecutors
 operator|.
-name|getUninterruptibly
+name|directExecutor
 import|;
 end_import
 
@@ -881,7 +881,7 @@ comment|// We always get the result so that we can have fail-fast, even if we do
 name|InputT
 name|result
 init|=
-name|getUninterruptibly
+name|getDone
 argument_list|(
 name|future
 argument_list|)
@@ -921,7 +921,7 @@ name|allMustSucceed
 argument_list|,
 name|index
 argument_list|,
-name|getUninterruptibly
+name|getDone
 argument_list|(
 name|future
 argument_list|)

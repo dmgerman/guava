@@ -46,6 +46,24 @@ name|util
 operator|.
 name|concurrent
 operator|.
+name|Futures
+operator|.
+name|getDone
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
 name|MoreExecutors
 operator|.
 name|directExecutor
@@ -67,24 +85,6 @@ operator|.
 name|MoreExecutors
 operator|.
 name|rejectionPropagatingExecutor
-import|;
-end_import
-
-begin_import
-import|import static
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|util
-operator|.
-name|concurrent
-operator|.
-name|Uninterruptibles
-operator|.
-name|getUninterruptibly
 import|;
 end_import
 
@@ -624,7 +624,7 @@ try|try
 block|{
 name|sourceResult
 operator|=
-name|getUninterruptibly
+name|getDone
 argument_list|(
 name|localInputFuture
 argument_list|)
