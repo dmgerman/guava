@@ -133,6 +133,7 @@ annotation|@
 name|GwtIncompatible
 DECL|class|LittleEndianDataOutputStream
 specifier|public
+specifier|final
 class|class
 name|LittleEndianDataOutputStream
 extends|extends
