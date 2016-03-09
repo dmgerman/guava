@@ -50,20 +50,6 @@ end_import
 
 begin_import
 import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|annotations
-operator|.
-name|VisibleForTesting
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|util
@@ -133,10 +119,9 @@ specifier|final
 class|class
 name|ExecutionList
 block|{
-comment|// Logger to log exceptions caught when running runnables.
+comment|/** Logger to log exceptions caught when running runnables. */
 DECL|field|log
-annotation|@
-name|VisibleForTesting
+specifier|private
 specifier|static
 specifier|final
 name|Logger

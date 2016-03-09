@@ -26,11 +26,41 @@ name|google
 operator|.
 name|common
 operator|.
+name|base
+operator|.
+name|Preconditions
+operator|.
+name|checkState
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
 name|truth
 operator|.
 name|Truth
 operator|.
 name|assertThat
+import|;
+end_import
+
+begin_import
+import|import static
+name|java
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|TimeUnit
+operator|.
+name|SECONDS
 import|;
 end_import
 
@@ -48,15 +78,13 @@ end_import
 
 begin_import
 import|import
-name|com
+name|java
 operator|.
-name|google
+name|util
 operator|.
-name|common
+name|concurrent
 operator|.
-name|annotations
-operator|.
-name|GwtCompatible
+name|ExecutionException
 import|;
 end_import
 
@@ -80,7 +108,7 @@ name|util
 operator|.
 name|concurrent
 operator|.
-name|TimeUnit
+name|TimeoutException
 import|;
 end_import
 
@@ -89,13 +117,6 @@ comment|/**  * Methods factored out so that they can be emulated differently in 
 end_comment
 
 begin_class
-annotation|@
-name|GwtCompatible
-argument_list|(
-name|emulated
-operator|=
-literal|true
-argument_list|)
 DECL|class|TestPlatform
 specifier|final
 class|class
@@ -174,8 +195,6 @@ name|get
 argument_list|(
 literal|0
 argument_list|,
-name|TimeUnit
-operator|.
 name|SECONDS
 argument_list|)
 expr_stmt|;
@@ -228,6 +247,73 @@ name|clearInterrupt
 parameter_list|()
 block|{
 comment|// There is no thread interruption in GWT, so there's nothing to do.
+block|}
+DECL|method|getDoneFromTimeoutOverload (Future<V> future)
+specifier|static
+parameter_list|<
+name|V
+parameter_list|>
+name|V
+name|getDoneFromTimeoutOverload
+parameter_list|(
+name|Future
+argument_list|<
+name|V
+argument_list|>
+name|future
+parameter_list|)
+throws|throws
+name|ExecutionException
+block|{
+name|checkState
+argument_list|(
+name|future
+operator|.
+name|isDone
+argument_list|()
+argument_list|,
+literal|"Future was expected to be done: %s"
+argument_list|,
+name|future
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+return|return
+name|future
+operator|.
+name|get
+argument_list|(
+literal|0
+argument_list|,
+name|SECONDS
+argument_list|)
+return|;
+block|}
+catch|catch
+parameter_list|(
+name|InterruptedException
+name|e
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|AssertionError
+argument_list|()
+throw|;
+block|}
+catch|catch
+parameter_list|(
+name|TimeoutException
+name|e
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|AssertionError
+argument_list|()
+throw|;
+block|}
 block|}
 DECL|method|TestPlatform ()
 specifier|private
