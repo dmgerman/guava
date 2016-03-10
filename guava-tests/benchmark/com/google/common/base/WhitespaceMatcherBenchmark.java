@@ -87,7 +87,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Benchmark for the {@link CharMatcher#WHITESPACE} implementation.  */
+comment|/**  * Benchmark for the {@link CharMatcher#whitespace} implementation.  */
 end_comment
 
 begin_class
