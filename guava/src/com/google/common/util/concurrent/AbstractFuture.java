@@ -48,24 +48,6 @@ name|concurrent
 operator|.
 name|Futures
 operator|.
-name|cancellationExceptionWithCause
-import|;
-end_import
-
-begin_import
-import|import static
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|util
-operator|.
-name|concurrent
-operator|.
-name|Futures
-operator|.
 name|getDone
 import|;
 end_import
@@ -1958,8 +1940,6 @@ condition|)
 block|{
 comment|// Try to delay allocating the exception. At this point we may still lose the CAS, but it is
 comment|// certainly less likely.
-comment|// TODO(lukes): this exception actually makes cancellation significantly more expensive :(
-comment|// I wonder if we should consider removing it or providing a mechanism to not do it.
 name|Throwable
 name|cause
 init|=
@@ -2000,7 +1980,7 @@ name|valueToSet
 argument_list|)
 condition|)
 block|{
-comment|// We call interuptTask before calling complete(), first which is consistent with
+comment|// We call interuptTask before calling complete(), which is consistent with
 comment|// FutureTask
 if|if
 condition|(
@@ -3991,6 +3971,43 @@ literal|false
 return|;
 block|}
 block|}
+block|}
+DECL|method|cancellationExceptionWithCause ( @ullable String message, @Nullable Throwable cause)
+specifier|private
+specifier|static
+name|CancellationException
+name|cancellationExceptionWithCause
+parameter_list|(
+annotation|@
+name|Nullable
+name|String
+name|message
+parameter_list|,
+annotation|@
+name|Nullable
+name|Throwable
+name|cause
+parameter_list|)
+block|{
+name|CancellationException
+name|exception
+init|=
+operator|new
+name|CancellationException
+argument_list|(
+name|message
+argument_list|)
+decl_stmt|;
+name|exception
+operator|.
+name|initCause
+argument_list|(
+name|cause
+argument_list|)
+expr_stmt|;
+return|return
+name|exception
+return|;
 block|}
 block|}
 end_class
