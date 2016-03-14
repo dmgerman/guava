@@ -2234,13 +2234,10 @@ operator|.
 name|append
 argument_list|(
 name|sequence
-operator|.
-name|subSequence
-argument_list|(
+argument_list|,
 literal|0
 argument_list|,
 name|i
-argument_list|)
 argument_list|)
 operator|.
 name|append

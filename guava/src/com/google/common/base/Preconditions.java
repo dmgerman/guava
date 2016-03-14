@@ -4099,13 +4099,10 @@ operator|.
 name|append
 argument_list|(
 name|template
-operator|.
-name|substring
-argument_list|(
+argument_list|,
 name|templateStart
 argument_list|,
 name|placeholderStart
-argument_list|)
 argument_list|)
 expr_stmt|;
 name|builder
@@ -4131,11 +4128,13 @@ operator|.
 name|append
 argument_list|(
 name|template
-operator|.
-name|substring
-argument_list|(
+argument_list|,
 name|templateStart
-argument_list|)
+argument_list|,
+name|template
+operator|.
+name|length
+argument_list|()
 argument_list|)
 expr_stmt|;
 comment|// if we run out of placeholders, append the extra args in square braces

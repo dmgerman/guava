@@ -784,9 +784,7 @@ operator|.
 name|append
 argument_list|(
 name|arrayString
-operator|.
-name|substring
-argument_list|(
+argument_list|,
 literal|1
 argument_list|,
 name|arrayString
@@ -795,7 +793,6 @@ name|length
 argument_list|()
 operator|-
 literal|1
-argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
