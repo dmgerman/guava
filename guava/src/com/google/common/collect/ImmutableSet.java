@@ -1000,7 +1000,7 @@ return|return
 name|MAX_TABLE_SIZE
 return|;
 block|}
-comment|/**    * Returns an immutable set containing each of {@code elements}, minus duplicates, in the order    * each appears first in the source collection.    *    *<p><b>Performance note:</b> This method will sometimes recognize that the actual copy operation    * is unnecessary; for example, {@code copyOf(copyOf(anArrayList))} will copy the data only once.    * This reduces the expense of habitually making defensive copies at API boundaries. However, the    * the precise conditions for skipping the copy operation are undefined.    *    * @throws NullPointerException if any of {@code elements} is null    * @since 7.0 (source-compatible since 2.0)    */
+comment|/**    * Returns an immutable set containing each of {@code elements}, minus duplicates, in the order    * each appears first in the source collection.    *    *<p><b>Performance note:</b> This method will sometimes recognize that the actual copy operation    * is unnecessary; for example, {@code copyOf(copyOf(anArrayList))} will copy the data only once.    * This reduces the expense of habitually making defensive copies at API boundaries. However, the    * precise conditions for skipping the copy operation are undefined.    *    * @throws NullPointerException if any of {@code elements} is null    * @since 7.0 (source-compatible since 2.0)    */
 DECL|method|copyOf (Collection<? extends E> elements)
 specifier|public
 specifier|static
