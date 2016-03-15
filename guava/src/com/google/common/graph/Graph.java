@@ -222,7 +222,7 @@ function_decl|;
 comment|//
 comment|// Element-level queries
 comment|//
-comment|/**    * Returns the number of edges {@linkplain #incidentEdges(Object) incident} in this graph    * to {@code node}.  If this node has more than {@code Integer.MAX_VALUE} incident edges    * in this graph, returns {@code Integer.MAX_VALUE}.    *    *<p>Equivalent to {@code incidentEdges(node).size()}.    *    * @throws IllegalArgumentException if {@code node} is not an element of this graph    */
+comment|/**    * Returns the number of edges {@linkplain #incidentEdges(Object) incident} in this graph    * to {@code node}.  If this node has more than {@code Integer.MAX_VALUE} incident edges    * in this graph, returns {@code Integer.MAX_VALUE}.    *    *<p>Equivalent to {@code incidentEdges(node).size()}.    *    *<p>Note that self-loops only count once towards a node's degree.    * This is consistent with the definition of {@link #incidentEdges(Object)}.    *    * @throws IllegalArgumentException if {@code node} is not an element of this graph    */
 DECL|method|degree (Object node)
 name|int
 name|degree
