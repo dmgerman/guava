@@ -769,8 +769,12 @@ return|;
 block|}
 comment|/**    * Returns a {@code Future} whose result is taken from the given primary {@code input} or, if the    * primary input fails with the given {@code exceptionType}, from the result provided by the    * {@code fallback}. {@link Function#apply} is not invoked until the primary input has failed, so    * if the primary input succeeds, it is never invoked. If, during the invocation of {@code    * fallback}, an exception is thrown, this exception is used as the result of the output {@code    * Future}.    *    *<p>Usage example:    *    *<pre>   {@code    *   ListenableFuture<Integer> fetchCounterFuture = ...;    *    *   // Falling back to a zero counter in case an exception happens when    *   // processing the RPC to fetch counters.    *   ListenableFuture<Integer> faultTolerantFuture = Futures.catching(    *       fetchCounterFuture, FetchException.class,    *       new Function<FetchException, Integer>() {    *         public Integer apply(FetchException e) {    *           return 0;    *         }    *       });}</pre>    *    *<p>This overload, which does not accept an executor, uses {@code directExecutor}, a dangerous    * choice in some cases. See the discussion in the {@link ListenableFuture#addListener    * ListenableFuture.addListener} documentation. The documentation's warnings about "lightweight    * listeners" refer here to the work done during {@code Function.apply}.    *    * @param input the primary input {@code Future}    * @param exceptionType the exception type that triggers use of {@code fallback}. The exception    *     type is matched against the input's exception. "The input's exception" means the cause of    *     the {@link ExecutionException} thrown by {@code input.get()} or, if {@code get()} throws a    *     different kind of exception, that exception itself. To avoid hiding bugs and other    *     unrecoverable errors, callers should prefer more specific types, avoiding {@code    *     Throwable.class} in particular.    * @param fallback the {@link Function} to be called if {@code input} fails with the expected    *     exception type. The function's argument is the input's exception. "The input's exception"    *     means the cause of the {@link ExecutionException} thrown by {@code input.get()} or, if    *     {@code get()} throws a different kind of exception, that exception itself.    * @since 19.0    */
 annotation|@
+name|Partially
+operator|.
 name|GwtIncompatible
-comment|// AVAILABLE but requires exceptionType to be Throwable.class
+argument_list|(
+literal|"AVAILABLE but requires exceptionType to be Throwable.class"
+argument_list|)
 DECL|method|catching ( ListenableFuture<? extends V> input, Class<X> exceptionType, Function<? super X, ? extends V> fallback)
 specifier|public
 specifier|static
@@ -829,8 +833,12 @@ return|;
 block|}
 comment|/**    * Returns a {@code Future} whose result is taken from the given primary {@code input} or, if the    * primary input fails with the given {@code exceptionType}, from the result provided by the    * {@code fallback}. {@link Function#apply} is not invoked until the primary input has failed, so    * if the primary input succeeds, it is never invoked. If, during the invocation of {@code    * fallback}, an exception is thrown, this exception is used as the result of the output {@code    * Future}.    *    *<p>Usage example:    *    *<pre>   {@code    *   ListenableFuture<Integer> fetchCounterFuture = ...;    *    *   // Falling back to a zero counter in case an exception happens when    *   // processing the RPC to fetch counters.    *   ListenableFuture<Integer> faultTolerantFuture = Futures.catching(    *       fetchCounterFuture, FetchException.class,    *       new Function<FetchException, Integer>() {    *         public Integer apply(FetchException e) {    *           return 0;    *         }    *       }, directExecutor());}</pre>    *    *<p>When selecting an executor, note that {@code directExecutor} is dangerous in some cases. See    * the discussion in the {@link ListenableFuture#addListener ListenableFuture.addListener}    * documentation. The documentation's warnings about "lightweight listeners" refer here to the    * work done during {@code Function.apply}.    *    * @param input the primary input {@code Future}    * @param exceptionType the exception type that triggers use of {@code fallback}. The exception    *     type is matched against the input's exception. "The input's exception" means the cause of    *     the {@link ExecutionException} thrown by {@code input.get()} or, if {@code get()} throws a    *     different kind of exception, that exception itself. To avoid hiding bugs and other    *     unrecoverable errors, callers should prefer more specific types, avoiding {@code    *     Throwable.class} in particular.    * @param fallback the {@link Function} to be called if {@code input} fails with the expected    *     exception type. The function's argument is the input's exception. "The input's exception"    *     means the cause of the {@link ExecutionException} thrown by {@code input.get()} or, if    *     {@code get()} throws a different kind of exception, that exception itself.    * @param executor the executor that runs {@code fallback} if {@code input} fails    * @since 19.0    */
 annotation|@
+name|Partially
+operator|.
 name|GwtIncompatible
-comment|// AVAILABLE but requires exceptionType to be Throwable.class
+argument_list|(
+literal|"AVAILABLE but requires exceptionType to be Throwable.class"
+argument_list|)
 DECL|method|catching ( ListenableFuture<? extends V> input, Class<X> exceptionType, Function<? super X, ? extends V> fallback, Executor executor)
 specifier|public
 specifier|static
@@ -897,8 +905,12 @@ annotation|@
 name|CanIgnoreReturnValue
 comment|// TODO(kak): @CheckReturnValue
 annotation|@
+name|Partially
+operator|.
 name|GwtIncompatible
-comment|// AVAILABLE but requires exceptionType to be Throwable.class
+argument_list|(
+literal|"AVAILABLE but requires exceptionType to be Throwable.class"
+argument_list|)
 DECL|method|catchingAsync ( ListenableFuture<? extends V> input, Class<X> exceptionType, AsyncFunction<? super X, ? extends V> fallback)
 specifier|public
 specifier|static
@@ -960,8 +972,12 @@ annotation|@
 name|CanIgnoreReturnValue
 comment|// TODO(kak): @CheckReturnValue
 annotation|@
+name|Partially
+operator|.
 name|GwtIncompatible
-comment|// AVAILABLE but requires exceptionType to be Throwable.class
+argument_list|(
+literal|"AVAILABLE but requires exceptionType to be Throwable.class"
+argument_list|)
 DECL|method|catchingAsync ( ListenableFuture<? extends V> input, Class<X> exceptionType, AsyncFunction<? super X, ? extends V> fallback, Executor executor)
 specifier|public
 specifier|static
