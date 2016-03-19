@@ -525,6 +525,13 @@ operator|.
 name|addEqualityGroup
 argument_list|(
 name|graph
+argument_list|,
+name|ImmutableGraph
+operator|.
+name|copyOf
+argument_list|(
+name|graph
+argument_list|)
 argument_list|)
 operator|.
 name|testEquals

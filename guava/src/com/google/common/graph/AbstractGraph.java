@@ -49,40 +49,6 @@ argument_list|,
 name|E
 argument_list|>
 block|{
-DECL|field|config
-specifier|protected
-specifier|final
-name|GraphConfig
-name|config
-decl_stmt|;
-comment|/**    * Not all subclasses necessarily need to expose a constructor that takes a {@link GraphConfig},    * but they do need to provide the {@code config} here that will be returned by {@link #config()}.    */
-DECL|method|AbstractGraph (GraphConfig config)
-specifier|protected
-name|AbstractGraph
-parameter_list|(
-name|GraphConfig
-name|config
-parameter_list|)
-block|{
-name|this
-operator|.
-name|config
-operator|=
-name|config
-expr_stmt|;
-block|}
-annotation|@
-name|Override
-DECL|method|config ()
-specifier|public
-name|GraphConfig
-name|config
-parameter_list|()
-block|{
-return|return
-name|config
-return|;
-block|}
 annotation|@
 name|Override
 DECL|method|degree (Object node)

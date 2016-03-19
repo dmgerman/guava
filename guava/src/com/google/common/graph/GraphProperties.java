@@ -28,7 +28,7 @@ name|base
 operator|.
 name|Preconditions
 operator|.
-name|checkNotNull
+name|checkArgument
 import|;
 end_import
 
@@ -88,6 +88,14 @@ begin_comment
 comment|/**  * Static utility methods for calculating properties of {@link Graph} instances.  *  * @author Joshua O'Madadhain  * @since 20.0  */
 end_comment
 
+begin_comment
+comment|// TODO(b/27628622): Move these methods to {@link Graphs}? Or at least rename this class to
+end_comment
+
+begin_comment
+comment|// something besides "GraphProperties", and consider putting in graph/algorithms/.
+end_comment
+
 begin_class
 annotation|@
 name|Beta
@@ -103,18 +111,13 @@ name|GraphProperties
 parameter_list|()
 block|{}
 comment|/**    * Returns true iff {@code graph} has at least one cycle.    */
-comment|// TODO(user): Implement a similar method for undirected graphs, taking into
-comment|// consideration the difference in implementation, due to the notion of undirected
-comment|// edges. For instance, we should keep track of the edge used to reach a node to avoid
-comment|// reusing it (making a cycle by getting back to that node). Also, parallel edges will
-comment|// need to be carefully handled for undirected graphs.
-DECL|method|isCyclic (DirectedGraph<?, ?> graph)
+DECL|method|isCyclic (Graph<?, ?> graph)
 specifier|public
 specifier|static
 name|boolean
 name|isCyclic
 parameter_list|(
-name|DirectedGraph
+name|Graph
 argument_list|<
 name|?
 argument_list|,
@@ -123,11 +126,18 @@ argument_list|>
 name|graph
 parameter_list|)
 block|{
-name|checkNotNull
+comment|// TODO(user): Implement an algorithm that also works on undirected graphs.
+comment|// For instance, we should keep track of the edge used to reach a node to avoid
+comment|// reusing it (making a cycle by getting back to that node). Also, parallel edges
+comment|// will need to be carefully handled for undirected graphs.
+name|checkArgument
 argument_list|(
 name|graph
+operator|.
+name|isDirected
+argument_list|()
 argument_list|,
-literal|"Directed graph passed can't be null."
+literal|"isCyclic() currently only works on directed graphs"
 argument_list|)
 expr_stmt|;
 name|Map
@@ -189,13 +199,13 @@ literal|false
 return|;
 block|}
 comment|/**    * Returns true iff there is a cycle in the subgraph of {@code graph} reachable from    * {@code node}.    */
-DECL|method|isSubgraphCyclic ( DirectedGraph<?, ?> graph, Map<Object, NodeVisitState> nodeToVisitState, Object node)
+DECL|method|isSubgraphCyclic ( Graph<?, ?> graph, Map<Object, NodeVisitState> nodeToVisitState, Object node)
 specifier|private
 specifier|static
 name|boolean
 name|isSubgraphCyclic
 parameter_list|(
-name|DirectedGraph
+name|Graph
 argument_list|<
 name|?
 argument_list|,
@@ -316,8 +326,8 @@ block|,
 DECL|enumConstant|COMPLETE
 name|COMPLETE
 block|}
-comment|/**    * Returns the set of all nodes in {@code directedGraph} that have no predecessors.    */
-DECL|method|roots (DirectedGraph<N, ?> directedGraph)
+comment|/**    * Returns the set of all nodes in {@code graph} that have no predecessors.    *    *<p>Note that in an undirected graph, this is equivalent to all isolated nodes.    */
+DECL|method|roots (Graph<N, ?> graph)
 specifier|public
 specifier|static
 parameter_list|<
@@ -329,13 +339,13 @@ name|N
 argument_list|>
 name|roots
 parameter_list|(
-name|DirectedGraph
+name|Graph
 argument_list|<
 name|N
 argument_list|,
 name|?
 argument_list|>
-name|directedGraph
+name|graph
 parameter_list|)
 block|{
 name|ImmutableSet
@@ -356,7 +366,7 @@ control|(
 name|N
 name|node
 range|:
-name|directedGraph
+name|graph
 operator|.
 name|nodes
 argument_list|()
@@ -364,7 +374,7 @@ control|)
 block|{
 if|if
 condition|(
-name|directedGraph
+name|graph
 operator|.
 name|predecessors
 argument_list|(

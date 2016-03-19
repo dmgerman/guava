@@ -24,6 +24,22 @@ name|google
 operator|.
 name|common
 operator|.
+name|graph
+operator|.
+name|Graphs
+operator|.
+name|getPropertiesString
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
 name|truth
 operator|.
 name|Truth
@@ -129,7 +145,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Abstract base class for testing implementations of {@link UndirectedGraph} interface.  *  *<p>This class is responsible for testing that an implementation of the interface  * {@code UndirectedGraph} is correctly handling undirected edges.  * Implementation-dependent test cases are left to subclasses. Test cases that  * do not require the graph to be undirected are found in superclasses.  *  */
+comment|/**  * Abstract base class for testing undirected implementations of the {@link Graph} interface.  *  *<p>This class is responsible for testing that an undirected implementation of {@link Graph}  * is correctly handling undirected edges.  Implementation-dependent test cases are left to  * subclasses. Test cases that do not require the graph to be undirected are found in superclasses.  */
 end_comment
 
 begin_class
@@ -141,45 +157,6 @@ name|AbstractUndirectedGraphTest
 extends|extends
 name|AbstractGraphTest
 block|{
-DECL|field|undirectedGraph
-name|UndirectedGraph
-argument_list|<
-name|Integer
-argument_list|,
-name|String
-argument_list|>
-name|undirectedGraph
-decl_stmt|;
-annotation|@
-name|Override
-DECL|method|createGraph ()
-specifier|public
-specifier|abstract
-name|UndirectedGraph
-argument_list|<
-name|Integer
-argument_list|,
-name|String
-argument_list|>
-name|createGraph
-parameter_list|()
-function_decl|;
-annotation|@
-name|Override
-DECL|method|init ()
-specifier|public
-name|void
-name|init
-parameter_list|()
-block|{
-name|graph
-operator|=
-name|undirectedGraph
-operator|=
-name|createGraph
-argument_list|()
-expr_stmt|;
-block|}
 annotation|@
 name|After
 DECL|method|validateUndirectedEdges ()
@@ -193,7 +170,7 @@ control|(
 name|Integer
 name|node
 range|:
-name|undirectedGraph
+name|graph
 operator|.
 name|nodes
 argument_list|()
@@ -205,21 +182,21 @@ argument_list|()
 operator|.
 name|addEqualityGroup
 argument_list|(
-name|undirectedGraph
+name|graph
 operator|.
 name|inEdges
 argument_list|(
 name|node
 argument_list|)
 argument_list|,
-name|undirectedGraph
+name|graph
 operator|.
 name|outEdges
 argument_list|(
 name|node
 argument_list|)
 argument_list|,
-name|undirectedGraph
+name|graph
 operator|.
 name|incidentEdges
 argument_list|(
@@ -236,21 +213,21 @@ argument_list|()
 operator|.
 name|addEqualityGroup
 argument_list|(
-name|undirectedGraph
+name|graph
 operator|.
 name|predecessors
 argument_list|(
 name|node
 argument_list|)
 argument_list|,
-name|undirectedGraph
+name|graph
 operator|.
 name|successors
 argument_list|(
 name|node
 argument_list|)
 argument_list|,
-name|undirectedGraph
+name|graph
 operator|.
 name|adjacentNodes
 argument_list|(
@@ -266,7 +243,7 @@ control|(
 name|Integer
 name|adjacentNode
 range|:
-name|undirectedGraph
+name|graph
 operator|.
 name|adjacentNodes
 argument_list|(
@@ -276,7 +253,7 @@ control|)
 block|{
 name|assertThat
 argument_list|(
-name|undirectedGraph
+name|graph
 operator|.
 name|edgesConnecting
 argument_list|(
@@ -288,7 +265,7 @@ argument_list|)
 operator|.
 name|containsExactlyElementsIn
 argument_list|(
-name|undirectedGraph
+name|graph
 operator|.
 name|edgesConnecting
 argument_list|(
@@ -320,7 +297,7 @@ argument_list|)
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|undirectedGraph
+name|graph
 operator|.
 name|edgesConnecting
 argument_list|(
@@ -337,7 +314,7 @@ argument_list|)
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|undirectedGraph
+name|graph
 operator|.
 name|edgesConnecting
 argument_list|(
@@ -372,7 +349,7 @@ argument_list|)
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|undirectedGraph
+name|graph
 operator|.
 name|inEdges
 argument_list|(
@@ -387,7 +364,7 @@ argument_list|)
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|undirectedGraph
+name|graph
 operator|.
 name|inEdges
 argument_list|(
@@ -420,7 +397,7 @@ argument_list|)
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|undirectedGraph
+name|graph
 operator|.
 name|outEdges
 argument_list|(
@@ -435,7 +412,7 @@ argument_list|)
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|undirectedGraph
+name|graph
 operator|.
 name|outEdges
 argument_list|(
@@ -468,7 +445,7 @@ argument_list|)
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|undirectedGraph
+name|graph
 operator|.
 name|predecessors
 argument_list|(
@@ -483,7 +460,7 @@ argument_list|)
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|undirectedGraph
+name|graph
 operator|.
 name|predecessors
 argument_list|(
@@ -516,7 +493,7 @@ argument_list|)
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|undirectedGraph
+name|graph
 operator|.
 name|successors
 argument_list|(
@@ -531,7 +508,7 @@ argument_list|)
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|undirectedGraph
+name|graph
 operator|.
 name|successors
 argument_list|(
@@ -566,7 +543,7 @@ name|assertEquals
 argument_list|(
 literal|1
 argument_list|,
-name|undirectedGraph
+name|graph
 operator|.
 name|inDegree
 argument_list|(
@@ -578,7 +555,7 @@ name|assertEquals
 argument_list|(
 literal|1
 argument_list|,
-name|undirectedGraph
+name|graph
 operator|.
 name|inDegree
 argument_list|(
@@ -608,7 +585,7 @@ name|assertEquals
 argument_list|(
 literal|1
 argument_list|,
-name|undirectedGraph
+name|graph
 operator|.
 name|outDegree
 argument_list|(
@@ -620,7 +597,7 @@ name|assertEquals
 argument_list|(
 literal|1
 argument_list|,
-name|undirectedGraph
+name|graph
 operator|.
 name|outDegree
 argument_list|(
@@ -664,7 +641,7 @@ argument_list|)
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|undirectedGraph
+name|graph
 operator|.
 name|edges
 argument_list|()
@@ -677,7 +654,7 @@ argument_list|)
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|undirectedGraph
+name|graph
 operator|.
 name|edgesConnecting
 argument_list|(
@@ -694,7 +671,7 @@ argument_list|)
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|undirectedGraph
+name|graph
 operator|.
 name|edgesConnecting
 argument_list|(
@@ -737,7 +714,7 @@ name|ImmutableSet
 operator|.
 name|copyOf
 argument_list|(
-name|undirectedGraph
+name|graph
 operator|.
 name|edges
 argument_list|()
@@ -757,7 +734,7 @@ argument_list|)
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|undirectedGraph
+name|graph
 operator|.
 name|edges
 argument_list|()
@@ -782,7 +759,7 @@ argument_list|)
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|undirectedGraph
+name|graph
 operator|.
 name|edges
 argument_list|()
@@ -961,7 +938,7 @@ argument_list|)
 expr_stmt|;
 name|assertTrue
 argument_list|(
-name|undirectedGraph
+name|graph
 operator|.
 name|removeEdge
 argument_list|(
@@ -971,7 +948,7 @@ argument_list|)
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|undirectedGraph
+name|graph
 operator|.
 name|edges
 argument_list|()
@@ -984,7 +961,7 @@ argument_list|)
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|undirectedGraph
+name|graph
 operator|.
 name|edgesConnecting
 argument_list|(
@@ -999,7 +976,7 @@ argument_list|()
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|undirectedGraph
+name|graph
 operator|.
 name|edgesConnecting
 argument_list|(
@@ -1035,12 +1012,12 @@ name|String
 operator|.
 name|format
 argument_list|(
-literal|"config: %s, nodes: %s, edges: {}"
+literal|"%s, nodes: %s, edges: {}"
 argument_list|,
+name|getPropertiesString
+argument_list|(
 name|graph
-operator|.
-name|config
-argument_list|()
+argument_list|)
 argument_list|,
 name|graph
 operator|.
@@ -1077,12 +1054,12 @@ name|String
 operator|.
 name|format
 argument_list|(
-literal|"config: %s, nodes: %s, edges: {}"
+literal|"%s, nodes: %s, edges: {}"
 argument_list|,
+name|getPropertiesString
+argument_list|(
 name|graph
-operator|.
-name|config
-argument_list|()
+argument_list|)
 argument_list|,
 name|graph
 operator|.
@@ -1123,12 +1100,12 @@ name|String
 operator|.
 name|format
 argument_list|(
-literal|"config: %s, nodes: %s, edges: {%s=[%s, %s]}"
+literal|"%s, nodes: %s, edges: {%s=[%s, %s]}"
 argument_list|,
+name|getPropertiesString
+argument_list|(
 name|graph
-operator|.
-name|config
-argument_list|()
+argument_list|)
 argument_list|,
 name|graph
 operator|.
@@ -1184,12 +1161,12 @@ name|String
 operator|.
 name|format
 argument_list|(
-literal|"config: %s, nodes: %s, edges: {%s=[%s, %s], %s=[%s, %s]}"
+literal|"%s, nodes: %s, edges: {%s=[%s, %s], %s=[%s, %s]}"
 argument_list|,
+name|getPropertiesString
+argument_list|(
 name|graph
-operator|.
-name|config
-argument_list|()
+argument_list|)
 argument_list|,
 name|graph
 operator|.

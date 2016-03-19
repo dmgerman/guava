@@ -73,6 +73,18 @@ name|SELF_LOOPS_NOT_ALLOWED
 init|=
 literal|"Can't add self-loop edge on node %s, as self-loops are not allowed."
 decl_stmt|;
+DECL|field|NOT_AVAILABLE_ON_UNDIRECTED
+specifier|static
+specifier|final
+name|String
+name|NOT_AVAILABLE_ON_UNDIRECTED
+init|=
+literal|"Cannot call source()/target() on an undirected graph. "
+operator|+
+literal|"Consider using incidentNodes() (if you don't know either incident node) "
+operator|+
+literal|"or Graphs.oppositeNode() (if you know one of the incident nodes)."
+decl_stmt|;
 block|}
 end_class
 

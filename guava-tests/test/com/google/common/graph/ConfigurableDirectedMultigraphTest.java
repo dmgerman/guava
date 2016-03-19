@@ -24,6 +24,22 @@ name|google
 operator|.
 name|common
 operator|.
+name|graph
+operator|.
+name|Graphs
+operator|.
+name|getPropertiesString
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
 name|truth
 operator|.
 name|Truth
@@ -79,7 +95,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests for {@link IncidenceSetUndirectedGraph} allowing parallel edges.  */
+comment|/**  * Tests for a directed {@link ConfigurableGraph} allowing parallel edges.  */
 end_comment
 
 begin_class
@@ -90,18 +106,18 @@ name|JUnit4
 operator|.
 name|class
 argument_list|)
-DECL|class|IncidenceSetUndirectedMultigraphTest
+DECL|class|ConfigurableDirectedMultigraphTest
 specifier|public
 class|class
-name|IncidenceSetUndirectedMultigraphTest
+name|ConfigurableDirectedMultigraphTest
 extends|extends
-name|IncidenceSetUndirectedGraphTest
+name|ConfigurableDirectedGraphTest
 block|{
 annotation|@
 name|Override
 DECL|method|createGraph ()
 specifier|public
-name|UndirectedGraph
+name|Graph
 argument_list|<
 name|Integer
 argument_list|,
@@ -111,14 +127,18 @@ name|createGraph
 parameter_list|()
 block|{
 return|return
-name|Graphs
+name|GraphBuilder
 operator|.
-name|createUndirected
+name|directed
+argument_list|()
+operator|.
+name|allowsParallelEdges
 argument_list|(
-name|Graphs
-operator|.
-name|MULTIGRAPH
+literal|true
 argument_list|)
+operator|.
+name|build
+argument_list|()
 return|;
 block|}
 annotation|@
@@ -153,21 +173,9 @@ name|N2
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|assertTrue
-argument_list|(
-name|addEdge
-argument_list|(
-name|E21
-argument_list|,
-name|N2
-argument_list|,
-name|N1
-argument_list|)
-argument_list|)
-expr_stmt|;
 name|assertThat
 argument_list|(
-name|undirectedGraph
+name|graph
 operator|.
 name|edgesConnecting
 argument_list|(
@@ -182,13 +190,13 @@ argument_list|(
 name|E12
 argument_list|,
 name|E12_A
-argument_list|,
-name|E21
 argument_list|)
 expr_stmt|;
+comment|// Passed nodes should be in the correct edge direction, first is the
+comment|// source node and the second is the target node
 name|assertThat
 argument_list|(
-name|undirectedGraph
+name|graph
 operator|.
 name|edgesConnecting
 argument_list|(
@@ -198,14 +206,8 @@ name|N1
 argument_list|)
 argument_list|)
 operator|.
-name|containsExactly
-argument_list|(
-name|E12
-argument_list|,
-name|E12_A
-argument_list|,
-name|E21
-argument_list|)
+name|isEmpty
+argument_list|()
 expr_stmt|;
 block|}
 annotation|@
@@ -242,7 +244,7 @@ argument_list|)
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|undirectedGraph
+name|graph
 operator|.
 name|edgesConnecting
 argument_list|(
@@ -294,21 +296,9 @@ name|N2
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|assertTrue
-argument_list|(
-name|addEdge
-argument_list|(
-name|E21
-argument_list|,
-name|N2
-argument_list|,
-name|N1
-argument_list|)
-argument_list|)
-expr_stmt|;
 name|assertThat
 argument_list|(
-name|undirectedGraph
+name|graph
 operator|.
 name|edgesConnecting
 argument_list|(
@@ -323,8 +313,6 @@ argument_list|(
 name|E12
 argument_list|,
 name|E12_A
-argument_list|,
-name|E21
 argument_list|)
 expr_stmt|;
 block|}
@@ -364,7 +352,7 @@ argument_list|)
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|undirectedGraph
+name|graph
 operator|.
 name|edgesConnecting
 argument_list|(
@@ -408,15 +396,6 @@ argument_list|,
 name|N2
 argument_list|)
 expr_stmt|;
-name|addEdge
-argument_list|(
-name|E21
-argument_list|,
-name|N2
-argument_list|,
-name|N1
-argument_list|)
-expr_stmt|;
 name|assertTrue
 argument_list|(
 name|graph
@@ -429,7 +408,7 @@ argument_list|)
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|undirectedGraph
+name|graph
 operator|.
 name|edgesConnecting
 argument_list|(
@@ -442,8 +421,6 @@ operator|.
 name|containsExactly
 argument_list|(
 name|E12
-argument_list|,
-name|E21
 argument_list|)
 expr_stmt|;
 block|}
@@ -484,7 +461,7 @@ argument_list|)
 expr_stmt|;
 name|assertTrue
 argument_list|(
-name|undirectedGraph
+name|graph
 operator|.
 name|removeEdge
 argument_list|(
@@ -494,7 +471,7 @@ argument_list|)
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|undirectedGraph
+name|graph
 operator|.
 name|edgesConnecting
 argument_list|(
@@ -511,7 +488,7 @@ argument_list|)
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|undirectedGraph
+name|graph
 operator|.
 name|edgesConnecting
 argument_list|(
@@ -528,7 +505,7 @@ argument_list|)
 expr_stmt|;
 name|assertTrue
 argument_list|(
-name|undirectedGraph
+name|graph
 operator|.
 name|removeEdge
 argument_list|(
@@ -538,7 +515,7 @@ argument_list|)
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|undirectedGraph
+name|graph
 operator|.
 name|edgesConnecting
 argument_list|(
@@ -553,7 +530,7 @@ argument_list|()
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|undirectedGraph
+name|graph
 operator|.
 name|edgesConnecting
 argument_list|(
@@ -627,12 +604,12 @@ name|String
 operator|.
 name|format
 argument_list|(
-literal|"config: %s, nodes: %s, edges: {%s=[%s, %s], %s=[%s, %s], %s=[%s], %s=[%s]}"
+literal|"%s, nodes: %s, edges: {%s=<%s -> %s>, %s=<%s -> %s>, %s=<%s -> %s>, %s=<%s -> %s>}"
 argument_list|,
+name|getPropertiesString
+argument_list|(
 name|graph
-operator|.
-name|config
-argument_list|()
+argument_list|)
 argument_list|,
 name|graph
 operator|.
@@ -655,7 +632,11 @@ name|E11
 argument_list|,
 name|N1
 argument_list|,
+name|N1
+argument_list|,
 name|E11_A
+argument_list|,
+name|N1
 argument_list|,
 name|N1
 argument_list|)

@@ -101,7 +101,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests for {@link IncidenceSetUndirectedGraph}, creating a simple undirected graph (parallel and  * self-loop edges are not allowed).  */
+comment|/**  * Tests for an undirected {@link ConfigurableGraph}, creating a simple undirected graph (parallel  * and self-loop edges are not allowed).  */
 end_comment
 
 begin_class
@@ -112,10 +112,10 @@ name|JUnit4
 operator|.
 name|class
 argument_list|)
-DECL|class|IncidenceSetSimpleUndirectedGraphTest
+DECL|class|ConfigurableSimpleUndirectedGraphTest
 specifier|public
 class|class
-name|IncidenceSetSimpleUndirectedGraphTest
+name|ConfigurableSimpleUndirectedGraphTest
 extends|extends
 name|AbstractUndirectedGraphTest
 block|{
@@ -123,7 +123,7 @@ annotation|@
 name|Override
 DECL|method|createGraph ()
 specifier|public
-name|UndirectedGraph
+name|Graph
 argument_list|<
 name|Integer
 argument_list|,
@@ -133,18 +133,18 @@ name|createGraph
 parameter_list|()
 block|{
 return|return
-name|Graphs
+name|GraphBuilder
 operator|.
-name|createUndirected
+name|undirected
+argument_list|()
+operator|.
+name|allowsSelfLoops
 argument_list|(
-name|Graphs
-operator|.
-name|config
-argument_list|()
-operator|.
-name|noSelfLoops
-argument_list|()
+literal|false
 argument_list|)
+operator|.
+name|build
+argument_list|()
 return|;
 block|}
 annotation|@
@@ -163,7 +163,7 @@ name|Integer
 argument_list|>
 name|nodes
 init|=
-name|undirectedGraph
+name|graph
 operator|.
 name|nodes
 argument_list|()
@@ -196,7 +196,7 @@ argument_list|)
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|undirectedGraph
+name|graph
 operator|.
 name|nodes
 argument_list|()
@@ -225,7 +225,7 @@ name|String
 argument_list|>
 name|edges
 init|=
-name|undirectedGraph
+name|graph
 operator|.
 name|edges
 argument_list|()
@@ -262,7 +262,7 @@ argument_list|)
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|undirectedGraph
+name|graph
 operator|.
 name|edges
 argument_list|()
@@ -296,7 +296,7 @@ name|String
 argument_list|>
 name|incidentEdges
 init|=
-name|undirectedGraph
+name|graph
 operator|.
 name|incidentEdges
 argument_list|(
@@ -335,7 +335,7 @@ argument_list|)
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|undirectedGraph
+name|graph
 operator|.
 name|incidentEdges
 argument_list|(
@@ -375,7 +375,7 @@ name|Integer
 argument_list|>
 name|incidentNodes
 init|=
-name|undirectedGraph
+name|graph
 operator|.
 name|incidentNodes
 argument_list|(
@@ -425,7 +425,7 @@ name|Integer
 argument_list|>
 name|adjacentNodes
 init|=
-name|undirectedGraph
+name|graph
 operator|.
 name|adjacentNodes
 argument_list|(
@@ -464,7 +464,7 @@ argument_list|)
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|undirectedGraph
+name|graph
 operator|.
 name|adjacentNodes
 argument_list|(
@@ -504,7 +504,7 @@ name|String
 argument_list|>
 name|adjacentEdges
 init|=
-name|undirectedGraph
+name|graph
 operator|.
 name|adjacentEdges
 argument_list|(
@@ -543,7 +543,7 @@ argument_list|)
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|undirectedGraph
+name|graph
 operator|.
 name|adjacentEdges
 argument_list|(
@@ -584,7 +584,7 @@ name|String
 argument_list|>
 name|edgesConnecting
 init|=
-name|undirectedGraph
+name|graph
 operator|.
 name|edgesConnecting
 argument_list|(
@@ -625,7 +625,7 @@ argument_list|)
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|undirectedGraph
+name|graph
 operator|.
 name|edgesConnecting
 argument_list|(
@@ -663,7 +663,7 @@ name|String
 argument_list|>
 name|inEdges
 init|=
-name|undirectedGraph
+name|graph
 operator|.
 name|inEdges
 argument_list|(
@@ -702,7 +702,7 @@ argument_list|)
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|undirectedGraph
+name|graph
 operator|.
 name|inEdges
 argument_list|(
@@ -738,7 +738,7 @@ name|String
 argument_list|>
 name|outEdges
 init|=
-name|undirectedGraph
+name|graph
 operator|.
 name|outEdges
 argument_list|(
@@ -777,7 +777,7 @@ argument_list|)
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|undirectedGraph
+name|graph
 operator|.
 name|outEdges
 argument_list|(
@@ -813,7 +813,7 @@ name|Integer
 argument_list|>
 name|predecessors
 init|=
-name|undirectedGraph
+name|graph
 operator|.
 name|predecessors
 argument_list|(
@@ -852,7 +852,7 @@ argument_list|)
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|undirectedGraph
+name|graph
 operator|.
 name|predecessors
 argument_list|(
@@ -888,7 +888,7 @@ name|Integer
 argument_list|>
 name|successors
 init|=
-name|undirectedGraph
+name|graph
 operator|.
 name|successors
 argument_list|(
@@ -927,7 +927,7 @@ argument_list|)
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|undirectedGraph
+name|graph
 operator|.
 name|successors
 argument_list|(
@@ -998,7 +998,7 @@ name|void
 name|addEdge_nodesNotInGraph
 parameter_list|()
 block|{
-name|undirectedGraph
+name|graph
 operator|.
 name|addNode
 argument_list|(
@@ -1007,7 +1007,7 @@ argument_list|)
 expr_stmt|;
 name|assertTrue
 argument_list|(
-name|undirectedGraph
+name|graph
 operator|.
 name|addEdge
 argument_list|(
@@ -1021,7 +1021,7 @@ argument_list|)
 expr_stmt|;
 name|assertTrue
 argument_list|(
-name|undirectedGraph
+name|graph
 operator|.
 name|addEdge
 argument_list|(
@@ -1035,7 +1035,7 @@ argument_list|)
 expr_stmt|;
 name|assertTrue
 argument_list|(
-name|undirectedGraph
+name|graph
 operator|.
 name|addEdge
 argument_list|(
@@ -1049,7 +1049,7 @@ argument_list|)
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|undirectedGraph
+name|graph
 operator|.
 name|nodes
 argument_list|()
@@ -1073,7 +1073,7 @@ argument_list|()
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|undirectedGraph
+name|graph
 operator|.
 name|edges
 argument_list|()
@@ -1093,7 +1093,7 @@ argument_list|()
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|undirectedGraph
+name|graph
 operator|.
 name|edgesConnecting
 argument_list|(
@@ -1110,7 +1110,7 @@ argument_list|)
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|undirectedGraph
+name|graph
 operator|.
 name|edgesConnecting
 argument_list|(
@@ -1127,7 +1127,7 @@ argument_list|)
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|undirectedGraph
+name|graph
 operator|.
 name|edgesConnecting
 argument_list|(
@@ -1144,7 +1144,7 @@ argument_list|)
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|undirectedGraph
+name|graph
 operator|.
 name|edgesConnecting
 argument_list|(
