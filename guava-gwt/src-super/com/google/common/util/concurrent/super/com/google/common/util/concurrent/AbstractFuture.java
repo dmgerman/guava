@@ -62,9 +62,9 @@ name|util
 operator|.
 name|concurrent
 operator|.
-name|MoreExecutors
+name|Futures
 operator|.
-name|directExecutor
+name|getDone
 import|;
 end_import
 
@@ -80,9 +80,9 @@ name|util
 operator|.
 name|concurrent
 operator|.
-name|Uninterruptibles
+name|MoreExecutors
 operator|.
-name|getUninterruptibly
+name|directExecutor
 import|;
 end_import
 
@@ -245,115 +245,7 @@ argument_list|<
 name|V
 argument_list|>
 block|{
-DECL|method|get ()
-annotation|@
-name|Override
-specifier|public
-specifier|final
-name|V
-name|get
-parameter_list|()
-throws|throws
-name|InterruptedException
-throws|,
-name|ExecutionException
-block|{
-return|return
-name|super
-operator|.
-name|get
-argument_list|()
-return|;
-block|}
-DECL|method|get (long timeout, TimeUnit unit)
-annotation|@
-name|Override
-specifier|public
-specifier|final
-name|V
-name|get
-parameter_list|(
-name|long
-name|timeout
-parameter_list|,
-name|TimeUnit
-name|unit
-parameter_list|)
-throws|throws
-name|InterruptedException
-throws|,
-name|ExecutionException
-throws|,
-name|TimeoutException
-block|{
-return|return
-name|super
-operator|.
-name|get
-argument_list|(
-name|timeout
-argument_list|,
-name|unit
-argument_list|)
-return|;
-block|}
-DECL|method|isDone ()
-annotation|@
-name|Override
-specifier|public
-specifier|final
-name|boolean
-name|isDone
-parameter_list|()
-block|{
-return|return
-name|super
-operator|.
-name|isDone
-argument_list|()
-return|;
-block|}
-DECL|method|isCancelled ()
-annotation|@
-name|Override
-specifier|public
-specifier|final
-name|boolean
-name|isCancelled
-parameter_list|()
-block|{
-return|return
-name|super
-operator|.
-name|isCancelled
-argument_list|()
-return|;
-block|}
-DECL|method|addListener (Runnable listener, Executor executor)
-annotation|@
-name|Override
-specifier|public
-specifier|final
-name|void
-name|addListener
-parameter_list|(
-name|Runnable
-name|listener
-parameter_list|,
-name|Executor
-name|executor
-parameter_list|)
-block|{
-name|super
-operator|.
-name|addListener
-argument_list|(
-name|listener
-argument_list|,
-name|executor
-argument_list|)
-expr_stmt|;
-block|}
+comment|/*      * We don't need to override any of methods that we override in the prod version (and in fact we      * can't) because they are already final.      */
 block|}
 DECL|field|log
 specifier|private
@@ -433,6 +325,7 @@ argument_list|>
 argument_list|()
 expr_stmt|;
 block|}
+comment|/*    * TODO(cpovirk): Consider making cancel() final (under GWT only, since we can't change the    * server) by migrating our overrides to use afterDone().    */
 annotation|@
 name|Override
 DECL|method|cancel (boolean mayInterruptIfRunning)
@@ -505,6 +398,7 @@ annotation|@
 name|Override
 DECL|method|isCancelled ()
 specifier|public
+specifier|final
 name|boolean
 name|isCancelled
 parameter_list|()
@@ -520,6 +414,7 @@ annotation|@
 name|Override
 DECL|method|isDone ()
 specifier|public
+specifier|final
 name|boolean
 name|isDone
 parameter_list|()
@@ -531,10 +426,12 @@ name|isDone
 argument_list|()
 return|;
 block|}
+comment|/*    * We let people override {@code get()} in the server version (though perhaps we shouldn't). Here,    * we don't want that, and anyway, users can't, thanks to the package-private parameter.    */
 annotation|@
 name|Override
 DECL|method|get ()
 specifier|public
+specifier|final
 name|V
 name|get
 parameter_list|()
@@ -558,6 +455,7 @@ annotation|@
 name|Override
 DECL|method|get (long timeout, TimeUnit unit)
 specifier|public
+specifier|final
 name|V
 name|get
 parameter_list|(
@@ -588,6 +486,7 @@ annotation|@
 name|Override
 DECL|method|addListener (Runnable runnable, Executor executor)
 specifier|public
+specifier|final
 name|void
 name|addListener
 parameter_list|(
@@ -1296,7 +1195,7 @@ if|if
 condition|(
 name|delegate
 operator|instanceof
-name|TrustedFuture
+name|AbstractFuture
 condition|)
 block|{
 name|AbstractFuture
@@ -1346,11 +1245,12 @@ argument_list|()
 expr_stmt|;
 return|return;
 block|}
+comment|/*        * Almost everything in GWT is an AbstractFuture (which is as good as TrustedFuture under        * GWT). But ImmediateFuture and UncheckedThrowingFuture aren't, so we still need this case.        */
 try|try
 block|{
 name|forceSet
 argument_list|(
-name|getUninterruptibly
+name|getDone
 argument_list|(
 name|delegate
 argument_list|)

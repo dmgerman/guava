@@ -175,7 +175,6 @@ argument_list|<
 name|V
 argument_list|>
 block|{
-comment|/*    * TODO(lukes): Use AbstractFuture.TrustedFuture instead of special classes so that get() throws    * InterruptedException when appropriate, and, more importantly for failed/cancelled Futures, we    * can take advantage of the TrustedFuture optimizations.    */
 DECL|field|log
 specifier|private
 specifier|static
@@ -393,6 +392,7 @@ operator|=
 name|value
 expr_stmt|;
 block|}
+comment|// TODO(lukes): Consider throwing InterruptedException when appropriate.
 annotation|@
 name|Override
 DECL|method|get ()

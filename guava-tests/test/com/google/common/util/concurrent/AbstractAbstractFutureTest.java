@@ -773,6 +773,9 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+comment|// All GWT Futures behaves like TrustedFuture.
 DECL|method|testSetFutureDelegateAlreadyInterrupted ()
 specifier|public
 name|void
@@ -813,6 +816,9 @@ name|TrustedFuture
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+comment|// All GWT Futures behaves like TrustedFuture.
 DECL|method|testSetFutureDelegateLaterInterrupted ()
 specifier|public
 name|void
