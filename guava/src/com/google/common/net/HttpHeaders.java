@@ -828,6 +828,26 @@ name|X_FORWARDED_PROTO
 init|=
 literal|"X-Forwarded-Proto"
 decl_stmt|;
+comment|/**    * The HTTP<a href="http://goo.gl/lQirAH">{@code X-Forwarded-Host}</a> header field name.    *    * @since 20.0    */
+DECL|field|X_FORWARDED_HOST
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|X_FORWARDED_HOST
+init|=
+literal|"X-Forwarded-Host"
+decl_stmt|;
+comment|/**    * The HTTP<a href="http://goo.gl/YtV2at">{@code X-Forwarded-Port}</a> header field name.    *    * @since 20.0    */
+DECL|field|X_FORWARDED_PORT
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|X_FORWARDED_PORT
+init|=
+literal|"X-Forwarded-Port"
+decl_stmt|;
 comment|/** The HTTP {@code X-Frame-Options} header field name. */
 DECL|field|X_FRAME_OPTIONS
 specifier|public
