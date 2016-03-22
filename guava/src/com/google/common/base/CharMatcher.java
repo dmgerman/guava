@@ -364,8 +364,9 @@ name|INSTANCE
 return|;
 block|}
 comment|// Legacy constants
-comment|// TODO(cgdecker): Deprecate these so they can be removed eventually
-comment|/**    * Determines whether a character is whitespace according to the latest Unicode    * standard, as illustrated    *<a href="http://unicode.org/cldr/utility/list-unicodeset.jsp?a=%5Cp%7Bwhitespace%7D">here</a>.    * This is not the same definition used by other Java APIs. (See a    *<a href="http://spreadsheets.google.com/pub?key=pd8dAQyHbdewRsnE5x5GzKQ">    * comparison of several definitions of "whitespace"</a>.)    *    *<p><b>Note:</b> as the Unicode definition evolves, we will modify this constant    * to keep it up to date.    */
+comment|/**    * Determines whether a character is whitespace according to the latest Unicode    * standard, as illustrated    *<a href="http://unicode.org/cldr/utility/list-unicodeset.jsp?a=%5Cp%7Bwhitespace%7D">here</a>.    * This is not the same definition used by other Java APIs. (See a    *<a href="http://spreadsheets.google.com/pub?key=pd8dAQyHbdewRsnE5x5GzKQ">    * comparison of several definitions of "whitespace"</a>.)    *    *<p><b>Note:</b> as the Unicode definition evolves, we will modify this constant    * to keep it up to date.    *    * @deprecated Use {@link #whitespace()} instead. This constant is scheduled to be    *     removed in June 2018.    */
+annotation|@
+name|Deprecated
 DECL|field|WHITESPACE
 specifier|public
 specifier|static
@@ -376,7 +377,9 @@ init|=
 name|whitespace
 argument_list|()
 decl_stmt|;
-comment|/**    * Determines whether a character is a breaking whitespace (that is, a whitespace    * which can be interpreted as a break between words for formatting purposes). See    * {@link #whitespace} for a discussion of that term.    *    * @since 2.0    */
+comment|/**    * Determines whether a character is a breaking whitespace (that is, a whitespace    * which can be interpreted as a break between words for formatting purposes). See    * {@link #whitespace} for a discussion of that term.    *    * @since 2.0    * @deprecated Use {@link #breakingWhitespace()} instead. This constant is scheduled    *     to be removed in June 2018.    */
+annotation|@
+name|Deprecated
 DECL|field|BREAKING_WHITESPACE
 specifier|public
 specifier|static
@@ -387,7 +390,9 @@ init|=
 name|breakingWhitespace
 argument_list|()
 decl_stmt|;
-comment|/**    * Determines whether a character is ASCII, meaning that its code point is less than    * 128.    */
+comment|/**    * Determines whether a character is ASCII, meaning that its code point is less than    * 128.    *    * @deprecated Use {@link #ascii()} instead. This constant is scheduled to be    *     removed in June 2018.    */
+annotation|@
+name|Deprecated
 DECL|field|ASCII
 specifier|public
 specifier|static
@@ -398,7 +403,9 @@ init|=
 name|ascii
 argument_list|()
 decl_stmt|;
-comment|/**    * Determines whether a character is a digit according to    *<a href="http://unicode.org/cldr/utility/list-unicodeset.jsp?a=%5Cp%7Bdigit%7D">    * Unicode</a>. If you only care to match ASCII digits, you can use    * {@code inRange('0', '9')}.    */
+comment|/**    * Determines whether a character is a digit according to    *<a href="http://unicode.org/cldr/utility/list-unicodeset.jsp?a=%5Cp%7Bdigit%7D">    * Unicode</a>. If you only care to match ASCII digits, you can use    * {@code inRange('0', '9')}.    *    * @deprecated Use {@link #digit()} instead. This constant is scheduled to be    *     removed in June 2018.    */
+annotation|@
+name|Deprecated
 DECL|field|DIGIT
 specifier|public
 specifier|static
@@ -409,7 +416,9 @@ init|=
 name|digit
 argument_list|()
 decl_stmt|;
-comment|/**    * Determines whether a character is a digit according to    * {@linkplain Character#isDigit(char) Java's definition}. If you only care to match    * ASCII digits, you can use {@code inRange('0', '9')}.    */
+comment|/**    * Determines whether a character is a digit according to    * {@linkplain Character#isDigit(char) Java's definition}. If you only care to match    * ASCII digits, you can use {@code inRange('0', '9')}.    *    * @deprecated Use {@link #javaDigit()} instead. This constant is scheduled to be    *     removed in June 2018.    */
+annotation|@
+name|Deprecated
 DECL|field|JAVA_DIGIT
 specifier|public
 specifier|static
@@ -420,7 +429,9 @@ init|=
 name|javaDigit
 argument_list|()
 decl_stmt|;
-comment|/**    * Determines whether a character is a letter according to    * {@linkplain Character#isLetter(char) Java's definition}. If you only care to    * match letters of the Latin alphabet, you can use    * {@code inRange('a', 'z').or(inRange('A', 'Z'))}.    */
+comment|/**    * Determines whether a character is a letter according to    * {@linkplain Character#isLetter(char) Java's definition}. If you only care to    * match letters of the Latin alphabet, you can use    * {@code inRange('a', 'z').or(inRange('A', 'Z'))}.    *    * @deprecated Use {@link #javaLetter()} instead. This constant is scheduled to be    *     removed in June 2018.    */
+annotation|@
+name|Deprecated
 DECL|field|JAVA_LETTER
 specifier|public
 specifier|static
@@ -431,7 +442,9 @@ init|=
 name|javaLetter
 argument_list|()
 decl_stmt|;
-comment|/**    * Determines whether a character is a letter or digit according to    * {@linkplain Character#isLetterOrDigit(char) Java's definition}.    */
+comment|/**    * Determines whether a character is a letter or digit according to    * {@linkplain Character#isLetterOrDigit(char) Java's definition}.    *    * @deprecated Use {@link #javaLetterOrDigit()} instead. This constant is scheduled    *     to be removed in June 2018.    */
+annotation|@
+name|Deprecated
 DECL|field|JAVA_LETTER_OR_DIGIT
 specifier|public
 specifier|static
@@ -442,7 +455,9 @@ init|=
 name|javaLetterOrDigit
 argument_list|()
 decl_stmt|;
-comment|/**    * Determines whether a character is upper case according to    * {@linkplain Character#isUpperCase(char) Java's definition}.    */
+comment|/**    * Determines whether a character is upper case according to    * {@linkplain Character#isUpperCase(char) Java's definition}.    *    * @deprecated Use {@link #javaUpperCase()} instead. This constant is scheduled to    *     be removed in June 2018.    */
+annotation|@
+name|Deprecated
 DECL|field|JAVA_UPPER_CASE
 specifier|public
 specifier|static
@@ -453,7 +468,9 @@ init|=
 name|javaUpperCase
 argument_list|()
 decl_stmt|;
-comment|/**    * Determines whether a character is lower case according to    * {@linkplain Character#isLowerCase(char) Java's definition}.    */
+comment|/**    * Determines whether a character is lower case according to    * {@linkplain Character#isLowerCase(char) Java's definition}.    *    * @deprecated Use {@link #javaLowerCase()} instead. This constant is scheduled to    *     be removed in June 2018.    */
+annotation|@
+name|Deprecated
 DECL|field|JAVA_LOWER_CASE
 specifier|public
 specifier|static
@@ -464,7 +481,9 @@ init|=
 name|javaLowerCase
 argument_list|()
 decl_stmt|;
-comment|/**    * Determines whether a character is an ISO control character as specified by    * {@link Character#isISOControl(char)}.    */
+comment|/**    * Determines whether a character is an ISO control character as specified by    * {@link Character#isISOControl(char)}.    *    * @deprecated Use {@link #javaIsoControl()} instead. This constant is scheduled to    *     be removed in June 2018.    */
+annotation|@
+name|Deprecated
 DECL|field|JAVA_ISO_CONTROL
 specifier|public
 specifier|static
@@ -475,7 +494,9 @@ init|=
 name|javaIsoControl
 argument_list|()
 decl_stmt|;
-comment|/**    * Determines whether a character is invisible; that is, if its Unicode category is    * any of SPACE_SEPARATOR, LINE_SEPARATOR, PARAGRAPH_SEPARATOR, CONTROL, FORMAT,    * SURROGATE, and PRIVATE_USE according to ICU4J.    */
+comment|/**    * Determines whether a character is invisible; that is, if its Unicode category is    * any of SPACE_SEPARATOR, LINE_SEPARATOR, PARAGRAPH_SEPARATOR, CONTROL, FORMAT,    * SURROGATE, and PRIVATE_USE according to ICU4J.    *    * @deprecated Use {@link #invisible()} instead. This constant is scheduled to be    *     removed in June 2018.    */
+annotation|@
+name|Deprecated
 DECL|field|INVISIBLE
 specifier|public
 specifier|static
@@ -486,7 +507,9 @@ init|=
 name|invisible
 argument_list|()
 decl_stmt|;
-comment|/**    * Determines whether a character is single-width (not double-width). When in doubt,    * this matcher errs on the side of returning {@code false} (that is, it tends to    * assume a character is double-width).    *    *<p><b>Note:</b> as the reference file evolves, we will modify this constant to    * keep it up to date.    */
+comment|/**    * Determines whether a character is single-width (not double-width). When in doubt,    * this matcher errs on the side of returning {@code false} (that is, it tends to    * assume a character is double-width).    *    *<p><b>Note:</b> as the reference file evolves, we will modify this constant to    * keep it up to date.    *    * @deprecated Use {@link #singleWidth()} instead. This constant is scheduled to be    *     removed in June 2018.    */
+annotation|@
+name|Deprecated
 DECL|field|SINGLE_WIDTH
 specifier|public
 specifier|static
@@ -497,7 +520,9 @@ init|=
 name|singleWidth
 argument_list|()
 decl_stmt|;
-comment|/** Matches any character. */
+comment|/**    * Matches any character.    *    * @deprecated Use {@link #any()} instead. This constant is scheduled to be    *     removed in June 2018.    */
+annotation|@
+name|Deprecated
 DECL|field|ANY
 specifier|public
 specifier|static
@@ -508,7 +533,9 @@ init|=
 name|any
 argument_list|()
 decl_stmt|;
-comment|/** Matches no characters. */
+comment|/**    * Matches no characters.    *    * @deprecated Use {@link #none()} instead. This constant is scheduled to be    *     removed in June 2018.    */
+annotation|@
+name|Deprecated
 DECL|field|NONE
 specifier|public
 specifier|static
