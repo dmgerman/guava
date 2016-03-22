@@ -372,7 +372,6 @@ function_decl|;
 comment|/**    * See {@link MapMaker#expireAfterAccess}.    */
 annotation|@
 name|GwtIncompatible
-comment|// To be supported
 DECL|method|expireAfterAccess (long duration, TimeUnit unit)
 specifier|abstract
 name|GenericMapMaker
