@@ -70,20 +70,6 @@ name|google
 operator|.
 name|common
 operator|.
-name|annotations
-operator|.
-name|VisibleForTesting
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
 name|base
 operator|.
 name|Function
@@ -1636,9 +1622,8 @@ block|}
 return|;
 block|}
 comment|/**    * Returns a string representation of the properties of {@code graph}.    */
-annotation|@
-name|VisibleForTesting
 DECL|method|getPropertiesString (Graph<?, ?> graph)
+specifier|private
 specifier|static
 name|String
 name|getPropertiesString
@@ -1657,7 +1642,7 @@ name|String
 operator|.
 name|format
 argument_list|(
-literal|"isDirected: %s , allowsParallelEdges: %s, allowsSelfLoops: %s"
+literal|"isDirected: %s, allowsParallelEdges: %s, allowsSelfLoops: %s"
 argument_list|,
 name|graph
 operator|.
