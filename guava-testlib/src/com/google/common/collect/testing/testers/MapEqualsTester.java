@@ -438,9 +438,7 @@ argument_list|)
 decl_stmt|;
 name|assertFalse
 argument_list|(
-literal|"Two Maps should not be equal if exactly one of them contains a null "
-operator|+
-literal|"key."
+literal|"Two Maps should not be equal if exactly one of them contains a null key."
 argument_list|,
 name|getMap
 argument_list|()
@@ -609,9 +607,7 @@ argument_list|)
 decl_stmt|;
 name|assertFalse
 argument_list|(
-literal|"Two Maps should not be equal if exactly one of them contains a null "
-operator|+
-literal|"value."
+literal|"Two Maps should not be equal if exactly one of them contains a null value."
 argument_list|,
 name|getMap
 argument_list|()

@@ -971,7 +971,7 @@ index|[]
 name|entries
 parameter_list|)
 block|{
-comment|/*                * TODO(cpovirk): it would be nice to create an input Map and use                * the copy constructor here and in the other tests                */
+comment|/*                  * TODO(cpovirk): it would be nice to create an input Map and use                  * the copy constructor here and in the other tests                  */
 return|return
 name|populate
 argument_list|(
@@ -1533,7 +1533,7 @@ argument_list|()
 return|;
 block|}
 comment|// TODO: IdentityHashMap, AbstractMap
-DECL|method|toHashMap ( Entry<String, String>[] entries)
+DECL|method|toHashMap (Entry<String, String>[] entries)
 specifier|private
 specifier|static
 name|Map
@@ -1572,7 +1572,7 @@ return|;
 block|}
 comment|// TODO: call conversion constructors or factory methods instead of using
 comment|// populate() on an empty map
-DECL|method|populate ( M map, Entry<T, String>[] entries)
+DECL|method|populate (M map, Entry<T, String>[] entries)
 specifier|private
 specifier|static
 parameter_list|<

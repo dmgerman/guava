@@ -128,7 +128,7 @@ argument_list|)
 return|;
 block|}
 comment|// TODO: use this
-DECL|method|ofClassAndContents ( Class<? super E> type, E... contents)
+DECL|method|ofClassAndContents (Class<? super E> type, E... contents)
 specifier|public
 specifier|static
 parameter_list|<
@@ -266,9 +266,9 @@ block|}
 block|}
 block|}
 block|}
-DECL|method|size ()
 annotation|@
 name|Override
+DECL|method|size ()
 specifier|public
 name|int
 name|size
@@ -280,9 +280,9 @@ operator|.
 name|length
 return|;
 block|}
-DECL|method|contains (Object object)
 annotation|@
 name|Override
+DECL|method|contains (Object object)
 specifier|public
 name|boolean
 name|contains
@@ -336,9 +336,9 @@ name|object
 argument_list|)
 return|;
 block|}
-DECL|method|containsAll (Collection<?> collection)
 annotation|@
 name|Override
+DECL|method|containsAll (Collection<?> collection)
 specifier|public
 name|boolean
 name|containsAll
@@ -389,9 +389,9 @@ name|collection
 argument_list|)
 return|;
 block|}
-DECL|method|iterator ()
 annotation|@
 name|Override
+DECL|method|iterator ()
 specifier|public
 name|Iterator
 argument_list|<
@@ -412,9 +412,9 @@ name|iterator
 argument_list|()
 return|;
 block|}
-DECL|method|toArray ()
 annotation|@
 name|Override
+DECL|method|toArray ()
 specifier|public
 name|Object
 index|[]
@@ -455,9 +455,9 @@ name|result
 return|;
 block|}
 comment|/*    * a "type A" unmodifiable collection freaks out proactively, even if there    * wasn't going to be any actual work to do anyway    */
-DECL|method|addAll (Collection<? extends E> elementsToAdd)
 annotation|@
 name|Override
+DECL|method|addAll (Collection<? extends E> elementsToAdd)
 specifier|public
 name|boolean
 name|addAll
@@ -476,9 +476,9 @@ name|up
 argument_list|()
 throw|;
 block|}
-DECL|method|removeAll (Collection<?> elementsToRemove)
 annotation|@
 name|Override
+DECL|method|removeAll (Collection<?> elementsToRemove)
 specifier|public
 name|boolean
 name|removeAll
@@ -495,9 +495,9 @@ name|up
 argument_list|()
 throw|;
 block|}
-DECL|method|retainAll (Collection<?> elementsToRetain)
 annotation|@
 name|Override
+DECL|method|retainAll (Collection<?> elementsToRetain)
 specifier|public
 name|boolean
 name|retainAll
@@ -514,9 +514,9 @@ name|up
 argument_list|()
 throw|;
 block|}
-DECL|method|clear ()
 annotation|@
 name|Override
+DECL|method|clear ()
 specifier|public
 name|void
 name|clear

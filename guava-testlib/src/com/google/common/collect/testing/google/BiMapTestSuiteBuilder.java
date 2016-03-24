@@ -566,12 +566,12 @@ block|}
 block|}
 annotation|@
 name|Override
+DECL|method|createDerivedSuites ( FeatureSpecificTestSuiteBuilder< ?, ? extends OneSizeTestContainerGenerator<BiMap<K, V>, Entry<K, V>>> parentBuilder)
 specifier|protected
 name|List
 argument_list|<
 name|TestSuite
 argument_list|>
-DECL|method|createDerivedSuites ( FeatureSpecificTestSuiteBuilder<?, ? extends OneSizeTestContainerGenerator<BiMap<K, V>, Entry<K, V>>> parentBuilder)
 name|createDerivedSuites
 parameter_list|(
 name|FeatureSpecificTestSuiteBuilder
@@ -953,7 +953,7 @@ name|inverseFeatures
 return|;
 block|}
 comment|// TODO(lowasser): can we eliminate the duplication from MapTestSuiteBuilder here?
-DECL|method|computeValuesSetFeatures ( Set<Feature<?>> mapFeatures)
+DECL|method|computeValuesSetFeatures (Set<Feature<?>> mapFeatures)
 specifier|private
 specifier|static
 name|Set

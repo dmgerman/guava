@@ -570,7 +570,7 @@ argument_list|,
 name|E
 argument_list|>
 block|{
-DECL|method|using ( TestListGenerator<E> generator)
+DECL|method|using (TestListGenerator<E> generator)
 specifier|public
 specifier|static
 parameter_list|<
@@ -603,9 +603,9 @@ name|generator
 argument_list|)
 return|;
 block|}
-DECL|method|getTesters ()
 annotation|@
 name|Override
+DECL|method|getTesters ()
 specifier|protected
 name|List
 argument_list|<
@@ -816,9 +816,9 @@ name|testers
 return|;
 block|}
 comment|/**    * Specifies {@link CollectionFeature#KNOWN_ORDER} for all list tests, since    * lists have an iteration ordering corresponding to the insertion order.    */
-DECL|method|createTestSuite ()
 annotation|@
 name|Override
+DECL|method|createTestSuite ()
 specifier|public
 name|TestSuite
 name|createTestSuite
@@ -838,12 +838,12 @@ return|;
 block|}
 annotation|@
 name|Override
+DECL|method|createDerivedSuites ( FeatureSpecificTestSuiteBuilder<?, ? extends OneSizeTestContainerGenerator<Collection<E>, E>> parentBuilder)
 specifier|protected
 name|List
 argument_list|<
 name|TestSuite
 argument_list|>
-DECL|method|createDerivedSuites ( FeatureSpecificTestSuiteBuilder< ?, ? extends OneSizeTestContainerGenerator<Collection<E>, E>> parentBuilder)
 name|createDerivedSuites
 parameter_list|(
 name|FeatureSpecificTestSuiteBuilder
@@ -1105,7 +1105,7 @@ argument_list|)
 return|;
 block|}
 block|}
-DECL|method|computeReserializedCollectionFeatures ( Set<Feature<?>> features)
+DECL|method|computeReserializedCollectionFeatures (Set<Feature<?>> features)
 specifier|private
 specifier|static
 name|Set

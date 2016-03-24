@@ -192,7 +192,7 @@ constructor|FAILS_FAST_ON_CONCURRENT_MODIFICATION
 operator|,
 comment|/**    * Features supported by general-purpose collections -    * everything but {@link #RESTRICTS_ELEMENTS}.    * @see java.util.Collection the definition of general-purpose collections.    */
 DECL|enumConstant|GENERAL_PURPOSE
-constructor|GENERAL_PURPOSE(       SUPPORTS_ADD
+constructor|GENERAL_PURPOSE(SUPPORTS_ADD
 operator|,
 constructor|SUPPORTS_REMOVE
 operator|,
@@ -209,9 +209,9 @@ name|SUPPORTS_ITERATOR_REMOVE
 argument_list|)
 operator|,
 DECL|enumConstant|SERIALIZABLE
-DECL|enumConstant|SERIALIZABLE_INCLUDING_VIEWS
 name|SERIALIZABLE
 operator|,
+DECL|enumConstant|SERIALIZABLE_INCLUDING_VIEWS
 name|SERIALIZABLE_INCLUDING_VIEWS
 argument_list|(
 name|SERIALIZABLE
@@ -247,7 +247,7 @@ decl_stmt|;
 end_decl_stmt
 
 begin_expr_stmt
-DECL|method|CollectionFeature (Feature<? super Collection> .... implied)
+DECL|method|CollectionFeature (Feature<? super Collection>.... implied)
 name|CollectionFeature
 argument_list|(
 name|Feature

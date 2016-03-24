@@ -80,9 +80,9 @@ name|?
 argument_list|>
 argument_list|>
 block|{
-DECL|method|getTesters ()
 annotation|@
 name|Override
+DECL|method|getTesters ()
 specifier|protected
 name|List
 argument_list|<

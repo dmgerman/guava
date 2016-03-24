@@ -998,14 +998,14 @@ return|;
 block|}
 block|}
 DECL|enum|KnownOrder
-DECL|enumConstant|KNOWN_ORDER
-DECL|enumConstant|UNKNOWN_ORDER
 specifier|public
 enum|enum
 name|KnownOrder
 block|{
+DECL|enumConstant|KNOWN_ORDER
 name|KNOWN_ORDER
 block|,
+DECL|enumConstant|UNKNOWN_ORDER
 name|UNKNOWN_ORDER
 block|}
 annotation|@
@@ -1014,7 +1014,7 @@ argument_list|(
 literal|"unchecked"
 argument_list|)
 comment|// creating array of generic class Stimulus
-DECL|method|AbstractIteratorTester (int steps, Iterable<E> elementsToInsertIterable, Iterable<? extends IteratorFeature> features, Iterable<E> expectedElements, KnownOrder knownOrder, int startIndex)
+DECL|method|AbstractIteratorTester ( int steps, Iterable<E> elementsToInsertIterable, Iterable<? extends IteratorFeature> features, Iterable<E> expectedElements, KnownOrder knownOrder, int startIndex)
 name|AbstractIteratorTester
 parameter_list|(
 name|int
@@ -1120,6 +1120,7 @@ name|startIndex
 expr_stmt|;
 block|}
 comment|/**    * I'd like to make this a parameter to the constructor, but I can't because    * the stimulus instances refer to {@code this}.    */
+DECL|method|getStimulusValues ()
 specifier|protected
 specifier|abstract
 name|Iterable
@@ -1135,7 +1136,6 @@ super|super
 name|I
 argument_list|>
 argument_list|>
-DECL|method|getStimulusValues ()
 name|getStimulusValues
 parameter_list|()
 function_decl|;
@@ -1979,9 +1979,9 @@ name|T
 name|target
 parameter_list|)
 function_decl|;
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString

@@ -54,9 +54,9 @@ argument_list|<
 name|E
 argument_list|>
 block|{
-DECL|method|setCountCheckReturnValue (E element, int count)
 annotation|@
 name|Override
+DECL|method|setCountCheckReturnValue (E element, int count)
 name|void
 name|setCountCheckReturnValue
 parameter_list|(
@@ -88,9 +88,9 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|setCountNoCheckReturnValue (E element, int count)
 annotation|@
 name|Override
+DECL|method|setCountNoCheckReturnValue (E element, int count)
 name|void
 name|setCountNoCheckReturnValue
 parameter_list|(

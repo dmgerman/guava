@@ -731,9 +731,7 @@ argument_list|)
 expr_stmt|;
 name|fail
 argument_list|(
-literal|"removeAll(intersectingCollection) should throw "
-operator|+
-literal|"UnsupportedOperationException"
+literal|"removeAll(intersectingCollection) should throw UnsupportedOperationException"
 argument_list|)
 expr_stmt|;
 block|}

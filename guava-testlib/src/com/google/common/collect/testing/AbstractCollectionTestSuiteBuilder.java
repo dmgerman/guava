@@ -418,9 +418,9 @@ name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
-DECL|method|getTesters ()
 annotation|@
 name|Override
+DECL|method|getTesters ()
 specifier|protected
 name|List
 argument_list|<
@@ -515,7 +515,7 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|createDerivedSuites (FeatureSpecificTestSuiteBuilder< ?, ? extends OneSizeTestContainerGenerator<Collection<E>, E>> parentBuilder)
+DECL|method|createDerivedSuites ( FeatureSpecificTestSuiteBuilder<?, ? extends OneSizeTestContainerGenerator<Collection<E>, E>> parentBuilder)
 specifier|protected
 name|List
 argument_list|<

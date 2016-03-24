@@ -415,7 +415,7 @@ argument_list|,
 name|E
 argument_list|>
 block|{
-DECL|method|using ( TestMultisetGenerator<E> generator)
+DECL|method|using (TestMultisetGenerator<E> generator)
 specifier|public
 specifier|static
 parameter_list|<
@@ -485,9 +485,9 @@ argument_list|()
 return|;
 block|}
 block|}
-DECL|method|getTesters ()
 annotation|@
 name|Override
+DECL|method|getTesters ()
 specifier|protected
 name|List
 argument_list|<
@@ -643,7 +643,7 @@ return|return
 name|testers
 return|;
 block|}
-DECL|method|computeEntrySetFeatures ( Set<Feature<?>> features)
+DECL|method|computeEntrySetFeatures (Set<Feature<?>> features)
 specifier|private
 specifier|static
 name|Set
@@ -754,7 +754,7 @@ return|return
 name|derivedFeatures
 return|;
 block|}
-DECL|method|computeElementSetFeatures ( Set<Feature<?>> features)
+DECL|method|computeElementSetFeatures (Set<Feature<?>> features)
 specifier|static
 name|Set
 argument_list|<
@@ -846,7 +846,7 @@ return|return
 name|derivedFeatures
 return|;
 block|}
-DECL|method|computeReserializedMultisetFeatures ( Set<Feature<?>> features)
+DECL|method|computeReserializedMultisetFeatures (Set<Feature<?>> features)
 specifier|private
 specifier|static
 name|Set
@@ -918,7 +918,7 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|createDerivedSuites (FeatureSpecificTestSuiteBuilder< ?, ? extends OneSizeTestContainerGenerator<Collection<E>, E>> parentBuilder)
+DECL|method|createDerivedSuites ( FeatureSpecificTestSuiteBuilder<?, ? extends OneSizeTestContainerGenerator<Collection<E>, E>> parentBuilder)
 specifier|protected
 name|List
 argument_list|<
@@ -1116,7 +1116,7 @@ return|return
 name|derivedSuites
 return|;
 block|}
-DECL|method|createElementSetTestSuite (FeatureSpecificTestSuiteBuilder< ?, ? extends OneSizeTestContainerGenerator<Collection<E>, E>> parentBuilder)
+DECL|method|createElementSetTestSuite ( FeatureSpecificTestSuiteBuilder<?, ? extends OneSizeTestContainerGenerator<Collection<E>, E>> parentBuilder)
 name|TestSuite
 name|createElementSetTestSuite
 parameter_list|(

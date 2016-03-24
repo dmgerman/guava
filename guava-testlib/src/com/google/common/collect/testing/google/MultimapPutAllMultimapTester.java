@@ -252,7 +252,7 @@ parameter_list|(
 name|UnsupportedOperationException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 annotation|@
 name|MapFeature
@@ -597,7 +597,7 @@ parameter_list|(
 name|NullPointerException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 name|expectUnchanged
 argument_list|()
 expr_stmt|;
@@ -666,7 +666,7 @@ parameter_list|(
 name|NullPointerException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 name|expectUnchanged
 argument_list|()
 expr_stmt|;

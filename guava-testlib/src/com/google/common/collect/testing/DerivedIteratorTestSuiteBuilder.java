@@ -86,9 +86,9 @@ argument_list|>
 argument_list|>
 block|{
 comment|/**    * We rely entirely on the delegate builder for test creation, so this    * just throws UnsupportedOperationException.    *    * @return never.    */
-DECL|method|getTesters ()
 annotation|@
 name|Override
+DECL|method|getTesters ()
 specifier|protected
 name|List
 argument_list|<
@@ -108,9 +108,9 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
-DECL|method|createTestSuite ()
 annotation|@
 name|Override
+DECL|method|createTestSuite ()
 specifier|public
 name|TestSuite
 name|createTestSuite

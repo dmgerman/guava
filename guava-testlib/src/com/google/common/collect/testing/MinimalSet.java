@@ -324,9 +324,9 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/*    * equals() and hashCode() are more specific in the Set contract.    */
-DECL|method|equals (Object object)
 annotation|@
 name|Override
+DECL|method|equals (Object object)
 specifier|public
 name|boolean
 name|equals
@@ -381,9 +381,9 @@ return|return
 literal|false
 return|;
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode

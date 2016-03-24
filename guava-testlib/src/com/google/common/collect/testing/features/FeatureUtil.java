@@ -225,6 +225,7 @@ argument_list|>
 argument_list|>
 argument_list|()
 decl_stmt|;
+DECL|field|classTesterRequirementsCache
 specifier|private
 specifier|static
 specifier|final
@@ -237,7 +238,6 @@ argument_list|>
 argument_list|,
 name|TesterRequirements
 argument_list|>
-DECL|field|classTesterRequirementsCache
 name|classTesterRequirementsCache
 init|=
 operator|new
@@ -252,6 +252,7 @@ name|TesterRequirements
 argument_list|>
 argument_list|()
 decl_stmt|;
+DECL|field|methodTesterRequirementsCache
 specifier|private
 specifier|static
 specifier|final
@@ -261,7 +262,6 @@ name|Method
 argument_list|,
 name|TesterRequirements
 argument_list|>
-DECL|field|methodTesterRequirementsCache
 name|methodTesterRequirementsCache
 init|=
 operator|new
@@ -741,7 +741,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Construct the set of requirements specified by annotations    * directly on a tester class or method.    * @param classOrMethod a tester class or a test method thereof    * @return all the constraints implicitly or explicitly required by    *         annotations on the class or method.    * @throws ConflictingRequirementsException if the requirements are mutually    *         inconsistent.    */
-DECL|method|buildDeclaredTesterRequirements ( AnnotatedElement classOrMethod)
+DECL|method|buildDeclaredTesterRequirements (AnnotatedElement classOrMethod)
 specifier|public
 specifier|static
 name|TesterRequirements
@@ -802,7 +802,7 @@ name|requirements
 return|;
 block|}
 comment|/**    * Find all the tester annotations declared on a tester class or method.    * @param classOrMethod a class or method whose tester annotations to find    * @return an iterable sequence of tester annotations on the class    */
-DECL|method|getTesterAnnotations ( AnnotatedElement classOrMethod)
+DECL|method|getTesterAnnotations (AnnotatedElement classOrMethod)
 specifier|public
 specifier|static
 name|Iterable
@@ -909,7 +909,7 @@ return|;
 block|}
 block|}
 comment|/**    * Find all the constraints explicitly or implicitly specified by a single    * tester annotation.    * @param testerAnnotation a tester annotation    * @return the requirements specified by the annotation    * @throws ConflictingRequirementsException if the requirements are mutually    *         inconsistent.    */
-DECL|method|buildTesterRequirements ( Annotation testerAnnotation)
+DECL|method|buildTesterRequirements (Annotation testerAnnotation)
 specifier|private
 specifier|static
 name|TesterRequirements
@@ -1302,7 +1302,7 @@ throw|;
 block|}
 block|}
 comment|/**    * Construct a new {@link java.util.Set} that is the intersection    * of the given sets.    */
-DECL|method|intersection ( Set<? extends T> set1, Set<? extends T> set2)
+DECL|method|intersection (Set<? extends T> set1, Set<? extends T> set2)
 specifier|public
 specifier|static
 parameter_list|<

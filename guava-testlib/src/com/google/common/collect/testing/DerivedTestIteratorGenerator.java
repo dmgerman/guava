@@ -65,6 +65,7 @@ argument_list|>
 implements|,
 name|DerivedGenerator
 block|{
+DECL|field|collectionGenerator
 specifier|private
 specifier|final
 name|TestSubjectGenerator
@@ -76,7 +77,6 @@ argument_list|<
 name|E
 argument_list|>
 argument_list|>
-DECL|field|collectionGenerator
 name|collectionGenerator
 decl_stmt|;
 DECL|method|DerivedTestIteratorGenerator ( TestSubjectGenerator<? extends Iterable<E>> collectionGenerator)

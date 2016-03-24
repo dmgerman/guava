@@ -476,9 +476,7 @@ argument_list|)
 expr_stmt|;
 name|fail
 argument_list|(
-literal|"a call to multiset.setCount() to increase an element's count "
-operator|+
-literal|"should throw"
+literal|"a call to multiset.setCount() to increase an element's count should throw"
 argument_list|)
 expr_stmt|;
 block|}
@@ -512,9 +510,7 @@ argument_list|)
 expr_stmt|;
 name|fail
 argument_list|(
-literal|"a call to multiset.setCount() to decrease an element's count "
-operator|+
-literal|"should throw"
+literal|"a call to multiset.setCount() to decrease an element's count should throw"
 argument_list|)
 expr_stmt|;
 block|}
@@ -1685,9 +1681,7 @@ argument_list|)
 expr_stmt|;
 name|fail
 argument_list|(
-literal|"calling setCount() with a negative count should throw "
-operator|+
-literal|"IllegalArgumentException"
+literal|"calling setCount() with a negative count should throw IllegalArgumentException"
 argument_list|)
 expr_stmt|;
 block|}

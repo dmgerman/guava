@@ -77,9 +77,9 @@ name|E
 argument_list|>
 name|collection
 decl_stmt|;
-DECL|method|actualContents ()
 annotation|@
 name|Override
+DECL|method|actualContents ()
 specifier|protected
 name|Collection
 argument_list|<
@@ -93,9 +93,9 @@ name|collection
 return|;
 block|}
 comment|// TODO: dispose of this once collection is encapsulated.
-DECL|method|resetContainer (Collection<E> newContents)
 annotation|@
 name|Override
+DECL|method|resetContainer (Collection<E> newContents)
 specifier|protected
 name|Collection
 argument_list|<

@@ -118,9 +118,7 @@ block|{
 comment|//noinspection EqualsBetweenInconvertibleTypes
 name|assertFalse
 argument_list|(
-literal|"A Collection should never equal an "
-operator|+
-literal|"object that is not a Collection."
+literal|"A Collection should never equal an object that is not a Collection."
 argument_list|,
 name|collection
 operator|.

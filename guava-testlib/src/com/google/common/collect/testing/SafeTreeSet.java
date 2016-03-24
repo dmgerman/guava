@@ -312,9 +312,9 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-DECL|method|add (E element)
 annotation|@
 name|Override
+DECL|method|add (E element)
 specifier|public
 name|boolean
 name|add
@@ -335,9 +335,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-DECL|method|addAll (Collection<? extends E> collection)
 annotation|@
 name|Override
+DECL|method|addAll (Collection<? extends E> collection)
 specifier|public
 name|boolean
 name|addAll
@@ -374,9 +374,9 @@ name|collection
 argument_list|)
 return|;
 block|}
-DECL|method|ceiling (E e)
 annotation|@
 name|Override
+DECL|method|ceiling (E e)
 specifier|public
 name|E
 name|ceiling
@@ -397,9 +397,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-DECL|method|clear ()
 annotation|@
 name|Override
+DECL|method|clear ()
 specifier|public
 name|void
 name|clear
@@ -416,9 +416,9 @@ name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
-DECL|method|comparator ()
 annotation|@
 name|Override
+DECL|method|comparator ()
 specifier|public
 name|Comparator
 argument_list|<
@@ -466,9 +466,9 @@ return|return
 name|comparator
 return|;
 block|}
-DECL|method|contains (Object object)
 annotation|@
 name|Override
+DECL|method|contains (Object object)
 specifier|public
 name|boolean
 name|contains
@@ -489,9 +489,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-DECL|method|containsAll (Collection<?> c)
 annotation|@
 name|Override
+DECL|method|containsAll (Collection<?> c)
 specifier|public
 name|boolean
 name|containsAll
@@ -512,9 +512,9 @@ name|c
 argument_list|)
 return|;
 block|}
-DECL|method|descendingIterator ()
 annotation|@
 name|Override
+DECL|method|descendingIterator ()
 specifier|public
 name|Iterator
 argument_list|<
@@ -530,9 +530,9 @@ name|descendingIterator
 argument_list|()
 return|;
 block|}
-DECL|method|descendingSet ()
 annotation|@
 name|Override
+DECL|method|descendingSet ()
 specifier|public
 name|NavigableSet
 argument_list|<
@@ -555,9 +555,9 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-DECL|method|first ()
 annotation|@
 name|Override
+DECL|method|first ()
 specifier|public
 name|E
 name|first
@@ -570,9 +570,9 @@ name|first
 argument_list|()
 return|;
 block|}
-DECL|method|floor (E e)
 annotation|@
 name|Override
+DECL|method|floor (E e)
 specifier|public
 name|E
 name|floor
@@ -593,9 +593,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-DECL|method|headSet (E toElement)
 annotation|@
 name|Override
+DECL|method|headSet (E toElement)
 specifier|public
 name|SortedSet
 argument_list|<
@@ -616,9 +616,9 @@ literal|false
 argument_list|)
 return|;
 block|}
-DECL|method|headSet (E toElement, boolean inclusive)
 annotation|@
 name|Override
+DECL|method|headSet (E toElement, boolean inclusive)
 specifier|public
 name|NavigableSet
 argument_list|<
@@ -654,9 +654,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-DECL|method|higher (E e)
 annotation|@
 name|Override
+DECL|method|higher (E e)
 specifier|public
 name|E
 name|higher
@@ -677,9 +677,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-DECL|method|isEmpty ()
 annotation|@
 name|Override
+DECL|method|isEmpty ()
 specifier|public
 name|boolean
 name|isEmpty
@@ -692,9 +692,9 @@ name|isEmpty
 argument_list|()
 return|;
 block|}
-DECL|method|iterator ()
 annotation|@
 name|Override
+DECL|method|iterator ()
 specifier|public
 name|Iterator
 argument_list|<
@@ -710,9 +710,9 @@ name|iterator
 argument_list|()
 return|;
 block|}
-DECL|method|last ()
 annotation|@
 name|Override
+DECL|method|last ()
 specifier|public
 name|E
 name|last
@@ -725,9 +725,9 @@ name|last
 argument_list|()
 return|;
 block|}
-DECL|method|lower (E e)
 annotation|@
 name|Override
+DECL|method|lower (E e)
 specifier|public
 name|E
 name|lower
@@ -748,9 +748,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|pollFirst ()
-annotation|@
-name|Override
 specifier|public
 name|E
 name|pollFirst
@@ -763,9 +763,9 @@ name|pollFirst
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|pollLast ()
-annotation|@
-name|Override
 specifier|public
 name|E
 name|pollLast
@@ -778,9 +778,9 @@ name|pollLast
 argument_list|()
 return|;
 block|}
-DECL|method|remove (Object object)
 annotation|@
 name|Override
+DECL|method|remove (Object object)
 specifier|public
 name|boolean
 name|remove
@@ -801,9 +801,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|removeAll (Collection<?> c)
-annotation|@
-name|Override
 specifier|public
 name|boolean
 name|removeAll
@@ -824,9 +824,9 @@ name|c
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|retainAll (Collection<?> c)
-annotation|@
-name|Override
 specifier|public
 name|boolean
 name|retainAll
@@ -847,9 +847,9 @@ name|c
 argument_list|)
 return|;
 block|}
-DECL|method|size ()
 annotation|@
 name|Override
+DECL|method|size ()
 specifier|public
 name|int
 name|size
@@ -862,9 +862,9 @@ name|size
 argument_list|()
 return|;
 block|}
-DECL|method|subSet ( E fromElement, boolean fromInclusive, E toElement, boolean toInclusive)
 annotation|@
 name|Override
+DECL|method|subSet ( E fromElement, boolean fromInclusive, E toElement, boolean toInclusive)
 specifier|public
 name|NavigableSet
 argument_list|<
@@ -913,9 +913,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-DECL|method|subSet (E fromElement, E toElement)
 annotation|@
 name|Override
+DECL|method|subSet (E fromElement, E toElement)
 specifier|public
 name|SortedSet
 argument_list|<
@@ -943,9 +943,9 @@ literal|false
 argument_list|)
 return|;
 block|}
-DECL|method|tailSet (E fromElement)
 annotation|@
 name|Override
+DECL|method|tailSet (E fromElement)
 specifier|public
 name|SortedSet
 argument_list|<
@@ -966,9 +966,9 @@ literal|true
 argument_list|)
 return|;
 block|}
-DECL|method|tailSet (E fromElement, boolean inclusive)
 annotation|@
 name|Override
+DECL|method|tailSet (E fromElement, boolean inclusive)
 specifier|public
 name|NavigableSet
 argument_list|<
@@ -1004,9 +1004,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-DECL|method|toArray ()
 annotation|@
 name|Override
+DECL|method|toArray ()
 specifier|public
 name|Object
 index|[]
@@ -1020,9 +1020,9 @@ name|toArray
 argument_list|()
 return|;
 block|}
-DECL|method|toArray (T[] a)
 annotation|@
 name|Override
+DECL|method|toArray (T[] a)
 specifier|public
 parameter_list|<
 name|T
@@ -1085,9 +1085,9 @@ return|return
 name|t
 return|;
 block|}
-DECL|method|equals (Object obj)
 annotation|@
 name|Override
+DECL|method|equals (Object obj)
 specifier|public
 name|boolean
 name|equals
@@ -1105,9 +1105,9 @@ name|obj
 argument_list|)
 return|;
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -1120,9 +1120,9 @@ name|hashCode
 argument_list|()
 return|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString

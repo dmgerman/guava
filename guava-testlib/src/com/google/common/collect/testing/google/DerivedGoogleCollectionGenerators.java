@@ -950,6 +950,7 @@ argument_list|>
 implements|,
 name|DerivedGenerator
 block|{
+DECL|field|mapGenerator
 specifier|private
 specifier|final
 name|OneSizeTestContainerGenerator
@@ -970,7 +971,6 @@ argument_list|,
 name|V
 argument_list|>
 argument_list|>
-DECL|field|mapGenerator
 name|mapGenerator
 decl_stmt|;
 DECL|field|samples

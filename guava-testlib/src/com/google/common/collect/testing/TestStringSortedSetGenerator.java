@@ -112,9 +112,9 @@ name|elements
 argument_list|)
 return|;
 block|}
-DECL|method|create (String[] elements)
 annotation|@
 name|Override
+DECL|method|create (String[] elements)
 specifier|protected
 specifier|abstract
 name|SortedSet
@@ -129,9 +129,9 @@ name|elements
 parameter_list|)
 function_decl|;
 comment|/** Sorts the elements by their natural ordering. */
-DECL|method|order (List<String> insertionOrder)
 annotation|@
 name|Override
+DECL|method|order (List<String> insertionOrder)
 specifier|public
 name|List
 argument_list|<

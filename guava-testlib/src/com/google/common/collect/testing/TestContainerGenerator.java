@@ -89,7 +89,7 @@ name|samples
 parameter_list|()
 function_decl|;
 comment|/**    * Creates a new container containing the given elements. TODO: would be nice    * to figure out how to use E... or E[] as a parameter type, but this doesn't    * seem to work because Java creates an array of the erased type.    */
-DECL|method|create (Object .... elements)
+DECL|method|create (Object... elements)
 name|T
 name|create
 parameter_list|(

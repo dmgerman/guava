@@ -793,9 +793,7 @@ expr_stmt|;
 block|}
 name|assertNull
 argument_list|(
-literal|"The array element "
-operator|+
-literal|"immediately following the end of the collection should be nulled"
+literal|"The array element immediately following the end of the collection should be nulled"
 argument_list|,
 name|array
 index|[
@@ -911,9 +909,7 @@ expr_stmt|;
 block|}
 name|assertNull
 argument_list|(
-literal|"The array element "
-operator|+
-literal|"immediately following the end of the collection should be nulled"
+literal|"The array element immediately following the end of the collection should be nulled"
 argument_list|,
 name|array
 index|[

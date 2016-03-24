@@ -339,7 +339,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests {@link java.util.Map#entrySet}.  *   * @author Louis Wasserman  * @param<K> The key type of the map implementation under test.  * @param<V> The value type of the map implementation under test.  */
+comment|/**  * Tests {@link java.util.Map#entrySet}.  *  * @author Louis Wasserman  * @param<K> The key type of the map implementation under test.  * @param<V> The value type of the map implementation under test.  */
 end_comment
 
 begin_class

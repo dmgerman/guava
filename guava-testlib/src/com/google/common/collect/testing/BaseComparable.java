@@ -82,9 +82,9 @@ operator|=
 name|s
 expr_stmt|;
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -98,9 +98,9 @@ name|hashCode
 argument_list|()
 return|;
 block|}
-DECL|method|equals (Object other)
 annotation|@
 name|Override
+DECL|method|equals (Object other)
 specifier|public
 name|boolean
 name|equals

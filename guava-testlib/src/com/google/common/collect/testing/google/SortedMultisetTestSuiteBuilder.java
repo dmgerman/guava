@@ -422,7 +422,7 @@ argument_list|<
 name|E
 argument_list|>
 block|{
-DECL|method|using ( TestMultisetGenerator<E> generator)
+DECL|method|using (TestMultisetGenerator<E> generator)
 specifier|public
 specifier|static
 parameter_list|<
@@ -561,7 +561,7 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|createElementSetTestSuite (FeatureSpecificTestSuiteBuilder< ?, ? extends OneSizeTestContainerGenerator<Collection<E>, E>> parentBuilder)
+DECL|method|createElementSetTestSuite ( FeatureSpecificTestSuiteBuilder<?, ? extends OneSizeTestContainerGenerator<Collection<E>, E>> parentBuilder)
 name|TestSuite
 name|createElementSetTestSuite
 parameter_list|(
@@ -645,9 +645,9 @@ name|Void
 argument_list|>
 block|{
 DECL|enumConstant|SUBMULTISET
-DECL|enumConstant|DESCENDING
 name|SUBMULTISET
 block|,
+DECL|enumConstant|DESCENDING
 name|DESCENDING
 block|;
 annotation|@
@@ -680,15 +680,15 @@ enum|enum
 name|Bound
 block|{
 DECL|enumConstant|INCLUSIVE
-DECL|enumConstant|EXCLUSIVE
-DECL|enumConstant|NO_BOUND
 name|INCLUSIVE
 block|,
+DECL|enumConstant|EXCLUSIVE
 name|EXCLUSIVE
 block|,
+DECL|enumConstant|NO_BOUND
 name|NO_BOUND
 block|;   }
-DECL|method|createDerivedSuites ( SortedMultisetTestSuiteBuilder<E> parentBuilder)
+DECL|method|createDerivedSuites (SortedMultisetTestSuiteBuilder<E> parentBuilder)
 name|List
 argument_list|<
 name|TestSuite
@@ -1547,7 +1547,7 @@ return|return
 name|result
 return|;
 block|}
-DECL|method|createDescendingSuite ( SortedMultisetTestSuiteBuilder<E> parentBuilder)
+DECL|method|createDescendingSuite (SortedMultisetTestSuiteBuilder<E> parentBuilder)
 specifier|private
 name|TestSuite
 name|createDescendingSuite
@@ -1745,7 +1745,7 @@ name|createTestSuite
 argument_list|()
 return|;
 block|}
-DECL|method|createReserializedSuite ( SortedMultisetTestSuiteBuilder<E> parentBuilder)
+DECL|method|createReserializedSuite (SortedMultisetTestSuiteBuilder<E> parentBuilder)
 specifier|private
 name|TestSuite
 name|createReserializedSuite

@@ -552,7 +552,7 @@ name|V
 argument_list|>
 argument_list|>
 block|{
-DECL|method|using ( TestMapGenerator<K, V> generator)
+DECL|method|using (TestMapGenerator<K, V> generator)
 specifier|public
 specifier|static
 parameter_list|<
@@ -599,9 +599,9 @@ argument_list|(
 literal|"unchecked"
 argument_list|)
 comment|// Class parameters must be raw.
-DECL|method|getTesters ()
 annotation|@
 name|Override
+DECL|method|getTesters ()
 specifier|protected
 name|List
 argument_list|<
@@ -1062,7 +1062,7 @@ name|valueCollectionGenerator
 argument_list|)
 return|;
 block|}
-DECL|method|computeReserializedMapFeatures ( Set<Feature<?>> mapFeatures)
+DECL|method|computeReserializedMapFeatures (Set<Feature<?>> mapFeatures)
 specifier|private
 specifier|static
 name|Set
@@ -1122,7 +1122,7 @@ return|return
 name|derivedFeatures
 return|;
 block|}
-DECL|method|computeEntrySetFeatures ( Set<Feature<?>> mapFeatures)
+DECL|method|computeEntrySetFeatures (Set<Feature<?>> mapFeatures)
 specifier|private
 specifier|static
 name|Set
@@ -1184,7 +1184,7 @@ return|return
 name|entrySetFeatures
 return|;
 block|}
-DECL|method|computeKeySetFeatures ( Set<Feature<?>> mapFeatures)
+DECL|method|computeKeySetFeatures (Set<Feature<?>> mapFeatures)
 specifier|private
 specifier|static
 name|Set
@@ -1280,7 +1280,7 @@ return|return
 name|keySetFeatures
 return|;
 block|}
-DECL|method|computeValuesCollectionFeatures ( Set<Feature<?>> mapFeatures)
+DECL|method|computeValuesCollectionFeatures (Set<Feature<?>> mapFeatures)
 specifier|private
 specifier|static
 name|Set
@@ -1600,6 +1600,7 @@ argument_list|,
 name|V
 argument_list|>
 block|{
+DECL|field|mapGenerator
 specifier|private
 specifier|final
 name|OneSizeTestContainerGenerator
@@ -1620,10 +1621,9 @@ argument_list|,
 name|V
 argument_list|>
 argument_list|>
-DECL|field|mapGenerator
 name|mapGenerator
 decl_stmt|;
-DECL|method|ReserializedMapGenerator ( OneSizeTestContainerGenerator< Map<K, V>, Map.Entry<K, V>> mapGenerator)
+DECL|method|ReserializedMapGenerator ( OneSizeTestContainerGenerator<Map<K, V>, Map.Entry<K, V>> mapGenerator)
 specifier|public
 name|ReserializedMapGenerator
 parameter_list|(
@@ -1710,7 +1710,7 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|order ( List<Map.Entry<K, V>> insertionOrder)
+DECL|method|order (List<Map.Entry<K, V>> insertionOrder)
 specifier|public
 name|Iterable
 argument_list|<

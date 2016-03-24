@@ -227,9 +227,9 @@ argument_list|()
 argument_list|)
 decl_stmt|;
 comment|/**    * Creates a runnable JUnit test suite based on the criteria already given.    */
-DECL|method|createTestSuite ()
 annotation|@
 name|Override
+DECL|method|createTestSuite ()
 specifier|public
 name|TestSuite
 name|createTestSuite
@@ -573,7 +573,7 @@ return|return
 name|suite
 return|;
 block|}
-DECL|method|createDerivedSuites (FeatureSpecificTestSuiteBuilder< ?, ? extends OneSizeTestContainerGenerator<T, E>> parentBuilder)
+DECL|method|createDerivedSuites ( FeatureSpecificTestSuiteBuilder<?, ? extends OneSizeTestContainerGenerator<T, E>> parentBuilder)
 specifier|protected
 name|List
 argument_list|<
@@ -650,7 +650,7 @@ argument_list|>
 argument_list|>
 name|testers
 decl_stmt|;
-DECL|method|OneSizeTestSuiteBuilder ( List<Class<? extends AbstractTester>> testers)
+DECL|method|OneSizeTestSuiteBuilder (List<Class<? extends AbstractTester>> testers)
 specifier|public
 name|OneSizeTestSuiteBuilder
 parameter_list|(
@@ -673,9 +673,9 @@ operator|=
 name|testers
 expr_stmt|;
 block|}
-DECL|method|getTesters ()
 annotation|@
 name|Override
+DECL|method|getTesters ()
 specifier|protected
 name|List
 argument_list|<

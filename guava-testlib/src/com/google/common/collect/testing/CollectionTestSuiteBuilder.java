@@ -189,7 +189,7 @@ argument_list|,
 name|E
 argument_list|>
 block|{
-DECL|method|using ( TestCollectionGenerator<E> generator)
+DECL|method|using (TestCollectionGenerator<E> generator)
 specifier|public
 specifier|static
 parameter_list|<
@@ -224,12 +224,12 @@ return|;
 block|}
 annotation|@
 name|Override
+DECL|method|createDerivedSuites ( FeatureSpecificTestSuiteBuilder<?, ? extends OneSizeTestContainerGenerator<Collection<E>, E>> parentBuilder)
 specifier|protected
 name|List
 argument_list|<
 name|TestSuite
 argument_list|>
-DECL|method|createDerivedSuites ( FeatureSpecificTestSuiteBuilder< ?, ? extends OneSizeTestContainerGenerator<Collection<E>, E>> parentBuilder)
 name|createDerivedSuites
 parameter_list|(
 name|FeatureSpecificTestSuiteBuilder

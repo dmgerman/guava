@@ -222,9 +222,9 @@ name|ImmutableSortedMapGenerator
 extends|extends
 name|TestStringSortedMapGenerator
 block|{
-DECL|method|create (Entry<String, String>[] entries)
 annotation|@
 name|Override
+DECL|method|create (Entry<String, String>[] entries)
 specifier|public
 name|SortedMap
 argument_list|<
@@ -309,9 +309,9 @@ name|ImmutableSortedMapCopyOfEntriesGenerator
 extends|extends
 name|TestStringSortedMapGenerator
 block|{
-DECL|method|create (Entry<String, String>[] entries)
 annotation|@
 name|Override
+DECL|method|create (Entry<String, String>[] entries)
 specifier|public
 name|SortedMap
 argument_list|<
@@ -640,9 +640,9 @@ name|ImmutableSortedMapKeyListGenerator
 extends|extends
 name|TestStringListGenerator
 block|{
-DECL|method|create (String[] elements)
 annotation|@
 name|Override
+DECL|method|create (String[] elements)
 specifier|protected
 name|List
 argument_list|<
@@ -751,9 +751,9 @@ name|ImmutableSortedMapValueListGenerator
 extends|extends
 name|TestStringListGenerator
 block|{
-DECL|method|create (String[] elements)
 annotation|@
 name|Override
+DECL|method|create (String[] elements)
 specifier|protected
 name|List
 argument_list|<

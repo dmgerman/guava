@@ -127,7 +127,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Testers for {@link SortedSetMultimap#asMap}.  *   * @author Louis Wasserman  * @param<K> The key type of the tested multimap.  * @param<V> The value type of the tested multimap.  */
+comment|/**  * Testers for {@link SortedSetMultimap#asMap}.  *  * @author Louis Wasserman  * @param<K> The key type of the tested multimap.  * @param<V> The value type of the tested multimap.  */
 end_comment
 
 begin_class

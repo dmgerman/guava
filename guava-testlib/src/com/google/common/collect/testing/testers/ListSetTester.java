@@ -600,9 +600,7 @@ argument_list|)
 expr_stmt|;
 name|fail
 argument_list|(
-literal|"set() should throw UnsupportedOperationException "
-operator|+
-literal|"or IndexOutOfBoundsException"
+literal|"set() should throw UnsupportedOperationException or IndexOutOfBoundsException"
 argument_list|)
 expr_stmt|;
 block|}

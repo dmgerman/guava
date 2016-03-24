@@ -150,9 +150,9 @@ argument_list|<
 name|E
 argument_list|>
 block|{
-DECL|method|find (Object o)
 annotation|@
 name|Override
+DECL|method|find (Object o)
 specifier|protected
 name|int
 name|find
@@ -171,9 +171,9 @@ name|o
 argument_list|)
 return|;
 block|}
-DECL|method|getMethodName ()
 annotation|@
 name|Override
+DECL|method|getMethodName ()
 specifier|protected
 name|String
 name|getMethodName

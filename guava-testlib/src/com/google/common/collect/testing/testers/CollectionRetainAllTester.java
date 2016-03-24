@@ -296,9 +296,9 @@ operator|=
 name|description
 expr_stmt|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString
@@ -349,9 +349,9 @@ specifier|private
 name|Target
 name|nullSingleton
 decl_stmt|;
-DECL|method|setUp ()
 annotation|@
 name|Override
+DECL|method|setUp ()
 specifier|public
 name|void
 name|setUp

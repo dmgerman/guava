@@ -77,9 +77,9 @@ name|TestIntegerSortedSetGenerator
 extends|extends
 name|TestIntegerSetGenerator
 block|{
-DECL|method|create (Integer[] elements)
 annotation|@
 name|Override
+DECL|method|create (Integer[] elements)
 specifier|protected
 specifier|abstract
 name|SortedSet
@@ -94,9 +94,9 @@ name|elements
 parameter_list|)
 function_decl|;
 comment|/** Sorts the elements by their natural ordering. */
-DECL|method|order (List<Integer> insertionOrder)
 annotation|@
 name|Override
+DECL|method|order (List<Integer> insertionOrder)
 specifier|public
 name|List
 argument_list|<

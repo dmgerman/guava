@@ -245,7 +245,7 @@ parameter_list|(
 name|NoSuchElementException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 name|expectUnchanged
 argument_list|()
 expr_stmt|;

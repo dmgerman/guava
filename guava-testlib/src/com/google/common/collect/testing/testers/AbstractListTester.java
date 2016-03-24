@@ -128,9 +128,9 @@ name|collection
 return|;
 block|}
 comment|/**    * {@inheritDoc}    *<p>    * The {@code AbstractListTester} implementation overrides    * {@link AbstractCollectionTester#expectContents(Collection)} to verify that    * the order of the elements in the list under test matches what is expected.    */
-DECL|method|expectContents (Collection<E> expectedCollection)
 annotation|@
 name|Override
+DECL|method|expectContents (Collection<E> expectedCollection)
 specifier|protected
 name|void
 name|expectContents

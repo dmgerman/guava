@@ -592,9 +592,7 @@ try|try
 block|{
 name|assertFalse
 argument_list|(
-literal|"remove(notPresent) should return false or throw "
-operator|+
-literal|"UnsupportedOperationException"
+literal|"remove(notPresent) should return false or throw UnsupportedOperationException"
 argument_list|,
 name|collection
 operator|.
@@ -645,9 +643,7 @@ try|try
 block|{
 name|assertFalse
 argument_list|(
-literal|"remove(null) should return false or throw "
-operator|+
-literal|"NullPointerException"
+literal|"remove(null) should return false or throw NullPointerException"
 argument_list|,
 name|collection
 operator|.

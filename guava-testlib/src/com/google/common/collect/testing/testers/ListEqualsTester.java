@@ -301,9 +301,7 @@ argument_list|)
 expr_stmt|;
 name|assertFalse
 argument_list|(
-literal|"Two Lists should not be equal if exactly one of them has "
-operator|+
-literal|"null at a given index."
+literal|"Two Lists should not be equal if exactly one of them has null at a given index."
 argument_list|,
 name|getList
 argument_list|()
@@ -400,9 +398,7 @@ argument_list|)
 decl_stmt|;
 name|assertFalse
 argument_list|(
-literal|"Two Lists should not be equal if exactly one of them has "
-operator|+
-literal|"null at a given index."
+literal|"Two Lists should not be equal if exactly one of them has null at a given index."
 argument_list|,
 name|getList
 argument_list|()

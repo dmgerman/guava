@@ -212,7 +212,7 @@ decl_stmt|;
 end_decl_stmt
 
 begin_expr_stmt
-DECL|method|MapFeature (Feature<? super Map> .... implied)
+DECL|method|MapFeature (Feature<? super Map>.... implied)
 name|MapFeature
 argument_list|(
 name|Feature

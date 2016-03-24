@@ -389,9 +389,9 @@ argument_list|>
 argument_list|>
 name|containsNullValue
 decl_stmt|;
-DECL|method|setUp ()
 annotation|@
 name|Override
+DECL|method|setUp ()
 specifier|public
 name|void
 name|setUp
@@ -876,9 +876,7 @@ argument_list|()
 expr_stmt|;
 name|expectNullKeyMissingWhenNullKeysUnsupported
 argument_list|(
-literal|"Should not contain null key after unsupported "
-operator|+
-literal|"putAll(containsNullKey)"
+literal|"Should not contain null key after unsupported putAll(containsNullKey)"
 argument_list|)
 expr_stmt|;
 block|}
@@ -958,9 +956,7 @@ argument_list|()
 expr_stmt|;
 name|expectNullValueMissingWhenNullValuesUnsupported
 argument_list|(
-literal|"Should not contain null value after unsupported "
-operator|+
-literal|"putAll(containsNullValue)"
+literal|"Should not contain null value after unsupported putAll(containsNullValue)"
 argument_list|)
 expr_stmt|;
 block|}

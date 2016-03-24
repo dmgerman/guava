@@ -189,7 +189,7 @@ argument_list|>
 argument_list|>
 name|implied
 decl_stmt|;
-DECL|method|MultimapFeature (Feature<? super Multimap> .... implied)
+DECL|method|MultimapFeature (Feature<? super Multimap>.... implied)
 name|MultimapFeature
 parameter_list|(
 name|Feature

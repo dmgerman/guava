@@ -345,9 +345,9 @@ name|V
 argument_list|>
 name|presentKeyNullValueEntry
 decl_stmt|;
-DECL|method|setUp ()
 annotation|@
 name|Override
+DECL|method|setUp ()
 specifier|public
 name|void
 name|setUp

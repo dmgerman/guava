@@ -163,9 +163,7 @@ argument_list|)
 expr_stmt|;
 name|assertFalse
 argument_list|(
-literal|"After remove(present) a set should not contain "
-operator|+
-literal|"the removed element."
+literal|"After remove(present) a set should not contain the removed element."
 argument_list|,
 name|getSet
 argument_list|()

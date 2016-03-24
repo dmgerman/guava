@@ -339,7 +339,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 name|expectUnchanged
 argument_list|()
 expr_stmt|;
@@ -383,7 +383,7 @@ parameter_list|(
 name|UnsupportedOperationException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 annotation|@
 name|CollectionFeature
@@ -645,7 +645,7 @@ parameter_list|(
 name|UnsupportedOperationException
 name|ok
 parameter_list|)
-block|{}
+block|{     }
 block|}
 annotation|@
 name|CollectionFeature
@@ -729,7 +729,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|required
 parameter_list|)
-block|{}
+block|{     }
 block|}
 annotation|@
 name|CollectionFeature
@@ -910,7 +910,7 @@ parameter_list|(
 name|NullPointerException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 annotation|@
 name|CollectionSize

@@ -609,7 +609,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-DECL|method|assertEqualInOrder ( Iterable<?> expected, Iterable<?> actual)
+DECL|method|assertEqualInOrder (Iterable<?> expected, Iterable<?> actual)
 specifier|public
 specifier|static
 name|void
@@ -758,7 +758,7 @@ name|actual
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|assertEqualIgnoringOrder ( Iterable<?> expected, Iterable<?> actual)
+DECL|method|assertEqualIgnoringOrder (Iterable<?> expected, Iterable<?> actual)
 specifier|public
 specifier|static
 name|void
@@ -863,7 +863,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|assertContentsAnyOrder ( Iterable<?> actual, Object... expected)
+DECL|method|assertContentsAnyOrder (Iterable<?> actual, Object... expected)
 specifier|public
 specifier|static
 name|void
@@ -988,7 +988,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-DECL|method|assertContainsAllOf ( Iterable<?> actual, Object... expected)
+DECL|method|assertContainsAllOf (Iterable<?> actual, Object... expected)
 specifier|public
 specifier|static
 name|void
@@ -1075,7 +1075,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-DECL|method|addAll ( Collection<E> addTo, Iterable<? extends E> elementsToAdd)
+DECL|method|addAll (Collection<E> addTo, Iterable<? extends E> elementsToAdd)
 specifier|public
 specifier|static
 parameter_list|<

@@ -93,7 +93,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests for {@code Multiset.add}.  *   * @author Jared Levy  */
+comment|/**  * Tests for {@code Multiset.add}.  *  * @author Jared Levy  */
 end_comment
 
 begin_class
@@ -149,7 +149,7 @@ parameter_list|(
 name|UnsupportedOperationException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 annotation|@
 name|CollectionFeature
@@ -441,7 +441,7 @@ parameter_list|(
 name|UnsupportedOperationException
 name|required
 parameter_list|)
-block|{}
+block|{     }
 block|}
 annotation|@
 name|CollectionFeature
@@ -481,7 +481,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|required
 parameter_list|)
-block|{}
+block|{     }
 block|}
 annotation|@
 name|CollectionFeature
@@ -529,7 +529,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 name|assertEquals
 argument_list|(
 name|Integer

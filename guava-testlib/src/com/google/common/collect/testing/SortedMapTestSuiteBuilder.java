@@ -273,9 +273,9 @@ return|return
 name|result
 return|;
 block|}
-DECL|method|getTesters ()
 annotation|@
 name|Override
+DECL|method|getTesters ()
 specifier|protected
 name|List
 argument_list|<
@@ -323,9 +323,9 @@ return|return
 name|testers
 return|;
 block|}
-DECL|method|createTestSuite ()
 annotation|@
 name|Override
+DECL|method|createTestSuite ()
 specifier|public
 name|TestSuite
 name|createTestSuite
@@ -382,7 +382,7 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|createDerivedSuites (FeatureSpecificTestSuiteBuilder<?, ? extends OneSizeTestContainerGenerator<Map<K, V>, Entry<K, V>>> parentBuilder)
+DECL|method|createDerivedSuites ( FeatureSpecificTestSuiteBuilder< ?, ? extends OneSizeTestContainerGenerator<Map<K, V>, Entry<K, V>>> parentBuilder)
 specifier|protected
 name|List
 argument_list|<
@@ -504,9 +504,9 @@ return|return
 name|derivedSuites
 return|;
 block|}
-DECL|method|createDerivedKeySetSuite ( TestSetGenerator<K> keySetGenerator)
 annotation|@
 name|Override
+DECL|method|createDerivedKeySetSuite (TestSetGenerator<K> keySetGenerator)
 specifier|protected
 name|SetTestSuiteBuilder
 argument_list|<
@@ -588,7 +588,7 @@ return|;
 block|}
 block|}
 comment|/**    * Creates a suite whose map has some elements filtered out of view.    *    *<p>Because the map may be ascending or descending, this test must derive    * the relative order of these extreme values rather than relying on their    * regular sort ordering.    */
-DECL|method|createSubmapSuite (final FeatureSpecificTestSuiteBuilder<?, ? extends OneSizeTestContainerGenerator<Map<K, V>, Entry<K, V>>> parentBuilder, final Bound from, final Bound to)
+DECL|method|createSubmapSuite ( final FeatureSpecificTestSuiteBuilder< ?, ? extends OneSizeTestContainerGenerator<Map<K, V>, Entry<K, V>>> parentBuilder, final Bound from, final Bound to)
 specifier|final
 name|TestSuite
 name|createSubmapSuite

@@ -765,9 +765,7 @@ try|try
 block|{
 name|assertNull
 argument_list|(
-literal|"remove(notPresent) should return null or throw "
-operator|+
-literal|"UnsupportedOperationException"
+literal|"remove(notPresent) should return null or throw UnsupportedOperationException"
 argument_list|,
 name|getMap
 argument_list|()
@@ -819,9 +817,7 @@ try|try
 block|{
 name|assertNull
 argument_list|(
-literal|"remove(null) should return null or throw "
-operator|+
-literal|"NullPointerException"
+literal|"remove(null) should return null or throw NullPointerException"
 argument_list|,
 name|getMap
 argument_list|()

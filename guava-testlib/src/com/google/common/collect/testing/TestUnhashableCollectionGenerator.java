@@ -77,10 +77,10 @@ end_comment
 begin_class
 annotation|@
 name|GwtCompatible
+DECL|class|TestUnhashableCollectionGenerator
 specifier|public
 specifier|abstract
 class|class
-DECL|class|TestUnhashableCollectionGenerator
 name|TestUnhashableCollectionGenerator
 parameter_list|<
 name|T
@@ -202,7 +202,7 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|order ( List<UnhashableObject> insertionOrder)
+DECL|method|order (List<UnhashableObject> insertionOrder)
 specifier|public
 name|Iterable
 argument_list|<

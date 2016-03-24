@@ -879,6 +879,7 @@ throw|;
 block|}
 block|}
 comment|// Class parameters must be raw.
+DECL|method|getTesters ()
 specifier|protected
 specifier|abstract
 name|List
@@ -890,7 +891,6 @@ extends|extends
 name|AbstractTester
 argument_list|>
 argument_list|>
-DECL|method|getTesters ()
 name|getTesters
 parameter_list|()
 function_decl|;
@@ -1270,7 +1270,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-DECL|method|makeSuiteForTesterClass ( Class<? extends AbstractTester<?>> testerClass)
+DECL|method|makeSuiteForTesterClass (Class<? extends AbstractTester<?>> testerClass)
 specifier|protected
 name|TestSuite
 name|makeSuiteForTesterClass

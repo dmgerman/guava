@@ -128,9 +128,9 @@ name|ImmutableBiMapGenerator
 extends|extends
 name|TestStringBiMapGenerator
 block|{
-DECL|method|create (Entry<String, String>[] entries)
 annotation|@
 name|Override
+DECL|method|create (Entry<String, String>[] entries)
 specifier|protected
 name|BiMap
 argument_list|<
@@ -210,9 +210,9 @@ name|ImmutableBiMapCopyOfGenerator
 extends|extends
 name|TestStringBiMapGenerator
 block|{
-DECL|method|create (Entry<String, String>[] entries)
 annotation|@
 name|Override
+DECL|method|create (Entry<String, String>[] entries)
 specifier|protected
 name|BiMap
 argument_list|<
@@ -292,9 +292,9 @@ name|ImmutableBiMapCopyOfEntriesGenerator
 extends|extends
 name|TestStringBiMapGenerator
 block|{
-DECL|method|create (Entry<String, String>[] entries)
 annotation|@
 name|Override
+DECL|method|create (Entry<String, String>[] entries)
 specifier|protected
 name|BiMap
 argument_list|<

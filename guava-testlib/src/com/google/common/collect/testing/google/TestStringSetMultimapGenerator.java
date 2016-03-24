@@ -401,7 +401,7 @@ name|array
 argument_list|)
 return|;
 block|}
-DECL|method|create ( Entry<String, String>[] entries)
+DECL|method|create (Entry<String, String>[] entries)
 specifier|protected
 specifier|abstract
 name|SetMultimap
@@ -498,7 +498,7 @@ block|}
 comment|/** Returns the original element list, unchanged. */
 annotation|@
 name|Override
-DECL|method|order ( List<Entry<String, String>> insertionOrder)
+DECL|method|order (List<Entry<String, String>> insertionOrder)
 specifier|public
 name|Iterable
 argument_list|<

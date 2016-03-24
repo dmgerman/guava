@@ -245,7 +245,7 @@ argument_list|<
 name|E
 argument_list|>
 block|{
-DECL|method|using ( TestSortedSetGenerator<E> generator)
+DECL|method|using (TestSortedSetGenerator<E> generator)
 specifier|public
 specifier|static
 parameter_list|<
@@ -290,7 +290,7 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|createDerivedSuites (FeatureSpecificTestSuiteBuilder< ?, ? extends OneSizeTestContainerGenerator<Collection<E>, E>> parentBuilder)
+DECL|method|createDerivedSuites ( FeatureSpecificTestSuiteBuilder<?, ? extends OneSizeTestContainerGenerator<Collection<E>, E>> parentBuilder)
 specifier|protected
 name|List
 argument_list|<
@@ -514,9 +514,9 @@ name|from
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|createSubSet (SortedSet<E> sortedSet, E firstExclusive, E lastExclusive)
 annotation|@
 name|Override
+DECL|method|createSubSet (SortedSet<E> sortedSet, E firstExclusive, E lastExclusive)
 name|NavigableSet
 argument_list|<
 name|E
@@ -761,7 +761,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Create a suite whose maps are descending views of other maps.    */
-DECL|method|createDescendingSuite (final FeatureSpecificTestSuiteBuilder<?, ? extends OneSizeTestContainerGenerator<Collection<E>, E>> parentBuilder)
+DECL|method|createDescendingSuite ( final FeatureSpecificTestSuiteBuilder< ?, ? extends OneSizeTestContainerGenerator<Collection<E>, E>> parentBuilder)
 specifier|private
 name|TestSuite
 name|createDescendingSuite
@@ -1023,9 +1023,9 @@ name|createTestSuite
 argument_list|()
 return|;
 block|}
-DECL|method|getTesters ()
 annotation|@
 name|Override
+DECL|method|getTesters ()
 specifier|protected
 name|List
 argument_list|<

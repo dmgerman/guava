@@ -66,7 +66,7 @@ argument_list|>
 argument_list|,
 name|E
 argument_list|>
-block|{ }
+block|{}
 end_interface
 
 end_unit

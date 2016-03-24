@@ -164,9 +164,9 @@ specifier|final
 class|class
 name|IncompatibleKeyType
 block|{
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString
@@ -1266,7 +1266,7 @@ name|V
 argument_list|>
 name|map
 parameter_list|)
-block|{   }
+block|{}
 DECL|method|testClear ()
 specifier|public
 name|void
@@ -1417,7 +1417,7 @@ parameter_list|(
 name|ClassCastException
 name|tolerated
 parameter_list|)
-block|{}
+block|{     }
 name|assertTrue
 argument_list|(
 name|map
@@ -1854,7 +1854,7 @@ parameter_list|(
 name|ClassCastException
 name|tolerated
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testEntrySetContainsEntryNullKeyPresent ()
 specifier|public
@@ -2601,7 +2601,7 @@ parameter_list|(
 name|UnsupportedOperationException
 name|optional
 parameter_list|)
-block|{}
+block|{       }
 block|}
 name|assertEquals
 argument_list|(
@@ -2760,7 +2760,7 @@ parameter_list|(
 name|UnsupportedOperationException
 name|optional
 parameter_list|)
-block|{}
+block|{       }
 block|}
 name|assertEquals
 argument_list|(
@@ -3086,7 +3086,7 @@ parameter_list|(
 name|UnsupportedOperationException
 name|optional
 parameter_list|)
-block|{}
+block|{       }
 block|}
 name|assertEquals
 argument_list|(

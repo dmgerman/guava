@@ -1013,7 +1013,7 @@ return|return
 name|derivedSuites
 return|;
 block|}
-DECL|method|computeValuesTestSuite ( FeatureSpecificTestSuiteBuilder<?, ? extends OneSizeTestContainerGenerator<M, Map.Entry<K, V>>> parentBuilder)
+DECL|method|computeValuesTestSuite ( FeatureSpecificTestSuiteBuilder< ?, ? extends OneSizeTestContainerGenerator<M, Map.Entry<K, V>>> parentBuilder)
 name|TestSuite
 name|computeValuesTestSuite
 parameter_list|(
@@ -1095,7 +1095,7 @@ name|createTestSuite
 argument_list|()
 return|;
 block|}
-DECL|method|computeEntriesTestSuite ( FeatureSpecificTestSuiteBuilder<?, ? extends OneSizeTestContainerGenerator<M, Map.Entry<K, V>>> parentBuilder)
+DECL|method|computeEntriesTestSuite ( FeatureSpecificTestSuiteBuilder< ?, ? extends OneSizeTestContainerGenerator<M, Map.Entry<K, V>>> parentBuilder)
 name|TestSuite
 name|computeEntriesTestSuite
 parameter_list|(
@@ -1177,7 +1177,7 @@ name|createTestSuite
 argument_list|()
 return|;
 block|}
-DECL|method|computeMultimapGetTestSuite ( FeatureSpecificTestSuiteBuilder<?, ? extends OneSizeTestContainerGenerator<M, Map.Entry<K, V>>> parentBuilder)
+DECL|method|computeMultimapGetTestSuite ( FeatureSpecificTestSuiteBuilder< ?, ? extends OneSizeTestContainerGenerator<M, Map.Entry<K, V>>> parentBuilder)
 name|TestSuite
 name|computeMultimapGetTestSuite
 parameter_list|(
@@ -1259,7 +1259,7 @@ name|createTestSuite
 argument_list|()
 return|;
 block|}
-DECL|method|computeMultimapAsMapGetTestSuite ( FeatureSpecificTestSuiteBuilder<?, ? extends OneSizeTestContainerGenerator<M, Map.Entry<K, V>>> parentBuilder)
+DECL|method|computeMultimapAsMapGetTestSuite ( FeatureSpecificTestSuiteBuilder< ?, ? extends OneSizeTestContainerGenerator<M, Map.Entry<K, V>>> parentBuilder)
 name|TestSuite
 name|computeMultimapAsMapGetTestSuite
 parameter_list|(
@@ -1380,7 +1380,7 @@ argument_list|()
 return|;
 block|}
 block|}
-DECL|method|computeKeysTestSuite ( FeatureSpecificTestSuiteBuilder<?, ? extends OneSizeTestContainerGenerator<M, Map.Entry<K, V>>> parentBuilder)
+DECL|method|computeKeysTestSuite ( FeatureSpecificTestSuiteBuilder< ?, ? extends OneSizeTestContainerGenerator<M, Map.Entry<K, V>>> parentBuilder)
 name|TestSuite
 name|computeKeysTestSuite
 parameter_list|(
@@ -1548,7 +1548,7 @@ return|return
 name|derivedFeatures
 return|;
 block|}
-DECL|method|computeEntriesFeatures ( Set<Feature<?>> multimapFeatures)
+DECL|method|computeEntriesFeatures (Set<Feature<?>> multimapFeatures)
 specifier|static
 name|Set
 argument_list|<
@@ -1609,7 +1609,7 @@ return|return
 name|result
 return|;
 block|}
-DECL|method|computeValuesFeatures ( Set<Feature<?>> multimapFeatures)
+DECL|method|computeValuesFeatures (Set<Feature<?>> multimapFeatures)
 specifier|static
 name|Set
 argument_list|<
@@ -1692,7 +1692,7 @@ return|return
 name|result
 return|;
 block|}
-DECL|method|computeKeysFeatures ( Set<Feature<?>> multimapFeatures)
+DECL|method|computeKeysFeatures (Set<Feature<?>> multimapFeatures)
 specifier|static
 name|Set
 argument_list|<
@@ -1835,7 +1835,7 @@ return|return
 name|derivedFeatures
 return|;
 block|}
-DECL|method|computeAsMapFeatures ( Set<Feature<?>> multimapFeatures)
+DECL|method|computeAsMapFeatures (Set<Feature<?>> multimapFeatures)
 specifier|private
 specifier|static
 name|Set
@@ -2070,7 +2070,7 @@ operator|.
 name|build
 argument_list|()
 decl_stmt|;
-DECL|method|computeMultimapGetFeatures ( Set<Feature<?>> multimapFeatures)
+DECL|method|computeMultimapGetFeatures (Set<Feature<?>> multimapFeatures)
 name|Set
 argument_list|<
 name|Feature
@@ -2214,7 +2214,7 @@ return|return
 name|derivedFeatures
 return|;
 block|}
-DECL|method|computeMultimapAsMapGetFeatures ( Set<Feature<?>> multimapFeatures)
+DECL|method|computeMultimapAsMapGetFeatures (Set<Feature<?>> multimapFeatures)
 name|Set
 argument_list|<
 name|Feature
@@ -2341,7 +2341,7 @@ argument_list|>
 argument_list|>
 name|multimapGenerator
 decl_stmt|;
-DECL|method|AsMapGenerator ( OneSizeTestContainerGenerator<M, Entry<K, V>> multimapGenerator)
+DECL|method|AsMapGenerator (OneSizeTestContainerGenerator<M, Entry<K, V>> multimapGenerator)
 specifier|public
 name|AsMapGenerator
 parameter_list|(
@@ -3122,7 +3122,7 @@ argument_list|>
 argument_list|>
 name|multimapGenerator
 decl_stmt|;
-DECL|method|EntriesGenerator ( OneSizeTestContainerGenerator<M, Entry<K, V>> multimapGenerator)
+DECL|method|EntriesGenerator (OneSizeTestContainerGenerator<M, Entry<K, V>> multimapGenerator)
 specifier|public
 name|EntriesGenerator
 parameter_list|(
@@ -3326,7 +3326,7 @@ argument_list|>
 argument_list|>
 name|multimapGenerator
 decl_stmt|;
-DECL|method|ValuesGenerator ( OneSizeTestContainerGenerator<M, Entry<K, V>> multimapGenerator)
+DECL|method|ValuesGenerator (OneSizeTestContainerGenerator<M, Entry<K, V>> multimapGenerator)
 specifier|public
 name|ValuesGenerator
 parameter_list|(
@@ -3726,7 +3726,7 @@ argument_list|>
 argument_list|>
 name|multimapGenerator
 decl_stmt|;
-DECL|method|KeysGenerator ( OneSizeTestContainerGenerator<M, Entry<K, V>> multimapGenerator)
+DECL|method|KeysGenerator (OneSizeTestContainerGenerator<M, Entry<K, V>> multimapGenerator)
 specifier|public
 name|KeysGenerator
 parameter_list|(
@@ -4207,7 +4207,7 @@ argument_list|>
 argument_list|>
 name|multimapGenerator
 decl_stmt|;
-DECL|method|MultimapGetGenerator ( OneSizeTestContainerGenerator< M, Map.Entry<K, V>> multimapGenerator)
+DECL|method|MultimapGetGenerator ( OneSizeTestContainerGenerator<M, Map.Entry<K, V>> multimapGenerator)
 specifier|public
 name|MultimapGetGenerator
 parameter_list|(
@@ -4591,7 +4591,7 @@ argument_list|,
 name|M
 argument_list|>
 block|{
-DECL|method|MultimapAsMapGetGenerator ( OneSizeTestContainerGenerator< M, Map.Entry<K, V>> multimapGenerator)
+DECL|method|MultimapAsMapGetGenerator ( OneSizeTestContainerGenerator<M, Map.Entry<K, V>> multimapGenerator)
 specifier|public
 name|MultimapAsMapGetGenerator
 parameter_list|(
@@ -4781,7 +4781,7 @@ argument_list|>
 argument_list|>
 name|multimapGenerator
 decl_stmt|;
-DECL|method|ReserializedMultimapGenerator ( OneSizeTestContainerGenerator< M, Map.Entry<K, V>> multimapGenerator)
+DECL|method|ReserializedMultimapGenerator ( OneSizeTestContainerGenerator<M, Map.Entry<K, V>> multimapGenerator)
 specifier|public
 name|ReserializedMultimapGenerator
 parameter_list|(
@@ -4863,7 +4863,7 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|order ( List<Map.Entry<K, V>> insertionOrder)
+DECL|method|order (List<Map.Entry<K, V>> insertionOrder)
 specifier|public
 name|Iterable
 argument_list|<

@@ -390,9 +390,9 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-DECL|method|ceilingEntry (K key)
 annotation|@
 name|Override
+DECL|method|ceilingEntry (K key)
 specifier|public
 name|Entry
 argument_list|<
@@ -418,9 +418,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-DECL|method|ceilingKey (K key)
 annotation|@
 name|Override
+DECL|method|ceilingKey (K key)
 specifier|public
 name|K
 name|ceilingKey
@@ -441,9 +441,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-DECL|method|clear ()
 annotation|@
 name|Override
+DECL|method|clear ()
 specifier|public
 name|void
 name|clear
@@ -460,9 +460,9 @@ name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
-DECL|method|comparator ()
 annotation|@
 name|Override
+DECL|method|comparator ()
 specifier|public
 name|Comparator
 argument_list|<
@@ -510,9 +510,9 @@ return|return
 name|comparator
 return|;
 block|}
-DECL|method|containsKey (Object key)
 annotation|@
 name|Override
+DECL|method|containsKey (Object key)
 specifier|public
 name|boolean
 name|containsKey
@@ -556,9 +556,9 @@ literal|false
 return|;
 block|}
 block|}
-DECL|method|containsValue (Object value)
 annotation|@
 name|Override
+DECL|method|containsValue (Object value)
 specifier|public
 name|boolean
 name|containsValue
@@ -576,9 +576,9 @@ name|value
 argument_list|)
 return|;
 block|}
-DECL|method|descendingKeySet ()
 annotation|@
 name|Override
+DECL|method|descendingKeySet ()
 specifier|public
 name|NavigableSet
 argument_list|<
@@ -594,9 +594,9 @@ name|descendingKeySet
 argument_list|()
 return|;
 block|}
-DECL|method|descendingMap ()
 annotation|@
 name|Override
+DECL|method|descendingMap ()
 specifier|public
 name|NavigableMap
 argument_list|<
@@ -623,9 +623,9 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-DECL|method|entrySet ()
 annotation|@
 name|Override
+DECL|method|entrySet ()
 specifier|public
 name|Set
 argument_list|<
@@ -790,9 +790,9 @@ block|}
 block|}
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|firstEntry ()
-annotation|@
-name|Override
 specifier|public
 name|Entry
 argument_list|<
@@ -810,9 +810,9 @@ name|firstEntry
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|firstKey ()
-annotation|@
-name|Override
 specifier|public
 name|K
 name|firstKey
@@ -825,9 +825,9 @@ name|firstKey
 argument_list|()
 return|;
 block|}
-DECL|method|floorEntry (K key)
 annotation|@
 name|Override
+DECL|method|floorEntry (K key)
 specifier|public
 name|Entry
 argument_list|<
@@ -853,9 +853,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-DECL|method|floorKey (K key)
 annotation|@
 name|Override
+DECL|method|floorKey (K key)
 specifier|public
 name|K
 name|floorKey
@@ -876,9 +876,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-DECL|method|get (Object key)
 annotation|@
 name|Override
+DECL|method|get (Object key)
 specifier|public
 name|V
 name|get
@@ -899,9 +899,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-DECL|method|headMap (K toKey)
 annotation|@
 name|Override
+DECL|method|headMap (K toKey)
 specifier|public
 name|SortedMap
 argument_list|<
@@ -924,9 +924,9 @@ literal|false
 argument_list|)
 return|;
 block|}
-DECL|method|headMap (K toKey, boolean inclusive)
 annotation|@
 name|Override
+DECL|method|headMap (K toKey, boolean inclusive)
 specifier|public
 name|NavigableMap
 argument_list|<
@@ -966,9 +966,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-DECL|method|higherEntry (K key)
 annotation|@
 name|Override
+DECL|method|higherEntry (K key)
 specifier|public
 name|Entry
 argument_list|<
@@ -994,9 +994,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-DECL|method|higherKey (K key)
 annotation|@
 name|Override
+DECL|method|higherKey (K key)
 specifier|public
 name|K
 name|higherKey
@@ -1017,9 +1017,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-DECL|method|isEmpty ()
 annotation|@
 name|Override
+DECL|method|isEmpty ()
 specifier|public
 name|boolean
 name|isEmpty
@@ -1032,9 +1032,9 @@ name|isEmpty
 argument_list|()
 return|;
 block|}
-DECL|method|keySet ()
 annotation|@
 name|Override
+DECL|method|keySet ()
 specifier|public
 name|NavigableSet
 argument_list|<
@@ -1048,9 +1048,9 @@ name|navigableKeySet
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|lastEntry ()
-annotation|@
-name|Override
 specifier|public
 name|Entry
 argument_list|<
@@ -1068,9 +1068,9 @@ name|lastEntry
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|lastKey ()
-annotation|@
-name|Override
 specifier|public
 name|K
 name|lastKey
@@ -1083,9 +1083,9 @@ name|lastKey
 argument_list|()
 return|;
 block|}
-DECL|method|lowerEntry (K key)
 annotation|@
 name|Override
+DECL|method|lowerEntry (K key)
 specifier|public
 name|Entry
 argument_list|<
@@ -1111,9 +1111,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-DECL|method|lowerKey (K key)
 annotation|@
 name|Override
+DECL|method|lowerKey (K key)
 specifier|public
 name|K
 name|lowerKey
@@ -1134,9 +1134,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-DECL|method|navigableKeySet ()
 annotation|@
 name|Override
+DECL|method|navigableKeySet ()
 specifier|public
 name|NavigableSet
 argument_list|<
@@ -1152,9 +1152,9 @@ name|navigableKeySet
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|pollFirstEntry ()
-annotation|@
-name|Override
 specifier|public
 name|Entry
 argument_list|<
@@ -1172,9 +1172,9 @@ name|pollFirstEntry
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|pollLastEntry ()
-annotation|@
-name|Override
 specifier|public
 name|Entry
 argument_list|<
@@ -1192,9 +1192,9 @@ name|pollLastEntry
 argument_list|()
 return|;
 block|}
-DECL|method|put (K key, V value)
 annotation|@
 name|Override
+DECL|method|put (K key, V value)
 specifier|public
 name|V
 name|put
@@ -1220,9 +1220,9 @@ name|value
 argument_list|)
 return|;
 block|}
-DECL|method|putAll (Map<? extends K, ? extends V> map)
 annotation|@
 name|Override
+DECL|method|putAll (Map<? extends K, ? extends V> map)
 specifier|public
 name|void
 name|putAll
@@ -1265,9 +1265,9 @@ name|map
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|remove (Object key)
 annotation|@
 name|Override
+DECL|method|remove (Object key)
 specifier|public
 name|V
 name|remove
@@ -1288,9 +1288,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-DECL|method|size ()
 annotation|@
 name|Override
+DECL|method|size ()
 specifier|public
 name|int
 name|size
@@ -1303,9 +1303,9 @@ name|size
 argument_list|()
 return|;
 block|}
-DECL|method|subMap ( K fromKey, boolean fromInclusive, K toKey, boolean toInclusive)
 annotation|@
 name|Override
+DECL|method|subMap (K fromKey, boolean fromInclusive, K toKey, boolean toInclusive)
 specifier|public
 name|NavigableMap
 argument_list|<
@@ -1358,9 +1358,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-DECL|method|subMap (K fromKey, K toKey)
 annotation|@
 name|Override
+DECL|method|subMap (K fromKey, K toKey)
 specifier|public
 name|SortedMap
 argument_list|<
@@ -1390,9 +1390,9 @@ literal|false
 argument_list|)
 return|;
 block|}
-DECL|method|tailMap (K fromKey)
 annotation|@
 name|Override
+DECL|method|tailMap (K fromKey)
 specifier|public
 name|SortedMap
 argument_list|<
@@ -1415,9 +1415,9 @@ literal|true
 argument_list|)
 return|;
 block|}
-DECL|method|tailMap (K fromKey, boolean inclusive)
 annotation|@
 name|Override
+DECL|method|tailMap (K fromKey, boolean inclusive)
 specifier|public
 name|NavigableMap
 argument_list|<
@@ -1457,9 +1457,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-DECL|method|values ()
 annotation|@
 name|Override
+DECL|method|values ()
 specifier|public
 name|Collection
 argument_list|<
@@ -1515,9 +1515,9 @@ return|return
 name|t
 return|;
 block|}
-DECL|method|equals (Object obj)
 annotation|@
 name|Override
+DECL|method|equals (Object obj)
 specifier|public
 name|boolean
 name|equals
@@ -1535,9 +1535,9 @@ name|obj
 argument_list|)
 return|;
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -1550,9 +1550,9 @@ name|hashCode
 argument_list|()
 return|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString

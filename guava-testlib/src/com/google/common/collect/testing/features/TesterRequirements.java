@@ -107,7 +107,7 @@ argument_list|>
 argument_list|>
 name|absentFeatures
 decl_stmt|;
-DECL|method|TesterRequirements ( Set<Feature<?>> presentFeatures, Set<Feature<?>> absentFeatures)
+DECL|method|TesterRequirements (Set<Feature<?>> presentFeatures, Set<Feature<?>> absentFeatures)
 specifier|public
 name|TesterRequirements
 parameter_list|(
@@ -240,9 +240,9 @@ return|return
 name|absentFeatures
 return|;
 block|}
-DECL|method|equals (Object object)
 annotation|@
 name|Override
+DECL|method|equals (Object object)
 specifier|public
 name|boolean
 name|equals
@@ -305,9 +305,9 @@ return|return
 literal|false
 return|;
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -327,9 +327,9 @@ name|hashCode
 argument_list|()
 return|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString

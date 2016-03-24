@@ -138,9 +138,9 @@ return|return
 name|source
 return|;
 block|}
-DECL|method|getMessage ()
 annotation|@
 name|Override
+DECL|method|getMessage ()
 specifier|public
 name|String
 name|getMessage

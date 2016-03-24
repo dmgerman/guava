@@ -88,7 +88,7 @@ name|E
 argument_list|>
 argument_list|>
 block|{
-DECL|method|ListIteratorTester (int steps, Iterable<E> elementsToInsert, Iterable<? extends IteratorFeature> features, Iterable<E> expectedElements, int startIndex)
+DECL|method|ListIteratorTester ( int steps, Iterable<E> elementsToInsert, Iterable<? extends IteratorFeature> features, Iterable<E> expectedElements, int startIndex)
 specifier|protected
 name|ListIteratorTester
 parameter_list|(
@@ -139,6 +139,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
+DECL|method|getStimulusValues ()
 specifier|protected
 specifier|final
 name|Iterable
@@ -157,7 +158,6 @@ name|E
 argument_list|>
 argument_list|>
 argument_list|>
-DECL|method|getStimulusValues ()
 name|getStimulusValues
 parameter_list|()
 block|{
@@ -218,9 +218,9 @@ return|return
 name|list
 return|;
 block|}
-DECL|method|newTargetIterator ()
 annotation|@
 name|Override
+DECL|method|newTargetIterator ()
 specifier|protected
 specifier|abstract
 name|ListIterator

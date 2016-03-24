@@ -239,9 +239,7 @@ argument_list|)
 expr_stmt|;
 name|assertTrue
 argument_list|(
-literal|"After remove(duplicate), a list should still contain "
-operator|+
-literal|"the duplicate element"
+literal|"After remove(duplicate), a list should still contain the duplicate element"
 argument_list|,
 name|getList
 argument_list|()

@@ -529,9 +529,9 @@ name|ImmutableSetCopyOfGenerator
 extends|extends
 name|TestStringSetGenerator
 block|{
-DECL|method|create (String[] elements)
 annotation|@
 name|Override
+DECL|method|create (String[] elements)
 specifier|protected
 name|Set
 argument_list|<
@@ -610,9 +610,9 @@ name|SuppressWarnings
 argument_list|(
 literal|"cast"
 argument_list|)
-DECL|method|create (String[] elements)
 annotation|@
 name|Override
+DECL|method|create (String[] elements)
 specifier|protected
 name|Set
 argument_list|<
@@ -657,9 +657,9 @@ name|ImmutableSortedSetCopyOfGenerator
 extends|extends
 name|TestStringSortedSetGenerator
 block|{
-DECL|method|create (String[] elements)
 annotation|@
 name|Override
+DECL|method|create (String[] elements)
 specifier|protected
 name|SortedSet
 argument_list|<
@@ -690,9 +690,9 @@ name|ImmutableSortedSetHeadsetGenerator
 extends|extends
 name|TestStringSortedSetGenerator
 block|{
-DECL|method|create (String[] elements)
 annotation|@
 name|Override
+DECL|method|create (String[] elements)
 specifier|protected
 name|SortedSet
 argument_list|<
@@ -748,9 +748,9 @@ name|ImmutableSortedSetTailsetGenerator
 extends|extends
 name|TestStringSortedSetGenerator
 block|{
-DECL|method|create (String[] elements)
 annotation|@
 name|Override
+DECL|method|create (String[] elements)
 specifier|protected
 name|SortedSet
 argument_list|<
@@ -806,9 +806,9 @@ name|ImmutableSortedSetSubsetGenerator
 extends|extends
 name|TestStringSortedSetGenerator
 block|{
-DECL|method|create (String[] elements)
 annotation|@
 name|Override
+DECL|method|create (String[] elements)
 specifier|protected
 name|SortedSet
 argument_list|<
@@ -876,9 +876,9 @@ name|ImmutableSortedSetDescendingGenerator
 extends|extends
 name|TestStringSortedSetGenerator
 block|{
-DECL|method|create (String[] elements)
 annotation|@
 name|Override
+DECL|method|create (String[] elements)
 specifier|protected
 name|SortedSet
 argument_list|<
@@ -936,9 +936,9 @@ operator|.
 name|reverseOrder
 argument_list|()
 decl_stmt|;
-DECL|method|create (String[] elements)
 annotation|@
 name|Override
+DECL|method|create (String[] elements)
 specifier|protected
 name|SortedSet
 argument_list|<
@@ -968,9 +968,9 @@ name|build
 argument_list|()
 return|;
 block|}
-DECL|method|order (List<String> insertionOrder)
 annotation|@
 name|Override
+DECL|method|order (List<String> insertionOrder)
 specifier|public
 name|List
 argument_list|<
@@ -1028,9 +1028,9 @@ operator|.
 name|reverseOrder
 argument_list|()
 decl_stmt|;
-DECL|method|create (String[] elements)
 annotation|@
 name|Override
+DECL|method|create (String[] elements)
 specifier|protected
 name|SortedSet
 argument_list|<
@@ -1064,9 +1064,9 @@ name|build
 argument_list|()
 return|;
 block|}
-DECL|method|order (List<String> insertionOrder)
 annotation|@
 name|Override
+DECL|method|order (List<String> insertionOrder)
 specifier|public
 name|List
 argument_list|<
@@ -1106,9 +1106,9 @@ name|ImmutableSortedSetReversedOrderGenerator
 extends|extends
 name|TestStringSetGenerator
 block|{
-DECL|method|create (String[] elements)
 annotation|@
 name|Override
+DECL|method|create (String[] elements)
 specifier|protected
 name|SortedSet
 argument_list|<
@@ -1147,9 +1147,9 @@ name|build
 argument_list|()
 return|;
 block|}
-DECL|method|order (List<String> insertionOrder)
 annotation|@
 name|Override
+DECL|method|order (List<String> insertionOrder)
 specifier|public
 name|List
 argument_list|<
@@ -1189,9 +1189,9 @@ name|ImmutableSortedSetUnhashableGenerator
 extends|extends
 name|TestUnhashableSetGenerator
 block|{
-DECL|method|create ( UnhashableObject[] elements)
 annotation|@
 name|Override
+DECL|method|create (UnhashableObject[] elements)
 specifier|public
 name|Set
 argument_list|<
@@ -1222,9 +1222,9 @@ name|ImmutableSetAsListGenerator
 extends|extends
 name|TestStringListGenerator
 block|{
-DECL|method|create (String[] elements)
 annotation|@
 name|Override
+DECL|method|create (String[] elements)
 specifier|protected
 name|List
 argument_list|<
@@ -1258,9 +1258,9 @@ name|ImmutableSortedSetAsListGenerator
 extends|extends
 name|TestStringListGenerator
 block|{
-DECL|method|create (String[] elements)
 annotation|@
 name|Override
+DECL|method|create (String[] elements)
 specifier|protected
 name|List
 argument_list|<
@@ -1320,9 +1320,9 @@ name|ImmutableSortedSetSubsetAsListGenerator
 extends|extends
 name|TestStringListGenerator
 block|{
-DECL|method|create (String[] elements)
 annotation|@
 name|Override
+DECL|method|create (String[] elements)
 specifier|protected
 name|List
 argument_list|<
@@ -1411,9 +1411,9 @@ name|ImmutableSortedSetDescendingAsListGenerator
 extends|extends
 name|TestStringListGenerator
 block|{
-DECL|method|create (String[] elements)
 annotation|@
 name|Override
+DECL|method|create (String[] elements)
 specifier|protected
 name|List
 argument_list|<
@@ -1472,9 +1472,9 @@ name|ImmutableSortedSetAsListSubListGenerator
 extends|extends
 name|TestStringListGenerator
 block|{
-DECL|method|create (String[] elements)
 annotation|@
 name|Override
+DECL|method|create (String[] elements)
 specifier|protected
 name|List
 argument_list|<
@@ -1564,9 +1564,9 @@ name|ImmutableSortedSetSubsetAsListSubListGenerator
 extends|extends
 name|TestStringListGenerator
 block|{
-DECL|method|create (String[] elements)
 annotation|@
 name|Override
+DECL|method|create (String[] elements)
 specifier|protected
 name|List
 argument_list|<
@@ -1688,8 +1688,8 @@ name|TestSetGenerator
 argument_list|<
 name|UnhashableObject
 argument_list|>
-block|{   }
-DECL|method|createExplicitComparator ( String[] elements)
+block|{}
+DECL|method|createExplicitComparator (String[] elements)
 specifier|private
 specifier|static
 name|Ordering
@@ -1838,9 +1838,9 @@ name|ContiguousSetGenerator
 extends|extends
 name|AbstractContiguousSetGenerator
 block|{
-DECL|method|create (Integer[] elements)
 annotation|@
 name|Override
+DECL|method|create (Integer[] elements)
 specifier|protected
 name|SortedSet
 argument_list|<
@@ -1872,9 +1872,9 @@ name|ContiguousSetHeadsetGenerator
 extends|extends
 name|AbstractContiguousSetGenerator
 block|{
-DECL|method|create (Integer[] elements)
 annotation|@
 name|Override
+DECL|method|create (Integer[] elements)
 specifier|protected
 name|SortedSet
 argument_list|<
@@ -1945,9 +1945,9 @@ name|ContiguousSetTailsetGenerator
 extends|extends
 name|AbstractContiguousSetGenerator
 block|{
-DECL|method|create (Integer[] elements)
 annotation|@
 name|Override
+DECL|method|create (Integer[] elements)
 specifier|protected
 name|SortedSet
 argument_list|<
@@ -2020,9 +2020,9 @@ name|ContiguousSetSubsetGenerator
 extends|extends
 name|AbstractContiguousSetGenerator
 block|{
-DECL|method|create (Integer[] elements)
 annotation|@
 name|Override
+DECL|method|create (Integer[] elements)
 specifier|protected
 name|SortedSet
 argument_list|<
@@ -2145,9 +2145,9 @@ name|ContiguousSetDescendingGenerator
 extends|extends
 name|AbstractContiguousSetGenerator
 block|{
-DECL|method|create (Integer[] elements)
 annotation|@
 name|Override
+DECL|method|create (Integer[] elements)
 specifier|protected
 name|SortedSet
 argument_list|<
@@ -2174,9 +2174,9 @@ argument_list|()
 return|;
 block|}
 comment|/** Sorts the elements in reverse natural order. */
-DECL|method|order (List<Integer> insertionOrder)
 annotation|@
 name|Override
+DECL|method|order (List<Integer> insertionOrder)
 specifier|public
 name|List
 argument_list|<

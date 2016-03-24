@@ -310,9 +310,9 @@ return|return
 name|result
 return|;
 block|}
-DECL|method|getTesters ()
 annotation|@
 name|Override
+DECL|method|getTesters ()
 specifier|protected
 name|List
 argument_list|<
@@ -416,7 +416,7 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|computeMultimapGetTestSuite ( FeatureSpecificTestSuiteBuilder<?, ? extends OneSizeTestContainerGenerator<SetMultimap<K, V>, Entry<K, V>>> parentBuilder)
+DECL|method|computeMultimapGetTestSuite ( FeatureSpecificTestSuiteBuilder< ?, ? extends OneSizeTestContainerGenerator<SetMultimap<K, V>, Entry<K, V>>> parentBuilder)
 name|TestSuite
 name|computeMultimapGetTestSuite
 parameter_list|(
@@ -503,7 +503,7 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|computeMultimapAsMapGetTestSuite ( FeatureSpecificTestSuiteBuilder<?, ? extends OneSizeTestContainerGenerator<SetMultimap<K, V>, Entry<K, V>>> parentBuilder)
+DECL|method|computeMultimapAsMapGetTestSuite ( FeatureSpecificTestSuiteBuilder< ?, ? extends OneSizeTestContainerGenerator<SetMultimap<K, V>, Entry<K, V>>> parentBuilder)
 name|TestSuite
 name|computeMultimapAsMapGetTestSuite
 parameter_list|(

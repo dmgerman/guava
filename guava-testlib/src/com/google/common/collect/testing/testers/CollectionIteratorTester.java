@@ -729,7 +729,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|runIteratorTest (Set<IteratorFeature> features, IteratorTester.KnownOrder knownOrder, Iterable<E> elements)
+DECL|method|runIteratorTest ( Set<IteratorFeature> features, IteratorTester.KnownOrder knownOrder, Iterable<E> elements)
 specifier|private
 name|void
 name|runIteratorTest
@@ -864,7 +864,7 @@ parameter_list|(
 name|NoSuchElementException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 block|}
 end_class

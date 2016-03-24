@@ -173,7 +173,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests for the {@code inverse} view of a BiMap.  *   *<p>This assumes that {@code bimap.inverse().inverse() == bimap}, which is not technically  * required but is fulfilled by all current implementations.  *   * @author Louis Wasserman  */
+comment|/**  * Tests for the {@code inverse} view of a BiMap.  *  *<p>This assumes that {@code bimap.inverse().inverse() == bimap}, which is not technically  * required but is fulfilled by all current implementations.  *  * @author Louis Wasserman  */
 end_comment
 
 begin_class

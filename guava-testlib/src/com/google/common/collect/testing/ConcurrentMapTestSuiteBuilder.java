@@ -148,7 +148,7 @@ argument_list|,
 name|V
 argument_list|>
 block|{
-DECL|method|using ( TestMapGenerator<K, V> generator)
+DECL|method|using (TestMapGenerator<K, V> generator)
 specifier|public
 specifier|static
 parameter_list|<

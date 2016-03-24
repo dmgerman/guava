@@ -110,7 +110,7 @@ name|V
 argument_list|>
 name|values
 decl_stmt|;
-DECL|method|TestMapEntrySetGenerator ( SampleElements<K> keys, SampleElements<V> values)
+DECL|method|TestMapEntrySetGenerator (SampleElements<K> keys, SampleElements<V> values)
 specifier|protected
 name|TestMapEntrySetGenerator
 parameter_list|(
@@ -233,7 +233,7 @@ name|entries
 argument_list|)
 return|;
 block|}
-DECL|method|createFromEntries ( Map.Entry<K, V>[] entries)
+DECL|method|createFromEntries (Map.Entry<K, V>[] entries)
 specifier|public
 specifier|abstract
 name|Set

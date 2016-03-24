@@ -413,7 +413,7 @@ parameter_list|(
 name|NullPointerException
 name|tolerated
 parameter_list|)
-block|{}
+block|{     }
 block|}
 annotation|@
 name|CollectionFeature

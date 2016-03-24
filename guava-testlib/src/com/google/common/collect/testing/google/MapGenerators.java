@@ -304,9 +304,9 @@ name|ImmutableMapGenerator
 extends|extends
 name|TestStringMapGenerator
 block|{
-DECL|method|create (Entry<String, String>[] entries)
 annotation|@
 name|Override
+DECL|method|create (Entry<String, String>[] entries)
 specifier|protected
 name|Map
 argument_list|<
@@ -386,9 +386,9 @@ name|ImmutableMapCopyOfGenerator
 extends|extends
 name|TestStringMapGenerator
 block|{
-DECL|method|create (Entry<String, String>[] entries)
 annotation|@
 name|Override
+DECL|method|create (Entry<String, String>[] entries)
 specifier|protected
 name|Map
 argument_list|<
@@ -468,9 +468,9 @@ name|ImmutableMapCopyOfEntriesGenerator
 extends|extends
 name|TestStringMapGenerator
 block|{
-DECL|method|create (Entry<String, String>[] entries)
 annotation|@
 name|Override
+DECL|method|create (Entry<String, String>[] entries)
 specifier|protected
 name|Map
 argument_list|<
@@ -519,9 +519,9 @@ name|UnhashableObject
 argument_list|>
 argument_list|>
 block|{
-DECL|method|create ( UnhashableObject[] elements)
 annotation|@
 name|Override
+DECL|method|create (UnhashableObject[] elements)
 specifier|public
 name|Collection
 argument_list|<

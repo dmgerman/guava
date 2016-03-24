@@ -182,7 +182,7 @@ argument_list|<
 name|E
 argument_list|>
 block|{
-DECL|method|using ( TestSortedSetGenerator<E> generator)
+DECL|method|using (TestSortedSetGenerator<E> generator)
 specifier|public
 specifier|static
 parameter_list|<
@@ -225,9 +225,9 @@ return|return
 name|builder
 return|;
 block|}
-DECL|method|getTesters ()
 annotation|@
 name|Override
+DECL|method|getTesters ()
 specifier|protected
 name|List
 argument_list|<
@@ -275,9 +275,9 @@ return|return
 name|testers
 return|;
 block|}
-DECL|method|createTestSuite ()
 annotation|@
 name|Override
+DECL|method|createTestSuite ()
 specifier|public
 name|TestSuite
 name|createTestSuite
@@ -338,7 +338,7 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|createDerivedSuites (FeatureSpecificTestSuiteBuilder< ?, ? extends OneSizeTestContainerGenerator<Collection<E>, E>> parentBuilder)
+DECL|method|createDerivedSuites ( FeatureSpecificTestSuiteBuilder<?, ? extends OneSizeTestContainerGenerator<Collection<E>, E>> parentBuilder)
 specifier|protected
 name|List
 argument_list|<
@@ -454,7 +454,7 @@ name|derivedSuites
 return|;
 block|}
 comment|/**    * Creates a suite whose set has some elements filtered out of view.    *    *<p>Because the set may be ascending or descending, this test must derive    * the relative order of these extreme values rather than relying on their    * regular sort ordering.    */
-DECL|method|createSubsetSuite (final FeatureSpecificTestSuiteBuilder<?, ? extends OneSizeTestContainerGenerator<Collection<E>, E>> parentBuilder, final Bound from, final Bound to)
+DECL|method|createSubsetSuite ( final FeatureSpecificTestSuiteBuilder< ?, ? extends OneSizeTestContainerGenerator<Collection<E>, E>> parentBuilder, final Bound from, final Bound to)
 specifier|final
 name|TestSuite
 name|createSubsetSuite

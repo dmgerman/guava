@@ -301,9 +301,9 @@ return|return
 name|result
 return|;
 block|}
-DECL|method|getTesters ()
 annotation|@
 name|Override
+DECL|method|getTesters ()
 specifier|protected
 name|List
 argument_list|<
@@ -353,7 +353,7 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|createDerivedSuites (FeatureSpecificTestSuiteBuilder<?, ? extends OneSizeTestContainerGenerator<Map<K, V>, Entry<K, V>>> parentBuilder)
+DECL|method|createDerivedSuites ( FeatureSpecificTestSuiteBuilder< ?, ? extends OneSizeTestContainerGenerator<Map<K, V>, Entry<K, V>>> parentBuilder)
 specifier|protected
 name|List
 argument_list|<
@@ -539,9 +539,9 @@ return|return
 name|derivedSuites
 return|;
 block|}
-DECL|method|createDerivedKeySetSuite ( TestSetGenerator<K> keySetGenerator)
 annotation|@
 name|Override
+DECL|method|createDerivedKeySetSuite ( TestSetGenerator<K> keySetGenerator)
 specifier|protected
 name|NavigableSetTestSuiteBuilder
 argument_list|<
@@ -619,9 +619,9 @@ name|from
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|createSubMap (SortedMap<K, V> sortedMap, K firstExclusive, K lastExclusive)
 annotation|@
 name|Override
+DECL|method|createSubMap (SortedMap<K, V> sortedMap, K firstExclusive, K lastExclusive)
 name|NavigableMap
 argument_list|<
 name|K
@@ -882,7 +882,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Create a suite whose maps are descending views of other maps.    */
-DECL|method|createDescendingSuite (final FeatureSpecificTestSuiteBuilder<?, ? extends OneSizeTestContainerGenerator<Map<K, V>, Entry<K, V>>> parentBuilder)
+DECL|method|createDescendingSuite ( final FeatureSpecificTestSuiteBuilder< ?, ? extends OneSizeTestContainerGenerator<Map<K, V>, Entry<K, V>>> parentBuilder)
 specifier|private
 name|TestSuite
 name|createDescendingSuite
@@ -1086,9 +1086,9 @@ name|delegate
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|create (Object... entries)
 annotation|@
 name|Override
+DECL|method|create (Object... entries)
 specifier|public
 name|NavigableMap
 argument_list|<

@@ -125,7 +125,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests for {@code Multiset.equals} and {@code Multiset.hashCode}.  *   * @author Louis Wasserman  */
+comment|/**  * Tests for {@code Multiset.equals} and {@code Multiset.hashCode}.  *  * @author Louis Wasserman  */
 end_comment
 
 begin_class

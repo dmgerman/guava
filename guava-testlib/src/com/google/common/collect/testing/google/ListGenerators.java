@@ -224,9 +224,9 @@ name|ImmutableListOfGenerator
 extends|extends
 name|TestStringListGenerator
 block|{
-DECL|method|create (String[] elements)
 annotation|@
 name|Override
+DECL|method|create (String[] elements)
 specifier|protected
 name|List
 argument_list|<
@@ -257,9 +257,9 @@ name|BuilderAddListGenerator
 extends|extends
 name|TestStringListGenerator
 block|{
-DECL|method|create (String[] elements)
 annotation|@
 name|Override
+DECL|method|create (String[] elements)
 specifier|protected
 name|List
 argument_list|<
@@ -320,9 +320,9 @@ name|BuilderAddAllListGenerator
 extends|extends
 name|TestStringListGenerator
 block|{
-DECL|method|create (String[] elements)
 annotation|@
 name|Override
+DECL|method|create (String[] elements)
 specifier|protected
 name|List
 argument_list|<
@@ -365,9 +365,9 @@ name|BuilderReversedListGenerator
 extends|extends
 name|TestStringListGenerator
 block|{
-DECL|method|create (String[] elements)
 annotation|@
 name|Override
+DECL|method|create (String[] elements)
 specifier|protected
 name|List
 argument_list|<
@@ -419,9 +419,9 @@ name|ImmutableListHeadSubListGenerator
 extends|extends
 name|TestStringListGenerator
 block|{
-DECL|method|create (String[] elements)
 annotation|@
 name|Override
+DECL|method|create (String[] elements)
 specifier|protected
 name|List
 argument_list|<
@@ -523,9 +523,9 @@ name|ImmutableListTailSubListGenerator
 extends|extends
 name|TestStringListGenerator
 block|{
-DECL|method|create (String[] elements)
 annotation|@
 name|Override
+DECL|method|create (String[] elements)
 specifier|protected
 name|List
 argument_list|<
@@ -625,9 +625,9 @@ name|ImmutableListMiddleSubListGenerator
 extends|extends
 name|TestStringListGenerator
 block|{
-DECL|method|create (String[] elements)
 annotation|@
 name|Override
+DECL|method|create (String[] elements)
 specifier|protected
 name|List
 argument_list|<
@@ -756,9 +756,9 @@ name|CharactersOfStringGenerator
 extends|extends
 name|TestCharacterListGenerator
 block|{
-DECL|method|create (Character[] elements)
 annotation|@
 name|Override
+DECL|method|create (Character[] elements)
 specifier|public
 name|List
 argument_list|<
@@ -810,9 +810,9 @@ name|CharactersOfCharSequenceGenerator
 extends|extends
 name|TestCharacterListGenerator
 block|{
-DECL|method|create (Character[] elements)
 annotation|@
 name|Override
+DECL|method|create (Character[] elements)
 specifier|public
 name|List
 argument_list|<
@@ -884,7 +884,7 @@ name|TestListGenerator
 argument_list|<
 name|UnhashableObject
 argument_list|>
-block|{   }
+block|{}
 DECL|class|UnhashableElementsImmutableListGenerator
 specifier|public
 specifier|static

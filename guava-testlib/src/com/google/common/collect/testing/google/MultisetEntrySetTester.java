@@ -398,9 +398,7 @@ argument_list|)
 expr_stmt|;
 name|assertFalse
 argument_list|(
-literal|"size 1 multiset.entrySet() iterator.hasNext() returned true "
-operator|+
-literal|"after next()"
+literal|"size 1 multiset.entrySet() iterator.hasNext() returned true after next()"
 argument_list|,
 name|iterator
 operator|.

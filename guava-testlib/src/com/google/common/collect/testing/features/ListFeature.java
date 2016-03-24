@@ -192,7 +192,7 @@ decl_stmt|;
 end_decl_stmt
 
 begin_expr_stmt
-DECL|method|ListFeature (Feature<? super List> .... implied)
+DECL|method|ListFeature (Feature<? super List>.... implied)
 name|ListFeature
 argument_list|(
 name|Feature

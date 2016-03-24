@@ -93,7 +93,7 @@ argument_list|,
 name|V
 argument_list|>
 block|{
-DECL|method|SortedMapInterfaceTest (boolean allowsNullKeys, boolean allowsNullValues, boolean supportsPut, boolean supportsRemove, boolean supportsClear)
+DECL|method|SortedMapInterfaceTest ( boolean allowsNullKeys, boolean allowsNullValues, boolean supportsPut, boolean supportsRemove, boolean supportsClear)
 specifier|protected
 name|SortedMapInterfaceTest
 parameter_list|(
@@ -127,9 +127,9 @@ name|supportsClear
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|makeEmptyMap ()
 annotation|@
 name|Override
+DECL|method|makeEmptyMap ()
 specifier|protected
 specifier|abstract
 name|SortedMap
@@ -143,9 +143,9 @@ parameter_list|()
 throws|throws
 name|UnsupportedOperationException
 function_decl|;
-DECL|method|makePopulatedMap ()
 annotation|@
 name|Override
+DECL|method|makePopulatedMap ()
 specifier|protected
 specifier|abstract
 name|SortedMap
@@ -159,9 +159,9 @@ parameter_list|()
 throws|throws
 name|UnsupportedOperationException
 function_decl|;
-DECL|method|makeEitherMap ()
 annotation|@
 name|Override
+DECL|method|makeEitherMap ()
 specifier|protected
 name|SortedMap
 argument_list|<

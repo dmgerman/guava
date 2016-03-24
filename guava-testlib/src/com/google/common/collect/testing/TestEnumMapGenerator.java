@@ -279,7 +279,7 @@ name|array
 argument_list|)
 return|;
 block|}
-DECL|method|create ( Entry<AnEnum, String>[] entries)
+DECL|method|create (Entry<AnEnum, String>[] entries)
 specifier|protected
 specifier|abstract
 name|Map
@@ -376,7 +376,7 @@ block|}
 comment|/** Returns the elements sorted in natural order. */
 annotation|@
 name|Override
-DECL|method|order ( List<Entry<AnEnum, String>> insertionOrder)
+DECL|method|order (List<Entry<AnEnum, String>> insertionOrder)
 specifier|public
 name|Iterable
 argument_list|<

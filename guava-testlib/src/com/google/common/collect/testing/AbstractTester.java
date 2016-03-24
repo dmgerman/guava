@@ -80,9 +80,9 @@ name|Runnable
 name|tearDown
 decl_stmt|;
 comment|// public so that it can be referenced in generated GWT tests.
+annotation|@
+name|Override
 DECL|method|setUp ()
-annotation|@
-name|Override
 specifier|public
 name|void
 name|setUp
@@ -105,9 +105,9 @@ expr_stmt|;
 block|}
 block|}
 comment|// public so that it can be referenced in generated GWT tests.
+annotation|@
+name|Override
 DECL|method|tearDown ()
-annotation|@
-name|Override
 specifier|public
 name|void
 name|tearDown
@@ -130,7 +130,7 @@ expr_stmt|;
 block|}
 block|}
 comment|// public so that it can be referenced in generated GWT tests.
-DECL|method|init ( G subjectGenerator, String suiteName, Runnable setUp, Runnable tearDown)
+DECL|method|init (G subjectGenerator, String suiteName, Runnable setUp, Runnable tearDown)
 specifier|public
 specifier|final
 name|void
@@ -225,9 +225,9 @@ name|getName
 argument_list|()
 return|;
 block|}
-DECL|method|getName ()
 annotation|@
 name|Override
+DECL|method|getName ()
 specifier|public
 name|String
 name|getName

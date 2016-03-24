@@ -222,7 +222,7 @@ operator|=
 name|numElements
 expr_stmt|;
 block|}
-DECL|method|CollectionSize (Feature<? super Collection> .... implied)
+DECL|method|CollectionSize (Feature<? super Collection>.... implied)
 name|CollectionSize
 parameter_list|(
 name|Feature

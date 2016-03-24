@@ -446,7 +446,7 @@ expr_stmt|;
 block|}
 block|}
 comment|/**    * Verifies that a collection is immutable.    *    *<p>A collection is considered immutable if:    *<ol>    *<li>All its mutation methods result in UnsupportedOperationException, and    * do not change the underlying contents.    *<li>All methods that return objects that can indirectly mutate the    * collection throw UnsupportedOperationException when those mutators    * are called.    *</ol>    *    * @param collection the presumed-immutable collection    * @param sampleElement an element of the same type as that contained by    * {@code collection}. {@code collection} may or may not have {@code    * sampleElement} as a member.    */
-DECL|method|assertCollectionIsUnmodifiable ( Collection<E> collection, E sampleElement)
+DECL|method|assertCollectionIsUnmodifiable (Collection<E> collection, E sampleElement)
 specifier|public
 specifier|static
 parameter_list|<
@@ -695,7 +695,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Verifies that a set is immutable.    *    *<p>A set is considered immutable if:    *<ol>    *<li>All its mutation methods result in UnsupportedOperationException, and    * do not change the underlying contents.    *<li>All methods that return objects that can indirectly mutate the    * set throw UnsupportedOperationException when those mutators    * are called.    *</ol>    *    * @param set the presumed-immutable set    * @param sampleElement an element of the same type as that contained by    * {@code set}. {@code set} may or may not have {@code sampleElement} as a    * member.    */
-DECL|method|assertSetIsUnmodifiable ( Set<E> set, E sampleElement)
+DECL|method|assertSetIsUnmodifiable (Set<E> set, E sampleElement)
 specifier|public
 specifier|static
 parameter_list|<
@@ -1535,9 +1535,7 @@ argument_list|)
 expr_stmt|;
 name|fail
 argument_list|(
-literal|"asMap().values().iterator().next().remove() succeeded on "
-operator|+
-literal|"unmodifiable multimap"
+literal|"asMap().values().iterator().next().remove() succeeded on unmodifiable multimap"
 argument_list|)
 expr_stmt|;
 block|}
@@ -1576,9 +1574,7 @@ argument_list|()
 expr_stmt|;
 name|fail
 argument_list|(
-literal|"asMap().values().toArray()[0].clear() succeeded on "
-operator|+
-literal|"unmodifiable multimap"
+literal|"asMap().values().toArray()[0].clear() succeeded on unmodifiable multimap"
 argument_list|)
 expr_stmt|;
 block|}

@@ -146,9 +146,9 @@ return|return
 name|container
 return|;
 block|}
-DECL|method|setUp ()
 annotation|@
 name|Override
+DECL|method|setUp ()
 specifier|public
 name|void
 name|setUp
@@ -175,9 +175,9 @@ name|resetMap
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|actualContents ()
 annotation|@
 name|Override
+DECL|method|actualContents ()
 specifier|protected
 name|Collection
 argument_list|<
@@ -571,7 +571,7 @@ comment|// Tolerated
 block|}
 block|}
 comment|/**    * Equivalent to {@link #expectMissingValues(Object[]) expectMissingValues}    * {@code (null)}    * except that the call to {@code contains(null)} is permitted to throw a    * {@code NullPointerException}.    * @param message message to use upon assertion failure    */
-DECL|method|expectNullValueMissingWhenNullValuesUnsupported ( String message)
+DECL|method|expectNullValueMissingWhenNullValuesUnsupported (String message)
 specifier|protected
 name|void
 name|expectNullValueMissingWhenNullValuesUnsupported
@@ -612,6 +612,7 @@ literal|"unchecked"
 argument_list|)
 annotation|@
 name|Override
+DECL|method|createDisjointCollection ()
 specifier|protected
 name|MinimalCollection
 argument_list|<
@@ -624,7 +625,6 @@ argument_list|,
 name|V
 argument_list|>
 argument_list|>
-DECL|method|createDisjointCollection ()
 name|createDisjointCollection
 parameter_list|()
 block|{
@@ -699,9 +699,9 @@ name|getSampleElements
 argument_list|()
 return|;
 block|}
-DECL|method|expectMissing (Entry<K, V>.... entries)
 annotation|@
 name|Override
+DECL|method|expectMissing (Entry<K, V>.... entries)
 specifier|protected
 name|void
 name|expectMissing
@@ -753,9 +753,7 @@ operator|.
 name|getKey
 argument_list|()
 operator|+
-literal|" mapped to"
-operator|+
-literal|" value "
+literal|" mapped to value "
 operator|+
 name|entry
 operator|.
@@ -845,9 +843,9 @@ name|value
 argument_list|)
 return|;
 block|}
-DECL|method|expectContents (Collection<Entry<K, V>> expected)
 annotation|@
 name|Override
+DECL|method|expectContents (Collection<Entry<K, V>> expected)
 specifier|protected
 name|void
 name|expectContents

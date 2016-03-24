@@ -83,7 +83,7 @@ name|delegate
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|newInstance ( TestSetGenerator<E> delegate)
+DECL|method|newInstance (TestSetGenerator<E> delegate)
 specifier|public
 specifier|static
 parameter_list|<
@@ -113,9 +113,9 @@ name|delegate
 argument_list|)
 return|;
 block|}
-DECL|method|create (Object... elements)
 annotation|@
 name|Override
+DECL|method|create (Object... elements)
 specifier|public
 name|Set
 argument_list|<

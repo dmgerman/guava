@@ -168,7 +168,7 @@ argument_list|,
 name|E
 argument_list|>
 block|{
-DECL|method|using ( TestQueueGenerator<E> generator)
+DECL|method|using (TestQueueGenerator<E> generator)
 specifier|public
 specifier|static
 parameter_list|<
@@ -226,9 +226,9 @@ return|return
 name|this
 return|;
 block|}
-DECL|method|getTesters ()
 annotation|@
 name|Override
+DECL|method|getTesters ()
 specifier|protected
 name|List
 argument_list|<

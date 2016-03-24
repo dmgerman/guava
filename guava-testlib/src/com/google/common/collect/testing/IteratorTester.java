@@ -79,7 +79,7 @@ argument_list|>
 argument_list|>
 block|{
 comment|/**    * Creates an IteratorTester.    *    * @param steps how many operations to test for each tested pair of iterators    * @param features the features supported by the iterator    */
-DECL|method|IteratorTester (int steps, Iterable<? extends IteratorFeature> features, Iterable<E> expectedElements, KnownOrder knownOrder)
+DECL|method|IteratorTester ( int steps, Iterable<? extends IteratorFeature> features, Iterable<E> expectedElements, KnownOrder knownOrder)
 specifier|protected
 name|IteratorTester
 parameter_list|(

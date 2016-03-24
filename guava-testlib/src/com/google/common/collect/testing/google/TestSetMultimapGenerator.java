@@ -78,7 +78,7 @@ argument_list|,
 name|V
 argument_list|>
 argument_list|>
-block|{  }
+block|{}
 end_interface
 
 end_unit

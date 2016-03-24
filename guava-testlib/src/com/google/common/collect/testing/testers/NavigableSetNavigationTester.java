@@ -289,9 +289,9 @@ specifier|private
 name|E
 name|c
 decl_stmt|;
-DECL|method|setUp ()
 annotation|@
 name|Override
+DECL|method|setUp ()
 specifier|public
 name|void
 name|setUp

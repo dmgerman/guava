@@ -248,6 +248,7 @@ argument_list|>
 implements|,
 name|DerivedGenerator
 block|{
+DECL|field|mapGenerator
 specifier|private
 specifier|final
 name|OneSizeTestContainerGenerator
@@ -268,10 +269,9 @@ argument_list|,
 name|V
 argument_list|>
 argument_list|>
-DECL|field|mapGenerator
 name|mapGenerator
 decl_stmt|;
-DECL|method|MapEntrySetGenerator ( OneSizeTestContainerGenerator< Map<K, V>, Map.Entry<K, V>> mapGenerator)
+DECL|method|MapEntrySetGenerator ( OneSizeTestContainerGenerator<Map<K, V>, Map.Entry<K, V>> mapGenerator)
 specifier|public
 name|MapEntrySetGenerator
 parameter_list|(
@@ -392,7 +392,7 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|order ( List<Map.Entry<K, V>> insertionOrder)
+DECL|method|order (List<Map.Entry<K, V>> insertionOrder)
 specifier|public
 name|Iterable
 argument_list|<
@@ -593,6 +593,7 @@ argument_list|>
 implements|,
 name|DerivedGenerator
 block|{
+DECL|field|mapGenerator
 specifier|private
 specifier|final
 name|OneSizeTestContainerGenerator
@@ -613,7 +614,6 @@ argument_list|,
 name|V
 argument_list|>
 argument_list|>
-DECL|field|mapGenerator
 name|mapGenerator
 decl_stmt|;
 DECL|field|samples
@@ -1288,6 +1288,7 @@ argument_list|>
 implements|,
 name|DerivedGenerator
 block|{
+DECL|field|mapGenerator
 specifier|private
 specifier|final
 name|OneSizeTestContainerGenerator
@@ -1308,7 +1309,6 @@ argument_list|,
 name|V
 argument_list|>
 argument_list|>
-DECL|field|mapGenerator
 name|mapGenerator
 decl_stmt|;
 DECL|field|samples
@@ -1320,7 +1320,7 @@ name|V
 argument_list|>
 name|samples
 decl_stmt|;
-DECL|method|MapValueCollectionGenerator ( OneSizeTestContainerGenerator< Map<K, V>, Map.Entry<K, V>> mapGenerator)
+DECL|method|MapValueCollectionGenerator ( OneSizeTestContainerGenerator<Map<K, V>, Map.Entry<K, V>> mapGenerator)
 specifier|public
 name|MapValueCollectionGenerator
 parameter_list|(
@@ -2887,9 +2887,9 @@ name|getKey
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|create (Object... entries)
 annotation|@
 name|Override
+DECL|method|create (Object... entries)
 specifier|public
 name|SortedMap
 argument_list|<
