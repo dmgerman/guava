@@ -40,22 +40,6 @@ name|google
 operator|.
 name|common
 operator|.
-name|base
-operator|.
-name|Preconditions
-operator|.
-name|checkState
-import|;
-end_import
-
-begin_import
-import|import static
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
 name|math
 operator|.
 name|DoubleUtils
@@ -328,7 +312,7 @@ return|;
 block|}
 block|}
 block|}
-comment|/**    * Builds an instance representing a vertical transformation with a constant value of {@code x}.    */
+comment|/**    * Builds an instance representing a vertical transformation with a constant value of {@code x}.    * (The inverse of this will be a horizontal transformation.)    */
 DECL|method|vertical (double x)
 specifier|public
 specifier|static
@@ -355,7 +339,7 @@ name|x
 argument_list|)
 return|;
 block|}
-comment|/**    * Builds an instance representing a horizontal transformation with a constant value of {@code y}.    */
+comment|/**    * Builds an instance representing a horizontal transformation with a constant value of {@code y}.    * (The inverse of this will be a vertical transformation.)    */
 DECL|method|horizontal (double y)
 specifier|public
 specifier|static
@@ -389,7 +373,7 @@ name|y
 argument_list|)
 return|;
 block|}
-comment|/**    * Builds an instance for datasets which contains {@link Double#NaN}. The {@link #isHorizontal}    * and {@link #isVertical} methods return {@code false} and the {@link #slope},    * {@link #transformX}, and {@link #transformY} methods all return {@link Double#NaN}.    */
+comment|/**    * Builds an instance for datasets which contains {@link Double#NaN}. The {@link #isHorizontal}    * and {@link #isVertical} methods return {@code false} and the {@link #slope}, and    * {@link #transform} methods all return {@link Double#NaN}. The {@link #inverse} method returns    * the same instance.    */
 DECL|method|forNaN ()
 specifier|public
 specifier|static
@@ -428,26 +412,23 @@ name|slope
 parameter_list|()
 function_decl|;
 comment|/**    * Returns the {@code y} corresponding to the given {@code x}. This must not be called on a    * vertical transformation (i.e. when {@link #isVertical()} is true).    */
-DECL|method|transformX (double x)
+DECL|method|transform (double x)
 specifier|public
 specifier|abstract
 name|double
-name|transformX
+name|transform
 parameter_list|(
 name|double
 name|x
 parameter_list|)
 function_decl|;
-comment|/**    * Returns the {@code x} corresponding to the given {@code y}. This must not be called on a    * horizontal transformation (i.e. when {@link #isHorizontal()} is true).    */
-DECL|method|transformY (double y)
+comment|/**    * Returns the inverse linear transformation. The inverse of a horizontal transformation is a    * vertical transformation, and vice versa. The inverse of the {@link #forNaN} transformation is    * itself. In all other cases, the inverse is a transformation such that applying both the    * original transformation and its inverse to a value gives you the original value give-or-take    * numerical errors. Calling this method multiple times on the same instance will always return    * the same instance. Calling this method on the result of calling this method on an instance will    * always return that original instance.    */
+DECL|method|inverse ()
 specifier|public
 specifier|abstract
-name|double
-name|transformY
-parameter_list|(
-name|double
-name|y
-parameter_list|)
+name|LinearTransformation
+name|inverse
+parameter_list|()
 function_decl|;
 DECL|class|RegularLinearTransformation
 specifier|private
@@ -467,6 +448,10 @@ DECL|field|yIntercept
 specifier|final
 name|double
 name|yIntercept
+decl_stmt|;
+DECL|field|inverse
+name|LinearTransformation
+name|inverse
 decl_stmt|;
 DECL|method|RegularLinearTransformation (double slope, double yIntercept)
 name|RegularLinearTransformation
@@ -489,6 +474,45 @@ operator|.
 name|yIntercept
 operator|=
 name|yIntercept
+expr_stmt|;
+name|this
+operator|.
+name|inverse
+operator|=
+literal|null
+expr_stmt|;
+comment|// to be lazily initialized
+block|}
+DECL|method|RegularLinearTransformation (double slope, double yIntercept, LinearTransformation inverse)
+name|RegularLinearTransformation
+parameter_list|(
+name|double
+name|slope
+parameter_list|,
+name|double
+name|yIntercept
+parameter_list|,
+name|LinearTransformation
+name|inverse
+parameter_list|)
+block|{
+name|this
+operator|.
+name|slope
+operator|=
+name|slope
+expr_stmt|;
+name|this
+operator|.
+name|yIntercept
+operator|=
+name|yIntercept
+expr_stmt|;
+name|this
+operator|.
+name|inverse
+operator|=
+name|inverse
 expr_stmt|;
 block|}
 annotation|@
@@ -533,10 +557,10 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|transformX (double x)
+DECL|method|transform (double x)
 specifier|public
 name|double
-name|transformX
+name|transform
 parameter_list|(
 name|double
 name|x
@@ -552,30 +576,30 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|transformY (double y)
+DECL|method|inverse ()
 specifier|public
-name|double
-name|transformY
-parameter_list|(
-name|double
-name|y
-parameter_list|)
+name|LinearTransformation
+name|inverse
+parameter_list|()
 block|{
-name|checkState
-argument_list|(
-name|slope
-operator|!=
-literal|0.0
-argument_list|)
-expr_stmt|;
+name|LinearTransformation
+name|result
+init|=
+name|inverse
+decl_stmt|;
 return|return
 operator|(
-name|y
-operator|-
-name|yIntercept
+name|result
+operator|==
+literal|null
 operator|)
-operator|/
-name|slope
+condition|?
+name|inverse
+operator|=
+name|createInverse
+argument_list|()
+else|:
+name|result
 return|;
 block|}
 annotation|@
@@ -599,6 +623,51 @@ name|yIntercept
 argument_list|)
 return|;
 block|}
+DECL|method|createInverse ()
+specifier|private
+name|LinearTransformation
+name|createInverse
+parameter_list|()
+block|{
+if|if
+condition|(
+name|slope
+operator|!=
+literal|0.0
+condition|)
+block|{
+return|return
+operator|new
+name|RegularLinearTransformation
+argument_list|(
+literal|1.0
+operator|/
+name|slope
+argument_list|,
+operator|-
+literal|1.0
+operator|*
+name|yIntercept
+operator|/
+name|slope
+argument_list|,
+name|this
+argument_list|)
+return|;
+block|}
+else|else
+block|{
+return|return
+operator|new
+name|VerticalLinearTransformation
+argument_list|(
+name|yIntercept
+argument_list|,
+name|this
+argument_list|)
+return|;
+block|}
+block|}
 block|}
 DECL|class|VerticalLinearTransformation
 specifier|private
@@ -614,6 +683,10 @@ specifier|final
 name|double
 name|x
 decl_stmt|;
+DECL|field|inverse
+name|LinearTransformation
+name|inverse
+decl_stmt|;
 DECL|method|VerticalLinearTransformation (double x)
 name|VerticalLinearTransformation
 parameter_list|(
@@ -626,6 +699,36 @@ operator|.
 name|x
 operator|=
 name|x
+expr_stmt|;
+name|this
+operator|.
+name|inverse
+operator|=
+literal|null
+expr_stmt|;
+comment|// to be lazily initialized
+block|}
+DECL|method|VerticalLinearTransformation (double x, LinearTransformation inverse)
+name|VerticalLinearTransformation
+parameter_list|(
+name|double
+name|x
+parameter_list|,
+name|LinearTransformation
+name|inverse
+parameter_list|)
+block|{
+name|this
+operator|.
+name|x
+operator|=
+name|x
+expr_stmt|;
+name|this
+operator|.
+name|inverse
+operator|=
+name|inverse
 expr_stmt|;
 block|}
 annotation|@
@@ -668,10 +771,10 @@ throw|;
 block|}
 annotation|@
 name|Override
-DECL|method|transformX (double x)
+DECL|method|transform (double x)
 specifier|public
 name|double
-name|transformX
+name|transform
 parameter_list|(
 name|double
 name|x
@@ -685,17 +788,30 @@ throw|;
 block|}
 annotation|@
 name|Override
-DECL|method|transformY (double y)
+DECL|method|inverse ()
 specifier|public
-name|double
-name|transformY
-parameter_list|(
-name|double
-name|y
-parameter_list|)
+name|LinearTransformation
+name|inverse
+parameter_list|()
 block|{
+name|LinearTransformation
+name|result
+init|=
+name|inverse
+decl_stmt|;
 return|return
-name|x
+operator|(
+name|result
+operator|==
+literal|null
+operator|)
+condition|?
+name|inverse
+operator|=
+name|createInverse
+argument_list|()
+else|:
+name|result
 return|;
 block|}
 annotation|@
@@ -714,6 +830,24 @@ argument_list|(
 literal|"x = %g"
 argument_list|,
 name|x
+argument_list|)
+return|;
+block|}
+DECL|method|createInverse ()
+specifier|private
+name|LinearTransformation
+name|createInverse
+parameter_list|()
+block|{
+return|return
+operator|new
+name|RegularLinearTransformation
+argument_list|(
+literal|0.0
+argument_list|,
+name|x
+argument_list|,
+name|this
 argument_list|)
 return|;
 block|}
@@ -775,10 +909,10 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|transformX (double x)
+DECL|method|transform (double x)
 specifier|public
 name|double
-name|transformX
+name|transform
 parameter_list|(
 name|double
 name|x
@@ -790,17 +924,14 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|transformY (double y)
+DECL|method|inverse ()
 specifier|public
-name|double
-name|transformY
-parameter_list|(
-name|double
-name|y
-parameter_list|)
+name|LinearTransformation
+name|inverse
+parameter_list|()
 block|{
 return|return
-name|NaN
+name|this
 return|;
 block|}
 annotation|@
