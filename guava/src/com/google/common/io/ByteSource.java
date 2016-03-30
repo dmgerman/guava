@@ -723,6 +723,8 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+try|try
+block|{
 name|long
 name|count
 init|=
@@ -758,6 +760,24 @@ block|}
 return|return
 name|count
 return|;
+block|}
+finally|finally
+block|{
+name|Arrays
+operator|.
+name|fill
+argument_list|(
+name|ByteStreams
+operator|.
+name|skipBuffer
+argument_list|,
+operator|(
+name|byte
+operator|)
+literal|0
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 comment|/**    * Copies the contents of this byte source to the given {@code OutputStream}. Does not close    * {@code output}.    *    * @return the number of bytes copied    * @throws IOException if an I/O error occurs in the process of reading from this source or    *     writing to {@code output}    */
 annotation|@
