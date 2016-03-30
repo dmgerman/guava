@@ -33,6 +33,22 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|io
+operator|.
+name|CharStreams
+operator|.
+name|createBuffer
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -151,6 +167,15 @@ specifier|final
 name|Reader
 name|reader
 decl_stmt|;
+DECL|field|cbuf
+specifier|private
+specifier|final
+name|CharBuffer
+name|cbuf
+init|=
+name|createBuffer
+argument_list|()
+decl_stmt|;
 DECL|field|buf
 specifier|private
 specifier|final
@@ -158,25 +183,10 @@ name|char
 index|[]
 name|buf
 init|=
-operator|new
-name|char
-index|[
-literal|0x1000
-index|]
-decl_stmt|;
-comment|// 4K
-DECL|field|cbuf
-specifier|private
-specifier|final
-name|CharBuffer
 name|cbuf
-init|=
-name|CharBuffer
 operator|.
-name|wrap
-argument_list|(
-name|buf
-argument_list|)
+name|array
+argument_list|()
 decl_stmt|;
 DECL|field|lines
 specifier|private
