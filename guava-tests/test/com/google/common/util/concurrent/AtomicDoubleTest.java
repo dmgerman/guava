@@ -22,16 +22,6 @@ name|concurrent
 package|;
 end_package
 
-begin_import
-import|import
-name|junit
-operator|.
-name|framework
-operator|.
-name|*
-import|;
-end_import
-
 begin_comment
 comment|/**  * Unit test for {@link AtomicDouble}.  */
 end_comment
