@@ -42,6 +42,16 @@ name|WeakReference
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Locale
+import|;
+end_import
+
 begin_comment
 comment|/**  * Methods factored out so that they can be emulated differently in GWT.  *  * @author Jesse Wilson  */
 end_comment
@@ -169,6 +179,30 @@ operator|.
 name|get
 argument_list|()
 argument_list|)
+argument_list|)
+return|;
+block|}
+DECL|method|formatCompact4Digits (double value)
+specifier|static
+name|String
+name|formatCompact4Digits
+parameter_list|(
+name|double
+name|value
+parameter_list|)
+block|{
+return|return
+name|String
+operator|.
+name|format
+argument_list|(
+name|Locale
+operator|.
+name|ROOT
+argument_list|,
+literal|"%.4g"
+argument_list|,
+name|value
 argument_list|)
 return|;
 block|}

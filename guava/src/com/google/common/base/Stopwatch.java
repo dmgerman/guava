@@ -166,35 +166,11 @@ name|com
 operator|.
 name|google
 operator|.
-name|common
-operator|.
-name|annotations
-operator|.
-name|GwtIncompatible
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
 name|errorprone
 operator|.
 name|annotations
 operator|.
 name|CanIgnoreReturnValue
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Locale
 import|;
 end_import
 
@@ -217,11 +193,6 @@ end_comment
 begin_class
 annotation|@
 name|GwtCompatible
-argument_list|(
-name|emulated
-operator|=
-literal|true
-argument_list|)
 DECL|class|Stopwatch
 specifier|public
 specifier|final
@@ -501,9 +472,6 @@ return|;
 block|}
 comment|/**    * Returns a string representation of the current elapsed time.    */
 annotation|@
-name|GwtIncompatible
-comment|// String.format()
-annotation|@
 name|Override
 DECL|method|toString ()
 specifier|public
@@ -544,22 +512,18 @@ argument_list|)
 decl_stmt|;
 comment|// Too bad this functionality is not exposed as a regular method call
 return|return
-name|String
+name|Platform
 operator|.
-name|format
+name|formatCompact4Digits
 argument_list|(
-name|Locale
-operator|.
-name|ROOT
-argument_list|,
-literal|"%.4g %s"
-argument_list|,
 name|value
-argument_list|,
+argument_list|)
+operator|+
+literal|" "
+operator|+
 name|abbreviate
 argument_list|(
 name|unit
-argument_list|)
 argument_list|)
 return|;
 block|}
