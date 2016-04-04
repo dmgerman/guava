@@ -3128,7 +3128,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/**    * Shuts down the given executor gradually, first disabling new submissions and later cancelling    * existing tasks.    *    *<p>The method takes the following steps:    *<ol>    *<li>calls {@link ExecutorService#shutdown()}, disabling acceptance of new submitted tasks.    *<li>waits for half of the specified timeout.    *<li>if the timeout expires, it calls {@link ExecutorService#shutdownNow()}, cancelling pending    * tasks and interrupting running tasks.    *<li>waits for the other half of the specified timeout.    *</ol>    *    *<p>If, at any step of the process, the calling thread is interrupted, the method calls    * {@link ExecutorService#shutdownNow()} and returns.    *    * @param service the {@code ExecutorService} to shut down    * @param timeout the maximum time to wait for the {@code ExecutorService} to terminate    * @param unit the time unit of the timeout argument    * @return {@code true} if the {@code ExecutorService} was terminated successfully, {@code false}    *     the call timed out or was interrupted    * @since 17.0    */
+comment|/**    * Shuts down the given executor service gradually, first disabling new submissions and later, if    * necessary, cancelling remaining tasks.    *    *<p>The method takes the following steps:    *<ol>    *<li>calls {@link ExecutorService#shutdown()}, disabling acceptance of new submitted tasks.    *<li>awaits executor service termination for half of the specified timeout.    *<li>if the timeout expires, it calls {@link ExecutorService#shutdownNow()}, cancelling pending    * tasks and interrupting running tasks.    *<li>awaits executor service termination for the other half of the specified timeout.    *</ol>    *    *<p>If, at any step of the process, the calling thread is interrupted, the method calls    * {@link ExecutorService#shutdownNow()} and returns.    *    * @param service the {@code ExecutorService} to shut down    * @param timeout the maximum time to wait for the {@code ExecutorService} to terminate    * @param unit the time unit of the timeout argument    * @return {@code true} if the {@code ExecutorService} was terminated successfully, {@code false}    *     if the call timed out or was interrupted    * @since 17.0    */
 annotation|@
 name|Beta
 annotation|@
@@ -3152,11 +3152,18 @@ name|TimeUnit
 name|unit
 parameter_list|)
 block|{
-name|checkNotNull
-argument_list|(
+name|long
+name|halfTimeoutNanos
+init|=
 name|unit
+operator|.
+name|toNanos
+argument_list|(
+name|timeout
 argument_list|)
-expr_stmt|;
+operator|/
+literal|2
+decl_stmt|;
 comment|// Disable new tasks from being submitted
 name|service
 operator|.
@@ -3165,22 +3172,6 @@ argument_list|()
 expr_stmt|;
 try|try
 block|{
-name|long
-name|halfTimeoutNanos
-init|=
-name|TimeUnit
-operator|.
-name|NANOSECONDS
-operator|.
-name|convert
-argument_list|(
-name|timeout
-argument_list|,
-name|unit
-argument_list|)
-operator|/
-literal|2
-decl_stmt|;
 comment|// Wait for half the duration of the timeout for existing tasks to terminate
 if|if
 condition|(
