@@ -624,11 +624,9 @@ else|:
 name|initialCapacity
 return|;
 block|}
-comment|/**    * Specifies the maximum number of entries the map may contain. Note that the map<b>may evict an    * entry before this limit is exceeded</b>. As the map size grows close to the maximum, the map    * evicts entries that are less likely to be used again. For example, the map may evict an entry    * because it hasn't been used recently or very often.    *    *<p>When {@code size} is zero, elements can be successfully added to the map, but are evicted    * immediately. This has the same effect as invoking {@link #expireAfterWrite expireAfterWrite}    * {@code (0, unit)}. It can be useful in testing, or to disable caching temporarily without    * a code change.    *    *<p>Caching functionality in {@code MapMaker} has been moved to    * {@link com.google.common.cache.CacheBuilder}.    *    * @param size the maximum size of the map    * @throws IllegalArgumentException if {@code size} is negative    * @throws IllegalStateException if a maximum size was already set    * @deprecated Caching functionality in {@code MapMaker} has been moved to    *     {@link com.google.common.cache.CacheBuilder}, with {@link #maximumSize} being replaced by    *     {@link com.google.common.cache.CacheBuilder#maximumSize}. Note that {@code CacheBuilder} is    *     simply an enhanced API for an implementation which was branched from {@code MapMaker}.    */
+comment|/**    * Specifies the maximum number of entries the map may contain. Note that the map<b>may evict an    * entry before this limit is exceeded</b>. As the map size grows close to the maximum, the map    * evicts entries that are less likely to be used again. For example, the map may evict an entry    * because it hasn't been used recently or very often.    *    *<p>When {@code size} is zero, elements can be successfully added to the map, but are evicted    * immediately. This has the same effect as invoking {@link #expireAfterWrite expireAfterWrite}    * {@code (0, unit)}. It can be useful in testing, or to disable caching temporarily without    * a code change.    *    * @param size the maximum size of the map    * @throws IllegalArgumentException if {@code size} is negative    * @throws IllegalStateException if a maximum size was already set    */
 annotation|@
 name|CanIgnoreReturnValue
-annotation|@
-name|Deprecated
 annotation|@
 name|Override
 DECL|method|maximumSize (int size)
