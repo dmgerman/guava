@@ -96,38 +96,6 @@ name|com
 operator|.
 name|google
 operator|.
-name|common
-operator|.
-name|collect
-operator|.
-name|MapMaker
-operator|.
-name|RemovalCause
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|collect
-operator|.
-name|MapMaker
-operator|.
-name|RemovalListener
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
 name|errorprone
 operator|.
 name|annotations
@@ -741,19 +709,7 @@ operator|==
 literal|null
 condition|)
 block|{
-name|enqueueNotification
-argument_list|(
-name|entryKey
-argument_list|,
-name|hash
-argument_list|,
-name|value
-argument_list|,
-name|RemovalCause
-operator|.
-name|COLLECTED
-argument_list|)
-expr_stmt|;
+comment|// TODO(kak): Remove this branch.
 block|}
 elseif|else
 if|if
@@ -773,19 +729,7 @@ condition|)
 block|{
 comment|// This is a duplicate check, as preWriteCleanup already purged expired
 comment|// entries, but let's accomodate an incorrect expiration queue.
-name|enqueueNotification
-argument_list|(
-name|entryKey
-argument_list|,
-name|hash
-argument_list|,
-name|value
-argument_list|,
-name|RemovalCause
-operator|.
-name|EXPIRED
-argument_list|)
-expr_stmt|;
+comment|// TODO(kak): Remove this branch.
 block|}
 else|else
 block|{
@@ -892,9 +836,6 @@ block|}
 finally|finally
 block|{
 name|unlock
-argument_list|()
-expr_stmt|;
-name|postWriteCleanup
 argument_list|()
 expr_stmt|;
 block|}
@@ -1038,7 +979,7 @@ condition|)
 block|{
 comment|// putIfAbsent
 name|V
-name|oldValue
+name|unused
 init|=
 name|put
 argument_list|(
@@ -1051,28 +992,6 @@ argument_list|,
 literal|true
 argument_list|)
 decl_stmt|;
-if|if
-condition|(
-name|oldValue
-operator|!=
-literal|null
-condition|)
-block|{
-comment|// the computed value was already clobbered
-name|enqueueNotification
-argument_list|(
-name|key
-argument_list|,
-name|hash
-argument_list|,
-name|value
-argument_list|,
-name|RemovalCause
-operator|.
-name|REPLACED
-argument_list|)
-expr_stmt|;
-block|}
 block|}
 return|return
 name|value
@@ -1809,8 +1728,6 @@ name|maximumSize
 argument_list|,
 name|concurrencyLevel
 argument_list|,
-name|removalListener
-argument_list|,
 name|this
 argument_list|,
 name|computingFunction
@@ -1849,7 +1766,7 @@ name|V
 argument_list|>
 name|computingFunction
 decl_stmt|;
-DECL|method|ComputingSerializationProxy ( Strength keyStrength, Strength valueStrength, Equivalence<Object> keyEquivalence, Equivalence<Object> valueEquivalence, long expireAfterWriteNanos, long expireAfterAccessNanos, int maximumSize, int concurrencyLevel, RemovalListener<? super K, ? super V> removalListener, ConcurrentMap<K, V> delegate, Function<? super K, ? extends V> computingFunction)
+DECL|method|ComputingSerializationProxy ( Strength keyStrength, Strength valueStrength, Equivalence<Object> keyEquivalence, Equivalence<Object> valueEquivalence, long expireAfterWriteNanos, long expireAfterAccessNanos, int maximumSize, int concurrencyLevel, ConcurrentMap<K, V> delegate, Function<? super K, ? extends V> computingFunction)
 name|ComputingSerializationProxy
 parameter_list|(
 name|Strength
@@ -1881,18 +1798,6 @@ name|maximumSize
 parameter_list|,
 name|int
 name|concurrencyLevel
-parameter_list|,
-name|RemovalListener
-argument_list|<
-name|?
-super|super
-name|K
-argument_list|,
-name|?
-super|super
-name|V
-argument_list|>
-name|removalListener
 parameter_list|,
 name|ConcurrentMap
 argument_list|<
@@ -1932,8 +1837,6 @@ argument_list|,
 name|maximumSize
 argument_list|,
 name|concurrencyLevel
-argument_list|,
-name|removalListener
 argument_list|,
 name|delegate
 argument_list|)

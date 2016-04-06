@@ -88,52 +88,6 @@ end_import
 
 begin_import
 import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|base
-operator|.
-name|MoreObjects
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|collect
-operator|.
-name|MapMaker
-operator|.
-name|RemovalListener
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|collect
-operator|.
-name|MapMaker
-operator|.
-name|RemovalNotification
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|util
@@ -182,53 +136,6 @@ parameter_list|,
 name|V0
 parameter_list|>
 block|{
-annotation|@
-name|GwtIncompatible
-comment|// To be supported
-DECL|enum|NullListener
-enum|enum
-name|NullListener
-implements|implements
-name|RemovalListener
-argument_list|<
-name|Object
-argument_list|,
-name|Object
-argument_list|>
-block|{
-DECL|enumConstant|INSTANCE
-name|INSTANCE
-block|;
-annotation|@
-name|Override
-DECL|method|onRemoval (RemovalNotification<Object, Object> notification)
-specifier|public
-name|void
-name|onRemoval
-parameter_list|(
-name|RemovalNotification
-argument_list|<
-name|Object
-argument_list|,
-name|Object
-argument_list|>
-name|notification
-parameter_list|)
-block|{}
-block|}
-comment|// Set by MapMaker, but sits in this class to preserve the type relationship
-annotation|@
-name|GwtIncompatible
-comment|// To be supported
-DECL|field|removalListener
-name|RemovalListener
-argument_list|<
-name|K0
-argument_list|,
-name|V0
-argument_list|>
-name|removalListener
-decl_stmt|;
 comment|// No subclasses but our own
 DECL|method|GenericMapMaker ()
 name|GenericMapMaker
@@ -389,56 +296,6 @@ name|TimeUnit
 name|unit
 parameter_list|)
 function_decl|;
-comment|/*    * Note that MapMaker's removalListener() is not here, because once you're interacting with a    * GenericMapMaker you've already called that, and shouldn't be calling it again.    */
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
-comment|// safe covariant cast
-annotation|@
-name|GwtIncompatible
-comment|// To be supported
-DECL|method|getRemovalListener ()
-argument_list|<
-name|K
-extends|extends
-name|K0
-argument_list|,
-name|V
-extends|extends
-name|V0
-argument_list|>
-name|RemovalListener
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-name|getRemovalListener
-parameter_list|()
-block|{
-return|return
-operator|(
-name|RemovalListener
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-operator|)
-name|MoreObjects
-operator|.
-name|firstNonNull
-argument_list|(
-name|removalListener
-argument_list|,
-name|NullListener
-operator|.
-name|INSTANCE
-argument_list|)
-return|;
-block|}
 comment|/**    * See {@link MapMaker#makeMap}.    */
 DECL|method|makeMap ()
 specifier|public
