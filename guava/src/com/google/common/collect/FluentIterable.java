@@ -1237,7 +1237,7 @@ name|absent
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns an {@link Optional} containing the last element in this fluent iterable. If the    * iterable is empty, {@code Optional.absent()} is returned.    *    *<p><b>{@code Stream} equivalent:</b> {@code stream.reduce((a, b) -> b)}.    *    * @throws NullPointerException if the last element is null; if this is a possibility, use    *     {@link Iterables#getLast} instead.    */
+comment|/**    * Returns an {@link Optional} containing the last element in this fluent iterable. If the    * iterable is empty, {@code Optional.absent()} is returned. If the underlying {@code iterable}    * is a {@link List} with {@link java.util.RandomAccess} support, then this operation is    * guaranteed to be {@code O(1)}.    *    *<p><b>{@code Stream} equivalent:</b> {@code stream.reduce((a, b) -> b)}.    *    * @throws NullPointerException if the last element is null; if this is a possibility, use    *     {@link Iterables#getLast} instead.    */
 DECL|method|last ()
 specifier|public
 specifier|final

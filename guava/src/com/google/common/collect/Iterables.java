@@ -2828,7 +2828,7 @@ name|defaultValue
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the last element of {@code iterable}.    *    * @return the last element of {@code iterable}    * @throws NoSuchElementException if the iterable is empty    */
+comment|/**    * Returns the last element of {@code iterable}. If {@code iterable} is a {@link List} with    * {@link RandomAccess} support, then this operation is guaranteed to be {@code O(1)}.    *    * @return the last element of {@code iterable}    * @throws NoSuchElementException if the iterable is empty    */
 DECL|method|getLast (Iterable<T> iterable)
 specifier|public
 specifier|static
@@ -2900,7 +2900,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the last element of {@code iterable} or {@code defaultValue} if    * the iterable is empty.    *    * @param defaultValue the value to return if {@code iterable} is empty    * @return the last element of {@code iterable} or the default value    * @since 3.0    */
+comment|/**    * Returns the last element of {@code iterable} or {@code defaultValue} if    * the iterable is empty. If {@code iterable} is a {@link List} with    * {@link RandomAccess} support, then this operation is guaranteed to be {@code O(1)}.    *    * @param defaultValue the value to return if {@code iterable} is empty    * @return the last element of {@code iterable} or the default value    * @since 3.0    */
 annotation|@
 name|Nullable
 DECL|method|getLast (Iterable<? extends T> iterable, @Nullable T defaultValue)
