@@ -743,13 +743,6 @@ name|value
 return|;
 block|}
 comment|// immediately reuse invalid entries
-name|evictionQueue
-operator|.
-name|remove
-argument_list|(
-name|e
-argument_list|)
-expr_stmt|;
 name|expirationQueue
 operator|.
 name|remove
@@ -1724,8 +1717,6 @@ name|expireAfterWriteNanos
 argument_list|,
 name|expireAfterAccessNanos
 argument_list|,
-name|maximumSize
-argument_list|,
 name|concurrencyLevel
 argument_list|,
 name|this
@@ -1766,7 +1757,7 @@ name|V
 argument_list|>
 name|computingFunction
 decl_stmt|;
-DECL|method|ComputingSerializationProxy ( Strength keyStrength, Strength valueStrength, Equivalence<Object> keyEquivalence, Equivalence<Object> valueEquivalence, long expireAfterWriteNanos, long expireAfterAccessNanos, int maximumSize, int concurrencyLevel, ConcurrentMap<K, V> delegate, Function<? super K, ? extends V> computingFunction)
+DECL|method|ComputingSerializationProxy ( Strength keyStrength, Strength valueStrength, Equivalence<Object> keyEquivalence, Equivalence<Object> valueEquivalence, long expireAfterWriteNanos, long expireAfterAccessNanos, int concurrencyLevel, ConcurrentMap<K, V> delegate, Function<? super K, ? extends V> computingFunction)
 name|ComputingSerializationProxy
 parameter_list|(
 name|Strength
@@ -1792,9 +1783,6 @@ name|expireAfterWriteNanos
 parameter_list|,
 name|long
 name|expireAfterAccessNanos
-parameter_list|,
-name|int
-name|maximumSize
 parameter_list|,
 name|int
 name|concurrencyLevel
@@ -1833,8 +1821,6 @@ argument_list|,
 name|expireAfterWriteNanos
 argument_list|,
 name|expireAfterAccessNanos
-argument_list|,
-name|maximumSize
 argument_list|,
 name|concurrencyLevel
 argument_list|,

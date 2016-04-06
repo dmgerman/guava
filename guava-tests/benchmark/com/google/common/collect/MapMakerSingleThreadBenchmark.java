@@ -274,11 +274,6 @@ argument_list|(
 name|segments
 argument_list|)
 operator|.
-name|maximumSize
-argument_list|(
-name|maximumSize
-argument_list|)
-operator|.
 name|makeComputingMap
 argument_list|(
 operator|new

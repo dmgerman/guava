@@ -444,12 +444,6 @@ name|concurrencyLevel
 init|=
 name|UNSET_INT
 decl_stmt|;
-DECL|field|maximumSize
-name|int
-name|maximumSize
-init|=
-name|UNSET_INT
-decl_stmt|;
 DECL|field|keyStrength
 name|Strength
 name|keyStrength
@@ -624,73 +618,6 @@ condition|?
 name|DEFAULT_INITIAL_CAPACITY
 else|:
 name|initialCapacity
-return|;
-block|}
-comment|/**    * Specifies the maximum number of entries the map may contain. Note that the map<b>may evict an    * entry before this limit is exceeded</b>. As the map size grows close to the maximum, the map    * evicts entries that are less likely to be used again. For example, the map may evict an entry    * because it hasn't been used recently or very often.    *    *<p>When {@code size} is zero, elements can be successfully added to the map, but are evicted    * immediately. This has the same effect as invoking {@link #expireAfterWrite expireAfterWrite}    * {@code (0, unit)}. It can be useful in testing, or to disable caching temporarily without    * a code change.    *    * @param size the maximum size of the map    * @throws IllegalArgumentException if {@code size} is negative    * @throws IllegalStateException if a maximum size was already set    */
-annotation|@
-name|CanIgnoreReturnValue
-annotation|@
-name|Override
-DECL|method|maximumSize (int size)
-name|MapMaker
-name|maximumSize
-parameter_list|(
-name|int
-name|size
-parameter_list|)
-block|{
-name|checkState
-argument_list|(
-name|this
-operator|.
-name|maximumSize
-operator|==
-name|UNSET_INT
-argument_list|,
-literal|"maximum size was already set to %s"
-argument_list|,
-name|this
-operator|.
-name|maximumSize
-argument_list|)
-expr_stmt|;
-name|checkArgument
-argument_list|(
-name|size
-operator|>=
-literal|0
-argument_list|,
-literal|"maximum size must not be negative"
-argument_list|)
-expr_stmt|;
-name|this
-operator|.
-name|maximumSize
-operator|=
-name|size
-expr_stmt|;
-name|this
-operator|.
-name|useCustomMap
-operator|=
-literal|true
-expr_stmt|;
-if|if
-condition|(
-name|maximumSize
-operator|==
-literal|0
-condition|)
-block|{
-name|this
-operator|.
-name|evictImmediately
-operator|=
-literal|true
-expr_stmt|;
-block|}
-return|return
-name|this
 return|;
 block|}
 comment|/**    * Guides the allowed concurrency among update operations. Used as a hint for internal sizing. The    * table is internally partitioned to try to permit the indicated number of concurrent updates    * without contention. Because assignment of entries to these partitions is not necessarily    * uniform, the actual concurrency observed may vary. Ideally, you should choose a value to    * accommodate as many threads as will ever concurrently modify the table. Using a significantly    * higher value than you need can waste space and time, and a significantly lower value can lead    * to thread contention. But overestimates and underestimates within an order of magnitude do not    * usually have much noticeable impact. A value of one permits only one thread to modify the map    * at a time, but since read operations can proceed concurrently, this still yields higher    * concurrency than full synchronization. Defaults to 4.    *    *<p><b>Note:</b> Prior to Guava release 9.0, the default was 16. It is possible the default will    * change again in the future. If you care about this value, you should always choose it    * explicitly.    *    * @throws IllegalArgumentException if {@code concurrencyLevel} is nonpositive    * @throws IllegalStateException if a concurrency level was already set    */
@@ -874,7 +801,7 @@ name|WEAK
 argument_list|)
 return|;
 block|}
-comment|/**    * Specifies that each value (not key) stored in the map should be wrapped in a    * {@link SoftReference} (by default, strong references are used). Softly-referenced objects will    * be garbage-collected in a<i>globally</i> least-recently-used manner, in response to memory    * demand.    *    *<p><b>Warning:</b> in most circumstances it is better to set a per-cache    * {@linkplain #maximumSize maximum size} instead of using soft references. You should only use    * this method if you are well familiar with the practical consequences of soft references.    *    *<p><b>Warning:</b> when this method is used, the resulting map will use identity ({@code ==})    * comparison to determine equality of values. This technically violates the specifications of the    * methods {@link Map#containsValue containsValue}, {@link ConcurrentMap#remove(Object, Object)    * remove(Object, Object)} and {@link ConcurrentMap#replace(Object, Object, Object) replace(K, V,    * V)}, and may not be what you expect.    *    * @throws IllegalStateException if the value strength was already set    * @deprecated Caching functionality in {@code MapMaker} has been moved to    *     {@link com.google.common.cache.CacheBuilder}, with {@link #softValues} being replaced by    *     {@link com.google.common.cache.CacheBuilder#softValues}. Note that {@code CacheBuilder} is    *     simply an enhanced API for an implementation which was branched from {@code MapMaker}.    */
+comment|/**    * Specifies that each value (not key) stored in the map should be wrapped in a    * {@link SoftReference} (by default, strong references are used). Softly-referenced objects will    * be garbage-collected in a<i>globally</i> least-recently-used manner, in response to memory    * demand.    *    *<p><b>Warning:</b> you should only use this method if you are well familiar with the practical    * consequences of soft references.    *    *<p><b>Warning:</b> when this method is used, the resulting map will use identity ({@code ==})    * comparison to determine equality of values. This technically violates the specifications of the    * methods {@link Map#containsValue containsValue}, {@link ConcurrentMap#remove(Object, Object)    * remove(Object, Object)} and {@link ConcurrentMap#replace(Object, Object, Object) replace(K, V,    * V)}, and may not be what you expect.    *    * @throws IllegalStateException if the value strength was already set    * @deprecated Caching functionality in {@code MapMaker} has been moved to    *     {@link com.google.common.cache.CacheBuilder}, with {@link #softValues} being replaced by    *     {@link com.google.common.cache.CacheBuilder#softValues}. Note that {@code CacheBuilder} is    *     simply an enhanced API for an implementation which was branched from {@code MapMaker}.    */
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
@@ -961,7 +888,7 @@ name|STRONG
 argument_list|)
 return|;
 block|}
-comment|/**    * Specifies that each entry should be automatically removed from the map once a fixed duration    * has elapsed after the entry's creation, or the most recent replacement of its value.    *    *<p>When {@code duration} is zero, elements can be successfully added to the map, but are    * evicted immediately. This has a very similar effect to invoking {@link #maximumSize    * maximumSize}{@code (0)}. It can be useful in testing, or to disable caching temporarily without    * a code change.    *    *<p>Expired entries may be counted by {@link Map#size}, but will never be visible to read or    * write operations. Expired entries are currently cleaned up during write operations, or during    * occasional read operations in the absense of writes; though this behavior may change in the    * future.    *    * @param duration the length of time after an entry is created that it should be automatically    *     removed    * @param unit the unit that {@code duration} is expressed in    * @throws IllegalArgumentException if {@code duration} is negative    * @throws IllegalStateException if the time to live or time to idle was already set    * @deprecated Caching functionality in {@code MapMaker} has been moved to    *     {@link com.google.common.cache.CacheBuilder}, with {@link #expireAfterWrite} being replaced    *     by {@link com.google.common.cache.CacheBuilder#expireAfterWrite}. Note that    *     {@code CacheBuilder} is simply an enhanced API for an implementation which was branched    *     from {@code MapMaker}.    */
+comment|/**    * Specifies that each entry should be automatically removed from the map once a fixed duration    * has elapsed after the entry's creation, or the most recent replacement of its value.    *    *<p>When {@code duration} is zero, elements can be successfully added to the map, but are    * evicted immediately. It can be useful in testing, or to disable caching temporarily without    * a code change.    *    *<p>Expired entries may be counted by {@link Map#size}, but will never be visible to read or    * write operations. Expired entries are currently cleaned up during write operations, or during    * occasional read operations in the absense of writes; though this behavior may change in the    * future.    *    * @param duration the length of time after an entry is created that it should be automatically    *     removed    * @param unit the unit that {@code duration} is expressed in    * @throws IllegalArgumentException if {@code duration} is negative    * @throws IllegalStateException if the time to live or time to idle was already set    * @deprecated Caching functionality in {@code MapMaker} has been moved to    *     {@link com.google.common.cache.CacheBuilder}, with {@link #expireAfterWrite} being replaced    *     by {@link com.google.common.cache.CacheBuilder#expireAfterWrite}. Note that    *     {@code CacheBuilder} is simply an enhanced API for an implementation which was branched    *     from {@code MapMaker}.    */
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
@@ -1084,7 +1011,7 @@ else|:
 name|expireAfterWriteNanos
 return|;
 block|}
-comment|/**    * Specifies that each entry should be automatically removed from the map once a fixed duration    * has elapsed after the entry's last read or write access.    *    *<p>When {@code duration} is zero, elements can be successfully added to the map, but are    * evicted immediately. This has a very similar effect to invoking {@link #maximumSize    * maximumSize}{@code (0)}. It can be useful in testing, or to disable caching temporarily without    * a code change.    *    *<p>Expired entries may be counted by {@link Map#size}, but will never be visible to read or    * write operations. Expired entries are currently cleaned up during write operations, or during    * occasional read operations in the absense of writes; though this behavior may change in the    * future.    *    * @param duration the length of time after an entry is last accessed that it should be    *     automatically removed    * @param unit the unit that {@code duration} is expressed in    * @throws IllegalArgumentException if {@code duration} is negative    * @throws IllegalStateException if the time to idle or time to live was already set    */
+comment|/**    * Specifies that each entry should be automatically removed from the map once a fixed duration    * has elapsed after the entry's last read or write access.    *    *<p>When {@code duration} is zero, elements can be successfully added to the map, but are    * evicted immediately. It can be useful in testing, or to disable caching temporarily without    * a code change.    *    *<p>Expired entries may be counted by {@link Map#size}, but will never be visible to read or    * write operations. Expired entries are currently cleaned up during write operations, or during    * occasional read operations in the absense of writes; though this behavior may change in the    * future.    *    * @param duration the length of time after an entry is last accessed that it should be    *     automatically removed    * @param unit the unit that {@code duration} is expressed in    * @throws IllegalArgumentException if {@code duration} is negative    * @throws IllegalStateException if the time to idle or time to live was already set    */
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
@@ -1394,23 +1321,6 @@ argument_list|(
 literal|"concurrencyLevel"
 argument_list|,
 name|concurrencyLevel
-argument_list|)
-expr_stmt|;
-block|}
-if|if
-condition|(
-name|maximumSize
-operator|!=
-name|UNSET_INT
-condition|)
-block|{
-name|s
-operator|.
-name|add
-argument_list|(
-literal|"maximumSize"
-argument_list|,
-name|maximumSize
 argument_list|)
 expr_stmt|;
 block|}
