@@ -1802,6 +1802,60 @@ name|MANY_VALUES_PAIRED_STATS
 argument_list|)
 expr_stmt|;
 block|}
+DECL|method|testToString ()
+specifier|public
+name|void
+name|testToString
+parameter_list|()
+block|{
+name|assertThat
+argument_list|(
+name|EMPTY_PAIRED_STATS
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+operator|.
+name|isEqualTo
+argument_list|(
+literal|"PairedStats{xStats=Stats{count=0}, yStats=Stats{count=0}}"
+argument_list|)
+expr_stmt|;
+name|assertThat
+argument_list|(
+name|MANY_VALUES_PAIRED_STATS
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+operator|.
+name|isEqualTo
+argument_list|(
+literal|"PairedStats{xStats="
+operator|+
+name|MANY_VALUES_PAIRED_STATS
+operator|.
+name|xStats
+argument_list|()
+operator|+
+literal|", yStats="
+operator|+
+name|MANY_VALUES_PAIRED_STATS
+operator|.
+name|yStats
+argument_list|()
+operator|+
+literal|", populationCovariance="
+operator|+
+name|MANY_VALUES_PAIRED_STATS
+operator|.
+name|populationCovariance
+argument_list|()
+operator|+
+literal|"}"
+argument_list|)
+expr_stmt|;
+block|}
 DECL|method|createSingleStats (double x, double y)
 specifier|private
 name|PairedStats

@@ -4092,6 +4092,74 @@ name|MANY_VALUES_STATS_ITERABLE
 argument_list|)
 expr_stmt|;
 block|}
+DECL|method|testToString ()
+specifier|public
+name|void
+name|testToString
+parameter_list|()
+block|{
+name|assertThat
+argument_list|(
+name|EMPTY_STATS_VARARGS
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+operator|.
+name|isEqualTo
+argument_list|(
+literal|"Stats{count=0}"
+argument_list|)
+expr_stmt|;
+name|assertThat
+argument_list|(
+name|MANY_VALUES_STATS_ITERABLE
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+operator|.
+name|isEqualTo
+argument_list|(
+literal|"Stats{count="
+operator|+
+name|MANY_VALUES_STATS_ITERABLE
+operator|.
+name|count
+argument_list|()
+operator|+
+literal|", mean="
+operator|+
+name|MANY_VALUES_STATS_ITERABLE
+operator|.
+name|mean
+argument_list|()
+operator|+
+literal|", populationStandardDeviation="
+operator|+
+name|MANY_VALUES_STATS_ITERABLE
+operator|.
+name|populationStandardDeviation
+argument_list|()
+operator|+
+literal|", min="
+operator|+
+name|MANY_VALUES_STATS_ITERABLE
+operator|.
+name|min
+argument_list|()
+operator|+
+literal|", max="
+operator|+
+name|MANY_VALUES_STATS_ITERABLE
+operator|.
+name|max
+argument_list|()
+operator|+
+literal|"}"
+argument_list|)
+expr_stmt|;
+block|}
 DECL|method|testMeanOf ()
 specifier|public
 name|void
