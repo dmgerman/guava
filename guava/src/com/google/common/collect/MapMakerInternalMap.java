@@ -378,18 +378,6 @@ name|util
 operator|.
 name|concurrent
 operator|.
-name|ConcurrentLinkedQueue
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|concurrent
-operator|.
 name|ConcurrentMap
 import|;
 end_import
@@ -643,12 +631,6 @@ specifier|final
 name|Strength
 name|valueStrength
 decl_stmt|;
-comment|/** How long after the last access to an entry the map will retain that entry. */
-DECL|field|expireAfterAccessNanos
-specifier|final
-name|long
-name|expireAfterAccessNanos
-decl_stmt|;
 comment|/** How long after the last write to an entry the map will retain that entry. */
 DECL|field|expireAfterWriteNanos
 specifier|final
@@ -716,13 +698,6 @@ operator|=
 name|valueStrength
 operator|.
 name|defaultEquivalence
-argument_list|()
-expr_stmt|;
-name|expireAfterAccessNanos
-operator|=
-name|builder
-operator|.
-name|getExpireAfterAccessNanos
 argument_list|()
 expr_stmt|;
 name|expireAfterWriteNanos
@@ -896,31 +871,7 @@ name|expires
 parameter_list|()
 block|{
 return|return
-name|expiresAfterWrite
-argument_list|()
-operator|||
-name|expiresAfterAccess
-argument_list|()
-return|;
-block|}
-DECL|method|expiresAfterWrite ()
-name|boolean
-name|expiresAfterWrite
-parameter_list|()
-block|{
-return|return
 name|expireAfterWriteNanos
-operator|>
-literal|0
-return|;
-block|}
-DECL|method|expiresAfterAccess ()
-name|boolean
-name|expiresAfterAccess
-parameter_list|()
-block|{
-return|return
-name|expireAfterAccessNanos
 operator|>
 literal|0
 return|;
@@ -8191,20 +8142,6 @@ name|V
 argument_list|>
 name|valueReferenceQueue
 decl_stmt|;
-comment|/**      * The recency queue is used to record which entries were accessed for updating the eviction      * list's ordering. It is drained as a batch operation when either the DRAIN_THRESHOLD is      * crossed or a write occurs on the segment.      */
-DECL|field|recencyQueue
-specifier|final
-name|Queue
-argument_list|<
-name|ReferenceEntry
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-argument_list|>
-name|recencyQueue
-decl_stmt|;
 comment|/**      * A counter of the number of reads since the last write, used to drain queues on a small      * fraction of read operations.      */
 DECL|field|readCount
 specifier|final
@@ -8215,7 +8152,7 @@ operator|new
 name|AtomicInteger
 argument_list|()
 decl_stmt|;
-comment|/**      * A queue of elements currently in the map, ordered by expiration time (either access or write      * time). Elements are added to the tail of the queue on access/write.      */
+comment|/**      * A queue of elements currently in the map, ordered by expiration time (write time).      * Elements are added to the tail of the queue on write.      */
 annotation|@
 name|GuardedBy
 argument_list|(
@@ -8303,40 +8240,6 @@ argument_list|>
 argument_list|()
 else|:
 literal|null
-expr_stmt|;
-name|recencyQueue
-operator|=
-operator|(
-name|map
-operator|.
-name|expiresAfterAccess
-argument_list|()
-operator|)
-condition|?
-operator|new
-name|ConcurrentLinkedQueue
-argument_list|<
-name|ReferenceEntry
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-argument_list|>
-argument_list|()
-else|:
-name|MapMakerInternalMap
-operator|.
-expr|<
-name|ReferenceEntry
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-operator|>
-name|discardingQueue
-argument_list|()
 expr_stmt|;
 name|expirationQueue
 operator|=
@@ -8973,91 +8876,6 @@ condition|)
 block|{}
 block|}
 comment|// recency queue, shared by expiration and eviction
-comment|/**      * Records the relative order in which this read was performed by adding {@code entry} to the      * recency queue. At write-time, or when the queue is full past the threshold, the queue will      * be drained and the entries therein processed.      *      *<p>Note: locked reads should use {@link #recordLockedRead}.      */
-DECL|method|recordRead (ReferenceEntry<K, V> entry)
-name|void
-name|recordRead
-parameter_list|(
-name|ReferenceEntry
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-name|entry
-parameter_list|)
-block|{
-if|if
-condition|(
-name|map
-operator|.
-name|expiresAfterAccess
-argument_list|()
-condition|)
-block|{
-name|recordExpirationTime
-argument_list|(
-name|entry
-argument_list|,
-name|map
-operator|.
-name|expireAfterAccessNanos
-argument_list|)
-expr_stmt|;
-block|}
-name|recencyQueue
-operator|.
-name|add
-argument_list|(
-name|entry
-argument_list|)
-expr_stmt|;
-block|}
-comment|/**      * Updates the eviction metadata that {@code entry} was just read. This currently amounts to      * adding {@code entry} to relevant eviction lists.      *      *<p>Note: this method should only be called under lock, as it directly manipulates the      * eviction queues. Unlocked reads should use {@link #recordRead}.      */
-annotation|@
-name|GuardedBy
-argument_list|(
-literal|"this"
-argument_list|)
-DECL|method|recordLockedRead (ReferenceEntry<K, V> entry)
-name|void
-name|recordLockedRead
-parameter_list|(
-name|ReferenceEntry
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-name|entry
-parameter_list|)
-block|{
-if|if
-condition|(
-name|map
-operator|.
-name|expiresAfterAccess
-argument_list|()
-condition|)
-block|{
-name|recordExpirationTime
-argument_list|(
-name|entry
-argument_list|,
-name|map
-operator|.
-name|expireAfterAccessNanos
-argument_list|)
-expr_stmt|;
-name|expirationQueue
-operator|.
-name|add
-argument_list|(
-name|entry
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 comment|/**      * Updates eviction metadata that {@code entry} was just written. This currently amounts to      * adding {@code entry} to relevant eviction lists.      */
 annotation|@
 name|GuardedBy
@@ -9077,10 +8895,6 @@ argument_list|>
 name|entry
 parameter_list|)
 block|{
-comment|// we are already under lock, so drain the recency queue immediately
-name|drainRecencyQueue
-argument_list|()
-expr_stmt|;
 if|if
 condition|(
 name|map
@@ -9089,20 +8903,9 @@ name|expires
 argument_list|()
 condition|)
 block|{
-comment|// currently MapMaker ensures that expireAfterWrite and
-comment|// expireAfterAccess are mutually exclusive
 name|long
 name|expiration
 init|=
-name|map
-operator|.
-name|expiresAfterAccess
-argument_list|()
-condition|?
-name|map
-operator|.
-name|expireAfterAccessNanos
-else|:
 name|map
 operator|.
 name|expireAfterWriteNanos
@@ -9121,68 +8924,6 @@ argument_list|(
 name|entry
 argument_list|)
 expr_stmt|;
-block|}
-block|}
-comment|/**      * Drains the recency queue, updating eviction metadata that the entries therein were read in      * the specified relative order. This currently amounts to adding them to relevant eviction      * lists (accounting for the fact that they could have been removed from the map since being      * added to the recency queue).      */
-annotation|@
-name|GuardedBy
-argument_list|(
-literal|"this"
-argument_list|)
-DECL|method|drainRecencyQueue ()
-name|void
-name|drainRecencyQueue
-parameter_list|()
-block|{
-name|ReferenceEntry
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-name|e
-decl_stmt|;
-while|while
-condition|(
-operator|(
-name|e
-operator|=
-name|recencyQueue
-operator|.
-name|poll
-argument_list|()
-operator|)
-operator|!=
-literal|null
-condition|)
-block|{
-comment|// An entry may be in the recency queue despite it being removed from
-comment|// the map . This can occur when the entry was concurrently read while a
-comment|// writer is removing it from the segment or after a clear has removed
-comment|// all of the segment's entries.
-if|if
-condition|(
-name|map
-operator|.
-name|expiresAfterAccess
-argument_list|()
-operator|&&
-name|expirationQueue
-operator|.
-name|contains
-argument_list|(
-name|e
-argument_list|)
-condition|)
-block|{
-name|expirationQueue
-operator|.
-name|add
-argument_list|(
-name|e
-argument_list|)
-expr_stmt|;
-block|}
 block|}
 block|}
 comment|// expiration
@@ -9254,9 +8995,6 @@ name|void
 name|expireEntries
 parameter_list|()
 block|{
-name|drainRecencyQueue
-argument_list|()
-expr_stmt|;
 if|if
 condition|(
 name|expirationQueue
@@ -9610,17 +9348,9 @@ decl_stmt|;
 if|if
 condition|(
 name|value
-operator|!=
+operator|==
 literal|null
 condition|)
-block|{
-name|recordRead
-argument_list|(
-name|e
-argument_list|)
-expr_stmt|;
-block|}
-else|else
 block|{
 name|tryDrainReferenceQueues
 argument_list|()
@@ -10078,11 +9808,6 @@ block|{
 comment|// Mimic
 comment|// "if (!map.containsKey(key)) ...
 comment|// else return map.get(key);
-name|recordLockedRead
-argument_list|(
-name|e
-argument_list|)
-expr_stmt|;
 return|return
 name|entryValue
 return|;
@@ -10768,11 +10493,6 @@ else|else
 block|{
 comment|// Mimic
 comment|// "if (map.containsKey(key)&& map.get(key).equals(oldValue))..."
-name|recordLockedRead
-argument_list|(
-name|e
-argument_list|)
-expr_stmt|;
 return|return
 literal|false
 return|;
@@ -12684,7 +12404,6 @@ expr_stmt|;
 name|expireEntries
 argument_list|()
 expr_stmt|;
-comment|// calls drainRecencyQueue
 name|readCount
 operator|.
 name|set
@@ -15928,8 +15647,6 @@ name|valueEquivalence
 argument_list|,
 name|expireAfterWriteNanos
 argument_list|,
-name|expireAfterAccessNanos
-argument_list|,
 name|concurrencyLevel
 argument_list|,
 name|this
@@ -15997,11 +15714,6 @@ specifier|final
 name|long
 name|expireAfterWriteNanos
 decl_stmt|;
-DECL|field|expireAfterAccessNanos
-specifier|final
-name|long
-name|expireAfterAccessNanos
-decl_stmt|;
 DECL|field|concurrencyLevel
 specifier|final
 name|int
@@ -16017,7 +15729,7 @@ name|V
 argument_list|>
 name|delegate
 decl_stmt|;
-DECL|method|AbstractSerializationProxy ( Strength keyStrength, Strength valueStrength, Equivalence<Object> keyEquivalence, Equivalence<Object> valueEquivalence, long expireAfterWriteNanos, long expireAfterAccessNanos, int concurrencyLevel, ConcurrentMap<K, V> delegate)
+DECL|method|AbstractSerializationProxy ( Strength keyStrength, Strength valueStrength, Equivalence<Object> keyEquivalence, Equivalence<Object> valueEquivalence, long expireAfterWriteNanos, int concurrencyLevel, ConcurrentMap<K, V> delegate)
 name|AbstractSerializationProxy
 parameter_list|(
 name|Strength
@@ -16040,9 +15752,6 @@ name|valueEquivalence
 parameter_list|,
 name|long
 name|expireAfterWriteNanos
-parameter_list|,
-name|long
-name|expireAfterAccessNanos
 parameter_list|,
 name|int
 name|concurrencyLevel
@@ -16085,12 +15794,6 @@ operator|.
 name|expireAfterWriteNanos
 operator|=
 name|expireAfterWriteNanos
-expr_stmt|;
-name|this
-operator|.
-name|expireAfterAccessNanos
-operator|=
-name|expireAfterAccessNanos
 expr_stmt|;
 name|this
 operator|.
@@ -16263,25 +15966,6 @@ name|NANOSECONDS
 argument_list|)
 expr_stmt|;
 block|}
-if|if
-condition|(
-name|expireAfterAccessNanos
-operator|>
-literal|0
-condition|)
-block|{
-name|mapMaker
-operator|.
-name|expireAfterAccess
-argument_list|(
-name|expireAfterAccessNanos
-argument_list|,
-name|TimeUnit
-operator|.
-name|NANOSECONDS
-argument_list|)
-expr_stmt|;
-block|}
 return|return
 name|mapMaker
 return|;
@@ -16381,7 +16065,7 @@ name|serialVersionUID
 init|=
 literal|3
 decl_stmt|;
-DECL|method|SerializationProxy ( Strength keyStrength, Strength valueStrength, Equivalence<Object> keyEquivalence, Equivalence<Object> valueEquivalence, long expireAfterWriteNanos, long expireAfterAccessNanos, int concurrencyLevel, ConcurrentMap<K, V> delegate)
+DECL|method|SerializationProxy ( Strength keyStrength, Strength valueStrength, Equivalence<Object> keyEquivalence, Equivalence<Object> valueEquivalence, long expireAfterWriteNanos, int concurrencyLevel, ConcurrentMap<K, V> delegate)
 name|SerializationProxy
 parameter_list|(
 name|Strength
@@ -16404,9 +16088,6 @@ name|valueEquivalence
 parameter_list|,
 name|long
 name|expireAfterWriteNanos
-parameter_list|,
-name|long
-name|expireAfterAccessNanos
 parameter_list|,
 name|int
 name|concurrencyLevel
@@ -16431,8 +16112,6 @@ argument_list|,
 name|valueEquivalence
 argument_list|,
 name|expireAfterWriteNanos
-argument_list|,
-name|expireAfterAccessNanos
 argument_list|,
 name|concurrencyLevel
 argument_list|,

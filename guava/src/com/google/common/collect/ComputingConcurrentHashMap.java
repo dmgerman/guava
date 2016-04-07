@@ -508,11 +508,6 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|recordRead
-argument_list|(
-name|e
-argument_list|)
-expr_stmt|;
 return|return
 name|value
 return|;
@@ -733,11 +728,6 @@ comment|// TODO(kak): Remove this branch.
 block|}
 else|else
 block|{
-name|recordLockedRead
-argument_list|(
-name|e
-argument_list|)
-expr_stmt|;
 return|return
 name|value
 return|;
@@ -885,11 +875,6 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|recordRead
-argument_list|(
-name|e
-argument_list|)
-expr_stmt|;
 return|return
 name|value
 return|;
@@ -1715,8 +1700,6 @@ name|valueEquivalence
 argument_list|,
 name|expireAfterWriteNanos
 argument_list|,
-name|expireAfterAccessNanos
-argument_list|,
 name|concurrencyLevel
 argument_list|,
 name|this
@@ -1757,7 +1740,7 @@ name|V
 argument_list|>
 name|computingFunction
 decl_stmt|;
-DECL|method|ComputingSerializationProxy ( Strength keyStrength, Strength valueStrength, Equivalence<Object> keyEquivalence, Equivalence<Object> valueEquivalence, long expireAfterWriteNanos, long expireAfterAccessNanos, int concurrencyLevel, ConcurrentMap<K, V> delegate, Function<? super K, ? extends V> computingFunction)
+DECL|method|ComputingSerializationProxy ( Strength keyStrength, Strength valueStrength, Equivalence<Object> keyEquivalence, Equivalence<Object> valueEquivalence, long expireAfterWriteNanos, int concurrencyLevel, ConcurrentMap<K, V> delegate, Function<? super K, ? extends V> computingFunction)
 name|ComputingSerializationProxy
 parameter_list|(
 name|Strength
@@ -1780,9 +1763,6 @@ name|valueEquivalence
 parameter_list|,
 name|long
 name|expireAfterWriteNanos
-parameter_list|,
-name|long
-name|expireAfterAccessNanos
 parameter_list|,
 name|int
 name|concurrencyLevel
@@ -1819,8 +1799,6 @@ argument_list|,
 name|valueEquivalence
 argument_list|,
 name|expireAfterWriteNanos
-argument_list|,
-name|expireAfterAccessNanos
 argument_list|,
 name|concurrencyLevel
 argument_list|,

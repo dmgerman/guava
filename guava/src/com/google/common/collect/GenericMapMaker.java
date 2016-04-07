@@ -261,26 +261,6 @@ name|TimeUnit
 name|unit
 parameter_list|)
 function_decl|;
-comment|/**    * See {@link MapMaker#expireAfterAccess}.    */
-annotation|@
-name|GwtIncompatible
-DECL|method|expireAfterAccess (long duration, TimeUnit unit)
-specifier|abstract
-name|GenericMapMaker
-argument_list|<
-name|K0
-argument_list|,
-name|V0
-argument_list|>
-name|expireAfterAccess
-parameter_list|(
-name|long
-name|duration
-parameter_list|,
-name|TimeUnit
-name|unit
-parameter_list|)
-function_decl|;
 comment|/**    * See {@link MapMaker#makeMap}.    */
 DECL|method|makeMap ()
 specifier|public
