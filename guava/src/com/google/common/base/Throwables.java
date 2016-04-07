@@ -224,7 +224,56 @@ specifier|private
 name|Throwables
 parameter_list|()
 block|{}
-comment|/**    * Propagates {@code throwable} exactly as-is, if and only if it is an instance of {@code    * declaredType}. Example usage:    *    *<pre>    * try {    *   someMethodThatCouldThrowAnything();    * } catch (IKnowWhatToDoWithThisException e) {    *   handle(e);    * } catch (Throwable t) {    *   Throwables.propagateIfInstanceOf(t, IOException.class);    *   Throwables.propagateIfInstanceOf(t, SQLException.class);    *   throw Throwables.propagate(t);    * }    *</pre>    */
+comment|/**    * Throws {@code throwable} if it is an instance of {@code declaredType}. Example usage:    *    *<pre>    * for (Foo foo : foos) {    *   try {    *     foo.bar();    *   } catch (BarException | RuntimeException | Error t) {    *     failure = t;    *   }    * }    * if (failure != null) {    *   throwIfInstanceOf(failure, BarException.class);    *   throwIfUnchecked(failure);    *   throw new AssertionError(failure);    * }    *</pre>    *    * @since 20.0    */
+DECL|method|throwIfInstanceOf ( Throwable throwable, Class<X> declaredType)
+specifier|public
+specifier|static
+parameter_list|<
+name|X
+extends|extends
+name|Throwable
+parameter_list|>
+name|void
+name|throwIfInstanceOf
+parameter_list|(
+name|Throwable
+name|throwable
+parameter_list|,
+name|Class
+argument_list|<
+name|X
+argument_list|>
+name|declaredType
+parameter_list|)
+throws|throws
+name|X
+block|{
+name|checkNotNull
+argument_list|(
+name|throwable
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|declaredType
+operator|.
+name|isInstance
+argument_list|(
+name|throwable
+argument_list|)
+condition|)
+block|{
+throw|throw
+name|declaredType
+operator|.
+name|cast
+argument_list|(
+name|throwable
+argument_list|)
+throw|;
+block|}
+block|}
+comment|/**    *<b>To be deprecated.</b> Use {@link #throwIfInstanceOf}, which has the same behavior but    * rejects {@code null}.    *    * Propagates {@code throwable} exactly as-is, if and only if it is an instance of {@code    * declaredType}. Example usage:    *    *<pre>    * try {    *   someMethodThatCouldThrowAnything();    * } catch (IKnowWhatToDoWithThisException e) {    *   handle(e);    * } catch (Throwable t) {    *   Throwables.propagateIfInstanceOf(t, IOException.class);    *   Throwables.propagateIfInstanceOf(t, SQLException.class);    *   throw Throwables.propagate(t);    * }    *</pre>    */
 DECL|method|propagateIfInstanceOf ( @ullable Throwable throwable, Class<X> declaredType)
 specifier|public
 specifier|static
@@ -250,32 +299,68 @@ parameter_list|)
 throws|throws
 name|X
 block|{
-comment|// Check for null is needed to avoid frequent JNI calls to isInstance().
 if|if
 condition|(
 name|throwable
 operator|!=
 literal|null
-operator|&&
+condition|)
+block|{
+name|throwIfInstanceOf
+argument_list|(
+name|throwable
+argument_list|,
 name|declaredType
-operator|.
-name|isInstance
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+comment|/**    * Throws {@code throwable} if it is a {@link RuntimeException} or {@link Error}. Example usage:    *    *<pre>    * for (Foo foo : foos) {    *   try {    *     foo.bar();    *   } catch (RuntimeException | Error t) {    *     failure = t;    *   }    * }    * if (failure != null) {    *   throwIfUnchecked(failure);    *   throw new AssertionError(failure);    * }    *</pre>    *    * @since 20.0    */
+DECL|method|throwIfUnchecked (Throwable throwable)
+specifier|public
+specifier|static
+name|void
+name|throwIfUnchecked
+parameter_list|(
+name|Throwable
+name|throwable
+parameter_list|)
+block|{
+name|checkNotNull
 argument_list|(
 name|throwable
 argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|throwable
+operator|instanceof
+name|RuntimeException
 condition|)
 block|{
 throw|throw
-name|declaredType
-operator|.
-name|cast
-argument_list|(
+operator|(
+name|RuntimeException
+operator|)
 name|throwable
-argument_list|)
+throw|;
+block|}
+if|if
+condition|(
+name|throwable
+operator|instanceof
+name|Error
+condition|)
+block|{
+throw|throw
+operator|(
+name|Error
+operator|)
+name|throwable
 throw|;
 block|}
 block|}
-comment|/**    * Propagates {@code throwable} exactly as-is, if and only if it is an instance of    * {@link RuntimeException} or {@link Error}. Example usage:    *    *<pre>    * try {    *   someMethodThatCouldThrowAnything();    * } catch (IKnowWhatToDoWithThisException e) {    *   handle(e);    * } catch (Throwable t) {    *   Throwables.propagateIfPossible(t);    *   throw new RuntimeException("unexpected", t);    * }    *</pre>    */
+comment|/**    *<b>To be deprecated.</b> Use {@link #throwIfUnchecked}, which has the same behavior but rejects    * {@code null}.    *    *<p>Propagates {@code throwable} exactly as-is, if and only if it is an instance of    * {@link RuntimeException} or {@link Error}. Example usage:    *    *<pre>    * try {    *   someMethodThatCouldThrowAnything();    * } catch (IKnowWhatToDoWithThisException e) {    *   handle(e);    * } catch (Throwable t) {    *   Throwables.propagateIfPossible(t);    *   throw new RuntimeException("unexpected", t);    * }    *</pre>    */
 DECL|method|propagateIfPossible (@ullable Throwable throwable)
 specifier|public
 specifier|static
@@ -288,24 +373,19 @@ name|Throwable
 name|throwable
 parameter_list|)
 block|{
-name|propagateIfInstanceOf
+if|if
+condition|(
+name|throwable
+operator|!=
+literal|null
+condition|)
+block|{
+name|throwIfUnchecked
 argument_list|(
 name|throwable
-argument_list|,
-name|Error
-operator|.
-name|class
 argument_list|)
 expr_stmt|;
-name|propagateIfInstanceOf
-argument_list|(
-name|throwable
-argument_list|,
-name|RuntimeException
-operator|.
-name|class
-argument_list|)
-expr_stmt|;
+block|}
 block|}
 comment|/**    * Propagates {@code throwable} exactly as-is, if and only if it is an instance of    * {@link RuntimeException}, {@link Error}, or {@code declaredType}. Example usage:    *    *<pre>    * try {    *   someMethodThatCouldThrowAnything();    * } catch (IKnowWhatToDoWithThisException e) {    *   handle(e);    * } catch (Throwable t) {    *   Throwables.propagateIfPossible(t, OtherException.class);    *   throw new RuntimeException("unexpected", t);    * }    *</pre>    *    * @param throwable the Throwable to possibly propagate    * @param declaredType the single checked exception type declared by the calling method    */
 DECL|method|propagateIfPossible ( @ullable Throwable throwable, Class<X> declaredType)
@@ -404,7 +484,7 @@ name|declaredType2
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Propagates {@code throwable} as-is if it is an instance of {@link RuntimeException} or    * {@link Error}, or else as a last resort, wraps it in a {@code RuntimeException} and then    * propagates.    *    *<p>This method always throws an exception. The {@code RuntimeException} return type allows    * client code to signal to the compiler that statements after the call are unreachable. Example    * usage:    *    *<pre>    * T doSomething() {    *   try {    *     return someMethodThatCouldThrowAnything();    *   } catch (IKnowWhatToDoWithThisException e) {    *     return handle(e);    *   } catch (Throwable t) {    *     throw Throwables.propagate(t);    *   }    * }    *</pre>    *    * @param throwable the Throwable to propagate    * @return nothing will ever be returned; this return type is only for your convenience, as    *     illustrated in the example above    */
+comment|/**    *<b>To be deprecated.</b> Use {@code throw e} or {@code throw new RuntimeException(e)} directly,    * or use a combination of {@link #throwIfUnchecked} and {@code throw new RuntimeException(e)}.    *    *<p>Propagates {@code throwable} as-is if it is an instance of {@link RuntimeException} or    * {@link Error}, or else as a last resort, wraps it in a {@code RuntimeException} and then    * propagates.    *    *<p>This method always throws an exception. The {@code RuntimeException} return type allows    * client code to signal to the compiler that statements after the call are unreachable. Example    * usage:    *    *<pre>    * T doSomething() {    *   try {    *     return someMethodThatCouldThrowAnything();    *   } catch (IKnowWhatToDoWithThisException e) {    *     return handle(e);    *   } catch (Throwable t) {    *     throw Throwables.propagate(t);    *   }    * }    *</pre>    *    * @param throwable the Throwable to propagate    * @return nothing will ever be returned; this return type is only for your convenience, as    *     illustrated in the example above    */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|propagate (Throwable throwable)
@@ -417,12 +497,9 @@ name|Throwable
 name|throwable
 parameter_list|)
 block|{
-name|propagateIfPossible
-argument_list|(
-name|checkNotNull
+name|throwIfUnchecked
 argument_list|(
 name|throwable
-argument_list|)
 argument_list|)
 expr_stmt|;
 throw|throw
