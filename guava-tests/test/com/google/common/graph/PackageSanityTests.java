@@ -380,15 +380,6 @@ argument_list|,
 name|IMMUTABLE_NETWORK_B
 argument_list|)
 expr_stmt|;
-comment|// TODO(b/28091268): the below comment is obsolete now that GraphConfig no longer exists;
-comment|// what updating of this test do we need to do?
-comment|// We override AbstractPackageSanityTests's equality testing of mutable graphs by defining
-comment|// testEquals() in ConfigurableUndirectedNetworkTest and ConfigurableDirectedNetworkTest.
-comment|// If we don't define testEquals(), the tool tries to automatically create non-equal, mutable
-comment|// graphs by passing different instances of NetworkBuilder into their constructors. However,
-comment|// the NetworkBuilder instances are *not* used to determine equality for mutable graphs.
-comment|// Therefore, the tool ends up creating 2 equal mutable instances and it causes failures.
-comment|// However, the tool is still checking the nullability contracts of the mutable graphs.
 block|}
 annotation|@
 name|Override
@@ -407,6 +398,13 @@ operator|.
 name|testNulls
 argument_list|()
 expr_stmt|;
+throw|throw
+operator|new
+name|Error
+argument_list|(
+literal|"Should have thrown AssertionFailedError"
+argument_list|)
+throw|;
 block|}
 catch|catch
 parameter_list|(
