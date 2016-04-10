@@ -79,7 +79,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests for an undirected {@link ConfigurableGraph} allowing parallel edges.  */
+comment|/**  * Tests for an undirected {@link ConfigurableNetwork} allowing parallel edges.  */
 end_comment
 
 begin_class
@@ -90,18 +90,18 @@ name|JUnit4
 operator|.
 name|class
 argument_list|)
-DECL|class|ConfigurableUndirectedMultigraphTest
+DECL|class|ConfigurableUndirectedMultiNetworkTest
 specifier|public
 class|class
-name|ConfigurableUndirectedMultigraphTest
+name|ConfigurableUndirectedMultiNetworkTest
 extends|extends
-name|ConfigurableUndirectedGraphTest
+name|ConfigurableUndirectedNetworkTest
 block|{
 annotation|@
 name|Override
 DECL|method|createGraph ()
 specifier|public
-name|Graph
+name|MutableNetwork
 argument_list|<
 name|Integer
 argument_list|,
@@ -111,7 +111,7 @@ name|createGraph
 parameter_list|()
 block|{
 return|return
-name|GraphBuilder
+name|NetworkBuilder
 operator|.
 name|undirected
 argument_list|()

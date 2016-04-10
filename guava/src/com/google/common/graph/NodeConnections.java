@@ -27,7 +27,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An interface for representing an origin node's adjacent nodes and incident edges in a graph.  *  * @author James Sexton  * @param<N> Node parameter type  * @param<E> Edge parameter type  */
+comment|/**  * An interface for representing an origin node's adjacent nodes and incident edges in a network.  *  * @author James Sexton  * @param<N> Node parameter type  * @param<E> Edge parameter type  */
 end_comment
 
 begin_interface
@@ -88,7 +88,7 @@ argument_list|>
 name|outEdges
 parameter_list|()
 function_decl|;
-comment|/**    * Remove {@code edge} from the sets of in edges. If this is known to be the last remaining edge    * between two (formally) connected nodes, {@link #removePredecessor} must also be called.    */
+comment|/**    * Remove {@code edge} from the sets of in edges. If this is known to be the last remaining edge    * between two (formerly) connected nodes, {@link #removePredecessor} must also be called.    */
 DECL|method|removeInEdge (Object edge)
 name|void
 name|removeInEdge
@@ -97,7 +97,7 @@ name|Object
 name|edge
 parameter_list|)
 function_decl|;
-comment|/**    * Remove {@code edge} from the sets of out edges. If this is known to be the last remaining edge    * between two (formally) connected nodes, {@link #removeSuccessor} must also be called.    */
+comment|/**    * Remove {@code edge} from the sets of out edges. If this is known to be the last remaining edge    * between two (formerly) connected nodes, {@link #removeSuccessor} must also be called.    */
 DECL|method|removeOutEdge (Object edge)
 name|void
 name|removeOutEdge

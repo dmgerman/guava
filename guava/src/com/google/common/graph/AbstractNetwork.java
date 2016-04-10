@@ -27,22 +27,26 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This class provides a skeletal implementation of {@link Graph}. It is recommended to extend this  * class rather than implement {@link Graph} directly, to ensure consistent {@link #equals(Object)}  * and {@link #hashCode()} results across different graph implementations.  *  * @author James Sexton  * @param<N> Node parameter type  */
+comment|/**  * This class provides a skeletal implementation of {@link Graph}. It is recommended to extend this  * class rather than implement {@link Graph} directly, to ensure consistent {@link #equals(Object)}  * and {@link #hashCode()} results across different graph implementations.  *  * @author James Sexton  * @param<N> Node parameter type  * @param<E> Edge parameter type  */
 end_comment
 
 begin_class
-DECL|class|AbstractGraph
+DECL|class|AbstractNetwork
 specifier|public
 specifier|abstract
 class|class
-name|AbstractGraph
+name|AbstractNetwork
 parameter_list|<
 name|N
+parameter_list|,
+name|E
 parameter_list|>
 implements|implements
-name|Graph
+name|Network
 argument_list|<
 name|N
+argument_list|,
+name|E
 argument_list|>
 block|{
 annotation|@
@@ -56,9 +60,8 @@ name|Object
 name|node
 parameter_list|)
 block|{
-comment|// only works for non-multigraphs; multigraphs not yet supported
 return|return
-name|adjacentNodes
+name|incidentEdges
 argument_list|(
 name|node
 argument_list|)
@@ -78,9 +81,8 @@ name|Object
 name|node
 parameter_list|)
 block|{
-comment|// only works for non-multigraphs; multigraphs not yet supported
 return|return
-name|predecessors
+name|inEdges
 argument_list|(
 name|node
 argument_list|)
@@ -100,9 +102,8 @@ name|Object
 name|node
 parameter_list|)
 block|{
-comment|// only works for non-multigraphs; multigraphs not yet supported
 return|return
-name|successors
+name|outEdges
 argument_list|(
 name|node
 argument_list|)
@@ -130,7 +131,7 @@ operator|!
 operator|(
 name|object
 operator|instanceof
-name|Graph
+name|Network
 operator|)
 condition|)
 block|{
@@ -146,8 +147,10 @@ argument_list|(
 name|this
 argument_list|,
 operator|(
-name|Graph
+name|Network
 argument_list|<
+name|?
+argument_list|,
 name|?
 argument_list|>
 operator|)

@@ -45,7 +45,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A subinterface of {@code Graph} which specifies that all edges are hyperedges, that is,  * they connect arbitrary sets of nodes rather than pairs of nodes.  *  *<p>A few notes about how hyperedges and connectivity:  *<ul>  *<li>Hyperedges, like undirected edges, are both incoming and outgoing edges.  *<li>Hyperedges incident to a single node {@code node} connect {@code node} to itself; such edges  *     are analogous to self-loops in graphs.  Hyperedges incident to> 1 nodes do not connect any  *     of their incident nodes to themselves.  *</ul>  *  * @author Joshua O'Madadhain  * @param<N> Node parameter type  * @param<E> Edge parameter type  * @since 20.0  */
+comment|/**  * A subinterface of {@link Network} which specifies that all edges are hyperedges, that is,  * they connect arbitrary sets of nodes rather than pairs of nodes.  *  *<p>A few notes about how hyperedges and connectivity:  *<ul>  *<li>Hyperedges, like undirected edges, are both incoming and outgoing edges.  *<li>Hyperedges incident to a single node {@code node} connect {@code node} to itself; such edges  *     are analogous to self-loops in graphs.  Hyperedges incident to> 1 nodes do not connect any  *     of their incident nodes to themselves.  *</ul>  *  * @author Joshua O'Madadhain  * @param<N> Node parameter type  * @param<E> Edge parameter type  * @since 20.0  */
 end_comment
 
 begin_interface
@@ -61,7 +61,7 @@ parameter_list|,
 name|E
 parameter_list|>
 extends|extends
-name|Graph
+name|Network
 argument_list|<
 name|N
 argument_list|,

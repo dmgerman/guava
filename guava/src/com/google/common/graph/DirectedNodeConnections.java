@@ -707,7 +707,7 @@ name|edge
 argument_list|)
 expr_stmt|;
 block|}
-comment|// For now, hashCode() and equals() are unused by any graph implementation.
+comment|// For now, hashCode() and equals() are unused by any implementation.
 comment|// If needed, there may be room for optimization (e.g. only considering the edges).
 annotation|@
 name|Override

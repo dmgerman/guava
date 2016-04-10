@@ -28,7 +28,7 @@ name|common
 operator|.
 name|graph
 operator|.
-name|GraphBuilder
+name|ImmutableNetwork
 import|;
 end_import
 
@@ -42,7 +42,7 @@ name|common
 operator|.
 name|graph
 operator|.
-name|ImmutableGraph
+name|MutableNetwork
 import|;
 end_import
 
@@ -56,40 +56,46 @@ name|common
 operator|.
 name|graph
 operator|.
-name|MutableGraph
+name|NetworkBuilder
 import|;
 end_import
 
 begin_comment
-comment|/**  * This class is useful for fluently building an immutable graph in tests. Example usage:  *<pre><code>  * // Constructs the following graph: (A)    (B)--->(C)  * private static final ImmutableGraph<String> GRAPH =  *     TestGraphBuilder.<String>init(GraphBuilder.directed())  *         .addNode("A")  *         .addNode("B")  *         .addNode("C")  *         .addEdge("B", "C")  *         .toImmutableGraph();  *</code></pre>  */
+comment|/**  * This class is useful for fluently building an immutable graph in tests. Example usage:  *<pre><code>  * // Constructs the following graph: (A)    (B)--->(C)  * private static final ImmutableNetwork<String, String> GRAPH =  *     TestNetworkBuilder.<String, String>init(NetworkBuilder.directed())  *         .addNode("A")  *         .addNode("B")  *         .addNode("C")  *         .addEdge("B->C", "B", "C")  *         .toImmutableNetwork();  *</code></pre>  */
 end_comment
 
 begin_class
-DECL|class|TestGraphBuilder
+DECL|class|TestNetworkBuilder
 specifier|public
 specifier|final
 class|class
-name|TestGraphBuilder
+name|TestNetworkBuilder
 parameter_list|<
 name|N
+parameter_list|,
+name|E
 parameter_list|>
 block|{
 DECL|field|graph
 specifier|private
 specifier|final
-name|MutableGraph
+name|MutableNetwork
 argument_list|<
 name|N
+argument_list|,
+name|E
 argument_list|>
 name|graph
 decl_stmt|;
-DECL|method|TestGraphBuilder (MutableGraph<N> graph)
+DECL|method|TestNetworkBuilder (MutableNetwork<N, E> graph)
 specifier|private
-name|TestGraphBuilder
+name|TestNetworkBuilder
 parameter_list|(
-name|MutableGraph
+name|MutableNetwork
 argument_list|<
 name|N
+argument_list|,
+name|E
 argument_list|>
 name|graph
 parameter_list|)
@@ -101,38 +107,50 @@ operator|=
 name|graph
 expr_stmt|;
 block|}
-DECL|method|init (GraphBuilder<? super N> builder)
+DECL|method|init (NetworkBuilder<? super N, ? super E> builder)
 specifier|public
 specifier|static
 parameter_list|<
 name|N
+parameter_list|,
+name|E
 parameter_list|>
-name|TestGraphBuilder
+name|TestNetworkBuilder
 argument_list|<
 name|N
+argument_list|,
+name|E
 argument_list|>
 name|init
 parameter_list|(
-name|GraphBuilder
+name|NetworkBuilder
 argument_list|<
 name|?
 super|super
 name|N
+argument_list|,
+name|?
+super|super
+name|E
 argument_list|>
 name|builder
 parameter_list|)
 block|{
 return|return
 operator|new
-name|TestGraphBuilder
+name|TestNetworkBuilder
 argument_list|<
 name|N
+argument_list|,
+name|E
 argument_list|>
 argument_list|(
 name|builder
 operator|.
 expr|<
 name|N
+argument_list|,
+name|E
 operator|>
 name|build
 argument_list|()
@@ -141,9 +159,11 @@ return|;
 block|}
 DECL|method|addNode (N node)
 specifier|public
-name|TestGraphBuilder
+name|TestNetworkBuilder
 argument_list|<
 name|N
+argument_list|,
+name|E
 argument_list|>
 name|addNode
 parameter_list|(
@@ -162,14 +182,19 @@ return|return
 name|this
 return|;
 block|}
-DECL|method|addEdge (N node1, N node2)
+DECL|method|addEdge (E edge, N node1, N node2)
 specifier|public
-name|TestGraphBuilder
+name|TestNetworkBuilder
 argument_list|<
 name|N
+argument_list|,
+name|E
 argument_list|>
 name|addEdge
 parameter_list|(
+name|E
+name|edge
+parameter_list|,
 name|N
 name|node1
 parameter_list|,
@@ -181,6 +206,8 @@ name|graph
 operator|.
 name|addEdge
 argument_list|(
+name|edge
+argument_list|,
 name|node1
 argument_list|,
 name|node2
@@ -190,17 +217,19 @@ return|return
 name|this
 return|;
 block|}
-DECL|method|toImmutableGraph ()
+DECL|method|toImmutableNetwork ()
 specifier|public
-name|ImmutableGraph
+name|ImmutableNetwork
 argument_list|<
 name|N
+argument_list|,
+name|E
 argument_list|>
-name|toImmutableGraph
+name|toImmutableNetwork
 parameter_list|()
 block|{
 return|return
-name|ImmutableGraph
+name|ImmutableNetwork
 operator|.
 name|copyOf
 argument_list|(

@@ -227,7 +227,7 @@ name|void
 name|isCyclic_emptyGraph
 parameter_list|()
 block|{
-name|Graph
+name|Network
 argument_list|<
 name|Integer
 argument_list|,
@@ -235,7 +235,7 @@ name|String
 argument_list|>
 name|directedGraph
 init|=
-name|GraphBuilder
+name|NetworkBuilder
 operator|.
 name|directed
 argument_list|()
@@ -263,7 +263,7 @@ name|void
 name|isCyclic_isolatedNodes
 parameter_list|()
 block|{
-name|Graph
+name|MutableNetwork
 argument_list|<
 name|Integer
 argument_list|,
@@ -271,7 +271,7 @@ name|String
 argument_list|>
 name|directedGraph
 init|=
-name|GraphBuilder
+name|NetworkBuilder
 operator|.
 name|directed
 argument_list|()
@@ -324,7 +324,7 @@ name|void
 name|isCyclic_oneEdge
 parameter_list|()
 block|{
-name|Graph
+name|MutableNetwork
 argument_list|<
 name|Integer
 argument_list|,
@@ -332,7 +332,7 @@ name|String
 argument_list|>
 name|directedGraph
 init|=
-name|GraphBuilder
+name|NetworkBuilder
 operator|.
 name|directed
 argument_list|()
@@ -371,7 +371,7 @@ name|void
 name|isCyclic_selfLoopEdge
 parameter_list|()
 block|{
-name|Graph
+name|MutableNetwork
 argument_list|<
 name|Integer
 argument_list|,
@@ -379,7 +379,7 @@ name|String
 argument_list|>
 name|directedGraph
 init|=
-name|GraphBuilder
+name|NetworkBuilder
 operator|.
 name|directed
 argument_list|()
@@ -418,7 +418,7 @@ name|void
 name|isCyclic_twoParallelEdges
 parameter_list|()
 block|{
-name|Graph
+name|MutableNetwork
 argument_list|<
 name|Integer
 argument_list|,
@@ -426,7 +426,7 @@ name|String
 argument_list|>
 name|directedGraph
 init|=
-name|GraphBuilder
+name|NetworkBuilder
 operator|.
 name|directed
 argument_list|()
@@ -481,7 +481,7 @@ name|void
 name|isCyclic_twoAcyclicEdges
 parameter_list|()
 block|{
-name|Graph
+name|MutableNetwork
 argument_list|<
 name|Integer
 argument_list|,
@@ -489,7 +489,7 @@ name|String
 argument_list|>
 name|directedGraph
 init|=
-name|GraphBuilder
+name|NetworkBuilder
 operator|.
 name|directed
 argument_list|()
@@ -539,7 +539,7 @@ name|void
 name|isCyclic_twoCyclicEdges
 parameter_list|()
 block|{
-name|Graph
+name|MutableNetwork
 argument_list|<
 name|Integer
 argument_list|,
@@ -547,7 +547,7 @@ name|String
 argument_list|>
 name|directedGraph
 init|=
-name|GraphBuilder
+name|NetworkBuilder
 operator|.
 name|directed
 argument_list|()
@@ -597,7 +597,7 @@ name|void
 name|isCyclic_threeAcyclicEdges
 parameter_list|()
 block|{
-name|Graph
+name|MutableNetwork
 argument_list|<
 name|Integer
 argument_list|,
@@ -605,7 +605,7 @@ name|String
 argument_list|>
 name|directedGraph
 init|=
-name|GraphBuilder
+name|NetworkBuilder
 operator|.
 name|directed
 argument_list|()
@@ -666,7 +666,7 @@ name|void
 name|isCyclic_threeCyclicEdges
 parameter_list|()
 block|{
-name|Graph
+name|MutableNetwork
 argument_list|<
 name|Integer
 argument_list|,
@@ -674,7 +674,7 @@ name|String
 argument_list|>
 name|directedGraph
 init|=
-name|GraphBuilder
+name|NetworkBuilder
 operator|.
 name|directed
 argument_list|()
@@ -735,7 +735,7 @@ name|void
 name|isCyclic_disconnectedCyclicGraph
 parameter_list|()
 block|{
-name|Graph
+name|MutableNetwork
 argument_list|<
 name|Integer
 argument_list|,
@@ -743,7 +743,7 @@ name|String
 argument_list|>
 name|directedGraph
 init|=
-name|GraphBuilder
+name|NetworkBuilder
 operator|.
 name|directed
 argument_list|()
@@ -800,7 +800,7 @@ name|void
 name|isCyclic_cyclicMultigraph
 parameter_list|()
 block|{
-name|Graph
+name|MutableNetwork
 argument_list|<
 name|Integer
 argument_list|,
@@ -808,7 +808,7 @@ name|String
 argument_list|>
 name|directedGraph
 init|=
-name|GraphBuilder
+name|NetworkBuilder
 operator|.
 name|directed
 argument_list|()
@@ -885,7 +885,7 @@ name|void
 name|isCyclic_multipleCycles
 parameter_list|()
 block|{
-name|Graph
+name|MutableNetwork
 argument_list|<
 name|Integer
 argument_list|,
@@ -893,7 +893,7 @@ name|String
 argument_list|>
 name|directedGraph
 init|=
-name|GraphBuilder
+name|NetworkBuilder
 operator|.
 name|directed
 argument_list|()
@@ -970,7 +970,7 @@ name|void
 name|roots_emptyGraph
 parameter_list|()
 block|{
-name|Graph
+name|Network
 argument_list|<
 name|Integer
 argument_list|,
@@ -978,7 +978,7 @@ name|String
 argument_list|>
 name|directedGraph
 init|=
-name|GraphBuilder
+name|NetworkBuilder
 operator|.
 name|directed
 argument_list|()
@@ -1006,7 +1006,7 @@ name|void
 name|roots_trivialGraph
 parameter_list|()
 block|{
-name|Graph
+name|MutableNetwork
 argument_list|<
 name|Integer
 argument_list|,
@@ -1014,7 +1014,7 @@ name|String
 argument_list|>
 name|directedGraph
 init|=
-name|GraphBuilder
+name|NetworkBuilder
 operator|.
 name|directed
 argument_list|()
@@ -1056,7 +1056,7 @@ name|void
 name|roots_nodeWithSelfLoop
 parameter_list|()
 block|{
-name|Graph
+name|MutableNetwork
 argument_list|<
 name|Integer
 argument_list|,
@@ -1064,7 +1064,7 @@ name|String
 argument_list|>
 name|directedGraph
 init|=
-name|GraphBuilder
+name|NetworkBuilder
 operator|.
 name|directed
 argument_list|()
@@ -1110,7 +1110,7 @@ name|void
 name|roots_nodeWithChildren
 parameter_list|()
 block|{
-name|Graph
+name|MutableNetwork
 argument_list|<
 name|Integer
 argument_list|,
@@ -1118,7 +1118,7 @@ name|String
 argument_list|>
 name|directedGraph
 init|=
-name|GraphBuilder
+name|NetworkBuilder
 operator|.
 name|directed
 argument_list|()
@@ -1175,7 +1175,7 @@ name|void
 name|roots_cycle
 parameter_list|()
 block|{
-name|Graph
+name|MutableNetwork
 argument_list|<
 name|Integer
 argument_list|,
@@ -1183,7 +1183,7 @@ name|String
 argument_list|>
 name|directedGraph
 init|=
-name|GraphBuilder
+name|NetworkBuilder
 operator|.
 name|directed
 argument_list|()
@@ -1233,7 +1233,7 @@ name|void
 name|roots_multipleRoots
 parameter_list|()
 block|{
-name|Graph
+name|MutableNetwork
 argument_list|<
 name|Integer
 argument_list|,
@@ -1241,7 +1241,7 @@ name|String
 argument_list|>
 name|directedGraph
 init|=
-name|GraphBuilder
+name|NetworkBuilder
 operator|.
 name|directed
 argument_list|()

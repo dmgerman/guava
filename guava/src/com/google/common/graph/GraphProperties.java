@@ -111,7 +111,7 @@ name|GraphProperties
 parameter_list|()
 block|{}
 comment|/**    * Returns true iff {@code graph} has at least one cycle.    */
-DECL|method|isCyclic (Graph<?, ?> graph)
+DECL|method|isCyclic (Graph<?> graph)
 specifier|public
 specifier|static
 name|boolean
@@ -119,8 +119,6 @@ name|isCyclic
 parameter_list|(
 name|Graph
 argument_list|<
-name|?
-argument_list|,
 name|?
 argument_list|>
 name|graph
@@ -199,7 +197,7 @@ literal|false
 return|;
 block|}
 comment|/**    * Returns true iff there is a cycle in the subgraph of {@code graph} reachable from    * {@code node}.    */
-DECL|method|isSubgraphCyclic ( Graph<?, ?> graph, Map<Object, NodeVisitState> nodeToVisitState, Object node)
+DECL|method|isSubgraphCyclic ( Graph<?> graph, Map<Object, NodeVisitState> nodeToVisitState, Object node)
 specifier|private
 specifier|static
 name|boolean
@@ -207,8 +205,6 @@ name|isSubgraphCyclic
 parameter_list|(
 name|Graph
 argument_list|<
-name|?
-argument_list|,
 name|?
 argument_list|>
 name|graph
@@ -327,7 +323,7 @@ DECL|enumConstant|COMPLETE
 name|COMPLETE
 block|}
 comment|/**    * Returns the set of all nodes in {@code graph} that have no predecessors.    *    *<p>Note that in an undirected graph, this is equivalent to all isolated nodes.    */
-DECL|method|roots (Graph<N, ?> graph)
+DECL|method|roots (Graph<N> graph)
 specifier|public
 specifier|static
 parameter_list|<
@@ -342,8 +338,6 @@ parameter_list|(
 name|Graph
 argument_list|<
 name|N
-argument_list|,
-name|?
 argument_list|>
 name|graph
 parameter_list|)
