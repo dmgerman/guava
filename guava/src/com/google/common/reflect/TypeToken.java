@@ -300,6 +300,18 @@ name|lang
 operator|.
 name|reflect
 operator|.
+name|Modifier
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|lang
+operator|.
+name|reflect
+operator|.
 name|ParameterizedType
 import|;
 end_import
@@ -4401,6 +4413,17 @@ name|cls
 operator|.
 name|isMemberClass
 argument_list|()
+operator|&&
+operator|!
+name|Modifier
+operator|.
+name|isStatic
+argument_list|(
+name|cls
+operator|.
+name|getModifiers
+argument_list|()
+argument_list|)
 condition|?
 name|toGenericType
 argument_list|(
@@ -4425,6 +4448,12 @@ literal|0
 operator|)
 operator|||
 operator|(
+operator|(
+name|ownerType
+operator|!=
+literal|null
+operator|)
+operator|&&
 name|ownerType
 operator|!=
 name|cls
@@ -4875,11 +4904,40 @@ argument_list|>
 name|subclass
 parameter_list|)
 block|{
+comment|// If both runtimeType and subclass are not parameterized, return subclass
+comment|// If runtimeType is not parameterized but subclass is, process subclass as a parameterized type
+comment|// If runtimeType is a raw type (i.e. is a parameterized type specified as a Class<?>), we
+comment|// return subclass as a raw type
 if|if
 condition|(
 name|runtimeType
 operator|instanceof
 name|Class
+operator|&&
+operator|(
+operator|(
+name|subclass
+operator|.
+name|getTypeParameters
+argument_list|()
+operator|.
+name|length
+operator|==
+literal|0
+operator|)
+operator|||
+operator|(
+name|getRawType
+argument_list|()
+operator|.
+name|getTypeParameters
+argument_list|()
+operator|.
+name|length
+operator|!=
+literal|0
+operator|)
+operator|)
 condition|)
 block|{
 comment|// no resolution needed
