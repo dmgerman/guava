@@ -1588,12 +1588,12 @@ name|Joiner
 operator|.
 name|on
 argument_list|(
-literal|";"
+literal|';'
 argument_list|)
 operator|.
 name|withKeyValueSeparator
 argument_list|(
-literal|":"
+literal|':'
 argument_list|)
 decl_stmt|;
 name|assertEquals

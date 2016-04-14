@@ -988,6 +988,28 @@ block|}
 block|}
 return|;
 block|}
+comment|/**    * Returns a {@code MapJoiner} using the given key-value separator, and the same configuration as    * this {@code Joiner} otherwise.    *    * @since 20.0    */
+DECL|method|withKeyValueSeparator (char keyValueSeparator)
+specifier|public
+name|MapJoiner
+name|withKeyValueSeparator
+parameter_list|(
+name|char
+name|keyValueSeparator
+parameter_list|)
+block|{
+return|return
+name|withKeyValueSeparator
+argument_list|(
+name|String
+operator|.
+name|valueOf
+argument_list|(
+name|keyValueSeparator
+argument_list|)
+argument_list|)
+return|;
+block|}
 comment|/**    * Returns a {@code MapJoiner} using the given key-value separator, and the same configuration as    * this {@code Joiner} otherwise.    */
 DECL|method|withKeyValueSeparator (String keyValueSeparator)
 specifier|public
