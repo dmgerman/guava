@@ -18,6 +18,20 @@ end_package
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|GwtIncompatible
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -31,6 +45,8 @@ comment|/**  * Superinterface of {@link SortedMultiset} to introduce a bridge me
 end_comment
 
 begin_interface
+annotation|@
+name|GwtIncompatible
 DECL|interface|SortedMultisetBridge
 interface|interface
 name|SortedMultisetBridge
