@@ -80,6 +80,20 @@ name|common
 operator|.
 name|annotations
 operator|.
+name|GwtCompatible
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
 name|GwtIncompatible
 import|;
 end_import
@@ -212,7 +226,12 @@ end_comment
 
 begin_class
 annotation|@
-name|GwtIncompatible
+name|GwtCompatible
+argument_list|(
+name|emulated
+operator|=
+literal|true
+argument_list|)
 DECL|class|Throwables
 specifier|public
 specifier|final
@@ -225,6 +244,9 @@ name|Throwables
 parameter_list|()
 block|{}
 comment|/**    * Throws {@code throwable} if it is an instance of {@code declaredType}. Example usage:    *    *<pre>    * for (Foo foo : foos) {    *   try {    *     foo.bar();    *   } catch (BarException | RuntimeException | Error t) {    *     failure = t;    *   }    * }    * if (failure != null) {    *   throwIfInstanceOf(failure, BarException.class);    *   throwIfUnchecked(failure);    *   throw new AssertionError(failure);    * }    *</pre>    *    * @since 20.0    */
+annotation|@
+name|GwtIncompatible
+comment|// Class.cast, Class.isInstance
 DECL|method|throwIfInstanceOf ( Throwable throwable, Class<X> declaredType)
 specifier|public
 specifier|static
@@ -274,6 +296,9 @@ throw|;
 block|}
 block|}
 comment|/**    *<b>To be deprecated.</b> Use {@link #throwIfInstanceOf}, which has the same behavior but    * rejects {@code null}.    *    * Propagates {@code throwable} exactly as-is, if and only if it is an instance of {@code    * declaredType}. Example usage:    *    *<pre>    * try {    *   someMethodThatCouldThrowAnything();    * } catch (IKnowWhatToDoWithThisException e) {    *   handle(e);    * } catch (Throwable t) {    *   Throwables.propagateIfInstanceOf(t, IOException.class);    *   Throwables.propagateIfInstanceOf(t, SQLException.class);    *   throw Throwables.propagate(t);    * }    *</pre>    */
+annotation|@
+name|GwtIncompatible
+comment|// throwIfInstanceOf
 DECL|method|propagateIfInstanceOf ( @ullable Throwable throwable, Class<X> declaredType)
 specifier|public
 specifier|static
@@ -361,6 +386,9 @@ throw|;
 block|}
 block|}
 comment|/**    *<b>To be deprecated.</b> Use {@link #throwIfUnchecked}, which has the same behavior but rejects    * {@code null}.    *    *<p>Propagates {@code throwable} exactly as-is, if and only if it is an instance of    * {@link RuntimeException} or {@link Error}. Example usage:    *    *<pre>    * try {    *   someMethodThatCouldThrowAnything();    * } catch (IKnowWhatToDoWithThisException e) {    *   handle(e);    * } catch (Throwable t) {    *   Throwables.propagateIfPossible(t);    *   throw new RuntimeException("unexpected", t);    * }    *</pre>    */
+annotation|@
+name|GwtIncompatible
+comment|// to be deprecated
 DECL|method|propagateIfPossible (@ullable Throwable throwable)
 specifier|public
 specifier|static
@@ -388,6 +416,9 @@ expr_stmt|;
 block|}
 block|}
 comment|/**    * Propagates {@code throwable} exactly as-is, if and only if it is an instance of    * {@link RuntimeException}, {@link Error}, or {@code declaredType}. Example usage:    *    *<pre>    * try {    *   someMethodThatCouldThrowAnything();    * } catch (IKnowWhatToDoWithThisException e) {    *   handle(e);    * } catch (Throwable t) {    *   Throwables.propagateIfPossible(t, OtherException.class);    *   throw new RuntimeException("unexpected", t);    * }    *</pre>    *    * @param throwable the Throwable to possibly propagate    * @param declaredType the single checked exception type declared by the calling method    */
+annotation|@
+name|GwtIncompatible
+comment|// propagateIfInstanceOf
 DECL|method|propagateIfPossible ( @ullable Throwable throwable, Class<X> declaredType)
 specifier|public
 specifier|static
@@ -427,6 +458,9 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Propagates {@code throwable} exactly as-is, if and only if it is an instance of    * {@link RuntimeException}, {@link Error}, {@code declaredType1}, or {@code declaredType2}. In    * the unlikely case that you have three or more declared checked exception types, you can handle    * them all by invoking these methods repeatedly. See usage example in    * {@link #propagateIfPossible(Throwable, Class)}.    *    * @param throwable the Throwable to possibly propagate    * @param declaredType1 any checked exception type declared by the calling method    * @param declaredType2 any other checked exception type declared by the calling method    */
+annotation|@
+name|GwtIncompatible
+comment|// propagateIfInstanceOf
 DECL|method|propagateIfPossible ( @ullable Throwable throwable, Class<X1> declaredType1, Class<X2> declaredType2)
 specifier|public
 specifier|static
@@ -487,6 +521,9 @@ block|}
 comment|/**    *<b>To be deprecated.</b> Use {@code throw e} or {@code throw new RuntimeException(e)} directly,    * or use a combination of {@link #throwIfUnchecked} and {@code throw new RuntimeException(e)}.    *    *<p>Propagates {@code throwable} as-is if it is an instance of {@link RuntimeException} or    * {@link Error}, or else as a last resort, wraps it in a {@code RuntimeException} and then    * propagates.    *    *<p>This method always throws an exception. The {@code RuntimeException} return type allows    * client code to signal to the compiler that statements after the call are unreachable. Example    * usage:    *    *<pre>    * T doSomething() {    *   try {    *     return someMethodThatCouldThrowAnything();    *   } catch (IKnowWhatToDoWithThisException e) {    *     return handle(e);    *   } catch (Throwable t) {    *     throw Throwables.propagate(t);    *   }    * }    *</pre>    *    * @param throwable the Throwable to propagate    * @return nothing will ever be returned; this return type is only for your convenience, as    *     illustrated in the example above    */
 annotation|@
 name|CanIgnoreReturnValue
+annotation|@
+name|GwtIncompatible
+comment|// to be deprecated
 DECL|method|propagate (Throwable throwable)
 specifier|public
 specifier|static
@@ -616,6 +653,9 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns a string containing the result of {@link Throwable#toString() toString()}, followed by    * the full, recursive stack trace of {@code throwable}. Note that you probably should not be    * parsing the resulting string; if you need programmatic access to the stack frames, you can call    * {@link Throwable#getStackTrace()}.    */
+annotation|@
+name|GwtIncompatible
+comment|// java.io.PrintWriter, java.io.StringWriter
 DECL|method|getStackTraceAsString (Throwable throwable)
 specifier|public
 specifier|static
@@ -655,6 +695,10 @@ comment|/**    * Returns the stack trace of {@code throwable}, possibly providin
 comment|// TODO(cpovirk): Say something about the possibility that List access could fail at runtime?
 annotation|@
 name|Beta
+annotation|@
+name|GwtIncompatible
+comment|// lazyStackTraceIsLazy, jlaStackTrace
+comment|// TODO(cpovirk): Consider making this available under GWT (slow implementation only).
 DECL|method|lazyStackTrace (Throwable throwable)
 specifier|public
 specifier|static
@@ -692,6 +736,9 @@ block|}
 comment|/**    * Returns whether {@link #lazyStackTrace} will use the special implementation described in its    * documentation.    *    * @since 19.0    */
 annotation|@
 name|Beta
+annotation|@
+name|GwtIncompatible
+comment|// getStackTraceElementMethod
 DECL|method|lazyStackTraceIsLazy ()
 specifier|public
 specifier|static
@@ -709,6 +756,9 @@ operator|!=
 literal|null
 return|;
 block|}
+annotation|@
+name|GwtIncompatible
+comment|// invokeAccessibleNonThrowingMethod
 DECL|method|jlaStackTrace (final Throwable t)
 specifier|private
 specifier|static
@@ -787,6 +837,9 @@ block|}
 block|}
 return|;
 block|}
+annotation|@
+name|GwtIncompatible
+comment|// java.lang.reflect
 DECL|method|invokeAccessibleNonThrowingMethod ( Method method, Object receiver, Object... params)
 specifier|private
 specifier|static
@@ -849,6 +902,9 @@ throw|;
 block|}
 block|}
 comment|/** JavaLangAccess class name to load using reflection */
+annotation|@
+name|GwtIncompatible
+comment|// not used by GWT emulation
 DECL|field|JAVA_LANG_ACCESS_CLASSNAME
 specifier|private
 specifier|static
@@ -859,9 +915,12 @@ init|=
 literal|"sun.misc.JavaLangAccess"
 decl_stmt|;
 comment|/** SharedSecrets class name to load using reflection */
-DECL|field|SHARED_SECRETS_CLASSNAME
+annotation|@
+name|GwtIncompatible
+comment|// not used by GWT emulation
 annotation|@
 name|VisibleForTesting
+DECL|field|SHARED_SECRETS_CLASSNAME
 specifier|static
 specifier|final
 name|String
@@ -870,9 +929,12 @@ init|=
 literal|"sun.misc.SharedSecrets"
 decl_stmt|;
 comment|/** Access to some fancy internal JVM internals. */
-DECL|field|jla
+annotation|@
+name|GwtIncompatible
+comment|// java.lang.reflect
 annotation|@
 name|Nullable
+DECL|field|jla
 specifier|private
 specifier|static
 specifier|final
@@ -883,6 +945,9 @@ name|getJLA
 argument_list|()
 decl_stmt|;
 comment|/**    * The "getStackTraceElementMethod" method, only available on some JDKs so we use reflection to    * find it when available. When this is null, use the slow way.    */
+annotation|@
+name|GwtIncompatible
+comment|// java.lang.reflect
 annotation|@
 name|Nullable
 DECL|field|getStackTraceElementMethod
@@ -905,6 +970,9 @@ argument_list|()
 decl_stmt|;
 comment|/**    * The "getStackTraceDepth" method, only available on some JDKs so we use reflection to find it    * when available. When this is null, use the slow way.    */
 annotation|@
+name|GwtIncompatible
+comment|// java.lang.reflect
+annotation|@
 name|Nullable
 DECL|field|getStackTraceDepthMethod
 specifier|private
@@ -925,6 +993,9 @@ name|getSizeMethod
 argument_list|()
 decl_stmt|;
 comment|/**    * Returns the JavaLangAccess class that is present in all Sun JDKs. It is not whitelisted for    * AppEngine, and not present in non-Sun JDKs.    */
+annotation|@
+name|GwtIncompatible
+comment|// java.lang.reflect
 annotation|@
 name|Nullable
 DECL|method|getJLA ()
@@ -997,6 +1068,9 @@ block|}
 block|}
 comment|/**    * Returns the Method that can be used to resolve an individual StackTraceElement, or null if that    * method cannot be found (it is only to be found in fairly recent JDKs).    */
 annotation|@
+name|GwtIncompatible
+comment|// java.lang.reflect
+annotation|@
 name|Nullable
 DECL|method|getGetMethod ()
 specifier|private
@@ -1022,6 +1096,9 @@ return|;
 block|}
 comment|/**    * Returns the Method that can be used to return the size of a stack, or null if that method    * cannot be found (it is only to be found in fairly recent JDKs).    */
 annotation|@
+name|GwtIncompatible
+comment|// java.lang.reflect
+annotation|@
 name|Nullable
 DECL|method|getSizeMethod ()
 specifier|private
@@ -1041,6 +1118,9 @@ name|class
 argument_list|)
 return|;
 block|}
+annotation|@
+name|GwtIncompatible
+comment|// java.lang.reflect
 annotation|@
 name|Nullable
 DECL|method|getJlaMethod (String name, Class<?>... parameterTypes)

@@ -146,6 +146,34 @@ name|google
 operator|.
 name|common
 operator|.
+name|annotations
+operator|.
+name|GwtCompatible
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|GwtIncompatible
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
 name|collect
 operator|.
 name|Iterables
@@ -173,16 +201,6 @@ operator|.
 name|framework
 operator|.
 name|TestCase
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|FileNotFoundException
 import|;
 end_import
 
@@ -231,6 +249,13 @@ comment|/**  * Unit test for {@link Throwables}.  *  * @author Kevin Bourrillion
 end_comment
 
 begin_class
+annotation|@
+name|GwtCompatible
+argument_list|(
+name|emulated
+operator|=
+literal|true
+argument_list|)
 DECL|class|ThrowablesTest
 specifier|public
 class|class
@@ -304,6 +329,9 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+comment|// propagateIfPossible
 DECL|method|testPropagateIfPossible_NoneDeclared_NoneThrown ()
 specifier|public
 name|void
@@ -361,6 +389,9 @@ name|noneDeclared
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+comment|// propagateIfPossible
 DECL|method|testPropagateIfPossible_NoneDeclared_UncheckedThrown ()
 specifier|public
 name|void
@@ -430,6 +461,9 @@ name|expected
 parameter_list|)
 block|{     }
 block|}
+annotation|@
+name|GwtIncompatible
+comment|// propagateIfPossible
 DECL|method|testPropagateIfPossible_NoneDeclared_UndeclaredThrown ()
 specifier|public
 name|void
@@ -499,6 +533,9 @@ name|expected
 parameter_list|)
 block|{     }
 block|}
+annotation|@
+name|GwtIncompatible
+comment|// propagateIfPossible(Throwable, Class)
 DECL|method|testPropagateIfPossible_OneDeclared_NoneThrown ()
 specifier|public
 name|void
@@ -566,6 +603,9 @@ name|oneDeclared
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+comment|// propagateIfPossible(Throwable, Class)
 DECL|method|testPropagateIfPossible_OneDeclared_UncheckedThrown ()
 specifier|public
 name|void
@@ -643,6 +683,9 @@ name|expected
 parameter_list|)
 block|{     }
 block|}
+annotation|@
+name|GwtIncompatible
+comment|// propagateIfPossible(Throwable, Class)
 DECL|method|testPropagateIfPossible_OneDeclared_CheckedThrown ()
 specifier|public
 name|void
@@ -718,6 +761,9 @@ name|expected
 parameter_list|)
 block|{     }
 block|}
+annotation|@
+name|GwtIncompatible
+comment|// propagateIfPossible(Throwable, Class)
 DECL|method|testPropagateIfPossible_OneDeclared_UndeclaredThrown ()
 specifier|public
 name|void
@@ -795,6 +841,9 @@ name|expected
 parameter_list|)
 block|{     }
 block|}
+annotation|@
+name|GwtIncompatible
+comment|// propagateIfPossible(Throwable, Class, Class)
 DECL|method|testPropagateIfPossible_TwoDeclared_NoneThrown ()
 specifier|public
 name|void
@@ -868,6 +917,9 @@ name|twoDeclared
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+comment|// propagateIfPossible(Throwable, Class, Class)
 DECL|method|testPropagateIfPossible_TwoDeclared_UncheckedThrown ()
 specifier|public
 name|void
@@ -953,6 +1005,9 @@ name|expected
 parameter_list|)
 block|{     }
 block|}
+annotation|@
+name|GwtIncompatible
+comment|// propagateIfPossible(Throwable, Class, Class)
 DECL|method|testPropagateIfPossible_TwoDeclared_CheckedThrown ()
 specifier|public
 name|void
@@ -1036,6 +1091,9 @@ name|expected
 parameter_list|)
 block|{     }
 block|}
+annotation|@
+name|GwtIncompatible
+comment|// propagateIfPossible(Throwable, Class, Class)
 DECL|method|testPropagateIfPossible_TwoDeclared_OtherCheckedThrown ()
 specifier|public
 name|void
@@ -1145,6 +1203,9 @@ name|expected
 parameter_list|)
 block|{     }
 block|}
+annotation|@
+name|GwtIncompatible
+comment|// propagateIfPossible
 DECL|method|testPropageIfPossible_null ()
 specifier|public
 name|void
@@ -1160,6 +1221,18 @@ argument_list|(
 literal|null
 argument_list|)
 expr_stmt|;
+block|}
+annotation|@
+name|GwtIncompatible
+comment|// propagateIfPossible(Throwable, Class)
+DECL|method|testPropageIfPossible_OneDeclared_null ()
+specifier|public
+name|void
+name|testPropageIfPossible_OneDeclared_null
+parameter_list|()
+throws|throws
+name|SomeCheckedException
+block|{
 name|Throwables
 operator|.
 name|propagateIfPossible
@@ -1171,6 +1244,18 @@ operator|.
 name|class
 argument_list|)
 expr_stmt|;
+block|}
+annotation|@
+name|GwtIncompatible
+comment|// propagateIfPossible(Throwable, Class, Class)
+DECL|method|testPropageIfPossible_TwoDeclared_null ()
+specifier|public
+name|void
+name|testPropageIfPossible_TwoDeclared_null
+parameter_list|()
+throws|throws
+name|SomeCheckedException
+block|{
 name|Throwables
 operator|.
 name|propagateIfPossible
@@ -1187,6 +1272,9 @@ name|class
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+comment|// propagate
 DECL|method|testPropagate_NoneDeclared_NoneThrown ()
 specifier|public
 name|void
@@ -1238,6 +1326,9 @@ name|noneDeclared
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+comment|// propagate
 DECL|method|testPropagate_NoneDeclared_UncheckedThrown ()
 specifier|public
 name|void
@@ -1301,6 +1392,9 @@ name|expected
 parameter_list|)
 block|{     }
 block|}
+annotation|@
+name|GwtIncompatible
+comment|// propagate
 DECL|method|testPropagate_NoneDeclared_ErrorThrown ()
 specifier|public
 name|void
@@ -1364,6 +1458,9 @@ name|expected
 parameter_list|)
 block|{     }
 block|}
+annotation|@
+name|GwtIncompatible
+comment|// propagate
 DECL|method|testPropagate_NoneDeclared_CheckedThrown ()
 specifier|public
 name|void
@@ -1426,23 +1523,21 @@ name|RuntimeException
 name|expected
 parameter_list|)
 block|{
-name|assertThat
+name|assertTrue
 argument_list|(
 name|expected
 operator|.
 name|getCause
 argument_list|()
-argument_list|)
-operator|.
-name|isInstanceOf
-argument_list|(
+operator|instanceof
 name|SomeCheckedException
-operator|.
-name|class
 argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+comment|// throwIfInstanceOf
 DECL|method|testThrowIfInstanceOf_Unchecked ()
 specifier|public
 name|void
@@ -1463,6 +1558,9 @@ name|class
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+comment|// throwIfInstanceOf
 DECL|method|testThrowIfInstanceOf_CheckedDifferent ()
 specifier|public
 name|void
@@ -1483,6 +1581,9 @@ name|class
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+comment|// throwIfInstanceOf
 DECL|method|testThrowIfInstanceOf_CheckedSame ()
 specifier|public
 name|void
@@ -1513,6 +1614,9 @@ name|expected
 parameter_list|)
 block|{     }
 block|}
+annotation|@
+name|GwtIncompatible
+comment|// throwIfInstanceOf
 DECL|method|testThrowIfInstanceOf_CheckedSubclass ()
 specifier|public
 name|void
@@ -1544,6 +1648,9 @@ name|expected
 parameter_list|)
 block|{     }
 block|}
+annotation|@
+name|GwtIncompatible
+comment|// throwIfInstanceOf
 DECL|method|testPropagateIfInstanceOf_NoneThrown ()
 specifier|public
 name|void
@@ -1610,6 +1717,9 @@ name|oneDeclared
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+comment|// throwIfInstanceOf
 DECL|method|testPropagateIfInstanceOf_DeclaredThrown ()
 specifier|public
 name|void
@@ -1686,6 +1796,9 @@ name|expected
 parameter_list|)
 block|{     }
 block|}
+annotation|@
+name|GwtIncompatible
+comment|// throwIfInstanceOf
 DECL|method|testPropagateIfInstanceOf_UncheckedThrown ()
 specifier|public
 name|void
@@ -1764,6 +1877,9 @@ name|expected
 parameter_list|)
 block|{     }
 block|}
+annotation|@
+name|GwtIncompatible
+comment|// throwIfInstanceOf
 DECL|method|testPropagateIfInstanceOf_UndeclaredThrown ()
 specifier|public
 name|void
@@ -1858,6 +1974,9 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+comment|// throwIfInstanceOf
 DECL|method|testThrowIfInstanceOf_null ()
 specifier|public
 name|void
@@ -1888,6 +2007,9 @@ name|expected
 parameter_list|)
 block|{     }
 block|}
+annotation|@
+name|GwtIncompatible
+comment|// throwIfInstanceOf
 DECL|method|testPropageIfInstanceOf_null ()
 specifier|public
 name|void
@@ -2170,6 +2292,9 @@ name|SomeUndeclaredCheckedException
 argument_list|()
 throw|;
 block|}
+annotation|@
+name|GwtIncompatible
+comment|// getStackTraceAsString(Throwable)
 DECL|method|testGetStackTraceAsString ()
 specifier|public
 name|void
@@ -2276,11 +2401,11 @@ name|void
 name|testGetCausalChain
 parameter_list|()
 block|{
-name|FileNotFoundException
-name|fnfe
+name|SomeUncheckedException
+name|sue
 init|=
 operator|new
-name|FileNotFoundException
+name|SomeUncheckedException
 argument_list|()
 decl_stmt|;
 name|IllegalArgumentException
@@ -2289,7 +2414,7 @@ init|=
 operator|new
 name|IllegalArgumentException
 argument_list|(
-name|fnfe
+name|sue
 argument_list|)
 decl_stmt|;
 name|RuntimeException
@@ -2320,7 +2445,7 @@ name|re
 argument_list|,
 name|iae
 argument_list|,
-name|fnfe
+name|sue
 argument_list|)
 argument_list|,
 name|Throwables
@@ -2333,7 +2458,7 @@ argument_list|)
 expr_stmt|;
 name|assertSame
 argument_list|(
-name|fnfe
+name|sue
 argument_list|,
 name|Iterables
 operator|.
@@ -2343,7 +2468,7 @@ name|Throwables
 operator|.
 name|getCausalChain
 argument_list|(
-name|fnfe
+name|sue
 argument_list|)
 argument_list|)
 argument_list|)
@@ -2416,6 +2541,9 @@ block|}
 annotation|@
 name|AndroidIncompatible
 comment|// No getJavaLangAccess in Android (at least not in the version we use).
+annotation|@
+name|GwtIncompatible
+comment|// lazyStackTraceIsLazy()
 DECL|method|testLazyStackTraceWorksInProd ()
 specifier|public
 name|void
@@ -2430,6 +2558,9 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+comment|// lazyStackTrace(Throwable)
 DECL|method|testLazyStackTrace ()
 specifier|public
 name|void
@@ -2538,6 +2669,9 @@ name|inOrder
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+comment|// lazyStackTrace
 DECL|method|doTestLazyStackTraceFallback ()
 specifier|private
 name|void
@@ -2627,6 +2761,9 @@ name|isEmpty
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+comment|// used only by GwtIncompatible code
 DECL|class|AllowSettingSecurityManagerPolicy
 specifier|private
 specifier|static
@@ -2654,6 +2791,9 @@ literal|true
 return|;
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+comment|// NullPointerTester
 DECL|method|testNullPointers ()
 specifier|public
 name|void
