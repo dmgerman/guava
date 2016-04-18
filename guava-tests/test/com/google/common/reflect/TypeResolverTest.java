@@ -1645,7 +1645,7 @@ name|testWhere_mapFromWildcard
 parameter_list|()
 block|{
 name|Type
-name|subType
+name|subtype
 init|=
 operator|new
 name|TypeCapture
@@ -1717,7 +1717,7 @@ argument_list|()
 block|)
 function|.resolveType
 parameter_list|(
-name|subType
+name|subtype
 parameter_list|)
 end_function
 
@@ -1737,7 +1737,7 @@ name|testWhere_mapFromWildcardToParameterized
 parameter_list|()
 block|{
 name|Type
-name|subType
+name|subtype
 init|=
 operator|new
 name|TypeCapture
@@ -1812,7 +1812,7 @@ argument_list|()
 block|)
 function|.resolveType
 parameter_list|(
-name|subType
+name|subtype
 parameter_list|)
 end_function
 
@@ -1832,7 +1832,7 @@ name|testWhere_mapFromBoundedWildcard
 parameter_list|()
 block|{
 name|Type
-name|subType
+name|subtype
 init|=
 operator|new
 name|TypeCapture
@@ -1896,7 +1896,7 @@ argument_list|()
 block|)
 function|.resolveType
 parameter_list|(
-name|subType
+name|subtype
 parameter_list|)
 function|;
 end_function

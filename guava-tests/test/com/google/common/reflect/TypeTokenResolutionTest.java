@@ -3547,8 +3547,8 @@ argument_list|>
 name|shouldNotCauseInfiniteLoop
 parameter_list|()
 function_decl|;
-DECL|method|evenSubTypeWorks ()
-name|SubTypeOfWithFalseRecursiveType
+DECL|method|evenSubtypeWorks ()
+name|SubtypeOfWithFalseRecursiveType
 argument_list|<
 name|List
 argument_list|<
@@ -3560,17 +3560,17 @@ argument_list|<
 name|K
 argument_list|>
 argument_list|>
-name|evenSubTypeWorks
+name|evenSubtypeWorks
 parameter_list|()
 function_decl|;
 block|}
 end_interface
 
 begin_interface
-DECL|interface|SubTypeOfWithFalseRecursiveType
+DECL|interface|SubtypeOfWithFalseRecursiveType
 specifier|private
 interface|interface
-name|SubTypeOfWithFalseRecursiveType
+name|SubtypeOfWithFalseRecursiveType
 parameter_list|<
 name|K1
 parameter_list|,
@@ -3591,7 +3591,7 @@ argument_list|>
 argument_list|>
 block|{
 DECL|method|revertKeyAndValueTypes ()
-name|SubTypeOfWithFalseRecursiveType
+name|SubtypeOfWithFalseRecursiveType
 argument_list|<
 name|V1
 argument_list|,
@@ -3741,7 +3741,7 @@ name|WithFalseRecursiveType
 operator|.
 name|class
 argument_list|,
-literal|"evenSubTypeWorks"
+literal|"evenSubtypeWorks"
 argument_list|)
 decl_stmt|;
 name|TypeToken
@@ -3798,7 +3798,7 @@ name|returnType
 init|=
 name|genericReturnType
 argument_list|(
-name|SubTypeOfWithFalseRecursiveType
+name|SubtypeOfWithFalseRecursiveType
 operator|.
 name|class
 argument_list|,

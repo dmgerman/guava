@@ -1830,7 +1830,7 @@ argument_list|(
 name|supertype
 argument_list|)
 operator|.
-name|isSuperTypeOfArray
+name|isSupertypeOfArray
 argument_list|(
 operator|(
 name|GenericArrayType
@@ -1893,7 +1893,7 @@ block|{
 return|return
 name|this
 operator|.
-name|isSubTypeOfArrayType
+name|isSubtypeOfArrayType
 argument_list|(
 operator|(
 name|GenericArrayType
@@ -3627,10 +3627,10 @@ block|}
 end_function
 
 begin_function
-DECL|method|isSubTypeOfArrayType (GenericArrayType supertype)
+DECL|method|isSubtypeOfArrayType (GenericArrayType supertype)
 specifier|private
 name|boolean
-name|isSubTypeOfArrayType
+name|isSubtypeOfArrayType
 parameter_list|(
 name|GenericArrayType
 name|supertype
@@ -3732,10 +3732,10 @@ block|}
 end_function
 
 begin_function
-DECL|method|isSuperTypeOfArray (GenericArrayType subtype)
+DECL|method|isSupertypeOfArray (GenericArrayType subtype)
 specifier|private
 name|boolean
-name|isSuperTypeOfArray
+name|isSupertypeOfArray
 parameter_list|(
 name|GenericArrayType
 name|subtype
