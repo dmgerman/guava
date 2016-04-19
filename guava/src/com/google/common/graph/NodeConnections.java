@@ -18,6 +18,20 @@ end_package
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -88,64 +102,75 @@ argument_list|>
 name|outEdges
 parameter_list|()
 function_decl|;
-comment|/**    * Remove {@code edge} from the sets of in edges. If this is known to be the last remaining edge    * between two (formerly) connected nodes, {@link #removePredecessor} must also be called.    */
+comment|/**    * Returns the node that is opposite the origin node along {@code edge}.    * In the directed case, {@code edge} is assumed to be an outgoing edge.    */
+DECL|method|oppositeNode (Object edge)
+name|N
+name|oppositeNode
+parameter_list|(
+name|Object
+name|edge
+parameter_list|)
+function_decl|;
+comment|/**    * Returns the set of edges connecting the origin node to {@code node}.    * For networks without parallel edges, this set cannot be of size greater than one.    */
+DECL|method|edgesConnecting (Object node)
+name|Set
+argument_list|<
+name|E
+argument_list|>
+name|edgesConnecting
+parameter_list|(
+name|Object
+name|node
+parameter_list|)
+function_decl|;
+comment|/**    * Remove {@code edge} from the set of incoming edges. Returns the former predecessor node.    */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|removeInEdge (Object edge)
-name|void
+name|N
 name|removeInEdge
 parameter_list|(
 name|Object
 name|edge
 parameter_list|)
 function_decl|;
-comment|/**    * Remove {@code edge} from the sets of out edges. If this is known to be the last remaining edge    * between two (formerly) connected nodes, {@link #removeSuccessor} must also be called.    */
+comment|/**    * Remove {@code edge} from the set of outgoing edges. Returns the former successor node.    */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|removeOutEdge (Object edge)
-name|void
+name|N
 name|removeOutEdge
 parameter_list|(
 name|Object
 name|edge
 parameter_list|)
 function_decl|;
-comment|/**    * Remove {@code node} from the set of predecessors.    */
-DECL|method|removePredecessor (Object node)
-name|void
-name|removePredecessor
+comment|/**    * Add {@code edge} to the set of incoming edges. Implicitly adds {@code node} as a predecessor.    * Returns true if the edge did not already exist.    */
+annotation|@
+name|CanIgnoreReturnValue
+DECL|method|addInEdge (E edge, N node)
+name|boolean
+name|addInEdge
 parameter_list|(
-name|Object
-name|node
-parameter_list|)
-function_decl|;
-comment|/**    * Remove {@code node} from the set of successors.    */
-DECL|method|removeSuccessor (Object node)
-name|void
-name|removeSuccessor
-parameter_list|(
-name|Object
-name|node
-parameter_list|)
-function_decl|;
-comment|/**    * Add {@code node} as a predecessor to the origin node, connected with {@code edge}.    * In the case of an undirected graph, it also becomes a successor.    */
-DECL|method|addPredecessor (N node, E edge)
-name|void
-name|addPredecessor
-parameter_list|(
-name|N
-name|node
-parameter_list|,
 name|E
 name|edge
-parameter_list|)
-function_decl|;
-comment|/**    * Add {@code node} as a successor to the origin node, connected with {@code edge}.    * In the case of an undirected graph, it also becomes a predecessor.    */
-DECL|method|addSuccessor (N node, E edge)
-name|void
-name|addSuccessor
-parameter_list|(
+parameter_list|,
 name|N
 name|node
-parameter_list|,
+parameter_list|)
+function_decl|;
+comment|/**    * Add {@code edge} to the set of outgoing edges. Implicitly adds {@code node} as a successor.    * Returns true if the edge did not already exist.    */
+annotation|@
+name|CanIgnoreReturnValue
+DECL|method|addOutEdge (E edge, N node)
+name|boolean
+name|addOutEdge
+parameter_list|(
 name|E
 name|edge
+parameter_list|,
+name|N
+name|node
 parameter_list|)
 function_decl|;
 block|}

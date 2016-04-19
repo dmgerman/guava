@@ -55,7 +55,7 @@ name|REUSING_EDGE
 init|=
 literal|"Edge %s already exists between the "
 operator|+
-literal|"following nodes: %s, so it can't be reused to connect the given nodes: %s"
+literal|"following nodes: %s, so it can't be reused to connect node %s to %s"
 decl_stmt|;
 DECL|field|ADDING_PARALLEL_EDGE
 specifier|static
