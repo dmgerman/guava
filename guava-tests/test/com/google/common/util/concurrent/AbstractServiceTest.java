@@ -4361,7 +4361,11 @@ argument_list|()
 operator|.
 name|equals
 argument_list|(
-literal|"Expected the service to be RUNNING, but was STOPPING"
+literal|"Expected the service "
+operator|+
+name|service
+operator|+
+literal|" to be RUNNING, but was STOPPING"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -4470,7 +4474,11 @@ argument_list|()
 operator|.
 name|equals
 argument_list|(
-literal|"Expected the service to be RUNNING, but was TERMINATED"
+literal|"Expected the service "
+operator|+
+name|service
+operator|+
+literal|" to be RUNNING, but was TERMINATED"
 argument_list|)
 argument_list|)
 expr_stmt|;

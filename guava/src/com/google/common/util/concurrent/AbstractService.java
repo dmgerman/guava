@@ -1430,7 +1430,11 @@ throw|throw
 operator|new
 name|IllegalStateException
 argument_list|(
-literal|"Expected the service to be "
+literal|"Expected the service "
+operator|+
+name|this
+operator|+
+literal|" to be "
 operator|+
 name|expected
 operator|+
@@ -1445,7 +1449,11 @@ throw|throw
 operator|new
 name|IllegalStateException
 argument_list|(
-literal|"Expected the service to be "
+literal|"Expected the service "
+operator|+
+name|this
+operator|+
+literal|" to be "
 operator|+
 name|expected
 operator|+
