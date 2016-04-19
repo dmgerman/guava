@@ -18,20 +18,6 @@ end_package
 
 begin_import
 import|import
-name|com
-operator|.
-name|google
-operator|.
-name|errorprone
-operator|.
-name|annotations
-operator|.
-name|CanIgnoreReturnValue
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|util
@@ -41,7 +27,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An interface for representing an origin node's adjacent nodes in a network.  *  * @author James Sexton  * @param<N> Node parameter type  */
+comment|/**  * An interface for representing an origin node's adjacent nodes in a graph.  *  * @author James Sexton  * @param<N> Node parameter type  */
 end_comment
 
 begin_interface
@@ -76,44 +62,36 @@ argument_list|>
 name|successors
 parameter_list|()
 function_decl|;
-comment|/**    * Remove {@code node} from the set of predecessors.    *    * @return true iff the adjacency relationships changed    */
-annotation|@
-name|CanIgnoreReturnValue
+comment|/**    * Remove {@code node} from the set of predecessors.    */
 DECL|method|removePredecessor (Object node)
-name|boolean
+name|void
 name|removePredecessor
 parameter_list|(
 name|Object
 name|node
 parameter_list|)
 function_decl|;
-comment|/**    * Remove {@code node} from the set of successors.    *    * @return true iff the adjacency relationships changed    */
-annotation|@
-name|CanIgnoreReturnValue
+comment|/**    * Remove {@code node} from the set of successors.    */
 DECL|method|removeSuccessor (Object node)
-name|boolean
+name|void
 name|removeSuccessor
 parameter_list|(
 name|Object
 name|node
 parameter_list|)
 function_decl|;
-comment|/**    * Add {@code node} as a predecessor to the origin node.    * In the case of an undirected graph, it also becomes a successor.    *    * @return true iff the adjacency relationships changed    */
-annotation|@
-name|CanIgnoreReturnValue
+comment|/**    * Add {@code node} as a predecessor to the origin node.    * In the case of an undirected graph, it also becomes a successor.    */
 DECL|method|addPredecessor (N node)
-name|boolean
+name|void
 name|addPredecessor
 parameter_list|(
 name|N
 name|node
 parameter_list|)
 function_decl|;
-comment|/**    * Add {@code node} as a successor to the origin node.    * In the case of an undirected graph, it also becomes a predecessor.    *    * @return true iff the adjacency relationships changed    */
-annotation|@
-name|CanIgnoreReturnValue
+comment|/**    * Add {@code node} as a successor to the origin node.    * In the case of an undirected graph, it also becomes a predecessor.    */
 DECL|method|addSuccessor (N node)
-name|boolean
+name|void
 name|addSuccessor
 parameter_list|(
 name|N
