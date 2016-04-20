@@ -332,6 +332,10 @@ name|node
 parameter_list|)
 block|{
 return|return
+name|Collections
+operator|.
+name|unmodifiableSet
+argument_list|(
 name|Maps
 operator|.
 name|filterEntries
@@ -382,6 +386,7 @@ argument_list|)
 operator|.
 name|keySet
 argument_list|()
+argument_list|)
 return|;
 block|}
 DECL|field|adjacentNodesReference
