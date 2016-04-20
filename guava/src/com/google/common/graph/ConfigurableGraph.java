@@ -187,10 +187,7 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
-name|nodes
-argument_list|()
-operator|.
-name|contains
+name|containsNode
 argument_list|(
 name|node
 argument_list|)
@@ -266,10 +263,7 @@ expr_stmt|;
 name|boolean
 name|containsN1
 init|=
-name|nodes
-argument_list|()
-operator|.
-name|contains
+name|containsNode
 argument_list|(
 name|node1
 argument_list|)
@@ -277,10 +271,7 @@ decl_stmt|;
 name|boolean
 name|containsN2
 init|=
-name|nodes
-argument_list|()
-operator|.
-name|contains
+name|containsNode
 argument_list|(
 name|node2
 argument_list|)

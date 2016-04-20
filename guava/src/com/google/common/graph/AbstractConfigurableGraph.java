@@ -108,6 +108,16 @@ name|Set
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/**  * Abstract configurable implementation of {@link Graph} that supports the options supplied  * by {@link GraphBuilder}.  *  *<p>This class maintains a map of {@link NodeAdjacencies} for every node.  *  *<p>{@code Set}-returning accessors return unmodifiable views: the view returned will reflect  * changes to the graph (if the graph is mutable) but may not be modified by the user.  * The behavior of the returned view is undefined in the following cases:  *<ul>  *<li>Removing the element on which the accessor is called (e.g.:  *<pre>{@code  *     Set<N> adjacentNodes = adjacentNodes(node);  *     graph.removeNode(node);}</pre>  *     At this point, the contents of {@code adjacentNodes} are undefined.  *</ul>  *  *<p>The time complexity of all {@code Set}-returning accessors is O(1), since views are returned.  *  * @author James Sexton  * @author Joshua O'Madadhain  * @author Omar Darwish  * @param<N> Node parameter type  */
 end_comment
@@ -420,6 +430,26 @@ argument_list|)
 expr_stmt|;
 return|return
 name|connections
+return|;
+block|}
+DECL|method|containsNode (@ullable Object node)
+specifier|protected
+name|boolean
+name|containsNode
+parameter_list|(
+annotation|@
+name|Nullable
+name|Object
+name|node
+parameter_list|)
+block|{
+return|return
+name|nodeConnections
+operator|.
+name|containsKey
+argument_list|(
+name|node
+argument_list|)
 return|;
 block|}
 block|}
