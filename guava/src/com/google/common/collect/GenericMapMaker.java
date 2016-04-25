@@ -98,18 +98,6 @@ name|ConcurrentMap
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|concurrent
-operator|.
-name|TimeUnit
-import|;
-end_import
-
 begin_comment
 comment|/**  * A class exactly like {@link MapMaker}, except restricted in the types of maps it can build.  * For the most part, you should probably just ignore the existence of this class.  *  * @param<K0> the base type for all key types of maps built by this map maker  * @param<V0> the base type for all value types of maps built by this map maker  * @author Kevin Bourrillion  * @since 7.0  * @deprecated This class existed only to support the generic paramterization necessary for the  *     caching functionality in {@code MapMaker}. That functionality has been moved to {@link  *     com.google.common.cache.CacheBuilder}, which is a properly generified class and thus needs no  *     "Generic" equivalent; simple use {@code CacheBuilder} naturally. For general migration  *     instructions, see the<a  *     href="https://github.com/google/guava/wiki/MapMakerMigration">MapMaker Migration  *     Guide</a>.  */
 end_comment
@@ -242,24 +230,6 @@ name|V0
 argument_list|>
 name|softValues
 parameter_list|()
-function_decl|;
-comment|/**    * See {@link MapMaker#expireAfterWrite}.    */
-DECL|method|expireAfterWrite (long duration, TimeUnit unit)
-specifier|abstract
-name|GenericMapMaker
-argument_list|<
-name|K0
-argument_list|,
-name|V0
-argument_list|>
-name|expireAfterWrite
-parameter_list|(
-name|long
-name|duration
-parameter_list|,
-name|TimeUnit
-name|unit
-parameter_list|)
 function_decl|;
 comment|/**    * See {@link MapMaker#makeMap}.    */
 DECL|method|makeMap ()

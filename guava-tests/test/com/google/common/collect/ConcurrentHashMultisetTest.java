@@ -304,18 +304,6 @@ name|util
 operator|.
 name|concurrent
 operator|.
-name|TimeUnit
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|concurrent
-operator|.
 name|atomic
 operator|.
 name|AtomicInteger
@@ -2641,15 +2629,6 @@ init|=
 operator|new
 name|MapMaker
 argument_list|()
-operator|.
-name|expireAfterWrite
-argument_list|(
-literal|1
-argument_list|,
-name|TimeUnit
-operator|.
-name|SECONDS
-argument_list|)
 decl_stmt|;
 name|multiset
 operator|=
@@ -2815,58 +2794,6 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|//  @Suppress(owner = "bmanes", detail = "Does not call the eviction listener")
-comment|//  public void testWithMapMakerEvictionListener_BROKEN1()
-comment|//      throws InterruptedException {
-comment|//    MapEvictionListener<String, Number> evictionListener =
-comment|//        mockEvictionListener();
-comment|//    evictionListener.onEviction("a", 5);
-comment|//    EasyMock.replay(evictionListener);
-comment|//
-comment|//    GenericMapMaker<String, Number> mapMaker = new MapMaker()
-comment|//        .expireAfterWrite(100, TimeUnit.MILLISECONDS)
-comment|//        .evictionListener(evictionListener);
-comment|//
-comment|//    ConcurrentHashMultiset<String> multiset =
-comment|//        ConcurrentHashMultiset.create(mapMaker);
-comment|//
-comment|//    multiset.add("a", 5);
-comment|//
-comment|//    assertTrue(multiset.contains("a"));
-comment|//    assertEquals(5, multiset.count("a"));
-comment|//
-comment|//    Thread.sleep(2000);
-comment|//
-comment|//    EasyMock.verify(evictionListener);
-comment|//  }
-comment|//  @Suppress(owner = "bmanes", detail = "Does not call the eviction listener")
-comment|//  public void testWithMapMakerEvictionListener_BROKEN2()
-comment|//      throws InterruptedException {
-comment|//    MapEvictionListener<String, Number> evictionListener =
-comment|//        mockEvictionListener();
-comment|//    evictionListener.onEviction("a", 5);
-comment|//    EasyMock.replay(evictionListener);
-comment|//
-comment|//    GenericMapMaker<String, Number> mapMaker = new MapMaker()
-comment|//        .expireAfterWrite(100, TimeUnit.MILLISECONDS)
-comment|//        .evictionListener(evictionListener);
-comment|//
-comment|//    ConcurrentHashMultiset<String> multiset =
-comment|//        ConcurrentHashMultiset.create(mapMaker);
-comment|//
-comment|//    multiset.add("a", 5);
-comment|//
-comment|//    assertTrue(multiset.contains("a"));
-comment|//    assertEquals(5, multiset.count("a"));
-comment|//
-comment|//    Thread.sleep(2000);
-comment|//
-comment|//    // This call should have the side-effect of calling the
-comment|//    // eviction listener, but it does not.
-comment|//    assertFalse(multiset.contains("a"));
-comment|//
-comment|//    EasyMock.verify(evictionListener);
-comment|//  }
 DECL|method|replay ()
 specifier|private
 name|void

@@ -35,20 +35,6 @@ import|;
 end_import
 
 begin_import
-import|import static
-name|java
-operator|.
-name|util
-operator|.
-name|concurrent
-operator|.
-name|TimeUnit
-operator|.
-name|HOURS
-import|;
-end_import
-
-begin_import
 import|import
 name|com
 operator|.
@@ -530,55 +516,6 @@ block|}
 catch|catch
 parameter_list|(
 name|IllegalArgumentException
-name|expected
-parameter_list|)
-block|{       }
-block|}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"deprecation"
-argument_list|)
-comment|// test of deprecated method
-DECL|method|testExpiration_setTwice ()
-specifier|public
-name|void
-name|testExpiration_setTwice
-parameter_list|()
-block|{
-name|MapMaker
-name|maker
-init|=
-operator|new
-name|MapMaker
-argument_list|()
-operator|.
-name|expireAfterWrite
-argument_list|(
-literal|1
-argument_list|,
-name|HOURS
-argument_list|)
-decl_stmt|;
-try|try
-block|{
-comment|// even to the same value is not allowed
-name|maker
-operator|.
-name|expireAfterWrite
-argument_list|(
-literal|1
-argument_list|,
-name|HOURS
-argument_list|)
-expr_stmt|;
-name|fail
-argument_list|()
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|IllegalStateException
 name|expected
 parameter_list|)
 block|{       }

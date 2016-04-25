@@ -700,46 +700,14 @@ decl_stmt|;
 if|if
 condition|(
 name|value
-operator|==
+operator|!=
 literal|null
 condition|)
-block|{
-comment|// TODO(kak): Remove this branch.
-block|}
-elseif|else
-if|if
-condition|(
-name|map
-operator|.
-name|expires
-argument_list|()
-operator|&&
-name|map
-operator|.
-name|isExpired
-argument_list|(
-name|e
-argument_list|)
-condition|)
-block|{
-comment|// This is a duplicate check, as preWriteCleanup already purged expired
-comment|// entries, but let's accomodate an incorrect expiration queue.
-comment|// TODO(kak): Remove this branch.
-block|}
-else|else
 block|{
 return|return
 name|value
 return|;
 block|}
-comment|// immediately reuse invalid entries
-name|expirationQueue
-operator|.
-name|remove
-argument_list|(
-name|e
-argument_list|)
-expr_stmt|;
 name|this
 operator|.
 name|count
@@ -1698,8 +1666,6 @@ name|keyEquivalence
 argument_list|,
 name|valueEquivalence
 argument_list|,
-name|expireAfterWriteNanos
-argument_list|,
 name|concurrencyLevel
 argument_list|,
 name|this
@@ -1740,7 +1706,7 @@ name|V
 argument_list|>
 name|computingFunction
 decl_stmt|;
-DECL|method|ComputingSerializationProxy ( Strength keyStrength, Strength valueStrength, Equivalence<Object> keyEquivalence, Equivalence<Object> valueEquivalence, long expireAfterWriteNanos, int concurrencyLevel, ConcurrentMap<K, V> delegate, Function<? super K, ? extends V> computingFunction)
+DECL|method|ComputingSerializationProxy ( Strength keyStrength, Strength valueStrength, Equivalence<Object> keyEquivalence, Equivalence<Object> valueEquivalence, int concurrencyLevel, ConcurrentMap<K, V> delegate, Function<? super K, ? extends V> computingFunction)
 name|ComputingSerializationProxy
 parameter_list|(
 name|Strength
@@ -1760,9 +1726,6 @@ argument_list|<
 name|Object
 argument_list|>
 name|valueEquivalence
-parameter_list|,
-name|long
-name|expireAfterWriteNanos
 parameter_list|,
 name|int
 name|concurrencyLevel
@@ -1797,8 +1760,6 @@ argument_list|,
 name|keyEquivalence
 argument_list|,
 name|valueEquivalence
-argument_list|,
-name|expireAfterWriteNanos
 argument_list|,
 name|concurrencyLevel
 argument_list|,
