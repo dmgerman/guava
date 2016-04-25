@@ -44,22 +44,6 @@ name|collect
 operator|.
 name|MapMakerInternalMap
 operator|.
-name|nullEntry
-import|;
-end_import
-
-begin_import
-import|import static
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|collect
-operator|.
-name|MapMakerInternalMap
-operator|.
 name|unset
 import|;
 end_import

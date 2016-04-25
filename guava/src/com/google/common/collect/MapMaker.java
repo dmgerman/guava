@@ -287,13 +287,6 @@ specifier|public
 specifier|final
 class|class
 name|MapMaker
-extends|extends
-name|GenericMapMaker
-argument_list|<
-name|Object
-argument_list|,
-name|Object
-argument_list|>
 block|{
 DECL|field|DEFAULT_INITIAL_CAPACITY
 specifier|private
@@ -366,8 +359,6 @@ name|CanIgnoreReturnValue
 annotation|@
 name|GwtIncompatible
 comment|// To be supported
-annotation|@
-name|Override
 DECL|method|keyEquivalence (Equivalence<Object> equivalence)
 name|MapMaker
 name|keyEquivalence
@@ -433,8 +424,6 @@ block|}
 comment|/**    * Sets the minimum total size for the internal hash tables. For example, if the initial capacity    * is {@code 60}, and the concurrency level is {@code 8}, then eight segments are created, each    * having a hash table of size eight. Providing a large enough estimate at construction time    * avoids the need for expensive resizing operations later, but setting this value unnecessarily    * high wastes memory.    *    * @throws IllegalArgumentException if {@code initialCapacity} is negative    * @throws IllegalStateException if an initial capacity was already set    */
 annotation|@
 name|CanIgnoreReturnValue
-annotation|@
-name|Override
 DECL|method|initialCapacity (int initialCapacity)
 specifier|public
 name|MapMaker
@@ -496,8 +485,6 @@ block|}
 comment|/**    * Guides the allowed concurrency among update operations. Used as a hint for internal sizing. The    * table is internally partitioned to try to permit the indicated number of concurrent updates    * without contention. Because assignment of entries to these partitions is not necessarily    * uniform, the actual concurrency observed may vary. Ideally, you should choose a value to    * accommodate as many threads as will ever concurrently modify the table. Using a significantly    * higher value than you need can waste space and time, and a significantly lower value can lead    * to thread contention. But overestimates and underestimates within an order of magnitude do not    * usually have much noticeable impact. A value of one permits only one thread to modify the map    * at a time, but since read operations can proceed concurrently, this still yields higher    * concurrency than full synchronization. Defaults to 4.    *    *<p><b>Note:</b> Prior to Guava release 9.0, the default was 16. It is possible the default will    * change again in the future. If you care about this value, you should always choose it    * explicitly.    *    * @throws IllegalArgumentException if {@code concurrencyLevel} is nonpositive    * @throws IllegalStateException if a concurrency level was already set    */
 annotation|@
 name|CanIgnoreReturnValue
-annotation|@
-name|Override
 DECL|method|concurrencyLevel (int concurrencyLevel)
 specifier|public
 name|MapMaker
@@ -562,8 +549,6 @@ name|CanIgnoreReturnValue
 annotation|@
 name|GwtIncompatible
 comment|// java.lang.ref.WeakReference
-annotation|@
-name|Override
 DECL|method|weakKeys ()
 specifier|public
 name|MapMaker
@@ -648,8 +633,6 @@ name|CanIgnoreReturnValue
 annotation|@
 name|GwtIncompatible
 comment|// java.lang.ref.WeakReference
-annotation|@
-name|Override
 DECL|method|weakValues ()
 specifier|public
 name|MapMaker
@@ -729,8 +712,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Builds a thread-safe map. This method does not alter the state of this {@code MapMaker}    * instance, so it can be invoked again to create multiple independent maps.    *    *<p>The bulk operations {@code putAll}, {@code equals}, and {@code clear} are not guaranteed to    * be performed atomically on the returned map. Additionally, {@code size} and    * {@code containsValue} are implemented as bulk read operations, and thus may fail to observe    * concurrent writes.    *    * @return a serializable concurrent map having the requested features    */
-annotation|@
-name|Override
 DECL|method|makeMap ()
 specifier|public
 parameter_list|<
@@ -787,8 +768,6 @@ return|;
 block|}
 comment|/**    * Returns a MapMakerInternalMap for the benefit of internal callers that use features of that    * class not exposed through ConcurrentMap.    */
 annotation|@
-name|Override
-annotation|@
 name|GwtIncompatible
 comment|// MapMakerInternalMap
 DECL|method|makeCustomMap ()
@@ -822,8 +801,6 @@ block|}
 comment|/**    * Builds a map that supports atomic, on-demand computation of values. {@link Map#get} either    * returns an already-computed value for the given key, atomically computes it using the supplied    * function, or, if another thread is currently computing the value for this key, simply waits for    * that thread to finish and returns its computed value. Note that the function may be executed    * concurrently by multiple threads, but only for distinct keys.    *    *<p>New code should use {@link com.google.common.cache.CacheBuilder}, which supports    * {@linkplain com.google.common.cache.CacheStats statistics} collection, introduces the    * {@link com.google.common.cache.CacheLoader} interface for loading entries into the cache    * (allowing checked exceptions to be thrown in the process), and more cleanly separates    * computation from the cache's {@code Map} view.    *    *<p>If an entry's value has not finished computing yet, query methods besides {@code get} return    * immediately as if an entry doesn't exist. In other words, an entry isn't externally visible    * until the value's computation completes.    *    *<p>{@link Map#get} on the returned map will never return {@code null}. It may throw:    *    *<ul>    *<li>{@link NullPointerException} if the key is null or the computing function returns a null    * result    *<li>{@link ComputationException} if an exception was thrown by the computing function. If that    * exception is already of type {@link ComputationException} it is propagated directly; otherwise    * it is wrapped.    *</ul>    *    *<p><b>Note:</b> Callers of {@code get}<i>must</i> ensure that the key argument is of type    * {@code K}. The {@code get} method accepts {@code Object}, so the key type is not checked at    * compile time. Passing an object of a type other than {@code K} can result in that object being    * unsafely passed to the computing function as type {@code K}, and unsafely stored in the map.    *    *<p>If {@link Map#put} is called before a computation completes, other threads waiting on the    * computation will wake up and return the stored value.    *    *<p>This method does not alter the state of this {@code MapMaker} instance, so it can be invoked    * again to create multiple independent maps.    *    *<p>Insertion, removal, update, and access operations on the returned map safely execute    * concurrently by multiple threads. Iterators on the returned map are weakly consistent,    * returning elements reflecting the state of the map at some point at or since the creation of    * the iterator. They do not throw {@link ConcurrentModificationException}, and may proceed    * concurrently with other operations.    *    *<p>The bulk operations {@code putAll}, {@code equals}, and {@code clear} are not guaranteed to    * be performed atomically on the returned map. Additionally, {@code size} and    * {@code containsValue} are implemented as bulk read operations, and thus may fail to observe    * concurrent writes.    *    * @param computingFunction the function used to compute new values    * @return a serializable concurrent map having the requested features    * @deprecated Caching functionality in {@code MapMaker} has been moved to    *     {@link com.google.common.cache.CacheBuilder}, with {@link #makeComputingMap} being replaced    *     by {@link com.google.common.cache.CacheBuilder#build}. See the    *<a href="https://github.com/google/guava/wiki/MapMakerMigration">MapMaker Migration    *     Guide</a> for more details.    */
 annotation|@
 name|Deprecated
-annotation|@
-name|Override
 DECL|method|makeComputingMap (Function<? super K, ? extends V> computingFunction)
 argument_list|<
 name|K

@@ -74,13 +74,6 @@ specifier|public
 specifier|final
 class|class
 name|MapMaker
-extends|extends
-name|GenericMapMaker
-argument_list|<
-name|Object
-argument_list|,
-name|Object
-argument_list|>
 block|{
 comment|// TODO(fry,kak): ConcurrentHashMap never throws a CME when mutating the map during iteration, but
 comment|// this implementation (based on a LHM) does. This will all be replaced soon anyways, so leaving
@@ -496,8 +489,6 @@ specifier|public
 name|MapMaker
 parameter_list|()
 block|{}
-annotation|@
-name|Override
 DECL|method|initialCapacity (int initialCapacity)
 specifier|public
 name|MapMaker
@@ -530,8 +521,6 @@ return|return
 name|this
 return|;
 block|}
-annotation|@
-name|Override
 DECL|method|concurrencyLevel (int concurrencyLevel)
 specifier|public
 name|MapMaker
@@ -562,8 +551,6 @@ return|return
 name|this
 return|;
 block|}
-annotation|@
-name|Override
 DECL|method|makeMap ()
 specifier|public
 parameter_list|<
@@ -608,8 +595,6 @@ name|initialCapacity
 argument_list|)
 return|;
 block|}
-annotation|@
-name|Override
 DECL|method|makeComputingMap (Function<? super K, ? extends V> computer)
 specifier|public
 parameter_list|<
