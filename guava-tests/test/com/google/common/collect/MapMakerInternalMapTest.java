@@ -1328,54 +1328,6 @@ name|entryFactory
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|testSetSoftValues ()
-specifier|public
-name|void
-name|testSetSoftValues
-parameter_list|()
-block|{
-name|MapMakerInternalMap
-argument_list|<
-name|Object
-argument_list|,
-name|Object
-argument_list|>
-name|map
-init|=
-name|makeMap
-argument_list|(
-name|createMapMaker
-argument_list|()
-operator|.
-name|softValues
-argument_list|()
-argument_list|)
-decl_stmt|;
-name|checkStrength
-argument_list|(
-name|map
-argument_list|,
-name|Strength
-operator|.
-name|STRONG
-argument_list|,
-name|Strength
-operator|.
-name|SOFT
-argument_list|)
-expr_stmt|;
-name|assertSame
-argument_list|(
-name|EntryFactory
-operator|.
-name|STRONG
-argument_list|,
-name|map
-operator|.
-name|entryFactory
-argument_list|)
-expr_stmt|;
-block|}
 DECL|method|checkStrength ( MapMakerInternalMap<Object, Object> map, Strength keyStrength, Strength valueStrength)
 specifier|private
 specifier|static
@@ -7089,7 +7041,7 @@ block|}
 block|}
 block|}
 comment|// utility methods
-comment|/**    * Returns an iterable containing all combinations weakKeys and weak/softValues.    */
+comment|/**    * Returns an iterable containing all combinations weakKeys and weakValues.    */
 DECL|method|allKeyValueStrengthMakers ()
 specifier|private
 specifier|static
@@ -7117,12 +7069,6 @@ argument_list|,
 name|createMapMaker
 argument_list|()
 operator|.
-name|softValues
-argument_list|()
-argument_list|,
-name|createMapMaker
-argument_list|()
-operator|.
 name|weakKeys
 argument_list|()
 argument_list|,
@@ -7133,15 +7079,6 @@ name|weakKeys
 argument_list|()
 operator|.
 name|weakValues
-argument_list|()
-argument_list|,
-name|createMapMaker
-argument_list|()
-operator|.
-name|weakKeys
-argument_list|()
-operator|.
-name|softValues
 argument_list|()
 argument_list|)
 return|;
