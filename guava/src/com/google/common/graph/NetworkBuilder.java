@@ -40,6 +40,20 @@ name|google
 operator|.
 name|common
 operator|.
+name|annotations
+operator|.
+name|Beta
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
 name|base
 operator|.
 name|Optional
@@ -73,6 +87,8 @@ comment|// TODO(user): try creating an abstract superclass that this and GraphBu
 end_comment
 
 begin_class
+annotation|@
+name|Beta
 DECL|class|NetworkBuilder
 specifier|public
 specifier|final

@@ -170,6 +170,20 @@ name|common
 operator|.
 name|annotations
 operator|.
+name|Beta
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
 name|GwtCompatible
 import|;
 end_import
@@ -274,6 +288,8 @@ literal|2
 operator|)
 decl_stmt|;
 comment|/**    * Returns the smallest power of two greater than or equal to {@code x}.  This is equivalent to    * {@code checkedPow(2, log2(x, CEILING))}.    *    * @throws IllegalArgumentException if {@code x<= 0}    * @throws ArithmeticException of the next-higher power of two is not representable as an    *         {@code int}, i.e. when {@code x> 2^30}    * @since 20.0    */
+annotation|@
+name|Beta
 DECL|method|ceilingPowerOfTwo (int x)
 specifier|public
 specifier|static
@@ -325,6 +341,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns the largest power of two less than or equal to {@code x}.  This is equivalent to    * {@code checkedPow(2, log2(x, FLOOR))}.    *    * @throws IllegalArgumentException if {@code x<= 0}    * @since 20.0    */
+annotation|@
+name|Beta
 DECL|method|floorPowerOfTwo (int x)
 specifier|public
 specifier|static
@@ -1999,6 +2017,8 @@ block|}
 block|}
 block|}
 comment|/**    * Returns the sum of {@code a} and {@code b} unless it would overflow or underflow in which case    * {@code Integer.MAX_VALUE} or {@code Integer.MIN_VALUE} is returned, respectively.    *    * @since 20.0    */
+annotation|@
+name|Beta
 DECL|method|saturatedAdd (int a, int b)
 specifier|public
 specifier|static
@@ -2027,6 +2047,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns the difference of {@code a} and {@code b} unless it would overflow or underflow in    * which case {@code Integer.MAX_VALUE} or {@code Integer.MIN_VALUE} is returned, respectively.    *    * @since 20.0    */
+annotation|@
+name|Beta
 DECL|method|saturatedSubtract (int a, int b)
 specifier|public
 specifier|static
@@ -2055,6 +2077,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns the product of {@code a} and {@code b} unless it would overflow or underflow in which    * case {@code Integer.MAX_VALUE} or {@code Integer.MIN_VALUE} is returned, respectively.    *    * @since 20.0    */
+annotation|@
+name|Beta
 DECL|method|saturatedMultiply (int a, int b)
 specifier|public
 specifier|static
@@ -2083,6 +2107,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns the {@code b} to the {@code k}th power, unless it would overflow or underflow in which    * case {@code Integer.MAX_VALUE} or {@code Integer.MIN_VALUE} is returned, respectively.    *    * @since 20.0    */
+annotation|@
+name|Beta
 DECL|method|saturatedPow (int b, int k)
 specifier|public
 specifier|static

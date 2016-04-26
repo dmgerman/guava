@@ -170,6 +170,20 @@ name|common
 operator|.
 name|annotations
 operator|.
+name|Beta
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
 name|GwtCompatible
 import|;
 end_import
@@ -274,6 +288,8 @@ literal|2
 operator|)
 decl_stmt|;
 comment|/**    * Returns the smallest power of two greater than or equal to {@code x}.  This is equivalent to    * {@code checkedPow(2, log2(x, CEILING))}.    *    * @throws IllegalArgumentException if {@code x<= 0}    * @throws ArithmeticException of the next-higher power of two is not representable as a    *         {@code long}, i.e. when {@code x> 2^62}    * @since 20.0    */
+annotation|@
+name|Beta
 DECL|method|ceilingPowerOfTwo (long x)
 specifier|public
 specifier|static
@@ -335,6 +351,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns the largest power of two less than or equal to {@code x}.  This is equivalent to    * {@code checkedPow(2, log2(x, FLOOR))}.    *    * @throws IllegalArgumentException if {@code x<= 0}    * @since 20.0    */
+annotation|@
+name|Beta
 DECL|method|floorPowerOfTwo (long x)
 specifier|public
 specifier|static
@@ -2334,6 +2352,8 @@ block|}
 block|}
 block|}
 comment|/**    * Returns the sum of {@code a} and {@code b} unless it would overflow or underflow in which case    * {@code Long.MAX_VALUE} or {@code Long.MIN_VALUE} is returned, respectively.    *    * @since 20.0    */
+annotation|@
+name|Beta
 DECL|method|saturatedAdd (long a, long b)
 specifier|public
 specifier|static
@@ -2403,6 +2423,8 @@ operator|)
 return|;
 block|}
 comment|/**    * Returns the difference of {@code a} and {@code b} unless it would overflow or underflow in    * which case {@code Long.MAX_VALUE} or {@code Long.MIN_VALUE} is returned, respectively.    *    * @since 20.0    */
+annotation|@
+name|Beta
 DECL|method|saturatedSubtract (long a, long b)
 specifier|public
 specifier|static
@@ -2472,6 +2494,8 @@ operator|)
 return|;
 block|}
 comment|/**    * Returns the product of {@code a} and {@code b} unless it would overflow or underflow in which    * case {@code Long.MAX_VALUE} or {@code Long.MIN_VALUE} is returned, respectively.    *    * @since 20.0    */
+annotation|@
+name|Beta
 DECL|method|saturatedMultiply (long a, long b)
 specifier|public
 specifier|static
@@ -2615,6 +2639,8 @@ name|limit
 return|;
 block|}
 comment|/**    * Returns the {@code b} to the {@code k}th power, unless it would overflow or underflow in which    * case {@code Long.MAX_VALUE} or {@code Long.MIN_VALUE} is returned, respectively.    *    * @since 20.0    */
+annotation|@
+name|Beta
 DECL|method|saturatedPow (long b, int k)
 specifier|public
 specifier|static

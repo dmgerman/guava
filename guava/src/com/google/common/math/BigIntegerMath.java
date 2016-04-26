@@ -142,6 +142,20 @@ name|common
 operator|.
 name|annotations
 operator|.
+name|Beta
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
 name|GwtCompatible
 import|;
 end_import
@@ -243,6 +257,8 @@ class|class
 name|BigIntegerMath
 block|{
 comment|/**    * Returns the smallest power of two greater than or equal to {@code x}.  This is equivalent to    * {@code BigInteger.valueOf(2).pow(log2(x, CEILING))}.    *    * @throws IllegalArgumentException if {@code x<= 0}    * @since 20.0    */
+annotation|@
+name|Beta
 DECL|method|ceilingPowerOfTwo (BigInteger x)
 specifier|public
 specifier|static
@@ -272,6 +288,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns the largest power of two less than or equal to {@code x}.  This is equivalent to    * {@code BigInteger.valueOf(2).pow(log2(x, FLOOR))}.    *    * @throws IllegalArgumentException if {@code x<= 0}    * @since 20.0    */
+annotation|@
+name|Beta
 DECL|method|floorPowerOfTwo (BigInteger x)
 specifier|public
 specifier|static

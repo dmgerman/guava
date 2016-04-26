@@ -40,6 +40,20 @@ name|google
 operator|.
 name|common
 operator|.
+name|annotations
+operator|.
+name|Beta
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
 name|base
 operator|.
 name|Optional
@@ -69,6 +83,8 @@ comment|// to narrow the generic type when Comparators are provided.
 end_comment
 
 begin_class
+annotation|@
+name|Beta
 DECL|class|GraphBuilder
 specifier|public
 specifier|final

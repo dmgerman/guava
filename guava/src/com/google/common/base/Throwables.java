@@ -245,6 +245,8 @@ parameter_list|()
 block|{}
 comment|/**    * Throws {@code throwable} if it is an instance of {@code declaredType}. Example usage:    *    *<pre>    * for (Foo foo : foos) {    *   try {    *     foo.bar();    *   } catch (BarException | RuntimeException | Error t) {    *     failure = t;    *   }    * }    * if (failure != null) {    *   throwIfInstanceOf(failure, BarException.class);    *   throwIfUnchecked(failure);    *   throw new AssertionError(failure);    * }    *</pre>    *    * @since 20.0    */
 annotation|@
+name|Beta
+annotation|@
 name|GwtIncompatible
 comment|// Class.cast, Class.isInstance
 DECL|method|throwIfInstanceOf ( Throwable throwable, Class<X> declaredType)
@@ -341,6 +343,8 @@ expr_stmt|;
 block|}
 block|}
 comment|/**    * Throws {@code throwable} if it is a {@link RuntimeException} or {@link Error}. Example usage:    *    *<pre>    * for (Foo foo : foos) {    *   try {    *     foo.bar();    *   } catch (RuntimeException | Error t) {    *     failure = t;    *   }    * }    * if (failure != null) {    *   throwIfUnchecked(failure);    *   throw new AssertionError(failure);    * }    *</pre>    *    * @since 20.0    */
+annotation|@
+name|Beta
 DECL|method|throwIfUnchecked (Throwable throwable)
 specifier|public
 specifier|static
