@@ -1729,6 +1729,36 @@ argument_list|,
 literal|"msword"
 argument_list|)
 decl_stmt|;
+comment|/**    * Media type for NaCl applications. For more information see    *<a href="https://developer.chrome.com/native-client/devguide/coding/application-structure">    * the Developer Guide for Native Client Application Structure</a>.    *    * @since 20.0    */
+DECL|field|NACL_APPLICATION
+specifier|public
+specifier|static
+specifier|final
+name|MediaType
+name|NACL_APPLICATION
+init|=
+name|createConstant
+argument_list|(
+name|APPLICATION_TYPE
+argument_list|,
+literal|"x-nacl"
+argument_list|)
+decl_stmt|;
+comment|/**    * Media type for NaCl portable applications. For more information see    *<a href="https://developer.chrome.com/native-client/devguide/coding/application-structure">    * the Developer Guide for Native Client Application Structure</a>.    *    * @since 20.0    */
+DECL|field|NACL_PORTABLE_APPLICATION
+specifier|public
+specifier|static
+specifier|final
+name|MediaType
+name|NACL_PORTABLE_APPLICATION
+init|=
+name|createConstant
+argument_list|(
+name|APPLICATION_TYPE
+argument_list|,
+literal|"x-pnacl"
+argument_list|)
+decl_stmt|;
 DECL|field|OCTET_STREAM
 specifier|public
 specifier|static
