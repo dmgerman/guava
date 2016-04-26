@@ -664,12 +664,14 @@ name|clazz
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a predicate that evaluates to {@code true} if the class being tested is assignable from    * the given class. The returned predicate does not allow null inputs.    *    * @since 10.0    */
+comment|/**    * Returns a predicate that evaluates to {@code true} if the class being tested is assignable    *<b>TO</b> {@code clazz}, that is, if it is a<b>subtype</b> of {@code clazz}. Yes, this method    * is named very incorrectly! Example:<pre>   {@code    *    *   List<Class<?>> classes = Arrays.asList(    *       Object.class, String.class, Number.class, Long.class);    *   return Iterables.filter(classes, assignableFrom(Number.class));}</pre>    *    * The code above returns {@code Number.class} and {@code Long.class},<b>not</b> {@code    * Number.class} and {@code Object.class} as the name implies!    *    *<p>The returned predicate does not allow null inputs.    *    * @deprecated Use the correctly-named method {@link #subtypeOf} instead.    * @since 10.0    */
 annotation|@
 name|GwtIncompatible
 comment|// Class.isAssignableFrom
 annotation|@
 name|Beta
+annotation|@
+name|Deprecated
 DECL|method|assignableFrom (Class<?> clazz)
 specifier|public
 specifier|static
@@ -690,8 +692,40 @@ name|clazz
 parameter_list|)
 block|{
 return|return
+name|subtypeOf
+argument_list|(
+name|clazz
+argument_list|)
+return|;
+block|}
+comment|/**    * Returns a predicate that evaluates to {@code true} if the class being tested is assignable    * to (is a subtype of) {@code clazz}. Example:<pre>   {@code    *    *   List<Class<?>> classes = Arrays.asList(    *       Object.class, String.class, Number.class, Long.class);    *   return Iterables.filter(classes, subtypeOf(Number.class));}</pre>    *    * The code above returns an iterable containing {@code Number.class} and {@code Long.class}.    *    * @since 20.0 (since 10.0 under the incorrect name {@code assignableFrom})    */
+annotation|@
+name|GwtIncompatible
+comment|// Class.isAssignableFrom
+annotation|@
+name|Beta
+DECL|method|subtypeOf (Class<?> clazz)
+specifier|public
+specifier|static
+name|Predicate
+argument_list|<
+name|Class
+argument_list|<
+name|?
+argument_list|>
+argument_list|>
+name|subtypeOf
+parameter_list|(
+name|Class
+argument_list|<
+name|?
+argument_list|>
+name|clazz
+parameter_list|)
+block|{
+return|return
 operator|new
-name|AssignableFromPredicate
+name|SubtypeOfPredicate
 argument_list|(
 name|clazz
 argument_list|)
@@ -1909,15 +1943,15 @@ init|=
 literal|0
 decl_stmt|;
 block|}
-comment|/** @see Predicates#assignableFrom(Class) */
+comment|/** @see Predicates#subtypeOf(Class) */
 annotation|@
 name|GwtIncompatible
 comment|// Class.isAssignableFrom
-DECL|class|AssignableFromPredicate
+DECL|class|SubtypeOfPredicate
 specifier|private
 specifier|static
 class|class
-name|AssignableFromPredicate
+name|SubtypeOfPredicate
 implements|implements
 name|Predicate
 argument_list|<
@@ -1938,9 +1972,9 @@ name|?
 argument_list|>
 name|clazz
 decl_stmt|;
-DECL|method|AssignableFromPredicate (Class<?> clazz)
+DECL|method|SubtypeOfPredicate (Class<?> clazz)
 specifier|private
-name|AssignableFromPredicate
+name|SubtypeOfPredicate
 parameter_list|(
 name|Class
 argument_list|<
@@ -2014,14 +2048,14 @@ if|if
 condition|(
 name|obj
 operator|instanceof
-name|AssignableFromPredicate
+name|SubtypeOfPredicate
 condition|)
 block|{
-name|AssignableFromPredicate
+name|SubtypeOfPredicate
 name|that
 init|=
 operator|(
-name|AssignableFromPredicate
+name|SubtypeOfPredicate
 operator|)
 name|obj
 decl_stmt|;
@@ -2046,7 +2080,7 @@ name|toString
 parameter_list|()
 block|{
 return|return
-literal|"Predicates.assignableFrom("
+literal|"Predicates.subtypeOf("
 operator|+
 name|clazz
 operator|.

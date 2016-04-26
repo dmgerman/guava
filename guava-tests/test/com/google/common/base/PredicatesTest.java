@@ -3430,11 +3430,11 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// Predicates.assignableFrom
-DECL|method|testIsAssignableFrom_apply ()
+comment|// Predicates.subtypeOf
+DECL|method|testSubtypeOf_apply ()
 specifier|public
 name|void
-name|testIsAssignableFrom_apply
+name|testSubtypeOf_apply
 parameter_list|()
 block|{
 name|Predicate
@@ -3448,7 +3448,7 @@ name|isInteger
 init|=
 name|Predicates
 operator|.
-name|assignableFrom
+name|subtypeOf
 argument_list|(
 name|Integer
 operator|.
@@ -3501,11 +3501,11 @@ block|{}
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// Predicates.assignableFrom
-DECL|method|testIsAssignableFrom_subclass ()
+comment|// Predicates.subtypeOf
+DECL|method|testSubtypeOf_subclass ()
 specifier|public
 name|void
-name|testIsAssignableFrom_subclass
+name|testSubtypeOf_subclass
 parameter_list|()
 block|{
 name|Predicate
@@ -3519,7 +3519,7 @@ name|isNumber
 init|=
 name|Predicates
 operator|.
-name|assignableFrom
+name|subtypeOf
 argument_list|(
 name|Number
 operator|.
@@ -3553,11 +3553,11 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// Predicates.assignableFrom
-DECL|method|testIsAssignableFrom_interface ()
+comment|// Predicates.subtypeOf
+DECL|method|testSubtypeOf_interface ()
 specifier|public
 name|void
-name|testIsAssignableFrom_interface
+name|testSubtypeOf_interface
 parameter_list|()
 block|{
 name|Predicate
@@ -3571,7 +3571,7 @@ name|isComparable
 init|=
 name|Predicates
 operator|.
-name|assignableFrom
+name|subtypeOf
 argument_list|(
 name|Comparable
 operator|.
@@ -3605,11 +3605,16 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// Predicates.assignableFrom
-DECL|method|testIsAssignableFrom_equality ()
+comment|// Predicates.subtypeOf
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"deprecation"
+argument_list|)
+DECL|method|testSubtypeOf_equality ()
 specifier|public
 name|void
-name|testIsAssignableFrom_equality
+name|testSubtypeOf_equality
 parameter_list|()
 block|{
 operator|new
@@ -3620,7 +3625,16 @@ name|addEqualityGroup
 argument_list|(
 name|Predicates
 operator|.
-name|assignableFrom
+name|subtypeOf
+argument_list|(
+name|Integer
+operator|.
+name|class
+argument_list|)
+argument_list|,
+name|Predicates
+operator|.
+name|subtypeOf
 argument_list|(
 name|Integer
 operator|.
@@ -3641,7 +3655,7 @@ name|addEqualityGroup
 argument_list|(
 name|Predicates
 operator|.
-name|assignableFrom
+name|subtypeOf
 argument_list|(
 name|Number
 operator|.
@@ -3653,7 +3667,7 @@ name|addEqualityGroup
 argument_list|(
 name|Predicates
 operator|.
-name|assignableFrom
+name|subtypeOf
 argument_list|(
 name|Float
 operator|.
@@ -3667,11 +3681,11 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// Predicates.assignableFrom, SerializableTester
-DECL|method|testIsAssignableFrom_serialization ()
+comment|// Predicates.subtypeOf, SerializableTester
+DECL|method|testSubtypeOf_serialization ()
 specifier|public
 name|void
-name|testIsAssignableFrom_serialization
+name|testSubtypeOf_serialization
 parameter_list|()
 block|{
 name|Predicate
@@ -3685,7 +3699,7 @@ name|predicate
 init|=
 name|Predicates
 operator|.
-name|assignableFrom
+name|subtypeOf
 argument_list|(
 name|Integer
 operator|.
