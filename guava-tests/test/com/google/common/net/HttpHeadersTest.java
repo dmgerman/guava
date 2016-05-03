@@ -168,6 +168,14 @@ argument_list|(
 literal|"ETAG"
 argument_list|,
 literal|"ETag"
+argument_list|,
+literal|"X_WEBKIT_CSP"
+argument_list|,
+literal|"X-WebKit-CSP"
+argument_list|,
+literal|"X_WEBKIT_CSP_REPORT_ONLY"
+argument_list|,
+literal|"X-WebKit-CSP-Report-Only"
 argument_list|)
 decl_stmt|;
 name|ImmutableSet
