@@ -291,7 +291,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**    * Returns an empty mutable {@link Graph} with the properties of this {@link GraphBuilder}.    */
+comment|/**    * Returns an empty {@link MutableGraph} with the properties of this {@link GraphBuilder}.    */
 DECL|method|build ()
 specifier|public
 parameter_list|<
@@ -308,7 +308,7 @@ parameter_list|()
 block|{
 return|return
 operator|new
-name|ConfigurableGraph
+name|ConfigurableMutableGraph
 argument_list|<
 name|N1
 argument_list|>

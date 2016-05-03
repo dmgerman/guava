@@ -129,7 +129,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests for an undirected {@link ConfigurableNetwork} with default graph properties.  */
+comment|/**  * Tests for an undirected {@link ConfigurableMutableNetwork} with default graph properties.  */
 end_comment
 
 begin_class

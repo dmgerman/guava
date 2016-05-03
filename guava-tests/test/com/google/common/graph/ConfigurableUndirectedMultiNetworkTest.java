@@ -79,7 +79,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests for an undirected {@link ConfigurableNetwork} allowing parallel edges.  */
+comment|/**  * Tests for an undirected {@link ConfigurableMutableNetwork} allowing parallel edges.  */
 end_comment
 
 begin_class

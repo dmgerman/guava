@@ -103,7 +103,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests for an undirected {@link ConfigurableGraph} with default graph properties.  */
+comment|/**  * Tests for an undirected {@link ConfigurableMutableGraph} with default graph properties.  */
 end_comment
 
 begin_class

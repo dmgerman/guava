@@ -417,7 +417,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**    * Returns an empty mutable {@link Network} with the properties of this {@link NetworkBuilder}.    */
+comment|/**    * Returns an empty {@link MutableNetwork} with the properties of this {@link NetworkBuilder}.    */
 DECL|method|build ()
 specifier|public
 parameter_list|<
@@ -440,7 +440,7 @@ parameter_list|()
 block|{
 return|return
 operator|new
-name|ConfigurableNetwork
+name|ConfigurableMutableNetwork
 argument_list|<
 name|N1
 argument_list|,

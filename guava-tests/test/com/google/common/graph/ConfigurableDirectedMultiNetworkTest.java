@@ -79,7 +79,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests for a directed {@link ConfigurableNetwork} allowing parallel edges.  */
+comment|/**  * Tests for a directed {@link ConfigurableMutableNetwork} allowing parallel edges.  */
 end_comment
 
 begin_class

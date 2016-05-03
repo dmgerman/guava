@@ -101,7 +101,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests for an undirected {@link ConfigurableNetwork}, creating a simple undirected graph (parallel  * and self-loop edges are not allowed).  */
+comment|/**  * Tests for an undirected {@link ConfigurableMutableNetwork}, creating a simple undirected graph  * (parallel and self-loop edges are not allowed).  */
 end_comment
 
 begin_class

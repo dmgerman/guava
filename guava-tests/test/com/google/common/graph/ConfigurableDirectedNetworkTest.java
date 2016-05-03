@@ -129,7 +129,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests for a directed {@link ConfigurableNetwork} with default graph properties.  */
+comment|/**  * Tests for a directed {@link ConfigurableMutableNetwork} with default graph properties.  */
 end_comment
 
 begin_class

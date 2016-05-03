@@ -101,7 +101,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests for a directed {@link ConfigurableGraph}, creating a simple directed graph (parallel  * and self-loop edges are not allowed).  */
+comment|/**  * Tests for a directed {@link ConfigurableMutableGraph}, creating a simple directed graph  * (parallel and self-loop edges are not allowed).  */
 end_comment
 
 begin_class
