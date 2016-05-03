@@ -522,12 +522,13 @@ name|declaredType2
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    *<b>To be deprecated.</b> Use {@code throw e} or {@code throw new RuntimeException(e)} directly,    * or use a combination of {@link #throwIfUnchecked} and {@code throw new RuntimeException(e)}.    *    *<p>Propagates {@code throwable} as-is if it is an instance of {@link RuntimeException} or    * {@link Error}, or else as a last resort, wraps it in a {@code RuntimeException} and then    * propagates.    *    *<p>This method always throws an exception. The {@code RuntimeException} return type allows    * client code to signal to the compiler that statements after the call are unreachable. Example    * usage:    *    *<pre>    * T doSomething() {    *   try {    *     return someMethodThatCouldThrowAnything();    *   } catch (IKnowWhatToDoWithThisException e) {    *     return handle(e);    *   } catch (Throwable t) {    *     throw Throwables.propagate(t);    *   }    * }    *</pre>    *    * @param throwable the Throwable to propagate    * @return nothing will ever be returned; this return type is only for your convenience, as    *     illustrated in the example above    */
+comment|/**    *<p>Propagates {@code throwable} as-is if it is an instance of {@link RuntimeException} or    * {@link Error}, or else as a last resort, wraps it in a {@code RuntimeException} and then    * propagates.    *    *<p>This method always throws an exception. The {@code RuntimeException} return type allows    * client code to signal to the compiler that statements after the call are unreachable. Example    * usage:    *    *<pre>    * T doSomething() {    *   try {    *     return someMethodThatCouldThrowAnything();    *   } catch (IKnowWhatToDoWithThisException e) {    *     return handle(e);    *   } catch (Throwable t) {    *     throw Throwables.propagate(t);    *   }    * }    *</pre>    *    * @param throwable the Throwable to propagate    * @return nothing will ever be returned; this return type is only for your convenience, as    *     illustrated in the example above    * @deprecated Use {@code throw e} or {@code throw new RuntimeException(e)} directly, or use a    *     combination of {@link #throwIfUnchecked} and {@code throw new RuntimeException(e)}. This    *     method is scheduled to be removed in July 2018.    */
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|GwtIncompatible
-comment|// to be deprecated
+annotation|@
+name|Deprecated
 DECL|method|propagate (Throwable throwable)
 specifier|public
 specifier|static
