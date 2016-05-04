@@ -48,6 +48,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -1958,6 +1972,8 @@ name|capacity
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|add (E element)
 annotation|@
 name|Override
@@ -1986,6 +2002,8 @@ return|return
 name|this
 return|;
 block|}
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|addAll (Iterable<? extends E> elements)
 annotation|@
 name|Override
@@ -2016,6 +2034,8 @@ return|return
 name|this
 return|;
 block|}
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|add (E... elements)
 annotation|@
 name|Override
@@ -2048,6 +2068,8 @@ return|return
 name|this
 return|;
 block|}
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|addAll (Iterator<? extends E> elements)
 annotation|@
 name|Override
