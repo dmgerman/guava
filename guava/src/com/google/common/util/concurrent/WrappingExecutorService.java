@@ -35,16 +35,18 @@ import|;
 end_import
 
 begin_import
-import|import
+import|import static
 name|com
 operator|.
 name|google
 operator|.
 name|common
 operator|.
-name|annotations
+name|base
 operator|.
-name|GwtIncompatible
+name|Throwables
+operator|.
+name|throwIfUnchecked
 import|;
 end_import
 
@@ -56,9 +58,9 @@ name|google
 operator|.
 name|common
 operator|.
-name|base
+name|annotations
 operator|.
-name|Throwables
+name|GwtIncompatible
 import|;
 end_import
 
@@ -310,13 +312,18 @@ name|Exception
 name|e
 parameter_list|)
 block|{
-name|Throwables
-operator|.
-name|propagate
+name|throwIfUnchecked
 argument_list|(
 name|e
 argument_list|)
 expr_stmt|;
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+name|e
+argument_list|)
+throw|;
 block|}
 block|}
 block|}
