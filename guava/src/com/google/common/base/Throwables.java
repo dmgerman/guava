@@ -295,7 +295,9 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    *<b>To be deprecated.</b> Use {@link #throwIfInstanceOf}, which has the same behavior but    * rejects {@code null}.    *    * Propagates {@code throwable} exactly as-is, if and only if it is an instance of {@code    * declaredType}. Example usage:    *    *<pre>    * try {    *   someMethodThatCouldThrowAnything();    * } catch (IKnowWhatToDoWithThisException e) {    *   handle(e);    * } catch (Throwable t) {    *   Throwables.propagateIfInstanceOf(t, IOException.class);    *   Throwables.propagateIfInstanceOf(t, SQLException.class);    *   throw Throwables.propagate(t);    * }    *</pre>    */
+comment|/**    * Propagates {@code throwable} exactly as-is, if and only if it is an instance of {@code    * declaredType}. Example usage:    *    *<pre>    * try {    *   someMethodThatCouldThrowAnything();    * } catch (IKnowWhatToDoWithThisException e) {    *   handle(e);    * } catch (Throwable t) {    *   Throwables.propagateIfInstanceOf(t, IOException.class);    *   Throwables.propagateIfInstanceOf(t, SQLException.class);    *   throw Throwables.propagate(t);    * }    *</pre>    *    * @deprecated Use {@link #throwIfInstanceOf}, which has the same behavior    *     but rejects {@code null}. This method is scheduled to be removed in July 2018.    */
+annotation|@
+name|Deprecated
 annotation|@
 name|GwtIncompatible
 comment|// throwIfInstanceOf
@@ -385,10 +387,11 @@ name|throwable
 throw|;
 block|}
 block|}
-comment|/**    *<b>To be deprecated.</b> Use {@link #throwIfUnchecked}, which has the same behavior but rejects    * {@code null}.    *    *<p>Propagates {@code throwable} exactly as-is, if and only if it is an instance of    * {@link RuntimeException} or {@link Error}. Example usage:    *    *<pre>    * try {    *   someMethodThatCouldThrowAnything();    * } catch (IKnowWhatToDoWithThisException e) {    *   handle(e);    * } catch (Throwable t) {    *   Throwables.propagateIfPossible(t);    *   throw new RuntimeException("unexpected", t);    * }    *</pre>    */
+comment|/**    * Propagates {@code throwable} exactly as-is, if and only if it is an instance of    * {@link RuntimeException} or {@link Error}. Example usage:    *    *<pre>    * try {    *   someMethodThatCouldThrowAnything();    * } catch (IKnowWhatToDoWithThisException e) {    *   handle(e);    * } catch (Throwable t) {    *   Throwables.propagateIfPossible(t);    *   throw new RuntimeException("unexpected", t);    * }    *</pre>    *    * @deprecated Use {@link #throwIfUnchecked}, which has the same behavior but rejects    *     {@code null}. This method is scheduled to be removed in July 2018.    */
+annotation|@
+name|Deprecated
 annotation|@
 name|GwtIncompatible
-comment|// to be deprecated
 DECL|method|propagateIfPossible (@ullable Throwable throwable)
 specifier|public
 specifier|static
