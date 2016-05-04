@@ -78,16 +78,6 @@ name|CanIgnoreReturnValue
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Map
-import|;
-end_import
-
 begin_comment
 comment|/**  * Configurable implementation of {@link MutableGraph} that supports both directed and undirected  * graphs. Instances of this class should be constructed with {@link GraphBuilder}.  *  *<p>Time complexities for mutation methods are all O(1) except for {@code removeNode(N node)},  * which is in O(d_node) where d_node is the degree of {@code node}.  *  * @author James Sexton  * @author Joshua O'Madadhain  * @author Omar Darwish  * @param<N> Node parameter type  */
 end_comment
@@ -98,6 +88,7 @@ end_comment
 
 begin_class
 DECL|class|ConfigurableMutableGraph
+specifier|final
 class|class
 name|ConfigurableMutableGraph
 parameter_list|<
@@ -130,38 +121,6 @@ block|{
 name|super
 argument_list|(
 name|builder
-argument_list|)
-expr_stmt|;
-block|}
-comment|/**    * Constructs a graph with the properties specified in {@code builder}, initialized with    * the given node maps. May be used for either mutable or immutable graphs.    */
-DECL|method|ConfigurableMutableGraph (GraphBuilder<? super N> builder, Map<N, NodeAdjacencies<N>> nodeConnections)
-name|ConfigurableMutableGraph
-parameter_list|(
-name|GraphBuilder
-argument_list|<
-name|?
-super|super
-name|N
-argument_list|>
-name|builder
-parameter_list|,
-name|Map
-argument_list|<
-name|N
-argument_list|,
-name|NodeAdjacencies
-argument_list|<
-name|N
-argument_list|>
-argument_list|>
-name|nodeConnections
-parameter_list|)
-block|{
-name|super
-argument_list|(
-name|builder
-argument_list|,
-name|nodeConnections
 argument_list|)
 expr_stmt|;
 block|}

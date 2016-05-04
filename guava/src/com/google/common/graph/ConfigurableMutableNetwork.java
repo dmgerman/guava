@@ -124,16 +124,6 @@ name|CanIgnoreReturnValue
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Map
-import|;
-end_import
-
 begin_comment
 comment|/**  * Configurable implementation of {@link MutableNetwork} that supports both directed and undirected  * graphs. Instances of this class should be constructed with {@link NetworkBuilder}.  *  *<p>Time complexities for mutation methods are all O(1) except for {@code removeNode(N node)},  * which is in O(d_node) where d_node is the degree of {@code node}.  *  * @author James Sexton  * @author Joshua O'Madadhain  * @author Omar Darwish  * @param<N> Node parameter type  * @param<E> Edge parameter type  */
 end_comment
@@ -144,6 +134,7 @@ end_comment
 
 begin_class
 DECL|class|ConfigurableMutableNetwork
+specifier|final
 class|class
 name|ConfigurableMutableNetwork
 parameter_list|<
@@ -186,54 +177,6 @@ block|{
 name|super
 argument_list|(
 name|builder
-argument_list|)
-expr_stmt|;
-block|}
-comment|/**    * Constructs a graph with the properties specified in {@code builder}, initialized with    * the given node and edge maps. May be used for either mutable or immutable graphs.    */
-DECL|method|ConfigurableMutableNetwork (NetworkBuilder<? super N, ? super E> builder, Map<N, NodeConnections<N, E>> nodeConnections, Map<E, N> edgeToReferenceNode)
-name|ConfigurableMutableNetwork
-parameter_list|(
-name|NetworkBuilder
-argument_list|<
-name|?
-super|super
-name|N
-argument_list|,
-name|?
-super|super
-name|E
-argument_list|>
-name|builder
-parameter_list|,
-name|Map
-argument_list|<
-name|N
-argument_list|,
-name|NodeConnections
-argument_list|<
-name|N
-argument_list|,
-name|E
-argument_list|>
-argument_list|>
-name|nodeConnections
-parameter_list|,
-name|Map
-argument_list|<
-name|E
-argument_list|,
-name|N
-argument_list|>
-name|edgeToReferenceNode
-parameter_list|)
-block|{
-name|super
-argument_list|(
-name|builder
-argument_list|,
-name|nodeConnections
-argument_list|,
-name|edgeToReferenceNode
 argument_list|)
 expr_stmt|;
 block|}
