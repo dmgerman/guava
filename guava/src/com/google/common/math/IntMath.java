@@ -287,7 +287,7 @@ operator|-
 literal|2
 operator|)
 decl_stmt|;
-comment|/**    * Returns the smallest power of two greater than or equal to {@code x}.  This is equivalent to    * {@code checkedPow(2, log2(x, CEILING))}.    *    * @throws IllegalArgumentException if {@code x<= 0}    * @throws ArithmeticException of the next-higher power of two is not representable as an    *         {@code int}, i.e. when {@code x> 2^30}    * @since 20.0    */
+comment|/**    * Returns the smallest power of two greater than or equal to {@code x}.  This is equivalent to    * {@code checkedPow(2, log2(x, CEILING))}.    *    * @throws IllegalArgumentException if {@code x<= 0}    * @throws ArithmeticException of the next-higher power of two is not representable as an    *         {@code int}, i.e. when {@code x> 2^30}    * @since 20.0            */
 annotation|@
 name|Beta
 DECL|method|ceilingPowerOfTwo (int x)
@@ -2806,6 +2806,31 @@ operator|)
 operator|>>
 literal|1
 operator|)
+return|;
+block|}
+comment|/**    * Returns {@code true} if the non-negative number {@code n} is prime.    *    * @throws IllegalArgumentException if {@code n< 0}    * @since 20.0    */
+annotation|@
+name|GwtIncompatible
+comment|// TODO
+annotation|@
+name|Beta
+DECL|method|isPrime (int n)
+specifier|public
+specifier|static
+name|boolean
+name|isPrime
+parameter_list|(
+name|int
+name|n
+parameter_list|)
+block|{
+return|return
+name|LongMath
+operator|.
+name|isPrime
+argument_list|(
+name|n
+argument_list|)
 return|;
 block|}
 DECL|method|IntMath ()
