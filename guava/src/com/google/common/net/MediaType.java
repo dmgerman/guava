@@ -2043,6 +2043,21 @@ argument_list|,
 literal|"font-woff"
 argument_list|)
 decl_stmt|;
+comment|/**    * Media type for the<a href="http://en.wikipedia.org/wiki/Web_Open_Font_Format">Web Open Font    * Format</a> (WOFF) version 2<a href="https://www.w3.org/TR/WOFF2/">defined</a> by the W3C.    *    * @since 20.0    */
+DECL|field|WOFF2
+specifier|public
+specifier|static
+specifier|final
+name|MediaType
+name|WOFF2
+init|=
+name|createConstant
+argument_list|(
+name|APPLICATION_TYPE
+argument_list|,
+literal|"font-woff2"
+argument_list|)
+decl_stmt|;
 DECL|field|XHTML_UTF_8
 specifier|public
 specifier|static
