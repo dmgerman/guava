@@ -291,9 +291,7 @@ name|Level
 operator|.
 name|WARNING
 argument_list|,
-literal|"Error while attempting to shut down the service"
-operator|+
-literal|" after failure."
+literal|"Error while attempting to shut down the service after failure."
 argument_list|,
 name|ignored
 argument_list|)
