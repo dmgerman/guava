@@ -2697,6 +2697,10 @@ argument_list|,
 literal|false
 argument_list|,
 literal|0
+argument_list|,
+name|TimeUnit
+operator|.
+name|NANOSECONDS
 argument_list|)
 expr_stmt|;
 name|fail
@@ -2752,6 +2756,10 @@ argument_list|,
 literal|false
 argument_list|,
 literal|0
+argument_list|,
+name|TimeUnit
+operator|.
+name|NANOSECONDS
 argument_list|)
 expr_stmt|;
 name|fail
@@ -2854,6 +2862,10 @@ argument_list|,
 literal|false
 argument_list|,
 literal|0
+argument_list|,
+name|TimeUnit
+operator|.
+name|NANOSECONDS
 argument_list|)
 expr_stmt|;
 name|fail
@@ -2929,6 +2941,10 @@ argument_list|,
 literal|false
 argument_list|,
 literal|0
+argument_list|,
+name|TimeUnit
+operator|.
+name|NANOSECONDS
 argument_list|)
 expr_stmt|;
 name|fail
@@ -3032,6 +3048,10 @@ argument_list|,
 literal|false
 argument_list|,
 literal|0
+argument_list|,
+name|TimeUnit
+operator|.
+name|NANOSECONDS
 argument_list|)
 decl_stmt|;
 name|assertSame

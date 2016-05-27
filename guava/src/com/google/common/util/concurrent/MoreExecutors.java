@@ -2119,7 +2119,7 @@ block|}
 block|}
 comment|/*    * This following method is a modified version of one found in    * http://gee.cs.oswego.edu/cgi-bin/viewcvs.cgi/jsr166/src/test/tck/AbstractExecutorServiceTest.java?revision=1.30    * which contained the following notice:    *    * Written by Doug Lea with assistance from members of JCP JSR-166 Expert Group and released to    * the public domain, as explained at http://creativecommons.org/publicdomain/zero/1.0/    *    * Other contributors include Andrew Wright, Jeffrey Hayes, Pat Fisher, Mike Judd.    */
 comment|/**    * An implementation of {@link ExecutorService#invokeAny} for {@link ListeningExecutorService}    * implementations.    */
-DECL|method|invokeAnyImpl ( ListeningExecutorService executorService, Collection<? extends Callable<T>> tasks, boolean timed, long nanos)
+DECL|method|invokeAnyImpl ( ListeningExecutorService executorService, Collection<? extends Callable<T>> tasks, boolean timed, long timeout, TimeUnit unit)
 annotation|@
 name|GwtIncompatible
 specifier|static
@@ -2147,7 +2147,10 @@ name|boolean
 name|timed
 parameter_list|,
 name|long
-name|nanos
+name|timeout
+parameter_list|,
+name|TimeUnit
+name|unit
 parameter_list|)
 throws|throws
 name|InterruptedException
@@ -2159,6 +2162,11 @@ block|{
 name|checkNotNull
 argument_list|(
 name|executorService
+argument_list|)
+expr_stmt|;
+name|checkNotNull
+argument_list|(
+name|unit
 argument_list|)
 expr_stmt|;
 name|int
@@ -2205,6 +2213,16 @@ name|Queues
 operator|.
 name|newLinkedBlockingQueue
 argument_list|()
+decl_stmt|;
+name|long
+name|timeoutNanos
+init|=
+name|unit
+operator|.
+name|toNanos
+argument_list|(
+name|timeout
+argument_list|)
 decl_stmt|;
 comment|// For efficiency, especially in executors with limited
 comment|// parallelism, check to see if previously submitted tasks are
@@ -2349,7 +2367,7 @@ name|futureQueue
 operator|.
 name|poll
 argument_list|(
-name|nanos
+name|timeoutNanos
 argument_list|,
 name|TimeUnit
 operator|.
@@ -2377,7 +2395,7 @@ operator|.
 name|nanoTime
 argument_list|()
 decl_stmt|;
-name|nanos
+name|timeoutNanos
 operator|-=
 name|now
 operator|-
