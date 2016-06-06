@@ -513,16 +513,6 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
-comment|/*    * TODO(kevinb): Restructure code so ImmutableList doesn't contain this    * variable, which it doesn't use.    */
-DECL|field|asList
-specifier|private
-specifier|transient
-name|ImmutableList
-argument_list|<
-name|E
-argument_list|>
-name|asList
-decl_stmt|;
 comment|/**    * Returns an {@code ImmutableList} containing the same elements, in the same order, as this    * collection.    *    *<p><b>Performance note:</b> in most cases this method can return quickly without actually    * copying anything. The exact circumstances under which the copy is performed are undefined and    * subject to change.    *    * @since 2.0    */
 DECL|method|asList ()
 specifier|public
@@ -531,39 +521,6 @@ argument_list|<
 name|E
 argument_list|>
 name|asList
-parameter_list|()
-block|{
-name|ImmutableList
-argument_list|<
-name|E
-argument_list|>
-name|list
-init|=
-name|asList
-decl_stmt|;
-return|return
-operator|(
-name|list
-operator|==
-literal|null
-operator|)
-condition|?
-operator|(
-name|asList
-operator|=
-name|createAsList
-argument_list|()
-operator|)
-else|:
-name|list
-return|;
-block|}
-DECL|method|createAsList ()
-name|ImmutableList
-argument_list|<
-name|E
-argument_list|>
-name|createAsList
 parameter_list|()
 block|{
 switch|switch

@@ -193,6 +193,25 @@ return|;
 block|}
 annotation|@
 name|Override
+DECL|method|createAsList ()
+name|ImmutableList
+argument_list|<
+name|E
+argument_list|>
+name|createAsList
+parameter_list|()
+block|{
+return|return
+name|ImmutableList
+operator|.
+name|of
+argument_list|(
+name|element
+argument_list|)
+return|;
+block|}
+annotation|@
+name|Override
 DECL|method|isPartialView ()
 name|boolean
 name|isPartialView

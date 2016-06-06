@@ -279,12 +279,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|createAsList ()
+DECL|method|asList ()
+specifier|public
 name|ImmutableList
 argument_list|<
 name|V
 argument_list|>
-name|createAsList
+name|asList
 parameter_list|()
 block|{
 specifier|final
