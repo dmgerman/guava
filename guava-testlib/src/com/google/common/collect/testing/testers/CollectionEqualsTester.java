@@ -70,6 +70,12 @@ argument_list|<
 name|E
 argument_list|>
 block|{
+comment|// TODO(cpovirk): Consider using EqualsTester from Guava.
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"SelfEquals"
+argument_list|)
 DECL|method|testEquals_self ()
 specifier|public
 name|void
