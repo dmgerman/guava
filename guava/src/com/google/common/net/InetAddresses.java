@@ -17,6 +17,38 @@ package|;
 end_package
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Preconditions
+operator|.
+name|checkArgument
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Preconditions
+operator|.
+name|checkNotNull
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -55,20 +87,6 @@ operator|.
 name|base
 operator|.
 name|MoreObjects
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|base
-operator|.
-name|Preconditions
 import|;
 end_import
 
@@ -307,8 +325,6 @@ index|[]
 name|bytes
 parameter_list|)
 block|{
-name|Preconditions
-operator|.
 name|checkArgument
 argument_list|(
 name|bytes
@@ -399,6 +415,8 @@ operator|!=
 literal|null
 return|;
 block|}
+annotation|@
+name|Nullable
 DECL|method|ipStringToBytes (String ipString)
 specifier|private
 specifier|static
@@ -560,6 +578,8 @@ return|return
 literal|null
 return|;
 block|}
+annotation|@
+name|Nullable
 DECL|method|textToNumericFormatV4 (String ipString)
 specifier|private
 specifier|static
@@ -634,6 +654,8 @@ else|:
 literal|null
 return|;
 block|}
+annotation|@
+name|Nullable
 DECL|method|textToNumericFormatV6 (String ipString)
 specifier|private
 specifier|static
@@ -992,6 +1014,8 @@ name|array
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Nullable
 DECL|method|convertDottedQuadToHex (String ipString)
 specifier|private
 specifier|static
@@ -1279,8 +1303,6 @@ name|InetAddress
 name|ip
 parameter_list|)
 block|{
-name|Preconditions
-operator|.
 name|checkNotNull
 argument_list|(
 name|ip
@@ -1301,8 +1323,6 @@ name|getHostAddress
 argument_list|()
 return|;
 block|}
-name|Preconditions
-operator|.
 name|checkArgument
 argument_list|(
 name|ip
@@ -1746,8 +1766,6 @@ name|String
 name|hostAddr
 parameter_list|)
 block|{
-name|Preconditions
-operator|.
 name|checkNotNull
 argument_list|(
 name|hostAddr
@@ -1965,8 +1983,6 @@ name|Inet6Address
 name|ip
 parameter_list|)
 block|{
-name|Preconditions
-operator|.
 name|checkArgument
 argument_list|(
 name|isCompatIPv4Address
@@ -2058,8 +2074,6 @@ name|Inet6Address
 name|ip
 parameter_list|)
 block|{
-name|Preconditions
-operator|.
 name|checkArgument
 argument_list|(
 name|is6to4Address
@@ -2151,8 +2165,6 @@ name|int
 name|flags
 parameter_list|)
 block|{
-name|Preconditions
-operator|.
 name|checkArgument
 argument_list|(
 operator|(
@@ -2172,8 +2184,6 @@ argument_list|,
 name|port
 argument_list|)
 expr_stmt|;
-name|Preconditions
-operator|.
 name|checkArgument
 argument_list|(
 operator|(
@@ -2348,8 +2358,6 @@ name|Inet6Address
 name|ip
 parameter_list|)
 block|{
-name|Preconditions
-operator|.
 name|checkArgument
 argument_list|(
 name|isTeredoAddress
@@ -2606,8 +2614,6 @@ name|Inet6Address
 name|ip
 parameter_list|)
 block|{
-name|Preconditions
-operator|.
 name|checkArgument
 argument_list|(
 name|isIsatapAddress
@@ -3240,8 +3246,6 @@ name|i
 operator|--
 expr_stmt|;
 block|}
-name|Preconditions
-operator|.
 name|checkArgument
 argument_list|(
 name|i
@@ -3323,8 +3327,6 @@ name|i
 operator|--
 expr_stmt|;
 block|}
-name|Preconditions
-operator|.
 name|checkArgument
 argument_list|(
 name|i
