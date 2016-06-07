@@ -3102,6 +3102,13 @@ condition|)
 block|{
 name|tokenizer
 operator|.
+name|consumeTokenIfPresent
+argument_list|(
+name|LINEAR_WHITE_SPACE
+argument_list|)
+expr_stmt|;
+name|tokenizer
+operator|.
 name|consumeCharacter
 argument_list|(
 literal|';'
