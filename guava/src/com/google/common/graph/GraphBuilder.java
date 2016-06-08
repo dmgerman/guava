@@ -33,6 +33,22 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Preconditions
+operator|.
+name|checkNotNull
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -60,26 +76,8 @@ name|Optional
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Comparator
-import|;
-end_import
-
 begin_comment
-comment|/**  * A builder for constructing instances of {@link Graph} with user-defined properties.  *  *<p>A graph built by this class will have the following properties by default:  *<ul>  *<li>does not allow parallel edges  *<li>allows self-loops  *</ul>  *  * @author James Sexton  * @author Joshua O'Madadhain  * @since 20.0  */
-end_comment
-
-begin_comment
-comment|// TODO(b/24620028): Add support for sorted nodes/edges. Use the same pattern as CacheBuilder
-end_comment
-
-begin_comment
-comment|// to narrow the generic type when Comparators are provided.
+comment|/**  * A builder for constructing instances of {@link Graph} with user-defined properties.  *  *<p>A graph built by this class will have the following properties by default:  *<ul>  *<li>does not allow parallel edges  *<li>allows self-loops  *<li>orders {@code nodes()} in the order in which the elements were added  *</ul>  *  * @author James Sexton  * @author Joshua O'Madadhain  * @since 20.0  */
 end_comment
 
 begin_class
@@ -105,14 +103,17 @@ name|allowsSelfLoops
 init|=
 literal|true
 decl_stmt|;
-DECL|field|nodeComparator
-name|Comparator
+DECL|field|nodeOrder
+name|ElementOrder
 argument_list|<
 name|N
 argument_list|>
-name|nodeComparator
+name|nodeOrder
 init|=
-literal|null
+name|ElementOrder
+operator|.
+name|insertion
+argument_list|()
 decl_stmt|;
 DECL|field|expectedNodeCount
 name|Optional
@@ -206,12 +207,17 @@ argument_list|>
 name|graph
 parameter_list|)
 block|{
+name|checkNotNull
+argument_list|(
+name|graph
+argument_list|)
+expr_stmt|;
 comment|// TODO(b/28087289): add allowsParallelEdges() once we support them
 return|return
 operator|new
 name|GraphBuilder
 argument_list|<
-name|N
+name|Object
 argument_list|>
 argument_list|(
 name|graph
@@ -227,6 +233,17 @@ operator|.
 name|allowsSelfLoops
 argument_list|()
 argument_list|)
+operator|.
+name|orderNodes
+argument_list|(
+name|graph
+operator|.
+name|nodeOrder
+argument_list|()
+argument_list|)
+operator|.
+name|cast
+argument_list|()
 return|;
 block|}
 comment|/**    * Specifies whether the graph will allow self-loops (edges that connect a node to itself).    * Attempting to add a self-loop to a graph that does not allow them will throw an    * {@link UnsupportedOperationException}.    */
@@ -291,6 +308,51 @@ return|return
 name|this
 return|;
 block|}
+comment|/**    * Specifies the order of iteration for the elements of {@link Network#nodes()}.    */
+DECL|method|orderNodes (ElementOrder<N1> nodeOrder)
+specifier|public
+parameter_list|<
+name|N1
+extends|extends
+name|N
+parameter_list|>
+name|GraphBuilder
+argument_list|<
+name|N1
+argument_list|>
+name|orderNodes
+parameter_list|(
+name|ElementOrder
+argument_list|<
+name|N1
+argument_list|>
+name|nodeOrder
+parameter_list|)
+block|{
+name|checkNotNull
+argument_list|(
+name|nodeOrder
+argument_list|)
+expr_stmt|;
+name|GraphBuilder
+argument_list|<
+name|N1
+argument_list|>
+name|newBuilder
+init|=
+name|cast
+argument_list|()
+decl_stmt|;
+name|newBuilder
+operator|.
+name|nodeOrder
+operator|=
+name|nodeOrder
+expr_stmt|;
+return|return
+name|newBuilder
+return|;
+block|}
 comment|/**    * Returns an empty {@link MutableGraph} with the properties of this {@link GraphBuilder}.    */
 DECL|method|build ()
 specifier|public
@@ -315,6 +377,35 @@ argument_list|>
 argument_list|(
 name|this
 argument_list|)
+return|;
+block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
+DECL|method|cast ()
+specifier|private
+parameter_list|<
+name|N1
+extends|extends
+name|N
+parameter_list|>
+name|GraphBuilder
+argument_list|<
+name|N1
+argument_list|>
+name|cast
+parameter_list|()
+block|{
+return|return
+operator|(
+name|GraphBuilder
+argument_list|<
+name|N1
+argument_list|>
+operator|)
+name|this
 return|;
 block|}
 block|}

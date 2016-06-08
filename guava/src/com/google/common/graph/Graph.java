@@ -65,7 +65,7 @@ parameter_list|<
 name|N
 parameter_list|>
 block|{
-comment|/** Returns all nodes in this graph. */
+comment|/**    * Returns all nodes in this graph, in the order specified by {@link #nodeOrder()}.    */
 DECL|method|nodes ()
 name|Set
 argument_list|<
@@ -87,6 +87,17 @@ comment|/**    * Returns true if this graph allows self-loops (edges that connec
 DECL|method|allowsSelfLoops ()
 name|boolean
 name|allowsSelfLoops
+parameter_list|()
+function_decl|;
+comment|/**    * Returns the order of iteration for the elements of {@link #nodes()}.    */
+DECL|method|nodeOrder ()
+name|ElementOrder
+argument_list|<
+name|?
+super|super
+name|N
+argument_list|>
+name|nodeOrder
 parameter_list|()
 function_decl|;
 comment|//
@@ -171,7 +182,7 @@ name|Object
 name|object
 parameter_list|)
 function_decl|;
-comment|/**    * Returns the hash code for this graph. The hash code of a graph is defined as the hash code    * of a map from each of the graph's nodes to their adjacent nodes.    *    *<p>A reference implementation of this is provided by {@link Graphs#hashCode(Graph)}.    *    *<p>Note that by this definition, two graphs that are equal in every aspect except edge    * direction will have the same hash code (but can still be differentiated by {@link #equals}.    */
+comment|/**    * Returns the hash code for this graph. The hash code of a graph is defined as the hash code    * of a map from each of the graph's nodes to their adjacent nodes.    *    *<p>A reference implementation of this is provided by {@link Graphs#hashCode(Graph)}.    *    *<p>Note that by this definition, two graphs that are equal in every aspect except edge    * direction will have the same hash code (but can still be differentiated by    * {@link #equals(Object)}.    */
 annotation|@
 name|Override
 DECL|method|hashCode ()

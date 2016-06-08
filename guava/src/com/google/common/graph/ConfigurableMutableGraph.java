@@ -82,10 +82,6 @@ begin_comment
 comment|/**  * Configurable implementation of {@link MutableGraph} that supports both directed and undirected  * graphs. Instances of this class should be constructed with {@link GraphBuilder}.  *  *<p>Time complexities for mutation methods are all O(1) except for {@code removeNode(N node)},  * which is in O(d_node) where d_node is the degree of {@code node}.  *  * @author James Sexton  * @author Joshua O'Madadhain  * @author Omar Darwish  * @param<N> Node parameter type  */
 end_comment
 
-begin_comment
-comment|// TODO(b/24620028): Enable this class to support sorted nodes/edges.
-end_comment
-
 begin_class
 DECL|class|ConfigurableMutableGraph
 specifier|final
