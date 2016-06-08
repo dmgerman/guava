@@ -65,7 +65,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A deque which forwards all its method calls to another deque. Subclasses  * should override one or more methods to modify the behavior of the backing  * deque as desired per the<a  * href="http://en.wikipedia.org/wiki/Decorator_pattern">decorator pattern</a>.  *  *<p><b>Warning:</b> The methods of {@code ForwardingDeque} forward  *<b>indiscriminately</b> to the methods of the delegate. For example,  * overriding {@link #add} alone<b>will not</b> change the behavior of {@link  * #offer} which can lead to unexpected behavior. In this case, you should  * override {@code offer} as well.  *  * @author Kurt Alfred Kluever  * @since 12.0  */
+comment|/**  * A deque which forwards all its method calls to another deque. Subclasses  * should override one or more methods to modify the behavior of the backing  * deque as desired per the<a  * href="http://en.wikipedia.org/wiki/Decorator_pattern">decorator pattern</a>.  *  *<p><b>Warning:</b> The methods of {@code ForwardingDeque} forward  *<b>indiscriminately</b> to the methods of the delegate. For example,  * overriding {@link #add} alone<b>will not</b> change the behavior of {@link  * #offer} which can lead to unexpected behavior. In this case, you should  * override {@code offer} as well.  *  *<p><b>{@code default} method warning:</b> This class does<i>not</i> forward calls to {@code  * default} methods. Instead, it inherits their default implementations. When those implementations  * invoke methods, they invoke methods on the {@code ForwardingDeque}.  *  * @author Kurt Alfred Kluever  * @since 12.0  */
 end_comment
 
 begin_class
