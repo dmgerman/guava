@@ -84,7 +84,7 @@ function_decl|;
 comment|//
 comment|// Graph properties
 comment|//
-comment|/**    * Returns true if each edge in this graph is directed.    *    *<p>A directed edge is an {@linkplain #outEdges(Object) outgoing edge} of its    * {@linkplain #source(Object) source}, and an {@linkplain #inEdges(Object) incoming edge} of its    * {@linkplain #target(Object) target}. An undirected edge connects its    * {@linkplain #incidentNodes(Object) incident nodes} to each other, and is both an    * {@linkplain #outEdges(Object) outgoing edge} and {@linkplain #inEdges(Object) incoming edge}    * of each incident node.    */
+comment|/**    * {@inheritDoc}    *    *<p>A directed edge is an {@linkplain #outEdges(Object) outgoing edge} of its    * {@linkplain #source(Object) source}, and an {@linkplain #inEdges(Object) incoming edge} of its    * {@linkplain #target(Object) target}. An undirected edge connects its    * {@linkplain #incidentNodes(Object) incident nodes} to each other, and is both an    * {@linkplain #outEdges(Object) outgoing edge} and {@linkplain #inEdges(Object) incoming edge}    * of each incident node.    */
 annotation|@
 name|Override
 DECL|method|isDirected ()
@@ -190,34 +190,6 @@ name|Object
 name|node
 parameter_list|)
 function_decl|;
-comment|/**    * Returns all nodes in this graph adjacent to {@code node} which can be reached by traversing    * {@code node}'s {@linkplain #inEdges(Object) incoming edges}<i>against</i> the direction    * (if any) of the edge.    *    * @throws IllegalArgumentException if {@code node} is not an element of this graph    */
-annotation|@
-name|Override
-DECL|method|predecessors (Object node)
-name|Set
-argument_list|<
-name|N
-argument_list|>
-name|predecessors
-parameter_list|(
-name|Object
-name|node
-parameter_list|)
-function_decl|;
-comment|/**    * Returns all nodes in this graph adjacent to {@code node} which can be reached by traversing    * {@code node}'s {@linkplain #outEdges(Object) outgoing edges} in the direction (if any) of the    * edge.    *    *<p>This is<i>not</i> the same as "all nodes reachable from {@code node} by following outgoing    * edges" (also known as {@code node}'s transitive closure).    *    * @throws IllegalArgumentException if {@code node} is not an element of this graph    */
-annotation|@
-name|Override
-DECL|method|successors (Object node)
-name|Set
-argument_list|<
-name|N
-argument_list|>
-name|successors
-parameter_list|(
-name|Object
-name|node
-parameter_list|)
-function_decl|;
 comment|//
 comment|// Element-level queries
 comment|//
@@ -239,7 +211,7 @@ name|Object
 name|edge
 parameter_list|)
 function_decl|;
-comment|/**    * Returns the number of edges {@linkplain #incidentEdges(Object) incident} in this graph    * to {@code node}.  If this node has more than {@code Integer.MAX_VALUE} incident edges    * in this graph, returns {@code Integer.MAX_VALUE}.    *    *<p>Equivalent to {@code incidentEdges(node).size()}.    *    *<p>Note that self-loops only count once towards a node's degree.    * This is consistent with the definition of {@link #incidentEdges(Object)}.    *    * @throws IllegalArgumentException if {@code node} is not an element of this graph    */
+comment|/**    * {@inheritDoc}    *    *<p>Equivalent to {@code incidentEdges(node).size()}.    */
 annotation|@
 name|Override
 DECL|method|degree (Object node)

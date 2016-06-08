@@ -77,7 +77,7 @@ function_decl|;
 comment|//
 comment|// Graph properties
 comment|//
-comment|/**    * Returns true if the edges in this graph have a direction associated with them.    *    *<p>A directed edge is an {@linkplain #outEdges(Object) outgoing edge} of its    * {@linkplain #source(Object) source}, and an {@linkplain #inEdges(Object) incoming edge} of its    * {@linkplain #target(Object) target}. An undirected edge connects its    * {@linkplain #incidentNodes(Object) incident nodes} to each other, and is both an    * {@linkplain #outEdges(Object) outgoing edge} and {@linkplain #inEdges(Object) incoming edge}    * of each incident node.    */
+comment|/**    * Returns true if the edges in this graph have a direction associated with them.    */
 DECL|method|isDirected ()
 name|boolean
 name|isDirected
@@ -131,7 +131,7 @@ function_decl|;
 comment|//
 comment|// Element-level queries
 comment|//
-comment|/**    * Returns the number of edges incident in this graph to {@code node}.  If this node has more than    * {@code Integer.MAX_VALUE} incident edges in this graph, returns {@code Integer.MAX_VALUE}.    *    *<p>Note that self-loops only count once towards a node's degree.    * This is consistent with the definition of {@link #incidentEdges(Object)}.    *    * @throws IllegalArgumentException if {@code node} is not an element of this graph    */
+comment|/**    * Returns the number of edges incident in this graph to {@code node}.  If this node has more than    * {@code Integer.MAX_VALUE} incident edges in this graph, returns {@code Integer.MAX_VALUE}.    *    *<p>Note that self-loops only count once towards a node's degree.    *    * @throws IllegalArgumentException if {@code node} is not an element of this graph    */
 DECL|method|degree (Object node)
 name|int
 name|degree
