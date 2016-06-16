@@ -12705,11 +12705,11 @@ argument_list|()
 return|;
 block|}
 block|}
-comment|/**    * Returns an unmodifiable view of the specified navigable map. Query operations on the returned    * map read through to the specified map, and attempts to modify the returned map, whether direct    * or via its views, result in an {@code UnsupportedOperationException}.    *    *<p>The returned navigable map will be serializable if the specified navigable map is    * serializable.    *    * @param map the navigable map for which an unmodifiable view is to be returned    * @return an unmodifiable view of the specified navigable map    * @since 12.0    */
+comment|/**    * Returns an unmodifiable view of the specified navigable map. Query operations on the returned    * map read through to the specified map, and attempts to modify the returned map, whether direct    * or via its views, result in an {@code UnsupportedOperationException}.    *    *<p>The returned navigable map will be serializable if the specified navigable map is    * serializable.    *    *<p>This method's signature will not permit you to convert a {@code NavigableMap<? extends K,    * V>} to a {@code NavigableMap<K, V>}. If it permitted this, the returned map's {@code    * comparator()} method might return a {@code Comparator<? extends K>}, which works only on a    * particular subtype of {@code K}, but promise that it's a {@code Comparator<? super K>}, which    * must work on any type of {@code K}.    *    * @param map the navigable map for which an unmodifiable view is to be returned    * @return an unmodifiable view of the specified navigable map    * @since 12.0    */
 annotation|@
 name|GwtIncompatible
 comment|// NavigableMap
-DECL|method|unmodifiableNavigableMap (NavigableMap<K, V> map)
+DECL|method|unmodifiableNavigableMap ( NavigableMap<K, ? extends V> map)
 specifier|public
 specifier|static
 parameter_list|<
@@ -12729,6 +12729,8 @@ name|NavigableMap
 argument_list|<
 name|K
 argument_list|,
+name|?
+extends|extends
 name|V
 argument_list|>
 name|map
@@ -12746,8 +12748,27 @@ operator|instanceof
 name|UnmodifiableNavigableMap
 condition|)
 block|{
-return|return
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
+comment|// covariant
+name|NavigableMap
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|result
+init|=
+operator|(
+name|NavigableMap
+operator|)
 name|map
+decl_stmt|;
+return|return
+name|result
 return|;
 block|}
 else|else
@@ -12768,7 +12789,7 @@ block|}
 block|}
 annotation|@
 name|Nullable
-DECL|method|unmodifiableOrNull (@ullable Entry<K, V> entry)
+DECL|method|unmodifiableOrNull (@ullable Entry<K, ? extends V> entry)
 specifier|private
 specifier|static
 parameter_list|<
@@ -12790,6 +12811,8 @@ name|Entry
 argument_list|<
 name|K
 argument_list|,
+name|?
+extends|extends
 name|V
 argument_list|>
 name|entry
@@ -12848,17 +12871,21 @@ name|NavigableMap
 argument_list|<
 name|K
 argument_list|,
+name|?
+extends|extends
 name|V
 argument_list|>
 name|delegate
 decl_stmt|;
-DECL|method|UnmodifiableNavigableMap (NavigableMap<K, V> delegate)
+DECL|method|UnmodifiableNavigableMap (NavigableMap<K, ? extends V> delegate)
 name|UnmodifiableNavigableMap
 parameter_list|(
 name|NavigableMap
 argument_list|<
 name|K
 argument_list|,
+name|?
+extends|extends
 name|V
 argument_list|>
 name|delegate
@@ -12871,13 +12898,15 @@ operator|=
 name|delegate
 expr_stmt|;
 block|}
-DECL|method|UnmodifiableNavigableMap ( NavigableMap<K, V> delegate, UnmodifiableNavigableMap<K, V> descendingMap)
+DECL|method|UnmodifiableNavigableMap ( NavigableMap<K, ? extends V> delegate, UnmodifiableNavigableMap<K, V> descendingMap)
 name|UnmodifiableNavigableMap
 parameter_list|(
 name|NavigableMap
 argument_list|<
 name|K
 argument_list|,
+name|?
+extends|extends
 name|V
 argument_list|>
 name|delegate
