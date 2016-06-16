@@ -71,7 +71,7 @@ specifier|final
 name|String
 name|SELF_LOOPS_NOT_ALLOWED
 init|=
-literal|"Can't add self-loop edge on node %s, as self-loops are not allowed."
+literal|"Cannot add self-loop edge on node %s, as self-loops are not allowed."
 decl_stmt|;
 DECL|field|NOT_AVAILABLE_ON_UNDIRECTED
 specifier|static
@@ -79,11 +79,17 @@ specifier|final
 name|String
 name|NOT_AVAILABLE_ON_UNDIRECTED
 init|=
-literal|"Cannot call source()/target() on an undirected graph. "
+literal|"Cannot call source()/target() on undirected endpoints."
+decl_stmt|;
+DECL|field|ENDPOINTS_GRAPH_DIRECTEDNESS
+specifier|static
+specifier|final
+name|String
+name|ENDPOINTS_GRAPH_DIRECTEDNESS
+init|=
+literal|"The endpoints' directedness (isDirected = %s) does not match the graph's directedness "
 operator|+
-literal|"Consider using incidentNodes() (if you don't know either incident node) "
-operator|+
-literal|"or Graphs.oppositeNode() (if you know one of the incident nodes)."
+literal|"(isDirected = %s). A graph cannot have both directed and undirected edges."
 decl_stmt|;
 block|}
 end_class

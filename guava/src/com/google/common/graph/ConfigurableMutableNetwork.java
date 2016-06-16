@@ -222,12 +222,12 @@ return|return
 literal|true
 return|;
 block|}
-comment|/**    * Add nodes that are not elements of the graph, then add {@code edge} between them.    * Return {@code false} if {@code edge} already exists between {@code node1} and {@code node2},    * and in the same direction.    *    * @throws IllegalArgumentException if an edge (other than {@code edge}) already    *         exists from {@code node1} to {@code node2}, and this is not a multigraph.    *         Also, if self-loops are not allowed, and {@code node1} is equal to {@code node2}.    */
+comment|/**    * Add nodes that are not elements of the graph, then add {@code edge} between them.    * Return {@code false} if {@code edge} already exists between {@code nodeA} and {@code nodeB},    * and in the same direction.    *    * @throws IllegalArgumentException if an edge (other than {@code edge}) already    *         exists from {@code nodeA} to {@code nodeB}, and this is not a multigraph.    *         Also, if self-loops are not allowed, and {@code nodeA} is equal to {@code nodeB}.    */
 annotation|@
 name|Override
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|addEdge (E edge, N node1, N node2)
+DECL|method|addEdge (E edge, N nodeA, N nodeB)
 specifier|public
 name|boolean
 name|addEdge
@@ -236,10 +236,10 @@ name|E
 name|edge
 parameter_list|,
 name|N
-name|node1
+name|nodeA
 parameter_list|,
 name|N
-name|node2
+name|nodeB
 parameter_list|)
 block|{
 name|checkNotNull
@@ -251,16 +251,16 @@ argument_list|)
 expr_stmt|;
 name|checkNotNull
 argument_list|(
-name|node1
+name|nodeA
 argument_list|,
-literal|"node1"
+literal|"nodeA"
 argument_list|)
 expr_stmt|;
 name|checkNotNull
 argument_list|(
-name|node2
+name|nodeB
 argument_list|,
-literal|"node2"
+literal|"nodeB"
 argument_list|)
 expr_stmt|;
 name|checkArgument
@@ -269,16 +269,16 @@ name|allowsSelfLoops
 argument_list|()
 operator|||
 operator|!
-name|node1
+name|nodeA
 operator|.
 name|equals
 argument_list|(
-name|node2
+name|nodeB
 argument_list|)
 argument_list|,
 name|SELF_LOOPS_NOT_ALLOWED
 argument_list|,
-name|node1
+name|nodeA
 argument_list|)
 expr_stmt|;
 name|boolean
@@ -286,7 +286,7 @@ name|containsN1
 init|=
 name|containsNode
 argument_list|(
-name|node1
+name|nodeA
 argument_list|)
 decl_stmt|;
 name|boolean
@@ -294,7 +294,7 @@ name|containsN2
 init|=
 name|containsNode
 argument_list|(
-name|node2
+name|nodeB
 argument_list|)
 decl_stmt|;
 if|if
@@ -313,9 +313,9 @@ name|containsN2
 operator|&&
 name|edgesConnecting
 argument_list|(
-name|node1
+name|nodeA
 argument_list|,
-name|node2
+name|nodeB
 argument_list|)
 operator|.
 name|contains
@@ -332,9 +332,9 @@ argument_list|(
 name|edge
 argument_list|)
 argument_list|,
-name|node1
+name|nodeA
 argument_list|,
-name|node2
+name|nodeB
 argument_list|)
 expr_stmt|;
 return|return
@@ -359,20 +359,20 @@ name|containsN2
 operator|&&
 name|successors
 argument_list|(
-name|node1
+name|nodeA
 argument_list|)
 operator|.
 name|contains
 argument_list|(
-name|node2
+name|nodeB
 argument_list|)
 operator|)
 argument_list|,
 name|ADDING_PARALLEL_EDGE
 argument_list|,
-name|node1
+name|nodeA
 argument_list|,
-name|node2
+name|nodeB
 argument_list|)
 expr_stmt|;
 block|}
@@ -384,7 +384,7 @@ condition|)
 block|{
 name|addNode
 argument_list|(
-name|node1
+name|nodeA
 argument_list|)
 expr_stmt|;
 block|}
@@ -400,7 +400,7 @@ name|nodeConnections
 operator|.
 name|get
 argument_list|(
-name|node1
+name|nodeA
 argument_list|)
 decl_stmt|;
 name|connectionsN1
@@ -409,7 +409,7 @@ name|addOutEdge
 argument_list|(
 name|edge
 argument_list|,
-name|node2
+name|nodeB
 argument_list|)
 expr_stmt|;
 if|if
@@ -420,7 +420,7 @@ condition|)
 block|{
 name|addNode
 argument_list|(
-name|node2
+name|nodeB
 argument_list|)
 expr_stmt|;
 block|}
@@ -436,7 +436,7 @@ name|nodeConnections
 operator|.
 name|get
 argument_list|(
-name|node2
+name|nodeB
 argument_list|)
 decl_stmt|;
 name|connectionsN2
@@ -445,7 +445,7 @@ name|addInEdge
 argument_list|(
 name|edge
 argument_list|,
-name|node1
+name|nodeA
 argument_list|)
 expr_stmt|;
 name|edgeToReferenceNode
@@ -454,7 +454,7 @@ name|put
 argument_list|(
 name|edge
 argument_list|,
-name|node1
+name|nodeA
 argument_list|)
 expr_stmt|;
 return|return
@@ -550,7 +550,7 @@ literal|"edge"
 argument_list|)
 expr_stmt|;
 name|N
-name|node1
+name|nodeA
 init|=
 name|edgeToReferenceNode
 operator|.
@@ -561,7 +561,7 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|node1
+name|nodeA
 operator|==
 literal|null
 condition|)
@@ -571,13 +571,13 @@ literal|false
 return|;
 block|}
 name|N
-name|node2
+name|nodeB
 init|=
 name|nodeConnections
 operator|.
 name|get
 argument_list|(
-name|node1
+name|nodeA
 argument_list|)
 operator|.
 name|oppositeNode
@@ -589,7 +589,7 @@ name|nodeConnections
 operator|.
 name|get
 argument_list|(
-name|node1
+name|nodeA
 argument_list|)
 operator|.
 name|removeOutEdge
@@ -601,7 +601,7 @@ name|nodeConnections
 operator|.
 name|get
 argument_list|(
-name|node2
+name|nodeB
 argument_list|)
 operator|.
 name|removeInEdge

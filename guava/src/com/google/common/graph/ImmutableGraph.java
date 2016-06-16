@@ -89,7 +89,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link Graph} whose relationships are constant. Instances of this class may be obtained  * with {@link #copyOf(Graph)}.  *  *<p>The time complexity of {@code edgesConnecting(node1, node2)} is O(min(outD_node1, inD_node2)).  *  * @author James Sexton  * @author Joshua O'Madadhain  * @author Omar Darwish  * @param<N> Node parameter type  */
+comment|/**  * A {@link Graph} whose relationships are constant. Instances of this class may be obtained  * with {@link #copyOf(Graph)}.  *  *<p>The time complexity of {@code edgesConnecting(nodeA, nodeB)} is O(min(outD_nodeA, inD_nodeB)).  *  * @author James Sexton  * @author Joshua O'Madadhain  * @author Omar Darwish  * @param<N> Node parameter type  */
 end_comment
 
 begin_class

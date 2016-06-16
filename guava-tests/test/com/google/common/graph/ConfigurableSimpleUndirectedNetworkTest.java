@@ -179,7 +179,7 @@ argument_list|)
 expr_stmt|;
 name|fail
 argument_list|(
-name|ERROR_MODIFIABLE_SET
+name|ERROR_MODIFIABLE_COLLECTION
 argument_list|)
 expr_stmt|;
 block|}
@@ -241,7 +241,7 @@ argument_list|)
 expr_stmt|;
 name|fail
 argument_list|(
-name|ERROR_MODIFIABLE_SET
+name|ERROR_MODIFIABLE_COLLECTION
 argument_list|)
 expr_stmt|;
 block|}
@@ -314,7 +314,7 @@ argument_list|)
 expr_stmt|;
 name|fail
 argument_list|(
-name|ERROR_MODIFIABLE_SET
+name|ERROR_MODIFIABLE_COLLECTION
 argument_list|)
 expr_stmt|;
 block|}
@@ -369,7 +369,7 @@ argument_list|,
 name|N2
 argument_list|)
 expr_stmt|;
-name|Set
+name|Endpoints
 argument_list|<
 name|Integer
 argument_list|>
@@ -393,7 +393,7 @@ argument_list|)
 expr_stmt|;
 name|fail
 argument_list|(
-name|ERROR_MODIFIABLE_SET
+name|ERROR_MODIFIABLE_COLLECTION
 argument_list|)
 expr_stmt|;
 block|}
@@ -443,7 +443,7 @@ argument_list|)
 expr_stmt|;
 name|fail
 argument_list|(
-name|ERROR_MODIFIABLE_SET
+name|ERROR_MODIFIABLE_COLLECTION
 argument_list|)
 expr_stmt|;
 block|}
@@ -522,7 +522,7 @@ argument_list|)
 expr_stmt|;
 name|fail
 argument_list|(
-name|ERROR_MODIFIABLE_SET
+name|ERROR_MODIFIABLE_COLLECTION
 argument_list|)
 expr_stmt|;
 block|}
@@ -604,7 +604,7 @@ argument_list|)
 expr_stmt|;
 name|fail
 argument_list|(
-name|ERROR_MODIFIABLE_SET
+name|ERROR_MODIFIABLE_COLLECTION
 argument_list|)
 expr_stmt|;
 block|}
@@ -681,7 +681,7 @@ argument_list|)
 expr_stmt|;
 name|fail
 argument_list|(
-name|ERROR_MODIFIABLE_SET
+name|ERROR_MODIFIABLE_COLLECTION
 argument_list|)
 expr_stmt|;
 block|}
@@ -756,7 +756,7 @@ argument_list|)
 expr_stmt|;
 name|fail
 argument_list|(
-name|ERROR_MODIFIABLE_SET
+name|ERROR_MODIFIABLE_COLLECTION
 argument_list|)
 expr_stmt|;
 block|}
@@ -831,7 +831,7 @@ argument_list|)
 expr_stmt|;
 name|fail
 argument_list|(
-name|ERROR_MODIFIABLE_SET
+name|ERROR_MODIFIABLE_COLLECTION
 argument_list|)
 expr_stmt|;
 block|}
@@ -906,7 +906,7 @@ argument_list|)
 expr_stmt|;
 name|fail
 argument_list|(
-name|ERROR_MODIFIABLE_SET
+name|ERROR_MODIFIABLE_COLLECTION
 argument_list|)
 expr_stmt|;
 block|}

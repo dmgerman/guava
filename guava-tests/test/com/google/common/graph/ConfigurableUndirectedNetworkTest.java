@@ -264,6 +264,8 @@ operator|.
 name|containsExactly
 argument_list|(
 name|N1
+argument_list|,
+name|N1
 argument_list|)
 expr_stmt|;
 block|}

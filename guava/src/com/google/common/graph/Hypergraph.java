@@ -68,32 +68,6 @@ argument_list|,
 name|E
 argument_list|>
 block|{
-comment|/**    * Source is not applicable to hypergraphs.    *    * @throws UnsupportedOperationException always    * @deprecated Unsupported operation. Call {@link #incidentNodes(Object)} instead.    */
-annotation|@
-name|Deprecated
-annotation|@
-name|Override
-DECL|method|source (Object edge)
-name|N
-name|source
-parameter_list|(
-name|Object
-name|edge
-parameter_list|)
-function_decl|;
-comment|/**    * Target is not applicable to hypergraphs.    *    * @throws UnsupportedOperationException always    * @deprecated Unsupported operation. Call {@link #incidentNodes(Object)} instead.    */
-annotation|@
-name|Deprecated
-annotation|@
-name|Override
-DECL|method|target (Object edge)
-name|N
-name|target
-parameter_list|(
-name|Object
-name|edge
-parameter_list|)
-function_decl|;
 comment|/**    * Adds {@code edge} to this graph, connecting {@code nodes}.    *    * @return {@code true} iff the graph was modified as a result of this call    * @throws UnsupportedOperationException if the add operation is not supported by this graph    */
 annotation|@
 name|CanIgnoreReturnValue

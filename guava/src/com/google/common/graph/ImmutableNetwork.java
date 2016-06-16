@@ -109,7 +109,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link Network} whose relationships are constant. Instances of this class may be obtained  * with {@link #copyOf(Network)}.  *  *<p>The time complexity of {@code edgesConnecting(node1, node2)} is O(min(outD_node1, inD_node2)).  *  * @author James Sexton  * @author Joshua O'Madadhain  * @author Omar Darwish  * @param<N> Node parameter type  * @param<E> Edge parameter type  */
+comment|/**  * A {@link Network} whose relationships are constant. Instances of this class may be obtained  * with {@link #copyOf(Network)}.  *  *<p>The time complexity of {@code edgesConnecting(nodeA, nodeB)} is O(min(outD_nodeA, inD_nodeB)).  *  * @author James Sexton  * @author Joshua O'Madadhain  * @author Omar Darwish  * @param<N> Node parameter type  * @param<E> Edge parameter type  */
 end_comment
 
 begin_class
@@ -257,7 +257,7 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|edgesConnecting (Object node1, Object node2)
+DECL|method|edgesConnecting (Object nodeA, Object nodeB)
 specifier|public
 name|Set
 argument_list|<
@@ -266,10 +266,10 @@ argument_list|>
 name|edgesConnecting
 parameter_list|(
 name|Object
-name|node1
+name|nodeA
 parameter_list|,
 name|Object
-name|node2
+name|nodeB
 parameter_list|)
 block|{
 comment|// This set is calculated as the intersection of two sets, and is likely to be small.
@@ -283,9 +283,9 @@ name|super
 operator|.
 name|edgesConnecting
 argument_list|(
-name|node1
+name|nodeA
 argument_list|,
-name|node2
+name|nodeB
 argument_list|)
 argument_list|)
 return|;
@@ -443,10 +443,7 @@ argument_list|(
 name|edge
 argument_list|)
 operator|.
-name|iterator
-argument_list|()
-operator|.
-name|next
+name|nodeA
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -669,10 +666,13 @@ block|{
 return|return
 name|graph
 operator|.
-name|source
+name|incidentNodes
 argument_list|(
 name|edge
 argument_list|)
+operator|.
+name|source
+argument_list|()
 return|;
 block|}
 block|}
@@ -727,10 +727,13 @@ block|{
 return|return
 name|graph
 operator|.
-name|target
+name|incidentNodes
 argument_list|(
 name|edge
 argument_list|)
+operator|.
+name|target
+argument_list|()
 return|;
 block|}
 block|}

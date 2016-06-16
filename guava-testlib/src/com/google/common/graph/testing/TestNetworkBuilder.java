@@ -182,7 +182,7 @@ return|return
 name|this
 return|;
 block|}
-DECL|method|addEdge (E edge, N node1, N node2)
+DECL|method|addEdge (E edge, N nodeA, N nodeB)
 specifier|public
 name|TestNetworkBuilder
 argument_list|<
@@ -196,10 +196,10 @@ name|E
 name|edge
 parameter_list|,
 name|N
-name|node1
+name|nodeA
 parameter_list|,
 name|N
-name|node2
+name|nodeB
 parameter_list|)
 block|{
 name|graph
@@ -208,9 +208,9 @@ name|addEdge
 argument_list|(
 name|edge
 argument_list|,
-name|node1
+name|nodeA
 argument_list|,
-name|node2
+name|nodeB
 argument_list|)
 expr_stmt|;
 return|return
