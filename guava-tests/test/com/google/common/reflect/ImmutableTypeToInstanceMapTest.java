@@ -642,10 +642,10 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|testGeneriArrayType ()
+DECL|method|testGenericArrayType ()
 specifier|public
 name|void
-name|testGeneriArrayType
+name|testGenericArrayType
 parameter_list|()
 block|{
 annotation|@
@@ -737,8 +737,16 @@ name|size
 argument_list|()
 argument_list|)
 expr_stmt|;
+comment|// Redundant cast works around a javac bug.
 name|assertThat
 argument_list|(
+operator|(
+name|Iterable
+argument_list|<
+name|?
+argument_list|>
+index|[]
+operator|)
 name|map
 operator|.
 name|getInstance
