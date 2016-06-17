@@ -648,7 +648,7 @@ name|graph
 parameter_list|)
 block|{
 return|return
-name|copyOf
+name|copyOfInternal
 argument_list|(
 name|graph
 argument_list|,
@@ -659,9 +659,8 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Creates a mutable copy of {@code graph}, using all of its elements that satisfy    * {@code nodePredicate} and {@code edgePredicate}.    */
-DECL|method|copyOf (Graph<N> graph, Predicate<? super N> nodePredicate)
-specifier|public
+DECL|method|copyOfInternal (Graph<N> graph, Predicate<? super N> nodePredicate)
+specifier|private
 specifier|static
 parameter_list|<
 name|N
@@ -670,7 +669,7 @@ name|MutableGraph
 argument_list|<
 name|N
 argument_list|>
-name|copyOf
+name|copyOfInternal
 parameter_list|(
 name|Graph
 argument_list|<
@@ -790,34 +789,34 @@ return|return
 name|copy
 return|;
 block|}
-comment|/**    * Copies all nodes from {@code original} into {@code copy}.    */
-DECL|method|mergeNodesFrom (Graph<N> original, MutableGraph<N> copy)
+comment|/**    * Copies all nodes from {@code src} into {@code dest}.    */
+DECL|method|copyNodes (Graph<N> src, MutableGraph<N> dest)
 specifier|public
 specifier|static
 parameter_list|<
 name|N
 parameter_list|>
 name|void
-name|mergeNodesFrom
+name|copyNodes
 parameter_list|(
 name|Graph
 argument_list|<
 name|N
 argument_list|>
-name|original
+name|src
 parameter_list|,
 name|MutableGraph
 argument_list|<
 name|N
 argument_list|>
-name|copy
+name|dest
 parameter_list|)
 block|{
-name|mergeNodesFrom
+name|copyNodesInteral
 argument_list|(
-name|original
+name|src
 argument_list|,
-name|copy
+name|dest
 argument_list|,
 name|Predicates
 operator|.
@@ -826,9 +825,8 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Copies all nodes from {@code original} into {@code copy} that satisfy {@code nodePredicate}.    */
-DECL|method|mergeNodesFrom ( Graph<N> original, MutableGraph<N> copy, Predicate<? super N> nodePredicate)
-specifier|public
+DECL|method|copyNodesInteral ( Graph<N> src, MutableGraph<N> dest, Predicate<? super N> nodePredicate)
+specifier|private
 specifier|static
 parameter_list|<
 name|N
@@ -836,19 +834,19 @@ parameter_list|,
 name|E
 parameter_list|>
 name|void
-name|mergeNodesFrom
+name|copyNodesInteral
 parameter_list|(
 name|Graph
 argument_list|<
 name|N
 argument_list|>
-name|original
+name|src
 parameter_list|,
 name|MutableGraph
 argument_list|<
 name|N
 argument_list|>
-name|copy
+name|dest
 parameter_list|,
 name|Predicate
 argument_list|<
@@ -861,16 +859,16 @@ parameter_list|)
 block|{
 name|checkNotNull
 argument_list|(
-name|original
+name|src
 argument_list|,
-literal|"original"
+literal|"src"
 argument_list|)
 expr_stmt|;
 name|checkNotNull
 argument_list|(
-name|copy
+name|dest
 argument_list|,
-literal|"copy"
+literal|"dest"
 argument_list|)
 expr_stmt|;
 name|checkNotNull
@@ -889,7 +887,7 @@ name|Sets
 operator|.
 name|filter
 argument_list|(
-name|original
+name|src
 operator|.
 name|nodes
 argument_list|()
@@ -898,7 +896,7 @@ name|nodePredicate
 argument_list|)
 control|)
 block|{
-name|copy
+name|dest
 operator|.
 name|addNode
 argument_list|(
@@ -934,7 +932,7 @@ name|graph
 parameter_list|)
 block|{
 return|return
-name|copyOf
+name|copyOfInternal
 argument_list|(
 name|graph
 argument_list|,
@@ -950,9 +948,8 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Creates a mutable copy of {@code graph}, using all of its elements that satisfy    * {@code nodePredicate} and {@code edgePredicate}.    */
-DECL|method|copyOf ( Network<N, E> graph, Predicate<? super N> nodePredicate, Predicate<? super E> edgePredicate)
-specifier|public
+DECL|method|copyOfInternal ( Network<N, E> graph, Predicate<? super N> nodePredicate, Predicate<? super E> edgePredicate)
+specifier|private
 specifier|static
 parameter_list|<
 name|N
@@ -965,7 +962,7 @@ name|N
 argument_list|,
 name|E
 argument_list|>
-name|copyOf
+name|copyOfInternal
 parameter_list|(
 name|Network
 argument_list|<
@@ -1053,7 +1050,7 @@ operator|.
 name|build
 argument_list|()
 decl_stmt|;
-name|mergeNodesFrom
+name|copyNodesInternal
 argument_list|(
 name|graph
 argument_list|,
@@ -1062,82 +1059,34 @@ argument_list|,
 name|nodePredicate
 argument_list|)
 expr_stmt|;
-comment|// We can't just call mergeEdgesFrom(graph, copy, edgePredicate) because addEdge() can add
-comment|// the edge's incident nodes if they are not present.
-for|for
-control|(
-name|E
-name|edge
-range|:
-name|Sets
-operator|.
-name|filter
+name|copyEdgesInternal
 argument_list|(
 name|graph
-operator|.
-name|edges
-argument_list|()
+argument_list|,
+name|copy
 argument_list|,
 name|edgePredicate
 argument_list|)
-control|)
-block|{
-name|Endpoints
-argument_list|<
-name|N
-argument_list|>
-name|endpoints
-init|=
-name|graph
-operator|.
-name|incidentNodes
-argument_list|(
-name|edge
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|copy
-operator|.
-name|nodes
-argument_list|()
-operator|.
-name|containsAll
-argument_list|(
-name|endpoints
-argument_list|)
-condition|)
-block|{
-name|addEdge
-argument_list|(
-name|copy
-argument_list|,
-name|edge
-argument_list|,
-name|endpoints
-argument_list|)
 expr_stmt|;
-block|}
-block|}
 return|return
 name|copy
 return|;
 block|}
-comment|/**    * Copies all nodes from {@code original} into {@code copy}.    */
-DECL|method|mergeNodesFrom (Graph<N> original, MutableNetwork<N, ?> copy)
+comment|/**    * Copies all nodes from {@code src} into {@code dest}.    */
+DECL|method|copyNodes (Graph<N> src, MutableNetwork<N, ?> dest)
 specifier|public
 specifier|static
 parameter_list|<
 name|N
 parameter_list|>
 name|void
-name|mergeNodesFrom
+name|copyNodes
 parameter_list|(
 name|Graph
 argument_list|<
 name|N
 argument_list|>
-name|original
+name|src
 parameter_list|,
 name|MutableNetwork
 argument_list|<
@@ -1145,14 +1094,14 @@ name|N
 argument_list|,
 name|?
 argument_list|>
-name|copy
+name|dest
 parameter_list|)
 block|{
-name|mergeNodesFrom
+name|copyNodesInternal
 argument_list|(
-name|original
+name|src
 argument_list|,
-name|copy
+name|dest
 argument_list|,
 name|Predicates
 operator|.
@@ -1161,9 +1110,8 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Copies all nodes from {@code original} into {@code copy} that satisfy {@code nodePredicate}.    */
-DECL|method|mergeNodesFrom ( Graph<N> original, MutableNetwork<N, ?> copy, Predicate<? super N> nodePredicate)
-specifier|public
+DECL|method|copyNodesInternal ( Graph<N> src, MutableNetwork<N, ?> dest, Predicate<? super N> nodePredicate)
+specifier|private
 specifier|static
 parameter_list|<
 name|N
@@ -1171,13 +1119,13 @@ parameter_list|,
 name|E
 parameter_list|>
 name|void
-name|mergeNodesFrom
+name|copyNodesInternal
 parameter_list|(
 name|Graph
 argument_list|<
 name|N
 argument_list|>
-name|original
+name|src
 parameter_list|,
 name|MutableNetwork
 argument_list|<
@@ -1185,7 +1133,7 @@ name|N
 argument_list|,
 name|?
 argument_list|>
-name|copy
+name|dest
 parameter_list|,
 name|Predicate
 argument_list|<
@@ -1198,16 +1146,16 @@ parameter_list|)
 block|{
 name|checkNotNull
 argument_list|(
-name|original
+name|src
 argument_list|,
-literal|"original"
+literal|"src"
 argument_list|)
 expr_stmt|;
 name|checkNotNull
 argument_list|(
-name|copy
+name|dest
 argument_list|,
-literal|"copy"
+literal|"dest"
 argument_list|)
 expr_stmt|;
 name|checkNotNull
@@ -1226,7 +1174,7 @@ name|Sets
 operator|.
 name|filter
 argument_list|(
-name|original
+name|src
 operator|.
 name|nodes
 argument_list|()
@@ -1235,7 +1183,7 @@ name|nodePredicate
 argument_list|)
 control|)
 block|{
-name|copy
+name|dest
 operator|.
 name|addNode
 argument_list|(
@@ -1244,8 +1192,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Copies all edges from {@code original} into {@code copy}. Also copies all nodes incident    * to these edges.    */
-DECL|method|mergeEdgesFrom (Network<N, E> original, MutableNetwork<N, E> copy)
+comment|/**    * Copies edges from {@code src} into {@code dest}.    *<p>    * This method DOES NOT copy over edges if their incident nodes are not already in {@code dest}.    */
+DECL|method|copyEdges (Network<N, E> src, MutableNetwork<N, E> dest)
 specifier|public
 specifier|static
 parameter_list|<
@@ -1254,7 +1202,7 @@ parameter_list|,
 name|E
 parameter_list|>
 name|void
-name|mergeEdgesFrom
+name|copyEdges
 parameter_list|(
 name|Network
 argument_list|<
@@ -1262,7 +1210,7 @@ name|N
 argument_list|,
 name|E
 argument_list|>
-name|original
+name|src
 parameter_list|,
 name|MutableNetwork
 argument_list|<
@@ -1270,14 +1218,14 @@ name|N
 argument_list|,
 name|E
 argument_list|>
-name|copy
+name|dest
 parameter_list|)
 block|{
-name|mergeEdgesFrom
+name|copyEdgesInternal
 argument_list|(
-name|original
+name|src
 argument_list|,
-name|copy
+name|dest
 argument_list|,
 name|Predicates
 operator|.
@@ -1286,9 +1234,8 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Copies all edges from {@code original} into {@code copy} that satisfy {@code edgePredicate}.    * Also copies all nodes incident to these edges.    */
-DECL|method|mergeEdgesFrom ( Network<N, E> original, MutableNetwork<N, E> copy, Predicate<? super E> edgePredicate)
-specifier|public
+DECL|method|copyEdgesInternal ( Network<N, E> src, MutableNetwork<N, E> dest, Predicate<? super E> edgePredicate)
+specifier|private
 specifier|static
 parameter_list|<
 name|N
@@ -1296,7 +1243,7 @@ parameter_list|,
 name|E
 parameter_list|>
 name|void
-name|mergeEdgesFrom
+name|copyEdgesInternal
 parameter_list|(
 name|Network
 argument_list|<
@@ -1304,7 +1251,7 @@ name|N
 argument_list|,
 name|E
 argument_list|>
-name|original
+name|src
 parameter_list|,
 name|MutableNetwork
 argument_list|<
@@ -1312,7 +1259,7 @@ name|N
 argument_list|,
 name|E
 argument_list|>
-name|copy
+name|dest
 parameter_list|,
 name|Predicate
 argument_list|<
@@ -1325,16 +1272,16 @@ parameter_list|)
 block|{
 name|checkNotNull
 argument_list|(
-name|original
+name|src
 argument_list|,
-literal|"original"
+literal|"src"
 argument_list|)
 expr_stmt|;
 name|checkNotNull
 argument_list|(
-name|copy
+name|dest
 argument_list|,
-literal|"copy"
+literal|"dest"
 argument_list|)
 expr_stmt|;
 name|checkNotNull
@@ -1353,7 +1300,7 @@ name|Sets
 operator|.
 name|filter
 argument_list|(
-name|original
+name|src
 operator|.
 name|edges
 argument_list|()
@@ -1362,20 +1309,42 @@ name|edgePredicate
 argument_list|)
 control|)
 block|{
-name|addEdge
-argument_list|(
-name|copy
-argument_list|,
-name|edge
-argument_list|,
-name|original
+name|Endpoints
+argument_list|<
+name|N
+argument_list|>
+name|endpoints
+init|=
+name|src
 operator|.
 name|incidentNodes
 argument_list|(
 name|edge
 argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|dest
+operator|.
+name|nodes
+argument_list|()
+operator|.
+name|containsAll
+argument_list|(
+name|endpoints
+argument_list|)
+condition|)
+block|{
+name|addEdge
+argument_list|(
+name|dest
+argument_list|,
+name|edge
+argument_list|,
+name|endpoints
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 comment|/**    * Returns true iff {@code graph1} and {@code graph2} have the same node connections.    *    *<p>Note: {@link Network} instances can only be equal to other {@link Network} instances.    * In particular, {@link Graph}s that are not also {@link Network}s cannot be equal    * to {@link Network}s.    *    * @see Network#equals(Object)    */
