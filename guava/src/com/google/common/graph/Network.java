@@ -136,20 +136,6 @@ name|Object
 name|edge
 parameter_list|)
 function_decl|;
-comment|/**    * Returns the nodes which have an {@linkplain #incidentEdges(Object) incident edge}    * in common with {@code node} in this graph.    *    * @throws IllegalArgumentException if {@code node} is not an element of this graph    */
-annotation|@
-name|Override
-DECL|method|adjacentNodes (Object node)
-name|Set
-argument_list|<
-name|N
-argument_list|>
-name|adjacentNodes
-parameter_list|(
-name|Object
-name|node
-parameter_list|)
-function_decl|;
 comment|/**    * Returns the edges which have an {@linkplain #incidentNodes(Object) incident node}    * in common with {@code edge} in this graph.    *    *<p>Whether an edge is considered adjacent to itself is not defined by this interface, but    * generally edges are not considered to be self-adjacent.    *    * @throws IllegalArgumentException if {@code edge} is not an element of this graph    */
 DECL|method|adjacentEdges (Object edge)
 name|Set
@@ -215,7 +201,7 @@ name|Object
 name|node
 parameter_list|)
 function_decl|;
-comment|/**    * Returns the number of {@linkplain #inEdges(Object) incoming edges} in this graph    * of {@code node}.  If this node has more than {@code Integer.MAX_VALUE} incoming edges    * in this graph, returns {@code Integer.MAX_VALUE}.    *    *<p>Equivalent to {@code inEdges(node).size()}.    *    * @throws IllegalArgumentException if {@code node} is not an element of this graph    */
+comment|/**    * {@inheritDoc}    *    *<p>Equivalent to {@code inEdges(node).size()}.    */
 annotation|@
 name|Override
 DECL|method|inDegree (Object node)
@@ -226,7 +212,7 @@ name|Object
 name|node
 parameter_list|)
 function_decl|;
-comment|/**    * Returns the number of {@linkplain #outEdges(Object) outgoing edges} in this graph    * of {@code node}.  If this node has more than {@code Integer.MAX_VALUE} outgoing edges    * in this graph, returns {@code Integer.MAX_VALUE}.    *    *<p>Equivalent to {@code outEdges(node).size()}.    *    * @throws IllegalArgumentException if {@code node} is not an element of this graph    */
+comment|/**    * {@inheritDoc}    *    *<p>Equivalent to {@code outEdges(node).size()}.    */
 annotation|@
 name|Override
 DECL|method|outDegree (Object node)
