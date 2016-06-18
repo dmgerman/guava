@@ -49,6 +49,22 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|graph
+operator|.
+name|GraphErrorMessageUtils
+operator|.
+name|NETWORK_WITH_PARALLEL_EDGE
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -135,6 +151,11 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Returns an immutable copy of {@code graph}.    */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
 DECL|method|copyOf (Graph<N> graph)
 specifier|public
 specifier|static
@@ -154,17 +175,33 @@ argument_list|>
 name|graph
 parameter_list|)
 block|{
-comment|// TODO(b/28087289): we can remove this restriction when Graph supports parallel edges
 name|checkArgument
 argument_list|(
 operator|!
+operator|(
 operator|(
 name|graph
 operator|instanceof
 name|Network
 operator|)
+operator|&&
+operator|(
+operator|(
+name|Network
+argument_list|<
+name|N
 argument_list|,
-literal|"Input must not implement common.graph.Network"
+name|?
+argument_list|>
+operator|)
+name|graph
+operator|)
+operator|.
+name|allowsParallelEdges
+argument_list|()
+operator|)
+argument_list|,
+name|NETWORK_WITH_PARALLEL_EDGE
 argument_list|)
 expr_stmt|;
 return|return

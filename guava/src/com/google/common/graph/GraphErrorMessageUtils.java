@@ -37,7 +37,7 @@ specifier|final
 name|String
 name|NODE_NOT_IN_GRAPH
 init|=
-literal|"Node %s is not an element of this graph"
+literal|"Node %s is not an element of this graph."
 decl_stmt|;
 DECL|field|EDGE_NOT_IN_GRAPH
 specifier|static
@@ -45,7 +45,7 @@ specifier|final
 name|String
 name|EDGE_NOT_IN_GRAPH
 init|=
-literal|"Edge %s is not an element of this graph"
+literal|"Edge %s is not an element of this graph."
 decl_stmt|;
 DECL|field|REUSING_EDGE
 specifier|static
@@ -55,7 +55,7 @@ name|REUSING_EDGE
 init|=
 literal|"Edge %s already exists between the "
 operator|+
-literal|"following nodes: %s, so it can't be reused to connect node %s to %s"
+literal|"following nodes: %s, so it can't be reused to connect node %s to %s."
 decl_stmt|;
 DECL|field|ADDING_PARALLEL_EDGE
 specifier|static
@@ -90,6 +90,14 @@ init|=
 literal|"The endpoints' directedness (isDirected = %s) does not match the graph's directedness "
 operator|+
 literal|"(isDirected = %s). A graph cannot have both directed and undirected edges."
+decl_stmt|;
+DECL|field|NETWORK_WITH_PARALLEL_EDGE
+specifier|static
+specifier|final
+name|String
+name|NETWORK_WITH_PARALLEL_EDGE
+init|=
+literal|"Cannot make a Graph copy of a Network that allows parallel edges."
 decl_stmt|;
 block|}
 end_class
