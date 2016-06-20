@@ -80,10 +80,6 @@ begin_comment
 comment|/**  * A builder for constructing instances of {@link Network} with user-defined properties.  *  *<p>A graph built by this class will have the following properties by default:  *<ul>  *<li>does not allow parallel edges  *<li>allows self-loops  *<li>orders {@code nodes()} and {@code edges()} in the order in which the elements were added  *</ul>  *  * @author James Sexton  * @author Joshua O'Madadhain  * @since 20.0  */
 end_comment
 
-begin_comment
-comment|// TODO(user): try creating an abstract superclass that this and GraphBuilder could derive from.
-end_comment
-
 begin_class
 annotation|@
 name|Beta
