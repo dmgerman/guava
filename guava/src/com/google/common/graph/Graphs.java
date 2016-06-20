@@ -721,6 +721,7 @@ argument_list|,
 literal|"nodePredicate"
 argument_list|)
 expr_stmt|;
+comment|// TODO(b/28087289): we can remove this restriction when Graph supports parallel edges
 name|checkArgument
 argument_list|(
 operator|!

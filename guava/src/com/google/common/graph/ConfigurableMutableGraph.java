@@ -231,7 +231,7 @@ argument_list|(
 name|nodeB
 argument_list|)
 decl_stmt|;
-comment|// TODO(user): does not support parallel edges
+comment|// TODO(b/28087289): does not support parallel edges
 if|if
 condition|(
 name|containsA

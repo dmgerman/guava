@@ -175,6 +175,7 @@ argument_list|>
 name|graph
 parameter_list|)
 block|{
+comment|// TODO(b/28087289): we can remove this restriction when Graph supports parallel edges
 name|checkArgument
 argument_list|(
 operator|!
