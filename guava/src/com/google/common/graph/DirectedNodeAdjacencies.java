@@ -285,6 +285,14 @@ argument_list|>
 name|of
 parameter_list|()
 block|{
+comment|// We store predecessors and successors in the same map, so expected size is twice the degree.
+name|int
+name|inAndOutDegree
+init|=
+name|EXPECTED_DEGREE
+operator|*
+literal|2
+decl_stmt|;
 return|return
 operator|new
 name|DirectedNodeAdjacencies
@@ -301,7 +309,7 @@ name|Adjacency
 operator|>
 name|newHashMapWithExpectedSize
 argument_list|(
-name|EXPECTED_DEGREE
+name|inAndOutDegree
 argument_list|)
 argument_list|,
 literal|0

@@ -58,6 +58,38 @@ name|common
 operator|.
 name|graph
 operator|.
+name|GraphConstants
+operator|.
+name|DEFAULT_EDGE_COUNT
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|graph
+operator|.
+name|GraphConstants
+operator|.
+name|DEFAULT_NODE_COUNT
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|graph
+operator|.
 name|GraphErrorMessageUtils
 operator|.
 name|EDGE_NOT_IN_GRAPH
@@ -184,16 +216,6 @@ argument_list|,
 name|E
 argument_list|>
 block|{
-comment|// The default of 11 is rather arbitrary, but roughly matches the sizing of just new HashMap()
-DECL|field|DEFAULT_MAP_SIZE
-specifier|private
-specifier|static
-specifier|final
-name|int
-name|DEFAULT_MAP_SIZE
-init|=
-literal|11
-decl_stmt|;
 DECL|field|isDirected
 specifier|private
 specifier|final
@@ -354,7 +376,7 @@ name|expectedNodeCount
 operator|.
 name|or
 argument_list|(
-name|DEFAULT_MAP_SIZE
+name|DEFAULT_NODE_COUNT
 argument_list|)
 decl_stmt|;
 switch|switch
@@ -453,7 +475,7 @@ name|expectedEdgeCount
 operator|.
 name|or
 argument_list|(
-name|DEFAULT_MAP_SIZE
+name|DEFAULT_EDGE_COUNT
 argument_list|)
 decl_stmt|;
 switch|switch

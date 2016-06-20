@@ -21,7 +21,7 @@ comment|/**  * A utility class to hold various constants used by the Guava Graph
 end_comment
 
 begin_comment
-comment|// TODO(user): Decide what else to put here (error message strings, node/edge map sizes, etc.)
+comment|// TODO(user): Decide what else to put here (error message strings, etc.)
 end_comment
 
 begin_class
@@ -35,14 +35,32 @@ specifier|private
 name|GraphConstants
 parameter_list|()
 block|{}
-comment|// TODO(user): Enable users to specify the expected (in/out?) degree of nodes.
+comment|// TODO(user): Enable users to specify the expected degree of nodes.
 DECL|field|EXPECTED_DEGREE
 specifier|static
 specifier|final
 name|int
 name|EXPECTED_DEGREE
 init|=
-literal|11
+literal|2
+decl_stmt|;
+DECL|field|DEFAULT_NODE_COUNT
+specifier|static
+specifier|final
+name|int
+name|DEFAULT_NODE_COUNT
+init|=
+literal|10
+decl_stmt|;
+DECL|field|DEFAULT_EDGE_COUNT
+specifier|static
+specifier|final
+name|int
+name|DEFAULT_EDGE_COUNT
+init|=
+name|DEFAULT_NODE_COUNT
+operator|*
+name|EXPECTED_DEGREE
 decl_stmt|;
 block|}
 end_class
