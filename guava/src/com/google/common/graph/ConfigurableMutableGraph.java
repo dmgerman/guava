@@ -216,7 +216,7 @@ name|nodeA
 argument_list|)
 expr_stmt|;
 name|boolean
-name|containsN1
+name|containsA
 init|=
 name|containsNode
 argument_list|(
@@ -224,7 +224,7 @@ name|nodeA
 argument_list|)
 decl_stmt|;
 name|boolean
-name|containsN2
+name|containsB
 init|=
 name|containsNode
 argument_list|(
@@ -234,9 +234,9 @@ decl_stmt|;
 comment|// TODO(user): does not support parallel edges
 if|if
 condition|(
-name|containsN1
+name|containsA
 operator|&&
-name|containsN2
+name|containsB
 operator|&&
 name|nodeConnections
 operator|.
@@ -261,7 +261,7 @@ block|}
 if|if
 condition|(
 operator|!
-name|containsN1
+name|containsA
 condition|)
 block|{
 name|addNode
@@ -274,7 +274,7 @@ name|NodeAdjacencies
 argument_list|<
 name|N
 argument_list|>
-name|connectionsN1
+name|connectionsA
 init|=
 name|nodeConnections
 operator|.
@@ -283,7 +283,7 @@ argument_list|(
 name|nodeA
 argument_list|)
 decl_stmt|;
-name|connectionsN1
+name|connectionsA
 operator|.
 name|addSuccessor
 argument_list|(
@@ -293,7 +293,7 @@ expr_stmt|;
 if|if
 condition|(
 operator|!
-name|containsN2
+name|containsB
 condition|)
 block|{
 name|addNode
@@ -306,7 +306,7 @@ name|NodeAdjacencies
 argument_list|<
 name|N
 argument_list|>
-name|connectionsN2
+name|connectionsB
 init|=
 name|nodeConnections
 operator|.
@@ -315,7 +315,7 @@ argument_list|(
 name|nodeB
 argument_list|)
 decl_stmt|;
-name|connectionsN2
+name|connectionsB
 operator|.
 name|addPredecessor
 argument_list|(
@@ -476,7 +476,7 @@ name|NodeAdjacencies
 argument_list|<
 name|N
 argument_list|>
-name|connectionsN1
+name|connectionsA
 init|=
 name|nodeConnections
 operator|.
@@ -487,12 +487,12 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|connectionsN1
+name|connectionsA
 operator|==
 literal|null
 operator|||
 operator|!
-name|connectionsN1
+name|connectionsA
 operator|.
 name|successors
 argument_list|()
@@ -511,7 +511,7 @@ name|NodeAdjacencies
 argument_list|<
 name|N
 argument_list|>
-name|connectionsN2
+name|connectionsB
 init|=
 name|nodeConnections
 operator|.
@@ -520,14 +520,14 @@ argument_list|(
 name|nodeB
 argument_list|)
 decl_stmt|;
-name|connectionsN1
+name|connectionsA
 operator|.
 name|removeSuccessor
 argument_list|(
 name|nodeB
 argument_list|)
 expr_stmt|;
-name|connectionsN2
+name|connectionsB
 operator|.
 name|removePredecessor
 argument_list|(

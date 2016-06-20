@@ -282,7 +282,7 @@ name|nodeA
 argument_list|)
 expr_stmt|;
 name|boolean
-name|containsN1
+name|containsA
 init|=
 name|containsNode
 argument_list|(
@@ -290,7 +290,7 @@ name|nodeA
 argument_list|)
 decl_stmt|;
 name|boolean
-name|containsN2
+name|containsB
 init|=
 name|containsNode
 argument_list|(
@@ -307,9 +307,9 @@ condition|)
 block|{
 name|checkArgument
 argument_list|(
-name|containsN1
+name|containsA
 operator|&&
-name|containsN2
+name|containsB
 operator|&&
 name|edgesConnecting
 argument_list|(
@@ -353,9 +353,9 @@ name|checkArgument
 argument_list|(
 operator|!
 operator|(
-name|containsN1
+name|containsA
 operator|&&
-name|containsN2
+name|containsB
 operator|&&
 name|successors
 argument_list|(
@@ -379,7 +379,7 @@ block|}
 if|if
 condition|(
 operator|!
-name|containsN1
+name|containsA
 condition|)
 block|{
 name|addNode
@@ -394,7 +394,7 @@ name|N
 argument_list|,
 name|E
 argument_list|>
-name|connectionsN1
+name|connectionsA
 init|=
 name|nodeConnections
 operator|.
@@ -403,7 +403,7 @@ argument_list|(
 name|nodeA
 argument_list|)
 decl_stmt|;
-name|connectionsN1
+name|connectionsA
 operator|.
 name|addOutEdge
 argument_list|(
@@ -415,7 +415,7 @@ expr_stmt|;
 if|if
 condition|(
 operator|!
-name|containsN2
+name|containsB
 condition|)
 block|{
 name|addNode
@@ -430,7 +430,7 @@ name|N
 argument_list|,
 name|E
 argument_list|>
-name|connectionsN2
+name|connectionsB
 init|=
 name|nodeConnections
 operator|.
@@ -439,7 +439,7 @@ argument_list|(
 name|nodeB
 argument_list|)
 decl_stmt|;
-name|connectionsN2
+name|connectionsB
 operator|.
 name|addInEdge
 argument_list|(

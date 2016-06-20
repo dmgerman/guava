@@ -927,7 +927,7 @@ name|N
 argument_list|,
 name|E
 argument_list|>
-name|connectionsN1
+name|connectionsA
 init|=
 name|checkedConnections
 argument_list|(
@@ -967,7 +967,7 @@ name|nodeB
 argument_list|)
 expr_stmt|;
 return|return
-name|connectionsN1
+name|connectionsA
 operator|.
 name|edgesConnecting
 argument_list|(
