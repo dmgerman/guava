@@ -65,6 +65,14 @@ name|ADDING_PARALLEL_EDGE
 init|=
 literal|"Nodes %s and %s are already connected by a different edge."
 decl_stmt|;
+DECL|field|EDGE_ALREADY_EXISTS
+specifier|static
+specifier|final
+name|String
+name|EDGE_ALREADY_EXISTS
+init|=
+literal|"Edge %s already exists in the graph."
+decl_stmt|;
 DECL|field|SELF_LOOPS_NOT_ALLOWED
 specifier|static
 specifier|final
