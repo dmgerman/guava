@@ -42,7 +42,7 @@ name|common
 operator|.
 name|graph
 operator|.
-name|GraphErrorMessageUtils
+name|GraphConstants
 operator|.
 name|NOT_AVAILABLE_ON_UNDIRECTED
 import|;

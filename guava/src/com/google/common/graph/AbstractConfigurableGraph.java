@@ -74,7 +74,7 @@ name|common
 operator|.
 name|graph
 operator|.
-name|GraphErrorMessageUtils
+name|GraphConstants
 operator|.
 name|NODE_NOT_IN_GRAPH
 import|;

@@ -90,7 +90,7 @@ name|common
 operator|.
 name|graph
 operator|.
-name|GraphErrorMessageUtils
+name|GraphConstants
 operator|.
 name|EDGE_NOT_IN_GRAPH
 import|;
@@ -106,7 +106,7 @@ name|common
 operator|.
 name|graph
 operator|.
-name|GraphErrorMessageUtils
+name|GraphConstants
 operator|.
 name|NODE_NOT_IN_GRAPH
 import|;

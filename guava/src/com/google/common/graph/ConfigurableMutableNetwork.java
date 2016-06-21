@@ -74,7 +74,7 @@ name|common
 operator|.
 name|graph
 operator|.
-name|GraphErrorMessageUtils
+name|GraphConstants
 operator|.
 name|ADDING_PARALLEL_EDGE
 import|;
@@ -90,7 +90,7 @@ name|common
 operator|.
 name|graph
 operator|.
-name|GraphErrorMessageUtils
+name|GraphConstants
 operator|.
 name|REUSING_EDGE
 import|;
@@ -106,7 +106,7 @@ name|common
 operator|.
 name|graph
 operator|.
-name|GraphErrorMessageUtils
+name|GraphConstants
 operator|.
 name|SELF_LOOPS_NOT_ALLOWED
 import|;

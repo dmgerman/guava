@@ -20,10 +20,6 @@ begin_comment
 comment|/**  * A utility class to hold various constants used by the Guava Graph library.  */
 end_comment
 
-begin_comment
-comment|// TODO(user): Decide what else to put here (error message strings, etc.)
-end_comment
-
 begin_class
 DECL|class|GraphConstants
 specifier|final
@@ -61,6 +57,83 @@ init|=
 name|DEFAULT_NODE_COUNT
 operator|*
 name|EXPECTED_DEGREE
+decl_stmt|;
+comment|// Error messages
+DECL|field|NODE_NOT_IN_GRAPH
+specifier|static
+specifier|final
+name|String
+name|NODE_NOT_IN_GRAPH
+init|=
+literal|"Node %s is not an element of this graph."
+decl_stmt|;
+DECL|field|EDGE_NOT_IN_GRAPH
+specifier|static
+specifier|final
+name|String
+name|EDGE_NOT_IN_GRAPH
+init|=
+literal|"Edge %s is not an element of this graph."
+decl_stmt|;
+DECL|field|REUSING_EDGE
+specifier|static
+specifier|final
+name|String
+name|REUSING_EDGE
+init|=
+literal|"Edge %s already exists between the following nodes: %s, "
+operator|+
+literal|"so it can't be reused to connect the following nodes: %s."
+decl_stmt|;
+DECL|field|ADDING_PARALLEL_EDGE
+specifier|static
+specifier|final
+name|String
+name|ADDING_PARALLEL_EDGE
+init|=
+literal|"Nodes %s and %s are already connected by a different edge."
+decl_stmt|;
+DECL|field|EDGE_ALREADY_EXISTS
+specifier|static
+specifier|final
+name|String
+name|EDGE_ALREADY_EXISTS
+init|=
+literal|"Edge %s already exists in the graph."
+decl_stmt|;
+DECL|field|SELF_LOOPS_NOT_ALLOWED
+specifier|static
+specifier|final
+name|String
+name|SELF_LOOPS_NOT_ALLOWED
+init|=
+literal|"Cannot add self-loop edge on node %s, as self-loops are not allowed."
+decl_stmt|;
+DECL|field|NOT_AVAILABLE_ON_UNDIRECTED
+specifier|static
+specifier|final
+name|String
+name|NOT_AVAILABLE_ON_UNDIRECTED
+init|=
+literal|"Cannot call source()/target() on undirected endpoints."
+decl_stmt|;
+DECL|field|ENDPOINTS_GRAPH_DIRECTEDNESS
+specifier|static
+specifier|final
+name|String
+name|ENDPOINTS_GRAPH_DIRECTEDNESS
+init|=
+literal|"The endpoints' directedness (isDirected = %s) does not match the graph's directedness "
+operator|+
+literal|"(isDirected = %s). A graph cannot have both directed and undirected edges."
+decl_stmt|;
+DECL|field|NETWORK_WITH_PARALLEL_EDGE
+specifier|static
+specifier|final
+name|String
+name|NETWORK_WITH_PARALLEL_EDGE
+init|=
+literal|"Cannot make a Graph copy of a Network that allows parallel edges."
 decl_stmt|;
 block|}
 end_class

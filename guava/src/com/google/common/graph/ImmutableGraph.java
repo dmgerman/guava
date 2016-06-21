@@ -58,7 +58,7 @@ name|common
 operator|.
 name|graph
 operator|.
-name|GraphErrorMessageUtils
+name|GraphConstants
 operator|.
 name|NETWORK_WITH_PARALLEL_EDGE
 import|;
