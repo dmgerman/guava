@@ -242,14 +242,20 @@ argument_list|>
 block|{
 comment|// We store 'iterable' and use it instead of 'this' to allow Iterables to perform instanceof
 comment|// checks on the _original_ iterable when FluentIterable.from is used.
-DECL|field|iterable
+comment|// To avoid a self retain cycle under j2objc, we store Optional.absent() instead of
+comment|// Optional.of(this). To access the iterator delegate, call #getDelegate(), which converts to
+comment|// absent() back to 'this'.
+DECL|field|iterableDelegate
 specifier|private
 specifier|final
+name|Optional
+argument_list|<
 name|Iterable
 argument_list|<
 name|E
 argument_list|>
-name|iterable
+argument_list|>
+name|iterableDelegate
 decl_stmt|;
 comment|/** Constructor for use by subclasses. */
 DECL|method|FluentIterable ()
@@ -259,9 +265,12 @@ parameter_list|()
 block|{
 name|this
 operator|.
-name|iterable
+name|iterableDelegate
 operator|=
-name|this
+name|Optional
+operator|.
+name|absent
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|FluentIterable (Iterable<E> iterable)
@@ -274,15 +283,46 @@ argument_list|>
 name|iterable
 parameter_list|)
 block|{
-name|this
-operator|.
-name|iterable
-operator|=
 name|checkNotNull
 argument_list|(
 name|iterable
 argument_list|)
 expr_stmt|;
+name|this
+operator|.
+name|iterableDelegate
+operator|=
+name|Optional
+operator|.
+name|fromNullable
+argument_list|(
+name|this
+operator|!=
+name|iterable
+condition|?
+name|iterable
+else|:
+literal|null
+argument_list|)
+expr_stmt|;
+block|}
+DECL|method|getDelegate ()
+specifier|private
+name|Iterable
+argument_list|<
+name|E
+argument_list|>
+name|getDelegate
+parameter_list|()
+block|{
+return|return
+name|iterableDelegate
+operator|.
+name|or
+argument_list|(
+name|this
+argument_list|)
+return|;
 block|}
 comment|/**    * Returns a fluent iterable that wraps {@code iterable}, or {@code iterable} itself if it is    * already a {@code FluentIterable}.    *    *<p><b>{@code Stream} equivalent:</b> {@code iterable.stream()} if {@code iterable} is a    * {@link Collection}; {@code StreamSupport.stream(iterable.spliterator(), false)} otherwise.    */
 DECL|method|from (final Iterable<E> iterable)
@@ -814,7 +854,8 @@ name|Iterables
 operator|.
 name|toString
 argument_list|(
-name|iterable
+name|getDelegate
+argument_list|()
 argument_list|)
 return|;
 block|}
@@ -831,7 +872,8 @@ name|Iterables
 operator|.
 name|size
 argument_list|(
-name|iterable
+name|getDelegate
+argument_list|()
 argument_list|)
 return|;
 block|}
@@ -853,7 +895,8 @@ name|Iterables
 operator|.
 name|contains
 argument_list|(
-name|iterable
+name|getDelegate
+argument_list|()
 argument_list|,
 name|target
 argument_list|)
@@ -877,7 +920,8 @@ name|Iterables
 operator|.
 name|cycle
 argument_list|(
-name|iterable
+name|getDelegate
+argument_list|()
 argument_list|)
 argument_list|)
 return|;
@@ -910,7 +954,8 @@ name|FluentIterable
 operator|.
 name|concat
 argument_list|(
-name|iterable
+name|getDelegate
+argument_list|()
 argument_list|,
 name|other
 argument_list|)
@@ -941,7 +986,8 @@ name|FluentIterable
 operator|.
 name|concat
 argument_list|(
-name|iterable
+name|getDelegate
+argument_list|()
 argument_list|,
 name|Arrays
 operator|.
@@ -979,7 +1025,8 @@ name|Iterables
 operator|.
 name|filter
 argument_list|(
-name|iterable
+name|getDelegate
+argument_list|()
 argument_list|,
 name|predicate
 argument_list|)
@@ -1016,7 +1063,8 @@ name|Iterables
 operator|.
 name|filter
 argument_list|(
-name|iterable
+name|getDelegate
+argument_list|()
 argument_list|,
 name|type
 argument_list|)
@@ -1044,7 +1092,8 @@ name|Iterables
 operator|.
 name|any
 argument_list|(
-name|iterable
+name|getDelegate
+argument_list|()
 argument_list|,
 name|predicate
 argument_list|)
@@ -1071,7 +1120,8 @@ name|Iterables
 operator|.
 name|all
 argument_list|(
-name|iterable
+name|getDelegate
+argument_list|()
 argument_list|,
 name|predicate
 argument_list|)
@@ -1101,7 +1151,8 @@ name|Iterables
 operator|.
 name|tryFind
 argument_list|(
-name|iterable
+name|getDelegate
+argument_list|()
 argument_list|,
 name|predicate
 argument_list|)
@@ -1138,7 +1189,8 @@ name|Iterables
 operator|.
 name|transform
 argument_list|(
-name|iterable
+name|getDelegate
+argument_list|()
 argument_list|,
 name|function
 argument_list|)
@@ -1207,7 +1259,8 @@ name|E
 argument_list|>
 name|iterator
 init|=
-name|iterable
+name|getDelegate
+argument_list|()
 operator|.
 name|iterator
 argument_list|()
@@ -1250,6 +1303,15 @@ parameter_list|()
 block|{
 comment|// Iterables#getLast was inlined here so we don't have to throw/catch a NSEE
 comment|// TODO(kevinb): Support a concurrently modified collection?
+name|Iterable
+argument_list|<
+name|E
+argument_list|>
+name|iterable
+init|=
+name|getDelegate
+argument_list|()
+decl_stmt|;
 if|if
 condition|(
 name|iterable
@@ -1420,7 +1482,8 @@ name|Iterables
 operator|.
 name|skip
 argument_list|(
-name|iterable
+name|getDelegate
+argument_list|()
 argument_list|,
 name|numberToSkip
 argument_list|)
@@ -1448,7 +1511,8 @@ name|Iterables
 operator|.
 name|limit
 argument_list|(
-name|iterable
+name|getDelegate
+argument_list|()
 argument_list|,
 name|maxSize
 argument_list|)
@@ -1465,7 +1529,8 @@ parameter_list|()
 block|{
 return|return
 operator|!
-name|iterable
+name|getDelegate
+argument_list|()
 operator|.
 name|iterator
 argument_list|()
@@ -1490,7 +1555,8 @@ name|ImmutableList
 operator|.
 name|copyOf
 argument_list|(
-name|iterable
+name|getDelegate
+argument_list|()
 argument_list|)
 return|;
 block|}
@@ -1523,7 +1589,8 @@ argument_list|)
 operator|.
 name|immutableSortedCopy
 argument_list|(
-name|iterable
+name|getDelegate
+argument_list|()
 argument_list|)
 return|;
 block|}
@@ -1543,7 +1610,8 @@ name|ImmutableSet
 operator|.
 name|copyOf
 argument_list|(
-name|iterable
+name|getDelegate
+argument_list|()
 argument_list|)
 return|;
 block|}
@@ -1573,7 +1641,8 @@ name|copyOf
 argument_list|(
 name|comparator
 argument_list|,
-name|iterable
+name|getDelegate
+argument_list|()
 argument_list|)
 return|;
 block|}
@@ -1593,7 +1662,8 @@ name|ImmutableMultiset
 operator|.
 name|copyOf
 argument_list|(
-name|iterable
+name|getDelegate
+argument_list|()
 argument_list|)
 return|;
 block|}
@@ -1628,7 +1698,8 @@ name|Maps
 operator|.
 name|toMap
 argument_list|(
-name|iterable
+name|getDelegate
+argument_list|()
 argument_list|,
 name|valueFunction
 argument_list|)
@@ -1665,7 +1736,8 @@ name|Multimaps
 operator|.
 name|index
 argument_list|(
-name|iterable
+name|getDelegate
+argument_list|()
 argument_list|,
 name|keyFunction
 argument_list|)
@@ -1702,7 +1774,8 @@ name|Maps
 operator|.
 name|uniqueIndex
 argument_list|(
-name|iterable
+name|getDelegate
+argument_list|()
 argument_list|,
 name|keyFunction
 argument_list|)
@@ -1731,7 +1804,8 @@ name|Iterables
 operator|.
 name|toArray
 argument_list|(
-name|iterable
+name|getDelegate
+argument_list|()
 argument_list|,
 name|type
 argument_list|)
@@ -1765,6 +1839,15 @@ argument_list|(
 name|collection
 argument_list|)
 expr_stmt|;
+name|Iterable
+argument_list|<
+name|E
+argument_list|>
+name|iterable
+init|=
+name|getDelegate
+argument_list|()
+decl_stmt|;
 if|if
 condition|(
 name|iterable
@@ -1847,7 +1930,8 @@ name|Iterables
 operator|.
 name|get
 argument_list|(
-name|iterable
+name|getDelegate
+argument_list|()
 argument_list|,
 name|position
 argument_list|)
