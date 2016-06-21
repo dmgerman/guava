@@ -511,6 +511,7 @@ return|;
 block|}
 DECL|method|checkedConnections (Object node)
 specifier|protected
+specifier|final
 name|NodeAdjacencies
 argument_list|<
 name|N
@@ -558,6 +559,7 @@ return|;
 block|}
 DECL|method|containsNode (@ullable Object node)
 specifier|protected
+specifier|final
 name|boolean
 name|containsNode
 parameter_list|(

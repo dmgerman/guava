@@ -813,24 +813,15 @@ name|edge
 argument_list|)
 decl_stmt|;
 return|return
+name|Endpoints
+operator|.
+name|of
+argument_list|(
+name|nodeA
+argument_list|,
+name|nodeB
+argument_list|,
 name|isDirected
-condition|?
-name|Endpoints
-operator|.
-name|ofDirected
-argument_list|(
-name|nodeA
-argument_list|,
-name|nodeB
-argument_list|)
-else|:
-name|Endpoints
-operator|.
-name|ofUndirected
-argument_list|(
-name|nodeA
-argument_list|,
-name|nodeB
 argument_list|)
 return|;
 block|}
@@ -1095,6 +1086,7 @@ return|;
 block|}
 DECL|method|checkedConnections (Object node)
 specifier|protected
+specifier|final
 name|NodeConnections
 argument_list|<
 name|N
@@ -1146,6 +1138,7 @@ return|;
 block|}
 DECL|method|checkedReferenceNode (Object edge)
 specifier|protected
+specifier|final
 name|N
 name|checkedReferenceNode
 parameter_list|(
@@ -1187,6 +1180,7 @@ return|;
 block|}
 DECL|method|containsNode (@ullable Object node)
 specifier|protected
+specifier|final
 name|boolean
 name|containsNode
 parameter_list|(
@@ -1207,6 +1201,7 @@ return|;
 block|}
 DECL|method|containsEdge (@ullable Object edge)
 specifier|protected
+specifier|final
 name|boolean
 name|containsEdge
 parameter_list|(

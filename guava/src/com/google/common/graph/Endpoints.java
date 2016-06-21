@@ -167,6 +167,45 @@ name|nodeB
 argument_list|)
 expr_stmt|;
 block|}
+DECL|method|of (N nodeA, N nodeB, boolean isDirected)
+specifier|static
+parameter_list|<
+name|N
+parameter_list|>
+name|Endpoints
+argument_list|<
+name|N
+argument_list|>
+name|of
+parameter_list|(
+name|N
+name|nodeA
+parameter_list|,
+name|N
+name|nodeB
+parameter_list|,
+name|boolean
+name|isDirected
+parameter_list|)
+block|{
+return|return
+name|isDirected
+condition|?
+name|ofDirected
+argument_list|(
+name|nodeA
+argument_list|,
+name|nodeB
+argument_list|)
+else|:
+name|ofUndirected
+argument_list|(
+name|nodeA
+argument_list|,
+name|nodeB
+argument_list|)
+return|;
+block|}
 comment|/**    * Returns an {@link Endpoints} representing the endpoints of a directed edge.    */
 DECL|method|ofDirected (N source, N target)
 specifier|public
