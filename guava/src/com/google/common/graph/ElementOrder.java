@@ -109,7 +109,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Used to represent the order of elements in a data structure that supports different options  * for iteration order guarantees.  *  *<p>Example usage:  *<pre><code>  *   MutableGraph<Integer> graph  *       = GraphBuilder.directed().orderNodes(ElementOrder.natural()).build();  *</code></pre>  */
+comment|/**  * Used to represent the order of elements in a data structure that supports different options  * for iteration order guarantees.  *  *<p>Example usage:  *<pre><code>  *   MutableGraph<Integer> graph  *       = GraphBuilder.directed().nodeOrder(ElementOrder.natural()).build();  *</code></pre>  */
 end_comment
 
 begin_class

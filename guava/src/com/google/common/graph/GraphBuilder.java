@@ -234,7 +234,7 @@ name|allowsSelfLoops
 argument_list|()
 argument_list|)
 operator|.
-name|orderNodes
+name|nodeOrder
 argument_list|(
 name|graph
 operator|.
@@ -309,7 +309,7 @@ name|this
 return|;
 block|}
 comment|/**    * Specifies the order of iteration for the elements of {@link Network#nodes()}.    */
-DECL|method|orderNodes (ElementOrder<N1> nodeOrder)
+DECL|method|nodeOrder (ElementOrder<N1> nodeOrder)
 specifier|public
 parameter_list|<
 name|N1
@@ -320,7 +320,7 @@ name|GraphBuilder
 argument_list|<
 name|N1
 argument_list|>
-name|orderNodes
+name|nodeOrder
 parameter_list|(
 name|ElementOrder
 argument_list|<

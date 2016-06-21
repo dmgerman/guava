@@ -293,7 +293,7 @@ name|allowsSelfLoops
 argument_list|()
 argument_list|)
 operator|.
-name|orderNodes
+name|nodeOrder
 argument_list|(
 name|graph
 operator|.
@@ -301,7 +301,7 @@ name|nodeOrder
 argument_list|()
 argument_list|)
 operator|.
-name|orderEdges
+name|edgeOrder
 argument_list|(
 name|graph
 operator|.
@@ -446,7 +446,7 @@ name|this
 return|;
 block|}
 comment|/**    * Specifies the order of iteration for the elements of {@link Network#nodes()}.    */
-DECL|method|orderNodes (ElementOrder<N1> nodeOrder)
+DECL|method|nodeOrder (ElementOrder<N1> nodeOrder)
 specifier|public
 parameter_list|<
 name|N1
@@ -459,7 +459,7 @@ name|N1
 argument_list|,
 name|E
 argument_list|>
-name|orderNodes
+name|nodeOrder
 parameter_list|(
 name|ElementOrder
 argument_list|<
@@ -495,7 +495,7 @@ name|newBuilder
 return|;
 block|}
 comment|/**    * Specifies the order of iteration for the elements of {@link Network#edges()}.    */
-DECL|method|orderEdges (ElementOrder<E1> edgeOrder)
+DECL|method|edgeOrder (ElementOrder<E1> edgeOrder)
 specifier|public
 parameter_list|<
 name|E1
@@ -508,7 +508,7 @@ name|N
 argument_list|,
 name|E1
 argument_list|>
-name|orderEdges
+name|edgeOrder
 parameter_list|(
 name|ElementOrder
 argument_list|<

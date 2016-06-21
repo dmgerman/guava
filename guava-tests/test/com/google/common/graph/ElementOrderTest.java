@@ -133,10 +133,10 @@ block|{
 comment|// Node order tests
 annotation|@
 name|Test
-DECL|method|orderNodes_none ()
+DECL|method|nodeOrder_none ()
 specifier|public
 name|void
-name|orderNodes_none
+name|nodeOrder_none
 parameter_list|()
 throws|throws
 name|Exception
@@ -152,7 +152,7 @@ operator|.
 name|directed
 argument_list|()
 operator|.
-name|orderNodes
+name|nodeOrder
 argument_list|(
 name|unordered
 argument_list|()
@@ -178,10 +178,10 @@ expr_stmt|;
 block|}
 annotation|@
 name|Test
-DECL|method|orderNodes_insertion ()
+DECL|method|nodeOrder_insertion ()
 specifier|public
 name|void
-name|orderNodes_insertion
+name|nodeOrder_insertion
 parameter_list|()
 throws|throws
 name|Exception
@@ -197,7 +197,7 @@ operator|.
 name|directed
 argument_list|()
 operator|.
-name|orderNodes
+name|nodeOrder
 argument_list|(
 name|insertion
 argument_list|()
@@ -249,10 +249,10 @@ block|}
 comment|// The default ordering is INSERTION unless otherwise specified.
 annotation|@
 name|Test
-DECL|method|orderNodes_default ()
+DECL|method|nodeOrder_default ()
 specifier|public
 name|void
-name|orderNodes_default
+name|nodeOrder_default
 parameter_list|()
 throws|throws
 name|Exception
@@ -313,10 +313,10 @@ expr_stmt|;
 block|}
 annotation|@
 name|Test
-DECL|method|orderNodes_natural ()
+DECL|method|nodeOrder_natural ()
 specifier|public
 name|void
-name|orderNodes_natural
+name|nodeOrder_natural
 parameter_list|()
 throws|throws
 name|Exception
@@ -332,7 +332,7 @@ operator|.
 name|directed
 argument_list|()
 operator|.
-name|orderNodes
+name|nodeOrder
 argument_list|(
 name|ElementOrder
 operator|.
@@ -398,10 +398,10 @@ expr_stmt|;
 block|}
 annotation|@
 name|Test
-DECL|method|orderNodes_sorted ()
+DECL|method|nodeOrder_sorted ()
 specifier|public
 name|void
-name|orderNodes_sorted
+name|nodeOrder_sorted
 parameter_list|()
 throws|throws
 name|Exception
@@ -417,7 +417,7 @@ operator|.
 name|directed
 argument_list|()
 operator|.
-name|orderNodes
+name|nodeOrder
 argument_list|(
 name|ElementOrder
 operator|.
@@ -495,10 +495,10 @@ block|}
 comment|// Edge order tests
 annotation|@
 name|Test
-DECL|method|orderEdges_none ()
+DECL|method|edgeOrder_none ()
 specifier|public
 name|void
-name|orderEdges_none
+name|edgeOrder_none
 parameter_list|()
 throws|throws
 name|Exception
@@ -516,7 +516,7 @@ operator|.
 name|directed
 argument_list|()
 operator|.
-name|orderEdges
+name|edgeOrder
 argument_list|(
 name|unordered
 argument_list|()
@@ -557,10 +557,10 @@ comment|// default
 block|}
 annotation|@
 name|Test
-DECL|method|orderEdges_insertion ()
+DECL|method|edgeOrder_insertion ()
 specifier|public
 name|void
-name|orderEdges_insertion
+name|edgeOrder_insertion
 parameter_list|()
 throws|throws
 name|Exception
@@ -578,7 +578,7 @@ operator|.
 name|directed
 argument_list|()
 operator|.
-name|orderEdges
+name|edgeOrder
 argument_list|(
 name|insertion
 argument_list|()
@@ -649,10 +649,10 @@ block|}
 comment|// The default ordering is INSERTION unless otherwise specified.
 annotation|@
 name|Test
-DECL|method|orderEdges_default ()
+DECL|method|edgeOrder_default ()
 specifier|public
 name|void
-name|orderEdges_default
+name|edgeOrder_default
 parameter_list|()
 throws|throws
 name|Exception
@@ -734,10 +734,10 @@ comment|// default
 block|}
 annotation|@
 name|Test
-DECL|method|orderEdges_natural ()
+DECL|method|edgeOrder_natural ()
 specifier|public
 name|void
-name|orderEdges_natural
+name|edgeOrder_natural
 parameter_list|()
 throws|throws
 name|Exception
@@ -755,7 +755,7 @@ operator|.
 name|directed
 argument_list|()
 operator|.
-name|orderEdges
+name|edgeOrder
 argument_list|(
 name|ElementOrder
 operator|.
@@ -836,10 +836,10 @@ comment|// default
 block|}
 annotation|@
 name|Test
-DECL|method|orderEdges_sorted ()
+DECL|method|edgeOrder_sorted ()
 specifier|public
 name|void
-name|orderEdges_sorted
+name|edgeOrder_sorted
 parameter_list|()
 throws|throws
 name|Exception
@@ -857,7 +857,7 @@ operator|.
 name|directed
 argument_list|()
 operator|.
-name|orderEdges
+name|edgeOrder
 argument_list|(
 name|ElementOrder
 operator|.
@@ -952,10 +952,10 @@ block|}
 comment|// Combined node and edge order tests
 annotation|@
 name|Test
-DECL|method|orderNodesUnorderedandEdgesSorted ()
+DECL|method|nodeOrderUnorderedandEdgesSorted ()
 specifier|public
 name|void
-name|orderNodesUnorderedandEdgesSorted
+name|nodeOrderUnorderedandEdgesSorted
 parameter_list|()
 throws|throws
 name|Exception
@@ -973,13 +973,13 @@ operator|.
 name|directed
 argument_list|()
 operator|.
-name|orderNodes
+name|nodeOrder
 argument_list|(
 name|unordered
 argument_list|()
 argument_list|)
 operator|.
-name|orderEdges
+name|edgeOrder
 argument_list|(
 name|ElementOrder
 operator|.
