@@ -324,6 +324,27 @@ expr_stmt|;
 block|}
 block|}
 annotation|@
+name|Override
+DECL|method|toString ()
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+name|super
+operator|.
+name|toString
+argument_list|()
+operator|+
+literal|" (delegate = "
+operator|+
+name|task
+operator|+
+literal|")"
+return|;
+block|}
+annotation|@
 name|WeakOuter
 DECL|class|TrustedFutureInterruptibleTask
 specifier|private
@@ -415,6 +436,21 @@ operator|.
 name|this
 operator|.
 name|wasInterrupted
+argument_list|()
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|toString ()
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+name|callable
+operator|.
+name|toString
 argument_list|()
 return|;
 block|}
