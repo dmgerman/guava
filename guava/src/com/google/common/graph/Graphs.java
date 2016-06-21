@@ -863,7 +863,7 @@ argument_list|>
 name|dest
 parameter_list|)
 block|{
-name|copyNodesInteral
+name|copyNodesInternal
 argument_list|(
 name|src
 argument_list|,
@@ -876,7 +876,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|copyNodesInteral ( Graph<N> src, MutableGraph<N> dest, Predicate<? super N> nodePredicate)
+DECL|method|copyNodesInternal ( Graph<N> src, MutableGraph<N> dest, Predicate<? super N> nodePredicate)
 specifier|private
 specifier|static
 parameter_list|<
@@ -885,7 +885,7 @@ parameter_list|,
 name|E
 parameter_list|>
 name|void
-name|copyNodesInteral
+name|copyNodesInternal
 parameter_list|(
 name|Graph
 argument_list|<
