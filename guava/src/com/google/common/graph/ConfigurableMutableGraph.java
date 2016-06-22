@@ -422,7 +422,13 @@ return|return
 literal|false
 return|;
 block|}
-comment|// If there's a self-loop, remove it first so we won't get CME while removing incident edges.
+if|if
+condition|(
+name|allowsSelfLoops
+argument_list|()
+condition|)
+block|{
+comment|// Remove any potential self-loop first so we won't get CME while removing incident edges.
 name|connections
 operator|.
 name|removeSuccessor
@@ -437,6 +443,7 @@ argument_list|(
 name|node
 argument_list|)
 expr_stmt|;
+block|}
 for|for
 control|(
 name|N
