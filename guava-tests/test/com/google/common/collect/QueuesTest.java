@@ -18,22 +18,6 @@ end_package
 
 begin_import
 import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|util
-operator|.
-name|concurrent
-operator|.
-name|Uninterruptibles
-import|;
-end_import
-
-begin_import
-import|import
 name|junit
 operator|.
 name|framework
@@ -83,6 +67,30 @@ operator|.
 name|concurrent
 operator|.
 name|BlockingQueue
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|Callable
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|CountDownLatch
 import|;
 end_import
 
@@ -255,6 +263,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+comment|/*    * We need to perform operations in a thread pool, even for simple cases, because the queue might    * be a SynchronousQueue.    */
 DECL|field|threadPool
 specifier|private
 name|ExecutorService
@@ -286,8 +295,6 @@ parameter_list|()
 throws|throws
 name|InterruptedException
 block|{
-comment|// notice that if a Producer is interrupted (a bug), the Producer will go into an infinite
-comment|// loop, which will be noticed here
 name|threadPool
 operator|.
 name|shutdown
@@ -641,17 +648,9 @@ name|MILLISECONDS
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|// producing one, will ask for two
-name|Future
-argument_list|<
-name|?
-argument_list|>
-name|submitter
+name|Producer
+name|producer
 init|=
-name|threadPool
-operator|.
-name|submit
-argument_list|(
 operator|new
 name|Producer
 argument_list|(
@@ -659,6 +658,19 @@ name|q
 argument_list|,
 literal|1
 argument_list|)
+decl_stmt|;
+comment|// producing one, will ask for two
+name|Future
+argument_list|<
+name|?
+argument_list|>
+name|producerThread
+init|=
+name|threadPool
+operator|.
+name|submit
+argument_list|(
+name|producer
 argument_list|)
 decl_stmt|;
 comment|// make sure we time out
@@ -722,9 +734,18 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 comment|// If even the first one wasn't there, clean up so that the next test doesn't see an element.
-name|submitter
+name|producerThread
 operator|.
-name|get
+name|cancel
+argument_list|(
+literal|true
+argument_list|)
+expr_stmt|;
+name|producer
+operator|.
+name|doneProducing
+operator|.
+name|await
 argument_list|()
 expr_stmt|;
 if|if
@@ -734,14 +755,12 @@ operator|==
 literal|0
 condition|)
 block|{
-name|assertNotNull
-argument_list|(
 name|q
 operator|.
 name|poll
 argument_list|()
-argument_list|)
 expr_stmt|;
+comment|// not necessarily there if producer was interrupted
 block|}
 block|}
 block|}
@@ -977,26 +996,11 @@ name|isEmpty
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|// Clean up produced element to free the producer thread, otherwise it will complain
-comment|// when we shutdown the threadpool.
-name|Queues
-operator|.
-name|drain
-argument_list|(
+comment|// Free the producer thread, and give subsequent tests a clean slate.
 name|q
-argument_list|,
-name|buf
-argument_list|,
-literal|1
-argument_list|,
-name|Long
 operator|.
-name|MAX_VALUE
-argument_list|,
-name|TimeUnit
-operator|.
-name|NANOSECONDS
-argument_list|)
+name|take
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testDrain_throws ()
@@ -1141,13 +1145,18 @@ operator|.
 name|submit
 argument_list|(
 operator|new
-name|Runnable
+name|Callable
+argument_list|<
+name|Void
+argument_list|>
 argument_list|()
 block|{
 specifier|public
-name|void
-name|run
+name|Void
+name|call
 parameter_list|()
+throws|throws
+name|InterruptedException
 block|{
 operator|new
 name|Producer
@@ -1157,7 +1166,7 @@ argument_list|,
 literal|50
 argument_list|)
 operator|.
-name|run
+name|call
 argument_list|()
 expr_stmt|;
 operator|new
@@ -1177,9 +1186,12 @@ argument_list|,
 literal|50
 argument_list|)
 operator|.
-name|run
+name|call
 argument_list|()
 expr_stmt|;
+return|return
+literal|null
+return|;
 block|}
 block|}
 argument_list|)
@@ -1627,7 +1639,10 @@ specifier|static
 class|class
 name|Producer
 implements|implements
-name|Runnable
+name|Callable
+argument_list|<
+name|Void
+argument_list|>
 block|{
 DECL|field|q
 specifier|final
@@ -1641,6 +1656,17 @@ DECL|field|elements
 specifier|final
 name|int
 name|elements
+decl_stmt|;
+DECL|field|doneProducing
+specifier|final
+name|CountDownLatch
+name|doneProducing
+init|=
+operator|new
+name|CountDownLatch
+argument_list|(
+literal|1
+argument_list|)
 decl_stmt|;
 DECL|method|Producer (BlockingQueue<Object> q, int elements)
 name|Producer
@@ -1668,13 +1694,15 @@ operator|=
 name|elements
 expr_stmt|;
 block|}
-DECL|method|run ()
+DECL|method|call ()
 annotation|@
 name|Override
 specifier|public
-name|void
-name|run
+name|Void
+name|call
 parameter_list|()
+throws|throws
+name|InterruptedException
 block|{
 try|try
 block|{
@@ -1703,33 +1731,16 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+return|return
+literal|null
+return|;
 block|}
-catch|catch
-parameter_list|(
-name|InterruptedException
-name|e
-parameter_list|)
+finally|finally
 block|{
-comment|// TODO(user): replace this when there is a better way to spawn threads in tests and
-comment|// have threads propagate their errors back to the test thread.
-name|e
+name|doneProducing
 operator|.
-name|printStackTrace
+name|countDown
 argument_list|()
-expr_stmt|;
-comment|// never returns, so that #tearDown() notices that one worker isn't done
-name|Uninterruptibles
-operator|.
-name|sleepUninterruptibly
-argument_list|(
-name|Long
-operator|.
-name|MAX_VALUE
-argument_list|,
-name|TimeUnit
-operator|.
-name|MILLISECONDS
-argument_list|)
 expr_stmt|;
 block|}
 block|}
