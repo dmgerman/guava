@@ -13095,16 +13095,6 @@ argument_list|)
 decl_stmt|;
 specifier|final
 name|CountDownLatch
-name|shouldCompleteFunction
-init|=
-operator|new
-name|CountDownLatch
-argument_list|(
-literal|1
-argument_list|)
-decl_stmt|;
-specifier|final
-name|CountDownLatch
 name|gotException
 init|=
 operator|new
@@ -13145,11 +13135,16 @@ argument_list|()
 expr_stmt|;
 try|try
 block|{
-name|shouldCompleteFunction
+operator|new
+name|CountDownLatch
+argument_list|(
+literal|1
+argument_list|)
 operator|.
 name|await
 argument_list|()
 expr_stmt|;
+comment|// wait for interrupt
 block|}
 catch|catch
 parameter_list|(
@@ -13221,11 +13216,6 @@ name|cancel
 argument_list|(
 literal|true
 argument_list|)
-expr_stmt|;
-name|shouldCompleteFunction
-operator|.
-name|countDown
-argument_list|()
 expr_stmt|;
 try|try
 block|{
