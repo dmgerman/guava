@@ -422,6 +422,21 @@ return|return
 literal|false
 return|;
 block|}
+comment|// If there's a self-loop, remove it first so we won't get CME while removing incident edges.
+name|connections
+operator|.
+name|removeSuccessor
+argument_list|(
+name|node
+argument_list|)
+expr_stmt|;
+name|connections
+operator|.
+name|removePredecessor
+argument_list|(
+name|node
+argument_list|)
+expr_stmt|;
 for|for
 control|(
 name|N
@@ -433,18 +448,6 @@ name|successors
 argument_list|()
 control|)
 block|{
-if|if
-condition|(
-operator|!
-name|node
-operator|.
-name|equals
-argument_list|(
-name|successor
-argument_list|)
-condition|)
-block|{
-comment|// don't remove the successor if it's the input node (=> CME); will be removed below
 name|nodeConnections
 operator|.
 name|get
@@ -457,7 +460,6 @@ argument_list|(
 name|node
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 for|for
 control|(
