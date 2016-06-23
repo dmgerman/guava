@@ -79,7 +79,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Benchmarks for {@link Monitor}.  *   * @author Justin T. Sampson  */
+comment|/**  * Benchmarks for {@link Monitor}.  *  * @author Justin T. Sampson  */
 end_comment
 
 begin_class

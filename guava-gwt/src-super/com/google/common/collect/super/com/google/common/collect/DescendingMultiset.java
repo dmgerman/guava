@@ -71,7 +71,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A skeleton implementation of a descending multiset.  Only needs  * {@code forwardMultiset()} and {@code entryIterator()}.  *   * @author Louis Wasserman  */
+comment|/**  * A skeleton implementation of a descending multiset.  Only needs  * {@code forwardMultiset()} and {@code entryIterator()}.  *  * @author Louis Wasserman  */
 end_comment
 
 begin_class

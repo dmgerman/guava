@@ -27,7 +27,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Unit test for {@link Defaults}.  *   * @author Jige Yu  */
+comment|/**  * Unit test for {@link Defaults}.  *  * @author Jige Yu  */
 end_comment
 
 begin_class

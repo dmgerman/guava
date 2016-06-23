@@ -243,7 +243,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Test for {@link WrappingExecutorService}  *   * @author Chris Nokleberg  */
+comment|/**  * Test for {@link WrappingExecutorService}  *  * @author Chris Nokleberg  */
 end_comment
 
 begin_class

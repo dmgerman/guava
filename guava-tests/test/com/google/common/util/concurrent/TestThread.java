@@ -177,7 +177,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A helper for concurrency testing. One or more {@code TestThread} instances are instantiated  * in a test with reference to the same "lock-like object", and then their interactions with that  * object are choreographed via the various methods on this class.  *   *<p>A "lock-like object" is really any object that may be used for concurrency control. If the  * {@link #callAndAssertBlocks} method is ever called in a test, the lock-like object must have a  * method equivalent to {@link java.util.concurrent.locks.ReentrantLock#hasQueuedThread(Thread)}. If  * the {@link #callAndAssertWaits} method is ever called in a test, the lock-like object must have a  * method equivalent to {@link  * java.util.concurrent.locks.ReentrantLock#hasWaiters(java.util.concurrent.locks.Condition)},  * except that the method parameter must accept whatever condition-like object is passed into  * {@code callAndAssertWaits} by the test.  *  * @param<L> the type of the lock-like object to be used  * @author Justin T. Sampson  */
+comment|/**  * A helper for concurrency testing. One or more {@code TestThread} instances are instantiated  * in a test with reference to the same "lock-like object", and then their interactions with that  * object are choreographed via the various methods on this class.  *  *<p>A "lock-like object" is really any object that may be used for concurrency control. If the  * {@link #callAndAssertBlocks} method is ever called in a test, the lock-like object must have a  * method equivalent to {@link java.util.concurrent.locks.ReentrantLock#hasQueuedThread(Thread)}. If  * the {@link #callAndAssertWaits} method is ever called in a test, the lock-like object must have a  * method equivalent to {@link  * java.util.concurrent.locks.ReentrantLock#hasWaiters(java.util.concurrent.locks.Condition)},  * except that the method parameter must accept whatever condition-like object is passed into  * {@code callAndAssertWaits} by the test.  *  * @param<L> the type of the lock-like object to be used  * @author Justin T. Sampson  */
 end_comment
 
 begin_class
@@ -742,7 +742,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Sends the given method call to this thread.    *     * @throws TimeoutException if this thread does not accept the request within a resonable amount    *         of time    */
+comment|/**    * Sends the given method call to this thread.    *    * @throws TimeoutException if this thread does not accept the request within a resonable amount    *         of time    */
 DECL|method|sendRequest (String methodName, Object... arguments)
 specifier|private
 name|void
@@ -788,7 +788,7 @@ argument_list|()
 throw|;
 block|}
 block|}
-comment|/**    * Receives a response from this thread.    *     * @throws TimeoutException if this thread does not offer a response within a resonable amount of    *         time    * @throws AssertionFailedError if the given method name does not match the name of the method    *         this thread has called most recently    */
+comment|/**    * Receives a response from this thread.    *    * @throws TimeoutException if this thread does not offer a response within a resonable amount of    *         time    * @throws AssertionFailedError if the given method name does not match the name of the method    *         this thread has called most recently    */
 DECL|method|getResponse (String methodName)
 specifier|private
 name|Response

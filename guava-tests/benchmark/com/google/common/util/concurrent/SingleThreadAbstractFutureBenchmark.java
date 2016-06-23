@@ -173,7 +173,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A benchmark that times how long it takes to add a given number of   */
+comment|/**  * A benchmark that times how long it takes to add a given number of  */
 end_comment
 
 begin_class

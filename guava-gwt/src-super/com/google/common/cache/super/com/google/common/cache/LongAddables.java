@@ -17,7 +17,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * GWT emulation for LongAddables.  *   * @author Louis Wasserman  */
+comment|/**  * GWT emulation for LongAddables.  *  * @author Louis Wasserman  */
 end_comment
 
 begin_class

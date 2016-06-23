@@ -287,7 +287,7 @@ operator|-
 literal|2
 operator|)
 decl_stmt|;
-comment|/**    * Returns the smallest power of two greater than or equal to {@code x}.  This is equivalent to    * {@code checkedPow(2, log2(x, CEILING))}.    *    * @throws IllegalArgumentException if {@code x<= 0}    * @throws ArithmeticException of the next-higher power of two is not representable as an    *         {@code int}, i.e. when {@code x> 2^30}    * @since 20.0            */
+comment|/**    * Returns the smallest power of two greater than or equal to {@code x}.  This is equivalent to    * {@code checkedPow(2, log2(x, CEILING))}.    *    * @throws IllegalArgumentException if {@code x<= 0}    * @throws ArithmeticException of the next-higher power of two is not representable as an    *         {@code int}, i.e. when {@code x> 2^30}    * @since 20.0    */
 annotation|@
 name|Beta
 DECL|method|ceilingPowerOfTwo (int x)

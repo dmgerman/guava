@@ -77,7 +77,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests the speed of iteration of different iteration methods for collections.  *   * @author David Richter  */
+comment|/**  * Tests the speed of iteration of different iteration methods for collections.  *  * @author David Richter  */
 end_comment
 
 begin_class

@@ -27,7 +27,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Utility class for being able to seed a {@link Random} value with a passed  * in seed from a benchmark parameter.  *   * TODO: Remove this class once Caliper has a better way.  *   * @author Nicholaus Shupe  */
+comment|/**  * Utility class for being able to seed a {@link Random} value with a passed  * in seed from a benchmark parameter.  *  * TODO: Remove this class once Caliper has a better way.  *  * @author Nicholaus Shupe  */
 end_comment
 
 begin_class

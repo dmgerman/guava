@@ -161,7 +161,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Unit test for {@link TypeToken} and {@link TypeResolver}.  *   * @author Ben Yu  */
+comment|/**  * Unit test for {@link TypeToken} and {@link TypeResolver}.  *  * @author Ben Yu  */
 end_comment
 
 begin_class
@@ -321,7 +321,7 @@ block|}
 end_class
 
 begin_function
-unit|}      public
+unit|}    public
 DECL|method|testSimpleTypeToken ()
 name|void
 name|testSimpleTypeToken

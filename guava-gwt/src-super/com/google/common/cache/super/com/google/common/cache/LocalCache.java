@@ -2360,7 +2360,7 @@ argument_list|()
 throw|;
 block|}
 block|}
-comment|/**    * LinkedHashMap that enforces it's maximum size and logs events in a StatsCounter object    * and an optional RemovalListener.    *     * @param<K> the base key type    * @param<V> the base value type    */
+comment|/**    * LinkedHashMap that enforces it's maximum size and logs events in a StatsCounter object    * and an optional RemovalListener.    *    * @param<K> the base key type    * @param<V> the base value type    */
 DECL|class|CapacityEnforcingLinkedHashMap
 specifier|private
 class|class
@@ -2619,7 +2619,7 @@ name|defaultEquivalence
 parameter_list|()
 function_decl|;
 block|}
-comment|/**    *<p>Implementation for the EntryIterator, which is used to build Key and Value iterators.    *     *<p>Expiration is only checked on hasNext(), so as to ensure that a next() call never returns     * null when hasNext() has already been called.    */
+comment|/**    *<p>Implementation for the EntryIterator, which is used to build Key and Value iterators.    *    *<p>Expiration is only checked on hasNext(), so as to ensure that a next() call never returns    * null when hasNext() has already been called.    */
 DECL|class|EntryIterator
 class|class
 name|EntryIterator

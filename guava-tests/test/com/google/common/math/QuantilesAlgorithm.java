@@ -595,7 +595,7 @@ return|;
 block|}
 block|}
 block|,   ;
-comment|/**    * Calculates a single quantile. Equivalent to    * {@code Quantiles.scale(scale).index(index).computeInPlace(dataset)}.     */
+comment|/**    * Calculates a single quantile. Equivalent to    * {@code Quantiles.scale(scale).index(index).computeInPlace(dataset)}.    */
 DECL|method|singleQuantile (int index, int scale, double[] dataset)
 specifier|abstract
 name|double

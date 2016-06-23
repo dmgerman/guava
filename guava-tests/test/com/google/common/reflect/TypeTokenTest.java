@@ -12664,7 +12664,7 @@ function|;
 end_function
 
 begin_function
-unit|}      public
+unit|}    public
 DECL|method|testGetSubtype_toWildcardWithBounds ()
 name|void
 name|testGetSubtype_toWildcardWithBounds

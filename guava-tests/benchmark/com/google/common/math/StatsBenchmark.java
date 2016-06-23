@@ -91,7 +91,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Benchmarks for various algorithms for computing the mean and/or variance.  *   * @author Louis Wasserman  */
+comment|/**  * Benchmarks for various algorithms for computing the mean and/or variance.  *  * @author Louis Wasserman  */
 end_comment
 
 begin_class

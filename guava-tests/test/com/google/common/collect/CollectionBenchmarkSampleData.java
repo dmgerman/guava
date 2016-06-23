@@ -77,7 +77,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Package up sample data for common collections benchmarking.  *   * @author Nicholaus Shupe  */
+comment|/**  * Package up sample data for common collections benchmarking.  *  * @author Nicholaus Shupe  */
 end_comment
 
 begin_class

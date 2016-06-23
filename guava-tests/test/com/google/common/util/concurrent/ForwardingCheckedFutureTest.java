@@ -29,7 +29,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Test for {@link ForwardingCheckedFuture}  *   * @author Ben Yu  */
+comment|/**  * Test for {@link ForwardingCheckedFuture}  *  * @author Ben Yu  */
 end_comment
 
 begin_class

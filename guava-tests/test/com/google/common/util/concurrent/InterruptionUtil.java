@@ -127,7 +127,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Utilities for performing thread interruption in tests  *   * @author Kevin Bourrillion  * @author Chris Povirk  */
+comment|/**  * Utilities for performing thread interruption in tests  *  * @author Kevin Bourrillion  * @author Chris Povirk  */
 end_comment
 
 begin_class

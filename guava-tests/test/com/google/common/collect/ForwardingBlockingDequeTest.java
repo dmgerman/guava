@@ -41,7 +41,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Test for {@link ForwardingBlockingDeque}  *   * @author Emily Soldal  */
+comment|/**  * Test for {@link ForwardingBlockingDeque}  *  * @author Emily Soldal  */
 end_comment
 
 begin_class

@@ -71,7 +71,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests for UnmodifiableListIterator.  *   * @author Louis Wasserman  */
+comment|/**  * Tests for UnmodifiableListIterator.  *  * @author Louis Wasserman  */
 end_comment
 
 begin_class

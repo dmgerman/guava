@@ -57,7 +57,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Unit test for {@link AppendableWriter}.  *   * @author Alan Green  */
+comment|/**  * Unit test for {@link AppendableWriter}.  *  * @author Alan Green  */
 end_comment
 
 begin_class

@@ -159,7 +159,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Benchmarks to compare performance of MinMaxPriorityQueue and PriorityQueue.  *   * @author Sverre Sundsdal  */
+comment|/**  * Benchmarks to compare performance of MinMaxPriorityQueue and PriorityQueue.  *  * @author Sverre Sundsdal  */
 end_comment
 
 begin_class
@@ -562,7 +562,7 @@ name|comparator
 parameter_list|)
 function_decl|;
 block|}
-comment|/**    * Does a CPU intensive operation on Integer and returns a BigInteger     * Used to implement an ordering that spends a lot of cpu.    */
+comment|/**    * Does a CPU intensive operation on Integer and returns a BigInteger    * Used to implement an ordering that spends a lot of cpu.    */
 DECL|class|ExpensiveComputation
 specifier|static
 class|class

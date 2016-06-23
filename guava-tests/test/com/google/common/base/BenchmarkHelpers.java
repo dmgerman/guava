@@ -177,7 +177,7 @@ name|toString
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * Sample CharMatcher instances for benchmarking.     */
+comment|/**    * Sample CharMatcher instances for benchmarking.    */
 DECL|enum|SampleMatcherConfig
 specifier|public
 enum|enum

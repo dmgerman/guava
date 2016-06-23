@@ -161,7 +161,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Test for {@link WrappingScheduledExecutorService}  *   * @author Luke Sandberg  */
+comment|/**  * Test for {@link WrappingScheduledExecutorService}  *  * @author Luke Sandberg  */
 end_comment
 
 begin_class

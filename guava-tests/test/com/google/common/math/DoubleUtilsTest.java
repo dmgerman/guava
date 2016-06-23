@@ -95,7 +95,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests for {@link DoubleUtils}.  *   * @author Louis Wasserman  */
+comment|/**  * Tests for {@link DoubleUtils}.  *  * @author Louis Wasserman  */
 end_comment
 
 begin_class

@@ -151,7 +151,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Benchmarks for the rounding methods of {@code BigIntegerMath}.  *   * @author Louis Wasserman  */
+comment|/**  * Benchmarks for the rounding methods of {@code BigIntegerMath}.  *  * @author Louis Wasserman  */
 end_comment
 
 begin_class

@@ -69,7 +69,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This is meant to be used with {@code --measureMemory} to measure the memory  * usage of various {@code Set} implementations.  *   * @author Christopher Swenson  */
+comment|/**  * This is meant to be used with {@code --measureMemory} to measure the memory  * usage of various {@code Set} implementations.  *  * @author Christopher Swenson  */
 end_comment
 
 begin_class

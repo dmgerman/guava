@@ -31,7 +31,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Test cases for {@link Tables#transpose}.  *   * @author Jared Levy  */
+comment|/**  * Test cases for {@link Tables#transpose}.  *  * @author Jared Levy  */
 end_comment
 
 begin_class
