@@ -31,7 +31,6 @@ specifier|private
 name|GraphConstants
 parameter_list|()
 block|{}
-comment|// TODO(user): Enable users to specify the expected degree of nodes.
 DECL|field|EXPECTED_DEGREE
 specifier|static
 specifier|final

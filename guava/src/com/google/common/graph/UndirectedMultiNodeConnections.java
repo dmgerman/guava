@@ -635,7 +635,6 @@ return|return
 literal|false
 return|;
 block|}
-comment|// TODO(user): Move to NodeConnections interface once on Java 8
 DECL|method|getReference (@ullable Reference<T> reference)
 annotation|@
 name|Nullable
