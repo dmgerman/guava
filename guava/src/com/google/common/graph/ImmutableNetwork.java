@@ -40,6 +40,20 @@ name|google
 operator|.
 name|common
 operator|.
+name|annotations
+operator|.
+name|Beta
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
 name|base
 operator|.
 name|Function
@@ -109,10 +123,12 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link Network} whose relationships are constant. Instances of this class may be obtained  * with {@link #copyOf(Network)}.  *  * @author James Sexton  * @author Joshua O'Madadhain  * @author Omar Darwish  * @param<N> Node parameter type  * @param<E> Edge parameter type  */
+comment|/**  * A {@link Network} whose relationships are constant. Instances of this class may be obtained  * with {@link #copyOf(Network)}.  *  * @author James Sexton  * @author Joshua O'Madadhain  * @author Omar Darwish  * @param<N> Node parameter type  * @param<E> Edge parameter type  * @since 20.0  */
 end_comment
 
 begin_class
+annotation|@
+name|Beta
 DECL|class|ImmutableNetwork
 specifier|public
 specifier|final

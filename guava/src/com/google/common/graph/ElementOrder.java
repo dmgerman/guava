@@ -24,6 +24,20 @@ name|google
 operator|.
 name|common
 operator|.
+name|annotations
+operator|.
+name|Beta
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
 name|base
 operator|.
 name|MoreObjects
@@ -109,12 +123,15 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Used to represent the order of elements in a data structure that supports different options  * for iteration order guarantees.  *  *<p>Example usage:  *<pre><code>  *   MutableGraph<Integer> graph  *       = GraphBuilder.directed().nodeOrder(ElementOrder.natural()).build();  *</code></pre>  */
+comment|/**  * Used to represent the order of elements in a data structure that supports different options  * for iteration order guarantees.  *  *<p>Example usage:  *<pre><code>  *   MutableGraph<Integer> graph  *       = GraphBuilder.directed().nodeOrder(ElementOrder.natural()).build();  *</code></pre>  *  * @author Joshua O'Madadhain  * @since 20.0  */
 end_comment
 
 begin_class
+annotation|@
+name|Beta
 DECL|class|ElementOrder
 specifier|public
+specifier|final
 class|class
 name|ElementOrder
 parameter_list|<
@@ -250,20 +267,31 @@ throw|;
 block|}
 annotation|@
 name|Override
-DECL|method|equals (Object o)
+DECL|method|equals (Object obj)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 name|Object
-name|o
+name|obj
 parameter_list|)
 block|{
 if|if
 condition|(
+name|obj
+operator|==
+name|this
+condition|)
+block|{
+return|return
+literal|true
+return|;
+block|}
+if|if
+condition|(
 operator|!
 operator|(
-name|o
+name|obj
 operator|instanceof
 name|ElementOrder
 operator|)
@@ -285,7 +313,7 @@ argument_list|<
 name|?
 argument_list|>
 operator|)
-name|o
+name|obj
 decl_stmt|;
 return|return
 name|other

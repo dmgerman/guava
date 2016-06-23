@@ -56,6 +56,20 @@ name|google
 operator|.
 name|common
 operator|.
+name|annotations
+operator|.
+name|Beta
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
 name|base
 operator|.
 name|Objects
@@ -111,6 +125,8 @@ comment|/**  * An immutable {@link Collection} to represent the endpoints of an 
 end_comment
 
 begin_class
+annotation|@
+name|Beta
 DECL|class|Endpoints
 specifier|public
 specifier|abstract

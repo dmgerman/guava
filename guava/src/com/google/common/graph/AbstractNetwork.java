@@ -18,6 +18,20 @@ end_package
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|Beta
+import|;
+end_import
+
+begin_import
+import|import
 name|javax
 operator|.
 name|annotation
@@ -27,10 +41,12 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This class provides a skeletal implementation of {@link Graph}. It is recommended to extend this  * class rather than implement {@link Graph} directly, to ensure consistent {@link #equals(Object)}  * and {@link #hashCode()} results across different graph implementations.  *  * @author James Sexton  * @param<N> Node parameter type  * @param<E> Edge parameter type  */
+comment|/**  * This class provides a skeletal implementation of {@link Graph}. It is recommended to extend this  * class rather than implement {@link Graph} directly, to ensure consistent {@link #equals(Object)}  * and {@link #hashCode()} results across different graph implementations.  *  * @author James Sexton  * @param<N> Node parameter type  * @param<E> Edge parameter type  * @since 20.0  */
 end_comment
 
 begin_class
+annotation|@
+name|Beta
 DECL|class|AbstractNetwork
 specifier|public
 specifier|abstract

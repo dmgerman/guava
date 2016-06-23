@@ -45,7 +45,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A subtype of {@link Network} which permits mutations.  * Users should generally use the {@link Network} interface where possible.  *  * @author Joshua O'Madadhain  * @param<N> Node parameter type  * @param<E> Edge parameter type  * @since 20.0  */
+comment|/**  * A subtype of {@link Network} which permits mutations.  * Users should generally use the {@link Network} interface where possible.  *  * @author James Sexton  * @author Joshua O'Madadhain  * @param<N> Node parameter type  * @param<E> Edge parameter type  * @since 20.0  */
 end_comment
 
 begin_interface
