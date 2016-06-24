@@ -123,18 +123,21 @@ name|Object
 name|node
 parameter_list|)
 function_decl|;
-comment|/**    * Remove {@code edge} from the set of incoming edges. Returns the former predecessor node.    */
+comment|/**    * Remove {@code edge} from the set of incoming edges. Returns the former predecessor node,    * or null if the edge did not exist.    */
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|removeInEdge (Object edge)
+DECL|method|removeInEdge (Object edge, boolean isSelfLoop)
 name|N
 name|removeInEdge
 parameter_list|(
 name|Object
 name|edge
+parameter_list|,
+name|boolean
+name|isSelfLoop
 parameter_list|)
 function_decl|;
-comment|/**    * Remove {@code edge} from the set of outgoing edges. Returns the former successor node.    */
+comment|/**    * Remove {@code edge} from the set of outgoing edges. Returns the former successor node,    * or null if the edge did not exist.    */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|removeOutEdge (Object edge)
@@ -145,10 +148,10 @@ name|Object
 name|edge
 parameter_list|)
 function_decl|;
-comment|/**    * Add {@code edge} to the set of incoming edges. Implicitly adds {@code node} as a predecessor.    * Returns true if the edge did not already exist.    */
+comment|/**    * Add {@code edge} to the set of incoming edges. Implicitly adds {@code node} as a predecessor.    * Returns false if the edge already existed.    */
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|addInEdge (E edge, N node)
+DECL|method|addInEdge (E edge, N node, boolean isSelfLoop)
 name|boolean
 name|addInEdge
 parameter_list|(
@@ -157,9 +160,12 @@ name|edge
 parameter_list|,
 name|N
 name|node
+parameter_list|,
+name|boolean
+name|isSelfLoop
 parameter_list|)
 function_decl|;
-comment|/**    * Add {@code edge} to the set of outgoing edges. Implicitly adds {@code node} as a successor.    * Returns true if the edge did not already exist.    */
+comment|/**    * Add {@code edge} to the set of outgoing edges. Implicitly adds {@code node} as a successor.    * Returns false if the edge already existed.    */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|addOutEdge (E edge, N node)

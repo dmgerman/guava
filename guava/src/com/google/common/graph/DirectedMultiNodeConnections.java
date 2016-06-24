@@ -216,7 +216,7 @@ argument_list|,
 name|E
 argument_list|>
 block|{
-DECL|method|DirectedMultiNodeConnections (Map<E, N> inEdges, Map<E, N> outEdges)
+DECL|method|DirectedMultiNodeConnections (Map<E, N> inEdges, Map<E, N> outEdges, int selfLoopCount)
 specifier|private
 name|DirectedMultiNodeConnections
 parameter_list|(
@@ -235,6 +235,9 @@ argument_list|,
 name|N
 argument_list|>
 name|outEdges
+parameter_list|,
+name|int
+name|selfLoopCount
 parameter_list|)
 block|{
 name|super
@@ -242,6 +245,8 @@ argument_list|(
 name|inEdges
 argument_list|,
 name|outEdges
+argument_list|,
+name|selfLoopCount
 argument_list|)
 expr_stmt|;
 block|}
@@ -293,10 +298,12 @@ name|newHashMapWithExpectedSize
 argument_list|(
 name|EXPECTED_DEGREE
 argument_list|)
+argument_list|,
+literal|0
 argument_list|)
 return|;
 block|}
-DECL|method|ofImmutable ( Map<E, N> inEdges, Map<E, N> outEdges)
+DECL|method|ofImmutable ( Map<E, N> inEdges, Map<E, N> outEdges, int selfLoopCount)
 specifier|static
 parameter_list|<
 name|N
@@ -326,6 +333,9 @@ argument_list|,
 name|N
 argument_list|>
 name|outEdges
+parameter_list|,
+name|int
+name|selfLoopCount
 parameter_list|)
 block|{
 return|return
@@ -350,6 +360,8 @@ name|copyOf
 argument_list|(
 name|outEdges
 argument_list|)
+argument_list|,
+name|selfLoopCount
 argument_list|)
 return|;
 block|}
@@ -588,13 +600,16 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|removeInEdge (Object edge)
+DECL|method|removeInEdge (Object edge, boolean isSelfLoop)
 specifier|public
 name|N
 name|removeInEdge
 parameter_list|(
 name|Object
 name|edge
+parameter_list|,
+name|boolean
+name|isSelfLoop
 parameter_list|)
 block|{
 name|N
@@ -605,6 +620,8 @@ operator|.
 name|removeInEdge
 argument_list|(
 name|edge
+argument_list|,
+name|isSelfLoop
 argument_list|)
 decl_stmt|;
 if|if
@@ -712,7 +729,7 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|addInEdge (E edge, N node)
+DECL|method|addInEdge (E edge, N node, boolean isSelfLoop)
 specifier|public
 name|boolean
 name|addInEdge
@@ -722,6 +739,9 @@ name|edge
 parameter_list|,
 name|N
 name|node
+parameter_list|,
+name|boolean
+name|isSelfLoop
 parameter_list|)
 block|{
 if|if
@@ -733,6 +753,8 @@ argument_list|(
 name|edge
 argument_list|,
 name|node
+argument_list|,
+name|isSelfLoop
 argument_list|)
 condition|)
 block|{

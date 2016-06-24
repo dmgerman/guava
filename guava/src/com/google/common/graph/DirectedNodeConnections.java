@@ -126,7 +126,7 @@ argument_list|,
 name|E
 argument_list|>
 block|{
-DECL|method|DirectedNodeConnections (Map<E, N> inEdgeMap, Map<E, N> outEdgeMap)
+DECL|method|DirectedNodeConnections (Map<E, N> inEdgeMap, Map<E, N> outEdgeMap, int selfLoopCount)
 specifier|protected
 name|DirectedNodeConnections
 parameter_list|(
@@ -145,6 +145,9 @@ argument_list|,
 name|N
 argument_list|>
 name|outEdgeMap
+parameter_list|,
+name|int
+name|selfLoopCount
 parameter_list|)
 block|{
 name|super
@@ -152,6 +155,8 @@ argument_list|(
 name|inEdgeMap
 argument_list|,
 name|outEdgeMap
+argument_list|,
+name|selfLoopCount
 argument_list|)
 expr_stmt|;
 block|}
@@ -203,10 +208,12 @@ name|create
 argument_list|(
 name|EXPECTED_DEGREE
 argument_list|)
+argument_list|,
+literal|0
 argument_list|)
 return|;
 block|}
-DECL|method|ofImmutable (Map<E, N> inEdges, Map<E, N> outEdges)
+DECL|method|ofImmutable (Map<E, N> inEdges, Map<E, N> outEdges, int selfLoopCount)
 specifier|static
 parameter_list|<
 name|N
@@ -236,6 +243,9 @@ argument_list|,
 name|N
 argument_list|>
 name|outEdges
+parameter_list|,
+name|int
+name|selfLoopCount
 parameter_list|)
 block|{
 return|return
@@ -260,6 +270,8 @@ name|copyOf
 argument_list|(
 name|outEdges
 argument_list|)
+argument_list|,
+name|selfLoopCount
 argument_list|)
 return|;
 block|}

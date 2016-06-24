@@ -249,15 +249,27 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|removeInEdge (Object edge)
+DECL|method|removeInEdge (Object edge, boolean isSelfLoop)
 specifier|public
 name|N
 name|removeInEdge
 parameter_list|(
 name|Object
 name|edge
+parameter_list|,
+name|boolean
+name|isSelfLoop
 parameter_list|)
 block|{
+if|if
+condition|(
+name|isSelfLoop
+condition|)
+block|{
+return|return
+literal|null
+return|;
+block|}
 return|return
 name|removeOutEdge
 argument_list|(
@@ -294,7 +306,7 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|addInEdge (E edge, N node)
+DECL|method|addInEdge (E edge, N node, boolean isSelfLoop)
 specifier|public
 name|boolean
 name|addInEdge
@@ -304,8 +316,20 @@ name|edge
 parameter_list|,
 name|N
 name|node
+parameter_list|,
+name|boolean
+name|isSelfLoop
 parameter_list|)
 block|{
+if|if
+condition|(
+name|isSelfLoop
+condition|)
+block|{
+return|return
+literal|false
+return|;
+block|}
 return|return
 name|addOutEdge
 argument_list|(
