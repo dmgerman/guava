@@ -102,7 +102,7 @@ argument_list|>
 name|outEdges
 parameter_list|()
 function_decl|;
-comment|/**    * Returns the node that is opposite the origin node along {@code edge}.    * In the directed case, {@code edge} is assumed to be an outgoing edge.    */
+comment|/**    * Returns the node that is opposite the origin node along {@code edge}.    *    *<p>In the directed case, {@code edge} is assumed to be an outgoing edge.    */
 DECL|method|oppositeNode (Object edge)
 name|N
 name|oppositeNode
@@ -123,7 +123,7 @@ name|Object
 name|node
 parameter_list|)
 function_decl|;
-comment|/**    * Remove {@code edge} from the set of incoming edges. Returns the former predecessor node,    * or null if the edge did not exist.    */
+comment|/**    * Remove {@code edge} from the set of incoming edges. Returns the former predecessor node.    *    *<p>In the undirected case, returns {@code null} if {@code isSelfLoop} is true.    */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|removeInEdge (Object edge, boolean isSelfLoop)
@@ -137,7 +137,7 @@ name|boolean
 name|isSelfLoop
 parameter_list|)
 function_decl|;
-comment|/**    * Remove {@code edge} from the set of outgoing edges. Returns the former successor node,    * or null if the edge did not exist.    */
+comment|/**    * Remove {@code edge} from the set of outgoing edges. Returns the former successor node.    */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|removeOutEdge (Object edge)
@@ -148,11 +148,9 @@ name|Object
 name|edge
 parameter_list|)
 function_decl|;
-comment|/**    * Add {@code edge} to the set of incoming edges. Implicitly adds {@code node} as a predecessor.    * Returns false if the edge already existed.    */
-annotation|@
-name|CanIgnoreReturnValue
+comment|/**    * Add {@code edge} to the set of incoming edges. Implicitly adds {@code node} as a predecessor.    */
 DECL|method|addInEdge (E edge, N node, boolean isSelfLoop)
-name|boolean
+name|void
 name|addInEdge
 parameter_list|(
 name|E
@@ -165,11 +163,9 @@ name|boolean
 name|isSelfLoop
 parameter_list|)
 function_decl|;
-comment|/**    * Add {@code edge} to the set of outgoing edges. Implicitly adds {@code node} as a successor.    * Returns false if the edge already existed.    */
-annotation|@
-name|CanIgnoreReturnValue
+comment|/**    * Add {@code edge} to the set of outgoing edges. Implicitly adds {@code node} as a successor.    */
 DECL|method|addOutEdge (E edge, N node)
-name|boolean
+name|void
 name|addOutEdge
 parameter_list|(
 name|E

@@ -28,6 +28,22 @@ name|base
 operator|.
 name|Preconditions
 operator|.
+name|checkNotNull
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Preconditions
+operator|.
 name|checkState
 import|;
 end_import
@@ -615,6 +631,8 @@ block|{
 name|N
 name|node
 init|=
+name|checkNotNull
+argument_list|(
 name|super
 operator|.
 name|removeInEdge
@@ -623,14 +641,8 @@ name|edge
 argument_list|,
 name|isSelfLoop
 argument_list|)
+argument_list|)
 decl_stmt|;
-if|if
-condition|(
-name|node
-operator|!=
-literal|null
-condition|)
-block|{
 name|Multiset
 argument_list|<
 name|N
@@ -659,7 +671,6 @@ name|node
 argument_list|)
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 return|return
 name|node
@@ -679,20 +690,16 @@ block|{
 name|N
 name|node
 init|=
+name|checkNotNull
+argument_list|(
 name|super
 operator|.
 name|removeOutEdge
 argument_list|(
 name|edge
 argument_list|)
+argument_list|)
 decl_stmt|;
-if|if
-condition|(
-name|node
-operator|!=
-literal|null
-condition|)
-block|{
 name|Multiset
 argument_list|<
 name|N
@@ -722,7 +729,6 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-block|}
 return|return
 name|node
 return|;
@@ -731,7 +737,7 @@ annotation|@
 name|Override
 DECL|method|addInEdge (E edge, N node, boolean isSelfLoop)
 specifier|public
-name|boolean
+name|void
 name|addInEdge
 parameter_list|(
 name|E
@@ -744,8 +750,6 @@ name|boolean
 name|isSelfLoop
 parameter_list|)
 block|{
-if|if
-condition|(
 name|super
 operator|.
 name|addInEdge
@@ -756,8 +760,7 @@ name|node
 argument_list|,
 name|isSelfLoop
 argument_list|)
-condition|)
-block|{
+expr_stmt|;
 name|Multiset
 argument_list|<
 name|N
@@ -787,19 +790,12 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-return|return
-literal|true
-return|;
-block|}
-return|return
-literal|false
-return|;
 block|}
 annotation|@
 name|Override
 DECL|method|addOutEdge (E edge, N node)
 specifier|public
-name|boolean
+name|void
 name|addOutEdge
 parameter_list|(
 name|E
@@ -809,8 +805,6 @@ name|N
 name|node
 parameter_list|)
 block|{
-if|if
-condition|(
 name|super
 operator|.
 name|addOutEdge
@@ -819,8 +813,7 @@ name|edge
 argument_list|,
 name|node
 argument_list|)
-condition|)
-block|{
+expr_stmt|;
 name|Multiset
 argument_list|<
 name|N
@@ -850,13 +843,6 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-return|return
-literal|true
-return|;
-block|}
-return|return
-literal|false
-return|;
 block|}
 DECL|method|getReference (@ullable Reference<T> reference)
 annotation|@
