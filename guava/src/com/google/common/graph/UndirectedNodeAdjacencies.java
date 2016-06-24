@@ -44,7 +44,23 @@ name|graph
 operator|.
 name|GraphConstants
 operator|.
-name|EXPECTED_DEGREE
+name|INNER_CAPACITY
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|graph
+operator|.
+name|GraphConstants
+operator|.
+name|INNER_LOAD_FACTOR
 import|;
 end_import
 
@@ -64,15 +80,11 @@ end_import
 
 begin_import
 import|import
-name|com
+name|java
 operator|.
-name|google
+name|util
 operator|.
-name|common
-operator|.
-name|collect
-operator|.
-name|Sets
+name|Collections
 import|;
 end_import
 
@@ -82,7 +94,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|Collections
+name|HashSet
 import|;
 end_import
 
@@ -165,14 +177,15 @@ argument_list|<
 name|N
 argument_list|>
 argument_list|(
-name|Sets
-operator|.
-expr|<
+operator|new
+name|HashSet
+argument_list|<
 name|N
-operator|>
-name|newHashSetWithExpectedSize
+argument_list|>
 argument_list|(
-name|EXPECTED_DEGREE
+name|INNER_CAPACITY
+argument_list|,
+name|INNER_LOAD_FACTOR
 argument_list|)
 argument_list|)
 return|;

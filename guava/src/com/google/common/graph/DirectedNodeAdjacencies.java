@@ -60,7 +60,23 @@ name|graph
 operator|.
 name|GraphConstants
 operator|.
-name|EXPECTED_DEGREE
+name|INNER_CAPACITY
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|graph
+operator|.
+name|GraphConstants
+operator|.
+name|INNER_LOAD_FACTOR
 import|;
 end_import
 
@@ -94,20 +110,6 @@ end_import
 
 begin_import
 import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|collect
-operator|.
-name|Maps
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|util
@@ -123,6 +125,16 @@ operator|.
 name|util
 operator|.
 name|Collections
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|HashMap
 import|;
 end_import
 
@@ -285,11 +297,11 @@ argument_list|>
 name|of
 parameter_list|()
 block|{
-comment|// We store predecessors and successors in the same map, so expected size is twice the degree.
+comment|// We store predecessors and successors in the same map, so double the initial capacity.
 name|int
-name|inAndOutDegree
+name|initialCapacity
 init|=
-name|EXPECTED_DEGREE
+name|INNER_CAPACITY
 operator|*
 literal|2
 decl_stmt|;
@@ -300,16 +312,17 @@ argument_list|<
 name|N
 argument_list|>
 argument_list|(
-name|Maps
-operator|.
-expr|<
+operator|new
+name|HashMap
+argument_list|<
 name|N
 argument_list|,
 name|Adjacency
-operator|>
-name|newHashMapWithExpectedSize
+argument_list|>
 argument_list|(
-name|inAndOutDegree
+name|initialCapacity
+argument_list|,
+name|INNER_LOAD_FACTOR
 argument_list|)
 argument_list|,
 literal|0
