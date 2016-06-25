@@ -486,6 +486,8 @@ name|S
 extends|extends
 name|Comparable
 argument_list|<
+name|?
+super|super
 name|S
 argument_list|>
 parameter_list|>
@@ -524,11 +526,6 @@ specifier|static
 specifier|final
 parameter_list|<
 name|S
-extends|extends
-name|Comparable
-argument_list|<
-name|S
-argument_list|>
 parameter_list|>
 name|ElementOrder
 argument_list|<
