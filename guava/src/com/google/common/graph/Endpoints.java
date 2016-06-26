@@ -314,6 +314,7 @@ parameter_list|()
 function_decl|;
 comment|/**    * If this {@link Endpoints} is directed, returns the node which is the source.    * Otherwise, returns an arbitrary (but consistent) endpoint of the edge.    */
 DECL|method|nodeA ()
+specifier|final
 name|N
 name|nodeA
 parameter_list|()
@@ -324,6 +325,7 @@ return|;
 block|}
 comment|/**    * Returns the node that is opposite {@link #nodeA()}. In the directed case, this is the target.    */
 DECL|method|nodeB ()
+specifier|final
 name|N
 name|nodeB
 parameter_list|()
@@ -790,19 +792,31 @@ argument_list|>
 operator|)
 name|obj
 decl_stmt|;
+comment|// Equivalent to the following simple implementation:
+comment|// boolean condition1 = nodeA().equals(other.nodeA())&& nodeB().equals(other.nodeB());
+comment|// boolean condition2 = nodeA().equals(other.nodeB())&& nodeB().equals(other.nodeA());
+comment|// return condition1 || condition2;
+if|if
+condition|(
+name|nodeA
+argument_list|()
+operator|.
+name|equals
+argument_list|(
+name|other
+operator|.
+name|nodeA
+argument_list|()
+argument_list|)
+condition|)
+block|{
+comment|// check condition1
+comment|// Here's the tricky bit. We don't have to explicitly check for condition2 in this case.
+comment|// Why? The second half of condition2 requires that nodeB equals other.nodeA.
+comment|// We already know that nodeA equals other.nodeA. Combined with the earlier statement,
+comment|// and the transitive property of equality, this implies that nodeA equals nodeB.
+comment|// If nodeA equals nodeB, condition1 == condition2, so checking condition1 is sufficient.
 return|return
-operator|(
-name|nodeA
-argument_list|()
-operator|.
-name|equals
-argument_list|(
-name|other
-operator|.
-name|nodeA
-argument_list|()
-argument_list|)
-operator|&&
 name|nodeB
 argument_list|()
 operator|.
@@ -813,32 +827,32 @@ operator|.
 name|nodeB
 argument_list|()
 argument_list|)
-operator|)
-operator|||
-operator|(
-name|nodeA
-argument_list|()
-operator|.
-name|equals
-argument_list|(
-name|other
-operator|.
-name|nodeB
-argument_list|()
-argument_list|)
-operator|&&
-name|nodeB
-argument_list|()
-operator|.
-name|equals
-argument_list|(
-name|other
-operator|.
-name|nodeA
-argument_list|()
-argument_list|)
-operator|)
 return|;
+block|}
+return|return
+name|nodeA
+argument_list|()
+operator|.
+name|equals
+argument_list|(
+name|other
+operator|.
+name|nodeB
+argument_list|()
+argument_list|)
+operator|&&
+name|nodeB
+argument_list|()
+operator|.
+name|equals
+argument_list|(
+name|other
+operator|.
+name|nodeA
+argument_list|()
+argument_list|)
+return|;
+comment|// check condition2
 block|}
 annotation|@
 name|Override
