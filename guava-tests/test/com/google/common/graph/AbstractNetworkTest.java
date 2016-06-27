@@ -351,7 +351,7 @@ specifier|final
 name|String
 name|ERROR_REUSE_EDGE
 init|=
-literal|"it can't be reused to connect"
+literal|"it cannot be reused to connect"
 decl_stmt|;
 DECL|field|ERROR_MODIFIABLE_COLLECTION
 specifier|static

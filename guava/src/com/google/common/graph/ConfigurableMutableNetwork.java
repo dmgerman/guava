@@ -76,7 +76,7 @@ name|graph
 operator|.
 name|GraphConstants
 operator|.
-name|ADDING_PARALLEL_EDGE
+name|PARALLEL_EDGES_NOT_ALLOWED
 import|;
 end_import
 
@@ -420,7 +420,7 @@ name|nodeB
 argument_list|)
 operator|)
 argument_list|,
-name|ADDING_PARALLEL_EDGE
+name|PARALLEL_EDGES_NOT_ALLOWED
 argument_list|,
 name|nodeA
 argument_list|,

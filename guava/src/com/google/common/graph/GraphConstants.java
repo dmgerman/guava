@@ -137,23 +137,17 @@ name|REUSING_EDGE
 init|=
 literal|"Edge %s already exists between the following nodes: %s, "
 operator|+
-literal|"so it can't be reused to connect the following nodes: %s."
+literal|"so it cannot be reused to connect the following nodes: %s."
 decl_stmt|;
-DECL|field|ADDING_PARALLEL_EDGE
+DECL|field|PARALLEL_EDGES_NOT_ALLOWED
 specifier|static
 specifier|final
 name|String
-name|ADDING_PARALLEL_EDGE
+name|PARALLEL_EDGES_NOT_ALLOWED
 init|=
-literal|"Nodes %s and %s are already connected by a different edge."
-decl_stmt|;
-DECL|field|EDGE_ALREADY_EXISTS
-specifier|static
-specifier|final
-name|String
-name|EDGE_ALREADY_EXISTS
-init|=
-literal|"Edge %s already exists in the graph."
+literal|"Nodes %s and %s are already connected by a different edge. To construct a graph "
+operator|+
+literal|"that allows parallel edges, call allowsParallelEdges(true) on the Builder."
 decl_stmt|;
 DECL|field|SELF_LOOPS_NOT_ALLOWED
 specifier|static
@@ -161,7 +155,9 @@ specifier|final
 name|String
 name|SELF_LOOPS_NOT_ALLOWED
 init|=
-literal|"Cannot add self-loop edge on node %s, as self-loops are not allowed."
+literal|"Cannot add self-loop edge on node %s, as self-loops are not allowed. To construct a graph "
+operator|+
+literal|"that allows self-loops, call allowsSelfLoops(true) on the Builder."
 decl_stmt|;
 DECL|field|NOT_AVAILABLE_ON_UNDIRECTED
 specifier|static
@@ -180,6 +176,14 @@ init|=
 literal|"The endpoints' directedness (isDirected = %s) does not match the graph's directedness "
 operator|+
 literal|"(isDirected = %s). A graph cannot have both directed and undirected edges."
+decl_stmt|;
+DECL|field|EDGE_ALREADY_EXISTS
+specifier|static
+specifier|final
+name|String
+name|EDGE_ALREADY_EXISTS
+init|=
+literal|"Edge %s already exists in the graph."
 decl_stmt|;
 DECL|field|NETWORK_WITH_PARALLEL_EDGE
 specifier|static
