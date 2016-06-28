@@ -3080,6 +3080,11 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"SelfComparison"
+argument_list|)
 DECL|method|testGet_comparable ()
 specifier|public
 name|void
