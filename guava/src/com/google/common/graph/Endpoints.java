@@ -121,7 +121,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An immutable {@link Collection} to represent the endpoints of an edge in a graph.  *<p>  * If an {@link Endpoints} is directed, it is an ordered pair of nodes (source and target).  * Otherwise, it is an unordered pair of nodes that can be accessed through the iterator.  *  * @author James Sexton  * @since 20.0  */
+comment|/**  * An immutable {@link Collection} to represent the endpoints of an edge in a graph.  *  *<p>If an {@link Endpoints} is directed, it is an ordered pair of nodes (source and target).  * Otherwise, it is an unordered pair of nodes that can be accessed through the iterator.  *  * @author James Sexton  * @since 20.0  */
 end_comment
 
 begin_class
