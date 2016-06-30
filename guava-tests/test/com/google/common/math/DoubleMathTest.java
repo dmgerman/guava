@@ -794,6 +794,14 @@ try|try
 block|{
 name|assertEquals
 argument_list|(
+literal|"Rounding "
+operator|+
+name|d
+operator|+
+literal|" with mode "
+operator|+
+name|mode
+argument_list|,
 name|expected
 operator|.
 name|intValue
