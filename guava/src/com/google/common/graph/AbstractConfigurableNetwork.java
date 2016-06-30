@@ -272,8 +272,8 @@ argument_list|>
 argument_list|>
 name|nodeConnections
 decl_stmt|;
-comment|// We could make this a Map<E, Endpoints<N>>. Although it would make incidentNodes(edge)
-comment|// slightly faster, it would also make Networks consume approximately 20% more memory.
+comment|// We could make this a Map<E, Endpoints<N>>. It would make incidentNodes(edge) slightly faster,
+comment|// but it would also make Networks consume 5 to 20+% (increasing with average degree) more memory.
 DECL|field|edgeToReferenceNode
 specifier|protected
 specifier|final
