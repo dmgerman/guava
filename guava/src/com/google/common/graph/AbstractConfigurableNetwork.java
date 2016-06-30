@@ -333,23 +333,23 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|getNodeMapForBuilder ( NetworkBuilder<? super S, ? super T> builder)
+DECL|method|getNodeMapForBuilder ( NetworkBuilder<? super N, ? super E> builder)
 specifier|private
 specifier|static
 parameter_list|<
-name|S
+name|N
 parameter_list|,
-name|T
+name|E
 parameter_list|>
 name|Map
 argument_list|<
-name|S
+name|N
 argument_list|,
 name|NodeConnections
 argument_list|<
-name|S
+name|N
 argument_list|,
-name|T
+name|E
 argument_list|>
 argument_list|>
 name|getNodeMapForBuilder
@@ -358,11 +358,11 @@ name|NetworkBuilder
 argument_list|<
 name|?
 super|super
-name|S
+name|N
 argument_list|,
 name|?
 super|super
-name|T
+name|E
 argument_list|>
 name|builder
 parameter_list|)
@@ -437,19 +437,19 @@ argument_list|)
 throw|;
 block|}
 block|}
-DECL|method|getEdgeMapForBuilder ( NetworkBuilder<? super S, ? super T> builder)
+DECL|method|getEdgeMapForBuilder ( NetworkBuilder<? super N, ? super E> builder)
 specifier|private
 specifier|static
 parameter_list|<
-name|S
+name|N
 parameter_list|,
-name|T
+name|E
 parameter_list|>
 name|Map
 argument_list|<
-name|T
+name|E
 argument_list|,
-name|S
+name|N
 argument_list|>
 name|getEdgeMapForBuilder
 parameter_list|(
@@ -457,11 +457,11 @@ name|NetworkBuilder
 argument_list|<
 name|?
 super|super
-name|S
+name|N
 argument_list|,
 name|?
 super|super
-name|T
+name|E
 argument_list|>
 name|builder
 parameter_list|)

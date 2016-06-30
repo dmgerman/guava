@@ -218,19 +218,19 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|getNodeMapforBuilder ( GraphBuilder<? super S> builder)
+DECL|method|getNodeMapforBuilder ( GraphBuilder<? super N> builder)
 specifier|private
 specifier|static
 parameter_list|<
-name|S
+name|N
 parameter_list|>
 name|Map
 argument_list|<
-name|S
+name|N
 argument_list|,
 name|NodeAdjacencies
 argument_list|<
-name|S
+name|N
 argument_list|>
 argument_list|>
 name|getNodeMapforBuilder
@@ -239,7 +239,7 @@ name|GraphBuilder
 argument_list|<
 name|?
 super|super
-name|S
+name|N
 argument_list|>
 name|builder
 parameter_list|)
