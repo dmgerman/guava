@@ -114,6 +114,8 @@ specifier|protected
 specifier|abstract
 name|ListenableFuture
 argument_list|<
+name|?
+extends|extends
 name|V
 argument_list|>
 name|delegate

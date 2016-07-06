@@ -161,6 +161,8 @@ specifier|protected
 specifier|abstract
 name|Future
 argument_list|<
+name|?
+extends|extends
 name|V
 argument_list|>
 name|delegate
