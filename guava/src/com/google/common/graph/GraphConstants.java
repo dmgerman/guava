@@ -165,7 +165,9 @@ specifier|final
 name|String
 name|NOT_AVAILABLE_ON_UNDIRECTED
 init|=
-literal|"Cannot call source()/target() on undirected endpoints."
+literal|"Cannot call source()/target() on undirected endpoints. Consider calling otherNode() to get "
+operator|+
+literal|"a single node or using the endpoints' iterator to get both nodes."
 decl_stmt|;
 DECL|field|ENDPOINTS_GRAPH_DIRECTEDNESS
 specifier|static

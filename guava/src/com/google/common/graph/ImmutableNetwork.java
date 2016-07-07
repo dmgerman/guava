@@ -649,7 +649,7 @@ argument_list|(
 name|node
 argument_list|)
 argument_list|,
-name|oppositeNodeFn
+name|otherNodeFn
 argument_list|(
 name|graph
 argument_list|,
@@ -801,7 +801,7 @@ block|}
 block|}
 return|;
 block|}
-DECL|method|oppositeNodeFn (final Network<N, E> graph, final N node)
+DECL|method|otherNodeFn (final Network<N, E> graph, final N node)
 specifier|private
 specifier|static
 parameter_list|<
@@ -815,7 +815,7 @@ name|E
 argument_list|,
 name|N
 argument_list|>
-name|oppositeNodeFn
+name|otherNodeFn
 parameter_list|(
 specifier|final
 name|Network
@@ -852,14 +852,15 @@ name|edge
 parameter_list|)
 block|{
 return|return
-name|Graphs
-operator|.
-name|oppositeNode
-argument_list|(
 name|graph
-argument_list|,
+operator|.
+name|incidentNodes
+argument_list|(
 name|edge
-argument_list|,
+argument_list|)
+operator|.
+name|otherNode
+argument_list|(
 name|node
 argument_list|)
 return|;

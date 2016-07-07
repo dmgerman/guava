@@ -121,7 +121,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An immutable {@link Collection} to represent the endpoints of an edge in a graph.  *  *<p>If an {@link Endpoints} is directed, it is an ordered pair of nodes (source and target).  * Otherwise, it is an unordered pair of nodes that can be accessed through the iterator.  *  * @author James Sexton  * @since 20.0  */
+comment|/**  * An immutable {@link Collection} to represent the two (possibly equal, in the case of a self-loop)  * endpoints of an edge in a graph.  *  *<p>If an {@link Endpoints} is directed, it is an ordered pair of nodes (source and target).  * Otherwise, it is an unordered pair of nodes that can be accessed through the iterator.  *  * @author James Sexton  * @since 20.0  */
 end_comment
 
 begin_class
@@ -296,7 +296,7 @@ name|boolean
 name|isDirected
 parameter_list|()
 function_decl|;
-comment|/**    * If this {@link Endpoints} is directed, returns the node which is the source.    *    * @throws UnsupportedOperationException if this Endpoints is not directed    */
+comment|/**    * If this {@link Endpoints} is directed, returns the node which is the source of the origin edge.    *    * @throws UnsupportedOperationException if this Endpoints is not directed    */
 DECL|method|source ()
 specifier|public
 specifier|abstract
@@ -304,7 +304,7 @@ name|N
 name|source
 parameter_list|()
 function_decl|;
-comment|/**    * If this {@link Endpoints} is directed, returns the node which is the target.    *    * @throws UnsupportedOperationException if this Endpoints is not directed    */
+comment|/**    * If this {@link Endpoints} is directed, returns the node which is the target of the origin edge.    *    * @throws UnsupportedOperationException if this Endpoints is not directed    */
 DECL|method|target ()
 specifier|public
 specifier|abstract
@@ -312,7 +312,7 @@ name|N
 name|target
 parameter_list|()
 function_decl|;
-comment|/**    * If this {@link Endpoints} is directed, returns the node which is the source.    * Otherwise, returns an arbitrary (but consistent) endpoint of the edge.    */
+comment|/**    * If this {@link Endpoints} is directed, returns the {@link #source()};    * otherwise, returns an arbitrary (but consistent) endpoint of the origin edge.    */
 DECL|method|nodeA ()
 specifier|final
 name|N
@@ -323,7 +323,7 @@ return|return
 name|nodeA
 return|;
 block|}
-comment|/**    * Returns the node that is opposite {@link #nodeA()}. In the directed case, this is the target.    */
+comment|/**    * Returns the node that is adjacent to {@link #nodeA()} via the origin edge.    * If this {@link Endpoints} is directed, this is equal to the {@link #target()}.    */
 DECL|method|nodeB ()
 specifier|final
 name|N
@@ -334,10 +334,82 @@ return|return
 name|nodeB
 return|;
 block|}
+comment|/**    * Returns the node that is adjacent to {@code node} via the origin edge.    *    * @throws IllegalArgumentException if the origin edge is not incident to {@code node}    */
+DECL|method|otherNode (Object node)
+specifier|public
+specifier|final
+name|N
+name|otherNode
+parameter_list|(
+name|Object
+name|node
+parameter_list|)
+block|{
+name|checkNotNull
+argument_list|(
+name|node
+argument_list|,
+literal|"node"
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|node
+operator|.
+name|equals
+argument_list|(
+name|nodeA
+argument_list|()
+argument_list|)
+condition|)
+block|{
+return|return
+name|nodeB
+argument_list|()
+return|;
+block|}
+elseif|else
+if|if
+condition|(
+name|node
+operator|.
+name|equals
+argument_list|(
+name|nodeB
+argument_list|()
+argument_list|)
+condition|)
+block|{
+return|return
+name|nodeA
+argument_list|()
+return|;
+block|}
+else|else
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"Endpoints %s does not contain node %s"
+argument_list|,
+name|this
+argument_list|,
+name|node
+argument_list|)
+argument_list|)
+throw|;
+block|}
+block|}
 annotation|@
 name|Override
 DECL|method|iterator ()
 specifier|public
+specifier|final
 name|UnmodifiableIterator
 argument_list|<
 name|N
@@ -416,6 +488,7 @@ annotation|@
 name|Override
 DECL|method|size ()
 specifier|public
+specifier|final
 name|int
 name|size
 parameter_list|()
@@ -428,6 +501,7 @@ annotation|@
 name|Override
 DECL|method|contains (Object obj)
 specifier|public
+specifier|final
 name|boolean
 name|contains
 parameter_list|(

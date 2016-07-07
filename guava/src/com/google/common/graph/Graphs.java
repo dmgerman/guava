@@ -297,7 +297,7 @@ specifier|private
 name|Graphs
 parameter_list|()
 block|{}
-comment|// Graph properties (methods that act solely on a Graph/Network)
+comment|// Graph query methods
 comment|/**    * Returns the subset of nodes in {@code graph} that have no predecessors.    *    *<p>Note that in an undirected graph, this is equivalent to all isolated nodes.    */
 DECL|method|roots (final Graph<N> graph)
 specifier|public
@@ -362,102 +362,6 @@ block|}
 argument_list|)
 return|;
 block|}
-comment|// Node-based properties
-comment|/**    * Returns the node at the other end of {@code edge} from {@code node}.    *    * @throws IllegalArgumentException if {@code edge} is not incident to {@code node}    */
-DECL|method|oppositeNode (Network<N, ?> graph, Object edge, Object node)
-specifier|public
-specifier|static
-parameter_list|<
-name|N
-parameter_list|>
-name|N
-name|oppositeNode
-parameter_list|(
-name|Network
-argument_list|<
-name|N
-argument_list|,
-name|?
-argument_list|>
-name|graph
-parameter_list|,
-name|Object
-name|edge
-parameter_list|,
-name|Object
-name|node
-parameter_list|)
-block|{
-name|checkNotNull
-argument_list|(
-name|node
-argument_list|,
-literal|"node"
-argument_list|)
-expr_stmt|;
-name|Endpoints
-argument_list|<
-name|N
-argument_list|>
-name|endpoints
-init|=
-name|graph
-operator|.
-name|incidentNodes
-argument_list|(
-name|edge
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|node
-operator|.
-name|equals
-argument_list|(
-name|endpoints
-operator|.
-name|nodeA
-argument_list|()
-argument_list|)
-condition|)
-block|{
-return|return
-name|endpoints
-operator|.
-name|nodeB
-argument_list|()
-return|;
-block|}
-else|else
-block|{
-name|checkArgument
-argument_list|(
-name|node
-operator|.
-name|equals
-argument_list|(
-name|endpoints
-operator|.
-name|nodeB
-argument_list|()
-argument_list|)
-argument_list|,
-literal|"Edge %s is not incident to node %s"
-argument_list|,
-name|edge
-argument_list|,
-name|node
-argument_list|)
-expr_stmt|;
-return|return
-name|endpoints
-operator|.
-name|nodeA
-argument_list|()
-return|;
-block|}
-block|}
-comment|// Edge-based properties
 comment|/**    * Returns an unmodifiable view of edges that are parallel to {@code edge}, i.e. the set of edges    * that connect the same nodes in the same direction (if any). An edge is not parallel to itself.    *    * @throws IllegalArgumentException if {@code edge} is not present in {@code graph}    */
 DECL|method|parallelEdges (Network<N, E> graph, Object edge)
 specifier|public
@@ -775,16 +679,17 @@ argument_list|)
 control|)
 block|{
 name|N
-name|oppositeNode
+name|otherNode
 init|=
-name|Graphs
-operator|.
-name|oppositeNode
-argument_list|(
 name|graph
-argument_list|,
+operator|.
+name|incidentNodes
+argument_list|(
 name|edge
-argument_list|,
+argument_list|)
+operator|.
+name|otherNode
+argument_list|(
 name|node
 argument_list|)
 decl_stmt|;
@@ -797,7 +702,7 @@ argument_list|()
 operator|.
 name|contains
 argument_list|(
-name|oppositeNode
+name|otherNode
 argument_list|)
 condition|)
 block|{
@@ -809,7 +714,7 @@ name|edge
 argument_list|,
 name|node
 argument_list|,
-name|oppositeNode
+name|otherNode
 argument_list|)
 expr_stmt|;
 block|}
