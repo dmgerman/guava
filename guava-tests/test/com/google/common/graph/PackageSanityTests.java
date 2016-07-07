@@ -28,7 +28,7 @@ name|truth
 operator|.
 name|Truth
 operator|.
-name|assertThat
+name|assertWithMessage
 import|;
 end_import
 
@@ -398,13 +398,6 @@ operator|.
 name|testNulls
 argument_list|()
 expr_stmt|;
-throw|throw
-operator|new
-name|Error
-argument_list|(
-literal|"Should have thrown AssertionFailedError"
-argument_list|)
-throw|;
 block|}
 catch|catch
 parameter_list|(
@@ -412,7 +405,12 @@ name|AssertionFailedError
 name|e
 parameter_list|)
 block|{
-name|assertThat
+name|assertWithMessage
+argument_list|(
+literal|"Method did not throw null pointer OR element not in graph exception."
+argument_list|)
+operator|.
+name|that
 argument_list|(
 name|e
 operator|.

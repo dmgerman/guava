@@ -341,10 +341,6 @@ name|N
 argument_list|>
 name|connectionsB
 init|=
-name|isSelfLoop
-condition|?
-name|connectionsA
-else|:
 name|nodeConnections
 operator|.
 name|get
@@ -457,7 +453,7 @@ control|)
 block|{
 name|nodeConnections
 operator|.
-name|get
+name|getWithoutCaching
 argument_list|(
 name|successor
 argument_list|)
@@ -481,7 +477,7 @@ control|)
 block|{
 name|nodeConnections
 operator|.
-name|get
+name|getWithoutCaching
 argument_list|(
 name|predecessor
 argument_list|)

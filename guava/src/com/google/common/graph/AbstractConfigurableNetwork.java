@@ -160,16 +160,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|Collections
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|Map
 import|;
 end_import
@@ -259,7 +249,7 @@ decl_stmt|;
 DECL|field|nodeConnections
 specifier|protected
 specifier|final
-name|Map
+name|MapIteratorCache
 argument_list|<
 name|N
 argument_list|,
@@ -277,7 +267,7 @@ comment|// but it would also make Networks consume 5 to 20+% (increasing with av
 DECL|field|edgeToReferenceNode
 specifier|protected
 specifier|final
-name|Map
+name|MapIteratorCache
 argument_list|<
 name|E
 argument_list|,
@@ -285,7 +275,7 @@ name|N
 argument_list|>
 name|edgeToReferenceNode
 decl_stmt|;
-comment|// reference node == source on directed networks
+comment|// referenceNode == source if directed
 comment|/**    * Constructs a graph with the properties specified in {@code builder}.    */
 DECL|method|AbstractConfigurableNetwork (NetworkBuilder<? super N, ? super E> builder)
 name|AbstractConfigurableNetwork
@@ -614,11 +604,24 @@ name|builder
 operator|.
 name|edgeOrder
 expr_stmt|;
+comment|// Prefer the heavier "MapRetrievalCache" for nodes to optimize for the case where methods
+comment|// accessing the same node(s) are called repeatedly, such as in Graphs.removeEdgesConnecting().
 name|this
 operator|.
 name|nodeConnections
 operator|=
-name|checkNotNull
+operator|new
+name|MapRetrievalCache
+argument_list|<
+name|N
+argument_list|,
+name|NodeConnections
+argument_list|<
+name|N
+argument_list|,
+name|E
+argument_list|>
+argument_list|>
 argument_list|(
 name|nodeConnections
 argument_list|)
@@ -627,7 +630,13 @@ name|this
 operator|.
 name|edgeToReferenceNode
 operator|=
-name|checkNotNull
+operator|new
+name|MapIteratorCache
+argument_list|<
+name|E
+argument_list|,
+name|N
+argument_list|>
 argument_list|(
 name|edgeToReferenceNode
 argument_list|)
@@ -646,15 +655,10 @@ name|nodes
 parameter_list|()
 block|{
 return|return
-name|Collections
-operator|.
-name|unmodifiableSet
-argument_list|(
 name|nodeConnections
 operator|.
-name|keySet
+name|unmodifiableKeySet
 argument_list|()
-argument_list|)
 return|;
 block|}
 comment|/**    * {@inheritDoc}    *    *<p>The order of iteration for this set is determined by the {@code ElementOrder<E>} provided    * to the {@code GraphBuilder} that was used to create this instance.    * By default, that order is the order in which the edges were added to the graph.    */
@@ -670,15 +674,10 @@ name|edges
 parameter_list|()
 block|{
 return|return
-name|Collections
-operator|.
-name|unmodifiableSet
-argument_list|(
 name|edgeToReferenceNode
 operator|.
-name|keySet
+name|unmodifiableKeySet
 argument_list|()
-argument_list|)
 return|;
 block|}
 annotation|@
