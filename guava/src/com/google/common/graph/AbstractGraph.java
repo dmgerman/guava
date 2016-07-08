@@ -72,7 +72,7 @@ name|Object
 name|node
 parameter_list|)
 block|{
-comment|// only works for non-multigraphs; multigraphs not yet supported
+comment|// TODO(b/28087289): only works for non-multigraphs; multigraphs not yet supported
 return|return
 name|adjacentNodes
 argument_list|(
@@ -94,7 +94,7 @@ name|Object
 name|node
 parameter_list|)
 block|{
-comment|// only works for non-multigraphs; multigraphs not yet supported
+comment|// TODO(b/28087289): only works for non-multigraphs; multigraphs not yet supported
 return|return
 name|predecessors
 argument_list|(
@@ -116,7 +116,7 @@ name|Object
 name|node
 parameter_list|)
 block|{
-comment|// only works for non-multigraphs; multigraphs not yet supported
+comment|// TODO(b/28087289): only works for non-multigraphs; multigraphs not yet supported
 return|return
 name|successors
 argument_list|(
