@@ -479,9 +479,11 @@ return|return
 name|multiset
 return|;
 block|}
-comment|/**    * Creates a new, empty {@code ConcurrentHashMultiset} using {@code mapMaker}    * to construct the internal backing map.    *    *<p>If this {@link MapMaker} is configured to use entry eviction of any kind, this eviction    * applies to all occurrences of a given element as a single unit. However, most updates to the    * multiset do not count as map updates at all, since we're usually just mutating the value    * stored in the map, so {@link MapMaker#expireAfterAccess} makes sense (evict the entry that    * was queried or updated longest ago), but {@link MapMaker#expireAfterWrite} doesn't, because    * the eviction time is measured from when we saw the first occurrence of the object.    *    *<p>The returned multiset is serializable but any serialization caveats    * given in {@code MapMaker} apply.    *    *<p>Finally, soft/weak values can be used but are not very useful: the values are created    * internally and not exposed externally, so no one else will have a strong reference to the    * values. Weak keys on the other hand can be useful in some scenarios.    *    * @since 15.0 (source compatible (accepting the since removed {@code GenericMapMaker} class)    *     since 7.0)    */
+comment|/**    * Creates a new, empty {@code ConcurrentHashMultiset} using {@code mapMaker} to construct the    * internal backing map.    *    *<p>If this {@link MapMaker} is configured to use entry eviction of any kind, this eviction    * applies to all occurrences of a given element as a single unit. However, most updates to the    * multiset do not count as map updates at all, since we're usually just mutating the value stored    * in the map, so {@link MapMaker#expireAfterAccess} makes sense (evict the entry that was queried    * or updated longest ago), but {@link MapMaker#expireAfterWrite} doesn't, because the eviction    * time is measured from when we saw the first occurrence of the object.    *    *<p>The returned multiset is serializable but any serialization caveats given in {@code    * MapMaker} apply.    *    *<p>Finally, soft/weak values can be used but are not very useful: the values are created    * internally and not exposed externally, so no one else will have a strong reference to the    * values. Weak keys on the other hand can be useful in some scenarios.    *    * @since 15.0 (source compatible (accepting the since removed {@code GenericMapMaker} class)    *     since 7.0)    * @deprecated Use {@link #create(ConcurrentMap)} instead. This method is scheduled for deletion    *     in October 2016.    */
 annotation|@
 name|Beta
+annotation|@
+name|Deprecated
 DECL|method|create (MapMaker mapMaker)
 specifier|public
 specifier|static
@@ -499,11 +501,7 @@ name|mapMaker
 parameter_list|)
 block|{
 return|return
-operator|new
-name|ConcurrentHashMultiset
-argument_list|<
-name|E
-argument_list|>
+name|create
 argument_list|(
 name|mapMaker
 operator|.
@@ -517,7 +515,41 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Creates an instance using {@code countMap} to store elements and their counts.    *    *<p>This instance will assume ownership of {@code countMap}, and other code    * should not maintain references to the map or modify it in any way.    *    * @param countMap backing map for storing the elements in the multiset and    *     their counts. It must be empty.    * @throws IllegalArgumentException if {@code countMap} is not empty    */
+comment|/**    * Creates a new, empty {@code ConcurrentHashMultiset} using {@code countMap} as the internal    * backing map.    *    *<p>This instance will assume ownership of {@code countMap}, and other code should not maintain    * references to the map or modify it in any way.    *    *<p>The returned multiset is serializable if the input map is.    *    * @param countMap backing map for storing the elements in the multiset and their counts. It must    *     be empty.    * @throws IllegalArgumentException if {@code countMap} is not empty    * @since 20.0    */
+annotation|@
+name|Beta
+DECL|method|create (ConcurrentMap<E, AtomicInteger> countMap)
+specifier|public
+specifier|static
+parameter_list|<
+name|E
+parameter_list|>
+name|ConcurrentHashMultiset
+argument_list|<
+name|E
+argument_list|>
+name|create
+parameter_list|(
+name|ConcurrentMap
+argument_list|<
+name|E
+argument_list|,
+name|AtomicInteger
+argument_list|>
+name|countMap
+parameter_list|)
+block|{
+return|return
+operator|new
+name|ConcurrentHashMultiset
+argument_list|<
+name|E
+argument_list|>
+argument_list|(
+name|countMap
+argument_list|)
+return|;
+block|}
 annotation|@
 name|VisibleForTesting
 DECL|method|ConcurrentHashMultiset (ConcurrentMap<E, AtomicInteger> countMap)
@@ -538,6 +570,10 @@ name|countMap
 operator|.
 name|isEmpty
 argument_list|()
+argument_list|,
+literal|"the backing map (%s) must be empty"
+argument_list|,
+name|countMap
 argument_list|)
 expr_stmt|;
 name|this
