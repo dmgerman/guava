@@ -242,6 +242,21 @@ name|key
 argument_list|)
 return|;
 block|}
+DECL|method|clear ()
+specifier|public
+name|void
+name|clear
+parameter_list|()
+block|{
+name|clearCache
+argument_list|()
+expr_stmt|;
+name|backingMap
+operator|.
+name|clear
+argument_list|()
+expr_stmt|;
+block|}
 DECL|method|get (@ullable Object key)
 specifier|public
 name|V

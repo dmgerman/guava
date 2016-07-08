@@ -52,6 +52,16 @@ name|org
 operator|.
 name|junit
 operator|.
+name|Before
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
 name|Test
 import|;
 end_import
@@ -319,6 +329,20 @@ block|}
 block|}
 argument_list|)
 return|;
+block|}
+annotation|@
+name|Before
+DECL|method|init ()
+specifier|public
+name|void
+name|init
+parameter_list|()
+block|{
+name|mapCache
+operator|.
+name|clear
+argument_list|()
+expr_stmt|;
 block|}
 annotation|@
 name|Test
