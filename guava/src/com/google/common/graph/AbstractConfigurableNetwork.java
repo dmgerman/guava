@@ -176,6 +176,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|TreeMap
+import|;
+end_import
+
+begin_import
+import|import
 name|javax
 operator|.
 name|annotation
@@ -604,14 +614,36 @@ name|builder
 operator|.
 name|edgeOrder
 expr_stmt|;
-comment|// Prefer the heavier "MapRetrievalCache" for nodes to optimize for the case where methods
-comment|// accessing the same node(s) are called repeatedly, such as in Graphs.removeEdgesConnecting().
+comment|// Prefer the heavier "MapRetrievalCache" for nodes if lookup is expensive. This optimizes
+comment|// methods that access the same node(s) repeatedly, such as Graphs.removeEdgesConnecting().
 name|this
 operator|.
 name|nodeConnections
 operator|=
+operator|(
+name|nodeConnections
+operator|instanceof
+name|TreeMap
+operator|)
+condition|?
 operator|new
 name|MapRetrievalCache
+argument_list|<
+name|N
+argument_list|,
+name|NodeConnections
+argument_list|<
+name|N
+argument_list|,
+name|E
+argument_list|>
+argument_list|>
+argument_list|(
+name|nodeConnections
+argument_list|)
+else|:
+operator|new
+name|MapIteratorCache
 argument_list|<
 name|N
 argument_list|,
