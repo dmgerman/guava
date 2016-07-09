@@ -20,11 +20,11 @@ begin_import
 import|import static
 name|org
 operator|.
-name|easymock
+name|mockito
 operator|.
-name|EasyMock
+name|Mockito
 operator|.
-name|createMock
+name|mock
 import|;
 end_import
 
@@ -32,35 +32,23 @@ begin_import
 import|import static
 name|org
 operator|.
-name|easymock
+name|mockito
 operator|.
-name|EasyMock
-operator|.
-name|expect
-import|;
-end_import
-
-begin_import
-import|import static
-name|org
-operator|.
-name|easymock
-operator|.
-name|EasyMock
-operator|.
-name|replay
-import|;
-end_import
-
-begin_import
-import|import static
-name|org
-operator|.
-name|easymock
-operator|.
-name|EasyMock
+name|Mockito
 operator|.
 name|verify
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|mockito
+operator|.
+name|Mockito
+operator|.
+name|when
 import|;
 end_import
 
@@ -151,7 +139,7 @@ name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
-comment|// createMock
+comment|// mock
 DECL|method|setUp ()
 annotation|@
 name|Override
@@ -170,7 +158,7 @@ expr_stmt|;
 comment|/*      * Class parameters must be raw, so we can't create a proxy with generic      * type arguments. The created proxy only records calls and returns null, so      * the type is irrelevant at runtime.      */
 name|mock
 operator|=
-name|createMock
+name|mock
 argument_list|(
 name|LoadingCache
 operator|.
@@ -215,7 +203,7 @@ parameter_list|()
 throws|throws
 name|ExecutionException
 block|{
-name|expect
+name|when
 argument_list|(
 name|mock
 operator|.
@@ -225,16 +213,11 @@ literal|"key"
 argument_list|)
 argument_list|)
 operator|.
-name|andReturn
+name|thenReturn
 argument_list|(
 name|Boolean
 operator|.
 name|TRUE
-argument_list|)
-expr_stmt|;
-name|replay
-argument_list|(
-name|mock
 argument_list|)
 expr_stmt|;
 name|assertSame
@@ -249,11 +232,6 @@ name|get
 argument_list|(
 literal|"key"
 argument_list|)
-argument_list|)
-expr_stmt|;
-name|verify
-argument_list|(
-name|mock
 argument_list|)
 expr_stmt|;
 block|}
@@ -263,7 +241,7 @@ name|void
 name|testGetUnchecked
 parameter_list|()
 block|{
-name|expect
+name|when
 argument_list|(
 name|mock
 operator|.
@@ -273,16 +251,11 @@ literal|"key"
 argument_list|)
 argument_list|)
 operator|.
-name|andReturn
+name|thenReturn
 argument_list|(
 name|Boolean
 operator|.
 name|TRUE
-argument_list|)
-expr_stmt|;
-name|replay
-argument_list|(
-name|mock
 argument_list|)
 expr_stmt|;
 name|assertSame
@@ -297,11 +270,6 @@ name|getUnchecked
 argument_list|(
 literal|"key"
 argument_list|)
-argument_list|)
-expr_stmt|;
-name|verify
-argument_list|(
-name|mock
 argument_list|)
 expr_stmt|;
 block|}
@@ -313,7 +281,7 @@ parameter_list|()
 throws|throws
 name|ExecutionException
 block|{
-name|expect
+name|when
 argument_list|(
 name|mock
 operator|.
@@ -328,7 +296,7 @@ argument_list|)
 argument_list|)
 argument_list|)
 operator|.
-name|andReturn
+name|thenReturn
 argument_list|(
 name|ImmutableMap
 operator|.
@@ -340,11 +308,6 @@ name|Boolean
 operator|.
 name|TRUE
 argument_list|)
-argument_list|)
-expr_stmt|;
-name|replay
-argument_list|(
-name|mock
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -373,11 +336,6 @@ argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|verify
-argument_list|(
-name|mock
-argument_list|)
-expr_stmt|;
 block|}
 DECL|method|testApply ()
 specifier|public
@@ -385,7 +343,7 @@ name|void
 name|testApply
 parameter_list|()
 block|{
-name|expect
+name|when
 argument_list|(
 name|mock
 operator|.
@@ -395,16 +353,11 @@ literal|"key"
 argument_list|)
 argument_list|)
 operator|.
-name|andReturn
+name|thenReturn
 argument_list|(
 name|Boolean
 operator|.
 name|TRUE
-argument_list|)
-expr_stmt|;
-name|replay
-argument_list|(
-name|mock
 argument_list|)
 expr_stmt|;
 name|assertSame
@@ -421,11 +374,6 @@ literal|"key"
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|verify
-argument_list|(
-name|mock
-argument_list|)
-expr_stmt|;
 block|}
 DECL|method|testInvalidate ()
 specifier|public
@@ -433,18 +381,6 @@ name|void
 name|testInvalidate
 parameter_list|()
 block|{
-name|mock
-operator|.
-name|invalidate
-argument_list|(
-literal|"key"
-argument_list|)
-expr_stmt|;
-name|replay
-argument_list|(
-name|mock
-argument_list|)
-expr_stmt|;
 name|forward
 operator|.
 name|invalidate
@@ -455,6 +391,11 @@ expr_stmt|;
 name|verify
 argument_list|(
 name|mock
+argument_list|)
+operator|.
+name|invalidate
+argument_list|(
+literal|"key"
 argument_list|)
 expr_stmt|;
 block|}
@@ -466,18 +407,6 @@ parameter_list|()
 throws|throws
 name|ExecutionException
 block|{
-name|mock
-operator|.
-name|refresh
-argument_list|(
-literal|"key"
-argument_list|)
-expr_stmt|;
-name|replay
-argument_list|(
-name|mock
-argument_list|)
-expr_stmt|;
 name|forward
 operator|.
 name|refresh
@@ -488,6 +417,11 @@ expr_stmt|;
 name|verify
 argument_list|(
 name|mock
+argument_list|)
+operator|.
+name|refresh
+argument_list|(
+literal|"key"
 argument_list|)
 expr_stmt|;
 block|}
@@ -497,16 +431,6 @@ name|void
 name|testInvalidateAll
 parameter_list|()
 block|{
-name|mock
-operator|.
-name|invalidateAll
-argument_list|()
-expr_stmt|;
-name|replay
-argument_list|(
-name|mock
-argument_list|)
-expr_stmt|;
 name|forward
 operator|.
 name|invalidateAll
@@ -516,6 +440,9 @@ name|verify
 argument_list|(
 name|mock
 argument_list|)
+operator|.
+name|invalidateAll
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testSize ()
@@ -524,7 +451,7 @@ name|void
 name|testSize
 parameter_list|()
 block|{
-name|expect
+name|when
 argument_list|(
 name|mock
 operator|.
@@ -532,25 +459,15 @@ name|size
 argument_list|()
 argument_list|)
 operator|.
-name|andReturn
+name|thenReturn
 argument_list|(
 literal|0L
-argument_list|)
-expr_stmt|;
-name|replay
-argument_list|(
-name|mock
 argument_list|)
 expr_stmt|;
 name|forward
 operator|.
 name|size
 argument_list|()
-expr_stmt|;
-name|verify
-argument_list|(
-name|mock
-argument_list|)
 expr_stmt|;
 block|}
 DECL|method|testStats ()
@@ -559,7 +476,7 @@ name|void
 name|testStats
 parameter_list|()
 block|{
-name|expect
+name|when
 argument_list|(
 name|mock
 operator|.
@@ -567,14 +484,9 @@ name|stats
 argument_list|()
 argument_list|)
 operator|.
-name|andReturn
+name|thenReturn
 argument_list|(
 literal|null
-argument_list|)
-expr_stmt|;
-name|replay
-argument_list|(
-name|mock
 argument_list|)
 expr_stmt|;
 name|assertNull
@@ -583,11 +495,6 @@ name|forward
 operator|.
 name|stats
 argument_list|()
-argument_list|)
-expr_stmt|;
-name|verify
-argument_list|(
-name|mock
 argument_list|)
 expr_stmt|;
 block|}
@@ -597,7 +504,7 @@ name|void
 name|testAsMap
 parameter_list|()
 block|{
-name|expect
+name|when
 argument_list|(
 name|mock
 operator|.
@@ -605,14 +512,9 @@ name|asMap
 argument_list|()
 argument_list|)
 operator|.
-name|andReturn
+name|thenReturn
 argument_list|(
 literal|null
-argument_list|)
-expr_stmt|;
-name|replay
-argument_list|(
-name|mock
 argument_list|)
 expr_stmt|;
 name|assertNull
@@ -623,11 +525,6 @@ name|asMap
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|verify
-argument_list|(
-name|mock
-argument_list|)
-expr_stmt|;
 block|}
 DECL|method|testCleanUp ()
 specifier|public
@@ -635,16 +532,6 @@ name|void
 name|testCleanUp
 parameter_list|()
 block|{
-name|mock
-operator|.
-name|cleanUp
-argument_list|()
-expr_stmt|;
-name|replay
-argument_list|(
-name|mock
-argument_list|)
-expr_stmt|;
 name|forward
 operator|.
 name|cleanUp
@@ -654,6 +541,9 @@ name|verify
 argument_list|(
 name|mock
 argument_list|)
+operator|.
+name|cleanUp
+argument_list|()
 expr_stmt|;
 block|}
 comment|/**    * Make sure that all methods are forwarded.    */
