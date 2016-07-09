@@ -1487,7 +1487,7 @@ return|return
 name|copy
 return|;
 block|}
-comment|/**    * Returns true iff {@code graph1} and {@code graph2} have the same node connections.    *    *<p>Note: {@link Network} instances can only be equal to other {@link Network} instances.    * In particular, {@link Graph}s that are not also {@link Network}s cannot be equal    * to {@link Network}s.    *    * @see Graph#equals(Object)    */
+comment|/**    * Returns true iff {@code graph1} and {@code graph2} are equal as defined by    * {@link Graph#equals(Object)}.    */
 DECL|method|equal (@ullable Graph<?> graph1, @Nullable Graph<?> graph2)
 specifier|public
 specifier|static
@@ -1582,6 +1582,23 @@ return|;
 block|}
 if|if
 condition|(
+name|graph1
+operator|.
+name|isDirected
+argument_list|()
+operator|!=
+name|graph2
+operator|.
+name|isDirected
+argument_list|()
+condition|)
+block|{
+return|return
+literal|false
+return|;
+block|}
+if|if
+condition|(
 operator|!
 name|graph1
 operator|.
@@ -1637,55 +1654,12 @@ return|return
 literal|false
 return|;
 block|}
-name|boolean
-name|bothUndirected
-init|=
-operator|!
-name|graph1
-operator|.
-name|isDirected
-argument_list|()
-operator|&&
-operator|!
-name|graph2
-operator|.
-name|isDirected
-argument_list|()
-decl_stmt|;
-if|if
-condition|(
-operator|!
-name|bothUndirected
-operator|&&
-operator|!
-name|graph1
-operator|.
-name|predecessors
-argument_list|(
-name|node
-argument_list|)
-operator|.
-name|equals
-argument_list|(
-name|graph2
-operator|.
-name|predecessors
-argument_list|(
-name|node
-argument_list|)
-argument_list|)
-condition|)
-block|{
-return|return
-literal|false
-return|;
-block|}
 block|}
 return|return
 literal|true
 return|;
 block|}
-comment|/**    * Returns true iff {@code graph1} and {@code graph2} have the same node/edge relationships.    *    * @see Network#equals(Object)    */
+comment|/**    * Returns true iff {@code graph1} and {@code graph2} are equal as defined by    * {@link Network#equals(Object)}.    */
 DECL|method|equal (@ullable Network<?, ?> graph1, @Nullable Network<?, ?> graph2)
 specifier|public
 specifier|static
@@ -1743,18 +1717,12 @@ if|if
 condition|(
 name|graph1
 operator|.
-name|edges
-argument_list|()
-operator|.
-name|size
+name|isDirected
 argument_list|()
 operator|!=
 name|graph2
 operator|.
-name|edges
-argument_list|()
-operator|.
-name|size
+name|isDirected
 argument_list|()
 condition|)
 block|{
@@ -1775,6 +1743,20 @@ argument_list|(
 name|graph2
 operator|.
 name|nodes
+argument_list|()
+argument_list|)
+operator|||
+operator|!
+name|graph1
+operator|.
+name|edges
+argument_list|()
+operator|.
+name|equals
+argument_list|(
+name|graph2
+operator|.
+name|edges
 argument_list|()
 argument_list|)
 condition|)
@@ -1786,11 +1768,11 @@ block|}
 for|for
 control|(
 name|Object
-name|node
+name|edge
 range|:
 name|graph1
 operator|.
-name|nodes
+name|edges
 argument_list|()
 control|)
 block|{
@@ -1799,61 +1781,18 @@ condition|(
 operator|!
 name|graph1
 operator|.
-name|inEdges
+name|incidentNodes
 argument_list|(
-name|node
+name|edge
 argument_list|)
 operator|.
 name|equals
 argument_list|(
 name|graph2
 operator|.
-name|inEdges
+name|incidentNodes
 argument_list|(
-name|node
-argument_list|)
-argument_list|)
-condition|)
-block|{
-return|return
-literal|false
-return|;
-block|}
-name|boolean
-name|bothUndirected
-init|=
-operator|!
-name|graph1
-operator|.
-name|isDirected
-argument_list|()
-operator|&&
-operator|!
-name|graph2
-operator|.
-name|isDirected
-argument_list|()
-decl_stmt|;
-if|if
-condition|(
-operator|!
-name|bothUndirected
-operator|&&
-operator|!
-name|graph1
-operator|.
-name|outEdges
-argument_list|(
-name|node
-argument_list|)
-operator|.
-name|equals
-argument_list|(
-name|graph2
-operator|.
-name|outEdges
-argument_list|(
-name|node
+name|edge
 argument_list|)
 argument_list|)
 condition|)
@@ -1867,7 +1806,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/**    * Returns the hash code of {@code graph}.    *    * @see Graph#hashCode()    */
+comment|/**    * Returns the hash code of {@code graph} as defined by {@link Graph#hashCode()}.    */
 DECL|method|hashCode (Graph<?> graph)
 specifier|public
 specifier|static
@@ -1899,7 +1838,7 @@ argument_list|)
 return|;
 block|}
 return|return
-name|nodeToAdjacentNodes
+name|nodeToSuccessorNodes
 argument_list|(
 name|graph
 argument_list|)
@@ -1908,7 +1847,7 @@ name|hashCode
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns the hash code of {@code graph}.    *    * @see Network#hashCode()    */
+comment|/**    * Returns the hash code of {@code graph} as defined by {@link Network#hashCode()}.    */
 DECL|method|hashCode (Network<?, ?> graph)
 specifier|public
 specifier|static
@@ -1925,7 +1864,7 @@ name|graph
 parameter_list|)
 block|{
 return|return
-name|nodeToIncidentEdges
+name|nodeToOutEdges
 argument_list|(
 name|graph
 argument_list|)
@@ -2088,8 +2027,8 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a map that is a live view of {@code graph}, with nodes as keys    * and the set of incident edges as values.    */
-DECL|method|nodeToIncidentEdges (final Network<N, E> graph)
+comment|/**    * Returns a map that is a live view of {@code graph}, with nodes as keys    * and the set of outgoing edges as values.    */
+DECL|method|nodeToOutEdges (final Network<N, E> graph)
 specifier|private
 specifier|static
 parameter_list|<
@@ -2106,7 +2045,7 @@ argument_list|<
 name|E
 argument_list|>
 argument_list|>
-name|nodeToIncidentEdges
+name|nodeToOutEdges
 parameter_list|(
 specifier|final
 name|Network
@@ -2163,7 +2102,7 @@ block|{
 return|return
 name|graph
 operator|.
-name|incidentEdges
+name|outEdges
 argument_list|(
 name|node
 argument_list|)
@@ -2173,8 +2112,8 @@ block|}
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a map that is a live view of {@code graph}, with nodes as keys    * and the set of adjacent nodes as values.    */
-DECL|method|nodeToAdjacentNodes (final Graph<N> graph)
+comment|/**    * Returns a map that is a live view of {@code graph}, with nodes as keys    * and the set of successor nodes as values.    */
+DECL|method|nodeToSuccessorNodes (final Graph<N> graph)
 specifier|private
 specifier|static
 parameter_list|<
@@ -2189,7 +2128,7 @@ argument_list|<
 name|N
 argument_list|>
 argument_list|>
-name|nodeToAdjacentNodes
+name|nodeToSuccessorNodes
 parameter_list|(
 specifier|final
 name|Graph
@@ -2244,7 +2183,7 @@ block|{
 return|return
 name|graph
 operator|.
-name|adjacentNodes
+name|successors
 argument_list|(
 name|node
 argument_list|)

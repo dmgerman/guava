@@ -441,8 +441,7 @@ name|testEquals
 argument_list|()
 expr_stmt|;
 block|}
-comment|// Node/edge sets and node/edge connections are the same, but types differ.
-comment|// (In this case the graphs are considered equal; the type differences are irrelevant.)
+comment|// Node/edge sets and node/edge connections are the same, but directedness differs.
 annotation|@
 name|Test
 DECL|method|equals_selfLoop_directedVsUndirected ()
@@ -490,7 +489,10 @@ operator|.
 name|addEqualityGroup
 argument_list|(
 name|graph
-argument_list|,
+argument_list|)
+operator|.
+name|addEqualityGroup
+argument_list|(
 name|g2
 argument_list|)
 operator|.
