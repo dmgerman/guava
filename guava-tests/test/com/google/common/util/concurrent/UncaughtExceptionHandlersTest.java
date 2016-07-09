@@ -22,11 +22,11 @@ begin_import
 import|import static
 name|org
 operator|.
-name|easymock
+name|mockito
 operator|.
-name|EasyMock
+name|Mockito
 operator|.
-name|createMock
+name|mock
 import|;
 end_import
 
@@ -34,21 +34,9 @@ begin_import
 import|import static
 name|org
 operator|.
-name|easymock
+name|mockito
 operator|.
-name|EasyMock
-operator|.
-name|replay
-import|;
-end_import
-
-begin_import
-import|import static
-name|org
-operator|.
-name|easymock
-operator|.
-name|EasyMock
+name|Mockito
 operator|.
 name|verify
 import|;
@@ -109,7 +97,7 @@ parameter_list|()
 block|{
 name|runtimeMock
 operator|=
-name|createMock
+name|mock
 argument_list|(
 name|Runtime
 operator|.
@@ -123,18 +111,6 @@ name|void
 name|testExiter
 parameter_list|()
 block|{
-name|runtimeMock
-operator|.
-name|exit
-argument_list|(
-literal|1
-argument_list|)
-expr_stmt|;
-name|replay
-argument_list|(
-name|runtimeMock
-argument_list|)
-expr_stmt|;
 operator|new
 name|Exiter
 argument_list|(
@@ -155,6 +131,11 @@ expr_stmt|;
 name|verify
 argument_list|(
 name|runtimeMock
+argument_list|)
+operator|.
+name|exit
+argument_list|(
+literal|1
 argument_list|)
 expr_stmt|;
 block|}
