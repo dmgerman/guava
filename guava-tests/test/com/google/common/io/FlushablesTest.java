@@ -20,11 +20,11 @@ begin_import
 import|import static
 name|org
 operator|.
-name|easymock
+name|mockito
 operator|.
-name|EasyMock
+name|Mockito
 operator|.
-name|createStrictMock
+name|doThrow
 import|;
 end_import
 
@@ -32,11 +32,11 @@ begin_import
 import|import static
 name|org
 operator|.
-name|easymock
+name|mockito
 operator|.
-name|EasyMock
+name|Mockito
 operator|.
-name|expectLastCall
+name|mock
 import|;
 end_import
 
@@ -44,33 +44,9 @@ begin_import
 import|import static
 name|org
 operator|.
-name|easymock
+name|mockito
 operator|.
-name|EasyMock
-operator|.
-name|replay
-import|;
-end_import
-
-begin_import
-import|import static
-name|org
-operator|.
-name|easymock
-operator|.
-name|EasyMock
-operator|.
-name|reset
-import|;
-end_import
-
-begin_import
-import|import static
-name|org
-operator|.
-name|easymock
-operator|.
-name|EasyMock
+name|Mockito
 operator|.
 name|verify
 import|;
@@ -235,47 +211,6 @@ name|mockFlushable
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|setUp ()
-annotation|@
-name|Override
-specifier|protected
-name|void
-name|setUp
-parameter_list|()
-throws|throws
-name|Exception
-block|{
-name|mockFlushable
-operator|=
-name|createStrictMock
-argument_list|(
-name|Flushable
-operator|.
-name|class
-argument_list|)
-expr_stmt|;
-block|}
-DECL|method|expectThrown ()
-specifier|private
-name|void
-name|expectThrown
-parameter_list|()
-block|{
-name|expectLastCall
-argument_list|()
-operator|.
-name|andThrow
-argument_list|(
-operator|new
-name|IOException
-argument_list|(
-literal|"This should only appear in the "
-operator|+
-literal|"logs. It should not be rethrown."
-argument_list|)
-argument_list|)
-expr_stmt|;
-block|}
 comment|// Set up a flushable to expect to be flushed, and optionally to
 comment|// throw an exception.
 DECL|method|setupFlushable (boolean shouldThrowOnFlush)
@@ -289,30 +224,40 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|reset
+name|mockFlushable
+operator|=
+name|mock
 argument_list|(
-name|mockFlushable
-argument_list|)
-expr_stmt|;
-name|mockFlushable
+name|Flushable
 operator|.
-name|flush
-argument_list|()
+name|class
+argument_list|)
 expr_stmt|;
 if|if
 condition|(
 name|shouldThrowOnFlush
 condition|)
 block|{
-name|expectThrown
-argument_list|()
-expr_stmt|;
-block|}
-name|replay
+name|doThrow
+argument_list|(
+operator|new
+name|IOException
+argument_list|(
+literal|"This should only appear in the "
+operator|+
+literal|"logs. It should not be rethrown."
+argument_list|)
+argument_list|)
+operator|.
+name|when
 argument_list|(
 name|mockFlushable
 argument_list|)
+operator|.
+name|flush
+argument_list|()
 expr_stmt|;
+block|}
 block|}
 comment|// Flush the flushable using the Flushables, passing in the swallowException
 comment|// parameter. expectThrown determines whether we expect an exception to
@@ -331,6 +276,8 @@ parameter_list|,
 name|boolean
 name|expectThrown
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 try|try
 block|{
@@ -378,6 +325,9 @@ name|verify
 argument_list|(
 name|flushable
 argument_list|)
+operator|.
+name|flush
+argument_list|()
 expr_stmt|;
 block|}
 block|}

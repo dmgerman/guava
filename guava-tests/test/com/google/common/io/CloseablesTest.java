@@ -20,11 +20,11 @@ begin_import
 import|import static
 name|org
 operator|.
-name|easymock
+name|mockito
 operator|.
-name|EasyMock
+name|Mockito
 operator|.
-name|createStrictMock
+name|doThrow
 import|;
 end_import
 
@@ -32,11 +32,11 @@ begin_import
 import|import static
 name|org
 operator|.
-name|easymock
+name|mockito
 operator|.
-name|EasyMock
+name|Mockito
 operator|.
-name|expectLastCall
+name|mock
 import|;
 end_import
 
@@ -44,33 +44,9 @@ begin_import
 import|import static
 name|org
 operator|.
-name|easymock
+name|mockito
 operator|.
-name|EasyMock
-operator|.
-name|replay
-import|;
-end_import
-
-begin_import
-import|import static
-name|org
-operator|.
-name|easymock
-operator|.
-name|EasyMock
-operator|.
-name|reset
-import|;
-end_import
-
-begin_import
-import|import static
-name|org
-operator|.
-name|easymock
-operator|.
-name|EasyMock
+name|Mockito
 operator|.
 name|verify
 import|;
@@ -379,47 +355,6 @@ literal|null
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|setUp ()
-annotation|@
-name|Override
-specifier|protected
-name|void
-name|setUp
-parameter_list|()
-throws|throws
-name|Exception
-block|{
-name|mockCloseable
-operator|=
-name|createStrictMock
-argument_list|(
-name|Closeable
-operator|.
-name|class
-argument_list|)
-expr_stmt|;
-block|}
-DECL|method|expectThrown ()
-specifier|private
-name|void
-name|expectThrown
-parameter_list|()
-block|{
-name|expectLastCall
-argument_list|()
-operator|.
-name|andThrow
-argument_list|(
-operator|new
-name|IOException
-argument_list|(
-literal|"This should only appear in the "
-operator|+
-literal|"logs. It should not be rethrown."
-argument_list|)
-argument_list|)
-expr_stmt|;
-block|}
 comment|// Set up a closeable to expect to be closed, and optionally to throw an
 comment|// exception.
 DECL|method|setupCloseable (boolean shouldThrow)
@@ -433,30 +368,38 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|reset
+name|mockCloseable
+operator|=
+name|mock
 argument_list|(
-name|mockCloseable
-argument_list|)
-expr_stmt|;
-name|mockCloseable
+name|Closeable
 operator|.
-name|close
-argument_list|()
+name|class
+argument_list|)
 expr_stmt|;
 if|if
 condition|(
 name|shouldThrow
 condition|)
 block|{
-name|expectThrown
-argument_list|()
-expr_stmt|;
-block|}
-name|replay
+name|doThrow
+argument_list|(
+operator|new
+name|IOException
+argument_list|(
+literal|"This should only appear in the logs. It should not be rethrown."
+argument_list|)
+argument_list|)
+operator|.
+name|when
 argument_list|(
 name|mockCloseable
 argument_list|)
+operator|.
+name|close
+argument_list|()
 expr_stmt|;
+block|}
 block|}
 DECL|method|doClose (Closeable closeable, boolean swallowException)
 specifier|private
@@ -469,6 +412,8 @@ parameter_list|,
 name|boolean
 name|swallowException
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 name|doClose
 argument_list|(
@@ -498,6 +443,8 @@ parameter_list|,
 name|boolean
 name|expectThrown
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 try|try
 block|{
@@ -545,6 +492,9 @@ name|verify
 argument_list|(
 name|closeable
 argument_list|)
+operator|.
+name|close
+argument_list|()
 expr_stmt|;
 block|}
 block|}
