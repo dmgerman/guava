@@ -102,15 +102,6 @@ argument_list|>
 name|outEdges
 parameter_list|()
 function_decl|;
-comment|/**    * Returns the node that is opposite the origin node along {@code edge}.    *    *<p>In the directed case, {@code edge} is assumed to be an outgoing edge.    */
-DECL|method|oppositeNode (Object edge)
-name|N
-name|oppositeNode
-parameter_list|(
-name|Object
-name|edge
-parameter_list|)
-function_decl|;
 comment|/**    * Returns the set of edges connecting the origin node to {@code node}.    * For networks without parallel edges, this set cannot be of size greater than one.    */
 DECL|method|edgesConnecting (Object node)
 name|Set
@@ -121,6 +112,15 @@ name|edgesConnecting
 parameter_list|(
 name|Object
 name|node
+parameter_list|)
+function_decl|;
+comment|/**    * Returns the node that is opposite the origin node along {@code edge}.    *    *<p>In the directed case, {@code edge} is assumed to be an outgoing edge.    */
+DECL|method|oppositeNode (Object edge)
+name|N
+name|oppositeNode
+parameter_list|(
+name|Object
+name|edge
 parameter_list|)
 function_decl|;
 comment|/**    * Remove {@code edge} from the set of incoming edges. Returns the former predecessor node.    *    *<p>In the undirected case, returns {@code null} if {@code isSelfLoop} is true.    */
