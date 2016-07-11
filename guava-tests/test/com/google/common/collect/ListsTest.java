@@ -91,6 +91,42 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|org
+operator|.
+name|mockito
+operator|.
+name|Mockito
+operator|.
+name|mock
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|mockito
+operator|.
+name|Mockito
+operator|.
+name|verifyNoMoreInteractions
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|mockito
+operator|.
+name|Mockito
+operator|.
+name|when
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -343,16 +379,6 @@ operator|.
 name|framework
 operator|.
 name|TestSuite
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|easymock
-operator|.
-name|EasyMock
 import|;
 end_import
 
@@ -5321,21 +5347,10 @@ name|list
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * We use this class to avoid the need to suppress generics checks with    * easy mock.    */
-DECL|interface|IntegerList
-specifier|private
-interface|interface
-name|IntegerList
-extends|extends
-name|List
-argument_list|<
-name|Integer
-argument_list|>
-block|{}
-comment|/**    * This test depends on the fact that {@code AbstractSequentialList.iterator}    * transforms the {@code iterator()} call into a call on {@code    * listIterator(int)}. This is fine because the behavior is clearly    * documented so it's not expected to change.    */
+comment|/**    * This test depends on the fact that {@code AbstractSequentialList.iterator} transforms the    * {@code iterator()} call into a call on {@code listIterator(int)}. This is fine because the    * behavior is clearly documented so it's not expected to change.    */
 annotation|@
 name|GwtIncompatible
-comment|// EsayMock
+comment|// Mockito TODO(kak): Can we remove this?
 DECL|method|testTransformedSequentialIterationUsesBackingListIterationOnly ()
 specifier|public
 name|void
@@ -5366,24 +5381,25 @@ operator|.
 name|listIterator
 argument_list|()
 decl_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
 name|List
 argument_list|<
 name|Integer
 argument_list|>
 name|listMock
 init|=
-name|EasyMock
-operator|.
-name|createMock
+name|mock
 argument_list|(
-name|IntegerList
+name|List
 operator|.
 name|class
 argument_list|)
 decl_stmt|;
-name|EasyMock
-operator|.
-name|expect
+name|when
 argument_list|(
 name|listMock
 operator|.
@@ -5391,7 +5407,7 @@ name|size
 argument_list|()
 argument_list|)
 operator|.
-name|andReturn
+name|thenReturn
 argument_list|(
 name|SOME_SEQUENTIAL_LIST
 operator|.
@@ -5399,9 +5415,7 @@ name|size
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|EasyMock
-operator|.
-name|expect
+name|when
 argument_list|(
 name|listMock
 operator|.
@@ -5411,14 +5425,12 @@ literal|0
 argument_list|)
 argument_list|)
 operator|.
-name|andReturn
+name|thenReturn
 argument_list|(
 name|sampleListIterator
 argument_list|)
 expr_stmt|;
-name|EasyMock
-operator|.
-name|replay
+name|verifyNoMoreInteractions
 argument_list|(
 name|listMock
 argument_list|)
@@ -5455,13 +5467,6 @@ argument_list|,
 name|SOME_FUNCTION
 argument_list|)
 argument_list|)
-argument_list|)
-expr_stmt|;
-name|EasyMock
-operator|.
-name|verify
-argument_list|(
-name|listMock
 argument_list|)
 expr_stmt|;
 block|}

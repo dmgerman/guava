@@ -84,9 +84,9 @@ begin_import
 import|import static
 name|org
 operator|.
-name|easymock
+name|mockito
 operator|.
-name|EasyMock
+name|Mockito
 operator|.
 name|eq
 import|;
@@ -96,11 +96,11 @@ begin_import
 import|import static
 name|org
 operator|.
-name|easymock
+name|mockito
 operator|.
-name|EasyMock
+name|Mockito
 operator|.
-name|expect
+name|isA
 import|;
 end_import
 
@@ -108,11 +108,23 @@ begin_import
 import|import static
 name|org
 operator|.
-name|easymock
+name|mockito
 operator|.
-name|EasyMock
+name|Mockito
 operator|.
-name|isA
+name|mock
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|mockito
+operator|.
+name|Mockito
+operator|.
+name|when
 import|;
 end_import
 
@@ -229,16 +241,6 @@ operator|.
 name|framework
 operator|.
 name|TestSuite
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|easymock
-operator|.
-name|EasyMock
 import|;
 end_import
 
@@ -606,16 +608,14 @@ parameter_list|()
 block|{
 name|backingMap
 operator|=
-name|EasyMock
-operator|.
-name|createMock
+name|mock
 argument_list|(
 name|ConcurrentMap
 operator|.
 name|class
 argument_list|)
 expr_stmt|;
-name|expect
+name|when
 argument_list|(
 name|backingMap
 operator|.
@@ -623,13 +623,10 @@ name|isEmpty
 argument_list|()
 argument_list|)
 operator|.
-name|andReturn
+name|thenReturn
 argument_list|(
 literal|true
 argument_list|)
-expr_stmt|;
-name|replay
-argument_list|()
 expr_stmt|;
 name|multiset
 operator|=
@@ -641,12 +638,6 @@ argument_list|>
 argument_list|(
 name|backingMap
 argument_list|)
-expr_stmt|;
-name|verify
-argument_list|()
-expr_stmt|;
-name|reset
-argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testCount_elementPresent ()
@@ -661,7 +652,7 @@ name|COUNT
 init|=
 literal|12
 decl_stmt|;
-name|expect
+name|when
 argument_list|(
 name|backingMap
 operator|.
@@ -671,7 +662,7 @@ name|KEY
 argument_list|)
 argument_list|)
 operator|.
-name|andReturn
+name|thenReturn
 argument_list|(
 operator|new
 name|AtomicInteger
@@ -679,9 +670,6 @@ argument_list|(
 name|COUNT
 argument_list|)
 argument_list|)
-expr_stmt|;
-name|replay
-argument_list|()
 expr_stmt|;
 name|assertEquals
 argument_list|(
@@ -695,9 +683,6 @@ name|KEY
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|verify
-argument_list|()
-expr_stmt|;
 block|}
 DECL|method|testCount_elementAbsent ()
 specifier|public
@@ -705,7 +690,7 @@ name|void
 name|testCount_elementAbsent
 parameter_list|()
 block|{
-name|expect
+name|when
 argument_list|(
 name|backingMap
 operator|.
@@ -715,13 +700,10 @@ name|KEY
 argument_list|)
 argument_list|)
 operator|.
-name|andReturn
+name|thenReturn
 argument_list|(
 literal|null
 argument_list|)
-expr_stmt|;
-name|replay
-argument_list|()
 expr_stmt|;
 name|assertEquals
 argument_list|(
@@ -734,9 +716,6 @@ argument_list|(
 name|KEY
 argument_list|)
 argument_list|)
-expr_stmt|;
-name|verify
-argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testAdd_zero ()
@@ -751,7 +730,7 @@ name|INITIAL_COUNT
 init|=
 literal|32
 decl_stmt|;
-name|expect
+name|when
 argument_list|(
 name|backingMap
 operator|.
@@ -761,7 +740,7 @@ name|KEY
 argument_list|)
 argument_list|)
 operator|.
-name|andReturn
+name|thenReturn
 argument_list|(
 operator|new
 name|AtomicInteger
@@ -769,9 +748,6 @@ argument_list|(
 name|INITIAL_COUNT
 argument_list|)
 argument_list|)
-expr_stmt|;
-name|replay
-argument_list|()
 expr_stmt|;
 name|assertEquals
 argument_list|(
@@ -787,9 +763,6 @@ literal|0
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|verify
-argument_list|()
-expr_stmt|;
 block|}
 DECL|method|testAdd_firstFewWithSuccess ()
 specifier|public
@@ -803,7 +776,7 @@ name|COUNT
 init|=
 literal|400
 decl_stmt|;
-name|expect
+name|when
 argument_list|(
 name|backingMap
 operator|.
@@ -813,12 +786,12 @@ name|KEY
 argument_list|)
 argument_list|)
 operator|.
-name|andReturn
+name|thenReturn
 argument_list|(
 literal|null
 argument_list|)
 expr_stmt|;
-name|expect
+name|when
 argument_list|(
 name|backingMap
 operator|.
@@ -838,13 +811,10 @@ argument_list|)
 argument_list|)
 argument_list|)
 operator|.
-name|andReturn
+name|thenReturn
 argument_list|(
 literal|null
 argument_list|)
-expr_stmt|;
-name|replay
-argument_list|()
 expr_stmt|;
 name|assertEquals
 argument_list|(
@@ -859,9 +829,6 @@ argument_list|,
 name|COUNT
 argument_list|)
 argument_list|)
-expr_stmt|;
-name|verify
-argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testAdd_laterFewWithSuccess ()
@@ -889,7 +856,7 @@ argument_list|(
 name|INITIAL_COUNT
 argument_list|)
 decl_stmt|;
-name|expect
+name|when
 argument_list|(
 name|backingMap
 operator|.
@@ -899,13 +866,10 @@ name|KEY
 argument_list|)
 argument_list|)
 operator|.
-name|andReturn
+name|thenReturn
 argument_list|(
 name|initial
 argument_list|)
-expr_stmt|;
-name|replay
-argument_list|()
 expr_stmt|;
 name|assertEquals
 argument_list|(
@@ -932,9 +896,6 @@ operator|.
 name|get
 argument_list|()
 argument_list|)
-expr_stmt|;
-name|verify
-argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testAdd_laterFewWithOverflow ()
@@ -961,7 +922,7 @@ name|INITIAL_COUNT
 operator|+
 literal|1
 decl_stmt|;
-name|expect
+name|when
 argument_list|(
 name|backingMap
 operator|.
@@ -971,7 +932,7 @@ name|KEY
 argument_list|)
 argument_list|)
 operator|.
-name|andReturn
+name|thenReturn
 argument_list|(
 operator|new
 name|AtomicInteger
@@ -979,9 +940,6 @@ argument_list|(
 name|INITIAL_COUNT
 argument_list|)
 argument_list|)
-expr_stmt|;
-name|replay
-argument_list|()
 expr_stmt|;
 try|try
 block|{
@@ -1003,14 +961,9 @@ block|}
 catch|catch
 parameter_list|(
 name|IllegalArgumentException
-name|e
+name|expected
 parameter_list|)
-block|{
-comment|// Expected.
-block|}
-name|verify
-argument_list|()
-expr_stmt|;
+block|{     }
 block|}
 comment|/**    * Simulate some of the races that can happen on add. We can't easily simulate the race that    * happens when an {@link AtomicInteger#compareAndSet} fails, but we can simulate the case where    * the putIfAbsent returns a non-null value, and the case where the replace() of an observed    * zero fails.    */
 DECL|method|testAdd_withFailures ()
@@ -1038,7 +991,7 @@ literal|0
 argument_list|)
 decl_stmt|;
 comment|// initial map.get()
-name|expect
+name|when
 argument_list|(
 name|backingMap
 operator|.
@@ -1048,13 +1001,13 @@ name|KEY
 argument_list|)
 argument_list|)
 operator|.
-name|andReturn
+name|thenReturn
 argument_list|(
 literal|null
 argument_list|)
 expr_stmt|;
 comment|// since get returned null, try a putIfAbsent; that fails due to a simulated race
-name|expect
+name|when
 argument_list|(
 name|backingMap
 operator|.
@@ -1074,13 +1027,13 @@ argument_list|)
 argument_list|)
 argument_list|)
 operator|.
-name|andReturn
+name|thenReturn
 argument_list|(
 name|existingZero
 argument_list|)
 expr_stmt|;
 comment|// since the putIfAbsent returned a zero, we'll try to replace...
-name|expect
+name|when
 argument_list|(
 name|backingMap
 operator|.
@@ -1105,13 +1058,13 @@ argument_list|)
 argument_list|)
 argument_list|)
 operator|.
-name|andReturn
+name|thenReturn
 argument_list|(
 literal|false
 argument_list|)
 expr_stmt|;
 comment|// ...and then putIfAbsent. Simulate failure on both
-name|expect
+name|when
 argument_list|(
 name|backingMap
 operator|.
@@ -1131,13 +1084,13 @@ argument_list|)
 argument_list|)
 argument_list|)
 operator|.
-name|andReturn
+name|thenReturn
 argument_list|(
 name|existing
 argument_list|)
 expr_stmt|;
 comment|// next map.get()
-name|expect
+name|when
 argument_list|(
 name|backingMap
 operator|.
@@ -1147,13 +1100,13 @@ name|KEY
 argument_list|)
 argument_list|)
 operator|.
-name|andReturn
+name|thenReturn
 argument_list|(
 name|existingZero
 argument_list|)
 expr_stmt|;
 comment|// since get returned zero, try a replace; that fails due to a simulated race
-name|expect
+name|when
 argument_list|(
 name|backingMap
 operator|.
@@ -1178,12 +1131,12 @@ argument_list|)
 argument_list|)
 argument_list|)
 operator|.
-name|andReturn
+name|thenReturn
 argument_list|(
 literal|false
 argument_list|)
 expr_stmt|;
-name|expect
+name|when
 argument_list|(
 name|backingMap
 operator|.
@@ -1203,13 +1156,13 @@ argument_list|)
 argument_list|)
 argument_list|)
 operator|.
-name|andReturn
+name|thenReturn
 argument_list|(
 name|existing
 argument_list|)
 expr_stmt|;
 comment|// another map.get()
-name|expect
+name|when
 argument_list|(
 name|backingMap
 operator|.
@@ -1219,15 +1172,12 @@ name|KEY
 argument_list|)
 argument_list|)
 operator|.
-name|andReturn
+name|thenReturn
 argument_list|(
 name|existing
 argument_list|)
 expr_stmt|;
 comment|// we shouldn't see any more map operations; CHM will now just update the AtomicInteger
-name|replay
-argument_list|()
-expr_stmt|;
 name|assertEquals
 argument_list|(
 name|multiset
@@ -1252,9 +1202,6 @@ name|get
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|verify
-argument_list|()
-expr_stmt|;
 block|}
 DECL|method|testRemove_zeroFromSome ()
 specifier|public
@@ -1268,7 +1215,7 @@ name|INITIAL_COUNT
 init|=
 literal|14
 decl_stmt|;
-name|expect
+name|when
 argument_list|(
 name|backingMap
 operator|.
@@ -1278,7 +1225,7 @@ name|KEY
 argument_list|)
 argument_list|)
 operator|.
-name|andReturn
+name|thenReturn
 argument_list|(
 operator|new
 name|AtomicInteger
@@ -1287,9 +1234,6 @@ name|INITIAL_COUNT
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|replay
-argument_list|()
-expr_stmt|;
 name|assertEquals
 argument_list|(
 name|INITIAL_COUNT
@@ -1304,9 +1248,6 @@ literal|0
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|verify
-argument_list|()
-expr_stmt|;
 block|}
 DECL|method|testRemove_zeroFromNone ()
 specifier|public
@@ -1314,7 +1255,7 @@ name|void
 name|testRemove_zeroFromNone
 parameter_list|()
 block|{
-name|expect
+name|when
 argument_list|(
 name|backingMap
 operator|.
@@ -1324,13 +1265,10 @@ name|KEY
 argument_list|)
 argument_list|)
 operator|.
-name|andReturn
+name|thenReturn
 argument_list|(
 literal|null
 argument_list|)
-expr_stmt|;
-name|replay
-argument_list|()
 expr_stmt|;
 name|assertEquals
 argument_list|(
@@ -1346,9 +1284,6 @@ literal|0
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|verify
-argument_list|()
-expr_stmt|;
 block|}
 DECL|method|testRemove_nonePresent ()
 specifier|public
@@ -1356,7 +1291,7 @@ name|void
 name|testRemove_nonePresent
 parameter_list|()
 block|{
-name|expect
+name|when
 argument_list|(
 name|backingMap
 operator|.
@@ -1366,13 +1301,10 @@ name|KEY
 argument_list|)
 argument_list|)
 operator|.
-name|andReturn
+name|thenReturn
 argument_list|(
 literal|null
 argument_list|)
-expr_stmt|;
-name|replay
-argument_list|()
 expr_stmt|;
 name|assertEquals
 argument_list|(
@@ -1387,9 +1319,6 @@ argument_list|,
 literal|400
 argument_list|)
 argument_list|)
-expr_stmt|;
-name|verify
-argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testRemove_someRemaining ()
@@ -1419,7 +1348,7 @@ operator|+
 name|countRemaining
 argument_list|)
 decl_stmt|;
-name|expect
+name|when
 argument_list|(
 name|backingMap
 operator|.
@@ -1429,13 +1358,10 @@ name|KEY
 argument_list|)
 argument_list|)
 operator|.
-name|andReturn
+name|thenReturn
 argument_list|(
 name|current
 argument_list|)
-expr_stmt|;
-name|replay
-argument_list|()
 expr_stmt|;
 name|assertEquals
 argument_list|(
@@ -1463,9 +1389,6 @@ name|get
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|verify
-argument_list|()
-expr_stmt|;
 block|}
 DECL|method|testRemove_noneRemaining ()
 specifier|public
@@ -1487,7 +1410,7 @@ argument_list|(
 name|countToRemove
 argument_list|)
 decl_stmt|;
-name|expect
+name|when
 argument_list|(
 name|backingMap
 operator|.
@@ -1497,13 +1420,13 @@ name|KEY
 argument_list|)
 argument_list|)
 operator|.
-name|andReturn
+name|thenReturn
 argument_list|(
 name|current
 argument_list|)
 expr_stmt|;
 comment|// it's ok if removal fails: another thread may have done the remove
-name|expect
+name|when
 argument_list|(
 name|backingMap
 operator|.
@@ -1515,13 +1438,10 @@ name|current
 argument_list|)
 argument_list|)
 operator|.
-name|andReturn
+name|thenReturn
 argument_list|(
 literal|false
 argument_list|)
-expr_stmt|;
-name|replay
-argument_list|()
 expr_stmt|;
 name|assertEquals
 argument_list|(
@@ -1546,9 +1466,6 @@ operator|.
 name|get
 argument_list|()
 argument_list|)
-expr_stmt|;
-name|verify
-argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testRemoveExactly ()
@@ -1846,7 +1763,7 @@ argument_list|(
 name|initialCount
 argument_list|)
 decl_stmt|;
-name|expect
+name|when
 argument_list|(
 name|backingMap
 operator|.
@@ -1856,13 +1773,10 @@ name|KEY
 argument_list|)
 argument_list|)
 operator|.
-name|andReturn
+name|thenReturn
 argument_list|(
 name|current
 argument_list|)
-expr_stmt|;
-name|replay
-argument_list|()
 expr_stmt|;
 name|assertEquals
 argument_list|(
@@ -1888,9 +1802,6 @@ name|get
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|verify
-argument_list|()
-expr_stmt|;
 block|}
 DECL|method|testSetCount_asRemove ()
 specifier|public
@@ -1912,7 +1823,7 @@ argument_list|(
 name|countToRemove
 argument_list|)
 decl_stmt|;
-name|expect
+name|when
 argument_list|(
 name|backingMap
 operator|.
@@ -1922,12 +1833,12 @@ name|KEY
 argument_list|)
 argument_list|)
 operator|.
-name|andReturn
+name|thenReturn
 argument_list|(
 name|current
 argument_list|)
 expr_stmt|;
-name|expect
+name|when
 argument_list|(
 name|backingMap
 operator|.
@@ -1939,13 +1850,10 @@ name|current
 argument_list|)
 argument_list|)
 operator|.
-name|andReturn
+name|thenReturn
 argument_list|(
 literal|true
 argument_list|)
-expr_stmt|;
-name|replay
-argument_list|()
 expr_stmt|;
 name|assertEquals
 argument_list|(
@@ -1971,9 +1879,6 @@ name|get
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|verify
-argument_list|()
-expr_stmt|;
 block|}
 DECL|method|testSetCount_0_nonePresent ()
 specifier|public
@@ -1981,7 +1886,7 @@ name|void
 name|testSetCount_0_nonePresent
 parameter_list|()
 block|{
-name|expect
+name|when
 argument_list|(
 name|backingMap
 operator|.
@@ -1991,13 +1896,10 @@ name|KEY
 argument_list|)
 argument_list|)
 operator|.
-name|andReturn
+name|thenReturn
 argument_list|(
 literal|null
 argument_list|)
-expr_stmt|;
-name|replay
-argument_list|()
 expr_stmt|;
 name|assertEquals
 argument_list|(
@@ -2012,9 +1914,6 @@ argument_list|,
 literal|0
 argument_list|)
 argument_list|)
-expr_stmt|;
-name|verify
-argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testCreate ()
@@ -2839,48 +2738,6 @@ name|count
 argument_list|(
 name|s2
 argument_list|)
-argument_list|)
-expr_stmt|;
-block|}
-DECL|method|replay ()
-specifier|private
-name|void
-name|replay
-parameter_list|()
-block|{
-name|EasyMock
-operator|.
-name|replay
-argument_list|(
-name|backingMap
-argument_list|)
-expr_stmt|;
-block|}
-DECL|method|verify ()
-specifier|private
-name|void
-name|verify
-parameter_list|()
-block|{
-name|EasyMock
-operator|.
-name|verify
-argument_list|(
-name|backingMap
-argument_list|)
-expr_stmt|;
-block|}
-DECL|method|reset ()
-specifier|private
-name|void
-name|reset
-parameter_list|()
-block|{
-name|EasyMock
-operator|.
-name|reset
-argument_list|(
-name|backingMap
 argument_list|)
 expr_stmt|;
 block|}
