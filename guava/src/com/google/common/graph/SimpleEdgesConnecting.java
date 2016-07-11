@@ -62,11 +62,15 @@ end_import
 
 begin_import
 import|import
-name|java
+name|com
 operator|.
-name|util
+name|google
 operator|.
-name|AbstractSet
+name|common
+operator|.
+name|collect
+operator|.
+name|UnmodifiableIterator
 import|;
 end_import
 
@@ -76,7 +80,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|Iterator
+name|AbstractSet
 import|;
 end_import
 
@@ -173,7 +177,7 @@ annotation|@
 name|Override
 DECL|method|iterator ()
 specifier|public
-name|Iterator
+name|UnmodifiableIterator
 argument_list|<
 name|E
 argument_list|>

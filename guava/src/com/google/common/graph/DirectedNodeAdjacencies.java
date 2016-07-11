@@ -110,6 +110,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|collect
+operator|.
+name|UnmodifiableIterator
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -422,7 +436,7 @@ block|{
 annotation|@
 name|Override
 specifier|public
-name|Iterator
+name|UnmodifiableIterator
 argument_list|<
 name|N
 argument_list|>
@@ -570,7 +584,7 @@ block|{
 annotation|@
 name|Override
 specifier|public
-name|Iterator
+name|UnmodifiableIterator
 argument_list|<
 name|N
 argument_list|>

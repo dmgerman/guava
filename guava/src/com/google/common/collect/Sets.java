@@ -1667,6 +1667,19 @@ return|return
 name|set
 return|;
 block|}
+comment|/**      * Scope the return type to {@link UnmodifiableIterator} to ensure this is an unmodifiable view.      *      * @since 20.0 (present with return type {@link Iterator} since 2.0)      */
+annotation|@
+name|Override
+DECL|method|iterator ()
+specifier|public
+specifier|abstract
+name|UnmodifiableIterator
+argument_list|<
+name|E
+argument_list|>
+name|iterator
+parameter_list|()
+function_decl|;
 block|}
 comment|/**    * Returns an unmodifiable<b>view</b> of the union of two sets. The returned    * set contains all elements that are contained in either backing set.    * Iterating over the returned set iterates first over all the elements of    * {@code set1}, then over each element of {@code set2}, in order, that is not    * contained in {@code set1}.    *    *<p>Results are undefined if {@code set1} and {@code set2} are sets based on    * different equivalence relations (as {@link HashSet}, {@link TreeSet}, and    * the {@link Map#keySet} of an {@code IdentityHashMap} all are).    */
 DECL|method|union (final Set<? extends E> set1, final Set<? extends E> set2)
@@ -1784,7 +1797,7 @@ block|}
 annotation|@
 name|Override
 specifier|public
-name|Iterator
+name|UnmodifiableIterator
 argument_list|<
 name|E
 argument_list|>
@@ -1979,7 +1992,7 @@ block|{
 annotation|@
 name|Override
 specifier|public
-name|Iterator
+name|UnmodifiableIterator
 argument_list|<
 name|E
 argument_list|>
@@ -2163,7 +2176,7 @@ block|{
 annotation|@
 name|Override
 specifier|public
-name|Iterator
+name|UnmodifiableIterator
 argument_list|<
 name|E
 argument_list|>
@@ -2304,7 +2317,7 @@ block|{
 annotation|@
 name|Override
 specifier|public
-name|Iterator
+name|UnmodifiableIterator
 argument_list|<
 name|E
 argument_list|>

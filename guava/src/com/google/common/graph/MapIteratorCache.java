@@ -361,7 +361,7 @@ block|{
 annotation|@
 name|Override
 specifier|public
-name|Iterator
+name|UnmodifiableIterator
 argument_list|<
 name|K
 argument_list|>
