@@ -733,7 +733,7 @@ name|this
 argument_list|)
 return|;
 block|}
-comment|/**    * A sensible, albeit inefficient, definition of {@link #size} in terms of    * {@code entrySet().size()} and {@link #count}. If you override either of    * these methods, you may wish to override {@link #size} to forward to this    * implementation.    *    * @since 7.0    */
+comment|/**    * A sensible, albeit inefficient, definition of {@link #equals} in terms of    * {@code entrySet().size()} and {@link #count}. If you override either of    * these methods, you may wish to override {@link #equals} to forward to this    * implementation.    *    * @since 7.0    */
 DECL|method|standardEquals (@ullable Object object)
 specifier|protected
 name|boolean
