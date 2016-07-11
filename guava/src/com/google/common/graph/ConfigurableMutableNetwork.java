@@ -349,12 +349,11 @@ name|Endpoints
 operator|.
 name|of
 argument_list|(
+name|this
+argument_list|,
 name|nodeA
 argument_list|,
 name|nodeB
-argument_list|,
-name|isDirected
-argument_list|()
 argument_list|)
 decl_stmt|;
 name|checkArgument

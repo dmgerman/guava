@@ -165,19 +165,9 @@ specifier|final
 name|String
 name|NOT_AVAILABLE_ON_UNDIRECTED
 init|=
-literal|"Cannot call source()/target() on undirected endpoints. Consider calling otherNode() to get "
+literal|"Cannot call source()/target() on the endpoints of an undirected edge. Consider calling "
 operator|+
-literal|"a single node or using the endpoints' iterator to get both nodes."
-decl_stmt|;
-DECL|field|ENDPOINTS_GRAPH_DIRECTEDNESS
-specifier|static
-specifier|final
-name|String
-name|ENDPOINTS_GRAPH_DIRECTEDNESS
-init|=
-literal|"The endpoints' directedness (isDirected = %s) does not match the graph's directedness "
-operator|+
-literal|"(isDirected = %s). A graph cannot have both directed and undirected edges."
+literal|"otherNode() to get a single node or using the endpoints' iterator to get both nodes."
 decl_stmt|;
 DECL|field|EDGE_ALREADY_EXISTS
 specifier|static

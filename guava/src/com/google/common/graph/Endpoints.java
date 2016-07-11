@@ -121,7 +121,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An immutable {@link Collection} to represent the two (possibly equal, in the case of a self-loop)  * endpoints of an edge in a graph.  *  *<p>If an {@link Endpoints} is directed, it is an ordered pair of nodes (source and target).  * Otherwise, it is an unordered pair of nodes that can be accessed through the iterator.  *  * @author James Sexton  * @since 20.0  */
+comment|/**  * An immutable {@link Collection} to represent the two (possibly equal, in the case of a self-loop)  * endpoints of an edge in a graph.  *  *<p>The {@link Endpoints} of a directed edge are an ordered pair of nodes (source and target).  * The {@link Endpoints} of an undirected edge are an unordered pair of nodes. The nodes can be  * accessed through the {@link #iterator()}, and in the directed case, will iterate in the order  * {@link #source()}, {@link #target()}.  *  * @author James Sexton  * @since 20.0  */
 end_comment
 
 begin_class
@@ -183,7 +183,9 @@ name|nodeB
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|of (N nodeA, N nodeB, boolean isDirected)
+comment|/**    * Returns {@link Endpoints} representing the endpoints of an edge in {@code graph}.    */
+DECL|method|of (Graph<?> graph, N nodeA, N nodeB)
+specifier|public
 specifier|static
 parameter_list|<
 name|N
@@ -194,18 +196,24 @@ name|N
 argument_list|>
 name|of
 parameter_list|(
+name|Graph
+argument_list|<
+name|?
+argument_list|>
+name|graph
+parameter_list|,
 name|N
 name|nodeA
 parameter_list|,
 name|N
 name|nodeB
-parameter_list|,
-name|boolean
-name|isDirected
 parameter_list|)
 block|{
 return|return
+name|graph
+operator|.
 name|isDirected
+argument_list|()
 condition|?
 name|ofDirected
 argument_list|(
@@ -222,7 +230,7 @@ name|nodeB
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an {@link Endpoints} representing the endpoints of a directed edge.    */
+comment|/**    * Returns {@link Endpoints} representing the endpoints of a directed edge.    */
 DECL|method|ofDirected (N source, N target)
 specifier|public
 specifier|static
@@ -255,7 +263,7 @@ name|target
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an {@link Endpoints} representing the endpoints of an undirected edge.    */
+comment|/**    * Returns {@link Endpoints} representing the endpoints of an undirected edge.    */
 DECL|method|ofUndirected (N nodeA, N nodeB)
 specifier|public
 specifier|static
@@ -288,15 +296,7 @@ name|nodeB
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns whether the nodes of this {@link Endpoints} are ordered. Generally, this is equal to    * {@link Graph#isDirected()} of the graph that generated this {@link Endpoints}.    */
-DECL|method|isDirected ()
-specifier|public
-specifier|abstract
-name|boolean
-name|isDirected
-parameter_list|()
-function_decl|;
-comment|/**    * If this {@link Endpoints} is directed, returns the node which is the source of the origin edge.    *    * @throws UnsupportedOperationException if this Endpoints is not directed    */
+comment|/**    * If these are the {@link Endpoints} of a directed edge, returns the node which is the source of    * that edge.    *    * @throws UnsupportedOperationException if these are the {@link Endpoints} of a undirected edge    */
 DECL|method|source ()
 specifier|public
 specifier|abstract
@@ -304,7 +304,7 @@ name|N
 name|source
 parameter_list|()
 function_decl|;
-comment|/**    * If this {@link Endpoints} is directed, returns the node which is the target of the origin edge.    *    * @throws UnsupportedOperationException if this Endpoints is not directed    */
+comment|/**    * If these are the {@link Endpoints} of a directed edge, returns the node which is the target of    * that edge.    *    * @throws UnsupportedOperationException if these are the {@link Endpoints} of a undirected edge    */
 DECL|method|target ()
 specifier|public
 specifier|abstract
@@ -312,7 +312,7 @@ name|N
 name|target
 parameter_list|()
 function_decl|;
-comment|/**    * If this {@link Endpoints} is directed, returns the {@link #source()};    * otherwise, returns an arbitrary (but consistent) endpoint of the origin edge.    */
+comment|/**    * If these are the {@link Endpoints} of a directed edge, returns the {@link #source()};    * otherwise, returns an arbitrary (but consistent) endpoint of the origin edge.    */
 DECL|method|nodeA ()
 specifier|final
 name|N
@@ -323,7 +323,7 @@ return|return
 name|nodeA
 return|;
 block|}
-comment|/**    * Returns the node that is adjacent to {@link #nodeA()} via the origin edge.    * If this {@link Endpoints} is directed, this is equal to the {@link #target()}.    */
+comment|/**    * Returns the node that is adjacent to {@link #nodeA()} via the origin edge.    * If these are the {@link Endpoints} of a directed edge, it is equal to the {@link #target()}.    */
 DECL|method|nodeB ()
 specifier|final
 name|N
@@ -525,7 +525,7 @@ name|obj
 argument_list|)
 return|;
 block|}
-comment|/**    * If two {@link Endpoints}s are directed, the source and target must be equal to be considered    * equal. If two {@link Endpoints}s are undirected, the unordered set of nodes must be equal to be    * considered equal. Directed {@link Endpoints} are never equal to undirected {@link Endpoints}.    */
+comment|/**    * The {@link Endpoints} of two directed edges are equal if their {@link #source()} and    * {@link #target()} are equal. The {@link Endpoints} of two undirected edges are equal if they    * contain the same nodes. The {@link Endpoints} of a directed edge are never equal to the    * {@link Endpoints} of an undirected edge.    */
 annotation|@
 name|Override
 DECL|method|equals (Object obj)
@@ -547,8 +547,8 @@ name|int
 name|hashCode
 parameter_list|()
 function_decl|;
+comment|/**    * The {@link Endpoints} of a directed edge. It is guaranteed that all {@link Endpoints} of    * directed edges will be an instance of this class.    */
 DECL|class|Directed
-specifier|private
 specifier|static
 specifier|final
 class|class
@@ -580,18 +580,6 @@ argument_list|,
 name|target
 argument_list|)
 expr_stmt|;
-block|}
-annotation|@
-name|Override
-DECL|method|isDirected ()
-specifier|public
-name|boolean
-name|isDirected
-parameter_list|()
-block|{
-return|return
-literal|true
-return|;
 block|}
 annotation|@
 name|Override
@@ -738,8 +726,8 @@ argument_list|)
 return|;
 block|}
 block|}
+comment|/**    * The {@link Endpoints} of an undirected edge. It is guaranteed that all {@link Endpoints} of    * undirected edges will be an instance of this class.    */
 DECL|class|Undirected
-specifier|private
 specifier|static
 specifier|final
 class|class
@@ -771,18 +759,6 @@ argument_list|,
 name|nodeB
 argument_list|)
 expr_stmt|;
-block|}
-annotation|@
-name|Override
-DECL|method|isDirected ()
-specifier|public
-name|boolean
-name|isDirected
-parameter_list|()
-block|{
-return|return
-literal|false
-return|;
 block|}
 annotation|@
 name|Override
