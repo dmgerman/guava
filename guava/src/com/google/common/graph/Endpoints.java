@@ -232,12 +232,13 @@ return|;
 block|}
 comment|/**    * Returns {@link Endpoints} representing the endpoints of a directed edge.    */
 DECL|method|ofDirected (N source, N target)
-specifier|public
 specifier|static
 parameter_list|<
 name|N
 parameter_list|>
 name|Endpoints
+operator|.
+name|Directed
 argument_list|<
 name|N
 argument_list|>
@@ -265,12 +266,13 @@ return|;
 block|}
 comment|/**    * Returns {@link Endpoints} representing the endpoints of an undirected edge.    */
 DECL|method|ofUndirected (N nodeA, N nodeB)
-specifier|public
 specifier|static
 parameter_list|<
 name|N
 parameter_list|>
 name|Endpoints
+operator|.
+name|Undirected
 argument_list|<
 name|N
 argument_list|>
