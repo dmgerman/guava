@@ -50,6 +50,22 @@ end_import
 
 begin_import
 import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Throwables
+operator|.
+name|throwIfUnchecked
+import|;
+end_import
+
+begin_import
+import|import static
 name|junit
 operator|.
 name|framework
@@ -573,10 +589,14 @@ name|Exception
 name|e
 parameter_list|)
 block|{
+name|throwIfUnchecked
+argument_list|(
+name|e
+argument_list|)
+expr_stmt|;
 throw|throw
-name|Throwables
-operator|.
-name|propagate
+operator|new
+name|RuntimeException
 argument_list|(
 name|e
 argument_list|)
