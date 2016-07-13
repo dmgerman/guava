@@ -1762,6 +1762,11 @@ expr_stmt|;
 block|}
 block|}
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"SelfComparison"
+argument_list|)
 DECL|method|testCompareToAndEquals ( List<T> valuesInExpectedOrder)
 specifier|public
 specifier|static
