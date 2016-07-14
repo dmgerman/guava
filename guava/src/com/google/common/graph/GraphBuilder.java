@@ -308,7 +308,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**    * Specifies the order of iteration for the elements of {@link Network#nodes()}.    */
+comment|/**    * Specifies the order of iteration for the elements of {@link Graph#nodes()}.    */
 DECL|method|nodeOrder (ElementOrder<N1> nodeOrder)
 specifier|public
 parameter_list|<
