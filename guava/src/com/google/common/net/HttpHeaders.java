@@ -244,7 +244,17 @@ name|FROM
 init|=
 literal|"From"
 decl_stmt|;
-comment|/**    * The HTTP {@code Follow-Only-When-Prerender-Shown}</a> header field name.    *    * @since 17.0    */
+comment|/**    * The HTTP<a href="https://tools.ietf.org/html/rfc7239">{@code Forwarded}</a> header field name.    *    * @since 20.0    */
+DECL|field|FORWARDED
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|FORWARDED
+init|=
+literal|"Forwarded"
+decl_stmt|;
+comment|/**    * The HTTP {@code Follow-Only-When-Prerender-Shown} header field name.    *    * @since 17.0    */
 annotation|@
 name|Beta
 DECL|field|FOLLOW_ONLY_WHEN_PRERENDER_SHOWN
@@ -848,7 +858,7 @@ name|X_DO_NOT_TRACK
 init|=
 literal|"X-Do-Not-Track"
 decl_stmt|;
-comment|/** The HTTP {@code X-Forwarded-For} header field name. */
+comment|/** The HTTP {@code X-Forwarded-For} header field name (supersed by {@code Forwarded}). */
 DECL|field|X_FORWARDED_FOR
 specifier|public
 specifier|static
