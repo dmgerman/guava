@@ -219,7 +219,6 @@ return|return
 name|connections
 return|;
 block|}
-comment|/**    * Add an edge between {@code nodeA} and {@code nodeB}; if these nodes are not already    * present in this graph, then add them.    * Return {@code false} if an edge already exists between {@code nodeA} and {@code nodeB},    * and in the same direction.    *    * @throws IllegalArgumentException if self-loops are not allowed, and {@code nodeA} is equal to    *     {@code nodeB}.    */
 annotation|@
 name|Override
 annotation|@
