@@ -463,6 +463,13 @@ name|node
 argument_list|)
 expr_stmt|;
 block|}
+if|if
+condition|(
+name|isDirected
+argument_list|()
+condition|)
+block|{
+comment|// In undirected graphs, the successor and predecessor sets are equal.
 for|for
 control|(
 name|N
@@ -486,6 +493,7 @@ argument_list|(
 name|node
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 name|nodeConnections
 operator|.
