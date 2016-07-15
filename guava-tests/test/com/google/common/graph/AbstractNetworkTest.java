@@ -2984,12 +2984,17 @@ expr_stmt|;
 block|}
 annotation|@
 name|Test
-DECL|method|removeNode_invalidArgument ()
+DECL|method|removeNode_nodeNotPresent ()
 specifier|public
 name|void
-name|removeNode_invalidArgument
+name|removeNode_nodeNotPresent
 parameter_list|()
 block|{
+name|addNode
+argument_list|(
+name|N1
+argument_list|)
+expr_stmt|;
 name|ImmutableSet
 argument_list|<
 name|Integer
@@ -3175,12 +3180,21 @@ expr_stmt|;
 block|}
 annotation|@
 name|Test
-DECL|method|removeEdge_invalidArgument ()
+DECL|method|removeEdge_edgeNotPresent ()
 specifier|public
 name|void
-name|removeEdge_invalidArgument
+name|removeEdge_edgeNotPresent
 parameter_list|()
 block|{
+name|addEdge
+argument_list|(
+name|E12
+argument_list|,
+name|N1
+argument_list|,
+name|N2
+argument_list|)
+expr_stmt|;
 name|ImmutableSet
 argument_list|<
 name|String
