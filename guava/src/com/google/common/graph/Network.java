@@ -223,7 +223,7 @@ name|Object
 name|node
 parameter_list|)
 function_decl|;
-comment|/**    * Returns {@code true} iff {@code object} is a graph that has the same structural relationships    * as those in this graph.    *    *<p>Thus, two graphs A and B are equal if<b>all</b> of the following are true:    *<ul>    *<li>A and B have the same {@link #isDirected() directedness}.    *<li>A and B have the same node set.    *<li>A and B have the same edge set.    *<li>Every edge in A and B connects the same nodes in the same direction (if any).    *</ul>    *    *<p>Graph properties are<b>not</b> respected by this method. For example, two graphs may be    * considered equal even if one allows parallel edges and the other doesn't. Additionally, the    * order in which edges or nodes are added to the graph, and the order in which they are iterated    * over, are irrelevant.    *    *<p>Note: {@link Network} instances can only be equal to other {@link Network} instances.    * In particular, {@link Graph}s that are not also {@link Network}s cannot be equal to    * {@link Network}s.    *    *<p>A reference implementation of this is provided by {@link Graphs#equal(Network, Network)}.    */
+comment|/**    * Returns {@code true} iff {@code object} is a graph that has the same structural relationships    * as those in this graph.    *    *<p>Thus, two graphs A and B are equal if<b>all</b> of the following are true:    *<ul>    *<li>A and B have the same {@link #isDirected() directedness}.    *<li>A and B have the same node set.    *<li>A and B have the same edge set.    *<li>Every edge in A and B connects the same nodes in the same direction (if any).    *</ul>    *    *<p>Graph properties are<b>not</b> respected by this method. For example, two graphs may be    * considered equal even if one allows parallel edges and the other doesn't. Additionally, the    * order in which edges or nodes are added to the graph, and the order in which they are iterated    * over, are irrelevant.    *    *<p>Note: {@link Network} instances can only be equal to other {@link Network} instances.    * In particular, {@link Graph}s that are not also {@link Network}s cannot be equal to    * {@link Network}s.    *    *<p>A reference implementation of this is provided by {@link AbstractNetwork#equals(Object)}.    */
 annotation|@
 name|Override
 DECL|method|equals (@ullable Object object)
@@ -236,7 +236,7 @@ name|Object
 name|object
 parameter_list|)
 function_decl|;
-comment|/**    * Returns the hash code for this graph. The hash code of a graph is defined as the hash code    * of a map from each of the graph's nodes to its outgoing edges.    *    *<p>A reference implementation of this is provided by {@link Graphs#hashCode(Graph)}.    */
+comment|/**    * Returns the hash code for this graph. The hash code of a graph is defined as the hash code    * of a map from each of the graph's nodes to its outgoing edges.    *    *<p>A reference implementation of this is provided by {@link AbstractNetwork#hashCode()}.    */
 annotation|@
 name|Override
 DECL|method|hashCode ()

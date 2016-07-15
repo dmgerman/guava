@@ -185,6 +185,14 @@ name|NETWORK_WITH_PARALLEL_EDGE
 init|=
 literal|"Cannot make a Graph copy of a Network that allows parallel edges."
 decl_stmt|;
+DECL|field|GRAPH_STRING_FORMAT
+specifier|static
+specifier|final
+name|String
+name|GRAPH_STRING_FORMAT
+init|=
+literal|"%s, nodes: %s, edges: %s"
+decl_stmt|;
 block|}
 end_class
 
