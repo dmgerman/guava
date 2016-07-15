@@ -273,7 +273,7 @@ name|Map
 argument_list|<
 name|N
 argument_list|,
-name|NodeConnections
+name|NetworkConnections
 argument_list|<
 name|N
 argument_list|,
@@ -300,7 +300,7 @@ name|Builder
 argument_list|<
 name|N
 argument_list|,
-name|NodeConnections
+name|NetworkConnections
 argument_list|<
 name|N
 argument_list|,
@@ -331,7 +331,7 @@ name|put
 argument_list|(
 name|node
 argument_list|,
-name|nodeConnectionsOf
+name|connectionsOf
 argument_list|(
 name|graph
 argument_list|,
@@ -426,7 +426,7 @@ name|build
 argument_list|()
 return|;
 block|}
-DECL|method|nodeConnectionsOf (Network<N, E> graph, N node)
+DECL|method|connectionsOf (Network<N, E> graph, N node)
 specifier|private
 specifier|static
 parameter_list|<
@@ -434,13 +434,13 @@ name|N
 parameter_list|,
 name|E
 parameter_list|>
-name|NodeConnections
+name|NetworkConnections
 argument_list|<
 name|N
 argument_list|,
 name|E
 argument_list|>
-name|nodeConnectionsOf
+name|connectionsOf
 parameter_list|(
 name|Network
 argument_list|<
@@ -551,7 +551,7 @@ operator|.
 name|allowsParallelEdges
 argument_list|()
 condition|?
-name|DirectedMultiNodeConnections
+name|DirectedMultiNetworkConnections
 operator|.
 name|ofImmutable
 argument_list|(
@@ -562,7 +562,7 @@ argument_list|,
 name|selfLoopCount
 argument_list|)
 else|:
-name|DirectedNodeConnections
+name|DirectedNetworkConnections
 operator|.
 name|ofImmutable
 argument_list|(
@@ -609,14 +609,14 @@ operator|.
 name|allowsParallelEdges
 argument_list|()
 condition|?
-name|UndirectedMultiNodeConnections
+name|UndirectedMultiNetworkConnections
 operator|.
 name|ofImmutable
 argument_list|(
 name|incidentEdgeMap
 argument_list|)
 else|:
-name|UndirectedNodeConnections
+name|UndirectedNetworkConnections
 operator|.
 name|ofImmutable
 argument_list|(

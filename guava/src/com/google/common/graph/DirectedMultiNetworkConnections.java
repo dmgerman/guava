@@ -197,30 +197,30 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An implementation of {@link NodeConnections} for directed networks with parallel edges.  *  * @author James Sexton  * @param<N> Node parameter type  * @param<E> Edge parameter type  */
+comment|/**  * An implementation of {@link NetworkConnections} for directed networks with parallel edges.  *  * @author James Sexton  * @param<N> Node parameter type  * @param<E> Edge parameter type  */
 end_comment
 
 begin_class
-DECL|class|DirectedMultiNodeConnections
+DECL|class|DirectedMultiNetworkConnections
 specifier|final
 class|class
-name|DirectedMultiNodeConnections
+name|DirectedMultiNetworkConnections
 parameter_list|<
 name|N
 parameter_list|,
 name|E
 parameter_list|>
 extends|extends
-name|AbstractDirectedNodeConnections
+name|AbstractDirectedNetworkConnections
 argument_list|<
 name|N
 argument_list|,
 name|E
 argument_list|>
 block|{
-DECL|method|DirectedMultiNodeConnections (Map<E, N> inEdges, Map<E, N> outEdges, int selfLoopCount)
+DECL|method|DirectedMultiNetworkConnections ( Map<E, N> inEdges, Map<E, N> outEdges, int selfLoopCount)
 specifier|private
-name|DirectedMultiNodeConnections
+name|DirectedMultiNetworkConnections
 parameter_list|(
 name|Map
 argument_list|<
@@ -259,7 +259,7 @@ name|N
 parameter_list|,
 name|E
 parameter_list|>
-name|DirectedMultiNodeConnections
+name|DirectedMultiNetworkConnections
 argument_list|<
 name|N
 argument_list|,
@@ -270,7 +270,7 @@ parameter_list|()
 block|{
 return|return
 operator|new
-name|DirectedMultiNodeConnections
+name|DirectedMultiNetworkConnections
 argument_list|<
 name|N
 argument_list|,
@@ -314,7 +314,7 @@ name|N
 parameter_list|,
 name|E
 parameter_list|>
-name|DirectedMultiNodeConnections
+name|DirectedMultiNetworkConnections
 argument_list|<
 name|N
 argument_list|,
@@ -344,7 +344,7 @@ parameter_list|)
 block|{
 return|return
 operator|new
-name|DirectedMultiNodeConnections
+name|DirectedMultiNetworkConnections
 argument_list|<
 name|N
 argument_list|,

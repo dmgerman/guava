@@ -233,12 +233,12 @@ return|return
 literal|true
 return|;
 block|}
-comment|/**    * Adds {@code node} to the graph and returns the associated {@link NodeConnections}.    *    * @throws IllegalStateException if {@code node} is already present    */
+comment|/**    * Adds {@code node} to the graph and returns the associated {@link NetworkConnections}.    *    * @throws IllegalStateException if {@code node} is already present    */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|addNodeInternal (N node)
 specifier|private
-name|NodeConnections
+name|NetworkConnections
 argument_list|<
 name|N
 argument_list|,
@@ -250,7 +250,7 @@ name|N
 name|node
 parameter_list|)
 block|{
-name|NodeConnections
+name|NetworkConnections
 argument_list|<
 name|N
 argument_list|,
@@ -258,7 +258,7 @@ name|E
 argument_list|>
 name|connections
 init|=
-name|newNodeConnections
+name|newConnections
 argument_list|()
 decl_stmt|;
 name|checkState
@@ -377,7 +377,7 @@ return|return
 literal|false
 return|;
 block|}
-name|NodeConnections
+name|NetworkConnections
 argument_list|<
 name|N
 argument_list|,
@@ -478,7 +478,7 @@ argument_list|,
 name|nodeB
 argument_list|)
 expr_stmt|;
-name|NodeConnections
+name|NetworkConnections
 argument_list|<
 name|N
 argument_list|,
@@ -552,7 +552,7 @@ argument_list|,
 literal|"node"
 argument_list|)
 expr_stmt|;
-name|NodeConnections
+name|NetworkConnections
 argument_list|<
 name|N
 argument_list|,
@@ -654,7 +654,7 @@ return|return
 literal|false
 return|;
 block|}
-name|NodeConnections
+name|NetworkConnections
 argument_list|<
 name|N
 argument_list|,
@@ -679,7 +679,7 @@ argument_list|(
 name|edge
 argument_list|)
 decl_stmt|;
-name|NodeConnections
+name|NetworkConnections
 argument_list|<
 name|N
 argument_list|,
@@ -729,15 +729,15 @@ return|return
 literal|true
 return|;
 block|}
-DECL|method|newNodeConnections ()
+DECL|method|newConnections ()
 specifier|private
-name|NodeConnections
+name|NetworkConnections
 argument_list|<
 name|N
 argument_list|,
 name|E
 argument_list|>
-name|newNodeConnections
+name|newConnections
 parameter_list|()
 block|{
 return|return
@@ -747,7 +747,7 @@ condition|?
 name|allowsParallelEdges
 argument_list|()
 condition|?
-name|DirectedMultiNodeConnections
+name|DirectedMultiNetworkConnections
 operator|.
 expr|<
 name|N
@@ -757,7 +757,7 @@ operator|>
 name|of
 argument_list|()
 operator|:
-name|DirectedNodeConnections
+name|DirectedNetworkConnections
 operator|.
 expr|<
 name|N
@@ -770,7 +770,7 @@ operator|:
 name|allowsParallelEdges
 argument_list|()
 condition|?
-name|UndirectedMultiNodeConnections
+name|UndirectedMultiNetworkConnections
 operator|.
 expr|<
 name|N
@@ -780,7 +780,7 @@ operator|>
 name|of
 argument_list|()
 operator|:
-name|UndirectedNodeConnections
+name|UndirectedNetworkConnections
 operator|.
 expr|<
 name|N

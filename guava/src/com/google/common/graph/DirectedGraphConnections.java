@@ -209,15 +209,15 @@ comment|/**  * A class representing an origin node's adjacent nodes in a directe
 end_comment
 
 begin_class
-DECL|class|DirectedNodeAdjacencies
+DECL|class|DirectedGraphConnections
 specifier|final
 class|class
-name|DirectedNodeAdjacencies
+name|DirectedGraphConnections
 parameter_list|<
 name|N
 parameter_list|>
 implements|implements
-name|NodeAdjacencies
+name|GraphConnections
 argument_list|<
 name|N
 argument_list|>
@@ -256,9 +256,9 @@ specifier|private
 name|int
 name|successorCount
 decl_stmt|;
-DECL|method|DirectedNodeAdjacencies ( Map<N, Adjacency> adjacentNodes, int predecessorCount, int successorCount)
+DECL|method|DirectedGraphConnections ( Map<N, Adjacency> adjacentNodes, int predecessorCount, int successorCount)
 specifier|private
-name|DirectedNodeAdjacencies
+name|DirectedGraphConnections
 parameter_list|(
 name|Map
 argument_list|<
@@ -304,7 +304,7 @@ specifier|static
 parameter_list|<
 name|N
 parameter_list|>
-name|DirectedNodeAdjacencies
+name|DirectedGraphConnections
 argument_list|<
 name|N
 argument_list|>
@@ -321,7 +321,7 @@ literal|2
 decl_stmt|;
 return|return
 operator|new
-name|DirectedNodeAdjacencies
+name|DirectedGraphConnections
 argument_list|<
 name|N
 argument_list|>
@@ -350,7 +350,7 @@ specifier|static
 parameter_list|<
 name|N
 parameter_list|>
-name|DirectedNodeAdjacencies
+name|DirectedGraphConnections
 argument_list|<
 name|N
 argument_list|>
@@ -373,7 +373,7 @@ parameter_list|)
 block|{
 return|return
 operator|new
-name|DirectedNodeAdjacencies
+name|DirectedGraphConnections
 argument_list|<
 name|N
 argument_list|>

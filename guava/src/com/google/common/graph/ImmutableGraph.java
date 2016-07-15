@@ -102,7 +102,7 @@ name|common
 operator|.
 name|graph
 operator|.
-name|DirectedNodeAdjacencies
+name|DirectedGraphConnections
 operator|.
 name|Adjacency
 import|;
@@ -285,7 +285,7 @@ name|ImmutableMap
 argument_list|<
 name|N
 argument_list|,
-name|NodeAdjacencies
+name|GraphConnections
 argument_list|<
 name|N
 argument_list|>
@@ -308,7 +308,7 @@ name|Builder
 argument_list|<
 name|N
 argument_list|,
-name|NodeAdjacencies
+name|GraphConnections
 argument_list|<
 name|N
 argument_list|>
@@ -337,7 +337,7 @@ name|put
 argument_list|(
 name|node
 argument_list|,
-name|nodeConnectionsOf
+name|connectionsOf
 argument_list|(
 name|graph
 argument_list|,
@@ -353,17 +353,17 @@ name|build
 argument_list|()
 return|;
 block|}
-DECL|method|nodeConnectionsOf (Graph<N> graph, N node)
+DECL|method|connectionsOf (Graph<N> graph, N node)
 specifier|private
 specifier|static
 parameter_list|<
 name|N
 parameter_list|>
-name|NodeAdjacencies
+name|GraphConnections
 argument_list|<
 name|N
 argument_list|>
-name|nodeConnectionsOf
+name|connectionsOf
 parameter_list|(
 name|Graph
 argument_list|<
@@ -381,7 +381,7 @@ operator|.
 name|isDirected
 argument_list|()
 condition|?
-name|DirectedNodeAdjacencies
+name|DirectedGraphConnections
 operator|.
 name|ofImmutable
 argument_list|(
@@ -413,7 +413,7 @@ name|size
 argument_list|()
 argument_list|)
 else|:
-name|UndirectedNodeAdjacencies
+name|UndirectedGraphConnections
 operator|.
 name|ofImmutable
 argument_list|(

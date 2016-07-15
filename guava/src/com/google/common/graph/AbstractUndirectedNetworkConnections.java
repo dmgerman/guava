@@ -79,21 +79,21 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A base implementation of {@link NodeConnections} for undirected networks.  *  * @author James Sexton  * @param<N> Node parameter type  * @param<E> Edge parameter type  */
+comment|/**  * A base implementation of {@link NetworkConnections} for undirected networks.  *  * @author James Sexton  * @param<N> Node parameter type  * @param<E> Edge parameter type  */
 end_comment
 
 begin_class
-DECL|class|AbstractUndirectedNodeConnections
+DECL|class|AbstractUndirectedNetworkConnections
 specifier|abstract
 class|class
-name|AbstractUndirectedNodeConnections
+name|AbstractUndirectedNetworkConnections
 parameter_list|<
 name|N
 parameter_list|,
 name|E
 parameter_list|>
 implements|implements
-name|NodeConnections
+name|NetworkConnections
 argument_list|<
 name|N
 argument_list|,
@@ -112,9 +112,9 @@ name|N
 argument_list|>
 name|incidentEdgeMap
 decl_stmt|;
-DECL|method|AbstractUndirectedNodeConnections (Map<E, N> incidentEdgeMap)
+DECL|method|AbstractUndirectedNetworkConnections (Map<E, N> incidentEdgeMap)
 specifier|protected
-name|AbstractUndirectedNodeConnections
+name|AbstractUndirectedNetworkConnections
 parameter_list|(
 name|Map
 argument_list|<

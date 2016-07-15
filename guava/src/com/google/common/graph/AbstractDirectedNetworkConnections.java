@@ -145,21 +145,21 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A base implementation of {@link NodeConnections} for directed networks.  *  * @author James Sexton  * @param<N> Node parameter type  * @param<E> Edge parameter type  */
+comment|/**  * A base implementation of {@link NetworkConnections} for directed networks.  *  * @author James Sexton  * @param<N> Node parameter type  * @param<E> Edge parameter type  */
 end_comment
 
 begin_class
-DECL|class|AbstractDirectedNodeConnections
+DECL|class|AbstractDirectedNetworkConnections
 specifier|abstract
 class|class
-name|AbstractDirectedNodeConnections
+name|AbstractDirectedNetworkConnections
 parameter_list|<
 name|N
 parameter_list|,
 name|E
 parameter_list|>
 implements|implements
-name|NodeConnections
+name|NetworkConnections
 argument_list|<
 name|N
 argument_list|,
@@ -195,9 +195,9 @@ specifier|private
 name|int
 name|selfLoopCount
 decl_stmt|;
-DECL|method|AbstractDirectedNodeConnections (Map<E, N> inEdgeMap, Map<E, N> outEdgeMap, int selfLoopCount)
+DECL|method|AbstractDirectedNetworkConnections (Map<E, N> inEdgeMap, Map<E, N> outEdgeMap, int selfLoopCount)
 specifier|protected
-name|AbstractDirectedNodeConnections
+name|AbstractDirectedNetworkConnections
 parameter_list|(
 name|Map
 argument_list|<

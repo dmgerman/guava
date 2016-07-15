@@ -197,30 +197,30 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An implementation of {@link NodeConnections} for undirected networks with parallel edges.  *  * @author James Sexton  * @param<N> Node parameter type  * @param<E> Edge parameter type  */
+comment|/**  * An implementation of {@link NetworkConnections} for undirected networks with parallel edges.  *  * @author James Sexton  * @param<N> Node parameter type  * @param<E> Edge parameter type  */
 end_comment
 
 begin_class
-DECL|class|UndirectedMultiNodeConnections
+DECL|class|UndirectedMultiNetworkConnections
 specifier|final
 class|class
-name|UndirectedMultiNodeConnections
+name|UndirectedMultiNetworkConnections
 parameter_list|<
 name|N
 parameter_list|,
 name|E
 parameter_list|>
 extends|extends
-name|AbstractUndirectedNodeConnections
+name|AbstractUndirectedNetworkConnections
 argument_list|<
 name|N
 argument_list|,
 name|E
 argument_list|>
 block|{
-DECL|method|UndirectedMultiNodeConnections (Map<E, N> incidentEdges)
+DECL|method|UndirectedMultiNetworkConnections (Map<E, N> incidentEdges)
 specifier|private
-name|UndirectedMultiNodeConnections
+name|UndirectedMultiNetworkConnections
 parameter_list|(
 name|Map
 argument_list|<
@@ -244,7 +244,7 @@ name|N
 parameter_list|,
 name|E
 parameter_list|>
-name|UndirectedMultiNodeConnections
+name|UndirectedMultiNetworkConnections
 argument_list|<
 name|N
 argument_list|,
@@ -255,7 +255,7 @@ parameter_list|()
 block|{
 return|return
 operator|new
-name|UndirectedMultiNodeConnections
+name|UndirectedMultiNetworkConnections
 argument_list|<
 name|N
 argument_list|,
@@ -284,7 +284,7 @@ name|N
 parameter_list|,
 name|E
 parameter_list|>
-name|UndirectedMultiNodeConnections
+name|UndirectedMultiNetworkConnections
 argument_list|<
 name|N
 argument_list|,
@@ -303,7 +303,7 @@ parameter_list|)
 block|{
 return|return
 operator|new
-name|UndirectedMultiNodeConnections
+name|UndirectedMultiNetworkConnections
 argument_list|<
 name|N
 argument_list|,

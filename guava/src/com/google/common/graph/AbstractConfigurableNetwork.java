@@ -181,7 +181,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Abstract configurable implementation of {@link Network} that supports the options supplied  * by {@link NetworkBuilder}.  *  *<p>This class maintains a map of nodes to {@link NodeConnections}. This class also maintains  * a map of edges to reference nodes. The reference node is defined to be the edge's source node  * on directed graphs, and an arbitrary endpoint of the edge on undirected graphs.  *  *<p>{@code Set}-returning accessors return unmodifiable views: the view returned will reflect  * changes to the graph (if the graph is mutable) but may not be modified by the user.  * The behavior of the returned view is undefined in the following cases:  *<ul>  *<li>Removing the element on which the accessor is called (e.g.:  *<pre>{@code  *     Set<N> adjacentNodes = adjacentNodes(node);  *     graph.removeNode(node);}</pre>  *     At this point, the contents of {@code adjacentNodes} are undefined.  *</ul>  *  *<p>The time complexity of all {@code Set}-returning accessors is O(1), since views are returned.  *  * @author James Sexton  * @author Joshua O'Madadhain  * @author Omar Darwish  * @param<N> Node parameter type  * @param<E> Edge parameter type  */
+comment|/**  * Abstract configurable implementation of {@link Network} that supports the options supplied  * by {@link NetworkBuilder}.  *  *<p>This class maintains a map of nodes to {@link NetworkConnections}. This class also maintains  * a map of edges to reference nodes. The reference node is defined to be the edge's source node  * on directed graphs, and an arbitrary endpoint of the edge on undirected graphs.  *  *<p>{@code Set}-returning accessors return unmodifiable views: the view returned will reflect  * changes to the graph (if the graph is mutable) but may not be modified by the user.  * The behavior of the returned view is undefined in the following cases:  *<ul>  *<li>Removing the element on which the accessor is called (e.g.:  *<pre>{@code  *     Set<N> adjacentNodes = adjacentNodes(node);  *     graph.removeNode(node);}</pre>  *     At this point, the contents of {@code adjacentNodes} are undefined.  *</ul>  *  *<p>The time complexity of all {@code Set}-returning accessors is O(1), since views are returned.  *  * @author James Sexton  * @author Joshua O'Madadhain  * @author Omar Darwish  * @param<N> Node parameter type  * @param<E> Edge parameter type  */
 end_comment
 
 begin_class
@@ -249,7 +249,7 @@ name|MapIteratorCache
 argument_list|<
 name|N
 argument_list|,
-name|NodeConnections
+name|NetworkConnections
 argument_list|<
 name|N
 argument_list|,
@@ -300,7 +300,7 @@ operator|.
 expr|<
 name|N
 argument_list|,
-name|NodeConnections
+name|NetworkConnections
 argument_list|<
 name|N
 argument_list|,
@@ -343,7 +343,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Constructs a graph with the properties specified in {@code builder}, initialized with    * the given node and edge maps.    */
-DECL|method|AbstractConfigurableNetwork (NetworkBuilder<? super N, ? super E> builder, Map<N, NodeConnections<N, E>> nodeConnections, Map<E, N> edgeToReferenceNode)
+DECL|method|AbstractConfigurableNetwork (NetworkBuilder<? super N, ? super E> builder, Map<N, NetworkConnections<N, E>> nodeConnections, Map<E, N> edgeToReferenceNode)
 name|AbstractConfigurableNetwork
 parameter_list|(
 name|NetworkBuilder
@@ -362,7 +362,7 @@ name|Map
 argument_list|<
 name|N
 argument_list|,
-name|NodeConnections
+name|NetworkConnections
 argument_list|<
 name|N
 argument_list|,
@@ -437,7 +437,7 @@ name|MapRetrievalCache
 argument_list|<
 name|N
 argument_list|,
-name|NodeConnections
+name|NetworkConnections
 argument_list|<
 name|N
 argument_list|,
@@ -453,7 +453,7 @@ name|MapIteratorCache
 argument_list|<
 name|N
 argument_list|,
-name|NodeConnections
+name|NetworkConnections
 argument_list|<
 name|N
 argument_list|,
@@ -771,7 +771,7 @@ name|Object
 name|nodeB
 parameter_list|)
 block|{
-name|NodeConnections
+name|NetworkConnections
 argument_list|<
 name|N
 argument_list|,
@@ -924,7 +924,7 @@ block|}
 DECL|method|checkedConnections (Object node)
 specifier|protected
 specifier|final
-name|NodeConnections
+name|NetworkConnections
 argument_list|<
 name|N
 argument_list|,
@@ -943,7 +943,7 @@ argument_list|,
 literal|"node"
 argument_list|)
 expr_stmt|;
-name|NodeConnections
+name|NetworkConnections
 argument_list|<
 name|N
 argument_list|,

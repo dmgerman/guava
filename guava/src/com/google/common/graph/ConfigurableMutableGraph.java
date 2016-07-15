@@ -177,12 +177,12 @@ return|return
 literal|true
 return|;
 block|}
-comment|/**    * Adds {@code node} to the graph and returns the associated {@link NodeAdjacencies}.    *    * @throws IllegalStateException if {@code node} is already present    */
+comment|/**    * Adds {@code node} to the graph and returns the associated {@link GraphConnections}.    *    * @throws IllegalStateException if {@code node} is already present    */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|addNodeInternal (N node)
 specifier|private
-name|NodeAdjacencies
+name|GraphConnections
 argument_list|<
 name|N
 argument_list|>
@@ -192,13 +192,13 @@ name|N
 name|node
 parameter_list|)
 block|{
-name|NodeAdjacencies
+name|GraphConnections
 argument_list|<
 name|N
 argument_list|>
 name|connections
 init|=
-name|newNodeConnections
+name|newConnections
 argument_list|()
 decl_stmt|;
 name|checkState
@@ -249,7 +249,7 @@ argument_list|,
 literal|"nodeB"
 argument_list|)
 expr_stmt|;
-name|NodeAdjacencies
+name|GraphConnections
 argument_list|<
 name|N
 argument_list|>
@@ -334,7 +334,7 @@ argument_list|(
 name|nodeB
 argument_list|)
 expr_stmt|;
-name|NodeAdjacencies
+name|GraphConnections
 argument_list|<
 name|N
 argument_list|>
@@ -393,7 +393,7 @@ argument_list|,
 literal|"node"
 argument_list|)
 expr_stmt|;
-name|NodeAdjacencies
+name|GraphConnections
 argument_list|<
 name|N
 argument_list|>
@@ -528,7 +528,7 @@ argument_list|,
 literal|"nodeB"
 argument_list|)
 expr_stmt|;
-name|NodeAdjacencies
+name|GraphConnections
 argument_list|<
 name|N
 argument_list|>
@@ -563,7 +563,7 @@ return|return
 literal|false
 return|;
 block|}
-name|NodeAdjacencies
+name|GraphConnections
 argument_list|<
 name|N
 argument_list|>
@@ -594,20 +594,20 @@ return|return
 literal|true
 return|;
 block|}
-DECL|method|newNodeConnections ()
+DECL|method|newConnections ()
 specifier|private
-name|NodeAdjacencies
+name|GraphConnections
 argument_list|<
 name|N
 argument_list|>
-name|newNodeConnections
+name|newConnections
 parameter_list|()
 block|{
 return|return
 name|isDirected
 argument_list|()
 condition|?
-name|DirectedNodeAdjacencies
+name|DirectedGraphConnections
 operator|.
 expr|<
 name|N
@@ -615,7 +615,7 @@ operator|>
 name|of
 argument_list|()
 else|:
-name|UndirectedNodeAdjacencies
+name|UndirectedGraphConnections
 operator|.
 expr|<
 name|N
