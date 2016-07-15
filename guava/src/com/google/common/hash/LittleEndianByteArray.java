@@ -32,21 +32,21 @@ end_import
 
 begin_import
 import|import
-name|sun
-operator|.
-name|misc
-operator|.
-name|Unsafe
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|nio
 operator|.
 name|ByteOrder
+import|;
+end_import
+
+begin_import
+import|import
+name|sun
+operator|.
+name|misc
+operator|.
+name|Unsafe
 import|;
 end_import
 

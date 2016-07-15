@@ -144,20 +144,6 @@ end_import
 
 begin_import
 import|import
-name|org
-operator|.
-name|codehaus
-operator|.
-name|mojo
-operator|.
-name|animal_sniffer
-operator|.
-name|IgnoreJRERequirement
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|lang
@@ -289,6 +275,20 @@ operator|.
 name|annotation
 operator|.
 name|Nullable
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|codehaus
+operator|.
+name|mojo
+operator|.
+name|animal_sniffer
+operator|.
+name|IgnoreJRERequirement
 import|;
 end_import
 
