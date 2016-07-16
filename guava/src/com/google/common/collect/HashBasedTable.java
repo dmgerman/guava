@@ -90,7 +90,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|HashMap
+name|LinkedHashMap
 import|;
 end_import
 
@@ -115,7 +115,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Implementation of {@link Table} using hash tables.  *  *<p>The views returned by {@link #column}, {@link #columnKeySet()}, and {@link  * #columnMap()} have iterators that don't support {@code remove()}. Otherwise,  * all optional operations are supported. Null row keys, columns keys, and  * values are not supported.  *  *<p>Lookups by row key are often faster than lookups by column key, because  * the data is stored in a {@code Map<R, Map<C, V>>}. A method call like {@code  * column(columnKey).get(rowKey)} still runs quickly, since the row key is  * provided. However, {@code column(columnKey).size()} takes longer, since an  * iteration across all row keys occurs.  *  *<p>Note that this implementation is not synchronized. If multiple threads  * access this table concurrently and one of the threads modifies the table, it  * must be synchronized externally.  *  *<p>See the Guava User Guide article on<a href=  * "https://github.com/google/guava/wiki/NewCollectionTypesExplained#table">  * {@code Table}</a>.  *  * @author Jared Levy  * @since 7.0  */
+comment|/**  * Implementation of {@link Table} using linked hash tables. This guarantees predictable iteration  * order of the various views.  *  *<p>The views returned by {@link #column}, {@link #columnKeySet()}, and {@link  * #columnMap()} have iterators that don't support {@code remove()}. Otherwise,  * all optional operations are supported. Null row keys, columns keys, and  * values are not supported.  *  *<p>Lookups by row key are often faster than lookups by column key, because  * the data is stored in a {@code Map<R, Map<C, V>>}. A method call like {@code  * column(columnKey).get(rowKey)} still runs quickly, since the row key is  * provided. However, {@code column(columnKey).size()} takes longer, since an  * iteration across all row keys occurs.  *  *<p>Note that this implementation is not synchronized. If multiple threads  * access this table concurrently and one of the threads modifies the table, it  * must be synchronized externally.  *  *<p>See the Guava User Guide article on<a href=  * "https://github.com/google/guava/wiki/NewCollectionTypesExplained#table">  * {@code Table}</a>.  *  * @author Jared Levy  * @since 7.0  */
 end_comment
 
 begin_class
@@ -205,7 +205,7 @@ block|{
 return|return
 name|Maps
 operator|.
-name|newHashMapWithExpectedSize
+name|newLinkedHashMapWithExpectedSize
 argument_list|(
 name|expectedSize
 argument_list|)
@@ -255,7 +255,7 @@ name|V
 argument_list|>
 argument_list|(
 operator|new
-name|HashMap
+name|LinkedHashMap
 argument_list|<
 name|R
 argument_list|,
@@ -331,7 +331,7 @@ name|backingMap
 init|=
 name|Maps
 operator|.
-name|newHashMapWithExpectedSize
+name|newLinkedHashMapWithExpectedSize
 argument_list|(
 name|expectedRows
 argument_list|)
