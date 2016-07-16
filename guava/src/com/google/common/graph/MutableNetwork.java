@@ -45,7 +45,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A subtype of {@link Network} which permits mutations.  * Users should generally use the {@link Network} interface where possible.  *  * @author James Sexton  * @author Joshua O'Madadhain  * @param<N> Node parameter type  * @param<E> Edge parameter type  * @since 20.0  */
+comment|/**  * A subinterface of {@link Network} which adds mutation methods. When mutation is not required,  * users should prefer the {@link Network} interface.  *  * @author James Sexton  * @author Joshua O'Madadhain  * @param<N> Node parameter type  * @param<E> Edge parameter type  * @since 20.0  */
 end_comment
 
 begin_interface
@@ -79,7 +79,7 @@ name|N
 name|node
 parameter_list|)
 function_decl|;
-comment|/**    * Adds {@code edge} connecting {@code nodeA} to {@code nodeB}.    *    *<p><b>Edges must be unique</b>, just as {@code Map} keys must be. They must also be non-null.    *    *<p>Behavior if {@code nodeA} and {@code nodeB} are not already present in this graph is    * implementation-dependent. Suggested behaviors include (a) silently {@link #addNode(Object)    * adding} {@code nodeA} and {@code nodeB} to the graph (this is the behavior of the default    * implementations) or (b) throwing {@code IllegalArgumentException}.    *    *<p>If {@code edge} already connects {@code nodeA} to {@code nodeB} (in the specified order if    * this graph {@link #isDirected()}, else in any order), then this method will have no effect.    *    * @return {@code true} iff the graph was modified as a result of this call    * @throws IllegalArgumentException if {@code edge} already exists and does not connect    *     {@code nodeA} to {@code nodeB}, or if the introduction of the edge would violate    *     {@link #allowsParallelEdges()} or {@link #allowsSelfLoops()}    */
+comment|/**    * Adds {@code edge} connecting {@code nodeA} to {@code nodeB}.    *    *<p><b>Edges must be unique</b>, just as {@code Map} keys must be. They must also be non-null.    *    *<p>Behavior if {@code nodeA} and {@code nodeB} are not already present in this graph is    * implementation-dependent. Suggested behaviors include (a) silently {@link #addNode(Object)    * adding} {@code nodeA} and {@code nodeB} to the graph (this is the behavior of the default    * implementations) or (b) throwing {@code IllegalArgumentException}.    *    *<p>If {@code edge} already connects {@code nodeA} to {@code nodeB} (in the specified order if    * this graph {@link #isDirected()}, else in any order), then this method will have no effect.    *    * @return {@code true} iff the graph was modified as a result of this call    * @throws IllegalArgumentException if {@code edge} already exists and does not connect {@code    *     nodeA} to {@code nodeB}, or if the introduction of the edge would violate {@link    *     #allowsParallelEdges()} or {@link #allowsSelfLoops()}    */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|addEdge (N nodeA, N nodeB, E edge)

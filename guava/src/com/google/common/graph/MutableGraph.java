@@ -45,7 +45,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A subtype of {@link Graph} which permits mutations.  * Users should generally use the {@link Graph} interface where possible.  *  * @author James Sexton  * @param<N> Node parameter type  * @param<V> Value parameter type  * @since 20.0  */
+comment|/**  * A subinterface of {@link Graph} which adds mutation methods. When mutation is not required, users  * should prefer the {@link Graph} interface.  *  * @author James Sexton  * @param<N> Node parameter type  * @param<V> Value parameter type  * @since 20.0  */
 end_comment
 
 begin_interface
@@ -79,7 +79,7 @@ name|N
 name|node
 parameter_list|)
 function_decl|;
-comment|/**    * Adds an edge connecting {@code nodeA} to {@code nodeB} if one is not already present.    * Associates {@code value} with that edge (as returned by {@link #edgeValue(Object, Object)}).    *    *<p>Values do not have to be unique. However, values must be non-null.    *    *<p>Behavior if {@code nodeA} and {@code nodeB} are not already present in this graph is    * implementation-dependent. Suggested behaviors include (a) silently {@link #addNode(Object)    * adding} {@code nodeA} and {@code nodeB} to the graph (this is the behavior of the default    * implementations) or (b) throwing {@code IllegalArgumentException}.    *    * @return the value previously associated with the edge connecting {@code nodeA} to    *     {@code nodeB}, or null if there was no edge.    * @throws IllegalArgumentException if the introduction of the edge would violate    *     {@link #allowsSelfLoops()}    */
+comment|/**    * Adds an edge connecting {@code nodeA} to {@code nodeB} if one is not already present.    * Associates {@code value} with that edge (as returned by {@link #edgeValue(Object, Object)}).    *    *<p>Values do not have to be unique. However, values must be non-null.    *    *<p>Behavior if {@code nodeA} and {@code nodeB} are not already present in this graph is    * implementation-dependent. Suggested behaviors include (a) silently {@link #addNode(Object)    * adding} {@code nodeA} and {@code nodeB} to the graph (this is the behavior of the default    * implementations) or (b) throwing {@code IllegalArgumentException}.    *    * @return the value previously associated with the edge connecting {@code nodeA} to {@code    *     nodeB}, or null if there was no such edge.    * @throws IllegalArgumentException if the introduction of the edge would violate {@link    *     #allowsSelfLoops()}    */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|putEdgeValue (N nodeA, N nodeB, V value)
@@ -107,7 +107,7 @@ name|Object
 name|node
 parameter_list|)
 function_decl|;
-comment|/**    * Removes the edge connecting {@code nodeA} to {@code nodeB}, if it is present.    *    * @return the value previously associated with the edge connecting {@code nodeA} to    *     {@code nodeB}, or null if there was no edge.    */
+comment|/**    * Removes the edge connecting {@code nodeA} to {@code nodeB}, if it is present.    *    * @return the value previously associated with the edge connecting {@code nodeA} to {@code    *     nodeB}, or null if there was no such edge.    */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|removeEdge (Object nodeA, Object nodeB)
