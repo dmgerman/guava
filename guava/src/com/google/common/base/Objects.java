@@ -92,6 +92,8 @@ specifier|public
 specifier|final
 class|class
 name|Objects
+extends|extends
+name|ExtraObjectsMethodsForWeb
 block|{
 DECL|method|Objects ()
 specifier|private
