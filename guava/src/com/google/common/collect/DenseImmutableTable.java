@@ -214,6 +214,7 @@ index|[]
 index|[]
 name|values
 decl_stmt|;
+comment|// For each cell in iteration order, the index of that cell's row key in the row key list.
 DECL|field|cellRowIndices
 specifier|private
 specifier|final
@@ -221,6 +222,7 @@ name|int
 index|[]
 name|cellRowIndices
 decl_stmt|;
+comment|// For each cell in iteration order, the index of that cell's column key in the column key list.
 DECL|field|cellColumnIndices
 specifier|private
 specifier|final
