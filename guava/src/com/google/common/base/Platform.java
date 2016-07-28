@@ -52,6 +52,16 @@ name|Locale
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/**  * Methods factored out so that they can be emulated differently in GWT.  *  * @author Jesse Wilson  */
 end_comment
@@ -204,6 +214,28 @@ literal|"%.4g"
 argument_list|,
 name|value
 argument_list|)
+return|;
+block|}
+DECL|method|stringIsNullOrEmpty (@ullable String string)
+specifier|static
+name|boolean
+name|stringIsNullOrEmpty
+parameter_list|(
+annotation|@
+name|Nullable
+name|String
+name|string
+parameter_list|)
+block|{
+return|return
+name|string
+operator|==
+literal|null
+operator|||
+name|string
+operator|.
+name|isEmpty
+argument_list|()
 return|;
 block|}
 block|}

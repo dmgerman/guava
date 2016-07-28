@@ -34,6 +34,16 @@ name|jsinterop
 operator|.
 name|annotations
 operator|.
+name|JsMethod
+import|;
+end_import
+
+begin_import
+import|import
+name|jsinterop
+operator|.
+name|annotations
+operator|.
 name|JsType
 import|;
 end_import
@@ -47,6 +57,16 @@ operator|.
 name|concurrent
 operator|.
 name|TimeUnit
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|Nullable
 import|;
 end_import
 
@@ -185,6 +205,21 @@ literal|4
 argument_list|)
 return|;
 block|}
+annotation|@
+name|JsMethod
+DECL|method|stringIsNullOrEmpty (@ullable String string)
+specifier|static
+specifier|native
+name|boolean
+name|stringIsNullOrEmpty
+parameter_list|(
+annotation|@
+name|Nullable
+name|String
+name|string
+parameter_list|)
+comment|/*-{     return !string;   }-*/
+function_decl|;
 annotation|@
 name|JsType
 argument_list|(
