@@ -18,6 +18,20 @@ end_package
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|testing
+operator|.
+name|EqualsTester
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -82,15 +96,17 @@ return|;
 block|}
 block|}
 decl_stmt|;
-name|assertTrue
-argument_list|(
-name|forward
+operator|new
+name|EqualsTester
+argument_list|()
 operator|.
-name|equals
+name|addEqualityGroup
 argument_list|(
 name|forward
 argument_list|)
-argument_list|)
+operator|.
+name|testEquals
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testEqualsSymmetric ()
