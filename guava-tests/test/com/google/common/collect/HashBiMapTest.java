@@ -981,9 +981,6 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|GwtIncompatible
-comment|// insertion order currently not preserved in GWT
 DECL|method|testInsertionOrder ()
 specifier|public
 name|void
@@ -1072,9 +1069,6 @@ name|inOrder
 argument_list|()
 expr_stmt|;
 block|}
-annotation|@
-name|GwtIncompatible
-comment|// insertion order currently not preserved in GWT
 DECL|method|testInsertionOrderAfterRemoveFirst ()
 specifier|public
 name|void
@@ -1161,9 +1155,6 @@ name|inOrder
 argument_list|()
 expr_stmt|;
 block|}
-annotation|@
-name|GwtIncompatible
-comment|// insertion order currently not preserved in GWT
 DECL|method|testInsertionOrderAfterRemoveMiddle ()
 specifier|public
 name|void
@@ -1250,9 +1241,6 @@ name|inOrder
 argument_list|()
 expr_stmt|;
 block|}
-annotation|@
-name|GwtIncompatible
-comment|// insertion order currently not preserved in GWT
 DECL|method|testInsertionOrderAfterRemoveLast ()
 specifier|public
 name|void
@@ -1339,9 +1327,6 @@ name|inOrder
 argument_list|()
 expr_stmt|;
 block|}
-annotation|@
-name|GwtIncompatible
-comment|// insertion order currently not preserved in GWT
 DECL|method|testInsertionOrderAfterForcePut ()
 specifier|public
 name|void
@@ -1430,9 +1415,6 @@ name|inOrder
 argument_list|()
 expr_stmt|;
 block|}
-annotation|@
-name|GwtIncompatible
-comment|// insertion order currently not preserved in GWT
 DECL|method|testInsertionOrderAfterInverseForcePut ()
 specifier|public
 name|void
@@ -1524,9 +1506,79 @@ name|inOrder
 argument_list|()
 expr_stmt|;
 block|}
-annotation|@
-name|GwtIncompatible
-comment|// insertion order currently not preserved in GWT
+DECL|method|testInverseInsertionOrderAfterInverse ()
+specifier|public
+name|void
+name|testInverseInsertionOrderAfterInverse
+parameter_list|()
+block|{
+name|BiMap
+argument_list|<
+name|String
+argument_list|,
+name|Integer
+argument_list|>
+name|map
+init|=
+name|HashBiMap
+operator|.
+name|create
+argument_list|()
+decl_stmt|;
+name|map
+operator|.
+name|put
+argument_list|(
+literal|"bar"
+argument_list|,
+literal|2
+argument_list|)
+expr_stmt|;
+name|map
+operator|.
+name|put
+argument_list|(
+literal|"quux"
+argument_list|,
+literal|1
+argument_list|)
+expr_stmt|;
+name|assertThat
+argument_list|(
+name|map
+operator|.
+name|inverse
+argument_list|()
+operator|.
+name|entrySet
+argument_list|()
+argument_list|)
+operator|.
+name|containsExactly
+argument_list|(
+name|Maps
+operator|.
+name|immutableEntry
+argument_list|(
+literal|2
+argument_list|,
+literal|"bar"
+argument_list|)
+argument_list|,
+name|Maps
+operator|.
+name|immutableEntry
+argument_list|(
+literal|1
+argument_list|,
+literal|"quux"
+argument_list|)
+argument_list|)
+operator|.
+name|inOrder
+argument_list|()
+expr_stmt|;
+block|}
 DECL|method|testInverseInsertionOrderAfterInverseForcePut ()
 specifier|public
 name|void

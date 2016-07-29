@@ -287,7 +287,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link BiMap} backed by two hash tables. This implementation allows null keys and values. A  * {@code HashBiMap} and its inverse are both serializable.  *  *<p>See the Guava User Guide article on<a href=  * "https://github.com/google/guava/wiki/NewCollectionTypesExplained#bimap"> {@code BiMap}  *</a>.  *  * @author Louis Wasserman  * @author Mike Bostock  * @since 2.0  */
+comment|/**  * A {@link BiMap} backed by two hash tables. This implementation allows null keys and values. A  * {@code HashBiMap} and its inverse are both serializable.  *  *<p>This implementation guarantees insertion-based iteration order of its keys.  *  *<p>See the Guava User Guide article on<a href=  * "https://github.com/google/guava/wiki/NewCollectionTypesExplained#bimap"> {@code BiMap}</a>.  *  * @author Louis Wasserman  * @author Mike Bostock  * @since 2.0  */
 end_comment
 
 begin_class
