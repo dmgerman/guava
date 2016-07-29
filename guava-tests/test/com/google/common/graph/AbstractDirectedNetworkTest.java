@@ -204,7 +204,7 @@ name|isEqualTo
 argument_list|(
 name|endpoints
 operator|.
-name|otherNode
+name|adjacentNode
 argument_list|(
 name|node
 argument_list|)
@@ -275,7 +275,7 @@ name|isEqualTo
 argument_list|(
 name|endpoints
 operator|.
-name|otherNode
+name|adjacentNode
 argument_list|(
 name|node
 argument_list|)

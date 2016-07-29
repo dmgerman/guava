@@ -595,7 +595,7 @@ argument_list|(
 name|node
 argument_list|)
 argument_list|,
-name|otherNodeFn
+name|adjacentNodeFn
 argument_list|(
 name|graph
 argument_list|,
@@ -747,7 +747,7 @@ block|}
 block|}
 return|;
 block|}
-DECL|method|otherNodeFn (final Network<N, E> graph, final N node)
+DECL|method|adjacentNodeFn (final Network<N, E> graph, final N node)
 specifier|private
 specifier|static
 parameter_list|<
@@ -761,7 +761,7 @@ name|E
 argument_list|,
 name|N
 argument_list|>
-name|otherNodeFn
+name|adjacentNodeFn
 parameter_list|(
 specifier|final
 name|Network
@@ -805,7 +805,7 @@ argument_list|(
 name|edge
 argument_list|)
 operator|.
-name|otherNode
+name|adjacentNode
 argument_list|(
 name|node
 argument_list|)

@@ -1333,7 +1333,7 @@ argument_list|(
 name|inEdge
 argument_list|)
 operator|.
-name|otherNode
+name|adjacentNode
 argument_list|(
 name|node
 argument_list|)
@@ -1387,7 +1387,7 @@ argument_list|(
 name|outEdge
 argument_list|)
 operator|.
-name|otherNode
+name|adjacentNode
 argument_list|(
 name|node
 argument_list|)

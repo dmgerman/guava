@@ -337,11 +337,11 @@ name|nodeB
 return|;
 block|}
 comment|/**    * Returns the node that is adjacent to {@code node} via the origin edge.    *    * @throws IllegalArgumentException if the origin edge is not incident to {@code node}    */
-DECL|method|otherNode (Object node)
+DECL|method|adjacentNode (Object node)
 specifier|public
 specifier|final
 name|N
-name|otherNode
+name|adjacentNode
 parameter_list|(
 name|Object
 name|node

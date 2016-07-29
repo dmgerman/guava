@@ -187,7 +187,7 @@ name|assertThat
 argument_list|(
 name|directed
 operator|.
-name|otherNode
+name|adjacentNode
 argument_list|(
 literal|"source"
 argument_list|)
@@ -202,7 +202,7 @@ name|assertThat
 argument_list|(
 name|directed
 operator|.
-name|otherNode
+name|adjacentNode
 argument_list|(
 literal|"target"
 argument_list|)
@@ -269,7 +269,7 @@ name|assertThat
 argument_list|(
 name|undirected
 operator|.
-name|otherNode
+name|adjacentNode
 argument_list|(
 literal|"chicken"
 argument_list|)
@@ -284,7 +284,7 @@ name|assertThat
 argument_list|(
 name|undirected
 operator|.
-name|otherNode
+name|adjacentNode
 argument_list|(
 literal|"egg"
 argument_list|)
@@ -361,7 +361,7 @@ name|assertThat
 argument_list|(
 name|undirected
 operator|.
-name|otherNode
+name|adjacentNode
 argument_list|(
 literal|"node"
 argument_list|)
@@ -398,10 +398,10 @@ expr_stmt|;
 block|}
 annotation|@
 name|Test
-DECL|method|testOtherNode_nodeNotIncident ()
+DECL|method|testAdjacentNode_nodeNotIncident ()
 specifier|public
 name|void
-name|testOtherNode_nodeNotIncident
+name|testAdjacentNode_nodeNotIncident
 parameter_list|()
 block|{
 name|List
@@ -487,14 +487,14 @@ try|try
 block|{
 name|endpoints
 operator|.
-name|otherNode
+name|adjacentNode
 argument_list|(
 literal|3
 argument_list|)
 expr_stmt|;
 name|fail
 argument_list|(
-literal|"Should have rejected otherNode() called with a node not incident to edge."
+literal|"Should have rejected adjacentNode() called with a node not incident to edge."
 argument_list|)
 expr_stmt|;
 block|}

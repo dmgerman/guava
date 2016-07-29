@@ -929,7 +929,7 @@ argument_list|)
 control|)
 block|{
 name|N
-name|otherNode
+name|adjacentNode
 init|=
 name|graph
 operator|.
@@ -938,7 +938,7 @@ argument_list|(
 name|edge
 argument_list|)
 operator|.
-name|otherNode
+name|adjacentNode
 argument_list|(
 name|node
 argument_list|)
@@ -952,7 +952,7 @@ argument_list|()
 operator|.
 name|contains
 argument_list|(
-name|otherNode
+name|adjacentNode
 argument_list|)
 condition|)
 block|{
@@ -964,7 +964,7 @@ name|edge
 argument_list|,
 name|node
 argument_list|,
-name|otherNode
+name|adjacentNode
 argument_list|)
 expr_stmt|;
 block|}
