@@ -64,7 +64,7 @@ argument_list|<
 name|N
 argument_list|>
 block|{
-comment|/**    * Adds {@code node} to this graph.    *    *<p><b>Nodes must be unique</b>, just as {@code Map} keys must be; they must also be non-null.    *    * @return {@code true} iff the graph was modified as a result of this call    */
+comment|/**    * Adds {@code node} to this graph if it is not already present.    *    *<p><b>Nodes must be unique</b>, just as {@code Map} keys must be; they must also be non-null.    *    * @return {@code true} iff the graph was modified as a result of this call    */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|addNode (N node)
@@ -75,7 +75,7 @@ name|N
 name|node
 parameter_list|)
 function_decl|;
-comment|/**    * Adds an (implicit) edge to this graph connecting {@code nodeA} to {@code nodeB}.    *    *<p>Behavior if {@code nodeA} and {@code nodeB} are not already elements of the graph is    * unspecified. Suggested behaviors include (a) silently adding {@code nodeA} and {@code nodeB}    * to the graph (this is the behavior of the default graph implementations) or (b) throwing    * {@code IllegalArgumentException}.    *    *<p>Currently, this type does not support parallel edges.  {@code addEdge(nodeA, nodeB)} will    * simply return false on any future calls with the same arguments (analogous to the behavior of    * {@code Network.addEdge(e, nodeA, nodeB)}).  A hypothetical instance that supported parallel    * edges would add a new edge between {@code nodeA} and {@code nodeB} for every call to    * {@code addEdge(nodeA, nodeB)}, and return {@code true} every time.    *    * @return {@code true} iff the graph was modified as a result of this call    * @throws IllegalArgumentException if the introduction of the edge would violate    *     {@link #allowsSelfLoops()}    */
+comment|/**    * Adds an (implicit) edge connecting {@code nodeA} to {@code nodeB} to this graph, if such an    * edge is not already present.    *    *<p>Behavior if {@code nodeA} and {@code nodeB} are not already elements of the graph is    * unspecified. Suggested behaviors include (a) silently adding {@code nodeA} and {@code nodeB}    * to the graph (this is the behavior of the default graph implementations) or (b) throwing    * {@code IllegalArgumentException}.    *    * @return {@code true} iff the graph was modified as a result of this call    * @throws IllegalArgumentException if the introduction of the edge would violate    *     {@link #allowsSelfLoops()}    */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|addEdge (N nodeA, N nodeB)
@@ -100,7 +100,7 @@ name|Object
 name|node
 parameter_list|)
 function_decl|;
-comment|/**    * Removes an edge connecting {@code nodeA} to {@code nodeB} from this graph, if one is present.    *    *<p>In general, the input nodes are unaffected (although implementations may choose    * to disallow certain configurations, e.g., isolated nodes).    *    * @return {@code true} iff the graph was modified as a result of this call    */
+comment|/**    * Removes the edge connecting {@code nodeA} to {@code nodeB} from this graph, if it is present.    *    *<p>In general, the input nodes are unaffected (although implementations may choose    * to disallow certain configurations, e.g., isolated nodes).    *    * @return {@code true} iff the graph was modified as a result of this call    */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|removeEdge (Object nodeA, Object nodeB)

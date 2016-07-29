@@ -191,7 +191,7 @@ argument_list|>
 name|graph
 parameter_list|)
 block|{
-comment|// TODO(b/28087289): we can remove this restriction when Graph supports parallel edges
+comment|// TODO(user): Consider dropping this restriction. Would this do what users expect?
 name|checkArgument
 argument_list|(
 operator|!

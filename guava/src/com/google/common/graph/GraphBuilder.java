@@ -212,7 +212,6 @@ argument_list|(
 name|graph
 argument_list|)
 expr_stmt|;
-comment|// TODO(b/28087289): add allowsParallelEdges() once we support them
 return|return
 operator|new
 name|GraphBuilder

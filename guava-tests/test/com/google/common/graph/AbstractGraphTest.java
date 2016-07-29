@@ -422,7 +422,6 @@ name|isDirected
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|// TODO(b/28087289): add test for allowsParallelEdges when supported
 name|assertThat
 argument_list|(
 name|graphString
@@ -494,7 +493,6 @@ name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|// TODO(b/28087289): update if support for parallel edges added
 name|assertThat
 argument_list|(
 name|graph

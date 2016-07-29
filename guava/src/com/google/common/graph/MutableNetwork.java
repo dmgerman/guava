@@ -68,7 +68,7 @@ argument_list|,
 name|E
 argument_list|>
 block|{
-comment|/**    * Adds {@code node} to this graph.    *    *<p><b>Nodes must be unique</b>, just as {@code Map} keys must be; they must also be non-null.    *    * @return {@code true} iff the graph was modified as a result of this call    */
+comment|/**    * Adds {@code node} to this graph if it is not already present.    *    *<p><b>Nodes must be unique</b>, just as {@code Map} keys must be; they must also be non-null.    *    * @return {@code true} iff the graph was modified as a result of this call    */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|addNode (N node)
@@ -79,7 +79,7 @@ name|N
 name|node
 parameter_list|)
 function_decl|;
-comment|/**    * Adds {@code edge} to this graph, connecting {@code nodeA} to {@code nodeB}.    *    *<p><b>Edges must be unique</b>, just as {@code Map} keys must be; they must also be non-null.    *    *<p>If {@code edge} already connects {@code nodeA} to {@code nodeB} in this graph    * (in the specified order if order is significant, as for directed graphs, else in any order),    * then this method will have no effect and will return {@code false}.    *    *<p>Behavior if {@code nodeA} and {@code nodeB} are not already elements of the graph is    * unspecified. Suggested behaviors include (a) silently adding {@code nodeA} and {@code nodeB}    * to the graph (this is the behavior of the default graph implementations) or (b) throwing    * {@code IllegalArgumentException}.    *    * @return {@code true} iff the graph was modified as a result of this call    * @throws IllegalArgumentException if {@code edge} already exists and connects nodes other than    *     {@code nodeA} and {@code nodeB}, or if the introduction of the edge would violate    *     {@link #allowsParallelEdges()} or {@link #allowsSelfLoops()}    */
+comment|/**    * Adds {@code edge} to this graph, connecting {@code nodeA} to {@code nodeB}.    *    *<p><b>Edges must be unique</b>, just as {@code Map} keys must be; they must also be non-null.    *    *<p>Behavior if {@code nodeA} and {@code nodeB} are not already elements of the graph is    * unspecified. Suggested behaviors include (a) silently adding {@code nodeA} and {@code nodeB}    * to the graph (this is the behavior of the default graph implementations) or (b) throwing    * {@code IllegalArgumentException}.    *    *<p>If {@code edge} already connects {@code nodeA} to {@code nodeB} in this graph    * (in the specified order if order is significant, as for directed graphs, else in any order),    * then this method will have no effect and will return {@code false}.    *    * @return {@code true} iff the graph was modified as a result of this call    * @throws IllegalArgumentException if {@code edge} already exists and does not connect    *     {@code nodeA} to {@code nodeB}, or if the introduction of the edge would violate    *     {@link #allowsParallelEdges()} or {@link #allowsSelfLoops()}    */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|addEdge (E edge, N nodeA, N nodeB)

@@ -262,7 +262,6 @@ argument_list|(
 name|nodeA
 argument_list|)
 decl_stmt|;
-comment|// TODO(b/28087289): does not support parallel edges
 if|if
 condition|(
 name|connectionsA

@@ -2599,7 +2599,6 @@ argument_list|,
 name|N2
 argument_list|)
 expr_stmt|;
-comment|// TODO(b/28087289): add parallel edges to test
 name|directedGraph
 operator|.
 name|addEdge
@@ -2655,7 +2654,6 @@ argument_list|,
 name|N2
 argument_list|)
 expr_stmt|;
-comment|// TODO(b/28087289): add parallel edges to test
 name|undirectedGraph
 operator|.
 name|addEdge
