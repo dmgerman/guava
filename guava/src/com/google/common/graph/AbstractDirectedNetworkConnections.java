@@ -190,6 +190,16 @@ name|Set
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/**  * A base implementation of {@link NetworkConnections} for directed networks.  *  * @author James Sexton  * @param<N> Node parameter type  * @param<E> Edge parameter type  */
 end_comment
@@ -453,6 +463,8 @@ specifier|public
 name|boolean
 name|contains
 parameter_list|(
+annotation|@
+name|Nullable
 name|Object
 name|obj
 parameter_list|)

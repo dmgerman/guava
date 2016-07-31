@@ -426,11 +426,13 @@ throw|;
 block|}
 annotation|@
 name|Override
-DECL|method|equals (Object obj)
+DECL|method|equals (@ullable Object obj)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
+annotation|@
+name|Nullable
 name|Object
 name|obj
 parameter_list|)

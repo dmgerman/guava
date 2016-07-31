@@ -124,6 +124,16 @@ name|Set
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/**  * This class provides a skeletal implementation of {@link Graph}. It is recommended to extend  * this class rather than implement {@link Graph} directly.  *  * @author James Sexton  * @param<N> Node parameter type  * @since 20.0  */
 end_comment
@@ -265,6 +275,8 @@ specifier|public
 name|boolean
 name|contains
 parameter_list|(
+annotation|@
+name|Nullable
 name|Object
 name|obj
 parameter_list|)

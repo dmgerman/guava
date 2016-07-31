@@ -104,6 +104,16 @@ name|UnmodifiableIterator
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/**  * An immutable pair representing the two (possibly equal, in the case of a self-loop) endpoints of  * an edge in a graph. The {@link EndpointPair} of a directed edge is an ordered pair of nodes  * ({@link #source()} and {@link #source()}). The {@link EndpointPair} of an undirected edge is an  * unordered pair of nodes ({@link #nodeU()} and {@link #nodeV()}).  *  * @author James Sexton  * @since 20.0  */
 end_comment
@@ -469,12 +479,14 @@ block|}
 comment|/**    * Two ordered {@link EndpointPair}s are equal if their {@link #source()} and {@link #target()}    * are equal. Two unordered {@link EndpointPair}s are equal if they contain the same nodes. An    * ordered {@link EndpointPair} is never equal to an unordered {@link EndpointPair}.    */
 annotation|@
 name|Override
-DECL|method|equals (Object obj)
+DECL|method|equals (@ullable Object obj)
 specifier|public
 specifier|abstract
 name|boolean
 name|equals
 parameter_list|(
+annotation|@
+name|Nullable
 name|Object
 name|obj
 parameter_list|)
@@ -563,11 +575,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|equals (Object obj)
+DECL|method|equals (@ullable Object obj)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
+annotation|@
+name|Nullable
 name|Object
 name|obj
 parameter_list|)
@@ -775,11 +789,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|equals (Object obj)
+DECL|method|equals (@ullable Object obj)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
+annotation|@
+name|Nullable
 name|Object
 name|obj
 parameter_list|)
