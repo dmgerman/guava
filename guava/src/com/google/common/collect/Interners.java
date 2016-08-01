@@ -100,7 +100,7 @@ name|collect
 operator|.
 name|MapMakerInternalMap
 operator|.
-name|ReferenceEntry
+name|InternalEntry
 import|;
 end_import
 
@@ -265,6 +265,10 @@ argument_list|<
 name|E
 argument_list|,
 name|Dummy
+argument_list|,
+name|?
+argument_list|,
+name|?
 argument_list|>
 name|map
 init|=
@@ -303,11 +307,13 @@ literal|true
 condition|)
 block|{
 comment|// trying to read the canonical...
-name|ReferenceEntry
+name|InternalEntry
 argument_list|<
 name|E
 argument_list|,
 name|Dummy
+argument_list|,
+name|?
 argument_list|>
 name|entry
 init|=
