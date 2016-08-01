@@ -230,6 +230,55 @@ name|nodeB
 argument_list|)
 return|;
 block|}
+comment|/**    * Returns {@link Endpoints} representing the endpoints of an edge in {@code network}.    */
+DECL|method|of (Network<?, ?> network, N nodeA, N nodeB)
+specifier|public
+specifier|static
+parameter_list|<
+name|N
+parameter_list|>
+name|Endpoints
+argument_list|<
+name|N
+argument_list|>
+name|of
+parameter_list|(
+name|Network
+argument_list|<
+name|?
+argument_list|,
+name|?
+argument_list|>
+name|network
+parameter_list|,
+name|N
+name|nodeA
+parameter_list|,
+name|N
+name|nodeB
+parameter_list|)
+block|{
+return|return
+name|network
+operator|.
+name|isDirected
+argument_list|()
+condition|?
+name|ofDirected
+argument_list|(
+name|nodeA
+argument_list|,
+name|nodeB
+argument_list|)
+else|:
+name|ofUndirected
+argument_list|(
+name|nodeA
+argument_list|,
+name|nodeB
+argument_list|)
+return|;
+block|}
 comment|/**    * Returns {@link Endpoints} representing the endpoints of a directed edge.    */
 DECL|method|ofDirected (N source, N target)
 specifier|static

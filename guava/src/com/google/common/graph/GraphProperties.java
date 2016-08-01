@@ -182,6 +182,33 @@ return|return
 literal|false
 return|;
 block|}
+comment|/**    * See {@link #isCyclic(Graph)}.    */
+comment|// TODO(b/27628622): When migrating to Graphs, remove this method and make clients call asGraph().
+DECL|method|isCyclic (Network<?, ?> network)
+specifier|public
+specifier|static
+name|boolean
+name|isCyclic
+parameter_list|(
+name|Network
+argument_list|<
+name|?
+argument_list|,
+name|?
+argument_list|>
+name|network
+parameter_list|)
+block|{
+return|return
+name|isCyclic
+argument_list|(
+name|network
+operator|.
+name|asGraph
+argument_list|()
+argument_list|)
+return|;
+block|}
 comment|/**    * Returns true iff there is a cycle in the subgraph of {@code graph} reachable from    * {@code node}.    */
 DECL|method|isSubgraphCyclic ( Graph<?> graph, Map<Object, NodeVisitState> nodeToVisitState, Object node)
 specifier|private

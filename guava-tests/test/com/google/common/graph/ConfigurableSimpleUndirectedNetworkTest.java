@@ -163,7 +163,7 @@ name|Integer
 argument_list|>
 name|nodes
 init|=
-name|graph
+name|network
 operator|.
 name|nodes
 argument_list|()
@@ -196,7 +196,7 @@ argument_list|)
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|graph
+name|network
 operator|.
 name|nodes
 argument_list|()
@@ -225,7 +225,7 @@ name|String
 argument_list|>
 name|edges
 init|=
-name|graph
+name|network
 operator|.
 name|edges
 argument_list|()
@@ -262,7 +262,7 @@ argument_list|)
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|graph
+name|network
 operator|.
 name|edges
 argument_list|()
@@ -296,7 +296,7 @@ name|String
 argument_list|>
 name|incidentEdges
 init|=
-name|graph
+name|network
 operator|.
 name|incidentEdges
 argument_list|(
@@ -335,7 +335,7 @@ argument_list|)
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|graph
+name|network
 operator|.
 name|incidentEdges
 argument_list|(
@@ -375,7 +375,7 @@ name|Integer
 argument_list|>
 name|incidentNodes
 init|=
-name|graph
+name|network
 operator|.
 name|incidentNodes
 argument_list|(
@@ -425,7 +425,7 @@ name|Integer
 argument_list|>
 name|adjacentNodes
 init|=
-name|graph
+name|network
 operator|.
 name|adjacentNodes
 argument_list|(
@@ -464,7 +464,7 @@ argument_list|)
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|graph
+name|network
 operator|.
 name|adjacentNodes
 argument_list|(
@@ -504,7 +504,7 @@ name|String
 argument_list|>
 name|adjacentEdges
 init|=
-name|graph
+name|network
 operator|.
 name|adjacentEdges
 argument_list|(
@@ -543,7 +543,7 @@ argument_list|)
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|graph
+name|network
 operator|.
 name|adjacentEdges
 argument_list|(
@@ -584,7 +584,7 @@ name|String
 argument_list|>
 name|edgesConnecting
 init|=
-name|graph
+name|network
 operator|.
 name|edgesConnecting
 argument_list|(
@@ -625,7 +625,7 @@ argument_list|)
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|graph
+name|network
 operator|.
 name|edgesConnecting
 argument_list|(
@@ -663,7 +663,7 @@ name|String
 argument_list|>
 name|inEdges
 init|=
-name|graph
+name|network
 operator|.
 name|inEdges
 argument_list|(
@@ -702,7 +702,7 @@ argument_list|)
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|graph
+name|network
 operator|.
 name|inEdges
 argument_list|(
@@ -738,7 +738,7 @@ name|String
 argument_list|>
 name|outEdges
 init|=
-name|graph
+name|network
 operator|.
 name|outEdges
 argument_list|(
@@ -777,7 +777,7 @@ argument_list|)
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|graph
+name|network
 operator|.
 name|outEdges
 argument_list|(
@@ -813,7 +813,7 @@ name|Integer
 argument_list|>
 name|predecessors
 init|=
-name|graph
+name|network
 operator|.
 name|predecessors
 argument_list|(
@@ -852,7 +852,7 @@ argument_list|)
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|graph
+name|network
 operator|.
 name|predecessors
 argument_list|(
@@ -888,7 +888,7 @@ name|Integer
 argument_list|>
 name|successors
 init|=
-name|graph
+name|network
 operator|.
 name|successors
 argument_list|(
@@ -927,7 +927,7 @@ argument_list|)
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|graph
+name|network
 operator|.
 name|successors
 argument_list|(
@@ -998,7 +998,7 @@ name|void
 name|addEdge_nodesNotInGraph
 parameter_list|()
 block|{
-name|graph
+name|network
 operator|.
 name|addNode
 argument_list|(
@@ -1007,7 +1007,7 @@ argument_list|)
 expr_stmt|;
 name|assertTrue
 argument_list|(
-name|graph
+name|network
 operator|.
 name|addEdge
 argument_list|(
@@ -1021,7 +1021,7 @@ argument_list|)
 expr_stmt|;
 name|assertTrue
 argument_list|(
-name|graph
+name|network
 operator|.
 name|addEdge
 argument_list|(
@@ -1035,7 +1035,7 @@ argument_list|)
 expr_stmt|;
 name|assertTrue
 argument_list|(
-name|graph
+name|network
 operator|.
 name|addEdge
 argument_list|(
@@ -1049,7 +1049,7 @@ argument_list|)
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|graph
+name|network
 operator|.
 name|nodes
 argument_list|()
@@ -1073,7 +1073,7 @@ argument_list|()
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|graph
+name|network
 operator|.
 name|edges
 argument_list|()
@@ -1093,7 +1093,7 @@ argument_list|()
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|graph
+name|network
 operator|.
 name|edgesConnecting
 argument_list|(
@@ -1110,7 +1110,7 @@ argument_list|)
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|graph
+name|network
 operator|.
 name|edgesConnecting
 argument_list|(
@@ -1127,7 +1127,7 @@ argument_list|)
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|graph
+name|network
 operator|.
 name|edgesConnecting
 argument_list|(
@@ -1144,7 +1144,7 @@ argument_list|)
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|graph
+name|network
 operator|.
 name|edgesConnecting
 argument_list|(

@@ -160,7 +160,7 @@ control|(
 name|Integer
 name|node
 range|:
-name|graph
+name|network
 operator|.
 name|nodes
 argument_list|()
@@ -171,7 +171,7 @@ control|(
 name|String
 name|inEdge
 range|:
-name|graph
+name|network
 operator|.
 name|inEdges
 argument_list|(
@@ -185,7 +185,7 @@ name|Integer
 argument_list|>
 name|endpoints
 init|=
-name|graph
+name|network
 operator|.
 name|incidentNodes
 argument_list|(
@@ -229,7 +229,7 @@ control|(
 name|String
 name|outEdge
 range|:
-name|graph
+name|network
 operator|.
 name|outEdges
 argument_list|(
@@ -243,7 +243,7 @@ name|Integer
 argument_list|>
 name|endpoints
 init|=
-name|graph
+name|network
 operator|.
 name|incidentNodes
 argument_list|(
@@ -287,7 +287,7 @@ control|(
 name|Integer
 name|adjacentNode
 range|:
-name|graph
+name|network
 operator|.
 name|adjacentNodes
 argument_list|(
@@ -301,7 +301,7 @@ name|String
 argument_list|>
 name|edges
 init|=
-name|graph
+name|network
 operator|.
 name|edgesConnecting
 argument_list|(
@@ -316,7 +316,7 @@ name|String
 argument_list|>
 name|antiParallelEdges
 init|=
-name|graph
+name|network
 operator|.
 name|edgesConnecting
 argument_list|(
@@ -368,7 +368,7 @@ argument_list|)
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|graph
+name|network
 operator|.
 name|incidentNodes
 argument_list|(
@@ -406,7 +406,7 @@ argument_list|)
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|graph
+name|network
 operator|.
 name|edgesConnecting
 argument_list|(
@@ -425,7 +425,7 @@ comment|// Passed nodes should be in the correct edge direction, first is the
 comment|// source node and the second is the target node
 name|assertThat
 argument_list|(
-name|graph
+name|network
 operator|.
 name|edgesConnecting
 argument_list|(
@@ -458,7 +458,7 @@ argument_list|)
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|graph
+name|network
 operator|.
 name|inEdges
 argument_list|(
@@ -474,7 +474,7 @@ expr_stmt|;
 comment|// Edge direction handled correctly
 name|assertThat
 argument_list|(
-name|graph
+name|network
 operator|.
 name|inEdges
 argument_list|(
@@ -505,7 +505,7 @@ argument_list|)
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|graph
+name|network
 operator|.
 name|outEdges
 argument_list|(
@@ -521,7 +521,7 @@ expr_stmt|;
 comment|// Edge direction handled correctly
 name|assertThat
 argument_list|(
-name|graph
+name|network
 operator|.
 name|outEdges
 argument_list|(
@@ -552,7 +552,7 @@ argument_list|)
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|graph
+name|network
 operator|.
 name|predecessors
 argument_list|(
@@ -568,7 +568,7 @@ expr_stmt|;
 comment|// Edge direction handled correctly
 name|assertThat
 argument_list|(
-name|graph
+name|network
 operator|.
 name|predecessors
 argument_list|(
@@ -599,7 +599,7 @@ argument_list|)
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|graph
+name|network
 operator|.
 name|successors
 argument_list|(
@@ -615,7 +615,7 @@ expr_stmt|;
 comment|// Edge direction handled correctly
 name|assertThat
 argument_list|(
-name|graph
+name|network
 operator|.
 name|successors
 argument_list|(
@@ -648,7 +648,7 @@ name|assertEquals
 argument_list|(
 literal|1
 argument_list|,
-name|graph
+name|network
 operator|.
 name|inDegree
 argument_list|(
@@ -661,7 +661,7 @@ name|assertEquals
 argument_list|(
 literal|0
 argument_list|,
-name|graph
+name|network
 operator|.
 name|inDegree
 argument_list|(
@@ -691,7 +691,7 @@ name|assertEquals
 argument_list|(
 literal|1
 argument_list|,
-name|graph
+name|network
 operator|.
 name|outDegree
 argument_list|(
@@ -704,7 +704,7 @@ name|assertEquals
 argument_list|(
 literal|0
 argument_list|,
-name|graph
+name|network
 operator|.
 name|outDegree
 argument_list|(
@@ -734,7 +734,7 @@ name|assertEquals
 argument_list|(
 name|N1
 argument_list|,
-name|graph
+name|network
 operator|.
 name|incidentNodes
 argument_list|(
@@ -756,7 +756,7 @@ parameter_list|()
 block|{
 try|try
 block|{
-name|graph
+name|network
 operator|.
 name|incidentNodes
 argument_list|(
@@ -806,7 +806,7 @@ name|assertEquals
 argument_list|(
 name|N2
 argument_list|,
-name|graph
+name|network
 operator|.
 name|incidentNodes
 argument_list|(
@@ -828,7 +828,7 @@ parameter_list|()
 block|{
 try|try
 block|{
-name|graph
+name|network
 operator|.
 name|incidentNodes
 argument_list|(
@@ -892,7 +892,7 @@ argument_list|)
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|graph
+name|network
 operator|.
 name|edges
 argument_list|()
@@ -905,7 +905,7 @@ argument_list|)
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|graph
+name|network
 operator|.
 name|edgesConnecting
 argument_list|(
@@ -923,7 +923,7 @@ expr_stmt|;
 comment|// Direction of the added edge is correctly handled
 name|assertThat
 argument_list|(
-name|graph
+name|network
 operator|.
 name|edgesConnecting
 argument_list|(
@@ -964,7 +964,7 @@ name|ImmutableSet
 operator|.
 name|copyOf
 argument_list|(
-name|graph
+name|network
 operator|.
 name|edges
 argument_list|()
@@ -984,7 +984,7 @@ argument_list|)
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|graph
+name|network
 operator|.
 name|edges
 argument_list|()
@@ -1164,7 +1164,7 @@ argument_list|)
 expr_stmt|;
 name|assertTrue
 argument_list|(
-name|graph
+name|network
 operator|.
 name|removeEdge
 argument_list|(
@@ -1174,7 +1174,7 @@ argument_list|)
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|graph
+name|network
 operator|.
 name|edges
 argument_list|()
@@ -1187,7 +1187,7 @@ argument_list|)
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|graph
+name|network
 operator|.
 name|edgesConnecting
 argument_list|(

@@ -171,7 +171,7 @@ argument_list|)
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|graph
+name|network
 operator|.
 name|edgesConnecting
 argument_list|(
@@ -192,7 +192,7 @@ argument_list|)
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|graph
+name|network
 operator|.
 name|edgesConnecting
 argument_list|(
@@ -246,7 +246,7 @@ argument_list|)
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|graph
+name|network
 operator|.
 name|edgesConnecting
 argument_list|(
@@ -312,7 +312,7 @@ argument_list|)
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|graph
+name|network
 operator|.
 name|edgesConnecting
 argument_list|(
@@ -368,7 +368,7 @@ argument_list|)
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|graph
+name|network
 operator|.
 name|edgesConnecting
 argument_list|(
@@ -423,7 +423,7 @@ argument_list|)
 expr_stmt|;
 name|assertTrue
 argument_list|(
-name|graph
+name|network
 operator|.
 name|removeEdge
 argument_list|(
@@ -433,7 +433,7 @@ argument_list|)
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|graph
+name|network
 operator|.
 name|edgesConnecting
 argument_list|(
@@ -488,7 +488,7 @@ argument_list|)
 expr_stmt|;
 name|assertTrue
 argument_list|(
-name|graph
+name|network
 operator|.
 name|removeEdge
 argument_list|(
@@ -498,7 +498,7 @@ argument_list|)
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|graph
+name|network
 operator|.
 name|edgesConnecting
 argument_list|(
@@ -515,7 +515,7 @@ argument_list|)
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|graph
+name|network
 operator|.
 name|edgesConnecting
 argument_list|(
@@ -532,7 +532,7 @@ argument_list|)
 expr_stmt|;
 name|assertTrue
 argument_list|(
-name|graph
+name|network
 operator|.
 name|removeEdge
 argument_list|(
@@ -542,7 +542,7 @@ argument_list|)
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|graph
+name|network
 operator|.
 name|edgesConnecting
 argument_list|(
@@ -557,7 +557,7 @@ argument_list|()
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|graph
+name|network
 operator|.
 name|edgesConnecting
 argument_list|(

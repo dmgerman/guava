@@ -244,18 +244,6 @@ argument_list|>
 operator|)
 name|obj
 decl_stmt|;
-comment|// Needed to enforce a symmetric equality relationship.
-if|if
-condition|(
-name|other
-operator|instanceof
-name|Network
-condition|)
-block|{
-return|return
-literal|false
-return|;
-block|}
 if|if
 condition|(
 name|isDirected

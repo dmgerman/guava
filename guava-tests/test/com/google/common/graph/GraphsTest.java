@@ -1218,6 +1218,12 @@ try|try
 block|{
 name|copyOf
 argument_list|(
+operator|(
+name|Graph
+argument_list|<
+name|?
+argument_list|>
+operator|)
 literal|null
 argument_list|)
 expr_stmt|;

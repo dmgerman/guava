@@ -177,14 +177,6 @@ name|EDGE_ALREADY_EXISTS
 init|=
 literal|"Edge %s already exists in the graph."
 decl_stmt|;
-DECL|field|NETWORK_WITH_PARALLEL_EDGE
-specifier|static
-specifier|final
-name|String
-name|NETWORK_WITH_PARALLEL_EDGE
-init|=
-literal|"Cannot make a Graph copy of a Network that allows parallel edges."
-decl_stmt|;
 DECL|field|GRAPH_STRING_FORMAT
 specifier|static
 specifier|final
