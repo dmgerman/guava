@@ -255,35 +255,8 @@ name|nodeB
 parameter_list|)
 function_decl|;
 comment|//
-comment|// Element-level queries
+comment|// Network identity
 comment|//
-comment|/**    * Returns the number of edges incident in this graph to {@code node}.  If this node has more than    * {@code Integer.MAX_VALUE} incident edges in this graph, returns {@code Integer.MAX_VALUE}.    *    *<p>Note that self-loops only count once towards a node's degree.    *    *<p>Equivalent to {@code incidentEdges(node).size()}.    *    * @throws IllegalArgumentException if {@code node} is not an element of this graph    */
-DECL|method|degree (Object node)
-name|int
-name|degree
-parameter_list|(
-name|Object
-name|node
-parameter_list|)
-function_decl|;
-comment|/**    * Returns the number of incoming edges in this graph of {@code node}.  If this node has more than    * {@code Integer.MAX_VALUE} incoming edges in this graph, returns {@code Integer.MAX_VALUE}.    *    *<p>Equivalent to {@code inEdges(node).size()}.    *    * @throws IllegalArgumentException if {@code node} is not an element of this graph    */
-DECL|method|inDegree (Object node)
-name|int
-name|inDegree
-parameter_list|(
-name|Object
-name|node
-parameter_list|)
-function_decl|;
-comment|/**    * Returns the number of outgoing edges in this graph of {@code node}.  If this node has more than    * {@code Integer.MAX_VALUE} outgoing edges in this graph, returns {@code Integer.MAX_VALUE}.    *    *<p>Equivalent to {@code outEdges(node).size()}.    *    * @throws IllegalArgumentException if {@code node} is not an element of this graph    */
-DECL|method|outDegree (Object node)
-name|int
-name|outDegree
-parameter_list|(
-name|Object
-name|node
-parameter_list|)
-function_decl|;
 comment|/**    * Returns {@code true} iff {@code object} is a {@link Network} that has the same structural    * relationships as those in this network.    *    *<p>Thus, two networks A and B are equal if<b>all</b> of the following are true:    *<ul>    *<li>A and B have the same {@link #isDirected() directedness}.    *<li>A and B have the same node set.    *<li>A and B have the same edge set.    *<li>Every edge in A and B connects the same nodes in the same direction (if any).    *</ul>    *    *<p>Network properties are<b>not</b> respected by this method. For example, two networks may be    * considered equal even if one allows parallel edges and the other doesn't. Additionally, the    * order in which edges or nodes are added to the network, and the order in which they are    * iterated over, are irrelevant.    *    *<p>A reference implementation of this is provided by {@link AbstractNetwork#equals(Object)}.    */
 annotation|@
 name|Override

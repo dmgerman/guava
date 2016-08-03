@@ -95,7 +95,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This class provides a skeletal implementation of {@link Network}. It is recommended to extend  * this class rather than implement {@link Network} directly, to ensure consistent  * {@link #equals(Object)} and {@link #hashCode()} results across different graph implementations.  *  * @author James Sexton  * @param<N> Node parameter type  * @param<E> Edge parameter type  * @since 20.0  */
+comment|/**  * This class provides a skeletal implementation of {@link Network}. It is recommended to extend  * this class rather than implement {@link Network} directly, to ensure consistent  * {@link #equals(Object)} and {@link #hashCode()} results across different network implementations.  *  * @author James Sexton  * @param<N> Node parameter type  * @param<E> Edge parameter type  * @since 20.0  */
 end_comment
 
 begin_class
@@ -283,69 +283,6 @@ argument_list|)
 return|;
 block|}
 block|}
-return|;
-block|}
-annotation|@
-name|Override
-DECL|method|degree (Object node)
-specifier|public
-name|int
-name|degree
-parameter_list|(
-name|Object
-name|node
-parameter_list|)
-block|{
-return|return
-name|incidentEdges
-argument_list|(
-name|node
-argument_list|)
-operator|.
-name|size
-argument_list|()
-return|;
-block|}
-annotation|@
-name|Override
-DECL|method|inDegree (Object node)
-specifier|public
-name|int
-name|inDegree
-parameter_list|(
-name|Object
-name|node
-parameter_list|)
-block|{
-return|return
-name|inEdges
-argument_list|(
-name|node
-argument_list|)
-operator|.
-name|size
-argument_list|()
-return|;
-block|}
-annotation|@
-name|Override
-DECL|method|outDegree (Object node)
-specifier|public
-name|int
-name|outDegree
-parameter_list|(
-name|Object
-name|node
-parameter_list|)
-block|{
-return|return
-name|outEdges
-argument_list|(
-name|node
-argument_list|)
-operator|.
-name|size
-argument_list|()
 return|;
 block|}
 annotation|@
@@ -555,7 +492,7 @@ name|hashCode
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns a string representation of this graph.    */
+comment|/**    * Returns a string representation of this network.    */
 annotation|@
 name|Override
 DECL|method|toString ()

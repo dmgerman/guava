@@ -143,35 +143,8 @@ name|node
 parameter_list|)
 function_decl|;
 comment|//
-comment|// Element-level queries
+comment|// Graph identity
 comment|//
-comment|/**    * Returns the number of edges incident in this graph to {@code node}.  If this node has more than    * {@code Integer.MAX_VALUE} incident edges in this graph, returns {@code Integer.MAX_VALUE}.    *    *<p>Note that self-loops only count once towards a node's degree.    *    * @throws IllegalArgumentException if {@code node} is not an element of this graph    */
-DECL|method|degree (Object node)
-name|int
-name|degree
-parameter_list|(
-name|Object
-name|node
-parameter_list|)
-function_decl|;
-comment|/**    * Returns the number of incoming edges in this graph of {@code node}.  If this node has more than    * {@code Integer.MAX_VALUE} incoming edges in this graph, returns {@code Integer.MAX_VALUE}.    *    * @throws IllegalArgumentException if {@code node} is not an element of this graph    */
-DECL|method|inDegree (Object node)
-name|int
-name|inDegree
-parameter_list|(
-name|Object
-name|node
-parameter_list|)
-function_decl|;
-comment|/**    * Returns the number of outgoing edges in this graph of {@code node}.  If this node has more than    * {@code Integer.MAX_VALUE} outgoing edges in this graph, returns {@code Integer.MAX_VALUE}.    *    * @throws IllegalArgumentException if {@code node} is not an element of this graph    */
-DECL|method|outDegree (Object node)
-name|int
-name|outDegree
-parameter_list|(
-name|Object
-name|node
-parameter_list|)
-function_decl|;
 comment|/**    * Returns {@code true} iff {@code object} is a {@link Graph} that has the same structural    * relationships as those in this graph.    *    *<p>Thus, two graphs A and B are equal if<b>all</b> of the following are true:    *<ul>    *<li>A and B have the same {@link #isDirected() directedness}.    *<li>A and B have the same node set.    *<li>A and B have the same adjacency relationships, i.e., for each node, the sets of successor    *     and predecessor nodes are the same in both graphs.    *</ul>    *    *<p>Graph properties are<b>not</b> respected by this method. For example, two graphs may    * be considered equal even if one allows self-loops and the other doesn't. Additionally, the    * order in which edges or nodes are added to the graph, and the order in which they are    * iterated over, are irrelevant.    *    *<p>A reference implementation of this is provided by {@link AbstractGraph#equals(Object)}.    */
 annotation|@
 name|Override
