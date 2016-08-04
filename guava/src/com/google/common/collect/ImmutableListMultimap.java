@@ -74,6 +74,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|j2objc
+operator|.
+name|annotations
+operator|.
+name|RetainedWith
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -1405,6 +1419,8 @@ else|:
 name|list
 return|;
 block|}
+annotation|@
+name|RetainedWith
 DECL|field|inverse
 specifier|private
 specifier|transient

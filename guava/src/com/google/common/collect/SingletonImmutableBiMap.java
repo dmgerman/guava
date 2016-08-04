@@ -48,6 +48,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|j2objc
+operator|.
+name|annotations
+operator|.
+name|RetainedWith
+import|;
+end_import
+
+begin_import
+import|import
 name|javax
 operator|.
 name|annotation
@@ -318,6 +332,8 @@ name|singleKey
 argument_list|)
 return|;
 block|}
+annotation|@
+name|RetainedWith
 DECL|field|inverse
 specifier|transient
 name|ImmutableBiMap
