@@ -455,12 +455,10 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns an unmodifiable view of edges that are parallel to {@code edge}, i.e. the set of edges    * that connect the same nodes in the same direction (if any). An edge is not parallel to itself.    *    * @throws IllegalArgumentException if {@code edge} is not present in {@code graph}    */
-DECL|method|parallelEdges (Network<N, E> graph, Object edge)
+DECL|method|parallelEdges (Network<?, E> graph, Object edge)
 specifier|public
 specifier|static
 parameter_list|<
-name|N
-parameter_list|,
 name|E
 parameter_list|>
 name|Set
@@ -471,7 +469,7 @@ name|parallelEdges
 parameter_list|(
 name|Network
 argument_list|<
-name|N
+name|?
 argument_list|,
 name|E
 argument_list|>
@@ -483,7 +481,7 @@ parameter_list|)
 block|{
 name|Endpoints
 argument_list|<
-name|N
+name|?
 argument_list|>
 name|endpoints
 init|=
@@ -540,6 +538,92 @@ argument_list|)
 argument_list|)
 return|;
 comment|// An edge is not parallel to itself.
+block|}
+comment|/**    * Returns an unmodifiable view of the edges which have an {@link Network#incidentNodes(Object)    * incident node} in common with {@code edge}. An edge is not considered adjacent to itself.    *    * @throws IllegalArgumentException if {@code edge} is not present in {@code graph}    */
+DECL|method|adjacentEdges (Network<?, E> graph, Object edge)
+specifier|public
+specifier|static
+parameter_list|<
+name|E
+parameter_list|>
+name|Set
+argument_list|<
+name|E
+argument_list|>
+name|adjacentEdges
+parameter_list|(
+name|Network
+argument_list|<
+name|?
+argument_list|,
+name|E
+argument_list|>
+name|graph
+parameter_list|,
+name|Object
+name|edge
+parameter_list|)
+block|{
+name|Endpoints
+argument_list|<
+name|?
+argument_list|>
+name|endpoints
+init|=
+name|graph
+operator|.
+name|incidentNodes
+argument_list|(
+name|edge
+argument_list|)
+decl_stmt|;
+comment|// Verifies that edge is in graph
+name|Set
+argument_list|<
+name|E
+argument_list|>
+name|endpointsIncidentEdges
+init|=
+name|Sets
+operator|.
+name|union
+argument_list|(
+name|graph
+operator|.
+name|incidentEdges
+argument_list|(
+name|endpoints
+operator|.
+name|nodeA
+argument_list|()
+argument_list|)
+argument_list|,
+name|graph
+operator|.
+name|incidentEdges
+argument_list|(
+name|endpoints
+operator|.
+name|nodeB
+argument_list|()
+argument_list|)
+argument_list|)
+decl_stmt|;
+return|return
+name|Sets
+operator|.
+name|difference
+argument_list|(
+name|endpointsIncidentEdges
+argument_list|,
+name|ImmutableSet
+operator|.
+name|of
+argument_list|(
+name|edge
+argument_list|)
+argument_list|)
+return|;
 block|}
 comment|// Graph mutation methods
 comment|// Graph transformation methods

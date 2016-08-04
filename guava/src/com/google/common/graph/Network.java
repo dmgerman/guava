@@ -227,18 +227,6 @@ name|Object
 name|edge
 parameter_list|)
 function_decl|;
-comment|/**    * Returns the edges which have an {@linkplain #incidentNodes(Object) incident node}    * in common with {@code edge} in this graph.    *    *<p>Whether an edge is considered adjacent to itself is not defined by this interface, but    * generally edges are not considered to be self-adjacent.    *    * @throws IllegalArgumentException if {@code edge} is not an element of this graph    */
-DECL|method|adjacentEdges (Object edge)
-name|Set
-argument_list|<
-name|E
-argument_list|>
-name|adjacentEdges
-parameter_list|(
-name|Object
-name|edge
-parameter_list|)
-function_decl|;
 comment|/**    * Returns the set of edges that connect {@code nodeA} to {@code nodeB}.    *    *<p>This set is the intersection of {@code outEdges(nodeA)} and {@code inEdges(nodeB)}. If    * {@code nodeA} is equal to {@code nodeB}, then it is the set of self-loop edges for that node.    *    * @throws IllegalArgumentException if {@code nodeA} or {@code nodeB} is not an element    *     of this graph    */
 DECL|method|edgesConnecting (Object nodeA, Object nodeB)
 name|Set
