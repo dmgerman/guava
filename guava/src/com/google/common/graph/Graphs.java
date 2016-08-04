@@ -417,13 +417,10 @@ operator|.
 name|isDirected
 argument_list|()
 operator|==
-operator|(
 name|endpoints
-operator|instanceof
-name|Endpoints
 operator|.
-name|Directed
-operator|)
+name|isDirected
+argument_list|()
 operator|&&
 name|graph
 operator|.

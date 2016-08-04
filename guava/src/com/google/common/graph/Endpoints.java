@@ -374,7 +374,7 @@ return|return
 name|nodeA
 return|;
 block|}
-comment|/**    * Returns the node that is adjacent to {@link #nodeA()} via the origin edge.    * If these are the {@link Endpoints} of a directed edge, it is equal to the {@link #target()}.    */
+comment|/**    * Returns the node {@link #adjacentNode(Object) adjacent} to {@link #nodeA()} along the origin    * edge. If these are the {@link Endpoints} of a directed edge, it is equal to {@link #target()}.    */
 DECL|method|nodeB ()
 specifier|final
 name|N
@@ -385,7 +385,7 @@ return|return
 name|nodeB
 return|;
 block|}
-comment|/**    * Returns the node that is adjacent to {@code node} via the origin edge.    *    * @throws IllegalArgumentException if the origin edge is not incident to {@code node}    */
+comment|/**    * Returns the node that is adjacent to {@code node} along the origin edge.    *    * @throws IllegalArgumentException if the origin edge is not incident to {@code node}    */
 DECL|method|adjacentNode (Object node)
 specifier|public
 specifier|final
@@ -576,6 +576,12 @@ name|obj
 argument_list|)
 return|;
 block|}
+DECL|method|isDirected ()
+specifier|abstract
+name|boolean
+name|isDirected
+parameter_list|()
+function_decl|;
 comment|/**    * The {@link Endpoints} of two directed edges are equal if their {@link #source()} and    * {@link #target()} are equal. The {@link Endpoints} of two undirected edges are equal if they    * contain the same nodes. The {@link Endpoints} of a directed edge are never equal to the    * {@link Endpoints} of an undirected edge.    */
 annotation|@
 name|Override
@@ -589,6 +595,7 @@ name|Object
 name|obj
 parameter_list|)
 function_decl|;
+comment|/**    * The hashcode of the {@link Endpoints} of a directed edge is equal to    * {@code Objects.hashCode(source(), target())}. The hashcode of the {@link Endpoints}    * of an undirected edge is equal to {@code nodeA().hashCode() ^ nodeB().hashCode()}.    */
 annotation|@
 name|Override
 DECL|method|hashCode ()
@@ -598,8 +605,9 @@ name|int
 name|hashCode
 parameter_list|()
 function_decl|;
-comment|/**    * The {@link Endpoints} of a directed edge. It is guaranteed that all {@link Endpoints} of    * directed edges will be an instance of this class.    */
+comment|/**    * The {@link Endpoints} of a directed edge.    */
 DECL|class|Directed
+specifier|private
 specifier|static
 specifier|final
 class|class
@@ -660,6 +668,17 @@ return|;
 block|}
 annotation|@
 name|Override
+DECL|method|isDirected ()
+name|boolean
+name|isDirected
+parameter_list|()
+block|{
+return|return
+literal|true
+return|;
+block|}
+annotation|@
+name|Override
 DECL|method|equals (Object obj)
 specifier|public
 name|boolean
@@ -686,7 +705,7 @@ operator|!
 operator|(
 name|obj
 operator|instanceof
-name|Directed
+name|Endpoints
 operator|)
 condition|)
 block|{
@@ -694,20 +713,35 @@ return|return
 literal|false
 return|;
 block|}
-name|Directed
+name|Endpoints
 argument_list|<
 name|?
 argument_list|>
 name|other
 init|=
 operator|(
-name|Directed
+name|Endpoints
 argument_list|<
 name|?
 argument_list|>
 operator|)
 name|obj
 decl_stmt|;
+if|if
+condition|(
+name|isDirected
+argument_list|()
+operator|!=
+name|other
+operator|.
+name|isDirected
+argument_list|()
+condition|)
+block|{
+return|return
+literal|false
+return|;
+block|}
 return|return
 name|source
 argument_list|()
@@ -777,8 +811,9 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**    * The {@link Endpoints} of an undirected edge. It is guaranteed that all {@link Endpoints} of    * undirected edges will be an instance of this class.    */
+comment|/**    * The {@link Endpoints} of an undirected edge.    */
 DECL|class|Undirected
+specifier|private
 specifier|static
 specifier|final
 class|class
@@ -845,6 +880,17 @@ throw|;
 block|}
 annotation|@
 name|Override
+DECL|method|isDirected ()
+name|boolean
+name|isDirected
+parameter_list|()
+block|{
+return|return
+literal|false
+return|;
+block|}
+annotation|@
+name|Override
 DECL|method|equals (Object obj)
 specifier|public
 name|boolean
@@ -871,7 +917,7 @@ operator|!
 operator|(
 name|obj
 operator|instanceof
-name|Undirected
+name|Endpoints
 operator|)
 condition|)
 block|{
@@ -879,20 +925,35 @@ return|return
 literal|false
 return|;
 block|}
-name|Undirected
+name|Endpoints
 argument_list|<
 name|?
 argument_list|>
 name|other
 init|=
 operator|(
-name|Undirected
+name|Endpoints
 argument_list|<
 name|?
 argument_list|>
 operator|)
 name|obj
 decl_stmt|;
+if|if
+condition|(
+name|isDirected
+argument_list|()
+operator|!=
+name|other
+operator|.
+name|isDirected
+argument_list|()
+condition|)
+block|{
+return|return
+literal|false
+return|;
+block|}
 comment|// Equivalent to the following simple implementation:
 comment|// boolean condition1 = nodeA().equals(other.nodeA())&& nodeB().equals(other.nodeB());
 comment|// boolean condition2 = nodeA().equals(other.nodeB())&& nodeB().equals(other.nodeA());
