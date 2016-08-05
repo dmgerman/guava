@@ -158,18 +158,6 @@ name|util
 operator|.
 name|regex
 operator|.
-name|Matcher
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|regex
-operator|.
 name|Pattern
 import|;
 end_import
@@ -592,26 +580,42 @@ block|}
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a splitter that considers any subsequence matching {@code    * pattern} to be a separator. For example, {@code    * Splitter.on(Pattern.compile("\r?\n")).split(entireFile)} splits a string into lines whether it    * uses DOS-style or UNIX-style line terminators.    *    * @param separatorPattern the pattern that determines whether a subsequence is a separator. This    *     pattern may not match the empty string.    * @return a splitter, with default settings, that uses this pattern    * @throws IllegalArgumentException if {@code separatorPattern} matches the empty string    */
+comment|/**    * Returns a splitter that considers any subsequence matching {@code pattern} to be a separator.    * For example, {@code Splitter.on(Pattern.compile("\r?\n")).split(entireFile)} splits a string    * into lines whether it uses DOS-style or UNIX-style line terminators.    *    * @param separatorPattern the pattern that determines whether a subsequence is a separator. This    *     pattern may not match the empty string.    * @return a splitter, with default settings, that uses this pattern    * @throws IllegalArgumentException if {@code separatorPattern} matches the empty string    */
 annotation|@
 name|GwtIncompatible
 comment|// java.util.regex
-DECL|method|on (final Pattern separatorPattern)
+DECL|method|on (Pattern separatorPattern)
 specifier|public
 specifier|static
 name|Splitter
 name|on
 parameter_list|(
-specifier|final
 name|Pattern
 name|separatorPattern
 parameter_list|)
 block|{
-name|checkNotNull
+return|return
+name|on
+argument_list|(
+operator|new
+name|JdkPattern
 argument_list|(
 name|separatorPattern
 argument_list|)
-expr_stmt|;
+argument_list|)
+return|;
+block|}
+DECL|method|on (final CommonPattern separatorPattern)
+specifier|private
+specifier|static
+name|Splitter
+name|on
+parameter_list|(
+specifier|final
+name|CommonPattern
+name|separatorPattern
+parameter_list|)
+block|{
 name|checkArgument
 argument_list|(
 operator|!
@@ -653,7 +657,7 @@ name|toSplit
 parameter_list|)
 block|{
 specifier|final
-name|Matcher
+name|CommonMatcher
 name|matcher
 init|=
 name|separatorPattern
@@ -723,7 +727,7 @@ block|}
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a splitter that considers any subsequence matching a given pattern (regular expression)    * to be a separator. For example, {@code    * Splitter.onPattern("\r?\n").split(entireFile)} splits a string into lines whether it uses    * DOS-style or UNIX-style line terminators. This is equivalent to    * {@code Splitter.on(Pattern.compile(pattern))}.    *    * @param separatorPattern the pattern that determines whether a subsequence is a separator. This    *     pattern may not match the empty string.    * @return a splitter, with default settings, that uses this pattern    * @throws java.util.regex.PatternSyntaxException if {@code separatorPattern} is a malformed    *     expression    * @throws IllegalArgumentException if {@code separatorPattern} matches the empty string    */
+comment|/**    * Returns a splitter that considers any subsequence matching a given pattern (regular expression)    * to be a separator. For example, {@code Splitter.onPattern("\r?\n").split(entireFile)} splits a    * string into lines whether it uses DOS-style or UNIX-style line terminators. This is equivalent    * to {@code Splitter.on(Pattern.compile(pattern))}.    *    * @param separatorPattern the pattern that determines whether a subsequence is a separator. This    *     pattern may not match the empty string.    * @return a splitter, with default settings, that uses this pattern    * @throws IllegalArgumentException if {@code separatorPattern} matches the empty string or is a    *     malformed expression    */
 annotation|@
 name|GwtIncompatible
 comment|// java.util.regex
@@ -740,9 +744,9 @@ block|{
 return|return
 name|on
 argument_list|(
-name|Pattern
+name|Platform
 operator|.
-name|compile
+name|compilePattern
 argument_list|(
 name|separatorPattern
 argument_list|)

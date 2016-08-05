@@ -2368,6 +2368,17 @@ name|void
 name|testPatternSplitLookBehind
 parameter_list|()
 block|{
+if|if
+condition|(
+operator|!
+name|Platform
+operator|.
+name|usingJdkPatternCompiler
+argument_list|()
+condition|)
+block|{
+return|return;
+block|}
 name|String
 name|toSplit
 init|=
@@ -3108,6 +3119,17 @@ name|void
 name|testSplitterIterableIsLazy_pattern
 parameter_list|()
 block|{
+if|if
+condition|(
+operator|!
+name|Platform
+operator|.
+name|usingJdkPatternCompiler
+argument_list|()
+condition|)
+block|{
+return|return;
+block|}
 name|assertSplitterIterableIsLazy
 argument_list|(
 name|Splitter
@@ -3119,7 +3141,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * This test really pushes the boundaries of what we support. In general the    * splitter's behaviour is not well defined if the char sequence it's    * splitting is mutated during iteration.    */
+comment|/**    * This test really pushes the boundaries of what we support. In general the splitter's behaviour    * is not well defined if the char sequence it's splitting is mutated during iteration.    */
 DECL|method|assertSplitterIterableIsLazy (Splitter splitter)
 specifier|private
 name|void

@@ -811,14 +811,10 @@ name|function
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a predicate that evaluates to {@code true} if the {@code CharSequence} being tested    * contains any match for the given regular expression pattern. The test used is equivalent to    * {@code Pattern.compile(pattern).matcher(arg).find()}    *    * @throws java.util.regex.PatternSyntaxException if the pattern is invalid    * @since 3.0    */
+comment|/**    * Returns a predicate that evaluates to {@code true} if the {@code CharSequence} being tested    * contains any match for the given regular expression pattern. The test used is equivalent to    * {@code Pattern.compile(pattern).matcher(arg).find()}    *    * @throws IllegalArgumentException if the pattern is invalid    * @since 3.0    */
 annotation|@
 name|GwtIncompatible
-argument_list|(
-name|value
-operator|=
-literal|"java.util.regex.Pattern"
-argument_list|)
+comment|// Only used by other GWT-incompatible code.
 DECL|method|containsPattern (String pattern)
 specifier|public
 specifier|static
@@ -865,7 +861,11 @@ return|return
 operator|new
 name|ContainsPatternPredicate
 argument_list|(
+operator|new
+name|JdkPattern
+argument_list|(
 name|pattern
+argument_list|)
 argument_list|)
 return|;
 block|}
@@ -2518,13 +2518,13 @@ name|Serializable
 block|{
 DECL|field|pattern
 specifier|final
-name|Pattern
+name|CommonPattern
 name|pattern
 decl_stmt|;
-DECL|method|ContainsPatternPredicate (Pattern pattern)
+DECL|method|ContainsPatternPredicate (CommonPattern pattern)
 name|ContainsPatternPredicate
 parameter_list|(
-name|Pattern
+name|CommonPattern
 name|pattern
 parameter_list|)
 block|{
@@ -2733,9 +2733,9 @@ parameter_list|)
 block|{
 name|super
 argument_list|(
-name|Pattern
+name|Platform
 operator|.
-name|compile
+name|compilePattern
 argument_list|(
 name|string
 argument_list|)

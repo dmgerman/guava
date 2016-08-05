@@ -30,26 +30,6 @@ end_import
 
 begin_import
 import|import
-name|jsinterop
-operator|.
-name|annotations
-operator|.
-name|JsMethod
-import|;
-end_import
-
-begin_import
-import|import
-name|jsinterop
-operator|.
-name|annotations
-operator|.
-name|JsType
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|util
@@ -67,6 +47,26 @@ operator|.
 name|annotation
 operator|.
 name|Nullable
+import|;
+end_import
+
+begin_import
+import|import
+name|jsinterop
+operator|.
+name|annotations
+operator|.
+name|JsMethod
+import|;
+end_import
+
+begin_import
+import|import
+name|jsinterop
+operator|.
+name|annotations
+operator|.
+name|JsType
 import|;
 end_import
 
@@ -251,6 +251,31 @@ name|int
 name|precision
 parameter_list|)
 function_decl|;
+block|}
+DECL|method|compilePattern (String pattern)
+specifier|static
+name|CommonPattern
+name|compilePattern
+parameter_list|(
+name|String
+name|pattern
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|UnsupportedOperationException
+argument_list|()
+throw|;
+block|}
+DECL|method|usingJdkPatternCompiler ()
+specifier|static
+name|boolean
+name|usingJdkPatternCompiler
+parameter_list|()
+block|{
+return|return
+literal|false
+return|;
 block|}
 DECL|method|Platform ()
 specifier|private
