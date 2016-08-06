@@ -331,7 +331,7 @@ expr_stmt|;
 return|return
 name|graph
 operator|.
-name|addEdge
+name|putEdge
 argument_list|(
 name|n1
 argument_list|,

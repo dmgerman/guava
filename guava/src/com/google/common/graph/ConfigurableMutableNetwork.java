@@ -283,19 +283,19 @@ annotation|@
 name|Override
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|addEdge (E edge, N nodeA, N nodeB)
+DECL|method|addEdgeV2 (N nodeA, N nodeB, E edge)
 specifier|public
 name|boolean
-name|addEdge
+name|addEdgeV2
 parameter_list|(
-name|E
-name|edge
-parameter_list|,
 name|N
 name|nodeA
 parameter_list|,
 name|N
 name|nodeB
+parameter_list|,
+name|E
+name|edge
 parameter_list|)
 block|{
 name|checkNotNull

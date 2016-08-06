@@ -393,7 +393,7 @@ parameter_list|()
 block|{
 name|graph
 operator|.
-name|addEdge
+name|putEdge
 argument_list|(
 name|N1
 argument_list|,
@@ -416,7 +416,7 @@ argument_list|)
 decl_stmt|;
 name|g2
 operator|.
-name|addEdge
+name|putEdge
 argument_list|(
 name|N1
 argument_list|,
@@ -452,7 +452,7 @@ parameter_list|()
 block|{
 name|graph
 operator|.
-name|addEdge
+name|putEdge
 argument_list|(
 name|N1
 argument_list|,
@@ -475,7 +475,7 @@ argument_list|)
 decl_stmt|;
 name|g2
 operator|.
-name|addEdge
+name|putEdge
 argument_list|(
 name|N1
 argument_list|,
@@ -512,7 +512,7 @@ parameter_list|()
 block|{
 name|graph
 operator|.
-name|addEdge
+name|putEdge
 argument_list|(
 name|N1
 argument_list|,
@@ -546,7 +546,7 @@ argument_list|()
 decl_stmt|;
 name|g2
 operator|.
-name|addEdge
+name|putEdge
 argument_list|(
 name|N1
 argument_list|,
@@ -616,7 +616,7 @@ decl_stmt|;
 comment|// for g1, add 1->2 first, then 3->1
 name|g1
 operator|.
-name|addEdge
+name|putEdge
 argument_list|(
 name|N1
 argument_list|,
@@ -625,7 +625,7 @@ argument_list|)
 expr_stmt|;
 name|g1
 operator|.
-name|addEdge
+name|putEdge
 argument_list|(
 name|N3
 argument_list|,
@@ -635,7 +635,7 @@ expr_stmt|;
 comment|// for g2, add 3->1 first, then 1->2
 name|g2
 operator|.
-name|addEdge
+name|putEdge
 argument_list|(
 name|N3
 argument_list|,
@@ -644,7 +644,7 @@ argument_list|)
 expr_stmt|;
 name|g2
 operator|.
-name|addEdge
+name|putEdge
 argument_list|(
 name|N1
 argument_list|,
@@ -676,7 +676,7 @@ parameter_list|()
 block|{
 name|graph
 operator|.
-name|addEdge
+name|putEdge
 argument_list|(
 name|N1
 argument_list|,
@@ -696,7 +696,7 @@ argument_list|)
 decl_stmt|;
 name|g2
 operator|.
-name|addEdge
+name|putEdge
 argument_list|(
 name|N2
 argument_list|,

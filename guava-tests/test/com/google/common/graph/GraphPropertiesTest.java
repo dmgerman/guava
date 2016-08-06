@@ -216,7 +216,7 @@ argument_list|()
 decl_stmt|;
 name|directedGraph
 operator|.
-name|addEdge
+name|putEdge
 argument_list|(
 literal|1
 argument_list|,
@@ -259,7 +259,7 @@ argument_list|()
 decl_stmt|;
 name|directedGraph
 operator|.
-name|addEdge
+name|putEdge
 argument_list|(
 literal|1
 argument_list|,
@@ -302,7 +302,7 @@ argument_list|()
 decl_stmt|;
 name|directedGraph
 operator|.
-name|addEdge
+name|putEdge
 argument_list|(
 literal|1
 argument_list|,
@@ -311,7 +311,7 @@ argument_list|)
 expr_stmt|;
 name|directedGraph
 operator|.
-name|addEdge
+name|putEdge
 argument_list|(
 literal|1
 argument_list|,
@@ -354,7 +354,7 @@ argument_list|()
 decl_stmt|;
 name|directedGraph
 operator|.
-name|addEdge
+name|putEdge
 argument_list|(
 literal|1
 argument_list|,
@@ -363,7 +363,7 @@ argument_list|)
 expr_stmt|;
 name|directedGraph
 operator|.
-name|addEdge
+name|putEdge
 argument_list|(
 literal|2
 argument_list|,
@@ -406,7 +406,7 @@ argument_list|()
 decl_stmt|;
 name|directedGraph
 operator|.
-name|addEdge
+name|putEdge
 argument_list|(
 literal|1
 argument_list|,
@@ -415,7 +415,7 @@ argument_list|)
 expr_stmt|;
 name|directedGraph
 operator|.
-name|addEdge
+name|putEdge
 argument_list|(
 literal|2
 argument_list|,
@@ -424,7 +424,7 @@ argument_list|)
 expr_stmt|;
 name|directedGraph
 operator|.
-name|addEdge
+name|putEdge
 argument_list|(
 literal|1
 argument_list|,
@@ -467,7 +467,7 @@ argument_list|()
 decl_stmt|;
 name|directedGraph
 operator|.
-name|addEdge
+name|putEdge
 argument_list|(
 literal|1
 argument_list|,
@@ -476,7 +476,7 @@ argument_list|)
 expr_stmt|;
 name|directedGraph
 operator|.
-name|addEdge
+name|putEdge
 argument_list|(
 literal|2
 argument_list|,
@@ -485,7 +485,7 @@ argument_list|)
 expr_stmt|;
 name|directedGraph
 operator|.
-name|addEdge
+name|putEdge
 argument_list|(
 literal|3
 argument_list|,
@@ -528,7 +528,7 @@ argument_list|()
 decl_stmt|;
 name|directedGraph
 operator|.
-name|addEdge
+name|putEdge
 argument_list|(
 literal|1
 argument_list|,
@@ -537,7 +537,7 @@ argument_list|)
 expr_stmt|;
 name|directedGraph
 operator|.
-name|addEdge
+name|putEdge
 argument_list|(
 literal|2
 argument_list|,
@@ -587,7 +587,7 @@ argument_list|()
 decl_stmt|;
 name|directedGraph
 operator|.
-name|addEdge
+name|putEdge
 argument_list|(
 literal|1
 argument_list|,
@@ -596,7 +596,7 @@ argument_list|)
 expr_stmt|;
 name|directedGraph
 operator|.
-name|addEdge
+name|putEdge
 argument_list|(
 literal|2
 argument_list|,
@@ -605,7 +605,7 @@ argument_list|)
 expr_stmt|;
 name|directedGraph
 operator|.
-name|addEdge
+name|putEdge
 argument_list|(
 literal|2
 argument_list|,
@@ -614,7 +614,7 @@ argument_list|)
 expr_stmt|;
 name|directedGraph
 operator|.
-name|addEdge
+name|putEdge
 argument_list|(
 literal|3
 argument_list|,

@@ -78,9 +78,9 @@ function_decl|;
 comment|/**    * Adds an (implicit) edge connecting {@code nodeA} to {@code nodeB} to this graph, if such an    * edge is not already present.    *    *<p>Behavior if {@code nodeA} and {@code nodeB} are not already elements of the graph is    * unspecified. Suggested behaviors include (a) silently adding {@code nodeA} and {@code nodeB}    * to the graph (this is the behavior of the default graph implementations) or (b) throwing    * {@code IllegalArgumentException}.    *    * @return {@code true} iff the graph was modified as a result of this call    * @throws IllegalArgumentException if the introduction of the edge would violate    *     {@link #allowsSelfLoops()}    */
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|addEdge (N nodeA, N nodeB)
+DECL|method|putEdge (N nodeA, N nodeB)
 name|boolean
-name|addEdge
+name|putEdge
 parameter_list|(
 name|N
 name|nodeA

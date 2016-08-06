@@ -498,13 +498,13 @@ expr_stmt|;
 return|return
 name|network
 operator|.
-name|addEdge
+name|addEdgeV2
 argument_list|(
-name|e
-argument_list|,
 name|n1
 argument_list|,
 name|n2
+argument_list|,
+name|e
 argument_list|)
 return|;
 block|}

@@ -461,13 +461,13 @@ control|)
 block|{
 name|graph
 operator|.
-name|addEdge
+name|addEdgeV2
 argument_list|(
-literal|"1-2"
-argument_list|,
 literal|1
 argument_list|,
 literal|2
+argument_list|,
+literal|"1-2"
 argument_list|)
 expr_stmt|;
 name|Endpoints

@@ -204,13 +204,13 @@ parameter_list|)
 block|{
 name|graph
 operator|.
-name|addEdge
+name|addEdgeV2
 argument_list|(
-name|edge
-argument_list|,
 name|nodeA
 argument_list|,
 name|nodeB
+argument_list|,
+name|edge
 argument_list|)
 expr_stmt|;
 return|return

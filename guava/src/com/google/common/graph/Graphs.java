@@ -787,13 +787,13 @@ condition|)
 block|{
 name|subgraph
 operator|.
-name|addEdge
+name|addEdgeV2
 argument_list|(
-name|edge
-argument_list|,
 name|node
 argument_list|,
 name|adjacentNode
+argument_list|,
+name|edge
 argument_list|)
 expr_stmt|;
 block|}
@@ -897,7 +897,7 @@ name|checkState
 argument_list|(
 name|copy
 operator|.
-name|addEdge
+name|putEdge
 argument_list|(
 name|endpoints
 operator|.
@@ -1039,10 +1039,8 @@ name|checkState
 argument_list|(
 name|copy
 operator|.
-name|addEdge
+name|addEdgeV2
 argument_list|(
-name|edge
-argument_list|,
 name|endpoints
 operator|.
 name|nodeA
@@ -1052,6 +1050,8 @@ name|endpoints
 operator|.
 name|nodeB
 argument_list|()
+argument_list|,
+name|edge
 argument_list|)
 argument_list|)
 expr_stmt|;

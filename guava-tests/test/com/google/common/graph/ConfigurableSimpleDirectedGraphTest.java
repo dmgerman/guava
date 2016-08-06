@@ -491,7 +491,7 @@ name|assertTrue
 argument_list|(
 name|graph
 operator|.
-name|addEdge
+name|putEdge
 argument_list|(
 name|N1
 argument_list|,
@@ -503,7 +503,7 @@ name|assertTrue
 argument_list|(
 name|graph
 operator|.
-name|addEdge
+name|putEdge
 argument_list|(
 name|N4
 argument_list|,
@@ -515,7 +515,7 @@ name|assertTrue
 argument_list|(
 name|graph
 operator|.
-name|addEdge
+name|putEdge
 argument_list|(
 name|N2
 argument_list|,

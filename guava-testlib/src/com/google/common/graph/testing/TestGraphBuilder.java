@@ -179,7 +179,7 @@ parameter_list|)
 block|{
 name|graph
 operator|.
-name|addEdge
+name|putEdge
 argument_list|(
 name|nodeA
 argument_list|,
