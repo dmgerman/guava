@@ -40,22 +40,6 @@ name|google
 operator|.
 name|common
 operator|.
-name|base
-operator|.
-name|Preconditions
-operator|.
-name|checkState
-import|;
-end_import
-
-begin_import
-import|import static
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
 name|graph
 operator|.
 name|GraphConstants
@@ -3088,7 +3072,7 @@ name|int
 name|value
 parameter_list|)
 block|{
-name|checkState
+name|checkArgument
 argument_list|(
 name|value
 operator|>=
@@ -3114,7 +3098,7 @@ name|int
 name|value
 parameter_list|)
 block|{
-name|checkState
+name|checkArgument
 argument_list|(
 name|value
 operator|>
@@ -3140,7 +3124,7 @@ name|long
 name|value
 parameter_list|)
 block|{
-name|checkState
+name|checkArgument
 argument_list|(
 name|value
 operator|>=
@@ -3166,7 +3150,7 @@ name|long
 name|value
 parameter_list|)
 block|{
-name|checkState
+name|checkArgument
 argument_list|(
 name|value
 operator|>

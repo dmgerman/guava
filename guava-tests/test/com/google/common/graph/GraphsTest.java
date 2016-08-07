@@ -354,23 +354,14 @@ name|ERROR_PARALLEL_EDGE
 init|=
 literal|"connected by a different edge"
 decl_stmt|;
-DECL|field|ERROR_NEGATIVE_NODE_COUNT
+DECL|field|ERROR_NEGATIVE_COUNT
 specifier|private
 specifier|static
 specifier|final
 name|String
-name|ERROR_NEGATIVE_NODE_COUNT
+name|ERROR_NEGATIVE_COUNT
 init|=
-literal|"expected number of nodes can't be negative"
-decl_stmt|;
-DECL|field|ERROR_NEGATIVE_EDGE_COUNT
-specifier|private
-specifier|static
-specifier|final
-name|String
-name|ERROR_NEGATIVE_EDGE_COUNT
-init|=
-literal|"expected number of edges can't be negative"
+literal|"is non-negative"
 decl_stmt|;
 DECL|field|ERROR_ADDED_PARALLEL_EDGE
 specifier|private
@@ -2864,7 +2855,7 @@ argument_list|)
 expr_stmt|;
 name|fail
 argument_list|(
-literal|"Should have rejected getting induced subgraph with node not in original graph"
+literal|"Should have rejected getting induced subgraph with node not in original graph."
 argument_list|)
 expr_stmt|;
 block|}
@@ -2898,7 +2889,7 @@ argument_list|)
 expr_stmt|;
 name|fail
 argument_list|(
-literal|"Should have rejected a null graph"
+literal|"Should have rejected a null graph."
 argument_list|)
 expr_stmt|;
 block|}
@@ -4006,7 +3997,7 @@ argument_list|)
 expr_stmt|;
 name|fail
 argument_list|(
-name|ERROR_NEGATIVE_NODE_COUNT
+literal|"Should have rejected negative expected node count."
 argument_list|)
 expr_stmt|;
 block|}
@@ -4026,7 +4017,7 @@ argument_list|)
 operator|.
 name|contains
 argument_list|(
-name|ERROR_NEGATIVE_NODE_COUNT
+name|ERROR_NEGATIVE_COUNT
 argument_list|)
 expr_stmt|;
 block|}
@@ -4229,7 +4220,7 @@ argument_list|)
 expr_stmt|;
 name|fail
 argument_list|(
-name|ERROR_NEGATIVE_EDGE_COUNT
+literal|"Should have rejected negative expected edge count."
 argument_list|)
 expr_stmt|;
 block|}
@@ -4249,7 +4240,7 @@ argument_list|)
 operator|.
 name|contains
 argument_list|(
-name|ERROR_NEGATIVE_EDGE_COUNT
+name|ERROR_NEGATIVE_COUNT
 argument_list|)
 expr_stmt|;
 block|}

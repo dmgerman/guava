@@ -28,7 +28,7 @@ name|base
 operator|.
 name|Preconditions
 operator|.
-name|checkArgument
+name|checkNotNull
 import|;
 end_import
 
@@ -44,7 +44,7 @@ name|base
 operator|.
 name|Preconditions
 operator|.
-name|checkNotNull
+name|checkState
 import|;
 end_import
 
@@ -165,7 +165,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Used to represent the order of elements in a data structure that supports different options for  * iteration order guarantees.  *  *<p>Example usage:  *  *<pre><code>  *   MutableGraph<Integer> graph  *       = GraphBuilder.directed().nodeOrder(ElementOrder.<Integer>natural()).build();  *</code></pre>  *  * @author Joshua O'Madadhain  * @since 20.0  */
+comment|/**  * Used to represent the order of elements in a data structure that supports different options for  * iteration order guarantees.  *  *<p>Example usage:  *  *<pre><code>  * MutableGraph<Integer> graph =  *     GraphBuilder.directed().nodeOrder(ElementOrder.<Integer>natural()).build();  *</code></pre>  *  * @author Joshua O'Madadhain  * @since 20.0  */
 end_comment
 
 begin_class
@@ -237,7 +237,13 @@ argument_list|(
 name|type
 argument_list|)
 expr_stmt|;
-name|checkArgument
+name|this
+operator|.
+name|comparator
+operator|=
+name|comparator
+expr_stmt|;
+name|checkState
 argument_list|(
 operator|(
 name|type
@@ -252,15 +258,7 @@ name|comparator
 operator|!=
 literal|null
 operator|)
-argument_list|,
-literal|"if the type is SORTED, the comparator should be non-null; otherwise, it should be null"
 argument_list|)
-expr_stmt|;
-name|this
-operator|.
-name|comparator
-operator|=
-name|comparator
 expr_stmt|;
 block|}
 comment|/** Returns an instance which specifies that no ordering is guaranteed. */
@@ -409,7 +407,7 @@ return|return
 name|type
 return|;
 block|}
-comment|/**    * Returns the {@link Comparator} used.    *    * @throws IllegalStateException if no comparator is defined    */
+comment|/**    * Returns the {@link Comparator} used.    *    * @throws UnsupportedOperationException if comparator is not defined    */
 DECL|method|comparator ()
 specifier|public
 name|Comparator
@@ -432,9 +430,9 @@ return|;
 block|}
 throw|throw
 operator|new
-name|IllegalStateException
+name|UnsupportedOperationException
 argument_list|(
-literal|"This ordering does not define a comparator"
+literal|"This ordering does not define a comparator."
 argument_list|)
 throw|;
 block|}
@@ -642,9 +640,12 @@ return|;
 default|default:
 throw|throw
 operator|new
-name|IllegalArgumentException
+name|IllegalStateException
 argument_list|(
-literal|"Unrecognized ElementOrder type"
+name|type
+operator|.
+name|toString
+argument_list|()
 argument_list|)
 throw|;
 block|}

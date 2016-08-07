@@ -28,7 +28,7 @@ name|base
 operator|.
 name|Preconditions
 operator|.
-name|checkArgument
+name|checkNotNull
 import|;
 end_import
 
@@ -40,11 +40,11 @@ name|google
 operator|.
 name|common
 operator|.
-name|base
+name|graph
 operator|.
-name|Preconditions
+name|Graphs
 operator|.
-name|checkNotNull
+name|checkNonNegative
 import|;
 end_import
 
@@ -260,17 +260,6 @@ name|int
 name|expectedNodeCount
 parameter_list|)
 block|{
-name|checkArgument
-argument_list|(
-name|expectedNodeCount
-operator|>=
-literal|0
-argument_list|,
-literal|"The expected number of nodes can't be negative: %s"
-argument_list|,
-name|expectedNodeCount
-argument_list|)
-expr_stmt|;
 name|this
 operator|.
 name|expectedNodeCount
@@ -279,7 +268,10 @@ name|Optional
 operator|.
 name|of
 argument_list|(
+name|checkNonNegative
+argument_list|(
 name|expectedNodeCount
+argument_list|)
 argument_list|)
 expr_stmt|;
 return|return
