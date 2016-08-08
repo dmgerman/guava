@@ -81,6 +81,38 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|graph
+operator|.
+name|Graphs
+operator|.
+name|checkNonNegative
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|graph
+operator|.
+name|Graphs
+operator|.
+name|checkPositive
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -368,6 +400,12 @@ argument_list|(
 name|nodeA
 argument_list|)
 expr_stmt|;
+name|checkPositive
+argument_list|(
+operator|++
+name|edgeCount
+argument_list|)
+expr_stmt|;
 return|return
 literal|true
 return|;
@@ -422,7 +460,20 @@ name|allowsSelfLoops
 argument_list|()
 condition|)
 block|{
-comment|// Remove any potential self-loop first so we won't get CME while removing incident edges.
+comment|// Remove self-loop (if any) first, so we don't get CME while removing incident edges.
+if|if
+condition|(
+name|connections
+operator|.
+name|successors
+argument_list|()
+operator|.
+name|contains
+argument_list|(
+name|node
+argument_list|)
+condition|)
+block|{
 name|connections
 operator|.
 name|removeSuccessor
@@ -437,6 +488,10 @@ argument_list|(
 name|node
 argument_list|)
 expr_stmt|;
+operator|--
+name|edgeCount
+expr_stmt|;
+block|}
 block|}
 for|for
 control|(
@@ -460,6 +515,9 @@ name|removePredecessor
 argument_list|(
 name|node
 argument_list|)
+expr_stmt|;
+operator|--
+name|edgeCount
 expr_stmt|;
 block|}
 if|if
@@ -492,6 +550,9 @@ argument_list|(
 name|node
 argument_list|)
 expr_stmt|;
+operator|--
+name|edgeCount
+expr_stmt|;
 block|}
 block|}
 name|nodeConnections
@@ -499,6 +560,11 @@ operator|.
 name|remove
 argument_list|(
 name|node
+argument_list|)
+expr_stmt|;
+name|checkNonNegative
+argument_list|(
+name|edgeCount
 argument_list|)
 expr_stmt|;
 return|return
@@ -595,6 +661,12 @@ operator|.
 name|removePredecessor
 argument_list|(
 name|nodeA
+argument_list|)
+expr_stmt|;
+name|checkNonNegative
+argument_list|(
+operator|--
+name|edgeCount
 argument_list|)
 expr_stmt|;
 return|return

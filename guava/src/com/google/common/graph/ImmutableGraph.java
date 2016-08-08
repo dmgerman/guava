@@ -131,6 +131,14 @@ name|getNodeConnections
 argument_list|(
 name|graph
 argument_list|)
+argument_list|,
+name|graph
+operator|.
+name|edges
+argument_list|()
+operator|.
+name|size
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}

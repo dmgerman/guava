@@ -77,6 +77,18 @@ argument_list|>
 name|nodes
 parameter_list|()
 function_decl|;
+comment|/**    * Returns all edges in this graph.    */
+DECL|method|edges ()
+name|Set
+argument_list|<
+name|Endpoints
+argument_list|<
+name|N
+argument_list|>
+argument_list|>
+name|edges
+parameter_list|()
+function_decl|;
 comment|/**    * Returns the order of iteration for the elements of {@link #nodes()}.    */
 DECL|method|nodeOrder ()
 name|ElementOrder
