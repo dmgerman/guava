@@ -93,8 +93,6 @@ comment|/**    * Returns the order of iteration for the elements of {@link #node
 DECL|method|nodeOrder ()
 name|ElementOrder
 argument_list|<
-name|?
-super|super
 name|N
 argument_list|>
 name|nodeOrder

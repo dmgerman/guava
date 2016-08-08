@@ -645,6 +645,34 @@ argument_list|)
 throw|;
 block|}
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
+DECL|method|cast ()
+parameter_list|<
+name|T1
+extends|extends
+name|T
+parameter_list|>
+name|ElementOrder
+argument_list|<
+name|T1
+argument_list|>
+name|cast
+parameter_list|()
+block|{
+return|return
+operator|(
+name|ElementOrder
+argument_list|<
+name|T1
+argument_list|>
+operator|)
+name|this
+return|;
+block|}
 block|}
 end_class
 

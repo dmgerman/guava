@@ -211,8 +211,6 @@ specifier|private
 specifier|final
 name|ElementOrder
 argument_list|<
-name|?
-super|super
 name|N
 argument_list|>
 name|nodeOrder
@@ -222,8 +220,6 @@ specifier|private
 specifier|final
 name|ElementOrder
 argument_list|<
-name|?
-super|super
 name|E
 argument_list|>
 name|edgeOrder
@@ -397,6 +393,9 @@ operator|=
 name|builder
 operator|.
 name|nodeOrder
+operator|.
+name|cast
+argument_list|()
 expr_stmt|;
 name|this
 operator|.
@@ -405,6 +404,9 @@ operator|=
 name|builder
 operator|.
 name|edgeOrder
+operator|.
+name|cast
+argument_list|()
 expr_stmt|;
 comment|// Prefer the heavier "MapRetrievalCache" for nodes if lookup is expensive. This optimizes
 comment|// methods that access the same node(s) repeatedly, such as Graphs.removeEdgesConnecting().
@@ -546,8 +548,6 @@ DECL|method|nodeOrder ()
 specifier|public
 name|ElementOrder
 argument_list|<
-name|?
-super|super
 name|N
 argument_list|>
 name|nodeOrder
@@ -563,8 +563,6 @@ DECL|method|edgeOrder ()
 specifier|public
 name|ElementOrder
 argument_list|<
-name|?
-super|super
 name|E
 argument_list|>
 name|edgeOrder

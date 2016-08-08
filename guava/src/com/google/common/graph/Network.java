@@ -92,8 +92,6 @@ comment|/**    * Returns the order of iteration for the elements of {@link #node
 DECL|method|nodeOrder ()
 name|ElementOrder
 argument_list|<
-name|?
-super|super
 name|N
 argument_list|>
 name|nodeOrder
@@ -103,8 +101,6 @@ comment|/**    * Returns the order of iteration for the elements of {@link #edge
 DECL|method|edgeOrder ()
 name|ElementOrder
 argument_list|<
-name|?
-super|super
 name|E
 argument_list|>
 name|edgeOrder

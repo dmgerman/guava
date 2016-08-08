@@ -386,8 +386,6 @@ name|Override
 specifier|public
 name|ElementOrder
 argument_list|<
-name|?
-super|super
 name|N
 argument_list|>
 name|nodeOrder

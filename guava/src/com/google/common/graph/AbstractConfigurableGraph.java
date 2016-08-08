@@ -171,8 +171,6 @@ specifier|private
 specifier|final
 name|ElementOrder
 argument_list|<
-name|?
-super|super
 name|N
 argument_list|>
 name|nodeOrder
@@ -293,6 +291,9 @@ operator|=
 name|builder
 operator|.
 name|nodeOrder
+operator|.
+name|cast
+argument_list|()
 expr_stmt|;
 comment|// Prefer the heavier "MapRetrievalCache" for nodes if lookup is expensive.
 name|this
@@ -392,8 +393,6 @@ DECL|method|nodeOrder ()
 specifier|public
 name|ElementOrder
 argument_list|<
-name|?
-super|super
 name|N
 argument_list|>
 name|nodeOrder
