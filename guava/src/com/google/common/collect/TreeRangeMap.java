@@ -2466,7 +2466,7 @@ argument_list|>
 name|computeNext
 parameter_list|()
 block|{
-while|while
+if|if
 condition|(
 name|backingItr
 operator|.
