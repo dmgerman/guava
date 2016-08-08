@@ -512,6 +512,8 @@ block|}
 block|}
 return|;
 block|}
+annotation|@
+name|Test
 DECL|method|parallelEdges_directed ()
 specifier|public
 name|void
