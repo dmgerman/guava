@@ -40,30 +40,6 @@ name|junit
 operator|.
 name|Assert
 operator|.
-name|assertFalse
-import|;
-end_import
-
-begin_import
-import|import static
-name|org
-operator|.
-name|junit
-operator|.
-name|Assert
-operator|.
-name|assertTrue
-import|;
-end_import
-
-begin_import
-import|import static
-name|org
-operator|.
-name|junit
-operator|.
-name|Assert
-operator|.
 name|fail
 import|;
 end_import
@@ -494,7 +470,7 @@ name|node
 argument_list|)
 control|)
 block|{
-name|assertTrue
+name|assertThat
 argument_list|(
 name|graph
 operator|.
@@ -520,6 +496,9 @@ argument_list|(
 name|adjacentNode
 argument_list|)
 argument_list|)
+operator|.
+name|isTrue
+argument_list|()
 expr_stmt|;
 block|}
 for|for
@@ -912,13 +891,16 @@ name|void
 name|addNode_newNode
 parameter_list|()
 block|{
-name|assertTrue
+name|assertThat
 argument_list|(
 name|addNode
 argument_list|(
 name|N1
 argument_list|)
 argument_list|)
+operator|.
+name|isTrue
+argument_list|()
 expr_stmt|;
 name|assertThat
 argument_list|(
@@ -963,13 +945,16 @@ name|nodes
 argument_list|()
 argument_list|)
 decl_stmt|;
-name|assertFalse
+name|assertThat
 argument_list|(
 name|addNode
 argument_list|(
 name|N1
 argument_list|)
 argument_list|)
+operator|.
+name|isFalse
+argument_list|()
 expr_stmt|;
 name|assertThat
 argument_list|(
@@ -1007,7 +992,7 @@ argument_list|,
 name|N1
 argument_list|)
 expr_stmt|;
-name|assertTrue
+name|assertThat
 argument_list|(
 name|graph
 operator|.
@@ -1016,6 +1001,9 @@ argument_list|(
 name|N1
 argument_list|)
 argument_list|)
+operator|.
+name|isTrue
+argument_list|()
 expr_stmt|;
 name|assertThat
 argument_list|(
@@ -1088,7 +1076,7 @@ name|nodes
 argument_list|()
 argument_list|)
 decl_stmt|;
-name|assertFalse
+name|assertThat
 argument_list|(
 name|graph
 operator|.
@@ -1097,6 +1085,9 @@ argument_list|(
 name|NODE_NOT_IN_GRAPH
 argument_list|)
 argument_list|)
+operator|.
+name|isFalse
+argument_list|()
 expr_stmt|;
 name|assertThat
 argument_list|(
@@ -1139,7 +1130,7 @@ name|N1
 argument_list|)
 decl_stmt|;
 comment|// ensure cache (if any) is populated
-name|assertTrue
+name|assertThat
 argument_list|(
 name|graph
 operator|.
@@ -1148,6 +1139,9 @@ argument_list|(
 name|N1
 argument_list|)
 argument_list|)
+operator|.
+name|isTrue
+argument_list|()
 expr_stmt|;
 try|try
 block|{
@@ -1206,7 +1200,7 @@ argument_list|,
 name|N4
 argument_list|)
 expr_stmt|;
-name|assertTrue
+name|assertThat
 argument_list|(
 name|graph
 operator|.
@@ -1217,6 +1211,9 @@ argument_list|,
 name|N3
 argument_list|)
 argument_list|)
+operator|.
+name|isTrue
+argument_list|()
 expr_stmt|;
 name|assertThat
 argument_list|(
@@ -1251,7 +1248,7 @@ argument_list|,
 name|N2
 argument_list|)
 expr_stmt|;
-name|assertFalse
+name|assertThat
 argument_list|(
 name|graph
 operator|.
@@ -1262,6 +1259,9 @@ argument_list|,
 name|NODE_NOT_IN_GRAPH
 argument_list|)
 argument_list|)
+operator|.
+name|isFalse
+argument_list|()
 expr_stmt|;
 name|assertThat
 argument_list|(
@@ -1299,7 +1299,7 @@ argument_list|(
 name|N3
 argument_list|)
 expr_stmt|;
-name|assertFalse
+name|assertThat
 argument_list|(
 name|graph
 operator|.
@@ -1310,6 +1310,9 @@ argument_list|,
 name|N3
 argument_list|)
 argument_list|)
+operator|.
+name|isFalse
+argument_list|()
 expr_stmt|;
 name|assertThat
 argument_list|(
