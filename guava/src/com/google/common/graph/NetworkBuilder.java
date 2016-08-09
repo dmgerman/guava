@@ -308,9 +308,6 @@ operator|.
 name|edgeOrder
 argument_list|()
 argument_list|)
-operator|.
-name|cast
-argument_list|()
 return|;
 block|}
 comment|/**    * Specifies whether the graph will allow parallel edges. Attempting to add a parallel edge to    * a graph that does not allow them will throw an {@link UnsupportedOperationException}.    */

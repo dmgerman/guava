@@ -240,9 +240,6 @@ operator|.
 name|nodeOrder
 argument_list|()
 argument_list|)
-operator|.
-name|cast
-argument_list|()
 return|;
 block|}
 comment|/**    * Specifies whether the graph will allow self-loops (edges that connect a node to itself).    * Attempting to add a self-loop to a graph that does not allow them will throw an    * {@link UnsupportedOperationException}.    */
