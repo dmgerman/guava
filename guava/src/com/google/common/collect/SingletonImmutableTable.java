@@ -371,6 +371,36 @@ name|singleValue
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|createSerializedForm ()
+name|SerializedForm
+name|createSerializedForm
+parameter_list|()
+block|{
+return|return
+name|SerializedForm
+operator|.
+name|create
+argument_list|(
+name|this
+argument_list|,
+operator|new
+name|int
+index|[]
+block|{
+literal|0
+block|}
+argument_list|,
+operator|new
+name|int
+index|[]
+block|{
+literal|0
+block|}
+argument_list|)
+return|;
+block|}
 block|}
 end_class
 

@@ -735,7 +735,6 @@ literal|null
 argument_list|)
 return|;
 block|}
-comment|/**    * A factory that chooses the most space-efficient representation of the    * table.    */
 DECL|method|forCellsInternal ( Iterable<Cell<R, C, V>> cells, @Nullable Comparator<? super R> rowComparator, @Nullable Comparator<? super C> columnComparator)
 specifier|private
 specifier|static
@@ -945,6 +944,63 @@ name|columnSpaceBuilder
 argument_list|)
 argument_list|)
 decl_stmt|;
+return|return
+name|forOrderedComponents
+argument_list|(
+name|cellList
+argument_list|,
+name|rowSpace
+argument_list|,
+name|columnSpace
+argument_list|)
+return|;
+block|}
+comment|/** A factory that chooses the most space-efficient representation of the table. */
+DECL|method|forOrderedComponents ( ImmutableList<Cell<R, C, V>> cellList, ImmutableSet<R> rowSpace, ImmutableSet<C> columnSpace)
+specifier|static
+parameter_list|<
+name|R
+parameter_list|,
+name|C
+parameter_list|,
+name|V
+parameter_list|>
+name|RegularImmutableTable
+argument_list|<
+name|R
+argument_list|,
+name|C
+argument_list|,
+name|V
+argument_list|>
+name|forOrderedComponents
+parameter_list|(
+name|ImmutableList
+argument_list|<
+name|Cell
+argument_list|<
+name|R
+argument_list|,
+name|C
+argument_list|,
+name|V
+argument_list|>
+argument_list|>
+name|cellList
+parameter_list|,
+name|ImmutableSet
+argument_list|<
+name|R
+argument_list|>
+name|rowSpace
+parameter_list|,
+name|ImmutableSet
+argument_list|<
+name|C
+argument_list|>
+name|columnSpace
+parameter_list|)
+block|{
 comment|// use a dense table if more than half of the cells have values
 comment|// TODO(gak): tune this condition based on empirical evidence
 return|return
