@@ -47,6 +47,20 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|java
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|TimeUnit
+operator|.
+name|SECONDS
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -1601,11 +1615,9 @@ name|manager
 operator|.
 name|awaitHealthy
 argument_list|(
-literal|100
+literal|5
 argument_list|,
-name|TimeUnit
-operator|.
-name|MILLISECONDS
+name|SECONDS
 argument_list|)
 expr_stmt|;
 comment|// no exception thrown
@@ -1641,11 +1653,9 @@ name|manager
 operator|.
 name|awaitStopped
 argument_list|(
-literal|100
+literal|5
 argument_list|,
-name|TimeUnit
-operator|.
-name|MILLISECONDS
+name|SECONDS
 argument_list|)
 expr_stmt|;
 comment|// no exception thrown
