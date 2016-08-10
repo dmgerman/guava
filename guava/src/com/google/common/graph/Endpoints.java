@@ -338,7 +338,7 @@ return|return
 name|nodeB
 return|;
 block|}
-comment|/**    * Returns the node that is adjacent to {@code node} along the origin edge.    *    * @throws IllegalArgumentException if the origin edge is not incident to {@code node}    */
+comment|/**    * Returns the node that is adjacent to {@code node} along the origin edge.    *    * @throws IllegalArgumentException if this instance does not contain {@code node}, that is, the    *     origin edge is not incident to {@code}    */
 DECL|method|adjacentNode (Object node)
 specifier|public
 specifier|final
@@ -395,7 +395,7 @@ name|String
 operator|.
 name|format
 argument_list|(
-literal|"Endpoints %s is not incident to node %s"
+literal|"Endpoints %s does not contain node %s"
 argument_list|,
 name|this
 argument_list|,
