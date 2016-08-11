@@ -113,11 +113,6 @@ annotation|@
 name|Beta
 annotation|@
 name|GwtCompatible
-argument_list|(
-name|emulated
-operator|=
-literal|true
-argument_list|)
 DECL|class|BinaryTreeTraverser
 specifier|public
 specifier|abstract
@@ -132,7 +127,6 @@ argument_list|<
 name|T
 argument_list|>
 block|{
-comment|// TODO(lowasser): make this GWT-compatible when we've checked in BitSet emulation
 comment|/**    * Returns the left child of the specified node, or {@link Optional#absent()} if the specified    * node has no left child.    */
 DECL|method|leftChild (T root)
 specifier|public
