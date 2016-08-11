@@ -476,7 +476,7 @@ condition|)
 block|{
 name|subgraph
 operator|.
-name|addEdgeV2
+name|addEdge
 argument_list|(
 name|node
 argument_list|,
@@ -728,7 +728,7 @@ name|checkState
 argument_list|(
 name|copy
 operator|.
-name|addEdgeV2
+name|addEdge
 argument_list|(
 name|endpoints
 operator|.

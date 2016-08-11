@@ -876,7 +876,7 @@ name|assertTrue
 argument_list|(
 name|network
 operator|.
-name|addEdgeV2
+name|addEdge
 argument_list|(
 name|N1
 argument_list|,
@@ -890,7 +890,7 @@ name|assertTrue
 argument_list|(
 name|network
 operator|.
-name|addEdgeV2
+name|addEdge
 argument_list|(
 name|N4
 argument_list|,
@@ -904,7 +904,7 @@ name|assertTrue
 argument_list|(
 name|network
 operator|.
-name|addEdgeV2
+name|addEdge
 argument_list|(
 name|N2
 argument_list|,

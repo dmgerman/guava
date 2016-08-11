@@ -1422,7 +1422,7 @@ parameter_list|)
 block|{
 name|graph
 operator|.
-name|addEdgeV2
+name|addEdge
 argument_list|(
 literal|3
 argument_list|,
@@ -1433,7 +1433,7 @@ argument_list|)
 expr_stmt|;
 name|graph
 operator|.
-name|addEdgeV2
+name|addEdge
 argument_list|(
 literal|1
 argument_list|,
@@ -1444,7 +1444,7 @@ argument_list|)
 expr_stmt|;
 name|graph
 operator|.
-name|addEdgeV2
+name|addEdge
 argument_list|(
 literal|4
 argument_list|,

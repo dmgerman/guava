@@ -488,7 +488,7 @@ expr_stmt|;
 return|return
 name|network
 operator|.
-name|addEdgeV2
+name|addEdge
 argument_list|(
 name|n1
 argument_list|,

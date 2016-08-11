@@ -524,7 +524,7 @@ argument_list|()
 decl_stmt|;
 name|directedGraph
 operator|.
-name|addEdgeV2
+name|addEdge
 argument_list|(
 name|N1
 argument_list|,
@@ -535,7 +535,7 @@ argument_list|)
 expr_stmt|;
 name|directedGraph
 operator|.
-name|addEdgeV2
+name|addEdge
 argument_list|(
 name|N1
 argument_list|,
@@ -546,7 +546,7 @@ argument_list|)
 expr_stmt|;
 name|directedGraph
 operator|.
-name|addEdgeV2
+name|addEdge
 argument_list|(
 name|N2
 argument_list|,
@@ -636,7 +636,7 @@ argument_list|()
 decl_stmt|;
 name|directedGraph
 operator|.
-name|addEdgeV2
+name|addEdge
 argument_list|(
 name|N1
 argument_list|,
@@ -647,7 +647,7 @@ argument_list|)
 expr_stmt|;
 name|directedGraph
 operator|.
-name|addEdgeV2
+name|addEdge
 argument_list|(
 name|N1
 argument_list|,
@@ -722,7 +722,7 @@ argument_list|()
 decl_stmt|;
 name|undirectedGraph
 operator|.
-name|addEdgeV2
+name|addEdge
 argument_list|(
 name|N1
 argument_list|,
@@ -733,7 +733,7 @@ argument_list|)
 expr_stmt|;
 name|undirectedGraph
 operator|.
-name|addEdgeV2
+name|addEdge
 argument_list|(
 name|N1
 argument_list|,
@@ -744,7 +744,7 @@ argument_list|)
 expr_stmt|;
 name|undirectedGraph
 operator|.
-name|addEdgeV2
+name|addEdge
 argument_list|(
 name|N2
 argument_list|,
@@ -842,7 +842,7 @@ argument_list|()
 decl_stmt|;
 name|undirectedGraph
 operator|.
-name|addEdgeV2
+name|addEdge
 argument_list|(
 name|N1
 argument_list|,
@@ -853,7 +853,7 @@ argument_list|)
 expr_stmt|;
 name|undirectedGraph
 operator|.
-name|addEdgeV2
+name|addEdge
 argument_list|(
 name|N1
 argument_list|,
@@ -928,7 +928,7 @@ argument_list|()
 decl_stmt|;
 name|undirectedGraph
 operator|.
-name|addEdgeV2
+name|addEdge
 argument_list|(
 name|N1
 argument_list|,
@@ -939,7 +939,7 @@ argument_list|)
 expr_stmt|;
 name|undirectedGraph
 operator|.
-name|addEdgeV2
+name|addEdge
 argument_list|(
 name|N1
 argument_list|,
@@ -975,7 +975,7 @@ argument_list|)
 expr_stmt|;
 name|undirectedGraph
 operator|.
-name|addEdgeV2
+name|addEdge
 argument_list|(
 name|N1
 argument_list|,
@@ -1044,7 +1044,7 @@ argument_list|()
 decl_stmt|;
 name|directedGraph
 operator|.
-name|addEdgeV2
+name|addEdge
 argument_list|(
 name|N1
 argument_list|,
@@ -1055,7 +1055,7 @@ argument_list|)
 expr_stmt|;
 name|directedGraph
 operator|.
-name|addEdgeV2
+name|addEdge
 argument_list|(
 name|N2
 argument_list|,
@@ -1066,7 +1066,7 @@ argument_list|)
 expr_stmt|;
 name|directedGraph
 operator|.
-name|addEdgeV2
+name|addEdge
 argument_list|(
 name|N3
 argument_list|,
@@ -1077,7 +1077,7 @@ argument_list|)
 expr_stmt|;
 name|directedGraph
 operator|.
-name|addEdgeV2
+name|addEdge
 argument_list|(
 name|N3
 argument_list|,
@@ -1140,7 +1140,7 @@ argument_list|()
 decl_stmt|;
 name|undirectedGraph
 operator|.
-name|addEdgeV2
+name|addEdge
 argument_list|(
 name|N1
 argument_list|,
@@ -1151,7 +1151,7 @@ argument_list|)
 expr_stmt|;
 name|undirectedGraph
 operator|.
-name|addEdgeV2
+name|addEdge
 argument_list|(
 name|N1
 argument_list|,
@@ -1162,7 +1162,7 @@ argument_list|)
 expr_stmt|;
 name|undirectedGraph
 operator|.
-name|addEdgeV2
+name|addEdge
 argument_list|(
 name|N2
 argument_list|,
@@ -1223,7 +1223,7 @@ argument_list|()
 decl_stmt|;
 name|undirectedGraph
 operator|.
-name|addEdgeV2
+name|addEdge
 argument_list|(
 name|N1
 argument_list|,
@@ -1234,7 +1234,7 @@ argument_list|)
 expr_stmt|;
 name|undirectedGraph
 operator|.
-name|addEdgeV2
+name|addEdge
 argument_list|(
 name|N1
 argument_list|,
@@ -1245,7 +1245,7 @@ argument_list|)
 expr_stmt|;
 name|undirectedGraph
 operator|.
-name|addEdgeV2
+name|addEdge
 argument_list|(
 name|N1
 argument_list|,
@@ -1256,7 +1256,7 @@ argument_list|)
 expr_stmt|;
 name|undirectedGraph
 operator|.
-name|addEdgeV2
+name|addEdge
 argument_list|(
 name|N3
 argument_list|,
@@ -1309,7 +1309,7 @@ argument_list|()
 decl_stmt|;
 name|directedGraph
 operator|.
-name|addEdgeV2
+name|addEdge
 argument_list|(
 name|N1
 argument_list|,
@@ -1320,7 +1320,7 @@ argument_list|)
 expr_stmt|;
 name|directedGraph
 operator|.
-name|addEdgeV2
+name|addEdge
 argument_list|(
 name|N3
 argument_list|,
@@ -1369,7 +1369,7 @@ argument_list|()
 decl_stmt|;
 name|undirectedGraph
 operator|.
-name|addEdgeV2
+name|addEdge
 argument_list|(
 name|N1
 argument_list|,
@@ -1401,7 +1401,7 @@ argument_list|()
 expr_stmt|;
 name|undirectedGraph
 operator|.
-name|addEdgeV2
+name|addEdge
 argument_list|(
 name|N2
 argument_list|,
@@ -1422,7 +1422,7 @@ argument_list|)
 expr_stmt|;
 name|undirectedGraph
 operator|.
-name|addEdgeV2
+name|addEdge
 argument_list|(
 name|N3
 argument_list|,
@@ -1508,7 +1508,7 @@ argument_list|()
 decl_stmt|;
 name|directedGraph
 operator|.
-name|addEdgeV2
+name|addEdge
 argument_list|(
 name|N1
 argument_list|,
@@ -1519,7 +1519,7 @@ argument_list|)
 expr_stmt|;
 name|directedGraph
 operator|.
-name|addEdgeV2
+name|addEdge
 argument_list|(
 name|N2
 argument_list|,
@@ -1530,7 +1530,7 @@ argument_list|)
 expr_stmt|;
 name|directedGraph
 operator|.
-name|addEdgeV2
+name|addEdge
 argument_list|(
 name|N1
 argument_list|,
@@ -1542,7 +1542,7 @@ expr_stmt|;
 comment|// only incident to one node in nodeSubset
 name|directedGraph
 operator|.
-name|addEdgeV2
+name|addEdge
 argument_list|(
 name|N4
 argument_list|,
@@ -1553,7 +1553,7 @@ argument_list|)
 expr_stmt|;
 name|directedGraph
 operator|.
-name|addEdgeV2
+name|addEdge
 argument_list|(
 literal|5
 argument_list|,
@@ -1581,7 +1581,7 @@ argument_list|()
 decl_stmt|;
 name|expectedSubgraph
 operator|.
-name|addEdgeV2
+name|addEdge
 argument_list|(
 name|N1
 argument_list|,
@@ -1592,7 +1592,7 @@ argument_list|)
 expr_stmt|;
 name|expectedSubgraph
 operator|.
-name|addEdgeV2
+name|addEdge
 argument_list|(
 name|N2
 argument_list|,
@@ -1603,7 +1603,7 @@ argument_list|)
 expr_stmt|;
 name|expectedSubgraph
 operator|.
-name|addEdgeV2
+name|addEdge
 argument_list|(
 name|N4
 argument_list|,
@@ -1928,7 +1928,7 @@ name|assertThat
 argument_list|(
 name|directedGraph
 operator|.
-name|addEdgeV2
+name|addEdge
 argument_list|(
 name|N1
 argument_list|,
@@ -1983,7 +1983,7 @@ try|try
 block|{
 name|directedGraph
 operator|.
-name|addEdgeV2
+name|addEdge
 argument_list|(
 name|N1
 argument_list|,
@@ -2023,7 +2023,7 @@ name|assertThat
 argument_list|(
 name|directedGraph
 operator|.
-name|addEdgeV2
+name|addEdge
 argument_list|(
 name|N1
 argument_list|,
@@ -2087,7 +2087,7 @@ name|assertThat
 argument_list|(
 name|undirectedGraph
 operator|.
-name|addEdgeV2
+name|addEdge
 argument_list|(
 name|N1
 argument_list|,
@@ -2149,7 +2149,7 @@ try|try
 block|{
 name|undirectedGraph
 operator|.
-name|addEdgeV2
+name|addEdge
 argument_list|(
 name|N1
 argument_list|,
@@ -2188,7 +2188,7 @@ try|try
 block|{
 name|undirectedGraph
 operator|.
-name|addEdgeV2
+name|addEdge
 argument_list|(
 name|N2
 argument_list|,
@@ -2228,7 +2228,7 @@ name|assertThat
 argument_list|(
 name|undirectedGraph
 operator|.
-name|addEdgeV2
+name|addEdge
 argument_list|(
 name|N1
 argument_list|,
@@ -2275,7 +2275,7 @@ name|assertThat
 argument_list|(
 name|directedMultigraph
 operator|.
-name|addEdgeV2
+name|addEdge
 argument_list|(
 name|N1
 argument_list|,
@@ -2292,7 +2292,7 @@ name|assertThat
 argument_list|(
 name|directedMultigraph
 operator|.
-name|addEdgeV2
+name|addEdge
 argument_list|(
 name|N1
 argument_list|,
@@ -2378,7 +2378,7 @@ name|assertThat
 argument_list|(
 name|undirectedMultigraph
 operator|.
-name|addEdgeV2
+name|addEdge
 argument_list|(
 name|N1
 argument_list|,
@@ -2395,7 +2395,7 @@ name|assertThat
 argument_list|(
 name|undirectedMultigraph
 operator|.
-name|addEdgeV2
+name|addEdge
 argument_list|(
 name|N1
 argument_list|,
@@ -2412,7 +2412,7 @@ name|assertThat
 argument_list|(
 name|undirectedMultigraph
 operator|.
-name|addEdgeV2
+name|addEdge
 argument_list|(
 name|N2
 argument_list|,
@@ -2485,7 +2485,7 @@ name|assertThat
 argument_list|(
 name|directedGraph
 operator|.
-name|addEdgeV2
+name|addEdge
 argument_list|(
 name|N1
 argument_list|,
@@ -2569,7 +2569,7 @@ name|assertThat
 argument_list|(
 name|undirectedGraph
 operator|.
-name|addEdgeV2
+name|addEdge
 argument_list|(
 name|N1
 argument_list|,
@@ -2708,7 +2708,7 @@ name|assertThat
 argument_list|(
 name|directedGraph
 operator|.
-name|addEdgeV2
+name|addEdge
 argument_list|(
 name|N1
 argument_list|,
@@ -2792,7 +2792,7 @@ name|assertThat
 argument_list|(
 name|undirectedGraph
 operator|.
-name|addEdgeV2
+name|addEdge
 argument_list|(
 name|N1
 argument_list|,
@@ -2931,7 +2931,7 @@ try|try
 block|{
 name|directedGraph
 operator|.
-name|addEdgeV2
+name|addEdge
 argument_list|(
 name|N1
 argument_list|,
@@ -3000,7 +3000,7 @@ try|try
 block|{
 name|undirectedGraph
 operator|.
-name|addEdgeV2
+name|addEdge
 argument_list|(
 name|N1
 argument_list|,
@@ -3181,7 +3181,7 @@ argument_list|()
 decl_stmt|;
 name|directedGraph
 operator|.
-name|addEdgeV2
+name|addEdge
 argument_list|(
 name|N1
 argument_list|,
@@ -3192,7 +3192,7 @@ argument_list|)
 expr_stmt|;
 name|directedGraph
 operator|.
-name|addEdgeV2
+name|addEdge
 argument_list|(
 name|N1
 argument_list|,
@@ -3203,7 +3203,7 @@ argument_list|)
 expr_stmt|;
 name|directedGraph
 operator|.
-name|addEdgeV2
+name|addEdge
 argument_list|(
 name|N1
 argument_list|,
@@ -3214,7 +3214,7 @@ argument_list|)
 expr_stmt|;
 name|directedGraph
 operator|.
-name|addEdgeV2
+name|addEdge
 argument_list|(
 name|N1
 argument_list|,
@@ -3225,7 +3225,7 @@ argument_list|)
 expr_stmt|;
 name|directedGraph
 operator|.
-name|addEdgeV2
+name|addEdge
 argument_list|(
 name|N2
 argument_list|,
@@ -3273,7 +3273,7 @@ argument_list|()
 decl_stmt|;
 name|undirectedGraph
 operator|.
-name|addEdgeV2
+name|addEdge
 argument_list|(
 name|N1
 argument_list|,
@@ -3284,7 +3284,7 @@ argument_list|)
 expr_stmt|;
 name|undirectedGraph
 operator|.
-name|addEdgeV2
+name|addEdge
 argument_list|(
 name|N1
 argument_list|,
@@ -3295,7 +3295,7 @@ argument_list|)
 expr_stmt|;
 name|undirectedGraph
 operator|.
-name|addEdgeV2
+name|addEdge
 argument_list|(
 name|N1
 argument_list|,
@@ -3306,7 +3306,7 @@ argument_list|)
 expr_stmt|;
 name|undirectedGraph
 operator|.
-name|addEdgeV2
+name|addEdge
 argument_list|(
 name|N1
 argument_list|,
@@ -3317,7 +3317,7 @@ argument_list|)
 expr_stmt|;
 name|undirectedGraph
 operator|.
-name|addEdgeV2
+name|addEdge
 argument_list|(
 name|N2
 argument_list|,

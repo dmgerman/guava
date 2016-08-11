@@ -628,7 +628,7 @@ control|)
 block|{
 name|graph
 operator|.
-name|addEdgeV2
+name|addEdge
 argument_list|(
 literal|1
 argument_list|,
@@ -1013,7 +1013,7 @@ argument_list|)
 expr_stmt|;
 name|directedNetwork
 operator|.
-name|addEdgeV2
+name|addEdge
 argument_list|(
 name|N1
 argument_list|,
@@ -1024,7 +1024,7 @@ argument_list|)
 expr_stmt|;
 name|directedNetwork
 operator|.
-name|addEdgeV2
+name|addEdge
 argument_list|(
 name|N2
 argument_list|,
@@ -1035,7 +1035,7 @@ argument_list|)
 expr_stmt|;
 name|directedNetwork
 operator|.
-name|addEdgeV2
+name|addEdge
 argument_list|(
 name|N1
 argument_list|,
@@ -1046,7 +1046,7 @@ argument_list|)
 expr_stmt|;
 name|directedNetwork
 operator|.
-name|addEdgeV2
+name|addEdge
 argument_list|(
 name|N4
 argument_list|,
@@ -1141,7 +1141,7 @@ argument_list|)
 expr_stmt|;
 name|undirectedNetwork
 operator|.
-name|addEdgeV2
+name|addEdge
 argument_list|(
 name|N1
 argument_list|,
@@ -1152,7 +1152,7 @@ argument_list|)
 expr_stmt|;
 name|undirectedNetwork
 operator|.
-name|addEdgeV2
+name|addEdge
 argument_list|(
 name|N2
 argument_list|,
@@ -1164,7 +1164,7 @@ expr_stmt|;
 comment|// adds parallel edge, won't be in Graph edges
 name|undirectedNetwork
 operator|.
-name|addEdgeV2
+name|addEdge
 argument_list|(
 name|N1
 argument_list|,
@@ -1175,7 +1175,7 @@ argument_list|)
 expr_stmt|;
 name|undirectedNetwork
 operator|.
-name|addEdgeV2
+name|addEdge
 argument_list|(
 name|N4
 argument_list|,

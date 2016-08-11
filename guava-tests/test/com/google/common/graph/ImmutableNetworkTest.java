@@ -169,7 +169,7 @@ argument_list|()
 decl_stmt|;
 name|mutableGraph
 operator|.
-name|addEdgeV2
+name|addEdge
 argument_list|(
 literal|"A"
 argument_list|,
@@ -180,7 +180,7 @@ argument_list|)
 expr_stmt|;
 name|mutableGraph
 operator|.
-name|addEdgeV2
+name|addEdge
 argument_list|(
 literal|"A"
 argument_list|,
@@ -280,7 +280,7 @@ argument_list|()
 decl_stmt|;
 name|mutableGraph
 operator|.
-name|addEdgeV2
+name|addEdge
 argument_list|(
 literal|"A"
 argument_list|,
@@ -291,7 +291,7 @@ argument_list|)
 expr_stmt|;
 name|mutableGraph
 operator|.
-name|addEdgeV2
+name|addEdge
 argument_list|(
 literal|"A"
 argument_list|,

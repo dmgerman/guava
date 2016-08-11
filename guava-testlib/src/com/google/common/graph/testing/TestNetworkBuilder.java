@@ -204,7 +204,7 @@ parameter_list|)
 block|{
 name|graph
 operator|.
-name|addEdgeV2
+name|addEdge
 argument_list|(
 name|nodeA
 argument_list|,

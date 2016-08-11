@@ -82,11 +82,9 @@ function_decl|;
 comment|/**    * Adds {@code edge} to this graph, connecting {@code nodeA} to {@code nodeB}.    *    *<p><b>Edges must be unique</b>, just as {@code Map} keys must be; they must also be non-null.    *    *<p>Behavior if {@code nodeA} and {@code nodeB} are not already elements of the graph is    * unspecified. Suggested behaviors include (a) silently adding {@code nodeA} and {@code nodeB}    * to the graph (this is the behavior of the default graph implementations) or (b) throwing    * {@code IllegalArgumentException}.    *    *<p>If {@code edge} already connects {@code nodeA} to {@code nodeB} in this graph    * (in the specified order if order is significant, as for directed graphs, else in any order),    * then this method will have no effect and will return {@code false}.    *    * @return {@code true} iff the graph was modified as a result of this call    * @throws IllegalArgumentException if {@code edge} already exists and does not connect    *     {@code nodeA} to {@code nodeB}, or if the introduction of the edge would violate    *     {@link #allowsParallelEdges()} or {@link #allowsSelfLoops()}    */
 annotation|@
 name|CanIgnoreReturnValue
-comment|// TODO(user): Temporarily named addEdgeV2. Will be renamed to addEdge Wednesday (8/10) ~11pm.
-comment|// In the mean time, feel free to use this method. Everyone will be migrated automatically.
-DECL|method|addEdgeV2 (N nodeA, N nodeB, E edge)
+DECL|method|addEdge (N nodeA, N nodeB, E edge)
 name|boolean
-name|addEdgeV2
+name|addEdge
 parameter_list|(
 name|N
 name|nodeA

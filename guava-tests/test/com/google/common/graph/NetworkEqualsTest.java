@@ -435,7 +435,7 @@ parameter_list|()
 block|{
 name|graph
 operator|.
-name|addEdgeV2
+name|addEdge
 argument_list|(
 name|N1
 argument_list|,
@@ -459,7 +459,7 @@ argument_list|)
 decl_stmt|;
 name|g2
 operator|.
-name|addEdgeV2
+name|addEdge
 argument_list|(
 name|N1
 argument_list|,
@@ -497,7 +497,7 @@ parameter_list|()
 block|{
 name|graph
 operator|.
-name|addEdgeV2
+name|addEdge
 argument_list|(
 name|N1
 argument_list|,
@@ -524,7 +524,7 @@ argument_list|)
 decl_stmt|;
 name|g2
 operator|.
-name|addEdgeV2
+name|addEdge
 argument_list|(
 name|N1
 argument_list|,
@@ -562,7 +562,7 @@ parameter_list|()
 block|{
 name|graph
 operator|.
-name|addEdgeV2
+name|addEdge
 argument_list|(
 name|N1
 argument_list|,
@@ -589,7 +589,7 @@ argument_list|)
 decl_stmt|;
 name|g2
 operator|.
-name|addEdgeV2
+name|addEdge
 argument_list|(
 name|N1
 argument_list|,
@@ -627,7 +627,7 @@ parameter_list|()
 block|{
 name|graph
 operator|.
-name|addEdgeV2
+name|addEdge
 argument_list|(
 name|N1
 argument_list|,
@@ -638,7 +638,7 @@ argument_list|)
 expr_stmt|;
 name|graph
 operator|.
-name|addEdgeV2
+name|addEdge
 argument_list|(
 name|N1
 argument_list|,
@@ -663,7 +663,7 @@ decl_stmt|;
 comment|// connect E13 to N1 and N2, and E12 to N1 and N3 => not equal
 name|g2
 operator|.
-name|addEdgeV2
+name|addEdge
 argument_list|(
 name|N1
 argument_list|,
@@ -674,7 +674,7 @@ argument_list|)
 expr_stmt|;
 name|g2
 operator|.
-name|addEdgeV2
+name|addEdge
 argument_list|(
 name|N1
 argument_list|,
@@ -713,7 +713,7 @@ parameter_list|()
 block|{
 name|graph
 operator|.
-name|addEdgeV2
+name|addEdge
 argument_list|(
 name|N1
 argument_list|,
@@ -760,7 +760,7 @@ argument_list|()
 decl_stmt|;
 name|g2
 operator|.
-name|addEdgeV2
+name|addEdge
 argument_list|(
 name|N1
 argument_list|,
@@ -843,7 +843,7 @@ decl_stmt|;
 comment|// for ug1, add e12 first, then e12_a
 name|g1
 operator|.
-name|addEdgeV2
+name|addEdge
 argument_list|(
 name|N1
 argument_list|,
@@ -854,7 +854,7 @@ argument_list|)
 expr_stmt|;
 name|g1
 operator|.
-name|addEdgeV2
+name|addEdge
 argument_list|(
 name|N1
 argument_list|,
@@ -866,7 +866,7 @@ expr_stmt|;
 comment|// for ug2, add e12_a first, then e12
 name|g2
 operator|.
-name|addEdgeV2
+name|addEdge
 argument_list|(
 name|N1
 argument_list|,
@@ -877,7 +877,7 @@ argument_list|)
 expr_stmt|;
 name|g2
 operator|.
-name|addEdgeV2
+name|addEdge
 argument_list|(
 name|N1
 argument_list|,
@@ -911,7 +911,7 @@ parameter_list|()
 block|{
 name|graph
 operator|.
-name|addEdgeV2
+name|addEdge
 argument_list|(
 name|N1
 argument_list|,
@@ -935,7 +935,7 @@ argument_list|)
 decl_stmt|;
 name|g2
 operator|.
-name|addEdgeV2
+name|addEdge
 argument_list|(
 name|N2
 argument_list|,

@@ -283,10 +283,10 @@ annotation|@
 name|Override
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|addEdgeV2 (N nodeA, N nodeB, E edge)
+DECL|method|addEdge (N nodeA, N nodeB, E edge)
 specifier|public
 name|boolean
-name|addEdgeV2
+name|addEdge
 parameter_list|(
 name|N
 name|nodeA
