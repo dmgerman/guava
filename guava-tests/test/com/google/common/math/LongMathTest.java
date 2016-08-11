@@ -307,6 +307,11 @@ name|LongMathTest
 extends|extends
 name|TestCase
 block|{
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"ConstantOverflow"
+argument_list|)
 DECL|method|testMaxSignedPowerOfTwo ()
 specifier|public
 name|void
