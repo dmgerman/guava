@@ -1167,16 +1167,17 @@ init|=
 operator|new
 name|StringBuilder
 argument_list|()
-decl_stmt|;
-name|sb
 operator|.
 name|append
 argument_list|(
 literal|"expected one element but was:<"
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 name|first
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 for|for
 control|(
 name|int
@@ -1202,7 +1203,10 @@ operator|.
 name|append
 argument_list|(
 literal|", "
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 name|iterator
 operator|.
 name|next
