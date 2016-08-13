@@ -77,19 +77,21 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A builder for constructing instances of {@link Graph} with user-defined properties.  *  *<p>A graph built by this class will have the following properties by default:  *<ul>  *<li>allows self-loops  *<li>orders {@code nodes()} in the order in which the elements were added  *</ul>  *  * @author James Sexton  * @author Joshua O'Madadhain  * @since 20.0  */
+comment|/**  * A builder for constructing instances of {@link ValueGraph} with user-defined properties.  *  *<p>A graph built by this class will have the following properties by default:  *<ul>  *<li>allows self-loops  *<li>orders {@code nodes()} in the order in which the elements were added  *</ul>  *  * @author James Sexton  * @author Joshua O'Madadhain  * @since 20.0  */
 end_comment
 
 begin_class
 annotation|@
 name|Beta
-DECL|class|GraphBuilder
+DECL|class|ValueGraphBuilder
 specifier|public
 specifier|final
 class|class
-name|GraphBuilder
+name|ValueGraphBuilder
 parameter_list|<
 name|N
+parameter_list|,
+name|V
 parameter_list|>
 extends|extends
 name|AbstractGraphBuilder
@@ -98,9 +100,9 @@ name|N
 argument_list|>
 block|{
 comment|/**    * Creates a new instance with the specified edge directionality.    *    * @param directed if true, creates an instance for graphs whose edges are each directed;    *      if false, creates an instance for graphs whose edges are each undirected.    */
-DECL|method|GraphBuilder (boolean directed)
+DECL|method|ValueGraphBuilder (boolean directed)
 specifier|private
-name|GraphBuilder
+name|ValueGraphBuilder
 parameter_list|(
 name|boolean
 name|directed
@@ -112,12 +114,14 @@ name|directed
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Returns a {@link GraphBuilder} for building directed graphs.    */
+comment|/**    * Returns a {@link ValueGraphBuilder} for building directed value graphs.    */
 DECL|method|directed ()
 specifier|public
 specifier|static
-name|GraphBuilder
+name|ValueGraphBuilder
 argument_list|<
+name|Object
+argument_list|,
 name|Object
 argument_list|>
 name|directed
@@ -125,8 +129,10 @@ parameter_list|()
 block|{
 return|return
 operator|new
-name|GraphBuilder
+name|ValueGraphBuilder
 argument_list|<
+name|Object
+argument_list|,
 name|Object
 argument_list|>
 argument_list|(
@@ -134,12 +140,14 @@ literal|true
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a {@link GraphBuilder} for building undirected graphs.    */
+comment|/**    * Returns a {@link ValueGraphBuilder} for building undirected value graphs.    */
 DECL|method|undirected ()
 specifier|public
 specifier|static
-name|GraphBuilder
+name|ValueGraphBuilder
 argument_list|<
+name|Object
+argument_list|,
 name|Object
 argument_list|>
 name|undirected
@@ -147,8 +155,10 @@ parameter_list|()
 block|{
 return|return
 operator|new
-name|GraphBuilder
+name|ValueGraphBuilder
 argument_list|<
+name|Object
+argument_list|,
 name|Object
 argument_list|>
 argument_list|(
@@ -156,16 +166,18 @@ literal|false
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a {@link GraphBuilder} initialized with all properties queryable from {@code graph}.    *    *<p>The "queryable" properties are those that are exposed through the {@link Graph} interface,    * such as {@link Graph#isDirected()}. Other properties, such as {@link #expectedNodeCount(int)},    * are not set in the new builder.    */
+comment|/**    * Returns a {@link ValueGraphBuilder} initialized with all properties queryable from    * {@code graph}.    *    *<p>The "queryable" properties are those that are exposed through the {@link Graph} interface,    * such as {@link Graph#isDirected()}. Other properties, such as {@link #expectedNodeCount(int)},    * are not set in the new builder.    */
 DECL|method|from (Graph<N> graph)
 specifier|public
 specifier|static
 parameter_list|<
 name|N
 parameter_list|>
-name|GraphBuilder
+name|ValueGraphBuilder
 argument_list|<
 name|N
+argument_list|,
+name|Object
 argument_list|>
 name|from
 parameter_list|(
@@ -183,8 +195,10 @@ argument_list|)
 expr_stmt|;
 return|return
 operator|new
-name|GraphBuilder
+name|ValueGraphBuilder
 argument_list|<
+name|N
+argument_list|,
 name|Object
 argument_list|>
 argument_list|(
@@ -214,9 +228,11 @@ block|}
 comment|/**    * Specifies whether the graph will allow self-loops (edges that connect a node to itself).    * Attempting to add a self-loop to a graph that does not allow them will throw an    * {@link UnsupportedOperationException}.    */
 DECL|method|allowsSelfLoops (boolean allowsSelfLoops)
 specifier|public
-name|GraphBuilder
+name|ValueGraphBuilder
 argument_list|<
 name|N
+argument_list|,
+name|V
 argument_list|>
 name|allowsSelfLoops
 parameter_list|(
@@ -237,9 +253,11 @@ block|}
 comment|/**    * Specifies the expected number of nodes in the graph.    *    * @throws IllegalArgumentException if {@code expectedNodeCount} is negative    */
 DECL|method|expectedNodeCount (int expectedNodeCount)
 specifier|public
-name|GraphBuilder
+name|ValueGraphBuilder
 argument_list|<
 name|N
+argument_list|,
+name|V
 argument_list|>
 name|expectedNodeCount
 parameter_list|(
@@ -281,9 +299,11 @@ name|N1
 extends|extends
 name|N
 parameter_list|>
-name|GraphBuilder
+name|ValueGraphBuilder
 argument_list|<
 name|N1
+argument_list|,
+name|V
 argument_list|>
 name|nodeOrder
 parameter_list|(
@@ -299,9 +319,11 @@ argument_list|(
 name|nodeOrder
 argument_list|)
 expr_stmt|;
-name|GraphBuilder
+name|ValueGraphBuilder
 argument_list|<
 name|N1
+argument_list|,
+name|V
 argument_list|>
 name|newBuilder
 init|=
@@ -318,26 +340,34 @@ return|return
 name|newBuilder
 return|;
 block|}
-comment|/**    * Returns an empty {@link MutableGraph} with the properties of this {@link GraphBuilder}.    */
+comment|/**    * Returns an empty {@link MutableValueGraph} with the properties of this    * {@link ValueGraphBuilder}.    */
 DECL|method|build ()
 specifier|public
 parameter_list|<
 name|N1
 extends|extends
 name|N
+parameter_list|,
+name|V1
+extends|extends
+name|V
 parameter_list|>
-name|MutableGraph
+name|MutableValueGraph
 argument_list|<
 name|N1
+argument_list|,
+name|V1
 argument_list|>
 name|build
 parameter_list|()
 block|{
 return|return
 operator|new
-name|ConfigurableMutableGraph
+name|ConfigurableMutableValueGraph
 argument_list|<
 name|N1
+argument_list|,
+name|V1
 argument_list|>
 argument_list|(
 name|this
@@ -355,19 +385,27 @@ parameter_list|<
 name|N1
 extends|extends
 name|N
+parameter_list|,
+name|V1
+extends|extends
+name|V
 parameter_list|>
-name|GraphBuilder
+name|ValueGraphBuilder
 argument_list|<
 name|N1
+argument_list|,
+name|V1
 argument_list|>
 name|cast
 parameter_list|()
 block|{
 return|return
 operator|(
-name|GraphBuilder
+name|ValueGraphBuilder
 argument_list|<
 name|N1
+argument_list|,
+name|V1
 argument_list|>
 operator|)
 name|this

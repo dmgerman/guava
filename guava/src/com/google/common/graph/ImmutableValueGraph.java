@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * Copyright (C) 2014 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License");  * you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+comment|/*  * Copyright (C) 2016 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License");  * you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
 end_comment
 
 begin_package
@@ -56,7 +56,7 @@ name|common
 operator|.
 name|base
 operator|.
-name|Functions
+name|Function
 import|;
 end_import
 
@@ -89,46 +89,39 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link Graph} whose relationships are constant. Instances of this class may be obtained  * with {@link #copyOf(Graph)}.  *  * @author James Sexton  * @author Joshua O'Madadhain  * @author Omar Darwish  * @param<N> Node parameter type  * @since 20.0  */
+comment|/**  * A {@link ValueGraph} whose relationships and edge values are constant. Instances of this class  * may be obtained with {@link #copyOf(ValueGraph)}.  *  * @author James Sexton  * @param<N> Node parameter type  * @param<V> Value parameter type  * @since 20.0  */
 end_comment
 
 begin_class
 annotation|@
 name|Beta
-DECL|class|ImmutableGraph
+DECL|class|ImmutableValueGraph
 specifier|public
 specifier|final
 class|class
-name|ImmutableGraph
+name|ImmutableValueGraph
 parameter_list|<
 name|N
+parameter_list|,
+name|V
 parameter_list|>
 extends|extends
-name|AbstractConfigurableGraph
+name|AbstractConfigurableValueGraph
 argument_list|<
 name|N
 argument_list|,
-name|Object
+name|V
 argument_list|>
 block|{
-DECL|field|DUMMY_EDGE_VALUE
+DECL|method|ImmutableValueGraph (ValueGraph<N, V> graph)
 specifier|private
-specifier|static
-specifier|final
-name|Object
-name|DUMMY_EDGE_VALUE
-init|=
-operator|new
-name|Object
-argument_list|()
-decl_stmt|;
-DECL|method|ImmutableGraph (Graph<N> graph)
-specifier|private
-name|ImmutableGraph
+name|ImmutableValueGraph
 parameter_list|(
-name|Graph
+name|ValueGraph
 argument_list|<
 name|N
+argument_list|,
+name|V
 argument_list|>
 name|graph
 parameter_list|)
@@ -163,21 +156,27 @@ name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
-DECL|method|copyOf (Graph<N> graph)
+DECL|method|copyOf (ValueGraph<N, V> graph)
 specifier|public
 specifier|static
 parameter_list|<
 name|N
+parameter_list|,
+name|V
 parameter_list|>
-name|ImmutableGraph
+name|ImmutableValueGraph
 argument_list|<
 name|N
+argument_list|,
+name|V
 argument_list|>
 name|copyOf
 parameter_list|(
-name|Graph
+name|ValueGraph
 argument_list|<
 name|N
+argument_list|,
+name|V
 argument_list|>
 name|graph
 parameter_list|)
@@ -186,21 +185,25 @@ return|return
 operator|(
 name|graph
 operator|instanceof
-name|ImmutableGraph
+name|ImmutableValueGraph
 operator|)
 condition|?
 operator|(
-name|ImmutableGraph
+name|ImmutableValueGraph
 argument_list|<
 name|N
+argument_list|,
+name|V
 argument_list|>
 operator|)
 name|graph
 else|:
 operator|new
-name|ImmutableGraph
+name|ImmutableValueGraph
 argument_list|<
 name|N
+argument_list|,
+name|V
 argument_list|>
 argument_list|(
 name|graph
@@ -210,21 +213,27 @@ block|}
 comment|/**    * Simply returns its argument.    *    * @deprecated no need to use this    */
 annotation|@
 name|Deprecated
-DECL|method|copyOf (ImmutableGraph<N> graph)
+DECL|method|copyOf (ImmutableValueGraph<N, V> graph)
 specifier|public
 specifier|static
 parameter_list|<
 name|N
+parameter_list|,
+name|V
 parameter_list|>
-name|ImmutableGraph
+name|ImmutableValueGraph
 argument_list|<
 name|N
+argument_list|,
+name|V
 argument_list|>
 name|copyOf
 parameter_list|(
-name|ImmutableGraph
+name|ImmutableValueGraph
 argument_list|<
 name|N
+argument_list|,
+name|V
 argument_list|>
 name|graph
 parameter_list|)
@@ -236,11 +245,13 @@ name|graph
 argument_list|)
 return|;
 block|}
-DECL|method|getNodeConnections ( Graph<N> graph)
+DECL|method|getNodeConnections ( ValueGraph<N, V> graph)
 specifier|private
 specifier|static
 parameter_list|<
 name|N
+parameter_list|,
+name|V
 parameter_list|>
 name|ImmutableMap
 argument_list|<
@@ -250,14 +261,16 @@ name|GraphConnections
 argument_list|<
 name|N
 argument_list|,
-name|Object
+name|V
 argument_list|>
 argument_list|>
 name|getNodeConnections
 parameter_list|(
-name|Graph
+name|ValueGraph
 argument_list|<
 name|N
+argument_list|,
+name|V
 argument_list|>
 name|graph
 parameter_list|)
@@ -275,7 +288,7 @@ name|GraphConnections
 argument_list|<
 name|N
 argument_list|,
-name|Object
+name|V
 argument_list|>
 argument_list|>
 name|nodeConnections
@@ -318,30 +331,76 @@ name|build
 argument_list|()
 return|;
 block|}
-DECL|method|connectionsOf (Graph<N> graph, N node)
+DECL|method|connectionsOf (final ValueGraph<N, V> graph, final N node)
 specifier|private
 specifier|static
 parameter_list|<
 name|N
+parameter_list|,
+name|V
 parameter_list|>
 name|GraphConnections
 argument_list|<
 name|N
 argument_list|,
-name|Object
+name|V
 argument_list|>
 name|connectionsOf
 parameter_list|(
-name|Graph
+specifier|final
+name|ValueGraph
 argument_list|<
 name|N
+argument_list|,
+name|V
 argument_list|>
 name|graph
 parameter_list|,
+specifier|final
 name|N
 name|node
 parameter_list|)
 block|{
+name|Function
+argument_list|<
+name|N
+argument_list|,
+name|V
+argument_list|>
+name|successorNodeToValueFn
+init|=
+operator|new
+name|Function
+argument_list|<
+name|N
+argument_list|,
+name|V
+argument_list|>
+argument_list|()
+block|{
+annotation|@
+name|Override
+specifier|public
+name|V
+name|apply
+parameter_list|(
+name|N
+name|successorNode
+parameter_list|)
+block|{
+return|return
+name|graph
+operator|.
+name|edgeValue
+argument_list|(
+name|node
+argument_list|,
+name|successorNode
+argument_list|)
+return|;
+block|}
+block|}
+decl_stmt|;
 return|return
 name|graph
 operator|.
@@ -370,12 +429,7 @@ argument_list|(
 name|node
 argument_list|)
 argument_list|,
-name|Functions
-operator|.
-name|constant
-argument_list|(
-name|DUMMY_EDGE_VALUE
-argument_list|)
+name|successorNodeToValueFn
 argument_list|)
 argument_list|)
 else|:
@@ -394,12 +448,7 @@ argument_list|(
 name|node
 argument_list|)
 argument_list|,
-name|Functions
-operator|.
-name|constant
-argument_list|(
-name|DUMMY_EDGE_VALUE
-argument_list|)
+name|successorNodeToValueFn
 argument_list|)
 argument_list|)
 return|;

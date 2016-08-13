@@ -129,6 +129,14 @@ name|EDGE_NOT_IN_GRAPH
 init|=
 literal|"Edge %s is not an element of this graph."
 decl_stmt|;
+DECL|field|EDGE_CONNECTING_NOT_IN_GRAPH
+specifier|static
+specifier|final
+name|String
+name|EDGE_CONNECTING_NOT_IN_GRAPH
+init|=
+literal|"Edge connecting %s to %s is not present in this graph."
+decl_stmt|;
 DECL|field|REUSING_EDGE
 specifier|static
 specifier|final

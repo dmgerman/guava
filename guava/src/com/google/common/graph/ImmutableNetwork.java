@@ -277,8 +277,8 @@ argument_list|>
 name|graph
 parameter_list|)
 block|{
-comment|// ImmutableMap.Builder maintains the order of the elements as inserted, so the map will
-comment|// have whatever ordering the graph's nodes do, so ImmutableSortedMap is unnecessary even if the
+comment|// ImmutableMap.Builder maintains the order of the elements as inserted, so the map will have
+comment|// whatever ordering the graph's nodes do, so ImmutableSortedMap is unnecessary even if the
 comment|// input nodes are sorted.
 name|ImmutableMap
 operator|.

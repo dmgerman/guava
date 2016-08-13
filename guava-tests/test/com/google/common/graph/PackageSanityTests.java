@@ -104,7 +104,7 @@ DECL|field|GRAPH_BUILDER_A
 specifier|private
 specifier|static
 specifier|final
-name|GraphBuilder
+name|AbstractGraphBuilder
 argument_list|<
 name|?
 argument_list|>
@@ -124,13 +124,13 @@ DECL|field|GRAPH_BUILDER_B
 specifier|private
 specifier|static
 specifier|final
-name|GraphBuilder
+name|AbstractGraphBuilder
 argument_list|<
 name|?
 argument_list|>
 name|GRAPH_BUILDER_B
 init|=
-name|GraphBuilder
+name|ValueGraphBuilder
 operator|.
 name|directed
 argument_list|()
@@ -338,7 +338,7 @@ parameter_list|()
 block|{
 name|setDistinctValues
 argument_list|(
-name|GraphBuilder
+name|AbstractGraphBuilder
 operator|.
 name|class
 argument_list|,

@@ -30,8 +30,18 @@ name|Beta
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
-comment|/**  * A subtype of {@link Graph} that additionally associates a value with each edge.  *  * TODO(b/30647395): Write implementation.  *  * TODO(b/30133524) Flesh out class-level javadoc.  *  * @author James Sexton  * @param<N> Node parameter type  * @param<V> Value parameter type  * @since 20.0  */
+comment|/**  * A subtype of {@link Graph} that associates a value with each edge.  *  * TODO(b/30133524) Flesh out class-level javadoc.  *  * @author James Sexton  * @param<N> Node parameter type  * @param<V> Value parameter type  * @since 20.0  */
 end_comment
 
 begin_interface
@@ -62,6 +72,23 @@ name|nodeA
 parameter_list|,
 name|Object
 name|nodeB
+parameter_list|)
+function_decl|;
+comment|/**    * If there is an edge connecting {@code nodeA} to {@code nodeB}, returns the non-null value    * associated with that edge. Otherwise, returns {@code defaultValue}.    */
+DECL|method|edgeValueOrDefault (Object nodeA, Object nodeB, @Nullable V defaultValue)
+name|V
+name|edgeValueOrDefault
+parameter_list|(
+name|Object
+name|nodeA
+parameter_list|,
+name|Object
+name|nodeB
+parameter_list|,
+annotation|@
+name|Nullable
+name|V
+name|defaultValue
 parameter_list|)
 function_decl|;
 block|}

@@ -16,8 +16,32 @@ name|graph
 package|;
 end_package
 
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
-comment|/**  * An interface for representing and manipulating an origin node's adjacent nodes in a  * {@link Graph}.  *  * @author James Sexton  * @param<N> Node parameter type  */
+comment|/**  * An interface for representing and manipulating an origin node's adjacent nodes and edge values  * in a {@link Graph}.  *  * @author James Sexton  * @param<N> Node parameter type  * @param<V> Value parameter type  */
 end_comment
 
 begin_interface
@@ -26,6 +50,8 @@ interface|interface
 name|GraphConnections
 parameter_list|<
 name|N
+parameter_list|,
+name|V
 parameter_list|>
 extends|extends
 name|NodeConnections
@@ -33,6 +59,17 @@ argument_list|<
 name|N
 argument_list|>
 block|{
+comment|/**    * Returns the value associated with the edge connecting the origin node to {@code node}, or null    * if there is no such edge.    */
+DECL|method|value (Object node)
+annotation|@
+name|Nullable
+name|V
+name|value
+parameter_list|(
+name|Object
+name|node
+parameter_list|)
+function_decl|;
 comment|/**    * Remove {@code node} from the set of predecessors.    */
 DECL|method|removePredecessor (Object node)
 name|void
@@ -42,31 +79,41 @@ name|Object
 name|node
 parameter_list|)
 function_decl|;
-comment|/**    * Remove {@code node} from the set of successors.    */
+comment|/**    * Remove {@code node} from the set of successors. Returns the value previously associated with    * the edge connecting the two nodes.    */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|removeSuccessor (Object node)
-name|void
+name|V
 name|removeSuccessor
 parameter_list|(
 name|Object
 name|node
 parameter_list|)
 function_decl|;
-comment|/**    * Add {@code node} as a predecessor to the origin node.    * In the case of an undirected graph, it also becomes a successor.    */
-DECL|method|addPredecessor (N node)
+comment|/**    * Add {@code node} as a predecessor to the origin node. In the case of an undirected graph, it    * also becomes a successor. Associates {@code value} with the edge connecting the two nodes.    */
+DECL|method|addPredecessor (N node, V value)
 name|void
 name|addPredecessor
 parameter_list|(
 name|N
 name|node
+parameter_list|,
+name|V
+name|value
 parameter_list|)
 function_decl|;
-comment|/**    * Add {@code node} as a successor to the origin node.    * In the case of an undirected graph, it also becomes a predecessor.    */
-DECL|method|addSuccessor (N node)
-name|void
+comment|/**    * Add {@code node} as a successor to the origin node. In the case of an undirected graph, it    * also becomes a predecessor. Associates {@code value} with the edge connecting the two nodes.    * Returns the value previously associated with the edge connecting the two nodes.    */
+annotation|@
+name|CanIgnoreReturnValue
+DECL|method|addSuccessor (N node, V value)
+name|V
 name|addSuccessor
 parameter_list|(
 name|N
 name|node
+parameter_list|,
+name|V
+name|value
 parameter_list|)
 function_decl|;
 block|}
