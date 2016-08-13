@@ -668,6 +668,13 @@ operator|.
 name|asGraph
 argument_list|()
 decl_stmt|;
+name|AbstractGraphTest
+operator|.
+name|validateGraph
+argument_list|(
+name|asGraph
+argument_list|)
+expr_stmt|;
 name|assertThat
 argument_list|(
 name|network
