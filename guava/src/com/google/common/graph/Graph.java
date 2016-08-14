@@ -89,15 +89,6 @@ argument_list|>
 name|edges
 parameter_list|()
 function_decl|;
-comment|/**    * Returns the order of iteration for the elements of {@link #nodes()}.    */
-DECL|method|nodeOrder ()
-name|ElementOrder
-argument_list|<
-name|N
-argument_list|>
-name|nodeOrder
-parameter_list|()
-function_decl|;
 comment|//
 comment|// Graph properties
 comment|//
@@ -111,6 +102,15 @@ comment|/**    * Returns true if this graph allows self-loops (edges that connec
 DECL|method|allowsSelfLoops ()
 name|boolean
 name|allowsSelfLoops
+parameter_list|()
+function_decl|;
+comment|/**    * Returns the order of iteration for the elements of {@link #nodes()}.    */
+DECL|method|nodeOrder ()
+name|ElementOrder
+argument_list|<
+name|N
+argument_list|>
+name|nodeOrder
 parameter_list|()
 function_decl|;
 comment|//

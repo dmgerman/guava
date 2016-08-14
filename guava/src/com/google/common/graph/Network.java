@@ -88,24 +88,6 @@ argument_list|>
 name|edges
 parameter_list|()
 function_decl|;
-comment|/**    * Returns the order of iteration for the elements of {@link #nodes()}.    */
-DECL|method|nodeOrder ()
-name|ElementOrder
-argument_list|<
-name|N
-argument_list|>
-name|nodeOrder
-parameter_list|()
-function_decl|;
-comment|/**    * Returns the order of iteration for the elements of {@link #edges()}.    */
-DECL|method|edgeOrder ()
-name|ElementOrder
-argument_list|<
-name|E
-argument_list|>
-name|edgeOrder
-parameter_list|()
-function_decl|;
 comment|/**    * Returns a live view of this graph as a {@link Graph}. The resulting {@link Graph} will have an    * edge connecting node A to node B iff this {@link Network} has an edge connecting A to B.    */
 DECL|method|asGraph ()
 name|Graph
@@ -134,6 +116,24 @@ comment|/**    * Returns true if this graph allows parallel edges. Attempting to
 DECL|method|allowsParallelEdges ()
 name|boolean
 name|allowsParallelEdges
+parameter_list|()
+function_decl|;
+comment|/**    * Returns the order of iteration for the elements of {@link #nodes()}.    */
+DECL|method|nodeOrder ()
+name|ElementOrder
+argument_list|<
+name|N
+argument_list|>
+name|nodeOrder
+parameter_list|()
+function_decl|;
+comment|/**    * Returns the order of iteration for the elements of {@link #edges()}.    */
+DECL|method|edgeOrder ()
+name|ElementOrder
+argument_list|<
+name|E
+argument_list|>
+name|edgeOrder
 parameter_list|()
 function_decl|;
 comment|//

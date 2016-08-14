@@ -141,24 +141,6 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|nodeOrder ()
-specifier|public
-name|ElementOrder
-argument_list|<
-name|N
-argument_list|>
-name|nodeOrder
-parameter_list|()
-block|{
-return|return
-name|backingGraph
-operator|.
-name|nodeOrder
-argument_list|()
-return|;
-block|}
-annotation|@
-name|Override
 DECL|method|isDirected ()
 specifier|public
 name|boolean
@@ -184,6 +166,24 @@ return|return
 name|backingGraph
 operator|.
 name|allowsSelfLoops
+argument_list|()
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|nodeOrder ()
+specifier|public
+name|ElementOrder
+argument_list|<
+name|N
+argument_list|>
+name|nodeOrder
+parameter_list|()
+block|{
+return|return
+name|backingGraph
+operator|.
+name|nodeOrder
 argument_list|()
 return|;
 block|}
