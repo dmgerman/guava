@@ -68,7 +68,7 @@ argument_list|,
 name|V
 argument_list|>
 block|{
-comment|/**    * Adds {@code node} to this graph.    *    *<p><b>Nodes must be unique</b>, just as {@code Map} keys must be; they must also be non-null.    *    * @return {@code true} iff the graph was modified as a result of this call    */
+comment|/**    * Adds {@code node} if it is not already present.    *    *<p><b>Nodes must be unique</b>, just as {@code Map} keys must be. They must also be non-null.    *    * @return {@code true} iff the graph was modified as a result of this call    */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|addNode (N node)
@@ -79,7 +79,7 @@ name|N
 name|node
 parameter_list|)
 function_decl|;
-comment|/**    * Adds an edge connecting {@code nodeA} to {@code nodeB} if one is not already present.    * Associates {@code value} with that edge (as returned by {@link #edgeValue(Object, Object)}).    *    *<p>Values in a graph do not have to be unique. However, values must be non-null.    *    * @return {@code true} the value previously associated with the edge connecting {@code nodeA} to    *     {@code nodeB}, or null if there was no edge.    */
+comment|/**    * Adds an edge connecting {@code nodeA} to {@code nodeB} if one is not already present.    * Associates {@code value} with that edge (as returned by {@link #edgeValue(Object, Object)}).    *    *<p>Values do not have to be unique. However, values must be non-null.    *    *<p>Behavior if {@code nodeA} and {@code nodeB} are not already present in this graph is    * implementation-dependent. Suggested behaviors include (a) silently {@link #addNode(Object)    * adding} {@code nodeA} and {@code nodeB} to the graph (this is the behavior of the default    * implementations) or (b) throwing {@code IllegalArgumentException}.    *    * @return the value previously associated with the edge connecting {@code nodeA} to    *     {@code nodeB}, or null if there was no edge.    * @throws IllegalArgumentException if the introduction of the edge would violate    *     {@link #allowsSelfLoops()}    */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|putEdgeValue (N nodeA, N nodeB, V value)
@@ -96,7 +96,7 @@ name|V
 name|value
 parameter_list|)
 function_decl|;
-comment|/**    * Removes {@code node} from this graph, if it is present.    * All edges incident to {@code node} in this graph will also be removed.    *    * @return {@code true} iff the graph was modified as a result of this call    */
+comment|/**    * Removes {@code node} if it is present; all edges incident to {@code node} will also be removed.    *    * @return {@code true} iff the graph was modified as a result of this call    */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|removeNode (Object node)
@@ -107,7 +107,7 @@ name|Object
 name|node
 parameter_list|)
 function_decl|;
-comment|/**    * Removes the edge connecting {@code nodeA} to {@code nodeB}, if it is present.    *    * @return {@code true} the value previously associated with the edge connecting {@code nodeA} to    *     {@code nodeB}, or null if there was no edge.    */
+comment|/**    * Removes the edge connecting {@code nodeA} to {@code nodeB}, if it is present.    *    * @return the value previously associated with the edge connecting {@code nodeA} to    *     {@code nodeB}, or null if there was no edge.    */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|removeEdge (Object nodeA, Object nodeB)
