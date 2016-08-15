@@ -530,10 +530,10 @@ expr_stmt|;
 block|}
 annotation|@
 name|After
-DECL|method|validateGraphState ()
+DECL|method|validateNetworkState ()
 specifier|public
 name|void
-name|validateGraphState
+name|validateNetworkState
 parameter_list|()
 block|{
 operator|new
