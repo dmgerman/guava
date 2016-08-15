@@ -1881,7 +1881,6 @@ return|return
 name|copy
 return|;
 block|}
-comment|// TODO(user): delete the @GI copy*() methods below this comment.
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|checkNonNegative (int value)
