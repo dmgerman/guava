@@ -155,7 +155,7 @@ function_decl|;
 comment|//
 comment|// Graph identity
 comment|//
-comment|/**    * Returns {@code true} iff {@code object} is a {@link Graph} that has the same structural    * relationships as those in this graph.    *    *<p>Thus, two graphs A and B are equal if<b>all</b> of the following are true:    *<ul>    *<li>A and B have the same {@link #isDirected() directedness}.    *<li>A and B have the same node set.    *<li>A and B have the same adjacency relationships, i.e., for each node, the sets of successor    *     and predecessor nodes are the same in both graphs.    *</ul>    *    *<p>Graph properties are<b>not</b> respected by this method. For example, two graphs may    * be considered equal even if one allows self-loops and the other doesn't. Additionally, the    * order in which edges or nodes are added to the graph, and the order in which they are    * iterated over, are irrelevant.    *    *<p>A reference implementation of this is provided by {@link AbstractGraph#equals(Object)}.    */
+comment|/**    * Returns {@code true} iff {@code object} is a {@link Graph} that has the same structural    * relationships as those in this graph.    *    *<p>Thus, two graphs A and B are equal if<b>all</b> of the following are true:    *<ul>    *<li>A and B have equal {@link #isDirected() directedness}.    *<li>A and B have equal {@link #nodes() node sets}.    *<li>A and B have equal {@link #edges() edge sets}.    *</ul>    *    *<p>Additionally, a {@link Graph} is defined to never be equal to a {@link ValueGraph} (and    * vice versa), even if they would otherwise be equal by the above definition.    *    *<p>Graph properties besides {@link #isDirected() directedness} do<b>not</b> affect equality.    * For example, two graphs may be considered equal even if one allows self-loops and the other    * doesn't. Additionally, the order in which nodes or edges are added to the graph, and the order    * in which they are iterated over, are irrelevant.    *    *<p>A reference implementation of this is provided by {@link AbstractGraph#equals(Object)}.    */
 annotation|@
 name|Override
 DECL|method|equals (@ullable Object object)
@@ -168,7 +168,7 @@ name|Object
 name|object
 parameter_list|)
 function_decl|;
-comment|/**    * Returns the hash code for this graph. The hash code of a graph is defined as the hash code    * of a map from each of the graph's nodes to its successor nodes.    *    *<p>A reference implementation of this is provided by {@link AbstractGraph#hashCode()}.    */
+comment|/**    * Returns the hash code for this graph. The hash code of a graph is defined as the hash code of a    * map from each of its {@link #nodes() nodes} to {@link #successors(Object) successor nodes}.    *    *<p>A reference implementation of this is provided by {@link AbstractGraph#hashCode()}.    */
 annotation|@
 name|Override
 DECL|method|hashCode ()

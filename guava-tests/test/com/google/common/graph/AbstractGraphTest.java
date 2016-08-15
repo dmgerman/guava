@@ -384,6 +384,16 @@ argument_list|>
 name|graph
 parameter_list|)
 block|{
+if|if
+condition|(
+operator|!
+operator|(
+name|graph
+operator|instanceof
+name|ValueGraph
+operator|)
+condition|)
+block|{
 operator|new
 name|EqualsTester
 argument_list|()
@@ -410,6 +420,7 @@ operator|.
 name|testEquals
 argument_list|()
 expr_stmt|;
+block|}
 name|String
 name|graphString
 init|=

@@ -106,7 +106,7 @@ parameter_list|,
 name|V
 parameter_list|>
 extends|extends
-name|AbstractConfigurableValueGraph
+name|ConfigurableValueGraph
 argument_list|<
 name|N
 argument_list|,

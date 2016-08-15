@@ -129,7 +129,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This class provides a skeletal implementation of {@link Network}. It is recommended to extend  * this class rather than implement {@link Network} directly, to ensure consistent  * {@link #equals(Object)} and {@link #hashCode()} results across different network implementations.  *  * @author James Sexton  * @param<N> Node parameter type  * @param<E> Edge parameter type  * @since 20.0  */
+comment|/**  * This class provides a skeletal implementation of {@link Network}. It is recommended to extend  * this class rather than implement {@link Network} directly, to ensure consistent {@link  * #equals(Object)} and {@link #hashCode()} results across different network implementations.  *  * @author James Sexton  * @param<N> Node parameter type  * @param<E> Edge parameter type  * @since 20.0  */
 end_comment
 
 begin_class
@@ -572,14 +572,7 @@ name|other
 operator|.
 name|isDirected
 argument_list|()
-condition|)
-block|{
-return|return
-literal|false
-return|;
-block|}
-if|if
-condition|(
+operator|||
 operator|!
 name|nodes
 argument_list|()

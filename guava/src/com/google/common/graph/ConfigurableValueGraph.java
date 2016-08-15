@@ -76,6 +76,22 @@ name|graph
 operator|.
 name|GraphConstants
 operator|.
+name|EDGE_CONNECTING_NOT_IN_GRAPH
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|graph
+operator|.
+name|GraphConstants
+operator|.
 name|NODE_NOT_IN_GRAPH
 import|;
 end_import
@@ -137,23 +153,24 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Abstract configurable implementation of {@link Graph} that supports the options supplied by  * {@link AbstractGraphBuilder}.  *  *<p>This class maintains a map of nodes to {@link GraphConnections}.  *  *<p>{@code Set}-returning accessors return unmodifiable views: the view returned will reflect  * changes to the graph (if the graph is mutable) but may not be modified by the user.  * The behavior of the returned view is undefined in the following cases:  *<ul>  *<li>Removing the element on which the accessor is called (e.g.:  *<pre>{@code  *     Set<N> adjacentNodes = adjacentNodes(node);  *     graph.removeNode(node);}</pre>  *     At this point, the contents of {@code adjacentNodes} are undefined.  *</ul>  *  *<p>The time complexity of all {@code Set}-returning accessors is O(1), since views are returned.  *  * @author James Sexton  * @author Joshua O'Madadhain  * @author Omar Darwish  * @param<N> Node parameter type  * @param<V> Value parameter type (allows this class to be easily extended to implement ValueGraph)  */
+comment|/**  * Configurable implementation of {@link ValueGraph} that supports the options supplied by  * {@link AbstractGraphBuilder}.  *  *<p>This class maintains a map of nodes to {@link GraphConnections}.  *  *<p>{@code Set}-returning accessors return unmodifiable views: the view returned will reflect  * changes to the graph (if the graph is mutable) but may not be modified by the user.  * The behavior of the returned view is undefined in the following cases:  *<ul>  *<li>Removing the element on which the accessor is called (e.g.:  *<pre>{@code  *     Set<N> adjacentNodes = adjacentNodes(node);  *     graph.removeNode(node);}</pre>  *     At this point, the contents of {@code adjacentNodes} are undefined.  *</ul>  *  *<p>The time complexity of all {@code Set}-returning accessors is O(1), since views are returned.  *  * @author James Sexton  * @author Joshua O'Madadhain  * @author Omar Darwish  * @param<N> Node parameter type  * @param<V> Value parameter type  */
 end_comment
 
 begin_class
-DECL|class|AbstractConfigurableGraph
-specifier|abstract
+DECL|class|ConfigurableValueGraph
 class|class
-name|AbstractConfigurableGraph
+name|ConfigurableValueGraph
 parameter_list|<
 name|N
 parameter_list|,
 name|V
 parameter_list|>
 extends|extends
-name|AbstractGraph
+name|AbstractValueGraph
 argument_list|<
 name|N
+argument_list|,
+name|V
 argument_list|>
 block|{
 DECL|field|isDirected
@@ -200,8 +217,8 @@ name|edgeCount
 decl_stmt|;
 comment|// must be updated when edges are added or removed
 comment|/**    * Constructs a graph with the properties specified in {@code builder}.    */
-DECL|method|AbstractConfigurableGraph (AbstractGraphBuilder<? super N> builder)
-name|AbstractConfigurableGraph
+DECL|method|ConfigurableValueGraph (AbstractGraphBuilder<? super N> builder)
+name|ConfigurableValueGraph
 parameter_list|(
 name|AbstractGraphBuilder
 argument_list|<
@@ -248,8 +265,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Constructs a graph with the properties specified in {@code builder}, initialized with    * the given node map.    */
-DECL|method|AbstractConfigurableGraph (AbstractGraphBuilder<? super N> builder, Map<N, GraphConnections<N, V>> nodeConnections, long edgeCount)
-name|AbstractConfigurableGraph
+DECL|method|ConfigurableValueGraph (AbstractGraphBuilder<? super N> builder, Map<N, GraphConnections<N, V>> nodeConnections, long edgeCount)
+name|ConfigurableValueGraph
 parameter_list|(
 name|AbstractGraphBuilder
 argument_list|<
@@ -484,6 +501,108 @@ argument_list|)
 operator|.
 name|successors
 argument_list|()
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|edgeValue (Object nodeA, Object nodeB)
+specifier|public
+name|V
+name|edgeValue
+parameter_list|(
+name|Object
+name|nodeA
+parameter_list|,
+name|Object
+name|nodeB
+parameter_list|)
+block|{
+name|V
+name|value
+init|=
+name|edgeValueOrDefault
+argument_list|(
+name|nodeA
+argument_list|,
+name|nodeB
+argument_list|,
+literal|null
+argument_list|)
+decl_stmt|;
+name|checkArgument
+argument_list|(
+name|value
+operator|!=
+literal|null
+argument_list|,
+name|EDGE_CONNECTING_NOT_IN_GRAPH
+argument_list|,
+name|nodeA
+argument_list|,
+name|nodeB
+argument_list|)
+expr_stmt|;
+return|return
+name|value
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|edgeValueOrDefault (Object nodeA, Object nodeB, @Nullable V defaultValue)
+specifier|public
+name|V
+name|edgeValueOrDefault
+parameter_list|(
+name|Object
+name|nodeA
+parameter_list|,
+name|Object
+name|nodeB
+parameter_list|,
+annotation|@
+name|Nullable
+name|V
+name|defaultValue
+parameter_list|)
+block|{
+name|V
+name|value
+init|=
+name|checkedConnections
+argument_list|(
+name|nodeA
+argument_list|)
+operator|.
+name|value
+argument_list|(
+name|nodeB
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|value
+operator|==
+literal|null
+condition|)
+block|{
+name|checkArgument
+argument_list|(
+name|containsNode
+argument_list|(
+name|nodeB
+argument_list|)
+argument_list|,
+name|NODE_NOT_IN_GRAPH
+argument_list|,
+name|nodeB
+argument_list|)
+expr_stmt|;
+return|return
+name|defaultValue
+return|;
+block|}
+return|return
+name|value
 return|;
 block|}
 annotation|@

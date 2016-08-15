@@ -155,7 +155,7 @@ parameter_list|,
 name|E
 parameter_list|>
 extends|extends
-name|AbstractConfigurableNetwork
+name|ConfigurableNetwork
 argument_list|<
 name|N
 argument_list|,
