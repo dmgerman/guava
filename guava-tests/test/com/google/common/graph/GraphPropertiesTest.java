@@ -26,9 +26,9 @@ name|common
 operator|.
 name|graph
 operator|.
-name|GraphProperties
+name|Graphs
 operator|.
-name|isCyclic
+name|hasCycle
 import|;
 end_import
 
@@ -107,7 +107,11 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests for {@link GraphProperties}.  */
+comment|/**  * Tests for {@link Graphs#hasCycle(Graph)} and {@link Graphs#hasCycle(Network)}.  */
+end_comment
+
+begin_comment
+comment|// TODO(user): Consider moving this to GraphsTest.
 end_comment
 
 begin_class
@@ -296,15 +300,15 @@ expr_stmt|;
 block|}
 annotation|@
 name|Test
-DECL|method|isCyclic_emptyGraph ()
+DECL|method|hasCycle_emptyGraph ()
 specifier|public
 name|void
-name|isCyclic_emptyGraph
+name|hasCycle_emptyGraph
 parameter_list|()
 block|{
 name|assertThat
 argument_list|(
-name|isCyclic
+name|hasCycle
 argument_list|(
 name|directedGraph
 argument_list|)
@@ -315,7 +319,7 @@ argument_list|()
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|isCyclic
+name|hasCycle
 argument_list|(
 name|undirectedGraph
 argument_list|)
@@ -327,10 +331,10 @@ expr_stmt|;
 block|}
 annotation|@
 name|Test
-DECL|method|isCyclic_isolatedNodes ()
+DECL|method|hasCycle_isolatedNodes ()
 specifier|public
 name|void
-name|isCyclic_isolatedNodes
+name|hasCycle_isolatedNodes
 parameter_list|()
 block|{
 for|for
@@ -361,7 +365,7 @@ expr_stmt|;
 block|}
 name|assertThat
 argument_list|(
-name|isCyclic
+name|hasCycle
 argument_list|(
 name|directedGraph
 argument_list|)
@@ -372,7 +376,7 @@ argument_list|()
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|isCyclic
+name|hasCycle
 argument_list|(
 name|undirectedGraph
 argument_list|)
@@ -384,10 +388,10 @@ expr_stmt|;
 block|}
 annotation|@
 name|Test
-DECL|method|isCyclic_oneEdge ()
+DECL|method|hasCycle_oneEdge ()
 specifier|public
 name|void
-name|isCyclic_oneEdge
+name|hasCycle_oneEdge
 parameter_list|()
 block|{
 for|for
@@ -413,7 +417,7 @@ expr_stmt|;
 block|}
 name|assertThat
 argument_list|(
-name|isCyclic
+name|hasCycle
 argument_list|(
 name|directedGraph
 argument_list|)
@@ -424,7 +428,7 @@ argument_list|()
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|isCyclic
+name|hasCycle
 argument_list|(
 name|undirectedGraph
 argument_list|)
@@ -436,10 +440,10 @@ expr_stmt|;
 block|}
 annotation|@
 name|Test
-DECL|method|isCyclic_selfLoopEdge ()
+DECL|method|hasCycle_selfLoopEdge ()
 specifier|public
 name|void
-name|isCyclic_selfLoopEdge
+name|hasCycle_selfLoopEdge
 parameter_list|()
 block|{
 for|for
@@ -465,7 +469,7 @@ expr_stmt|;
 block|}
 name|assertThat
 argument_list|(
-name|isCyclic
+name|hasCycle
 argument_list|(
 name|directedGraph
 argument_list|)
@@ -476,7 +480,7 @@ argument_list|()
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|isCyclic
+name|hasCycle
 argument_list|(
 name|undirectedGraph
 argument_list|)
@@ -488,10 +492,10 @@ expr_stmt|;
 block|}
 annotation|@
 name|Test
-DECL|method|isCyclic_twoAcyclicEdges ()
+DECL|method|hasCycle_twoAcyclicEdges ()
 specifier|public
 name|void
-name|isCyclic_twoAcyclicEdges
+name|hasCycle_twoAcyclicEdges
 parameter_list|()
 block|{
 for|for
@@ -526,7 +530,7 @@ expr_stmt|;
 block|}
 name|assertThat
 argument_list|(
-name|isCyclic
+name|hasCycle
 argument_list|(
 name|directedGraph
 argument_list|)
@@ -537,7 +541,7 @@ argument_list|()
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|isCyclic
+name|hasCycle
 argument_list|(
 name|undirectedGraph
 argument_list|)
@@ -549,10 +553,10 @@ expr_stmt|;
 block|}
 annotation|@
 name|Test
-DECL|method|isCyclic_twoCyclicEdges ()
+DECL|method|hasCycle_twoCyclicEdges ()
 specifier|public
 name|void
-name|isCyclic_twoCyclicEdges
+name|hasCycle_twoCyclicEdges
 parameter_list|()
 block|{
 for|for
@@ -588,7 +592,7 @@ comment|// no-op in undirected case
 block|}
 name|assertThat
 argument_list|(
-name|isCyclic
+name|hasCycle
 argument_list|(
 name|directedGraph
 argument_list|)
@@ -599,7 +603,7 @@ argument_list|()
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|isCyclic
+name|hasCycle
 argument_list|(
 name|undirectedGraph
 argument_list|)
@@ -611,10 +615,10 @@ expr_stmt|;
 block|}
 annotation|@
 name|Test
-DECL|method|isCyclic_threeAcyclicEdges ()
+DECL|method|hasCycle_threeAcyclicEdges ()
 specifier|public
 name|void
-name|isCyclic_threeAcyclicEdges
+name|hasCycle_threeAcyclicEdges
 parameter_list|()
 block|{
 for|for
@@ -658,7 +662,7 @@ expr_stmt|;
 block|}
 name|assertThat
 argument_list|(
-name|isCyclic
+name|hasCycle
 argument_list|(
 name|directedGraph
 argument_list|)
@@ -669,7 +673,7 @@ argument_list|()
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|isCyclic
+name|hasCycle
 argument_list|(
 name|undirectedGraph
 argument_list|)
@@ -682,10 +686,10 @@ comment|// cyclic in undirected case
 block|}
 annotation|@
 name|Test
-DECL|method|isCyclic_threeCyclicEdges ()
+DECL|method|hasCycle_threeCyclicEdges ()
 specifier|public
 name|void
-name|isCyclic_threeCyclicEdges
+name|hasCycle_threeCyclicEdges
 parameter_list|()
 block|{
 for|for
@@ -729,7 +733,7 @@ expr_stmt|;
 block|}
 name|assertThat
 argument_list|(
-name|isCyclic
+name|hasCycle
 argument_list|(
 name|directedGraph
 argument_list|)
@@ -740,7 +744,7 @@ argument_list|()
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|isCyclic
+name|hasCycle
 argument_list|(
 name|undirectedGraph
 argument_list|)
@@ -752,10 +756,10 @@ expr_stmt|;
 block|}
 annotation|@
 name|Test
-DECL|method|isCyclic_disconnectedCyclicGraph ()
+DECL|method|hasCycle_disconnectedCyclicGraph ()
 specifier|public
 name|void
-name|isCyclic_disconnectedCyclicGraph
+name|hasCycle_disconnectedCyclicGraph
 parameter_list|()
 block|{
 for|for
@@ -798,7 +802,7 @@ expr_stmt|;
 block|}
 name|assertThat
 argument_list|(
-name|isCyclic
+name|hasCycle
 argument_list|(
 name|directedGraph
 argument_list|)
@@ -809,7 +813,7 @@ argument_list|()
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|isCyclic
+name|hasCycle
 argument_list|(
 name|undirectedGraph
 argument_list|)
@@ -821,10 +825,10 @@ expr_stmt|;
 block|}
 annotation|@
 name|Test
-DECL|method|isCyclic_multipleCycles ()
+DECL|method|hasCycle_multipleCycles ()
 specifier|public
 name|void
-name|isCyclic_multipleCycles
+name|hasCycle_multipleCycles
 parameter_list|()
 block|{
 for|for
@@ -877,7 +881,7 @@ expr_stmt|;
 block|}
 name|assertThat
 argument_list|(
-name|isCyclic
+name|hasCycle
 argument_list|(
 name|directedGraph
 argument_list|)
@@ -888,7 +892,7 @@ argument_list|()
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|isCyclic
+name|hasCycle
 argument_list|(
 name|undirectedGraph
 argument_list|)
@@ -900,10 +904,10 @@ expr_stmt|;
 block|}
 annotation|@
 name|Test
-DECL|method|isCyclic_twoParallelEdges ()
+DECL|method|hasCycle_twoParallelEdges ()
 specifier|public
 name|void
-name|isCyclic_twoParallelEdges
+name|hasCycle_twoParallelEdges
 parameter_list|()
 block|{
 for|for
@@ -944,7 +948,7 @@ expr_stmt|;
 block|}
 name|assertThat
 argument_list|(
-name|isCyclic
+name|hasCycle
 argument_list|(
 name|directedNetwork
 argument_list|)
@@ -955,7 +959,7 @@ argument_list|()
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|isCyclic
+name|hasCycle
 argument_list|(
 name|undirectedNetwork
 argument_list|)
@@ -968,10 +972,10 @@ comment|// cyclic in undirected case
 block|}
 annotation|@
 name|Test
-DECL|method|isCyclic_cyclicMultigraph ()
+DECL|method|hasCycle_cyclicMultigraph ()
 specifier|public
 name|void
-name|isCyclic_cyclicMultigraph
+name|hasCycle_cyclicMultigraph
 parameter_list|()
 block|{
 for|for
@@ -1034,7 +1038,7 @@ expr_stmt|;
 block|}
 name|assertThat
 argument_list|(
-name|isCyclic
+name|hasCycle
 argument_list|(
 name|directedNetwork
 argument_list|)
@@ -1045,7 +1049,7 @@ argument_list|()
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|isCyclic
+name|hasCycle
 argument_list|(
 name|undirectedNetwork
 argument_list|)
