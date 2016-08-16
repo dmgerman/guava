@@ -53,12 +53,31 @@ name|N
 parameter_list|,
 name|E
 parameter_list|>
-extends|extends
-name|NodeConnections
+block|{
+DECL|method|adjacentNodes ()
+name|Set
 argument_list|<
 name|N
 argument_list|>
-block|{
+name|adjacentNodes
+parameter_list|()
+function_decl|;
+DECL|method|predecessors ()
+name|Set
+argument_list|<
+name|N
+argument_list|>
+name|predecessors
+parameter_list|()
+function_decl|;
+DECL|method|successors ()
+name|Set
+argument_list|<
+name|N
+argument_list|>
+name|successors
+parameter_list|()
+function_decl|;
 DECL|method|incidentEdges ()
 name|Set
 argument_list|<
