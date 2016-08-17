@@ -400,6 +400,7 @@ annotation|@
 name|Override
 DECL|method|equals (@ullable Object obj)
 specifier|public
+specifier|final
 name|boolean
 name|equals
 parameter_list|(
@@ -551,6 +552,7 @@ annotation|@
 name|Override
 DECL|method|hashCode ()
 specifier|public
+specifier|final
 name|int
 name|hashCode
 parameter_list|()
