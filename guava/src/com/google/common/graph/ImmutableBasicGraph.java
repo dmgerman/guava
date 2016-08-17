@@ -63,7 +63,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link BasicGraph} whose relationships are constant. Instances of this class may be obtained  * with {@link #copyOf(BasicGraph)}.  *  * @author James Sexton  * @author Joshua O'Madadhain  * @author Omar Darwish  * @param<N> Node parameter type  * @since 20.0  */
+comment|/**  * A {@link BasicGraph} whose elements and structural relationships will never change. Instances of  * this class may be obtained with {@link #copyOf(BasicGraph)}.  *  * @author James Sexton  * @author Joshua O'Madadhain  * @author Omar Darwish  * @param<N> Node parameter type  * @since 20.0  */
 end_comment
 
 begin_class
@@ -89,6 +89,7 @@ argument_list|<
 name|N
 argument_list|>
 block|{
+comment|/**    * To ensure the immutability contract is maintained, there must be no public constructors.    */
 DECL|method|ImmutableBasicGraph (BasicGraph<N> graph)
 specifier|private
 name|ImmutableBasicGraph
@@ -107,11 +108,6 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Returns an immutable copy of {@code graph}.    */
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
 DECL|method|copyOf (BasicGraph<N> graph)
 specifier|public
 specifier|static
