@@ -97,7 +97,6 @@ annotation|@
 name|Beta
 DECL|class|ImmutableValueGraph
 specifier|public
-specifier|final
 class|class
 name|ImmutableValueGraph
 parameter_list|<
@@ -114,7 +113,6 @@ name|V
 argument_list|>
 block|{
 DECL|method|ImmutableValueGraph (ValueGraph<N, V> graph)
-specifier|private
 name|ImmutableValueGraph
 parameter_list|(
 name|ValueGraph
@@ -128,7 +126,7 @@ parameter_list|)
 block|{
 name|super
 argument_list|(
-name|GraphBuilder
+name|ValueGraphBuilder
 operator|.
 name|from
 argument_list|(

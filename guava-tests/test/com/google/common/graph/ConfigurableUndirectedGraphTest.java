@@ -91,7 +91,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests for an undirected {@link ConfigurableMutableGraph} with default graph properties.  */
+comment|/**  * Tests for an undirected {@link ConfigurableMutableBasicGraph} with default graph properties.  */
 end_comment
 
 begin_class
@@ -113,7 +113,7 @@ annotation|@
 name|Override
 DECL|method|createGraph ()
 specifier|public
-name|MutableGraph
+name|MutableBasicGraph
 argument_list|<
 name|Integer
 argument_list|>
@@ -121,7 +121,7 @@ name|createGraph
 parameter_list|()
 block|{
 return|return
-name|GraphBuilder
+name|BasicGraphBuilder
 operator|.
 name|undirected
 argument_list|()

@@ -67,7 +67,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests for {@link ImmutableGraph}.  */
+comment|/**  * Tests for {@link ImmutableBasicGraph}.  */
 end_comment
 
 begin_class
@@ -78,10 +78,10 @@ name|JUnit4
 operator|.
 name|class
 argument_list|)
-DECL|class|ImmutableGraphTest
+DECL|class|ImmutableBasicGraphTest
 specifier|public
 class|class
-name|ImmutableGraphTest
+name|ImmutableBasicGraphTest
 block|{
 annotation|@
 name|Test
@@ -91,17 +91,17 @@ name|void
 name|copyOfImmutableGraph_optimized
 parameter_list|()
 block|{
-name|Graph
+name|BasicGraph
 argument_list|<
 name|String
 argument_list|>
 name|graph1
 init|=
-name|ImmutableGraph
+name|ImmutableBasicGraph
 operator|.
 name|copyOf
 argument_list|(
-name|GraphBuilder
+name|BasicGraphBuilder
 operator|.
 name|directed
 argument_list|()
@@ -113,13 +113,13 @@ name|build
 argument_list|()
 argument_list|)
 decl_stmt|;
-name|Graph
+name|BasicGraph
 argument_list|<
 name|String
 argument_list|>
 name|graph2
 init|=
-name|ImmutableGraph
+name|ImmutableBasicGraph
 operator|.
 name|copyOf
 argument_list|(

@@ -114,7 +114,7 @@ name|directed
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Returns a {@link ValueGraphBuilder} for building directed value graphs.    */
+comment|/**    * Returns a {@link ValueGraphBuilder} for building directed graphs.    */
 DECL|method|directed ()
 specifier|public
 specifier|static
@@ -140,7 +140,7 @@ literal|true
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a {@link ValueGraphBuilder} for building undirected value graphs.    */
+comment|/**    * Returns a {@link ValueGraphBuilder} for building undirected graphs.    */
 DECL|method|undirected ()
 specifier|public
 specifier|static
@@ -166,8 +166,8 @@ literal|false
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a {@link ValueGraphBuilder} initialized with all properties queryable from    * {@code graph}.    *    *<p>The "queryable" properties are those that are exposed through the {@link Graph} interface,    * such as {@link Graph#isDirected()}. Other properties, such as {@link #expectedNodeCount(int)},    * are not set in the new builder.    */
-DECL|method|from (Graph<N> graph)
+comment|/**    * Returns a {@link ValueGraphBuilder} initialized with all properties queryable from    * {@code graph}.    *    *<p>The "queryable" properties are those that are exposed through the {@link ValueGraph}    * interface, such as {@link ValueGraph#isDirected()}. Other properties, such as    * {@link #expectedNodeCount(int)}, are not set in the new builder.    */
+DECL|method|from (ValueGraph<N, ?> graph)
 specifier|public
 specifier|static
 parameter_list|<
@@ -181,9 +181,11 @@ name|Object
 argument_list|>
 name|from
 parameter_list|(
-name|Graph
+name|ValueGraph
 argument_list|<
 name|N
+argument_list|,
+name|?
 argument_list|>
 name|graph
 parameter_list|)
@@ -291,7 +293,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**    * Specifies the order of iteration for the elements of {@link Graph#nodes()}.    */
+comment|/**    * Specifies the order of iteration for the elements of {@link BasicGraph#nodes()}.    */
 DECL|method|nodeOrder (ElementOrder<N1> nodeOrder)
 specifier|public
 parameter_list|<

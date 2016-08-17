@@ -217,7 +217,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Static utility methods for {@link Graph} instances.  *  * @author James Sexton  * @author Joshua O'Madadhain  * @since 20.0  */
+comment|/**  * Static utility methods for {@link ValueGraph} and {@link Network} instances.  *  * @author James Sexton  * @author Joshua O'Madadhain  * @since 20.0  */
 end_comment
 
 begin_class
@@ -236,14 +236,16 @@ parameter_list|()
 block|{}
 comment|// Graph query methods
 comment|/**    * Returns true iff {@code graph} has at least one cycle. A cycle is defined as a non-empty    * subset of edges in a graph arranged to form a path (a sequence of adjacent outgoing edges)    * starting and ending with the same node.    *    *<p>This method will detect any non-empty cycle, including self-loops (a cycle of length 1).    */
-DECL|method|hasCycle (Graph<?> graph)
+DECL|method|hasCycle (ValueGraph<?, ?> graph)
 specifier|public
 specifier|static
 name|boolean
 name|hasCycle
 parameter_list|(
-name|Graph
+name|ValueGraph
 argument_list|<
+name|?
+argument_list|,
 name|?
 argument_list|>
 name|graph
@@ -417,14 +419,16 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Performs a traversal of the nodes reachable from {@code node}. If we ever reach a node we've    * already visited (following only outgoing edges and without reusing edges), we know there's a    * cycle in the graph.    */
-DECL|method|subgraphHasCycle ( Graph<?> graph, Map<Object, NodeVisitState> visitedNodes, Object node, @Nullable Object previousNode)
+DECL|method|subgraphHasCycle ( ValueGraph<?, ?> graph, Map<Object, NodeVisitState> visitedNodes, Object node, @Nullable Object previousNode)
 specifier|private
 specifier|static
 name|boolean
 name|subgraphHasCycle
 parameter_list|(
-name|Graph
+name|ValueGraph
 argument_list|<
+name|?
+argument_list|,
 name|?
 argument_list|>
 name|graph
@@ -550,14 +554,16 @@ literal|false
 return|;
 block|}
 comment|/**    * Determines whether an edge has already been used during traversal. In the directed case a cycle    * is always detected before reusing an edge, so no special logic is required. In the undirected    * case, we must take care not to "backtrack" over an edge (i.e. going from A to B and then going    * from B to A).    */
-DECL|method|canTraverseWithoutReusingEdge ( Graph<?> graph, Object nextNode, @Nullable Object previousNode)
+DECL|method|canTraverseWithoutReusingEdge ( ValueGraph<?, ?> graph, Object nextNode, @Nullable Object previousNode)
 specifier|private
 specifier|static
 name|boolean
 name|canTraverseWithoutReusingEdge
 parameter_list|(
-name|Graph
+name|ValueGraph
 argument_list|<
+name|?
+argument_list|,
 name|?
 argument_list|>
 name|graph
@@ -599,33 +605,35 @@ return|return
 literal|false
 return|;
 block|}
-comment|/**    * Returns the transitive closure of {@code graph}. The transitive closure of a graph is another    * graph with an edge connecting node A to node B iff node B is {@link #reachableNodes(Graph,    * Object) reachable} from node A.    *    *<p>This is a "snapshot" based on the current topology of {@code graph}, rather than a live    * view of the transitive closure of {@code graph}. In other words, the returned {@link Graph}    * will not be updated after modifications to {@code graph}.    */
-DECL|method|transitiveClosure (Graph<N> graph)
+comment|/**    * Returns the transitive closure of {@code graph}. The transitive closure of a graph is another    * graph with an edge connecting node A to node B iff node B is {@link #reachableNodes(ValueGraph,    * Object) reachable} from node A.    *    *<p>This is a "snapshot" based on the current topology of {@code graph}, rather than a live view    * of the transitive closure of {@code graph}. In other words, the returned {@link BasicGraph}    * will not be updated after modifications to {@code graph}.    */
+DECL|method|transitiveClosure (ValueGraph<N, ?> graph)
 specifier|public
 specifier|static
 parameter_list|<
 name|N
 parameter_list|>
-name|Graph
+name|BasicGraph
 argument_list|<
 name|N
 argument_list|>
 name|transitiveClosure
 parameter_list|(
-name|Graph
+name|ValueGraph
 argument_list|<
 name|N
+argument_list|,
+name|?
 argument_list|>
 name|graph
 parameter_list|)
 block|{
-name|MutableGraph
+name|MutableBasicGraph
 argument_list|<
 name|N
 argument_list|>
 name|transitiveClosure
 init|=
-name|GraphBuilder
+name|BasicGraphBuilder
 operator|.
 name|from
 argument_list|(
@@ -825,14 +833,14 @@ return|return
 name|transitiveClosure
 return|;
 block|}
-comment|/**    * Returns the set of nodes that are reachable from {@code node}. Node B is defined as reachable    * from node A if there exists a path (a sequence of adjacent outgoing edges) starting at node A    * and ending at node B. Note that a node is always reachable from itself via a zero-length path.    *    *<p>This is a "snapshot" based on the current topology of {@code graph}, rather than a live    * view of the set of nodes reachable from {@code node}. In other words, the returned {@link Set}    * will not be updated after modifications to {@code graph}.    *    * @throws IllegalArgumentException if {@code node} is not present in {@code graph}    */
+comment|/**    * Returns the set of nodes that are reachable from {@code node}. Node B is defined as reachable    * from node A if there exists a path (a sequence of adjacent outgoing edges) starting at node A    * and ending at node B. Note that a node is always reachable from itself via a zero-length path.    *    *<p>This is a "snapshot" based on the current topology of {@code graph}, rather than a live view    * of the set of nodes reachable from {@code node}. In other words, the returned {@link Set} will    * not be updated after modifications to {@code graph}.    *    * @throws IllegalArgumentException if {@code node} is not present in {@code graph}    */
 annotation|@
 name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
 comment|// Throws an exception if node is not an element of graph.
-DECL|method|reachableNodes (Graph<N> graph, Object node)
+DECL|method|reachableNodes (ValueGraph<N, ?> graph, Object node)
 specifier|public
 specifier|static
 parameter_list|<
@@ -844,9 +852,11 @@ name|N
 argument_list|>
 name|reachableNodes
 parameter_list|(
-name|Graph
+name|ValueGraph
 argument_list|<
 name|N
+argument_list|,
+name|?
 argument_list|>
 name|graph
 parameter_list|,
@@ -1146,20 +1156,20 @@ return|;
 block|}
 comment|// Graph mutation methods
 comment|// Graph transformation methods
-comment|/**    * Returns an induced subgraph of {@code graph}. This subgraph is a new graph that contains    * all of the nodes in {@code nodes}, and all of the {@link Graph#edges() edges} from {@code    * graph} for which the endpoints are both contained by {@code nodes}.    *    * @throws IllegalArgumentException if any element in {@code nodes} is not a node in the graph    */
-DECL|method|inducedSubgraph (Graph<N> graph, Iterable<? extends N> nodes)
+comment|/**    * Returns an induced subgraph of {@code graph}. This subgraph is a new graph that contains    * all of the nodes in {@code nodes}, and all of the {@link ValueGraph#edges() edges} from {@code    * graph} for which the endpoints are both contained by {@code nodes}.    *    * @throws IllegalArgumentException if any element in {@code nodes} is not a node in the graph    */
+DECL|method|inducedSubgraph (BasicGraph<N> graph, Iterable<? extends N> nodes)
 specifier|public
 specifier|static
 parameter_list|<
 name|N
 parameter_list|>
-name|MutableGraph
+name|MutableBasicGraph
 argument_list|<
 name|N
 argument_list|>
 name|inducedSubgraph
 parameter_list|(
-name|Graph
+name|BasicGraph
 argument_list|<
 name|N
 argument_list|>
@@ -1174,13 +1184,13 @@ argument_list|>
 name|nodes
 parameter_list|)
 block|{
-name|MutableGraph
+name|MutableBasicGraph
 argument_list|<
 name|N
 argument_list|>
 name|subgraph
 init|=
-name|GraphBuilder
+name|BasicGraphBuilder
 operator|.
 name|from
 argument_list|(
@@ -1259,7 +1269,7 @@ return|return
 name|subgraph
 return|;
 block|}
-comment|/**    * Returns an induced subgraph of {@code graph}. This subgraph is a new graph that contains    * all of the nodes in {@code nodes}, and all of the {@link Graph#edges() edges} (and associated    * edge values) from {@code graph} for which the endpoints are both contained by {@code nodes}.    *    * @throws IllegalArgumentException if any element in {@code nodes} is not a node in the graph    */
+comment|/**    * Returns an induced subgraph of {@code graph}. This subgraph is a new graph that contains    * all of the nodes in {@code nodes}, and all of the {@link ValueGraph#edges() edges} (and    * associated edge values) from {@code graph} for which the endpoints are both contained by    * {@code nodes}.    *    * @throws IllegalArgumentException if any element in {@code nodes} is not a node in the graph    */
 DECL|method|inducedSubgraph (ValueGraph<N, V> graph, Iterable<? extends N> nodes)
 specifier|public
 specifier|static
@@ -1528,32 +1538,32 @@ name|subgraph
 return|;
 block|}
 comment|/**    * Creates a mutable copy of {@code graph} with the same nodes and edges.    */
-DECL|method|copyOf (Graph<N> graph)
+DECL|method|copyOf (BasicGraph<N> graph)
 specifier|public
 specifier|static
 parameter_list|<
 name|N
 parameter_list|>
-name|MutableGraph
+name|MutableBasicGraph
 argument_list|<
 name|N
 argument_list|>
 name|copyOf
 parameter_list|(
-name|Graph
+name|BasicGraph
 argument_list|<
 name|N
 argument_list|>
 name|graph
 parameter_list|)
 block|{
-name|MutableGraph
+name|MutableBasicGraph
 argument_list|<
 name|N
 argument_list|>
 name|copy
 init|=
-name|GraphBuilder
+name|BasicGraphBuilder
 operator|.
 name|from
 argument_list|(

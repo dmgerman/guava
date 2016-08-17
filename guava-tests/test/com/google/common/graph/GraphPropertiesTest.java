@@ -107,7 +107,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests for {@link Graphs#hasCycle(Graph)} and {@link Graphs#hasCycle(Network)}.  */
+comment|/**  * Tests for {@link Graphs#hasCycle(ValueGraph)} and {@link Graphs#hasCycle(Network)}.  */
 end_comment
 
 begin_comment
@@ -130,7 +130,7 @@ block|{
 DECL|field|graphsToTest
 name|ImmutableList
 argument_list|<
-name|MutableGraph
+name|MutableBasicGraph
 argument_list|<
 name|Integer
 argument_list|>
@@ -138,14 +138,14 @@ argument_list|>
 name|graphsToTest
 decl_stmt|;
 DECL|field|directedGraph
-name|Graph
+name|BasicGraph
 argument_list|<
 name|Integer
 argument_list|>
 name|directedGraph
 decl_stmt|;
 DECL|field|undirectedGraph
-name|Graph
+name|BasicGraph
 argument_list|<
 name|Integer
 argument_list|>
@@ -195,7 +195,7 @@ name|ImmutableList
 operator|.
 name|of
 argument_list|(
-name|GraphBuilder
+name|BasicGraphBuilder
 operator|.
 name|directed
 argument_list|()
@@ -206,7 +206,7 @@ operator|>
 name|build
 argument_list|()
 argument_list|,
-name|GraphBuilder
+name|BasicGraphBuilder
 operator|.
 name|undirected
 argument_list|()
@@ -339,7 +339,7 @@ parameter_list|()
 block|{
 for|for
 control|(
-name|MutableGraph
+name|MutableBasicGraph
 argument_list|<
 name|Integer
 argument_list|>
@@ -396,7 +396,7 @@ parameter_list|()
 block|{
 for|for
 control|(
-name|MutableGraph
+name|MutableBasicGraph
 argument_list|<
 name|Integer
 argument_list|>
@@ -448,7 +448,7 @@ parameter_list|()
 block|{
 for|for
 control|(
-name|MutableGraph
+name|MutableBasicGraph
 argument_list|<
 name|Integer
 argument_list|>
@@ -500,7 +500,7 @@ parameter_list|()
 block|{
 for|for
 control|(
-name|MutableGraph
+name|MutableBasicGraph
 argument_list|<
 name|Integer
 argument_list|>
@@ -561,7 +561,7 @@ parameter_list|()
 block|{
 for|for
 control|(
-name|MutableGraph
+name|MutableBasicGraph
 argument_list|<
 name|Integer
 argument_list|>
@@ -623,7 +623,7 @@ parameter_list|()
 block|{
 for|for
 control|(
-name|MutableGraph
+name|MutableBasicGraph
 argument_list|<
 name|Integer
 argument_list|>
@@ -694,7 +694,7 @@ parameter_list|()
 block|{
 for|for
 control|(
-name|MutableGraph
+name|MutableBasicGraph
 argument_list|<
 name|Integer
 argument_list|>
@@ -764,7 +764,7 @@ parameter_list|()
 block|{
 for|for
 control|(
-name|MutableGraph
+name|MutableBasicGraph
 argument_list|<
 name|Integer
 argument_list|>
@@ -833,7 +833,7 @@ parameter_list|()
 block|{
 for|for
 control|(
-name|MutableGraph
+name|MutableBasicGraph
 argument_list|<
 name|Integer
 argument_list|>

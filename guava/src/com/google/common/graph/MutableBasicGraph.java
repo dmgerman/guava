@@ -45,21 +45,21 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A subtype of {@link Graph} which permits mutations.  * Users should generally use the {@link Graph} interface where possible.  *  * @author James Sexton  * @author Joshua O'Madadhain  * @param<N> Node parameter type  * @since 20.0  */
+comment|/**  * A subtype of {@link BasicGraph} which permits mutations.  * Users should generally use the {@link BasicGraph} interface where possible.  *  * @author James Sexton  * @author Joshua O'Madadhain  * @param<N> Node parameter type  * @since 20.0  */
 end_comment
 
 begin_interface
 annotation|@
 name|Beta
-DECL|interface|MutableGraph
+DECL|interface|MutableBasicGraph
 specifier|public
 interface|interface
-name|MutableGraph
+name|MutableBasicGraph
 parameter_list|<
 name|N
 parameter_list|>
 extends|extends
-name|Graph
+name|BasicGraph
 argument_list|<
 name|N
 argument_list|>

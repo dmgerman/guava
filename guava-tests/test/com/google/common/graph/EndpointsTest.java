@@ -141,7 +141,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests for {@link Endpoints} and {@link Graph#edges()}.  */
+comment|/**  * Tests for {@link Endpoints} and {@link BasicGraph#edges()}.  */
 end_comment
 
 begin_class
@@ -776,13 +776,13 @@ name|void
 name|endpoints_directedGraph
 parameter_list|()
 block|{
-name|MutableGraph
+name|MutableBasicGraph
 argument_list|<
 name|Integer
 argument_list|>
 name|directedGraph
 init|=
-name|GraphBuilder
+name|BasicGraphBuilder
 operator|.
 name|directed
 argument_list|()
@@ -886,13 +886,13 @@ name|void
 name|endpoints_undirectedGraph
 parameter_list|()
 block|{
-name|MutableGraph
+name|MutableBasicGraph
 argument_list|<
 name|Integer
 argument_list|>
 name|undirectedGraph
 init|=
-name|GraphBuilder
+name|BasicGraphBuilder
 operator|.
 name|undirected
 argument_list|()
@@ -1231,13 +1231,13 @@ name|void
 name|endpoints_unmodifiableView
 parameter_list|()
 block|{
-name|MutableGraph
+name|MutableBasicGraph
 argument_list|<
 name|Integer
 argument_list|>
 name|directedGraph
 init|=
-name|GraphBuilder
+name|BasicGraphBuilder
 operator|.
 name|directed
 argument_list|()
@@ -1374,13 +1374,13 @@ name|void
 name|endpoints_containment
 parameter_list|()
 block|{
-name|MutableGraph
+name|MutableBasicGraph
 argument_list|<
 name|Integer
 argument_list|>
 name|undirectedGraph
 init|=
-name|GraphBuilder
+name|BasicGraphBuilder
 operator|.
 name|undirected
 argument_list|()

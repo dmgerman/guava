@@ -107,7 +107,6 @@ annotation|@
 name|Beta
 DECL|class|ImmutableNetwork
 specifier|public
-specifier|final
 class|class
 name|ImmutableNetwork
 parameter_list|<

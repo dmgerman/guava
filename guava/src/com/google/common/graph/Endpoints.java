@@ -135,7 +135,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Returns {@link Endpoints} representing the endpoints of an edge in {@code graph}.    */
-DECL|method|of (Graph<?> graph, N nodeA, N nodeB)
+DECL|method|of (ValueGraph<?, ?> graph, N nodeA, N nodeB)
 specifier|public
 specifier|static
 parameter_list|<
@@ -147,8 +147,10 @@ name|N
 argument_list|>
 name|of
 parameter_list|(
-name|Graph
+name|ValueGraph
 argument_list|<
+name|?
+argument_list|,
 name|?
 argument_list|>
 name|graph

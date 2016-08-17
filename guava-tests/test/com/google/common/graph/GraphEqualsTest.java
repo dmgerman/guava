@@ -165,7 +165,7 @@ decl_stmt|;
 DECL|field|graph
 specifier|private
 specifier|final
-name|MutableGraph
+name|MutableBasicGraph
 argument_list|<
 name|Integer
 argument_list|>
@@ -237,7 +237,7 @@ block|}
 DECL|method|createGraph (GraphType graphType)
 specifier|private
 specifier|static
-name|MutableGraph
+name|MutableBasicGraph
 argument_list|<
 name|Integer
 argument_list|>
@@ -256,7 +256,7 @@ case|case
 name|UNDIRECTED
 case|:
 return|return
-name|GraphBuilder
+name|BasicGraphBuilder
 operator|.
 name|undirected
 argument_list|()
@@ -268,7 +268,7 @@ case|case
 name|DIRECTED
 case|:
 return|return
-name|GraphBuilder
+name|BasicGraphBuilder
 operator|.
 name|directed
 argument_list|()
@@ -346,7 +346,7 @@ argument_list|(
 name|N1
 argument_list|)
 expr_stmt|;
-name|MutableGraph
+name|MutableBasicGraph
 argument_list|<
 name|Integer
 argument_list|>
@@ -400,7 +400,7 @@ argument_list|,
 name|N2
 argument_list|)
 expr_stmt|;
-name|MutableGraph
+name|MutableBasicGraph
 argument_list|<
 name|Integer
 argument_list|>
@@ -459,7 +459,7 @@ argument_list|,
 name|N1
 argument_list|)
 expr_stmt|;
-name|MutableGraph
+name|MutableBasicGraph
 argument_list|<
 name|Integer
 argument_list|>
@@ -519,13 +519,13 @@ argument_list|,
 name|N2
 argument_list|)
 expr_stmt|;
-name|MutableGraph
+name|MutableBasicGraph
 argument_list|<
 name|Integer
 argument_list|>
 name|g2
 init|=
-name|GraphBuilder
+name|BasicGraphBuilder
 operator|.
 name|from
 argument_list|(
@@ -578,20 +578,20 @@ name|void
 name|equals_edgeAddOrdersDiffer
 parameter_list|()
 block|{
-name|GraphBuilder
+name|BasicGraphBuilder
 argument_list|<
 name|Integer
 argument_list|>
 name|builder
 init|=
-name|GraphBuilder
+name|BasicGraphBuilder
 operator|.
 name|from
 argument_list|(
 name|graph
 argument_list|)
 decl_stmt|;
-name|MutableGraph
+name|MutableBasicGraph
 argument_list|<
 name|Integer
 argument_list|>
@@ -602,7 +602,7 @@ operator|.
 name|build
 argument_list|()
 decl_stmt|;
-name|MutableGraph
+name|MutableBasicGraph
 argument_list|<
 name|Integer
 argument_list|>
@@ -683,7 +683,7 @@ argument_list|,
 name|N2
 argument_list|)
 expr_stmt|;
-name|MutableGraph
+name|MutableBasicGraph
 argument_list|<
 name|Integer
 argument_list|>

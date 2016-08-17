@@ -153,7 +153,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Abstract base class for testing implementations of {@link Graph} interface. Graph  * instances created for testing should have Integer node and String edge objects.  *  *<p>Test cases that should be handled similarly in any graph implementation are  * included in this class. For example, testing that {@code nodes()} method returns  * the set of the nodes in the graph. The following test cases are left for the subclasses  * to handle:  *<ul>  *<li>Test cases related to whether the graph is directed, undirected, mutable,  *     or immutable.  *<li>Test cases related to the specific implementation of the {@link Graph} interface.  *</ul>  *  * TODO(user): Make this class generic (using<N, E>) for all node and edge types.  * TODO(user): Differentiate between directed and undirected edge strings.  */
+comment|/**  * Abstract base class for testing implementations of {@link BasicGraph} interface. Graph  * instances created for testing should have Integer node and String edge objects.  *  *<p>Test cases that should be handled similarly in any graph implementation are  * included in this class. For example, testing that {@code nodes()} method returns  * the set of the nodes in the graph. The following test cases are left for the subclasses  * to handle:  *<ul>  *<li>Test cases related to whether the graph is directed, undirected, mutable,  *     or immutable.  *<li>Test cases related to the specific implementation of the {@link BasicGraph} interface.  *</ul>  *  * TODO(user): Make this class generic (using<N, E>) for all node and edge types.  * TODO(user): Differentiate between directed and undirected edge strings.  */
 end_comment
 
 begin_class
@@ -164,7 +164,7 @@ class|class
 name|AbstractGraphTest
 block|{
 DECL|field|graph
-name|MutableGraph
+name|MutableBasicGraph
 argument_list|<
 name|Integer
 argument_list|>
@@ -275,7 +275,7 @@ comment|/**    * Creates and returns an instance of the graph to be tested.    *
 DECL|method|createGraph ()
 specifier|public
 specifier|abstract
-name|MutableGraph
+name|MutableBasicGraph
 argument_list|<
 name|Integer
 argument_list|>
@@ -369,7 +369,7 @@ name|graph
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|validateGraph (Graph<N> graph)
+DECL|method|validateGraph (ValueGraph<N, ?> graph)
 specifier|static
 parameter_list|<
 name|N
@@ -377,43 +377,61 @@ parameter_list|>
 name|void
 name|validateGraph
 parameter_list|(
-name|Graph
+name|ValueGraph
 argument_list|<
 name|N
+argument_list|,
+name|?
 argument_list|>
 name|graph
 parameter_list|)
 block|{
 if|if
 condition|(
-operator|!
-operator|(
 name|graph
 operator|instanceof
-name|ValueGraph
-operator|)
+name|BasicGraph
 condition|)
 block|{
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
+name|BasicGraph
+argument_list|<
+name|N
+argument_list|>
+name|basicGraph
+init|=
+operator|(
+name|BasicGraph
+argument_list|<
+name|N
+argument_list|>
+operator|)
+name|graph
+decl_stmt|;
 operator|new
 name|EqualsTester
 argument_list|()
 operator|.
 name|addEqualityGroup
 argument_list|(
-name|graph
+name|basicGraph
 argument_list|,
 name|Graphs
 operator|.
 name|copyOf
 argument_list|(
-name|graph
+name|basicGraph
 argument_list|)
 argument_list|,
-name|ImmutableGraph
+name|ImmutableBasicGraph
 operator|.
 name|copyOf
 argument_list|(
-name|graph
+name|basicGraph
 argument_list|)
 argument_list|)
 operator|.

@@ -373,7 +373,6 @@ name|edgeCount
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * {@inheritDoc}    *    *<p>The order of iteration for this set is determined by the {@code ElementOrder<N>} provided    * to the {@code GraphBuilder} that was used to create this instance.    * By default, that order is the order in which the nodes were added to the graph.    */
 annotation|@
 name|Override
 DECL|method|nodes ()
