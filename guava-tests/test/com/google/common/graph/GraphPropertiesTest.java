@@ -107,7 +107,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests for {@link Graphs#hasCycle(ValueGraph)} and {@link Graphs#hasCycle(Network)}.  */
+comment|/**  * Tests for {@link Graphs#hasCycle(Graph)} and {@link Graphs#hasCycle(Network)}.  */
 end_comment
 
 begin_comment

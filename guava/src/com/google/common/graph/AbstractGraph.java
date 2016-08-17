@@ -169,24 +169,24 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This class provides a skeletal implementation of {@link ValueGraph}. It is recommended to extend  * this class rather than implement {@link ValueGraph} directly, to ensure consistent {@link  * #equals(Object)} and {@link #hashCode()} results across different graph implementations.  *  * @author James Sexton  * @param<N> Node parameter type  * @param<V> Value parameter type  * @since 20.0  */
+comment|/**  * This class provides a skeletal implementation of {@link Graph}. It is recommended to extend  * this class rather than implement {@link Graph} directly, to ensure consistent {@link  * #equals(Object)} and {@link #hashCode()} results across different graph implementations.  *  * @author James Sexton  * @param<N> Node parameter type  * @param<V> Value parameter type  * @since 20.0  */
 end_comment
 
 begin_class
 annotation|@
 name|Beta
-DECL|class|AbstractValueGraph
+DECL|class|AbstractGraph
 specifier|public
 specifier|abstract
 class|class
-name|AbstractValueGraph
+name|AbstractGraph
 parameter_list|<
 name|N
 parameter_list|,
 name|V
 parameter_list|>
 implements|implements
-name|ValueGraph
+name|Graph
 argument_list|<
 name|N
 argument_list|,
@@ -242,7 +242,7 @@ operator|>>>
 literal|1
 return|;
 block|}
-comment|/**    * A reasonable default implementation of {@link ValueGraph#edges()} defined in terms of    * {@link #nodes()} and {@link #successors(Object)}.    */
+comment|/**    * A reasonable default implementation of {@link Graph#edges()} defined in terms of    * {@link #nodes()} and {@link #successors(Object)}.    */
 annotation|@
 name|Override
 DECL|method|edges ()
@@ -286,7 +286,7 @@ name|EndpointsIterator
 operator|.
 name|of
 argument_list|(
-name|AbstractValueGraph
+name|AbstractGraph
 operator|.
 name|this
 argument_list|)
@@ -426,7 +426,7 @@ operator|!
 operator|(
 name|obj
 operator|instanceof
-name|ValueGraph
+name|Graph
 operator|)
 condition|)
 block|{
@@ -434,7 +434,7 @@ return|return
 literal|false
 return|;
 block|}
-name|ValueGraph
+name|Graph
 argument_list|<
 name|?
 argument_list|,
@@ -443,7 +443,7 @@ argument_list|>
 name|other
 init|=
 operator|(
-name|ValueGraph
+name|Graph
 argument_list|<
 name|?
 argument_list|,
@@ -686,13 +686,13 @@ return|;
 block|}
 comment|/**    * Returns the number of times an edge touches {@code node} in {@code graph}. This is equivalent    * to the number of edges incident to {@code node} in the graph, with self-loops counting twice.    *    *<p>If this number is greater than {@code Integer.MAX_VALUE}, returns {@code Integer.MAX_VALUE}.    *    * @throws IllegalArgumentException if {@code node} is not an element of this graph    */
 comment|// TODO(b/30649235): What to do with this? Move to Graphs or interfaces? Provide in/outDegree?
-DECL|method|degree (ValueGraph<?, ?> graph, Object node)
+DECL|method|degree (Graph<?, ?> graph, Object node)
 specifier|private
 specifier|static
 name|int
 name|degree
 parameter_list|(
-name|ValueGraph
+name|Graph
 argument_list|<
 name|?
 argument_list|,

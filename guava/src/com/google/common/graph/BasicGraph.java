@@ -45,7 +45,7 @@ parameter_list|<
 name|N
 parameter_list|>
 extends|extends
-name|ValueGraph
+name|Graph
 argument_list|<
 name|N
 argument_list|,

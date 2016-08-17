@@ -51,7 +51,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An interface for representing and manipulating an origin node's adjacent nodes and edge values  * in a {@link ValueGraph}.  *  * @author James Sexton  * @param<N> Node parameter type  * @param<V> Value parameter type  */
+comment|/**  * An interface for representing and manipulating an origin node's adjacent nodes and edge values  * in a {@link Graph}.  *  * @author James Sexton  * @param<N> Node parameter type  * @param<V> Value parameter type  */
 end_comment
 
 begin_interface

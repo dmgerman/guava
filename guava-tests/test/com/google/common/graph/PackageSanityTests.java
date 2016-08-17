@@ -98,7 +98,7 @@ name|?
 argument_list|>
 name|GRAPH_BUILDER_B
 init|=
-name|ValueGraphBuilder
+name|GraphBuilder
 operator|.
 name|directed
 argument_list|()

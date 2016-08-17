@@ -78,7 +78,7 @@ parameter_list|<
 name|N
 parameter_list|>
 extends|extends
-name|AbstractValueGraph
+name|AbstractGraph
 argument_list|<
 name|N
 argument_list|,

@@ -95,7 +95,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A class to facilitate the set returned by {@link ValueGraph#edges()}.  *  * @author James Sexton  * @since 20.0  */
+comment|/**  * A class to facilitate the set returned by {@link Graph#edges()}.  *  * @author James Sexton  * @since 20.0  */
 end_comment
 
 begin_class
@@ -118,7 +118,7 @@ block|{
 DECL|field|graph
 specifier|private
 specifier|final
-name|ValueGraph
+name|Graph
 argument_list|<
 name|N
 argument_list|,
@@ -160,7 +160,7 @@ operator|.
 name|iterator
 argument_list|()
 decl_stmt|;
-DECL|method|of (ValueGraph<N, ?> graph)
+DECL|method|of (Graph<N, ?> graph)
 specifier|static
 parameter_list|<
 name|N
@@ -171,7 +171,7 @@ name|N
 argument_list|>
 name|of
 parameter_list|(
-name|ValueGraph
+name|Graph
 argument_list|<
 name|N
 argument_list|,
@@ -205,10 +205,10 @@ name|graph
 argument_list|)
 return|;
 block|}
-DECL|method|EndpointsIterator (ValueGraph<N, ?> graph)
+DECL|method|EndpointsIterator (Graph<N, ?> graph)
 name|EndpointsIterator
 parameter_list|(
-name|ValueGraph
+name|Graph
 argument_list|<
 name|N
 argument_list|,
@@ -304,10 +304,10 @@ argument_list|<
 name|N
 argument_list|>
 block|{
-DECL|method|Directed (ValueGraph<N, ?> graph)
+DECL|method|Directed (Graph<N, ?> graph)
 name|Directed
 parameter_list|(
-name|ValueGraph
+name|Graph
 argument_list|<
 name|N
 argument_list|,
@@ -399,10 +399,10 @@ name|N
 argument_list|>
 name|visitedNodes
 decl_stmt|;
-DECL|method|Undirected (ValueGraph<N, ?> graph)
+DECL|method|Undirected (Graph<N, ?> graph)
 name|Undirected
 parameter_list|(
-name|ValueGraph
+name|Graph
 argument_list|<
 name|N
 argument_list|,

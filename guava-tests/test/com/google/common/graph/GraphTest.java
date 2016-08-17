@@ -103,7 +103,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests for {@link ConfigurableMutableValueGraph} and related functionality.  */
+comment|/**  * Tests for {@link ConfigurableMutableGraph} and related functionality.  */
 end_comment
 
 begin_comment
@@ -118,14 +118,14 @@ name|JUnit4
 operator|.
 name|class
 argument_list|)
-DECL|class|ValueGraphTest
+DECL|class|GraphTest
 specifier|public
 specifier|final
 class|class
-name|ValueGraphTest
+name|GraphTest
 block|{
 DECL|field|graph
-name|MutableValueGraph
+name|MutableGraph
 argument_list|<
 name|Integer
 argument_list|,
@@ -156,7 +156,7 @@ argument_list|(
 name|graph
 argument_list|)
 argument_list|,
-name|ImmutableValueGraph
+name|ImmutableGraph
 operator|.
 name|copyOf
 argument_list|(
@@ -213,15 +213,15 @@ expr_stmt|;
 block|}
 annotation|@
 name|Test
-DECL|method|directedValueGraph ()
+DECL|method|directedGraph ()
 specifier|public
 name|void
-name|directedValueGraph
+name|directedGraph
 parameter_list|()
 block|{
 name|graph
 operator|=
-name|ValueGraphBuilder
+name|GraphBuilder
 operator|.
 name|directed
 argument_list|()
@@ -397,15 +397,15 @@ expr_stmt|;
 block|}
 annotation|@
 name|Test
-DECL|method|undirectedValueGraph ()
+DECL|method|undirectedGraph ()
 specifier|public
 name|void
-name|undirectedValueGraph
+name|undirectedGraph
 parameter_list|()
 block|{
 name|graph
 operator|=
-name|ValueGraphBuilder
+name|GraphBuilder
 operator|.
 name|undirected
 argument_list|()
@@ -590,7 +590,7 @@ parameter_list|()
 block|{
 name|graph
 operator|=
-name|ValueGraphBuilder
+name|GraphBuilder
 operator|.
 name|directed
 argument_list|()
@@ -681,7 +681,7 @@ parameter_list|()
 block|{
 name|graph
 operator|=
-name|ValueGraphBuilder
+name|GraphBuilder
 operator|.
 name|undirected
 argument_list|()
@@ -774,7 +774,7 @@ parameter_list|()
 block|{
 name|graph
 operator|=
-name|ValueGraphBuilder
+name|GraphBuilder
 operator|.
 name|directed
 argument_list|()
@@ -922,7 +922,7 @@ parameter_list|()
 block|{
 name|graph
 operator|=
-name|ValueGraphBuilder
+name|GraphBuilder
 operator|.
 name|undirected
 argument_list|()
@@ -1053,7 +1053,7 @@ parameter_list|()
 block|{
 name|graph
 operator|=
-name|ValueGraphBuilder
+name|GraphBuilder
 operator|.
 name|directed
 argument_list|()
@@ -1120,7 +1120,7 @@ parameter_list|()
 block|{
 name|graph
 operator|=
-name|ValueGraphBuilder
+name|GraphBuilder
 operator|.
 name|undirected
 argument_list|()
@@ -1184,7 +1184,7 @@ parameter_list|()
 block|{
 name|graph
 operator|=
-name|ValueGraphBuilder
+name|GraphBuilder
 operator|.
 name|directed
 argument_list|()

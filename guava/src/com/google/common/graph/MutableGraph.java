@@ -45,23 +45,23 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A subtype of {@link ValueGraph} which permits mutations.  * Users should generally use the {@link ValueGraph} interface where possible.  *  * @author James Sexton  * @param<N> Node parameter type  * @param<V> Value parameter type  * @since 20.0  */
+comment|/**  * A subtype of {@link Graph} which permits mutations.  * Users should generally use the {@link Graph} interface where possible.  *  * @author James Sexton  * @param<N> Node parameter type  * @param<V> Value parameter type  * @since 20.0  */
 end_comment
 
 begin_interface
 annotation|@
 name|Beta
-DECL|interface|MutableValueGraph
+DECL|interface|MutableGraph
 specifier|public
 interface|interface
-name|MutableValueGraph
+name|MutableGraph
 parameter_list|<
 name|N
 parameter_list|,
 name|V
 parameter_list|>
 extends|extends
-name|ValueGraph
+name|Graph
 argument_list|<
 name|N
 argument_list|,

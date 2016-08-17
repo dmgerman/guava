@@ -156,8 +156,8 @@ literal|false
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a {@link BasicGraphBuilder} initialized with all properties queryable from    * {@code graph}.    *    *<p>The "queryable" properties are those that are exposed through the {@link ValueGraph}    * interface, such as {@link ValueGraph#isDirected()}. Other properties, such as    * {@link #expectedNodeCount(int)}, are not set in the new builder.    */
-DECL|method|from (ValueGraph<N, ?> graph)
+comment|/**    * Returns a {@link BasicGraphBuilder} initialized with all properties queryable from    * {@code graph}.    *    *<p>The "queryable" properties are those that are exposed through the {@link Graph} interface,    * such as {@link Graph#isDirected()}. Other properties, such as {@link #expectedNodeCount(int)},    * are not set in the new builder.    */
+DECL|method|from (Graph<N, ?> graph)
 specifier|public
 specifier|static
 parameter_list|<
@@ -169,7 +169,7 @@ name|N
 argument_list|>
 name|from
 parameter_list|(
-name|ValueGraph
+name|Graph
 argument_list|<
 name|N
 argument_list|,
@@ -275,7 +275,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**    * Specifies the order of iteration for the elements of {@link ValueGraph#nodes()}.    */
+comment|/**    * Specifies the order of iteration for the elements of {@link Graph#nodes()}.    */
 DECL|method|nodeOrder (ElementOrder<N1> nodeOrder)
 specifier|public
 parameter_list|<

@@ -127,28 +127,28 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Configurable implementation of {@link MutableValueGraph} that supports both directed and  * undirected graphs. Instances of this class should be constructed with {@link ValueGraphBuilder}.  *  *<p>Time complexities for mutation methods are all O(1) except for {@code removeNode(N node)},  * which is in O(d_node) where d_node is the degree of {@code node}.  *  * @author James Sexton  * @author Joshua O'Madadhain  * @author Omar Darwish  * @param<N> Node parameter type  * @param<V> Value parameter type  */
+comment|/**  * Configurable implementation of {@link MutableGraph} that supports both directed and undirected  * graphs. Instances of this class should be constructed with {@link GraphBuilder}.  *  *<p>Time complexities for mutation methods are all O(1) except for {@code removeNode(N node)},  * which is in O(d_node) where d_node is the degree of {@code node}.  *  * @author James Sexton  * @author Joshua O'Madadhain  * @author Omar Darwish  * @param<N> Node parameter type  * @param<V> Value parameter type  */
 end_comment
 
 begin_class
-DECL|class|ConfigurableMutableValueGraph
+DECL|class|ConfigurableMutableGraph
 specifier|final
 class|class
-name|ConfigurableMutableValueGraph
+name|ConfigurableMutableGraph
 parameter_list|<
 name|N
 parameter_list|,
 name|V
 parameter_list|>
 extends|extends
-name|ConfigurableValueGraph
+name|ConfigurableGraph
 argument_list|<
 name|N
 argument_list|,
 name|V
 argument_list|>
 implements|implements
-name|MutableValueGraph
+name|MutableGraph
 argument_list|<
 name|N
 argument_list|,
@@ -156,8 +156,8 @@ name|V
 argument_list|>
 block|{
 comment|/**    * Constructs a mutable graph with the properties specified in {@code builder}.    */
-DECL|method|ConfigurableMutableValueGraph (AbstractGraphBuilder<? super N> builder)
-name|ConfigurableMutableValueGraph
+DECL|method|ConfigurableMutableGraph (AbstractGraphBuilder<? super N> builder)
+name|ConfigurableMutableGraph
 parameter_list|(
 name|AbstractGraphBuilder
 argument_list|<

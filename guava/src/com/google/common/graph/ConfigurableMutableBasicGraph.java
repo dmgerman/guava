@@ -52,7 +52,7 @@ block|{
 DECL|field|backingGraph
 specifier|private
 specifier|final
-name|MutableValueGraph
+name|MutableGraph
 argument_list|<
 name|N
 argument_list|,
@@ -78,7 +78,7 @@ operator|.
 name|backingGraph
 operator|=
 operator|new
-name|ConfigurableMutableValueGraph
+name|ConfigurableMutableGraph
 argument_list|<
 name|N
 argument_list|,

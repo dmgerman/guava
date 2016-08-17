@@ -89,33 +89,33 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link ValueGraph} whose relationships and edge values are constant. Instances of this class  * may be obtained with {@link #copyOf(ValueGraph)}.  *  * @author James Sexton  * @param<N> Node parameter type  * @param<V> Value parameter type  * @since 20.0  */
+comment|/**  * A {@link Graph} whose relationships and edge values are constant. Instances of this class may be  * obtained with {@link #copyOf(Graph)}.  *  * @author James Sexton  * @param<N> Node parameter type  * @param<V> Value parameter type  * @since 20.0  */
 end_comment
 
 begin_class
 annotation|@
 name|Beta
-DECL|class|ImmutableValueGraph
+DECL|class|ImmutableGraph
 specifier|public
 class|class
-name|ImmutableValueGraph
+name|ImmutableGraph
 parameter_list|<
 name|N
 parameter_list|,
 name|V
 parameter_list|>
 extends|extends
-name|ConfigurableValueGraph
+name|ConfigurableGraph
 argument_list|<
 name|N
 argument_list|,
 name|V
 argument_list|>
 block|{
-DECL|method|ImmutableValueGraph (ValueGraph<N, V> graph)
-name|ImmutableValueGraph
+DECL|method|ImmutableGraph (Graph<N, V> graph)
+name|ImmutableGraph
 parameter_list|(
-name|ValueGraph
+name|Graph
 argument_list|<
 name|N
 argument_list|,
@@ -126,7 +126,7 @@ parameter_list|)
 block|{
 name|super
 argument_list|(
-name|ValueGraphBuilder
+name|GraphBuilder
 operator|.
 name|from
 argument_list|(
@@ -154,7 +154,7 @@ name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
-DECL|method|copyOf (ValueGraph<N, V> graph)
+DECL|method|copyOf (Graph<N, V> graph)
 specifier|public
 specifier|static
 parameter_list|<
@@ -162,7 +162,7 @@ name|N
 parameter_list|,
 name|V
 parameter_list|>
-name|ImmutableValueGraph
+name|ImmutableGraph
 argument_list|<
 name|N
 argument_list|,
@@ -170,7 +170,7 @@ name|V
 argument_list|>
 name|copyOf
 parameter_list|(
-name|ValueGraph
+name|Graph
 argument_list|<
 name|N
 argument_list|,
@@ -183,11 +183,11 @@ return|return
 operator|(
 name|graph
 operator|instanceof
-name|ImmutableValueGraph
+name|ImmutableGraph
 operator|)
 condition|?
 operator|(
-name|ImmutableValueGraph
+name|ImmutableGraph
 argument_list|<
 name|N
 argument_list|,
@@ -197,7 +197,7 @@ operator|)
 name|graph
 else|:
 operator|new
-name|ImmutableValueGraph
+name|ImmutableGraph
 argument_list|<
 name|N
 argument_list|,
@@ -211,7 +211,7 @@ block|}
 comment|/**    * Simply returns its argument.    *    * @deprecated no need to use this    */
 annotation|@
 name|Deprecated
-DECL|method|copyOf (ImmutableValueGraph<N, V> graph)
+DECL|method|copyOf (ImmutableGraph<N, V> graph)
 specifier|public
 specifier|static
 parameter_list|<
@@ -219,7 +219,7 @@ name|N
 parameter_list|,
 name|V
 parameter_list|>
-name|ImmutableValueGraph
+name|ImmutableGraph
 argument_list|<
 name|N
 argument_list|,
@@ -227,7 +227,7 @@ name|V
 argument_list|>
 name|copyOf
 parameter_list|(
-name|ImmutableValueGraph
+name|ImmutableGraph
 argument_list|<
 name|N
 argument_list|,
@@ -243,7 +243,7 @@ name|graph
 argument_list|)
 return|;
 block|}
-DECL|method|getNodeConnections ( ValueGraph<N, V> graph)
+DECL|method|getNodeConnections ( Graph<N, V> graph)
 specifier|private
 specifier|static
 parameter_list|<
@@ -264,7 +264,7 @@ argument_list|>
 argument_list|>
 name|getNodeConnections
 parameter_list|(
-name|ValueGraph
+name|Graph
 argument_list|<
 name|N
 argument_list|,
@@ -329,7 +329,7 @@ name|build
 argument_list|()
 return|;
 block|}
-DECL|method|connectionsOf (final ValueGraph<N, V> graph, final N node)
+DECL|method|connectionsOf (final Graph<N, V> graph, final N node)
 specifier|private
 specifier|static
 parameter_list|<
@@ -346,7 +346,7 @@ argument_list|>
 name|connectionsOf
 parameter_list|(
 specifier|final
-name|ValueGraph
+name|Graph
 argument_list|<
 name|N
 argument_list|,

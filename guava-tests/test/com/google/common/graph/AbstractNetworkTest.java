@@ -657,7 +657,7 @@ argument_list|(
 name|edgeStart
 argument_list|)
 decl_stmt|;
-name|ValueGraph
+name|Graph
 argument_list|<
 name|Integer
 argument_list|,

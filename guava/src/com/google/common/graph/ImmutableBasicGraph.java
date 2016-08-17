@@ -77,7 +77,7 @@ parameter_list|<
 name|N
 parameter_list|>
 extends|extends
-name|ImmutableValueGraph
+name|ImmutableGraph
 argument_list|<
 name|N
 argument_list|,

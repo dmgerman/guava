@@ -369,7 +369,7 @@ name|graph
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|validateGraph (ValueGraph<N, ?> graph)
+DECL|method|validateGraph (Graph<N, ?> graph)
 specifier|static
 parameter_list|<
 name|N
@@ -377,7 +377,7 @@ parameter_list|>
 name|void
 name|validateGraph
 parameter_list|(
-name|ValueGraph
+name|Graph
 argument_list|<
 name|N
 argument_list|,

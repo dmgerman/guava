@@ -173,7 +173,7 @@ annotation|@
 name|Override
 DECL|method|asGraph ()
 specifier|public
-name|ValueGraph
+name|Graph
 argument_list|<
 name|N
 argument_list|,
@@ -187,7 +187,7 @@ parameter_list|()
 block|{
 return|return
 operator|new
-name|AbstractValueGraph
+name|AbstractGraph
 argument_list|<
 name|N
 argument_list|,

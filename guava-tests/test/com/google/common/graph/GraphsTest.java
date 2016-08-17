@@ -2439,10 +2439,10 @@ block|{     }
 block|}
 annotation|@
 name|Test
-DECL|method|inducedSubgraph_Graph ()
+DECL|method|inducedSubgraph_BasicGraph ()
 specifier|public
 name|void
-name|inducedSubgraph_Graph
+name|inducedSubgraph_BasicGraph
 parameter_list|()
 block|{
 name|Set
@@ -2582,10 +2582,10 @@ expr_stmt|;
 block|}
 annotation|@
 name|Test
-DECL|method|inducedSubgraph_ValueGraph ()
+DECL|method|inducedSubgraph_Graph ()
 specifier|public
 name|void
-name|inducedSubgraph_ValueGraph
+name|inducedSubgraph_Graph
 parameter_list|()
 block|{
 name|Set
@@ -2605,7 +2605,7 @@ argument_list|,
 name|N4
 argument_list|)
 decl_stmt|;
-name|MutableValueGraph
+name|MutableGraph
 argument_list|<
 name|Integer
 argument_list|,
@@ -2613,7 +2613,7 @@ name|String
 argument_list|>
 name|directedGraph
 init|=
-name|ValueGraphBuilder
+name|GraphBuilder
 operator|.
 name|directed
 argument_list|()
@@ -2678,7 +2678,7 @@ literal|"5-6"
 argument_list|)
 expr_stmt|;
 comment|// not incident to any node in nodeSubset
-name|MutableValueGraph
+name|MutableGraph
 argument_list|<
 name|Integer
 argument_list|,
@@ -2686,7 +2686,7 @@ name|String
 argument_list|>
 name|expectedSubgraph
 init|=
-name|ValueGraphBuilder
+name|GraphBuilder
 operator|.
 name|directed
 argument_list|()
@@ -2993,10 +2993,10 @@ block|{     }
 block|}
 annotation|@
 name|Test
-DECL|method|copyOf_directedGraph ()
+DECL|method|copyOf_directedBasicGraph ()
 specifier|public
 name|void
-name|copyOf_directedGraph
+name|copyOf_directedBasicGraph
 parameter_list|()
 block|{
 name|BasicGraph
@@ -3005,12 +3005,94 @@ name|Integer
 argument_list|>
 name|directedGraph
 init|=
-name|buildDirectedTestGraph
+name|buildDirectedBasicGraph
 argument_list|()
 decl_stmt|;
 name|BasicGraph
 argument_list|<
 name|Integer
+argument_list|>
+name|copy
+init|=
+name|copyOf
+argument_list|(
+name|directedGraph
+argument_list|)
+decl_stmt|;
+name|assertThat
+argument_list|(
+name|copy
+argument_list|)
+operator|.
+name|isEqualTo
+argument_list|(
+name|directedGraph
+argument_list|)
+expr_stmt|;
+block|}
+annotation|@
+name|Test
+DECL|method|copyOf_undirectedBasicGraph ()
+specifier|public
+name|void
+name|copyOf_undirectedBasicGraph
+parameter_list|()
+block|{
+name|BasicGraph
+argument_list|<
+name|Integer
+argument_list|>
+name|undirectedGraph
+init|=
+name|buildUndirectedBasicGraph
+argument_list|()
+decl_stmt|;
+name|BasicGraph
+argument_list|<
+name|Integer
+argument_list|>
+name|copy
+init|=
+name|copyOf
+argument_list|(
+name|undirectedGraph
+argument_list|)
+decl_stmt|;
+name|assertThat
+argument_list|(
+name|copy
+argument_list|)
+operator|.
+name|isEqualTo
+argument_list|(
+name|undirectedGraph
+argument_list|)
+expr_stmt|;
+block|}
+annotation|@
+name|Test
+DECL|method|copyOf_directedGraph ()
+specifier|public
+name|void
+name|copyOf_directedGraph
+parameter_list|()
+block|{
+name|Graph
+argument_list|<
+name|Integer
+argument_list|,
+name|String
+argument_list|>
+name|directedGraph
+init|=
+name|buildDirectedGraph
+argument_list|()
+decl_stmt|;
+name|Graph
+argument_list|<
+name|Integer
+argument_list|,
+name|String
 argument_list|>
 name|copy
 init|=
@@ -3038,89 +3120,7 @@ name|void
 name|copyOf_undirectedGraph
 parameter_list|()
 block|{
-name|BasicGraph
-argument_list|<
-name|Integer
-argument_list|>
-name|undirectedGraph
-init|=
-name|buildUndirectedTestGraph
-argument_list|()
-decl_stmt|;
-name|BasicGraph
-argument_list|<
-name|Integer
-argument_list|>
-name|copy
-init|=
-name|copyOf
-argument_list|(
-name|undirectedGraph
-argument_list|)
-decl_stmt|;
-name|assertThat
-argument_list|(
-name|copy
-argument_list|)
-operator|.
-name|isEqualTo
-argument_list|(
-name|undirectedGraph
-argument_list|)
-expr_stmt|;
-block|}
-annotation|@
-name|Test
-DECL|method|copyOf_directedValueGraph ()
-specifier|public
-name|void
-name|copyOf_directedValueGraph
-parameter_list|()
-block|{
-name|ValueGraph
-argument_list|<
-name|Integer
-argument_list|,
-name|String
-argument_list|>
-name|directedGraph
-init|=
-name|buildDirectedTestValueGraph
-argument_list|()
-decl_stmt|;
-name|ValueGraph
-argument_list|<
-name|Integer
-argument_list|,
-name|String
-argument_list|>
-name|copy
-init|=
-name|copyOf
-argument_list|(
-name|directedGraph
-argument_list|)
-decl_stmt|;
-name|assertThat
-argument_list|(
-name|copy
-argument_list|)
-operator|.
-name|isEqualTo
-argument_list|(
-name|directedGraph
-argument_list|)
-expr_stmt|;
-block|}
-annotation|@
-name|Test
-DECL|method|copyOf_undirectedValueGraph ()
-specifier|public
-name|void
-name|copyOf_undirectedValueGraph
-parameter_list|()
-block|{
-name|ValueGraph
+name|Graph
 argument_list|<
 name|Integer
 argument_list|,
@@ -3128,10 +3128,10 @@ name|String
 argument_list|>
 name|undirectedGraph
 init|=
-name|buildUndirectedTestValueGraph
+name|buildUndirectedGraph
 argument_list|()
 decl_stmt|;
-name|ValueGraph
+name|Graph
 argument_list|<
 name|Integer
 argument_list|,
@@ -3171,7 +3171,7 @@ name|String
 argument_list|>
 name|directedGraph
 init|=
-name|buildDirectedTestNetwork
+name|buildDirectedNetwork
 argument_list|()
 decl_stmt|;
 name|Network
@@ -3214,7 +3214,7 @@ name|String
 argument_list|>
 name|undirectedGraph
 init|=
-name|buildUndirectedTestNetwork
+name|buildUndirectedNetwork
 argument_list|()
 decl_stmt|;
 name|Network
@@ -4468,14 +4468,14 @@ name|expectedClosure
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|buildDirectedTestGraph ()
+DECL|method|buildDirectedBasicGraph ()
 specifier|private
 specifier|static
 name|MutableBasicGraph
 argument_list|<
 name|Integer
 argument_list|>
-name|buildDirectedTestGraph
+name|buildDirectedBasicGraph
 parameter_list|()
 block|{
 name|MutableBasicGraph
@@ -4528,14 +4528,14 @@ return|return
 name|directedGraph
 return|;
 block|}
-DECL|method|buildUndirectedTestGraph ()
+DECL|method|buildUndirectedBasicGraph ()
 specifier|private
 specifier|static
 name|MutableBasicGraph
 argument_list|<
 name|Integer
 argument_list|>
-name|buildUndirectedTestGraph
+name|buildUndirectedBasicGraph
 parameter_list|()
 block|{
 name|MutableBasicGraph
@@ -4588,19 +4588,19 @@ return|return
 name|undirectedGraph
 return|;
 block|}
-DECL|method|buildDirectedTestValueGraph ()
+DECL|method|buildDirectedGraph ()
 specifier|private
 specifier|static
-name|MutableValueGraph
+name|MutableGraph
 argument_list|<
 name|Integer
 argument_list|,
 name|String
 argument_list|>
-name|buildDirectedTestValueGraph
+name|buildDirectedGraph
 parameter_list|()
 block|{
-name|MutableValueGraph
+name|MutableGraph
 argument_list|<
 name|Integer
 argument_list|,
@@ -4608,7 +4608,7 @@ name|String
 argument_list|>
 name|directedGraph
 init|=
-name|ValueGraphBuilder
+name|GraphBuilder
 operator|.
 name|directed
 argument_list|()
@@ -4658,19 +4658,19 @@ return|return
 name|directedGraph
 return|;
 block|}
-DECL|method|buildUndirectedTestValueGraph ()
+DECL|method|buildUndirectedGraph ()
 specifier|private
 specifier|static
-name|MutableValueGraph
+name|MutableGraph
 argument_list|<
 name|Integer
 argument_list|,
 name|String
 argument_list|>
-name|buildUndirectedTestValueGraph
+name|buildUndirectedGraph
 parameter_list|()
 block|{
-name|MutableValueGraph
+name|MutableGraph
 argument_list|<
 name|Integer
 argument_list|,
@@ -4678,7 +4678,7 @@ name|String
 argument_list|>
 name|undirectedGraph
 init|=
-name|ValueGraphBuilder
+name|GraphBuilder
 operator|.
 name|undirected
 argument_list|()
@@ -4729,7 +4729,7 @@ return|return
 name|undirectedGraph
 return|;
 block|}
-DECL|method|buildDirectedTestNetwork ()
+DECL|method|buildDirectedNetwork ()
 specifier|private
 specifier|static
 name|MutableNetwork
@@ -4738,7 +4738,7 @@ name|Integer
 argument_list|,
 name|String
 argument_list|>
-name|buildDirectedTestNetwork
+name|buildDirectedNetwork
 parameter_list|()
 block|{
 name|MutableNetwork
@@ -4826,7 +4826,7 @@ return|return
 name|directedGraph
 return|;
 block|}
-DECL|method|buildUndirectedTestNetwork ()
+DECL|method|buildUndirectedNetwork ()
 specifier|private
 specifier|static
 name|MutableNetwork
@@ -4835,7 +4835,7 @@ name|Integer
 argument_list|,
 name|String
 argument_list|>
-name|buildUndirectedTestNetwork
+name|buildUndirectedNetwork
 parameter_list|()
 block|{
 name|MutableNetwork

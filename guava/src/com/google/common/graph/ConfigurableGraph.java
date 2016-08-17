@@ -153,20 +153,20 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Configurable implementation of {@link ValueGraph} that supports the options supplied by  * {@link AbstractGraphBuilder}.  *  *<p>This class maintains a map of nodes to {@link GraphConnections}.  *  *<p>{@code Set}-returning accessors return unmodifiable views: the view returned will reflect  * changes to the graph (if the graph is mutable) but may not be modified by the user.  * The behavior of the returned view is undefined in the following cases:  *<ul>  *<li>Removing the element on which the accessor is called (e.g.:  *<pre>{@code  *     Set<N> adjacentNodes = adjacentNodes(node);  *     graph.removeNode(node);}</pre>  *     At this point, the contents of {@code adjacentNodes} are undefined.  *</ul>  *  *<p>The time complexity of all {@code Set}-returning accessors is O(1), since views are returned.  *  * @author James Sexton  * @author Joshua O'Madadhain  * @author Omar Darwish  * @param<N> Node parameter type  * @param<V> Value parameter type  */
+comment|/**  * Configurable implementation of {@link Graph} that supports the options supplied by  * {@link AbstractGraphBuilder}.  *  *<p>This class maintains a map of nodes to {@link GraphConnections}.  *  *<p>{@code Set}-returning accessors return unmodifiable views: the view returned will reflect  * changes to the graph (if the graph is mutable) but may not be modified by the user.  * The behavior of the returned view is undefined in the following cases:  *<ul>  *<li>Removing the element on which the accessor is called (e.g.:  *<pre>{@code  *     Set<N> adjacentNodes = adjacentNodes(node);  *     graph.removeNode(node);}</pre>  *     At this point, the contents of {@code adjacentNodes} are undefined.  *</ul>  *  *<p>The time complexity of all {@code Set}-returning accessors is O(1), since views are returned.  *  * @author James Sexton  * @author Joshua O'Madadhain  * @author Omar Darwish  * @param<N> Node parameter type  * @param<V> Value parameter type  */
 end_comment
 
 begin_class
-DECL|class|ConfigurableValueGraph
+DECL|class|ConfigurableGraph
 class|class
-name|ConfigurableValueGraph
+name|ConfigurableGraph
 parameter_list|<
 name|N
 parameter_list|,
 name|V
 parameter_list|>
 extends|extends
-name|AbstractValueGraph
+name|AbstractGraph
 argument_list|<
 name|N
 argument_list|,
@@ -217,8 +217,8 @@ name|edgeCount
 decl_stmt|;
 comment|// must be updated when edges are added or removed
 comment|/**    * Constructs a graph with the properties specified in {@code builder}.    */
-DECL|method|ConfigurableValueGraph (AbstractGraphBuilder<? super N> builder)
-name|ConfigurableValueGraph
+DECL|method|ConfigurableGraph (AbstractGraphBuilder<? super N> builder)
+name|ConfigurableGraph
 parameter_list|(
 name|AbstractGraphBuilder
 argument_list|<
@@ -265,8 +265,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Constructs a graph with the properties specified in {@code builder}, initialized with    * the given node map.    */
-DECL|method|ConfigurableValueGraph (AbstractGraphBuilder<? super N> builder, Map<N, GraphConnections<N, V>> nodeConnections, long edgeCount)
-name|ConfigurableValueGraph
+DECL|method|ConfigurableGraph (AbstractGraphBuilder<? super N> builder, Map<N, GraphConnections<N, V>> nodeConnections, long edgeCount)
+name|ConfigurableGraph
 parameter_list|(
 name|AbstractGraphBuilder
 argument_list|<
