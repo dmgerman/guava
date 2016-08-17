@@ -109,10 +109,10 @@ comment|/**  * A class to represent the set of edges connecting an (implicit) or
 end_comment
 
 begin_class
-DECL|class|SimpleEdgesConnecting
+DECL|class|EdgesConnecting
 specifier|final
 class|class
-name|SimpleEdgesConnecting
+name|EdgesConnecting
 parameter_list|<
 name|E
 parameter_list|>
@@ -139,8 +139,8 @@ specifier|final
 name|Object
 name|targetNode
 decl_stmt|;
-DECL|method|SimpleEdgesConnecting (Map<?, E> nodeToEdgeMap, Object targetNode)
-name|SimpleEdgesConnecting
+DECL|method|EdgesConnecting (Map<?, E> nodeToEdgeMap, Object targetNode)
+name|EdgesConnecting
 parameter_list|(
 name|Map
 argument_list|<

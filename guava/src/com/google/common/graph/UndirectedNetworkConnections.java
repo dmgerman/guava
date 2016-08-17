@@ -275,7 +275,7 @@ parameter_list|)
 block|{
 return|return
 operator|new
-name|SimpleEdgesConnecting
+name|EdgesConnecting
 argument_list|<
 name|E
 argument_list|>
