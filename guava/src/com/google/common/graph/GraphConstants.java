@@ -175,7 +175,7 @@ name|NOT_AVAILABLE_ON_UNDIRECTED
 init|=
 literal|"Cannot call source()/target() on the endpoints of an undirected edge. Consider calling "
 operator|+
-literal|"otherNode() to get a single node or using the endpoints' iterator to get both nodes."
+literal|"adjacentNode(node) if you already have a node, or nodeA()/nodeB() if you don't."
 decl_stmt|;
 DECL|field|EDGE_ALREADY_EXISTS
 specifier|static
