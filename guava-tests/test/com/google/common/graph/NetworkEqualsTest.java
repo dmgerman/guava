@@ -187,10 +187,6 @@ name|UNDIRECTED
 block|,
 DECL|enumConstant|DIRECTED
 name|DIRECTED
-block|,
-DECL|enumConstant|HYPER
-name|HYPER
-comment|// not yet used because we don't yet have a Hypergraph implementation
 block|}
 DECL|field|graphType
 specifier|private
