@@ -114,7 +114,7 @@ function_decl|;
 comment|//
 comment|// Graph properties
 comment|//
-comment|/**    * Returns true if the edges in this graph are directed. Directed edges connect a {@link    * Endpoints#source() source node} to a {@link Endpoints#source() target node}, while undirected    * edges connect a pair of nodes to each other.    */
+comment|/**    * Returns true if the edges in this graph are directed. Directed edges connect a {@link    * Endpoints#source() source node} to a {@link Endpoints#target() target node}, while undirected    * edges connect a pair of nodes to each other.    */
 DECL|method|isDirected ()
 name|boolean
 name|isDirected
