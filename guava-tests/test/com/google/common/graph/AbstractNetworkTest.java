@@ -536,6 +536,31 @@ name|void
 name|validateNetworkState
 parameter_list|()
 block|{
+name|validateNetwork
+argument_list|(
+name|network
+argument_list|)
+expr_stmt|;
+block|}
+DECL|method|validateNetwork (Network<N, E> network)
+specifier|static
+parameter_list|<
+name|N
+parameter_list|,
+name|E
+parameter_list|>
+name|void
+name|validateNetwork
+parameter_list|(
+name|Network
+argument_list|<
+name|N
+argument_list|,
+name|E
+argument_list|>
+name|network
+parameter_list|)
+block|{
 operator|new
 name|EqualsTester
 argument_list|()
@@ -659,11 +684,11 @@ argument_list|)
 decl_stmt|;
 name|Graph
 argument_list|<
-name|Integer
+name|N
 argument_list|,
 name|Set
 argument_list|<
-name|String
+name|E
 argument_list|>
 argument_list|>
 name|asGraph
@@ -792,7 +817,7 @@ argument_list|)
 expr_stmt|;
 for|for
 control|(
-name|String
+name|E
 name|edge
 range|:
 name|network
@@ -810,11 +835,14 @@ operator|.
 name|contains
 argument_list|(
 name|edge
+operator|.
+name|toString
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|Endpoints
 argument_list|<
-name|Integer
+name|N
 argument_list|>
 name|endpoints
 init|=
@@ -825,7 +853,7 @@ argument_list|(
 name|edge
 argument_list|)
 decl_stmt|;
-name|Integer
+name|N
 name|nodeA
 init|=
 name|endpoints
@@ -833,7 +861,7 @@ operator|.
 name|nodeA
 argument_list|()
 decl_stmt|;
-name|Integer
+name|N
 name|nodeB
 init|=
 name|endpoints
@@ -1002,7 +1030,7 @@ argument_list|)
 expr_stmt|;
 for|for
 control|(
-name|Integer
+name|N
 name|incidentNode
 range|:
 name|ImmutableSet
@@ -1046,7 +1074,7 @@ argument_list|)
 expr_stmt|;
 for|for
 control|(
-name|String
+name|E
 name|adjacentEdge
 range|:
 name|network
@@ -1086,7 +1114,7 @@ block|}
 block|}
 for|for
 control|(
-name|Integer
+name|N
 name|node
 range|:
 name|network
@@ -1230,7 +1258,7 @@ argument_list|)
 expr_stmt|;
 for|for
 control|(
-name|Integer
+name|N
 name|otherNode
 range|:
 name|network
@@ -1241,7 +1269,7 @@ control|)
 block|{
 name|Set
 argument_list|<
-name|String
+name|E
 argument_list|>
 name|edgesConnecting
 init|=
@@ -1365,7 +1393,7 @@ expr_stmt|;
 block|}
 for|for
 control|(
-name|String
+name|E
 name|edge
 range|:
 name|edgesConnecting
@@ -1399,7 +1427,7 @@ block|}
 block|}
 for|for
 control|(
-name|String
+name|E
 name|incidentEdge
 range|:
 name|network
@@ -1486,7 +1514,7 @@ expr_stmt|;
 block|}
 for|for
 control|(
-name|String
+name|E
 name|inEdge
 range|:
 name|network
@@ -1540,7 +1568,7 @@ expr_stmt|;
 block|}
 for|for
 control|(
-name|String
+name|E
 name|outEdge
 range|:
 name|network
@@ -1594,7 +1622,7 @@ expr_stmt|;
 block|}
 for|for
 control|(
-name|Integer
+name|N
 name|adjacentNode
 range|:
 name|network
@@ -1664,7 +1692,7 @@ expr_stmt|;
 block|}
 for|for
 control|(
-name|Integer
+name|N
 name|predecessor
 range|:
 name|network
@@ -1708,7 +1736,7 @@ expr_stmt|;
 block|}
 for|for
 control|(
-name|Integer
+name|N
 name|successor
 range|:
 name|network
