@@ -131,16 +131,16 @@ name|boolean
 name|isDirected
 parameter_list|()
 function_decl|;
-comment|/**    * Returns true if this network allows self-loops (edges that connect a node to itself).    * Attempting to add a self-loop to a network that does not allow them will throw an {@link    * UnsupportedOperationException}.    */
-DECL|method|allowsSelfLoops ()
-name|boolean
-name|allowsSelfLoops
-parameter_list|()
-function_decl|;
 comment|/**    * Returns true if this network allows parallel edges. Attempting to add a parallel edge to a    * network that does not allow them will throw an {@link UnsupportedOperationException}.    */
 DECL|method|allowsParallelEdges ()
 name|boolean
 name|allowsParallelEdges
+parameter_list|()
+function_decl|;
+comment|/**    * Returns true if this network allows self-loops (edges that connect a node to itself).    * Attempting to add a self-loop to a network that does not allow them will throw an {@link    * UnsupportedOperationException}.    */
+DECL|method|allowsSelfLoops ()
+name|boolean
+name|allowsSelfLoops
 parameter_list|()
 function_decl|;
 comment|/** Returns the order of iteration for the elements of {@link #nodes()}. */
