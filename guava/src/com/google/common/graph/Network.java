@@ -108,7 +108,7 @@ argument_list|>
 name|edges
 parameter_list|()
 function_decl|;
-comment|/**    * Returns a live view of this network as a {@link Graph}. The resulting {@link Graph} will have    * an edge connecting node A to node B iff this {@link Network} has an edge connecting A to B.    *    *<p>{@link Graph#edgeValue(Object, Object)} will return the set of edges connecting node A to    * node B. It will return the empty set if there are no edges connecting A to B.    *    *<p>If this network {@link #allowsParallelEdges()}, parallel edges will treated as if collapsed    * into a single edge. For example, the {@link #degree(Object)} of a node in the {@link Graph}    * view may be less than the degree of the same node in this {@link Network}.    */
+comment|/**    * Returns a live view of this network as a {@link Graph}. The resulting {@link Graph} will have    * an edge connecting node A to node B iff this {@link Network} has an edge connecting A to B.    *    *<p>{@link Graph#edgeValue(Object, Object)} will return the set of edges connecting node A to    * node B if the set is non-empty, otherwise, it will throw {@link IllegalArgumentException}.    *    *<p>If this network {@link #allowsParallelEdges()}, parallel edges will treated as if collapsed    * into a single edge. For example, the {@link #degree(Object)} of a node in the {@link Graph}    * view may be less than the degree of the same node in this {@link Network}.    */
 DECL|method|asGraph ()
 name|Graph
 argument_list|<
