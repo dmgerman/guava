@@ -88,7 +88,7 @@ argument_list|>
 name|edges
 parameter_list|()
 function_decl|;
-comment|/**    * Returns a live view of this network as a {@link Graph}. The resulting {@link Graph} will have    * an edge connecting node A to node B iff this {@link Network} has an edge connecting A to B.    *    *<p>{@link Graph#edgeValue(Object, Object)} will return the set of edges connecting node A to    * node B. It will return the empty set if there are no edges connecting A to B.    */
+comment|/**    * Returns a live view of this network as a {@link Graph}. The resulting {@link Graph} will have    * an edge connecting node A to node B iff this {@link Network} has an edge connecting A to B.    *    *<p>{@link Graph#edgeValue(Object, Object)} will return the set of edges connecting node A to    * node B. It will return the empty set if there are no edges connecting A to B.    *    *<p>If this network {@link #allowsParallelEdges()}, parallel edges will treated as if collapsed    * into a single edge. For example, the {@link #degree(Object)} of a node in the {@link Graph}    * view may be less than the degree of the same node in this {@link Network}.    */
 DECL|method|asGraph ()
 name|Graph
 argument_list|<
@@ -211,6 +211,33 @@ argument_list|<
 name|E
 argument_list|>
 name|outEdges
+parameter_list|(
+name|Object
+name|node
+parameter_list|)
+function_decl|;
+comment|/**    * Returns the count of {@code node}'s {@link #incidentEdges(Object) incident edges}, counting    * self-loops twice (equivalently, the number of times an edge touches {@code node}).    *    *<p>For directed graphs, this is equivalent to {@code inDegree(node) + outDegree(node)}.    *    *<p>For undirected graphs, this is equivalent to {@code incidentEdges(node).size()} + (number    * of self-loops incident to {@code node}).    *    *<p>If the count is greater than {@code Integer.MAX_VALUE}, returns {@code Integer.MAX_VALUE}.    *    * @throws IllegalArgumentException if {@code node} is not an element of this graph    */
+DECL|method|degree (Object node)
+name|int
+name|degree
+parameter_list|(
+name|Object
+name|node
+parameter_list|)
+function_decl|;
+comment|/**    * Returns the count of {@code node}'s {@link #inEdges(Object) incoming edges} in a directed    * graph. In an undirected graph, returns the {@link #degree(Object)}.    *    *<p>If the count is greater than {@code Integer.MAX_VALUE}, returns {@code Integer.MAX_VALUE}.    *    * @throws IllegalArgumentException if {@code node} is not an element of this graph    */
+DECL|method|inDegree (Object node)
+name|int
+name|inDegree
+parameter_list|(
+name|Object
+name|node
+parameter_list|)
+function_decl|;
+comment|/**    * Returns the count of {@code node}'s {@link #outEdges(Object) outgoing edges} in a directed    * graph. In an undirected graph, returns the {@link #degree(Object)}.    *    *<p>If the count is greater than {@code Integer.MAX_VALUE}, returns {@code Integer.MAX_VALUE}.    *    * @throws IllegalArgumentException if {@code node} is not an element of this graph    */
+DECL|method|outDegree (Object node)
+name|int
+name|outDegree
 parameter_list|(
 name|Object
 name|node

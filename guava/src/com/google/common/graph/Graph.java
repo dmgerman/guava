@@ -154,6 +154,33 @@ name|Object
 name|node
 parameter_list|)
 function_decl|;
+comment|/**    * Returns the count of {@code node}'s incident edges, counting self-loops twice (equivalently,    * the number of times an edge touches {@code node}).    *    *<p>For directed graphs, this is equivalent to {@code inDegree(node) + outDegree(node)}.    *    *<p>For undirected graphs, this is equivalent to {@code adjacentNodes(node).size()} + (1 if    * {@code node} has an incident self-loop, 0 otherwise).    *    *<p>If the count is greater than {@code Integer.MAX_VALUE}, returns {@code Integer.MAX_VALUE}.    *    * @throws IllegalArgumentException if {@code node} is not an element of this graph    */
+DECL|method|degree (Object node)
+name|int
+name|degree
+parameter_list|(
+name|Object
+name|node
+parameter_list|)
+function_decl|;
+comment|/**    * Returns the count of {@code node}'s incoming edges (equal to {@code predecessors(node).size()})    * in a directed graph. In an undirected graph, returns the {@link #degree(Object)}.    *    *<p>If the count is greater than {@code Integer.MAX_VALUE}, returns {@code Integer.MAX_VALUE}.    *    * @throws IllegalArgumentException if {@code node} is not an element of this graph    */
+DECL|method|inDegree (Object node)
+name|int
+name|inDegree
+parameter_list|(
+name|Object
+name|node
+parameter_list|)
+function_decl|;
+comment|/**    * Returns the count of {@code node}'s outgoing edges (equal to {@code successors(node).size()})    * in a directed graph. In an undirected graph, returns the {@link #degree(Object)}.    *    *<p>If the count is greater than {@code Integer.MAX_VALUE}, returns {@code Integer.MAX_VALUE}.    *    * @throws IllegalArgumentException if {@code node} is not an element of this graph    */
+DECL|method|outDegree (Object node)
+name|int
+name|outDegree
+parameter_list|(
+name|Object
+name|node
+parameter_list|)
+function_decl|;
 comment|/**    * If there is an edge connecting {@code nodeA} to {@code nodeB}, returns the non-null value    * associated with that edge.    *    * @throws IllegalArgumentException if there is no edge connecting {@code nodeA} to {@code nodeB}    */
 DECL|method|edgeValue (Object nodeA, Object nodeB)
 name|V
