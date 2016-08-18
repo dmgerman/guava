@@ -1135,6 +1135,11 @@ name|x
 init|=
 name|seed
 decl_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"ConstantOverflow"
+argument_list|)
 name|long
 name|y
 init|=
