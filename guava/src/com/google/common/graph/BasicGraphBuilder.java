@@ -77,7 +77,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A builder for constructing instances of {@link BasicGraph} with user-defined properties.  *  *<p>A graph built by this class will have the following properties by default:  *<ul>  *<li>allows self-loops  *<li>orders {@code nodes()} in the order in which the elements were added  *</ul>  *  * @author James Sexton  * @author Joshua O'Madadhain  * @since 20.0  */
+comment|/**  * A builder for constructing instances of {@link MutableBasicGraph} with user-defined properties.  *  *<p>A graph built by this class will have the following properties by default:  *  *<ul>  *<li>allows self-loops  *<li>orders {@link Graph#nodes()} in the order in which the elements were added  *</ul>  *  *<p>Example of use:  *  *<pre><code>  * MutableBasicGraph<String> graph = BasicGraphBuilder.undirected().build();  * graph.putEdge("chocolate", "peanut butter");  * graph.putEdge("peanut butter", "jelly");  *</code></pre>  *  * @author James Sexton  * @author Joshua O'Madadhain  * @since 20.0  */
 end_comment
 
 begin_class
@@ -97,7 +97,7 @@ argument_list|<
 name|N
 argument_list|>
 block|{
-comment|/**    * Creates a new instance with the specified edge directionality.    *    * @param directed if true, creates an instance for graphs whose edges are each directed;    *      if false, creates an instance for graphs whose edges are each undirected.    */
+comment|/** Creates a new instance with the specified edge directionality. */
 DECL|method|BasicGraphBuilder (boolean directed)
 specifier|private
 name|BasicGraphBuilder
@@ -112,7 +112,7 @@ name|directed
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Returns a {@link BasicGraphBuilder} for building directed graphs.    */
+comment|/** Returns a {@link BasicGraphBuilder} for building directed graphs. */
 DECL|method|directed ()
 specifier|public
 specifier|static
@@ -134,7 +134,7 @@ literal|true
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a {@link BasicGraphBuilder} for building undirected graphs.    */
+comment|/** Returns a {@link BasicGraphBuilder} for building undirected graphs. */
 DECL|method|undirected ()
 specifier|public
 specifier|static
@@ -156,7 +156,7 @@ literal|false
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a {@link BasicGraphBuilder} initialized with all properties queryable from    * {@code graph}.    *    *<p>The "queryable" properties are those that are exposed through the {@link Graph} interface,    * such as {@link Graph#isDirected()}. Other properties, such as {@link #expectedNodeCount(int)},    * are not set in the new builder.    */
+comment|/**    * Returns a {@link BasicGraphBuilder} initialized with all properties queryable from {@code    * graph}.    *    *<p>The "queryable" properties are those that are exposed through the {@link Graph} interface,    * such as {@link Graph#isDirected()}. Other properties, such as {@link #expectedNodeCount(int)},    * are not set in the new builder.    */
 DECL|method|from (Graph<N, ?> graph)
 specifier|public
 specifier|static
@@ -213,7 +213,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Specifies whether the graph will allow self-loops (edges that connect a node to itself).    * Attempting to add a self-loop to a graph that does not allow them will throw an    * {@link UnsupportedOperationException}.    */
+comment|/**    * Specifies whether the graph will allow self-loops (edges that connect a node to itself).    * Attempting to add a self-loop to a graph that does not allow them will throw an {@link    * UnsupportedOperationException}.    */
 DECL|method|allowsSelfLoops (boolean allowsSelfLoops)
 specifier|public
 name|BasicGraphBuilder
@@ -275,7 +275,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**    * Specifies the order of iteration for the elements of {@link Graph#nodes()}.    */
+comment|/** Specifies the order of iteration for the elements of {@link Graph#nodes()}. */
 DECL|method|nodeOrder (ElementOrder<N1> nodeOrder)
 specifier|public
 parameter_list|<
@@ -320,7 +320,7 @@ return|return
 name|newBuilder
 return|;
 block|}
-comment|/**    * Returns an empty {@link MutableBasicGraph} with the properties of this    * {@link BasicGraphBuilder}.    */
+comment|/**    * Returns an empty {@link MutableBasicGraph} with the properties of this {@link    * BasicGraphBuilder}.    */
 DECL|method|build ()
 specifier|public
 parameter_list|<

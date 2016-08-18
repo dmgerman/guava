@@ -77,7 +77,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A builder for constructing instances of {@link Network} with user-defined properties.  *  *<p>A graph built by this class will have the following properties by default:  *<ul>  *<li>does not allow parallel edges  *<li>allows self-loops  *<li>orders {@code nodes()} and {@code edges()} in the order in which the elements were added  *</ul>  *  * @author James Sexton  * @author Joshua O'Madadhain  * @since 20.0  */
+comment|/**  * A builder for constructing instances of {@link MutableNetwork} with user-defined properties.  *  *<p>A network built by this class will have the following properties by default:  *  *<ul>  *<li>does not allow parallel edges  *<li>allows self-loops  *<li>orders {@link Network#nodes()} and {@link Network#edges()} in the order in which the elements  *     were added  *</ul>  *  *<p>Example of use:  *  *<pre><code>  * MutableNetwork<Integer, String> network =  *     NetworkBuilder.directed().allowsParallelEdges(true).build();  * network.addEdge(1, 2, "1->2");  * network.addEdge(1, 2, "1->2 other");  *</code></pre>  *  * @author James Sexton  * @author Joshua O'Madadhain  * @since 20.0  */
 end_comment
 
 begin_class
@@ -131,7 +131,7 @@ operator|.
 name|absent
 argument_list|()
 decl_stmt|;
-comment|/**    * Creates a new instance with the specified edge directionality.    *    * @param directed if true, creates an instance for graphs whose edges are each directed;    *      if false, creates an instance for graphs whose edges are each undirected.    */
+comment|/** Creates a new instance with the specified edge directionality. */
 DECL|method|NetworkBuilder (boolean directed)
 specifier|private
 name|NetworkBuilder
@@ -146,7 +146,7 @@ name|directed
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Returns a {@link NetworkBuilder} for building directed graphs.    */
+comment|/** Returns a {@link NetworkBuilder} for building directed networks. */
 DECL|method|directed ()
 specifier|public
 specifier|static
@@ -172,7 +172,7 @@ literal|true
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a {@link NetworkBuilder} for building undirected graphs.    */
+comment|/** Returns a {@link NetworkBuilder} for building undirected networks. */
 DECL|method|undirected ()
 specifier|public
 specifier|static
@@ -198,8 +198,8 @@ literal|false
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a {@link NetworkBuilder} initialized with all properties queryable from {@code graph}.    *    *<p>The "queryable" properties are those that are exposed through the {@link Network} interface,    * such as {@link Network#isDirected()}. Other properties, such as    * {@link #expectedNodeCount(int)}, are not set in the new builder.    */
-DECL|method|from (Network<N, E> graph)
+comment|/**    * Returns a {@link NetworkBuilder} initialized with all properties queryable from {@code    * network}.    *    *<p>The "queryable" properties are those that are exposed through the {@link Network} interface,    * such as {@link Network#isDirected()}. Other properties, such as {@link    * #expectedNodeCount(int)}, are not set in the new builder.    */
+DECL|method|from (Network<N, E> network)
 specifier|public
 specifier|static
 parameter_list|<
@@ -221,12 +221,12 @@ name|N
 argument_list|,
 name|E
 argument_list|>
-name|graph
+name|network
 parameter_list|)
 block|{
 name|checkNotNull
 argument_list|(
-name|graph
+name|network
 argument_list|)
 expr_stmt|;
 return|return
@@ -238,7 +238,7 @@ argument_list|,
 name|Object
 argument_list|>
 argument_list|(
-name|graph
+name|network
 operator|.
 name|isDirected
 argument_list|()
@@ -246,7 +246,7 @@ argument_list|)
 operator|.
 name|allowsParallelEdges
 argument_list|(
-name|graph
+name|network
 operator|.
 name|allowsParallelEdges
 argument_list|()
@@ -254,7 +254,7 @@ argument_list|)
 operator|.
 name|allowsSelfLoops
 argument_list|(
-name|graph
+name|network
 operator|.
 name|allowsSelfLoops
 argument_list|()
@@ -262,7 +262,7 @@ argument_list|)
 operator|.
 name|nodeOrder
 argument_list|(
-name|graph
+name|network
 operator|.
 name|nodeOrder
 argument_list|()
@@ -270,14 +270,14 @@ argument_list|)
 operator|.
 name|edgeOrder
 argument_list|(
-name|graph
+name|network
 operator|.
 name|edgeOrder
 argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Specifies whether the graph will allow parallel edges. Attempting to add a parallel edge to    * a graph that does not allow them will throw an {@link UnsupportedOperationException}.    */
+comment|/**    * Specifies whether the network will allow parallel edges. Attempting to add a parallel edge to a    * network that does not allow them will throw an {@link UnsupportedOperationException}.    */
 DECL|method|allowsParallelEdges (boolean allowsParallelEdges)
 specifier|public
 name|NetworkBuilder
@@ -302,7 +302,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**    * Specifies whether the graph will allow self-loops (edges that connect a node to itself).    * Attempting to add a self-loop to a graph that does not allow them will throw an    * {@link UnsupportedOperationException}.    */
+comment|/**    * Specifies whether the network will allow self-loops (edges that connect a node to itself).    * Attempting to add a self-loop to a network that does not allow them will throw an {@link    * UnsupportedOperationException}.    */
 DECL|method|allowsSelfLoops (boolean allowsSelfLoops)
 specifier|public
 name|NetworkBuilder
@@ -327,7 +327,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**    * Specifies the expected number of nodes in the graph.    *    * @throws IllegalArgumentException if {@code expectedNodeCount} is negative    */
+comment|/**    * Specifies the expected number of nodes in the network.    *    * @throws IllegalArgumentException if {@code expectedNodeCount} is negative    */
 DECL|method|expectedNodeCount (int expectedNodeCount)
 specifier|public
 name|NetworkBuilder
@@ -368,7 +368,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**    * Specifies the expected number of edges in the graph.    *    * @throws IllegalArgumentException if {@code expectedEdgeCount} is negative    */
+comment|/**    * Specifies the expected number of edges in the network.    *    * @throws IllegalArgumentException if {@code expectedEdgeCount} is negative    */
 DECL|method|expectedEdgeCount (int expectedEdgeCount)
 specifier|public
 name|NetworkBuilder
@@ -409,7 +409,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**    * Specifies the order of iteration for the elements of {@link Network#nodes()}.    */
+comment|/** Specifies the order of iteration for the elements of {@link Network#nodes()}. */
 DECL|method|nodeOrder (ElementOrder<N1> nodeOrder)
 specifier|public
 parameter_list|<
@@ -458,7 +458,7 @@ return|return
 name|newBuilder
 return|;
 block|}
-comment|/**    * Specifies the order of iteration for the elements of {@link Network#edges()}.    */
+comment|/** Specifies the order of iteration for the elements of {@link Network#edges()}. */
 DECL|method|edgeOrder (ElementOrder<E1> edgeOrder)
 specifier|public
 parameter_list|<
@@ -507,7 +507,7 @@ return|return
 name|newBuilder
 return|;
 block|}
-comment|/**    * Returns an empty {@link MutableNetwork} with the properties of this {@link NetworkBuilder}.    */
+comment|/** Returns an empty {@link MutableNetwork} with the properties of this {@link NetworkBuilder}. */
 DECL|method|build ()
 specifier|public
 parameter_list|<
