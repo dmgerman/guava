@@ -90,7 +90,7 @@ block|{
 comment|//
 comment|// Network-level accessors
 comment|//
-comment|/** Returns all nodes in this graph, in the order specified by {@link #nodeOrder()}. */
+comment|/** Returns all nodes in this network, in the order specified by {@link #nodeOrder()}. */
 DECL|method|nodes ()
 name|Set
 argument_list|<
@@ -125,19 +125,19 @@ function_decl|;
 comment|//
 comment|// Network properties
 comment|//
-comment|/**    * Returns true if the edges in this graph have a direction associated with them.    *    *<p>A directed edge is an {@linkplain #outEdges(Object) outgoing edge} of its {@linkplain    * Endpoints#source() source}, and an {@linkplain #inEdges(Object) incoming edge} of its    * {@linkplain Endpoints#target() target}. An undirected edge connects its {@linkplain    * #incidentNodes(Object) incident nodes} to each other, and is both an {@linkplain    * #outEdges(Object) outgoing edge} and {@linkplain #inEdges(Object) incoming edge} of each    * incident node.    */
+comment|/**    * Returns true if the edges in this network are directed. Directed edges connect a {@link    * Endpoints#source() source node} to a {@link Endpoints#target() target node}, while undirected    * edges connect a pair of nodes to each other.    */
 DECL|method|isDirected ()
 name|boolean
 name|isDirected
 parameter_list|()
 function_decl|;
-comment|/**    * Returns true if this graph allows self-loops (edges that connect a node to itself). Attempting    * to add a self-loop to a graph that does not allow them will throw an {@link    * UnsupportedOperationException}.    */
+comment|/**    * Returns true if this network allows self-loops (edges that connect a node to itself).    * Attempting to add a self-loop to a network that does not allow them will throw an {@link    * UnsupportedOperationException}.    */
 DECL|method|allowsSelfLoops ()
 name|boolean
 name|allowsSelfLoops
 parameter_list|()
 function_decl|;
-comment|/**    * Returns true if this graph allows parallel edges. Attempting to add a parallel edge to a graph    * that does not allow them will throw an {@link UnsupportedOperationException}.    */
+comment|/**    * Returns true if this network allows parallel edges. Attempting to add a parallel edge to a    * network that does not allow them will throw an {@link UnsupportedOperationException}.    */
 DECL|method|allowsParallelEdges ()
 name|boolean
 name|allowsParallelEdges
@@ -164,7 +164,7 @@ function_decl|;
 comment|//
 comment|// Element-level accessors
 comment|//
-comment|/**    * Returns the nodes which have an incident edge in common with {@code node} in this graph.    *    * @throws IllegalArgumentException if {@code node} is not an element of this graph    */
+comment|/**    * Returns the nodes which have an incident edge in common with {@code node} in this network.    *    * @throws IllegalArgumentException if {@code node} is not an element of this network    */
 DECL|method|adjacentNodes (Object node)
 name|Set
 argument_list|<
@@ -176,7 +176,7 @@ name|Object
 name|node
 parameter_list|)
 function_decl|;
-comment|/**    * Returns all nodes in this graph adjacent to {@code node} which can be reached by traversing    * {@code node}'s incoming edges<i>against</i> the direction (if any) of the edge.    *    * @throws IllegalArgumentException if {@code node} is not an element of this graph    */
+comment|/**    * Returns all nodes in this network adjacent to {@code node} which can be reached by traversing    * {@code node}'s incoming edges<i>against</i> the direction (if any) of the edge.    *    *<p>In an undirected network, this is equivalent to {@link #adjacentNodes(Object)}.    *    * @throws IllegalArgumentException if {@code node} is not an element of this network    */
 DECL|method|predecessors (Object node)
 name|Set
 argument_list|<
@@ -188,7 +188,7 @@ name|Object
 name|node
 parameter_list|)
 function_decl|;
-comment|/**    * Returns all nodes in this graph adjacent to {@code node} which can be reached by traversing    * {@code node}'s outgoing edges in the direction (if any) of the edge.    *    *<p>This is<i>not</i> the same as "all nodes reachable from {@code node} by following outgoing    * edges" (also known as {@code node}'s transitive closure).    *    * @throws IllegalArgumentException if {@code node} is not an element of this graph    */
+comment|/**    * Returns all nodes in this network adjacent to {@code node} which can be reached by traversing    * {@code node}'s outgoing edges in the direction (if any) of the edge.    *    *<p>In an undirected network, this is equivalent to {@link #adjacentNodes(Object)}.    *    *<p>This is<i>not</i> the same as "all nodes reachable from {@code node} by following outgoing    * edges". For that functionality, see {@link Graphs#reachableNodes(Graph, Object)}.    *    * @throws IllegalArgumentException if {@code node} is not an element of this network    */
 DECL|method|successors (Object node)
 name|Set
 argument_list|<
@@ -200,7 +200,7 @@ name|Object
 name|node
 parameter_list|)
 function_decl|;
-comment|/**    * Returns the edges whose endpoints in this graph include {@code node}.    *    * @throws IllegalArgumentException if {@code node} is not an element of this graph    */
+comment|/**    * Returns the edges whose {@link #incidentNodes(Object) endpoints} in this network include {@code    * node}.    *    * @throws IllegalArgumentException if {@code node} is not an element of this network    */
 DECL|method|incidentEdges (Object node)
 name|Set
 argument_list|<
@@ -212,7 +212,7 @@ name|Object
 name|node
 parameter_list|)
 function_decl|;
-comment|/**    * Returns all edges in this graph which can be traversed in the direction (if any) of the edge to    * end at {@code node}.    *    * @throws IllegalArgumentException if {@code node} is not an element of this graph    */
+comment|/**    * Returns all edges in this network which can be traversed in the direction (if any) of the edge    * to end at {@code node}.    *    *<p>In an undirected network, this is equivalent to {@link #incidentEdges(Object)}.    *    * @throws IllegalArgumentException if {@code node} is not an element of this network    */
 DECL|method|inEdges (Object node)
 name|Set
 argument_list|<
@@ -224,7 +224,7 @@ name|Object
 name|node
 parameter_list|)
 function_decl|;
-comment|/**    * Returns all edges in this graph which can be traversed in the direction (if any) of the edge    * starting from {@code node}.    *    * @throws IllegalArgumentException if {@code node} is not an element of this graph    */
+comment|/**    * Returns all edges in this network which can be traversed in the direction (if any) of the edge    * starting from {@code node}.    *    *<p>In an undirected network, this is equivalent to {@link #incidentEdges(Object)}.    *    * @throws IllegalArgumentException if {@code node} is not an element of this network    */
 DECL|method|outEdges (Object node)
 name|Set
 argument_list|<
@@ -236,7 +236,7 @@ name|Object
 name|node
 parameter_list|)
 function_decl|;
-comment|/**    * Returns the count of {@code node}'s {@link #incidentEdges(Object) incident edges}, counting    * self-loops twice (equivalently, the number of times an edge touches {@code node}).    *    *<p>For directed graphs, this is equivalent to {@code inDegree(node) + outDegree(node)}.    *    *<p>For undirected graphs, this is equivalent to {@code incidentEdges(node).size()} + (number    * of self-loops incident to {@code node}).    *    *<p>If the count is greater than {@code Integer.MAX_VALUE}, returns {@code Integer.MAX_VALUE}.    *    * @throws IllegalArgumentException if {@code node} is not an element of this graph    */
+comment|/**    * Returns the count of {@code node}'s {@link #incidentEdges(Object) incident edges}, counting    * self-loops twice (equivalently, the number of times an edge touches {@code node}).    *    *<p>For directed networks, this is equal to {@code inDegree(node) + outDegree(node)}.    *    *<p>For undirected networks, this is equal to {@code incidentEdges(node).size()} + (number of    * self-loops incident to {@code node}).    *    *<p>If the count is greater than {@code Integer.MAX_VALUE}, returns {@code Integer.MAX_VALUE}.    *    * @throws IllegalArgumentException if {@code node} is not an element of this network    */
 DECL|method|degree (Object node)
 name|int
 name|degree
@@ -245,7 +245,7 @@ name|Object
 name|node
 parameter_list|)
 function_decl|;
-comment|/**    * Returns the count of {@code node}'s {@link #inEdges(Object) incoming edges} in a directed    * graph. In an undirected graph, returns the {@link #degree(Object)}.    *    *<p>If the count is greater than {@code Integer.MAX_VALUE}, returns {@code Integer.MAX_VALUE}.    *    * @throws IllegalArgumentException if {@code node} is not an element of this graph    */
+comment|/**    * Returns the count of {@code node}'s {@link #inEdges(Object) incoming edges} in a directed    * network. In an undirected network, returns the {@link #degree(Object)}.    *    *<p>If the count is greater than {@code Integer.MAX_VALUE}, returns {@code Integer.MAX_VALUE}.    *    * @throws IllegalArgumentException if {@code node} is not an element of this network    */
 DECL|method|inDegree (Object node)
 name|int
 name|inDegree
@@ -254,7 +254,7 @@ name|Object
 name|node
 parameter_list|)
 function_decl|;
-comment|/**    * Returns the count of {@code node}'s {@link #outEdges(Object) outgoing edges} in a directed    * graph. In an undirected graph, returns the {@link #degree(Object)}.    *    *<p>If the count is greater than {@code Integer.MAX_VALUE}, returns {@code Integer.MAX_VALUE}.    *    * @throws IllegalArgumentException if {@code node} is not an element of this graph    */
+comment|/**    * Returns the count of {@code node}'s {@link #outEdges(Object) outgoing edges} in a directed    * network. In an undirected network, returns the {@link #degree(Object)}.    *    *<p>If the count is greater than {@code Integer.MAX_VALUE}, returns {@code Integer.MAX_VALUE}.    *    * @throws IllegalArgumentException if {@code node} is not an element of this network    */
 DECL|method|outDegree (Object node)
 name|int
 name|outDegree
@@ -263,7 +263,7 @@ name|Object
 name|node
 parameter_list|)
 function_decl|;
-comment|/**    * Returns the nodes which are the endpoints of {@code edge} in this graph as {@link Endpoints}.    *    * @throws IllegalArgumentException if {@code edge} is not an element of this graph    */
+comment|/**    * Returns the nodes which are the endpoints of {@code edge} in this network.    *    * @throws IllegalArgumentException if {@code edge} is not an element of this network    */
 DECL|method|incidentNodes (Object edge)
 name|Endpoints
 argument_list|<
@@ -275,7 +275,7 @@ name|Object
 name|edge
 parameter_list|)
 function_decl|;
-comment|/**    * Returns the set of edges that connect {@code nodeA} to {@code nodeB}.    *    *<p>This set is the intersection of {@code outEdges(nodeA)} and {@code inEdges(nodeB)}. If    * {@code nodeA} is equal to {@code nodeB}, then it is the set of self-loop edges for that node.    *    * @throws IllegalArgumentException if {@code nodeA} or {@code nodeB} is not an element of this    *     graph    */
+comment|/**    * Returns the set of edges that connect {@code nodeA} to {@code nodeB}.    *    *<p>In an undirected network, this is equal to {@code edgesConnecting(nodeB, nodeA)}.    *    * @throws IllegalArgumentException if {@code nodeA} or {@code nodeB} is not an element of this    *     network    */
 DECL|method|edgesConnecting (Object nodeA, Object nodeB)
 name|Set
 argument_list|<
