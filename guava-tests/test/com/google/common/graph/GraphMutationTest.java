@@ -117,7 +117,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests for repeated node and edge addition and removal.  */
+comment|/**  * Tests for repeated node and edge addition and removal in a {@link Graph}.  */
 end_comment
 
 begin_class
@@ -128,11 +128,11 @@ name|JUnit4
 operator|.
 name|class
 argument_list|)
-DECL|class|MutationTest
+DECL|class|GraphMutationTest
 specifier|public
 specifier|final
 class|class
-name|MutationTest
+name|GraphMutationTest
 block|{
 DECL|field|NUM_TRIALS
 specifier|private
@@ -141,7 +141,7 @@ specifier|final
 name|int
 name|NUM_TRIALS
 init|=
-literal|100
+literal|50
 decl_stmt|;
 DECL|field|NUM_NODES
 specifier|private
@@ -161,6 +161,16 @@ name|NUM_EDGES
 init|=
 literal|1000
 decl_stmt|;
+DECL|field|NODE_POOL_SIZE
+specifier|private
+specifier|static
+specifier|final
+name|int
+name|NODE_POOL_SIZE
+init|=
+literal|1000
+decl_stmt|;
+comment|// must be>> NUM_NODES
 annotation|@
 name|Test
 DECL|method|directedBasicGraph ()
@@ -169,7 +179,7 @@ name|void
 name|directedBasicGraph
 parameter_list|()
 block|{
-name|testBasicGraph
+name|testBasicGraphMutation
 argument_list|(
 name|BasicGraphBuilder
 operator|.
@@ -186,7 +196,7 @@ name|void
 name|undirectedBasicGraph
 parameter_list|()
 block|{
-name|testBasicGraph
+name|testBasicGraphMutation
 argument_list|(
 name|BasicGraphBuilder
 operator|.
@@ -195,11 +205,11 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|testBasicGraph (BasicGraphBuilder<? super Integer> graphBuilder)
+DECL|method|testBasicGraphMutation (BasicGraphBuilder<? super Integer> graphBuilder)
 specifier|private
 specifier|static
 name|void
-name|testBasicGraph
+name|testBasicGraphMutation
 parameter_list|(
 name|BasicGraphBuilder
 argument_list|<
@@ -251,6 +261,35 @@ operator|.
 name|build
 argument_list|()
 decl_stmt|;
+name|assertThat
+argument_list|(
+name|graph
+operator|.
+name|nodes
+argument_list|()
+argument_list|)
+operator|.
+name|isEmpty
+argument_list|()
+expr_stmt|;
+name|assertThat
+argument_list|(
+name|graph
+operator|.
+name|edges
+argument_list|()
+argument_list|)
+operator|.
+name|isEmpty
+argument_list|()
+expr_stmt|;
+name|AbstractGraphTest
+operator|.
+name|validateGraph
+argument_list|(
+name|graph
+argument_list|)
+expr_stmt|;
 while|while
 condition|(
 name|graph
@@ -271,7 +310,9 @@ argument_list|(
 name|gen
 operator|.
 name|nextInt
-argument_list|()
+argument_list|(
+name|NODE_POOL_SIZE
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -350,6 +391,32 @@ name|edges
 argument_list|()
 argument_list|)
 decl_stmt|;
+name|assertThat
+argument_list|(
+name|graph
+operator|.
+name|nodes
+argument_list|()
+argument_list|)
+operator|.
+name|hasSize
+argument_list|(
+name|NUM_NODES
+argument_list|)
+expr_stmt|;
+name|assertThat
+argument_list|(
+name|graph
+operator|.
+name|edges
+argument_list|()
+argument_list|)
+operator|.
+name|hasSize
+argument_list|(
+name|NUM_EDGES
+argument_list|)
+expr_stmt|;
 name|AbstractGraphTest
 operator|.
 name|validateGraph
@@ -601,6 +668,15 @@ argument_list|(
 name|graph
 argument_list|)
 expr_stmt|;
+name|Collections
+operator|.
+name|shuffle
+argument_list|(
+name|nodeList
+argument_list|,
+name|gen
+argument_list|)
+expr_stmt|;
 for|for
 control|(
 name|Integer
@@ -623,6 +699,15 @@ name|isTrue
 argument_list|()
 expr_stmt|;
 block|}
+name|Collections
+operator|.
+name|shuffle
+argument_list|(
+name|edgeList
+argument_list|,
+name|gen
+argument_list|)
+expr_stmt|;
 for|for
 control|(
 name|Endpoints
