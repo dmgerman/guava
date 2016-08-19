@@ -1156,7 +1156,7 @@ return|;
 block|}
 comment|// Graph mutation methods
 comment|// Graph transformation methods
-comment|/**    * Returns an induced subgraph of {@code graph}. This subgraph is a new graph that contains    * all of the nodes in {@code nodes}, and all of the {@link Graph#edges() edges} from {@code    * graph} for which for which both nodes are contained by {@code nodes}.    *    * @throws IllegalArgumentException if any element in {@code nodes} is not a node in the graph    */
+comment|/**    * Returns an induced subgraph of {@code graph}. This subgraph is a new graph that contains    * all of the nodes in {@code nodes}, and all of the {@link Graph#edges() edges} from {@code    * graph} for which both nodes are contained by {@code nodes}.    *    * @throws IllegalArgumentException if any element in {@code nodes} is not a node in the graph    */
 DECL|method|inducedSubgraph (BasicGraph<N> graph, Iterable<? extends N> nodes)
 specifier|public
 specifier|static
@@ -1269,7 +1269,7 @@ return|return
 name|subgraph
 return|;
 block|}
-comment|/**    * Returns an induced subgraph of {@code graph}. This subgraph is a new graph that contains    * all of the nodes in {@code nodes}, and all of the {@link Graph#edges() edges} (and associated    * edge values) from {@code graph} for which for which both nodes are contained by {@code nodes}.    *    * @throws IllegalArgumentException if any element in {@code nodes} is not a node in the graph    */
+comment|/**    * Returns an induced subgraph of {@code graph}. This subgraph is a new graph that contains    * all of the nodes in {@code nodes}, and all of the {@link Graph#edges() edges} (and associated    * edge values) from {@code graph} for which both nodes are contained by {@code nodes}.    *    * @throws IllegalArgumentException if any element in {@code nodes} is not a node in the graph    */
 DECL|method|inducedSubgraph (Graph<N, V> graph, Iterable<? extends N> nodes)
 specifier|public
 specifier|static
