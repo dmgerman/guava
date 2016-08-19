@@ -275,6 +275,18 @@ name|Object
 name|edge
 parameter_list|)
 function_decl|;
+comment|/**    * Returns the edges which have an {@link #incidentNodes(Object) incident node} in common with    * {@code edge}. An edge is not considered adjacent to itself.    *    * @throws IllegalArgumentException if {@code edge} is not an element of this network    */
+DECL|method|adjacentEdges (Object edge)
+name|Set
+argument_list|<
+name|E
+argument_list|>
+name|adjacentEdges
+parameter_list|(
+name|Object
+name|edge
+parameter_list|)
+function_decl|;
 comment|/**    * Returns the set of edges that connect {@code nodeA} to {@code nodeB}.    *    *<p>In an undirected network, this is equal to {@code edgesConnecting(nodeB, nodeA)}.    *    * @throws IllegalArgumentException if {@code nodeA} or {@code nodeB} is not an element of this    *     network    */
 DECL|method|edgesConnecting (Object nodeA, Object nodeB)
 name|Set
