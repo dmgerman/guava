@@ -108,6 +108,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Set
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|junit
@@ -770,10 +780,10 @@ comment|// Tests for Graph.edges() and Network.asGraph().edges() methods
 comment|// TODO(user): Move these to a more appropiate location in the test suite.
 annotation|@
 name|Test
-DECL|method|endpoints_directedGraph ()
+DECL|method|edges_directedGraph ()
 specifier|public
 name|void
-name|endpoints_directedGraph
+name|edges_directedGraph
 parameter_list|()
 block|{
 name|MutableBasicGraph
@@ -880,10 +890,10 @@ expr_stmt|;
 block|}
 annotation|@
 name|Test
-DECL|method|endpoints_undirectedGraph ()
+DECL|method|edges_undirectedGraph ()
 specifier|public
 name|void
-name|endpoints_undirectedGraph
+name|edges_undirectedGraph
 parameter_list|()
 block|{
 name|MutableBasicGraph
@@ -982,10 +992,10 @@ expr_stmt|;
 block|}
 annotation|@
 name|Test
-DECL|method|endpoints_directedNetwork ()
+DECL|method|edges_directedNetwork ()
 specifier|public
 name|void
-name|endpoints_directedNetwork
+name|edges_directedNetwork
 parameter_list|()
 block|{
 name|MutableNetwork
@@ -1105,10 +1115,10 @@ expr_stmt|;
 block|}
 annotation|@
 name|Test
-DECL|method|endpoints_undirectedNetwork ()
+DECL|method|edges_undirectedNetwork ()
 specifier|public
 name|void
-name|endpoints_undirectedNetwork
+name|edges_undirectedNetwork
 parameter_list|()
 block|{
 name|MutableNetwork
@@ -1225,10 +1235,10 @@ expr_stmt|;
 block|}
 annotation|@
 name|Test
-DECL|method|endpoints_unmodifiableView ()
+DECL|method|edges_unmodifiableView ()
 specifier|public
 name|void
-name|endpoints_unmodifiableView
+name|edges_unmodifiableView
 parameter_list|()
 block|{
 name|MutableBasicGraph
@@ -1245,14 +1255,14 @@ operator|.
 name|build
 argument_list|()
 decl_stmt|;
-name|Collection
+name|Set
 argument_list|<
 name|Endpoints
 argument_list|<
 name|Integer
 argument_list|>
 argument_list|>
-name|endpoints
+name|edges
 init|=
 name|directedGraph
 operator|.
@@ -1270,7 +1280,7 @@ argument_list|)
 expr_stmt|;
 name|containsExactlySanityCheck
 argument_list|(
-name|endpoints
+name|edges
 argument_list|,
 name|Endpoints
 operator|.
@@ -1293,7 +1303,7 @@ argument_list|)
 expr_stmt|;
 name|containsExactlySanityCheck
 argument_list|(
-name|endpoints
+name|edges
 argument_list|,
 name|Endpoints
 operator|.
@@ -1334,12 +1344,12 @@ argument_list|)
 expr_stmt|;
 name|containsExactlySanityCheck
 argument_list|(
-name|endpoints
+name|edges
 argument_list|)
 expr_stmt|;
 try|try
 block|{
-name|endpoints
+name|edges
 operator|.
 name|add
 argument_list|(
@@ -1355,7 +1365,7 @@ argument_list|)
 expr_stmt|;
 name|fail
 argument_list|(
-literal|"Collection returned by endpoints() should be unmodifiable"
+literal|"Set returned by edges() should be unmodifiable"
 argument_list|)
 expr_stmt|;
 block|}
@@ -1368,10 +1378,10 @@ block|{     }
 block|}
 annotation|@
 name|Test
-DECL|method|endpoints_containment ()
+DECL|method|edges_containment ()
 specifier|public
 name|void
-name|endpoints_containment
+name|edges_containment
 parameter_list|()
 block|{
 name|MutableBasicGraph
@@ -1406,14 +1416,14 @@ argument_list|,
 name|N2
 argument_list|)
 expr_stmt|;
-name|Collection
+name|Set
 argument_list|<
 name|Endpoints
 argument_list|<
 name|Integer
 argument_list|>
 argument_list|>
-name|endpoints
+name|edges
 init|=
 name|undirectedGraph
 operator|.
@@ -1422,7 +1432,7 @@ argument_list|()
 decl_stmt|;
 name|assertThat
 argument_list|(
-name|endpoints
+name|edges
 argument_list|)
 operator|.
 name|hasSize
@@ -1432,7 +1442,7 @@ argument_list|)
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|endpoints
+name|edges
 argument_list|)
 operator|.
 name|contains
@@ -1449,7 +1459,7 @@ argument_list|)
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|endpoints
+name|edges
 argument_list|)
 operator|.
 name|contains
@@ -1466,7 +1476,7 @@ argument_list|)
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|endpoints
+name|edges
 argument_list|)
 operator|.
 name|contains
@@ -1484,7 +1494,7 @@ expr_stmt|;
 comment|// equal to ofUndirected(N1, N2)
 name|assertThat
 argument_list|(
-name|endpoints
+name|edges
 argument_list|)
 operator|.
 name|doesNotContain
@@ -1501,7 +1511,7 @@ argument_list|)
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|endpoints
+name|edges
 argument_list|)
 operator|.
 name|doesNotContain
@@ -1519,7 +1529,7 @@ expr_stmt|;
 comment|// graph not directed
 name|assertThat
 argument_list|(
-name|endpoints
+name|edges
 argument_list|)
 operator|.
 name|doesNotContain
