@@ -141,7 +141,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests for {@link Endpoints} and {@link BasicGraph#edges()}.  */
+comment|/**  * Tests for {@link Endpoints} and {@link Graph#edges()}.  */
 end_comment
 
 begin_class
