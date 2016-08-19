@@ -76,6 +76,34 @@ name|Objects
 import|;
 end_import
 
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|collect
+operator|.
+name|Iterators
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|collect
+operator|.
+name|UnmodifiableIterator
+import|;
+end_import
+
 begin_comment
 comment|/**  * An immutable pair representing the two (possibly equal, in the case of a self-loop) endpoints  * of an edge in a graph. The {@link Endpoints} of a directed edge are an ordered pair of nodes  * (source and target). The {@link Endpoints} of an undirected edge are an unordered pair of nodes.  *  * @author James Sexton  * @since 20.0  */
 end_comment
@@ -91,6 +119,11 @@ name|Endpoints
 parameter_list|<
 name|N
 parameter_list|>
+implements|implements
+name|Iterable
+argument_list|<
+name|N
+argument_list|>
 block|{
 DECL|field|nodeA
 specifier|private
@@ -413,6 +446,30 @@ name|boolean
 name|isDirected
 parameter_list|()
 function_decl|;
+comment|/**    * Iterates in the order {@link #nodeA()}, {@link #nodeB()}.    */
+annotation|@
+name|Override
+DECL|method|iterator ()
+specifier|public
+specifier|final
+name|UnmodifiableIterator
+argument_list|<
+name|N
+argument_list|>
+name|iterator
+parameter_list|()
+block|{
+return|return
+name|Iterators
+operator|.
+name|forArray
+argument_list|(
+name|nodeA
+argument_list|,
+name|nodeB
+argument_list|)
+return|;
+block|}
 comment|/**    * The {@link Endpoints} of two directed edges are equal if their {@link #source()} and    * {@link #target()} are equal. The {@link Endpoints} of two undirected edges are equal if they    * contain the same nodes. The {@link Endpoints} of a directed edge are never equal to the    * {@link Endpoints} of an undirected edge.    */
 annotation|@
 name|Override
