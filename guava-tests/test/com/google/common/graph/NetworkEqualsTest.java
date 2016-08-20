@@ -297,6 +297,11 @@ operator|.
 name|undirected
 argument_list|()
 operator|.
+name|allowsSelfLoops
+argument_list|(
+literal|true
+argument_list|)
+operator|.
 name|build
 argument_list|()
 return|;
@@ -308,6 +313,11 @@ name|NetworkBuilder
 operator|.
 name|directed
 argument_list|()
+operator|.
+name|allowsSelfLoops
+argument_list|(
+literal|true
+argument_list|)
 operator|.
 name|build
 argument_list|()

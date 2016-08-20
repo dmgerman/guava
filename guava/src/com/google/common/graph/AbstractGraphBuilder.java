@@ -52,7 +52,7 @@ DECL|field|allowsSelfLoops
 name|boolean
 name|allowsSelfLoops
 init|=
-literal|true
+literal|false
 decl_stmt|;
 DECL|field|nodeOrder
 name|ElementOrder

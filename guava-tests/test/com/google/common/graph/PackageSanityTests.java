@@ -105,7 +105,7 @@ argument_list|()
 operator|.
 name|allowsSelfLoops
 argument_list|(
-literal|false
+literal|true
 argument_list|)
 operator|.
 name|expectedNodeCount
@@ -189,7 +189,7 @@ argument_list|()
 operator|.
 name|allowsSelfLoops
 argument_list|(
-literal|false
+literal|true
 argument_list|)
 operator|.
 name|expectedNodeCount

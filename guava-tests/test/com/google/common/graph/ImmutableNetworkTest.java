@@ -250,6 +250,11 @@ operator|.
 name|directed
 argument_list|()
 operator|.
+name|allowsSelfLoops
+argument_list|(
+literal|true
+argument_list|)
+operator|.
 name|build
 argument_list|()
 decl_stmt|;
@@ -360,6 +365,11 @@ name|NetworkBuilder
 operator|.
 name|undirected
 argument_list|()
+operator|.
+name|allowsSelfLoops
+argument_list|(
+literal|true
+argument_list|)
 operator|.
 name|build
 argument_list|()

@@ -93,7 +93,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests for an undirected {@link ConfigurableMutableNetwork} with default graph properties.  */
+comment|/**  * Tests for an undirected {@link ConfigurableMutableNetwork} allowing self-loops.  */
 end_comment
 
 begin_class
@@ -129,6 +129,11 @@ name|NetworkBuilder
 operator|.
 name|undirected
 argument_list|()
+operator|.
+name|allowsSelfLoops
+argument_list|(
+literal|true
+argument_list|)
 operator|.
 name|build
 argument_list|()

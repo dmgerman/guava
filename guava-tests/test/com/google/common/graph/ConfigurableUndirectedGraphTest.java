@@ -67,7 +67,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests for an undirected {@link ConfigurableMutableBasicGraph} with default graph properties.  */
+comment|/**  * Tests for an undirected {@link ConfigurableMutableBasicGraph} allowing self-loops.  */
 end_comment
 
 begin_class
@@ -101,6 +101,11 @@ name|BasicGraphBuilder
 operator|.
 name|undirected
 argument_list|()
+operator|.
+name|allowsSelfLoops
+argument_list|(
+literal|true
+argument_list|)
 operator|.
 name|build
 argument_list|()

@@ -79,7 +79,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests for an undirected {@link ConfigurableMutableNetwork} allowing parallel edges.  */
+comment|/**  * Tests for an undirected {@link ConfigurableMutableNetwork} allowing parallel edges and  * self-loops.  */
 end_comment
 
 begin_class
@@ -117,6 +117,11 @@ name|undirected
 argument_list|()
 operator|.
 name|allowsParallelEdges
+argument_list|(
+literal|true
+argument_list|)
+operator|.
+name|allowsSelfLoops
 argument_list|(
 literal|true
 argument_list|)

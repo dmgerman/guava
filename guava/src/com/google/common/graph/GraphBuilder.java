@@ -77,7 +77,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A builder for constructing instances of {@link MutableGraph} with user-defined properties.  *  *<p>A graph built by this class will have the following properties by default:  *  *<ul>  *<li>allows self-loops  *<li>orders {@link Graph#nodes()} in the order in which the elements were added  *</ul>  *  *<p>Example of use:  *  *<pre><code>  * MutableGraph<String, Double> graph = GraphBuilder.undirected().build();  * graph.putEdgeValue("Miami", "Denver", 5280.0);  *</code></pre>  *  * @author James Sexton  * @author Joshua O'Madadhain  * @since 20.0  */
+comment|/**  * A builder for constructing instances of {@link MutableGraph} with user-defined properties.  *  *<p>A graph built by this class will have the following properties by default:  *  *<ul>  *<li>does not allow self-loops  *<li>orders {@link Graph#nodes()} in the order in which the elements were added  *</ul>  *  *<p>Example of use:  *  *<pre><code>  * MutableGraph<String, Double> graph = GraphBuilder.undirected().allowsSelfLoops(true).build();  * graph.putEdgeValue("San Francisco", "San Francisco", 0.0);  * graph.putEdgeValue("San Jose", "San Jose", 0.0);  * graph.putEdgeValue("San Francisco", "San Jose", 48.4);  *</code></pre>  *  * @author James Sexton  * @author Joshua O'Madadhain  * @since 20.0  */
 end_comment
 
 begin_class

@@ -138,6 +138,11 @@ operator|.
 name|directed
 argument_list|()
 operator|.
+name|allowsParallelEdges
+argument_list|(
+literal|false
+argument_list|)
+operator|.
 name|allowsSelfLoops
 argument_list|(
 literal|false
