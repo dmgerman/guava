@@ -28,22 +28,6 @@ name|base
 operator|.
 name|Preconditions
 operator|.
-name|checkNotNull
-import|;
-end_import
-
-begin_import
-import|import static
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|base
-operator|.
-name|Preconditions
-operator|.
 name|checkState
 import|;
 end_import
@@ -505,14 +489,11 @@ block|{
 name|N
 name|node
 init|=
-name|checkNotNull
-argument_list|(
 name|super
 operator|.
 name|removeOutEdge
 argument_list|(
 name|edge
-argument_list|)
 argument_list|)
 decl_stmt|;
 name|Multiset
