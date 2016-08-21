@@ -3641,18 +3641,13 @@ name|BiMapSpecificTests
 extends|extends
 name|TestCase
 block|{
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"deprecation"
-argument_list|)
 DECL|method|testForcePut ()
 specifier|public
 name|void
 name|testForcePut
 parameter_list|()
 block|{
-name|ImmutableBiMap
+name|BiMap
 argument_list|<
 name|String
 argument_list|,

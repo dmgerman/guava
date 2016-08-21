@@ -71,11 +71,6 @@ DECL|method|getTestInstances ()
 name|getTestInstances
 parameter_list|()
 function_decl|;
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"deprecation"
-argument_list|)
 DECL|method|testClear ()
 specifier|public
 specifier|final
@@ -85,7 +80,7 @@ parameter_list|()
 block|{
 for|for
 control|(
-name|ImmutableTable
+name|Table
 argument_list|<
 name|Character
 argument_list|,
@@ -120,11 +115,6 @@ comment|// success
 block|}
 block|}
 block|}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"deprecation"
-argument_list|)
 DECL|method|testPut ()
 specifier|public
 specifier|final
@@ -134,7 +124,7 @@ parameter_list|()
 block|{
 for|for
 control|(
-name|ImmutableTable
+name|Table
 argument_list|<
 name|Character
 argument_list|,
@@ -175,11 +165,6 @@ comment|// success
 block|}
 block|}
 block|}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"deprecation"
-argument_list|)
 DECL|method|testPutAll ()
 specifier|public
 specifier|final
@@ -189,7 +174,7 @@ parameter_list|()
 block|{
 for|for
 control|(
-name|ImmutableTable
+name|Table
 argument_list|<
 name|Character
 argument_list|,
@@ -235,11 +220,6 @@ comment|// success
 block|}
 block|}
 block|}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"deprecation"
-argument_list|)
 DECL|method|testRemove ()
 specifier|public
 specifier|final
@@ -249,7 +229,7 @@ parameter_list|()
 block|{
 for|for
 control|(
-name|ImmutableTable
+name|Table
 argument_list|<
 name|Character
 argument_list|,

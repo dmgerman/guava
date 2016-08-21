@@ -2505,7 +2505,7 @@ name|void
 name|testAddUnsupported
 parameter_list|()
 block|{
-name|ImmutableRangeSet
+name|RangeSet
 argument_list|<
 name|Integer
 argument_list|>
@@ -2581,7 +2581,7 @@ name|void
 name|testAddAllUnsupported
 parameter_list|()
 block|{
-name|ImmutableRangeSet
+name|RangeSet
 argument_list|<
 name|Integer
 argument_list|>
@@ -2656,7 +2656,7 @@ name|void
 name|testRemoveUnsupported
 parameter_list|()
 block|{
-name|ImmutableRangeSet
+name|RangeSet
 argument_list|<
 name|Integer
 argument_list|>
@@ -2732,7 +2732,7 @@ name|void
 name|testRemoveAllUnsupported
 parameter_list|()
 block|{
-name|ImmutableRangeSet
+name|RangeSet
 argument_list|<
 name|Integer
 argument_list|>
