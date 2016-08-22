@@ -16,30 +16,6 @@ name|graph
 package|;
 end_package
 
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|math
-operator|.
-name|DoubleMath
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|math
-operator|.
-name|RoundingMode
-import|;
-end_import
-
 begin_comment
 comment|/**  * A utility class to hold various constants used by the Guava Graph library.  */
 end_comment
@@ -96,22 +72,9 @@ specifier|final
 name|int
 name|INNER_CAPACITY
 init|=
-name|DoubleMath
-operator|.
-name|roundToInt
-argument_list|(
-operator|(
-name|double
-operator|)
-name|EXPECTED_DEGREE
-operator|/
-name|INNER_LOAD_FACTOR
-argument_list|,
-name|RoundingMode
-operator|.
-name|CEILING
-argument_list|)
+literal|2
 decl_stmt|;
+comment|// ceiling(EXPECTED_DEGREE / INNER_LOAD_FACTOR)
 comment|// Error messages
 DECL|field|NODE_NOT_IN_GRAPH
 specifier|static
