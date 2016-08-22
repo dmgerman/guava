@@ -1369,7 +1369,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns a view of {@code graph} with the direction (if any) of every edge reversed. All other    * properties remain intact, and further updates to {@code graph} will be reflected in the view.    */
-DECL|method|transpose (final Graph<N, V> graph)
+DECL|method|transpose (Graph<N, V> graph)
 specifier|public
 specifier|static
 parameter_list|<
@@ -1385,7 +1385,6 @@ name|V
 argument_list|>
 name|transpose
 parameter_list|(
-specifier|final
 name|Graph
 argument_list|<
 name|N
@@ -1409,18 +1408,93 @@ name|graph
 return|;
 comment|// the transpose of an undirected graph is an identical graph
 block|}
+if|if
+condition|(
+name|graph
+operator|instanceof
+name|TransposedGraph
+condition|)
+block|{
+return|return
+operator|(
+operator|(
+name|TransposedGraph
+argument_list|<
+name|N
+argument_list|,
+name|V
+argument_list|>
+operator|)
+name|graph
+operator|)
+operator|.
+name|graph
+return|;
+block|}
 return|return
 operator|new
+name|TransposedGraph
+argument_list|<
+name|N
+argument_list|,
+name|V
+argument_list|>
+argument_list|(
+name|graph
+argument_list|)
+return|;
+block|}
+DECL|class|TransposedGraph
+specifier|private
+specifier|static
+class|class
+name|TransposedGraph
+parameter_list|<
+name|N
+parameter_list|,
+name|V
+parameter_list|>
+extends|extends
 name|AbstractGraph
 argument_list|<
 name|N
 argument_list|,
 name|V
 argument_list|>
-argument_list|()
 block|{
+DECL|field|graph
+specifier|private
+specifier|final
+name|Graph
+argument_list|<
+name|N
+argument_list|,
+name|V
+argument_list|>
+name|graph
+decl_stmt|;
+DECL|method|TransposedGraph (Graph<N, V> graph)
+name|TransposedGraph
+parameter_list|(
+name|Graph
+argument_list|<
+name|N
+argument_list|,
+name|V
+argument_list|>
+name|graph
+parameter_list|)
+block|{
+name|this
+operator|.
+name|graph
+operator|=
+name|graph
+expr_stmt|;
+block|}
 annotation|@
 name|Override
+DECL|method|nodes ()
 specifier|public
 name|Set
 argument_list|<
@@ -1439,6 +1513,7 @@ block|}
 comment|// Defer to AbstractGraph's implementation of edges(), which is based of successors().
 annotation|@
 name|Override
+DECL|method|isDirected ()
 specifier|public
 name|boolean
 name|isDirected
@@ -1453,6 +1528,7 @@ return|;
 block|}
 annotation|@
 name|Override
+DECL|method|allowsSelfLoops ()
 specifier|public
 name|boolean
 name|allowsSelfLoops
@@ -1467,6 +1543,7 @@ return|;
 block|}
 annotation|@
 name|Override
+DECL|method|nodeOrder ()
 specifier|public
 name|ElementOrder
 argument_list|<
@@ -1484,6 +1561,7 @@ return|;
 block|}
 annotation|@
 name|Override
+DECL|method|adjacentNodes (Object node)
 specifier|public
 name|Set
 argument_list|<
@@ -1506,6 +1584,7 @@ return|;
 block|}
 annotation|@
 name|Override
+DECL|method|predecessors (Object node)
 specifier|public
 name|Set
 argument_list|<
@@ -1529,6 +1608,7 @@ comment|// transpose
 block|}
 annotation|@
 name|Override
+DECL|method|successors (Object node)
 specifier|public
 name|Set
 argument_list|<
@@ -1552,6 +1632,7 @@ comment|// transpose
 block|}
 annotation|@
 name|Override
+DECL|method|edgeValue (Object nodeA, Object nodeB)
 specifier|public
 name|V
 name|edgeValue
@@ -1577,6 +1658,7 @@ comment|// transpose
 block|}
 annotation|@
 name|Override
+DECL|method|edgeValueOrDefault (Object nodeA, Object nodeB, V defaultValue)
 specifier|public
 name|V
 name|edgeValueOrDefault
@@ -1607,6 +1689,7 @@ comment|// transpose
 block|}
 annotation|@
 name|Override
+DECL|method|edgeCount ()
 specifier|protected
 name|long
 name|edgeCount
@@ -1623,10 +1706,8 @@ argument_list|()
 return|;
 block|}
 block|}
-return|;
-block|}
 comment|/**    * Returns a view of {@code network} with the direction (if any) of every edge reversed. All other    * properties remain intact, and further updates to {@code network} will be reflected in the view.    */
-DECL|method|transpose (final Network<N, E> network)
+DECL|method|transpose (Network<N, E> network)
 specifier|public
 specifier|static
 parameter_list|<
@@ -1642,7 +1723,6 @@ name|E
 argument_list|>
 name|transpose
 parameter_list|(
-specifier|final
 name|Network
 argument_list|<
 name|N
@@ -1666,18 +1746,93 @@ name|network
 return|;
 comment|// the transpose of an undirected network is an identical network
 block|}
+if|if
+condition|(
+name|network
+operator|instanceof
+name|TransposedNetwork
+condition|)
+block|{
+return|return
+operator|(
+operator|(
+name|TransposedNetwork
+argument_list|<
+name|N
+argument_list|,
+name|E
+argument_list|>
+operator|)
+name|network
+operator|)
+operator|.
+name|network
+return|;
+block|}
 return|return
 operator|new
+name|TransposedNetwork
+argument_list|<
+name|N
+argument_list|,
+name|E
+argument_list|>
+argument_list|(
+name|network
+argument_list|)
+return|;
+block|}
+DECL|class|TransposedNetwork
+specifier|private
+specifier|static
+class|class
+name|TransposedNetwork
+parameter_list|<
+name|N
+parameter_list|,
+name|E
+parameter_list|>
+extends|extends
 name|AbstractNetwork
 argument_list|<
 name|N
 argument_list|,
 name|E
 argument_list|>
-argument_list|()
 block|{
+DECL|field|network
+specifier|private
+specifier|final
+name|Network
+argument_list|<
+name|N
+argument_list|,
+name|E
+argument_list|>
+name|network
+decl_stmt|;
+DECL|method|TransposedNetwork (Network<N, E> network)
+name|TransposedNetwork
+parameter_list|(
+name|Network
+argument_list|<
+name|N
+argument_list|,
+name|E
+argument_list|>
+name|network
+parameter_list|)
+block|{
+name|this
+operator|.
+name|network
+operator|=
+name|network
+expr_stmt|;
+block|}
 annotation|@
 name|Override
+DECL|method|nodes ()
 specifier|public
 name|Set
 argument_list|<
@@ -1695,6 +1850,7 @@ return|;
 block|}
 annotation|@
 name|Override
+DECL|method|edges ()
 specifier|public
 name|Set
 argument_list|<
@@ -1712,6 +1868,7 @@ return|;
 block|}
 annotation|@
 name|Override
+DECL|method|isDirected ()
 specifier|public
 name|boolean
 name|isDirected
@@ -1726,6 +1883,7 @@ return|;
 block|}
 annotation|@
 name|Override
+DECL|method|allowsParallelEdges ()
 specifier|public
 name|boolean
 name|allowsParallelEdges
@@ -1740,6 +1898,7 @@ return|;
 block|}
 annotation|@
 name|Override
+DECL|method|allowsSelfLoops ()
 specifier|public
 name|boolean
 name|allowsSelfLoops
@@ -1754,6 +1913,7 @@ return|;
 block|}
 annotation|@
 name|Override
+DECL|method|nodeOrder ()
 specifier|public
 name|ElementOrder
 argument_list|<
@@ -1771,6 +1931,7 @@ return|;
 block|}
 annotation|@
 name|Override
+DECL|method|edgeOrder ()
 specifier|public
 name|ElementOrder
 argument_list|<
@@ -1788,6 +1949,7 @@ return|;
 block|}
 annotation|@
 name|Override
+DECL|method|adjacentNodes (Object node)
 specifier|public
 name|Set
 argument_list|<
@@ -1810,6 +1972,7 @@ return|;
 block|}
 annotation|@
 name|Override
+DECL|method|predecessors (Object node)
 specifier|public
 name|Set
 argument_list|<
@@ -1833,6 +1996,7 @@ comment|// transpose
 block|}
 annotation|@
 name|Override
+DECL|method|successors (Object node)
 specifier|public
 name|Set
 argument_list|<
@@ -1856,6 +2020,7 @@ comment|// transpose
 block|}
 annotation|@
 name|Override
+DECL|method|incidentEdges (Object node)
 specifier|public
 name|Set
 argument_list|<
@@ -1878,6 +2043,7 @@ return|;
 block|}
 annotation|@
 name|Override
+DECL|method|inEdges (Object node)
 specifier|public
 name|Set
 argument_list|<
@@ -1901,6 +2067,7 @@ comment|// transpose
 block|}
 annotation|@
 name|Override
+DECL|method|outEdges (Object node)
 specifier|public
 name|Set
 argument_list|<
@@ -1924,6 +2091,7 @@ comment|// transpose
 block|}
 annotation|@
 name|Override
+DECL|method|incidentNodes (Object edge)
 specifier|public
 name|Endpoints
 argument_list|<
@@ -1970,6 +2138,7 @@ comment|// transpose
 block|}
 annotation|@
 name|Override
+DECL|method|adjacentEdges (Object edge)
 specifier|public
 name|Set
 argument_list|<
@@ -1992,6 +2161,7 @@ return|;
 block|}
 annotation|@
 name|Override
+DECL|method|edgesConnecting (Object nodeA, Object nodeB)
 specifier|public
 name|Set
 argument_list|<
@@ -2018,8 +2188,6 @@ argument_list|)
 return|;
 comment|// transpose
 block|}
-block|}
-return|;
 block|}
 comment|// Graph copy methods
 comment|/**    * Returns an induced subgraph of {@code graph}. This subgraph is a new graph that contains    * all of the nodes in {@code nodes}, and all of the {@link Graph#edges() edges} from {@code    * graph} for which both nodes are contained by {@code nodes}.    *    * @throws IllegalArgumentException if any element in {@code nodes} is not a node in the graph    */
