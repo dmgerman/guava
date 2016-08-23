@@ -1765,7 +1765,11 @@ block|}
 annotation|@
 name|SuppressWarnings
 argument_list|(
+block|{
 literal|"SelfComparison"
+block|,
+literal|"SelfEquals"
+block|}
 argument_list|)
 DECL|method|testCompareToAndEquals ( List<T> valuesInExpectedOrder)
 specifier|public
