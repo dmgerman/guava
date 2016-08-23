@@ -947,6 +947,27 @@ return|;
 block|}
 block|}
 block|}
+comment|/**    * Atomically remove {@code key} from the map iff its associated value is 0.    *    * @since 20.0    */
+annotation|@
+name|CanIgnoreReturnValue
+DECL|method|removeIfZero (K key)
+specifier|public
+name|boolean
+name|removeIfZero
+parameter_list|(
+name|K
+name|key
+parameter_list|)
+block|{
+return|return
+name|remove
+argument_list|(
+name|key
+argument_list|,
+literal|0
+argument_list|)
+return|;
+block|}
 comment|/**    * Removes all mappings from this map whose values are zero.    *    *<p>This method is not atomic: the map may be visible in intermediate states, where some of the    * zero values have been removed and others have not.    */
 DECL|method|removeAllZeros ()
 specifier|public
