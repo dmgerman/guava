@@ -817,6 +817,8 @@ block|}
 comment|/** Template method for subtypes to actually run the fallback. */
 annotation|@
 name|ForOverride
+annotation|@
+name|Nullable
 DECL|method|doFallback (F fallback, X throwable)
 specifier|abstract
 name|T
@@ -834,11 +836,13 @@ function_decl|;
 comment|/** Template method for subtypes to actually set the result. */
 annotation|@
 name|ForOverride
-DECL|method|setResult (T result)
+DECL|method|setResult (@ullable T result)
 specifier|abstract
 name|void
 name|setResult
 parameter_list|(
+annotation|@
+name|Nullable
 name|T
 name|result
 parameter_list|)
@@ -1112,6 +1116,8 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|Nullable
 DECL|method|doFallback (Function<? super X, ? extends V> fallback, X cause)
 name|V
 name|doFallback
@@ -1145,10 +1151,12 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|setResult (V result)
+DECL|method|setResult (@ullable V result)
 name|void
 name|setResult
 parameter_list|(
+annotation|@
+name|Nullable
 name|V
 name|result
 parameter_list|)

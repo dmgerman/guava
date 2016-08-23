@@ -747,7 +747,9 @@ block|}
 comment|/** Template method for subtypes to actually run the transform. */
 annotation|@
 name|ForOverride
-DECL|method|doTransform (F function, I result)
+annotation|@
+name|Nullable
+DECL|method|doTransform (F function, @Nullable I result)
 specifier|abstract
 name|T
 name|doTransform
@@ -755,6 +757,8 @@ parameter_list|(
 name|F
 name|function
 parameter_list|,
+annotation|@
+name|Nullable
 name|I
 name|result
 parameter_list|)
@@ -764,11 +768,13 @@ function_decl|;
 comment|/** Template method for subtypes to actually set the result. */
 annotation|@
 name|ForOverride
-DECL|method|setResult (T result)
+DECL|method|setResult (@ullable T result)
 specifier|abstract
 name|void
 name|setResult
 parameter_list|(
+annotation|@
+name|Nullable
 name|T
 name|result
 parameter_list|)
@@ -872,7 +878,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|doTransform ( AsyncFunction<? super I, ? extends O> function, I input)
+DECL|method|doTransform ( AsyncFunction<? super I, ? extends O> function, @Nullable I input)
 name|ListenableFuture
 argument_list|<
 name|?
@@ -893,6 +899,8 @@ name|O
 argument_list|>
 name|function
 parameter_list|,
+annotation|@
+name|Nullable
 name|I
 name|input
 parameter_list|)
@@ -1016,7 +1024,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|doTransform (Function<? super I, ? extends O> function, I input)
+annotation|@
+name|Nullable
+DECL|method|doTransform (Function<? super I, ? extends O> function, @Nullable I input)
 name|O
 name|doTransform
 parameter_list|(
@@ -1032,6 +1042,8 @@ name|O
 argument_list|>
 name|function
 parameter_list|,
+annotation|@
+name|Nullable
 name|I
 name|input
 parameter_list|)
@@ -1048,10 +1060,12 @@ comment|// TODO(lukes): move the UndeclaredThrowable catch block here?
 block|}
 annotation|@
 name|Override
-DECL|method|setResult (O result)
+DECL|method|setResult (@ullable O result)
 name|void
 name|setResult
 parameter_list|(
+annotation|@
+name|Nullable
 name|O
 name|result
 parameter_list|)
