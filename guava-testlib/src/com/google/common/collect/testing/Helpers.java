@@ -528,6 +528,7 @@ operator|.
 name|isEmpty
 argument_list|()
 else|:
+operator|!
 name|iterable
 operator|.
 name|iterator
