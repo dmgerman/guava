@@ -40,6 +40,34 @@ name|google
 operator|.
 name|common
 operator|.
+name|annotations
+operator|.
+name|GwtCompatible
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|GwtIncompatible
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
 name|collect
 operator|.
 name|testing
@@ -227,6 +255,13 @@ comment|/**  * Unit test for {@link MinMaxPriorityQueue}.  *  * @author Alexei S
 end_comment
 
 begin_class
+annotation|@
+name|GwtCompatible
+argument_list|(
+name|emulated
+operator|=
+literal|true
+argument_list|)
 DECL|class|MinMaxPriorityQueueTest
 specifier|public
 class|class
@@ -5820,6 +5855,9 @@ block|{
 comment|// expected
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+comment|// NullPointerTester
 DECL|method|testNullPointers ()
 specifier|public
 name|void

@@ -109,11 +109,6 @@ annotation|@
 name|Beta
 annotation|@
 name|GwtCompatible
-argument_list|(
-name|emulated
-operator|=
-literal|true
-argument_list|)
 DECL|class|TreeTraverser
 specifier|public
 specifier|abstract
@@ -123,7 +118,6 @@ parameter_list|<
 name|T
 parameter_list|>
 block|{
-comment|// TODO(lowasser): make this GWT-compatible when we've checked in ArrayDeque emulation
 comment|/**    * Returns the children of the specified node.  Must not contain null.    */
 DECL|method|children (T root)
 specifier|public
