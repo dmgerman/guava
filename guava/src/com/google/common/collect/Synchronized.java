@@ -8364,6 +8364,9 @@ init|=
 literal|0
 decl_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+comment|// Deque
 DECL|method|deque (Deque<E> deque, @Nullable Object mutex)
 specifier|static
 parameter_list|<
@@ -8400,6 +8403,9 @@ name|mutex
 argument_list|)
 return|;
 block|}
+annotation|@
+name|GwtIncompatible
+comment|// Deque
 DECL|class|SynchronizedDeque
 specifier|private
 specifier|static

@@ -120,7 +120,7 @@ name|common
 operator|.
 name|annotations
 operator|.
-name|GwtCompatible
+name|GwtIncompatible
 import|;
 end_import
 
@@ -318,11 +318,15 @@ begin_comment
 comment|/**  * A double-ended priority queue, which provides constant-time access to both  * its least element and its greatest element, as determined by the queue's  * specified comparator. If no comparator is given at creation time, the  * natural order of elements is used. If no maximum size is given at creation time,  * the queue is unbounded.  *  *<p>Usage example:<pre>   {@code  *  *   MinMaxPriorityQueue<User> users = MinMaxPriorityQueue.orderedBy(userComparator)  *       .maximumSize(1000)  *       .create();}</pre>  *  *<p>As a {@link Queue} it functions exactly as a {@link PriorityQueue}: its  * head element -- the implicit target of the methods {@link #peek()}, {@link  * #poll()} and {@link #remove()} -- is defined as the<i>least</i> element in  * the queue according to the queue's comparator. But unlike a regular priority  * queue, the methods {@link #peekLast}, {@link #pollLast} and  * {@link #removeLast} are also provided, to act on the<i>greatest</i> element  * in the queue instead.  *  *<p>A min-max priority queue can be configured with a maximum size. If so,  * each time the size of the queue exceeds that value, the queue automatically  * removes its greatest element according to its comparator (which might be the  * element that was just added). This is different from conventional bounded  * queues, which either block or reject new elements when full.  *  *<p>This implementation is based on the  *<a href="http://portal.acm.org/citation.cfm?id=6621">min-max heap</a>  * developed by Atkinson, et al. Unlike many other double-ended priority queues,  * it stores elements in a single array, as compact as the traditional heap data  * structure used in {@link PriorityQueue}.  *  *<p>This class is not thread-safe, and does not accept null elements.  *  *<p><i>Performance notes:</i>  *  *<ul>  *<li>If you only access one end of the queue, and do use a maximum size,  *     this class will perform significantly worse than a {@code PriorityQueue}  *     with manual eviction above the maximum size.  In many cases  *     {@link Ordering#leastOf} may work for your use case with significantly  *     improved (and asymptotically superior) performance.  *<li>The retrieval operations {@link #peek}, {@link #peekFirst}, {@link  *     #peekLast}, {@link #element}, and {@link #size} are constant-time.  *<li>The enqueing and dequeing operations ({@link #offer}, {@link #add}, and  *     all the forms of {@link #poll} and {@link #remove()}) run in {@code  *     O(log n) time}.  *<li>The {@link #remove(Object)} and {@link #contains} operations require  *     linear ({@code O(n)}) time.  *<li>If you only access one end of the queue, and don't use a maximum size,  *     this class is functionally equivalent to {@link PriorityQueue}, but  *     significantly slower.  *</ul>  *  * @author Sverre Sundsdal  * @author Torbjorn Gannholm  * @since 8.0  */
 end_comment
 
+begin_comment
+comment|// TODO(kevinb): GWT compatibility
+end_comment
+
 begin_class
 annotation|@
 name|Beta
 annotation|@
-name|GwtCompatible
+name|GwtIncompatible
 DECL|class|MinMaxPriorityQueue
 specifier|public
 specifier|final
@@ -1638,15 +1642,10 @@ block|{
 name|int
 name|oneBased
 init|=
-operator|~
-operator|~
-operator|(
 name|index
 operator|+
 literal|1
-operator|)
 decl_stmt|;
-comment|// for GWT
 name|checkState
 argument_list|(
 name|oneBased

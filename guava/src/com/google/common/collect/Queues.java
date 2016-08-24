@@ -40,20 +40,6 @@ name|common
 operator|.
 name|annotations
 operator|.
-name|GwtCompatible
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|annotations
-operator|.
 name|GwtIncompatible
 import|;
 end_import
@@ -238,12 +224,7 @@ end_comment
 
 begin_class
 annotation|@
-name|GwtCompatible
-argument_list|(
-name|emulated
-operator|=
-literal|true
-argument_list|)
+name|GwtIncompatible
 DECL|class|Queues
 specifier|public
 specifier|final
@@ -257,9 +238,6 @@ parameter_list|()
 block|{}
 comment|// ArrayBlockingQueue
 comment|/**    * Creates an empty {@code ArrayBlockingQueue} with the given (fixed) capacity    * and nonfair access policy.    */
-annotation|@
-name|GwtIncompatible
-comment|// ArrayBlockingQueue
 DECL|method|newArrayBlockingQueue (int capacity)
 specifier|public
 specifier|static
@@ -384,9 +362,6 @@ return|;
 block|}
 comment|// ConcurrentLinkedQueue
 comment|/**    * Creates an empty {@code ConcurrentLinkedQueue}.    */
-annotation|@
-name|GwtIncompatible
-comment|// ConcurrentLinkedQueue
 DECL|method|newConcurrentLinkedQueue ()
 specifier|public
 specifier|static
@@ -410,9 +385,6 @@ argument_list|()
 return|;
 block|}
 comment|/**    * Creates a {@code ConcurrentLinkedQueue} containing the elements of the specified iterable,    * in the order they are returned by the iterable's iterator.    */
-annotation|@
-name|GwtIncompatible
-comment|// ConcurrentLinkedQueue
 DECL|method|newConcurrentLinkedQueue ( Iterable<? extends E> elements)
 specifier|public
 specifier|static
@@ -485,9 +457,6 @@ return|;
 block|}
 comment|// LinkedBlockingDeque
 comment|/**    * Creates an empty {@code LinkedBlockingDeque} with a capacity of {@link Integer#MAX_VALUE}.    *    * @since 12.0    */
-annotation|@
-name|GwtIncompatible
-comment|// LinkedBlockingDeque
 DECL|method|newLinkedBlockingDeque ()
 specifier|public
 specifier|static
@@ -511,9 +480,6 @@ argument_list|()
 return|;
 block|}
 comment|/**    * Creates an empty {@code LinkedBlockingDeque} with the given (fixed) capacity.    *    * @throws IllegalArgumentException if {@code capacity} is less than 1    * @since 12.0    */
-annotation|@
-name|GwtIncompatible
-comment|// LinkedBlockingDeque
 DECL|method|newLinkedBlockingDeque (int capacity)
 specifier|public
 specifier|static
@@ -542,9 +508,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Creates a {@code LinkedBlockingDeque} with a capacity of {@link Integer#MAX_VALUE},    * containing the elements of the specified iterable,    * in the order they are returned by the iterable's iterator.    *    * @since 12.0    */
-annotation|@
-name|GwtIncompatible
-comment|// LinkedBlockingDeque
 DECL|method|newLinkedBlockingDeque (Iterable<? extends E> elements)
 specifier|public
 specifier|static
@@ -617,9 +580,6 @@ return|;
 block|}
 comment|// LinkedBlockingQueue
 comment|/**    * Creates an empty {@code LinkedBlockingQueue} with a capacity of {@link Integer#MAX_VALUE}.    */
-annotation|@
-name|GwtIncompatible
-comment|// LinkedBlockingQueue
 DECL|method|newLinkedBlockingQueue ()
 specifier|public
 specifier|static
@@ -643,9 +603,6 @@ argument_list|()
 return|;
 block|}
 comment|/**    * Creates an empty {@code LinkedBlockingQueue} with the given (fixed) capacity.    *    * @throws IllegalArgumentException if {@code capacity} is less than 1    */
-annotation|@
-name|GwtIncompatible
-comment|// LinkedBlockingQueue
 DECL|method|newLinkedBlockingQueue (int capacity)
 specifier|public
 specifier|static
@@ -674,9 +631,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Creates a {@code LinkedBlockingQueue} with a capacity of {@link Integer#MAX_VALUE},    * containing the elements of the specified iterable,    * in the order they are returned by the iterable's iterator.    *    * @param elements the elements that the queue should contain, in order    * @return a new {@code LinkedBlockingQueue} containing those elements    */
-annotation|@
-name|GwtIncompatible
-comment|// LinkedBlockingQueue
 DECL|method|newLinkedBlockingQueue (Iterable<? extends E> elements)
 specifier|public
 specifier|static
@@ -750,9 +704,6 @@ block|}
 comment|// LinkedList: see {@link com.google.common.collect.Lists}
 comment|// PriorityBlockingQueue
 comment|/**    * Creates an empty {@code PriorityBlockingQueue} with the ordering given by its    * elements' natural ordering.    *    * @since 11.0 (requires that {@code E} be {@code Comparable} since 15.0).    */
-annotation|@
-name|GwtIncompatible
-comment|// PriorityBlockingQueue
 DECL|method|newPriorityBlockingQueue ()
 specifier|public
 specifier|static
@@ -778,9 +729,6 @@ argument_list|()
 return|;
 block|}
 comment|/**    * Creates a {@code PriorityBlockingQueue} containing the given elements.    *    *<b>Note:</b> If the specified iterable is a {@code SortedSet} or a {@code PriorityQueue},    * this priority queue will be ordered according to the same ordering.    *    * @since 11.0 (requires that {@code E} be {@code Comparable} since 15.0).    */
-annotation|@
-name|GwtIncompatible
-comment|// PriorityBlockingQueue
 DECL|method|newPriorityBlockingQueue ( Iterable<? extends E> elements)
 specifier|public
 specifier|static
@@ -954,9 +902,6 @@ return|;
 block|}
 comment|// SynchronousQueue
 comment|/**    * Creates an empty {@code SynchronousQueue} with nonfair access policy.    */
-annotation|@
-name|GwtIncompatible
-comment|// SynchronousQueue
 DECL|method|newSynchronousQueue ()
 specifier|public
 specifier|static
@@ -984,9 +929,6 @@ annotation|@
 name|Beta
 annotation|@
 name|CanIgnoreReturnValue
-annotation|@
-name|GwtIncompatible
-comment|// BlockingQueue
 DECL|method|drain ( BlockingQueue<E> q, Collection<? super E> buffer, int numElements, long timeout, TimeUnit unit)
 specifier|public
 specifier|static
@@ -1130,9 +1072,6 @@ annotation|@
 name|Beta
 annotation|@
 name|CanIgnoreReturnValue
-annotation|@
-name|GwtIncompatible
-comment|// BlockingQueue
 DECL|method|drainUninterruptibly ( BlockingQueue<E> q, Collection<? super E> buffer, int numElements, long timeout, TimeUnit unit)
 specifier|public
 specifier|static
