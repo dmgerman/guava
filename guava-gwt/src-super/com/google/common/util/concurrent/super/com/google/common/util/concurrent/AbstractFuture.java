@@ -245,7 +245,28 @@ argument_list|<
 name|V
 argument_list|>
 block|{
-comment|/*      * We don't need to override any of methods that we override in the prod version (and in fact we      * can't) because they are already final.      */
+DECL|method|cancel (boolean mayInterruptIfRunning)
+annotation|@
+name|Override
+specifier|public
+specifier|final
+name|boolean
+name|cancel
+parameter_list|(
+name|boolean
+name|mayInterruptIfRunning
+parameter_list|)
+block|{
+return|return
+name|super
+operator|.
+name|cancel
+argument_list|(
+name|mayInterruptIfRunning
+argument_list|)
+return|;
+block|}
+comment|// Most other methods are already final in AbstractFuture itself under GWT.
 block|}
 DECL|field|log
 specifier|private
@@ -376,6 +397,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+comment|// TODO(lukes): consider adding the StackOverflowError protection from the server version
 name|delegate
 operator|.
 name|cancel
@@ -758,6 +780,10 @@ name|void
 name|notifyAndClearListeners
 parameter_list|()
 block|{
+name|afterDone
+argument_list|()
+expr_stmt|;
+comment|// TODO(lukes): consider adding the StackOverflowError protection from the server version
 comment|// TODO(cpovirk): consider clearing this.delegate
 for|for
 control|(
@@ -776,9 +802,6 @@ block|}
 name|listeners
 operator|=
 literal|null
-expr_stmt|;
-name|afterDone
-argument_list|()
 expr_stmt|;
 block|}
 DECL|method|afterDone ()

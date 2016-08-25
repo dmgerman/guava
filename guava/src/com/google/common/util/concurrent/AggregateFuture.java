@@ -130,20 +130,6 @@ end_import
 
 begin_import
 import|import
-name|com
-operator|.
-name|google
-operator|.
-name|errorprone
-operator|.
-name|annotations
-operator|.
-name|CanIgnoreReturnValue
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|util
@@ -272,6 +258,19 @@ operator|.
 name|afterDone
 argument_list|()
 expr_stmt|;
+comment|// Must get a reference to the futures before we cancel, as they'll be cleared out.
+name|RunningState
+name|localRunningState
+init|=
+name|runningState
+decl_stmt|;
+if|if
+condition|(
+name|localRunningState
+operator|!=
+literal|null
+condition|)
+block|{
 comment|// Let go of the memory held by the running state
 name|this
 operator|.
@@ -279,28 +278,6 @@ name|runningState
 operator|=
 literal|null
 expr_stmt|;
-block|}
-comment|// TODO(cpovirk): Use maybePropagateCancellation() if the performance is OK and the code is clean.
-annotation|@
-name|CanIgnoreReturnValue
-annotation|@
-name|Override
-DECL|method|cancel (boolean mayInterruptIfRunning)
-specifier|public
-specifier|final
-name|boolean
-name|cancel
-parameter_list|(
-name|boolean
-name|mayInterruptIfRunning
-parameter_list|)
-block|{
-comment|// Must get a reference to the futures before we cancel, as they'll be cleared out.
-name|RunningState
-name|localRunningState
-init|=
-name|runningState
-decl_stmt|;
 name|ImmutableCollection
 argument_list|<
 name|?
@@ -314,39 +291,26 @@ argument_list|>
 argument_list|>
 name|futures
 init|=
-operator|(
-name|localRunningState
-operator|!=
-literal|null
-operator|)
-condition|?
 name|localRunningState
 operator|.
 name|futures
-else|:
-literal|null
 decl_stmt|;
-comment|// Cancel all the component futures.
-name|boolean
-name|cancelled
-init|=
-name|super
-operator|.
-name|cancel
-argument_list|(
-name|mayInterruptIfRunning
-argument_list|)
-decl_stmt|;
-comment|//& is faster than the branch required for&&
 if|if
 condition|(
-name|cancelled
+name|isCancelled
+argument_list|()
 operator|&
 name|futures
 operator|!=
 literal|null
 condition|)
 block|{
+name|boolean
+name|mayInterruptIfRunning
+init|=
+name|wasInterrupted
+argument_list|()
+decl_stmt|;
 for|for
 control|(
 name|ListenableFuture
@@ -367,9 +331,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-return|return
-name|cancelled
-return|;
+block|}
 block|}
 annotation|@
 name|GwtIncompatible
@@ -862,13 +824,12 @@ name|isCancelled
 argument_list|()
 condition|)
 block|{
-comment|// this.cancel propagates the cancellation to children; we use super.cancel to set our
-comment|// own state but let the input futures keep running as some of them may be used
-comment|// elsewhere.
-name|AggregateFuture
-operator|.
-name|super
-operator|.
+comment|// clear running state prior to cancelling children, this sets our own state but lets
+comment|// the input futures keep running as some of them may be used elsewhere.
+name|runningState
+operator|=
+literal|null
+expr_stmt|;
 name|cancel
 argument_list|(
 literal|false

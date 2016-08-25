@@ -274,7 +274,6 @@ annotation|@
 name|Override
 DECL|method|afterDone ()
 specifier|protected
-specifier|final
 name|void
 name|afterDone
 parameter_list|()

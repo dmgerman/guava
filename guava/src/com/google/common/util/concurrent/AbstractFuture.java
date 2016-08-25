@@ -371,10 +371,6 @@ argument_list|<
 name|V
 argument_list|>
 block|{
-comment|// N.B. cancel is not overridden to be final, because many future utilities need to override
-comment|// cancel in order to propagate cancellation to other futures.
-comment|// TODO(lukes): with maybePropagateCancellation this is no longer really true. Track down the
-comment|// final few cases and eliminate their overrides of cancel()
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
@@ -487,6 +483,29 @@ argument_list|,
 name|executor
 argument_list|)
 expr_stmt|;
+block|}
+annotation|@
+name|CanIgnoreReturnValue
+annotation|@
+name|Override
+DECL|method|cancel (boolean mayInterruptIfRunning)
+specifier|public
+specifier|final
+name|boolean
+name|cancel
+parameter_list|(
+name|boolean
+name|mayInterruptIfRunning
+parameter_list|)
+block|{
+return|return
+name|super
+operator|.
+name|cancel
+argument_list|(
+name|mayInterruptIfRunning
+argument_list|)
+return|;
 block|}
 block|}
 comment|// Logger to log exceptions caught when running listeners.
@@ -1128,12 +1147,24 @@ block|}
 comment|/** A special value that encodes the 'setFuture' state. */
 DECL|class|SetFuture
 specifier|private
+specifier|static
 specifier|final
 class|class
 name|SetFuture
+parameter_list|<
+name|V
+parameter_list|>
 implements|implements
 name|Runnable
 block|{
+DECL|field|owner
+specifier|final
+name|AbstractFuture
+argument_list|<
+name|V
+argument_list|>
+name|owner
+decl_stmt|;
 DECL|field|future
 specifier|final
 name|ListenableFuture
@@ -1144,9 +1175,15 @@ name|V
 argument_list|>
 name|future
 decl_stmt|;
-DECL|method|SetFuture (ListenableFuture<? extends V> future)
+DECL|method|SetFuture (AbstractFuture<V> owner, ListenableFuture<? extends V> future)
 name|SetFuture
 parameter_list|(
+name|AbstractFuture
+argument_list|<
+name|V
+argument_list|>
+name|owner
+parameter_list|,
 name|ListenableFuture
 argument_list|<
 name|?
@@ -1156,6 +1193,12 @@ argument_list|>
 name|future
 parameter_list|)
 block|{
+name|this
+operator|.
+name|owner
+operator|=
+name|owner
+expr_stmt|;
 name|this
 operator|.
 name|future
@@ -1173,21 +1216,44 @@ parameter_list|()
 block|{
 if|if
 condition|(
+name|owner
+operator|.
 name|value
 operator|!=
 name|this
 condition|)
 block|{
-comment|// nothing to do, we must have been cancelled
+comment|// nothing to do, we must have been cancelled, don't bother inspecting the future.
 return|return;
 block|}
-name|completeWithFuture
+name|Object
+name|valueToSet
+init|=
+name|getFutureValue
 argument_list|(
 name|future
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|ATOMIC_HELPER
+operator|.
+name|casValue
+argument_list|(
+name|owner
 argument_list|,
 name|this
+argument_list|,
+name|valueToSet
+argument_list|)
+condition|)
+block|{
+name|complete
+argument_list|(
+name|owner
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 comment|// TODO(lukes): investigate using the @Contended annotation on these fields when jdk8 is
@@ -1927,6 +1993,11 @@ name|localValue
 init|=
 name|value
 decl_stmt|;
+name|boolean
+name|rValue
+init|=
+literal|false
+decl_stmt|;
 if|if
 condition|(
 name|localValue
@@ -1966,7 +2037,18 @@ argument_list|,
 name|cause
 argument_list|)
 decl_stmt|;
-do|do
+name|AbstractFuture
+argument_list|<
+name|?
+argument_list|>
+name|abstractFuture
+init|=
+name|this
+decl_stmt|;
+while|while
+condition|(
+literal|true
+condition|)
 block|{
 if|if
 condition|(
@@ -1974,7 +2056,7 @@ name|ATOMIC_HELPER
 operator|.
 name|casValue
 argument_list|(
-name|this
+name|abstractFuture
 argument_list|,
 name|localValue
 argument_list|,
@@ -1982,6 +2064,10 @@ name|valueToSet
 argument_list|)
 condition|)
 block|{
+name|rValue
+operator|=
+literal|true
+expr_stmt|;
 comment|// We call interuptTask before calling complete(), which is consistent with
 comment|// FutureTask
 if|if
@@ -1989,12 +2075,16 @@ condition|(
 name|mayInterruptIfRunning
 condition|)
 block|{
+name|abstractFuture
+operator|.
 name|interruptTask
 argument_list|()
 expr_stmt|;
 block|}
 name|complete
-argument_list|()
+argument_list|(
+name|abstractFuture
+argument_list|)
 expr_stmt|;
 if|if
 condition|(
@@ -2007,12 +2097,15 @@ condition|)
 block|{
 comment|// propagate cancellation to the future set in setfuture, this is racy, and we don't
 comment|// care if we are successful or not.
-operator|(
-operator|(
-name|AbstractFuture
+name|ListenableFuture
 argument_list|<
 name|?
 argument_list|>
+name|futureToPropagateTo
+init|=
+operator|(
+operator|(
+name|AbstractFuture
 operator|.
 name|SetFuture
 operator|)
@@ -2020,6 +2113,66 @@ name|localValue
 operator|)
 operator|.
 name|future
+decl_stmt|;
+if|if
+condition|(
+name|futureToPropagateTo
+operator|instanceof
+name|TrustedFuture
+condition|)
+block|{
+comment|// If the future is a TrustedFuture then we specifically avoid calling cancel()
+comment|// this has 2 benefits
+comment|// 1. for long chains of futures strung together with setFuture we consume less stack
+comment|// 2. we avoid allocating Cancellation objects at every level of the cancellation
+comment|//    chain
+comment|// We can only do this for TrustedFuture, because TrustedFuture.cancel is final and
+comment|// does nothing but delegate to this method.
+name|AbstractFuture
+argument_list|<
+name|?
+argument_list|>
+name|trusted
+init|=
+operator|(
+name|AbstractFuture
+argument_list|<
+name|?
+argument_list|>
+operator|)
+name|futureToPropagateTo
+decl_stmt|;
+name|localValue
+operator|=
+name|trusted
+operator|.
+name|value
+expr_stmt|;
+if|if
+condition|(
+name|localValue
+operator|==
+literal|null
+operator||
+name|localValue
+operator|instanceof
+name|AbstractFuture
+operator|.
+name|SetFuture
+condition|)
+block|{
+name|abstractFuture
+operator|=
+name|trusted
+expr_stmt|;
+continue|continue;
+comment|// loop back up and try to complete the new future
+block|}
+block|}
+else|else
+block|{
+comment|// not a TrustedFuture, call cancel directly.
+name|futureToPropagateTo
 operator|.
 name|cancel
 argument_list|(
@@ -2027,30 +2180,37 @@ name|mayInterruptIfRunning
 argument_list|)
 expr_stmt|;
 block|}
-return|return
-literal|true
-return|;
+block|}
+break|break;
 block|}
 comment|// obj changed, reread
 name|localValue
 operator|=
+name|abstractFuture
+operator|.
 name|value
 expr_stmt|;
-comment|// obj cannot be null at this point, because value can only change from null to non-null. So
-comment|// if value changed (and it did since we lost the CAS), then it cannot be null.
-block|}
-do|while
+if|if
 condition|(
+operator|!
+operator|(
 name|localValue
 operator|instanceof
 name|AbstractFuture
 operator|.
 name|SetFuture
+operator|)
 condition|)
-do|;
+block|{
+comment|// obj cannot be null at this point, because value can only change from null to non-null.
+comment|// So if value changed (and it did since we lost the CAS), then it cannot be null and
+comment|// since it isn't a SetFuture, then the future must be done and we should exit the loop
+break|break;
+block|}
+block|}
 block|}
 return|return
-literal|false
+name|rValue
 return|;
 block|}
 comment|/**    * Subclasses can override this method to implement interruption of the future's computation. The    * method is invoked automatically by a successful call to {@link #cancel(boolean) cancel(true)}.    *    *<p>The default implementation does nothing.    *    * @since 10.0    */
@@ -2235,7 +2395,9 @@ argument_list|)
 condition|)
 block|{
 name|complete
-argument_list|()
+argument_list|(
+name|this
+argument_list|)
 expr_stmt|;
 return|return
 literal|true
@@ -2284,7 +2446,9 @@ argument_list|)
 condition|)
 block|{
 name|complete
-argument_list|()
+argument_list|(
+name|this
+argument_list|)
 expr_stmt|;
 return|return
 literal|true
@@ -2338,13 +2502,39 @@ name|isDone
 argument_list|()
 condition|)
 block|{
-return|return
-name|completeWithFuture
+name|Object
+name|value
+init|=
+name|getFutureValue
 argument_list|(
 name|future
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|ATOMIC_HELPER
+operator|.
+name|casValue
+argument_list|(
+name|this
 argument_list|,
 literal|null
+argument_list|,
+name|value
 argument_list|)
+condition|)
+block|{
+name|complete
+argument_list|(
+name|this
+argument_list|)
+expr_stmt|;
+return|return
+literal|true
+return|;
+block|}
+return|return
+literal|false
 return|;
 block|}
 name|SetFuture
@@ -2352,7 +2542,12 @@ name|valueToSet
 init|=
 operator|new
 name|SetFuture
+argument_list|<
+name|V
+argument_list|>
 argument_list|(
+name|this
+argument_list|,
 name|future
 argument_list|)
 decl_stmt|;
@@ -2476,24 +2671,18 @@ return|return
 literal|false
 return|;
 block|}
-comment|/**    * Called when a future passed via setFuture has completed.    *    * @param future the done future to complete this future with.    * @param expected the expected value of the {@link #value} field.    */
-annotation|@
-name|CanIgnoreReturnValue
-DECL|method|completeWithFuture (ListenableFuture<? extends V> future, Object expected)
+comment|/**    * Returns a value, suitable for storing in the {@link #value} field. From the given future,    * which is assumed to be done.    *    *<p>This is approximately the inverse of {@link #getDoneValue(Object)}    */
+DECL|method|getFutureValue (ListenableFuture<?> future)
 specifier|private
-name|boolean
-name|completeWithFuture
+specifier|static
+name|Object
+name|getFutureValue
 parameter_list|(
 name|ListenableFuture
 argument_list|<
 name|?
-extends|extends
-name|V
 argument_list|>
 name|future
-parameter_list|,
-name|Object
-name|expected
 parameter_list|)
 block|{
 name|Object
@@ -2510,8 +2699,7 @@ comment|// Break encapsulation for TrustedFuture instances since we know that su
 comment|// override .get() (since it is final) and therefore this is equivalent to calling .get()
 comment|// and unpacking the exceptions like we do below (just much faster because it is a single
 comment|// field read instead of a read, several branches and possibly creating exceptions).
-name|valueToSet
-operator|=
+return|return
 operator|(
 operator|(
 name|AbstractFuture
@@ -2523,14 +2711,14 @@ name|future
 operator|)
 operator|.
 name|value
-expr_stmt|;
+return|;
 block|}
 else|else
 block|{
 comment|// Otherwise calculate valueToSet by calling .get()
 try|try
 block|{
-name|V
+name|Object
 name|v
 init|=
 name|getDone
@@ -2600,144 +2788,181 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|// The only way this can fail is if we raced with another thread calling cancel(). If we lost
-comment|// that race then there is nothing to do.
+return|return
+name|valueToSet
+return|;
+block|}
+comment|/** Unblocks all threads and runs all listeners. */
+DECL|method|complete (AbstractFuture<?> future)
+specifier|private
+specifier|static
+name|void
+name|complete
+parameter_list|(
+name|AbstractFuture
+argument_list|<
+name|?
+argument_list|>
+name|future
+parameter_list|)
+block|{
+name|Listener
+name|next
+init|=
+literal|null
+decl_stmt|;
+name|outer
+label|:
+while|while
+condition|(
+literal|true
+condition|)
+block|{
+name|future
+operator|.
+name|releaseWaiters
+argument_list|()
+expr_stmt|;
+comment|// We call this before the listeners in order to avoid needing to manage a separate stack data
+comment|// structure for them.
+comment|// afterDone() should be generally fast and only used for cleanup work... but in theory can
+comment|// also be recursive and create StackOverflowErrors
+name|future
+operator|.
+name|afterDone
+argument_list|()
+expr_stmt|;
+comment|// push the current set of listeners onto next
+name|next
+operator|=
+name|future
+operator|.
+name|clearListeners
+argument_list|(
+name|next
+argument_list|)
+expr_stmt|;
+name|future
+operator|=
+literal|null
+expr_stmt|;
+while|while
+condition|(
+name|next
+operator|!=
+literal|null
+condition|)
+block|{
+name|Listener
+name|curr
+init|=
+name|next
+decl_stmt|;
+name|next
+operator|=
+name|next
+operator|.
+name|next
+expr_stmt|;
+name|Runnable
+name|task
+init|=
+name|curr
+operator|.
+name|task
+decl_stmt|;
+if|if
+condition|(
+name|task
+operator|instanceof
+name|AbstractFuture
+operator|.
+name|SetFuture
+condition|)
+block|{
+name|AbstractFuture
+operator|.
+name|SetFuture
+argument_list|<
+name|?
+argument_list|>
+name|setFuture
+init|=
+operator|(
+name|AbstractFuture
+operator|.
+name|SetFuture
+operator|)
+name|task
+decl_stmt|;
+comment|// We unwind setFuture specifically to avoid StackOverflowErrors in the case of long
+comment|// chains of SetFutures
+comment|// Handling this special case is important because there is no way to pass an executor to
+comment|// setFuture, so a user couldn't break the chain by doing this themselves.  It is also
+comment|// potentially common if someone writes a recursive Futures.transformAsync transformer.
+name|future
+operator|=
+name|setFuture
+operator|.
+name|owner
+expr_stmt|;
+if|if
+condition|(
+name|future
+operator|.
+name|value
+operator|==
+name|setFuture
+condition|)
+block|{
+name|Object
+name|valueToSet
+init|=
+name|getFutureValue
+argument_list|(
+name|setFuture
+operator|.
+name|future
+argument_list|)
+decl_stmt|;
 if|if
 condition|(
 name|ATOMIC_HELPER
 operator|.
 name|casValue
 argument_list|(
-name|AbstractFuture
-operator|.
-name|this
+name|future
 argument_list|,
-name|expected
+name|setFuture
 argument_list|,
 name|valueToSet
 argument_list|)
 condition|)
 block|{
-name|complete
-argument_list|()
-expr_stmt|;
-return|return
-literal|true
-return|;
+continue|continue
+name|outer
+continue|;
 block|}
-return|return
-literal|false
-return|;
 block|}
-comment|/** Unblocks all threads and runs all listeners. */
-DECL|method|complete ()
-specifier|private
-name|void
-name|complete
-parameter_list|()
-block|{
-for|for
-control|(
-name|Waiter
-name|currentWaiter
-init|=
-name|clearWaiters
-argument_list|()
-init|;
-name|currentWaiter
-operator|!=
-literal|null
-condition|;
-name|currentWaiter
-operator|=
-name|currentWaiter
-operator|.
-name|next
-control|)
-block|{
-name|currentWaiter
-operator|.
-name|unpark
-argument_list|()
-expr_stmt|;
+comment|// other wise the future we were trying to set is already done.
 block|}
-comment|// We need to reverse the list to handle buggy listeners that depend on ordering.
-name|Listener
-name|currentListener
-init|=
-name|clearListeners
-argument_list|()
-decl_stmt|;
-name|Listener
-name|reversedList
-init|=
-literal|null
-decl_stmt|;
-while|while
-condition|(
-name|currentListener
-operator|!=
-literal|null
-condition|)
-block|{
-name|Listener
-name|tmp
-init|=
-name|currentListener
-decl_stmt|;
-name|currentListener
-operator|=
-name|currentListener
-operator|.
-name|next
-expr_stmt|;
-name|tmp
-operator|.
-name|next
-operator|=
-name|reversedList
-expr_stmt|;
-name|reversedList
-operator|=
-name|tmp
-expr_stmt|;
-block|}
-for|for
-control|(
-init|;
-name|reversedList
-operator|!=
-literal|null
-condition|;
-name|reversedList
-operator|=
-name|reversedList
-operator|.
-name|next
-control|)
+else|else
 block|{
 name|executeListener
 argument_list|(
-name|reversedList
-operator|.
 name|task
 argument_list|,
-name|reversedList
+name|curr
 operator|.
 name|executor
 argument_list|)
 expr_stmt|;
 block|}
-comment|// We call this after the listeners on the theory that afterDone() will only be used for
-comment|// 'cleanup' oriented tasks (e.g. clearing fields) and so can wait behind listeners which may be
-comment|// executing more important work. A counter argument would be that done() is trusted code and
-comment|// therefore it would be safe to run before potentially slow or poorly behaved listeners.
-comment|// Reevaluate this once we have more examples of afterDone() implementations.
-name|afterDone
-argument_list|()
-expr_stmt|;
 block|}
-comment|/**    * Callback method that is called exactly once after the future is completed.    *    *<p>If {@link #interruptTask} is also run during completion, {@link #afterDone} runs after it.    *    *<p>The default implementation of this method in {@code AbstractFuture} does nothing.    *    * @since 20.0    */
+break|break;
+block|}
+block|}
+comment|/**    * Callback method that is called exactly once after the future is completed.    *    *<p>If {@link #interruptTask} is also run during completion, {@link #afterDone} runs after it.    *    *<p>The default implementation of this method in {@code AbstractFuture} does nothing.  This is    * intended for very lightweight cleanup work, for example, timing statistics or clearing fields.    * If your task does anything heavier consider, just using a listener with an executor.    *    * @since 20.0    */
 comment|// TODO(cpovirk): @ForOverride https://github.com/google/error-prone/issues/342
 annotation|@
 name|Beta
@@ -2800,11 +3025,11 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** Clears the {@link #waiters} list and returns the most recently added value. */
-DECL|method|clearWaiters ()
+comment|/** Releases all threads in the {@link #waiters} list, and clears the list. */
+DECL|method|releaseWaiters ()
 specifier|private
-name|Waiter
-name|clearWaiters
+name|void
+name|releaseWaiters
 parameter_list|()
 block|{
 name|Waiter
@@ -2834,17 +3059,47 @@ name|TOMBSTONE
 argument_list|)
 condition|)
 do|;
-return|return
+for|for
+control|(
+name|Waiter
+name|currentWaiter
+init|=
 name|head
-return|;
+init|;
+name|currentWaiter
+operator|!=
+literal|null
+condition|;
+name|currentWaiter
+operator|=
+name|currentWaiter
+operator|.
+name|next
+control|)
+block|{
+name|currentWaiter
+operator|.
+name|unpark
+argument_list|()
+expr_stmt|;
 block|}
-comment|/** Clears the {@link #listeners} list and returns the most recently added value. */
-DECL|method|clearListeners ()
+block|}
+comment|/**    * Clears the {@link #listeners} list and prepends its contents to {@code onto}, least recently    * added first.    */
+DECL|method|clearListeners (Listener onto)
 specifier|private
 name|Listener
 name|clearListeners
-parameter_list|()
+parameter_list|(
+name|Listener
+name|onto
+parameter_list|)
 block|{
+comment|// We need to
+comment|// 1. atomically swap the listeners with TOMBSTONE, this is because addListener uses that to
+comment|//    to synchronize with us
+comment|// 2. reverse the linked list, because despite our rather clear contract, people depend on us
+comment|//    executing listeners in the order they were added
+comment|// 3. push all the items onto 'onto' and return the new head of the stack
 name|Listener
 name|head
 decl_stmt|;
@@ -2872,8 +3127,42 @@ name|TOMBSTONE
 argument_list|)
 condition|)
 do|;
-return|return
+name|Listener
+name|reversedList
+init|=
+name|onto
+decl_stmt|;
+while|while
+condition|(
 name|head
+operator|!=
+literal|null
+condition|)
+block|{
+name|Listener
+name|tmp
+init|=
+name|head
+decl_stmt|;
+name|head
+operator|=
+name|head
+operator|.
+name|next
+expr_stmt|;
+name|tmp
+operator|.
+name|next
+operator|=
+name|reversedList
+expr_stmt|;
+name|reversedList
+operator|=
+name|tmp
+expr_stmt|;
+block|}
+return|return
+name|reversedList
 return|;
 block|}
 comment|/**    * Submits the given runnable to the given {@link Executor} catching and logging all    * {@linkplain RuntimeException runtime exceptions} thrown by the executor.    */
