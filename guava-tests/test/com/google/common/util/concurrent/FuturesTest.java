@@ -16919,9 +16919,6 @@ name|class
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|GwtIncompatible
-comment|// nonCancellationPropagating
 DECL|method|testNonCancellationPropagating_successful ()
 specifier|public
 name|void
@@ -16993,9 +16990,6 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|GwtIncompatible
-comment|// nonCancellationPropagating
 DECL|method|testNonCancellationPropagating_failure ()
 specifier|public
 name|void
@@ -17079,9 +17073,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-annotation|@
-name|GwtIncompatible
-comment|// nonCancellationPropagating
 DECL|method|testNonCancellationPropagating_delegateCancelled ()
 specifier|public
 name|void
@@ -17139,9 +17130,6 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|GwtIncompatible
-comment|// nonCancellationPropagating
 DECL|method|testNonCancellationPropagating_doesNotPropagate ()
 specifier|public
 name|void
