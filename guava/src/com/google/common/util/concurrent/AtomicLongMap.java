@@ -44,6 +44,20 @@ name|common
 operator|.
 name|annotations
 operator|.
+name|Beta
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
 name|GwtCompatible
 import|;
 end_import
@@ -948,6 +962,8 @@ block|}
 block|}
 block|}
 comment|/**    * Atomically remove {@code key} from the map iff its associated value is 0.    *    * @since 20.0    */
+annotation|@
+name|Beta
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|removeIfZero (K key)
