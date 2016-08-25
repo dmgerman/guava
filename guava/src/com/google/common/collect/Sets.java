@@ -800,7 +800,7 @@ return|return
 name|set
 return|;
 block|}
-comment|/**    * Creates a {@code HashSet} instance, with a high enough initial table size that it<i>should</i>    * hold {@code expectedSize} elements without resizing. This behavior cannot be broadly    * guaranteed, but it is observed to be true for OpenJDK 1.7. It also can't be guaranteed that the    * method isn't inadvertently<i>oversizing</i> the returned set.    *    * @param expectedSize the number of elements you expect to add to the    *        returned set    * @return a new, empty {@code HashSet} with enough capacity to hold {@code    *         expectedSize} elements without resizing    * @throws IllegalArgumentException if {@code expectedSize} is negative    */
+comment|/**    * Returns a new hash set using the smallest initial table size that can hold {@code expectedSize}    * elements without resizing. Note that this is not what {@link HashSet#HashSet(int)} does, but it    * is what most users want and expect it to do.    *    *<p>This behavior can't be broadly guaranteed, but has been tested with OpenJDK 1.7 and 1.8.    *    * @param expectedSize the number of elements you expect to add to the returned set    * @return a new, empty hash set with enough capacity to hold {@code expectedSize} elements    *     without resizing    * @throws IllegalArgumentException if {@code expectedSize} is negative    */
 DECL|method|newHashSetWithExpectedSize (int expectedSize)
 specifier|public
 specifier|static
