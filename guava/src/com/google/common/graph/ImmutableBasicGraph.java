@@ -54,6 +54,20 @@ name|google
 operator|.
 name|common
 operator|.
+name|collect
+operator|.
+name|ImmutableCollection
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
 name|graph
 operator|.
 name|BasicGraph
@@ -63,7 +77,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link BasicGraph} whose elements and structural relationships will never change. Instances of  * this class may be obtained with {@link #copyOf(BasicGraph)}.  *  * @author James Sexton  * @author Joshua O'Madadhain  * @author Omar Darwish  * @param<N> Node parameter type  * @since 20.0  */
+comment|/**  * A {@link BasicGraph} whose elements and structural relationships will never change. Instances of  * this class may be obtained with {@link #copyOf(BasicGraph)}.  *  *<p>This class generally provides all of the same guarantees as {@link ImmutableCollection}  * (despite not extending {@link ImmutableCollection} itself), including guaranteed thread-safety.  *  * @author James Sexton  * @author Joshua O'Madadhain  * @author Omar Darwish  * @param<N> Node parameter type  * @since 20.0  */
 end_comment
 
 begin_class
@@ -89,7 +103,7 @@ argument_list|<
 name|N
 argument_list|>
 block|{
-comment|/**    * To ensure the immutability contract is maintained, there must be no public constructors.    */
+comment|/** To ensure the immutability contract is maintained, there must be no public constructors. */
 DECL|method|ImmutableBasicGraph (BasicGraph<N> graph)
 specifier|private
 name|ImmutableBasicGraph
@@ -107,7 +121,7 @@ name|graph
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Returns an immutable copy of {@code graph}.    */
+comment|/** Returns an immutable copy of {@code graph}. */
 DECL|method|copyOf (BasicGraph<N> graph)
 specifier|public
 specifier|static

@@ -33,6 +33,22 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|graph
+operator|.
+name|Graphs
+operator|.
+name|checkNonNegative
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -70,6 +86,20 @@ name|common
 operator|.
 name|collect
 operator|.
+name|ImmutableCollection
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|collect
+operator|.
 name|ImmutableMap
 import|;
 end_import
@@ -89,7 +119,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link Graph} whose elements and structural relationships will never change. Instances of  * this class may be obtained with {@link #copyOf(Graph)}.  *  * @author James Sexton  * @param<N> Node parameter type  * @param<V> Value parameter type  * @since 20.0  */
+comment|/**  * A {@link Graph} whose elements and structural relationships will never change. Instances of this  * class may be obtained with {@link #copyOf(Graph)}.  *  *<p>This class generally provides all of the same guarantees as {@link ImmutableCollection}  * (despite not extending {@link ImmutableCollection} itself), including guaranteed thread-safety.  *  * @author James Sexton  * @param<N> Node parameter type  * @param<V> Value parameter type  * @since 20.0  */
 end_comment
 
 begin_class
@@ -112,7 +142,13 @@ argument_list|,
 name|V
 argument_list|>
 block|{
-comment|/**    * To ensure the immutability contract is maintained, there must be no public constructors.    */
+DECL|field|edgeCount
+specifier|private
+specifier|final
+name|long
+name|edgeCount
+decl_stmt|;
+comment|/** To ensure the immutability contract is maintained, there must be no public constructors. */
 DECL|method|ImmutableGraph (Graph<N, V> graph)
 name|ImmutableGraph
 parameter_list|(
@@ -138,7 +174,14 @@ name|getNodeConnections
 argument_list|(
 name|graph
 argument_list|)
-argument_list|,
+argument_list|)
+expr_stmt|;
+name|this
+operator|.
+name|edgeCount
+operator|=
+name|checkNonNegative
+argument_list|(
 name|graph
 operator|.
 name|edges
@@ -149,7 +192,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Returns an immutable copy of {@code graph}.    */
+comment|/** Returns an immutable copy of {@code graph}. */
 DECL|method|copyOf (Graph<N, V> graph)
 specifier|public
 specifier|static
@@ -325,7 +368,7 @@ name|build
 argument_list|()
 return|;
 block|}
-DECL|method|connectionsOf (final Graph<N, V> graph, final N node)
+DECL|method|connectionsOf ( final Graph<N, V> graph, final N node)
 specifier|private
 specifier|static
 parameter_list|<
@@ -445,6 +488,18 @@ argument_list|,
 name|successorNodeToValueFn
 argument_list|)
 argument_list|)
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|edgeCount ()
+specifier|protected
+name|long
+name|edgeCount
+parameter_list|()
+block|{
+return|return
+name|edgeCount
 return|;
 block|}
 block|}

@@ -155,6 +155,14 @@ argument_list|,
 name|V
 argument_list|>
 block|{
+DECL|field|edgeCount
+specifier|private
+name|long
+name|edgeCount
+init|=
+literal|0L
+decl_stmt|;
+comment|// must be updated when edges are added or removed
 comment|/**    * Constructs a mutable graph with the properties specified in {@code builder}.    */
 DECL|method|ConfigurableMutableGraph (AbstractGraphBuilder<? super N> builder)
 name|ConfigurableMutableGraph
@@ -173,6 +181,18 @@ argument_list|(
 name|builder
 argument_list|)
 expr_stmt|;
+block|}
+annotation|@
+name|Override
+DECL|method|edgeCount ()
+specifier|protected
+name|long
+name|edgeCount
+parameter_list|()
+block|{
+return|return
+name|edgeCount
+return|;
 block|}
 annotation|@
 name|Override

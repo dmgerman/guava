@@ -97,22 +97,6 @@ import|;
 end_import
 
 begin_import
-import|import static
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|graph
-operator|.
-name|Graphs
-operator|.
-name|checkNonNegative
-import|;
-end_import
-
-begin_import
 import|import
 name|java
 operator|.
@@ -210,12 +194,6 @@ argument_list|>
 argument_list|>
 name|nodeConnections
 decl_stmt|;
-DECL|field|edgeCount
-specifier|protected
-name|long
-name|edgeCount
-decl_stmt|;
-comment|// must be updated when edges are added or removed
 comment|/**    * Constructs a graph with the properties specified in {@code builder}.    */
 DECL|method|ConfigurableGraph (AbstractGraphBuilder<? super N> builder)
 name|ConfigurableGraph
@@ -258,14 +236,11 @@ argument_list|(
 name|DEFAULT_NODE_COUNT
 argument_list|)
 argument_list|)
-argument_list|,
-literal|0L
-comment|/* edgeCount */
 argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Constructs a graph with the properties specified in {@code builder}, initialized with    * the given node map.    */
-DECL|method|ConfigurableGraph (AbstractGraphBuilder<? super N> builder, Map<N, GraphConnections<N, V>> nodeConnections, long edgeCount)
+DECL|method|ConfigurableGraph (AbstractGraphBuilder<? super N> builder, Map<N, GraphConnections<N, V>> nodeConnections)
 name|ConfigurableGraph
 parameter_list|(
 name|AbstractGraphBuilder
@@ -288,9 +263,6 @@ name|V
 argument_list|>
 argument_list|>
 name|nodeConnections
-parameter_list|,
-name|long
-name|edgeCount
 parameter_list|)
 block|{
 name|this
@@ -361,15 +333,6 @@ argument_list|>
 argument_list|>
 argument_list|(
 name|nodeConnections
-argument_list|)
-expr_stmt|;
-name|this
-operator|.
-name|edgeCount
-operator|=
-name|checkNonNegative
-argument_list|(
-name|edgeCount
 argument_list|)
 expr_stmt|;
 block|}
@@ -602,18 +565,6 @@ return|;
 block|}
 return|return
 name|value
-return|;
-block|}
-annotation|@
-name|Override
-DECL|method|edgeCount ()
-specifier|protected
-name|long
-name|edgeCount
-parameter_list|()
-block|{
-return|return
-name|edgeCount
 return|;
 block|}
 DECL|method|checkedConnections (Object node)

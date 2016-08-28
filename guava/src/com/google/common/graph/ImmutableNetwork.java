@@ -70,6 +70,20 @@ name|common
 operator|.
 name|collect
 operator|.
+name|ImmutableCollection
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|collect
+operator|.
 name|ImmutableMap
 import|;
 end_import
@@ -99,7 +113,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link Network} whose elements and structural relationships will never change. Instances of  * this class may be obtained with {@link #copyOf(Network)}.  *  * @author James Sexton  * @author Joshua O'Madadhain  * @author Omar Darwish  * @param<N> Node parameter type  * @param<E> Edge parameter type  * @since 20.0  */
+comment|/**  * A {@link Network} whose elements and structural relationships will never change. Instances of  * this class may be obtained with {@link #copyOf(Network)}.  *  *<p>This class generally provides all of the same guarantees as {@link ImmutableCollection}  * (despite not extending {@link ImmutableCollection} itself), including guaranteed thread-safety.  *  * @author James Sexton  * @author Joshua O'Madadhain  * @author Omar Darwish  * @param<N> Node parameter type  * @param<E> Edge parameter type  * @since 20.0  */
 end_comment
 
 begin_class
@@ -122,7 +136,7 @@ argument_list|,
 name|E
 argument_list|>
 block|{
-comment|/**    * To ensure the immutability contract is maintained, there must be no public constructors.    */
+comment|/** To ensure the immutability contract is maintained, there must be no public constructors. */
 DECL|method|ImmutableNetwork (Network<N, E> graph)
 specifier|private
 name|ImmutableNetwork
@@ -157,7 +171,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Returns an immutable copy of {@code graph}.    */
+comment|/** Returns an immutable copy of {@code graph}. */
 DECL|method|copyOf (Network<N, E> graph)
 specifier|public
 specifier|static
