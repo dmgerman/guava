@@ -139,6 +139,15 @@ end_comment
 begin_class
 annotation|@
 name|Beta
+annotation|@
+name|Immutable
+argument_list|(
+name|containerOf
+operator|=
+block|{
+literal|"N"
+block|}
+argument_list|)
 DECL|class|ImmutableGraph
 specifier|public
 specifier|abstract
@@ -442,6 +451,12 @@ argument_list|<
 name|N
 argument_list|>
 block|{
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"Immutable"
+argument_list|)
+comment|// Uses ImmutableMaps in the backing graph.
 DECL|field|backingValueGraph
 specifier|protected
 specifier|final

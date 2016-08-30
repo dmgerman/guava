@@ -119,6 +119,23 @@ end_comment
 begin_class
 annotation|@
 name|Beta
+annotation|@
+name|Immutable
+argument_list|(
+name|containerOf
+operator|=
+block|{
+literal|"N"
+block|,
+literal|"E"
+block|}
+argument_list|)
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"Immutable"
+argument_list|)
+comment|// Extends ConfigurableNetwork but uses ImmutableMaps.
 DECL|class|ImmutableNetwork
 specifier|public
 specifier|final

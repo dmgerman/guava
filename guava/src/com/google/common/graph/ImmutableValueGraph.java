@@ -119,6 +119,17 @@ end_comment
 begin_class
 annotation|@
 name|Beta
+annotation|@
+name|Immutable
+argument_list|(
+name|containerOf
+operator|=
+block|{
+literal|"N"
+block|,
+literal|"V"
+block|}
+argument_list|)
 DECL|class|ImmutableValueGraph
 specifier|public
 specifier|final

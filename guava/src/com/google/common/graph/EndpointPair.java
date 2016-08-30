@@ -106,6 +106,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|Immutable
+import|;
+end_import
+
+begin_import
+import|import
 name|javax
 operator|.
 name|annotation
@@ -121,6 +135,15 @@ end_comment
 begin_class
 annotation|@
 name|Beta
+annotation|@
+name|Immutable
+argument_list|(
+name|containerOf
+operator|=
+block|{
+literal|"N"
+block|}
+argument_list|)
 DECL|class|EndpointPair
 specifier|public
 specifier|abstract

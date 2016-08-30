@@ -136,6 +136,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|Immutable
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -171,6 +185,8 @@ end_comment
 begin_class
 annotation|@
 name|Beta
+annotation|@
+name|Immutable
 DECL|class|ElementOrder
 specifier|public
 specifier|final
@@ -186,6 +202,12 @@ specifier|final
 name|Type
 name|type
 decl_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"Immutable"
+argument_list|)
+comment|// Hopefully the comparator provided is immutable!
 annotation|@
 name|Nullable
 DECL|field|comparator
