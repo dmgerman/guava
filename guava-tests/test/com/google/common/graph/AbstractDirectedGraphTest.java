@@ -63,7 +63,7 @@ name|void
 name|predecessors_oneEdge
 parameter_list|()
 block|{
-name|addEdge
+name|putEdge
 argument_list|(
 name|N1
 argument_list|,
@@ -108,7 +108,7 @@ name|void
 name|successors_oneEdge
 parameter_list|()
 block|{
-name|addEdge
+name|putEdge
 argument_list|(
 name|N1
 argument_list|,
@@ -153,7 +153,7 @@ name|void
 name|inDegree_oneEdge
 parameter_list|()
 block|{
-name|addEdge
+name|putEdge
 argument_list|(
 name|N1
 argument_list|,
@@ -200,7 +200,7 @@ name|void
 name|outDegree_oneEdge
 parameter_list|()
 block|{
-name|addEdge
+name|putEdge
 argument_list|(
 name|N1
 argument_list|,
@@ -262,7 +262,7 @@ argument_list|)
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|addEdge
+name|putEdge
 argument_list|(
 name|N1
 argument_list|,
@@ -282,7 +282,7 @@ name|void
 name|addEdge_existingEdgeBetweenSameNodes
 parameter_list|()
 block|{
-name|addEdge
+name|putEdge
 argument_list|(
 name|N1
 argument_list|,
@@ -291,7 +291,7 @@ argument_list|)
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|addEdge
+name|putEdge
 argument_list|(
 name|N1
 argument_list|,
@@ -309,14 +309,14 @@ name|void
 name|removeEdge_antiparallelEdges
 parameter_list|()
 block|{
-name|addEdge
+name|putEdge
 argument_list|(
 name|N1
 argument_list|,
 name|N2
 argument_list|)
 expr_stmt|;
-name|addEdge
+name|putEdge
 argument_list|(
 name|N2
 argument_list|,

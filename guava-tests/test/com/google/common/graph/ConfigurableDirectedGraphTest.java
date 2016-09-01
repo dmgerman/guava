@@ -119,14 +119,14 @@ name|void
 name|adjacentNodes_selfLoop
 parameter_list|()
 block|{
-name|addEdge
+name|putEdge
 argument_list|(
 name|N1
 argument_list|,
 name|N1
 argument_list|)
 expr_stmt|;
-name|addEdge
+name|putEdge
 argument_list|(
 name|N1
 argument_list|,
@@ -159,7 +159,7 @@ name|void
 name|predecessors_selfLoop
 parameter_list|()
 block|{
-name|addEdge
+name|putEdge
 argument_list|(
 name|N1
 argument_list|,
@@ -181,7 +181,7 @@ argument_list|(
 name|N1
 argument_list|)
 expr_stmt|;
-name|addEdge
+name|putEdge
 argument_list|(
 name|N4
 argument_list|,
@@ -214,7 +214,7 @@ name|void
 name|successors_selfLoop
 parameter_list|()
 block|{
-name|addEdge
+name|putEdge
 argument_list|(
 name|N1
 argument_list|,
@@ -236,7 +236,7 @@ argument_list|(
 name|N1
 argument_list|)
 expr_stmt|;
-name|addEdge
+name|putEdge
 argument_list|(
 name|N1
 argument_list|,
@@ -269,7 +269,7 @@ name|void
 name|degree_selfLoop
 parameter_list|()
 block|{
-name|addEdge
+name|putEdge
 argument_list|(
 name|N1
 argument_list|,
@@ -291,7 +291,7 @@ argument_list|(
 literal|2
 argument_list|)
 expr_stmt|;
-name|addEdge
+name|putEdge
 argument_list|(
 name|N1
 argument_list|,
@@ -322,7 +322,7 @@ name|void
 name|inDegree_selfLoop
 parameter_list|()
 block|{
-name|addEdge
+name|putEdge
 argument_list|(
 name|N1
 argument_list|,
@@ -344,7 +344,7 @@ argument_list|(
 literal|1
 argument_list|)
 expr_stmt|;
-name|addEdge
+name|putEdge
 argument_list|(
 name|N4
 argument_list|,
@@ -375,7 +375,7 @@ name|void
 name|outDegree_selfLoop
 parameter_list|()
 block|{
-name|addEdge
+name|putEdge
 argument_list|(
 name|N1
 argument_list|,
@@ -397,7 +397,7 @@ argument_list|(
 literal|1
 argument_list|)
 expr_stmt|;
-name|addEdge
+name|putEdge
 argument_list|(
 name|N1
 argument_list|,
@@ -432,7 +432,7 @@ parameter_list|()
 block|{
 name|assertThat
 argument_list|(
-name|addEdge
+name|putEdge
 argument_list|(
 name|N1
 argument_list|,
@@ -482,7 +482,7 @@ name|void
 name|addEdge_existingSelfLoopEdgeBetweenSameNodes
 parameter_list|()
 block|{
-name|addEdge
+name|putEdge
 argument_list|(
 name|N1
 argument_list|,
@@ -491,7 +491,7 @@ argument_list|)
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|addEdge
+name|putEdge
 argument_list|(
 name|N1
 argument_list|,
@@ -516,7 +516,7 @@ argument_list|(
 name|N1
 argument_list|)
 expr_stmt|;
-name|addEdge
+name|putEdge
 argument_list|(
 name|N1
 argument_list|,
@@ -556,7 +556,7 @@ name|void
 name|removeEdge_existingSelfLoopEdge
 parameter_list|()
 block|{
-name|addEdge
+name|putEdge
 argument_list|(
 name|N1
 argument_list|,

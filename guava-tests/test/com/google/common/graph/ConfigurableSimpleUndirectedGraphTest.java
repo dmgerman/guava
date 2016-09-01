@@ -256,7 +256,7 @@ name|UnsupportedOperationException
 name|e
 parameter_list|)
 block|{
-name|addEdge
+name|putEdge
 argument_list|(
 name|N1
 argument_list|,
@@ -329,7 +329,7 @@ name|UnsupportedOperationException
 name|e
 parameter_list|)
 block|{
-name|addEdge
+name|putEdge
 argument_list|(
 name|N1
 argument_list|,
@@ -402,7 +402,7 @@ name|UnsupportedOperationException
 name|e
 parameter_list|)
 block|{
-name|addEdge
+name|putEdge
 argument_list|(
 name|N1
 argument_list|,
@@ -437,7 +437,7 @@ parameter_list|()
 block|{
 try|try
 block|{
-name|addEdge
+name|putEdge
 argument_list|(
 name|N1
 argument_list|,
