@@ -70,6 +70,20 @@ name|google
 operator|.
 name|common
 operator|.
+name|collect
+operator|.
+name|UnmodifiableIterator
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
 name|math
 operator|.
 name|IntMath
@@ -97,16 +111,6 @@ operator|.
 name|util
 operator|.
 name|AbstractSet
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Iterator
 import|;
 end_import
 
@@ -217,7 +221,7 @@ block|{
 annotation|@
 name|Override
 specifier|public
-name|Iterator
+name|UnmodifiableIterator
 argument_list|<
 name|EndpointPair
 argument_list|<
