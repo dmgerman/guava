@@ -167,10 +167,74 @@ name|nodeV
 argument_list|)
 expr_stmt|;
 block|}
-comment|// TODO(b/31167164): Decide which of these constructors to make public.
+comment|/** Returns an {@link EndpointPair} representing the endpoints of a directed edge. */
+DECL|method|ordered (N source, N target)
+specifier|public
+specifier|static
+parameter_list|<
+name|N
+parameter_list|>
+name|EndpointPair
+argument_list|<
+name|N
+argument_list|>
+name|ordered
+parameter_list|(
+name|N
+name|source
+parameter_list|,
+name|N
+name|target
+parameter_list|)
+block|{
+return|return
+operator|new
+name|Ordered
+argument_list|<
+name|N
+argument_list|>
+argument_list|(
+name|source
+argument_list|,
+name|target
+argument_list|)
+return|;
+block|}
+comment|/** Returns an {@link EndpointPair} representing the endpoints of an undirected edge. */
+DECL|method|unordered (N nodeU, N nodeV)
+specifier|public
+specifier|static
+parameter_list|<
+name|N
+parameter_list|>
+name|EndpointPair
+argument_list|<
+name|N
+argument_list|>
+name|unordered
+parameter_list|(
+name|N
+name|nodeU
+parameter_list|,
+name|N
+name|nodeV
+parameter_list|)
+block|{
+return|return
+operator|new
+name|Unordered
+argument_list|<
+name|N
+argument_list|>
+argument_list|(
+name|nodeU
+argument_list|,
+name|nodeV
+argument_list|)
+return|;
+block|}
 comment|/** Returns an {@link EndpointPair} representing the endpoints of an edge in {@code graph}. */
 DECL|method|of (Graph<?> graph, N nodeU, N nodeV)
-specifier|public
 specifier|static
 parameter_list|<
 name|N
@@ -217,7 +281,6 @@ return|;
 block|}
 comment|/** Returns an {@link EndpointPair} representing the endpoints of an edge in {@code network}. */
 DECL|method|of (Network<?, ?> network, N nodeU, N nodeV)
-specifier|public
 specifier|static
 parameter_list|<
 name|N
@@ -257,74 +320,6 @@ name|nodeV
 argument_list|)
 else|:
 name|unordered
-argument_list|(
-name|nodeU
-argument_list|,
-name|nodeV
-argument_list|)
-return|;
-block|}
-comment|/** Returns an {@link EndpointPair} representing the endpoints of a directed edge. */
-DECL|method|ordered (N source, N target)
-specifier|static
-parameter_list|<
-name|N
-parameter_list|>
-name|EndpointPair
-operator|.
-name|Ordered
-argument_list|<
-name|N
-argument_list|>
-name|ordered
-parameter_list|(
-name|N
-name|source
-parameter_list|,
-name|N
-name|target
-parameter_list|)
-block|{
-return|return
-operator|new
-name|Ordered
-argument_list|<
-name|N
-argument_list|>
-argument_list|(
-name|source
-argument_list|,
-name|target
-argument_list|)
-return|;
-block|}
-comment|/** Returns an {@link EndpointPair} representing the endpoints of an undirected edge. */
-DECL|method|unordered (N nodeU, N nodeV)
-specifier|static
-parameter_list|<
-name|N
-parameter_list|>
-name|EndpointPair
-operator|.
-name|Unordered
-argument_list|<
-name|N
-argument_list|>
-name|unordered
-parameter_list|(
-name|N
-name|nodeU
-parameter_list|,
-name|N
-name|nodeV
-parameter_list|)
-block|{
-return|return
-operator|new
-name|Unordered
-argument_list|<
-name|N
-argument_list|>
 argument_list|(
 name|nodeU
 argument_list|,
