@@ -95,21 +95,21 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A class to facilitate the set returned by {@link Graph#edges()}.  *  * @author James Sexton  * @since 20.0  */
+comment|/**  * A class to facilitate the set returned by {@link Graph#edges()}.  *  * @author James Sexton  */
 end_comment
 
 begin_class
-DECL|class|EndpointsIterator
+DECL|class|EndpointPairIterator
 specifier|abstract
 class|class
-name|EndpointsIterator
+name|EndpointPairIterator
 parameter_list|<
 name|N
 parameter_list|>
 extends|extends
 name|AbstractIterator
 argument_list|<
-name|Endpoints
+name|EndpointPair
 argument_list|<
 name|N
 argument_list|>
@@ -121,8 +121,6 @@ specifier|final
 name|Graph
 argument_list|<
 name|N
-argument_list|,
-name|?
 argument_list|>
 name|graph
 decl_stmt|;
@@ -160,12 +158,12 @@ operator|.
 name|iterator
 argument_list|()
 decl_stmt|;
-DECL|method|of (Graph<N, ?> graph)
+DECL|method|of (Graph<N> graph)
 specifier|static
 parameter_list|<
 name|N
 parameter_list|>
-name|EndpointsIterator
+name|EndpointPairIterator
 argument_list|<
 name|N
 argument_list|>
@@ -174,8 +172,6 @@ parameter_list|(
 name|Graph
 argument_list|<
 name|N
-argument_list|,
-name|?
 argument_list|>
 name|graph
 parameter_list|)
@@ -205,14 +201,12 @@ name|graph
 argument_list|)
 return|;
 block|}
-DECL|method|EndpointsIterator (Graph<N, ?> graph)
-name|EndpointsIterator
+DECL|method|EndpointPairIterator (Graph<N> graph)
+name|EndpointPairIterator
 parameter_list|(
 name|Graph
 argument_list|<
 name|N
-argument_list|,
-name|?
 argument_list|>
 name|graph
 parameter_list|)
@@ -299,19 +293,17 @@ parameter_list|<
 name|N
 parameter_list|>
 extends|extends
-name|EndpointsIterator
+name|EndpointPairIterator
 argument_list|<
 name|N
 argument_list|>
 block|{
-DECL|method|Directed (Graph<N, ?> graph)
+DECL|method|Directed (Graph<N> graph)
 name|Directed
 parameter_list|(
 name|Graph
 argument_list|<
 name|N
-argument_list|,
-name|?
 argument_list|>
 name|graph
 parameter_list|)
@@ -326,7 +318,7 @@ annotation|@
 name|Override
 DECL|method|computeNext ()
 specifier|protected
-name|Endpoints
+name|EndpointPair
 argument_list|<
 name|N
 argument_list|>
@@ -347,9 +339,9 @@ argument_list|()
 condition|)
 block|{
 return|return
-name|Endpoints
+name|EndpointPair
 operator|.
-name|ofDirected
+name|ordered
 argument_list|(
 name|node
 argument_list|,
@@ -375,7 +367,7 @@ block|}
 block|}
 block|}
 block|}
-comment|/**    * If the graph is undirected, each unordered [node, otherNode] pair (except self-loops) will be    * visited twice if there is one or more edge connecting them. To avoid returning duplicate    * {@link Endpoints}, we keep track of the nodes that we have visited. When processing node pairs,    * we skip if the "other node" is in the visited set, as shown below:    *    * Nodes = {N1, N2, N3, N4}    *    N2           __    *   /  \         |  |    * N1----N3      N4__|    *    * Visited Nodes = {}    * Endpoints [N1, N2] - return    * Endpoints [N1, N3] - return    * Visited Nodes = {N1}    * Endpoints [N2, N1] - skip    * Endpoints [N2, N3] - return    * Visited Nodes = {N1, N2}    * Endpoints [N3, N1] - skip    * Endpoints [N3, N2] - skip    * Visited Nodes = {N1, N2, N3}    * Endpoints [N4, N4] - return    * Visited Nodes = {N1, N2, N3, N4}    */
+comment|/**    * If the graph is undirected, each unordered [node, otherNode] pair (except self-loops) will be    * visited twice if there is one or more edge connecting them. To avoid returning duplicate    * {@link EndpointPair}, we keep track of the nodes that we have visited. When processing endpoint    * pairs, we skip if the "other node" is in the visited set, as shown below:    *    * Nodes = {N1, N2, N3, N4}    *    N2           __    *   /  \         |  |    * N1----N3      N4__|    *    * Visited Nodes = {}    * EndpointPair [N1, N2] - return    * EndpointPair [N1, N3] - return    * Visited Nodes = {N1}    * EndpointPair [N2, N1] - skip    * EndpointPair [N2, N3] - return    * Visited Nodes = {N1, N2}    * EndpointPair [N3, N1] - skip    * EndpointPair [N3, N2] - skip    * Visited Nodes = {N1, N2, N3}    * EndpointPair [N4, N4] - return    * Visited Nodes = {N1, N2, N3, N4}    */
 DECL|class|Undirected
 specifier|private
 specifier|static
@@ -386,7 +378,7 @@ parameter_list|<
 name|N
 parameter_list|>
 extends|extends
-name|EndpointsIterator
+name|EndpointPairIterator
 argument_list|<
 name|N
 argument_list|>
@@ -399,14 +391,12 @@ name|N
 argument_list|>
 name|visitedNodes
 decl_stmt|;
-DECL|method|Undirected (Graph<N, ?> graph)
+DECL|method|Undirected (Graph<N> graph)
 name|Undirected
 parameter_list|(
 name|Graph
 argument_list|<
 name|N
-argument_list|,
-name|?
 argument_list|>
 name|graph
 parameter_list|)
@@ -438,7 +428,7 @@ annotation|@
 name|Override
 DECL|method|computeNext ()
 specifier|protected
-name|Endpoints
+name|EndpointPair
 argument_list|<
 name|N
 argument_list|>
@@ -478,9 +468,9 @@ argument_list|)
 condition|)
 block|{
 return|return
-name|Endpoints
+name|EndpointPair
 operator|.
-name|ofUndirected
+name|unordered
 argument_list|(
 name|node
 argument_list|,

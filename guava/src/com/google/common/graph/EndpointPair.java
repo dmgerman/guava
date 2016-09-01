@@ -105,17 +105,17 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An immutable pair representing the two (possibly equal, in the case of a self-loop) endpoints  * of an edge in a graph. The {@link Endpoints} of a directed edge are an ordered pair of nodes  * (source and target). The {@link Endpoints} of an undirected edge are an unordered pair of nodes.  *  * @author James Sexton  * @since 20.0  */
+comment|/**  * An immutable pair representing the two (possibly equal, in the case of a self-loop) endpoints of  * an edge in a graph. The {@link EndpointPair} of a directed edge is an ordered pair of nodes  * ({@link #source()} and {@link #source()}). The {@link EndpointPair} of an undirected edge is an  * unordered pair of nodes ({@link #nodeU()} and {@link #nodeV()}).  *  * @author James Sexton  * @since 20.0  */
 end_comment
 
 begin_class
 annotation|@
 name|Beta
-DECL|class|Endpoints
+DECL|class|EndpointPair
 specifier|public
 specifier|abstract
 class|class
-name|Endpoints
+name|EndpointPair
 parameter_list|<
 name|N
 parameter_list|>
@@ -125,56 +125,57 @@ argument_list|<
 name|N
 argument_list|>
 block|{
-DECL|field|nodeA
+DECL|field|nodeU
 specifier|private
 specifier|final
 name|N
-name|nodeA
+name|nodeU
 decl_stmt|;
-DECL|field|nodeB
+DECL|field|nodeV
 specifier|private
 specifier|final
 name|N
-name|nodeB
+name|nodeV
 decl_stmt|;
-DECL|method|Endpoints (N nodeA, N nodeB)
+DECL|method|EndpointPair (N nodeU, N nodeV)
 specifier|private
-name|Endpoints
+name|EndpointPair
 parameter_list|(
 name|N
-name|nodeA
+name|nodeU
 parameter_list|,
 name|N
-name|nodeB
+name|nodeV
 parameter_list|)
 block|{
 name|this
 operator|.
-name|nodeA
+name|nodeU
 operator|=
 name|checkNotNull
 argument_list|(
-name|nodeA
+name|nodeU
 argument_list|)
 expr_stmt|;
 name|this
 operator|.
-name|nodeB
+name|nodeV
 operator|=
 name|checkNotNull
 argument_list|(
-name|nodeB
+name|nodeV
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Returns {@link Endpoints} representing the endpoints of an edge in {@code graph}.    */
-DECL|method|of (Graph<?, ?> graph, N nodeA, N nodeB)
+comment|// TODO(b/31167164): Decide which of these constructors to make public.
+comment|/** Returns an {@link EndpointPair} representing the endpoints of an edge in {@code graph}. */
+DECL|method|of (Graph<?> graph, N nodeU, N nodeV)
 specifier|public
 specifier|static
 parameter_list|<
 name|N
 parameter_list|>
-name|Endpoints
+name|EndpointPair
 argument_list|<
 name|N
 argument_list|>
@@ -183,16 +184,14 @@ parameter_list|(
 name|Graph
 argument_list|<
 name|?
-argument_list|,
-name|?
 argument_list|>
 name|graph
 parameter_list|,
 name|N
-name|nodeA
+name|nodeU
 parameter_list|,
 name|N
-name|nodeB
+name|nodeV
 parameter_list|)
 block|{
 return|return
@@ -201,29 +200,29 @@ operator|.
 name|isDirected
 argument_list|()
 condition|?
-name|ofDirected
+name|ordered
 argument_list|(
-name|nodeA
+name|nodeU
 argument_list|,
-name|nodeB
+name|nodeV
 argument_list|)
 else|:
-name|ofUndirected
+name|unordered
 argument_list|(
-name|nodeA
+name|nodeU
 argument_list|,
-name|nodeB
+name|nodeV
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns {@link Endpoints} representing the endpoints of an edge in {@code network}.    */
-DECL|method|of (Network<?, ?> network, N nodeA, N nodeB)
+comment|/** Returns an {@link EndpointPair} representing the endpoints of an edge in {@code network}. */
+DECL|method|of (Network<?, ?> network, N nodeU, N nodeV)
 specifier|public
 specifier|static
 parameter_list|<
 name|N
 parameter_list|>
-name|Endpoints
+name|EndpointPair
 argument_list|<
 name|N
 argument_list|>
@@ -238,10 +237,10 @@ argument_list|>
 name|network
 parameter_list|,
 name|N
-name|nodeA
+name|nodeU
 parameter_list|,
 name|N
-name|nodeB
+name|nodeV
 parameter_list|)
 block|{
 return|return
@@ -250,34 +249,34 @@ operator|.
 name|isDirected
 argument_list|()
 condition|?
-name|ofDirected
+name|ordered
 argument_list|(
-name|nodeA
+name|nodeU
 argument_list|,
-name|nodeB
+name|nodeV
 argument_list|)
 else|:
-name|ofUndirected
+name|unordered
 argument_list|(
-name|nodeA
+name|nodeU
 argument_list|,
-name|nodeB
+name|nodeV
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns {@link Endpoints} representing the endpoints of a directed edge.    */
-DECL|method|ofDirected (N source, N target)
+comment|/** Returns an {@link EndpointPair} representing the endpoints of a directed edge. */
+DECL|method|ordered (N source, N target)
 specifier|static
 parameter_list|<
 name|N
 parameter_list|>
-name|Endpoints
+name|EndpointPair
 operator|.
-name|Directed
+name|Ordered
 argument_list|<
 name|N
 argument_list|>
-name|ofDirected
+name|ordered
 parameter_list|(
 name|N
 name|source
@@ -288,7 +287,7 @@ parameter_list|)
 block|{
 return|return
 operator|new
-name|Directed
+name|Ordered
 argument_list|<
 name|N
 argument_list|>
@@ -299,41 +298,41 @@ name|target
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns {@link Endpoints} representing the endpoints of an undirected edge.    */
-DECL|method|ofUndirected (N nodeA, N nodeB)
+comment|/** Returns an {@link EndpointPair} representing the endpoints of an undirected edge. */
+DECL|method|unordered (N nodeU, N nodeV)
 specifier|static
 parameter_list|<
 name|N
 parameter_list|>
-name|Endpoints
+name|EndpointPair
 operator|.
-name|Undirected
+name|Unordered
 argument_list|<
 name|N
 argument_list|>
-name|ofUndirected
+name|unordered
 parameter_list|(
 name|N
-name|nodeA
+name|nodeU
 parameter_list|,
 name|N
-name|nodeB
+name|nodeV
 parameter_list|)
 block|{
 return|return
 operator|new
-name|Undirected
+name|Unordered
 argument_list|<
 name|N
 argument_list|>
 argument_list|(
-name|nodeA
+name|nodeU
 argument_list|,
-name|nodeB
+name|nodeV
 argument_list|)
 return|;
 block|}
-comment|/**    * If these are the {@link Endpoints} of a directed edge, returns the node which is the source of    * that edge.    *    * @throws UnsupportedOperationException if these are the {@link Endpoints} of a undirected edge    */
+comment|/**    * If this {@link EndpointPair} {@link #isOrdered()}, returns the node which is the source.    *    * @throws UnsupportedOperationException if this {@link EndpointPair} is not ordered    */
 DECL|method|source ()
 specifier|public
 specifier|abstract
@@ -341,7 +340,7 @@ name|N
 name|source
 parameter_list|()
 function_decl|;
-comment|/**    * If these are the {@link Endpoints} of a directed edge, returns the node which is the target of    * that edge.    *    * @throws UnsupportedOperationException if these are the {@link Endpoints} of a undirected edge    */
+comment|/**    * If this {@link EndpointPair} {@link #isOrdered()}, returns the node which is the target.    *    * @throws UnsupportedOperationException if this {@link EndpointPair} is not ordered    */
 DECL|method|target ()
 specifier|public
 specifier|abstract
@@ -349,31 +348,31 @@ name|N
 name|target
 parameter_list|()
 function_decl|;
-comment|/**    * If these are the {@link Endpoints} of a directed edge, returns the {@link #source()};    * otherwise, returns an arbitrary (but consistent) endpoint of the origin edge.    */
-DECL|method|nodeA ()
+comment|/**    * If this {@link EndpointPair} {@link #isOrdered()} returns the {@link #source()}; otherwise,    * returns an arbitrary (but consistent) endpoint of the origin edge.    */
+DECL|method|nodeU ()
 specifier|public
 specifier|final
 name|N
-name|nodeA
+name|nodeU
 parameter_list|()
 block|{
 return|return
-name|nodeA
+name|nodeU
 return|;
 block|}
-comment|/**    * Returns the node {@link #adjacentNode(Object) adjacent} to {@link #nodeA()} along the origin    * edge. If these are the {@link Endpoints} of a directed edge, it is equal to {@link #target()}.    */
-DECL|method|nodeB ()
+comment|/**    * Returns the node {@link #adjacentNode(Object) adjacent} to {@link #nodeU()} along the origin    * edge. If this {@link EndpointPair} {@link #isOrdered()}, this is equal to {@link #target()}.    */
+DECL|method|nodeV ()
 specifier|public
 specifier|final
 name|N
-name|nodeB
+name|nodeV
 parameter_list|()
 block|{
 return|return
-name|nodeB
+name|nodeV
 return|;
 block|}
-comment|/**    * Returns the node that is adjacent to {@code node} along the origin edge.    *    * @throws IllegalArgumentException if this instance does not contain {@code node}, that is, the    *     origin edge is not incident to {@code}    */
+comment|/**    * Returns the node that is adjacent to {@code node} along the origin edge.    *    * @throws IllegalArgumentException if this {@link EndpointPair} does not contain {@code node}    */
 DECL|method|adjacentNode (Object node)
 specifier|public
 specifier|final
@@ -397,12 +396,12 @@ name|node
 operator|.
 name|equals
 argument_list|(
-name|nodeA
+name|nodeU
 argument_list|)
 condition|)
 block|{
 return|return
-name|nodeB
+name|nodeV
 return|;
 block|}
 elseif|else
@@ -412,12 +411,12 @@ name|node
 operator|.
 name|equals
 argument_list|(
-name|nodeB
+name|nodeV
 argument_list|)
 condition|)
 block|{
 return|return
-name|nodeA
+name|nodeU
 return|;
 block|}
 else|else
@@ -430,7 +429,7 @@ name|String
 operator|.
 name|format
 argument_list|(
-literal|"Endpoints %s does not contain node %s"
+literal|"EndpointPair %s does not contain node %s"
 argument_list|,
 name|this
 argument_list|,
@@ -440,13 +439,15 @@ argument_list|)
 throw|;
 block|}
 block|}
-DECL|method|isDirected ()
+comment|/**    * Returns {@code true} iff this {@link EndpointPair} is an ordered pair (i.e. represents the    * endpoints of a directed edge).    */
+DECL|method|isOrdered ()
+specifier|public
 specifier|abstract
 name|boolean
-name|isDirected
+name|isOrdered
 parameter_list|()
 function_decl|;
-comment|/**    * Iterates in the order {@link #nodeA()}, {@link #nodeB()}.    */
+comment|/** Iterates in the order {@link #nodeU()}, {@link #nodeV()}. */
 annotation|@
 name|Override
 DECL|method|iterator ()
@@ -464,13 +465,13 @@ name|Iterators
 operator|.
 name|forArray
 argument_list|(
-name|nodeA
+name|nodeU
 argument_list|,
-name|nodeB
+name|nodeV
 argument_list|)
 return|;
 block|}
-comment|/**    * The {@link Endpoints} of two directed edges are equal if their {@link #source()} and    * {@link #target()} are equal. The {@link Endpoints} of two undirected edges are equal if they    * contain the same nodes. The {@link Endpoints} of a directed edge are never equal to the    * {@link Endpoints} of an undirected edge.    */
+comment|/**    * Two ordered {@link EndpointPair}s are equal if their {@link #source()} and {@link #target()}    * are equal. Two unordered {@link EndpointPair}s are equal if they contain the same nodes. An    * ordered {@link EndpointPair} is never equal to an unordered {@link EndpointPair}.    */
 annotation|@
 name|Override
 DECL|method|equals (Object obj)
@@ -483,7 +484,7 @@ name|Object
 name|obj
 parameter_list|)
 function_decl|;
-comment|/**    * The hashcode of the {@link Endpoints} of a directed edge is equal to    * {@code Objects.hashCode(source(), target())}. The hashcode of the {@link Endpoints}    * of an undirected edge is equal to {@code nodeA().hashCode() ^ nodeB().hashCode()}.    */
+comment|/**    * The hashcode of an ordered {@link EndpointPair} is equal to {@code Objects.hashCode(source(),    * target())}. The hashcode of an unordered {@link EndpointPair} is equal to {@code    * nodeU().hashCode() ^ nodeV().hashCode()}.    */
 annotation|@
 name|Override
 DECL|method|hashCode ()
@@ -493,25 +494,24 @@ name|int
 name|hashCode
 parameter_list|()
 function_decl|;
-comment|/**    * The {@link Endpoints} of a directed edge.    */
-DECL|class|Directed
+DECL|class|Ordered
 specifier|private
 specifier|static
 specifier|final
 class|class
-name|Directed
+name|Ordered
 parameter_list|<
 name|N
 parameter_list|>
 extends|extends
-name|Endpoints
+name|EndpointPair
 argument_list|<
 name|N
 argument_list|>
 block|{
-DECL|method|Directed (N source, N target)
+DECL|method|Ordered (N source, N target)
 specifier|private
-name|Directed
+name|Ordered
 parameter_list|(
 name|N
 name|source
@@ -537,7 +537,7 @@ name|source
 parameter_list|()
 block|{
 return|return
-name|nodeA
+name|nodeU
 argument_list|()
 return|;
 block|}
@@ -550,15 +550,16 @@ name|target
 parameter_list|()
 block|{
 return|return
-name|nodeB
+name|nodeV
 argument_list|()
 return|;
 block|}
 annotation|@
 name|Override
-DECL|method|isDirected ()
+DECL|method|isOrdered ()
+specifier|public
 name|boolean
-name|isDirected
+name|isOrdered
 parameter_list|()
 block|{
 return|return
@@ -593,7 +594,7 @@ operator|!
 operator|(
 name|obj
 operator|instanceof
-name|Endpoints
+name|EndpointPair
 operator|)
 condition|)
 block|{
@@ -601,14 +602,14 @@ return|return
 literal|false
 return|;
 block|}
-name|Endpoints
+name|EndpointPair
 argument_list|<
 name|?
 argument_list|>
 name|other
 init|=
 operator|(
-name|Endpoints
+name|EndpointPair
 argument_list|<
 name|?
 argument_list|>
@@ -617,12 +618,12 @@ name|obj
 decl_stmt|;
 if|if
 condition|(
-name|isDirected
+name|isOrdered
 argument_list|()
 operator|!=
 name|other
 operator|.
-name|isDirected
+name|isOrdered
 argument_list|()
 condition|)
 block|{
@@ -699,38 +700,37 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**    * The {@link Endpoints} of an undirected edge.    */
-DECL|class|Undirected
+DECL|class|Unordered
 specifier|private
 specifier|static
 specifier|final
 class|class
-name|Undirected
+name|Unordered
 parameter_list|<
 name|N
 parameter_list|>
 extends|extends
-name|Endpoints
+name|EndpointPair
 argument_list|<
 name|N
 argument_list|>
 block|{
-DECL|method|Undirected (N nodeA, N nodeB)
+DECL|method|Unordered (N nodeU, N nodeV)
 specifier|private
-name|Undirected
+name|Unordered
 parameter_list|(
 name|N
-name|nodeA
+name|nodeU
 parameter_list|,
 name|N
-name|nodeB
+name|nodeV
 parameter_list|)
 block|{
 name|super
 argument_list|(
-name|nodeA
+name|nodeU
 argument_list|,
-name|nodeB
+name|nodeV
 argument_list|)
 expr_stmt|;
 block|}
@@ -768,9 +768,10 @@ throw|;
 block|}
 annotation|@
 name|Override
-DECL|method|isDirected ()
+DECL|method|isOrdered ()
+specifier|public
 name|boolean
-name|isDirected
+name|isOrdered
 parameter_list|()
 block|{
 return|return
@@ -805,7 +806,7 @@ operator|!
 operator|(
 name|obj
 operator|instanceof
-name|Endpoints
+name|EndpointPair
 operator|)
 condition|)
 block|{
@@ -813,14 +814,14 @@ return|return
 literal|false
 return|;
 block|}
-name|Endpoints
+name|EndpointPair
 argument_list|<
 name|?
 argument_list|>
 name|other
 init|=
 operator|(
-name|Endpoints
+name|EndpointPair
 argument_list|<
 name|?
 argument_list|>
@@ -829,12 +830,12 @@ name|obj
 decl_stmt|;
 if|if
 condition|(
-name|isDirected
+name|isOrdered
 argument_list|()
 operator|!=
 name|other
 operator|.
-name|isDirected
+name|isOrdered
 argument_list|()
 condition|)
 block|{
@@ -843,62 +844,62 @@ literal|false
 return|;
 block|}
 comment|// Equivalent to the following simple implementation:
-comment|// boolean condition1 = nodeA().equals(other.nodeA())&& nodeB().equals(other.nodeB());
-comment|// boolean condition2 = nodeA().equals(other.nodeB())&& nodeB().equals(other.nodeA());
+comment|// boolean condition1 = nodeU().equals(other.nodeU())&& nodeV().equals(other.nodeV());
+comment|// boolean condition2 = nodeU().equals(other.nodeV())&& nodeV().equals(other.nodeU());
 comment|// return condition1 || condition2;
 if|if
 condition|(
-name|nodeA
+name|nodeU
 argument_list|()
 operator|.
 name|equals
 argument_list|(
 name|other
 operator|.
-name|nodeA
+name|nodeU
 argument_list|()
 argument_list|)
 condition|)
 block|{
 comment|// check condition1
 comment|// Here's the tricky bit. We don't have to explicitly check for condition2 in this case.
-comment|// Why? The second half of condition2 requires that nodeB equals other.nodeA.
-comment|// We already know that nodeA equals other.nodeA. Combined with the earlier statement,
-comment|// and the transitive property of equality, this implies that nodeA equals nodeB.
-comment|// If nodeA equals nodeB, condition1 == condition2, so checking condition1 is sufficient.
+comment|// Why? The second half of condition2 requires that nodeV equals other.nodeU.
+comment|// We already know that nodeU equals other.nodeU. Combined with the earlier statement,
+comment|// and the transitive property of equality, this implies that nodeU equals nodeV.
+comment|// If nodeU equals nodeV, condition1 == condition2, so checking condition1 is sufficient.
 return|return
-name|nodeB
+name|nodeV
 argument_list|()
 operator|.
 name|equals
 argument_list|(
 name|other
 operator|.
-name|nodeB
+name|nodeV
 argument_list|()
 argument_list|)
 return|;
 block|}
 return|return
-name|nodeA
+name|nodeU
 argument_list|()
 operator|.
 name|equals
 argument_list|(
 name|other
 operator|.
-name|nodeB
+name|nodeV
 argument_list|()
 argument_list|)
 operator|&&
-name|nodeB
+name|nodeV
 argument_list|()
 operator|.
 name|equals
 argument_list|(
 name|other
 operator|.
-name|nodeA
+name|nodeU
 argument_list|()
 argument_list|)
 return|;
@@ -913,13 +914,13 @@ name|hashCode
 parameter_list|()
 block|{
 return|return
-name|nodeA
+name|nodeU
 argument_list|()
 operator|.
 name|hashCode
 argument_list|()
 operator|^
-name|nodeB
+name|nodeV
 argument_list|()
 operator|.
 name|hashCode
@@ -941,10 +942,10 @@ name|format
 argument_list|(
 literal|"[%s, %s]"
 argument_list|,
-name|nodeA
+name|nodeU
 argument_list|()
 argument_list|,
-name|nodeB
+name|nodeV
 argument_list|()
 argument_list|)
 return|;

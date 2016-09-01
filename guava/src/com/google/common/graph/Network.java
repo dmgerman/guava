@@ -71,7 +71,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An interface for<a href="https://en.wikipedia.org/wiki/Graph_(discrete_mathematics)">graph</a>  * data structures. A graph is composed of a set of nodes (sometimes called vertices) and a set of  * edges connecting pairs of nodes. Graphs are useful for modeling many kinds of relations. If the  * relation to be modeled is symmetric (such as "distance between cities"), that can be represented  * with an undirected graph, where an edge that connects node A to node B also connects node B to  * node A. If the relation to be modeled is asymmetric (such as "employees managed"), that can be  * represented with a directed graph, where edges are strictly one-way.  *  *<p>There are three main interfaces provided to represent graphs. In order of increasing  * complexity they are: {@link BasicGraph}, {@link Graph}, and {@link Network}. You should generally  * prefer the simplest interface that satisfies your use case.  *  *<ol>  *<li>Do you have data (objects) that you wish to associate with edges?  *<p>Yes: Go to question 2. No: Use {@link BasicGraph}.  *<li>Are the objects you wish to associate with edges unique within the scope of a graph? That is,  *     no two objects would be {@link Object#equals(Object) equal} to each other. A common example  *     where this would<i>not</i> be the case is with weighted graphs.  *<p>Yes: Go to question 3. No: Use {@link Graph}.  *<li>Do you need to be able to query the graph for an edge associated with a particular object?  *     For example, do you need to query what nodes an edge associated with a particular object  *     connects, or whether an edge associated with that object exists in the graph?  *<p>Yes: Use {@link Network}. No: Go to question 4.  *<li>Do you need explicit support for parallel edges? For example, do you need to remove one edge  *     connecting a pair of nodes while leaving other edges connecting those same nodes intact?  *<p>Yes: Use {@link Network}. No: Use {@link Graph}.  *</ol>  *  *<p>Although {@link MutableGraph} and {@link MutableNetwork} both require users to provide objects  * to associate with edges when adding them, the differentiating factor is that in {@link Graph}s,  * these objects can be any arbitrary data. Like the values in a {@link Map}, they do not have to be  * unique, and can be mutated while in the graph. In a {@link Network}, these objects serve as keys  * into the data structure. Like the keys in a {@link Map}, they must be unique, and cannot be  * mutated in a way that affects their equals/hashcode or the data structure will become corrupted.  *  *<p>In all three interfaces, nodes have all the same requirements as keys in a {@link Map}.  *  *<p>All mutation methods live on the subinterface {@link MutableNetwork}. If you do not need to  * mutate a network (e.g. if you write a method than runs a read-only algorithm on the network), you  * should prefer the non-mutating {@link Network} interface.  *  *<p>We provide an efficient implementation of this interface via {@link NetworkBuilder}. When  * using the implementation provided, all {@link Set}-returning methods provide live, unmodifiable  * views of the network. In other words, you cannot add an element to the {@link Set}, but if an  * element is added to the {@link Network} that would affect the result of that set, it will be  * updated automatically. This also means that you cannot modify a {@link Network} in a way that  * would affect a {#link Set} while iterating over that set. For example, you cannot remove the  * nodes from a {@link Network} while iterating over {@link #nodes} (unless you first make a copy of  * the nodes), just as you could not remove the keys from a {@link Map} while iterating over its  * {@link Map#keySet()}. This will either throw a {@link ConcurrentModificationException} or risk  * undefined behavior.  *  *<p>Example of use:  *  *<pre><code>  * MutableNetwork<String, String> roadNetwork = NetworkBuilder.undirected().build();  * roadNetwork.addEdge("Springfield", "Shelbyville", "Monorail");  * roadNetwork.addEdge("New York", "New New York", "Applied Cryogenics");  * roadNetwork.addEdge("Springfield", "New New York", "Secret Wormhole");  * String roadToQuery = "Secret Wormhole";  * if (roadNetwork.edges().contains(roadToQuery)) {  *   Endpoints<String> cities = roadNetwork.incidentNodes(roadToQuery);  *   System.out.format("%s and %s connected via %s", cities.nodeA(), cities.nodeB(), roadToQuery);  * }  *</code></pre>  *  * @author James Sexton  * @author Joshua O'Madadhain  * @param<N> Node parameter type  * @param<E> Edge parameter type  * @since 20.0  */
+comment|/**  * An interface for<a href="https://en.wikipedia.org/wiki/Graph_(discrete_mathematics)">graph</a>  * data structures. A graph is composed of a set of nodes (sometimes called vertices) and a set of  * edges connecting pairs of nodes. Graphs are useful for modeling many kinds of relations. If the  * relation to be modeled is symmetric (such as "distance between cities"), that can be represented  * with an undirected graph, where an edge that connects node A to node B also connects node B to  * node A. If the relation to be modeled is asymmetric (such as "employees managed"), that can be  * represented with a directed graph, where edges are strictly one-way.  *  *<p>There are three main interfaces provided to represent graphs. In order of increasing  * complexity they are: {@link Graph}, {@link ValueGraph}, and {@link Network}. You should generally  * prefer the simplest interface that satisfies your use case.  *  *<ol>  *<li>Do you have data (objects) that you wish to associate with edges?  *<p>Yes: Go to question 2. No: Use {@link Graph}.  *<li>Are the objects you wish to associate with edges unique within the scope of a graph? That is,  *     no two objects would be {@link Object#equals(Object) equal} to each other. A common example  *     where this would<i>not</i> be the case is with weighted graphs.  *<p>Yes: Go to question 3. No: Use {@link ValueGraph}.  *<li>Do you need to be able to query the graph for an edge associated with a particular object?  *     For example, do you need to query what nodes an edge associated with a particular object  *     connects, or whether an edge associated with that object exists in the graph?  *<p>Yes: Use {@link Network}. No: Go to question 4.  *<li>Do you need explicit support for parallel edges? For example, do you need to remove one edge  *     connecting a pair of nodes while leaving other edges connecting those same nodes intact?  *<p>Yes: Use {@link Network}. No: Use {@link ValueGraph}.  *</ol>  *  *<p>Although {@link MutableValueGraph} and {@link MutableNetwork} both require users to provide  * objects to associate with edges when adding them, the differentiating factor is that in {@link  * ValueGraph}s, these objects can be any arbitrary data. Like the values in a {@link Map}, they do  * not have to be unique, and can be mutated while in the graph. In a {@link Network}, these objects  * serve as keys into the data structure. Like the keys in a {@link Map}, they must be unique, and  * cannot be mutated in a way that affects their equals/hashcode or the data structure will become  * corrupted.  *  *<p>In all three interfaces, nodes have all the same requirements as keys in a {@link Map}.  *  *<p>All mutation methods live on the subinterface {@link MutableNetwork}. If you do not need to  * mutate a network (e.g. if you write a method than runs a read-only algorithm on the network), you  * should prefer the non-mutating {@link Network} interface.  *  *<p>We provide an efficient implementation of this interface via {@link NetworkBuilder}. When  * using the implementation provided, all {@link Set}-returning methods provide live, unmodifiable  * views of the network. In other words, you cannot add an element to the {@link Set}, but if an  * element is added to the {@link Network} that would affect the result of that set, it will be  * updated automatically. This also means that you cannot modify a {@link Network} in a way that  * would affect a {#link Set} while iterating over that set. For example, you cannot remove the  * nodes from a {@link Network} while iterating over {@link #nodes} (unless you first make a copy of  * the nodes), just as you could not remove the keys from a {@link Map} while iterating over its  * {@link Map#keySet()}. This will either throw a {@link ConcurrentModificationException} or risk  * undefined behavior.  *  *<p>Example of use:  *  *<pre><code>  * MutableNetwork<String, String> roadNetwork = NetworkBuilder.undirected().build();  * roadNetwork.addEdge("Springfield", "Shelbyville", "Monorail");  * roadNetwork.addEdge("New York", "New New York", "Applied Cryogenics");  * roadNetwork.addEdge("Springfield", "New New York", "Secret Wormhole");  * String roadToQuery = "Secret Wormhole";  * if (roadNetwork.edges().contains(roadToQuery)) {  *   EndpointPair<String> cities = roadNetwork.incidentNodes(roadToQuery);  *   System.out.format("%s and %s connected via %s", cities.nodeU(), cities.nodeV(), roadToQuery);  * }  *</code></pre>  *  * @author James Sexton  * @author Joshua O'Madadhain  * @param<N> Node parameter type  * @param<E> Edge parameter type  * @since 20.0  */
 end_comment
 
 begin_interface
@@ -108,16 +108,11 @@ argument_list|>
 name|edges
 parameter_list|()
 function_decl|;
-comment|/**    * Returns a live view of this network as a {@link Graph}. The resulting {@link Graph} will have    * an edge connecting node A to node B iff this {@link Network} has an edge connecting A to B.    *    *<p>{@link Graph#edgeValue(Object, Object)} will return the set of edges connecting node A to    * node B if the set is non-empty, otherwise, it will throw {@link IllegalArgumentException}.    *    *<p>If this network {@link #allowsParallelEdges()}, parallel edges will treated as if collapsed    * into a single edge. For example, the {@link #degree(Object)} of a node in the {@link Graph}    * view may be less than the degree of the same node in this {@link Network}.    */
+comment|/**    * Returns a live view of this network as a {@link Graph}. The resulting {@link Graph} will have    * an edge connecting node A to node B iff this {@link Network} has an edge connecting A to B.    *    *<p>If this network {@link #allowsParallelEdges()}, parallel edges will treated as if collapsed    * into a single edge. For example, the {@link #degree(Object)} of a node in the {@link Graph}    * view may be less than the degree of the same node in this {@link Network}.    */
 DECL|method|asGraph ()
 name|Graph
 argument_list|<
 name|N
-argument_list|,
-name|Set
-argument_list|<
-name|E
-argument_list|>
 argument_list|>
 name|asGraph
 parameter_list|()
@@ -125,7 +120,7 @@ function_decl|;
 comment|//
 comment|// Network properties
 comment|//
-comment|/**    * Returns true if the edges in this network are directed. Directed edges connect a {@link    * Endpoints#source() source node} to a {@link Endpoints#target() target node}, while undirected    * edges connect a pair of nodes to each other.    */
+comment|/**    * Returns true if the edges in this network are directed. Directed edges connect a {@link    * EndpointPair#source() source node} to a {@link EndpointPair#target() target node}, while    * undirected edges connect a pair of nodes to each other.    */
 DECL|method|isDirected ()
 name|boolean
 name|isDirected
@@ -265,7 +260,7 @@ parameter_list|)
 function_decl|;
 comment|/**    * Returns the nodes which are the endpoints of {@code edge} in this network.    *    * @throws IllegalArgumentException if {@code edge} is not an element of this network    */
 DECL|method|incidentNodes (Object edge)
-name|Endpoints
+name|EndpointPair
 argument_list|<
 name|N
 argument_list|>
@@ -287,8 +282,8 @@ name|Object
 name|edge
 parameter_list|)
 function_decl|;
-comment|/**    * Returns the set of edges that connect {@code nodeA} to {@code nodeB}.    *    *<p>In an undirected network, this is equal to {@code edgesConnecting(nodeB, nodeA)}.    *    * @throws IllegalArgumentException if {@code nodeA} or {@code nodeB} is not an element of this    *     network    */
-DECL|method|edgesConnecting (Object nodeA, Object nodeB)
+comment|/**    * Returns the set of edges that connect {@code nodeU} to {@code nodeV}.    *    *<p>In an undirected network, this is equal to {@code edgesConnecting(nodeV, nodeU)}.    *    * @throws IllegalArgumentException if {@code nodeU} or {@code nodeV} is not an element of this    *     network    */
+DECL|method|edgesConnecting (Object nodeU, Object nodeV)
 name|Set
 argument_list|<
 name|E
@@ -296,16 +291,16 @@ argument_list|>
 name|edgesConnecting
 parameter_list|(
 name|Object
-name|nodeA
+name|nodeU
 parameter_list|,
 name|Object
-name|nodeB
+name|nodeV
 parameter_list|)
 function_decl|;
 comment|//
 comment|// Network identity
 comment|//
-comment|/**    * Returns {@code true} iff {@code object} is a {@link Network} that has the same elements and the    * same structural relationships as those in this network.    *    *<p>Thus, two networks A and B are equal if<b>all</b> of the following are true:    *    *<ul>    *<li>A and B have equal {@link #isDirected() directedness}.    *<li>A and B have equal {@link #nodes() node sets}.    *<li>A and B have equal {@link #edges() edge sets}.    *<li>Every edge in A and B connects the same nodes in the same direction (if any).    *</ul>    *    *<p>Network properties besides {@link #isDirected() directedness} do<b>not</b> affect equality.    * For example, two networks may be considered equal even if one allows parallel edges and the    * other doesn't. Additionally, the order in which nodes or edges are added to the network, and    * the order in which they are iterated over, are irrelevant.    *    *<p>A reference implementation of this is provided by {@link AbstractNetwork#equals(Object)}.    */
+comment|/**    * For the default {@link Network} implementations, returns true iff {@code this == object} (i.e.    * reference equality). External implementations are free to define this method as they see fit,    * as long as they satisfy the {@link Object#equals(Object)} contract.    *    *<p>To compare two {@link Network}s based on their contents rather than their references, see    * {@link Graphs#equivalent(Network, Network)}.    */
 annotation|@
 name|Override
 DECL|method|equals (@ullable Object object)
@@ -318,7 +313,7 @@ name|Object
 name|object
 parameter_list|)
 function_decl|;
-comment|/**    * Returns the hash code for this network. The hash code of a network is defined as the hash code    * of a map from each of its {@link #edges() edges} to their {@link #incidentNodes(Object)    * incident nodes}.    *    *<p>A reference implementation of this is provided by {@link AbstractNetwork#hashCode()}.    */
+comment|/**    * For the default {@link Network} implementations, returns {@code System.identityHashCode(this)}.    * External implementations are free to define this method as they see fit, as long as they    * satisfy the {@link Object#hashCode()} contract.    */
 annotation|@
 name|Override
 DECL|method|hashCode ()

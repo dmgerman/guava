@@ -67,7 +67,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests for a directed {@link ConfigurableMutableBasicGraph} allowing self-loops.  */
+comment|/**  * Tests for a directed {@link ConfigurableMutableGraph} allowing self-loops.  */
 end_comment
 
 begin_class
@@ -89,7 +89,7 @@ annotation|@
 name|Override
 DECL|method|createGraph ()
 specifier|public
-name|MutableBasicGraph
+name|MutableGraph
 argument_list|<
 name|Integer
 argument_list|>
@@ -97,7 +97,7 @@ name|createGraph
 parameter_list|()
 block|{
 return|return
-name|BasicGraphBuilder
+name|GraphBuilder
 operator|.
 name|directed
 argument_list|()

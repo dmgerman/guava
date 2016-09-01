@@ -77,7 +77,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A builder for constructing instances of {@link MutableGraph} with user-defined properties.  *  *<p>A graph built by this class will have the following properties by default:  *  *<ul>  *<li>does not allow self-loops  *<li>orders {@link Graph#nodes()} in the order in which the elements were added  *</ul>  *  *<p>Example of use:  *  *<pre><code>  * MutableGraph<String, Double> graph = GraphBuilder.undirected().allowsSelfLoops(true).build();  * graph.putEdgeValue("San Francisco", "San Francisco", 0.0);  * graph.putEdgeValue("San Jose", "San Jose", 0.0);  * graph.putEdgeValue("San Francisco", "San Jose", 48.4);  *</code></pre>  *  * @author James Sexton  * @author Joshua O'Madadhain  * @since 20.0  */
+comment|/**  * A builder for constructing instances of {@link MutableGraph} with user-defined properties.  *  *<p>A graph built by this class will have the following properties by default:  *  *<ul>  *<li>does not allow self-loops  *<li>orders {@link Graph#nodes()} in the order in which the elements were added  *</ul>  *  *<p>Example of use:  *  *<pre><code>  * MutableGraph<String> graph = GraphBuilder.undirected().allowsSelfLoops(true).build();  * graph.putEdge("bread", "bread");  * graph.putEdge("chocolate", "peanut butter");  * graph.putEdge("peanut butter", "jelly");  *</code></pre>  *  * @author James Sexton  * @author Joshua O'Madadhain  * @since 20.0  */
 end_comment
 
 begin_class
@@ -90,8 +90,6 @@ class|class
 name|GraphBuilder
 parameter_list|<
 name|N
-parameter_list|,
-name|V
 parameter_list|>
 extends|extends
 name|AbstractGraphBuilder
@@ -121,8 +119,6 @@ specifier|static
 name|GraphBuilder
 argument_list|<
 name|Object
-argument_list|,
-name|Object
 argument_list|>
 name|directed
 parameter_list|()
@@ -131,8 +127,6 @@ return|return
 operator|new
 name|GraphBuilder
 argument_list|<
-name|Object
-argument_list|,
 name|Object
 argument_list|>
 argument_list|(
@@ -147,8 +141,6 @@ specifier|static
 name|GraphBuilder
 argument_list|<
 name|Object
-argument_list|,
-name|Object
 argument_list|>
 name|undirected
 parameter_list|()
@@ -158,8 +150,6 @@ operator|new
 name|GraphBuilder
 argument_list|<
 name|Object
-argument_list|,
-name|Object
 argument_list|>
 argument_list|(
 literal|false
@@ -167,7 +157,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns a {@link GraphBuilder} initialized with all properties queryable from {@code graph}.    *    *<p>The "queryable" properties are those that are exposed through the {@link Graph} interface,    * such as {@link Graph#isDirected()}. Other properties, such as {@link #expectedNodeCount(int)},    * are not set in the new builder.    */
-DECL|method|from (Graph<N, ?> graph)
+DECL|method|from (Graph<N> graph)
 specifier|public
 specifier|static
 parameter_list|<
@@ -176,16 +166,12 @@ parameter_list|>
 name|GraphBuilder
 argument_list|<
 name|N
-argument_list|,
-name|Object
 argument_list|>
 name|from
 parameter_list|(
 name|Graph
 argument_list|<
 name|N
-argument_list|,
-name|?
 argument_list|>
 name|graph
 parameter_list|)
@@ -199,8 +185,6 @@ return|return
 operator|new
 name|GraphBuilder
 argument_list|<
-name|N
-argument_list|,
 name|Object
 argument_list|>
 argument_list|(
@@ -233,8 +217,6 @@ specifier|public
 name|GraphBuilder
 argument_list|<
 name|N
-argument_list|,
-name|V
 argument_list|>
 name|allowsSelfLoops
 parameter_list|(
@@ -258,8 +240,6 @@ specifier|public
 name|GraphBuilder
 argument_list|<
 name|N
-argument_list|,
-name|V
 argument_list|>
 name|expectedNodeCount
 parameter_list|(
@@ -304,8 +284,6 @@ parameter_list|>
 name|GraphBuilder
 argument_list|<
 name|N1
-argument_list|,
-name|V
 argument_list|>
 name|nodeOrder
 parameter_list|(
@@ -324,8 +302,6 @@ expr_stmt|;
 name|GraphBuilder
 argument_list|<
 name|N1
-argument_list|,
-name|V
 argument_list|>
 name|newBuilder
 init|=
@@ -349,16 +325,10 @@ parameter_list|<
 name|N1
 extends|extends
 name|N
-parameter_list|,
-name|V1
-extends|extends
-name|V
 parameter_list|>
 name|MutableGraph
 argument_list|<
 name|N1
-argument_list|,
-name|V1
 argument_list|>
 name|build
 parameter_list|()
@@ -368,8 +338,6 @@ operator|new
 name|ConfigurableMutableGraph
 argument_list|<
 name|N1
-argument_list|,
-name|V1
 argument_list|>
 argument_list|(
 name|this
@@ -387,16 +355,10 @@ parameter_list|<
 name|N1
 extends|extends
 name|N
-parameter_list|,
-name|V1
-extends|extends
-name|V
 parameter_list|>
 name|GraphBuilder
 argument_list|<
 name|N1
-argument_list|,
-name|V1
 argument_list|>
 name|cast
 parameter_list|()
@@ -406,8 +368,6 @@ operator|(
 name|GraphBuilder
 argument_list|<
 name|N1
-argument_list|,
-name|V1
 argument_list|>
 operator|)
 name|this

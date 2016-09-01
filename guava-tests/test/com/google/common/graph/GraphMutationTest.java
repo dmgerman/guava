@@ -173,15 +173,15 @@ decl_stmt|;
 comment|// must be>> NUM_NODES
 annotation|@
 name|Test
-DECL|method|directedBasicGraph ()
+DECL|method|directedGraph ()
 specifier|public
 name|void
-name|directedBasicGraph
+name|directedGraph
 parameter_list|()
 block|{
-name|testBasicGraphMutation
+name|testGraphMutation
 argument_list|(
-name|BasicGraphBuilder
+name|GraphBuilder
 operator|.
 name|directed
 argument_list|()
@@ -190,28 +190,28 @@ expr_stmt|;
 block|}
 annotation|@
 name|Test
-DECL|method|undirectedBasicGraph ()
+DECL|method|undirectedGraph ()
 specifier|public
 name|void
-name|undirectedBasicGraph
+name|undirectedGraph
 parameter_list|()
 block|{
-name|testBasicGraphMutation
+name|testGraphMutation
 argument_list|(
-name|BasicGraphBuilder
+name|GraphBuilder
 operator|.
 name|undirected
 argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|testBasicGraphMutation (BasicGraphBuilder<? super Integer> graphBuilder)
+DECL|method|testGraphMutation (GraphBuilder<? super Integer> graphBuilder)
 specifier|private
 specifier|static
 name|void
-name|testBasicGraphMutation
+name|testGraphMutation
 parameter_list|(
-name|BasicGraphBuilder
+name|GraphBuilder
 argument_list|<
 name|?
 super|super
@@ -245,7 +245,7 @@ operator|++
 name|trial
 control|)
 block|{
-name|MutableBasicGraph
+name|MutableGraph
 argument_list|<
 name|Integer
 argument_list|>
@@ -369,7 +369,7 @@ expr_stmt|;
 block|}
 name|ArrayList
 argument_list|<
-name|Endpoints
+name|EndpointPair
 argument_list|<
 name|Integer
 argument_list|>
@@ -379,7 +379,7 @@ init|=
 operator|new
 name|ArrayList
 argument_list|<
-name|Endpoints
+name|EndpointPair
 argument_list|<
 name|Integer
 argument_list|>
@@ -458,7 +458,7 @@ operator|++
 name|i
 control|)
 block|{
-name|Endpoints
+name|EndpointPair
 argument_list|<
 name|Integer
 argument_list|>
@@ -479,12 +479,12 @@ name|removeEdge
 argument_list|(
 name|edge
 operator|.
-name|nodeA
+name|nodeU
 argument_list|()
 argument_list|,
 name|edge
 operator|.
-name|nodeB
+name|nodeV
 argument_list|()
 argument_list|)
 argument_list|)
@@ -710,7 +710,7 @@ argument_list|)
 expr_stmt|;
 for|for
 control|(
-name|Endpoints
+name|EndpointPair
 argument_list|<
 name|Integer
 argument_list|>
@@ -727,12 +727,12 @@ name|putEdge
 argument_list|(
 name|edge
 operator|.
-name|nodeA
+name|nodeU
 argument_list|()
 argument_list|,
 name|edge
 operator|.
-name|nodeB
+name|nodeV
 argument_list|()
 argument_list|)
 argument_list|)

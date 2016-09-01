@@ -78,7 +78,7 @@ name|?
 argument_list|>
 name|GRAPH_BUILDER_A
 init|=
-name|BasicGraphBuilder
+name|GraphBuilder
 operator|.
 name|directed
 argument_list|()
@@ -98,7 +98,7 @@ name|?
 argument_list|>
 name|GRAPH_BUILDER_B
 init|=
-name|GraphBuilder
+name|ValueGraphBuilder
 operator|.
 name|directed
 argument_list|()
@@ -117,7 +117,7 @@ DECL|field|IMMUTABLE_GRAPH_A
 specifier|private
 specifier|static
 specifier|final
-name|ImmutableBasicGraph
+name|ImmutableGraph
 argument_list|<
 name|String
 argument_list|>
@@ -132,7 +132,7 @@ DECL|field|IMMUTABLE_GRAPH_B
 specifier|private
 specifier|static
 specifier|final
-name|ImmutableBasicGraph
+name|ImmutableGraph
 argument_list|<
 name|String
 argument_list|>
@@ -249,7 +249,7 @@ argument_list|)
 expr_stmt|;
 name|setDistinctValues
 argument_list|(
-name|BasicGraph
+name|Graph
 operator|.
 name|class
 argument_list|,
@@ -336,7 +336,7 @@ specifier|static
 parameter_list|<
 name|N
 parameter_list|>
-name|ImmutableBasicGraph
+name|ImmutableGraph
 argument_list|<
 name|N
 argument_list|>
@@ -346,13 +346,13 @@ name|N
 name|node
 parameter_list|)
 block|{
-name|MutableBasicGraph
+name|MutableGraph
 argument_list|<
 name|N
 argument_list|>
 name|graph
 init|=
-name|BasicGraphBuilder
+name|GraphBuilder
 operator|.
 name|directed
 argument_list|()
@@ -368,7 +368,7 @@ name|node
 argument_list|)
 expr_stmt|;
 return|return
-name|ImmutableBasicGraph
+name|ImmutableGraph
 operator|.
 name|copyOf
 argument_list|(

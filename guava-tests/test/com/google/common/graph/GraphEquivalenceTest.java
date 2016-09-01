@@ -17,16 +17,18 @@ package|;
 end_package
 
 begin_import
-import|import
+import|import static
 name|com
 operator|.
 name|google
 operator|.
 name|common
 operator|.
-name|testing
+name|truth
 operator|.
-name|EqualsTester
+name|Truth
+operator|.
+name|assertThat
 import|;
 end_import
 
@@ -109,11 +111,11 @@ name|Parameterized
 operator|.
 name|class
 argument_list|)
-DECL|class|GraphEqualsTest
+DECL|class|GraphEquivalenceTest
 specifier|public
 specifier|final
 class|class
-name|GraphEqualsTest
+name|GraphEquivalenceTest
 block|{
 DECL|field|N1
 specifier|private
@@ -161,7 +163,7 @@ decl_stmt|;
 DECL|field|graph
 specifier|private
 specifier|final
-name|MutableBasicGraph
+name|MutableGraph
 argument_list|<
 name|Integer
 argument_list|>
@@ -206,9 +208,9 @@ block|}
 argument_list|)
 return|;
 block|}
-DECL|method|GraphEqualsTest (GraphType graphType)
+DECL|method|GraphEquivalenceTest (GraphType graphType)
 specifier|public
-name|GraphEqualsTest
+name|GraphEquivalenceTest
 parameter_list|(
 name|GraphType
 name|graphType
@@ -233,7 +235,7 @@ block|}
 DECL|method|createGraph (GraphType graphType)
 specifier|private
 specifier|static
-name|MutableBasicGraph
+name|MutableGraph
 argument_list|<
 name|Integer
 argument_list|>
@@ -252,7 +254,7 @@ case|case
 name|UNDIRECTED
 case|:
 return|return
-name|BasicGraphBuilder
+name|GraphBuilder
 operator|.
 name|undirected
 argument_list|()
@@ -269,7 +271,7 @@ case|case
 name|DIRECTED
 case|:
 return|return
-name|BasicGraphBuilder
+name|GraphBuilder
 operator|.
 name|directed
 argument_list|()
@@ -339,10 +341,10 @@ block|}
 block|}
 annotation|@
 name|Test
-DECL|method|equals_nodeSetsDiffer ()
+DECL|method|equivalent_nodeSetsDiffer ()
 specifier|public
 name|void
-name|equals_nodeSetsDiffer
+name|equivalent_nodeSetsDiffer
 parameter_list|()
 block|{
 name|graph
@@ -352,7 +354,7 @@ argument_list|(
 name|N1
 argument_list|)
 expr_stmt|;
-name|MutableBasicGraph
+name|MutableGraph
 argument_list|<
 name|Integer
 argument_list|>
@@ -370,31 +372,29 @@ argument_list|(
 name|N2
 argument_list|)
 expr_stmt|;
-operator|new
-name|EqualsTester
-argument_list|()
+name|assertThat
+argument_list|(
+name|Graphs
 operator|.
-name|addEqualityGroup
+name|equivalent
 argument_list|(
 name|graph
-argument_list|)
-operator|.
-name|addEqualityGroup
-argument_list|(
+argument_list|,
 name|g2
 argument_list|)
+argument_list|)
 operator|.
-name|testEquals
+name|isFalse
 argument_list|()
 expr_stmt|;
 block|}
 comment|// Node/edge sets are the same, but node/edge connections differ due to graph type.
 annotation|@
 name|Test
-DECL|method|equals_directedVsUndirected ()
+DECL|method|equivalent_directedVsUndirected ()
 specifier|public
 name|void
-name|equals_directedVsUndirected
+name|equivalent_directedVsUndirected
 parameter_list|()
 block|{
 name|graph
@@ -406,7 +406,7 @@ argument_list|,
 name|N2
 argument_list|)
 expr_stmt|;
-name|MutableBasicGraph
+name|MutableGraph
 argument_list|<
 name|Integer
 argument_list|>
@@ -429,31 +429,29 @@ argument_list|,
 name|N2
 argument_list|)
 expr_stmt|;
-operator|new
-name|EqualsTester
-argument_list|()
+name|assertThat
+argument_list|(
+name|Graphs
 operator|.
-name|addEqualityGroup
+name|equivalent
 argument_list|(
 name|graph
-argument_list|)
-operator|.
-name|addEqualityGroup
-argument_list|(
+argument_list|,
 name|g2
 argument_list|)
+argument_list|)
 operator|.
-name|testEquals
+name|isFalse
 argument_list|()
 expr_stmt|;
 block|}
 comment|// Node/edge sets and node/edge connections are the same, but directedness differs.
 annotation|@
 name|Test
-DECL|method|equals_selfLoop_directedVsUndirected ()
+DECL|method|equivalent_selfLoop_directedVsUndirected ()
 specifier|public
 name|void
-name|equals_selfLoop_directedVsUndirected
+name|equivalent_selfLoop_directedVsUndirected
 parameter_list|()
 block|{
 name|graph
@@ -465,7 +463,7 @@ argument_list|,
 name|N1
 argument_list|)
 expr_stmt|;
-name|MutableBasicGraph
+name|MutableGraph
 argument_list|<
 name|Integer
 argument_list|>
@@ -488,32 +486,30 @@ argument_list|,
 name|N1
 argument_list|)
 expr_stmt|;
-operator|new
-name|EqualsTester
-argument_list|()
+name|assertThat
+argument_list|(
+name|Graphs
 operator|.
-name|addEqualityGroup
+name|equivalent
 argument_list|(
 name|graph
-argument_list|)
-operator|.
-name|addEqualityGroup
-argument_list|(
+argument_list|,
 name|g2
 argument_list|)
+argument_list|)
 operator|.
-name|testEquals
+name|isFalse
 argument_list|()
 expr_stmt|;
 block|}
 comment|// Node/edge sets and node/edge connections are the same, but graph properties differ.
-comment|// (In this case the graphs are considered equal; the property differences are irrelevant.)
+comment|// In this case the graphs are considered equivalent; the property differences are irrelevant.
 annotation|@
 name|Test
-DECL|method|equals_propertiesDiffer ()
+DECL|method|equivalent_propertiesDiffer ()
 specifier|public
 name|void
-name|equals_propertiesDiffer
+name|equivalent_propertiesDiffer
 parameter_list|()
 block|{
 name|graph
@@ -525,13 +521,13 @@ argument_list|,
 name|N2
 argument_list|)
 expr_stmt|;
-name|MutableBasicGraph
+name|MutableGraph
 argument_list|<
 name|Integer
 argument_list|>
 name|g2
 init|=
-name|BasicGraphBuilder
+name|GraphBuilder
 operator|.
 name|from
 argument_list|(
@@ -559,45 +555,46 @@ argument_list|,
 name|N2
 argument_list|)
 expr_stmt|;
-operator|new
-name|EqualsTester
-argument_list|()
+name|assertThat
+argument_list|(
+name|Graphs
 operator|.
-name|addEqualityGroup
+name|equivalent
 argument_list|(
 name|graph
 argument_list|,
 name|g2
 argument_list|)
+argument_list|)
 operator|.
-name|testEquals
+name|isTrue
 argument_list|()
 expr_stmt|;
 block|}
 comment|// Node/edge sets and node/edge connections are the same, but edge order differs.
-comment|// (In this case the graphs are considered equal; the edge add orderings are irrelevant.)
+comment|// In this case the graphs are considered equivalent; the edge add orderings are irrelevant.
 annotation|@
 name|Test
-DECL|method|equals_edgeAddOrdersDiffer ()
+DECL|method|equivalent_edgeAddOrdersDiffer ()
 specifier|public
 name|void
-name|equals_edgeAddOrdersDiffer
+name|equivalent_edgeAddOrdersDiffer
 parameter_list|()
 block|{
-name|BasicGraphBuilder
+name|GraphBuilder
 argument_list|<
 name|Integer
 argument_list|>
 name|builder
 init|=
-name|BasicGraphBuilder
+name|GraphBuilder
 operator|.
 name|from
 argument_list|(
 name|graph
 argument_list|)
 decl_stmt|;
-name|MutableBasicGraph
+name|MutableGraph
 argument_list|<
 name|Integer
 argument_list|>
@@ -608,7 +605,7 @@ operator|.
 name|build
 argument_list|()
 decl_stmt|;
-name|MutableBasicGraph
+name|MutableGraph
 argument_list|<
 name|Integer
 argument_list|>
@@ -657,27 +654,28 @@ argument_list|,
 name|N2
 argument_list|)
 expr_stmt|;
-operator|new
-name|EqualsTester
-argument_list|()
+name|assertThat
+argument_list|(
+name|Graphs
 operator|.
-name|addEqualityGroup
+name|equivalent
 argument_list|(
 name|g1
 argument_list|,
 name|g2
 argument_list|)
+argument_list|)
 operator|.
-name|testEquals
+name|isTrue
 argument_list|()
 expr_stmt|;
 block|}
 annotation|@
 name|Test
-DECL|method|equals_edgeDirectionsDiffer ()
+DECL|method|equivalent_edgeDirectionsDiffer ()
 specifier|public
 name|void
-name|equals_edgeDirectionsDiffer
+name|equivalent_edgeDirectionsDiffer
 parameter_list|()
 block|{
 name|graph
@@ -689,7 +687,7 @@ argument_list|,
 name|N2
 argument_list|)
 expr_stmt|;
-name|MutableBasicGraph
+name|MutableGraph
 argument_list|<
 name|Integer
 argument_list|>
@@ -717,39 +715,38 @@ block|{
 case|case
 name|UNDIRECTED
 case|:
-operator|new
-name|EqualsTester
-argument_list|()
+name|assertThat
+argument_list|(
+name|Graphs
 operator|.
-name|addEqualityGroup
+name|equivalent
 argument_list|(
 name|graph
 argument_list|,
 name|g2
 argument_list|)
+argument_list|)
 operator|.
-name|testEquals
+name|isTrue
 argument_list|()
 expr_stmt|;
 break|break;
 case|case
 name|DIRECTED
 case|:
-operator|new
-name|EqualsTester
-argument_list|()
+name|assertThat
+argument_list|(
+name|Graphs
 operator|.
-name|addEqualityGroup
+name|equivalent
 argument_list|(
 name|graph
-argument_list|)
-operator|.
-name|addEqualityGroup
-argument_list|(
+argument_list|,
 name|g2
 argument_list|)
+argument_list|)
 operator|.
-name|testEquals
+name|isFalse
 argument_list|()
 expr_stmt|;
 break|break;

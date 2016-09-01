@@ -136,9 +136,9 @@ specifier|final
 name|String
 name|NOT_AVAILABLE_ON_UNDIRECTED
 init|=
-literal|"Cannot call source()/target() on the endpoints of an undirected edge. Consider calling "
+literal|"Cannot call source()/target() on a EndpointPair from an undirected graph. Consider calling "
 operator|+
-literal|"adjacentNode(node) if you already have a node, or nodeA()/nodeB() if you don't."
+literal|"adjacentNode(node) if you already have a node, or nodeU()/nodeV() if you don't."
 decl_stmt|;
 DECL|field|EDGE_ALREADY_EXISTS
 specifier|static
@@ -156,6 +156,14 @@ name|GRAPH_STRING_FORMAT
 init|=
 literal|"%s, nodes: %s, edges: %s"
 decl_stmt|;
+comment|/**    * Singleton edge value for {@link Graph} implementations backed by {@link ValueGraph}s.    */
+DECL|enum|Presence
+enum|enum
+name|Presence
+block|{
+DECL|enumConstant|EDGE_EXISTS
+name|EDGE_EXISTS
+block|}
 block|}
 end_class
 

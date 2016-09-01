@@ -121,6 +121,7 @@ annotation|@
 name|Beta
 DECL|class|ImmutableNetwork
 specifier|public
+specifier|final
 class|class
 name|ImmutableNetwork
 parameter_list|<
@@ -136,7 +137,6 @@ argument_list|,
 name|E
 argument_list|>
 block|{
-comment|/** To ensure the immutability contract is maintained, there must be no public constructors. */
 DECL|method|ImmutableNetwork (Network<N, E> graph)
 specifier|private
 name|ImmutableNetwork
@@ -259,6 +259,55 @@ name|checkNotNull
 argument_list|(
 name|graph
 argument_list|)
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|asGraph ()
+specifier|public
+name|ImmutableGraph
+argument_list|<
+name|N
+argument_list|>
+name|asGraph
+parameter_list|()
+block|{
+specifier|final
+name|Graph
+argument_list|<
+name|N
+argument_list|>
+name|asGraph
+init|=
+name|super
+operator|.
+name|asGraph
+argument_list|()
+decl_stmt|;
+return|return
+operator|new
+name|ImmutableGraph
+argument_list|<
+name|N
+argument_list|>
+argument_list|()
+block|{
+annotation|@
+name|Override
+specifier|protected
+name|Graph
+argument_list|<
+name|N
+argument_list|>
+name|delegate
+parameter_list|()
+block|{
+return|return
+name|asGraph
+return|;
+comment|// safe because the graph view is effectively immutable
+block|}
+block|}
 return|;
 block|}
 DECL|method|getNodeConnections (Network<N, E> graph)
@@ -414,7 +463,7 @@ argument_list|(
 name|edge
 argument_list|)
 operator|.
-name|nodeA
+name|nodeU
 argument_list|()
 argument_list|)
 expr_stmt|;

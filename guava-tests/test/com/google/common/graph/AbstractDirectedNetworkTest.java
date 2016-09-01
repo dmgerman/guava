@@ -143,11 +143,11 @@ name|node
 argument_list|)
 control|)
 block|{
-name|Endpoints
+name|EndpointPair
 argument_list|<
 name|Integer
 argument_list|>
-name|endpoints
+name|endpointPair
 init|=
 name|network
 operator|.
@@ -158,7 +158,7 @@ argument_list|)
 decl_stmt|;
 name|assertThat
 argument_list|(
-name|endpoints
+name|endpointPair
 operator|.
 name|source
 argument_list|()
@@ -166,7 +166,7 @@ argument_list|)
 operator|.
 name|isEqualTo
 argument_list|(
-name|endpoints
+name|endpointPair
 operator|.
 name|adjacentNode
 argument_list|(
@@ -176,7 +176,7 @@ argument_list|)
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|endpoints
+name|endpointPair
 operator|.
 name|target
 argument_list|()
@@ -201,11 +201,11 @@ name|node
 argument_list|)
 control|)
 block|{
-name|Endpoints
+name|EndpointPair
 argument_list|<
 name|Integer
 argument_list|>
-name|endpoints
+name|endpointPair
 init|=
 name|network
 operator|.
@@ -216,7 +216,7 @@ argument_list|)
 decl_stmt|;
 name|assertThat
 argument_list|(
-name|endpoints
+name|endpointPair
 operator|.
 name|source
 argument_list|()
@@ -229,7 +229,7 @@ argument_list|)
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|endpoints
+name|endpointPair
 operator|.
 name|target
 argument_list|()
@@ -237,7 +237,7 @@ argument_list|)
 operator|.
 name|isEqualTo
 argument_list|(
-name|endpoints
+name|endpointPair
 operator|.
 name|adjacentNode
 argument_list|(

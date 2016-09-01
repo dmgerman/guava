@@ -17,16 +17,18 @@ package|;
 end_package
 
 begin_import
-import|import
+import|import static
 name|com
 operator|.
 name|google
 operator|.
 name|common
 operator|.
-name|testing
+name|truth
 operator|.
-name|EqualsTester
+name|Truth
+operator|.
+name|assertThat
 import|;
 end_import
 
@@ -109,11 +111,11 @@ name|Parameterized
 operator|.
 name|class
 argument_list|)
-DECL|class|NetworkEqualsTest
+DECL|class|NetworkEquivalenceTest
 specifier|public
 specifier|final
 class|class
-name|NetworkEqualsTest
+name|NetworkEquivalenceTest
 block|{
 DECL|field|N1
 specifier|private
@@ -244,9 +246,9 @@ block|}
 argument_list|)
 return|;
 block|}
-DECL|method|NetworkEqualsTest (GraphType graphType)
+DECL|method|NetworkEquivalenceTest (GraphType graphType)
 specifier|public
-name|NetworkEqualsTest
+name|NetworkEquivalenceTest
 parameter_list|(
 name|GraphType
 name|graphType
@@ -379,10 +381,10 @@ block|}
 block|}
 annotation|@
 name|Test
-DECL|method|equals_nodeSetsDiffer ()
+DECL|method|equivalent_nodeSetsDiffer ()
 specifier|public
 name|void
-name|equals_nodeSetsDiffer
+name|equivalent_nodeSetsDiffer
 parameter_list|()
 block|{
 name|graph
@@ -412,31 +414,29 @@ argument_list|(
 name|N2
 argument_list|)
 expr_stmt|;
-operator|new
-name|EqualsTester
-argument_list|()
+name|assertThat
+argument_list|(
+name|Graphs
 operator|.
-name|addEqualityGroup
+name|equivalent
 argument_list|(
 name|graph
-argument_list|)
-operator|.
-name|addEqualityGroup
-argument_list|(
+argument_list|,
 name|g2
 argument_list|)
+argument_list|)
 operator|.
-name|testEquals
+name|isFalse
 argument_list|()
 expr_stmt|;
 block|}
 comment|// Node sets are the same, but edge sets differ.
 annotation|@
 name|Test
-DECL|method|equals_edgeSetsDiffer ()
+DECL|method|equivalent_edgeSetsDiffer ()
 specifier|public
 name|void
-name|equals_edgeSetsDiffer
+name|equivalent_edgeSetsDiffer
 parameter_list|()
 block|{
 name|graph
@@ -474,31 +474,29 @@ argument_list|,
 name|E13
 argument_list|)
 expr_stmt|;
-operator|new
-name|EqualsTester
-argument_list|()
+name|assertThat
+argument_list|(
+name|Graphs
 operator|.
-name|addEqualityGroup
+name|equivalent
 argument_list|(
 name|graph
-argument_list|)
-operator|.
-name|addEqualityGroup
-argument_list|(
+argument_list|,
 name|g2
 argument_list|)
+argument_list|)
 operator|.
-name|testEquals
+name|isFalse
 argument_list|()
 expr_stmt|;
 block|}
 comment|// Node/edge sets are the same, but node/edge connections differ due to graph type.
 annotation|@
 name|Test
-DECL|method|equals_directedVsUndirected ()
+DECL|method|equivalent_directedVsUndirected ()
 specifier|public
 name|void
-name|equals_directedVsUndirected
+name|equivalent_directedVsUndirected
 parameter_list|()
 block|{
 name|graph
@@ -539,31 +537,29 @@ argument_list|,
 name|E12
 argument_list|)
 expr_stmt|;
-operator|new
-name|EqualsTester
-argument_list|()
+name|assertThat
+argument_list|(
+name|Graphs
 operator|.
-name|addEqualityGroup
+name|equivalent
 argument_list|(
 name|graph
-argument_list|)
-operator|.
-name|addEqualityGroup
-argument_list|(
+argument_list|,
 name|g2
 argument_list|)
+argument_list|)
 operator|.
-name|testEquals
+name|isFalse
 argument_list|()
 expr_stmt|;
 block|}
 comment|// Node/edge sets and node/edge connections are the same, but directedness differs.
 annotation|@
 name|Test
-DECL|method|equals_selfLoop_directedVsUndirected ()
+DECL|method|equivalent_selfLoop_directedVsUndirected ()
 specifier|public
 name|void
-name|equals_selfLoop_directedVsUndirected
+name|equivalent_selfLoop_directedVsUndirected
 parameter_list|()
 block|{
 name|graph
@@ -604,31 +600,29 @@ argument_list|,
 name|E11
 argument_list|)
 expr_stmt|;
-operator|new
-name|EqualsTester
-argument_list|()
+name|assertThat
+argument_list|(
+name|Graphs
 operator|.
-name|addEqualityGroup
+name|equivalent
 argument_list|(
 name|graph
-argument_list|)
-operator|.
-name|addEqualityGroup
-argument_list|(
+argument_list|,
 name|g2
 argument_list|)
+argument_list|)
 operator|.
-name|testEquals
+name|isFalse
 argument_list|()
 expr_stmt|;
 block|}
 comment|// Node/edge sets are the same, but node/edge connections differ.
 annotation|@
 name|Test
-DECL|method|equals_connectionsDiffer ()
+DECL|method|equivalent_connectionsDiffer ()
 specifier|public
 name|void
-name|equals_connectionsDiffer
+name|equivalent_connectionsDiffer
 parameter_list|()
 block|{
 name|graph
@@ -666,7 +660,7 @@ argument_list|(
 name|graphType
 argument_list|)
 decl_stmt|;
-comment|// connect E13 to N1 and N2, and E12 to N1 and N3 => not equal
+comment|// connect E13 to N1 and N2, and E12 to N1 and N3 => not equivalent
 name|g2
 operator|.
 name|addEdge
@@ -689,32 +683,30 @@ argument_list|,
 name|E12
 argument_list|)
 expr_stmt|;
-operator|new
-name|EqualsTester
-argument_list|()
+name|assertThat
+argument_list|(
+name|Graphs
 operator|.
-name|addEqualityGroup
+name|equivalent
 argument_list|(
 name|graph
-argument_list|)
-operator|.
-name|addEqualityGroup
-argument_list|(
+argument_list|,
 name|g2
 argument_list|)
+argument_list|)
 operator|.
-name|testEquals
+name|isFalse
 argument_list|()
 expr_stmt|;
 block|}
-comment|// Node/edge sets and node/edge connections are the same, but graph properties differ.
-comment|// (In this case the graphs are considered equal; the property differences are irrelevant.)
+comment|// Node/edge sets and node/edge connections are the same, but network properties differ.
+comment|// (In this case the networks are considered equivalent; the property differences are irrelevant.)
 annotation|@
 name|Test
-DECL|method|equals_propertiesDiffer ()
+DECL|method|equivalent_propertiesDiffer ()
 specifier|public
 name|void
-name|equals_propertiesDiffer
+name|equivalent_propertiesDiffer
 parameter_list|()
 block|{
 name|graph
@@ -775,29 +767,30 @@ argument_list|,
 name|E12
 argument_list|)
 expr_stmt|;
-operator|new
-name|EqualsTester
-argument_list|()
+name|assertThat
+argument_list|(
+name|Graphs
 operator|.
-name|addEqualityGroup
+name|equivalent
 argument_list|(
 name|graph
 argument_list|,
 name|g2
 argument_list|)
+argument_list|)
 operator|.
-name|testEquals
+name|isTrue
 argument_list|()
 expr_stmt|;
 block|}
 comment|// Node/edge sets and node/edge connections are the same, but edge order differs.
-comment|// (In this case the graphs are considered equal; the edge add orderings are irrelevant.)
+comment|// (In this case the networks are considered equivalent; the edge add orderings are irrelevant.)
 annotation|@
 name|Test
-DECL|method|equals_edgeAddOrdersDiffer ()
+DECL|method|equivalent_edgeAddOrdersDiffer ()
 specifier|public
 name|void
-name|equals_edgeAddOrdersDiffer
+name|equivalent_edgeAddOrdersDiffer
 parameter_list|()
 block|{
 name|NetworkBuilder
@@ -892,27 +885,28 @@ argument_list|,
 name|E12
 argument_list|)
 expr_stmt|;
-operator|new
-name|EqualsTester
-argument_list|()
+name|assertThat
+argument_list|(
+name|Graphs
 operator|.
-name|addEqualityGroup
+name|equivalent
 argument_list|(
 name|g1
 argument_list|,
 name|g2
 argument_list|)
+argument_list|)
 operator|.
-name|testEquals
+name|isTrue
 argument_list|()
 expr_stmt|;
 block|}
 annotation|@
 name|Test
-DECL|method|equals_edgeDirectionsDiffer ()
+DECL|method|equivalent_edgeDirectionsDiffer ()
 specifier|public
 name|void
-name|equals_edgeDirectionsDiffer
+name|equivalent_edgeDirectionsDiffer
 parameter_list|()
 block|{
 name|graph
@@ -958,39 +952,38 @@ block|{
 case|case
 name|UNDIRECTED
 case|:
-operator|new
-name|EqualsTester
-argument_list|()
+name|assertThat
+argument_list|(
+name|Graphs
 operator|.
-name|addEqualityGroup
+name|equivalent
 argument_list|(
 name|graph
 argument_list|,
 name|g2
 argument_list|)
+argument_list|)
 operator|.
-name|testEquals
+name|isTrue
 argument_list|()
 expr_stmt|;
 break|break;
 case|case
 name|DIRECTED
 case|:
-operator|new
-name|EqualsTester
-argument_list|()
+name|assertThat
+argument_list|(
+name|Graphs
 operator|.
-name|addEqualityGroup
+name|equivalent
 argument_list|(
 name|graph
-argument_list|)
-operator|.
-name|addEqualityGroup
-argument_list|(
+argument_list|,
 name|g2
 argument_list|)
+argument_list|)
 operator|.
-name|testEquals
+name|isFalse
 argument_list|()
 expr_stmt|;
 break|break;

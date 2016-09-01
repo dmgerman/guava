@@ -239,8 +239,8 @@ argument_list|>
 argument_list|>
 name|nodeConnections
 decl_stmt|;
-comment|// We could make this a Map<E, Endpoints<N>>. It would make incidentNodes(edge) slightly faster,
-comment|// but it would also make Networks consume 5 to 20+% (increasing with average degree) more memory.
+comment|// We could make this a Map<E, EndpointPair<N>>. It would make incidentNodes(edge) slightly
+comment|// faster, but also make Networks consume 5 to 20+% (increasing with average degree) more memory.
 DECL|field|edgeToReferenceNode
 specifier|protected
 specifier|final
@@ -597,7 +597,7 @@ annotation|@
 name|Override
 DECL|method|incidentNodes (Object edge)
 specifier|public
-name|Endpoints
+name|EndpointPair
 argument_list|<
 name|N
 argument_list|>
@@ -608,7 +608,7 @@ name|edge
 parameter_list|)
 block|{
 name|N
-name|nodeA
+name|nodeU
 init|=
 name|checkedReferenceNode
 argument_list|(
@@ -616,13 +616,13 @@ name|edge
 argument_list|)
 decl_stmt|;
 name|N
-name|nodeB
+name|nodeV
 init|=
 name|nodeConnections
 operator|.
 name|get
 argument_list|(
-name|nodeA
+name|nodeU
 argument_list|)
 operator|.
 name|oppositeNode
@@ -631,15 +631,15 @@ name|edge
 argument_list|)
 decl_stmt|;
 return|return
-name|Endpoints
+name|EndpointPair
 operator|.
 name|of
 argument_list|(
 name|this
 argument_list|,
-name|nodeA
+name|nodeU
 argument_list|,
-name|nodeB
+name|nodeV
 argument_list|)
 return|;
 block|}
@@ -669,7 +669,7 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|edgesConnecting (Object nodeA, Object nodeB)
+DECL|method|edgesConnecting (Object nodeU, Object nodeV)
 specifier|public
 name|Set
 argument_list|<
@@ -678,10 +678,10 @@ argument_list|>
 name|edgesConnecting
 parameter_list|(
 name|Object
-name|nodeA
+name|nodeU
 parameter_list|,
 name|Object
-name|nodeB
+name|nodeV
 parameter_list|)
 block|{
 name|NetworkConnections
@@ -690,11 +690,11 @@ name|N
 argument_list|,
 name|E
 argument_list|>
-name|connectionsA
+name|connectionsU
 init|=
 name|checkedConnections
 argument_list|(
-name|nodeA
+name|nodeU
 argument_list|)
 decl_stmt|;
 if|if
@@ -702,11 +702,11 @@ condition|(
 operator|!
 name|allowsSelfLoops
 operator|&&
-name|nodeA
+name|nodeU
 operator|.
 name|equals
 argument_list|(
-name|nodeB
+name|nodeV
 argument_list|)
 condition|)
 block|{
@@ -721,20 +721,20 @@ name|checkArgument
 argument_list|(
 name|containsNode
 argument_list|(
-name|nodeB
+name|nodeV
 argument_list|)
 argument_list|,
 name|NODE_NOT_IN_GRAPH
 argument_list|,
-name|nodeB
+name|nodeV
 argument_list|)
 expr_stmt|;
 return|return
-name|connectionsA
+name|connectionsU
 operator|.
 name|edgesConnecting
 argument_list|(
-name|nodeB
+name|nodeV
 argument_list|)
 return|;
 block|}

@@ -79,18 +79,18 @@ name|N
 name|node
 parameter_list|)
 function_decl|;
-comment|/**    * Adds {@code edge} connecting {@code nodeA} to {@code nodeB}. In an undirected network, the edge    * will also connect {@code nodeB} to {@code nodeA}.    *    *<p><b>Edges must be unique</b>, just as {@code Map} keys must be. They must also be non-null.    *    *<p>Behavior if {@code nodeA} and {@code nodeB} are not already present in this network is    * implementation-dependent. Suggested behaviors include (a) silently {@link #addNode(Object)    * adding} {@code nodeA} and {@code nodeB} to the network (this is the behavior of the default    * implementations) or (b) throwing {@code IllegalArgumentException}.    *    *<p>If {@code edge} already connects {@code nodeA} to {@code nodeB} (in the specified order if    * this network {@link #isDirected()}, else in any order), then this method will have no effect.    *    * @return {@code true} iff the network was modified as a result of this call    * @throws IllegalArgumentException if {@code edge} already exists and does not connect {@code    *     nodeA} to {@code nodeB}, or if the introduction of the edge would violate {@link    *     #allowsParallelEdges()} or {@link #allowsSelfLoops()}    */
+comment|/**    * Adds {@code edge} connecting {@code nodeU} to {@code nodeV}. In an undirected network, the edge    * will also connect {@code nodeV} to {@code nodeU}.    *    *<p><b>Edges must be unique</b>, just as {@code Map} keys must be. They must also be non-null.    *    *<p>Behavior if {@code nodeU} and {@code nodeV} are not already present in this network is    * implementation-dependent. Suggested behaviors include (a) silently {@link #addNode(Object)    * adding} {@code nodeU} and {@code nodeV} to the network (this is the behavior of the default    * implementations) or (b) throwing {@code IllegalArgumentException}.    *    *<p>If {@code edge} already connects {@code nodeU} to {@code nodeV} (in the specified order if    * this network {@link #isDirected()}, else in any order), then this method will have no effect.    *    * @return {@code true} iff the network was modified as a result of this call    * @throws IllegalArgumentException if {@code edge} already exists and does not connect {@code    *     nodeU} to {@code nodeV}, or if the introduction of the edge would violate {@link    *     #allowsParallelEdges()} or {@link #allowsSelfLoops()}    */
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|addEdge (N nodeA, N nodeB, E edge)
+DECL|method|addEdge (N nodeU, N nodeV, E edge)
 name|boolean
 name|addEdge
 parameter_list|(
 name|N
-name|nodeA
+name|nodeU
 parameter_list|,
 name|N
-name|nodeB
+name|nodeV
 parameter_list|,
 name|E
 name|edge

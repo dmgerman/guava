@@ -101,7 +101,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests for an undirected {@link ConfigurableMutableBasicGraph}, creating a simple undirected  * graph (self-loop edges are not allowed).  */
+comment|/**  * Tests for an undirected {@link ConfigurableMutableGraph}, creating a simple undirected  * graph (self-loop edges are not allowed).  */
 end_comment
 
 begin_class
@@ -123,7 +123,7 @@ annotation|@
 name|Override
 DECL|method|createGraph ()
 specifier|public
-name|MutableBasicGraph
+name|MutableGraph
 argument_list|<
 name|Integer
 argument_list|>
@@ -131,7 +131,7 @@ name|createGraph
 parameter_list|()
 block|{
 return|return
-name|BasicGraphBuilder
+name|GraphBuilder
 operator|.
 name|undirected
 argument_list|()
