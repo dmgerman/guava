@@ -144,9 +144,9 @@ name|N3
 init|=
 literal|3
 decl_stmt|;
-DECL|enum|GraphType
+DECL|enum|EdgeType
 enum|enum
-name|GraphType
+name|EdgeType
 block|{
 DECL|enumConstant|UNDIRECTED
 name|UNDIRECTED
@@ -154,11 +154,11 @@ block|,
 DECL|enumConstant|DIRECTED
 name|DIRECTED
 block|}
-DECL|field|graphType
+DECL|field|edgeType
 specifier|private
 specifier|final
-name|GraphType
-name|graphType
+name|EdgeType
+name|edgeType
 decl_stmt|;
 DECL|field|graph
 specifier|private
@@ -194,13 +194,13 @@ index|[]
 index|[]
 block|{
 block|{
-name|GraphType
+name|EdgeType
 operator|.
 name|UNDIRECTED
 block|}
 block|,
 block|{
-name|GraphType
+name|EdgeType
 operator|.
 name|DIRECTED
 block|}
@@ -208,19 +208,19 @@ block|}
 argument_list|)
 return|;
 block|}
-DECL|method|GraphEquivalenceTest (GraphType graphType)
+DECL|method|GraphEquivalenceTest (EdgeType edgeType)
 specifier|public
 name|GraphEquivalenceTest
 parameter_list|(
-name|GraphType
-name|graphType
+name|EdgeType
+name|edgeType
 parameter_list|)
 block|{
 name|this
 operator|.
-name|graphType
+name|edgeType
 operator|=
-name|graphType
+name|edgeType
 expr_stmt|;
 name|this
 operator|.
@@ -228,11 +228,11 @@ name|graph
 operator|=
 name|createGraph
 argument_list|(
-name|graphType
+name|edgeType
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|createGraph (GraphType graphType)
+DECL|method|createGraph (EdgeType edgeType)
 specifier|private
 specifier|static
 name|MutableGraph
@@ -241,13 +241,13 @@ name|Integer
 argument_list|>
 name|createGraph
 parameter_list|(
-name|GraphType
-name|graphType
+name|EdgeType
+name|edgeType
 parameter_list|)
 block|{
 switch|switch
 condition|(
-name|graphType
+name|edgeType
 condition|)
 block|{
 case|case
@@ -289,33 +289,33 @@ throw|throw
 operator|new
 name|IllegalStateException
 argument_list|(
-literal|"Unexpected graph type: "
+literal|"Unexpected edge type: "
 operator|+
-name|graphType
+name|edgeType
 argument_list|)
 throw|;
 block|}
 block|}
-DECL|method|oppositeType (GraphType graphType)
+DECL|method|oppositeType (EdgeType edgeType)
 specifier|private
 specifier|static
-name|GraphType
+name|EdgeType
 name|oppositeType
 parameter_list|(
-name|GraphType
-name|graphType
+name|EdgeType
+name|edgeType
 parameter_list|)
 block|{
 switch|switch
 condition|(
-name|graphType
+name|edgeType
 condition|)
 block|{
 case|case
 name|UNDIRECTED
 case|:
 return|return
-name|GraphType
+name|EdgeType
 operator|.
 name|DIRECTED
 return|;
@@ -323,7 +323,7 @@ case|case
 name|DIRECTED
 case|:
 return|return
-name|GraphType
+name|EdgeType
 operator|.
 name|UNDIRECTED
 return|;
@@ -332,9 +332,9 @@ throw|throw
 operator|new
 name|IllegalStateException
 argument_list|(
-literal|"Unexpected graph type: "
+literal|"Unexpected edge type: "
 operator|+
-name|graphType
+name|edgeType
 argument_list|)
 throw|;
 block|}
@@ -362,7 +362,7 @@ name|g2
 init|=
 name|createGraph
 argument_list|(
-name|graphType
+name|edgeType
 argument_list|)
 decl_stmt|;
 name|g2
@@ -388,7 +388,7 @@ name|isFalse
 argument_list|()
 expr_stmt|;
 block|}
-comment|// Node/edge sets are the same, but node/edge connections differ due to graph type.
+comment|// Node/edge sets are the same, but node/edge connections differ due to edge type.
 annotation|@
 name|Test
 DECL|method|equivalent_directedVsUndirected ()
@@ -416,7 +416,7 @@ name|createGraph
 argument_list|(
 name|oppositeType
 argument_list|(
-name|graphType
+name|edgeType
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -473,7 +473,7 @@ name|createGraph
 argument_list|(
 name|oppositeType
 argument_list|(
-name|graphType
+name|edgeType
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -695,7 +695,7 @@ name|g2
 init|=
 name|createGraph
 argument_list|(
-name|graphType
+name|edgeType
 argument_list|)
 decl_stmt|;
 name|g2
@@ -709,7 +709,7 @@ argument_list|)
 expr_stmt|;
 switch|switch
 condition|(
-name|graphType
+name|edgeType
 condition|)
 block|{
 case|case
@@ -755,9 +755,9 @@ throw|throw
 operator|new
 name|IllegalStateException
 argument_list|(
-literal|"Unexpected graph type: "
+literal|"Unexpected edge type: "
 operator|+
-name|graphType
+name|edgeType
 argument_list|)
 throw|;
 block|}

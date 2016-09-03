@@ -137,7 +137,7 @@ argument_list|,
 name|E
 argument_list|>
 block|{
-DECL|method|ImmutableNetwork (Network<N, E> graph)
+DECL|method|ImmutableNetwork (Network<N, E> network)
 specifier|private
 name|ImmutableNetwork
 parameter_list|(
@@ -147,7 +147,7 @@ name|N
 argument_list|,
 name|E
 argument_list|>
-name|graph
+name|network
 parameter_list|)
 block|{
 name|super
@@ -156,23 +156,23 @@ name|NetworkBuilder
 operator|.
 name|from
 argument_list|(
-name|graph
+name|network
 argument_list|)
 argument_list|,
 name|getNodeConnections
 argument_list|(
-name|graph
+name|network
 argument_list|)
 argument_list|,
 name|getEdgeToReferenceNode
 argument_list|(
-name|graph
+name|network
 argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Returns an immutable copy of {@code graph}. */
-DECL|method|copyOf (Network<N, E> graph)
+comment|/** Returns an immutable copy of {@code network}. */
+DECL|method|copyOf (Network<N, E> network)
 specifier|public
 specifier|static
 parameter_list|<
@@ -194,12 +194,12 @@ name|N
 argument_list|,
 name|E
 argument_list|>
-name|graph
+name|network
 parameter_list|)
 block|{
 return|return
 operator|(
-name|graph
+name|network
 operator|instanceof
 name|ImmutableNetwork
 operator|)
@@ -212,7 +212,7 @@ argument_list|,
 name|E
 argument_list|>
 operator|)
-name|graph
+name|network
 else|:
 operator|new
 name|ImmutableNetwork
@@ -222,14 +222,14 @@ argument_list|,
 name|E
 argument_list|>
 argument_list|(
-name|graph
+name|network
 argument_list|)
 return|;
 block|}
 comment|/**    * Simply returns its argument.    *    * @deprecated no need to use this    */
 annotation|@
 name|Deprecated
-DECL|method|copyOf (ImmutableNetwork<N, E> graph)
+DECL|method|copyOf (ImmutableNetwork<N, E> network)
 specifier|public
 specifier|static
 parameter_list|<
@@ -251,13 +251,13 @@ name|N
 argument_list|,
 name|E
 argument_list|>
-name|graph
+name|network
 parameter_list|)
 block|{
 return|return
 name|checkNotNull
 argument_list|(
-name|graph
+name|network
 argument_list|)
 return|;
 block|}
@@ -310,7 +310,7 @@ block|}
 block|}
 return|;
 block|}
-DECL|method|getNodeConnections (Network<N, E> graph)
+DECL|method|getNodeConnections (Network<N, E> network)
 specifier|private
 specifier|static
 parameter_list|<
@@ -337,11 +337,11 @@ name|N
 argument_list|,
 name|E
 argument_list|>
-name|graph
+name|network
 parameter_list|)
 block|{
 comment|// ImmutableMap.Builder maintains the order of the elements as inserted, so the map will have
-comment|// whatever ordering the graph's nodes do, so ImmutableSortedMap is unnecessary even if the
+comment|// whatever ordering the network's nodes do, so ImmutableSortedMap is unnecessary even if the
 comment|// input nodes are sorted.
 name|ImmutableMap
 operator|.
@@ -368,7 +368,7 @@ control|(
 name|N
 name|node
 range|:
-name|graph
+name|network
 operator|.
 name|nodes
 argument_list|()
@@ -382,7 +382,7 @@ name|node
 argument_list|,
 name|connectionsOf
 argument_list|(
-name|graph
+name|network
 argument_list|,
 name|node
 argument_list|)
@@ -396,7 +396,7 @@ name|build
 argument_list|()
 return|;
 block|}
-DECL|method|getEdgeToReferenceNode (Network<N, E> graph)
+DECL|method|getEdgeToReferenceNode (Network<N, E> network)
 specifier|private
 specifier|static
 parameter_list|<
@@ -418,11 +418,11 @@ name|N
 argument_list|,
 name|E
 argument_list|>
-name|graph
+name|network
 parameter_list|)
 block|{
-comment|// ImmutableMap.Builder maintains the order of the elements as inserted, so the map will
-comment|// have whatever ordering the graph's edges do, so ImmutableSortedMap is unnecessary even if the
+comment|// ImmutableMap.Builder maintains the order of the elements as inserted, so the map will have
+comment|// whatever ordering the network's edges do, so ImmutableSortedMap is unnecessary even if the
 comment|// input edges are sorted.
 name|ImmutableMap
 operator|.
@@ -444,7 +444,7 @@ control|(
 name|E
 name|edge
 range|:
-name|graph
+name|network
 operator|.
 name|edges
 argument_list|()
@@ -456,7 +456,7 @@ name|put
 argument_list|(
 name|edge
 argument_list|,
-name|graph
+name|network
 operator|.
 name|incidentNodes
 argument_list|(
@@ -475,7 +475,7 @@ name|build
 argument_list|()
 return|;
 block|}
-DECL|method|connectionsOf (Network<N, E> graph, N node)
+DECL|method|connectionsOf (Network<N, E> network, N node)
 specifier|private
 specifier|static
 parameter_list|<
@@ -497,7 +497,7 @@ name|N
 argument_list|,
 name|E
 argument_list|>
-name|graph
+name|network
 parameter_list|,
 name|N
 name|node
@@ -505,7 +505,7 @@ parameter_list|)
 block|{
 if|if
 condition|(
-name|graph
+name|network
 operator|.
 name|isDirected
 argument_list|()
@@ -523,7 +523,7 @@ name|Maps
 operator|.
 name|asMap
 argument_list|(
-name|graph
+name|network
 operator|.
 name|inEdges
 argument_list|(
@@ -532,7 +532,7 @@ argument_list|)
 argument_list|,
 name|sourceNodeFn
 argument_list|(
-name|graph
+name|network
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -548,7 +548,7 @@ name|Maps
 operator|.
 name|asMap
 argument_list|(
-name|graph
+name|network
 operator|.
 name|outEdges
 argument_list|(
@@ -557,14 +557,14 @@ argument_list|)
 argument_list|,
 name|targetNodeFn
 argument_list|(
-name|graph
+name|network
 argument_list|)
 argument_list|)
 decl_stmt|;
 name|int
 name|selfLoopCount
 init|=
-name|graph
+name|network
 operator|.
 name|edgesConnecting
 argument_list|(
@@ -577,7 +577,7 @@ name|size
 argument_list|()
 decl_stmt|;
 return|return
-name|graph
+name|network
 operator|.
 name|allowsParallelEdges
 argument_list|()
@@ -619,7 +619,7 @@ name|Maps
 operator|.
 name|asMap
 argument_list|(
-name|graph
+name|network
 operator|.
 name|incidentEdges
 argument_list|(
@@ -628,14 +628,14 @@ argument_list|)
 argument_list|,
 name|adjacentNodeFn
 argument_list|(
-name|graph
+name|network
 argument_list|,
 name|node
 argument_list|)
 argument_list|)
 decl_stmt|;
 return|return
-name|graph
+name|network
 operator|.
 name|allowsParallelEdges
 argument_list|()
@@ -656,7 +656,7 @@ argument_list|)
 return|;
 block|}
 block|}
-DECL|method|sourceNodeFn (final Network<N, E> graph)
+DECL|method|sourceNodeFn (final Network<N, E> network)
 specifier|private
 specifier|static
 parameter_list|<
@@ -679,7 +679,7 @@ name|N
 argument_list|,
 name|E
 argument_list|>
-name|graph
+name|network
 parameter_list|)
 block|{
 return|return
@@ -703,7 +703,7 @@ name|edge
 parameter_list|)
 block|{
 return|return
-name|graph
+name|network
 operator|.
 name|incidentNodes
 argument_list|(
@@ -717,7 +717,7 @@ block|}
 block|}
 return|;
 block|}
-DECL|method|targetNodeFn (final Network<N, E> graph)
+DECL|method|targetNodeFn (final Network<N, E> network)
 specifier|private
 specifier|static
 parameter_list|<
@@ -740,7 +740,7 @@ name|N
 argument_list|,
 name|E
 argument_list|>
-name|graph
+name|network
 parameter_list|)
 block|{
 return|return
@@ -764,7 +764,7 @@ name|edge
 parameter_list|)
 block|{
 return|return
-name|graph
+name|network
 operator|.
 name|incidentNodes
 argument_list|(
@@ -778,7 +778,7 @@ block|}
 block|}
 return|;
 block|}
-DECL|method|adjacentNodeFn (final Network<N, E> graph, final N node)
+DECL|method|adjacentNodeFn (final Network<N, E> network, final N node)
 specifier|private
 specifier|static
 parameter_list|<
@@ -801,7 +801,7 @@ name|N
 argument_list|,
 name|E
 argument_list|>
-name|graph
+name|network
 parameter_list|,
 specifier|final
 name|N
@@ -829,7 +829,7 @@ name|edge
 parameter_list|)
 block|{
 return|return
-name|graph
+name|network
 operator|.
 name|incidentNodes
 argument_list|(

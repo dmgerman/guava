@@ -180,9 +180,9 @@ name|E13
 init|=
 literal|"1-3"
 decl_stmt|;
-DECL|enum|GraphType
+DECL|enum|EdgeType
 enum|enum
-name|GraphType
+name|EdgeType
 block|{
 DECL|enumConstant|UNDIRECTED
 name|UNDIRECTED
@@ -190,13 +190,13 @@ block|,
 DECL|enumConstant|DIRECTED
 name|DIRECTED
 block|}
-DECL|field|graphType
+DECL|field|edgeType
 specifier|private
 specifier|final
-name|GraphType
-name|graphType
+name|EdgeType
+name|edgeType
 decl_stmt|;
-DECL|field|graph
+DECL|field|network
 specifier|private
 specifier|final
 name|MutableNetwork
@@ -205,7 +205,7 @@ name|Integer
 argument_list|,
 name|String
 argument_list|>
-name|graph
+name|network
 decl_stmt|;
 comment|// add parameters: directed/undirected
 annotation|@
@@ -232,13 +232,13 @@ index|[]
 index|[]
 block|{
 block|{
-name|GraphType
+name|EdgeType
 operator|.
 name|UNDIRECTED
 block|}
 block|,
 block|{
-name|GraphType
+name|EdgeType
 operator|.
 name|DIRECTED
 block|}
@@ -246,31 +246,31 @@ block|}
 argument_list|)
 return|;
 block|}
-DECL|method|NetworkEquivalenceTest (GraphType graphType)
+DECL|method|NetworkEquivalenceTest (EdgeType edgeType)
 specifier|public
 name|NetworkEquivalenceTest
 parameter_list|(
-name|GraphType
-name|graphType
+name|EdgeType
+name|edgeType
 parameter_list|)
 block|{
 name|this
 operator|.
-name|graphType
+name|edgeType
 operator|=
-name|graphType
+name|edgeType
 expr_stmt|;
 name|this
 operator|.
-name|graph
+name|network
 operator|=
-name|createGraph
+name|createNetwork
 argument_list|(
-name|graphType
+name|edgeType
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|createGraph (GraphType graphType)
+DECL|method|createNetwork (EdgeType edgeType)
 specifier|private
 specifier|static
 name|MutableNetwork
@@ -279,15 +279,15 @@ name|Integer
 argument_list|,
 name|String
 argument_list|>
-name|createGraph
+name|createNetwork
 parameter_list|(
-name|GraphType
-name|graphType
+name|EdgeType
+name|edgeType
 parameter_list|)
 block|{
 switch|switch
 condition|(
-name|graphType
+name|edgeType
 condition|)
 block|{
 case|case
@@ -329,33 +329,33 @@ throw|throw
 operator|new
 name|IllegalStateException
 argument_list|(
-literal|"Unexpected graph type: "
+literal|"Unexpected edge type: "
 operator|+
-name|graphType
+name|edgeType
 argument_list|)
 throw|;
 block|}
 block|}
-DECL|method|oppositeType (GraphType graphType)
+DECL|method|oppositeType (EdgeType edgeType)
 specifier|private
 specifier|static
-name|GraphType
+name|EdgeType
 name|oppositeType
 parameter_list|(
-name|GraphType
-name|graphType
+name|EdgeType
+name|edgeType
 parameter_list|)
 block|{
 switch|switch
 condition|(
-name|graphType
+name|edgeType
 condition|)
 block|{
 case|case
 name|UNDIRECTED
 case|:
 return|return
-name|GraphType
+name|EdgeType
 operator|.
 name|DIRECTED
 return|;
@@ -363,7 +363,7 @@ case|case
 name|DIRECTED
 case|:
 return|return
-name|GraphType
+name|EdgeType
 operator|.
 name|UNDIRECTED
 return|;
@@ -372,9 +372,9 @@ throw|throw
 operator|new
 name|IllegalStateException
 argument_list|(
-literal|"Unexpected graph type: "
+literal|"Unexpected edge type: "
 operator|+
-name|graphType
+name|edgeType
 argument_list|)
 throw|;
 block|}
@@ -387,7 +387,7 @@ name|void
 name|equivalent_nodeSetsDiffer
 parameter_list|()
 block|{
-name|graph
+name|network
 operator|.
 name|addNode
 argument_list|(
@@ -402,9 +402,9 @@ name|String
 argument_list|>
 name|g2
 init|=
-name|createGraph
+name|createNetwork
 argument_list|(
-name|graphType
+name|edgeType
 argument_list|)
 decl_stmt|;
 name|g2
@@ -420,7 +420,7 @@ name|Graphs
 operator|.
 name|equivalent
 argument_list|(
-name|graph
+name|network
 argument_list|,
 name|g2
 argument_list|)
@@ -439,7 +439,7 @@ name|void
 name|equivalent_edgeSetsDiffer
 parameter_list|()
 block|{
-name|graph
+name|network
 operator|.
 name|addEdge
 argument_list|(
@@ -458,9 +458,9 @@ name|String
 argument_list|>
 name|g2
 init|=
-name|createGraph
+name|createNetwork
 argument_list|(
-name|graphType
+name|edgeType
 argument_list|)
 decl_stmt|;
 name|g2
@@ -480,7 +480,7 @@ name|Graphs
 operator|.
 name|equivalent
 argument_list|(
-name|graph
+name|network
 argument_list|,
 name|g2
 argument_list|)
@@ -490,7 +490,7 @@ name|isFalse
 argument_list|()
 expr_stmt|;
 block|}
-comment|// Node/edge sets are the same, but node/edge connections differ due to graph type.
+comment|// Node/edge sets are the same, but node/edge connections differ due to edge type.
 annotation|@
 name|Test
 DECL|method|equivalent_directedVsUndirected ()
@@ -499,7 +499,7 @@ name|void
 name|equivalent_directedVsUndirected
 parameter_list|()
 block|{
-name|graph
+name|network
 operator|.
 name|addEdge
 argument_list|(
@@ -518,11 +518,11 @@ name|String
 argument_list|>
 name|g2
 init|=
-name|createGraph
+name|createNetwork
 argument_list|(
 name|oppositeType
 argument_list|(
-name|graphType
+name|edgeType
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -543,7 +543,7 @@ name|Graphs
 operator|.
 name|equivalent
 argument_list|(
-name|graph
+name|network
 argument_list|,
 name|g2
 argument_list|)
@@ -562,7 +562,7 @@ name|void
 name|equivalent_selfLoop_directedVsUndirected
 parameter_list|()
 block|{
-name|graph
+name|network
 operator|.
 name|addEdge
 argument_list|(
@@ -581,11 +581,11 @@ name|String
 argument_list|>
 name|g2
 init|=
-name|createGraph
+name|createNetwork
 argument_list|(
 name|oppositeType
 argument_list|(
-name|graphType
+name|edgeType
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -606,7 +606,7 @@ name|Graphs
 operator|.
 name|equivalent
 argument_list|(
-name|graph
+name|network
 argument_list|,
 name|g2
 argument_list|)
@@ -625,7 +625,7 @@ name|void
 name|equivalent_connectionsDiffer
 parameter_list|()
 block|{
-name|graph
+name|network
 operator|.
 name|addEdge
 argument_list|(
@@ -636,7 +636,7 @@ argument_list|,
 name|E12
 argument_list|)
 expr_stmt|;
-name|graph
+name|network
 operator|.
 name|addEdge
 argument_list|(
@@ -655,9 +655,9 @@ name|String
 argument_list|>
 name|g2
 init|=
-name|createGraph
+name|createNetwork
 argument_list|(
-name|graphType
+name|edgeType
 argument_list|)
 decl_stmt|;
 comment|// connect E13 to N1 and N2, and E12 to N1 and N3 => not equivalent
@@ -689,7 +689,7 @@ name|Graphs
 operator|.
 name|equivalent
 argument_list|(
-name|graph
+name|network
 argument_list|,
 name|g2
 argument_list|)
@@ -709,7 +709,7 @@ name|void
 name|equivalent_propertiesDiffer
 parameter_list|()
 block|{
-name|graph
+name|network
 operator|.
 name|addEdge
 argument_list|(
@@ -732,13 +732,13 @@ name|NetworkBuilder
 operator|.
 name|from
 argument_list|(
-name|graph
+name|network
 argument_list|)
 operator|.
 name|allowsParallelEdges
 argument_list|(
 operator|!
-name|graph
+name|network
 operator|.
 name|allowsParallelEdges
 argument_list|()
@@ -747,7 +747,7 @@ operator|.
 name|allowsSelfLoops
 argument_list|(
 operator|!
-name|graph
+name|network
 operator|.
 name|allowsSelfLoops
 argument_list|()
@@ -773,7 +773,7 @@ name|Graphs
 operator|.
 name|equivalent
 argument_list|(
-name|graph
+name|network
 argument_list|,
 name|g2
 argument_list|)
@@ -805,7 +805,7 @@ name|NetworkBuilder
 operator|.
 name|from
 argument_list|(
-name|graph
+name|network
 argument_list|)
 operator|.
 name|allowsParallelEdges
@@ -909,7 +909,7 @@ name|void
 name|equivalent_edgeDirectionsDiffer
 parameter_list|()
 block|{
-name|graph
+name|network
 operator|.
 name|addEdge
 argument_list|(
@@ -928,9 +928,9 @@ name|String
 argument_list|>
 name|g2
 init|=
-name|createGraph
+name|createNetwork
 argument_list|(
-name|graphType
+name|edgeType
 argument_list|)
 decl_stmt|;
 name|g2
@@ -946,7 +946,7 @@ argument_list|)
 expr_stmt|;
 switch|switch
 condition|(
-name|graphType
+name|edgeType
 condition|)
 block|{
 case|case
@@ -958,7 +958,7 @@ name|Graphs
 operator|.
 name|equivalent
 argument_list|(
-name|graph
+name|network
 argument_list|,
 name|g2
 argument_list|)
@@ -977,7 +977,7 @@ name|Graphs
 operator|.
 name|equivalent
 argument_list|(
-name|graph
+name|network
 argument_list|,
 name|g2
 argument_list|)
@@ -992,9 +992,9 @@ throw|throw
 operator|new
 name|IllegalStateException
 argument_list|(
-literal|"Unexpected graph type: "
+literal|"Unexpected edge type: "
 operator|+
-name|graphType
+name|edgeType
 argument_list|)
 throw|;
 block|}

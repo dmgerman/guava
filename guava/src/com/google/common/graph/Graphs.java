@@ -2585,8 +2585,8 @@ return|return
 name|subgraph
 return|;
 block|}
-comment|/**    * Returns an induced subgraph of {@code graph}. This subgraph is a new graph that contains all of    * the nodes in {@code nodes}, and all of the {@link Network#edges() edges} from {@code graph} for    * which the {@link Network#incidentNodes(Object)} are both contained by {@code nodes}.    *    * @throws IllegalArgumentException if any element in {@code nodes} is not a node in the graph    */
-DECL|method|inducedSubgraph ( Network<N, E> graph, Iterable<? extends N> nodes)
+comment|/**    * Returns an induced subgraph of {@code network}. This subgraph is a new graph that contains all    * of the nodes in {@code nodes}, and all of the {@link Network#edges() edges} from {@code    * network} for which the {@link Network#incidentNodes(Object) incident nodes} are both contained    * by {@code nodes}.    *    * @throws IllegalArgumentException if any element in {@code nodes} is not a node in the graph    */
+DECL|method|inducedSubgraph ( Network<N, E> network, Iterable<? extends N> nodes)
 specifier|public
 specifier|static
 parameter_list|<
@@ -2608,7 +2608,7 @@ name|N
 argument_list|,
 name|E
 argument_list|>
-name|graph
+name|network
 parameter_list|,
 name|Iterable
 argument_list|<
@@ -2631,7 +2631,7 @@ name|NetworkBuilder
 operator|.
 name|from
 argument_list|(
-name|graph
+name|network
 argument_list|)
 operator|.
 name|build
@@ -2669,7 +2669,7 @@ control|(
 name|E
 name|edge
 range|:
-name|graph
+name|network
 operator|.
 name|outEdges
 argument_list|(
@@ -2680,7 +2680,7 @@ block|{
 name|N
 name|successorNode
 init|=
-name|graph
+name|network
 operator|.
 name|incidentNodes
 argument_list|(
@@ -2946,8 +2946,8 @@ return|return
 name|copy
 return|;
 block|}
-comment|/** Creates a mutable copy of {@code graph} with the same nodes and edges. */
-DECL|method|copyOf (Network<N, E> graph)
+comment|/** Creates a mutable copy of {@code network} with the same nodes and edges. */
+DECL|method|copyOf (Network<N, E> network)
 specifier|public
 specifier|static
 parameter_list|<
@@ -2969,7 +2969,7 @@ name|N
 argument_list|,
 name|E
 argument_list|>
-name|graph
+name|network
 parameter_list|)
 block|{
 name|MutableNetwork
@@ -2984,12 +2984,12 @@ name|NetworkBuilder
 operator|.
 name|from
 argument_list|(
-name|graph
+name|network
 argument_list|)
 operator|.
 name|expectedNodeCount
 argument_list|(
-name|graph
+name|network
 operator|.
 name|nodes
 argument_list|()
@@ -3000,7 +3000,7 @@ argument_list|)
 operator|.
 name|expectedEdgeCount
 argument_list|(
-name|graph
+name|network
 operator|.
 name|edges
 argument_list|()
@@ -3017,7 +3017,7 @@ control|(
 name|N
 name|node
 range|:
-name|graph
+name|network
 operator|.
 name|nodes
 argument_list|()
@@ -3036,7 +3036,7 @@ control|(
 name|E
 name|edge
 range|:
-name|graph
+name|network
 operator|.
 name|edges
 argument_list|()
@@ -3048,7 +3048,7 @@ name|N
 argument_list|>
 name|endpointPair
 init|=
-name|graph
+name|network
 operator|.
 name|incidentNodes
 argument_list|(
