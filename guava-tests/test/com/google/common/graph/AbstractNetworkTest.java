@@ -3224,6 +3224,11 @@ argument_list|(
 name|N1
 argument_list|)
 expr_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 name|Set
 argument_list|<
 name|Integer
@@ -3494,6 +3499,11 @@ argument_list|,
 name|E12
 argument_list|)
 expr_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 name|EndpointPair
 argument_list|<
 name|Integer

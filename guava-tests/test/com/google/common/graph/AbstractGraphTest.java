@@ -1821,6 +1821,11 @@ argument_list|(
 name|N1
 argument_list|)
 expr_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 name|Set
 argument_list|<
 name|Integer
