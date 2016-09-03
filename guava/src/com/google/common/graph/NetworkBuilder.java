@@ -224,11 +224,6 @@ argument_list|>
 name|network
 parameter_list|)
 block|{
-name|checkNotNull
-argument_list|(
-name|network
-argument_list|)
-expr_stmt|;
 return|return
 operator|new
 name|NetworkBuilder
@@ -432,11 +427,6 @@ argument_list|>
 name|nodeOrder
 parameter_list|)
 block|{
-name|checkNotNull
-argument_list|(
-name|nodeOrder
-argument_list|)
-expr_stmt|;
 name|NetworkBuilder
 argument_list|<
 name|N1
@@ -452,7 +442,10 @@ name|newBuilder
 operator|.
 name|nodeOrder
 operator|=
+name|checkNotNull
+argument_list|(
 name|nodeOrder
+argument_list|)
 expr_stmt|;
 return|return
 name|newBuilder
@@ -481,11 +474,6 @@ argument_list|>
 name|edgeOrder
 parameter_list|)
 block|{
-name|checkNotNull
-argument_list|(
-name|edgeOrder
-argument_list|)
-expr_stmt|;
 name|NetworkBuilder
 argument_list|<
 name|N
@@ -501,7 +489,10 @@ name|newBuilder
 operator|.
 name|edgeOrder
 operator|=
+name|checkNotNull
+argument_list|(
 name|edgeOrder
+argument_list|)
 expr_stmt|;
 return|return
 name|newBuilder

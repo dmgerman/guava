@@ -132,8 +132,6 @@ operator|=
 name|checkNotNull
 argument_list|(
 name|incidentEdgeMap
-argument_list|,
-literal|"incidentEdgeMap"
 argument_list|)
 expr_stmt|;
 block|}

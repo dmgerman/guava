@@ -300,13 +300,6 @@ parameter_list|)
 block|{
 name|checkNotNull
 argument_list|(
-name|edge
-argument_list|,
-literal|"edge"
-argument_list|)
-expr_stmt|;
-name|checkNotNull
-argument_list|(
 name|nodeU
 argument_list|,
 literal|"nodeU"
@@ -317,6 +310,13 @@ argument_list|(
 name|nodeV
 argument_list|,
 literal|"nodeV"
+argument_list|)
+expr_stmt|;
+name|checkNotNull
+argument_list|(
+name|edge
+argument_list|,
+literal|"edge"
 argument_list|)
 expr_stmt|;
 if|if

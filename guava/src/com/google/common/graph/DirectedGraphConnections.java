@@ -347,8 +347,6 @@ operator|=
 name|checkNotNull
 argument_list|(
 name|adjacentNodeValues
-argument_list|,
-literal|"adjacentNodeValues"
 argument_list|)
 expr_stmt|;
 name|this

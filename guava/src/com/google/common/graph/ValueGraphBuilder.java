@@ -188,11 +188,6 @@ argument_list|>
 name|graph
 parameter_list|)
 block|{
-name|checkNotNull
-argument_list|(
-name|graph
-argument_list|)
-expr_stmt|;
 return|return
 operator|new
 name|ValueGraphBuilder
@@ -314,11 +309,6 @@ argument_list|>
 name|nodeOrder
 parameter_list|)
 block|{
-name|checkNotNull
-argument_list|(
-name|nodeOrder
-argument_list|)
-expr_stmt|;
 name|ValueGraphBuilder
 argument_list|<
 name|N1
@@ -334,7 +324,10 @@ name|newBuilder
 operator|.
 name|nodeOrder
 operator|=
+name|checkNotNull
+argument_list|(
 name|nodeOrder
+argument_list|)
 expr_stmt|;
 return|return
 name|newBuilder

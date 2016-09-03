@@ -282,8 +282,6 @@ operator|=
 name|checkNotNull
 argument_list|(
 name|inEdgeMap
-argument_list|,
-literal|"inEdgeMap"
 argument_list|)
 expr_stmt|;
 name|this
@@ -293,8 +291,6 @@ operator|=
 name|checkNotNull
 argument_list|(
 name|outEdgeMap
-argument_list|,
-literal|"outEdgeMap"
 argument_list|)
 expr_stmt|;
 name|this

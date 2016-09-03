@@ -388,13 +388,6 @@ name|Object
 name|node
 parameter_list|)
 block|{
-name|checkNotNull
-argument_list|(
-name|node
-argument_list|,
-literal|"node"
-argument_list|)
-expr_stmt|;
 if|if
 condition|(
 name|node
