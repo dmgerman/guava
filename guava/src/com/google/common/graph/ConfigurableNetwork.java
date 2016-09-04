@@ -703,13 +703,11 @@ operator|!
 name|allowsSelfLoops
 operator|&&
 name|nodeU
-operator|.
-name|equals
-argument_list|(
+operator|==
 name|nodeV
-argument_list|)
 condition|)
 block|{
+comment|// just an optimization, only check reference equality
 return|return
 name|ImmutableSet
 operator|.
