@@ -272,18 +272,18 @@ specifier|final
 name|Object
 name|successorValue
 decl_stmt|;
-DECL|method|PredAndSucc (Object userValue)
+DECL|method|PredAndSucc (Object successorValue)
 name|PredAndSucc
 parameter_list|(
 name|Object
-name|userValue
+name|successorValue
 parameter_list|)
 block|{
 name|this
 operator|.
 name|successorValue
 operator|=
-name|userValue
+name|successorValue
 expr_stmt|;
 block|}
 block|}
