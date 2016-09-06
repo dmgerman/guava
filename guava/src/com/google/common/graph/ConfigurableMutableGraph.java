@@ -55,7 +55,7 @@ argument_list|<
 name|N
 argument_list|>
 block|{
-DECL|field|backingGraph
+DECL|field|backingValueGraph
 specifier|private
 specifier|final
 name|MutableValueGraph
@@ -64,7 +64,7 @@ name|N
 argument_list|,
 name|Presence
 argument_list|>
-name|backingGraph
+name|backingValueGraph
 decl_stmt|;
 comment|/**    * Constructs a {@link MutableGraph} with the properties specified in {@code builder}.    */
 DECL|method|ConfigurableMutableGraph (AbstractGraphBuilder<? super N> builder)
@@ -81,7 +81,7 @@ parameter_list|)
 block|{
 name|this
 operator|.
-name|backingGraph
+name|backingValueGraph
 operator|=
 operator|new
 name|ConfigurableMutableValueGraph
@@ -107,7 +107,7 @@ name|delegate
 parameter_list|()
 block|{
 return|return
-name|backingGraph
+name|backingValueGraph
 return|;
 block|}
 annotation|@
@@ -122,7 +122,7 @@ name|node
 parameter_list|)
 block|{
 return|return
-name|backingGraph
+name|backingValueGraph
 operator|.
 name|addNode
 argument_list|(
@@ -145,7 +145,7 @@ name|nodeV
 parameter_list|)
 block|{
 return|return
-name|backingGraph
+name|backingValueGraph
 operator|.
 name|putEdgeValue
 argument_list|(
@@ -173,7 +173,7 @@ name|node
 parameter_list|)
 block|{
 return|return
-name|backingGraph
+name|backingValueGraph
 operator|.
 name|removeNode
 argument_list|(
@@ -196,7 +196,7 @@ name|nodeV
 parameter_list|)
 block|{
 return|return
-name|backingGraph
+name|backingValueGraph
 operator|.
 name|removeEdge
 argument_list|(

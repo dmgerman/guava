@@ -18,20 +18,6 @@ end_package
 
 begin_import
 import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|collect
-operator|.
-name|ForwardingObject
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|util
@@ -53,15 +39,11 @@ parameter_list|<
 name|N
 parameter_list|>
 extends|extends
-name|ForwardingObject
-implements|implements
-name|Graph
+name|AbstractGraph
 argument_list|<
 name|N
 argument_list|>
 block|{
-annotation|@
-name|Override
 DECL|method|delegate ()
 specifier|protected
 specifier|abstract
@@ -296,24 +278,6 @@ operator|.
 name|outDegree
 argument_list|(
 name|node
-argument_list|)
-return|;
-block|}
-annotation|@
-name|Override
-DECL|method|toString ()
-specifier|public
-name|String
-name|toString
-parameter_list|()
-block|{
-return|return
-name|AbstractGraph
-operator|.
-name|toString
-argument_list|(
-name|delegate
-argument_list|()
 argument_list|)
 return|;
 block|}

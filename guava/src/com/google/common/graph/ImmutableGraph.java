@@ -442,16 +442,16 @@ argument_list|<
 name|N
 argument_list|>
 block|{
-DECL|field|backingGraph
+DECL|field|backingValueGraph
 specifier|protected
 specifier|final
-name|ConfigurableValueGraph
+name|ValueGraph
 argument_list|<
 name|N
 argument_list|,
 name|V
 argument_list|>
-name|backingGraph
+name|backingValueGraph
 decl_stmt|;
 DECL|method|ValueBackedImpl ( AbstractGraphBuilder<? super N> builder, ImmutableMap<N, GraphConnections<N, V>> nodeConnections, long edgeCount)
 name|ValueBackedImpl
@@ -483,7 +483,7 @@ parameter_list|)
 block|{
 name|this
 operator|.
-name|backingGraph
+name|backingValueGraph
 operator|=
 operator|new
 name|ConfigurableValueGraph
@@ -513,7 +513,7 @@ name|delegate
 parameter_list|()
 block|{
 return|return
-name|backingGraph
+name|backingValueGraph
 return|;
 block|}
 block|}

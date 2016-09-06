@@ -503,25 +503,6 @@ name|String
 name|toString
 parameter_list|()
 block|{
-return|return
-name|toString
-argument_list|(
-name|this
-argument_list|)
-return|;
-block|}
-DECL|method|toString (Graph<?> graph)
-specifier|static
-name|String
-name|toString
-parameter_list|(
-name|Graph
-argument_list|<
-name|?
-argument_list|>
-name|graph
-parameter_list|)
-block|{
 name|String
 name|propertiesString
 init|=
@@ -531,13 +512,9 @@ name|format
 argument_list|(
 literal|"isDirected: %s, allowsSelfLoops: %s"
 argument_list|,
-name|graph
-operator|.
 name|isDirected
 argument_list|()
 argument_list|,
-name|graph
-operator|.
 name|allowsSelfLoops
 argument_list|()
 argument_list|)
@@ -551,13 +528,9 @@ name|GRAPH_STRING_FORMAT
 argument_list|,
 name|propertiesString
 argument_list|,
-name|graph
-operator|.
 name|nodes
 argument_list|()
 argument_list|,
-name|graph
-operator|.
 name|edges
 argument_list|()
 argument_list|)
