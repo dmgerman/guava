@@ -640,13 +640,8 @@ return|;
 default|default:
 throw|throw
 operator|new
-name|IllegalStateException
-argument_list|(
-name|type
-operator|.
-name|toString
+name|AssertionError
 argument_list|()
-argument_list|)
 throw|;
 block|}
 block|}
