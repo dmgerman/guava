@@ -230,6 +230,7 @@ name|N
 name|nodeV
 parameter_list|)
 block|{
+comment|// Swap nodes on purpose to prevent callers from relying on the "ordering" of an unordered pair.
 return|return
 operator|new
 name|Unordered
@@ -237,9 +238,9 @@ argument_list|<
 name|N
 argument_list|>
 argument_list|(
-name|nodeU
-argument_list|,
 name|nodeV
+argument_list|,
+name|nodeU
 argument_list|)
 return|;
 block|}

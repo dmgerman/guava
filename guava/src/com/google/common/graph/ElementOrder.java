@@ -524,12 +524,8 @@ name|Objects
 operator|.
 name|hashCode
 argument_list|(
-name|this
-operator|.
 name|type
 argument_list|,
-name|this
-operator|.
 name|comparator
 argument_list|)
 return|;
@@ -556,15 +552,11 @@ name|add
 argument_list|(
 literal|"type"
 argument_list|,
-name|this
-operator|.
 name|type
 argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|this
-operator|.
 name|comparator
 operator|!=
 literal|null
@@ -576,8 +568,6 @@ name|add
 argument_list|(
 literal|"comparator"
 argument_list|,
-name|this
-operator|.
 name|comparator
 argument_list|)
 expr_stmt|;
