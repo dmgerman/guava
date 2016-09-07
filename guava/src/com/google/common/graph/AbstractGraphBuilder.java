@@ -78,7 +78,7 @@ operator|.
 name|absent
 argument_list|()
 decl_stmt|;
-comment|/**    * Creates a new instance with the specified edge directionality.    *    * @param directed if true, creates an instance for graphs whose edges are each directed;    *      if false, creates an instance for graphs whose edges are each undirected.    */
+comment|/**    * Creates a new instance with the specified edge directionality.    *    * @param directed if true, creates an instance for graphs whose edges are each directed; if    *     false, creates an instance for graphs whose edges are each undirected.    */
 DECL|method|AbstractGraphBuilder (boolean directed)
 name|AbstractGraphBuilder
 parameter_list|(

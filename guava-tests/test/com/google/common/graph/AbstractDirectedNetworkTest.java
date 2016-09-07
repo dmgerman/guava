@@ -99,7 +99,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Abstract base class for testing implementations of {@link Network} interface.  *  *<p>This class is responsible for testing that a directed implementation of {@link Network}  * is correctly handling directed edges. Implementation-dependent test cases are left to  * subclasses. Test cases that do not require the graph to be directed are found in superclasses.  *  */
+comment|/**  * Abstract base class for testing implementations of {@link Network} interface.  *  *<p>This class is responsible for testing that a directed implementation of {@link Network} is  * correctly handling directed edges. Implementation-dependent test cases are left to subclasses.  * Test cases that do not require the graph to be directed are found in superclasses.  */
 end_comment
 
 begin_class

@@ -155,7 +155,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Abstract base class for testing implementations of {@link Graph} interface. Graph  * instances created for testing should have Integer node and String edge objects.  *  *<p>Test cases that should be handled similarly in any graph implementation are  * included in this class. For example, testing that {@code nodes()} method returns  * the set of the nodes in the graph. The following test cases are left for the subclasses  * to handle:  *<ul>  *<li>Test cases related to whether the graph is directed, undirected, mutable,  *     or immutable.  *<li>Test cases related to the specific implementation of the {@link Graph} interface.  *</ul>  *  * TODO(user): Make this class generic (using<N, E>) for all node and edge types.  * TODO(user): Differentiate between directed and undirected edge strings.  */
+comment|/**  * Abstract base class for testing implementations of {@link Graph} interface. Graph instances  * created for testing should have Integer node and String edge objects.  *  *<p>Test cases that should be handled similarly in any graph implementation are included in this  * class. For example, testing that {@code nodes()} method returns the set of the nodes in the  * graph. The following test cases are left for the subclasses to handle:  *  *<ul>  *<li>Test cases related to whether the graph is directed, undirected, mutable, or immutable.  *<li>Test cases related to the specific implementation of the {@link Graph} interface.  *</ul>  *  * TODO(user): Make this class generic (using<N, E>) for all node and edge types.  * TODO(user): Differentiate between directed and undirected edge strings.  */
 end_comment
 
 begin_class
@@ -273,7 +273,7 @@ name|ERROR_ADDED_SELF_LOOP
 init|=
 literal|"Should not be allowed to add a self-loop edge."
 decl_stmt|;
-comment|/**    * Creates and returns an instance of the graph to be tested.    */
+comment|/** Creates and returns an instance of the graph to be tested. */
 DECL|method|createGraph ()
 specifier|public
 specifier|abstract
@@ -284,10 +284,11 @@ argument_list|>
 name|createGraph
 parameter_list|()
 function_decl|;
-comment|/**    * A proxy method that adds the node {@code n} to the graph being tested.    * In case of Immutable graph implementations, this method should add {@code n} to the graph    * builder and build a new graph with the current builder state.    *    * @return {@code true} iff the graph was modified as a result of this call    * TODO(user): Consider changing access modifier to be protected.    */
+comment|/**    * A proxy method that adds the node {@code n} to the graph being tested. In case of Immutable    * graph implementations, this method should add {@code n} to the graph builder and build a new    * graph with the current builder state.    *    * @return {@code true} iff the graph was modified as a result of this call    */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|addNode (Integer n)
+specifier|protected
 name|boolean
 name|addNode
 parameter_list|(
@@ -304,10 +305,11 @@ name|n
 argument_list|)
 return|;
 block|}
-comment|/**    * A proxy method that adds the edge {@code e} to the graph    * being tested. In case of Immutable graph implementations, this method    * should add {@code e} to the graph builder and build a new graph with the current    * builder state.    *    *<p>This method should be used in tests of specific implementations if you want to    * ensure uniform behavior (including side effects) with how edges are added elsewhere    * in the tests.  For example, the existing implementations of this method explicitly    * add the supplied nodes to the graph, and then call {@code graph.addEdge()} to connect    * the edge to the nodes; this is not part of the contract of {@code graph.addEdge()}    * and is done for convenience.  In cases where you want to avoid such side effects    * (e.g., if you're testing what happens in your implementation if you add an edge    * whose end-points don't already exist in the graph), you should<b>not</b> use this    * method.    *    * @return {@code true} iff the graph was modified as a result of this call    * TODO(user): Consider changing access modifier to be protected.    */
+comment|/**    * A proxy method that adds the edge {@code e} to the graph being tested. In case of Immutable    * graph implementations, this method should add {@code e} to the graph builder and build a new    * graph with the current builder state.    *    *<p>This method should be used in tests of specific implementations if you want to ensure    * uniform behavior (including side effects) with how edges are added elsewhere in the tests. For    * example, the existing implementations of this method explicitly add the supplied nodes to the    * graph, and then call {@code graph.addEdge()} to connect the edge to the nodes; this is not part    * of the contract of {@code graph.addEdge()} and is done for convenience. In cases where you want    * to avoid such side effects (e.g., if you're testing what happens in your implementation if you    * add an edge whose end-points don't already exist in the graph), you should<b>not</b> use this    * method.    *    * @return {@code true} iff the graph was modified as a result of this call    */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|putEdge (Integer n1, Integer n2)
+specifier|protected
 name|boolean
 name|putEdge
 parameter_list|(
@@ -927,7 +929,7 @@ name|void
 name|nodes_checkReturnedSetMutability
 parameter_list|()
 function_decl|;
-comment|/**    * Verifies that the {@code Set} returned by {@code adjacentNodes} has the expected    * mutability property (see the {@code Graph} documentation for more information).    */
+comment|/**    * Verifies that the {@code Set} returned by {@code adjacentNodes} has the expected mutability    * property (see the {@code Graph} documentation for more information).    */
 annotation|@
 name|Test
 DECL|method|adjacentNodes_checkReturnedSetMutability ()
@@ -937,7 +939,7 @@ name|void
 name|adjacentNodes_checkReturnedSetMutability
 parameter_list|()
 function_decl|;
-comment|/**    * Verifies that the {@code Set} returned by {@code predecessors} has the expected    * mutability property (see the {@code Graph} documentation for more information).    */
+comment|/**    * Verifies that the {@code Set} returned by {@code predecessors} has the expected mutability    * property (see the {@code Graph} documentation for more information).    */
 annotation|@
 name|Test
 DECL|method|predecessors_checkReturnedSetMutability ()
@@ -947,7 +949,7 @@ name|void
 name|predecessors_checkReturnedSetMutability
 parameter_list|()
 function_decl|;
-comment|/**    * Verifies that the {@code Set} returned by {@code successors} has the expected    * mutability property (see the {@code Graph} documentation for more information).    */
+comment|/**    * Verifies that the {@code Set} returned by {@code successors} has the expected mutability    * property (see the {@code Graph} documentation for more information).    */
 annotation|@
 name|Test
 DECL|method|successors_checkReturnedSetMutability ()

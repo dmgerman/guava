@@ -102,7 +102,7 @@ argument_list|>
 name|outEdges
 parameter_list|()
 function_decl|;
-comment|/**    * Returns the set of edges connecting the origin node to {@code node}.    * For networks without parallel edges, this set cannot be of size greater than one.    */
+comment|/**    * Returns the set of edges connecting the origin node to {@code node}. For networks without    * parallel edges, this set cannot be of size greater than one.    */
 DECL|method|edgesConnecting (Object node)
 name|Set
 argument_list|<
@@ -137,7 +137,7 @@ name|boolean
 name|isSelfLoop
 parameter_list|)
 function_decl|;
-comment|/**    * Remove {@code edge} from the set of outgoing edges. Returns the former successor node.    */
+comment|/** Remove {@code edge} from the set of outgoing edges. Returns the former successor node. */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|removeOutEdge (Object edge)
@@ -163,7 +163,7 @@ name|boolean
 name|isSelfLoop
 parameter_list|)
 function_decl|;
-comment|/**    * Add {@code edge} to the set of outgoing edges. Implicitly adds {@code node} as a successor.    */
+comment|/** Add {@code edge} to the set of outgoing edges. Implicitly adds {@code node} as a successor. */
 DECL|method|addOutEdge (E edge, N node)
 name|void
 name|addOutEdge

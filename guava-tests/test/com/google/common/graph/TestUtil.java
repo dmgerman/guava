@@ -57,7 +57,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Utility methods used in various common.graph tests.  */
+comment|/** Utility methods used in various common.graph tests. */
 end_comment
 
 begin_class

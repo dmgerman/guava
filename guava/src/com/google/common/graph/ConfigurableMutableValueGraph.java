@@ -155,7 +155,7 @@ argument_list|,
 name|V
 argument_list|>
 block|{
-comment|/**    * Constructs a mutable graph with the properties specified in {@code builder}.    */
+comment|/** Constructs a mutable graph with the properties specified in {@code builder}. */
 DECL|method|ConfigurableMutableValueGraph (AbstractGraphBuilder<? super N> builder)
 name|ConfigurableMutableValueGraph
 parameter_list|(

@@ -93,7 +93,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests for an undirected {@link ConfigurableMutableNetwork} allowing self-loops.  */
+comment|/** Tests for an undirected {@link ConfigurableMutableNetwork} allowing self-loops. */
 end_comment
 
 begin_class

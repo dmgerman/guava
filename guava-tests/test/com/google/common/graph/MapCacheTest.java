@@ -155,7 +155,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests for {@link MapIteratorCache} and {@link MapRetrievalCache}.  */
+comment|/** Tests for {@link MapIteratorCache} and {@link MapRetrievalCache}. */
 end_comment
 
 begin_class

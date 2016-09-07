@@ -67,7 +67,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests for {@link ImmutableGraph} and {@link ImmutableValueGraph} .  */
+comment|/** Tests for {@link ImmutableGraph} and {@link ImmutableValueGraph} . */
 end_comment
 
 begin_class

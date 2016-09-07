@@ -100,7 +100,7 @@ argument_list|,
 name|E
 argument_list|>
 block|{
-comment|/**    * Keys are edges incident to the origin node, values are the node at the other end.    */
+comment|/** Keys are edges incident to the origin node, values are the node at the other end. */
 DECL|field|incidentEdgeMap
 specifier|protected
 specifier|final

@@ -183,7 +183,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests for {@link Graphs}. Tests assume that the implementation of the method  * {@code addEdge} adds the missing nodes to the graph, then adds the edge between them.  */
+comment|/**  * Tests for {@link Graphs}. Tests assume that the implementation of the method {@code addEdge} adds  * the missing nodes to the graph, then adds the edge between them.  */
 end_comment
 
 begin_class

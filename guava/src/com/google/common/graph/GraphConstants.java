@@ -17,7 +17,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * A utility class to hold various constants used by the Guava Graph library.  */
+comment|/** A utility class to hold various constants used by the Guava Graph library. */
 end_comment
 
 begin_class
@@ -156,7 +156,7 @@ name|GRAPH_STRING_FORMAT
 init|=
 literal|"%s, nodes: %s, edges: %s"
 decl_stmt|;
-comment|/**    * Singleton edge value for {@link Graph} implementations backed by {@link ValueGraph}s.    */
+comment|/** Singleton edge value for {@link Graph} implementations backed by {@link ValueGraph}s. */
 DECL|enum|Presence
 enum|enum
 name|Presence

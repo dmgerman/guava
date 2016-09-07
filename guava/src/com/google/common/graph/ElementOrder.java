@@ -165,7 +165,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Used to represent the order of elements in a data structure that supports different options  * for iteration order guarantees.  *  *<p>Example usage:  *<pre><code>  *   MutableGraph<Integer> graph  *       = GraphBuilder.directed().nodeOrder(ElementOrder.<Integer>natural()).build();  *</code></pre>  *  * @author Joshua O'Madadhain  * @since 20.0  */
+comment|/**  * Used to represent the order of elements in a data structure that supports different options for  * iteration order guarantees.  *  *<p>Example usage:  *  *<pre><code>  *   MutableGraph<Integer> graph  *       = GraphBuilder.directed().nodeOrder(ElementOrder.<Integer>natural()).build();  *</code></pre>  *  * @author Joshua O'Madadhain  * @since 20.0  */
 end_comment
 
 begin_class
@@ -186,9 +186,9 @@ specifier|final
 name|Type
 name|type
 decl_stmt|;
-DECL|field|comparator
 annotation|@
 name|Nullable
+DECL|field|comparator
 specifier|private
 specifier|final
 name|Comparator
@@ -197,7 +197,7 @@ name|T
 argument_list|>
 name|comparator
 decl_stmt|;
-comment|/**    * The type of ordering that this object specifies.    *<ul>    *<li>UNORDERED: no order is guaranteed.    *<li>INSERTION: insertion ordering is guaranteed.    *<li>SORTED: ordering according to a supplied comparator is guaranteed.    *</ul>    */
+comment|/**    * The type of ordering that this object specifies.    *    *<ul>    *<li>UNORDERED: no order is guaranteed.    *<li>INSERTION: insertion ordering is guaranteed.    *<li>SORTED: ordering according to a supplied comparator is guaranteed.    *</ul>    */
 DECL|enum|Type
 specifier|public
 enum|enum
@@ -263,7 +263,7 @@ operator|=
 name|comparator
 expr_stmt|;
 block|}
-comment|/**    * Returns an instance which specifies that no ordering is guaranteed.    */
+comment|/** Returns an instance which specifies that no ordering is guaranteed. */
 DECL|method|unordered ()
 specifier|public
 specifier|static
@@ -292,7 +292,7 @@ literal|null
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an instance which specifies that insertion ordering is guaranteed.    */
+comment|/** Returns an instance which specifies that insertion ordering is guaranteed. */
 DECL|method|insertion ()
 specifier|public
 specifier|static
@@ -398,7 +398,7 @@ name|comparator
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the type of ordering used.    */
+comment|/** Returns the type of ordering used. */
 DECL|method|type ()
 specifier|public
 name|Type
@@ -491,23 +491,21 @@ operator|)
 name|obj
 decl_stmt|;
 return|return
+operator|(
+name|type
+operator|==
 name|other
 operator|.
 name|type
-operator|==
-name|this
-operator|.
-name|type
+operator|)
 operator|&&
 name|Objects
 operator|.
 name|equal
 argument_list|(
-name|other
-operator|.
 name|comparator
 argument_list|,
-name|this
+name|other
 operator|.
 name|comparator
 argument_list|)
@@ -591,7 +589,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns an empty mutable map whose keys will respect this {@link ElementOrder}.    */
+comment|/** Returns an empty mutable map whose keys will respect this {@link ElementOrder}. */
 DECL|method|createMap (int expectedSize)
 parameter_list|<
 name|K

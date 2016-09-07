@@ -135,7 +135,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This class provides a skeletal implementation of {@link Graph}. It is recommended to extend  * this class rather than implement {@link Graph} directly.  *  * @author James Sexton  * @param<N> Node parameter type  * @since 20.0  */
+comment|/**  * This class provides a skeletal implementation of {@link Graph}. It is recommended to extend this  * class rather than implement {@link Graph} directly.  *  * @author James Sexton  * @param<N> Node parameter type  * @since 20.0  */
 end_comment
 
 begin_class
@@ -155,7 +155,7 @@ argument_list|<
 name|N
 argument_list|>
 block|{
-comment|/**    * Returns the number of edges in this graph; used to calculate the size of {@link #edges()}.    * The default implementation is O(|N|). You can manually keep track of the number of edges and    * override this method for better performance.    */
+comment|/**    * Returns the number of edges in this graph; used to calculate the size of {@link #edges()}. The    * default implementation is O(|N|). You can manually keep track of the number of edges and    * override this method for better performance.    */
 DECL|method|edgeCount ()
 specifier|protected
 name|long
@@ -202,7 +202,7 @@ operator|>>>
 literal|1
 return|;
 block|}
-comment|/**    * A reasonable default implementation of {@link Graph#edges()} defined in terms of    * {@link #nodes()} and {@link #successors(Object)}.    */
+comment|/**    * A reasonable default implementation of {@link Graph#edges()} defined in terms of {@link    * #nodes()} and {@link #successors(Object)}.    */
 annotation|@
 name|Override
 DECL|method|edges ()
@@ -494,7 +494,7 @@ name|node
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a string representation of this graph.    */
+comment|/** Returns a string representation of this graph. */
 annotation|@
 name|Override
 DECL|method|toString ()

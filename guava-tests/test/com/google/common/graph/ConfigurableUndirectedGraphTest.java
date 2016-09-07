@@ -67,7 +67,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests for an undirected {@link ConfigurableMutableGraph} allowing self-loops.  */
+comment|/** Tests for an undirected {@link ConfigurableMutableGraph} allowing self-loops. */
 end_comment
 
 begin_class

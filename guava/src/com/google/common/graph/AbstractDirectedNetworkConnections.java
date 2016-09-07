@@ -222,7 +222,7 @@ argument_list|,
 name|E
 argument_list|>
 block|{
-comment|/**    * Keys are edges incoming to the origin node, values are the source node.    */
+comment|/** Keys are edges incoming to the origin node, values are the source node. */
 DECL|field|inEdgeMap
 specifier|protected
 specifier|final
@@ -234,7 +234,7 @@ name|N
 argument_list|>
 name|inEdgeMap
 decl_stmt|;
-comment|/**    * Keys are edges outgoing from the origin node, values are the target node.    */
+comment|/** Keys are edges outgoing from the origin node, values are the target node. */
 DECL|field|outEdgeMap
 specifier|protected
 specifier|final
@@ -251,7 +251,7 @@ specifier|private
 name|int
 name|selfLoopCount
 decl_stmt|;
-DECL|method|AbstractDirectedNetworkConnections (Map<E, N> inEdgeMap, Map<E, N> outEdgeMap, int selfLoopCount)
+DECL|method|AbstractDirectedNetworkConnections ( Map<E, N> inEdgeMap, Map<E, N> outEdgeMap, int selfLoopCount)
 specifier|protected
 name|AbstractDirectedNetworkConnections
 parameter_list|(

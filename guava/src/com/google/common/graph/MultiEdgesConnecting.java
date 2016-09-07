@@ -113,7 +113,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A class to represent the set of edges connecting an (implicit) origin node to a target node.  *  *<p>The {@link #outEdgeToNode} map allows this class to work on networks with parallel edges.  * See {@link EdgesConnecting} for a class that is more efficient but forbids parallel edges.  *  * @author James Sexton  * @param<E> Edge parameter type  */
+comment|/**  * A class to represent the set of edges connecting an (implicit) origin node to a target node.  *  *<p>The {@link #outEdgeToNode} map allows this class to work on networks with parallel edges. See  * {@link EdgesConnecting} for a class that is more efficient but forbids parallel edges.  *  * @author James Sexton  * @param<E> Edge parameter type  */
 end_comment
 
 begin_class

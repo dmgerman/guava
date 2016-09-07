@@ -51,7 +51,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An interface for representing and manipulating an origin node's adjacent nodes and edge values  * in a {@link Graph}.  *  * @author James Sexton  * @param<N> Node parameter type  * @param<V> Value parameter type  */
+comment|/**  * An interface for representing and manipulating an origin node's adjacent nodes and edge values in  * a {@link Graph}.  *  * @author James Sexton  * @param<N> Node parameter type  * @param<V> Value parameter type  */
 end_comment
 
 begin_interface
@@ -89,9 +89,9 @@ name|successors
 parameter_list|()
 function_decl|;
 comment|/**    * Returns the value associated with the edge connecting the origin node to {@code node}, or null    * if there is no such edge.    */
-DECL|method|value (Object node)
 annotation|@
 name|Nullable
+DECL|method|value (Object node)
 name|V
 name|value
 parameter_list|(
@@ -99,7 +99,7 @@ name|Object
 name|node
 parameter_list|)
 function_decl|;
-comment|/**    * Remove {@code node} from the set of predecessors.    */
+comment|/** Remove {@code node} from the set of predecessors. */
 DECL|method|removePredecessor (Object node)
 name|void
 name|removePredecessor
@@ -131,7 +131,7 @@ name|V
 name|value
 parameter_list|)
 function_decl|;
-comment|/**    * Add {@code node} as a successor to the origin node. In the case of an undirected graph, it    * also becomes a predecessor. Associates {@code value} with the edge connecting the two nodes.    * Returns the value previously associated with the edge connecting the two nodes.    */
+comment|/**    * Add {@code node} as a successor to the origin node. In the case of an undirected graph, it also    * becomes a predecessor. Associates {@code value} with the edge connecting the two nodes. Returns    * the value previously associated with the edge connecting the two nodes.    */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|addSuccessor (N node, V value)

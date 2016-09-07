@@ -101,7 +101,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests for an undirected {@link ConfigurableMutableGraph}, creating a simple undirected  * graph (self-loop edges are not allowed).  */
+comment|/**  * Tests for an undirected {@link ConfigurableMutableGraph}, creating a simple undirected graph  * (self-loop edges are not allowed).  */
 end_comment
 
 begin_class
@@ -471,7 +471,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * This test checks an implementation dependent feature. It tests that    * the method {@code addEdge} will silently add the missing nodes to the graph,    * then add the edge connecting them. We are not using the proxy methods here    * as we want to test {@code addEdge} when the end-points are not elements    * of the graph.    */
+comment|/**    * This test checks an implementation dependent feature. It tests that the method {@code addEdge}    * will silently add the missing nodes to the graph, then add the edge connecting them. We are not    * using the proxy methods here as we want to test {@code addEdge} when the end-points are not    * elements of the graph.    */
 annotation|@
 name|Test
 DECL|method|addEdge_nodesNotInGraph ()

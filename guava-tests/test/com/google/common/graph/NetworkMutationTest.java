@@ -117,7 +117,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests for repeated node and edge addition and removal in a {@link Network}.  */
+comment|/** Tests for repeated node and edge addition and removal in a {@link Network}. */
 end_comment
 
 begin_class

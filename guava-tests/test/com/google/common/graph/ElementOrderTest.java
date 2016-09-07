@@ -139,7 +139,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests for ordering the elements of graphs.  */
+comment|/** Tests for ordering the elements of graphs. */
 end_comment
 
 begin_class

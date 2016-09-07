@@ -169,7 +169,7 @@ argument_list|,
 name|E
 argument_list|>
 block|{
-comment|/**    * Constructs a mutable graph with the properties specified in {@code builder}.    */
+comment|/** Constructs a mutable graph with the properties specified in {@code builder}. */
 DECL|method|ConfigurableMutableNetwork (NetworkBuilder<? super N, ? super E> builder)
 name|ConfigurableMutableNetwork
 parameter_list|(

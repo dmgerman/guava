@@ -269,9 +269,9 @@ argument_list|)
 operator|)
 return|;
 block|}
-DECL|method|getConnectingEdge ()
 annotation|@
 name|Nullable
+DECL|method|getConnectingEdge ()
 specifier|private
 name|E
 name|getConnectingEdge

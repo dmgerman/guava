@@ -221,7 +221,7 @@ return|return
 name|edgeValueMap
 return|;
 block|}
-comment|/**    * Returns a string representation of this graph.    */
+comment|/** Returns a string representation of this graph. */
 annotation|@
 name|Override
 DECL|method|toString ()

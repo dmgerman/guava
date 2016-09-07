@@ -67,7 +67,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests for {@link ImmutableNetwork}.  */
+comment|/** Tests for {@link ImmutableNetwork}. */
 end_comment
 
 begin_class

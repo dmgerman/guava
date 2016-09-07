@@ -153,7 +153,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Configurable implementation of {@link ValueGraph} that supports the options supplied by  * {@link AbstractGraphBuilder}.  *  *<p>This class maintains a map of nodes to {@link GraphConnections}.  *  *<p>Collection-returning accessors return unmodifiable views: the view returned will reflect  * changes to the graph (if the graph is mutable) but may not be modified by the user.  *  *<p>The time complexity of all collection-returning accessors is O(1), since views are returned.  *  * @author James Sexton  * @author Joshua O'Madadhain  * @author Omar Darwish  * @param<N> Node parameter type  * @param<V> Value parameter type  */
+comment|/**  * Configurable implementation of {@link ValueGraph} that supports the options supplied by {@link  * AbstractGraphBuilder}.  *  *<p>This class maintains a map of nodes to {@link GraphConnections}.  *  *<p>Collection-returning accessors return unmodifiable views: the view returned will reflect  * changes to the graph (if the graph is mutable) but may not be modified by the user.  *  *<p>The time complexity of all collection-returning accessors is O(1), since views are returned.  *  * @author James Sexton  * @author Joshua O'Madadhain  * @author Omar Darwish  * @param<N> Node parameter type  * @param<V> Value parameter type  */
 end_comment
 
 begin_class
@@ -216,7 +216,7 @@ name|long
 name|edgeCount
 decl_stmt|;
 comment|// must be updated when edges are added or removed
-comment|/**    * Constructs a graph with the properties specified in {@code builder}.    */
+comment|/** Constructs a graph with the properties specified in {@code builder}. */
 DECL|method|ConfigurableValueGraph (AbstractGraphBuilder<? super N> builder)
 name|ConfigurableValueGraph
 parameter_list|(
@@ -264,8 +264,8 @@ comment|/* edgeCount */
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Constructs a graph with the properties specified in {@code builder}, initialized with    * the given node map.    */
-DECL|method|ConfigurableValueGraph (AbstractGraphBuilder<? super N> builder, Map<N, GraphConnections<N, V>> nodeConnections, long edgeCount)
+comment|/**    * Constructs a graph with the properties specified in {@code builder}, initialized with the given    * node map.    */
+DECL|method|ConfigurableValueGraph ( AbstractGraphBuilder<? super N> builder, Map<N, GraphConnections<N, V>> nodeConnections, long edgeCount)
 name|ConfigurableValueGraph
 parameter_list|(
 name|AbstractGraphBuilder
