@@ -709,6 +709,37 @@ name|endInclusive
 argument_list|)
 return|;
 block|}
+comment|/**    * Returns a {@code char} matcher that matches any character present in the given bitset.    *    * @deprecated Used only from {@code CharacterFilter}. To be removed when its users are migrated    *     to "normal" {@code CharMatcher} instances. This method will be removed before we release    *     Guava 20.0.    */
+annotation|@
+name|Deprecated
+annotation|@
+name|GwtIncompatible
+DECL|method|fromBitSet (BitSet bitset)
+specifier|public
+specifier|static
+name|CharMatcher
+name|fromBitSet
+parameter_list|(
+name|BitSet
+name|bitset
+parameter_list|)
+block|{
+return|return
+operator|new
+name|BitSetMatcher
+argument_list|(
+operator|(
+name|BitSet
+operator|)
+name|bitset
+operator|.
+name|clone
+argument_list|()
+argument_list|,
+literal|"BitSetMatcher"
+argument_list|)
+return|;
+block|}
 comment|/**    * Returns a matcher with identical behavior to the given {@link Character}-based predicate, but    * which operates on primitive {@code char} instances instead.    */
 DECL|method|forPredicate (final Predicate<? super Character> predicate)
 specifier|public
