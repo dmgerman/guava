@@ -86,7 +86,7 @@ name|common
 operator|.
 name|collect
 operator|.
-name|ImmutableList
+name|Iterables
 import|;
 end_import
 
@@ -145,6 +145,16 @@ operator|.
 name|util
 operator|.
 name|HashSet
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|LinkedHashSet
 import|;
 end_import
 
@@ -572,6 +582,7 @@ literal|false
 return|;
 block|}
 comment|/**    * Returns the transitive closure of {@code graph}. The transitive closure of a graph is another    * graph with an edge connecting node A to node B iff node B is {@link #reachableNodes(Graph,    * Object) reachable} from node A.    *    *<p>This is a "snapshot" based on the current topology of {@code graph}, rather than a live view    * of the transitive closure of {@code graph}. In other words, the returned {@link Graph} will not    * be updated after modifications to {@code graph}.    */
+comment|// TODO(b/31438252): Consider potential optimizations for this algorithm.
 DECL|method|transitiveClosure (Graph<N> graph)
 specifier|public
 specifier|static
@@ -698,22 +709,17 @@ name|node
 argument_list|)
 condition|)
 block|{
-name|ImmutableList
+name|Set
 argument_list|<
 name|N
 argument_list|>
 name|reachableNodes
 init|=
-name|ImmutableList
-operator|.
-name|copyOf
-argument_list|(
 name|reachableNodes
 argument_list|(
 name|graph
 argument_list|,
 name|node
-argument_list|)
 argument_list|)
 decl_stmt|;
 name|visitedNodes
@@ -723,62 +729,36 @@ argument_list|(
 name|reachableNodes
 argument_list|)
 expr_stmt|;
+name|int
+name|pairwiseMatch
+init|=
+literal|1
+decl_stmt|;
+comment|// start at 1 to include self-loops
 for|for
 control|(
-name|int
-name|a
-init|=
-literal|0
-init|;
-name|a
-operator|<
-name|reachableNodes
-operator|.
-name|size
-argument_list|()
-condition|;
-operator|++
-name|a
-control|)
-block|{
 name|N
 name|nodeU
-init|=
+range|:
 name|reachableNodes
-operator|.
-name|get
-argument_list|(
-name|a
-argument_list|)
-decl_stmt|;
-for|for
-control|(
-name|int
-name|b
-init|=
-name|a
-init|;
-name|b
-operator|<
-name|reachableNodes
-operator|.
-name|size
-argument_list|()
-condition|;
-operator|++
-name|b
 control|)
 block|{
+for|for
+control|(
 name|N
 name|nodeV
-init|=
-name|reachableNodes
+range|:
+name|Iterables
 operator|.
-name|get
+name|limit
 argument_list|(
-name|b
+name|reachableNodes
+argument_list|,
+name|pairwiseMatch
+operator|++
 argument_list|)
-decl_stmt|;
+control|)
+block|{
 name|transitiveClosure
 operator|.
 name|putEdge
@@ -803,7 +783,7 @@ name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
-comment|// Throws an exception if node is not an element of graph.
+comment|// Safe because we only cast if node is an element of the graph.
 DECL|method|reachableNodes (Graph<N> graph, Object node)
 specifier|public
 specifier|static
@@ -850,7 +830,7 @@ argument_list|>
 name|visitedNodes
 init|=
 operator|new
-name|HashSet
+name|LinkedHashSet
 argument_list|<
 name|N
 argument_list|>
