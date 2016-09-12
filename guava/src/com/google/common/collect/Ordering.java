@@ -1602,7 +1602,7 @@ return|return
 name|maxSoFar
 return|;
 block|}
-comment|/**    * Returns the {@code k} least elements of the given iterable according to this ordering, in order    * from least to greatest. If there are fewer than {@code k} elements present, all will be    * included.    *    *<p>The implementation does not necessarily use a<i>stable</i> sorting algorithm; when multiple    * elements are equivalent, it is undefined which will come first.    *    *<p><b>Java 8 users:</b> Use {@code Streams.stream(iterable).collect(Comparators.least(k,    * thisComparator))} instead.    *    * @return an immutable {@code RandomAccess} list of the {@code k} least elements in ascending    *     order    * @throws IllegalArgumentException if {@code k} is negative    * @since 8.0    */
+comment|/**    * Returns the {@code k} least elements of the given iterable according to this ordering, in order    * from least to greatest. If there are fewer than {@code k} elements present, all will be    * included.    *    *<p>The implementation does not necessarily use a<i>stable</i> sorting algorithm; when multiple    * elements are equivalent, it is undefined which will come first.    *    *<p><b>Java 8 users:</b> Continue to use this method for now. After the next release of Guava,    * use {@code Streams.stream(iterable).collect(Comparators.least(k, thisComparator))} instead.    *    * @return an immutable {@code RandomAccess} list of the {@code k} least elements in ascending    *     order    * @throws IllegalArgumentException if {@code k} is negative    * @since 8.0    */
 DECL|method|leastOf (Iterable<E> iterable, int k)
 specifier|public
 parameter_list|<
@@ -1901,7 +1901,7 @@ argument_list|()
 return|;
 block|}
 block|}
-comment|/**    * Returns the {@code k} greatest elements of the given iterable according to this ordering, in    * order from greatest to least. If there are fewer than {@code k} elements present, all will be    * included.    *    *<p>The implementation does not necessarily use a<i>stable</i> sorting algorithm; when multiple    * elements are equivalent, it is undefined which will come first.    *    *<p><b>Java 8 users:</b> Use {@code Streams.stream(iterable).collect(Comparators.greatest(k,    * thisComparator))} instead.    *    * @return an immutable {@code RandomAccess} list of the {@code k} greatest elements in    *<i>descending order</i>    * @throws IllegalArgumentException if {@code k} is negative    * @since 8.0    */
+comment|/**    * Returns the {@code k} greatest elements of the given iterable according to this ordering, in    * order from greatest to least. If there are fewer than {@code k} elements present, all will be    * included.    *    *<p>The implementation does not necessarily use a<i>stable</i> sorting algorithm; when multiple    * elements are equivalent, it is undefined which will come first.    *    *<p><b>Java 8 users:</b> Continue to use this method for now. After the next release of Guava,    * use {@code Streams.stream(iterable).collect(Comparators.greatest(k, thisComparator))} instead.    *    * @return an immutable {@code RandomAccess} list of the {@code k} greatest elements in    *<i>descending order</i>    * @throws IllegalArgumentException if {@code k} is negative    * @since 8.0    */
 DECL|method|greatestOf (Iterable<E> iterable, int k)
 specifier|public
 parameter_list|<
