@@ -283,7 +283,7 @@ specifier|private
 name|Floats
 parameter_list|()
 block|{}
-comment|/**    * The number of bytes required to represent a primitive {@code float} value.    *    * @since 10.0    */
+comment|/**    * The number of bytes required to represent a primitive {@code float} value.    *    *<p><b>Java 8 users:</b> use {@link Float#BYTES} instead.    *    * @since 10.0    */
 DECL|field|BYTES
 specifier|public
 specifier|static
@@ -299,7 +299,7 @@ name|Byte
 operator|.
 name|SIZE
 decl_stmt|;
-comment|/**    * Returns a hash code for {@code value}; equal to the result of invoking    * {@code ((Float) value).hashCode()}.    *    * @param value a primitive {@code float} value    * @return a hash code for the value    */
+comment|/**    * Returns a hash code for {@code value}; equal to the result of invoking    * {@code ((Float) value).hashCode()}.    *    *<p><b>Java 8 users:</b> use {@link Float#hashCode(float)} instead.    *    * @param value a primitive {@code float} value    * @return a hash code for the value    */
 DECL|method|hashCode (float value)
 specifier|public
 specifier|static
@@ -348,7 +348,7 @@ name|b
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns {@code true} if {@code value} represents a real number. This is equivalent to, but not    * necessarily implemented as, {@code !(Float.isInfinite(value) || Float.isNaN(value))}.    *    * @since 10.0    */
+comment|/**    * Returns {@code true} if {@code value} represents a real number. This is equivalent to, but not    * necessarily implemented as, {@code !(Float.isInfinite(value) || Float.isNaN(value))}.    *    *<p><b>Java 8 users:</b> use {@link Float#isFinite(float)} instead.    *    * @since 10.0    */
 DECL|method|isFinite (float value)
 specifier|public
 specifier|static

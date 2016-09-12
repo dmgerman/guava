@@ -259,7 +259,7 @@ specifier|private
 name|Ints
 parameter_list|()
 block|{}
-comment|/**    * The number of bytes required to represent a primitive {@code int} value.    */
+comment|/**    * The number of bytes required to represent a primitive {@code int} value.    *    *<p><b>Java 8 users:</b> use {@link Integer#BYTES} instead.    */
 DECL|field|BYTES
 specifier|public
 specifier|static
@@ -293,7 +293,7 @@ operator|-
 literal|2
 operator|)
 decl_stmt|;
-comment|/**    * Returns a hash code for {@code value}; equal to the result of invoking    * {@code ((Integer) value).hashCode()}.    *    * @param value a primitive {@code int} value    * @return a hash code for the value    */
+comment|/**    * Returns a hash code for {@code value}; equal to the result of invoking    * {@code ((Integer) value).hashCode()}.    *    *<p><b>Java 8 users:</b> use {@link Integer#hashCode(int)} instead.    *    * @param value a primitive {@code int} value    * @return a hash code for the value    */
 DECL|method|hashCode (int value)
 specifier|public
 specifier|static

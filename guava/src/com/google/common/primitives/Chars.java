@@ -221,7 +221,7 @@ specifier|private
 name|Chars
 parameter_list|()
 block|{}
-comment|/**    * The number of bytes required to represent a primitive {@code char} value.    */
+comment|/**    * The number of bytes required to represent a primitive {@code char} value.    *    *<p><b>Java 8 users:</b> use {@link Character#BYTES} instead.    */
 DECL|field|BYTES
 specifier|public
 specifier|static
@@ -237,7 +237,7 @@ name|Byte
 operator|.
 name|SIZE
 decl_stmt|;
-comment|/**    * Returns a hash code for {@code value}; equal to the result of invoking    * {@code ((Character) value).hashCode()}.    *    * @param value a primitive {@code char} value    * @return a hash code for the value    */
+comment|/**    * Returns a hash code for {@code value}; equal to the result of invoking    * {@code ((Character) value).hashCode()}.    *    *<p><b>Java 8 users:</b> use {@link Character#hashCode(char)} instead.    *    * @param value a primitive {@code char} value    * @return a hash code for the value    */
 DECL|method|hashCode (char value)
 specifier|public
 specifier|static

@@ -240,7 +240,7 @@ specifier|private
 name|Longs
 parameter_list|()
 block|{}
-comment|/**    * The number of bytes required to represent a primitive {@code long} value.    */
+comment|/**    * The number of bytes required to represent a primitive {@code long} value.    *    *<p><b>Java 8 users:</b> use {@link Long#BYTES} instead.    */
 DECL|field|BYTES
 specifier|public
 specifier|static
@@ -274,7 +274,7 @@ operator|-
 literal|2
 operator|)
 decl_stmt|;
-comment|/**    * Returns a hash code for {@code value}; equal to the result of invoking    * {@code ((Long) value).hashCode()}.    *    *<p>This method always return the value specified by {@link Long#hashCode()} in java, which    * might be different from {@code ((Long) value).hashCode()} in GWT because    * {@link Long#hashCode()} in GWT does not obey the JRE contract.    *    * @param value a primitive {@code long} value    * @return a hash code for the value    */
+comment|/**    * Returns a hash code for {@code value}; equal to the result of invoking    * {@code ((Long) value).hashCode()}.    *    *<p>This method always return the value specified by {@link Long#hashCode()} in java, which    * might be different from {@code ((Long) value).hashCode()} in GWT because    * {@link Long#hashCode()} in GWT does not obey the JRE contract.    *    *<p><b>Java 8 users:</b> use {@link Long#hashCode(long)} instead.    *    * @param value a primitive {@code long} value    * @return a hash code for the value    */
 DECL|method|hashCode (long value)
 specifier|public
 specifier|static

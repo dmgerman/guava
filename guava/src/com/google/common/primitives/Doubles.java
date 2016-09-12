@@ -295,7 +295,7 @@ specifier|private
 name|Doubles
 parameter_list|()
 block|{}
-comment|/**    * The number of bytes required to represent a primitive {@code double} value.    *    * @since 10.0    */
+comment|/**    * The number of bytes required to represent a primitive {@code double} value.    *    *<p><b>Java 8 users:</b> use {@link Double#BYTES} instead.    *    * @since 10.0    */
 DECL|field|BYTES
 specifier|public
 specifier|static
@@ -311,7 +311,7 @@ name|Byte
 operator|.
 name|SIZE
 decl_stmt|;
-comment|/**    * Returns a hash code for {@code value}; equal to the result of invoking    * {@code ((Double) value).hashCode()}.    *    * @param value a primitive {@code double} value    * @return a hash code for the value    */
+comment|/**    * Returns a hash code for {@code value}; equal to the result of invoking    * {@code ((Double) value).hashCode()}.    *    *<p><b>Java 8 users:</b> use {@link Double#hashCode(double)} instead.    *    * @param value a primitive {@code double} value    * @return a hash code for the value    */
 DECL|method|hashCode (double value)
 specifier|public
 specifier|static
@@ -362,7 +362,7 @@ name|b
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns {@code true} if {@code value} represents a real number. This is equivalent to, but not    * necessarily implemented as, {@code !(Double.isInfinite(value) || Double.isNaN(value))}.    *    * @since 10.0    */
+comment|/**    * Returns {@code true} if {@code value} represents a real number. This is equivalent to, but not    * necessarily implemented as, {@code !(Double.isInfinite(value) || Double.isNaN(value))}.    *    *<p><b>Java 8 users:</b> use {@link Double#isFinite(double)} instead.    *    * @since 10.0    */
 DECL|method|isFinite (double value)
 specifier|public
 specifier|static

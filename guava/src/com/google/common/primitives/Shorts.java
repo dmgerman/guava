@@ -239,7 +239,7 @@ specifier|private
 name|Shorts
 parameter_list|()
 block|{}
-comment|/**    * The number of bytes required to represent a primitive {@code short} value.    */
+comment|/**    * The number of bytes required to represent a primitive {@code short} value.    *    *<p><b>Java 8 users:</b> use {@link Short#BYTES} instead.    */
 DECL|field|BYTES
 specifier|public
 specifier|static
@@ -273,7 +273,7 @@ operator|-
 literal|2
 operator|)
 decl_stmt|;
-comment|/**    * Returns a hash code for {@code value}; equal to the result of invoking    * {@code ((Short) value).hashCode()}.    *    * @param value a primitive {@code short} value    * @return a hash code for the value    */
+comment|/**    * Returns a hash code for {@code value}; equal to the result of invoking    * {@code ((Short) value).hashCode()}.    *    *<p><b>Java 8 users:</b> use {@link Short#hashCode(short)} instead.    *    * @param value a primitive {@code short} value    * @return a hash code for the value    */
 DECL|method|hashCode (short value)
 specifier|public
 specifier|static

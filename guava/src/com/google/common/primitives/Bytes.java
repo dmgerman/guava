@@ -200,7 +200,7 @@ specifier|private
 name|Bytes
 parameter_list|()
 block|{}
-comment|/**    * Returns a hash code for {@code value}; equal to the result of invoking    * {@code ((Byte) value).hashCode()}.    *    * @param value a primitive {@code byte} value    * @return a hash code for the value    */
+comment|/**    * Returns a hash code for {@code value}; equal to the result of invoking    * {@code ((Byte) value).hashCode()}.    *    *<p><b>Java 8 users:</b> use {@link Byte#hashCode(byte)} instead.    *    * @param value a primitive {@code byte} value    * @return a hash code for the value    */
 DECL|method|hashCode (byte value)
 specifier|public
 specifier|static

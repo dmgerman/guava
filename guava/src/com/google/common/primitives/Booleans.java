@@ -216,7 +216,7 @@ specifier|private
 name|Booleans
 parameter_list|()
 block|{}
-comment|/**    * Returns a hash code for {@code value}; equal to the result of invoking    * {@code ((Boolean) value).hashCode()}.    *    * @param value a primitive {@code boolean} value    * @return a hash code for the value    */
+comment|/**    * Returns a hash code for {@code value}; equal to the result of invoking    * {@code ((Boolean) value).hashCode()}.    *    *<p><b>Java 8 users:</b> use {@link Boolean#hashCode(boolean)} instead.    *    * @param value a primitive {@code boolean} value    * @return a hash code for the value    */
 DECL|method|hashCode (boolean value)
 specifier|public
 specifier|static
