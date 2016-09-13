@@ -215,7 +215,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An expanded {@code Iterable} API, providing functionality similar to Java 8's powerful<a href=  * "https://docs.oracle.com/javase/8/docs/api/java/util/stream/package-summary.html#package.description"  *>streams library</a> in a slightly different way.  *  *<p>The following types of methods are provided:  *  *<ul>  *<li>chaining methods which return a new {@code FluentIterable} based in some way on the contents  *     of the current one (for example {@link #transform})  *<li>element extraction methods which facilitate the retrieval of certain elements (for example  *     {@link #last})  *<li>query methods which answer questions about the {@code FluentIterable}'s contents (for example  *     {@link #anyMatch})  *<li>conversion methods which copy the {@code FluentIterable}'s contents into a new collection or  *     array (for example {@link #toList})  *</ul>  *  *<p>Several lesser-used features are currently available only as static methods on the  * {@link Iterables} class.  *  *<a name="streams"></a>  *<h3>Comparison to streams</h3>  *  *<p>Starting with Java 8, the core Java class libraries provide a new "Streams" library (in {@code  * java.util.stream}), which is similar to {@code FluentIterable} but generally more powerful. Key  * differences include:</b>  *  *<ul>  *<li>A stream is<i>single-use</i>; it becomes invalid as soon as any "terminal operation" such as  *     {@code findFirst()} or {@code iterator()} is invoked. (Even though {@code Stream} contains  *     all the right method<i>signatures</i> to implement {@link Iterable}, it does not actually do  *     so, to avoid implying repeat-iterability.) {@code FluentIterable}, on the other hand, is  *     multiple-use, and does implement {@link Iterable}.  *<li>Streams offer many features not found here, including {@code min/max}, {@code  *     distinct}, {@code reduce}, {@code sorted}, the very powerful {@code collect}, and built-in  *     support for parallelizing stream operations.  *<li>{@code FluentIterable} contains several features not available on {@code Stream}, which are  *     noted in the method descriptions below.  *<li>Streams include primitive-specialized variants such as {@code IntStream}, the use of which is  *     strongly recommended.  *<li>Streams are standard Java, not requiring a third-party dependency (but do render your code  *     incompatible with Java 7 and earlier).  *</ul>  *  *<h3>Example</h3>  *  *<p>Here is an example that accepts a list from a database call, filters it based on a predicate,  * transforms it by invoking {@code toString()} on each element, and returns the first 10 elements  * as a {@code List}:<pre>   {@code  *  *   List<String> results =  *       FluentIterable.from(database.getClientList())  *           .filter(activeInLastMonthPredicate)  *           .transform(Functions.toStringFunction())  *           .limit(10)  *           .toList();}</pre>  *  * The approximate stream equivalent is:<pre>   {@code  *  *   List<String> results =  *       database.getClientList()  *           .stream()  *           .filter(activeInLastMonthPredicate)  *           .map(Functions.toStringFunction())  *           .limit(10)  *           .collect(Collectors.toList());}</pre>  *  * @author Marcin Mikosik  * @since 12.0  */
+comment|/**  * An expanded {@code Iterable} API, providing functionality similar to Java 8's powerful<a href=  * "https://docs.oracle.com/javase/8/docs/api/java/util/stream/package-summary.html#package.description"  *>streams library</a> in a slightly different way.  *  *<p>The following types of methods are provided:  *  *<ul>  *<li>chaining methods which return a new {@code FluentIterable} based in some way on the contents  *     of the current one (for example {@link #transform})  *<li>element extraction methods which facilitate the retrieval of certain elements (for example  *     {@link #last})  *<li>query methods which answer questions about the {@code FluentIterable}'s contents (for example  *     {@link #anyMatch})  *<li>conversion methods which copy the {@code FluentIterable}'s contents into a new collection or  *     array (for example {@link #toList})  *</ul>  *  *<p>Several lesser-used features are currently available only as static methods on the {@link  * Iterables} class.  *  *<a name="streams"></a>  *<h3>Comparison to streams</h3>  *  *<p>Starting with Java 8, the core Java class libraries provide a new "Streams" library (in {@code  * java.util.stream}), which is similar to {@code FluentIterable} but generally more powerful. Key  * differences include:</b>  *  *<ul>  *<li>A stream is<i>single-use</i>; it becomes invalid as soon as any "terminal operation" such as  *     {@code findFirst()} or {@code iterator()} is invoked. (Even though {@code Stream} contains  *     all the right method<i>signatures</i> to implement {@link Iterable}, it does not actually do  *     so, to avoid implying repeat-iterability.) {@code FluentIterable}, on the other hand, is  *     multiple-use, and does implement {@link Iterable}.  *<li>Streams offer many features not found here, including {@code min/max}, {@code distinct},  *     {@code reduce}, {@code sorted}, the very powerful {@code collect}, and built-in support for  *     parallelizing stream operations.  *<li>{@code FluentIterable} contains several features not available on {@code Stream}, which are  *     noted in the method descriptions below.  *<li>Streams include primitive-specialized variants such as {@code IntStream}, the use of which is  *     strongly recommended.  *<li>Streams are standard Java, not requiring a third-party dependency (but do render your code  *     incompatible with Java 7 and earlier).  *</ul>  *  *<h3>Example</h3>  *  *<p>Here is an example that accepts a list from a database call, filters it based on a predicate,  * transforms it by invoking {@code toString()} on each element, and returns the first 10 elements  * as a {@code List}:  *  *<pre>{@code  * ImmutableList<String> results =  *     FluentIterable.from(database.getClientList())  *         .filter(Client::isActiveInLastMonth)  *         .transform(Object::toString)  *         .limit(10)  *         .toList();  * }</pre>  *  * The approximate stream equivalent is:  *  *<pre>{@code  * List<String> results =  *     database.getClientList()  *         .stream()  *         .filter(Client::isActiveInLastMonth)  *         .map(Object::toString)  *         .limit(10)  *         .collect(Collectors.toList());  * }</pre>  *  * @author Marcin Mikosik  * @since 12.0  */
 end_comment
 
 begin_class
@@ -389,7 +389,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/**    * Returns a fluent iterable containing {@code elements} in the specified order.    *    *<p>The returned iterable is an unmodifiable view of the input array.    *    *<p><b>{@code Stream} equivalent:</b> {@code Stream.of(elements)} or {@code    * Arrays.stream(elements)}.    *    * @since 20.0 (since 18.0 as an overload of {@code of})    */
+comment|/**    * Returns a fluent iterable containing {@code elements} in the specified order.    *    *<p>The returned iterable is an unmodifiable view of the input array.    *    *<p><b>{@code Stream} equivalent:</b> {@link Stream#of(T...)}.    *    * @since 20.0 (since 18.0 as an overload of {@code of})    */
 annotation|@
 name|Beta
 DECL|method|from (E[] elements)
@@ -450,7 +450,7 @@ name|iterable
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a fluent iterable that combines two iterables. The returned iterable has an iterator    * that traverses the elements in {@code a}, followed by the elements in {@code b}. The source    * iterators are not polled until necessary.    *    *<p>The returned iterable's iterator supports {@code remove()} when the corresponding input    * iterator supports it.    *    * @since 20.0    */
+comment|/**    * Returns a fluent iterable that combines two iterables. The returned iterable has an iterator    * that traverses the elements in {@code a}, followed by the elements in {@code b}. The source    * iterators are not polled until necessary.    *    *<p>The returned iterable's iterator supports {@code remove()} when the corresponding input    * iterator supports it.    *    *<p><b>{@code Stream} equivalent:</b> {@link Stream#concat}.    *    * @since 20.0    */
 annotation|@
 name|Beta
 DECL|method|concat (Iterable<? extends T> a, Iterable<? extends T> b)
@@ -496,7 +496,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a fluent iterable that combines three iterables. The returned iterable has an iterator    * that traverses the elements in {@code a}, followed by the elements in {@code b}, followed by    * the elements in {@code c}. The source iterators are not polled until necessary.    *    *<p>The returned iterable's iterator supports {@code remove()} when the corresponding input    * iterator supports it.    *    * @since 20.0    */
+comment|/**    * Returns a fluent iterable that combines three iterables. The returned iterable has an iterator    * that traverses the elements in {@code a}, followed by the elements in {@code b}, followed by    * the elements in {@code c}. The source iterators are not polled until necessary.    *    *<p>The returned iterable's iterator supports {@code remove()} when the corresponding input    * iterator supports it.    *    *<p><b>{@code Stream} equivalent:</b> use nested calls to {@link Stream#concat}, or see the    * advice in {@link #concat(Iterable...)}.    *    * @since 20.0    */
 annotation|@
 name|Beta
 DECL|method|concat ( Iterable<? extends T> a, Iterable<? extends T> b, Iterable<? extends T> c)
@@ -552,7 +552,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a fluent iterable that combines four iterables. The returned iterable has an iterator    * that traverses the elements in {@code a}, followed by the elements in {@code b}, followed by    * the elements in {@code c}, followed by the elements in {@code d}. The source iterators are not    * polled until necessary.    *    *<p>The returned iterable's iterator supports {@code remove()} when the corresponding input    * iterator supports it.    *    * @since 20.0    */
+comment|/**    * Returns a fluent iterable that combines four iterables. The returned iterable has an iterator    * that traverses the elements in {@code a}, followed by the elements in {@code b}, followed by    * the elements in {@code c}, followed by the elements in {@code d}. The source iterators are not    * polled until necessary.    *    *<p>The returned iterable's iterator supports {@code remove()} when the corresponding input    * iterator supports it.    *    *<p><b>{@code Stream} equivalent:</b> use nested calls to {@link Stream#concat}, or see the    * advice in {@link #concat(Iterable...)}.    *    * @since 20.0    */
 annotation|@
 name|Beta
 DECL|method|concat ( Iterable<? extends T> a, Iterable<? extends T> b, Iterable<? extends T> c, Iterable<? extends T> d)
@@ -618,7 +618,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a fluent iterable that combines several iterables. The returned iterable has an    * iterator that traverses the elements of each iterable in {@code inputs}. The input iterators    * are not polled until necessary.    *    *<p>The returned iterable's iterator supports {@code remove()} when the corresponding input    * iterator supports it.    *    * @throws NullPointerException if any of the provided iterables is {@code null}    *    * @since 20.0    */
+comment|/**    * Returns a fluent iterable that combines several iterables. The returned iterable has an    * iterator that traverses the elements of each iterable in {@code inputs}. The input iterators    * are not polled until necessary.    *    *<p>The returned iterable's iterator supports {@code remove()} when the corresponding input    * iterator supports it.    *    *<p><b>{@code Stream} equivalent:</b> to concatenate an arbitrary number of streams, use {@code    * Stream.of(stream1, stream2, ...).flatMap(s -> s)}. If the sources are iterables, after the next    * release of Guava you can use {@code Stream.of(iter1, iter2, ...).flatMap(Streams::stream)}.    *    * @throws NullPointerException if any of the provided iterables is {@code null}    * @since 20.0    */
 annotation|@
 name|Beta
 DECL|method|concat (Iterable<? extends T>.... inputs)
@@ -655,7 +655,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a fluent iterable that combines several iterables. The returned iterable has an    * iterator that traverses the elements of each iterable in {@code inputs}. The input iterators    * are not polled until necessary.    *    *<p>The returned iterable's iterator supports {@code remove()} when the corresponding input    * iterator supports it. The methods of the returned iterable may throw    * {@code NullPointerException} if any of the input iterators is {@code null}.    *    * @since 20.0    */
+comment|/**    * Returns a fluent iterable that combines several iterables. The returned iterable has an    * iterator that traverses the elements of each iterable in {@code inputs}. The input iterators    * are not polled until necessary.    *    *<p>The returned iterable's iterator supports {@code remove()} when the corresponding input    * iterator supports it. The methods of the returned iterable may throw {@code    * NullPointerException} if any of the input iterators is {@code null}.    *    *<p><b>{@code Stream} equivalent:</b> {@code streamOfStreams.flatMap(s -> s)} or {@code    * streamOfIterables.flatMap(Streams::stream)}. (See {@link Streams#stream}.)    *    * @since 20.0    */
 annotation|@
 name|Beta
 DECL|method|concat ( final Iterable<? extends Iterable<? extends T>> inputs)
@@ -767,7 +767,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a fluent iterable containing {@code elements} in the specified order.    *    *<p>The returned iterable is modifiable, but modifications do not affect the input array.    *    *<p><b>{@code Stream} equivalent:</b> {@code Stream.of(elements)} or {@code    * Arrays.stream(elements)}.    *    * @deprecated Use {@link #from(E[])} instead (but note the differences in mutability). This    *     method will be removed in Guava release 21.0.    * @since 18.0    */
+comment|/**    * Returns a fluent iterable containing {@code elements} in the specified order.    *    *<p>The returned iterable is modifiable, but modifications do not affect the input array.    *    *<p><b>{@code Stream} equivalent:</b> {@link Stream#of(T...)}.    *    * @deprecated Use {@link #from(E[])} instead (but note the differences in mutability). This    *     method will be removed in Guava release 21.0.    * @since 18.0    */
 annotation|@
 name|Beta
 annotation|@
@@ -801,7 +801,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a fluent iterable containing the specified elements in order.    *    *<p><b>{@code Stream} equivalent:</b> {@code Stream.of(...)}.    *    * @since 20.0    */
+comment|/**    * Returns a fluent iterable containing the specified elements in order.    *    *<p><b>{@code Stream} equivalent:</b> {@link Stream#of(T...)}.    *    * @since 20.0    */
 annotation|@
 name|Beta
 DECL|method|of (@ullable E element, E... elements)
@@ -840,7 +840,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a string representation of this fluent iterable, with the format    * {@code [e1, e2, ..., en]}.    *    *<p><b>{@code Stream} equivalent:</b> {@code stream.collect(Collectors.joining(", ", "[", "]"))}    * or (less efficiently) {@code collect(Collectors.toList()).toString()}.    */
+comment|/**    * Returns a string representation of this fluent iterable, with the format {@code [e1, e2, ...,    * en]}.    *    *<p><b>{@code Stream} equivalent:</b> {@code stream.collect(Collectors.joining(", ", "[", "]"))}    * or (less efficiently) {@code stream.collect(Collectors.toList()).toString()}.    */
 annotation|@
 name|Override
 DECL|method|toString ()
@@ -926,7 +926,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a fluent iterable whose iterators traverse first the elements of this fluent iterable,    * followed by those of {@code other}. The iterators are not polled until necessary.    *    *<p>The returned iterable's {@code Iterator} supports {@code remove()} when the corresponding    * {@code Iterator} supports it.    *    *<p><b>{@code Stream} equivalent:</b> {@code Stream.concat(thisStream, otherStream)}.    *    * @since 18.0    */
+comment|/**    * Returns a fluent iterable whose iterators traverse first the elements of this fluent iterable,    * followed by those of {@code other}. The iterators are not polled until necessary.    *    *<p>The returned iterable's {@code Iterator} supports {@code remove()} when the corresponding    * {@code Iterator} supports it.    *    *<p><b>{@code Stream} equivalent:</b> {@link Stream#concat}.    *    * @since 18.0    */
 annotation|@
 name|Beta
 DECL|method|append (Iterable<? extends E> other)
@@ -999,7 +999,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the elements from this fluent iterable that satisfy a predicate. The resulting fluent    * iterable's iterator does not support {@code remove()}.    *    *<p><b>{@code Stream} equivalent:</b> {@code stream.filter(predicate)} (same).    */
+comment|/**    * Returns the elements from this fluent iterable that satisfy a predicate. The resulting fluent    * iterable's iterator does not support {@code remove()}.    *    *<p><b>{@code Stream} equivalent:</b> {@link Stream#filter} (same).    */
 DECL|method|filter (Predicate<? super E> predicate)
 specifier|public
 specifier|final
@@ -1071,7 +1071,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns {@code true} if any element in this fluent iterable satisfies the predicate.    *    *<p><b>{@code Stream} equivalent:</b> {@code stream.anyMatch(predicate)} (same).    */
+comment|/**    * Returns {@code true} if any element in this fluent iterable satisfies the predicate.    *    *<p><b>{@code Stream} equivalent:</b> {@link Stream#anyMatch} (same).    */
 DECL|method|anyMatch (Predicate<? super E> predicate)
 specifier|public
 specifier|final
@@ -1099,7 +1099,7 @@ name|predicate
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns {@code true} if every element in this fluent iterable satisfies the predicate. If this    * fluent iterable is empty, {@code true} is returned.    *    *<p><b>{@code Stream} equivalent:</b> {@code stream.allMatch(predicate)} (same).    */
+comment|/**    * Returns {@code true} if every element in this fluent iterable satisfies the predicate. If this    * fluent iterable is empty, {@code true} is returned.    *    *<p><b>{@code Stream} equivalent:</b> {@link Stream#allMatch} (same).    */
 DECL|method|allMatch (Predicate<? super E> predicate)
 specifier|public
 specifier|final
@@ -1158,7 +1158,7 @@ name|predicate
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a fluent iterable that applies {@code function} to each element of this fluent    * iterable.    *    *<p>The returned fluent iterable's iterator supports {@code remove()} if this iterable's    * iterator does. After a successful {@code remove()} call, this fluent iterable no longer    * contains the corresponding element.    *    *<p><b>{@code Stream} equivalent:</b> {@code stream.map(function)}.    */
+comment|/**    * Returns a fluent iterable that applies {@code function} to each element of this fluent    * iterable.    *    *<p>The returned fluent iterable's iterator supports {@code remove()} if this iterable's    * iterator does. After a successful {@code remove()} call, this fluent iterable no longer    * contains the corresponding element.    *    *<p><b>{@code Stream} equivalent:</b> {@link Stream#map}.    */
 DECL|method|transform (Function<? super E, T> function)
 specifier|public
 specifier|final
@@ -1197,7 +1197,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Applies {@code function} to each element of this fluent iterable and returns a fluent iterable    * with the concatenated combination of results. {@code function} returns an Iterable of results.    *    *<p>The returned fluent iterable's iterator supports {@code remove()} if this function-returned    * iterables' iterator does. After a successful {@code remove()} call, the returned fluent    * iterable no longer contains the corresponding element.    *    *<p><b>{@code Stream} equivalent:</b> {@code stream.flatMap(function)} (using a function that    * produces streams, not iterables).    *    * @since 13.0 (required {@code Function<E, Iterable<T>>} until 14.0)    */
+comment|/**    * Applies {@code function} to each element of this fluent iterable and returns a fluent iterable    * with the concatenated combination of results. {@code function} returns an Iterable of results.    *    *<p>The returned fluent iterable's iterator supports {@code remove()} if this function-returned    * iterables' iterator does. After a successful {@code remove()} call, the returned fluent    * iterable no longer contains the corresponding element.    *    *<p><b>{@code Stream} equivalent:</b> {@link Stream#flatMap} (using a function that produces    * streams, not iterables).    *    * @since 13.0 (required {@code Function<E, Iterable<T>>} until 14.0)    */
 DECL|method|transformAndConcat ( Function<? super E, ? extends Iterable<? extends T>> function)
 specifier|public
 parameter_list|<
@@ -1242,7 +1242,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an {@link Optional} containing the first element in this fluent iterable. If the    * iterable is empty, {@code Optional.absent()} is returned.    *    *<p><b>{@code Stream} equivalent:</b> if the goal is to obtain any element, {@code    * stream.findAny()}; if it must specifically be the<i>first</i> element, {@code    * stream.findFirst()}.    *    * @throws NullPointerException if the first element is null; if this is a possibility, use    *     {@code iterator().next()} or {@link Iterables#getFirst} instead.    */
+comment|/**    * Returns an {@link Optional} containing the first element in this fluent iterable. If the    * iterable is empty, {@code Optional.absent()} is returned.    *    *<p><b>{@code Stream} equivalent:</b> if the goal is to obtain any element, {@link    * Stream#findAny}; if it must specifically be the<i>first</i> element, {@code Stream#findFirst}.    *    * @throws NullPointerException if the first element is null; if this is a possibility, use {@code    *     iterator().next()} or {@link Iterables#getFirst} instead.    */
 DECL|method|first ()
 specifier|public
 specifier|final
@@ -1461,7 +1461,7 @@ return|;
 block|}
 block|}
 block|}
-comment|/**    * Returns a view of this fluent iterable that skips its first {@code numberToSkip} elements. If    * this fluent iterable contains fewer than {@code numberToSkip} elements, the returned fluent    * iterable skips all of its elements.    *    *<p>Modifications to this fluent iterable before a call to {@code iterator()} are reflected in    * the returned fluent iterable. That is, the its iterator skips the first {@code numberToSkip}    * elements that exist when the iterator is created, not when {@code skip()} is called.    *    *<p>The returned fluent iterable's iterator supports {@code remove()} if the {@code Iterator} of    * this fluent iterable supports it. Note that it is<i>not</i> possible to delete the last    * skipped element by immediately calling {@code remove()} on the returned fluent iterable's    * iterator, as the {@code Iterator} contract states that a call to {@code * remove()} before a    * call to {@code next()} will throw an {@link IllegalStateException}.    *    *<p><b>{@code Stream} equivalent:</b> {@code stream.skip(numberToSkip)} (same).    */
+comment|/**    * Returns a view of this fluent iterable that skips its first {@code numberToSkip} elements. If    * this fluent iterable contains fewer than {@code numberToSkip} elements, the returned fluent    * iterable skips all of its elements.    *    *<p>Modifications to this fluent iterable before a call to {@code iterator()} are reflected in    * the returned fluent iterable. That is, the its iterator skips the first {@code numberToSkip}    * elements that exist when the iterator is created, not when {@code skip()} is called.    *    *<p>The returned fluent iterable's iterator supports {@code remove()} if the {@code Iterator} of    * this fluent iterable supports it. Note that it is<i>not</i> possible to delete the last    * skipped element by immediately calling {@code remove()} on the returned fluent iterable's    * iterator, as the {@code Iterator} contract states that a call to {@code * remove()} before a    * call to {@code next()} will throw an {@link IllegalStateException}.    *    *<p><b>{@code Stream} equivalent:</b> {@link Stream#skip} (same).    */
 DECL|method|skip (int numberToSkip)
 specifier|public
 specifier|final
@@ -1490,7 +1490,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Creates a fluent iterable with the first {@code size} elements of this fluent iterable. If this    * fluent iterable does not contain that many elements, the returned fluent iterable will have the    * same behavior as this fluent iterable. The returned fluent iterable's iterator supports    * {@code remove()} if this fluent iterable's iterator does.    *    *<p><b>{@code Stream} equivalent:</b> {@code stream.limit(maxSize)} (same).    *    * @param maxSize the maximum number of elements in the returned fluent iterable    * @throws IllegalArgumentException if {@code size} is negative    */
+comment|/**    * Creates a fluent iterable with the first {@code size} elements of this fluent iterable. If this    * fluent iterable does not contain that many elements, the returned fluent iterable will have the    * same behavior as this fluent iterable. The returned fluent iterable's iterator supports {@code    * remove()} if this fluent iterable's iterator does.    *    *<p><b>{@code Stream} equivalent:</b> {@link Stream#limit} (same).    *    * @param maxSize the maximum number of elements in the returned fluent iterable    * @throws IllegalArgumentException if {@code size} is negative    */
 DECL|method|limit (int maxSize)
 specifier|public
 specifier|final
@@ -1539,7 +1539,7 @@ name|hasNext
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns an {@code ImmutableList} containing all of the elements from this fluent iterable in    * proper sequence.    *    *<p><b>{@code Stream} equivalent:</b> {@code ImmutableList.copyOf(stream.iterator())}.    *    * @since 14.0 (since 12.0 as {@code toImmutableList()}).    */
+comment|/**    * Returns an {@code ImmutableList} containing all of the elements from this fluent iterable in    * proper sequence.    *    *<p><b>{@code Stream} equivalent:</b> {@code ImmutableList.copyOf(stream.iterator())}, or after    * the next release of Guava, pass {@link ImmutableList#toImmutableList} to {@code    * stream.collect()}.    *    * @since 14.0 (since 12.0 as {@code toImmutableList()}).    */
 DECL|method|toList ()
 specifier|public
 specifier|final
@@ -1560,7 +1560,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an {@code ImmutableList} containing all of the elements from this {@code    * FluentIterable} in the order specified by {@code comparator}. To produce an {@code    * ImmutableList} sorted by its natural ordering, use {@code toSortedList(Ordering.natural())}.    *    *<p><b>{@code Stream} equivalent:</b>    * {@code ImmutableList.copyOf(stream.sorted(comparator).iterator())}.    *    * @param comparator the function by which to sort list elements    * @throws NullPointerException if any element is null    * @since 14.0 (since 13.0 as {@code toSortedImmutableList()}).    */
+comment|/**    * Returns an {@code ImmutableList} containing all of the elements from this {@code    * FluentIterable} in the order specified by {@code comparator}. To produce an {@code    * ImmutableList} sorted by its natural ordering, use {@code toSortedList(Ordering.natural())}.    *    *<p><b>{@code Stream} equivalent:</b> {@code    * ImmutableList.copyOf(stream.sorted(comparator).iterator())}, or after the next release of    * Guava, pass {@link ImmutableList#toImmutableList} to {@code    * stream.sorted(comparator).collect()}.    *    * @param comparator the function by which to sort list elements    * @throws NullPointerException if any element is null    * @since 14.0 (since 13.0 as {@code toSortedImmutableList()}).    */
 DECL|method|toSortedList (Comparator<? super E> comparator)
 specifier|public
 specifier|final
@@ -1594,7 +1594,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an {@code ImmutableSet} containing all of the elements from this fluent iterable with    * duplicates removed.    *    *<p><b>{@code Stream} equivalent:</b> {@code ImmutableSet.copyOf(stream.iterator())}.    *    * @since 14.0 (since 12.0 as {@code toImmutableSet()}).    */
+comment|/**    * Returns an {@code ImmutableSet} containing all of the elements from this fluent iterable with    * duplicates removed.    *    *<p><b>{@code Stream} equivalent:</b> {@code ImmutableSet.copyOf(stream.iterator())}, or after    * the next release of Guava, pass {@link ImmutableSet#toImmutableSet} to {@code    * stream.collect()}.    *    * @since 14.0 (since 12.0 as {@code toImmutableSet()}).    */
 DECL|method|toSet ()
 specifier|public
 specifier|final
@@ -1615,7 +1615,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an {@code ImmutableSortedSet} containing all of the elements from this {@code    * FluentIterable} in the order specified by {@code comparator}, with duplicates (determined by    * {@code comparator.compare(x, y) == 0}) removed. To produce an {@code ImmutableSortedSet} sorted    * by its natural ordering, use {@code toSortedSet(Ordering.natural())}.    *    *<p><b>{@code Stream} equivalent:</b>    * {@code ImmutableSortedSet.copyOf(comparator, stream.iterator())}.    *    * @param comparator the function by which to sort set elements    * @throws NullPointerException if any element is null    * @since 14.0 (since 12.0 as {@code toImmutableSortedSet()}).    */
+comment|/**    * Returns an {@code ImmutableSortedSet} containing all of the elements from this {@code    * FluentIterable} in the order specified by {@code comparator}, with duplicates (determined by    * {@code comparator.compare(x, y) == 0}) removed. To produce an {@code ImmutableSortedSet} sorted    * by its natural ordering, use {@code toSortedSet(Ordering.natural())}.    *    *<p><b>{@code Stream} equivalent:</b> {@code ImmutableSortedSet.copyOf(comparator,    * stream.iterator())}, or after the next release of Guava, pass {@link    * ImmutableSortedSet#toImmutableSortedSet} to {@code stream.collect()}.    *    * @param comparator the function by which to sort set elements    * @throws NullPointerException if any element is null    * @since 14.0 (since 12.0 as {@code toImmutableSortedSet()}).    */
 DECL|method|toSortedSet (Comparator<? super E> comparator)
 specifier|public
 specifier|final
@@ -1646,7 +1646,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an {@code ImmutableMultiset} containing all of the elements from this fluent iterable.    *    *<p><b>{@code Stream} equivalent:</b> {@code ImmutableMultiset.copyOf(stream.iterator())}.    *    * @since 19.0    */
+comment|/**    * Returns an {@code ImmutableMultiset} containing all of the elements from this fluent iterable.    *    *<p><b>{@code Stream} equivalent:</b> {@code ImmutableMultiset.copyOf(stream.iterator())}, or    * after the next release of Guava, pass {@link ImmutableMultiset#toImmutableMultiset} to {@code    * stream.collect()}.    *    * @since 19.0    */
 DECL|method|toMultiset ()
 specifier|public
 specifier|final
@@ -1667,7 +1667,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an immutable map whose keys are the distinct elements of this {@code FluentIterable}    * and whose value for each key was computed by {@code valueFunction}. The map's iteration order    * is the order of the first appearance of each key in this iterable.    *    *<p>When there are multiple instances of a key in this iterable, it is unspecified whether    * {@code valueFunction} will be applied to more than one instance of that key and, if it is,    * which result will be mapped to that key in the returned map.    *    *<p><b>{@code Stream} equivalent:</b> {@code    * ImmutableMap.copyOf(stream.collect(Collectors.toMap(k -> k, valueFunction)))} (but note that    * this may not preserve the order of entries).    *    * @throws NullPointerException if any element of this iterable is {@code null}, or if {@code    *     valueFunction} produces {@code null} for any key    * @since 14.0    */
+comment|/**    * Returns an immutable map whose keys are the distinct elements of this {@code FluentIterable}    * and whose value for each key was computed by {@code valueFunction}. The map's iteration order    * is the order of the first appearance of each key in this iterable.    *    *<p>When there are multiple instances of a key in this iterable, it is unspecified whether    * {@code valueFunction} will be applied to more than one instance of that key and, if it is,    * which result will be mapped to that key in the returned map.    *    *<p><b>{@code Stream} equivalent:</b> after the next release of Guava, use {@code    * stream.collect(ImmutableMap.toImmutableMap(k -> k, valueFunction))}. Before then you can use    * {@code ImmutableMap.copyOf(stream.collect(Collectors.toMap(k -> k, valueFunction)))}, but be    * aware that this may not preserve the order of entries.    *    * @throws NullPointerException if any element of this iterable is {@code null}, or if {@code    *     valueFunction} produces {@code null} for any key    * @since 14.0    */
 DECL|method|toMap (Function<? super E, V> valueFunction)
 specifier|public
 specifier|final
@@ -1743,7 +1743,7 @@ name|keyFunction
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a map with the contents of this {@code FluentIterable} as its {@code values}, indexed    * by keys derived from those values. In other words, each input value produces an entry in the    * map whose key is the result of applying {@code keyFunction} to that value. These entries appear    * in the same order as they appeared in this fluent iterable. Example usage:    *<pre>   {@code    *    *   Color red = new Color("red", 255, 0, 0);    *   ...    *   FluentIterable<Color> allColors = FluentIterable.from(ImmutableSet.of(red, green, blue));    *    *   Map<String, Color> colorForName = allColors.uniqueIndex(toStringFunction());    *   assertThat(colorForName).containsEntry("red", red);}</pre>    *    *<p>If your index may associate multiple values with each key, use {@link #index(Function)    * index}.    *    *<p><b>{@code Stream} equivalent:</b> {@code    * ImmutableMap.copyOf(stream.collect(Collectors.toMap(keyFunction, v -> v)))} (but note that this    * may not preserve the order of entries).    *    * @param keyFunction the function used to produce the key for each value    * @return a map mapping the result of evaluating the function {@code    *     keyFunction} on each value in this fluent iterable to that value    * @throws IllegalArgumentException if {@code keyFunction} produces the same key for more than one    *     value in this fluent iterable    * @throws NullPointerException if any elements of this fluent iterable is null, or if    *     {@code keyFunction} produces {@code null} for any value    * @since 14.0    */
+comment|/**    * Returns a map with the contents of this {@code FluentIterable} as its {@code values}, indexed    * by keys derived from those values. In other words, each input value produces an entry in the    * map whose key is the result of applying {@code keyFunction} to that value. These entries appear    * in the same order as they appeared in this fluent iterable. Example usage:    *    *<pre>{@code    * Color red = new Color("red", 255, 0, 0);    * ...    * FluentIterable<Color> allColors = FluentIterable.from(ImmutableSet.of(red, green, blue));    *    * Map<String, Color> colorForName = allColors.uniqueIndex(toStringFunction());    * assertThat(colorForName).containsEntry("red", red);    * }</pre>    *    *<p>If your index may associate multiple values with each key, use {@link #index(Function)    * index}.    *    *<p><b>{@code Stream} equivalent:</b> after the next release of Guava, use {@code    * stream.collect(ImmutableMap.toImmutableMap(keyFunction, v -> v))}. Before then you can use    * {@code ImmutableMap.copyOf(stream.collect(Collectors.toMap(keyFunction, v -> v)))}, but be    * aware that this may not preserve the order of entries.    *    * @param keyFunction the function used to produce the key for each value    * @return a map mapping the result of evaluating the function {@code keyFunction} on each value    *     in this fluent iterable to that value    * @throws IllegalArgumentException if {@code keyFunction} produces the same key for more than one    *     value in this fluent iterable    * @throws NullPointerException if any elements of this fluent iterable is null, or if {@code    *     keyFunction} produces {@code null} for any value    * @since 14.0    */
 DECL|method|uniqueIndex (Function<? super E, K> keyFunction)
 specifier|public
 specifier|final
