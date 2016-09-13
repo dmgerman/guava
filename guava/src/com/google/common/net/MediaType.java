@@ -974,6 +974,21 @@ argument_list|,
 literal|"xml"
 argument_list|)
 decl_stmt|;
+comment|/**    * As described in<a href="https://w3c.github.io/webvtt/#iana-text-vtt">the VTT spec</a>, this is    * used for Web Video Text Tracks (WebVTT) files, used with the HTML5 track element.    *    * @since 20.0    */
+DECL|field|VTT_UTF_8
+specifier|public
+specifier|static
+specifier|final
+name|MediaType
+name|VTT_UTF_8
+init|=
+name|createConstantUtf8
+argument_list|(
+name|TEXT_TYPE
+argument_list|,
+literal|"vtt"
+argument_list|)
+decl_stmt|;
 comment|/* image types */
 DECL|field|BMP
 specifier|public
