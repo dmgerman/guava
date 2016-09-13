@@ -711,7 +711,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Reads the first link of this source as a string. Returns {@code null} if this source is empty.    *    *<p>Like {@link BufferedReader}, this method breaks lines on any of {@code \n}, {@code \r} or    * {@code \r\n}, does not include the line separator in the returned line and does not consider    * there to be an extra empty line at the end if the content is terminated with a line separator.    *    * @throws IOException if an I/O error occurs in the process of reading from this source    */
+comment|/**    * Reads the first line of this source as a string. Returns {@code null} if this source is empty.    *    *<p>Like {@link BufferedReader}, this method breaks lines on any of {@code \n}, {@code \r} or    * {@code \r\n}, does not include the line separator in the returned line and does not consider    * there to be an extra empty line at the end if the content is terminated with a line separator.    *    * @throws IOException if an I/O error occurs in the process of reading from this source    */
 annotation|@
 name|Nullable
 DECL|method|readFirstLine ()
