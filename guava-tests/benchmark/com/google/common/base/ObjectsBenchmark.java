@@ -28,22 +28,8 @@ name|Benchmark
 import|;
 end_import
 
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|base
-operator|.
-name|Objects
-import|;
-end_import
-
 begin_comment
-comment|/**  * Some microbenchmarks for the {@link Objects} class.  *  * @author Ben L. Titzer  */
+comment|/**  * Some microbenchmarks for the {@link com.google.common.base.Objects} class.  *  * @author Ben L. Titzer  */
 end_comment
 
 begin_class

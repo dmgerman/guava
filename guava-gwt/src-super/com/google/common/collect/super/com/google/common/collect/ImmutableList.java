@@ -141,7 +141,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * GWT emulated version of {@link ImmutableList}.  * TODO(cpovirk): more doc  *  * @author Hayward Chan  */
+comment|/**  * GWT emulated version of {@link com.google.common.collect.ImmutableList}. TODO(cpovirk): more doc  *  * @author Hayward Chan  */
 end_comment
 
 begin_class

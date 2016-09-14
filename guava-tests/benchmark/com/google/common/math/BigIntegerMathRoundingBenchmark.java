@@ -118,20 +118,6 @@ end_import
 
 begin_import
 import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|math
-operator|.
-name|BigIntegerMath
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|math

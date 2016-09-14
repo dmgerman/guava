@@ -183,7 +183,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * GWT emulation of {@link ImmutableMap}.  For non sorted maps, it is a thin  * wrapper around {@link java.util.Collections#emptyMap()}, {@link  * Collections#singletonMap(Object, Object)} and {@link java.util.LinkedHashMap}  * for empty, singleton and regular maps respectively.  For sorted maps, it's  * a thin wrapper around {@link java.util.TreeMap}.  *  * @see ImmutableSortedMap  *  * @author Hayward Chan  */
+comment|/**  * GWT emulation of {@link com.google.common.collect.ImmutableMap}. For non sorted maps, it is a  * thin wrapper around {@link java.util.Collections#emptyMap()}, {@link  * Collections#singletonMap(Object, Object)} and {@link java.util.LinkedHashMap} for empty,  * singleton and regular maps respectively. For sorted maps, it's a thin wrapper around {@link  * java.util.TreeMap}.  *  * @see ImmutableSortedMap  * @author Hayward Chan  */
 end_comment
 
 begin_class

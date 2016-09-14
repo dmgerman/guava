@@ -139,7 +139,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * GWT emulation of {@link ImmutableSortedSet}.  *  * @author Hayward Chan  */
+comment|/**  * GWT emulation of {@link com.google.common.collect.ImmutableSortedSet}.  *  * @author Hayward Chan  */
 end_comment
 
 begin_class

@@ -65,7 +65,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * GWT emulation of {@link ImmutableBiMap}.  *  * @author Hayward Chan  */
+comment|/**  * GWT emulation of {@link com.google.common.collect.ImmutableBiMap}.  *  * @author Hayward Chan  */
 end_comment
 
 begin_class

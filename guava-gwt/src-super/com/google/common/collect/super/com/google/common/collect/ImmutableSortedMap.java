@@ -145,7 +145,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * GWT emulated version of {@link ImmutableSortedMap}.  It's a thin wrapper  * around a {@link java.util.TreeMap}.  *  * @author Hayward Chan  */
+comment|/**  * GWT emulated version of {@link com.google.common.collect.ImmutableSortedMap}. It's a thin wrapper  * around a {@link java.util.TreeMap}.  *  * @author Hayward Chan  */
 end_comment
 
 begin_class

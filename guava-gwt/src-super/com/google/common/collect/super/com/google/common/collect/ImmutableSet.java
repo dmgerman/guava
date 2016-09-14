@@ -93,7 +93,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * GWT emulated version of {@link ImmutableSet}.  For the unsorted sets, they  * are thin wrapper around {@link java.util.Collections#emptySet()}, {@link  * Collections#singleton(Object)} and {@link java.util.LinkedHashSet} for  * empty, singleton and regular sets respectively.  For the sorted sets, it's  * a thin wrapper around {@link java.util.TreeSet}.  *  * @see ImmutableSortedSet  *  * @author Hayward Chan  */
+comment|/**  * GWT emulated version of {@link com.google.common.collect.ImmutableSet}. For the unsorted sets,  * they are thin wrapper around {@link java.util.Collections#emptySet()}, {@link  * Collections#singleton(Object)} and {@link java.util.LinkedHashSet} for empty, singleton and  * regular sets respectively. For the sorted sets, it's a thin wrapper around {@link  * java.util.TreeSet}.  *  * @see ImmutableSortedSet  * @author Hayward Chan  */
 end_comment
 
 begin_class

@@ -52,22 +52,8 @@ name|Param
 import|;
 end_import
 
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|base
-operator|.
-name|Strings
-import|;
-end_import
-
 begin_comment
-comment|/**  * Microbenchmark for {@link Strings#repeat}  *  * @author Mike Cripps  */
+comment|/**  * Microbenchmark for {@link com.google.common.base.Strings#repeat}  *  * @author Mike Cripps  */
 end_comment
 
 begin_class

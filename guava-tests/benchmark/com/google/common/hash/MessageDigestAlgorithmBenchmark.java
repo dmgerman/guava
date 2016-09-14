@@ -54,34 +54,6 @@ end_import
 
 begin_import
 import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|hash
-operator|.
-name|HashFunction
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|hash
-operator|.
-name|Hashing
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|security
@@ -111,7 +83,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Benchmarks for comparing {@link MessageDigest}s and {@link HashFunction}s that wrap  * {@link MessageDigest}s.  *  *<p>Parameters for the benchmark are:  *<ul>  *<li>size: The length of the byte array to hash.  *<li>algorithm: the algorithm to hash with (e.g. MD5, SHA1, etc.).  *<li>hashMethod: how to hash the data (using the Hashing API or the MessageDigest API).  *</ul>  *  * @author Kurt Alfred Kluever  */
+comment|/**  * Benchmarks for comparing {@link MessageDigest}s and {@link com.google.common.hash.HashFunction}s  * that wrap {@link MessageDigest}s.  *  *<p>Parameters for the benchmark are:  *  *<ul>  *<li>size: The length of the byte array to hash.  *<li>algorithm: the algorithm to hash with (e.g. MD5, SHA1, etc.).  *<li>hashMethod: how to hash the data (using the Hashing API or the MessageDigest API).  *</ul>  *  * @author Kurt Alfred Kluever  */
 end_comment
 
 begin_class
