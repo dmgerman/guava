@@ -1033,7 +1033,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the elements from this fluent iterable that are instances of class {@code type}.    *    *<p><b>{@code Stream} equivalent:</b><pre>   {@code    *    *  }{@code @SuppressWarnings("unchecked") // safe by runtime check    *   Stream<T> result = (Stream) stream.filter(type::isInstance);}</pre>    *    * ... or if {@code type} is a class literal {@code MyType.class},<pre>   {@code    *    *  }{@code @SuppressWarnings("unchecked") // safe by runtime check    *   Stream<MyType> result = (Stream) stream.filter(e -> e instanceof MyType);}</pre>    *    * @param type the type of elements desired    */
+comment|/**    * Returns the elements from this fluent iterable that are instances of class {@code type}.    *    *<p><b>{@code Stream} equivalent:</b> {@code stream.filter(type::isInstance).map(type::cast)}.    * This does perform a little more work than necessary, so another option is to insert an    * unchecked cast at some later point:    *    *<pre>    * {@code @SuppressWarnings("unchecked") // safe because of ::isInstance check    * ImmutableList<NewType> result =    *     (ImmutableList) stream.filter(NewType.class::isInstance).collect(toImmutableList());}    *</pre>    */
 annotation|@
 name|GwtIncompatible
 comment|// Class.isInstance
