@@ -2163,6 +2163,21 @@ operator|)
 condition|?
 name|values
 operator|=
+name|createValues
+argument_list|()
+else|:
+name|result
+return|;
+block|}
+DECL|method|createValues ()
+name|ImmutableCollection
+argument_list|<
+name|V
+argument_list|>
+name|createValues
+parameter_list|()
+block|{
+return|return
 operator|new
 name|ImmutableMapValues
 argument_list|<
@@ -2173,8 +2188,6 @@ argument_list|>
 argument_list|(
 name|this
 argument_list|)
-else|:
-name|result
 return|;
 block|}
 comment|// cached so that this.multimapView().inverse() only computes inverse once

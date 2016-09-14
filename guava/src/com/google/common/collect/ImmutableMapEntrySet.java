@@ -234,11 +234,12 @@ name|iterator
 parameter_list|()
 block|{
 return|return
-name|asList
-argument_list|()
+name|Iterators
 operator|.
-name|iterator
-argument_list|()
+name|forArray
+argument_list|(
+name|entries
+argument_list|)
 return|;
 block|}
 annotation|@
