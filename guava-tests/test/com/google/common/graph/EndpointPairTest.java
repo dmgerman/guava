@@ -141,7 +141,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Tests for {@link EndpointPair} and {@link ValueGraph#edges()}. */
+comment|/** Tests for {@link EndpointPair} and {@link Graph#edges()}. */
 end_comment
 
 begin_class
