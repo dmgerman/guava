@@ -85,6 +85,8 @@ name|E
 parameter_list|>
 extends|extends
 name|ImmutableSet
+operator|.
+name|Indexed
 argument_list|<
 name|E
 argument_list|>
@@ -298,36 +300,24 @@ operator|.
 name|length
 return|;
 block|}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
-comment|// all elements are E's
+DECL|method|get (int i)
 annotation|@
 name|Override
-DECL|method|iterator ()
-specifier|public
-name|UnmodifiableIterator
-argument_list|<
 name|E
-argument_list|>
-name|iterator
-parameter_list|()
+name|get
+parameter_list|(
+name|int
+name|i
+parameter_list|)
 block|{
 return|return
 operator|(
-name|UnmodifiableIterator
-argument_list|<
 name|E
-argument_list|>
 operator|)
-name|Iterators
-operator|.
-name|forArray
-argument_list|(
 name|elements
-argument_list|)
+index|[
+name|i
+index|]
 return|;
 block|}
 annotation|@
