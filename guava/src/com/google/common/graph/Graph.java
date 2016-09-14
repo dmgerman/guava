@@ -202,7 +202,7 @@ function_decl|;
 comment|//
 comment|// Graph identity
 comment|//
-comment|/**    * For the default {@link Graph} implementations, returns true iff {@code this == object} (i.e.    * reference equality). External implementations are free to define this method as they see fit,    * as long as they satisfy the {@link Object#equals(Object)} contract.    *    *<p>To compare two {@link Graph}s based on their contents rather than their references, see    * {@link Graphs#equivalent(Graph, Graph)}.    */
+comment|/**    * For the default {@link Graph} implementations, returns true iff {@code this == object}    * (reference equality). External implementations are free to define this method as they see fit,    * as long as they satisfy the {@link Object#equals(Object)} contract.    *    *<p>To compare two {@link Graph}s based on their contents rather than their references, see    * {@link Graphs#equivalent(Graph, Graph)}.    */
 annotation|@
 name|Override
 DECL|method|equals (@ullable Object object)

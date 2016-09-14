@@ -111,7 +111,7 @@ function_decl|;
 comment|//
 comment|// ValueGraph identity
 comment|//
-comment|/**    * For the default {@link ValueGraph} implementations, returns true iff {@code this == object}    * (i.e. reference equality). External implementations are free to define this method as they see    * fit, as long as they satisfy the {@link Object#equals(Object)} contract.    *    *<p>To compare two {@link ValueGraph}s based on their contents rather than their references, see    * {@link Graphs#equivalent(ValueGraph, ValueGraph)}.    */
+comment|/**    * For the default {@link ValueGraph} implementations, returns true iff {@code this == object}    * (reference equality). External implementations are free to define this method as they see fit,    * as long as they satisfy the {@link Object#equals(Object)} contract.    *    *<p>To compare two {@link ValueGraph}s based on their contents rather than their references, see    * {@link Graphs#equivalent(ValueGraph, ValueGraph)}.    */
 annotation|@
 name|Override
 DECL|method|equals (@ullable Object object)

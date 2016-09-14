@@ -300,7 +300,7 @@ function_decl|;
 comment|//
 comment|// Network identity
 comment|//
-comment|/**    * For the default {@link Network} implementations, returns true iff {@code this == object} (i.e.    * reference equality). External implementations are free to define this method as they see fit,    * as long as they satisfy the {@link Object#equals(Object)} contract.    *    *<p>To compare two {@link Network}s based on their contents rather than their references, see    * {@link Graphs#equivalent(Network, Network)}.    */
+comment|/**    * For the default {@link Network} implementations, returns true iff {@code this == object}    * (reference equality). External implementations are free to define this method as they see fit,    * as long as they satisfy the {@link Object#equals(Object)} contract.    *    *<p>To compare two {@link Network}s based on their contents rather than their references, see    * {@link Graphs#equivalent(Network, Network)}.    */
 annotation|@
 name|Override
 DECL|method|equals (@ullable Object object)
