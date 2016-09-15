@@ -1134,7 +1134,7 @@ argument_list|)
 return|;
 block|}
 comment|// Static converters
-comment|/**    * Returns a converter based on<i>existing</i> forward and backward functions. Note that it is    * unnecessary to create<i>new</i> classes implementing {@code Function} just to pass them in    * here. Instead, simply subclass {@code Converter} and implement its {@link #doForward} and    * {@link #doBackward} methods directly.    *    *<p>These functions will never be passed {@code null} and must not under any circumstances    * return {@code null}. If a value cannot be converted, the function should throw an unchecked    * exception (typically, but not necessarily, {@link IllegalArgumentException}).    *    *<p>The returned converter is serializable if both provided functions are.    *    * @since 17.0    */
+comment|/**    * Returns a converter based on separate forward and backward functions. This is useful if the    * function instances already exist, or so that you can supply lambda expressions. If those    * circumstances don't apply, you probably don't need to use this; subclass {@code Converter} and    * implement its {@link #doForward} and {@link #doBackward} methods directly.    *    *<p>These functions will never be passed {@code null} and must not under any circumstances    * return {@code null}. If a value cannot be converted, the function should throw an unchecked    * exception (typically, but not necessarily, {@link IllegalArgumentException}).    *    *<p>The returned converter is serializable if both provided functions are.    *    * @since 17.0    */
 DECL|method|from ( Function<? super A, ? extends B> forwardFunction, Function<? super B, ? extends A> backwardFunction)
 specifier|public
 specifier|static

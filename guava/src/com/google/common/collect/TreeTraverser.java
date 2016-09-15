@@ -62,6 +62,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Function
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -101,7 +115,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Views elements of a type {@code T} as nodes in a tree, and provides methods to traverse the trees  * induced by this traverser.  *  *<p>For example, the tree  *  *<pre>          {@code  *          h  *        / | \  *       /  e  \  *      d       g  *     /|\      |  *    / | \     f  *   a  b  c       }</pre>  *  *<p>can be iterated over in preorder (hdabcegf), postorder (abcdefgh), or breadth-first order  * (hdegabcf).  *  *<p>Null nodes are strictly forbidden.  *  * @author Louis Wasserman  * @since 15.0  */
+comment|/**  * Views elements of a type {@code T} as nodes in a tree, and provides methods to traverse the trees  * induced by this traverser.  *  *<p>For example, the tree  *  *<pre>{@code  *        h  *      / | \  *     /  e  \  *    d       g  *   /|\      |  *  / | \     f  * a  b  c  * }</pre>  *  *<p>can be iterated over in preorder (hdabcegf), postorder (abcdefgh), or breadth-first order  * (hdegabcf).  *  *<p>Null nodes are strictly forbidden.  *  *<p><b>For Java 8 users:</b> Because this is an abstract class, not an interface, you can't use a  * lambda expression to extend it:  *  *<pre>{@code  * // won't work  * TreeTraverser<NodeType> traverser = node -> node.getChildNodes();  * }</pre>  *  * Instead, you can pass a lambda expression to the {@code using} factory method:  *  *<pre>{@code  * TreeTraverser<NodeType> traverser = TreeTraverser.using(node -> node.getChildNodes());  * }</pre>  *  * @author Louis Wasserman  * @since 15.0  */
 end_comment
 
 begin_class
@@ -124,6 +138,72 @@ name|T
 parameter_list|>
 block|{
 comment|// TODO(lowasser): make this GWT-compatible when we've checked in ArrayDeque emulation
+comment|/**    * Returns a tree traverser that uses the given function to navigate from a node to its children.    * This is useful if the function instance already exists, or so that you can supply a lambda    * expressions. If those circumstances don't apply, you probably don't need to use this; subclass    * {@code TreeTraverser} and implement its {@link #children} method directly.    *    * @since 20.0    */
+DECL|method|using ( final Function<T, ? extends Iterable<T>> nodeToChildrenFunction)
+specifier|public
+specifier|static
+parameter_list|<
+name|T
+parameter_list|>
+name|TreeTraverser
+argument_list|<
+name|T
+argument_list|>
+name|using
+parameter_list|(
+specifier|final
+name|Function
+argument_list|<
+name|T
+argument_list|,
+name|?
+extends|extends
+name|Iterable
+argument_list|<
+name|T
+argument_list|>
+argument_list|>
+name|nodeToChildrenFunction
+parameter_list|)
+block|{
+name|checkNotNull
+argument_list|(
+name|nodeToChildrenFunction
+argument_list|)
+expr_stmt|;
+return|return
+operator|new
+name|TreeTraverser
+argument_list|<
+name|T
+argument_list|>
+argument_list|()
+block|{
+annotation|@
+name|Override
+specifier|public
+name|Iterable
+argument_list|<
+name|T
+argument_list|>
+name|children
+parameter_list|(
+name|T
+name|root
+parameter_list|)
+block|{
+return|return
+name|nodeToChildrenFunction
+operator|.
+name|apply
+argument_list|(
+name|root
+argument_list|)
+return|;
+block|}
+block|}
+return|;
+block|}
 comment|/**    * Returns the children of the specified node.  Must not contain null.    */
 DECL|method|children (T root)
 specifier|public
