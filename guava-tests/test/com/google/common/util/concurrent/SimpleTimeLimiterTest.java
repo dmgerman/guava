@@ -523,7 +523,9 @@ name|target
 init|=
 operator|new
 name|SampleImpl
-argument_list|()
+argument_list|(
+name|DELAY_MS
+argument_list|)
 decl_stmt|;
 name|Sample
 name|proxy
@@ -595,7 +597,9 @@ name|target
 init|=
 operator|new
 name|SampleImpl
-argument_list|()
+argument_list|(
+literal|9999
+argument_list|)
 decl_stmt|;
 name|Sample
 name|proxy
@@ -653,6 +657,8 @@ argument_list|,
 name|NOT_ENOUGH_MS
 argument_list|,
 name|DELAY_MS
+operator|*
+literal|2
 argument_list|)
 expr_stmt|;
 comment|// Is it still computing away anyway?
@@ -693,7 +699,9 @@ name|target
 init|=
 operator|new
 name|SampleImpl
-argument_list|()
+argument_list|(
+name|DELAY_MS
+argument_list|)
 decl_stmt|;
 name|Sample
 name|proxy
@@ -765,7 +773,9 @@ name|target
 init|=
 operator|new
 name|SampleImpl
-argument_list|()
+argument_list|(
+literal|9999
+argument_list|)
 decl_stmt|;
 name|Sample
 name|proxy
@@ -821,6 +831,8 @@ argument_list|,
 name|NOT_ENOUGH_MS
 argument_list|,
 name|DELAY_MS
+operator|*
+literal|2
 argument_list|)
 expr_stmt|;
 block|}
@@ -911,10 +923,29 @@ name|SampleImpl
 implements|implements
 name|Sample
 block|{
+DECL|field|delayMillis
+specifier|final
+name|long
+name|delayMillis
+decl_stmt|;
 DECL|field|finished
 name|boolean
 name|finished
 decl_stmt|;
+DECL|method|SampleImpl (long delayMillis)
+name|SampleImpl
+parameter_list|(
+name|long
+name|delayMillis
+parameter_list|)
+block|{
+name|this
+operator|.
+name|delayMillis
+operator|=
+name|delayMillis
+expr_stmt|;
+block|}
 annotation|@
 name|Override
 DECL|method|sleepThenReturnInput (String input)
@@ -934,7 +965,7 @@ name|MILLISECONDS
 operator|.
 name|sleep
 argument_list|(
-name|DELAY_MS
+name|delayMillis
 argument_list|)
 expr_stmt|;
 name|finished
@@ -974,7 +1005,7 @@ name|MILLISECONDS
 operator|.
 name|sleep
 argument_list|(
-name|DELAY_MS
+name|delayMillis
 argument_list|)
 expr_stmt|;
 block|}
