@@ -403,7 +403,7 @@ name|node
 argument_list|)
 decl_stmt|;
 name|int
-name|selfLoop
+name|selfLoopCount
 init|=
 operator|(
 name|allowsSelfLoops
@@ -431,7 +431,7 @@ operator|.
 name|size
 argument_list|()
 argument_list|,
-name|selfLoop
+name|selfLoopCount
 argument_list|)
 return|;
 block|}

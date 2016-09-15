@@ -443,13 +443,13 @@ name|inEdgeMap
 operator|.
 name|size
 argument_list|()
-operator|-
-name|selfLoopCount
 argument_list|,
 name|outEdgeMap
 operator|.
 name|size
 argument_list|()
+operator|-
+name|selfLoopCount
 argument_list|)
 return|;
 block|}
