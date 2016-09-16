@@ -134,13 +134,15 @@ argument_list|>
 name|nodeIterator
 decl_stmt|;
 DECL|field|node
+specifier|protected
 name|N
 name|node
 init|=
 literal|null
 decl_stmt|;
-comment|// null is safe as an initial value because graphs do not allow null nodes
+comment|// null is safe as an initial value because graphs don't allow null nodes
 DECL|field|successorIterator
+specifier|protected
 name|Iterator
 argument_list|<
 name|N
@@ -202,6 +204,7 @@ argument_list|)
 return|;
 block|}
 DECL|method|EndpointPairIterator (Graph<N> graph)
+specifier|private
 name|EndpointPairIterator
 parameter_list|(
 name|Graph
@@ -232,6 +235,7 @@ expr_stmt|;
 block|}
 comment|/**    * Called after {@link #successorIterator} is exhausted. Advances {@link #node} to the next node    * and updates {@link #successorIterator} to iterate through the successors of {@link #node}.    */
 DECL|method|advance ()
+specifier|protected
 specifier|final
 name|boolean
 name|advance
@@ -282,7 +286,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/**    * If the graph is directed, each ordered [source, target] pair will be visited once if there is    * one or more edge connecting them.    */
+comment|/**    * If the graph is directed, each ordered [source, target] pair will be visited once if there is    * an edge connecting them.    */
 DECL|class|Directed
 specifier|private
 specifier|static
@@ -299,6 +303,7 @@ name|N
 argument_list|>
 block|{
 DECL|method|Directed (Graph<N> graph)
+specifier|private
 name|Directed
 parameter_list|(
 name|Graph
@@ -367,7 +372,7 @@ block|}
 block|}
 block|}
 block|}
-comment|/**    * If the graph is undirected, each unordered [node, otherNode] pair (except self-loops) will be    * visited twice if there is one or more edge connecting them. To avoid returning duplicate {@link    * EndpointPair}, we keep track of the nodes that we have visited. When processing endpoint pairs,    * we skip if the "other node" is in the visited set, as shown below:    *    *<pre>    * Nodes = {N1, N2, N3, N4}    *    N2           __    *   /  \         |  |    * N1----N3      N4__|    *    * Visited Nodes = {}    * EndpointPair [N1, N2] - return    * EndpointPair [N1, N3] - return    * Visited Nodes = {N1}    * EndpointPair [N2, N1] - skip    * EndpointPair [N2, N3] - return    * Visited Nodes = {N1, N2}    * EndpointPair [N3, N1] - skip    * EndpointPair [N3, N2] - skip    * Visited Nodes = {N1, N2, N3}    * EndpointPair [N4, N4] - return    * Visited Nodes = {N1, N2, N3, N4}    *</pre>    */
+comment|/**    * If the graph is undirected, each unordered [node, otherNode] pair (except self-loops) will be    * visited twice if there is an edge connecting them. To avoid returning duplicate {@link    * EndpointPair}s, we keep track of the nodes that we have visited. When processing endpoint    * pairs, we skip if the "other node" is in the visited set, as shown below:    *    *<pre>    * Nodes = {N1, N2, N3, N4}    *    N2           __    *   /  \         |  |    * N1----N3      N4__|    *    * Visited Nodes = {}    * EndpointPair [N1, N2] - return    * EndpointPair [N1, N3] - return    * Visited Nodes = {N1}    * EndpointPair [N2, N1] - skip    * EndpointPair [N2, N3] - return    * Visited Nodes = {N1, N2}    * EndpointPair [N3, N1] - skip    * EndpointPair [N3, N2] - skip    * Visited Nodes = {N1, N2, N3}    * EndpointPair [N4, N4] - return    * Visited Nodes = {N1, N2, N3, N4}    *</pre>    */
 DECL|class|Undirected
 specifier|private
 specifier|static
@@ -392,6 +397,7 @@ argument_list|>
 name|visitedNodes
 decl_stmt|;
 DECL|method|Undirected (Graph<N> graph)
+specifier|private
 name|Undirected
 parameter_list|(
 name|Graph
