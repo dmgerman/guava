@@ -42,26 +42,6 @@ name|Array
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|ArrayDeque
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Deque
-import|;
-end_import
-
 begin_comment
 comment|/**  * Methods factored out so that they can be emulated differently in GWT.  *  * @author Hayward Chan  */
 end_comment
@@ -154,33 +134,6 @@ name|mapMaker
 operator|.
 name|weakKeys
 argument_list|()
-return|;
-block|}
-comment|// TODO(cpovirk): Consider adding an ArrayDeque emulation to GWT.
-DECL|method|newFastestDeque (int initialCapacity)
-specifier|static
-parameter_list|<
-name|E
-parameter_list|>
-name|Deque
-argument_list|<
-name|E
-argument_list|>
-name|newFastestDeque
-parameter_list|(
-name|int
-name|initialCapacity
-parameter_list|)
-block|{
-return|return
-operator|new
-name|ArrayDeque
-argument_list|<
-name|E
-argument_list|>
-argument_list|(
-name|initialCapacity
-argument_list|)
 return|;
 block|}
 DECL|method|Platform ()

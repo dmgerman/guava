@@ -123,11 +123,6 @@ annotation|@
 name|Beta
 annotation|@
 name|GwtCompatible
-argument_list|(
-name|emulated
-operator|=
-literal|true
-argument_list|)
 DECL|class|TreeTraverser
 specifier|public
 specifier|abstract
@@ -137,7 +132,6 @@ parameter_list|<
 name|T
 parameter_list|>
 block|{
-comment|// TODO(lowasser): make this GWT-compatible when we've checked in ArrayDeque emulation
 comment|/**    * Returns a tree traverser that uses the given function to navigate from a node to its children.    * This is useful if the function instance already exists, or so that you can supply a lambda    * expressions. If those circumstances don't apply, you probably don't need to use this; subclass    * {@code TreeTraverser} and implement its {@link #children} method directly.    *    * @since 20.0    */
 DECL|method|using ( final Function<T, ? extends Iterable<T>> nodeToChildrenFunction)
 specifier|public

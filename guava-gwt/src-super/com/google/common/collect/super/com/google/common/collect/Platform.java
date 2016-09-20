@@ -28,26 +28,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Deque
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|LinkedList
-import|;
-end_import
-
-begin_import
-import|import
 name|jsinterop
 operator|.
 name|annotations
@@ -198,30 +178,6 @@ parameter_list|)
 block|{
 return|return
 name|mapMaker
-return|;
-block|}
-DECL|method|newFastestDeque (int ignored)
-specifier|static
-parameter_list|<
-name|E
-parameter_list|>
-name|Deque
-argument_list|<
-name|E
-argument_list|>
-name|newFastestDeque
-parameter_list|(
-name|int
-name|ignored
-parameter_list|)
-block|{
-return|return
-operator|new
-name|LinkedList
-argument_list|<
-name|E
-argument_list|>
-argument_list|()
 return|;
 block|}
 DECL|method|Platform ()
