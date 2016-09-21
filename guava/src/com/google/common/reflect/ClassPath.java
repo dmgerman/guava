@@ -1434,6 +1434,8 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+try|try
+block|{
 if|if
 condition|(
 operator|!
@@ -1443,6 +1445,29 @@ name|exists
 argument_list|()
 condition|)
 block|{
+return|return;
+block|}
+block|}
+catch|catch
+parameter_list|(
+name|SecurityException
+name|e
+parameter_list|)
+block|{
+name|logger
+operator|.
+name|warning
+argument_list|(
+literal|"Cannot access "
+operator|+
+name|file
+operator|+
+literal|": "
+operator|+
+name|e
+argument_list|)
+expr_stmt|;
+comment|// TODO(emcmanus): consider whether to log other failure cases too.
 return|return;
 block|}
 if|if
