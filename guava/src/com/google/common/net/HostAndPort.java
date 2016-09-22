@@ -247,7 +247,7 @@ return|return
 name|host
 return|;
 block|}
-comment|/**    * Old name of {@link #getHost}.    *    * @deprecated Use {@link #getHost()} for instead. This method is scheduled for removal in Guava    *     22.0.    */
+comment|/**    * Old name of {@link #getHost}.    *    * @deprecated Use {@link #getHost()} instead. This method is scheduled for removal in Guava 22.0.    */
 annotation|@
 name|Deprecated
 DECL|method|getHostText ()
