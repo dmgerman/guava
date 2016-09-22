@@ -789,6 +789,16 @@ name|expectHost
 argument_list|,
 name|hp
 operator|.
+name|getHost
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+name|expectHost
+argument_list|,
+name|hp
+operator|.
 name|getHostText
 argument_list|()
 argument_list|)
@@ -848,6 +858,16 @@ name|expectHost
 argument_list|,
 name|hp2
 operator|.
+name|getHost
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+name|expectHost
+argument_list|,
+name|hp2
+operator|.
 name|getHostText
 argument_list|()
 argument_list|)
@@ -878,7 +898,7 @@ literal|"gmail.com"
 argument_list|,
 name|hp
 operator|.
-name|getHostText
+name|getHost
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -970,7 +990,7 @@ literal|"gmail.com"
 argument_list|,
 name|hp
 operator|.
-name|getHostText
+name|getHost
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -997,7 +1017,7 @@ literal|"::1"
 argument_list|,
 name|hp
 operator|.
-name|getHostText
+name|getHost
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -1199,7 +1219,7 @@ operator|.
 name|requireBracketsForIPv6
 argument_list|()
 operator|.
-name|getHostText
+name|getHost
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -1217,7 +1237,7 @@ operator|.
 name|requireBracketsForIPv6
 argument_list|()
 operator|.
-name|getHostText
+name|getHost
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -1236,7 +1256,7 @@ operator|.
 name|requireBracketsForIPv6
 argument_list|()
 operator|.
-name|getHostText
+name|getHost
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -1254,7 +1274,7 @@ operator|.
 name|requireBracketsForIPv6
 argument_list|()
 operator|.
-name|getHostText
+name|getHost
 argument_list|()
 argument_list|)
 expr_stmt|;

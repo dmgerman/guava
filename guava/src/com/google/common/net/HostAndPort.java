@@ -153,7 +153,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An immutable representation of a host and port.  *  *<p>Example usage:  *  *<pre>  * HostAndPort hp = HostAndPort.fromString("[2001:db8::1]")  *     .withDefaultPort(80)  *     .requireBracketsForIPv6();  * hp.getHostText();  // returns "2001:db8::1"  * hp.getPort();      // returns 80  * hp.toString();     // returns "[2001:db8::1]:80"  *</pre>  *  *<p>Here are some examples of recognized formats:  *<ul>  *<li>example.com  *<li>example.com:80  *<li>192.0.2.1  *<li>192.0.2.1:80  *<li>[2001:db8::1] - {@link #getHostText()} omits brackets  *<li>[2001:db8::1]:80 - {@link #getHostText()} omits brackets  *<li>2001:db8::1 - Use {@link #requireBracketsForIPv6()} to prohibit this  *</ul>  *  *<p>Note that this is not an exhaustive list, because these methods are only concerned with  * brackets, colons, and port numbers. Full validation of the host field (if desired) is the  * caller's responsibility.  *  * @author Paul Marks  * @since 10.0  */
+comment|/**  * An immutable representation of a host and port.  *  *<p>Example usage:  *  *<pre>  * HostAndPort hp = HostAndPort.fromString("[2001:db8::1]")  *     .withDefaultPort(80)  *     .requireBracketsForIPv6();  * hp.getHost();   // returns "2001:db8::1"  * hp.getPort();   // returns 80  * hp.toString();  // returns "[2001:db8::1]:80"  *</pre>  *  *<p>Here are some examples of recognized formats:  *<ul>  *<li>example.com  *<li>example.com:80  *<li>192.0.2.1  *<li>192.0.2.1:80  *<li>[2001:db8::1] - {@link #getHost()} omits brackets  *<li>[2001:db8::1]:80 - {@link #getHost()} omits brackets  *<li>2001:db8::1 - Use {@link #requireBracketsForIPv6()} to prohibit this  *</ul>  *  *<p>Note that this is not an exhaustive list, because these methods are only concerned with  * brackets, colons, and port numbers. Full validation of the host field (if desired) is the  * caller's responsibility.  *  * @author Paul Marks  * @since 10.0  */
 end_comment
 
 begin_class
@@ -236,7 +236,20 @@ operator|=
 name|hasBracketlessColons
 expr_stmt|;
 block|}
-comment|/**    * Returns the portion of this {@code HostAndPort} instance that should represent the hostname or    * IPv4/IPv6 literal.    *    *<p>A successful parse does not imply any degree of sanity in this field. For additional    * validation, see the {@link HostSpecifier} class.    */
+comment|/**    * Returns the portion of this {@code HostAndPort} instance that should represent the hostname or    * IPv4/IPv6 literal.    *    *<p>A successful parse does not imply any degree of sanity in this field. For additional    * validation, see the {@link HostSpecifier} class.    *    * @since 20.0 (since 10.0 as {@code getHostText})    */
+DECL|method|getHost ()
+specifier|public
+name|String
+name|getHost
+parameter_list|()
+block|{
+return|return
+name|host
+return|;
+block|}
+comment|/**    * Old name of {@link #getHost}.    *    * @deprecated Use {@link #getHost()} for instead. This method is scheduled for removal in Guava    *     22.0.    */
+annotation|@
+name|Deprecated
 DECL|method|getHostText ()
 specifier|public
 name|String
