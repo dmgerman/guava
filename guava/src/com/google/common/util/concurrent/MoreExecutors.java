@@ -1305,7 +1305,7 @@ name|DirectExecutorService
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns an {@link Executor} that runs each task in the thread that invokes    * {@link Executor#execute execute}, as in {@link CallerRunsPolicy}.    *    *<p>This instance is equivalent to:<pre>   {@code    *   final class DirectExecutor implements Executor {    *     public void execute(Runnable r) {    *       r.run();    *     }    *   }}</pre>    *    *<p>This should be preferred to {@link #newDirectExecutorService()} because the implementing the    * {@link ExecutorService} subinterface necessitates significant performance overhead.    *    * @since 18.0    */
+comment|/**    * Returns an {@link Executor} that runs each task in the thread that invokes    * {@link Executor#execute execute}, as in {@link CallerRunsPolicy}.    *    *<p>This instance is equivalent to:<pre>   {@code    *   final class DirectExecutor implements Executor {    *     public void execute(Runnable r) {    *       r.run();    *     }    *   }}</pre>    *    *<p>This should be preferred to {@link #newDirectExecutorService()} because implementing the    * {@link ExecutorService} subinterface necessitates significant performance overhead.    *    * @since 18.0    */
 DECL|method|directExecutor ()
 specifier|public
 specifier|static
