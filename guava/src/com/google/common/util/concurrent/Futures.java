@@ -2815,7 +2815,7 @@ name|cause
 argument_list|)
 throw|;
 block|}
-comment|/*      * It's a non-Error, non-Exception Throwable. From my survey of such classes, I believe that      * most users intended to extend Exception, so we'll treat it like an Exception.      */
+comment|/*      * It's an Exception. (Or it's a non-Error, non-Exception Throwable. From my survey of such      * classes, I believe that most users intended to extend Exception, so we'll treat it like an      * Exception.)      */
 throw|throw
 operator|new
 name|UncheckedExecutionException
