@@ -107,7 +107,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Static utility methods pertaining to {@code Function} instances.  *  *<p>All methods return serializable functions as long as they're given serializable parameters.  *  *<p>See the Guava User Guide article on  *<a href="https://github.com/google/guava/wiki/FunctionalExplained">the use of {@code  * Function}</a>.  *  * @author Mike Bostock  * @author Jared Levy  * @since 2.0  */
+comment|/**  * Static utility methods pertaining to {@code com.google.common.base.Function} instances; see that  * class for information about migrating to {@code java.util.function}.  *  *<p>All methods return serializable functions as long as they're given serializable parameters.  *  *<p>See the Guava User Guide article on  *<a href="https://github.com/google/guava/wiki/FunctionalExplained">the use of {@code  * Function}</a>.  *  * @author Mike Bostock  * @author Jared Levy  * @since 2.0  */
 end_comment
 
 begin_class
@@ -124,7 +124,7 @@ specifier|private
 name|Functions
 parameter_list|()
 block|{}
-comment|/**    * Returns a function that calls {@code toString()} on its argument. The function does not accept    * nulls; it will throw a {@link NullPointerException} when applied to {@code null}.    *    *<p><b>Warning:</b> The returned function may not be<i>consistent with equals</i> (as    * documented at {@link Function#apply}). For example, this function yields different results for    * the two equal instances {@code ImmutableSet.of(1, 2)} and {@code ImmutableSet.of(2, 1)}.    *    *<p><b>Warning:</b> as with all function types in this package, avoid depending on the specific    * {@code equals}, {@code hashCode} or {@code toString} behavior of the returned function. A    * future migration to {@code java.util.function} will not preserve this behavior.    *    *<p><b>For Java 8 users:</b> use the method reference {@code Object::toString} instead. In the    * future, when this class requires Java 8, this method will be deprecated. See {@link Function}    * for more important information about the Java 8 transition.    */
+comment|/**    * A function equivalent to the method reference {@code Object::toString}, for users not yet using    * Java 8. The function simply invokes {@code toString} on its argument and returns the result. It    * throws a {@link NullPointerException} on null input.    *    *<p><b>Warning:</b> The returned function may not be<i>consistent with equals</i> (as    * documented at {@link Function#apply}). For example, this function yields different results for    * the two equal instances {@code ImmutableSet.of(1, 2)} and {@code ImmutableSet.of(2, 1)}.    *    *<p><b>Warning:</b> as with all function types in this package, avoid depending on the specific    * {@code equals}, {@code hashCode} or {@code toString} behavior of the returned function. A    * future migration to {@code java.util.function} will not preserve this behavior.    *    *<p><b>For Java 8 users:</b> use the method reference {@code Object::toString} instead. In the    * future, when this class requires Java 8, this method will be deprecated. See {@link Function}    * for more important information about the Java 8 transition.    */
 DECL|method|toStringFunction ()
 specifier|public
 specifier|static
@@ -280,7 +280,7 @@ literal|"Functions.identity()"
 return|;
 block|}
 block|}
-comment|/**    * Returns a function which performs a map lookup. The returned function throws an    * {@link IllegalArgumentException} if given a key that does not exist in the map. See also    * {@link #forMap(Map, Object)}, which returns a default value in this case.    *    *<p>Note: if {@code map} is a {@link com.google.common.collect.BiMap BiMap} (or can be one), you    * can use {@link com.google.common.collect.Maps#asConverter Maps.asConverter} instead to get a    * function that also supports reverse conversion.    */
+comment|/**    * Returns a function which performs a map lookup. The returned function throws an    * {@link IllegalArgumentException} if given a key that does not exist in the map. See also    * {@link #forMap(Map, Object)}, which returns a default value in this case.    *    *<p>Note: if {@code map} is a {@link com.google.common.collect.BiMap BiMap} (or can be one), you    * can use {@link com.google.common.collect.Maps#asConverter Maps.asConverter} instead to get a    * function that also supports reverse conversion.    *    *<p><b>Java 8 users:</b> if you are okay with {@code null} being returned for an unrecognized    * key (instead of an exception being thrown), you can use the method reference {@code map::get}    * instead.    */
 DECL|method|forMap (Map<K, V> map)
 specifier|public
 specifier|static
@@ -510,7 +510,7 @@ init|=
 literal|0
 decl_stmt|;
 block|}
-comment|/**    * Returns a function which performs a map lookup with a default value. The function created by    * this method returns {@code defaultValue} for all inputs that do not belong to the map's key    * set. See also {@link #forMap(Map)}, which throws an exception in this case.    *    * @param map source map that determines the function behavior    * @param defaultValue the value to return for inputs that aren't map keys    * @return function that returns {@code map.get(a)} when {@code a} is a key, or {@code    *         defaultValue} otherwise    */
+comment|/**    * Returns a function which performs a map lookup with a default value. The function created by    * this method returns {@code defaultValue} for all inputs that do not belong to the map's key    * set. See also {@link #forMap(Map)}, which throws an exception in this case.    *    *<p><b>Java 8 users:</b> you can just write the lambda expression {@code k ->    * map.getWithDefault(k, defaultValue)} instead.    *    * @param map source map that determines the function behavior    * @param defaultValue the value to return for inputs that aren't map keys    * @return function that returns {@code map.get(a)} when {@code a} is a key, or {@code    *         defaultValue} otherwise    */
 DECL|method|forMap (Map<K, ? extends V> map, @Nullable V defaultValue)
 specifier|public
 specifier|static
@@ -786,7 +786,7 @@ init|=
 literal|0
 decl_stmt|;
 block|}
-comment|/**    * Returns the composition of two functions. For {@code f: A->B} and {@code g: B->C}, composition    * is defined as the function h such that {@code h(a) == g(f(a))} for each {@code a}.    *    * @param g the second function to apply    * @param f the first function to apply    * @return the composition of {@code f} and {@code g}    * @see<a href="//en.wikipedia.org/wiki/Function_composition">function composition</a>    */
+comment|/**    * Returns the composition of two functions. For {@code f: A->B} and {@code g: B->C}, composition    * is defined as the function h such that {@code h(a) == g(f(a))} for each {@code a}.    *    *<p><b>Java 8 users:</b> use {@code g.compose(f)} or (probably clearer) {@code f.andThen(g)}    * instead.    *    * @param g the second function to apply    * @param f the first function to apply    * @return the composition of {@code f} and {@code g}    * @see<a href="//en.wikipedia.org/wiki/Function_composition">function composition</a>    */
 DECL|method|compose (Function<B, C> g, Function<A, ? extends B> f)
 specifier|public
 specifier|static
@@ -1071,7 +1071,7 @@ init|=
 literal|0
 decl_stmt|;
 block|}
-comment|/**    * Creates a function that returns the same boolean output as the given predicate for all inputs.    *    *<p>The returned function is<i>consistent with equals</i> (as documented at    * {@link Function#apply}) if and only if {@code predicate} is itself consistent with equals.    */
+comment|/**    * Creates a function that returns the same boolean output as the given predicate for all inputs.    *    *<p>The returned function is<i>consistent with equals</i> (as documented at    * {@link Function#apply}) if and only if {@code predicate} is itself consistent with equals.    *    *<p><b>Java 8 users:</b> use the method reference {@code predicate::test} instead.    */
 DECL|method|forPredicate (Predicate<T> predicate)
 specifier|public
 specifier|static
@@ -1265,7 +1265,7 @@ init|=
 literal|0
 decl_stmt|;
 block|}
-comment|/**    * Creates a function that returns {@code value} for any input.    *    * @param value the constant value for the function to return    * @return a function that always returns {@code value}    */
+comment|/**    * Returns a function that ignores its input and always returns {@code value}.    *    *<p><b>Java 8 users:</b> use the lambda expression {@code o -> value} instead.    *    * @param value the constant value for the function to return    * @return a function that always returns {@code value}    */
 DECL|method|constant (@ullable E value)
 specifier|public
 specifier|static
@@ -1455,7 +1455,7 @@ init|=
 literal|0
 decl_stmt|;
 block|}
-comment|/**    * Returns a function that always returns the result of invoking {@link Supplier#get} on {@code    * supplier}, regardless of its input.    *    * @since 10.0    */
+comment|/**    * Returns a function that ignores its input and returns the result of {@code supplier.get()}.    *    *<p><b>Java 8 users:</b> use the lambda expression {@code o -> supplier.get()} instead.    *    * @since 10.0    */
 annotation|@
 name|Beta
 DECL|method|forSupplier (Supplier<T> supplier)
