@@ -351,6 +351,8 @@ argument_list|,
 name|NOT_ENOUGH_MS
 argument_list|,
 name|DELAY_MS
+operator|*
+literal|2
 argument_list|)
 expr_stmt|;
 block|}
@@ -507,6 +509,8 @@ argument_list|,
 name|NOT_ENOUGH_MS
 argument_list|,
 name|DELAY_MS
+operator|*
+literal|2
 argument_list|)
 expr_stmt|;
 block|}
