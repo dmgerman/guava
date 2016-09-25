@@ -54,20 +54,6 @@ name|com
 operator|.
 name|google
 operator|.
-name|common
-operator|.
-name|annotations
-operator|.
-name|GwtIncompatible
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
 name|j2objc
 operator|.
 name|annotations
@@ -217,6 +203,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+comment|/*    * In certain circumstances, this field might theoretically not be visible to an afterDone() call    * triggered by cancel(). For details, see the comments on the fields of TimeoutFuture.    */
 DECL|field|task
 specifier|private
 name|TrustedFutureInterruptibleTask
@@ -283,25 +270,11 @@ operator|.
 name|afterDone
 argument_list|()
 expr_stmt|;
-comment|// Free all resources associated with the running task
-name|this
-operator|.
-name|task
-operator|=
-literal|null
-expr_stmt|;
-block|}
-annotation|@
-name|GwtIncompatible
-comment|// Interruption not supported
-annotation|@
-name|Override
-DECL|method|interruptTask ()
-specifier|protected
-specifier|final
-name|void
-name|interruptTask
-parameter_list|()
+if|if
+condition|(
+name|wasInterrupted
+argument_list|()
+condition|)
 block|{
 name|TrustedFutureInterruptibleTask
 name|localTask
@@ -321,6 +294,13 @@ name|interruptTask
 argument_list|()
 expr_stmt|;
 block|}
+block|}
+name|this
+operator|.
+name|task
+operator|=
+literal|null
+expr_stmt|;
 block|}
 annotation|@
 name|Override

@@ -544,6 +544,7 @@ return|return
 name|future
 return|;
 block|}
+comment|/*    * In certain circumstances, this field might theoretically not be visible to an afterDone() call    * triggered by cancel(). For details, see the comments on the fields of TimeoutFuture.    */
 DECL|field|inputFuture
 annotation|@
 name|Nullable

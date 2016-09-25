@@ -515,8 +515,7 @@ return|return
 name|output
 return|;
 block|}
-comment|// In theory, this field might not be visible to a cancel() call in certain circumstances. For
-comment|// details, see the comments on the fields of TimeoutFuture.
+comment|/*    * In certain circumstances, this field might theoretically not be visible to an afterDone() call    * triggered by cancel(). For details, see the comments on the fields of TimeoutFuture.    */
 DECL|field|inputFuture
 annotation|@
 name|Nullable
