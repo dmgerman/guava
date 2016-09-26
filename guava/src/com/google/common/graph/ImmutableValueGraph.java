@@ -104,11 +104,11 @@ end_import
 
 begin_import
 import|import
-name|java
+name|javax
 operator|.
-name|util
+name|annotation
 operator|.
-name|Map
+name|Nullable
 import|;
 end_import
 
@@ -508,25 +508,34 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|edgeValues ()
+DECL|method|edgeValueOrDefault (Object nodeU, Object nodeV, @Nullable V defaultValue)
 specifier|public
-name|Map
-argument_list|<
-name|EndpointPair
-argument_list|<
-name|N
-argument_list|>
-argument_list|,
 name|V
-argument_list|>
-name|edgeValues
-parameter_list|()
+name|edgeValueOrDefault
+parameter_list|(
+name|Object
+name|nodeU
+parameter_list|,
+name|Object
+name|nodeV
+parameter_list|,
+annotation|@
+name|Nullable
+name|V
+name|defaultValue
+parameter_list|)
 block|{
 return|return
 name|backingValueGraph
 operator|.
-name|edgeValues
-argument_list|()
+name|edgeValueOrDefault
+argument_list|(
+name|nodeU
+argument_list|,
+name|nodeV
+argument_list|,
+name|defaultValue
+argument_list|)
 return|;
 block|}
 annotation|@

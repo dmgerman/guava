@@ -82,7 +82,7 @@ argument_list|<
 name|N
 argument_list|>
 block|{
-comment|/**    * If there is an edge connecting {@code nodeU} to {@code nodeV}, returns the non-null value    * associated with that edge.    *    *<p>In an undirected graph, this is equal to {@code edgeValue(nodeV, nodeU)}.    *    * @throws IllegalArgumentException if there is no edge connecting {@code nodeU} to {@code nodeV},    *     or if {@code nodeU} or {@code nodeV} is not an element of this graph    */
+comment|/**    * If there is an edge connecting {@code nodeU} to {@code nodeV}, returns the non-null value    * associated with that edge.    *    *<p>In an undirected graph, this is equal to {@code edgeValue(nodeV, nodeU)}.    *    * @throws IllegalArgumentException if there is no edge connecting {@code nodeU} to {@code nodeV}.    */
 DECL|method|edgeValue (Object nodeU, Object nodeV)
 name|V
 name|edgeValue
@@ -94,19 +94,22 @@ name|Object
 name|nodeV
 parameter_list|)
 function_decl|;
-comment|/**    * Returns a {@link Map} of all {@link #edges() edges} mapped to their associated {@link    * #edgeValue(Object, Object) value}.    *    *<p>Note: {@link Map#get(Object)} returns null if you supply an {@link EndpointPair} whose nodes    * are not connected in this graph. This contrasts with the behavior of {@link #edgeValue(Object,    * Object)}, which throws {@link IllegalArgumentException} in that case.    */
-DECL|method|edgeValues ()
-name|Map
-argument_list|<
-name|EndpointPair
-argument_list|<
-name|N
-argument_list|>
-argument_list|,
+comment|/**    * If there is an edge connecting {@code nodeU} to {@code nodeV}, returns the non-null value    * associated with that edge; otherwise, returns {@code defaultValue}.    *    *<p>In an undirected graph, this is equal to {@code edgeValueOrDefault(nodeV, nodeU,    * defaultValue)}.    */
+DECL|method|edgeValueOrDefault (Object nodeU, Object nodeV, @Nullable V defaultValue)
 name|V
-argument_list|>
-name|edgeValues
-parameter_list|()
+name|edgeValueOrDefault
+parameter_list|(
+name|Object
+name|nodeU
+parameter_list|,
+name|Object
+name|nodeV
+parameter_list|,
+annotation|@
+name|Nullable
+name|V
+name|defaultValue
+parameter_list|)
 function_decl|;
 comment|//
 comment|// ValueGraph identity
