@@ -108,7 +108,7 @@ argument_list|>
 name|edges
 parameter_list|()
 function_decl|;
-comment|/**    * Returns a live view of this network as a {@link Graph}. The resulting {@link Graph} will have    * an edge connecting node A to node B iff this {@link Network} has an edge connecting A to B.    *    *<p>If this network {@link #allowsParallelEdges()}, parallel edges will treated as if collapsed    * into a single edge. For example, the {@link #degree(Object)} of a node in the {@link Graph}    * view may be less than the degree of the same node in this {@link Network}.    */
+comment|/**    * Returns a live view of this network as a {@link Graph}. The resulting {@link Graph} will have    * an edge connecting node A to node B iff this {@link Network} has an edge connecting A to B.    *    *<p>If this network {@link #allowsParallelEdges() allows parallel edges}, parallel edges will be    * treated as if collapsed into a single edge. For example, the {@link #degree(Object)} of a node    * in the {@link Graph} view may be less than the degree of the same node in this {@link Network}.    */
 DECL|method|asGraph ()
 name|Graph
 argument_list|<
@@ -282,7 +282,7 @@ name|Object
 name|edge
 parameter_list|)
 function_decl|;
-comment|/**    * Returns the set of edges that connect {@code nodeU} to {@code nodeV}.    *    *<p>In an undirected network, this is equal to {@code edgesConnecting(nodeV, nodeU)}.    *    * @throws IllegalArgumentException if {@code nodeU} or {@code nodeV} is not an element of this    *     network    */
+comment|/**    * Returns the set of edges connecting {@code nodeU} to {@code nodeV}.    *    *<p>In an undirected network, this is equal to {@code edgesConnecting(nodeV, nodeU)}.    *    *<p>The resulting set of edges will be parallel (i.e. have equal {@link #incidentNodes(Object)}.    * If this network does not {@link #allowsParallelEdges() allow parallel edges}, the resulting set    * will contain at most one edge.    *    * @throws IllegalArgumentException if {@code nodeU} or {@code nodeV} is not an element of this    *     network    */
 DECL|method|edgesConnecting (Object nodeU, Object nodeV)
 name|Set
 argument_list|<
