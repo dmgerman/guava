@@ -943,12 +943,7 @@ name|toString
 parameter_list|()
 block|{
 return|return
-name|String
-operator|.
-name|format
-argument_list|(
 literal|"NaN"
-argument_list|)
 return|;
 block|}
 block|}
