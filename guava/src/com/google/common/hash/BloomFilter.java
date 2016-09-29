@@ -1727,12 +1727,9 @@ name|RuntimeException
 name|e
 parameter_list|)
 block|{
-name|IOException
-name|ioException
+name|String
+name|message
 init|=
-operator|new
-name|IOException
-argument_list|(
 literal|"Unable to deserialize BloomFilter from InputStream."
 operator|+
 literal|" strategyOrdinal: "
@@ -1746,17 +1743,15 @@ operator|+
 literal|" dataLength: "
 operator|+
 name|dataLength
-argument_list|)
 decl_stmt|;
-name|ioException
-operator|.
-name|initCause
+throw|throw
+operator|new
+name|IOException
 argument_list|(
+name|message
+argument_list|,
 name|e
 argument_list|)
-expr_stmt|;
-throw|throw
-name|ioException
 throw|;
 block|}
 block|}

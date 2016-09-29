@@ -1353,7 +1353,6 @@ argument_list|>
 name|valueClass
 parameter_list|)
 block|{
-comment|// Can change to use varargs in JDK 1.6 if we want
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -1376,20 +1375,15 @@ name|newInstance
 argument_list|(
 name|valueClass
 argument_list|,
-operator|new
-name|int
-index|[]
-block|{
 name|rowList
 operator|.
 name|size
 argument_list|()
-block|,
+argument_list|,
 name|columnList
 operator|.
 name|size
 argument_list|()
-block|}
 argument_list|)
 decl_stmt|;
 for|for

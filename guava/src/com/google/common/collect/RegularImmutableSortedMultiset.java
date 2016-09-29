@@ -628,12 +628,6 @@ name|E
 argument_list|>
 name|subElementSet
 init|=
-operator|(
-name|RegularImmutableSortedSet
-argument_list|<
-name|E
-argument_list|>
-operator|)
 name|elementSet
 operator|.
 name|getSubSet

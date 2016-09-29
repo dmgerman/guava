@@ -877,8 +877,6 @@ comment|// concurrent change to other set
 block|}
 block|}
 return|return
-name|this
-operator|.
 name|containsAll
 argument_list|(
 name|that
