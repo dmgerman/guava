@@ -956,7 +956,7 @@ name|DirectExecutorService
 argument_list|()
 return|;
 block|}
-comment|// See sameThreadExecutor javadoc for behavioral notes.
+comment|// See newDirectExecutorService javadoc for behavioral notes.
 annotation|@
 name|GwtIncompatible
 comment|// TODO
@@ -1084,7 +1084,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|// See sameThreadExecutor javadoc for unusual behavior of this method.
+comment|// See newDirectExecutorService javadoc for unusual behavior of this method.
 annotation|@
 name|Override
 DECL|method|shutdownNow ()
