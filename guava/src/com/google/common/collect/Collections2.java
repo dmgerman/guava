@@ -76,22 +76,6 @@ name|base
 operator|.
 name|Predicates
 operator|.
-name|in
-import|;
-end_import
-
-begin_import
-import|import static
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|base
-operator|.
-name|Predicates
-operator|.
 name|not
 import|;
 end_import
