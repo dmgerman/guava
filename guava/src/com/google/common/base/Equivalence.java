@@ -42,20 +42,6 @@ name|common
 operator|.
 name|annotations
 operator|.
-name|Beta
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|annotations
-operator|.
 name|GwtCompatible
 import|;
 end_import
@@ -552,9 +538,7 @@ name|this
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a predicate that evaluates to true if and only if the input is equivalent to    * {@code target} according to this equivalence relation.    *    * @since 10.0    */
-annotation|@
-name|Beta
+comment|/**    * Returns a predicate that evaluates to true if and only if the input is equivalent to {@code    * target} according to this equivalence relation.    *    * @since 10.0    */
 DECL|method|equivalentTo (@ullable T target)
 specifier|public
 specifier|final

@@ -58,20 +58,6 @@ name|common
 operator|.
 name|annotations
 operator|.
-name|Beta
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|annotations
-operator|.
 name|GwtCompatible
 import|;
 end_import
@@ -1456,8 +1442,6 @@ literal|0
 decl_stmt|;
 block|}
 comment|/**    * Returns a function that ignores its input and returns the result of {@code supplier.get()}.    *    *<p><b>Java 8 users:</b> use the lambda expression {@code o -> supplier.get()} instead.    *    * @since 10.0    */
-annotation|@
-name|Beta
 DECL|method|forSupplier (Supplier<T> supplier)
 specifier|public
 specifier|static

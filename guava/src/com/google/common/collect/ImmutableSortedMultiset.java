@@ -58,20 +58,6 @@ name|common
 operator|.
 name|annotations
 operator|.
-name|Beta
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|annotations
-operator|.
 name|GwtIncompatible
 import|;
 end_import
@@ -165,8 +151,6 @@ comment|/**  * A {@link SortedMultiset} whose contents will never change, with m
 end_comment
 
 begin_class
-annotation|@
-name|Beta
 annotation|@
 name|GwtIncompatible
 comment|// hasn't been tested yet

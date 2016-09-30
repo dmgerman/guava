@@ -2203,8 +2203,6 @@ argument_list|>
 name|multimapView
 decl_stmt|;
 comment|/**    * Returns a multimap view of the map.    *    * @since 14.0    */
-annotation|@
-name|Beta
 DECL|method|asMultimap ()
 specifier|public
 name|ImmutableSetMultimap

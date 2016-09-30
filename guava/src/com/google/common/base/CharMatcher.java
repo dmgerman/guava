@@ -74,20 +74,6 @@ name|common
 operator|.
 name|annotations
 operator|.
-name|Beta
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|annotations
-operator|.
 name|GwtCompatible
 import|;
 end_import
@@ -141,13 +127,10 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Determines a true or false value for any Java {@code char} value, just as {@link Predicate} does  * for any {@link Object}. Also offers basic text processing methods based on this function.  * Implementations are strongly encouraged to be side-effect-free and immutable.  *  *<p>Throughout the documentation of this class, the phrase "matching character" is used to mean  * "any character {@code c} for which {@code this.matches(c)} returns {@code true}".  *  *<p><b>Note:</b> This class deals only with {@code char} values; it does not understand  * supplementary Unicode code points in the range {@code 0x10000} to {@code 0x10FFFF}. Such logical  * characters are encoded into a {@code String} using surrogate pairs, and a {@code CharMatcher}  * treats these just as two separate characters.  *  *<p>Example usages:<pre>  *   String trimmed = {@link #whitespace() whitespace()}.{@link #trimFrom trimFrom}(userInput);  *   if ({@link #ascii() ascii()}.{@link #matchesAllOf matchesAllOf}(s)) { ... }</pre>  *  *<p>See the Guava User Guide article on  *<a href="https://github.com/google/guava/wiki/StringsExplained#charmatcher">{@code CharMatcher}  *</a>.  *  * @author Kevin Bourrillion  * @since 1.0  */
+comment|/**  * Determines a true or false value for any Java {@code char} value, just as {@link Predicate} does  * for any {@link Object}. Also offers basic text processing methods based on this function.  * Implementations are strongly encouraged to be side-effect-free and immutable.  *  *<p>Throughout the documentation of this class, the phrase "matching character" is used to mean  * "any {@code char} value {@code c} for which {@code this.matches(c)} returns {@code true}".  *  *<p><b>Warning:</b> This class deals only with {@code char} values; it does not understand  * supplementary Unicode code points in the range {@code 0x10000} to {@code 0x10FFFF}. Such logical  * characters are encoded into a {@code String} using surrogate pairs, and a {@code CharMatcher}  * treats these just as two separate characters.  *  *<p>Example usages:  *  *<pre>  *   String trimmed = {@link #whitespace() whitespace()}.{@link #trimFrom trimFrom}(userInput);  *   if ({@link #ascii() ascii()}.{@link #matchesAllOf matchesAllOf}(s)) { ... }</pre>  *  *<p>See the Guava User Guide article on<a  * href="https://github.com/google/guava/wiki/StringsExplained#charmatcher">{@code CharMatcher}  *</a>.  *  * @author Kevin Bourrillion  * @since 1.0  */
 end_comment
 
 begin_class
-annotation|@
-name|Beta
-comment|// Possibly change from chars to code points; decide constants vs. methods
 annotation|@
 name|GwtCompatible
 argument_list|(

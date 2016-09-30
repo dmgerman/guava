@@ -26,20 +26,6 @@ name|common
 operator|.
 name|annotations
 operator|.
-name|Beta
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|annotations
-operator|.
 name|GwtCompatible
 import|;
 end_import
@@ -1104,9 +1090,7 @@ init|=
 literal|0
 decl_stmt|;
 block|}
-comment|/**    * Returns a function that accepts a supplier and returns the result of invoking    * {@link Supplier#get} on that supplier.    *    * @since 8.0    */
-annotation|@
-name|Beta
+comment|/**    * Returns a function that accepts a supplier and returns the result of invoking {@link    * Supplier#get} on that supplier.    *    *<p><b>Java 8 users:</b> use the method reference {@code Supplier::get} instead.    *    * @since 8.0    */
 DECL|method|supplierFunction ()
 specifier|public
 specifier|static

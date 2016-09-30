@@ -58,20 +58,6 @@ name|common
 operator|.
 name|annotations
 operator|.
-name|Beta
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|annotations
-operator|.
 name|GwtCompatible
 import|;
 end_import
@@ -1002,8 +988,6 @@ operator|)
 return|;
 block|}
 comment|/**    * Truncates the given character sequence to the given maximum length. If the length of the    * sequence is greater than {@code maxLength}, the returned string will be exactly    * {@code maxLength} chars in length and will end with the given {@code truncationIndicator}.    * Otherwise, the sequence will be returned as a string with no changes to the content.    *    *<p>Examples:    *    *<pre>   {@code    *   Ascii.truncate("foobar", 7, "..."); // returns "foobar"    *   Ascii.truncate("foobar", 5, "..."); // returns "fo..." }</pre>    *    *<p><b>Note:</b> This method<i>may</i> work with certain non-ASCII text but is not safe for use    * with arbitrary Unicode text. It is mostly intended for use with text that is known to be safe    * for use with it (such as all-ASCII text) and for simple debugging text. When using this method,    * consider the following:    *    *<ul>    *<li>it may split surrogate pairs    *<li>it may split characters and combining characters    *<li>it does not consider word boundaries    *<li>if truncating for display to users, there are other considerations that must be taken into    *     account    *<li>the appropriate truncation indicator may be locale-dependent    *<li>it is safe to use non-ASCII characters in the truncation indicator    *</ul>    *    *    * @throws IllegalArgumentException if {@code maxLength} is less than the length of    *     {@code truncationIndicator}    * @since 16.0    */
-annotation|@
-name|Beta
 DECL|method|truncate (CharSequence seq, int maxLength, String truncationIndicator)
 specifier|public
 specifier|static
@@ -1118,8 +1102,6 @@ argument_list|()
 return|;
 block|}
 comment|/**    * Indicates whether the contents of the given character sequences {@code s1} and {@code s2} are    * equal, ignoring the case of any ASCII alphabetic characters between {@code 'a'} and {@code 'z'}    * or {@code 'A'} and {@code 'Z'} inclusive.    *    *<p>This method is significantly faster than {@link String#equalsIgnoreCase} and should be used    * in preference if at least one of the parameters is known to contain only ASCII characters.    *    *<p>Note however that this method does not always behave identically to expressions such as:    *<ul>    *<li>{@code string.toUpperCase().equals("UPPER CASE ASCII")}    *<li>{@code string.toLowerCase().equals("lower case ascii")}    *</ul>    *<p>due to case-folding of some non-ASCII characters (which does not occur in    * {@link String#equalsIgnoreCase}). However in almost all cases that ASCII strings are used, the    * author probably wanted the behavior provided by this method rather than the subtle and    * sometimes surprising behavior of {@code toUpperCase()} and {@code toLowerCase()}.    *    * @since 16.0    */
-annotation|@
-name|Beta
 DECL|method|equalsIgnoreCase (CharSequence s1, CharSequence s2)
 specifier|public
 specifier|static

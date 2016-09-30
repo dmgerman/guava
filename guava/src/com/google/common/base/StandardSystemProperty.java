@@ -26,20 +26,6 @@ name|common
 operator|.
 name|annotations
 operator|.
-name|Beta
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|annotations
-operator|.
 name|GwtIncompatible
 import|;
 end_import
@@ -59,8 +45,6 @@ comment|/**  * Represents a {@linkplain System#getProperties() standard system p
 end_comment
 
 begin_enum
-annotation|@
-name|Beta
 annotation|@
 name|GwtIncompatible
 comment|// java.lang.System#getProperty

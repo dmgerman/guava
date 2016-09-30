@@ -2169,8 +2169,6 @@ expr_stmt|;
 block|}
 block|}
 comment|/**    * Returns a view of the specified string as an immutable list of {@code    * Character} values.    *    * @since 7.0    */
-annotation|@
-name|Beta
 DECL|method|charactersOf (String string)
 specifier|public
 specifier|static

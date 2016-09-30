@@ -26,20 +26,6 @@ name|common
 operator|.
 name|annotations
 operator|.
-name|Beta
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|annotations
-operator|.
 name|GwtCompatible
 import|;
 end_import
@@ -99,8 +85,6 @@ comment|/**  * A {@link Multiset} which maintains the ordering of its elements, 
 end_comment
 
 begin_interface
-annotation|@
-name|Beta
 annotation|@
 name|GwtCompatible
 argument_list|(

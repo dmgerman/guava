@@ -42,20 +42,6 @@ name|common
 operator|.
 name|annotations
 operator|.
-name|Beta
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|annotations
-operator|.
 name|GwtCompatible
 import|;
 end_import
@@ -698,8 +684,6 @@ argument_list|()
 return|;
 block|}
 comment|/**    * Returns a {@code Converter} that converts strings from this format to {@code targetFormat}.    *    * @since 16.0    */
-annotation|@
-name|Beta
 DECL|method|converterTo (CaseFormat targetFormat)
 specifier|public
 name|Converter
