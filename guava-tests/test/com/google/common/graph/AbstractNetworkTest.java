@@ -1463,7 +1463,7 @@ name|otherNode
 argument_list|)
 decl_stmt|;
 name|boolean
-name|nodesConnected
+name|connected
 init|=
 operator|!
 name|edgesConnecting
@@ -1546,7 +1546,7 @@ condition|)
 block|{
 name|assertThat
 argument_list|(
-name|nodesConnected
+name|connected
 argument_list|)
 operator|.
 name|isFalse
@@ -1570,7 +1570,7 @@ argument_list|)
 operator|.
 name|isEqualTo
 argument_list|(
-name|nodesConnected
+name|connected
 argument_list|)
 expr_stmt|;
 name|assertThat
@@ -1590,7 +1590,7 @@ argument_list|)
 operator|.
 name|isEqualTo
 argument_list|(
-name|nodesConnected
+name|connected
 argument_list|)
 expr_stmt|;
 for|for
