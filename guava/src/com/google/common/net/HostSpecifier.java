@@ -165,7 +165,7 @@ name|host
 init|=
 name|parsedHost
 operator|.
-name|getHostText
+name|getHost
 argument_list|()
 decl_stmt|;
 comment|// Try to interpret the specifier as an IP address. Note we build
