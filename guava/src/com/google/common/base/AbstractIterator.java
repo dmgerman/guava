@@ -80,6 +80,16 @@ name|NoSuchElementException
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/**  * Note this class is a copy of {@link com.google.common.collect.AbstractIterator} (for dependency  * reasons).  */
 end_comment
@@ -143,6 +153,8 @@ name|T
 name|computeNext
 parameter_list|()
 function_decl|;
+annotation|@
+name|Nullable
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|endOfData ()
