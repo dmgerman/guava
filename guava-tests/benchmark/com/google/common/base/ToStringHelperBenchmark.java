@@ -92,13 +92,13 @@ argument_list|,
 literal|3
 argument_list|)
 decl_stmt|;
-DECL|method|addEntries (Objects.ToStringHelper helper)
+DECL|method|addEntries (MoreObjects.ToStringHelper helper)
 specifier|private
 specifier|static
 name|void
 name|addEntries
 parameter_list|(
-name|Objects
+name|MoreObjects
 operator|.
 name|ToStringHelper
 name|helper
@@ -182,12 +182,12 @@ name|i
 operator|++
 control|)
 block|{
-name|Objects
+name|MoreObjects
 operator|.
 name|ToStringHelper
 name|helper
 init|=
-name|Objects
+name|MoreObjects
 operator|.
 name|toStringHelper
 argument_list|(
