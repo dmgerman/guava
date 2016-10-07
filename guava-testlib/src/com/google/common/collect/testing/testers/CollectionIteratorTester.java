@@ -464,7 +464,6 @@ name|iteratorElements
 argument_list|)
 expr_stmt|;
 block|}
-comment|// TODO: switch to DerivedIteratorTestSuiteBuilder
 annotation|@
 name|CollectionFeature
 operator|.

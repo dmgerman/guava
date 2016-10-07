@@ -339,7 +339,6 @@ argument_list|<
 name|E
 argument_list|>
 block|{
-comment|// TODO: switch to DerivedIteratorTestSuiteBuilder
 annotation|@
 name|CollectionFeature
 operator|.
