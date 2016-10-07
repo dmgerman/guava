@@ -572,7 +572,7 @@ name|trunc
 return|;
 block|}
 block|}
-comment|/**    * Determines whether the specified character sequence is a valid encoded string according to this    * encoding.    */
+comment|/**    * Determines whether the specified character sequence is a valid encoded string according to this    * encoding.    *    * @since 20.0    */
 DECL|method|canDecode (CharSequence chars)
 specifier|public
 specifier|abstract
