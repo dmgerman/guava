@@ -159,6 +159,43 @@ return|return
 name|value
 return|;
 block|}
+annotation|@
+name|CanIgnoreReturnValue
+DECL|method|checkNonnegative (long value, String name)
+specifier|static
+name|long
+name|checkNonnegative
+parameter_list|(
+name|long
+name|value
+parameter_list|,
+name|String
+name|name
+parameter_list|)
+block|{
+if|if
+condition|(
+name|value
+operator|<
+literal|0
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+name|name
+operator|+
+literal|" cannot be negative but was: "
+operator|+
+name|value
+argument_list|)
+throw|;
+block|}
+return|return
+name|value
+return|;
+block|}
 DECL|method|checkPositive (int value, String name)
 specifier|static
 name|void
