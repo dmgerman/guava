@@ -485,7 +485,7 @@ name|Object
 name|obj
 parameter_list|)
 function_decl|;
-comment|/**    * The hashcode of an ordered {@link EndpointPair} is equal to {@code Objects.hashCode(source(),    * target())}. The hashcode of an unordered {@link EndpointPair} is equal to {@code    * nodeU().hashCode() ^ nodeV().hashCode()}.    */
+comment|/**    * The hashcode of an ordered {@link EndpointPair} is equal to {@code Objects.hashCode(source(),    * target())}. The hashcode of an unordered {@link EndpointPair} is equal to {@code    * nodeU().hashCode() + nodeV().hashCode()}.    */
 annotation|@
 name|Override
 DECL|method|hashCode ()
@@ -924,7 +924,7 @@ argument_list|()
 operator|.
 name|hashCode
 argument_list|()
-operator|^
+operator|+
 name|nodeV
 argument_list|()
 operator|.
