@@ -624,6 +624,93 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+comment|/**    * Returns an {@code ImmutableRangeSet} representing the union of the specified ranges.    *    *<p>This is the smallest {@code RangeSet} which encloses each of the specified ranges. Duplicate    * or connected ranges are permitted, and will be coalesced in the result.    *    * @since 21.0    */
+DECL|method|unionOf (Iterable<Range<C>> ranges)
+specifier|public
+specifier|static
+parameter_list|<
+name|C
+extends|extends
+name|Comparable
+argument_list|<
+name|?
+argument_list|>
+parameter_list|>
+name|ImmutableRangeSet
+argument_list|<
+name|C
+argument_list|>
+name|unionOf
+parameter_list|(
+name|Iterable
+argument_list|<
+name|Range
+argument_list|<
+name|C
+argument_list|>
+argument_list|>
+name|ranges
+parameter_list|)
+block|{
+return|return
+name|copyOf
+argument_list|(
+name|TreeRangeSet
+operator|.
+name|create
+argument_list|(
+name|ranges
+argument_list|)
+argument_list|)
+return|;
+block|}
+comment|/**    * Returns an {@code ImmutableRangeSet} containing each of the specified disjoint ranges.    * Overlapping ranges and empty ranges are forbidden, though adjacent ranges are permitted and    * will be merged.    *    * @throws IllegalArgumentException if any ranges overlap or are empty    * @since 21.0    */
+DECL|method|copyOf (Iterable<Range<C>> ranges)
+specifier|public
+specifier|static
+parameter_list|<
+name|C
+extends|extends
+name|Comparable
+argument_list|<
+name|?
+argument_list|>
+parameter_list|>
+name|ImmutableRangeSet
+argument_list|<
+name|C
+argument_list|>
+name|copyOf
+parameter_list|(
+name|Iterable
+argument_list|<
+name|Range
+argument_list|<
+name|C
+argument_list|>
+argument_list|>
+name|ranges
+parameter_list|)
+block|{
+return|return
+operator|new
+name|ImmutableRangeSet
+operator|.
+name|Builder
+argument_list|<
+name|C
+argument_list|>
+argument_list|()
+operator|.
+name|addAll
+argument_list|(
+name|ranges
+argument_list|)
+operator|.
+name|build
+argument_list|()
+return|;
+block|}
 DECL|method|ImmutableRangeSet (ImmutableList<Range<C>> ranges)
 name|ImmutableRangeSet
 parameter_list|(
@@ -1086,6 +1173,32 @@ annotation|@
 name|Deprecated
 annotation|@
 name|Override
+DECL|method|addAll (Iterable<Range<C>> other)
+specifier|public
+name|void
+name|addAll
+parameter_list|(
+name|Iterable
+argument_list|<
+name|Range
+argument_list|<
+name|C
+argument_list|>
+argument_list|>
+name|other
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|UnsupportedOperationException
+argument_list|()
+throw|;
+block|}
+comment|/**    * Guaranteed to throw an exception and leave the {@code RangeSet} unmodified.    *    * @throws UnsupportedOperationException always    * @deprecated Unsupported operation.    */
+annotation|@
+name|Deprecated
+annotation|@
+name|Override
 DECL|method|remove (Range<C> range)
 specifier|public
 name|void
@@ -1117,6 +1230,32 @@ parameter_list|(
 name|RangeSet
 argument_list|<
 name|C
+argument_list|>
+name|other
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|UnsupportedOperationException
+argument_list|()
+throw|;
+block|}
+comment|/**    * Guaranteed to throw an exception and leave the {@code RangeSet} unmodified.    *    * @throws UnsupportedOperationException always    * @deprecated Unsupported operation.    */
+annotation|@
+name|Deprecated
+annotation|@
+name|Override
+DECL|method|removeAll (Iterable<Range<C>> other)
+specifier|public
+name|void
+name|removeAll
+parameter_list|(
+name|Iterable
+argument_list|<
+name|Range
+argument_list|<
+name|C
+argument_list|>
 argument_list|>
 name|other
 parameter_list|)
@@ -2992,7 +3131,8 @@ name|create
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**      * Add the specified range to this builder.  Adjacent/abutting ranges are permitted, but      * empty ranges, or ranges with nonempty overlap, are forbidden.      *      * @throws IllegalArgumentException if {@code range} is empty or has nonempty intersection with      *         any ranges already added to the builder      */
+comment|// TODO(lowasser): consider adding union, in addition to add, that does allow overlap
+comment|/**      * Add the specified range to this builder. Adjacent/abutting ranges are permitted, but empty      * ranges, or ranges with nonempty overlap, are forbidden.      *      * @throws IllegalArgumentException if {@code range} is empty or has nonempty intersection with      *     any ranges already added to the builder      */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|add (Range<C> range)
@@ -3122,6 +3262,37 @@ argument_list|>
 name|ranges
 parameter_list|)
 block|{
+return|return
+name|addAll
+argument_list|(
+name|ranges
+operator|.
+name|asRanges
+argument_list|()
+argument_list|)
+return|;
+block|}
+comment|/**      * Add all of the specified ranges to this builder. Duplicate or connected ranges are permitted,      * and will be merged in the resulting immutable range set.      *      * @since 21.0      */
+annotation|@
+name|CanIgnoreReturnValue
+DECL|method|addAll (Iterable<Range<C>> ranges)
+specifier|public
+name|Builder
+argument_list|<
+name|C
+argument_list|>
+name|addAll
+parameter_list|(
+name|Iterable
+argument_list|<
+name|Range
+argument_list|<
+name|C
+argument_list|>
+argument_list|>
+name|ranges
+parameter_list|)
+block|{
 for|for
 control|(
 name|Range
@@ -3131,9 +3302,6 @@ argument_list|>
 name|range
 range|:
 name|ranges
-operator|.
-name|asRanges
-argument_list|()
 control|)
 block|{
 name|add
