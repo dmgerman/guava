@@ -2060,7 +2060,7 @@ return|;
 block|}
 comment|/*      * TODO(cpovirk): Evaluate demand for a run(Runnable) version. Would it allow us to remove      * @CanIgnoreReturnValue from the call() methods above?      * https://github.com/google/guava/issues/2371      */
 block|}
-comment|/**    * Creates a new {@code ListenableFuture} whose result is set from the supplied future when it    * completes. Cancelling the supplied future will also cancel the returned future, but cancelling    * the returned future will have no effect on the supplied future.    *    * @since 15.0    */
+comment|/**    * Returns a {@code ListenableFuture} whose result is set from the supplied future when it    * completes. Cancelling the supplied future will also cancel the returned future, but cancelling    * the returned future will have no effect on the supplied future.    *    * @since 15.0    */
 DECL|method|nonCancellationPropagating (ListenableFuture<V> future)
 specifier|public
 specifier|static
@@ -2080,6 +2080,18 @@ argument_list|>
 name|future
 parameter_list|)
 block|{
+if|if
+condition|(
+name|future
+operator|.
+name|isDone
+argument_list|()
+condition|)
+block|{
+return|return
+name|future
+return|;
+block|}
 return|return
 operator|new
 name|NonCancellationPropagatingFuture
