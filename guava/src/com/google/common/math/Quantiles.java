@@ -524,7 +524,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**      * Computes the quantile value of the given dataset, performing the computation in-place.      *      * @param dataset the dataset to do the calculation on, which must be non-empty, and which will      *     be arbitrarily reordered by this method call      * @return an unmodifiable map of results: the keys will be the specified quantile indexes, and      *     the values the corresponding quantile values      */
+comment|/**      * Computes the quantile value of the given dataset, performing the computation in-place.      *      * @param dataset the dataset to do the calculation on, which must be non-empty, and which will      *     be arbitrarily reordered by this method call      * @return the quantile value      */
 DECL|method|computeInPlace (double... dataset)
 specifier|public
 name|double
