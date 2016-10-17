@@ -1654,7 +1654,7 @@ name|InternetDomainName
 operator|.
 name|from
 argument_list|(
-literal|"foo.teledata.mz"
+literal|"foo.city.yokohama.jp"
 argument_list|)
 decl_stmt|;
 name|assertTrue
@@ -1667,7 +1667,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"mz"
+literal|"yokohama.jp"
 argument_list|,
 name|domain
 operator|.
