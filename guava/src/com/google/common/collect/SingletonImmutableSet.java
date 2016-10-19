@@ -44,6 +44,22 @@ name|Preconditions
 import|;
 end_import
 
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|concurrent
+operator|.
+name|LazyInit
+import|;
+end_import
+
 begin_comment
 comment|/**  * Implementation of {@link ImmutableSet} with exactly one element.  *  * @author Kevin Bourrillion  * @author Nick Kralevich  */
 end_comment
@@ -92,6 +108,8 @@ comment|// A race condition is avoided since threads will either see that the va
 comment|// is zero and recalculate it themselves, or two threads will see it at
 comment|// the same time, and both recalculate it.  If the cachedHashCode is 0,
 comment|// it will always be recalculated, unfortunately.
+annotation|@
+name|LazyInit
 DECL|field|cachedHashCode
 specifier|private
 specifier|transient

@@ -112,6 +112,22 @@ name|com
 operator|.
 name|google
 operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|concurrent
+operator|.
+name|LazyInit
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
 name|j2objc
 operator|.
 name|annotations
@@ -1908,6 +1924,8 @@ name|Object
 name|key
 parameter_list|)
 function_decl|;
+annotation|@
+name|LazyInit
 DECL|field|entrySet
 specifier|private
 specifier|transient
@@ -1981,6 +1999,8 @@ argument_list|>
 name|createEntrySet
 parameter_list|()
 function_decl|;
+annotation|@
+name|LazyInit
 DECL|field|keySet
 specifier|private
 specifier|transient
@@ -2125,6 +2145,8 @@ block|}
 block|}
 return|;
 block|}
+annotation|@
+name|LazyInit
 DECL|field|values
 specifier|private
 specifier|transient
@@ -2191,6 +2213,8 @@ argument_list|)
 return|;
 block|}
 comment|// cached so that this.multimapView().inverse() only computes inverse once
+annotation|@
+name|LazyInit
 DECL|field|multimapView
 specifier|private
 specifier|transient

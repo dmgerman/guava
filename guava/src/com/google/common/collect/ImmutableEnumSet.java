@@ -32,6 +32,22 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|concurrent
+operator|.
+name|LazyInit
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -383,6 +399,8 @@ return|return
 literal|true
 return|;
 block|}
+annotation|@
+name|LazyInit
 DECL|field|hashCode
 specifier|private
 specifier|transient

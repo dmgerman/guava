@@ -108,6 +108,22 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|concurrent
+operator|.
+name|LazyInit
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -2376,6 +2392,8 @@ block|}
 annotation|@
 name|GwtIncompatible
 comment|// NavigableSet
+annotation|@
+name|LazyInit
 DECL|field|descendingSet
 specifier|transient
 name|ImmutableSortedSet

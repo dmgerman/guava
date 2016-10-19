@@ -62,6 +62,22 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|concurrent
+operator|.
+name|LazyInit
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -122,6 +138,8 @@ name|boolean
 name|handleNullAutomatically
 decl_stmt|;
 comment|// We lazily cache the reverse view to avoid allocating on every call to reverse().
+annotation|@
+name|LazyInit
 DECL|field|reverse
 specifier|private
 specifier|transient

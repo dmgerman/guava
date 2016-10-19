@@ -108,6 +108,22 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|concurrent
+operator|.
+name|LazyInit
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|lang
@@ -353,6 +369,8 @@ name|selfLoopCount
 argument_list|)
 return|;
 block|}
+annotation|@
+name|LazyInit
 DECL|field|predecessorsReference
 specifier|private
 specifier|transient
@@ -447,6 +465,8 @@ return|return
 name|predecessors
 return|;
 block|}
+annotation|@
+name|LazyInit
 DECL|field|successorsReference
 specifier|private
 specifier|transient
