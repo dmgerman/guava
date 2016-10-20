@@ -57,7 +57,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Contains constant definitions for the six standard {@link Charset} instances, which are  * guaranteed to be supported by all Java platform implementations.  *  *<p>Assuming you're free to choose, note that<b>{@link #UTF_8} is widely preferred</b>.  *  *<p>See the Guava User Guide article on  *<a href="https://github.com/google/guava/wiki/StringsExplained#charsets">{@code Charsets}</a>.  *  * @author Mike Bostock  * @since 1.0  */
+comment|/**  * Contains constant definitions for the six standard {@link Charset} instances, which are  * guaranteed to be supported by all Java platform implementations.  *  *<p>Assuming you're free to choose, note that<b>{@link #UTF_8} is widely preferred</b>.  *  *<p>See the Guava User Guide article on<a  * href="https://github.com/google/guava/wiki/StringsExplained#charsets">{@code Charsets}</a>.  *  * @author Mike Bostock  * @since 1.0  */
 end_comment
 
 begin_class
@@ -79,10 +79,10 @@ specifier|private
 name|Charsets
 parameter_list|()
 block|{}
-comment|/**    * US-ASCII: seven-bit ASCII, the Basic Latin block of the Unicode character set (ISO646-US).    *    *<p><b>Note for Java 7 and later:</b> this constant should be treated as deprecated; use    * {@link java.nio.charset.StandardCharsets#US_ASCII} instead.    *    */
+comment|/**    * US-ASCII: seven-bit ASCII, the Basic Latin block of the Unicode character set (ISO646-US).    *    *<p><b>Note for Java 7 and later:</b> this constant should be treated as deprecated; use {@link    * java.nio.charset.StandardCharsets#US_ASCII} instead.    *    */
 annotation|@
 name|GwtIncompatible
-comment|// Non-UTF-8 Charset
+comment|// Charset not supported by GWT
 DECL|field|US_ASCII
 specifier|public
 specifier|static
@@ -97,10 +97,7 @@ argument_list|(
 literal|"US-ASCII"
 argument_list|)
 decl_stmt|;
-comment|/**    * ISO-8859-1: ISO Latin Alphabet Number 1 (ISO-LATIN-1).    *    *<p><b>Note for Java 7 and later:</b> this constant should be treated as deprecated; use    * {@link java.nio.charset.StandardCharsets#ISO_8859_1} instead.    *    */
-annotation|@
-name|GwtIncompatible
-comment|// Non-UTF-8 Charset
+comment|/**    * ISO-8859-1: ISO Latin Alphabet Number 1 (ISO-LATIN-1).    *    *<p><b>Note for Java 7 and later:</b> this constant should be treated as deprecated; use {@link    * java.nio.charset.StandardCharsets#ISO_8859_1} instead.    *    */
 DECL|field|ISO_8859_1
 specifier|public
 specifier|static
@@ -115,7 +112,7 @@ argument_list|(
 literal|"ISO-8859-1"
 argument_list|)
 decl_stmt|;
-comment|/**    * UTF-8: eight-bit UCS Transformation Format.    *    *<p><b>Note for Java 7 and later:</b> this constant should be treated as deprecated; use    * {@link java.nio.charset.StandardCharsets#UTF_8} instead.    *    */
+comment|/**    * UTF-8: eight-bit UCS Transformation Format.    *    *<p><b>Note for Java 7 and later:</b> this constant should be treated as deprecated; use {@link    * java.nio.charset.StandardCharsets#UTF_8} instead.    *    */
 DECL|field|UTF_8
 specifier|public
 specifier|static
@@ -130,10 +127,10 @@ argument_list|(
 literal|"UTF-8"
 argument_list|)
 decl_stmt|;
-comment|/**    * UTF-16BE: sixteen-bit UCS Transformation Format, big-endian byte order.    *    *<p><b>Note for Java 7 and later:</b> this constant should be treated as deprecated; use    * {@link java.nio.charset.StandardCharsets#UTF_16BE} instead.    *    */
+comment|/**    * UTF-16BE: sixteen-bit UCS Transformation Format, big-endian byte order.    *    *<p><b>Note for Java 7 and later:</b> this constant should be treated as deprecated; use {@link    * java.nio.charset.StandardCharsets#UTF_16BE} instead.    *    */
 annotation|@
 name|GwtIncompatible
-comment|// Non-UTF-8 Charset
+comment|// Charset not supported by GWT
 DECL|field|UTF_16BE
 specifier|public
 specifier|static
@@ -148,10 +145,10 @@ argument_list|(
 literal|"UTF-16BE"
 argument_list|)
 decl_stmt|;
-comment|/**    * UTF-16LE: sixteen-bit UCS Transformation Format, little-endian byte order.    *    *<p><b>Note for Java 7 and later:</b> this constant should be treated as deprecated; use    * {@link java.nio.charset.StandardCharsets#UTF_16LE} instead.    *    */
+comment|/**    * UTF-16LE: sixteen-bit UCS Transformation Format, little-endian byte order.    *    *<p><b>Note for Java 7 and later:</b> this constant should be treated as deprecated; use {@link    * java.nio.charset.StandardCharsets#UTF_16LE} instead.    *    */
 annotation|@
 name|GwtIncompatible
-comment|// Non-UTF-8 Charset
+comment|// Charset not supported by GWT
 DECL|field|UTF_16LE
 specifier|public
 specifier|static
@@ -166,10 +163,10 @@ argument_list|(
 literal|"UTF-16LE"
 argument_list|)
 decl_stmt|;
-comment|/**    * UTF-16: sixteen-bit UCS Transformation Format, byte order identified by an optional byte-order    * mark.    *    *<p><b>Note for Java 7 and later:</b> this constant should be treated as deprecated; use    * {@link java.nio.charset.StandardCharsets#UTF_16} instead.    *    */
+comment|/**    * UTF-16: sixteen-bit UCS Transformation Format, byte order identified by an optional byte-order    * mark.    *    *<p><b>Note for Java 7 and later:</b> this constant should be treated as deprecated; use {@link    * java.nio.charset.StandardCharsets#UTF_16} instead.    *    */
 annotation|@
 name|GwtIncompatible
-comment|// Non-UTF-8 Charset
+comment|// Charset not supported by GWT
 DECL|field|UTF_16
 specifier|public
 specifier|static
