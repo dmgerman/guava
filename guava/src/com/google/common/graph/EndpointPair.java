@@ -115,7 +115,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An immutable pair representing the two (possibly equal, in the case of a self-loop) endpoints of  * an edge in a graph. The {@link EndpointPair} of a directed edge is an ordered pair of nodes  * ({@link #source()} and {@link #target()}). The {@link EndpointPair} of an undirected edge is an  * unordered pair of nodes ({@link #nodeU()} and {@link #nodeV()}).  *  * @author James Sexton  * @since 20.0  */
+comment|/**  * An immutable pair representing the two endpoints of an edge in a graph. The {@link EndpointPair}  * of a directed edge is an ordered pair of nodes ({@link #source()} and {@link #target()}). The  * {@link EndpointPair} of an undirected edge is an unordered pair of nodes ({@link #nodeU()} and  * {@link #nodeV()}).  *  *<p>The edge is a self-loop if, and only if, the two endpoints are equal.  *  * @author James Sexton  * @since 20.0  */
 end_comment
 
 begin_class
@@ -438,7 +438,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Returns {@code true} iff this {@link EndpointPair} is an ordered pair (i.e. represents the    * endpoints of a directed edge).    */
+comment|/**    * Returns {@code true} if this {@link EndpointPair} is an ordered pair (i.e. represents the    * endpoints of a directed edge).    */
 DECL|method|isOrdered ()
 specifier|public
 specifier|abstract

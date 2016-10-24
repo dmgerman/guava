@@ -70,20 +70,6 @@ name|common
 operator|.
 name|collect
 operator|.
-name|ImmutableCollection
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|collect
-operator|.
 name|ImmutableMap
 import|;
 end_import
@@ -104,6 +90,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|Immutable
+import|;
+end_import
+
+begin_import
+import|import
 name|javax
 operator|.
 name|annotation
@@ -113,7 +113,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link ValueGraph} whose elements and structural relationships will never change. Instances of  * this class may be obtained with {@link #copyOf(ValueGraph)}.  *  *<p>This class generally provides all of the same guarantees as {@link ImmutableCollection}  * (despite not extending {@link ImmutableCollection} itself), including guaranteed thread-safety.  *  * @author James Sexton  * @param<N> Node parameter type  * @param<V> Value parameter type  * @since 20.0  */
+comment|/**  * A {@link ValueGraph} whose elements and structural relationships will never change. Instances of  * this class may be obtained with {@link #copyOf(ValueGraph)}.  *  *<p>See the Guava User's Guide's<a  * href="https://github.com/google/guava/wiki/GraphsExplained#immutable-implementations">discussion  * of the {@code Immutable*} types</a> for more information on the properties and guarantees  * provided by this class.  *  * @author James Sexton  * @param<N> Node parameter type  * @param<V> Value parameter type  * @since 20.0  */
 end_comment
 
 begin_class

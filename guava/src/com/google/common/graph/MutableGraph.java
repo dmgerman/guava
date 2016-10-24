@@ -64,7 +64,7 @@ argument_list|<
 name|N
 argument_list|>
 block|{
-comment|/**    * Adds {@code node} if it is not already present.    *    *<p><b>Nodes must be unique</b>, just as {@code Map} keys must be. They must also be non-null.    *    * @return {@code true} iff the graph was modified as a result of this call    */
+comment|/**    * Adds {@code node} if it is not already present.    *    *<p><b>Nodes must be unique</b>, just as {@code Map} keys must be. They must also be non-null.    *    * @return {@code true} if the graph was modified as a result of this call    */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|addNode (N node)
@@ -75,7 +75,7 @@ name|N
 name|node
 parameter_list|)
 function_decl|;
-comment|/**    * Adds an edge connecting {@code nodeU} to {@code nodeV} if one is not already present. In an    * undirected graph, the edge will also connect {@code nodeV} to {@code nodeU}.    *    *<p>Behavior if {@code nodeU} and {@code nodeV} are not already present in this graph is    * implementation-dependent. Suggested behaviors include (a) silently {@link #addNode(Object)    * adding} {@code nodeU} and {@code nodeV} to the graph (this is the behavior of the default    * implementations) or (b) throwing {@code IllegalArgumentException}.    *    * @return {@code true} iff the graph was modified as a result of this call    * @throws IllegalArgumentException if the introduction of the edge would violate {@link    *     #allowsSelfLoops()}    */
+comment|/**    * Adds an edge connecting {@code nodeU} to {@code nodeV} if one is not already present. In an    * undirected graph, the edge will also connect {@code nodeV} to {@code nodeU}.    *    *<p>Behavior if {@code nodeU} and {@code nodeV} are not already present in this graph is    * implementation-dependent. Suggested behaviors include (a) silently {@link #addNode(Object)    * adding} {@code nodeU} and {@code nodeV} to the graph (this is the behavior of the default    * implementations) or (b) throwing {@code IllegalArgumentException}.    *    * @return {@code true} if the graph was modified as a result of this call    * @throws IllegalArgumentException if the introduction of the edge would violate {@link    *     #allowsSelfLoops()}    */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|putEdge (N nodeU, N nodeV)
@@ -89,7 +89,7 @@ name|N
 name|nodeV
 parameter_list|)
 function_decl|;
-comment|/**    * Removes {@code node} if it is present; all edges incident to {@code node} will also be removed.    *    * @return {@code true} iff the graph was modified as a result of this call    */
+comment|/**    * Removes {@code node} if it is present; all edges incident to {@code node} will also be removed.    *    * @return {@code true} if the graph was modified as a result of this call    */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|removeNode (Object node)
@@ -100,7 +100,7 @@ name|Object
 name|node
 parameter_list|)
 function_decl|;
-comment|/**    * Removes the edge connecting {@code nodeU} to {@code nodeV}, if it is present.    *    * @return {@code true} iff the graph was modified as a result of this call    */
+comment|/**    * Removes the edge connecting {@code nodeU} to {@code nodeV}, if it is present.    *    * @return {@code true} if the graph was modified as a result of this call    */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|removeEdge (Object nodeU, Object nodeV)

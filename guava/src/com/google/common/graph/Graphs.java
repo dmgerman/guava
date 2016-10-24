@@ -217,7 +217,7 @@ name|Graphs
 parameter_list|()
 block|{}
 comment|// Graph query methods
-comment|/**    * Returns true iff {@code graph} has at least one cycle. A cycle is defined as a non-empty subset    * of edges in a graph arranged to form a path (a sequence of adjacent outgoing edges) starting    * and ending with the same node.    *    *<p>This method will detect any non-empty cycle, including self-loops (a cycle of length 1).    */
+comment|/**    * Returns true if {@code graph} has at least one cycle. A cycle is defined as a non-empty subset    * of edges in a graph arranged to form a path (a sequence of adjacent outgoing edges) starting    * and ending with the same node.    *    *<p>This method will detect any non-empty cycle, including self-loops (a cycle of length 1).    */
 DECL|method|hasCycle (Graph<?> graph)
 specifier|public
 specifier|static
@@ -333,7 +333,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/**    * Returns true iff {@code network} has at least one cycle. A cycle is defined as a non-empty    * subset of edges in a graph arranged to form a path (a sequence of adjacent outgoing edges)    * starting and ending with the same node.    *    *<p>This method will detect any non-empty cycle, including self-loops (a cycle of length 1).    */
+comment|/**    * Returns true if {@code network} has at least one cycle. A cycle is defined as a non-empty    * subset of edges in a graph arranged to form a path (a sequence of adjacent outgoing edges)    * starting and ending with the same node.    *    *<p>This method will detect any non-empty cycle, including self-loops (a cycle of length 1).    */
 DECL|method|hasCycle (Network<?, ?> network)
 specifier|public
 specifier|static
@@ -581,7 +581,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/**    * Returns the transitive closure of {@code graph}. The transitive closure of a graph is another    * graph with an edge connecting node A to node B iff node B is {@link #reachableNodes(Graph,    * Object) reachable} from node A.    *    *<p>This is a "snapshot" based on the current topology of {@code graph}, rather than a live view    * of the transitive closure of {@code graph}. In other words, the returned {@link Graph} will not    * be updated after modifications to {@code graph}.    */
+comment|/**    * Returns the transitive closure of {@code graph}. The transitive closure of a graph is another    * graph with an edge connecting node A to node B if node B is {@link #reachableNodes(Graph,    * Object) reachable} from node A.    *    *<p>This is a "snapshot" based on the current topology of {@code graph}, rather than a live view    * of the transitive closure of {@code graph}. In other words, the returned {@link Graph} will not    * be updated after modifications to {@code graph}.    */
 comment|// TODO(b/31438252): Consider potential optimizations for this algorithm.
 DECL|method|transitiveClosure (Graph<N> graph)
 specifier|public
@@ -929,7 +929,7 @@ name|visitedNodes
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns {@code true} iff {@code graphA} and {@code graphB} have the same elements and the same    * relationships between elements, as exposed via the {@link Graph} interface.    *    *<p>Thus, two graphs A and B are equivalent if both are null or<b>all</b> of the following are    * true:    *    *<ul>    *<li>A and B have equal {@link Graph#isDirected() directedness}.    *<li>A and B have equal {@link Graph#nodes() node sets}.    *<li>A and B have equal {@link Graph#edges() edge sets}.    *</ul>    *    *<p>Graph properties besides {@link Graph#isDirected() directedness} do<b>not</b> affect    * equivalence. For example, two graphs may be considered equivalent even if one allows self-loops    * and the other doesn't. Additionally, the order in which nodes or edges are added to the graph,    * and the order in which they are iterated over, are irrelevant.    */
+comment|/**    * Returns {@code true} if {@code graphA} and {@code graphB} have the same elements and the same    * relationships between elements, as exposed via the {@link Graph} interface.    *    *<p>Thus, two graphs A and B are equivalent if both are null or<b>all</b> of the following are    * true:    *    *<ul>    *<li>A and B have equal {@link Graph#isDirected() directedness}.    *<li>A and B have equal {@link Graph#nodes() node sets}.    *<li>A and B have equal {@link Graph#edges() edge sets}.    *</ul>    *    *<p>Graph properties besides {@link Graph#isDirected() directedness} do<b>not</b> affect    * equivalence. For example, two graphs may be considered equivalent even if one allows self-loops    * and the other doesn't. Additionally, the order in which nodes or edges are added to the graph,    * and the order in which they are iterated over, are irrelevant.    */
 DECL|method|equivalent (@ullable Graph<?> graphA, @Nullable Graph<?> graphB)
 specifier|public
 specifier|static
@@ -1017,7 +1017,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns {@code true} iff {@code graphA} and {@code graphB} have the same elements (including    * edge values) and the same relationships between elements, as exposed via the {@link ValueGraph}    * interface.    *    *<p>Thus, two value graphs A and B are equivalent if both are null or<b>all</b> of the    * following are true:    *    *<ul>    *<li>A and B have equal {@link Graph#isDirected() directedness}.    *<li>A and B have equal {@link Graph#nodes() node sets}.    *<li>A and B have equal {@link Graph#edges() edge sets}.    *<li>Each edge in A has a {@link ValueGraph#edgeValue(Object, Object) value} equal to the {@link    *     ValueGraph#edgeValue(Object, Object) value} of the corresponding edge in B.    *</ul>    *    *<p>Graph properties besides {@link Graph#isDirected() directedness} do<b>not</b> affect    * equivalence. For example, two graphs may be considered equivalent even if one allows self-loops    * and the other doesn't. Additionally, the order in which nodes or edges are added to the graph,    * and the order in which they are iterated over, are irrelevant.    */
+comment|/**    * Returns {@code true} if {@code graphA} and {@code graphB} have the same elements (including    * edge values) and the same relationships between elements, as exposed via the {@link ValueGraph}    * interface.    *    *<p>Thus, two value graphs A and B are equivalent if both are null or<b>all</b> of the    * following are true:    *    *<ul>    *<li>A and B have equal {@link Graph#isDirected() directedness}.    *<li>A and B have equal {@link Graph#nodes() node sets}.    *<li>A and B have equal {@link Graph#edges() edge sets}.    *<li>Each edge in A has a {@link ValueGraph#edgeValue(Object, Object) value} equal to the {@link    *     ValueGraph#edgeValue(Object, Object) value} of the corresponding edge in B.    *</ul>    *    *<p>Graph properties besides {@link Graph#isDirected() directedness} do<b>not</b> affect    * equivalence. For example, two graphs may be considered equivalent even if one allows self-loops    * and the other doesn't. Additionally, the order in which nodes or edges are added to the graph,    * and the order in which they are iterated over, are irrelevant.    */
 DECL|method|equivalent ( @ullable ValueGraph<?, ?> graphA, @Nullable ValueGraph<?, ?> graphB)
 specifier|public
 specifier|static
@@ -1176,7 +1176,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/**    * Returns {@code true} iff {@code networkA} and {@code networkB} have the same elements and the    * same relationships between elements, as exposed via the {@link Network} interface.    *    *<p>Thus, two networks A and B are equivalent if both are null or<b>all</b> of the following    * are true:    *    *<ul>    *<li>A and B have equal {@link Network#isDirected() directedness}.    *<li>A and B have equal {@link Network#nodes() node sets}.    *<li>A and B have equal {@link Network#edges() edge sets}.    *<li>Each edge in A connects the same nodes in the same direction (if any) as the corresponding    *     edge in B.    *</ul>    *    *<p>Network properties besides {@link Network#isDirected() directedness} do<b>not</b> affect    * equivalence. For example, two networks may be considered equal even if one allows parallel    * edges and the other doesn't. Additionally, the order in which nodes or edges are added to the    * network, and the order in which they are iterated over, are irrelevant.    */
+comment|/**    * Returns {@code true} if {@code networkA} and {@code networkB} have the same elements and the    * same relationships between elements, as exposed via the {@link Network} interface.    *    *<p>Thus, two networks A and B are equivalent if both are null or<b>all</b> of the following    * are true:    *    *<ul>    *<li>A and B have equal {@link Network#isDirected() directedness}.    *<li>A and B have equal {@link Network#nodes() node sets}.    *<li>A and B have equal {@link Network#edges() edge sets}.    *<li>Each edge in A connects the same nodes in the same direction (if any) as the corresponding    *     edge in B.    *</ul>    *    *<p>Network properties besides {@link Network#isDirected() directedness} do<b>not</b> affect    * equivalence. For example, two networks may be considered equal even if one allows parallel    * edges and the other doesn't. Additionally, the order in which nodes or edges are added to the    * network, and the order in which they are iterated over, are irrelevant.    */
 DECL|method|equivalent ( @ullable Network<?, ?> networkA, @Nullable Network<?, ?> networkB)
 specifier|public
 specifier|static
@@ -2405,7 +2405,7 @@ comment|// transpose
 block|}
 block|}
 comment|// Graph copy methods
-comment|/**    * Returns an induced subgraph of {@code graph}. This subgraph is a new graph that contains all of    * the nodes in {@code nodes}, and all of the {@link Graph#edges() edges} from {@code graph} for    * which both nodes are contained by {@code nodes}.    *    * @throws IllegalArgumentException if any element in {@code nodes} is not a node in the graph    */
+comment|/**    * Returns the subgraph of {@code graph} induced by {@code nodes}. This subgraph is a new graph    * that contains all of the nodes in {@code nodes}, and all of the {@link Graph#edges() edges}    * from {@code graph} for which both nodes are contained by {@code nodes}.    *    * @throws IllegalArgumentException if any element in {@code nodes} is not a node in the graph    */
 DECL|method|inducedSubgraph (Graph<N> graph, Iterable<? extends N> nodes)
 specifier|public
 specifier|static
@@ -2518,7 +2518,7 @@ return|return
 name|subgraph
 return|;
 block|}
-comment|/**    * Returns an induced subgraph of {@code graph}. This subgraph is a new graph that contains all of    * the nodes in {@code nodes}, and all of the {@link Graph#edges() edges} (and associated edge    * values) from {@code graph} for which both nodes are contained by {@code nodes}.    *    * @throws IllegalArgumentException if any element in {@code nodes} is not a node in the graph    */
+comment|/**    * Returns the subgraph of {@code graph} induced by {@code nodes}. This subgraph is a new graph    * that contains all of the nodes in {@code nodes}, and all of the {@link Graph#edges() edges}    * (and associated edge values) from {@code graph} for which both nodes are contained by {@code    * nodes}.    *    * @throws IllegalArgumentException if any element in {@code nodes} is not a node in the graph    */
 DECL|method|inducedSubgraph ( ValueGraph<N, V> graph, Iterable<? extends N> nodes)
 specifier|public
 specifier|static
@@ -2648,7 +2648,7 @@ return|return
 name|subgraph
 return|;
 block|}
-comment|/**    * Returns an induced subgraph of {@code network}. This subgraph is a new graph that contains all    * of the nodes in {@code nodes}, and all of the {@link Network#edges() edges} from {@code    * network} for which the {@link Network#incidentNodes(Object) incident nodes} are both contained    * by {@code nodes}.    *    * @throws IllegalArgumentException if any element in {@code nodes} is not a node in the graph    */
+comment|/**    * Returns the subgraph of {@code network} induced by {@code nodes}. This subgraph is a new graph    * that contains all of the nodes in {@code nodes}, and all of the {@link Network#edges() edges}    * from {@code network} for which the {@link Network#incidentNodes(Object) incident nodes} are    * both contained by {@code nodes}.    *    * @throws IllegalArgumentException if any element in {@code nodes} is not a node in the graph    */
 DECL|method|inducedSubgraph ( Network<N, E> network, Iterable<? extends N> nodes)
 specifier|public
 specifier|static
