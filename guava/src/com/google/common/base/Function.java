@@ -87,7 +87,7 @@ name|F
 name|input
 parameter_list|)
 function_decl|;
-comment|/**    *<i>May</i> return {@code true} if {@object} is a {@code Function} that behaves identically to    * this function.    *    *<p><b>Warning: do not depend</b> on the behavior of this method.    *    *<p>Historically, {@code Function} instances in this library have implemented this method to    * recognize certain cases where distinct {@code Function} instances would in fact behave    * identically. However, as code migrates to {@code java.util.function}, that behavior will    * disappear. It is best not to depend on it.    */
+comment|/**    *<i>May</i> return {@code true} if {@code object} is a {@code Function} that behaves identically    * to this function.    *    *<p><b>Warning: do not depend</b> on the behavior of this method.    *    *<p>Historically, {@code Function} instances in this library have implemented this method to    * recognize certain cases where distinct {@code Function} instances would in fact behave    * identically. However, as code migrates to {@code java.util.function}, that behavior will    * disappear. It is best not to depend on it.    */
 annotation|@
 name|Override
 DECL|method|equals (@ullable Object object)

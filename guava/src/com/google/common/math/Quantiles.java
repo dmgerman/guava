@@ -2045,7 +2045,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Chooses the next selection to do from the required selections. It is required that the array    * {@code allRequired} is sorted and that {@code allRequired[i]} are in the range [{@code from},    * {@code to}] for all {@code i} in the range [{@code requiredFrom}, {@requiredTo}]. The value    * returned by this method is the {@code i} in that range such that {@code allRequired[i]} is as    * close as possible to the center of the range [{@code from}, {@code to}]. Choosing the value    * closest to the center of the range first is the most efficient strategy because it minimizes    * the size of the subranges from which the remaining selections must be done.    */
+comment|/**    * Chooses the next selection to do from the required selections. It is required that the array    * {@code allRequired} is sorted and that {@code allRequired[i]} are in the range [{@code from},    * {@code to}] for all {@code i} in the range [{@code requiredFrom}, {@code requiredTo}]. The    * value returned by this method is the {@code i} in that range such that {@code allRequired[i]}    * is as close as possible to the center of the range [{@code from}, {@code to}]. Choosing the    * value closest to the center of the range first is the most efficient strategy because it    * minimizes the size of the subranges from which the remaining selections must be done.    */
 DECL|method|chooseNextSelection ( int[] allRequired, int requiredFrom, int requiredTo, int from, int to)
 specifier|private
 specifier|static

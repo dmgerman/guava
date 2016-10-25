@@ -575,7 +575,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Validation method used by {@from} to ensure that the domain name is syntactically valid    * according to RFC 1035.    *    * @return Is the domain name syntactically valid?    */
+comment|/**    * Validation method used by {@code from} to ensure that the domain name is syntactically valid    * according to RFC 1035.    *    * @return Is the domain name syntactically valid?    */
 DECL|method|validateSyntax (List<String> parts)
 specifier|private
 specifier|static
