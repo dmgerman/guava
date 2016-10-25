@@ -1069,7 +1069,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a capacity that is sufficient to keep the map from being resized as    * long as it grows no larger than expectedSize and the load factor is>= its    * default (0.75).    */
+comment|/**    * Returns a capacity that is sufficient to keep the map from being resized as long as it grows no    * larger than expectedSize and the load factor is â¥ its default (0.75).    */
 DECL|method|capacity (int expectedSize)
 specifier|static
 name|int

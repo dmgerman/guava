@@ -1572,7 +1572,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Asserts that all pairs of {@code T} values within {@code valuesInExpectedOrder} are ordered    * consistently between their order within {@code valuesInExpectedOrder} and the order implied by    * the given {@code comparator}.    *    *<p>In detail, this method asserts    *<ul>    *<li><i>reflexivity</i>: {@code comparator.compare(t, t) = 0} for all {@code t} in    * {@code valuesInExpectedOrder}; and    *<li><i>consistency</i>: {@code comparator.compare(ti, tj)< 0} and    * {@code comparator.compare(tj, ti)> 0} for {@code i< j}, where    * {@code ti = valuesInExpectedOrder.get(i)} and {@code tj = valuesInExpectedOrder.get(j)}.    */
+comment|/**    * Asserts that all pairs of {@code T} values within {@code valuesInExpectedOrder} are ordered    * consistently between their order within {@code valuesInExpectedOrder} and the order implied by    * the given {@code comparator}.    *    *<p>In detail, this method asserts    *    *<ul>    *<li><i>reflexivity</i>: {@code comparator.compare(t, t) = 0} for all {@code t} in {@code    *       valuesInExpectedOrder}; and    *<li><i>consistency</i>: {@code comparator.compare(ti, tj)< 0} and {@code    *       comparator.compare(tj, ti)> 0} for {@code i< j}, where {@code ti =    *       valuesInExpectedOrder.get(i)} and {@code tj = valuesInExpectedOrder.get(j)}.    *</ul>    */
 DECL|method|testComparator ( Comparator<? super T> comparator, List<T> valuesInExpectedOrder)
 specifier|public
 specifier|static

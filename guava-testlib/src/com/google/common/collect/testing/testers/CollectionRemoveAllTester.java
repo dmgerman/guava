@@ -534,7 +534,7 @@ block|{
 comment|// success
 block|}
 block|}
-comment|/**    * Trigger the other.size()>= this.size() case in AbstractSet.removeAll().    */
+comment|/** Trigger the {@code other.size()>= this.size()} case in {@link AbstractSet#removeAll()}. */
 annotation|@
 name|CollectionFeature
 operator|.

@@ -4338,7 +4338,7 @@ specifier|private
 enum|enum
 name|MillerRabinTester
 block|{
-comment|/**      * Works for inputs<= FLOOR_SQRT_MAX_LONG.      */
+comment|/** Works for inputs â¤ FLOOR_SQRT_MAX_LONG. */
 DECL|enumConstant|SMALL
 name|SMALL
 block|{
@@ -4396,7 +4396,7 @@ comment|/**      * Works for all nonnegative signed longs.      */
 DECL|enumConstant|LARGE
 name|LARGE
 block|{
-comment|/**        * Returns (a + b) mod m. Precondition: 0<= a, b< m< 2^63.        */
+comment|/** Returns (a + b) mod m. Precondition: {@code 0<= a}, {@code b< m< 2^63}. */
 specifier|private
 name|long
 name|plusMod

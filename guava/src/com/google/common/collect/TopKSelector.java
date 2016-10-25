@@ -347,7 +347,7 @@ specifier|private
 name|int
 name|bufferSize
 decl_stmt|;
-comment|/**    * The largest of the lowest k elements we've seen so far relative to this comparator. If    * bufferSize>= k, then we can ignore any elements greater than this value.    */
+comment|/**    * The largest of the lowest k elements we've seen so far relative to this comparator. If    * bufferSize â¥ k, then we can ignore any elements greater than this value.    */
 DECL|field|threshold
 specifier|private
 name|T
@@ -755,7 +755,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**    * Partitions the contents of buffer in the range [left, right] around the pivot element    * previously stored in buffer[pivotValue]. Returns the new index of the pivot element,    * pivotNewIndex, so that everything in [left, pivotNewIndex] is<= pivotValue and everything in    * (pivotNewIndex, right] is> pivotValue.    */
+comment|/**    * Partitions the contents of buffer in the range [left, right] around the pivot element    * previously stored in buffer[pivotValue]. Returns the new index of the pivot element,    * pivotNewIndex, so that everything in [left, pivotNewIndex] is â¤ pivotValue and everything in    * (pivotNewIndex, right] is greater than pivotValue.    */
 DECL|method|partition (int left, int right, int pivotIndex)
 specifier|private
 name|int

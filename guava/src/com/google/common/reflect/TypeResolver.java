@@ -2311,7 +2311,7 @@ name|result
 return|;
 block|}
 block|}
-comment|/**    * Wraps around {@code TypeVariable<?>} to ensure that any two type variables are equal as long as    * they are declared by the same {@link java.lang.reflect.GenericDeclaration} and have the same    * name, even if their bounds differ.    *    *<p>While resolving a type variable from a {var -> type} map, we don't care whether the type    * variable's bound has been partially resolved. As long as the type variable "identity" matches.    *    *<p>On the other hand, if for example we are resolving List<A extends B> to List<A extends    * String>, we need to compare that<A extends B> is unequal to<A extends String> in order to    * decide to use the transformed type instead of the original type.    */
+comment|/**    * Wraps around {@code TypeVariable<?>} to ensure that any two type variables are equal as long as    * they are declared by the same {@link java.lang.reflect.GenericDeclaration} and have the same    * name, even if their bounds differ.    *    *<p>While resolving a type variable from a {@code var -> type} map, we don't care whether the    * type variable's bound has been partially resolved. As long as the type variable "identity"    * matches.    *    *<p>On the other hand, if for example we are resolving {@code List<A extends B>} to {@code    * List<A extends String>}, we need to compare that {@code<A extends B>} is unequal to {@code<A    * extends String>} in order to decide to use the transformed type instead of the original type.    */
 DECL|class|TypeVariableKey
 specifier|static
 specifier|final

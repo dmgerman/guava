@@ -651,7 +651,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * LinkedHashMultimap entries are in no less than three coexisting linked lists:    * a bucket in the hash table for a Set<V> associated with a key, the linked list    * of insertion-ordered entries in that Set<V>, and the linked list of entries    * in the LinkedHashMultimap as a whole.    */
+comment|/**    * LinkedHashMultimap entries are in no less than three coexisting linked lists: a bucket in the    * hash table for a {@code Set<V>} associated with a key, the linked list of insertion-ordered    * entries in that {@code Set<V>}, and the linked list of entries in the LinkedHashMultimap as a    * whole.    */
 annotation|@
 name|VisibleForTesting
 DECL|class|ValueEntry

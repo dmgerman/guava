@@ -2782,7 +2782,7 @@ operator|.
 name|build
 argument_list|()
 decl_stmt|;
-comment|/**    * type -> implementation. Inherently mutable interfaces and abstract classes are mapped to their    * default implementations and are "new"d upon get().    */
+comment|/**    * type â implementation. Inherently mutable interfaces and abstract classes are mapped to their    * default implementations and are "new"d upon get().    */
 DECL|field|implementations
 specifier|private
 specifier|static

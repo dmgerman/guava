@@ -1124,7 +1124,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/** If the class is parameterized, such as ArrayList, this returns ArrayList<E>. */
+comment|/**      * If the class is parameterized, such as {@link ArrayList}, this returns {@code ArrayList<E>}.      */
 annotation|@
 name|Override
 DECL|method|getGenericReturnType ()

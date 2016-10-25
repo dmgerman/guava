@@ -2455,7 +2455,7 @@ name|member
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns true if the the given member is a method that overrides {@link Object#equals(Object)}.    *    *<p>The documentation for {@link Object#equals} says it should accept null, so don't require an    * explicit {@link @Nullable} annotation (see<a    * href="https://github.com/google/guava/issues/1819">#1819</a>).    *    *<p>It is not necessary to consider visibility, return type, or type parameter declarations. The    * declaration of a method with the same name and formal parameters as {@link Object#equals} that    * is not public and boolean-returning, or that declares any type parameters, would be rejected at    * compile-time.    */
+comment|/**    * Returns true if the the given member is a method that overrides {@link Object#equals(Object)}.    *    *<p>The documentation for {@link Object#equals} says it should accept null, so don't require an    * explicit {@code @Nullable} annotation (see<a    * href="https://github.com/google/guava/issues/1819">#1819</a>).    *    *<p>It is not necessary to consider visibility, return type, or type parameter declarations. The    * declaration of a method with the same name and formal parameters as {@link Object#equals} that    * is not public and boolean-returning, or that declares any type parameters, would be rejected at    * compile-time.    */
 DECL|method|isEquals (Member member)
 specifier|private
 specifier|static

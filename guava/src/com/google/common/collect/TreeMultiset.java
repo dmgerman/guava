@@ -298,7 +298,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Creates a new, empty multiset, sorted according to the specified comparator. All elements    * inserted into the multiset must be<i>mutually comparable</i> by the specified comparator:    * {@code comparator.compare(e1,    * e2)} must not throw a {@code ClassCastException} for any elements {@code e1} and {@code e2} in    * the multiset. If the user attempts to add an element to the multiset that violates this    * constraint, the {@code add(Object)} call will throw a {@code ClassCastException}.    *    * @param comparator    *          the comparator that will be used to sort this multiset. A null value indicates that    *          the elements'<i>natural ordering</i> should be used.    */
+comment|/**    * Creates a new, empty multiset, sorted according to the specified comparator. All elements    * inserted into the multiset must be<i>mutually comparable</i> by the specified comparator:    * {@code comparator.compare(e1, e2)} must not throw a {@code ClassCastException} for any elements    * {@code e1} and {@code e2} in the multiset. If the user attempts to add an element to the    * multiset that violates this constraint, the {@code add(Object)} call will throw a {@code    * ClassCastException}.    *    * @param comparator the comparator that will be used to sort this multiset. A null value    *     indicates that the elements'<i>natural ordering</i> should be used.    */
 annotation|@
 name|SuppressWarnings
 argument_list|(

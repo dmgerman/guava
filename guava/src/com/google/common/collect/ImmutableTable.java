@@ -519,7 +519,7 @@ return|;
 block|}
 block|}
 block|}
-comment|/**    * Returns a new builder. The generated builder is equivalent to the builder    * created by the {@link Builder#ImmutableTable.Builder()} constructor.    */
+comment|/**    * Returns a new builder. The generated builder is equivalent to the builder created by the {@link    * Builder#Builder() ImmutableTable.Builder()} constructor.    */
 DECL|method|builder ()
 specifier|public
 specifier|static

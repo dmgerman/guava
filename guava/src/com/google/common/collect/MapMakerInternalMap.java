@@ -466,7 +466,7 @@ name|Serializable
 block|{
 comment|/*    * The basic strategy is to subdivide the table among Segments, each of which itself is a    * concurrently readable hash table. The map supports non-blocking reads and concurrent writes    * across different segments.    *    * The page replacement algorithm's data structures are kept casually consistent with the map. The    * ordering of writes to a segment is sequentially consistent. An update to the map and recording    * of reads may not be immediately reflected on the algorithm's data structures. These structures    * are guarded by a lock and operations are applied in batches to avoid lock contention. The    * penalty of applying the batches is spread across threads so that the amortized cost is slightly    * higher than performing just the operation without enforcing the capacity constraint.    *    * This implementation uses a per-segment queue to record a memento of the additions, removals,    * and accesses that were performed on the map. The queue is drained on writes and when it exceeds    * its capacity threshold.    *    * The Least Recently Used page replacement algorithm was chosen due to its simplicity, high hit    * rate, and ability to be implemented with O(1) time complexity. The initial LRU implementation    * operates per-segment rather than globally for increased implementation simplicity. We expect    * the cache hit rate to be similar to that of a global LRU algorithm.    */
 comment|// Constants
-comment|/**    * The maximum capacity, used if a higher value is implicitly specified by either of the    * constructors with arguments. MUST be a power of two<= 1<<30 to ensure that entries are    * indexable using ints.    */
+comment|/**    * The maximum capacity, used if a higher value is implicitly specified by either of the    * constructors with arguments. MUST be a power of two no greater than {@code 1<<30} to ensure    * that entries are indexable using ints.    */
 DECL|field|MAXIMUM_CAPACITY
 specifier|static
 specifier|final
@@ -8500,7 +8500,6 @@ name|V
 argument_list|>
 argument_list|>
 block|{
-comment|/**      * @param map      * @param initialCapacity      * @param maxSegmentSize      */
 DECL|method|StrongKeyStrongValueSegment ( MapMakerInternalMap< K, V, StrongKeyStrongValueEntry<K, V>, StrongKeyStrongValueSegment<K, V>> map, int initialCapacity, int maxSegmentSize)
 name|StrongKeyStrongValueSegment
 parameter_list|(
@@ -8649,7 +8648,6 @@ name|V
 argument_list|>
 argument_list|()
 decl_stmt|;
-comment|/**      * @param map      * @param initialCapacity      * @param maxSegmentSize      */
 DECL|method|StrongKeyWeakValueSegment ( MapMakerInternalMap<K, V, StrongKeyWeakValueEntry<K, V>, StrongKeyWeakValueSegment<K, V>> map, int initialCapacity, int maxSegmentSize)
 name|StrongKeyWeakValueSegment
 parameter_list|(
@@ -9056,7 +9054,6 @@ name|K
 argument_list|>
 argument_list|()
 decl_stmt|;
-comment|/**      * @param map      * @param initialCapacity      * @param maxSegmentSize      */
 DECL|method|WeakKeyStrongValueSegment ( MapMakerInternalMap<K, V, WeakKeyStrongValueEntry<K, V>, WeakKeyStrongValueSegment<K, V>> map, int initialCapacity, int maxSegmentSize)
 name|WeakKeyStrongValueSegment
 parameter_list|(
@@ -9261,7 +9258,6 @@ name|V
 argument_list|>
 argument_list|()
 decl_stmt|;
-comment|/**      * @param map      * @param initialCapacity      * @param maxSegmentSize      */
 DECL|method|WeakKeyWeakValueSegment ( MapMakerInternalMap<K, V, WeakKeyWeakValueEntry<K, V>, WeakKeyWeakValueSegment<K, V>> map, int initialCapacity, int maxSegmentSize)
 name|WeakKeyWeakValueSegment
 parameter_list|(

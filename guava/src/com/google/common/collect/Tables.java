@@ -2152,7 +2152,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**    * Returns an unmodifiable view of the specified table. This method allows modules to provide    * users with "read-only" access to internal tables. Query operations on the returned table    * "read through" to the specified table, and attempts to modify the returned table, whether    * direct or via its collection views, result in an {@code UnsupportedOperationException}.    *    *<p>The returned table will be serializable if the specified table is serializable.    *    *<p>Consider using an {@link ImmutableTable}, which is guaranteed never to change.    *    * @param table    *          the table for which an unmodifiable view is to be returned    * @return an unmodifiable view of the specified table    * @since 11.0    */
+comment|/**    * Returns an unmodifiable view of the specified table. This method allows modules to provide    * users with "read-only" access to internal tables. Query operations on the returned table    * "read through" to the specified table, and attempts to modify the returned table, whether    * direct or via its collection views, result in an {@code UnsupportedOperationException}.    *    *<p>The returned table will be serializable if the specified table is serializable.    *    *<p>Consider using an {@link ImmutableTable}, which is guaranteed never to change.    *    * @since 11.0    */
 DECL|method|unmodifiableTable ( Table<? extends R, ? extends C, ? extends V> table)
 specifier|public
 specifier|static

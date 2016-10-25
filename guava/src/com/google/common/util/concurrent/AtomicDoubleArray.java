@@ -89,7 +89,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@code double} array in which elements may be updated atomically.  * See the {@link java.util.concurrent.atomic} package specification  * for description of the properties of atomic variables.  *  *<p><a name="bitEquals">This class compares primitive {@code double}  * values in methods such as {@link #compareAndSet} by comparing their  * bitwise representation using {@link Double#doubleToRawLongBits},  * which differs from both the primitive double {@code ==} operator  * and from {@link Double#equals}, as if implemented by:  *<pre> {@code  * static boolean bitEquals(double x, double y) {  *   long xBits = Double.doubleToRawLongBits(x);  *   long yBits = Double.doubleToRawLongBits(y);  *   return xBits == yBits;  * }}</pre>  *  * @author Doug Lea  * @author Martin Buchholz  * @since 11.0  */
+comment|/**  * A {@code double} array in which elements may be updated atomically. See the {@link  * java.util.concurrent.atomic} package specification for description of the properties of atomic  * variables.  *  *<p><a name="bitEquals"></a>This class compares primitive {@code double} values in methods such as  * {@link #compareAndSet} by comparing their bitwise representation using {@link  * Double#doubleToRawLongBits}, which differs from both the primitive double {@code ==} operator and  * from {@link Double#equals}, as if implemented by:  *  *<pre>{@code  * static boolean bitEquals(double x, double y) {  *   long xBits = Double.doubleToRawLongBits(x);  *   long yBits = Double.doubleToRawLongBits(y);  *   return xBits == yBits;  * }  * }</pre>  *  * @author Doug Lea  * @author Martin Buchholz  * @since 11.0  */
 end_comment
 
 begin_class

@@ -949,7 +949,7 @@ operator|*
 name|DESIRED_LOAD_FACTOR
 argument_list|)
 decl_stmt|;
-comment|/**    * Returns an array size suitable for the backing array of a hash table that    * uses open addressing with linear probing in its implementation.  The    * returned size is the smallest power of two that can hold setSize elements    * with the desired load factor.    *    *<p>Do not call this method with setSize< 2.    */
+comment|/**    * Returns an array size suitable for the backing array of a hash table that uses open addressing    * with linear probing in its implementation. The returned size is the smallest power of two that    * can hold setSize elements with the desired load factor.    *    *<p>Do not call this method with setSize less than 2.    */
 annotation|@
 name|VisibleForTesting
 DECL|method|chooseTableSize (int setSize)

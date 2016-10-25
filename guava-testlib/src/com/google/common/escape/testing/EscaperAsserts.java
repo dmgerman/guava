@@ -144,7 +144,7 @@ specifier|private
 name|EscaperAsserts
 parameter_list|()
 block|{}
-comment|/**    * Asserts that an escaper behaves correctly with respect to null inputs.    *    * @param escaper the non-null escaper to test    * @throws IOException    */
+comment|/**    * Asserts that an escaper behaves correctly with respect to null inputs.    *    * @param escaper the non-null escaper to test    */
 DECL|method|assertBasic (Escaper escaper)
 specifier|public
 specifier|static
