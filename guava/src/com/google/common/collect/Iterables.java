@@ -253,7 +253,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This class contains static utility methods that operate on or return objects  * of type {@code Iterable}. Except as noted, each method has a corresponding  * {@link Iterator}-based method in the {@link Iterators} class.  *  *<p><i>Performance notes:</i> Unless otherwise noted, all of the iterables  * produced in this class are<i>lazy</i>, which means that their iterators  * only advance the backing iteration when absolutely necessary.  *  *<p>See the Guava User Guide article on<a href=  * "https://github.com/google/guava/wiki/CollectionUtilitiesExplained#iterables">  * {@code Iterables}</a>.  *  * @author Kevin Bourrillion  * @author Jared Levy  * @since 2.0  */
+comment|/**  * An assortment of mainly legacy static utility methods that operate on or return objects of type  * {@code Iterable}. Except as noted, each method has a corresponding {@link Iterator}-based method  * in the {@link Iterators} class.  *  *<p><b>Java 8 users:</b> several common uses for this class are now more comprehensively addressed  * by the new {@link java.util.stream.Stream} library. Read the method documentation below for  * comparisons. This class is not being deprecated, but we gently encourage you to migrate to  * streams.  *  *<p><i>Performance notes:</i> Unless otherwise noted, all of the iterables produced in this class  * are<i>lazy</i>, which means that their iterators only advance the backing iteration when  * absolutely necessary.  *  *<p>See the Guava User Guide article on<a href=  * "https://github.com/google/guava/wiki/CollectionUtilitiesExplained#iterables"> {@code  * Iterables}</a>.  *  * @author Kevin Bourrillion  * @author Jared Levy  * @since 2.0  */
 end_comment
 
 begin_class
@@ -1238,7 +1238,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the single element contained in {@code iterable}.    *    * @throws NoSuchElementException if the iterable is empty    * @throws IllegalArgumentException if the iterable contains multiple    *     elements    */
+comment|/**    * Returns the single element contained in {@code iterable}.    *    *<p><b>Java 8 users:</b> the {@code Stream} equivalent to this method is {@code    * stream.collect(MoreCollectors.onlyElement())}.    *    * @throws NoSuchElementException if the iterable is empty    * @throws IllegalArgumentException if the iterable contains multiple elements    */
 DECL|method|getOnlyElement (Iterable<T> iterable)
 specifier|public
 specifier|static
@@ -1267,7 +1267,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the single element contained in {@code iterable}, or {@code    * defaultValue} if the iterable is empty.    *    * @throws IllegalArgumentException if the iterator contains multiple    *     elements    */
+comment|/**    * Returns the single element contained in {@code iterable}, or {@code defaultValue} if the    * iterable is empty.    *    *<p><b>Java 8 users:</b> the {@code Stream} equivalent to this method is {@code    * stream.collect(MoreCollectors.toOptional()).orElse(defaultValue)}.    *    * @throws IllegalArgumentException if the iterator contains multiple elements    */
 annotation|@
 name|Nullable
 DECL|method|getOnlyElement (Iterable<? extends T> iterable, @Nullable T defaultValue)
@@ -1541,7 +1541,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the number of elements in the specified iterable that equal the    * specified object. This implementation avoids a full iteration when the    * iterable is a {@link Multiset} or {@link Set}.    *    * @see Collections#frequency    */
+comment|/**    * Returns the number of elements in the specified iterable that equal the specified object. This    * implementation avoids a full iteration when the iterable is a {@link Multiset} or {@link Set}.    *    *<p><b>Java 8 users:</b> In most cases, the {@code Stream} equivalent of this method is {@code    * stream.filter(element::equals).count()}. If {@code element} might be null, use {@code    * stream.filter(Predicate.isEqual(element)).count()} instead.    *    * @see Collections#frequency    */
 DECL|method|frequency (Iterable<?> iterable, @Nullable Object element)
 specifier|public
 specifier|static
@@ -1631,7 +1631,7 @@ name|element
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an iterable whose iterators cycle indefinitely over the elements of    * {@code iterable}.    *    *<p>That iterator supports {@code remove()} if {@code iterable.iterator()}    * does. After {@code remove()} is called, subsequent cycles omit the removed    * element, which is no longer in {@code iterable}. The iterator's    * {@code hasNext()} method returns {@code true} until {@code iterable} is    * empty.    *    *<p><b>Warning:</b> Typical uses of the resulting iterator may produce an    * infinite loop. You should use an explicit {@code break} or be certain that    * you will eventually remove all the elements.    *    *<p>To cycle over the iterable {@code n} times, use the following:    * {@code Iterables.concat(Collections.nCopies(n, iterable))}    */
+comment|/**    * Returns an iterable whose iterators cycle indefinitely over the elements of {@code iterable}.    *    *<p>That iterator supports {@code remove()} if {@code iterable.iterator()} does. After {@code    * remove()} is called, subsequent cycles omit the removed element, which is no longer in {@code    * iterable}. The iterator's {@code hasNext()} method returns {@code true} until {@code iterable}    * is empty.    *    *<p><b>Warning:</b> Typical uses of the resulting iterator may produce an infinite loop. You    * should use an explicit {@code break} or be certain that you will eventually remove all the    * elements.    *    *<p>To cycle over the iterable {@code n} times, use the following: {@code    * Iterables.concat(Collections.nCopies(n, iterable))}    *    *<p><b>Java 8 users:</b> The {@code Stream} equivalent of this method is {@code    * Stream.generate(() -> iterable).flatMap(Streams::stream)}.    */
 DECL|method|cycle (final Iterable<T> iterable)
 specifier|public
 specifier|static
@@ -1703,7 +1703,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/**    * Returns an iterable whose iterators cycle indefinitely over the provided    * elements.    *    *<p>After {@code remove} is invoked on a generated iterator, the removed    * element will no longer appear in either that iterator or any other iterator    * created from the same source iterable. That is, this method behaves exactly    * as {@code Iterables.cycle(Lists.newArrayList(elements))}. The iterator's    * {@code hasNext} method returns {@code true} until all of the original    * elements have been removed.    *    *<p><b>Warning:</b> Typical uses of the resulting iterator may produce an    * infinite loop. You should use an explicit {@code break} or be certain that    * you will eventually remove all the elements.    *    *<p>To cycle over the elements {@code n} times, use the following:    * {@code Iterables.concat(Collections.nCopies(n, Arrays.asList(elements)))}    */
+comment|/**    * Returns an iterable whose iterators cycle indefinitely over the provided elements.    *    *<p>After {@code remove} is invoked on a generated iterator, the removed element will no longer    * appear in either that iterator or any other iterator created from the same source iterable.    * That is, this method behaves exactly as {@code Iterables.cycle(Lists.newArrayList(elements))}.    * The iterator's {@code hasNext} method returns {@code true} until all of the original elements    * have been removed.    *    *<p><b>Warning:</b> Typical uses of the resulting iterator may produce an infinite loop. You    * should use an explicit {@code break} or be certain that you will eventually remove all the    * elements.    *    *<p>To cycle over the elements {@code n} times, use the following: {@code    * Iterables.concat(Collections.nCopies(n, Arrays.asList(elements)))}    *    *<p><b>Java 8 users:</b> If passing a single element {@code e}, the {@code Stream} equivalent of    * this method is {@code Stream.generate(() -> e)}. Otherwise, put the elements in a collection    * and use {@code Stream.generate(() -> collection).flatMap(Collection::stream)}.    */
 DECL|method|cycle (T... elements)
 specifier|public
 specifier|static
@@ -1733,7 +1733,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Combines two iterables into a single iterable. The returned iterable has an    * iterator that traverses the elements in {@code a}, followed by the elements    * in {@code b}. The source iterators are not polled until necessary.    *    *<p>The returned iterable's iterator supports {@code remove()} when the    * corresponding input iterator supports it.    */
+comment|/**    * Combines two iterables into a single iterable. The returned iterable has an iterator that    * traverses the elements in {@code a}, followed by the elements in {@code b}. The source    * iterators are not polled until necessary.    *    *<p>The returned iterable's iterator supports {@code remove()} when the corresponding input    * iterator supports it.    *    *<p><b>Java 8 users:</b> The {@code Stream} equivalent of this method is {@code    * Stream.concat(a, b)}.    */
 DECL|method|concat (Iterable<? extends T> a, Iterable<? extends T> b)
 specifier|public
 specifier|static
@@ -1774,7 +1774,7 @@ name|b
 argument_list|)
 return|;
 block|}
-comment|/**    * Combines three iterables into a single iterable. The returned iterable has    * an iterator that traverses the elements in {@code a}, followed by the    * elements in {@code b}, followed by the elements in {@code c}. The source    * iterators are not polled until necessary.    *    *<p>The returned iterable's iterator supports {@code remove()} when the    * corresponding input iterator supports it.    */
+comment|/**    * Combines three iterables into a single iterable. The returned iterable has an iterator that    * traverses the elements in {@code a}, followed by the elements in {@code b}, followed by the    * elements in {@code c}. The source iterators are not polled until necessary.    *    *<p>The returned iterable's iterator supports {@code remove()} when the corresponding input    * iterator supports it.    *    *<p><b>Java 8 users:</b> The {@code Stream} equivalent of this method is {@code    * Streams.concat(a, b, c)}.    */
 DECL|method|concat ( Iterable<? extends T> a, Iterable<? extends T> b, Iterable<? extends T> c)
 specifier|public
 specifier|static
@@ -1825,7 +1825,7 @@ name|c
 argument_list|)
 return|;
 block|}
-comment|/**    * Combines four iterables into a single iterable. The returned iterable has    * an iterator that traverses the elements in {@code a}, followed by the    * elements in {@code b}, followed by the elements in {@code c}, followed by    * the elements in {@code d}. The source iterators are not polled until    * necessary.    *    *<p>The returned iterable's iterator supports {@code remove()} when the    * corresponding input iterator supports it.    */
+comment|/**    * Combines four iterables into a single iterable. The returned iterable has an iterator that    * traverses the elements in {@code a}, followed by the elements in {@code b}, followed by the    * elements in {@code c}, followed by the elements in {@code d}. The source iterators are not    * polled until necessary.    *    *<p>The returned iterable's iterator supports {@code remove()} when the corresponding input    * iterator supports it.    *    *<p><b>Java 8 users:</b> The {@code Stream} equivalent of this method is {@code    * Streams.concat(a, b, c, d)}.    */
 DECL|method|concat ( Iterable<? extends T> a, Iterable<? extends T> b, Iterable<? extends T> c, Iterable<? extends T> d)
 specifier|public
 specifier|static
@@ -1886,7 +1886,7 @@ name|d
 argument_list|)
 return|;
 block|}
-comment|/**    * Combines multiple iterables into a single iterable. The returned iterable    * has an iterator that traverses the elements of each iterable in    * {@code inputs}. The input iterators are not polled until necessary.    *    *<p>The returned iterable's iterator supports {@code remove()} when the    * corresponding input iterator supports it.    *    * @throws NullPointerException if any of the provided iterables is null    */
+comment|/**    * Combines multiple iterables into a single iterable. The returned iterable has an iterator that    * traverses the elements of each iterable in {@code inputs}. The input iterators are not polled    * until necessary.    *    *<p>The returned iterable's iterator supports {@code remove()} when the corresponding input    * iterator supports it.    *    *<p><b>Java 8 users:</b> The {@code Stream} equivalent of this method is {@code    * Streams.concat(...)}.    *    * @throws NullPointerException if any of the provided iterables is null    */
 DECL|method|concat (Iterable<? extends T>.... inputs)
 specifier|public
 specifier|static
@@ -1921,7 +1921,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Combines multiple iterables into a single iterable. The returned iterable    * has an iterator that traverses the elements of each iterable in    * {@code inputs}. The input iterators are not polled until necessary.    *    *<p>The returned iterable's iterator supports {@code remove()} when the    * corresponding input iterator supports it. The methods of the returned    * iterable may throw {@code NullPointerException} if any of the input    * iterators is null.    */
+comment|/**    * Combines multiple iterables into a single iterable. The returned iterable has an iterator that    * traverses the elements of each iterable in {@code inputs}. The input iterators are not polled    * until necessary.    *    *<p>The returned iterable's iterator supports {@code remove()} when the corresponding input    * iterator supports it. The methods of the returned iterable may throw {@code    * NullPointerException} if any of the input iterators is null.    *    *<p><b>Java 8 users:</b> The {@code Stream} equivalent of this method is {@code    * streamOfStreams.flatMap(s -> s)}.    */
 DECL|method|concat (Iterable<? extends Iterable<? extends T>> inputs)
 specifier|public
 specifier|static
@@ -2119,7 +2119,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/**    * Returns a view of {@code unfiltered} containing all elements that satisfy    * the input predicate {@code retainIfTrue}. The returned iterable's iterator    * does not support {@code remove()}.    */
+comment|/**    * Returns a view of {@code unfiltered} containing all elements that satisfy the input predicate    * {@code retainIfTrue}. The returned iterable's iterator does not support {@code remove()}.    *    *<p><b>{@code Stream} equivalent:</b> {@code stream.filter()}.    */
 DECL|method|filter ( final Iterable<T> unfiltered, final Predicate<? super T> retainIfTrue)
 specifier|public
 specifier|static
@@ -2194,7 +2194,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/**    * Returns a view of {@code unfiltered} containing all elements that are of    * the type {@code desiredType}. The returned iterable's iterator does not    * support {@code remove()}.    */
+comment|/**    * Returns a view of {@code unfiltered} containing all elements that are of the type {@code    * desiredType}. The returned iterable's iterator does not support {@code remove()}.    *    *<p><b>{@code Stream} equivalent:</b> {@code stream.filter(type::isInstance).map(type::cast)}.    * This does perform a little more work than necessary, so another option is to insert an    * unchecked cast at some later point:    *    *<pre>    * {@code @SuppressWarnings("unchecked") // safe because of ::isInstance check    * ImmutableList<NewType> result =    *     (ImmutableList) stream.filter(NewType.class::isInstance).collect(toImmutableList());}    *</pre>    */
 annotation|@
 name|GwtIncompatible
 comment|// Class.isInstance
@@ -2270,7 +2270,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/**    * Returns {@code true} if any element in {@code iterable} satisfies the predicate.    */
+comment|/**    * Returns {@code true} if any element in {@code iterable} satisfies the predicate.    *    *<p><b>{@code Stream} equivalent:</b> {@link Stream#anyMatch}.    */
 DECL|method|any (Iterable<T> iterable, Predicate<? super T> predicate)
 specifier|public
 specifier|static
@@ -2309,7 +2309,7 @@ name|predicate
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns {@code true} if every element in {@code iterable} satisfies the    * predicate. If {@code iterable} is empty, {@code true} is returned.    */
+comment|/**    * Returns {@code true} if every element in {@code iterable} satisfies the predicate. If {@code    * iterable} is empty, {@code true} is returned.    *    *<p><b>{@code Stream} equivalent:</b> {@link Stream#allMatch}.    */
 DECL|method|all (Iterable<T> iterable, Predicate<? super T> predicate)
 specifier|public
 specifier|static
