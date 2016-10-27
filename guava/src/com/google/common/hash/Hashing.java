@@ -343,7 +343,7 @@ operator|.
 name|currentTimeMillis
 argument_list|()
 decl_stmt|;
-comment|/**    * Returns a hash function implementing the    *<a href="http://smhasher.googlecode.com/svn/trunk/MurmurHash3.cpp">32-bit murmur3 algorithm,    * x86 variant</a> (little-endian variant), using the given seed value.    *    *<p>The exact C++ equivalent is the MurmurHash3_x86_32 function (Murmur3A).    */
+comment|/**    * Returns a hash function implementing the    *<a href="https://github.com/aappleby/smhasher/blob/master/src/MurmurHash3.cpp">32-bit murmur3    * algorithm, x86 variant</a> (little-endian variant), using the given seed value.    *    *<p>The exact C++ equivalent is the MurmurHash3_x86_32 function (Murmur3A).    */
 DECL|method|murmur3_32 (int seed)
 specifier|public
 specifier|static
@@ -362,7 +362,7 @@ name|seed
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a hash function implementing the    *<a href="http://smhasher.googlecode.com/svn/trunk/MurmurHash3.cpp">32-bit murmur3 algorithm,    * x86 variant</a> (little-endian variant), using a seed value of zero.    *    *<p>The exact C++ equivalent is the MurmurHash3_x86_32 function (Murmur3A).    */
+comment|/**    * Returns a hash function implementing the    *<a href="https://github.com/aappleby/smhasher/blob/master/src/MurmurHash3.cpp">32-bit murmur3    * algorithm, x86 variant</a> (little-endian variant), using a seed value of zero.    *    *<p>The exact C++ equivalent is the MurmurHash3_x86_32 function (Murmur3A).    */
 DECL|method|murmur3_32 ()
 specifier|public
 specifier|static
@@ -407,7 +407,7 @@ name|GOOD_FAST_HASH_SEED
 argument_list|)
 decl_stmt|;
 block|}
-comment|/**    * Returns a hash function implementing the    *<a href="http://smhasher.googlecode.com/svn/trunk/MurmurHash3.cpp">128-bit murmur3 algorithm,    * x64 variant</a> (little-endian variant), using the given seed value.    *    *<p>The exact C++ equivalent is the MurmurHash3_x64_128 function (Murmur3F).    */
+comment|/**    * Returns a hash function implementing the    *<a href="https://github.com/aappleby/smhasher/blob/master/src/MurmurHash3.cpp">128-bit murmur3    * algorithm, x64 variant</a> (little-endian variant), using the given seed value.    *    *<p>The exact C++ equivalent is the MurmurHash3_x64_128 function (Murmur3F).    */
 DECL|method|murmur3_128 (int seed)
 specifier|public
 specifier|static
@@ -426,7 +426,7 @@ name|seed
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a hash function implementing the    *<a href="http://smhasher.googlecode.com/svn/trunk/MurmurHash3.cpp">128-bit murmur3 algorithm,    * x64 variant</a> (little-endian variant), using a seed value of zero.    *    *<p>The exact C++ equivalent is the MurmurHash3_x64_128 function (Murmur3F).    */
+comment|/**    * Returns a hash function implementing the    *<a href="https://github.com/aappleby/smhasher/blob/master/src/MurmurHash3.cpp">128-bit murmur3    * algorithm, x64 variant</a> (little-endian variant), using a seed value of zero.    *    *<p>The exact C++ equivalent is the MurmurHash3_x64_128 function (Murmur3F).    */
 DECL|method|murmur3_128 ()
 specifier|public
 specifier|static

@@ -8,7 +8,7 @@ comment|/*  * MurmurHash3 was written by Austin Appleby, and is placed in the pu
 end_comment
 
 begin_comment
-comment|/*  * Source:  * http://code.google.com/p/smhasher/source/browse/trunk/MurmurHash3.cpp  * (Modified to adapt to Guava coding conventions and to use the HashFunction interface)  */
+comment|/*  * Source:  * https://github.com/aappleby/smhasher/blob/master/src/MurmurHash3.cpp  * (Modified to adapt to Guava coding conventions and to use the HashFunction interface)  */
 end_comment
 
 begin_package
