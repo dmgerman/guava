@@ -108,6 +108,16 @@ begin_import
 import|import
 name|java
 operator|.
+name|io
+operator|.
+name|Serializable
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|util
 operator|.
 name|Collections
@@ -175,6 +185,8 @@ name|AtomicLongMap
 parameter_list|<
 name|K
 parameter_list|>
+implements|implements
+name|Serializable
 block|{
 DECL|field|map
 specifier|private
