@@ -28,7 +28,7 @@ name|common
 operator|.
 name|annotations
 operator|.
-name|GwtIncompatible
+name|GwtCompatible
 import|;
 end_import
 
@@ -131,7 +131,7 @@ annotation|@
 name|CanIgnoreReturnValue
 comment|// TODO(cpovirk): Consider being more strict.
 annotation|@
-name|GwtIncompatible
+name|GwtCompatible
 DECL|class|ForwardingFuture
 specifier|public
 specifier|abstract
