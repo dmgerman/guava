@@ -93,6 +93,11 @@ annotation|@
 name|Beta
 annotation|@
 name|GwtCompatible
+argument_list|(
+name|emulated
+operator|=
+literal|true
+argument_list|)
 DECL|class|Utf8
 specifier|public
 specifier|final
