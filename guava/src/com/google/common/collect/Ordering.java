@@ -2048,7 +2048,7 @@ comment|/**    * Returns an<b>immutable</b> list containing {@code elements} sor
 comment|// TODO(kevinb): rerun benchmarks including new options
 annotation|@
 name|CanIgnoreReturnValue
-comment|// TODO(kak): Consider removing this
+comment|// TODO(kak): Consider removing this before internal migration
 DECL|method|immutableSortedCopy (Iterable<E> elements)
 specifier|public
 parameter_list|<
@@ -2069,56 +2069,14 @@ argument_list|>
 name|elements
 parameter_list|)
 block|{
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
-comment|// we'll only ever have E's in here
-name|E
-index|[]
-name|array
-init|=
-operator|(
-name|E
-index|[]
-operator|)
-name|Iterables
-operator|.
-name|toArray
-argument_list|(
-name|elements
-argument_list|)
-decl_stmt|;
-for|for
-control|(
-name|E
-name|e
-range|:
-name|array
-control|)
-block|{
-name|checkNotNull
-argument_list|(
-name|e
-argument_list|)
-expr_stmt|;
-block|}
-name|Arrays
-operator|.
-name|sort
-argument_list|(
-name|array
-argument_list|,
-name|this
-argument_list|)
-expr_stmt|;
 return|return
 name|ImmutableList
 operator|.
-name|asImmutableList
+name|sortedCopyOf
 argument_list|(
-name|array
+name|this
+argument_list|,
+name|elements
 argument_list|)
 return|;
 block|}
