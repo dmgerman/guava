@@ -1619,7 +1619,7 @@ expr_stmt|;
 if|if
 condition|(
 name|offset
-operator|>=
+operator|>
 name|toSplit
 operator|.
 name|length
