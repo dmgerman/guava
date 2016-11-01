@@ -143,7 +143,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Utilities necessary for working with libraries that supply plain {@link Future} instances. Note  * that, whenver possible, it is strongly preferred to modify those libraries to return {@code  * ListenableFuture} directly.  *  * @author Sven Mawson  * @since 10.0 (replacing {@code Futures.makeListenable}, which existed in 1.0)  */
+comment|/**  * Utilities necessary for working with libraries that supply plain {@link Future} instances. Note  * that, whenever possible, it is strongly preferred to modify those libraries to return {@code  * ListenableFuture} directly.  *  * @author Sven Mawson  * @since 10.0 (replacing {@code Futures.makeListenable}, which existed in 1.0)  */
 end_comment
 
 begin_class

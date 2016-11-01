@@ -190,7 +190,7 @@ name|build
 argument_list|()
 return|;
 block|}
-comment|/**    * Parses a trie node and returns the number of characters consumed.    *    * @param stack The prefixes that preceed the characters represented by this node. Each entry of    *     the stack is in reverse order.    * @param encoded The serialized trie.    * @param builder A map builder to which all entries will be added.    * @return The number of characters consumed from {@code encoded}.    */
+comment|/**    * Parses a trie node and returns the number of characters consumed.    *    * @param stack The prefixes that precede the characters represented by this node. Each entry of    *     the stack is in reverse order.    * @param encoded The serialized trie.    * @param builder A map builder to which all entries will be added.    * @return The number of characters consumed from {@code encoded}.    */
 DECL|method|doParseTrieToBuilder ( List<CharSequence> stack, CharSequence encoded, ImmutableMap.Builder<String, PublicSuffixType> builder)
 specifier|private
 specifier|static

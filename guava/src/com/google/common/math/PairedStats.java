@@ -817,7 +817,7 @@ name|value
 return|;
 block|}
 comment|// Serialization helpers
-comment|/**    * The size of byte array representaion in bytes.    */
+comment|/**    * The size of byte array representation in bytes.    */
 DECL|field|BYTES
 specifier|private
 specifier|static

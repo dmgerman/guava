@@ -744,7 +744,7 @@ name|this
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a string representation for this MapMaker instance. The exact form of the returned    * string is not specificed.    */
+comment|/**    * Returns a string representation for this MapMaker instance. The exact form of the returned    * string is not specified.    */
 annotation|@
 name|Override
 DECL|method|toString ()

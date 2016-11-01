@@ -290,7 +290,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**      * Sets the replacement string for any characters outside the 'safe' range that have no explicit      * replacement. If {@code unsafeReplacement} is {@code null} then no replacement will occur, if      * it is {@code ""} then the unsafe characters are removed from the output.      *      * @param unsafeReplacement the string to replace unsafe chracters      * @return the builder instance      */
+comment|/**      * Sets the replacement string for any characters outside the 'safe' range that have no explicit      * replacement. If {@code unsafeReplacement} is {@code null} then no replacement will occur, if      * it is {@code ""} then the unsafe characters are removed from the output.      *      * @param unsafeReplacement the string to replace unsafe characters      * @return the builder instance      */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|setUnsafeReplacement (@ullable String unsafeReplacement)

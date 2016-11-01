@@ -3492,7 +3492,7 @@ argument_list|>
 name|entry
 parameter_list|)
 function_decl|;
-comment|/**      * Notifify pending loads that a new value was set. This is only relevant to loading value      * references.      */
+comment|/**      * Notify pending loads that a new value was set. This is only relevant to loading value      * references.      */
 DECL|method|notifyNewValue (@ullable V newValue)
 name|void
 name|notifyNewValue
@@ -17365,7 +17365,7 @@ block|}
 return|;
 block|}
 block|}
-comment|/**    * A custom queue for managing access order. Note that this is tightly integrated with    * {@code ReferenceEntry}, upon which it reliese to perform its linking.    *    *<p>Note that this entire implementation makes the assumption that all elements which are in the    * map are also in this queue, and that all elements not in the queue are not in the map.    *    *<p>The benefits of creating our own queue are that (1) we can replace elements in the middle of    * the queue as part of copyWriteEntry, and (2) the contains method is highly optimized for the    * current model.    */
+comment|/**    * A custom queue for managing access order. Note that this is tightly integrated with    * {@code ReferenceEntry}, upon which it relies to perform its linking.    *    *<p>Note that this entire implementation makes the assumption that all elements which are in the    * map are also in this queue, and that all elements not in the queue are not in the map.    *    *<p>The benefits of creating our own queue are that (1) we can replace elements in the middle of    * the queue as part of copyWriteEntry, and (2) the contains method is highly optimized for the    * current model.    */
 DECL|class|AccessQueue
 specifier|static
 specifier|final
@@ -21514,7 +21514,7 @@ return|;
 block|}
 block|}
 comment|// Serialization Support
-comment|/**    * Serializes the configuration of a LocalCache, reconsitituting it as a Cache using CacheBuilder    * upon deserialization. An instance of this class is fit for use by the writeReplace of    * LocalManualCache.    *    * Unfortunately, readResolve() doesn't get called when a circular dependency is present, so the    * proxy must be able to behave as the cache itself.    */
+comment|/**    * Serializes the configuration of a LocalCache, reconstituting it as a Cache using CacheBuilder    * upon deserialization. An instance of this class is fit for use by the writeReplace of    * LocalManualCache.    *    * Unfortunately, readResolve() doesn't get called when a circular dependency is present, so the    * proxy must be able to behave as the cache itself.    */
 DECL|class|ManualSerializationProxy
 specifier|static
 class|class
@@ -22093,7 +22093,7 @@ name|delegate
 return|;
 block|}
 block|}
-comment|/**    * Serializes the configuration of a LocalCache, reconsitituting it as an LoadingCache using    * CacheBuilder upon deserialization. An instance of this class is fit for use by the writeReplace    * of LocalLoadingCache.    *    * Unfortunately, readResolve() doesn't get called when a circular dependency is present, so the    * proxy must be able to behave as the cache itself.    */
+comment|/**    * Serializes the configuration of a LocalCache, reconstituting it as an LoadingCache using    * CacheBuilder upon deserialization. An instance of this class is fit for use by the writeReplace    * of LocalLoadingCache.    *    * Unfortunately, readResolve() doesn't get called when a circular dependency is present, so the    * proxy must be able to behave as the cache itself.    */
 DECL|class|LoadingSerializationProxy
 specifier|static
 specifier|final

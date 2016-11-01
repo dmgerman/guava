@@ -858,7 +858,7 @@ name|X_DO_NOT_TRACK
 init|=
 literal|"X-Do-Not-Track"
 decl_stmt|;
-comment|/** The HTTP {@code X-Forwarded-For} header field name (supersed by {@code Forwarded}). */
+comment|/** The HTTP {@code X-Forwarded-For} header field name (superseded by {@code Forwarded}). */
 DECL|field|X_FORWARDED_FOR
 specifier|public
 specifier|static
