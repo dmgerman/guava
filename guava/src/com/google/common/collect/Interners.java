@@ -150,7 +150,7 @@ specifier|private
 name|Interners
 parameter_list|()
 block|{}
-comment|/** Builder for {@link Interner} instances. */
+comment|/**    * Builder for {@link Interner} instances.    *    * @since 21.0    */
 DECL|class|InternerBuilder
 specifier|public
 specifier|static
