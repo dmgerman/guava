@@ -1923,9 +1923,6 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|GwtIncompatible
-comment|// Ints.toByteArray
 DECL|method|testToByteArray ()
 specifier|public
 name|void
@@ -2001,9 +1998,6 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|GwtIncompatible
-comment|// Ints.fromByteArray
 DECL|method|testFromByteArray ()
 specifier|public
 name|void
@@ -2071,9 +2065,6 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|GwtIncompatible
-comment|// Ints.fromByteArray
 DECL|method|testFromByteArrayFails ()
 specifier|public
 name|void
@@ -2108,9 +2099,6 @@ name|expected
 parameter_list|)
 block|{     }
 block|}
-annotation|@
-name|GwtIncompatible
-comment|// Ints.fromBytes
 DECL|method|testFromBytes ()
 specifier|public
 name|void
@@ -2178,9 +2166,6 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|GwtIncompatible
-comment|// Ints.fromByteArray, Ints.toByteArray
 DECL|method|testByteArrayRoundTrips ()
 specifier|public
 name|void

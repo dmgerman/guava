@@ -116,20 +116,6 @@ name|google
 operator|.
 name|common
 operator|.
-name|annotations
-operator|.
-name|GwtIncompatible
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
 name|base
 operator|.
 name|Converter
@@ -987,9 +973,6 @@ name|result
 return|;
 block|}
 comment|/**    * Returns a big-endian representation of {@code value} in a 4-element byte array; equivalent to    * {@code ByteBuffer.allocate(4).putInt(value).array()}. For example, the input value    * {@code 0x12131415} would yield the byte array {@code {0x12, 0x13, 0x14, 0x15}}.    *    *<p>If you need to convert and concatenate several values (possibly even of different types),    * use a shared {@link java.nio.ByteBuffer} instance, or use    * {@link com.google.common.io.ByteStreams#newDataOutput()} to get a growable buffer.    */
-annotation|@
-name|GwtIncompatible
-comment|// doesn't work
 DECL|method|toByteArray (int value)
 specifier|public
 specifier|static
@@ -1041,9 +1024,6 @@ block|}
 return|;
 block|}
 comment|/**    * Returns the {@code int} value whose big-endian representation is stored in the first 4 bytes of    * {@code bytes}; equivalent to {@code ByteBuffer.wrap(bytes).getInt()}. For example, the input    * byte array {@code {0x12, 0x13, 0x14, 0x15, 0x33}} would yield the {@code int} value    * {@code 0x12131415}.    *    *<p>Arguably, it's preferable to use {@link java.nio.ByteBuffer}; that library exposes much more    * flexibility at little cost in readability.    *    * @throws IllegalArgumentException if {@code bytes} has fewer than 4 elements    */
-annotation|@
-name|GwtIncompatible
-comment|// doesn't work
 DECL|method|fromByteArray (byte[] bytes)
 specifier|public
 specifier|static
@@ -1098,9 +1078,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns the {@code int} value whose byte representation is the given 4 bytes, in big-endian    * order; equivalent to {@code Ints.fromByteArray(new byte[] {b1, b2, b3, b4})}.    *    * @since 7.0    */
-annotation|@
-name|GwtIncompatible
-comment|// doesn't work
 DECL|method|fromBytes (byte b1, byte b2, byte b3, byte b4)
 specifier|public
 specifier|static
