@@ -4173,6 +4173,8 @@ name|E
 argument_list|>
 block|{
 DECL|field|entry
+annotation|@
+name|Weak
 specifier|final
 name|E
 name|entry
