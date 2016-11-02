@@ -1745,7 +1745,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|// safe because esDelgate.contains(object).
+comment|// safe because esDelegate.contains(object).
 name|Entry
 argument_list|<
 name|?
@@ -2022,7 +2022,7 @@ block|}
 comment|/**      * @serialData the forward bimap      */
 annotation|@
 name|GwtIncompatible
-comment|// java.io.ObjectOuputStream
+comment|// java.io.ObjectOutputStream
 DECL|method|writeObject (ObjectOutputStream stream)
 specifier|private
 name|void
