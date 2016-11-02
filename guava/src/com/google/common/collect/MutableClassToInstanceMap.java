@@ -721,8 +721,6 @@ extends|extends
 name|B
 argument_list|>
 argument_list|,
-name|?
-extends|extends
 name|B
 argument_list|>
 name|entry
