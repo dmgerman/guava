@@ -580,6 +580,15 @@ name|testers
 operator|.
 name|add
 argument_list|(
+name|MultisetForEachEntryTester
+operator|.
+name|class
+argument_list|)
+expr_stmt|;
+name|testers
+operator|.
+name|add
+argument_list|(
 name|MultisetReadsTester
 operator|.
 name|class

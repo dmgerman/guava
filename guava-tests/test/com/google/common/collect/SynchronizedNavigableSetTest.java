@@ -234,20 +234,6 @@ name|SynchronizedNavigableSetTest
 extends|extends
 name|TestCase
 block|{
-DECL|field|MUTEX
-specifier|private
-specifier|static
-specifier|final
-name|Object
-name|MUTEX
-init|=
-operator|new
-name|Integer
-argument_list|(
-literal|1
-argument_list|)
-decl_stmt|;
-comment|// something Serializable
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -298,7 +284,7 @@ name|nullsFirst
 argument_list|()
 argument_list|)
 argument_list|,
-name|MUTEX
+literal|null
 argument_list|)
 decl_stmt|;
 name|NavigableSet
@@ -313,9 +299,15 @@ name|navigableSet
 argument_list|(
 name|inner
 argument_list|,
-name|MUTEX
+literal|null
 argument_list|)
 decl_stmt|;
+name|inner
+operator|.
+name|mutex
+operator|=
+name|outer
+expr_stmt|;
 return|return
 name|outer
 return|;
@@ -980,7 +972,7 @@ argument_list|>
 argument_list|(
 name|innermost
 argument_list|,
-name|MUTEX
+literal|null
 argument_list|)
 decl_stmt|;
 name|NavigableSet
@@ -995,9 +987,15 @@ name|navigableSet
 argument_list|(
 name|inner
 argument_list|,
-name|MUTEX
+literal|null
 argument_list|)
 decl_stmt|;
+name|inner
+operator|.
+name|mutex
+operator|=
+name|outer
+expr_stmt|;
 return|return
 name|outer
 return|;
@@ -1075,7 +1073,7 @@ name|NavigableSet
 argument_list|<
 name|String
 argument_list|>
-name|map
+name|set
 init|=
 name|create
 argument_list|()
@@ -1086,7 +1084,7 @@ name|String
 argument_list|>
 name|descendingSet
 init|=
-name|map
+name|set
 operator|.
 name|descendingSet
 argument_list|()
@@ -1100,7 +1098,7 @@ argument_list|)
 expr_stmt|;
 name|assertSame
 argument_list|(
-name|MUTEX
+name|set
 argument_list|,
 operator|(
 operator|(
@@ -1126,7 +1124,7 @@ name|NavigableSet
 argument_list|<
 name|String
 argument_list|>
-name|map
+name|set
 init|=
 name|create
 argument_list|()
@@ -1137,7 +1135,7 @@ name|String
 argument_list|>
 name|headSet
 init|=
-name|map
+name|set
 operator|.
 name|headSet
 argument_list|(
@@ -1153,7 +1151,7 @@ argument_list|)
 expr_stmt|;
 name|assertSame
 argument_list|(
-name|MUTEX
+name|set
 argument_list|,
 operator|(
 operator|(
@@ -1179,7 +1177,7 @@ name|NavigableSet
 argument_list|<
 name|String
 argument_list|>
-name|map
+name|set
 init|=
 name|create
 argument_list|()
@@ -1190,7 +1188,7 @@ name|String
 argument_list|>
 name|headSet
 init|=
-name|map
+name|set
 operator|.
 name|headSet
 argument_list|(
@@ -1208,7 +1206,7 @@ argument_list|)
 expr_stmt|;
 name|assertSame
 argument_list|(
-name|MUTEX
+name|set
 argument_list|,
 operator|(
 operator|(
@@ -1234,7 +1232,7 @@ name|NavigableSet
 argument_list|<
 name|String
 argument_list|>
-name|map
+name|set
 init|=
 name|create
 argument_list|()
@@ -1245,7 +1243,7 @@ name|String
 argument_list|>
 name|subSet
 init|=
-name|map
+name|set
 operator|.
 name|subSet
 argument_list|(
@@ -1263,7 +1261,7 @@ argument_list|)
 expr_stmt|;
 name|assertSame
 argument_list|(
-name|MUTEX
+name|set
 argument_list|,
 operator|(
 operator|(
@@ -1289,7 +1287,7 @@ name|NavigableSet
 argument_list|<
 name|String
 argument_list|>
-name|map
+name|set
 init|=
 name|create
 argument_list|()
@@ -1300,7 +1298,7 @@ name|String
 argument_list|>
 name|subSet
 init|=
-name|map
+name|set
 operator|.
 name|subSet
 argument_list|(
@@ -1322,7 +1320,7 @@ argument_list|)
 expr_stmt|;
 name|assertSame
 argument_list|(
-name|MUTEX
+name|set
 argument_list|,
 operator|(
 operator|(
@@ -1348,7 +1346,7 @@ name|NavigableSet
 argument_list|<
 name|String
 argument_list|>
-name|map
+name|set
 init|=
 name|create
 argument_list|()
@@ -1359,7 +1357,7 @@ name|String
 argument_list|>
 name|tailSet
 init|=
-name|map
+name|set
 operator|.
 name|tailSet
 argument_list|(
@@ -1375,7 +1373,7 @@ argument_list|)
 expr_stmt|;
 name|assertSame
 argument_list|(
-name|MUTEX
+name|set
 argument_list|,
 operator|(
 operator|(
@@ -1401,7 +1399,7 @@ name|NavigableSet
 argument_list|<
 name|String
 argument_list|>
-name|map
+name|set
 init|=
 name|create
 argument_list|()
@@ -1412,7 +1410,7 @@ name|String
 argument_list|>
 name|tailSet
 init|=
-name|map
+name|set
 operator|.
 name|tailSet
 argument_list|(
@@ -1430,7 +1428,7 @@ argument_list|)
 expr_stmt|;
 name|assertSame
 argument_list|(
-name|MUTEX
+name|set
 argument_list|,
 operator|(
 operator|(

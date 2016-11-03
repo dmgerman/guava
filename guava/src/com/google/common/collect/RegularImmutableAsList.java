@@ -44,6 +44,18 @@ name|GwtIncompatible
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|function
+operator|.
+name|Consumer
+import|;
+end_import
+
 begin_comment
 comment|/**  * An {@link ImmutableAsList} implementation specialized for when the delegate collection is  * already backed by an {@code ImmutableList} or array.  *  * @author Louis Wasserman  */
 end_comment
@@ -217,6 +229,33 @@ argument_list|(
 name|index
 argument_list|)
 return|;
+block|}
+annotation|@
+name|GwtIncompatible
+comment|// not present in emulated superclass
+annotation|@
+name|Override
+DECL|method|forEach (Consumer<? super E> action)
+specifier|public
+name|void
+name|forEach
+parameter_list|(
+name|Consumer
+argument_list|<
+name|?
+super|super
+name|E
+argument_list|>
+name|action
+parameter_list|)
+block|{
+name|delegateList
+operator|.
+name|forEach
+argument_list|(
+name|action
+argument_list|)
+expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible

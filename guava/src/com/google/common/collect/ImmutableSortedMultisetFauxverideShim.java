@@ -30,6 +30,18 @@ name|GwtIncompatible
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|stream
+operator|.
+name|Collector
+import|;
+end_import
+
 begin_comment
 comment|/**  * "Overrides" the {@link ImmutableMultiset} static methods that lack  * {@link ImmutableSortedMultiset} equivalents with deprecated, exception-throwing versions. This  * prevents accidents like the following:  *  *<pre>   {@code  *  *   List<Object> objects = ...;  *   // Sort them:  *   Set<Object> sorted = ImmutableSortedMultiset.copyOf(objects);  *   // BAD CODE! The returned multiset is actually an unsorted ImmutableMultiset!}</pre>  *  *<p>While we could put the overrides in {@link ImmutableSortedMultiset} itself, it seems clearer  * to separate these "do not call" methods from those intended for normal use.  *  * @author Louis Wasserman  */
 end_comment
@@ -50,6 +62,35 @@ argument_list|<
 name|E
 argument_list|>
 block|{
+comment|/**    * Not supported. Use {@link ImmutableSortedMultiset#toImmutableSortedMultiset} instead.    * This method exists only to hide {@link ImmutableMultiset#toImmutableMultiset} from    * consumers of {@code ImmutableSortedMultiset}.    *    * @throws UnsupportedOperationException always    * @deprecated Use {@link ImmutableSortedMultiset#toImmutableSortedMultiset}.    * @since 21.0    */
+annotation|@
+name|Deprecated
+DECL|method|toImmutableMultiset ()
+specifier|public
+specifier|static
+parameter_list|<
+name|E
+parameter_list|>
+name|Collector
+argument_list|<
+name|E
+argument_list|,
+name|?
+argument_list|,
+name|ImmutableMultiset
+argument_list|<
+name|E
+argument_list|>
+argument_list|>
+name|toImmutableMultiset
+parameter_list|()
+block|{
+throw|throw
+operator|new
+name|UnsupportedOperationException
+argument_list|()
+throw|;
+block|}
 comment|/**    * Not supported. Use {@link ImmutableSortedMultiset#naturalOrder}, which offers better    * type-safety, instead. This method exists only to hide {@link ImmutableMultiset#builder} from    * consumers of {@code ImmutableSortedMultiset}.    *    * @throws UnsupportedOperationException always    * @deprecated Use {@link ImmutableSortedMultiset#naturalOrder}, which offers better type-safety.    */
 annotation|@
 name|Deprecated

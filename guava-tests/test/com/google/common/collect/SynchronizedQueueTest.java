@@ -102,11 +102,15 @@ name|queue
 argument_list|(
 name|inner
 argument_list|,
+literal|null
+argument_list|)
+decl_stmt|;
 name|inner
 operator|.
 name|mutex
-argument_list|)
-decl_stmt|;
+operator|=
+name|outer
+expr_stmt|;
 name|outer
 operator|.
 name|add
@@ -150,17 +154,9 @@ argument_list|()
 decl_stmt|;
 DECL|field|mutex
 specifier|public
-specifier|final
 name|Object
 name|mutex
-init|=
-operator|new
-name|Integer
-argument_list|(
-literal|1
-argument_list|)
 decl_stmt|;
-comment|// something Serializable
 annotation|@
 name|Override
 DECL|method|offer (E o)

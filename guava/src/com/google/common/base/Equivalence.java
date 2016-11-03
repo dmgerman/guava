@@ -58,6 +58,18 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|function
+operator|.
+name|BiPredicate
+import|;
+end_import
+
+begin_import
+import|import
 name|javax
 operator|.
 name|annotation
@@ -81,6 +93,13 @@ name|Equivalence
 parameter_list|<
 name|T
 parameter_list|>
+implements|implements
+name|BiPredicate
+argument_list|<
+name|T
+argument_list|,
+name|T
+argument_list|>
 block|{
 comment|/**    * Constructor for use by subclasses.    */
 DECL|method|Equivalence ()
@@ -138,6 +157,37 @@ argument_list|(
 name|a
 argument_list|,
 name|b
+argument_list|)
+return|;
+block|}
+comment|/**    * @deprecated Provided only to satisfy the {@link BiPredicate} interface; use    *     {@link #equivalent} instead.    * @since 21.0    */
+annotation|@
+name|Deprecated
+annotation|@
+name|Override
+DECL|method|test (@ullable T t, @Nullable T u)
+specifier|public
+specifier|final
+name|boolean
+name|test
+parameter_list|(
+annotation|@
+name|Nullable
+name|T
+name|t
+parameter_list|,
+annotation|@
+name|Nullable
+name|T
+name|u
+parameter_list|)
+block|{
+return|return
+name|equivalent
+argument_list|(
+name|t
+argument_list|,
+name|u
 argument_list|)
 return|;
 block|}

@@ -60,6 +60,26 @@ name|Preconditions
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Collections
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Spliterator
+import|;
+end_import
+
 begin_comment
 comment|/**  * Implementation of {@link ImmutableList} with exactly one element.  *  * @author Hayward Chan  */
 end_comment
@@ -160,6 +180,29 @@ name|singletonIterator
 argument_list|(
 name|element
 argument_list|)
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|spliterator ()
+specifier|public
+name|Spliterator
+argument_list|<
+name|E
+argument_list|>
+name|spliterator
+parameter_list|()
+block|{
+return|return
+name|Collections
+operator|.
+name|singleton
+argument_list|(
+name|element
+argument_list|)
+operator|.
+name|spliterator
+argument_list|()
 return|;
 block|}
 annotation|@

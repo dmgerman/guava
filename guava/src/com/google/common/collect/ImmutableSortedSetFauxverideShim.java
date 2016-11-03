@@ -30,6 +30,18 @@ name|GwtIncompatible
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|stream
+operator|.
+name|Collector
+import|;
+end_import
+
 begin_comment
 comment|/**  * "Overrides" the {@link ImmutableSet} static methods that lack  * {@link ImmutableSortedSet} equivalents with deprecated, exception-throwing  * versions. This prevents accidents like the following:<pre>   {@code  *  *   List<Object> objects = ...;  *   // Sort them:  *   Set<Object> sorted = ImmutableSortedSet.copyOf(objects);  *   // BAD CODE! The returned set is actually an unsorted ImmutableSet!}</pre>  *  *<p>While we could put the overrides in {@link ImmutableSortedSet} itself, it  * seems clearer to separate these "do not call" methods from those intended for  * normal use.  *  * @author Chris Povirk  */
 end_comment
@@ -50,6 +62,35 @@ argument_list|<
 name|E
 argument_list|>
 block|{
+comment|/**    * Not supported. Use {@link ImmutableSortedSet#toImmutableSortedSet} instead.    * This method exists only to hide {@link ImmutableSet#toImmutableSet} from    * consumers of {@code ImmutableSortedSet}.    *    * @throws UnsupportedOperationException always    * @deprecated Use {@link ImmutableSortedSet#toImmutableSortedSet}.    * @since 21.0    */
+annotation|@
+name|Deprecated
+DECL|method|toImmutableSet ()
+specifier|public
+specifier|static
+parameter_list|<
+name|E
+parameter_list|>
+name|Collector
+argument_list|<
+name|E
+argument_list|,
+name|?
+argument_list|,
+name|ImmutableSet
+argument_list|<
+name|E
+argument_list|>
+argument_list|>
+name|toImmutableSet
+parameter_list|()
+block|{
+throw|throw
+operator|new
+name|UnsupportedOperationException
+argument_list|()
+throw|;
+block|}
 comment|/**    * Not supported. Use {@link ImmutableSortedSet#naturalOrder}, which offers    * better type-safety, instead. This method exists only to hide    * {@link ImmutableSet#builder} from consumers of {@code ImmutableSortedSet}.    *    * @throws UnsupportedOperationException always    * @deprecated Use {@link ImmutableSortedSet#naturalOrder}, which offers    *     better type-safety.    */
 annotation|@
 name|Deprecated

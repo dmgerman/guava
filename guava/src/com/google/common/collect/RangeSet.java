@@ -93,6 +93,7 @@ extends|extends
 name|Comparable
 parameter_list|>
 block|{
+comment|// TODO(lowasser): consider adding default implementations of some of these methods
 comment|// Query methods
 comment|/** Determines whether any of this range set's member ranges contains {@code value}. */
 DECL|method|contains (C value)
@@ -153,6 +154,7 @@ parameter_list|)
 function_decl|;
 comment|/**    * Returns {@code true} if for each range in {@code other} there exists a member range in this    * range set which {@linkplain Range#encloses encloses} it. Returns {@code true} if {@code other}    * is empty.    *    *<p>This is equivalent to checking if this range set {@link #encloses} each range in {@code    * other}.    *    * @since 21.0    */
 DECL|method|enclosesAll (Iterable<Range<C>> other)
+specifier|default
 name|boolean
 name|enclosesAll
 parameter_list|(
@@ -165,7 +167,36 @@ argument_list|>
 argument_list|>
 name|other
 parameter_list|)
-function_decl|;
+block|{
+for|for
+control|(
+name|Range
+argument_list|<
+name|C
+argument_list|>
+name|range
+range|:
+name|other
+control|)
+block|{
+if|if
+condition|(
+operator|!
+name|encloses
+argument_list|(
+name|range
+argument_list|)
+condition|)
+block|{
+return|return
+literal|false
+return|;
+block|}
+block|}
+return|return
+literal|true
+return|;
+block|}
 comment|/**    * Returns {@code true} if this range set contains no ranges.    */
 DECL|method|isEmpty ()
 name|boolean
@@ -275,6 +306,7 @@ parameter_list|)
 function_decl|;
 comment|/**    * Adds all of the specified ranges to this range set (optional operation). After this operation,    * this range set is the minimal range set that {@linkplain #enclosesAll(RangeSet) encloses} both    * the original range set and each range in {@code other}.    *    *<p>This is equivalent to calling {@link #add} on each of the ranges in {@code other} in turn.    *    * @throws UnsupportedOperationException if this range set does not support the {@code addAll}    *     operation    * @since 21.0    */
 DECL|method|addAll (Iterable<Range<C>> ranges)
+specifier|default
 name|void
 name|addAll
 parameter_list|(
@@ -287,7 +319,25 @@ argument_list|>
 argument_list|>
 name|ranges
 parameter_list|)
-function_decl|;
+block|{
+for|for
+control|(
+name|Range
+argument_list|<
+name|C
+argument_list|>
+name|range
+range|:
+name|ranges
+control|)
+block|{
+name|add
+argument_list|(
+name|range
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 comment|/**    * Removes all of the ranges from the specified range set from this range set (optional    * operation). After this operation, if {@code other.contains(c)}, {@code this.contains(c)} will    * return {@code false}.    *    *<p>This is equivalent to calling {@link #remove} on each of the ranges in {@code other} in    * turn.    *    * @throws UnsupportedOperationException if this range set does not support the {@code removeAll}    *         operation    */
 DECL|method|removeAll (RangeSet<C> other)
 name|void
@@ -302,6 +352,7 @@ parameter_list|)
 function_decl|;
 comment|/**    * Removes all of the specified ranges from this range set (optional operation).    *    *<p>This is equivalent to calling {@link #remove} on each of the ranges in {@code other} in    * turn.    *    * @throws UnsupportedOperationException if this range set does not support the {@code removeAll}    *     operation    * @since 21.0    */
 DECL|method|removeAll (Iterable<Range<C>> ranges)
+specifier|default
 name|void
 name|removeAll
 parameter_list|(
@@ -314,7 +365,25 @@ argument_list|>
 argument_list|>
 name|ranges
 parameter_list|)
-function_decl|;
+block|{
+for|for
+control|(
+name|Range
+argument_list|<
+name|C
+argument_list|>
+name|range
+range|:
+name|ranges
+control|)
+block|{
+name|remove
+argument_list|(
+name|range
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 comment|// Object methods
 comment|/**    * Returns {@code true} if {@code obj} is another {@code RangeSet} that contains the same ranges    * according to {@link Range#equals(Object)}.    */
 annotation|@

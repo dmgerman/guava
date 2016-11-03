@@ -32,6 +32,46 @@ name|testing
 operator|.
 name|testers
 operator|.
+name|CollectionSpliteratorTester
+operator|.
+name|getSpliteratorNotImmutableCollectionAllowsAddMethod
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|collect
+operator|.
+name|testing
+operator|.
+name|testers
+operator|.
+name|CollectionSpliteratorTester
+operator|.
+name|getSpliteratorNotImmutableCollectionAllowsRemoveMethod
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|collect
+operator|.
+name|testing
+operator|.
+name|testers
+operator|.
 name|ListListIteratorTester
 operator|.
 name|getListIteratorFullyModifiableMethod
@@ -95,6 +135,18 @@ operator|.
 name|ListSubListTester
 operator|.
 name|getSubListSubListRemoveAffectsOriginalLargeListMethod
+import|;
+end_import
+
+begin_import
+import|import static
+name|java
+operator|.
+name|util
+operator|.
+name|Arrays
+operator|.
+name|asList
 import|;
 end_import
 
@@ -535,8 +587,6 @@ name|suppressForCopyOnWriteArrayList
 parameter_list|()
 block|{
 return|return
-name|Arrays
-operator|.
 name|asList
 argument_list|(
 name|getSubListOriginalListSetAffectsSubListMethod
@@ -549,6 +599,12 @@ name|getSubListSubListRemoveAffectsOriginalLargeListMethod
 argument_list|()
 argument_list|,
 name|getListIteratorFullyModifiableMethod
+argument_list|()
+argument_list|,
+name|getSpliteratorNotImmutableCollectionAllowsAddMethod
+argument_list|()
+argument_list|,
+name|getSpliteratorNotImmutableCollectionAllowsRemoveMethod
 argument_list|()
 argument_list|)
 return|;

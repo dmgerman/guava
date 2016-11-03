@@ -134,6 +134,16 @@ name|Set
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Spliterator
+import|;
+end_import
+
 begin_comment
 comment|/**  * A mutable class-to-instance map backed by an arbitrary user-provided map. See also {@link  * ImmutableClassToInstanceMap}.  *  *<p>See the Guava User Guide article on<a href=  * "https://github.com/google/guava/wiki/NewCollectionTypesExplained#classtoinstancemap"> {@code  * ClassToInstanceMap}</a>.  *  * @author Kevin Bourrillion  * @since 2.0  */
 end_comment
@@ -316,7 +326,9 @@ return|return
 name|delegate
 return|;
 block|}
-DECL|method|checkedEntry (final Entry<Class<? extends B>, B> entry)
+comment|/**    * Wraps the {@code setValue} implementation of an {@code Entry} to enforce the class constraint.    */
+DECL|method|checkedEntry ( final Entry<Class<? extends B>, B> entry)
+specifier|private
 specifier|static
 parameter_list|<
 name|B
@@ -482,6 +494,43 @@ argument_list|()
 operator|.
 name|entrySet
 argument_list|()
+return|;
+block|}
+annotation|@
+name|Override
+specifier|public
+name|Spliterator
+argument_list|<
+name|Entry
+argument_list|<
+name|Class
+argument_list|<
+name|?
+extends|extends
+name|B
+argument_list|>
+argument_list|,
+name|B
+argument_list|>
+argument_list|>
+name|spliterator
+parameter_list|()
+block|{
+return|return
+name|CollectSpliterators
+operator|.
+name|map
+argument_list|(
+name|delegate
+argument_list|()
+operator|.
+name|spliterator
+argument_list|()
+argument_list|,
+name|MutableClassToInstanceMap
+operator|::
+name|checkedEntry
+argument_list|)
 return|;
 block|}
 annotation|@

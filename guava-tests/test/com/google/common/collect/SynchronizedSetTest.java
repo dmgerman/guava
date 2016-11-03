@@ -17,22 +17,6 @@ package|;
 end_package
 
 begin_import
-import|import static
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|base
-operator|.
-name|Preconditions
-operator|.
-name|checkNotNull
-import|;
-end_import
-
-begin_import
 import|import
 name|com
 operator|.
@@ -255,7 +239,7 @@ name|String
 argument_list|>
 argument_list|()
 argument_list|,
-name|MUTEX
+literal|null
 argument_list|)
 decl_stmt|;
 name|Set
@@ -270,11 +254,15 @@ name|set
 argument_list|(
 name|inner
 argument_list|,
+literal|null
+argument_list|)
+decl_stmt|;
 name|inner
 operator|.
 name|mutex
-argument_list|)
-decl_stmt|;
+operator|=
+name|outer
+expr_stmt|;
 name|Collections
 operator|.
 name|addAll
@@ -344,7 +332,6 @@ name|delegate
 decl_stmt|;
 DECL|field|mutex
 specifier|public
-specifier|final
 name|Object
 name|mutex
 decl_stmt|;
@@ -362,11 +349,6 @@ name|Object
 name|mutex
 parameter_list|)
 block|{
-name|checkNotNull
-argument_list|(
-name|mutex
-argument_list|)
-expr_stmt|;
 name|this
 operator|.
 name|delegate

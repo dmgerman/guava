@@ -30,6 +30,26 @@ name|GwtCompatible
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Spliterator
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Spliterators
+import|;
+end_import
+
 begin_comment
 comment|/**  * Implementation of {@link ImmutableList} used for 0 or 2+ elements (not 1).  *  * @author Kevin Bourrillion  */
 end_comment
@@ -239,6 +259,28 @@ operator|.
 name|length
 argument_list|,
 name|index
+argument_list|)
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|spliterator ()
+specifier|public
+name|Spliterator
+argument_list|<
+name|E
+argument_list|>
+name|spliterator
+parameter_list|()
+block|{
+return|return
+name|Spliterators
+operator|.
+name|spliterator
+argument_list|(
+name|array
+argument_list|,
+name|SPLITERATOR_CHARACTERISTICS
 argument_list|)
 return|;
 block|}

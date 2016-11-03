@@ -61,6 +61,8 @@ end_comment
 begin_interface
 annotation|@
 name|GwtCompatible
+annotation|@
+name|FunctionalInterface
 DECL|interface|AsyncFunction
 specifier|public
 interface|interface

@@ -176,6 +176,42 @@ name|List
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|function
+operator|.
+name|Function
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|function
+operator|.
+name|ToIntFunction
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|stream
+operator|.
+name|Collector
+import|;
+end_import
+
 begin_comment
 comment|/**  * A {@link SortedMultiset} whose contents will never change, with many other important properties  * detailed at {@link ImmutableCollection}.  *  *<p><b>Warning:</b> as with any sorted collection, you are strongly advised not to use a {@link  * Comparator} or {@link Comparable} type whose comparison behavior is<i>inconsistent with  * equals</i>. That is, {@code a.compareTo(b)} or {@code comparator.compare(a, b)} should equal zero  *<i>if and only if</i> {@code a.equals(b)}. If this advice is not followed, the resulting  * collection will not correctly obey its specification.  *  *<p>See the Guava User Guide article on<a href=  * "https://github.com/google/guava/wiki/ImmutableCollectionsExplained">  * immutable collections</a>.  *  * @author Louis Wasserman  * @since 12.0  */
 end_comment
@@ -204,8 +240,205 @@ name|E
 argument_list|>
 block|{
 comment|// TODO(lowasser): GWT compatibility
-comment|/**    * Returns the empty immutable sorted multiset.    */
+comment|/**    * Returns a {@code Collector} that accumulates the input elements into a new    * {@code ImmutableMultiset}.  Elements are sorted by the specified comparator.    *    *<p><b>Warning:</b> {@code comparator} should be<i>consistent with {@code    * equals}</i> as explained in the {@link Comparator} documentation.    *    * @since 21.0    */
 annotation|@
+name|Beta
+DECL|method|toImmutableSortedMultiset ( Comparator<? super E> comparator)
+specifier|public
+specifier|static
+parameter_list|<
+name|E
+parameter_list|>
+name|Collector
+argument_list|<
+name|E
+argument_list|,
+name|?
+argument_list|,
+name|ImmutableSortedMultiset
+argument_list|<
+name|E
+argument_list|>
+argument_list|>
+name|toImmutableSortedMultiset
+parameter_list|(
+name|Comparator
+argument_list|<
+name|?
+super|super
+name|E
+argument_list|>
+name|comparator
+parameter_list|)
+block|{
+return|return
+name|toImmutableSortedMultiset
+argument_list|(
+name|comparator
+argument_list|,
+name|Function
+operator|.
+name|identity
+argument_list|()
+argument_list|,
+name|e
+lambda|->
+literal|1
+argument_list|)
+return|;
+block|}
+comment|/**    * Returns a {@code Collector} that accumulates elements into an {@code ImmutableSortedMultiset}    * whose elements are the result of applying {@code elementFunction} to the inputs,    * with counts equal to the result of applying {@code countFunction} to the inputs.    *    *<p>If the mapped elements contain duplicates (according to {@code comparator}),    * the first occurrence in encounter order appears in the resulting multiset, with count    * equal to the sum of the outputs of {@code countFunction.applyAsInt(t)} for each {@code t}    * mapped to that element.    */
+DECL|method|toImmutableSortedMultiset ( Comparator<? super E> comparator, Function<? super T, ? extends E> elementFunction, ToIntFunction<? super T> countFunction)
+specifier|private
+specifier|static
+parameter_list|<
+name|T
+parameter_list|,
+name|E
+parameter_list|>
+name|Collector
+argument_list|<
+name|T
+argument_list|,
+name|?
+argument_list|,
+name|ImmutableSortedMultiset
+argument_list|<
+name|E
+argument_list|>
+argument_list|>
+name|toImmutableSortedMultiset
+parameter_list|(
+name|Comparator
+argument_list|<
+name|?
+super|super
+name|E
+argument_list|>
+name|comparator
+parameter_list|,
+name|Function
+argument_list|<
+name|?
+super|super
+name|T
+argument_list|,
+name|?
+extends|extends
+name|E
+argument_list|>
+name|elementFunction
+parameter_list|,
+name|ToIntFunction
+argument_list|<
+name|?
+super|super
+name|T
+argument_list|>
+name|countFunction
+parameter_list|)
+block|{
+comment|// TODO(lowasser): consider exposing this
+name|checkNotNull
+argument_list|(
+name|comparator
+argument_list|)
+expr_stmt|;
+name|checkNotNull
+argument_list|(
+name|elementFunction
+argument_list|)
+expr_stmt|;
+name|checkNotNull
+argument_list|(
+name|countFunction
+argument_list|)
+expr_stmt|;
+return|return
+name|Collector
+operator|.
+name|of
+argument_list|(
+parameter_list|()
+lambda|->
+name|TreeMultiset
+operator|.
+name|create
+argument_list|(
+name|comparator
+argument_list|)
+argument_list|,
+parameter_list|(
+name|multiset
+parameter_list|,
+name|t
+parameter_list|)
+lambda|->
+name|multiset
+operator|.
+name|add
+argument_list|(
+name|elementFunction
+operator|.
+name|apply
+argument_list|(
+name|t
+argument_list|)
+argument_list|,
+name|countFunction
+operator|.
+name|applyAsInt
+argument_list|(
+name|t
+argument_list|)
+argument_list|)
+argument_list|,
+parameter_list|(
+name|multiset1
+parameter_list|,
+name|multiset2
+parameter_list|)
+lambda|->
+block|{
+name|multiset1
+operator|.
+name|addAll
+argument_list|(
+name|multiset2
+argument_list|)
+argument_list|;           return
+name|multiset1
+argument_list|;
+block|}
+operator|,
+parameter_list|(
+name|Multiset
+argument_list|<
+name|E
+argument_list|>
+name|multiset
+parameter_list|)
+lambda|->
+name|copyOfSortedEntries
+argument_list|(
+name|comparator
+argument_list|,
+name|multiset
+operator|.
+name|entrySet
+argument_list|()
+argument_list|)
+block|)
+class|;
+end_class
+
+begin_comment
+unit|}
+comment|/**    * Returns the empty immutable sorted multiset.    */
+end_comment
+
+begin_expr_stmt
+unit|@
 name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
@@ -213,15 +446,15 @@ argument_list|)
 DECL|method|of ()
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
+operator|>
 name|ImmutableSortedMultiset
 argument_list|<
 name|E
 argument_list|>
 name|of
-parameter_list|()
+argument_list|()
 block|{
 return|return
 operator|(
@@ -232,7 +465,13 @@ operator|.
 name|NATURAL_EMPTY_MULTISET
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/**    * Returns an immutable sorted multiset containing a single element.    */
+end_comment
+
+begin_function
 DECL|method|of (E element)
 specifier|public
 specifier|static
@@ -302,7 +541,13 @@ literal|1
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Returns an immutable sorted multiset containing the given elements sorted by their natural    * ordering.    *    * @throws NullPointerException if any element is null    */
+end_comment
+
+begin_function
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -353,7 +598,13 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Returns an immutable sorted multiset containing the given elements sorted by their natural    * ordering.    *    * @throws NullPointerException if any element is null    */
+end_comment
+
+begin_function
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -409,7 +660,13 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Returns an immutable sorted multiset containing the given elements sorted by their natural    * ordering.    *    * @throws NullPointerException if any element is null    */
+end_comment
+
+begin_function
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -470,7 +727,13 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Returns an immutable sorted multiset containing the given elements sorted by their natural    * ordering.    *    * @throws NullPointerException if any element is null    */
+end_comment
+
+begin_function
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -536,7 +799,13 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Returns an immutable sorted multiset containing the given elements sorted by their natural    * ordering.    *    * @throws NullPointerException if any element is null    */
+end_comment
+
+begin_function
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -646,7 +915,13 @@ name|all
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Returns an immutable sorted multiset containing the given elements sorted by their natural    * ordering.    *    * @throws NullPointerException if any of {@code elements} is null    */
+end_comment
+
+begin_function
 DECL|method|copyOf (E[] elements)
 specifier|public
 specifier|static
@@ -688,7 +963,13 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Returns an immutable sorted multiset containing the given elements sorted by their natural    * ordering. To create a copy of a {@code SortedMultiset} that preserves the    * comparator, call {@link #copyOfSorted} instead. This method iterates over {@code elements} at    * most once.    *    *<p>Note that if {@code s} is a {@code Multiset<String>}, then {@code    * ImmutableSortedMultiset.copyOf(s)} returns an {@code ImmutableSortedMultiset<String>}    * containing each of the strings in {@code s}, while {@code ImmutableSortedMultiset.of(s)}    * returns an {@code ImmutableSortedMultiset<Multiset<String>>} containing one element (the given    * multiset itself).    *    *<p>Despite the method name, this method attempts to avoid actually copying the data when it is    * safe to do so. The exact circumstances under which a copy will or will not be performed are    * undocumented and subject to change.    *    *<p>This method is not type-safe, as it may be called on elements that are not mutually    * comparable.    *    * @throws ClassCastException if the elements are not mutually comparable    * @throws NullPointerException if any of {@code elements} is null    */
+end_comment
+
+begin_function
 DECL|method|copyOf (Iterable<? extends E> elements)
 specifier|public
 specifier|static
@@ -746,7 +1027,13 @@ name|elements
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Returns an immutable sorted multiset containing the given elements sorted by their natural    * ordering.    *    *<p>This method is not type-safe, as it may be called on elements that are not mutually    * comparable.    *    * @throws ClassCastException if the elements are not mutually comparable    * @throws NullPointerException if any of {@code elements} is null    */
+end_comment
+
+begin_function
 DECL|method|copyOf (Iterator<? extends E> elements)
 specifier|public
 specifier|static
@@ -804,7 +1091,13 @@ name|elements
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Returns an immutable sorted multiset containing the given elements sorted by the given {@code    * Comparator}.    *    * @throws NullPointerException if {@code comparator} or any of {@code elements} is null    */
+end_comment
+
+begin_function
 DECL|method|copyOf ( Comparator<? super E> comparator, Iterator<? extends E> elements)
 specifier|public
 specifier|static
@@ -858,7 +1151,13 @@ name|build
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Returns an immutable sorted multiset containing the given elements sorted by the given {@code    * Comparator}. This method iterates over {@code elements} at most once.    *    *<p>Despite the method name, this method attempts to avoid actually copying the data when it is    * safe to do so. The exact circumstances under which a copy will or will not be performed are    * undocumented and subject to change.    *    * @throws NullPointerException if {@code comparator} or any of {@code elements} is null    */
+end_comment
+
+begin_function
 DECL|method|copyOf ( Comparator<? super E> comparator, Iterable<? extends E> elements)
 specifier|public
 specifier|static
@@ -1006,7 +1305,13 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Returns an immutable sorted multiset containing the elements of a sorted multiset, sorted by    * the same {@code Comparator}. That behavior differs from {@link #copyOf(Iterable)}, which    * always uses the natural ordering of the elements.    *    *<p>Despite the method name, this method attempts to avoid actually copying the data when it is    * safe to do so. The exact circumstances under which a copy will or will not be performed are    * undocumented and subject to change.    *    *<p>This method is safe to use even when {@code sortedMultiset} is a synchronized or concurrent    * collection that is currently being modified by another thread.    *    * @throws NullPointerException if {@code sortedMultiset} or any of its elements is null    */
+end_comment
+
+begin_function
 DECL|method|copyOfSorted (SortedMultiset<E> sortedMultiset)
 specifier|public
 specifier|static
@@ -1046,6 +1351,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 DECL|method|copyOfSortedEntries ( Comparator<? super E> comparator, Collection<Entry<E>> entries)
 specifier|private
 specifier|static
@@ -1207,6 +1515,9 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -1271,15 +1582,18 @@ argument_list|)
 return|;
 block|}
 block|}
+end_function
+
+begin_expr_stmt
 DECL|method|ImmutableSortedMultiset ()
 name|ImmutableSortedMultiset
-parameter_list|()
+argument_list|()
 block|{}
-annotation|@
+expr|@
 name|Override
 DECL|method|comparator ()
 specifier|public
-specifier|final
+name|final
 name|Comparator
 argument_list|<
 name|?
@@ -1287,7 +1601,7 @@ super|super
 name|E
 argument_list|>
 name|comparator
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|elementSet
@@ -1297,6 +1611,9 @@ name|comparator
 argument_list|()
 return|;
 block|}
+end_expr_stmt
+
+begin_function_decl
 annotation|@
 name|Override
 DECL|method|elementSet ()
@@ -1309,6 +1626,9 @@ argument_list|>
 name|elementSet
 parameter_list|()
 function_decl|;
+end_function_decl
+
+begin_decl_stmt
 annotation|@
 name|LazyInit
 DECL|field|descendingMultiset
@@ -1319,6 +1639,9 @@ name|E
 argument_list|>
 name|descendingMultiset
 decl_stmt|;
+end_decl_stmt
+
+begin_function
 annotation|@
 name|Override
 DECL|method|descendingMultiset ()
@@ -1381,7 +1704,13 @@ return|return
 name|result
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * {@inheritDoc}    *    *<p>This implementation is guaranteed to throw an {@link UnsupportedOperationException}.    *    * @throws UnsupportedOperationException always    * @deprecated Unsupported operation.    */
+end_comment
+
+begin_function
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
@@ -1404,7 +1733,13 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * {@inheritDoc}    *    *<p>This implementation is guaranteed to throw an {@link UnsupportedOperationException}.    *    * @throws UnsupportedOperationException always    * @deprecated Unsupported operation.    */
+end_comment
+
+begin_function
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
@@ -1427,6 +1762,9 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
+end_function
+
+begin_function_decl
 annotation|@
 name|Override
 DECL|method|headMultiset (E upperBound, BoundType boundType)
@@ -1445,6 +1783,9 @@ name|BoundType
 name|boundType
 parameter_list|)
 function_decl|;
+end_function_decl
+
+begin_function
 annotation|@
 name|Override
 DECL|method|subMultiset ( E lowerBound, BoundType lowerBoundType, E upperBound, BoundType upperBoundType)
@@ -1505,6 +1846,9 @@ name|upperBoundType
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function_decl
 annotation|@
 name|Override
 DECL|method|tailMultiset (E lowerBound, BoundType boundType)
@@ -1523,7 +1867,13 @@ name|BoundType
 name|boundType
 parameter_list|)
 function_decl|;
+end_function_decl
+
+begin_comment
 comment|/**    * Returns a builder that creates immutable sorted multisets with an explicit comparator. If the    * comparator has a more general type than the set being generated, such as creating a {@code    * SortedMultiset<Integer>} with a {@code Comparator<Number>}, use the {@link Builder}    * constructor instead.    *    * @throws NullPointerException if {@code comparator} is null    */
+end_comment
+
+begin_function
 DECL|method|orderedBy (Comparator<E> comparator)
 specifier|public
 specifier|static
@@ -1554,7 +1904,13 @@ name|comparator
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Returns a builder that creates immutable sorted multisets whose elements are ordered by the    * reverse of their natural ordering.    *    *<p>Note: the type parameter {@code E} extends {@code Comparable<?>} rather than {@code    * Comparable<? super E>} as a workaround for javac<a    * href="http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6468354">bug 6468354</a>.    */
+end_comment
+
+begin_function
 DECL|method|reverseOrder ()
 specifier|public
 specifier|static
@@ -1590,7 +1946,13 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Returns a builder that creates immutable sorted multisets whose elements are ordered by their    * natural ordering. The sorted multisets use {@link Ordering#natural()} as the comparator. This    * method provides more type-safety than {@link #builder}, as it can be called only for classes    * that implement {@link Comparable}.    *    *<p>Note: the type parameter {@code E} extends {@code Comparable<?>} rather than {@code    * Comparable<? super E>} as a workaround for javac<a    * href="http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6468354">bug 6468354</a>.    */
+end_comment
+
+begin_function
 DECL|method|naturalOrder ()
 specifier|public
 specifier|static
@@ -1623,7 +1985,13 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * A builder for creating immutable multiset instances, especially {@code public static final}    * multisets ("constant multisets"). Example:    *    *<pre> {@code    *    *   public static final ImmutableSortedMultiset<Bean> BEANS =    *       new ImmutableSortedMultiset.Builder<Bean>(colorComparator())    *           .addCopies(Bean.COCOA, 4)    *           .addCopies(Bean.GARDEN, 6)    *           .addCopies(Bean.RED, 8)    *           .addCopies(Bean.BLACK_EYED, 10)    *           .build();}</pre>    *    *<p>Builder instances can be reused; it is safe to call {@link #build} multiple times to build    * multiple multisets in series.    *    * @since 12.0    */
+end_comment
+
+begin_class
 DECL|class|Builder
 specifier|public
 specifier|static
@@ -1886,6 +2254,9 @@ argument_list|)
 return|;
 block|}
 block|}
+end_class
+
+begin_class
 DECL|class|SerializedForm
 specifier|private
 specifier|static
@@ -2085,6 +2456,9 @@ argument_list|()
 return|;
 block|}
 block|}
+end_class
+
+begin_function
 annotation|@
 name|Override
 DECL|method|writeReplace ()
@@ -2103,8 +2477,8 @@ name|this
 argument_list|)
 return|;
 block|}
-block|}
-end_class
+end_function
 
+unit|}
 end_unit
 

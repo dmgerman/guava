@@ -732,6 +732,10 @@ name|MultimapEqualsTester
 operator|.
 name|class
 argument_list|,
+name|MultimapForEachTester
+operator|.
+name|class
+argument_list|,
 name|MultimapGetTester
 operator|.
 name|class

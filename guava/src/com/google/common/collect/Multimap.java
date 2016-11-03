@@ -17,6 +17,22 @@ package|;
 end_package
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Preconditions
+operator|.
+name|checkNotNull
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -81,6 +97,18 @@ operator|.
 name|util
 operator|.
 name|Set
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|function
+operator|.
+name|BiConsumer
 import|;
 end_import
 
@@ -345,6 +373,54 @@ argument_list|>
 name|entries
 parameter_list|()
 function_decl|;
+comment|/**    * Performs the given action for all key-value pairs contained in this multimap. If an ordering is    * specified by the {@code Multimap} implementation, actions will be performed in the order of    * iteration of {@link #entries()}. Exceptions thrown by the action are relayed to the caller.    *    *<p>To loop over all keys and their associated value collections, write    * {@code Multimaps.asMap(multimap).forEach((key, valueCollection) -> action())}.    *    * @since 21.0    */
+DECL|method|forEach (BiConsumer<? super K, ? super V> action)
+specifier|default
+name|void
+name|forEach
+parameter_list|(
+name|BiConsumer
+argument_list|<
+name|?
+super|super
+name|K
+argument_list|,
+name|?
+super|super
+name|V
+argument_list|>
+name|action
+parameter_list|)
+block|{
+name|checkNotNull
+argument_list|(
+name|action
+argument_list|)
+expr_stmt|;
+name|entries
+argument_list|()
+operator|.
+name|forEach
+argument_list|(
+name|entry
+lambda|->
+name|action
+operator|.
+name|accept
+argument_list|(
+name|entry
+operator|.
+name|getKey
+argument_list|()
+argument_list|,
+name|entry
+operator|.
+name|getValue
+argument_list|()
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
 comment|/**    * Returns a view of this multimap as a {@code Map} from each distinct key    * to the nonempty collection of that key's associated values. Note that    * {@code this.asMap().get(k)} is equivalent to {@code this.get(k)} only when    * {@code k} is a key contained in the multimap; otherwise it returns {@code    * null} as opposed to an empty collection.    *    *<p>Changes to the returned map or the collections that serve as its values    * will update the underlying multimap, and vice versa. The map does not    * support {@code put} or {@code putAll}, nor do its entries support {@link    * Map.Entry#setValue setValue}.    */
 DECL|method|asMap ()
 name|Map

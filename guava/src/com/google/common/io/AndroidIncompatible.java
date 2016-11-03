@@ -110,7 +110,7 @@ name|common
 operator|.
 name|annotations
 operator|.
-name|GwtCompatible
+name|GwtIncompatible
 import|;
 end_import
 
@@ -139,7 +139,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Signifies that a test should not be run under Android. This annotation is respected only by our  * Google-internal Android suite generators. Note that those generators also suppress any test  * annotated with MediumTest or LargeTest.  *  *<p>For more discussion, see {@linkplain com.google.common.base.AndroidIncompatible the  * documentation on another copy of this annotation}.  */
+comment|/**  * Signifies that the annotated element should not be included for use on Android.  */
 end_comment
 
 begin_annotation_defn
@@ -164,7 +164,8 @@ name|TYPE
 block|}
 argument_list|)
 annotation|@
-name|GwtCompatible
+name|GwtIncompatible
+comment|// nothing that uses it is GwtCompatible
 DECL|annotation|AndroidIncompatible
 annotation_defn|@interface
 name|AndroidIncompatible

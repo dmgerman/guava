@@ -677,6 +677,24 @@ argument_list|,
 name|guard
 argument_list|)
 expr_stmt|;
+comment|// same as above but with the new syntax
+name|thread1
+operator|.
+name|callAndAssertReturns
+argument_list|(
+name|enterWhen
+argument_list|()
+argument_list|,
+name|monitor
+operator|.
+name|newGuard
+argument_list|(
+parameter_list|()
+lambda|->
+literal|true
+argument_list|)
+argument_list|)
+expr_stmt|;
 block|}
 DECL|method|testEnterWhen_initiallyFalse ()
 specifier|public

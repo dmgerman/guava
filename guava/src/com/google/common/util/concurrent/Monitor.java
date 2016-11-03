@@ -132,6 +132,18 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|function
+operator|.
+name|BooleanSupplier
+import|;
+end_import
+
+begin_import
+import|import
 name|javax
 operator|.
 name|annotation
@@ -350,6 +362,48 @@ argument_list|(
 name|fair
 argument_list|)
 expr_stmt|;
+block|}
+comment|/**    * Creates a new {@link Guard} for {@code this} monitor.    *    * @Param isSatisfied The guards boolean condition.  See {@link Guard#isSatisfied}.    */
+DECL|method|newGuard (final BooleanSupplier isSatisfied)
+specifier|public
+name|Guard
+name|newGuard
+parameter_list|(
+specifier|final
+name|BooleanSupplier
+name|isSatisfied
+parameter_list|)
+block|{
+name|checkNotNull
+argument_list|(
+name|isSatisfied
+argument_list|,
+literal|"isSatisfied"
+argument_list|)
+expr_stmt|;
+return|return
+operator|new
+name|Guard
+argument_list|(
+name|this
+argument_list|)
+block|{
+annotation|@
+name|Override
+specifier|public
+name|boolean
+name|isSatisfied
+parameter_list|()
+block|{
+return|return
+name|isSatisfied
+operator|.
+name|getAsBoolean
+argument_list|()
+return|;
+block|}
+block|}
+return|;
 block|}
 comment|/**    * Enters this monitor. Blocks indefinitely.    */
 DECL|method|enter ()
