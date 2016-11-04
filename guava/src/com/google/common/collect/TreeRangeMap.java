@@ -1180,15 +1180,6 @@ name|getValue
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|entriesByLowerBound
-operator|.
-name|remove
-argument_list|(
-name|rangeToRemove
-operator|.
-name|lowerBound
-argument_list|)
-expr_stmt|;
 block|}
 block|}
 name|entriesByLowerBound
