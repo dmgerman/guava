@@ -241,7 +241,7 @@ name|forward
 operator|.
 name|containsValue
 argument_list|(
-literal|"asdf"
+literal|false
 argument_list|)
 decl_stmt|;
 name|assertEquals
@@ -336,7 +336,7 @@ parameter_list|()
 block|{
 name|forward
 operator|.
-name|remove
+name|putAll
 argument_list|(
 literal|"asfd"
 argument_list|,
@@ -351,7 +351,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"[remove(Object,Object)]"
+literal|"[putAll(Object,Iterable)]"
 argument_list|,
 name|getCalls
 argument_list|()
