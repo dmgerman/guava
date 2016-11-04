@@ -69,7 +69,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Simple utility for when you want to create a {@link TearDown} that may throw  * an exception but should not fail a test when it does. (The behavior of a  * {@code TearDown} that throws an exception varies; see its documentation for  * details.) Use it just like a {@code TearDown}, except override {@link  * #sloppyTearDown()} instead.  *  * @author Luiz-Otavio Zorzella  * @since 10.0  */
+comment|/**  * Simple utility for when you want to create a {@link TearDown} that may throw an exception but  * should not fail a test when it does. (The behavior of a {@code TearDown} that throws an exception  * varies; see its documentation for details.) Use it just like a {@code TearDown}, except override  * {@link #sloppyTearDown()} instead.  *  * @author Luiz-Otavio Zorzella  * @since 10.0  */
 end_comment
 
 begin_class
@@ -86,7 +86,7 @@ implements|implements
 name|TearDown
 block|{
 DECL|field|logger
-specifier|public
+specifier|private
 specifier|static
 specifier|final
 name|Logger
