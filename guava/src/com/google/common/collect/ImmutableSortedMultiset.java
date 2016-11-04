@@ -1686,9 +1686,6 @@ name|comparator
 argument_list|()
 argument_list|)
 operator|.
-operator|<
-name|E
-operator|>
 name|reverse
 argument_list|()
 argument_list|)
