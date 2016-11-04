@@ -1820,10 +1820,12 @@ argument_list|(
 name|iterator
 argument_list|)
 decl_stmt|;
-name|list
+name|Collections
 operator|.
 name|sort
 argument_list|(
+name|list
+argument_list|,
 name|this
 argument_list|)
 expr_stmt|;
