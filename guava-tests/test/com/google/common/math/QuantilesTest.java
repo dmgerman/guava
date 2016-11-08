@@ -4355,7 +4355,7 @@ name|expected
 parameter_list|)
 block|{     }
 block|}
-comment|/**    * Assests that the actual quantile value returned matches the expected value, allowing    * the margin of error {@link #ALLOWED_ERROR}. The assertion passes when the expected and actual    * values are the same non-finite value.    */
+comment|/**    * Asserts that the actual quantile value returned matches the expected value, allowing    * the margin of error {@link #ALLOWED_ERROR}. The assertion passes when the expected and actual    * values are the same non-finite value.    */
 DECL|method|assertQuantile (int index, double expected, double actual)
 specifier|private
 specifier|static
@@ -4472,7 +4472,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Assests that the actual map of quantile values returned matches the expected map, allowing    * the margin of error {@link #ALLOWED_ERROR} on the values. The assertion passes when the    * expected and actual values are the same non-finite value.    */
+comment|/**    * Asserts that the actual map of quantile values returned matches the expected map, allowing    * the margin of error {@link #ALLOWED_ERROR} on the values. The assertion passes when the    * expected and actual values are the same non-finite value.    */
 DECL|method|assertQuantilesMap ( Map<Integer, Double> expected, Map<Integer, Double> actual)
 specifier|private
 specifier|static

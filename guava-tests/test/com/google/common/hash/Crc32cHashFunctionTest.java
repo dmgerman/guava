@@ -423,7 +423,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Verfies that the crc of an array of byte data matches the expected value.    *    * @param expectedCrc the expected crc value.    * @param data the data to run the checksum on.    */
+comment|/**    * Verifies that the crc of an array of byte data matches the expected value.    *    * @param expectedCrc the expected crc value.    * @param data the data to run the checksum on.    */
 DECL|method|assertCrc (int expectedCrc, byte[] data)
 specifier|private
 specifier|static

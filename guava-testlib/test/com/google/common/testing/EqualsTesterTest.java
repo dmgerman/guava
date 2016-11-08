@@ -1400,7 +1400,7 @@ literal|true
 return|;
 block|}
 block|}
-comment|/** Test class that violates reflexitivity.  It is not equal to itself */
+comment|/** Test class that violates reflexivity.  It is not equal to itself */
 DECL|class|NonReflexiveObject
 specifier|private
 specifier|static

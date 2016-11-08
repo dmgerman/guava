@@ -209,7 +209,7 @@ DECL|annotation|TestSubtype
 annotation_defn|@interface
 name|TestSubtype
 block|{
-comment|/** Supresses the assertion on {@link TypeToken#getSubtype}. */
+comment|/** Suppresses the assertion on {@link TypeToken#getSubtype}. */
 DECL|method|suppressGetSubtype ()
 DECL|field|false
 name|boolean
@@ -218,7 +218,7 @@ parameter_list|()
 default|default
 literal|false
 function_decl|;
-comment|/** Supresses the assertion on {@link TypeToken#getSupertype}. */
+comment|/** Suppresses the assertion on {@link TypeToken#getSupertype}. */
 DECL|method|suppressGetSupertype ()
 DECL|field|false
 name|boolean
