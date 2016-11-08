@@ -217,30 +217,21 @@ name|long
 name|value
 parameter_list|)
 block|{
-if|if
-condition|(
-operator|(
+name|checkArgument
+argument_list|(
 name|value
 operator|>>
 name|Byte
 operator|.
 name|SIZE
-operator|)
-operator|!=
+operator|==
 literal|0
-condition|)
-block|{
-comment|// don't use checkArgument here, to avoid boxing
-throw|throw
-operator|new
-name|IllegalArgumentException
-argument_list|(
-literal|"Out of range: "
-operator|+
+argument_list|,
+literal|"out of range: %s"
+argument_list|,
 name|value
 argument_list|)
-throw|;
-block|}
+expr_stmt|;
 return|return
 operator|(
 name|byte
