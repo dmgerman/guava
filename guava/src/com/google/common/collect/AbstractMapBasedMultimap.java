@@ -1712,6 +1712,27 @@ name|WrappedIterator
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|spliterator ()
+specifier|public
+name|Spliterator
+argument_list|<
+name|V
+argument_list|>
+name|spliterator
+parameter_list|()
+block|{
+name|refreshIfEmpty
+argument_list|()
+expr_stmt|;
+return|return
+name|delegate
+operator|.
+name|spliterator
+argument_list|()
+return|;
+block|}
 comment|/** Collection iterator for {@code WrappedCollection}. */
 DECL|class|WrappedIterator
 class|class
