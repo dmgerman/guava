@@ -968,22 +968,47 @@ name|output
 argument_list|)
 return|;
 block|}
-DECL|method|unmodifiableCollectionSubclass (Collection<V> collection)
+DECL|method|unmodifiableCollectionSubclass (Collection<E> collection)
+specifier|static
+parameter_list|<
+name|E
+parameter_list|>
 name|Collection
 argument_list|<
-name|V
+name|E
 argument_list|>
 name|unmodifiableCollectionSubclass
 parameter_list|(
 name|Collection
 argument_list|<
-name|V
+name|E
 argument_list|>
 name|collection
 parameter_list|)
 block|{
-comment|// We don't deal with NavigableSet here yet for GWT reasons -- instead,
-comment|// non-GWT TreeMultimap explicitly overrides this and uses NavigableSet.
+if|if
+condition|(
+name|collection
+operator|instanceof
+name|NavigableSet
+condition|)
+block|{
+return|return
+name|Sets
+operator|.
+name|unmodifiableNavigableSet
+argument_list|(
+operator|(
+name|NavigableSet
+argument_list|<
+name|E
+argument_list|>
+operator|)
+name|collection
+argument_list|)
+return|;
+block|}
+elseif|else
 if|if
 condition|(
 name|collection
@@ -999,7 +1024,7 @@ argument_list|(
 operator|(
 name|SortedSet
 argument_list|<
-name|V
+name|E
 argument_list|>
 operator|)
 name|collection
@@ -1022,7 +1047,7 @@ argument_list|(
 operator|(
 name|Set
 argument_list|<
-name|V
+name|E
 argument_list|>
 operator|)
 name|collection
@@ -1045,7 +1070,7 @@ argument_list|(
 operator|(
 name|List
 argument_list|<
-name|V
+name|E
 argument_list|>
 operator|)
 name|collection
@@ -2250,17 +2275,21 @@ name|changed
 return|;
 block|}
 block|}
-DECL|method|iteratorOrListIterator (Collection<V> collection)
+DECL|method|iteratorOrListIterator (Collection<E> collection)
 specifier|private
+specifier|static
+parameter_list|<
+name|E
+parameter_list|>
 name|Iterator
 argument_list|<
-name|V
+name|E
 argument_list|>
 name|iteratorOrListIterator
 parameter_list|(
 name|Collection
 argument_list|<
-name|V
+name|E
 argument_list|>
 name|collection
 parameter_list|)
@@ -2276,7 +2305,7 @@ operator|(
 operator|(
 name|List
 argument_list|<
-name|V
+name|E
 argument_list|>
 operator|)
 name|collection

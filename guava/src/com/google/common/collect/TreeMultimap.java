@@ -650,40 +650,6 @@ name|Override
 annotation|@
 name|GwtIncompatible
 comment|// NavigableSet
-DECL|method|unmodifiableCollectionSubclass (Collection<V> collection)
-name|Collection
-argument_list|<
-name|V
-argument_list|>
-name|unmodifiableCollectionSubclass
-parameter_list|(
-name|Collection
-argument_list|<
-name|V
-argument_list|>
-name|collection
-parameter_list|)
-block|{
-return|return
-name|Sets
-operator|.
-name|unmodifiableNavigableSet
-argument_list|(
-operator|(
-name|NavigableSet
-argument_list|<
-name|V
-argument_list|>
-operator|)
-name|collection
-argument_list|)
-return|;
-block|}
-annotation|@
-name|Override
-annotation|@
-name|GwtIncompatible
-comment|// NavigableSet
 DECL|method|wrapCollection (K key, Collection<V> collection)
 name|Collection
 argument_list|<

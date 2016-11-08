@@ -5048,9 +5048,6 @@ literal|false
 return|;
 block|}
 comment|/**    * Returns an unmodifiable view of the specified navigable set. This method    * allows modules to provide users with "read-only" access to internal    * navigable sets. Query operations on the returned set "read through" to the    * specified set, and attempts to modify the returned set, whether direct or    * via its collection views, result in an    * {@code UnsupportedOperationException}.    *    *<p>The returned navigable set will be serializable if the specified    * navigable set is serializable.    *    * @param set the navigable set for which an unmodifiable view is to be    *        returned    * @return an unmodifiable view of the specified navigable set    * @since 12.0    */
-annotation|@
-name|GwtIncompatible
-comment|// NavigableSet
 DECL|method|unmodifiableNavigableSet (NavigableSet<E> set)
 specifier|public
 specifier|static
@@ -5096,9 +5093,6 @@ name|set
 argument_list|)
 return|;
 block|}
-annotation|@
-name|GwtIncompatible
-comment|// NavigableSet
 DECL|class|UnmodifiableNavigableSet
 specifier|static
 specifier|final
