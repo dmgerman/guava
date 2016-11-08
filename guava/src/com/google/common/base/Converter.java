@@ -433,8 +433,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/**    * Returns the reversed view of this converter, which converts {@code this.convert(a)} back to a    * value roughly equivalent to {@code a}.    *    *<p>The returned converter is serializable if {@code this} converter is.    */
-comment|// TODO(kak): Make this method final
+comment|/**    * Returns the reversed view of this converter, which converts {@code this.convert(a)} back to a    * value roughly equivalent to {@code a}.    *    *<p>The returned converter is serializable if {@code this} converter is.    *    *<p><b>Note:</b> you should not override this method. It is non-final for legacy reasons.    */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|reverse ()
