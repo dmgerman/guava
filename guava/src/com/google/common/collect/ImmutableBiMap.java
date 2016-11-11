@@ -953,9 +953,9 @@ condition|)
 block|{
 name|entries
 operator|=
-name|ObjectArrays
+name|Arrays
 operator|.
-name|arraysCopyOf
+name|copyOf
 argument_list|(
 name|entries
 argument_list|,

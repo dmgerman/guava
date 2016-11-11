@@ -76,22 +76,6 @@ name|collect
 operator|.
 name|ObjectArrays
 operator|.
-name|arraysCopyOf
-import|;
-end_import
-
-begin_import
-import|import static
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|collect
-operator|.
-name|ObjectArrays
-operator|.
 name|checkElementsNotNull
 import|;
 end_import
@@ -1712,7 +1696,9 @@ condition|)
 block|{
 name|elements
 operator|=
-name|arraysCopyOf
+name|Arrays
+operator|.
+name|copyOf
 argument_list|(
 name|elements
 argument_list|,

@@ -1701,9 +1701,9 @@ condition|)
 block|{
 name|array
 operator|=
-name|ObjectArrays
+name|Arrays
 operator|.
-name|arraysCopyOf
+name|copyOf
 argument_list|(
 name|array
 argument_list|,

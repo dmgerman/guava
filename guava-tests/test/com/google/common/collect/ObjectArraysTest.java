@@ -1082,9 +1082,9 @@ name|Integer
 index|[]
 name|starting
 init|=
-name|ObjectArrays
+name|Arrays
 operator|.
-name|arraysCopyOf
+name|copyOf
 argument_list|(
 name|array1
 argument_list|,
@@ -1097,9 +1097,9 @@ name|Integer
 index|[]
 name|array2
 init|=
-name|ObjectArrays
+name|Arrays
 operator|.
-name|arraysCopyOf
+name|copyOf
 argument_list|(
 name|array1
 argument_list|,

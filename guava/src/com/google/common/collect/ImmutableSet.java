@@ -990,9 +990,9 @@ operator|.
 name|length
 operator|)
 condition|?
-name|ObjectArrays
+name|Arrays
 operator|.
-name|arraysCopyOf
+name|copyOf
 argument_list|(
 name|elements
 argument_list|,
