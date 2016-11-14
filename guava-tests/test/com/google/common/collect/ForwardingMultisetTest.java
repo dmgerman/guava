@@ -1664,12 +1664,15 @@ name|void
 name|testSize
 parameter_list|()
 block|{
+name|int
+name|unused
+init|=
 name|forward
 argument_list|()
 operator|.
 name|size
 argument_list|()
-expr_stmt|;
+decl_stmt|;
 name|assertEquals
 argument_list|(
 literal|"[size]"

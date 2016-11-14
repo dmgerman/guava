@@ -189,6 +189,14 @@ name|E
 argument_list|>
 block|{
 comment|// Query Operations
+comment|/**    * Returns the total number of all occurrences of all elements in this multiset.    *    *<p><b>Note:</b> this method does not return the number of<i>distinct elements</i> in the    * multiset, which is given by {@code entrySet().size()}.    */
+annotation|@
+name|Override
+DECL|method|size ()
+name|int
+name|size
+parameter_list|()
+function_decl|;
 comment|/**    * Returns the number of occurrences of an element in this multiset (the    *<i>count</i> of the element). Note that for an {@link Object#equals}-based    * multiset, this gives the same result as {@link Collections#frequency}    * (which would presumably perform more poorly).    *    *<p><b>Note:</b> the utility method {@link Iterables#frequency} generalizes    * this operation; it correctly delegates to this method when dealing with a    * multiset, but it can also accept any other iterable type.    *    * @param element the element to count occurrences of    * @return the number of occurrences of the element in this multiset; possibly    *     zero but never negative    */
 DECL|method|count (@ullable Object element)
 name|int
