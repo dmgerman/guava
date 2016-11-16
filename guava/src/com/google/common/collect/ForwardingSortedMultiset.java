@@ -137,13 +137,8 @@ name|elementSet
 parameter_list|()
 block|{
 return|return
-operator|(
-name|NavigableSet
-argument_list|<
-name|E
-argument_list|>
-operator|)
-name|super
+name|delegate
+argument_list|()
 operator|.
 name|elementSet
 argument_list|()
