@@ -89,7 +89,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests for {@link Objects#toStringHelper(Object)}.  *  * @author Jason Lee  */
+comment|/**  * Tests for {@link MoreObjects#toStringHelper(Object)}.  *  * @author Jason Lee  */
 end_comment
 
 begin_class
@@ -114,7 +114,7 @@ block|{
 name|String
 name|toTest
 init|=
-name|Objects
+name|MoreObjects
 operator|.
 name|toStringHelper
 argument_list|(
@@ -141,7 +141,7 @@ block|{
 name|String
 name|toTest
 init|=
-name|Objects
+name|MoreObjects
 operator|.
 name|toStringHelper
 argument_list|(
@@ -176,7 +176,7 @@ block|{
 name|String
 name|toTest
 init|=
-name|Objects
+name|MoreObjects
 operator|.
 name|toStringHelper
 argument_list|(
@@ -205,7 +205,7 @@ block|{
 name|String
 name|toTest
 init|=
-name|Objects
+name|MoreObjects
 operator|.
 name|toStringHelper
 argument_list|(
@@ -242,7 +242,7 @@ block|{
 name|String
 name|toTest
 init|=
-name|Objects
+name|MoreObjects
 operator|.
 name|toStringHelper
 argument_list|(
@@ -272,7 +272,7 @@ block|{
 name|String
 name|toTest
 init|=
-name|Objects
+name|MoreObjects
 operator|.
 name|toStringHelper
 argument_list|(
@@ -310,7 +310,7 @@ block|{
 name|String
 name|toTest
 init|=
-name|Objects
+name|MoreObjects
 operator|.
 name|toStringHelper
 argument_list|(
@@ -339,7 +339,7 @@ block|{
 name|String
 name|toTest
 init|=
-name|Objects
+name|MoreObjects
 operator|.
 name|toStringHelper
 argument_list|(
@@ -373,7 +373,7 @@ block|{
 name|String
 name|toTest
 init|=
-name|Objects
+name|MoreObjects
 operator|.
 name|toStringHelper
 argument_list|(
@@ -407,7 +407,7 @@ block|{}
 name|String
 name|toTest
 init|=
-name|Objects
+name|MoreObjects
 operator|.
 name|toStringHelper
 argument_list|(
@@ -439,7 +439,7 @@ block|{}
 name|String
 name|toTest
 init|=
-name|Objects
+name|MoreObjects
 operator|.
 name|toStringHelper
 argument_list|(
@@ -483,7 +483,7 @@ block|}
 name|String
 name|toTest
 init|=
-name|Objects
+name|MoreObjects
 operator|.
 name|toStringHelper
 argument_list|(
@@ -523,7 +523,7 @@ block|}
 name|String
 name|toTest
 init|=
-name|Objects
+name|MoreObjects
 operator|.
 name|toStringHelper
 argument_list|(
@@ -645,7 +645,7 @@ decl_stmt|;
 name|String
 name|toTest
 init|=
-name|Objects
+name|MoreObjects
 operator|.
 name|toStringHelper
 argument_list|(
@@ -753,7 +753,7 @@ decl_stmt|;
 name|String
 name|toTest
 init|=
-name|Objects
+name|MoreObjects
 operator|.
 name|toStringHelper
 argument_list|(
@@ -789,7 +789,7 @@ block|{
 name|String
 name|toTest
 init|=
-name|Objects
+name|MoreObjects
 operator|.
 name|toStringHelper
 argument_list|(
@@ -828,7 +828,7 @@ block|{
 name|String
 name|toTest
 init|=
-name|Objects
+name|MoreObjects
 operator|.
 name|toStringHelper
 argument_list|(
@@ -871,7 +871,7 @@ block|{
 name|String
 name|toTest
 init|=
-name|Objects
+name|MoreObjects
 operator|.
 name|toStringHelper
 argument_list|(
@@ -910,7 +910,7 @@ block|{
 name|String
 name|toTest
 init|=
-name|Objects
+name|MoreObjects
 operator|.
 name|toStringHelper
 argument_list|(
@@ -951,7 +951,7 @@ block|{
 name|String
 name|toTest
 init|=
-name|Objects
+name|MoreObjects
 operator|.
 name|toStringHelper
 argument_list|(
@@ -996,7 +996,7 @@ block|{
 name|String
 name|toTest
 init|=
-name|Objects
+name|MoreObjects
 operator|.
 name|toStringHelper
 argument_list|(
@@ -1085,7 +1085,7 @@ decl_stmt|;
 name|String
 name|toTest
 init|=
-name|Objects
+name|MoreObjects
 operator|.
 name|toStringHelper
 argument_list|(
@@ -1194,7 +1194,7 @@ decl_stmt|;
 name|String
 name|toTest
 init|=
-name|Objects
+name|MoreObjects
 operator|.
 name|toStringHelper
 argument_list|(
@@ -1267,12 +1267,12 @@ name|void
 name|testToString_addWithNullName
 parameter_list|()
 block|{
-name|Objects
+name|MoreObjects
 operator|.
 name|ToStringHelper
 name|helper
 init|=
-name|Objects
+name|MoreObjects
 operator|.
 name|toStringHelper
 argument_list|(
@@ -1318,7 +1318,7 @@ specifier|final
 name|String
 name|result
 init|=
-name|Objects
+name|MoreObjects
 operator|.
 name|toStringHelper
 argument_list|(
@@ -1355,7 +1355,7 @@ specifier|final
 name|String
 name|result
 init|=
-name|Objects
+name|MoreObjects
 operator|.
 name|toStringHelper
 argument_list|(
@@ -1396,12 +1396,12 @@ name|void
 name|testToString_ToStringTwice
 parameter_list|()
 block|{
-name|Objects
+name|MoreObjects
 operator|.
 name|ToStringHelper
 name|helper
 init|=
-name|Objects
+name|MoreObjects
 operator|.
 name|toStringHelper
 argument_list|(
@@ -1493,7 +1493,7 @@ block|{
 name|String
 name|toTest
 init|=
-name|Objects
+name|MoreObjects
 operator|.
 name|toStringHelper
 argument_list|(
@@ -1552,7 +1552,7 @@ block|{
 name|String
 name|toTest
 init|=
-name|Objects
+name|MoreObjects
 operator|.
 name|toStringHelper
 argument_list|(
@@ -1620,7 +1620,7 @@ specifier|final
 name|String
 name|result
 init|=
-name|Objects
+name|MoreObjects
 operator|.
 name|toStringHelper
 argument_list|(
@@ -1671,7 +1671,7 @@ specifier|final
 name|String
 name|result
 init|=
-name|Objects
+name|MoreObjects
 operator|.
 name|toStringHelper
 argument_list|(
@@ -1729,7 +1729,7 @@ block|{
 name|String
 name|toTest
 init|=
-name|Objects
+name|MoreObjects
 operator|.
 name|toStringHelper
 argument_list|(
@@ -1771,7 +1771,7 @@ block|{
 name|String
 name|toTest
 init|=
-name|Objects
+name|MoreObjects
 operator|.
 name|toStringHelper
 argument_list|(
@@ -1827,7 +1827,7 @@ block|{
 name|String
 name|toTest
 init|=
-name|Objects
+name|MoreObjects
 operator|.
 name|toStringHelper
 argument_list|(
@@ -1883,7 +1883,7 @@ block|{
 name|String
 name|toTest
 init|=
-name|Objects
+name|MoreObjects
 operator|.
 name|toStringHelper
 argument_list|(
@@ -1939,7 +1939,7 @@ block|{
 name|String
 name|toTest
 init|=
-name|Objects
+name|MoreObjects
 operator|.
 name|toStringHelper
 argument_list|(
@@ -1979,7 +1979,7 @@ block|{
 name|String
 name|toTest
 init|=
-name|Objects
+name|MoreObjects
 operator|.
 name|toStringHelper
 argument_list|(
@@ -2029,7 +2029,7 @@ block|{
 name|String
 name|toTest
 init|=
-name|Objects
+name|MoreObjects
 operator|.
 name|toStringHelper
 argument_list|(
@@ -2084,7 +2084,7 @@ decl_stmt|;
 name|String
 name|toTest1
 init|=
-name|Objects
+name|MoreObjects
 operator|.
 name|toStringHelper
 argument_list|(
@@ -2123,7 +2123,7 @@ decl_stmt|;
 name|String
 name|toTest2
 init|=
-name|Objects
+name|MoreObjects
 operator|.
 name|toStringHelper
 argument_list|(
@@ -2186,7 +2186,7 @@ block|{
 name|String
 name|toTest
 init|=
-name|Objects
+name|MoreObjects
 operator|.
 name|toStringHelper
 argument_list|(

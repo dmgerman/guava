@@ -41,7 +41,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Some microbenchmarks for the {@link Objects.ToStringHelper} class.  *  * @author Osvaldo Doederlein  */
+comment|/**  * Some microbenchmarks for the {@link MoreObjects.ToStringHelper} class.  *  * @author Osvaldo Doederlein  */
 end_comment
 
 begin_class
