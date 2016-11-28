@@ -1326,11 +1326,32 @@ argument_list|(
 name|size
 argument_list|)
 operator|.
-name|getCorrectLastElement
+name|swapWithConceptuallyLastElement
 argument_list|(
 name|actualLastElement
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|lastElementAt
+operator|==
+name|index
+condition|)
+block|{
+comment|// 'actualLastElement' is now at 'lastElementAt', and the element that was at 'lastElementAt'
+comment|// is now at the end of queue. If that's the element we wanted to remove in the first place,
+comment|// don't try to (incorrectly) trickle it. Instead, just delete it and we're done.
+name|queue
+index|[
+name|size
+index|]
+operator|=
+literal|null
+expr_stmt|;
+return|return
+literal|null
+return|;
+block|}
 name|E
 name|toTrickle
 init|=
@@ -2345,10 +2366,10 @@ return|return
 name|index
 return|;
 block|}
-comment|/**      * Returns the conceptually correct last element of the heap.      *      *<p>Since the last element of the array is actually in the      * middle of the sorted structure, a childless uncle node could be      * smaller, which would corrupt the invariant if this element      * becomes the new parent of the uncle. In that case, we first      * switch the last element with its uncle, before returning.      */
-DECL|method|getCorrectLastElement (E actualLastElement)
+comment|/**      * Swap {@code actualLastElement} with the conceptually correct last element of the heap.      * Returns the index that {@code actualLastElement} now resides in.      *      *<p>Since the last element of the array is actually in the      * middle of the sorted structure, a childless uncle node could be      * smaller, which would corrupt the invariant if this element      * becomes the new parent of the uncle. In that case, we first      * switch the last element with its uncle, before returning.      */
+DECL|method|swapWithConceptuallyLastElement (E actualLastElement)
 name|int
-name|getCorrectLastElement
+name|swapWithConceptuallyLastElement
 parameter_list|(
 name|E
 name|actualLastElement
@@ -3025,6 +3046,19 @@ literal|3
 argument_list|)
 expr_stmt|;
 block|}
+if|if
+condition|(
+operator|!
+name|containsExact
+argument_list|(
+name|skipMe
+argument_list|,
+name|moved
+operator|.
+name|toTrickle
+argument_list|)
+condition|)
+block|{
 name|forgetMeNot
 operator|.
 name|add
@@ -3034,6 +3068,7 @@ operator|.
 name|toTrickle
 argument_list|)
 expr_stmt|;
+block|}
 name|skipMe
 operator|.
 name|add
