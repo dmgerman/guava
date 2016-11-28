@@ -462,6 +462,22 @@ name|int
 name|size
 parameter_list|)
 block|{
+if|if
+condition|(
+name|size
+operator|<
+literal|0
+condition|)
+block|{
+comment|// overflow - should be OutOfMemoryError but GWT/j2cl don't support it
+throw|throw
+operator|new
+name|AssertionError
+argument_list|(
+literal|"Cannot increase internal buffer any further"
+argument_list|)
+throw|;
+block|}
 name|char
 index|[]
 name|copy
