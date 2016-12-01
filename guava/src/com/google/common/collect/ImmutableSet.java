@@ -152,6 +152,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|j2objc
+operator|.
+name|annotations
+operator|.
+name|RetainedWith
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -1580,6 +1594,8 @@ parameter_list|()
 function_decl|;
 annotation|@
 name|LazyInit
+annotation|@
+name|RetainedWith
 DECL|field|asList
 specifier|private
 specifier|transient
