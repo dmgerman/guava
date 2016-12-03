@@ -219,7 +219,7 @@ name|nullableReference
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the equivalent {@code com.google.common.base.Optional} value to the given {@code    * java.util.Optional}, or {@code null} if the argument is null.    */
+comment|/**    * Returns the equivalent {@code com.google.common.base.Optional} value to the given {@code    * java.util.Optional}, or {@code null} if the argument is null.    *    * @since 21.0    */
 annotation|@
 name|Nullable
 DECL|method|fromJavaUtil (@ullable java.util.Optional<T> javaUtilOptional)
@@ -267,7 +267,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the equivalent {@code java.util.Optional} value to the given {@code    * com.google.common.base.Optional}, or {@code null} if the argument is null.    */
+comment|/**    * Returns the equivalent {@code java.util.Optional} value to the given {@code    * com.google.common.base.Optional}, or {@code null} if the argument is null.    *    *<p>If {@code googleOptional} is known to be non-null, use {@code googleOptional.toJavaUtil()}    * instead.    *    *<p>Unfortunately, the method reference {@code Optional::toJavaUtil} will not work, because it    * could refer to either the static or instance version of this method. Write out the lambda    * expression {@code o -> Optional.toJavaUtil(o)} instead.    *    * @since 21.0    */
 annotation|@
 name|Nullable
 DECL|method|toJavaUtil (@ullable Optional<T> googleOptional)
@@ -296,27 +296,16 @@ name|googleOptional
 parameter_list|)
 block|{
 return|return
-operator|(
 name|googleOptional
 operator|==
 literal|null
-operator|)
 condition|?
 literal|null
 else|:
-name|java
-operator|.
-name|util
-operator|.
-name|Optional
-operator|.
-name|ofNullable
-argument_list|(
 name|googleOptional
 operator|.
-name|orNull
+name|toJavaUtil
 argument_list|()
-argument_list|)
 return|;
 block|}
 DECL|method|Optional ()
@@ -432,6 +421,34 @@ argument_list|>
 name|function
 parameter_list|)
 function_decl|;
+comment|/**    * Returns the equivalent {@code java.util.Optional} value to this optional.    *    *<p>Unfortunately, the method reference {@code Optional::toJavaUtil} will not work, because it    * could refer to either the static or instance version of this method. Write out the lambda    * expression {@code o -> o.toJavaUtil()} instead.    *    * @since 21.0    */
+DECL|method|toJavaUtil ()
+specifier|public
+name|java
+operator|.
+name|util
+operator|.
+name|Optional
+argument_list|<
+name|T
+argument_list|>
+name|toJavaUtil
+parameter_list|()
+block|{
+return|return
+name|java
+operator|.
+name|util
+operator|.
+name|Optional
+operator|.
+name|ofNullable
+argument_list|(
+name|orNull
+argument_list|()
+argument_list|)
+return|;
+block|}
 comment|/**    * Returns {@code true} if {@code object} is an {@code Optional} instance, and either the    * contained references are {@linkplain Object#equals equal} to each other or both are absent.    * Note that {@code Optional} instances of differing parameterized types can be equal.    *    *<p><b>Comparison to {@code java.util.Optional}:</b> no differences.    */
 annotation|@
 name|Override
