@@ -62,6 +62,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CompatibleWith
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -153,10 +167,15 @@ name|isEmpty
 parameter_list|()
 function_decl|;
 comment|/**    * Returns {@code true} if this multimap contains at least one key-value pair    * with the key {@code key}.    */
-DECL|method|containsKey (@ullable Object key)
+DECL|method|containsKey (@ompatibleWithR) @ullable Object key)
 name|boolean
 name|containsKey
 parameter_list|(
+annotation|@
+name|CompatibleWith
+argument_list|(
+literal|"K"
+argument_list|)
 annotation|@
 name|Nullable
 name|Object
@@ -164,10 +183,15 @@ name|key
 parameter_list|)
 function_decl|;
 comment|/**    * Returns {@code true} if this multimap contains at least one key-value pair    * with the value {@code value}.    */
-DECL|method|containsValue (@ullable Object value)
+DECL|method|containsValue (@ompatibleWithR) @ullable Object value)
 name|boolean
 name|containsValue
 parameter_list|(
+annotation|@
+name|CompatibleWith
+argument_list|(
+literal|"V"
+argument_list|)
 annotation|@
 name|Nullable
 name|Object
@@ -175,15 +199,25 @@ name|value
 parameter_list|)
 function_decl|;
 comment|/**    * Returns {@code true} if this multimap contains at least one key-value pair    * with the key {@code key} and the value {@code value}.    */
-DECL|method|containsEntry (@ullable Object key, @Nullable Object value)
+DECL|method|containsEntry ( @ompatibleWithR) @ullable Object key, @CompatibleWith(R) @Nullable Object value)
 name|boolean
 name|containsEntry
 parameter_list|(
+annotation|@
+name|CompatibleWith
+argument_list|(
+literal|"K"
+argument_list|)
 annotation|@
 name|Nullable
 name|Object
 name|key
 parameter_list|,
+annotation|@
+name|CompatibleWith
+argument_list|(
+literal|"V"
+argument_list|)
 annotation|@
 name|Nullable
 name|Object
@@ -212,15 +246,25 @@ function_decl|;
 comment|/**    * Removes a single key-value pair with the key {@code key} and the value    * {@code value} from this multimap, if such exists. If multiple key-value    * pairs in the multimap fit this description, which one is removed is    * unspecified.    *    * @return {@code true} if the multimap changed    */
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|remove (@ullable Object key, @Nullable Object value)
+DECL|method|remove ( @ompatibleWithR) @ullable Object key, @CompatibleWith(R) @Nullable Object value)
 name|boolean
 name|remove
 parameter_list|(
+annotation|@
+name|CompatibleWith
+argument_list|(
+literal|"K"
+argument_list|)
 annotation|@
 name|Nullable
 name|Object
 name|key
 parameter_list|,
+annotation|@
+name|CompatibleWith
+argument_list|(
+literal|"V"
+argument_list|)
 annotation|@
 name|Nullable
 name|Object
@@ -296,13 +340,18 @@ function_decl|;
 comment|/**    * Removes all values associated with the key {@code key}.    *    *<p>Once this method returns, {@code key} will not be mapped to any values,    * so it will not appear in {@link #keySet()}, {@link #asMap()}, or any other    * views.    *    * @return the values that were removed (possibly empty). The returned    *     collection<i>may</i> be modifiable, but updating it will have no    *     effect on the multimap.    */
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|removeAll (@ullable Object key)
+DECL|method|removeAll (@ompatibleWithR) @ullable Object key)
 name|Collection
 argument_list|<
 name|V
 argument_list|>
 name|removeAll
 parameter_list|(
+annotation|@
+name|CompatibleWith
+argument_list|(
+literal|"K"
+argument_list|)
 annotation|@
 name|Nullable
 name|Object
