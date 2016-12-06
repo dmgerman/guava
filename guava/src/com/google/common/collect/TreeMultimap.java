@@ -540,7 +540,9 @@ name|key
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the comparator that orders the multimap keys.    */
+comment|/**    * Returns the comparator that orders the multimap keys.    *    * @deprecated Use {@code ((NavigableSet<K>) multimap.keySet()).comparator()} instead. This method    *     is scheduled for removal in April 2019.    */
+annotation|@
+name|Deprecated
 DECL|method|keyComparator ()
 specifier|public
 name|Comparator
