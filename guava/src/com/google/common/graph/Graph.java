@@ -32,6 +32,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CompatibleWith
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -117,64 +131,94 @@ comment|//
 comment|// Element-level accessors
 comment|//
 comment|/**    * Returns the nodes which have an incident edge in common with {@code node} in this graph.    *    * @throws IllegalArgumentException if {@code node} is not an element of this graph    */
-DECL|method|adjacentNodes (Object node)
+DECL|method|adjacentNodes (@ompatibleWithR) Object node)
 name|Set
 argument_list|<
 name|N
 argument_list|>
 name|adjacentNodes
 parameter_list|(
+annotation|@
+name|CompatibleWith
+argument_list|(
+literal|"N"
+argument_list|)
 name|Object
 name|node
 parameter_list|)
 function_decl|;
 comment|/**    * Returns all nodes in this graph adjacent to {@code node} which can be reached by traversing    * {@code node}'s incoming edges<i>against</i> the direction (if any) of the edge.    *    *<p>In an undirected graph, this is equivalent to {@link #adjacentNodes(Object)}.    *    * @throws IllegalArgumentException if {@code node} is not an element of this graph    */
-DECL|method|predecessors (Object node)
+DECL|method|predecessors (@ompatibleWithR) Object node)
 name|Set
 argument_list|<
 name|N
 argument_list|>
 name|predecessors
 parameter_list|(
+annotation|@
+name|CompatibleWith
+argument_list|(
+literal|"N"
+argument_list|)
 name|Object
 name|node
 parameter_list|)
 function_decl|;
 comment|/**    * Returns all nodes in this graph adjacent to {@code node} which can be reached by traversing    * {@code node}'s outgoing edges in the direction (if any) of the edge.    *    *<p>In an undirected graph, this is equivalent to {@link #adjacentNodes(Object)}.    *    *<p>This is<i>not</i> the same as "all nodes reachable from {@code node} by following outgoing    * edges". For that functionality, see {@link Graphs#reachableNodes(Graph, Object)}.    *    * @throws IllegalArgumentException if {@code node} is not an element of this graph    */
-DECL|method|successors (Object node)
+DECL|method|successors (@ompatibleWithR) Object node)
 name|Set
 argument_list|<
 name|N
 argument_list|>
 name|successors
 parameter_list|(
+annotation|@
+name|CompatibleWith
+argument_list|(
+literal|"N"
+argument_list|)
 name|Object
 name|node
 parameter_list|)
 function_decl|;
 comment|/**    * Returns the count of {@code node}'s incident edges, counting self-loops twice (equivalently,    * the number of times an edge touches {@code node}).    *    *<p>For directed graphs, this is equal to {@code inDegree(node) + outDegree(node)}.    *    *<p>For undirected graphs, this is equal to {@code adjacentNodes(node).size()} + (1 if {@code    * node} has an incident self-loop, 0 otherwise).    *    *<p>If the count is greater than {@code Integer.MAX_VALUE}, returns {@code Integer.MAX_VALUE}.    *    * @throws IllegalArgumentException if {@code node} is not an element of this graph    */
-DECL|method|degree (Object node)
+DECL|method|degree (@ompatibleWithR) Object node)
 name|int
 name|degree
 parameter_list|(
+annotation|@
+name|CompatibleWith
+argument_list|(
+literal|"N"
+argument_list|)
 name|Object
 name|node
 parameter_list|)
 function_decl|;
 comment|/**    * Returns the count of {@code node}'s incoming edges (equal to {@code predecessors(node).size()})    * in a directed graph. In an undirected graph, returns the {@link #degree(Object)}.    *    *<p>If the count is greater than {@code Integer.MAX_VALUE}, returns {@code Integer.MAX_VALUE}.    *    * @throws IllegalArgumentException if {@code node} is not an element of this graph    */
-DECL|method|inDegree (Object node)
+DECL|method|inDegree (@ompatibleWithR) Object node)
 name|int
 name|inDegree
 parameter_list|(
+annotation|@
+name|CompatibleWith
+argument_list|(
+literal|"N"
+argument_list|)
 name|Object
 name|node
 parameter_list|)
 function_decl|;
 comment|/**    * Returns the count of {@code node}'s outgoing edges (equal to {@code successors(node).size()})    * in a directed graph. In an undirected graph, returns the {@link #degree(Object)}.    *    *<p>If the count is greater than {@code Integer.MAX_VALUE}, returns {@code Integer.MAX_VALUE}.    *    * @throws IllegalArgumentException if {@code node} is not an element of this graph    */
-DECL|method|outDegree (Object node)
+DECL|method|outDegree (@ompatibleWithR) Object node)
 name|int
 name|outDegree
 parameter_list|(
+annotation|@
+name|CompatibleWith
+argument_list|(
+literal|"N"
+argument_list|)
 name|Object
 name|node
 parameter_list|)

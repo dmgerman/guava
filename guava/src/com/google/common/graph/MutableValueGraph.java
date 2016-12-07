@@ -44,6 +44,20 @@ name|CanIgnoreReturnValue
 import|;
 end_import
 
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CompatibleWith
+import|;
+end_import
+
 begin_comment
 comment|/**  * A subinterface of {@link ValueGraph} which adds mutation methods. When mutation is not required,  * users should prefer the {@link ValueGraph} interface.  *  * @author James Sexton  * @param<N> Node parameter type  * @param<V> Value parameter type  * @since 20.0  */
 end_comment
@@ -99,10 +113,15 @@ function_decl|;
 comment|/**    * Removes {@code node} if it is present; all edges incident to {@code node} will also be removed.    *    * @return {@code true} if the graph was modified as a result of this call    */
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|removeNode (Object node)
+DECL|method|removeNode (@ompatibleWithR) Object node)
 name|boolean
 name|removeNode
 parameter_list|(
+annotation|@
+name|CompatibleWith
+argument_list|(
+literal|"N"
+argument_list|)
 name|Object
 name|node
 parameter_list|)
@@ -110,13 +129,23 @@ function_decl|;
 comment|/**    * Removes the edge connecting {@code nodeU} to {@code nodeV}, if it is present.    *    * @return the value previously associated with the edge connecting {@code nodeU} to {@code    *     nodeV}, or null if there was no such edge.    */
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|removeEdge (Object nodeU, Object nodeV)
+DECL|method|removeEdge (@ompatibleWithR) Object nodeU, @CompatibleWith(R) Object nodeV)
 name|V
 name|removeEdge
 parameter_list|(
+annotation|@
+name|CompatibleWith
+argument_list|(
+literal|"N"
+argument_list|)
 name|Object
 name|nodeU
 parameter_list|,
+annotation|@
+name|CompatibleWith
+argument_list|(
+literal|"N"
+argument_list|)
 name|Object
 name|nodeV
 parameter_list|)

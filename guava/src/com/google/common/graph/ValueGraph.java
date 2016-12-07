@@ -32,6 +32,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CompatibleWith
+import|;
+end_import
+
+begin_import
+import|import
 name|javax
 operator|.
 name|annotation
@@ -63,25 +77,45 @@ name|N
 argument_list|>
 block|{
 comment|/**    * If there is an edge connecting {@code nodeU} to {@code nodeV}, returns the non-null value    * associated with that edge.    *    *<p>In an undirected graph, this is equal to {@code edgeValue(nodeV, nodeU)}.    *    * @throws IllegalArgumentException if there is no edge connecting {@code nodeU} to {@code nodeV}.    */
-DECL|method|edgeValue (Object nodeU, Object nodeV)
+DECL|method|edgeValue (@ompatibleWithR) Object nodeU, @CompatibleWith(R) Object nodeV)
 name|V
 name|edgeValue
 parameter_list|(
+annotation|@
+name|CompatibleWith
+argument_list|(
+literal|"N"
+argument_list|)
 name|Object
 name|nodeU
 parameter_list|,
+annotation|@
+name|CompatibleWith
+argument_list|(
+literal|"N"
+argument_list|)
 name|Object
 name|nodeV
 parameter_list|)
 function_decl|;
 comment|/**    * If there is an edge connecting {@code nodeU} to {@code nodeV}, returns the non-null value    * associated with that edge; otherwise, returns {@code defaultValue}.    *    *<p>In an undirected graph, this is equal to {@code edgeValueOrDefault(nodeV, nodeU,    * defaultValue)}.    */
-DECL|method|edgeValueOrDefault (Object nodeU, Object nodeV, @Nullable V defaultValue)
+DECL|method|edgeValueOrDefault (@ompatibleWithR) Object nodeU, @CompatibleWith(R) Object nodeV, @Nullable V defaultValue)
 name|V
 name|edgeValueOrDefault
 parameter_list|(
+annotation|@
+name|CompatibleWith
+argument_list|(
+literal|"N"
+argument_list|)
 name|Object
 name|nodeU
 parameter_list|,
+annotation|@
+name|CompatibleWith
+argument_list|(
+literal|"N"
+argument_list|)
 name|Object
 name|nodeV
 parameter_list|,
