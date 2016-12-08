@@ -2809,6 +2809,14 @@ init|=
 operator|-
 literal|1
 decl_stmt|;
+DECL|field|nextCursor
+specifier|private
+name|int
+name|nextCursor
+init|=
+operator|-
+literal|1
+decl_stmt|;
 DECL|field|expectedModCount
 specifier|private
 name|int
@@ -2816,6 +2824,8 @@ name|expectedModCount
 init|=
 name|modCount
 decl_stmt|;
+comment|// The same element is not allowed in both forgetMeNot and skipMe, but duplicates are allowed in
+comment|// either of them, up to the same multiplicity as the queue.
 DECL|field|forgetMeNot
 specifier|private
 name|Queue
@@ -2853,14 +2863,16 @@ block|{
 name|checkModCount
 argument_list|()
 expr_stmt|;
-return|return
-operator|(
 name|nextNotInSkipMe
 argument_list|(
 name|cursor
 operator|+
 literal|1
 argument_list|)
+expr_stmt|;
+return|return
+operator|(
+name|nextCursor
 operator|<
 name|size
 argument_list|()
@@ -2892,19 +2904,16 @@ block|{
 name|checkModCount
 argument_list|()
 expr_stmt|;
-name|int
-name|tempCursor
-init|=
 name|nextNotInSkipMe
 argument_list|(
 name|cursor
 operator|+
 literal|1
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 if|if
 condition|(
-name|tempCursor
+name|nextCursor
 operator|<
 name|size
 argument_list|()
@@ -2912,7 +2921,7 @@ condition|)
 block|{
 name|cursor
 operator|=
-name|tempCursor
+name|nextCursor
 expr_stmt|;
 name|canRemove
 operator|=
@@ -3049,7 +3058,7 @@ block|}
 if|if
 condition|(
 operator|!
-name|containsExact
+name|foundAndRemovedExactReference
 argument_list|(
 name|skipMe
 argument_list|,
@@ -3069,6 +3078,19 @@ name|toTrickle
 argument_list|)
 expr_stmt|;
 block|}
+if|if
+condition|(
+operator|!
+name|foundAndRemovedExactReference
+argument_list|(
+name|forgetMeNot
+argument_list|,
+name|moved
+operator|.
+name|replaced
+argument_list|)
+condition|)
+block|{
 name|skipMe
 operator|.
 name|add
@@ -3079,7 +3101,11 @@ name|replaced
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 name|cursor
+operator|--
+expr_stmt|;
+name|nextCursor
 operator|--
 expr_stmt|;
 block|}
@@ -3100,11 +3126,11 @@ literal|null
 expr_stmt|;
 block|}
 block|}
-comment|// Finds only this exact instance, not others that are equals()
-DECL|method|containsExact (Iterable<E> elements, E target)
+comment|/** Returns true if an exact reference (==) was found and removed from the supplied iterable. */
+DECL|method|foundAndRemovedExactReference (Iterable<E> elements, E target)
 specifier|private
 name|boolean
-name|containsExact
+name|foundAndRemovedExactReference
 parameter_list|(
 name|Iterable
 argument_list|<
@@ -3118,12 +3144,32 @@ parameter_list|)
 block|{
 for|for
 control|(
+name|Iterator
+argument_list|<
 name|E
-name|element
-range|:
+argument_list|>
+name|it
+init|=
 name|elements
+operator|.
+name|iterator
+argument_list|()
+init|;
+name|it
+operator|.
+name|hasNext
+argument_list|()
+condition|;
 control|)
 block|{
+name|E
+name|element
+init|=
+name|it
+operator|.
+name|next
+argument_list|()
+decl_stmt|;
 if|if
 condition|(
 name|element
@@ -3131,6 +3177,11 @@ operator|==
 name|target
 condition|)
 block|{
+name|it
+operator|.
+name|remove
+argument_list|()
+expr_stmt|;
 return|return
 literal|true
 return|;
@@ -3140,8 +3191,9 @@ return|return
 literal|false
 return|;
 block|}
-comment|// Removes only this exact instance, not others that are equals()
+comment|/** Removes only this exact instance, not others that are equals() */
 DECL|method|removeExact (Object target)
+specifier|private
 name|boolean
 name|removeExact
 parameter_list|(
@@ -3189,6 +3241,7 @@ literal|false
 return|;
 block|}
 DECL|method|checkModCount ()
+specifier|private
 name|void
 name|checkModCount
 parameter_list|()
@@ -3207,15 +3260,22 @@ argument_list|()
 throw|;
 block|}
 block|}
-comment|/**      * Returns the index of the first element after {@code c} that is not in      * {@code skipMe} and returns {@code size()} if there is no such element.      */
+comment|/**      * Advances nextCursor to the index of the first element after {@code c} that is not in      * {@code skipMe} and returns {@code size()} if there is no such element.      */
 DECL|method|nextNotInSkipMe (int c)
 specifier|private
-name|int
+name|void
 name|nextNotInSkipMe
 parameter_list|(
 name|int
 name|c
 parameter_list|)
+block|{
+if|if
+condition|(
+name|nextCursor
+operator|<
+name|c
+condition|)
 block|{
 if|if
 condition|(
@@ -3231,7 +3291,7 @@ operator|<
 name|size
 argument_list|()
 operator|&&
-name|containsExact
+name|foundAndRemovedExactReference
 argument_list|(
 name|skipMe
 argument_list|,
@@ -3247,9 +3307,11 @@ operator|++
 expr_stmt|;
 block|}
 block|}
-return|return
+name|nextCursor
+operator|=
 name|c
-return|;
+expr_stmt|;
+block|}
 block|}
 block|}
 comment|/**    * Returns an iterator over the elements contained in this collection,    *<i>in no particular order</i>.    *    *<p>The iterator is<i>fail-fast</i>: If the MinMaxPriorityQueue is modified    * at any time after the iterator is created, in any way except through the    * iterator's own remove method, the iterator will generally throw a    * {@link ConcurrentModificationException}. Thus, in the face of concurrent    * modification, the iterator fails quickly and cleanly, rather than risking    * arbitrary, non-deterministic behavior at an undetermined time in the    * future.    *    *<p>Note that the fail-fast behavior of an iterator cannot be guaranteed    * as it is, generally speaking, impossible to make any hard guarantees in the    * presence of unsynchronized concurrent modification.  Fail-fast iterators    * throw {@code ConcurrentModificationException} on a best-effort basis.    * Therefore, it would be wrong to write a program that depended on this    * exception for its correctness:<i>the fail-fast behavior of iterators    * should be used only to detect bugs.</i>    *    * @return an iterator over the elements contained in this collection    */
