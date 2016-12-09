@@ -194,7 +194,7 @@ name|expectedValuesPerKey
 init|=
 name|DEFAULT_VALUES_PER_KEY
 decl_stmt|;
-comment|/**    * Creates a new, empty {@code HashMultimap} with the default initial    * capacities.    */
+comment|/**    * Creates a new, empty {@code HashMultimap} with the default initial capacities.    *    *<p>This method will soon be deprecated in favor of {@code    * MultimapBuilder.hashKeys().hashSetValues().build()}.    */
 DECL|method|create ()
 specifier|public
 specifier|static
@@ -223,7 +223,7 @@ argument_list|>
 argument_list|()
 return|;
 block|}
-comment|/**    * Constructs an empty {@code HashMultimap} with enough capacity to hold the    * specified numbers of keys and values without rehashing.    *    * @param expectedKeys the expected number of distinct keys    * @param expectedValuesPerKey the expected average number of values per key    * @throws IllegalArgumentException if {@code expectedKeys} or {@code    *      expectedValuesPerKey} is negative    */
+comment|/**    * Constructs an empty {@code HashMultimap} with enough capacity to hold the specified numbers of    * keys and values without rehashing.    *    *<p>This method will soon be deprecated in favor of {@code    * MultimapBuilder.hashKeys(expectedKeys).hashSetValues(expectedValuesPerKey).build()}.    *    * @param expectedKeys the expected number of distinct keys    * @param expectedValuesPerKey the expected average number of values per key    * @throws IllegalArgumentException if {@code expectedKeys} or {@code expectedValuesPerKey} is    *     negative    */
 DECL|method|create (int expectedKeys, int expectedValuesPerKey)
 specifier|public
 specifier|static
@@ -262,7 +262,7 @@ name|expectedValuesPerKey
 argument_list|)
 return|;
 block|}
-comment|/**    * Constructs a {@code HashMultimap} with the same mappings as the specified    * multimap. If a key-value mapping appears multiple times in the input    * multimap, it only appears once in the constructed multimap.    *    * @param multimap the multimap whose contents are copied to this multimap    */
+comment|/**    * Constructs a {@code HashMultimap} with the same mappings as the specified multimap. If a    * key-value mapping appears multiple times in the input multimap, it only appears once in the    * constructed multimap.    *    *<p>This method will soon be deprecated in favor of {@code    * MultimapBuilder.hashKeys().hashSetValues().build(multimap)}.    *    * @param multimap the multimap whose contents are copied to this multimap    */
 DECL|method|create (Multimap<? extends K, ? extends V> multimap)
 specifier|public
 specifier|static

@@ -205,7 +205,7 @@ specifier|transient
 name|int
 name|expectedValuesPerKey
 decl_stmt|;
-comment|/**    * Creates a new, empty {@code ArrayListMultimap} with the default initial    * capacities.    */
+comment|/**    * Creates a new, empty {@code ArrayListMultimap} with the default initial capacities.    *    *<p>This method will soon be deprecated in favor of {@code    * MultimapBuilder.hashKeys().arrayListValues().build()}.    */
 DECL|method|create ()
 specifier|public
 specifier|static
@@ -234,7 +234,7 @@ argument_list|>
 argument_list|()
 return|;
 block|}
-comment|/**    * Constructs an empty {@code ArrayListMultimap} with enough capacity to hold    * the specified numbers of keys and values without resizing.    *    * @param expectedKeys the expected number of distinct keys    * @param expectedValuesPerKey the expected average number of values per key    * @throws IllegalArgumentException if {@code expectedKeys} or {@code    *      expectedValuesPerKey} is negative    */
+comment|/**    * Constructs an empty {@code ArrayListMultimap} with enough capacity to hold the specified    * numbers of keys and values without resizing.    *    *<p>This method will soon be deprecated in favor of {@code    * MultimapBuilder.hashKeys(expectedKeys).arrayListValues(expectedValuesPerKey).build()}.    *    * @param expectedKeys the expected number of distinct keys    * @param expectedValuesPerKey the expected average number of values per key    * @throws IllegalArgumentException if {@code expectedKeys} or {@code expectedValuesPerKey} is    *     negative    */
 DECL|method|create (int expectedKeys, int expectedValuesPerKey)
 specifier|public
 specifier|static
@@ -273,7 +273,7 @@ name|expectedValuesPerKey
 argument_list|)
 return|;
 block|}
-comment|/**    * Constructs an {@code ArrayListMultimap} with the same mappings as the    * specified multimap.    *    * @param multimap the multimap whose contents are copied to this multimap    */
+comment|/**    * Constructs an {@code ArrayListMultimap} with the same mappings as the specified multimap.    *    *<p>This method will soon be deprecated in favor of {@code    * MultimapBuilder.hashKeys().arrayListValues().build(multimap)}.    *    * @param multimap the multimap whose contents are copied to this multimap    */
 DECL|method|create (Multimap<? extends K, ? extends V> multimap)
 specifier|public
 specifier|static
