@@ -230,16 +230,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|Set
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|Spliterator
 import|;
 end_import
@@ -2675,7 +2665,7 @@ annotation|@
 name|Override
 DECL|method|elementSet ()
 specifier|public
-name|Set
+name|ImmutableSet
 argument_list|<
 name|K
 argument_list|>

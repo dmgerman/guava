@@ -1584,6 +1584,25 @@ return|;
 block|}
 end_function
 
+begin_comment
+comment|/** @since 21.0 (present with return type {@code Set} since 2.0) */
+end_comment
+
+begin_function_decl
+annotation|@
+name|Override
+DECL|method|elementSet ()
+specifier|public
+specifier|abstract
+name|ImmutableSet
+argument_list|<
+name|E
+argument_list|>
+name|elementSet
+parameter_list|()
+function_decl|;
+end_function_decl
+
 begin_decl_stmt
 annotation|@
 name|LazyInit
