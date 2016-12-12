@@ -26,16 +26,6 @@ name|Nullable
 import|;
 end_import
 
-begin_import
-import|import
-name|jsinterop
-operator|.
-name|annotations
-operator|.
-name|JsMethod
-import|;
-end_import
-
 begin_comment
 comment|/**  * Holder for extra methods of {@code Objects} only in web.  */
 end_comment
@@ -46,12 +36,9 @@ specifier|abstract
 class|class
 name|ExtraObjectsMethodsForWeb
 block|{
-annotation|@
-name|JsMethod
 DECL|method|equal (@ullable String a, @Nullable String b)
 specifier|public
 specifier|static
-specifier|native
 name|boolean
 name|equal
 parameter_list|(
@@ -65,8 +52,13 @@ name|Nullable
 name|String
 name|b
 parameter_list|)
-comment|/*-{     return a == b;   }-*/
-function_decl|;
+block|{
+return|return
+name|a
+operator|==
+name|b
+return|;
+block|}
 block|}
 end_class
 
