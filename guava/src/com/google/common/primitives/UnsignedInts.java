@@ -203,7 +203,7 @@ operator|&
 name|INT_MASK
 return|;
 block|}
-comment|/**    * Returns the {@code int} value that, when treated as unsigned, is equal to {@code value}, if    * possible.    *    * @param value a value between 0 and 2<sup>32</sup>-1 inclusive    * @return the {@code byte} value that, when treated as unsigned, equals {@code value}    * @throws IllegalArgumentException if {@code value} is negative or greater than 255    * @since 21.0    */
+comment|/**    * Returns the {@code int} value that, when treated as unsigned, is equal to {@code value}, if    * possible.    *    * @param value a value between 0 and 2<sup>32</sup>-1 inclusive    * @return the {@code int} value that, when treated as unsigned, equals {@code value}    * @throws IllegalArgumentException if {@code value} is negative or greater than or equal to    *     2<sup>32</sup>    * @since 21.0    */
 DECL|method|checkedCast (long value)
 specifier|public
 specifier|static
