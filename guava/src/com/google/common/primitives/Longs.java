@@ -802,6 +802,56 @@ return|return
 name|max
 return|;
 block|}
+comment|/**    * Returns the value nearest to {@code value} which is within the closed range {@code [min..max]}.    *    *<p>If {@code value} is within the range {@code [min..max]}, {@code value} is returned    * unchanged. If {@code value} is less than {@code min}, {@code min} is returned, and if    * {@code value} is greater than {@code max}, {@code max} is returned.    *    * @param value the {@code long} value to constrain    * @param min the lower bound (inclusive) of the range to constrain {@code value} to    * @param max the upper bound (inclusive) of the range to constrain {@code value} to    * @throws IllegalArgumentException if {@code min> max}    * @since 21.0    */
+annotation|@
+name|Beta
+DECL|method|constrainToRange (long value, long min, long max)
+specifier|public
+specifier|static
+name|long
+name|constrainToRange
+parameter_list|(
+name|long
+name|value
+parameter_list|,
+name|long
+name|min
+parameter_list|,
+name|long
+name|max
+parameter_list|)
+block|{
+name|checkArgument
+argument_list|(
+name|min
+operator|<=
+name|max
+argument_list|,
+literal|"min (%s) must be less than or equal to max (%s)"
+argument_list|,
+name|min
+argument_list|,
+name|max
+argument_list|)
+expr_stmt|;
+return|return
+name|Math
+operator|.
+name|min
+argument_list|(
+name|Math
+operator|.
+name|max
+argument_list|(
+name|value
+argument_list|,
+name|min
+argument_list|)
+argument_list|,
+name|max
+argument_list|)
+return|;
+block|}
 comment|/**    * Returns the values from each provided array combined into a single array. For example,    * {@code concat(new long[] {a, b}, new long[] {}, new long[] {c}} returns the array    * {@code {a, b, c}}.    *    * @param arrays zero or more {@code long} arrays    * @return a single array containing all the values from the source arrays, in order    */
 DECL|method|concat (long[]... arrays)
 specifier|public
