@@ -1290,7 +1290,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the lesser of the two values according to this ordering. If the values compare as 0,    * the first is returned.    *    *<p><b>Implementation note:</b> this method is invoked by the default implementations of the    * other {@code min} overloads, so overriding it will affect their behavior.    *    *<p><b>Java 8 users:</b> Use {@code Stream.of(a, b).min(thisComparator).get()} instead (but note    * that it does not guarantee which tied minimum element is returned).    *    * @param a value to compare, returned if less than or equal to b.    * @param b value to compare.    * @throws ClassCastException if the parameters are not<i>mutually comparable</i> under this    *     ordering.    */
+comment|/**    * Returns the lesser of the two values according to this ordering. If the values compare as 0,    * the first is returned.    *    *<p><b>Implementation note:</b> this method is invoked by the default implementations of the    * other {@code min} overloads, so overriding it will affect their behavior.    *    *<p><b>Java 8 users:</b> Use {@code Collections.min(Arrays.asList(a, b), thisComparator)}    * instead (but note that it does not guarantee which tied maximum element is returned).    *    * @param a value to compare, returned if less than or equal to b.    * @param b value to compare.    * @throws ClassCastException if the parameters are not<i>mutually comparable</i> under this    *     ordering.    */
 annotation|@
 name|CanIgnoreReturnValue
 comment|// TODO(kak): Consider removing this
@@ -1332,7 +1332,7 @@ else|:
 name|b
 return|;
 block|}
-comment|/**    * Returns the least of the specified values according to this ordering. If there are multiple    * least values, the first of those is returned.    *    *<p><b>Java 8 users:</b> Use {@code Stream.of(a, b, c...).min(thisComparator).get()} instead    * (but note that it does not guarantee which tied minimum element is returned).    *    * @param a value to compare, returned if less than or equal to the rest.    * @param b value to compare    * @param c value to compare    * @param rest values to compare    * @throws ClassCastException if the parameters are not<i>mutually comparable</i> under this    *     ordering.    */
+comment|/**    * Returns the least of the specified values according to this ordering. If there are multiple    * least values, the first of those is returned.    *    *<p><b>Java 8 users:</b> Use {@code Collections.min(Arrays.asList(a, b, c...), thisComparator)}    * instead (but note that it does not guarantee which tied maximum element is returned).    *    * @param a value to compare, returned if less than or equal to the rest.    * @param b value to compare    * @param c value to compare    * @param rest values to compare    * @throws ClassCastException if the parameters are not<i>mutually comparable</i> under this    *     ordering.    */
 annotation|@
 name|CanIgnoreReturnValue
 comment|// TODO(kak): Consider removing this
@@ -1489,7 +1489,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the greater of the two values according to this ordering. If the    * values compare as 0, the first is returned.    *    *<p><b>Implementation note:</b> this method is invoked by the default    * implementations of the other {@code max} overloads, so overriding it will    * affect their behavior.    *    *<p><b>Java 8 users:</b> Use {@code Stream.of(a, b).max(thisComparator).get()} instead (but note    * that it does not guarantee which tied maximum element is returned).    *    * @param a value to compare, returned if greater than or equal to b.    * @param b value to compare.    * @throws ClassCastException if the parameters are not<i>mutually    *     comparable</i> under this ordering.    */
+comment|/**    * Returns the greater of the two values according to this ordering. If the values compare as 0,    * the first is returned.    *    *<p><b>Implementation note:</b> this method is invoked by the default implementations of the    * other {@code max} overloads, so overriding it will affect their behavior.    *    *<p><b>Java 8 users:</b> Use {@code Collections.max(Arrays.asList(a, b), thisComparator)}    * instead (but note that it does not guarantee which tied maximum element is returned).    *    * @param a value to compare, returned if greater than or equal to b.    * @param b value to compare.    * @throws ClassCastException if the parameters are not<i>mutually comparable</i> under this    *     ordering.    */
 annotation|@
 name|CanIgnoreReturnValue
 comment|// TODO(kak): Consider removing this
@@ -1531,7 +1531,7 @@ else|:
 name|b
 return|;
 block|}
-comment|/**    * Returns the greatest of the specified values according to this ordering. If    * there are multiple greatest values, the first of those is returned.    *    *<p><b>Java 8 users:</b> Use {@code Stream.of(a, b, c...).max(thisComparator).get()} instead    * (but note that it does not guarantee which tied maximum element is returned).    *    * @param a value to compare, returned if greater than or equal to the rest.    * @param b value to compare    * @param c value to compare    * @param rest values to compare    * @throws ClassCastException if the parameters are not<i>mutually    *     comparable</i> under this ordering.    */
+comment|/**    * Returns the greatest of the specified values according to this ordering. If there are multiple    * greatest values, the first of those is returned.    *    *<p><b>Java 8 users:</b> Use {@code Collections.max(Arrays.asList(a, b, c...), thisComparator)}    * instead (but note that it does not guarantee which tied maximum element is returned).    *    * @param a value to compare, returned if greater than or equal to the rest.    * @param b value to compare    * @param c value to compare    * @param rest values to compare    * @throws ClassCastException if the parameters are not<i>mutually comparable</i> under this    *     ordering.    */
 annotation|@
 name|CanIgnoreReturnValue
 comment|// TODO(kak): Consider removing this
