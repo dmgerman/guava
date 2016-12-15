@@ -60,6 +60,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CompatibleWith
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -119,67 +133,102 @@ parameter_list|>
 block|{
 comment|// TODO(jlevy): Consider adding methods similar to ConcurrentMap methods.
 comment|// Accessors
-comment|/**    * Returns {@code true} if the table contains a mapping with the specified    * row and column keys.    *    * @param rowKey key of row to search for    * @param columnKey key of column to search for    */
-DECL|method|contains (@ullable Object rowKey, @Nullable Object columnKey)
+comment|/**    * Returns {@code true} if the table contains a mapping with the specified row and column keys.    *    * @param rowKey key of row to search for    * @param columnKey key of column to search for    */
+DECL|method|contains ( @ullable @ompatibleWithR) Object rowKey, @Nullable @CompatibleWith(R) Object columnKey)
 name|boolean
 name|contains
 parameter_list|(
 annotation|@
 name|Nullable
+annotation|@
+name|CompatibleWith
+argument_list|(
+literal|"R"
+argument_list|)
 name|Object
 name|rowKey
 parameter_list|,
 annotation|@
 name|Nullable
+annotation|@
+name|CompatibleWith
+argument_list|(
+literal|"C"
+argument_list|)
 name|Object
 name|columnKey
 parameter_list|)
 function_decl|;
-comment|/**    * Returns {@code true} if the table contains a mapping with the specified    * row key.    *    * @param rowKey key of row to search for    */
-DECL|method|containsRow (@ullable Object rowKey)
+comment|/**    * Returns {@code true} if the table contains a mapping with the specified row key.    *    * @param rowKey key of row to search for    */
+DECL|method|containsRow (@ullable @ompatibleWithR) Object rowKey)
 name|boolean
 name|containsRow
 parameter_list|(
 annotation|@
 name|Nullable
+annotation|@
+name|CompatibleWith
+argument_list|(
+literal|"R"
+argument_list|)
 name|Object
 name|rowKey
 parameter_list|)
 function_decl|;
-comment|/**    * Returns {@code true} if the table contains a mapping with the specified    * column.    *    * @param columnKey key of column to search for    */
-DECL|method|containsColumn (@ullable Object columnKey)
+comment|/**    * Returns {@code true} if the table contains a mapping with the specified column.    *    * @param columnKey key of column to search for    */
+DECL|method|containsColumn (@ullable @ompatibleWithR) Object columnKey)
 name|boolean
 name|containsColumn
 parameter_list|(
 annotation|@
 name|Nullable
+annotation|@
+name|CompatibleWith
+argument_list|(
+literal|"C"
+argument_list|)
 name|Object
 name|columnKey
 parameter_list|)
 function_decl|;
-comment|/**    * Returns {@code true} if the table contains a mapping with the specified    * value.    *    * @param value value to search for    */
-DECL|method|containsValue (@ullable Object value)
+comment|/**    * Returns {@code true} if the table contains a mapping with the specified value.    *    * @param value value to search for    */
+DECL|method|containsValue (@ullable @ompatibleWithR) Object value)
 name|boolean
 name|containsValue
 parameter_list|(
 annotation|@
 name|Nullable
+annotation|@
+name|CompatibleWith
+argument_list|(
+literal|"V"
+argument_list|)
 name|Object
 name|value
 parameter_list|)
 function_decl|;
-comment|/**    * Returns the value corresponding to the given row and column keys, or    * {@code null} if no such mapping exists.    *    * @param rowKey key of row to search for    * @param columnKey key of column to search for    */
-DECL|method|get (@ullable Object rowKey, @Nullable Object columnKey)
+comment|/**    * Returns the value corresponding to the given row and column keys, or {@code null} if no such    * mapping exists.    *    * @param rowKey key of row to search for    * @param columnKey key of column to search for    */
+DECL|method|get ( @ullable @ompatibleWithR) Object rowKey, @Nullable @CompatibleWith(R) Object columnKey)
 name|V
 name|get
 parameter_list|(
 annotation|@
 name|Nullable
+annotation|@
+name|CompatibleWith
+argument_list|(
+literal|"R"
+argument_list|)
 name|Object
 name|rowKey
 parameter_list|,
 annotation|@
 name|Nullable
+annotation|@
+name|CompatibleWith
+argument_list|(
+literal|"C"
+argument_list|)
 name|Object
 name|columnKey
 parameter_list|)
@@ -265,22 +314,32 @@ argument_list|>
 name|table
 parameter_list|)
 function_decl|;
-comment|/**    * Removes the mapping, if any, associated with the given keys.    *    * @param rowKey row key of mapping to be removed    * @param columnKey column key of mapping to be removed    * @return the value previously associated with the keys, or {@code null} if    *     no such value existed    */
+comment|/**    * Removes the mapping, if any, associated with the given keys.    *    * @param rowKey row key of mapping to be removed    * @param columnKey column key of mapping to be removed    * @return the value previously associated with the keys, or {@code null} if no such value existed    */
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Nullable
-DECL|method|remove (@ullable Object rowKey, @Nullable Object columnKey)
+DECL|method|remove ( @ullable @ompatibleWithR) Object rowKey, @Nullable @CompatibleWith(R) Object columnKey)
 name|V
 name|remove
 parameter_list|(
 annotation|@
 name|Nullable
+annotation|@
+name|CompatibleWith
+argument_list|(
+literal|"R"
+argument_list|)
 name|Object
 name|rowKey
 parameter_list|,
 annotation|@
 name|Nullable
+annotation|@
+name|CompatibleWith
+argument_list|(
+literal|"C"
+argument_list|)
 name|Object
 name|columnKey
 parameter_list|)
