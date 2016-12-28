@@ -1334,7 +1334,7 @@ block|}
 comment|/**    * Returns a {@link Collector} that accumulates elements into an {@code ImmutableMap} whose keys    * and values are the result of applying the provided mapping functions to the input elements. The    * resulting implementation is specialized for enum key types. The returned map and its views will    * iterate over keys in their enum definition order, not encounter order.    *    *<p>If the mapped keys contain duplicates, an {@code IllegalArgumentException} is thrown when    * the collection operation is performed. (This differs from the {@code Collector} returned by    * {@link Collectors#toMap(Function, Function)}, which throws an {@code IllegalStateException}.)    *    * @since 21.0    */
 annotation|@
 name|Beta
-DECL|method|toImmutableEnumMap ( Function<? super T, ? extends K> keyFunction, Function<? super T, ? extends V> valueFunction)
+DECL|method|toImmutableEnumMap ( java.util.function.Function<? super T, ? extends K> keyFunction, java.util.function.Function<? super T, ? extends V> valueFunction)
 specifier|public
 specifier|static
 parameter_list|<
@@ -1364,6 +1364,12 @@ argument_list|>
 argument_list|>
 name|toImmutableEnumMap
 parameter_list|(
+name|java
+operator|.
+name|util
+operator|.
+name|function
+operator|.
 name|Function
 argument_list|<
 name|?
@@ -1376,6 +1382,12 @@ name|K
 argument_list|>
 name|keyFunction
 parameter_list|,
+name|java
+operator|.
+name|util
+operator|.
+name|function
+operator|.
 name|Function
 argument_list|<
 name|?
@@ -1517,7 +1529,7 @@ end_comment
 begin_function
 unit|@
 name|Beta
-DECL|method|toImmutableEnumMap ( Function<? super T, ? extends K> keyFunction, Function<? super T, ? extends V> valueFunction, BinaryOperator<V> mergeFunction)
+DECL|method|toImmutableEnumMap ( java.util.function.Function<? super T, ? extends K> keyFunction, java.util.function.Function<? super T, ? extends V> valueFunction, BinaryOperator<V> mergeFunction)
 specifier|public
 specifier|static
 argument_list|<
@@ -1547,6 +1559,12 @@ argument_list|>
 argument_list|>
 name|toImmutableEnumMap
 parameter_list|(
+name|java
+operator|.
+name|util
+operator|.
+name|function
+operator|.
 name|Function
 argument_list|<
 name|?
@@ -1559,6 +1577,12 @@ name|K
 argument_list|>
 name|keyFunction
 parameter_list|,
+name|java
+operator|.
+name|util
+operator|.
+name|function
+operator|.
 name|Function
 argument_list|<
 name|?
