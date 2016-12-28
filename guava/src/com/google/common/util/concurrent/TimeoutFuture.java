@@ -198,8 +198,6 @@ argument_list|(
 name|delegate
 argument_list|)
 decl_stmt|;
-name|TimeoutFuture
-operator|.
 name|Fire
 argument_list|<
 name|V
@@ -207,8 +205,6 @@ argument_list|>
 name|fire
 init|=
 operator|new
-name|TimeoutFuture
-operator|.
 name|Fire
 argument_list|<
 name|V

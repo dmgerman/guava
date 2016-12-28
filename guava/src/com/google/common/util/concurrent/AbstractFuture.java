@@ -1398,8 +1398,6 @@ operator|!
 operator|(
 name|localValue
 operator|instanceof
-name|AbstractFuture
-operator|.
 name|SetFuture
 operator|)
 condition|)
@@ -1532,8 +1530,6 @@ operator|!
 operator|(
 name|localValue
 operator|instanceof
-name|AbstractFuture
-operator|.
 name|SetFuture
 operator|)
 condition|)
@@ -1623,8 +1619,6 @@ operator|!
 operator|(
 name|localValue
 operator|instanceof
-name|AbstractFuture
-operator|.
 name|SetFuture
 operator|)
 condition|)
@@ -1711,8 +1705,6 @@ operator|!
 operator|(
 name|localValue
 operator|instanceof
-name|AbstractFuture
-operator|.
 name|SetFuture
 operator|)
 condition|)
@@ -1817,8 +1809,6 @@ operator|!
 operator|(
 name|localValue
 operator|instanceof
-name|AbstractFuture
-operator|.
 name|SetFuture
 operator|)
 condition|)
@@ -1973,8 +1963,6 @@ operator|!
 operator|(
 name|localValue
 operator|instanceof
-name|AbstractFuture
-operator|.
 name|SetFuture
 operator|)
 return|;
@@ -2031,8 +2019,6 @@ literal|null
 operator||
 name|localValue
 operator|instanceof
-name|AbstractFuture
-operator|.
 name|SetFuture
 condition|)
 block|{
@@ -2115,8 +2101,6 @@ if|if
 condition|(
 name|localValue
 operator|instanceof
-name|AbstractFuture
-operator|.
 name|SetFuture
 condition|)
 block|{
@@ -2130,8 +2114,6 @@ name|futureToPropagateTo
 init|=
 operator|(
 operator|(
-name|AbstractFuture
-operator|.
 name|SetFuture
 operator|)
 name|localValue
@@ -2181,8 +2163,6 @@ literal|null
 operator||
 name|localValue
 operator|instanceof
-name|AbstractFuture
-operator|.
 name|SetFuture
 condition|)
 block|{
@@ -2221,8 +2201,6 @@ operator|!
 operator|(
 name|localValue
 operator|instanceof
-name|AbstractFuture
-operator|.
 name|SetFuture
 operator|)
 condition|)
@@ -2900,13 +2878,9 @@ if|if
 condition|(
 name|task
 operator|instanceof
-name|AbstractFuture
-operator|.
 name|SetFuture
 condition|)
 block|{
-name|AbstractFuture
-operator|.
 name|SetFuture
 argument_list|<
 name|?
@@ -2914,9 +2888,10 @@ argument_list|>
 name|setFuture
 init|=
 operator|(
-name|AbstractFuture
-operator|.
 name|SetFuture
+argument_list|<
+name|?
+argument_list|>
 operator|)
 name|task
 decl_stmt|;
