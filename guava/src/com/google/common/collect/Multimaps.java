@@ -464,7 +464,7 @@ block|{}
 comment|/**    * Returns a {@code Collector} accumulating entries into a {@code Multimap} generated from the    * specified supplier. The keys and values of the entries are the result of applying the provided    * mapping functions to the input elements, accumulated in the encounter order of the stream.    *    *<p>Example:    *    *<pre>{@code    * static final ListMultimap<Character, String> FIRST_LETTER_MULTIMAP =    *     Stream.of("banana", "apple", "carrot", "asparagus", "cherry")    *         .collect(    *             toMultimap(    *                  str -> str.charAt(0),    *                  str -> str.substring(1),    *                  MultimapBuilder.treeKeys().arrayListValues()::build));    *    * // is equivalent to    *    * static final ListMultimap<Character, String> FIRST_LETTER_MULTIMAP;    *    * static {    *     FIRST_LETTER_MULTIMAP = MultimapBuilder.treeKeys().arrayListValues().build();    *     FIRST_LETTER_MULTIMAP.put('b', "anana");    *     FIRST_LETTER_MULTIMAP.put('a', "pple");    *     FIRST_LETTER_MULTIMAP.put('a', "sparagus");    *     FIRST_LETTER_MULTIMAP.put('c', "arrot");    *     FIRST_LETTER_MULTIMAP.put('c', "herry");    * }    * }</pre>    *    * @since 21.0    */
 annotation|@
 name|Beta
-DECL|method|toMultimap ( Function<? super T, ? extends K> keyFunction, Function<? super T, ? extends V> valueFunction, Supplier<M> multimapSupplier)
+DECL|method|toMultimap ( java.util.function.Function<? super T, ? extends K> keyFunction, java.util.function.Function<? super T, ? extends V> valueFunction, java.util.function.Supplier<M> multimapSupplier)
 specifier|public
 specifier|static
 parameter_list|<
@@ -493,6 +493,12 @@ name|M
 argument_list|>
 name|toMultimap
 parameter_list|(
+name|java
+operator|.
+name|util
+operator|.
+name|function
+operator|.
 name|Function
 argument_list|<
 name|?
@@ -505,6 +511,12 @@ name|K
 argument_list|>
 name|keyFunction
 parameter_list|,
+name|java
+operator|.
+name|util
+operator|.
+name|function
+operator|.
 name|Function
 argument_list|<
 name|?
@@ -517,6 +529,12 @@ name|V
 argument_list|>
 name|valueFunction
 parameter_list|,
+name|java
+operator|.
+name|util
+operator|.
+name|function
+operator|.
 name|Supplier
 argument_list|<
 name|M
@@ -600,7 +618,7 @@ end_comment
 begin_function
 unit|@
 name|Beta
-DECL|method|flatteningToMultimap ( Function<? super T, ? extends K> keyFunction, Function<? super T, ? extends Stream<? extends V>> valueFunction, Supplier<M> multimapSupplier)
+DECL|method|flatteningToMultimap ( java.util.function.Function<? super T, ? extends K> keyFunction, java.util.function.Function<? super T, ? extends Stream<? extends V>> valueFunction, java.util.function.Supplier<M> multimapSupplier)
 specifier|public
 specifier|static
 argument_list|<
@@ -629,6 +647,12 @@ name|M
 argument_list|>
 name|flatteningToMultimap
 parameter_list|(
+name|java
+operator|.
+name|util
+operator|.
+name|function
+operator|.
 name|Function
 argument_list|<
 name|?
@@ -641,6 +665,12 @@ name|K
 argument_list|>
 name|keyFunction
 parameter_list|,
+name|java
+operator|.
+name|util
+operator|.
+name|function
+operator|.
 name|Function
 argument_list|<
 name|?
@@ -658,6 +688,12 @@ argument_list|>
 argument_list|>
 name|valueFunction
 parameter_list|,
+name|java
+operator|.
+name|util
+operator|.
+name|function
+operator|.
 name|Supplier
 argument_list|<
 name|M
