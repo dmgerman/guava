@@ -320,7 +320,7 @@ name|boolean
 name|isPresent
 parameter_list|()
 function_decl|;
-comment|/**    * Returns the contained instance, which must be present. If the instance might be absent, use    * {@link #or(Object)} or {@link #orNull} instead.    *    *<p><b>Comparison to {@code java.util.Optional}:</b> when the value is absent, this method    * throws {@link IllegalStateException}, whereas the Java 8 counterpart throws    * {@link NoSuchElementException}.    *    * @throws IllegalStateException if the instance is absent ({@link #isPresent} returns    *     {@code false}); depending on this<i>specific</i> exception type (over the more general    *     {@link RuntimeException}) is discouraged    */
+comment|/**    * Returns the contained instance, which must be present. If the instance might be absent, use    * {@link #or(Object)} or {@link #orNull} instead.    *    *<p><b>Comparison to {@code java.util.Optional}:</b> when the value is absent, this method    * throws {@link IllegalStateException}, whereas the Java 8 counterpart throws    * {@link java.util.NoSuchElementException NoSuchElementException}.    *    * @throws IllegalStateException if the instance is absent ({@link #isPresent} returns    *     {@code false}); depending on this<i>specific</i> exception type (over the more general    *     {@link RuntimeException}) is discouraged    */
 DECL|method|get ()
 specifier|public
 specifier|abstract

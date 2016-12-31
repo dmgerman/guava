@@ -3939,7 +3939,7 @@ name|E
 name|getEntry
 parameter_list|()
 function_decl|;
-comment|/** Unsets the referenced value. Subsequent calls to {@link get} will return {@code null}. */
+comment|/** Unsets the referenced value. Subsequent calls to {@link #get} will return {@code null}. */
 DECL|method|clear ()
 name|void
 name|clear
@@ -5063,7 +5063,7 @@ name|AssertionError
 argument_list|()
 throw|;
 block|}
-comment|/**      * Unsafely sets the weak value reference inside the given {@code entry} to be the given {@link      * valueReference}      */
+comment|/**      * Unsafely sets the weak value reference inside the given {@code entry} to be the given {@code      * valueReference}      */
 DECL|method|setWeakValueReferenceForTesting ( InternalEntry<K, V, ?> entry, WeakValueReference<K, V, ? extends InternalEntry<K, V, ?>> valueReference)
 name|void
 name|setWeakValueReferenceForTesting

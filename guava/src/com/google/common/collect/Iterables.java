@@ -1352,7 +1352,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the number of elements in the specified iterable that equal the specified object. This    * implementation avoids a full iteration when the iterable is a {@link Multiset} or {@link Set}.    *    *<p><b>Java 8 users:</b> In most cases, the {@code Stream} equivalent of this method is {@code    * stream.filter(element::equals).count()}. If {@code element} might be null, use {@code    * stream.filter(Predicate.isEqual(element)).count()} instead.    *    * @see Collections#frequency    */
+comment|/**    * Returns the number of elements in the specified iterable that equal the specified object. This    * implementation avoids a full iteration when the iterable is a {@link Multiset} or {@link Set}.    *    *<p><b>Java 8 users:</b> In most cases, the {@code Stream} equivalent of this method is {@code    * stream.filter(element::equals).count()}. If {@code element} might be null, use {@code    * stream.filter(Predicate.isEqual(element)).count()} instead.    *    * @see java.util.Collections#frequency(Collection, Object) Collections.frequency(Collection,    *      Object)    */
 DECL|method|frequency (Iterable<?> iterable, @Nullable Object element)
 specifier|public
 specifier|static

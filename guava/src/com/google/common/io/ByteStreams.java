@@ -2895,7 +2895,7 @@ return|return
 name|totalSkipped
 return|;
 block|}
-comment|/**    * Attempts to skip up to {@code n} bytes from the given input stream, but not more than    * {@code in.available()} bytes. This prevents {@code FileInputStream} from skipping more bytes    * than actually remain in the file, something that it {@linkplain FileInputStream#skip(long)    * specifies} it can do in its Javadoc despite the fact that it is violating the contract of    * {@code InputStream.skip()}.    */
+comment|/**    * Attempts to skip up to {@code n} bytes from the given input stream, but not more than    * {@code in.available()} bytes. This prevents {@code FileInputStream} from skipping more bytes    * than actually remain in the file, something that it {@linkplain    * java.io.FileInputStream#skip(long) specifies} it can do in its Javadoc despite the fact that    * it is violating the contract of {@code InputStream.skip()}.    */
 DECL|method|skipSafely (InputStream in, long n)
 specifier|private
 specifier|static

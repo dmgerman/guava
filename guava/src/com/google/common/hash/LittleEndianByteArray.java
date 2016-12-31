@@ -225,7 +225,7 @@ name|value
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Load 4 bytes from the provided array at the indicated offset.    *    * @param input the input bytes    * @param offset the offset into the array at which to start    * @return the value found in the array in the form of a long    */
+comment|/**    * Load 4 bytes from the provided array at the indicated offset.    *    * @param source the input bytes    * @param offset the offset into the array at which to start    * @return the value found in the array in the form of a long    */
 DECL|method|load32 (byte[] source, int offset)
 specifier|static
 name|int
