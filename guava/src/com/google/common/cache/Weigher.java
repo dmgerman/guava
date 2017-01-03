@@ -37,6 +37,8 @@ end_comment
 begin_interface
 annotation|@
 name|GwtCompatible
+annotation|@
+name|FunctionalInterface
 DECL|interface|Weigher
 specifier|public
 interface|interface
