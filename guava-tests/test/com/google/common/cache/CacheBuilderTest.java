@@ -2148,7 +2148,7 @@ name|void
 name|testValuesIsNotASet
 parameter_list|()
 block|{
-name|assertThat
+name|assertFalse
 argument_list|(
 operator|new
 name|CacheBuilder
@@ -2167,13 +2167,8 @@ argument_list|()
 operator|.
 name|values
 argument_list|()
-argument_list|)
-operator|.
-name|isNotInstanceOf
-argument_list|(
+operator|instanceof
 name|Set
-operator|.
-name|class
 argument_list|)
 expr_stmt|;
 block|}
