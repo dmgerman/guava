@@ -1315,7 +1315,7 @@ name|to
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Returns true if the files contains the same bytes.    *    * @throws IOException if an I/O error occurs    */
+comment|/**    * Returns true if the given files exist, are not directories, and contain the same bytes.    *    * @throws IOException if an I/O error occurs    */
 DECL|method|equal (File file1, File file2)
 specifier|public
 specifier|static
