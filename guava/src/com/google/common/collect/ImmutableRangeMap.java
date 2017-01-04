@@ -1364,6 +1364,32 @@ annotation|@
 name|Deprecated
 annotation|@
 name|Override
+DECL|method|putCoalescing (Range<K> range, V value)
+specifier|public
+name|void
+name|putCoalescing
+parameter_list|(
+name|Range
+argument_list|<
+name|K
+argument_list|>
+name|range
+parameter_list|,
+name|V
+name|value
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|UnsupportedOperationException
+argument_list|()
+throw|;
+block|}
+comment|/**    * Guaranteed to throw an exception and leave the {@code RangeMap} unmodified.    *    * @throws UnsupportedOperationException always    * @deprecated Unsupported operation.    */
+annotation|@
+name|Deprecated
+annotation|@
+name|Override
 DECL|method|putAll (RangeMap<K, V> rangeMap)
 specifier|public
 name|void

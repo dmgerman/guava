@@ -50,6 +50,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|Collection
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|Map
 import|;
 end_import
@@ -140,6 +150,21 @@ comment|/**    * Maps a range to a specified value (optional operation).    *   
 DECL|method|put (Range<K> range, V value)
 name|void
 name|put
+parameter_list|(
+name|Range
+argument_list|<
+name|K
+argument_list|>
+name|range
+parameter_list|,
+name|V
+name|value
+parameter_list|)
+function_decl|;
+comment|/**    * Maps a range to a specified value, coalescing this range with any existing ranges with the same    * value that are {@linkplain Range#isConnected connected} to this range.    *    *<p>The behavior of {@link #get(Comparable) get(k)} after calling this method is identical to    * the behavior described in {@link #put(Range, Object) put(range, value)}, however the ranges    * returned from {@link #asMapOfRanges} will be different if there were existing entries which    * connect to the given range and value.    *    *<p>Even if the input range is empty, if it is connected on both sides by ranges mapped to the    * same value those two ranges will be coalesced.    *    *<p><b>Note:</b> coalescing requires calling {@code .equals()} on any connected values, which    * may be expensive depending on the value type. Using this method on range maps with large values    * such as {@link Collection} types is discouraged.    */
+DECL|method|putCoalescing (Range<K> range, V value)
+name|void
+name|putCoalescing
 parameter_list|(
 name|Range
 argument_list|<
