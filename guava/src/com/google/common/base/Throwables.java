@@ -221,7 +221,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Static utility methods pertaining to instances of {@link Throwable}.  *  *<p>See the Guava User Guide entry on  *<a href="https://github.com/google/guava/wiki/ThrowablesExplained">Throwables</a>.  *  * @author Kevin Bourrillion  * @author Ben Yu  * @since 1.0  */
+comment|/**  * Static utility methods pertaining to instances of {@link Throwable}.  *  *<p>See the Guava User Guide entry on<a  * href="https://github.com/google/guava/wiki/ThrowablesExplained">Throwables</a>.  *  * @author Kevin Bourrillion  * @author Ben Yu  * @since 1.0  */
 end_comment
 
 begin_class
@@ -295,7 +295,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Propagates {@code throwable} exactly as-is, if and only if it is an instance of {@code    * declaredType}. Example usage:    *    *<pre>    * try {    *   someMethodThatCouldThrowAnything();    * } catch (IKnowWhatToDoWithThisException e) {    *   handle(e);    * } catch (Throwable t) {    *   Throwables.propagateIfInstanceOf(t, IOException.class);    *   Throwables.propagateIfInstanceOf(t, SQLException.class);    *   throw Throwables.propagate(t);    * }    *</pre>    *    * @deprecated Use {@link #throwIfInstanceOf}, which has the same behavior    *     but rejects {@code null}. This method is scheduled to be removed in July 2018.    */
+comment|/**    * Propagates {@code throwable} exactly as-is, if and only if it is an instance of {@code    * declaredType}. Example usage:    *    *<pre>    * try {    *   someMethodThatCouldThrowAnything();    * } catch (IKnowWhatToDoWithThisException e) {    *   handle(e);    * } catch (Throwable t) {    *   Throwables.propagateIfInstanceOf(t, IOException.class);    *   Throwables.propagateIfInstanceOf(t, SQLException.class);    *   throw Throwables.propagate(t);    * }    *</pre>    *    * @deprecated Use {@link #throwIfInstanceOf}, which has the same behavior but rejects {@code    *     null}. This method is scheduled to be removed in July 2018.    */
 annotation|@
 name|Deprecated
 annotation|@
@@ -387,7 +387,7 @@ name|throwable
 throw|;
 block|}
 block|}
-comment|/**    * Propagates {@code throwable} exactly as-is, if and only if it is an instance of    * {@link RuntimeException} or {@link Error}. Example usage:    *    *<pre>    * try {    *   someMethodThatCouldThrowAnything();    * } catch (IKnowWhatToDoWithThisException e) {    *   handle(e);    * } catch (Throwable t) {    *   Throwables.propagateIfPossible(t);    *   throw new RuntimeException("unexpected", t);    * }    *</pre>    *    * @deprecated Use {@link #throwIfUnchecked}, which has the same behavior but rejects    *     {@code null}. This method is scheduled to be removed in July 2018.    */
+comment|/**    * Propagates {@code throwable} exactly as-is, if and only if it is an instance of {@link    * RuntimeException} or {@link Error}. Example usage:    *    *<pre>    * try {    *   someMethodThatCouldThrowAnything();    * } catch (IKnowWhatToDoWithThisException e) {    *   handle(e);    * } catch (Throwable t) {    *   Throwables.propagateIfPossible(t);    *   throw new RuntimeException("unexpected", t);    * }    *</pre>    *    * @deprecated Use {@link #throwIfUnchecked}, which has the same behavior but rejects {@code    *     null}. This method is scheduled to be removed in July 2018.    */
 annotation|@
 name|Deprecated
 annotation|@
@@ -418,7 +418,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Propagates {@code throwable} exactly as-is, if and only if it is an instance of    * {@link RuntimeException}, {@link Error}, or {@code declaredType}. Example usage:    *    *<pre>    * try {    *   someMethodThatCouldThrowAnything();    * } catch (IKnowWhatToDoWithThisException e) {    *   handle(e);    * } catch (Throwable t) {    *   Throwables.propagateIfPossible(t, OtherException.class);    *   throw new RuntimeException("unexpected", t);    * }    *</pre>    *    * @param throwable the Throwable to possibly propagate    * @param declaredType the single checked exception type declared by the calling method    */
+comment|/**    * Propagates {@code throwable} exactly as-is, if and only if it is an instance of {@link    * RuntimeException}, {@link Error}, or {@code declaredType}. Example usage:    *    *<pre>    * try {    *   someMethodThatCouldThrowAnything();    * } catch (IKnowWhatToDoWithThisException e) {    *   handle(e);    * } catch (Throwable t) {    *   Throwables.propagateIfPossible(t, OtherException.class);    *   throw new RuntimeException("unexpected", t);    * }    *</pre>    *    * @param throwable the Throwable to possibly propagate    * @param declaredType the single checked exception type declared by the calling method    */
 annotation|@
 name|GwtIncompatible
 comment|// propagateIfInstanceOf
@@ -460,7 +460,7 @@ name|throwable
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Propagates {@code throwable} exactly as-is, if and only if it is an instance of    * {@link RuntimeException}, {@link Error}, {@code declaredType1}, or {@code declaredType2}. In    * the unlikely case that you have three or more declared checked exception types, you can handle    * them all by invoking these methods repeatedly. See usage example in    * {@link #propagateIfPossible(Throwable, Class)}.    *    * @param throwable the Throwable to possibly propagate    * @param declaredType1 any checked exception type declared by the calling method    * @param declaredType2 any other checked exception type declared by the calling method    */
+comment|/**    * Propagates {@code throwable} exactly as-is, if and only if it is an instance of {@link    * RuntimeException}, {@link Error}, {@code declaredType1}, or {@code declaredType2}. In the    * unlikely case that you have three or more declared checked exception types, you can handle them    * all by invoking these methods repeatedly. See usage example in {@link    * #propagateIfPossible(Throwable, Class)}.    *    * @param throwable the Throwable to possibly propagate    * @param declaredType1 any checked exception type declared by the calling method    * @param declaredType2 any other checked exception type declared by the calling method    */
 annotation|@
 name|GwtIncompatible
 comment|// propagateIfInstanceOf
@@ -521,7 +521,7 @@ name|declaredType2
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    *<p>Propagates {@code throwable} as-is if it is an instance of {@link RuntimeException} or    * {@link Error}, or else as a last resort, wraps it in a {@code RuntimeException} and then    * propagates.    *    *<p>This method always throws an exception. The {@code RuntimeException} return type allows    * client code to signal to the compiler that statements after the call are unreachable. Example    * usage:    *    *<pre>    * T doSomething() {    *   try {    *     return someMethodThatCouldThrowAnything();    *   } catch (IKnowWhatToDoWithThisException e) {    *     return handle(e);    *   } catch (Throwable t) {    *     throw Throwables.propagate(t);    *   }    * }    *</pre>    *    * @param throwable the Throwable to propagate    * @return nothing will ever be returned; this return type is only for your convenience, as    *     illustrated in the example above    * @deprecated Use {@code throw e} or {@code throw new RuntimeException(e)} directly, or use a    *     combination of {@link #throwIfUnchecked} and {@code throw new RuntimeException(e)}. This    *     method is scheduled to be removed in July 2018.    */
+comment|/**    * Propagates {@code throwable} as-is if it is an instance of {@link RuntimeException} or {@link    * Error}, or else as a last resort, wraps it in a {@code RuntimeException} and then propagates.    *    *<p>This method always throws an exception. The {@code RuntimeException} return type allows    * client code to signal to the compiler that statements after the call are unreachable. Example    * usage:    *    *<pre>    * T doSomething() {    *   try {    *     return someMethodThatCouldThrowAnything();    *   } catch (IKnowWhatToDoWithThisException e) {    *     return handle(e);    *   } catch (Throwable t) {    *     throw Throwables.propagate(t);    *   }    * }    *</pre>    *    * @param throwable the Throwable to propagate    * @return nothing will ever be returned; this return type is only for your convenience, as    *     illustrated in the example above    * @deprecated Use {@code throw e} or {@code throw new RuntimeException(e)} directly, or use a    *     combination of {@link #throwIfUnchecked} and {@code throw new RuntimeException(e)}. This    *     method is scheduled to be removed in July 2018.    */
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
@@ -656,13 +656,13 @@ name|causes
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns {@code throwable}'s cause, cast to {@code expectedCauseType}.    *    * @throws ClassCastException if the cause cannot be cast to the expected type. The {@link    *     ClassCastException}'s cause is {@code throwable}.    * @since 22.0    */
+comment|/**    * Returns {@code throwable}'s cause, cast to {@code expectedCauseType}.    *    *<p>Prefer this method instead of manually casting an exception's cause, for example This is    * preferable to manually casting (e.g. {@code (IOException) e.getCause()}) because if a {@link    * ClassCastException} results {@code throwable} will be preserved as that exception's cause.    *    * @throws ClassCastException if the cause cannot be cast to the expected type. The {@code    *     ClassCastException}'s cause is {@code throwable}.    * @since 22.0    */
 annotation|@
 name|Beta
 annotation|@
 name|GwtIncompatible
 comment|// Class.cast(Object)
-DECL|method|getCauseAs (Throwable throwable, Class<X> expectedCauseType)
+DECL|method|getCauseAs ( Throwable throwable, Class<X> expectedCauseType)
 specifier|public
 specifier|static
 parameter_list|<
@@ -682,8 +682,6 @@ name|X
 argument_list|>
 name|expectedCauseType
 parameter_list|)
-throws|throws
-name|ClassCastException
 block|{
 try|try
 block|{
@@ -756,7 +754,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns the stack trace of {@code throwable}, possibly providing slower iteration over the full    * trace but faster iteration over parts of the trace. Here, "slower" and "faster" are defined in    * comparison to the normal way to access the stack trace, {@link Throwable#getStackTrace()    * throwable.getStackTrace()}. Note, however, that this method's special implementation is not    * available for all platforms and configurations. If that implementation is unavailable, this    * method falls back to {@code getStackTrace}. Callers that require the special implementation can    * check its availability with {@link #lazyStackTraceIsLazy()}.    *    *<p>The expected (but not guaranteed) performance of the special implementation differs from    * {@code getStackTrace} in one main way: The {@code lazyStackTrace} call itself returns quickly    * by delaying the per-stack-frame work until each element is accessed. Roughly speaking:    *    *<ul>    *<li>{@code getStackTrace} takes {@code stackSize} time to return but then negligible time to    * retrieve each element of the returned list.    *<li>{@code lazyStackTrace} takes negligible time to return but then {@code 1/stackSize} time to    * retrieve each element of the returned list (probably slightly more than {@code 1/stackSize}).    *</ul>    *    *<p>Note: The special implementation does not respect calls to {@link Throwable#setStackTrace    * throwable.setStackTrace}. Instead, it always reflects the original stack trace from the    * exception's creation.    *    * @since 19.0    */
+comment|/**    * Returns the stack trace of {@code throwable}, possibly providing slower iteration over the full    * trace but faster iteration over parts of the trace. Here, "slower" and "faster" are defined in    * comparison to the normal way to access the stack trace, {@link Throwable#getStackTrace()    * throwable.getStackTrace()}. Note, however, that this method's special implementation is not    * available for all platforms and configurations. If that implementation is unavailable, this    * method falls back to {@code getStackTrace}. Callers that require the special implementation can    * check its availability with {@link #lazyStackTraceIsLazy()}.    *    *<p>The expected (but not guaranteed) performance of the special implementation differs from    * {@code getStackTrace} in one main way: The {@code lazyStackTrace} call itself returns quickly    * by delaying the per-stack-frame work until each element is accessed. Roughly speaking:    *    *<ul>    *<li>{@code getStackTrace} takes {@code stackSize} time to return but then negligible time to    *       retrieve each element of the returned list.    *<li>{@code lazyStackTrace} takes negligible time to return but then {@code 1/stackSize} time    *       to retrieve each element of the returned list (probably slightly more than {@code    *       1/stackSize}).    *</ul>    *    *<p>Note: The special implementation does not respect calls to {@link Throwable#setStackTrace    * throwable.setStackTrace}. Instead, it always reflects the original stack trace from the    * exception's creation.    *    * @since 19.0    */
 comment|// TODO(cpovirk): Say something about the possibility that List access could fail at runtime?
 annotation|@
 name|Beta
