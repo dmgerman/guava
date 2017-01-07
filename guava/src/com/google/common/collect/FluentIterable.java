@@ -2263,7 +2263,7 @@ block|}
 end_function
 
 begin_comment
-comment|/**    * Returns a stream of this fluent iterable's contents (similar to calling {@link    * Collection#stream} on a collecion).    *    *<p><b>Note:</b> the earlier in the chain you can switch to {@code Stream} usage (ideally not    * going through {@code FluentIterable} at all), the more performant and idiomatic your code will    * be. This method is a transitional aid, to be used only when really necessary.    *    * @since 21.0    */
+comment|/**    * Returns a stream of this fluent iterable's contents (similar to calling {@link    * Collection#stream} on a collection).    *    *<p><b>Note:</b> the earlier in the chain you can switch to {@code Stream} usage (ideally not    * going through {@code FluentIterable} at all), the more performant and idiomatic your code will    * be. This method is a transitional aid, to be used only when really necessary.    *    * @since 21.0    */
 end_comment
 
 begin_function
