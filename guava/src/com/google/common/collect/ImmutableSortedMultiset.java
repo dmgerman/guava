@@ -287,9 +287,9 @@ literal|1
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a {@code Collector} that accumulates elements into an {@code ImmutableSortedMultiset}    * whose elements are the result of applying {@code elementFunction} to the inputs,    * with counts equal to the result of applying {@code countFunction} to the inputs.    *    *<p>If the mapped elements contain duplicates (according to {@code comparator}),    * the first occurrence in encounter order appears in the resulting multiset, with count    * equal to the sum of the outputs of {@code countFunction.applyAsInt(t)} for each {@code t}    * mapped to that element.    */
+comment|/**    * Returns a {@code Collector} that accumulates elements into an {@code ImmutableSortedMultiset}    * whose elements are the result of applying {@code elementFunction} to the inputs, with counts    * equal to the result of applying {@code countFunction} to the inputs.    *    *<p>If the mapped elements contain duplicates (according to {@code comparator}), the first    * occurrence in encounter order appears in the resulting multiset, with count equal to the sum of    * the outputs of {@code countFunction.applyAsInt(t)} for each {@code t} mapped to that element.    *    * @since 22.0    */
 DECL|method|toImmutableSortedMultiset ( Comparator<? super E> comparator, Function<? super T, ? extends E> elementFunction, ToIntFunction<? super T> countFunction)
-specifier|private
+specifier|public
 specifier|static
 parameter_list|<
 name|T
@@ -338,7 +338,6 @@ argument_list|>
 name|countFunction
 parameter_list|)
 block|{
-comment|// TODO(lowasser): consider exposing this
 name|checkNotNull
 argument_list|(
 name|comparator
@@ -378,11 +377,14 @@ name|multiset
 operator|.
 name|add
 argument_list|(
+name|checkNotNull
+argument_list|(
 name|elementFunction
 operator|.
 name|apply
 argument_list|(
 name|t
+argument_list|)
 argument_list|)
 argument_list|,
 name|countFunction

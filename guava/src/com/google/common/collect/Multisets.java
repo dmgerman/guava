@@ -290,6 +290,18 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|stream
+operator|.
+name|Collector
+import|;
+end_import
+
+begin_import
+import|import
 name|javax
 operator|.
 name|annotation
@@ -316,9 +328,147 @@ specifier|private
 name|Multisets
 parameter_list|()
 block|{}
-comment|/**    * Returns an unmodifiable view of the specified multiset. Query operations on    * the returned multiset "read through" to the specified multiset, and    * attempts to modify the returned multiset result in an    * {@link UnsupportedOperationException}.    *    *<p>The returned multiset will be serializable if the specified multiset is    * serializable.    *    * @param multiset the multiset for which an unmodifiable view is to be    *     generated    * @return an unmodifiable view of the multiset    */
-DECL|method|unmodifiableMultiset (Multiset<? extends E> multiset)
+comment|/**    * Returns a {@code Collector} that accumulates elements into a multiset created via the specified    * {@code Supplier}, whose elements are the result of applying {@code elementFunction} to the    * inputs, with counts equal to the result of applying {@code countFunction} to the inputs.    * Elements are added in encounter order.    *    *<p>If the mapped elements contain duplicates (according to {@link Object#equals}), the element    * will be added more than once, with the count summed over all appearances of the element.    *    *<p>Note that {@code stream.collect(toMultiset(function, e -> 1, supplier))} is equivalent to    * {@code stream.map(function).collect(Collectors.toCollection(supplier))}.    *    * @since 22.0    */
+DECL|method|toMultiset ( java.util.function.Function<T, E> elemFunction, java.util.function.ToIntFunction<T> countFunction, java.util.function.Supplier<M> implSupplier)
 specifier|public
+specifier|static
+parameter_list|<
+name|T
+parameter_list|,
+name|E
+parameter_list|,
+name|M
+extends|extends
+name|Multiset
+argument_list|<
+name|E
+argument_list|>
+parameter_list|>
+name|Collector
+argument_list|<
+name|T
+argument_list|,
+name|?
+argument_list|,
+name|M
+argument_list|>
+name|toMultiset
+parameter_list|(
+name|java
+operator|.
+name|util
+operator|.
+name|function
+operator|.
+name|Function
+argument_list|<
+name|T
+argument_list|,
+name|E
+argument_list|>
+name|elemFunction
+parameter_list|,
+name|java
+operator|.
+name|util
+operator|.
+name|function
+operator|.
+name|ToIntFunction
+argument_list|<
+name|T
+argument_list|>
+name|countFunction
+parameter_list|,
+name|java
+operator|.
+name|util
+operator|.
+name|function
+operator|.
+name|Supplier
+argument_list|<
+name|M
+argument_list|>
+name|implSupplier
+parameter_list|)
+block|{
+name|checkNotNull
+argument_list|(
+name|elemFunction
+argument_list|)
+expr_stmt|;
+name|checkNotNull
+argument_list|(
+name|countFunction
+argument_list|)
+expr_stmt|;
+name|checkNotNull
+argument_list|(
+name|implSupplier
+argument_list|)
+expr_stmt|;
+return|return
+name|Collector
+operator|.
+name|of
+argument_list|(
+name|implSupplier
+argument_list|,
+parameter_list|(
+name|ms
+parameter_list|,
+name|t
+parameter_list|)
+lambda|->
+name|ms
+operator|.
+name|add
+argument_list|(
+name|elemFunction
+operator|.
+name|apply
+argument_list|(
+name|t
+argument_list|)
+argument_list|,
+name|countFunction
+operator|.
+name|applyAsInt
+argument_list|(
+name|t
+argument_list|)
+argument_list|)
+argument_list|,
+parameter_list|(
+name|ms1
+parameter_list|,
+name|ms2
+parameter_list|)
+lambda|->
+block|{
+name|ms1
+operator|.
+name|addAll
+argument_list|(
+name|ms2
+argument_list|)
+argument_list|;           return
+name|ms1
+argument_list|;
+block|}
+block|)
+class|;
+end_class
+
+begin_comment
+unit|}
+comment|/**    * Returns an unmodifiable view of the specified multiset. Query operations on    * the returned multiset "read through" to the specified multiset, and    * attempts to modify the returned multiset result in an    * {@link UnsupportedOperationException}.    *    *<p>The returned multiset will be serializable if the specified multiset is    * serializable.    *    * @param multiset the multiset for which an unmodifiable view is to be    *     generated    * @return an unmodifiable view of the multiset    */
+end_comment
+
+begin_function
+DECL|method|unmodifiableMultiset (Multiset<? extends E> multiset)
+unit|public
 specifier|static
 parameter_list|<
 name|E
@@ -387,7 +537,13 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Simply returns its argument.    *    * @deprecated no need to use this    * @since 10.0    */
+end_comment
+
+begin_function
 annotation|@
 name|Deprecated
 DECL|method|unmodifiableMultiset (ImmutableMultiset<E> multiset)
@@ -416,6 +572,9 @@ name|multiset
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_class
 DECL|class|UnmodifiableMultiset
 specifier|static
 class|class
@@ -855,7 +1014,13 @@ init|=
 literal|0
 decl_stmt|;
 block|}
+end_class
+
+begin_comment
 comment|/**    * Returns an unmodifiable view of the specified sorted multiset. Query    * operations on the returned multiset "read through" to the specified    * multiset, and attempts to modify the returned multiset result in an {@link    * UnsupportedOperationException}.    *    *<p>The returned multiset will be serializable if the specified multiset is    * serializable.    *    * @param sortedMultiset the sorted multiset for which an unmodifiable view is    *     to be generated    * @return an unmodifiable view of the multiset    * @since 11.0    */
+end_comment
+
+begin_function
 annotation|@
 name|Beta
 DECL|method|unmodifiableSortedMultiset (SortedMultiset<E> sortedMultiset)
@@ -892,7 +1057,13 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Returns an immutable multiset entry with the specified element and count.    * The entry will be serializable if {@code e} is.    *    * @param e the element to be associated with the returned entry    * @param n the count to be associated with the returned entry    * @throws IllegalArgumentException if {@code n} is negative    */
+end_comment
+
+begin_function
 DECL|method|immutableEntry (@ullable E e, int n)
 specifier|public
 specifier|static
@@ -929,6 +1100,9 @@ name|n
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_class
 DECL|class|ImmutableEntry
 specifier|static
 class|class
@@ -1041,7 +1215,13 @@ init|=
 literal|0
 decl_stmt|;
 block|}
+end_class
+
+begin_comment
 comment|/**    * Returns a view of the elements of {@code unfiltered} that satisfy a predicate. The returned    * multiset is a live view of {@code unfiltered}; changes to one affect the other.    *    *<p>The resulting multiset's iterators, and those of its {@code entrySet()} and    * {@code elementSet()}, do not support {@code remove()}.  However, all other multiset methods    * supported by {@code unfiltered} are supported by the returned multiset. When given an element    * that doesn't satisfy the predicate, the multiset's {@code add()} and {@code addAll()} methods    * throw an {@link IllegalArgumentException}. When methods such as {@code removeAll()} and    * {@code clear()} are called on the filtered multiset, only elements that satisfy the filter    * will be removed from the underlying multiset.    *    *<p>The returned multiset isn't threadsafe or serializable, even if {@code unfiltered} is.    *    *<p>Many of the filtered multiset's methods, such as {@code size()}, iterate across every    * element in the underlying multiset and determine which elements satisfy the filter. When a    * live view is<i>not</i> needed, it may be faster to copy the returned multiset and use the    * copy.    *    *<p><b>Warning:</b> {@code predicate} must be<i>consistent with equals</i>, as documented at    * {@link Predicate#apply}. Do not provide a predicate such as    * {@code Predicates.instanceOf(ArrayList.class)}, which is inconsistent with equals. (See    * {@link Iterables#filter(Iterable, Class)} for related functionality.)    *    * @since 14.0    */
+end_comment
+
+begin_function
 annotation|@
 name|Beta
 DECL|method|filter (Multiset<E> unfiltered, Predicate<? super E> predicate)
@@ -1142,6 +1322,9 @@ name|predicate
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_class
 DECL|class|FilteredMultiset
 specifier|private
 specifier|static
@@ -1537,7 +1720,13 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+end_class
+
+begin_comment
 comment|/**    * Returns the expected number of distinct elements given the specified    * elements. The number of distinct elements is only computed if {@code    * elements} is an instance of {@code Multiset}; otherwise the default value    * of 11 is returned.    */
+end_comment
+
+begin_function
 DECL|method|inferDistinctElements (Iterable<?> elements)
 specifier|static
 name|int
@@ -1580,7 +1769,13 @@ literal|11
 return|;
 comment|// initial capacity will be rounded up to 16
 block|}
+end_function
+
+begin_comment
 comment|/**    * Returns an unmodifiable view of the union of two multisets.    * In the returned multiset, the count of each element is the<i>maximum</i>    * of its counts in the two backing multisets. The iteration order of the    * returned multiset matches that of the element set of {@code multiset1}    * followed by the members of the element set of {@code multiset2} that are    * not contained in {@code multiset1}, with repeated occurrences of the same    * element appearing consecutively.    *    *<p>Results are undefined if {@code multiset1} and {@code multiset2} are    * based on different equivalence relations (as {@code HashMultiset} and    * {@code TreeMultiset} are).    *    * @since 14.0    */
+end_comment
+
+begin_function
 annotation|@
 name|Beta
 DECL|method|union ( final Multiset<? extends E> multiset1, final Multiset<? extends E> multiset2)
@@ -1950,7 +2145,13 @@ block|}
 block|}
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Returns an unmodifiable view of the intersection of two multisets.    * In the returned multiset, the count of each element is the<i>minimum</i>    * of its counts in the two backing multisets, with elements that would have    * a count of 0 not included. The iteration order of the returned multiset    * matches that of the element set of {@code multiset1}, with repeated    * occurrences of the same element appearing consecutively.    *    *<p>Results are undefined if {@code multiset1} and {@code multiset2} are    * based on different equivalence relations (as {@code HashMultiset} and    * {@code TreeMultiset} are).    *    * @since 2.0    */
+end_comment
+
+begin_function
 DECL|method|intersection ( final Multiset<E> multiset1, final Multiset<?> multiset2)
 specifier|public
 specifier|static
@@ -2207,7 +2408,13 @@ block|}
 block|}
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Returns an unmodifiable view of the sum of two multisets.    * In the returned multiset, the count of each element is the<i>sum</i> of    * its counts in the two backing multisets. The iteration order of the    * returned multiset matches that of the element set of {@code multiset1}    * followed by the members of the element set of {@code multiset2} that    * are not contained in {@code multiset1}, with repeated occurrences of the    * same element appearing consecutively.    *    *<p>Results are undefined if {@code multiset1} and {@code multiset2} are    * based on different equivalence relations (as {@code HashMultiset} and    * {@code TreeMultiset} are).    *    * @since 14.0    */
+end_comment
+
+begin_function
 annotation|@
 name|Beta
 DECL|method|sum ( final Multiset<? extends E> multiset1, final Multiset<? extends E> multiset2)
@@ -2591,7 +2798,13 @@ block|}
 block|}
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Returns an unmodifiable view of the difference of two multisets.    * In the returned multiset, the count of each element is the result of the    *<i>zero-truncated subtraction</i> of its count in the second multiset from    * its count in the first multiset, with elements that would have a count of    * 0 not included. The iteration order of the returned multiset matches that    * of the element set of {@code multiset1}, with repeated occurrences of the    * same element appearing consecutively.    *    *<p>Results are undefined if {@code multiset1} and {@code multiset2} are    * based on different equivalence relations (as {@code HashMultiset} and    * {@code TreeMultiset} are).    *    * @since 14.0    */
+end_comment
+
+begin_function
 annotation|@
 name|Beta
 DECL|method|difference ( final Multiset<E> multiset1, final Multiset<?> multiset2)
@@ -2825,7 +3038,13 @@ block|}
 block|}
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Returns {@code true} if {@code subMultiset.count(o)<=    * superMultiset.count(o)} for all {@code o}.    *    * @since 10.0    */
+end_comment
+
+begin_function
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|containsOccurrences (Multiset<?> superMultiset, Multiset<?> subMultiset)
@@ -2903,7 +3122,13 @@ return|return
 literal|true
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Modifies {@code multisetToModify} so that its count for an element    * {@code e} is at most {@code multisetToRetain.count(e)}.    *    *<p>To be precise, {@code multisetToModify.count(e)} is set to    * {@code Math.min(multisetToModify.count(e),    * multisetToRetain.count(e))}. This is similar to    * {@link #intersection(Multiset, Multiset) intersection}    * {@code (multisetToModify, multisetToRetain)}, but mutates    * {@code multisetToModify} instead of returning a view.    *    *<p>In contrast, {@code multisetToModify.retainAll(multisetToRetain)} keeps    * all occurrences of elements that appear at all in {@code    * multisetToRetain}, and deletes all occurrences of all other elements.    *    * @return {@code true} if {@code multisetToModify} was changed as a result    *         of this operation    * @since 10.0    */
+end_comment
+
+begin_function
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|retainOccurrences ( Multiset<?> multisetToModify, Multiset<?> multisetToRetain)
@@ -2934,7 +3159,13 @@ name|multisetToRetain
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Delegate implementation which cares about the element type.    */
+end_comment
+
+begin_function
 DECL|method|retainOccurrencesImpl ( Multiset<E> multisetToModify, Multiset<?> occurrencesToRetain)
 specifier|private
 specifier|static
@@ -3072,7 +3303,13 @@ return|return
 name|changed
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * For each occurrence of an element {@code e} in {@code occurrencesToRemove},    * removes one occurrence of {@code e} in {@code multisetToModify}.    *    *<p>Equivalently, this method modifies {@code multisetToModify} so that    * {@code multisetToModify.count(e)} is set to    * {@code Math.max(0, multisetToModify.count(e) -    * Iterables.frequency(occurrencesToRemove, e))}.    *    *<p>This is<i>not</i> the same as {@code multisetToModify.}    * {@link Multiset#removeAll removeAll}{@code (occurrencesToRemove)}, which    * removes all occurrences of elements that appear in    * {@code occurrencesToRemove}. However, this operation<i>is</i> equivalent    * to, albeit sometimes more efficient than, the following:<pre>   {@code    *    *   for (E e : occurrencesToRemove) {    *     multisetToModify.remove(e);    *   }}</pre>    *    * @return {@code true} if {@code multisetToModify} was changed as a result of    *         this operation    * @since 18.0 (present in 10.0 with a requirement that the second parameter    *     be a {@code Multiset})    */
+end_comment
+
+begin_function
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|removeOccurrences ( Multiset<?> multisetToModify, Iterable<?> occurrencesToRemove)
@@ -3156,7 +3393,13 @@ name|changed
 return|;
 block|}
 block|}
+end_function
+
+begin_comment
 comment|/**    * For each occurrence of an element {@code e} in {@code occurrencesToRemove},    * removes one occurrence of {@code e} in {@code multisetToModify}.    *    *<p>Equivalently, this method modifies {@code multisetToModify} so that    * {@code multisetToModify.count(e)} is set to    * {@code Math.max(0, multisetToModify.count(e) -    * occurrencesToRemove.count(e))}.    *    *<p>This is<i>not</i> the same as {@code multisetToModify.}    * {@link Multiset#removeAll removeAll}{@code (occurrencesToRemove)}, which    * removes all occurrences of elements that appear in    * {@code occurrencesToRemove}. However, this operation<i>is</i> equivalent    * to, albeit sometimes more efficient than, the following:<pre>   {@code    *    *   for (E e : occurrencesToRemove) {    *     multisetToModify.remove(e);    *   }}</pre>    *    * @return {@code true} if {@code multisetToModify} was changed as a result of    *         this operation    * @since 10.0 (missing in 18.0 when only the overload taking an {@code Iterable} was present)    */
+end_comment
+
+begin_function
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|removeOccurrences ( Multiset<?> multisetToModify, Multiset<?> occurrencesToRemove)
@@ -3294,7 +3537,13 @@ return|return
 name|changed
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Implementation of the {@code equals}, {@code hashCode}, and    * {@code toString} methods of {@link Multiset.Entry}.    */
+end_comment
+
+begin_class
 DECL|class|AbstractEntry
 specifier|abstract
 specifier|static
@@ -3463,7 +3712,13 @@ operator|)
 return|;
 block|}
 block|}
+end_class
+
+begin_comment
 comment|/**    * An implementation of {@link Multiset#equals}.    */
+end_comment
+
+begin_function
 DECL|method|equalsImpl (Multiset<?> multiset, @Nullable Object object)
 specifier|static
 name|boolean
@@ -3592,7 +3847,13 @@ return|return
 literal|false
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * An implementation of {@link Multiset#addAll}.    */
+end_comment
+
+begin_function
 DECL|method|addAllImpl (Multiset<E> self, Collection<? extends E> elements)
 specifier|static
 parameter_list|<
@@ -3700,7 +3961,13 @@ return|return
 literal|true
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * An implementation of {@link Multiset#removeAll}.    */
+end_comment
+
+begin_function
 DECL|method|removeAllImpl (Multiset<?> self, Collection<?> elementsToRemove)
 specifier|static
 name|boolean
@@ -3758,7 +4025,13 @@ name|collection
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * An implementation of {@link Multiset#retainAll}.    */
+end_comment
+
+begin_function
 DECL|method|retainAllImpl (Multiset<?> self, Collection<?> elementsToRetain)
 specifier|static
 name|boolean
@@ -3821,7 +4094,13 @@ name|collection
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * An implementation of {@link Multiset#setCount(Object, int)}.    */
+end_comment
+
+begin_function
 DECL|method|setCountImpl (Multiset<E> self, E element, int count)
 specifier|static
 parameter_list|<
@@ -3907,7 +4186,13 @@ return|return
 name|oldCount
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * An implementation of {@link Multiset#setCount(Object, int, int)}.    */
+end_comment
+
+begin_function
 DECL|method|setCountImpl (Multiset<E> self, E element, int oldCount, int newCount)
 specifier|static
 parameter_list|<
@@ -3978,6 +4263,9 @@ literal|false
 return|;
 block|}
 block|}
+end_function
+
+begin_class
 DECL|class|ElementSet
 specifier|abstract
 specifier|static
@@ -4181,6 +4469,9 @@ argument_list|()
 return|;
 block|}
 block|}
+end_class
+
+begin_class
 DECL|class|EntrySet
 specifier|abstract
 specifier|static
@@ -4405,7 +4696,13 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+end_class
+
+begin_comment
 comment|/**    * An implementation of {@link Multiset#iterator}.    */
+end_comment
+
+begin_function
 DECL|method|iteratorImpl (Multiset<E> multiset)
 specifier|static
 parameter_list|<
@@ -4443,6 +4740,9 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_class
 DECL|class|MultisetIteratorImpl
 specifier|static
 specifier|final
@@ -4661,6 +4961,9 @@ literal|false
 expr_stmt|;
 block|}
 block|}
+end_class
+
+begin_function
 DECL|method|spliteratorImpl (Multiset<E> multiset)
 specifier|static
 parameter_list|<
@@ -4755,7 +5058,13 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * An implementation of {@link Multiset#size}.    */
+end_comment
+
+begin_function
 DECL|method|sizeImpl (Multiset<?> multiset)
 specifier|static
 name|int
@@ -4804,7 +5113,13 @@ name|size
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Used to avoid http://bugs.sun.com/view_bug.do?bug_id=6558557    */
+end_comment
+
+begin_function
 DECL|method|cast (Iterable<T> iterable)
 specifier|static
 parameter_list|<
@@ -4833,6 +5148,9 @@ operator|)
 name|iterable
 return|;
 block|}
+end_function
+
+begin_decl_stmt
 DECL|field|DECREASING_COUNT_ORDERING
 specifier|private
 specifier|static
@@ -4893,8 +5211,17 @@ argument_list|)
 return|;
 block|}
 block|}
+end_decl_stmt
+
+begin_empty_stmt
 empty_stmt|;
+end_empty_stmt
+
+begin_comment
 comment|/**    * Returns a copy of {@code multiset} as an {@link ImmutableMultiset} whose iteration order is    * highest count first, with ties broken by the iteration order of the original multiset.    *    * @since 11.0    */
+end_comment
+
+begin_function
 annotation|@
 name|Beta
 DECL|method|copyHighestCountFirst (Multiset<E> multiset)
@@ -4946,8 +5273,8 @@ name|sortedEntries
 argument_list|)
 return|;
 block|}
-block|}
-end_class
+end_function
 
+unit|}
 end_unit
 
