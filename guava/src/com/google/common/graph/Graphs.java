@@ -199,7 +199,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Static utility methods for {@link Graph} and {@link Network} instances.  *  * @author James Sexton  * @author Joshua O'Madadhain  * @since 20.0  */
+comment|/**  * Static utility methods for {@link Graph}, {@link ValueGraph}, and {@link Network} instances.  *  * @author James Sexton  * @author Joshua O'Madadhain  * @since 20.0  */
 end_comment
 
 begin_class

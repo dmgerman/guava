@@ -27,7 +27,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A class to allow {@link Graph} implementations to be backed by {@link ValueGraph}s. This is not  * currently planned to be released as a general-purpose forwarding class.  *  * @author James Sexton  */
+comment|/**  * A class to allow {@link Graph} implementations to be backed by another {@link Graph}. This is not  * currently planned to be released as a general-purpose forwarding class.  *  * @author James Sexton  */
 end_comment
 
 begin_class

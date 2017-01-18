@@ -66,6 +66,16 @@ name|Presence
 argument_list|>
 name|backingValueGraph
 decl_stmt|;
+DECL|field|backingGraph
+specifier|private
+specifier|final
+name|Graph
+argument_list|<
+name|N
+argument_list|>
+name|backingGraph
+decl_stmt|;
+comment|// cache of backingValueGraph.asGraph()
 comment|/** Constructs a {@link MutableGraph} with the properties specified in {@code builder}. */
 DECL|method|ConfigurableMutableGraph (AbstractGraphBuilder<? super N> builder)
 name|ConfigurableMutableGraph
@@ -94,6 +104,15 @@ argument_list|(
 name|builder
 argument_list|)
 expr_stmt|;
+name|this
+operator|.
+name|backingGraph
+operator|=
+name|backingValueGraph
+operator|.
+name|asGraph
+argument_list|()
+expr_stmt|;
 block|}
 annotation|@
 name|Override
@@ -107,7 +126,7 @@ name|delegate
 parameter_list|()
 block|{
 return|return
-name|backingValueGraph
+name|backingGraph
 return|;
 block|}
 annotation|@

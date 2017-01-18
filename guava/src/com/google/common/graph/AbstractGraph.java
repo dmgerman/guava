@@ -155,7 +155,7 @@ argument_list|<
 name|N
 argument_list|>
 block|{
-comment|/**    * Returns the number of edges in this graph; used to calculate the size of {@link #edges()}. The    * default implementation is O(|N|). You can manually keep track of the number of edges and    * override this method for better performance.    */
+comment|/**    * Returns the number of edges in this graph; used to calculate the size of {@link #edges()}. This    * implementation requires O(|N|) time. Classes extending this one may manually keep track of the    * number of edges as the graph is updated, and override this method for better performance.    */
 DECL|method|edgeCount ()
 specifier|protected
 name|long
@@ -202,7 +202,7 @@ operator|>>>
 literal|1
 return|;
 block|}
-comment|/**    * A reasonable default implementation of {@link Graph#edges()} defined in terms of {@link    * #nodes()} and {@link #successors(Object)}.    */
+comment|/**    * An implementation of {@link Graph#edges()} defined in terms of {@link #nodes()} and {@link    * #successors(Object)}.    */
 annotation|@
 name|Override
 DECL|method|edges ()

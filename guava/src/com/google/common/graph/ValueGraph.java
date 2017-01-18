@@ -46,6 +46,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Set
+import|;
+end_import
+
+begin_import
+import|import
 name|javax
 operator|.
 name|annotation
@@ -70,12 +80,160 @@ name|N
 parameter_list|,
 name|V
 parameter_list|>
-extends|extends
+block|{
+comment|//
+comment|// ValueGraph-level accessors
+comment|//
+comment|/** Returns all nodes in this graph, in the order specified by {@link #nodeOrder()}. */
+DECL|method|nodes ()
+name|Set
+argument_list|<
+name|N
+argument_list|>
+name|nodes
+parameter_list|()
+function_decl|;
+comment|/** Returns all edges in this graph. */
+DECL|method|edges ()
+name|Set
+argument_list|<
+name|EndpointPair
+argument_list|<
+name|N
+argument_list|>
+argument_list|>
+name|edges
+parameter_list|()
+function_decl|;
+comment|/**    * Returns a live view of this graph as a {@link Graph}. The resulting {@link Graph} will have an    * edge connecting node A to node B if this {@link ValueGraph} has an edge connecting A to B.    */
+DECL|method|asGraph ()
 name|Graph
 argument_list|<
 name|N
 argument_list|>
-block|{
+name|asGraph
+parameter_list|()
+function_decl|;
+comment|//
+comment|// ValueGraph properties
+comment|//
+comment|/**    * Returns true if the edges in this graph are directed. Directed edges connect a {@link    * EndpointPair#source() source node} to a {@link EndpointPair#target() target node}, while    * undirected edges connect a pair of nodes to each other.    */
+DECL|method|isDirected ()
+name|boolean
+name|isDirected
+parameter_list|()
+function_decl|;
+comment|/**    * Returns true if this graph allows self-loops (edges that connect a node to itself). Attempting    * to add a self-loop to a graph that does not allow them will throw an {@link    * UnsupportedOperationException}.    */
+DECL|method|allowsSelfLoops ()
+name|boolean
+name|allowsSelfLoops
+parameter_list|()
+function_decl|;
+comment|/** Returns the order of iteration for the elements of {@link #nodes()}. */
+DECL|method|nodeOrder ()
+name|ElementOrder
+argument_list|<
+name|N
+argument_list|>
+name|nodeOrder
+parameter_list|()
+function_decl|;
+comment|//
+comment|// Element-level accessors
+comment|//
+comment|/**    * Returns the nodes which have an incident edge in common with {@code node} in this graph.    *    * @throws IllegalArgumentException if {@code node} is not an element of this graph    */
+DECL|method|adjacentNodes (@ompatibleWithR) Object node)
+name|Set
+argument_list|<
+name|N
+argument_list|>
+name|adjacentNodes
+parameter_list|(
+annotation|@
+name|CompatibleWith
+argument_list|(
+literal|"N"
+argument_list|)
+name|Object
+name|node
+parameter_list|)
+function_decl|;
+comment|/**    * Returns all nodes in this graph adjacent to {@code node} which can be reached by traversing    * {@code node}'s incoming edges<i>against</i> the direction (if any) of the edge.    *    *<p>In an undirected graph, this is equivalent to {@link #adjacentNodes(Object)}.    *    * @throws IllegalArgumentException if {@code node} is not an element of this graph    */
+DECL|method|predecessors (@ompatibleWithR) Object node)
+name|Set
+argument_list|<
+name|N
+argument_list|>
+name|predecessors
+parameter_list|(
+annotation|@
+name|CompatibleWith
+argument_list|(
+literal|"N"
+argument_list|)
+name|Object
+name|node
+parameter_list|)
+function_decl|;
+comment|/**    * Returns all nodes in this graph adjacent to {@code node} which can be reached by traversing    * {@code node}'s outgoing edges in the direction (if any) of the edge.    *    *<p>In an undirected graph, this is equivalent to {@link #adjacentNodes(Object)}.    *    *<p>This is<i>not</i> the same as "all nodes reachable from {@code node} by following outgoing    * edges". For that functionality, see {@link Graphs#reachableNodes(Graph, Object)}.    *    * @throws IllegalArgumentException if {@code node} is not an element of this graph    */
+DECL|method|successors (@ompatibleWithR) Object node)
+name|Set
+argument_list|<
+name|N
+argument_list|>
+name|successors
+parameter_list|(
+annotation|@
+name|CompatibleWith
+argument_list|(
+literal|"N"
+argument_list|)
+name|Object
+name|node
+parameter_list|)
+function_decl|;
+comment|/**    * Returns the count of {@code node}'s incident edges, counting self-loops twice (equivalently,    * the number of times an edge touches {@code node}).    *    *<p>For directed graphs, this is equal to {@code inDegree(node) + outDegree(node)}.    *    *<p>For undirected graphs, this is equal to {@code adjacentNodes(node).size()} + (1 if {@code    * node} has an incident self-loop, 0 otherwise).    *    *<p>If the count is greater than {@code Integer.MAX_VALUE}, returns {@code Integer.MAX_VALUE}.    *    * @throws IllegalArgumentException if {@code node} is not an element of this graph    */
+DECL|method|degree (@ompatibleWithR) Object node)
+name|int
+name|degree
+parameter_list|(
+annotation|@
+name|CompatibleWith
+argument_list|(
+literal|"N"
+argument_list|)
+name|Object
+name|node
+parameter_list|)
+function_decl|;
+comment|/**    * Returns the count of {@code node}'s incoming edges (equal to {@code predecessors(node).size()})    * in a directed graph. In an undirected graph, returns the {@link #degree(Object)}.    *    *<p>If the count is greater than {@code Integer.MAX_VALUE}, returns {@code Integer.MAX_VALUE}.    *    * @throws IllegalArgumentException if {@code node} is not an element of this graph    */
+DECL|method|inDegree (@ompatibleWithR) Object node)
+name|int
+name|inDegree
+parameter_list|(
+annotation|@
+name|CompatibleWith
+argument_list|(
+literal|"N"
+argument_list|)
+name|Object
+name|node
+parameter_list|)
+function_decl|;
+comment|/**    * Returns the count of {@code node}'s outgoing edges (equal to {@code successors(node).size()})    * in a directed graph. In an undirected graph, returns the {@link #degree(Object)}.    *    *<p>If the count is greater than {@code Integer.MAX_VALUE}, returns {@code Integer.MAX_VALUE}.    *    * @throws IllegalArgumentException if {@code node} is not an element of this graph    */
+DECL|method|outDegree (@ompatibleWithR) Object node)
+name|int
+name|outDegree
+parameter_list|(
+annotation|@
+name|CompatibleWith
+argument_list|(
+literal|"N"
+argument_list|)
+name|Object
+name|node
+parameter_list|)
+function_decl|;
 comment|/**    * If there is an edge connecting {@code nodeU} to {@code nodeV}, returns the non-null value    * associated with that edge.    *    *<p>In an undirected graph, this is equal to {@code edgeValue(nodeV, nodeU)}.    *    * @throws IllegalArgumentException if there is no edge connecting {@code nodeU} to {@code nodeV}.    */
 DECL|method|edgeValue (@ompatibleWithR) Object nodeU, @CompatibleWith(R) Object nodeV)
 name|V

@@ -166,8 +166,8 @@ literal|false
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a {@link ValueGraphBuilder} initialized with all properties queryable from {@code    * graph}.    *    *<p>The "queryable" properties are those that are exposed through the {@link Graph} interface,    * such as {@link Graph#isDirected()}. Other properties, such as {@link #expectedNodeCount(int)},    * are not set in the new builder.    */
-DECL|method|from (Graph<N> graph)
+comment|/**    * Returns a {@link ValueGraphBuilder} initialized with all properties queryable from {@code    * graph}.    *    *<p>The "queryable" properties are those that are exposed through the {@link ValueGraph}    * interface, such as {@link ValueGraph#isDirected()}. Other properties, such as {@link    * #expectedNodeCount(int)}, are not set in the new builder.    */
+DECL|method|from (ValueGraph<N, ?> graph)
 specifier|public
 specifier|static
 parameter_list|<
@@ -181,9 +181,11 @@ name|Object
 argument_list|>
 name|from
 parameter_list|(
-name|Graph
+name|ValueGraph
 argument_list|<
 name|N
+argument_list|,
+name|?
 argument_list|>
 name|graph
 parameter_list|)

@@ -114,7 +114,7 @@ argument_list|(
 literal|"A"
 argument_list|)
 expr_stmt|;
-name|Network
+name|ImmutableNetwork
 argument_list|<
 name|String
 argument_list|,
@@ -147,12 +147,14 @@ expr_stmt|;
 name|assertThat
 argument_list|(
 name|immutableNetwork
-operator|instanceof
-name|MutableNetwork
 argument_list|)
 operator|.
-name|isFalse
-argument_list|()
+name|isNotInstanceOf
+argument_list|(
+name|MutableNetwork
+operator|.
+name|class
+argument_list|)
 expr_stmt|;
 name|assertThat
 argument_list|(
