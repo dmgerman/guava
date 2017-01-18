@@ -117,7 +117,7 @@ argument_list|>
 name|graphB
 parameter_list|)
 block|{
-comment|// Properties not covered by Graphs.equivalent()
+comment|// Properties not covered by equals()
 name|assertThat
 argument_list|(
 name|graphA
@@ -152,18 +152,13 @@ argument_list|)
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|Graphs
-operator|.
-name|equivalent
-argument_list|(
 name|graphA
-argument_list|,
+argument_list|)
+operator|.
+name|isEqualTo
+argument_list|(
 name|graphB
 argument_list|)
-argument_list|)
-operator|.
-name|isTrue
-argument_list|()
 expr_stmt|;
 block|}
 DECL|method|assertStronglyEquivalent (ValueGraph<?, ?> graphA, ValueGraph<?, ?> graphB)
@@ -188,7 +183,7 @@ argument_list|>
 name|graphB
 parameter_list|)
 block|{
-comment|// Properties not covered by Graphs.equivalent()
+comment|// Properties not covered by equals()
 name|assertThat
 argument_list|(
 name|graphA
@@ -223,18 +218,13 @@ argument_list|)
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|Graphs
-operator|.
-name|equivalent
-argument_list|(
 name|graphA
-argument_list|,
+argument_list|)
+operator|.
+name|isEqualTo
+argument_list|(
 name|graphB
 argument_list|)
-argument_list|)
-operator|.
-name|isTrue
-argument_list|()
 expr_stmt|;
 block|}
 DECL|method|assertStronglyEquivalent (Network<?, ?> networkA, Network<?, ?> networkB)
@@ -259,7 +249,7 @@ argument_list|>
 name|networkB
 parameter_list|)
 block|{
-comment|// Properties not covered by Graphs.equivalent()
+comment|// Properties not covered by equals()
 name|assertThat
 argument_list|(
 name|networkA
@@ -326,18 +316,13 @@ argument_list|)
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|Graphs
-operator|.
-name|equivalent
-argument_list|(
 name|networkA
-argument_list|,
+argument_list|)
+operator|.
+name|isEqualTo
+argument_list|(
 name|networkB
 argument_list|)
-argument_list|)
-operator|.
-name|isTrue
-argument_list|()
 expr_stmt|;
 block|}
 comment|/**    * In some cases our graph implementations return custom sets that define their own size() and    * contains(). Verify that these sets are consistent with the elements of their iterator.    */

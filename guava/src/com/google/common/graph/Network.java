@@ -359,7 +359,7 @@ function_decl|;
 comment|//
 comment|// Network identity
 comment|//
-comment|/**    * For the default {@link Network} implementations, returns true if {@code this == object}    * (reference equality). External implementations are free to define this method as they see fit,    * as long as they satisfy the {@link Object#equals(Object)} contract.    *    *<p>To compare two {@link Network}s based on their contents rather than their references, see    * {@link Graphs#equivalent(Network, Network)}.    */
+comment|/**    * Returns {@code true} iff {@code object} is a {@link Network} that has the same elements and the    * same structural relationships as those in this network.    *    *<p>Thus, two networks A and B are equal if<b>all</b> of the following are true:    *    *<ul>    *<li>A and B have equal {@link #isDirected() directedness}.    *<li>A and B have equal {@link #nodes() node sets}.    *<li>A and B have equal {@link #edges() edge sets}.    *<li>Every edge in A and B connects the same nodes in the same direction (if any).    *</ul>    *    *<p>Network properties besides {@link #isDirected() directedness} do<b>not</b> affect equality.    * For example, two networks may be considered equal even if one allows parallel edges and the    * other doesn't. Additionally, the order in which nodes or edges are added to the network, and    * the order in which they are iterated over, are irrelevant.    *    *<p>A reference implementation of this is provided by {@link AbstractNetwork#equals(Object)}.    */
 annotation|@
 name|Override
 DECL|method|equals (@ullable Object object)
@@ -372,7 +372,7 @@ name|Object
 name|object
 parameter_list|)
 function_decl|;
-comment|/**    * For the default {@link Network} implementations, returns {@code System.identityHashCode(this)}.    * External implementations are free to define this method as they see fit, as long as they    * satisfy the {@link Object#hashCode()} contract.    */
+comment|/**    * Returns the hash code for this network. The hash code of a network is defined as the hash code    * of a map from each of its {@link #edges() edges} to their {@link #incidentNodes(Object)    * incident nodes}.    *    *<p>A reference implementation of this is provided by {@link AbstractNetwork#hashCode()}.    */
 annotation|@
 name|Override
 DECL|method|hashCode ()
