@@ -1634,8 +1634,6 @@ name|Integer
 argument_list|>
 name|transpose
 init|=
-name|Graphs
-operator|.
 name|transpose
 argument_list|(
 name|directedGraph
@@ -1936,8 +1934,6 @@ name|String
 argument_list|>
 name|transpose
 init|=
-name|Graphs
-operator|.
 name|transpose
 argument_list|(
 name|directedGraph
@@ -2284,8 +2280,6 @@ name|String
 argument_list|>
 name|transpose
 init|=
-name|Graphs
-operator|.
 name|transpose
 argument_list|(
 name|directedGraph
