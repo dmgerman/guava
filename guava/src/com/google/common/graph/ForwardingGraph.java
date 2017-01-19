@@ -27,7 +27,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A class to allow {@link Graph} implementations to be backed by another {@link Graph}. This is not  * currently planned to be released as a general-purpose forwarding class.  *  * @author James Sexton  */
+comment|/**  * A class to allow {@link Graph} implementations to be backed by a {@link BaseGraph}. This is not  * currently planned to be released as a general-purpose forwarding class.  *  * @author James Sexton  */
 end_comment
 
 begin_class
@@ -47,7 +47,7 @@ block|{
 DECL|method|delegate ()
 specifier|protected
 specifier|abstract
-name|Graph
+name|BaseGraph
 argument_list|<
 name|N
 argument_list|>

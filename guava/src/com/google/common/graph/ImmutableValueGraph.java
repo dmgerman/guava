@@ -289,10 +289,7 @@ argument_list|<
 name|N
 argument_list|>
 argument_list|(
-name|super
-operator|.
-name|asGraph
-argument_list|()
+name|this
 argument_list|)
 return|;
 comment|// safe because the view is effectively immutable

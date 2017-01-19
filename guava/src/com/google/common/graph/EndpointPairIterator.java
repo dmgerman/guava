@@ -118,7 +118,7 @@ block|{
 DECL|field|graph
 specifier|private
 specifier|final
-name|Graph
+name|BaseGraph
 argument_list|<
 name|N
 argument_list|>
@@ -160,7 +160,7 @@ operator|.
 name|iterator
 argument_list|()
 decl_stmt|;
-DECL|method|of (Graph<N> graph)
+DECL|method|of (BaseGraph<N> graph)
 specifier|static
 parameter_list|<
 name|N
@@ -171,7 +171,7 @@ name|N
 argument_list|>
 name|of
 parameter_list|(
-name|Graph
+name|BaseGraph
 argument_list|<
 name|N
 argument_list|>
@@ -203,11 +203,11 @@ name|graph
 argument_list|)
 return|;
 block|}
-DECL|method|EndpointPairIterator (Graph<N> graph)
+DECL|method|EndpointPairIterator (BaseGraph<N> graph)
 specifier|private
 name|EndpointPairIterator
 parameter_list|(
-name|Graph
+name|BaseGraph
 argument_list|<
 name|N
 argument_list|>
@@ -302,11 +302,11 @@ argument_list|<
 name|N
 argument_list|>
 block|{
-DECL|method|Directed (Graph<N> graph)
+DECL|method|Directed (BaseGraph<N> graph)
 specifier|private
 name|Directed
 parameter_list|(
-name|Graph
+name|BaseGraph
 argument_list|<
 name|N
 argument_list|>
@@ -396,11 +396,11 @@ name|N
 argument_list|>
 name|visitedNodes
 decl_stmt|;
-DECL|method|Undirected (Graph<N> graph)
+DECL|method|Undirected (BaseGraph<N> graph)
 specifier|private
 name|Undirected
 parameter_list|(
-name|Graph
+name|BaseGraph
 argument_list|<
 name|N
 argument_list|>

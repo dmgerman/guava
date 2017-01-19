@@ -170,16 +170,16 @@ comment|// The backing graph must be immutable.
 DECL|field|backingGraph
 specifier|private
 specifier|final
-name|Graph
+name|BaseGraph
 argument_list|<
 name|N
 argument_list|>
 name|backingGraph
 decl_stmt|;
-DECL|method|ImmutableGraph (Graph<N> backingGraph)
+DECL|method|ImmutableGraph (BaseGraph<N> backingGraph)
 name|ImmutableGraph
 parameter_list|(
-name|Graph
+name|BaseGraph
 argument_list|<
 name|N
 argument_list|>
@@ -262,9 +262,6 @@ operator|.
 name|size
 argument_list|()
 argument_list|)
-operator|.
-name|asGraph
-argument_list|()
 argument_list|)
 return|;
 block|}
@@ -476,7 +473,7 @@ annotation|@
 name|Override
 DECL|method|delegate ()
 specifier|protected
-name|Graph
+name|BaseGraph
 argument_list|<
 name|N
 argument_list|>
