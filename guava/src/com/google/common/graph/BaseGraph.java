@@ -196,6 +196,28 @@ name|Object
 name|node
 parameter_list|)
 function_decl|;
+comment|/**    * Returns true if there is an edge directly connecting {@code nodeU} to {@code nodeV}. This is    * equivalent to {@code return nodes().contains(nodeU)&& successors(nodeU).contains(nodeV)}.    *    *<p>In an undirected graph, this is equal to {@code hasEdge(nodeV, nodeU)}.    */
+DECL|method|hasEdge (@ompatibleWithR) Object nodeU, @CompatibleWith(R) Object nodeV)
+name|boolean
+name|hasEdge
+parameter_list|(
+annotation|@
+name|CompatibleWith
+argument_list|(
+literal|"N"
+argument_list|)
+name|Object
+name|nodeU
+parameter_list|,
+annotation|@
+name|CompatibleWith
+argument_list|(
+literal|"N"
+argument_list|)
+name|Object
+name|nodeV
+parameter_list|)
+function_decl|;
 block|}
 end_interface
 

@@ -206,6 +206,20 @@ name|Object
 name|node
 parameter_list|)
 function_decl|;
+comment|/** {@inheritDoc} */
+annotation|@
+name|Override
+DECL|method|hasEdge (Object nodeU, Object nodeV)
+name|boolean
+name|hasEdge
+parameter_list|(
+name|Object
+name|nodeU
+parameter_list|,
+name|Object
+name|nodeV
+parameter_list|)
+function_decl|;
 comment|//
 comment|// Graph identity
 comment|//
