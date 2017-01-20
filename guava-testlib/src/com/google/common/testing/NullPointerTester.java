@@ -1308,9 +1308,6 @@ operator|.
 name|getTypes
 argument_list|()
 operator|.
-name|classes
-argument_list|()
-operator|.
 name|rawTypes
 argument_list|()
 control|)
