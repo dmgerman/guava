@@ -110,6 +110,16 @@ literal|"Edge %s already exists between the following nodes: %s, "
 operator|+
 literal|"so it cannot be reused to connect the following nodes: %s."
 decl_stmt|;
+DECL|field|MULTIPLE_EDGES_CONNECTING
+specifier|static
+specifier|final
+name|String
+name|MULTIPLE_EDGES_CONNECTING
+init|=
+literal|"Cannot call edgeConnecting() when parallel edges exist between %s and %s. Consider calling "
+operator|+
+literal|"edgesConnecting() instead."
+decl_stmt|;
 DECL|field|PARALLEL_EDGES_NOT_ALLOWED
 specifier|static
 specifier|final

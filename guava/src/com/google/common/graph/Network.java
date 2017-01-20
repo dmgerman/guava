@@ -36,6 +36,20 @@ name|com
 operator|.
 name|google
 operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Optional
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
 name|errorprone
 operator|.
 name|annotations
@@ -331,13 +345,38 @@ name|Object
 name|edge
 parameter_list|)
 function_decl|;
-comment|/**    * Returns the set of edges directly connecting {@code nodeU} to {@code nodeV}.    *    *<p>In an undirected network, this is equal to {@code edgesConnecting(nodeV, nodeU)}.    *    *<p>The resulting set of edges will be parallel (i.e. have equal {@link #incidentNodes(Object)}.    * If this network does not {@link #allowsParallelEdges() allow parallel edges}, the resulting set    * will contain at most one edge.    *    * @throws IllegalArgumentException if {@code nodeU} or {@code nodeV} is not an element of this    *     network    */
+comment|/**    * Returns the set of edges directly connecting {@code nodeU} to {@code nodeV}.    *    *<p>In an undirected network, this is equal to {@code edgesConnecting(nodeV, nodeU)}.    *    *<p>The resulting set of edges will be parallel (i.e. have equal {@link #incidentNodes(Object)}.    * If this network does not {@link #allowsParallelEdges() allow parallel edges}, the resulting set    * will contain at most one edge (equivalent to {@code edgeConnecting(nodeU, nodeV).asSet()}).    *    * @throws IllegalArgumentException if {@code nodeU} or {@code nodeV} is not an element of this    *     network    */
 DECL|method|edgesConnecting (@ompatibleWithR) Object nodeU, @CompatibleWith(R) Object nodeV)
 name|Set
 argument_list|<
 name|E
 argument_list|>
 name|edgesConnecting
+parameter_list|(
+annotation|@
+name|CompatibleWith
+argument_list|(
+literal|"N"
+argument_list|)
+name|Object
+name|nodeU
+parameter_list|,
+annotation|@
+name|CompatibleWith
+argument_list|(
+literal|"N"
+argument_list|)
+name|Object
+name|nodeV
+parameter_list|)
+function_decl|;
+comment|/**    * Returns the single edge directly connecting {@code nodeU} to {@code nodeV}, if one is present.    *    *<p>In an undirected network, this is equal to {@code edgeConnecting(nodeV, nodeU)}.    *    * @throws IllegalArgumentException if there are multiple parallel edges connecting {@code nodeU}    *     to {@code nodeV}    * @throws IllegalArgumentException if {@code nodeU} or {@code nodeV} is not an element of this    *     network    */
+DECL|method|edgeConnecting (@ompatibleWithR) Object nodeU, @CompatibleWith(R) Object nodeV)
+name|Optional
+argument_list|<
+name|E
+argument_list|>
+name|edgeConnecting
 parameter_list|(
 annotation|@
 name|CompatibleWith
