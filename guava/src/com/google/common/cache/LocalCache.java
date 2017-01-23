@@ -92,6 +92,24 @@ name|util
 operator|.
 name|concurrent
 operator|.
+name|Futures
+operator|.
+name|transform
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
 name|MoreExecutors
 operator|.
 name|directExecutor
@@ -17032,8 +17050,6 @@ block|}
 comment|// To avoid a race, make sure the refreshed value is set into loadingValueReference
 comment|// *before* returning newValue from the cache query.
 return|return
-name|Futures
-operator|.
 name|transform
 argument_list|(
 name|newValue
@@ -17079,6 +17095,9 @@ name|newValue
 return|;
 block|}
 block|}
+argument_list|,
+name|directExecutor
+argument_list|()
 argument_list|)
 return|;
 block|}
