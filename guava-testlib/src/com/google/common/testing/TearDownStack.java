@@ -62,6 +62,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|collect
+operator|.
+name|Lists
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -114,8 +128,20 @@ name|Logger
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|concurrent
+operator|.
+name|GuardedBy
+import|;
+end_import
+
 begin_comment
-comment|/**  * A {@code TearDownStack} contains a stack of {@link TearDown} instances.  *  * @author Kevin Bourrillion  * @since 10.0  */
+comment|/**  * A {@code TearDownStack} contains a stack of {@link TearDown} instances.  *  *<p>This class is thread-safe.  *  * @author Kevin Bourrillion  * @since 10.0  */
 end_comment
 
 begin_class
@@ -149,6 +175,11 @@ name|getName
 argument_list|()
 argument_list|)
 decl_stmt|;
+annotation|@
+name|GuardedBy
+argument_list|(
+literal|"stack"
+argument_list|)
 DECL|field|stack
 specifier|final
 name|LinkedList
@@ -209,6 +240,11 @@ name|TearDown
 name|tearDown
 parameter_list|)
 block|{
+synchronized|synchronized
+init|(
+name|stack
+init|)
+block|{
 name|stack
 operator|.
 name|addFirst
@@ -219,6 +255,7 @@ name|tearDown
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 comment|/**    * Causes teardown to execute.    */
 DECL|method|runTearDown ()
@@ -241,12 +278,38 @@ name|Throwable
 argument_list|>
 argument_list|()
 decl_stmt|;
+name|List
+argument_list|<
+name|TearDown
+argument_list|>
+name|stackCopy
+decl_stmt|;
+synchronized|synchronized
+init|(
+name|stack
+init|)
+block|{
+name|stackCopy
+operator|=
+name|Lists
+operator|.
+name|newArrayList
+argument_list|(
+name|stack
+argument_list|)
+expr_stmt|;
+name|stack
+operator|.
+name|clear
+argument_list|()
+expr_stmt|;
+block|}
 for|for
 control|(
 name|TearDown
 name|tearDown
 range|:
-name|stack
+name|stackCopy
 control|)
 block|{
 try|try
@@ -294,11 +357,6 @@ expr_stmt|;
 block|}
 block|}
 block|}
-name|stack
-operator|.
-name|clear
-argument_list|()
-expr_stmt|;
 if|if
 condition|(
 operator|(

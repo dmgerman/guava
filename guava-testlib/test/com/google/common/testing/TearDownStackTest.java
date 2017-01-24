@@ -473,6 +473,13 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+synchronized|synchronized
+init|(
+name|result
+operator|.
+name|stack
+init|)
+block|{
 name|assertEquals
 argument_list|(
 literal|"The test should have cleared the stack (say, by virtue of running runTearDown)"
@@ -487,6 +494,7 @@ name|size
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 argument_list|)
