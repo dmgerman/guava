@@ -1935,6 +1935,9 @@ name|constant
 argument_list|(
 literal|null
 argument_list|)
+argument_list|,
+name|directExecutor
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|assertNull
@@ -2016,6 +2019,9 @@ argument_list|(
 name|future
 argument_list|,
 name|function
+argument_list|,
+name|directExecutor
+argument_list|()
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -2065,6 +2071,9 @@ argument_list|(
 name|root
 argument_list|,
 name|identity
+argument_list|()
+argument_list|,
+name|directExecutor
 argument_list|()
 argument_list|)
 decl_stmt|;
@@ -2117,6 +2126,9 @@ argument_list|(
 name|output
 argument_list|,
 name|identity
+argument_list|()
+argument_list|,
+name|directExecutor
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -2218,6 +2230,9 @@ argument_list|(
 name|input
 argument_list|,
 name|transformer
+argument_list|,
+name|directExecutor
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|transformer
@@ -2319,6 +2334,9 @@ argument_list|(
 name|input
 argument_list|,
 name|transformer
+argument_list|,
+name|directExecutor
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|transformer
@@ -2377,6 +2395,9 @@ argument_list|(
 name|input
 argument_list|,
 name|identity
+argument_list|()
+argument_list|,
+name|directExecutor
 argument_list|()
 argument_list|)
 decl_stmt|;
@@ -2449,6 +2470,9 @@ name|input
 argument_list|,
 name|identity
 argument_list|()
+argument_list|,
+name|directExecutor
+argument_list|()
 argument_list|)
 decl_stmt|;
 try|try
@@ -2515,6 +2539,9 @@ argument_list|(
 name|input
 argument_list|,
 name|identity
+argument_list|()
+argument_list|,
+name|directExecutor
 argument_list|()
 argument_list|)
 decl_stmt|;
@@ -2631,6 +2658,9 @@ argument_list|(
 name|input
 argument_list|,
 name|function
+argument_list|,
+name|directExecutor
+argument_list|()
 argument_list|)
 operator|.
 name|cancel
@@ -2722,6 +2752,9 @@ argument_list|(
 name|input
 argument_list|,
 name|function
+argument_list|,
+name|directExecutor
+argument_list|()
 argument_list|)
 operator|.
 name|cancel
@@ -3015,6 +3048,9 @@ argument_list|(
 name|immediate
 argument_list|,
 name|function
+argument_list|,
+name|directExecutor
+argument_list|()
 argument_list|)
 operator|.
 name|cancel
@@ -3116,6 +3152,9 @@ argument_list|(
 name|immediate
 argument_list|,
 name|function
+argument_list|,
+name|directExecutor
+argument_list|()
 argument_list|)
 operator|.
 name|cancel
@@ -3219,6 +3258,9 @@ argument_list|(
 name|f1
 argument_list|,
 name|function
+argument_list|,
+name|directExecutor
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|f1
@@ -3293,6 +3335,9 @@ name|root
 argument_list|,
 name|asyncIdentity
 argument_list|()
+argument_list|,
+name|directExecutor
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|root
@@ -3344,6 +3389,9 @@ argument_list|(
 name|output
 argument_list|,
 name|asyncIdentity
+argument_list|()
+argument_list|,
+name|directExecutor
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -3448,6 +3496,9 @@ argument_list|(
 name|input
 argument_list|,
 name|transformer
+argument_list|,
+name|directExecutor
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|transformer
@@ -3552,6 +3603,9 @@ argument_list|(
 name|input
 argument_list|,
 name|transformer
+argument_list|,
+name|directExecutor
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|transformer
@@ -3610,6 +3664,9 @@ argument_list|(
 name|input
 argument_list|,
 name|asyncIdentity
+argument_list|()
+argument_list|,
+name|directExecutor
 argument_list|()
 argument_list|)
 decl_stmt|;
@@ -3682,6 +3739,9 @@ name|input
 argument_list|,
 name|asyncIdentity
 argument_list|()
+argument_list|,
+name|directExecutor
+argument_list|()
 argument_list|)
 decl_stmt|;
 try|try
@@ -3748,6 +3808,9 @@ argument_list|(
 name|input
 argument_list|,
 name|asyncIdentity
+argument_list|()
+argument_list|,
+name|directExecutor
 argument_list|()
 argument_list|)
 decl_stmt|;
@@ -4076,6 +4139,9 @@ argument_list|(
 name|immediateFuture
 argument_list|,
 name|adder
+argument_list|,
+name|directExecutor
+argument_list|()
 argument_list|)
 decl_stmt|;
 comment|// The composed future also yields 6.
@@ -4189,6 +4255,9 @@ argument_list|(
 name|immediateFuture
 argument_list|,
 name|adder
+argument_list|,
+name|directExecutor
+argument_list|()
 argument_list|)
 argument_list|)
 operator|.
@@ -4208,6 +4277,9 @@ argument_list|(
 name|immediateFuture
 argument_list|,
 name|adder
+argument_list|,
+name|directExecutor
+argument_list|()
 argument_list|)
 argument_list|)
 operator|.
@@ -4269,6 +4341,9 @@ name|exceptionInput
 argument_list|,
 name|newOneTimeExceptionThrower
 argument_list|()
+argument_list|,
+name|directExecutor
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|exceptionInput
@@ -4310,6 +4385,9 @@ name|errorInput
 argument_list|,
 name|newOneTimeErrorThrower
 argument_list|()
+argument_list|,
+name|directExecutor
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|errorInput
@@ -4337,6 +4415,9 @@ name|exceptionInput
 argument_list|,
 name|newOneTimeExceptionThrower
 argument_list|()
+argument_list|,
+name|directExecutor
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|runGetIdempotencyTest
@@ -4355,6 +4436,9 @@ argument_list|(
 name|errorInput
 argument_list|,
 name|newOneTimeErrorThrower
+argument_list|()
+argument_list|,
+name|directExecutor
 argument_list|()
 argument_list|)
 argument_list|,
@@ -5392,6 +5476,9 @@ operator|.
 name|class
 argument_list|,
 name|fallback
+argument_list|,
+name|directExecutor
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|assertEquals
@@ -5504,6 +5591,9 @@ operator|.
 name|class
 argument_list|,
 name|fallback
+argument_list|,
+name|directExecutor
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|assertEquals
@@ -5656,6 +5746,9 @@ operator|.
 name|class
 argument_list|,
 name|fallback
+argument_list|,
+name|directExecutor
+argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -5829,6 +5922,9 @@ operator|.
 name|class
 argument_list|,
 name|fallback
+argument_list|,
+name|directExecutor
+argument_list|()
 argument_list|)
 decl_stmt|;
 try|try
@@ -5951,6 +6047,9 @@ operator|.
 name|class
 argument_list|,
 name|fallback
+argument_list|,
+name|directExecutor
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|secondary
@@ -6019,6 +6118,9 @@ operator|.
 name|class
 argument_list|,
 name|fallback
+argument_list|,
+name|directExecutor
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|derived
@@ -6090,6 +6192,9 @@ operator|.
 name|class
 argument_list|,
 name|fallback
+argument_list|,
+name|directExecutor
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|derived
@@ -6230,6 +6335,9 @@ operator|.
 name|class
 argument_list|,
 name|fallback
+argument_list|,
+name|directExecutor
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|derived
@@ -6330,6 +6438,9 @@ literal|null
 return|;
 block|}
 block|}
+argument_list|,
+name|directExecutor
+argument_list|()
 argument_list|)
 decl_stmt|;
 try|try
@@ -6618,6 +6729,9 @@ operator|.
 name|class
 argument_list|,
 name|fallback
+argument_list|,
+name|directExecutor
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|assertEquals
@@ -6722,6 +6836,9 @@ operator|.
 name|class
 argument_list|,
 name|fallback
+argument_list|,
+name|directExecutor
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|assertEquals
@@ -6844,6 +6961,9 @@ operator|.
 name|class
 argument_list|,
 name|fallback
+argument_list|,
+name|directExecutor
+argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -6946,6 +7066,9 @@ operator|.
 name|class
 argument_list|,
 name|fallback
+argument_list|,
+name|directExecutor
+argument_list|()
 argument_list|)
 decl_stmt|;
 try|try
@@ -7030,6 +7153,9 @@ operator|.
 name|class
 argument_list|,
 name|fallback
+argument_list|,
+name|directExecutor
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|derived
@@ -7101,6 +7227,9 @@ operator|.
 name|class
 argument_list|,
 name|fallback
+argument_list|,
+name|directExecutor
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|derived
@@ -7177,6 +7306,9 @@ operator|.
 name|class
 argument_list|,
 name|fallback
+argument_list|,
+name|directExecutor
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|assertEquals
@@ -7243,6 +7375,9 @@ operator|.
 name|class
 argument_list|,
 name|fallback
+argument_list|,
+name|directExecutor
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|assertEquals
@@ -7309,6 +7444,9 @@ operator|.
 name|class
 argument_list|,
 name|fallback
+argument_list|,
+name|directExecutor
+argument_list|()
 argument_list|)
 decl_stmt|;
 try|try
@@ -7385,6 +7523,9 @@ name|class
 argument_list|,
 name|identity
 argument_list|()
+argument_list|,
+name|directExecutor
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|root
@@ -7442,6 +7583,9 @@ operator|.
 name|class
 argument_list|,
 name|identity
+argument_list|()
+argument_list|,
+name|directExecutor
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -7549,6 +7693,9 @@ operator|.
 name|class
 argument_list|,
 name|fallback
+argument_list|,
+name|directExecutor
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|fallback
@@ -7656,6 +7803,9 @@ operator|.
 name|class
 argument_list|,
 name|fallback
+argument_list|,
+name|directExecutor
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|fallback
@@ -7722,6 +7872,9 @@ name|class
 argument_list|,
 name|identity
 argument_list|()
+argument_list|,
+name|directExecutor
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|assertThat
@@ -7780,6 +7933,9 @@ name|class
 argument_list|,
 name|identity
 argument_list|()
+argument_list|,
+name|directExecutor
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|assertThat
@@ -7832,6 +7988,9 @@ operator|.
 name|class
 argument_list|,
 name|identity
+argument_list|()
+argument_list|,
+name|directExecutor
 argument_list|()
 argument_list|)
 decl_stmt|;
@@ -7931,6 +8090,9 @@ operator|.
 name|class
 argument_list|,
 name|fallback
+argument_list|,
+name|directExecutor
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|assertEquals
@@ -7997,6 +8159,9 @@ operator|.
 name|class
 argument_list|,
 name|fallback
+argument_list|,
+name|directExecutor
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|assertEquals
@@ -8063,6 +8228,9 @@ operator|.
 name|class
 argument_list|,
 name|fallback
+argument_list|,
+name|directExecutor
+argument_list|()
 argument_list|)
 decl_stmt|;
 try|try
@@ -8139,6 +8307,9 @@ name|class
 argument_list|,
 name|asyncIdentity
 argument_list|()
+argument_list|,
+name|directExecutor
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|root
@@ -8196,6 +8367,9 @@ operator|.
 name|class
 argument_list|,
 name|asyncIdentity
+argument_list|()
+argument_list|,
+name|directExecutor
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -8306,6 +8480,9 @@ operator|.
 name|class
 argument_list|,
 name|fallback
+argument_list|,
+name|directExecutor
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|fallback
@@ -8416,6 +8593,9 @@ operator|.
 name|class
 argument_list|,
 name|fallback
+argument_list|,
+name|directExecutor
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|fallback
@@ -8482,6 +8662,9 @@ name|class
 argument_list|,
 name|asyncIdentity
 argument_list|()
+argument_list|,
+name|directExecutor
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|assertThat
@@ -8540,6 +8723,9 @@ name|class
 argument_list|,
 name|asyncIdentity
 argument_list|()
+argument_list|,
+name|directExecutor
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|assertThat
@@ -8592,6 +8778,9 @@ operator|.
 name|class
 argument_list|,
 name|asyncIdentity
+argument_list|()
+argument_list|,
+name|directExecutor
 argument_list|()
 argument_list|)
 decl_stmt|;
@@ -8994,6 +9183,9 @@ name|constantAsyncFunction
 argument_list|(
 name|nullFuture
 argument_list|)
+argument_list|,
+name|directExecutor
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|assertNull
@@ -9099,6 +9291,9 @@ argument_list|(
 name|future
 argument_list|,
 name|function
+argument_list|,
+name|directExecutor
+argument_list|()
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -9156,6 +9351,9 @@ name|create
 argument_list|()
 argument_list|,
 name|function
+argument_list|,
+name|directExecutor
+argument_list|()
 argument_list|)
 decl_stmt|;
 try|try
@@ -9256,6 +9454,9 @@ argument_list|(
 name|inputFuture
 argument_list|,
 name|function
+argument_list|,
+name|directExecutor
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|inputFuture
@@ -9327,6 +9528,9 @@ name|constantAsyncFunction
 argument_list|(
 literal|null
 argument_list|)
+argument_list|,
+name|directExecutor
+argument_list|()
 argument_list|)
 decl_stmt|;
 try|try
@@ -12637,6 +12841,9 @@ operator|.
 name|call
 argument_list|(
 name|combiner
+argument_list|,
+name|directExecutor
+argument_list|()
 argument_list|)
 expr_stmt|;
 comment|// Does not compile:
@@ -12655,6 +12862,9 @@ operator|.
 name|call
 argument_list|(
 name|combiner
+argument_list|,
+name|directExecutor
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -12751,6 +12961,9 @@ operator|.
 name|callAsync
 argument_list|(
 name|combiner
+argument_list|,
+name|directExecutor
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|Integer
@@ -12901,6 +13114,9 @@ operator|.
 name|callAsync
 argument_list|(
 name|combiner
+argument_list|,
+name|directExecutor
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|Integer
@@ -13427,6 +13643,9 @@ operator|.
 name|callAsync
 argument_list|(
 name|combiner
+argument_list|,
+name|directExecutor
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|PartialResultException
