@@ -59,7 +59,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Computes a value, possibly asynchronously. For an example usage and more information, see {@link  * Futures.FutureCombiner#callAsync(AsyncCallable)}.  *  *<p>Much like {@link java.util.concurrent.Callable}, but returning a {@link ListenableFuture}  * result.  *  * @since 20.0  */
+comment|/**  * Computes a value, possibly asynchronously. For an example usage and more information, see {@link  * Futures.FutureCombiner#callAsync(AsyncCallable, java.util.concurrent.Executor)}.  *  *<p>Much like {@link java.util.concurrent.Callable}, but returning a {@link ListenableFuture}  * result.  *  * @since 20.0  */
 end_comment
 
 begin_interface
