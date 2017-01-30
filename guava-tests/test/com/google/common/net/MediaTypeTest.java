@@ -647,6 +647,25 @@ block|}
 annotation|@
 name|GwtIncompatible
 comment|// reflection
+DECL|method|testConstants_areUnique ()
+specifier|public
+name|void
+name|testConstants_areUnique
+parameter_list|()
+block|{
+name|assertThat
+argument_list|(
+name|getConstants
+argument_list|()
+argument_list|)
+operator|.
+name|containsNoDuplicates
+argument_list|()
+expr_stmt|;
+block|}
+annotation|@
+name|GwtIncompatible
+comment|// reflection
 DECL|method|getConstantFields ()
 specifier|private
 specifier|static
