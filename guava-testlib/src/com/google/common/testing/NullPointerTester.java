@@ -487,6 +487,33 @@ return|return
 name|this
 return|;
 block|}
+comment|/**    * Ignore {@code constructor} in the tests that follow. Returns this object.    *    * @since 22.0    */
+DECL|method|ignore (Constructor<?> constructor)
+specifier|public
+name|NullPointerTester
+name|ignore
+parameter_list|(
+name|Constructor
+argument_list|<
+name|?
+argument_list|>
+name|constructor
+parameter_list|)
+block|{
+name|ignoredMembers
+operator|.
+name|add
+argument_list|(
+name|checkNotNull
+argument_list|(
+name|constructor
+argument_list|)
+argument_list|)
+expr_stmt|;
+return|return
+name|this
+return|;
+block|}
 comment|/**    * Runs {@link #testConstructor} on every constructor in class {@code c} that    * has at least {@code minimalVisibility}.    */
 DECL|method|testConstructors (Class<?> c, Visibility minimalVisibility)
 specifier|public
