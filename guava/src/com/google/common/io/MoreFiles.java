@@ -451,7 +451,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Static utilities for use with {@link Path} instances, intended to complement {@link Files}.  *  * @since 21.0  * @author Colin Decker  */
+comment|/**  * Static utilities for use with {@link Path} instances, intended to complement {@link Files}.  *  *<p>Many methods provided by Guava's {@code Files} class for {@link java.io.File} instances are  * now available via the JDK's {@link java.nio.file.Files} class for {@code Path} - check the JDK's  * class if a sibling method from {@code Files} appears to be missing from this class.  *  * @since 21.0  * @author Colin Decker  */
 end_comment
 
 begin_class
@@ -2484,8 +2484,6 @@ parameter_list|(
 name|Path
 name|path
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|Path
 name|parent

@@ -453,7 +453,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Provides utility methods for working with files.  *  *<p>All method parameters must be non-null unless documented otherwise.  *  * @author Chris Nokleberg  * @author Colin Decker  * @since 1.0  */
+comment|/**  * Provides utility methods for working with {@linkplain File files}.  *  *<p>{@link java.nio.file.Path} users will find similar utilities in {@link MoreFiles} and the  * JDK's {@link java.nio.file.Files} class.  *  * @author Chris Nokleberg  * @author Colin Decker  * @since 1.0  */
 end_comment
 
 begin_class
@@ -482,7 +482,7 @@ specifier|private
 name|Files
 parameter_list|()
 block|{}
-comment|/**    * Returns a buffered reader that reads from a file using the given character set.    *    * @param file the file to read from    * @param charset the charset used to decode the input stream; see {@link StandardCharsets} for    *     helpful predefined constants    * @return the buffered reader    */
+comment|/**    * Returns a buffered reader that reads from a file using the given character set.    *    *<p><b>{@link java.nio.file.Path} equivalent:</b> {@link    * java.nio.file.Files#newBufferedReader(java.nio.file.Path, Charset)}.    *    * @param file the file to read from    * @param charset the charset used to decode the input stream; see {@link StandardCharsets} for    *     helpful predefined constants    * @return the buffered reader    */
 DECL|method|newReader (File file, Charset charset)
 specifier|public
 specifier|static
@@ -526,7 +526,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a buffered writer that writes to a file using the given character set.    *    * @param file the file to write to    * @param charset the charset used to encode the output stream; see {@link StandardCharsets} for    *     helpful predefined constants    * @return the buffered writer    */
+comment|/**    * Returns a buffered writer that writes to a file using the given character set.    *    *<p><b>{@link java.nio.file.Path} equivalent:</b> {@link    * java.nio.file.Files#newBufferedWriter(java.nio.file.Path, Charset,    * java.nio.file.OpenOption...)}.    *    * @param file the file to write to    * @param charset the charset used to encode the output stream; see {@link StandardCharsets} for    *     helpful predefined constants    * @return the buffered writer    */
 DECL|method|newWriter (File file, Charset charset)
 specifier|public
 specifier|static
@@ -1056,7 +1056,7 @@ name|charset
 argument_list|)
 return|;
 block|}
-comment|/**    * Reads all bytes from a file into a byte array.    *    * @param file the file to read from    * @return a byte array containing all the bytes from file    * @throws IllegalArgumentException if the file is bigger than the largest possible byte array    *     (2^31 - 1)    * @throws IOException if an I/O error occurs    */
+comment|/**    * Reads all bytes from a file into a byte array.    *    *<p><b>{@link java.nio.file.Path} equivalent:</b> {@link java.nio.file.Files#readAllBytes}.    *    * @param file the file to read from    * @return a byte array containing all the bytes from file    * @throws IllegalArgumentException if the file is bigger than the largest possible byte array    *     (2^31 - 1)    * @throws IOException if an I/O error occurs    */
 DECL|method|toByteArray (File file)
 specifier|public
 specifier|static
@@ -1080,7 +1080,9 @@ name|read
 argument_list|()
 return|;
 block|}
-comment|/**    * Reads all characters from a file into a {@link String}, using the given character set.    *    * @param file the file to read from    * @param charset the charset used to decode the input stream; see {@link StandardCharsets} for    *     helpful predefined constants    * @return a string containing all the characters from the file    * @throws IOException if an I/O error occurs    */
+comment|/**    * Reads all characters from a file into a {@link String}, using the given character set.    *    * @param file the file to read from    * @param charset the charset used to decode the input stream; see {@link StandardCharsets} for    *     helpful predefined constants    * @return a string containing all the characters from the file    * @throws IOException if an I/O error occurs    * @deprecated Prefer {@code asCharSource(file, charset).read()}. This method is scheduled to be    *     removed in January 2019.    */
+annotation|@
+name|Deprecated
 DECL|method|toString (File file, Charset charset)
 specifier|public
 specifier|static
@@ -1108,7 +1110,7 @@ name|read
 argument_list|()
 return|;
 block|}
-comment|/**    * Overwrites a file with the contents of a byte array.    *    * @param from the bytes to write    * @param to the destination file    * @throws IOException if an I/O error occurs    */
+comment|/**    * Overwrites a file with the contents of a byte array.    *    *<p><b>{@link java.nio.file.Path} equivalent:</b> {@link    * java.nio.file.Files#write(java.nio.file.Path, byte[], java.nio.file.OpenOption...)}.    *    * @param from the bytes to write    * @param to the destination file    * @throws IOException if an I/O error occurs    */
 DECL|method|write (byte[] from, File to)
 specifier|public
 specifier|static
@@ -1136,7 +1138,7 @@ name|from
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Copies all bytes from a file to an output stream.    *    * @param from the source file    * @param to the output stream    * @throws IOException if an I/O error occurs    */
+comment|/**    * Copies all bytes from a file to an output stream.    *    *<p><b>{@link java.nio.file.Path} equivalent:</b> {@link    * java.nio.file.Files#copy(java.nio.file.Path, OutputStream)}.    *    * @param from the source file    * @param to the output stream    * @throws IOException if an I/O error occurs    */
 DECL|method|copy (File from, OutputStream to)
 specifier|public
 specifier|static
@@ -1163,7 +1165,7 @@ name|to
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Copies all the bytes from one file to another.    *    *<p>Copying is not an atomic operation - in the case of an I/O error, power loss, process    * termination, or other problems, {@code to} may not be a complete copy of {@code from}. If you    * need to guard against those conditions, you should employ other file-level synchronization.    *    *<p><b>Warning:</b> If {@code to} represents an existing file, that file will be overwritten    * with the contents of {@code from}. If {@code to} and {@code from} refer to the<i>same</i>    * file, the contents of that file will be deleted.    *    * @param from the source file    * @param to the destination file    * @throws IOException if an I/O error occurs    * @throws IllegalArgumentException if {@code from.equals(to)}    */
+comment|/**    * Copies all the bytes from one file to another.    *    *<p>Copying is not an atomic operation - in the case of an I/O error, power loss, process    * termination, or other problems, {@code to} may not be a complete copy of {@code from}. If you    * need to guard against those conditions, you should employ other file-level synchronization.    *    *<p><b>Warning:</b> If {@code to} represents an existing file, that file will be overwritten    * with the contents of {@code from}. If {@code to} and {@code from} refer to the<i>same</i>    * file, the contents of that file will be deleted.    *    *<p><b>{@link java.nio.file.Path} equivalent:</b> {@link    * java.nio.file.Files#copy(java.nio.file.Path, java.nio.file.Path, java.nio.file.CopyOption...)}.    *    * @param from the source file    * @param to the destination file    * @throws IOException if an I/O error occurs    * @throws IllegalArgumentException if {@code from.equals(to)}    */
 DECL|method|copy (File from, File to)
 specifier|public
 specifier|static
@@ -1210,7 +1212,9 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Writes a character sequence (such as a string) to a file using the given character set.    *    * @param from the character sequence to write    * @param to the destination file    * @param charset the charset used to encode the output stream; see {@link StandardCharsets} for    *     helpful predefined constants    * @throws IOException if an I/O error occurs    */
+comment|/**    * Writes a character sequence (such as a string) to a file using the given character set.    *    * @param from the character sequence to write    * @param to the destination file    * @param charset the charset used to encode the output stream; see {@link StandardCharsets} for    *     helpful predefined constants    * @throws IOException if an I/O error occurs    * @deprecated Prefer {@code asCharSink(to, charset).write(from)}. This method is scheduled to be    *     removed in January 2019.    */
+annotation|@
+name|Deprecated
 DECL|method|write (CharSequence from, File to, Charset charset)
 specifier|public
 specifier|static
@@ -1242,7 +1246,9 @@ name|from
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Appends a character sequence (such as a string) to a file using the given character set.    *    * @param from the character sequence to append    * @param to the destination file    * @param charset the charset used to encode the output stream; see {@link StandardCharsets} for    *     helpful predefined constants    * @throws IOException if an I/O error occurs    */
+comment|/**    * Appends a character sequence (such as a string) to a file using the given character set.    *    * @param from the character sequence to append    * @param to the destination file    * @param charset the charset used to encode the output stream; see {@link StandardCharsets} for    *     helpful predefined constants    * @throws IOException if an I/O error occurs    * @deprecated Prefer {@code asCharSink(to, charset, FileWriteMode.APPEND).write(from)}. This    *     method is scheduled to be removed in January 2019.    */
+annotation|@
+name|Deprecated
 DECL|method|append (CharSequence from, File to, Charset charset)
 specifier|public
 specifier|static
@@ -1267,14 +1273,9 @@ name|to
 argument_list|,
 name|charset
 argument_list|,
-operator|new
-name|FileWriteMode
-index|[]
-block|{
 name|FileWriteMode
 operator|.
 name|APPEND
-block|}
 argument_list|)
 operator|.
 name|write
@@ -1283,7 +1284,9 @@ name|from
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Copies all characters from a file to an appendable object, using the given character set.    *    * @param from the source file    * @param charset the charset used to decode the input stream; see {@link StandardCharsets} for    *     helpful predefined constants    * @param to the appendable object    * @throws IOException if an I/O error occurs    */
+comment|/**    * Copies all characters from a file to an appendable object, using the given character set.    *    * @param from the source file    * @param charset the charset used to decode the input stream; see {@link StandardCharsets} for    *     helpful predefined constants    * @param to the appendable object    * @throws IOException if an I/O error occurs    * @deprecated Prefer {@code asCharSource(from, charset).copyTo(to)}. This method is scheduled to    *     be removed in January 2019.    */
+annotation|@
+name|Deprecated
 DECL|method|copy (File from, Charset charset, Appendable to)
 specifier|public
 specifier|static
@@ -1410,7 +1413,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Atomically creates a new directory somewhere beneath the system's temporary directory (as    * defined by the {@code java.io.tmpdir} system property), and returns its name.    *    *<p>Use this method instead of {@link File#createTempFile(String, String)} when you wish to    * create a directory, not a regular file. A common pitfall is to call {@code createTempFile},    * delete the file and create a directory in its place, but this leads a race condition which can    * be exploited to create security vulnerabilities, especially when executable files are to be    * written into the directory.    *    *<p>This method assumes that the temporary volume is writable, has free inodes and free blocks,    * and that it will not be called thousands of times per second.    *    * @return the newly-created directory    * @throws IllegalStateException if the directory could not be created    */
+comment|/**    * Atomically creates a new directory somewhere beneath the system's temporary directory (as    * defined by the {@code java.io.tmpdir} system property), and returns its name.    *    *<p>Use this method instead of {@link File#createTempFile(String, String)} when you wish to    * create a directory, not a regular file. A common pitfall is to call {@code createTempFile},    * delete the file and create a directory in its place, but this leads a race condition which can    * be exploited to create security vulnerabilities, especially when executable files are to be    * written into the directory.    *    *<p>This method assumes that the temporary volume is writable, has free inodes and free blocks,    * and that it will not be called thousands of times per second.    *    *<p><b>{@link java.nio.file.Path} equivalent:</b> {@link    * java.nio.file.Files#createTempDirectory}.    *    * @return the newly-created directory    * @throws IllegalStateException if the directory could not be created    */
 DECL|method|createTempDir ()
 specifier|public
 specifier|static
@@ -1622,7 +1625,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Moves a file from one path to another. This method can rename a file and/or move it to a    * different directory. In either case {@code to} must be the target path for the file itself; not    * just the new name for the file or the path to the new parent directory.    *    * @param from the source file    * @param to the destination file    * @throws IOException if an I/O error occurs    * @throws IllegalArgumentException if {@code from.equals(to)}    */
+comment|/**    * Moves a file from one path to another. This method can rename a file and/or move it to a    * different directory. In either case {@code to} must be the target path for the file itself; not    * just the new name for the file or the path to the new parent directory.    *    *<p><b>{@link java.nio.file.Path} equivalent:</b> {@link java.nio.file.Files#move}.    *    * @param from the source file    * @param to the destination file    * @throws IOException if an I/O error occurs    * @throws IllegalArgumentException if {@code from.equals(to)}    */
 DECL|method|move (File from, File to)
 specifier|public
 specifier|static
@@ -1723,7 +1726,9 @@ throw|;
 block|}
 block|}
 block|}
-comment|/**    * Reads the first line from a file. The line does not include line-termination characters, but    * does include other leading and trailing whitespace.    *    * @param file the file to read from    * @param charset the charset used to decode the input stream; see {@link StandardCharsets} for    *     helpful predefined constants    * @return the first line, or null if the file is empty    * @throws IOException if an I/O error occurs    */
+comment|/**    * Reads the first line from a file. The line does not include line-termination characters, but    * does include other leading and trailing whitespace.    *    * @param file the file to read from    * @param charset the charset used to decode the input stream; see {@link StandardCharsets} for    *     helpful predefined constants    * @return the first line, or null if the file is empty    * @throws IOException if an I/O error occurs    * @deprecated Prefer {@code asCharSource(file, charset).readFirstLine()}. This method is    *     scheduled to be removed in January 2019.    */
+annotation|@
+name|Deprecated
 DECL|method|readFirstLine (File file, Charset charset)
 specifier|public
 specifier|static
@@ -1751,7 +1756,7 @@ name|readFirstLine
 argument_list|()
 return|;
 block|}
-comment|/**    * Reads all of the lines from a file. The lines do not include line-termination characters, but    * do include other leading and trailing whitespace.    *    *<p>This method returns a mutable {@code List}. For an {@code ImmutableList}, use    * {@code Files.asCharSource(file, charset).readLines()}.    *    * @param file the file to read from    * @param charset the charset used to decode the input stream; see {@link StandardCharsets} for    *     helpful predefined constants    * @return a mutable {@link List} containing all the lines    * @throws IOException if an I/O error occurs    */
+comment|/**    * Reads all of the lines from a file. The lines do not include line-termination characters, but    * do include other leading and trailing whitespace.    *    *<p>This method returns a mutable {@code List}. For an {@code ImmutableList}, use {@code    * Files.asCharSource(file, charset).readLines()}.    *    *<p><b>{@link java.nio.file.Path} equivalent:</b> {@link    * java.nio.file.Files#readAllLines(java.nio.file.Path, Charset)}.    *    * @param file the file to read from    * @param charset the charset used to decode the input stream; see {@link StandardCharsets} for    *     helpful predefined constants    * @return a mutable {@link List} containing all the lines    * @throws IOException if an I/O error occurs    */
 DECL|method|readLines (File file, Charset charset)
 specifier|public
 specifier|static
@@ -1773,12 +1778,15 @@ block|{
 comment|// don't use asCharSource(file, charset).readLines() because that returns
 comment|// an immutable list, which would change the behavior of this method
 return|return
-name|readLines
+name|asCharSource
 argument_list|(
 name|file
 argument_list|,
 name|charset
-argument_list|,
+argument_list|)
+operator|.
+name|readLines
+argument_list|(
 operator|new
 name|LineProcessor
 argument_list|<
@@ -1840,7 +1848,9 @@ block|}
 argument_list|)
 return|;
 block|}
-comment|/**    * Streams lines from a {@link File}, stopping when our callback returns false, or we have read    * all of the lines.    *    * @param file the file to read from    * @param charset the charset used to decode the input stream; see {@link StandardCharsets} for    *     helpful predefined constants    * @param callback the {@link LineProcessor} to use to handle the lines    * @return the output of processing the lines    * @throws IOException if an I/O error occurs    */
+comment|/**    * Streams lines from a {@link File}, stopping when our callback returns false, or we have read    * all of the lines.    *    * @param file the file to read from    * @param charset the charset used to decode the input stream; see {@link StandardCharsets} for    *     helpful predefined constants    * @param callback the {@link LineProcessor} to use to handle the lines    * @return the output of processing the lines    * @throws IOException if an I/O error occurs    * @deprecated Prefer {@code asCharSource(file, charset).readLines(callback)}. This method is    *     scheduled to be removed in January 2019.    */
+annotation|@
+name|Deprecated
 annotation|@
 name|CanIgnoreReturnValue
 comment|// some processors won't return a useful result
@@ -1882,7 +1892,9 @@ name|callback
 argument_list|)
 return|;
 block|}
-comment|/**    * Process the bytes of a file.    *    *<p>(If this seems too complicated, maybe you're looking for {@link #toByteArray}.)    *    * @param file the file to read    * @param processor the object to which the bytes of the file are passed.    * @return the result of the byte processor    * @throws IOException if an I/O error occurs    */
+comment|/**    * Process the bytes of a file.    *    *<p>(If this seems too complicated, maybe you're looking for {@link #toByteArray}.)    *    * @param file the file to read    * @param processor the object to which the bytes of the file are passed.    * @return the result of the byte processor    * @throws IOException if an I/O error occurs    * @deprecated Prefer {@code asByteSource(file).read(processor)}. This method is scheduled to be    *     removed in January 2019.    */
+annotation|@
+name|Deprecated
 annotation|@
 name|CanIgnoreReturnValue
 comment|// some processors won't return a useful result
@@ -1919,7 +1931,9 @@ name|processor
 argument_list|)
 return|;
 block|}
-comment|/**    * Computes the hash code of the {@code file} using {@code hashFunction}.    *    * @param file the file to read    * @param hashFunction the hash function to use to hash the data    * @return the {@link HashCode} of all of the bytes in the file    * @throws IOException if an I/O error occurs    * @since 12.0    */
+comment|/**    * Computes the hash code of the {@code file} using {@code hashFunction}.    *    * @param file the file to read    * @param hashFunction the hash function to use to hash the data    * @return the {@link HashCode} of all of the bytes in the file    * @throws IOException if an I/O error occurs    * @since 12.0    * @deprecated Prefer {@code asByteSource(file).hash(hashFunction)}. This method is scheduled to    *     be removed in January 2019.    */
+annotation|@
+name|Deprecated
 DECL|method|hash (File file, HashFunction hashFunction)
 specifier|public
 specifier|static
