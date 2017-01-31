@@ -2984,6 +2984,66 @@ name|PACKAGE
 argument_list|)
 expr_stmt|;
 block|}
+DECL|method|testVerySmallDoubleValues ()
+specifier|public
+name|void
+name|testVerySmallDoubleValues
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|RateLimiter
+name|rateLimiter
+init|=
+name|RateLimiter
+operator|.
+name|create
+argument_list|(
+name|stopwatch
+argument_list|,
+name|Double
+operator|.
+name|MIN_VALUE
+argument_list|)
+decl_stmt|;
+name|assertTrue
+argument_list|(
+literal|"Should acquire initial permit"
+argument_list|,
+name|rateLimiter
+operator|.
+name|tryAcquire
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertFalse
+argument_list|(
+literal|"Should not acquire additional permit"
+argument_list|,
+name|rateLimiter
+operator|.
+name|tryAcquire
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|stopwatch
+operator|.
+name|sleepMillis
+argument_list|(
+literal|5000
+argument_list|)
+expr_stmt|;
+name|assertFalse
+argument_list|(
+literal|"Should not acquire additional permit even after sleeping"
+argument_list|,
+name|rateLimiter
+operator|.
+name|tryAcquire
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
 DECL|method|measureTotalTimeMillis (RateLimiter rateLimiter, int permits, Random random)
 specifier|private
 name|long
