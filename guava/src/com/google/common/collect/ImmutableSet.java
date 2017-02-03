@@ -240,6 +240,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|SortedSet
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|Spliterator
 import|;
 end_import
@@ -1161,6 +1171,7 @@ name|elements
 parameter_list|)
 block|{
 comment|/*      * TODO(lowasser): consider checking for ImmutableAsList here      * TODO(lowasser): consider checking for Multiset here      */
+comment|// Don't refer to ImmutableSortedSet by name so it won't pull in all that code
 if|if
 condition|(
 name|elements
@@ -1171,7 +1182,7 @@ operator|!
 operator|(
 name|elements
 operator|instanceof
-name|ImmutableSortedSet
+name|SortedSet
 operator|)
 condition|)
 block|{
