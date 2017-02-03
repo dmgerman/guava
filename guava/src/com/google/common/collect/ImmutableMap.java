@@ -232,6 +232,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|SortedMap
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|Spliterator
 import|;
 end_import
@@ -1627,7 +1637,7 @@ operator|!
 operator|(
 name|map
 operator|instanceof
-name|ImmutableSortedMap
+name|SortedMap
 operator|)
 condition|)
 block|{
