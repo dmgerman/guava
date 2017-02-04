@@ -533,6 +533,11 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns the empty map. This map behaves and performs comparably to    * {@link Collections#emptyMap}, and is preferable mainly for consistency    * and maintainability of your code.    */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
 DECL|method|of ()
 specifier|public
 specifier|static
@@ -551,10 +556,17 @@ name|of
 parameter_list|()
 block|{
 return|return
-name|ImmutableBiMap
+operator|(
+name|ImmutableMap
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+operator|)
+name|RegularImmutableMap
 operator|.
-name|of
-argument_list|()
+name|EMPTY
 return|;
 block|}
 comment|/**    * Returns an immutable map containing a single entry. This map behaves and    * performs comparably to {@link Collections#singletonMap} but will not accept    * a null key or value. It is preferable mainly for consistency and    * maintainability of your code.    */
@@ -582,13 +594,16 @@ name|v1
 parameter_list|)
 block|{
 return|return
-name|ImmutableBiMap
+name|RegularImmutableMap
 operator|.
-name|of
+name|fromEntries
+argument_list|(
+name|entryOf
 argument_list|(
 name|k1
 argument_list|,
 name|v1
+argument_list|)
 argument_list|)
 return|;
 block|}
@@ -1483,43 +1498,7 @@ argument_list|>
 name|build
 parameter_list|()
 block|{
-switch|switch
-condition|(
-name|size
-condition|)
-block|{
-case|case
-literal|0
-case|:
-return|return
-name|of
-argument_list|()
-return|;
-case|case
-literal|1
-case|:
-return|return
-name|of
-argument_list|(
-name|entries
-index|[
-literal|0
-index|]
-operator|.
-name|getKey
-argument_list|()
-argument_list|,
-name|entries
-index|[
-literal|0
-index|]
-operator|.
-name|getValue
-argument_list|()
-argument_list|)
-return|;
-default|default:
-comment|/*            * If entries is full, then this implementation may end up using the entries array            * directly and writing over the entry objects with non-terminal entries, but this is            * safe; if this Builder is used further, it will grow the entries array (so it can't            * affect the original array), and future build() calls will always copy any entry            * objects that cannot be safely reused.            */
+comment|/*        * If entries is full, then this implementation may end up using the entries array        * directly and writing over the entry objects with non-terminal entries, but this is        * safe; if this Builder is used further, it will grow the entries array (so it can't        * affect the original array), and future build() calls will always copy any entry        * objects that cannot be safely reused.        */
 if|if
 condition|(
 name|valueComparator
@@ -1592,7 +1571,6 @@ argument_list|,
 name|entries
 argument_list|)
 return|;
-block|}
 block|}
 block|}
 comment|/**    * Returns an immutable map containing the same entries as {@code map}. If    * {@code map} somehow contains entries with duplicate keys (for example, if    * it is a {@code SortedMap} whose comparator is not<i>consistent with    * equals</i>), the results of this method are undefined.    *    *<p>Despite the method name, this method attempts to avoid actually copying    * the data when it is safe to do so. The exact circumstances under which a    * copy will or will not be performed are undocumented and subject to change.    *    * @throws NullPointerException if any key or value in {@code map} is null    */
