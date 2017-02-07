@@ -75,6 +75,11 @@ name|emptySet
 argument_list|()
 argument_list|)
 decl_stmt|;
+DECL|field|forSerialization
+specifier|private
+name|E
+name|forSerialization
+decl_stmt|;
 DECL|method|RegularImmutableSet (Set<E> delegate)
 name|RegularImmutableSet
 parameter_list|(

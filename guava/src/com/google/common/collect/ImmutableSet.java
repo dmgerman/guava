@@ -426,12 +426,17 @@ parameter_list|)
 block|{
 return|return
 operator|new
-name|SingletonImmutableSet
+name|RegularImmutableSet
 argument_list|<
 name|E
 argument_list|>
 argument_list|(
+name|checkNotNull
+argument_list|(
 name|element
+argument_list|)
+argument_list|,
+literal|0
 argument_list|)
 return|;
 block|}
@@ -754,31 +759,34 @@ return|;
 case|case
 literal|1
 case|:
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
-comment|// safe; elements contains only E's
-name|E
-name|elem
+name|Object
+name|e
 init|=
-operator|(
-name|E
-operator|)
 name|elements
 index|[
 literal|0
 index|]
 decl_stmt|;
-return|return
-name|of
+name|checkNotNull
 argument_list|(
-name|elem
+name|e
+argument_list|)
+expr_stmt|;
+return|return
+operator|new
+name|RegularImmutableSet
+argument_list|<
+name|E
+argument_list|>
+argument_list|(
+name|e
+argument_list|,
+literal|0
+comment|/* compute hash code lazily */
 argument_list|)
 return|;
 default|default:
-comment|// continue below to handle the general case
+comment|// fall through
 block|}
 name|int
 name|tableSize
@@ -967,7 +975,7 @@ index|]
 decl_stmt|;
 return|return
 operator|new
-name|SingletonImmutableSet
+name|RegularImmutableSet
 argument_list|<
 name|E
 argument_list|>
@@ -1093,6 +1101,17 @@ name|int
 name|setSize
 parameter_list|)
 block|{
+name|setSize
+operator|=
+name|Math
+operator|.
+name|max
+argument_list|(
+name|setSize
+argument_list|,
+literal|2
+argument_list|)
+expr_stmt|;
 comment|// Correct the size for open addressing to match desired load factor.
 if|if
 condition|(
