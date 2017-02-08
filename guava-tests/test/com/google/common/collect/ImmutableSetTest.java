@@ -939,6 +939,13 @@ literal|"a"
 argument_list|)
 argument_list|)
 decl_stmt|;
+name|assertTrue
+argument_list|(
+name|set
+operator|instanceof
+name|SingletonImmutableSet
+argument_list|)
+expr_stmt|;
 name|assertEquals
 argument_list|(
 name|Lists
