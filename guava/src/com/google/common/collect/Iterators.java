@@ -500,25 +500,23 @@ operator|)
 name|EMPTY_LIST_ITERATOR
 return|;
 block|}
-DECL|field|EMPTY_MODIFIABLE_ITERATOR
+comment|/**    * This is an enum singleton rather than an anonymous class so ProGuard can figure out it's only    * referenced by emptyModifiableIterator().    */
+DECL|enum|EmptyModifiableIterator
 specifier|private
-specifier|static
-specifier|final
+enum|enum
+name|EmptyModifiableIterator
+implements|implements
 name|Iterator
 argument_list|<
 name|Object
 argument_list|>
-name|EMPTY_MODIFIABLE_ITERATOR
-init|=
-operator|new
-name|Iterator
-argument_list|<
-name|Object
-argument_list|>
-argument_list|()
 block|{
+DECL|enumConstant|INSTANCE
+name|INSTANCE
+block|;
 annotation|@
 name|Override
+DECL|method|hasNext ()
 specifier|public
 name|boolean
 name|hasNext
@@ -530,6 +528,7 @@ return|;
 block|}
 annotation|@
 name|Override
+DECL|method|next ()
 specifier|public
 name|Object
 name|next
@@ -543,6 +542,7 @@ throw|;
 block|}
 annotation|@
 name|Override
+DECL|method|remove ()
 specifier|public
 name|void
 name|remove
@@ -555,7 +555,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-decl_stmt|;
 comment|/**    * Returns the empty {@code Iterator} that throws    * {@link IllegalStateException} instead of    * {@link UnsupportedOperationException} on a call to    * {@link Iterator#remove()}.    */
 comment|// Casting to any type is safe since there are no actual elements.
 annotation|@
@@ -582,7 +581,9 @@ argument_list|<
 name|T
 argument_list|>
 operator|)
-name|EMPTY_MODIFIABLE_ITERATOR
+name|EmptyModifiableIterator
+operator|.
+name|INSTANCE
 return|;
 block|}
 comment|/** Returns an unmodifiable view of {@code iterator}. */
