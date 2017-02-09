@@ -2728,17 +2728,6 @@ name|createKeySet
 parameter_list|()
 block|{
 return|return
-name|isEmpty
-argument_list|()
-condition|?
-name|ImmutableSet
-operator|.
-expr|<
-name|K
-operator|>
-name|of
-argument_list|()
-else|:
 operator|new
 name|ImmutableMapKeySet
 argument_list|<
