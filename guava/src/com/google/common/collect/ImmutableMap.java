@@ -2033,6 +2033,29 @@ return|;
 block|}
 annotation|@
 name|Override
+DECL|method|createKeySet ()
+name|ImmutableSet
+argument_list|<
+name|K
+argument_list|>
+name|createKeySet
+parameter_list|()
+block|{
+return|return
+operator|new
+name|ImmutableMapKeySet
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+argument_list|(
+name|this
+argument_list|)
+return|;
+block|}
+annotation|@
+name|Override
 DECL|method|createEntrySet ()
 name|ImmutableSet
 argument_list|<
@@ -2719,27 +2742,16 @@ else|:
 name|result
 return|;
 block|}
+comment|/*    * This could have a good default implementation of return new ImmutableKeySet<K, V>(this),    * but ProGuard can't figure out how to eliminate that default when RegularImmutableMap     * overrides it.    */
 DECL|method|createKeySet ()
+specifier|abstract
 name|ImmutableSet
 argument_list|<
 name|K
 argument_list|>
 name|createKeySet
 parameter_list|()
-block|{
-return|return
-operator|new
-name|ImmutableMapKeySet
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-argument_list|(
-name|this
-argument_list|)
-return|;
-block|}
+function_decl|;
 DECL|method|keyIterator ()
 name|UnmodifiableIterator
 argument_list|<
@@ -3018,13 +3030,12 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|keySet ()
-specifier|public
+DECL|method|createKeySet ()
 name|ImmutableSet
 argument_list|<
 name|K
 argument_list|>
-name|keySet
+name|createKeySet
 parameter_list|()
 block|{
 return|return

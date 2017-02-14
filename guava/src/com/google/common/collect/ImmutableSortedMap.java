@@ -3194,6 +3194,24 @@ return|return
 name|keySet
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|createKeySet ()
+name|ImmutableSet
+argument_list|<
+name|K
+argument_list|>
+name|createKeySet
+parameter_list|()
+block|{
+throw|throw
+operator|new
+name|AssertionError
+argument_list|(
+literal|"should never be called"
+argument_list|)
+throw|;
+block|}
 comment|/**    * Returns an immutable collection of the values in this map, sorted by the    * ordering of the corresponding keys.    */
 annotation|@
 name|Override
