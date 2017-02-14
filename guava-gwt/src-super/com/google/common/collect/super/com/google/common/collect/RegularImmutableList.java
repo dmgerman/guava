@@ -64,6 +64,10 @@ name|E
 argument_list|>
 name|delegate
 decl_stmt|;
+DECL|field|forSerialization
+name|E
+name|forSerialization
+decl_stmt|;
 DECL|method|RegularImmutableList (List<E> delegate)
 name|RegularImmutableList
 parameter_list|(
