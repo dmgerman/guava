@@ -3228,6 +3228,24 @@ return|return
 name|valueList
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|createValues ()
+name|ImmutableCollection
+argument_list|<
+name|V
+argument_list|>
+name|createValues
+parameter_list|()
+block|{
+throw|throw
+operator|new
+name|AssertionError
+argument_list|(
+literal|"should never be called"
+argument_list|)
+throw|;
+block|}
 comment|/**    * Returns the comparator that orders the keys, which is    * {@link Ordering#natural()} when the natural ordering of the keys is used.    * Note that its behavior is not consistent with {@link TreeMap#comparator()},    * which returns {@code null} to indicate natural ordering.    */
 annotation|@
 name|Override

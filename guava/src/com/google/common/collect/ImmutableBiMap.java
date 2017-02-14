@@ -856,6 +856,8 @@ name|this
 return|;
 block|}
 annotation|@
+name|Override
+annotation|@
 name|CanIgnoreReturnValue
 DECL|method|combine (ImmutableMap.Builder<K, V> builder)
 name|Builder
@@ -1265,6 +1267,25 @@ operator|.
 name|keySet
 argument_list|()
 return|;
+block|}
+annotation|@
+name|Override
+DECL|method|createValues ()
+specifier|final
+name|ImmutableSet
+argument_list|<
+name|V
+argument_list|>
+name|createValues
+parameter_list|()
+block|{
+throw|throw
+operator|new
+name|AssertionError
+argument_list|(
+literal|"should never be called"
+argument_list|)
+throw|;
 block|}
 comment|/**    * Guaranteed to throw an exception and leave the bimap unmodified.    *    * @throws UnsupportedOperationException always    * @deprecated Unsupported operation.    */
 annotation|@

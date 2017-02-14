@@ -2125,6 +2125,29 @@ name|EntrySetImpl
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|createValues ()
+name|ImmutableCollection
+argument_list|<
+name|V
+argument_list|>
+name|createValues
+parameter_list|()
+block|{
+return|return
+operator|new
+name|ImmutableMapValues
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+argument_list|(
+name|this
+argument_list|)
+return|;
+block|}
 block|}
 DECL|method|ImmutableMap ()
 name|ImmutableMap
@@ -2891,27 +2914,16 @@ else|:
 name|result
 return|;
 block|}
+comment|/*    * This could have a good default implementation of {@code return new     * ImmutableMapValues<K, V>(this)}, but ProGuard can't figure out how to eliminate that default    * when RegularImmutableMap overrides it.    */
 DECL|method|createValues ()
+specifier|abstract
 name|ImmutableCollection
 argument_list|<
 name|V
 argument_list|>
 name|createValues
 parameter_list|()
-block|{
-return|return
-operator|new
-name|ImmutableMapValues
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-argument_list|(
-name|this
-argument_list|)
-return|;
-block|}
+function_decl|;
 comment|// cached so that this.multimapView().inverse() only computes inverse once
 annotation|@
 name|LazyInit
