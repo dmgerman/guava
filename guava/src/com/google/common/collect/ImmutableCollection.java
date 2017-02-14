@@ -308,6 +308,16 @@ name|SPLITERATOR_CHARACTERISTICS
 argument_list|)
 return|;
 block|}
+DECL|field|EMPTY_ARRAY
+specifier|private
+specifier|static
+specifier|final
+name|Object
+index|[]
+name|EMPTY_ARRAY
+init|=
+block|{}
+decl_stmt|;
 annotation|@
 name|Override
 DECL|method|toArray ()
@@ -332,8 +342,6 @@ literal|0
 condition|)
 block|{
 return|return
-name|ObjectArrays
-operator|.
 name|EMPTY_ARRAY
 return|;
 block|}

@@ -124,9 +124,11 @@ argument_list|<
 name|Object
 argument_list|>
 argument_list|(
-name|ObjectArrays
-operator|.
-name|EMPTY_ARRAY
+operator|new
+name|Object
+index|[
+literal|0
+index|]
 argument_list|,
 literal|0
 argument_list|,
