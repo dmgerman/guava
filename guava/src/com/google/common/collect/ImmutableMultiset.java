@@ -246,7 +246,7 @@ parameter_list|<
 name|E
 parameter_list|>
 extends|extends
-name|ImmutableCollection
+name|ImmutableMultisetGwtSerializationDependencies
 argument_list|<
 name|E
 argument_list|>

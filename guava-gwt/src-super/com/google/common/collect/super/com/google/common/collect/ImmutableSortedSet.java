@@ -1585,21 +1585,6 @@ name|isSubset
 argument_list|)
 return|;
 block|}
-comment|// This reference is only used by GWT compiler to infer the elements of the
-comment|// set that needs to be serialized.
-DECL|field|unusedComparatorForSerialization
-specifier|private
-name|Comparator
-argument_list|<
-name|E
-argument_list|>
-name|unusedComparatorForSerialization
-decl_stmt|;
-DECL|field|unusedElementForSerialization
-specifier|private
-name|E
-name|unusedElementForSerialization
-decl_stmt|;
 DECL|field|sortedDelegate
 specifier|private
 specifier|transient

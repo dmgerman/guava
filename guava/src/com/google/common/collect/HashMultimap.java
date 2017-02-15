@@ -169,7 +169,7 @@ parameter_list|,
 name|V
 parameter_list|>
 extends|extends
-name|AbstractSetMultimap
+name|HashMultimapGwtSerializationDependencies
 argument_list|<
 name|K
 argument_list|,

@@ -22,6 +22,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|Comparator
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|SortedSet
 import|;
 end_import
@@ -49,6 +59,19 @@ DECL|field|isSubset
 specifier|final
 name|boolean
 name|isSubset
+decl_stmt|;
+DECL|field|unusedComparatorForSerialization
+specifier|private
+name|Comparator
+argument_list|<
+name|E
+argument_list|>
+name|unusedComparatorForSerialization
+decl_stmt|;
+DECL|field|unusedElementForSerialization
+specifier|private
+name|E
+name|unusedElementForSerialization
 decl_stmt|;
 DECL|method|RegularImmutableSortedSet (SortedSet<E> delegate, boolean isSubset)
 name|RegularImmutableSortedSet

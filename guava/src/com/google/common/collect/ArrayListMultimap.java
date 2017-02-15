@@ -181,7 +181,7 @@ parameter_list|,
 name|V
 parameter_list|>
 extends|extends
-name|AbstractListMultimap
+name|ArrayListMultimapGwtSerializationDependencies
 argument_list|<
 name|K
 argument_list|,
