@@ -687,6 +687,30 @@ name|BoundType
 name|upperBoundType
 parameter_list|)
 function_decl|;
+annotation|@
+name|Override
+annotation|@
+name|GwtIncompatible
+comment|// NavigableSet
+DECL|method|createDescendingSet ()
+name|ImmutableSortedSet
+argument_list|<
+name|C
+argument_list|>
+name|createDescendingSet
+parameter_list|()
+block|{
+return|return
+operator|new
+name|DescendingImmutableSortedSet
+argument_list|<
+name|C
+argument_list|>
+argument_list|(
+name|this
+argument_list|)
+return|;
+block|}
 comment|/** Returns a short-hand representation of the contents such as {@code "[1..100]"}. */
 annotation|@
 name|Override

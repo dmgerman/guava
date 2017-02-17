@@ -3066,6 +3066,27 @@ return|;
 block|}
 annotation|@
 name|Override
+DECL|method|createDescendingSet ()
+name|ImmutableSortedSet
+argument_list|<
+name|C
+argument_list|>
+name|createDescendingSet
+parameter_list|()
+block|{
+return|return
+operator|new
+name|DescendingImmutableSortedSet
+argument_list|<
+name|C
+argument_list|>
+argument_list|(
+name|this
+argument_list|)
+return|;
+block|}
+annotation|@
+name|Override
 DECL|method|isPartialView ()
 name|boolean
 name|isPartialView

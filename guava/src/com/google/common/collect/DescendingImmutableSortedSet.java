@@ -48,6 +48,7 @@ begin_class
 annotation|@
 name|GwtIncompatible
 DECL|class|DescendingImmutableSortedSet
+specifier|final
 class|class
 name|DescendingImmutableSortedSet
 parameter_list|<

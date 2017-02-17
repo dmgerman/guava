@@ -2592,28 +2592,21 @@ return|return
 name|result
 return|;
 block|}
+comment|// Most classes should implement this as new DescendingImmutableSortedSet<E>(this),
+comment|// but we push down that implementation because ProGuard can't eliminate it even when it's always
+comment|// overridden.
 annotation|@
 name|GwtIncompatible
 comment|// NavigableSet
 DECL|method|createDescendingSet ()
+specifier|abstract
 name|ImmutableSortedSet
 argument_list|<
 name|E
 argument_list|>
 name|createDescendingSet
 parameter_list|()
-block|{
-return|return
-operator|new
-name|DescendingImmutableSortedSet
-argument_list|<
-name|E
-argument_list|>
-argument_list|(
-name|this
-argument_list|)
-return|;
-block|}
+function_decl|;
 annotation|@
 name|Override
 DECL|method|spliterator ()
