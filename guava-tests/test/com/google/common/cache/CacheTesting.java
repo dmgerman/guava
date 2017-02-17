@@ -425,6 +425,12 @@ comment|/**  * A collection of utilities for {@link Cache} testing.  *  * @autho
 end_comment
 
 begin_class
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"GuardedBy"
+argument_list|)
+comment|// TODO(b/35466881): Fix or suppress.
 DECL|class|CacheTesting
 class|class
 name|CacheTesting

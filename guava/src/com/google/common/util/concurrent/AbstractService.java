@@ -409,6 +409,12 @@ annotation|@
 name|Beta
 annotation|@
 name|GwtIncompatible
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"GuardedBy"
+argument_list|)
+comment|// TODO(b/35466881): Fix or suppress.
 DECL|class|AbstractService
 specifier|public
 specifier|abstract

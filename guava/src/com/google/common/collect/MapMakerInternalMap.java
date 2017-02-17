@@ -411,6 +411,12 @@ end_comment
 begin_class
 annotation|@
 name|GwtIncompatible
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"GuardedBy"
+argument_list|)
+comment|// TODO(b/35466881): Fix or suppress.
 DECL|class|MapMakerInternalMap
 class|class
 name|MapMakerInternalMap
