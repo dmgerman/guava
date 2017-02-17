@@ -82,6 +82,10 @@ begin_comment
 comment|/**  * An interface for<a  * href="https://en.wikipedia.org/wiki/Graph_(discrete_mathematics)">graph</a>-structured data,  * whose edges are unique objects.  *  *<p>A graph is composed of a set of nodes and a set of edges connecting pairs of nodes.  *  *<p>There are three main interfaces provided to represent graphs. In order of increasing  * complexity they are: {@link Graph}, {@link ValueGraph}, and {@link Network}. You should generally  * prefer the simplest interface that satisfies your use case. See the<a  * href="https://github.com/google/guava/wiki/GraphsExplained#choosing-the-right-graph-type">  * "Choosing the right graph type"</a> section of the Guava User Guide for more details.  *  *<h3>Capabilities</h3>  *  *<p>{@code Network} supports the following use cases (<a  * href="https://github.com/google/guava/wiki/GraphsExplained#definitions">definitions of  * terms</a>):  *  *<ul>  *<li>directed graphs  *<li>undirected graphs  *<li>graphs that do/don't allow parallel edges  *<li>graphs that do/don't allow self-loops  *<li>graphs whose nodes/edges are insertion-ordered, sorted, or unordered  *<li>graphs whose edges are unique objects  *</ul>  *  *<h3>Building a {@code Network}</h3>  *  *<p>The implementation classes that `common.graph` provides are not public, by design. To create  * an instance of one of the built-in implementations of {@code Network}, use the {@link  * NetworkBuilder} class:  *  *<pre>{@code  *   MutableNetwork<Integer, MyEdge> graph = NetworkBuilder.directed().build();  * }</pre>  *  *<p>{@link NetworkBuilder#build()} returns an instance of {@link MutableNetwork}, which is a  * subtype of {@code Network} that provides methods for adding and removing nodes and edges. If you  * do not need to mutate a graph (e.g. if you write a method than runs a read-only algorithm on the  * graph), you should use the non-mutating {@link Network} interface, or an {@link  * ImmutableNetwork}.  *  *<p>You can create an immutable copy of an existing {@code Network} using {@link  * ImmutableNetwork#copyOf(Network)}:  *  *<pre>{@code  *   ImmutableNetwork<Integer, MyEdge> immutableGraph = ImmutableNetwork.copyOf(graph);  * }</pre>  *  *<p>Instances of {@link ImmutableNetwork} do not implement {@link MutableNetwork} (obviously!) and  * are contractually guaranteed to be unmodifiable and thread-safe.  *  *<p>The Guava User Guide has<a  * href="https://github.com/google/guava/wiki/GraphsExplained#building-graph-instances">more  * information on (and examples of) building graphs</a>.  *  *<h3>Additional documentation</h3>  *  *<p>See the Guava User Guide for the {@code common.graph} package (<a  * href="https://github.com/google/guava/wiki/GraphsExplained">"Graphs Explained"</a>) for  * additional documentation, including:  *  *<ul>  *<li><a  *       href="https://github.com/google/guava/wiki/GraphsExplained#equals-hashcode-and-graph-equivalence">  *       {@code equals()}, {@code hashCode()}, and graph equivalence</a>  *<li><a href="https://github.com/google/guava/wiki/GraphsExplained#synchronization">  *       Synchronization policy</a>  *<li><a href="https://github.com/google/guava/wiki/GraphsExplained#notes-for-implementors">Notes  *       for implementors</a>  *</ul>  *  * @author James Sexton  * @author Joshua O'Madadhain  * @param<N> Node parameter type  * @param<E> Edge parameter type  * @since 20.0  */
 end_comment
 
+begin_comment
+comment|// TODO(b/35456940): Update the documentation to reflect the new interfaces
+end_comment
+
 begin_interface
 annotation|@
 name|Beta
@@ -94,11 +98,23 @@ name|N
 parameter_list|,
 name|E
 parameter_list|>
+extends|extends
+name|SuccessorGraph
+argument_list|<
+name|N
+argument_list|>
+extends|,
+name|PredecessorGraph
+argument_list|<
+name|N
+argument_list|>
 block|{
 comment|//
 comment|// Network-level accessors
 comment|//
 comment|/** Returns all nodes in this network, in the order specified by {@link #nodeOrder()}. */
+annotation|@
+name|Override
 DECL|method|nodes ()
 name|Set
 argument_list|<
@@ -185,6 +201,8 @@ name|node
 parameter_list|)
 function_decl|;
 comment|/**    * Returns all nodes in this network adjacent to {@code node} which can be reached by traversing    * {@code node}'s incoming edges<i>against</i> the direction (if any) of the edge.    *    *<p>In an undirected network, this is equivalent to {@link #adjacentNodes(Object)}.    *    * @throws IllegalArgumentException if {@code node} is not an element of this network    */
+annotation|@
+name|Override
 DECL|method|predecessors (@ompatibleWithR) Object node)
 name|Set
 argument_list|<
@@ -202,6 +220,8 @@ name|node
 parameter_list|)
 function_decl|;
 comment|/**    * Returns all nodes in this network adjacent to {@code node} which can be reached by traversing    * {@code node}'s outgoing edges in the direction (if any) of the edge.    *    *<p>In an undirected network, this is equivalent to {@link #adjacentNodes(Object)}.    *    *<p>This is<i>not</i> the same as "all nodes reachable from {@code node} by following outgoing    * edges". For that functionality, see {@link Graphs#reachableNodes(Graph, Object)}.    *    * @throws IllegalArgumentException if {@code node} is not an element of this network    */
+annotation|@
+name|Override
 DECL|method|successors (@ompatibleWithR) Object node)
 name|Set
 argument_list|<

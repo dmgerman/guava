@@ -51,11 +51,23 @@ name|BaseGraph
 parameter_list|<
 name|N
 parameter_list|>
+extends|extends
+name|SuccessorGraph
+argument_list|<
+name|N
+argument_list|>
+extends|,
+name|PredecessorGraph
+argument_list|<
+name|N
+argument_list|>
 block|{
 comment|//
 comment|// Graph-level accessors
 comment|//
 comment|/** Returns all nodes in this graph, in the order specified by {@link #nodeOrder()}. */
+annotation|@
+name|Override
 DECL|method|nodes ()
 name|Set
 argument_list|<
@@ -121,6 +133,8 @@ name|node
 parameter_list|)
 function_decl|;
 comment|/**    * Returns all nodes in this graph adjacent to {@code node} which can be reached by traversing    * {@code node}'s incoming edges<i>against</i> the direction (if any) of the edge.    *    *<p>In an undirected graph, this is equivalent to {@link #adjacentNodes(Object)}.    *    * @throws IllegalArgumentException if {@code node} is not an element of this graph    */
+annotation|@
+name|Override
 DECL|method|predecessors (@ompatibleWithR) Object node)
 name|Set
 argument_list|<
@@ -138,6 +152,8 @@ name|node
 parameter_list|)
 function_decl|;
 comment|/**    * Returns all nodes in this graph adjacent to {@code node} which can be reached by traversing    * {@code node}'s outgoing edges in the direction (if any) of the edge.    *    *<p>In an undirected graph, this is equivalent to {@link #adjacentNodes(Object)}.    *    *<p>This is<i>not</i> the same as "all nodes reachable from {@code node} by following outgoing    * edges". For that functionality, see {@link Graphs#reachableNodes(Graph, Object)}.    *    * @throws IllegalArgumentException if {@code node} is not an element of this graph    */
+annotation|@
+name|Override
 DECL|method|successors (@ompatibleWithR) Object node)
 name|Set
 argument_list|<
