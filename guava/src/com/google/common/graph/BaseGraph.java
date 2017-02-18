@@ -97,7 +97,7 @@ name|boolean
 name|isDirected
 parameter_list|()
 function_decl|;
-comment|/**    * Returns true if this graph allows self-loops (edges that connect a node to itself). Attempting    * to add a self-loop to a graph that does not allow them will throw an {@link    * UnsupportedOperationException}.    */
+comment|/**    * Returns true if this graph allows self-loops (edges that connect a node to itself). Attempting    * to add a self-loop to a graph that does not allow them will throw an {@link    * IllegalArgumentException}.    */
 DECL|method|allowsSelfLoops ()
 name|boolean
 name|allowsSelfLoops
