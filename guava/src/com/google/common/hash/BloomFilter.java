@@ -1555,7 +1555,7 @@ expr_stmt|;
 block|}
 block|}
 comment|/**    * Reads a byte stream, which was written by {@linkplain #writeTo(OutputStream)}, into a    * {@code BloomFilter<T>}.    *    * The {@code Funnel} to be used is not encoded in the stream, so it must be provided here.    *<b>Warning:</b> the funnel provided<b>must</b> behave identically to the one used to populate    * the original Bloom filter!    *    * @throws IOException if the InputStream throws an {@code IOException}, or if its data does not    *     appear to be a BloomFilter serialized using the {@linkplain #writeTo(OutputStream)} method.    */
-DECL|method|readFrom (InputStream in, Funnel<T> funnel)
+DECL|method|readFrom (InputStream in, Funnel<? super T> funnel)
 specifier|public
 specifier|static
 parameter_list|<
@@ -1572,6 +1572,8 @@ name|in
 parameter_list|,
 name|Funnel
 argument_list|<
+name|?
+super|super
 name|T
 argument_list|>
 name|funnel
