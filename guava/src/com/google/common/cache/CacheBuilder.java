@@ -1105,8 +1105,8 @@ else|:
 name|concurrencyLevel
 return|;
 block|}
-comment|/**    * Specifies the maximum number of entries the cache may contain. Note that the cache<b>may evict    * an entry before this limit is exceeded</b>. As the cache size grows close to the maximum, the    * cache evicts entries that are less likely to be used again. For example, the cache may evict an    * entry because it hasn't been used recently or very often.    *    *<p>When {@code size} is zero, elements will be evicted immediately after being loaded into the    * cache. This can be useful in testing, or to disable caching temporarily without a code change.    *    *<p>This feature cannot be used in conjunction with {@link #maximumWeight}.    *    * @param size the maximum size of the cache    * @return this {@code CacheBuilder} instance (for chaining)    * @throws IllegalArgumentException if {@code size} is negative    * @throws IllegalStateException if a maximum size or weight was already set    */
-DECL|method|maximumSize (long size)
+comment|/**    * Specifies the maximum number of entries the cache may contain.    *    *<p>Note that the cache<b>may evict an entry before this limit is exceeded</b>. For example, in    * the current implementation, when {@concurrencyLevel} is greater than {@code 1}, each resulting    * segment inside the cache<i>independently</i> limits its own size to approximately {@code    * maximumSize / concurrencyLevel}.    *    *<p>When eviction is necessary, the cache evicts entries that are less likely to be used again.    * For example, the cache may evict an entry because it hasn't been used recently or very often.    *    *<p>If {@code maximumSize} is zero, elements will be evicted immediately after being loaded into    * cache. This can be useful in testing, or to disable caching temporarily.    *    *<p>This feature cannot be used in conjunction with {@link #maximumWeight}.    *    * @param maximumSize the maximum size of the cache    * @return this {@code CacheBuilder} instance (for chaining)    * @throws IllegalArgumentException if {@code maximumSize} is negative    * @throws IllegalStateException if a maximum size or weight was already set    */
+DECL|method|maximumSize (long maximumSize)
 specifier|public
 name|CacheBuilder
 argument_list|<
@@ -1117,7 +1117,7 @@ argument_list|>
 name|maximumSize
 parameter_list|(
 name|long
-name|size
+name|maximumSize
 parameter_list|)
 block|{
 name|checkState
@@ -1163,7 +1163,7 @@ argument_list|)
 expr_stmt|;
 name|checkArgument
 argument_list|(
-name|size
+name|maximumSize
 operator|>=
 literal|0
 argument_list|,
@@ -1174,17 +1174,17 @@ name|this
 operator|.
 name|maximumSize
 operator|=
-name|size
+name|maximumSize
 expr_stmt|;
 return|return
 name|this
 return|;
 block|}
-comment|/**    * Specifies the maximum weight of entries the cache may contain. Weight is determined using the    * {@link Weigher} specified with {@link #weigher}, and use of this method requires a    * corresponding call to {@link #weigher} prior to calling {@link #build}.    *    *<p>Note that the cache<b>may evict an entry before this limit is exceeded</b>. As the cache    * size grows close to the maximum, the cache evicts entries that are less likely to be used    * again. For example, the cache may evict an entry because it hasn't been used recently or very    * often.    *    *<p>When {@code weight} is zero, elements will be evicted immediately after being loaded into    * cache. This can be useful in testing, or to disable caching temporarily without a code change.    *    *<p>Note that weight is only used to determine whether the cache is over capacity; it has no    * effect on selecting which entry should be evicted next.    *    *<p>This feature cannot be used in conjunction with {@link #maximumSize}.    *    * @param weight the maximum total weight of entries the cache may contain    * @return this {@code CacheBuilder} instance (for chaining)    * @throws IllegalArgumentException if {@code weight} is negative    * @throws IllegalStateException if a maximum weight or size was already set    * @since 11.0    */
+comment|/**    * Specifies the maximum weight of entries the cache may contain. Weight is determined using the    * {@link Weigher} specified with {@link #weigher}, and use of this method requires a    * corresponding call to {@link #weigher} prior to calling {@link #build}.    *    *<p>Note that the cache<b>may evict an entry before this limit is exceeded</b>. For example, in    * the current implementation, when {@concurrencyLevel} is greater than {@code 1}, each resulting    * segment inside the cache<i>independently</i> limits its own weight to approximately {@code    * maximumWeight / concurrencyLevel}.    *    *<p>When eviction is necessary, the cache evicts entries that are less likely to be used again.    * For example, the cache may evict an entry because it hasn't been used recently or very often.    *    *<p>If {@code maximumWeight} is zero, elements will be evicted immediately after being loaded    * into cache. This can be useful in testing, or to disable caching temporarily.    *    *<p>Note that weight is only used to determine whether the cache is over capacity; it has no    * effect on selecting which entry should be evicted next.    *    *<p>This feature cannot be used in conjunction with {@link #maximumSize}.    *    * @param maximumWeight the maximum total weight of entries the cache may contain    * @return this {@code CacheBuilder} instance (for chaining)    * @throws IllegalArgumentException if {@code maximumWeight} is negative    * @throws IllegalStateException if a maximum weight or size was already set    * @since 11.0    */
 annotation|@
 name|GwtIncompatible
 comment|// To be supported
-DECL|method|maximumWeight (long weight)
+DECL|method|maximumWeight (long maximumWeight)
 specifier|public
 name|CacheBuilder
 argument_list|<
@@ -1195,7 +1195,7 @@ argument_list|>
 name|maximumWeight
 parameter_list|(
 name|long
-name|weight
+name|maximumWeight
 parameter_list|)
 block|{
 name|checkState
@@ -1232,11 +1232,11 @@ name|this
 operator|.
 name|maximumWeight
 operator|=
-name|weight
+name|maximumWeight
 expr_stmt|;
 name|checkArgument
 argument_list|(
-name|weight
+name|maximumWeight
 operator|>=
 literal|0
 argument_list|,
