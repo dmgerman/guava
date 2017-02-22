@@ -346,6 +346,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|HashSet
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|LinkedHashMap
 import|;
 end_import
@@ -451,7 +461,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Scans the source of a {@link ClassLoader} and finds all loadable classes and resources.  *  *<p><b>Warning:</b> Currently only {@link URLClassLoader} and only {@code file://} urls are  * supported.  *  * @author Ben Yu  * @since 14.0  */
+comment|/**  * Scans the source of a {@link ClassLoader} and finds all loadable classes and resources.  *  *<p><b>Warning:</b> Currently only {@link URLClassLoader} and only {@code file://} urls are  * supported.  *  *<p>In the case of directory classloaders, symlinks are supported but cycles are not traversed.  * This guarantees discovery of each<em>unique</em> loadable resource. However, not all possible  * aliases for resources on cyclic paths will be listed.  *  * @author Ben Yu  * @since 14.0  */
 end_comment
 
 begin_class
@@ -2130,6 +2140,29 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|Set
+argument_list|<
+name|File
+argument_list|>
+name|currentPath
+init|=
+operator|new
+name|HashSet
+argument_list|<
+name|File
+argument_list|>
+argument_list|()
+decl_stmt|;
+name|currentPath
+operator|.
+name|add
+argument_list|(
+name|directory
+operator|.
+name|getCanonicalFile
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|scanDirectory
 argument_list|(
 name|directory
@@ -2137,10 +2170,13 @@ argument_list|,
 name|classloader
 argument_list|,
 literal|""
+argument_list|,
+name|currentPath
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|scanDirectory (File directory, ClassLoader classloader, String packagePrefix)
+comment|/**      * Recursively scan the given directory, adding resources for each file encountered. Symlinks      * which have already been traversed in the current tree path will be skipped to eliminate      * cycles; otherwise symlinks are traversed.      *      * @param directory the root of the directory to scan      * @param classloader the classloader that includes resources found in {@code directory}      * @param packagePrefix resource path prefix inside {@code classloader} for any files found      *     under {@code directory}      * @param currentPath canonical files already visited in the current directory tree path, for      *     cycle elimination      */
+DECL|method|scanDirectory ( File directory, ClassLoader classloader, String packagePrefix, Set<File> currentPath)
 specifier|private
 name|void
 name|scanDirectory
@@ -2153,6 +2189,12 @@ name|classloader
 parameter_list|,
 name|String
 name|packagePrefix
+parameter_list|,
+name|Set
+argument_list|<
+name|File
+argument_list|>
+name|currentPath
 parameter_list|)
 throws|throws
 name|IOException
@@ -2209,9 +2251,27 @@ name|isDirectory
 argument_list|()
 condition|)
 block|{
+name|File
+name|deref
+init|=
+name|f
+operator|.
+name|getCanonicalFile
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|currentPath
+operator|.
+name|add
+argument_list|(
+name|deref
+argument_list|)
+condition|)
+block|{
 name|scanDirectory
 argument_list|(
-name|f
+name|deref
 argument_list|,
 name|classloader
 argument_list|,
@@ -2220,8 +2280,18 @@ operator|+
 name|name
 operator|+
 literal|"/"
+argument_list|,
+name|currentPath
 argument_list|)
 expr_stmt|;
+name|currentPath
+operator|.
+name|remove
+argument_list|(
+name|deref
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 else|else
 block|{
