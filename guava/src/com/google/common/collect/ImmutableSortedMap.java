@@ -1802,7 +1802,7 @@ name|length
 argument_list|)
 return|;
 block|}
-DECL|method|fromEntries ( Comparator<? super K> comparator, boolean sameComparator, Entry<K, V>[] entryArray, int size)
+DECL|method|fromEntries ( final Comparator<? super K> comparator, boolean sameComparator, Entry<K, V>[] entryArray, int size)
 specifier|private
 specifier|static
 parameter_list|<
@@ -1818,6 +1818,7 @@ name|V
 argument_list|>
 name|fromEntries
 parameter_list|(
+specifier|final
 name|Comparator
 argument_list|<
 name|?
@@ -1978,6 +1979,8 @@ block|}
 else|else
 block|{
 comment|// Need to sort and check for nulls and dupes.
+comment|// Inline the Comparator implementation rather than transforming with a Function
+comment|// to save code size.
 name|Arrays
 operator|.
 name|sort
@@ -1988,18 +1991,59 @@ literal|0
 argument_list|,
 name|size
 argument_list|,
-name|Ordering
-operator|.
-name|from
-argument_list|(
-name|comparator
-argument_list|)
-operator|.
-operator|<
+operator|new
+name|Comparator
+argument_list|<
+name|Entry
+argument_list|<
 name|K
-operator|>
-name|onKeys
+argument_list|,
+name|V
+argument_list|>
+argument_list|>
 argument_list|()
+block|{
+annotation|@
+name|Override
+specifier|public
+name|int
+name|compare
+parameter_list|(
+name|Entry
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|e1
+parameter_list|,
+name|Entry
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|e2
+parameter_list|)
+block|{
+return|return
+name|comparator
+operator|.
+name|compare
+argument_list|(
+name|e1
+operator|.
+name|getKey
+argument_list|()
+argument_list|,
+name|e2
+operator|.
+name|getKey
+argument_list|()
+argument_list|)
+return|;
+block|}
+block|}
 argument_list|)
 expr_stmt|;
 name|K
