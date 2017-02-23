@@ -82,6 +82,36 @@ name|java
 operator|.
 name|util
 operator|.
+name|ArrayList
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Collections
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|List
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|Queue
 import|;
 end_import
@@ -135,7 +165,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A special purpose queue/executor that executes listener callbacks serially on a configured  * executor. Each callback task can be enqueued and executed as separate phases.  *  *<p>This class is very similar to {@link SerializingExecutor} with the exception that tasks can be  * enqueued without necessarily executing immediately.  */
+comment|/**  * A list of listeners for implementing a concurrency friendly observable object.  *  *<p>Listeners are registered once via {@link #addListener} and then may be invoked by {@linkplain  * #enqueue enqueueing} and then {@linkplain dispatch dispatching} events.  *  *<p>The API of this class is designed to make it easy to achieve the following properties  *  *<ul>  *<li>Multiple events for the same listener are never dispatched concurrently.  *<li>Events for the different listeners are dispatched concurrently.  *<li>All events for a given listener dispatch on the provided {@link #executor}.  *<li>It is easy for the user to ensure that listeners are never invoked while holding locks.  *</ul>  *  * The last point is subtle. Often the observable object will be managing its own internal state  * using a lock, however it is dangerous to dispatch listeners while holding a lock because they  * might run on the {@code directExecutor()} or be otherwise re-entrant (call back into your  * object). So it is important to not call {@link #dispatch} while holding any locks. This is why  * {@link #enqueue} and {@link #dispatch} are 2 different methods. It is expected that the decision  * to run a particular event is made during the state change, but the decision to actually invoke  * the listeners can be delayed slightly so that locks can be dropped. Also, because {@link  * #dispatch} is expected to be called concurrently, it is idempotent.  */
 end_comment
 
 begin_class
@@ -148,8 +178,6 @@ name|ListenerCallQueue
 parameter_list|<
 name|L
 parameter_list|>
-implements|implements
-name|Runnable
 block|{
 comment|// TODO(cpovirk): consider using the logger associated with listener.getClass().
 DECL|field|logger
@@ -171,37 +199,45 @@ name|getName
 argument_list|()
 argument_list|)
 decl_stmt|;
-DECL|class|Callback
-specifier|abstract
-specifier|static
-class|class
-name|Callback
+comment|// TODO(chrisn): promote AppendOnlyCollection for use here.
+DECL|field|listeners
+specifier|private
+specifier|final
+name|List
+argument_list|<
+name|PerListenerQueue
+argument_list|<
+name|L
+argument_list|>
+argument_list|>
+name|listeners
+init|=
+name|Collections
+operator|.
+name|synchronizedList
+argument_list|(
+operator|new
+name|ArrayList
+argument_list|<
+name|PerListenerQueue
+argument_list|<
+name|L
+argument_list|>
+argument_list|>
+argument_list|()
+argument_list|)
+decl_stmt|;
+comment|/** Method reference-compatible listener event. */
+DECL|interface|Event
+specifier|public
+interface|interface
+name|Event
 parameter_list|<
 name|L
 parameter_list|>
 block|{
-DECL|field|methodCall
-specifier|private
-specifier|final
-name|String
-name|methodCall
-decl_stmt|;
-DECL|method|Callback (String methodCall)
-name|Callback
-parameter_list|(
-name|String
-name|methodCall
-parameter_list|)
-block|{
-name|this
-operator|.
-name|methodCall
-operator|=
-name|methodCall
-expr_stmt|;
-block|}
+comment|/** Call a method on the listener. */
 DECL|method|call (L listener)
-specifier|abstract
 name|void
 name|call
 parameter_list|(
@@ -209,50 +245,150 @@ name|L
 name|listener
 parameter_list|)
 function_decl|;
-comment|/** Helper method to add this callback to all the queues. */
-DECL|method|enqueueOn (Iterable<ListenerCallQueue<L>> queues)
+block|}
+comment|/**    * Adds a listener that will be called using the given executor when events are later {@link    * #enqueue enqueued} and {@link #dispatch dispatched}.    */
+DECL|method|addListener (L listener, Executor executor)
+specifier|public
 name|void
-name|enqueueOn
+name|addListener
 parameter_list|(
-name|Iterable
-argument_list|<
-name|ListenerCallQueue
+name|L
+name|listener
+parameter_list|,
+name|Executor
+name|executor
+parameter_list|)
+block|{
+name|checkNotNull
+argument_list|(
+name|listener
+argument_list|,
+literal|"listener"
+argument_list|)
+expr_stmt|;
+name|checkNotNull
+argument_list|(
+name|executor
+argument_list|,
+literal|"executor"
+argument_list|)
+expr_stmt|;
+name|listeners
+operator|.
+name|add
+argument_list|(
+operator|new
+name|PerListenerQueue
+argument_list|<>
+argument_list|(
+name|listener
+argument_list|,
+name|executor
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**    * Enqueues an event to be run on currently known listeners. The events will be dispatched when    * {@link #dispatch} is called.    */
+DECL|method|enqueue (Event<L> event)
+specifier|public
+name|void
+name|enqueue
+parameter_list|(
+name|Event
 argument_list|<
 name|L
 argument_list|>
-argument_list|>
-name|queues
+name|event
 parameter_list|)
+block|{
+name|checkNotNull
+argument_list|(
+name|event
+argument_list|)
+expr_stmt|;
+synchronized|synchronized
+init|(
+name|listeners
+init|)
 block|{
 for|for
 control|(
-name|ListenerCallQueue
+name|PerListenerQueue
 argument_list|<
 name|L
 argument_list|>
 name|queue
 range|:
-name|queues
+name|listeners
 control|)
 block|{
 name|queue
 operator|.
 name|add
 argument_list|(
-name|this
+name|event
 argument_list|)
 expr_stmt|;
 block|}
 block|}
 block|}
-DECL|field|listener
+comment|/**    * Dispatches all events enqueued prior to this call, serially and in order, for every listener.    *    *<p>Note: this method is idempotent and safe to call from any thread    */
+DECL|method|dispatch ()
+specifier|public
+name|void
+name|dispatch
+parameter_list|()
+block|{
+comment|// iterate by index to avoid concurrent modification exceptions
+for|for
+control|(
+name|int
+name|i
+init|=
+literal|0
+init|;
+name|i
+operator|<
+name|listeners
+operator|.
+name|size
+argument_list|()
+condition|;
+name|i
+operator|++
+control|)
+block|{
+name|listeners
+operator|.
+name|get
+argument_list|(
+name|i
+argument_list|)
+operator|.
+name|dispatch
+argument_list|()
+expr_stmt|;
+block|}
+block|}
+comment|/**    * A special purpose queue/executor that dispatches listener events serially on a configured    * executor. Each event event can be added and dispatched as separate phases.    *    *<p>This class is very similar to {@link SerializingExecutor} with the exception that events can    * be added without necessarily executing immediately.    */
+DECL|class|PerListenerQueue
 specifier|private
+specifier|static
+specifier|final
+class|class
+name|PerListenerQueue
+parameter_list|<
+name|L
+parameter_list|>
+implements|implements
+name|Runnable
+block|{
+DECL|field|listener
 specifier|final
 name|L
 name|listener
 decl_stmt|;
 DECL|field|executor
-specifier|private
 specifier|final
 name|Executor
 name|executor
@@ -263,11 +399,12 @@ argument_list|(
 literal|"this"
 argument_list|)
 DECL|field|waitQueue
-specifier|private
 specifier|final
 name|Queue
 argument_list|<
-name|Callback
+name|ListenerCallQueue
+operator|.
+name|Event
 argument_list|<
 name|L
 argument_list|>
@@ -285,12 +422,11 @@ argument_list|(
 literal|"this"
 argument_list|)
 DECL|field|isThreadScheduled
-specifier|private
 name|boolean
 name|isThreadScheduled
 decl_stmt|;
-DECL|method|ListenerCallQueue (L listener, Executor executor)
-name|ListenerCallQueue
+DECL|method|PerListenerQueue (L listener, Executor executor)
+name|PerListenerQueue
 parameter_list|(
 name|L
 name|listener
@@ -318,35 +454,37 @@ name|executor
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Enqueues a task to be run. */
-DECL|method|add (Callback<L> callback)
+comment|/** Enqueues a event to be run. */
+DECL|method|add (ListenerCallQueue.Event<L> event)
 specifier|synchronized
 name|void
 name|add
 parameter_list|(
-name|Callback
+name|ListenerCallQueue
+operator|.
+name|Event
 argument_list|<
 name|L
 argument_list|>
-name|callback
+name|event
 parameter_list|)
 block|{
 name|waitQueue
 operator|.
 name|add
 argument_list|(
-name|callback
+name|event
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Executes all listeners {@linkplain #add added} prior to this call, serially and in order. */
-DECL|method|execute ()
+comment|/**      * Dispatches all listeners {@linkplain #enqueue enqueued} prior to this call, serially and in      * order.      */
+DECL|method|dispatch ()
 name|void
-name|execute
+name|dispatch
 parameter_list|()
 block|{
 name|boolean
-name|scheduleTaskRunner
+name|scheduleEventRunner
 init|=
 literal|false
 decl_stmt|;
@@ -365,7 +503,7 @@ name|isThreadScheduled
 operator|=
 literal|true
 expr_stmt|;
-name|scheduleTaskRunner
+name|scheduleEventRunner
 operator|=
 literal|true
 expr_stmt|;
@@ -373,7 +511,7 @@ block|}
 block|}
 if|if
 condition|(
-name|scheduleTaskRunner
+name|scheduleEventRunner
 condition|)
 block|{
 try|try
@@ -392,7 +530,7 @@ name|RuntimeException
 name|e
 parameter_list|)
 block|{
-comment|// reset state in case of an error so that later calls to execute will actually do something
+comment|// reset state in case of an error so that later dispatch calls will actually do something
 synchronized|synchronized
 init|(
 name|this
@@ -449,7 +587,9 @@ condition|(
 literal|true
 condition|)
 block|{
-name|Callback
+name|ListenerCallQueue
+operator|.
+name|Event
 argument_list|<
 name|L
 argument_list|>
@@ -457,7 +597,7 @@ name|nextToRun
 decl_stmt|;
 synchronized|synchronized
 init|(
-name|ListenerCallQueue
+name|PerListenerQueue
 operator|.
 name|this
 init|)
@@ -524,11 +664,9 @@ literal|"Exception while executing callback: "
 operator|+
 name|listener
 operator|+
-literal|"."
+literal|" "
 operator|+
 name|nextToRun
-operator|.
-name|methodCall
 argument_list|,
 name|e
 argument_list|)
@@ -547,7 +685,7 @@ comment|// An Error is bubbling up. We should mark ourselves as no longer runnin
 comment|// anyone tries to keep using us, we won't be corrupted.
 synchronized|synchronized
 init|(
-name|ListenerCallQueue
+name|PerListenerQueue
 operator|.
 name|this
 init|)
@@ -556,6 +694,7 @@ name|isThreadScheduled
 operator|=
 literal|false
 expr_stmt|;
+block|}
 block|}
 block|}
 block|}
