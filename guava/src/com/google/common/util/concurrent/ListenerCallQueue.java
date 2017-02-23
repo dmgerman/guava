@@ -288,7 +288,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Enqueues an event to be run on currently known listeners. The events will be dispatched when    * {@link #dispatch} is called.    */
+comment|/**    * Enqueues an event to be run on currently known listeners.    *    *<p>The {@code toString} method of the Event itself will be used to describe the event in the    * case of an error.    *    * @param event the callback to execute on {@link #dispatch}    */
 DECL|method|enqueue (Event<L> event)
 specifier|public
 name|void
@@ -301,9 +301,65 @@ argument_list|>
 name|event
 parameter_list|)
 block|{
+name|enqueueHelper
+argument_list|(
+name|event
+argument_list|,
+name|event
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**    * Enqueues an event to be run on currently known listeners, with a label.    *    * @param event the callback to execute on {@link #dispatch}    * @param label a description of the event to use in the case of an error    */
+DECL|method|enqueue (Event<L> event, String label)
+specifier|public
+name|void
+name|enqueue
+parameter_list|(
+name|Event
+argument_list|<
+name|L
+argument_list|>
+name|event
+parameter_list|,
+name|String
+name|label
+parameter_list|)
+block|{
+name|enqueueHelper
+argument_list|(
+name|event
+argument_list|,
+name|label
+argument_list|)
+expr_stmt|;
+block|}
+DECL|method|enqueueHelper (Event<L> event, Object label)
+specifier|private
+name|void
+name|enqueueHelper
+parameter_list|(
+name|Event
+argument_list|<
+name|L
+argument_list|>
+name|event
+parameter_list|,
+name|Object
+name|label
+parameter_list|)
+block|{
 name|checkNotNull
 argument_list|(
 name|event
+argument_list|,
+literal|"event"
+argument_list|)
+expr_stmt|;
+name|checkNotNull
+argument_list|(
+name|label
+argument_list|,
+literal|"label"
 argument_list|)
 expr_stmt|;
 synchronized|synchronized
@@ -327,6 +383,8 @@ operator|.
 name|add
 argument_list|(
 name|event
+argument_list|,
+name|label
 argument_list|)
 expr_stmt|;
 block|}
@@ -421,6 +479,24 @@ name|GuardedBy
 argument_list|(
 literal|"this"
 argument_list|)
+DECL|field|labelQueue
+specifier|final
+name|Queue
+argument_list|<
+name|Object
+argument_list|>
+name|labelQueue
+init|=
+name|Queues
+operator|.
+name|newArrayDeque
+argument_list|()
+decl_stmt|;
+annotation|@
+name|GuardedBy
+argument_list|(
+literal|"this"
+argument_list|)
 DECL|field|isThreadScheduled
 name|boolean
 name|isThreadScheduled
@@ -455,7 +531,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** Enqueues a event to be run. */
-DECL|method|add (ListenerCallQueue.Event<L> event)
+DECL|method|add (ListenerCallQueue.Event<L> event, Object label)
 specifier|synchronized
 name|void
 name|add
@@ -467,6 +543,9 @@ argument_list|<
 name|L
 argument_list|>
 name|event
+parameter_list|,
+name|Object
+name|label
 parameter_list|)
 block|{
 name|waitQueue
@@ -474,6 +553,13 @@ operator|.
 name|add
 argument_list|(
 name|event
+argument_list|)
+expr_stmt|;
+name|labelQueue
+operator|.
+name|add
+argument_list|(
+name|label
 argument_list|)
 expr_stmt|;
 block|}
@@ -595,6 +681,9 @@ name|L
 argument_list|>
 name|nextToRun
 decl_stmt|;
+name|Object
+name|nextLabel
+decl_stmt|;
 synchronized|synchronized
 init|(
 name|PerListenerQueue
@@ -612,6 +701,13 @@ expr_stmt|;
 name|nextToRun
 operator|=
 name|waitQueue
+operator|.
+name|poll
+argument_list|()
+expr_stmt|;
+name|nextLabel
+operator|=
+name|labelQueue
 operator|.
 name|poll
 argument_list|()
@@ -666,7 +762,7 @@ name|listener
 operator|+
 literal|" "
 operator|+
-name|nextToRun
+name|nextLabel
 argument_list|,
 name|e
 argument_list|)
