@@ -142,6 +142,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|AbstractMap
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|Arrays
 import|;
 end_import
@@ -163,18 +173,6 @@ operator|.
 name|util
 operator|.
 name|Map
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Map
-operator|.
-name|Entry
 import|;
 end_import
 
@@ -814,7 +812,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-DECL|method|ofEntries ( ImmutableMapEntry<K, V>.... entries)
+DECL|method|ofEntries ( Entry<K, V>.... entries)
 specifier|private
 specifier|static
 parameter_list|<
@@ -837,7 +835,7 @@ name|V
 argument_list|>
 name|ofEntries
 parameter_list|(
-name|ImmutableMapEntry
+name|Entry
 argument_list|<
 name|K
 argument_list|,
@@ -3059,9 +3057,15 @@ name|index
 parameter_list|)
 block|{
 return|return
-name|Maps
+operator|new
+name|AbstractMap
 operator|.
-name|immutableEntry
+name|SimpleImmutableEntry
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
 argument_list|(
 name|keySet
 operator|.

@@ -152,6 +152,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|AbstractMap
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|Arrays
 import|;
 end_import
@@ -890,7 +900,7 @@ argument_list|)
 return|;
 block|}
 comment|// looking for of() with> 5 entries? Use the builder instead.
-comment|/**    * Verifies that {@code key} and {@code value} are non-null, and returns a new    * immutable entry with those values.    *    *<p>A call to {@link Map.Entry#setValue} on the returned entry will always    * throw {@link UnsupportedOperationException}.    */
+comment|/**    * Verifies that {@code key} and {@code value} are non-null, and returns a new immutable entry    * with those values.    *    *<p>A call to {@link Map.Entry#setValue} on the returned entry will always throw {@link    * UnsupportedOperationException}.    */
 DECL|method|entryOf (K key, V value)
 specifier|static
 parameter_list|<
@@ -898,7 +908,7 @@ name|K
 parameter_list|,
 name|V
 parameter_list|>
-name|ImmutableMapEntry
+name|Entry
 argument_list|<
 name|K
 argument_list|,
@@ -913,9 +923,18 @@ name|V
 name|value
 parameter_list|)
 block|{
+name|checkEntryNotNull
+argument_list|(
+name|key
+argument_list|,
+name|value
+argument_list|)
+expr_stmt|;
 return|return
 operator|new
-name|ImmutableMapEntry
+name|AbstractMap
+operator|.
+name|SimpleImmutableEntry
 argument_list|<
 name|K
 argument_list|,
@@ -1032,7 +1051,7 @@ argument_list|>
 name|valueComparator
 decl_stmt|;
 DECL|field|entries
-name|ImmutableMapEntry
+name|Entry
 argument_list|<
 name|K
 argument_list|,
@@ -1082,7 +1101,7 @@ operator|.
 name|entries
 operator|=
 operator|new
-name|ImmutableMapEntry
+name|Entry
 index|[
 name|initialCapacity
 index|]
@@ -1173,7 +1192,7 @@ operator|+
 literal|1
 argument_list|)
 expr_stmt|;
-name|ImmutableMapEntry
+name|Entry
 argument_list|<
 name|K
 argument_list|,
