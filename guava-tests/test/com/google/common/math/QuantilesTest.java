@@ -3064,6 +3064,9 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|AndroidIncompatible
+comment|// slow
 DECL|method|testPercentiles_index_computeInPlace ()
 specifier|public
 name|void
@@ -3422,6 +3425,9 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|AndroidIncompatible
+comment|// slow
 DECL|method|testPercentiles_indexes_varargsAll_computeInPlace ()
 specifier|public
 name|void
