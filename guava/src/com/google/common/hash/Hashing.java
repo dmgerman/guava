@@ -90,16 +90,6 @@ begin_import
 import|import
 name|java
 operator|.
-name|security
-operator|.
-name|MessageDigest
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
 name|util
 operator|.
 name|ArrayList
@@ -207,7 +197,7 @@ specifier|final
 class|class
 name|Hashing
 block|{
-comment|/**    * Returns a general-purpose,<b>temporary-use</b>, non-cryptographic hash function. The algorithm    * the returned function implements is unspecified and subject to change without notice.    *    *<p><b>Warning:</b> a new random seed for these functions is chosen each time the {@code    * Hashing} class is loaded.<b>Do not use this method</b> if hash codes may escape the current    * process in any way, for example being sent over RPC, or saved to disk.    *    *<p>Repeated calls to this method on the same loaded {@code Hashing} class, using the same value    * for {@code minimumBits}, will return identically-behaving {@link HashFunction} instances.    *    * @param minimumBits a positive integer (can be arbitrarily large)    * @return a hash function, described above, that produces hash codes of length {@code    *     minimumBits} or greater    */
+comment|/**    * Returns a general-purpose,<b>temporary-use</b>, non-cryptographic hash function. The algorithm    * the returned function implements is unspecified and subject to change without notice.    *    *<p><b>Warning:</b> a new random seed for these functions is chosen each time the {@code    * Hashing} class is loaded.<b>Do not use this method</b> if hash codes may escape the current    * process in any way, for example being sent over RPC, or saved to disk. For a general-purpose,    * non-cryptographic hash function that will never change behavior, we suggest {@link    * #murmur3_128}.    *    *<p>Repeated calls to this method on the same loaded {@code Hashing} class, using the same value    * for {@code minimumBits}, will return identically-behaving {@link HashFunction} instances.    *    * @param minimumBits a positive integer (can be arbitrarily large)    * @return a hash function, described above, that produces hash codes of length {@code    *     minimumBits} or greater    */
 DECL|method|goodFastHash (int minimumBits)
 specifier|public
 specifier|static
@@ -538,7 +528,9 @@ name|k1
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a hash function implementing the MD5 hash algorithm (128 hash bits) by delegating to    * the MD5 {@link MessageDigest}.    *    *<p><b>Warning:</b> MD5 is not cryptographically secure or collision-resistant and is not    * recommended for use in new code. It should be used for legacy compatibility reasons only.    * Please consider using a hash function in the SHA-2 family of functions (e.g., SHA-256).    */
+comment|/**    * Returns a hash function implementing the MD5 hash algorithm (128 hash bits).    *    * @deprecated If you must interoperate with a system that requires MD5, then use this method,    *     despite its deprecation. But if you can choose your hash function, avoid MD5, which is    *     neither fast nor secure. As of January 2017, we suggest:    *<ul>    *<li>For security:    *           {@link Hashing#sha256} or a higher-level API.    *<li>For speed: {@link Hashing#goodFastHash}, though see its docs for caveats.    *</ul>    */
+annotation|@
+name|Deprecated
 DECL|method|md5 ()
 specifier|public
 specifier|static
@@ -573,7 +565,9 @@ literal|"Hashing.md5()"
 argument_list|)
 decl_stmt|;
 block|}
-comment|/**    * Returns a hash function implementing the SHA-1 algorithm (160 hash bits) by delegating to the    * SHA-1 {@link MessageDigest}.    *    *<p><b>Warning:</b> SHA1 is not cryptographically secure and is not recommended for use in new    * code. It should be used for legacy compatibility reasons only. Please consider using a hash    * function in the SHA-2 family of functions (e.g., SHA-256).    */
+comment|/**    * Returns a hash function implementing the SHA-1 algorithm (160 hash bits).    *    * @deprecated If you must interoperate with a system that requires SHA-1, then use this method,    *     despite its deprecation. But if you can choose your hash function, avoid SHA-1, which is    *     neither fast nor secure. As of January 2017, we suggest:    *<ul>    *<li>For security:    *           {@link Hashing#sha256} or a higher-level API.    *<li>For speed: {@link Hashing#goodFastHash}, though see its docs for caveats.    *</ul>    */
+annotation|@
+name|Deprecated
 DECL|method|sha1 ()
 specifier|public
 specifier|static
@@ -608,7 +602,7 @@ literal|"Hashing.sha1()"
 argument_list|)
 decl_stmt|;
 block|}
-comment|/**    * Returns a hash function implementing the SHA-256 algorithm (256 hash bits) by delegating to the    * SHA-256 {@link MessageDigest}.    */
+comment|/** Returns a hash function implementing the SHA-256 algorithm (256 hash bits). */
 DECL|method|sha256 ()
 specifier|public
 specifier|static
@@ -643,7 +637,7 @@ literal|"Hashing.sha256()"
 argument_list|)
 decl_stmt|;
 block|}
-comment|/**    * Returns a hash function implementing the SHA-384 algorithm (384 hash bits) by delegating to the    * SHA-384 {@link MessageDigest}.    *    * @since 19.0    */
+comment|/**    * Returns a hash function implementing the SHA-384 algorithm (384 hash bits).    *    * @since 19.0    */
 DECL|method|sha384 ()
 specifier|public
 specifier|static
@@ -678,7 +672,7 @@ literal|"Hashing.sha384()"
 argument_list|)
 decl_stmt|;
 block|}
-comment|/**    * Returns a hash function implementing the SHA-512 algorithm (512 hash bits) by delegating to the    * SHA-512 {@link MessageDigest}.    */
+comment|/** Returns a hash function implementing the SHA-512 algorithm (512 hash bits). */
 DECL|method|sha512 ()
 specifier|public
 specifier|static
@@ -971,7 +965,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a hash function implementing the CRC32C checksum algorithm (32 hash bits) as described    * by RFC 3720, Section 12.1.    *    * @since 18.0    */
+comment|/**    * Returns a hash function implementing the CRC32C checksum algorithm (32 hash bits) as described    * by RFC 3720, Section 12.1.    *    *<p>This function is best understood as a<a    * href="https://en.wikipedia.org/wiki/Checksum">checksum</a> rather than a true<a    * href="https://en.wikipedia.org/wiki/Hash_function">hash function</a>.    *    * @since 18.0    */
 DECL|method|crc32c ()
 specifier|public
 specifier|static
@@ -1003,7 +997,7 @@ name|Crc32cHashFunction
 argument_list|()
 decl_stmt|;
 block|}
-comment|/**    * Returns a hash function implementing the CRC-32 checksum algorithm (32 hash bits) by delegating    * to the {@link CRC32} {@link Checksum}.    *    *<p>To get the {@code long} value equivalent to {@link Checksum#getValue()} for a    * {@code HashCode} produced by this function, use {@link HashCode#padToLong()}.    *    * @since 14.0    */
+comment|/**    * Returns a hash function implementing the CRC-32 checksum algorithm (32 hash bits).    *    *<p>To get the {@code long} value equivalent to {@link Checksum#getValue()} for a {@code    * HashCode} produced by this function, use {@link HashCode#padToLong()}.    *    *<p>This function is best understood as a<a    * href="https://en.wikipedia.org/wiki/Checksum">checksum</a> rather than a true<a    * href="https://en.wikipedia.org/wiki/Hash_function">hash function</a>.    *    * @since 14.0    */
 DECL|method|crc32 ()
 specifier|public
 specifier|static
@@ -1039,7 +1033,7 @@ literal|"Hashing.crc32()"
 argument_list|)
 decl_stmt|;
 block|}
-comment|/**    * Returns a hash function implementing the Adler-32 checksum algorithm (32 hash bits) by    * delegating to the {@link Adler32} {@link Checksum}.    *    *<p>To get the {@code long} value equivalent to {@link Checksum#getValue()} for a    * {@code HashCode} produced by this function, use {@link HashCode#padToLong()}.    *    * @since 14.0    */
+comment|/**    * Returns a hash function implementing the Adler-32 checksum algorithm (32 hash bits).    *    *<p>To get the {@code long} value equivalent to {@link Checksum#getValue()} for a {@code    * HashCode} produced by this function, use {@link HashCode#padToLong()}.    *    *<p>This function is best understood as a<a    * href="https://en.wikipedia.org/wiki/Checksum">checksum</a> rather than a true<a    * href="https://en.wikipedia.org/wiki/Hash_function">hash function</a>.    *    * @since 14.0    */
 DECL|method|adler32 ()
 specifier|public
 specifier|static
@@ -1183,7 +1177,7 @@ name|get
 parameter_list|()
 function_decl|;
 block|}
-comment|/**    * Returns a hash function implementing FarmHash's Fingerprint64, an open-source algorithm.    *    *<p>This is designed for generating persistent fingerprints of strings. It isn't    * cryptographically secure, but it produces a high-quality hash with fewer collisions than some    * alternatives we've used in the past. FarmHashFingerprints generated using this are byte-wise    * identical to those created using the C++ version, but note that this uses unsigned integers    * (see {@link com.google.common.primitives.UnsignedInts}). Comparisons between the two should    * take this into account.    *    * @since 20.0    */
+comment|/**    * Returns a hash function implementing FarmHash's Fingerprint64, an open-source algorithm.    *    *<p>This is designed for generating persistent fingerprints of strings. It isn't    * cryptographically secure, but it produces a high-quality hash with fewer collisions than some    * alternatives we've used in the past. FarmHashFingerprints generated using this are byte-wise    * identical to those created using the C++ version, but note that this uses unsigned integers    * (see {@link com.google.common.primitives.UnsignedInts}). Comparisons between the two should    * take this into account.    *    *<p>This function is best understood as a<a    * href="https://en.wikipedia.org/wiki/Fingerprint_(computing)">fingerprint</a> rather than a true    *<a href="https://en.wikipedia.org/wiki/Hash_function">hash function</a>.    *    * @since 20.0    */
 DECL|method|farmHashFingerprint64 ()
 specifier|public
 specifier|static
