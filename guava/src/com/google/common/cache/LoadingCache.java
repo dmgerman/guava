@@ -115,7 +115,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A semi-persistent mapping from keys to values. Values are automatically loaded by the cache, and  * are stored in the cache until either evicted or manually invalidated.  *  *<p>Implementations of this interface are expected to be thread-safe, and can be safely accessed  * by multiple concurrent threads.  *  *<p>When evaluated as a {@link Function}, a cache yields the same result as invoking  * {@link #getUnchecked}.  *  * @author Charles Fry  * @since 11.0  */
+comment|/**  * A semi-persistent mapping from keys to values. Values are automatically loaded by the cache, and  * are stored in the cache until either evicted or manually invalidated. The common way to build  * instances is using {@link CacheBuilder}.  *  *<p>Implementations of this interface are expected to be thread-safe, and can be safely accessed  * by multiple concurrent threads.  *  *<p>When evaluated as a {@link Function}, a cache yields the same result as invoking  * {@link #getUnchecked}.  *  * @author Charles Fry  * @since 11.0  */
 end_comment
 
 begin_interface
