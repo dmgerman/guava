@@ -166,11 +166,49 @@ name|com
 operator|.
 name|google
 operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|GwtIncompatible
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
 name|errorprone
 operator|.
 name|annotations
 operator|.
 name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|j2objc
+operator|.
+name|annotations
+operator|.
+name|J2ObjCIncompatible
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|time
+operator|.
+name|Duration
 import|;
 end_import
 
@@ -187,12 +225,17 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An object that measures elapsed time in nanoseconds. It is useful to measure elapsed time using  * this class instead of direct calls to {@link System#nanoTime} for a few reasons:  *  *<ul>  *<li>An alternate time source can be substituted, for testing or performance reasons.  *<li>As documented by {@code nanoTime}, the value returned has no absolute meaning, and can only  *       be interpreted as relative to another timestamp returned by {@code nanoTime} at a different  *       time. {@code Stopwatch} is a more effective abstraction because it exposes only these  *       relative values, not the absolute ones.  *</ul>  *  *<p>Basic usage:  *  *<pre>{@code  * Stopwatch stopwatch = Stopwatch.createStarted();  * doSomething();  * stopwatch.stop(); // optional  *  * long millis = stopwatch.elapsed(MILLISECONDS);  *  * log.info("time: " + stopwatch); // formatted string like "12.3 ms"  * }</pre>  *  *<p>Stopwatch methods are not idempotent; it is an error to start or stop a stopwatch that is  * already in the desired state.  *  *<p>When testing code that uses this class, use {@link #createUnstarted(Ticker)} or {@link  * #createStarted(Ticker)} to supply a fake or mock ticker. This allows you to simulate any valid  * behavior of the stopwatch.  *  *<p><b>Note:</b> This class is not thread-safe.  *  *<p><b>Warning for Android users:</b> a stopwatch with default behavior may not continue to keep  * time while the device is asleep. Instead, create one like this:  *  *<pre>{@code  * Stopwatch.createStarted(  *      new Ticker() {  *        public long read() {  *          return android.os.SystemClock.elapsedRealtime();  *        }  *      });  * }</pre>  *  * @author Kevin Bourrillion  * @since 10.0  */
+comment|/**  * An object that measures elapsed time in nanoseconds. It is useful to measure elapsed time using  * this class instead of direct calls to {@link System#nanoTime} for a few reasons:  *  *<ul>  *<li>An alternate time source can be substituted, for testing or performance reasons.  *<li>As documented by {@code nanoTime}, the value returned has no absolute meaning, and can only  *       be interpreted as relative to another timestamp returned by {@code nanoTime} at a different  *       time. {@code Stopwatch} is a more effective abstraction because it exposes only these  *       relative values, not the absolute ones.  *</ul>  *  *<p>Basic usage:  *  *<pre>{@code  * Stopwatch stopwatch = Stopwatch.createStarted();  * doSomething();  * stopwatch.stop(); // optional  *  * Duration duration = stopwatch.elapsed();  *  * log.info("time: " + stopwatch); // formatted string like "12.3 ms"  * }</pre>  *  *<p>Stopwatch methods are not idempotent; it is an error to start or stop a stopwatch that is  * already in the desired state.  *  *<p>When testing code that uses this class, use {@link #createUnstarted(Ticker)} or {@link  * #createStarted(Ticker)} to supply a fake or mock ticker. This allows you to simulate any valid  * behavior of the stopwatch.  *  *<p><b>Note:</b> This class is not thread-safe.  *  *<p><b>Warning for Android users:</b> a stopwatch with default behavior may not continue to keep  * time while the device is asleep. Instead, create one like this:  *  *<pre>{@code  * Stopwatch.createStarted(  *      new Ticker() {  *        public long read() {  *          return android.os.SystemClock.elapsedRealtime();  *        }  *      });  * }</pre>  *  * @author Kevin Bourrillion  * @since 10.0  */
 end_comment
 
 begin_class
 annotation|@
 name|GwtCompatible
+argument_list|(
+name|emulated
+operator|=
+literal|true
+argument_list|)
 DECL|class|Stopwatch
 specifier|public
 specifier|final
@@ -448,7 +491,7 @@ else|:
 name|elapsedNanos
 return|;
 block|}
-comment|/**    * Returns the current elapsed time shown on this stopwatch, expressed in the desired time unit,    * with any fraction rounded down.    *    *<p>Note that the overhead of measurement can be more than a microsecond, so it is generally not    * useful to specify {@link TimeUnit#NANOSECONDS} precision here.    *    * @since 14.0 (since 10.0 as {@code elapsedTime()})    */
+comment|/**    * Returns the current elapsed time shown on this stopwatch, expressed in the desired time unit,    * with any fraction rounded down.    *    *<p><b>Note:</b> the overhead of measurement can be more than a microsecond, so it is generally    * not useful to specify {@link TimeUnit#NANOSECONDS} precision here.    *    *<p>It is generally not a good idea to use an ambiguous, unitless {@code long} to represent    * elapsed time. Therefore, we recommend using {@link #elapsed()} instead, which returns a    * strongly-typed {@link Duration} instance.    *    * @since 14.0 (since 10.0 as {@code elapsedTime()})    */
 DECL|method|elapsed (TimeUnit desiredUnit)
 specifier|public
 name|long
@@ -467,6 +510,27 @@ name|elapsedNanos
 argument_list|()
 argument_list|,
 name|NANOSECONDS
+argument_list|)
+return|;
+block|}
+comment|/**    * Returns the current elapsed time shown on this stopwatch as a {@link Duration}. Unlike {@link    * #elapsed(TimeUnit)}, this method does not lose any precision due to rounding.    *    * @since 22.0    */
+annotation|@
+name|GwtIncompatible
+annotation|@
+name|J2ObjCIncompatible
+DECL|method|elapsed ()
+specifier|public
+name|Duration
+name|elapsed
+parameter_list|()
+block|{
+return|return
+name|Duration
+operator|.
+name|ofNanos
+argument_list|(
+name|elapsedNanos
+argument_list|()
 argument_list|)
 return|;
 block|}
