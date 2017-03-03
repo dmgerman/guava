@@ -821,7 +821,7 @@ DECL|field|NUMBERS
 specifier|private
 specifier|static
 specifier|final
-name|List
+name|ImmutableList
 argument_list|<
 name|Integer
 argument_list|>
