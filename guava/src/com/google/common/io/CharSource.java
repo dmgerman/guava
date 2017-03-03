@@ -383,7 +383,7 @@ name|reader
 argument_list|)
 return|;
 block|}
-comment|/**    * Opens a new {@link Stream} for reading text one line at a time from this source. This method    * returns a new, independent stream each time it is called.    *    *<p>The returned stream is lazy and only reads from the source in the terminal operation. If an    * I/O error occurs while the stream is reading from the source or when the stream is closed, an    * {@link UncheckedIOException} is thrown.    *    *<p>Like {@link BufferedReader#readLine}, this method considers a line to be a sequence of text    * that is terminated by (but does not include) one of {@code \r\n}, {@code \r} or {@code \n}. If    * the source's content does not end in a line termination sequence, it is treated as if it does.    *    *<p>The caller is responsible for ensuring that the returned stream is closed. For example:    *    *<pre>{@code    * try (Stream<String> lines = source.lines()) {    *   lines.map(...)    *      .filter(...)    *      .forEach(...);    * }    * }</pre>    *    * @throws IOException if an I/O error occurs while opening the stream    * @since 22.0    */
+comment|/**    * Opens a new {@link Stream} for reading text one line at a time from this source. This method    * returns a new, independent stream each time it is called.    *    *<p>The returned stream is lazy and only reads from the source in the terminal operation. If an    * I/O error occurs while the stream is reading from the source or when the stream is closed, an    * {@link UncheckedIOException} is thrown.    *    *<p>Like {@link BufferedReader#readLine()}, this method considers a line to be a sequence of    * text that is terminated by (but does not include) one of {@code \r\n}, {@code \r} or    * {@code \n}. If the source's content does not end in a line termination sequence, it is treated    * as if it does.    *    *<p>The caller is responsible for ensuring that the returned stream is closed. For example:    *    *<pre>{@code    * try (Stream<String> lines = source.lines()) {    *   lines.map(...)    *      .filter(...)    *      .forEach(...);    * }    * }</pre>    *    * @throws IOException if an I/O error occurs while opening the stream    * @since 22.0    */
 annotation|@
 name|Beta
 annotation|@
@@ -820,7 +820,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Reads the first line of this source as a string. Returns {@code null} if this source is empty.    *    *<p>Like {@link BufferedReader#readLine}, this method considers a line to be a sequence of text    * that is terminated by (but does not include) one of {@code \r\n}, {@code \r} or {@code \n}. If    * the source's content does not end in a line termination sequence, it is treated as if it does.    *    * @throws IOException if an I/O error occurs while reading from this source    */
+comment|/**    * Reads the first line of this source as a string. Returns {@code null} if this source is empty.    *    *<p>Like {@link BufferedReader#readLine()}, this method considers a line to be a sequence of    * text that is terminated by (but does not include) one of {@code \r\n}, {@code \r} or    * {@code \n}. If the source's content does not end in a line termination sequence, it is treated    * as if it does.    *    * @throws IOException if an I/O error occurs while reading from this source    */
 annotation|@
 name|Nullable
 DECL|method|readFirstLine ()
@@ -883,7 +883,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Reads all the lines of this source as a list of strings. The returned list will be empty if    * this source is empty.    *    *<p>Like {@link BufferedReader#readLine}, this method considers a line to be a sequence of text    * that is terminated by (but does not include) one of {@code \r\n}, {@code \r} or {@code \n}. If    * the source's content does not end in a line termination sequence, it is treated as if it does.    *    * @throws IOException if an I/O error occurs while reading from this source    */
+comment|/**    * Reads all the lines of this source as a list of strings. The returned list will be empty if    * this source is empty.    *    *<p>Like {@link BufferedReader#readLine()}, this method considers a line to be a sequence of    * text that is terminated by (but does not include) one of {@code \r\n}, {@code \r} or    * {@code \n}. If the source's content does not end in a line termination sequence, it is treated    * as if it does.    *    * @throws IOException if an I/O error occurs while reading from this source    */
 DECL|method|readLines ()
 specifier|public
 name|ImmutableList
@@ -985,7 +985,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Reads lines of text from this source, processing each line as it is read using the given    * {@link LineProcessor processor}. Stops when all lines have been processed or the processor    * returns {@code false} and returns the result produced by the processor.    *    *<p>Like {@link BufferedReader#readLine}, this method considers a line to be a sequence of text    * that is terminated by (but does not include) one of {@code \r\n}, {@code \r} or {@code \n}. If    * the source's content does not end in a line termination sequence, it is treated as if it does.    *    * @throws IOException if an I/O error occurs while reading from this source or if    *     {@code processor} throws an {@code IOException}    * @since 16.0    */
+comment|/**    * Reads lines of text from this source, processing each line as it is read using the given    * {@link LineProcessor processor}. Stops when all lines have been processed or the processor    * returns {@code false} and returns the result produced by the processor.    *    *<p>Like {@link BufferedReader#readLine()}, this method considers a line to be a sequence of    * text that is terminated by (but does not include) one of {@code \r\n}, {@code \r} or    * {@code \n}. If the source's content does not end in a line termination sequence, it is treated    * as if it does.    *    * @throws IOException if an I/O error occurs while reading from this source or if    *     {@code processor} throws an {@code IOException}    * @since 16.0    */
 annotation|@
 name|Beta
 annotation|@
