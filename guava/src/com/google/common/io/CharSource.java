@@ -150,11 +150,39 @@ name|com
 operator|.
 name|google
 operator|.
+name|common
+operator|.
+name|collect
+operator|.
+name|Streams
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
 name|errorprone
 operator|.
 name|annotations
 operator|.
 name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|MustBeClosed
 import|;
 end_import
 
@@ -204,6 +232,16 @@ name|java
 operator|.
 name|io
 operator|.
+name|UncheckedIOException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
 name|Writer
 import|;
 end_import
@@ -237,6 +275,18 @@ operator|.
 name|util
 operator|.
 name|List
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|stream
+operator|.
+name|Stream
 import|;
 end_import
 
@@ -289,7 +339,7 @@ name|charset
 argument_list|)
 return|;
 block|}
-comment|/**    * Opens a new {@link Reader} for reading from this source. This method should return a new,    * independent reader each time it is called.    *    *<p>The caller is responsible for ensuring that the returned reader is closed.    *    * @throws IOException if an I/O error occurs in the process of opening the reader    */
+comment|/**    * Opens a new {@link Reader} for reading from this source. This method returns a new, independent    * reader each time it is called.    *    *<p>The caller is responsible for ensuring that the returned reader is closed.    *    * @throws IOException if an I/O error occurs while opening the reader    */
 DECL|method|openStream ()
 specifier|public
 specifier|abstract
@@ -299,7 +349,7 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Opens a new {@link BufferedReader} for reading from this source. This method should return a    * new, independent reader each time it is called.    *    *<p>The caller is responsible for ensuring that the returned reader is closed.    *    * @throws IOException if an I/O error occurs in the process of opening the reader    */
+comment|/**    * Opens a new {@link BufferedReader} for reading from this source. This method returns a new,    * independent reader each time it is called.    *    *<p>The caller is responsible for ensuring that the returned reader is closed.    *    * @throws IOException if an I/O error occurs while of opening the reader    */
 DECL|method|openBufferedStream ()
 specifier|public
 name|BufferedReader
@@ -333,6 +383,65 @@ name|reader
 argument_list|)
 return|;
 block|}
+comment|/**    * Opens a new {@link Stream} for reading text one line at a time from this source. This method    * returns a new, independent stream each time it is called.    *    *<p>The returned stream is lazy and only reads from the source in the terminal operation. If an    * I/O error occurs while the stream is reading from the source or when the stream is closed, an    * {@link UncheckedIOException} is thrown.    *    *<p>Like {@link BufferedReader#readLine}, this method considers a line to be a sequence of text    * that is terminated by (but does not include) one of {@code \r\n}, {@code \r} or {@code \n}. If    * the source's content does not end in a line termination sequence, it is treated as if it does.    *    *<p>The caller is responsible for ensuring that the returned stream is closed. For example:    *    *<pre>{@code    * try (Stream<String> lines = source.lines()) {    *   lines.map(...)    *      .filter(...)    *      .forEach(...);    * }    * }</pre>    *    * @throws IOException if an I/O error occurs while opening the stream    * @since 22.0    */
+annotation|@
+name|Beta
+annotation|@
+name|MustBeClosed
+DECL|method|lines ()
+specifier|public
+name|Stream
+argument_list|<
+name|String
+argument_list|>
+name|lines
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+name|BufferedReader
+name|reader
+init|=
+name|openBufferedStream
+argument_list|()
+decl_stmt|;
+return|return
+name|reader
+operator|.
+name|lines
+argument_list|()
+operator|.
+name|onClose
+argument_list|(
+parameter_list|()
+lambda|->
+block|{
+try|try
+block|{
+name|reader
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|IOException
+name|e
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|UncheckedIOException
+argument_list|(
+name|e
+argument_list|)
+throw|;
+block|}
+block|}
+argument_list|)
+return|;
+block|}
 comment|/**    * Returns the size of this source in chars, if the size can be easily determined without actually    * opening the data stream.    *    *<p>The default implementation returns {@link Optional#absent}. Some sources, such as a    * {@code CharSequence}, may return a non-absent value. Note that in such cases, it is    *<i>possible</i> that this method will return a different number of chars than would be returned    * by reading all of the chars.    *    *<p>Additionally, for mutable sources such as {@code StringBuilder}s, a subsequent read may    * return a different number of chars if the contents are changed.    *    * @since 19.0    */
 annotation|@
 name|Beta
@@ -352,7 +461,7 @@ name|absent
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns the length of this source in chars, even if doing so requires opening and traversing an    * entire stream. To avoid a potentially expensive operation, see {@link #lengthIfKnown}.    *    *<p>The default implementation calls {@link #lengthIfKnown} and returns the value if present. If    * absent, it will fall back to a heavyweight operation that will open a stream,    * {@link Reader#skip(long) skip} to the end of the stream, and return the total number of chars    * that were skipped.    *    *<p>Note that for sources that implement {@link #lengthIfKnown} to provide a more efficient    * implementation, it is<i>possible</i> that this method will return a different number of chars    * than would be returned by reading all of the chars.    *    *<p>In either case, for mutable sources such as files, a subsequent read may return a different    * number of chars if the contents are changed.    *    * @throws IOException if an I/O error occurs in the process of reading the length of this source    * @since 19.0    */
+comment|/**    * Returns the length of this source in chars, even if doing so requires opening and traversing an    * entire stream. To avoid a potentially expensive operation, see {@link #lengthIfKnown}.    *    *<p>The default implementation calls {@link #lengthIfKnown} and returns the value if present. If    * absent, it will fall back to a heavyweight operation that will open a stream,    * {@link Reader#skip(long) skip} to the end of the stream, and return the total number of chars    * that were skipped.    *    *<p>Note that for sources that implement {@link #lengthIfKnown} to provide a more efficient    * implementation, it is<i>possible</i> that this method will return a different number of chars    * than would be returned by reading all of the chars.    *    *<p>In either case, for mutable sources such as files, a subsequent read may return a different    * number of chars if the contents are changed.    *    * @throws IOException if an I/O error occurs while reading the length of this source    * @since 19.0    */
 annotation|@
 name|Beta
 DECL|method|length ()
@@ -485,7 +594,7 @@ return|return
 name|count
 return|;
 block|}
-comment|/**    * Appends the contents of this source to the given {@link Appendable} (such as a {@link Writer}).    * Does not close {@code appendable} if it is {@code Closeable}.    *    * @return the number of characters copied    * @throws IOException if an I/O error occurs in the process of reading from this source or    *     writing to {@code appendable}    */
+comment|/**    * Appends the contents of this source to the given {@link Appendable} (such as a {@link Writer}).    * Does not close {@code appendable} if it is {@code Closeable}.    *    * @return the number of characters copied    * @throws IOException if an I/O error occurs while reading from this source or writing to    *     {@code appendable}    */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|copyTo (Appendable appendable)
@@ -560,7 +669,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Copies the contents of this source to the given sink.    *    * @return the number of characters copied    * @throws IOException if an I/O error occurs in the process of reading from this source or    *     writing to {@code sink}    */
+comment|/**    * Copies the contents of this source to the given sink.    *    * @return the number of characters copied    * @throws IOException if an I/O error occurs while reading from this source or writing to    *     {@code sink}    */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|copyTo (CharSink sink)
@@ -648,7 +757,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Reads the contents of this source as a string.    *    * @throws IOException if an I/O error occurs in the process of reading from this source    */
+comment|/**    * Reads the contents of this source as a string.    *    * @throws IOException if an I/O error occurs while reading from this source    */
 DECL|method|read ()
 specifier|public
 name|String
@@ -711,7 +820,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Reads the first line of this source as a string. Returns {@code null} if this source is empty.    *    *<p>Like {@link BufferedReader}, this method breaks lines on any of {@code \n}, {@code \r} or    * {@code \r\n}, does not include the line separator in the returned line and does not consider    * there to be an extra empty line at the end if the content is terminated with a line separator.    *    * @throws IOException if an I/O error occurs in the process of reading from this source    */
+comment|/**    * Reads the first line of this source as a string. Returns {@code null} if this source is empty.    *    *<p>Like {@link BufferedReader#readLine}, this method considers a line to be a sequence of text    * that is terminated by (but does not include) one of {@code \r\n}, {@code \r} or {@code \n}. If    * the source's content does not end in a line termination sequence, it is treated as if it does.    *    * @throws IOException if an I/O error occurs while reading from this source    */
 annotation|@
 name|Nullable
 DECL|method|readFirstLine ()
@@ -774,7 +883,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Reads all the lines of this source as a list of strings. The returned list will be empty if    * this source is empty.    *    *<p>Like {@link BufferedReader}, this method breaks lines on any of {@code \n}, {@code \r} or    * {@code \r\n}, does not include the line separator in the returned lines and does not consider    * there to be an extra empty line at the end if the content is terminated with a line separator.    *    * @throws IOException if an I/O error occurs in the process of reading from this source    */
+comment|/**    * Reads all the lines of this source as a list of strings. The returned list will be empty if    * this source is empty.    *    *<p>Like {@link BufferedReader#readLine}, this method considers a line to be a sequence of text    * that is terminated by (but does not include) one of {@code \r\n}, {@code \r} or {@code \n}. If    * the source's content does not end in a line termination sequence, it is treated as if it does.    *    * @throws IOException if an I/O error occurs while reading from this source    */
 DECL|method|readLines ()
 specifier|public
 name|ImmutableList
@@ -876,7 +985,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Reads lines of text from this source, processing each line as it is read using the given    * {@link LineProcessor processor}. Stops when all lines have been processed or the processor    * returns {@code false} and returns the result produced by the processor.    *    *<p>Like {@link BufferedReader}, this method breaks lines on any of {@code \n}, {@code \r} or    * {@code \r\n}, does not include the line separator in the lines passed to the {@code processor}    * and does not consider there to be an extra empty line at the end if the content is terminated    * with a line separator.    *    * @throws IOException if an I/O error occurs in the process of reading from this source or if    *     {@code processor} throws an {@code IOException}    * @since 16.0    */
+comment|/**    * Reads lines of text from this source, processing each line as it is read using the given    * {@link LineProcessor processor}. Stops when all lines have been processed or the processor    * returns {@code false} and returns the result produced by the processor.    *    *<p>Like {@link BufferedReader#readLine}, this method considers a line to be a sequence of text    * that is terminated by (but does not include) one of {@code \r\n}, {@code \r} or {@code \n}. If    * the source's content does not end in a line termination sequence, it is treated as if it does.    *    * @throws IOException if an I/O error occurs while reading from this source or if    *     {@code processor} throws an {@code IOException}    * @since 16.0    */
 annotation|@
 name|Beta
 annotation|@
@@ -1416,32 +1525,14 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**      * Returns an iterable over the lines in the string. If the string ends in a newline, a final      * empty string is not included to match the behavior of BufferedReader/LineReader.readLine().      */
-DECL|method|lines ()
+comment|/**      * Returns an iterator over the lines in the string. If the string ends in a newline, a final      * empty string is not included, to match the behavior of BufferedReader/LineReader.readLine().      */
+DECL|method|linesIterator ()
 specifier|private
-name|Iterable
-argument_list|<
-name|String
-argument_list|>
-name|lines
-parameter_list|()
-block|{
-return|return
-operator|new
-name|Iterable
-argument_list|<
-name|String
-argument_list|>
-argument_list|()
-block|{
-annotation|@
-name|Override
-specifier|public
 name|Iterator
 argument_list|<
 name|String
 argument_list|>
-name|iterator
+name|linesIterator
 parameter_list|()
 block|{
 return|return
@@ -1519,7 +1610,25 @@ block|}
 block|}
 return|;
 block|}
-block|}
+annotation|@
+name|Override
+DECL|method|lines ()
+specifier|public
+name|Stream
+argument_list|<
+name|String
+argument_list|>
+name|lines
+parameter_list|()
+block|{
+return|return
+name|Streams
+operator|.
+name|stream
+argument_list|(
+name|linesIterator
+argument_list|()
+argument_list|)
 return|;
 block|}
 annotation|@
@@ -1536,10 +1645,7 @@ name|String
 argument_list|>
 name|lines
 init|=
-name|lines
-argument_list|()
-operator|.
-name|iterator
+name|linesIterator
 argument_list|()
 decl_stmt|;
 return|return
@@ -1572,7 +1678,7 @@ name|ImmutableList
 operator|.
 name|copyOf
 argument_list|(
-name|lines
+name|linesIterator
 argument_list|()
 argument_list|)
 return|;
@@ -1596,14 +1702,22 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-for|for
-control|(
+name|Iterator
+argument_list|<
 name|String
-name|line
-range|:
+argument_list|>
 name|lines
+init|=
+name|linesIterator
 argument_list|()
-control|)
+decl_stmt|;
+while|while
+condition|(
+name|lines
+operator|.
+name|hasNext
+argument_list|()
+condition|)
 block|{
 if|if
 condition|(
@@ -1612,7 +1726,10 @@ name|processor
 operator|.
 name|processLine
 argument_list|(
-name|line
+name|lines
+operator|.
+name|next
+argument_list|()
 argument_list|)
 condition|)
 block|{

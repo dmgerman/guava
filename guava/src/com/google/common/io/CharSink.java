@@ -131,7 +131,7 @@ specifier|protected
 name|CharSink
 parameter_list|()
 block|{}
-comment|/**    * Opens a new {@link Writer} for writing to this sink. This method should return a new,    * independent writer each time it is called.    *    *<p>The caller is responsible for ensuring that the returned writer is closed.    *    * @throws IOException if an I/O error occurs in the process of opening the writer    */
+comment|/**    * Opens a new {@link Writer} for writing to this sink. This method returns a new, independent    * writer each time it is called.    *    *<p>The caller is responsible for ensuring that the returned writer is closed.    *    * @throws IOException if an I/O error occurs while opening the writer    */
 DECL|method|openStream ()
 specifier|public
 specifier|abstract
@@ -141,7 +141,7 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Opens a new buffered {@link Writer} for writing to this sink. The returned stream is not    * required to be a {@link BufferedWriter} in order to allow implementations to simply delegate to    * {@link #openStream()} when the stream returned by that method does not benefit from additional    * buffering. This method should return a new, independent writer each time it is called.    *    *<p>The caller is responsible for ensuring that the returned writer is closed.    *    * @throws IOException if an I/O error occurs in the process of opening the writer    * @since 15.0 (in 14.0 with return type {@link BufferedWriter})    */
+comment|/**    * Opens a new buffered {@link Writer} for writing to this sink. The returned stream is not    * required to be a {@link BufferedWriter} in order to allow implementations to simply delegate to    * {@link #openStream()} when the stream returned by that method does not benefit from additional    * buffering. This method returns a new, independent writer each time it is called.    *    *<p>The caller is responsible for ensuring that the returned writer is closed.    *    * @throws IOException if an I/O error occurs while opening the writer    * @since 15.0 (in 14.0 with return type {@link BufferedWriter})    */
 DECL|method|openBufferedStream ()
 specifier|public
 name|Writer
@@ -175,7 +175,7 @@ name|writer
 argument_list|)
 return|;
 block|}
-comment|/**    * Writes the given character sequence to this sink.    *    * @throws IOException if an I/O error in the process of writing to this sink    */
+comment|/**    * Writes the given character sequence to this sink.    *    * @throws IOException if an I/O error while writing to this sink    */
 DECL|method|write (CharSequence charSequence)
 specifier|public
 name|void
@@ -251,7 +251,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Writes the given lines of text to this sink with each line (including the last) terminated with    * the operating system's default line separator. This method is equivalent to    * {@code writeLines(lines, System.getProperty("line.separator"))}.    *    * @throws IOException if an I/O error occurs in the process of writing to this sink    */
+comment|/**    * Writes the given lines of text to this sink with each line (including the last) terminated with    * the operating system's default line separator. This method is equivalent to    * {@code writeLines(lines, System.getProperty("line.separator"))}.    *    * @throws IOException if an I/O error occurs while writing to this sink    */
 DECL|method|writeLines (Iterable<? extends CharSequence> lines)
 specifier|public
 name|void
@@ -281,7 +281,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Writes the given lines of text to this sink with each line (including the last) terminated with    * the given line separator.    *    * @throws IOException if an I/O error occurs in the process of writing to this sink    */
+comment|/**    * Writes the given lines of text to this sink with each line (including the last) terminated with    * the given line separator.    *    * @throws IOException if an I/O error occurs while writing to this sink    */
 DECL|method|writeLines (Iterable<? extends CharSequence> lines, String lineSeparator)
 specifier|public
 name|void
@@ -384,7 +384,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Writes all the text from the given {@link Readable} (such as a {@link Reader}) to this sink.    * Does not close {@code readable} if it is {@code Closeable}.    *    * @return the number of characters written    * @throws IOException if an I/O error occurs in the process of reading from {@code readable} or    *     writing to this sink    */
+comment|/**    * Writes all the text from the given {@link Readable} (such as a {@link Reader}) to this sink.    * Does not close {@code readable} if it is {@code Closeable}.    *    * @return the number of characters written    * @throws IOException if an I/O error occurs while reading from {@code readable} or writing to    *     this sink    */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|writeFrom (Readable readable)

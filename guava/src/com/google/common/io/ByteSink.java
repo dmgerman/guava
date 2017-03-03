@@ -169,7 +169,7 @@ name|charset
 argument_list|)
 return|;
 block|}
-comment|/**    * Opens a new {@link OutputStream} for writing to this sink. This method should return a new,    * independent stream each time it is called.    *    *<p>The caller is responsible for ensuring that the returned stream is closed.    *    * @throws IOException if an I/O error occurs in the process of opening the stream    */
+comment|/**    * Opens a new {@link OutputStream} for writing to this sink. This method returns a new,    * independent stream each time it is called.    *    *<p>The caller is responsible for ensuring that the returned stream is closed.    *    * @throws IOException if an I/O error occurs while opening the stream    */
 DECL|method|openStream ()
 specifier|public
 specifier|abstract
@@ -179,7 +179,7 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Opens a new buffered {@link OutputStream} for writing to this sink. The returned stream is not    * required to be a {@link BufferedOutputStream} in order to allow implementations to simply    * delegate to {@link #openStream()} when the stream returned by that method does not benefit from    * additional buffering (for example, a {@code ByteArrayOutputStream}). This method should return    * a new, independent stream each time it is called.    *    *<p>The caller is responsible for ensuring that the returned stream is closed.    *    * @throws IOException if an I/O error occurs in the process of opening the stream    * @since 15.0 (in 14.0 with return type {@link BufferedOutputStream})    */
+comment|/**    * Opens a new buffered {@link OutputStream} for writing to this sink. The returned stream is not    * required to be a {@link BufferedOutputStream} in order to allow implementations to simply    * delegate to {@link #openStream()} when the stream returned by that method does not benefit from    * additional buffering (for example, a {@code ByteArrayOutputStream}). This method returns a new,    * independent stream each time it is called.    *    *<p>The caller is responsible for ensuring that the returned stream is closed.    *    * @throws IOException if an I/O error occurs while opening the stream    * @since 15.0 (in 14.0 with return type {@link BufferedOutputStream})    */
 DECL|method|openBufferedStream ()
 specifier|public
 name|OutputStream
@@ -213,7 +213,7 @@ name|out
 argument_list|)
 return|;
 block|}
-comment|/**    * Writes all the given bytes to this sink.    *    * @throws IOException if an I/O occurs in the process of writing to this sink    */
+comment|/**    * Writes all the given bytes to this sink.    *    * @throws IOException if an I/O occurs while writing to this sink    */
 DECL|method|write (byte[] bytes)
 specifier|public
 name|void
@@ -290,7 +290,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Writes all the bytes from the given {@code InputStream} to this sink. Does not close    * {@code input}.    *    * @return the number of bytes written    * @throws IOException if an I/O occurs in the process of reading from {@code input} or writing to    *     this sink    */
+comment|/**    * Writes all the bytes from the given {@code InputStream} to this sink. Does not close    * {@code input}.    *    * @return the number of bytes written    * @throws IOException if an I/O occurs while reading from {@code input} or writing to this sink    */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|writeFrom (InputStream input)

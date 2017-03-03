@@ -359,7 +359,7 @@ name|charset
 argument_list|)
 return|;
 block|}
-comment|/**    * Opens a new {@link InputStream} for reading from this source. This method should return a new,    * independent stream each time it is called.    *    *<p>The caller is responsible for ensuring that the returned stream is closed.    *    * @throws IOException if an I/O error occurs in the process of opening the stream    */
+comment|/**    * Opens a new {@link InputStream} for reading from this source. This method returns a new,    * independent stream each time it is called.    *    *<p>The caller is responsible for ensuring that the returned stream is closed.    *    * @throws IOException if an I/O error occurs while opening the stream    */
 DECL|method|openStream ()
 specifier|public
 specifier|abstract
@@ -369,7 +369,7 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Opens a new buffered {@link InputStream} for reading from this source. The returned stream is    * not required to be a {@link BufferedInputStream} in order to allow implementations to simply    * delegate to {@link #openStream()} when the stream returned by that method does not benefit from    * additional buffering (for example, a {@code ByteArrayInputStream}). This method should return a    * new, independent stream each time it is called.    *    *<p>The caller is responsible for ensuring that the returned stream is closed.    *    * @throws IOException if an I/O error occurs in the process of opening the stream    * @since 15.0 (in 14.0 with return type {@link BufferedInputStream})    */
+comment|/**    * Opens a new buffered {@link InputStream} for reading from this source. The returned stream is    * not required to be a {@link BufferedInputStream} in order to allow implementations to simply    * delegate to {@link #openStream()} when the stream returned by that method does not benefit from    * additional buffering (for example, a {@code ByteArrayInputStream}). This method returns a    * new, independent stream each time it is called.    *    *<p>The caller is responsible for ensuring that the returned stream is closed.    *    * @throws IOException if an I/O error occurs while opening the stream    * @since 15.0 (in 14.0 with return type {@link BufferedInputStream})    */
 DECL|method|openBufferedStream ()
 specifier|public
 name|InputStream
@@ -537,7 +537,7 @@ name|absent
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns the size of this source in bytes, even if doing so requires opening and traversing an    * entire stream. To avoid a potentially expensive operation, see {@link #sizeIfKnown}.    *    *<p>The default implementation calls {@link #sizeIfKnown} and returns the value if present. If    * absent, it will fall back to a heavyweight operation that will open a stream, read (or    * {@link InputStream#skip(long) skip}, if possible) to the end of the stream and return the total    * number of bytes that were read.    *    *<p>Note that for some sources that implement {@link #sizeIfKnown} to provide a more efficient    * implementation, it is<i>possible</i> that this method will return a different number of bytes    * than would be returned by reading all of the bytes (for example, some special files may return    * a size of 0 despite actually having content when read).    *    *<p>In either case, for mutable sources such as files, a subsequent read may return a different    * number of bytes if the contents are changed.    *    * @throws IOException if an I/O error occurs in the process of reading the size of this source    */
+comment|/**    * Returns the size of this source in bytes, even if doing so requires opening and traversing an    * entire stream. To avoid a potentially expensive operation, see {@link #sizeIfKnown}.    *    *<p>The default implementation calls {@link #sizeIfKnown} and returns the value if present. If    * absent, it will fall back to a heavyweight operation that will open a stream, read (or    * {@link InputStream#skip(long) skip}, if possible) to the end of the stream and return the total    * number of bytes that were read.    *    *<p>Note that for some sources that implement {@link #sizeIfKnown} to provide a more efficient    * implementation, it is<i>possible</i> that this method will return a different number of bytes    * than would be returned by reading all of the bytes (for example, some special files may return    * a size of 0 despite actually having content when read).    *    *<p>In either case, for mutable sources such as files, a subsequent read may return a different    * number of bytes if the contents are changed.    *    * @throws IOException if an I/O error occurs while reading the size of this source    */
 DECL|method|size ()
 specifier|public
 name|long
@@ -714,7 +714,7 @@ return|return
 name|count
 return|;
 block|}
-comment|/**    * Copies the contents of this byte source to the given {@code OutputStream}. Does not close    * {@code output}.    *    * @return the number of bytes copied    * @throws IOException if an I/O error occurs in the process of reading from this source or    *     writing to {@code output}    */
+comment|/**    * Copies the contents of this byte source to the given {@code OutputStream}. Does not close    * {@code output}.    *    * @return the number of bytes copied    * @throws IOException if an I/O error occurs while reading from this source or writing to    *     {@code output}    */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|copyTo (OutputStream output)
@@ -789,7 +789,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Copies the contents of this byte source to the given {@code ByteSink}.    *    * @return the number of bytes copied    * @throws IOException if an I/O error occurs in the process of reading from this source or    *     writing to {@code sink}    */
+comment|/**    * Copies the contents of this byte source to the given {@code ByteSink}.    *    * @return the number of bytes copied    * @throws IOException if an I/O error occurs while reading from this source or writing to    *     {@code sink}    */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|copyTo (ByteSink sink)
@@ -877,7 +877,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Reads the full contents of this byte source as a byte array.    *    * @throws IOException if an I/O error occurs in the process of reading from this source    */
+comment|/**    * Reads the full contents of this byte source as a byte array.    *    * @throws IOException if an I/O error occurs while reading from this source    */
 DECL|method|read ()
 specifier|public
 name|byte
@@ -941,7 +941,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Reads the contents of this byte source using the given {@code processor} to process bytes as    * they are read. Stops when all bytes have been read or the consumer returns {@code false}.    * Returns the result produced by the processor.    *    * @throws IOException if an I/O error occurs in the process of reading from this source or if    *     {@code processor} throws an {@code IOException}    * @since 16.0    */
+comment|/**    * Reads the contents of this byte source using the given {@code processor} to process bytes as    * they are read. Stops when all bytes have been read or the consumer returns {@code false}.    * Returns the result produced by the processor.    *    * @throws IOException if an I/O error occurs while reading from this source or if    *     {@code processor} throws an {@code IOException}    * @since 16.0    */
 annotation|@
 name|Beta
 annotation|@
@@ -1025,7 +1025,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Hashes the contents of this byte source using the given hash function.    *    * @throws IOException if an I/O error occurs in the process of reading from this source    */
+comment|/**    * Hashes the contents of this byte source using the given hash function.    *    * @throws IOException if an I/O error occurs while reading from this source    */
 DECL|method|hash (HashFunction hashFunction)
 specifier|public
 name|HashCode
@@ -1062,7 +1062,7 @@ name|hash
 argument_list|()
 return|;
 block|}
-comment|/**    * Checks that the contents of this byte source are equal to the contents of the given byte    * source.    *    * @throws IOException if an I/O error occurs in the process of reading from this source or    *     {@code other}    */
+comment|/**    * Checks that the contents of this byte source are equal to the contents of the given byte    * source.    *    * @throws IOException if an I/O error occurs while reading from this source or {@code other}    */
 DECL|method|contentEquals (ByteSource other)
 specifier|public
 name|boolean
@@ -1341,8 +1341,6 @@ return|;
 block|}
 comment|/**    * A char source that reads bytes from this source and decodes them as characters using a charset.    */
 DECL|class|AsCharSource
-specifier|private
-specifier|final
 class|class
 name|AsCharSource
 extends|extends
