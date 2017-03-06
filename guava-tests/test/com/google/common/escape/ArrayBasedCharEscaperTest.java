@@ -72,16 +72,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Map
-import|;
-end_import
-
-begin_import
-import|import
 name|junit
 operator|.
 name|framework
@@ -108,7 +98,7 @@ DECL|field|NO_REPLACEMENTS
 specifier|private
 specifier|static
 specifier|final
-name|Map
+name|ImmutableMap
 argument_list|<
 name|Character
 argument_list|,
@@ -125,7 +115,7 @@ DECL|field|SIMPLE_REPLACEMENTS
 specifier|private
 specifier|static
 specifier|final
-name|Map
+name|ImmutableMap
 argument_list|<
 name|Character
 argument_list|,
