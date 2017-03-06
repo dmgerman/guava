@@ -86,16 +86,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|List
-import|;
-end_import
-
-begin_import
-import|import
 name|junit
 operator|.
 name|framework
@@ -121,7 +111,7 @@ DECL|field|GOOD_IPS
 specifier|private
 specifier|static
 specifier|final
-name|List
+name|ImmutableList
 argument_list|<
 name|String
 argument_list|>
@@ -142,7 +132,7 @@ DECL|field|BAD_IPS
 specifier|private
 specifier|static
 specifier|final
-name|List
+name|ImmutableList
 argument_list|<
 name|String
 argument_list|>
@@ -165,7 +155,7 @@ DECL|field|GOOD_DOMAINS
 specifier|private
 specifier|static
 specifier|final
-name|List
+name|ImmutableList
 argument_list|<
 name|String
 argument_list|>
@@ -186,7 +176,7 @@ DECL|field|BAD_DOMAINS
 specifier|private
 specifier|static
 specifier|final
-name|List
+name|ImmutableList
 argument_list|<
 name|String
 argument_list|>
