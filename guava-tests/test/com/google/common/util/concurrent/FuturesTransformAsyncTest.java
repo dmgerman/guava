@@ -139,7 +139,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Unit tests for {@link Futures#transformAsync(ListenableFuture, AsyncFunction)}.  *  * @author Nishant Thakkar  */
+comment|/**  * Unit tests for {@link Futures#transformAsync(ListenableFuture, AsyncFunction, Executor)}.  *  * @author Nishant Thakkar  */
 end_comment
 
 begin_class

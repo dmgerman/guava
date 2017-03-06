@@ -55,7 +55,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Transforms a value, possibly asynchronously. For an example usage and more information, see  * {@link Futures#transformAsync(ListenableFuture, AsyncFunction)}.  *  * @author Chris Povirk  * @since 11.0  */
+comment|/**  * Transforms a value, possibly asynchronously. For an example usage and more information, see  * {@link Futures#transformAsync(ListenableFuture, AsyncFunction, Executor)}.  *  * @author Chris Povirk  * @since 11.0  */
 end_comment
 
 begin_interface
