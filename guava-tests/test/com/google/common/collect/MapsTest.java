@@ -7927,7 +7927,7 @@ DECL|field|INT_TO_STRING_MAP
 specifier|private
 specifier|static
 specifier|final
-name|BiMap
+name|ImmutableBiMap
 argument_list|<
 name|Integer
 argument_list|,
