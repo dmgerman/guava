@@ -1202,6 +1202,22 @@ return|;
 block|}
 annotation|@
 name|Override
+DECL|method|spliterator ()
+specifier|public
+name|Spliterator
+argument_list|<
+name|V
+argument_list|>
+name|spliterator
+parameter_list|()
+block|{
+return|return
+name|valuesSpliterator
+argument_list|()
+return|;
+block|}
+annotation|@
+name|Override
 DECL|method|contains (Object o)
 specifier|public
 name|boolean
