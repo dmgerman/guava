@@ -18581,9 +18581,6 @@ argument_list|,
 name|Exception
 argument_list|>
 block|{}
-annotation|@
-name|GwtIncompatible
-comment|// inCompletionOrder
 DECL|method|testCompletionOrder ()
 specifier|public
 name|void
@@ -18749,9 +18746,6 @@ operator|++
 expr_stmt|;
 block|}
 block|}
-annotation|@
-name|GwtIncompatible
-comment|// inCompletionOrder
 DECL|method|testCompletionOrderExceptionThrown ()
 specifier|public
 name|void
@@ -18963,9 +18957,6 @@ operator|++
 expr_stmt|;
 block|}
 block|}
-annotation|@
-name|GwtIncompatible
-comment|// inCompletionOrder
 DECL|method|testCompletionOrderFutureCancelled ()
 specifier|public
 name|void
@@ -19159,9 +19150,6 @@ operator|++
 expr_stmt|;
 block|}
 block|}
-annotation|@
-name|GwtIncompatible
-comment|// inCompletionOrder
 DECL|method|testCancellingADelegateDoesNotPropagate ()
 specifier|public
 name|void
@@ -19285,9 +19273,6 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// Mostly an example of how it would look like to use a list of mixed types
-annotation|@
-name|GwtIncompatible
-comment|// inCompletionOrder
 DECL|method|testCompletionOrderMixedBagOTypes ()
 specifier|public
 name|void
