@@ -1353,7 +1353,7 @@ decl_stmt|;
 DECL|field|EXCLUDED_CLASS_NAMES
 specifier|static
 specifier|final
-name|Set
+name|ImmutableSet
 argument_list|<
 name|String
 argument_list|>
