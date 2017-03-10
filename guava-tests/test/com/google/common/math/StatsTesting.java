@@ -1786,7 +1786,7 @@ block|}
 DECL|field|ALL_STATS
 specifier|static
 specifier|final
-name|List
+name|ImmutableList
 argument_list|<
 name|Stats
 argument_list|>
@@ -2077,7 +2077,7 @@ block|}
 DECL|field|ALL_PAIRED_STATS
 specifier|static
 specifier|final
-name|List
+name|ImmutableList
 argument_list|<
 name|PairedStats
 argument_list|>
