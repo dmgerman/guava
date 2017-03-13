@@ -1422,6 +1422,9 @@ name|elements
 parameter_list|)
 block|{
 name|Comparable
+argument_list|<
+name|?
+argument_list|>
 index|[]
 name|array
 init|=
@@ -1433,6 +1436,9 @@ name|elements
 argument_list|,
 operator|new
 name|Comparable
+argument_list|<
+name|?
+argument_list|>
 index|[
 literal|0
 index|]
@@ -1440,6 +1446,10 @@ argument_list|)
 decl_stmt|;
 name|checkElementsNotNull
 argument_list|(
+operator|(
+name|Object
+index|[]
+operator|)
 name|array
 argument_list|)
 expr_stmt|;
