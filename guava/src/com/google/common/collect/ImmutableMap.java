@@ -1903,11 +1903,7 @@ name|copy
 init|=
 operator|new
 name|EnumMap
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
+argument_list|<>
 argument_list|(
 name|original
 argument_list|)
@@ -2063,11 +2059,7 @@ block|{
 return|return
 operator|new
 name|ImmutableMapKeySet
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
+argument_list|<>
 argument_list|(
 name|this
 argument_list|)
@@ -2157,11 +2149,7 @@ block|{
 return|return
 operator|new
 name|ImmutableMapValues
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
+argument_list|<>
 argument_list|(
 name|this
 argument_list|)
@@ -2784,7 +2772,7 @@ else|:
 name|result
 return|;
 block|}
-comment|/*    * This could have a good default implementation of return new ImmutableKeySet<K, V>(this),    * but ProGuard can't figure out how to eliminate that default when RegularImmutableMap     * overrides it.    */
+comment|/*    * This could have a good default implementation of return new ImmutableKeySet<K, V>(this),    * but ProGuard can't figure out how to eliminate that default when RegularImmutableMap    * overrides it.    */
 DECL|method|createKeySet ()
 specifier|abstract
 name|ImmutableSet
@@ -2933,7 +2921,7 @@ else|:
 name|result
 return|;
 block|}
-comment|/*    * This could have a good default implementation of {@code return new     * ImmutableMapValues<K, V>(this)}, but ProGuard can't figure out how to eliminate that default    * when RegularImmutableMap overrides it.    */
+comment|/*    * This could have a good default implementation of {@code return new    * ImmutableMapValues<K, V>(this)}, but ProGuard can't figure out how to eliminate that default    * when RegularImmutableMap overrides it.    */
 DECL|method|createValues ()
 specifier|abstract
 name|ImmutableCollection
@@ -3004,11 +2992,7 @@ name|multimapView
 operator|=
 operator|new
 name|ImmutableSetMultimap
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
+argument_list|<>
 argument_list|(
 operator|new
 name|MapViewOfValuesAsSingletonSets
@@ -3543,11 +3527,7 @@ name|builder
 init|=
 operator|new
 name|Builder
-argument_list|<
-name|Object
-argument_list|,
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|(
 name|keys
 operator|.
