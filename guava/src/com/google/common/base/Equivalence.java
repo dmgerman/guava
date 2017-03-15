@@ -48,6 +48,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|ForOverride
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -192,6 +206,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Implemented by the user to determine whether {@code a} and {@code b} are considered    * equivalent, subject to the requirements specified in {@link #equivalent}.    *    *<p>This method should not be called except by {@link #equivalent}. When {@link #equivalent}    * calls this method, {@code a} and {@code b} are guaranteed to be distinct, non-null instances.    *    * @since 10.0 (previously, subclasses would override equivalent())    */
+annotation|@
+name|ForOverride
 DECL|method|doEquivalent (T a, T b)
 specifier|protected
 specifier|abstract
@@ -237,6 +253,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Implemented by the user to return a hash code for {@code t}, subject to the requirements    * specified in {@link #hash}.    *    *<p>This method should not be called except by {@link #hash}. When {@link #hash} calls this    * method, {@code t} is guaranteed to be non-null.    *    * @since 10.0 (previously, subclasses would override hash())    */
+annotation|@
+name|ForOverride
 DECL|method|doHash (T t)
 specifier|protected
 specifier|abstract
