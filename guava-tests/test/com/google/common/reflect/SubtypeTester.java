@@ -289,6 +289,15 @@ name|returnType
 argument_list|)
 argument_list|)
 operator|.
+name|named
+argument_list|(
+literal|"%s is subtype of %s"
+argument_list|,
+name|paramType
+argument_list|,
+name|returnType
+argument_list|)
+operator|.
 name|isTrue
 argument_list|()
 expr_stmt|;
@@ -305,6 +314,15 @@ name|isSupertypeOf
 argument_list|(
 name|paramType
 argument_list|)
+argument_list|)
+operator|.
+name|named
+argument_list|(
+literal|"%s is supertype of %s"
+argument_list|,
+name|returnType
+argument_list|,
+name|paramType
 argument_list|)
 operator|.
 name|isTrue
@@ -439,6 +457,15 @@ name|returnType
 argument_list|)
 argument_list|)
 operator|.
+name|named
+argument_list|(
+literal|"%s is subtype of %s"
+argument_list|,
+name|paramType
+argument_list|,
+name|returnType
+argument_list|)
+operator|.
 name|isFalse
 argument_list|()
 expr_stmt|;
@@ -455,6 +482,15 @@ name|isSupertypeOf
 argument_list|(
 name|paramType
 argument_list|)
+argument_list|)
+operator|.
+name|named
+argument_list|(
+literal|"%s is supertype of %s"
+argument_list|,
+name|returnType
+argument_list|,
+name|paramType
 argument_list|)
 operator|.
 name|isFalse
