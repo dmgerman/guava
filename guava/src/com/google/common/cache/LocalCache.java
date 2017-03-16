@@ -10098,6 +10098,9 @@ name|createNewEntry
 init|=
 literal|true
 decl_stmt|;
+name|V
+name|newValue
+decl_stmt|;
 name|lock
 argument_list|()
 expr_stmt|;
@@ -10343,27 +10346,8 @@ name|loadingValueReference
 argument_list|)
 expr_stmt|;
 block|}
-block|}
-finally|finally
-block|{
-name|unlock
-argument_list|()
-expr_stmt|;
-name|postWriteCleanup
-argument_list|()
-expr_stmt|;
-block|}
-comment|// Synchronizes on the entry to allow failing fast when a recursive load is
-comment|// detected. This may be circumvented when an entry is copied, but will fail fast most
-comment|// of the time.
-synchronized|synchronized
-init|(
-name|e
-init|)
-block|{
-name|V
 name|newValue
-init|=
+operator|=
 name|loadingValueReference
 operator|.
 name|compute
@@ -10372,7 +10356,7 @@ name|key
 argument_list|,
 name|function
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 if|if
 condition|(
 name|newValue
@@ -10436,11 +10420,6 @@ return|;
 block|}
 else|else
 block|{
-name|lock
-argument_list|()
-expr_stmt|;
-try|try
-block|{
 name|removeEntry
 argument_list|(
 name|e
@@ -10452,17 +10431,19 @@ operator|.
 name|EXPLICIT
 argument_list|)
 expr_stmt|;
+return|return
+literal|null
+return|;
+block|}
 block|}
 finally|finally
 block|{
 name|unlock
 argument_list|()
 expr_stmt|;
-block|}
-return|return
-literal|null
-return|;
-block|}
+name|postWriteCleanup
+argument_list|()
+expr_stmt|;
 block|}
 block|}
 comment|// at most one of loadSync/loadAsync may be called for any given LoadingValueReference
