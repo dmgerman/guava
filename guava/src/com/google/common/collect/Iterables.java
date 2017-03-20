@@ -375,9 +375,7 @@ block|}
 return|return
 operator|new
 name|UnmodifiableIterable
-argument_list|<
-name|T
-argument_list|>
+argument_list|<>
 argument_list|(
 name|iterable
 argument_list|)
@@ -1546,6 +1544,8 @@ block|}
 return|;
 block|}
 comment|/**    * Returns an iterable whose iterators cycle indefinitely over the provided elements.    *    *<p>After {@code remove} is invoked on a generated iterator, the removed element will no longer    * appear in either that iterator or any other iterator created from the same source iterable.    * That is, this method behaves exactly as {@code Iterables.cycle(Lists.newArrayList(elements))}.    * The iterator's {@code hasNext} method returns {@code true} until all of the original elements    * have been removed.    *    *<p><b>Warning:</b> Typical uses of the resulting iterator may produce an infinite loop. You    * should use an explicit {@code break} or be certain that you will eventually remove all the    * elements.    *    *<p>To cycle over the elements {@code n} times, use the following: {@code    * Iterables.concat(Collections.nCopies(n, Arrays.asList(elements)))}    *    *<p><b>Java 8 users:</b> If passing a single element {@code e}, the {@code Stream} equivalent of    * this method is {@code Stream.generate(() -> e)}. Otherwise, put the elements in a collection    * and use {@code Stream.generate(() -> collection).flatMap(Collection::stream)}.    */
+annotation|@
+name|SafeVarargs
 DECL|method|cycle (T... elements)
 specifier|public
 specifier|static
@@ -1729,6 +1729,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Combines multiple iterables into a single iterable. The returned iterable has an iterator that    * traverses the elements of each iterable in {@code inputs}. The input iterators are not polled    * until necessary.    *    *<p>The returned iterable's iterator supports {@code remove()} when the corresponding input    * iterator supports it.    *    *<p><b>Java 8 users:</b> The {@code Stream} equivalent of this method is {@code    * Streams.concat(...)}.    *    * @throws NullPointerException if any of the provided iterables is null    */
+annotation|@
+name|SafeVarargs
 DECL|method|concat (Iterable<? extends T>.... inputs)
 specifier|public
 specifier|static
@@ -3507,9 +3509,7 @@ block|{
 return|return
 operator|new
 name|ConsumingQueueIterator
-argument_list|<
-name|T
-argument_list|>
+argument_list|<>
 argument_list|(
 operator|(
 name|Queue
@@ -3737,9 +3737,7 @@ decl_stmt|;
 return|return
 operator|new
 name|UnmodifiableIterable
-argument_list|<
-name|T
-argument_list|>
+argument_list|<>
 argument_list|(
 name|iterable
 argument_list|)
