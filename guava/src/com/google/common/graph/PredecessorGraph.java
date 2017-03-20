@@ -55,7 +55,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An interface for<a  * href="https://en.wikipedia.org/wiki/Graph_(discrete_mathematics)">graph</a>-structured data.  *  *<p>A graph is composed of a set of nodes and a set of edges connecting pairs of nodes.  *  *<p>There are three main interfaces provided to represent graphs. In order of increasing  * complexity they are: {@link Graph}, {@link ValueGraph}, and {@link Network}. You should generally  * prefer the simplest interface that satisfies your use case. See the<a  * href="https://github.com/google/guava/wiki/GraphsExplained#choosing-the-right-graph-type">  * "Choosing the right graph type"</a> section of the Guava User Guide for more details.  *  *<h3>Usage</h3>  *  * Some graph algorithms only care about the nodes that are adjacent to a node but not about the  * type of edges (e.g. topological sort). These algorithms should prefer working with {@code  * PredecessorGraph} rather than a more specialized type.  *  *<p>When calling a method that requires a {@code PredecessorGraph}, you can use {@link Graph},  * {@link ValueGraph}, {@link Network} or implement this interface for an already existing data  * structure.  *  *<h3>Additional documentation</h3>  *  *<p>See the Guava User Guide for the {@code common.graph} package (<a  * href="https://github.com/google/guava/wiki/GraphsExplained">"Graphs Explained"</a>) for  * additional documentation, including<a  * href="https://github.com/google/guava/wiki/GraphsExplained#notes-for-implementors">notes for  * implementors</a>  *  * @author Joshua O'Madadhain  * @author Jens Nyman  * @param<N> Node parameter type  * @since 22.0  */
+comment|/**  * A functional interface for<a  * href="https://en.wikipedia.org/wiki/Graph_(discrete_mathematics)">graph</a>-structured data.  *  *<p>A graph is composed of a set of nodes and a set of edges connecting pairs of nodes.  *  *<p>There are three main interfaces provided to represent graphs. In order of increasing  * complexity they are: {@link Graph}, {@link ValueGraph}, and {@link Network}. You should generally  * prefer the simplest interface that satisfies your use case. See the<a  * href="https://github.com/google/guava/wiki/GraphsExplained#choosing-the-right-graph-type">  * "Choosing the right graph type"</a> section of the Guava User Guide for more details.  *  *<h3>Usage</h3>  *  * Some graph algorithms only care about the nodes that are adjacent to a node but not about the  * type of edges (e.g. topological sort). These algorithms should prefer working with {@code  * PredecessorGraph} rather than a more specialized type.  *  *<p>When calling a method that requires a {@code PredecessorGraph}, you can use {@link Graph},  * {@link ValueGraph}, {@link Network} or implement this interface for an already existing data  * structure.  *  *<h3>Additional documentation</h3>  *  *<p>See the Guava User Guide for the {@code common.graph} package (<a  * href="https://github.com/google/guava/wiki/GraphsExplained">"Graphs Explained"</a>) for  * additional documentation, including<a  * href="https://github.com/google/guava/wiki/GraphsExplained#notes-for-implementors">notes for  * implementors</a>  *  * @author Joshua O'Madadhain  * @author Jens Nyman  * @param<N> Node parameter type  * @since 22.0  */
 end_comment
 
 begin_comment
@@ -89,15 +89,6 @@ argument_list|)
 name|Object
 name|node
 parameter_list|)
-function_decl|;
-comment|/** Returns all nodes in this graph. */
-DECL|method|nodes ()
-name|Set
-argument_list|<
-name|N
-argument_list|>
-name|nodes
-parameter_list|()
 function_decl|;
 block|}
 end_interface

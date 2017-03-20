@@ -66,8 +66,6 @@ comment|//
 comment|// Graph-level accessors
 comment|//
 comment|/** Returns all nodes in this graph, in the order specified by {@link #nodeOrder()}. */
-annotation|@
-name|Override
 DECL|method|nodes ()
 name|Set
 argument_list|<
