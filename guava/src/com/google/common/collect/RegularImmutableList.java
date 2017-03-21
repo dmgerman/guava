@@ -17,6 +17,22 @@ package|;
 end_package
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Preconditions
+operator|.
+name|checkElementIndex
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -27,6 +43,20 @@ operator|.
 name|annotations
 operator|.
 name|GwtCompatible
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|VisibleForTesting
 import|;
 end_import
 
@@ -51,7 +81,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Implementation of {@link ImmutableList} used for 0 or 2+ elements (not 1).  *  * @author Kevin Bourrillion  */
+comment|/**  * Implementation of {@link ImmutableList} backed by a simple array.  *  * @author Kevin Bourrillion  */
 end_comment
 
 begin_class
@@ -104,22 +134,35 @@ name|Object
 index|[
 literal|0
 index|]
+argument_list|,
+literal|0
 argument_list|)
 decl_stmt|;
 DECL|field|array
-specifier|private
+annotation|@
+name|VisibleForTesting
 specifier|final
 specifier|transient
 name|Object
 index|[]
 name|array
 decl_stmt|;
-DECL|method|RegularImmutableList (Object[] array)
+DECL|field|size
+specifier|private
+specifier|final
+specifier|transient
+name|int
+name|size
+decl_stmt|;
+DECL|method|RegularImmutableList (Object[] array, int size)
 name|RegularImmutableList
 parameter_list|(
 name|Object
 index|[]
 name|array
+parameter_list|,
+name|int
+name|size
 parameter_list|)
 block|{
 name|this
@@ -127,6 +170,12 @@ operator|.
 name|array
 operator|=
 name|array
+expr_stmt|;
+name|this
+operator|.
+name|size
+operator|=
+name|size
 expr_stmt|;
 block|}
 annotation|@
@@ -138,9 +187,7 @@ name|size
 parameter_list|()
 block|{
 return|return
-name|array
-operator|.
-name|length
+name|size
 return|;
 block|}
 annotation|@
@@ -180,17 +227,13 @@ name|dst
 argument_list|,
 name|dstOff
 argument_list|,
-name|array
-operator|.
-name|length
+name|size
 argument_list|)
 expr_stmt|;
 return|return
 name|dstOff
 operator|+
-name|array
-operator|.
-name|length
+name|size
 return|;
 block|}
 comment|// The fake cast to E is safe because the creation methods only allow E's
@@ -210,6 +253,13 @@ name|int
 name|index
 parameter_list|)
 block|{
+name|checkElementIndex
+argument_list|(
+name|index
+argument_list|,
+name|size
+argument_list|)
+expr_stmt|;
 return|return
 operator|(
 name|E
@@ -256,9 +306,7 @@ name|array
 argument_list|,
 literal|0
 argument_list|,
-name|array
-operator|.
-name|length
+name|size
 argument_list|,
 name|index
 argument_list|)
@@ -281,6 +329,10 @@ operator|.
 name|spliterator
 argument_list|(
 name|array
+argument_list|,
+literal|0
+argument_list|,
+name|size
 argument_list|,
 name|SPLITERATOR_CHARACTERISTICS
 argument_list|)

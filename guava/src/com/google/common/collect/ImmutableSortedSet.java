@@ -1404,7 +1404,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**    * Constructs an {@code ImmutableSortedSet} from the first {@code n} elements of    * {@code contents}.  If {@code k} is the size of the returned {@code ImmutableSortedSet}, then    * the sorted unique elements are in the first {@code k} positions of {@code contents}, and    * {@code contents[i] == null} for {@code k<= i< n}.    *    *<p>If {@code k == contents.length}, then {@code contents} may no longer be safe for    * modification.    *    * @throws NullPointerException if any of the first {@code n} elements of {@code contents} is    *          null    */
+comment|/**    * Constructs an {@code ImmutableSortedSet} from the first {@code n} elements of {@code contents}.    * If {@code k} is the size of the returned {@code ImmutableSortedSet}, then the sorted unique    * elements are in the first {@code k} positions of {@code contents}, and {@code contents[i] ==    * null} for {@code k<= i< n}.    *    *<p>This method takes ownership of {@code contents}; do not modify {@code contents} after this    * returns.    *    * @throws NullPointerException if any of the first {@code n} elements of {@code contents} is null    */
 DECL|method|construct ( Comparator<? super E> comparator, int n, E... contents)
 specifier|static
 parameter_list|<
@@ -1541,6 +1541,31 @@ argument_list|,
 literal|null
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|uniques
+operator|<
+name|contents
+operator|.
+name|length
+operator|/
+literal|2
+condition|)
+block|{
+comment|// Deduplication eliminated many of the elements.  We don't want to retain an arbitrarily
+comment|// large array relative to the number of elements, so we cap the ratio.
+name|contents
+operator|=
+name|Arrays
+operator|.
+name|copyOf
+argument_list|(
+name|contents
+argument_list|,
+name|uniques
+argument_list|)
+expr_stmt|;
+block|}
 return|return
 operator|new
 name|RegularImmutableSortedSet
@@ -1922,6 +1947,12 @@ name|size
 argument_list|()
 expr_stmt|;
 comment|// we eliminated duplicates in-place in contentsArray
+name|this
+operator|.
+name|forceCopy
+operator|=
+literal|true
+expr_stmt|;
 return|return
 name|result
 return|;

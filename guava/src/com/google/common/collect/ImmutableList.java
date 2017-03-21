@@ -1600,7 +1600,7 @@ name|length
 argument_list|)
 return|;
 block|}
-comment|/**    * Views the array as an immutable list. Copies if the specified range does not cover the complete    * array. Does not check for nulls.    */
+comment|/** Views the array as an immutable list. Does not check for nulls. */
 DECL|method|asImmutableList (Object[] elements, int length)
 specifier|static
 parameter_list|<
@@ -1632,27 +1632,6 @@ name|of
 argument_list|()
 return|;
 block|}
-if|if
-condition|(
-name|length
-operator|<
-name|elements
-operator|.
-name|length
-condition|)
-block|{
-name|elements
-operator|=
-name|Arrays
-operator|.
-name|copyOf
-argument_list|(
-name|elements
-argument_list|,
-name|length
-argument_list|)
-expr_stmt|;
-block|}
 return|return
 operator|new
 name|RegularImmutableList
@@ -1661,6 +1640,8 @@ name|E
 argument_list|>
 argument_list|(
 name|elements
+argument_list|,
+name|length
 argument_list|)
 return|;
 block|}
@@ -3133,6 +3114,10 @@ argument_list|>
 name|build
 parameter_list|()
 block|{
+name|forceCopy
+operator|=
+literal|true
+expr_stmt|;
 return|return
 name|asImmutableList
 argument_list|(

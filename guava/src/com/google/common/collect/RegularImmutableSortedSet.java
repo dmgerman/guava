@@ -62,6 +62,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|VisibleForTesting
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -216,7 +230,8 @@ argument_list|()
 argument_list|)
 decl_stmt|;
 DECL|field|elements
-specifier|private
+annotation|@
+name|VisibleForTesting
 specifier|final
 specifier|transient
 name|ImmutableList

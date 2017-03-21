@@ -1476,6 +1476,54 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+comment|/**    * Views the array as an immutable list.  The array must have only {@code E} elements.    *    *<p>The array must be internally created.    */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
+comment|// caller is reponsible for getting this right
+DECL|method|asImmutableList (Object[] elements, int length)
+specifier|static
+parameter_list|<
+name|E
+parameter_list|>
+name|ImmutableList
+argument_list|<
+name|E
+argument_list|>
+name|asImmutableList
+parameter_list|(
+name|Object
+index|[]
+name|elements
+parameter_list|,
+name|int
+name|length
+parameter_list|)
+block|{
+return|return
+name|unsafeDelegateList
+argument_list|(
+operator|(
+name|List
+operator|)
+name|Arrays
+operator|.
+name|asList
+argument_list|(
+name|elements
+argument_list|)
+operator|.
+name|subList
+argument_list|(
+literal|0
+argument_list|,
+name|length
+argument_list|)
+argument_list|)
+return|;
+block|}
 DECL|method|sortedCopyOf ( Iterable<? extends E> elements)
 specifier|public
 specifier|static
