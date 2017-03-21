@@ -66,6 +66,8 @@ begin_interface
 annotation|@
 name|Beta
 annotation|@
+name|FunctionalInterface
+annotation|@
 name|GwtCompatible
 DECL|interface|AsyncCallable
 specifier|public
