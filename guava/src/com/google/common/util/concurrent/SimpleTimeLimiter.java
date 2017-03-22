@@ -662,6 +662,138 @@ argument_list|)
 throw|;
 block|}
 block|}
+annotation|@
+name|Override
+DECL|method|callWithTimeout (Callable<T> callable, long timeoutDuration, TimeUnit timeoutUnit)
+specifier|public
+parameter_list|<
+name|T
+parameter_list|>
+name|T
+name|callWithTimeout
+parameter_list|(
+name|Callable
+argument_list|<
+name|T
+argument_list|>
+name|callable
+parameter_list|,
+name|long
+name|timeoutDuration
+parameter_list|,
+name|TimeUnit
+name|timeoutUnit
+parameter_list|)
+throws|throws
+name|TimeoutException
+throws|,
+name|InterruptedException
+throws|,
+name|ExecutionException
+block|{
+comment|// TODO(b/36435223): Implement this method.
+throw|throw
+operator|new
+name|UnsupportedOperationException
+argument_list|(
+literal|"Not implemented yet."
+argument_list|)
+throw|;
+block|}
+annotation|@
+name|Override
+DECL|method|callUninterruptiblyWithTimeout ( Callable<T> callable, long timeoutDuration, TimeUnit timeoutUnit)
+specifier|public
+parameter_list|<
+name|T
+parameter_list|>
+name|T
+name|callUninterruptiblyWithTimeout
+parameter_list|(
+name|Callable
+argument_list|<
+name|T
+argument_list|>
+name|callable
+parameter_list|,
+name|long
+name|timeoutDuration
+parameter_list|,
+name|TimeUnit
+name|timeoutUnit
+parameter_list|)
+throws|throws
+name|TimeoutException
+throws|,
+name|ExecutionException
+block|{
+comment|// TODO(b/36435223): Implement this method.
+throw|throw
+operator|new
+name|UnsupportedOperationException
+argument_list|(
+literal|"Not implemented yet."
+argument_list|)
+throw|;
+block|}
+annotation|@
+name|Override
+DECL|method|runWithTimeout (Runnable runnable, long timeoutDuration, TimeUnit timeoutUnit)
+specifier|public
+name|void
+name|runWithTimeout
+parameter_list|(
+name|Runnable
+name|runnable
+parameter_list|,
+name|long
+name|timeoutDuration
+parameter_list|,
+name|TimeUnit
+name|timeoutUnit
+parameter_list|)
+throws|throws
+name|TimeoutException
+throws|,
+name|InterruptedException
+block|{
+comment|// TODO(b/36435223): Implement this method.
+throw|throw
+operator|new
+name|UnsupportedOperationException
+argument_list|(
+literal|"Not implemented yet."
+argument_list|)
+throw|;
+block|}
+annotation|@
+name|Override
+DECL|method|runUninterruptiblyWithTimeout ( Runnable runnable, long timeoutDuration, TimeUnit timeoutUnit)
+specifier|public
+name|void
+name|runUninterruptiblyWithTimeout
+parameter_list|(
+name|Runnable
+name|runnable
+parameter_list|,
+name|long
+name|timeoutDuration
+parameter_list|,
+name|TimeUnit
+name|timeoutUnit
+parameter_list|)
+throws|throws
+name|TimeoutException
+block|{
+comment|// TODO(b/36435223): Implement this method.
+throw|throw
+operator|new
+name|UnsupportedOperationException
+argument_list|(
+literal|"Not implemented yet."
+argument_list|)
+throw|;
+block|}
 DECL|method|throwCause (Exception e, boolean combineStackTraces)
 specifier|private
 specifier|static
