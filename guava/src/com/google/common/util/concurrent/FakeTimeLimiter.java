@@ -113,7 +113,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A TimeLimiter implementation which actually does not attempt to limit time at all. This may be  * desirable to use in some unit tests. More importantly, attempting to debug a call which is  * time-limited would be extremely annoying, so this gives you a time-limiter you can easily swap in  * for your real time-limiter while you're debugging.  *  * @author Kevin Bourrillion  * @since 1.0  */
+comment|/**  * A TimeLimiter implementation which actually does not attempt to limit time at all. This may be  * desirable to use in some unit tests. More importantly, attempting to debug a call which is  * time-limited would be extremely annoying, so this gives you a time-limiter you can easily swap in  * for your real time-limiter while you're debugging.  *  * @author Kevin Bourrillion  * @author Jens Nyman  * @since 1.0  */
 end_comment
 
 begin_class
@@ -243,14 +243,83 @@ parameter_list|)
 throws|throws
 name|ExecutionException
 block|{
-comment|// TODO(b/36435223): Implement this method.
+name|checkNotNull
+argument_list|(
+name|callable
+argument_list|)
+expr_stmt|;
+name|checkNotNull
+argument_list|(
+name|timeoutUnit
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+return|return
+name|callable
+operator|.
+name|call
+argument_list|()
+return|;
+block|}
+catch|catch
+parameter_list|(
+name|RuntimeException
+name|e
+parameter_list|)
+block|{
 throw|throw
 operator|new
-name|UnsupportedOperationException
+name|UncheckedExecutionException
 argument_list|(
-literal|"Not implemented yet."
+name|e
 argument_list|)
 throw|;
+block|}
+catch|catch
+parameter_list|(
+name|Exception
+name|e
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|ExecutionException
+argument_list|(
+name|e
+argument_list|)
+throw|;
+block|}
+catch|catch
+parameter_list|(
+name|Error
+name|e
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|ExecutionError
+argument_list|(
+name|e
+argument_list|)
+throw|;
+block|}
+catch|catch
+parameter_list|(
+name|Throwable
+name|e
+parameter_list|)
+block|{
+comment|// It's a non-Error, non-Exception Throwable. Such classes are usually intended to extend
+comment|// Exception, so we'll treat it like an Exception.
+throw|throw
+operator|new
+name|ExecutionException
+argument_list|(
+name|e
+argument_list|)
+throw|;
+block|}
 block|}
 annotation|@
 name|Override
@@ -277,14 +346,16 @@ parameter_list|)
 throws|throws
 name|ExecutionException
 block|{
-comment|// TODO(b/36435223): Implement this method.
-throw|throw
-operator|new
-name|UnsupportedOperationException
+return|return
+name|callWithTimeout
 argument_list|(
-literal|"Not implemented yet."
+name|callable
+argument_list|,
+name|timeoutDuration
+argument_list|,
+name|timeoutUnit
 argument_list|)
-throw|;
+return|;
 block|}
 annotation|@
 name|Override
@@ -303,14 +374,68 @@ name|TimeUnit
 name|timeoutUnit
 parameter_list|)
 block|{
-comment|// TODO(b/36435223): Implement this method.
+name|checkNotNull
+argument_list|(
+name|runnable
+argument_list|)
+expr_stmt|;
+name|checkNotNull
+argument_list|(
+name|timeoutUnit
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+name|runnable
+operator|.
+name|run
+argument_list|()
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|RuntimeException
+name|e
+parameter_list|)
+block|{
 throw|throw
 operator|new
-name|UnsupportedOperationException
+name|UncheckedExecutionException
 argument_list|(
-literal|"Not implemented yet."
+name|e
 argument_list|)
 throw|;
+block|}
+catch|catch
+parameter_list|(
+name|Error
+name|e
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|ExecutionError
+argument_list|(
+name|e
+argument_list|)
+throw|;
+block|}
+catch|catch
+parameter_list|(
+name|Throwable
+name|e
+parameter_list|)
+block|{
+comment|// It's a non-Error, non-Exception Throwable. Such classes are usually intended to extend
+comment|// Exception, so we'll treat it like a RuntimeException.
+throw|throw
+operator|new
+name|UncheckedExecutionException
+argument_list|(
+name|e
+argument_list|)
+throw|;
+block|}
 block|}
 annotation|@
 name|Override
@@ -329,14 +454,15 @@ name|TimeUnit
 name|timeoutUnit
 parameter_list|)
 block|{
-comment|// TODO(b/36435223): Implement this method.
-throw|throw
-operator|new
-name|UnsupportedOperationException
+name|runWithTimeout
 argument_list|(
-literal|"Not implemented yet."
+name|runnable
+argument_list|,
+name|timeoutDuration
+argument_list|,
+name|timeoutUnit
 argument_list|)
-throw|;
+expr_stmt|;
 block|}
 block|}
 end_class
