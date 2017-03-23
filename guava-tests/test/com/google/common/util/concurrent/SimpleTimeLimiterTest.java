@@ -407,8 +407,9 @@ argument_list|()
 expr_stmt|;
 name|service
 operator|=
-operator|new
 name|SimpleTimeLimiter
+operator|.
+name|create
 argument_list|(
 name|executor
 argument_list|)
