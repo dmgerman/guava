@@ -399,8 +399,7 @@ literal|0
 init|;
 name|i
 operator|<
-name|size
-argument_list|()
+name|length
 condition|;
 name|i
 operator|++
