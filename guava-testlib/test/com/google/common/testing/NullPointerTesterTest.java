@@ -386,6 +386,16 @@ name|javax
 operator|.
 name|annotation
 operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
 name|Nullable
 import|;
 end_import
@@ -503,6 +513,20 @@ block|}
 specifier|public
 specifier|static
 name|void
+DECL|method|staticOneArgCheckForNullCorrectlyDoesNotThrowNPE (@heckForNull String s)
+name|staticOneArgCheckForNullCorrectlyDoesNotThrowNPE
+parameter_list|(
+annotation|@
+name|CheckForNull
+name|String
+name|s
+parameter_list|)
+block|{
+comment|// null?  no problem
+block|}
+specifier|public
+specifier|static
+name|void
 DECL|method|staticOneArgNullableCorrectlyDoesNotThrowNPE (@ullable String s)
 name|staticOneArgNullableCorrectlyDoesNotThrowNPE
 parameter_list|(
@@ -513,6 +537,25 @@ name|s
 parameter_list|)
 block|{
 comment|// null?  no problem
+block|}
+specifier|public
+specifier|static
+name|void
+DECL|method|staticOneArgCheckForNullCorrectlyThrowsOtherThanNPE (@heckForNull String s)
+name|staticOneArgCheckForNullCorrectlyThrowsOtherThanNPE
+parameter_list|(
+annotation|@
+name|CheckForNull
+name|String
+name|s
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|FooException
+argument_list|()
+throw|;
+comment|// ok, as long as it's not NullPointerException
 block|}
 specifier|public
 specifier|static
@@ -532,6 +575,25 @@ name|FooException
 argument_list|()
 throw|;
 comment|// ok, as long as it's not NullPointerException
+block|}
+specifier|public
+specifier|static
+name|void
+DECL|method|staticOneArgCheckForNullThrowsNPE (@heckForNull String s)
+name|staticOneArgCheckForNullThrowsNPE
+parameter_list|(
+annotation|@
+name|CheckForNull
+name|String
+name|s
+parameter_list|)
+block|{
+name|checkNotNull
+argument_list|(
+name|s
+argument_list|)
+expr_stmt|;
+comment|// doesn't check if you said you'd accept null, but you don't
 block|}
 specifier|public
 specifier|static
@@ -595,6 +657,19 @@ parameter_list|)
 block|{
 comment|// should catch as failure
 block|}
+DECL|method|oneArgCheckForNullCorrectlyDoesNotThrowNPE (@heckForNull String s)
+specifier|public
+name|void
+name|oneArgCheckForNullCorrectlyDoesNotThrowNPE
+parameter_list|(
+annotation|@
+name|CheckForNull
+name|String
+name|s
+parameter_list|)
+block|{
+comment|// null?  no problem
+block|}
 DECL|method|oneArgNullableCorrectlyDoesNotThrowNPE (@ullable String s)
 specifier|public
 name|void
@@ -607,6 +682,24 @@ name|s
 parameter_list|)
 block|{
 comment|// null?  no problem
+block|}
+DECL|method|oneArgCheckForNullCorrectlyThrowsOtherThanNPE (@heckForNull String s)
+specifier|public
+name|void
+name|oneArgCheckForNullCorrectlyThrowsOtherThanNPE
+parameter_list|(
+annotation|@
+name|CheckForNull
+name|String
+name|s
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|FooException
+argument_list|()
+throw|;
+comment|// ok, as long as it's not NullPointerException
 block|}
 DECL|method|oneArgNullableCorrectlyThrowsOtherThanNPE (@ullable String s)
 specifier|public
@@ -625,6 +718,24 @@ name|FooException
 argument_list|()
 throw|;
 comment|// ok, as long as it's not NullPointerException
+block|}
+DECL|method|oneArgCheckForNullThrowsNPE (@heckForNull String s)
+specifier|public
+name|void
+name|oneArgCheckForNullThrowsNPE
+parameter_list|(
+annotation|@
+name|CheckForNull
+name|String
+name|s
+parameter_list|)
+block|{
+name|checkNotNull
+argument_list|(
+name|s
+argument_list|)
+expr_stmt|;
+comment|// doesn't check if you said you'd accept null, but you don't
 block|}
 DECL|method|oneArgNullableThrowsNPE (@ullable String s)
 specifier|public
@@ -655,6 +766,12 @@ name|STATIC_ONE_ARG_METHODS_SHOULD_PASS
 init|=
 block|{
 literal|"staticOneArgCorrectlyThrowsNpe"
+block|,
+literal|"staticOneArgCheckForNullCorrectlyDoesNotThrowNPE"
+block|,
+literal|"staticOneArgCheckForNullCorrectlyThrowsOtherThanNPE"
+block|,
+literal|"staticOneArgCheckForNullThrowsNPE"
 block|,
 literal|"staticOneArgNullableCorrectlyDoesNotThrowNPE"
 block|,
@@ -687,6 +804,12 @@ name|NONSTATIC_ONE_ARG_METHODS_SHOULD_PASS
 init|=
 block|{
 literal|"oneArgCorrectlyThrowsNpe"
+block|,
+literal|"oneArgCheckForNullCorrectlyDoesNotThrowNPE"
+block|,
+literal|"oneArgCheckForNullCorrectlyThrowsOtherThanNPE"
+block|,
+literal|"oneArgCheckForNullThrowsNPE"
 block|,
 literal|"oneArgNullableCorrectlyDoesNotThrowNPE"
 block|,
