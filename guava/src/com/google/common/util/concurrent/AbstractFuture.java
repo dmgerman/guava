@@ -337,7 +337,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An abstract implementation of {@link ListenableFuture}, intended for advanced users only. More  * common ways to create a {@code ListenableFuture} include instantiating a {@link SettableFuture},  * submitting a task to a {@link ListeningExecutorService}, and deriving a {@code Future} from an  * existing one, typically using methods like {@link Futures#transform(ListenableFuture,  * com.google.common.base.Function) Futures.transform} and {@link Futures#catching(ListenableFuture,  * Class, com.google.common.base.Function, java.util.concurrent.Executor) Futures.catching}.  *  *<p>This class implements all methods in {@code ListenableFuture}. Subclasses should provide a way  * to set the result of the computation through the protected methods {@link #set(Object)}, {@link  * #setFuture(ListenableFuture)} and {@link #setException(Throwable)}. Subclasses may also override  * {@link #interruptTask()}, which will be invoked automatically if a call to {@link  * #cancel(boolean) cancel(true)} succeeds in canceling the future. Subclasses should rarely  * override other methods.  *  * @author Sven Mawson  * @author Luke Sandberg  * @since 1.0  */
+comment|/**  * An abstract implementation of {@link ListenableFuture}, intended for advanced users only. More  * common ways to create a {@code ListenableFuture} include instantiating a {@link SettableFuture},  * submitting a task to a {@link ListeningExecutorService}, and deriving a {@code Future} from an  * existing one, typically using methods like {@link Futures#transform(ListenableFuture,  * com.google.common.base.Function) Futures.transform} and {@link Futures#catching(ListenableFuture,  * Class, com.google.common.base.Function, java.util.concurrent.Executor) Futures.catching}.  *  *<p>This class implements all methods in {@code ListenableFuture}. Subclasses should provide a way  * to set the result of the computation through the protected methods {@link #set(Object)}, {@link  * #setFuture(ListenableFuture)} and {@link #setException(Throwable)}. Subclasses may also override  * {@link #afterDone()}, which will be invoked automatically when the future completes. Subclasses  * should rarely override other methods.  *  * @author Sven Mawson  * @author Luke Sandberg  * @since 1.0  */
 end_comment
 
 begin_class
@@ -2006,7 +2006,7 @@ operator|instanceof
 name|Cancellation
 return|;
 block|}
-comment|/**    * {@inheritDoc}    *    *<p>If a cancellation attempt succeeds on a {@code Future} that had previously been {@linkplain    * #setFuture set asynchronously}, then the cancellation will also be propagated to the delegate    * {@code Future} that was supplied in the {@code setFuture} call.    */
+comment|/**    * {@inheritDoc}    *    *<p>If a cancellation attempt succeeds on a {@code Future} that had previously been {@linkplain    * #setFuture set asynchronously}, then the cancellation will also be propagated to the delegate    * {@code Future} that was supplied in the {@code setFuture} call.    *    *<p>Rather than override this method to perform additional cancellation work or cleanup,    * subclasses should override {@link #afterDone}, consulting {@link #isCancelled} and {@link    * #wasInterrupted} as necessary. This ensures that the work is done even if the future is    * cancelled without a call to {@code cancel}, such as by calling {@code    * setFuture(cancelledFuture)}.    */
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
@@ -2235,7 +2235,7 @@ return|return
 name|rValue
 return|;
 block|}
-comment|/**    * Subclasses can override this method to implement interruption of the future's computation. The    * method is invoked automatically by a successful call to {@link #cancel(boolean) cancel(true)}.    *    *<p>The default implementation does nothing.    *    * @since 10.0    */
+comment|/**    * Subclasses can override this method to implement interruption of the future's computation. The    * method is invoked automatically by a successful call to {@link #cancel(boolean) cancel(true)}.    *    *<p>The default implementation does nothing.    *    *<p>This method is likely to be deprecated. Prefer to override {@link #afterDone}, checking    * {@link #wasInterrupted} to decide whether to interrupt your task.    *    * @since 10.0    */
 DECL|method|interruptTask ()
 specifier|protected
 name|void
