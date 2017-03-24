@@ -800,6 +800,8 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Deprecated
 DECL|method|testOldCallWithTimeout_goodCallableWithEnoughTime ()
 specifier|public
 name|void
@@ -866,6 +868,8 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Deprecated
 DECL|method|testOldCallWithTimeout_goodCallableWithNotEnoughTime ()
 specifier|public
 name|void
@@ -935,6 +939,8 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Deprecated
 DECL|method|testOldCallWithTimeout_badCallableWithEnoughTime ()
 specifier|public
 name|void
@@ -1002,6 +1008,8 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Deprecated
 DECL|method|testOldCallWithTimeout_badCallableWithNotEnoughTime ()
 specifier|public
 name|void

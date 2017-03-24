@@ -526,6 +526,8 @@ return|;
 block|}
 comment|// TODO: should this actually throw only ExecutionException?
 annotation|@
+name|Deprecated
+annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
