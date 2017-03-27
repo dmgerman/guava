@@ -274,6 +274,20 @@ name|com
 operator|.
 name|google
 operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|ForOverride
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
 name|j2objc
 operator|.
 name|annotations
@@ -934,6 +948,8 @@ name|AbstractService
 parameter_list|()
 block|{}
 comment|/**    * This method is called by {@link #startAsync} to initiate service startup. The invocation of    * this method should cause a call to {@link #notifyStarted()}, either during this method's run,    * or after it has returned. If startup fails, the invocation should cause a call to {@link    * #notifyFailed(Throwable)} instead.    *    *<p>This method should return promptly; prefer to do work on a different thread where it is    * convenient. It is invoked exactly once on service startup, even when {@link #startAsync} is    * called multiple times.    */
+annotation|@
+name|ForOverride
 DECL|method|doStart ()
 specifier|protected
 specifier|abstract
@@ -942,6 +958,8 @@ name|doStart
 parameter_list|()
 function_decl|;
 comment|/**    * This method should be used to initiate service shutdown. The invocation of this method should    * cause a call to {@link #notifyStopped()}, either during this method's run, or after it has    * returned. If shutdown fails, the invocation should cause a call to {@link    * #notifyFailed(Throwable)} instead.    *    *<p>This method should return promptly; prefer to do work on a different thread where it is    * convenient. It is invoked exactly once on service shutdown, even when {@link #stopAsync} is    * called multiple times.    */
+annotation|@
+name|ForOverride
 DECL|method|doStop ()
 specifier|protected
 specifier|abstract
