@@ -665,7 +665,7 @@ name|bitSize
 argument_list|()
 return|;
 block|}
-comment|/**    * Determines whether a given Bloom filter is compatible with this Bloom filter. For two Bloom    * filters to be compatible, they must:    *    *<ul>    *<li>not be the same instance    *<li>have the same number of hash functions    *<li>have the same bit size    *<li>have the same strategy    *<li>have equal funnels    *<ul>    *    * @param that The Bloom filter to check for compatibility.    * @since 15.0    */
+comment|/**    * Determines whether a given Bloom filter is compatible with this Bloom filter. For two Bloom    * filters to be compatible, they must:    *    *<ul>    *<li>not be the same instance    *<li>have the same number of hash functions    *<li>have the same bit size    *<li>have the same strategy    *<li>have equal funnels    *</ul>    *    * @param that The Bloom filter to check for compatibility.    * @since 15.0    */
 DECL|method|isCompatible (BloomFilter<T> that)
 specifier|public
 name|boolean
