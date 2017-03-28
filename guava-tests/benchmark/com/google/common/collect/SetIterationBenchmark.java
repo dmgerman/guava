@@ -173,9 +173,9 @@ annotation|@
 name|Param
 argument_list|(
 block|{
-literal|"Immutable"
+literal|"ImmutableSetImpl"
 block|,
-literal|"Hash"
+literal|"HashSetImpl"
 block|}
 argument_list|)
 DECL|field|impl
@@ -216,6 +216,12 @@ argument_list|)
 decl_stmt|;
 name|setToTest
 operator|=
+operator|(
+name|Set
+argument_list|<
+name|Element
+argument_list|>
+operator|)
 name|impl
 operator|.
 name|create

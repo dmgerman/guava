@@ -147,9 +147,9 @@ annotation|@
 name|Param
 argument_list|(
 block|{
-literal|"Immutable"
+literal|"ImmutableSetImpl"
 block|,
-literal|"Hash"
+literal|"HashSetImpl"
 block|}
 argument_list|)
 DECL|field|impl
