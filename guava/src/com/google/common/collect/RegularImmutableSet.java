@@ -135,13 +135,10 @@ argument_list|,
 literal|null
 argument_list|,
 literal|0
-argument_list|,
-literal|0
 argument_list|)
 decl_stmt|;
 DECL|field|elements
-annotation|@
-name|VisibleForTesting
+specifier|private
 specifier|final
 specifier|transient
 name|Object
@@ -173,14 +170,7 @@ specifier|transient
 name|int
 name|hashCode
 decl_stmt|;
-DECL|field|size
-specifier|private
-specifier|final
-specifier|transient
-name|int
-name|size
-decl_stmt|;
-DECL|method|RegularImmutableSet (Object[] elements, int hashCode, Object[] table, int mask, int size)
+DECL|method|RegularImmutableSet (Object[] elements, int hashCode, Object[] table, int mask)
 name|RegularImmutableSet
 parameter_list|(
 name|Object
@@ -196,9 +186,6 @@ name|table
 parameter_list|,
 name|int
 name|mask
-parameter_list|,
-name|int
-name|size
 parameter_list|)
 block|{
 name|this
@@ -224,12 +211,6 @@ operator|.
 name|hashCode
 operator|=
 name|hashCode
-expr_stmt|;
-name|this
-operator|.
-name|size
-operator|=
-name|size
 expr_stmt|;
 block|}
 annotation|@
@@ -334,7 +315,9 @@ name|size
 parameter_list|()
 block|{
 return|return
-name|size
+name|elements
+operator|.
+name|length
 return|;
 block|}
 annotation|@
@@ -360,12 +343,6 @@ operator|.
 name|forArray
 argument_list|(
 name|elements
-argument_list|,
-literal|0
-argument_list|,
-name|size
-argument_list|,
-literal|0
 argument_list|)
 return|;
 block|}
@@ -386,10 +363,6 @@ operator|.
 name|spliterator
 argument_list|(
 name|elements
-argument_list|,
-literal|0
-argument_list|,
-name|size
 argument_list|,
 name|SPLITERATOR_CHARACTERISTICS
 argument_list|)
@@ -421,13 +394,17 @@ name|dst
 argument_list|,
 name|offset
 argument_list|,
-name|size
+name|elements
+operator|.
+name|length
 argument_list|)
 expr_stmt|;
 return|return
 name|offset
 operator|+
-name|size
+name|elements
+operator|.
+name|length
 return|;
 block|}
 annotation|@
@@ -464,8 +441,6 @@ argument_list|(
 name|this
 argument_list|,
 name|elements
-argument_list|,
-name|size
 argument_list|)
 return|;
 block|}
