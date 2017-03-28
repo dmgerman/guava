@@ -52,12 +52,12 @@ parameter_list|<
 name|N
 parameter_list|>
 extends|extends
-name|SuccessorGraph
+name|SuccessorsFunction
 argument_list|<
 name|N
 argument_list|>
 extends|,
-name|PredecessorGraph
+name|PredecessorsFunction
 argument_list|<
 name|N
 argument_list|>
