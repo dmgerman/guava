@@ -1169,7 +1169,7 @@ name|isParallel
 argument_list|)
 return|;
 block|}
-comment|/**    * Invokes {@code consumer} once for each pair of<i>corresponding</i> elements in {@code streamA}    * and {@code streamB}. If one stream is longer than the other, the extra elements are silently    * ignored. Elements passed to the consumer are guaranteed to come from the same position in their    * respective source streams. For example:    *    *<pre>{@code    * Streams.forEachPair(    *   Stream.of("foo1", "foo2", "foo3"),    *   Stream.of("bar1", "bar2"),    *   (arg1, arg2) -> System.out.println(arg1 + ":" + arg2)    * }</pre>    *    *<p>will print:    *    *<pre>{@code    * foo1:bar1    * foo2:bar2    * }</pre>    *    *<p><b>Warning:</b> If either supplied stream is a parallel stream, the same correspondence    * between elements will be made, but the order in which those pairs of elements are passed to the    * consumer is<i>not</i> defined.    *    *<p>Note that many usages of this method can be replaced with simpler calls to {@link #zip}.    * This method behaves equivalently to {@linkplain #zip zipping} the stream elements into    * temporary pair objects and then using {@link Stream#forEach} on that stream.    */
+comment|/**    * Invokes {@code consumer} once for each pair of<i>corresponding</i> elements in {@code streamA}    * and {@code streamB}. If one stream is longer than the other, the extra elements are silently    * ignored. Elements passed to the consumer are guaranteed to come from the same position in their    * respective source streams. For example:    *    *<pre>{@code    * Streams.forEachPair(    *   Stream.of("foo1", "foo2", "foo3"),    *   Stream.of("bar1", "bar2"),    *   (arg1, arg2) -> System.out.println(arg1 + ":" + arg2)    * }</pre>    *    *<p>will print:    *    *<pre>{@code    * foo1:bar1    * foo2:bar2    * }</pre>    *    *<p><b>Warning:</b> If either supplied stream is a parallel stream, the same correspondence    * between elements will be made, but the order in which those pairs of elements are passed to the    * consumer is<i>not</i> defined.    *    *<p>Note that many usages of this method can be replaced with simpler calls to {@link #zip}.    * This method behaves equivalently to {@linkplain #zip zipping} the stream elements into    * temporary pair objects and then using {@link Stream#forEach} on that stream.    *    * @since 22.0    */
 DECL|method|forEachPair ( Stream<A> streamA, Stream<B> streamB, BiConsumer<? super A, ? super B> consumer)
 specifier|public
 specifier|static
@@ -1309,6 +1309,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
+comment|// Use this carefully - it doesn't implement value semantics
 DECL|class|TemporaryPair
 specifier|private
 specifier|static
