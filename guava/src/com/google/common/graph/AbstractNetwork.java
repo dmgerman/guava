@@ -741,7 +741,7 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|adjacentEdges (Object edge)
+DECL|method|adjacentEdges (E edge)
 specifier|public
 name|Set
 argument_list|<
@@ -749,7 +749,7 @@ name|E
 argument_list|>
 name|adjacentEdges
 parameter_list|(
-name|Object
+name|E
 name|edge
 parameter_list|)
 block|{

@@ -595,7 +595,7 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|incidentNodes (Object edge)
+DECL|method|incidentNodes (E edge)
 specifier|public
 name|EndpointPair
 argument_list|<
@@ -603,7 +603,7 @@ name|N
 argument_list|>
 name|incidentNodes
 parameter_list|(
-name|Object
+name|E
 name|edge
 parameter_list|)
 block|{
@@ -832,7 +832,7 @@ name|successors
 argument_list|()
 return|;
 block|}
-DECL|method|checkedConnections (Object node)
+DECL|method|checkedConnections (N node)
 specifier|protected
 specifier|final
 name|NetworkConnections
@@ -843,7 +843,7 @@ name|E
 argument_list|>
 name|checkedConnections
 parameter_list|(
-name|Object
+name|N
 name|node
 parameter_list|)
 block|{
@@ -893,13 +893,13 @@ return|return
 name|connections
 return|;
 block|}
-DECL|method|checkedReferenceNode (Object edge)
+DECL|method|checkedReferenceNode (E edge)
 specifier|protected
 specifier|final
 name|N
 name|checkedReferenceNode
 parameter_list|(
-name|Object
+name|E
 name|edge
 parameter_list|)
 block|{
@@ -944,7 +944,7 @@ return|return
 name|referenceNode
 return|;
 block|}
-DECL|method|containsNode (@ullable Object node)
+DECL|method|containsNode (@ullable N node)
 specifier|protected
 specifier|final
 name|boolean
@@ -952,7 +952,7 @@ name|containsNode
 parameter_list|(
 annotation|@
 name|Nullable
-name|Object
+name|N
 name|node
 parameter_list|)
 block|{
@@ -965,7 +965,7 @@ name|node
 argument_list|)
 return|;
 block|}
-DECL|method|containsEdge (@ullable Object edge)
+DECL|method|containsEdge (@ullable E edge)
 specifier|protected
 specifier|final
 name|boolean
@@ -973,7 +973,7 @@ name|containsEdge
 parameter_list|(
 annotation|@
 name|Nullable
-name|Object
+name|E
 name|edge
 parameter_list|)
 block|{

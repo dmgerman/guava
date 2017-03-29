@@ -617,12 +617,12 @@ annotation|@
 name|Override
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|removeEdge (Object edge)
+DECL|method|removeEdge (E edge)
 specifier|public
 name|boolean
 name|removeEdge
 parameter_list|(
-name|Object
+name|E
 name|edge
 parameter_list|)
 block|{

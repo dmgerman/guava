@@ -2049,7 +2049,7 @@ comment|// transpose
 block|}
 annotation|@
 name|Override
-DECL|method|incidentNodes (Object edge)
+DECL|method|incidentNodes (E edge)
 specifier|public
 name|EndpointPair
 argument_list|<
@@ -2057,7 +2057,7 @@ name|N
 argument_list|>
 name|incidentNodes
 parameter_list|(
-name|Object
+name|E
 name|edge
 parameter_list|)
 block|{
@@ -2096,7 +2096,7 @@ comment|// transpose
 block|}
 annotation|@
 name|Override
-DECL|method|adjacentEdges (Object edge)
+DECL|method|adjacentEdges (E edge)
 specifier|public
 name|Set
 argument_list|<
@@ -2104,7 +2104,7 @@ name|E
 argument_list|>
 name|adjacentEdges
 parameter_list|(
-name|Object
+name|E
 name|edge
 parameter_list|)
 block|{

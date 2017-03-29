@@ -44,20 +44,6 @@ name|CanIgnoreReturnValue
 import|;
 end_import
 
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|errorprone
-operator|.
-name|annotations
-operator|.
-name|CompatibleWith
-import|;
-end_import
-
 begin_comment
 comment|/**  * A subinterface of {@link Network} which adds mutation methods. When mutation is not required,  * users should prefer the {@link Network} interface.  *  * @author James Sexton  * @author Joshua O'Madadhain  * @param<N> Node parameter type  * @param<E> Edge parameter type  * @since 20.0  */
 end_comment
@@ -124,16 +110,11 @@ function_decl|;
 comment|/**    * Removes {@code edge} from this network, if it is present.    *    * @return {@code true} if the network was modified as a result of this call    */
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|removeEdge (@ompatibleWithR) Object edge)
+DECL|method|removeEdge (E edge)
 name|boolean
 name|removeEdge
 parameter_list|(
-annotation|@
-name|CompatibleWith
-argument_list|(
-literal|"E"
-argument_list|)
-name|Object
+name|E
 name|edge
 parameter_list|)
 function_decl|;

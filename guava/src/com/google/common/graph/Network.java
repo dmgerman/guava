@@ -46,20 +46,6 @@ end_import
 
 begin_import
 import|import
-name|com
-operator|.
-name|google
-operator|.
-name|errorprone
-operator|.
-name|annotations
-operator|.
-name|CompatibleWith
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|util
@@ -285,36 +271,26 @@ name|node
 parameter_list|)
 function_decl|;
 comment|/**    * Returns the nodes which are the endpoints of {@code edge} in this network.    *    * @throws IllegalArgumentException if {@code edge} is not an element of this network    */
-DECL|method|incidentNodes (@ompatibleWithR) Object edge)
+DECL|method|incidentNodes (E edge)
 name|EndpointPair
 argument_list|<
 name|N
 argument_list|>
 name|incidentNodes
 parameter_list|(
-annotation|@
-name|CompatibleWith
-argument_list|(
-literal|"E"
-argument_list|)
-name|Object
+name|E
 name|edge
 parameter_list|)
 function_decl|;
 comment|/**    * Returns the edges which have an {@link #incidentNodes(Object) incident node} in common with    * {@code edge}. An edge is not considered adjacent to itself.    *    * @throws IllegalArgumentException if {@code edge} is not an element of this network    */
-DECL|method|adjacentEdges (@ompatibleWithR) Object edge)
+DECL|method|adjacentEdges (E edge)
 name|Set
 argument_list|<
 name|E
 argument_list|>
 name|adjacentEdges
 parameter_list|(
-annotation|@
-name|CompatibleWith
-argument_list|(
-literal|"E"
-argument_list|)
-name|Object
+name|E
 name|edge
 parameter_list|)
 function_decl|;
