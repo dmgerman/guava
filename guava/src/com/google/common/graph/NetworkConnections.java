@@ -103,14 +103,14 @@ name|outEdges
 parameter_list|()
 function_decl|;
 comment|/**    * Returns the set of edges connecting the origin node to {@code node}. For networks without    * parallel edges, this set cannot be of size greater than one.    */
-DECL|method|edgesConnecting (Object node)
+DECL|method|edgesConnecting (N node)
 name|Set
 argument_list|<
 name|E
 argument_list|>
 name|edgesConnecting
 parameter_list|(
-name|Object
+name|N
 name|node
 parameter_list|)
 function_decl|;

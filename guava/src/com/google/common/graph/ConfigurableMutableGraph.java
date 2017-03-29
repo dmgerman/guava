@@ -163,12 +163,12 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|removeNode (Object node)
+DECL|method|removeNode (N node)
 specifier|public
 name|boolean
 name|removeNode
 parameter_list|(
-name|Object
+name|N
 name|node
 parameter_list|)
 block|{
@@ -183,15 +183,15 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|removeEdge (Object nodeU, Object nodeV)
+DECL|method|removeEdge (N nodeU, N nodeV)
 specifier|public
 name|boolean
 name|removeEdge
 parameter_list|(
-name|Object
+name|N
 name|nodeU
 parameter_list|,
-name|Object
+name|N
 name|nodeV
 parameter_list|)
 block|{

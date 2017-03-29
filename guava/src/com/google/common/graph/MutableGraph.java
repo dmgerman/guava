@@ -44,20 +44,6 @@ name|CanIgnoreReturnValue
 import|;
 end_import
 
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|errorprone
-operator|.
-name|annotations
-operator|.
-name|CompatibleWith
-import|;
-end_import
-
 begin_comment
 comment|/**  * A subinterface of {@link Graph} which adds mutation methods. When mutation is not required, users  * should prefer the {@link Graph} interface.  *  * @author James Sexton  * @author Joshua O'Madadhain  * @param<N> Node parameter type  * @since 20.0  */
 end_comment
@@ -106,40 +92,25 @@ function_decl|;
 comment|/**    * Removes {@code node} if it is present; all edges incident to {@code node} will also be removed.    *    * @return {@code true} if the graph was modified as a result of this call    */
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|removeNode (@ompatibleWithR) Object node)
+DECL|method|removeNode (N node)
 name|boolean
 name|removeNode
 parameter_list|(
-annotation|@
-name|CompatibleWith
-argument_list|(
-literal|"N"
-argument_list|)
-name|Object
+name|N
 name|node
 parameter_list|)
 function_decl|;
 comment|/**    * Removes the edge connecting {@code nodeU} to {@code nodeV}, if it is present.    *    * @return {@code true} if the graph was modified as a result of this call    */
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|removeEdge (@ompatibleWithR) Object nodeU, @CompatibleWith(R) Object nodeV)
+DECL|method|removeEdge (N nodeU, N nodeV)
 name|boolean
 name|removeEdge
 parameter_list|(
-annotation|@
-name|CompatibleWith
-argument_list|(
-literal|"N"
-argument_list|)
-name|Object
+name|N
 name|nodeU
 parameter_list|,
-annotation|@
-name|CompatibleWith
-argument_list|(
-literal|"N"
-argument_list|)
-name|Object
+name|N
 name|nodeV
 parameter_list|)
 function_decl|;

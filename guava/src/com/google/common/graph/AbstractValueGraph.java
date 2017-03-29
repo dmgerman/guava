@@ -302,7 +302,7 @@ name|N
 argument_list|>
 name|adjacentNodes
 parameter_list|(
-name|Object
+name|N
 name|node
 parameter_list|)
 block|{
@@ -326,7 +326,7 @@ name|N
 argument_list|>
 name|predecessors
 parameter_list|(
-name|Object
+name|N
 name|node
 parameter_list|)
 block|{
@@ -350,7 +350,7 @@ name|N
 argument_list|>
 name|successors
 parameter_list|(
-name|Object
+name|N
 name|node
 parameter_list|)
 block|{
@@ -371,7 +371,7 @@ specifier|public
 name|int
 name|degree
 parameter_list|(
-name|Object
+name|N
 name|node
 parameter_list|)
 block|{
@@ -392,7 +392,7 @@ specifier|public
 name|int
 name|inDegree
 parameter_list|(
-name|Object
+name|N
 name|node
 parameter_list|)
 block|{
@@ -413,7 +413,7 @@ specifier|public
 name|int
 name|outDegree
 parameter_list|(
-name|Object
+name|N
 name|node
 parameter_list|)
 block|{
@@ -433,15 +433,15 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|edgeValue (Object nodeU, Object nodeV)
+DECL|method|edgeValue (N nodeU, N nodeV)
 specifier|public
 name|V
 name|edgeValue
 parameter_list|(
-name|Object
+name|N
 name|nodeU
 parameter_list|,
-name|Object
+name|N
 name|nodeV
 parameter_list|)
 block|{

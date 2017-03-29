@@ -399,7 +399,7 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|adjacentNodes (Object node)
+DECL|method|adjacentNodes (N node)
 specifier|public
 name|Set
 argument_list|<
@@ -407,7 +407,7 @@ name|N
 argument_list|>
 name|adjacentNodes
 parameter_list|(
-name|Object
+name|N
 name|node
 parameter_list|)
 block|{
@@ -423,7 +423,7 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|predecessors (Object node)
+DECL|method|predecessors (N node)
 specifier|public
 name|Set
 argument_list|<
@@ -431,7 +431,7 @@ name|N
 argument_list|>
 name|predecessors
 parameter_list|(
-name|Object
+name|N
 name|node
 parameter_list|)
 block|{
@@ -447,7 +447,7 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|successors (Object node)
+DECL|method|successors (N node)
 specifier|public
 name|Set
 argument_list|<
@@ -455,7 +455,7 @@ name|N
 argument_list|>
 name|successors
 parameter_list|(
-name|Object
+name|N
 name|node
 parameter_list|)
 block|{
@@ -471,15 +471,15 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|hasEdge (Object nodeU, Object nodeV)
+DECL|method|hasEdge (N nodeU, N nodeV)
 specifier|public
 name|boolean
 name|hasEdge
 parameter_list|(
-name|Object
+name|N
 name|nodeU
 parameter_list|,
-name|Object
+name|N
 name|nodeV
 parameter_list|)
 block|{
@@ -528,15 +528,15 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|edgeValueOrDefault (Object nodeU, Object nodeV, @Nullable V defaultValue)
+DECL|method|edgeValueOrDefault (N nodeU, N nodeV, @Nullable V defaultValue)
 specifier|public
 name|V
 name|edgeValueOrDefault
 parameter_list|(
-name|Object
+name|N
 name|nodeU
 parameter_list|,
-name|Object
+name|N
 name|nodeV
 parameter_list|,
 annotation|@
@@ -608,7 +608,7 @@ return|return
 name|edgeCount
 return|;
 block|}
-DECL|method|checkedConnections (Object node)
+DECL|method|checkedConnections (N node)
 specifier|protected
 specifier|final
 name|GraphConnections
@@ -619,7 +619,7 @@ name|V
 argument_list|>
 name|checkedConnections
 parameter_list|(
-name|Object
+name|N
 name|node
 parameter_list|)
 block|{
@@ -669,7 +669,7 @@ return|return
 name|connections
 return|;
 block|}
-DECL|method|containsNode (@ullable Object node)
+DECL|method|containsNode (@ullable N node)
 specifier|protected
 specifier|final
 name|boolean
@@ -677,7 +677,7 @@ name|containsNode
 parameter_list|(
 annotation|@
 name|Nullable
-name|Object
+name|N
 name|node
 parameter_list|)
 block|{

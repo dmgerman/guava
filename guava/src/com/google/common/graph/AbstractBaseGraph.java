@@ -252,6 +252,14 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+comment|// Mostly safe: We check contains(u) before calling successors(u), so we perform unsafe
+comment|// operations only in weird cases like checking for an EndpointPair<ArrayList> in a
+comment|// Graph<LinkedList>.
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
 annotation|@
 name|Override
 specifier|public
@@ -314,6 +322,9 @@ argument_list|)
 operator|&&
 name|successors
 argument_list|(
+operator|(
+name|N
+operator|)
 name|endpointPair
 operator|.
 name|nodeU
@@ -334,12 +345,12 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|degree (Object node)
+DECL|method|degree (N node)
 specifier|public
 name|int
 name|degree
 parameter_list|(
-name|Object
+name|N
 name|node
 parameter_list|)
 block|{
@@ -421,12 +432,12 @@ block|}
 block|}
 annotation|@
 name|Override
-DECL|method|inDegree (Object node)
+DECL|method|inDegree (N node)
 specifier|public
 name|int
 name|inDegree
 parameter_list|(
-name|Object
+name|N
 name|node
 parameter_list|)
 block|{
@@ -450,12 +461,12 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|outDegree (Object node)
+DECL|method|outDegree (N node)
 specifier|public
 name|int
 name|outDegree
 parameter_list|(
-name|Object
+name|N
 name|node
 parameter_list|)
 block|{
@@ -479,15 +490,15 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|hasEdge (Object nodeU, Object nodeV)
+DECL|method|hasEdge (N nodeU, N nodeV)
 specifier|public
 name|boolean
 name|hasEdge
 parameter_list|(
-name|Object
+name|N
 name|nodeU
 parameter_list|,
-name|Object
+name|N
 name|nodeV
 parameter_list|)
 block|{

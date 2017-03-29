@@ -113,16 +113,11 @@ function_decl|;
 comment|/**    * Removes {@code node} if it is present; all edges incident to {@code node} will also be removed.    *    * @return {@code true} if the network was modified as a result of this call    */
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|removeNode (@ompatibleWithR) Object node)
+DECL|method|removeNode (N node)
 name|boolean
 name|removeNode
 parameter_list|(
-annotation|@
-name|CompatibleWith
-argument_list|(
-literal|"N"
-argument_list|)
-name|Object
+name|N
 name|node
 parameter_list|)
 function_decl|;

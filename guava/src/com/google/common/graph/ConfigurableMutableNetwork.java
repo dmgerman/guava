@@ -536,12 +536,12 @@ annotation|@
 name|Override
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|removeNode (Object node)
+DECL|method|removeNode (N node)
 specifier|public
 name|boolean
 name|removeNode
 parameter_list|(
-name|Object
+name|N
 name|node
 parameter_list|)
 block|{

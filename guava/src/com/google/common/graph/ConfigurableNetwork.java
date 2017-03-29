@@ -571,7 +571,7 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|incidentEdges (Object node)
+DECL|method|incidentEdges (N node)
 specifier|public
 name|Set
 argument_list|<
@@ -579,7 +579,7 @@ name|E
 argument_list|>
 name|incidentEdges
 parameter_list|(
-name|Object
+name|N
 name|node
 parameter_list|)
 block|{
@@ -645,7 +645,7 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|adjacentNodes (Object node)
+DECL|method|adjacentNodes (N node)
 specifier|public
 name|Set
 argument_list|<
@@ -653,7 +653,7 @@ name|N
 argument_list|>
 name|adjacentNodes
 parameter_list|(
-name|Object
+name|N
 name|node
 parameter_list|)
 block|{
@@ -669,7 +669,7 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|edgesConnecting (Object nodeU, Object nodeV)
+DECL|method|edgesConnecting (N nodeU, N nodeV)
 specifier|public
 name|Set
 argument_list|<
@@ -677,10 +677,10 @@ name|E
 argument_list|>
 name|edgesConnecting
 parameter_list|(
-name|Object
+name|N
 name|nodeU
 parameter_list|,
-name|Object
+name|N
 name|nodeV
 parameter_list|)
 block|{
@@ -738,7 +738,7 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|inEdges (Object node)
+DECL|method|inEdges (N node)
 specifier|public
 name|Set
 argument_list|<
@@ -746,7 +746,7 @@ name|E
 argument_list|>
 name|inEdges
 parameter_list|(
-name|Object
+name|N
 name|node
 parameter_list|)
 block|{
@@ -762,7 +762,7 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|outEdges (Object node)
+DECL|method|outEdges (N node)
 specifier|public
 name|Set
 argument_list|<
@@ -770,7 +770,7 @@ name|E
 argument_list|>
 name|outEdges
 parameter_list|(
-name|Object
+name|N
 name|node
 parameter_list|)
 block|{
@@ -786,7 +786,7 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|predecessors (Object node)
+DECL|method|predecessors (N node)
 specifier|public
 name|Set
 argument_list|<
@@ -794,7 +794,7 @@ name|N
 argument_list|>
 name|predecessors
 parameter_list|(
-name|Object
+name|N
 name|node
 parameter_list|)
 block|{
@@ -810,7 +810,7 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|successors (Object node)
+DECL|method|successors (N node)
 specifier|public
 name|Set
 argument_list|<
@@ -818,7 +818,7 @@ name|N
 argument_list|>
 name|successors
 parameter_list|(
-name|Object
+name|N
 name|node
 parameter_list|)
 block|{

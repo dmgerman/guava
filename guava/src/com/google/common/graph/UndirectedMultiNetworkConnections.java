@@ -417,7 +417,7 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|edgesConnecting (final Object node)
+DECL|method|edgesConnecting (final N node)
 specifier|public
 name|Set
 argument_list|<
@@ -426,7 +426,7 @@ argument_list|>
 name|edgesConnecting
 parameter_list|(
 specifier|final
-name|Object
+name|N
 name|node
 parameter_list|)
 block|{

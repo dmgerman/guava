@@ -32,20 +32,6 @@ end_import
 
 begin_import
 import|import
-name|com
-operator|.
-name|google
-operator|.
-name|errorprone
-operator|.
-name|annotations
-operator|.
-name|CompatibleWith
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|util
@@ -74,19 +60,14 @@ name|N
 parameter_list|>
 block|{
 comment|/**    * Returns all nodes in this graph adjacent to {@code node} which can be reached by traversing    * {@code node}'s outgoing edges in the direction (if any) of the edge.    *    *<p>This is<i>not</i> the same as "all nodes reachable from {@code node} by following outgoing    * edges". For that functionality, see {@link Graphs#reachableNodes(Graph, Object)}.    *    * @throws IllegalArgumentException if {@code node} is not an element of this graph    */
-DECL|method|successors (@ompatibleWithR) Object node)
+DECL|method|successors (N node)
 name|Set
 argument_list|<
 name|N
 argument_list|>
 name|successors
 parameter_list|(
-annotation|@
-name|CompatibleWith
-argument_list|(
-literal|"N"
-argument_list|)
-name|Object
+name|N
 name|node
 parameter_list|)
 function_decl|;

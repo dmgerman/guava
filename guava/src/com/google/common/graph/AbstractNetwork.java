@@ -395,6 +395,14 @@ name|size
 argument_list|()
 return|;
 block|}
+comment|// Mostly safe: We check contains(u) before calling successors(u), so we perform unsafe
+comment|// operations only in weird cases like checking for an EndpointPair<ArrayList> in a
+comment|// Network<LinkedList>.
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
 annotation|@
 name|Override
 specifier|public
@@ -457,6 +465,9 @@ argument_list|)
 operator|&&
 name|successors
 argument_list|(
+operator|(
+name|N
+operator|)
 name|endpointPair
 operator|.
 name|nodeU
@@ -535,7 +546,7 @@ name|N
 argument_list|>
 name|adjacentNodes
 parameter_list|(
-name|Object
+name|N
 name|node
 parameter_list|)
 block|{
@@ -559,7 +570,7 @@ name|N
 argument_list|>
 name|predecessors
 parameter_list|(
-name|Object
+name|N
 name|node
 parameter_list|)
 block|{
@@ -583,7 +594,7 @@ name|N
 argument_list|>
 name|successors
 parameter_list|(
-name|Object
+name|N
 name|node
 parameter_list|)
 block|{
@@ -604,12 +615,12 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|degree (Object node)
+DECL|method|degree (N node)
 specifier|public
 name|int
 name|degree
 parameter_list|(
-name|Object
+name|N
 name|node
 parameter_list|)
 block|{
@@ -672,12 +683,12 @@ block|}
 block|}
 annotation|@
 name|Override
-DECL|method|inDegree (Object node)
+DECL|method|inDegree (N node)
 specifier|public
 name|int
 name|inDegree
 parameter_list|(
-name|Object
+name|N
 name|node
 parameter_list|)
 block|{
@@ -701,12 +712,12 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|outDegree (Object node)
+DECL|method|outDegree (N node)
 specifier|public
 name|int
 name|outDegree
 parameter_list|(
-name|Object
+name|N
 name|node
 parameter_list|)
 block|{
@@ -744,7 +755,7 @@ parameter_list|)
 block|{
 name|EndpointPair
 argument_list|<
-name|?
+name|N
 argument_list|>
 name|endpointPair
 init|=
@@ -799,7 +810,7 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|edgeConnecting (Object nodeU, Object nodeV)
+DECL|method|edgeConnecting (N nodeU, N nodeV)
 specifier|public
 name|Optional
 argument_list|<
@@ -807,10 +818,10 @@ name|E
 argument_list|>
 name|edgeConnecting
 parameter_list|(
-name|Object
+name|N
 name|nodeU
 parameter_list|,
-name|Object
+name|N
 name|nodeV
 parameter_list|)
 block|{

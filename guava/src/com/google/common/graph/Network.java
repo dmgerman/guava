@@ -182,140 +182,105 @@ comment|//
 comment|// Element-level accessors
 comment|//
 comment|/**    * Returns the nodes which have an incident edge in common with {@code node} in this network.    *    * @throws IllegalArgumentException if {@code node} is not an element of this network    */
-DECL|method|adjacentNodes (@ompatibleWithR) Object node)
+DECL|method|adjacentNodes (N node)
 name|Set
 argument_list|<
 name|N
 argument_list|>
 name|adjacentNodes
 parameter_list|(
-annotation|@
-name|CompatibleWith
-argument_list|(
-literal|"N"
-argument_list|)
-name|Object
+name|N
 name|node
 parameter_list|)
 function_decl|;
 comment|/**    * Returns all nodes in this network adjacent to {@code node} which can be reached by traversing    * {@code node}'s incoming edges<i>against</i> the direction (if any) of the edge.    *    *<p>In an undirected network, this is equivalent to {@link #adjacentNodes(Object)}.    *    * @throws IllegalArgumentException if {@code node} is not an element of this network    */
 annotation|@
 name|Override
-DECL|method|predecessors (Object node)
+DECL|method|predecessors (N node)
 name|Set
 argument_list|<
 name|N
 argument_list|>
 name|predecessors
 parameter_list|(
-name|Object
+name|N
 name|node
 parameter_list|)
 function_decl|;
 comment|/**    * Returns all nodes in this network adjacent to {@code node} which can be reached by traversing    * {@code node}'s outgoing edges in the direction (if any) of the edge.    *    *<p>In an undirected network, this is equivalent to {@link #adjacentNodes(Object)}.    *    *<p>This is<i>not</i> the same as "all nodes reachable from {@code node} by following outgoing    * edges". For that functionality, see {@link Graphs#reachableNodes(Graph, Object)}.    *    * @throws IllegalArgumentException if {@code node} is not an element of this network    */
 annotation|@
 name|Override
-DECL|method|successors (Object node)
+DECL|method|successors (N node)
 name|Set
 argument_list|<
 name|N
 argument_list|>
 name|successors
 parameter_list|(
-name|Object
+name|N
 name|node
 parameter_list|)
 function_decl|;
 comment|/**    * Returns the edges whose {@link #incidentNodes(Object) incident nodes} in this network include    * {@code node}.    *    * @throws IllegalArgumentException if {@code node} is not an element of this network    */
-DECL|method|incidentEdges (@ompatibleWithR) Object node)
+DECL|method|incidentEdges (N node)
 name|Set
 argument_list|<
 name|E
 argument_list|>
 name|incidentEdges
 parameter_list|(
-annotation|@
-name|CompatibleWith
-argument_list|(
-literal|"N"
-argument_list|)
-name|Object
+name|N
 name|node
 parameter_list|)
 function_decl|;
 comment|/**    * Returns all edges in this network which can be traversed in the direction (if any) of the edge    * to end at {@code node}.    *    *<p>In a directed network, an incoming edge's {@link EndpointPair#target()} equals {@code node}.    *    *<p>In an undirected network, this is equivalent to {@link #incidentEdges(Object)}.    *    * @throws IllegalArgumentException if {@code node} is not an element of this network    */
-DECL|method|inEdges (@ompatibleWithR) Object node)
+DECL|method|inEdges (N node)
 name|Set
 argument_list|<
 name|E
 argument_list|>
 name|inEdges
 parameter_list|(
-annotation|@
-name|CompatibleWith
-argument_list|(
-literal|"N"
-argument_list|)
-name|Object
+name|N
 name|node
 parameter_list|)
 function_decl|;
 comment|/**    * Returns all edges in this network which can be traversed in the direction (if any) of the edge    * starting from {@code node}.    *    *<p>In a directed network, an outgoing edge's {@link EndpointPair#source()} equals {@code node}.    *    *<p>In an undirected network, this is equivalent to {@link #incidentEdges(Object)}.    *    * @throws IllegalArgumentException if {@code node} is not an element of this network    */
-DECL|method|outEdges (@ompatibleWithR) Object node)
+DECL|method|outEdges (N node)
 name|Set
 argument_list|<
 name|E
 argument_list|>
 name|outEdges
 parameter_list|(
-annotation|@
-name|CompatibleWith
-argument_list|(
-literal|"N"
-argument_list|)
-name|Object
+name|N
 name|node
 parameter_list|)
 function_decl|;
 comment|/**    * Returns the count of {@code node}'s {@link #incidentEdges(Object) incident edges}, counting    * self-loops twice (equivalently, the number of times an edge touches {@code node}).    *    *<p>For directed networks, this is equal to {@code inDegree(node) + outDegree(node)}.    *    *<p>For undirected networks, this is equal to {@code incidentEdges(node).size()} + (number of    * self-loops incident to {@code node}).    *    *<p>If the count is greater than {@code Integer.MAX_VALUE}, returns {@code Integer.MAX_VALUE}.    *    * @throws IllegalArgumentException if {@code node} is not an element of this network    */
-DECL|method|degree (@ompatibleWithR) Object node)
+DECL|method|degree (N node)
 name|int
 name|degree
 parameter_list|(
-annotation|@
-name|CompatibleWith
-argument_list|(
-literal|"N"
-argument_list|)
-name|Object
+name|N
 name|node
 parameter_list|)
 function_decl|;
 comment|/**    * Returns the count of {@code node}'s {@link #inEdges(Object) incoming edges} in a directed    * network. In an undirected network, returns the {@link #degree(Object)}.    *    *<p>If the count is greater than {@code Integer.MAX_VALUE}, returns {@code Integer.MAX_VALUE}.    *    * @throws IllegalArgumentException if {@code node} is not an element of this network    */
-DECL|method|inDegree (@ompatibleWithR) Object node)
+DECL|method|inDegree (N node)
 name|int
 name|inDegree
 parameter_list|(
-annotation|@
-name|CompatibleWith
-argument_list|(
-literal|"N"
-argument_list|)
-name|Object
+name|N
 name|node
 parameter_list|)
 function_decl|;
 comment|/**    * Returns the count of {@code node}'s {@link #outEdges(Object) outgoing edges} in a directed    * network. In an undirected network, returns the {@link #degree(Object)}.    *    *<p>If the count is greater than {@code Integer.MAX_VALUE}, returns {@code Integer.MAX_VALUE}.    *    * @throws IllegalArgumentException if {@code node} is not an element of this network    */
-DECL|method|outDegree (@ompatibleWithR) Object node)
+DECL|method|outDegree (N node)
 name|int
 name|outDegree
 parameter_list|(
-annotation|@
-name|CompatibleWith
-argument_list|(
-literal|"N"
-argument_list|)
-name|Object
+name|N
 name|node
 parameter_list|)
 function_decl|;
@@ -354,52 +319,32 @@ name|edge
 parameter_list|)
 function_decl|;
 comment|/**    * Returns the set of edges directly connecting {@code nodeU} to {@code nodeV}.    *    *<p>In an undirected network, this is equal to {@code edgesConnecting(nodeV, nodeU)}.    *    *<p>The resulting set of edges will be parallel (i.e. have equal {@link #incidentNodes(Object)}.    * If this network does not {@link #allowsParallelEdges() allow parallel edges}, the resulting set    * will contain at most one edge (equivalent to {@code edgeConnecting(nodeU, nodeV).asSet()}).    *    * @throws IllegalArgumentException if {@code nodeU} or {@code nodeV} is not an element of this    *     network    */
-DECL|method|edgesConnecting (@ompatibleWithR) Object nodeU, @CompatibleWith(R) Object nodeV)
+DECL|method|edgesConnecting (N nodeU, N nodeV)
 name|Set
 argument_list|<
 name|E
 argument_list|>
 name|edgesConnecting
 parameter_list|(
-annotation|@
-name|CompatibleWith
-argument_list|(
-literal|"N"
-argument_list|)
-name|Object
+name|N
 name|nodeU
 parameter_list|,
-annotation|@
-name|CompatibleWith
-argument_list|(
-literal|"N"
-argument_list|)
-name|Object
+name|N
 name|nodeV
 parameter_list|)
 function_decl|;
 comment|/**    * Returns the single edge directly connecting {@code nodeU} to {@code nodeV}, if one is present.    *    *<p>In an undirected network, this is equal to {@code edgeConnecting(nodeV, nodeU)}.    *    * @throws IllegalArgumentException if there are multiple parallel edges connecting {@code nodeU}    *     to {@code nodeV}    * @throws IllegalArgumentException if {@code nodeU} or {@code nodeV} is not an element of this    *     network    */
-DECL|method|edgeConnecting (@ompatibleWithR) Object nodeU, @CompatibleWith(R) Object nodeV)
+DECL|method|edgeConnecting (N nodeU, N nodeV)
 name|Optional
 argument_list|<
 name|E
 argument_list|>
 name|edgeConnecting
 parameter_list|(
-annotation|@
-name|CompatibleWith
-argument_list|(
-literal|"N"
-argument_list|)
-name|Object
+name|N
 name|nodeU
 parameter_list|,
-annotation|@
-name|CompatibleWith
-argument_list|(
-literal|"N"
-argument_list|)
-name|Object
+name|N
 name|nodeV
 parameter_list|)
 function_decl|;

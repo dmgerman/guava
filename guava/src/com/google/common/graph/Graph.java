@@ -138,89 +138,89 @@ comment|//
 comment|/** {@inheritDoc} */
 annotation|@
 name|Override
-DECL|method|adjacentNodes (Object node)
+DECL|method|adjacentNodes (N node)
 name|Set
 argument_list|<
 name|N
 argument_list|>
 name|adjacentNodes
 parameter_list|(
-name|Object
+name|N
 name|node
 parameter_list|)
 function_decl|;
 comment|/** {@inheritDoc} */
 annotation|@
 name|Override
-DECL|method|predecessors (Object node)
+DECL|method|predecessors (N node)
 name|Set
 argument_list|<
 name|N
 argument_list|>
 name|predecessors
 parameter_list|(
-name|Object
+name|N
 name|node
 parameter_list|)
 function_decl|;
 comment|/** {@inheritDoc} */
 annotation|@
 name|Override
-DECL|method|successors (Object node)
+DECL|method|successors (N node)
 name|Set
 argument_list|<
 name|N
 argument_list|>
 name|successors
 parameter_list|(
-name|Object
+name|N
 name|node
 parameter_list|)
 function_decl|;
 comment|/** {@inheritDoc} */
 annotation|@
 name|Override
-DECL|method|degree (Object node)
+DECL|method|degree (N node)
 name|int
 name|degree
 parameter_list|(
-name|Object
+name|N
 name|node
 parameter_list|)
 function_decl|;
 comment|/** {@inheritDoc} */
 annotation|@
 name|Override
-DECL|method|inDegree (Object node)
+DECL|method|inDegree (N node)
 name|int
 name|inDegree
 parameter_list|(
-name|Object
+name|N
 name|node
 parameter_list|)
 function_decl|;
 comment|/** {@inheritDoc} */
 annotation|@
 name|Override
-DECL|method|outDegree (Object node)
+DECL|method|outDegree (N node)
 name|int
 name|outDegree
 parameter_list|(
-name|Object
+name|N
 name|node
 parameter_list|)
 function_decl|;
 comment|/** {@inheritDoc} */
 annotation|@
 name|Override
-DECL|method|hasEdge (Object nodeU, Object nodeV)
+DECL|method|hasEdge (N nodeU, N nodeV)
 name|boolean
 name|hasEdge
 parameter_list|(
-name|Object
+name|N
 name|nodeU
 parameter_list|,
-name|Object
+name|N
 name|nodeV
 parameter_list|)
 function_decl|;
