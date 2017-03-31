@@ -56,7 +56,7 @@ name|common
 operator|.
 name|annotations
 operator|.
-name|GwtIncompatible
+name|GwtCompatible
 import|;
 end_import
 
@@ -166,8 +166,7 @@ begin_class
 annotation|@
 name|Beta
 annotation|@
-name|GwtIncompatible
-comment|// TODO(kevinb)
+name|GwtCompatible
 DECL|class|ImmutableIntArray
 specifier|public
 specifier|final
@@ -379,10 +378,16 @@ else|:
 operator|new
 name|ImmutableIntArray
 argument_list|(
+name|Arrays
+operator|.
+name|copyOf
+argument_list|(
+name|values
+argument_list|,
 name|values
 operator|.
-name|clone
-argument_list|()
+name|length
+argument_list|)
 argument_list|)
 return|;
 block|}
