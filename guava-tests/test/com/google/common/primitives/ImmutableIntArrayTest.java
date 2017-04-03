@@ -42,6 +42,20 @@ name|common
 operator|.
 name|annotations
 operator|.
+name|GwtCompatible
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
 name|GwtIncompatible
 import|;
 end_import
@@ -278,7 +292,12 @@ end_comment
 
 begin_class
 annotation|@
-name|GwtIncompatible
+name|GwtCompatible
+argument_list|(
+name|emulated
+operator|=
+literal|true
+argument_list|)
 DECL|class|ImmutableIntArrayTest
 specifier|public
 class|class
@@ -1186,6 +1205,8 @@ block|{
 DECL|enumConstant|ADD_ONE
 name|ADD_ONE
 block|{
+annotation|@
+name|Override
 name|void
 name|doIt
 parameter_list|(
@@ -1214,6 +1235,8 @@ block|,
 DECL|enumConstant|ADD_ARRAY
 name|ADD_ARRAY
 block|{
+annotation|@
+name|Override
 name|void
 name|doIt
 parameter_list|(
@@ -1282,6 +1305,8 @@ block|,
 DECL|enumConstant|ADD_COLLECTION
 name|ADD_COLLECTION
 block|{
+annotation|@
+name|Override
 name|void
 name|doIt
 parameter_list|(
@@ -1354,6 +1379,8 @@ block|,
 DECL|enumConstant|ADD_ITERABLE
 name|ADD_ITERABLE
 block|{
+annotation|@
+name|Override
 name|void
 name|doIt
 parameter_list|(
@@ -1429,6 +1456,8 @@ block|,
 DECL|enumConstant|ADD_IIA
 name|ADD_IIA
 block|{
+annotation|@
+name|Override
 name|void
 name|doIt
 parameter_list|(
@@ -1502,6 +1531,8 @@ block|,
 DECL|enumConstant|ADD_LARGER_ARRAY
 name|ADD_LARGER_ARRAY
 block|{
+annotation|@
+name|Override
 name|void
 name|doIt
 parameter_list|(
@@ -2900,6 +2931,9 @@ name|iia
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+comment|// suite
 DECL|method|suite ()
 specifier|public
 specifier|static
@@ -3038,6 +3072,9 @@ return|return
 name|suite
 return|;
 block|}
+annotation|@
+name|GwtIncompatible
+comment|// used only from suite
 DECL|method|makeArray (Integer[] values)
 specifier|private
 specifier|static
@@ -3063,8 +3100,11 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|// Test generators.  To let the GWT test suite generator access them, they need to be
-comment|// public named classes with a public default constructor (not that we test these under GWT yet).
+comment|// Test generators.  To let the GWT test suite generator access them, they need to be public named
+comment|// classes with a public default constructor (not that we run these suites under GWT yet).
+annotation|@
+name|GwtIncompatible
+comment|// used only from suite
 DECL|class|ImmutableIntArrayAsListGenerator
 specifier|public
 specifier|static
@@ -3100,6 +3140,9 @@ argument_list|()
 return|;
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+comment|// used only from suite
 DECL|class|ImmutableIntArrayHeadSubListAsListGenerator
 specifier|public
 specifier|static
@@ -3169,6 +3212,9 @@ argument_list|()
 return|;
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+comment|// used only from suite
 DECL|class|ImmutableIntArrayTailSubListAsListGenerator
 specifier|public
 specifier|static
@@ -3236,6 +3282,9 @@ argument_list|()
 return|;
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+comment|// used only from suite
 DECL|class|ImmutableIntArrayMiddleSubListAsListGenerator
 specifier|public
 specifier|static
@@ -3322,6 +3371,9 @@ argument_list|()
 return|;
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+comment|// used only from suite
 DECL|method|concat (Integer[] a, Integer[] b)
 specifier|private
 specifier|static
@@ -3353,6 +3405,9 @@ name|class
 argument_list|)
 return|;
 block|}
+annotation|@
+name|GwtIncompatible
+comment|// used only from suite
 DECL|class|TestIntegerListGenerator
 specifier|public
 specifier|abstract
@@ -3499,6 +3554,9 @@ name|insertionOrder
 return|;
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+comment|// used only from suite
 DECL|class|SampleIntegers
 specifier|public
 specifier|static
