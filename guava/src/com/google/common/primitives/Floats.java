@@ -363,7 +363,7 @@ return|return
 name|NEGATIVE_INFINITY
 operator|<
 name|value
-operator|&
+operator|&&
 name|value
 operator|<
 name|POSITIVE_INFINITY
