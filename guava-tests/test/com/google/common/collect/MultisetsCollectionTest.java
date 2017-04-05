@@ -1326,7 +1326,7 @@ DECL|field|ELEMENTS_TO_FILTER_OUT
 specifier|private
 specifier|static
 specifier|final
-name|Multiset
+name|ImmutableMultiset
 argument_list|<
 name|String
 argument_list|>

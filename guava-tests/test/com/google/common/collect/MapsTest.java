@@ -3661,7 +3661,7 @@ DECL|field|SORTED_SINGLETON
 specifier|private
 specifier|static
 specifier|final
-name|SortedMap
+name|ImmutableSortedMap
 argument_list|<
 name|Integer
 argument_list|,
