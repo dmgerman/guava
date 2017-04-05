@@ -695,7 +695,7 @@ block|}
 DECL|field|ALL_MANY_VALUES
 specifier|static
 specifier|final
-name|Iterable
+name|ImmutableList
 argument_list|<
 name|ManyValues
 argument_list|>
