@@ -593,10 +593,10 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns an estimate for the total number of distinct elements that have been added to this    * Bloom filter. This approximation is reasonably accurate if it does not exceed the value of    * {@code expectedInsertions} that was used when constructing the filter.    *    * @since 22.0    */
-DECL|method|approximateCount ()
+DECL|method|approximateElementCount ()
 specifier|public
 name|long
-name|approximateCount
+name|approximateElementCount
 parameter_list|()
 block|{
 name|long

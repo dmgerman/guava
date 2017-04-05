@@ -268,12 +268,12 @@ expr_stmt|;
 comment|// Ideally we would also test the bitSize() overflow of this BF, but it runs out of heap space
 comment|// BloomFilter.create(Funnels.unencodedCharsFunnel(), 244412641, 1e-11);
 block|}
-comment|/**    * Asserts that {@link BloomFilter#approximateCount} is within 1 percent of the expected value.    */
-DECL|method|assertApproximateCountGuess (BloomFilter<?> bf, int sizeGuess)
+comment|/**    * Asserts that {@link BloomFilter#approximateElementCount} is within 1 percent of the expected    * value.    */
+DECL|method|assertApproximateElementCountGuess (BloomFilter<?> bf, int sizeGuess)
 specifier|private
 specifier|static
 name|void
-name|assertApproximateCountGuess
+name|assertApproximateElementCountGuess
 parameter_list|(
 name|BloomFilter
 argument_list|<
@@ -289,7 +289,7 @@ name|assertThat
 argument_list|(
 name|bf
 operator|.
-name|approximateCount
+name|approximateElementCount
 argument_list|()
 argument_list|)
 operator|.
@@ -309,7 +309,7 @@ name|assertThat
 argument_list|(
 name|bf
 operator|.
-name|approximateCount
+name|approximateElementCount
 argument_list|()
 argument_list|)
 operator|.
@@ -393,7 +393,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-name|assertApproximateCountGuess
+name|assertApproximateElementCountGuess
 argument_list|(
 name|bf
 argument_list|,
@@ -680,7 +680,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-name|assertApproximateCountGuess
+name|assertApproximateElementCountGuess
 argument_list|(
 name|bf
 argument_list|,
@@ -961,7 +961,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-name|assertApproximateCountGuess
+name|assertApproximateElementCountGuess
 argument_list|(
 name|bf
 argument_list|,
@@ -2036,10 +2036,10 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-DECL|method|testApproximateCount ()
+DECL|method|testApproximateElementCount ()
 specifier|public
 name|void
-name|testApproximateCount
+name|testApproximateElementCount
 parameter_list|()
 block|{
 name|int
@@ -2096,7 +2096,7 @@ name|i
 argument_list|)
 expr_stmt|;
 block|}
-name|assertApproximateCountGuess
+name|assertApproximateElementCountGuess
 argument_list|(
 name|bf
 argument_list|,
