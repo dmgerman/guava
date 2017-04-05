@@ -856,6 +856,9 @@ specifier|static
 specifier|final
 name|Unsafe
 name|theUnsafe
+init|=
+name|getUnsafe
+argument_list|()
 decl_stmt|;
 comment|/** The offset to the first element in a byte array. */
 DECL|field|BYTE_ARRAY_BASE_OFFSET
@@ -863,16 +866,7 @@ specifier|static
 specifier|final
 name|int
 name|BYTE_ARRAY_BASE_OFFSET
-decl_stmt|;
-static|static
-block|{
-name|theUnsafe
-operator|=
-name|getUnsafe
-argument_list|()
-expr_stmt|;
-name|BYTE_ARRAY_BASE_OFFSET
-operator|=
+init|=
 name|theUnsafe
 operator|.
 name|arrayBaseOffset
@@ -882,10 +876,36 @@ index|[]
 operator|.
 expr|class
 argument_list|)
-expr_stmt|;
-comment|// sanity check - this should never fail
+decl_stmt|;
+static|static
+block|{
+comment|// fall back to the safer pure java implementation unless we're in
+comment|// a 64-bit JVM with an 8-byte aligned field offset.
 if|if
 condition|(
+operator|!
+operator|(
+literal|"64"
+operator|.
+name|equals
+argument_list|(
+name|System
+operator|.
+name|getProperty
+argument_list|(
+literal|"sun.arch.data.model"
+argument_list|)
+argument_list|)
+operator|&&
+operator|(
+name|BYTE_ARRAY_BASE_OFFSET
+operator|%
+literal|8
+operator|)
+operator|==
+literal|0
+comment|// sanity check - this should never fail
+operator|&&
 name|theUnsafe
 operator|.
 name|arrayIndexScale
@@ -895,15 +915,17 @@ index|[]
 operator|.
 expr|class
 argument_list|)
-operator|!=
+operator|==
 literal|1
+operator|)
 condition|)
 block|{
 throw|throw
 operator|new
-name|AssertionError
+name|Error
 argument_list|()
 throw|;
+comment|// force fallback to PureJavaComparator
 block|}
 block|}
 comment|/**        * Returns a sun.misc.Unsafe. Suitable for use in a 3rd party package. Replace with a simple        * call to Unsafe.getUnsafe when integrating into a jdk.        *        * @return a sun.misc.Unsafe        */
@@ -1102,6 +1124,12 @@ index|[]
 name|right
 parameter_list|)
 block|{
+specifier|final
+name|int
+name|stride
+init|=
+literal|8
+decl_stmt|;
 name|int
 name|minLength
 init|=
@@ -1119,35 +1147,34 @@ name|length
 argument_list|)
 decl_stmt|;
 name|int
-name|minWords
+name|strideLimit
 init|=
 name|minLength
-operator|/
-name|Longs
-operator|.
-name|BYTES
+operator|&
+operator|~
+operator|(
+name|stride
+operator|-
+literal|1
+operator|)
 decl_stmt|;
-comment|/*          * Compare 8 bytes at a time. Benchmarking shows comparing 8 bytes at a time is no slower          * than comparing 4 bytes at a time even on 32-bit. On the other hand, it is substantially          * faster on 64-bit.          */
-for|for
-control|(
 name|int
 name|i
-init|=
+decl_stmt|;
+comment|/*          * Compare 8 bytes at a time. Benchmarking on x86 shows a stride of 8 bytes is no slower          * than 4 bytes even on 32-bit. On the other hand, it is substantially faster on 64-bit.          */
+for|for
+control|(
+name|i
+operator|=
 literal|0
 init|;
 name|i
 operator|<
-name|minWords
-operator|*
-name|Longs
-operator|.
-name|BYTES
+name|strideLimit
 condition|;
 name|i
 operator|+=
-name|Longs
-operator|.
-name|BYTES
+name|stride
 control|)
 block|{
 name|long
@@ -1256,17 +1283,9 @@ operator|)
 return|;
 block|}
 block|}
-comment|// The epilogue to cover the last (minLength % 8) elements.
+comment|// The epilogue to cover the last (minLength % stride) elements.
 for|for
 control|(
-name|int
-name|i
-init|=
-name|minWords
-operator|*
-name|Longs
-operator|.
-name|BYTES
 init|;
 name|i
 operator|<
