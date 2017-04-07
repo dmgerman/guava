@@ -1551,7 +1551,7 @@ name|hasNext
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns an {@code ImmutableList} containing all of the elements from this fluent iterable in    * proper sequence.    *    *<p><b>{@code Stream} equivalent:</b> pass {@link ImmutableList#toImmutableList} to {@code    * stream.collect()}.    *    * @since 14.0 (since 12.0 as {@code toImmutableList()}).    */
+comment|/**    * Returns an {@code ImmutableList} containing all of the elements from this fluent iterable in    * proper sequence.    *    *<p><b>{@code Stream} equivalent:</b> pass {@link ImmutableList#toImmutableList} to {@code    * stream.collect()}.    *    * @throws NullPointerException if any element is {@code null}    * @since 14.0 (since 12.0 as {@code toImmutableList()}).    */
 DECL|method|toList ()
 specifier|public
 specifier|final
@@ -1572,7 +1572,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an {@code ImmutableList} containing all of the elements from this {@code    * FluentIterable} in the order specified by {@code comparator}. To produce an {@code    * ImmutableList} sorted by its natural ordering, use {@code toSortedList(Ordering.natural())}.    *    *<p><b>{@code Stream} equivalent:</b> pass {@link ImmutableList#toImmutableList} to {@code    * stream.sorted(comparator).collect()}.    *    * @param comparator the function by which to sort list elements    * @throws NullPointerException if any element is null    * @since 14.0 (since 13.0 as {@code toSortedImmutableList()}).    */
+comment|/**    * Returns an {@code ImmutableList} containing all of the elements from this {@code    * FluentIterable} in the order specified by {@code comparator}. To produce an {@code    * ImmutableList} sorted by its natural ordering, use {@code toSortedList(Ordering.natural())}.    *    *<p><b>{@code Stream} equivalent:</b> pass {@link ImmutableList#toImmutableList} to {@code    * stream.sorted(comparator).collect()}.    *    * @param comparator the function by which to sort list elements    * @throws NullPointerException if any element of this iterable is {@code null}    * @since 14.0 (since 13.0 as {@code toSortedImmutableList()}).    */
 DECL|method|toSortedList (Comparator<? super E> comparator)
 specifier|public
 specifier|final
@@ -1606,7 +1606,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an {@code ImmutableSet} containing all of the elements from this fluent iterable with    * duplicates removed.    *    *<p><b>{@code Stream} equivalent:</b> pass {@link ImmutableSet#toImmutableSet} to {@code    * stream.collect()}.    *    * @since 14.0 (since 12.0 as {@code toImmutableSet()}).    */
+comment|/**    * Returns an {@code ImmutableSet} containing all of the elements from this fluent iterable with    * duplicates removed.    *    *<p><b>{@code Stream} equivalent:</b> pass {@link ImmutableSet#toImmutableSet} to {@code    * stream.collect()}.    *    * @throws NullPointerException if any element is {@code null}    * @since 14.0 (since 12.0 as {@code toImmutableSet()}).    */
 DECL|method|toSet ()
 specifier|public
 specifier|final
@@ -1627,7 +1627,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an {@code ImmutableSortedSet} containing all of the elements from this {@code    * FluentIterable} in the order specified by {@code comparator}, with duplicates (determined by    * {@code comparator.compare(x, y) == 0}) removed. To produce an {@code ImmutableSortedSet} sorted    * by its natural ordering, use {@code toSortedSet(Ordering.natural())}.    *    *<p><b>{@code Stream} equivalent:</b> pass {@link    * ImmutableSortedSet#toImmutableSortedSet} to {@code stream.collect()}.    *    * @param comparator the function by which to sort set elements    * @throws NullPointerException if any element is null    * @since 14.0 (since 12.0 as {@code toImmutableSortedSet()}).    */
+comment|/**    * Returns an {@code ImmutableSortedSet} containing all of the elements from this {@code    * FluentIterable} in the order specified by {@code comparator}, with duplicates (determined by    * {@code comparator.compare(x, y) == 0}) removed. To produce an {@code ImmutableSortedSet} sorted    * by its natural ordering, use {@code toSortedSet(Ordering.natural())}.    *    *<p><b>{@code Stream} equivalent:</b> pass {@link    * ImmutableSortedSet#toImmutableSortedSet} to {@code stream.collect()}.    *    * @param comparator the function by which to sort set elements    * @throws NullPointerException if any element of this iterable is {@code null}    * @since 14.0 (since 12.0 as {@code toImmutableSortedSet()}).    */
 DECL|method|toSortedSet (Comparator<? super E> comparator)
 specifier|public
 specifier|final
@@ -1658,7 +1658,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an {@code ImmutableMultiset} containing all of the elements from this fluent iterable.    *    *<p><b>{@code Stream} equivalent:</b> pass {@link ImmutableMultiset#toImmutableMultiset} to    * {@code    * stream.collect()}.    *    * @since 19.0    */
+comment|/**    * Returns an {@code ImmutableMultiset} containing all of the elements from this fluent iterable.    *    *<p><b>{@code Stream} equivalent:</b> pass {@link ImmutableMultiset#toImmutableMultiset} to    * {@code    * stream.collect()}.    *    * @throws NullPointerException if any element is null    * @since 19.0    */
 DECL|method|toMultiset ()
 specifier|public
 specifier|final
@@ -1717,7 +1717,7 @@ name|valueFunction
 argument_list|)
 return|;
 block|}
-comment|/**    * Creates an index {@code ImmutableListMultimap} that contains the results of applying a    * specified function to each item in this {@code FluentIterable} of values. Each element of this    * iterable will be stored as a value in the resulting multimap, yielding a multimap with the same    * size as this iterable. The key used to store that value in the multimap will be the result of    * calling the function on that value. The resulting multimap is created as an immutable snapshot.    * In the returned multimap, keys appear in the order they are first encountered, and the values    * corresponding to each key appear in the same order as they are encountered.    *    *<p><b>{@code Stream} equivalent:</b> {@code stream.collect(Collectors.groupingBy(keyFunction))}    * behaves similarly, but returns a mutable {@code Map<K, List<E>>} instead, and may not preserve    * the order of entries).    *    * @param keyFunction the function used to produce the key for each value    * @throws NullPointerException if any of the following cases is true:    *<ul>    *<li>{@code keyFunction} is null    *<li>An element in this fluent iterable is null    *<li>{@code keyFunction} returns {@code null} for any element of this iterable    *</ul>    *    * @since 14.0    */
+comment|/**    * Creates an index {@code ImmutableListMultimap} that contains the results of applying a    * specified function to each item in this {@code FluentIterable} of values. Each element of this    * iterable will be stored as a value in the resulting multimap, yielding a multimap with the same    * size as this iterable. The key used to store that value in the multimap will be the result of    * calling the function on that value. The resulting multimap is created as an immutable snapshot.    * In the returned multimap, keys appear in the order they are first encountered, and the values    * corresponding to each key appear in the same order as they are encountered.    *    *<p><b>{@code Stream} equivalent:</b> {@code stream.collect(Collectors.groupingBy(keyFunction))}    * behaves similarly, but returns a mutable {@code Map<K, List<E>>} instead, and may not preserve    * the order of entries).    *    * @param keyFunction the function used to produce the key for each value    * @throws NullPointerException if any element of this iterable is {@code null}, or if {@code    *     keyFunction} produces {@code null} for any key    * @since 14.0    */
 DECL|method|index (Function<? super E, K> keyFunction)
 specifier|public
 specifier|final
@@ -1755,7 +1755,7 @@ name|keyFunction
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a map with the contents of this {@code FluentIterable} as its {@code values}, indexed    * by keys derived from those values. In other words, each input value produces an entry in the    * map whose key is the result of applying {@code keyFunction} to that value. These entries appear    * in the same order as they appeared in this fluent iterable. Example usage:    *    *<pre>{@code    * Color red = new Color("red", 255, 0, 0);    * ...    * FluentIterable<Color> allColors = FluentIterable.from(ImmutableSet.of(red, green, blue));    *    * Map<String, Color> colorForName = allColors.uniqueIndex(toStringFunction());    * assertThat(colorForName).containsEntry("red", red);    * }</pre>    *    *<p>If your index may associate multiple values with each key, use {@link #index(Function)    * index}.    *    *<p><b>{@code Stream} equivalent:</b> {@code    * stream.collect(ImmutableMap.toImmutableMap(keyFunction, v -> v))}.    *    * @param keyFunction the function used to produce the key for each value    * @return a map mapping the result of evaluating the function {@code keyFunction} on each value    *     in this fluent iterable to that value    * @throws IllegalArgumentException if {@code keyFunction} produces the same key for more than one    *     value in this fluent iterable    * @throws NullPointerException if any elements of this fluent iterable is null, or if {@code    *     keyFunction} produces {@code null} for any value    * @since 14.0    */
+comment|/**    * Returns a map with the contents of this {@code FluentIterable} as its {@code values}, indexed    * by keys derived from those values. In other words, each input value produces an entry in the    * map whose key is the result of applying {@code keyFunction} to that value. These entries appear    * in the same order as they appeared in this fluent iterable. Example usage:    *    *<pre>{@code    * Color red = new Color("red", 255, 0, 0);    * ...    * FluentIterable<Color> allColors = FluentIterable.from(ImmutableSet.of(red, green, blue));    *    * Map<String, Color> colorForName = allColors.uniqueIndex(toStringFunction());    * assertThat(colorForName).containsEntry("red", red);    * }</pre>    *    *<p>If your index may associate multiple values with each key, use {@link #index(Function)    * index}.    *    *<p><b>{@code Stream} equivalent:</b> {@code    * stream.collect(ImmutableMap.toImmutableMap(keyFunction, v -> v))}.    *    * @param keyFunction the function used to produce the key for each value    * @return a map mapping the result of evaluating the function {@code keyFunction} on each value    *     in this fluent iterable to that value    * @throws IllegalArgumentException if {@code keyFunction} produces the same key for more than one    *     value in this fluent iterable    * @throws NullPointerException if any element of this iterable is {@code null}, or if {@code    *     keyFunction} produces {@code null} for any key    * @since 14.0    */
 DECL|method|uniqueIndex (Function<? super E, K> keyFunction)
 specifier|public
 specifier|final

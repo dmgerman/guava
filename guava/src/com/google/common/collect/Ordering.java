@@ -2044,7 +2044,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an<b>immutable</b> list containing {@code elements} sorted by this ordering. The input    * is not modified.    *    *<p>Unlike {@link Sets#newTreeSet(Iterable)}, this method does not discard elements that are    * duplicates according to the comparator. The sort performed is<i>stable</i>, meaning that such    * elements will appear in the returned list in the same order they appeared in {@code elements}.    *    *<p><b>Performance note:</b> According to our    * benchmarking    * on Open JDK 7, this method is the most efficient way to make a sorted copy of a collection.    *    * @throws NullPointerException if any of {@code elements} (or {@code elements} itself) is null    * @since 3.0    */
+comment|/**    * Returns an<b>immutable</b> list containing {@code elements} sorted by this ordering. The input    * is not modified.    *    *<p>Unlike {@link Sets#newTreeSet(Iterable)}, this method does not discard elements that are    * duplicates according to the comparator. The sort performed is<i>stable</i>, meaning that such    * elements will appear in the returned list in the same order they appeared in {@code elements}.    *    *<p><b>Performance note:</b> According to our    * benchmarking    * on Open JDK 7, this method is the most efficient way to make a sorted copy of a collection.    *    * @throws NullPointerException if any element of {@code elements} is {@code null}    * @since 3.0    */
 comment|// TODO(kevinb): rerun benchmarks including new options
 annotation|@
 name|CanIgnoreReturnValue
