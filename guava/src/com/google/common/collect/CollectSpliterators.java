@@ -1022,7 +1022,6 @@ name|F
 argument_list|>
 name|from
 decl_stmt|;
-specifier|final
 name|int
 name|characteristics
 decl_stmt|;
@@ -1279,6 +1278,12 @@ operator|.
 name|estimatedSize
 operator|-=
 name|estSplitSize
+expr_stmt|;
+name|this
+operator|.
+name|characteristics
+operator|=
+name|splitCharacteristics
 expr_stmt|;
 block|}
 name|Spliterator
