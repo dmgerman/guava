@@ -1953,7 +1953,7 @@ DECL|field|GET_FEATURE_MAP
 specifier|private
 specifier|static
 specifier|final
-name|Multimap
+name|ImmutableMultimap
 argument_list|<
 name|Feature
 argument_list|<
