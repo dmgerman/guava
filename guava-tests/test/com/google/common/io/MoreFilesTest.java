@@ -334,6 +334,18 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|Future
+import|;
+end_import
+
+begin_import
+import|import
 name|junit
 operator|.
 name|framework
@@ -4094,6 +4106,22 @@ name|ExecutorService
 name|executor
 parameter_list|)
 block|{
+annotation|@
+name|SuppressWarnings
+argument_list|(
+block|{
+literal|"unused"
+block|,
+literal|"nullness"
+block|}
+argument_list|)
+comment|// go/futurereturn-lsc
+name|Future
+argument_list|<
+name|?
+argument_list|>
+name|possiblyIgnoredError
+init|=
 name|executor
 operator|.
 name|submit
@@ -4185,7 +4213,7 @@ block|}
 block|}
 block|}
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 block|}
 comment|/**    * Enum defining the two MoreFiles methods that delete directory contents.    */
 DECL|enum|DirectoryDeleteMethod

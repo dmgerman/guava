@@ -9864,6 +9864,22 @@ argument_list|(
 literal|1
 argument_list|)
 decl_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+block|{
+literal|"unused"
+block|,
+literal|"nullness"
+block|}
+argument_list|)
+comment|// go/futurereturn-lsc
+name|Future
+argument_list|<
+name|?
+argument_list|>
+name|possiblyIgnoredError
+init|=
 name|executor
 operator|.
 name|submit
@@ -9887,7 +9903,7 @@ expr_stmt|;
 block|}
 block|}
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 comment|// Cancel the future after making input available.
 name|inputFuture
 operator|.

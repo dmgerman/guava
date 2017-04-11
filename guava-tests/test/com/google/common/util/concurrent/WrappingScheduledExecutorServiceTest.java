@@ -214,6 +214,22 @@ argument_list|(
 name|mock
 argument_list|)
 decl_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+block|{
+literal|"unused"
+block|,
+literal|"nullness"
+block|}
+argument_list|)
+comment|// go/futurereturn-lsc
+name|Future
+argument_list|<
+name|?
+argument_list|>
+name|possiblyIgnoredError
+init|=
 name|testExecutor
 operator|.
 name|schedule
@@ -226,7 +242,7 @@ name|TimeUnit
 operator|.
 name|MINUTES
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|mock
 operator|.
 name|assertLastMethodCalled
@@ -240,6 +256,22 @@ operator|.
 name|MINUTES
 argument_list|)
 expr_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+block|{
+literal|"unused"
+block|,
+literal|"nullness"
+block|}
+argument_list|)
+comment|// go/futurereturn-lsc
+name|Future
+argument_list|<
+name|?
+argument_list|>
+name|possiblyIgnoredError1
+init|=
 name|testExecutor
 operator|.
 name|schedule
@@ -257,7 +289,7 @@ name|TimeUnit
 operator|.
 name|SECONDS
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|mock
 operator|.
 name|assertLastMethodCalled
@@ -294,6 +326,22 @@ argument_list|(
 name|mock
 argument_list|)
 decl_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+block|{
+literal|"unused"
+block|,
+literal|"nullness"
+block|}
+argument_list|)
+comment|// go/futurereturn-lsc
+name|Future
+argument_list|<
+name|?
+argument_list|>
+name|possiblyIgnoredError
+init|=
 name|testExecutor
 operator|.
 name|scheduleWithFixedDelay
@@ -308,7 +356,7 @@ name|TimeUnit
 operator|.
 name|MINUTES
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|mock
 operator|.
 name|assertLastMethodCalled
@@ -324,6 +372,22 @@ operator|.
 name|MINUTES
 argument_list|)
 expr_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+block|{
+literal|"unused"
+block|,
+literal|"nullness"
+block|}
+argument_list|)
+comment|// go/futurereturn-lsc
+name|Future
+argument_list|<
+name|?
+argument_list|>
+name|possiblyIgnoredError1
+init|=
 name|testExecutor
 operator|.
 name|scheduleAtFixedRate
@@ -338,7 +402,7 @@ name|TimeUnit
 operator|.
 name|SECONDS
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|mock
 operator|.
 name|assertLastMethodCalled

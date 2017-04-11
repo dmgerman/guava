@@ -583,6 +583,22 @@ literal|false
 block|}
 control|)
 block|{
+annotation|@
+name|SuppressWarnings
+argument_list|(
+block|{
+literal|"unused"
+block|,
+literal|"nullness"
+block|}
+argument_list|)
+comment|// go/futurereturn-lsc
+name|Future
+argument_list|<
+name|?
+argument_list|>
+name|possiblyIgnoredError
+init|=
 name|threadPool
 operator|.
 name|submit
@@ -595,7 +611,23 @@ argument_list|,
 literal|20
 argument_list|)
 argument_list|)
-expr_stmt|;
+decl_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+block|{
+literal|"unused"
+block|,
+literal|"nullness"
+block|}
+argument_list|)
+comment|// go/futurereturn-lsc
+name|Future
+argument_list|<
+name|?
+argument_list|>
+name|possiblyIgnoredError1
+init|=
 name|threadPool
 operator|.
 name|submit
@@ -608,7 +640,23 @@ argument_list|,
 literal|20
 argument_list|)
 argument_list|)
-expr_stmt|;
+decl_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+block|{
+literal|"unused"
+block|,
+literal|"nullness"
+block|}
+argument_list|)
+comment|// go/futurereturn-lsc
+name|Future
+argument_list|<
+name|?
+argument_list|>
+name|possiblyIgnoredError2
+init|=
 name|threadPool
 operator|.
 name|submit
@@ -621,7 +669,23 @@ argument_list|,
 literal|20
 argument_list|)
 argument_list|)
-expr_stmt|;
+decl_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+block|{
+literal|"unused"
+block|,
+literal|"nullness"
+block|}
+argument_list|)
+comment|// go/futurereturn-lsc
+name|Future
+argument_list|<
+name|?
+argument_list|>
+name|possiblyIgnoredError3
+init|=
 name|threadPool
 operator|.
 name|submit
@@ -634,7 +698,23 @@ argument_list|,
 literal|20
 argument_list|)
 argument_list|)
-expr_stmt|;
+decl_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+block|{
+literal|"unused"
+block|,
+literal|"nullness"
+block|}
+argument_list|)
+comment|// go/futurereturn-lsc
+name|Future
+argument_list|<
+name|?
+argument_list|>
+name|possiblyIgnoredError4
+init|=
 name|threadPool
 operator|.
 name|submit
@@ -647,7 +727,7 @@ argument_list|,
 literal|20
 argument_list|)
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|List
 argument_list|<
 name|Object
@@ -1062,6 +1142,22 @@ parameter_list|)
 throws|throws
 name|InterruptedException
 block|{
+annotation|@
+name|SuppressWarnings
+argument_list|(
+block|{
+literal|"unused"
+block|,
+literal|"nullness"
+block|}
+argument_list|)
+comment|// go/futurereturn-lsc
+name|Future
+argument_list|<
+name|?
+argument_list|>
+name|possiblyIgnoredError
+init|=
 name|threadPool
 operator|.
 name|submit
@@ -1074,7 +1170,7 @@ argument_list|,
 literal|1
 argument_list|)
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|List
 argument_list|<
 name|Object
@@ -1164,6 +1260,22 @@ argument_list|>
 name|q
 parameter_list|)
 block|{
+annotation|@
+name|SuppressWarnings
+argument_list|(
+block|{
+literal|"unused"
+block|,
+literal|"nullness"
+block|}
+argument_list|)
+comment|// go/futurereturn-lsc
+name|Future
+argument_list|<
+name|?
+argument_list|>
+name|possiblyIgnoredError
+init|=
 name|threadPool
 operator|.
 name|submit
@@ -1175,7 +1287,7 @@ name|currentThread
 argument_list|()
 argument_list|)
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 try|try
 block|{
 name|Queues
@@ -1254,6 +1366,22 @@ init|=
 name|currentThread
 argument_list|()
 decl_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+block|{
+literal|"unused"
+block|,
+literal|"nullness"
+block|}
+argument_list|)
+comment|// go/futurereturn-lsc
+name|Future
+argument_list|<
+name|?
+argument_list|>
+name|possiblyIgnoredError
+init|=
 name|threadPool
 operator|.
 name|submit
@@ -1309,7 +1437,7 @@ return|;
 block|}
 block|}
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|List
 argument_list|<
 name|Object
@@ -1568,6 +1696,22 @@ argument_list|()
 throw|;
 block|}
 comment|// but does the wait actually occurs?
+annotation|@
+name|SuppressWarnings
+argument_list|(
+block|{
+literal|"unused"
+block|,
+literal|"nullness"
+block|}
+argument_list|)
+comment|// go/futurereturn-lsc
+name|Future
+argument_list|<
+name|?
+argument_list|>
+name|possiblyIgnoredError
+init|=
 name|threadPool
 operator|.
 name|submit
@@ -1579,7 +1723,7 @@ name|currentThread
 argument_list|()
 argument_list|)
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 try|try
 block|{
 comment|// if waiting works, this should get stuck
@@ -1649,6 +1793,22 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 comment|// but does the wait actually occurs?
+annotation|@
+name|SuppressWarnings
+argument_list|(
+block|{
+literal|"unused"
+block|,
+literal|"nullness"
+block|}
+argument_list|)
+comment|// go/futurereturn-lsc
+name|Future
+argument_list|<
+name|?
+argument_list|>
+name|possiblyIgnoredError
+init|=
 name|threadPool
 operator|.
 name|submit
@@ -1660,7 +1820,7 @@ name|currentThread
 argument_list|()
 argument_list|)
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|Stopwatch
 name|timer
 init|=

@@ -346,6 +346,18 @@ name|util
 operator|.
 name|concurrent
 operator|.
+name|Future
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
 name|TimeUnit
 import|;
 end_import
@@ -2781,6 +2793,22 @@ literal|"a"
 operator|+
 name|i
 decl_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+block|{
+literal|"unused"
+block|,
+literal|"nullness"
+block|}
+argument_list|)
+comment|// go/futurereturn-lsc
+name|Future
+argument_list|<
+name|?
+argument_list|>
+name|possiblyIgnoredError
+init|=
 name|threadPool
 operator|.
 name|submit
@@ -2816,7 +2844,7 @@ expr_stmt|;
 block|}
 block|}
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|expectedKeys
 operator|.
 name|add
@@ -3267,6 +3295,22 @@ name|i
 operator|++
 control|)
 block|{
+annotation|@
+name|SuppressWarnings
+argument_list|(
+block|{
+literal|"unused"
+block|,
+literal|"nullness"
+block|}
+argument_list|)
+comment|// go/futurereturn-lsc
+name|Future
+argument_list|<
+name|?
+argument_list|>
+name|possiblyIgnoredError
+init|=
 name|threadPool
 operator|.
 name|submit
@@ -3319,12 +3363,12 @@ parameter_list|(
 name|RuntimeException
 name|e
 parameter_list|)
-block|{             }
+block|{                     }
 block|}
 block|}
 block|}
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 block|}
 name|threadPool
 operator|.
