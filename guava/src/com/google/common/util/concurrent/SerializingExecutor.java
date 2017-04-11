@@ -48,6 +48,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|j2objc
+operator|.
+name|annotations
+operator|.
+name|WeakOuter
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -157,7 +171,7 @@ decl_stmt|;
 annotation|@
 name|GuardedBy
 argument_list|(
-literal|"internalLock"
+literal|"queue"
 argument_list|)
 DECL|field|queue
 specifier|private
@@ -178,7 +192,7 @@ decl_stmt|;
 annotation|@
 name|GuardedBy
 argument_list|(
-literal|"internalLock"
+literal|"queue"
 argument_list|)
 DECL|field|isWorkerRunning
 specifier|private
@@ -190,7 +204,7 @@ decl_stmt|;
 annotation|@
 name|GuardedBy
 argument_list|(
-literal|"internalLock"
+literal|"queue"
 argument_list|)
 DECL|field|suspensions
 specifier|private
@@ -199,14 +213,14 @@ name|suspensions
 init|=
 literal|0
 decl_stmt|;
-DECL|field|internalLock
+DECL|field|worker
 specifier|private
 specifier|final
-name|Object
-name|internalLock
+name|QueueWorker
+name|worker
 init|=
 operator|new
-name|Object
+name|QueueWorker
 argument_list|()
 decl_stmt|;
 DECL|method|SerializingExecutor (Executor executor)
@@ -230,6 +244,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Adds a task to the queue and makes sure a worker thread is running, unless the queue has been    * suspended.    *    *<p>If this method throws, e.g. a {@code RejectedExecutionException} from the delegate executor,    * execution of tasks will stop until a call to this method or to {@link #resume()} is made.    */
+annotation|@
+name|Override
 DECL|method|execute (Runnable task)
 specifier|public
 name|void
@@ -241,15 +257,30 @@ parameter_list|)
 block|{
 synchronized|synchronized
 init|(
-name|internalLock
+name|queue
 init|)
 block|{
 name|queue
 operator|.
-name|add
+name|addLast
 argument_list|(
 name|task
 argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|isWorkerRunning
+operator|||
+name|suspensions
+operator|>
+literal|0
+condition|)
+block|{
+return|return;
+block|}
+name|isWorkerRunning
+operator|=
+literal|true
 expr_stmt|;
 block|}
 name|startQueueWorker
@@ -268,7 +299,7 @@ parameter_list|)
 block|{
 synchronized|synchronized
 init|(
-name|internalLock
+name|queue
 init|)
 block|{
 name|queue
@@ -277,6 +308,21 @@ name|addFirst
 argument_list|(
 name|task
 argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|isWorkerRunning
+operator|||
+name|suspensions
+operator|>
+literal|0
+condition|)
+block|{
+return|return;
+block|}
+name|isWorkerRunning
+operator|=
+literal|true
 expr_stmt|;
 block|}
 name|startQueueWorker
@@ -292,7 +338,7 @@ parameter_list|()
 block|{
 synchronized|synchronized
 init|(
-name|internalLock
+name|queue
 init|)
 block|{
 name|suspensions
@@ -309,7 +355,7 @@ parameter_list|()
 block|{
 synchronized|synchronized
 init|(
-name|internalLock
+name|queue
 init|)
 block|{
 name|Preconditions
@@ -324,47 +370,18 @@ expr_stmt|;
 name|suspensions
 operator|--
 expr_stmt|;
-block|}
-name|startQueueWorker
-argument_list|()
-expr_stmt|;
-block|}
-DECL|method|startQueueWorker ()
-specifier|private
-name|void
-name|startQueueWorker
-parameter_list|()
-block|{
-synchronized|synchronized
-init|(
-name|internalLock
-init|)
-block|{
-comment|// We sometimes try to start a queue worker without knowing if there is any work to do.
-if|if
-condition|(
-name|queue
-operator|.
-name|peek
-argument_list|()
-operator|==
-literal|null
-condition|)
-block|{
-return|return;
-block|}
-if|if
-condition|(
-name|suspensions
-operator|>
-literal|0
-condition|)
-block|{
-return|return;
-block|}
 if|if
 condition|(
 name|isWorkerRunning
+operator|||
+name|suspensions
+operator|>
+literal|0
+operator|||
+name|queue
+operator|.
+name|isEmpty
+argument_list|()
 condition|)
 block|{
 return|return;
@@ -374,6 +391,17 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
+name|startQueueWorker
+argument_list|()
+expr_stmt|;
+block|}
+comment|/**    * Starts a worker.  This should only be called if:    *    *<ul>    *<li>{@code suspensions == 0}    *<li>{@code isWorkerRunning == true}    *<li>{@code !queue.isEmpty()}    *<li>the {@link #worker} lock is not held    *</ul>    */
+DECL|method|startQueueWorker ()
+specifier|private
+name|void
+name|startQueueWorker
+parameter_list|()
+block|{
 name|boolean
 name|executionRejected
 init|=
@@ -385,9 +413,7 @@ name|executor
 operator|.
 name|execute
 argument_list|(
-operator|new
-name|QueueWorker
-argument_list|()
+name|worker
 argument_list|)
 expr_stmt|;
 name|executionRejected
@@ -406,7 +432,7 @@ comment|// The best we can do is to stop executing the queue, but reset the stat
 comment|// execution can be resumed later if the caller so wishes.
 synchronized|synchronized
 init|(
-name|internalLock
+name|queue
 init|)
 block|{
 name|isWorkerRunning
@@ -418,6 +444,8 @@ block|}
 block|}
 block|}
 comment|/**    * Worker that runs tasks off the queue until it is empty or the queue is suspended.    */
+annotation|@
+name|WeakOuter
 DECL|class|QueueWorker
 specifier|private
 specifier|final
@@ -448,7 +476,7 @@ parameter_list|)
 block|{
 synchronized|synchronized
 init|(
-name|internalLock
+name|queue
 init|)
 block|{
 name|isWorkerRunning
@@ -482,7 +510,7 @@ literal|null
 decl_stmt|;
 synchronized|synchronized
 init|(
-name|internalLock
+name|queue
 init|)
 block|{
 comment|// TODO(user): How should we handle interrupts and shutdowns?
@@ -497,7 +525,7 @@ name|task
 operator|=
 name|queue
 operator|.
-name|poll
+name|pollFirst
 argument_list|()
 expr_stmt|;
 block|}
