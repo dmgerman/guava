@@ -307,7 +307,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Unit test for {@link Streams}.  */
+comment|/** Unit test for {@link Streams}. */
 end_comment
 
 begin_class
