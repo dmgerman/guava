@@ -150,6 +150,18 @@ name|java
 operator|.
 name|util
 operator|.
+name|function
+operator|.
+name|IntConsumer
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|List
 import|;
 end_import
@@ -180,9 +192,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|function
-operator|.
-name|IntConsumer
+name|Spliterators
 import|;
 end_import
 
@@ -1627,6 +1637,35 @@ name|endIndex
 argument_list|)
 return|;
 block|}
+DECL|method|spliterator ()
+specifier|private
+name|Spliterator
+operator|.
+name|OfInt
+name|spliterator
+parameter_list|()
+block|{
+return|return
+name|Spliterators
+operator|.
+name|spliterator
+argument_list|(
+name|array
+argument_list|,
+name|start
+argument_list|,
+name|end
+argument_list|,
+name|Spliterator
+operator|.
+name|IMMUTABLE
+operator||
+name|Spliterator
+operator|.
+name|ORDERED
+argument_list|)
+return|;
+block|}
 comment|/**    * Returns an immutable<i>view</i> of this array's values as a {@code List}; note that {@code    * int} values are boxed into {@link Integer} instances on demand, which can be very expensive.    * The returned list should be used once and discarded. For any usages beyond than that, pass the    * returned list to {@link com.google.common.collect.ImmutableList#copyOf(Collection)    * ImmutableList.copyOf} and use that list instead.    */
 DECL|method|asList ()
 specifier|public
@@ -1680,7 +1719,7 @@ operator|=
 name|parent
 expr_stmt|;
 block|}
-comment|// inherit: isEmpty, containsAll, toArray x2, {,list,spl}iterator, stream, forEach, mutations
+comment|// inherit: isEmpty, containsAll, toArray x2, iterator, listIterator, stream, forEach, mutations
 annotation|@
 name|Override
 DECL|method|size ()
@@ -1824,6 +1863,25 @@ name|toIndex
 argument_list|)
 operator|.
 name|asList
+argument_list|()
+return|;
+block|}
+comment|// The default List spliterator is not efficiently splittable
+annotation|@
+name|Override
+DECL|method|spliterator ()
+specifier|public
+name|Spliterator
+argument_list|<
+name|Integer
+argument_list|>
+name|spliterator
+parameter_list|()
+block|{
+return|return
+name|parent
+operator|.
+name|spliterator
 argument_list|()
 return|;
 block|}
