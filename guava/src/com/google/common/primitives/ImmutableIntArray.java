@@ -92,6 +92,16 @@ begin_import
 import|import
 name|java
 operator|.
+name|io
+operator|.
+name|Serializable
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|util
 operator|.
 name|AbstractList
@@ -172,8 +182,9 @@ specifier|public
 specifier|final
 class|class
 name|ImmutableIntArray
+implements|implements
+name|Serializable
 block|{
-comment|// TODO(kevinb): implements Serializable
 DECL|field|EMPTY
 specifier|private
 specifier|static
@@ -290,7 +301,139 @@ block|}
 argument_list|)
 return|;
 block|}
-comment|// TODO(kevinb): go up to 11
+comment|/** Returns an immutable array containing the given values, in order. */
+DECL|method|of (int e0, int e1, int e2, int e3)
+specifier|public
+specifier|static
+name|ImmutableIntArray
+name|of
+parameter_list|(
+name|int
+name|e0
+parameter_list|,
+name|int
+name|e1
+parameter_list|,
+name|int
+name|e2
+parameter_list|,
+name|int
+name|e3
+parameter_list|)
+block|{
+return|return
+operator|new
+name|ImmutableIntArray
+argument_list|(
+operator|new
+name|int
+index|[]
+block|{
+name|e0
+block|,
+name|e1
+block|,
+name|e2
+block|,
+name|e3
+block|}
+argument_list|)
+return|;
+block|}
+comment|/** Returns an immutable array containing the given values, in order. */
+DECL|method|of (int e0, int e1, int e2, int e3, int e4)
+specifier|public
+specifier|static
+name|ImmutableIntArray
+name|of
+parameter_list|(
+name|int
+name|e0
+parameter_list|,
+name|int
+name|e1
+parameter_list|,
+name|int
+name|e2
+parameter_list|,
+name|int
+name|e3
+parameter_list|,
+name|int
+name|e4
+parameter_list|)
+block|{
+return|return
+operator|new
+name|ImmutableIntArray
+argument_list|(
+operator|new
+name|int
+index|[]
+block|{
+name|e0
+block|,
+name|e1
+block|,
+name|e2
+block|,
+name|e3
+block|,
+name|e4
+block|}
+argument_list|)
+return|;
+block|}
+comment|/** Returns an immutable array containing the given values, in order. */
+DECL|method|of (int e0, int e1, int e2, int e3, int e4, int e5)
+specifier|public
+specifier|static
+name|ImmutableIntArray
+name|of
+parameter_list|(
+name|int
+name|e0
+parameter_list|,
+name|int
+name|e1
+parameter_list|,
+name|int
+name|e2
+parameter_list|,
+name|int
+name|e3
+parameter_list|,
+name|int
+name|e4
+parameter_list|,
+name|int
+name|e5
+parameter_list|)
+block|{
+return|return
+operator|new
+name|ImmutableIntArray
+argument_list|(
+operator|new
+name|int
+index|[]
+block|{
+name|e0
+block|,
+name|e1
+block|,
+name|e2
+block|,
+name|e3
+block|,
+name|e4
+block|,
+name|e5
+block|}
+argument_list|)
+return|;
+block|}
+comment|// TODO(kevinb): go up to 11?
 comment|/** Returns an immutable array containing the given values, in order. */
 comment|// Use (first, rest) so that `of(anIntArray)` won't compile (they should use copyOf), which is
 comment|// okay since we have to copy the just-created array anyway.
@@ -965,10 +1108,11 @@ comment|/*    * TODO(kevinb): evaluate the trade-offs of going bimorphic to save
 DECL|field|start
 specifier|private
 specifier|final
+specifier|transient
 name|int
 name|start
 decl_stmt|;
-comment|// inclusive
+comment|// it happens that we only serialize instances where this is 0
 DECL|field|end
 specifier|private
 specifier|final
@@ -1919,6 +2063,30 @@ operator|<
 name|array
 operator|.
 name|length
+return|;
+block|}
+DECL|method|writeReplace ()
+name|Object
+name|writeReplace
+parameter_list|()
+block|{
+return|return
+name|trimmed
+argument_list|()
+return|;
+block|}
+DECL|method|readResolve ()
+name|Object
+name|readResolve
+parameter_list|()
+block|{
+return|return
+name|isEmpty
+argument_list|()
+condition|?
+name|EMPTY
+else|:
+name|this
 return|;
 block|}
 block|}
