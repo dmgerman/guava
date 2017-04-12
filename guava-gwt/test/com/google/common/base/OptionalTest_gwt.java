@@ -231,10 +231,10 @@ name|testAsSet_presentIsImmutable
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|testEqualsAndHashCode_absent ()
+DECL|method|testEqualsAndHashCode ()
 specifier|public
 name|void
-name|testEqualsAndHashCode_absent
+name|testEqualsAndHashCode
 parameter_list|()
 throws|throws
 name|Exception
@@ -264,44 +264,7 @@ argument_list|()
 decl_stmt|;
 name|testCase
 operator|.
-name|testEqualsAndHashCode_absent
-argument_list|()
-expr_stmt|;
-block|}
-DECL|method|testEqualsAndHashCode_present ()
-specifier|public
-name|void
-name|testEqualsAndHashCode_present
-parameter_list|()
-throws|throws
-name|Exception
-block|{
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|base
-operator|.
-name|OptionalTest
-name|testCase
-init|=
-operator|new
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|base
-operator|.
-name|OptionalTest
-argument_list|()
-decl_stmt|;
-name|testCase
-operator|.
-name|testEqualsAndHashCode_present
+name|testEqualsAndHashCode
 argument_list|()
 expr_stmt|;
 block|}
@@ -1526,10 +1489,10 @@ name|testTransform_absent
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|testTransform_abssent_functionReturnsNull ()
+DECL|method|testTransform_absent_functionReturnsNull ()
 specifier|public
 name|void
-name|testTransform_abssent_functionReturnsNull
+name|testTransform_absent_functionReturnsNull
 parameter_list|()
 throws|throws
 name|Exception
@@ -1559,7 +1522,7 @@ argument_list|()
 decl_stmt|;
 name|testCase
 operator|.
-name|testTransform_abssent_functionReturnsNull
+name|testTransform_absent_functionReturnsNull
 argument_list|()
 expr_stmt|;
 block|}
