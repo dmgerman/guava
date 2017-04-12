@@ -138,6 +138,18 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|stream
+operator|.
+name|Stream
+import|;
+end_import
+
+begin_import
+import|import
 name|javax
 operator|.
 name|annotation
@@ -147,7 +159,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An accumulator that selects the "top" {@code k} elements added to it, relative to a provided  * comparator. "Top" can mean the greatest or the lowest elements, specified in the factory used to  * create the {@code TopKSelector} instance.  *  *<p>If your input data is available as an {@link Iterable} or {@link Iterator}, prefer  * {@link Ordering#leastOf(Iterable, int)}, which provides the same implementation with an  * interface tailored to that use case.  *  *<p>This uses the same efficient implementation as {@link Ordering#leastOf(Iterable, int)},  * offering expected O(n + k log k) performance (worst case O(n log k)) for n calls to  * {@link #offer} and a call to {@link #topK}, with O(k) memory. In comparison, quickselect has the  * same asymptotics but requires O(n) memory, and a {@code PriorityQueue} implementation takes O(n  * log k). In benchmarks, this implementation performs at least as well as either implementation,  * and degrades more gracefully for worst-case input.  *  *<p>The implementation does not necessarily use a<i>stable</i> sorting algorithm; when multiple  * equivalent elements are added to it, it is undefined which will come first in the output.  *  * @author Louis Wasserman  */
+comment|/**  * An accumulator that selects the "top" {@code k} elements added to it, relative to a provided  * comparator. "Top" can mean the greatest or the lowest elements, specified in the factory used to  * create the {@code TopKSelector} instance.  *  *<p>If your input data is available as a {@link Stream}, prefer passing {@link  * Comparators#least(int)} to {@link Stream#collect(java.util.stream.Collector)}. If it is available  * as an {@link Iterable} or {@link Iterator}, prefer {@link Ordering#leastOf(Iterable, int)}.  *  *<p>This uses the same efficient implementation as {@link Ordering#leastOf(Iterable, int)},  * offering expected O(n + k log k) performance (worst case O(n log k)) for n calls to {@link  * #offer} and a call to {@link #topK}, with O(k) memory. In comparison, quickselect has the same  * asymptotics but requires O(n) memory, and a {@code PriorityQueue} implementation takes O(n log  * k). In benchmarks, this implementation performs at least as well as either implementation, and  * degrades more gracefully for worst-case input.  *  *<p>The implementation does not necessarily use a<i>stable</i> sorting algorithm; when multiple  * equivalent elements are added to it, it is undefined which will come first in the output.  *  * @author Louis Wasserman  */
 end_comment
 
 begin_class
