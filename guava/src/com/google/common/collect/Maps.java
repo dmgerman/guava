@@ -2400,7 +2400,7 @@ block|}
 end_function
 
 begin_comment
-comment|/**    * Computes the difference between two maps. This difference is an immutable    * snapshot of the state of the maps at the time this method is called. It    * will never change, even if the maps change at a later time.    *    *<p>Values are compared using a provided equivalence, in the case of    * equality, the value on the 'left' is returned in the difference.    *    *<p>Since this method uses {@code HashMap} instances internally, the keys of    * the supplied maps must be well-behaved with respect to    * {@link Object#equals} and {@link Object#hashCode}.    *    * @param left the map to treat as the "left" map for purposes of comparison    * @param right the map to treat as the "right" map for purposes of comparison    * @param valueEquivalence the equivalence relationship to use to compare    *    values    * @return the difference between the two maps    * @since 10.0    */
+comment|/**    * Computes the difference between two maps. This difference is an immutable    * snapshot of the state of the maps at the time this method is called. It    * will never change, even if the maps change at a later time.    *    *<p>Since this method uses {@code HashMap} instances internally, the keys of    * the supplied maps must be well-behaved with respect to    * {@link Object#equals} and {@link Object#hashCode}.    *    * @param left the map to treat as the "left" map for purposes of comparison    * @param right the map to treat as the "right" map for purposes of comparison    * @param valueEquivalence the equivalence relationship to use to compare    *    values    * @return the difference between the two maps    * @since 10.0    */
 end_comment
 
 begin_function
