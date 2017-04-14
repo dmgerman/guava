@@ -217,11 +217,7 @@ decl_stmt|;
 annotation|@
 name|SuppressWarnings
 argument_list|(
-block|{
 literal|"unused"
-block|,
-literal|"nullness"
-block|}
 argument_list|)
 comment|// go/futurereturn-lsc
 name|Future
@@ -259,11 +255,7 @@ expr_stmt|;
 annotation|@
 name|SuppressWarnings
 argument_list|(
-block|{
 literal|"unused"
-block|,
-literal|"nullness"
-block|}
 argument_list|)
 comment|// go/futurereturn-lsc
 name|Future
@@ -329,11 +321,7 @@ decl_stmt|;
 annotation|@
 name|SuppressWarnings
 argument_list|(
-block|{
 literal|"unused"
-block|,
-literal|"nullness"
-block|}
 argument_list|)
 comment|// go/futurereturn-lsc
 name|Future
@@ -375,11 +363,7 @@ expr_stmt|;
 annotation|@
 name|SuppressWarnings
 argument_list|(
-block|{
 literal|"unused"
-block|,
-literal|"nullness"
-block|}
 argument_list|)
 comment|// go/futurereturn-lsc
 name|Future
