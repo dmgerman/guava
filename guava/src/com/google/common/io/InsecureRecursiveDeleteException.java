@@ -100,8 +100,6 @@ begin_class
 annotation|@
 name|Beta
 annotation|@
-name|AndroidIncompatible
-annotation|@
 name|GwtIncompatible
 annotation|@
 name|J2ObjCIncompatible

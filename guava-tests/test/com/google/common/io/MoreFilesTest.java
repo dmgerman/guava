@@ -369,8 +369,6 @@ comment|/**  * Tests for {@link MoreFiles}.  *  * @author Colin Decker  */
 end_comment
 
 begin_class
-annotation|@
-name|AndroidIncompatible
 DECL|class|MoreFilesTest
 specifier|public
 class|class
