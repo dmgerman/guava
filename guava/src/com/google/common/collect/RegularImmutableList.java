@@ -51,7 +51,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Implementation of {@link ImmutableList} used for 0 or 2+ elements (not 1).  *  * @author Kevin Bourrillion  */
+comment|/**  * Implementation of {@link ImmutableList} backed by a simple array.  *  * @author Kevin Bourrillion  */
 end_comment
 
 begin_class
