@@ -77,7 +77,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * The presence of this annotation on an API indicates that the method may<em>not</em> be used with  * the<a href="http://www.gwtproject.org/">Google Web Toolkit</a> (GWT).  *  *<p>This annotation behaves identically to<a href=  * "http://www.gwtproject.org/javadoc/latest/com/google/gwt/core/shared/GwtIncompatible.html">the  * {@code @GwtCompatible} annotation in GWT itself</a>.  *  * @author Charles Fry  */
+comment|/**  * The presence of this annotation on an API indicates that the method may<em>not</em> be used with  * the<a href="http://www.gwtproject.org/">Google Web Toolkit</a> (GWT).  *  *<p>This annotation behaves identically to<a href=  * "http://www.gwtproject.org/javadoc/latest/com/google/gwt/core/shared/GwtIncompatible.html">the  * {@code @GwtIncompatible} annotation in GWT itself</a>.  *  * @author Charles Fry  */
 end_comment
 
 begin_annotation_defn
