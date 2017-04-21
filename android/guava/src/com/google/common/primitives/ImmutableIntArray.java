@@ -33,22 +33,6 @@ import|;
 end_import
 
 begin_import
-import|import static
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|base
-operator|.
-name|Preconditions
-operator|.
-name|checkNotNull
-import|;
-end_import
-
-begin_import
 import|import
 name|com
 operator|.
@@ -150,18 +134,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|function
-operator|.
-name|IntConsumer
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|List
 import|;
 end_import
@@ -173,38 +145,6 @@ operator|.
 name|util
 operator|.
 name|RandomAccess
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Spliterator
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Spliterators
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|stream
-operator|.
-name|IntStream
 import|;
 end_import
 
@@ -229,7 +169,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An immutable array of {@code int} values, with an API resembling {@link List}.  *  *<p>Advantages compared to {@code int[]}:  *  *<ul>  *<li>All the many well-known advantages of immutability (read<i>Effective Java</i>, second  *       edition, Item 15).  *<li>Has the value-based (not identity-based) {@link #equals}, {@link #hashCode}, and {@link  *       #toString} behavior you expect.  *<li>Offers useful operations beyond just {@code get} and {@code length}, so you don't have to  *       hunt through classes like {@link Arrays} and {@link Ints} for them.  *<li>Supports a copy-free {@link #subArray} view, so methods that accept this type don't need to  *       add overloads that accept start and end indexes.  *<li>Can be streamed without "breaking the chain": {@code foo.getBarInts().stream()...}.  *<li>Access to all collection-based utilities via {@link #asList} (though at the cost of  *       allocating garbage).  *</ul>  *  *<p>Disadvantages compared to {@code int[]}:  *  *<ul>  *<li>Memory footprint has a fixed overhead (about 24 bytes per instance).  *<li><i>Some</i> construction use cases force the data to be copied (though several construction  *       APIs are offered that don't).  *<li>Can't be passed directly to methods that expect {@code int[]} (though the most common  *       utilities do have replacements here).  *<li>Dependency on {@code com.google.common} / Guava.  *</ul>  *  *<p>Advantages compared to {@link com.google.common.collect.ImmutableList ImmutableList}{@code  *<Integer>}:  *  *<ul>  *<li>Improved memory compactness and locality.  *<li>Can be queried without allocating garbage.  *<li>Access to {@code IntStream} features (like {@link IntStream#sum}) using {@code stream()}  *       instead of the awkward {@code stream().mapToInt(i -> i)}.  *</ul>  *  *<p>Disadvantages compared to {@code ImmutableList<Integer>}:  *  *<ul>  *<li>Can't be passed directly to methods that expect {@code Iterable}, {@code Collection}, or  *       {@code List} (though the most common utilities do have replacements here, and there is a  *       lazy {@link #asList} view).  *</ul>  *  *<p><b>Note:</b> this class will be forked into {@code ImmutableLongArray} and {@code  * ImmutableDoubleArray} once it stabilizes.  *  * @since 22.0  */
+comment|/**  * An immutable array of {@code int} values, with an API resembling {@link List}.  *  *<p>Advantages compared to {@code int[]}:  *  *<ul>  *<li>All the many well-known advantages of immutability (read<i>Effective Java</i>, second  *       edition, Item 15).  *<li>Has the value-based (not identity-based) {@link #equals}, {@link #hashCode}, and  *       {@link #toString} behavior you expect  *<li>Offers useful operations beyond just {@code get} and {@code length}, so you don't have to  *       hunt through classes like {@link Arrays} and {@link Ints} for them.  *<li>Supports a copy-free {@link #subArray} view, so methods that accept this type don't need to  *       add overloads that accept start and end indexes.  *<li>Access to all collection-based utilities via {@link #asList} (though at the cost of  *       allocating garbage).  *</ul>  *  *<p>Disadvantages compared to {@code int[]}:  *  *<ul>  *<li>Memory footprint has a fixed overhead (about 24 bytes per instance).  *<li><i>Some</i> construction use cases force the data to be copied (though several construction  *       APIs are offered that don't).  *<li>Can't be passed directly to methods that expect {@code int[]} (though the most common  *       utilities do have replacements here).  *<li>Dependency on {@code com.google.common} / Guava.  *</ul>  *  *<p>Advantages compared to {@link com.google.common.collect.ImmutableList ImmutableList}{@code  *<Integer>}:  *  *<ul>  *<li>Improved memory compactness and locality  *<li>Can be queried without allocating garbage  *</ul>  *  *<p>Disadvantages compared to {@code ImmutableList<Integer>}:  *  *<ul>  *<li>Can't be passed directly to methods that expect {@code Iterable}, {@code Collection}, or  *       {@code List} (though the most common utilities do have replacements here, and there is a  *       lazy {@link #asList} view).  *</ul>  *  *<p><b>Note:</b> this class will be forked into {@code ImmutableLongArray} and {@code  * ImmutableDoubleArray} once it stabilizes.  *  * @since 22.0  */
 end_comment
 
 begin_class
@@ -675,45 +615,6 @@ name|build
 argument_list|()
 return|;
 block|}
-comment|/** Returns an immutable array containing all the values from {@code stream}, in order. */
-DECL|method|copyOf (IntStream stream)
-specifier|public
-specifier|static
-name|ImmutableIntArray
-name|copyOf
-parameter_list|(
-name|IntStream
-name|stream
-parameter_list|)
-block|{
-comment|// Note this uses very different growth behavior from copyOf(Iterable) and the builder.
-name|int
-index|[]
-name|array
-init|=
-name|stream
-operator|.
-name|toArray
-argument_list|()
-decl_stmt|;
-return|return
-operator|(
-name|array
-operator|.
-name|length
-operator|==
-literal|0
-operator|)
-condition|?
-name|EMPTY
-else|:
-operator|new
-name|ImmutableIntArray
-argument_list|(
-name|array
-argument_list|)
-return|;
-block|}
 comment|/**    * Returns a new, empty builder for {@link ImmutableIntArray} instances, sized to hold up to    * {@code initialCapacity} values without resizing. The returned builder is not thread-safe.    *    *<p><b>Performance note:</b> When feasible, {@code initialCapacity} should be the exact number    * of values that will be added, if that knowledge is readily available. It is better to guess a    * value slightly too high than slightly too low. If the value is not exact, the {@link    * ImmutableIntArray} that is built will very likely occupy more memory than strictly necessary;    * to trim memory usage, build using {@code builder.build().trimmed()}.    */
 DECL|method|builder (int initialCapacity)
 specifier|public
@@ -968,69 +869,6 @@ return|return
 name|this
 return|;
 block|}
-comment|/**      * Appends all values from {@code stream}, in order, to the end of the values the built {@link      * ImmutableIntArray} will contain.      */
-DECL|method|addAll (IntStream stream)
-specifier|public
-name|Builder
-name|addAll
-parameter_list|(
-name|IntStream
-name|stream
-parameter_list|)
-block|{
-name|Spliterator
-operator|.
-name|OfInt
-name|spliterator
-init|=
-name|stream
-operator|.
-name|spliterator
-argument_list|()
-decl_stmt|;
-name|long
-name|size
-init|=
-name|spliterator
-operator|.
-name|getExactSizeIfKnown
-argument_list|()
-decl_stmt|;
-if|if
-condition|(
-name|size
-operator|>
-literal|0
-condition|)
-block|{
-comment|// known *and* nonempty
-name|ensureRoomFor
-argument_list|(
-name|Ints
-operator|.
-name|saturatedCast
-argument_list|(
-name|size
-argument_list|)
-argument_list|)
-expr_stmt|;
-block|}
-name|spliterator
-operator|.
-name|forEachRemaining
-argument_list|(
-operator|(
-name|IntConsumer
-operator|)
-name|this
-operator|::
-name|add
-argument_list|)
-expr_stmt|;
-return|return
-name|this
-return|;
-block|}
 comment|/**      * Appends {@code values}, in order, to the end of the values the built {@link      * ImmutableIntArray} will contain.      */
 DECL|method|addAll (ImmutableIntArray values)
 specifier|public
@@ -1230,7 +1068,7 @@ return|return
 name|newCapacity
 return|;
 block|}
-comment|/**      * Returns a new immutable array. The builder can continue to be used after this call, to append      * more values and build again.      *      *<p><b>Performance note:</b> the returned array is backed by the same array as the builder, so      * no data is copied as part of this step, but this may occupy more memory than strictly      * necessary. To copy the data to a right-sized backing array, use {@code .build().trimmed()}.      */
+comment|/**      * Returns a new immutable array. The builder can continue to be used after this call, to      * append more values and build again.      *      *<p><b>Performance note:</b> the returned array is backed by the same array as the builder, so      * no data is copied as part of this step, but this may occupy more memory than strictly      * necessary. To copy the data to a right-sized backing array, use {@code .build().trimmed()}.      */
 annotation|@
 name|CheckReturnValue
 DECL|method|build ()
@@ -1507,68 +1345,8 @@ operator|>=
 literal|0
 return|;
 block|}
-comment|/** Invokes {@code consumer} for each value contained in this array, in order. */
-DECL|method|forEach (IntConsumer consumer)
-specifier|public
-name|void
-name|forEach
-parameter_list|(
-name|IntConsumer
-name|consumer
-parameter_list|)
-block|{
-name|checkNotNull
-argument_list|(
-name|consumer
-argument_list|)
-expr_stmt|;
-for|for
-control|(
-name|int
-name|i
-init|=
-name|start
-init|;
-name|i
-operator|<
-name|end
-condition|;
-name|i
-operator|++
-control|)
-block|{
-name|consumer
-operator|.
-name|accept
-argument_list|(
-name|array
-index|[
-name|i
-index|]
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-comment|/** Returns a stream over the values in this array, in order. */
-DECL|method|stream ()
-specifier|public
-name|IntStream
-name|stream
-parameter_list|()
-block|{
-return|return
-name|Arrays
-operator|.
-name|stream
-argument_list|(
-name|array
-argument_list|,
-name|start
-argument_list|,
-name|end
-argument_list|)
-return|;
-block|}
+comment|// TODO(kevinb): other instance methods to consider if we fork common.primitives:
+comment|// forEach(IntConsumer), stream()
 comment|/** Returns a new, mutable copy of this array's values, as a primitive {@code int[]}. */
 DECL|method|toArray ()
 specifier|public
@@ -1637,35 +1415,6 @@ name|endIndex
 argument_list|)
 return|;
 block|}
-DECL|method|spliterator ()
-specifier|private
-name|Spliterator
-operator|.
-name|OfInt
-name|spliterator
-parameter_list|()
-block|{
-return|return
-name|Spliterators
-operator|.
-name|spliterator
-argument_list|(
-name|array
-argument_list|,
-name|start
-argument_list|,
-name|end
-argument_list|,
-name|Spliterator
-operator|.
-name|IMMUTABLE
-operator||
-name|Spliterator
-operator|.
-name|ORDERED
-argument_list|)
-return|;
-block|}
 comment|/**    * Returns an immutable<i>view</i> of this array's values as a {@code List}; note that {@code    * int} values are boxed into {@link Integer} instances on demand, which can be very expensive.    * The returned list should be used once and discarded. For any usages beyond than that, pass the    * returned list to {@link com.google.common.collect.ImmutableList#copyOf(Collection)    * ImmutableList.copyOf} and use that list instead.    */
 DECL|method|asList ()
 specifier|public
@@ -1719,7 +1468,7 @@ operator|=
 name|parent
 expr_stmt|;
 block|}
-comment|// inherit: isEmpty, containsAll, toArray x2, iterator, listIterator, stream, forEach, mutations
+comment|// inherit: isEmpty, containsAll, toArray x2, {,list,spl}iterator, stream, forEach, mutations
 annotation|@
 name|Override
 DECL|method|size ()
@@ -1863,25 +1612,6 @@ name|toIndex
 argument_list|)
 operator|.
 name|asList
-argument_list|()
-return|;
-block|}
-comment|// The default List spliterator is not efficiently splittable
-annotation|@
-name|Override
-DECL|method|spliterator ()
-specifier|public
-name|Spliterator
-argument_list|<
-name|Integer
-argument_list|>
-name|spliterator
-parameter_list|()
-block|{
-return|return
-name|parent
-operator|.
-name|spliterator
 argument_list|()
 return|;
 block|}
