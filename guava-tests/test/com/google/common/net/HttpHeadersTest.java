@@ -192,6 +192,8 @@ literal|"ID"
 argument_list|,
 literal|"DNT"
 argument_list|,
+literal|"DNS"
+argument_list|,
 literal|"IP"
 argument_list|,
 literal|"MD5"

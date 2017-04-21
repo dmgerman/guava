@@ -972,6 +972,16 @@ name|X_XSS_PROTECTION
 init|=
 literal|"X-XSS-Protection"
 decl_stmt|;
+comment|/**    * The HTTP<a    * href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-DNS-Prefetch-Control">{@code    * X-DNS-Prefetch-Control}</a> header controls DNS prefetch behavior. Value can be "on" or "off".    * By default, DNS prefetching is "on" for HTTP pages and "off" for HTTPS pages.    */
+DECL|field|X_DNS_PREFETCH_CONTROL
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|X_DNS_PREFETCH_CONTROL
+init|=
+literal|"X-DNS-Prefetch-Control"
+decl_stmt|;
 comment|/**    * The HTTP<a href="http://html.spec.whatwg.org/multipage/semantics.html#hyperlink-auditing">    * {@code Ping-From}</a> header field name.    *    * @since 19.0    */
 DECL|field|PING_FROM
 specifier|public
