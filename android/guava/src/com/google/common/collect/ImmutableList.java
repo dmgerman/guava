@@ -1293,6 +1293,11 @@ operator|>
 name|of
 argument_list|()
 else|:
+name|ImmutableList
+operator|.
+expr|<
+name|E
+operator|>
 name|construct
 argument_list|(
 name|elements

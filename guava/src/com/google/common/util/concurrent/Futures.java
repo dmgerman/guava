@@ -2410,6 +2410,9 @@ name|add
 argument_list|(
 name|SettableFuture
 operator|.
+expr|<
+name|T
+operator|>
 name|create
 argument_list|()
 argument_list|)

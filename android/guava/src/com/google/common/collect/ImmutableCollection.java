@@ -547,11 +547,17 @@ argument_list|()
 condition|?
 name|ImmutableList
 operator|.
+expr|<
+name|E
+operator|>
 name|of
 argument_list|()
 else|:
 name|ImmutableList
 operator|.
+expr|<
+name|E
+operator|>
 name|asImmutableList
 argument_list|(
 name|toArray

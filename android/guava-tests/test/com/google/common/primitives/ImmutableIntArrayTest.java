@@ -739,6 +739,9 @@ name|iterable
 argument_list|(
 name|Collections
 operator|.
+expr|<
+name|Integer
+operator|>
 name|emptySet
 argument_list|()
 argument_list|)
