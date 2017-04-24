@@ -1345,8 +1345,6 @@ operator|>=
 literal|0
 return|;
 block|}
-comment|// TODO(kevinb): other instance methods to consider if we fork common.primitives:
-comment|// forEach(IntConsumer), stream()
 comment|/** Returns a new, mutable copy of this array's values, as a primitive {@code int[]}. */
 DECL|method|toArray ()
 specifier|public
