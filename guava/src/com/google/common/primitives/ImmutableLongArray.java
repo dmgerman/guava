@@ -192,7 +192,7 @@ name|util
 operator|.
 name|function
 operator|.
-name|IntConsumer
+name|LongConsumer
 import|;
 end_import
 
@@ -204,7 +204,7 @@ name|util
 operator|.
 name|stream
 operator|.
-name|IntStream
+name|LongStream
 import|;
 end_import
 
@@ -229,7 +229,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An immutable array of {@code int} values, with an API resembling {@link List}.  *  *<p>Advantages compared to {@code int[]}:  *  *<ul>  *<li>All the many well-known advantages of immutability (read<i>Effective Java</i>, second  *       edition, Item 15).  *<li>Has the value-based (not identity-based) {@link #equals}, {@link #hashCode}, and {@link  *       #toString} behavior you expect.  *<li>Offers useful operations beyond just {@code get} and {@code length}, so you don't have to  *       hunt through classes like {@link Arrays} and {@link Ints} for them.  *<li>Supports a copy-free {@link #subArray} view, so methods that accept this type don't need to  *       add overloads that accept start and end indexes.  *<li>Can be streamed without "breaking the chain": {@code foo.getBarInts().stream()...}.  *<li>Access to all collection-based utilities via {@link #asList} (though at the cost of  *       allocating garbage).  *</ul>  *  *<p>Disadvantages compared to {@code int[]}:  *  *<ul>  *<li>Memory footprint has a fixed overhead (about 24 bytes per instance).  *<li><i>Some</i> construction use cases force the data to be copied (though several construction  *       APIs are offered that don't).  *<li>Can't be passed directly to methods that expect {@code int[]} (though the most common  *       utilities do have replacements here).  *<li>Dependency on {@code com.google.common} / Guava.  *</ul>  *  *<p>Advantages compared to {@link com.google.common.collect.ImmutableList ImmutableList}{@code  *<Integer>}:  *  *<ul>  *<li>Improved memory compactness and locality.  *<li>Can be queried without allocating garbage.  *<li>Access to {@code IntStream} features (like {@link IntStream#sum}) using {@code stream()}  *       instead of the awkward {@code stream().mapToInt(v -> v)}.  *</ul>  *  *<p>Disadvantages compared to {@code ImmutableList<Integer>}:  *  *<ul>  *<li>Can't be passed directly to methods that expect {@code Iterable}, {@code Collection}, or  *       {@code List} (though the most common utilities do have replacements here, and there is a  *       lazy {@link #asList} view).  *</ul>  *  * @since 22.0  */
+comment|/**  * An immutable array of {@code long} values, with an API resembling {@link List}.  *  *<p>Advantages compared to {@code long[]}:  *  *<ul>  *<li>All the many well-known advantages of immutability (read<i>Effective Java</i>, second  *       edition, Item 15).  *<li>Has the value-based (not identity-based) {@link #equals}, {@link #hashCode}, and {@link  *       #toString} behavior you expect.  *<li>Offers useful operations beyond just {@code get} and {@code length}, so you don't have to  *       hunt through classes like {@link Arrays} and {@link Longs} for them.  *<li>Supports a copy-free {@link #subArray} view, so methods that accept this type don't need to  *       add overloads that accept start and end indexes.  *<li>Can be streamed without "breaking the chain": {@code foo.getBarLongs().stream()...}.  *<li>Access to all collection-based utilities via {@link #asList} (though at the cost of  *       allocating garbage).  *</ul>  *  *<p>Disadvantages compared to {@code long[]}:  *  *<ul>  *<li>Memory footprint has a fixed overhead (about 24 bytes per instance).  *<li><i>Some</i> construction use cases force the data to be copied (though several construction  *       APIs are offered that don't).  *<li>Can't be passed directly to methods that expect {@code long[]} (though the most common  *       utilities do have replacements here).  *<li>Dependency on {@code com.google.common} / Guava.  *</ul>  *  *<p>Advantages compared to {@link com.google.common.collect.ImmutableList ImmutableList}{@code  *<Long>}:  *  *<ul>  *<li>Improved memory compactness and locality.  *<li>Can be queried without allocating garbage.  *<li>Access to {@code LongStream} features (like {@link LongStream#sum}) using {@code stream()}  *       instead of the awkward {@code stream().mapToLong(v -> v)}.  *</ul>  *  *<p>Disadvantages compared to {@code ImmutableList<Long>}:  *  *<ul>  *<li>Can't be passed directly to methods that expect {@code Iterable}, {@code Collection}, or  *       {@code List} (though the most common utilities do have replacements here, and there is a  *       lazy {@link #asList} view).  *</ul>  *  * @since 22.0  */
 end_comment
 
 begin_class
@@ -237,11 +237,11 @@ annotation|@
 name|Beta
 annotation|@
 name|GwtCompatible
-DECL|class|ImmutableIntArray
+DECL|class|ImmutableLongArray
 specifier|public
 specifier|final
 class|class
-name|ImmutableIntArray
+name|ImmutableLongArray
 implements|implements
 name|Serializable
 block|{
@@ -249,14 +249,14 @@ DECL|field|EMPTY
 specifier|private
 specifier|static
 specifier|final
-name|ImmutableIntArray
+name|ImmutableLongArray
 name|EMPTY
 init|=
 operator|new
-name|ImmutableIntArray
+name|ImmutableLongArray
 argument_list|(
 operator|new
-name|int
+name|long
 index|[
 literal|0
 index|]
@@ -266,7 +266,7 @@ comment|/** Returns the empty array. */
 DECL|method|of ()
 specifier|public
 specifier|static
-name|ImmutableIntArray
+name|ImmutableLongArray
 name|of
 parameter_list|()
 block|{
@@ -275,22 +275,22 @@ name|EMPTY
 return|;
 block|}
 comment|/** Returns an immutable array containing a single value. */
-DECL|method|of (int e0)
+DECL|method|of (long e0)
 specifier|public
 specifier|static
-name|ImmutableIntArray
+name|ImmutableLongArray
 name|of
 parameter_list|(
-name|int
+name|long
 name|e0
 parameter_list|)
 block|{
 return|return
 operator|new
-name|ImmutableIntArray
+name|ImmutableLongArray
 argument_list|(
 operator|new
-name|int
+name|long
 index|[]
 block|{
 name|e0
@@ -299,25 +299,25 @@ argument_list|)
 return|;
 block|}
 comment|/** Returns an immutable array containing the given values, in order. */
-DECL|method|of (int e0, int e1)
+DECL|method|of (long e0, long e1)
 specifier|public
 specifier|static
-name|ImmutableIntArray
+name|ImmutableLongArray
 name|of
 parameter_list|(
-name|int
+name|long
 name|e0
 parameter_list|,
-name|int
+name|long
 name|e1
 parameter_list|)
 block|{
 return|return
 operator|new
-name|ImmutableIntArray
+name|ImmutableLongArray
 argument_list|(
 operator|new
-name|int
+name|long
 index|[]
 block|{
 name|e0
@@ -328,28 +328,28 @@ argument_list|)
 return|;
 block|}
 comment|/** Returns an immutable array containing the given values, in order. */
-DECL|method|of (int e0, int e1, int e2)
+DECL|method|of (long e0, long e1, long e2)
 specifier|public
 specifier|static
-name|ImmutableIntArray
+name|ImmutableLongArray
 name|of
 parameter_list|(
-name|int
+name|long
 name|e0
 parameter_list|,
-name|int
+name|long
 name|e1
 parameter_list|,
-name|int
+name|long
 name|e2
 parameter_list|)
 block|{
 return|return
 operator|new
-name|ImmutableIntArray
+name|ImmutableLongArray
 argument_list|(
 operator|new
-name|int
+name|long
 index|[]
 block|{
 name|e0
@@ -362,31 +362,31 @@ argument_list|)
 return|;
 block|}
 comment|/** Returns an immutable array containing the given values, in order. */
-DECL|method|of (int e0, int e1, int e2, int e3)
+DECL|method|of (long e0, long e1, long e2, long e3)
 specifier|public
 specifier|static
-name|ImmutableIntArray
+name|ImmutableLongArray
 name|of
 parameter_list|(
-name|int
+name|long
 name|e0
 parameter_list|,
-name|int
+name|long
 name|e1
 parameter_list|,
-name|int
+name|long
 name|e2
 parameter_list|,
-name|int
+name|long
 name|e3
 parameter_list|)
 block|{
 return|return
 operator|new
-name|ImmutableIntArray
+name|ImmutableLongArray
 argument_list|(
 operator|new
-name|int
+name|long
 index|[]
 block|{
 name|e0
@@ -401,34 +401,34 @@ argument_list|)
 return|;
 block|}
 comment|/** Returns an immutable array containing the given values, in order. */
-DECL|method|of (int e0, int e1, int e2, int e3, int e4)
+DECL|method|of (long e0, long e1, long e2, long e3, long e4)
 specifier|public
 specifier|static
-name|ImmutableIntArray
+name|ImmutableLongArray
 name|of
 parameter_list|(
-name|int
+name|long
 name|e0
 parameter_list|,
-name|int
+name|long
 name|e1
 parameter_list|,
-name|int
+name|long
 name|e2
 parameter_list|,
-name|int
+name|long
 name|e3
 parameter_list|,
-name|int
+name|long
 name|e4
 parameter_list|)
 block|{
 return|return
 operator|new
-name|ImmutableIntArray
+name|ImmutableLongArray
 argument_list|(
 operator|new
-name|int
+name|long
 index|[]
 block|{
 name|e0
@@ -445,37 +445,37 @@ argument_list|)
 return|;
 block|}
 comment|/** Returns an immutable array containing the given values, in order. */
-DECL|method|of (int e0, int e1, int e2, int e3, int e4, int e5)
+DECL|method|of (long e0, long e1, long e2, long e3, long e4, long e5)
 specifier|public
 specifier|static
-name|ImmutableIntArray
+name|ImmutableLongArray
 name|of
 parameter_list|(
-name|int
+name|long
 name|e0
 parameter_list|,
-name|int
+name|long
 name|e1
 parameter_list|,
-name|int
+name|long
 name|e2
 parameter_list|,
-name|int
+name|long
 name|e3
 parameter_list|,
-name|int
+name|long
 name|e4
 parameter_list|,
-name|int
+name|long
 name|e5
 parameter_list|)
 block|{
 return|return
 operator|new
-name|ImmutableIntArray
+name|ImmutableLongArray
 argument_list|(
 operator|new
-name|int
+name|long
 index|[]
 block|{
 name|e0
@@ -495,28 +495,28 @@ return|;
 block|}
 comment|// TODO(kevinb): go up to 11?
 comment|/** Returns an immutable array containing the given values, in order. */
-comment|// Use (first, rest) so that `of(someIntArray)` won't compile (they should use copyOf), which is
+comment|// Use (first, rest) so that `of(someLongArray)` won't compile (they should use copyOf), which is
 comment|// okay since we have to copy the just-created array anyway.
-DECL|method|of (int first, int... rest)
+DECL|method|of (long first, long... rest)
 specifier|public
 specifier|static
-name|ImmutableIntArray
+name|ImmutableLongArray
 name|of
 parameter_list|(
-name|int
+name|long
 name|first
 parameter_list|,
-name|int
+name|long
 modifier|...
 name|rest
 parameter_list|)
 block|{
-name|int
+name|long
 index|[]
 name|array
 init|=
 operator|new
-name|int
+name|long
 index|[
 name|rest
 operator|.
@@ -551,20 +551,20 @@ argument_list|)
 expr_stmt|;
 return|return
 operator|new
-name|ImmutableIntArray
+name|ImmutableLongArray
 argument_list|(
 name|array
 argument_list|)
 return|;
 block|}
 comment|/** Returns an immutable array containing the given values, in order. */
-DECL|method|copyOf (int[] values)
+DECL|method|copyOf (long[] values)
 specifier|public
 specifier|static
-name|ImmutableIntArray
+name|ImmutableLongArray
 name|copyOf
 parameter_list|(
-name|int
+name|long
 index|[]
 name|values
 parameter_list|)
@@ -579,7 +579,7 @@ condition|?
 name|EMPTY
 else|:
 operator|new
-name|ImmutableIntArray
+name|ImmutableLongArray
 argument_list|(
 name|Arrays
 operator|.
@@ -595,15 +595,15 @@ argument_list|)
 return|;
 block|}
 comment|/** Returns an immutable array containing the given values, in order. */
-DECL|method|copyOf (Collection<Integer> values)
+DECL|method|copyOf (Collection<Long> values)
 specifier|public
 specifier|static
-name|ImmutableIntArray
+name|ImmutableLongArray
 name|copyOf
 parameter_list|(
 name|Collection
 argument_list|<
-name|Integer
+name|Long
 argument_list|>
 name|values
 parameter_list|)
@@ -617,9 +617,9 @@ condition|?
 name|EMPTY
 else|:
 operator|new
-name|ImmutableIntArray
+name|ImmutableLongArray
 argument_list|(
-name|Ints
+name|Longs
 operator|.
 name|toArray
 argument_list|(
@@ -629,15 +629,15 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns an immutable array containing the given values, in order.    *    *<p><b>Performance note:</b> this method delegates to {@link #copyOf(Collection)} if {@code    * values} is a {@link Collection}. Otherwise it creates a {@link #builder} and uses {@link    * Builder#addAll(Iterable)}, with all the performance implications associated with that.    */
-DECL|method|copyOf (Iterable<Integer> values)
+DECL|method|copyOf (Iterable<Long> values)
 specifier|public
 specifier|static
-name|ImmutableIntArray
+name|ImmutableLongArray
 name|copyOf
 parameter_list|(
 name|Iterable
 argument_list|<
-name|Integer
+name|Long
 argument_list|>
 name|values
 parameter_list|)
@@ -655,7 +655,7 @@ argument_list|(
 operator|(
 name|Collection
 argument_list|<
-name|Integer
+name|Long
 argument_list|>
 operator|)
 name|values
@@ -676,18 +676,18 @@ argument_list|()
 return|;
 block|}
 comment|/** Returns an immutable array containing all the values from {@code stream}, in order. */
-DECL|method|copyOf (IntStream stream)
+DECL|method|copyOf (LongStream stream)
 specifier|public
 specifier|static
-name|ImmutableIntArray
+name|ImmutableLongArray
 name|copyOf
 parameter_list|(
-name|IntStream
+name|LongStream
 name|stream
 parameter_list|)
 block|{
 comment|// Note this uses very different growth behavior from copyOf(Iterable) and the builder.
-name|int
+name|long
 index|[]
 name|array
 init|=
@@ -708,13 +708,13 @@ condition|?
 name|EMPTY
 else|:
 operator|new
-name|ImmutableIntArray
+name|ImmutableLongArray
 argument_list|(
 name|array
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a new, empty builder for {@link ImmutableIntArray} instances, sized to hold up to    * {@code initialCapacity} values without resizing. The returned builder is not thread-safe.    *    *<p><b>Performance note:</b> When feasible, {@code initialCapacity} should be the exact number    * of values that will be added, if that knowledge is readily available. It is better to guess a    * value slightly too high than slightly too low. If the value is not exact, the {@link    * ImmutableIntArray} that is built will very likely occupy more memory than strictly necessary;    * to trim memory usage, build using {@code builder.build().trimmed()}.    */
+comment|/**    * Returns a new, empty builder for {@link ImmutableLongArray} instances, sized to hold up to    * {@code initialCapacity} values without resizing. The returned builder is not thread-safe.    *    *<p><b>Performance note:</b> When feasible, {@code initialCapacity} should be the exact number    * of values that will be added, if that knowledge is readily available. It is better to guess a    * value slightly too high than slightly too low. If the value is not exact, the {@link    * ImmutableLongArray} that is built will very likely occupy more memory than strictly necessary;    * to trim memory usage, build using {@code builder.build().trimmed()}.    */
 DECL|method|builder (int initialCapacity)
 specifier|public
 specifier|static
@@ -744,7 +744,7 @@ name|initialCapacity
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a new, empty builder for {@link ImmutableIntArray} instances, with a default initial    * capacity. The returned builder is not thread-safe.    *    *<p><b>Performance note:</b> The {@link ImmutableIntArray} that is built will very likely occupy    * more memory than necessary; to trim memory usage, build using {@code    * builder.build().trimmed()}.    */
+comment|/**    * Returns a new, empty builder for {@link ImmutableLongArray} instances, with a default initial    * capacity. The returned builder is not thread-safe.    *    *<p><b>Performance note:</b> The {@link ImmutableLongArray} that is built will very likely    * occupy more memory than necessary; to trim memory usage, build using {@code    * builder.build().trimmed()}.    */
 DECL|method|builder ()
 specifier|public
 specifier|static
@@ -760,7 +760,7 @@ literal|10
 argument_list|)
 return|;
 block|}
-comment|/**    * A builder for {@link ImmutableIntArray} instances; obtained using {@link    * ImmutableIntArray#builder}.    */
+comment|/**    * A builder for {@link ImmutableLongArray} instances; obtained using {@link    * ImmutableLongArray#builder}.    */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|class|Builder
@@ -772,7 +772,7 @@ name|Builder
 block|{
 DECL|field|array
 specifier|private
-name|int
+name|long
 index|[]
 name|array
 decl_stmt|;
@@ -794,19 +794,19 @@ block|{
 name|array
 operator|=
 operator|new
-name|int
+name|long
 index|[
 name|initialCapacity
 index|]
 expr_stmt|;
 block|}
-comment|/**      * Appends {@code value} to the end of the values the built {@link ImmutableIntArray} will      * contain.      */
-DECL|method|add (int value)
+comment|/**      * Appends {@code value} to the end of the values the built {@link ImmutableLongArray} will      * contain.      */
+DECL|method|add (long value)
 specifier|public
 name|Builder
 name|add
 parameter_list|(
-name|int
+name|long
 name|value
 parameter_list|)
 block|{
@@ -830,13 +830,13 @@ return|return
 name|this
 return|;
 block|}
-comment|/**      * Appends {@code values}, in order, to the end of the values the built {@link      * ImmutableIntArray} will contain.      */
-DECL|method|addAll (int[] values)
+comment|/**      * Appends {@code values}, in order, to the end of the values the built {@link      * ImmutableLongArray} will contain.      */
+DECL|method|addAll (long[] values)
 specifier|public
 name|Builder
 name|addAll
 parameter_list|(
-name|int
+name|long
 index|[]
 name|values
 parameter_list|)
@@ -875,15 +875,15 @@ return|return
 name|this
 return|;
 block|}
-comment|/**      * Appends {@code values}, in order, to the end of the values the built {@link      * ImmutableIntArray} will contain.      */
-DECL|method|addAll (Iterable<Integer> values)
+comment|/**      * Appends {@code values}, in order, to the end of the values the built {@link      * ImmutableLongArray} will contain.      */
+DECL|method|addAll (Iterable<Long> values)
 specifier|public
 name|Builder
 name|addAll
 parameter_list|(
 name|Iterable
 argument_list|<
-name|Integer
+name|Long
 argument_list|>
 name|values
 parameter_list|)
@@ -901,7 +901,7 @@ argument_list|(
 operator|(
 name|Collection
 argument_list|<
-name|Integer
+name|Long
 argument_list|>
 operator|)
 name|values
@@ -910,7 +910,7 @@ return|;
 block|}
 for|for
 control|(
-name|Integer
+name|Long
 name|value
 range|:
 name|values
@@ -926,15 +926,15 @@ return|return
 name|this
 return|;
 block|}
-comment|/**      * Appends {@code values}, in order, to the end of the values the built {@link      * ImmutableIntArray} will contain.      */
-DECL|method|addAll (Collection<Integer> values)
+comment|/**      * Appends {@code values}, in order, to the end of the values the built {@link      * ImmutableLongArray} will contain.      */
+DECL|method|addAll (Collection<Long> values)
 specifier|public
 name|Builder
 name|addAll
 parameter_list|(
 name|Collection
 argument_list|<
-name|Integer
+name|Long
 argument_list|>
 name|values
 parameter_list|)
@@ -949,7 +949,7 @@ argument_list|)
 expr_stmt|;
 for|for
 control|(
-name|Integer
+name|Long
 name|value
 range|:
 name|values
@@ -968,19 +968,19 @@ return|return
 name|this
 return|;
 block|}
-comment|/**      * Appends all values from {@code stream}, in order, to the end of the values the built {@link      * ImmutableIntArray} will contain.      */
-DECL|method|addAll (IntStream stream)
+comment|/**      * Appends all values from {@code stream}, in order, to the end of the values the built {@link      * ImmutableLongArray} will contain.      */
+DECL|method|addAll (LongStream stream)
 specifier|public
 name|Builder
 name|addAll
 parameter_list|(
-name|IntStream
+name|LongStream
 name|stream
 parameter_list|)
 block|{
 name|Spliterator
 operator|.
-name|OfInt
+name|OfLong
 name|spliterator
 init|=
 name|stream
@@ -1020,7 +1020,7 @@ operator|.
 name|forEachRemaining
 argument_list|(
 operator|(
-name|IntConsumer
+name|LongConsumer
 operator|)
 name|this
 operator|::
@@ -1031,13 +1031,13 @@ return|return
 name|this
 return|;
 block|}
-comment|/**      * Appends {@code values}, in order, to the end of the values the built {@link      * ImmutableIntArray} will contain.      */
-DECL|method|addAll (ImmutableIntArray values)
+comment|/**      * Appends {@code values}, in order, to the end of the values the built {@link      * ImmutableLongArray} will contain.      */
+DECL|method|addAll (ImmutableLongArray values)
 specifier|public
 name|Builder
 name|addAll
 parameter_list|(
-name|ImmutableIntArray
+name|ImmutableLongArray
 name|values
 parameter_list|)
 block|{
@@ -1108,12 +1108,12 @@ operator|.
 name|length
 condition|)
 block|{
-name|int
+name|long
 index|[]
 name|newArray
 init|=
 operator|new
-name|int
+name|long
 index|[
 name|expandedCapacity
 argument_list|(
@@ -1236,7 +1236,7 @@ annotation|@
 name|CheckReturnValue
 DECL|method|build ()
 specifier|public
-name|ImmutableIntArray
+name|ImmutableLongArray
 name|build
 parameter_list|()
 block|{
@@ -1248,7 +1248,7 @@ condition|?
 name|EMPTY
 else|:
 operator|new
-name|ImmutableIntArray
+name|ImmutableLongArray
 argument_list|(
 name|array
 argument_list|,
@@ -1263,7 +1263,7 @@ comment|// Instance stuff here
 DECL|field|array
 specifier|private
 specifier|final
-name|int
+name|long
 index|[]
 name|array
 decl_stmt|;
@@ -1283,11 +1283,11 @@ name|int
 name|end
 decl_stmt|;
 comment|// exclusive
-DECL|method|ImmutableIntArray (int[] array)
+DECL|method|ImmutableLongArray (long[] array)
 specifier|private
-name|ImmutableIntArray
+name|ImmutableLongArray
 parameter_list|(
-name|int
+name|long
 index|[]
 name|array
 parameter_list|)
@@ -1304,11 +1304,11 @@ name|length
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|ImmutableIntArray (int[] array, int start, int end)
+DECL|method|ImmutableLongArray (long[] array, int start, int end)
 specifier|private
-name|ImmutableIntArray
+name|ImmutableLongArray
 parameter_list|(
-name|int
+name|long
 index|[]
 name|array
 parameter_list|,
@@ -1364,10 +1364,10 @@ operator|==
 name|start
 return|;
 block|}
-comment|/**    * Returns the {@code int} value present at the given index.    *    * @throws IndexOutOfBoundsException if {@code index} is negative, or greater than or equal to    *     {@link #length}    */
+comment|/**    * Returns the {@code long} value present at the given index.    *    * @throws IndexOutOfBoundsException if {@code index} is negative, or greater than or equal to    *     {@link #length}    */
 DECL|method|get (int index)
 specifier|public
-name|int
+name|long
 name|get
 parameter_list|(
 name|int
@@ -1394,12 +1394,12 @@ index|]
 return|;
 block|}
 comment|/**    * Returns the smallest index for which {@link #get} returns {@code target}, or {@code -1} if no    * such index exists. Equivalent to {@code asList().indexOf(target)}.    */
-DECL|method|indexOf (int target)
+DECL|method|indexOf (long target)
 specifier|public
 name|int
 name|indexOf
 parameter_list|(
-name|int
+name|long
 name|target
 parameter_list|)
 block|{
@@ -1441,12 +1441,12 @@ literal|1
 return|;
 block|}
 comment|/**    * Returns the largest index for which {@link #get} returns {@code target}, or {@code -1} if no    * such index exists. Equivalent to {@code asList().lastIndexOf(target)}.    */
-DECL|method|lastIndexOf (int target)
+DECL|method|lastIndexOf (long target)
 specifier|public
 name|int
 name|lastIndexOf
 parameter_list|(
-name|int
+name|long
 name|target
 parameter_list|)
 block|{
@@ -1490,12 +1490,12 @@ literal|1
 return|;
 block|}
 comment|/**    * Returns {@code true} if {@code target} is present at any index in this array. Equivalent to    * {@code asList().contains(target)}.    */
-DECL|method|contains (int target)
+DECL|method|contains (long target)
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
-name|int
+name|long
 name|target
 parameter_list|)
 block|{
@@ -1509,12 +1509,12 @@ literal|0
 return|;
 block|}
 comment|/** Invokes {@code consumer} for each value contained in this array, in order. */
-DECL|method|forEach (IntConsumer consumer)
+DECL|method|forEach (LongConsumer consumer)
 specifier|public
 name|void
 name|forEach
 parameter_list|(
-name|IntConsumer
+name|LongConsumer
 name|consumer
 parameter_list|)
 block|{
@@ -1553,7 +1553,7 @@ block|}
 comment|/** Returns a stream over the values in this array, in order. */
 DECL|method|stream ()
 specifier|public
-name|IntStream
+name|LongStream
 name|stream
 parameter_list|()
 block|{
@@ -1570,10 +1570,10 @@ name|end
 argument_list|)
 return|;
 block|}
-comment|/** Returns a new, mutable copy of this array's values, as a primitive {@code int[]}. */
+comment|/** Returns a new, mutable copy of this array's values, as a primitive {@code long[]}. */
 DECL|method|toArray ()
 specifier|public
-name|int
+name|long
 index|[]
 name|toArray
 parameter_list|()
@@ -1594,7 +1594,7 @@ block|}
 comment|/**    * Returns a new immutable array containing the values in the specified range.    *    *<p><b>Performance note:</b> The returned array has the same full memory footprint as this one    * does (no actual copying is performed). To reduce memory usage, use {@code subArray(start,    * end).trimmed()}.    */
 DECL|method|subArray (int startIndex, int endIndex)
 specifier|public
-name|ImmutableIntArray
+name|ImmutableLongArray
 name|subArray
 parameter_list|(
 name|int
@@ -1624,7 +1624,7 @@ condition|?
 name|EMPTY
 else|:
 operator|new
-name|ImmutableIntArray
+name|ImmutableLongArray
 argument_list|(
 name|array
 argument_list|,
@@ -1642,7 +1642,7 @@ DECL|method|spliterator ()
 specifier|private
 name|Spliterator
 operator|.
-name|OfInt
+name|OfLong
 name|spliterator
 parameter_list|()
 block|{
@@ -1667,12 +1667,12 @@ name|ORDERED
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an immutable<i>view</i> of this array's values as a {@code List}; note that {@code    * int} values are boxed into {@link Integer} instances on demand, which can be very expensive.    * The returned list should be used once and discarded. For any usages beyond than that, pass the    * returned list to {@link com.google.common.collect.ImmutableList#copyOf(Collection)    * ImmutableList.copyOf} and use that list instead.    */
+comment|/**    * Returns an immutable<i>view</i> of this array's values as a {@code List}; note that {@code    * long} values are boxed into {@link Long} instances on demand, which can be very expensive. The    * returned list should be used once and discarded. For any usages beyond than that, pass the    * returned list to {@link com.google.common.collect.ImmutableList#copyOf(Collection)    * ImmutableList.copyOf} and use that list instead.    */
 DECL|method|asList ()
 specifier|public
 name|List
 argument_list|<
-name|Integer
+name|Long
 argument_list|>
 name|asList
 parameter_list|()
@@ -1694,7 +1694,7 @@ name|AsList
 extends|extends
 name|AbstractList
 argument_list|<
-name|Integer
+name|Long
 argument_list|>
 implements|implements
 name|RandomAccess
@@ -1702,14 +1702,14 @@ block|{
 DECL|field|parent
 specifier|private
 specifier|final
-name|ImmutableIntArray
+name|ImmutableLongArray
 name|parent
 decl_stmt|;
-DECL|method|AsList (ImmutableIntArray parent)
+DECL|method|AsList (ImmutableLongArray parent)
 specifier|private
 name|AsList
 parameter_list|(
-name|ImmutableIntArray
+name|ImmutableLongArray
 name|parent
 parameter_list|)
 block|{
@@ -1740,7 +1740,7 @@ annotation|@
 name|Override
 DECL|method|get (int index)
 specifier|public
-name|Integer
+name|Long
 name|get
 parameter_list|(
 name|int
@@ -1790,14 +1790,14 @@ block|{
 return|return
 name|target
 operator|instanceof
-name|Integer
+name|Long
 condition|?
 name|parent
 operator|.
 name|indexOf
 argument_list|(
 operator|(
-name|Integer
+name|Long
 operator|)
 name|target
 argument_list|)
@@ -1820,14 +1820,14 @@ block|{
 return|return
 name|target
 operator|instanceof
-name|Integer
+name|Long
 condition|?
 name|parent
 operator|.
 name|lastIndexOf
 argument_list|(
 operator|(
-name|Integer
+name|Long
 operator|)
 name|target
 argument_list|)
@@ -1842,7 +1842,7 @@ DECL|method|subList (int fromIndex, int toIndex)
 specifier|public
 name|List
 argument_list|<
-name|Integer
+name|Long
 argument_list|>
 name|subList
 parameter_list|(
@@ -1874,7 +1874,7 @@ DECL|method|spliterator ()
 specifier|public
 name|Spliterator
 argument_list|<
-name|Integer
+name|Long
 argument_list|>
 name|spliterator
 parameter_list|()
@@ -1995,7 +1995,7 @@ operator|!
 operator|(
 name|element
 operator|instanceof
-name|Integer
+name|Long
 operator|)
 operator|||
 name|parent
@@ -2007,7 +2007,7 @@ operator|++
 index|]
 operator|!=
 operator|(
-name|Integer
+name|Long
 operator|)
 name|element
 condition|)
@@ -2083,7 +2083,7 @@ operator|!
 operator|(
 name|object
 operator|instanceof
-name|ImmutableIntArray
+name|ImmutableLongArray
 operator|)
 condition|)
 block|{
@@ -2091,11 +2091,11 @@ return|return
 literal|false
 return|;
 block|}
-name|ImmutableIntArray
+name|ImmutableLongArray
 name|that
 init|=
 operator|(
-name|ImmutableIntArray
+name|ImmutableLongArray
 operator|)
 name|object
 decl_stmt|;
@@ -2203,7 +2203,7 @@ return|return
 name|hash
 return|;
 block|}
-comment|/**    * Returns a string representation of this array in the same form as {@link    * Arrays#toString(int[])}, for example {@code "[1, 2, 3]"}.    */
+comment|/**    * Returns a string representation of this array in the same form as {@link    * Arrays#toString(long[])}, for example {@code "[1, 2, 3]"}.    */
 annotation|@
 name|Override
 DECL|method|toString ()
@@ -2300,7 +2300,7 @@ block|}
 comment|/**    * Returns an immutable array containing the same values as {@code this} array. This is logically    * a no-op, and in some circumstances {@code this} itself is returned. However, if this instance    * is a {@link #subArray} view of a larger array, this method will copy only the appropriate range    * of values, resulting in an equivalent array with a smaller memory footprint.    */
 DECL|method|trimmed ()
 specifier|public
-name|ImmutableIntArray
+name|ImmutableLongArray
 name|trimmed
 parameter_list|()
 block|{
@@ -2309,7 +2309,7 @@ name|isPartialView
 argument_list|()
 condition|?
 operator|new
-name|ImmutableIntArray
+name|ImmutableLongArray
 argument_list|(
 name|toArray
 argument_list|()
