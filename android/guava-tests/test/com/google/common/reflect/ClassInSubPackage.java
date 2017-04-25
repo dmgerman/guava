@@ -4,7 +4,7 @@ comment|/*  * Copyright (C) 2012 The Guava Authors  *  * Licensed under the Apac
 end_comment
 
 begin_package
-DECL|package|com.google.common.reflect
+DECL|package|com.google.common.reflect.subpackage
 package|package
 name|com
 operator|.
@@ -13,34 +13,16 @@ operator|.
 name|common
 operator|.
 name|reflect
+operator|.
+name|subpackage
 package|;
 end_package
 
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|testing
-operator|.
-name|AbstractPackageSanityTests
-import|;
-end_import
-
-begin_comment
-comment|/**  * Tests nulls for the entire package.  */
-end_comment
-
 begin_class
-DECL|class|PackageSanityTests
+DECL|class|ClassInSubPackage
 specifier|public
 class|class
-name|PackageSanityTests
-extends|extends
-name|AbstractPackageSanityTests
+name|ClassInSubPackage
 block|{}
 end_class
 
