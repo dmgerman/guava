@@ -223,6 +223,9 @@ name|uniqueIndex
 argument_list|(
 name|Iterables
 operator|.
+expr|<
+name|MapsImplEnum
+operator|>
 name|concat
 argument_list|(
 name|Arrays

@@ -2667,6 +2667,9 @@ argument_list|>
 argument_list|(
 name|ImmutableList
 operator|.
+expr|<
+name|K
+operator|>
 name|asImmutableList
 argument_list|(
 name|sortedKeys
@@ -2677,6 +2680,9 @@ argument_list|)
 argument_list|,
 name|ImmutableList
 operator|.
+expr|<
+name|V
+operator|>
 name|asImmutableList
 argument_list|(
 name|sortedValues
