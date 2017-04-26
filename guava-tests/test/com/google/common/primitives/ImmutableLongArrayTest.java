@@ -751,6 +751,9 @@ name|iterable
 argument_list|(
 name|Collections
 operator|.
+expr|<
+name|Long
+operator|>
 name|emptySet
 argument_list|()
 argument_list|)
