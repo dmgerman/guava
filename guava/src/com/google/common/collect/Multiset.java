@@ -483,7 +483,7 @@ argument_list|>
 name|elements
 parameter_list|)
 function_decl|;
-comment|/**    * Adds a single occurrence of the specified element to this multiset.    *    *<p>This method refines {@link Collection#add}, which only<i>ensures</i>    * the presence of the element, to further specify that a successful call must    * always increment the count of the element, and the overall size of the    * collection, by one.    *    *<p>To both add the element and obtain the previous count of that element,    * use {@link #add(E, int) add}{@code (element, 1)} instead.    *    * @param element the element to add one occurrence of; may be null only if    *     explicitly allowed by the implementation    * @return {@code true} always, since this call is required to modify the    *     multiset, unlike other {@link Collection} types    * @throws NullPointerException if {@code element} is null and this    *     implementation does not permit null elements    * @throws IllegalArgumentException if {@link Integer#MAX_VALUE} occurrences    *     of {@code element} are already contained in this multiset    */
+comment|/**    * Adds a single occurrence of the specified element to this multiset.    *    *<p>This method refines {@link Collection#add}, which only<i>ensures</i>    * the presence of the element, to further specify that a successful call must    * always increment the count of the element, and the overall size of the    * collection, by one.    *    *<p>To both add the element and obtain the previous count of that element,    * use {@link #add(Object, int) add}{@code (element, 1)} instead.    *    * @param element the element to add one occurrence of; may be null only if    *     explicitly allowed by the implementation    * @return {@code true} always, since this call is required to modify the    *     multiset, unlike other {@link Collection} types    * @throws NullPointerException if {@code element} is null and this    *     implementation does not permit null elements    * @throws IllegalArgumentException if {@link Integer#MAX_VALUE} occurrences    *     of {@code element} are already contained in this multiset    */
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
@@ -496,7 +496,7 @@ name|E
 name|element
 parameter_list|)
 function_decl|;
-comment|/**    * Removes a<i>single</i> occurrence of the specified element from this    * multiset, if present.    *    *<p>This method refines {@link Collection#remove} to further specify that it    *<b>may not</b> throw an exception in response to {@code element} being null    * or of the wrong type.    *    *<p>To both remove the element and obtain the previous count of that element,    * use {@link #remove(E, int) remove}{@code (element, 1)} instead.    *    * @param element the element to remove one occurrence of    * @return {@code true} if an occurrence was found and removed    */
+comment|/**    * Removes a<i>single</i> occurrence of the specified element from this    * multiset, if present.    *    *<p>This method refines {@link Collection#remove} to further specify that it    *<b>may not</b> throw an exception in response to {@code element} being null    * or of the wrong type.    *    *<p>To both remove the element and obtain the previous count of that element,    * use {@link #remove(Object, int) remove}{@code (element, 1)} instead.    *    * @param element the element to remove one occurrence of    * @return {@code true} if an occurrence was found and removed    */
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@

@@ -767,7 +767,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a fluent iterable containing {@code elements} in the specified order.    *    *<p>The returned iterable is modifiable, but modifications do not affect the input array.    *    *<p><b>{@code Stream} equivalent:</b> {@link java.util.stream.Stream#of(Object[])    * Stream.of(T...)}.    *    * @deprecated Use {@link #from(E[])} instead (but note the differences in mutability). This    *     method will be removed in Guava release 21.0.    * @since 18.0    */
+comment|/**    * Returns a fluent iterable containing {@code elements} in the specified order.    *    *<p>The returned iterable is modifiable, but modifications do not affect the input array.    *    *<p><b>{@code Stream} equivalent:</b> {@link java.util.stream.Stream#of(Object[])    * Stream.of(T...)}.    *    * @deprecated Use {@link #from(Object[])} instead (but note the differences in mutability). This    *     method will be removed in Guava release 21.0.    * @since 18.0    */
 annotation|@
 name|Beta
 annotation|@
