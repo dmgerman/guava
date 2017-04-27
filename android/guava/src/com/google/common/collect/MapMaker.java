@@ -598,6 +598,14 @@ name|WEAK
 argument_list|)
 return|;
 block|}
+comment|/**    * A dummy singleton value type used by {@link Interners}.    *    *<p>{@link MapMakerInternalMap} can optimize for memory usage in this case; see    * {@link MapMakerInternalMap#createWithDummyValues}.    */
+DECL|enum|Dummy
+enum|enum
+name|Dummy
+block|{
+DECL|enumConstant|VALUE
+name|VALUE
+block|}
 DECL|method|setValueStrength (Strength strength)
 name|MapMaker
 name|setValueStrength
@@ -703,38 +711,6 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-return|return
-name|MapMakerInternalMap
-operator|.
-name|create
-argument_list|(
-name|this
-argument_list|)
-return|;
-block|}
-comment|/**    * Returns a MapMakerInternalMap for the benefit of internal callers that use features of that    * class not exposed through ConcurrentMap.    */
-annotation|@
-name|GwtIncompatible
-comment|// MapMakerInternalMap
-DECL|method|makeCustomMap ()
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-name|MapMakerInternalMap
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|,
-name|?
-argument_list|,
-name|?
-argument_list|>
-name|makeCustomMap
-parameter_list|()
-block|{
 return|return
 name|MapMakerInternalMap
 operator|.
