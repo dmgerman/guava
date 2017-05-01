@@ -1921,10 +1921,15 @@ literal|31
 expr_stmt|;
 name|hash
 operator|+=
+name|Ints
+operator|.
+name|hashCode
+argument_list|(
 name|array
 index|[
 name|i
 index|]
+argument_list|)
 expr_stmt|;
 block|}
 return|return
