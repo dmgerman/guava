@@ -247,19 +247,6 @@ return|return
 name|host
 return|;
 block|}
-comment|/**    * Old name of {@link #getHost}.    *    * @deprecated Use {@link #getHost()} instead. This method is scheduled for removal in Guava 22.0.    */
-annotation|@
-name|Deprecated
-DECL|method|getHostText ()
-specifier|public
-name|String
-name|getHostText
-parameter_list|()
-block|{
-return|return
-name|host
-return|;
-block|}
 comment|/** Return true if this instance has a defined port. */
 DECL|method|hasPort ()
 specifier|public

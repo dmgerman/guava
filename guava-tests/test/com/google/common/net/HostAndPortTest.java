@@ -793,16 +793,6 @@ name|getHost
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|assertEquals
-argument_list|(
-name|expectHost
-argument_list|,
-name|hp
-operator|.
-name|getHostText
-argument_list|()
-argument_list|)
-expr_stmt|;
 comment|// Check the post-withDefaultPort() instance (if any).
 if|if
 condition|(
@@ -859,16 +849,6 @@ argument_list|,
 name|hp2
 operator|.
 name|getHost
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|assertEquals
-argument_list|(
-name|expectHost
-argument_list|,
-name|hp2
-operator|.
-name|getHostText
 argument_list|()
 argument_list|)
 expr_stmt|;
