@@ -412,6 +412,16 @@ return|return
 literal|false
 return|;
 block|}
+comment|// Prevent "missing hashCode" warning by explicitly forcing subclasses implement it
+DECL|method|hashCode ()
+annotation|@
+name|Override
+specifier|public
+specifier|abstract
+name|int
+name|hashCode
+parameter_list|()
+function_decl|;
 comment|/*    * The implementation neither produces nor consumes any non-null instance of type C, so    * casting the type parameter is safe.    */
 annotation|@
 name|SuppressWarnings
@@ -787,6 +797,23 @@ return|;
 block|}
 annotation|@
 name|Override
+DECL|method|hashCode ()
+specifier|public
+name|int
+name|hashCode
+parameter_list|()
+block|{
+return|return
+name|System
+operator|.
+name|identityHashCode
+argument_list|(
+name|this
+argument_list|)
+return|;
+block|}
+annotation|@
+name|Override
 DECL|method|toString ()
 specifier|public
 name|String
@@ -1125,6 +1152,23 @@ condition|?
 literal|0
 else|:
 literal|1
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|hashCode ()
+specifier|public
+name|int
+name|hashCode
+parameter_list|()
+block|{
+return|return
+name|System
+operator|.
+name|identityHashCode
+argument_list|(
+name|this
+argument_list|)
 return|;
 block|}
 annotation|@
