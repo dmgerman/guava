@@ -5519,8 +5519,17 @@ argument_list|(
 literal|"baz"
 argument_list|)
 expr_stmt|;
-comment|// TODO(b/36683218): reenable
-comment|// assertTrue(list.array != builder.contents);
+name|assertTrue
+argument_list|(
+name|list
+operator|.
+name|array
+operator|!=
+name|builder
+operator|.
+name|contents
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 block|}

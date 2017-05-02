@@ -1799,8 +1799,22 @@ operator|.
 name|build
 argument_list|()
 decl_stmt|;
-comment|// TODO(b/36683218): reenable
-comment|// assertTrue(set.elements.length<= 2 * set.size());
+name|assertTrue
+argument_list|(
+name|set
+operator|.
+name|elements
+operator|.
+name|length
+operator|<=
+literal|2
+operator|*
+name|set
+operator|.
+name|size
+argument_list|()
+argument_list|)
+expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
@@ -1884,8 +1898,17 @@ argument_list|(
 literal|"baz"
 argument_list|)
 expr_stmt|;
-comment|// TODO(b/36683218): reenable
-comment|// assertTrue(set.elements != builder.contents);
+name|assertTrue
+argument_list|(
+name|set
+operator|.
+name|elements
+operator|!=
+name|builder
+operator|.
+name|contents
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 end_class

@@ -8503,9 +8503,38 @@ operator|.
 name|build
 argument_list|()
 decl_stmt|;
-comment|// TODO(b/36683218): reenable
-comment|// RegularImmutableList<String> list = (RegularImmutableList<String>) set.elements;
-comment|// assertTrue(list.array.length<= 2 * set.size());
+name|RegularImmutableList
+argument_list|<
+name|String
+argument_list|>
+name|list
+init|=
+operator|(
+name|RegularImmutableList
+argument_list|<
+name|String
+argument_list|>
+operator|)
+name|set
+operator|.
+name|elements
+decl_stmt|;
+name|assertTrue
+argument_list|(
+name|list
+operator|.
+name|array
+operator|.
+name|length
+operator|<=
+literal|2
+operator|*
+name|set
+operator|.
+name|size
+argument_list|()
+argument_list|)
+expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
@@ -8578,10 +8607,40 @@ operator|.
 name|build
 argument_list|()
 decl_stmt|;
-comment|// TODO(b/36683218): reenable
-comment|// RegularImmutableList<String> list = (RegularImmutableList<String>) set.elements;
-comment|// builder.add("baz");
-comment|// assertTrue(list.array != builder.contents);
+name|RegularImmutableList
+argument_list|<
+name|String
+argument_list|>
+name|list
+init|=
+operator|(
+name|RegularImmutableList
+argument_list|<
+name|String
+argument_list|>
+operator|)
+name|set
+operator|.
+name|elements
+decl_stmt|;
+name|builder
+operator|.
+name|add
+argument_list|(
+literal|"baz"
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
+name|list
+operator|.
+name|array
+operator|!=
+name|builder
+operator|.
+name|contents
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 end_class
