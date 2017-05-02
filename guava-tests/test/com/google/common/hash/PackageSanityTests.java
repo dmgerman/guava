@@ -28,7 +28,7 @@ name|hash
 operator|.
 name|BloomFilterStrategies
 operator|.
-name|BitArray
+name|LockFreeBitArray
 import|;
 end_import
 
@@ -65,12 +65,12 @@ parameter_list|()
 block|{
 name|setDefault
 argument_list|(
-name|BitArray
+name|LockFreeBitArray
 operator|.
 name|class
 argument_list|,
 operator|new
-name|BitArray
+name|LockFreeBitArray
 argument_list|(
 literal|1
 argument_list|)
