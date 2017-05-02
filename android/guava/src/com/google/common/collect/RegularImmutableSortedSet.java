@@ -207,9 +207,9 @@ name|natural
 argument_list|()
 argument_list|)
 decl_stmt|;
-DECL|field|elements
 annotation|@
 name|VisibleForTesting
+DECL|field|elements
 specifier|final
 specifier|transient
 name|ImmutableList

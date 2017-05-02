@@ -1865,6 +1865,21 @@ name|estimatedDistinct
 argument_list|)
 expr_stmt|;
 block|}
+DECL|method|Builder (boolean forSubtype)
+name|Builder
+parameter_list|(
+name|boolean
+name|forSubtype
+parameter_list|)
+block|{
+comment|// for ImmutableSortedMultiset not to allocate data structures not used there
+name|this
+operator|.
+name|contents
+operator|=
+literal|null
+expr_stmt|;
+block|}
 comment|/**      * Adds {@code element} to the {@code ImmutableMultiset}.      *      * @param element the element to add      * @return this {@code Builder} object      * @throws NullPointerException if {@code element} is null      */
 annotation|@
 name|CanIgnoreReturnValue
