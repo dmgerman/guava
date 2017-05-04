@@ -4641,6 +4641,17 @@ argument_list|>
 operator|)
 name|iterator
 decl_stmt|;
+if|if
+condition|(
+operator|!
+name|concatIterator
+operator|.
+name|current
+operator|.
+name|hasNext
+argument_list|()
+condition|)
+block|{
 return|return
 name|getComponentIterators
 argument_list|(
@@ -4650,8 +4661,7 @@ name|backingIterator
 argument_list|)
 return|;
 block|}
-else|else
-block|{
+block|}
 return|return
 name|Iterators
 operator|.
@@ -4660,7 +4670,6 @@ argument_list|(
 name|iterator
 argument_list|)
 return|;
-block|}
 block|}
 block|}
 empty_stmt|;

@@ -115,7 +115,6 @@ argument_list|>
 name|backingIterator
 decl_stmt|;
 DECL|field|current
-specifier|private
 name|Iterator
 argument_list|<
 name|?
