@@ -1692,7 +1692,6 @@ name|this
 argument_list|)
 return|;
 block|}
-comment|// TODO(kevinb): Serializable
 DECL|class|AsList
 specifier|static
 class|class
@@ -1704,6 +1703,8 @@ name|Double
 argument_list|>
 implements|implements
 name|RandomAccess
+implements|,
+name|Serializable
 block|{
 DECL|field|parent
 specifier|private

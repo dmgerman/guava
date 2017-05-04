@@ -3412,7 +3412,10 @@ argument_list|,
 name|CollectionFeature
 operator|.
 name|KNOWN_ORDER
-comment|/*, SERIALIZABLE_INCLUDING_VIEWS*/
+argument_list|,
+name|CollectionFeature
+operator|.
+name|SERIALIZABLE_INCLUDING_VIEWS
 argument_list|)
 operator|.
 name|createTestSuite
