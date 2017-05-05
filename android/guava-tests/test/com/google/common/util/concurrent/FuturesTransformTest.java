@@ -81,7 +81,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Unit tests for {@link Futures#transform(ListenableFuture, Function)}.  *  * @author Nishant Thakkar  */
+comment|/**  * Unit tests for {@link Futures#transform(ListenableFuture, Function, Executor)}.  *  * @author Nishant Thakkar  */
 end_comment
 
 begin_class
