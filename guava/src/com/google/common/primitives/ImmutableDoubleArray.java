@@ -1673,7 +1673,7 @@ name|ORDERED
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an immutable<i>view</i> of this array's values as a {@code List}; note that {@code    * double} values are boxed into {@link Double} instances on demand, which can be very expensive.    * The returned list should be used once and discarded. For any usages beyond than that, pass the    * returned list to {@link com.google.common.collect.ImmutableList#copyOf(Collection)    * ImmutableList.copyOf} and use that list instead.    */
+comment|/**    * Returns an immutable<i>view</i> of this array's values as a {@code List}; note that {@code    * double} values are boxed into {@link Double} instances on demand, which can be very expensive.    * The returned list should be used once and discarded. For any usages beyond that, pass the    * returned list to {@link com.google.common.collect.ImmutableList#copyOf(Collection)    * ImmutableList.copyOf} and use that list instead.    */
 DECL|method|asList ()
 specifier|public
 name|List
