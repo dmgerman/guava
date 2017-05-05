@@ -574,6 +574,18 @@ name|util
 operator|.
 name|concurrent
 operator|.
+name|ConcurrentHashMap
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
 name|ConcurrentMap
 import|;
 end_import
@@ -1270,7 +1282,7 @@ name|map
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a general-purpose instance of {@code ConcurrentMap}, which supports    * all optional operations of the ConcurrentMap interface. It does not permit    * null keys or values. It is serializable.    *    *<p>This is currently accomplished by calling {@link MapMaker#makeMap()}.    *    *<p>It is preferable to use {@code MapMaker} directly (rather than through    * this method), as it presents numerous useful configuration options,    * such as the concurrency level, load factor, key/value reference types,    * and value computation.    *    * @return a new, empty {@code ConcurrentMap}    * @since 3.0    */
+comment|/**    * Returns a general-purpose instance of {@code ConcurrentMap}, which supports    * all optional operations of the ConcurrentMap interface. It does not permit    * null keys or values. It is serializable.    *    *<p>This is equivalent to {@link MapMaker#makeMap()}.    *    *<p>It is often preferable to use {@code MapMaker} directly (rather than through    * this method), as it presents numerous useful configuration options,    * such as the concurrency level, load factor, key/value reference types,    * and value computation.    *    * @return a new, empty {@code ConcurrentMap}    * @since 3.0    */
 DECL|method|newConcurrentMap ()
 specifier|public
 specifier|static
@@ -1290,15 +1302,8 @@ parameter_list|()
 block|{
 return|return
 operator|new
-name|MapMaker
-argument_list|()
-operator|.
-operator|<
-name|K
-operator|,
-name|V
-operator|>
-name|makeMap
+name|ConcurrentHashMap
+argument_list|<>
 argument_list|()
 return|;
 block|}
