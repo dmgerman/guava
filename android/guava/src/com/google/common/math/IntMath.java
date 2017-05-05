@@ -2582,9 +2582,6 @@ literal|12
 block|}
 decl_stmt|;
 comment|/**    * Returns {@code n} choose {@code k}, also known as the binomial coefficient of {@code n} and    * {@code k}, or {@link Integer#MAX_VALUE} if the result does not fit in an {@code int}.    *    * @throws IllegalArgumentException if {@code n< 0}, {@code k< 0} or {@code k> n}    */
-annotation|@
-name|GwtIncompatible
-comment|// need BigIntegerMath to adequately test
 DECL|method|binomial (int n, int k)
 specifier|public
 specifier|static

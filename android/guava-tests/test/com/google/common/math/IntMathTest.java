@@ -809,9 +809,6 @@ argument_list|)
 assert|;
 block|}
 block|}
-annotation|@
-name|GwtIncompatible
-comment|// BigIntegerMath // TODO(cpovirk): GWT-enable BigIntegerMath
 DECL|method|testConstantsBiggestBinomials ()
 specifier|public
 name|void
@@ -3401,9 +3398,6 @@ block|{}
 block|}
 block|}
 comment|// Depends on the correctness of BigIntegerMath.binomial.
-annotation|@
-name|GwtIncompatible
-comment|// BigIntegerMath // TODO(cpovirk): GWT-enable BigIntegerMath
 DECL|method|testBinomial ()
 specifier|public
 name|void
@@ -3486,9 +3480,6 @@ expr_stmt|;
 block|}
 block|}
 block|}
-annotation|@
-name|GwtIncompatible
-comment|// binomial
 DECL|method|testBinomialOutside ()
 specifier|public
 name|void
@@ -3561,9 +3552,6 @@ parameter_list|)
 block|{}
 block|}
 block|}
-annotation|@
-name|GwtIncompatible
-comment|// binomial
 DECL|method|testBinomialNegative ()
 specifier|public
 name|void
