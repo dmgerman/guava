@@ -175,7 +175,6 @@ operator|=
 literal|true
 argument_list|)
 DECL|class|EnumCountHashMap
-specifier|public
 class|class
 name|EnumCountHashMap
 parameter_list|<
