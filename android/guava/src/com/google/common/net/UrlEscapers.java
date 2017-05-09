@@ -79,11 +79,11 @@ name|String
 name|URL_PATH_OTHER_SAFE_CHARS_LACKING_PLUS
 init|=
 literal|"-._~"
-operator|+
 comment|// Unreserved characters.
-literal|"!$'()*,;&="
 operator|+
+literal|"!$'()*,;&="
 comment|// The subdelim characters (excluding '+').
+operator|+
 literal|"@:"
 decl_stmt|;
 comment|// The gendelim characters permitted in paths.

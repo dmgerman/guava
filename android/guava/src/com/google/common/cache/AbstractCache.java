@@ -163,7 +163,7 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
-comment|/**    * This implementation of {@code getAllPresent} lacks any insight into the internal cache data    * structure, and is thus forced to return the query keys instead of the cached keys. This is only    * possible with an unsafe cast which requires {@code keys} to actually be of type {@code K}.    *    * {@inheritDoc}    *    * @since 11.0    */
+comment|/**    * {@inheritDoc}    *    *<p>This implementation of {@code getAllPresent} lacks any insight into the internal cache data    * structure, and is thus forced to return the query keys instead of the cached keys. This is only    * possible with an unsafe cast which requires {@code keys} to actually be of type {@code K}.    *    * @since 11.0    */
 annotation|@
 name|Override
 DECL|method|getAllPresent (Iterable<?> keys)

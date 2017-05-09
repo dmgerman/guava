@@ -3097,7 +3097,7 @@ return|;
 block|}
 block|}
 block|;
-comment|/**      * Masks used to compute indices in the following table.      */
+comment|// Masks used to compute indices in the following table.
 DECL|field|ACCESS_MASK
 specifier|static
 specifier|final
@@ -3708,7 +3708,7 @@ operator|)
 name|UNSET
 return|;
 block|}
-comment|/**    * An entry in a reference map.    *    * Entries in the map can be in the following states:    *    * Valid:    *    * - Live: valid key/value are set    *    * - Loading: loading is pending    *    * Invalid:    *    * - Expired: time expired (key/value may still be set)    *    * - Collected: key/value was partially collected, but not yet cleaned up    *    * - Unset: marked as unset, awaiting cleanup or reuse    */
+comment|/**    * An entry in a reference map.    *    *<p>Entries in the map can be in the following states:    *    *<p>Valid:    *    *<ul>    *<li>Live: valid key/value are set    *<li>Loading: loading is pending    *</ul>    *    *<p>Invalid:    *    *<ul>    *<li>Expired: time expired (key/value may still be set)    *<li>Collected: key/value was partially collected, but not yet cleaned up    *<li>Unset: marked as unset, awaiting cleanup or reuse    *</ul>    */
 DECL|interface|ReferenceEntry
 interface|interface
 name|ReferenceEntry
