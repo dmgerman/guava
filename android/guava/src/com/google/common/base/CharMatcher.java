@@ -179,7 +179,7 @@ operator|.
 name|INSTANCE
 return|;
 block|}
-comment|/**    * Determines whether a character is whitespace according to the latest Unicode standard, as    * illustrated    *<a href="http://unicode.org/cldr/utility/list-unicodeset.jsp?a=%5Cp%7Bwhitespace%7D">here</a>.    * This is not the same definition used by other Java APIs. (See a    *<a href="http://spreadsheets.google.com/pub?key=pd8dAQyHbdewRsnE5x5GzKQ">comparison of several    * definitions of "whitespace"</a>.)    *    *<p><b>Note:</b> as the Unicode definition evolves, we will modify this matcher to keep it up to    * date.    *    * @since 19.0 (since 1.0 as constant {@code WHITESPACE})    */
+comment|/**    * Determines whether a character is whitespace according to the latest Unicode standard, as    * illustrated    *<a href="http://unicode.org/cldr/utility/list-unicodeset.jsp?a=%5Cp%7Bwhitespace%7D">here</a>.    * This is not the same definition used by other Java APIs. (See a    *<a href="https://goo.gl/Y6SLWx">comparison of several definitions of    * "whitespace"</a>.)    *    *<p><b>Note:</b> as the Unicode definition evolves, we will modify this matcher to keep it up to    * date.    *    * @since 19.0 (since 1.0 as constant {@code WHITESPACE})    */
 DECL|method|whitespace ()
 specifier|public
 specifier|static
@@ -348,7 +348,7 @@ name|INSTANCE
 return|;
 block|}
 comment|// Legacy constants
-comment|/**    * Determines whether a character is whitespace according to the latest Unicode    * standard, as illustrated    *<a href="http://unicode.org/cldr/utility/list-unicodeset.jsp?a=%5Cp%7Bwhitespace%7D">here</a>.    * This is not the same definition used by other Java APIs. (See a    *<a href="http://spreadsheets.google.com/pub?key=pd8dAQyHbdewRsnE5x5GzKQ">    * comparison of several definitions of "whitespace"</a>.)    *    *<p><b>Note:</b> as the Unicode definition evolves, we will modify this constant    * to keep it up to date.    *    * @deprecated Use {@link #whitespace()} instead. This constant is scheduled to be    *     removed in June 2018.    */
+comment|/**    * Determines whether a character is whitespace according to the latest Unicode    * standard, as illustrated    *<a href="http://unicode.org/cldr/utility/list-unicodeset.jsp?a=%5Cp%7Bwhitespace%7D">here</a>.    * This is not the same definition used by other Java APIs. (See a    *<a href="https://goo.gl/Y6SLWx">comparison of several definitions of    * "whitespace"</a>.)    *    *<p><b>Note:</b> as the Unicode definition evolves, we will modify this constant    * to keep it up to date.    *    * @deprecated Use {@link #whitespace()} instead. This constant is scheduled to be    *     removed in June 2018.    */
 annotation|@
 name|Deprecated
 DECL|field|WHITESPACE
