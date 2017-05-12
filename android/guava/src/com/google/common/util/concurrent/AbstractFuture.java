@@ -1351,8 +1351,7 @@ comment|//   completion preferably and AQS is non-deterministic (depends on wher
 comment|//   is). If we wanted to be strict about it, we could store the unpark() time in the Waiter node
 comment|//   and we could use that to make a decision about whether or not we timed out prior to being
 comment|//   unparked.
-comment|/*    * Improve the documentation of when InterruptedException is thrown. Our behavior matches the    * JDK's, but the JDK's documentation is misleading.    */
-comment|/**    * {@inheritDoc}    *    *<p>The default {@link AbstractFuture} implementation throws {@code InterruptedException} if the    * current thread is interrupted before or during the call, even if the value is already    * available.    *    * @throws InterruptedException if the current thread was interrupted before or during the call    *     (optional but recommended).    * @throws CancellationException {@inheritDoc}    */
+comment|/**    * {@inheritDoc}    *    *<p>The default {@link AbstractFuture} implementation throws {@code InterruptedException} if the    * current thread is interrupted during the call, even if the value is already available.    *    * @throws CancellationException {@inheritDoc}    */
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
@@ -1679,8 +1678,7 @@ name|TimeoutException
 argument_list|()
 throw|;
 block|}
-comment|/*    * Improve the documentation of when InterruptedException is thrown. Our behavior matches the    * JDK's, but the JDK's documentation is misleading.    */
-comment|/**    * {@inheritDoc}    *    *<p>The default {@link AbstractFuture} implementation throws {@code InterruptedException} if the    * current thread is interrupted before or during the call, even if the value is already    * available.    *    * @throws InterruptedException if the current thread was interrupted before or during the call    *     (optional but recommended).    * @throws CancellationException {@inheritDoc}    */
+comment|/**    * {@inheritDoc}    *    *<p>The default {@link AbstractFuture} implementation throws {@code InterruptedException} if the    * current thread is interrupted during the call, even if the value is already available.    *    * @throws CancellationException {@inheritDoc}    */
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
