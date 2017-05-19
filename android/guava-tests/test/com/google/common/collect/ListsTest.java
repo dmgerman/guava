@@ -3652,6 +3652,8 @@ name|fromList
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|SafeVarargs
 DECL|method|list (E... elements)
 specifier|private
 specifier|static
