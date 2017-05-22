@@ -37,16 +37,6 @@ name|BaseGraph
 parameter_list|<
 name|N
 parameter_list|>
-extends|extends
-name|SuccessorsFunction
-argument_list|<
-name|N
-argument_list|>
-extends|,
-name|PredecessorsFunction
-argument_list|<
-name|N
-argument_list|>
 block|{
 comment|//
 comment|// Graph-level accessors
@@ -112,8 +102,7 @@ name|node
 parameter_list|)
 function_decl|;
 comment|/**    * Returns all nodes in this graph adjacent to {@code node} which can be reached by traversing    * {@code node}'s incoming edges<i>against</i> the direction (if any) of the edge.    *    *<p>In an undirected graph, this is equivalent to {@link #adjacentNodes(Object)}.    *    * @throws IllegalArgumentException if {@code node} is not an element of this graph    */
-annotation|@
-name|Override
+comment|// TODO(b/35451662): restore the @Override once the supertypes are released
 DECL|method|predecessors (N node)
 name|Set
 argument_list|<
@@ -126,8 +115,7 @@ name|node
 parameter_list|)
 function_decl|;
 comment|/**    * Returns all nodes in this graph adjacent to {@code node} which can be reached by traversing    * {@code node}'s outgoing edges in the direction (if any) of the edge.    *    *<p>In an undirected graph, this is equivalent to {@link #adjacentNodes(Object)}.    *    *<p>This is<i>not</i> the same as "all nodes reachable from {@code node} by following outgoing    * edges". For that functionality, see {@link Graphs#reachableNodes(Graph, Object)}.    *    * @throws IllegalArgumentException if {@code node} is not an element of this graph    */
-annotation|@
-name|Override
+comment|// TODO(b/35451662): restore the @Override once the supertypes are released
 DECL|method|successors (N node)
 name|Set
 argument_list|<
@@ -164,18 +152,6 @@ name|outDegree
 parameter_list|(
 name|N
 name|node
-parameter_list|)
-function_decl|;
-comment|/**    * Returns true if there is an edge directly connecting {@code nodeU} to {@code nodeV}. This is    * equivalent to {@code return nodes().contains(nodeU)&& successors(nodeU).contains(nodeV)}.    *    *<p>In an undirected graph, this is equal to {@code hasEdge(nodeV, nodeU)}.    */
-DECL|method|hasEdge (N nodeU, N nodeV)
-name|boolean
-name|hasEdge
-parameter_list|(
-name|N
-name|nodeU
-parameter_list|,
-name|N
-name|nodeV
 parameter_list|)
 function_decl|;
 block|}

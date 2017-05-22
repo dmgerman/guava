@@ -32,20 +32,6 @@ end_import
 
 begin_import
 import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|base
-operator|.
-name|Optional
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|util
@@ -84,16 +70,6 @@ name|N
 parameter_list|,
 name|E
 parameter_list|>
-extends|extends
-name|SuccessorsFunction
-argument_list|<
-name|N
-argument_list|>
-extends|,
-name|PredecessorsFunction
-argument_list|<
-name|N
-argument_list|>
 block|{
 comment|//
 comment|// Network-level accessors
@@ -180,8 +156,7 @@ name|node
 parameter_list|)
 function_decl|;
 comment|/**    * Returns all nodes in this network adjacent to {@code node} which can be reached by traversing    * {@code node}'s incoming edges<i>against</i> the direction (if any) of the edge.    *    *<p>In an undirected network, this is equivalent to {@link #adjacentNodes(Object)}.    *    * @throws IllegalArgumentException if {@code node} is not an element of this network    */
-annotation|@
-name|Override
+comment|// TODO(b/35451662): restore the @Override once the supertypes are released
 DECL|method|predecessors (N node)
 name|Set
 argument_list|<
@@ -194,8 +169,7 @@ name|node
 parameter_list|)
 function_decl|;
 comment|/**    * Returns all nodes in this network adjacent to {@code node} which can be reached by traversing    * {@code node}'s outgoing edges in the direction (if any) of the edge.    *    *<p>In an undirected network, this is equivalent to {@link #adjacentNodes(Object)}.    *    *<p>This is<i>not</i> the same as "all nodes reachable from {@code node} by following outgoing    * edges". For that functionality, see {@link Graphs#reachableNodes(Graph, Object)}.    *    * @throws IllegalArgumentException if {@code node} is not an element of this network    */
-annotation|@
-name|Override
+comment|// TODO(b/35451662): restore the @Override once the supertypes are released
 DECL|method|successors (N node)
 name|Set
 argument_list|<
@@ -301,21 +275,6 @@ argument_list|<
 name|E
 argument_list|>
 name|edgesConnecting
-parameter_list|(
-name|N
-name|nodeU
-parameter_list|,
-name|N
-name|nodeV
-parameter_list|)
-function_decl|;
-comment|/**    * Returns the single edge directly connecting {@code nodeU} to {@code nodeV}, if one is present.    *    *<p>In an undirected network, this is equal to {@code edgeConnecting(nodeV, nodeU)}.    *    * @throws IllegalArgumentException if there are multiple parallel edges connecting {@code nodeU}    *     to {@code nodeV}    * @throws IllegalArgumentException if {@code nodeU} or {@code nodeV} is not an element of this    *     network    */
-DECL|method|edgeConnecting (N nodeU, N nodeV)
-name|Optional
-argument_list|<
-name|E
-argument_list|>
-name|edgeConnecting
 parameter_list|(
 name|N
 name|nodeU

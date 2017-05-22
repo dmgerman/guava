@@ -210,20 +210,6 @@ name|N
 name|node
 parameter_list|)
 function_decl|;
-comment|/** {@inheritDoc} */
-annotation|@
-name|Override
-DECL|method|hasEdge (N nodeU, N nodeV)
-name|boolean
-name|hasEdge
-parameter_list|(
-name|N
-name|nodeU
-parameter_list|,
-name|N
-name|nodeV
-parameter_list|)
-function_decl|;
 comment|//
 comment|// Graph identity
 comment|//
