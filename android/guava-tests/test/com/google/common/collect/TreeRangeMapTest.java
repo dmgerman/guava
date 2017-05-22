@@ -1827,7 +1827,7 @@ name|int
 name|MIN_BOUND
 init|=
 operator|-
-literal|2
+literal|1
 decl_stmt|;
 DECL|field|MAX_BOUND
 specifier|private
@@ -1836,7 +1836,7 @@ specifier|final
 name|int
 name|MAX_BOUND
 init|=
-literal|2
+literal|1
 decl_stmt|;
 static|static
 block|{
