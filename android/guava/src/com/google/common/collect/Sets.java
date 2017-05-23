@@ -5940,6 +5940,15 @@ name|E
 argument_list|>
 name|delegate
 decl_stmt|;
+DECL|field|unmodifiableDelegate
+specifier|private
+specifier|final
+name|SortedSet
+argument_list|<
+name|E
+argument_list|>
+name|unmodifiableDelegate
+decl_stmt|;
 DECL|method|UnmodifiableNavigableSet (NavigableSet<E> delegate)
 name|UnmodifiableNavigableSet
 parameter_list|(
@@ -5959,6 +5968,17 @@ argument_list|(
 name|delegate
 argument_list|)
 expr_stmt|;
+name|this
+operator|.
+name|unmodifiableDelegate
+operator|=
+name|Collections
+operator|.
+name|unmodifiableSortedSet
+argument_list|(
+name|delegate
+argument_list|)
+expr_stmt|;
 block|}
 annotation|@
 name|Override
@@ -5972,12 +5992,7 @@ name|delegate
 parameter_list|()
 block|{
 return|return
-name|Collections
-operator|.
-name|unmodifiableSortedSet
-argument_list|(
-name|delegate
-argument_list|)
+name|unmodifiableDelegate
 return|;
 block|}
 annotation|@
