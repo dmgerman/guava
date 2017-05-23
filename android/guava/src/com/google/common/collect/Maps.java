@@ -1234,7 +1234,7 @@ name|map
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a general-purpose instance of {@code ConcurrentMap}, which supports    * all optional operations of the ConcurrentMap interface. It does not permit    * null keys or values. It is serializable.    *    *<p>This is equivalent to {@link MapMaker#makeMap()}.    *    *<p>It is often preferable to use {@code MapMaker} directly (rather than through    * this method), as it presents numerous useful configuration options,    * such as the concurrency level, load factor, key/value reference types,    * and value computation.    *    * @return a new, empty {@code ConcurrentMap}    * @since 3.0    */
+comment|/**    * Creates a new empty {@link ConcurrentHashMap} instance.    *    * @since 3.0    */
 DECL|method|newConcurrentMap ()
 specifier|public
 specifier|static
