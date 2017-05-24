@@ -313,12 +313,12 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|value (Object node)
+DECL|method|value (N node)
 specifier|public
 name|V
 name|value
 parameter_list|(
-name|Object
+name|N
 name|node
 parameter_list|)
 block|{
@@ -333,12 +333,12 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|removePredecessor (Object node)
+DECL|method|removePredecessor (N node)
 specifier|public
 name|void
 name|removePredecessor
 parameter_list|(
-name|Object
+name|N
 name|node
 parameter_list|)
 block|{
@@ -358,12 +358,12 @@ decl_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|removeSuccessor (Object node)
+DECL|method|removeSuccessor (N node)
 specifier|public
 name|V
 name|removeSuccessor
 parameter_list|(
-name|Object
+name|N
 name|node
 parameter_list|)
 block|{

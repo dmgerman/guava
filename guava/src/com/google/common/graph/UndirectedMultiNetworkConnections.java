@@ -464,12 +464,12 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|removeInEdge (Object edge, boolean isSelfLoop)
+DECL|method|removeInEdge (E edge, boolean isSelfLoop)
 specifier|public
 name|N
 name|removeInEdge
 parameter_list|(
-name|Object
+name|E
 name|edge
 parameter_list|,
 name|boolean
@@ -495,12 +495,12 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|removeOutEdge (Object edge)
+DECL|method|removeOutEdge (E edge)
 specifier|public
 name|N
 name|removeOutEdge
 parameter_list|(
-name|Object
+name|E
 name|edge
 parameter_list|)
 block|{

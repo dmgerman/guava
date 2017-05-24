@@ -891,12 +891,12 @@ literal|"unchecked"
 argument_list|)
 annotation|@
 name|Override
-DECL|method|value (Object node)
+DECL|method|value (N node)
 specifier|public
 name|V
 name|value
 parameter_list|(
-name|Object
+name|N
 name|node
 parameter_list|)
 block|{
@@ -956,12 +956,12 @@ literal|"unchecked"
 argument_list|)
 annotation|@
 name|Override
-DECL|method|removePredecessor (Object node)
+DECL|method|removePredecessor (N node)
 specifier|public
 name|void
 name|removePredecessor
 parameter_list|(
-name|Object
+name|N
 name|node
 parameter_list|)
 block|{

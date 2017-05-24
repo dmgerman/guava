@@ -625,7 +625,7 @@ argument_list|(
 name|nodeU
 argument_list|)
 operator|.
-name|oppositeNode
+name|adjacentNode
 argument_list|(
 name|edge
 argument_list|)

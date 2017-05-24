@@ -674,7 +674,7 @@ name|nodeV
 init|=
 name|connectionsU
 operator|.
-name|oppositeNode
+name|adjacentNode
 argument_list|(
 name|edge
 argument_list|)

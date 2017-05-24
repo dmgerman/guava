@@ -114,23 +114,23 @@ name|N
 name|node
 parameter_list|)
 function_decl|;
-comment|/**    * Returns the node that is opposite the origin node along {@code edge}.    *    *<p>In the directed case, {@code edge} is assumed to be an outgoing edge.    */
-DECL|method|oppositeNode (Object edge)
+comment|/**    * Returns the node that is adjacent to the origin node along {@code edge}.    *    *<p>In the directed case, {@code edge} is assumed to be an outgoing edge.    */
+DECL|method|adjacentNode (E edge)
 name|N
-name|oppositeNode
+name|adjacentNode
 parameter_list|(
-name|Object
+name|E
 name|edge
 parameter_list|)
 function_decl|;
 comment|/**    * Remove {@code edge} from the set of incoming edges. Returns the former predecessor node.    *    *<p>In the undirected case, returns {@code null} if {@code isSelfLoop} is true.    */
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|removeInEdge (Object edge, boolean isSelfLoop)
+DECL|method|removeInEdge (E edge, boolean isSelfLoop)
 name|N
 name|removeInEdge
 parameter_list|(
-name|Object
+name|E
 name|edge
 parameter_list|,
 name|boolean
@@ -140,11 +140,11 @@ function_decl|;
 comment|/** Remove {@code edge} from the set of outgoing edges. Returns the former successor node. */
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|removeOutEdge (Object edge)
+DECL|method|removeOutEdge (E edge)
 name|N
 name|removeOutEdge
 parameter_list|(
-name|Object
+name|E
 name|edge
 parameter_list|)
 function_decl|;

@@ -91,31 +91,31 @@ function_decl|;
 comment|/**    * Returns the value associated with the edge connecting the origin node to {@code node}, or null    * if there is no such edge.    */
 annotation|@
 name|Nullable
-DECL|method|value (Object node)
+DECL|method|value (N node)
 name|V
 name|value
 parameter_list|(
-name|Object
+name|N
 name|node
 parameter_list|)
 function_decl|;
 comment|/** Remove {@code node} from the set of predecessors. */
-DECL|method|removePredecessor (Object node)
+DECL|method|removePredecessor (N node)
 name|void
 name|removePredecessor
 parameter_list|(
-name|Object
+name|N
 name|node
 parameter_list|)
 function_decl|;
 comment|/**    * Remove {@code node} from the set of successors. Returns the value previously associated with    * the edge connecting the two nodes.    */
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|removeSuccessor (Object node)
+DECL|method|removeSuccessor (N node)
 name|V
 name|removeSuccessor
 parameter_list|(
-name|Object
+name|N
 name|node
 parameter_list|)
 function_decl|;
