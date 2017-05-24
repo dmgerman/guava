@@ -1171,6 +1171,18 @@ literal|0xFFL
 operator|)
 return|;
 block|}
+comment|/*    * Moving asciiDigits into this static holder class lets ProGuard eliminate and inline the Longs    * class.    */
+DECL|class|AsciiDigits
+specifier|static
+specifier|final
+class|class
+name|AsciiDigits
+block|{
+DECL|method|AsciiDigits ()
+specifier|private
+name|AsciiDigits
+parameter_list|()
+block|{}
 DECL|field|asciiDigits
 specifier|private
 specifier|static
@@ -1178,17 +1190,8 @@ specifier|final
 name|byte
 index|[]
 name|asciiDigits
-init|=
-name|createAsciiDigits
-argument_list|()
 decl_stmt|;
-DECL|method|createAsciiDigits ()
-specifier|private
-specifier|static
-name|byte
-index|[]
-name|createAsciiDigits
-parameter_list|()
+static|static
 block|{
 name|byte
 index|[]
@@ -1289,12 +1292,12 @@ name|i
 argument_list|)
 expr_stmt|;
 block|}
-return|return
+name|asciiDigits
+operator|=
 name|result
-return|;
+expr_stmt|;
 block|}
 DECL|method|digit (char c)
-specifier|private
 specifier|static
 name|int
 name|digit
@@ -1318,6 +1321,7 @@ else|:
 operator|-
 literal|1
 return|;
+block|}
 block|}
 comment|/**    * Parses the specified string as a signed decimal long value. The ASCII character {@code '-'}    * (<code>'&#92;u002D'</code>) is recognized as the minus sign.    *    *<p>Unlike {@link Long#parseLong(String)}, this method returns {@code null} instead of throwing    * an exception if parsing fails. Additionally, this method only accepts ASCII digits, and returns    * {@code null} if non-ASCII digits are present in the string.    *    *<p>Note that strings prefixed with ASCII {@code '+'} are rejected, even under JDK 7, despite    * the change to {@link Long#parseLong(String)} for that version.    *    * @param string the string representation of a long value    * @return the long value represented by {@code string}, or {@code null} if {@code string} has a    *     length of zero or cannot be parsed as a long value    * @since 14.0    */
 annotation|@
@@ -1443,6 +1447,8 @@ block|}
 name|int
 name|digit
 init|=
+name|AsciiDigits
+operator|.
 name|digit
 argument_list|(
 name|string
@@ -1496,6 +1502,8 @@ condition|)
 block|{
 name|digit
 operator|=
+name|AsciiDigits
+operator|.
 name|digit
 argument_list|(
 name|string
