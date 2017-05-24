@@ -302,6 +302,27 @@ name|expected
 parameter_list|)
 block|{     }
 block|}
+DECL|method|testOneBits ()
+specifier|public
+name|void
+name|testOneBits
+parameter_list|()
+block|{
+name|assertEquals
+argument_list|(
+name|DoubleUtils
+operator|.
+name|ONE_BITS
+argument_list|,
+name|Double
+operator|.
+name|doubleToRawLongBits
+argument_list|(
+literal|1.0
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
 DECL|method|failFormat (String template, Object... args)
 specifier|private
 specifier|static
