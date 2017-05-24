@@ -70,6 +70,20 @@ name|errorprone
 operator|.
 name|annotations
 operator|.
+name|ForOverride
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
 name|concurrent
 operator|.
 name|LazyInit
@@ -180,6 +194,8 @@ expr_stmt|;
 block|}
 comment|// SPI methods (what subclasses must implement)
 comment|/**    * Returns a representation of {@code a} as an instance of type {@code B}. If {@code a} cannot be    * converted, an unchecked exception (such as {@link IllegalArgumentException}) should be thrown.    *    * @param a the instance to convert; will never be null    * @return the converted instance;<b>must not</b> be null    */
+annotation|@
+name|ForOverride
 DECL|method|doForward (A a)
 specifier|protected
 specifier|abstract
@@ -191,6 +207,8 @@ name|a
 parameter_list|)
 function_decl|;
 comment|/**    * Returns a representation of {@code b} as an instance of type {@code A}. If {@code b} cannot be    * converted, an unchecked exception (such as {@link IllegalArgumentException}) should be thrown.    *    * @param b the instance to convert; will never be null    * @return the converted instance;<b>must not</b> be null    * @throws UnsupportedOperationException if backward conversion is not implemented; this should be    *     very rare. Note that if backward conversion is not only unimplemented but    *     unimplement<i>able</i> (for example, consider a {@code Converter<Chicken, ChickenNugget>}),    *     then this is not logically a {@code Converter} at all, and should just implement {@link    *     Function}.    */
+annotation|@
+name|ForOverride
 DECL|method|doBackward (B b)
 specifier|protected
 specifier|abstract

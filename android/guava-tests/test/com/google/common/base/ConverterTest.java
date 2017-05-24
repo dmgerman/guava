@@ -183,7 +183,7 @@ argument_list|()
 block|{
 annotation|@
 name|Override
-specifier|public
+specifier|protected
 name|Long
 name|doForward
 parameter_list|(
@@ -202,7 +202,7 @@ return|;
 block|}
 annotation|@
 name|Override
-specifier|public
+specifier|protected
 name|String
 name|doBackward
 parameter_list|(
@@ -661,7 +661,7 @@ argument_list|()
 block|{
 annotation|@
 name|Override
-specifier|public
+specifier|protected
 name|String
 name|doForward
 parameter_list|(
@@ -677,7 +677,7 @@ return|;
 block|}
 annotation|@
 name|Override
-specifier|public
+specifier|protected
 name|StringWrapper
 name|doBackward
 parameter_list|(
@@ -1183,7 +1183,7 @@ argument_list|)
 block|{
 annotation|@
 name|Override
-specifier|public
+specifier|protected
 name|String
 name|doForward
 parameter_list|(
@@ -1197,7 +1197,7 @@ return|;
 block|}
 annotation|@
 name|Override
-specifier|public
+specifier|protected
 name|String
 name|doBackward
 parameter_list|(
