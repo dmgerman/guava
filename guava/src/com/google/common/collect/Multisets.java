@@ -339,7 +339,7 @@ name|Multisets
 parameter_list|()
 block|{}
 comment|/**    * Returns a {@code Collector} that accumulates elements into a multiset created via the specified    * {@code Supplier}, whose elements are the result of applying {@code elementFunction} to the    * inputs, with counts equal to the result of applying {@code countFunction} to the inputs.    * Elements are added in encounter order.    *    *<p>If the mapped elements contain duplicates (according to {@link Object#equals}), the element    * will be added more than once, with the count summed over all appearances of the element.    *    *<p>Note that {@code stream.collect(toMultiset(function, e -> 1, supplier))} is equivalent to    * {@code stream.map(function).collect(Collectors.toCollection(supplier))}.    *    * @since 22.0    */
-DECL|method|toMultiset ( java.util.function.Function<T, E> elementFunction, java.util.function.ToIntFunction<T> countFunction, java.util.function.Supplier<M> multisetSupplier)
+DECL|method|toMultiset ( java.util.function.Function<? super T, E> elementFunction, java.util.function.ToIntFunction<? super T> countFunction, java.util.function.Supplier<M> multisetSupplier)
 specifier|public
 specifier|static
 parameter_list|<
@@ -372,6 +372,8 @@ name|function
 operator|.
 name|Function
 argument_list|<
+name|?
+super|super
 name|T
 argument_list|,
 name|E
@@ -386,6 +388,8 @@ name|function
 operator|.
 name|ToIntFunction
 argument_list|<
+name|?
+super|super
 name|T
 argument_list|>
 name|countFunction
