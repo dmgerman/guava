@@ -611,6 +611,7 @@ parameter_list|()
 block|{
 name|assertEquals
 argument_list|(
+comment|/*expected=*/
 name|BigIntegerMath
 operator|.
 name|sqrt
@@ -636,6 +637,7 @@ operator|.
 name|longValue
 argument_list|()
 argument_list|,
+comment|/*actual=*/
 name|LongMath
 operator|.
 name|MAX_POWER_OF_SQRT2_UNSIGNED
@@ -898,6 +900,7 @@ parameter_list|()
 block|{
 name|assertEquals
 argument_list|(
+comment|/*expected=*/
 name|LongMath
 operator|.
 name|sqrt
@@ -909,6 +912,7 @@ argument_list|,
 name|FLOOR
 argument_list|)
 argument_list|,
+comment|/*actual=*/
 name|LongMath
 operator|.
 name|FLOOR_SQRT_MAX_LONG

@@ -1177,9 +1177,9 @@ argument_list|)
 decl_stmt|;
 name|assertEquals
 argument_list|(
-name|elements
-argument_list|,
 literal|0
+argument_list|,
+name|elements
 argument_list|)
 expr_stmt|;
 name|assertThat

@@ -920,12 +920,12 @@ comment|// regards edge cases.
 comment|// The Unicode point {@code 00df} is the lowercase form of sharp-S (Ã), whose uppercase is "SS".
 name|assertEquals
 argument_list|(
+literal|"PASSWORD"
+argument_list|,
 literal|"pa\u00dfword"
 operator|.
 name|toUpperCase
 argument_list|()
-argument_list|,
-literal|"PASSWORD"
 argument_list|)
 expr_stmt|;
 comment|// [*]

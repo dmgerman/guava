@@ -137,9 +137,6 @@ parameter_list|()
 block|{
 name|assertEquals
 argument_list|(
-name|actualContents
-argument_list|()
-argument_list|,
 name|SerializableTester
 operator|.
 name|reserialize
@@ -147,6 +144,9 @@ argument_list|(
 name|actualContents
 argument_list|()
 argument_list|)
+argument_list|,
+name|actualContents
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}

@@ -1180,6 +1180,8 @@ expr_stmt|;
 comment|// we shouldn't see any more map operations; CHM will now just update the AtomicInteger
 name|assertEquals
 argument_list|(
+literal|12
+argument_list|,
 name|multiset
 operator|.
 name|add
@@ -1188,8 +1190,6 @@ name|KEY
 argument_list|,
 literal|3
 argument_list|)
-argument_list|,
-literal|12
 argument_list|)
 expr_stmt|;
 name|assertEquals
