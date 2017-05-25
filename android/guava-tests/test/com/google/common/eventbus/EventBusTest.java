@@ -1343,6 +1343,34 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+DECL|method|testToString ()
+specifier|public
+name|void
+name|testToString
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|EventBus
+name|eventBus
+init|=
+operator|new
+name|EventBus
+argument_list|(
+literal|"a b ; - \"<> / \\ â¬"
+argument_list|)
+decl_stmt|;
+name|assertEquals
+argument_list|(
+literal|"EventBus{a b ; - \"<> / \\ â¬}"
+argument_list|,
+name|eventBus
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
 comment|/**    * Tests that bridge methods are not subscribed to events. In Java 8,    * annotations are included on the bridge method in addition to the original    * method, which causes both the original and bridge methods to be subscribed    * (since both are annotated @Subscribe) without specifically checking for    * bridge methods.    */
 DECL|method|testRegistrationWithBridgeMethod ()
 specifier|public

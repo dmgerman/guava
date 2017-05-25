@@ -963,6 +963,34 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+DECL|method|testParseLongEmptyString ()
+specifier|public
+name|void
+name|testParseLongEmptyString
+parameter_list|()
+block|{
+try|try
+block|{
+name|UnsignedLongs
+operator|.
+name|parseUnsignedLong
+argument_list|(
+literal|""
+argument_list|)
+expr_stmt|;
+name|fail
+argument_list|(
+literal|"NumberFormatException should have been raised."
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|NumberFormatException
+name|expected
+parameter_list|)
+block|{     }
+block|}
 DECL|method|testParseLongFails ()
 specifier|public
 name|void
@@ -1429,6 +1457,8 @@ index|[]
 name|tests
 init|=
 block|{
+literal|"0"
+block|,
 literal|"ffffffffffffffff"
 block|,
 literal|"7fffffffffffffff"
