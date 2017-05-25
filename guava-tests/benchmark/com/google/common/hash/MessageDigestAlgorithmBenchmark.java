@@ -170,9 +170,9 @@ return|;
 block|}
 block|}
 block|,
-DECL|enumConstant|HASH_FUNCTION_API
-DECL|method|HASH_FUNCTION_API ()
-name|HASH_FUNCTION_API
+DECL|enumConstant|HASH_FUNCTION_DIRECT
+DECL|method|HASH_FUNCTION_DIRECT ()
+name|HASH_FUNCTION_DIRECT
 parameter_list|()
 block|{
 annotation|@
@@ -206,7 +206,50 @@ argument_list|()
 return|;
 block|}
 block|}
-block|;
+block|,
+DECL|enumConstant|HASH_FUNCTION_VIA_HASHER
+DECL|method|HASH_FUNCTION_VIA_HASHER ()
+name|HASH_FUNCTION_VIA_HASHER
+parameter_list|()
+block|{
+annotation|@
+name|Override
+specifier|public
+name|byte
+index|[]
+name|hash
+parameter_list|(
+name|Algorithm
+name|algorithm
+parameter_list|,
+name|byte
+index|[]
+name|input
+parameter_list|)
+block|{
+return|return
+name|algorithm
+operator|.
+name|getHashFunction
+argument_list|()
+operator|.
+name|newHasher
+argument_list|()
+operator|.
+name|putBytes
+argument_list|(
+name|input
+argument_list|)
+operator|.
+name|hash
+argument_list|()
+operator|.
+name|asBytes
+argument_list|()
+return|;
+block|}
+block|}
+block|;;
 DECL|method|hash (Algorithm algorithm, byte[] input)
 specifier|public
 specifier|abstract
