@@ -28,6 +28,16 @@ name|Crc32cHashFunction
 extends|extends
 name|AbstractStreamingHashFunction
 block|{
+DECL|field|CRC_32_C
+specifier|static
+specifier|final
+name|HashFunction
+name|CRC_32_C
+init|=
+operator|new
+name|Crc32cHashFunction
+argument_list|()
+decl_stmt|;
 annotation|@
 name|Override
 DECL|method|bits ()

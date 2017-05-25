@@ -80,6 +80,24 @@ name|AbstractStreamingHashFunction
 implements|implements
 name|Serializable
 block|{
+DECL|field|SIP_HASH_24
+specifier|static
+specifier|final
+name|HashFunction
+name|SIP_HASH_24
+init|=
+operator|new
+name|SipHashFunction
+argument_list|(
+literal|2
+argument_list|,
+literal|4
+argument_list|,
+literal|0x0706050403020100L
+argument_list|,
+literal|0x0f0e0d0c0b0a0908L
+argument_list|)
+decl_stmt|;
 comment|// The number of compression rounds.
 DECL|field|c
 specifier|private

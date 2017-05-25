@@ -102,6 +102,16 @@ name|FarmHashFingerprint64
 extends|extends
 name|AbstractNonStreamingHashFunction
 block|{
+DECL|field|FARMHASH_FINGERPRINT_64
+specifier|static
+specifier|final
+name|HashFunction
+name|FARMHASH_FINGERPRINT_64
+init|=
+operator|new
+name|FarmHashFingerprint64
+argument_list|()
+decl_stmt|;
 comment|// Some primes between 2^63 and 2^64 for various uses.
 DECL|field|K0
 specifier|private
