@@ -79,7 +79,7 @@ DECL|enum|QuantilesAlgorithm
 enum|enum
 name|QuantilesAlgorithm
 block|{
-comment|/**    * Sorts the dataset, and picks values from it. When computing multiple quantiles, we sort once    * and pick multiple values.    *    *<p>This is basically equivalent to the legacy {@code com.google.math.Sample}, except that does    * a copy whereas this is in-place.    */
+comment|/**    * Sorts the dataset, and picks values from it. When computing multiple quantiles, we sort once    * and pick multiple values.    */
 DECL|enumConstant|SORTING
 name|SORTING
 block|{
@@ -311,7 +311,7 @@ block|}
 block|}
 block|}
 block|,
-comment|/**    * Uses quickselect. When calculating multiple quantiles, each quickselect starts from scratch.    *    *<p>This is basically equivalent to the legacy {@code com.google.math.Rank}.    */
+comment|/**    * Uses quickselect. When calculating multiple quantiles, each quickselect starts from scratch.    */
 DECL|enumConstant|QUICKSELECT
 name|QUICKSELECT
 block|{
