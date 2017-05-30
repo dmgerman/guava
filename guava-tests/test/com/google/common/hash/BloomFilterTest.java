@@ -715,7 +715,7 @@ name|numFpp
 argument_list|)
 expr_stmt|;
 name|double
-name|actualFpp
+name|expectedReportedFpp
 init|=
 operator|(
 name|double
@@ -725,19 +725,18 @@ operator|/
 name|numInsertions
 decl_stmt|;
 name|double
-name|expectedFpp
+name|actualReportedFpp
 init|=
 name|bf
 operator|.
 name|expectedFpp
 argument_list|()
 decl_stmt|;
-comment|// The normal order of (expected, actual) is reversed here on purpose.
 name|assertEquals
 argument_list|(
-name|actualFpp
+name|expectedReportedFpp
 argument_list|,
-name|expectedFpp
+name|actualReportedFpp
 argument_list|,
 literal|0.00015
 argument_list|)
@@ -994,7 +993,7 @@ name|numFpp
 argument_list|)
 expr_stmt|;
 name|double
-name|actualFpp
+name|expectedReportedFpp
 init|=
 operator|(
 name|double
@@ -1004,19 +1003,18 @@ operator|/
 name|numInsertions
 decl_stmt|;
 name|double
-name|expectedFpp
+name|actualReportedFpp
 init|=
 name|bf
 operator|.
 name|expectedFpp
 argument_list|()
 decl_stmt|;
-comment|// The normal order of (expected, actual) is reversed here on purpose.
 name|assertEquals
 argument_list|(
-name|actualFpp
+name|expectedReportedFpp
 argument_list|,
-name|expectedFpp
+name|actualReportedFpp
 argument_list|,
 literal|0.00033
 argument_list|)
@@ -1265,7 +1263,7 @@ name|numFpp
 argument_list|)
 expr_stmt|;
 name|double
-name|actualFpp
+name|expectedReportedFpp
 init|=
 operator|(
 name|double
@@ -1275,19 +1273,18 @@ operator|/
 name|numInsertions
 decl_stmt|;
 name|double
-name|expectedFpp
+name|actualReportedFpp
 init|=
 name|bf
 operator|.
 name|expectedFpp
 argument_list|()
 decl_stmt|;
-comment|// The normal order of (expected, actual) is reversed here on purpose.
 name|assertEquals
 argument_list|(
-name|actualFpp
+name|expectedReportedFpp
 argument_list|,
-name|expectedFpp
+name|actualReportedFpp
 argument_list|,
 literal|0.00033
 argument_list|)
