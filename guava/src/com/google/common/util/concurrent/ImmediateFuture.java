@@ -151,7 +151,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Implementations of {@code Futures.immediate*}.  */
+comment|/** Implementations of {@code Futures.immediate*}. */
 end_comment
 
 begin_class
@@ -169,8 +169,8 @@ name|ImmediateFuture
 parameter_list|<
 name|V
 parameter_list|>
-implements|implements
-name|ListenableFuture
+extends|extends
+name|FluentFuture
 argument_list|<
 name|V
 argument_list|>
