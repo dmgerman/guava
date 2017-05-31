@@ -70,6 +70,16 @@ name|N
 parameter_list|,
 name|E
 parameter_list|>
+extends|extends
+name|SuccessorsFunction
+argument_list|<
+name|N
+argument_list|>
+extends|,
+name|PredecessorsFunction
+argument_list|<
+name|N
+argument_list|>
 block|{
 comment|//
 comment|// Network-level accessors
@@ -156,7 +166,8 @@ name|node
 parameter_list|)
 function_decl|;
 comment|/**    * Returns all nodes in this network adjacent to {@code node} which can be reached by traversing    * {@code node}'s incoming edges<i>against</i> the direction (if any) of the edge.    *    *<p>In an undirected network, this is equivalent to {@link #adjacentNodes(Object)}.    *    * @throws IllegalArgumentException if {@code node} is not an element of this network    */
-comment|// TODO(b/35451662): restore the @Override once the supertypes are released
+annotation|@
+name|Override
 DECL|method|predecessors (N node)
 name|Set
 argument_list|<
@@ -169,7 +180,8 @@ name|node
 parameter_list|)
 function_decl|;
 comment|/**    * Returns all nodes in this network adjacent to {@code node} which can be reached by traversing    * {@code node}'s outgoing edges in the direction (if any) of the edge.    *    *<p>In an undirected network, this is equivalent to {@link #adjacentNodes(Object)}.    *    *<p>This is<i>not</i> the same as "all nodes reachable from {@code node} by following outgoing    * edges". For that functionality, see {@link Graphs#reachableNodes(Graph, Object)}.    *    * @throws IllegalArgumentException if {@code node} is not an element of this network    */
-comment|// TODO(b/35451662): restore the @Override once the supertypes are released
+annotation|@
+name|Override
 DECL|method|successors (N node)
 name|Set
 argument_list|<
