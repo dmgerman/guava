@@ -76,7 +76,7 @@ specifier|final
 class|class
 name|SipHashFunction
 extends|extends
-name|AbstractStreamingHashFunction
+name|AbstractHashFunction
 implements|implements
 name|Serializable
 block|{

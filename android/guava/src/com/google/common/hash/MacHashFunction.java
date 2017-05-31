@@ -98,7 +98,7 @@ specifier|final
 class|class
 name|MacHashFunction
 extends|extends
-name|AbstractStreamingHashFunction
+name|AbstractHashFunction
 block|{
 DECL|field|prototype
 specifier|private

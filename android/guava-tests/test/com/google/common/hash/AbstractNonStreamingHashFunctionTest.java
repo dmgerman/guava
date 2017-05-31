@@ -520,7 +520,7 @@ specifier|static
 class|class
 name|StreamingVersion
 extends|extends
-name|AbstractStreamingHashFunction
+name|AbstractHashFunction
 block|{
 annotation|@
 name|Override
@@ -561,6 +561,7 @@ argument_list|()
 decl_stmt|;
 annotation|@
 name|Override
+specifier|protected
 name|HashCode
 name|makeHash
 parameter_list|()

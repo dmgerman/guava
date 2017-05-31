@@ -70,22 +70,6 @@ name|common
 operator|.
 name|hash
 operator|.
-name|AbstractStreamingHashFunction
-operator|.
-name|AbstractStreamingHasher
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|hash
-operator|.
 name|HashTestUtils
 operator|.
 name|RandomHasherAction
@@ -1262,6 +1246,7 @@ block|}
 DECL|method|makeHash ()
 annotation|@
 name|Override
+specifier|protected
 name|HashCode
 name|makeHash
 parameter_list|()

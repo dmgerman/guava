@@ -26,7 +26,7 @@ specifier|final
 class|class
 name|Crc32cHashFunction
 extends|extends
-name|AbstractStreamingHashFunction
+name|AbstractHashFunction
 block|{
 DECL|field|CRC_32_C
 specifier|static

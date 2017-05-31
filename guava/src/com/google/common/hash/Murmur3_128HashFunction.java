@@ -90,7 +90,7 @@ specifier|final
 class|class
 name|Murmur3_128HashFunction
 extends|extends
-name|AbstractStreamingHashFunction
+name|AbstractHashFunction
 implements|implements
 name|Serializable
 block|{

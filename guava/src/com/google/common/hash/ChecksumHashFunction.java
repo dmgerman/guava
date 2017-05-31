@@ -94,7 +94,7 @@ specifier|final
 class|class
 name|ChecksumHashFunction
 extends|extends
-name|AbstractStreamingHashFunction
+name|AbstractHashFunction
 implements|implements
 name|Serializable
 block|{
