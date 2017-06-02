@@ -1215,12 +1215,12 @@ decl_stmt|;
 name|int
 name|heapSize
 init|=
-literal|999
+literal|99
 decl_stmt|;
 name|int
 name|numberOfModifications
 init|=
-literal|500
+literal|100
 decl_stmt|;
 name|MinMaxPriorityQueue
 argument_list|<
@@ -5197,7 +5197,7 @@ block|{
 name|int
 name|size
 init|=
-literal|8
+literal|5
 decl_stmt|;
 name|List
 argument_list|<
