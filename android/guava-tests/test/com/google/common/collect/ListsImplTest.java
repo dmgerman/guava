@@ -395,6 +395,15 @@ argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
+name|suite
+operator|.
+name|addTestSuite
+argument_list|(
+name|ListsImplTest
+operator|.
+name|class
+argument_list|)
+expr_stmt|;
 return|return
 name|suite
 return|;

@@ -3300,6 +3300,15 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+name|suite
+operator|.
+name|addTestSuite
+argument_list|(
+name|ImmutableIntArrayTest
+operator|.
+name|class
+argument_list|)
+expr_stmt|;
 return|return
 name|suite
 return|;
