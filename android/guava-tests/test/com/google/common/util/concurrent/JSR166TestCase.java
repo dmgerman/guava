@@ -4058,12 +4058,12 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
+literal|"[]"
+argument_list|,
 name|q
 operator|.
 name|toString
 argument_list|()
-argument_list|,
-literal|"[]"
 argument_list|)
 expr_stmt|;
 name|assertTrue

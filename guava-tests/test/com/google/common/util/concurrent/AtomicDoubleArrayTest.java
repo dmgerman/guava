@@ -1652,6 +1652,10 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
+name|SIZE
+operator|*
+name|COUNTDOWN
+argument_list|,
 name|c1
 operator|.
 name|counts
@@ -1659,10 +1663,6 @@ operator|+
 name|c2
 operator|.
 name|counts
-argument_list|,
-name|SIZE
-operator|*
-name|COUNTDOWN
 argument_list|)
 expr_stmt|;
 block|}

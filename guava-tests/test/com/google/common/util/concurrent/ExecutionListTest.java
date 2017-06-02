@@ -210,12 +210,12 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
+literal|3L
+argument_list|,
 name|countDownLatch
 operator|.
 name|getCount
 argument_list|()
-argument_list|,
-literal|3L
 argument_list|)
 expr_stmt|;
 name|list
