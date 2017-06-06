@@ -50,16 +50,6 @@ name|java
 operator|.
 name|nio
 operator|.
-name|ByteBuffer
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|nio
-operator|.
 name|charset
 operator|.
 name|Charset
@@ -113,15 +103,6 @@ name|off
 parameter_list|,
 name|int
 name|len
-parameter_list|)
-function_decl|;
-comment|/**    * Puts the remaining bytes of a byte buffer into this sink. {@code bytes.position()} is the first    * byte written, {@code bytes.limit() - 1} is the last. The position of the buffer will be equal    * to the limit when this method returns.    *    * @param bytes a byte buffer    * @return this instance    * @since 23.0    */
-DECL|method|putBytes (ByteBuffer bytes)
-name|PrimitiveSink
-name|putBytes
-parameter_list|(
-name|ByteBuffer
-name|bytes
 parameter_list|)
 function_decl|;
 comment|/**    * Puts a short into this sink.    */

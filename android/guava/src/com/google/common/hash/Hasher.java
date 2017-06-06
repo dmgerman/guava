@@ -50,16 +50,6 @@ name|java
 operator|.
 name|nio
 operator|.
-name|ByteBuffer
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|nio
-operator|.
 name|charset
 operator|.
 name|Charset
@@ -118,16 +108,6 @@ name|off
 parameter_list|,
 name|int
 name|len
-parameter_list|)
-function_decl|;
-annotation|@
-name|Override
-DECL|method|putBytes (ByteBuffer bytes)
-name|Hasher
-name|putBytes
-parameter_list|(
-name|ByteBuffer
-name|bytes
 parameter_list|)
 function_decl|;
 annotation|@
