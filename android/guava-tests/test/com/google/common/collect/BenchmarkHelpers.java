@@ -2611,9 +2611,6 @@ enum|enum
 name|ListSizeDistribution
 block|{
 DECL|enumConstant|UNIFORM_0_TO_2
-DECL|enumConstant|UNIFORM_0_TO_9
-DECL|enumConstant|ALWAYS_0
-DECL|enumConstant|ALWAYS_10
 name|UNIFORM_0_TO_2
 argument_list|(
 literal|0
@@ -2621,6 +2618,7 @@ argument_list|,
 literal|2
 argument_list|)
 block|,
+DECL|enumConstant|UNIFORM_0_TO_9
 name|UNIFORM_0_TO_9
 argument_list|(
 literal|0
@@ -2628,6 +2626,7 @@ argument_list|,
 literal|9
 argument_list|)
 block|,
+DECL|enumConstant|ALWAYS_0
 name|ALWAYS_0
 argument_list|(
 literal|0
@@ -2635,6 +2634,7 @@ argument_list|,
 literal|0
 argument_list|)
 block|,
+DECL|enumConstant|ALWAYS_10
 name|ALWAYS_10
 argument_list|(
 literal|10
