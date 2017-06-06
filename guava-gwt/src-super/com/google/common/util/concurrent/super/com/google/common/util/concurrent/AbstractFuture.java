@@ -245,7 +245,28 @@ argument_list|<
 name|V
 argument_list|>
 block|{
-comment|/*      * We don't need to override any of methods that we override in the prod version (and in fact we      * can't) because they are already final in AbstractFuture itself under GWT.      */
+comment|/*      * We don't need to override most of methods that we override in the prod version (and in fact      * we can't) because they are already final in AbstractFuture itself under GWT.      */
+annotation|@
+name|Override
+DECL|method|cancel (boolean mayInterruptIfRunning)
+specifier|public
+specifier|final
+name|boolean
+name|cancel
+parameter_list|(
+name|boolean
+name|mayInterruptIfRunning
+parameter_list|)
+block|{
+return|return
+name|super
+operator|.
+name|cancel
+argument_list|(
+name|mayInterruptIfRunning
+argument_list|)
+return|;
+block|}
 block|}
 DECL|field|log
 specifier|private
@@ -329,7 +350,6 @@ annotation|@
 name|Override
 DECL|method|cancel (boolean mayInterruptIfRunning)
 specifier|public
-specifier|final
 name|boolean
 name|cancel
 parameter_list|(
