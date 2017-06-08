@@ -50,6 +50,16 @@ name|java
 operator|.
 name|nio
 operator|.
+name|ByteBuffer
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|nio
+operator|.
 name|charset
 operator|.
 name|Charset
@@ -125,6 +135,15 @@ name|off
 parameter_list|,
 name|int
 name|len
+parameter_list|)
+function_decl|;
+comment|/**    * Shortcut for {@code newHasher().putBytes(input).hash()}. The implementation<i>might</i>    * perform better than its longhand equivalent, but should not perform worse.    *    * @since 23.0    */
+DECL|method|hashBytes (ByteBuffer input)
+name|HashCode
+name|hashBytes
+parameter_list|(
+name|ByteBuffer
+name|input
 parameter_list|)
 function_decl|;
 comment|/**    * Shortcut for {@code newHasher().putUnencodedChars(input).hash()}. The implementation    *<i>might</i> perform better than its longhand equivalent, but should not perform worse. Note    * that no character encoding is performed; the low byte and high byte of each {@code char} are    * hashed directly (in that order).    *    *<p><b>Warning:</b> This method will produce different output than most other languages do when    * running the same hash function on the equivalent input. For cross-language compatibility, use    * {@link #hashString}, usually with a charset of UTF-8. For other use cases, use {@code    * hashUnencodedChars}.    *    * @since 15.0 (since 11.0 as hashString(CharSequence)).    */
