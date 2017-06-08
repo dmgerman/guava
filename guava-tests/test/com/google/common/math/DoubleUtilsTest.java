@@ -84,16 +84,6 @@ name|TestCase
 import|;
 end_import
 
-begin_import
-import|import
-name|sun
-operator|.
-name|misc
-operator|.
-name|FpUtils
-import|;
-end_import
-
 begin_comment
 comment|/**  * Tests for {@link DoubleUtils}.  *  * @author Louis Wasserman  */
 end_comment
@@ -125,7 +115,7 @@ control|)
 block|{
 name|assertEquals
 argument_list|(
-name|FpUtils
+name|Math
 operator|.
 name|nextDown
 argument_list|(
