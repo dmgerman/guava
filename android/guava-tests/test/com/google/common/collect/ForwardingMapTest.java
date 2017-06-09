@@ -18,6 +18,20 @@ end_package
 
 begin_import
 import|import static
+name|java
+operator|.
+name|lang
+operator|.
+name|reflect
+operator|.
+name|Modifier
+operator|.
+name|STATIC
+import|;
+end_import
+
+begin_import
+import|import static
 name|org
 operator|.
 name|mockito
@@ -2081,6 +2095,22 @@ name|getMethods
 argument_list|()
 control|)
 block|{
+if|if
+condition|(
+operator|(
+name|method
+operator|.
+name|getModifiers
+argument_list|()
+operator|&
+name|STATIC
+operator|)
+operator|!=
+literal|0
+condition|)
+block|{
+continue|continue;
+block|}
 name|Class
 argument_list|<
 name|?
