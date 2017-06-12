@@ -153,7 +153,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This class provides a skeletal implementation of {@link ValueGraph}. It is recommended to extend  * this class rather than implement {@link ValueGraph} directly.  *  * @author James Sexton  * @param<N> Node parameter type  * @param<V> Value parameter type  * @since 20.0  */
+comment|/**  * This class provides a skeletal implementation of {@link ValueGraph}. It is recommended to extend  * this class rather than implement {@link ValueGraph} directly.  *  *<p>The methods implemented in this class should not be overridden unless the subclass admits a  * more efficient implementation.  *  * @author James Sexton  * @param<N> Node parameter type  * @param<V> Value parameter type  * @since 20.0  */
 end_comment
 
 begin_class
