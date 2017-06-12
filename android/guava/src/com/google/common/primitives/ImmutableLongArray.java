@@ -90,6 +90,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|Immutable
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -177,6 +191,8 @@ annotation|@
 name|Beta
 annotation|@
 name|GwtCompatible
+annotation|@
+name|Immutable
 DECL|class|ImmutableLongArray
 specifier|public
 specifier|final
@@ -1098,6 +1114,13 @@ return|;
 block|}
 block|}
 comment|// Instance stuff here
+comment|// The array is never mutated after storing in this field and the construction strategies ensure
+comment|// it doesn't escape this class
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"Immutable"
+argument_list|)
 DECL|field|array
 specifier|private
 specifier|final
