@@ -304,23 +304,34 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|toString ()
-specifier|public
+DECL|method|pendingToString ()
+specifier|protected
 name|String
-name|toString
+name|pendingToString
 parameter_list|()
 block|{
-return|return
-name|super
-operator|.
-name|toString
-argument_list|()
-operator|+
-literal|" (delegate = "
-operator|+
+name|TrustedFutureInterruptibleTask
+name|localTask
+init|=
 name|task
+decl_stmt|;
+if|if
+condition|(
+name|localTask
+operator|!=
+literal|null
+condition|)
+block|{
+return|return
+literal|"task=["
 operator|+
-literal|")"
+name|localTask
+operator|+
+literal|"]"
+return|;
+block|}
+return|return
+literal|null
 return|;
 block|}
 annotation|@
