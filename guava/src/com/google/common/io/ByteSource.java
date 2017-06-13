@@ -426,7 +426,7 @@ name|length
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns whether the source has zero bytes. The default implementation returns true if    * {@link #sizeIfKnown} returns zero, falling back to opening a stream and checking for EOF if the    * size is not known.    *    *<p>Note that, in cases where {@code sizeIfKnown} returns zero, it is<i>possible</i> that bytes    * are actually available for reading. (For example, some special files may return a size of 0    * despite actually having content when read.) This means that a source may return {@code true}    * from {@code isEmpty()} despite having readable content.    *    * @throws IOException if an I/O error occurs    * @since 15.0    */
+comment|/**    * Returns whether the source has zero bytes. The default implementation first checks    * {@link #sizeIfKnown}, returning true if it's known to be zero and false if it's known to be    * non-zero. If the size is not known, it falls back to opening a stream and checking for EOF.    *    *<p>Note that, in cases where {@code sizeIfKnown} returns zero, it is<i>possible</i> that bytes    * are actually available for reading. (For example, some special files may return a size of 0    * despite actually having content when read.) This means that a source may return {@code true}    * from {@code isEmpty()} despite having readable content.    *    * @throws IOException if an I/O error occurs    * @since 15.0    */
 DECL|method|isEmpty ()
 specifier|public
 name|boolean
@@ -450,17 +450,15 @@ name|sizeIfKnown
 operator|.
 name|isPresent
 argument_list|()
-operator|&&
+condition|)
+block|{
+return|return
 name|sizeIfKnown
 operator|.
 name|get
 argument_list|()
 operator|==
 literal|0L
-condition|)
-block|{
-return|return
-literal|true
 return|;
 block|}
 name|Closer

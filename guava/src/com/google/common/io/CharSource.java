@@ -1135,7 +1135,7 @@ argument_list|()
 throw|;
 block|}
 block|}
-comment|/**    * Returns whether the source has zero chars. The default implementation returns true if    * {@link #lengthIfKnown} returns zero, falling back to opening a stream and checking for EOF if    * the length is not known.    *    *<p>Note that, in cases where {@code lengthIfKnown} returns zero, it is<i>possible</i> that    * chars are actually available for reading. This means that a source may return {@code true} from    * {@code isEmpty()} despite having readable content.    *    * @throws IOException if an I/O error occurs    * @since 15.0    */
+comment|/**    * Returns whether the source has zero chars. The default implementation first checks    * {@link #lengthIfKnown}, returning true if it's known to be zero and false if it's known to be    * non-zero. If the length is not known, it falls back to opening a stream and checking for EOF.    *    *<p>Note that, in cases where {@code lengthIfKnown} returns zero, it is<i>possible</i> that    * chars are actually available for reading. This means that a source may return {@code true} from    * {@code isEmpty()} despite having readable content.    *    * @throws IOException if an I/O error occurs    * @since 15.0    */
 DECL|method|isEmpty ()
 specifier|public
 name|boolean
@@ -1159,17 +1159,15 @@ name|lengthIfKnown
 operator|.
 name|isPresent
 argument_list|()
-operator|&&
+condition|)
+block|{
+return|return
 name|lengthIfKnown
 operator|.
 name|get
 argument_list|()
 operator|==
 literal|0L
-condition|)
-block|{
-return|return
-literal|true
 return|;
 block|}
 name|Closer
