@@ -4136,6 +4136,10 @@ operator|new
 name|String
 argument_list|(
 name|bytes
+argument_list|,
+name|Charsets
+operator|.
+name|US_ASCII
 argument_list|)
 decl_stmt|;
 name|assertEquals
