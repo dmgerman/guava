@@ -295,6 +295,20 @@ name|N
 name|nodeV
 parameter_list|)
 function_decl|;
+comment|/**    * Returns the single edge directly connecting {@code nodeU} to {@code nodeV}, if one is present,    * or {@code null} if no such edge exists.    *    *<p>In an undirected network, this is equal to {@code edgeConnectingOrNull(nodeV, nodeU)}.    *    * @throws IllegalArgumentException if there are multiple parallel edges connecting {@code nodeU}    *     to {@code nodeV}    * @throws IllegalArgumentException if {@code nodeU} or {@code nodeV} is not an element of this    *     network    * @since 23.0    */
+annotation|@
+name|Nullable
+DECL|method|edgeConnectingOrNull (N nodeU, N nodeV)
+name|E
+name|edgeConnectingOrNull
+parameter_list|(
+name|N
+name|nodeU
+parameter_list|,
+name|N
+name|nodeV
+parameter_list|)
+function_decl|;
 comment|//
 comment|// Network identity
 comment|//

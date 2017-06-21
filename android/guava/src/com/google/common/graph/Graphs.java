@@ -2132,6 +2132,32 @@ argument_list|)
 return|;
 comment|// transpose
 block|}
+annotation|@
+name|Override
+DECL|method|edgeConnectingOrNull (N nodeU, N nodeV)
+specifier|public
+name|E
+name|edgeConnectingOrNull
+parameter_list|(
+name|N
+name|nodeU
+parameter_list|,
+name|N
+name|nodeV
+parameter_list|)
+block|{
+return|return
+name|network
+operator|.
+name|edgeConnectingOrNull
+argument_list|(
+name|nodeV
+argument_list|,
+name|nodeU
+argument_list|)
+return|;
+comment|// transpose
+block|}
 block|}
 comment|// Graph copy methods
 comment|/**    * Returns the subgraph of {@code graph} induced by {@code nodes}. This subgraph is a new graph    * that contains all of the nodes in {@code nodes}, and all of the {@link Graph#edges() edges}    * from {@code graph} for which both nodes are contained by {@code nodes}.    *    * @throws IllegalArgumentException if any element in {@code nodes} is not a node in the graph    */
