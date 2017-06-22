@@ -24,6 +24,22 @@ name|google
 operator|.
 name|common
 operator|.
+name|graph
+operator|.
+name|TestUtil
+operator|.
+name|ERROR_ELEMENT_NOT_IN_GRAPH
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
 name|truth
 operator|.
 name|Truth
@@ -323,8 +339,6 @@ argument_list|)
 operator|.
 name|contains
 argument_list|(
-name|AbstractNetworkTest
-operator|.
 name|ERROR_ELEMENT_NOT_IN_GRAPH
 argument_list|)
 expr_stmt|;

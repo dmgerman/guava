@@ -28,6 +28,38 @@ name|graph
 operator|.
 name|TestUtil
 operator|.
+name|ERROR_NODE_NOT_IN_GRAPH
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|graph
+operator|.
+name|TestUtil
+operator|.
+name|assertNodeNotInGraphErrorMessage
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|graph
+operator|.
+name|TestUtil
+operator|.
 name|assertStronglyEquivalent
 import|;
 end_import
@@ -225,22 +257,6 @@ comment|// identifiable substrings of expected error messages, from Strings that
 comment|// here to provide error messages.
 comment|// TODO(user): Some Strings used in the subclasses can be added as static Strings
 comment|// here too.
-DECL|field|ERROR_ELEMENT_NOT_IN_GRAPH
-specifier|static
-specifier|final
-name|String
-name|ERROR_ELEMENT_NOT_IN_GRAPH
-init|=
-literal|"not an element of this graph"
-decl_stmt|;
-DECL|field|NODE_STRING
-specifier|static
-specifier|final
-name|String
-name|NODE_STRING
-init|=
-literal|"Node"
-decl_stmt|;
 DECL|field|ERROR_MODIFIABLE_SET
 specifier|static
 specifier|final
@@ -256,14 +272,6 @@ name|String
 name|ERROR_SELF_LOOP
 init|=
 literal|"self-loops are not allowed"
-decl_stmt|;
-DECL|field|ERROR_NODE_NOT_IN_GRAPH
-specifier|static
-specifier|final
-name|String
-name|ERROR_NODE_NOT_IN_GRAPH
-init|=
-literal|"Should not be allowed to pass a node that is not an element of the graph."
 decl_stmt|;
 DECL|field|ERROR_ADDED_SELF_LOOP
 specifier|static
@@ -2149,42 +2157,6 @@ operator|.
 name|contains
 argument_list|(
 name|N2
-argument_list|)
-expr_stmt|;
-block|}
-DECL|method|assertNodeNotInGraphErrorMessage (Throwable throwable)
-specifier|static
-name|void
-name|assertNodeNotInGraphErrorMessage
-parameter_list|(
-name|Throwable
-name|throwable
-parameter_list|)
-block|{
-name|assertThat
-argument_list|(
-name|throwable
-operator|.
-name|getMessage
-argument_list|()
-argument_list|)
-operator|.
-name|startsWith
-argument_list|(
-name|NODE_STRING
-argument_list|)
-expr_stmt|;
-name|assertThat
-argument_list|(
-name|throwable
-operator|.
-name|getMessage
-argument_list|()
-argument_list|)
-operator|.
-name|contains
-argument_list|(
-name|ERROR_ELEMENT_NOT_IN_GRAPH
 argument_list|)
 expr_stmt|;
 block|}
