@@ -609,7 +609,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns {@code true} if {@code iterable} contains any element {@code o} for which    * {@Objects.equals(o, element)} would return {@code true}. Otherwise returns {@code false}, even    * in cases where {@link Collection#contains} might throw {@link NullPointerException} or {@link    * ClassCastException}.    */
+comment|/**    * Returns {@code true} if {@code iterable} contains any element {@code o} for which {@code    * Objects.equals(o, element)} would return {@code true}. Otherwise returns {@code false}, even in    * cases where {@link Collection#contains} might throw {@link NullPointerException} or {@link    * ClassCastException}.    */
 DECL|method|contains (Iterable<?> iterable, @Nullable Object element)
 specifier|public
 specifier|static
