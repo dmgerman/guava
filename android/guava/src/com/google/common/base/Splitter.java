@@ -962,7 +962,7 @@ name|limit
 argument_list|)
 return|;
 block|}
-comment|/**    * Splits {@code sequence} into string components and makes them available through an    * {@link Iterator}, which may be lazily evaluated. If you want an eagerly computed {@link List},    * use {@link #splitToList(CharSequence)}.    *    * @param sequence the sequence of characters to split    * @return an iteration over the segments split from the parameter.    */
+comment|/**    * Splits {@code sequence} into string components and makes them available through an    * {@link Iterator}, which may be lazily evaluated. If you want an eagerly computed {@link List},    * use {@link #splitToList(CharSequence)}.    *    * @param sequence the sequence of characters to split    * @return an iteration over the segments split from the parameter    */
 DECL|method|split (final CharSequence sequence)
 specifier|public
 name|Iterable
