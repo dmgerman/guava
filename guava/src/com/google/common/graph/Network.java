@@ -334,6 +334,18 @@ name|N
 name|nodeV
 parameter_list|)
 function_decl|;
+comment|/**    * Returns true if there is an edge directly connecting {@code nodeU} to {@code nodeV}. This is    * equivalent to {@code nodes().contains(nodeU)&& successors(nodeU).contains(nodeV)},    * and to {@code edgeConnectingOrNull(nodeU, nodeV) != null}.    *    *<p>In an undirected graph, this is equal to {@code hasEdgeConnecting(nodeV, nodeU)}.    *    * @since 23.0    */
+DECL|method|hasEdgeConnecting (N nodeU, N nodeV)
+name|boolean
+name|hasEdgeConnecting
+parameter_list|(
+name|N
+name|nodeU
+parameter_list|,
+name|N
+name|nodeV
+parameter_list|)
+function_decl|;
 comment|//
 comment|// Network identity
 comment|//

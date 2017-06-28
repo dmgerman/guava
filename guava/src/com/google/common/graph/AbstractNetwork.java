@@ -1085,6 +1085,33 @@ return|;
 block|}
 annotation|@
 name|Override
+DECL|method|hasEdgeConnecting (N nodeU, N nodeV)
+specifier|public
+name|boolean
+name|hasEdgeConnecting
+parameter_list|(
+name|N
+name|nodeU
+parameter_list|,
+name|N
+name|nodeV
+parameter_list|)
+block|{
+return|return
+operator|!
+name|edgesConnecting
+argument_list|(
+name|nodeU
+argument_list|,
+name|nodeV
+argument_list|)
+operator|.
+name|isEmpty
+argument_list|()
+return|;
+block|}
+annotation|@
+name|Override
 DECL|method|equals (@ullable Object obj)
 specifier|public
 specifier|final

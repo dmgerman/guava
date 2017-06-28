@@ -210,6 +210,20 @@ name|N
 name|node
 parameter_list|)
 function_decl|;
+comment|/** {@inheritDoc} */
+annotation|@
+name|Override
+DECL|method|hasEdgeConnecting (N nodeU, N nodeV)
+name|boolean
+name|hasEdgeConnecting
+parameter_list|(
+name|N
+name|nodeU
+parameter_list|,
+name|N
+name|nodeV
+parameter_list|)
+function_decl|;
 comment|//
 comment|// Graph identity
 comment|//

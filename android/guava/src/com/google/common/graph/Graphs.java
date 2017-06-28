@@ -1309,6 +1309,32 @@ argument_list|)
 return|;
 comment|// transpose
 block|}
+annotation|@
+name|Override
+DECL|method|hasEdgeConnecting (N nodeU, N nodeV)
+specifier|public
+name|boolean
+name|hasEdgeConnecting
+parameter_list|(
+name|N
+name|nodeU
+parameter_list|,
+name|N
+name|nodeV
+parameter_list|)
+block|{
+return|return
+name|graph
+operator|.
+name|hasEdgeConnecting
+argument_list|(
+name|nodeV
+argument_list|,
+name|nodeU
+argument_list|)
+return|;
+comment|// transpose
+block|}
 block|}
 comment|/**    * Returns a view of {@code graph} with the direction (if any) of every edge reversed. All other    * properties remain intact, and further updates to {@code graph} will be reflected in the view.    */
 DECL|method|transpose (ValueGraph<N, V> graph)
@@ -1586,6 +1612,32 @@ operator|.
 name|predecessors
 argument_list|(
 name|node
+argument_list|)
+return|;
+comment|// transpose
+block|}
+annotation|@
+name|Override
+DECL|method|hasEdgeConnecting (N nodeU, N nodeV)
+specifier|public
+name|boolean
+name|hasEdgeConnecting
+parameter_list|(
+name|N
+name|nodeU
+parameter_list|,
+name|N
+name|nodeV
+parameter_list|)
+block|{
+return|return
+name|graph
+operator|.
+name|hasEdgeConnecting
+argument_list|(
+name|nodeV
+argument_list|,
+name|nodeU
 argument_list|)
 return|;
 comment|// transpose
@@ -2150,6 +2202,32 @@ return|return
 name|network
 operator|.
 name|edgeConnectingOrNull
+argument_list|(
+name|nodeV
+argument_list|,
+name|nodeU
+argument_list|)
+return|;
+comment|// transpose
+block|}
+annotation|@
+name|Override
+DECL|method|hasEdgeConnecting (N nodeU, N nodeV)
+specifier|public
+name|boolean
+name|hasEdgeConnecting
+parameter_list|(
+name|N
+name|nodeU
+parameter_list|,
+name|N
+name|nodeV
+parameter_list|)
+block|{
+return|return
+name|network
+operator|.
+name|hasEdgeConnecting
 argument_list|(
 name|nodeV
 argument_list|,

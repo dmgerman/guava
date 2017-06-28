@@ -221,6 +221,20 @@ name|N
 name|node
 parameter_list|)
 function_decl|;
+comment|/** {@inheritDoc} */
+annotation|@
+name|Override
+DECL|method|hasEdgeConnecting (N nodeU, N nodeV)
+name|boolean
+name|hasEdgeConnecting
+parameter_list|(
+name|N
+name|nodeU
+parameter_list|,
+name|N
+name|nodeV
+parameter_list|)
+function_decl|;
 comment|/**    * If there is an edge connecting {@code nodeU} to {@code nodeV}, returns the non-null value    * associated with that edge.    *    *<p>In an undirected graph, this is equal to {@code edgeValue(nodeV, nodeU)}.    *    * @throws IllegalArgumentException if there is no edge connecting {@code nodeU} to {@code nodeV}.    */
 DECL|method|edgeValue (N nodeU, N nodeV)
 name|V
