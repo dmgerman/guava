@@ -1086,10 +1086,10 @@ name|join
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|testToString ()
+DECL|method|testToString_allUnique ()
 specifier|public
 name|void
-name|testToString
+name|testToString_allUnique
 parameter_list|()
 throws|throws
 name|Exception
@@ -1117,6 +1117,15 @@ name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
+DECL|method|testToString_notDone ()
+specifier|public
+name|void
+name|testToString_notDone
+parameter_list|()
+throws|throws
+name|Exception
+block|{
 name|AbstractFuture
 argument_list|<
 name|Object
@@ -1151,9 +1160,9 @@ name|toString
 argument_list|()
 argument_list|)
 operator|.
-name|contains
+name|matches
 argument_list|(
-literal|"status=PENDING, info=[cause=[Because this test isn't done]]"
+literal|"[^\\[]+\\[status=PENDING, info=\\[cause=\\[Because this test isn't done\\]\\]\\]"
 argument_list|)
 expr_stmt|;
 try|try
@@ -1206,6 +1215,15 @@ literal|"Because this test isn't done"
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+DECL|method|testToString_completed ()
+specifier|public
+name|void
+name|testToString_completed
+parameter_list|()
+throws|throws
+name|Exception
+block|{
 name|AbstractFuture
 argument_list|<
 name|Object
@@ -1261,22 +1279,11 @@ name|toString
 argument_list|()
 argument_list|)
 operator|.
-name|contains
+name|matches
 argument_list|(
-literal|"status=PENDING, info=[setFuture=["
-argument_list|)
-expr_stmt|;
-name|assertThat
-argument_list|(
-name|testFuture3
-operator|.
-name|toString
-argument_list|()
-argument_list|)
-operator|.
-name|contains
-argument_list|(
-literal|"Someday..."
+literal|"[^\\[]+\\[status=PENDING, info=\\[setFuture="
+operator|+
+literal|"\\[[^\\[]+\\[status=PENDING, info=\\[cause=\\[Someday...\\]\\]\\]\\]\\]\\]"
 argument_list|)
 expr_stmt|;
 name|testFuture2
@@ -1294,11 +1301,74 @@ name|toString
 argument_list|()
 argument_list|)
 operator|.
-name|contains
+name|matches
 argument_list|(
-literal|"status=SUCCESS, result=[result string]"
+literal|"[^\\[]+\\[status=SUCCESS, result=\\[result string\\]\\]"
 argument_list|)
 expr_stmt|;
+block|}
+DECL|method|testToString_cancelled ()
+specifier|public
+name|void
+name|testToString_cancelled
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|assertThat
+argument_list|(
+name|Futures
+operator|.
+name|immediateCancelledFuture
+argument_list|()
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+operator|.
+name|matches
+argument_list|(
+literal|"[^\\[]+\\[status=CANCELLED\\]"
+argument_list|)
+expr_stmt|;
+block|}
+DECL|method|testToString_failed ()
+specifier|public
+name|void
+name|testToString_failed
+parameter_list|()
+block|{
+name|assertThat
+argument_list|(
+name|Futures
+operator|.
+name|immediateFailedFuture
+argument_list|(
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"foo"
+argument_list|)
+argument_list|)
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+operator|.
+name|matches
+argument_list|(
+literal|"[^\\[]+\\[status=FAILURE, cause=\\[java.lang.RuntimeException: foo\\]\\]"
+argument_list|)
+expr_stmt|;
+block|}
+DECL|method|testToString_misbehaving ()
+specifier|public
+name|void
+name|testToString_misbehaving
+parameter_list|()
+throws|throws
+name|Exception
+block|{
 name|assertThat
 argument_list|(
 operator|new
@@ -1329,9 +1399,11 @@ name|toString
 argument_list|()
 argument_list|)
 operator|.
-name|contains
+name|matches
 argument_list|(
-literal|"PENDING"
+literal|"[^\\[]+\\[status=PENDING, info=\\[Exception thrown from implementation: "
+operator|+
+literal|"class java.lang.RuntimeException\\]\\]"
 argument_list|)
 expr_stmt|;
 block|}
