@@ -1118,8 +1118,6 @@ name|other
 parameter_list|)
 block|{
 return|return
-name|from
-argument_list|(
 name|FluentIterable
 operator|.
 name|concat
@@ -1128,7 +1126,6 @@ name|getDelegate
 argument_list|()
 argument_list|,
 name|other
-argument_list|)
 argument_list|)
 return|;
 block|}
@@ -1156,8 +1153,6 @@ name|elements
 parameter_list|)
 block|{
 return|return
-name|from
-argument_list|(
 name|FluentIterable
 operator|.
 name|concat
@@ -1170,7 +1165,6 @@ operator|.
 name|asList
 argument_list|(
 name|elements
-argument_list|)
 argument_list|)
 argument_list|)
 return|;
@@ -1446,8 +1440,6 @@ name|function
 parameter_list|)
 block|{
 return|return
-name|from
-argument_list|(
 name|FluentIterable
 operator|.
 name|concat
@@ -1455,7 +1447,6 @@ argument_list|(
 name|transform
 argument_list|(
 name|function
-argument_list|)
 argument_list|)
 argument_list|)
 return|;
