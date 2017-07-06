@@ -14840,7 +14840,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * {@link allAsList(Iterable)} or {@link successfulAsList(Iterable)}, hidden    * behind a common interface for testing.    */
+comment|/**    * {@link Futures#allAsList(Iterable)} or {@link Futures#successfulAsList(Iterable)}, hidden    * behind a common interface for testing.    */
 annotation|@
 name|GwtIncompatible
 comment|// used only in GwtIncompatible tests
