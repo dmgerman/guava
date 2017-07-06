@@ -3052,7 +3052,7 @@ name|void
 name|afterDone
 parameter_list|()
 block|{}
-comment|/**    * Returns the exception that this {@code Future} completed with. This includes completion through    * a call to {@link setException} or {@link setFuture}{@code (failedFuture)} but not cancellation.    *    * @throws RuntimeException if the {@code Future} has not failed    */
+comment|/**    * Returns the exception that this {@code Future} completed with. This includes completion through    * a call to {@link #setException} or {@link #setFuture setFuture}{@code (failedFuture)} but not    * cancellation.    *    * @throws RuntimeException if the {@code Future} has not failed    */
 DECL|method|trustedGetException ()
 specifier|final
 name|Throwable
