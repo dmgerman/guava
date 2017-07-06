@@ -649,7 +649,7 @@ block|}
 block|}
 decl_stmt|;
 comment|// Murmur3A, MurmurHash3 for x86, 32-bit (MurmurHash3_x86_32)
-comment|// http://code.google.com/p/smhasher/source/browse/trunk/main.cpp
+comment|// https://github.com/aappleby/smhasher/blob/master/src/main.cpp
 name|HashTestUtils
 operator|.
 name|verifyHashFunction
@@ -726,7 +726,7 @@ block|}
 block|}
 decl_stmt|;
 comment|// Murmur3A, MurmurHash3 for x86, 32-bit (MurmurHash3_x86_32)
-comment|// http://code.google.com/p/smhasher/source/browse/trunk/main.cpp
+comment|// https://github.com/aappleby/smhasher/blob/master/src/main.cpp
 name|HashTestUtils
 operator|.
 name|verifyHashFunction
