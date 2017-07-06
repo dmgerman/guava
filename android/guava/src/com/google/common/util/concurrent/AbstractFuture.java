@@ -3397,7 +3397,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/**    * Provide a human-readable explanation of why this future has not yet completed.    *    * @return null if an explanation cannot be provided because the future is done.    */
+comment|/**    * Provide a human-readable explanation of why this future has not yet completed.    *    * @return null if an explanation cannot be provided because the future is done.    * @since 23.0    */
 annotation|@
 name|Nullable
 DECL|method|pendingToString ()
