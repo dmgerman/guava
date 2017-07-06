@@ -288,6 +288,18 @@ name|util
 operator|.
 name|concurrent
 operator|.
+name|ScheduledFuture
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
 name|TimeUnit
 import|;
 end_import
@@ -3389,6 +3401,7 @@ comment|/**    * Provide a human-readable explanation of why this future has not
 annotation|@
 name|Nullable
 DECL|method|pendingToString ()
+specifier|protected
 name|String
 name|pendingToString
 parameter_list|()
@@ -3418,6 +3431,34 @@ operator|.
 name|future
 operator|+
 literal|"]"
+return|;
+block|}
+elseif|else
+if|if
+condition|(
+name|this
+operator|instanceof
+name|ScheduledFuture
+condition|)
+block|{
+return|return
+literal|"remaining delay=["
+operator|+
+operator|(
+operator|(
+name|ScheduledFuture
+operator|)
+name|this
+operator|)
+operator|.
+name|getDelay
+argument_list|(
+name|TimeUnit
+operator|.
+name|MILLISECONDS
+argument_list|)
+operator|+
+literal|" ms]"
 return|;
 block|}
 return|return
