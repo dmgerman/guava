@@ -561,7 +561,7 @@ name|throwable
 argument_list|)
 throw|;
 block|}
-comment|/**    * Returns the innermost cause of {@code throwable}. The first throwable in a chain provides    * context from when the error or exception was initially detected. Example usage:    *    *<pre>    * assertEquals("Unable to assign a customer id", Throwables.getRootCause(e).getMessage());    *</pre>    */
+comment|/**    * Returns the innermost cause of {@code throwable}. The first throwable in a chain provides    * context from when the error or exception was initially detected. Example usage:    *    *<pre>    * assertEquals("Unable to assign a customer id", Throwables.getRootCause(e).getMessage());    *</pre>    *    * @throws IllegalArgumentException if there is a loop in the causal chain    */
 DECL|method|getRootCause (Throwable throwable)
 specifier|public
 specifier|static
@@ -572,6 +572,18 @@ name|Throwable
 name|throwable
 parameter_list|)
 block|{
+comment|// Keep a second pointer that slowly walks the causal chain. If the fast pointer ever catches
+comment|// the slower pointer, then there's a loop.
+name|Throwable
+name|slowPointer
+init|=
+name|throwable
+decl_stmt|;
+name|boolean
+name|advanceSlowPointer
+init|=
+literal|false
+decl_stmt|;
 name|Throwable
 name|cause
 decl_stmt|;
@@ -593,12 +605,48 @@ name|throwable
 operator|=
 name|cause
 expr_stmt|;
+if|if
+condition|(
+name|throwable
+operator|==
+name|slowPointer
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"Loop in causal chain detected @ "
+operator|+
+name|throwable
+argument_list|)
+throw|;
+block|}
+if|if
+condition|(
+name|advanceSlowPointer
+condition|)
+block|{
+name|slowPointer
+operator|=
+name|slowPointer
+operator|.
+name|getCause
+argument_list|()
+expr_stmt|;
+block|}
+name|advanceSlowPointer
+operator|=
+operator|!
+name|advanceSlowPointer
+expr_stmt|;
+comment|// only advance every other iteration
 block|}
 return|return
 name|throwable
 return|;
 block|}
-comment|/**    * Gets a {@code Throwable} cause chain as a list. The first entry in the list will be {@code    * throwable} followed by its cause hierarchy. Note that this is a snapshot of the cause chain and    * will not reflect any subsequent changes to the cause chain.    *    *<p>Here's an example of how it can be used to find specific types of exceptions in the cause    * chain:    *    *<pre>    * Iterables.filter(Throwables.getCausalChain(e), IOException.class));    *</pre>    *    * @param throwable the non-null {@code Throwable} to extract causes from    * @return an unmodifiable list containing the cause chain starting with {@code throwable}    */
+comment|/**    * Gets a {@code Throwable} cause chain as a list. The first entry in the list will be {@code    * throwable} followed by its cause hierarchy. Note that this is a snapshot of the cause chain and    * will not reflect any subsequent changes to the cause chain.    *    *<p>Here's an example of how it can be used to find specific types of exceptions in the cause    * chain:    *    *<pre>    * Iterables.filter(Throwables.getCausalChain(e), IOException.class));    *</pre>    *    * @param throwable the non-null {@code Throwable} to extract causes from    * @return an unmodifiable list containing the cause chain starting with {@code throwable}    * @throws IllegalArgumentException if there is a loop in the causal chain    */
 annotation|@
 name|Beta
 comment|// TODO(kevinb): decide best return type
@@ -635,13 +683,6 @@ argument_list|(
 literal|4
 argument_list|)
 decl_stmt|;
-while|while
-condition|(
-name|throwable
-operator|!=
-literal|null
-condition|)
-block|{
 name|causes
 operator|.
 name|add
@@ -649,13 +690,82 @@ argument_list|(
 name|throwable
 argument_list|)
 expr_stmt|;
+comment|// Keep a second pointer that slowly walks the causal chain. If the fast pointer ever catches
+comment|// the slower pointer, then there's a loop.
+name|Throwable
+name|slowPointer
+init|=
 name|throwable
+decl_stmt|;
+name|boolean
+name|advanceSlowPointer
+init|=
+literal|false
+decl_stmt|;
+name|Throwable
+name|cause
+decl_stmt|;
+while|while
+condition|(
+operator|(
+name|cause
 operator|=
 name|throwable
 operator|.
 name|getCause
 argument_list|()
+operator|)
+operator|!=
+literal|null
+condition|)
+block|{
+name|throwable
+operator|=
+name|cause
 expr_stmt|;
+name|causes
+operator|.
+name|add
+argument_list|(
+name|throwable
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|throwable
+operator|==
+name|slowPointer
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"Loop in causal chain detected @ "
+operator|+
+name|throwable
+argument_list|)
+throw|;
+block|}
+if|if
+condition|(
+name|advanceSlowPointer
+condition|)
+block|{
+name|slowPointer
+operator|=
+name|slowPointer
+operator|.
+name|getCause
+argument_list|()
+expr_stmt|;
+block|}
+name|advanceSlowPointer
+operator|=
+operator|!
+name|advanceSlowPointer
+expr_stmt|;
+comment|// only advance every other iteration
 block|}
 return|return
 name|Collections
