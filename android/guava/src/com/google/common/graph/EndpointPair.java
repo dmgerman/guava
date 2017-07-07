@@ -447,16 +447,13 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-name|String
-operator|.
-name|format
-argument_list|(
-literal|"EndpointPair %s does not contain node %s"
-argument_list|,
+literal|"EndpointPair "
+operator|+
 name|this
-argument_list|,
+operator|+
+literal|" does not contain node "
+operator|+
 name|node
-argument_list|)
 argument_list|)
 throw|;
 block|}
@@ -711,18 +708,17 @@ name|toString
 parameter_list|()
 block|{
 return|return
-name|String
-operator|.
-name|format
-argument_list|(
-literal|"<%s -> %s>"
-argument_list|,
+literal|"<"
+operator|+
 name|source
 argument_list|()
-argument_list|,
+operator|+
+literal|" -> "
+operator|+
 name|target
 argument_list|()
-argument_list|)
+operator|+
+literal|">"
 return|;
 block|}
 block|}
@@ -964,18 +960,17 @@ name|toString
 parameter_list|()
 block|{
 return|return
-name|String
-operator|.
-name|format
-argument_list|(
-literal|"[%s, %s]"
-argument_list|,
+literal|"["
+operator|+
 name|nodeU
 argument_list|()
-argument_list|,
+operator|+
+literal|", "
+operator|+
 name|nodeV
 argument_list|()
-argument_list|)
+operator|+
+literal|"]"
 return|;
 block|}
 block|}

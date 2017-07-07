@@ -70,6 +70,20 @@ name|google
 operator|.
 name|common
 operator|.
+name|annotations
+operator|.
+name|GwtIncompatible
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
 name|base
 operator|.
 name|Objects
@@ -1703,6 +1717,8 @@ comment|// transpose
 block|}
 block|}
 comment|/**    * Returns a view of {@code network} with the direction (if any) of every edge reversed. All other    * properties remain intact, and further updates to {@code network} will be reflected in the view.    */
+annotation|@
+name|GwtIncompatible
 DECL|method|transpose (Network<N, E> network)
 specifier|public
 specifier|static
@@ -1778,6 +1794,8 @@ name|network
 argument_list|)
 return|;
 block|}
+annotation|@
+name|GwtIncompatible
 DECL|class|TransposedNetwork
 specifier|private
 specifier|static
@@ -2482,6 +2500,8 @@ name|subgraph
 return|;
 block|}
 comment|/**    * Returns the subgraph of {@code network} induced by {@code nodes}. This subgraph is a new graph    * that contains all of the nodes in {@code nodes}, and all of the {@link Network#edges() edges}    * from {@code network} for which the {@link Network#incidentNodes(Object) incident nodes} are    * both contained by {@code nodes}.    *    * @throws IllegalArgumentException if any element in {@code nodes} is not a node in the graph    */
+annotation|@
+name|GwtIncompatible
 DECL|method|inducedSubgraph ( Network<N, E> network, Iterable<? extends N> nodes)
 specifier|public
 specifier|static
@@ -2843,6 +2863,8 @@ name|copy
 return|;
 block|}
 comment|/** Creates a mutable copy of {@code network} with the same nodes and edges. */
+annotation|@
+name|GwtIncompatible
 DECL|method|copyOf (Network<N, E> network)
 specifier|public
 specifier|static

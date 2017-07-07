@@ -58,22 +58,6 @@ name|common
 operator|.
 name|graph
 operator|.
-name|GraphConstants
-operator|.
-name|NODE_NOT_IN_GRAPH
-import|;
-end_import
-
-begin_import
-import|import static
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|graph
-operator|.
 name|Graphs
 operator|.
 name|checkNonNegative
@@ -654,14 +638,11 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-name|String
-operator|.
-name|format
-argument_list|(
-name|NODE_NOT_IN_GRAPH
-argument_list|,
+literal|"Node "
+operator|+
 name|node
-argument_list|)
+operator|+
+literal|" is not an element of this graph."
 argument_list|)
 throw|;
 block|}

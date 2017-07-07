@@ -44,38 +44,6 @@ name|graph
 operator|.
 name|GraphConstants
 operator|.
-name|EDGE_CONNECTING_NOT_IN_GRAPH
-import|;
-end_import
-
-begin_import
-import|import static
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|graph
-operator|.
-name|GraphConstants
-operator|.
-name|GRAPH_STRING_FORMAT
-import|;
-end_import
-
-begin_import
-import|import static
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|graph
-operator|.
-name|GraphConstants
-operator|.
 name|NODE_NOT_IN_GRAPH
 import|;
 end_import
@@ -498,16 +466,15 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-name|String
-operator|.
-name|format
-argument_list|(
-name|EDGE_CONNECTING_NOT_IN_GRAPH
-argument_list|,
+literal|"Edge connecting "
+operator|+
 name|nodeU
-argument_list|,
+operator|+
+literal|" to "
+operator|+
 name|nodeV
-argument_list|)
+operator|+
+literal|" is not present in this graph."
 argument_list|)
 throw|;
 block|}
@@ -634,38 +601,27 @@ name|String
 name|toString
 parameter_list|()
 block|{
-name|String
-name|propertiesString
-init|=
-name|String
-operator|.
-name|format
-argument_list|(
-literal|"isDirected: %s, allowsSelfLoops: %s"
-argument_list|,
+return|return
+literal|"isDirected: "
+operator|+
 name|isDirected
 argument_list|()
-argument_list|,
+operator|+
+literal|", allowsSelfLoops: "
+operator|+
 name|allowsSelfLoops
 argument_list|()
-argument_list|)
-decl_stmt|;
-return|return
-name|String
-operator|.
-name|format
-argument_list|(
-name|GRAPH_STRING_FORMAT
-argument_list|,
-name|propertiesString
-argument_list|,
+operator|+
+literal|", nodes: "
+operator|+
 name|nodes
 argument_list|()
-argument_list|,
+operator|+
+literal|", edges: "
+operator|+
 name|edgeValueMap
 argument_list|(
 name|this
-argument_list|)
 argument_list|)
 return|;
 block|}

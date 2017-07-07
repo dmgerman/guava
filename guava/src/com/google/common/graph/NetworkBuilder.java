@@ -70,6 +70,20 @@ name|google
 operator|.
 name|common
 operator|.
+name|annotations
+operator|.
+name|GwtIncompatible
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
 name|base
 operator|.
 name|Optional
@@ -77,12 +91,14 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A builder for constructing instances of {@link MutableNetwork} with user-defined properties.  *  *<p>A network built by this class will have the following properties by default:  *  *<ul>  *<li>does not allow parallel edges  *<li>does not allow self-loops  *<li>orders {@link Network#nodes()} and {@link Network#edges()} in the order in which the elements  *     were added  *</ul>  *  *<p>Example of use:  *  *<pre>{@code  * MutableNetwork<String, Integer> flightNetwork =  *     NetworkBuilder.directed().allowsParallelEdges(true).build();  * flightNetwork.addEdge("LAX", "ATL", 3025);  * flightNetwork.addEdge("LAX", "ATL", 1598);  * flightNetwork.addEdge("ATL", "LAX", 2450);  * }</pre>  *  * @author James Sexton  * @author Joshua O'Madadhain  * @since 20.0  */
+comment|/**  * A builder for constructing instances of {@link MutableNetwork} with user-defined properties.  *  *<p>A network built by this class will have the following properties by default:  *  *<ul>  *<li>does not allow parallel edges  *<li>does not allow self-loops  *<li>orders {@link Network#nodes()} and {@link Network#edges()} in the order in which the  *       elements were added  *</ul>  *  *<p>Example of use:  *  *<pre>{@code  * MutableNetwork<String, Integer> flightNetwork =  *     NetworkBuilder.directed().allowsParallelEdges(true).build();  * flightNetwork.addEdge("LAX", "ATL", 3025);  * flightNetwork.addEdge("LAX", "ATL", 1598);  * flightNetwork.addEdge("ATL", "LAX", 2450);  * }</pre>  *  * @author James Sexton  * @author Joshua O'Madadhain  * @since 20.0  */
 end_comment
 
 begin_class
 annotation|@
 name|Beta
+annotation|@
+name|GwtIncompatible
 DECL|class|NetworkBuilder
 specifier|public
 specifier|final

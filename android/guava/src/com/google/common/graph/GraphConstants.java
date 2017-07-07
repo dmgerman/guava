@@ -92,14 +92,6 @@ name|EDGE_NOT_IN_GRAPH
 init|=
 literal|"Edge %s is not an element of this graph."
 decl_stmt|;
-DECL|field|EDGE_CONNECTING_NOT_IN_GRAPH
-specifier|static
-specifier|final
-name|String
-name|EDGE_CONNECTING_NOT_IN_GRAPH
-init|=
-literal|"Edge connecting %s to %s is not present in this graph."
-decl_stmt|;
 DECL|field|REUSING_EDGE
 specifier|static
 specifier|final
@@ -157,14 +149,6 @@ name|String
 name|EDGE_ALREADY_EXISTS
 init|=
 literal|"Edge %s already exists in the graph."
-decl_stmt|;
-DECL|field|GRAPH_STRING_FORMAT
-specifier|static
-specifier|final
-name|String
-name|GRAPH_STRING_FORMAT
-init|=
-literal|"%s, nodes: %s, edges: %s"
 decl_stmt|;
 comment|/** Singleton edge value for {@link Graph} implementations backed by {@link ValueGraph}s. */
 DECL|enum|Presence
