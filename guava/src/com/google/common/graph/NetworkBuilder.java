@@ -244,9 +244,9 @@ return|return
 operator|new
 name|NetworkBuilder
 argument_list|<
-name|Object
+name|N
 argument_list|,
-name|Object
+name|E
 argument_list|>
 argument_list|(
 name|network

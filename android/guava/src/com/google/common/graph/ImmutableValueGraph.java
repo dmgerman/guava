@@ -440,7 +440,7 @@ block|{
 return|return
 name|graph
 operator|.
-name|edgeValue
+name|edgeValueOrNull
 argument_list|(
 name|node
 argument_list|,

@@ -180,7 +180,7 @@ return|return
 operator|new
 name|GraphBuilder
 argument_list|<
-name|Object
+name|N
 argument_list|>
 argument_list|(
 name|graph

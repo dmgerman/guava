@@ -305,7 +305,7 @@ name|N
 name|nodeV
 parameter_list|)
 function_decl|;
-comment|/**    * Returns the single edge directly connecting {@code nodeU} to {@code nodeV}, if one is present.    *    *<p>In an undirected network, this is equal to {@code edgeConnecting(nodeV, nodeU)}.    *    * @throws IllegalArgumentException if there are multiple parallel edges connecting {@code nodeU}    *     to {@code nodeV}    * @throws IllegalArgumentException if {@code nodeU} or {@code nodeV} is not an element of this    *     network    * @since 23.0    */
+comment|/**    * Returns the single edge directly connecting {@code nodeU} to {@code nodeV}, if one is present,    * or {@code Optional.empty()} if no such edge exists.    *    *<p>In an undirected network, this is equal to {@code edgeConnecting(nodeV, nodeU)}.    *    * @throws IllegalArgumentException if there are multiple parallel edges connecting {@code nodeU}    *     to {@code nodeV}    * @throws IllegalArgumentException if {@code nodeU} or {@code nodeV} is not an element of this    *     network    * @since 23.0    */
 DECL|method|edgeConnecting (N nodeU, N nodeV)
 name|Optional
 argument_list|<

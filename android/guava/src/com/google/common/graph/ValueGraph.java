@@ -235,33 +235,18 @@ name|N
 name|nodeV
 parameter_list|)
 function_decl|;
-comment|/**    * If there is an edge connecting {@code nodeU} to {@code nodeV}, returns the non-null value    * associated with that edge.    *    *<p>In an undirected graph, this is equal to {@code edgeValue(nodeV, nodeU)}.    *    * @throws IllegalArgumentException if there is no edge connecting {@code nodeU} to {@code nodeV}.    */
-DECL|method|edgeValue (N nodeU, N nodeV)
-name|V
-name|edgeValue
-parameter_list|(
-name|N
-name|nodeU
-parameter_list|,
-name|N
-name|nodeV
-parameter_list|)
-function_decl|;
-comment|/**    * If there is an edge connecting {@code nodeU} to {@code nodeV}, returns the non-null value    * associated with that edge; otherwise, returns {@code defaultValue}.    *    *<p>In an undirected graph, this is equal to {@code edgeValueOrDefault(nodeV, nodeU,    * defaultValue)}.    */
-DECL|method|edgeValueOrDefault (N nodeU, N nodeV, @Nullable V defaultValue)
-name|V
-name|edgeValueOrDefault
-parameter_list|(
-name|N
-name|nodeU
-parameter_list|,
-name|N
-name|nodeV
-parameter_list|,
+comment|/**    * Returns the value of the edge connecting {@code nodeU} to {@code nodeV}, if one is present;    * otherwise, returns null.    *    *<p>In an undirected graph, this is equal to {@code edgeValueOrNull(nodeV, nodeU)}.    *    * @throws IllegalArgumentException if {@code nodeU} or {@code nodeV} is not an element of this    *     graph    */
 annotation|@
 name|Nullable
+DECL|method|edgeValueOrNull (N nodeU, N nodeV)
 name|V
-name|defaultValue
+name|edgeValueOrNull
+parameter_list|(
+name|N
+name|nodeU
+parameter_list|,
+name|N
+name|nodeV
 parameter_list|)
 function_decl|;
 comment|//
