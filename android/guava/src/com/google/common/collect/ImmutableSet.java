@@ -1714,7 +1714,7 @@ argument_list|>
 argument_list|()
 return|;
 block|}
-comment|/**    * A builder for creating {@code ImmutableSet} instances. Example:<pre>   {@code    *    *   static final ImmutableSet<Color> GOOGLE_COLORS =    *       ImmutableSet.<Color>builder()    *           .addAll(WEBSAFE_COLORS)    *           .add(new Color(0, 191, 255))    *           .build();}</pre>    *    *<p>Building does not change the state of the builder, so it is still possible to add more    * elements and to build again.    *    * @since 2.0    */
+comment|/**    * A builder for creating {@code ImmutableSet} instances. Example:<pre>   {@code    *    *   static final ImmutableSet<Color> GOOGLE_COLORS =    *       ImmutableSet.<Color>builder()    *           .addAll(WEBSAFE_COLORS)    *           .add(new Color(0, 191, 255))    *           .build();}</pre>    *    *<p>Elements appear in the resulting set in the same order they were first added to the builder.    *    *<p>Building does not change the state of the builder, so it is still possible to add more    * elements and to build again.    *    * @since 2.0    */
 DECL|class|Builder
 specifier|public
 specifier|static

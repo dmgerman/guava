@@ -648,7 +648,7 @@ argument_list|>
 argument_list|()
 return|;
 block|}
-comment|/**    * A builder for creating immutable bimap instances, especially {@code public    * static final} bimaps ("constant bimaps"). Example:<pre>   {@code    *    *   static final ImmutableBiMap<String, Integer> WORD_TO_INT =    *       new ImmutableBiMap.Builder<String, Integer>()    *           .put("one", 1)    *           .put("two", 2)    *           .put("three", 3)    *           .build();}</pre>    *    *<p>For<i>small</i> immutable bimaps, the {@code ImmutableBiMap.of()} methods    * are even more convenient.    *    *<p>Builder instances can be reused - it is safe to call {@link #build}    * multiple times to build multiple bimaps in series. Each bimap is a superset    * of the bimaps created before it.    *    * @since 2.0    */
+comment|/**    * A builder for creating immutable bimap instances, especially {@code public    * static final} bimaps ("constant bimaps"). Example:<pre>   {@code    *    *   static final ImmutableBiMap<String, Integer> WORD_TO_INT =    *       new ImmutableBiMap.Builder<String, Integer>()    *           .put("one", 1)    *           .put("two", 2)    *           .put("three", 3)    *           .build();}</pre>    *    *<p>For<i>small</i> immutable bimaps, the {@code ImmutableBiMap.of()} methods    * are even more convenient.    *    *<p>By default, a {@code Builder} will generate bimaps that iterate over entries in the order    * they were inserted into the builder.  For example, in the above example,    * {@code WORD_TO_INT.entrySet()} is guaranteed to iterate over the entries in the order    * {@code "one"=1, "two"=2, "three"=3}, and {@code keySet()} and {@code values()} respect the same    * order. If you want a different order, consider using    * {@link #orderEntriesByValue(Comparator)}, which changes this builder to sort    * entries by value.    *    *<p>Builder instances can be reused - it is safe to call {@link #build}    * multiple times to build multiple bimaps in series. Each bimap is a superset    * of the bimaps created before it.    *    * @since 2.0    */
 DECL|class|Builder
 specifier|public
 specifier|static
@@ -889,7 +889,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**      * Returns a newly-created immutable bimap.      *      * @throws IllegalArgumentException if duplicate keys or values were added      */
+comment|/**      * Returns a newly-created immutable bimap.  The iteration order of the returned bimap is      * the order in which entries were inserted into the builder, unless      * {@link #orderEntriesByValue} was called, in which case entries are sorted by value.      *      * @throws IllegalArgumentException if duplicate keys or values were added      */
 annotation|@
 name|Override
 DECL|method|build ()
@@ -938,7 +938,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**    * Returns an immutable bimap containing the same entries as {@code map}. If    * {@code map} somehow contains entries with duplicate keys (for example, if    * it is a {@code SortedMap} whose comparator is not<i>consistent with    * equals</i>), the results of this method are undefined.    *    *<p>Despite the method name, this method attempts to avoid actually copying    * the data when it is safe to do so. The exact circumstances under which a    * copy will or will not be performed are undocumented and subject to change.    *    * @throws IllegalArgumentException if two keys have the same value    * @throws NullPointerException if any key or value in {@code map} is null    */
+comment|/**    * Returns an immutable bimap containing the same entries as {@code map}. If    * {@code map} somehow contains entries with duplicate keys (for example, if    * it is a {@code SortedMap} whose comparator is not<i>consistent with    * equals</i>), the results of this method are undefined.    *    *<p>The returned {@code BiMap} iterates over entries in the same order as the    * {@code entrySet} of the original map.    *    *<p>Despite the method name, this method attempts to avoid actually copying    * the data when it is safe to do so. The exact circumstances under which a    * copy will or will not be performed are undocumented and subject to change.    *    * @throws IllegalArgumentException if two keys have the same value or two values have the same    *     key    * @throws NullPointerException if any key or value in {@code map} is null    */
 DECL|method|copyOf (Map<? extends K, ? extends V> map)
 specifier|public
 specifier|static
@@ -1025,7 +1025,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an immutable bimap containing the given entries.    *    * @throws IllegalArgumentException if two keys have the same value or two    *         values have the same key    * @throws NullPointerException if any key, value, or entry is null    * @since 19.0    */
+comment|/**    * Returns an immutable bimap containing the given entries.  The returned bimap iterates over    * entries in the same order as the original iterable.    *    * @throws IllegalArgumentException if two keys have the same value or two    *         values have the same key    * @throws NullPointerException if any key, value, or entry is null    * @since 19.0    */
 annotation|@
 name|Beta
 DECL|method|copyOf ( Iterable<? extends Entry<? extends K, ? extends V>> entries)
@@ -1130,7 +1130,7 @@ argument_list|>
 name|inverse
 parameter_list|()
 function_decl|;
-comment|/**    * Returns an immutable set of the values in this map. The values are in the    * same order as the parameters used to build this map.    */
+comment|/**    * Returns an immutable set of the values in this map, in the same order they appear in {@link    * #entrySet}.    */
 annotation|@
 name|Override
 DECL|method|values ()
