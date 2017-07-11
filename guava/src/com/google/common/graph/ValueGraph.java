@@ -245,7 +245,7 @@ name|N
 name|nodeV
 parameter_list|)
 function_decl|;
-comment|/**    * Returns the value of the edge connecting {@code nodeU} to {@code nodeV}, if one is present;    * otherwise, returns {@code Optional.empty()}.    *    *<p>In an undirected graph, this is equal to {@code edgeValue(nodeV, nodeU)}.    *    * @throws IllegalArgumentException if {@code nodeU} or {@code nodeV} is not an element of this    *     graph    */
+comment|/**    * Returns the value of the edge connecting {@code nodeU} to {@code nodeV}, if one is present;    * otherwise, returns {@code Optional.empty()}.    *    *<p>In an undirected graph, this is equal to {@code edgeValue(nodeV, nodeU)}.    *    * @throws IllegalArgumentException if {@code nodeU} or {@code nodeV} is not an element of this    *     graph    * @since 23.0 (since 20.0 with return type {@code V})    */
 DECL|method|edgeValue (N nodeU, N nodeV)
 name|Optional
 argument_list|<
@@ -260,7 +260,7 @@ name|N
 name|nodeV
 parameter_list|)
 function_decl|;
-comment|/**    * Returns the value of the edge connecting {@code nodeU} to {@code nodeV}, if one is present;    * otherwise, returns null.    *    *<p>In an undirected graph, this is equal to {@code edgeValueOrNull(nodeV, nodeU)}.    *    * @throws IllegalArgumentException if {@code nodeU} or {@code nodeV} is not an element of this    *     graph    */
+comment|/**    * Returns the value of the edge connecting {@code nodeU} to {@code nodeV}, if one is present;    * otherwise, returns null.    *    *<p>In an undirected graph, this is equal to {@code edgeValueOrNull(nodeV, nodeU)}.    *    * @throws IllegalArgumentException if {@code nodeU} or {@code nodeV} is not an element of this    *     graph    * @since 23.0    */
 annotation|@
 name|Nullable
 DECL|method|edgeValueOrNull (N nodeU, N nodeV)
