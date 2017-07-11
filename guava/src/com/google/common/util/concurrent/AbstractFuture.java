@@ -1714,6 +1714,45 @@ name|nanoTime
 argument_list|()
 expr_stmt|;
 block|}
+name|String
+name|futureToString
+init|=
+name|toString
+argument_list|()
+decl_stmt|;
+comment|// It's confusing to see a completed future in a timeout message; if isDone() returns false,
+comment|// then we know it must have given a pending toString value earlier. If not, then the future
+comment|// completed after the timeout expired, and the message might be success.
+if|if
+condition|(
+name|isDone
+argument_list|()
+condition|)
+block|{
+throw|throw
+operator|new
+name|TimeoutException
+argument_list|(
+literal|"Waited "
+operator|+
+name|timeout
+operator|+
+literal|" "
+operator|+
+name|Ascii
+operator|.
+name|toLowerCase
+argument_list|(
+name|unit
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+operator|+
+literal|" but future completed as timeout expired"
+argument_list|)
+throw|;
+block|}
 throw|throw
 operator|new
 name|TimeoutException
@@ -1736,8 +1775,7 @@ argument_list|)
 operator|+
 literal|" for "
 operator|+
-name|toString
-argument_list|()
+name|futureToString
 argument_list|)
 throw|;
 block|}
