@@ -499,6 +499,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns a predicate that evaluates to {@code true} if any one of its components evaluates to    * {@code true}. The components are evaluated in order, and evaluation will be "short-circuited"    * as soon as a true predicate is found. It defensively copies the array passed in, so future    * changes to it won't alter the behavior of this predicate. If {@code    * components} is empty, the returned predicate will always evaluate to {@code    * false}.    */
+annotation|@
+name|SafeVarargs
 DECL|method|or (Predicate<? super T>.... components)
 specifier|public
 specifier|static
