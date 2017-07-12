@@ -664,6 +664,21 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
+DECL|method|toString ()
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+name|callable
+operator|.
+name|toString
+argument_list|()
+return|;
+block|}
 block|}
 annotation|@
 name|WeakOuter
@@ -722,6 +737,10 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+name|CombinedFuture
+operator|.
+name|this
+operator|.
 name|set
 argument_list|(
 name|callable
@@ -730,6 +749,21 @@ name|call
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
+annotation|@
+name|Override
+DECL|method|toString ()
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+name|callable
+operator|.
+name|toString
+argument_list|()
+return|;
 block|}
 block|}
 block|}

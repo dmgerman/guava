@@ -390,6 +390,10 @@ condition|)
 block|{
 try|try
 block|{
+name|TrustedListenableFutureTask
+operator|.
+name|this
+operator|.
 name|set
 argument_list|(
 name|callable
