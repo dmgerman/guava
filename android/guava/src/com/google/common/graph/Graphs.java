@@ -1670,26 +1670,33 @@ annotation|@
 name|Override
 annotation|@
 name|Nullable
-DECL|method|edgeValueOrNull (N nodeU, N nodeV)
+DECL|method|edgeValueOrDefault (N nodeU, N nodeV, @Nullable V defaultValue)
 specifier|public
 name|V
-name|edgeValueOrNull
+name|edgeValueOrDefault
 parameter_list|(
 name|N
 name|nodeU
 parameter_list|,
 name|N
 name|nodeV
+parameter_list|,
+annotation|@
+name|Nullable
+name|V
+name|defaultValue
 parameter_list|)
 block|{
 return|return
 name|graph
 operator|.
-name|edgeValueOrNull
+name|edgeValueOrDefault
 argument_list|(
 name|nodeV
 argument_list|,
 name|nodeU
+argument_list|,
+name|defaultValue
 argument_list|)
 return|;
 comment|// transpose
@@ -2521,11 +2528,13 @@ name|successorNode
 argument_list|,
 name|graph
 operator|.
-name|edgeValueOrNull
+name|edgeValueOrDefault
 argument_list|(
 name|node
 argument_list|,
 name|successorNode
+argument_list|,
+literal|null
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -2909,7 +2918,7 @@ argument_list|()
 argument_list|,
 name|graph
 operator|.
-name|edgeValueOrNull
+name|edgeValueOrDefault
 argument_list|(
 name|edge
 operator|.
@@ -2920,6 +2929,8 @@ name|edge
 operator|.
 name|nodeV
 argument_list|()
+argument_list|,
+literal|null
 argument_list|)
 argument_list|)
 expr_stmt|;

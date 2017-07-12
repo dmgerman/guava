@@ -514,16 +514,21 @@ annotation|@
 name|Override
 annotation|@
 name|Nullable
-DECL|method|edgeValueOrNull (N nodeU, N nodeV)
+DECL|method|edgeValueOrDefault (N nodeU, N nodeV, @Nullable V defaultValue)
 specifier|public
 name|V
-name|edgeValueOrNull
+name|edgeValueOrDefault
 parameter_list|(
 name|N
 name|nodeU
 parameter_list|,
 name|N
 name|nodeV
+parameter_list|,
+annotation|@
+name|Nullable
+name|V
+name|defaultValue
 parameter_list|)
 block|{
 name|checkNotNull
@@ -556,7 +561,7 @@ name|connectionsU
 operator|==
 literal|null
 condition|?
-literal|null
+name|defaultValue
 else|:
 name|connectionsU
 operator|.

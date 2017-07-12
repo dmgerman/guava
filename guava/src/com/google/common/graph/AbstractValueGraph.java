@@ -399,11 +399,13 @@ name|Optional
 operator|.
 name|ofNullable
 argument_list|(
-name|edgeValueOrNull
+name|edgeValueOrDefault
 argument_list|(
 name|nodeU
 argument_list|,
 name|nodeV
+argument_list|,
+literal|null
 argument_list|)
 argument_list|)
 return|;
@@ -619,7 +621,7 @@ block|{
 return|return
 name|graph
 operator|.
-name|edgeValueOrNull
+name|edgeValueOrDefault
 argument_list|(
 name|edge
 operator|.
@@ -630,6 +632,8 @@ name|edge
 operator|.
 name|nodeV
 argument_list|()
+argument_list|,
+literal|null
 argument_list|)
 return|;
 block|}

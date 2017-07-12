@@ -440,11 +440,13 @@ block|{
 return|return
 name|graph
 operator|.
-name|edgeValueOrNull
+name|edgeValueOrDefault
 argument_list|(
 name|node
 argument_list|,
 name|successorNode
+argument_list|,
+literal|null
 argument_list|)
 return|;
 block|}
