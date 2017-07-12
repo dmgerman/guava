@@ -272,28 +272,27 @@ comment|/*      * The default RateLimiter configuration can save the unused perm
 return|return
 name|create
 argument_list|(
+name|permitsPerSecond
+argument_list|,
 name|SleepingStopwatch
 operator|.
 name|createFromSystemTimer
 argument_list|()
-argument_list|,
-name|permitsPerSecond
 argument_list|)
 return|;
 block|}
-comment|/*    * TODO(cpovirk): make SleepingStopwatch the last parameter throughout the class so that the    * overloads follow the usual convention: Foo(int), Foo(int, SleepingStopwatch)    */
 annotation|@
 name|VisibleForTesting
-DECL|method|create (SleepingStopwatch stopwatch, double permitsPerSecond)
+DECL|method|create (double permitsPerSecond, SleepingStopwatch stopwatch)
 specifier|static
 name|RateLimiter
 name|create
 parameter_list|(
-name|SleepingStopwatch
-name|stopwatch
-parameter_list|,
 name|double
 name|permitsPerSecond
+parameter_list|,
+name|SleepingStopwatch
+name|stopwatch
 parameter_list|)
 block|{
 name|RateLimiter
@@ -350,11 +349,6 @@ expr_stmt|;
 return|return
 name|create
 argument_list|(
-name|SleepingStopwatch
-operator|.
-name|createFromSystemTimer
-argument_list|()
-argument_list|,
 name|permitsPerSecond
 argument_list|,
 name|warmupPeriod
@@ -362,19 +356,21 @@ argument_list|,
 name|unit
 argument_list|,
 literal|3.0
+argument_list|,
+name|SleepingStopwatch
+operator|.
+name|createFromSystemTimer
+argument_list|()
 argument_list|)
 return|;
 block|}
 annotation|@
 name|VisibleForTesting
-DECL|method|create ( SleepingStopwatch stopwatch, double permitsPerSecond, long warmupPeriod, TimeUnit unit, double coldFactor)
+DECL|method|create ( double permitsPerSecond, long warmupPeriod, TimeUnit unit, double coldFactor, SleepingStopwatch stopwatch)
 specifier|static
 name|RateLimiter
 name|create
 parameter_list|(
-name|SleepingStopwatch
-name|stopwatch
-parameter_list|,
 name|double
 name|permitsPerSecond
 parameter_list|,
@@ -386,6 +382,9 @@ name|unit
 parameter_list|,
 name|double
 name|coldFactor
+parameter_list|,
+name|SleepingStopwatch
+name|stopwatch
 parameter_list|)
 block|{
 name|RateLimiter
