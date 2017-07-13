@@ -73,18 +73,13 @@ name|nodes
 argument_list|()
 return|;
 block|}
+comment|/**    * Defer to {@link AbstractGraph#edges()} (based on {@link #successors(Object)}) for full edges()    * implementation.    */
 annotation|@
 name|Override
-DECL|method|edges ()
-specifier|public
-name|Set
-argument_list|<
-name|EndpointPair
-argument_list|<
-name|N
-argument_list|>
-argument_list|>
-name|edges
+DECL|method|edgeCount ()
+specifier|protected
+name|long
+name|edgeCount
 parameter_list|()
 block|{
 return|return
@@ -92,6 +87,9 @@ name|delegate
 argument_list|()
 operator|.
 name|edges
+argument_list|()
+operator|.
+name|size
 argument_list|()
 return|;
 block|}
@@ -278,6 +276,32 @@ operator|.
 name|outDegree
 argument_list|(
 name|node
+argument_list|)
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|hasEdgeConnecting (N nodeU, N nodeV)
+specifier|public
+name|boolean
+name|hasEdgeConnecting
+parameter_list|(
+name|N
+name|nodeU
+parameter_list|,
+name|N
+name|nodeV
+parameter_list|)
+block|{
+return|return
+name|delegate
+argument_list|()
+operator|.
+name|hasEdgeConnecting
+argument_list|(
+name|nodeU
+argument_list|,
+name|nodeV
 argument_list|)
 return|;
 block|}
