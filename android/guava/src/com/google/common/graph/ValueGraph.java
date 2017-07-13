@@ -235,7 +235,7 @@ name|N
 name|nodeV
 parameter_list|)
 function_decl|;
-comment|/**    * Returns the value of the edge connecting {@code nodeU} to {@code nodeV}, if one is present;    * otherwise, returns {@code defaultValue}.    *    *<p>In an undirected graph, this is equal to {@code edgeValueOrDefault(nodeV, nodeU,    * defaultValue)}.    *    * @throws IllegalArgumentException if {@code nodeU} or {@code nodeV} is not an element of this    *     graph    * @since 23.0    */
+comment|/**    * Returns the value of the edge connecting {@code nodeU} to {@code nodeV}, if one is present;    * otherwise, returns {@code defaultValue}.    *    *<p>In an undirected graph, this is equal to {@code edgeValueOrDefault(nodeV, nodeU,    * defaultValue)}.    *    * @throws IllegalArgumentException if {@code nodeU} or {@code nodeV} is not an element of this    *     graph    */
 annotation|@
 name|Nullable
 DECL|method|edgeValueOrDefault (N nodeU, N nodeV, @Nullable V defaultValue)
