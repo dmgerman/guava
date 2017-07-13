@@ -694,7 +694,7 @@ argument_list|)
 decl_stmt|;
 name|addDelayedShutdownHook
 argument_list|(
-name|service
+name|executor
 argument_list|,
 name|terminationTimeout
 argument_list|,
@@ -737,7 +737,7 @@ argument_list|)
 decl_stmt|;
 name|addDelayedShutdownHook
 argument_list|(
-name|service
+name|executor
 argument_list|,
 name|terminationTimeout
 argument_list|,
