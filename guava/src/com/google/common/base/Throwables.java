@@ -933,7 +933,7 @@ return|return
 name|getStackTraceElementMethod
 operator|!=
 literal|null
-operator|&
+operator|&&
 name|getStackTraceDepthMethod
 operator|!=
 literal|null
