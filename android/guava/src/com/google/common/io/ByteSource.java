@@ -1431,6 +1431,38 @@ return|;
 block|}
 annotation|@
 name|Override
+DECL|method|read ()
+specifier|public
+name|String
+name|read
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+comment|// Reading all the data as a byte array is more efficient than the default read()
+comment|// implementation because:
+comment|// 1. the string constructor can avoid an extra copy most of the time by correctly sizing the
+comment|//    internal char array (hard to avoid using StringBuilder)
+comment|// 2. we avoid extra copies into temporary buffers altogether
+comment|// The downside is that this will cause us to store the file bytes in memory twice for a short
+comment|// amount of time.
+return|return
+operator|new
+name|String
+argument_list|(
+name|ByteSource
+operator|.
+name|this
+operator|.
+name|read
+argument_list|()
+argument_list|,
+name|charset
+argument_list|)
+return|;
+block|}
+annotation|@
+name|Override
 DECL|method|toString ()
 specifier|public
 name|String
