@@ -844,25 +844,27 @@ argument_list|)
 throw|;
 block|}
 comment|// some special files may return size 0 but have content, so read
-comment|// the file normally in that case
+comment|// the file normally in that case guessing at the buffer size to use.  Note, there is no point
+comment|// in calling the 'toByteArray' overload that doesn't take a size because that calls
+comment|// InputStream.available(), but our caller has already done that.  So instead just guess that
+comment|// the file is 4K bytes long and rely on the fallback in toByteArray to expand the buffer if
+comment|// needed.
+comment|// This also works around an app-engine bug where FileInputStream.available() consistently
+comment|// throws an IOException for certain files, even though FileInputStream.getChannel().size() does
+comment|// not!
 return|return
-name|expectedSize
-operator|==
-literal|0
-condition|?
-name|ByteStreams
-operator|.
-name|toByteArray
-argument_list|(
-name|in
-argument_list|)
-else|:
 name|ByteStreams
 operator|.
 name|toByteArray
 argument_list|(
 name|in
 argument_list|,
+name|expectedSize
+operator|==
+literal|0
+condition|?
+literal|4096
+else|:
 operator|(
 name|int
 operator|)
