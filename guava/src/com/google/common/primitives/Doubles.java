@@ -246,18 +246,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|regex
-operator|.
-name|Pattern
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|Spliterator
 import|;
 end_import
@@ -269,6 +257,18 @@ operator|.
 name|util
 operator|.
 name|Spliterators
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|regex
+operator|.
+name|Pattern
 import|;
 end_import
 
@@ -1511,7 +1511,7 @@ return|return
 name|array
 return|;
 block|}
-comment|/**    * Returns a fixed-size list backed by the specified array, similar to    * {@link Arrays#asList(Object[])}. The list supports {@link List#set(int, Object)}, but any    * attempt to set a value to {@code null} will result in a {@link NullPointerException}.    *    *<p>The returned list maintains the values, but not the identities, of {@code Double} objects    * written to or read from it. For example, whether {@code list.get(0) == list.get(0)} is true for    * the returned list is unspecified.    *    *<p>The returned list may have unexpected behavior if it contains {@code    * NaN}, or if {@code NaN} is used as a parameter to any of its methods.    *    * @param backingArray the array to back the list    * @return a list view of the array    */
+comment|/**    * Returns a fixed-size list backed by the specified array, similar to {@link    * Arrays#asList(Object[])}. The list supports {@link List#set(int, Object)}, but any attempt to    * set a value to {@code null} will result in a {@link NullPointerException}.    *    *<p>The returned list maintains the values, but not the identities, of {@code Double} objects    * written to or read from it. For example, whether {@code list.get(0) == list.get(0)} is true for    * the returned list is unspecified.    *    *<p>The returned list may have unexpected behavior if it contains {@code NaN}, or if {@code NaN}    * is used as a parameter to any of its methods.    *    *<p><b>Note:</b> when possible, you should represent your data as an {@link    * ImmutableDoubleArray} instead, which has an {@link ImmutableDoubleArray#asList asList} view.    *    * @param backingArray the array to back the list    * @return a list view of the array    */
 DECL|method|asList (double... backingArray)
 specifier|public
 specifier|static
