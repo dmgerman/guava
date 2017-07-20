@@ -2927,7 +2927,7 @@ block|}
 annotation|@
 name|Override
 DECL|method|afterDone ()
-specifier|public
+specifier|protected
 name|void
 name|afterDone
 parameter_list|()

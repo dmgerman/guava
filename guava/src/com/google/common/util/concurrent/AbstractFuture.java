@@ -194,6 +194,20 @@ name|com
 operator|.
 name|google
 operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|ForOverride
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
 name|j2objc
 operator|.
 name|annotations
@@ -3080,10 +3094,11 @@ block|}
 break|break;
 block|}
 block|}
-comment|/**    * Callback method that is called exactly once after the future is completed.    *    *<p>If {@link #interruptTask} is also run during completion, {@link #afterDone} runs after it.    *    *<p>The default implementation of this method in {@code AbstractFuture} does nothing.  This is    * intended for very lightweight cleanup work, for example, timing statistics or clearing fields.    * If your task does anything heavier consider, just using a listener with an executor.    *    * @since 20.0    */
-comment|// TODO(cpovirk): @ForOverride https://github.com/google/error-prone/issues/342
+comment|/**    * Callback method that is called exactly once after the future is completed.    *    *<p>If {@link #interruptTask} is also run during completion, {@link #afterDone} runs after it.    *    *<p>The default implementation of this method in {@code AbstractFuture} does nothing. This is    * intended for very lightweight cleanup work, for example, timing statistics or clearing fields.    * If your task does anything heavier consider, just using a listener with an executor.    *    * @since 20.0    */
 annotation|@
 name|Beta
+annotation|@
+name|ForOverride
 DECL|method|afterDone ()
 specifier|protected
 name|void
