@@ -1815,6 +1815,7 @@ argument_list|()
 return|;
 block|}
 block|}
+comment|/**    * Returns {@code true} if {@code object} is an {@code ImmutableDoubleArray} containing the same    * values as this one, in the same order. Values are compared as if by {@link Double#equals}.    */
 annotation|@
 name|Override
 DECL|method|equals (@ullable Object object)

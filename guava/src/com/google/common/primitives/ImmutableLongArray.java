@@ -2077,6 +2077,7 @@ argument_list|()
 return|;
 block|}
 block|}
+comment|/**    * Returns {@code true} if {@code object} is an {@code ImmutableLongArray} containing the same    * values as this one, in the same order.    */
 annotation|@
 name|Override
 DECL|method|equals (@ullable Object object)
