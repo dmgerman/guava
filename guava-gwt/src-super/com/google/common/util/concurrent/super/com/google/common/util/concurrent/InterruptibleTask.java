@@ -19,7 +19,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * Emulation for InterruptibleTask in GWT.  */
+comment|/** Emulation for InterruptibleTask in GWT. */
 end_comment
 
 begin_class
@@ -27,32 +27,90 @@ DECL|class|InterruptibleTask
 specifier|abstract
 class|class
 name|InterruptibleTask
+parameter_list|<
+name|V
+parameter_list|>
 implements|implements
 name|Runnable
 block|{
-DECL|method|run ()
 annotation|@
 name|Override
+DECL|method|run ()
 specifier|public
 name|void
 name|run
 parameter_list|()
 block|{
+name|V
+name|result
+init|=
+literal|null
+decl_stmt|;
+name|Throwable
+name|error
+init|=
+literal|null
+decl_stmt|;
+if|if
+condition|(
+name|isDone
+argument_list|()
+condition|)
+block|{
+return|return;
+block|}
+try|try
+block|{
+name|result
+operator|=
 name|runInterruptibly
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|runInterruptibly ()
-specifier|abstract
-name|void
-name|runInterruptibly
-parameter_list|()
-function_decl|;
-DECL|method|wasInterrupted ()
+catch|catch
+parameter_list|(
+name|Throwable
+name|t
+parameter_list|)
+block|{
+name|error
+operator|=
+name|t
+expr_stmt|;
+block|}
+name|afterRanInterruptibly
+argument_list|(
+name|result
+argument_list|,
+name|error
+argument_list|)
+expr_stmt|;
+block|}
+DECL|method|isDone ()
 specifier|abstract
 name|boolean
-name|wasInterrupted
+name|isDone
 parameter_list|()
+function_decl|;
+DECL|method|runInterruptibly ()
+specifier|abstract
+name|V
+name|runInterruptibly
+parameter_list|()
+throws|throws
+name|Exception
+function_decl|;
+DECL|method|afterRanInterruptibly (V result, Throwable error)
+specifier|abstract
+name|void
+name|afterRanInterruptibly
+parameter_list|(
+name|V
+name|result
+parameter_list|,
+name|Throwable
+name|error
+parameter_list|)
 function_decl|;
 DECL|method|interruptTask ()
 specifier|final
