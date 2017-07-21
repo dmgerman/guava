@@ -264,6 +264,26 @@ name|java
 operator|.
 name|util
 operator|.
+name|IdentityHashMap
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Map
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|concurrent
 operator|.
 name|ConcurrentHashMap
@@ -1428,7 +1448,7 @@ name|INSTANCE
 argument_list|)
 return|;
 block|}
-comment|/**    * Specifies that each key (not value) stored in the cache should be wrapped in a    * {@link WeakReference} (by default, strong references are used).    *    *<p><b>Warning:</b> when this method is used, the resulting cache will use identity ({@code ==})    * comparison to determine equality of keys.    *    *<p>Entries with keys that have been garbage collected may be counted in {@link Cache#size}, but    * will never be visible to read or write operations; such entries are cleaned up as part of the    * routine maintenance described in the class javadoc.    *    * @return this {@code CacheBuilder} instance (for chaining)    * @throws IllegalStateException if the key strength was already set    */
+comment|/**    * Specifies that each key (not value) stored in the cache should be wrapped in a {@link    * WeakReference} (by default, strong references are used).    *    *<p><b>Warning:</b> when this method is used, the resulting cache will use identity ({@code ==})    * comparison to determine equality of keys. Its {@link Cache#asMap} view will therefore    * technically violate the {@link Map} specification (in the same way that {@link IdentityHashMap}    * does).    *    *<p>Entries with keys that have been garbage collected may be counted in {@link Cache#size}, but    * will never be visible to read or write operations; such entries are cleaned up as part of the    * routine maintenance described in the class javadoc.    *    * @return this {@code CacheBuilder} instance (for chaining)    * @throws IllegalStateException if the key strength was already set    */
 annotation|@
 name|GwtIncompatible
 comment|// java.lang.ref.WeakReference
