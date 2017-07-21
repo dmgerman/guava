@@ -290,7 +290,6 @@ decl_stmt|;
 if|if
 condition|(
 name|wasInterrupted
-argument_list|()
 condition|)
 block|{
 name|localRunningState
