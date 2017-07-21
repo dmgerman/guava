@@ -228,24 +228,6 @@ name|util
 operator|.
 name|concurrent
 operator|.
-name|AbstractFuture
-operator|.
-name|TrustedFuture
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|util
-operator|.
-name|concurrent
-operator|.
 name|AbstractFutureTest
 operator|.
 name|TimedWaiterThread
@@ -773,9 +755,6 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|GwtIncompatible
-comment|// All GWT Futures behaves like TrustedFuture.
 DECL|method|testSetFutureDelegateAlreadyInterrupted ()
 specifier|public
 name|void
@@ -805,20 +784,15 @@ operator|.
 name|isTrue
 argument_list|()
 expr_stmt|;
-comment|/*      * Interruption of the delegate propagates to us only if the delegate was a TrustedFuture.      * TODO(cpovirk): Consider whether to stop copying this information from TrustedFuture so that      * we're consistent.      */
 name|assertCancelled
 argument_list|(
 name|future
 argument_list|,
-name|delegate
-operator|instanceof
-name|TrustedFuture
+comment|/* expectWasCancelled= */
+literal|false
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|GwtIncompatible
-comment|// All GWT Futures behaves like TrustedFuture.
 DECL|method|testSetFutureDelegateLaterInterrupted ()
 specifier|public
 name|void
@@ -848,14 +822,12 @@ literal|true
 comment|/** mayInterruptIfRunning */
 argument_list|)
 expr_stmt|;
-comment|// See previous method doc.
 name|assertCancelled
 argument_list|(
 name|future
 argument_list|,
-name|delegate
-operator|instanceof
-name|TrustedFuture
+comment|/* expectWasCancelled= */
+literal|false
 argument_list|)
 expr_stmt|;
 block|}

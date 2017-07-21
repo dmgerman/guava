@@ -1563,12 +1563,9 @@ name|other
 operator|.
 name|throwable
 expr_stmt|;
-name|mayInterruptIfRunning
-operator|=
-name|other
-operator|.
-name|mayInterruptIfRunning
-expr_stmt|;
+comment|// don't copy the mayInterruptIfRunning bit, for consistency with the server, to ensure that
+comment|// interruptTask() is called if and only if the bit is true and because we cannot infer the
+comment|// interrupt status from non AbstractFuture futures.
 name|state
 operator|=
 name|other

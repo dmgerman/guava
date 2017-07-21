@@ -398,6 +398,12 @@ end_comment
 
 begin_class
 annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"ShortCircuitBoolean"
+argument_list|)
+comment|// we use non-short circuiting comparisons intentionally
+annotation|@
 name|DoNotMock
 argument_list|(
 literal|"Use Futures.immediate*Future or SettableFuture"
@@ -1206,6 +1212,59 @@ specifier|final
 class|class
 name|Cancellation
 block|{
+comment|// constants to use when GENERATE_CANCELLATION_CAUSES = false
+DECL|field|CAUSELESS_INTERRUPTED
+specifier|static
+specifier|final
+name|Cancellation
+name|CAUSELESS_INTERRUPTED
+decl_stmt|;
+DECL|field|CAUSELESS_CANCELLED
+specifier|static
+specifier|final
+name|Cancellation
+name|CAUSELESS_CANCELLED
+decl_stmt|;
+static|static
+block|{
+if|if
+condition|(
+name|GENERATE_CANCELLATION_CAUSES
+condition|)
+block|{
+name|CAUSELESS_CANCELLED
+operator|=
+literal|null
+expr_stmt|;
+name|CAUSELESS_INTERRUPTED
+operator|=
+literal|null
+expr_stmt|;
+block|}
+else|else
+block|{
+name|CAUSELESS_CANCELLED
+operator|=
+operator|new
+name|Cancellation
+argument_list|(
+literal|false
+argument_list|,
+literal|null
+argument_list|)
+expr_stmt|;
+name|CAUSELESS_INTERRUPTED
+operator|=
+operator|new
+name|Cancellation
+argument_list|(
+literal|true
+argument_list|,
+literal|null
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 DECL|field|wasInterrupted
 specifier|final
 name|boolean
@@ -2156,29 +2215,34 @@ condition|)
 block|{
 comment|// Try to delay allocating the exception. At this point we may still lose the CAS, but it is
 comment|// certainly less likely.
-name|Throwable
-name|cause
-init|=
-name|GENERATE_CANCELLATION_CAUSES
-condition|?
-operator|new
-name|CancellationException
-argument_list|(
-literal|"Future.cancel() was called."
-argument_list|)
-else|:
-literal|null
-decl_stmt|;
 name|Object
 name|valueToSet
 init|=
+name|GENERATE_CANCELLATION_CAUSES
+condition|?
 operator|new
 name|Cancellation
 argument_list|(
 name|mayInterruptIfRunning
 argument_list|,
-name|cause
+operator|new
+name|CancellationException
+argument_list|(
+literal|"Future.cancel() was called."
 argument_list|)
+argument_list|)
+else|:
+operator|(
+name|mayInterruptIfRunning
+condition|?
+name|Cancellation
+operator|.
+name|CAUSELESS_INTERRUPTED
+else|:
+name|Cancellation
+operator|.
+name|CAUSELESS_CANCELLED
+operator|)
 decl_stmt|;
 name|AbstractFuture
 argument_list|<
@@ -2593,7 +2657,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/**    * Sets the result of this {@code Future} to match the supplied input {@code Future} once the    * supplied {@code Future} is done, unless this {@code Future} has already been cancelled or set    * (including "set asynchronously," defined below).    *    *<p>If the supplied future is {@linkplain #isDone done} when this method is called and the call    * is accepted, then this future is guaranteed to have been completed with the supplied future by    * the time this method returns. If the supplied future is not done and the call is accepted, then    * the future will be<i>set asynchronously</i>. Note that such a result, though not yet known,    * cannot be overridden by a call to a {@code set*} method, only by a call to {@link #cancel}.    *    *<p>If the call {@code setFuture(delegate)} is accepted and this {@code Future} is later    * cancelled, cancellation will be propagated to {@code delegate}. Additionally, any call to    * {@code setFuture} after any cancellation will propagate cancellation to the supplied {@code    * Future}.    *    * @param future the future to delegate to    * @return true if the attempt was accepted, indicating that the {@code Future} was not previously    *     cancelled or set.    * @since 19.0    */
+comment|/**    * Sets the result of this {@code Future} to match the supplied input {@code Future} once the    * supplied {@code Future} is done, unless this {@code Future} has already been cancelled or set    * (including "set asynchronously," defined below).    *    *<p>If the supplied future is {@linkplain #isDone done} when this method is called and the call    * is accepted, then this future is guaranteed to have been completed with the supplied future by    * the time this method returns. If the supplied future is not done and the call is accepted, then    * the future will be<i>set asynchronously</i>. Note that such a result, though not yet known,    * cannot be overridden by a call to a {@code set*} method, only by a call to {@link #cancel}.    *    *<p>If the call {@code setFuture(delegate)} is accepted and this {@code Future} is later    * cancelled, cancellation will be propagated to {@code delegate}. Additionally, any call to    * {@code setFuture} after any cancellation will propagate cancellation to the supplied {@code    * Future}.    *    *<p>Note that, even if the supplied future is cancelled and it causes this future to complete,    * it will never trigger interruption behavior. In particular, it will not cause this future to    * invoke the {@link #interruptTask} method, and the {@link #wasInterrupted} method will not    * return {@code true}.    *    * @param future the future to delegate to    * @return true if the attempt was accepted, indicating that the {@code Future} was not previously    *     cancelled or set.    * @since 19.0    */
 annotation|@
 name|Beta
 annotation|@
@@ -2806,7 +2870,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/**    * Returns a value, suitable for storing in the {@link #value} field. From the given future,    * which is assumed to be done.    *    *<p>This is approximately the inverse of {@link #getDoneValue(Object)}    */
+comment|/**    * Returns a value that satisfies the contract of the {@link #value} field based on the state of    * given future.    *    *<p>This is approximately the inverse of {@link #getDoneValue(Object)}    */
 DECL|method|getFutureValue (ListenableFuture<?> future)
 specifier|private
 specifier|static
@@ -2834,7 +2898,9 @@ comment|// Break encapsulation for TrustedFuture instances since we know that su
 comment|// override .get() (since it is final) and therefore this is equivalent to calling .get()
 comment|// and unpacking the exceptions like we do below (just much faster because it is a single
 comment|// field read instead of a read, several branches and possibly creating exceptions).
-return|return
+name|Object
+name|v
+init|=
 operator|(
 operator|(
 name|AbstractFuture
@@ -2846,6 +2912,59 @@ name|future
 operator|)
 operator|.
 name|value
+decl_stmt|;
+if|if
+condition|(
+name|v
+operator|instanceof
+name|Cancellation
+condition|)
+block|{
+comment|// If the other future was interrupted, clear the interrupted bit while preserving the cause
+comment|// this will make it consistent with how non-trustedfutures work which cannot propagate the
+comment|// wasInterrupted bit
+name|Cancellation
+name|c
+init|=
+operator|(
+name|Cancellation
+operator|)
+name|v
+decl_stmt|;
+if|if
+condition|(
+name|c
+operator|.
+name|wasInterrupted
+condition|)
+block|{
+name|v
+operator|=
+name|c
+operator|.
+name|cause
+operator|!=
+literal|null
+condition|?
+operator|new
+name|Cancellation
+argument_list|(
+comment|/* wasInterrupted= */
+literal|false
+argument_list|,
+name|c
+operator|.
+name|cause
+argument_list|)
+else|:
+name|Cancellation
+operator|.
+name|CAUSELESS_CANCELLED
+expr_stmt|;
+block|}
+block|}
+return|return
+name|v
 return|;
 block|}
 else|else
