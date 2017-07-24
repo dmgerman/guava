@@ -108,20 +108,6 @@ end_import
 
 begin_import
 import|import
-name|com
-operator|.
-name|google
-operator|.
-name|errorprone
-operator|.
-name|annotations
-operator|.
-name|CanIgnoreReturnValue
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|lang
@@ -285,11 +271,8 @@ specifier|final
 name|ExecutorService
 name|executor
 decl_stmt|;
-comment|/**    * Constructs a TimeLimiter instance using the given executor service to execute proxied method    * calls.    *    *<p><b>Warning:</b> using a bounded executor may be counterproductive! If the thread pool fills    * up, any time callers spend waiting for a thread may count toward their time limit, and in this    * case the call may even time out before the target method is ever invoked.    *    * @param executor the ExecutorService that will execute the method calls on the target objects;    *     for example, a {@link Executors#newCachedThreadPool()}.    * @deprecated Use {@link #create(ExecutorService)} instead. This method is scheduled to be    *     removed in Guava 23.0.    */
-annotation|@
-name|Deprecated
+specifier|private
 DECL|method|SimpleTimeLimiter (ExecutorService executor)
-specifier|public
 name|SimpleTimeLimiter
 parameter_list|(
 name|ExecutorService
@@ -303,23 +286,6 @@ operator|=
 name|checkNotNull
 argument_list|(
 name|executor
-argument_list|)
-expr_stmt|;
-block|}
-comment|/**    * Constructs a TimeLimiter instance using a {@link Executors#newCachedThreadPool()} to execute    * proxied method calls.    *    *<p><b>Warning:</b> using a bounded executor may be counterproductive! If the thread pool fills    * up, any time callers spend waiting for a thread may count toward their time limit, and in this    * case the call may even time out before the target method is ever invoked.    *    * @deprecated Use {@link #create(ExecutorService)} instead with {@code    *     Executors.newCachedThreadPool()}. This method is scheduled to be removed in Guava 23.0.    */
-annotation|@
-name|Deprecated
-DECL|method|SimpleTimeLimiter ()
-specifier|public
-name|SimpleTimeLimiter
-parameter_list|()
-block|{
-name|this
-argument_list|(
-name|Executors
-operator|.
-name|newCachedThreadPool
-argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -524,15 +490,8 @@ name|handler
 argument_list|)
 return|;
 block|}
-comment|// TODO: should this actually throw only ExecutionException?
-annotation|@
-name|Deprecated
-annotation|@
-name|CanIgnoreReturnValue
-annotation|@
-name|Override
+specifier|private
 DECL|method|callWithTimeout ( Callable<T> callable, long timeoutDuration, TimeUnit timeoutUnit, boolean amInterruptible)
-specifier|public
 parameter_list|<
 name|T
 parameter_list|>

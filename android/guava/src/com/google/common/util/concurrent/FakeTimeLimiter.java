@@ -178,49 +178,6 @@ return|;
 comment|// ha ha
 block|}
 annotation|@
-name|Deprecated
-annotation|@
-name|Override
-DECL|method|callWithTimeout ( Callable<T> callable, long timeoutDuration, TimeUnit timeoutUnit, boolean amInterruptible)
-specifier|public
-parameter_list|<
-name|T
-parameter_list|>
-name|T
-name|callWithTimeout
-parameter_list|(
-name|Callable
-argument_list|<
-name|T
-argument_list|>
-name|callable
-parameter_list|,
-name|long
-name|timeoutDuration
-parameter_list|,
-name|TimeUnit
-name|timeoutUnit
-parameter_list|,
-name|boolean
-name|amInterruptible
-parameter_list|)
-throws|throws
-name|Exception
-block|{
-name|checkNotNull
-argument_list|(
-name|timeoutUnit
-argument_list|)
-expr_stmt|;
-return|return
-name|callable
-operator|.
-name|call
-argument_list|()
-return|;
-comment|// fooled you
-block|}
-annotation|@
 name|Override
 DECL|method|callWithTimeout (Callable<T> callable, long timeoutDuration, TimeUnit timeoutUnit)
 specifier|public

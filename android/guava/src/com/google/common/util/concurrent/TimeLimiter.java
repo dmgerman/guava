@@ -48,20 +48,6 @@ end_import
 
 begin_import
 import|import
-name|com
-operator|.
-name|google
-operator|.
-name|errorprone
-operator|.
-name|annotations
-operator|.
-name|CanIgnoreReturnValue
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|util
@@ -145,36 +131,6 @@ parameter_list|,
 name|TimeUnit
 name|timeoutUnit
 parameter_list|)
-function_decl|;
-comment|/**    * Invokes a specified Callable, timing out after the specified time limit. If the target method    * call finished before the limit is reached, the return value or exception is propagated to the    * caller exactly as-is. If, on the other hand, the time limit is reached, we attempt to abort the    * call to the target, and throw an {@link UncheckedTimeoutException} to the caller.    *    * @param callable the Callable to execute    * @param timeoutDuration with timeoutUnit, the maximum length of time to wait    * @param timeoutUnit with timeoutDuration, the maximum length of time to wait    * @param interruptible whether to respond to thread interruption by aborting the operation and    *     throwing InterruptedException; if false, the operation is allowed to complete or time out,    *     and the current thread's interrupt status is re-asserted.    * @return the result returned by the Callable    * @throws InterruptedException if {@code interruptible} is true and our thread is interrupted    *     during execution    * @throws UncheckedTimeoutException if the time limit is reached    * @deprecated Use one of the other {@code call[Uninterruptibly]WithTimeout()} or {@code    *     run[Uninterruptibly]WithTimeout()} methods. This method is scheduled to be removed in Guava    *     23.0.    */
-annotation|@
-name|Deprecated
-annotation|@
-name|CanIgnoreReturnValue
-DECL|method|callWithTimeout ( Callable<T> callable, long timeoutDuration, TimeUnit timeoutUnit, boolean interruptible)
-argument_list|<
-name|T
-argument_list|>
-name|T
-name|callWithTimeout
-parameter_list|(
-name|Callable
-argument_list|<
-name|T
-argument_list|>
-name|callable
-parameter_list|,
-name|long
-name|timeoutDuration
-parameter_list|,
-name|TimeUnit
-name|timeoutUnit
-parameter_list|,
-name|boolean
-name|interruptible
-parameter_list|)
-throws|throws
-name|Exception
 function_decl|;
 comment|/**    * Invokes a specified Callable, timing out after the specified time limit. If the target method    * call finishes before the limit is reached, the return value or a wrapped exception is    * propagated. If, on the other hand, the time limit is reached, we attempt to abort the call to    * the target, and throw a {@link TimeoutException} to the caller.    *    * @param callable the Callable to execute    * @param timeoutDuration with timeoutUnit, the maximum length of time to wait    * @param timeoutUnit with timeoutDuration, the maximum length of time to wait    * @return the result returned by the Callable    * @throws TimeoutException if the time limit is reached    * @throws InterruptedException if the current thread was interrupted during execution    * @throws ExecutionException if {@code callable} throws a checked exception    * @throws UncheckedExecutionException if {@code callable} throws a {@code RuntimeException}    * @throws ExecutionError if {@code callable} throws an {@code Error}    * @since 22.0    */
 DECL|method|callWithTimeout (Callable<T> callable, long timeoutDuration, TimeUnit timeoutUnit)

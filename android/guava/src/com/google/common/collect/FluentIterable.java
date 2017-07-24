@@ -886,46 +886,6 @@ block|}
 end_function
 
 begin_comment
-comment|/**    * Returns a fluent iterable containing {@code elements} in the specified order.    *    *<p>The returned iterable is modifiable, but modifications do not affect the input array.    *    *<p><b>{@code Stream} equivalent:</b> {@link java.util.stream.Stream#of(Object[])    * Stream.of(T...)}.    *    * @deprecated Use {@link #from(Object[])} instead (but note the differences in mutability). This    *     method will be removed in Guava release 21.0.    * @since 18.0    */
-end_comment
-
-begin_function
-annotation|@
-name|Beta
-annotation|@
-name|Deprecated
-DECL|method|of (E[] elements)
-specifier|public
-specifier|static
-parameter_list|<
-name|E
-parameter_list|>
-name|FluentIterable
-argument_list|<
-name|E
-argument_list|>
-name|of
-parameter_list|(
-name|E
-index|[]
-name|elements
-parameter_list|)
-block|{
-return|return
-name|from
-argument_list|(
-name|Lists
-operator|.
-name|newArrayList
-argument_list|(
-name|elements
-argument_list|)
-argument_list|)
-return|;
-block|}
-end_function
-
-begin_comment
 comment|/**    * Returns a fluent iterable containing the specified elements in order.    *    *<p><b>{@code Stream} equivalent:</b> {@link java.util.stream.Stream#of(Object[])    * Stream.of(T...)}.    *    * @since 20.0    */
 end_comment
 
