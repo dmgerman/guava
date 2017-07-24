@@ -160,14 +160,7 @@ name|void
 name|run
 parameter_list|()
 block|{
-if|if
-condition|(
-name|isDone
-argument_list|()
-condition|)
-block|{
-return|return;
-block|}
+comment|/*      * Set runner thread before checking isDone(). If we were to check isDone() first, the task      * might be cancelled before we set the runner thread. That would make it impossible to      * interrupt, yet it will still run, since interruptTask will leave the runner value null,      * allowing the CAS below to succeed.      */
 name|Thread
 name|currentThread
 init|=
@@ -190,6 +183,13 @@ block|{
 return|return;
 comment|// someone else has run or is running.
 block|}
+name|boolean
+name|run
+init|=
+operator|!
+name|isDone
+argument_list|()
+decl_stmt|;
 name|T
 name|result
 init|=
@@ -202,11 +202,17 @@ literal|null
 decl_stmt|;
 try|try
 block|{
+if|if
+condition|(
+name|run
+condition|)
+block|{
 name|result
 operator|=
 name|runInterruptibly
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 catch|catch
 parameter_list|(
@@ -253,7 +259,13 @@ name|yield
 argument_list|()
 expr_stmt|;
 block|}
+comment|/*          * TODO(cpovirk): Clear interrupt status here? We currently don't, which means that an          * interrupt before, during, or after runInterruptibly() (unless it produced an          * InterruptedException caught above) can linger and affect listeners.          */
 block|}
+if|if
+condition|(
+name|run
+condition|)
+block|{
 name|afterRanInterruptibly
 argument_list|(
 name|result
@@ -261,6 +273,7 @@ argument_list|,
 name|error
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 comment|/**    * Called before runInterruptibly - if true, runInterruptibly and afterRanInterruptibly will not    * be called.    */
@@ -302,9 +315,9 @@ name|void
 name|interruptTask
 parameter_list|()
 block|{
-comment|// Since the Thread is replaced by DONE after runInterruptibly returns, if we succeed in this
-comment|// CAS there's no risk of interrupting the wrong thread, or interrupting a thread that isn't
-comment|// currently executing this task.
+comment|// Since the Thread is replaced by DONE before run() invokes listeners or returns, if we succeed
+comment|// in this CAS, there's no risk of interrupting the wrong thread or interrupting a thread that
+comment|// isn't currently executing this task.
 name|Runnable
 name|currentRunner
 init|=
