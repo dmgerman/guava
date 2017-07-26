@@ -473,9 +473,7 @@ name|siblingCollection
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|E
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|siblingCollection
@@ -493,9 +491,7 @@ name|copy
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|E
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|// Avoid copy.addAll(collection), which runs afoul of an Android bug in older versions:

@@ -396,11 +396,7 @@ name|inner
 init|=
 operator|new
 name|TestBiMap
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
+argument_list|<>
 argument_list|(
 name|HashBiMap
 operator|.
@@ -588,11 +584,7 @@ name|backing
 init|=
 operator|new
 name|TestBiMap
-argument_list|<
-name|String
-argument_list|,
-name|String
-argument_list|>
+argument_list|<>
 argument_list|(
 name|HashBiMap
 operator|.

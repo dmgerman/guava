@@ -191,9 +191,7 @@ name|result
 init|=
 operator|new
 name|TimeoutFuture
-argument_list|<
-name|V
-argument_list|>
+argument_list|<>
 argument_list|(
 name|delegate
 argument_list|)
@@ -206,9 +204,7 @@ name|fire
 init|=
 operator|new
 name|Fire
-argument_list|<
-name|V
-argument_list|>
+argument_list|<>
 argument_list|(
 name|result
 argument_list|)

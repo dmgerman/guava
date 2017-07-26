@@ -1007,9 +1007,7 @@ name|stateReference
 init|=
 operator|new
 name|WeakReference
-argument_list|<
-name|ServiceManagerState
-argument_list|>
+argument_list|<>
 argument_list|(
 name|state
 argument_list|)

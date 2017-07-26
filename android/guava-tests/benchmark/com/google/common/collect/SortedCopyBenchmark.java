@@ -332,9 +332,7 @@ name|set
 init|=
 operator|new
 name|LinkedHashSet
-argument_list|<
-name|Integer
-argument_list|>
+argument_list|<>
 argument_list|(
 name|size
 argument_list|)
@@ -375,9 +373,7 @@ name|list
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Integer
-argument_list|>
+argument_list|<>
 argument_list|(
 name|set
 argument_list|)
@@ -443,9 +439,7 @@ name|copy
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Integer
-argument_list|>
+argument_list|<>
 argument_list|(
 name|input
 argument_list|)
@@ -493,9 +487,7 @@ name|copy
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Integer
-argument_list|>
+argument_list|<>
 argument_list|(
 name|input
 argument_list|)

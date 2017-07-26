@@ -501,12 +501,7 @@ name|allEndpointPairs
 init|=
 operator|new
 name|HashSet
-argument_list|<
-name|EndpointPair
-argument_list|<
-name|N
-argument_list|>
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 for|for

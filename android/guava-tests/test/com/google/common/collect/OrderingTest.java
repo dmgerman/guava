@@ -6657,9 +6657,7 @@ name|starter
 init|=
 operator|new
 name|Scenario
-argument_list|<
-name|T
-argument_list|>
+argument_list|<>
 argument_list|(
 operator|(
 name|Ordering

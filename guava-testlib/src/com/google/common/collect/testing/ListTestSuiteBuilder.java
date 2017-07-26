@@ -900,9 +900,7 @@ name|derivedSuites
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|TestSuite
-argument_list|>
+argument_list|<>
 argument_list|(
 name|super
 operator|.
@@ -1165,12 +1163,7 @@ name|derivedFeatures
 init|=
 operator|new
 name|HashSet
-argument_list|<
-name|Feature
-argument_list|<
-name|?
-argument_list|>
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|derivedFeatures

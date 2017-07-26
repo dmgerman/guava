@@ -4052,9 +4052,7 @@ name|delegate
 init|=
 operator|new
 name|CopyOnWriteArrayList
-argument_list|<
-name|Integer
-argument_list|>
+argument_list|<>
 argument_list|(
 name|initialContents
 argument_list|)

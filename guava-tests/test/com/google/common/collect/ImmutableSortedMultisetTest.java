@@ -3928,9 +3928,7 @@ name|toCopy
 init|=
 operator|new
 name|TestArrayList
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|ImmutableSortedMultiset
@@ -4062,12 +4060,7 @@ name|entrySet
 init|=
 operator|new
 name|TestHashSet
-argument_list|<
-name|Entry
-argument_list|<
-name|String
-argument_list|>
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|when

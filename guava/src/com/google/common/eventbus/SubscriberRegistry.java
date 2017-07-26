@@ -555,9 +555,7 @@ name|newSet
 init|=
 operator|new
 name|CopyOnWriteArraySet
-argument_list|<
-name|Subscriber
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|eventSubscribers

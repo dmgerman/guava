@@ -2315,9 +2315,7 @@ name|output
 init|=
 operator|new
 name|NonCancellationPropagatingFuture
-argument_list|<
-name|V
-argument_list|>
+argument_list|<>
 argument_list|(
 name|future
 argument_list|)

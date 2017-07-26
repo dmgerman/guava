@@ -368,9 +368,7 @@ name|keys
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|K
-argument_list|>
+argument_list|<>
 argument_list|(
 name|multimap
 argument_list|()

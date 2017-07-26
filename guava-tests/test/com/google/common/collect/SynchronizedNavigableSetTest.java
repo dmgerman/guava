@@ -259,9 +259,7 @@ name|inner
 init|=
 operator|new
 name|TestSet
-argument_list|<
-name|E
-argument_list|>
+argument_list|<>
 argument_list|(
 operator|new
 name|TreeSet
@@ -944,9 +942,7 @@ name|innermost
 init|=
 operator|new
 name|SafeTreeSet
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|Collections
@@ -966,9 +962,7 @@ name|inner
 init|=
 operator|new
 name|TestSet
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|(
 name|innermost
 argument_list|,

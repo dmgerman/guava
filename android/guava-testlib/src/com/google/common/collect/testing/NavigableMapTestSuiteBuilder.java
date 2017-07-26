@@ -283,11 +283,7 @@ name|result
 init|=
 operator|new
 name|NavigableMapTestSuiteBuilder
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|result
@@ -950,12 +946,7 @@ name|features
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Feature
-argument_list|<
-name|?
-argument_list|>
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|features

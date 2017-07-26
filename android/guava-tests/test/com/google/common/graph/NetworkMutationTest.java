@@ -333,9 +333,7 @@ name|nodeList
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Integer
-argument_list|>
+argument_list|<>
 argument_list|(
 name|network
 operator|.
@@ -397,9 +395,7 @@ name|edgeList
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|(
 name|network
 operator|.

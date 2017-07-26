@@ -1044,9 +1044,7 @@ name|input
 init|=
 operator|new
 name|RuntimeExceptionThrowingFuture
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|/*      * The compiler recognizes that "input instanceof ListenableFuture" is      * impossible. We want the test, though, in case that changes in the future,      * so we use isInstance instead.      */

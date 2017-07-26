@@ -1411,12 +1411,7 @@ name|derivedFeatures
 init|=
 operator|new
 name|HashSet
-argument_list|<
-name|Feature
-argument_list|<
-name|?
-argument_list|>
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|mapFeatures

@@ -510,9 +510,7 @@ name|multiset
 init|=
 operator|new
 name|ConcurrentHashMultiset
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|(
 operator|new
 name|ConcurrentSkipListMap

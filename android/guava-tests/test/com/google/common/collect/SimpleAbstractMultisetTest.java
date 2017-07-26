@@ -311,9 +311,7 @@ name|ms
 init|=
 operator|new
 name|NoRemoveMultiset
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|Collections
@@ -475,9 +473,7 @@ name|multiset
 init|=
 operator|new
 name|NoRemoveMultiset
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|multiset

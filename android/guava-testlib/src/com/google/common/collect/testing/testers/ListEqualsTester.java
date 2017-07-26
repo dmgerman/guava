@@ -209,9 +209,7 @@ name|other
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|E
-argument_list|>
+argument_list|<>
 argument_list|(
 name|getSampleElements
 argument_list|()
@@ -277,9 +275,7 @@ name|other
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|E
-argument_list|>
+argument_list|<>
 argument_list|(
 name|getSampleElements
 argument_list|()
@@ -345,9 +341,7 @@ name|elements
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|E
-argument_list|>
+argument_list|<>
 argument_list|(
 name|getSampleElements
 argument_list|()
@@ -388,9 +382,7 @@ name|other
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|E
-argument_list|>
+argument_list|<>
 argument_list|(
 name|getSampleElements
 argument_list|()

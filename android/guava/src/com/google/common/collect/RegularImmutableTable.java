@@ -782,9 +782,7 @@ name|rowSpaceBuilder
 init|=
 operator|new
 name|LinkedHashSet
-argument_list|<
-name|R
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|Set
@@ -795,9 +793,7 @@ name|columnSpaceBuilder
 init|=
 operator|new
 name|LinkedHashSet
-argument_list|<
-name|C
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|ImmutableList

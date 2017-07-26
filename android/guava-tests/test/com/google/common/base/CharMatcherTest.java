@@ -6020,9 +6020,7 @@ name|chars
 init|=
 operator|new
 name|HashSet
-argument_list|<
-name|Character
-argument_list|>
+argument_list|<>
 argument_list|(
 name|size
 argument_list|)

@@ -1451,9 +1451,7 @@ name|bignums
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|BigInteger
-argument_list|>
+argument_list|<>
 argument_list|(
 name|approxSize
 argument_list|)

@@ -1546,9 +1546,7 @@ name|thrown
 init|=
 operator|new
 name|AtomicReference
-argument_list|<
-name|Throwable
-argument_list|>
+argument_list|<>
 argument_list|(
 literal|null
 argument_list|)

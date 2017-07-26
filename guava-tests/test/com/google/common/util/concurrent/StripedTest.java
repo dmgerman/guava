@@ -828,9 +828,7 @@ name|weakRef
 init|=
 operator|new
 name|WeakReference
-argument_list|<
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|(
 name|striped
 operator|.
@@ -877,9 +875,7 @@ name|weakRef
 init|=
 operator|new
 name|WeakReference
-argument_list|<
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|(
 name|striped
 operator|.
@@ -899,9 +895,7 @@ name|garbage
 init|=
 operator|new
 name|WeakReference
-argument_list|<
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|(
 operator|new
 name|Object

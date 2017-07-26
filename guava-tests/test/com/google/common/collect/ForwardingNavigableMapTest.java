@@ -1135,11 +1135,7 @@ name|map
 init|=
 operator|new
 name|SafeTreeMap
-argument_list|<
-name|String
-argument_list|,
-name|String
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 for|for
@@ -1251,11 +1247,7 @@ name|forwarding
 init|=
 operator|new
 name|StandardLastEntryForwardingNavigableMap
-argument_list|<
-name|String
-argument_list|,
-name|Integer
-argument_list|>
+argument_list|<>
 argument_list|(
 operator|new
 name|SafeTreeMap

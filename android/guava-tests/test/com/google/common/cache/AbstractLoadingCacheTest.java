@@ -119,9 +119,7 @@ name|valueRef
 init|=
 operator|new
 name|AtomicReference
-argument_list|<
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|LoadingCache
@@ -283,9 +281,7 @@ name|valueRef
 init|=
 operator|new
 name|AtomicReference
-argument_list|<
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|LoadingCache
@@ -447,9 +443,7 @@ name|valueRef
 init|=
 operator|new
 name|AtomicReference
-argument_list|<
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|LoadingCache
@@ -611,9 +605,7 @@ name|valueRef
 init|=
 operator|new
 name|AtomicReference
-argument_list|<
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|LoadingCache

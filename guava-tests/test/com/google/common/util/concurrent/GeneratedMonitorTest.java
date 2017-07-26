@@ -2428,9 +2428,7 @@ name|task
 init|=
 operator|new
 name|FutureTask
-argument_list|<
-name|Void
-argument_list|>
+argument_list|<>
 argument_list|(
 name|runChosenTest
 argument_list|,

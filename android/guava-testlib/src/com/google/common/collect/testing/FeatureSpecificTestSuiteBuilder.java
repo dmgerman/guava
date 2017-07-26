@@ -439,12 +439,7 @@ name|features
 init|=
 operator|new
 name|LinkedHashSet
-argument_list|<
-name|Feature
-argument_list|<
-name|?
-argument_list|>
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|/**    * Configures this builder to produce tests appropriate for the given    * features.  This method may be called more than once to add features    * in multiple groups.    */
@@ -605,9 +600,7 @@ name|suppressedTests
 init|=
 operator|new
 name|HashSet
-argument_list|<
-name|Method
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|/**    * Prevents the given methods from being run as part of the test suite.    *    *<em>Note:</em> in principle this should never need to be used, but it    * might be useful if the semantics of an implementation disagree in    * unforeseen ways with the semantics expected by a test, or to keep dependent    * builds clean in spite of an erroneous test.    */
@@ -1481,9 +1474,7 @@ name|temp
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 for|for

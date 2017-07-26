@@ -189,11 +189,7 @@ name|inner
 init|=
 operator|new
 name|TestMap
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
+argument_list|<>
 argument_list|(
 operator|new
 name|HashMap

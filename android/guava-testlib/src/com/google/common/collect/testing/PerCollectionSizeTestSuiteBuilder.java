@@ -436,11 +436,7 @@ name|oneSizeGenerator
 init|=
 operator|new
 name|OneSizeGenerator
-argument_list|<
-name|T
-argument_list|,
-name|E
-argument_list|>
+argument_list|<>
 argument_list|(
 name|getSubjectGenerator
 argument_list|()

@@ -402,9 +402,7 @@ name|set
 init|=
 operator|new
 name|SafeTreeSet
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|(
 name|Ordering
 operator|.
@@ -593,9 +591,7 @@ name|set
 init|=
 operator|new
 name|SafeTreeSet
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|SortedSet
@@ -642,9 +638,7 @@ name|set
 init|=
 operator|new
 name|SafeTreeSet
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|set
@@ -698,9 +692,7 @@ name|set
 init|=
 operator|new
 name|SafeTreeSet
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|set

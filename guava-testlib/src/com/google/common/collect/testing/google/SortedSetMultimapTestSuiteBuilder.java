@@ -292,11 +292,7 @@ name|result
 init|=
 operator|new
 name|SortedSetMultimapTestSuiteBuilder
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|result
