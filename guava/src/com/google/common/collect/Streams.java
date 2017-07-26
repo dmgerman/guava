@@ -845,11 +845,44 @@ argument_list|)
 argument_list|,
 name|isParallel
 argument_list|)
-return|;
+operator|.
+name|onClose
+argument_list|(
+parameter_list|()
+lambda|->
+block|{
+for|for
+control|(
+name|Stream
+argument_list|<
+name|?
+extends|extends
+name|T
+argument_list|>
+name|stream
+range|:
+name|streams
+control|)
+block|{
+name|stream
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 block|}
+block|}
+block|)
+class|;
+end_class
+
+begin_comment
+unit|}
 comment|/**    * Returns an {@link IntStream} containing the elements of the first stream, followed by the    * elements of the second stream, and so on.    *    *<p>This is equivalent to {@code Stream.of(streams).flatMapToInt(stream -> stream)}, but the    * returned stream may perform better.    *    * @see IntStream#concat(IntStream, IntStream)    */
+end_comment
+
+begin_function
 DECL|method|concat (IntStream... streams)
-specifier|public
+unit|public
 specifier|static
 name|IntStream
 name|concat
@@ -876,7 +909,13 @@ name|stream
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Returns a {@link LongStream} containing the elements of the first stream, followed by the    * elements of the second stream, and so on.    *    *<p>This is equivalent to {@code Stream.of(streams).flatMapToLong(stream -> stream)}, but the    * returned stream may perform better.    *    * @see LongStream#concat(LongStream, LongStream)    */
+end_comment
+
+begin_function
 DECL|method|concat (LongStream... streams)
 specifier|public
 specifier|static
@@ -905,7 +944,13 @@ name|stream
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Returns a {@link DoubleStream} containing the elements of the first stream, followed by the    * elements of the second stream, and so on.    *    *<p>This is equivalent to {@code Stream.of(streams).flatMapToDouble(stream -> stream)}, but the    * returned stream may perform better.    *    * @see DoubleStream#concat(DoubleStream, DoubleStream)    */
+end_comment
+
+begin_function
 DECL|method|concat (DoubleStream... streams)
 specifier|public
 specifier|static
@@ -934,7 +979,13 @@ name|stream
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Returns a stream in which each element is the result of passing the corresponding elementY of    * each of {@code streamA} and {@code streamB} to {@code function}.    *    *<p>For example:    *    *<pre>{@code    * Streams.zip(    *   Stream.of("foo1", "foo2", "foo3"),    *   Stream.of("bar1", "bar2"),    *   (arg1, arg2) -> arg1 + ":" + arg2)    * }</pre>    *    *<p>will return {@code Stream.of("foo1:bar1", "foo2:bar2")}.    *    *<p>The resulting stream will only be as long as the shorter of the two input streams; if one    * stream is longer, its extra elements will be ignored.    *    *<p>Note that if you are calling {@link Stream#forEach} on the resulting stream, you might want    * to consider using {@link #forEachPair} instead of this method.    *    *<p><b>Performance note:</b> The resulting stream is not<a    * href="http://gee.cs.oswego.edu/dl/html/StreamParallelGuidance.html">efficiently splittable</a>.    * This may harm parallel performance.    */
+end_comment
+
+begin_function
 DECL|method|zip ( Stream<A> streamA, Stream<B> streamB, BiFunction<? super A, ? super B, R> function)
 specifier|public
 specifier|static
@@ -1169,7 +1220,13 @@ name|isParallel
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Invokes {@code consumer} once for each pair of<i>corresponding</i> elements in {@code streamA}    * and {@code streamB}. If one stream is longer than the other, the extra elements are silently    * ignored. Elements passed to the consumer are guaranteed to come from the same position in their    * respective source streams. For example:    *    *<pre>{@code    * Streams.forEachPair(    *   Stream.of("foo1", "foo2", "foo3"),    *   Stream.of("bar1", "bar2"),    *   (arg1, arg2) -> System.out.println(arg1 + ":" + arg2)    * }</pre>    *    *<p>will print:    *    *<pre>{@code    * foo1:bar1    * foo2:bar2    * }</pre>    *    *<p><b>Warning:</b> If either supplied stream is a parallel stream, the same correspondence    * between elements will be made, but the order in which those pairs of elements are passed to the    * consumer is<i>not</i> defined.    *    *<p>Note that many usages of this method can be replaced with simpler calls to {@link #zip}.    * This method behaves equivalently to {@linkplain #zip zipping} the stream elements into    * temporary pair objects and then using {@link Stream#forEach} on that stream.    *    * @since 22.0    */
+end_comment
+
+begin_function
 DECL|method|forEachPair ( Stream<A> streamA, Stream<B> streamB, BiConsumer<? super A, ? super B> consumer)
 specifier|public
 specifier|static
@@ -1309,7 +1366,13 @@ expr_stmt|;
 block|}
 block|}
 block|}
+end_function
+
+begin_comment
 comment|// Use this carefully - it doesn't implement value semantics
+end_comment
+
+begin_class
 DECL|class|TemporaryPair
 specifier|private
 specifier|static
@@ -1355,7 +1418,13 @@ name|b
 expr_stmt|;
 block|}
 block|}
+end_class
+
+begin_comment
 comment|/**    * Returns a stream consisting of the results of applying the given function to the elements of    * {@code stream} and their indices in the stream. For example,    *    *<pre>{@code    * mapWithIndex(    *     Stream.of("a", "b", "c"),    *     (str, index) -> str + ":" + index)    * }</pre>    *    *<p>would return {@code Stream.of("a:0", "b:1", "c:2")}.    *    *<p>The resulting stream is<a    * href="http://gee.cs.oswego.edu/dl/html/StreamParallelGuidance.html">efficiently splittable</a>    * if and only if {@code stream} was efficiently splittable and its underlying spliterator    * reported {@link Spliterator#SUBSIZED}. This is generally the case if the underlying stream    * comes from a data structure supporting efficient indexed random access, typically an array or    * list.    *    *<p>The order of the resulting stream is defined if and only if the order of the original stream    * was defined.    */
+end_comment
+
+begin_function
 DECL|method|mapWithIndex ( Stream<T> stream, FunctionWithIndex<? super T, ? extends R> function)
 specifier|public
 specifier|static
@@ -1699,7 +1768,13 @@ name|isParallel
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * An analogue of {@link java.util.function.Function} also accepting an index.    *    *<p>This interface is only intended for use by callers of {@link #mapWithIndex(Stream,    * FunctionWithIndex)}.    *    * @since 21.0    */
+end_comment
+
+begin_interface
 annotation|@
 name|Beta
 DECL|interface|FunctionWithIndex
@@ -1725,6 +1800,9 @@ name|index
 parameter_list|)
 function_decl|;
 block|}
+end_interface
+
+begin_class
 DECL|class|MapWithIndexSpliterator
 specifier|private
 specifier|abstract
@@ -1905,7 +1983,13 @@ operator|)
 return|;
 block|}
 block|}
+end_class
+
+begin_comment
 comment|/**    * Returns a stream consisting of the results of applying the given function to the elements of    * {@code stream} and their indexes in the stream. For example,    *    *<pre>{@code    * mapWithIndex(    *     IntStream.of(0, 1, 2),    *     (i, index) -> i + ":" + index)    * }</pre>    *    *<p>...would return {@code Stream.of("0:0", "1:1", "2:2")}.    *    *<p>The resulting stream is<a    * href="http://gee.cs.oswego.edu/dl/html/StreamParallelGuidance.html">efficiently splittable</a>    * if and only if {@code stream} was efficiently splittable and its underlying spliterator    * reported {@link Spliterator#SUBSIZED}. This is generally the case if the underlying stream    * comes from a data structure supporting efficient indexed random access, typically an array or    * list.    *    *<p>The order of the resulting stream is defined if and only if the order of the original stream    * was defined.    */
+end_comment
+
+begin_function
 DECL|method|mapWithIndex (IntStream stream, IntFunctionWithIndex<R> function)
 specifier|public
 specifier|static
@@ -2223,7 +2307,13 @@ name|isParallel
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * An analogue of {@link java.util.function.IntFunction} also accepting an index.    *    *<p>This interface is only intended for use by callers of {@link #mapWithIndex(IntStream,    * IntFunctionWithIndex)}.    *    * @since 21.0    */
+end_comment
+
+begin_interface
 annotation|@
 name|Beta
 DECL|interface|IntFunctionWithIndex
@@ -2247,7 +2337,13 @@ name|index
 parameter_list|)
 function_decl|;
 block|}
+end_interface
+
+begin_comment
 comment|/**    * Returns a stream consisting of the results of applying the given function to the elements of    * {@code stream} and their indexes in the stream. For example,    *    *<pre>{@code    * mapWithIndex(    *     LongStream.of(0, 1, 2),    *     (i, index) -> i + ":" + index)    * }</pre>    *    *<p>...would return {@code Stream.of("0:0", "1:1", "2:2")}.    *    *<p>The resulting stream is<a    * href="http://gee.cs.oswego.edu/dl/html/StreamParallelGuidance.html">efficiently splittable</a>    * if and only if {@code stream} was efficiently splittable and its underlying spliterator    * reported {@link Spliterator#SUBSIZED}. This is generally the case if the underlying stream    * comes from a data structure supporting efficient indexed random access, typically an array or    * list.    *    *<p>The order of the resulting stream is defined if and only if the order of the original stream    * was defined.    */
+end_comment
+
+begin_function
 DECL|method|mapWithIndex (LongStream stream, LongFunctionWithIndex<R> function)
 specifier|public
 specifier|static
@@ -2565,7 +2661,13 @@ name|isParallel
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * An analogue of {@link java.util.function.LongFunction} also accepting an index.    *    *<p>This interface is only intended for use by callers of {@link #mapWithIndex(LongStream,    * LongFunctionWithIndex)}.    *    * @since 21.0    */
+end_comment
+
+begin_interface
 annotation|@
 name|Beta
 DECL|interface|LongFunctionWithIndex
@@ -2589,7 +2691,13 @@ name|index
 parameter_list|)
 function_decl|;
 block|}
+end_interface
+
+begin_comment
 comment|/**    * Returns a stream consisting of the results of applying the given function to the elements of    * {@code stream} and their indexes in the stream. For example,    *    *<pre>{@code    * mapWithIndex(    *     DoubleStream.of(0, 1, 2),    *     (x, index) -> x + ":" + index)    * }</pre>    *    *<p>...would return {@code Stream.of("0.0:0", "1.0:1", "2.0:2")}.    *    *<p>The resulting stream is<a    * href="http://gee.cs.oswego.edu/dl/html/StreamParallelGuidance.html">efficiently splittable</a>    * if and only if {@code stream} was efficiently splittable and its underlying spliterator    * reported {@link Spliterator#SUBSIZED}. This is generally the case if the underlying stream    * comes from a data structure supporting efficient indexed random access, typically an array or    * list.    *    *<p>The order of the resulting stream is defined if and only if the order of the original stream    * was defined.    */
+end_comment
+
+begin_function
 DECL|method|mapWithIndex ( DoubleStream stream, DoubleFunctionWithIndex<R> function)
 specifier|public
 specifier|static
@@ -2907,7 +3015,13 @@ name|isParallel
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * An analogue of {@link java.util.function.DoubleFunction} also accepting an index.    *    *<p>This interface is only intended for use by callers of {@link #mapWithIndex(DoubleStream,    * DoubleFunctionWithIndex)}.    *    * @since 21.0    */
+end_comment
+
+begin_interface
 annotation|@
 name|Beta
 DECL|interface|DoubleFunctionWithIndex
@@ -2931,7 +3045,13 @@ name|index
 parameter_list|)
 function_decl|;
 block|}
+end_interface
+
+begin_comment
 comment|/**    * Returns the last element of the specified stream, or {@link java.util.Optional#empty} if the    * stream is empty.    *    *<p>Equivalent to {@code stream.reduce((a, b) -> b)}, but may perform significantly better. This    * method's runtime will be between O(log n) and O(n), performing better on<a    * href="http://gee.cs.oswego.edu/dl/html/StreamParallelGuidance.html">efficiently splittable</a>    * streams.    *    *<p>If the stream has nondeterministic order, this has equivalent semantics to {@link    * Stream#findAny} (which you might as well use).    *    * @see Stream#findFirst()    * @throws NullPointerException if the last element of the stream is null    */
+end_comment
+
+begin_function
 DECL|method|findLast (Stream<T> stream)
 specifier|public
 specifier|static
@@ -3246,7 +3366,13 @@ name|empty
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Returns the last element of the specified stream, or {@link OptionalInt#empty} if the stream is    * empty.    *    *<p>Equivalent to {@code stream.reduce((a, b) -> b)}, but may perform significantly better. This    * method's runtime will be between O(log n) and O(n), performing better on<a    * href="http://gee.cs.oswego.edu/dl/html/StreamParallelGuidance.html">efficiently splittable</a>    * streams.    *    * @see IntStream#findFirst()    * @throws NullPointerException if the last element of the stream is null    */
+end_comment
+
+begin_function
 DECL|method|findLast (IntStream stream)
 specifier|public
 specifier|static
@@ -3298,7 +3424,13 @@ name|empty
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Returns the last element of the specified stream, or {@link OptionalLong#empty} if the stream    * is empty.    *    *<p>Equivalent to {@code stream.reduce((a, b) -> b)}, but may perform significantly better. This    * method's runtime will be between O(log n) and O(n), performing better on<a    * href="http://gee.cs.oswego.edu/dl/html/StreamParallelGuidance.html">efficiently splittable</a>    * streams.    *    * @see LongStream#findFirst()    * @throws NullPointerException if the last element of the stream is null    */
+end_comment
+
+begin_function
 DECL|method|findLast (LongStream stream)
 specifier|public
 specifier|static
@@ -3350,7 +3482,13 @@ name|empty
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Returns the last element of the specified stream, or {@link OptionalDouble#empty} if the stream    * is empty.    *    *<p>Equivalent to {@code stream.reduce((a, b) -> b)}, but may perform significantly better. This    * method's runtime will be between O(log n) and O(n), performing better on<a    * href="http://gee.cs.oswego.edu/dl/html/StreamParallelGuidance.html">efficiently splittable</a>    * streams.    *    * @see DoubleStream#findFirst()    * @throws NullPointerException if the last element of the stream is null    */
+end_comment
+
+begin_function
 DECL|method|findLast (DoubleStream stream)
 specifier|public
 specifier|static
@@ -3402,13 +3540,16 @@ name|empty
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_constructor
 DECL|method|Streams ()
 specifier|private
 name|Streams
 parameter_list|()
 block|{}
-block|}
-end_class
+end_constructor
 
+unit|}
 end_unit
 
