@@ -771,7 +771,7 @@ name|void
 name|afterDone
 parameter_list|()
 block|{
-name|maybePropagateCancellation
+name|maybePropagateCancellationTo
 argument_list|(
 name|inputFuture
 argument_list|)

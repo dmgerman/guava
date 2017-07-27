@@ -3242,11 +3242,11 @@ operator|.
 name|exception
 return|;
 block|}
-comment|/**    * If this future has been cancelled (and possibly interrupted), cancels (and possibly interrupts)    * the given future (if available).    *    *<p>This method should be used only when this future is completed. It is designed to be called    * from {@code done}.    */
-DECL|method|maybePropagateCancellation (@ullable Future<?> related)
+comment|/**    * If this future has been cancelled (and possibly interrupted), cancels (and possibly interrupts)    * the given future (if available).    */
+DECL|method|maybePropagateCancellationTo (@ullable Future<?> related)
 specifier|final
 name|void
-name|maybePropagateCancellation
+name|maybePropagateCancellationTo
 parameter_list|(
 annotation|@
 name|Nullable

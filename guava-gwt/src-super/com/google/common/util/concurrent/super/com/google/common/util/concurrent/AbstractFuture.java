@@ -718,7 +718,7 @@ argument_list|)
 expr_stmt|;
 comment|// If this future is already cancelled, cancel the delegate.
 comment|// TODO(cpovirk): Should we do this at the end of the method, as in the server version?
-comment|// TODO(cpovirk): Use maybePropagateCancellation?
+comment|// TODO(cpovirk): Use maybePropagateCancellationTo?
 if|if
 condition|(
 name|isCancelled
@@ -846,10 +846,10 @@ return|return
 name|throwable
 return|;
 block|}
-DECL|method|maybePropagateCancellation (@ullable Future<?> related)
+DECL|method|maybePropagateCancellationTo (@ullable Future<?> related)
 specifier|final
 name|void
-name|maybePropagateCancellation
+name|maybePropagateCancellationTo
 parameter_list|(
 annotation|@
 name|Nullable

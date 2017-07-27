@@ -466,7 +466,7 @@ name|void
 name|afterDone
 parameter_list|()
 block|{
-name|maybePropagateCancellation
+name|maybePropagateCancellationTo
 argument_list|(
 name|delegateRef
 argument_list|)
