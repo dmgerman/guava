@@ -155,7 +155,7 @@ operator|.
 name|MIN_VALUE
 return|;
 block|}
-comment|/**    * Compares the two specified {@code int} values, treating them as unsigned values between    * {@code 0} and {@code 2^32 - 1} inclusive.    *    * @param a the first unsigned {@code int} to compare    * @param b the second unsigned {@code int} to compare    * @return a negative value if {@code a} is less than {@code b}; a positive value if {@code a} is    *     greater than {@code b}; or zero if they are equal    */
+comment|/**    * Compares the two specified {@code int} values, treating them as unsigned values between    * {@code 0} and {@code 2^32 - 1} inclusive.    *    *<p><b>Java 8 users:</b> use {@link Integer#compareUnsigned(int, int)} instead.    *    * @param a the first unsigned {@code int} to compare    * @param b the second unsigned {@code int} to compare    * @return a negative value if {@code a} is less than {@code b}; a positive value if {@code a} is    *     greater than {@code b}; or zero if they are equal    */
 DECL|method|compare (int a, int b)
 specifier|public
 specifier|static
@@ -186,7 +186,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the value of the given {@code int} as a {@code long}, when treated as unsigned.    */
+comment|/**    * Returns the value of the given {@code int} as a {@code long}, when treated as unsigned.    *    *<p><b>Java 8 users:</b> use {@link Integer#toUnsignedLong(int)} instead.    */
 DECL|method|toLong (int value)
 specifier|public
 specifier|static
@@ -682,7 +682,7 @@ literal|"UnsignedInts.lexicographicalComparator()"
 return|;
 block|}
 block|}
-comment|/**    * Returns dividend / divisor, where the dividend and divisor are treated as unsigned 32-bit    * quantities.    *    * @param dividend the dividend (numerator)    * @param divisor the divisor (denominator)    * @throws ArithmeticException if divisor is 0    */
+comment|/**    * Returns dividend / divisor, where the dividend and divisor are treated as unsigned 32-bit    * quantities.    *    *<p><b>Java 8 users:</b> use {@link Integer#divideUnsigned(int, int)} instead.    *    * @param dividend the dividend (numerator)    * @param divisor the divisor (denominator)    * @throws ArithmeticException if divisor is 0    */
 DECL|method|divide (int dividend, int divisor)
 specifier|public
 specifier|static
@@ -713,7 +713,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns dividend % divisor, where the dividend and divisor are treated as unsigned 32-bit    * quantities.    *    * @param dividend the dividend (numerator)    * @param divisor the divisor (denominator)    * @throws ArithmeticException if divisor is 0    */
+comment|/**    * Returns dividend % divisor, where the dividend and divisor are treated as unsigned 32-bit    * quantities.    *    *<p><b>Java 8 users:</b> use {@link Integer#remainderUnsigned(int, int)} instead.    *    * @param dividend the dividend (numerator)    * @param divisor the divisor (denominator)    * @throws ArithmeticException if divisor is 0    */
 DECL|method|remainder (int dividend, int divisor)
 specifier|public
 specifier|static
@@ -811,7 +811,7 @@ name|decodeException
 throw|;
 block|}
 block|}
-comment|/**    * Returns the unsigned {@code int} value represented by the given decimal string.    *    * @throws NumberFormatException if the string does not contain a valid unsigned {@code int} value    * @throws NullPointerException if {@code s} is null (in contrast to    *     {@link Integer#parseInt(String)})    */
+comment|/**    * Returns the unsigned {@code int} value represented by the given decimal string.    *    *<p><b>Java 8 users:</b> use {@link Integer#parseUnsignedInt(String)} instead.    *    * @throws NumberFormatException if the string does not contain a valid unsigned {@code int} value    * @throws NullPointerException if {@code s} is null (in contrast to    *     {@link Integer#parseInt(String)})    */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|parseUnsignedInt (String s)
@@ -833,7 +833,7 @@ literal|10
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the unsigned {@code int} value represented by a string with the given radix.    *    * @param string the string containing the unsigned integer representation to be parsed.    * @param radix the radix to use while parsing {@code s}; must be between    *     {@link Character#MIN_RADIX} and {@link Character#MAX_RADIX}.    * @throws NumberFormatException if the string does not contain a valid unsigned {@code int}, or    *     if supplied radix is invalid.    * @throws NullPointerException if {@code s} is null (in contrast to    *     {@link Integer#parseInt(String)})    */
+comment|/**    * Returns the unsigned {@code int} value represented by a string with the given radix.    *    *<p><b>Java 8 users:</b> use {@link Integer#parseUnsignedInt(String, int)} instead.    *    * @param string the string containing the unsigned integer representation to be parsed.    * @param radix the radix to use while parsing {@code s}; must be between    *     {@link Character#MIN_RADIX} and {@link Character#MAX_RADIX}.    * @throws NumberFormatException if the string does not contain a valid unsigned {@code int}, or    *     if supplied radix is invalid.    * @throws NullPointerException if {@code s} is null (in contrast to    *     {@link Integer#parseInt(String)})    */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|parseUnsignedInt (String string, int radix)
@@ -900,7 +900,7 @@ operator|)
 name|result
 return|;
 block|}
-comment|/**    * Returns a string representation of x, where x is treated as unsigned.    */
+comment|/**    * Returns a string representation of x, where x is treated as unsigned.    *    *<p><b>Java 8 users:</b> use {@link Integer#toUnsignedString(int)} instead.    */
 DECL|method|toString (int x)
 specifier|public
 specifier|static
@@ -920,7 +920,7 @@ literal|10
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a string representation of {@code x} for the given radix, where {@code x} is treated as    * unsigned.    *    * @param x the value to convert to a string.    * @param radix the radix to use while working with {@code x}    * @throws IllegalArgumentException if {@code radix} is not between {@link Character#MIN_RADIX}    *     and {@link Character#MAX_RADIX}.    */
+comment|/**    * Returns a string representation of {@code x} for the given radix, where {@code x} is treated as    * unsigned.    *    *<p><b>Java 8 users:</b> use {@link Integer#toUnsignedString(int, int)} instead.    *    * @param x the value to convert to a string.    * @param radix the radix to use while working with {@code x}    * @throws IllegalArgumentException if {@code radix} is not between {@link Character#MIN_RADIX}    *     and {@link Character#MAX_RADIX}.    */
 DECL|method|toString (int x, int radix)
 specifier|public
 specifier|static

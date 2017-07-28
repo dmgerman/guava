@@ -187,7 +187,7 @@ name|UNSIGNED_MASK
 init|=
 literal|0xFF
 decl_stmt|;
-comment|/**    * Returns the value of the given byte as an integer, when treated as unsigned. That is, returns    * {@code value + 256} if {@code value} is negative; {@code value} itself otherwise.    *    * @since 6.0    */
+comment|/**    * Returns the value of the given byte as an integer, when treated as unsigned. That is, returns    * {@code value + 256} if {@code value} is negative; {@code value} itself otherwise.    *    *<p><b>Java 8 users:</b> use {@link Byte#toUnsignedInt(byte)} instead.    *    * @since 6.0    */
 DECL|method|toInt (byte value)
 specifier|public
 specifier|static
