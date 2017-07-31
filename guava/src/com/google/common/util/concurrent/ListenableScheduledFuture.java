@@ -42,7 +42,7 @@ name|common
 operator|.
 name|annotations
 operator|.
-name|GwtIncompatible
+name|GwtCompatible
 import|;
 end_import
 
@@ -66,7 +66,7 @@ begin_interface
 annotation|@
 name|Beta
 annotation|@
-name|GwtIncompatible
+name|GwtCompatible
 DECL|interface|ListenableScheduledFuture
 specifier|public
 interface|interface
