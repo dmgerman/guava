@@ -1764,13 +1764,9 @@ name|createCacheBuilder
 parameter_list|()
 block|{
 return|return
-operator|new
 name|CacheBuilder
-argument_list|<
-name|Object
-argument_list|,
-name|Object
-argument_list|>
+operator|.
+name|newBuilder
 argument_list|()
 return|;
 block|}

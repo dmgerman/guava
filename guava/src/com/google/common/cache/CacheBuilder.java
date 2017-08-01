@@ -754,8 +754,8 @@ name|statsCounterSupplier
 init|=
 name|NULL_STATS_COUNTER
 decl_stmt|;
-comment|// TODO(fry): make constructor private and update tests to use newBuilder
 DECL|method|CacheBuilder ()
+specifier|private
 name|CacheBuilder
 parameter_list|()
 block|{}
