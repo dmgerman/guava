@@ -6429,7 +6429,7 @@ name|elementSet
 argument_list|()
 expr_stmt|;
 block|}
-comment|/*      * AbstractSet.removeAll(List) has quadratic behavior if the list size      * is just less than the set's size.  We augment the test by      * assuming that sets have fast contains() performance, and other      * collections don't.  See      * http://code.google.com/p/guava-libraries/issues/detail?id=1013      */
+comment|/*      * AbstractSet.removeAll(List) has quadratic behavior if the list size      * is just more than the set's size.  We augment the test by      * assuming that sets have fast contains() performance, and other      * collections don't.  See      * http://code.google.com/p/guava-libraries/issues/detail?id=1013      */
 if|if
 condition|(
 name|collection
