@@ -20767,6 +20767,9 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|AndroidIncompatible
+comment|// runs out of memory under some versions of the emulator
 DECL|method|testCancellingAllDelegatesIsNotQuadratic ()
 specifier|public
 name|void
@@ -20888,6 +20891,9 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|AndroidIncompatible
+comment|// reference is never cleared under some versions of the emulator
 annotation|@
 name|GwtIncompatible
 DECL|method|testInputGCedIfUnreferenced ()
