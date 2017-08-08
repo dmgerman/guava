@@ -2173,7 +2173,7 @@ name|internalState
 operator|==
 name|STARTING
 argument_list|,
-literal|"shudownWhenStartupFinishes can only be set if state is STARTING. Got %s instead."
+literal|"shutdownWhenStartupFinishes can only be set if state is STARTING. Got %s instead."
 argument_list|,
 name|internalState
 argument_list|)
