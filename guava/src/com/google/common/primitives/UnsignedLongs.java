@@ -1284,7 +1284,7 @@ literal|true
 return|;
 block|}
 block|}
-comment|/**    * Returns a string representation of x, where x is treated as unsigned.    *    *<p><b>Java 8 users:</b> use {@link Long#toUnsignedLong(long)} instead.    */
+comment|/**    * Returns a string representation of x, where x is treated as unsigned.    *    *<p><b>Java 8 users:</b> use {@link Long#toUnsignedString(long)} instead.    */
 DECL|method|toString (long x)
 specifier|public
 specifier|static
