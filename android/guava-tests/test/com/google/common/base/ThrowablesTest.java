@@ -26,6 +26,22 @@ name|common
 operator|.
 name|base
 operator|.
+name|StandardSystemProperty
+operator|.
+name|JAVA_SPECIFICATION_VERSION
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
 name|Throwables
 operator|.
 name|getStackTraceAsString
@@ -2778,6 +2794,22 @@ name|void
 name|testLazyStackTraceWorksInProd
 parameter_list|()
 block|{
+comment|// TODO(b/64442212): Remove this guard once lazyStackTrace() works in Java 9.
+if|if
+condition|(
+name|JAVA_SPECIFICATION_VERSION
+operator|.
+name|value
+argument_list|()
+operator|.
+name|equals
+argument_list|(
+literal|"9"
+argument_list|)
+condition|)
+block|{
+return|return;
+block|}
 comment|// Obviously this isn't guaranteed in every environment, but it works well enough for now:
 name|assertTrue
 argument_list|(
