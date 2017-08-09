@@ -2172,6 +2172,10 @@ operator|.
 name|size
 argument_list|()
 expr_stmt|;
+name|forceCopy
+operator|=
+literal|true
+expr_stmt|;
 return|return
 name|result
 return|;

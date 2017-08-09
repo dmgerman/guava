@@ -3174,6 +3174,10 @@ argument_list|>
 name|build
 parameter_list|()
 block|{
+name|forceCopy
+operator|=
+literal|true
+expr_stmt|;
 return|return
 name|asImmutableList
 argument_list|(

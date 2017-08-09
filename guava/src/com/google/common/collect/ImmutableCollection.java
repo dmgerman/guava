@@ -1016,6 +1016,10 @@ DECL|field|size
 name|int
 name|size
 decl_stmt|;
+DECL|field|forceCopy
+name|boolean
+name|forceCopy
+decl_stmt|;
 DECL|method|ArrayBasedBuilder (int initialCapacity)
 name|ArrayBasedBuilder
 parameter_list|(
@@ -1047,11 +1051,11 @@ operator|=
 literal|0
 expr_stmt|;
 block|}
-comment|/**      * Expand the absolute capacity of the builder so it can accept at least      * the specified number of elements without being resized.      */
-DECL|method|ensureCapacity (int minCapacity)
+comment|/*      * Expand the absolute capacity of the builder so it can accept at least the specified number of      * elements without being resized. Also, if we've already built a collection backed by the      * current array, create a new array.      */
+DECL|method|getReadyToExpandTo (int minCapacity)
 specifier|private
 name|void
-name|ensureCapacity
+name|getReadyToExpandTo
 parameter_list|(
 name|int
 name|minCapacity
@@ -1088,6 +1092,30 @@ name|minCapacity
 argument_list|)
 argument_list|)
 expr_stmt|;
+name|forceCopy
+operator|=
+literal|false
+expr_stmt|;
+block|}
+elseif|else
+if|if
+condition|(
+name|forceCopy
+condition|)
+block|{
+name|this
+operator|.
+name|contents
+operator|=
+name|contents
+operator|.
+name|clone
+argument_list|()
+expr_stmt|;
+name|forceCopy
+operator|=
+literal|false
+expr_stmt|;
 block|}
 block|}
 annotation|@
@@ -1111,7 +1139,7 @@ argument_list|(
 name|element
 argument_list|)
 expr_stmt|;
-name|ensureCapacity
+name|getReadyToExpandTo
 argument_list|(
 name|size
 operator|+
@@ -1152,7 +1180,7 @@ argument_list|(
 name|elements
 argument_list|)
 expr_stmt|;
-name|ensureCapacity
+name|getReadyToExpandTo
 argument_list|(
 name|size
 operator|+
@@ -1230,7 +1258,7 @@ argument_list|>
 operator|)
 name|elements
 decl_stmt|;
-name|ensureCapacity
+name|getReadyToExpandTo
 argument_list|(
 name|size
 operator|+
@@ -1273,7 +1301,7 @@ argument_list|(
 name|builder
 argument_list|)
 expr_stmt|;
-name|ensureCapacity
+name|getReadyToExpandTo
 argument_list|(
 name|size
 operator|+
