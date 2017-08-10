@@ -120,20 +120,6 @@ name|google
 operator|.
 name|common
 operator|.
-name|annotations
-operator|.
-name|GwtIncompatible
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
 name|collect
 operator|.
 name|ImmutableList
@@ -159,8 +145,6 @@ comment|/**  * Configurable implementation of {@link MutableNetwork} that suppor
 end_comment
 
 begin_class
-annotation|@
-name|GwtIncompatible
 DECL|class|ConfigurableMutableNetwork
 specifier|final
 class|class

@@ -72,20 +72,6 @@ name|google
 operator|.
 name|common
 operator|.
-name|annotations
-operator|.
-name|GwtIncompatible
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
 name|collect
 operator|.
 name|HashMultiset
@@ -215,8 +201,6 @@ comment|/**  * An implementation of {@link NetworkConnections} for undirected ne
 end_comment
 
 begin_class
-annotation|@
-name|GwtIncompatible
 DECL|class|UndirectedMultiNetworkConnections
 specifier|final
 class|class
