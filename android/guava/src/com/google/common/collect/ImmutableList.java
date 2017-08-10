@@ -74,6 +74,22 @@ name|common
 operator|.
 name|collect
 operator|.
+name|CollectPreconditions
+operator|.
+name|checkNonnegative
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|collect
+operator|.
 name|ObjectArrays
 operator|.
 name|checkElementsNotNull
@@ -93,6 +109,20 @@ operator|.
 name|RegularImmutableList
 operator|.
 name|EMPTY
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|Beta
 import|;
 end_import
 
@@ -2680,6 +2710,45 @@ argument_list|>
 argument_list|()
 return|;
 block|}
+comment|/**    * Returns a new builder, expecting the specified number of elements to be added.    *    *<p>If {@code expectedSize} is exactly the number of elements added to the builder before {@link    * Builder#build} is called, the builder is likely to perform better than an unsized {@link    * #builder()} would have.    *    *<p>It is not specified if any performance benefits apply if {@code expectedSize} is close to,    * but not exactly, the number of elements added to the builder.    *    * @since 24.0    */
+annotation|@
+name|Beta
+DECL|method|builderWithExpectedSize (int expectedSize)
+specifier|public
+specifier|static
+parameter_list|<
+name|E
+parameter_list|>
+name|Builder
+argument_list|<
+name|E
+argument_list|>
+name|builderWithExpectedSize
+parameter_list|(
+name|int
+name|expectedSize
+parameter_list|)
+block|{
+name|checkNonnegative
+argument_list|(
+name|expectedSize
+argument_list|,
+literal|"expectedSize"
+argument_list|)
+expr_stmt|;
+return|return
+operator|new
+name|ImmutableList
+operator|.
+name|Builder
+argument_list|<
+name|E
+argument_list|>
+argument_list|(
+name|expectedSize
+argument_list|)
+return|;
+block|}
 comment|/**    * A builder for creating immutable list instances, especially {@code public    * static final} lists ("constant lists"). Example:<pre>   {@code    *    *   public static final ImmutableList<Color> GOOGLE_COLORS    *       = new ImmutableList.Builder<Color>()    *           .addAll(WEBSAFE_COLORS)    *           .add(new Color(0, 191, 255))    *           .build();}</pre>    *    *<p>Elements appear in the resulting list in the same order they were added    * to the builder.    *    *<p>Builder instances can be reused; it is safe to call {@link #build} multiple    * times to build multiple lists in series. Each new list contains all the    * elements of the ones created before it.    *    * @since 2.0    */
 DECL|class|Builder
 specifier|public
@@ -2710,7 +2779,6 @@ name|DEFAULT_INITIAL_CAPACITY
 argument_list|)
 expr_stmt|;
 block|}
-comment|// TODO(lowasser): consider exposing this
 DECL|method|Builder (int capacity)
 name|Builder
 parameter_list|(
