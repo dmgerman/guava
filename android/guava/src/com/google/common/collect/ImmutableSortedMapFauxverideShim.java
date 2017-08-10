@@ -82,6 +82,37 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
+comment|/**    * Not supported for ImmutableSortedMap.    *    * @throws UnsupportedOperationException always    * @deprecated Not supported for ImmutableSortedMap.    */
+annotation|@
+name|Deprecated
+DECL|method|builderWithExpectedSize (int expectedSize)
+specifier|public
+specifier|static
+parameter_list|<
+name|K
+parameter_list|,
+name|V
+parameter_list|>
+name|ImmutableSortedMap
+operator|.
+name|Builder
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|builderWithExpectedSize
+parameter_list|(
+name|int
+name|expectedSize
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|UnsupportedOperationException
+argument_list|()
+throw|;
+block|}
 comment|/**    * Not supported.<b>You are attempting to create a map that may contain a    * non-{@code Comparable} key.</b> Proper calls will resolve to the version in    * {@code ImmutableSortedMap}, not this dummy version.    *    * @throws UnsupportedOperationException always    * @deprecated<b>Pass a key of type {@code Comparable} to use {@link    *     ImmutableSortedMap#of(Comparable, Object)}.</b>    */
 annotation|@
 name|Deprecated

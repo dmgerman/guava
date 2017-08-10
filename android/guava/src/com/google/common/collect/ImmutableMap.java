@@ -65,6 +65,22 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|collect
+operator|.
+name|CollectPreconditions
+operator|.
+name|checkNonnegative
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -805,6 +821,49 @@ argument_list|,
 name|V
 argument_list|>
 argument_list|()
+return|;
+block|}
+comment|/**    * Returns a new builder, expecting the specified number of entries to be added.    *    *<p>If {@code expectedSize} is exactly the number of entries added to the builder before {@link    * Builder#build} is called, the builder is likely to perform better than an unsized {@link    * #builder()} would have.    *    *<p>It is not specified if any performance benefits apply if {@code expectedSize} is close to,    * but not exactly, the number of entries added to the builder.    *     * @since 24.0    */
+annotation|@
+name|Beta
+DECL|method|builderWithExpectedSize (int expectedSize)
+specifier|public
+specifier|static
+parameter_list|<
+name|K
+parameter_list|,
+name|V
+parameter_list|>
+name|Builder
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|builderWithExpectedSize
+parameter_list|(
+name|int
+name|expectedSize
+parameter_list|)
+block|{
+name|checkNonnegative
+argument_list|(
+name|expectedSize
+argument_list|,
+literal|"expectedSize"
+argument_list|)
+expr_stmt|;
+return|return
+operator|new
+name|Builder
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+argument_list|(
+name|expectedSize
+argument_list|)
 return|;
 block|}
 DECL|method|checkNoConflict ( boolean safe, String conflictDescription, Entry<?, ?> entry1, Entry<?, ?> entry2)

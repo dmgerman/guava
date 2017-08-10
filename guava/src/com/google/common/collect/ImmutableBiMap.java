@@ -17,6 +17,22 @@ package|;
 end_package
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|collect
+operator|.
+name|CollectPreconditions
+operator|.
+name|checkNonnegative
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -616,6 +632,49 @@ argument_list|,
 name|V
 argument_list|>
 argument_list|()
+return|;
+block|}
+comment|/**    * Returns a new builder, expecting the specified number of entries to be added.    *    *<p>If {@code expectedSize} is exactly the number of entries added to the builder before {@link    * Builder#build} is called, the builder is likely to perform better than an unsized {@link    * #builder()} would have.    *    *<p>It is not specified if any performance benefits apply if {@code expectedSize} is close to,    * but not exactly, the number of entries added to the builder.    *     * @since 24.0    */
+annotation|@
+name|Beta
+DECL|method|builderWithExpectedSize (int expectedSize)
+specifier|public
+specifier|static
+parameter_list|<
+name|K
+parameter_list|,
+name|V
+parameter_list|>
+name|Builder
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|builderWithExpectedSize
+parameter_list|(
+name|int
+name|expectedSize
+parameter_list|)
+block|{
+name|checkNonnegative
+argument_list|(
+name|expectedSize
+argument_list|,
+literal|"expectedSize"
+argument_list|)
+expr_stmt|;
+return|return
+operator|new
+name|Builder
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+argument_list|(
+name|expectedSize
+argument_list|)
 return|;
 block|}
 comment|/**    * A builder for creating immutable bimap instances, especially {@code public    * static final} bimaps ("constant bimaps"). Example:<pre>   {@code    *    *   static final ImmutableBiMap<String, Integer> WORD_TO_INT =    *       new ImmutableBiMap.Builder<String, Integer>()    *           .put("one", 1)    *           .put("two", 2)    *           .put("three", 3)    *           .build();}</pre>    *    *<p>For<i>small</i> immutable bimaps, the {@code ImmutableBiMap.of()} methods    * are even more convenient.    *    *<p>By default, a {@code Builder} will generate bimaps that iterate over entries in the order    * they were inserted into the builder.  For example, in the above example,    * {@code WORD_TO_INT.entrySet()} is guaranteed to iterate over the entries in the order    * {@code "one"=1, "two"=2, "three"=3}, and {@code keySet()} and {@code values()} respect the same    * order. If you want a different order, consider using    * {@link #orderEntriesByValue(Comparator)}, which changes this builder to sort    * entries by value.    *    *<p>Builder instances can be reused - it is safe to call {@link #build}    * multiple times to build multiple bimaps in series. Each bimap is a superset    * of the bimaps created before it.    *    * @since 2.0    */

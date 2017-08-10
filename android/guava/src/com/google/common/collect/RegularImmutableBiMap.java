@@ -32,6 +32,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|VisibleForTesting
+import|;
+end_import
+
+begin_import
+import|import
 name|javax
 operator|.
 name|annotation
@@ -107,8 +121,9 @@ name|int
 index|[]
 name|keyHashTable
 decl_stmt|;
+annotation|@
+name|VisibleForTesting
 DECL|field|alternatingKeysAndValues
-specifier|private
 specifier|final
 specifier|transient
 name|Object

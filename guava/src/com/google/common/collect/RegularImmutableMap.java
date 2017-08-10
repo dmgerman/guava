@@ -116,6 +116,20 @@ name|google
 operator|.
 name|common
 operator|.
+name|annotations
+operator|.
+name|VisibleForTesting
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
 name|collect
 operator|.
 name|ImmutableMapEntry
@@ -246,8 +260,9 @@ literal|0
 argument_list|)
 decl_stmt|;
 comment|// entries in insertion order
+annotation|@
+name|VisibleForTesting
 DECL|field|entries
-specifier|private
 specifier|final
 specifier|transient
 name|Entry
