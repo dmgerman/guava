@@ -455,7 +455,6 @@ name|GetCheckedTypeValidator
 name|validator
 decl_stmt|;
 DECL|method|Validator (GetCheckedTypeValidator validator)
-specifier|private
 name|Validator
 parameter_list|(
 name|GetCheckedTypeValidator
@@ -508,7 +507,6 @@ argument_list|>
 name|future
 decl_stmt|;
 DECL|method|Result (Future<Object> result)
-specifier|private
 name|Result
 parameter_list|(
 name|Future
@@ -554,7 +552,6 @@ argument_list|>
 name|exceptionType
 decl_stmt|;
 DECL|method|ExceptionType (Class<? extends Exception> exceptionType)
-specifier|private
 name|ExceptionType
 parameter_list|(
 name|Class

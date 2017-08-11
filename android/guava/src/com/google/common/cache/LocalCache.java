@@ -4546,8 +4546,6 @@ specifier|final
 name|Queue
 argument_list|<
 name|?
-extends|extends
-name|Object
 argument_list|>
 name|DISCARDING_QUEUE
 init|=

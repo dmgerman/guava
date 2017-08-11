@@ -134,20 +134,6 @@ end_import
 
 begin_import
 import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|testing
-operator|.
-name|SerializableTester
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|util

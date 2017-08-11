@@ -641,7 +641,10 @@ operator|.
 name|append
 argument_list|(
 literal|" "
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 operator|(
 name|int
 operator|)

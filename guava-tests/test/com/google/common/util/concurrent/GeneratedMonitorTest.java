@@ -465,7 +465,6 @@ name|String
 name|label
 decl_stmt|;
 DECL|method|Timeout (long millis, String label)
-specifier|private
 name|Timeout
 parameter_list|(
 name|long
@@ -582,15 +581,14 @@ name|timeouts
 decl_stmt|;
 end_decl_stmt
 
-begin_constructor
+begin_expr_stmt
 DECL|method|TimeoutsToUse (Timeout... timeouts)
-specifier|private
 name|TimeoutsToUse
-parameter_list|(
+argument_list|(
 name|Timeout
-modifier|...
+operator|...
 name|timeouts
-parameter_list|)
+argument_list|)
 block|{
 name|this
 operator|.
@@ -602,9 +600,8 @@ name|copyOf
 argument_list|(
 name|timeouts
 argument_list|)
-expr_stmt|;
-block|}
-end_constructor
+block|;     }
+end_expr_stmt
 
 begin_comment
 unit|}

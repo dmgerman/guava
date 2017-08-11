@@ -283,18 +283,18 @@ name|testGrowBuffer
 parameter_list|()
 block|{
 comment|// need to grow past an initial 1024 byte buffer
-name|StringBuffer
+name|StringBuilder
 name|input
 init|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|()
 decl_stmt|;
-name|StringBuffer
+name|StringBuilder
 name|expected
 init|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|()
 decl_stmt|;
 for|for

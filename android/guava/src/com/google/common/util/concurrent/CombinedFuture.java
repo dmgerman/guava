@@ -291,7 +291,7 @@ specifier|private
 name|CombinedFutureInterruptibleTask
 name|task
 decl_stmt|;
-DECL|method|CombinedFutureRunningState ( ImmutableCollection<? extends ListenableFuture<? extends Object>> futures, boolean allMustSucceed, CombinedFutureInterruptibleTask task)
+DECL|method|CombinedFutureRunningState ( ImmutableCollection<? extends ListenableFuture<?>> futures, boolean allMustSucceed, CombinedFutureInterruptibleTask task)
 name|CombinedFutureRunningState
 parameter_list|(
 name|ImmutableCollection
@@ -301,8 +301,6 @@ extends|extends
 name|ListenableFuture
 argument_list|<
 name|?
-extends|extends
-name|Object
 argument_list|>
 argument_list|>
 name|futures

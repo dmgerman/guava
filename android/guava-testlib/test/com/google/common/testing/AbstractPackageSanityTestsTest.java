@@ -509,8 +509,6 @@ argument_list|<
 name|Class
 argument_list|<
 name|?
-extends|extends
-name|Object
 argument_list|>
 argument_list|>
 name|classes

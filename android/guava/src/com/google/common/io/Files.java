@@ -2304,29 +2304,18 @@ range|:
 name|components
 control|)
 block|{
-if|if
+switch|switch
 condition|(
 name|component
-operator|.
-name|equals
-argument_list|(
+condition|)
+block|{
+case|case
 literal|"."
-argument_list|)
-condition|)
-block|{
+case|:
 continue|continue;
-block|}
-elseif|else
-if|if
-condition|(
-name|component
-operator|.
-name|equals
-argument_list|(
+case|case
 literal|".."
-argument_list|)
-condition|)
-block|{
+case|:
 if|if
 condition|(
 name|path
@@ -2378,9 +2367,8 @@ literal|".."
 argument_list|)
 expr_stmt|;
 block|}
-block|}
-else|else
-block|{
+break|break;
+default|default:
 name|path
 operator|.
 name|add
@@ -2388,6 +2376,7 @@ argument_list|(
 name|component
 argument_list|)
 expr_stmt|;
+break|break;
 block|}
 block|}
 comment|// put it back together
@@ -2810,7 +2799,7 @@ literal|"Files.isFile()"
 return|;
 block|}
 block|}
-block|;   }
+block|}
 block|}
 end_class
 

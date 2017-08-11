@@ -499,7 +499,6 @@ block|}
 block|}
 decl_stmt|;
 DECL|enum|RandomHasherAction
-specifier|static
 enum|enum
 name|RandomHasherAction
 block|{

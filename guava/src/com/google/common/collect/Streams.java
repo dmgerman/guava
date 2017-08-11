@@ -2957,9 +2957,6 @@ parameter_list|)
 block|{
 class|class
 name|OptionalState
-parameter_list|<
-name|T
-parameter_list|>
 block|{
 name|boolean
 name|set
@@ -3008,14 +3005,10 @@ return|;
 block|}
 block|}
 name|OptionalState
-argument_list|<
-name|T
-argument_list|>
 name|state
 init|=
 operator|new
 name|OptionalState
-argument_list|<>
 argument_list|()
 decl_stmt|;
 name|Deque

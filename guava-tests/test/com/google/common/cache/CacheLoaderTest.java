@@ -342,8 +342,6 @@ parameter_list|(
 name|Iterable
 argument_list|<
 name|?
-extends|extends
-name|Object
 argument_list|>
 name|keys
 parameter_list|)

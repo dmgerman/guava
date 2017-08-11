@@ -994,10 +994,6 @@ name|assertThat
 argument_list|(
 name|stream
 argument_list|(
-name|java
-operator|.
-name|util
-operator|.
 name|OptionalInt
 operator|.
 name|empty
@@ -1012,10 +1008,6 @@ name|assertThat
 argument_list|(
 name|stream
 argument_list|(
-name|java
-operator|.
-name|util
-operator|.
 name|OptionalInt
 operator|.
 name|of
@@ -1041,10 +1033,6 @@ name|assertThat
 argument_list|(
 name|stream
 argument_list|(
-name|java
-operator|.
-name|util
-operator|.
 name|OptionalLong
 operator|.
 name|empty
@@ -1059,10 +1047,6 @@ name|assertThat
 argument_list|(
 name|stream
 argument_list|(
-name|java
-operator|.
-name|util
-operator|.
 name|OptionalLong
 operator|.
 name|of
@@ -1088,10 +1072,6 @@ name|assertThat
 argument_list|(
 name|stream
 argument_list|(
-name|java
-operator|.
-name|util
-operator|.
 name|OptionalDouble
 operator|.
 name|empty
@@ -1106,10 +1086,6 @@ name|assertThat
 argument_list|(
 name|stream
 argument_list|(
-name|java
-operator|.
-name|util
-operator|.
 name|OptionalDouble
 operator|.
 name|of
