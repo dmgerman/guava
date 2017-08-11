@@ -1319,7 +1319,7 @@ argument_list|()
 return|;
 block|}
 block|}
-comment|/**    * Returns a predicate that returns the result of {@link Files#isDirectory(Path, LinkOption...)}    * on input paths with the given link options.    */
+comment|/**    * Returns a predicate that returns the result of {@link java.nio.file.Files#isDirectory(Path,    * LinkOption...)} on input paths with the given link options.    */
 DECL|method|isDirectory (LinkOption... options)
 specifier|public
 specifier|static
@@ -1396,7 +1396,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/**    * Returns a predicate that returns the result of    * {@link Files#isRegularFile(Path, LinkOption...)} on input paths with the given link options.    */
+comment|/**    * Returns a predicate that returns the result of {@link java.nio.file.Files#isRegularFile(Path,    * LinkOption...)} on input paths with the given link options.    */
 DECL|method|isRegularFile (LinkOption... options)
 specifier|public
 specifier|static
