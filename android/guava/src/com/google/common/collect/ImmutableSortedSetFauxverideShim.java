@@ -74,6 +74,33 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
+comment|/**    * Not supported. This method exists only to hide {@link ImmutableSet#builderWithExpectedSize}    * from consumers of {@code ImmutableSortedSet}.    *    * @throws UnsupportedOperationException always    * @deprecated Not supported by ImmutableSortedSet.    */
+annotation|@
+name|Deprecated
+DECL|method|builderWithExpectedSize (int expectedSize)
+specifier|public
+specifier|static
+parameter_list|<
+name|E
+parameter_list|>
+name|ImmutableSortedSet
+operator|.
+name|Builder
+argument_list|<
+name|E
+argument_list|>
+name|builderWithExpectedSize
+parameter_list|(
+name|int
+name|expectedSize
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|UnsupportedOperationException
+argument_list|()
+throw|;
+block|}
 comment|/**    * Not supported.<b>You are attempting to create a set that may contain a    * non-{@code Comparable} element.</b> Proper calls will resolve to the    * version in {@code ImmutableSortedSet}, not this dummy version.    *    * @throws UnsupportedOperationException always    * @deprecated<b>Pass a parameter of type {@code Comparable} to use {@link    *     ImmutableSortedSet#of(Comparable)}.</b>    */
 annotation|@
 name|Deprecated
