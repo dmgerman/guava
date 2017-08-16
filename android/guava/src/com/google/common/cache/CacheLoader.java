@@ -324,11 +324,7 @@ block|{
 return|return
 operator|new
 name|FunctionToCacheLoader
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
+argument_list|<>
 argument_list|(
 name|function
 argument_list|)

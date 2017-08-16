@@ -361,9 +361,7 @@ name|NULL
 init|=
 operator|new
 name|ImmediateSuccessfulFuture
-argument_list|<
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|(
 literal|null
 argument_list|)

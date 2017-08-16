@@ -143,11 +143,7 @@ expr_stmt|;
 return|return
 operator|new
 name|SupplierComposition
-argument_list|<
-name|F
-argument_list|,
-name|T
-argument_list|>
+argument_list|<>
 argument_list|(
 name|function
 argument_list|,

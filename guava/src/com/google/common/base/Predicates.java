@@ -803,11 +803,7 @@ block|{
 return|return
 operator|new
 name|CompositionPredicate
-argument_list|<
-name|A
-argument_list|,
-name|B
-argument_list|>
+argument_list|<>
 argument_list|(
 name|predicate
 argument_list|,

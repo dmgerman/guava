@@ -292,9 +292,7 @@ name|queue
 operator|=
 operator|new
 name|ReferenceQueue
-argument_list|<
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|()
 expr_stmt|;
 name|frqRef

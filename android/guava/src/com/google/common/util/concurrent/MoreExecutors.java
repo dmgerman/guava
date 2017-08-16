@@ -1673,9 +1673,7 @@ decl_stmt|;
 return|return
 operator|new
 name|ListenableScheduledTask
-argument_list|<
-name|Void
-argument_list|>
+argument_list|<>
 argument_list|(
 name|task
 argument_list|,
@@ -1806,9 +1804,7 @@ decl_stmt|;
 return|return
 operator|new
 name|ListenableScheduledTask
-argument_list|<
-name|Void
-argument_list|>
+argument_list|<>
 argument_list|(
 name|task
 argument_list|,
@@ -1870,9 +1866,7 @@ decl_stmt|;
 return|return
 operator|new
 name|ListenableScheduledTask
-argument_list|<
-name|Void
-argument_list|>
+argument_list|<>
 argument_list|(
 name|task
 argument_list|,

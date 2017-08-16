@@ -184,9 +184,7 @@ name|queue
 init|=
 operator|new
 name|ArrayDeque
-argument_list|<
-name|Runnable
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 annotation|@

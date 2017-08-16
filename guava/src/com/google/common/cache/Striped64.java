@@ -225,7 +225,7 @@ throw|;
 block|}
 block|}
 block|}
-comment|/**      * ThreadLocal holding a single-slot int array holding hash code.      * Unlike the JDK8 version of this class, we use a suboptimal      * int[] representation to avoid introducing a new type that can      * impede class-unloading when ThreadLocals are not removed.      */
+comment|/**    * ThreadLocal holding a single-slot int array holding hash code. Unlike the JDK8 version of this    * class, we use a suboptimal int[] representation to avoid introducing a new type that can impede    * class-unloading when ThreadLocals are not removed.    */
 DECL|field|threadHashCode
 specifier|static
 specifier|final
@@ -238,10 +238,7 @@ name|threadHashCode
 init|=
 operator|new
 name|ThreadLocal
-argument_list|<
-name|int
-index|[]
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|/**      * Generator of new random hash codes      */

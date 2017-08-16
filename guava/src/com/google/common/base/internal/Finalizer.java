@@ -381,12 +381,7 @@ name|finalizableReferenceClassReference
 operator|=
 operator|new
 name|WeakReference
-argument_list|<
-name|Class
-argument_list|<
-name|?
-argument_list|>
-argument_list|>
+argument_list|<>
 argument_list|(
 name|finalizableReferenceClass
 argument_list|)

@@ -107,9 +107,7 @@ name|INSTANCE
 init|=
 operator|new
 name|Absent
-argument_list|<
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 annotation|@
