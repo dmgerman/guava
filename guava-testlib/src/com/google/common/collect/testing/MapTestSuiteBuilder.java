@@ -1632,12 +1632,7 @@ name|mapFeatures
 operator|=
 operator|new
 name|HashSet
-argument_list|<
-name|Feature
-argument_list|<
-name|?
-argument_list|>
-argument_list|>
+argument_list|<>
 argument_list|(
 name|mapFeatures
 argument_list|)

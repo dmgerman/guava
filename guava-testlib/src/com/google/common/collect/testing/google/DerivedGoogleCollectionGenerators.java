@@ -605,16 +605,7 @@ decl_stmt|;
 return|return
 operator|new
 name|SampleElements
-argument_list|<
-name|Map
-operator|.
-name|Entry
-argument_list|<
-name|V
-argument_list|,
-name|K
-argument_list|>
-argument_list|>
+argument_list|<>
 argument_list|(
 name|reverse
 argument_list|(

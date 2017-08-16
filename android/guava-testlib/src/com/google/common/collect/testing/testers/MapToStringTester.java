@@ -504,11 +504,7 @@ name|reference
 init|=
 operator|new
 name|LinkedHashMap
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 for|for

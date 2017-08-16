@@ -138,11 +138,7 @@ block|{
 return|return
 operator|new
 name|ByFunctionOrdering
-argument_list|<
-name|Object
-argument_list|,
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|(
 operator|(
 name|Function

@@ -122,9 +122,7 @@ decl_stmt|;
 return|return
 operator|new
 name|SingletonImmutableList
-argument_list|<
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|(
 name|element
 argument_list|)

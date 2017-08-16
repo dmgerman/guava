@@ -489,9 +489,7 @@ block|{
 return|return
 operator|new
 name|ArrayDeque
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|(
 name|MinimalCollection
 operator|.
@@ -567,9 +565,7 @@ block|{
 return|return
 operator|new
 name|LinkedList
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|(
 name|MinimalCollection
 operator|.
@@ -653,9 +649,7 @@ block|{
 return|return
 operator|new
 name|ArrayBlockingQueue
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|(
 literal|100
 argument_list|,
@@ -735,9 +729,7 @@ block|{
 return|return
 operator|new
 name|ConcurrentLinkedQueue
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|(
 name|MinimalCollection
 operator|.
@@ -813,9 +805,7 @@ block|{
 return|return
 operator|new
 name|LinkedBlockingDeque
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|(
 name|MinimalCollection
 operator|.
@@ -891,9 +881,7 @@ block|{
 return|return
 operator|new
 name|LinkedBlockingQueue
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|(
 name|MinimalCollection
 operator|.
@@ -973,9 +961,7 @@ block|{
 return|return
 operator|new
 name|PriorityBlockingQueue
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|(
 name|MinimalCollection
 operator|.
@@ -1047,9 +1033,7 @@ block|{
 return|return
 operator|new
 name|PriorityQueue
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|(
 name|MinimalCollection
 operator|.

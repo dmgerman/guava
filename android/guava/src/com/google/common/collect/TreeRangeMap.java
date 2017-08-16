@@ -351,11 +351,7 @@ block|{
 return|return
 operator|new
 name|TreeRangeMap
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
+argument_list|<>
 argument_list|()
 return|;
 block|}

@@ -288,14 +288,7 @@ name|targetEntries
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Entry
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-argument_list|>
+argument_list|<>
 argument_list|(
 name|getSampleElements
 argument_list|()

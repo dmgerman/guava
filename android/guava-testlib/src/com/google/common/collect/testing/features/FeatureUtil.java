@@ -198,7 +198,7 @@ specifier|public
 class|class
 name|FeatureUtil
 block|{
-comment|/**    * A cache of annotated objects (typically a Class or Method) to its    * set of annotations.    */
+comment|/** A cache of annotated objects (typically a Class or Method) to its set of annotations. */
 DECL|field|annotationCache
 specifier|private
 specifier|static
@@ -215,14 +215,7 @@ name|annotationCache
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|AnnotatedElement
-argument_list|,
-name|List
-argument_list|<
-name|Annotation
-argument_list|>
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 DECL|field|classTesterRequirementsCache
@@ -242,14 +235,7 @@ name|classTesterRequirementsCache
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|Class
-argument_list|<
-name|?
-argument_list|>
-argument_list|,
-name|TesterRequirements
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 DECL|field|methodTesterRequirementsCache
@@ -266,11 +252,7 @@ name|methodTesterRequirementsCache
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|Method
-argument_list|,
-name|TesterRequirements
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|/**    * Given a set of features, add to it all the features directly or indirectly    * implied by any of them, and return it.    * @param features the set of features to expand    * @return the same set of features, expanded with all implied features    */
@@ -307,12 +289,7 @@ name|queue
 init|=
 operator|new
 name|ArrayDeque
-argument_list|<
-name|Feature
-argument_list|<
-name|?
-argument_list|>
-argument_list|>
+argument_list|<>
 argument_list|(
 name|features
 argument_list|)
@@ -409,12 +386,7 @@ name|impliedSet
 init|=
 operator|new
 name|LinkedHashSet
-argument_list|<
-name|Feature
-argument_list|<
-name|?
-argument_list|>
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|Queue
@@ -428,12 +400,7 @@ name|queue
 init|=
 operator|new
 name|ArrayDeque
-argument_list|<
-name|Feature
-argument_list|<
-name|?
-argument_list|>
-argument_list|>
+argument_list|<>
 argument_list|(
 name|features
 argument_list|)
@@ -844,9 +811,7 @@ name|annotations
 operator|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Annotation
-argument_list|>
+argument_list|<>
 argument_list|()
 expr_stmt|;
 for|for

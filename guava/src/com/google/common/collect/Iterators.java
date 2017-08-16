@@ -3686,9 +3686,7 @@ name|EMPTY
 init|=
 operator|new
 name|ArrayItr
-argument_list|<
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|(
 operator|new
 name|Object
@@ -4511,12 +4509,7 @@ name|queue
 operator|=
 operator|new
 name|PriorityQueue
-argument_list|<
-name|PeekingIterator
-argument_list|<
-name|T
-argument_list|>
-argument_list|>
+argument_list|<>
 argument_list|(
 literal|2
 argument_list|,

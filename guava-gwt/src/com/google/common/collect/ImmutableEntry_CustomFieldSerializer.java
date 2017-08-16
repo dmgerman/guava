@@ -134,11 +134,7 @@ decl_stmt|;
 return|return
 operator|new
 name|ImmutableEntry
-argument_list|<
-name|Object
-argument_list|,
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|(
 name|key
 argument_list|,

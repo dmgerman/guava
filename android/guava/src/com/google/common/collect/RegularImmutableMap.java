@@ -193,11 +193,7 @@ name|EMPTY
 init|=
 operator|new
 name|RegularImmutableMap
-argument_list|<
-name|Object
-argument_list|,
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|(
 literal|null
 argument_list|,
@@ -860,11 +856,7 @@ block|{
 return|return
 operator|new
 name|EntrySet
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
+argument_list|<>
 argument_list|(
 name|this
 argument_list|,

@@ -551,14 +551,7 @@ block|{
 return|return
 operator|new
 name|TreeMap
-argument_list|<
-name|K
-argument_list|,
-name|Collection
-argument_list|<
-name|V
-argument_list|>
-argument_list|>
+argument_list|<>
 argument_list|(
 name|comparator
 argument_list|)
@@ -806,9 +799,7 @@ block|{
 return|return
 operator|new
 name|LinkedList
-argument_list|<
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|()
 return|;
 block|}

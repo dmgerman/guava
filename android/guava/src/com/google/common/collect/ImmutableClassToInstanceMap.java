@@ -151,9 +151,7 @@ name|EMPTY
 init|=
 operator|new
 name|ImmutableClassToInstanceMap
-argument_list|<
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|(
 name|ImmutableMap
 operator|.

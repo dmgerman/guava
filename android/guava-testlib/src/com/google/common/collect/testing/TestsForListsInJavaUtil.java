@@ -882,9 +882,7 @@ block|{
 return|return
 operator|new
 name|ArrayList
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|(
 name|MinimalCollection
 operator|.
@@ -968,9 +966,7 @@ block|{
 return|return
 operator|new
 name|LinkedList
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|(
 name|MinimalCollection
 operator|.
@@ -1054,9 +1050,7 @@ block|{
 return|return
 operator|new
 name|CopyOnWriteArrayList
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|(
 name|MinimalCollection
 operator|.
@@ -1582,9 +1576,7 @@ block|{
 return|return
 operator|new
 name|Vector
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|(
 name|MinimalCollection
 operator|.

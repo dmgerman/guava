@@ -106,11 +106,7 @@ name|EMPTY
 init|=
 operator|new
 name|RegularImmutableBiMap
-argument_list|<
-name|Object
-argument_list|,
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 DECL|field|keyHashTable
@@ -518,9 +514,7 @@ operator|new
 name|RegularImmutableMap
 operator|.
 name|KeySet
-argument_list|<
-name|K
-argument_list|>
+argument_list|<>
 argument_list|(
 name|this
 argument_list|,

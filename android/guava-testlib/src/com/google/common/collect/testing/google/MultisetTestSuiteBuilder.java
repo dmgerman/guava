@@ -1474,14 +1474,7 @@ decl_stmt|;
 return|return
 operator|new
 name|SampleElements
-argument_list|<
-name|Multiset
-operator|.
-name|Entry
-argument_list|<
-name|E
-argument_list|>
-argument_list|>
+argument_list|<>
 argument_list|(
 name|Multisets
 operator|.

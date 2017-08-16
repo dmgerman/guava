@@ -120,9 +120,7 @@ block|{
 return|return
 operator|new
 name|NullsFirstOrdering
-argument_list|<
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|(
 operator|(
 name|Ordering

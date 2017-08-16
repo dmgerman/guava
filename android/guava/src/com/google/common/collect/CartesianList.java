@@ -199,12 +199,7 @@ operator|new
 name|ImmutableList
 operator|.
 name|Builder
-argument_list|<
-name|List
-argument_list|<
-name|E
-argument_list|>
-argument_list|>
+argument_list|<>
 argument_list|(
 name|lists
 operator|.

@@ -955,11 +955,7 @@ name|output
 init|=
 operator|new
 name|LinkedHashMap
-argument_list|<
-name|R
-argument_list|,
-name|V
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|Iterator

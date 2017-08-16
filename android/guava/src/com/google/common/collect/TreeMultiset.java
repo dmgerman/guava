@@ -546,12 +546,7 @@ name|rootReference
 operator|=
 operator|new
 name|Reference
-argument_list|<
-name|AvlNode
-argument_list|<
-name|E
-argument_list|>
-argument_list|>
+argument_list|<>
 argument_list|()
 expr_stmt|;
 block|}

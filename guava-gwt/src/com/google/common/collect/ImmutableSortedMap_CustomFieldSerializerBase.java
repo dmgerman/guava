@@ -183,11 +183,7 @@ name|entries
 init|=
 operator|new
 name|TreeMap
-argument_list|<
-name|Object
-argument_list|,
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|(
 name|comparator
 argument_list|)

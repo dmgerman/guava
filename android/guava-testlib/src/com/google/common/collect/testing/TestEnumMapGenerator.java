@@ -121,14 +121,7 @@ block|{
 return|return
 operator|new
 name|SampleElements
-argument_list|<
-name|Entry
-argument_list|<
-name|AnEnum
-argument_list|,
-name|String
-argument_list|>
-argument_list|>
+argument_list|<>
 argument_list|(
 name|Helpers
 operator|.

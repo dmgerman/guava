@@ -187,9 +187,7 @@ name|NATURAL_EMPTY_MULTISET
 init|=
 operator|new
 name|RegularImmutableSortedMultiset
-argument_list|<
-name|Comparable
-argument_list|>
+argument_list|<>
 argument_list|(
 name|Ordering
 operator|.

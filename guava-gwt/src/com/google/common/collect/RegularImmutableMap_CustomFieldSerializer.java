@@ -169,11 +169,7 @@ name|entries
 init|=
 operator|new
 name|LinkedHashMap
-argument_list|<
-name|Object
-argument_list|,
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|Map_CustomFieldSerializerBase

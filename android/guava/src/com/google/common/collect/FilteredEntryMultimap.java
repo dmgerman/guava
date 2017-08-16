@@ -713,11 +713,7 @@ block|{
 return|return
 operator|new
 name|FilteredMultimapValues
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
+argument_list|<>
 argument_list|(
 name|this
 argument_list|)

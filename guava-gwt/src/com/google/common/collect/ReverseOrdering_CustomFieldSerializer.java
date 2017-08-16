@@ -120,9 +120,7 @@ block|{
 return|return
 operator|new
 name|ReverseOrdering
-argument_list|<
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|(
 operator|(
 name|Ordering

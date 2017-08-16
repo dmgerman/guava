@@ -992,9 +992,7 @@ name|ALL
 init|=
 operator|new
 name|Range
-argument_list|<
-name|Comparable
-argument_list|>
+argument_list|<>
 argument_list|(
 name|Cut
 operator|.

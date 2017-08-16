@@ -459,11 +459,7 @@ name|inverse
 operator|=
 operator|new
 name|SingletonImmutableBiMap
-argument_list|<
-name|V
-argument_list|,
-name|K
-argument_list|>
+argument_list|<>
 argument_list|(
 name|singleValue
 argument_list|,

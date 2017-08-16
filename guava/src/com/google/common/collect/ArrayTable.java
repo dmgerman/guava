@@ -335,13 +335,7 @@ block|{
 return|return
 operator|new
 name|ArrayTable
-argument_list|<
-name|R
-argument_list|,
-name|C
-argument_list|,
-name|V
-argument_list|>
+argument_list|<>
 argument_list|(
 name|rowKeys
 argument_list|,

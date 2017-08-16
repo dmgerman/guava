@@ -1126,11 +1126,7 @@ block|{
 return|return
 operator|new
 name|TransformedCollection
-argument_list|<
-name|F
-argument_list|,
-name|T
-argument_list|>
+argument_list|<>
 argument_list|(
 name|fromCollection
 argument_list|,

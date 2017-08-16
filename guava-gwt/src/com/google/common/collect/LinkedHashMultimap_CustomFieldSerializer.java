@@ -179,14 +179,7 @@ name|map
 init|=
 operator|new
 name|LinkedHashMap
-argument_list|<
-name|Object
-argument_list|,
-name|Collection
-argument_list|<
-name|Object
-argument_list|>
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 for|for

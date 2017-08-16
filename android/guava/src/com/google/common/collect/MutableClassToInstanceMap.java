@@ -694,16 +694,7 @@ name|copy
 init|=
 operator|new
 name|LinkedHashMap
-argument_list|<
-name|Class
-argument_list|<
-name|?
-extends|extends
-name|B
-argument_list|>
-argument_list|,
-name|B
-argument_list|>
+argument_list|<>
 argument_list|(
 name|map
 argument_list|)

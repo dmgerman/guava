@@ -380,16 +380,7 @@ operator|new
 name|Maps
 operator|.
 name|SortedKeySet
-argument_list|<
-name|R
-argument_list|,
-name|Map
-argument_list|<
-name|C
-argument_list|,
-name|V
-argument_list|>
-argument_list|>
+argument_list|<>
 argument_list|(
 name|this
 argument_list|)

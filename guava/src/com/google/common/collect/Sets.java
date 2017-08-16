@@ -4735,12 +4735,7 @@ operator|new
 name|ImmutableList
 operator|.
 name|Builder
-argument_list|<
-name|ImmutableSet
-argument_list|<
-name|E
-argument_list|>
-argument_list|>
+argument_list|<>
 argument_list|(
 name|sets
 operator|.

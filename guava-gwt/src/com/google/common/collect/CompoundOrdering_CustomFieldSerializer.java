@@ -206,9 +206,7 @@ block|}
 return|return
 operator|new
 name|CompoundOrdering
-argument_list|<
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|(
 name|comparators
 argument_list|)

@@ -502,11 +502,7 @@ block|{
 return|return
 operator|new
 name|Inverse
-argument_list|<
-name|V
-argument_list|,
-name|K
-argument_list|>
+argument_list|<>
 argument_list|(
 name|backward
 argument_list|,

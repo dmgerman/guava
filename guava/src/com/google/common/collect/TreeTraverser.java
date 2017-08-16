@@ -391,12 +391,7 @@ name|stack
 operator|=
 operator|new
 name|ArrayDeque
-argument_list|<
-name|Iterator
-argument_list|<
-name|T
-argument_list|>
-argument_list|>
+argument_list|<>
 argument_list|()
 expr_stmt|;
 name|stack
@@ -735,12 +730,7 @@ name|stack
 operator|=
 operator|new
 name|ArrayDeque
-argument_list|<
-name|PostOrderNode
-argument_list|<
-name|T
-argument_list|>
-argument_list|>
+argument_list|<>
 argument_list|()
 expr_stmt|;
 name|stack

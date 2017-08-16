@@ -146,13 +146,7 @@ decl_stmt|;
 return|return
 operator|new
 name|SingletonImmutableTable
-argument_list|<
-name|Object
-argument_list|,
-name|Object
-argument_list|,
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|(
 name|rowKey
 argument_list|,

@@ -793,11 +793,7 @@ name|map
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 for|for

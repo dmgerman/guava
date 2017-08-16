@@ -197,9 +197,7 @@ name|NATURAL_EMPTY_SET
 init|=
 operator|new
 name|RegularImmutableSortedSet
-argument_list|<
-name|Comparable
-argument_list|>
+argument_list|<>
 argument_list|(
 name|ImmutableList
 operator|.
