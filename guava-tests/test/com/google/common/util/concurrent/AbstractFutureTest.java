@@ -2131,10 +2131,9 @@ name|finalResults
 operator|.
 name|add
 argument_list|(
-name|e
+name|CancellationException
 operator|.
-name|getCause
-argument_list|()
+name|class
 argument_list|)
 expr_stmt|;
 block|}
@@ -2234,10 +2233,9 @@ name|finalResults
 operator|.
 name|add
 argument_list|(
-name|e
+name|CancellationException
 operator|.
-name|getCause
-argument_list|()
+name|class
 argument_list|)
 expr_stmt|;
 break|break;
@@ -2525,8 +2523,10 @@ decl_stmt|;
 if|if
 condition|(
 name|result
-operator|instanceof
+operator|==
 name|CancellationException
+operator|.
+name|class
 condition|)
 block|{
 name|assertTrue
@@ -2545,7 +2545,7 @@ name|wasInterrupted
 argument_list|()
 condition|)
 block|{
-comment|// We were cancelled, it is possible that setFuture could have succeeded to.
+comment|// We were cancelled, it is possible that setFuture could have succeeded too.
 name|assertThat
 argument_list|(
 name|numSuccessfulSetCalls
@@ -4638,13 +4638,7 @@ block|}
 catch|catch
 parameter_list|(
 name|InterruptedException
-name|e
-parameter_list|)
-block|{
-return|return;
-block|}
-catch|catch
-parameter_list|(
+decl||
 name|ExecutionException
 name|e
 parameter_list|)
