@@ -616,8 +616,8 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"Loop in causal chain detected @ "
-operator|+
+literal|"Loop in causal chain detected."
+argument_list|,
 name|throwable
 argument_list|)
 throw|;
@@ -739,8 +739,8 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"Loop in causal chain detected @ "
-operator|+
+literal|"Loop in causal chain detected."
+argument_list|,
 name|throwable
 argument_list|)
 throw|;

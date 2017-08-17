@@ -2205,7 +2205,21 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{     }
+block|{
+name|assertThat
+argument_list|(
+name|expected
+argument_list|)
+operator|.
+name|hasCauseThat
+argument_list|()
+operator|.
+name|isSameAs
+argument_list|(
+name|cause
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 DECL|class|SomeError
 specifier|private
@@ -2664,7 +2678,21 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{     }
+block|{
+name|assertThat
+argument_list|(
+name|expected
+argument_list|)
+operator|.
+name|hasCauseThat
+argument_list|()
+operator|.
+name|isSameAs
+argument_list|(
+name|cause
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 annotation|@
 name|GwtIncompatible
