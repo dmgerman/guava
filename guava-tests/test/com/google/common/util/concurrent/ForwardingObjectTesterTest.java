@@ -75,17 +75,12 @@ block|}
 catch|catch
 parameter_list|(
 name|AssertionError
+decl||
+name|UnsupportedOperationException
 name|expected
 parameter_list|)
 block|{
-return|return;
-block|}
-catch|catch
-parameter_list|(
-name|UnsupportedOperationException
-name|expectedOnAndroid
-parameter_list|)
-block|{
+comment|// UnsupportedOperationException is what we see on Android.
 return|return;
 block|}
 name|fail

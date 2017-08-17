@@ -1602,11 +1602,7 @@ block|}
 catch|catch
 parameter_list|(
 name|NullPointerException
-name|tolerated
-parameter_list|)
-block|{     }
-catch|catch
-parameter_list|(
+decl||
 name|UnsupportedOperationException
 name|tolerated
 parameter_list|)
@@ -1729,11 +1725,7 @@ block|}
 catch|catch
 parameter_list|(
 name|IllegalArgumentException
-name|expected
-parameter_list|)
-block|{     }
-catch|catch
-parameter_list|(
+decl||
 name|UnsupportedOperationException
 name|expected
 parameter_list|)

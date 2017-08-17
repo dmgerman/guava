@@ -306,13 +306,7 @@ block|}
 catch|catch
 parameter_list|(
 name|CancellationException
-name|ok
-parameter_list|)
-block|{
-return|return;
-block|}
-catch|catch
-parameter_list|(
+decl||
 name|ExecutionException
 name|ok
 parameter_list|)

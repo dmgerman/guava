@@ -557,15 +557,7 @@ block|}
 catch|catch
 parameter_list|(
 name|NullPointerException
-name|e
-parameter_list|)
-block|{
-return|return
-literal|false
-return|;
-block|}
-catch|catch
-parameter_list|(
+decl||
 name|ClassCastException
 name|e
 parameter_list|)

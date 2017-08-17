@@ -767,11 +767,7 @@ block|}
 catch|catch
 parameter_list|(
 name|NullPointerException
-name|expected
-parameter_list|)
-block|{     }
-catch|catch
-parameter_list|(
+decl||
 name|UnsupportedOperationException
 name|expected
 parameter_list|)
@@ -808,11 +804,7 @@ block|}
 catch|catch
 parameter_list|(
 name|NullPointerException
-name|expected
-parameter_list|)
-block|{     }
-catch|catch
-parameter_list|(
+decl||
 name|UnsupportedOperationException
 name|expected
 parameter_list|)

@@ -3438,13 +3438,7 @@ block|}
 catch|catch
 parameter_list|(
 name|UnsupportedOperationException
-name|e
-parameter_list|)
-block|{
-comment|// Expected.
-block|}
-catch|catch
-parameter_list|(
+decl||
 name|NullPointerException
 name|e
 parameter_list|)
@@ -3722,13 +3716,7 @@ block|}
 catch|catch
 parameter_list|(
 name|UnsupportedOperationException
-name|e
-parameter_list|)
-block|{
-comment|// Expected.
-block|}
-catch|catch
-parameter_list|(
+decl||
 name|NullPointerException
 name|e
 parameter_list|)
@@ -3906,13 +3894,7 @@ block|}
 catch|catch
 parameter_list|(
 name|UnsupportedOperationException
-name|e
-parameter_list|)
-block|{
-comment|// Expected.
-block|}
-catch|catch
-parameter_list|(
+decl||
 name|NullPointerException
 name|e
 parameter_list|)
@@ -3945,13 +3927,7 @@ block|}
 catch|catch
 parameter_list|(
 name|UnsupportedOperationException
-name|e
-parameter_list|)
-block|{
-comment|// Expected.
-block|}
-catch|catch
-parameter_list|(
+decl||
 name|NullPointerException
 name|e
 parameter_list|)
@@ -6835,13 +6811,7 @@ block|}
 catch|catch
 parameter_list|(
 name|UnsupportedOperationException
-name|e
-parameter_list|)
-block|{
-comment|// Expected.
-block|}
-catch|catch
-parameter_list|(
+decl||
 name|NullPointerException
 name|e
 parameter_list|)
@@ -6938,13 +6908,7 @@ block|}
 catch|catch
 parameter_list|(
 name|UnsupportedOperationException
-name|e
-parameter_list|)
-block|{
-comment|// Expected.
-block|}
-catch|catch
-parameter_list|(
+decl||
 name|NullPointerException
 name|e
 parameter_list|)
@@ -7663,13 +7627,7 @@ block|}
 catch|catch
 parameter_list|(
 name|UnsupportedOperationException
-name|e
-parameter_list|)
-block|{
-comment|// Expected.
-block|}
-catch|catch
-parameter_list|(
+decl||
 name|NullPointerException
 name|e
 parameter_list|)
@@ -7908,13 +7866,7 @@ block|}
 catch|catch
 parameter_list|(
 name|UnsupportedOperationException
-name|e
-parameter_list|)
-block|{
-comment|// Expected.
-block|}
-catch|catch
-parameter_list|(
+decl||
 name|NullPointerException
 name|e
 parameter_list|)

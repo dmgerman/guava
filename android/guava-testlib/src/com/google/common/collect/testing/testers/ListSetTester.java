@@ -607,11 +607,7 @@ block|}
 catch|catch
 parameter_list|(
 name|UnsupportedOperationException
-name|tolerated
-parameter_list|)
-block|{     }
-catch|catch
-parameter_list|(
+decl||
 name|IndexOutOfBoundsException
 name|tolerated
 parameter_list|)
