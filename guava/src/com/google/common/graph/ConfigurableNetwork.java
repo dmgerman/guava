@@ -457,11 +457,7 @@ name|edgeToReferenceNode
 operator|=
 operator|new
 name|MapIteratorCache
-argument_list|<
-name|E
-argument_list|,
-name|N
-argument_list|>
+argument_list|<>
 argument_list|(
 name|edgeToReferenceNode
 argument_list|)

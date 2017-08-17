@@ -134,9 +134,7 @@ name|temp
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Throwable
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|temp
@@ -178,9 +176,7 @@ name|temp
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Throwable
-argument_list|>
+argument_list|<>
 argument_list|(
 name|Arrays
 operator|.

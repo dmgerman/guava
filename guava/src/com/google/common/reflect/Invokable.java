@@ -275,9 +275,7 @@ block|{
 return|return
 operator|new
 name|MethodInvokable
-argument_list|<
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|(
 name|method
 argument_list|)

@@ -1053,9 +1053,7 @@ name|result
 init|=
 operator|new
 name|AtomicReference
-argument_list|<
-name|Type
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 operator|new

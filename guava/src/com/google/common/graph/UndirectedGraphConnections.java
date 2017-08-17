@@ -193,11 +193,7 @@ block|{
 return|return
 operator|new
 name|UndirectedGraphConnections
-argument_list|<
-name|N
-argument_list|,
-name|V
-argument_list|>
+argument_list|<>
 argument_list|(
 operator|new
 name|HashMap
@@ -241,11 +237,7 @@ block|{
 return|return
 operator|new
 name|UndirectedGraphConnections
-argument_list|<
-name|N
-argument_list|,
-name|V
-argument_list|>
+argument_list|<>
 argument_list|(
 name|ImmutableMap
 operator|.

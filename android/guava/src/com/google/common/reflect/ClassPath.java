@@ -2148,9 +2148,7 @@ name|currentPath
 init|=
 operator|new
 name|HashSet
-argument_list|<
-name|File
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|currentPath

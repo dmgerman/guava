@@ -85,11 +85,7 @@ name|backingValueGraph
 operator|=
 operator|new
 name|ConfigurableMutableValueGraph
-argument_list|<
-name|N
-argument_list|,
-name|Presence
-argument_list|>
+argument_list|<>
 argument_list|(
 name|builder
 argument_list|)

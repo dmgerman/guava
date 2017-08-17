@@ -253,9 +253,7 @@ name|stack
 init|=
 operator|new
 name|ArrayDeque
-argument_list|<
-name|Closeable
-argument_list|>
+argument_list|<>
 argument_list|(
 literal|4
 argument_list|)

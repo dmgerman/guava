@@ -179,11 +179,7 @@ block|{
 return|return
 operator|new
 name|DirectedNetworkConnections
-argument_list|<
-name|N
-argument_list|,
-name|E
-argument_list|>
+argument_list|<>
 argument_list|(
 name|HashBiMap
 operator|.
@@ -251,11 +247,7 @@ block|{
 return|return
 operator|new
 name|DirectedNetworkConnections
-argument_list|<
-name|N
-argument_list|,
-name|E
-argument_list|>
+argument_list|<>
 argument_list|(
 name|ImmutableBiMap
 operator|.

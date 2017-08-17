@@ -136,9 +136,7 @@ name|list
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|LogRecord
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|/**    * Adds the most recently logged record to our list.    */
@@ -213,9 +211,7 @@ name|result
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|LogRecord
-argument_list|>
+argument_list|<>
 argument_list|(
 name|list
 argument_list|)
