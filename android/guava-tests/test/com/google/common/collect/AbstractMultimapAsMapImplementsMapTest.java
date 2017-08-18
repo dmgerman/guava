@@ -350,11 +350,9 @@ block|}
 catch|catch
 parameter_list|(
 name|UnsupportedOperationException
-name|e
+name|expected
 parameter_list|)
-block|{
-comment|// Expected.
-block|}
+block|{       }
 block|}
 name|assertInvariants
 argument_list|(

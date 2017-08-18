@@ -1124,11 +1124,9 @@ block|}
 catch|catch
 parameter_list|(
 name|NumberFormatException
-name|nfe
+name|expected
 parameter_list|)
-block|{
-comment|// expected
-block|}
+block|{     }
 try|try
 block|{
 name|UnsignedBytes
@@ -1151,11 +1149,9 @@ block|}
 catch|catch
 parameter_list|(
 name|NumberFormatException
-name|nfe
+name|expected
 parameter_list|)
-block|{
-comment|// expected
-block|}
+block|{     }
 comment|// The radix is used as an array index, so try a negative value.
 try|try
 block|{
@@ -1176,11 +1172,9 @@ block|}
 catch|catch
 parameter_list|(
 name|NumberFormatException
-name|nfe
+name|expected
 parameter_list|)
-block|{
-comment|// expected
-block|}
+block|{     }
 block|}
 DECL|method|testToString ()
 specifier|public

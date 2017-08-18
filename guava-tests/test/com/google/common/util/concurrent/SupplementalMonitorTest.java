@@ -165,11 +165,9 @@ block|}
 catch|catch
 parameter_list|(
 name|IllegalMonitorStateException
-name|e
+name|expected
 parameter_list|)
-block|{
-comment|// expected
-block|}
+block|{     }
 block|}
 DECL|method|testGetWaitQueueLengthWithWrongMonitorThrowsIMSE ()
 specifier|public
@@ -218,11 +216,9 @@ block|}
 catch|catch
 parameter_list|(
 name|IllegalMonitorStateException
-name|e
+name|expected
 parameter_list|)
-block|{
-comment|// expected
-block|}
+block|{     }
 block|}
 DECL|method|testHasWaitersWithWrongMonitorThrowsIMSE ()
 specifier|public
@@ -271,11 +267,9 @@ block|}
 catch|catch
 parameter_list|(
 name|IllegalMonitorStateException
-name|e
+name|expected
 parameter_list|)
-block|{
-comment|// expected
-block|}
+block|{     }
 block|}
 DECL|method|testNullMonitorInGuardConstructorThrowsNPE ()
 specifier|public
@@ -300,11 +294,9 @@ block|}
 catch|catch
 parameter_list|(
 name|NullPointerException
-name|e
+name|expected
 parameter_list|)
-block|{
-comment|// expected
-block|}
+block|{     }
 block|}
 DECL|method|testIsFair ()
 specifier|public

@@ -93,11 +93,9 @@ block|}
 catch|catch
 parameter_list|(
 name|PatternSyntaxException
-name|e
+name|expected
 parameter_list|)
-block|{
-comment|// expected
-block|}
+block|{     }
 block|}
 DECL|method|testAccept ()
 specifier|public

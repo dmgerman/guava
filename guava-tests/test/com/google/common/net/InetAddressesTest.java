@@ -320,9 +320,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{
-comment|// expected behavior
-block|}
+block|{       }
 name|assertFalse
 argument_list|(
 name|InetAddresses
@@ -364,9 +362,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{
-comment|// expected behavior
-block|}
+block|{     }
 name|assertFalse
 argument_list|(
 name|InetAddresses
@@ -1196,11 +1192,9 @@ block|}
 catch|catch
 parameter_list|(
 name|IllegalArgumentException
-name|e
+name|expected
 parameter_list|)
-block|{
-comment|// expected
-block|}
+block|{     }
 try|try
 block|{
 name|InetAddresses
@@ -1220,11 +1214,9 @@ block|}
 catch|catch
 parameter_list|(
 name|IllegalArgumentException
-name|e
+name|expected
 parameter_list|)
-block|{
-comment|// expected
-block|}
+block|{     }
 try|try
 block|{
 name|InetAddresses
@@ -1244,11 +1236,9 @@ block|}
 catch|catch
 parameter_list|(
 name|IllegalArgumentException
-name|e
+name|expected
 parameter_list|)
-block|{
-comment|// expected
-block|}
+block|{     }
 try|try
 block|{
 name|InetAddresses
@@ -1268,11 +1258,9 @@ block|}
 catch|catch
 parameter_list|(
 name|IllegalArgumentException
-name|e
+name|expected
 parameter_list|)
-block|{
-comment|// expected
-block|}
+block|{     }
 try|try
 block|{
 name|InetAddresses
@@ -1292,11 +1280,9 @@ block|}
 catch|catch
 parameter_list|(
 name|IllegalArgumentException
-name|e
+name|expected
 parameter_list|)
-block|{
-comment|// expected
-block|}
+block|{     }
 try|try
 block|{
 name|InetAddresses
@@ -1316,11 +1302,9 @@ block|}
 catch|catch
 parameter_list|(
 name|IllegalArgumentException
-name|e
+name|expected
 parameter_list|)
-block|{
-comment|// expected
-block|}
+block|{     }
 try|try
 block|{
 name|InetAddresses
@@ -1340,11 +1324,9 @@ block|}
 catch|catch
 parameter_list|(
 name|IllegalArgumentException
-name|e
+name|expected
 parameter_list|)
-block|{
-comment|// expected
-block|}
+block|{     }
 try|try
 block|{
 name|InetAddresses
@@ -1364,11 +1346,9 @@ block|}
 catch|catch
 parameter_list|(
 name|IllegalArgumentException
-name|e
+name|expected
 parameter_list|)
-block|{
-comment|// expected
-block|}
+block|{     }
 try|try
 block|{
 name|InetAddresses
@@ -1388,11 +1368,9 @@ block|}
 catch|catch
 parameter_list|(
 name|IllegalArgumentException
-name|e
+name|expected
 parameter_list|)
-block|{
-comment|// expected
-block|}
+block|{     }
 try|try
 block|{
 name|InetAddresses
@@ -1412,11 +1390,9 @@ block|}
 catch|catch
 parameter_list|(
 name|IllegalArgumentException
-name|e
+name|expected
 parameter_list|)
-block|{
-comment|// expected
-block|}
+block|{     }
 try|try
 block|{
 name|InetAddresses
@@ -1436,11 +1412,9 @@ block|}
 catch|catch
 parameter_list|(
 name|IllegalArgumentException
-name|e
+name|expected
 parameter_list|)
-block|{
-comment|// expected
-block|}
+block|{     }
 block|}
 DECL|method|testCompatIPv4Addresses ()
 specifier|public
@@ -1533,9 +1507,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{
-comment|// expected behavior
-block|}
+block|{       }
 block|}
 name|String
 index|[]
@@ -2020,9 +1992,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{
-comment|// expected behavior
-block|}
+block|{       }
 block|}
 name|String
 name|valid6to4Address
@@ -2176,9 +2146,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{
-comment|// expected behavior
-block|}
+block|{       }
 block|}
 name|String
 name|validTeredoAddress
@@ -2577,9 +2545,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{
-comment|// expected behavior
-block|}
+block|{       }
 block|}
 block|}
 DECL|method|testGetEmbeddedIPv4ClientAddress ()

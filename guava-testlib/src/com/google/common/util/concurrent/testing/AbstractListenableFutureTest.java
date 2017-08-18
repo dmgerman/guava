@@ -470,9 +470,7 @@ parameter_list|(
 name|TimeoutException
 name|expected
 parameter_list|)
-block|{
-comment|// Expected.
-block|}
+block|{     }
 finally|finally
 block|{
 name|latch

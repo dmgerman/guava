@@ -332,9 +332,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{
-comment|// expected
-block|}
+block|{     }
 block|}
 DECL|method|testParse_maximumSize ()
 specifier|public
@@ -449,9 +447,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{
-comment|// expected
-block|}
+block|{     }
 block|}
 DECL|method|testParse_maximumWeight ()
 specifier|public
@@ -566,9 +562,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{
-comment|// expected
-block|}
+block|{     }
 block|}
 DECL|method|testParse_maximumSizeAndMaximumWeight ()
 specifier|public
@@ -594,9 +588,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{
-comment|// expected
-block|}
+block|{     }
 block|}
 DECL|method|testParse_concurrencyLevel ()
 specifier|public
@@ -718,9 +710,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{
-comment|// expected
-block|}
+block|{     }
 block|}
 DECL|method|testParse_weakKeys ()
 specifier|public
@@ -839,9 +829,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{
-comment|// expected
-block|}
+block|{     }
 block|}
 DECL|method|testParse_repeatedKeyStrength ()
 specifier|public
@@ -867,9 +855,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{
-comment|// expected
-block|}
+block|{     }
 block|}
 DECL|method|testParse_softValues ()
 specifier|public
@@ -988,9 +974,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{
-comment|// expected
-block|}
+block|{     }
 block|}
 DECL|method|testParse_weakValues ()
 specifier|public
@@ -1109,9 +1093,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{
-comment|// expected
-block|}
+block|{     }
 block|}
 DECL|method|testParse_repeatedValueStrength ()
 specifier|public
@@ -1137,9 +1119,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{
-comment|// expected
-block|}
+block|{     }
 try|try
 block|{
 name|parse
@@ -1158,9 +1138,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{
-comment|// expected
-block|}
+block|{     }
 try|try
 block|{
 name|parse
@@ -1179,9 +1157,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{
-comment|// expected
-block|}
+block|{     }
 try|try
 block|{
 name|parse
@@ -1200,9 +1176,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{
-comment|// expected
-block|}
+block|{     }
 block|}
 DECL|method|testParse_writeExpirationDays ()
 specifier|public
@@ -1513,9 +1487,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{
-comment|// expected
-block|}
+block|{     }
 block|}
 DECL|method|testParse_accessExpirationDays ()
 specifier|public
@@ -1826,9 +1798,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{
-comment|// expected
-block|}
+block|{     }
 block|}
 DECL|method|testParse_recordStats ()
 specifier|public
@@ -1894,9 +1864,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{
-comment|// expected
-block|}
+block|{     }
 block|}
 DECL|method|testParse_recordStatsRepeated ()
 specifier|public
@@ -1922,9 +1890,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{
-comment|// expected
-block|}
+block|{     }
 block|}
 DECL|method|testParse_accessExpirationAndWriteExpiration ()
 specifier|public
@@ -2378,9 +2344,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{
-comment|// expected
-block|}
+block|{     }
 block|}
 DECL|method|testParse_extraCommaIsInvalid ()
 specifier|public
@@ -2406,9 +2370,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{
-comment|// expected
-block|}
+block|{     }
 try|try
 block|{
 name|parse
@@ -2427,9 +2389,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{
-comment|// expected
-block|}
+block|{     }
 try|try
 block|{
 name|parse
@@ -2448,9 +2408,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{
-comment|// expected
-block|}
+block|{     }
 block|}
 DECL|method|testEqualsAndHashCode ()
 specifier|public

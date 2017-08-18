@@ -2147,11 +2147,9 @@ block|}
 catch|catch
 parameter_list|(
 name|NumberFormatException
-name|nfe
+name|expected
 parameter_list|)
-block|{
-comment|// Expected to fail.
-block|}
+block|{     }
 block|}
 DECL|method|testNullFriendlyTransform ()
 specifier|public

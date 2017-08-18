@@ -761,9 +761,7 @@ parameter_list|(
 name|IOException
 name|expected
 parameter_list|)
-block|{
-comment|// expected
-block|}
+block|{     }
 comment|// Verify that write had no effect
 name|assertTrue
 argument_list|(

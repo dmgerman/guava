@@ -1380,11 +1380,9 @@ block|}
 catch|catch
 parameter_list|(
 name|UnsupportedOperationException
-name|e
+name|expected
 parameter_list|)
-block|{
-comment|// Expected.
-block|}
+block|{       }
 block|}
 name|assertInvariants
 argument_list|(
@@ -2347,11 +2345,9 @@ block|}
 catch|catch
 parameter_list|(
 name|IllegalStateException
-name|e
+name|expected
 parameter_list|)
-block|{
-comment|// Expected.
-block|}
+block|{       }
 block|}
 else|else
 block|{
@@ -2376,11 +2372,9 @@ block|}
 catch|catch
 parameter_list|(
 name|UnsupportedOperationException
-name|e
+name|expected
 parameter_list|)
-block|{
-comment|// Expected.
-block|}
+block|{       }
 block|}
 name|assertInvariants
 argument_list|(
@@ -2508,11 +2502,9 @@ block|}
 catch|catch
 parameter_list|(
 name|UnsupportedOperationException
-name|e
+name|expected
 parameter_list|)
-block|{
-comment|// Expected.
-block|}
+block|{       }
 block|}
 name|assertInvariants
 argument_list|(
@@ -3330,11 +3322,9 @@ block|}
 catch|catch
 parameter_list|(
 name|UnsupportedOperationException
-name|e
+name|expected
 parameter_list|)
-block|{
-comment|// Expected.
-block|}
+block|{       }
 block|}
 name|assertInvariants
 argument_list|(
@@ -3412,11 +3402,9 @@ block|}
 catch|catch
 parameter_list|(
 name|NullPointerException
-name|e
+name|expected
 parameter_list|)
-block|{
-comment|// Expected.
-block|}
+block|{       }
 block|}
 else|else
 block|{
@@ -3616,11 +3604,9 @@ block|}
 catch|catch
 parameter_list|(
 name|UnsupportedOperationException
-name|e
+name|expected
 parameter_list|)
-block|{
-comment|// Expected.
-block|}
+block|{       }
 block|}
 name|assertInvariants
 argument_list|(
@@ -3694,11 +3680,9 @@ block|}
 catch|catch
 parameter_list|(
 name|NullPointerException
-name|e
+name|expected
 parameter_list|)
-block|{
-comment|// Expected.
-block|}
+block|{       }
 block|}
 else|else
 block|{
@@ -3814,11 +3798,9 @@ block|}
 catch|catch
 parameter_list|(
 name|UnsupportedOperationException
-name|e
+name|expected
 parameter_list|)
-block|{
-comment|// Expected.
-block|}
+block|{       }
 block|}
 name|assertInvariants
 argument_list|(
@@ -4979,11 +4961,9 @@ block|}
 catch|catch
 parameter_list|(
 name|UnsupportedOperationException
-name|e
+name|expected
 parameter_list|)
-block|{
-comment|// Expected.
-block|}
+block|{       }
 block|}
 name|assertInvariants
 argument_list|(
@@ -5135,11 +5115,9 @@ block|}
 catch|catch
 parameter_list|(
 name|UnsupportedOperationException
-name|e
+name|expected
 parameter_list|)
-block|{
-comment|// Expected.
-block|}
+block|{       }
 block|}
 name|assertInvariants
 argument_list|(
@@ -5284,11 +5262,9 @@ block|}
 catch|catch
 parameter_list|(
 name|RuntimeException
-name|e
+name|expected
 parameter_list|)
-block|{
-comment|// Expected.
-block|}
+block|{       }
 block|}
 name|assertInvariants
 argument_list|(
@@ -5451,11 +5427,9 @@ block|}
 catch|catch
 parameter_list|(
 name|RuntimeException
-name|e
+name|expected
 parameter_list|)
-block|{
-comment|// Expected.
-block|}
+block|{       }
 block|}
 name|assertInvariants
 argument_list|(
@@ -5626,11 +5600,9 @@ block|}
 catch|catch
 parameter_list|(
 name|RuntimeException
-name|e
+name|expected
 parameter_list|)
-block|{
-comment|// Expected.
-block|}
+block|{       }
 block|}
 name|assertInvariants
 argument_list|(
@@ -5788,11 +5760,9 @@ block|}
 catch|catch
 parameter_list|(
 name|UnsupportedOperationException
-name|e
+name|expected
 parameter_list|)
-block|{
-comment|// Expected.
-block|}
+block|{       }
 block|}
 name|assertInvariants
 argument_list|(
@@ -5948,11 +5918,9 @@ block|}
 catch|catch
 parameter_list|(
 name|UnsupportedOperationException
-name|e
+name|expected
 parameter_list|)
-block|{
-comment|// Expected.
-block|}
+block|{       }
 block|}
 name|assertEquals
 argument_list|(
@@ -6101,11 +6069,9 @@ block|}
 catch|catch
 parameter_list|(
 name|UnsupportedOperationException
-name|e
+name|expected
 parameter_list|)
-block|{
-comment|// Expected.
-block|}
+block|{       }
 block|}
 name|assertInvariants
 argument_list|(
@@ -6207,11 +6173,9 @@ block|}
 catch|catch
 parameter_list|(
 name|UnsupportedOperationException
-name|e
+name|expected
 parameter_list|)
-block|{
-comment|// Expected.
-block|}
+block|{       }
 block|}
 name|assertInvariants
 argument_list|(
@@ -6348,11 +6312,9 @@ block|}
 catch|catch
 parameter_list|(
 name|UnsupportedOperationException
-name|e
+name|expected
 parameter_list|)
-block|{
-comment|// Expected.
-block|}
+block|{       }
 block|}
 name|assertInvariants
 argument_list|(
@@ -6489,11 +6451,9 @@ block|}
 catch|catch
 parameter_list|(
 name|UnsupportedOperationException
-name|e
+name|expected
 parameter_list|)
-block|{
-comment|// Expected.
-block|}
+block|{       }
 block|}
 name|assertInvariants
 argument_list|(
@@ -6617,11 +6577,9 @@ block|}
 catch|catch
 parameter_list|(
 name|UnsupportedOperationException
-name|e
+name|expected
 parameter_list|)
-block|{
-comment|// Expected.
-block|}
+block|{       }
 block|}
 name|assertInvariants
 argument_list|(
@@ -6708,11 +6666,9 @@ block|}
 catch|catch
 parameter_list|(
 name|UnsupportedOperationException
-name|e
+name|expected
 parameter_list|)
-block|{
-comment|// Expected.
-block|}
+block|{       }
 block|}
 name|assertInvariants
 argument_list|(
@@ -6785,11 +6741,9 @@ block|}
 catch|catch
 parameter_list|(
 name|NullPointerException
-name|e
+name|expected
 parameter_list|)
-block|{
-comment|// Expected.
-block|}
+block|{       }
 block|}
 else|else
 block|{
@@ -6886,11 +6840,9 @@ block|}
 catch|catch
 parameter_list|(
 name|NullPointerException
-name|e
+name|expected
 parameter_list|)
-block|{
-comment|// Expected.
-block|}
+block|{       }
 block|}
 else|else
 block|{
@@ -7124,11 +7076,9 @@ block|}
 catch|catch
 parameter_list|(
 name|IllegalStateException
-name|e
+name|expected
 parameter_list|)
-block|{
-comment|// Expected.
-block|}
+block|{       }
 block|}
 else|else
 block|{
@@ -7153,11 +7103,9 @@ block|}
 catch|catch
 parameter_list|(
 name|UnsupportedOperationException
-name|e
+name|expected
 parameter_list|)
-block|{
-comment|// Expected.
-block|}
+block|{       }
 block|}
 name|assertInvariants
 argument_list|(
@@ -7275,11 +7223,9 @@ block|}
 catch|catch
 parameter_list|(
 name|UnsupportedOperationException
-name|e
+name|expected
 parameter_list|)
-block|{
-comment|// Expected.
-block|}
+block|{       }
 block|}
 name|assertInvariants
 argument_list|(
@@ -7532,11 +7478,9 @@ block|}
 catch|catch
 parameter_list|(
 name|UnsupportedOperationException
-name|e
+name|expected
 parameter_list|)
-block|{
-comment|// Expected.
-block|}
+block|{       }
 block|}
 name|assertInvariants
 argument_list|(
@@ -7605,11 +7549,9 @@ block|}
 catch|catch
 parameter_list|(
 name|NullPointerException
-name|e
+name|expected
 parameter_list|)
-block|{
-comment|// Expected.
-block|}
+block|{       }
 block|}
 else|else
 block|{
@@ -7771,11 +7713,9 @@ block|}
 catch|catch
 parameter_list|(
 name|UnsupportedOperationException
-name|e
+name|expected
 parameter_list|)
-block|{
-comment|// Expected.
-block|}
+block|{       }
 block|}
 name|assertInvariants
 argument_list|(
@@ -7844,11 +7784,9 @@ block|}
 catch|catch
 parameter_list|(
 name|NullPointerException
-name|e
+name|expected
 parameter_list|)
-block|{
-comment|// Expected.
-block|}
+block|{       }
 block|}
 else|else
 block|{
@@ -7959,11 +7897,9 @@ block|}
 catch|catch
 parameter_list|(
 name|UnsupportedOperationException
-name|e
+name|expected
 parameter_list|)
-block|{
-comment|// Expected.
-block|}
+block|{       }
 block|}
 name|assertInvariants
 argument_list|(

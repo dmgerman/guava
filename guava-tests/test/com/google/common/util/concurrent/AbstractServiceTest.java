@@ -3446,11 +3446,9 @@ block|}
 catch|catch
 parameter_list|(
 name|IllegalStateException
-name|e
+name|expected
 parameter_list|)
-block|{
-comment|// expected
-block|}
+block|{     }
 name|service
 operator|.
 name|startAsync
@@ -3473,11 +3471,9 @@ block|}
 catch|catch
 parameter_list|(
 name|IllegalStateException
-name|e
+name|expected
 parameter_list|)
-block|{
-comment|// expected
-block|}
+block|{     }
 try|try
 block|{
 name|service

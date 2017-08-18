@@ -521,11 +521,9 @@ block|}
 catch|catch
 parameter_list|(
 name|EOFException
-name|e
+name|expected
 parameter_list|)
-block|{
-comment|// expected
-block|}
+block|{     }
 block|}
 DECL|method|testSkipFully ()
 specifier|public

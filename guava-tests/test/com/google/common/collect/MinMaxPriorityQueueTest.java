@@ -2279,11 +2279,9 @@ block|}
 catch|catch
 parameter_list|(
 name|NoSuchElementException
-name|e
+name|expected
 parameter_list|)
-block|{
-comment|// expected error
-block|}
+block|{     }
 block|}
 DECL|method|testIteratorConcurrentModification ()
 specifier|public
@@ -2374,11 +2372,9 @@ block|}
 catch|catch
 parameter_list|(
 name|ConcurrentModificationException
-name|e
+name|expected
 parameter_list|)
-block|{
-comment|// expected error
-block|}
+block|{     }
 block|}
 comment|/**    * Tests a failure caused by fix to childless uncle issue.    */
 DECL|method|testIteratorRegressionChildlessUncle ()
@@ -6578,11 +6574,9 @@ block|}
 catch|catch
 parameter_list|(
 name|IllegalStateException
-name|e
+name|expected
 parameter_list|)
-block|{
-comment|// expected
-block|}
+block|{     }
 try|try
 block|{
 name|MinMaxPriorityQueue
@@ -6603,11 +6597,9 @@ block|}
 catch|catch
 parameter_list|(
 name|IllegalStateException
-name|e
+name|expected
 parameter_list|)
-block|{
-comment|// expected
-block|}
+block|{     }
 try|try
 block|{
 name|MinMaxPriorityQueue
@@ -6628,11 +6620,9 @@ block|}
 catch|catch
 parameter_list|(
 name|IllegalStateException
-name|e
+name|expected
 parameter_list|)
-block|{
-comment|// expected
-block|}
+block|{     }
 try|try
 block|{
 name|MinMaxPriorityQueue
@@ -6653,11 +6643,9 @@ block|}
 catch|catch
 parameter_list|(
 name|IllegalStateException
-name|e
+name|expected
 parameter_list|)
-block|{
-comment|// expected
-block|}
+block|{     }
 block|}
 annotation|@
 name|GwtIncompatible

@@ -478,9 +478,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{
-comment|// Expected outcome
-block|}
+block|{     }
 try|try
 block|{
 name|HostSpecifier

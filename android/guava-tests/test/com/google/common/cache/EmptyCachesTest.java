@@ -536,11 +536,9 @@ block|}
 catch|catch
 parameter_list|(
 name|NullPointerException
-name|e
+name|expected
 parameter_list|)
-block|{
-comment|// expected
-block|}
+block|{       }
 name|checkEmpty
 argument_list|(
 name|cache
@@ -586,11 +584,9 @@ block|}
 catch|catch
 parameter_list|(
 name|NullPointerException
-name|e
+name|expected
 parameter_list|)
-block|{
-comment|// expected
-block|}
+block|{       }
 name|checkEmpty
 argument_list|(
 name|cache
@@ -649,11 +645,9 @@ block|}
 catch|catch
 parameter_list|(
 name|NullPointerException
-name|e
+name|expected
 parameter_list|)
-block|{
-comment|// expected
-block|}
+block|{       }
 name|checkEmpty
 argument_list|(
 name|cache
@@ -703,11 +697,9 @@ block|}
 catch|catch
 parameter_list|(
 name|UnsupportedOperationException
-name|e
+name|expected
 parameter_list|)
-block|{
-comment|// expected
-block|}
+block|{       }
 try|try
 block|{
 name|cache
@@ -735,11 +727,9 @@ block|}
 catch|catch
 parameter_list|(
 name|UnsupportedOperationException
-name|e
+name|expected
 parameter_list|)
-block|{
-comment|// expected
-block|}
+block|{       }
 block|}
 block|}
 DECL|method|testKeySet_clear ()
@@ -1113,11 +1103,9 @@ block|}
 catch|catch
 parameter_list|(
 name|NullPointerException
-name|e
+name|expected
 parameter_list|)
-block|{
-comment|// expected
-block|}
+block|{       }
 name|checkEmpty
 argument_list|(
 name|cache
@@ -1167,11 +1155,9 @@ block|}
 catch|catch
 parameter_list|(
 name|UnsupportedOperationException
-name|e
+name|expected
 parameter_list|)
-block|{
-comment|// expected
-block|}
+block|{       }
 try|try
 block|{
 name|cache
@@ -1199,11 +1185,9 @@ block|}
 catch|catch
 parameter_list|(
 name|UnsupportedOperationException
-name|e
+name|expected
 parameter_list|)
-block|{
-comment|// expected
-block|}
+block|{       }
 block|}
 block|}
 DECL|method|testValues_clear ()
@@ -1582,11 +1566,9 @@ block|}
 catch|catch
 parameter_list|(
 name|NullPointerException
-name|e
+name|expected
 parameter_list|)
-block|{
-comment|// expected
-block|}
+block|{       }
 name|checkEmpty
 argument_list|(
 name|cache
@@ -1641,11 +1623,9 @@ block|}
 catch|catch
 parameter_list|(
 name|UnsupportedOperationException
-name|e
+name|expected
 parameter_list|)
-block|{
-comment|// expected
-block|}
+block|{       }
 try|try
 block|{
 name|cache
@@ -1683,11 +1663,9 @@ block|}
 catch|catch
 parameter_list|(
 name|UnsupportedOperationException
-name|e
+name|expected
 parameter_list|)
-block|{
-comment|// expected
-block|}
+block|{       }
 block|}
 block|}
 DECL|method|testEntrySet_clear ()

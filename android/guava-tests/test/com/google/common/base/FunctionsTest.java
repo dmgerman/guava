@@ -364,11 +364,9 @@ block|}
 catch|catch
 parameter_list|(
 name|NullPointerException
-name|e
+name|expected
 parameter_list|)
-block|{
-comment|// expected
-block|}
+block|{     }
 block|}
 annotation|@
 name|GwtIncompatible

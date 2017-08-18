@@ -757,9 +757,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{
-comment|// Expected case
-block|}
+block|{       }
 block|}
 block|}
 DECL|method|testPublicSuffix ()
@@ -1297,9 +1295,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{
-comment|// Expected outcome
-block|}
+block|{     }
 block|}
 DECL|method|testParentChild ()
 specifier|public

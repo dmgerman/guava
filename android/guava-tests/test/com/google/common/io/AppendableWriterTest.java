@@ -497,11 +497,9 @@ block|}
 catch|catch
 parameter_list|(
 name|IOException
-name|es
+name|expected
 parameter_list|)
-block|{
-comment|// expected
-block|}
+block|{     }
 try|try
 block|{
 name|writer
@@ -518,11 +516,9 @@ block|}
 catch|catch
 parameter_list|(
 name|IOException
-name|es
+name|expected
 parameter_list|)
-block|{
-comment|// expected
-block|}
+block|{     }
 comment|// close()ing already closed writer is allowed
 name|writer
 operator|.

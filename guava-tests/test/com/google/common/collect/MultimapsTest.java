@@ -5034,9 +5034,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{
-comment|// expected
-block|}
+block|{     }
 name|multimap
 operator|.
 name|put
@@ -5084,9 +5082,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{
-comment|// expected
-block|}
+block|{     }
 name|assertThat
 argument_list|(
 name|multimap
