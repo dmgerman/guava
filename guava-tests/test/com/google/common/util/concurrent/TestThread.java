@@ -229,9 +229,7 @@ name|requestQueue
 init|=
 operator|new
 name|SynchronousQueue
-argument_list|<
-name|Request
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 DECL|field|responseQueue
@@ -245,9 +243,7 @@ name|responseQueue
 init|=
 operator|new
 name|SynchronousQueue
-argument_list|<
-name|Response
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 DECL|field|uncaughtThrowable

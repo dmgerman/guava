@@ -1130,11 +1130,7 @@ block|{
 return|return
 operator|new
 name|NetworkForTest
-argument_list|<
-name|N
-argument_list|,
-name|E
-argument_list|>
+argument_list|<>
 argument_list|(
 name|network
 argument_list|)

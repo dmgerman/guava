@@ -4270,9 +4270,7 @@ name|nums
 init|=
 operator|new
 name|CollectionThatThrowsNPE
-argument_list|<
-name|Integer
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|Predicate
@@ -4351,9 +4349,7 @@ name|nums
 init|=
 operator|new
 name|CollectionThatThrowsCCE
-argument_list|<
-name|Integer
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|nums

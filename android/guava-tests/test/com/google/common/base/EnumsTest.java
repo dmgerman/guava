@@ -633,9 +633,7 @@ name|shadowConstants
 init|=
 operator|new
 name|HashSet
-argument_list|<
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 for|for
@@ -730,9 +728,7 @@ expr_stmt|;
 return|return
 operator|new
 name|WeakReference
-argument_list|<
-name|ClassLoader
-argument_list|>
+argument_list|<>
 argument_list|(
 name|shadowLoader
 argument_list|)

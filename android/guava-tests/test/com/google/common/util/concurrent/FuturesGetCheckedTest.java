@@ -2007,9 +2007,7 @@ expr_stmt|;
 return|return
 operator|new
 name|WeakReference
-argument_list|<
-name|ClassLoader
-argument_list|>
+argument_list|<>
 argument_list|(
 name|shadowLoader
 argument_list|)

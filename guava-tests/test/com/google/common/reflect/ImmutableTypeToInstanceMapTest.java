@@ -1057,14 +1057,7 @@ block|{
 return|return
 operator|new
 name|SampleElements
-argument_list|<
-name|Entry
-argument_list|<
-name|TypeToken
-argument_list|,
-name|Object
-argument_list|>
-argument_list|>
+argument_list|<>
 argument_list|(
 name|entry
 argument_list|(

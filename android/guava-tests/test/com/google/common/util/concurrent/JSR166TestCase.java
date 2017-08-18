@@ -726,7 +726,7 @@ name|delayMillis
 argument_list|)
 return|;
 block|}
-comment|/**      * The first exception encountered if any threadAssertXXX method fails.      */
+comment|/** The first exception encountered if any threadAssertXXX method fails. */
 DECL|field|threadFailure
 specifier|private
 specifier|final
@@ -738,9 +738,7 @@ name|threadFailure
 init|=
 operator|new
 name|AtomicReference
-argument_list|<
-name|Throwable
-argument_list|>
+argument_list|<>
 argument_list|(
 literal|null
 argument_list|)

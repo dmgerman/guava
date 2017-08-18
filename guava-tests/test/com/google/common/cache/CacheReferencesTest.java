@@ -1128,9 +1128,7 @@ name|toString
 operator|=
 operator|new
 name|WeakReference
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|(
 name|s
 argument_list|)

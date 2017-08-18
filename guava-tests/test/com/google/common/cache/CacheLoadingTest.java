@@ -12893,9 +12893,7 @@ name|ref
 init|=
 operator|new
 name|WeakReference
-argument_list|<
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|(
 literal|null
 argument_list|)
@@ -12944,9 +12942,7 @@ name|ref
 operator|=
 operator|new
 name|WeakReference
-argument_list|<
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|(
 name|cache
 operator|.
@@ -13032,9 +13028,7 @@ name|ref
 operator|=
 operator|new
 name|WeakReference
-argument_list|<
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|(
 name|map
 operator|.
@@ -14788,9 +14782,7 @@ name|result
 init|=
 operator|new
 name|AtomicReferenceArray
-argument_list|<
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|(
 name|nThreads
 argument_list|)
@@ -16192,9 +16184,7 @@ name|result
 init|=
 operator|new
 name|AtomicReferenceArray
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|(
 name|count
 argument_list|)
@@ -16577,9 +16567,7 @@ name|result
 init|=
 operator|new
 name|AtomicReferenceArray
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|(
 literal|2
 argument_list|)

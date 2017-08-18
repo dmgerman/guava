@@ -1095,9 +1095,7 @@ block|{
 return|return
 operator|new
 name|FutureTask
-argument_list|<
-name|Boolean
-argument_list|>
+argument_list|<>
 argument_list|(
 operator|new
 name|Callable
@@ -1179,9 +1177,7 @@ block|{
 return|return
 operator|new
 name|FutureTask
-argument_list|<
-name|Boolean
-argument_list|>
+argument_list|<>
 argument_list|(
 operator|new
 name|Callable

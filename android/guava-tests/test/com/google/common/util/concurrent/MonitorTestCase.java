@@ -252,9 +252,7 @@ name|thread1
 operator|=
 operator|new
 name|TestThread
-argument_list|<
-name|Monitor
-argument_list|>
+argument_list|<>
 argument_list|(
 name|monitor
 argument_list|,
@@ -270,9 +268,7 @@ name|thread2
 operator|=
 operator|new
 name|TestThread
-argument_list|<
-name|Monitor
-argument_list|>
+argument_list|<>
 argument_list|(
 name|monitor
 argument_list|,

@@ -352,9 +352,7 @@ operator|new
 name|Striped
 operator|.
 name|SmallLazyStriped
-argument_list|<
-name|Lock
-argument_list|>
+argument_list|<>
 argument_list|(
 name|stripes
 argument_list|,
@@ -384,9 +382,7 @@ operator|new
 name|Striped
 operator|.
 name|LargeLazyStriped
-argument_list|<
-name|Lock
-argument_list|>
+argument_list|<>
 argument_list|(
 name|stripes
 argument_list|,
@@ -552,9 +548,7 @@ name|locks
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Lock
-argument_list|>
+argument_list|<>
 argument_list|(
 name|numStripes
 argument_list|)

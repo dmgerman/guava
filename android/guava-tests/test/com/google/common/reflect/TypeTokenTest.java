@@ -18882,11 +18882,7 @@ block|{
 return|return
 operator|new
 name|Assignability
-argument_list|<
-name|From
-argument_list|,
-name|To
-argument_list|>
+argument_list|<>
 argument_list|()
 return|;
 block|}

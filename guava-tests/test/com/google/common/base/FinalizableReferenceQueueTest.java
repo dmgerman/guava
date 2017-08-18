@@ -297,12 +297,7 @@ name|queueReference
 operator|=
 operator|new
 name|WeakReference
-argument_list|<
-name|ReferenceQueue
-argument_list|<
-name|Object
-argument_list|>
-argument_list|>
+argument_list|<>
 argument_list|(
 name|frq
 operator|.

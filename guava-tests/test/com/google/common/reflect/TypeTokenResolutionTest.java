@@ -616,9 +616,7 @@ name|foo
 init|=
 operator|new
 name|StringFoo
-argument_list|<
-name|Integer
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|assertEquals
@@ -1454,11 +1452,7 @@ name|mapping
 init|=
 operator|new
 name|Mapping
-argument_list|<
-name|Integer
-argument_list|,
-name|String
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|assertEquals
@@ -1998,9 +1992,7 @@ name|genericArray
 init|=
 operator|new
 name|GenericArray
-argument_list|<
-name|Integer
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|assertEquals
@@ -2417,9 +2409,7 @@ name|redString
 init|=
 operator|new
 name|Red
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|Red
@@ -2430,9 +2420,7 @@ name|redInteger
 init|=
 operator|new
 name|Red
-argument_list|<
-name|Integer
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|Red
