@@ -1342,6 +1342,29 @@ literal|"MoreExecutors.directExecutor()"
 return|;
 block|}
 block|}
+comment|/**    * Returns an {@link Executor} that runs each task executed sequentially, such that no    * two tasks are running concurrently.    *    *<p>The executor uses {@code delegate} in order to {@link Executor#execute execute} each task in    * turn, and does not create any threads of its own.    *    *<p>After execution starts on the {@code delegate} {@link Executor}, tasks are polled and    * executed from the queue until there are no more tasks. The thread will not be released until    * there are no more tasks to run.    *    *<p>If a task is {@linkplain Thread#interrupt interrupted}, execution of subsequent tasks    * continues. {@code RuntimeException}s thrown by tasks are simply logged and the executor keeps    * trucking. If an {@code Error} is thrown, the error will propagate and execution will stop until    * the next time a task is submitted.    *    * @since 24.0    */
+annotation|@
+name|Beta
+annotation|@
+name|GwtIncompatible
+DECL|method|sequentialExecutor (Executor delegate)
+specifier|public
+specifier|static
+name|Executor
+name|sequentialExecutor
+parameter_list|(
+name|Executor
+name|delegate
+parameter_list|)
+block|{
+return|return
+operator|new
+name|SerializingExecutor
+argument_list|(
+name|delegate
+argument_list|)
+return|;
+block|}
 comment|/**    * Creates an {@link ExecutorService} whose {@code submit} and {@code    * invokeAll} methods submit {@link ListenableFutureTask} instances to the given delegate    * executor. Those methods, as well as {@code execute} and {@code invokeAny}, are implemented in    * terms of calls to {@code    * delegate.execute}. All other methods are forwarded unchanged to the delegate. This implies that    * the returned {@code ListeningExecutorService} never calls the delegate's {@code submit},    * {@code invokeAll}, and {@code    * invokeAny} methods, so any special handling of tasks must be implemented in the delegate's    * {@code execute} method or by wrapping the returned {@code    * ListeningExecutorService}.    *    *<p>If the delegate executor was already an instance of {@code    * ListeningExecutorService}, it is returned untouched, and the rest of this documentation does    * not apply.    *    * @since 10.0    */
 annotation|@
 name|GwtIncompatible
