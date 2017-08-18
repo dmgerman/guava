@@ -697,9 +697,7 @@ decl_stmt|;
 return|return
 operator|new
 name|IteratorWithSunJavaBug6529795
-argument_list|<
-name|Integer
-argument_list|>
+argument_list|<>
 argument_list|(
 name|iterator
 argument_list|)
@@ -1152,9 +1150,7 @@ block|{
 return|return
 operator|new
 name|ThrowingIterator
-argument_list|<
-name|Integer
-argument_list|>
+argument_list|<>
 argument_list|(
 operator|new
 name|IllegalStateException

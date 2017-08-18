@@ -3016,9 +3016,7 @@ operator|new
 name|ImmutableSortedMultiset
 operator|.
 name|Builder
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|(
 name|Ordering
 operator|.

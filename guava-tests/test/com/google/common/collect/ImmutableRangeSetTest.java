@@ -248,9 +248,7 @@ block|{
 return|return
 operator|new
 name|SampleElements
-argument_list|<
-name|Integer
-argument_list|>
+argument_list|<>
 argument_list|(
 literal|1
 argument_list|,
@@ -411,9 +409,7 @@ block|{
 return|return
 operator|new
 name|SampleElements
-argument_list|<
-name|BigInteger
-argument_list|>
+argument_list|<>
 argument_list|(
 name|BigInteger
 operator|.

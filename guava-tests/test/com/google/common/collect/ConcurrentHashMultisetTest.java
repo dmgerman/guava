@@ -630,9 +630,7 @@ name|multiset
 operator|=
 operator|new
 name|ConcurrentHashMultiset
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|(
 name|backingMap
 argument_list|)

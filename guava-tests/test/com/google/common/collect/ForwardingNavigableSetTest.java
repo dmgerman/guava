@@ -742,9 +742,7 @@ block|{
 return|return
 operator|new
 name|StandardImplForwardingNavigableSet
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|(
 operator|new
 name|SafeTreeSet
@@ -853,9 +851,7 @@ name|set
 init|=
 operator|new
 name|SafeTreeSet
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|(
 name|Ordering
 operator|.
@@ -878,9 +874,7 @@ expr_stmt|;
 return|return
 operator|new
 name|StandardImplForwardingNavigableSet
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|(
 name|set
 argument_list|)

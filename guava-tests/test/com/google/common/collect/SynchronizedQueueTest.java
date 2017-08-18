@@ -85,9 +85,7 @@ name|inner
 init|=
 operator|new
 name|TestQueue
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|Queue

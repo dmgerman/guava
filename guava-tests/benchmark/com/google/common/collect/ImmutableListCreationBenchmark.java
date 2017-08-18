@@ -223,9 +223,7 @@ operator|new
 name|ImmutableList
 operator|.
 name|Builder
-argument_list|<
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|(
 name|size
 argument_list|)

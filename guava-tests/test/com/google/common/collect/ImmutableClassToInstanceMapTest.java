@@ -1082,14 +1082,7 @@ block|{
 return|return
 operator|new
 name|SampleElements
-argument_list|<
-name|Entry
-argument_list|<
-name|Class
-argument_list|,
-name|Impl
-argument_list|>
-argument_list|>
+argument_list|<>
 argument_list|(
 name|immutableEntry
 argument_list|(

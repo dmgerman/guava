@@ -4840,9 +4840,7 @@ block|{
 return|return
 operator|new
 name|LinkedList
-argument_list|<
-name|Integer
-argument_list|>
+argument_list|<>
 argument_list|()
 return|;
 block|}
@@ -5464,9 +5462,7 @@ block|{
 return|return
 operator|new
 name|LinkedList
-argument_list|<
-name|Integer
-argument_list|>
+argument_list|<>
 argument_list|()
 return|;
 block|}
@@ -5775,9 +5771,7 @@ block|{
 return|return
 operator|new
 name|HashSet
-argument_list|<
-name|Integer
-argument_list|>
+argument_list|<>
 argument_list|(
 literal|4
 argument_list|)

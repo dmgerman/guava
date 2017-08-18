@@ -201,11 +201,7 @@ block|{
 return|return
 operator|new
 name|SimpleForwardingSortedMap
-argument_list|<
-name|String
-argument_list|,
-name|Integer
-argument_list|>
+argument_list|<>
 argument_list|(
 operator|new
 name|TreeMap

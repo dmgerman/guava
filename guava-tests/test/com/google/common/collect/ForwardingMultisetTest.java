@@ -729,9 +729,7 @@ block|{
 return|return
 operator|new
 name|StandardImplForwardingMultiset
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|(
 name|LinkedHashMultiset
 operator|.
@@ -805,9 +803,7 @@ block|{
 return|return
 operator|new
 name|StandardImplForwardingMultiset
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|(
 name|ImmutableMultiset
 operator|.

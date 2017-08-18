@@ -502,9 +502,7 @@ name|signal
 init|=
 operator|new
 name|WeakReference
-argument_list|<
-name|Integer
-argument_list|>
+argument_list|<>
 argument_list|(
 name|canonical
 argument_list|)

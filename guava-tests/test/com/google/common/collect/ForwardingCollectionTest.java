@@ -484,9 +484,7 @@ block|{
 return|return
 operator|new
 name|StandardImplForwardingCollection
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|(
 name|Lists
 operator|.
@@ -556,9 +554,7 @@ block|{
 return|return
 operator|new
 name|StandardImplForwardingCollection
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|(
 name|MinimalCollection
 operator|.

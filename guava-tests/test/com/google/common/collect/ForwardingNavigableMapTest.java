@@ -1170,11 +1170,7 @@ block|}
 return|return
 operator|new
 name|StandardImplForwardingNavigableMap
-argument_list|<
-name|String
-argument_list|,
-name|String
-argument_list|>
+argument_list|<>
 argument_list|(
 name|map
 argument_list|)

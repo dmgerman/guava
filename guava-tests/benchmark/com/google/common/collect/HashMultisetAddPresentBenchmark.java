@@ -110,12 +110,7 @@ name|multisets
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Multiset
-argument_list|<
-name|Integer
-argument_list|>
-argument_list|>
+argument_list|<>
 argument_list|(
 literal|0x10000
 argument_list|)

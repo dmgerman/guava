@@ -712,9 +712,7 @@ block|{
 return|return
 operator|new
 name|StandardImplForwardingList
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|(
 name|Lists
 operator|.
@@ -781,9 +779,7 @@ block|{
 return|return
 operator|new
 name|StandardImplForwardingList
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|(
 name|ImmutableList
 operator|.

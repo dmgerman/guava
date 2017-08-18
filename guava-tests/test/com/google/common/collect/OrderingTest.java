@@ -7644,9 +7644,7 @@ block|}
 return|return
 operator|new
 name|Scenario
-argument_list|<
-name|Integer
-argument_list|>
+argument_list|<>
 argument_list|(
 name|ordering
 argument_list|,

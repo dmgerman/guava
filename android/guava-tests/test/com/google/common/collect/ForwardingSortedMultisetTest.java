@@ -804,9 +804,7 @@ block|{
 return|return
 operator|new
 name|StandardImplForwardingSortedMultiset
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|(
 name|TreeMultiset
 operator|.

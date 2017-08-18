@@ -538,9 +538,7 @@ block|{
 return|return
 operator|new
 name|StandardImplForwardingSet
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|(
 name|Sets
 operator|.
@@ -610,9 +608,7 @@ block|{
 return|return
 operator|new
 name|StandardImplForwardingSet
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|(
 name|MinimalSet
 operator|.

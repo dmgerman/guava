@@ -459,9 +459,7 @@ block|{
 return|return
 operator|new
 name|PriorityQueue
-argument_list|<
-name|Integer
-argument_list|>
+argument_list|<>
 argument_list|(
 literal|11
 argument_list|,
@@ -493,9 +491,7 @@ block|{
 return|return
 operator|new
 name|InvertedMinMaxPriorityQueue
-argument_list|<
-name|Integer
-argument_list|>
+argument_list|<>
 argument_list|(
 name|comparator
 argument_list|)

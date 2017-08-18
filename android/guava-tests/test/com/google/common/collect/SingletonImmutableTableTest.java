@@ -122,13 +122,7 @@ name|testTable
 init|=
 operator|new
 name|SingletonImmutableTable
-argument_list|<
-name|Character
-argument_list|,
-name|Integer
-argument_list|,
-name|String
-argument_list|>
+argument_list|<>
 argument_list|(
 literal|'a'
 argument_list|,
