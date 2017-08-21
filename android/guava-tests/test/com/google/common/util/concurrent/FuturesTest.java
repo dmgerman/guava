@@ -1279,6 +1279,23 @@ name|future
 argument_list|)
 argument_list|)
 expr_stmt|;
+name|assertThat
+argument_list|(
+name|future
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+operator|.
+name|contains
+argument_list|(
+literal|"[status=SUCCESS, result=["
+operator|+
+name|DATA1
+operator|+
+literal|"]]"
+argument_list|)
+expr_stmt|;
 block|}
 DECL|method|testImmediateFailedFuture ()
 specifier|public
@@ -1306,6 +1323,23 @@ argument_list|(
 name|exception
 argument_list|)
 decl_stmt|;
+name|assertThat
+argument_list|(
+name|future
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+operator|.
+name|endsWith
+argument_list|(
+literal|"[status=FAILURE, cause=["
+operator|+
+name|exception
+operator|+
+literal|"]]"
+argument_list|)
+expr_stmt|;
 try|try
 block|{
 name|getDone
@@ -1395,6 +1429,23 @@ name|future
 operator|.
 name|isCancelled
 argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertThat
+argument_list|(
+name|future
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+operator|.
+name|endsWith
+argument_list|(
+literal|"[status=FAILURE, cause=["
+operator|+
+name|exception
+operator|+
+literal|"]]"
 argument_list|)
 expr_stmt|;
 try|try
@@ -1743,6 +1794,23 @@ argument_list|(
 name|DATA1
 argument_list|)
 decl_stmt|;
+name|assertThat
+argument_list|(
+name|future
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+operator|.
+name|endsWith
+argument_list|(
+literal|"[status=SUCCESS, result=["
+operator|+
+name|DATA1
+operator|+
+literal|"]]"
+argument_list|)
+expr_stmt|;
 comment|// Verify that the proper object is returned without waiting
 name|assertSame
 argument_list|(
@@ -1899,6 +1967,23 @@ argument_list|(
 name|exception
 argument_list|)
 decl_stmt|;
+name|assertThat
+argument_list|(
+name|future
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+operator|.
+name|endsWith
+argument_list|(
+literal|"[status=FAILURE, cause=["
+operator|+
+name|exception
+operator|+
+literal|"]]"
+argument_list|)
+expr_stmt|;
 try|try
 block|{
 name|future

@@ -1085,6 +1085,14 @@ parameter_list|)
 block|{
 try|try
 block|{
+name|V
+name|value
+init|=
+name|getDone
+argument_list|(
+name|this
+argument_list|)
+decl_stmt|;
 name|builder
 operator|.
 name|append
@@ -1094,10 +1102,7 @@ argument_list|)
 operator|.
 name|append
 argument_list|(
-name|getDone
-argument_list|(
-name|this
-argument_list|)
+name|value
 argument_list|)
 operator|.
 name|append

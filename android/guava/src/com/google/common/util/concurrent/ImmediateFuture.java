@@ -403,6 +403,28 @@ return|return
 name|value
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|toString ()
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+comment|// Behaviour analogous to AbstractFuture#toString().
+return|return
+name|super
+operator|.
+name|toString
+argument_list|()
+operator|+
+literal|"[status=SUCCESS, result=["
+operator|+
+name|value
+operator|+
+literal|"]]"
+return|;
+block|}
 block|}
 annotation|@
 name|GwtIncompatible
@@ -500,6 +522,28 @@ argument_list|)
 expr_stmt|;
 return|return
 name|value
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|toString ()
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+comment|// Behaviour analogous to AbstractFuture#toString().
+return|return
+name|super
+operator|.
+name|toString
+argument_list|()
+operator|+
+literal|"[status=SUCCESS, result=["
+operator|+
+name|value
+operator|+
+literal|"]]"
 return|;
 block|}
 block|}
@@ -659,6 +703,28 @@ expr_stmt|;
 throw|throw
 name|thrown
 throw|;
+block|}
+annotation|@
+name|Override
+DECL|method|toString ()
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+comment|// Behaviour analogous to AbstractFuture#toString().
+return|return
+name|super
+operator|.
+name|toString
+argument_list|()
+operator|+
+literal|"[status=FAILURE, cause=["
+operator|+
+name|thrown
+operator|+
+literal|"]]"
+return|;
 block|}
 block|}
 block|}
