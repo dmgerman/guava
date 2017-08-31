@@ -82,20 +82,6 @@ name|common
 operator|.
 name|base
 operator|.
-name|Optional
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|base
-operator|.
 name|Predicate
 import|;
 end_import
@@ -2889,6 +2875,14 @@ argument_list|(
 operator|new
 name|TypeToken
 argument_list|<
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
 name|Optional
 argument_list|<
 name|OneConstantEnum
@@ -2939,10 +2933,10 @@ begin_function
 annotation|@
 name|AndroidIncompatible
 comment|// problem with equality of Type objects?
-DECL|method|testOptional ()
+DECL|method|testGoogleOptional ()
 specifier|public
 name|void
-name|testOptional
+name|testGoogleOptional
 parameter_list|()
 block|{
 name|FreshValueGenerator
@@ -2954,6 +2948,14 @@ argument_list|()
 decl_stmt|;
 name|assertEquals
 argument_list|(
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
 name|Optional
 operator|.
 name|absent
@@ -2966,6 +2968,14 @@ argument_list|(
 operator|new
 name|TypeToken
 argument_list|<
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
 name|Optional
 argument_list|<
 name|String
@@ -2978,6 +2988,14 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
 name|Optional
 operator|.
 name|of
@@ -2992,6 +3010,14 @@ argument_list|(
 operator|new
 name|TypeToken
 argument_list|<
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
 name|Optional
 argument_list|<
 name|String
@@ -3002,11 +3028,19 @@ block|{}
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|// Test that the first generated instance for different Optional<T> is always absent().
-comment|// Having generated Optional<String> instances doesn't prevent absent() from being generated for
-comment|// other Optional types.
+comment|// Test that the first generated instance for different cgcb.Optional<T> is always absent().
+comment|// Having generated cgcb.Optional<String> instances doesn't prevent absent() from being
+comment|// generated for other cgcb.Optional types.
 name|assertEquals
 argument_list|(
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
 name|Optional
 operator|.
 name|absent
@@ -3019,6 +3053,14 @@ argument_list|(
 operator|new
 name|TypeToken
 argument_list|<
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
 name|Optional
 argument_list|<
 name|OneConstantEnum
@@ -3031,6 +3073,14 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
 name|Optional
 operator|.
 name|of
@@ -3047,6 +3097,14 @@ argument_list|(
 operator|new
 name|TypeToken
 argument_list|<
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
 name|Optional
 argument_list|<
 name|OneConstantEnum
