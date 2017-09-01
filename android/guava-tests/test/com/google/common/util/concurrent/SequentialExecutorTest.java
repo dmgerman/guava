@@ -191,14 +191,14 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests {@link SerializingExecutor}.  *  * @author JJ Furman  */
+comment|/**  * Tests {@link SequentialExecutor}.  *  * @author JJ Furman  */
 end_comment
 
 begin_class
-DECL|class|SerializingExecutorTest
+DECL|class|SequentialExecutorTest
 specifier|public
 class|class
-name|SerializingExecutorTest
+name|SequentialExecutorTest
 extends|extends
 name|TestCase
 block|{
@@ -300,7 +300,7 @@ name|fakePool
 decl_stmt|;
 DECL|field|e
 specifier|private
-name|SerializingExecutor
+name|SequentialExecutor
 name|e
 decl_stmt|;
 annotation|@
@@ -320,22 +320,22 @@ expr_stmt|;
 name|e
 operator|=
 operator|new
-name|SerializingExecutor
+name|SequentialExecutor
 argument_list|(
 name|fakePool
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|testSerializingNullExecutor_fails ()
+DECL|method|testConstructingWithNullExecutor_fails ()
 specifier|public
 name|void
-name|testSerializingNullExecutor_fails
+name|testConstructingWithNullExecutor_fails
 parameter_list|()
 block|{
 try|try
 block|{
 operator|new
-name|SerializingExecutor
+name|SequentialExecutor
 argument_list|(
 literal|null
 argument_list|)
@@ -1126,11 +1126,11 @@ literal|true
 argument_list|)
 decl_stmt|;
 specifier|final
-name|SerializingExecutor
+name|SequentialExecutor
 name|executor
 init|=
 operator|new
-name|SerializingExecutor
+name|SequentialExecutor
 argument_list|(
 operator|new
 name|Executor
@@ -1280,11 +1280,11 @@ decl_stmt|;
 try|try
 block|{
 specifier|final
-name|SerializingExecutor
+name|SequentialExecutor
 name|executor
 init|=
 operator|new
-name|SerializingExecutor
+name|SequentialExecutor
 argument_list|(
 name|service
 argument_list|)
@@ -1366,7 +1366,7 @@ argument_list|)
 expr_stmt|;
 comment|// submit directly to the service
 comment|// the barrier task runs after the error task so we know that the error has been observed by
-comment|// SerializingExecutor by the time the barrier is satified
+comment|// SequentialExecutor by the time the barrier is satified
 name|barrier
 operator|.
 name|await

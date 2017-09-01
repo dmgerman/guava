@@ -52,6 +52,20 @@ name|com
 operator|.
 name|google
 operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|DoNotMock
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
 name|j2objc
 operator|.
 name|annotations
@@ -129,16 +143,17 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Executor ensuring that all Runnables submitted are executed in order, using the provided  * Executor, and serially such that no two will ever be running at the same time.  *  *<p>Tasks submitted to {@link #execute(Runnable)} are executed in FIFO order.  *  *<p>Tasks can also be prepended to the queue to be executed in LIFO order before any other  * submitted tasks. Primarily intended for the currently executing task to be able to schedule a  * continuation task.  *  *<p>Execution on the queue can be {@linkplain #suspend suspended}, e.g. while waiting for an RPC,  * and execution can be {@linkplain #resume resumed} later.  *  *<p>The execution of tasks is done by one thread as long as there are tasks left in the queue and  * execution has not been suspended. (Even if one task is {@linkplain Thread#interrupt interrupted},  * execution of subsequent tasks continues.) {@code RuntimeException}s thrown by tasks are simply  * logged and the executor keeps trucking. If an {@code Error} is thrown, the error will propagate  * and execution will stop until it is restarted by external calls.  */
+comment|/**  * Executor ensuring that all Runnables submitted are executed in order, using the provided  * Executor, and sequentially such that no two will ever be running at the same time.  *  *<p>Tasks submitted to {@link #execute(Runnable)} are executed in FIFO order.  *  *<p>Tasks can also be prepended to the queue to be executed in LIFO order before any other  * submitted tasks. Primarily intended for the currently executing task to be able to schedule a  * continuation task.  *  *<p>Execution on the queue can be {@linkplain #suspend suspended}, e.g. while waiting for an RPC,  * and execution can be {@linkplain #resume resumed} later.  *  *<p>The execution of tasks is done by one thread as long as there are tasks left in the queue and  * execution has not been suspended. (Even if one task is {@linkplain Thread#interrupt interrupted},  * execution of subsequent tasks continues.) {@code RuntimeException}s thrown by tasks are simply  * logged and the executor keeps trucking. If an {@code Error} is thrown, the error will propagate  * and execution will stop until it is restarted by external calls.  */
 end_comment
 
 begin_class
 annotation|@
 name|GwtIncompatible
-DECL|class|SerializingExecutor
-specifier|final
+annotation|@
+name|DoNotMock
+DECL|class|SequentialExecutor
 class|class
-name|SerializingExecutor
+name|SequentialExecutor
 implements|implements
 name|Executor
 block|{
@@ -153,7 +168,7 @@ name|Logger
 operator|.
 name|getLogger
 argument_list|(
-name|SerializingExecutor
+name|SequentialExecutor
 operator|.
 name|class
 operator|.
@@ -221,9 +236,9 @@ operator|new
 name|QueueWorker
 argument_list|()
 decl_stmt|;
-DECL|method|SerializingExecutor (Executor executor)
-specifier|public
-name|SerializingExecutor
+comment|/** Use {@link MoreExecutors#sequentialExecutor} */
+DECL|method|SequentialExecutor (Executor executor)
+name|SequentialExecutor
 parameter_list|(
 name|Executor
 name|executor

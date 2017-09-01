@@ -1359,7 +1359,7 @@ parameter_list|)
 block|{
 return|return
 operator|new
-name|SerializingExecutor
+name|SequentialExecutor
 argument_list|(
 name|delegate
 argument_list|)
