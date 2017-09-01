@@ -273,7 +273,7 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-comment|// First ensure that our classloaders are intializing the correct helper versions
+comment|// First ensure that our classloaders are initializing the correct helper versions
 name|checkHelperVersion
 argument_list|(
 name|getClass

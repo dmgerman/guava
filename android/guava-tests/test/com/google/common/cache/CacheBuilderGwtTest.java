@@ -508,7 +508,7 @@ literal|10
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|// Order required to remove dependence on acces order / write order constraint.
+comment|// Order required to remove dependence on access order / write order constraint.
 name|assertEquals
 argument_list|(
 name|Integer

@@ -256,7 +256,7 @@ return|return
 name|this
 return|;
 block|}
-comment|// note: overriden by {BELOW,ABOVE}_ALL
+comment|// note: overridden by {BELOW,ABOVE}_ALL
 annotation|@
 name|Override
 DECL|method|compareTo (Cut<C> that)

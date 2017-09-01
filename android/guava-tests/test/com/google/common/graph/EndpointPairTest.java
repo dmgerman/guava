@@ -839,7 +839,7 @@ argument_list|()
 expr_stmt|;
 block|}
 comment|// Tests for Graph.edges() and Network.asGraph().edges() methods
-comment|// TODO(user): Move these to a more appropiate location in the test suite.
+comment|// TODO(user): Move these to a more appropriate location in the test suite.
 annotation|@
 name|Test
 DECL|method|endpointPair_directedGraph ()

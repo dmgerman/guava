@@ -649,7 +649,7 @@ argument_list|>
 name|delegate
 parameter_list|()
 block|{
-comment|// This is safe because all non-covariant methods are overriden
+comment|// This is safe because all non-covariant methods are overridden
 return|return
 operator|(
 name|Multiset
