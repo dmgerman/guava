@@ -58,18 +58,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|concurrent
-operator|.
-name|TimeUnit
-import|;
-end_import
-
-begin_import
-import|import
 name|junit
 operator|.
 name|framework
@@ -1196,17 +1184,6 @@ comment|// Inhibit IllegalMonitorStateException
 operator|new
 name|NullPointerTester
 argument_list|()
-operator|.
-name|setDefault
-argument_list|(
-name|TimeUnit
-operator|.
-name|class
-argument_list|,
-name|TimeUnit
-operator|.
-name|SECONDS
-argument_list|)
 operator|.
 name|setDefault
 argument_list|(
