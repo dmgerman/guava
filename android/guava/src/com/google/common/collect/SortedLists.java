@@ -145,7 +145,6 @@ parameter_list|()
 block|{}
 comment|/**    * A specification for which index to return if the list contains at least one element that    * compares as equal to the key.    */
 DECL|enum|KeyPresentBehavior
-specifier|public
 enum|enum
 name|KeyPresentBehavior
 block|{
@@ -566,7 +565,6 @@ function_decl|;
 block|}
 comment|/**    * A specification for which index to return if the list contains no elements that compare as    * equal to the key.    */
 DECL|enum|KeyAbsentBehavior
-specifier|public
 enum|enum
 name|KeyAbsentBehavior
 block|{
