@@ -1785,13 +1785,24 @@ operator|.
 name|of
 argument_list|()
 decl_stmt|;
+name|List
+argument_list|<
+name|?
+extends|extends
+name|Future
+argument_list|<
+name|?
+argument_list|>
+argument_list|>
+name|unused
+init|=
 name|executor
 operator|.
 name|invokeAll
 argument_list|(
 name|tasks
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 block|}
 DECL|method|testListeningDecorator ()
 specifier|public

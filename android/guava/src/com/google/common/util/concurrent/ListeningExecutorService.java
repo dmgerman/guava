@@ -34,20 +34,6 @@ end_import
 
 begin_import
 import|import
-name|com
-operator|.
-name|google
-operator|.
-name|errorprone
-operator|.
-name|annotations
-operator|.
-name|CanIgnoreReturnValue
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|util
@@ -131,8 +117,6 @@ comment|/**  * An {@link ExecutorService} that returns {@link ListenableFuture} 
 end_comment
 
 begin_interface
-annotation|@
-name|CanIgnoreReturnValue
 annotation|@
 name|GwtIncompatible
 DECL|interface|ListeningExecutorService
