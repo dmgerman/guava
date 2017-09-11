@@ -788,7 +788,7 @@ name|assertCancelled
 argument_list|(
 name|future
 argument_list|,
-comment|/* expectWasCancelled= */
+comment|/* expectWasInterrupted= */
 literal|false
 argument_list|)
 expr_stmt|;
@@ -826,7 +826,7 @@ name|assertCancelled
 argument_list|(
 name|future
 argument_list|,
-comment|/* expectWasCancelled= */
+comment|/* expectWasInterrupted= */
 literal|false
 argument_list|)
 expr_stmt|;
