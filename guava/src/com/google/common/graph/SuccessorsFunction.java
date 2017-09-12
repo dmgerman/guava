@@ -45,7 +45,7 @@ parameter_list|<
 name|N
 parameter_list|>
 block|{
-comment|/**    * Returns all nodes in this graph adjacent to {@code node} which can be reached by traversing    * {@code node}'s outgoing edges in the direction (if any) of the edge.    *    *<p>This is<i>not</i> the same as "all nodes reachable from {@code node} by following outgoing    * edges". For that functionality, see {@link Graphs#reachableNodes(Graph, Object)}.    *    *<p>Some algorithms that operate on a {@code SuccessorsFunction} may produce undesired results    * if the returned {@link Iterable} contains duplicate elements. Implementations of such    * algorithms should document their behavior in the presence of duplicates.    *    * @throws IllegalArgumentException if {@code node} is not an element of this graph    */
+comment|/**    * Returns all nodes in this graph adjacent to {@code node} which can be reached by traversing    * {@code node}'s outgoing edges in the direction (if any) of the edge.    *    *<p>This is<i>not</i> the same as "all nodes reachable from {@code node} by following outgoing    * edges". For that functionality, see {@link Graphs#reachableNodes(Graph, Object)}.    *    *<p>Some algorithms that operate on a {@code SuccessorsFunction} may produce undesired results    * if the returned {@link Iterable} contains duplicate elements. Implementations of such    * algorithms should document their behavior in the presence of duplicates.    *    *<p>The returned {@code iterable} and its elements, must each be non-null.    *    * @throws IllegalArgumentException if {@code node} is not an element of this graph    */
 DECL|method|successors (N node)
 name|Iterable
 argument_list|<
