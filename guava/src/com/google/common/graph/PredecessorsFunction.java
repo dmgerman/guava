@@ -45,7 +45,7 @@ parameter_list|<
 name|N
 parameter_list|>
 block|{
-comment|/**    * Returns all nodes in this graph adjacent to {@code node} which can be reached by traversing    * {@code node}'s incoming edges<i>against</i> the direction (if any) of the edge.    *    *<p>Some algorithms that operate on a {@code PredecessorsFunction} may produce undesired results    * if the returned {@link Iterable} contains duplicate elements. Implementations of such    * algorithms should document their behavior in the presence of duplicates.    *    *<p>The returned {@code iterable}, and its elements, must each be non-null.    *    * @throws IllegalArgumentException if {@code node} is not an element of this graph    */
+comment|/**    * Returns all nodes in this graph adjacent to {@code node} which can be reached by traversing    * {@code node}'s incoming edges<i>against</i> the direction (if any) of the edge.    *    *<p>Some algorithms that operate on a {@code PredecessorsFunction} may produce undesired results    * if the returned {@link Iterable} contains duplicate elements. Implementations of such    * algorithms should document their behavior in the presence of duplicates.    *    *<p>The elements of the returned {@code Iterable} must each be:    *    *<ul>    *<li>Non-null    *<li>Usable as {@code Map} keys (see the Guava User Guide's section on<a    *       href="https://github.com/google/guava/wiki/GraphsExplained#graph-elements-nodes-and-edges">    *       graph elements</a> for details)    *</ul>    *    * @throws IllegalArgumentException if {@code node} is not an element of this graph    */
 DECL|method|predecessors (N node)
 name|Iterable
 argument_list|<
