@@ -548,19 +548,14 @@ operator|.
 name|getClassLoader
 argument_list|()
 decl_stmt|;
-return|return
 comment|// we delegate to the current classloader so both loaders agree on classes like TestCase
+return|return
 operator|new
 name|URLClassLoader
 argument_list|(
-operator|(
-operator|(
-name|URLClassLoader
-operator|)
-name|classLoader
-operator|)
+name|ClassPathUtil
 operator|.
-name|getURLs
+name|getClassPathUrls
 argument_list|()
 argument_list|,
 name|classLoader
