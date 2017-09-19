@@ -132,7 +132,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Ensures the truth of an expression involving one or more parameters to the calling method.    *    * @param expression a boolean expression    * @param errorMessageTemplate a template for the exception message should the check fail. The    *     message is formed by replacing each {@code %s} placeholder in the template with an    *     argument. These are matched by position - the first {@code %s} gets {@code    *     errorMessageArgs[0]}, etc. Unmatched arguments will be appended to the formatted message in    *     square braces. Unmatched placeholders will be left as-is.    * @param errorMessageArgs the arguments to be substituted into the message template. Arguments    *     are converted to strings using {@link String#valueOf(Object)}.    * @throws IllegalArgumentException if {@code expression} is false    * @throws NullPointerException if the check fails and either {@code errorMessageTemplate} or    *     {@code errorMessageArgs} is null (don't let this happen)    */
+comment|/**    * Ensures the truth of an expression involving one or more parameters to the calling method.    *    * @param expression a boolean expression    * @param errorMessageTemplate a template for the exception message should the check fail. The    *     message is formed by replacing each {@code %s} placeholder in the template with an    *     argument. These are matched by position - the first {@code %s} gets {@code    *     errorMessageArgs[0]}, etc. Unmatched arguments will be appended to the formatted message in    *     square braces. Unmatched placeholders will be left as-is.    * @param errorMessageArgs the arguments to be substituted into the message template. Arguments    *     are converted to strings using {@link String#valueOf(Object)}.    * @throws IllegalArgumentException if {@code expression} is false    */
 DECL|method|checkArgument ( boolean expression, @Nullable String errorMessageTemplate, @Nullable Object... errorMessageArgs)
 specifier|public
 specifier|static
@@ -1229,7 +1229,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Ensures the truth of an expression involving the state of the calling instance, but not    * involving any parameters to the calling method.    *    * @param expression a boolean expression    * @param errorMessageTemplate a template for the exception message should the check fail. The    *     message is formed by replacing each {@code %s} placeholder in the template with an    *     argument. These are matched by position - the first {@code %s} gets {@code    *     errorMessageArgs[0]}, etc. Unmatched arguments will be appended to the formatted message in    *     square braces. Unmatched placeholders will be left as-is.    * @param errorMessageArgs the arguments to be substituted into the message template. Arguments    *     are converted to strings using {@link String#valueOf(Object)}.    * @throws IllegalStateException if {@code expression} is false    * @throws NullPointerException if the check fails and either {@code errorMessageTemplate} or    *     {@code errorMessageArgs} is null (don't let this happen)    * @see Verify#verify Verify.verify()    */
+comment|/**    * Ensures the truth of an expression involving the state of the calling instance, but not    * involving any parameters to the calling method.    *    * @param expression a boolean expression    * @param errorMessageTemplate a template for the exception message should the check fail. The    *     message is formed by replacing each {@code %s} placeholder in the template with an    *     argument. These are matched by position - the first {@code %s} gets {@code    *     errorMessageArgs[0]}, etc. Unmatched arguments will be appended to the formatted message in    *     square braces. Unmatched placeholders will be left as-is.    * @param errorMessageArgs the arguments to be substituted into the message template. Arguments    *     are converted to strings using {@link String#valueOf(Object)}.    * @throws IllegalStateException if {@code expression} is false    * @see Verify#verify Verify.verify()    */
 DECL|method|checkState ( boolean expression, @Nullable String errorMessageTemplate, @Nullable Object... errorMessageArgs)
 specifier|public
 specifier|static
@@ -2378,7 +2378,6 @@ operator|==
 literal|null
 condition|)
 block|{
-comment|// If either of these parameters is null, the right thing happens anyway
 throw|throw
 operator|new
 name|NullPointerException
@@ -4007,13 +4006,15 @@ name|start
 argument_list|)
 return|;
 block|}
-comment|/**    * Substitutes each {@code %s} in {@code template} with an argument. These are matched by    * position: the first {@code %s} gets {@code args[0]}, etc. If there are more arguments than    * placeholders, the unmatched arguments will be appended to the end of the formatted message in    * square braces.    *    * @param template a non-null string containing 0 or more {@code %s} placeholders.    * @param args the arguments to be substituted into the message template. Arguments are converted    *     to strings using {@link String#valueOf(Object)}. Arguments can be null.    */
+comment|/**    * Substitutes each {@code %s} in {@code template} with an argument. These are matched by    * position: the first {@code %s} gets {@code args[0]}, etc. If there are more arguments than    * placeholders, the unmatched arguments will be appended to the end of the formatted message in    * square braces.    *    * @param template a string containing 0 or more {@code %s} placeholders. null is treated as    *     "null".    * @param args the arguments to be substituted into the message template. Arguments are converted    *     to strings using {@link String#valueOf(Object)}. Arguments can be null.    */
 comment|// Note that this is somewhat-improperly used from Verify.java as well.
-DECL|method|format (String template, @Nullable Object... args)
+DECL|method|format (@ullable String template, @Nullable Object... args)
 specifier|static
 name|String
 name|format
 parameter_list|(
+annotation|@
+name|Nullable
 name|String
 name|template
 parameter_list|,
@@ -4034,6 +4035,21 @@ name|template
 argument_list|)
 expr_stmt|;
 comment|// null -> "null"
+name|args
+operator|=
+name|args
+operator|==
+literal|null
+condition|?
+operator|new
+name|Object
+index|[]
+block|{
+literal|"(Object[])null"
+block|}
+else|:
+name|args
+expr_stmt|;
 comment|// start substituting the arguments into the '%s' placeholders
 name|StringBuilder
 name|builder
