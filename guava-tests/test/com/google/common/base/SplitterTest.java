@@ -294,12 +294,7 @@ name|assertEquals
 argument_list|(
 literal|"[]"
 argument_list|,
-name|Splitter
-operator|.
-name|on
-argument_list|(
-literal|','
-argument_list|)
+name|COMMA_SPLITTER
 operator|.
 name|split
 argument_list|(
@@ -314,12 +309,7 @@ name|assertEquals
 argument_list|(
 literal|"[a, b, c]"
 argument_list|,
-name|Splitter
-operator|.
-name|on
-argument_list|(
-literal|','
-argument_list|)
+name|COMMA_SPLITTER
 operator|.
 name|split
 argument_list|(
@@ -570,10 +560,10 @@ name|inOrder
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|testCharacterSplitWithMulitpleLetters ()
+DECL|method|testCharacterSplitWithMultitpleLetters ()
 specifier|public
 name|void
-name|testCharacterSplitWithMulitpleLetters
+name|testCharacterSplitWithMultitpleLetters
 parameter_list|()
 block|{
 name|Iterable
@@ -1041,7 +1031,7 @@ name|Splitter
 operator|.
 name|on
 argument_list|(
-literal|','
+literal|","
 argument_list|)
 operator|.
 name|split
@@ -1088,7 +1078,7 @@ name|Splitter
 operator|.
 name|on
 argument_list|(
-literal|'.'
+literal|"."
 argument_list|)
 operator|.
 name|split
@@ -1131,7 +1121,7 @@ name|Splitter
 operator|.
 name|on
 argument_list|(
-literal|','
+literal|","
 argument_list|)
 operator|.
 name|split
@@ -1180,7 +1170,7 @@ name|Splitter
 operator|.
 name|on
 argument_list|(
-literal|','
+literal|","
 argument_list|)
 operator|.
 name|split
@@ -1229,7 +1219,7 @@ name|Splitter
 operator|.
 name|on
 argument_list|(
-literal|','
+literal|","
 argument_list|)
 operator|.
 name|split
@@ -1278,7 +1268,7 @@ name|Splitter
 operator|.
 name|on
 argument_list|(
-literal|','
+literal|","
 argument_list|)
 operator|.
 name|split
@@ -1322,7 +1312,7 @@ name|Splitter
 operator|.
 name|on
 argument_list|(
-literal|'-'
+literal|"-"
 argument_list|)
 operator|.
 name|split
@@ -1371,7 +1361,7 @@ name|Splitter
 operator|.
 name|on
 argument_list|(
-literal|'.'
+literal|"."
 argument_list|)
 operator|.
 name|omitEmptyStrings
@@ -1421,7 +1411,7 @@ name|Splitter
 operator|.
 name|on
 argument_list|(
-literal|'.'
+literal|"."
 argument_list|)
 operator|.
 name|trimResults
@@ -1471,7 +1461,7 @@ name|Splitter
 operator|.
 name|on
 argument_list|(
-literal|'.'
+literal|"."
 argument_list|)
 operator|.
 name|omitEmptyStrings
@@ -1733,7 +1723,7 @@ name|Splitter
 operator|.
 name|on
 argument_list|(
-literal|'.'
+literal|"."
 argument_list|)
 operator|.
 name|split
@@ -1767,7 +1757,7 @@ name|Splitter
 operator|.
 name|on
 argument_list|(
-literal|'.'
+literal|"."
 argument_list|)
 operator|.
 name|omitEmptyStrings
@@ -1799,7 +1789,7 @@ name|Splitter
 operator|.
 name|on
 argument_list|(
-literal|'.'
+literal|"."
 argument_list|)
 operator|.
 name|split
@@ -1839,7 +1829,7 @@ name|Splitter
 operator|.
 name|on
 argument_list|(
-literal|'.'
+literal|"."
 argument_list|)
 operator|.
 name|omitEmptyStrings
@@ -1882,7 +1872,7 @@ name|Splitter
 operator|.
 name|on
 argument_list|(
-literal|','
+literal|","
 argument_list|)
 operator|.
 name|trimResults
@@ -3102,7 +3092,7 @@ name|Splitter
 operator|.
 name|on
 argument_list|(
-literal|','
+literal|","
 argument_list|)
 operator|.
 name|split
@@ -3207,7 +3197,7 @@ name|Splitter
 operator|.
 name|on
 argument_list|(
-literal|','
+literal|","
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -4370,24 +4360,14 @@ name|tester
 operator|.
 name|testAllPublicInstanceMethods
 argument_list|(
-name|Splitter
-operator|.
-name|on
-argument_list|(
-literal|','
-argument_list|)
+name|COMMA_SPLITTER
 argument_list|)
 expr_stmt|;
 name|tester
 operator|.
 name|testAllPublicInstanceMethods
 argument_list|(
-name|Splitter
-operator|.
-name|on
-argument_list|(
-literal|','
-argument_list|)
+name|COMMA_SPLITTER
 operator|.
 name|trimResults
 argument_list|()
@@ -5009,12 +4989,7 @@ name|String
 argument_list|>
 name|m
 init|=
-name|Splitter
-operator|.
-name|on
-argument_list|(
-literal|','
-argument_list|)
+name|COMMA_SPLITTER
 operator|.
 name|withKeyValueSeparator
 argument_list|(
@@ -5080,12 +5055,7 @@ expr_stmt|;
 comment|// try in a different order
 name|m
 operator|=
-name|Splitter
-operator|.
-name|on
-argument_list|(
-literal|','
-argument_list|)
+name|COMMA_SPLITTER
 operator|.
 name|withKeyValueSeparator
 argument_list|(
@@ -5157,12 +5127,7 @@ parameter_list|()
 block|{
 try|try
 block|{
-name|Splitter
-operator|.
-name|on
-argument_list|(
-literal|','
-argument_list|)
+name|COMMA_SPLITTER
 operator|.
 name|withKeyValueSeparator
 argument_list|(
