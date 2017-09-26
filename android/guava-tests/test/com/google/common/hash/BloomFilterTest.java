@@ -1823,7 +1823,7 @@ name|MAX_VALUE
 operator|/
 literal|2
 argument_list|,
-literal|0.28
+literal|0.29
 argument_list|)
 decl_stmt|;
 name|unused
