@@ -174,7 +174,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Ensures the truth of an expression involving one or more parameters to the calling method.    *    *<p>See {@link #checkArgument(boolean, String, Object...)} for details.    */
+comment|/**    * Ensures the truth of an expression involving one or more parameters to the calling method.    *    *<p>See {@link #checkArgument(boolean, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
 DECL|method|checkArgument (boolean b, @Nullable String errorMessageTemplate, char p1)
 specifier|public
 specifier|static
@@ -213,7 +213,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Ensures the truth of an expression involving one or more parameters to the calling method.    *    *<p>See {@link #checkArgument(boolean, String, Object...)} for details.    */
+comment|/**    * Ensures the truth of an expression involving one or more parameters to the calling method.    *    *<p>See {@link #checkArgument(boolean, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
 DECL|method|checkArgument (boolean b, @Nullable String errorMessageTemplate, int p1)
 specifier|public
 specifier|static
@@ -252,7 +252,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Ensures the truth of an expression involving one or more parameters to the calling method.    *    *<p>See {@link #checkArgument(boolean, String, Object...)} for details.    */
+comment|/**    * Ensures the truth of an expression involving one or more parameters to the calling method.    *    *<p>See {@link #checkArgument(boolean, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
 DECL|method|checkArgument (boolean b, @Nullable String errorMessageTemplate, long p1)
 specifier|public
 specifier|static
@@ -291,7 +291,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Ensures the truth of an expression involving one or more parameters to the calling method.    *    *<p>See {@link #checkArgument(boolean, String, Object...)} for details.    */
+comment|/**    * Ensures the truth of an expression involving one or more parameters to the calling method.    *    *<p>See {@link #checkArgument(boolean, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
 DECL|method|checkArgument ( boolean b, @Nullable String errorMessageTemplate, @Nullable Object p1)
 specifier|public
 specifier|static
@@ -332,7 +332,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Ensures the truth of an expression involving one or more parameters to the calling method.    *    *<p>See {@link #checkArgument(boolean, String, Object...)} for details.    */
+comment|/**    * Ensures the truth of an expression involving one or more parameters to the calling method.    *    *<p>See {@link #checkArgument(boolean, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
 DECL|method|checkArgument ( boolean b, @Nullable String errorMessageTemplate, char p1, char p2)
 specifier|public
 specifier|static
@@ -376,7 +376,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Ensures the truth of an expression involving one or more parameters to the calling method.    *    *<p>See {@link #checkArgument(boolean, String, Object...)} for details.    */
+comment|/**    * Ensures the truth of an expression involving one or more parameters to the calling method.    *    *<p>See {@link #checkArgument(boolean, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
 DECL|method|checkArgument ( boolean b, @Nullable String errorMessageTemplate, char p1, int p2)
 specifier|public
 specifier|static
@@ -420,7 +420,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Ensures the truth of an expression involving one or more parameters to the calling method.    *    *<p>See {@link #checkArgument(boolean, String, Object...)} for details.    */
+comment|/**    * Ensures the truth of an expression involving one or more parameters to the calling method.    *    *<p>See {@link #checkArgument(boolean, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
 DECL|method|checkArgument ( boolean b, @Nullable String errorMessageTemplate, char p1, long p2)
 specifier|public
 specifier|static
@@ -464,7 +464,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Ensures the truth of an expression involving one or more parameters to the calling method.    *    *<p>See {@link #checkArgument(boolean, String, Object...)} for details.    */
+comment|/**    * Ensures the truth of an expression involving one or more parameters to the calling method.    *    *<p>See {@link #checkArgument(boolean, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
 DECL|method|checkArgument ( boolean b, @Nullable String errorMessageTemplate, char p1, @Nullable Object p2)
 specifier|public
 specifier|static
@@ -510,7 +510,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Ensures the truth of an expression involving one or more parameters to the calling method.    *    *<p>See {@link #checkArgument(boolean, String, Object...)} for details.    */
+comment|/**    * Ensures the truth of an expression involving one or more parameters to the calling method.    *    *<p>See {@link #checkArgument(boolean, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
 DECL|method|checkArgument ( boolean b, @Nullable String errorMessageTemplate, int p1, char p2)
 specifier|public
 specifier|static
@@ -554,7 +554,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Ensures the truth of an expression involving one or more parameters to the calling method.    *    *<p>See {@link #checkArgument(boolean, String, Object...)} for details.    */
+comment|/**    * Ensures the truth of an expression involving one or more parameters to the calling method.    *    *<p>See {@link #checkArgument(boolean, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
 DECL|method|checkArgument ( boolean b, @Nullable String errorMessageTemplate, int p1, int p2)
 specifier|public
 specifier|static
@@ -598,7 +598,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Ensures the truth of an expression involving one or more parameters to the calling method.    *    *<p>See {@link #checkArgument(boolean, String, Object...)} for details.    */
+comment|/**    * Ensures the truth of an expression involving one or more parameters to the calling method.    *    *<p>See {@link #checkArgument(boolean, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
 DECL|method|checkArgument ( boolean b, @Nullable String errorMessageTemplate, int p1, long p2)
 specifier|public
 specifier|static
@@ -642,7 +642,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Ensures the truth of an expression involving one or more parameters to the calling method.    *    *<p>See {@link #checkArgument(boolean, String, Object...)} for details.    */
+comment|/**    * Ensures the truth of an expression involving one or more parameters to the calling method.    *    *<p>See {@link #checkArgument(boolean, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
 DECL|method|checkArgument ( boolean b, @Nullable String errorMessageTemplate, int p1, @Nullable Object p2)
 specifier|public
 specifier|static
@@ -688,7 +688,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Ensures the truth of an expression involving one or more parameters to the calling method.    *    *<p>See {@link #checkArgument(boolean, String, Object...)} for details.    */
+comment|/**    * Ensures the truth of an expression involving one or more parameters to the calling method.    *    *<p>See {@link #checkArgument(boolean, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
 DECL|method|checkArgument ( boolean b, @Nullable String errorMessageTemplate, long p1, char p2)
 specifier|public
 specifier|static
@@ -732,7 +732,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Ensures the truth of an expression involving one or more parameters to the calling method.    *    *<p>See {@link #checkArgument(boolean, String, Object...)} for details.    */
+comment|/**    * Ensures the truth of an expression involving one or more parameters to the calling method.    *    *<p>See {@link #checkArgument(boolean, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
 DECL|method|checkArgument ( boolean b, @Nullable String errorMessageTemplate, long p1, int p2)
 specifier|public
 specifier|static
@@ -776,7 +776,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Ensures the truth of an expression involving one or more parameters to the calling method.    *    *<p>See {@link #checkArgument(boolean, String, Object...)} for details.    */
+comment|/**    * Ensures the truth of an expression involving one or more parameters to the calling method.    *    *<p>See {@link #checkArgument(boolean, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
 DECL|method|checkArgument ( boolean b, @Nullable String errorMessageTemplate, long p1, long p2)
 specifier|public
 specifier|static
@@ -820,7 +820,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Ensures the truth of an expression involving one or more parameters to the calling method.    *    *<p>See {@link #checkArgument(boolean, String, Object...)} for details.    */
+comment|/**    * Ensures the truth of an expression involving one or more parameters to the calling method.    *    *<p>See {@link #checkArgument(boolean, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
 DECL|method|checkArgument ( boolean b, @Nullable String errorMessageTemplate, long p1, @Nullable Object p2)
 specifier|public
 specifier|static
@@ -866,7 +866,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Ensures the truth of an expression involving one or more parameters to the calling method.    *    *<p>See {@link #checkArgument(boolean, String, Object...)} for details.    */
+comment|/**    * Ensures the truth of an expression involving one or more parameters to the calling method.    *    *<p>See {@link #checkArgument(boolean, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
 DECL|method|checkArgument ( boolean b, @Nullable String errorMessageTemplate, @Nullable Object p1, char p2)
 specifier|public
 specifier|static
@@ -912,7 +912,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Ensures the truth of an expression involving one or more parameters to the calling method.    *    *<p>See {@link #checkArgument(boolean, String, Object...)} for details.    */
+comment|/**    * Ensures the truth of an expression involving one or more parameters to the calling method.    *    *<p>See {@link #checkArgument(boolean, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
 DECL|method|checkArgument ( boolean b, @Nullable String errorMessageTemplate, @Nullable Object p1, int p2)
 specifier|public
 specifier|static
@@ -958,7 +958,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Ensures the truth of an expression involving one or more parameters to the calling method.    *    *<p>See {@link #checkArgument(boolean, String, Object...)} for details.    */
+comment|/**    * Ensures the truth of an expression involving one or more parameters to the calling method.    *    *<p>See {@link #checkArgument(boolean, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
 DECL|method|checkArgument ( boolean b, @Nullable String errorMessageTemplate, @Nullable Object p1, long p2)
 specifier|public
 specifier|static
@@ -1004,7 +1004,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Ensures the truth of an expression involving one or more parameters to the calling method.    *    *<p>See {@link #checkArgument(boolean, String, Object...)} for details.    */
+comment|/**    * Ensures the truth of an expression involving one or more parameters to the calling method.    *    *<p>See {@link #checkArgument(boolean, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
 DECL|method|checkArgument ( boolean b, @Nullable String errorMessageTemplate, @Nullable Object p1, @Nullable Object p2)
 specifier|public
 specifier|static
@@ -1052,7 +1052,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Ensures the truth of an expression involving one or more parameters to the calling method.    *    *<p>See {@link #checkArgument(boolean, String, Object...)} for details.    */
+comment|/**    * Ensures the truth of an expression involving one or more parameters to the calling method.    *    *<p>See {@link #checkArgument(boolean, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
 DECL|method|checkArgument ( boolean b, @Nullable String errorMessageTemplate, @Nullable Object p1, @Nullable Object p2, @Nullable Object p3)
 specifier|public
 specifier|static
@@ -1107,7 +1107,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Ensures the truth of an expression involving one or more parameters to the calling method.    *    *<p>See {@link #checkArgument(boolean, String, Object...)} for details.    */
+comment|/**    * Ensures the truth of an expression involving one or more parameters to the calling method.    *    *<p>See {@link #checkArgument(boolean, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
 DECL|method|checkArgument ( boolean b, @Nullable String errorMessageTemplate, @Nullable Object p1, @Nullable Object p2, @Nullable Object p3, @Nullable Object p4)
 specifier|public
 specifier|static
@@ -1271,7 +1271,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Ensures the truth of an expression involving the state of the calling instance, but not    * involving any parameters to the calling method.    *    *<p>See {@link #checkState(boolean, String, Object...)} for details.    */
+comment|/**    * Ensures the truth of an expression involving the state of the calling instance, but not    * involving any parameters to the calling method.    *    *<p>See {@link #checkState(boolean, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
 DECL|method|checkState (boolean b, @Nullable String errorMessageTemplate, char p1)
 specifier|public
 specifier|static
@@ -1310,7 +1310,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Ensures the truth of an expression involving the state of the calling instance, but not    * involving any parameters to the calling method.    *    *<p>See {@link #checkState(boolean, String, Object...)} for details.    */
+comment|/**    * Ensures the truth of an expression involving the state of the calling instance, but not    * involving any parameters to the calling method.    *    *<p>See {@link #checkState(boolean, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
 DECL|method|checkState (boolean b, @Nullable String errorMessageTemplate, int p1)
 specifier|public
 specifier|static
@@ -1349,7 +1349,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Ensures the truth of an expression involving the state of the calling instance, but not    * involving any parameters to the calling method.    *    *<p>See {@link #checkState(boolean, String, Object...)} for details.    */
+comment|/**    * Ensures the truth of an expression involving the state of the calling instance, but not    * involving any parameters to the calling method.    *    *<p>See {@link #checkState(boolean, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
 DECL|method|checkState (boolean b, @Nullable String errorMessageTemplate, long p1)
 specifier|public
 specifier|static
@@ -1388,7 +1388,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Ensures the truth of an expression involving the state of the calling instance, but not    * involving any parameters to the calling method.    *    *<p>See {@link #checkState(boolean, String, Object...)} for details.    */
+comment|/**    * Ensures the truth of an expression involving the state of the calling instance, but not    * involving any parameters to the calling method.    *    *<p>See {@link #checkState(boolean, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
 DECL|method|checkState ( boolean b, @Nullable String errorMessageTemplate, @Nullable Object p1)
 specifier|public
 specifier|static
@@ -1429,7 +1429,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Ensures the truth of an expression involving the state of the calling instance, but not    * involving any parameters to the calling method.    *    *<p>See {@link #checkState(boolean, String, Object...)} for details.    */
+comment|/**    * Ensures the truth of an expression involving the state of the calling instance, but not    * involving any parameters to the calling method.    *    *<p>See {@link #checkState(boolean, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
 DECL|method|checkState ( boolean b, @Nullable String errorMessageTemplate, char p1, char p2)
 specifier|public
 specifier|static
@@ -1473,7 +1473,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Ensures the truth of an expression involving the state of the calling instance, but not    * involving any parameters to the calling method.    *    *<p>See {@link #checkState(boolean, String, Object...)} for details.    */
+comment|/**    * Ensures the truth of an expression involving the state of the calling instance, but not    * involving any parameters to the calling method.    *    *<p>See {@link #checkState(boolean, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
 DECL|method|checkState (boolean b, @Nullable String errorMessageTemplate, char p1, int p2)
 specifier|public
 specifier|static
@@ -1517,7 +1517,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Ensures the truth of an expression involving the state of the calling instance, but not    * involving any parameters to the calling method.    *    *<p>See {@link #checkState(boolean, String, Object...)} for details.    */
+comment|/**    * Ensures the truth of an expression involving the state of the calling instance, but not    * involving any parameters to the calling method.    *    *<p>See {@link #checkState(boolean, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
 DECL|method|checkState ( boolean b, @Nullable String errorMessageTemplate, char p1, long p2)
 specifier|public
 specifier|static
@@ -1561,7 +1561,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Ensures the truth of an expression involving the state of the calling instance, but not    * involving any parameters to the calling method.    *    *<p>See {@link #checkState(boolean, String, Object...)} for details.    */
+comment|/**    * Ensures the truth of an expression involving the state of the calling instance, but not    * involving any parameters to the calling method.    *    *<p>See {@link #checkState(boolean, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
 DECL|method|checkState ( boolean b, @Nullable String errorMessageTemplate, char p1, @Nullable Object p2)
 specifier|public
 specifier|static
@@ -1607,7 +1607,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Ensures the truth of an expression involving the state of the calling instance, but not    * involving any parameters to the calling method.    *    *<p>See {@link #checkState(boolean, String, Object...)} for details.    */
+comment|/**    * Ensures the truth of an expression involving the state of the calling instance, but not    * involving any parameters to the calling method.    *    *<p>See {@link #checkState(boolean, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
 DECL|method|checkState (boolean b, @Nullable String errorMessageTemplate, int p1, char p2)
 specifier|public
 specifier|static
@@ -1651,7 +1651,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Ensures the truth of an expression involving the state of the calling instance, but not    * involving any parameters to the calling method.    *    *<p>See {@link #checkState(boolean, String, Object...)} for details.    */
+comment|/**    * Ensures the truth of an expression involving the state of the calling instance, but not    * involving any parameters to the calling method.    *    *<p>See {@link #checkState(boolean, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
 DECL|method|checkState (boolean b, @Nullable String errorMessageTemplate, int p1, int p2)
 specifier|public
 specifier|static
@@ -1695,7 +1695,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Ensures the truth of an expression involving the state of the calling instance, but not    * involving any parameters to the calling method.    *    *<p>See {@link #checkState(boolean, String, Object...)} for details.    */
+comment|/**    * Ensures the truth of an expression involving the state of the calling instance, but not    * involving any parameters to the calling method.    *    *<p>See {@link #checkState(boolean, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
 DECL|method|checkState (boolean b, @Nullable String errorMessageTemplate, int p1, long p2)
 specifier|public
 specifier|static
@@ -1739,7 +1739,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Ensures the truth of an expression involving the state of the calling instance, but not    * involving any parameters to the calling method.    *    *<p>See {@link #checkState(boolean, String, Object...)} for details.    */
+comment|/**    * Ensures the truth of an expression involving the state of the calling instance, but not    * involving any parameters to the calling method.    *    *<p>See {@link #checkState(boolean, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
 DECL|method|checkState ( boolean b, @Nullable String errorMessageTemplate, int p1, @Nullable Object p2)
 specifier|public
 specifier|static
@@ -1785,7 +1785,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Ensures the truth of an expression involving the state of the calling instance, but not    * involving any parameters to the calling method.    *    *<p>See {@link #checkState(boolean, String, Object...)} for details.    */
+comment|/**    * Ensures the truth of an expression involving the state of the calling instance, but not    * involving any parameters to the calling method.    *    *<p>See {@link #checkState(boolean, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
 DECL|method|checkState ( boolean b, @Nullable String errorMessageTemplate, long p1, char p2)
 specifier|public
 specifier|static
@@ -1829,7 +1829,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Ensures the truth of an expression involving the state of the calling instance, but not    * involving any parameters to the calling method.    *    *<p>See {@link #checkState(boolean, String, Object...)} for details.    */
+comment|/**    * Ensures the truth of an expression involving the state of the calling instance, but not    * involving any parameters to the calling method.    *    *<p>See {@link #checkState(boolean, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
 DECL|method|checkState (boolean b, @Nullable String errorMessageTemplate, long p1, int p2)
 specifier|public
 specifier|static
@@ -1873,7 +1873,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Ensures the truth of an expression involving the state of the calling instance, but not    * involving any parameters to the calling method.    *    *<p>See {@link #checkState(boolean, String, Object...)} for details.    */
+comment|/**    * Ensures the truth of an expression involving the state of the calling instance, but not    * involving any parameters to the calling method.    *    *<p>See {@link #checkState(boolean, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
 DECL|method|checkState ( boolean b, @Nullable String errorMessageTemplate, long p1, long p2)
 specifier|public
 specifier|static
@@ -1917,7 +1917,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Ensures the truth of an expression involving the state of the calling instance, but not    * involving any parameters to the calling method.    *    *<p>See {@link #checkState(boolean, String, Object...)} for details.    */
+comment|/**    * Ensures the truth of an expression involving the state of the calling instance, but not    * involving any parameters to the calling method.    *    *<p>See {@link #checkState(boolean, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
 DECL|method|checkState ( boolean b, @Nullable String errorMessageTemplate, long p1, @Nullable Object p2)
 specifier|public
 specifier|static
@@ -1963,7 +1963,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Ensures the truth of an expression involving the state of the calling instance, but not    * involving any parameters to the calling method.    *    *<p>See {@link #checkState(boolean, String, Object...)} for details.    */
+comment|/**    * Ensures the truth of an expression involving the state of the calling instance, but not    * involving any parameters to the calling method.    *    *<p>See {@link #checkState(boolean, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
 DECL|method|checkState ( boolean b, @Nullable String errorMessageTemplate, @Nullable Object p1, char p2)
 specifier|public
 specifier|static
@@ -2009,7 +2009,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Ensures the truth of an expression involving the state of the calling instance, but not    * involving any parameters to the calling method.    *    *<p>See {@link #checkState(boolean, String, Object...)} for details.    */
+comment|/**    * Ensures the truth of an expression involving the state of the calling instance, but not    * involving any parameters to the calling method.    *    *<p>See {@link #checkState(boolean, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
 DECL|method|checkState ( boolean b, @Nullable String errorMessageTemplate, @Nullable Object p1, int p2)
 specifier|public
 specifier|static
@@ -2055,7 +2055,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Ensures the truth of an expression involving the state of the calling instance, but not    * involving any parameters to the calling method.    *    *<p>See {@link #checkState(boolean, String, Object...)} for details.    */
+comment|/**    * Ensures the truth of an expression involving the state of the calling instance, but not    * involving any parameters to the calling method.    *    *<p>See {@link #checkState(boolean, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
 DECL|method|checkState ( boolean b, @Nullable String errorMessageTemplate, @Nullable Object p1, long p2)
 specifier|public
 specifier|static
@@ -2101,7 +2101,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Ensures the truth of an expression involving the state of the calling instance, but not    * involving any parameters to the calling method.    *    *<p>See {@link #checkState(boolean, String, Object...)} for details.    */
+comment|/**    * Ensures the truth of an expression involving the state of the calling instance, but not    * involving any parameters to the calling method.    *    *<p>See {@link #checkState(boolean, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
 DECL|method|checkState ( boolean b, @Nullable String errorMessageTemplate, @Nullable Object p1, @Nullable Object p2)
 specifier|public
 specifier|static
@@ -2149,7 +2149,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Ensures the truth of an expression involving the state of the calling instance, but not    * involving any parameters to the calling method.    *    *<p>See {@link #checkState(boolean, String, Object...)} for details.    */
+comment|/**    * Ensures the truth of an expression involving the state of the calling instance, but not    * involving any parameters to the calling method.    *    *<p>See {@link #checkState(boolean, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
 DECL|method|checkState ( boolean b, @Nullable String errorMessageTemplate, @Nullable Object p1, @Nullable Object p2, @Nullable Object p3)
 specifier|public
 specifier|static
@@ -2204,7 +2204,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Ensures the truth of an expression involving the state of the calling instance, but not    * involving any parameters to the calling method.    *    *<p>See {@link #checkState(boolean, String, Object...)} for details.    */
+comment|/**    * Ensures the truth of an expression involving the state of the calling instance, but not    * involving any parameters to the calling method.    *    *<p>See {@link #checkState(boolean, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
 DECL|method|checkState ( boolean b, @Nullable String errorMessageTemplate, @Nullable Object p1, @Nullable Object p2, @Nullable Object p3, @Nullable Object p4)
 specifier|public
 specifier|static
@@ -2395,7 +2395,7 @@ return|return
 name|reference
 return|;
 block|}
-comment|/**    * Ensures that an object reference passed as a parameter to the calling method is not null.    *    *<p>See {@link #checkNotNull(Object, String, Object...)} for details.    */
+comment|/**    * Ensures that an object reference passed as a parameter to the calling method is not null.    *    *<p>See {@link #checkNotNull(Object, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|checkNotNull (T obj, @Nullable String errorMessageTemplate, char p1)
@@ -2443,7 +2443,7 @@ return|return
 name|obj
 return|;
 block|}
-comment|/**    * Ensures that an object reference passed as a parameter to the calling method is not null.    *    *<p>See {@link #checkNotNull(Object, String, Object...)} for details.    */
+comment|/**    * Ensures that an object reference passed as a parameter to the calling method is not null.    *    *<p>See {@link #checkNotNull(Object, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|checkNotNull (T obj, @Nullable String errorMessageTemplate, int p1)
@@ -2491,7 +2491,7 @@ return|return
 name|obj
 return|;
 block|}
-comment|/**    * Ensures that an object reference passed as a parameter to the calling method is not null.    *    *<p>See {@link #checkNotNull(Object, String, Object...)} for details.    */
+comment|/**    * Ensures that an object reference passed as a parameter to the calling method is not null.    *    *<p>See {@link #checkNotNull(Object, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|checkNotNull (T obj, @Nullable String errorMessageTemplate, long p1)
@@ -2539,7 +2539,7 @@ return|return
 name|obj
 return|;
 block|}
-comment|/**    * Ensures that an object reference passed as a parameter to the calling method is not null.    *    *<p>See {@link #checkNotNull(Object, String, Object...)} for details.    */
+comment|/**    * Ensures that an object reference passed as a parameter to the calling method is not null.    *    *<p>See {@link #checkNotNull(Object, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|checkNotNull ( T obj, @Nullable String errorMessageTemplate, @Nullable Object p1)
@@ -2589,7 +2589,7 @@ return|return
 name|obj
 return|;
 block|}
-comment|/**    * Ensures that an object reference passed as a parameter to the calling method is not null.    *    *<p>See {@link #checkNotNull(Object, String, Object...)} for details.    */
+comment|/**    * Ensures that an object reference passed as a parameter to the calling method is not null.    *    *<p>See {@link #checkNotNull(Object, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|checkNotNull (T obj, @Nullable String errorMessageTemplate, char p1, char p2)
@@ -2642,7 +2642,7 @@ return|return
 name|obj
 return|;
 block|}
-comment|/**    * Ensures that an object reference passed as a parameter to the calling method is not null.    *    *<p>See {@link #checkNotNull(Object, String, Object...)} for details.    */
+comment|/**    * Ensures that an object reference passed as a parameter to the calling method is not null.    *    *<p>See {@link #checkNotNull(Object, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|checkNotNull (T obj, @Nullable String errorMessageTemplate, char p1, int p2)
@@ -2695,7 +2695,7 @@ return|return
 name|obj
 return|;
 block|}
-comment|/**    * Ensures that an object reference passed as a parameter to the calling method is not null.    *    *<p>See {@link #checkNotNull(Object, String, Object...)} for details.    */
+comment|/**    * Ensures that an object reference passed as a parameter to the calling method is not null.    *    *<p>See {@link #checkNotNull(Object, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|checkNotNull (T obj, @Nullable String errorMessageTemplate, char p1, long p2)
@@ -2748,7 +2748,7 @@ return|return
 name|obj
 return|;
 block|}
-comment|/**    * Ensures that an object reference passed as a parameter to the calling method is not null.    *    *<p>See {@link #checkNotNull(Object, String, Object...)} for details.    */
+comment|/**    * Ensures that an object reference passed as a parameter to the calling method is not null.    *    *<p>See {@link #checkNotNull(Object, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|checkNotNull ( T obj, @Nullable String errorMessageTemplate, char p1, @Nullable Object p2)
@@ -2803,7 +2803,7 @@ return|return
 name|obj
 return|;
 block|}
-comment|/**    * Ensures that an object reference passed as a parameter to the calling method is not null.    *    *<p>See {@link #checkNotNull(Object, String, Object...)} for details.    */
+comment|/**    * Ensures that an object reference passed as a parameter to the calling method is not null.    *    *<p>See {@link #checkNotNull(Object, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|checkNotNull (T obj, @Nullable String errorMessageTemplate, int p1, char p2)
@@ -2856,7 +2856,7 @@ return|return
 name|obj
 return|;
 block|}
-comment|/**    * Ensures that an object reference passed as a parameter to the calling method is not null.    *    *<p>See {@link #checkNotNull(Object, String, Object...)} for details.    */
+comment|/**    * Ensures that an object reference passed as a parameter to the calling method is not null.    *    *<p>See {@link #checkNotNull(Object, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|checkNotNull (T obj, @Nullable String errorMessageTemplate, int p1, int p2)
@@ -2909,7 +2909,7 @@ return|return
 name|obj
 return|;
 block|}
-comment|/**    * Ensures that an object reference passed as a parameter to the calling method is not null.    *    *<p>See {@link #checkNotNull(Object, String, Object...)} for details.    */
+comment|/**    * Ensures that an object reference passed as a parameter to the calling method is not null.    *    *<p>See {@link #checkNotNull(Object, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|checkNotNull (T obj, @Nullable String errorMessageTemplate, int p1, long p2)
@@ -2962,7 +2962,7 @@ return|return
 name|obj
 return|;
 block|}
-comment|/**    * Ensures that an object reference passed as a parameter to the calling method is not null.    *    *<p>See {@link #checkNotNull(Object, String, Object...)} for details.    */
+comment|/**    * Ensures that an object reference passed as a parameter to the calling method is not null.    *    *<p>See {@link #checkNotNull(Object, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|checkNotNull ( T obj, @Nullable String errorMessageTemplate, int p1, @Nullable Object p2)
@@ -3017,7 +3017,7 @@ return|return
 name|obj
 return|;
 block|}
-comment|/**    * Ensures that an object reference passed as a parameter to the calling method is not null.    *    *<p>See {@link #checkNotNull(Object, String, Object...)} for details.    */
+comment|/**    * Ensures that an object reference passed as a parameter to the calling method is not null.    *    *<p>See {@link #checkNotNull(Object, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|checkNotNull (T obj, @Nullable String errorMessageTemplate, long p1, char p2)
@@ -3070,7 +3070,7 @@ return|return
 name|obj
 return|;
 block|}
-comment|/**    * Ensures that an object reference passed as a parameter to the calling method is not null.    *    *<p>See {@link #checkNotNull(Object, String, Object...)} for details.    */
+comment|/**    * Ensures that an object reference passed as a parameter to the calling method is not null.    *    *<p>See {@link #checkNotNull(Object, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|checkNotNull (T obj, @Nullable String errorMessageTemplate, long p1, int p2)
@@ -3123,7 +3123,7 @@ return|return
 name|obj
 return|;
 block|}
-comment|/**    * Ensures that an object reference passed as a parameter to the calling method is not null.    *    *<p>See {@link #checkNotNull(Object, String, Object...)} for details.    */
+comment|/**    * Ensures that an object reference passed as a parameter to the calling method is not null.    *    *<p>See {@link #checkNotNull(Object, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|checkNotNull (T obj, @Nullable String errorMessageTemplate, long p1, long p2)
@@ -3176,7 +3176,7 @@ return|return
 name|obj
 return|;
 block|}
-comment|/**    * Ensures that an object reference passed as a parameter to the calling method is not null.    *    *<p>See {@link #checkNotNull(Object, String, Object...)} for details.    */
+comment|/**    * Ensures that an object reference passed as a parameter to the calling method is not null.    *    *<p>See {@link #checkNotNull(Object, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|checkNotNull ( T obj, @Nullable String errorMessageTemplate, long p1, @Nullable Object p2)
@@ -3231,7 +3231,7 @@ return|return
 name|obj
 return|;
 block|}
-comment|/**    * Ensures that an object reference passed as a parameter to the calling method is not null.    *    *<p>See {@link #checkNotNull(Object, String, Object...)} for details.    */
+comment|/**    * Ensures that an object reference passed as a parameter to the calling method is not null.    *    *<p>See {@link #checkNotNull(Object, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|checkNotNull ( T obj, @Nullable String errorMessageTemplate, @Nullable Object p1, char p2)
@@ -3286,7 +3286,7 @@ return|return
 name|obj
 return|;
 block|}
-comment|/**    * Ensures that an object reference passed as a parameter to the calling method is not null.    *    *<p>See {@link #checkNotNull(Object, String, Object...)} for details.    */
+comment|/**    * Ensures that an object reference passed as a parameter to the calling method is not null.    *    *<p>See {@link #checkNotNull(Object, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|checkNotNull ( T obj, @Nullable String errorMessageTemplate, @Nullable Object p1, int p2)
@@ -3341,7 +3341,7 @@ return|return
 name|obj
 return|;
 block|}
-comment|/**    * Ensures that an object reference passed as a parameter to the calling method is not null.    *    *<p>See {@link #checkNotNull(Object, String, Object...)} for details.    */
+comment|/**    * Ensures that an object reference passed as a parameter to the calling method is not null.    *    *<p>See {@link #checkNotNull(Object, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|checkNotNull ( T obj, @Nullable String errorMessageTemplate, @Nullable Object p1, long p2)
@@ -3396,7 +3396,7 @@ return|return
 name|obj
 return|;
 block|}
-comment|/**    * Ensures that an object reference passed as a parameter to the calling method is not null.    *    *<p>See {@link #checkNotNull(Object, String, Object...)} for details.    */
+comment|/**    * Ensures that an object reference passed as a parameter to the calling method is not null.    *    *<p>See {@link #checkNotNull(Object, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|checkNotNull ( T obj, @Nullable String errorMessageTemplate, @Nullable Object p1, @Nullable Object p2)
@@ -3453,7 +3453,7 @@ return|return
 name|obj
 return|;
 block|}
-comment|/**    * Ensures that an object reference passed as a parameter to the calling method is not null.    *    *<p>See {@link #checkNotNull(Object, String, Object...)} for details.    */
+comment|/**    * Ensures that an object reference passed as a parameter to the calling method is not null.    *    *<p>See {@link #checkNotNull(Object, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|checkNotNull ( T obj, @Nullable String errorMessageTemplate, @Nullable Object p1, @Nullable Object p2, @Nullable Object p3)
@@ -3517,7 +3517,7 @@ return|return
 name|obj
 return|;
 block|}
-comment|/**    * Ensures that an object reference passed as a parameter to the calling method is not null.    *    *<p>See {@link #checkNotNull(Object, String, Object...)} for details.    */
+comment|/**    * Ensures that an object reference passed as a parameter to the calling method is not null.    *    *<p>See {@link #checkNotNull(Object, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|checkNotNull ( T obj, @Nullable String errorMessageTemplate, @Nullable Object p1, @Nullable Object p2, @Nullable Object p3, @Nullable Object p4)
