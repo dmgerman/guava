@@ -980,6 +980,9 @@ argument_list|,
 name|exceptionType
 argument_list|,
 name|fallback
+argument_list|,
+name|directExecutor
+argument_list|()
 argument_list|)
 return|;
 block|}
@@ -1118,6 +1121,9 @@ argument_list|,
 name|exceptionType
 argument_list|,
 name|fallback
+argument_list|,
+name|directExecutor
+argument_list|()
 argument_list|)
 return|;
 block|}
@@ -1284,6 +1290,9 @@ argument_list|(
 name|input
 argument_list|,
 name|function
+argument_list|,
+name|directExecutor
+argument_list|()
 argument_list|)
 return|;
 block|}
@@ -1381,6 +1390,9 @@ argument_list|(
 name|input
 argument_list|,
 name|function
+argument_list|,
+name|directExecutor
+argument_list|()
 argument_list|)
 return|;
 block|}

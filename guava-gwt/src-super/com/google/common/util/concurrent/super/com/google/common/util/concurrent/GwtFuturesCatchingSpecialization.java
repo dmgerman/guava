@@ -19,6 +19,24 @@ package|;
 end_package
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|MoreExecutors
+operator|.
+name|directExecutor
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -55,6 +73,9 @@ class|class
 name|GwtFuturesCatchingSpecialization
 block|{
 comment|/*    * In the GWT versions of the methods (below), every exceptionType parameter is required to be    * Class<Throwable>. To handle only certain kinds of exceptions under GWT, you'll need to write    * your own instanceof tests.    */
+comment|/** @deprecated Use the overload that requires an executor. */
+annotation|@
+name|Deprecated
 DECL|method|catching ( ListenableFuture<? extends V> input, Class<Throwable> exceptionType, Function<? super Throwable, ? extends V> fallback)
 specifier|public
 specifier|static
@@ -104,6 +125,9 @@ argument_list|,
 name|exceptionType
 argument_list|,
 name|fallback
+argument_list|,
+name|directExecutor
+argument_list|()
 argument_list|)
 return|;
 block|}
@@ -164,6 +188,9 @@ name|executor
 argument_list|)
 return|;
 block|}
+comment|/** @deprecated Use the overload that requires an executor. */
+annotation|@
+name|Deprecated
 DECL|method|catchingAsync ( ListenableFuture<? extends V> input, Class<Throwable> exceptionType, AsyncFunction<? super Throwable, ? extends V> fallback)
 specifier|public
 specifier|static
@@ -213,6 +240,9 @@ argument_list|,
 name|exceptionType
 argument_list|,
 name|fallback
+argument_list|,
+name|directExecutor
+argument_list|()
 argument_list|)
 return|;
 block|}

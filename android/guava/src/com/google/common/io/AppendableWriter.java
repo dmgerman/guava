@@ -141,14 +141,14 @@ block|}
 comment|/*    * Abstract methods from Writer    */
 annotation|@
 name|Override
-DECL|method|write (char cbuf[], int off, int len)
+DECL|method|write (char[] cbuf, int off, int len)
 specifier|public
 name|void
 name|write
 parameter_list|(
 name|char
-name|cbuf
 index|[]
+name|cbuf
 parameter_list|,
 name|int
 name|off

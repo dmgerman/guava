@@ -1182,7 +1182,9 @@ name|long
 index|[
 literal|2
 index|]
-decl_stmt|,
+decl_stmt|;
+name|long
+index|[]
 name|w
 init|=
 operator|new

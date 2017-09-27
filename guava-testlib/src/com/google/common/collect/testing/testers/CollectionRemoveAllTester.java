@@ -791,7 +791,7 @@ block|}
 catch|catch
 parameter_list|(
 name|NullPointerException
-name|expected
+name|tolerated
 parameter_list|)
 block|{     }
 block|}

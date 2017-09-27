@@ -342,11 +342,14 @@ block|}
 comment|// measuring the integral on the left part of the function (the horizontal line)
 name|micros
 operator|+=
-operator|(
+call|(
+name|long
+call|)
+argument_list|(
 name|stableIntervalMicros
 operator|*
 name|permitsToTake
-operator|)
+argument_list|)
 expr_stmt|;
 return|return
 name|micros

@@ -367,17 +367,19 @@ name|build
 parameter_list|()
 block|{
 return|return
-name|build
+name|doBuild
 argument_list|(
 name|this
 argument_list|)
 return|;
 block|}
-DECL|method|build (ThreadFactoryBuilder builder)
+comment|// Split out so that the anonymous ThreadFactory can't contain a reference back to the builder.
+comment|// At least, I assume that's why. TODO(cpovirk): Check, and maybe add a test for this.
+DECL|method|doBuild (ThreadFactoryBuilder builder)
 specifier|private
 specifier|static
 name|ThreadFactory
-name|build
+name|doBuild
 parameter_list|(
 name|ThreadFactoryBuilder
 name|builder

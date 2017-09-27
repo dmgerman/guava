@@ -12915,16 +12915,16 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|toArray (E[] a)
+DECL|method|toArray (T[] a)
 specifier|public
 parameter_list|<
-name|E
+name|T
 parameter_list|>
-name|E
+name|T
 index|[]
 name|toArray
 parameter_list|(
-name|E
+name|T
 index|[]
 name|a
 parameter_list|)
@@ -13234,16 +13234,16 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|toArray (E[] a)
+DECL|method|toArray (T[] a)
 specifier|public
 parameter_list|<
-name|E
+name|T
 parameter_list|>
-name|E
+name|T
 index|[]
 name|toArray
 parameter_list|(
-name|E
+name|T
 index|[]
 name|a
 parameter_list|)
