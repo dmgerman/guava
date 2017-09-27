@@ -111,7 +111,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Provides methods for traversing a graph.  *  * @author Jens Nyman  * @param<N> Node parameter type  * @since NEXT  */
+comment|/**  * Provides methods for traversing a graph.  *  * @author Jens Nyman  * @param<N> Node parameter type  * @since 23.1  */
 end_comment
 
 begin_class

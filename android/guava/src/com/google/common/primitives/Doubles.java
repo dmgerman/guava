@@ -1387,7 +1387,7 @@ literal|"Doubles.lexicographicalComparator()"
 return|;
 block|}
 block|}
-comment|/**    * Sorts the elements of {@code array} in descending order.    *    *<p>Note that this method uses the total order imposed by {@link Double#compare}, which treats    * all NaN values as equal and 0.0 as greater than -0.0.    *    * @since NEXT    */
+comment|/**    * Sorts the elements of {@code array} in descending order.    *    *<p>Note that this method uses the total order imposed by {@link Double#compare}, which treats    * all NaN values as equal and 0.0 as greater than -0.0.    *    * @since 23.1    */
 DECL|method|sortDescending (double[] array)
 specifier|public
 specifier|static
@@ -1416,7 +1416,7 @@ name|length
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Sorts the elements of {@code array} between {@code fromIndex} inclusive and {@code toIndex}    * exclusive in descending order.    *    *<p>Note that this method uses the total order imposed by {@link Double#compare}, which treats    * all NaN values as equal and 0.0 as greater than -0.0.    *    * @since NEXT    */
+comment|/**    * Sorts the elements of {@code array} between {@code fromIndex} inclusive and {@code toIndex}    * exclusive in descending order.    *    *<p>Note that this method uses the total order imposed by {@link Double#compare}, which treats    * all NaN values as equal and 0.0 as greater than -0.0.    *    * @since 23.1    */
 DECL|method|sortDescending (double[] array, int fromIndex, int toIndex)
 specifier|public
 specifier|static
@@ -1471,7 +1471,7 @@ name|toIndex
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Reverses the elements of {@code array}. This is equivalent to {@code    * Collections.reverse(Doubles.asList(array))}, but is likely to be more efficient.    *    * @since NEXT    */
+comment|/**    * Reverses the elements of {@code array}. This is equivalent to {@code    * Collections.reverse(Doubles.asList(array))}, but is likely to be more efficient.    *    * @since 23.1    */
 DECL|method|reverse (double[] array)
 specifier|public
 specifier|static
@@ -1500,7 +1500,7 @@ name|length
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Reverses the elements of {@code array} between {@code fromIndex} inclusive and {@code toIndex}    * exclusive. This is equivalent to {@code    * Collections.reverse(Doubles.asList(array).subList(fromIndex, toIndex))}, but is likely to be    * more efficient.    *    * @throws IndexOutOfBoundsException if {@code fromIndex< 0}, {@code toIndex> array.length}, or    *     {@code toIndex> fromIndex}    * @since NEXT    */
+comment|/**    * Reverses the elements of {@code array} between {@code fromIndex} inclusive and {@code toIndex}    * exclusive. This is equivalent to {@code    * Collections.reverse(Doubles.asList(array).subList(fromIndex, toIndex))}, but is likely to be    * more efficient.    *    * @throws IndexOutOfBoundsException if {@code fromIndex< 0}, {@code toIndex> array.length}, or    *     {@code toIndex> fromIndex}    * @since 23.1    */
 DECL|method|reverse (double[] array, int fromIndex, int toIndex)
 specifier|public
 specifier|static

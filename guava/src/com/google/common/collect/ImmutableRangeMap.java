@@ -307,7 +307,7 @@ name|of
 argument_list|()
 argument_list|)
 decl_stmt|;
-comment|/**    * Returns a {@code Collector} that accumulates the input elements into a new {@code    * ImmutableRangeMap}. As in {@link Builder}, overlapping ranges are not permitted.    *    * @since NEXT    */
+comment|/**    * Returns a {@code Collector} that accumulates the input elements into a new {@code    * ImmutableRangeMap}. As in {@link Builder}, overlapping ranges are not permitted.    *    * @since 23.1    */
 annotation|@
 name|Beta
 specifier|public

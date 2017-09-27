@@ -1971,7 +1971,7 @@ argument_list|>
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns a new builder, expecting the specified number of distinct elements to be added.    *    *<p>If {@code expectedSize} is exactly the number of distinct elements added to the builder    * before {@link Builder#build} is called, the builder is likely to perform better than an unsized    * {@link #builder()} would have.    *    *<p>It is not specified if any performance benefits apply if {@code expectedSize} is close to,    * but not exactly, the number of distinct elements added to the builder.    *    * @since NEXT    */
+comment|/**    * Returns a new builder, expecting the specified number of distinct elements to be added.    *    *<p>If {@code expectedSize} is exactly the number of distinct elements added to the builder    * before {@link Builder#build} is called, the builder is likely to perform better than an unsized    * {@link #builder()} would have.    *    *<p>It is not specified if any performance benefits apply if {@code expectedSize} is close to,    * but not exactly, the number of distinct elements added to the builder.    *    * @since 23.1    */
 annotation|@
 name|Beta
 DECL|method|builderWithExpectedSize (int expectedSize)

@@ -698,7 +698,7 @@ literal|"UnsignedInts.lexicographicalComparator()"
 return|;
 block|}
 block|}
-comment|/**    * Sorts the array, treating its elements as unsigned 32-bit integers.    *    * @since NEXT    */
+comment|/**    * Sorts the array, treating its elements as unsigned 32-bit integers.    *    * @since 23.1    */
 DECL|method|sort (int[] array)
 specifier|public
 specifier|static
@@ -727,7 +727,7 @@ name|length
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Sorts the array between {@code fromIndex} inclusive and {@code toIndex} exclusive, treating its    * elements as unsigned 32-bit integers.    *    * @since NEXT    */
+comment|/**    * Sorts the array between {@code fromIndex} inclusive and {@code toIndex} exclusive, treating its    * elements as unsigned 32-bit integers.    *    * @since 23.1    */
 DECL|method|sort (int[] array, int fromIndex, int toIndex)
 specifier|public
 specifier|static
@@ -831,7 +831,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Sorts the elements of {@code array} in descending order, interpreting them as unsigned 32-bit    * integers.    *    * @since NEXT    */
+comment|/**    * Sorts the elements of {@code array} in descending order, interpreting them as unsigned 32-bit    * integers.    *    * @since 23.1    */
 DECL|method|sortDescending (int[] array)
 specifier|public
 specifier|static
@@ -860,7 +860,7 @@ name|length
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Sorts the elements of {@code array} between {@code fromIndex} inclusive and {@code toIndex}    * exclusive in descending order, interpreting them as unsigned 32-bit integers.    *    * @since NEXT    */
+comment|/**    * Sorts the elements of {@code array} between {@code fromIndex} inclusive and {@code toIndex}    * exclusive in descending order, interpreting them as unsigned 32-bit integers.    *    * @since 23.1    */
 DECL|method|sortDescending (int[] array, int fromIndex, int toIndex)
 specifier|public
 specifier|static

@@ -1511,7 +1511,7 @@ init|=
 literal|0
 decl_stmt|;
 block|}
-comment|/**    * Reverses the elements of {@code array}. This is equivalent to {@code    * Collections.reverse(Bytes.asList(array))}, but is likely to be more efficient.    *    * @since NEXT    */
+comment|/**    * Reverses the elements of {@code array}. This is equivalent to {@code    * Collections.reverse(Bytes.asList(array))}, but is likely to be more efficient.    *    * @since 23.1    */
 DECL|method|reverse (byte[] array)
 specifier|public
 specifier|static
@@ -1540,7 +1540,7 @@ name|length
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Reverses the elements of {@code array} between {@code fromIndex} inclusive and {@code toIndex}    * exclusive. This is equivalent to {@code    * Collections.reverse(Bytes.asList(array).subList(fromIndex, toIndex))}, but is likely to be more    * efficient.    *    * @throws IndexOutOfBoundsException if {@code fromIndex< 0}, {@code toIndex> array.length}, or    *     {@code toIndex> fromIndex}    * @since NEXT    */
+comment|/**    * Reverses the elements of {@code array} between {@code fromIndex} inclusive and {@code toIndex}    * exclusive. This is equivalent to {@code    * Collections.reverse(Bytes.asList(array).subList(fromIndex, toIndex))}, but is likely to be more    * efficient.    *    * @throws IndexOutOfBoundsException if {@code fromIndex< 0}, {@code toIndex> array.length}, or    *     {@code toIndex> fromIndex}    * @since 23.1    */
 DECL|method|reverse (byte[] array, int fromIndex, int toIndex)
 specifier|public
 specifier|static
