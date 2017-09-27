@@ -90,7 +90,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|Deque
+name|Queue
 import|;
 end_import
 
@@ -191,7 +191,7 @@ argument_list|)
 DECL|field|queue
 specifier|private
 specifier|final
-name|Deque
+name|Queue
 argument_list|<
 name|Runnable
 argument_list|>
@@ -275,49 +275,7 @@ init|)
 block|{
 name|queue
 operator|.
-name|addLast
-argument_list|(
-name|task
-argument_list|)
-expr_stmt|;
-if|if
-condition|(
-name|isWorkerRunning
-operator|||
-name|suspensions
-operator|>
-literal|0
-condition|)
-block|{
-return|return;
-block|}
-name|isWorkerRunning
-operator|=
-literal|true
-expr_stmt|;
-block|}
-name|startQueueWorker
-argument_list|()
-expr_stmt|;
-block|}
-comment|/**    * Prepends a task to the front of the queue and makes sure a worker thread is running, unless the    * queue has been suspended.    */
-DECL|method|executeFirst (Runnable task)
-specifier|public
-name|void
-name|executeFirst
-parameter_list|(
-name|Runnable
-name|task
-parameter_list|)
-block|{
-synchronized|synchronized
-init|(
-name|queue
-init|)
-block|{
-name|queue
-operator|.
-name|addFirst
+name|add
 argument_list|(
 name|task
 argument_list|)
@@ -359,7 +317,7 @@ operator|++
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Continue execution of tasks after a call to {@link #suspend()}. More accurately, decreases the    * suspension counter, as has been incremented by calls to {@link #suspend}, and resumes execution    * if the suspension counter is zero.    *    *<p>If this method throws, e.g. a {@code RejectedExecutionException} from the delegate executor,    * execution of tasks will stop until a call to this method or to {@link #execute(Runnable)} or    * {@link #executeFirst(Runnable)} is made.    *    * @throws java.lang.IllegalStateException if this executor is not suspended.    */
+comment|/**    * Continue execution of tasks after a call to {@link #suspend()}. More accurately, decreases the    * suspension counter, as has been incremented by calls to {@link #suspend}, and resumes execution    * if the suspension counter is zero.    *    *<p>If this method throws, e.g. a {@code RejectedExecutionException} from the delegate executor,    * execution of tasks will stop until a call to this method or to {@link #execute(Runnable)} is    * made.    *    * @throws java.lang.IllegalStateException if this executor is not suspended.    */
 DECL|method|resume ()
 specifier|public
 name|void
@@ -538,7 +496,7 @@ name|task
 operator|=
 name|queue
 operator|.
-name|pollFirst
+name|poll
 argument_list|()
 expr_stmt|;
 block|}
