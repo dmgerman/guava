@@ -15,7 +15,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * Emulation of Future. Since GWT environment is single threaded, attempting to block on the future  * by calling {@link #get()} or {@link #get(long, TimeUnit)} when the it is not yet done is  * considered illegal because it would lead to a deadlock. Future implementations must throw  * {@link IllegalStateException} to avoid a deadlock.  */
+comment|/**  * Emulation of Future. Since GWT environment is single threaded, attempting to block on the future  * by calling {@link #get()} or {@link #get(long, TimeUnit)} when the it is not yet done is  * considered illegal because it would lead to a deadlock. Future implementations must throw {@link  * IllegalStateException} to avoid a deadlock.  *  * @param<V> value type returned by the future.  */
 end_comment
 
 begin_interface
@@ -45,6 +45,9 @@ name|boolean
 name|isDone
 parameter_list|()
 function_decl|;
+comment|// Even though the 'get' methods below are blocking, they are the only built-in APIs to get the
+comment|// result of the {@code Future}, hence they are not removed. The implementation must throw {@link
+comment|// IllegalStateException} if the {@code Future} is not done yet (see the class javadoc).
 DECL|method|get ()
 name|V
 name|get
