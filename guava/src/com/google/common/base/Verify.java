@@ -165,7 +165,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Ensures that {@code expression} is {@code true}, throwing a {@code VerifyException} with a    * custom message otherwise.    *    *<p>See {@link #verify(boolean, String, Object...)} for details.    *    * @since NEXT (varargs overload since 17.0)    */
+comment|/**    * Ensures that {@code expression} is {@code true}, throwing a {@code VerifyException} with a    * custom message otherwise.    *    *<p>See {@link #verify(boolean, String, Object...)} for details.    *    * @since 23.1 (varargs overload since 17.0)    */
 DECL|method|verify (boolean expression, @Nullable String errorMessageTemplate, char p1)
 specifier|public
 specifier|static
@@ -204,7 +204,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Ensures that {@code expression} is {@code true}, throwing a {@code VerifyException} with a    * custom message otherwise.    *    *<p>See {@link #verify(boolean, String, Object...)} for details.    *    * @since NEXT (varargs overload since 17.0)    */
+comment|/**    * Ensures that {@code expression} is {@code true}, throwing a {@code VerifyException} with a    * custom message otherwise.    *    *<p>See {@link #verify(boolean, String, Object...)} for details.    *    * @since 23.1 (varargs overload since 17.0)    */
 DECL|method|verify (boolean expression, @Nullable String errorMessageTemplate, int p1)
 specifier|public
 specifier|static
@@ -243,7 +243,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Ensures that {@code expression} is {@code true}, throwing a {@code VerifyException} with a    * custom message otherwise.    *    *<p>See {@link #verify(boolean, String, Object...)} for details.    *    * @since NEXT (varargs overload since 17.0)    */
+comment|/**    * Ensures that {@code expression} is {@code true}, throwing a {@code VerifyException} with a    * custom message otherwise.    *    *<p>See {@link #verify(boolean, String, Object...)} for details.    *    * @since 23.1 (varargs overload since 17.0)    */
 DECL|method|verify (boolean expression, @Nullable String errorMessageTemplate, long p1)
 specifier|public
 specifier|static
@@ -282,7 +282,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Ensures that {@code expression} is {@code true}, throwing a {@code VerifyException} with a    * custom message otherwise.    *    *<p>See {@link #verify(boolean, String, Object...)} for details.    *    * @since NEXT (varargs overload since 17.0)    */
+comment|/**    * Ensures that {@code expression} is {@code true}, throwing a {@code VerifyException} with a    * custom message otherwise.    *    *<p>See {@link #verify(boolean, String, Object...)} for details.    *    * @since 23.1 (varargs overload since 17.0)    */
 DECL|method|verify ( boolean expression, @Nullable String errorMessageTemplate, @Nullable Object p1)
 specifier|public
 specifier|static
@@ -323,7 +323,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Ensures that {@code expression} is {@code true}, throwing a {@code VerifyException} with a    * custom message otherwise.    *    *<p>See {@link #verify(boolean, String, Object...)} for details.    *    * @since NEXT (varargs overload since 17.0)    */
+comment|/**    * Ensures that {@code expression} is {@code true}, throwing a {@code VerifyException} with a    * custom message otherwise.    *    *<p>See {@link #verify(boolean, String, Object...)} for details.    *    * @since 23.1 (varargs overload since 17.0)    */
 DECL|method|verify ( boolean expression, @Nullable String errorMessageTemplate, char p1, char p2)
 specifier|public
 specifier|static
@@ -367,7 +367,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Ensures that {@code expression} is {@code true}, throwing a {@code VerifyException} with a    * custom message otherwise.    *    *<p>See {@link #verify(boolean, String, Object...)} for details.    *    * @since NEXT (varargs overload since 17.0)    */
+comment|/**    * Ensures that {@code expression} is {@code true}, throwing a {@code VerifyException} with a    * custom message otherwise.    *    *<p>See {@link #verify(boolean, String, Object...)} for details.    *    * @since 23.1 (varargs overload since 17.0)    */
 DECL|method|verify ( boolean expression, @Nullable String errorMessageTemplate, int p1, char p2)
 specifier|public
 specifier|static
@@ -411,7 +411,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Ensures that {@code expression} is {@code true}, throwing a {@code VerifyException} with a    * custom message otherwise.    *    *<p>See {@link #verify(boolean, String, Object...)} for details.    *    * @since NEXT (varargs overload since 17.0)    */
+comment|/**    * Ensures that {@code expression} is {@code true}, throwing a {@code VerifyException} with a    * custom message otherwise.    *    *<p>See {@link #verify(boolean, String, Object...)} for details.    *    * @since 23.1 (varargs overload since 17.0)    */
 DECL|method|verify ( boolean expression, @Nullable String errorMessageTemplate, long p1, char p2)
 specifier|public
 specifier|static
@@ -455,7 +455,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Ensures that {@code expression} is {@code true}, throwing a {@code VerifyException} with a    * custom message otherwise.    *    *<p>See {@link #verify(boolean, String, Object...)} for details.    *    * @since NEXT (varargs overload since 17.0)    */
+comment|/**    * Ensures that {@code expression} is {@code true}, throwing a {@code VerifyException} with a    * custom message otherwise.    *    *<p>See {@link #verify(boolean, String, Object...)} for details.    *    * @since 23.1 (varargs overload since 17.0)    */
 DECL|method|verify ( boolean expression, @Nullable String errorMessageTemplate, @Nullable Object p1, char p2)
 specifier|public
 specifier|static
@@ -501,7 +501,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Ensures that {@code expression} is {@code true}, throwing a {@code VerifyException} with a    * custom message otherwise.    *    *<p>See {@link #verify(boolean, String, Object...)} for details.    *    * @since NEXT (varargs overload since 17.0)    */
+comment|/**    * Ensures that {@code expression} is {@code true}, throwing a {@code VerifyException} with a    * custom message otherwise.    *    *<p>See {@link #verify(boolean, String, Object...)} for details.    *    * @since 23.1 (varargs overload since 17.0)    */
 DECL|method|verify ( boolean expression, @Nullable String errorMessageTemplate, char p1, int p2)
 specifier|public
 specifier|static
@@ -545,7 +545,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Ensures that {@code expression} is {@code true}, throwing a {@code VerifyException} with a    * custom message otherwise.    *    *<p>See {@link #verify(boolean, String, Object...)} for details.    *    * @since NEXT (varargs overload since 17.0)    */
+comment|/**    * Ensures that {@code expression} is {@code true}, throwing a {@code VerifyException} with a    * custom message otherwise.    *    *<p>See {@link #verify(boolean, String, Object...)} for details.    *    * @since 23.1 (varargs overload since 17.0)    */
 DECL|method|verify ( boolean expression, @Nullable String errorMessageTemplate, int p1, int p2)
 specifier|public
 specifier|static
@@ -589,7 +589,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Ensures that {@code expression} is {@code true}, throwing a {@code VerifyException} with a    * custom message otherwise.    *    *<p>See {@link #verify(boolean, String, Object...)} for details.    *    * @since NEXT (varargs overload since 17.0)    */
+comment|/**    * Ensures that {@code expression} is {@code true}, throwing a {@code VerifyException} with a    * custom message otherwise.    *    *<p>See {@link #verify(boolean, String, Object...)} for details.    *    * @since 23.1 (varargs overload since 17.0)    */
 DECL|method|verify ( boolean expression, @Nullable String errorMessageTemplate, long p1, int p2)
 specifier|public
 specifier|static
@@ -633,7 +633,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Ensures that {@code expression} is {@code true}, throwing a {@code VerifyException} with a    * custom message otherwise.    *    *<p>See {@link #verify(boolean, String, Object...)} for details.    *    * @since NEXT (varargs overload since 17.0)    */
+comment|/**    * Ensures that {@code expression} is {@code true}, throwing a {@code VerifyException} with a    * custom message otherwise.    *    *<p>See {@link #verify(boolean, String, Object...)} for details.    *    * @since 23.1 (varargs overload since 17.0)    */
 DECL|method|verify ( boolean expression, @Nullable String errorMessageTemplate, @Nullable Object p1, int p2)
 specifier|public
 specifier|static
@@ -679,7 +679,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Ensures that {@code expression} is {@code true}, throwing a {@code VerifyException} with a    * custom message otherwise.    *    *<p>See {@link #verify(boolean, String, Object...)} for details.    *    * @since NEXT (varargs overload since 17.0)    */
+comment|/**    * Ensures that {@code expression} is {@code true}, throwing a {@code VerifyException} with a    * custom message otherwise.    *    *<p>See {@link #verify(boolean, String, Object...)} for details.    *    * @since 23.1 (varargs overload since 17.0)    */
 DECL|method|verify ( boolean expression, @Nullable String errorMessageTemplate, char p1, long p2)
 specifier|public
 specifier|static
@@ -723,7 +723,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Ensures that {@code expression} is {@code true}, throwing a {@code VerifyException} with a    * custom message otherwise.    *    *<p>See {@link #verify(boolean, String, Object...)} for details.    *    * @since NEXT (varargs overload since 17.0)    */
+comment|/**    * Ensures that {@code expression} is {@code true}, throwing a {@code VerifyException} with a    * custom message otherwise.    *    *<p>See {@link #verify(boolean, String, Object...)} for details.    *    * @since 23.1 (varargs overload since 17.0)    */
 DECL|method|verify ( boolean expression, @Nullable String errorMessageTemplate, int p1, long p2)
 specifier|public
 specifier|static
@@ -767,7 +767,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Ensures that {@code expression} is {@code true}, throwing a {@code VerifyException} with a    * custom message otherwise.    *    *<p>See {@link #verify(boolean, String, Object...)} for details.    *    * @since NEXT (varargs overload since 17.0)    */
+comment|/**    * Ensures that {@code expression} is {@code true}, throwing a {@code VerifyException} with a    * custom message otherwise.    *    *<p>See {@link #verify(boolean, String, Object...)} for details.    *    * @since 23.1 (varargs overload since 17.0)    */
 DECL|method|verify ( boolean expression, @Nullable String errorMessageTemplate, long p1, long p2)
 specifier|public
 specifier|static
@@ -811,7 +811,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Ensures that {@code expression} is {@code true}, throwing a {@code VerifyException} with a    * custom message otherwise.    *    *<p>See {@link #verify(boolean, String, Object...)} for details.    *    * @since NEXT (varargs overload since 17.0)    */
+comment|/**    * Ensures that {@code expression} is {@code true}, throwing a {@code VerifyException} with a    * custom message otherwise.    *    *<p>See {@link #verify(boolean, String, Object...)} for details.    *    * @since 23.1 (varargs overload since 17.0)    */
 DECL|method|verify ( boolean expression, @Nullable String errorMessageTemplate, @Nullable Object p1, long p2)
 specifier|public
 specifier|static
@@ -857,7 +857,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Ensures that {@code expression} is {@code true}, throwing a {@code VerifyException} with a    * custom message otherwise.    *    *<p>See {@link #verify(boolean, String, Object...)} for details.    *    * @since NEXT (varargs overload since 17.0)    */
+comment|/**    * Ensures that {@code expression} is {@code true}, throwing a {@code VerifyException} with a    * custom message otherwise.    *    *<p>See {@link #verify(boolean, String, Object...)} for details.    *    * @since 23.1 (varargs overload since 17.0)    */
 DECL|method|verify ( boolean expression, @Nullable String errorMessageTemplate, char p1, @Nullable Object p2)
 specifier|public
 specifier|static
@@ -903,7 +903,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Ensures that {@code expression} is {@code true}, throwing a {@code VerifyException} with a    * custom message otherwise.    *    *<p>See {@link #verify(boolean, String, Object...)} for details.    *    * @since NEXT (varargs overload since 17.0)    */
+comment|/**    * Ensures that {@code expression} is {@code true}, throwing a {@code VerifyException} with a    * custom message otherwise.    *    *<p>See {@link #verify(boolean, String, Object...)} for details.    *    * @since 23.1 (varargs overload since 17.0)    */
 DECL|method|verify ( boolean expression, @Nullable String errorMessageTemplate, int p1, @Nullable Object p2)
 specifier|public
 specifier|static
@@ -949,7 +949,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Ensures that {@code expression} is {@code true}, throwing a {@code VerifyException} with a    * custom message otherwise.    *    *<p>See {@link #verify(boolean, String, Object...)} for details.    *    * @since NEXT (varargs overload since 17.0)    */
+comment|/**    * Ensures that {@code expression} is {@code true}, throwing a {@code VerifyException} with a    * custom message otherwise.    *    *<p>See {@link #verify(boolean, String, Object...)} for details.    *    * @since 23.1 (varargs overload since 17.0)    */
 DECL|method|verify ( boolean expression, @Nullable String errorMessageTemplate, long p1, @Nullable Object p2)
 specifier|public
 specifier|static
@@ -995,7 +995,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Ensures that {@code expression} is {@code true}, throwing a {@code VerifyException} with a    * custom message otherwise.    *    *<p>See {@link #verify(boolean, String, Object...)} for details.    *    * @since NEXT (varargs overload since 17.0)    */
+comment|/**    * Ensures that {@code expression} is {@code true}, throwing a {@code VerifyException} with a    * custom message otherwise.    *    *<p>See {@link #verify(boolean, String, Object...)} for details.    *    * @since 23.1 (varargs overload since 17.0)    */
 DECL|method|verify ( boolean expression, @Nullable String errorMessageTemplate, @Nullable Object p1, @Nullable Object p2)
 specifier|public
 specifier|static
@@ -1043,7 +1043,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Ensures that {@code expression} is {@code true}, throwing a {@code VerifyException} with a    * custom message otherwise.    *    *<p>See {@link #verify(boolean, String, Object...)} for details.    *    * @since NEXT (varargs overload since 17.0)    */
+comment|/**    * Ensures that {@code expression} is {@code true}, throwing a {@code VerifyException} with a    * custom message otherwise.    *    *<p>See {@link #verify(boolean, String, Object...)} for details.    *    * @since 23.1 (varargs overload since 17.0)    */
 DECL|method|verify ( boolean expression, @Nullable String errorMessageTemplate, @Nullable Object p1, @Nullable Object p2, @Nullable Object p3)
 specifier|public
 specifier|static
@@ -1098,7 +1098,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Ensures that {@code expression} is {@code true}, throwing a {@code VerifyException} with a    * custom message otherwise.    *    *<p>See {@link #verify(boolean, String, Object...)} for details.    *    * @since NEXT (varargs overload since 17.0)    */
+comment|/**    * Ensures that {@code expression} is {@code true}, throwing a {@code VerifyException} with a    * custom message otherwise.    *    *<p>See {@link #verify(boolean, String, Object...)} for details.    *    * @since 23.1 (varargs overload since 17.0)    */
 DECL|method|verify ( boolean expression, @Nullable String errorMessageTemplate, @Nullable Object p1, @Nullable Object p2, @Nullable Object p3, @Nullable Object p4)
 specifier|public
 specifier|static
