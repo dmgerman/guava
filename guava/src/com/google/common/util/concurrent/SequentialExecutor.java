@@ -52,20 +52,6 @@ name|com
 operator|.
 name|google
 operator|.
-name|errorprone
-operator|.
-name|annotations
-operator|.
-name|DoNotMock
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
 name|j2objc
 operator|.
 name|annotations
@@ -143,15 +129,14 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Executor ensuring that all Runnables submitted are executed in order, using the provided  * Executor, and sequentially such that no two will ever be running at the same time.  *  *<p>Tasks submitted to {@link #execute(Runnable)} are executed in FIFO order.  *  *<p>Tasks can also be prepended to the queue to be executed in LIFO order before any other  * submitted tasks. Primarily intended for the currently executing task to be able to schedule a  * continuation task.  *  *<p>Execution on the queue can be {@linkplain #suspend suspended}, e.g. while waiting for an RPC,  * and execution can be {@linkplain #resume resumed} later.  *  *<p>The execution of tasks is done by one thread as long as there are tasks left in the queue and  * execution has not been suspended. (Even if one task is {@linkplain Thread#interrupt interrupted},  * execution of subsequent tasks continues.) {@code RuntimeException}s thrown by tasks are simply  * logged and the executor keeps trucking. If an {@code Error} is thrown, the error will propagate  * and execution will stop until it is restarted by external calls.  */
+comment|/**  * Executor ensuring that all Runnables submitted are executed in order, using the provided  * Executor, and sequentially such that no two will ever be running at the same time.  *  *<p>Tasks submitted to {@link #execute(Runnable)} are executed in FIFO order.  *  *<p>The execution of tasks is done by one thread as long as there are tasks left in the queue.  * When a task is {@linkplain Thread#interrupt interrupted}, execution of subsequent tasks  * continues. {@code RuntimeException}s thrown by tasks are simply logged and the executor keeps  * trucking. If an {@code Error} is thrown, the error will propagate and execution will stop until  * it is restarted by a call to {@link #execute}.  */
 end_comment
 
 begin_class
 annotation|@
 name|GwtIncompatible
-annotation|@
-name|DoNotMock
 DECL|class|SequentialExecutor
+specifier|final
 class|class
 name|SequentialExecutor
 implements|implements
@@ -214,18 +199,6 @@ name|isWorkerRunning
 init|=
 literal|false
 decl_stmt|;
-annotation|@
-name|GuardedBy
-argument_list|(
-literal|"queue"
-argument_list|)
-DECL|field|suspensions
-specifier|private
-name|int
-name|suspensions
-init|=
-literal|0
-decl_stmt|;
 DECL|field|worker
 specifier|private
 specifier|final
@@ -256,7 +229,7 @@ name|executor
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Adds a task to the queue and makes sure a worker thread is running, unless the queue has been    * suspended.    *    *<p>If this method throws, e.g. a {@code RejectedExecutionException} from the delegate executor,    * execution of tasks will stop until a call to this method or to {@link #resume()} is made.    */
+comment|/**    * Adds a task to the queue and makes sure a worker thread is running.    *    *<p>If this method throws, e.g. a {@code RejectedExecutionException} from the delegate executor,    * execution of tasks will stop until a call to this method or to {@link #resume()} is made.    */
 annotation|@
 name|Override
 DECL|method|execute (Runnable task)
@@ -283,76 +256,6 @@ expr_stmt|;
 if|if
 condition|(
 name|isWorkerRunning
-operator|||
-name|suspensions
-operator|>
-literal|0
-condition|)
-block|{
-return|return;
-block|}
-name|isWorkerRunning
-operator|=
-literal|true
-expr_stmt|;
-block|}
-name|startQueueWorker
-argument_list|()
-expr_stmt|;
-block|}
-comment|/**    * Suspends the running of tasks until {@link #resume()} is called. This can be called multiple    * times to increase the suspensions count and execution will not continue until {@link #resume}    * has been called the same number of times as {@code suspend} has been.    *    *<p>Any task that has already been pulled off the queue for execution will be completed before    * execution is suspended.    */
-DECL|method|suspend ()
-specifier|public
-name|void
-name|suspend
-parameter_list|()
-block|{
-synchronized|synchronized
-init|(
-name|queue
-init|)
-block|{
-name|suspensions
-operator|++
-expr_stmt|;
-block|}
-block|}
-comment|/**    * Continue execution of tasks after a call to {@link #suspend()}. More accurately, decreases the    * suspension counter, as has been incremented by calls to {@link #suspend}, and resumes execution    * if the suspension counter is zero.    *    *<p>If this method throws, e.g. a {@code RejectedExecutionException} from the delegate executor,    * execution of tasks will stop until a call to this method or to {@link #execute(Runnable)} is    * made.    *    * @throws java.lang.IllegalStateException if this executor is not suspended.    */
-DECL|method|resume ()
-specifier|public
-name|void
-name|resume
-parameter_list|()
-block|{
-synchronized|synchronized
-init|(
-name|queue
-init|)
-block|{
-name|Preconditions
-operator|.
-name|checkState
-argument_list|(
-name|suspensions
-operator|>
-literal|0
-argument_list|)
-expr_stmt|;
-name|suspensions
-operator|--
-expr_stmt|;
-if|if
-condition|(
-name|isWorkerRunning
-operator|||
-name|suspensions
-operator|>
-literal|0
-operator|||
-name|queue
-operator|.
-name|isEmpty
-argument_list|()
 condition|)
 block|{
 return|return;
@@ -414,7 +317,7 @@ block|}
 block|}
 block|}
 block|}
-comment|/**    * Worker that runs tasks off the queue until it is empty or the queue is suspended.    */
+comment|/**    * Worker that runs tasks from {@link #queue} until it is empty.    */
 annotation|@
 name|WeakOuter
 DECL|class|QueueWorker
@@ -485,13 +388,6 @@ name|queue
 init|)
 block|{
 comment|// TODO(user): How should we handle interrupts and shutdowns?
-if|if
-condition|(
-name|suspensions
-operator|==
-literal|0
-condition|)
-block|{
 name|task
 operator|=
 name|queue
@@ -499,7 +395,6 @@ operator|.
 name|poll
 argument_list|()
 expr_stmt|;
-block|}
 if|if
 condition|(
 name|task
