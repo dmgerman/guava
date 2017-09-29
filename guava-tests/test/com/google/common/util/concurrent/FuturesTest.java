@@ -11579,6 +11579,7 @@ block|}
 comment|/**    * Runnable which can be called a single time, and only after {@link #expectCall} is called.    */
 comment|// TODO(cpovirk): top-level class?
 DECL|class|SingleCallListener
+specifier|private
 specifier|static
 class|class
 name|SingleCallListener
@@ -11592,17 +11593,15 @@ name|expectCall
 init|=
 literal|false
 decl_stmt|;
-DECL|field|calledCountDown
+DECL|field|called
 specifier|private
 specifier|final
-name|CountDownLatch
-name|calledCountDown
+name|AtomicBoolean
+name|called
 init|=
 operator|new
-name|CountDownLatch
-argument_list|(
-literal|1
-argument_list|)
+name|AtomicBoolean
+argument_list|()
 decl_stmt|;
 annotation|@
 name|Override
@@ -11627,10 +11626,12 @@ name|wasCalled
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|calledCountDown
+name|called
 operator|.
-name|countDown
-argument_list|()
+name|set
+argument_list|(
+literal|true
+argument_list|)
 expr_stmt|;
 block|}
 DECL|method|expectCall ()
@@ -11658,34 +11659,11 @@ name|wasCalled
 parameter_list|()
 block|{
 return|return
-name|calledCountDown
+name|called
 operator|.
-name|getCount
+name|get
 argument_list|()
-operator|==
-literal|0
 return|;
-block|}
-DECL|method|waitForCall ()
-specifier|public
-name|void
-name|waitForCall
-parameter_list|()
-throws|throws
-name|InterruptedException
-block|{
-name|assertTrue
-argument_list|(
-literal|"expectCall is false"
-argument_list|,
-name|expectCall
-argument_list|)
-expr_stmt|;
-name|calledCountDown
-operator|.
-name|await
-argument_list|()
-expr_stmt|;
 block|}
 block|}
 DECL|method|testAllAsList ()
