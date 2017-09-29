@@ -1436,7 +1436,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**    * Returns the<a href="http://en.wikipedia.org/wiki/Arithmetic_mean">arithmetic mean</a> of    * {@code values}.    *    *<p>If these values are a sample drawn from a population, this is also an unbiased estimator of    * the arithmetic mean of the population.    *    * @param values a nonempty series of values    * @throws IllegalArgumentException if {@code values} is empty or contains any non-finite value    * @deprecated Use {@link Stats#meanOf} instead, noting the less strict handling of non-finite    *     values. This method will be removed in February 2018.    */
+comment|/**    * Returns the<a href="http://en.wikipedia.org/wiki/Arithmetic_mean">arithmetic mean</a> of    * {@code values}.    *    *<p>If these values are a sample drawn from a population, this is also an unbiased estimator of    * the arithmetic mean of the population.    *    * @param values a nonempty series of values    * @throws IllegalArgumentException if {@code values} is empty or contains any non-finite value    * @deprecated Use {@link Stats#meanOf} instead, noting the less strict handling of non-finite    *     values.    */
 annotation|@
 name|Deprecated
 comment|// com.google.common.math.DoubleUtils
@@ -1527,7 +1527,7 @@ return|return
 name|mean
 return|;
 block|}
-comment|/**    * Returns the<a href="http://en.wikipedia.org/wiki/Arithmetic_mean">arithmetic mean</a> of    * {@code values}.    *    *<p>If these values are a sample drawn from a population, this is also an unbiased estimator of    * the arithmetic mean of the population.    *    * @param values a nonempty series of values    * @throws IllegalArgumentException if {@code values} is empty    * @deprecated Use {@link Stats#meanOf} instead, noting the less strict handling of non-finite    *     values. This method will be removed in February 2018.    */
+comment|/**    * Returns the<a href="http://en.wikipedia.org/wiki/Arithmetic_mean">arithmetic mean</a> of    * {@code values}.    *    *<p>If these values are a sample drawn from a population, this is also an unbiased estimator of    * the arithmetic mean of the population.    *    * @param values a nonempty series of values    * @throws IllegalArgumentException if {@code values} is empty    * @deprecated Use {@link Stats#meanOf} instead, noting the less strict handling of non-finite    *     values.    */
 annotation|@
 name|Deprecated
 DECL|method|mean (int... values)
@@ -1596,7 +1596,7 @@ operator|.
 name|length
 return|;
 block|}
-comment|/**    * Returns the<a href="http://en.wikipedia.org/wiki/Arithmetic_mean">arithmetic mean</a> of    * {@code values}.    *    *<p>If these values are a sample drawn from a population, this is also an unbiased estimator of    * the arithmetic mean of the population.    *    * @param values a nonempty series of values, which will be converted to {@code double} values    *     (this may cause loss of precision for longs of magnitude over 2^53 (slightly over 9e15))    * @throws IllegalArgumentException if {@code values} is empty    * @deprecated Use {@link Stats#meanOf} instead, noting the less strict handling of non-finite    *     values. This method will be removed in February 2018.    */
+comment|/**    * Returns the<a href="http://en.wikipedia.org/wiki/Arithmetic_mean">arithmetic mean</a> of    * {@code values}.    *    *<p>If these values are a sample drawn from a population, this is also an unbiased estimator of    * the arithmetic mean of the population.    *    * @param values a nonempty series of values, which will be converted to {@code double} values    *     (this may cause loss of precision for longs of magnitude over 2^53 (slightly over 9e15))    * @throws IllegalArgumentException if {@code values} is empty    * @deprecated Use {@link Stats#meanOf} instead, noting the less strict handling of non-finite    *     values.    */
 annotation|@
 name|Deprecated
 DECL|method|mean (long... values)
@@ -1673,7 +1673,7 @@ return|return
 name|mean
 return|;
 block|}
-comment|/**    * Returns the<a href="http://en.wikipedia.org/wiki/Arithmetic_mean">arithmetic mean</a> of    * {@code values}.    *    *<p>If these values are a sample drawn from a population, this is also an unbiased estimator of    * the arithmetic mean of the population.    *    * @param values a nonempty series of values, which will be converted to {@code double} values    *     (this may cause loss of precision)    * @throws IllegalArgumentException if {@code values} is empty or contains any non-finite value    * @deprecated Use {@link Stats#meanOf} instead, noting the less strict handling of non-finite    *     values. This method will be removed in February 2018.    */
+comment|/**    * Returns the<a href="http://en.wikipedia.org/wiki/Arithmetic_mean">arithmetic mean</a> of    * {@code values}.    *    *<p>If these values are a sample drawn from a population, this is also an unbiased estimator of    * the arithmetic mean of the population.    *    * @param values a nonempty series of values, which will be converted to {@code double} values    *     (this may cause loss of precision)    * @throws IllegalArgumentException if {@code values} is empty or contains any non-finite value    * @deprecated Use {@link Stats#meanOf} instead, noting the less strict handling of non-finite    *     values.    */
 annotation|@
 name|Deprecated
 comment|// com.google.common.math.DoubleUtils
@@ -1704,7 +1704,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the<a href="http://en.wikipedia.org/wiki/Arithmetic_mean">arithmetic mean</a> of    * {@code values}.    *    *<p>If these values are a sample drawn from a population, this is also an unbiased estimator of    * the arithmetic mean of the population.    *    * @param values a nonempty series of values, which will be converted to {@code double} values    *     (this may cause loss of precision)    * @throws IllegalArgumentException if {@code values} is empty or contains any non-finite value    * @deprecated Use {@link Stats#meanOf} instead, noting the less strict handling of non-finite    *     values. This method will be removed in February 2018.    */
+comment|/**    * Returns the<a href="http://en.wikipedia.org/wiki/Arithmetic_mean">arithmetic mean</a> of    * {@code values}.    *    *<p>If these values are a sample drawn from a population, this is also an unbiased estimator of    * the arithmetic mean of the population.    *    * @param values a nonempty series of values, which will be converted to {@code double} values    *     (this may cause loss of precision)    * @throws IllegalArgumentException if {@code values} is empty or contains any non-finite value    * @deprecated Use {@link Stats#meanOf} instead, noting the less strict handling of non-finite    *     values.    */
 annotation|@
 name|Deprecated
 comment|// com.google.common.math.DoubleUtils

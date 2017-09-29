@@ -305,7 +305,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Propagates {@code throwable} exactly as-is, if and only if it is an instance of {@code    * declaredType}. Example usage:    *    *<pre>    * try {    *   someMethodThatCouldThrowAnything();    * } catch (IKnowWhatToDoWithThisException e) {    *   handle(e);    * } catch (Throwable t) {    *   Throwables.propagateIfInstanceOf(t, IOException.class);    *   Throwables.propagateIfInstanceOf(t, SQLException.class);    *   throw Throwables.propagate(t);    * }    *</pre>    *    * @deprecated Use {@link #throwIfInstanceOf}, which has the same behavior but rejects {@code    *     null}. This method is scheduled to be removed in July 2018.    */
+comment|/**    * Propagates {@code throwable} exactly as-is, if and only if it is an instance of {@code    * declaredType}. Example usage:    *    *<pre>    * try {    *   someMethodThatCouldThrowAnything();    * } catch (IKnowWhatToDoWithThisException e) {    *   handle(e);    * } catch (Throwable t) {    *   Throwables.propagateIfInstanceOf(t, IOException.class);    *   Throwables.propagateIfInstanceOf(t, SQLException.class);    *   throw Throwables.propagate(t);    * }    *</pre>    *    * @deprecated Use {@link #throwIfInstanceOf}, which has the same behavior but rejects {@code    *     null}.    */
 annotation|@
 name|Deprecated
 annotation|@
@@ -397,7 +397,7 @@ name|throwable
 throw|;
 block|}
 block|}
-comment|/**    * Propagates {@code throwable} exactly as-is, if and only if it is an instance of {@link    * RuntimeException} or {@link Error}. Example usage:    *    *<pre>    * try {    *   someMethodThatCouldThrowAnything();    * } catch (IKnowWhatToDoWithThisException e) {    *   handle(e);    * } catch (Throwable t) {    *   Throwables.propagateIfPossible(t);    *   throw new RuntimeException("unexpected", t);    * }    *</pre>    *    * @deprecated Use {@link #throwIfUnchecked}, which has the same behavior but rejects {@code    *     null}. This method is scheduled to be removed in July 2018.    */
+comment|/**    * Propagates {@code throwable} exactly as-is, if and only if it is an instance of {@link    * RuntimeException} or {@link Error}. Example usage:    *    *<pre>    * try {    *   someMethodThatCouldThrowAnything();    * } catch (IKnowWhatToDoWithThisException e) {    *   handle(e);    * } catch (Throwable t) {    *   Throwables.propagateIfPossible(t);    *   throw new RuntimeException("unexpected", t);    * }    *</pre>    *    * @deprecated Use {@link #throwIfUnchecked}, which has the same behavior but rejects {@code    *     null}.    */
 annotation|@
 name|Deprecated
 annotation|@
@@ -531,7 +531,7 @@ name|declaredType2
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Propagates {@code throwable} as-is if it is an instance of {@link RuntimeException} or {@link    * Error}, or else as a last resort, wraps it in a {@code RuntimeException} and then propagates.    *    *<p>This method always throws an exception. The {@code RuntimeException} return type allows    * client code to signal to the compiler that statements after the call are unreachable. Example    * usage:    *    *<pre>    * T doSomething() {    *   try {    *     return someMethodThatCouldThrowAnything();    *   } catch (IKnowWhatToDoWithThisException e) {    *     return handle(e);    *   } catch (Throwable t) {    *     throw Throwables.propagate(t);    *   }    * }    *</pre>    *    * @param throwable the Throwable to propagate    * @return nothing will ever be returned; this return type is only for your convenience, as    *     illustrated in the example above    * @deprecated Use {@code throw e} or {@code throw new RuntimeException(e)} directly, or use a    *     combination of {@link #throwIfUnchecked} and {@code throw new RuntimeException(e)}. For    *     background on the deprecation, read<a href="https://goo.gl/Ivn2kc">Why we deprecated    *     {@code Throwables.propagate}</a>. This method is scheduled to be removed in July 2018.    */
+comment|/**    * Propagates {@code throwable} as-is if it is an instance of {@link RuntimeException} or {@link    * Error}, or else as a last resort, wraps it in a {@code RuntimeException} and then propagates.    *    *<p>This method always throws an exception. The {@code RuntimeException} return type allows    * client code to signal to the compiler that statements after the call are unreachable. Example    * usage:    *    *<pre>    * T doSomething() {    *   try {    *     return someMethodThatCouldThrowAnything();    *   } catch (IKnowWhatToDoWithThisException e) {    *     return handle(e);    *   } catch (Throwable t) {    *     throw Throwables.propagate(t);    *   }    * }    *</pre>    *    * @param throwable the Throwable to propagate    * @return nothing will ever be returned; this return type is only for your convenience, as    *     illustrated in the example above    * @deprecated Use {@code throw e} or {@code throw new RuntimeException(e)} directly, or use a    *     combination of {@link #throwIfUnchecked} and {@code throw new RuntimeException(e)}. For    *     background on the deprecation, read<a href="https://goo.gl/Ivn2kc">Why we deprecated    *     {@code Throwables.propagate}</a>.    */
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@

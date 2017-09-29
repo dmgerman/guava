@@ -548,7 +548,7 @@ name|columnComparator
 expr_stmt|;
 block|}
 comment|// TODO(jlevy): Move to StandardRowSortedTable?
-comment|/**    * Returns the comparator that orders the rows. With natural ordering, {@link Ordering#natural()}    * is returned.    *    * @deprecated Use {@code table.rowKeySet().comparator()} instead. This method is scheduled for    *     removal in April 2019.    */
+comment|/**    * Returns the comparator that orders the rows. With natural ordering, {@link Ordering#natural()}    * is returned.    *    * @deprecated Use {@code table.rowKeySet().comparator()} instead.    */
 annotation|@
 name|Deprecated
 DECL|method|rowComparator ()
@@ -570,7 +570,7 @@ name|comparator
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns the comparator that orders the columns. With natural ordering, {@link    * Ordering#natural()} is returned.    *    * @deprecated Store the {@link Comparator} alongside the {@link Table}. Or, if you know that the    *     {@link Table} contains at least one value, you can retrieve the {@link Comparator} with:    *     {@code ((SortedMap<C, V>) table.rowMap().values().iterator().next()).comparator();}. This    *     method is scheduled for removal in April 2019.    */
+comment|/**    * Returns the comparator that orders the columns. With natural ordering, {@link    * Ordering#natural()} is returned.    *    * @deprecated Store the {@link Comparator} alongside the {@link Table}. Or, if you know that the    *     {@link Table} contains at least one value, you can retrieve the {@link Comparator} with:    *     {@code ((SortedMap<C, V>) table.rowMap().values().iterator().next()).comparator();}.    */
 annotation|@
 name|Deprecated
 DECL|method|columnComparator ()

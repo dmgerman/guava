@@ -450,7 +450,7 @@ name|expectedValuesPerKey
 argument_list|)
 return|;
 block|}
-comment|/**    * Reduces the memory used by this {@code ArrayListMultimap}, if feasible.    *    * @deprecated For a {@link ListMultimap} that automatically trims to size, use {@link    *     ImmutableListMultimap}. If you need a mutable collection, remove the {@code trimToSize}    *     call, or switch to a {@code HashMap<K, ArrayList<V>>}. This method is scheduled for removal    *     in April 2019.    */
+comment|/**    * Reduces the memory used by this {@code ArrayListMultimap}, if feasible.    *    * @deprecated For a {@link ListMultimap} that automatically trims to size, use {@link    *     ImmutableListMultimap}. If you need a mutable collection, remove the {@code trimToSize}    *     call, or switch to a {@code HashMap<K, ArrayList<V>>}.    */
 annotation|@
 name|Deprecated
 DECL|method|trimToSize ()
