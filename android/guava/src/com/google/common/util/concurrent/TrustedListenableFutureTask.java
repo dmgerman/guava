@@ -231,10 +231,14 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/*    * In certain circumstances, this field might theoretically not be visible to an afterDone() call    * triggered by cancel(). For details, see the comments on the fields of TimeoutFuture.    */
+comment|/*    * In certain circumstances, this field might theoretically not be visible to an afterDone() call    * triggered by cancel(). For details, see the comments on the fields of TimeoutFuture.    *    *<p>{@code volatile} is required for j2objc transpiling:    * https://developers.google.com/j2objc/guides/j2objc-memory-model#atomicity    */
 DECL|field|task
 specifier|private
+specifier|volatile
 name|InterruptibleTask
+argument_list|<
+name|?
+argument_list|>
 name|task
 decl_stmt|;
 DECL|method|TrustedListenableFutureTask (Callable<V> callable)
