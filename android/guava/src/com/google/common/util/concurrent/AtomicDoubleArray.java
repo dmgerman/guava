@@ -295,16 +295,23 @@ name|double
 name|newValue
 parameter_list|)
 block|{
-name|set
+name|long
+name|next
+init|=
+name|doubleToRawLongBits
+argument_list|(
+name|newValue
+argument_list|)
+decl_stmt|;
+name|longs
+operator|.
+name|lazySet
 argument_list|(
 name|i
 argument_list|,
-name|newValue
+name|next
 argument_list|)
 expr_stmt|;
-comment|// TODO(user): replace with code below when jdk5 support is dropped.
-comment|// long next = doubleToRawLongBits(newValue);
-comment|// longs.lazySet(i, next);
 block|}
 comment|/**    * Atomically sets the element at position {@code i} to the given value    * and returns the old value.    *    * @param i the index    * @param newValue the new value    * @return the previous value    */
 DECL|method|getAndSet (int i, double newValue)
