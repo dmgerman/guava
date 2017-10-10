@@ -1423,6 +1423,11 @@ name|V
 name|value
 parameter_list|)
 block|{
+name|checkValue
+argument_list|(
+name|value
+argument_list|)
+expr_stmt|;
 comment|// Preconditions keep the map and inverse consistent.
 name|checkState
 argument_list|(

@@ -485,6 +485,15 @@ name|testers
 operator|.
 name|add
 argument_list|(
+name|BiMapEntrySetTester
+operator|.
+name|class
+argument_list|)
+expr_stmt|;
+name|testers
+operator|.
+name|add
+argument_list|(
 name|BiMapPutTester
 operator|.
 name|class
