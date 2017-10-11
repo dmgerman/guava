@@ -433,7 +433,7 @@ init|=
 name|ascii
 argument_list|()
 decl_stmt|;
-comment|/**    * Determines whether a character is a digit according to    *<a href="http://unicode.org/cldr/utility/list-unicodeset.jsp?a=%5Cp%7Bdigit%7D">    * Unicode</a>. If you only care to match ASCII digits, you can use    * {@code inRange('0', '9')}.    *    * @deprecated Use {@link #digit()} instead. This constant is scheduled to be    *     removed in June 2018.    */
+comment|/**    * Determines whether a character is a digit according to    *<a href="http://unicode.org/cldr/utility/list-unicodeset.jsp?a=%5Cp%7Bdigit%7D">    * Unicode</a>. If you only care to match ASCII digits, you can use    * {@code inRange('0', '9')}.    *    * @deprecated Many digits are supplementary characters; see the class    *     documentation. If you need to use this, use {@link #digit()} instead. This    * .   constant is scheduled to be removed in June 2018.    */
 annotation|@
 name|com
 operator|.
@@ -456,7 +456,7 @@ init|=
 name|digit
 argument_list|()
 decl_stmt|;
-comment|/**    * Determines whether a character is a digit according to    * {@linkplain Character#isDigit(char) Java's definition}. If you only care to match    * ASCII digits, you can use {@code inRange('0', '9')}.    *    * @deprecated Use {@link #javaDigit()} instead. This constant is scheduled to be    *     removed in June 2018.    */
+comment|/**    * Determines whether a character is a digit according to    * {@linkplain Character#isDigit(char) Java's definition}. If you only care to match    * ASCII digits, you can use {@code inRange('0', '9')}.    *    * @deprecated Many digits are supplementary characters; see the class    *     documentation. If you need to use this, use {@link #javaDigit()} instead.    *     This constant is scheduled to be removed in June 2018.    */
 annotation|@
 name|com
 operator|.
@@ -479,7 +479,7 @@ init|=
 name|javaDigit
 argument_list|()
 decl_stmt|;
-comment|/**    * Determines whether a character is a letter according to    * {@linkplain Character#isLetter(char) Java's definition}. If you only care to    * match letters of the Latin alphabet, you can use    * {@code inRange('a', 'z').or(inRange('A', 'Z'))}.    *    * @deprecated Use {@link #javaLetter()} instead. This constant is scheduled to be    *     removed in June 2018.    */
+comment|/**    * Determines whether a character is a letter according to    * {@linkplain Character#isLetter(char) Java's definition}. If you only care to    * match letters of the Latin alphabet, you can use    * {@code inRange('a', 'z').or(inRange('A', 'Z'))}.    *    * @deprecated Most letters are supplementary characters; see the class    *     documentation. If you need to use this, use {@link #javaLetter()} instead.    *     This constant is scheduled to be removed in June 2018.    */
 annotation|@
 name|com
 operator|.
@@ -502,7 +502,7 @@ init|=
 name|javaLetter
 argument_list|()
 decl_stmt|;
-comment|/**    * Determines whether a character is a letter or digit according to    * {@linkplain Character#isLetterOrDigit(char) Java's definition}.    *    * @deprecated Use {@link #javaLetterOrDigit()} instead. This constant is scheduled    *     to be removed in June 2018.    */
+comment|/**    * Determines whether a character is a letter or digit according to    * {@linkplain Character#isLetterOrDigit(char) Java's definition}.    *    * @deprecated Most letters and digits are supplementary characters; see the class    *     documentation. If you need to use this, use {@link #javaLetterOrDigit()}    *     instead. This constant is scheduled to be removed in June 2018.    */
 annotation|@
 name|com
 operator|.
@@ -525,7 +525,7 @@ init|=
 name|javaLetterOrDigit
 argument_list|()
 decl_stmt|;
-comment|/**    * Determines whether a character is upper case according to    * {@linkplain Character#isUpperCase(char) Java's definition}.    *    * @deprecated Use {@link #javaUpperCase()} instead. This constant is scheduled to    *     be removed in June 2018.    */
+comment|/**    * Determines whether a character is upper case according to    * {@linkplain Character#isUpperCase(char) Java's definition}.    *    * @deprecated Some uppercase letters are supplementary characters; see the class    *     documentation. If you need to use this, use {@link #javaUpperCase()} instead.    *     This constant is scheduled to be removed in June 2018.    */
 annotation|@
 name|com
 operator|.
@@ -548,7 +548,7 @@ init|=
 name|javaUpperCase
 argument_list|()
 decl_stmt|;
-comment|/**    * Determines whether a character is lower case according to    * {@linkplain Character#isLowerCase(char) Java's definition}.    *    * @deprecated Use {@link #javaLowerCase()} instead. This constant is scheduled to    *     be removed in June 2018.    */
+comment|/**    * Determines whether a character is lower case according to    * {@linkplain Character#isLowerCase(char) Java's definition}.    *    * @deprecated Some lowercase letters are supplementary characters; see the class    *     documentation. If you need to use this, use {@link #javaLowerCase()} instead.    *     This constant is scheduled to be removed in June 2018.    */
 annotation|@
 name|com
 operator|.
@@ -594,7 +594,7 @@ init|=
 name|javaIsoControl
 argument_list|()
 decl_stmt|;
-comment|/**    * Determines whether a character is invisible; that is, if its Unicode category is    * any of SPACE_SEPARATOR, LINE_SEPARATOR, PARAGRAPH_SEPARATOR, CONTROL, FORMAT,    * SURROGATE, and PRIVATE_USE according to ICU4J.    *    * @deprecated Use {@link #invisible()} instead. This constant is scheduled to be    *     removed in June 2018.    */
+comment|/**    * Determines whether a character is invisible; that is, if its Unicode category is    * any of SPACE_SEPARATOR, LINE_SEPARATOR, PARAGRAPH_SEPARATOR, CONTROL, FORMAT,    * SURROGATE, and PRIVATE_USE according to ICU4J.    *    * @deprecated Most invisible characters are supplementary characters; see the class    *     documentation. If you need to use this, use {@link #invisible()} instead.    *     This constant is scheduled to be removed in June 2018.    */
 annotation|@
 name|com
 operator|.
@@ -617,7 +617,7 @@ init|=
 name|invisible
 argument_list|()
 decl_stmt|;
-comment|/**    * Determines whether a character is single-width (not double-width). When in doubt,    * this matcher errs on the side of returning {@code false} (that is, it tends to    * assume a character is double-width).    *    *<p><b>Note:</b> as the reference file evolves, we will modify this constant to    * keep it up to date.    *    * @deprecated Use {@link #singleWidth()} instead. This constant is scheduled to be    *     removed in June 2018.    */
+comment|/**    * Determines whether a character is single-width (not double-width). When in doubt,    * this matcher errs on the side of returning {@code false} (that is, it tends to    * assume a character is double-width).    *    *<p><b>Note:</b> as the reference file evolves, we will modify this constant to    * keep it up to date.    *    * @deprecated Many such characters are supplementary characters; see the class    *     documentation. If you need to use this, use {@link #singleWidth()} instead.    *     This constant is scheduled to be removed in June 2018.    */
 annotation|@
 name|com
 operator|.
