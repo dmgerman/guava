@@ -4329,6 +4329,10 @@ name|Digit
 extends|extends
 name|RangesMatcher
 block|{
+comment|// Plug the following UnicodeSet pattern into
+comment|// https://unicode.org/cldr/utility/list-unicodeset.jsp
+comment|// [[:Nd:]&[:nv=0:]&[\u0000-\uFFFF]]
+comment|// and get the zeroes from there.
 comment|// Must be in ascending order.
 DECL|field|ZEROES
 specifier|private
@@ -4337,11 +4341,11 @@ specifier|final
 name|String
 name|ZEROES
 init|=
-literal|"0\u0660\u06f0\u07c0\u0966\u09e6\u0a66\u0ae6\u0b66"
+literal|"0\u0660\u06f0\u07c0\u0966\u09e6\u0a66\u0ae6\u0b66\u0be6\u0c66\u0ce6\u0d66\u0de6"
 operator|+
-literal|"\u0be6\u0c66\u0ce6\u0d66\u0e50\u0ed0\u0f20\u1040\u1090\u17e0\u1810"
+literal|"\u0e50\u0ed0\u0f20\u1040\u1090\u17e0\u1810\u1946\u19d0\u1a80\u1a90\u1b50\u1bb0"
 operator|+
-literal|"\u1946\u19d0\u1b50\u1bb0\u1c40\u1c50\ua620\ua8d0\ua900\uaa50\uff10"
+literal|"\u1c40\u1c50\ua620\ua8d0\ua900\ua9d0\ua9f0\uaa50\uabf0\uff10"
 decl_stmt|;
 DECL|method|zeroes ()
 specifier|private
@@ -4783,6 +4787,10 @@ name|Invisible
 extends|extends
 name|RangesMatcher
 block|{
+comment|// Plug the following UnicodeSet pattern into
+comment|// https://unicode.org/cldr/utility/list-unicodeset.jsp
+comment|// [[[:Zs:][:Zl:][:Zp:][:Cc:][:Cf:][:Cs:][:Co:]]&[\u0000-\uFFFF]]
+comment|// with the "Abbreviate" option, and get the ranges from there.
 DECL|field|RANGE_STARTS
 specifier|private
 specifier|static
@@ -4790,9 +4798,9 @@ specifier|final
 name|String
 name|RANGE_STARTS
 init|=
-literal|"\u0000\u007f\u00ad\u0600\u061c\u06dd\u070f\u1680\u180e\u2000\u2028\u205f\u2066\u2067"
+literal|"\u0000\u007f\u00ad\u0600\u061c\u06dd\u070f\u08e2\u1680\u180e\u2000\u2028\u205f\u2066"
 operator|+
-literal|"\u2068\u2069\u206a\u3000\ud800\ufeff\ufff9\ufffa"
+literal|"\u3000\ud800\ufeff\ufff9"
 decl_stmt|;
 DECL|field|RANGE_ENDS
 specifier|private
@@ -4801,9 +4809,10 @@ specifier|final
 name|String
 name|RANGE_ENDS
 init|=
-literal|"\u0020\u00a0\u00ad\u0604\u061c\u06dd\u070f\u1680\u180e\u200f\u202f\u2064\u2066\u2067"
+comment|// inclusive ends
+literal|"\u0020\u00a0\u00ad\u0605\u061c\u06dd\u070f\u08e2\u1680\u180e\u200f\u202f\u2064\u206f"
 operator|+
-literal|"\u2068\u2069\u206f\u3000\uf8ff\ufeff\ufff9\ufffb"
+literal|"\u3000\uf8ff\ufeff\ufffb"
 decl_stmt|;
 DECL|field|INSTANCE
 specifier|static
