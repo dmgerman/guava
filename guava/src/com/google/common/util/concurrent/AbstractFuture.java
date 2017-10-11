@@ -657,6 +657,16 @@ block|{
 name|AtomicHelper
 name|helper
 decl_stmt|;
+name|Throwable
+name|thrownUnsafeFailure
+init|=
+literal|null
+decl_stmt|;
+name|Throwable
+name|thrownAtomicReferenceFieldUpdaterFailure
+init|=
+literal|null
+decl_stmt|;
 try|try
 block|{
 name|helper
@@ -672,6 +682,10 @@ name|Throwable
 name|unsafeFailure
 parameter_list|)
 block|{
+name|thrownUnsafeFailure
+operator|=
+name|unsafeFailure
+expr_stmt|;
 comment|// catch absolutely everything and fall through to our 'SafeAtomicHelper'
 comment|// The access control checks that ARFU does means the caller class has to be AbstractFuture
 comment|// instead of SafeAtomicHelper, so we annoyingly define these here
@@ -759,31 +773,9 @@ comment|// Some Android 5.0.x Samsung devices have bugs in JDK reflection APIs t
 comment|// getDeclaredField to throw a NoSuchFieldException when the field is definitely there.
 comment|// For these users fallback to a suboptimal implementation, based on synchronized. This will
 comment|// be a definite performance hit to those users.
-name|log
-operator|.
-name|log
-argument_list|(
-name|Level
-operator|.
-name|SEVERE
-argument_list|,
-literal|"UnsafeAtomicHelper is broken!"
-argument_list|,
-name|unsafeFailure
-argument_list|)
-expr_stmt|;
-name|log
-operator|.
-name|log
-argument_list|(
-name|Level
-operator|.
-name|SEVERE
-argument_list|,
-literal|"SafeAtomicHelper is broken!"
-argument_list|,
+name|thrownAtomicReferenceFieldUpdaterFailure
+operator|=
 name|atomicReferenceFieldUpdaterFailure
-argument_list|)
 expr_stmt|;
 name|helper
 operator|=
@@ -814,6 +806,42 @@ name|LockSupport
 operator|.
 name|class
 decl_stmt|;
+comment|// Log after all static init is finished; if an installed logger uses any Futures methods, it
+comment|// shouldn't break in cases where reflection is missing/broken.
+if|if
+condition|(
+name|thrownAtomicReferenceFieldUpdaterFailure
+operator|!=
+literal|null
+condition|)
+block|{
+name|log
+operator|.
+name|log
+argument_list|(
+name|Level
+operator|.
+name|SEVERE
+argument_list|,
+literal|"UnsafeAtomicHelper is broken!"
+argument_list|,
+name|thrownUnsafeFailure
+argument_list|)
+expr_stmt|;
+name|log
+operator|.
+name|log
+argument_list|(
+name|Level
+operator|.
+name|SEVERE
+argument_list|,
+literal|"SafeAtomicHelper is broken!"
+argument_list|,
+name|thrownAtomicReferenceFieldUpdaterFailure
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 comment|/**    * Waiter links form a Treiber stack, in the {@link #waiters} field.    */
 DECL|class|Waiter

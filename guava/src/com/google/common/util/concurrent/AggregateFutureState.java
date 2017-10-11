@@ -234,6 +234,11 @@ block|{
 name|AtomicHelper
 name|helper
 decl_stmt|;
+name|Throwable
+name|thrownReflectionFailure
+init|=
+literal|null
+decl_stmt|;
 try|try
 block|{
 name|helper
@@ -278,18 +283,9 @@ comment|// Some Android 5.0.x Samsung devices have bugs in JDK reflection APIs t
 comment|// getDeclaredField to throw a NoSuchFieldException when the field is definitely there.
 comment|// For these users fallback to a suboptimal implementation, based on synchronized. This will
 comment|// be a definite performance hit to those users.
-name|log
-operator|.
-name|log
-argument_list|(
-name|Level
-operator|.
-name|SEVERE
-argument_list|,
-literal|"SafeAtomicHelper is broken!"
-argument_list|,
+name|thrownReflectionFailure
+operator|=
 name|reflectionFailure
-argument_list|)
 expr_stmt|;
 name|helper
 operator|=
@@ -302,6 +298,29 @@ name|ATOMIC_HELPER
 operator|=
 name|helper
 expr_stmt|;
+comment|// Log after all static init is finished; if an installed logger uses any Futures methods, it
+comment|// shouldn't break in cases where reflection is missing/broken.
+if|if
+condition|(
+name|thrownReflectionFailure
+operator|!=
+literal|null
+condition|)
+block|{
+name|log
+operator|.
+name|log
+argument_list|(
+name|Level
+operator|.
+name|SEVERE
+argument_list|,
+literal|"SafeAtomicHelper is broken!"
+argument_list|,
+name|thrownReflectionFailure
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 DECL|method|AggregateFutureState (int remainingFutures)
 name|AggregateFutureState
