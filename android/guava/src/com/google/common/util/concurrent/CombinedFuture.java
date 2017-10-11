@@ -450,7 +450,6 @@ name|Executor
 name|listenerExecutor
 decl_stmt|;
 DECL|field|thrownByExecute
-specifier|volatile
 name|boolean
 name|thrownByExecute
 init|=

@@ -3272,7 +3272,6 @@ operator|new
 name|Executor
 argument_list|()
 block|{
-specifier|volatile
 name|boolean
 name|thrownFromDelegate
 init|=
