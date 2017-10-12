@@ -4,7 +4,7 @@ comment|/*  * Written by Doug Lea and Martin Buchholz with assistance from  * me
 end_comment
 
 begin_comment
-comment|/*  * Source:  * http://gee.cs.oswego.edu/cgi-bin/viewcvs.cgi/jsr166/src/jsr166e/extra/AtomicDouble.java?revision=1.13  * (Modified to adapt to guava coding conventions and  * to use AtomicLongFieldUpdater instead of sun.misc.Unsafe)  */
+comment|/*  * Source:  * http://gee.cs.oswego.edu/cgi-bin/viewcvs.cgi/jsr166/src/jsr166e/extra/AtomicDouble.java?revision=1.13  * (Modified to adapt to guava coding conventions and  * to use AtomicLong instead of sun.misc.Unsafe)  */
 end_comment
 
 begin_package
@@ -52,39 +52,11 @@ name|com
 operator|.
 name|google
 operator|.
-name|common
-operator|.
-name|annotations
-operator|.
-name|GwtIncompatible
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
 name|errorprone
 operator|.
 name|annotations
 operator|.
 name|CanIgnoreReturnValue
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|j2objc
-operator|.
-name|annotations
-operator|.
-name|ReflectionSupport
 import|;
 end_import
 
@@ -98,7 +70,7 @@ name|concurrent
 operator|.
 name|atomic
 operator|.
-name|AtomicLongFieldUpdater
+name|AtomicLong
 import|;
 end_import
 
@@ -107,19 +79,6 @@ comment|/**  * A {@code double} value that may be updated atomically. See the {@
 end_comment
 
 begin_class
-annotation|@
-name|GwtIncompatible
-annotation|@
-name|ReflectionSupport
-argument_list|(
-name|value
-operator|=
-name|ReflectionSupport
-operator|.
-name|Level
-operator|.
-name|FULL
-argument_list|)
 DECL|class|AtomicDouble
 specifier|public
 class|class
@@ -142,33 +101,12 @@ name|serialVersionUID
 init|=
 literal|0L
 decl_stmt|;
+comment|// We would use AtomicLongFieldUpdater, but it has issues on some Android devices.
 DECL|field|value
 specifier|private
 specifier|transient
-specifier|volatile
-name|long
+name|AtomicLong
 name|value
-decl_stmt|;
-DECL|field|updater
-specifier|private
-specifier|static
-specifier|final
-name|AtomicLongFieldUpdater
-argument_list|<
-name|AtomicDouble
-argument_list|>
-name|updater
-init|=
-name|AtomicLongFieldUpdater
-operator|.
-name|newUpdater
-argument_list|(
-name|AtomicDouble
-operator|.
-name|class
-argument_list|,
-literal|"value"
-argument_list|)
 decl_stmt|;
 comment|/**    * Creates a new {@code AtomicDouble} with the given initial value.    *    * @param initialValue the initial value    */
 DECL|method|AtomicDouble (double initialValue)
@@ -181,9 +119,13 @@ parameter_list|)
 block|{
 name|value
 operator|=
+operator|new
+name|AtomicLong
+argument_list|(
 name|doubleToRawLongBits
 argument_list|(
 name|initialValue
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -193,7 +135,11 @@ specifier|public
 name|AtomicDouble
 parameter_list|()
 block|{
-comment|// assert doubleToRawLongBits(0.0) == 0L;
+name|this
+argument_list|(
+literal|0.0
+argument_list|)
+expr_stmt|;
 block|}
 comment|/**    * Gets the current value.    *    * @return the current value    */
 DECL|method|get ()
@@ -207,6 +153,9 @@ return|return
 name|longBitsToDouble
 argument_list|(
 name|value
+operator|.
+name|get
+argument_list|()
 argument_list|)
 return|;
 block|}
@@ -230,8 +179,11 @@ name|newValue
 argument_list|)
 decl_stmt|;
 name|value
-operator|=
+operator|.
+name|set
+argument_list|(
 name|next
+argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Eventually sets to the given value.    *    * @param newValue the new value    */
@@ -253,12 +205,10 @@ argument_list|(
 name|newValue
 argument_list|)
 decl_stmt|;
-name|updater
+name|value
 operator|.
 name|lazySet
 argument_list|(
-name|this
-argument_list|,
 name|next
 argument_list|)
 expr_stmt|;
@@ -285,12 +235,10 @@ decl_stmt|;
 return|return
 name|longBitsToDouble
 argument_list|(
-name|updater
+name|value
 operator|.
 name|getAndSet
 argument_list|(
-name|this
-argument_list|,
 name|next
 argument_list|)
 argument_list|)
@@ -311,12 +259,10 @@ name|update
 parameter_list|)
 block|{
 return|return
-name|updater
+name|value
 operator|.
 name|compareAndSet
 argument_list|(
-name|this
-argument_list|,
 name|doubleToRawLongBits
 argument_list|(
 name|expect
@@ -344,12 +290,10 @@ name|update
 parameter_list|)
 block|{
 return|return
-name|updater
+name|value
 operator|.
 name|weakCompareAndSet
 argument_list|(
-name|this
-argument_list|,
 name|doubleToRawLongBits
 argument_list|(
 name|expect
@@ -384,6 +328,9 @@ name|long
 name|current
 init|=
 name|value
+operator|.
+name|get
+argument_list|()
 decl_stmt|;
 name|double
 name|currentVal
@@ -410,12 +357,10 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|updater
+name|value
 operator|.
 name|compareAndSet
 argument_list|(
-name|this
-argument_list|,
 name|current
 argument_list|,
 name|next
@@ -450,6 +395,9 @@ name|long
 name|current
 init|=
 name|value
+operator|.
+name|get
+argument_list|()
 decl_stmt|;
 name|double
 name|currentVal
@@ -476,12 +424,10 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|updater
+name|value
 operator|.
 name|compareAndSet
 argument_list|(
-name|this
-argument_list|,
 name|current
 argument_list|,
 name|next
@@ -627,6 +573,12 @@ block|{
 name|s
 operator|.
 name|defaultReadObject
+argument_list|()
+expr_stmt|;
+name|value
+operator|=
+operator|new
+name|AtomicLong
 argument_list|()
 expr_stmt|;
 name|set
