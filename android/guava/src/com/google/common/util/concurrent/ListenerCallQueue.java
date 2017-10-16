@@ -229,7 +229,6 @@ argument_list|)
 decl_stmt|;
 comment|/** Method reference-compatible listener event. */
 DECL|interface|Event
-specifier|public
 interface|interface
 name|Event
 parameter_list|<
