@@ -296,6 +296,20 @@ name|concurrent
 operator|.
 name|locks
 operator|.
+name|Condition
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|locks
+operator|.
 name|Lock
 import|;
 end_import
@@ -343,7 +357,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A striped {@code Lock/Semaphore/ReadWriteLock}. This offers the underlying lock striping similar  * to that of {@code ConcurrentHashMap} in a reusable form, and extends it for semaphores and  * read-write locks. Conceptually, lock striping is the technique of dividing a lock into many  *<i>stripes</i>, increasing the granularity of a single lock and allowing independent operations  * to lock different stripes and proceed concurrently, instead of creating contention for a single  * lock.  *  *<p>The guarantee provided by this class is that equal keys lead to the same lock (or semaphore),  * i.e. {@code if (key1.equals(key2))} then {@code striped.get(key1) == striped.get(key2)} (assuming  * {@link Object#hashCode()} is correctly implemented for the keys). Note that if {@code key1} is  *<strong>not</strong> equal to {@code key2}, it is<strong>not</strong> guaranteed that  * {@code striped.get(key1) != striped.get(key2)}; the elements might nevertheless be mapped to the  * same lock. The lower the number of stripes, the higher the probability of this happening.  *  *<p>There are three flavors of this class: {@code Striped<Lock>}, {@code Striped<Semaphore>}, and  * {@code Striped<ReadWriteLock>}. For each type, two implementations are offered:  * {@linkplain #lock(int) strong} and {@linkplain #lazyWeakLock(int) weak} {@code Striped<Lock>},  * {@linkplain #semaphore(int, int) strong} and {@linkplain #lazyWeakSemaphore(int, int) weak}  * {@code Striped<Semaphore>}, and {@linkplain #readWriteLock(int) strong} and  * {@linkplain #lazyWeakReadWriteLock(int) weak} {@code Striped<ReadWriteLock>}.<i>Strong</i> means  * that all stripes (locks/semaphores) are initialized eagerly, and are not reclaimed unless  * {@code Striped} itself is reclaimable.<i>Weak</i> means that locks/semaphores are created  * lazily, and they are allowed to be reclaimed if nobody is holding on to them. This is useful, for  * example, if one wants to create a {@code  * Striped<Lock>} of many locks, but worries that in most cases only a small portion of these would  * be in use.  *  *<p>Prior to this class, one might be tempted to use {@code Map<K, Lock>}, where {@code K}  * represents the task. This maximizes concurrency by having each unique key mapped to a unique  * lock, but also maximizes memory footprint. On the other extreme, one could use a single lock for  * all tasks, which minimizes memory footprint but also minimizes concurrency. Instead of choosing  * either of these extremes, {@code Striped} allows the user to trade between required concurrency  * and memory footprint. For example, if a set of tasks are CPU-bound, one could easily create a  * very compact {@code Striped<Lock>} of {@code availableProcessors() * 4} stripes, instead of  * possibly thousands of locks which could be created in a {@code Map<K, Lock>} structure.  *  * @author Dimitris Andreou  * @since 13.0  */
+comment|/**  * A striped {@code Lock/Semaphore/ReadWriteLock}. This offers the underlying lock striping similar  * to that of {@code ConcurrentHashMap} in a reusable form, and extends it for semaphores and  * read-write locks. Conceptually, lock striping is the technique of dividing a lock into many  *<i>stripes</i>, increasing the granularity of a single lock and allowing independent operations  * to lock different stripes and proceed concurrently, instead of creating contention for a single  * lock.  *  *<p>The guarantee provided by this class is that equal keys lead to the same lock (or semaphore),  * i.e. {@code if (key1.equals(key2))} then {@code striped.get(key1) == striped.get(key2)} (assuming  * {@link Object#hashCode()} is correctly implemented for the keys). Note that if {@code key1} is  *<strong>not</strong> equal to {@code key2}, it is<strong>not</strong> guaranteed that {@code  * striped.get(key1) != striped.get(key2)}; the elements might nevertheless be mapped to the same  * lock. The lower the number of stripes, the higher the probability of this happening.  *  *<p>There are three flavors of this class: {@code Striped<Lock>}, {@code Striped<Semaphore>}, and  * {@code Striped<ReadWriteLock>}. For each type, two implementations are offered: {@linkplain  * #lock(int) strong} and {@linkplain #lazyWeakLock(int) weak} {@code Striped<Lock>}, {@linkplain  * #semaphore(int, int) strong} and {@linkplain #lazyWeakSemaphore(int, int) weak} {@code  * Striped<Semaphore>}, and {@linkplain #readWriteLock(int) strong} and {@linkplain  * #lazyWeakReadWriteLock(int) weak} {@code Striped<ReadWriteLock>}.<i>Strong</i> means that all  * stripes (locks/semaphores) are initialized eagerly, and are not reclaimed unless {@code Striped}  * itself is reclaimable.<i>Weak</i> means that locks/semaphores are created lazily, and they are  * allowed to be reclaimed if nobody is holding on to them. This is useful, for example, if one  * wants to create a {@code Striped<Lock>} of many locks, but worries that in most cases only a  * small portion of these would be in use.  *  *<p>Prior to this class, one might be tempted to use {@code Map<K, Lock>}, where {@code K}  * represents the task. This maximizes concurrency by having each unique key mapped to a unique  * lock, but also maximizes memory footprint. On the other extreme, one could use a single lock for  * all tasks, which minimizes memory footprint but also minimizes concurrency. Instead of choosing  * either of these extremes, {@code Striped} allows the user to trade between required concurrency  * and memory footprint. For example, if a set of tasks are CPU-bound, one could easily create a  * very compact {@code Striped<Lock>} of {@code availableProcessors() * 4} stripes, instead of  * possibly thousands of locks which could be created in a {@code Map<K, Lock>} structure.  *  * @author Dimitris Andreou  * @since 13.0  */
 end_comment
 
 begin_class
@@ -375,7 +389,7 @@ specifier|private
 name|Striped
 parameter_list|()
 block|{}
-comment|/**    * Returns the stripe that corresponds to the passed key. It is always guaranteed that if    * {@code key1.equals(key2)}, then {@code get(key1) == get(key2)}.    *    * @param key an arbitrary, non-null key    * @return the stripe that the passed key corresponds to    */
+comment|/**    * Returns the stripe that corresponds to the passed key. It is always guaranteed that if {@code    * key1.equals(key2)}, then {@code get(key1) == get(key2)}.    *    * @param key an arbitrary, non-null key    * @return the stripe that the passed key corresponds to    */
 DECL|method|get (Object key)
 specifier|public
 specifier|abstract
@@ -407,7 +421,7 @@ name|Object
 name|key
 parameter_list|)
 function_decl|;
-comment|/**    * Returns the total number of stripes in this instance.    */
+comment|/** Returns the total number of stripes in this instance. */
 DECL|method|size ()
 specifier|public
 specifier|abstract
@@ -415,7 +429,7 @@ name|int
 name|size
 parameter_list|()
 function_decl|;
-comment|/**    * Returns the stripes that correspond to the passed objects, in ascending (as per    * {@link #getAt(int)}) order. Thus, threads that use the stripes in the order returned by this    * method are guaranteed to not deadlock each other.    *    *<p>It should be noted that using a {@code Striped<L>} with relatively few stripes, and    * {@code bulkGet(keys)} with a relative large number of keys can cause an excessive number of    * shared stripes (much like the birthday paradox, where much fewer than anticipated birthdays are    * needed for a pair of them to match). Please consider carefully the implications of the number    * of stripes, the intended concurrency level, and the typical number of keys used in a    * {@code bulkGet(keys)} operation. See<a href="http://www.mathpages.com/home/kmath199.htm">Balls    * in Bins model</a> for mathematical formulas that can be used to estimate the probability of    * collisions.    *    * @param keys arbitrary non-null keys    * @return the stripes corresponding to the objects (one per each object, derived by delegating to    *     {@link #get(Object)}; may contain duplicates), in an increasing index order.    */
+comment|/**    * Returns the stripes that correspond to the passed objects, in ascending (as per {@link    * #getAt(int)}) order. Thus, threads that use the stripes in the order returned by this method    * are guaranteed to not deadlock each other.    *    *<p>It should be noted that using a {@code Striped<L>} with relatively few stripes, and {@code    * bulkGet(keys)} with a relative large number of keys can cause an excessive number of shared    * stripes (much like the birthday paradox, where much fewer than anticipated birthdays are needed    * for a pair of them to match). Please consider carefully the implications of the number of    * stripes, the intended concurrency level, and the typical number of keys used in a {@code    * bulkGet(keys)} operation. See<a href="http://www.mathpages.com/home/kmath199.htm">Balls in    * Bins model</a> for mathematical formulas that can be used to estimate the probability of    * collisions.    *    * @param keys arbitrary non-null keys    * @return the stripes corresponding to the objects (one per each object, derived by delegating to    *     {@link #get(Object)}; may contain duplicates), in an increasing index order.    */
 DECL|method|bulkGet (Iterable<?> keys)
 specifier|public
 name|Iterable
@@ -922,7 +936,6 @@ name|READ_WRITE_LOCK_SUPPLIER
 argument_list|)
 return|;
 block|}
-comment|// ReentrantReadWriteLock is large enough to make padding probably unnecessary
 DECL|field|READ_WRITE_LOCK_SUPPLIER
 specifier|private
 specifier|static
@@ -949,12 +962,229 @@ parameter_list|()
 block|{
 return|return
 operator|new
-name|ReentrantReadWriteLock
+name|WeakSafeReadWriteLock
 argument_list|()
 return|;
 block|}
 block|}
 decl_stmt|;
+comment|/**    * ReadWriteLock implementation whose read and write locks retain a reference back to this lock.    * Otherwise, a reference to just the read lock or just the write lock would not suffice to ensure    * the {@code ReadWriteLock} is retained.    */
+DECL|class|WeakSafeReadWriteLock
+specifier|private
+specifier|static
+specifier|final
+class|class
+name|WeakSafeReadWriteLock
+implements|implements
+name|ReadWriteLock
+block|{
+DECL|field|delegate
+specifier|private
+specifier|final
+name|ReadWriteLock
+name|delegate
+decl_stmt|;
+DECL|method|WeakSafeReadWriteLock ()
+name|WeakSafeReadWriteLock
+parameter_list|()
+block|{
+name|this
+operator|.
+name|delegate
+operator|=
+operator|new
+name|ReentrantReadWriteLock
+argument_list|()
+expr_stmt|;
+block|}
+annotation|@
+name|Override
+DECL|method|readLock ()
+specifier|public
+name|Lock
+name|readLock
+parameter_list|()
+block|{
+return|return
+operator|new
+name|WeakSafeLock
+argument_list|(
+name|delegate
+operator|.
+name|readLock
+argument_list|()
+argument_list|,
+name|this
+argument_list|)
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|writeLock ()
+specifier|public
+name|Lock
+name|writeLock
+parameter_list|()
+block|{
+return|return
+operator|new
+name|WeakSafeLock
+argument_list|(
+name|delegate
+operator|.
+name|writeLock
+argument_list|()
+argument_list|,
+name|this
+argument_list|)
+return|;
+block|}
+block|}
+comment|/** Lock object that ensures a strong reference is retained to a specified object. */
+DECL|class|WeakSafeLock
+specifier|private
+specifier|static
+specifier|final
+class|class
+name|WeakSafeLock
+extends|extends
+name|ForwardingLock
+block|{
+DECL|field|delegate
+specifier|private
+specifier|final
+name|Lock
+name|delegate
+decl_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
+DECL|field|strongReference
+specifier|private
+specifier|final
+name|Object
+name|strongReference
+decl_stmt|;
+DECL|method|WeakSafeLock (Lock delegate, Object strongReference)
+name|WeakSafeLock
+parameter_list|(
+name|Lock
+name|delegate
+parameter_list|,
+name|Object
+name|strongReference
+parameter_list|)
+block|{
+name|this
+operator|.
+name|delegate
+operator|=
+name|delegate
+expr_stmt|;
+name|this
+operator|.
+name|strongReference
+operator|=
+name|strongReference
+expr_stmt|;
+block|}
+annotation|@
+name|Override
+DECL|method|delegate ()
+name|Lock
+name|delegate
+parameter_list|()
+block|{
+return|return
+name|delegate
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|newCondition ()
+specifier|public
+name|Condition
+name|newCondition
+parameter_list|()
+block|{
+return|return
+operator|new
+name|WeakSafeCondition
+argument_list|(
+name|delegate
+operator|.
+name|newCondition
+argument_list|()
+argument_list|,
+name|strongReference
+argument_list|)
+return|;
+block|}
+block|}
+comment|/** Condition object that ensures a strong reference is retained to a specified object. */
+DECL|class|WeakSafeCondition
+specifier|private
+specifier|static
+specifier|final
+class|class
+name|WeakSafeCondition
+extends|extends
+name|ForwardingCondition
+block|{
+DECL|field|delegate
+specifier|private
+specifier|final
+name|Condition
+name|delegate
+decl_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
+DECL|field|strongReference
+specifier|private
+specifier|final
+name|Object
+name|strongReference
+decl_stmt|;
+DECL|method|WeakSafeCondition (Condition delegate, Object strongReference)
+name|WeakSafeCondition
+parameter_list|(
+name|Condition
+name|delegate
+parameter_list|,
+name|Object
+name|strongReference
+parameter_list|)
+block|{
+name|this
+operator|.
+name|delegate
+operator|=
+name|delegate
+expr_stmt|;
+name|this
+operator|.
+name|strongReference
+operator|=
+name|strongReference
+expr_stmt|;
+block|}
+annotation|@
+name|Override
+DECL|method|delegate ()
+name|Condition
+name|delegate
+parameter_list|()
+block|{
+return|return
+name|delegate
+return|;
+block|}
+block|}
 DECL|class|PowerOfTwoStriped
 specifier|private
 specifier|abstract
@@ -1793,7 +2023,7 @@ name|size
 return|;
 block|}
 block|}
-comment|/**    * A bit mask were all bits are set.    */
+comment|/** A bit mask were all bits are set. */
 DECL|field|ALL_SET
 specifier|private
 specifier|static
