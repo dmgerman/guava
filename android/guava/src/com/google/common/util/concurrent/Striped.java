@@ -1064,16 +1064,16 @@ argument_list|)
 DECL|field|strongReference
 specifier|private
 specifier|final
-name|Object
+name|WeakSafeReadWriteLock
 name|strongReference
 decl_stmt|;
-DECL|method|WeakSafeLock (Lock delegate, Object strongReference)
+DECL|method|WeakSafeLock (Lock delegate, WeakSafeReadWriteLock strongReference)
 name|WeakSafeLock
 parameter_list|(
 name|Lock
 name|delegate
 parameter_list|,
-name|Object
+name|WeakSafeReadWriteLock
 name|strongReference
 parameter_list|)
 block|{
@@ -1147,16 +1147,16 @@ argument_list|)
 DECL|field|strongReference
 specifier|private
 specifier|final
-name|Object
+name|WeakSafeReadWriteLock
 name|strongReference
 decl_stmt|;
-DECL|method|WeakSafeCondition (Condition delegate, Object strongReference)
+DECL|method|WeakSafeCondition (Condition delegate, WeakSafeReadWriteLock strongReference)
 name|WeakSafeCondition
 parameter_list|(
 name|Condition
 name|delegate
 parameter_list|,
-name|Object
+name|WeakSafeReadWriteLock
 name|strongReference
 parameter_list|)
 block|{
