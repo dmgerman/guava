@@ -26,22 +26,39 @@ name|common
 operator|.
 name|annotations
 operator|.
+name|Beta
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
 name|GwtCompatible
 import|;
 end_import
 
 begin_comment
-comment|/**  * Specifies the type of a top-level domain definition.  */
+comment|/**  *<b>Do not use this class directly. For access to public-suffix information,  * use {@link com.google.common.net.InternetDomainName}.</b>  *  *<p>Specifies the type of a top-level domain definition.  *  * @since NEXT  */
 end_comment
 
 begin_enum
 annotation|@
+name|Beta
+annotation|@
 name|GwtCompatible
 DECL|enum|PublicSuffixType
+specifier|public
 enum|enum
 name|PublicSuffixType
 block|{
-comment|/** private definition of a top-level domain */
+comment|/** Public suffix that is provided by a private company, e.g. "blogspot.com" */
 DECL|enumConstant|PRIVATE
 name|PRIVATE
 argument_list|(
@@ -50,9 +67,9 @@ argument_list|,
 literal|','
 argument_list|)
 block|,
-comment|/** ICANN definition of a top-level domain */
-DECL|enumConstant|ICANN
-name|ICANN
+comment|/** Public suffix that is backed by an ICANN-style domain name registry */
+DECL|enumConstant|REGISTRY
+name|REGISTRY
 argument_list|(
 literal|'!'
 argument_list|,
@@ -180,7 +197,7 @@ name|isPrivate
 condition|?
 name|PRIVATE
 else|:
-name|ICANN
+name|REGISTRY
 return|;
 block|}
 block|}

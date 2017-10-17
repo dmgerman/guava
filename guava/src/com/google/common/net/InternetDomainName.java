@@ -144,6 +144,20 @@ name|common
 operator|.
 name|base
 operator|.
+name|Optional
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
 name|Splitter
 import|;
 end_import
@@ -178,6 +192,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|thirdparty
+operator|.
+name|publicsuffix
+operator|.
+name|PublicSuffixType
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -197,7 +225,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An immutable well-formed internet domain name, such as {@code com} or {@code  * foo.co.uk}. Only syntactic analysis is performed; no DNS lookups or other network interactions  * take place. Thus there is no guarantee that the domain actually exists on the internet.  *  *<p>One common use of this class is to determine whether a given string is likely to represent an  * addressable domain on the web -- that is, for a candidate string {@code "xxx"}, might browsing to  * {@code "http://xxx/"} result in a webpage being displayed? In the past, this test was frequently  * done by determining whether the domain ended with a {@linkplain #isPublicSuffix() public suffix}  * but was not itself a public suffix. However, this test is no longer accurate. There are many  * domains which are both public suffixes and addressable as hosts; {@code "uk.com"} is one example.  * As a result, the only useful test to determine if a domain is a plausible web host is  * {@link #hasPublicSuffix()}. This will return {@code true} for many domains which (currently) are  * not hosts, such as {@code "com"}, but given that any public suffix may become a host without  * warning, it is better to err on the side of permissiveness and thus avoid spurious rejection of  * valid sites.  *  *<p>During construction, names are normalized in two ways:  *  *<ol>  *<li>ASCII uppercase characters are converted to lowercase.  *<li>Unicode dot separators other than the ASCII period ({@code '.'}) are converted to the ASCII  *     period.  *</ol>  *  *<p>The normalized values will be returned from {@link #toString()} and {@link #parts()}, and will  * be reflected in the result of {@link #equals(Object)}.  *  *<p><a href="http://en.wikipedia.org/wiki/Internationalized_domain_name">Internationalized domain  * names</a> such as {@code ç½ç».cn} are supported, as are the equivalent  *<a href="http://en.wikipedia.org/wiki/Internationalized_domain_name">IDNA Punycode-encoded</a>  * versions.  *  * @author Craig Berry  * @since 5.0  */
+comment|/**  * An immutable well-formed internet domain name, such as {@code com} or {@code foo.co.uk}. Only  * syntactic analysis is performed; no DNS lookups or other network interactions take place. Thus  * there is no guarantee that the domain actually exists on the internet.  *  *<p>One common use of this class is to determine whether a given string is likely to represent an  * addressable domain on the web -- that is, for a candidate string {@code "xxx"}, might browsing to  * {@code "http://xxx/"} result in a webpage being displayed? In the past, this test was frequently  * done by determining whether the domain ended with a {@linkplain #isPublicSuffix() public suffix}  * but was not itself a public suffix. However, this test is no longer accurate. There are many  * domains which are both public suffixes and addressable as hosts; {@code "uk.com"} is one example.  * Using the subset of public suffixes that are {@linkplain #isRegistrySuffix() registry suffixes},  * one can get a better result, as only a few registry suffixes are addressable. However, the most  * useful test to determine if a domain is a plausible web host is {@link #hasPublicSuffix()}. This  * will return {@code true} for many domains which (currently) are not hosts, such as {@code "com"},  * but given that any public suffix may become a host without warning, it is better to err on the  * side of permissiveness and thus avoid spurious rejection of valid sites. Of course, to actually  * determine addressability of any host, clients of this class will need to perform their own DNS  * lookups.  *  *<p>During construction, names are normalized in two ways:  *  *<ol>  *<li>ASCII uppercase characters are converted to lowercase.  *<li>Unicode dot separators other than the ASCII period ({@code '.'}) are converted to the ASCII  *       period.  *</ol>  *  *<p>The normalized values will be returned from {@link #toString()} and {@link #parts()}, and will  * be reflected in the result of {@link #equals(Object)}.  *  *<p><a href="http://en.wikipedia.org/wiki/Internationalized_domain_name">Internationalized domain  * names</a> such as {@code ç½ç».cn} are supported, as are the equivalent<a  * href="http://en.wikipedia.org/wiki/Internationalized_domain_name">IDNA Punycode-encoded</a>  * versions.  *  * @author Craig Berry  * @since 5.0  */
 end_comment
 
 begin_class
@@ -253,13 +281,13 @@ argument_list|(
 literal|'.'
 argument_list|)
 decl_stmt|;
-comment|/**    * Value of {@link #publicSuffixIndex} which indicates that no public suffix was found.    */
-DECL|field|NO_PUBLIC_SUFFIX_FOUND
+comment|/**    * Value of {@link #publicSuffixIndex} or {@link #registrySuffixIndex} which indicates that no    * relevant suffix was found.    */
+DECL|field|NO_SUFFIX_FOUND
 specifier|private
 specifier|static
 specifier|final
 name|int
-name|NO_PUBLIC_SUFFIX_FOUND
+name|NO_SUFFIX_FOUND
 init|=
 operator|-
 literal|1
@@ -320,12 +348,19 @@ name|String
 argument_list|>
 name|parts
 decl_stmt|;
-comment|/**    * The index in the {@link #parts()} list at which the public suffix begins. For example, for the    * domain name {@code www.google.co.uk}, the value would be 2 (the index of the {@code co} part).    * The value is negative (specifically, {@link #NO_PUBLIC_SUFFIX_FOUND}) if no public suffix was    * found.    */
+comment|/**    * The index in the {@link #parts()} list at which the public suffix begins. For example, for the    * domain name {@code myblog.blogspot.co.uk}, the value would be 1 (the index of the {@code    * blogspot} part). The value is negative (specifically, {@link #NO_SUFFIX_FOUND}) if no public    * suffix was found.    */
 DECL|field|publicSuffixIndex
 specifier|private
 specifier|final
 name|int
 name|publicSuffixIndex
+decl_stmt|;
+comment|/**    * The index in the {@link #parts()} list at which the registry suffix begins. For example, for    * the domain name {@code myblog.blogspot.co.uk}, the value would be 2 (the index of the {@code    * co} part). The value is negative (specifically, {@link #NO_SUFFIX_FOUND}) if no registry suffix    * was found.    */
+DECL|field|registrySuffixIndex
+specifier|private
+specifier|final
+name|int
+name|registrySuffixIndex
 decl_stmt|;
 comment|/**    * Constructor used to implement {@link #from(String)}, and from subclasses.    */
 DECL|method|InternetDomainName (String name)
@@ -448,16 +483,46 @@ name|this
 operator|.
 name|publicSuffixIndex
 operator|=
-name|findPublicSuffix
+name|findSuffixOfType
+argument_list|(
+name|Optional
+operator|.
+expr|<
+name|PublicSuffixType
+operator|>
+name|absent
 argument_list|()
+argument_list|)
+expr_stmt|;
+name|this
+operator|.
+name|registrySuffixIndex
+operator|=
+name|findSuffixOfType
+argument_list|(
+name|Optional
+operator|.
+name|of
+argument_list|(
+name|PublicSuffixType
+operator|.
+name|REGISTRY
+argument_list|)
+argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Returns the index of the leftmost part of the public suffix, or -1 if not found. Note that the    * value defined as the "public suffix" may not be a public suffix according to    * {@link #isPublicSuffix()} if the domain ends with an excluded domain pattern such as    * {@code "nhs.uk"}.    */
-DECL|method|findPublicSuffix ()
+comment|/**    * Returns the index of the leftmost part of the suffix, or -1 if not found. Note that the value    * defined as a suffix may not produce {@code true} results from {@link #isPublicSuffix()} or    * {@link #isRegistrySuffix()} if the domain ends with an excluded domain pattern such as {@code    * "nhs.uk"}.    *    *<p>If a {@code desiredType} is specified, this method only finds suffixes of the given type.    * Otherwise, it finds the first suffix of any type.    */
+DECL|method|findSuffixOfType (Optional<PublicSuffixType> desiredType)
 specifier|private
 name|int
-name|findPublicSuffix
-parameter_list|()
+name|findSuffixOfType
+parameter_list|(
+name|Optional
+argument_list|<
+name|PublicSuffixType
+argument_list|>
+name|desiredType
+parameter_list|)
 block|{
 specifier|final
 name|int
@@ -502,13 +567,23 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
+name|matchesType
+argument_list|(
+name|desiredType
+argument_list|,
+name|Optional
+operator|.
+name|fromNullable
+argument_list|(
 name|PublicSuffixPatterns
 operator|.
 name|EXACT
 operator|.
-name|containsKey
+name|get
 argument_list|(
 name|ancestorName
+argument_list|)
+argument_list|)
 argument_list|)
 condition|)
 block|{
@@ -538,8 +613,10 @@ return|;
 block|}
 if|if
 condition|(
-name|matchesWildcardPublicSuffix
+name|matchesWildcardSuffixType
 argument_list|(
+name|desiredType
+argument_list|,
 name|ancestorName
 argument_list|)
 condition|)
@@ -550,10 +627,10 @@ return|;
 block|}
 block|}
 return|return
-name|NO_PUBLIC_SUFFIX_FOUND
+name|NO_SUFFIX_FOUND
 return|;
 block|}
-comment|/**    * Returns an instance of {@link InternetDomainName} after lenient validation. Specifically,    * validation against<a href="http://www.ietf.org/rfc/rfc3490.txt">RFC 3490</a>    * ("Internationalizing Domain Names in Applications") is skipped, while validation against    *<a href="http://www.ietf.org/rfc/rfc1035.txt">RFC 1035</a> is relaxed in the following ways:    *<ul>    *<li>Any part containing non-ASCII characters is considered valid.    *<li>Underscores ('_') are permitted wherever dashes ('-') are permitted.    *<li>Parts other than the final part may start with a digit, as mandated by    *<a href="https://tools.ietf.org/html/rfc1123#section-2">RFC 1123</a>.    *</ul>    *    *    * @param domain A domain name (not IP address)    * @throws IllegalArgumentException if {@code name} is not syntactically valid according to    *     {@link #isValid}    * @since 10.0 (previously named {@code fromLenient})    */
+comment|/**    * Returns an instance of {@link InternetDomainName} after lenient validation. Specifically,    * validation against<a href="http://www.ietf.org/rfc/rfc3490.txt">RFC 3490</a>    * ("Internationalizing Domain Names in Applications") is skipped, while validation against<a    * href="http://www.ietf.org/rfc/rfc1035.txt">RFC 1035</a> is relaxed in the following ways:    *    *<ul>    *<li>Any part containing non-ASCII characters is considered valid.    *<li>Underscores ('_') are permitted wherever dashes ('-') are permitted.    *<li>Parts other than the final part may start with a digit, as mandated by<a    *       href="https://tools.ietf.org/html/rfc1123#section-2">RFC 1123</a>.    *</ul>    *    *    * @param domain A domain name (not IP address)    * @throws IllegalArgumentException if {@code name} is not syntactically valid according to {@link    *     #isValid}    * @since 10.0 (previously named {@code fromLenient})    */
 DECL|method|from (String domain)
 specifier|public
 specifier|static
@@ -843,7 +920,7 @@ return|return
 name|parts
 return|;
 block|}
-comment|/**    * Indicates whether this domain name represents a<i>public suffix</i>, as defined by the Mozilla    * Foundation's<a href="http://publicsuffix.org/">Public Suffix List</a> (PSL). A public suffix    * is one under which Internet users can directly register names, such as {@code com},    * {@code co.uk} or {@code pvt.k12.wy.us}. Examples of domain names that are<i>not</i> public    * suffixes include {@code google}, {@code google.com} and {@code foo.co.uk}.    *    * @return {@code true} if this domain name appears exactly on the public suffix list    * @since 6.0    */
+comment|/**    * Indicates whether this domain name represents a<i>public suffix</i>, as defined by the Mozilla    * Foundation's<a href="http://publicsuffix.org/">Public Suffix List</a> (PSL). A public suffix    * is one under which Internet users can directly register names, such as {@code com}, {@code    * co.uk} or {@code pvt.k12.wy.us}. Examples of domain names that are<i>not</i> public suffixes    * include {@code google.com}, {@code foo.co.uk}, and {@code myblog.blogspot.com}.    *    *<p>Public suffixes are a proper superset of {@linkplain #isRegistrySuffix() registry suffixes}.    * The list of public suffixes additionally contains privately owned domain names under which    * Internet users can register subdomains. An example of a public suffix that is not a registry    * suffix is {@code blogspot.com}. Note that it is true that all public suffixes<i>have</i>    * registry suffixes, since domain name registries collectively control all internet domain names.    *    *<p>For considerations on whether the public suffix or registry suffix designation is more    * suitable for your application, see<a    * href="https://github.com/google/guava/wiki/InternetDomainNameExplained">this article</a>.    *    * @return {@code true} if this domain name appears exactly on the public suffix list    * @since 6.0    */
 DECL|method|isPublicSuffix ()
 specifier|public
 name|boolean
@@ -856,7 +933,7 @@ operator|==
 literal|0
 return|;
 block|}
-comment|/**    * Indicates whether this domain name ends in a {@linkplain #isPublicSuffix() public suffix},    * including if it is a public suffix itself. For example, returns {@code true} for    * {@code www.google.com}, {@code foo.co.uk} and {@code com}, but not for {@code invalid} or    * {@code google.invalid}. This is the recommended method for determining whether a domain is    * potentially an addressable host.    *    * @since 6.0    */
+comment|/**    * Indicates whether this domain name ends in a {@linkplain #isPublicSuffix() public suffix},    * including if it is a public suffix itself. For example, returns {@code true} for {@code    * www.google.com}, {@code foo.co.uk} and {@code com}, but not for {@code invalid} or {@code    * google.invalid}. This is the recommended method for determining whether a domain is potentially    * an addressable host.    *    *<p>Note that this method is equivalent to {@link #hasRegistrySuffix()} because all registry    * suffixes are public suffixes<i>and</i> all public suffixes have registry suffixes.    *    * @since 6.0    */
 DECL|method|hasPublicSuffix ()
 specifier|public
 name|boolean
@@ -866,7 +943,7 @@ block|{
 return|return
 name|publicSuffixIndex
 operator|!=
-name|NO_PUBLIC_SUFFIX_FOUND
+name|NO_SUFFIX_FOUND
 return|;
 block|}
 comment|/**    * Returns the {@linkplain #isPublicSuffix() public suffix} portion of the domain name, or    * {@code null} if no public suffix is present.    *    * @since 6.0    */
@@ -888,7 +965,7 @@ else|:
 literal|null
 return|;
 block|}
-comment|/**    * Indicates whether this domain name ends in a {@linkplain #isPublicSuffix() public suffix},    * while not being a public suffix itself. For example, returns {@code true} for    * {@code www.google.com}, {@code foo.co.uk} and {@code bar.ca.us}, but not for {@code google},    * {@code com}, or {@code    * google.foo}.    *    *<p><b>Warning:</b> a {@code false} result from this method does not imply that the domain does    * not represent an addressable host, as many public suffixes are also addressable hosts. Use    * {@link #hasPublicSuffix()} for that test.    *    *<p>This method can be used to determine whether it will probably be possible to set cookies on    * the domain, though even that depends on individual browsers' implementations of cookie    * controls. See<a href="http://www.ietf.org/rfc/rfc2109.txt">RFC 2109</a> for details.    *    * @since 6.0    */
+comment|/**    * Indicates whether this domain name ends in a {@linkplain #isPublicSuffix() public suffix},    * while not being a public suffix itself. For example, returns {@code true} for {@code    * www.google.com}, {@code foo.co.uk} and {@code myblog.blogspot.com}, but not for {@code com},    * {@code co.uk}, {@code google.invalid}, or {@code blogspot.com}.    *    *<p>This method can be used to determine whether it will probably be possible to set cookies on    * the domain, though even that depends on individual browsers' implementations of cookie    * controls. See<a href="http://www.ietf.org/rfc/rfc2109.txt">RFC 2109</a> for details.    *    * @since 6.0    */
 DECL|method|isUnderPublicSuffix ()
 specifier|public
 name|boolean
@@ -901,7 +978,7 @@ operator|>
 literal|0
 return|;
 block|}
-comment|/**    * Indicates whether this domain name is composed of exactly one subdomain component followed by a    * {@linkplain #isPublicSuffix() public suffix}. For example, returns {@code true} for    * {@code google.com} and {@code foo.co.uk}, but not for {@code www.google.com} or {@code co.uk}.    *    *<p><b>Warning:</b> A {@code true} result from this method does not imply that the domain is at    * the highest level which is addressable as a host, as many public suffixes are also addressable    * hosts. For example, the domain {@code bar.uk.com} has a public suffix of {@code uk.com}, so it    * would return {@code true} from this method. But {@code uk.com} is itself an addressable host.    *    *<p>This method can be used to determine whether a domain is probably the highest level for    * which cookies may be set, though even that depends on individual browsers' implementations of    * cookie controls. See<a href="http://www.ietf.org/rfc/rfc2109.txt">RFC 2109</a> for details.    *    * @since 6.0    */
+comment|/**    * Indicates whether this domain name is composed of exactly one subdomain component followed by a    * {@linkplain #isPublicSuffix() public suffix}. For example, returns {@code true} for {@code    * google.com} {@code foo.co.uk}, and {@code myblog.blogspot.com}, but not for {@code    * www.google.com}, {@code co.uk}, or {@code blogspot.com}.    *    *<p>This method can be used to determine whether a domain is probably the highest level for    * which cookies may be set, though even that depends on individual browsers' implementations of    * cookie controls. See<a href="http://www.ietf.org/rfc/rfc2109.txt">RFC 2109</a> for details.    *    * @since 6.0    */
 DECL|method|isTopPrivateDomain ()
 specifier|public
 name|boolean
@@ -914,7 +991,7 @@ operator|==
 literal|1
 return|;
 block|}
-comment|/**    * Returns the portion of this domain name that is one level beneath the public suffix. For    * example, for {@code x.adwords.google.co.uk} it returns {@code google.co.uk}, since    * {@code co.uk} is a public suffix.    *    *<p>If {@link #isTopPrivateDomain()} is true, the current domain name instance is returned.    *    *<p>This method should not be used to determine the topmost parent domain which is addressable    * as a host, as many public suffixes are also addressable hosts. For example, the domain    * {@code foo.bar.uk.com} has a public suffix of {@code uk.com}, so it would return    * {@code bar.uk.com} from this method. But {@code uk.com} is itself an addressable host.    *    *<p>This method can be used to determine the probable highest level parent domain for which    * cookies may be set, though even that depends on individual browsers' implementations of cookie    * controls.    *    * @throws IllegalStateException if this domain does not end with a public suffix    * @since 6.0    */
+comment|/**    * Returns the portion of this domain name that is one level beneath the {@linkplain    * #isPublicSuffix() public suffix}. For example, for {@code x.adwords.google.co.uk} it returns    * {@code google.co.uk}, since {@code co.uk} is a public suffix. Similarly, for {@code    * myblog.blogspot.com} it returns the same domain, {@code myblog.blogspot.com}, since {@code    * blogspot.com} is a public suffix.    *    *<p>If {@link #isTopPrivateDomain()} is true, the current domain name instance is returned.    *    *<p>This method can be used to determine the probable highest level parent domain for which    * cookies may be set, though even that depends on individual browsers' implementations of cookie    * controls.    *    * @throws IllegalStateException if this domain does not end with a public suffix    * @since 6.0    */
 DECL|method|topPrivateDomain ()
 specifier|public
 name|InternetDomainName
@@ -945,6 +1022,113 @@ return|return
 name|ancestor
 argument_list|(
 name|publicSuffixIndex
+operator|-
+literal|1
+argument_list|)
+return|;
+block|}
+comment|/**    * Indicates whether this domain name represents a<i>registry suffix</i>, as defined by a subset    * of the Mozilla Foundation's<a href="http://publicsuffix.org/">Public Suffix List</a> (PSL). A    * registry suffix is one under which Internet users can directly register names via a domain name    * registrar, and have such registrations lawfully protected by internet-governing bodies such as    * ICANN. Examples of registry suffixes include {@code com}, {@code co.uk}, and {@code    * pvt.k12.wy.us}. Examples of domain names that are<i>not</i> registry suffixes include {@code    * google.com} and {@code foo.co.uk}.    *    *<p>Registry suffixes are a proper subset of {@linkplain #isPublicSuffix() public suffixes}. The    * list of public suffixes additionally contains privately owned domain names under which Internet    * users can register subdomains. An example of a public suffix that is not a registry suffix is    * {@code blogspot.com}. Note that it is true that all public suffixes<i>have</i> registry    * suffixes, since domain name registries collectively control all internet domain names.    *    *<p>For considerations on whether the public suffix or registry suffix designation is more    * suitable for your application, see<a    * href="https://github.com/google/guava/wiki/InternetDomainNameExplained">this article</a>.    *    * @return {@code true} if this domain name appears exactly on the public suffix list as part of    *     the registry suffix section (labelled "ICANN").    * @since NEXT    */
+DECL|method|isRegistrySuffix ()
+specifier|public
+name|boolean
+name|isRegistrySuffix
+parameter_list|()
+block|{
+return|return
+name|registrySuffixIndex
+operator|==
+literal|0
+return|;
+block|}
+comment|/**    * Indicates whether this domain name ends in a {@linkplain #isRegistrySuffix() registry suffix},    * including if it is a registry suffix itself. For example, returns {@code true} for {@code    * www.google.com}, {@code foo.co.uk} and {@code com}, but not for {@code invalid} or {@code    * google.invalid}.    *    *<p>Note that this method is equivalent to {@link #hasPublicSuffix()} because all registry    * suffixes are public suffixes<i>and</i> all public suffixes have registry suffixes.    *    * @since NEXT    */
+DECL|method|hasRegistrySuffix ()
+specifier|public
+name|boolean
+name|hasRegistrySuffix
+parameter_list|()
+block|{
+return|return
+name|registrySuffixIndex
+operator|!=
+name|NO_SUFFIX_FOUND
+return|;
+block|}
+comment|/**    * Returns the {@linkplain #isRegistrySuffix() registry suffix} portion of the domain name, or    * {@code null} if no registry suffix is present.    *    * @since NEXT    */
+DECL|method|registrySuffix ()
+specifier|public
+name|InternetDomainName
+name|registrySuffix
+parameter_list|()
+block|{
+return|return
+name|hasRegistrySuffix
+argument_list|()
+condition|?
+name|ancestor
+argument_list|(
+name|registrySuffixIndex
+argument_list|)
+else|:
+literal|null
+return|;
+block|}
+comment|/**    * Indicates whether this domain name ends in a {@linkplain #isRegistrySuffix() registry suffix},    * while not being a registry suffix itself. For example, returns {@code true} for {@code    * www.google.com}, {@code foo.co.uk} and {@code blogspot.com}, but not for {@code com}, {@code    * co.uk}, or {@code google.invalid}.    *    * @since NEXT    */
+DECL|method|isUnderRegistrySuffix ()
+specifier|public
+name|boolean
+name|isUnderRegistrySuffix
+parameter_list|()
+block|{
+return|return
+name|registrySuffixIndex
+operator|>
+literal|0
+return|;
+block|}
+comment|/**    * Indicates whether this domain name is composed of exactly one subdomain component followed by a    * {@linkplain #isRegistrySuffix() registry suffix}. For example, returns {@code true} for {@code    * google.com}, {@code foo.co.uk}, and {@code blogspot.com}, but not for {@code www.google.com},    * {@code co.uk}, or {@code myblog.blogspot.com}.    *    *<p><b>Warning:</b> This method should not be used to determine the probable highest level    * parent domain for which cookies may be set. Use {@link #topPrivateDomain()} for that purpose.    *    * @since NEXT    */
+DECL|method|isTopDomainUnderRegistrySuffix ()
+specifier|public
+name|boolean
+name|isTopDomainUnderRegistrySuffix
+parameter_list|()
+block|{
+return|return
+name|registrySuffixIndex
+operator|==
+literal|1
+return|;
+block|}
+comment|/**    * Returns the portion of this domain name that is one level beneath the {@linkplain    * #isRegistrySuffix() registry suffix}. For example, for {@code x.adwords.google.co.uk} it    * returns {@code google.co.uk}, since {@code co.uk} is a registry suffix. Similarly, for {@code    * myblog.blogspot.com} it returns {@code blogspot.com}, since {@code com} is a registry suffix.    *    *<p>If {@link #isTopDomainUnderRegistrySuffix()} is true, the current domain name instance is    * returned.    *    *<p><b>Warning:</b> This method should not be used to determine whether a domain is probably the    * highest level for which cookies may be set. Use {@link #isTopPrivateDomain()} for that purpose.    *    * @throws IllegalStateException if this domain does not end with a registry suffix    * @since NEXT    */
+DECL|method|topDomainUnderRegistrySuffix ()
+specifier|public
+name|InternetDomainName
+name|topDomainUnderRegistrySuffix
+parameter_list|()
+block|{
+if|if
+condition|(
+name|isTopDomainUnderRegistrySuffix
+argument_list|()
+condition|)
+block|{
+return|return
+name|this
+return|;
+block|}
+name|checkState
+argument_list|(
+name|isUnderRegistrySuffix
+argument_list|()
+argument_list|,
+literal|"Not under a registry suffix: %s"
+argument_list|,
+name|name
+argument_list|)
+expr_stmt|;
+return|return
+name|ancestor
+argument_list|(
+name|registrySuffixIndex
 operator|-
 literal|1
 argument_list|)
@@ -1079,13 +1263,19 @@ literal|false
 return|;
 block|}
 block|}
-comment|/**    * Does the domain name match one of the "wildcard" patterns (e.g. {@code "*.ar"})?    */
-DECL|method|matchesWildcardPublicSuffix (String domain)
+comment|/**    * Does the domain name match one of the "wildcard" patterns (e.g. {@code "*.ar"})? If a {@code    * desiredType} is specified, the wildcard pattern must also match that type.    */
+DECL|method|matchesWildcardSuffixType ( Optional<PublicSuffixType> desiredType, String domain)
 specifier|private
 specifier|static
 name|boolean
-name|matchesWildcardPublicSuffix
+name|matchesWildcardSuffixType
 parameter_list|(
+name|Optional
+argument_list|<
+name|PublicSuffixType
+argument_list|>
+name|desiredType
+parameter_list|,
 name|String
 name|domain
 parameter_list|)
@@ -1111,17 +1301,66 @@ name|length
 operator|==
 literal|2
 operator|&&
+name|matchesType
+argument_list|(
+name|desiredType
+argument_list|,
+name|Optional
+operator|.
+name|fromNullable
+argument_list|(
 name|PublicSuffixPatterns
 operator|.
 name|UNDER
 operator|.
-name|containsKey
+name|get
 argument_list|(
 name|pieces
 index|[
 literal|1
 index|]
 argument_list|)
+argument_list|)
+argument_list|)
+return|;
+block|}
+comment|/**    * If a {@code desiredType} is specified, returns true only if the {@code actualType} is    * identical. Otherwise, returns true as long as {@code actualType} is present.    */
+DECL|method|matchesType ( Optional<PublicSuffixType> desiredType, Optional<PublicSuffixType> actualType)
+specifier|private
+specifier|static
+name|boolean
+name|matchesType
+parameter_list|(
+name|Optional
+argument_list|<
+name|PublicSuffixType
+argument_list|>
+name|desiredType
+parameter_list|,
+name|Optional
+argument_list|<
+name|PublicSuffixType
+argument_list|>
+name|actualType
+parameter_list|)
+block|{
+return|return
+name|desiredType
+operator|.
+name|isPresent
+argument_list|()
+condition|?
+name|desiredType
+operator|.
+name|equals
+argument_list|(
+name|actualType
+argument_list|)
+else|:
+name|actualType
+operator|.
+name|isPresent
+argument_list|()
 return|;
 block|}
 comment|/**    * Returns the domain name, normalized to all lower case.    */

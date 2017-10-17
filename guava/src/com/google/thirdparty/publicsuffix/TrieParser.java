@@ -320,8 +320,8 @@ operator|==
 literal|','
 condition|)
 block|{
-comment|// '!' represents an interior node that represents an ICANN entry in the map.
-comment|// '?' represents a leaf node, which represents an ICANN entry in map.
+comment|// '!' represents an interior node that represents a REGISTRY entry in the map.
+comment|// '?' represents a leaf node, which represents a REGISTRY entry in map.
 comment|// ':' represents an interior node that represents a private entry in the map
 comment|// ',' represents a leaf node, which represents a private entry in the map.
 name|String
