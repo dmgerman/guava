@@ -318,7 +318,7 @@ name|tree
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an unmodifiable {@code Iterable} over the nodes reachable from {@code startNode}, in    * the order of a breadth-first traversal. That is, all the nodes of depth 0 are returned, then    * depth 1, then 2, and so on.    *    *<p><b>Example:</b> The following graph with {@code startNode} {@code a} would return nodes in    * the order {@code abcdef} (assuming successors are returned in alphabetical order).    *    *<pre>{@code    * b ---- a ---- d    * |      |    * |      |    * e ---- c ---- f    * }</pre>    *    *<p>The behavior of this method is undefined if the nodes, or the topology of the graph, change    * while iteration is in progress.    *    *<p>The returned {@code Iterable} can be iterated over multiple times. Every iterator will    * compute its next element on the fly. It is thus possible to limit the traversal to a certain    * number of nodes as follows:    *    *<pre>{@code    * Iterables.limit(Traverser.forGraph(graph).breadthFirst(node), maxNumberOfNodes);    * }</pre>    *    *<p>See<a href="https://en.wikipedia.org/wiki/Breadth-first_search">Wikipedia</a> for more    * info.    */
+comment|/**    * Returns an unmodifiable {@code Iterable} over the nodes reachable from {@code startNode}, in    * the order of a breadth-first traversal. That is, all the nodes of depth 0 are returned, then    * depth 1, then 2, and so on.    *    *<p><b>Example:</b> The following graph with {@code startNode} {@code a} would return nodes in    * the order {@code abcdef} (assuming successors are returned in alphabetical order).    *    *<pre>{@code    * b ---- a ---- d    * |      |    * |      |    * e ---- c ---- f    * }</pre>    *    *<p>The behavior of this method is undefined if the nodes, or the topology of the graph, change    * while iteration is in progress.    *    *<p>The returned {@code Iterable} can be iterated over multiple times. Every iterator will    * compute its next element on the fly. It is thus possible to limit the traversal to a certain    * number of nodes as follows:    *    *<pre>{@code    * Iterables.limit(Traverser.forGraph(graph).breadthFirst(node), maxNumberOfNodes);    * }</pre>    *    *<p>See<a href="https://en.wikipedia.org/wiki/Breadth-first_search">Wikipedia</a> for more    * info.    *    * @throws IllegalArgumentException if {@code startNode} is not an element of the graph    */
 DECL|method|breadthFirst (N startNode)
 specifier|public
 specifier|abstract
@@ -332,7 +332,7 @@ name|N
 name|startNode
 parameter_list|)
 function_decl|;
-comment|/**    * Returns an unmodifiable {@code Iterable} over the nodes reachable from {@code startNode}, in    * the order of a depth-first pre-order traversal. "Pre-order" implies that nodes appear in the    * {@code Iterable} in the order in which they are first visited.    *    *<p><b>Example:</b> The following graph with {@code startNode} {@code a} would return nodes in    * the order {@code abecfd} (assuming successors are returned in alphabetical order).    *    *<pre>{@code    * b ---- a ---- d    * |      |    * |      |    * e ---- c ---- f    * }</pre>    *    *<p>The behavior of this method is undefined if the nodes, or the topology of the graph, change    * while iteration is in progress.    *    *<p>The returned {@code Iterable} can be iterated over multiple times. Every iterator will    * compute its next element on the fly. It is thus possible to limit the traversal to a certain    * number of nodes as follows:    *    *<pre>{@code    * Iterables.limit(    *     Traverser.forGraph(graph).depthFirstPreOrder(node), maxNumberOfNodes);    * }</pre>    *    *<p>See<a href="https://en.wikipedia.org/wiki/Depth-first_search">Wikipedia</a> for more info.    */
+comment|/**    * Returns an unmodifiable {@code Iterable} over the nodes reachable from {@code startNode}, in    * the order of a depth-first pre-order traversal. "Pre-order" implies that nodes appear in the    * {@code Iterable} in the order in which they are first visited.    *    *<p><b>Example:</b> The following graph with {@code startNode} {@code a} would return nodes in    * the order {@code abecfd} (assuming successors are returned in alphabetical order).    *    *<pre>{@code    * b ---- a ---- d    * |      |    * |      |    * e ---- c ---- f    * }</pre>    *    *<p>The behavior of this method is undefined if the nodes, or the topology of the graph, change    * while iteration is in progress.    *    *<p>The returned {@code Iterable} can be iterated over multiple times. Every iterator will    * compute its next element on the fly. It is thus possible to limit the traversal to a certain    * number of nodes as follows:    *    *<pre>{@code    * Iterables.limit(    *     Traverser.forGraph(graph).depthFirstPreOrder(node), maxNumberOfNodes);    * }</pre>    *    *<p>See<a href="https://en.wikipedia.org/wiki/Depth-first_search">Wikipedia</a> for more info.    *    * @throws IllegalArgumentException if {@code startNode} is not an element of the graph    */
 DECL|method|depthFirstPreOrder (N startNode)
 specifier|public
 specifier|abstract
@@ -346,7 +346,7 @@ name|N
 name|startNode
 parameter_list|)
 function_decl|;
-comment|/**    * Returns an unmodifiable {@code Iterable} over the nodes reachable from {@code startNode}, in    * the order of a depth-first post-order traversal. "Post-order" implies that nodes appear in the    * {@code Iterable} in the order in which they are visited for the last time.    *    *<p><b>Example:</b> The following graph with {@code startNode} {@code a} would return nodes in    * the order {@code fcebda} (assuming successors are returned in alphabetical order).    *    *<pre>{@code    * b ---- a ---- d    * |      |    * |      |    * e ---- c ---- f    * }</pre>    *    *<p>The behavior of this method is undefined if the nodes, or the topology of the graph, change    * while iteration is in progress.    *    *<p>The returned {@code Iterable} can be iterated over multiple times. Every iterator will    * compute its next element on the fly. It is thus possible to limit the traversal to a certain    * number of nodes as follows:    *    *<pre>{@code    * Iterables.limit(    *     Traverser.forGraph(graph).depthFirstPostOrder(node), maxNumberOfNodes);    * }</pre>    *    *<p>See<a href="https://en.wikipedia.org/wiki/Depth-first_search">Wikipedia</a> for more info.    */
+comment|/**    * Returns an unmodifiable {@code Iterable} over the nodes reachable from {@code startNode}, in    * the order of a depth-first post-order traversal. "Post-order" implies that nodes appear in the    * {@code Iterable} in the order in which they are visited for the last time.    *    *<p><b>Example:</b> The following graph with {@code startNode} {@code a} would return nodes in    * the order {@code fcebda} (assuming successors are returned in alphabetical order).    *    *<pre>{@code    * b ---- a ---- d    * |      |    * |      |    * e ---- c ---- f    * }</pre>    *    *<p>The behavior of this method is undefined if the nodes, or the topology of the graph, change    * while iteration is in progress.    *    *<p>The returned {@code Iterable} can be iterated over multiple times. Every iterator will    * compute its next element on the fly. It is thus possible to limit the traversal to a certain    * number of nodes as follows:    *    *<pre>{@code    * Iterables.limit(    *     Traverser.forGraph(graph).depthFirstPostOrder(node), maxNumberOfNodes);    * }</pre>    *    *<p>See<a href="https://en.wikipedia.org/wiki/Depth-first_search">Wikipedia</a> for more info.    *    * @throws IllegalArgumentException if {@code startNode} is not an element of the graph    */
 DECL|method|depthFirstPostOrder (N startNode)
 specifier|public
 specifier|abstract
@@ -419,6 +419,16 @@ name|N
 name|startNode
 parameter_list|)
 block|{
+name|checkNotNull
+argument_list|(
+name|startNode
+argument_list|)
+expr_stmt|;
+name|checkThatNodeIsInGraph
+argument_list|(
+name|startNode
+argument_list|)
+expr_stmt|;
 return|return
 operator|new
 name|Iterable
@@ -463,6 +473,16 @@ name|N
 name|startNode
 parameter_list|)
 block|{
+name|checkNotNull
+argument_list|(
+name|startNode
+argument_list|)
+expr_stmt|;
+name|checkThatNodeIsInGraph
+argument_list|(
+name|startNode
+argument_list|)
+expr_stmt|;
 return|return
 operator|new
 name|Iterable
@@ -511,6 +531,16 @@ name|N
 name|startNode
 parameter_list|)
 block|{
+name|checkNotNull
+argument_list|(
+name|startNode
+argument_list|)
+expr_stmt|;
+name|checkThatNodeIsInGraph
+argument_list|(
+name|startNode
+argument_list|)
+expr_stmt|;
 return|return
 operator|new
 name|Iterable
@@ -543,6 +573,30 @@ return|;
 block|}
 block|}
 return|;
+block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"CheckReturnValue"
+argument_list|)
+DECL|method|checkThatNodeIsInGraph (N startNode)
+specifier|private
+name|void
+name|checkThatNodeIsInGraph
+parameter_list|(
+name|N
+name|startNode
+parameter_list|)
+block|{
+comment|// successors() throws an IllegalArgumentException for nodes that are not an element of the
+comment|// graph.
+name|graph
+operator|.
+name|successors
+argument_list|(
+name|startNode
+argument_list|)
+expr_stmt|;
 block|}
 DECL|class|BreadthFirstIterator
 specifier|private
@@ -1026,6 +1080,16 @@ name|N
 name|startNode
 parameter_list|)
 block|{
+name|checkNotNull
+argument_list|(
+name|startNode
+argument_list|)
+expr_stmt|;
+name|checkThatNodeIsInTree
+argument_list|(
+name|startNode
+argument_list|)
+expr_stmt|;
 return|return
 operator|new
 name|Iterable
@@ -1070,6 +1134,16 @@ name|N
 name|startNode
 parameter_list|)
 block|{
+name|checkNotNull
+argument_list|(
+name|startNode
+argument_list|)
+expr_stmt|;
+name|checkThatNodeIsInTree
+argument_list|(
+name|startNode
+argument_list|)
+expr_stmt|;
 return|return
 operator|new
 name|Iterable
@@ -1114,6 +1188,16 @@ name|N
 name|startNode
 parameter_list|)
 block|{
+name|checkNotNull
+argument_list|(
+name|startNode
+argument_list|)
+expr_stmt|;
+name|checkThatNodeIsInTree
+argument_list|(
+name|startNode
+argument_list|)
+expr_stmt|;
 return|return
 operator|new
 name|Iterable
@@ -1142,6 +1226,30 @@ return|;
 block|}
 block|}
 return|;
+block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"CheckReturnValue"
+argument_list|)
+DECL|method|checkThatNodeIsInTree (N startNode)
+specifier|private
+name|void
+name|checkThatNodeIsInTree
+parameter_list|(
+name|N
+name|startNode
+parameter_list|)
+block|{
+comment|// successors() throws an IllegalArgumentException for nodes that are not an element of the
+comment|// graph.
+name|tree
+operator|.
+name|successors
+argument_list|(
+name|startNode
+argument_list|)
+expr_stmt|;
 block|}
 DECL|class|BreadthFirstIterator
 specifier|private
