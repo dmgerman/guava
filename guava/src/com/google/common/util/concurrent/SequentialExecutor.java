@@ -209,7 +209,7 @@ operator|new
 name|QueueWorker
 argument_list|()
 decl_stmt|;
-comment|/** Use {@link MoreExecutors#sequentialExecutor} */
+comment|/** Use {@link MoreExecutors#newSequentialExecutor} */
 DECL|method|SequentialExecutor (Executor executor)
 name|SequentialExecutor
 parameter_list|(
