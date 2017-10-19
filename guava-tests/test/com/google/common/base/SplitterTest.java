@@ -560,10 +560,10 @@ name|inOrder
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|testCharacterSplitWithMultitpleLetters ()
+DECL|method|testCharacterSplitWithMultipleLetters ()
 specifier|public
 name|void
-name|testCharacterSplitWithMultitpleLetters
+name|testCharacterSplitWithMultipleLetters
 parameter_list|()
 block|{
 name|Iterable

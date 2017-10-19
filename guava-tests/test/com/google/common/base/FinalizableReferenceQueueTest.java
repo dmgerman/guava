@@ -536,10 +536,10 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|testFinalizeClassHasNoNestedClases ()
+DECL|method|testFinalizeClassHasNoNestedClasses ()
 specifier|public
 name|void
-name|testFinalizeClassHasNoNestedClases
+name|testFinalizeClassHasNoNestedClasses
 parameter_list|()
 throws|throws
 name|Exception

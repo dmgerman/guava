@@ -3295,10 +3295,10 @@ name|shutdown
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|testGetExitingExcutorService_executorSetToUseDaemonThreads ()
+DECL|method|testGetExitingExecutorService_executorSetToUseDaemonThreads ()
 specifier|public
 name|void
-name|testGetExitingExcutorService_executorSetToUseDaemonThreads
+name|testGetExitingExecutorService_executorSetToUseDaemonThreads
 parameter_list|()
 block|{
 name|TestApplication
@@ -3361,10 +3361,10 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|testGetExitingExcutorService_executorDelegatesToOriginal ()
+DECL|method|testGetExitingExecutorService_executorDelegatesToOriginal ()
 specifier|public
 name|void
-name|testGetExitingExcutorService_executorDelegatesToOriginal
+name|testGetExitingExecutorService_executorDelegatesToOriginal
 parameter_list|()
 block|{
 name|TestApplication
@@ -3430,10 +3430,10 @@ name|EMPTY_RUNNABLE
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|testGetExitingExcutorService_shutdownHookRegistered ()
+DECL|method|testGetExitingExecutorService_shutdownHookRegistered ()
 specifier|public
 name|void
-name|testGetExitingExcutorService_shutdownHookRegistered
+name|testGetExitingExecutorService_shutdownHookRegistered
 parameter_list|()
 throws|throws
 name|InterruptedException
@@ -3502,10 +3502,10 @@ name|shutdown
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|testGetExitingScheduledExcutorService_executorSetToUseDaemonThreads ()
+DECL|method|testGetExitingScheduledExecutorService_executorSetToUseDaemonThreads ()
 specifier|public
 name|void
-name|testGetExitingScheduledExcutorService_executorSetToUseDaemonThreads
+name|testGetExitingScheduledExecutorService_executorSetToUseDaemonThreads
 parameter_list|()
 block|{
 name|TestApplication
@@ -3551,10 +3551,10 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|testGetExitingScheduledExcutorService_executorDelegatesToOriginal ()
+DECL|method|testGetExitingScheduledExecutorService_executorDelegatesToOriginal ()
 specifier|public
 name|void
-name|testGetExitingScheduledExcutorService_executorDelegatesToOriginal
+name|testGetExitingScheduledExecutorService_executorDelegatesToOriginal
 parameter_list|()
 block|{
 name|TestApplication
@@ -3620,10 +3620,10 @@ name|EMPTY_RUNNABLE
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|testGetScheduledExitingExcutorService_shutdownHookRegistered ()
+DECL|method|testGetScheduledExitingExecutorService_shutdownHookRegistered ()
 specifier|public
 name|void
-name|testGetScheduledExitingExcutorService_shutdownHookRegistered
+name|testGetScheduledExitingExecutorService_shutdownHookRegistered
 parameter_list|()
 throws|throws
 name|InterruptedException

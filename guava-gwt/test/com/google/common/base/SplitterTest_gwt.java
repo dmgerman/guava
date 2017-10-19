@@ -564,10 +564,10 @@ name|testCharacterSplitWithMatcherDelimiter
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|testCharacterSplitWithMultitpleLetters ()
+DECL|method|testCharacterSplitWithMultipleLetters ()
 specifier|public
 name|void
-name|testCharacterSplitWithMultitpleLetters
+name|testCharacterSplitWithMultipleLetters
 parameter_list|()
 throws|throws
 name|Exception
@@ -597,7 +597,7 @@ argument_list|()
 decl_stmt|;
 name|testCase
 operator|.
-name|testCharacterSplitWithMultitpleLetters
+name|testCharacterSplitWithMultipleLetters
 argument_list|()
 expr_stmt|;
 block|}

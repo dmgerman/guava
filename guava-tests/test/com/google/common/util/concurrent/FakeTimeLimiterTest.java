@@ -212,7 +212,7 @@ argument_list|)
 expr_stmt|;
 name|fail
 argument_list|(
-literal|"Excpected ExecutionException"
+literal|"Expected ExecutionException"
 argument_list|)
 expr_stmt|;
 block|}
@@ -274,7 +274,7 @@ argument_list|)
 expr_stmt|;
 name|fail
 argument_list|(
-literal|"Excpected UncheckedExecutionException"
+literal|"Expected UncheckedExecutionException"
 argument_list|)
 expr_stmt|;
 block|}
@@ -401,7 +401,7 @@ argument_list|)
 expr_stmt|;
 name|fail
 argument_list|(
-literal|"Excpected UncheckedExecutionException"
+literal|"Expected UncheckedExecutionException"
 argument_list|)
 expr_stmt|;
 block|}
@@ -463,7 +463,7 @@ argument_list|)
 expr_stmt|;
 name|fail
 argument_list|(
-literal|"Excpected UncheckedExecutionException"
+literal|"Expected UncheckedExecutionException"
 argument_list|)
 expr_stmt|;
 block|}

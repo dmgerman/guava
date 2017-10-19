@@ -244,10 +244,10 @@ name|descending
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|testScsiReadCommad ()
+DECL|method|testScsiReadCommand ()
 specifier|public
 name|void
-name|testScsiReadCommad
+name|testScsiReadCommand
 parameter_list|()
 block|{
 comment|// Test SCSI read command.
