@@ -1027,7 +1027,7 @@ literal|1
 argument_list|)
 return|;
 block|}
-comment|/**    * Indicates whether this domain name represents a<i>registry suffix</i>, as defined by a subset    * of the Mozilla Foundation's<a href="http://publicsuffix.org/">Public Suffix List</a> (PSL). A    * registry suffix is one under which Internet users can directly register names via a domain name    * registrar, and have such registrations lawfully protected by internet-governing bodies such as    * ICANN. Examples of registry suffixes include {@code com}, {@code co.uk}, and {@code    * pvt.k12.wy.us}. Examples of domain names that are<i>not</i> registry suffixes include {@code    * google.com} and {@code foo.co.uk}.    *    *<p>Registry suffixes are a proper subset of {@linkplain #isPublicSuffix() public suffixes}. The    * list of public suffixes additionally contains privately owned domain names under which Internet    * users can register subdomains. An example of a public suffix that is not a registry suffix is    * {@code blogspot.com}. Note that it is true that all public suffixes<i>have</i> registry    * suffixes, since domain name registries collectively control all internet domain names.    *    *<p>For considerations on whether the public suffix or registry suffix designation is more    * suitable for your application, see<a    * href="https://github.com/google/guava/wiki/InternetDomainNameExplained">this article</a>.    *    * @return {@code true} if this domain name appears exactly on the public suffix list as part of    *     the registry suffix section (labelled "ICANN").    * @since NEXT    */
+comment|/**    * Indicates whether this domain name represents a<i>registry suffix</i>, as defined by a subset    * of the Mozilla Foundation's<a href="http://publicsuffix.org/">Public Suffix List</a> (PSL). A    * registry suffix is one under which Internet users can directly register names via a domain name    * registrar, and have such registrations lawfully protected by internet-governing bodies such as    * ICANN. Examples of registry suffixes include {@code com}, {@code co.uk}, and {@code    * pvt.k12.wy.us}. Examples of domain names that are<i>not</i> registry suffixes include {@code    * google.com} and {@code foo.co.uk}.    *    *<p>Registry suffixes are a proper subset of {@linkplain #isPublicSuffix() public suffixes}. The    * list of public suffixes additionally contains privately owned domain names under which Internet    * users can register subdomains. An example of a public suffix that is not a registry suffix is    * {@code blogspot.com}. Note that it is true that all public suffixes<i>have</i> registry    * suffixes, since domain name registries collectively control all internet domain names.    *    *<p>For considerations on whether the public suffix or registry suffix designation is more    * suitable for your application, see<a    * href="https://github.com/google/guava/wiki/InternetDomainNameExplained">this article</a>.    *    * @return {@code true} if this domain name appears exactly on the public suffix list as part of    *     the registry suffix section (labelled "ICANN").    * @since 23.3    */
 DECL|method|isRegistrySuffix ()
 specifier|public
 name|boolean
@@ -1040,7 +1040,7 @@ operator|==
 literal|0
 return|;
 block|}
-comment|/**    * Indicates whether this domain name ends in a {@linkplain #isRegistrySuffix() registry suffix},    * including if it is a registry suffix itself. For example, returns {@code true} for {@code    * www.google.com}, {@code foo.co.uk} and {@code com}, but not for {@code invalid} or {@code    * google.invalid}.    *    *<p>Note that this method is equivalent to {@link #hasPublicSuffix()} because all registry    * suffixes are public suffixes<i>and</i> all public suffixes have registry suffixes.    *    * @since NEXT    */
+comment|/**    * Indicates whether this domain name ends in a {@linkplain #isRegistrySuffix() registry suffix},    * including if it is a registry suffix itself. For example, returns {@code true} for {@code    * www.google.com}, {@code foo.co.uk} and {@code com}, but not for {@code invalid} or {@code    * google.invalid}.    *    *<p>Note that this method is equivalent to {@link #hasPublicSuffix()} because all registry    * suffixes are public suffixes<i>and</i> all public suffixes have registry suffixes.    *    * @since 23.3    */
 DECL|method|hasRegistrySuffix ()
 specifier|public
 name|boolean
@@ -1053,7 +1053,7 @@ operator|!=
 name|NO_SUFFIX_FOUND
 return|;
 block|}
-comment|/**    * Returns the {@linkplain #isRegistrySuffix() registry suffix} portion of the domain name, or    * {@code null} if no registry suffix is present.    *    * @since NEXT    */
+comment|/**    * Returns the {@linkplain #isRegistrySuffix() registry suffix} portion of the domain name, or    * {@code null} if no registry suffix is present.    *    * @since 23.3    */
 DECL|method|registrySuffix ()
 specifier|public
 name|InternetDomainName
@@ -1072,7 +1072,7 @@ else|:
 literal|null
 return|;
 block|}
-comment|/**    * Indicates whether this domain name ends in a {@linkplain #isRegistrySuffix() registry suffix},    * while not being a registry suffix itself. For example, returns {@code true} for {@code    * www.google.com}, {@code foo.co.uk} and {@code blogspot.com}, but not for {@code com}, {@code    * co.uk}, or {@code google.invalid}.    *    * @since NEXT    */
+comment|/**    * Indicates whether this domain name ends in a {@linkplain #isRegistrySuffix() registry suffix},    * while not being a registry suffix itself. For example, returns {@code true} for {@code    * www.google.com}, {@code foo.co.uk} and {@code blogspot.com}, but not for {@code com}, {@code    * co.uk}, or {@code google.invalid}.    *    * @since 23.3    */
 DECL|method|isUnderRegistrySuffix ()
 specifier|public
 name|boolean
@@ -1085,7 +1085,7 @@ operator|>
 literal|0
 return|;
 block|}
-comment|/**    * Indicates whether this domain name is composed of exactly one subdomain component followed by a    * {@linkplain #isRegistrySuffix() registry suffix}. For example, returns {@code true} for {@code    * google.com}, {@code foo.co.uk}, and {@code blogspot.com}, but not for {@code www.google.com},    * {@code co.uk}, or {@code myblog.blogspot.com}.    *    *<p><b>Warning:</b> This method should not be used to determine the probable highest level    * parent domain for which cookies may be set. Use {@link #topPrivateDomain()} for that purpose.    *    * @since NEXT    */
+comment|/**    * Indicates whether this domain name is composed of exactly one subdomain component followed by a    * {@linkplain #isRegistrySuffix() registry suffix}. For example, returns {@code true} for {@code    * google.com}, {@code foo.co.uk}, and {@code blogspot.com}, but not for {@code www.google.com},    * {@code co.uk}, or {@code myblog.blogspot.com}.    *    *<p><b>Warning:</b> This method should not be used to determine the probable highest level    * parent domain for which cookies may be set. Use {@link #topPrivateDomain()} for that purpose.    *    * @since 23.3    */
 DECL|method|isTopDomainUnderRegistrySuffix ()
 specifier|public
 name|boolean
@@ -1098,7 +1098,7 @@ operator|==
 literal|1
 return|;
 block|}
-comment|/**    * Returns the portion of this domain name that is one level beneath the {@linkplain    * #isRegistrySuffix() registry suffix}. For example, for {@code x.adwords.google.co.uk} it    * returns {@code google.co.uk}, since {@code co.uk} is a registry suffix. Similarly, for {@code    * myblog.blogspot.com} it returns {@code blogspot.com}, since {@code com} is a registry suffix.    *    *<p>If {@link #isTopDomainUnderRegistrySuffix()} is true, the current domain name instance is    * returned.    *    *<p><b>Warning:</b> This method should not be used to determine whether a domain is probably the    * highest level for which cookies may be set. Use {@link #isTopPrivateDomain()} for that purpose.    *    * @throws IllegalStateException if this domain does not end with a registry suffix    * @since NEXT    */
+comment|/**    * Returns the portion of this domain name that is one level beneath the {@linkplain    * #isRegistrySuffix() registry suffix}. For example, for {@code x.adwords.google.co.uk} it    * returns {@code google.co.uk}, since {@code co.uk} is a registry suffix. Similarly, for {@code    * myblog.blogspot.com} it returns {@code blogspot.com}, since {@code com} is a registry suffix.    *    *<p>If {@link #isTopDomainUnderRegistrySuffix()} is true, the current domain name instance is    * returned.    *    *<p><b>Warning:</b> This method should not be used to determine whether a domain is probably the    * highest level for which cookies may be set. Use {@link #isTopPrivateDomain()} for that purpose.    *    * @throws IllegalStateException if this domain does not end with a registry suffix    * @since 23.3    */
 DECL|method|topDomainUnderRegistrySuffix ()
 specifier|public
 name|InternetDomainName
