@@ -272,7 +272,7 @@ name|scale
 argument_list|)
 return|;
 block|}
-comment|/**    * Describes the point in a fluent API chain where only the scale (i.e. the q in q-quantiles) has    * been specified.    */
+comment|/**    * Describes the point in a fluent API chain where only the scale (i.e. the q in q-quantiles) has    * been specified.    *    * @since 20.0    */
 DECL|class|Scale
 specifier|public
 specifier|static
@@ -383,7 +383,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**    * Describes the point in a fluent API chain where the scale and a single quantile index (i.e. the    * q and the k in the kth q-quantile) have been specified.    */
+comment|/**    * Describes the point in a fluent API chain where the scale and a single quantile index (i.e. the    * q and the k in the kth q-quantile) have been specified.    *    * @since 20.0    */
 DECL|class|ScaleAndIndex
 specifier|public
 specifier|static
@@ -692,7 +692,7 @@ return|;
 block|}
 block|}
 block|}
-comment|/**    * Describes the point in a fluent API chain where the scale and a multiple quantile indexes (i.e.    * the q and a set of values for the k in the kth q-quantile) have been specified.    */
+comment|/**    * Describes the point in a fluent API chain where the scale and a multiple quantile indexes (i.e.    * the q and a set of values for the k in the kth q-quantile) have been specified.    *    * @since 20.0    */
 DECL|class|ScaleAndIndexes
 specifier|public
 specifier|static

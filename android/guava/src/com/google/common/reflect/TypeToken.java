@@ -2405,7 +2405,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/**    * The set of interfaces and classes that {@code T} is or is a subtype of. {@link Object} is not    * included in the set if this type is an interface.    */
+comment|/**    * The set of interfaces and classes that {@code T} is or is a subtype of. {@link Object} is not    * included in the set if this type is an interface.    *    * @since 13.0    */
 DECL|class|TypeSet
 specifier|public
 class|class

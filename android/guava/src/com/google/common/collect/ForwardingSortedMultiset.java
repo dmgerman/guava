@@ -144,7 +144,7 @@ name|elementSet
 argument_list|()
 return|;
 block|}
-comment|/**    * A sensible implementation of {@link SortedMultiset#elementSet} in terms of the following    * methods: {@link SortedMultiset#clear}, {@link SortedMultiset#comparator}, {@link    * SortedMultiset#contains}, {@link SortedMultiset#containsAll}, {@link SortedMultiset#count},    * {@link SortedMultiset#firstEntry} {@link SortedMultiset#headMultiset}, {@link    * SortedMultiset#isEmpty}, {@link SortedMultiset#lastEntry}, {@link SortedMultiset#subMultiset},    * {@link SortedMultiset#tailMultiset}, the {@code size()} and {@code iterator()} methods of    * {@link SortedMultiset#entrySet}, and {@link SortedMultiset#remove(Object, int)}. In many    * situations, you may wish to override {@link SortedMultiset#elementSet} to forward to this    * implementation or a subclass thereof.    */
+comment|/**    * A sensible implementation of {@link SortedMultiset#elementSet} in terms of the following    * methods: {@link SortedMultiset#clear}, {@link SortedMultiset#comparator}, {@link    * SortedMultiset#contains}, {@link SortedMultiset#containsAll}, {@link SortedMultiset#count},    * {@link SortedMultiset#firstEntry} {@link SortedMultiset#headMultiset}, {@link    * SortedMultiset#isEmpty}, {@link SortedMultiset#lastEntry}, {@link SortedMultiset#subMultiset},    * {@link SortedMultiset#tailMultiset}, the {@code size()} and {@code iterator()} methods of    * {@link SortedMultiset#entrySet}, and {@link SortedMultiset#remove(Object, int)}. In many    * situations, you may wish to override {@link SortedMultiset#elementSet} to forward to this    * implementation or a subclass thereof.    *    * @since 15.0    */
 DECL|class|StandardElementSet
 specifier|protected
 class|class
@@ -212,7 +212,7 @@ name|descendingMultiset
 argument_list|()
 return|;
 block|}
-comment|/**    * A skeleton implementation of a descending multiset view. Normally,    * {@link #descendingMultiset()} will not reflect any changes you make to the behavior of methods    * such as {@link #add(Object)} or {@link #pollFirstEntry}. This skeleton implementation    * correctly delegates each of its operations to the appropriate methods of this {@code    * ForwardingSortedMultiset}.    *    * In many cases, you may wish to override {@link #descendingMultiset()} to return an instance of    * a subclass of {@code StandardDescendingMultiset}.    */
+comment|/**    * A skeleton implementation of a descending multiset view. Normally,    * {@link #descendingMultiset()} will not reflect any changes you make to the behavior of methods    * such as {@link #add(Object)} or {@link #pollFirstEntry}. This skeleton implementation    * correctly delegates each of its operations to the appropriate methods of this {@code    * ForwardingSortedMultiset}.    *    * In many cases, you may wish to override {@link #descendingMultiset()} to return an instance of    * a subclass of {@code StandardDescendingMultiset}.    *    * @since 15.0    */
 DECL|class|StandardDescendingMultiset
 specifier|protected
 specifier|abstract

@@ -560,7 +560,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/**    * Uses an {@link EnumMap} to map keys to value collections.    */
+comment|/**    * Uses an {@link EnumMap} to map keys to value collections.    *    * @since 16.0    */
 DECL|method|enumKeys ( final Class<K0> keyClass)
 specifier|public
 specifier|static
@@ -1087,7 +1087,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**    * An intermediate stage in a {@link MultimapBuilder} in which the key-value collection map    * implementation has been specified, but the value collection implementation has not.    *    * @param<K0> The upper bound on the key type of the generated multimap.    */
+comment|/**    * An intermediate stage in a {@link MultimapBuilder} in which the key-value collection map    * implementation has been specified, but the value collection implementation has not.    *    * @param<K0> The upper bound on the key type of the generated multimap.    *    * @since 16.0    */
 DECL|class|MultimapBuilderWithKeys
 specifier|public
 specifier|abstract
@@ -1826,7 +1826,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/**    * A specialization of {@link MultimapBuilder} that generates {@link ListMultimap} instances.    */
+comment|/**    * A specialization of {@link MultimapBuilder} that generates {@link ListMultimap} instances.    *    * @since 16.0    */
 DECL|class|ListMultimapBuilder
 specifier|public
 specifier|abstract
@@ -1925,7 +1925,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**    * A specialization of {@link MultimapBuilder} that generates {@link SetMultimap} instances.    */
+comment|/**    * A specialization of {@link MultimapBuilder} that generates {@link SetMultimap} instances.    *    * @since 16.0    */
 DECL|class|SetMultimapBuilder
 specifier|public
 specifier|abstract
@@ -2024,7 +2024,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**    * A specialization of {@link MultimapBuilder} that generates {@link SortedSetMultimap} instances.    */
+comment|/**    * A specialization of {@link MultimapBuilder} that generates {@link SortedSetMultimap} instances.    *    * @since 16.0    */
 DECL|class|SortedSetMultimapBuilder
 specifier|public
 specifier|abstract

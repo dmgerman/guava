@@ -680,7 +680,7 @@ argument_list|<>
 argument_list|()
 return|;
 block|}
-comment|/**    * A builder for immutable range maps. Overlapping ranges are prohibited.    */
+comment|/**    * A builder for immutable range maps. Overlapping ranges are prohibited.    *    * @since 14.0    */
 DECL|class|Builder
 specifier|public
 specifier|static

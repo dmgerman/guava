@@ -156,7 +156,7 @@ name|y1
 argument_list|)
 return|;
 block|}
-comment|/**    * This is an intermediate stage in the construction process. It is returned by    * {@link LinearTransformation#mapping}. You almost certainly don't want to keep instances around,    * but instead use method chaining. This represents a single point mapping, i.e. a mapping between    * one {@code x} and {@code y} value pair.    */
+comment|/**    * This is an intermediate stage in the construction process. It is returned by    * {@link LinearTransformation#mapping}. You almost certainly don't want to keep instances around,    * but instead use method chaining. This represents a single point mapping, i.e. a mapping between    * one {@code x} and {@code y} value pair.    *    * @since 20.0    */
 DECL|class|LinearTransformationBuilder
 specifier|public
 specifier|static
