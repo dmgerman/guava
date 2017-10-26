@@ -3350,12 +3350,6 @@ literal|2
 block|}
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|sortWorksWithNaN
-argument_list|()
-condition|)
-block|{
 name|testSortDescending
 argument_list|(
 operator|new
@@ -3407,7 +3401,6 @@ literal|2
 block|}
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 DECL|method|testSortDescendingIndexed ()
 specifier|public
@@ -3573,12 +3566,6 @@ literal|2
 block|}
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|sortWorksWithNaN
-argument_list|()
-condition|)
-block|{
 name|testSortDescending
 argument_list|(
 operator|new
@@ -3624,7 +3611,6 @@ literal|2
 block|}
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 DECL|method|testSortDescending (double[] input, double[] expectedOutput)
 specifier|private
@@ -3785,22 +3771,6 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-block|}
-annotation|@
-name|GwtIncompatible
-comment|// works with real browsers but fails with HtmlUnit
-DECL|method|testSortWorksWithNaNNonGwt ()
-specifier|public
-name|void
-name|testSortWorksWithNaNNonGwt
-parameter_list|()
-block|{
-name|assertTrue
-argument_list|(
-name|sortWorksWithNaN
-argument_list|()
-argument_list|)
-expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
@@ -5912,43 +5882,6 @@ name|NullPointerException
 name|expected
 parameter_list|)
 block|{     }
-block|}
-comment|// HtmlUnit looks to be sorting double[] wrongly. We detect that and skip our tests there.
-DECL|method|sortWorksWithNaN ()
-specifier|private
-specifier|static
-name|boolean
-name|sortWorksWithNaN
-parameter_list|()
-block|{
-name|double
-index|[]
-name|array
-init|=
-operator|new
-name|double
-index|[]
-block|{
-name|NaN
-block|,
-literal|0
-block|}
-decl_stmt|;
-name|Arrays
-operator|.
-name|sort
-argument_list|(
-name|array
-argument_list|)
-expr_stmt|;
-return|return
-name|array
-index|[
-literal|0
-index|]
-operator|==
-literal|0
-return|;
 block|}
 block|}
 end_class
