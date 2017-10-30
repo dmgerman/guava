@@ -248,48 +248,6 @@ name|index
 index|]
 return|;
 block|}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
-annotation|@
-name|Override
-DECL|method|listIterator (int index)
-specifier|public
-name|UnmodifiableListIterator
-argument_list|<
-name|E
-argument_list|>
-name|listIterator
-parameter_list|(
-name|int
-name|index
-parameter_list|)
-block|{
-comment|// for performance
-comment|// The fake cast to E is safe because the creation methods only allow E's
-return|return
-operator|(
-name|UnmodifiableListIterator
-argument_list|<
-name|E
-argument_list|>
-operator|)
-name|Iterators
-operator|.
-name|forArray
-argument_list|(
-name|array
-argument_list|,
-literal|0
-argument_list|,
-name|size
-argument_list|,
-name|index
-argument_list|)
-return|;
-block|}
 comment|// TODO(lowasser): benchmark optimizations for equals() and see if they're worthwhile
 block|}
 end_class
