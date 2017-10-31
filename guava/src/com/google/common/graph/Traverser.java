@@ -360,6 +360,12 @@ name|N
 name|startNode
 parameter_list|)
 function_decl|;
+comment|// Avoid subclasses outside of this class
+DECL|method|Traverser ()
+specifier|private
+name|Traverser
+parameter_list|()
+block|{}
 DECL|class|GraphTraverser
 specifier|private
 specifier|static
