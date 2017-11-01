@@ -129,7 +129,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Executor ensuring that all Runnables submitted are executed in order, using the provided  * Executor, and sequentially such that no two will ever be running at the same time.  *  *<p>Tasks submitted to {@link #execute(Runnable)} are executed in FIFO order.  *  *<p>The execution of tasks is done by one thread as long as there are tasks left in the queue.  * When a task is {@linkplain Thread#interrupt interrupted}, execution of subsequent tasks  * continues. {@code RuntimeException}s thrown by tasks are simply logged and the executor keeps  * trucking. If an {@code Error} is thrown, the error will propagate and execution will stop until  * it is restarted by a call to {@link #execute}.  */
+comment|/**  * Executor ensuring that all Runnables submitted are executed in order, using the provided  * Executor, and sequentially such that no two will ever be running at the same time.  *  *<p>Tasks submitted to {@link #execute(Runnable)} are executed in FIFO order.  *  *<p>The execution of tasks is done by one thread as long as there are tasks left in the queue.  * When a task is {@linkplain Thread#interrupt interrupted}, execution of subsequent tasks  * continues. See {@link QueueWorker#workOnQueue} for details.  *  *<p>{@code RuntimeException}s thrown by tasks are simply logged and the executor keeps trucking.  * If an {@code Error} is thrown, the error will propagate and execution will stop until it is  * restarted by a call to {@link #execute}.  */
 end_comment
 
 begin_class
@@ -317,7 +317,7 @@ block|}
 block|}
 block|}
 block|}
-comment|/**    * Worker that runs tasks from {@link #queue} until it is empty.    */
+comment|/** Worker that runs tasks from {@link #queue} until it is empty. */
 annotation|@
 name|WeakOuter
 DECL|class|QueueWorker
@@ -366,28 +366,43 @@ comment|// We could have tasks left in the queue, so should perhaps try to resta
 comment|// but then the Error will get delayed if we are using a direct (same thread) executor.
 block|}
 block|}
+comment|/**      * Continues executing tasks from {@link #queue} until it is empty.      *      *<p>The thread's interrupt bit is cleared before execution of each task.      *      *<p>If the Thread in use is interrupted before or during execution of the tasks in      * {@link #queue}, the Executor will complete its tasks, and then restore the interruption.      * This means that once the Thread returns to the Executor that this Executor composes, the      * interruption will still be present. If the composed Executor is an ExecutorService, it can      * respond to shutdown() by returning tasks queued on that Thread after {@link #worker} drains      * the queue.      */
 DECL|method|workOnQueue ()
 specifier|private
 name|void
 name|workOnQueue
 parameter_list|()
 block|{
+name|boolean
+name|interruptedDuringTask
+init|=
+literal|false
+decl_stmt|;
+try|try
+block|{
 while|while
 condition|(
 literal|true
 condition|)
 block|{
+comment|// Remove the interrupt bit before each task. The interrupt is for the "current task" when
+comment|// it is sent, so subsequent tasks in the queue should not be caused to be interrupted
+comment|// by a previous one in the queue being interrupted.
+name|interruptedDuringTask
+operator||=
+name|Thread
+operator|.
+name|interrupted
+argument_list|()
+expr_stmt|;
 name|Runnable
 name|task
-init|=
-literal|null
 decl_stmt|;
 synchronized|synchronized
 init|(
 name|queue
 init|)
 block|{
-comment|// TODO(user): How should we handle interrupts and shutdowns?
 name|task
 operator|=
 name|queue
@@ -437,6 +452,27 @@ name|task
 argument_list|,
 name|e
 argument_list|)
+expr_stmt|;
+block|}
+block|}
+block|}
+finally|finally
+block|{
+comment|// Ensure that if the thread was interrupted at all while processing the task queue, it
+comment|// is returned to the delegate Executor interrupted so that it may handle the
+comment|// interruption if it likes.
+if|if
+condition|(
+name|interruptedDuringTask
+condition|)
+block|{
+name|Thread
+operator|.
+name|currentThread
+argument_list|()
+operator|.
+name|interrupt
+argument_list|()
 expr_stmt|;
 block|}
 block|}

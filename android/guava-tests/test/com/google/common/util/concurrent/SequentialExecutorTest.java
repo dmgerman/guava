@@ -19,6 +19,22 @@ package|;
 end_package
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|truth
+operator|.
+name|Truth
+operator|.
+name|assertThat
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -222,9 +238,9 @@ operator|.
 name|newArrayDeque
 argument_list|()
 decl_stmt|;
-DECL|method|execute (Runnable command)
 annotation|@
 name|Override
+DECL|method|execute (Runnable command)
 specifier|public
 name|void
 name|execute
@@ -705,6 +721,193 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+DECL|method|testInterrupt_beforeRunRestoresInterruption ()
+specifier|public
+name|void
+name|testInterrupt_beforeRunRestoresInterruption
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+comment|// Run a task on the composed Executor that interrupts its thread (i.e. this thread).
+name|fakePool
+operator|.
+name|execute
+argument_list|(
+operator|new
+name|Runnable
+argument_list|()
+block|{
+annotation|@
+name|Override
+specifier|public
+name|void
+name|run
+parameter_list|()
+block|{
+name|Thread
+operator|.
+name|currentThread
+argument_list|()
+operator|.
+name|interrupt
+argument_list|()
+expr_stmt|;
+block|}
+block|}
+argument_list|)
+expr_stmt|;
+comment|// Run a task that expects that it is not interrupted while it is running.
+name|e
+operator|.
+name|execute
+argument_list|(
+operator|new
+name|Runnable
+argument_list|()
+block|{
+annotation|@
+name|Override
+specifier|public
+name|void
+name|run
+parameter_list|()
+block|{
+name|assertThat
+argument_list|(
+name|Thread
+operator|.
+name|currentThread
+argument_list|()
+operator|.
+name|isInterrupted
+argument_list|()
+argument_list|)
+operator|.
+name|isFalse
+argument_list|()
+expr_stmt|;
+block|}
+block|}
+argument_list|)
+expr_stmt|;
+comment|// Run these together.
+name|fakePool
+operator|.
+name|runAll
+argument_list|()
+expr_stmt|;
+comment|// Check that this thread has been marked as interrupted again now that the thread has been
+comment|// returned by SequentialExecutor. Clear the bit while checking so that the test doesn't hose
+comment|// JUnit or some other test case.
+name|assertThat
+argument_list|(
+name|Thread
+operator|.
+name|currentThread
+argument_list|()
+operator|.
+name|interrupted
+argument_list|()
+argument_list|)
+operator|.
+name|isTrue
+argument_list|()
+expr_stmt|;
+block|}
+DECL|method|testInterrupt_doesNotInterruptSubsequentTask ()
+specifier|public
+name|void
+name|testInterrupt_doesNotInterruptSubsequentTask
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+comment|// Run a task that interrupts its thread (i.e. this thread).
+name|e
+operator|.
+name|execute
+argument_list|(
+operator|new
+name|Runnable
+argument_list|()
+block|{
+annotation|@
+name|Override
+specifier|public
+name|void
+name|run
+parameter_list|()
+block|{
+name|Thread
+operator|.
+name|currentThread
+argument_list|()
+operator|.
+name|interrupt
+argument_list|()
+expr_stmt|;
+block|}
+block|}
+argument_list|)
+expr_stmt|;
+comment|// Run a task that expects that it is not interrupted while it is running.
+name|e
+operator|.
+name|execute
+argument_list|(
+operator|new
+name|Runnable
+argument_list|()
+block|{
+annotation|@
+name|Override
+specifier|public
+name|void
+name|run
+parameter_list|()
+block|{
+name|assertThat
+argument_list|(
+name|Thread
+operator|.
+name|currentThread
+argument_list|()
+operator|.
+name|isInterrupted
+argument_list|()
+argument_list|)
+operator|.
+name|isFalse
+argument_list|()
+expr_stmt|;
+block|}
+block|}
+argument_list|)
+expr_stmt|;
+comment|// Run those tasks together.
+name|fakePool
+operator|.
+name|runAll
+argument_list|()
+expr_stmt|;
+comment|// Check that the interruption of a SequentialExecutor's task is restored to the thread once
+comment|// it is yielded.
+name|assertThat
+argument_list|(
+name|Thread
+operator|.
+name|currentThread
+argument_list|()
+operator|.
+name|isInterrupted
+argument_list|()
+argument_list|)
+operator|.
+name|isTrue
+argument_list|()
+expr_stmt|;
+block|}
 DECL|method|testInterrupt_doesNotStopExecution ()
 specifier|public
 name|void
@@ -895,7 +1098,7 @@ parameter_list|(
 name|RejectedExecutionException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 name|assertEquals
 argument_list|(
 literal|0
@@ -1057,7 +1260,7 @@ name|barrier
 operator|.
 name|await
 argument_list|(
-literal|10
+literal|1
 argument_list|,
 name|TimeUnit
 operator|.
@@ -1076,7 +1279,7 @@ name|barrier
 operator|.
 name|await
 argument_list|(
-literal|10
+literal|1
 argument_list|,
 name|TimeUnit
 operator|.
