@@ -16,27 +16,11 @@ name|hash
 package|;
 end_package
 
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|annotations
-operator|.
-name|GwtCompatible
-import|;
-end_import
-
 begin_comment
 comment|/**  * Abstract interface for objects that can concurrently add longs.  *  * @author Louis Wasserman  */
 end_comment
 
 begin_interface
-annotation|@
-name|GwtCompatible
 DECL|interface|LongAddable
 interface|interface
 name|LongAddable

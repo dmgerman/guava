@@ -24,20 +24,6 @@ name|google
 operator|.
 name|common
 operator|.
-name|annotations
-operator|.
-name|GwtCompatible
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
 name|base
 operator|.
 name|Supplier
@@ -63,13 +49,6 @@ comment|/**  * Source of {@link LongAddable} objects that deals with GWT, Unsafe
 end_comment
 
 begin_class
-annotation|@
-name|GwtCompatible
-argument_list|(
-name|emulated
-operator|=
-literal|true
-argument_list|)
 DECL|class|LongAddables
 specifier|final
 class|class
