@@ -892,7 +892,8 @@ name|runAll
 argument_list|()
 expr_stmt|;
 comment|// Check that the interruption of a SequentialExecutor's task is restored to the thread once
-comment|// it is yielded.
+comment|// it is yielded. Clear the bit while checking so that the test doesn't hose JUnit or some other
+comment|// test case.
 name|assertThat
 argument_list|(
 name|Thread
@@ -900,7 +901,7 @@ operator|.
 name|currentThread
 argument_list|()
 operator|.
-name|isInterrupted
+name|interrupted
 argument_list|()
 argument_list|)
 operator|.
