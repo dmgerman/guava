@@ -567,14 +567,14 @@ operator|.
 name|DERIVED_FEATURE_2
 block|}
 argument_list|)
-DECL|class|ExampleDerivedInterfaceTester_Conflict
+DECL|class|ConflictingRequirementsExampleDerivedInterfaceTester
 specifier|private
 specifier|static
 class|class
-name|ExampleDerivedInterfaceTester_Conflict
+name|ConflictingRequirementsExampleDerivedInterfaceTester
 extends|extends
 name|ExampleBaseInterfaceTester
-block|{   }
+block|{}
 end_class
 
 begin_function
@@ -1232,7 +1232,7 @@ name|FeatureUtil
 operator|.
 name|buildTesterRequirements
 argument_list|(
-name|ExampleDerivedInterfaceTester_Conflict
+name|ConflictingRequirementsExampleDerivedInterfaceTester
 operator|.
 name|class
 argument_list|)
@@ -1266,7 +1266,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-name|ExampleDerivedInterfaceTester_Conflict
+name|ConflictingRequirementsExampleDerivedInterfaceTester
 operator|.
 name|class
 argument_list|,
