@@ -826,10 +826,6 @@ if|if
 condition|(
 name|hasPort
 argument_list|()
-operator|||
-name|port
-operator|==
-name|defaultPort
 condition|)
 block|{
 return|return
