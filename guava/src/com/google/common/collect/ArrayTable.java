@@ -294,7 +294,7 @@ argument_list|>
 implements|implements
 name|Serializable
 block|{
-comment|/**    * Creates an empty {@code ArrayTable}.    *    * @param rowKeys row keys that may be stored in the generated table    * @param columnKeys column keys that may be stored in the generated table    * @throws NullPointerException if any of the provided keys is null    * @throws IllegalArgumentException if {@code rowKeys} or {@code columnKeys}    *     contains duplicates or is empty    */
+comment|/**    * Creates an {@code ArrayTable} filled with {@code null}.    *    * @param rowKeys row keys that may be stored in the generated table    * @param columnKeys column keys that may be stored in the generated table    * @throws NullPointerException if any of the provided keys is null    * @throws IllegalArgumentException if {@code rowKeys} or {@code columnKeys}    *     contains duplicates or if exactly one of {@code rowKeys} or {@code    *     columnKeys} is empty.    */
 DECL|method|create ( Iterable<? extends R> rowKeys, Iterable<? extends C> columnKeys)
 specifier|public
 specifier|static
@@ -344,7 +344,7 @@ argument_list|)
 return|;
 block|}
 comment|/*    * TODO(jlevy): Add factory methods taking an Enum class, instead of an    * iterable, to specify the allowed row keys and/or column keys. Note that    * custom serialization logic is needed to support different enum sizes during    * serialization and deserialization.    */
-comment|/**    * Creates an {@code ArrayTable} with the mappings in the provided table.    *    *<p>If {@code table} includes a mapping with row key {@code r} and a    * separate mapping with column key {@code c}, the returned table contains a    * mapping with row key {@code r} and column key {@code c}. If that row key /    * column key pair in not in {@code table}, the pair maps to {@code null} in    * the generated table.    *    *<p>The returned table allows subsequent {@code put} calls with the row keys    * in {@code table.rowKeySet()} and the column keys in {@code    * table.columnKeySet()}. Calling {@link #put} with other keys leads to an    * {@code IllegalArgumentException}.    *    *<p>The ordering of {@code table.rowKeySet()} and {@code    * table.columnKeySet()} determines the row and column iteration ordering of    * the returned table.    *    * @throws NullPointerException if {@code table} has a null key    * @throws IllegalArgumentException if the provided table is empty    */
+comment|/**    * Creates an {@code ArrayTable} with the mappings in the provided table.    *    *<p>If {@code table} includes a mapping with row key {@code r} and a    * separate mapping with column key {@code c}, the returned table contains a    * mapping with row key {@code r} and column key {@code c}. If that row key /    * column key pair in not in {@code table}, the pair maps to {@code null} in    * the generated table.    *    *<p>The returned table allows subsequent {@code put} calls with the row keys    * in {@code table.rowKeySet()} and the column keys in {@code    * table.columnKeySet()}. Calling {@link #put} with other keys leads to an    * {@code IllegalArgumentException}.    *    *<p>The ordering of {@code table.rowKeySet()} and {@code    * table.columnKeySet()} determines the row and column iteration ordering of    * the returned table.    *    * @throws NullPointerException if {@code table} has a null key    */
 DECL|method|create (Table<R, C, V> table)
 specifier|public
 specifier|static
@@ -521,23 +521,18 @@ argument_list|)
 expr_stmt|;
 name|checkArgument
 argument_list|(
-operator|!
 name|rowList
 operator|.
 name|isEmpty
 argument_list|()
-argument_list|)
-expr_stmt|;
-name|checkArgument
-argument_list|(
-operator|!
+operator|==
 name|columnList
 operator|.
 name|isEmpty
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|/*      * TODO(jlevy): Support empty rowKeys or columnKeys? If we do, when      * columnKeys is empty but rowKeys isn't, the table is empty but      * containsRow() can return true and rowKeySet() isn't empty.      */
+comment|/*      * TODO(jlevy): Support only one of rowKey / columnKey being empty? If we      * do, when columnKeys is empty but rowKeys isn't, rowKeyList() can contain      * elements but rowKeySet() will be empty and containsRow() won't      * acknolwedge them.      */
 name|rowKeyToIndex
 operator|=
 name|Maps
@@ -701,10 +696,6 @@ decl_stmt|;
 name|array
 operator|=
 name|copy
-expr_stmt|;
-comment|// Necessary because in GWT the arrays are initialized with "undefined" instead of null.
-name|eraseAll
-argument_list|()
 expr_stmt|;
 for|for
 control|(
@@ -1279,7 +1270,7 @@ return|return
 name|columnList
 return|;
 block|}
-comment|/**    * Returns the value corresponding to the specified row and column indices.    * The same value is returned by {@code    * get(rowKeyList().get(rowIndex), columnKeyList().get(columnIndex))}, but    * this method runs more quickly.    *    * @param rowIndex position of the row key in {@link #rowKeyList()}    * @param columnIndex position of the row key in {@link #columnKeyList()}    * @return the value with the specified row and column    * @throws IndexOutOfBoundsException if either index is negative, {@code    *     rowIndex} is greater then or equal to the number of allowed row keys,    *     or {@code columnIndex} is greater then or equal to the number of    *     allowed column keys    */
+comment|/**    * Returns the value corresponding to the specified row and column indices.    * The same value is returned by {@code    * get(rowKeyList().get(rowIndex), columnKeyList().get(columnIndex))}, but    * this method runs more quickly.    *    * @param rowIndex position of the row key in {@link #rowKeyList()}    * @param columnIndex position of the row key in {@link #columnKeyList()}    * @return the value with the specified row and column    * @throws IndexOutOfBoundsException if either index is negative, {@code    *     rowIndex} is greater than or equal to the number of allowed row keys,    *     or {@code columnIndex} is greater than or equal to the number of    *     allowed column keys    */
 DECL|method|at (int rowIndex, int columnIndex)
 specifier|public
 name|V
@@ -1323,7 +1314,7 @@ name|columnIndex
 index|]
 return|;
 block|}
-comment|/**    * Associates {@code value} with the specified row and column indices. The    * logic {@code    * put(rowKeyList().get(rowIndex), columnKeyList().get(columnIndex), value)}    * has the same behavior, but this method runs more quickly.    *    * @param rowIndex position of the row key in {@link #rowKeyList()}    * @param columnIndex position of the row key in {@link #columnKeyList()}    * @param value value to store in the table    * @return the previous value with the specified row and column    * @throws IndexOutOfBoundsException if either index is negative, {@code    *     rowIndex} is greater then or equal to the number of allowed row keys,    *     or {@code columnIndex} is greater then or equal to the number of    *     allowed column keys    */
+comment|/**    * Associates {@code value} with the specified row and column indices. The    * logic {@code    * put(rowKeyList().get(rowIndex), columnKeyList().get(columnIndex), value)}    * has the same behavior, but this method runs more quickly.    *    * @param rowIndex position of the row key in {@link #rowKeyList()}    * @param columnIndex position of the row key in {@link #columnKeyList()}    * @param value value to store in the table    * @return the previous value with the specified row and column    * @throws IndexOutOfBoundsException if either index is negative, {@code    *     rowIndex} is greater than or equal to the number of allowed row keys,    *     or {@code columnIndex} is greater than or equal to the number of    *     allowed column keys    */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|set (int rowIndex, int columnIndex, @Nullable V value)
@@ -1533,7 +1524,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Returns {@code true} if the provided keys are among the keys provided when    * the table was constructed.    */
+comment|/**    * Returns {@code true} if the provided keys are among the keys provided    * when the table was constructed.    */
 annotation|@
 name|Override
 DECL|method|contains (@ullable Object rowKey, @Nullable Object columnKey)
@@ -1721,7 +1712,7 @@ name|columnIndex
 argument_list|)
 return|;
 block|}
-comment|/**    * Always returns {@code false}.    */
+comment|/**    * Returns {@code true} if {@code rowKeyList().size == 0} or {@code    * columnKeyList().size() == 0}.    */
 annotation|@
 name|Override
 DECL|method|isEmpty ()
@@ -1731,7 +1722,15 @@ name|isEmpty
 parameter_list|()
 block|{
 return|return
-literal|false
+name|rowList
+operator|.
+name|isEmpty
+argument_list|()
+operator|||
+name|columnList
+operator|.
+name|isEmpty
+argument_list|()
 return|;
 block|}
 comment|/**    * {@inheritDoc}    *    * @throws IllegalArgumentException if {@code rowKey} is not in {@link    *     #rowKeySet()} or {@code columnKey} is not in {@link #columnKeySet()}.    */
