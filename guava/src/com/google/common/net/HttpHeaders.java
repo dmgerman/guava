@@ -386,7 +386,7 @@ name|REFERER
 init|=
 literal|"Referer"
 decl_stmt|;
-comment|/**    * The HTTP<a href="https://www.w3.org/TR/referrer-policy/">{@code Referrer-Policy}</a> header    * field name.    *    * @since NEXT    */
+comment|/**    * The HTTP<a href="https://www.w3.org/TR/referrer-policy/">{@code Referrer-Policy}</a> header    * field name.    *    * @since 23.4    */
 DECL|field|REFERRER_POLICY
 specifier|public
 specifier|static
@@ -396,7 +396,7 @@ name|REFERRER_POLICY
 init|=
 literal|"Referrer-Policy"
 decl_stmt|;
-comment|/**    * Values for the<a href="https://www.w3.org/TR/referrer-policy/">{@code Referrer-Policy}</a>    * header.    *    * @since NEXT    */
+comment|/**    * Values for the<a href="https://www.w3.org/TR/referrer-policy/">{@code Referrer-Policy}</a>    * header.    *    * @since 23.4    */
 DECL|class|ReferrerPolicyValues
 specifier|public
 specifier|static
