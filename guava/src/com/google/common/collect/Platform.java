@@ -136,6 +136,32 @@ name|weakKeys
 argument_list|()
 return|;
 block|}
+DECL|method|reduceIterationsIfGwt (int iterations)
+specifier|static
+name|int
+name|reduceIterationsIfGwt
+parameter_list|(
+name|int
+name|iterations
+parameter_list|)
+block|{
+return|return
+name|iterations
+return|;
+block|}
+DECL|method|reduceExponentIfGwt (int exponent)
+specifier|static
+name|int
+name|reduceExponentIfGwt
+parameter_list|(
+name|int
+name|exponent
+parameter_list|)
+block|{
+return|return
+name|exponent
+return|;
+block|}
 DECL|method|Platform ()
 specifier|private
 name|Platform

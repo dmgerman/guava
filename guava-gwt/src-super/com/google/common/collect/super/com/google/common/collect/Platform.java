@@ -180,6 +180,36 @@ return|return
 name|mapMaker
 return|;
 block|}
+DECL|method|reduceIterationsIfGwt (int iterations)
+specifier|static
+name|int
+name|reduceIterationsIfGwt
+parameter_list|(
+name|int
+name|iterations
+parameter_list|)
+block|{
+return|return
+name|iterations
+operator|/
+literal|10
+return|;
+block|}
+DECL|method|reduceExponentIfGwt (int exponent)
+specifier|static
+name|int
+name|reduceExponentIfGwt
+parameter_list|(
+name|int
+name|exponent
+parameter_list|)
+block|{
+return|return
+name|exponent
+operator|/
+literal|2
+return|;
+block|}
 DECL|method|Platform ()
 specifier|private
 name|Platform
