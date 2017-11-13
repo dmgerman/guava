@@ -365,7 +365,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests for {@link MoreFiles}.  *  * @author Colin Decker  */
+comment|/**  * Tests for {@link MoreFiles}.  *  *<p>Note: {@link MoreFiles#fileTraverser()} is tested in {@link MoreFilesFileTraverserTest}.  *  * @author Colin Decker  */
 end_comment
 
 begin_class
