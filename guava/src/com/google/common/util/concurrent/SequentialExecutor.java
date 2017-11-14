@@ -269,7 +269,7 @@ name|startQueueWorker
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * Starts a worker.  This should only be called if:    *    *<ul>    *<li>{@code suspensions == 0}    *<li>{@code isWorkerRunning == true}    *<li>{@code !queue.isEmpty()}    *<li>the {@link #worker} lock is not held    *</ul>    */
+comment|/**    * Starts a worker.  This should only be called if:    *    *<ul>    *<li>{@code isWorkerRunning == true}    *<li>{@code !queue.isEmpty()}    *<li>the {@link #worker} lock is not held    *</ul>    */
 DECL|method|startQueueWorker ()
 specifier|private
 name|void
