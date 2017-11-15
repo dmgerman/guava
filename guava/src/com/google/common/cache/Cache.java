@@ -78,6 +78,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CompatibleWith
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -152,10 +166,15 @@ block|{
 comment|/**    * Returns the value associated with {@code key} in this cache, or {@code null} if there is no    * cached value for {@code key}.    *    * @since 11.0    */
 annotation|@
 name|Nullable
-DECL|method|getIfPresent (Object key)
+DECL|method|getIfPresent (@ompatibleWithR) Object key)
 name|V
 name|getIfPresent
 parameter_list|(
+annotation|@
+name|CompatibleWith
+argument_list|(
+literal|"K"
+argument_list|)
 name|Object
 name|key
 parameter_list|)
@@ -227,10 +246,15 @@ name|m
 parameter_list|)
 function_decl|;
 comment|/**    * Discards any cached value for key {@code key}.    */
-DECL|method|invalidate (Object key)
+DECL|method|invalidate (@ompatibleWithR) Object key)
 name|void
 name|invalidate
 parameter_list|(
+annotation|@
+name|CompatibleWith
+argument_list|(
+literal|"K"
+argument_list|)
 name|Object
 name|key
 parameter_list|)
