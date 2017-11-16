@@ -32,6 +32,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|Immutable
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -62,20 +76,8 @@ name|Entry
 import|;
 end_import
 
-begin_import
-import|import
-name|javax
-operator|.
-name|annotation
-operator|.
-name|concurrent
-operator|.
-name|Immutable
-import|;
-end_import
-
 begin_comment
-comment|/**  * A {@code RegularImmutableTable} optimized for sparse data.  */
+comment|/** A {@code RegularImmutableTable} optimized for sparse data. */
 end_comment
 
 begin_class
@@ -83,6 +85,17 @@ annotation|@
 name|GwtCompatible
 annotation|@
 name|Immutable
+argument_list|(
+name|containerOf
+operator|=
+block|{
+literal|"R"
+block|,
+literal|"C"
+block|,
+literal|"V"
+block|}
+argument_list|)
 DECL|class|SparseImmutableTable
 specifier|final
 class|class
@@ -154,7 +167,7 @@ name|ImmutableMap
 argument_list|<
 name|R
 argument_list|,
-name|Map
+name|ImmutableMap
 argument_list|<
 name|C
 argument_list|,
@@ -170,7 +183,7 @@ name|ImmutableMap
 argument_list|<
 name|C
 argument_list|,
-name|Map
+name|ImmutableMap
 argument_list|<
 name|R
 argument_list|,
@@ -180,6 +193,12 @@ argument_list|>
 name|columnMap
 decl_stmt|;
 comment|// For each cell in iteration order, the index of that cell's row key in the row key list.
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"Immutable"
+argument_list|)
+comment|// We don't modify this after construction.
 DECL|field|cellRowIndices
 specifier|private
 specifier|final
@@ -189,6 +208,12 @@ name|cellRowIndices
 decl_stmt|;
 comment|// For each cell in iteration order, the index of that cell's column key in the list of column
 comment|// keys present in that row.
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"Immutable"
+argument_list|)
+comment|// We don't modify this after construction.
 DECL|field|cellColumnInRowIndices
 specifier|private
 specifier|final
@@ -522,7 +547,7 @@ name|Builder
 argument_list|<
 name|R
 argument_list|,
-name|Map
+name|ImmutableMap
 argument_list|<
 name|C
 argument_list|,
@@ -600,7 +625,7 @@ name|Builder
 argument_list|<
 name|C
 argument_list|,
-name|Map
+name|ImmutableMap
 argument_list|<
 name|R
 argument_list|,
@@ -691,8 +716,41 @@ argument_list|>
 name|columnMap
 parameter_list|()
 block|{
-return|return
+comment|// Casts without copying.
+name|ImmutableMap
+argument_list|<
+name|C
+argument_list|,
+name|ImmutableMap
+argument_list|<
+name|R
+argument_list|,
+name|V
+argument_list|>
+argument_list|>
 name|columnMap
+init|=
+name|this
+operator|.
+name|columnMap
+decl_stmt|;
+return|return
+name|ImmutableMap
+operator|.
+expr|<
+name|C
+operator|,
+name|Map
+argument_list|<
+name|R
+argument_list|,
+name|V
+argument_list|>
+operator|>
+name|copyOf
+argument_list|(
+name|columnMap
+argument_list|)
 return|;
 block|}
 annotation|@
@@ -713,8 +771,41 @@ argument_list|>
 name|rowMap
 parameter_list|()
 block|{
-return|return
+comment|// Casts without copying.
+name|ImmutableMap
+argument_list|<
+name|R
+argument_list|,
+name|ImmutableMap
+argument_list|<
+name|C
+argument_list|,
+name|V
+argument_list|>
+argument_list|>
 name|rowMap
+init|=
+name|this
+operator|.
+name|rowMap
+decl_stmt|;
+return|return
+name|ImmutableMap
+operator|.
+expr|<
+name|R
+operator|,
+name|Map
+argument_list|<
+name|C
+argument_list|,
+name|V
+argument_list|>
+operator|>
+name|copyOf
+argument_list|(
+name|rowMap
+argument_list|)
 return|;
 block|}
 annotation|@
@@ -760,7 +851,7 @@ name|Entry
 argument_list|<
 name|R
 argument_list|,
-name|Map
+name|ImmutableMap
 argument_list|<
 name|C
 argument_list|,
@@ -790,14 +881,6 @@ name|V
 argument_list|>
 name|row
 init|=
-operator|(
-name|ImmutableMap
-argument_list|<
-name|C
-argument_list|,
-name|V
-argument_list|>
-operator|)
 name|rowEntry
 operator|.
 name|getValue
@@ -878,14 +961,6 @@ name|V
 argument_list|>
 name|row
 init|=
-operator|(
-name|ImmutableMap
-argument_list|<
-name|C
-argument_list|,
-name|V
-argument_list|>
-operator|)
 name|rowMap
 operator|.
 name|values

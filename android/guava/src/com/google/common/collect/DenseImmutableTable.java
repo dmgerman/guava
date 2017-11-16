@@ -68,6 +68,20 @@ name|com
 operator|.
 name|google
 operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|Immutable
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
 name|j2objc
 operator|.
 name|annotations
@@ -96,20 +110,8 @@ name|Nullable
 import|;
 end_import
 
-begin_import
-import|import
-name|javax
-operator|.
-name|annotation
-operator|.
-name|concurrent
-operator|.
-name|Immutable
-import|;
-end_import
-
 begin_comment
-comment|/**  * A {@code RegularImmutableTable} optimized for dense data.  */
+comment|/** A {@code RegularImmutableTable} optimized for dense data. */
 end_comment
 
 begin_class
@@ -117,6 +119,17 @@ annotation|@
 name|GwtCompatible
 annotation|@
 name|Immutable
+argument_list|(
+name|containerOf
+operator|=
+block|{
+literal|"R"
+block|,
+literal|"C"
+block|,
+literal|"V"
+block|}
+argument_list|)
 DECL|class|DenseImmutableTable
 specifier|final
 class|class
@@ -167,7 +180,7 @@ name|ImmutableMap
 argument_list|<
 name|R
 argument_list|,
-name|Map
+name|ImmutableMap
 argument_list|<
 name|C
 argument_list|,
@@ -183,7 +196,7 @@ name|ImmutableMap
 argument_list|<
 name|C
 argument_list|,
-name|Map
+name|ImmutableMap
 argument_list|<
 name|R
 argument_list|,
@@ -192,6 +205,12 @@ argument_list|>
 argument_list|>
 name|columnMap
 decl_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"Immutable"
+argument_list|)
+comment|// We don't modify this after construction.
 DECL|field|rowCounts
 specifier|private
 specifier|final
@@ -199,6 +218,12 @@ name|int
 index|[]
 name|rowCounts
 decl_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"Immutable"
+argument_list|)
+comment|// We don't modify this after construction.
 DECL|field|columnCounts
 specifier|private
 specifier|final
@@ -206,6 +231,12 @@ name|int
 index|[]
 name|columnCounts
 decl_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"Immutable"
+argument_list|)
+comment|// We don't modify this after construction.
 DECL|field|values
 specifier|private
 specifier|final
@@ -215,6 +246,12 @@ index|[]
 name|values
 decl_stmt|;
 comment|// For each cell in iteration order, the index of that cell's row key in the row key list.
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"Immutable"
+argument_list|)
+comment|// We don't modify this after construction.
 DECL|field|cellRowIndices
 specifier|private
 specifier|final
@@ -223,6 +260,12 @@ index|[]
 name|cellRowIndices
 decl_stmt|;
 comment|// For each cell in iteration order, the index of that cell's column key in the column key list.
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"Immutable"
+argument_list|)
+comment|// We don't modify this after construction.
 DECL|field|cellColumnIndices
 specifier|private
 specifier|final
@@ -1009,7 +1052,7 @@ name|ImmutableArrayMap
 argument_list|<
 name|R
 argument_list|,
-name|Map
+name|ImmutableMap
 argument_list|<
 name|C
 argument_list|,
@@ -1049,7 +1092,7 @@ block|}
 annotation|@
 name|Override
 DECL|method|getValue (int keyIndex)
-name|Map
+name|ImmutableMap
 argument_list|<
 name|C
 argument_list|,
@@ -1093,7 +1136,7 @@ name|ImmutableArrayMap
 argument_list|<
 name|C
 argument_list|,
-name|Map
+name|ImmutableMap
 argument_list|<
 name|R
 argument_list|,
@@ -1133,7 +1176,7 @@ block|}
 annotation|@
 name|Override
 DECL|method|getValue (int keyIndex)
-name|Map
+name|ImmutableMap
 argument_list|<
 name|R
 argument_list|,
@@ -1183,8 +1226,41 @@ argument_list|>
 name|columnMap
 parameter_list|()
 block|{
-return|return
+comment|// Casts without copying.
+name|ImmutableMap
+argument_list|<
+name|C
+argument_list|,
+name|ImmutableMap
+argument_list|<
+name|R
+argument_list|,
+name|V
+argument_list|>
+argument_list|>
 name|columnMap
+init|=
+name|this
+operator|.
+name|columnMap
+decl_stmt|;
+return|return
+name|ImmutableMap
+operator|.
+expr|<
+name|C
+operator|,
+name|Map
+argument_list|<
+name|R
+argument_list|,
+name|V
+argument_list|>
+operator|>
+name|copyOf
+argument_list|(
+name|columnMap
+argument_list|)
 return|;
 block|}
 annotation|@
@@ -1205,8 +1281,41 @@ argument_list|>
 name|rowMap
 parameter_list|()
 block|{
-return|return
+comment|// Casts without copying.
+name|ImmutableMap
+argument_list|<
+name|R
+argument_list|,
+name|ImmutableMap
+argument_list|<
+name|C
+argument_list|,
+name|V
+argument_list|>
+argument_list|>
 name|rowMap
+init|=
+name|this
+operator|.
+name|rowMap
+decl_stmt|;
+return|return
+name|ImmutableMap
+operator|.
+expr|<
+name|R
+operator|,
+name|Map
+argument_list|<
+name|C
+argument_list|,
+name|V
+argument_list|>
+operator|>
+name|copyOf
+argument_list|(
+name|rowMap
+argument_list|)
 return|;
 block|}
 annotation|@

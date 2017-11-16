@@ -354,18 +354,6 @@ name|GuardedBy
 import|;
 end_import
 
-begin_import
-import|import
-name|javax
-operator|.
-name|annotation
-operator|.
-name|concurrent
-operator|.
-name|Immutable
-import|;
-end_import
-
 begin_comment
 comment|/**  * Base class for implementing services that can handle {@link #doStart} and {@link #doStop}  * requests, responding to them with {@link #notifyStarted()} and {@link #notifyStopped()}  * callbacks. Its subclasses must manage threads manually; consider {@link  * AbstractExecutionThreadService} if you need only a single execution thread.  *  * @author Jesse Wilson  * @author Luke Sandberg  * @since 1.0  */
 end_comment
@@ -2103,8 +2091,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * An immutable snapshot of the current state of the service. This class represents a consistent    * snapshot of the state and therefore it can be used to answer simple queries without needing to    * grab a lock.    */
-annotation|@
-name|Immutable
+comment|// @Immutable except that Throwable is mutable (initCause(), setStackTrace(), mutable subclasses).
 DECL|class|StateSnapshot
 specifier|private
 specifier|static
