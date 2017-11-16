@@ -137,6 +137,8 @@ operator|.
 name|util
 operator|.
 name|Map
+operator|.
+name|Entry
 import|;
 end_import
 
@@ -213,8 +215,6 @@ argument_list|)
 decl_stmt|;
 for|for
 control|(
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|String

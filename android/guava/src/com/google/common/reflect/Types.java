@@ -367,6 +367,8 @@ operator|.
 name|util
 operator|.
 name|Map
+operator|.
+name|Entry
 import|;
 end_import
 
@@ -3151,8 +3153,6 @@ condition|(
 operator|new
 name|TypeCapture
 argument_list|<
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|String

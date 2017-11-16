@@ -2722,8 +2722,6 @@ DECL|field|entries
 specifier|transient
 name|Collection
 argument_list|<
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -3296,8 +3294,6 @@ DECL|method|entries ()
 specifier|public
 name|Collection
 argument_list|<
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -3868,8 +3864,6 @@ DECL|field|entrySet
 specifier|transient
 name|Set
 argument_list|<
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -4044,8 +4038,6 @@ DECL|method|entries ()
 specifier|public
 name|Set
 argument_list|<
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -4539,8 +4531,6 @@ parameter_list|>
 extends|extends
 name|SynchronizedSet
 argument_list|<
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -4552,13 +4542,11 @@ argument_list|>
 argument_list|>
 argument_list|>
 block|{
-DECL|method|SynchronizedAsMapEntries (Set<Map.Entry<K, Collection<V>>> delegate, @Nullable Object mutex)
+DECL|method|SynchronizedAsMapEntries (Set<Entry<K, Collection<V>>> delegate, @Nullable Object mutex)
 name|SynchronizedAsMapEntries
 parameter_list|(
 name|Set
 argument_list|<
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -4591,8 +4579,6 @@ DECL|method|iterator ()
 specifier|public
 name|Iterator
 argument_list|<
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -4611,8 +4597,6 @@ return|return
 operator|new
 name|TransformedIterator
 argument_list|<
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -4623,8 +4607,6 @@ name|V
 argument_list|>
 argument_list|>
 argument_list|,
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -4644,8 +4626,6 @@ argument_list|)
 block|{
 annotation|@
 name|Override
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -4658,8 +4638,6 @@ argument_list|>
 name|transform
 parameter_list|(
 specifier|final
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -4688,8 +4666,6 @@ block|{
 annotation|@
 name|Override
 specifier|protected
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -5086,8 +5062,6 @@ DECL|field|entrySet
 specifier|transient
 name|Set
 argument_list|<
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -5235,8 +5209,6 @@ DECL|method|entrySet ()
 specifier|public
 name|Set
 argument_list|<
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -6663,8 +6635,6 @@ DECL|field|asMapEntrySet
 specifier|transient
 name|Set
 argument_list|<
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -6772,8 +6742,6 @@ DECL|method|entrySet ()
 specifier|public
 name|Set
 argument_list|<
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K

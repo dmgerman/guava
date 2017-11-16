@@ -877,8 +877,6 @@ argument_list|)
 expr_stmt|;
 name|Set
 argument_list|<
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|Integer
@@ -895,8 +893,6 @@ argument_list|()
 decl_stmt|;
 name|Iterator
 argument_list|<
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|Integer
@@ -911,8 +907,6 @@ operator|.
 name|iterator
 argument_list|()
 decl_stmt|;
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|Integer

@@ -172,6 +172,18 @@ name|Map
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Map
+operator|.
+name|Entry
+import|;
+end_import
+
 begin_comment
 comment|/**  * Tests {@link java.util.Map#equals}.  *  * @author George van den Driessche  * @author Chris Povirk  */
 end_comment
@@ -307,8 +319,6 @@ parameter_list|()
 block|{
 name|Collection
 argument_list|<
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -391,8 +401,6 @@ parameter_list|()
 block|{
 name|Collection
 argument_list|<
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -476,8 +484,6 @@ parameter_list|()
 block|{
 name|Collection
 argument_list|<
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -560,8 +566,6 @@ parameter_list|()
 block|{
 name|Collection
 argument_list|<
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -638,8 +642,6 @@ parameter_list|()
 block|{
 name|Collection
 argument_list|<
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -682,8 +684,6 @@ parameter_list|()
 block|{
 name|Collection
 argument_list|<
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -747,7 +747,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|newHashMap ( Collection<? extends Map.Entry<? extends K, ? extends V>> entries)
+DECL|method|newHashMap ( Collection<? extends Entry<? extends K, ? extends V>> entries)
 specifier|private
 specifier|static
 parameter_list|<
@@ -767,8 +767,6 @@ name|Collection
 argument_list|<
 name|?
 extends|extends
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|?
@@ -798,8 +796,6 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|?

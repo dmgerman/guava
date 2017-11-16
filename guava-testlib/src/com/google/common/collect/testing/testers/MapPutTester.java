@@ -255,16 +255,6 @@ operator|.
 name|util
 operator|.
 name|Map
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Map
 operator|.
 name|Entry
 import|;
@@ -1362,13 +1352,11 @@ name|nullKeyValueEntry
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|put (Map.Entry<K, V> entry)
+DECL|method|put (Entry<K, V> entry)
 specifier|private
 name|V
 name|put
 parameter_list|(
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K

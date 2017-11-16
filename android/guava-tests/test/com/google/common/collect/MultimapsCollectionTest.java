@@ -1587,8 +1587,6 @@ specifier|static
 specifier|final
 name|Predicate
 argument_list|<
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|Integer
@@ -1601,8 +1599,6 @@ init|=
 operator|new
 name|Predicate
 argument_list|<
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|Integer
@@ -1658,8 +1654,6 @@ specifier|static
 specifier|final
 name|Predicate
 argument_list|<
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|String
@@ -1672,8 +1666,6 @@ init|=
 operator|new
 name|Predicate
 argument_list|<
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|String

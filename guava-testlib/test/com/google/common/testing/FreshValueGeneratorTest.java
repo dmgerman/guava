@@ -970,6 +970,18 @@ name|java
 operator|.
 name|util
 operator|.
+name|Map
+operator|.
+name|Entry
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|NavigableMap
 import|;
 end_import
@@ -1293,8 +1305,6 @@ name|List
 operator|.
 name|class
 argument_list|,
-name|Map
-operator|.
 name|Entry
 operator|.
 name|class

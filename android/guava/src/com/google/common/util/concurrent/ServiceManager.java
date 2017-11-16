@@ -2330,8 +2330,6 @@ specifier|public
 name|Long
 name|apply
 parameter_list|(
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|Service

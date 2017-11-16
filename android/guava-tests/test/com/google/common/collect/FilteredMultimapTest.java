@@ -61,16 +61,6 @@ operator|.
 name|util
 operator|.
 name|Map
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Map
 operator|.
 name|Entry
 import|;
@@ -107,8 +97,6 @@ specifier|static
 specifier|final
 name|Predicate
 argument_list|<
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|String
@@ -121,8 +109,6 @@ init|=
 operator|new
 name|Predicate
 argument_list|<
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|String

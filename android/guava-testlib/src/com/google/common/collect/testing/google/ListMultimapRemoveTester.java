@@ -215,6 +215,8 @@ operator|.
 name|util
 operator|.
 name|Map
+operator|.
+name|Entry
 import|;
 end_import
 
@@ -718,8 +720,6 @@ argument_list|(
 name|values
 argument_list|)
 decl_stmt|;
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K

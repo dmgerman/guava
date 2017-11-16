@@ -648,7 +648,7 @@ return|return
 name|this
 return|;
 block|}
-DECL|method|put (Map.Entry<? extends K, ? extends V> entry)
+DECL|method|put (Entry<? extends K, ? extends V> entry)
 annotation|@
 name|Override
 specifier|public
@@ -660,8 +660,6 @@ name|V
 argument_list|>
 name|put
 parameter_list|(
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|?

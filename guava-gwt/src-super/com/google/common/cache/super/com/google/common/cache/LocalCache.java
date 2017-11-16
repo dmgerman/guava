@@ -849,8 +849,6 @@ parameter_list|)
 block|{
 for|for
 control|(
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|?
@@ -901,8 +899,6 @@ condition|)
 block|{
 for|for
 control|(
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -2454,13 +2450,11 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|removeEldestEntry (Map.Entry<K, Timestamped<V>> ignored)
+DECL|method|removeEldestEntry (Entry<K, Timestamped<V>> ignored)
 specifier|protected
 name|boolean
 name|removeEldestEntry
 parameter_list|(
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K

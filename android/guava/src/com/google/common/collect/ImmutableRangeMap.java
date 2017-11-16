@@ -607,8 +607,6 @@ specifier|private
 specifier|final
 name|List
 argument_list|<
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|Range
@@ -1130,8 +1128,6 @@ annotation|@
 name|Nullable
 DECL|method|getEntry (K key)
 specifier|public
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|Range

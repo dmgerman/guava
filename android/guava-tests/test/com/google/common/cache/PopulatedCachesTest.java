@@ -2680,8 +2680,6 @@ DECL|method|warmUp (LoadingCache<Object, Object> cache)
 specifier|private
 name|List
 argument_list|<
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|Object
@@ -2716,8 +2714,6 @@ DECL|method|warmUp ( LoadingCache<Object, Object> cache, int minimum, int maximu
 specifier|private
 name|List
 argument_list|<
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|Object
@@ -2744,8 +2740,6 @@ parameter_list|)
 block|{
 name|List
 argument_list|<
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|Object

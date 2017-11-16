@@ -608,8 +608,6 @@ name|K
 name|key
 parameter_list|)
 block|{
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|Cut
@@ -815,8 +813,6 @@ name|coalescedRange
 init|=
 name|range
 decl_stmt|;
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|Cut
@@ -853,8 +849,6 @@ argument_list|,
 name|lowerEntry
 argument_list|)
 expr_stmt|;
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|Cut
@@ -896,7 +890,7 @@ name|coalescedRange
 return|;
 block|}
 comment|/** Returns the range that spans the given range and entry, if the entry can be coalesced. */
-DECL|method|coalesce ( Range<K> range, V value, @Nullable Map.Entry<Cut<K>, RangeMapEntry<K, V>> entry)
+DECL|method|coalesce ( Range<K> range, V value, @Nullable Entry<Cut<K>, RangeMapEntry<K, V>> entry)
 specifier|private
 specifier|static
 parameter_list|<
@@ -923,8 +917,6 @@ name|value
 parameter_list|,
 annotation|@
 name|Nullable
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|Cut
@@ -1012,8 +1004,6 @@ parameter_list|)
 block|{
 for|for
 control|(
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|Range
@@ -1225,8 +1215,6 @@ block|{
 return|return;
 block|}
 comment|/*      * The comments for this method will use [ ] to indicate the bounds of rangeToRemove and ( ) to      * indicate the bounds of ranges in the range map.      */
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|Cut
@@ -1354,8 +1342,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|Cut

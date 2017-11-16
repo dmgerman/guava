@@ -173,6 +173,8 @@ operator|.
 name|util
 operator|.
 name|Map
+operator|.
+name|Entry
 import|;
 end_import
 
@@ -625,13 +627,11 @@ literal|"Should not contain null after unsupported putIfAbsent(present, null)"
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|putIfAbsent (Map.Entry<K, V> entry)
+DECL|method|putIfAbsent (Entry<K, V> entry)
 specifier|private
 name|V
 name|putIfAbsent
 parameter_list|(
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K

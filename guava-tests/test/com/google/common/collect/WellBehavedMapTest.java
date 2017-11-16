@@ -47,6 +47,8 @@ operator|.
 name|util
 operator|.
 name|Map
+operator|.
+name|Entry
 import|;
 end_import
 
@@ -314,8 +316,6 @@ argument_list|)
 expr_stmt|;
 for|for
 control|(
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|Foo
@@ -420,8 +420,6 @@ literal|1
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|Foo
@@ -440,8 +438,6 @@ name|entrySet
 argument_list|()
 argument_list|)
 decl_stmt|;
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|Foo
@@ -470,8 +466,6 @@ argument_list|)
 expr_stmt|;
 name|Set
 argument_list|<
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|Foo
@@ -612,8 +606,6 @@ argument_list|)
 expr_stmt|;
 name|Set
 argument_list|<
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|Foo
@@ -629,8 +621,6 @@ name|entrySet
 argument_list|()
 decl_stmt|;
 comment|// removing an existing entry, verifying consistency
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|Foo

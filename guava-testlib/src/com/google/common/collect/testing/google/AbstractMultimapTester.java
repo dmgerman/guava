@@ -151,16 +151,6 @@ operator|.
 name|util
 operator|.
 name|Map
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Map
 operator|.
 name|Entry
 import|;
@@ -197,8 +187,6 @@ name|AbstractContainerTester
 argument_list|<
 name|M
 argument_list|,
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -225,8 +213,6 @@ block|}
 comment|/**    * @return an array of the proper size with {@code null} as the key of the    * middle element.    */
 DECL|method|createArrayWithNullKey ()
 specifier|protected
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -237,8 +223,6 @@ index|[]
 name|createArrayWithNullKey
 parameter_list|()
 block|{
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -259,8 +243,6 @@ name|getNullLocation
 argument_list|()
 decl_stmt|;
 specifier|final
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -298,8 +280,6 @@ block|}
 comment|/**    * @return an array of the proper size with {@code null} as the value of the    * middle element.    */
 DECL|method|createArrayWithNullValue ()
 specifier|protected
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -310,8 +290,6 @@ index|[]
 name|createArrayWithNullValue
 parameter_list|()
 block|{
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -332,8 +310,6 @@ name|getNullLocation
 argument_list|()
 decl_stmt|;
 specifier|final
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -371,8 +347,6 @@ block|}
 comment|/**    * @return an array of the proper size with {@code null} as the key and value of the    * middle element.    */
 DECL|method|createArrayWithNullKeyAndValue ()
 specifier|protected
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -383,8 +357,6 @@ index|[]
 name|createArrayWithNullKeyAndValue
 parameter_list|()
 block|{
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K

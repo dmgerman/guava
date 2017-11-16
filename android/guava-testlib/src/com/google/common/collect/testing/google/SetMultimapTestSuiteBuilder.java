@@ -217,16 +217,6 @@ operator|.
 name|util
 operator|.
 name|Map
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Map
 operator|.
 name|Entry
 import|;
@@ -629,7 +619,7 @@ block|}
 block|}
 annotation|@
 name|Override
-DECL|method|computeEntriesTestSuite ( FeatureSpecificTestSuiteBuilder< ?, ? extends OneSizeTestContainerGenerator<SetMultimap<K, V>, Map.Entry<K, V>>> parentBuilder)
+DECL|method|computeEntriesTestSuite ( FeatureSpecificTestSuiteBuilder< ?, ? extends OneSizeTestContainerGenerator<SetMultimap<K, V>, Entry<K, V>>> parentBuilder)
 name|TestSuite
 name|computeEntriesTestSuite
 parameter_list|(
@@ -648,8 +638,6 @@ argument_list|,
 name|V
 argument_list|>
 argument_list|,
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K

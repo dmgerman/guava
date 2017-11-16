@@ -119,6 +119,8 @@ operator|.
 name|util
 operator|.
 name|Map
+operator|.
+name|Entry
 import|;
 end_import
 
@@ -1144,13 +1146,9 @@ if|if
 condition|(
 name|object
 operator|instanceof
-name|Map
-operator|.
 name|Entry
 condition|)
 block|{
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|?
@@ -1160,8 +1158,6 @@ argument_list|>
 name|entry
 init|=
 operator|(
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|?

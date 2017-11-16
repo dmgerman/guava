@@ -3085,8 +3085,6 @@ argument_list|)
 decl_stmt|;
 name|Set
 argument_list|<
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|Integer
@@ -3312,8 +3310,6 @@ argument_list|)
 decl_stmt|;
 name|Set
 argument_list|<
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|Integer

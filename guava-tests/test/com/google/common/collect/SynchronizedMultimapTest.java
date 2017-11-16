@@ -1103,8 +1103,6 @@ name|Override
 specifier|public
 name|Set
 argument_list|<
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K

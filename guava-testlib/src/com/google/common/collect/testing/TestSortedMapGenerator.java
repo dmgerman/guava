@@ -39,6 +39,8 @@ operator|.
 name|util
 operator|.
 name|Map
+operator|.
+name|Entry
 import|;
 end_import
 
@@ -94,8 +96,6 @@ parameter_list|)
 function_decl|;
 comment|/**    * Returns an entry with a key less than the keys of the {@link #samples()}    * and less than the key of {@link #belowSamplesGreater()}.    */
 DECL|method|belowSamplesLesser ()
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -107,8 +107,6 @@ parameter_list|()
 function_decl|;
 comment|/**    * Returns an entry with a key less than the keys of the {@link #samples()}    * but greater than the key of {@link #belowSamplesLesser()}.    */
 DECL|method|belowSamplesGreater ()
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -120,8 +118,6 @@ parameter_list|()
 function_decl|;
 comment|/**    * Returns an entry with a key greater than the keys of the {@link #samples()}    * but less than the key of {@link #aboveSamplesGreater()}.    */
 DECL|method|aboveSamplesLesser ()
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -133,8 +129,6 @@ parameter_list|()
 function_decl|;
 comment|/**    * Returns an entry with a key greater than the keys of the {@link #samples()}    * and greater than the key of {@link #aboveSamplesLesser()}.    */
 DECL|method|aboveSamplesGreater ()
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K

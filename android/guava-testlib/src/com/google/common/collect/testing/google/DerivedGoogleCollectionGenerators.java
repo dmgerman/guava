@@ -312,8 +312,6 @@ DECL|method|samples ()
 specifier|public
 name|SampleElements
 argument_list|<
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -361,8 +359,6 @@ annotation|@
 name|Override
 DECL|method|createArray (int length)
 specifier|public
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -387,12 +383,10 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|order (List<Map.Entry<K, V>> insertionOrder)
+DECL|method|order (List<Entry<K, V>> insertionOrder)
 specifier|public
 name|Iterable
 argument_list|<
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -404,8 +398,6 @@ name|order
 parameter_list|(
 name|List
 argument_list|<
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -574,8 +566,6 @@ DECL|method|samples ()
 specifier|public
 name|SampleElements
 argument_list|<
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|V
@@ -649,10 +639,8 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-DECL|method|reverse (Map.Entry<K, V> entry)
+DECL|method|reverse (Entry<K, V> entry)
 specifier|private
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|V
@@ -661,8 +649,6 @@ name|K
 argument_list|>
 name|reverse
 parameter_list|(
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -797,8 +783,6 @@ annotation|@
 name|Override
 DECL|method|createArray (int length)
 specifier|public
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|V
@@ -953,8 +937,6 @@ argument_list|,
 name|V
 argument_list|>
 argument_list|,
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -1005,8 +987,6 @@ expr_stmt|;
 specifier|final
 name|SampleElements
 argument_list|<
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -1123,8 +1103,6 @@ decl_stmt|;
 comment|// Start with a suitably shaped collection of entries
 name|Collection
 argument_list|<
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -1146,8 +1124,6 @@ decl_stmt|;
 comment|// Create a copy of that, with the desired value for each value
 name|Collection
 argument_list|<
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -1173,8 +1149,6 @@ literal|0
 decl_stmt|;
 for|for
 control|(
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K

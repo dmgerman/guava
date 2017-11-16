@@ -97,16 +97,6 @@ operator|.
 name|util
 operator|.
 name|Map
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Map
 operator|.
 name|Entry
 import|;
@@ -138,8 +128,6 @@ DECL|method|samples ()
 specifier|public
 name|SampleElements
 argument_list|<
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|String

@@ -236,8 +236,6 @@ parameter_list|>
 implements|implements
 name|TestSetGenerator
 argument_list|<
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -260,8 +258,6 @@ argument_list|,
 name|V
 argument_list|>
 argument_list|,
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -271,7 +267,7 @@ argument_list|>
 argument_list|>
 name|mapGenerator
 decl_stmt|;
-DECL|method|MapEntrySetGenerator ( OneSizeTestContainerGenerator<Map<K, V>, Map.Entry<K, V>> mapGenerator)
+DECL|method|MapEntrySetGenerator ( OneSizeTestContainerGenerator<Map<K, V>, Entry<K, V>> mapGenerator)
 specifier|public
 name|MapEntrySetGenerator
 parameter_list|(
@@ -284,8 +280,6 @@ argument_list|,
 name|V
 argument_list|>
 argument_list|,
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -309,8 +303,6 @@ DECL|method|samples ()
 specifier|public
 name|SampleElements
 argument_list|<
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -334,8 +326,6 @@ DECL|method|create (Object... elements)
 specifier|public
 name|Set
 argument_list|<
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -366,8 +356,6 @@ annotation|@
 name|Override
 DECL|method|createArray (int length)
 specifier|public
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -392,12 +380,10 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|order (List<Map.Entry<K, V>> insertionOrder)
+DECL|method|order (List<Entry<K, V>> insertionOrder)
 specifier|public
 name|Iterable
 argument_list|<
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -409,8 +395,6 @@ name|order
 parameter_list|(
 name|List
 argument_list|<
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -443,8 +427,6 @@ argument_list|,
 name|V
 argument_list|>
 argument_list|,
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -462,7 +444,7 @@ block|}
 block|}
 comment|// TODO: investigate some API changes to SampleElements that would tidy up
 comment|// parts of the following classes.
-DECL|method|keySetGenerator ( OneSizeTestContainerGenerator<Map<K, V>, Map.Entry<K, V>> mapGenerator)
+DECL|method|keySetGenerator ( OneSizeTestContainerGenerator<Map<K, V>, Entry<K, V>> mapGenerator)
 specifier|static
 parameter_list|<
 name|K
@@ -484,8 +466,6 @@ argument_list|,
 name|V
 argument_list|>
 argument_list|,
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -597,8 +577,6 @@ argument_list|,
 name|V
 argument_list|>
 argument_list|,
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -617,7 +595,7 @@ name|K
 argument_list|>
 name|samples
 decl_stmt|;
-DECL|method|MapKeySetGenerator ( OneSizeTestContainerGenerator<Map<K, V>, Map.Entry<K, V>> mapGenerator)
+DECL|method|MapKeySetGenerator ( OneSizeTestContainerGenerator<Map<K, V>, Entry<K, V>> mapGenerator)
 specifier|public
 name|MapKeySetGenerator
 parameter_list|(
@@ -630,8 +608,6 @@ argument_list|,
 name|V
 argument_list|>
 argument_list|,
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -651,8 +627,6 @@ expr_stmt|;
 specifier|final
 name|SampleElements
 argument_list|<
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -769,8 +743,6 @@ decl_stmt|;
 comment|// Start with a suitably shaped collection of entries
 name|Collection
 argument_list|<
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -792,8 +764,6 @@ decl_stmt|;
 comment|// Create a copy of that, with the desired value for each key
 name|Collection
 argument_list|<
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -819,8 +789,6 @@ literal|0
 decl_stmt|;
 for|for
 control|(
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -1044,8 +1012,6 @@ argument_list|,
 name|V
 argument_list|>
 argument_list|,
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -1276,8 +1242,6 @@ argument_list|,
 name|V
 argument_list|>
 argument_list|,
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -1296,7 +1260,7 @@ name|V
 argument_list|>
 name|samples
 decl_stmt|;
-DECL|method|MapValueCollectionGenerator ( OneSizeTestContainerGenerator<Map<K, V>, Map.Entry<K, V>> mapGenerator)
+DECL|method|MapValueCollectionGenerator ( OneSizeTestContainerGenerator<Map<K, V>, Entry<K, V>> mapGenerator)
 specifier|public
 name|MapValueCollectionGenerator
 parameter_list|(
@@ -1309,8 +1273,6 @@ argument_list|,
 name|V
 argument_list|>
 argument_list|,
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -1330,8 +1292,6 @@ expr_stmt|;
 specifier|final
 name|SampleElements
 argument_list|<
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -1448,8 +1408,6 @@ decl_stmt|;
 comment|// Start with a suitably shaped collection of entries
 name|Collection
 argument_list|<
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -1471,8 +1429,6 @@ decl_stmt|;
 comment|// Create a copy of that, with the desired value for each value
 name|Collection
 argument_list|<
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -1498,8 +1454,6 @@ literal|0
 decl_stmt|;
 for|for
 control|(
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -1750,8 +1704,6 @@ argument_list|,
 name|V
 argument_list|>
 argument_list|,
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K

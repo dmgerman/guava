@@ -131,8 +131,6 @@ name|Override
 DECL|method|delegate ()
 specifier|protected
 specifier|abstract
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K

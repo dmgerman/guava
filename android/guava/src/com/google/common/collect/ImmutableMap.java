@@ -238,6 +238,18 @@ name|java
 operator|.
 name|util
 operator|.
+name|Map
+operator|.
+name|Entry
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|SortedMap
 import|;
 end_import
@@ -747,7 +759,7 @@ argument_list|)
 return|;
 block|}
 comment|// looking for of() with> 5 entries? Use the builder instead.
-comment|/**    * Verifies that {@code key} and {@code value} are non-null, and returns a new    * immutable entry with those values.    *<p>A call to {@link Map.Entry#setValue} on the returned entry will always    * throw {@link UnsupportedOperationException}.    */
+comment|/**    * Verifies that {@code key} and {@code value} are non-null, and returns a new    * immutable entry with those values.    *<p>A call to {@link Entry#setValue} on the returned entry will always    * throw {@link UnsupportedOperationException}.    */
 DECL|method|entryOf (K key, V value)
 specifier|static
 parameter_list|<

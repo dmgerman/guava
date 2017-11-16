@@ -70,6 +70,18 @@ name|java
 operator|.
 name|util
 operator|.
+name|Map
+operator|.
+name|Entry
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|NoSuchElementException
 import|;
 end_import
@@ -120,8 +132,6 @@ comment|/**    * Returns the range containing this key and its associated value,
 annotation|@
 name|Nullable
 DECL|method|getEntry (K key)
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|Range

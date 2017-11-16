@@ -58,6 +58,18 @@ name|java
 operator|.
 name|util
 operator|.
+name|Map
+operator|.
+name|Entry
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|Set
 import|;
 end_import
@@ -146,8 +158,6 @@ DECL|method|samples ()
 specifier|public
 name|SampleElements
 argument_list|<
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -175,8 +185,6 @@ DECL|method|create (Object... elements)
 specifier|public
 name|Set
 argument_list|<
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -191,8 +199,6 @@ modifier|...
 name|elements
 parameter_list|)
 block|{
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -233,13 +239,11 @@ name|entries
 argument_list|)
 return|;
 block|}
-DECL|method|createFromEntries (Map.Entry<K, V>[] entries)
+DECL|method|createFromEntries (Entry<K, V>[] entries)
 specifier|public
 specifier|abstract
 name|Set
 argument_list|<
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -249,8 +253,6 @@ argument_list|>
 argument_list|>
 name|createFromEntries
 parameter_list|(
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -271,8 +273,6 @@ argument_list|)
 comment|// generic arrays make typesafety sad
 DECL|method|createArray (int length)
 specifier|public
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -288,8 +288,6 @@ parameter_list|)
 block|{
 return|return
 operator|new
-name|Map
-operator|.
 name|Entry
 index|[
 name|length
@@ -299,12 +297,10 @@ block|}
 comment|/** Returns the original element list, unchanged. */
 annotation|@
 name|Override
-DECL|method|order (List<Map.Entry<K, V>> insertionOrder)
+DECL|method|order (List<Entry<K, V>> insertionOrder)
 specifier|public
 name|List
 argument_list|<
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -316,8 +312,6 @@ name|order
 parameter_list|(
 name|List
 argument_list|<
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K

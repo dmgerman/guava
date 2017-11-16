@@ -488,6 +488,18 @@ name|java
 operator|.
 name|util
 operator|.
+name|Map
+operator|.
+name|Entry
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|Set
 import|;
 end_import
@@ -542,8 +554,6 @@ argument_list|,
 name|V
 argument_list|>
 argument_list|,
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -692,7 +702,7 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|createDerivedSuites ( FeatureSpecificTestSuiteBuilder< ?, ? extends OneSizeTestContainerGenerator<Map<K, V>, Map.Entry<K, V>>> parentBuilder)
+DECL|method|createDerivedSuites ( FeatureSpecificTestSuiteBuilder< ?, ? extends OneSizeTestContainerGenerator<Map<K, V>, Entry<K, V>>> parentBuilder)
 specifier|protected
 name|List
 argument_list|<
@@ -715,8 +725,6 @@ argument_list|,
 name|V
 argument_list|>
 argument_list|,
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -976,12 +984,10 @@ return|return
 name|derivedSuites
 return|;
 block|}
-DECL|method|createDerivedEntrySetSuite ( TestSetGenerator<Map.Entry<K, V>> entrySetGenerator)
+DECL|method|createDerivedEntrySetSuite ( TestSetGenerator<Entry<K, V>> entrySetGenerator)
 specifier|protected
 name|SetTestSuiteBuilder
 argument_list|<
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -993,8 +999,6 @@ name|createDerivedEntrySetSuite
 parameter_list|(
 name|TestSetGenerator
 argument_list|<
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -1602,8 +1606,6 @@ argument_list|,
 name|V
 argument_list|>
 argument_list|,
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -1613,7 +1615,7 @@ argument_list|>
 argument_list|>
 name|mapGenerator
 decl_stmt|;
-DECL|method|ReserializedMapGenerator ( OneSizeTestContainerGenerator<Map<K, V>, Map.Entry<K, V>> mapGenerator)
+DECL|method|ReserializedMapGenerator ( OneSizeTestContainerGenerator<Map<K, V>, Entry<K, V>> mapGenerator)
 specifier|public
 name|ReserializedMapGenerator
 parameter_list|(
@@ -1626,8 +1628,6 @@ argument_list|,
 name|V
 argument_list|>
 argument_list|,
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -1651,8 +1651,6 @@ DECL|method|samples ()
 specifier|public
 name|SampleElements
 argument_list|<
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -1674,8 +1672,6 @@ annotation|@
 name|Override
 DECL|method|createArray (int length)
 specifier|public
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -1700,12 +1696,10 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|order (List<Map.Entry<K, V>> insertionOrder)
+DECL|method|order (List<Entry<K, V>> insertionOrder)
 specifier|public
 name|Iterable
 argument_list|<
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -1717,8 +1711,6 @@ name|order
 parameter_list|(
 name|List
 argument_list|<
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K

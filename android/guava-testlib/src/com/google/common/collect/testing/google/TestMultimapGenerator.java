@@ -97,6 +97,8 @@ operator|.
 name|util
 operator|.
 name|Map
+operator|.
+name|Entry
 import|;
 end_import
 
@@ -130,8 +132,6 @@ name|TestContainerGenerator
 argument_list|<
 name|M
 argument_list|,
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K

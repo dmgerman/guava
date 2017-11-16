@@ -143,6 +143,8 @@ operator|.
 name|util
 operator|.
 name|Map
+operator|.
+name|Entry
 import|;
 end_import
 
@@ -183,8 +185,6 @@ literal|0
 decl_stmt|;
 for|for
 control|(
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -243,8 +243,6 @@ name|void
 name|testHashCode_containingNullKey
 parameter_list|()
 block|{
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -291,8 +289,6 @@ name|void
 name|testHashCode_containingNullValue
 parameter_list|()
 block|{
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -315,13 +311,11 @@ name|entryWithNull
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|runEntryWithNullTest (Map.Entry<K, V> entryWithNull)
+DECL|method|runEntryWithNullTest (Entry<K, V> entryWithNull)
 specifier|private
 name|void
 name|runEntryWithNullTest
 parameter_list|(
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -333,8 +327,6 @@ parameter_list|)
 block|{
 name|Collection
 argument_list|<
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -366,8 +358,6 @@ literal|0
 decl_stmt|;
 for|for
 control|(
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -417,14 +407,12 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|hash (Map.Entry<?, ?> e)
+DECL|method|hash (Entry<?, ?> e)
 specifier|private
 specifier|static
 name|int
 name|hash
 parameter_list|(
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|?

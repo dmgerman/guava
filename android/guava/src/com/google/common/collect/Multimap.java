@@ -94,6 +94,18 @@ name|java
 operator|.
 name|util
 operator|.
+name|Map
+operator|.
+name|Entry
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|Set
 import|;
 end_import
@@ -378,12 +390,10 @@ argument_list|>
 name|values
 parameter_list|()
 function_decl|;
-comment|/**    * Returns a view collection of all key-value pairs contained in this    * multimap, as {@link Map.Entry} instances.    *    *<p>Changes to the returned collection or the entries it contains will    * update the underlying multimap, and vice versa. However,<i>adding</i> to    * the returned collection is not possible.    */
+comment|/**    * Returns a view collection of all key-value pairs contained in this    * multimap, as {@link Entry} instances.    *    *<p>Changes to the returned collection or the entries it contains will    * update the underlying multimap, and vice versa. However,<i>adding</i> to    * the returned collection is not possible.    */
 DECL|method|entries ()
 name|Collection
 argument_list|<
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -394,7 +404,7 @@ argument_list|>
 name|entries
 parameter_list|()
 function_decl|;
-comment|/**    * Returns a view of this multimap as a {@code Map} from each distinct key    * to the nonempty collection of that key's associated values. Note that    * {@code this.asMap().get(k)} is equivalent to {@code this.get(k)} only when    * {@code k} is a key contained in the multimap; otherwise it returns {@code    * null} as opposed to an empty collection.    *    *<p>Changes to the returned map or the collections that serve as its values    * will update the underlying multimap, and vice versa. The map does not    * support {@code put} or {@code putAll}, nor do its entries support {@link    * Map.Entry#setValue setValue}.    */
+comment|/**    * Returns a view of this multimap as a {@code Map} from each distinct key    * to the nonempty collection of that key's associated values. Note that    * {@code this.asMap().get(k)} is equivalent to {@code this.get(k)} only when    * {@code k} is a key contained in the multimap; otherwise it returns {@code    * null} as opposed to an empty collection.    *    *<p>Changes to the returned map or the collections that serve as its values    * will update the underlying multimap, and vice versa. The map does not    * support {@code put} or {@code putAll}, nor do its entries support {@link    * Entry#setValue setValue}.    */
 DECL|method|asMap ()
 name|Map
 argument_list|<

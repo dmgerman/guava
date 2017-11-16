@@ -2035,8 +2035,6 @@ name|K
 parameter_list|,
 name|V
 parameter_list|>
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -2056,8 +2054,6 @@ parameter_list|)
 block|{
 return|return
 operator|new
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -2123,13 +2119,9 @@ if|if
 condition|(
 name|o
 operator|instanceof
-name|Map
-operator|.
 name|Entry
 condition|)
 block|{
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -2139,8 +2131,6 @@ argument_list|>
 name|e
 init|=
 operator|(
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K

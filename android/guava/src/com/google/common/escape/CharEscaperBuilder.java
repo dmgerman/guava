@@ -94,6 +94,18 @@ name|Map
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Map
+operator|.
+name|Entry
+import|;
+end_import
+
 begin_comment
 comment|/**  * Simple helper class to build a "sparse" array of objects based on the indexes that were added to  * it. The array will be from 0 to the maximum index given. All non-set indexes will contain null  * (so it's not really a sparse array, just a pseudo sparse array). The builder can also return a  * CharEscaper based on the generated array.  *  * @author Sven Mawson  * @since 15.0  */
 end_comment
@@ -403,8 +415,6 @@ index|[]
 decl_stmt|;
 for|for
 control|(
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|Character

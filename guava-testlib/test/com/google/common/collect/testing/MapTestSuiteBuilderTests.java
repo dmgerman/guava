@@ -230,6 +230,18 @@ name|java
 operator|.
 name|util
 operator|.
+name|Map
+operator|.
+name|Entry
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|Set
 import|;
 end_import
@@ -332,7 +344,7 @@ name|WrappedHashMapGenerator
 extends|extends
 name|TestStringMapGenerator
 block|{
-DECL|method|create ( Map.Entry<String, String>[] entries)
+DECL|method|create ( Entry<String, String>[] entries)
 annotation|@
 name|Override
 specifier|protected
@@ -345,8 +357,6 @@ name|String
 argument_list|>
 name|create
 parameter_list|(
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|String
@@ -372,8 +382,6 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|String
@@ -571,8 +579,6 @@ name|Override
 specifier|public
 name|Set
 argument_list|<
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|String
@@ -695,8 +701,6 @@ name|Override
 specifier|public
 name|Set
 argument_list|<
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|String

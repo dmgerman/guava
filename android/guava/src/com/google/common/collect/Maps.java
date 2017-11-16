@@ -897,8 +897,6 @@ name|Iterator
 argument_list|<
 name|?
 extends|extends
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -934,8 +932,6 @@ name|of
 argument_list|()
 return|;
 block|}
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -14309,7 +14305,7 @@ name|value
 argument_list|)
 return|;
 block|}
-comment|/**    * Implements {@code Collection.contains} safely for forwarding collections of    * map entries. If {@code o} is an instance of {@code Map.Entry}, it is    * wrapped using {@link #unmodifiableEntry} to protect against a possible    * nefarious equals method.    *    *<p>Note that {@code c} is the backing (delegate) collection, rather than    * the forwarding collection.    *    * @param c the delegate (unwrapped) collection of map entries    * @param o the object that might be contained in {@code c}    * @return {@code true} if {@code c} contains {@code o}    */
+comment|/**    * Implements {@code Collection.contains} safely for forwarding collections of    * map entries. If {@code o} is an instance of {@code Entry}, it is    * wrapped using {@link #unmodifiableEntry} to protect against a possible    * nefarious equals method.    *    *<p>Note that {@code c} is the backing (delegate) collection, rather than    * the forwarding collection.    *    * @param c the delegate (unwrapped) collection of map entries    * @param o the object that might be contained in {@code c}    * @return {@code true} if {@code c} contains {@code o}    */
 DECL|method|containsEntryImpl (Collection<Entry<K, V>> c, Object o)
 specifier|static
 parameter_list|<
@@ -14369,7 +14365,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Implements {@code Collection.remove} safely for forwarding collections of    * map entries. If {@code o} is an instance of {@code Map.Entry}, it is    * wrapped using {@link #unmodifiableEntry} to protect against a possible    * nefarious equals method.    *    *<p>Note that {@code c} is backing (delegate) collection, rather than the    * forwarding collection.    *    * @param c the delegate (unwrapped) collection of map entries    * @param o the object to remove from {@code c}    * @return {@code true} if {@code c} was changed    */
+comment|/**    * Implements {@code Collection.remove} safely for forwarding collections of    * map entries. If {@code o} is an instance of {@code Entry}, it is    * wrapped using {@link #unmodifiableEntry} to protect against a possible    * nefarious equals method.    *    *<p>Note that {@code c} is backing (delegate) collection, rather than the    * forwarding collection.    *    * @param c the delegate (unwrapped) collection of map entries    * @param o the object to remove from {@code c}    * @return {@code true} if {@code c} was changed    */
 DECL|method|removeEntryImpl (Collection<Entry<K, V>> c, Object o)
 specifier|static
 parameter_list|<
@@ -14543,8 +14539,6 @@ literal|true
 decl_stmt|;
 for|for
 control|(
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|?
@@ -14647,8 +14641,6 @@ parameter_list|)
 block|{
 for|for
 control|(
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|?

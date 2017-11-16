@@ -1606,8 +1606,6 @@ range|:
 name|elements
 control|)
 block|{
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|?

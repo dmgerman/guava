@@ -1473,8 +1473,6 @@ name|spliterator
 argument_list|()
 argument_list|,
 parameter_list|(
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|R
@@ -1505,8 +1503,6 @@ name|spliterator
 argument_list|()
 argument_list|,
 parameter_list|(
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|C

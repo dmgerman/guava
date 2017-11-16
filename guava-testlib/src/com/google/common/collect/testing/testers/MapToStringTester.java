@@ -509,8 +509,6 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K

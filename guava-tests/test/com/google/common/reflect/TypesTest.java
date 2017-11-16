@@ -230,6 +230,18 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Map
+operator|.
+name|Entry
+import|;
+end_import
+
+begin_import
+import|import
 name|junit
 operator|.
 name|framework
@@ -270,8 +282,6 @@ operator|)
 operator|new
 name|TypeCapture
 argument_list|<
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|String
@@ -292,8 +302,6 @@ name|Types
 operator|.
 name|newParameterizedType
 argument_list|(
-name|Map
-operator|.
 name|Entry
 operator|.
 name|class
@@ -635,8 +643,6 @@ operator|)
 operator|new
 name|TypeCapture
 argument_list|<
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|String
@@ -663,8 +669,6 @@ name|Map
 operator|.
 name|class
 argument_list|,
-name|Map
-operator|.
 name|Entry
 operator|.
 name|class
@@ -696,8 +700,6 @@ argument_list|(
 operator|new
 name|TypeCapture
 argument_list|<
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|String
@@ -761,8 +763,6 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-name|Map
-operator|.
 name|Entry
 operator|.
 name|class
@@ -813,8 +813,6 @@ name|Types
 operator|.
 name|newParameterizedType
 argument_list|(
-name|Map
-operator|.
 name|Entry
 operator|.
 name|class
@@ -878,8 +876,6 @@ name|Types
 operator|.
 name|newParameterizedType
 argument_list|(
-name|Map
-operator|.
 name|Entry
 operator|.
 name|class
@@ -899,8 +895,6 @@ name|newParameterizedTypeWithOwner
 argument_list|(
 literal|null
 argument_list|,
-name|Map
-operator|.
 name|Entry
 operator|.
 name|class
@@ -932,8 +926,6 @@ name|Map
 operator|.
 name|class
 argument_list|,
-name|Map
-operator|.
 name|Entry
 operator|.
 name|class
@@ -970,8 +962,6 @@ name|Map
 operator|.
 name|class
 argument_list|,
-name|Map
-operator|.
 name|Entry
 operator|.
 name|class

@@ -238,6 +238,18 @@ name|java
 operator|.
 name|util
 operator|.
+name|Map
+operator|.
+name|Entry
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|NoSuchElementException
 import|;
 end_import
@@ -1153,8 +1165,6 @@ DECL|method|entries ()
 specifier|public
 name|Set
 argument_list|<
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -2226,8 +2236,6 @@ name|Override
 DECL|method|entryIterator ()
 name|Iterator
 argument_list|<
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -2242,8 +2250,6 @@ return|return
 operator|new
 name|Iterator
 argument_list|<
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -2289,8 +2295,6 @@ block|}
 annotation|@
 name|Override
 specifier|public
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -2475,8 +2479,6 @@ argument_list|)
 expr_stmt|;
 for|for
 control|(
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K

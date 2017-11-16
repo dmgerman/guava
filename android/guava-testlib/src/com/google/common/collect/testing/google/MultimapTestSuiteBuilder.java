@@ -600,8 +600,6 @@ argument_list|>
 argument_list|,
 name|M
 argument_list|,
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -780,7 +778,7 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|createDerivedSuites ( FeatureSpecificTestSuiteBuilder< ?, ? extends OneSizeTestContainerGenerator<M, Map.Entry<K, V>>> parentBuilder)
+DECL|method|createDerivedSuites ( FeatureSpecificTestSuiteBuilder< ?, ? extends OneSizeTestContainerGenerator<M, Entry<K, V>>> parentBuilder)
 specifier|protected
 name|List
 argument_list|<
@@ -798,8 +796,6 @@ name|OneSizeTestContainerGenerator
 argument_list|<
 name|M
 argument_list|,
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -1013,7 +1009,7 @@ return|return
 name|derivedSuites
 return|;
 block|}
-DECL|method|computeValuesTestSuite ( FeatureSpecificTestSuiteBuilder< ?, ? extends OneSizeTestContainerGenerator<M, Map.Entry<K, V>>> parentBuilder)
+DECL|method|computeValuesTestSuite ( FeatureSpecificTestSuiteBuilder< ?, ? extends OneSizeTestContainerGenerator<M, Entry<K, V>>> parentBuilder)
 name|TestSuite
 name|computeValuesTestSuite
 parameter_list|(
@@ -1027,8 +1023,6 @@ name|OneSizeTestContainerGenerator
 argument_list|<
 name|M
 argument_list|,
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -1095,7 +1089,7 @@ name|createTestSuite
 argument_list|()
 return|;
 block|}
-DECL|method|computeEntriesTestSuite ( FeatureSpecificTestSuiteBuilder< ?, ? extends OneSizeTestContainerGenerator<M, Map.Entry<K, V>>> parentBuilder)
+DECL|method|computeEntriesTestSuite ( FeatureSpecificTestSuiteBuilder< ?, ? extends OneSizeTestContainerGenerator<M, Entry<K, V>>> parentBuilder)
 name|TestSuite
 name|computeEntriesTestSuite
 parameter_list|(
@@ -1109,8 +1103,6 @@ name|OneSizeTestContainerGenerator
 argument_list|<
 name|M
 argument_list|,
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -1177,7 +1169,7 @@ name|createTestSuite
 argument_list|()
 return|;
 block|}
-DECL|method|computeMultimapGetTestSuite ( FeatureSpecificTestSuiteBuilder< ?, ? extends OneSizeTestContainerGenerator<M, Map.Entry<K, V>>> parentBuilder)
+DECL|method|computeMultimapGetTestSuite ( FeatureSpecificTestSuiteBuilder< ?, ? extends OneSizeTestContainerGenerator<M, Entry<K, V>>> parentBuilder)
 name|TestSuite
 name|computeMultimapGetTestSuite
 parameter_list|(
@@ -1191,8 +1183,6 @@ name|OneSizeTestContainerGenerator
 argument_list|<
 name|M
 argument_list|,
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -1259,7 +1249,7 @@ name|createTestSuite
 argument_list|()
 return|;
 block|}
-DECL|method|computeMultimapAsMapGetTestSuite ( FeatureSpecificTestSuiteBuilder< ?, ? extends OneSizeTestContainerGenerator<M, Map.Entry<K, V>>> parentBuilder)
+DECL|method|computeMultimapAsMapGetTestSuite ( FeatureSpecificTestSuiteBuilder< ?, ? extends OneSizeTestContainerGenerator<M, Entry<K, V>>> parentBuilder)
 name|TestSuite
 name|computeMultimapAsMapGetTestSuite
 parameter_list|(
@@ -1273,8 +1263,6 @@ name|OneSizeTestContainerGenerator
 argument_list|<
 name|M
 argument_list|,
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -1380,7 +1368,7 @@ argument_list|()
 return|;
 block|}
 block|}
-DECL|method|computeKeysTestSuite ( FeatureSpecificTestSuiteBuilder< ?, ? extends OneSizeTestContainerGenerator<M, Map.Entry<K, V>>> parentBuilder)
+DECL|method|computeKeysTestSuite ( FeatureSpecificTestSuiteBuilder< ?, ? extends OneSizeTestContainerGenerator<M, Entry<K, V>>> parentBuilder)
 name|TestSuite
 name|computeKeysTestSuite
 parameter_list|(
@@ -1394,8 +1382,6 @@ name|OneSizeTestContainerGenerator
 argument_list|<
 name|M
 argument_list|,
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -2108,8 +2094,6 @@ argument_list|)
 decl_stmt|;
 for|for
 control|(
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|Feature
@@ -2330,8 +2314,6 @@ name|OneSizeTestContainerGenerator
 argument_list|<
 name|M
 argument_list|,
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -2613,8 +2595,6 @@ argument_list|()
 decl_stmt|;
 name|List
 argument_list|<
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -2637,8 +2617,6 @@ range|:
 name|elements
 control|)
 block|{
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -2814,8 +2792,6 @@ argument_list|()
 decl_stmt|;
 name|List
 argument_list|<
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -2891,8 +2867,6 @@ expr_stmt|;
 block|}
 name|Iterable
 argument_list|<
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -2927,8 +2901,6 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -3071,8 +3043,6 @@ name|OneSizeTestContainerGenerator
 argument_list|<
 name|M
 argument_list|,
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -3275,8 +3245,6 @@ name|OneSizeTestContainerGenerator
 argument_list|<
 name|M
 argument_list|,
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -3666,8 +3634,6 @@ name|OneSizeTestContainerGenerator
 argument_list|<
 name|M
 argument_list|,
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -3766,15 +3732,11 @@ name|elements
 parameter_list|)
 block|{
 comment|/*        * This is nasty and complicated, but it's the only way to make sure keys get mapped to enough        * distinct values.        */
-name|Map
-operator|.
 name|Entry
 index|[]
 name|entries
 init|=
 operator|new
-name|Map
-operator|.
 name|Entry
 index|[
 name|elements
@@ -4131,8 +4093,6 @@ name|OneSizeTestContainerGenerator
 argument_list|<
 name|M
 argument_list|,
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -4142,7 +4102,7 @@ argument_list|>
 argument_list|>
 name|multimapGenerator
 decl_stmt|;
-DECL|method|MultimapGetGenerator ( OneSizeTestContainerGenerator<M, Map.Entry<K, V>> multimapGenerator)
+DECL|method|MultimapGetGenerator ( OneSizeTestContainerGenerator<M, Entry<K, V>> multimapGenerator)
 specifier|public
 name|MultimapGetGenerator
 parameter_list|(
@@ -4150,8 +4110,6 @@ name|OneSizeTestContainerGenerator
 argument_list|<
 name|M
 argument_list|,
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -4517,7 +4475,7 @@ argument_list|,
 name|M
 argument_list|>
 block|{
-DECL|method|MultimapAsMapGetGenerator ( OneSizeTestContainerGenerator<M, Map.Entry<K, V>> multimapGenerator)
+DECL|method|MultimapAsMapGetGenerator ( OneSizeTestContainerGenerator<M, Entry<K, V>> multimapGenerator)
 specifier|public
 name|MultimapAsMapGetGenerator
 parameter_list|(
@@ -4525,8 +4483,6 @@ name|OneSizeTestContainerGenerator
 argument_list|<
 name|M
 argument_list|,
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -4696,8 +4652,6 @@ name|OneSizeTestContainerGenerator
 argument_list|<
 name|M
 argument_list|,
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -4707,7 +4661,7 @@ argument_list|>
 argument_list|>
 name|multimapGenerator
 decl_stmt|;
-DECL|method|ReserializedMultimapGenerator ( OneSizeTestContainerGenerator<M, Map.Entry<K, V>> multimapGenerator)
+DECL|method|ReserializedMultimapGenerator ( OneSizeTestContainerGenerator<M, Entry<K, V>> multimapGenerator)
 specifier|public
 name|ReserializedMultimapGenerator
 parameter_list|(
@@ -4715,8 +4669,6 @@ name|OneSizeTestContainerGenerator
 argument_list|<
 name|M
 argument_list|,
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -4740,8 +4692,6 @@ DECL|method|samples ()
 specifier|public
 name|SampleElements
 argument_list|<
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -4763,8 +4713,6 @@ annotation|@
 name|Override
 DECL|method|createArray (int length)
 specifier|public
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -4789,12 +4737,10 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|order (List<Map.Entry<K, V>> insertionOrder)
+DECL|method|order (List<Entry<K, V>> insertionOrder)
 specifier|public
 name|Iterable
 argument_list|<
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -4806,8 +4752,6 @@ name|order
 parameter_list|(
 name|List
 argument_list|<
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K

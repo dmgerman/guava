@@ -2079,8 +2079,6 @@ argument_list|(
 literal|10
 argument_list|)
 decl_stmt|;
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|Integer
@@ -2119,8 +2117,6 @@ name|i
 argument_list|)
 expr_stmt|;
 block|}
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|Integer
@@ -2155,8 +2151,6 @@ operator|.
 name|build
 argument_list|()
 decl_stmt|;
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|Integer

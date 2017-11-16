@@ -3711,8 +3711,6 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|Range
@@ -5342,8 +5340,6 @@ name|i
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|Range

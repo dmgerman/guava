@@ -9741,8 +9741,6 @@ parameter_list|)
 block|{}
 name|Set
 argument_list|<
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|Number
@@ -9757,8 +9755,6 @@ operator|.
 name|entrySet
 argument_list|()
 decl_stmt|;
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|Number
@@ -9801,8 +9797,6 @@ name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|Integer
@@ -9812,8 +9806,6 @@ argument_list|>
 name|entry2
 init|=
 operator|(
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|Integer
@@ -9857,8 +9849,6 @@ name|void
 name|testImmutableEntry
 parameter_list|()
 block|{
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|String
@@ -9947,8 +9937,6 @@ name|void
 name|testImmutableEntryNull
 parameter_list|()
 block|{
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|String
@@ -13484,8 +13472,6 @@ parameter_list|)
 block|{     }
 name|Set
 argument_list|<
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|Integer
@@ -13504,8 +13490,6 @@ try|try
 block|{
 name|Iterator
 argument_list|<
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|Integer
@@ -13542,8 +13526,6 @@ name|UnsupportedOperationException
 name|expected
 parameter_list|)
 block|{     }
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|Integer
@@ -13776,8 +13758,6 @@ name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|Integer
@@ -13787,8 +13767,6 @@ argument_list|>
 name|entry2
 init|=
 operator|(
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|Integer

@@ -3864,8 +3864,6 @@ block|{
 specifier|final
 name|Iterator
 argument_list|<
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -3895,8 +3893,6 @@ name|K
 argument_list|>
 argument_list|()
 block|{
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -4861,8 +4857,6 @@ DECL|field|keyIterator
 specifier|final
 name|Iterator
 argument_list|<
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -4972,8 +4966,6 @@ name|hasNext
 argument_list|()
 condition|)
 block|{
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -5156,8 +5148,6 @@ DECL|method|entries ()
 specifier|public
 name|Collection
 argument_list|<
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -5181,8 +5171,6 @@ name|Override
 DECL|method|entryIterator ()
 name|Iterator
 argument_list|<
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -5197,8 +5185,6 @@ return|return
 operator|new
 name|Itr
 argument_list|<
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -5914,8 +5900,6 @@ DECL|method|iterator ()
 specifier|public
 name|Iterator
 argument_list|<
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -6025,8 +6009,6 @@ return|return
 literal|false
 return|;
 block|}
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|?
@@ -6036,8 +6018,6 @@ argument_list|>
 name|entry
 init|=
 operator|(
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|?
@@ -6067,8 +6047,6 @@ name|AsMapIterator
 implements|implements
 name|Iterator
 argument_list|<
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -6084,8 +6062,6 @@ DECL|field|delegateIterator
 specifier|final
 name|Iterator
 argument_list|<
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -6132,8 +6108,6 @@ annotation|@
 name|Override
 DECL|method|next ()
 specifier|public
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -6146,8 +6120,6 @@ argument_list|>
 name|next
 parameter_list|()
 block|{
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -7014,8 +6986,6 @@ argument_list|)
 return|;
 block|}
 DECL|method|pollAsMapEntry (Iterator<Entry<K, Collection<V>>> entryIterator)
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K

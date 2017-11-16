@@ -377,16 +377,6 @@ operator|.
 name|util
 operator|.
 name|Map
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Map
 operator|.
 name|Entry
 import|;
@@ -2008,8 +1998,6 @@ argument_list|)
 expr_stmt|;
 name|Iterator
 argument_list|<
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|String
@@ -2027,8 +2015,6 @@ operator|.
 name|iterator
 argument_list|()
 decl_stmt|;
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|String
@@ -2202,8 +2188,6 @@ argument_list|)
 expr_stmt|;
 name|Iterator
 argument_list|<
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|String
@@ -2227,8 +2211,6 @@ operator|.
 name|iterator
 argument_list|()
 decl_stmt|;
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|String
@@ -2392,8 +2374,6 @@ argument_list|)
 expr_stmt|;
 name|Collection
 argument_list|<
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|String
@@ -2410,8 +2390,6 @@ argument_list|()
 decl_stmt|;
 name|Iterator
 argument_list|<
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|String
@@ -2426,8 +2404,6 @@ operator|.
 name|iterator
 argument_list|()
 decl_stmt|;
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|String
@@ -2441,8 +2417,6 @@ operator|.
 name|next
 argument_list|()
 decl_stmt|;
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|String

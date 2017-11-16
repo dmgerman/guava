@@ -121,8 +121,6 @@ argument_list|,
 name|V
 argument_list|>
 argument_list|,
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -152,8 +150,6 @@ DECL|method|actualContents ()
 specifier|protected
 name|Collection
 argument_list|<
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -257,8 +253,6 @@ block|}
 comment|/**    * @return an array of the proper size with {@code null} as the key of the    * middle element.    */
 DECL|method|createArrayWithNullKey ()
 specifier|protected
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -269,8 +263,6 @@ index|[]
 name|createArrayWithNullKey
 parameter_list|()
 block|{
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -291,8 +283,6 @@ name|getNullLocation
 argument_list|()
 decl_stmt|;
 specifier|final
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -413,8 +403,6 @@ block|}
 comment|/**    * @return an array of the proper size with {@code null} as the value of the    * middle element.    */
 DECL|method|createArrayWithNullValue ()
 specifier|protected
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -425,8 +413,6 @@ index|[]
 name|createArrayWithNullValue
 parameter_list|()
 block|{
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -447,8 +433,6 @@ name|getNullLocation
 argument_list|()
 decl_stmt|;
 specifier|final
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -588,8 +572,6 @@ DECL|method|createDisjointCollection ()
 specifier|protected
 name|MinimalCollection
 argument_list|<
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -628,8 +610,6 @@ DECL|method|getSampleEntries (int howMany)
 specifier|protected
 name|Collection
 argument_list|<
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -654,8 +634,6 @@ DECL|method|getSampleEntries ()
 specifier|protected
 name|Collection
 argument_list|<
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
