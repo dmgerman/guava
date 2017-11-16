@@ -82,6 +82,16 @@ name|List
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|OverridingMethodsMustInvokeSuper
+import|;
+end_import
+
 begin_comment
 comment|/**  * Base class for testers of classes (including {@link Collection}  * and {@link java.util.Map Map}) that contain elements.  *  * @param<C> the type of the container  * @param<E> the type of the container's contents  *  * @author George van den Driessche  */
 end_comment
@@ -125,6 +135,8 @@ name|container
 decl_stmt|;
 annotation|@
 name|Override
+annotation|@
+name|OverridingMethodsMustInvokeSuper
 DECL|method|setUp ()
 specifier|public
 name|void

@@ -148,35 +148,6 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|setUp ()
-specifier|public
-name|void
-name|setUp
-parameter_list|()
-throws|throws
-name|Exception
-block|{
-name|super
-operator|.
-name|setUp
-argument_list|()
-expr_stmt|;
-name|samples
-operator|=
-name|this
-operator|.
-name|getSubjectGenerator
-argument_list|()
-operator|.
-name|samples
-argument_list|()
-expr_stmt|;
-name|resetMap
-argument_list|()
-expr_stmt|;
-block|}
-annotation|@
-name|Override
 DECL|method|actualContents ()
 specifier|protected
 name|Collection
@@ -204,6 +175,7 @@ block|}
 comment|/** @see AbstractContainerTester#resetContainer() */
 DECL|method|resetMap ()
 specifier|protected
+specifier|final
 name|void
 name|resetMap
 parameter_list|()

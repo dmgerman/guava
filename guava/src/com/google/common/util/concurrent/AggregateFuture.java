@@ -116,6 +116,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|ForOverride
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -179,6 +193,16 @@ operator|.
 name|annotation
 operator|.
 name|Nullable
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|OverridingMethodsMustInvokeSuper
 import|;
 end_import
 
@@ -1026,6 +1050,10 @@ argument_list|()
 expr_stmt|;
 block|}
 comment|/**      * Listeners implicitly keep a reference to {@link RunningState} as they're inner classes, so we      * free resources here as well for the allMustSucceed=true case (i.e. when a future fails, we      * immediately release resources we no longer need); additionally, the future will release its      * reference to {@link RunningState}, which should free all associated memory when all the      * futures complete and the listeners are released.      *      * TODO(user): Write tests for memory retention      */
+annotation|@
+name|ForOverride
+annotation|@
+name|OverridingMethodsMustInvokeSuper
 DECL|method|releaseResourcesAfterFailure ()
 name|void
 name|releaseResourcesAfterFailure
