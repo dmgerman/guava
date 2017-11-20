@@ -174,16 +174,6 @@ name|Set
 import|;
 end_import
 
-begin_import
-import|import
-name|javax
-operator|.
-name|annotation
-operator|.
-name|Nullable
-import|;
-end_import
-
 begin_comment
 comment|/**  * Generates a dummy interface proxy that simply returns a dummy value for each method.  *  * @author Ben Yu  */
 end_comment
@@ -441,6 +431,10 @@ name|param
 operator|.
 name|isAnnotationPresent
 argument_list|(
+name|javax
+operator|.
+name|annotation
+operator|.
 name|Nullable
 operator|.
 name|class
