@@ -1248,7 +1248,9 @@ argument_list|()
 throw|;
 block|}
 block|}
-comment|/**    * Returns a {@link TreeTraverser} for traversing a directory tree. The returned traverser    * attempts to avoid following symbolic links to directories. However, the traverser cannot    * guarantee that it will not follow symbolic links to directories as it is possible for a    * directory to be replaced with a symbolic link between checking if the file is a directory and    * actually reading the contents of that directory.    *    *<p>Note that if the {@link Path} passed to one of the traversal methods does not exist, no    * exception will be thrown and the returned {@link Iterable} will contain a single element: that    * path.    *    *<p>{@link DirectoryIteratorException}  may be thrown when iterating {@link Iterable} instances    * created by this traverser if an {@link IOException} is thrown by a call to    * {@link #listFiles(Path)}.    */
+comment|/**    * Returns a {@link TreeTraverser} for traversing a directory tree. The returned traverser    * attempts to avoid following symbolic links to directories. However, the traverser cannot    * guarantee that it will not follow symbolic links to directories as it is possible for a    * directory to be replaced with a symbolic link between checking if the file is a directory and    * actually reading the contents of that directory.    *    *<p>Note that if the {@link Path} passed to one of the traversal methods does not exist, no    * exception will be thrown and the returned {@link Iterable} will contain a single element: that    * path.    *    *<p>{@link DirectoryIteratorException} may be thrown when iterating {@link Iterable} instances    * created by this traverser if an {@link IOException} is thrown by a call to {@link    * #listFiles(Path)}.    *    * @deprecated The returned {@link TreeTraverser} type is deprecated. Use the replacement method    *     {@link #fileTraverser()} instead with the same semantics as this method. This method is    *     scheduled to be removed in April 2018.    */
+annotation|@
+name|Deprecated
 DECL|method|directoryTreeTraverser ()
 specifier|public
 specifier|static
