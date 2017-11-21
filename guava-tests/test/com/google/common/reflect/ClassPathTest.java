@@ -4221,10 +4221,10 @@ name|entry
 range|:
 name|Files
 operator|.
-name|fileTreeTraverser
+name|fileTraverser
 argument_list|()
 operator|.
-name|preOrderTraversal
+name|depthFirstPreOrder
 argument_list|(
 name|root
 argument_list|)
