@@ -2084,6 +2084,45 @@ name|Object
 name|key
 parameter_list|)
 function_decl|;
+comment|/**    * {@inheritDoc}    *    *<p>See<a    * href="https://developer.android.com/reference/java/util/Map.html#getOrDefault%28java.lang.Object,%20V%29">{@code    * Map.getOrDefault}</a>.    *    * @since 23.5 (but since 21.0 in the JRE<a    *     href="https://github.com/google/guava#guava-google-core-libraries-for-java">flavor</a>).    *     Note that API Level 24 users can call this method with any version of Guava.    */
+comment|// @Override under Java 8 / API Level 24
+DECL|method|getOrDefault (@ullable Object key, @Nullable V defaultValue)
+specifier|public
+specifier|final
+name|V
+name|getOrDefault
+parameter_list|(
+annotation|@
+name|Nullable
+name|Object
+name|key
+parameter_list|,
+annotation|@
+name|Nullable
+name|V
+name|defaultValue
+parameter_list|)
+block|{
+name|V
+name|result
+init|=
+name|get
+argument_list|(
+name|key
+argument_list|)
+decl_stmt|;
+return|return
+operator|(
+name|result
+operator|!=
+literal|null
+operator|)
+condition|?
+name|result
+else|:
+name|defaultValue
+return|;
+block|}
 DECL|field|entrySet
 annotation|@
 name|LazyInit
