@@ -652,6 +652,88 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+DECL|method|testReadSingle_noStackOverflow ()
+specifier|public
+name|void
+name|testReadSingle_noStackOverflow
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+comment|// https://github.com/google/guava/issues/2996
+comment|// no data, just testing that there's no StackOverflowException
+name|assertEquals
+argument_list|(
+operator|-
+literal|1
+argument_list|,
+name|tenMillionEmptySources
+argument_list|()
+operator|.
+name|read
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+DECL|method|testReadArray_noStackOverflow ()
+specifier|public
+name|void
+name|testReadArray_noStackOverflow
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+comment|// https://github.com/google/guava/issues/2996
+comment|// no data, just testing that there's no StackOverflowException
+name|assertEquals
+argument_list|(
+operator|-
+literal|1
+argument_list|,
+name|tenMillionEmptySources
+argument_list|()
+operator|.
+name|read
+argument_list|(
+operator|new
+name|byte
+index|[
+literal|1
+index|]
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+DECL|method|tenMillionEmptySources ()
+specifier|private
+specifier|static
+name|MultiInputStream
+name|tenMillionEmptySources
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+return|return
+operator|new
+name|MultiInputStream
+argument_list|(
+name|Collections
+operator|.
+name|nCopies
+argument_list|(
+literal|10_000_000
+argument_list|,
+name|ByteSource
+operator|.
+name|empty
+argument_list|()
+argument_list|)
+operator|.
+name|iterator
+argument_list|()
+argument_list|)
+return|;
+block|}
 DECL|method|newByteSource (final int start, final int size)
 specifier|private
 specifier|static
