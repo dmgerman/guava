@@ -3668,7 +3668,7 @@ return|return
 name|index
 return|;
 block|}
-DECL|method|badElementIndex (int index, int size, String desc)
+DECL|method|badElementIndex (int index, int size, @Nullable String desc)
 specifier|private
 specifier|static
 name|String
@@ -3680,6 +3680,8 @@ parameter_list|,
 name|int
 name|size
 parameter_list|,
+annotation|@
+name|Nullable
 name|String
 name|desc
 parameter_list|)
@@ -3816,7 +3818,7 @@ return|return
 name|index
 return|;
 block|}
-DECL|method|badPositionIndex (int index, int size, String desc)
+DECL|method|badPositionIndex (int index, int size, @Nullable String desc)
 specifier|private
 specifier|static
 name|String
@@ -3828,6 +3830,8 @@ parameter_list|,
 name|int
 name|size
 parameter_list|,
+annotation|@
+name|Nullable
 name|String
 name|desc
 parameter_list|)
