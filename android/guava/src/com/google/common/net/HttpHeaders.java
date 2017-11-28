@@ -833,6 +833,16 @@ name|SERVER
 init|=
 literal|"Server"
 decl_stmt|;
+comment|/**    * The HTTP<a href="https://www.w3.org/TR/server-timing/">    * {@code Server-Timing}</a> header field name.    *    * @since NEXT    */
+DECL|field|SERVER_TIMING
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|SERVER_TIMING
+init|=
+literal|"Server-Timing"
+decl_stmt|;
 comment|/**    * The HTTP<a href="https://www.w3.org/TR/service-workers/#update-algorithm">    * {@code Service-Worker-Allowed}</a> header field name.    *    * @since 20.0    */
 DECL|field|SERVICE_WORKER_ALLOWED
 specifier|public
