@@ -274,14 +274,18 @@ name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
-DECL|method|unsafeCompare (Object o1, Object o2)
+DECL|method|unsafeCompare (@ullable Object o1, @Nullable Object o2)
 specifier|private
 name|int
 name|unsafeCompare
 parameter_list|(
+annotation|@
+name|Nullable
 name|Object
 name|o1
 parameter_list|,
+annotation|@
+name|Nullable
 name|Object
 name|o2
 parameter_list|)
