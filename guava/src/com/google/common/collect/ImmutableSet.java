@@ -1633,6 +1633,8 @@ function_decl|;
 annotation|@
 name|LazyInit
 annotation|@
+name|Nullable
+annotation|@
 name|RetainedWith
 DECL|field|asList
 specifier|private
@@ -2025,6 +2027,8 @@ argument_list|<
 name|E
 argument_list|>
 block|{
+annotation|@
+name|Nullable
 annotation|@
 name|VisibleForTesting
 DECL|field|hashTable
