@@ -158,6 +158,22 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|concurrent
+operator|.
+name|GuardedBy
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|lang
@@ -227,18 +243,6 @@ operator|.
 name|atomic
 operator|.
 name|AtomicReference
-import|;
-end_import
-
-begin_import
-import|import
-name|javax
-operator|.
-name|annotation
-operator|.
-name|concurrent
-operator|.
-name|GuardedBy
 import|;
 end_import
 

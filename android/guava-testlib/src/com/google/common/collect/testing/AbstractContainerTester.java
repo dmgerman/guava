@@ -34,6 +34,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|OverridingMethodsMustInvokeSuper
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -79,16 +93,6 @@ operator|.
 name|util
 operator|.
 name|List
-import|;
-end_import
-
-begin_import
-import|import
-name|javax
-operator|.
-name|annotation
-operator|.
-name|OverridingMethodsMustInvokeSuper
 import|;
 end_import
 
