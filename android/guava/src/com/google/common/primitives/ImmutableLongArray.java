@@ -98,6 +98,20 @@ name|errorprone
 operator|.
 name|annotations
 operator|.
+name|CheckReturnValue
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
 name|Immutable
 import|;
 end_import
@@ -159,16 +173,6 @@ operator|.
 name|util
 operator|.
 name|RandomAccess
-import|;
-end_import
-
-begin_import
-import|import
-name|javax
-operator|.
-name|annotation
-operator|.
-name|CheckReturnValue
 import|;
 end_import
 

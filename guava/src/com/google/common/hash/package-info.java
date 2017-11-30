@@ -36,9 +36,13 @@ end_package
 
 begin_import
 import|import
-name|javax
+name|com
 operator|.
-name|annotation
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
 operator|.
 name|CheckReturnValue
 import|;

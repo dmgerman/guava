@@ -114,6 +114,20 @@ name|errorprone
 operator|.
 name|annotations
 operator|.
+name|CheckReturnValue
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
 name|Immutable
 import|;
 end_import
@@ -219,16 +233,6 @@ operator|.
 name|stream
 operator|.
 name|DoubleStream
-import|;
-end_import
-
-begin_import
-import|import
-name|javax
-operator|.
-name|annotation
-operator|.
-name|CheckReturnValue
 import|;
 end_import
 
