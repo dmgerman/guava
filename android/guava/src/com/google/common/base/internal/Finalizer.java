@@ -428,6 +428,8 @@ decl_stmt|;
 comment|// By preference, we will use the Thread constructor that has an `inheritThreadLocals` parameter.
 comment|// But before Java 9, our only way not to inherit ThreadLocals is to zap them after the thread
 comment|// is created, by accessing a private field.
+annotation|@
+name|Nullable
 DECL|field|bigThreadConstructor
 specifier|private
 specifier|static
@@ -441,6 +443,8 @@ init|=
 name|getBigThreadConstructor
 argument_list|()
 decl_stmt|;
+annotation|@
+name|Nullable
 DECL|field|inheritableThreadLocals
 specifier|private
 specifier|static
