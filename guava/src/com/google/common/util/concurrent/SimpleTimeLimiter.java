@@ -285,8 +285,8 @@ specifier|final
 name|ExecutorService
 name|executor
 decl_stmt|;
-specifier|private
 DECL|method|SimpleTimeLimiter (ExecutorService executor)
+specifier|private
 name|SimpleTimeLimiter
 parameter_list|(
 name|ExecutorService
