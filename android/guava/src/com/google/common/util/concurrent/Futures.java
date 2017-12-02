@@ -2166,6 +2166,7 @@ block|}
 comment|/**      * Creates the {@link ListenableFuture} which will return the result of calling {@link      * Callable#call} in {@code combiner} when all futures complete, using the specified {@code      * executor}.      *      *<p>If the combiner throws a {@code CancellationException}, the returned future will be      * cancelled.      *      *<p>If the combiner throws an {@code ExecutionException}, the cause of the thrown {@code      * ExecutionException} will be extracted and returned as the cause of the new {@code      * ExecutionException} that gets thrown by the returned combined future.      *      *<p>Canceling this future will attempt to cancel all the component futures.      */
 annotation|@
 name|CanIgnoreReturnValue
+comment|// TODO(cpovirk): Remove this
 DECL|method|call (Callable<C> combiner, Executor executor)
 specifier|public
 parameter_list|<
@@ -2207,6 +2208,7 @@ block|}
 comment|/**      * Like {@link #call(Callable, Executor)} but using {@linkplain MoreExecutors#directExecutor      * direct executor}.      *      * @deprecated Use {@linkplain #call(Callable, Executor) the overload that requires an      *     executor}. For identical behavior, pass {@link MoreExecutors#directExecutor}, but      *     consider whether another executor would be safer, as discussed in the {@link      *     ListenableFuture#addListener ListenableFuture.addListener} documentation. This method is      *     scheduled to be removed in April 2018.      */
 annotation|@
 name|CanIgnoreReturnValue
+comment|// TODO(cpovirk): Remove this
 annotation|@
 name|Deprecated
 DECL|method|call (Callable<C> combiner)
@@ -2237,7 +2239,57 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/*      * TODO(cpovirk): Evaluate demand for a run(Runnable) version. Would it allow us to remove      * @CanIgnoreReturnValue from the call() methods above?      * https://github.com/google/guava/issues/2371      */
+comment|/**      * Creates the {@link ListenableFuture} which will return the result of running {@code combiner}      * when all Futures complete. {@code combiner} will run using {@code executor}.      *      *<p>If the combiner throws a {@code CancellationException}, the returned future will be      * cancelled.      *      *<p>Canceling this Future will attempt to cancel all the component futures.      */
+DECL|method|run (final Runnable combiner, Executor executor)
+specifier|public
+name|ListenableFuture
+argument_list|<
+name|?
+argument_list|>
+name|run
+parameter_list|(
+specifier|final
+name|Runnable
+name|combiner
+parameter_list|,
+name|Executor
+name|executor
+parameter_list|)
+block|{
+return|return
+name|call
+argument_list|(
+operator|new
+name|Callable
+argument_list|<
+name|Void
+argument_list|>
+argument_list|()
+block|{
+annotation|@
+name|Override
+specifier|public
+name|Void
+name|call
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|combiner
+operator|.
+name|run
+argument_list|()
+expr_stmt|;
+return|return
+literal|null
+return|;
+block|}
+block|}
+argument_list|,
+name|executor
+argument_list|)
+return|;
+block|}
 block|}
 comment|/**    * Returns a {@code ListenableFuture} whose result is set from the supplied future when it    * completes. Cancelling the supplied future will also cancel the returned future, but cancelling    * the returned future will have no effect on the supplied future.    *    * @since 15.0    */
 DECL|method|nonCancellationPropagating (ListenableFuture<V> future)
