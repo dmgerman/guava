@@ -131,7 +131,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A generic JUnit test which tests {@code indexOf()} operations on a list.  * Can't be invoked directly; please see  * {@link com.google.common.collect.testing.ListTestSuiteBuilder}.  *  * @author Chris Povirk  */
+comment|/**  * A generic JUnit test which tests {@code indexOf()} operations on a list. Can't be invoked  * directly; please see {@link com.google.common.collect.testing.ListTestSuiteBuilder}.  *  * @author Chris Povirk  */
 end_comment
 
 begin_class

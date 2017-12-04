@@ -1022,7 +1022,7 @@ name|EXPECTED_THREE_BYTE_ROUNDTRIPPABLE_COUNT
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Tests that round tripping of a sample of four byte permutations work.    * All permutations are prohibitively expensive to test for automated runs.    * This method tests specific four-byte cases.    */
+comment|/**    * Tests that round tripping of a sample of four byte permutations work. All permutations are    * prohibitively expensive to test for automated runs. This method tests specific four-byte cases.    */
 DECL|method|testIsWellFormed_4BytesSamples ()
 specifier|public
 name|void
@@ -1545,7 +1545,7 @@ return|return
 name|expected
 return|;
 block|}
-comment|/**    * Helper to run the loop to test all the permutations for the number of bytes    * specified.    *    * @param numBytes the number of bytes in the byte array    * @param expectedCount the expected number of roundtrippable permutations    */
+comment|/**    * Helper to run the loop to test all the permutations for the number of bytes specified.    *    * @param numBytes the number of bytes in the byte array    * @param expectedCount the expected number of roundtrippable permutations    */
 annotation|@
 name|GwtIncompatible
 comment|// java.nio.charset.Charset
@@ -1575,7 +1575,7 @@ literal|1
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Helper to run the loop to test all the permutations for the number of bytes    * specified. This overload is useful for debugging to get the loop to start    * at a certain character.    *    * @param numBytes the number of bytes in the byte array    * @param expectedCount the expected number of roundtrippable permutations    * @param start the starting bytes encoded as a long as big-endian    * @param lim the limit of bytes to process encoded as a long as big-endian,    *     or -1 to mean the max limit for numBytes    */
+comment|/**    * Helper to run the loop to test all the permutations for the number of bytes specified. This    * overload is useful for debugging to get the loop to start at a certain character.    *    * @param numBytes the number of bytes in the byte array    * @param expectedCount the expected number of roundtrippable permutations    * @param start the starting bytes encoded as a long as big-endian    * @param lim the limit of bytes to process encoded as a long as big-endian, or -1 to mean the max    *     limit for numBytes    */
 annotation|@
 name|GwtIncompatible
 comment|// java.nio.charset.Charset

@@ -241,7 +241,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A multiset which maintains the ordering of its elements, according to either their natural order  * or an explicit {@link Comparator}. In all cases, this implementation uses  * {@link Comparable#compareTo} or {@link Comparator#compare} instead of {@link Object#equals} to  * determine equivalence of instances.  *  *<p><b>Warning:</b> The comparison must be<i>consistent with equals</i> as explained by the  * {@link Comparable} class specification. Otherwise, the resulting multiset will violate the  * {@link java.util.Collection} contract, which is specified in terms of {@link Object#equals}.  *  *<p>See the Guava User Guide article on<a href=  * "https://github.com/google/guava/wiki/NewCollectionTypesExplained#multiset">  * {@code Multiset}</a>.  *  * @author Louis Wasserman  * @author Jared Levy  * @since 2.0  */
+comment|/**  * A multiset which maintains the ordering of its elements, according to either their natural order  * or an explicit {@link Comparator}. In all cases, this implementation uses {@link  * Comparable#compareTo} or {@link Comparator#compare} instead of {@link Object#equals} to determine  * equivalence of instances.  *  *<p><b>Warning:</b> The comparison must be<i>consistent with equals</i> as explained by the  * {@link Comparable} class specification. Otherwise, the resulting multiset will violate the {@link  * java.util.Collection} contract, which is specified in terms of {@link Object#equals}.  *  *<p>See the Guava User Guide article on<a href=  * "https://github.com/google/guava/wiki/NewCollectionTypesExplained#multiset"> {@code  * Multiset}</a>.  *  * @author Louis Wasserman  * @author Jared Levy  * @since 2.0  */
 end_comment
 
 begin_class
@@ -268,7 +268,7 @@ argument_list|>
 implements|implements
 name|Serializable
 block|{
-comment|/**    * Creates a new, empty multiset, sorted according to the elements' natural order. All elements    * inserted into the multiset must implement the {@code Comparable} interface. Furthermore, all    * such elements must be<i>mutually comparable</i>: {@code e1.compareTo(e2)} must not throw a    * {@code ClassCastException} for any elements {@code e1} and {@code e2} in the multiset. If the    * user attempts to add an element to the multiset that violates this constraint (for example,    * the user attempts to add a string element to a set whose elements are integers), the    * {@code add(Object)} call will throw a {@code ClassCastException}.    *    *<p>The type specification is {@code<E extends Comparable>}, instead of the more specific    * {@code<E extends Comparable<? super E>>}, to support classes defined without generics.    */
+comment|/**    * Creates a new, empty multiset, sorted according to the elements' natural order. All elements    * inserted into the multiset must implement the {@code Comparable} interface. Furthermore, all    * such elements must be<i>mutually comparable</i>: {@code e1.compareTo(e2)} must not throw a    * {@code ClassCastException} for any elements {@code e1} and {@code e2} in the multiset. If the    * user attempts to add an element to the multiset that violates this constraint (for example, the    * user attempts to add a string element to a set whose elements are integers), the {@code    * add(Object)} call will throw a {@code ClassCastException}.    *    *<p>The type specification is {@code<E extends Comparable>}, instead of the more specific    * {@code<E extends Comparable<? super E>>}, to support classes defined without generics.    */
 DECL|method|create ()
 specifier|public
 specifier|static
@@ -550,7 +550,7 @@ argument_list|<>
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * A function which can be summed across a subtree.    */
+comment|/** A function which can be summed across a subtree. */
 DECL|enum|Aggregate
 specifier|private
 enum|enum
@@ -1848,7 +1848,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/**    * Returns the first node in the tree that is in range.    */
+comment|/** Returns the first node in the tree that is in range. */
 annotation|@
 name|Nullable
 DECL|method|firstNode ()
@@ -5262,7 +5262,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/*    * TODO(jlevy): Decide whether entrySet() should return entries with an equals() method that    * calls the comparator to compare the two keys. If that change is made,    * AbstractMultiset.equals() can simply check whether two multisets have equal entry sets.    */
-comment|/**    * @serialData the comparator, the number of distinct elements, the first element, its count, the    *             second element, its count, and so on    */
+comment|/**    * @serialData the comparator, the number of distinct elements, the first element, its count, the    *     second element, its count, and so on    */
 annotation|@
 name|GwtIncompatible
 comment|// java.io.ObjectOutputStream

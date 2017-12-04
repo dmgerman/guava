@@ -380,9 +380,9 @@ operator|==
 literal|1
 return|;
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -392,9 +392,9 @@ return|return
 literal|0x150dd
 return|;
 block|}
-DECL|method|equals (Object obj)
 annotation|@
 name|Override
+DECL|method|equals (Object obj)
 specifier|public
 name|boolean
 name|equals
@@ -409,9 +409,9 @@ operator|instanceof
 name|IsOdd
 return|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString
@@ -422,7 +422,7 @@ literal|"IsOdd"
 return|;
 block|}
 block|}
-comment|/**    * Generates a new Predicate per call.    *    *<p>Creating a new Predicate each time helps catch cases where code is    * using {@code x == y} instead of {@code x.equals(y)}.    */
+comment|/**    * Generates a new Predicate per call.    *    *<p>Creating a new Predicate each time helps catch cases where code is using {@code x == y}    * instead of {@code x.equals(y)}.    */
 DECL|method|isOdd ()
 specifier|private
 specifier|static
@@ -3148,7 +3148,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Tests for Predicates.instanceOf(x).    * TODO: Fix the comment style after fixing annotation stripper to remove    * comments properly.  Currently, all tests before the comments are removed    * as well.    */
+comment|/**    * Tests for Predicates.instanceOf(x). TODO: Fix the comment style after fixing annotation    * stripper to remove comments properly. Currently, all tests before the comments are removed as    * well.    */
 annotation|@
 name|GwtIncompatible
 comment|// Predicates.instanceOf
@@ -3497,7 +3497,7 @@ parameter_list|(
 name|NullPointerException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 annotation|@
 name|GwtIncompatible
@@ -4835,7 +4835,7 @@ name|trimEqualsFoo
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Tests for Predicates.contains(Pattern) and .containsPattern(String).    * We assume the regex level works, so there are only trivial tests of that    * aspect.    * TODO: Fix comment style once annotation stripper is fixed.    */
+comment|/**    * Tests for Predicates.contains(Pattern) and .containsPattern(String). We assume the regex level    * works, so there are only trivial tests of that aspect. TODO: Fix comment style once annotation    * stripper is fixed.    */
 annotation|@
 name|GwtIncompatible
 comment|// Predicates.containsPattern

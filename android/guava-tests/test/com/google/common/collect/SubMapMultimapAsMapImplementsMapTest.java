@@ -185,9 +185,9 @@ return|return
 name|multimap
 return|;
 block|}
-DECL|method|makeEmptyMap ()
 annotation|@
 name|Override
+DECL|method|makeEmptyMap ()
 specifier|protected
 name|Map
 argument_list|<
@@ -216,9 +216,9 @@ literal|"p"
 argument_list|)
 return|;
 block|}
-DECL|method|makePopulatedMap ()
 annotation|@
 name|Override
+DECL|method|makePopulatedMap ()
 specifier|protected
 name|Map
 argument_list|<
@@ -293,9 +293,9 @@ literal|"p"
 argument_list|)
 return|;
 block|}
-DECL|method|getKeyNotInPopulatedMap ()
 annotation|@
 name|Override
+DECL|method|getKeyNotInPopulatedMap ()
 specifier|protected
 name|String
 name|getKeyNotInPopulatedMap
@@ -305,9 +305,9 @@ return|return
 literal|"a"
 return|;
 block|}
-DECL|method|getValueNotInPopulatedMap ()
 annotation|@
 name|Override
+DECL|method|getValueNotInPopulatedMap ()
 specifier|protected
 name|Collection
 argument_list|<
@@ -326,9 +326,9 @@ literal|2
 argument_list|)
 return|;
 block|}
-DECL|method|testEntrySetRemoveAllNullFromEmpty ()
 annotation|@
 name|Override
+DECL|method|testEntrySetRemoveAllNullFromEmpty ()
 specifier|public
 name|void
 name|testEntrySetRemoveAllNullFromEmpty
@@ -351,9 +351,9 @@ block|{
 comment|// GWT's TreeMap.entrySet().removeAll(null) doesn't throws NPE.
 block|}
 block|}
-DECL|method|testEntrySetRetainAllNullFromEmpty ()
 annotation|@
 name|Override
+DECL|method|testEntrySetRetainAllNullFromEmpty ()
 specifier|public
 name|void
 name|testEntrySetRetainAllNullFromEmpty
@@ -376,9 +376,9 @@ block|{
 comment|// GWT's TreeMap.entrySet().retainAll(null) doesn't throws NPE.
 block|}
 block|}
-DECL|method|testKeySetRemoveAllNullFromEmpty ()
 annotation|@
 name|Override
+DECL|method|testKeySetRemoveAllNullFromEmpty ()
 specifier|public
 name|void
 name|testKeySetRemoveAllNullFromEmpty
@@ -401,9 +401,9 @@ block|{
 comment|// GWT's TreeMap.keySet().removeAll(null) doesn't throws NPE.
 block|}
 block|}
-DECL|method|testKeySetRetainAllNullFromEmpty ()
 annotation|@
 name|Override
+DECL|method|testKeySetRetainAllNullFromEmpty ()
 specifier|public
 name|void
 name|testKeySetRetainAllNullFromEmpty
@@ -426,9 +426,9 @@ block|{
 comment|// GWT's TreeMap.keySet().retainAll(null) doesn't throws NPE.
 block|}
 block|}
-DECL|method|testValuesRemoveAllNullFromEmpty ()
 annotation|@
 name|Override
+DECL|method|testValuesRemoveAllNullFromEmpty ()
 specifier|public
 name|void
 name|testValuesRemoveAllNullFromEmpty
@@ -451,9 +451,9 @@ block|{
 comment|// GWT's TreeMap.values().removeAll(null) doesn't throws NPE.
 block|}
 block|}
-DECL|method|testValuesRetainAllNullFromEmpty ()
 annotation|@
 name|Override
+DECL|method|testValuesRetainAllNullFromEmpty ()
 specifier|public
 name|void
 name|testValuesRetainAllNullFromEmpty

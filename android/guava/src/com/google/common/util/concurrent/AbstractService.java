@@ -1787,7 +1787,7 @@ name|externalState
 argument_list|()
 return|;
 block|}
-comment|/**    * @since 14.0    */
+comment|/** @since 14.0 */
 annotation|@
 name|Override
 DECL|method|failureCause ()
@@ -1804,7 +1804,7 @@ name|failureCause
 argument_list|()
 return|;
 block|}
-comment|/**    * @since 13.0    */
+comment|/** @since 13.0 */
 annotation|@
 name|Override
 DECL|method|addListener (Listener listener, Executor executor)
@@ -2109,7 +2109,7 @@ specifier|final
 name|State
 name|state
 decl_stmt|;
-comment|/**      * If true, the user requested a shutdown while the service was still starting up.      */
+comment|/** If true, the user requested a shutdown while the service was still starting up. */
 DECL|field|shutdownWhenStartupFinishes
 specifier|final
 name|boolean

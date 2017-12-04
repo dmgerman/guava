@@ -199,7 +199,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A generic JUnit test which tests {@link Map#computeIfPresent}. Can't be  * invoked directly; please see  * {@link com.google.common.collect.testing.MapTestSuiteBuilder}.  *  * @author Louis Wasserman  */
+comment|/**  * A generic JUnit test which tests {@link Map#computeIfPresent}. Can't be invoked directly; please  * see {@link com.google.common.collect.testing.MapTestSuiteBuilder}.  *  * @author Louis Wasserman  */
 end_comment
 
 begin_class

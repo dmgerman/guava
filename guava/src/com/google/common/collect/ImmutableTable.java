@@ -221,7 +221,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link Table} whose contents will never change, with many other important  * properties detailed at {@link ImmutableCollection}.  *  *<p>See the Guava User Guide article on<a href=  * "https://github.com/google/guava/wiki/ImmutableCollectionsExplained">  * immutable collections</a>.  *  * @author Gregory Kick  * @since 11.0  */
+comment|/**  * A {@link Table} whose contents will never change, with many other important properties detailed  * at {@link ImmutableCollection}.  *  *<p>See the Guava User Guide article on<a href=  * "https://github.com/google/guava/wiki/ImmutableCollectionsExplained"> immutable collections</a>.  *  * @author Gregory Kick  * @since 11.0  */
 end_comment
 
 begin_class
@@ -1070,7 +1070,7 @@ name|value
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an immutable copy of the provided table.    *    *<p>The {@link Table#cellSet()} iteration order of the provided table    * determines the iteration ordering of all views in the returned table. Note    * that some views of the original table and the copied table may have    * different iteration orders. For more control over the ordering, create a    * {@link Builder} and call {@link Builder#orderRowsBy},    * {@link Builder#orderColumnsBy}, and {@link Builder#putAll}    *    *<p>Despite the method name, this method attempts to avoid actually copying    * the data when it is safe to do so. The exact circumstances under which a    * copy will or will not be performed are undocumented and subject to change.    */
+comment|/**    * Returns an immutable copy of the provided table.    *    *<p>The {@link Table#cellSet()} iteration order of the provided table determines the iteration    * ordering of all views in the returned table. Note that some views of the original table and the    * copied table may have different iteration orders. For more control over the ordering, create a    * {@link Builder} and call {@link Builder#orderRowsBy}, {@link Builder#orderColumnsBy}, and    * {@link Builder#putAll}    *    *<p>Despite the method name, this method attempts to avoid actually copying the data when it is    * safe to do so. The exact circumstances under which a copy will or will not be performed are    * undocumented and subject to change.    */
 DECL|method|copyOf ( Table<? extends R, ? extends C, ? extends V> table)
 specifier|public
 specifier|static
@@ -1283,7 +1283,7 @@ argument_list|<>
 argument_list|()
 return|;
 block|}
-comment|/**    * Verifies that {@code rowKey}, {@code columnKey} and {@code value} are    * non-null, and returns a new entry with those values.    */
+comment|/**    * Verifies that {@code rowKey}, {@code columnKey} and {@code value} are non-null, and returns a    * new entry with those values.    */
 DECL|method|cellOf (R rowKey, C columnKey, V value)
 specifier|static
 parameter_list|<
@@ -1335,7 +1335,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * A builder for creating immutable table instances, especially {@code public    * static final} tables ("constant tables"). Example:<pre>   {@code    *    *   static final ImmutableTable<Integer, Character, String> SPREADSHEET =    *       new ImmutableTable.Builder<Integer, Character, String>()    *           .put(1, 'A', "foo")    *           .put(1, 'B', "bar")    *           .put(2, 'A', "baz")    *           .build();}</pre>    *    *<p>By default, the order in which cells are added to the builder determines    * the iteration ordering of all views in the returned table, with {@link    * #putAll} following the {@link Table#cellSet()} iteration order. However, if    * {@link #orderRowsBy} or {@link #orderColumnsBy} is called, the views are    * sorted by the supplied comparators.    *    * For empty or single-cell immutable tables, {@link #of()} and    * {@link #of(Object, Object, Object)} are even more convenient.    *    *<p>Builder instances can be reused - it is safe to call {@link #build}    * multiple times to build multiple tables in series. Each table is a superset    * of the tables created before it.    *    * @since 11.0    */
+comment|/**    * A builder for creating immutable table instances, especially {@code public static final} tables    * ("constant tables"). Example:    *    *<pre>{@code    * static final ImmutableTable<Integer, Character, String> SPREADSHEET =    *     new ImmutableTable.Builder<Integer, Character, String>()    *         .put(1, 'A', "foo")    *         .put(1, 'B', "bar")    *         .put(2, 'A', "baz")    *         .build();    * }</pre>    *    *<p>By default, the order in which cells are added to the builder determines the iteration    * ordering of all views in the returned table, with {@link #putAll} following the {@link    * Table#cellSet()} iteration order. However, if {@link #orderRowsBy} or {@link #orderColumnsBy}    * is called, the views are sorted by the supplied comparators.    *    *<p>For empty or single-cell immutable tables, {@link #of()} and {@link #of(Object, Object,    * Object)} are even more convenient.    *    *<p>Builder instances can be reused - it is safe to call {@link #build} multiple times to build    * multiple tables in series. Each table is a superset of the tables created before it.    *    * @since 11.0    */
 DECL|class|Builder
 specifier|public
 specifier|static
@@ -1391,13 +1391,13 @@ name|C
 argument_list|>
 name|columnComparator
 decl_stmt|;
-comment|/**      * Creates a new builder. The returned builder is equivalent to the builder      * generated by {@link ImmutableTable#builder}.      */
+comment|/**      * Creates a new builder. The returned builder is equivalent to the builder generated by {@link      * ImmutableTable#builder}.      */
 DECL|method|Builder ()
 specifier|public
 name|Builder
 parameter_list|()
 block|{}
-comment|/**      * Specifies the ordering of the generated table's rows.      */
+comment|/** Specifies the ordering of the generated table's rows. */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|orderRowsBy (Comparator<? super R> rowComparator)
@@ -1434,7 +1434,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**      * Specifies the ordering of the generated table's columns.      */
+comment|/** Specifies the ordering of the generated table's columns. */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|orderColumnsBy (Comparator<? super C> columnComparator)
@@ -1471,7 +1471,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**      * Associates the ({@code rowKey}, {@code columnKey}) pair with {@code      * value} in the built table. Duplicate key pairs are not allowed and will      * cause {@link #build} to fail.      */
+comment|/**      * Associates the ({@code rowKey}, {@code columnKey}) pair with {@code value} in the built      * table. Duplicate key pairs are not allowed and will cause {@link #build} to fail.      */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|put (R rowKey, C columnKey, V value)
@@ -1514,7 +1514,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**      * Adds the given {@code cell} to the table, making it immutable if      * necessary. Duplicate key pairs are not allowed and will cause {@link      * #build} to fail.      */
+comment|/**      * Adds the given {@code cell} to the table, making it immutable if necessary. Duplicate key      * pairs are not allowed and will cause {@link #build} to fail.      */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|put (Cell<? extends R, ? extends C, ? extends V> cell)
@@ -1640,7 +1640,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**      * Associates all of the given table's keys and values in the built table.      * Duplicate row key column key pairs are not allowed, and will cause      * {@link #build} to fail.      *      * @throws NullPointerException if any key or value in {@code table} is null      */
+comment|/**      * Associates all of the given table's keys and values in the built table. Duplicate row key      * column key pairs are not allowed, and will cause {@link #build} to fail.      *      * @throws NullPointerException if any key or value in {@code table} is null      */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|putAll (Table<? extends R, ? extends C, ? extends V> table)
@@ -2049,7 +2049,7 @@ name|keySet
 argument_list|()
 return|;
 block|}
-comment|/**    * {@inheritDoc}    *    *<p>The value {@code Map<R, V>} instances in the returned map are    * {@link ImmutableMap} instances as well.    */
+comment|/**    * {@inheritDoc}    *    *<p>The value {@code Map<R, V>} instances in the returned map are {@link ImmutableMap} instances    * as well.    */
 annotation|@
 name|Override
 DECL|method|columnMap ()
@@ -2143,7 +2143,7 @@ name|keySet
 argument_list|()
 return|;
 block|}
-comment|/**    * {@inheritDoc}    *    *<p>The value {@code Map<C, V>} instances in the returned map are    * {@link ImmutableMap} instances as well.    */
+comment|/**    * {@inheritDoc}    *    *<p>The value {@code Map<C, V>} instances in the returned map are {@link ImmutableMap} instances    * as well.    */
 annotation|@
 name|Override
 DECL|method|rowMap ()

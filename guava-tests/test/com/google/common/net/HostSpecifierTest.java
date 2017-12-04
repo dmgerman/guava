@@ -95,7 +95,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * {@link TestCase} for {@link HostSpecifier}.  This is a relatively  * cursory test, as HostSpecifier is a thin wrapper around  * {@link InetAddresses} and {@link InternetDomainName}; the unit tests for  * those classes explore numerous corner cases.  The intent here is to  * confirm that everything is wired up properly.  *  * @author Craig Berry  */
+comment|/**  * {@link TestCase} for {@link HostSpecifier}. This is a relatively cursory test, as HostSpecifier  * is a thin wrapper around {@link InetAddresses} and {@link InternetDomainName}; the unit tests for  * those classes explore numerous corner cases. The intent here is to confirm that everything is  * wired up properly.  *  * @author Craig Berry  */
 end_comment
 
 begin_class

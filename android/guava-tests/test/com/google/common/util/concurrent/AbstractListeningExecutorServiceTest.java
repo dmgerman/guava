@@ -327,7 +327,7 @@ literal|"foo"
 return|;
 block|}
 block|}
-comment|/**    * Simple same thread listening executor service that doesn't handle shutdown.    */
+comment|/** Simple same thread listening executor service that doesn't handle shutdown. */
 DECL|class|TestListeningExecutorService
 specifier|private
 specifier|static
@@ -372,7 +372,7 @@ specifier|public
 name|void
 name|shutdown
 parameter_list|()
-block|{     }
+block|{}
 annotation|@
 name|Override
 DECL|method|shutdownNow ()

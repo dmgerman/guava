@@ -1120,7 +1120,7 @@ name|X
 implements|,
 name|Y
 block|{}
-comment|/**    * This test passes if the {@code concat(â¦).filter(â¦).filter(â¦)} statement at the end compiles.    * That statement compiles only if {@link FluentIterable#concat concat(aIterable, bIterable)}    * returns a {@link FluentIterable} of elements of an anonymous type whose supertypes are the    *<a href="https://docs.oracle.com/javase/specs/jls/se7/html/jls-4.html#jls-4.9">intersection</a>    * of the supertypes of {@code A} and the supertypes of {@code B}.    */
+comment|/**    * This test passes if the {@code concat(â¦).filter(â¦).filter(â¦)} statement at the end compiles.    * That statement compiles only if {@link FluentIterable#concat concat(aIterable, bIterable)}    * returns a {@link FluentIterable} of elements of an anonymous type whose supertypes are the<a    * href="https://docs.oracle.com/javase/specs/jls/se7/html/jls-4.html#jls-4.9">intersection</a> of    * the supertypes of {@code A} and the supertypes of {@code B}.    */
 DECL|method|testConcatIntersectionType ()
 specifier|public
 name|void

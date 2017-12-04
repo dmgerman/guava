@@ -337,9 +337,9 @@ argument_list|>
 index|[]
 name|valueTable
 decl_stmt|;
+DECL|field|entries
 annotation|@
 name|VisibleForTesting
-DECL|field|entries
 specifier|final
 specifier|transient
 name|Entry
@@ -1137,11 +1137,11 @@ operator|.
 name|length
 return|;
 block|}
+DECL|field|inverse
 annotation|@
 name|LazyInit
 annotation|@
 name|RetainedWith
-DECL|field|inverse
 specifier|private
 specifier|transient
 name|ImmutableBiMap

@@ -900,7 +900,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testPut_containsTypeVariable ()
 specifier|public
@@ -955,7 +955,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|anyIterableType ()
 specifier|private
@@ -998,9 +998,9 @@ argument_list|,
 name|Object
 argument_list|>
 block|{
-DECL|method|createKeyArray (int length)
 annotation|@
 name|Override
+DECL|method|createKeyArray (int length)
 specifier|public
 name|TypeToken
 index|[]
@@ -1018,9 +1018,9 @@ name|length
 index|]
 return|;
 block|}
-DECL|method|createValueArray (int length)
 annotation|@
 name|Override
+DECL|method|createValueArray (int length)
 specifier|public
 name|Object
 index|[]

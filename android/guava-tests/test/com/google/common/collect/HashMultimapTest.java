@@ -611,7 +611,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 try|try
 block|{
 name|HashMultimap
@@ -633,7 +633,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testEmptyMultimapsEqual ()
 specifier|public

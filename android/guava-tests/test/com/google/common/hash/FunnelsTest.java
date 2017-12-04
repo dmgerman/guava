@@ -725,7 +725,7 @@ parameter_list|(
 name|NullPointerException
 name|ok
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testAsOutputStream ()
 specifier|public

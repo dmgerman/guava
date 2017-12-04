@@ -2095,7 +2095,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 try|try
 block|{
 name|LinkedHashMultimap
@@ -2117,7 +2117,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 annotation|@
 name|GwtIncompatible

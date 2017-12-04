@@ -143,7 +143,7 @@ return|return
 name|eventBus
 return|;
 block|}
-comment|/**    * @return The event object that caused the subscriber to throw.    */
+comment|/** @return The event object that caused the subscriber to throw. */
 DECL|method|getEvent ()
 specifier|public
 name|Object
@@ -154,7 +154,7 @@ return|return
 name|event
 return|;
 block|}
-comment|/**    * @return The object context that the subscriber was called on.    */
+comment|/** @return The object context that the subscriber was called on. */
 DECL|method|getSubscriber ()
 specifier|public
 name|Object
@@ -165,7 +165,7 @@ return|return
 name|subscriber
 return|;
 block|}
-comment|/**    * @return The subscribed method that threw the exception.    */
+comment|/** @return The subscribed method that threw the exception. */
 DECL|method|getSubscriberMethod ()
 specifier|public
 name|Method

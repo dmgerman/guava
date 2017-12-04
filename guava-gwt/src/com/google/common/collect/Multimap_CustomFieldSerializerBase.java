@@ -107,7 +107,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This class contains static utility methods for writing {@code Multimap} GWT  * field serializers. Serializers should delegate to  * {@link #serialize(SerializationStreamWriter, Multimap)} and to either  * {@link #instantiate(SerializationStreamReader, ImmutableMultimap.Builder)} or  * {@link #populate(SerializationStreamReader, Multimap)}.  *  * @author Chris Povirk  */
+comment|/**  * This class contains static utility methods for writing {@code Multimap} GWT field serializers.  * Serializers should delegate to {@link #serialize(SerializationStreamWriter, Multimap)} and to  * either {@link #instantiate(SerializationStreamReader, ImmutableMultimap.Builder)} or {@link  * #populate(SerializationStreamReader, Multimap)}.  *  * @author Chris Povirk  */
 end_comment
 
 begin_class

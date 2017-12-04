@@ -250,9 +250,9 @@ specifier|final
 name|BinaryTree
 name|left
 decl_stmt|;
+DECL|field|right
 annotation|@
 name|Nullable
-DECL|field|right
 specifier|final
 name|BinaryTree
 name|right

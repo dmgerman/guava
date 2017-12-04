@@ -3502,7 +3502,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Checks that expected is equals to out, and further, if in is    * equals to expected, then out is successfully optimized to be    * identical to in, i.e. that "in" is simply returned.    */
+comment|/**    * Checks that expected is equals to out, and further, if in is equals to expected, then out is    * successfully optimized to be identical to in, i.e. that "in" is simply returned.    */
 DECL|method|assertEqualsSame (String expected, String in, String out)
 specifier|private
 name|void

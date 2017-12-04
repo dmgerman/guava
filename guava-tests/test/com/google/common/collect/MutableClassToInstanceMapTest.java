@@ -355,9 +355,9 @@ name|Number
 argument_list|>
 name|map
 decl_stmt|;
-DECL|method|setUp ()
 annotation|@
 name|Override
+DECL|method|setUp ()
 specifier|protected
 name|void
 name|setUp
@@ -379,7 +379,7 @@ name|void
 name|testConstraint
 parameter_list|()
 block|{
-comment|/**      * We'll give ourselves a pass on testing all the possible ways of      * breaking the constraint, because we know that newClassMap() is      * implemented using ConstrainedMap which is itself well-tested.      * A purist would object to this, but what can I say, we're dirty      * cheaters.      */
+comment|/**      * We'll give ourselves a pass on testing all the possible ways of breaking the constraint,      * because we know that newClassMap() is implemented using ConstrainedMap which is itself      * well-tested. A purist would object to this, but what can I say, we're dirty cheaters.      */
 name|map
 operator|.
 name|put

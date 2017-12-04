@@ -247,7 +247,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Fixed-size {@link Table} implementation backed by a two-dimensional array.  *  *<p>The allowed row and column keys must be supplied when the table is  * created. The table always contains a mapping for every row key / column pair.  * The value corresponding to a given row and column is null unless another  * value is provided.  *  *<p>The table's size is constant: the product of the number of supplied row  * keys and the number of supplied column keys. The {@code remove} and {@code  * clear} methods are not supported by the table or its views. The {@link  * #erase} and {@link #eraseAll} methods may be used instead.  *  *<p>The ordering of the row and column keys provided when the table is  * constructed determines the iteration ordering across rows and columns in the  * table's views. None of the view iterators support {@link Iterator#remove}.  * If the table is modified after an iterator is created, the iterator remains  * valid.  *  *<p>This class requires less memory than the {@link HashBasedTable} and {@link  * TreeBasedTable} implementations, except when the table is sparse.  *  *<p>Null row keys or column keys are not permitted.  *  *<p>This class provides methods involving the underlying array structure,  * where the array indices correspond to the position of a row or column in the  * lists of allowed keys and values. See the {@link #at}, {@link #set}, {@link  * #toArray}, {@link #rowKeyList}, and {@link #columnKeyList} methods for more  * details.  *  *<p>Note that this implementation is not synchronized. If multiple threads  * access the same cell of an {@code ArrayTable} concurrently and one of the  * threads modifies its value, there is no guarantee that the new value will be  * fully visible to the other threads. To guarantee that modifications are  * visible, synchronize access to the table. Unlike other {@code Table}  * implementations, synchronization is unnecessary between a thread that writes  * to one cell and a thread that reads from another.  *  *<p>See the Guava User Guide article on<a href=  * "https://github.com/google/guava/wiki/NewCollectionTypesExplained#table">  * {@code Table}</a>.  *  * @author Jared Levy  * @since 10.0  */
+comment|/**  * Fixed-size {@link Table} implementation backed by a two-dimensional array.  *  *<p>The allowed row and column keys must be supplied when the table is created. The table always  * contains a mapping for every row key / column pair. The value corresponding to a given row and  * column is null unless another value is provided.  *  *<p>The table's size is constant: the product of the number of supplied row keys and the number of  * supplied column keys. The {@code remove} and {@code clear} methods are not supported by the table  * or its views. The {@link #erase} and {@link #eraseAll} methods may be used instead.  *  *<p>The ordering of the row and column keys provided when the table is constructed determines the  * iteration ordering across rows and columns in the table's views. None of the view iterators  * support {@link Iterator#remove}. If the table is modified after an iterator is created, the  * iterator remains valid.  *  *<p>This class requires less memory than the {@link HashBasedTable} and {@link TreeBasedTable}  * implementations, except when the table is sparse.  *  *<p>Null row keys or column keys are not permitted.  *  *<p>This class provides methods involving the underlying array structure, where the array indices  * correspond to the position of a row or column in the lists of allowed keys and values. See the  * {@link #at}, {@link #set}, {@link #toArray}, {@link #rowKeyList}, and {@link #columnKeyList}  * methods for more details.  *  *<p>Note that this implementation is not synchronized. If multiple threads access the same cell of  * an {@code ArrayTable} concurrently and one of the threads modifies its value, there is no  * guarantee that the new value will be fully visible to the other threads. To guarantee that  * modifications are visible, synchronize access to the table. Unlike other {@code Table}  * implementations, synchronization is unnecessary between a thread that writes to one cell and a  * thread that reads from another.  *  *<p>See the Guava User Guide article on<a href=  * "https://github.com/google/guava/wiki/NewCollectionTypesExplained#table"> {@code Table}</a>.  *  * @author Jared Levy  * @since 10.0  */
 end_comment
 
 begin_class
@@ -284,7 +284,7 @@ argument_list|>
 implements|implements
 name|Serializable
 block|{
-comment|/**    * Creates an {@code ArrayTable} filled with {@code null}.    *    * @param rowKeys row keys that may be stored in the generated table    * @param columnKeys column keys that may be stored in the generated table    * @throws NullPointerException if any of the provided keys is null    * @throws IllegalArgumentException if {@code rowKeys} or {@code columnKeys}    *     contains duplicates or if exactly one of {@code rowKeys} or {@code    *     columnKeys} is empty.    */
+comment|/**    * Creates an {@code ArrayTable} filled with {@code null}.    *    * @param rowKeys row keys that may be stored in the generated table    * @param columnKeys column keys that may be stored in the generated table    * @throws NullPointerException if any of the provided keys is null    * @throws IllegalArgumentException if {@code rowKeys} or {@code columnKeys} contains duplicates    *     or if exactly one of {@code rowKeys} or {@code columnKeys} is empty.    */
 DECL|method|create ( Iterable<? extends R> rowKeys, Iterable<? extends C> columnKeys)
 specifier|public
 specifier|static
@@ -334,7 +334,7 @@ argument_list|)
 return|;
 block|}
 comment|/*    * TODO(jlevy): Add factory methods taking an Enum class, instead of an    * iterable, to specify the allowed row keys and/or column keys. Note that    * custom serialization logic is needed to support different enum sizes during    * serialization and deserialization.    */
-comment|/**    * Creates an {@code ArrayTable} with the mappings in the provided table.    *    *<p>If {@code table} includes a mapping with row key {@code r} and a    * separate mapping with column key {@code c}, the returned table contains a    * mapping with row key {@code r} and column key {@code c}. If that row key /    * column key pair in not in {@code table}, the pair maps to {@code null} in    * the generated table.    *    *<p>The returned table allows subsequent {@code put} calls with the row keys    * in {@code table.rowKeySet()} and the column keys in {@code    * table.columnKeySet()}. Calling {@link #put} with other keys leads to an    * {@code IllegalArgumentException}.    *    *<p>The ordering of {@code table.rowKeySet()} and {@code    * table.columnKeySet()} determines the row and column iteration ordering of    * the returned table.    *    * @throws NullPointerException if {@code table} has a null key    */
+comment|/**    * Creates an {@code ArrayTable} with the mappings in the provided table.    *    *<p>If {@code table} includes a mapping with row key {@code r} and a separate mapping with    * column key {@code c}, the returned table contains a mapping with row key {@code r} and column    * key {@code c}. If that row key / column key pair in not in {@code table}, the pair maps to    * {@code null} in the generated table.    *    *<p>The returned table allows subsequent {@code put} calls with the row keys in {@code    * table.rowKeySet()} and the column keys in {@code table.columnKeySet()}. Calling {@link #put}    * with other keys leads to an {@code IllegalArgumentException}.    *    *<p>The ordering of {@code table.rowKeySet()} and {@code table.columnKeySet()} determines the    * row and column iteration ordering of the returned table.    *    * @throws NullPointerException if {@code table} has a null key    */
 DECL|method|create (Table<R, C, V> table)
 specifier|public
 specifier|static
@@ -1199,7 +1199,7 @@ argument_list|()
 throw|;
 block|}
 block|}
-comment|/**    * Returns, as an immutable list, the row keys provided when the table was    * constructed, including those that are mapped to null values only.    */
+comment|/**    * Returns, as an immutable list, the row keys provided when the table was constructed, including    * those that are mapped to null values only.    */
 DECL|method|rowKeyList ()
 specifier|public
 name|ImmutableList
@@ -1213,7 +1213,7 @@ return|return
 name|rowList
 return|;
 block|}
-comment|/**    * Returns, as an immutable list, the column keys provided when the table was    * constructed, including those that are mapped to null values only.    */
+comment|/**    * Returns, as an immutable list, the column keys provided when the table was constructed,    * including those that are mapped to null values only.    */
 DECL|method|columnKeyList ()
 specifier|public
 name|ImmutableList
@@ -1227,7 +1227,7 @@ return|return
 name|columnList
 return|;
 block|}
-comment|/**    * Returns the value corresponding to the specified row and column indices.    * The same value is returned by {@code    * get(rowKeyList().get(rowIndex), columnKeyList().get(columnIndex))}, but    * this method runs more quickly.    *    * @param rowIndex position of the row key in {@link #rowKeyList()}    * @param columnIndex position of the row key in {@link #columnKeyList()}    * @return the value with the specified row and column    * @throws IndexOutOfBoundsException if either index is negative, {@code    *     rowIndex} is greater than or equal to the number of allowed row keys,    *     or {@code columnIndex} is greater than or equal to the number of    *     allowed column keys    */
+comment|/**    * Returns the value corresponding to the specified row and column indices. The same value is    * returned by {@code get(rowKeyList().get(rowIndex), columnKeyList().get(columnIndex))}, but this    * method runs more quickly.    *    * @param rowIndex position of the row key in {@link #rowKeyList()}    * @param columnIndex position of the row key in {@link #columnKeyList()}    * @return the value with the specified row and column    * @throws IndexOutOfBoundsException if either index is negative, {@code rowIndex} is greater than    *     or equal to the number of allowed row keys, or {@code columnIndex} is greater than or equal    *     to the number of allowed column keys    */
 DECL|method|at (int rowIndex, int columnIndex)
 specifier|public
 name|V
@@ -1271,7 +1271,7 @@ name|columnIndex
 index|]
 return|;
 block|}
-comment|/**    * Associates {@code value} with the specified row and column indices. The    * logic {@code    * put(rowKeyList().get(rowIndex), columnKeyList().get(columnIndex), value)}    * has the same behavior, but this method runs more quickly.    *    * @param rowIndex position of the row key in {@link #rowKeyList()}    * @param columnIndex position of the row key in {@link #columnKeyList()}    * @param value value to store in the table    * @return the previous value with the specified row and column    * @throws IndexOutOfBoundsException if either index is negative, {@code    *     rowIndex} is greater than or equal to the number of allowed row keys,    *     or {@code columnIndex} is greater than or equal to the number of    *     allowed column keys    */
+comment|/**    * Associates {@code value} with the specified row and column indices. The logic {@code    * put(rowKeyList().get(rowIndex), columnKeyList().get(columnIndex), value)} has the same    * behavior, but this method runs more quickly.    *    * @param rowIndex position of the row key in {@link #rowKeyList()}    * @param columnIndex position of the row key in {@link #columnKeyList()}    * @param value value to store in the table    * @return the previous value with the specified row and column    * @throws IndexOutOfBoundsException if either index is negative, {@code rowIndex} is greater than    *     or equal to the number of allowed row keys, or {@code columnIndex} is greater than or equal    *     to the number of allowed column keys    */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|set (int rowIndex, int columnIndex, @Nullable V value)
@@ -1337,7 +1337,7 @@ return|return
 name|oldValue
 return|;
 block|}
-comment|/**    * Returns a two-dimensional array with the table contents. The row and column    * indices correspond to the positions of the row and column in the iterables    * provided during table construction. If the table lacks a mapping for a    * given row and column, the corresponding array element is null.    *    *<p>Subsequent table changes will not modify the array, and vice versa.    *    * @param valueClass class of values stored in the returned array    */
+comment|/**    * Returns a two-dimensional array with the table contents. The row and column indices correspond    * to the positions of the row and column in the iterables provided during table construction. If    * the table lacks a mapping for a given row and column, the corresponding array element is null.    *    *<p>Subsequent table changes will not modify the array, and vice versa.    *    * @param valueClass class of values stored in the returned array    */
 annotation|@
 name|GwtIncompatible
 comment|// reflection
@@ -1454,7 +1454,7 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
-comment|/**    * Associates the value {@code null} with every pair of allowed row and column    * keys.    */
+comment|/** Associates the value {@code null} with every pair of allowed row and column keys. */
 DECL|method|eraseAll ()
 specifier|public
 name|void
@@ -1481,7 +1481,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Returns {@code true} if the provided keys are among the keys provided    * when the table was constructed.    */
+comment|/**    * Returns {@code true} if the provided keys are among the keys provided when the table was    * constructed.    */
 annotation|@
 name|Override
 DECL|method|contains (@ullable Object rowKey, @Nullable Object columnKey)
@@ -1512,7 +1512,7 @@ name|columnKey
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns {@code true} if the provided column key is among the column keys    * provided when the table was constructed.    */
+comment|/**    * Returns {@code true} if the provided column key is among the column keys provided when the    * table was constructed.    */
 annotation|@
 name|Override
 DECL|method|containsColumn (@ullable Object columnKey)
@@ -1535,7 +1535,7 @@ name|columnKey
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns {@code true} if the provided row key is among the row keys    * provided when the table was constructed.    */
+comment|/**    * Returns {@code true} if the provided row key is among the row keys provided when the table was    * constructed.    */
 annotation|@
 name|Override
 DECL|method|containsRow (@ullable Object rowKey)
@@ -1669,7 +1669,7 @@ name|columnIndex
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns {@code true} if {@code rowKeyList().size == 0} or {@code    * columnKeyList().size() == 0}.    */
+comment|/**    * Returns {@code true} if {@code rowKeyList().size == 0} or {@code columnKeyList().size() == 0}.    */
 annotation|@
 name|Override
 DECL|method|isEmpty ()
@@ -1690,7 +1690,7 @@ name|isEmpty
 argument_list|()
 return|;
 block|}
-comment|/**    * {@inheritDoc}    *    * @throws IllegalArgumentException if {@code rowKey} is not in {@link    *     #rowKeySet()} or {@code columnKey} is not in {@link #columnKeySet()}.    */
+comment|/**    * {@inheritDoc}    *    * @throws IllegalArgumentException if {@code rowKey} is not in {@link #rowKeySet()} or {@code    *     columnKey} is not in {@link #columnKeySet()}.    */
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
@@ -1780,7 +1780,7 @@ argument_list|)
 return|;
 block|}
 comment|/*    * TODO(jlevy): Consider creating a merge() method, similar to putAll() but    * copying non-null values only.    */
-comment|/**    * {@inheritDoc}    *    *<p>If {@code table} is an {@code ArrayTable}, its null values will be    * stored in this table, possibly replacing values that were previously    * non-null.    *    * @throws NullPointerException if {@code table} has a null key    * @throws IllegalArgumentException if any of the provided table's row keys or    *     column keys is not in {@link #rowKeySet()} or {@link #columnKeySet()}    */
+comment|/**    * {@inheritDoc}    *    *<p>If {@code table} is an {@code ArrayTable}, its null values will be stored in this table,    * possibly replacing values that were previously non-null.    *    * @throws NullPointerException if {@code table} has a null key    * @throws IllegalArgumentException if any of the provided table's row keys or column keys is not    *     in {@link #rowKeySet()} or {@link #columnKeySet()}    */
 annotation|@
 name|Override
 DECL|method|putAll (Table<? extends R, ? extends C, ? extends V> table)
@@ -1838,7 +1838,7 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
-comment|/**    * Associates the value {@code null} with the specified keys, assuming both    * keys are valid. If either key is null or isn't among the keys provided    * during construction, this method has no effect.    *    *<p>This method is equivalent to {@code put(rowKey, columnKey, null)} when    * both provided keys are valid.    *    * @param rowKey row key of mapping to be erased    * @param columnKey column key of mapping to be erased    * @return the value previously associated with the keys, or {@code null} if    *     no mapping existed for the keys    */
+comment|/**    * Associates the value {@code null} with the specified keys, assuming both keys are valid. If    * either key is null or isn't among the keys provided during construction, this method has no    * effect.    *    *<p>This method is equivalent to {@code put(rowKey, columnKey, null)} when both provided keys    * are valid.    *    * @param rowKey row key of mapping to be erased    * @param columnKey column key of mapping to be erased    * @return the value previously associated with the keys, or {@code null} if no mapping existed    *     for the keys    */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|erase (@ullable Object rowKey, @Nullable Object columnKey)
@@ -1924,7 +1924,7 @@ name|size
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns an unmodifiable set of all row key / column key / value    * triplets. Changes to the table will update the returned set.    *    *<p>The returned set's iterator traverses the mappings with the first row    * key, the mappings with the second row key, and so on.    *    *<p>The value in the returned cells may change if the table subsequently    * changes.    *    * @return set of table cells consisting of row key / column key / value    *     triplets    */
+comment|/**    * Returns an unmodifiable set of all row key / column key / value triplets. Changes to the table    * will update the returned set.    *    *<p>The returned set's iterator traverses the mappings with the first row key, the mappings with    * the second row key, and so on.    *    *<p>The value in the returned cells may change if the table subsequently changes.    *    * @return set of table cells consisting of row key / column key / value triplets    */
 annotation|@
 name|Override
 DECL|method|cellSet ()
@@ -2155,7 +2155,7 @@ name|columnIndex
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a view of all mappings that have the given column key. If the    * column key isn't in {@link #columnKeySet()}, an empty immutable map is    * returned.    *    *<p>Otherwise, for each row key in {@link #rowKeySet()}, the returned map    * associates the row key with the corresponding value in the table. Changes    * to the returned map will update the underlying table, and vice versa.    *    * @param columnKey key of column to search for in the table    * @return the corresponding map from row keys to values    */
+comment|/**    * Returns a view of all mappings that have the given column key. If the column key isn't in    * {@link #columnKeySet()}, an empty immutable map is returned.    *    *<p>Otherwise, for each row key in {@link #rowKeySet()}, the returned map associates the row key    * with the corresponding value in the table. Changes to the returned map will update the    * underlying table, and vice versa.    *    * @param columnKey key of column to search for in the table    * @return the corresponding map from row keys to values    */
 annotation|@
 name|Override
 DECL|method|column (C columnKey)
@@ -2302,7 +2302,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**    * Returns an immutable set of the valid column keys, including those that    * are associated with null values only.    *    * @return immutable set of column keys    */
+comment|/**    * Returns an immutable set of the valid column keys, including those that are associated with    * null values only.    *    * @return immutable set of column keys    */
 annotation|@
 name|Override
 DECL|method|columnKeySet ()
@@ -2490,7 +2490,7 @@ argument_list|()
 throw|;
 block|}
 block|}
-comment|/**    * Returns a view of all mappings that have the given row key. If the    * row key isn't in {@link #rowKeySet()}, an empty immutable map is    * returned.    *    *<p>Otherwise, for each column key in {@link #columnKeySet()}, the returned    * map associates the column key with the corresponding value in the    * table. Changes to the returned map will update the underlying table, and    * vice versa.    *    * @param rowKey key of row to search for in the table    * @return the corresponding map from column keys to values    */
+comment|/**    * Returns a view of all mappings that have the given row key. If the row key isn't in {@link    * #rowKeySet()}, an empty immutable map is returned.    *    *<p>Otherwise, for each column key in {@link #columnKeySet()}, the returned map associates the    * column key with the corresponding value in the table. Changes to the returned map will update    * the underlying table, and vice versa.    *    * @param rowKey key of row to search for in the table    * @return the corresponding map from column keys to values    */
 annotation|@
 name|Override
 DECL|method|row (R rowKey)
@@ -2637,7 +2637,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**    * Returns an immutable set of the valid row keys, including those that are    * associated with null values only.    *    * @return immutable set of row keys    */
+comment|/**    * Returns an immutable set of the valid row keys, including those that are associated with null    * values only.    *    * @return immutable set of row keys    */
 annotation|@
 name|Override
 DECL|method|rowKeySet ()
@@ -2825,7 +2825,7 @@ argument_list|()
 throw|;
 block|}
 block|}
-comment|/**    * Returns an unmodifiable collection of all values, which may contain    * duplicates. Changes to the table will update the returned collection.    *    *<p>The returned collection's iterator traverses the values of the first row    * key, the values of the second row key, and so on.    *    * @return collection of values    */
+comment|/**    * Returns an unmodifiable collection of all values, which may contain duplicates. Changes to the    * table will update the returned collection.    *    *<p>The returned collection's iterator traverses the values of the first row key, the values of    * the second row key, and so on.    *    * @return collection of values    */
 annotation|@
 name|Override
 DECL|method|values ()

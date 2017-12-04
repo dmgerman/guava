@@ -882,9 +882,9 @@ name|BinaryNode
 argument_list|>
 name|view
 decl_stmt|;
+DECL|field|topology
 annotation|@
 name|Param
-DECL|field|topology
 name|Topology
 name|topology
 decl_stmt|;
@@ -905,15 +905,15 @@ DECL|field|size
 name|int
 name|size
 decl_stmt|;
+DECL|field|traversal
 annotation|@
 name|Param
-DECL|field|traversal
 name|Traversal
 name|traversal
 decl_stmt|;
+DECL|field|useBinaryTraverser
 annotation|@
 name|Param
-DECL|field|useBinaryTraverser
 name|boolean
 name|useBinaryTraverser
 decl_stmt|;
@@ -963,9 +963,9 @@ name|VIEWER
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|traversal (int reps)
 annotation|@
 name|Benchmark
+DECL|method|traversal (int reps)
 name|int
 name|traversal
 parameter_list|(

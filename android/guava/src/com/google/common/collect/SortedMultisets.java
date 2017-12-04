@@ -167,7 +167,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Provides static utility methods for creating and working with  * {@link SortedMultiset} instances.  *  * @author Louis Wasserman  */
+comment|/**  * Provides static utility methods for creating and working with {@link SortedMultiset} instances.  *  * @author Louis Wasserman  */
 end_comment
 
 begin_class
@@ -188,7 +188,7 @@ specifier|private
 name|SortedMultisets
 parameter_list|()
 block|{}
-comment|/**    * A skeleton implementation for {@link SortedMultiset#elementSet}.    */
+comment|/** A skeleton implementation for {@link SortedMultiset#elementSet}. */
 DECL|class|ElementSet
 specifier|static
 class|class
@@ -406,7 +406,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**    * A skeleton navigable implementation for {@link SortedMultiset#elementSet}.    */
+comment|/** A skeleton navigable implementation for {@link SortedMultiset#elementSet}. */
 annotation|@
 name|GwtIncompatible
 comment|// Navigable

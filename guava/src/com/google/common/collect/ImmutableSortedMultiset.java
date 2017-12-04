@@ -213,7 +213,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link SortedMultiset} whose contents will never change, with many other important properties  * detailed at {@link ImmutableCollection}.  *  *<p><b>Warning:</b> as with any sorted collection, you are strongly advised not to use a {@link  * Comparator} or {@link Comparable} type whose comparison behavior is<i>inconsistent with  * equals</i>. That is, {@code a.compareTo(b)} or {@code comparator.compare(a, b)} should equal zero  *<i>if and only if</i> {@code a.equals(b)}. If this advice is not followed, the resulting  * collection will not correctly obey its specification.  *  *<p>See the Guava User Guide article on<a href=  * "https://github.com/google/guava/wiki/ImmutableCollectionsExplained">  * immutable collections</a>.  *  * @author Louis Wasserman  * @since 12.0  */
+comment|/**  * A {@link SortedMultiset} whose contents will never change, with many other important properties  * detailed at {@link ImmutableCollection}.  *  *<p><b>Warning:</b> as with any sorted collection, you are strongly advised not to use a {@link  * Comparator} or {@link Comparable} type whose comparison behavior is<i>inconsistent with  * equals</i>. That is, {@code a.compareTo(b)} or {@code comparator.compare(a, b)} should equal zero  *<i>if and only if</i> {@code a.equals(b)}. If this advice is not followed, the resulting  * collection will not correctly obey its specification.  *  *<p>See the Guava User Guide article on<a href=  * "https://github.com/google/guava/wiki/ImmutableCollectionsExplained"> immutable collections</a>.  *  * @author Louis Wasserman  * @since 12.0  */
 end_comment
 
 begin_class
@@ -240,7 +240,7 @@ name|E
 argument_list|>
 block|{
 comment|// TODO(lowasser): GWT compatibility
-comment|/**    * Returns a {@code Collector} that accumulates the input elements into a new    * {@code ImmutableMultiset}.  Elements are sorted by the specified comparator.    *    *<p><b>Warning:</b> {@code comparator} should be<i>consistent with {@code    * equals}</i> as explained in the {@link Comparator} documentation.    *    * @since 21.0    */
+comment|/**    * Returns a {@code Collector} that accumulates the input elements into a new {@code    * ImmutableMultiset}. Elements are sorted by the specified comparator.    *    *<p><b>Warning:</b> {@code comparator} should be<i>consistent with {@code equals}</i> as    * explained in the {@link Comparator} documentation.    *    * @since 21.0    */
 annotation|@
 name|Beta
 DECL|method|toImmutableSortedMultiset ( Comparator<? super E> comparator)
@@ -436,7 +436,7 @@ end_class
 
 begin_comment
 unit|}
-comment|/**    * Returns the empty immutable sorted multiset.    */
+comment|/** Returns the empty immutable sorted multiset. */
 end_comment
 
 begin_expr_stmt
@@ -470,7 +470,7 @@ block|}
 end_expr_stmt
 
 begin_comment
-comment|/**    * Returns an immutable sorted multiset containing a single element.    */
+comment|/** Returns an immutable sorted multiset containing a single element. */
 end_comment
 
 begin_function
@@ -968,7 +968,7 @@ block|}
 end_function
 
 begin_comment
-comment|/**    * Returns an immutable sorted multiset containing the given elements sorted by their natural    * ordering. To create a copy of a {@code SortedMultiset} that preserves the    * comparator, call {@link #copyOfSorted} instead. This method iterates over {@code elements} at    * most once.    *    *<p>Note that if {@code s} is a {@code Multiset<String>}, then {@code    * ImmutableSortedMultiset.copyOf(s)} returns an {@code ImmutableSortedMultiset<String>}    * containing each of the strings in {@code s}, while {@code ImmutableSortedMultiset.of(s)}    * returns an {@code ImmutableSortedMultiset<Multiset<String>>} containing one element (the given    * multiset itself).    *    *<p>Despite the method name, this method attempts to avoid actually copying the data when it is    * safe to do so. The exact circumstances under which a copy will or will not be performed are    * undocumented and subject to change.    *    *<p>This method is not type-safe, as it may be called on elements that are not mutually    * comparable.    *    * @throws ClassCastException if the elements are not mutually comparable    * @throws NullPointerException if any of {@code elements} is null    */
+comment|/**    * Returns an immutable sorted multiset containing the given elements sorted by their natural    * ordering. To create a copy of a {@code SortedMultiset} that preserves the comparator, call    * {@link #copyOfSorted} instead. This method iterates over {@code elements} at most once.    *    *<p>Note that if {@code s} is a {@code Multiset<String>}, then {@code    * ImmutableSortedMultiset.copyOf(s)} returns an {@code ImmutableSortedMultiset<String>}    * containing each of the strings in {@code s}, while {@code ImmutableSortedMultiset.of(s)}    * returns an {@code ImmutableSortedMultiset<Multiset<String>>} containing one element (the given    * multiset itself).    *    *<p>Despite the method name, this method attempts to avoid actually copying the data when it is    * safe to do so. The exact circumstances under which a copy will or will not be performed are    * undocumented and subject to change.    *    *<p>This method is not type-safe, as it may be called on elements that are not mutually    * comparable.    *    * @throws ClassCastException if the elements are not mutually comparable    * @throws NullPointerException if any of {@code elements} is null    */
 end_comment
 
 begin_function
@@ -1310,7 +1310,7 @@ block|}
 end_function
 
 begin_comment
-comment|/**    * Returns an immutable sorted multiset containing the elements of a sorted multiset, sorted by    * the same {@code Comparator}. That behavior differs from {@link #copyOf(Iterable)}, which    * always uses the natural ordering of the elements.    *    *<p>Despite the method name, this method attempts to avoid actually copying the data when it is    * safe to do so. The exact circumstances under which a copy will or will not be performed are    * undocumented and subject to change.    *    *<p>This method is safe to use even when {@code sortedMultiset} is a synchronized or concurrent    * collection that is currently being modified by another thread.    *    * @throws NullPointerException if {@code sortedMultiset} or any of its elements is null    */
+comment|/**    * Returns an immutable sorted multiset containing the elements of a sorted multiset, sorted by    * the same {@code Comparator}. That behavior differs from {@link #copyOf(Iterable)}, which always    * uses the natural ordering of the elements.    *    *<p>Despite the method name, this method attempts to avoid actually copying the data when it is    * safe to do so. The exact circumstances under which a copy will or will not be performed are    * undocumented and subject to change.    *    *<p>This method is safe to use even when {@code sortedMultiset} is a synchronized or concurrent    * collection that is currently being modified by another thread.    *    * @throws NullPointerException if {@code sortedMultiset} or any of its elements is null    */
 end_comment
 
 begin_function
@@ -1631,9 +1631,9 @@ function_decl|;
 end_function_decl
 
 begin_decl_stmt
+DECL|field|descendingMultiset
 annotation|@
 name|LazyInit
-DECL|field|descendingMultiset
 specifier|transient
 name|ImmutableSortedMultiset
 argument_list|<
@@ -1872,7 +1872,7 @@ function_decl|;
 end_function_decl
 
 begin_comment
-comment|/**    * Returns a builder that creates immutable sorted multisets with an explicit comparator. If the    * comparator has a more general type than the set being generated, such as creating a {@code    * SortedMultiset<Integer>} with a {@code Comparator<Number>}, use the {@link Builder}    * constructor instead.    *    * @throws NullPointerException if {@code comparator} is null    */
+comment|/**    * Returns a builder that creates immutable sorted multisets with an explicit comparator. If the    * comparator has a more general type than the set being generated, such as creating a {@code    * SortedMultiset<Integer>} with a {@code Comparator<Number>}, use the {@link Builder} constructor    * instead.    *    * @throws NullPointerException if {@code comparator} is null    */
 end_comment
 
 begin_function
@@ -1990,7 +1990,7 @@ block|}
 end_function
 
 begin_comment
-comment|/**    * A builder for creating immutable multiset instances, especially {@code public static final}    * multisets ("constant multisets"). Example:    *    *<pre> {@code    *    *   public static final ImmutableSortedMultiset<Bean> BEANS =    *       new ImmutableSortedMultiset.Builder<Bean>(colorComparator())    *           .addCopies(Bean.COCOA, 4)    *           .addCopies(Bean.GARDEN, 6)    *           .addCopies(Bean.RED, 8)    *           .addCopies(Bean.BLACK_EYED, 10)    *           .build();}</pre>    *    *<p>Builder instances can be reused; it is safe to call {@link #build} multiple times to build    * multiple multisets in series.    *    * @since 12.0    */
+comment|/**    * A builder for creating immutable multiset instances, especially {@code public static final}    * multisets ("constant multisets"). Example:    *    *<pre>{@code    * public static final ImmutableSortedMultiset<Bean> BEANS =    *     new ImmutableSortedMultiset.Builder<Bean>(colorComparator())    *         .addCopies(Bean.COCOA, 4)    *         .addCopies(Bean.GARDEN, 6)    *         .addCopies(Bean.RED, 8)    *         .addCopies(Bean.BLACK_EYED, 10)    *         .build();    * }</pre>    *    *<p>Builder instances can be reused; it is safe to call {@link #build} multiple times to build    * multiple multisets in series.    *    * @since 12.0    */
 end_comment
 
 begin_class
@@ -2010,7 +2010,7 @@ argument_list|<
 name|E
 argument_list|>
 block|{
-comment|/**      * Creates a new builder. The returned builder is equivalent to the builder generated by      * {@link ImmutableSortedMultiset#orderedBy(Comparator)}.      */
+comment|/**      * Creates a new builder. The returned builder is equivalent to the builder generated by {@link      * ImmutableSortedMultiset#orderedBy(Comparator)}.      */
 DECL|method|Builder (Comparator<? super E> comparator)
 specifier|public
 name|Builder
@@ -2069,7 +2069,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**      * Adds a number of occurrences of an element to this {@code ImmutableSortedMultiset}.      *      * @param element the element to add      * @param occurrences the number of occurrences of the element to add. May be zero, in which      *        case no change will be made.      * @return this {@code Builder} object      * @throws NullPointerException if {@code element} is null      * @throws IllegalArgumentException if {@code occurrences} is negative, or if this operation      *         would result in more than {@link Integer#MAX_VALUE} occurrences of the element      */
+comment|/**      * Adds a number of occurrences of an element to this {@code ImmutableSortedMultiset}.      *      * @param element the element to add      * @param occurrences the number of occurrences of the element to add. May be zero, in which      *     case no change will be made.      * @return this {@code Builder} object      * @throws NullPointerException if {@code element} is null      * @throws IllegalArgumentException if {@code occurrences} is negative, or if this operation      *     would result in more than {@link Integer#MAX_VALUE} occurrences of the element      */
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@

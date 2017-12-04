@@ -42,7 +42,7 @@ specifier|public
 enum|enum
 name|BoundType
 block|{
-comment|/**    * The endpoint value<i>is not</i> considered part of the set ("exclusive").    */
+comment|/** The endpoint value<i>is not</i> considered part of the set ("exclusive"). */
 DECL|enumConstant|OPEN
 name|OPEN
 argument_list|(
@@ -74,7 +74,7 @@ operator|=
 name|inclusive
 expr_stmt|;
 block|}
-comment|/**    * Returns the bound type corresponding to a boolean value for inclusivity.    */
+comment|/** Returns the bound type corresponding to a boolean value for inclusivity. */
 DECL|method|forBoolean (boolean inclusive)
 specifier|static
 name|BoundType

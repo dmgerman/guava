@@ -341,7 +341,7 @@ specifier|static
 class|class
 name|GoodEqualsFactory
 block|{
-DECL|method|good (String a, int b, @SuppressWarnings(R) OneConstantEnum oneConstantOnly, @SuppressWarnings(R) @Nullable NoConstantEnum noConstant)
+DECL|method|good ( String a, int b, @SuppressWarnings(R) OneConstantEnum oneConstantOnly, @SuppressWarnings(R) @Nullable NoConstantEnum noConstant)
 specifier|public
 specifier|static
 name|Object
@@ -1247,9 +1247,9 @@ specifier|static
 class|class
 name|FactoryThatReturnsNullAndAnnotated
 block|{
-DECL|method|bad ()
 annotation|@
 name|Nullable
+DECL|method|bad ()
 specifier|public
 specifier|static
 name|Object
@@ -1449,7 +1449,7 @@ parameter_list|(
 name|ParameterHasNoDistinctValueException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testGoodReferentialEqualityComparison ()
 specifier|public
@@ -1682,7 +1682,7 @@ parameter_list|(
 name|ParameterNotInstantiableException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testNoDistinctValueForEqualsTest ()
 specifier|public
@@ -1714,7 +1714,7 @@ parameter_list|(
 name|ParameterHasNoDistinctValueException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testConstructorThrowsForEqualsTest ()
 specifier|public
@@ -1746,7 +1746,7 @@ parameter_list|(
 name|InvocationTargetException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testFactoryMethodReturnsNullForEqualsTest ()
 specifier|public
@@ -1778,7 +1778,7 @@ parameter_list|(
 name|FactoryMethodReturnsNullException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testFactoryMethodReturnsNullButNotAnnotatedInEqualsTest ()
 specifier|public
@@ -2193,7 +2193,7 @@ parameter_list|(
 name|FactoryMethodReturnsNullException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testInstantiate_factoryMethodAcceptsNull ()
 specifier|public
@@ -2486,7 +2486,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testInstantiate_setDistinctValues ()
 specifier|public
@@ -2573,7 +2573,7 @@ parameter_list|(
 name|InvocationTargetException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testInstantiate_factoryMethodThrows ()
 specifier|public
@@ -2603,7 +2603,7 @@ parameter_list|(
 name|InvocationTargetException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testInstantiate_constructorParameterNotInstantiable ()
 specifier|public
@@ -2633,7 +2633,7 @@ parameter_list|(
 name|ParameterNotInstantiableException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testInstantiate_factoryMethodParameterNotInstantiable ()
 specifier|public
@@ -2663,7 +2663,7 @@ parameter_list|(
 name|ParameterNotInstantiableException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testInstantiate_instantiableFactoryMethodChosen ()
 specifier|public
@@ -2795,9 +2795,9 @@ operator|=
 name|i
 expr_stmt|;
 block|}
-DECL|method|equals (@ullable Object obj)
 annotation|@
 name|Override
+DECL|method|equals (@ullable Object obj)
 specifier|public
 name|boolean
 name|equals
@@ -2841,9 +2841,9 @@ literal|false
 return|;
 block|}
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -2999,7 +2999,7 @@ parameter_list|(
 name|ParameterNotInstantiableException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|class|Wrapper
 specifier|private
@@ -3031,9 +3031,9 @@ name|wrapped
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|equals (@ullable Object obj)
 annotation|@
 name|Override
+DECL|method|equals (@ullable Object obj)
 specifier|public
 name|boolean
 name|equals
@@ -3080,9 +3080,9 @@ return|return
 literal|false
 return|;
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -3095,9 +3095,9 @@ name|hashCode
 argument_list|()
 return|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString
@@ -3337,9 +3337,9 @@ name|SuppressWarnings
 argument_list|(
 literal|"unused"
 argument_list|)
-DECL|method|createMayReturnNull (int a, int b)
 annotation|@
 name|Nullable
+DECL|method|createMayReturnNull (int a, int b)
 specifier|public
 specifier|static
 name|GoodEquals
@@ -3379,9 +3379,9 @@ name|b
 argument_list|)
 return|;
 block|}
-DECL|method|equals (@ullable Object obj)
 annotation|@
 name|Override
+DECL|method|equals (@ullable Object obj)
 specifier|public
 name|boolean
 name|equals
@@ -3431,9 +3431,9 @@ literal|false
 return|;
 block|}
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -3478,9 +3478,9 @@ name|BadEquals
 argument_list|()
 return|;
 block|}
-DECL|method|equals (@ullable Object obj)
 annotation|@
 name|Override
+DECL|method|equals (@ullable Object obj)
 specifier|public
 name|boolean
 name|equals
@@ -3497,9 +3497,9 @@ operator|instanceof
 name|BadEquals
 return|;
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -3539,9 +3539,9 @@ name|i
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -3627,9 +3627,9 @@ name|i
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -3715,9 +3715,9 @@ name|i
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -3803,9 +3803,9 @@ name|i
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -3891,9 +3891,9 @@ name|i
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -3979,9 +3979,9 @@ name|i
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -4067,9 +4067,9 @@ name|i
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -4082,9 +4082,9 @@ name|hashCode
 argument_list|()
 return|;
 block|}
-DECL|method|equals (Object obj)
 annotation|@
 name|Override
+DECL|method|equals (Object obj)
 specifier|public
 name|boolean
 name|equals
@@ -4150,9 +4150,9 @@ name|i
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -4165,9 +4165,9 @@ name|hashCode
 argument_list|()
 return|;
 block|}
-DECL|method|equals (Object obj)
 annotation|@
 name|Override
+DECL|method|equals (Object obj)
 specifier|public
 name|boolean
 name|equals
@@ -4233,9 +4233,9 @@ name|s
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -4248,9 +4248,9 @@ name|hashCode
 argument_list|()
 return|;
 block|}
-DECL|method|equals (Object obj)
 annotation|@
 name|Override
+DECL|method|equals (Object obj)
 specifier|public
 name|boolean
 name|equals
@@ -4316,9 +4316,9 @@ name|s
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -4331,9 +4331,9 @@ name|hashCode
 argument_list|()
 return|;
 block|}
-DECL|method|equals (Object obj)
 annotation|@
 name|Override
+DECL|method|equals (Object obj)
 specifier|public
 name|boolean
 name|equals
@@ -4399,9 +4399,9 @@ name|s
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -4414,9 +4414,9 @@ name|hashCode
 argument_list|()
 return|;
 block|}
-DECL|method|equals (Object obj)
 annotation|@
 name|Override
+DECL|method|equals (Object obj)
 specifier|public
 name|boolean
 name|equals
@@ -4488,9 +4488,9 @@ name|s
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -4505,9 +4505,9 @@ name|s
 argument_list|)
 return|;
 block|}
-DECL|method|equals (Object obj)
 annotation|@
 name|Override
+DECL|method|equals (Object obj)
 specifier|public
 name|boolean
 name|equals
@@ -4623,9 +4623,9 @@ name|s
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -4638,9 +4638,9 @@ name|hashCode
 argument_list|()
 return|;
 block|}
-DECL|method|equals (Object obj)
 annotation|@
 name|Override
+DECL|method|equals (Object obj)
 specifier|public
 name|boolean
 name|equals
@@ -4706,9 +4706,9 @@ name|s
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -4721,9 +4721,9 @@ name|hashCode
 argument_list|()
 return|;
 block|}
-DECL|method|equals (Object obj)
 annotation|@
 name|Override
+DECL|method|equals (Object obj)
 specifier|public
 name|boolean
 name|equals
@@ -4812,9 +4812,9 @@ name|BadEqualsWithParameterizedType
 argument_list|()
 return|;
 block|}
-DECL|method|equals (@ullable Object obj)
 annotation|@
 name|Override
+DECL|method|equals (@ullable Object obj)
 specifier|public
 name|boolean
 name|equals
@@ -4831,9 +4831,9 @@ operator|instanceof
 name|BadEqualsWithParameterizedType
 return|;
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -4939,7 +4939,7 @@ name|SuppressWarnings
 argument_list|(
 literal|"unused"
 argument_list|)
-comment|//reflected
+comment|// reflected
 DECL|method|nullableOnly (@ullable String s)
 name|void
 name|nullableOnly
@@ -4961,7 +4961,7 @@ name|SuppressWarnings
 argument_list|(
 literal|"unused"
 argument_list|)
-comment|//reflected
+comment|// reflected
 DECL|method|primitiveAndNullable (@ullable String s, int i)
 name|void
 name|primitiveAndNullable
@@ -5007,9 +5007,9 @@ specifier|private
 name|FactoryMethodReturnsNullAndAnnotated
 parameter_list|()
 block|{}
-DECL|method|returnsNull ()
 annotation|@
 name|Nullable
+DECL|method|returnsNull ()
 specifier|public
 specifier|static
 name|FactoryMethodReturnsNullAndAnnotated
@@ -5204,7 +5204,7 @@ name|NotInstantiable
 argument_list|>
 name|m
 decl_stmt|;
-DECL|method|ConstructorParameterMapOfNotInstantiable ( Map<NotInstantiable, NotInstantiable> m)
+DECL|method|ConstructorParameterMapOfNotInstantiable (Map<NotInstantiable, NotInstantiable> m)
 specifier|public
 name|ConstructorParameterMapOfNotInstantiable
 parameter_list|(
@@ -5227,9 +5227,9 @@ name|m
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|equals (@ullable Object obj)
 annotation|@
 name|Override
+DECL|method|equals (@ullable Object obj)
 specifier|public
 name|boolean
 name|equals
@@ -5270,9 +5270,9 @@ literal|false
 return|;
 block|}
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -5309,9 +5309,9 @@ name|x
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|equals (@ullable Object obj)
 annotation|@
 name|Override
+DECL|method|equals (@ullable Object obj)
 specifier|public
 name|boolean
 name|equals
@@ -5328,9 +5328,9 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -5361,9 +5361,9 @@ name|Singleton
 name|s
 parameter_list|)
 block|{}
-DECL|method|equals (Object obj)
 annotation|@
 name|Override
+DECL|method|equals (Object obj)
 specifier|public
 name|boolean
 name|equals
@@ -5378,9 +5378,9 @@ operator|instanceof
 name|ConstructorParameterSingleValue
 return|;
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -5540,8 +5540,8 @@ name|AnInterface
 block|{}
 DECL|class|AnAbstractClass
 specifier|private
-specifier|static
 specifier|abstract
+specifier|static
 class|class
 name|AnAbstractClass
 block|{

@@ -342,9 +342,9 @@ name|key
 argument_list|)
 return|;
 block|}
-DECL|method|createEntrySet ()
 annotation|@
 name|Override
+DECL|method|createEntrySet ()
 name|ImmutableSet
 argument_list|<
 name|Entry
@@ -522,8 +522,8 @@ end_empty_stmt
 
 begin_function
 unit|}    @
-DECL|method|createKeySet ()
 name|Override
+DECL|method|createKeySet ()
 name|ImmutableSet
 argument_list|<
 name|K
@@ -546,9 +546,9 @@ block|}
 end_function
 
 begin_function
-DECL|method|createValues ()
 annotation|@
 name|Override
+DECL|method|createValues ()
 name|ImmutableCollection
 argument_list|<
 name|V
@@ -571,9 +571,9 @@ block|}
 end_function
 
 begin_function
-DECL|method|size ()
 annotation|@
 name|Override
+DECL|method|size ()
 specifier|public
 name|int
 name|size
@@ -589,9 +589,9 @@ block|}
 end_function
 
 begin_function
-DECL|method|equals (@ullable Object object)
 annotation|@
 name|Override
+DECL|method|equals (@ullable Object object)
 specifier|public
 name|boolean
 name|equals
@@ -614,9 +614,9 @@ block|}
 end_function
 
 begin_function
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -632,9 +632,9 @@ block|}
 end_function
 
 begin_function
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString

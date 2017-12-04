@@ -302,9 +302,9 @@ block|{
 DECL|enumConstant|INSTANCE
 name|INSTANCE
 block|;
-DECL|method|apply (String input)
 annotation|@
 name|Override
+DECL|method|apply (String input)
 specifier|public
 name|Integer
 name|apply
@@ -544,9 +544,9 @@ operator|=
 name|value
 expr_stmt|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString

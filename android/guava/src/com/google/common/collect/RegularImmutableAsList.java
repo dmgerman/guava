@@ -45,7 +45,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An {@link ImmutableAsList} implementation specialized for when the delegate collection is  * already backed by an {@code ImmutableList} or array.  *  * @author Louis Wasserman  */
+comment|/**  * An {@link ImmutableAsList} implementation specialized for when the delegate collection is already  * backed by an {@code ImmutableList} or array.  *  * @author Louis Wasserman  */
 end_comment
 
 begin_class

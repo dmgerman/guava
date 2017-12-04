@@ -425,18 +425,18 @@ enum|enum
 name|Color
 block|{
 DECL|enumConstant|BLUE
-DECL|enumConstant|RED
-DECL|enumConstant|YELLOW
-DECL|enumConstant|GREEN
-DECL|enumConstant|WHITE
 name|BLUE
 block|,
+DECL|enumConstant|RED
 name|RED
 block|,
+DECL|enumConstant|YELLOW
 name|YELLOW
 block|,
+DECL|enumConstant|GREEN
 name|GREEN
 block|,
+DECL|enumConstant|WHITE
 name|WHITE
 block|}
 DECL|enum|Gender
@@ -445,9 +445,9 @@ enum|enum
 name|Gender
 block|{
 DECL|enumConstant|MALE
-DECL|enumConstant|FEMALE
 name|MALE
 block|,
+DECL|enumConstant|FEMALE
 name|FEMALE
 block|}
 DECL|method|testClassCreate ()
@@ -655,7 +655,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testCreateEmptyWithClass ()
 specifier|public

@@ -135,7 +135,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author Charles Fry  */
+comment|/** @author Charles Fry */
 end_comment
 
 begin_class
@@ -220,9 +220,9 @@ operator|=
 name|delayLatch
 expr_stmt|;
 block|}
-DECL|method|apply (T key)
 annotation|@
 name|Override
+DECL|method|apply (T key)
 specifier|public
 name|T
 name|apply

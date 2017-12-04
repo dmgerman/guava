@@ -2066,7 +2066,7 @@ expr_stmt|;
 block|}
 block|}
 comment|/* ---------------- Local utilities -------------- */
-comment|/**    * Most of the tests in this class run against every one of these caches.    */
+comment|/** Most of the tests in this class run against every one of these caches. */
 DECL|method|caches ()
 specifier|private
 name|Iterable

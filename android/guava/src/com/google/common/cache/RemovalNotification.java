@@ -99,7 +99,7 @@ specifier|final
 name|RemovalCause
 name|cause
 decl_stmt|;
-comment|/**    * Creates a new {@code RemovalNotification} for the given {@code key}/{@code value} pair, with    * the given {@code cause} for the removal. The {@code key} and/or {@code value} may be    * {@code null} if they were already garbage collected.    *    * @since 19.0    */
+comment|/**    * Creates a new {@code RemovalNotification} for the given {@code key}/{@code value} pair, with    * the given {@code cause} for the removal. The {@code key} and/or {@code value} may be {@code    * null} if they were already garbage collected.    *    * @since 19.0    */
 DECL|method|create ( @ullable K key, @Nullable V value, RemovalCause cause)
 specifier|public
 specifier|static
@@ -177,7 +177,7 @@ name|cause
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Returns the cause for which the entry was removed.    */
+comment|/** Returns the cause for which the entry was removed. */
 DECL|method|getCause ()
 specifier|public
 name|RemovalCause

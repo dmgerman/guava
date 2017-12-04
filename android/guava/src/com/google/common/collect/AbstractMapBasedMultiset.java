@@ -764,7 +764,7 @@ argument_list|)
 return|;
 block|}
 comment|// Optional Operations - Modification Operations
-comment|/**    * {@inheritDoc}    *    * @throws IllegalArgumentException if the call would result in more than    *     {@link Integer#MAX_VALUE} occurrences of {@code element} in this    *     multiset.    */
+comment|/**    * {@inheritDoc}    *    * @throws IllegalArgumentException if the call would result in more than {@link    *     Integer#MAX_VALUE} occurrences of {@code element} in this multiset.    */
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@

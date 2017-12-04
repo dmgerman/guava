@@ -311,7 +311,7 @@ name|UnsafeByteArray
 operator|)
 return|;
 block|}
-comment|/**    * Common interface for retrieving a 64-bit long from a little-endian byte array.    *    * This abstraction allows us to use single-instruction load and put when available, or fall back    * on the slower approach of using Longs.fromBytes(byte...).    */
+comment|/**    * Common interface for retrieving a 64-bit long from a little-endian byte array.    *    *<p>This abstraction allows us to use single-instruction load and put when available, or fall    * back on the slower approach of using Longs.fromBytes(byte...).    */
 DECL|interface|LittleEndianBytes
 specifier|private
 interface|interface
@@ -753,7 +753,7 @@ throw|;
 block|}
 block|}
 block|}
-comment|/**    * Fallback implementation for when Unsafe is not available in our current environment.    */
+comment|/** Fallback implementation for when Unsafe is not available in our current environment. */
 DECL|enum|JavaLittleEndianBytes
 specifier|private
 enum|enum

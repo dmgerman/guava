@@ -131,9 +131,9 @@ init|=
 operator|-
 literal|1.2e55
 decl_stmt|;
-DECL|method|hashString_2 (int reps)
 annotation|@
 name|Benchmark
+DECL|method|hashString_2 (int reps)
 name|int
 name|hashString_2
 parameter_list|(
@@ -177,9 +177,9 @@ return|return
 name|dummy
 return|;
 block|}
-DECL|method|hashString_3 (int reps)
 annotation|@
 name|Benchmark
+DECL|method|hashString_3 (int reps)
 name|int
 name|hashString_3
 parameter_list|(
@@ -225,9 +225,9 @@ return|return
 name|dummy
 return|;
 block|}
-DECL|method|hashString_4 (int reps)
 annotation|@
 name|Benchmark
+DECL|method|hashString_4 (int reps)
 name|int
 name|hashString_4
 parameter_list|(
@@ -275,9 +275,9 @@ return|return
 name|dummy
 return|;
 block|}
-DECL|method|hashString_5 (int reps)
 annotation|@
 name|Benchmark
+DECL|method|hashString_5 (int reps)
 name|int
 name|hashString_5
 parameter_list|(
@@ -327,9 +327,9 @@ return|return
 name|dummy
 return|;
 block|}
-DECL|method|hashMixed_5 (int reps)
 annotation|@
 name|Benchmark
+DECL|method|hashMixed_5 (int reps)
 name|int
 name|hashMixed_5
 parameter_list|(

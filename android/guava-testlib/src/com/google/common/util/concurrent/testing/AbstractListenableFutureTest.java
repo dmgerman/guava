@@ -171,7 +171,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Abstract test case parent for anything implementing {@link ListenableFuture}.  * Tests the two get methods and the addListener method.  *  * @author Sven Mawson  * @since 10.0  */
+comment|/**  * Abstract test case parent for anything implementing {@link ListenableFuture}. Tests the two get  * methods and the addListener method.  *  * @author Sven Mawson  * @since 10.0  */
 end_comment
 
 begin_class
@@ -250,7 +250,7 @@ name|countDown
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * Constructs a listenable future with a value available after the latch    * has counted down.    */
+comment|/** Constructs a listenable future with a value available after the latch has counted down. */
 DECL|method|createListenableFuture ( V value, Exception except, CountDownLatch waitOn)
 specifier|protected
 specifier|abstract
@@ -273,7 +273,7 @@ name|CountDownLatch
 name|waitOn
 parameter_list|)
 function_decl|;
-comment|/**    * Tests that the {@link Future#get()} method blocks until a value is    * available.    */
+comment|/** Tests that the {@link Future#get()} method blocks until a value is available. */
 DECL|method|testGetBlocksUntilValueAvailable ()
 specifier|public
 name|void
@@ -434,7 +434,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Tests that the {@link Future#get(long, TimeUnit)} method times out    * correctly.    */
+comment|/** Tests that the {@link Future#get(long, TimeUnit)} method times out correctly. */
 DECL|method|testTimeoutOnGetWorksCorrectly ()
 specifier|public
 name|void
@@ -480,7 +480,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Tests that a canceled future throws a cancellation exception.    *    * This method checks the cancel, isCancelled, and isDone methods.    */
+comment|/**    * Tests that a canceled future throws a cancellation exception.    *    *<p>This method checks the cancel, isCancelled, and isDone methods.    */
 DECL|method|testCanceledFutureThrowsCancellation ()
 specifier|public
 name|void
@@ -808,7 +808,7 @@ name|MILLISECONDS
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Tests that all listeners complete, even if they were added before or after    * the future was finishing.  Also acts as a concurrency test to make sure the    * locking is done correctly when a future is finishing so that no listeners    * can be lost.    */
+comment|/**    * Tests that all listeners complete, even if they were added before or after the future was    * finishing. Also acts as a concurrency test to make sure the locking is done correctly when a    * future is finishing so that no listeners can be lost.    */
 DECL|method|testAllListenersCompleteSuccessfully ()
 specifier|public
 name|void

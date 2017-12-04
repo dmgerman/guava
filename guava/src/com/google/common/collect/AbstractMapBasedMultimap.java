@@ -313,7 +313,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Basic implementation of the {@link Multimap} interface. This class represents  * a multimap as a map that associates each key with a collection of values. All  * methods of {@link Multimap} are supported, including those specified as  * optional in the interface.  *  *<p>To implement a multimap, a subclass must define the method {@link  * #createCollection()}, which creates an empty collection of values for a key.  *  *<p>The multimap constructor takes a map that has a single entry for each  * distinct key. When you insert a key-value pair with a key that isn't already  * in the multimap, {@code AbstractMapBasedMultimap} calls {@link #createCollection()}  * to create the collection of values for that key. The subclass should not call  * {@link #createCollection()} directly, and a new instance should be created  * every time the method is called.  *  *<p>For example, the subclass could pass a {@link java.util.TreeMap} during  * construction, and {@link #createCollection()} could return a {@link  * java.util.TreeSet}, in which case the multimap's iterators would propagate  * through the keys and values in sorted order.  *  *<p>Keys and values may be null, as long as the underlying collection classes  * support null elements.  *  *<p>The collections created by {@link #createCollection()} may or may not  * allow duplicates. If the collection, such as a {@link Set}, does not support  * duplicates, an added key-value pair will replace an existing pair with the  * same key and value, if such a pair is present. With collections like {@link  * List} that allow duplicates, the collection will keep the existing key-value  * pairs while adding a new pair.  *  *<p>This class is not threadsafe when any concurrent operations update the  * multimap, even if the underlying map and {@link #createCollection()} method  * return threadsafe classes. Concurrent read operations will work correctly. To  * allow concurrent update operations, wrap your multimap with a call to {@link  * Multimaps#synchronizedMultimap}.  *  *<p>For serialization to work, the subclass must specify explicit  * {@code readObject} and {@code writeObject} methods.  *  * @author Jared Levy  * @author Louis Wasserman  */
+comment|/**  * Basic implementation of the {@link Multimap} interface. This class represents a multimap as a map  * that associates each key with a collection of values. All methods of {@link Multimap} are  * supported, including those specified as optional in the interface.  *  *<p>To implement a multimap, a subclass must define the method {@link #createCollection()}, which  * creates an empty collection of values for a key.  *  *<p>The multimap constructor takes a map that has a single entry for each distinct key. When you  * insert a key-value pair with a key that isn't already in the multimap, {@code  * AbstractMapBasedMultimap} calls {@link #createCollection()} to create the collection of values  * for that key. The subclass should not call {@link #createCollection()} directly, and a new  * instance should be created every time the method is called.  *  *<p>For example, the subclass could pass a {@link java.util.TreeMap} during construction, and  * {@link #createCollection()} could return a {@link java.util.TreeSet}, in which case the  * multimap's iterators would propagate through the keys and values in sorted order.  *  *<p>Keys and values may be null, as long as the underlying collection classes support null  * elements.  *  *<p>The collections created by {@link #createCollection()} may or may not allow duplicates. If the  * collection, such as a {@link Set}, does not support duplicates, an added key-value pair will  * replace an existing pair with the same key and value, if such a pair is present. With collections  * like {@link List} that allow duplicates, the collection will keep the existing key-value pairs  * while adding a new pair.  *  *<p>This class is not threadsafe when any concurrent operations update the multimap, even if the  * underlying map and {@link #createCollection()} method return threadsafe classes. Concurrent read  * operations will work correctly. To allow concurrent update operations, wrap your multimap with a  * call to {@link Multimaps#synchronizedMultimap}.  *  *<p>For serialization to work, the subclass must specify explicit {@code readObject} and {@code  * writeObject} methods.  *  * @author Jared Levy  * @author Louis Wasserman  */
 end_comment
 
 begin_class
@@ -359,7 +359,7 @@ specifier|transient
 name|int
 name|totalSize
 decl_stmt|;
-comment|/**    * Creates a new multimap that uses the provided map.    *    * @param map place to store the mapping from each key to its corresponding    *     values    * @throws IllegalArgumentException if {@code map} is not empty    */
+comment|/**    * Creates a new multimap that uses the provided map.    *    * @param map place to store the mapping from each key to its corresponding values    * @throws IllegalArgumentException if {@code map} is not empty    */
 DECL|method|AbstractMapBasedMultimap (Map<K, Collection<V>> map)
 specifier|protected
 name|AbstractMapBasedMultimap
@@ -468,7 +468,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Creates the collection of values for a single key.    *    *<p>Collections with weak, soft, or phantom references are not supported.    * Each call to {@code createCollection} should create a new instance.    *    *<p>The returned collection class determines whether duplicate key-value    * pairs are allowed.    *    * @return an empty collection of values    */
+comment|/**    * Creates the collection of values for a single key.    *    *<p>Collections with weak, soft, or phantom references are not supported. Each call to {@code    * createCollection} should create a new instance.    *    *<p>The returned collection class determines whether duplicate key-value pairs are allowed.    *    * @return an empty collection of values    */
 DECL|method|createCollection ()
 specifier|abstract
 name|Collection
@@ -478,7 +478,7 @@ argument_list|>
 name|createCollection
 parameter_list|()
 function_decl|;
-comment|/**    * Creates the collection of values for an explicitly provided key. By    * default, it simply calls {@link #createCollection()}, which is the correct    * behavior for most implementations. The {@link LinkedHashMultimap} class    * overrides it.    *    * @param key key to associate with values in the collection    * @return an empty collection of values    */
+comment|/**    * Creates the collection of values for an explicitly provided key. By default, it simply calls    * {@link #createCollection()}, which is the correct behavior for most implementations. The {@link    * LinkedHashMultimap} class overrides it.    *    * @param key key to associate with values in the collection    * @return an empty collection of values    */
 DECL|method|createCollection (@ullable K key)
 name|Collection
 argument_list|<
@@ -1132,7 +1132,7 @@ name|collection
 argument_list|)
 return|;
 block|}
-comment|/**    * Generates a decorated collection that remains consistent with the values in    * the multimap for the provided key. Changes to the multimap may alter the    * returned collection, and vice versa.    */
+comment|/**    * Generates a decorated collection that remains consistent with the values in the multimap for    * the provided key. Changes to the multimap may alter the returned collection, and vice versa.    */
 DECL|method|wrapCollection (@ullable K key, Collection<V> collection)
 name|Collection
 argument_list|<
@@ -1320,7 +1320,7 @@ name|ancestor
 argument_list|)
 return|;
 block|}
-comment|/**    * Collection decorator that stays in sync with the multimap values for a key.    * There are two kinds of wrapped collections: full and subcollections. Both    * have a delegate pointing to the underlying collection class.    *    *<p>Full collections, identified by a null ancestor field, contain all    * multimap values for a given key. Its delegate is a value in {@link    * AbstractMapBasedMultimap#map} whenever the delegate is non-empty. The {@code    * refreshIfEmpty}, {@code removeIfEmpty}, and {@code addToMap} methods ensure    * that the {@code WrappedCollection} and map remain consistent.    *    *<p>A subcollection, such as a sublist, contains some of the values for a    * given key. Its ancestor field points to the full wrapped collection with    * all values for the key. The subcollection {@code refreshIfEmpty}, {@code    * removeIfEmpty}, and {@code addToMap} methods call the corresponding methods    * of the full wrapped collection.    */
+comment|/**    * Collection decorator that stays in sync with the multimap values for a key. There are two kinds    * of wrapped collections: full and subcollections. Both have a delegate pointing to the    * underlying collection class.    *    *<p>Full collections, identified by a null ancestor field, contain all multimap values for a    * given key. Its delegate is a value in {@link AbstractMapBasedMultimap#map} whenever the    * delegate is non-empty. The {@code refreshIfEmpty}, {@code removeIfEmpty}, and {@code addToMap}    * methods ensure that the {@code WrappedCollection} and map remain consistent.    *    *<p>A subcollection, such as a sublist, contains some of the values for a given key. Its    * ancestor field points to the full wrapped collection with all values for the key. The    * subcollection {@code refreshIfEmpty}, {@code removeIfEmpty}, and {@code addToMap} methods call    * the corresponding methods of the full wrapped collection.    */
 annotation|@
 name|WeakOuter
 DECL|class|WrappedCollection
@@ -1414,7 +1414,7 @@ name|getDelegate
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**      * If the delegate collection is empty, but the multimap has values for the      * key, replace the delegate with the new collection for the key.      *      *<p>For a subcollection, refresh its ancestor and validate that the      * ancestor delegate hasn't changed.      */
+comment|/**      * If the delegate collection is empty, but the multimap has values for the key, replace the      * delegate with the new collection for the key.      *      *<p>For a subcollection, refresh its ancestor and validate that the ancestor delegate hasn't      * changed.      */
 DECL|method|refreshIfEmpty ()
 name|void
 name|refreshIfEmpty
@@ -1485,7 +1485,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**      * If collection is empty, remove it from {@code AbstractMapBasedMultimap.this.map}.      * For subcollections, check whether the ancestor collection is empty.      */
+comment|/**      * If collection is empty, remove it from {@code AbstractMapBasedMultimap.this.map}. For      * subcollections, check whether the ancestor collection is empty.      */
 DECL|method|removeIfEmpty ()
 name|void
 name|removeIfEmpty
@@ -1531,7 +1531,7 @@ return|return
 name|key
 return|;
 block|}
-comment|/**      * Add the delegate to the map. Other {@code WrappedCollection} methods      * should call this method after adding elements to a previously empty      * collection.      *      *<p>Subcollection add the ancestor's delegate instead.      */
+comment|/**      * Add the delegate to the map. Other {@code WrappedCollection} methods should call this method      * after adding elements to a previously empty collection.      *      *<p>Subcollection add the ancestor's delegate instead.      */
 DECL|method|addToMap ()
 name|void
 name|addToMap
@@ -1763,7 +1763,7 @@ operator|=
 name|delegateIterator
 expr_stmt|;
 block|}
-comment|/**        * If the delegate changed since the iterator was created, the iterator is        * no longer valid.        */
+comment|/**        * If the delegate changed since the iterator was created, the iterator is no longer valid.        */
 DECL|method|validateIterator ()
 name|void
 name|validateIterator
@@ -2438,7 +2438,7 @@ name|changed
 return|;
 block|}
 block|}
-comment|/**    * SortedSet decorator that stays in sync with the multimap values for a key.    */
+comment|/** SortedSet decorator that stays in sync with the multimap values for a key. */
 annotation|@
 name|WeakOuter
 DECL|class|WrappedSortedSet
@@ -3694,7 +3694,7 @@ block|}
 block|}
 block|}
 block|}
-comment|/**    * List decorator that stays in sync with the multimap values for a key and    * supports rapid random access.    */
+comment|/**    * List decorator that stays in sync with the multimap values for a key and supports rapid random    * access.    */
 DECL|class|RandomAccessWrappedList
 specifier|private
 class|class
@@ -4788,7 +4788,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**    * Removes all values for the provided key.    */
+comment|/** Removes all values for the provided key. */
 DECL|method|removeValuesForKey (Object key)
 specifier|private
 name|void
@@ -5048,7 +5048,7 @@ operator|--
 expr_stmt|;
 block|}
 block|}
-comment|/**    * {@inheritDoc}    *    *<p>The iterator generated by the returned collection traverses the values    * for one key, followed by the values of a second key, and so on.    */
+comment|/**    * {@inheritDoc}    *    *<p>The iterator generated by the returned collection traverses the values for one key, followed    * by the values of a second key, and so on.    */
 annotation|@
 name|Override
 DECL|method|values ()
@@ -5141,7 +5141,7 @@ argument_list|)
 return|;
 block|}
 comment|/*    * TODO(kevinb): should we copy this javadoc to each concrete class, so that    * classes like LinkedHashMultimap that need to say something different are    * still able to {@inheritDoc} all the way from Multimap?    */
-comment|/**    * {@inheritDoc}    *    *<p>The iterator generated by the returned collection traverses the values    * for one key, followed by the values of a second key, and so on.    *    *<p>Each entry is an immutable snapshot of a key-value mapping in the    * multimap, taken at the time the entry is returned by a method call to the    * collection or its iterator.    */
+comment|/**    * {@inheritDoc}    *    *<p>The iterator generated by the returned collection traverses the values for one key, followed    * by the values of a second key, and so on.    *    *<p>Each entry is an immutable snapshot of a key-value mapping in the multimap, taken at the    * time the entry is returned by a method call to the collection or its iterator.    */
 annotation|@
 name|Override
 DECL|method|entries ()
@@ -5165,7 +5165,7 @@ name|entries
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns an iterator across all key-value map entries, used by {@code    * entries().iterator()} and {@code values().iterator()}. The default    * behavior, which traverses the values for one key, the values for a second    * key, and so on, suffices for most {@code AbstractMapBasedMultimap} implementations.    *    * @return an iterator across map entries    */
+comment|/**    * Returns an iterator across all key-value map entries, used by {@code entries().iterator()} and    * {@code values().iterator()}. The default behavior, which traverses the values for one key, the    * values for a second key, and so on, suffices for most {@code AbstractMapBasedMultimap}    * implementations.    *    * @return an iterator across map entries    */
 annotation|@
 name|Override
 DECL|method|entryIterator ()
@@ -5460,7 +5460,7 @@ name|V
 argument_list|>
 argument_list|>
 block|{
-comment|/**      * Usually the same as map, but smaller for the headMap(), tailMap(), or      * subMap() of a SortedAsMap.      */
+comment|/**      * Usually the same as map, but smaller for the headMap(), tailMap(), or subMap() of a      * SortedAsMap.      */
 DECL|field|submap
 specifier|final
 specifier|transient

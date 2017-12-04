@@ -54,7 +54,7 @@ name|ComputationException
 extends|extends
 name|RuntimeException
 block|{
-comment|/**    * Creates a new instance with the given cause.    */
+comment|/** Creates a new instance with the given cause. */
 DECL|method|ComputationException (@ullable Throwable cause)
 specifier|public
 name|ComputationException

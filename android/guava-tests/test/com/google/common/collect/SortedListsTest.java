@@ -181,7 +181,7 @@ argument_list|,
 literal|8
 argument_list|)
 decl_stmt|;
-DECL|method|assertModelAgrees (List<Integer> list, Integer key, int answer, KeyPresentBehavior presentBehavior, KeyAbsentBehavior absentBehavior)
+DECL|method|assertModelAgrees ( List<Integer> list, Integer key, int answer, KeyPresentBehavior presentBehavior, KeyAbsentBehavior absentBehavior)
 name|void
 name|assertModelAgrees
 parameter_list|(

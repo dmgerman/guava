@@ -137,7 +137,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests for {@link Maps#transformValues} when the backing map's views  * have iterators that don't support {@code remove()}.  *  * @author Jared Levy  */
+comment|/**  * Tests for {@link Maps#transformValues} when the backing map's views have iterators that don't  * support {@code remove()}.  *  * @author Jared Levy  */
 end_comment
 
 begin_class
@@ -226,9 +226,9 @@ operator|=
 name|delegate
 expr_stmt|;
 block|}
-DECL|method|delegate ()
 annotation|@
 name|Override
+DECL|method|delegate ()
 specifier|protected
 name|Map
 argument_list|<
@@ -243,9 +243,9 @@ return|return
 name|delegate
 return|;
 block|}
-DECL|method|keySet ()
 annotation|@
 name|Override
+DECL|method|keySet ()
 specifier|public
 name|Set
 argument_list|<
@@ -357,9 +357,9 @@ block|}
 block|}
 return|;
 block|}
-DECL|method|values ()
 annotation|@
 name|Override
+DECL|method|values ()
 specifier|public
 name|Collection
 argument_list|<
@@ -471,9 +471,9 @@ block|}
 block|}
 return|;
 block|}
-DECL|method|entrySet ()
 annotation|@
 name|Override
+DECL|method|entrySet ()
 specifier|public
 name|Set
 argument_list|<
@@ -606,9 +606,9 @@ block|}
 return|;
 block|}
 block|}
-DECL|method|makeEmptyMap ()
 annotation|@
 name|Override
+DECL|method|makeEmptyMap ()
 specifier|protected
 name|Map
 argument_list|<
@@ -655,9 +655,9 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-DECL|method|makePopulatedMap ()
 annotation|@
 name|Override
+DECL|method|makePopulatedMap ()
 specifier|protected
 name|Map
 argument_list|<
@@ -731,9 +731,9 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-DECL|method|getKeyNotInPopulatedMap ()
 annotation|@
 name|Override
+DECL|method|getKeyNotInPopulatedMap ()
 specifier|protected
 name|String
 name|getKeyNotInPopulatedMap
@@ -745,9 +745,9 @@ return|return
 literal|"z"
 return|;
 block|}
-DECL|method|getValueNotInPopulatedMap ()
 annotation|@
 name|Override
+DECL|method|getValueNotInPopulatedMap ()
 specifier|protected
 name|String
 name|getValueNotInPopulatedMap
@@ -2347,9 +2347,9 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|testKeySetRemoveAllNullFromEmpty ()
 annotation|@
 name|Override
+DECL|method|testKeySetRemoveAllNullFromEmpty ()
 specifier|public
 name|void
 name|testKeySetRemoveAllNullFromEmpty
@@ -2372,9 +2372,9 @@ block|{
 comment|// GWT's HashMap.keySet().removeAll(null) doesn't throws NPE.
 block|}
 block|}
-DECL|method|testEntrySetRemoveAllNullFromEmpty ()
 annotation|@
 name|Override
+DECL|method|testEntrySetRemoveAllNullFromEmpty ()
 specifier|public
 name|void
 name|testEntrySetRemoveAllNullFromEmpty

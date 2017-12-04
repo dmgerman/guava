@@ -293,7 +293,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Static methods used to implement {@link Futures#getChecked(Future, Class)}.  */
+comment|/** Static methods used to implement {@link Futures#getChecked(Future, Class)}. */
 end_comment
 
 begin_class
@@ -345,7 +345,7 @@ name|exceptionClass
 argument_list|)
 return|;
 block|}
-comment|/**    * Implementation of {@link Futures#getChecked(Future, Class)}.    */
+comment|/** Implementation of {@link Futures#getChecked(Future, Class)}. */
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
@@ -440,7 +440,7 @@ argument_list|()
 throw|;
 block|}
 block|}
-comment|/**    * Implementation of {@link Futures#getChecked(Future, Class, long, TimeUnit)}.    */
+comment|/** Implementation of {@link Futures#getChecked(Future, Class, long, TimeUnit)}. */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|getChecked ( Future<V> future, Class<X> exceptionClass, long timeout, TimeUnit unit)
@@ -625,7 +625,7 @@ operator|.
 name|INSTANCE
 return|;
 block|}
-comment|/**    * Provides a check of whether an exception type is valid for use with    * {@link FuturesGetChecked#getChecked(Future, Class)}, possibly using caching.    *    *<p>Uses reflection to gracefully fall back to when certain implementations aren't available.    */
+comment|/**    * Provides a check of whether an exception type is valid for use with {@link    * FuturesGetChecked#getChecked(Future, Class)}, possibly using caching.    *    *<p>Uses reflection to gracefully fall back to when certain implementations aren't available.    */
 annotation|@
 name|VisibleForTesting
 DECL|class|GetCheckedTypeValidatorHolder

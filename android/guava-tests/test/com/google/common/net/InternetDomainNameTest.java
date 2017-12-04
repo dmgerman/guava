@@ -186,7 +186,7 @@ argument_list|(
 literal|"xn--jrpeland-54a.no"
 argument_list|)
 decl_stmt|;
-comment|/**    * The Greek letter delta, used in unicode testing.    */
+comment|/** The Greek letter delta, used in unicode testing. */
 DECL|field|DELTA
 specifier|private
 specifier|static
@@ -196,7 +196,7 @@ name|DELTA
 init|=
 literal|"\u0394"
 decl_stmt|;
-comment|/**    * A domain part which is valid under lenient validation, but invalid under    * strict validation.    */
+comment|/** A domain part which is valid under lenient validation, but invalid under strict validation. */
 DECL|field|LOTS_OF_DELTAS
 specifier|static
 specifier|final

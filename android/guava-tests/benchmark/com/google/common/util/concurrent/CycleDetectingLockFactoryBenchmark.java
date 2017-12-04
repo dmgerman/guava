@@ -92,7 +92,6 @@ specifier|public
 class|class
 name|CycleDetectingLockFactoryBenchmark
 block|{
-DECL|field|lockNestingDepth
 annotation|@
 name|Param
 argument_list|(
@@ -108,6 +107,7 @@ block|,
 literal|"10"
 block|}
 argument_list|)
+DECL|field|lockNestingDepth
 name|int
 name|lockNestingDepth
 decl_stmt|;
@@ -227,9 +227,9 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-DECL|method|unorderedPlainLocks (int reps)
 annotation|@
 name|Benchmark
+DECL|method|unorderedPlainLocks (int reps)
 name|void
 name|unorderedPlainLocks
 parameter_list|(
@@ -247,9 +247,9 @@ name|reps
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|unorderedCycleDetectingLocks (int reps)
 annotation|@
 name|Benchmark
+DECL|method|unorderedCycleDetectingLocks (int reps)
 name|void
 name|unorderedCycleDetectingLocks
 parameter_list|(
@@ -310,9 +310,9 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-DECL|method|orderedPlainLocks (int reps)
 annotation|@
 name|Benchmark
+DECL|method|orderedPlainLocks (int reps)
 name|void
 name|orderedPlainLocks
 parameter_list|(
@@ -328,9 +328,9 @@ name|reps
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|orderedCycleDetectingLocks (int reps)
 annotation|@
 name|Benchmark
+DECL|method|orderedCycleDetectingLocks (int reps)
 name|void
 name|orderedCycleDetectingLocks
 parameter_list|(

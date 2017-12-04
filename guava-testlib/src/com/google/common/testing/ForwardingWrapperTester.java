@@ -259,7 +259,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tester to ensure forwarding wrapper works by delegating calls to the corresponding method  * with the same parameters forwarded and return value forwarded back or exception propagated as is.  *  *<p>For example:<pre>   {@code  *   new ForwardingWrapperTester().testForwarding(Foo.class, new Function<Foo, Foo>() {  *     public Foo apply(Foo foo) {  *       return new ForwardingFoo(foo);  *     }  *   });}</pre>  *  * @author Ben Yu  * @since 14.0  */
+comment|/**  * Tester to ensure forwarding wrapper works by delegating calls to the corresponding method with  * the same parameters forwarded and return value forwarded back or exception propagated as is.  *  *<p>For example:  *  *<pre>{@code  * new ForwardingWrapperTester().testForwarding(Foo.class, new Function<Foo, Foo>() {  *   public Foo apply(Foo foo) {  *     return new ForwardingFoo(foo);  *   }  * });  * }</pre>  *  * @author Ben Yu  * @since 14.0  */
 end_comment
 
 begin_class
@@ -280,7 +280,7 @@ name|testsEquals
 init|=
 literal|false
 decl_stmt|;
-comment|/**    * Asks for {@link Object#equals} and {@link Object#hashCode} to be tested.    * That is, forwarding wrappers of equal instances should be equal.    */
+comment|/**    * Asks for {@link Object#equals} and {@link Object#hashCode} to be tested. That is, forwarding    * wrappers of equal instances should be equal.    */
 DECL|method|includingEquals ()
 specifier|public
 name|ForwardingWrapperTester
@@ -297,7 +297,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**    * Tests that the forwarding wrapper returned by {@code wrapperFunction} properly forwards    * method calls with parameters passed as is, return value returned as is, and exceptions    * propagated as is.    */
+comment|/**    * Tests that the forwarding wrapper returned by {@code wrapperFunction} properly forwards method    * calls with parameters passed as is, return value returned as is, and exceptions propagated as    * is.    */
 DECL|method|testForwarding ( Class<T> interfaceType, Function<? super T, ? extends T> wrapperFunction)
 specifier|public
 parameter_list|<
@@ -1118,9 +1118,9 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|handleInvocation (Object p, Method calledMethod, Object[] args)
 annotation|@
 name|Override
+DECL|method|handleInvocation (Object p, Method calledMethod, Object[] args)
 specifier|protected
 name|Object
 name|handleInvocation
@@ -1349,9 +1349,9 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString

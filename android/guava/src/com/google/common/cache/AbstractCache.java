@@ -117,7 +117,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This class provides a skeletal implementation of the {@code Cache} interface to minimize the  * effort required to implement this interface.  *  *<p>To implement a cache, the programmer needs only to extend this class and provide an  * implementation for the {@link #put} and {@link #getIfPresent} methods. {@link #getAllPresent} is  * implemented in terms of {@link #getIfPresent}; {@link #putAll} is implemented in terms of  * {@link #put}, {@link #invalidateAll(Iterable)} is implemented in terms of {@link #invalidate}.  * The method {@link #cleanUp} is a no-op. All other methods throw an  * {@link UnsupportedOperationException}.  *  * @author Charles Fry  * @since 10.0  */
+comment|/**  * This class provides a skeletal implementation of the {@code Cache} interface to minimize the  * effort required to implement this interface.  *  *<p>To implement a cache, the programmer needs only to extend this class and provide an  * implementation for the {@link #put} and {@link #getIfPresent} methods. {@link #getAllPresent} is  * implemented in terms of {@link #getIfPresent}; {@link #putAll} is implemented in terms of {@link  * #put}, {@link #invalidateAll(Iterable)} is implemented in terms of {@link #invalidate}. The  * method {@link #cleanUp} is a no-op. All other methods throw an {@link  * UnsupportedOperationException}.  *  * @author Charles Fry  * @since 10.0  */
 end_comment
 
 begin_class
@@ -147,7 +147,7 @@ specifier|protected
 name|AbstractCache
 parameter_list|()
 block|{}
-comment|/**    * @since 11.0    */
+comment|/** @since 11.0 */
 annotation|@
 name|Override
 DECL|method|get (K key, Callable<? extends V> valueLoader)
@@ -276,7 +276,7 @@ name|result
 argument_list|)
 return|;
 block|}
-comment|/**    * @since 11.0    */
+comment|/** @since 11.0 */
 annotation|@
 name|Override
 DECL|method|put (K key, V value)
@@ -297,7 +297,7 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
-comment|/**    * @since 12.0    */
+comment|/** @since 12.0 */
 annotation|@
 name|Override
 DECL|method|putAll (Map<? extends K, ? extends V> m)
@@ -392,7 +392,7 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
-comment|/**    * @since 11.0    */
+comment|/** @since 11.0 */
 annotation|@
 name|Override
 DECL|method|invalidateAll (Iterable<?> keys)
@@ -469,7 +469,7 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
-comment|/**    * Accumulates statistics during the operation of a {@link Cache} for presentation by    * {@link Cache#stats}. This is solely intended for consumption by {@code Cache} implementors.    *    * @since 10.0    */
+comment|/**    * Accumulates statistics during the operation of a {@link Cache} for presentation by {@link    * Cache#stats}. This is solely intended for consumption by {@code Cache} implementors.    *    * @since 10.0    */
 DECL|interface|StatsCounter
 specifier|public
 interface|interface
@@ -493,7 +493,7 @@ name|int
 name|count
 parameter_list|)
 function_decl|;
-comment|/**      * Records the successful load of a new entry. This should be called when a cache request causes      * an entry to be loaded, and the loading completes successfully. In contrast to      * {@link #recordMisses}, this method should only be called by the loading thread.      *      * @param loadTime the number of nanoseconds the cache spent computing or retrieving the new      *     value      */
+comment|/**      * Records the successful load of a new entry. This should be called when a cache request causes      * an entry to be loaded, and the loading completes successfully. In contrast to {@link      * #recordMisses}, this method should only be called by the loading thread.      *      * @param loadTime the number of nanoseconds the cache spent computing or retrieving the new      *     value      */
 DECL|method|recordLoadSuccess (long loadTime)
 name|void
 name|recordLoadSuccess
@@ -502,7 +502,7 @@ name|long
 name|loadTime
 parameter_list|)
 function_decl|;
-comment|/**      * Records the failed load of a new entry. This should be called when a cache request causes an      * entry to be loaded, but an exception is thrown while loading the entry. In contrast to      * {@link #recordMisses}, this method should only be called by the loading thread.      *      * @param loadTime the number of nanoseconds the cache spent computing or retrieving the new      *     value prior to an exception being thrown      */
+comment|/**      * Records the failed load of a new entry. This should be called when a cache request causes an      * entry to be loaded, but an exception is thrown while loading the entry. In contrast to {@link      * #recordMisses}, this method should only be called by the loading thread.      *      * @param loadTime the number of nanoseconds the cache spent computing or retrieving the new      *     value prior to an exception being thrown      */
 DECL|method|recordLoadException (long loadTime)
 name|void
 name|recordLoadException
@@ -511,7 +511,7 @@ name|long
 name|loadTime
 parameter_list|)
 function_decl|;
-comment|/**      * Records the eviction of an entry from the cache. This should only been called when an entry      * is evicted due to the cache's eviction strategy, and not as a result of manual      * {@linkplain Cache#invalidate invalidations}.      */
+comment|/**      * Records the eviction of an entry from the cache. This should only been called when an entry      * is evicted due to the cache's eviction strategy, and not as a result of manual {@linkplain      * Cache#invalidate invalidations}.      */
 DECL|method|recordEviction ()
 name|void
 name|recordEviction
@@ -600,13 +600,13 @@ operator|.
 name|create
 argument_list|()
 decl_stmt|;
-comment|/**      * Constructs an instance with all counts initialized to zero.      */
+comment|/** Constructs an instance with all counts initialized to zero. */
 DECL|method|SimpleStatsCounter ()
 specifier|public
 name|SimpleStatsCounter
 parameter_list|()
 block|{}
-comment|/**      * @since 11.0      */
+comment|/** @since 11.0 */
 annotation|@
 name|Override
 DECL|method|recordHits (int count)
@@ -626,7 +626,7 @@ name|count
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * @since 11.0      */
+comment|/** @since 11.0 */
 annotation|@
 name|Override
 DECL|method|recordMisses (int count)
@@ -752,7 +752,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**      * Increments all counters by the values in {@code other}.      */
+comment|/** Increments all counters by the values in {@code other}. */
 DECL|method|incrementBy (StatsCounter other)
 specifier|public
 name|void

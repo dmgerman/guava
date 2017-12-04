@@ -654,7 +654,7 @@ name|arguments
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a type where {@code rawType} is parameterized by {@code arguments}.    */
+comment|/** Returns a type where {@code rawType} is parameterized by {@code arguments}. */
 DECL|method|newParameterizedType (Class<?> rawType, Type... arguments)
 specifier|static
 name|ParameterizedType
@@ -994,7 +994,7 @@ block|}
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns human readable string representation of {@code type}.    *<ul>    *<li>For array type {@code Foo[]}, {@code "com.mypackage.Foo[]"} are returned.    *<li>For any class, {@code theClass.getName()} are returned.    *<li>For all other types, {@code type.toString()} are returned.    *</ul>    */
+comment|/**    * Returns human readable string representation of {@code type}.    *    *<ul>    *<li>For array type {@code Foo[]}, {@code "com.mypackage.Foo[]"} are returned.    *<li>For any class, {@code theClass.getName()} are returned.    *<li>For all other types, {@code type.toString()} are returned.    *</ul>    */
 DECL|method|toString (Type type)
 specifier|static
 name|String
@@ -1816,7 +1816,7 @@ return|return
 name|typeVariable
 return|;
 block|}
-comment|/**    * Invocation handler to work around a compatibility problem between Java 7 and Java 8.    *    *<p>Java 8 introduced a new method {@code getAnnotatedBounds()} in the {@link TypeVariable}    * interface, whose return type {@code AnnotatedType[]} is also new in Java 8. That means that we    * cannot implement that interface in source code in a way that will compile on both Java 7 and    * Java 8. If we include the {@code getAnnotatedBounds()} method then its return type means it    * won't compile on Java 7, while if we don't include the method then the compiler will complain    * that an abstract method is unimplemented. So instead we use a dynamic proxy to get an    * implementation. If the method being called on the {@code TypeVariable} instance has the same    * name as one of the public methods of {@link TypeVariableImpl}, the proxy calls the same method    * on its instance of {@code TypeVariableImpl}. Otherwise it throws    * {@link UnsupportedOperationException}; this should only apply to {@code getAnnotatedBounds()}.    * This does mean that users on Java 8 who obtain an instance of {@code TypeVariable} from    * {@link TypeResolver#resolveType} will not be able to call {@code getAnnotatedBounds()} on it,    * but that should hopefully be rare.    *    *<p>This workaround should be removed at a distant future time when we no longer support Java    * versions earlier than 8.    */
+comment|/**    * Invocation handler to work around a compatibility problem between Java 7 and Java 8.    *    *<p>Java 8 introduced a new method {@code getAnnotatedBounds()} in the {@link TypeVariable}    * interface, whose return type {@code AnnotatedType[]} is also new in Java 8. That means that we    * cannot implement that interface in source code in a way that will compile on both Java 7 and    * Java 8. If we include the {@code getAnnotatedBounds()} method then its return type means it    * won't compile on Java 7, while if we don't include the method then the compiler will complain    * that an abstract method is unimplemented. So instead we use a dynamic proxy to get an    * implementation. If the method being called on the {@code TypeVariable} instance has the same    * name as one of the public methods of {@link TypeVariableImpl}, the proxy calls the same method    * on its instance of {@code TypeVariableImpl}. Otherwise it throws {@link    * UnsupportedOperationException}; this should only apply to {@code getAnnotatedBounds()}. This    * does mean that users on Java 8 who obtain an instance of {@code TypeVariable} from {@link    * TypeResolver#resolveType} will not be able to call {@code getAnnotatedBounds()} on it, but that    * should hopefully be rare.    *    *<p>This workaround should be removed at a distant future time when we no longer support Java    * versions earlier than 8.    */
 DECL|class|TypeVariableInvocationHandler
 specifier|private
 specifier|static

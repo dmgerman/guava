@@ -63,7 +63,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * To be implemented by test generators of things that can contain  * elements. Such things include both {@link Collection} and {@link Map}; since  * there isn't an established collective noun that encompasses both of these,  * 'container' is used.  *  * @author George van den Driessche  */
+comment|/**  * To be implemented by test generators of things that can contain elements. Such things include  * both {@link Collection} and {@link Map}; since there isn't an established collective noun that  * encompasses both of these, 'container' is used.  *  * @author George van den Driessche  */
 end_comment
 
 begin_interface
@@ -79,7 +79,7 @@ parameter_list|,
 name|E
 parameter_list|>
 block|{
-comment|/**    * Returns the sample elements that this generate populates its container    * with.    */
+comment|/** Returns the sample elements that this generate populates its container with. */
 DECL|method|samples ()
 name|SampleElements
 argument_list|<
@@ -88,7 +88,7 @@ argument_list|>
 name|samples
 parameter_list|()
 function_decl|;
-comment|/**    * Creates a new container containing the given elements. TODO: would be nice    * to figure out how to use E... or E[] as a parameter type, but this doesn't    * seem to work because Java creates an array of the erased type.    */
+comment|/**    * Creates a new container containing the given elements. TODO: would be nice to figure out how to    * use E... or E[] as a parameter type, but this doesn't seem to work because Java creates an    * array of the erased type.    */
 DECL|method|create (Object... elements)
 name|T
 name|create
@@ -98,7 +98,7 @@ modifier|...
 name|elements
 parameter_list|)
 function_decl|;
-comment|/**    * Helper method to create an array of the appropriate type used by this    * generator. The returned array will contain only nulls.    */
+comment|/**    * Helper method to create an array of the appropriate type used by this generator. The returned    * array will contain only nulls.    */
 DECL|method|createArray (int length)
 name|E
 index|[]
@@ -108,7 +108,7 @@ name|int
 name|length
 parameter_list|)
 function_decl|;
-comment|/**    * Returns the iteration ordering of elements, given the order in    * which they were added to the container. This method may return the    * original list unchanged, the original list modified in place, or a    * different list.    *    *<p>If the order is non-deterministic, as with {@link java.util.HashSet},    * this method can return its input unmodified. Provided that the test suite    * is built without {@link    * com.google.common.collect.testing.features.CollectionFeature#KNOWN_ORDER},    * the tests will look only at the returned contents without regard for order.    */
+comment|/**    * Returns the iteration ordering of elements, given the order in which they were added to the    * container. This method may return the original list unchanged, the original list modified in    * place, or a different list.    *    *<p>If the order is non-deterministic, as with {@link java.util.HashSet}, this method can return    * its input unmodified. Provided that the test suite is built without {@link    * com.google.common.collect.testing.features.CollectionFeature#KNOWN_ORDER}, the tests will look    * only at the returned contents without regard for order.    */
 DECL|method|order (List<E> insertionOrder)
 name|Iterable
 argument_list|<

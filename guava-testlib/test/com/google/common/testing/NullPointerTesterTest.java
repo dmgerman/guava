@@ -451,7 +451,7 @@ init|=
 literal|1L
 decl_stmt|;
 block|}
-comment|/**    * Class for testing all permutations of static/non-static one-argument    * methods using methodParameter().    */
+comment|/**    * Class for testing all permutations of static/non-static one-argument methods using    * methodParameter().    */
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -510,10 +510,10 @@ parameter_list|)
 block|{
 comment|// should catch as failure
 block|}
+DECL|method|staticOneArgCheckForNullCorrectlyDoesNotThrowNPE (@heckForNull String s)
 specifier|public
 specifier|static
 name|void
-DECL|method|staticOneArgCheckForNullCorrectlyDoesNotThrowNPE (@heckForNull String s)
 name|staticOneArgCheckForNullCorrectlyDoesNotThrowNPE
 parameter_list|(
 annotation|@
@@ -524,10 +524,10 @@ parameter_list|)
 block|{
 comment|// null?  no problem
 block|}
+DECL|method|staticOneArgNullableCorrectlyDoesNotThrowNPE (@ullable String s)
 specifier|public
 specifier|static
 name|void
-DECL|method|staticOneArgNullableCorrectlyDoesNotThrowNPE (@ullable String s)
 name|staticOneArgNullableCorrectlyDoesNotThrowNPE
 parameter_list|(
 annotation|@
@@ -538,10 +538,10 @@ parameter_list|)
 block|{
 comment|// null?  no problem
 block|}
+DECL|method|staticOneArgCheckForNullCorrectlyThrowsOtherThanNPE (@heckForNull String s)
 specifier|public
 specifier|static
 name|void
-DECL|method|staticOneArgCheckForNullCorrectlyThrowsOtherThanNPE (@heckForNull String s)
 name|staticOneArgCheckForNullCorrectlyThrowsOtherThanNPE
 parameter_list|(
 annotation|@
@@ -557,10 +557,10 @@ argument_list|()
 throw|;
 comment|// ok, as long as it's not NullPointerException
 block|}
+DECL|method|staticOneArgNullableCorrectlyThrowsOtherThanNPE (@ullable String s)
 specifier|public
 specifier|static
 name|void
-DECL|method|staticOneArgNullableCorrectlyThrowsOtherThanNPE (@ullable String s)
 name|staticOneArgNullableCorrectlyThrowsOtherThanNPE
 parameter_list|(
 annotation|@
@@ -576,10 +576,10 @@ argument_list|()
 throw|;
 comment|// ok, as long as it's not NullPointerException
 block|}
+DECL|method|staticOneArgCheckForNullThrowsNPE (@heckForNull String s)
 specifier|public
 specifier|static
 name|void
-DECL|method|staticOneArgCheckForNullThrowsNPE (@heckForNull String s)
 name|staticOneArgCheckForNullThrowsNPE
 parameter_list|(
 annotation|@
@@ -595,10 +595,10 @@ argument_list|)
 expr_stmt|;
 comment|// doesn't check if you said you'd accept null, but you don't
 block|}
+DECL|method|staticOneArgNullableThrowsNPE (@ullable String s)
 specifier|public
 specifier|static
 name|void
-DECL|method|staticOneArgNullableThrowsNPE (@ullable String s)
 name|staticOneArgNullableThrowsNPE
 parameter_list|(
 annotation|@
@@ -1658,7 +1658,7 @@ name|foundProblem
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Class for testing all permutations of nullable/non-nullable two-argument    * methods using testMethod().    *    *   normalNormal:  two params, neither is Nullable    *   nullableNormal:  only first param is Nullable    *   normalNullable:  only second param is Nullable    *   nullableNullable:  both params are Nullable    */
+comment|/**    * Class for testing all permutations of nullable/non-nullable two-argument methods using    * testMethod().    *    *<ul>    *<li>normalNormal: two params, neither is Nullable    *<li>nullableNormal: only first param is Nullable    *<li>normalNullable: only second param is Nullable    *<li>nullableNullable: both params are Nullable    *</ul>    */
 DECL|class|TwoArg
 specifier|public
 specifier|static
@@ -1735,7 +1735,7 @@ DECL|field|actionWhenSecondParamIsNull
 name|Action
 name|actionWhenSecondParamIsNull
 decl_stmt|;
-DECL|method|TwoArg ( Action actionWhenFirstParamIsNull, Action actionWhenSecondParamIsNull)
+DECL|method|TwoArg (Action actionWhenFirstParamIsNull, Action actionWhenSecondParamIsNull)
 specifier|public
 name|TwoArg
 parameter_list|(
@@ -1867,7 +1867,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** Two-arg method with the both params Nullable. */
-DECL|method|nullableNullable ( @ullable String first, @Nullable Integer second)
+DECL|method|nullableNullable (@ullable String first, @Nullable Integer second)
 specifier|public
 name|void
 name|nullableNullable
@@ -1892,9 +1892,9 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** To provide sanity during debugging. */
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString
@@ -2681,7 +2681,7 @@ name|Integer
 name|i
 parameter_list|)
 block|{}
-DECL|method|twoNullableArgsThrowsFirstArg ( @ullable String s, @Nullable Integer i)
+DECL|method|twoNullableArgsThrowsFirstArg (@ullable String s, @Nullable Integer i)
 specifier|public
 name|void
 name|twoNullableArgsThrowsFirstArg
@@ -2703,7 +2703,7 @@ name|s
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|twoNullableArgsThrowsSecondArg ( @ullable String s, @Nullable Integer i)
+DECL|method|twoNullableArgsThrowsSecondArg (@ullable String s, @Nullable Integer i)
 specifier|public
 name|void
 name|twoNullableArgsThrowsSecondArg
@@ -2794,9 +2794,9 @@ name|FailOneArgDoesntThrowNPE
 extends|extends
 name|PassObject
 block|{
-DECL|method|oneArg (String s)
 annotation|@
 name|Override
+DECL|method|oneArg (String s)
 specifier|public
 name|void
 name|oneArg
@@ -2830,9 +2830,9 @@ name|FailOneArgThrowsWrongType
 extends|extends
 name|PassObject
 block|{
-DECL|method|oneArg (String s)
 annotation|@
 name|Override
+DECL|method|oneArg (String s)
 specifier|public
 name|void
 name|oneArg
@@ -2871,9 +2871,9 @@ name|PassOneNullableArgThrowsNPE
 extends|extends
 name|PassObject
 block|{
-DECL|method|oneNullableArg (@ullable String s)
 annotation|@
 name|Override
+DECL|method|oneNullableArg (@ullable String s)
 specifier|public
 name|void
 name|oneNullableArg
@@ -2914,9 +2914,9 @@ name|FailTwoArgsFirstArgDoesntThrowNPE
 extends|extends
 name|PassObject
 block|{
-DECL|method|twoArg (String s, Integer i)
 annotation|@
 name|Override
+DECL|method|twoArg (String s, Integer i)
 specifier|public
 name|void
 name|twoArg
@@ -2958,9 +2958,9 @@ name|FailTwoArgsFirstArgThrowsWrongType
 extends|extends
 name|PassObject
 block|{
-DECL|method|twoArg (String s, Integer i)
 annotation|@
 name|Override
+DECL|method|twoArg (String s, Integer i)
 specifier|public
 name|void
 name|twoArg
@@ -3007,9 +3007,9 @@ name|FailTwoArgsSecondArgDoesntThrowNPE
 extends|extends
 name|PassObject
 block|{
-DECL|method|twoArg (String s, Integer i)
 annotation|@
 name|Override
+DECL|method|twoArg (String s, Integer i)
 specifier|public
 name|void
 name|twoArg
@@ -3051,9 +3051,9 @@ name|FailTwoArgsSecondArgThrowsWrongType
 extends|extends
 name|PassObject
 block|{
-DECL|method|twoArg (String s, Integer i)
 annotation|@
 name|Override
+DECL|method|twoArg (String s, Integer i)
 specifier|public
 name|void
 name|twoArg
@@ -3100,9 +3100,9 @@ name|FailTwoMixedArgsFirstArgDoesntThrowNPE
 extends|extends
 name|PassObject
 block|{
-DECL|method|twoMixedArgs (String s, @Nullable Integer i)
 annotation|@
 name|Override
+DECL|method|twoMixedArgs (String s, @Nullable Integer i)
 specifier|public
 name|void
 name|twoMixedArgs
@@ -3141,9 +3141,9 @@ name|FailTwoMixedArgsFirstArgThrowsWrongType
 extends|extends
 name|PassObject
 block|{
-DECL|method|twoMixedArgs (String s, @Nullable Integer i)
 annotation|@
 name|Override
+DECL|method|twoMixedArgs (String s, @Nullable Integer i)
 specifier|public
 name|void
 name|twoMixedArgs
@@ -3187,9 +3187,9 @@ name|PassTwoMixedArgsNullableArgThrowsNPE
 extends|extends
 name|PassObject
 block|{
-DECL|method|twoMixedArgs (String s, @Nullable Integer i)
 annotation|@
 name|Override
+DECL|method|twoMixedArgs (String s, @Nullable Integer i)
 specifier|public
 name|void
 name|twoMixedArgs
@@ -3238,9 +3238,9 @@ name|PassTwoMixedArgSecondNullableArgThrowsOther
 extends|extends
 name|PassObject
 block|{
-DECL|method|twoMixedArgs (String s, @Nullable Integer i)
 annotation|@
 name|Override
+DECL|method|twoMixedArgs (String s, @Nullable Integer i)
 specifier|public
 name|void
 name|twoMixedArgs
@@ -3289,9 +3289,9 @@ name|FailTwoMixedArgsSecondArgDoesntThrowNPE
 extends|extends
 name|PassObject
 block|{
-DECL|method|twoMixedArgs (@ullable Integer i, String s)
 annotation|@
 name|Override
+DECL|method|twoMixedArgs (@ullable Integer i, String s)
 specifier|public
 name|void
 name|twoMixedArgs
@@ -3330,9 +3330,9 @@ name|FailTwoMixedArgsSecondArgThrowsWrongType
 extends|extends
 name|PassObject
 block|{
-DECL|method|twoMixedArgs (@ullable Integer i, String s)
 annotation|@
 name|Override
+DECL|method|twoMixedArgs (@ullable Integer i, String s)
 specifier|public
 name|void
 name|twoMixedArgs
@@ -3376,9 +3376,9 @@ name|PassTwoNullableArgsFirstThrowsNPE
 extends|extends
 name|PassObject
 block|{
-DECL|method|twoNullableArgs ( @ullable String s, @Nullable Integer i)
 annotation|@
 name|Override
+DECL|method|twoNullableArgs (@ullable String s, @Nullable Integer i)
 specifier|public
 name|void
 name|twoNullableArgs
@@ -3424,9 +3424,9 @@ name|PassTwoNullableArgsFirstThrowsOther
 extends|extends
 name|PassObject
 block|{
-DECL|method|twoNullableArgs ( @ullable String s, @Nullable Integer i)
 annotation|@
 name|Override
+DECL|method|twoNullableArgs (@ullable String s, @Nullable Integer i)
 specifier|public
 name|void
 name|twoNullableArgs
@@ -3472,9 +3472,9 @@ name|PassTwoNullableArgsSecondThrowsNPE
 extends|extends
 name|PassObject
 block|{
-DECL|method|twoNullableArgs ( @ullable String s, @Nullable Integer i)
 annotation|@
 name|Override
+DECL|method|twoNullableArgs (@ullable String s, @Nullable Integer i)
 specifier|public
 name|void
 name|twoNullableArgs
@@ -3520,9 +3520,9 @@ name|PassTwoNullableArgsSecondThrowsOther
 extends|extends
 name|PassObject
 block|{
-DECL|method|twoNullableArgs ( @ullable String s, @Nullable Integer i)
 annotation|@
 name|Override
+DECL|method|twoNullableArgs (@ullable String s, @Nullable Integer i)
 specifier|public
 name|void
 name|twoNullableArgs
@@ -3568,9 +3568,9 @@ name|PassTwoNullableArgsNeitherThrowsAnything
 extends|extends
 name|PassObject
 block|{
-DECL|method|twoNullableArgs ( @ullable String s, @Nullable Integer i)
 annotation|@
 name|Override
+DECL|method|twoNullableArgs (@ullable String s, @Nullable Integer i)
 specifier|public
 name|void
 name|twoNullableArgs
@@ -3753,9 +3753,9 @@ name|SubclassThatOverridesBadSuperclassMethod
 extends|extends
 name|BaseClassThatFailsToThrow
 block|{
-DECL|method|oneArg (@ullable String s)
 annotation|@
 name|Override
+DECL|method|oneArg (@ullable String s)
 specifier|public
 name|void
 name|oneArg
@@ -4341,9 +4341,9 @@ argument_list|<
 name|String
 argument_list|>
 block|{
-DECL|method|doSomething (String bar, Integer baz)
 annotation|@
 name|Override
+DECL|method|doSomething (String bar, Integer baz)
 specifier|public
 name|void
 name|doSomething
@@ -4583,9 +4583,9 @@ enum|enum
 name|Gender
 block|{
 DECL|enumConstant|MALE
-DECL|enumConstant|FEMALE
 name|MALE
 block|,
+DECL|enumConstant|FEMALE
 name|FEMALE
 block|}
 DECL|class|AllDefaultValuesChecker
@@ -5395,7 +5395,7 @@ argument_list|(
 literal|"unused"
 argument_list|)
 comment|// called by NullPointerTester
-DECL|method|checkArray ( TypeToken<? extends List<? super Number>> type, String s)
+DECL|method|checkArray (TypeToken<? extends List<? super Number>> type, String s)
 specifier|public
 name|void
 name|checkArray
@@ -5507,7 +5507,7 @@ argument_list|(
 literal|"unused"
 argument_list|)
 comment|// called by NullPointerTester
-DECL|method|checkArray ( @uppressWarningsR) TypeToken type, String s)
+DECL|method|checkArray (@uppressWarningsR) TypeToken type, String s)
 specifier|public
 name|void
 name|checkArray
@@ -5731,9 +5731,9 @@ argument_list|,
 name|T
 argument_list|>
 block|{
-DECL|method|apply (F from)
 annotation|@
 name|Override
+DECL|method|apply (F from)
 specifier|public
 specifier|abstract
 name|T
@@ -5840,7 +5840,7 @@ parameter_list|(
 name|NullPointerException
 name|expected
 parameter_list|)
-block|{}
+block|{       }
 block|}
 block|}
 end_class
@@ -5877,7 +5877,7 @@ argument_list|(
 literal|"unused"
 argument_list|)
 comment|// called by NullPointerTester
-DECL|method|checkArray ( T f, String s)
+DECL|method|checkArray (T f, String s)
 specifier|public
 parameter_list|<
 name|T
@@ -6227,10 +6227,10 @@ block|}
 end_function
 
 begin_class
+DECL|class|AbstractGenericDefaultValueForPackagePrivateMethodChecker
 specifier|private
 specifier|abstract
 specifier|static
-DECL|class|AbstractGenericDefaultValueForPackagePrivateMethodChecker
 class|class
 name|AbstractGenericDefaultValueForPackagePrivateMethodChecker
 parameter_list|<
@@ -6268,9 +6268,9 @@ block|}
 end_class
 
 begin_class
+DECL|class|DefaultValueForPackagePrivateMethodResolvedToStringChecker
 specifier|private
 specifier|static
-DECL|class|DefaultValueForPackagePrivateMethodResolvedToStringChecker
 class|class
 name|DefaultValueForPackagePrivateMethodResolvedToStringChecker
 extends|extends

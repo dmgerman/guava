@@ -143,7 +143,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author George van den Driessche  */
+comment|/** @author George van den Driessche */
 end_comment
 
 begin_comment
@@ -299,7 +299,7 @@ argument_list|>
 argument_list|>
 name|implied
 decl_stmt|;
-DECL|method|ExampleDerivedFeature ( Feature<? super ExampleDerivedInterface> .... implied)
+DECL|method|ExampleDerivedFeature (Feature<? super ExampleDerivedInterface>.... implied)
 name|ExampleDerivedFeature
 parameter_list|(
 name|Feature
@@ -390,7 +390,7 @@ argument_list|)
 DECL|annotation|NonTesterAnnotation
 annotation_defn|@interface
 name|NonTesterAnnotation
-block|{   }
+block|{}
 end_annotation_defn
 
 begin_class
@@ -407,8 +407,8 @@ block|}
 argument_list|)
 DECL|class|ExampleBaseInterfaceTester
 specifier|private
-specifier|static
 specifier|abstract
+specifier|static
 class|class
 name|ExampleBaseInterfaceTester
 extends|extends

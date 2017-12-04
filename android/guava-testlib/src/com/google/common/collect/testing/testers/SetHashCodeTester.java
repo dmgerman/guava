@@ -324,7 +324,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Returns the {@link Method} instances for the test methods in this class    * which call {@code hashCode()} on the set values so that set tests on    * unhashable objects can suppress it with    * {@code FeatureSpecificTestSuiteBuilder.suppressing()}.    */
+comment|/**    * Returns the {@link Method} instances for the test methods in this class which call {@code    * hashCode()} on the set values so that set tests on unhashable objects can suppress it with    * {@code FeatureSpecificTestSuiteBuilder.suppressing()}.    */
 annotation|@
 name|GwtIncompatible
 comment|// reflection

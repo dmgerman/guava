@@ -79,7 +79,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link FutureTask} that also implements the {@link ListenableFuture} interface. Unlike  * {@code FutureTask}, {@code ListenableFutureTask} does not provide an overrideable {@link  * FutureTask#done() done()} method. For similar functionality, call {@link #addListener}.  *  *<p>Few users should use this class. It is intended primarily for those who are implementing an  * {@code ExecutorService}. Most users should call {@link ListeningExecutorService#submit(Callable)  * ListeningExecutorService.submit} on a service obtained from {@link  * MoreExecutors#listeningDecorator}.  *  * @author Sven Mawson  * @since 1.0  */
+comment|/**  * A {@link FutureTask} that also implements the {@link ListenableFuture} interface. Unlike {@code  * FutureTask}, {@code ListenableFutureTask} does not provide an overrideable {@link  * FutureTask#done() done()} method. For similar functionality, call {@link #addListener}.  *  *<p>Few users should use this class. It is intended primarily for those who are implementing an  * {@code ExecutorService}. Most users should call {@link ListeningExecutorService#submit(Callable)  * ListeningExecutorService.submit} on a service obtained from {@link  * MoreExecutors#listeningDecorator}.  *  * @author Sven Mawson  * @since 1.0  */
 end_comment
 
 begin_class
@@ -243,7 +243,7 @@ name|exec
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Internal implementation detail used to invoke the listeners.    */
+comment|/** Internal implementation detail used to invoke the listeners. */
 annotation|@
 name|Override
 DECL|method|done ()

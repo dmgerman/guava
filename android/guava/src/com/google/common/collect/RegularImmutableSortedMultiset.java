@@ -183,9 +183,9 @@ name|natural
 argument_list|()
 argument_list|)
 decl_stmt|;
+DECL|field|elementSet
 annotation|@
 name|VisibleForTesting
-DECL|field|elementSet
 specifier|final
 specifier|transient
 name|RegularImmutableSortedSet

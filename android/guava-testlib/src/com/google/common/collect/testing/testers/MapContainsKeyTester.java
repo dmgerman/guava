@@ -163,7 +163,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A generic JUnit test which tests {@code containsKey()} operations on a map.  * Can't be invoked directly; please see  * {@link com.google.common.collect.testing.MapTestSuiteBuilder}.  *  * @author George van den Driessche  */
+comment|/**  * A generic JUnit test which tests {@code containsKey()} operations on a map. Can't be invoked  * directly; please see {@link com.google.common.collect.testing.MapTestSuiteBuilder}.  *  * @author George van den Driessche  */
 end_comment
 
 begin_class
@@ -372,7 +372,7 @@ parameter_list|()
 block|{
 try|try
 block|{
-comment|//noinspection SuspiciousMethodCalls
+comment|// noinspection SuspiciousMethodCalls
 name|assertFalse
 argument_list|(
 literal|"containsKey(wrongType) should return false or throw"

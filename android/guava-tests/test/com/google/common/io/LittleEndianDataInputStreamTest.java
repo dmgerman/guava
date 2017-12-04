@@ -464,7 +464,7 @@ parameter_list|(
 name|EOFException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testReadLine ()
 specifier|public

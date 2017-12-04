@@ -165,7 +165,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Concrete instantiation of {@link AbstractCollectionTestSuiteBuilder} for  * testing collections that do not have a more specific tester like  * {@link ListTestSuiteBuilder} or {@link SetTestSuiteBuilder}.  *  * @author Chris Povirk  * @author Louis Wasserman  */
+comment|/**  * Concrete instantiation of {@link AbstractCollectionTestSuiteBuilder} for testing collections that  * do not have a more specific tester like {@link ListTestSuiteBuilder} or {@link  * SetTestSuiteBuilder}.  *  * @author Chris Povirk  * @author Louis Wasserman  */
 end_comment
 
 begin_class

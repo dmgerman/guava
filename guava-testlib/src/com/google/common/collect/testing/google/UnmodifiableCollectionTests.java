@@ -241,7 +241,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A series of tests that support asserting that collections cannot be  * modified, either through direct or indirect means.  *  * @author Robert Konigsberg  */
+comment|/**  * A series of tests that support asserting that collections cannot be modified, either through  * direct or indirect means.  *  * @author Robert Konigsberg  */
 end_comment
 
 begin_class
@@ -445,7 +445,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Verifies that a collection is immutable.    *    *<p>A collection is considered immutable if:    *<ol>    *<li>All its mutation methods result in UnsupportedOperationException, and    * do not change the underlying contents.    *<li>All methods that return objects that can indirectly mutate the    * collection throw UnsupportedOperationException when those mutators    * are called.    *</ol>    *    * @param collection the presumed-immutable collection    * @param sampleElement an element of the same type as that contained by    * {@code collection}. {@code collection} may or may not have {@code    * sampleElement} as a member.    */
+comment|/**    * Verifies that a collection is immutable.    *    *<p>A collection is considered immutable if:    *    *<ol>    *<li>All its mutation methods result in UnsupportedOperationException, and do not change the    *       underlying contents.    *<li>All methods that return objects that can indirectly mutate the collection throw    *       UnsupportedOperationException when those mutators are called.    *</ol>    *    * @param collection the presumed-immutable collection    * @param sampleElement an element of the same type as that contained by {@code collection}.    *     {@code collection} may or may not have {@code sampleElement} as a member.    */
 DECL|method|assertCollectionIsUnmodifiable (Collection<E> collection, E sampleElement)
 specifier|public
 specifier|static
@@ -690,7 +690,7 @@ name|collection
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Verifies that a set is immutable.    *    *<p>A set is considered immutable if:    *<ol>    *<li>All its mutation methods result in UnsupportedOperationException, and    * do not change the underlying contents.    *<li>All methods that return objects that can indirectly mutate the    * set throw UnsupportedOperationException when those mutators    * are called.    *</ol>    *    * @param set the presumed-immutable set    * @param sampleElement an element of the same type as that contained by    * {@code set}. {@code set} may or may not have {@code sampleElement} as a    * member.    */
+comment|/**    * Verifies that a set is immutable.    *    *<p>A set is considered immutable if:    *    *<ol>    *<li>All its mutation methods result in UnsupportedOperationException, and do not change the    *       underlying contents.    *<li>All methods that return objects that can indirectly mutate the set throw    *       UnsupportedOperationException when those mutators are called.    *</ol>    *    * @param set the presumed-immutable set    * @param sampleElement an element of the same type as that contained by {@code set}. {@code set}    *     may or may not have {@code sampleElement} as a member.    */
 DECL|method|assertSetIsUnmodifiable (Set<E> set, E sampleElement)
 specifier|public
 specifier|static
@@ -718,7 +718,7 @@ name|sampleElement
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Verifies that a multiset is immutable.    *    *<p>A multiset is considered immutable if:    *<ol>    *<li>All its mutation methods result in UnsupportedOperationException, and    * do not change the underlying contents.    *<li>All methods that return objects that can indirectly mutate the    * multiset throw UnsupportedOperationException when those mutators    * are called.    *</ol>    *    * @param multiset the presumed-immutable multiset    * @param sampleElement an element of the same type as that contained by    * {@code multiset}. {@code multiset} may or may not have {@code    * sampleElement} as a member.    */
+comment|/**    * Verifies that a multiset is immutable.    *    *<p>A multiset is considered immutable if:    *    *<ol>    *<li>All its mutation methods result in UnsupportedOperationException, and do not change the    *       underlying contents.    *<li>All methods that return objects that can indirectly mutate the multiset throw    *       UnsupportedOperationException when those mutators are called.    *</ol>    *    * @param multiset the presumed-immutable multiset    * @param sampleElement an element of the same type as that contained by {@code multiset}. {@code    *     multiset} may or may not have {@code sampleElement} as a member.    */
 DECL|method|assertMultisetIsUnmodifiable (Multiset<E> multiset, final E sampleElement)
 specifier|public
 specifier|static
@@ -907,7 +907,7 @@ name|copy
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Verifies that a multimap is immutable.    *    *<p>A multimap is considered immutable if:    *<ol>    *<li>All its mutation methods result in UnsupportedOperationException, and    * do not change the underlying contents.    *<li>All methods that return objects that can indirectly mutate the    * multimap throw UnsupportedOperationException when those mutators    *</ol>    *    * @param multimap the presumed-immutable multimap    * @param sampleKey a key of the same type as that contained by    * {@code multimap}. {@code multimap} may or may not have {@code sampleKey} as    * a key.    * @param sampleValue a key of the same type as that contained by    * {@code multimap}. {@code multimap} may or may not have {@code sampleValue}    * as a key.    */
+comment|/**    * Verifies that a multimap is immutable.    *    *<p>A multimap is considered immutable if:    *    *<ol>    *<li>All its mutation methods result in UnsupportedOperationException, and do not change the    *       underlying contents.    *<li>All methods that return objects that can indirectly mutate the multimap throw    *       UnsupportedOperationException when those mutators    *</ol>    *    * @param multimap the presumed-immutable multimap    * @param sampleKey a key of the same type as that contained by {@code multimap}. {@code multimap}    *     may or may not have {@code sampleKey} as a key.    * @param sampleValue a key of the same type as that contained by {@code multimap}. {@code    *     multimap} may or may not have {@code sampleValue} as a key.    */
 DECL|method|assertMultimapIsUnmodifiable ( Multimap<K, V> multimap, final K sampleKey, final V sampleValue)
 specifier|public
 specifier|static

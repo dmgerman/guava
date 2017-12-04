@@ -831,9 +831,9 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|makeEmptyMap ()
 annotation|@
 name|Override
+DECL|method|makeEmptyMap ()
 specifier|protected
 name|SortedMap
 argument_list|<
@@ -864,9 +864,9 @@ argument_list|(
 literal|", "
 argument_list|)
 decl_stmt|;
-DECL|method|assertMoreInvariants (Map<K, V> map)
 annotation|@
 name|Override
+DECL|method|assertMoreInvariants (Map<K, V> map)
 specifier|protected
 name|void
 name|assertMoreInvariants
@@ -1066,9 +1066,9 @@ argument_list|,
 name|Integer
 argument_list|>
 block|{
-DECL|method|makeEmptyMap ()
 annotation|@
 name|Override
+DECL|method|makeEmptyMap ()
 specifier|protected
 name|SortedMap
 argument_list|<
@@ -1086,9 +1086,9 @@ name|of
 argument_list|()
 return|;
 block|}
-DECL|method|makePopulatedMap ()
 annotation|@
 name|Override
+DECL|method|makePopulatedMap ()
 specifier|protected
 name|SortedMap
 argument_list|<
@@ -1118,9 +1118,9 @@ literal|3
 argument_list|)
 return|;
 block|}
-DECL|method|getKeyNotInPopulatedMap ()
 annotation|@
 name|Override
+DECL|method|getKeyNotInPopulatedMap ()
 specifier|protected
 name|String
 name|getKeyNotInPopulatedMap
@@ -1130,9 +1130,9 @@ return|return
 literal|"minus one"
 return|;
 block|}
-DECL|method|getValueNotInPopulatedMap ()
 annotation|@
 name|Override
+DECL|method|getValueNotInPopulatedMap ()
 specifier|protected
 name|Integer
 name|getValueNotInPopulatedMap
@@ -1157,9 +1157,9 @@ argument_list|,
 name|Integer
 argument_list|>
 block|{
-DECL|method|makePopulatedMap ()
 annotation|@
 name|Override
+DECL|method|makePopulatedMap ()
 specifier|protected
 name|SortedMap
 argument_list|<
@@ -1181,9 +1181,9 @@ literal|1
 argument_list|)
 return|;
 block|}
-DECL|method|getKeyNotInPopulatedMap ()
 annotation|@
 name|Override
+DECL|method|getKeyNotInPopulatedMap ()
 specifier|protected
 name|String
 name|getKeyNotInPopulatedMap
@@ -1193,9 +1193,9 @@ return|return
 literal|"minus one"
 return|;
 block|}
-DECL|method|getValueNotInPopulatedMap ()
 annotation|@
 name|Override
+DECL|method|getValueNotInPopulatedMap ()
 specifier|protected
 name|Integer
 name|getValueNotInPopulatedMap
@@ -1223,9 +1223,9 @@ argument_list|,
 name|Integer
 argument_list|>
 block|{
-DECL|method|makePopulatedMap ()
 annotation|@
 name|Override
+DECL|method|makePopulatedMap ()
 specifier|protected
 name|SortedMap
 argument_list|<
@@ -1260,9 +1260,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-DECL|method|getKeyNotInPopulatedMap ()
 annotation|@
 name|Override
+DECL|method|getKeyNotInPopulatedMap ()
 specifier|protected
 name|String
 name|getKeyNotInPopulatedMap
@@ -1272,9 +1272,9 @@ return|return
 literal|"minus one"
 return|;
 block|}
-DECL|method|getValueNotInPopulatedMap ()
 annotation|@
 name|Override
+DECL|method|getValueNotInPopulatedMap ()
 specifier|protected
 name|Integer
 name|getValueNotInPopulatedMap
@@ -1299,9 +1299,9 @@ argument_list|,
 name|Integer
 argument_list|>
 block|{
-DECL|method|makePopulatedMap ()
 annotation|@
 name|Override
+DECL|method|makePopulatedMap ()
 specifier|protected
 name|SortedMap
 argument_list|<
@@ -1344,9 +1344,9 @@ literal|"d"
 argument_list|)
 return|;
 block|}
-DECL|method|getKeyNotInPopulatedMap ()
 annotation|@
 name|Override
+DECL|method|getKeyNotInPopulatedMap ()
 specifier|protected
 name|String
 name|getKeyNotInPopulatedMap
@@ -1356,9 +1356,9 @@ return|return
 literal|"d"
 return|;
 block|}
-DECL|method|getValueNotInPopulatedMap ()
 annotation|@
 name|Override
+DECL|method|getValueNotInPopulatedMap ()
 specifier|protected
 name|Integer
 name|getValueNotInPopulatedMap
@@ -1382,9 +1382,9 @@ argument_list|,
 name|Integer
 argument_list|>
 block|{
-DECL|method|makePopulatedMap ()
 annotation|@
 name|Override
+DECL|method|makePopulatedMap ()
 specifier|protected
 name|SortedMap
 argument_list|<
@@ -1429,9 +1429,9 @@ literal|true
 argument_list|)
 return|;
 block|}
-DECL|method|getKeyNotInPopulatedMap ()
 annotation|@
 name|Override
+DECL|method|getKeyNotInPopulatedMap ()
 specifier|protected
 name|String
 name|getKeyNotInPopulatedMap
@@ -1441,9 +1441,9 @@ return|return
 literal|"d"
 return|;
 block|}
-DECL|method|getValueNotInPopulatedMap ()
 annotation|@
 name|Override
+DECL|method|getValueNotInPopulatedMap ()
 specifier|protected
 name|Integer
 name|getValueNotInPopulatedMap
@@ -1467,9 +1467,9 @@ argument_list|,
 name|Integer
 argument_list|>
 block|{
-DECL|method|makePopulatedMap ()
 annotation|@
 name|Override
+DECL|method|makePopulatedMap ()
 specifier|protected
 name|SortedMap
 argument_list|<
@@ -1512,9 +1512,9 @@ literal|"b"
 argument_list|)
 return|;
 block|}
-DECL|method|getKeyNotInPopulatedMap ()
 annotation|@
 name|Override
+DECL|method|getKeyNotInPopulatedMap ()
 specifier|protected
 name|String
 name|getKeyNotInPopulatedMap
@@ -1524,9 +1524,9 @@ return|return
 literal|"a"
 return|;
 block|}
-DECL|method|getValueNotInPopulatedMap ()
 annotation|@
 name|Override
+DECL|method|getValueNotInPopulatedMap ()
 specifier|protected
 name|Integer
 name|getValueNotInPopulatedMap
@@ -1550,9 +1550,9 @@ argument_list|,
 name|Integer
 argument_list|>
 block|{
-DECL|method|makePopulatedMap ()
 annotation|@
 name|Override
+DECL|method|makePopulatedMap ()
 specifier|protected
 name|SortedMap
 argument_list|<
@@ -1597,9 +1597,9 @@ literal|false
 argument_list|)
 return|;
 block|}
-DECL|method|getKeyNotInPopulatedMap ()
 annotation|@
 name|Override
+DECL|method|getKeyNotInPopulatedMap ()
 specifier|protected
 name|String
 name|getKeyNotInPopulatedMap
@@ -1609,9 +1609,9 @@ return|return
 literal|"a"
 return|;
 block|}
-DECL|method|getValueNotInPopulatedMap ()
 annotation|@
 name|Override
+DECL|method|getValueNotInPopulatedMap ()
 specifier|protected
 name|Integer
 name|getValueNotInPopulatedMap
@@ -1635,9 +1635,9 @@ argument_list|,
 name|Integer
 argument_list|>
 block|{
-DECL|method|makePopulatedMap ()
 annotation|@
 name|Override
+DECL|method|makePopulatedMap ()
 specifier|protected
 name|SortedMap
 argument_list|<
@@ -1682,9 +1682,9 @@ literal|"d"
 argument_list|)
 return|;
 block|}
-DECL|method|getKeyNotInPopulatedMap ()
 annotation|@
 name|Override
+DECL|method|getKeyNotInPopulatedMap ()
 specifier|protected
 name|String
 name|getKeyNotInPopulatedMap
@@ -1694,9 +1694,9 @@ return|return
 literal|"a"
 return|;
 block|}
-DECL|method|getValueNotInPopulatedMap ()
 annotation|@
 name|Override
+DECL|method|getValueNotInPopulatedMap ()
 specifier|protected
 name|Integer
 name|getValueNotInPopulatedMap
@@ -1934,7 +1934,7 @@ parameter_list|(
 name|UnsupportedOperationException
 name|expected
 parameter_list|)
-block|{}
+block|{       }
 block|}
 DECL|method|testBuilder_withImmutableEntry ()
 specifier|public
@@ -3761,9 +3761,9 @@ operator|/
 literal|10
 return|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString
@@ -5061,9 +5061,9 @@ operator|=
 name|value
 expr_stmt|;
 block|}
-DECL|method|equals (Object o)
 annotation|@
 name|Override
+DECL|method|equals (Object o)
 specifier|public
 name|boolean
 name|equals
@@ -5091,9 +5091,9 @@ operator|==
 name|value
 return|;
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode

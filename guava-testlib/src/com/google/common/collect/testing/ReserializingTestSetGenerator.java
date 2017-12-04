@@ -43,7 +43,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Reserializes the sets created by another test set generator.  *  * TODO: make CollectionTestSuiteBuilder test reserialized collections  *  * @author Jesse Wilson  */
+comment|/**  * Reserializes the sets created by another test set generator.  *  *<p>TODO: make CollectionTestSuiteBuilder test reserialized collections  *  * @author Jesse Wilson  */
 end_comment
 
 begin_class

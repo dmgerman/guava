@@ -1185,9 +1185,9 @@ enum|enum
 name|AnEnum
 block|{
 DECL|enumConstant|ExampleAnnotation
-DECL|enumConstant|FOO
 annotation|@
 name|ExampleAnnotation
+DECL|enumConstant|FOO
 name|FOO
 block|,
 DECL|enumConstant|BAR

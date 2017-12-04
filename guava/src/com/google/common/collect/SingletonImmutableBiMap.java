@@ -409,11 +409,11 @@ name|singleKey
 argument_list|)
 return|;
 block|}
+DECL|field|inverse
 annotation|@
 name|LazyInit
 annotation|@
 name|RetainedWith
-DECL|field|inverse
 specifier|transient
 name|ImmutableBiMap
 argument_list|<

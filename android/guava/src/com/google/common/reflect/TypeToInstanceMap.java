@@ -65,7 +65,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A map, each entry of which maps a {@link TypeToken} to an instance of that type. In addition to  * implementing {@code Map}, the additional type-safe operations {@link #putInstance} and  * {@link #getInstance} are available.  *  *<p>Generally, implementations don't support {@link #put} and {@link #putAll} because there is no  * way to check an object at runtime to be an instance of a {@link TypeToken}. Instead, caller  * should use the type safe {@link #putInstance}.  *  *<p>Also, if caller suppresses unchecked warnings and passes in an {@code Iterable<String>} for  * type {@code Iterable<Integer>}, the map won't be able to detect and throw type error.  *  *<p>Like any other {@code Map<Class, Object>}, this map may contain entries for primitive types,  * and a primitive type and its corresponding wrapper type may map to different values.  *  * @param<B> the common supertype that all entries must share; often this is simply {@link Object}  *  * @author Ben Yu  * @since 13.0  */
+comment|/**  * A map, each entry of which maps a {@link TypeToken} to an instance of that type. In addition to  * implementing {@code Map}, the additional type-safe operations {@link #putInstance} and {@link  * #getInstance} are available.  *  *<p>Generally, implementations don't support {@link #put} and {@link #putAll} because there is no  * way to check an object at runtime to be an instance of a {@link TypeToken}. Instead, caller  * should use the type safe {@link #putInstance}.  *  *<p>Also, if caller suppresses unchecked warnings and passes in an {@code Iterable<String>} for  * type {@code Iterable<Integer>}, the map won't be able to detect and throw type error.  *  *<p>Like any other {@code Map<Class, Object>}, this map may contain entries for primitive types,  * and a primitive type and its corresponding wrapper type may map to different values.  *  * @param<B> the common supertype that all entries must share; often this is simply {@link Object}  * @author Ben Yu  * @since 13.0  */
 end_comment
 
 begin_interface
@@ -91,7 +91,7 @@ argument_list|,
 name|B
 argument_list|>
 block|{
-comment|/**    * Returns the value the specified class is mapped to, or {@code null} if no entry for this class    * is present. This will only return a value that was bound to this specific class, not a value    * that may have been bound to a subtype.    *    *<p>{@code getInstance(Foo.class)} is equivalent to    * {@code getInstance(TypeToken.of(Foo.class))}.    */
+comment|/**    * Returns the value the specified class is mapped to, or {@code null} if no entry for this class    * is present. This will only return a value that was bound to this specific class, not a value    * that may have been bound to a subtype.    *    *<p>{@code getInstance(Foo.class)} is equivalent to {@code    * getInstance(TypeToken.of(Foo.class))}.    */
 annotation|@
 name|Nullable
 DECL|method|getInstance (Class<T> type)
@@ -110,7 +110,7 @@ argument_list|>
 name|type
 parameter_list|)
 function_decl|;
-comment|/**    * Maps the specified class to the specified value. Does<i>not</i> associate this value with any    * of the class's supertypes.    *    *<p>{@code putInstance(Foo.class, foo)} is equivalent to    * {@code putInstance(TypeToken.of(Foo.class), foo)}.    *    * @return the value previously associated with this class (possibly {@code null}), or    *     {@code null} if there was no previous entry.    */
+comment|/**    * Maps the specified class to the specified value. Does<i>not</i> associate this value with any    * of the class's supertypes.    *    *<p>{@code putInstance(Foo.class, foo)} is equivalent to {@code    * putInstance(TypeToken.of(Foo.class), foo)}.    *    * @return the value previously associated with this class (possibly {@code null}), or {@code    *     null} if there was no previous entry.    */
 annotation|@
 name|Nullable
 annotation|@

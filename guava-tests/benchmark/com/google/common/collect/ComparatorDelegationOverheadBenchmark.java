@@ -194,9 +194,9 @@ name|array
 expr_stmt|;
 block|}
 block|}
-DECL|method|arraysSortNoComparator (int reps)
 annotation|@
 name|Benchmark
+DECL|method|arraysSortNoComparator (int reps)
 name|int
 name|arraysSortNoComparator
 parameter_list|(
@@ -257,9 +257,9 @@ return|return
 name|tmp
 return|;
 block|}
-DECL|method|arraysSortOrderingNatural (int reps)
 annotation|@
 name|Benchmark
+DECL|method|arraysSortOrderingNatural (int reps)
 name|int
 name|arraysSortOrderingNatural
 parameter_list|(
@@ -366,9 +366,9 @@ return|;
 block|}
 block|}
 decl_stmt|;
-DECL|method|arraysSortOrderingFromNatural (int reps)
 annotation|@
 name|Benchmark
+DECL|method|arraysSortOrderingFromNatural (int reps)
 name|int
 name|arraysSortOrderingFromNatural
 parameter_list|(

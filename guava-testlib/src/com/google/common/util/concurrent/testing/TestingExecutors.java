@@ -234,7 +234,7 @@ specifier|private
 name|TestingExecutors
 parameter_list|()
 block|{}
-comment|/**    * Returns a {@link ScheduledExecutorService} that never executes anything.    *    *<p>The {@code shutdownNow} method of the returned executor always returns an empty list despite    * the fact that everything is still technically awaiting execution.    * The {@code getDelay} method of any {@link ScheduledFuture} returned by the executor will always    * return the max long value instead of the time until the user-specified delay.    */
+comment|/**    * Returns a {@link ScheduledExecutorService} that never executes anything.    *    *<p>The {@code shutdownNow} method of the returned executor always returns an empty list despite    * the fact that everything is still technically awaiting execution. The {@code getDelay} method    * of any {@link ScheduledFuture} returned by the executor will always return the max long value    * instead of the time until the user-specified delay.    */
 DECL|method|noOpScheduledExecutor ()
 specifier|public
 specifier|static
@@ -248,7 +248,7 @@ name|NoOpScheduledExecutorService
 argument_list|()
 return|;
 block|}
-comment|/**    * Creates a scheduled executor service that runs each task in the thread    * that invokes {@code execute/submit/schedule}, as in    * {@link CallerRunsPolicy}. This applies both to individually submitted    * tasks and to collections of tasks submitted via {@code invokeAll},    * {@code invokeAny}, {@code schedule}, {@code scheduleAtFixedRate}, and    * {@code scheduleWithFixedDelay}.  In the case of tasks submitted by    * {@code invokeAll} or {@code invokeAny}, tasks will run serially on the    * calling thread.  Tasks are run to completion before a {@code Future} is    * returned to the caller (unless the executor has been shutdown).    *    *<p>The returned executor is backed by the executor returned by    * {@link MoreExecutors#newDirectExecutorService} and subject to the same    * constraints.    *    *<p>Although all tasks are immediately executed in the thread that    * submitted the task, this {@code ExecutorService} imposes a small    * locking overhead on each task submission in order to implement shutdown    * and termination behavior.    *    *<p>Because of the nature of single-thread execution, the methods    * {@code scheduleAtFixedRate} and {@code scheduleWithFixedDelay} are not    * supported by this class and will throw an UnsupportedOperationException.    *    *<p>The implementation deviates from the {@code ExecutorService}    * specification with regards to the {@code shutdownNow} method.  First,    * "best-effort" with regards to canceling running tasks is implemented    * as "no-effort".  No interrupts or other attempts are made to stop    * threads executing tasks.  Second, the returned list will always be empty,    * as any submitted task is considered to have started execution.    * This applies also to tasks given to {@code invokeAll} or {@code invokeAny}    * which are pending serial execution, even the subset of the tasks that    * have not yet started execution.  It is unclear from the    * {@code ExecutorService} specification if these should be included, and    * it's much easier to implement the interpretation that they not be.    * Finally, a call to {@code shutdown} or {@code shutdownNow} may result    * in concurrent calls to {@code invokeAll/invokeAny} throwing    * RejectedExecutionException, although a subset of the tasks may already    * have been executed.    *    * @since 15.0    */
+comment|/**    * Creates a scheduled executor service that runs each task in the thread that invokes {@code    * execute/submit/schedule}, as in {@link CallerRunsPolicy}. This applies both to individually    * submitted tasks and to collections of tasks submitted via {@code invokeAll}, {@code invokeAny},    * {@code schedule}, {@code scheduleAtFixedRate}, and {@code scheduleWithFixedDelay}. In the case    * of tasks submitted by {@code invokeAll} or {@code invokeAny}, tasks will run serially on the    * calling thread. Tasks are run to completion before a {@code Future} is returned to the caller    * (unless the executor has been shutdown).    *    *<p>The returned executor is backed by the executor returned by {@link    * MoreExecutors#newDirectExecutorService} and subject to the same constraints.    *    *<p>Although all tasks are immediately executed in the thread that submitted the task, this    * {@code ExecutorService} imposes a small locking overhead on each task submission in order to    * implement shutdown and termination behavior.    *    *<p>Because of the nature of single-thread execution, the methods {@code scheduleAtFixedRate}    * and {@code scheduleWithFixedDelay} are not supported by this class and will throw an    * UnsupportedOperationException.    *    *<p>The implementation deviates from the {@code ExecutorService} specification with regards to    * the {@code shutdownNow} method. First, "best-effort" with regards to canceling running tasks is    * implemented as "no-effort". No interrupts or other attempts are made to stop threads executing    * tasks. Second, the returned list will always be empty, as any submitted task is considered to    * have started execution. This applies also to tasks given to {@code invokeAll} or {@code    * invokeAny} which are pending serial execution, even the subset of the tasks that have not yet    * started execution. It is unclear from the {@code ExecutorService} specification if these should    * be included, and it's much easier to implement the interpretation that they not be. Finally, a    * call to {@code shutdown} or {@code shutdownNow} may result in concurrent calls to {@code    * invokeAll/invokeAny} throwing RejectedExecutionException, although a subset of the tasks may    * already have been executed.    *    * @since 15.0    */
 DECL|method|sameThreadScheduledExecutor ()
 specifier|public
 specifier|static
@@ -279,9 +279,9 @@ specifier|volatile
 name|boolean
 name|shutdown
 decl_stmt|;
-DECL|method|shutdown ()
 annotation|@
 name|Override
+DECL|method|shutdown ()
 specifier|public
 name|void
 name|shutdown
@@ -292,9 +292,9 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
-DECL|method|shutdownNow ()
 annotation|@
 name|Override
+DECL|method|shutdownNow ()
 specifier|public
 name|List
 argument_list|<
@@ -313,9 +313,9 @@ name|of
 argument_list|()
 return|;
 block|}
-DECL|method|isShutdown ()
 annotation|@
 name|Override
+DECL|method|isShutdown ()
 specifier|public
 name|boolean
 name|isShutdown
@@ -325,9 +325,9 @@ return|return
 name|shutdown
 return|;
 block|}
-DECL|method|isTerminated ()
 annotation|@
 name|Override
+DECL|method|isTerminated ()
 specifier|public
 name|boolean
 name|isTerminated
@@ -337,9 +337,9 @@ return|return
 name|shutdown
 return|;
 block|}
-DECL|method|awaitTermination (long timeout, TimeUnit unit)
 annotation|@
 name|Override
+DECL|method|awaitTermination (long timeout, TimeUnit unit)
 specifier|public
 name|boolean
 name|awaitTermination
@@ -355,9 +355,9 @@ return|return
 literal|true
 return|;
 block|}
-DECL|method|execute (Runnable runnable)
 annotation|@
 name|Override
+DECL|method|execute (Runnable runnable)
 specifier|public
 name|void
 name|execute
@@ -366,9 +366,9 @@ name|Runnable
 name|runnable
 parameter_list|)
 block|{}
-DECL|method|schedule ( Callable<V> callable, long delay, TimeUnit unit)
 annotation|@
 name|Override
+DECL|method|schedule ( Callable<V> callable, long delay, TimeUnit unit)
 specifier|public
 parameter_list|<
 name|V
@@ -399,9 +399,9 @@ name|create
 argument_list|()
 return|;
 block|}
-DECL|method|schedule ( Runnable command, long delay, TimeUnit unit)
 annotation|@
 name|Override
+DECL|method|schedule (Runnable command, long delay, TimeUnit unit)
 specifier|public
 name|ListenableScheduledFuture
 argument_list|<
@@ -426,9 +426,9 @@ name|create
 argument_list|()
 return|;
 block|}
-DECL|method|scheduleAtFixedRate ( Runnable command, long initialDelay, long period, TimeUnit unit)
 annotation|@
 name|Override
+DECL|method|scheduleAtFixedRate ( Runnable command, long initialDelay, long period, TimeUnit unit)
 specifier|public
 name|ListenableScheduledFuture
 argument_list|<
@@ -456,9 +456,9 @@ name|create
 argument_list|()
 return|;
 block|}
-DECL|method|scheduleWithFixedDelay ( Runnable command, long initialDelay, long delay, TimeUnit unit)
 annotation|@
 name|Override
+DECL|method|scheduleWithFixedDelay ( Runnable command, long initialDelay, long delay, TimeUnit unit)
 specifier|public
 name|ListenableScheduledFuture
 argument_list|<
@@ -526,9 +526,9 @@ argument_list|>
 argument_list|()
 return|;
 block|}
-DECL|method|getDelay (TimeUnit unit)
 annotation|@
 name|Override
+DECL|method|getDelay (TimeUnit unit)
 specifier|public
 name|long
 name|getDelay
@@ -543,9 +543,9 @@ operator|.
 name|MAX_VALUE
 return|;
 block|}
-DECL|method|compareTo (Delayed other)
 annotation|@
 name|Override
+DECL|method|compareTo (Delayed other)
 specifier|public
 name|int
 name|compareTo

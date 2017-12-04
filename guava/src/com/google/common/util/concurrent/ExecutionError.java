@@ -56,13 +56,13 @@ name|ExecutionError
 extends|extends
 name|Error
 block|{
-comment|/**    * Creates a new instance with {@code null} as its detail message.    */
+comment|/** Creates a new instance with {@code null} as its detail message. */
 DECL|method|ExecutionError ()
 specifier|protected
 name|ExecutionError
 parameter_list|()
 block|{}
-comment|/**    * Creates a new instance with the given detail message.    */
+comment|/** Creates a new instance with the given detail message. */
 DECL|method|ExecutionError (@ullable String message)
 specifier|protected
 name|ExecutionError
@@ -79,7 +79,7 @@ name|message
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates a new instance with the given detail message and cause.    */
+comment|/** Creates a new instance with the given detail message and cause. */
 DECL|method|ExecutionError (@ullable String message, @Nullable Error cause)
 specifier|public
 name|ExecutionError
@@ -103,7 +103,7 @@ name|cause
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates a new instance with the given cause.    */
+comment|/** Creates a new instance with the given cause. */
 DECL|method|ExecutionError (@ullable Error cause)
 specifier|public
 name|ExecutionError

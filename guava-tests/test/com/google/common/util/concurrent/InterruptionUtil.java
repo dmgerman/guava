@@ -155,7 +155,7 @@ name|getName
 argument_list|()
 argument_list|)
 decl_stmt|;
-comment|/**    * Runnable which will interrupt the target thread repeatedly when run.    */
+comment|/** Runnable which will interrupt the target thread repeatedly when run. */
 DECL|class|Interruptenator
 specifier|private
 specifier|static
@@ -264,7 +264,7 @@ literal|true
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Interrupts the current thread after sleeping for the specified delay.    */
+comment|/** Interrupts the current thread after sleeping for the specified delay. */
 DECL|method|requestInterruptIn (final long time, final TimeUnit unit)
 specifier|static
 name|void
@@ -443,7 +443,7 @@ argument_list|(
 literal|"InterruptenatorTask did not exit; future tests may be affected"
 argument_list|)
 expr_stmt|;
-comment|/*            * This won't do any good under JUnit 3, but I'll leave it around in            * case we ever switch to JUnit 4:            */
+comment|/*                * This won't do any good under JUnit 3, but I'll leave it around in                * case we ever switch to JUnit 4:                */
 name|fail
 argument_list|()
 expr_stmt|;
@@ -454,7 +454,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// TODO(cpovirk): promote to Uninterruptibles, and add untimed version
-DECL|method|joinUninterruptibly ( Thread thread, long timeout, TimeUnit unit)
+DECL|method|joinUninterruptibly (Thread thread, long timeout, TimeUnit unit)
 specifier|private
 specifier|static
 name|void

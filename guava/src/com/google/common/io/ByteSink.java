@@ -133,7 +133,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A destination to which bytes can be written, such as a file. Unlike an {@link OutputStream}, a  * {@code ByteSink} is not an open, stateful stream that can be written to and closed. Instead, it  * is an immutable<i>supplier</i> of {@code OutputStream} instances.  *  *<p>{@code ByteSink} provides two kinds of methods:  *<ul>  *<li><b>Methods that return a stream:</b> These methods should return a<i>new</i>, independent  *     instance each time they are called. The caller is responsible for ensuring that the returned  *     stream is closed.  *<li><b>Convenience methods:</b> These are implementations of common operations that are typically  *     implemented by opening a stream using one of the methods in the first category, doing  *     something and finally closing the stream or channel that was opened.  *</ul>  *  * @since 14.0  * @author Colin Decker  */
+comment|/**  * A destination to which bytes can be written, such as a file. Unlike an {@link OutputStream}, a  * {@code ByteSink} is not an open, stateful stream that can be written to and closed. Instead, it  * is an immutable<i>supplier</i> of {@code OutputStream} instances.  *  *<p>{@code ByteSink} provides two kinds of methods:  *  *<ul>  *<li><b>Methods that return a stream:</b> These methods should return a<i>new</i>, independent  *       instance each time they are called. The caller is responsible for ensuring that the  *       returned stream is closed.  *<li><b>Convenience methods:</b> These are implementations of common operations that are  *       typically implemented by opening a stream using one of the methods in the first category,  *       doing something and finally closing the stream or channel that was opened.  *</ul>  *  * @since 14.0  * @author Colin Decker  */
 end_comment
 
 begin_class
@@ -145,7 +145,7 @@ specifier|abstract
 class|class
 name|ByteSink
 block|{
-comment|/**    * Constructor for use by subclasses.    */
+comment|/** Constructor for use by subclasses. */
 DECL|method|ByteSink ()
 specifier|protected
 name|ByteSink
@@ -290,7 +290,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Writes all the bytes from the given {@code InputStream} to this sink. Does not close    * {@code input}.    *    * @return the number of bytes written    * @throws IOException if an I/O occurs while reading from {@code input} or writing to this sink    */
+comment|/**    * Writes all the bytes from the given {@code InputStream} to this sink. Does not close {@code    * input}.    *    * @return the number of bytes written    * @throws IOException if an I/O occurs while reading from {@code input} or writing to this sink    */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|writeFrom (InputStream input)

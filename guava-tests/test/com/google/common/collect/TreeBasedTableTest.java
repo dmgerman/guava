@@ -496,9 +496,9 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|makeEmptyMap ()
 annotation|@
 name|Override
+DECL|method|makeEmptyMap ()
 specifier|protected
 name|SortedMap
 argument_list|<
@@ -566,9 +566,9 @@ literal|"b"
 argument_list|)
 return|;
 block|}
-DECL|method|makePopulatedMap ()
 annotation|@
 name|Override
+DECL|method|makePopulatedMap ()
 specifier|protected
 name|SortedMap
 argument_list|<
@@ -669,9 +669,9 @@ literal|"b"
 argument_list|)
 return|;
 block|}
-DECL|method|getKeyNotInPopulatedMap ()
 annotation|@
 name|Override
+DECL|method|getKeyNotInPopulatedMap ()
 specifier|protected
 name|String
 name|getKeyNotInPopulatedMap
@@ -681,9 +681,9 @@ return|return
 literal|"q"
 return|;
 block|}
-DECL|method|getValueNotInPopulatedMap ()
 annotation|@
 name|Override
+DECL|method|getValueNotInPopulatedMap ()
 specifier|protected
 name|String
 name|getValueNotInPopulatedMap
@@ -968,9 +968,9 @@ return|return
 name|table
 return|;
 block|}
-DECL|method|create ( Object... data)
 annotation|@
 name|Override
+DECL|method|create (Object... data)
 specifier|protected
 name|TreeBasedTable
 argument_list|<

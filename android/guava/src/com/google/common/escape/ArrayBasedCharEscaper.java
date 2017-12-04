@@ -310,7 +310,7 @@ return|return
 name|s
 return|;
 block|}
-comment|/**    * Escapes a single character using the replacement array and safe range values. If the given    * character does not have an explicit replacement and lies outside the safe range then    * {@link #escapeUnsafe} is called.    */
+comment|/**    * Escapes a single character using the replacement array and safe range values. If the given    * character does not have an explicit replacement and lies outside the safe range then {@link    * #escapeUnsafe} is called.    */
 annotation|@
 name|Override
 DECL|method|escape (char c)

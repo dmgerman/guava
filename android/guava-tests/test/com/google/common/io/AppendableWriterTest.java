@@ -97,9 +97,9 @@ operator|new
 name|StringBuilder
 argument_list|()
 decl_stmt|;
-DECL|method|append (CharSequence csq)
 annotation|@
 name|Override
+DECL|method|append (CharSequence csq)
 specifier|public
 name|Appendable
 name|append
@@ -119,9 +119,9 @@ return|return
 name|this
 return|;
 block|}
-DECL|method|append (char c)
 annotation|@
 name|Override
+DECL|method|append (char c)
 specifier|public
 name|Appendable
 name|append
@@ -141,9 +141,9 @@ return|return
 name|this
 return|;
 block|}
-DECL|method|append (CharSequence csq, int start, int end)
 annotation|@
 name|Override
+DECL|method|append (CharSequence csq, int start, int end)
 specifier|public
 name|Appendable
 name|append
@@ -173,9 +173,9 @@ return|return
 name|this
 return|;
 block|}
-DECL|method|flush ()
 annotation|@
 name|Override
+DECL|method|flush ()
 specifier|public
 name|void
 name|flush
@@ -186,9 +186,9 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
-DECL|method|close ()
 annotation|@
 name|Override
+DECL|method|close ()
 specifier|public
 name|void
 name|close

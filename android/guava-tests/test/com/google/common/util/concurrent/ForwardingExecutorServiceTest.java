@@ -29,7 +29,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Unit tests for {@link ForwardingExecutorService}  */
+comment|/** Unit tests for {@link ForwardingExecutorService} */
 end_comment
 
 begin_class

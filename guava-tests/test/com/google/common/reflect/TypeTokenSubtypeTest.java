@@ -1190,7 +1190,7 @@ return|;
 block|}
 annotation|@
 name|TestSubtype
-DECL|method|nestedClassIsNotSupertype ( Mall<Indoor>.Shop<Grocery> shop)
+DECL|method|nestedClassIsNotSupertype (Mall<Indoor>.Shop<Grocery> shop)
 specifier|public
 name|ConsumerFacing
 argument_list|<
@@ -2055,7 +2055,6 @@ argument_list|>
 block|{}
 DECL|interface|UseIterable
 specifier|private
-specifier|static
 interface|interface
 name|UseIterable
 parameter_list|<
@@ -2069,7 +2068,6 @@ parameter_list|>
 block|{}
 DECL|interface|UseSerializableIterable
 specifier|private
-specifier|static
 interface|interface
 name|UseSerializableIterable
 parameter_list|<

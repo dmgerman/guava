@@ -75,7 +75,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Benchmarks for the hashing of UTF-8 strings.  */
+comment|/** Benchmarks for the hashing of UTF-8 strings. */
 end_comment
 
 begin_class

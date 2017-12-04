@@ -83,7 +83,7 @@ specifier|private
 name|SortedIterables
 parameter_list|()
 block|{}
-comment|/**    * Returns {@code true} if {@code elements} is a sorted collection using an ordering equivalent    * to {@code comparator}.    */
+comment|/**    * Returns {@code true} if {@code elements} is a sorted collection using an ordering equivalent to    * {@code comparator}.    */
 DECL|method|hasSameComparator (Comparator<?> comparator, Iterable<?> elements)
 specifier|public
 specifier|static

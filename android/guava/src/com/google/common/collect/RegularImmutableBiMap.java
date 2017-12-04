@@ -117,9 +117,9 @@ name|int
 index|[]
 name|keyHashTable
 decl_stmt|;
+DECL|field|alternatingKeysAndValues
 annotation|@
 name|VisibleForTesting
-DECL|field|alternatingKeysAndValues
 specifier|final
 specifier|transient
 name|Object

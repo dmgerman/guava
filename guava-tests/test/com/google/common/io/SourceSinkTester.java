@@ -191,31 +191,31 @@ literal|"sollicitudin quam. Praesent neque elit, sodales quis vestibulum vel, pe
 operator|+
 literal|"erat. Proin cursus commodo lacus eget congue. Aliquam erat volutpat. Fusce ut leo sed "
 operator|+
-literal|"risus tempor vehicula et a odio. Nam aliquet dolor viverra libero rutrum accumsan quis "
+literal|"risus tempor vehicula et a odio. Nam aliquet dolor viverra libero rutrum accumsan "
 operator|+
-literal|"in augue. Suspendisse id dui in lorem tristique placerat eget vel risus. Sed metus neque, "
+literal|"quis in augue. Suspendisse id dui in lorem tristique placerat eget vel risus. Sed "
 operator|+
-literal|"scelerisque in molestie ac, mattis quis lectus. Pellentesque viverra justo commodo quam "
+literal|"metus neque, scelerisque in molestie ac, mattis quis lectus. Pellentesque viverra "
 operator|+
-literal|"bibendum ut gravida leo accumsan. Nullam malesuada sagittis diam, quis suscipit mauris "
+literal|"justo commodo quam bibendum ut gravida leo accumsan. Nullam malesuada sagittis diam, "
 operator|+
-literal|"euismod vulputate. Pellentesque ultrices tellus sed lorem aliquet pulvinar. Nam lorem "
+literal|"quis suscipit mauris euismod vulputate. Pellentesque ultrices tellus sed lorem "
 operator|+
-literal|"nunc, ultrices at auctor non, scelerisque eget turpis. Nullam eget varius erat. Sed a "
+literal|"aliquet pulvinar. Nam lorem nunc, ultrices at auctor non, scelerisque eget turpis. "
 operator|+
-literal|"lorem id arcu dictum euismod. Fusce lectus odio, elementum ullamcorper mattis viverra, "
+literal|"Nullam eget varius erat. Sed a lorem id arcu dictum euismod. Fusce lectus odio, "
 operator|+
-literal|"dictum sit amet lacus.\n"
+literal|"elementum ullamcorper mattis viverra, dictum sit amet lacus.\n"
 operator|+
 literal|"\n"
 operator|+
 literal|"Nunc quis lacus est. Sed aliquam pretium cursus. Sed eu libero eros. In hac habitasse "
 operator|+
-literal|"platea dictumst. Pellentesque molestie, nibh nec iaculis luctus, justo sem lobortis enim, "
+literal|"platea dictumst. Pellentesque molestie, nibh nec iaculis luctus, justo sem lobortis "
 operator|+
-literal|"at feugiat leo magna nec libero. Mauris quis odio eget nisl rutrum cursus nec eget augue. "
+literal|"enim, at feugiat leo magna nec libero. Mauris quis odio eget nisl rutrum cursus nec "
 operator|+
-literal|"Sed nec arcu sem. In hac habitasse platea dictumst."
+literal|"eget augue. Sed nec arcu sem. In hac habitasse platea dictumst."
 decl_stmt|;
 DECL|field|TEST_STRINGS
 specifier|static

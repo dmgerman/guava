@@ -96,9 +96,9 @@ operator|.
 name|of
 argument_list|()
 decl_stmt|;
-DECL|method|getTestInstances ()
 annotation|@
 name|Override
+DECL|method|getTestInstances ()
 name|Iterable
 argument_list|<
 name|ImmutableTable

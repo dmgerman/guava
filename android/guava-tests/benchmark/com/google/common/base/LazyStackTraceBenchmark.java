@@ -114,7 +114,6 @@ specifier|public
 class|class
 name|LazyStackTraceBenchmark
 block|{
-DECL|field|stackDepth
 annotation|@
 name|Param
 argument_list|(
@@ -126,10 +125,10 @@ block|,
 literal|"2000"
 block|}
 argument_list|)
+DECL|field|stackDepth
 name|int
 name|stackDepth
 decl_stmt|;
-DECL|field|breakAt
 annotation|@
 name|Param
 argument_list|(
@@ -141,6 +140,7 @@ block|,
 literal|"15"
 block|}
 argument_list|)
+DECL|field|breakAt
 name|int
 name|breakAt
 decl_stmt|;

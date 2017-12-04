@@ -289,7 +289,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Base class for services that can implement {@link #startUp} and {@link #shutDown} but while in  * the "running" state need to perform a periodic task. Subclasses can implement {@link #startUp},  * {@link #shutDown} and also a {@link #runOneIteration} method that will be executed periodically.  *  *<p>This class uses the {@link ScheduledExecutorService} returned from {@link #executor} to run  * the {@link #startUp} and {@link #shutDown} methods and also uses that service to schedule the  * {@link #runOneIteration} that will be executed periodically as specified by its {@link  * Scheduler}. When this service is asked to stop via {@link #stopAsync} it will cancel the periodic  * task (but not interrupt it) and wait for it to stop before running the {@link #shutDown} method.  *  *<p>Subclasses are guaranteed that the life cycle methods ({@link #runOneIteration}, {@link  * #startUp} and {@link #shutDown}) will never run concurrently. Notably, if any execution of {@link  * #runOneIteration} takes longer than its schedule defines, then subsequent executions may start  * late. Also, all life cycle methods are executed with a lock held, so subclasses can safely modify  * shared state without additional synchronization necessary for visibility to later executions of  * the life cycle methods.  *  *<h3>Usage Example</h3>  *  *<p>Here is a sketch of a service which crawls a website and uses the scheduling capabilities to  * rate limit itself.<pre> {@code  * class CrawlingService extends AbstractScheduledService {  *   private Set<Uri> visited;  *   private Queue<Uri> toCrawl;  *   protected void startUp() throws Exception {  *     toCrawl = readStartingUris();  *   }  *  *   protected void runOneIteration() throws Exception {  *     Uri uri = toCrawl.remove();  *     Collection<Uri> newUris = crawl(uri);  *     visited.add(uri);  *     for (Uri newUri : newUris) {  *       if (!visited.contains(newUri)) { toCrawl.add(newUri); }  *     }  *   }  *  *   protected void shutDown() throws Exception {  *     saveUris(toCrawl);  *   }  *  *   protected Scheduler scheduler() {  *     return Scheduler.newFixedRateSchedule(0, 1, TimeUnit.SECONDS);  *   }  * }}</pre>  *  *<p>This class uses the life cycle methods to read in a list of starting URIs and save the set of  * outstanding URIs when shutting down. Also, it takes advantage of the scheduling functionality to  * rate limit the number of queries we perform.  *  * @author Luke Sandberg  * @since 11.0  */
+comment|/**  * Base class for services that can implement {@link #startUp} and {@link #shutDown} but while in  * the "running" state need to perform a periodic task. Subclasses can implement {@link #startUp},  * {@link #shutDown} and also a {@link #runOneIteration} method that will be executed periodically.  *  *<p>This class uses the {@link ScheduledExecutorService} returned from {@link #executor} to run  * the {@link #startUp} and {@link #shutDown} methods and also uses that service to schedule the  * {@link #runOneIteration} that will be executed periodically as specified by its {@link  * Scheduler}. When this service is asked to stop via {@link #stopAsync} it will cancel the periodic  * task (but not interrupt it) and wait for it to stop before running the {@link #shutDown} method.  *  *<p>Subclasses are guaranteed that the life cycle methods ({@link #runOneIteration}, {@link  * #startUp} and {@link #shutDown}) will never run concurrently. Notably, if any execution of {@link  * #runOneIteration} takes longer than its schedule defines, then subsequent executions may start  * late. Also, all life cycle methods are executed with a lock held, so subclasses can safely modify  * shared state without additional synchronization necessary for visibility to later executions of  * the life cycle methods.  *  *<h3>Usage Example</h3>  *  *<p>Here is a sketch of a service which crawls a website and uses the scheduling capabilities to  * rate limit itself.  *  *<pre>{@code  * class CrawlingService extends AbstractScheduledService {  *   private Set<Uri> visited;  *   private Queue<Uri> toCrawl;  *   protected void startUp() throws Exception {  *     toCrawl = readStartingUris();  *   }  *  *   protected void runOneIteration() throws Exception {  *     Uri uri = toCrawl.remove();  *     Collection<Uri> newUris = crawl(uri);  *     visited.add(uri);  *     for (Uri newUri : newUris) {  *       if (!visited.contains(newUri)) { toCrawl.add(newUri); }  *     }  *   }  *  *   protected void shutDown() throws Exception {  *     saveUris(toCrawl);  *   }  *  *   protected Scheduler scheduler() {  *     return Scheduler.newFixedRateSchedule(0, 1, TimeUnit.SECONDS);  *   }  * }  * }</pre>  *  *<p>This class uses the life cycle methods to read in a list of starting URIs and save the set of  * outstanding URIs when shutting down. Also, it takes advantage of the scheduling functionality to  * rate limit the number of queries we perform.  *  * @author Luke Sandberg  * @since 11.0  */
 end_comment
 
 begin_class
@@ -1125,7 +1125,7 @@ name|state
 argument_list|()
 return|;
 block|}
-comment|/**    * @since 13.0    */
+comment|/** @since 13.0 */
 annotation|@
 name|Override
 DECL|method|addListener (Listener listener, Executor executor)
@@ -1151,7 +1151,7 @@ name|executor
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * @since 14.0    */
+comment|/** @since 14.0 */
 annotation|@
 name|Override
 DECL|method|failureCause ()
@@ -1168,7 +1168,7 @@ name|failureCause
 argument_list|()
 return|;
 block|}
-comment|/**    * @since 15.0    */
+comment|/** @since 15.0 */
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
@@ -1189,7 +1189,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**    * @since 15.0    */
+comment|/** @since 15.0 */
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
@@ -1210,7 +1210,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**    * @since 15.0    */
+comment|/** @since 15.0 */
 annotation|@
 name|Override
 DECL|method|awaitRunning ()
@@ -1226,7 +1226,7 @@ name|awaitRunning
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * @since 15.0    */
+comment|/** @since 15.0 */
 annotation|@
 name|Override
 DECL|method|awaitRunning (long timeout, TimeUnit unit)
@@ -1254,7 +1254,7 @@ name|unit
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * @since 15.0    */
+comment|/** @since 15.0 */
 annotation|@
 name|Override
 DECL|method|awaitTerminated ()
@@ -1270,7 +1270,7 @@ name|awaitTerminated
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * @since 15.0    */
+comment|/** @since 15.0 */
 annotation|@
 name|Override
 DECL|method|awaitTerminated (long timeout, TimeUnit unit)
@@ -1310,7 +1310,7 @@ name|CustomScheduler
 extends|extends
 name|Scheduler
 block|{
-comment|/**      * A callable class that can reschedule itself using a {@link CustomScheduler}.      */
+comment|/** A callable class that can reschedule itself using a {@link CustomScheduler}. */
 DECL|class|ReschedulableCallable
 specifier|private
 class|class
@@ -1426,7 +1426,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**        * Atomically reschedules this task and assigns the new future to {@link #currentFuture}.        */
+comment|/** Atomically reschedules this task and assigns the new future to {@link #currentFuture}. */
 DECL|method|reschedule ()
 specifier|public
 name|void

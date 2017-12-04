@@ -43,7 +43,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This abstract base class for testers allows the framework to inject needed  * information after JUnit constructs the instances.  *  *<p>This class is emulated in GWT.  *  * @param<G> the type of the test generator required by this tester. An  * instance of G should somehow provide an instance of the class under test,  * plus any other information required to parameterize the test.  *  * @author George van den Driessche  */
+comment|/**  * This abstract base class for testers allows the framework to inject needed information after  * JUnit constructs the instances.  *  *<p>This class is emulated in GWT.  *  * @param<G> the type of the test generator required by this tester. An instance of G should  *     somehow provide an instance of the class under test, plus any other information required to  *     parameterize the test.  * @author George van den Driessche  */
 end_comment
 
 begin_class

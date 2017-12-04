@@ -2399,7 +2399,7 @@ name|expected
 parameter_list|)
 block|{     }
 block|}
-comment|/**    * Tests a failure caused by fix to childless uncle issue.    */
+comment|/** Tests a failure caused by fix to childless uncle issue. */
 DECL|method|testIteratorRegressionChildlessUncle ()
 specifier|public
 name|void
@@ -2564,7 +2564,7 @@ literal|14
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * This tests a special case of the removeAt() call. Moving an element    * sideways on the heap could break the invariants. Sometimes we need to    * bubble an element up instead of trickling down. See implementation.    */
+comment|/**    * This tests a special case of the removeAt() call. Moving an element sideways on the heap could    * break the invariants. Sometimes we need to bubble an element up instead of trickling down. See    * implementation.    */
 DECL|method|testInvalidatingRemove ()
 specifier|public
 name|void
@@ -2670,7 +2670,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * This tests a more obscure special case, but otherwise similar to above.    */
+comment|/** This tests a more obscure special case, but otherwise similar to above. */
 DECL|method|testInvalidatingRemove2 ()
 specifier|public
 name|void
@@ -3122,7 +3122,7 @@ name|lastItem
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * This tests a special case where removeAt has to trickle an element    * first down one level from a min to a max level, then up one level above    * the index of the removed element.    * It also tests that skipMe in the iterator plays nicely with    * forgetMeNot.    */
+comment|/**    * This tests a special case where removeAt has to trickle an element first down one level from a    * min to a max level, then up one level above the index of the removed element. It also tests    * that skipMe in the iterator plays nicely with forgetMeNot.    */
 DECL|method|testIteratorInvalidatingIteratorRemove2 ()
 specifier|public
 name|void
@@ -3780,7 +3780,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|runIterator ( final List<T> values, int steps)
+DECL|method|runIterator (final List<T> values, int steps)
 specifier|private
 parameter_list|<
 name|T
@@ -4244,7 +4244,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**    * Regression test for bug found.    */
+comment|/** Regression test for bug found. */
 DECL|method|testCorrectOrdering_regression ()
 specifier|public
 name|void
@@ -4702,7 +4702,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Regression test for bug found in random testing.    */
+comment|/** Regression test for bug found in random testing. */
 DECL|method|testCorrectOrdering_73ElementBug ()
 specifier|public
 name|void
@@ -5275,7 +5275,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Regression test for b/4124577    */
+comment|/** Regression test for b/4124577 */
 DECL|method|testRegression_dataCorruption ()
 specifier|public
 name|void
@@ -5520,7 +5520,7 @@ name|elements
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Regression test for https://github.com/google/guava/issues/2658    */
+comment|/** Regression test for https://github.com/google/guava/issues/2658 */
 DECL|method|testRemoveRegression ()
 specifier|public
 name|void
@@ -5904,18 +5904,18 @@ enum|enum
 name|Element
 block|{
 DECL|enumConstant|ONE
-DECL|enumConstant|TWO
-DECL|enumConstant|THREE
-DECL|enumConstant|FOUR
-DECL|enumConstant|FIVE
 name|ONE
 block|,
+DECL|enumConstant|TWO
 name|TWO
 block|,
+DECL|enumConstant|THREE
 name|THREE
 block|,
+DECL|enumConstant|FOUR
 name|FOUR
 block|,
+DECL|enumConstant|FIVE
 name|FIVE
 block|;   }
 DECL|method|testRandomAddsAndRemoves_duplicateElements ()
@@ -6126,7 +6126,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Returns the seed used for the randomization.    */
+comment|/** Returns the seed used for the randomization. */
 DECL|method|insertRandomly (ArrayList<Integer> elements, MinMaxPriorityQueue<Integer> q)
 specifier|private
 name|long
@@ -6623,7 +6623,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|insertIntoReplica ( Map<Integer, AtomicInteger> replica, int newValue)
+DECL|method|insertIntoReplica (Map<Integer, AtomicInteger> replica, int newValue)
 specifier|private
 specifier|static
 name|void
@@ -6766,7 +6766,7 @@ name|replicatedMaxValue
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|removeFromReplica ( Map<Integer, AtomicInteger> replica, int value)
+DECL|method|removeFromReplica (Map<Integer, AtomicInteger> replica, int value)
 specifier|private
 specifier|static
 name|void

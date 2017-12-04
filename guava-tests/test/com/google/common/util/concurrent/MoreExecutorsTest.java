@@ -1137,7 +1137,7 @@ specifier|public
 name|void
 name|run
 parameter_list|()
-block|{         }
+block|{}
 block|}
 decl_stmt|;
 name|Thread
@@ -1524,7 +1524,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Test for a bug where threads weren't getting signaled when shutdown was called, only when    * tasks completed.    */
+comment|/**    * Test for a bug where threads weren't getting signaled when shutdown was called, only when tasks    * completed.    */
 DECL|method|testDirectExecutorService_awaitTermination_missedSignal ()
 specifier|public
 name|void
@@ -1752,7 +1752,7 @@ parameter_list|(
 name|RejectedExecutionException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testListeningExecutorServiceInvokeAllJavadocCodeCompiles ()
 specifier|public
@@ -2678,7 +2678,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * invokeAny(null) throws NPE    */
+comment|/** invokeAny(null) throws NPE */
 DECL|method|testInvokeAnyImpl_nullTasks ()
 specifier|public
 name|void
@@ -2729,7 +2729,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * invokeAny(empty collection) throws IAE    */
+comment|/** invokeAny(empty collection) throws IAE */
 DECL|method|testInvokeAnyImpl_emptyTasks ()
 specifier|public
 name|void
@@ -2788,7 +2788,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * invokeAny(c) throws NPE if c has null elements    */
+comment|/** invokeAny(c) throws NPE if c has null elements */
 DECL|method|testInvokeAnyImpl_nullElement ()
 specifier|public
 name|void
@@ -2889,7 +2889,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * invokeAny(c) throws ExecutionException if no task in c completes    */
+comment|/** invokeAny(c) throws ExecutionException if no task in c completes */
 DECL|method|testInvokeAnyImpl_noTaskCompletes ()
 specifier|public
 name|void
@@ -2979,7 +2979,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * invokeAny(c) returns result of some task in c if at least one completes    */
+comment|/** invokeAny(c) returns result of some task in c if at least one completes */
 DECL|method|testInvokeAnyImpl ()
 specifier|public
 name|void
@@ -3874,9 +3874,9 @@ operator|.
 name|newArrayList
 argument_list|()
 decl_stmt|;
-DECL|method|addShutdownHook (Thread hook)
 annotation|@
 name|Override
+DECL|method|addShutdownHook (Thread hook)
 specifier|synchronized
 name|void
 name|addShutdownHook

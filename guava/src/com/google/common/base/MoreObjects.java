@@ -81,7 +81,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Helper functions that operate on any {@code Object}, and are not already provided in  * {@link java.util.Objects}.  *  *<p>See the Guava User Guide on  *<a href="https://github.com/google/guava/wiki/CommonObjectUtilitiesExplained">writing  * {@code Object} methods with {@code MoreObjects}</a>.  *  * @author Laurence Gonsalves  * @since 18.0 (since 2.0 as {@code Objects})  */
+comment|/**  * Helper functions that operate on any {@code Object}, and are not already provided in {@link  * java.util.Objects}.  *  *<p>See the Guava User Guide on<a  * href="https://github.com/google/guava/wiki/CommonObjectUtilitiesExplained">writing {@code Object}  * methods with {@code MoreObjects}</a>.  *  * @author Laurence Gonsalves  * @since 18.0 (since 2.0 as {@code Objects})  */
 end_comment
 
 begin_class
@@ -93,7 +93,7 @@ specifier|final
 class|class
 name|MoreObjects
 block|{
-comment|/**    * Returns the first of two given parameters that is not {@code null}, if either is, or otherwise    * throws a {@link NullPointerException}.    *    *<p>To find the first non-null element in an iterable, use {@code    * Iterables.find(iterable, Predicates.notNull())}. For varargs, use {@code    * Iterables.find(Arrays.asList(a, b, c, ...), Predicates.notNull())}, static importing as    * necessary.    *    *<p><b>Note:</b> if {@code first} is represented as an {@link Optional}, this can be    * accomplished with {@link Optional#or(Object) first.or(second)}. That approach also allows for    * lazy evaluation of the fallback instance, using {@link Optional#or(Supplier)    * first.or(supplier)}.    *    * @return {@code first} if it is non-null; otherwise {@code second} if it is non-null    * @throws NullPointerException if both {@code first} and {@code second} are null    * @since 18.0 (since 3.0 as {@code Objects.firstNonNull()}).    */
+comment|/**    * Returns the first of two given parameters that is not {@code null}, if either is, or otherwise    * throws a {@link NullPointerException}.    *    *<p>To find the first non-null element in an iterable, use {@code Iterables.find(iterable,    * Predicates.notNull())}. For varargs, use {@code Iterables.find(Arrays.asList(a, b, c, ...),    * Predicates.notNull())}, static importing as necessary.    *    *<p><b>Note:</b> if {@code first} is represented as an {@link Optional}, this can be    * accomplished with {@link Optional#or(Object) first.or(second)}. That approach also allows for    * lazy evaluation of the fallback instance, using {@link Optional#or(Supplier)    * first.or(supplier)}.    *    * @return {@code first} if it is non-null; otherwise {@code second} if it is non-null    * @throws NullPointerException if both {@code first} and {@code second} are null    * @since 18.0 (since 3.0 as {@code Objects.firstNonNull()}).    */
 DECL|method|firstNonNull (@ullable T first, @Nullable T second)
 specifier|public
 specifier|static
@@ -169,7 +169,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Creates an instance of {@link ToStringHelper} in the same manner as    * {@link #toStringHelper(Object)}, but using the simple name of {@code clazz} instead of using an    * instance's {@link Object#getClass()}.    *    *<p>Note that in GWT, class names are often obfuscated.    *    * @param clazz the {@link Class} of the instance    * @since 18.0 (since 7.0 as {@code Objects.toStringHelper()}).    */
+comment|/**    * Creates an instance of {@link ToStringHelper} in the same manner as {@link    * #toStringHelper(Object)}, but using the simple name of {@code clazz} instead of using an    * instance's {@link Object#getClass()}.    *    *<p>Note that in GWT, class names are often obfuscated.    *    * @param clazz the {@link Class} of the instance    * @since 18.0 (since 7.0 as {@code Objects.toStringHelper()}).    */
 DECL|method|toStringHelper (Class<?> clazz)
 specifier|public
 specifier|static
@@ -194,7 +194,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Creates an instance of {@link ToStringHelper} in the same manner as    * {@link #toStringHelper(Object)}, but using {@code className} instead of using an instance's    * {@link Object#getClass()}.    *    * @param className the name of the instance type    * @since 18.0 (since 7.0 as {@code Objects.toStringHelper()}).    */
+comment|/**    * Creates an instance of {@link ToStringHelper} in the same manner as {@link    * #toStringHelper(Object)}, but using {@code className} instead of using an instance's {@link    * Object#getClass()}.    *    * @param className the name of the instance type    * @since 18.0 (since 7.0 as {@code Objects.toStringHelper()}).    */
 DECL|method|toStringHelper (String className)
 specifier|public
 specifier|static
@@ -251,7 +251,7 @@ name|omitNullValues
 init|=
 literal|false
 decl_stmt|;
-comment|/**      * Use {@link MoreObjects#toStringHelper(Object)} to create an instance.      */
+comment|/** Use {@link MoreObjects#toStringHelper(Object)} to create an instance. */
 DECL|method|ToStringHelper (String className)
 specifier|private
 name|ToStringHelper
@@ -935,21 +935,21 @@ specifier|final
 class|class
 name|ValueHolder
 block|{
+DECL|field|name
 annotation|@
 name|Nullable
-DECL|field|name
 name|String
 name|name
 decl_stmt|;
+DECL|field|value
 annotation|@
 name|Nullable
-DECL|field|value
 name|Object
 name|value
 decl_stmt|;
+DECL|field|next
 annotation|@
 name|Nullable
-DECL|field|next
 name|ValueHolder
 name|next
 decl_stmt|;

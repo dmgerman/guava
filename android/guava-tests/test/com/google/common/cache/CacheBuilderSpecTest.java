@@ -115,7 +115,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests CacheBuilderSpec.  * TODO(user): tests of a few invalid input conditions, boundary conditions.  *  * @author Adam Winer  */
+comment|/**  * Tests CacheBuilderSpec. TODO(user): tests of a few invalid input conditions, boundary  * conditions.  *  * @author Adam Winer  */
 end_comment
 
 begin_class
@@ -2747,7 +2747,7 @@ parameter_list|(
 name|IllegalStateException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testMaximumSize_withWeigher ()
 specifier|public

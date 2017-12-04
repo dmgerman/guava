@@ -610,7 +610,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-DECL|method|newProxyWithEqualsForInterfaces ( Class<?>.... interfaces)
+DECL|method|newProxyWithEqualsForInterfaces (Class<?>.... interfaces)
 specifier|private
 specifier|static
 name|Object
@@ -678,9 +678,9 @@ name|delegate
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|handleInvocation (Object proxy, Method method, Object[] args)
 annotation|@
 name|Override
+DECL|method|handleInvocation (Object proxy, Method method, Object[] args)
 specifier|protected
 name|Object
 name|handleInvocation
@@ -709,9 +709,9 @@ name|args
 argument_list|)
 return|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString
@@ -743,9 +743,9 @@ name|delegate
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|equals (Object obj)
 annotation|@
 name|Override
+DECL|method|equals (Object obj)
 specifier|public
 name|boolean
 name|equals
@@ -787,9 +787,9 @@ literal|false
 return|;
 block|}
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -802,9 +802,9 @@ name|hashCode
 argument_list|()
 return|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString

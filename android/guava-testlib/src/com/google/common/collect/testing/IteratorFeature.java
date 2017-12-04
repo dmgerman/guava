@@ -83,7 +83,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A method supported by implementations of the {@link Iterator} or  * {@link ListIterator} interface.  *  *<p>This enum is GWT compatible.  *  * @author Chris Povirk  */
+comment|/**  * A method supported by implementations of the {@link Iterator} or {@link ListIterator} interface.  *  *<p>This enum is GWT compatible.  *  * @author Chris Povirk  */
 end_comment
 
 begin_enum
@@ -94,19 +94,19 @@ specifier|public
 enum|enum
 name|IteratorFeature
 block|{
-comment|/**    * Support for {@link Iterator#remove()}.    */
+comment|/** Support for {@link Iterator#remove()}. */
 DECL|enumConstant|SUPPORTS_REMOVE
 name|SUPPORTS_REMOVE
 block|,
-comment|/**    * Support for {@link ListIterator#add(Object)}; ignored for plain    * {@link Iterator} implementations.    */
+comment|/**    * Support for {@link ListIterator#add(Object)}; ignored for plain {@link Iterator}    * implementations.    */
 DECL|enumConstant|SUPPORTS_ADD
 name|SUPPORTS_ADD
 block|,
-comment|/**    * Support for {@link ListIterator#set(Object)}; ignored for plain    * {@link Iterator} implementations.    */
+comment|/**    * Support for {@link ListIterator#set(Object)}; ignored for plain {@link Iterator}    * implementations.    */
 DECL|enumConstant|SUPPORTS_SET
 name|SUPPORTS_SET
 block|;
-comment|/**    * A set containing none of the optional features of the {@link Iterator} or    * {@link ListIterator} interfaces.    */
+comment|/**    * A set containing none of the optional features of the {@link Iterator} or {@link ListIterator}    * interfaces.    */
 DECL|field|UNMODIFIABLE
 specifier|public
 specifier|static
@@ -122,7 +122,7 @@ operator|.
 name|emptySet
 argument_list|()
 decl_stmt|;
-comment|/**    * A set containing all of the optional features of the {@link Iterator} and    * {@link ListIterator} interfaces.    */
+comment|/**    * A set containing all of the optional features of the {@link Iterator} and {@link ListIterator}    * interfaces.    */
 DECL|field|MODIFIABLE
 specifier|public
 specifier|static

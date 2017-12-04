@@ -104,7 +104,7 @@ specifier|private
 name|Funnels
 parameter_list|()
 block|{}
-comment|/**    * Returns a funnel that extracts the bytes from a {@code byte} array.    */
+comment|/** Returns a funnel that extracts the bytes from a {@code byte} array. */
 DECL|method|byteArrayFunnel ()
 specifier|public
 specifier|static
@@ -170,7 +170,7 @@ literal|"Funnels.byteArrayFunnel()"
 return|;
 block|}
 block|}
-comment|/**    * Returns a funnel that extracts the characters from a {@code CharSequence}, a character at a    * time, without performing any encoding. If you need to use a specific encoding, use    * {@link Funnels#stringFunnel(Charset)} instead.    *    * @since 15.0 (since 11.0 as {@code Funnels.stringFunnel()}.    */
+comment|/**    * Returns a funnel that extracts the characters from a {@code CharSequence}, a character at a    * time, without performing any encoding. If you need to use a specific encoding, use {@link    * Funnels#stringFunnel(Charset)} instead.    *    * @since 15.0 (since 11.0 as {@code Funnels.stringFunnel()}.    */
 DECL|method|unencodedCharsFunnel ()
 specifier|public
 specifier|static

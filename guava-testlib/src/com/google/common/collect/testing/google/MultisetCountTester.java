@@ -471,7 +471,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Returns {@link Method} instances for the read tests that assume multisets    * support duplicates so that the test of {@code Multisets.forSet()} can    * suppress them.    */
+comment|/**    * Returns {@link Method} instances for the read tests that assume multisets support duplicates so    * that the test of {@code Multisets.forSet()} can suppress them.    */
 annotation|@
 name|GwtIncompatible
 comment|// reflection

@@ -473,7 +473,7 @@ parameter_list|(
 name|IllegalStateException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testRawTypeIsCorrect ()
 specifier|public
@@ -2331,6 +2331,7 @@ name|inOrder
 argument_list|()
 expr_stmt|;
 block|}
+DECL|method|testGetTypes_manyBounds ()
 specifier|public
 parameter_list|<
 name|A
@@ -2344,7 +2345,6 @@ argument_list|<
 name|String
 argument_list|>
 parameter_list|>
-DECL|method|testGetTypes_manyBounds ()
 name|void
 name|testGetTypes_manyBounds
 parameter_list|()
@@ -8820,6 +8820,7 @@ block|}
 end_function
 
 begin_function
+DECL|method|testMultipleTypeBoundsAssignability ()
 specifier|public
 parameter_list|<
 name|From
@@ -8833,7 +8834,6 @@ extends|extends
 name|String
 argument_list|>
 parameter_list|>
-DECL|method|testMultipleTypeBoundsAssignability ()
 name|void
 name|testMultipleTypeBoundsAssignability
 parameter_list|()
@@ -8914,6 +8914,7 @@ block|}
 end_function
 
 begin_function
+DECL|method|assignabilityTestWithTypeVariables ()
 specifier|private
 specifier|static
 parameter_list|<
@@ -8925,7 +8926,6 @@ name|N11
 extends|extends
 name|N1
 parameter_list|>
-DECL|method|assignabilityTestWithTypeVariables ()
 name|void
 name|assignabilityTestWithTypeVariables
 parameter_list|()
@@ -11210,7 +11210,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 end_function
 
@@ -12016,7 +12016,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 end_function
 
@@ -12099,7 +12099,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 end_function
 
@@ -12152,7 +12152,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 end_function
 
@@ -14006,7 +14006,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 end_function
 
@@ -15504,7 +15504,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 end_function
 
@@ -16182,7 +16182,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 end_function
 
@@ -16233,7 +16233,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 end_function
 
@@ -17228,7 +17228,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 end_function
 
@@ -17878,7 +17878,7 @@ parameter_list|(
 name|RuntimeException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 end_function
 
@@ -17913,7 +17913,7 @@ parameter_list|(
 name|RuntimeException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 end_function
 
@@ -19410,7 +19410,6 @@ parameter_list|>
 block|{
 DECL|interface|Base
 specifier|private
-specifier|static
 interface|interface
 name|Base
 block|{}

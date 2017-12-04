@@ -852,9 +852,9 @@ name|running
 init|=
 literal|false
 decl_stmt|;
-DECL|method|doStart ()
 annotation|@
 name|Override
+DECL|method|doStart ()
 specifier|protected
 name|void
 name|doStart
@@ -873,9 +873,9 @@ name|notifyStarted
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|doStop ()
 annotation|@
 name|Override
+DECL|method|doStop ()
 specifier|protected
 name|void
 name|doStop
@@ -1790,7 +1790,7 @@ name|doStopCalled
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * The user of this service should call {@link #notifyStarted} and {@link    * #notifyStopped} after calling {@link #startAsync} and {@link #stopAsync}.    */
+comment|/**    * The user of this service should call {@link #notifyStarted} and {@link #notifyStopped} after    * calling {@link #startAsync} and {@link #stopAsync}.    */
 DECL|class|ManualSwitchedService
 specifier|private
 specifier|static
@@ -1811,9 +1811,9 @@ name|doStopCalled
 init|=
 literal|false
 decl_stmt|;
-DECL|method|doStart ()
 annotation|@
 name|Override
+DECL|method|doStart ()
 specifier|protected
 name|void
 name|doStart
@@ -1829,9 +1829,9 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
-DECL|method|doStop ()
 annotation|@
 name|Override
+DECL|method|doStop ()
 specifier|protected
 name|void
 name|doStop
@@ -2562,9 +2562,9 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|doStart ()
 annotation|@
 name|Override
+DECL|method|doStart ()
 specifier|protected
 name|void
 name|doStart
@@ -2626,9 +2626,9 @@ block|}
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|doStop ()
 annotation|@
 name|Override
+DECL|method|doStop ()
 specifier|protected
 name|void
 name|doStop
@@ -2820,7 +2820,7 @@ parameter_list|(
 name|IllegalStateException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 name|assertEquals
 argument_list|(
 name|State
@@ -3581,7 +3581,8 @@ name|void
 name|run
 parameter_list|()
 block|{
-comment|// Internally stopAsync() grabs a lock, this could be any such method on AbstractService.
+comment|// Internally stopAsync() grabs a lock, this could be any such method on
+comment|// AbstractService.
 name|service
 operator|.
 name|stopAsync
@@ -3804,9 +3805,9 @@ argument_list|(
 literal|1
 argument_list|)
 decl_stmt|;
-DECL|method|run ()
 annotation|@
 name|Override
+DECL|method|run ()
 specifier|protected
 name|void
 name|run
@@ -3820,9 +3821,9 @@ name|await
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|triggerShutdown ()
 annotation|@
 name|Override
+DECL|method|triggerShutdown ()
 specifier|protected
 name|void
 name|triggerShutdown
@@ -3843,9 +3844,9 @@ name|StartFailingService
 extends|extends
 name|AbstractService
 block|{
-DECL|method|doStart ()
 annotation|@
 name|Override
+DECL|method|doStart ()
 specifier|protected
 name|void
 name|doStart
@@ -3857,9 +3858,9 @@ name|EXCEPTION
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|doStop ()
 annotation|@
 name|Override
+DECL|method|doStop ()
 specifier|protected
 name|void
 name|doStop
@@ -3878,9 +3879,9 @@ name|RunFailingService
 extends|extends
 name|AbstractService
 block|{
-DECL|method|doStart ()
 annotation|@
 name|Override
+DECL|method|doStart ()
 specifier|protected
 name|void
 name|doStart
@@ -3895,9 +3896,9 @@ name|EXCEPTION
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|doStop ()
 annotation|@
 name|Override
+DECL|method|doStop ()
 specifier|protected
 name|void
 name|doStop
@@ -3916,9 +3917,9 @@ name|StopFailingService
 extends|extends
 name|AbstractService
 block|{
-DECL|method|doStart ()
 annotation|@
 name|Override
+DECL|method|doStart ()
 specifier|protected
 name|void
 name|doStart
@@ -3928,9 +3929,9 @@ name|notifyStarted
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|doStop ()
 annotation|@
 name|Override
+DECL|method|doStop ()
 specifier|protected
 name|void
 name|doStop
@@ -3962,9 +3963,9 @@ argument_list|(
 literal|"deliberate"
 argument_list|)
 decl_stmt|;
-DECL|method|doStart ()
 annotation|@
 name|Override
+DECL|method|doStart ()
 specifier|protected
 name|void
 name|doStart
@@ -3974,9 +3975,9 @@ throw|throw
 name|exception
 throw|;
 block|}
-DECL|method|doStop ()
 annotation|@
 name|Override
+DECL|method|doStop ()
 specifier|protected
 name|void
 name|doStop
@@ -4006,9 +4007,9 @@ argument_list|(
 literal|"deliberate"
 argument_list|)
 decl_stmt|;
-DECL|method|doStart ()
 annotation|@
 name|Override
+DECL|method|doStart ()
 specifier|protected
 name|void
 name|doStart
@@ -4021,9 +4022,9 @@ throw|throw
 name|exception
 throw|;
 block|}
-DECL|method|doStop ()
 annotation|@
 name|Override
+DECL|method|doStop ()
 specifier|protected
 name|void
 name|doStop
@@ -4053,9 +4054,9 @@ argument_list|(
 literal|"deliberate"
 argument_list|)
 decl_stmt|;
-DECL|method|doStart ()
 annotation|@
 name|Override
+DECL|method|doStart ()
 specifier|protected
 name|void
 name|doStart
@@ -4065,9 +4066,9 @@ name|notifyStarted
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|doStop ()
 annotation|@
 name|Override
+DECL|method|doStop ()
 specifier|protected
 name|void
 name|doStop
@@ -4196,9 +4197,9 @@ argument_list|)
 return|;
 block|}
 block|}
-DECL|method|starting ()
 annotation|@
 name|Override
+DECL|method|starting ()
 specifier|public
 specifier|synchronized
 name|void
@@ -4235,9 +4236,9 @@ name|STARTING
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|running ()
 annotation|@
 name|Override
+DECL|method|running ()
 specifier|public
 specifier|synchronized
 name|void
@@ -4285,9 +4286,9 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|stopping (State from)
 annotation|@
 name|Override
+DECL|method|stopping (State from)
 specifier|public
 specifier|synchronized
 name|void
@@ -4382,9 +4383,9 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|terminated (State from)
 annotation|@
 name|Override
+DECL|method|terminated (State from)
 specifier|public
 specifier|synchronized
 name|void
@@ -4490,9 +4491,9 @@ name|countDown
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|failed (State from, Throwable failure)
 annotation|@
 name|Override
+DECL|method|failed (State from, Throwable failure)
 specifier|public
 specifier|synchronized
 name|void
@@ -4650,7 +4651,7 @@ parameter_list|(
 name|IllegalStateException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testNotifyStoppedWhenNotRunning ()
 specifier|public
@@ -4681,7 +4682,7 @@ parameter_list|(
 name|IllegalStateException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testNotifyFailedWhenNotStarted ()
 specifier|public
@@ -4716,7 +4717,7 @@ parameter_list|(
 name|IllegalStateException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testNotifyFailedWhenTerminated ()
 specifier|public
@@ -4767,7 +4768,7 @@ parameter_list|(
 name|IllegalStateException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|class|DefaultService
 specifier|private
@@ -4777,17 +4778,17 @@ name|DefaultService
 extends|extends
 name|AbstractService
 block|{
-DECL|method|doStart ()
 annotation|@
 name|Override
+DECL|method|doStart ()
 specifier|protected
 name|void
 name|doStart
 parameter_list|()
 block|{}
-DECL|method|doStop ()
 annotation|@
 name|Override
+DECL|method|doStop ()
 specifier|protected
 name|void
 name|doStop

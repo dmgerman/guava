@@ -78,9 +78,9 @@ name|this
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|postStrings (int reps)
 annotation|@
 name|Benchmark
+DECL|method|postStrings (int reps)
 name|void
 name|postStrings
 parameter_list|(

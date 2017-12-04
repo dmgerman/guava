@@ -281,7 +281,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An implementation of {@code RangeMap} based on a {@code TreeMap}, supporting  * all optional operations.  *  *<p>Like all {@code RangeMap} implementations, this supports neither null  * keys nor null values.  *  * @author Louis Wasserman  * @since 14.0  */
+comment|/**  * An implementation of {@code RangeMap} based on a {@code TreeMap}, supporting all optional  * operations.  *  *<p>Like all {@code RangeMap} implementations, this supports neither null keys nor null values.  *  * @author Louis Wasserman  * @since 14.0  */
 end_comment
 
 begin_class

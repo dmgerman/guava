@@ -256,9 +256,9 @@ literal|0
 argument_list|)
 decl_stmt|;
 comment|// entries in insertion order
+DECL|field|entries
 annotation|@
 name|VisibleForTesting
-DECL|field|entries
 specifier|final
 specifier|transient
 name|Entry
@@ -328,7 +328,7 @@ name|entries
 argument_list|)
 return|;
 block|}
-comment|/**    * Creates a RegularImmutableMap from the first n entries in entryArray.  This implementation    * may replace the entries in entryArray with its own entry objects (though they will have the    * same key/value contents), and may take ownership of entryArray.    */
+comment|/**    * Creates a RegularImmutableMap from the first n entries in entryArray. This implementation may    * replace the entries in entryArray with its own entry objects (though they will have the same    * key/value contents), and may take ownership of entryArray.    */
 DECL|method|fromEntryArray (int n, Entry<K, V>[] entryArray)
 specifier|static
 parameter_list|<
@@ -760,7 +760,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Closed addressing tends to perform well even with high load factors.    * Being conservative here ensures that the table is still likely to be    * relatively sparse (hence it misses fast) while saving space.    */
+comment|/**    * Closed addressing tends to perform well even with high load factors. Being conservative here    * ensures that the table is still likely to be relatively sparse (hence it misses fast) while    * saving space.    */
 DECL|field|MAX_LOAD_FACTOR
 specifier|private
 specifier|static

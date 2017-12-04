@@ -119,7 +119,7 @@ specifier|abstract
 class|class
 name|LinearTransformation
 block|{
-comment|/**    * Start building an instance which maps {@code x = x1} to {@code y = y1}. Both arguments must be    * finite. Call either {@link LinearTransformationBuilder#and} or    * {@link LinearTransformationBuilder#withSlope} on the returned object to finish building the    * instance.    */
+comment|/**    * Start building an instance which maps {@code x = x1} to {@code y = y1}. Both arguments must be    * finite. Call either {@link LinearTransformationBuilder#and} or {@link    * LinearTransformationBuilder#withSlope} on the returned object to finish building the instance.    */
 DECL|method|mapping (double x1, double y1)
 specifier|public
 specifier|static
@@ -156,7 +156,7 @@ name|y1
 argument_list|)
 return|;
 block|}
-comment|/**    * This is an intermediate stage in the construction process. It is returned by    * {@link LinearTransformation#mapping}. You almost certainly don't want to keep instances around,    * but instead use method chaining. This represents a single point mapping, i.e. a mapping between    * one {@code x} and {@code y} value pair.    *    * @since 20.0    */
+comment|/**    * This is an intermediate stage in the construction process. It is returned by {@link    * LinearTransformation#mapping}. You almost certainly don't want to keep instances around, but    * instead use method chaining. This represents a single point mapping, i.e. a mapping between one    * {@code x} and {@code y} value pair.    *    * @since 20.0    */
 DECL|class|LinearTransformationBuilder
 specifier|public
 specifier|static
@@ -389,7 +389,7 @@ name|y
 argument_list|)
 return|;
 block|}
-comment|/**    * Builds an instance for datasets which contains {@link Double#NaN}. The {@link #isHorizontal}    * and {@link #isVertical} methods return {@code false} and the {@link #slope}, and    * {@link #transform} methods all return {@link Double#NaN}. The {@link #inverse} method returns    * the same instance.    */
+comment|/**    * Builds an instance for datasets which contains {@link Double#NaN}. The {@link #isHorizontal}    * and {@link #isVertical} methods return {@code false} and the {@link #slope}, and {@link    * #transform} methods all return {@link Double#NaN}. The {@link #inverse} method returns the same    * instance.    */
 DECL|method|forNaN ()
 specifier|public
 specifier|static
@@ -403,7 +403,7 @@ operator|.
 name|INSTANCE
 return|;
 block|}
-comment|/**    * Returns whether this is a vertical transformation.    */
+comment|/** Returns whether this is a vertical transformation. */
 DECL|method|isVertical ()
 specifier|public
 specifier|abstract
@@ -411,7 +411,7 @@ name|boolean
 name|isVertical
 parameter_list|()
 function_decl|;
-comment|/**    * Returns whether this is a horizontal transformation.    */
+comment|/** Returns whether this is a horizontal transformation. */
 DECL|method|isHorizontal ()
 specifier|public
 specifier|abstract
@@ -419,7 +419,7 @@ name|boolean
 name|isHorizontal
 parameter_list|()
 function_decl|;
-comment|/**    * Returns the slope of the transformation, i.e. the rate of change of {@code y} with respect to    * {@code x}. This must not be called on a vertical transformation (i.e. when    * {@link #isVertical()} is true).    */
+comment|/**    * Returns the slope of the transformation, i.e. the rate of change of {@code y} with respect to    * {@code x}. This must not be called on a vertical transformation (i.e. when {@link    * #isVertical()} is true).    */
 DECL|method|slope ()
 specifier|public
 specifier|abstract
@@ -465,9 +465,9 @@ specifier|final
 name|double
 name|yIntercept
 decl_stmt|;
+DECL|field|inverse
 annotation|@
 name|LazyInit
-DECL|field|inverse
 name|LinearTransformation
 name|inverse
 decl_stmt|;
@@ -701,9 +701,9 @@ specifier|final
 name|double
 name|x
 decl_stmt|;
+DECL|field|inverse
 annotation|@
 name|LazyInit
-DECL|field|inverse
 name|LinearTransformation
 name|inverse
 decl_stmt|;

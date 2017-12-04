@@ -266,7 +266,7 @@ return|return
 name|suite
 return|;
 block|}
-DECL|method|suiteForString (String name, ByteSinkFactory factory, String string, String desc)
+DECL|method|suiteForString ( String name, ByteSinkFactory factory, String string, String desc)
 specifier|private
 specifier|static
 name|TestSuite
@@ -346,7 +346,7 @@ return|return
 name|suite
 return|;
 block|}
-DECL|method|suiteForBytes (String name, ByteSinkFactory factory, String desc, byte[] bytes)
+DECL|method|suiteForBytes ( String name, ByteSinkFactory factory, String desc, byte[] bytes)
 specifier|private
 specifier|static
 name|TestSuite
@@ -419,7 +419,7 @@ specifier|private
 name|ByteSink
 name|sink
 decl_stmt|;
-DECL|method|ByteSinkTester (ByteSinkFactory factory, byte[] data, String suiteName, String caseDesc, Method method)
+DECL|method|ByteSinkTester ( ByteSinkFactory factory, byte[] data, String suiteName, String caseDesc, Method method)
 name|ByteSinkTester
 parameter_list|(
 name|ByteSinkFactory

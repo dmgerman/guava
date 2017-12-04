@@ -23,7 +23,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * Unit test for {@link AtomicDouble}.  */
+comment|/** Unit test for {@link AtomicDouble}. */
 end_comment
 
 begin_class
@@ -185,7 +185,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * constructor initializes to given value    */
+comment|/** constructor initializes to given value */
 DECL|method|testConstructor ()
 specifier|public
 name|void
@@ -221,7 +221,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * default constructed initializes to zero    */
+comment|/** default constructed initializes to zero */
 DECL|method|testConstructor2 ()
 specifier|public
 name|void
@@ -246,7 +246,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * get returns the last value set    */
+comment|/** get returns the last value set */
 DECL|method|testGetSet ()
 specifier|public
 name|void
@@ -299,7 +299,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * get returns the last value lazySet in same thread    */
+comment|/** get returns the last value lazySet in same thread */
 DECL|method|testGetLazySet ()
 specifier|public
 name|void
@@ -352,7 +352,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * compareAndSet succeeds in changing value if equal to expected else fails    */
+comment|/** compareAndSet succeeds in changing value if equal to expected else fails */
 DECL|method|testCompareAndSet ()
 specifier|public
 name|void
@@ -454,7 +454,7 @@ name|x
 expr_stmt|;
 block|}
 block|}
-comment|/**    * compareAndSet in one thread enables another waiting for value    * to succeed    */
+comment|/** compareAndSet in one thread enables another waiting for value to succeed */
 DECL|method|testCompareAndSetInMultipleThreads ()
 specifier|public
 name|void
@@ -538,7 +538,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * repeated weakCompareAndSet succeeds in changing value when equal    * to expected    */
+comment|/** repeated weakCompareAndSet succeeds in changing value when equal to expected */
 DECL|method|testWeakCompareAndSet ()
 specifier|public
 name|void
@@ -643,7 +643,7 @@ name|x
 expr_stmt|;
 block|}
 block|}
-comment|/**    * getAndSet returns previous value and sets to given value    */
+comment|/** getAndSet returns previous value and sets to given value */
 DECL|method|testGetAndSet ()
 specifier|public
 name|void
@@ -692,7 +692,7 @@ name|x
 expr_stmt|;
 block|}
 block|}
-comment|/**    * getAndAdd returns previous value and adds given value    */
+comment|/** getAndAdd returns previous value and adds given value */
 DECL|method|testGetAndAdd ()
 specifier|public
 name|void
@@ -756,7 +756,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**    * addAndGet adds given value to current, and returns current value    */
+comment|/** addAndGet adds given value to current, and returns current value */
 DECL|method|testAddAndGet ()
 specifier|public
 name|void
@@ -822,7 +822,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**    * a deserialized serialized atomic holds same value    */
+comment|/** a deserialized serialized atomic holds same value */
 DECL|method|testSerialization ()
 specifier|public
 name|void
@@ -943,7 +943,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * toString returns current value    */
+comment|/** toString returns current value */
 DECL|method|testToString ()
 specifier|public
 name|void
@@ -999,7 +999,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * intValue returns current value.    */
+comment|/** intValue returns current value. */
 DECL|method|testIntValue ()
 specifier|public
 name|void
@@ -1053,7 +1053,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * longValue returns current value.    */
+comment|/** longValue returns current value. */
 DECL|method|testLongValue ()
 specifier|public
 name|void
@@ -1107,7 +1107,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * floatValue returns current value.    */
+comment|/** floatValue returns current value. */
 DECL|method|testFloatValue ()
 specifier|public
 name|void
@@ -1161,7 +1161,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * doubleValue returns current value.    */
+comment|/** doubleValue returns current value. */
 DECL|method|testDoubleValue ()
 specifier|public
 name|void
@@ -1212,7 +1212,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * compareAndSet treats +0.0 and -0.0 as distinct values    */
+comment|/** compareAndSet treats +0.0 and -0.0 as distinct values */
 DECL|method|testDistinctZeros ()
 specifier|public
 name|void

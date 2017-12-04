@@ -49,7 +49,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Suite of tests for OpenJdk 6 tests. The existence of this class is a hack  * because the suitebuilder won't pick up the suites directly in the other  * classes because they don't extend TestCase.  Ergh.  *  * @author Kevin Bourrillion  */
+comment|/**  * Suite of tests for OpenJdk 6 tests. The existence of this class is a hack because the  * suitebuilder won't pick up the suites directly in the other classes because they don't extend  * TestCase. Ergh.  *  * @author Kevin Bourrillion  */
 end_comment
 
 begin_class

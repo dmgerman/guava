@@ -939,7 +939,7 @@ init|=
 literal|0
 decl_stmt|;
 block|}
-comment|/**    * Returns a supplier that always supplies {@code instance}.    */
+comment|/** Returns a supplier that always supplies {@code instance}. */
 DECL|method|ofInstance (@ullable T instance)
 specifier|public
 specifier|static

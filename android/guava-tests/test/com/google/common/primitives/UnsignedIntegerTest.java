@@ -1235,7 +1235,7 @@ parameter_list|(
 name|ArithmeticException
 name|expected
 parameter_list|)
-block|{}
+block|{       }
 block|}
 block|}
 DECL|method|testMod ()
@@ -1371,7 +1371,7 @@ parameter_list|(
 name|ArithmeticException
 name|expected
 parameter_list|)
-block|{}
+block|{       }
 block|}
 block|}
 DECL|method|testCompare ()

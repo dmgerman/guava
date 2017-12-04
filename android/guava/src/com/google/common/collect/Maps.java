@@ -569,7 +569,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Static utility methods pertaining to {@link Map} instances (including instances of  * {@link SortedMap}, {@link BiMap}, etc.). Also see this class's counterparts  * {@link Lists}, {@link Sets} and {@link Queues}.  *  *<p>See the Guava User Guide article on<a href=  * "https://github.com/google/guava/wiki/CollectionUtilitiesExplained#maps">  * {@code Maps}</a>.  *  * @author Kevin Bourrillion  * @author Mike Bostock  * @author Isaac Shum  * @author Louis Wasserman  * @since 2.0  */
+comment|/**  * Static utility methods pertaining to {@link Map} instances (including instances of {@link  * SortedMap}, {@link BiMap}, etc.). Also see this class's counterparts {@link Lists}, {@link Sets}  * and {@link Queues}.  *  *<p>See the Guava User Guide article on<a href=  * "https://github.com/google/guava/wiki/CollectionUtilitiesExplained#maps"> {@code Maps}</a>.  *  * @author Kevin Bourrillion  * @author Mike Bostock  * @author Isaac Shum  * @author Louis Wasserman  * @since 2.0  */
 end_comment
 
 begin_class
@@ -816,7 +816,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an immutable map instance containing the given entries.    * Internally, the returned map will be backed by an {@link EnumMap}.    *    *<p>The iteration order of the returned map follows the enum's iteration    * order, not the order in which the elements appear in the given map.    *    * @param map the map to make an immutable copy of    * @return an immutable map containing those entries    * @since 14.0    */
+comment|/**    * Returns an immutable map instance containing the given entries. Internally, the returned map    * will be backed by an {@link EnumMap}.    *    *<p>The iteration order of the returned map follows the enum's iteration order, not the order in    * which the elements appear in the given map.    *    * @param map the map to make an immutable copy of    * @return an immutable map containing those entries    * @since 14.0    */
 annotation|@
 name|GwtCompatible
 argument_list|(
@@ -1070,7 +1070,7 @@ name|enumMap
 argument_list|)
 return|;
 block|}
-comment|/**    * Creates a<i>mutable</i>, empty {@code HashMap} instance.    *    *<p><b>Note:</b> if mutability is not required, use {@link    * ImmutableMap#of()} instead.    *    *<p><b>Note:</b> if {@code K} is an {@code enum} type, use {@link    * #newEnumMap} instead.    *    *<p><b>Note for Java 7 and later:</b> this method is now unnecessary and    * should be treated as deprecated. Instead, use the {@code HashMap}    * constructor directly, taking advantage of the new    *<a href="http://goo.gl/iz2Wi">"diamond" syntax</a>.    *    * @return a new, empty {@code HashMap}    */
+comment|/**    * Creates a<i>mutable</i>, empty {@code HashMap} instance.    *    *<p><b>Note:</b> if mutability is not required, use {@link ImmutableMap#of()} instead.    *    *<p><b>Note:</b> if {@code K} is an {@code enum} type, use {@link #newEnumMap} instead.    *    *<p><b>Note for Java 7 and later:</b> this method is now unnecessary and should be treated as    * deprecated. Instead, use the {@code HashMap} constructor directly, taking advantage of the new    *<a href="http://goo.gl/iz2Wi">"diamond" syntax</a>.    *    * @return a new, empty {@code HashMap}    */
 DECL|method|newHashMap ()
 specifier|public
 specifier|static
@@ -1095,7 +1095,7 @@ argument_list|<>
 argument_list|()
 return|;
 block|}
-comment|/**    * Creates a {@code HashMap} instance, with a high enough "initial capacity"    * that it<i>should</i> hold {@code expectedSize} elements without growth.    * This behavior cannot be broadly guaranteed, but it is observed to be true    * for OpenJDK 1.7. It also can't be guaranteed that the method isn't    * inadvertently<i>oversizing</i> the returned map.    *    * @param expectedSize the number of entries you expect to add to the    *        returned map    * @return a new, empty {@code HashMap} with enough capacity to hold {@code    *         expectedSize} entries without resizing    * @throws IllegalArgumentException if {@code expectedSize} is negative    */
+comment|/**    * Creates a {@code HashMap} instance, with a high enough "initial capacity" that it<i>should</i>    * hold {@code expectedSize} elements without growth. This behavior cannot be broadly guaranteed,    * but it is observed to be true for OpenJDK 1.7. It also can't be guaranteed that the method    * isn't inadvertently<i>oversizing</i> the returned map.    *    * @param expectedSize the number of entries you expect to add to the returned map    * @return a new, empty {@code HashMap} with enough capacity to hold {@code expectedSize} entries    *     without resizing    * @throws IllegalArgumentException if {@code expectedSize} is negative    */
 DECL|method|newHashMapWithExpectedSize (int expectedSize)
 specifier|public
 specifier|static
@@ -1193,7 +1193,7 @@ name|MAX_VALUE
 return|;
 comment|// any large value
 block|}
-comment|/**    * Creates a<i>mutable</i> {@code HashMap} instance with the same mappings as    * the specified map.    *    *<p><b>Note:</b> if mutability is not required, use {@link    * ImmutableMap#copyOf(Map)} instead.    *    *<p><b>Note:</b> if {@code K} is an {@link Enum} type, use {@link    * #newEnumMap} instead.    *    *<p><b>Note for Java 7 and later:</b> this method is now unnecessary and    * should be treated as deprecated. Instead, use the {@code HashMap}    * constructor directly, taking advantage of the new    *<a href="http://goo.gl/iz2Wi">"diamond" syntax</a>.    *    * @param map the mappings to be placed in the new map    * @return a new {@code HashMap} initialized with the mappings from {@code    *         map}    */
+comment|/**    * Creates a<i>mutable</i> {@code HashMap} instance with the same mappings as the specified map.    *    *<p><b>Note:</b> if mutability is not required, use {@link ImmutableMap#copyOf(Map)} instead.    *    *<p><b>Note:</b> if {@code K} is an {@link Enum} type, use {@link #newEnumMap} instead.    *    *<p><b>Note for Java 7 and later:</b> this method is now unnecessary and should be treated as    * deprecated. Instead, use the {@code HashMap} constructor directly, taking advantage of the new    *<a href="http://goo.gl/iz2Wi">"diamond" syntax</a>.    *    * @param map the mappings to be placed in the new map    * @return a new {@code HashMap} initialized with the mappings from {@code map}    */
 DECL|method|newHashMap (Map<? extends K, ? extends V> map)
 specifier|public
 specifier|static
@@ -1232,7 +1232,7 @@ name|map
 argument_list|)
 return|;
 block|}
-comment|/**    * Creates a<i>mutable</i>, empty, insertion-ordered {@code LinkedHashMap}    * instance.    *    *<p><b>Note:</b> if mutability is not required, use {@link    * ImmutableMap#of()} instead.    *    *<p><b>Note for Java 7 and later:</b> this method is now unnecessary and    * should be treated as deprecated. Instead, use the {@code LinkedHashMap}    * constructor directly, taking advantage of the new    *<a href="http://goo.gl/iz2Wi">"diamond" syntax</a>.    *    * @return a new, empty {@code LinkedHashMap}    */
+comment|/**    * Creates a<i>mutable</i>, empty, insertion-ordered {@code LinkedHashMap} instance.    *    *<p><b>Note:</b> if mutability is not required, use {@link ImmutableMap#of()} instead.    *    *<p><b>Note for Java 7 and later:</b> this method is now unnecessary and should be treated as    * deprecated. Instead, use the {@code LinkedHashMap} constructor directly, taking advantage of    * the new<a href="http://goo.gl/iz2Wi">"diamond" syntax</a>.    *    * @return a new, empty {@code LinkedHashMap}    */
 DECL|method|newLinkedHashMap ()
 specifier|public
 specifier|static
@@ -1257,7 +1257,7 @@ argument_list|<>
 argument_list|()
 return|;
 block|}
-comment|/**    * Creates a {@code LinkedHashMap} instance, with a high enough    * "initial capacity" that it<i>should</i> hold {@code expectedSize}    * elements without growth. This behavior cannot be broadly guaranteed, but    * it is observed to be true for OpenJDK 1.7. It also can't be guaranteed    * that the method isn't inadvertently<i>oversizing</i> the returned map.    *    * @param expectedSize the number of entries you expect to add to the    *        returned map    * @return a new, empty {@code LinkedHashMap} with enough capacity to hold    *         {@code expectedSize} entries without resizing    * @throws IllegalArgumentException if {@code expectedSize} is negative    * @since 19.0    */
+comment|/**    * Creates a {@code LinkedHashMap} instance, with a high enough "initial capacity" that it    *<i>should</i> hold {@code expectedSize} elements without growth. This behavior cannot be    * broadly guaranteed, but it is observed to be true for OpenJDK 1.7. It also can't be guaranteed    * that the method isn't inadvertently<i>oversizing</i> the returned map.    *    * @param expectedSize the number of entries you expect to add to the returned map    * @return a new, empty {@code LinkedHashMap} with enough capacity to hold {@code expectedSize}    *     entries without resizing    * @throws IllegalArgumentException if {@code expectedSize} is negative    * @since 19.0    */
 DECL|method|newLinkedHashMapWithExpectedSize (int expectedSize)
 specifier|public
 specifier|static
@@ -1290,7 +1290,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Creates a<i>mutable</i>, insertion-ordered {@code LinkedHashMap} instance    * with the same mappings as the specified map.    *    *<p><b>Note:</b> if mutability is not required, use {@link    * ImmutableMap#copyOf(Map)} instead.    *    *<p><b>Note for Java 7 and later:</b> this method is now unnecessary and    * should be treated as deprecated. Instead, use the {@code LinkedHashMap}    * constructor directly, taking advantage of the new    *<a href="http://goo.gl/iz2Wi">"diamond" syntax</a>.    *    * @param map the mappings to be placed in the new map    * @return a new, {@code LinkedHashMap} initialized with the mappings from    *         {@code map}    */
+comment|/**    * Creates a<i>mutable</i>, insertion-ordered {@code LinkedHashMap} instance with the same    * mappings as the specified map.    *    *<p><b>Note:</b> if mutability is not required, use {@link ImmutableMap#copyOf(Map)} instead.    *    *<p><b>Note for Java 7 and later:</b> this method is now unnecessary and should be treated as    * deprecated. Instead, use the {@code LinkedHashMap} constructor directly, taking advantage of    * the new<a href="http://goo.gl/iz2Wi">"diamond" syntax</a>.    *    * @param map the mappings to be placed in the new map    * @return a new, {@code LinkedHashMap} initialized with the mappings from {@code map}    */
 DECL|method|newLinkedHashMap (Map<? extends K, ? extends V> map)
 specifier|public
 specifier|static
@@ -1354,7 +1354,7 @@ argument_list|<>
 argument_list|()
 return|;
 block|}
-comment|/**    * Creates a<i>mutable</i>, empty {@code TreeMap} instance using the natural    * ordering of its elements.    *    *<p><b>Note:</b> if mutability is not required, use {@link    * ImmutableSortedMap#of()} instead.    *    *<p><b>Note for Java 7 and later:</b> this method is now unnecessary and    * should be treated as deprecated. Instead, use the {@code TreeMap}    * constructor directly, taking advantage of the new    *<a href="http://goo.gl/iz2Wi">"diamond" syntax</a>.    *    * @return a new, empty {@code TreeMap}    */
+comment|/**    * Creates a<i>mutable</i>, empty {@code TreeMap} instance using the natural ordering of its    * elements.    *    *<p><b>Note:</b> if mutability is not required, use {@link ImmutableSortedMap#of()} instead.    *    *<p><b>Note for Java 7 and later:</b> this method is now unnecessary and should be treated as    * deprecated. Instead, use the {@code TreeMap} constructor directly, taking advantage of the new    *<a href="http://goo.gl/iz2Wi">"diamond" syntax</a>.    *    * @return a new, empty {@code TreeMap}    */
 DECL|method|newTreeMap ()
 specifier|public
 specifier|static
@@ -1381,7 +1381,7 @@ argument_list|<>
 argument_list|()
 return|;
 block|}
-comment|/**    * Creates a<i>mutable</i> {@code TreeMap} instance with the same mappings as    * the specified map and using the same ordering as the specified map.    *    *<p><b>Note:</b> if mutability is not required, use {@link    * ImmutableSortedMap#copyOfSorted(SortedMap)} instead.    *    *<p><b>Note for Java 7 and later:</b> this method is now unnecessary and    * should be treated as deprecated. Instead, use the {@code TreeMap}    * constructor directly, taking advantage of the new    *<a href="http://goo.gl/iz2Wi">"diamond" syntax</a>.    *    * @param map the sorted map whose mappings are to be placed in the new map    *        and whose comparator is to be used to sort the new map    * @return a new {@code TreeMap} initialized with the mappings from {@code    *         map} and using the comparator of {@code map}    */
+comment|/**    * Creates a<i>mutable</i> {@code TreeMap} instance with the same mappings as the specified map    * and using the same ordering as the specified map.    *    *<p><b>Note:</b> if mutability is not required, use {@link    * ImmutableSortedMap#copyOfSorted(SortedMap)} instead.    *    *<p><b>Note for Java 7 and later:</b> this method is now unnecessary and should be treated as    * deprecated. Instead, use the {@code TreeMap} constructor directly, taking advantage of the new    *<a href="http://goo.gl/iz2Wi">"diamond" syntax</a>.    *    * @param map the sorted map whose mappings are to be placed in the new map and whose comparator    *     is to be used to sort the new map    * @return a new {@code TreeMap} initialized with the mappings from {@code map} and using the    *     comparator of {@code map}    */
 DECL|method|newTreeMap (SortedMap<K, ? extends V> map)
 specifier|public
 specifier|static
@@ -1418,7 +1418,7 @@ name|map
 argument_list|)
 return|;
 block|}
-comment|/**    * Creates a<i>mutable</i>, empty {@code TreeMap} instance using the given    * comparator.    *    *<p><b>Note:</b> if mutability is not required, use {@code    * ImmutableSortedMap.orderedBy(comparator).build()} instead.    *    *<p><b>Note for Java 7 and later:</b> this method is now unnecessary and    * should be treated as deprecated. Instead, use the {@code TreeMap}    * constructor directly, taking advantage of the new    *<a href="http://goo.gl/iz2Wi">"diamond" syntax</a>.    *    * @param comparator the comparator to sort the keys with    * @return a new, empty {@code TreeMap}    */
+comment|/**    * Creates a<i>mutable</i>, empty {@code TreeMap} instance using the given comparator.    *    *<p><b>Note:</b> if mutability is not required, use {@code    * ImmutableSortedMap.orderedBy(comparator).build()} instead.    *    *<p><b>Note for Java 7 and later:</b> this method is now unnecessary and should be treated as    * deprecated. Instead, use the {@code TreeMap} constructor directly, taking advantage of the new    *<a href="http://goo.gl/iz2Wi">"diamond" syntax</a>.    *    * @param comparator the comparator to sort the keys with    * @return a new, empty {@code TreeMap}    */
 DECL|method|newTreeMap (@ullable Comparator<C> comparator)
 specifier|public
 specifier|static
@@ -1503,7 +1503,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Creates an {@code EnumMap} with the same mappings as the specified map.    *    *<p><b>Note for Java 7 and later:</b> this method is now unnecessary and    * should be treated as deprecated. Instead, use the {@code EnumMap}    * constructor directly, taking advantage of the new    *<a href="http://goo.gl/iz2Wi">"diamond" syntax</a>.    *    * @param map the map from which to initialize this {@code EnumMap}    * @return a new {@code EnumMap} initialized with the mappings from {@code    *         map}    * @throws IllegalArgumentException if {@code m} is not an {@code EnumMap}    *         instance and contains no mappings    */
+comment|/**    * Creates an {@code EnumMap} with the same mappings as the specified map.    *    *<p><b>Note for Java 7 and later:</b> this method is now unnecessary and should be treated as    * deprecated. Instead, use the {@code EnumMap} constructor directly, taking advantage of the new    *<a href="http://goo.gl/iz2Wi">"diamond" syntax</a>.    *    * @param map the map from which to initialize this {@code EnumMap}    * @return a new {@code EnumMap} initialized with the mappings from {@code map}    * @throws IllegalArgumentException if {@code m} is not an {@code EnumMap} instance and contains    *     no mappings    */
 DECL|method|newEnumMap (Map<K, ? extends V> map)
 specifier|public
 specifier|static
@@ -1545,7 +1545,7 @@ name|map
 argument_list|)
 return|;
 block|}
-comment|/**    * Creates an {@code IdentityHashMap} instance.    *    *<p><b>Note for Java 7 and later:</b> this method is now unnecessary and    * should be treated as deprecated. Instead, use the {@code IdentityHashMap}    * constructor directly, taking advantage of the new    *<a href="http://goo.gl/iz2Wi">"diamond" syntax</a>.    *    * @return a new, empty {@code IdentityHashMap}    */
+comment|/**    * Creates an {@code IdentityHashMap} instance.    *    *<p><b>Note for Java 7 and later:</b> this method is now unnecessary and should be treated as    * deprecated. Instead, use the {@code IdentityHashMap} constructor directly, taking advantage of    * the new<a href="http://goo.gl/iz2Wi">"diamond" syntax</a>.    *    * @return a new, empty {@code IdentityHashMap}    */
 DECL|method|newIdentityHashMap ()
 specifier|public
 specifier|static
@@ -1570,7 +1570,7 @@ argument_list|<>
 argument_list|()
 return|;
 block|}
-comment|/**    * Computes the difference between two maps. This difference is an immutable    * snapshot of the state of the maps at the time this method is called. It    * will never change, even if the maps change at a later time.    *    *<p>Since this method uses {@code HashMap} instances internally, the keys of    * the supplied maps must be well-behaved with respect to    * {@link Object#equals} and {@link Object#hashCode}.    *    *<p><b>Note:</b>If you only need to know whether two maps have the same    * mappings, call {@code left.equals(right)} instead of this method.    *    * @param left the map to treat as the "left" map for purposes of comparison    * @param right the map to treat as the "right" map for purposes of comparison    * @return the difference between the two maps    */
+comment|/**    * Computes the difference between two maps. This difference is an immutable snapshot of the state    * of the maps at the time this method is called. It will never change, even if the maps change at    * a later time.    *    *<p>Since this method uses {@code HashMap} instances internally, the keys of the supplied maps    * must be well-behaved with respect to {@link Object#equals} and {@link Object#hashCode}.    *    *<p><b>Note:</b>If you only need to know whether two maps have the same mappings, call {@code    * left.equals(right)} instead of this method.    *    * @param left the map to treat as the "left" map for purposes of comparison    * @param right the map to treat as the "right" map for purposes of comparison    * @return the difference between the two maps    */
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -1669,7 +1669,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Computes the difference between two maps. This difference is an immutable    * snapshot of the state of the maps at the time this method is called. It    * will never change, even if the maps change at a later time.    *    *<p>Since this method uses {@code HashMap} instances internally, the keys of    * the supplied maps must be well-behaved with respect to    * {@link Object#equals} and {@link Object#hashCode}.    *    * @param left the map to treat as the "left" map for purposes of comparison    * @param right the map to treat as the "right" map for purposes of comparison    * @param valueEquivalence the equivalence relationship to use to compare    *    values    * @return the difference between the two maps    * @since 10.0    */
+comment|/**    * Computes the difference between two maps. This difference is an immutable snapshot of the state    * of the maps at the time this method is called. It will never change, even if the maps change at    * a later time.    *    *<p>Since this method uses {@code HashMap} instances internally, the keys of the supplied maps    * must be well-behaved with respect to {@link Object#equals} and {@link Object#hashCode}.    *    * @param left the map to treat as the "left" map for purposes of comparison    * @param right the map to treat as the "right" map for purposes of comparison    * @param valueEquivalence the equivalence relationship to use to compare values    * @return the difference between the two maps    * @since 10.0    */
 DECL|method|difference ( Map<? extends K, ? extends V> left, Map<? extends K, ? extends V> right, Equivalence<? super V> valueEquivalence)
 specifier|public
 specifier|static
@@ -2755,7 +2755,7 @@ literal|")"
 return|;
 block|}
 block|}
-comment|/**    * Computes the difference between two sorted maps, using the comparator of    * the left map, or {@code Ordering.natural()} if the left map uses the    * natural ordering of its elements. This difference is an immutable snapshot    * of the state of the maps at the time this method is called. It will never    * change, even if the maps change at a later time.    *    *<p>Since this method uses {@code TreeMap} instances internally, the keys of    * the right map must all compare as distinct according to the comparator    * of the left map.    *    *<p><b>Note:</b>If you only need to know whether two sorted maps have the    * same mappings, call {@code left.equals(right)} instead of this method.    *    * @param left the map to treat as the "left" map for purposes of comparison    * @param right the map to treat as the "right" map for purposes of comparison    * @return the difference between the two maps    * @since 11.0    */
+comment|/**    * Computes the difference between two sorted maps, using the comparator of the left map, or    * {@code Ordering.natural()} if the left map uses the natural ordering of its elements. This    * difference is an immutable snapshot of the state of the maps at the time this method is called.    * It will never change, even if the maps change at a later time.    *    *<p>Since this method uses {@code TreeMap} instances internally, the keys of the right map must    * all compare as distinct according to the comparator of the left map.    *    *<p><b>Note:</b>If you only need to know whether two sorted maps have the same mappings, call    * {@code left.equals(right)} instead of this method.    *    * @param left the map to treat as the "left" map for purposes of comparison    * @param right the map to treat as the "right" map for purposes of comparison    * @return the difference between the two maps    * @since 11.0    */
 DECL|method|difference ( SortedMap<K, ? extends V> left, Map<? extends K, ? extends V> right)
 specifier|public
 specifier|static
@@ -3123,7 +3123,7 @@ argument_list|()
 return|;
 block|}
 block|}
-comment|/**    * Returns the specified comparator if not null; otherwise returns {@code    * Ordering.natural()}. This method is an abomination of generics; the only    * purpose of this method is to contain the ugly type-casting in one place.    */
+comment|/**    * Returns the specified comparator if not null; otherwise returns {@code Ordering.natural()}.    * This method is an abomination of generics; the only purpose of this method is to contain the    * ugly type-casting in one place.    */
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -3178,7 +3178,7 @@ name|natural
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns a live {@link Map} view whose keys are the contents of {@code set}    * and whose values are computed on demand using {@code function}. To get an    * immutable<i>copy</i> instead, use {@link #toMap(Iterable, Function)}.    *    *<p>Specifically, for each {@code k} in the backing set, the returned map    * has an entry mapping {@code k} to {@code function.apply(k)}. The {@code    * keySet}, {@code values}, and {@code entrySet} views of the returned map    * iterate in the same order as the backing set.    *    *<p>Modifications to the backing set are read through to the returned map.    * The returned map supports removal operations if the backing set does.    * Removal operations write through to the backing set.  The returned map    * does not support put operations.    *    *<p><b>Warning:</b> If the function rejects {@code null}, caution is    * required to make sure the set does not contain {@code null}, because the    * view cannot stop {@code null} from being added to the set.    *    *<p><b>Warning:</b> This method assumes that for any instance {@code k} of    * key type {@code K}, {@code k.equals(k2)} implies that {@code k2} is also    * of type {@code K}. Using a key type for which this may not hold, such as    * {@code ArrayList}, may risk a {@code ClassCastException} when calling    * methods on the resulting map view.    *    * @since 14.0    */
+comment|/**    * Returns a live {@link Map} view whose keys are the contents of {@code set} and whose values are    * computed on demand using {@code function}. To get an immutable<i>copy</i> instead, use {@link    * #toMap(Iterable, Function)}.    *    *<p>Specifically, for each {@code k} in the backing set, the returned map has an entry mapping    * {@code k} to {@code function.apply(k)}. The {@code keySet}, {@code values}, and {@code    * entrySet} views of the returned map iterate in the same order as the backing set.    *    *<p>Modifications to the backing set are read through to the returned map. The returned map    * supports removal operations if the backing set does. Removal operations write through to the    * backing set. The returned map does not support put operations.    *    *<p><b>Warning:</b> If the function rejects {@code null}, caution is required to make sure the    * set does not contain {@code null}, because the view cannot stop {@code null} from being added    * to the set.    *    *<p><b>Warning:</b> This method assumes that for any instance {@code k} of key type {@code K},    * {@code k.equals(k2)} implies that {@code k2} is also of type {@code K}. Using a key type for    * which this may not hold, such as {@code ArrayList}, may risk a {@code ClassCastException} when    * calling methods on the resulting map view.    *    * @since 14.0    */
 DECL|method|asMap (Set<K> set, Function<? super K, V> function)
 specifier|public
 specifier|static
@@ -3223,7 +3223,7 @@ name|function
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a view of the sorted set as a map, mapping keys from the set    * according to the specified function.    *    *<p>Specifically, for each {@code k} in the backing set, the returned map    * has an entry mapping {@code k} to {@code function.apply(k)}. The {@code    * keySet}, {@code values}, and {@code entrySet} views of the returned map    * iterate in the same order as the backing set.    *    *<p>Modifications to the backing set are read through to the returned map.    * The returned map supports removal operations if the backing set does.    * Removal operations write through to the backing set.  The returned map does    * not support put operations.    *    *<p><b>Warning:</b> If the function rejects {@code null}, caution is    * required to make sure the set does not contain {@code null}, because the    * view cannot stop {@code null} from being added to the set.    *    *<p><b>Warning:</b> This method assumes that for any instance {@code k} of    * key type {@code K}, {@code k.equals(k2)} implies that {@code k2} is also of    * type {@code K}. Using a key type for which this may not hold, such as    * {@code ArrayList}, may risk a {@code ClassCastException} when calling    * methods on the resulting map view.    *    * @since 14.0    */
+comment|/**    * Returns a view of the sorted set as a map, mapping keys from the set according to the specified    * function.    *    *<p>Specifically, for each {@code k} in the backing set, the returned map has an entry mapping    * {@code k} to {@code function.apply(k)}. The {@code keySet}, {@code values}, and {@code    * entrySet} views of the returned map iterate in the same order as the backing set.    *    *<p>Modifications to the backing set are read through to the returned map. The returned map    * supports removal operations if the backing set does. Removal operations write through to the    * backing set. The returned map does not support put operations.    *    *<p><b>Warning:</b> If the function rejects {@code null}, caution is required to make sure the    * set does not contain {@code null}, because the view cannot stop {@code null} from being added    * to the set.    *    *<p><b>Warning:</b> This method assumes that for any instance {@code k} of key type {@code K},    * {@code k.equals(k2)} implies that {@code k2} is also of type {@code K}. Using a key type for    * which this may not hold, such as {@code ArrayList}, may risk a {@code ClassCastException} when    * calling methods on the resulting map view.    *    * @since 14.0    */
 DECL|method|asMap (SortedSet<K> set, Function<? super K, V> function)
 specifier|public
 specifier|static
@@ -3268,7 +3268,7 @@ name|function
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a view of the navigable set as a map, mapping keys from the set    * according to the specified function.    *    *<p>Specifically, for each {@code k} in the backing set, the returned map    * has an entry mapping {@code k} to {@code function.apply(k)}. The {@code    * keySet}, {@code values}, and {@code entrySet} views of the returned map    * iterate in the same order as the backing set.    *    *<p>Modifications to the backing set are read through to the returned map.    * The returned map supports removal operations if the backing set does.    * Removal operations write through to the backing set.  The returned map    * does not support put operations.    *    *<p><b>Warning:</b> If the function rejects {@code null}, caution is    * required to make sure the set does not contain {@code null}, because the    * view cannot stop {@code null} from being added to the set.    *    *<p><b>Warning:</b> This method assumes that for any instance {@code k} of    * key type {@code K}, {@code k.equals(k2)} implies that {@code k2} is also    * of type {@code K}. Using a key type for which this may not hold, such as    * {@code ArrayList}, may risk a {@code ClassCastException} when calling    * methods on the resulting map view.    *    * @since 14.0    */
+comment|/**    * Returns a view of the navigable set as a map, mapping keys from the set according to the    * specified function.    *    *<p>Specifically, for each {@code k} in the backing set, the returned map has an entry mapping    * {@code k} to {@code function.apply(k)}. The {@code keySet}, {@code values}, and {@code    * entrySet} views of the returned map iterate in the same order as the backing set.    *    *<p>Modifications to the backing set are read through to the returned map. The returned map    * supports removal operations if the backing set does. Removal operations write through to the    * backing set. The returned map does not support put operations.    *    *<p><b>Warning:</b> If the function rejects {@code null}, caution is required to make sure the    * set does not contain {@code null}, because the view cannot stop {@code null} from being added    * to the set.    *    *<p><b>Warning:</b> This method assumes that for any instance {@code k} of key type {@code K},    * {@code k.equals(k2)} implies that {@code k2} is also of type {@code K}. Using a key type for    * which this may not hold, such as {@code ArrayList}, may risk a {@code ClassCastException} when    * calling methods on the resulting map view.    *    * @since 14.0    */
 annotation|@
 name|GwtIncompatible
 comment|// NavigableMap
@@ -4951,7 +4951,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/**    * Returns an immutable map whose keys are the distinct elements of {@code    * keys} and whose value for each key was computed by {@code valueFunction}.    * The map's iteration order is the order of the first appearance of each key    * in {@code keys}.    *    *<p>When there are multiple instances of a key in {@code keys}, it is    * unspecified whether {@code valueFunction} will be applied to more than one    * instance of that key and, if it is, which result will be mapped to that    * key in the returned map.    *    *<p>If {@code keys} is a {@link Set}, a live view can be obtained instead of    * a copy using {@link Maps#asMap(Set, Function)}.    *    * @throws NullPointerException if any element of {@code keys} is    *     {@code null}, or if {@code valueFunction} produces {@code null}    *     for any key    * @since 14.0    */
+comment|/**    * Returns an immutable map whose keys are the distinct elements of {@code keys} and whose value    * for each key was computed by {@code valueFunction}. The map's iteration order is the order of    * the first appearance of each key in {@code keys}.    *    *<p>When there are multiple instances of a key in {@code keys}, it is unspecified whether {@code    * valueFunction} will be applied to more than one instance of that key and, if it is, which    * result will be mapped to that key in the returned map.    *    *<p>If {@code keys} is a {@link Set}, a live view can be obtained instead of a copy using {@link    * Maps#asMap(Set, Function)}.    *    * @throws NullPointerException if any element of {@code keys} is {@code null}, or if {@code    *     valueFunction} produces {@code null} for any key    * @since 14.0    */
 DECL|method|toMap ( Iterable<K> keys, Function<? super K, V> valueFunction)
 specifier|public
 specifier|static
@@ -4997,7 +4997,7 @@ name|valueFunction
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an immutable map whose keys are the distinct elements of {@code    * keys} and whose value for each key was computed by {@code valueFunction}.    * The map's iteration order is the order of the first appearance of each key    * in {@code keys}.    *    *<p>When there are multiple instances of a key in {@code keys}, it is    * unspecified whether {@code valueFunction} will be applied to more than one    * instance of that key and, if it is, which result will be mapped to that    * key in the returned map.    *    * @throws NullPointerException if any element of {@code keys} is    *     {@code null}, or if {@code valueFunction} produces {@code null}    *     for any key    * @since 14.0    */
+comment|/**    * Returns an immutable map whose keys are the distinct elements of {@code keys} and whose value    * for each key was computed by {@code valueFunction}. The map's iteration order is the order of    * the first appearance of each key in {@code keys}.    *    *<p>When there are multiple instances of a key in {@code keys}, it is unspecified whether {@code    * valueFunction} will be applied to more than one instance of that key and, if it is, which    * result will be mapped to that key in the returned map.    *    * @throws NullPointerException if any element of {@code keys} is {@code null}, or if {@code    *     valueFunction} produces {@code null} for any key    * @since 14.0    */
 DECL|method|toMap ( Iterator<K> keys, Function<? super K, V> valueFunction)
 specifier|public
 specifier|static
@@ -5088,7 +5088,7 @@ name|builder
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a map with the given {@code values}, indexed by keys derived from    * those values. In other words, each input value produces an entry in the map    * whose key is the result of applying {@code keyFunction} to that value.    * These entries appear in the same order as the input values. Example usage:    *<pre>   {@code    *    *   Color red = new Color("red", 255, 0, 0);    *   ...    *   ImmutableSet<Color> allColors = ImmutableSet.of(red, green, blue);    *    *   Map<String, Color> colorForName =    *       uniqueIndex(allColors, toStringFunction());    *   assertThat(colorForName).containsEntry("red", red);}</pre>    *    *<p>If your index may associate multiple values with each key, use {@link    * Multimaps#index(Iterable, Function) Multimaps.index}.    *    * @param values the values to use when constructing the {@code Map}    * @param keyFunction the function used to produce the key for each value    * @return a map mapping the result of evaluating the function {@code    *         keyFunction} on each value in the input collection to that value    * @throws IllegalArgumentException if {@code keyFunction} produces the same    *         key for more than one value in the input collection    * @throws NullPointerException if any element of {@code values} is {@code    *         null}, or if {@code keyFunction} produces {@code null} for any value    */
+comment|/**    * Returns a map with the given {@code values}, indexed by keys derived from those values. In    * other words, each input value produces an entry in the map whose key is the result of applying    * {@code keyFunction} to that value. These entries appear in the same order as the input values.    * Example usage:    *    *<pre>{@code    * Color red = new Color("red", 255, 0, 0);    * ...    * ImmutableSet<Color> allColors = ImmutableSet.of(red, green, blue);    *    * Map<String, Color> colorForName =    *     uniqueIndex(allColors, toStringFunction());    * assertThat(colorForName).containsEntry("red", red);    * }</pre>    *    *<p>If your index may associate multiple values with each key, use {@link    * Multimaps#index(Iterable, Function) Multimaps.index}.    *    * @param values the values to use when constructing the {@code Map}    * @param keyFunction the function used to produce the key for each value    * @return a map mapping the result of evaluating the function {@code keyFunction} on each value    *     in the input collection to that value    * @throws IllegalArgumentException if {@code keyFunction} produces the same key for more than one    *     value in the input collection    * @throws NullPointerException if any element of {@code values} is {@code null}, or if {@code    *     keyFunction} produces {@code null} for any value    */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|uniqueIndex ( Iterable<V> values, Function<? super V, K> keyFunction)
@@ -5137,7 +5137,7 @@ name|keyFunction
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a map with the given {@code values}, indexed by keys derived from    * those values. In other words, each input value produces an entry in the map    * whose key is the result of applying {@code keyFunction} to that value.    * These entries appear in the same order as the input values. Example usage:    *<pre>   {@code    *    *   Color red = new Color("red", 255, 0, 0);    *   ...    *   Iterator<Color> allColors = ImmutableSet.of(red, green, blue).iterator();    *    *   Map<String, Color> colorForName =    *       uniqueIndex(allColors, toStringFunction());    *   assertThat(colorForName).containsEntry("red", red);}</pre>    *    *<p>If your index may associate multiple values with each key, use {@link    * Multimaps#index(Iterator, Function) Multimaps.index}.    *    * @param values the values to use when constructing the {@code Map}    * @param keyFunction the function used to produce the key for each value    * @return a map mapping the result of evaluating the function {@code    *         keyFunction} on each value in the input collection to that value    * @throws IllegalArgumentException if {@code keyFunction} produces the same    *         key for more than one value in the input collection    * @throws NullPointerException if any element of {@code values} is {@code    *         null}, or if {@code keyFunction} produces {@code null} for any value    * @since 10.0    */
+comment|/**    * Returns a map with the given {@code values}, indexed by keys derived from those values. In    * other words, each input value produces an entry in the map whose key is the result of applying    * {@code keyFunction} to that value. These entries appear in the same order as the input values.    * Example usage:    *    *<pre>{@code    * Color red = new Color("red", 255, 0, 0);    * ...    * Iterator<Color> allColors = ImmutableSet.of(red, green, blue).iterator();    *    * Map<String, Color> colorForName =    *     uniqueIndex(allColors, toStringFunction());    * assertThat(colorForName).containsEntry("red", red);    * }</pre>    *    *<p>If your index may associate multiple values with each key, use {@link    * Multimaps#index(Iterator, Function) Multimaps.index}.    *    * @param values the values to use when constructing the {@code Map}    * @param keyFunction the function used to produce the key for each value    * @return a map mapping the result of evaluating the function {@code keyFunction} on each value    *     in the input collection to that value    * @throws IllegalArgumentException if {@code keyFunction} produces the same key for more than one    *     value in the input collection    * @throws NullPointerException if any element of {@code values} is {@code null}, or if {@code    *     keyFunction} produces {@code null} for any value    * @since 10.0    */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|uniqueIndex ( Iterator<V> values, Function<? super V, K> keyFunction)
@@ -5253,7 +5253,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Creates an {@code ImmutableMap<String, String>} from a {@code Properties}    * instance. Properties normally derive from {@code Map<Object, Object>}, but    * they typically contain strings, which is awkward. This method lets you get    * a plain-old-{@code Map} out of a {@code Properties}.    *    * @param properties a {@code Properties} object to be converted    * @return an immutable map containing all the entries in {@code properties}    * @throws ClassCastException if any key in {@code Properties} is not a {@code    *         String}    * @throws NullPointerException if any key or value in {@code Properties} is    *         null    */
+comment|/**    * Creates an {@code ImmutableMap<String, String>} from a {@code Properties} instance. Properties    * normally derive from {@code Map<Object, Object>}, but they typically contain strings, which is    * awkward. This method lets you get a plain-old-{@code Map} out of a {@code Properties}.    *    * @param properties a {@code Properties} object to be converted    * @return an immutable map containing all the entries in {@code properties}    * @throws ClassCastException if any key in {@code Properties} is not a {@code String}    * @throws NullPointerException if any key or value in {@code Properties} is null    */
 annotation|@
 name|GwtIncompatible
 comment|// java.util.Properties
@@ -5340,7 +5340,7 @@ name|build
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns an immutable map entry with the specified key and value. The {@link    * Entry#setValue} operation throws an {@link UnsupportedOperationException}.    *    *<p>The returned entry is serializable.    *    * @param key the key to be associated with the returned entry    * @param value the value to be associated with the returned entry    */
+comment|/**    * Returns an immutable map entry with the specified key and value. The {@link Entry#setValue}    * operation throws an {@link UnsupportedOperationException}.    *    *<p>The returned entry is serializable.    *    * @param key the key to be associated with the returned entry    * @param value the value to be associated with the returned entry    */
 annotation|@
 name|GwtCompatible
 argument_list|(
@@ -5386,7 +5386,7 @@ name|value
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an unmodifiable view of the specified set of entries. The {@link    * Entry#setValue} operation throws an {@link UnsupportedOperationException},    * as do any operations that would modify the returned set.    *    * @param entrySet the entries for which to return an unmodifiable view    * @return an unmodifiable view of the entries    */
+comment|/**    * Returns an unmodifiable view of the specified set of entries. The {@link Entry#setValue}    * operation throws an {@link UnsupportedOperationException}, as do any operations that would    * modify the returned set.    *    * @param entrySet the entries for which to return an unmodifiable view    * @return an unmodifiable view of the entries    */
 DECL|method|unmodifiableEntrySet (Set<Entry<K, V>> entrySet)
 specifier|static
 parameter_list|<
@@ -5431,7 +5431,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an unmodifiable view of the specified map entry. The {@link    * Entry#setValue} operation throws an {@link UnsupportedOperationException}.    * This also has the side-effect of redefining {@code equals} to comply with    * the Entry contract, to avoid a possible nefarious implementation of equals.    *    * @param entry the entry for which to return an unmodifiable view    * @return an unmodifiable view of the entry    */
+comment|/**    * Returns an unmodifiable view of the specified map entry. The {@link Entry#setValue} operation    * throws an {@link UnsupportedOperationException}. This also has the side-effect of redefining    * {@code equals} to comply with the Entry contract, to avoid a possible nefarious implementation    * of equals.    *    * @param entry the entry for which to return an unmodifiable view    * @return an unmodifiable view of the entry    */
 DECL|method|unmodifiableEntry (final Entry<? extends K, ? extends V> entry)
 specifier|static
 parameter_list|<
@@ -5824,7 +5824,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**    * Returns a {@link Converter} that converts values using {@link BiMap#get bimap.get()},    * and whose inverse view converts values using    * {@link BiMap#inverse bimap.inverse()}{@code .get()}.    *    *<p>To use a plain {@link Map} as a {@link Function}, see    * {@link com.google.common.base.Functions#forMap(Map)} or    * {@link com.google.common.base.Functions#forMap(Map, Object)}.    *    * @since 16.0    */
+comment|/**    * Returns a {@link Converter} that converts values using {@link BiMap#get bimap.get()}, and whose    * inverse view converts values using {@link BiMap#inverse bimap.inverse()}{@code .get()}.    *    *<p>To use a plain {@link Map} as a {@link Function}, see {@link    * com.google.common.base.Functions#forMap(Map)} or {@link    * com.google.common.base.Functions#forMap(Map, Object)}.    *    * @since 16.0    */
 annotation|@
 name|Beta
 DECL|method|asConverter (final BiMap<A, B> bimap)
@@ -6104,7 +6104,7 @@ init|=
 literal|0L
 decl_stmt|;
 block|}
-comment|/**    * Returns a synchronized (thread-safe) bimap backed by the specified bimap.    * In order to guarantee serial access, it is critical that<b>all</b> access    * to the backing bimap is accomplished through the returned bimap.    *    *<p>It is imperative that the user manually synchronize on the returned map    * when accessing any of its collection views:<pre>   {@code    *    *   BiMap<Long, String> map = Maps.synchronizedBiMap(    *       HashBiMap.<Long, String>create());    *   ...    *   Set<Long> set = map.keySet();  // Needn't be in synchronized block    *   ...    *   synchronized (map) {  // Synchronizing on map, not set!    *     Iterator<Long> it = set.iterator(); // Must be in synchronized block    *     while (it.hasNext()) {    *       foo(it.next());    *     }    *   }}</pre>    *    *<p>Failure to follow this advice may result in non-deterministic behavior.    *    *<p>The returned bimap will be serializable if the specified bimap is    * serializable.    *    * @param bimap the bimap to be wrapped in a synchronized view    * @return a synchronized view of the specified bimap    */
+comment|/**    * Returns a synchronized (thread-safe) bimap backed by the specified bimap. In order to guarantee    * serial access, it is critical that<b>all</b> access to the backing bimap is accomplished    * through the returned bimap.    *    *<p>It is imperative that the user manually synchronize on the returned map when accessing any    * of its collection views:    *    *<pre>{@code    * BiMap<Long, String> map = Maps.synchronizedBiMap(    *     HashBiMap.<Long, String>create());    * ...    * Set<Long> set = map.keySet();  // Needn't be in synchronized block    * ...    * synchronized (map) {  // Synchronizing on map, not set!    *   Iterator<Long> it = set.iterator(); // Must be in synchronized block    *   while (it.hasNext()) {    *     foo(it.next());    *   }    * }    * }</pre>    *    *<p>Failure to follow this advice may result in non-deterministic behavior.    *    *<p>The returned bimap will be serializable if the specified bimap is serializable.    *    * @param bimap the bimap to be wrapped in a synchronized view    * @return a synchronized view of the specified bimap    */
 DECL|method|synchronizedBiMap (BiMap<K, V> bimap)
 specifier|public
 specifier|static
@@ -6141,7 +6141,7 @@ literal|null
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an unmodifiable view of the specified bimap. This method allows    * modules to provide users with "read-only" access to internal bimaps. Query    * operations on the returned bimap "read through" to the specified bimap, and    * attempts to modify the returned map, whether direct or via its collection    * views, result in an {@code UnsupportedOperationException}.    *    *<p>The returned bimap will be serializable if the specified bimap is    * serializable.    *    * @param bimap the bimap for which an unmodifiable view is to be returned    * @return an unmodifiable view of the specified bimap    */
+comment|/**    * Returns an unmodifiable view of the specified bimap. This method allows modules to provide    * users with "read-only" access to internal bimaps. Query operations on the returned bimap "read    * through" to the specified bimap, and attempts to modify the returned map, whether direct or via    * its collection views, result in an {@code UnsupportedOperationException}.    *    *<p>The returned bimap will be serializable if the specified bimap is serializable.    *    * @param bimap the bimap for which an unmodifiable view is to be returned    * @return an unmodifiable view of the specified bimap    */
 DECL|method|unmodifiableBiMap (BiMap<? extends K, ? extends V> bimap)
 specifier|public
 specifier|static
@@ -6234,9 +6234,9 @@ name|V
 argument_list|>
 name|delegate
 decl_stmt|;
+DECL|field|inverse
 annotation|@
 name|RetainedWith
-DECL|field|inverse
 name|BiMap
 argument_list|<
 name|V
@@ -6436,7 +6436,7 @@ init|=
 literal|0
 decl_stmt|;
 block|}
-comment|/**    * Returns a view of a map where each value is transformed by a function. All    * other properties of the map, such as iteration order, are left intact. For    * example, the code:<pre>   {@code    *    *   Map<String, Integer> map = ImmutableMap.of("a", 4, "b", 9);    *   Function<Integer, Double> sqrt =    *       new Function<Integer, Double>() {    *         public Double apply(Integer in) {    *           return Math.sqrt((int) in);    *         }    *       };    *   Map<String, Double> transformed = Maps.transformValues(map, sqrt);    *   System.out.println(transformed);}</pre>    *    * ... prints {@code {a=2.0, b=3.0}}.    *    *<p>Changes in the underlying map are reflected in this view. Conversely,    * this view supports removal operations, and these are reflected in the    * underlying map.    *    *<p>It's acceptable for the underlying map to contain null keys, and even    * null values provided that the function is capable of accepting null input.    * The transformed map might contain null values, if the function sometimes    * gives a null result.    *    *<p>The returned map is not thread-safe or serializable, even if the    * underlying map is.    *    *<p>The function is applied lazily, invoked when needed. This is necessary    * for the returned map to be a view, but it means that the function will be    * applied many times for bulk operations like {@link Map#containsValue} and    * {@code Map.toString()}. For this to perform well, {@code function} should    * be fast. To avoid lazy evaluation when the returned map doesn't need to be    * a view, copy the returned map into a new map of your choosing.    */
+comment|/**    * Returns a view of a map where each value is transformed by a function. All other properties of    * the map, such as iteration order, are left intact. For example, the code:    *    *<pre>{@code    * Map<String, Integer> map = ImmutableMap.of("a", 4, "b", 9);    * Function<Integer, Double> sqrt =    *     new Function<Integer, Double>() {    *       public Double apply(Integer in) {    *         return Math.sqrt((int) in);    *       }    *     };    * Map<String, Double> transformed = Maps.transformValues(map, sqrt);    * System.out.println(transformed);    * }</pre>    *    * ... prints {@code {a=2.0, b=3.0}}.    *    *<p>Changes in the underlying map are reflected in this view. Conversely, this view supports    * removal operations, and these are reflected in the underlying map.    *    *<p>It's acceptable for the underlying map to contain null keys, and even null values provided    * that the function is capable of accepting null input. The transformed map might contain null    * values, if the function sometimes gives a null result.    *    *<p>The returned map is not thread-safe or serializable, even if the underlying map is.    *    *<p>The function is applied lazily, invoked when needed. This is necessary for the returned map    * to be a view, but it means that the function will be applied many times for bulk operations    * like {@link Map#containsValue} and {@code Map.toString()}. For this to perform well, {@code    * function} should be fast. To avoid lazy evaluation when the returned map doesn't need to be a    * view, copy the returned map into a new map of your choosing.    */
 DECL|method|transformValues ( Map<K, V1> fromMap, Function<? super V1, V2> function)
 specifier|public
 specifier|static
@@ -6486,7 +6486,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a view of a sorted map where each value is transformed by a    * function. All other properties of the map, such as iteration order, are    * left intact. For example, the code:<pre>   {@code    *    *   SortedMap<String, Integer> map = ImmutableSortedMap.of("a", 4, "b", 9);    *   Function<Integer, Double> sqrt =    *       new Function<Integer, Double>() {    *         public Double apply(Integer in) {    *           return Math.sqrt((int) in);    *         }    *       };    *   SortedMap<String, Double> transformed =    *        Maps.transformValues(map, sqrt);    *   System.out.println(transformed);}</pre>    *    * ... prints {@code {a=2.0, b=3.0}}.    *    *<p>Changes in the underlying map are reflected in this view. Conversely,    * this view supports removal operations, and these are reflected in the    * underlying map.    *    *<p>It's acceptable for the underlying map to contain null keys, and even    * null values provided that the function is capable of accepting null input.    * The transformed map might contain null values, if the function sometimes    * gives a null result.    *    *<p>The returned map is not thread-safe or serializable, even if the    * underlying map is.    *    *<p>The function is applied lazily, invoked when needed. This is necessary    * for the returned map to be a view, but it means that the function will be    * applied many times for bulk operations like {@link Map#containsValue} and    * {@code Map.toString()}. For this to perform well, {@code function} should    * be fast. To avoid lazy evaluation when the returned map doesn't need to be    * a view, copy the returned map into a new map of your choosing.    *    * @since 11.0    */
+comment|/**    * Returns a view of a sorted map where each value is transformed by a function. All other    * properties of the map, such as iteration order, are left intact. For example, the code:    *    *<pre>{@code    * SortedMap<String, Integer> map = ImmutableSortedMap.of("a", 4, "b", 9);    * Function<Integer, Double> sqrt =    *     new Function<Integer, Double>() {    *       public Double apply(Integer in) {    *         return Math.sqrt((int) in);    *       }    *     };    * SortedMap<String, Double> transformed =    *      Maps.transformValues(map, sqrt);    * System.out.println(transformed);    * }</pre>    *    * ... prints {@code {a=2.0, b=3.0}}.    *    *<p>Changes in the underlying map are reflected in this view. Conversely, this view supports    * removal operations, and these are reflected in the underlying map.    *    *<p>It's acceptable for the underlying map to contain null keys, and even null values provided    * that the function is capable of accepting null input. The transformed map might contain null    * values, if the function sometimes gives a null result.    *    *<p>The returned map is not thread-safe or serializable, even if the underlying map is.    *    *<p>The function is applied lazily, invoked when needed. This is necessary for the returned map    * to be a view, but it means that the function will be applied many times for bulk operations    * like {@link Map#containsValue} and {@code Map.toString()}. For this to perform well, {@code    * function} should be fast. To avoid lazy evaluation when the returned map doesn't need to be a    * view, copy the returned map into a new map of your choosing.    *    * @since 11.0    */
 DECL|method|transformValues ( SortedMap<K, V1> fromMap, Function<? super V1, V2> function)
 specifier|public
 specifier|static
@@ -6536,7 +6536,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a view of a navigable map where each value is transformed by a    * function. All other properties of the map, such as iteration order, are    * left intact.  For example, the code:<pre>   {@code    *    *   NavigableMap<String, Integer> map = Maps.newTreeMap();    *   map.put("a", 4);    *   map.put("b", 9);    *   Function<Integer, Double> sqrt =    *       new Function<Integer, Double>() {    *         public Double apply(Integer in) {    *           return Math.sqrt((int) in);    *         }    *       };    *   NavigableMap<String, Double> transformed =    *        Maps.transformNavigableValues(map, sqrt);    *   System.out.println(transformed);}</pre>    *    * ... prints {@code {a=2.0, b=3.0}}.    *    * Changes in the underlying map are reflected in this view.    * Conversely, this view supports removal operations, and these are reflected    * in the underlying map.    *    *<p>It's acceptable for the underlying map to contain null keys, and even    * null values provided that the function is capable of accepting null input.    * The transformed map might contain null values, if the function sometimes    * gives a null result.    *    *<p>The returned map is not thread-safe or serializable, even if the    * underlying map is.    *    *<p>The function is applied lazily, invoked when needed. This is necessary    * for the returned map to be a view, but it means that the function will be    * applied many times for bulk operations like {@link Map#containsValue} and    * {@code Map.toString()}. For this to perform well, {@code function} should    * be fast. To avoid lazy evaluation when the returned map doesn't need to be    * a view, copy the returned map into a new map of your choosing.    *    * @since 13.0    */
+comment|/**    * Returns a view of a navigable map where each value is transformed by a function. All other    * properties of the map, such as iteration order, are left intact. For example, the code:    *    *<pre>{@code    * NavigableMap<String, Integer> map = Maps.newTreeMap();    * map.put("a", 4);    * map.put("b", 9);    * Function<Integer, Double> sqrt =    *     new Function<Integer, Double>() {    *       public Double apply(Integer in) {    *         return Math.sqrt((int) in);    *       }    *     };    * NavigableMap<String, Double> transformed =    *      Maps.transformNavigableValues(map, sqrt);    * System.out.println(transformed);    * }</pre>    *    * ... prints {@code {a=2.0, b=3.0}}.    *    *<p>Changes in the underlying map are reflected in this view. Conversely, this view supports    * removal operations, and these are reflected in the underlying map.    *    *<p>It's acceptable for the underlying map to contain null keys, and even null values provided    * that the function is capable of accepting null input. The transformed map might contain null    * values, if the function sometimes gives a null result.    *    *<p>The returned map is not thread-safe or serializable, even if the underlying map is.    *    *<p>The function is applied lazily, invoked when needed. This is necessary for the returned map    * to be a view, but it means that the function will be applied many times for bulk operations    * like {@link Map#containsValue} and {@code Map.toString()}. For this to perform well, {@code    * function} should be fast. To avoid lazy evaluation when the returned map doesn't need to be a    * view, copy the returned map into a new map of your choosing.    *    * @since 13.0    */
 annotation|@
 name|GwtIncompatible
 comment|// NavigableMap
@@ -6589,7 +6589,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a view of a map whose values are derived from the original map's    * entries. In contrast to {@link #transformValues}, this method's    * entry-transformation logic may depend on the key as well as the value.    *    *<p>All other properties of the transformed map, such as iteration order,    * are left intact. For example, the code:<pre>   {@code    *    *   Map<String, Boolean> options =    *       ImmutableMap.of("verbose", true, "sort", false);    *   EntryTransformer<String, Boolean, String> flagPrefixer =    *       new EntryTransformer<String, Boolean, String>() {    *         public String transformEntry(String key, Boolean value) {    *           return value ? key : "no" + key;    *         }    *       };    *   Map<String, String> transformed =    *       Maps.transformEntries(options, flagPrefixer);    *   System.out.println(transformed);}</pre>    *    * ... prints {@code {verbose=verbose, sort=nosort}}.    *    *<p>Changes in the underlying map are reflected in this view. Conversely,    * this view supports removal operations, and these are reflected in the    * underlying map.    *    *<p>It's acceptable for the underlying map to contain null keys and null    * values provided that the transformer is capable of accepting null inputs.    * The transformed map might contain null values if the transformer sometimes    * gives a null result.    *    *<p>The returned map is not thread-safe or serializable, even if the    * underlying map is.    *    *<p>The transformer is applied lazily, invoked when needed. This is    * necessary for the returned map to be a view, but it means that the    * transformer will be applied many times for bulk operations like {@link    * Map#containsValue} and {@link Object#toString}. For this to perform well,    * {@code transformer} should be fast. To avoid lazy evaluation when the    * returned map doesn't need to be a view, copy the returned map into a new    * map of your choosing.    *    *<p><b>Warning:</b> This method assumes that for any instance {@code k} of    * {@code EntryTransformer} key type {@code K}, {@code k.equals(k2)} implies    * that {@code k2} is also of type {@code K}. Using an {@code    * EntryTransformer} key type for which this may not hold, such as {@code    * ArrayList}, may risk a {@code ClassCastException} when calling methods on    * the transformed map.    *    * @since 7.0    */
+comment|/**    * Returns a view of a map whose values are derived from the original map's entries. In contrast    * to {@link #transformValues}, this method's entry-transformation logic may depend on the key as    * well as the value.    *    *<p>All other properties of the transformed map, such as iteration order, are left intact. For    * example, the code:    *    *<pre>{@code    * Map<String, Boolean> options =    *     ImmutableMap.of("verbose", true, "sort", false);    * EntryTransformer<String, Boolean, String> flagPrefixer =    *     new EntryTransformer<String, Boolean, String>() {    *       public String transformEntry(String key, Boolean value) {    *         return value ? key : "no" + key;    *       }    *     };    * Map<String, String> transformed =    *     Maps.transformEntries(options, flagPrefixer);    * System.out.println(transformed);    * }</pre>    *    * ... prints {@code {verbose=verbose, sort=nosort}}.    *    *<p>Changes in the underlying map are reflected in this view. Conversely, this view supports    * removal operations, and these are reflected in the underlying map.    *    *<p>It's acceptable for the underlying map to contain null keys and null values provided that    * the transformer is capable of accepting null inputs. The transformed map might contain null    * values if the transformer sometimes gives a null result.    *    *<p>The returned map is not thread-safe or serializable, even if the underlying map is.    *    *<p>The transformer is applied lazily, invoked when needed. This is necessary for the returned    * map to be a view, but it means that the transformer will be applied many times for bulk    * operations like {@link Map#containsValue} and {@link Object#toString}. For this to perform    * well, {@code transformer} should be fast. To avoid lazy evaluation when the returned map    * doesn't need to be a view, copy the returned map into a new map of your choosing.    *    *<p><b>Warning:</b> This method assumes that for any instance {@code k} of {@code    * EntryTransformer} key type {@code K}, {@code k.equals(k2)} implies that {@code k2} is also of    * type {@code K}. Using an {@code EntryTransformer} key type for which this may not hold, such as    * {@code ArrayList}, may risk a {@code ClassCastException} when calling methods on the    * transformed map.    *    * @since 7.0    */
 DECL|method|transformEntries ( Map<K, V1> fromMap, EntryTransformer<? super K, ? super V1, V2> transformer)
 specifier|public
 specifier|static
@@ -6642,7 +6642,7 @@ name|transformer
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a view of a sorted map whose values are derived from the original    * sorted map's entries. In contrast to {@link #transformValues}, this    * method's entry-transformation logic may depend on the key as well as the    * value.    *    *<p>All other properties of the transformed map, such as iteration order,    * are left intact. For example, the code:<pre>   {@code    *    *   Map<String, Boolean> options =    *       ImmutableSortedMap.of("verbose", true, "sort", false);    *   EntryTransformer<String, Boolean, String> flagPrefixer =    *       new EntryTransformer<String, Boolean, String>() {    *         public String transformEntry(String key, Boolean value) {    *           return value ? key : "yes" + key;    *         }    *       };    *   SortedMap<String, String> transformed =    *       Maps.transformEntries(options, flagPrefixer);    *   System.out.println(transformed);}</pre>    *    * ... prints {@code {sort=yessort, verbose=verbose}}.    *    *<p>Changes in the underlying map are reflected in this view. Conversely,    * this view supports removal operations, and these are reflected in the    * underlying map.    *    *<p>It's acceptable for the underlying map to contain null keys and null    * values provided that the transformer is capable of accepting null inputs.    * The transformed map might contain null values if the transformer sometimes    * gives a null result.    *    *<p>The returned map is not thread-safe or serializable, even if the    * underlying map is.    *    *<p>The transformer is applied lazily, invoked when needed. This is    * necessary for the returned map to be a view, but it means that the    * transformer will be applied many times for bulk operations like {@link    * Map#containsValue} and {@link Object#toString}. For this to perform well,    * {@code transformer} should be fast. To avoid lazy evaluation when the    * returned map doesn't need to be a view, copy the returned map into a new    * map of your choosing.    *    *<p><b>Warning:</b> This method assumes that for any instance {@code k} of    * {@code EntryTransformer} key type {@code K}, {@code k.equals(k2)} implies    * that {@code k2} is also of type {@code K}. Using an {@code    * EntryTransformer} key type for which this may not hold, such as {@code    * ArrayList}, may risk a {@code ClassCastException} when calling methods on    * the transformed map.    *    * @since 11.0    */
+comment|/**    * Returns a view of a sorted map whose values are derived from the original sorted map's entries.    * In contrast to {@link #transformValues}, this method's entry-transformation logic may depend on    * the key as well as the value.    *    *<p>All other properties of the transformed map, such as iteration order, are left intact. For    * example, the code:    *    *<pre>{@code    * Map<String, Boolean> options =    *     ImmutableSortedMap.of("verbose", true, "sort", false);    * EntryTransformer<String, Boolean, String> flagPrefixer =    *     new EntryTransformer<String, Boolean, String>() {    *       public String transformEntry(String key, Boolean value) {    *         return value ? key : "yes" + key;    *       }    *     };    * SortedMap<String, String> transformed =    *     Maps.transformEntries(options, flagPrefixer);    * System.out.println(transformed);    * }</pre>    *    * ... prints {@code {sort=yessort, verbose=verbose}}.    *    *<p>Changes in the underlying map are reflected in this view. Conversely, this view supports    * removal operations, and these are reflected in the underlying map.    *    *<p>It's acceptable for the underlying map to contain null keys and null values provided that    * the transformer is capable of accepting null inputs. The transformed map might contain null    * values if the transformer sometimes gives a null result.    *    *<p>The returned map is not thread-safe or serializable, even if the underlying map is.    *    *<p>The transformer is applied lazily, invoked when needed. This is necessary for the returned    * map to be a view, but it means that the transformer will be applied many times for bulk    * operations like {@link Map#containsValue} and {@link Object#toString}. For this to perform    * well, {@code transformer} should be fast. To avoid lazy evaluation when the returned map    * doesn't need to be a view, copy the returned map into a new map of your choosing.    *    *<p><b>Warning:</b> This method assumes that for any instance {@code k} of {@code    * EntryTransformer} key type {@code K}, {@code k.equals(k2)} implies that {@code k2} is also of    * type {@code K}. Using an {@code EntryTransformer} key type for which this may not hold, such as    * {@code ArrayList}, may risk a {@code ClassCastException} when calling methods on the    * transformed map.    *    * @since 11.0    */
 DECL|method|transformEntries ( SortedMap<K, V1> fromMap, EntryTransformer<? super K, ? super V1, V2> transformer)
 specifier|public
 specifier|static
@@ -6695,7 +6695,7 @@ name|transformer
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a view of a navigable map whose values are derived from the    * original navigable map's entries. In contrast to {@link    * #transformValues}, this method's entry-transformation logic may    * depend on the key as well as the value.    *    *<p>All other properties of the transformed map, such as iteration order,    * are left intact. For example, the code:<pre>   {@code    *    *   NavigableMap<String, Boolean> options = Maps.newTreeMap();    *   options.put("verbose", false);    *   options.put("sort", true);    *   EntryTransformer<String, Boolean, String> flagPrefixer =    *       new EntryTransformer<String, Boolean, String>() {    *         public String transformEntry(String key, Boolean value) {    *           return value ? key : ("yes" + key);    *         }    *       };    *   NavigableMap<String, String> transformed =    *       LabsMaps.transformNavigableEntries(options, flagPrefixer);    *   System.out.println(transformed);}</pre>    *    * ... prints {@code {sort=yessort, verbose=verbose}}.    *    *<p>Changes in the underlying map are reflected in this view.    * Conversely, this view supports removal operations, and these are reflected    * in the underlying map.    *    *<p>It's acceptable for the underlying map to contain null keys and null    * values provided that the transformer is capable of accepting null inputs.    * The transformed map might contain null values if the transformer sometimes    * gives a null result.    *    *<p>The returned map is not thread-safe or serializable, even if the    * underlying map is.    *    *<p>The transformer is applied lazily, invoked when needed. This is    * necessary for the returned map to be a view, but it means that the    * transformer will be applied many times for bulk operations like {@link    * Map#containsValue} and {@link Object#toString}. For this to perform well,    * {@code transformer} should be fast. To avoid lazy evaluation when the    * returned map doesn't need to be a view, copy the returned map into a new    * map of your choosing.    *    *<p><b>Warning:</b> This method assumes that for any instance {@code k} of    * {@code EntryTransformer} key type {@code K}, {@code k.equals(k2)} implies    * that {@code k2} is also of type {@code K}. Using an {@code    * EntryTransformer} key type for which this may not hold, such as {@code    * ArrayList}, may risk a {@code ClassCastException} when calling methods on    * the transformed map.    *    * @since 13.0    */
+comment|/**    * Returns a view of a navigable map whose values are derived from the original navigable map's    * entries. In contrast to {@link #transformValues}, this method's entry-transformation logic may    * depend on the key as well as the value.    *    *<p>All other properties of the transformed map, such as iteration order, are left intact. For    * example, the code:    *    *<pre>{@code    * NavigableMap<String, Boolean> options = Maps.newTreeMap();    * options.put("verbose", false);    * options.put("sort", true);    * EntryTransformer<String, Boolean, String> flagPrefixer =    *     new EntryTransformer<String, Boolean, String>() {    *       public String transformEntry(String key, Boolean value) {    *         return value ? key : ("yes" + key);    *       }    *     };    * NavigableMap<String, String> transformed =    *     LabsMaps.transformNavigableEntries(options, flagPrefixer);    * System.out.println(transformed);    * }</pre>    *    * ... prints {@code {sort=yessort, verbose=verbose}}.    *    *<p>Changes in the underlying map are reflected in this view. Conversely, this view supports    * removal operations, and these are reflected in the underlying map.    *    *<p>It's acceptable for the underlying map to contain null keys and null values provided that    * the transformer is capable of accepting null inputs. The transformed map might contain null    * values if the transformer sometimes gives a null result.    *    *<p>The returned map is not thread-safe or serializable, even if the underlying map is.    *    *<p>The transformer is applied lazily, invoked when needed. This is necessary for the returned    * map to be a view, but it means that the transformer will be applied many times for bulk    * operations like {@link Map#containsValue} and {@link Object#toString}. For this to perform    * well, {@code transformer} should be fast. To avoid lazy evaluation when the returned map    * doesn't need to be a view, copy the returned map into a new map of your choosing.    *    *<p><b>Warning:</b> This method assumes that for any instance {@code k} of {@code    * EntryTransformer} key type {@code K}, {@code k.equals(k2)} implies that {@code k2} is also of    * type {@code K}. Using an {@code EntryTransformer} key type for which this may not hold, such as    * {@code ArrayList}, may risk a {@code ClassCastException} when calling methods on the    * transformed map.    *    * @since 13.0    */
 annotation|@
 name|GwtIncompatible
 comment|// NavigableMap
@@ -6751,7 +6751,7 @@ name|transformer
 argument_list|)
 return|;
 block|}
-comment|/**    * A transformation of the value of a key-value pair, using both key and value    * as inputs. To apply the transformation to a map, use    * {@link Maps#transformEntries(Map, EntryTransformer)}.    *    * @param<K> the key type of the input and output entries    * @param<V1> the value type of the input entry    * @param<V2> the value type of the output entry    * @since 7.0    */
+comment|/**    * A transformation of the value of a key-value pair, using both key and value as inputs. To apply    * the transformation to a map, use {@link Maps#transformEntries(Map, EntryTransformer)}.    *    * @param<K> the key type of the input and output entries    * @param<V1> the value type of the input entry    * @param<V2> the value type of the output entry    * @since 7.0    */
 DECL|interface|EntryTransformer
 specifier|public
 interface|interface
@@ -6764,7 +6764,7 @@ parameter_list|,
 name|V2
 parameter_list|>
 block|{
-comment|/**      * Determines an output value based on a key-value pair. This method is      *<i>generally expected</i>, but not absolutely required, to have the      * following properties:      *      *<ul>      *<li>Its execution does not cause any observable side effects.      *<li>The computation is<i>consistent with equals</i>; that is,      *     {@link Objects#equal Objects.equal}{@code (k1, k2)&&}      *     {@link Objects#equal}{@code (v1, v2)} implies that {@code      *     Objects.equal(transformer.transform(k1, v1),      *     transformer.transform(k2, v2))}.      *</ul>      *      * @throws NullPointerException if the key or value is null and this      *     transformer does not accept null arguments      */
+comment|/**      * Determines an output value based on a key-value pair. This method is<i>generally      * expected</i>, but not absolutely required, to have the following properties:      *      *<ul>      *<li>Its execution does not cause any observable side effects.      *<li>The computation is<i>consistent with equals</i>; that is, {@link Objects#equal      *       Objects.equal}{@code (k1, k2)&&} {@link Objects#equal}{@code (v1, v2)} implies that      *       {@code Objects.equal(transformer.transform(k1, v1), transformer.transform(k2, v2))}.      *</ul>      *      * @throws NullPointerException if the key or value is null and this transformer does not accept      *     null arguments      */
 DECL|method|transformEntry (@ullable K key, @Nullable V1 value)
 name|V2
 name|transformEntry
@@ -6781,7 +6781,7 @@ name|value
 parameter_list|)
 function_decl|;
 block|}
-comment|/**    * Views a function as an entry transformer that ignores the entry key.    */
+comment|/** Views a function as an entry transformer that ignores the entry key. */
 DECL|method|asEntryTransformer ( final Function<? super V1, V2> function)
 specifier|static
 parameter_list|<
@@ -6931,7 +6931,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/**    * Views an entry transformer as a function from {@code Entry} to values.    */
+comment|/** Views an entry transformer as a function from {@code Entry} to values. */
 DECL|method|asEntryToValueFunction ( final EntryTransformer<? super K, ? super V1, V2> transformer)
 specifier|static
 parameter_list|<
@@ -7025,7 +7025,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/**    * Returns a view of an entry transformed by the specified transformer.    */
+comment|/** Returns a view of an entry transformed by the specified transformer. */
 DECL|method|transformEntry ( final EntryTransformer<? super K, ? super V1, V2> transformer, final Entry<K, V1> entry)
 specifier|static
 parameter_list|<
@@ -7129,7 +7129,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/**    * Views an entry transformer as a function from entries to entries.    */
+comment|/** Views an entry transformer as a function from entries to entries. */
 DECL|method|asEntryToEntryFunction ( final EntryTransformer<? super K, ? super V1, V2> transformer)
 specifier|static
 parameter_list|<
@@ -8568,7 +8568,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a map containing the mappings in {@code unfiltered} whose keys    * satisfy a predicate. The returned map is a live view of {@code unfiltered};    * changes to one affect the other.    *    *<p>The resulting map's {@code keySet()}, {@code entrySet()}, and {@code    * values()} views have iterators that don't support {@code remove()}, but all    * other methods are supported by the map and its views. When given a key that    * doesn't satisfy the predicate, the map's {@code put()} and {@code putAll()}    * methods throw an {@link IllegalArgumentException}.    *    *<p>When methods such as {@code removeAll()} and {@code clear()} are called    * on the filtered map or its views, only mappings whose keys satisfy the    * filter will be removed from the underlying map.    *    *<p>The returned map isn't threadsafe or serializable, even if {@code    * unfiltered} is.    *    *<p>Many of the filtered map's methods, such as {@code size()},    * iterate across every key/value mapping in the underlying map and determine    * which satisfy the filter. When a live view is<i>not</i> needed, it may be    * faster to copy the filtered map and use the copy.    *    *<p><b>Warning:</b> {@code keyPredicate} must be<i>consistent with    * equals</i>, as documented at {@link Predicate#apply}. Do not provide a    * predicate such as {@code Predicates.instanceOf(ArrayList.class)}, which is    * inconsistent with equals.    */
+comment|/**    * Returns a map containing the mappings in {@code unfiltered} whose keys satisfy a predicate. The    * returned map is a live view of {@code unfiltered}; changes to one affect the other.    *    *<p>The resulting map's {@code keySet()}, {@code entrySet()}, and {@code values()} views have    * iterators that don't support {@code remove()}, but all other methods are supported by the map    * and its views. When given a key that doesn't satisfy the predicate, the map's {@code put()} and    * {@code putAll()} methods throw an {@link IllegalArgumentException}.    *    *<p>When methods such as {@code removeAll()} and {@code clear()} are called on the filtered map    * or its views, only mappings whose keys satisfy the filter will be removed from the underlying    * map.    *    *<p>The returned map isn't threadsafe or serializable, even if {@code unfiltered} is.    *    *<p>Many of the filtered map's methods, such as {@code size()}, iterate across every key/value    * mapping in the underlying map and determine which satisfy the filter. When a live view is    *<i>not</i> needed, it may be faster to copy the filtered map and use the copy.    *    *<p><b>Warning:</b> {@code keyPredicate} must be<i>consistent with equals</i>, as documented at    * {@link Predicate#apply}. Do not provide a predicate such as {@code    * Predicates.instanceOf(ArrayList.class)}, which is inconsistent with equals.    */
 DECL|method|filterKeys ( Map<K, V> unfiltered, final Predicate<? super K> keyPredicate)
 specifier|public
 specifier|static
@@ -8665,7 +8665,7 @@ name|entryPredicate
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a sorted map containing the mappings in {@code unfiltered} whose    * keys satisfy a predicate. The returned map is a live view of {@code    * unfiltered}; changes to one affect the other.    *    *<p>The resulting map's {@code keySet()}, {@code entrySet()}, and {@code    * values()} views have iterators that don't support {@code remove()}, but all    * other methods are supported by the map and its views. When given a key that    * doesn't satisfy the predicate, the map's {@code put()} and {@code putAll()}    * methods throw an {@link IllegalArgumentException}.    *    *<p>When methods such as {@code removeAll()} and {@code clear()} are called    * on the filtered map or its views, only mappings whose keys satisfy the    * filter will be removed from the underlying map.    *    *<p>The returned map isn't threadsafe or serializable, even if {@code    * unfiltered} is.    *    *<p>Many of the filtered map's methods, such as {@code size()},    * iterate across every key/value mapping in the underlying map and determine    * which satisfy the filter. When a live view is<i>not</i> needed, it may be    * faster to copy the filtered map and use the copy.    *    *<p><b>Warning:</b> {@code keyPredicate} must be<i>consistent with    * equals</i>, as documented at {@link Predicate#apply}. Do not provide a    * predicate such as {@code Predicates.instanceOf(ArrayList.class)}, which is    * inconsistent with equals.    *    * @since 11.0    */
+comment|/**    * Returns a sorted map containing the mappings in {@code unfiltered} whose keys satisfy a    * predicate. The returned map is a live view of {@code unfiltered}; changes to one affect the    * other.    *    *<p>The resulting map's {@code keySet()}, {@code entrySet()}, and {@code values()} views have    * iterators that don't support {@code remove()}, but all other methods are supported by the map    * and its views. When given a key that doesn't satisfy the predicate, the map's {@code put()} and    * {@code putAll()} methods throw an {@link IllegalArgumentException}.    *    *<p>When methods such as {@code removeAll()} and {@code clear()} are called on the filtered map    * or its views, only mappings whose keys satisfy the filter will be removed from the underlying    * map.    *    *<p>The returned map isn't threadsafe or serializable, even if {@code unfiltered} is.    *    *<p>Many of the filtered map's methods, such as {@code size()}, iterate across every key/value    * mapping in the underlying map and determine which satisfy the filter. When a live view is    *<i>not</i> needed, it may be faster to copy the filtered map and use the copy.    *    *<p><b>Warning:</b> {@code keyPredicate} must be<i>consistent with equals</i>, as documented at    * {@link Predicate#apply}. Do not provide a predicate such as {@code    * Predicates.instanceOf(ArrayList.class)}, which is inconsistent with equals.    *    * @since 11.0    */
 DECL|method|filterKeys ( SortedMap<K, V> unfiltered, final Predicate<? super K> keyPredicate)
 specifier|public
 specifier|static
@@ -8719,7 +8719,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a navigable map containing the mappings in {@code unfiltered} whose    * keys satisfy a predicate. The returned map is a live view of {@code    * unfiltered}; changes to one affect the other.    *    *<p>The resulting map's {@code keySet()}, {@code entrySet()}, and {@code    * values()} views have iterators that don't support {@code remove()}, but all    * other methods are supported by the map and its views. When given a key that    * doesn't satisfy the predicate, the map's {@code put()} and {@code putAll()}    * methods throw an {@link IllegalArgumentException}.    *    *<p>When methods such as {@code removeAll()} and {@code clear()} are called    * on the filtered map or its views, only mappings whose keys satisfy the    * filter will be removed from the underlying map.    *    *<p>The returned map isn't threadsafe or serializable, even if {@code    * unfiltered} is.    *    *<p>Many of the filtered map's methods, such as {@code size()},    * iterate across every key/value mapping in the underlying map and determine    * which satisfy the filter. When a live view is<i>not</i> needed, it may be    * faster to copy the filtered map and use the copy.    *    *<p><b>Warning:</b> {@code keyPredicate} must be<i>consistent with    * equals</i>, as documented at {@link Predicate#apply}. Do not provide a    * predicate such as {@code Predicates.instanceOf(ArrayList.class)}, which is    * inconsistent with equals.    *    * @since 14.0    */
+comment|/**    * Returns a navigable map containing the mappings in {@code unfiltered} whose keys satisfy a    * predicate. The returned map is a live view of {@code unfiltered}; changes to one affect the    * other.    *    *<p>The resulting map's {@code keySet()}, {@code entrySet()}, and {@code values()} views have    * iterators that don't support {@code remove()}, but all other methods are supported by the map    * and its views. When given a key that doesn't satisfy the predicate, the map's {@code put()} and    * {@code putAll()} methods throw an {@link IllegalArgumentException}.    *    *<p>When methods such as {@code removeAll()} and {@code clear()} are called on the filtered map    * or its views, only mappings whose keys satisfy the filter will be removed from the underlying    * map.    *    *<p>The returned map isn't threadsafe or serializable, even if {@code unfiltered} is.    *    *<p>Many of the filtered map's methods, such as {@code size()}, iterate across every key/value    * mapping in the underlying map and determine which satisfy the filter. When a live view is    *<i>not</i> needed, it may be faster to copy the filtered map and use the copy.    *    *<p><b>Warning:</b> {@code keyPredicate} must be<i>consistent with equals</i>, as documented at    * {@link Predicate#apply}. Do not provide a predicate such as {@code    * Predicates.instanceOf(ArrayList.class)}, which is inconsistent with equals.    *    * @since 14.0    */
 annotation|@
 name|GwtIncompatible
 comment|// NavigableMap
@@ -8776,7 +8776,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a bimap containing the mappings in {@code unfiltered} whose keys satisfy a predicate.    * The returned bimap is a live view of {@code unfiltered}; changes to one affect the other.    *    *<p>The resulting bimap's {@code keySet()}, {@code entrySet()}, and {@code values()} views have    * iterators that don't support {@code remove()}, but all other methods are supported by the    * bimap and its views. When given a key that doesn't satisfy the predicate, the bimap's {@code    * put()}, {@code forcePut()} and {@code putAll()} methods throw an {@link    * IllegalArgumentException}.    *    *<p>When methods such as {@code removeAll()} and {@code clear()} are called on the filtered    * bimap or its views, only mappings that satisfy the filter will be removed from the underlying    * bimap.    *    *<p>The returned bimap isn't threadsafe or serializable, even if {@code unfiltered} is.    *    *<p>Many of the filtered bimap's methods, such as {@code size()}, iterate across every key in    * the underlying bimap and determine which satisfy the filter. When a live view is<i>not</i>    * needed, it may be faster to copy the filtered bimap and use the copy.    *    *<p><b>Warning:</b> {@code entryPredicate} must be<i>consistent with equals</i>, as    * documented at {@link Predicate#apply}.    *    * @since 14.0    */
+comment|/**    * Returns a bimap containing the mappings in {@code unfiltered} whose keys satisfy a predicate.    * The returned bimap is a live view of {@code unfiltered}; changes to one affect the other.    *    *<p>The resulting bimap's {@code keySet()}, {@code entrySet()}, and {@code values()} views have    * iterators that don't support {@code remove()}, but all other methods are supported by the bimap    * and its views. When given a key that doesn't satisfy the predicate, the bimap's {@code put()},    * {@code forcePut()} and {@code putAll()} methods throw an {@link IllegalArgumentException}.    *    *<p>When methods such as {@code removeAll()} and {@code clear()} are called on the filtered    * bimap or its views, only mappings that satisfy the filter will be removed from the underlying    * bimap.    *    *<p>The returned bimap isn't threadsafe or serializable, even if {@code unfiltered} is.    *    *<p>Many of the filtered bimap's methods, such as {@code size()}, iterate across every key in    * the underlying bimap and determine which satisfy the filter. When a live view is<i>not</i>    * needed, it may be faster to copy the filtered bimap and use the copy.    *    *<p><b>Warning:</b> {@code entryPredicate} must be<i>consistent with equals</i>, as documented    * at {@link Predicate#apply}.    *    * @since 14.0    */
 DECL|method|filterKeys ( BiMap<K, V> unfiltered, final Predicate<? super K> keyPredicate)
 specifier|public
 specifier|static
@@ -8833,7 +8833,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a map containing the mappings in {@code unfiltered} whose values    * satisfy a predicate. The returned map is a live view of {@code unfiltered};    * changes to one affect the other.    *    *<p>The resulting map's {@code keySet()}, {@code entrySet()}, and {@code    * values()} views have iterators that don't support {@code remove()}, but all    * other methods are supported by the map and its views. When given a value    * that doesn't satisfy the predicate, the map's {@code put()}, {@code    * putAll()}, and {@link Entry#setValue} methods throw an {@link    * IllegalArgumentException}.    *    *<p>When methods such as {@code removeAll()} and {@code clear()} are called    * on the filtered map or its views, only mappings whose values satisfy the    * filter will be removed from the underlying map.    *    *<p>The returned map isn't threadsafe or serializable, even if {@code    * unfiltered} is.    *    *<p>Many of the filtered map's methods, such as {@code size()},    * iterate across every key/value mapping in the underlying map and determine    * which satisfy the filter. When a live view is<i>not</i> needed, it may be    * faster to copy the filtered map and use the copy.    *    *<p><b>Warning:</b> {@code valuePredicate} must be<i>consistent with    * equals</i>, as documented at {@link Predicate#apply}. Do not provide a    * predicate such as {@code Predicates.instanceOf(ArrayList.class)}, which is    * inconsistent with equals.    */
+comment|/**    * Returns a map containing the mappings in {@code unfiltered} whose values satisfy a predicate.    * The returned map is a live view of {@code unfiltered}; changes to one affect the other.    *    *<p>The resulting map's {@code keySet()}, {@code entrySet()}, and {@code values()} views have    * iterators that don't support {@code remove()}, but all other methods are supported by the map    * and its views. When given a value that doesn't satisfy the predicate, the map's {@code put()},    * {@code putAll()}, and {@link Entry#setValue} methods throw an {@link IllegalArgumentException}.    *    *<p>When methods such as {@code removeAll()} and {@code clear()} are called on the filtered map    * or its views, only mappings whose values satisfy the filter will be removed from the underlying    * map.    *    *<p>The returned map isn't threadsafe or serializable, even if {@code unfiltered} is.    *    *<p>Many of the filtered map's methods, such as {@code size()}, iterate across every key/value    * mapping in the underlying map and determine which satisfy the filter. When a live view is    *<i>not</i> needed, it may be faster to copy the filtered map and use the copy.    *    *<p><b>Warning:</b> {@code valuePredicate} must be<i>consistent with equals</i>, as documented    * at {@link Predicate#apply}. Do not provide a predicate such as {@code    * Predicates.instanceOf(ArrayList.class)}, which is inconsistent with equals.    */
 DECL|method|filterValues ( Map<K, V> unfiltered, final Predicate<? super V> valuePredicate)
 specifier|public
 specifier|static
@@ -8885,7 +8885,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a sorted map containing the mappings in {@code unfiltered} whose    * values satisfy a predicate. The returned map is a live view of {@code    * unfiltered}; changes to one affect the other.    *    *<p>The resulting map's {@code keySet()}, {@code entrySet()}, and {@code    * values()} views have iterators that don't support {@code remove()}, but all    * other methods are supported by the map and its views. When given a value    * that doesn't satisfy the predicate, the map's {@code put()}, {@code    * putAll()}, and {@link Entry#setValue} methods throw an {@link    * IllegalArgumentException}.    *    *<p>When methods such as {@code removeAll()} and {@code clear()} are called    * on the filtered map or its views, only mappings whose values satisfy the    * filter will be removed from the underlying map.    *    *<p>The returned map isn't threadsafe or serializable, even if {@code    * unfiltered} is.    *    *<p>Many of the filtered map's methods, such as {@code size()},    * iterate across every key/value mapping in the underlying map and determine    * which satisfy the filter. When a live view is<i>not</i> needed, it may be    * faster to copy the filtered map and use the copy.    *    *<p><b>Warning:</b> {@code valuePredicate} must be<i>consistent with    * equals</i>, as documented at {@link Predicate#apply}. Do not provide a    * predicate such as {@code Predicates.instanceOf(ArrayList.class)}, which is    * inconsistent with equals.    *    * @since 11.0    */
+comment|/**    * Returns a sorted map containing the mappings in {@code unfiltered} whose values satisfy a    * predicate. The returned map is a live view of {@code unfiltered}; changes to one affect the    * other.    *    *<p>The resulting map's {@code keySet()}, {@code entrySet()}, and {@code values()} views have    * iterators that don't support {@code remove()}, but all other methods are supported by the map    * and its views. When given a value that doesn't satisfy the predicate, the map's {@code put()},    * {@code putAll()}, and {@link Entry#setValue} methods throw an {@link IllegalArgumentException}.    *    *<p>When methods such as {@code removeAll()} and {@code clear()} are called on the filtered map    * or its views, only mappings whose values satisfy the filter will be removed from the underlying    * map.    *    *<p>The returned map isn't threadsafe or serializable, even if {@code unfiltered} is.    *    *<p>Many of the filtered map's methods, such as {@code size()}, iterate across every key/value    * mapping in the underlying map and determine which satisfy the filter. When a live view is    *<i>not</i> needed, it may be faster to copy the filtered map and use the copy.    *    *<p><b>Warning:</b> {@code valuePredicate} must be<i>consistent with equals</i>, as documented    * at {@link Predicate#apply}. Do not provide a predicate such as {@code    * Predicates.instanceOf(ArrayList.class)}, which is inconsistent with equals.    *    * @since 11.0    */
 DECL|method|filterValues ( SortedMap<K, V> unfiltered, final Predicate<? super V> valuePredicate)
 specifier|public
 specifier|static
@@ -8937,7 +8937,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a navigable map containing the mappings in {@code unfiltered} whose    * values satisfy a predicate. The returned map is a live view of {@code    * unfiltered}; changes to one affect the other.    *    *<p>The resulting map's {@code keySet()}, {@code entrySet()}, and {@code    * values()} views have iterators that don't support {@code remove()}, but all    * other methods are supported by the map and its views. When given a value    * that doesn't satisfy the predicate, the map's {@code put()}, {@code    * putAll()}, and {@link Entry#setValue} methods throw an {@link    * IllegalArgumentException}.    *    *<p>When methods such as {@code removeAll()} and {@code clear()} are called    * on the filtered map or its views, only mappings whose values satisfy the    * filter will be removed from the underlying map.    *    *<p>The returned map isn't threadsafe or serializable, even if {@code    * unfiltered} is.    *    *<p>Many of the filtered map's methods, such as {@code size()},    * iterate across every key/value mapping in the underlying map and determine    * which satisfy the filter. When a live view is<i>not</i> needed, it may be    * faster to copy the filtered map and use the copy.    *    *<p><b>Warning:</b> {@code valuePredicate} must be<i>consistent with    * equals</i>, as documented at {@link Predicate#apply}. Do not provide a    * predicate such as {@code Predicates.instanceOf(ArrayList.class)}, which is    * inconsistent with equals.    *    * @since 14.0    */
+comment|/**    * Returns a navigable map containing the mappings in {@code unfiltered} whose values satisfy a    * predicate. The returned map is a live view of {@code unfiltered}; changes to one affect the    * other.    *    *<p>The resulting map's {@code keySet()}, {@code entrySet()}, and {@code values()} views have    * iterators that don't support {@code remove()}, but all other methods are supported by the map    * and its views. When given a value that doesn't satisfy the predicate, the map's {@code put()},    * {@code putAll()}, and {@link Entry#setValue} methods throw an {@link IllegalArgumentException}.    *    *<p>When methods such as {@code removeAll()} and {@code clear()} are called on the filtered map    * or its views, only mappings whose values satisfy the filter will be removed from the underlying    * map.    *    *<p>The returned map isn't threadsafe or serializable, even if {@code unfiltered} is.    *    *<p>Many of the filtered map's methods, such as {@code size()}, iterate across every key/value    * mapping in the underlying map and determine which satisfy the filter. When a live view is    *<i>not</i> needed, it may be faster to copy the filtered map and use the copy.    *    *<p><b>Warning:</b> {@code valuePredicate} must be<i>consistent with equals</i>, as documented    * at {@link Predicate#apply}. Do not provide a predicate such as {@code    * Predicates.instanceOf(ArrayList.class)}, which is inconsistent with equals.    *    * @since 14.0    */
 annotation|@
 name|GwtIncompatible
 comment|// NavigableMap
@@ -8992,7 +8992,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a bimap containing the mappings in {@code unfiltered} whose values satisfy a    * predicate. The returned bimap is a live view of {@code unfiltered}; changes to one affect the    * other.    *    *<p>The resulting bimap's {@code keySet()}, {@code entrySet()}, and {@code values()} views have    * iterators that don't support {@code remove()}, but all other methods are supported by the    * bimap and its views. When given a value that doesn't satisfy the predicate, the bimap's    * {@code put()}, {@code forcePut()} and {@code putAll()} methods throw an {@link    * IllegalArgumentException}. Similarly, the map's entries have a {@link Entry#setValue} method    * that throws an {@link IllegalArgumentException} when the provided value doesn't satisfy the    * predicate.    *    *<p>When methods such as {@code removeAll()} and {@code clear()} are called on the filtered    * bimap or its views, only mappings that satisfy the filter will be removed from the underlying    * bimap.    *    *<p>The returned bimap isn't threadsafe or serializable, even if {@code unfiltered} is.    *    *<p>Many of the filtered bimap's methods, such as {@code size()}, iterate across every value in    * the underlying bimap and determine which satisfy the filter. When a live view is<i>not</i>    * needed, it may be faster to copy the filtered bimap and use the copy.    *    *<p><b>Warning:</b> {@code entryPredicate} must be<i>consistent with equals</i>, as    * documented at {@link Predicate#apply}.    *    * @since 14.0    */
+comment|/**    * Returns a bimap containing the mappings in {@code unfiltered} whose values satisfy a predicate.    * The returned bimap is a live view of {@code unfiltered}; changes to one affect the other.    *    *<p>The resulting bimap's {@code keySet()}, {@code entrySet()}, and {@code values()} views have    * iterators that don't support {@code remove()}, but all other methods are supported by the bimap    * and its views. When given a value that doesn't satisfy the predicate, the bimap's {@code    * put()}, {@code forcePut()} and {@code putAll()} methods throw an {@link    * IllegalArgumentException}. Similarly, the map's entries have a {@link Entry#setValue} method    * that throws an {@link IllegalArgumentException} when the provided value doesn't satisfy the    * predicate.    *    *<p>When methods such as {@code removeAll()} and {@code clear()} are called on the filtered    * bimap or its views, only mappings that satisfy the filter will be removed from the underlying    * bimap.    *    *<p>The returned bimap isn't threadsafe or serializable, even if {@code unfiltered} is.    *    *<p>Many of the filtered bimap's methods, such as {@code size()}, iterate across every value in    * the underlying bimap and determine which satisfy the filter. When a live view is<i>not</i>    * needed, it may be faster to copy the filtered bimap and use the copy.    *    *<p><b>Warning:</b> {@code entryPredicate} must be<i>consistent with equals</i>, as documented    * at {@link Predicate#apply}.    *    * @since 14.0    */
 DECL|method|filterValues ( BiMap<K, V> unfiltered, final Predicate<? super V> valuePredicate)
 specifier|public
 specifier|static
@@ -9044,7 +9044,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a map containing the mappings in {@code unfiltered} that satisfy a    * predicate. The returned map is a live view of {@code unfiltered}; changes    * to one affect the other.    *    *<p>The resulting map's {@code keySet()}, {@code entrySet()}, and {@code    * values()} views have iterators that don't support {@code remove()}, but all    * other methods are supported by the map and its views. When given a    * key/value pair that doesn't satisfy the predicate, the map's {@code put()}    * and {@code putAll()} methods throw an {@link IllegalArgumentException}.    * Similarly, the map's entries have a {@link Entry#setValue} method that    * throws an {@link IllegalArgumentException} when the existing key and the    * provided value don't satisfy the predicate.    *    *<p>When methods such as {@code removeAll()} and {@code clear()} are called    * on the filtered map or its views, only mappings that satisfy the filter    * will be removed from the underlying map.    *    *<p>The returned map isn't threadsafe or serializable, even if {@code    * unfiltered} is.    *    *<p>Many of the filtered map's methods, such as {@code size()},    * iterate across every key/value mapping in the underlying map and determine    * which satisfy the filter. When a live view is<i>not</i> needed, it may be    * faster to copy the filtered map and use the copy.    *    *<p><b>Warning:</b> {@code entryPredicate} must be<i>consistent with    * equals</i>, as documented at {@link Predicate#apply}.    */
+comment|/**    * Returns a map containing the mappings in {@code unfiltered} that satisfy a predicate. The    * returned map is a live view of {@code unfiltered}; changes to one affect the other.    *    *<p>The resulting map's {@code keySet()}, {@code entrySet()}, and {@code values()} views have    * iterators that don't support {@code remove()}, but all other methods are supported by the map    * and its views. When given a key/value pair that doesn't satisfy the predicate, the map's {@code    * put()} and {@code putAll()} methods throw an {@link IllegalArgumentException}. Similarly, the    * map's entries have a {@link Entry#setValue} method that throws an {@link    * IllegalArgumentException} when the existing key and the provided value don't satisfy the    * predicate.    *    *<p>When methods such as {@code removeAll()} and {@code clear()} are called on the filtered map    * or its views, only mappings that satisfy the filter will be removed from the underlying map.    *    *<p>The returned map isn't threadsafe or serializable, even if {@code unfiltered} is.    *    *<p>Many of the filtered map's methods, such as {@code size()}, iterate across every key/value    * mapping in the underlying map and determine which satisfy the filter. When a live view is    *<i>not</i> needed, it may be faster to copy the filtered map and use the copy.    *    *<p><b>Warning:</b> {@code entryPredicate} must be<i>consistent with equals</i>, as documented    * at {@link Predicate#apply}.    */
 DECL|method|filterEntries ( Map<K, V> unfiltered, Predicate<? super Entry<K, V>> entryPredicate)
 specifier|public
 specifier|static
@@ -9127,7 +9127,7 @@ name|entryPredicate
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a sorted map containing the mappings in {@code unfiltered} that    * satisfy a predicate. The returned map is a live view of {@code unfiltered};    * changes to one affect the other.    *    *<p>The resulting map's {@code keySet()}, {@code entrySet()}, and {@code    * values()} views have iterators that don't support {@code remove()}, but all    * other methods are supported by the map and its views. When given a    * key/value pair that doesn't satisfy the predicate, the map's {@code put()}    * and {@code putAll()} methods throw an {@link IllegalArgumentException}.    * Similarly, the map's entries have a {@link Entry#setValue} method that    * throws an {@link IllegalArgumentException} when the existing key and the    * provided value don't satisfy the predicate.    *    *<p>When methods such as {@code removeAll()} and {@code clear()} are called    * on the filtered map or its views, only mappings that satisfy the filter    * will be removed from the underlying map.    *    *<p>The returned map isn't threadsafe or serializable, even if {@code    * unfiltered} is.    *    *<p>Many of the filtered map's methods, such as {@code size()},    * iterate across every key/value mapping in the underlying map and determine    * which satisfy the filter. When a live view is<i>not</i> needed, it may be    * faster to copy the filtered map and use the copy.    *    *<p><b>Warning:</b> {@code entryPredicate} must be<i>consistent with    * equals</i>, as documented at {@link Predicate#apply}.    *    * @since 11.0    */
+comment|/**    * Returns a sorted map containing the mappings in {@code unfiltered} that satisfy a predicate.    * The returned map is a live view of {@code unfiltered}; changes to one affect the other.    *    *<p>The resulting map's {@code keySet()}, {@code entrySet()}, and {@code values()} views have    * iterators that don't support {@code remove()}, but all other methods are supported by the map    * and its views. When given a key/value pair that doesn't satisfy the predicate, the map's {@code    * put()} and {@code putAll()} methods throw an {@link IllegalArgumentException}. Similarly, the    * map's entries have a {@link Entry#setValue} method that throws an {@link    * IllegalArgumentException} when the existing key and the provided value don't satisfy the    * predicate.    *    *<p>When methods such as {@code removeAll()} and {@code clear()} are called on the filtered map    * or its views, only mappings that satisfy the filter will be removed from the underlying map.    *    *<p>The returned map isn't threadsafe or serializable, even if {@code unfiltered} is.    *    *<p>Many of the filtered map's methods, such as {@code size()}, iterate across every key/value    * mapping in the underlying map and determine which satisfy the filter. When a live view is    *<i>not</i> needed, it may be faster to copy the filtered map and use the copy.    *    *<p><b>Warning:</b> {@code entryPredicate} must be<i>consistent with equals</i>, as documented    * at {@link Predicate#apply}.    *    * @since 11.0    */
 DECL|method|filterEntries ( SortedMap<K, V> unfiltered, Predicate<? super Entry<K, V>> entryPredicate)
 specifier|public
 specifier|static
@@ -9210,7 +9210,7 @@ name|entryPredicate
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a sorted map containing the mappings in {@code unfiltered} that    * satisfy a predicate. The returned map is a live view of {@code unfiltered};    * changes to one affect the other.    *    *<p>The resulting map's {@code keySet()}, {@code entrySet()}, and {@code    * values()} views have iterators that don't support {@code remove()}, but all    * other methods are supported by the map and its views. When given a    * key/value pair that doesn't satisfy the predicate, the map's {@code put()}    * and {@code putAll()} methods throw an {@link IllegalArgumentException}.    * Similarly, the map's entries have a {@link Entry#setValue} method that    * throws an {@link IllegalArgumentException} when the existing key and the    * provided value don't satisfy the predicate.    *    *<p>When methods such as {@code removeAll()} and {@code clear()} are called    * on the filtered map or its views, only mappings that satisfy the filter    * will be removed from the underlying map.    *    *<p>The returned map isn't threadsafe or serializable, even if {@code    * unfiltered} is.    *    *<p>Many of the filtered map's methods, such as {@code size()},    * iterate across every key/value mapping in the underlying map and determine    * which satisfy the filter. When a live view is<i>not</i> needed, it may be    * faster to copy the filtered map and use the copy.    *    *<p><b>Warning:</b> {@code entryPredicate} must be<i>consistent with    * equals</i>, as documented at {@link Predicate#apply}.    *    * @since 14.0    */
+comment|/**    * Returns a sorted map containing the mappings in {@code unfiltered} that satisfy a predicate.    * The returned map is a live view of {@code unfiltered}; changes to one affect the other.    *    *<p>The resulting map's {@code keySet()}, {@code entrySet()}, and {@code values()} views have    * iterators that don't support {@code remove()}, but all other methods are supported by the map    * and its views. When given a key/value pair that doesn't satisfy the predicate, the map's {@code    * put()} and {@code putAll()} methods throw an {@link IllegalArgumentException}. Similarly, the    * map's entries have a {@link Entry#setValue} method that throws an {@link    * IllegalArgumentException} when the existing key and the provided value don't satisfy the    * predicate.    *    *<p>When methods such as {@code removeAll()} and {@code clear()} are called on the filtered map    * or its views, only mappings that satisfy the filter will be removed from the underlying map.    *    *<p>The returned map isn't threadsafe or serializable, even if {@code unfiltered} is.    *    *<p>Many of the filtered map's methods, such as {@code size()}, iterate across every key/value    * mapping in the underlying map and determine which satisfy the filter. When a live view is    *<i>not</i> needed, it may be faster to copy the filtered map and use the copy.    *    *<p><b>Warning:</b> {@code entryPredicate} must be<i>consistent with equals</i>, as documented    * at {@link Predicate#apply}.    *    * @since 14.0    */
 annotation|@
 name|GwtIncompatible
 comment|// NavigableMap
@@ -9296,7 +9296,7 @@ name|entryPredicate
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a bimap containing the mappings in {@code unfiltered} that satisfy a predicate. The    * returned bimap is a live view of {@code unfiltered}; changes to one affect the other.    *    *<p>The resulting bimap's {@code keySet()}, {@code entrySet()}, and {@code values()} views have    * iterators that don't support {@code remove()}, but all other methods are supported by the bimap    * and its views. When given a key/value pair that doesn't satisfy the predicate, the bimap's    * {@code put()}, {@code forcePut()} and {@code putAll()} methods throw an    * {@link IllegalArgumentException}. Similarly, the map's entries have an {@link Entry#setValue}    * method that throws an {@link IllegalArgumentException} when the existing key and the provided    * value don't satisfy the predicate.    *    *<p>When methods such as {@code removeAll()} and {@code clear()} are called on the filtered    * bimap or its views, only mappings that satisfy the filter will be removed from the underlying    * bimap.    *    *<p>The returned bimap isn't threadsafe or serializable, even if {@code unfiltered} is.    *    *<p>Many of the filtered bimap's methods, such as {@code size()}, iterate across every    * key/value mapping in the underlying bimap and determine which satisfy the filter. When a live    * view is<i>not</i> needed, it may be faster to copy the filtered bimap and use the copy.    *    *<p><b>Warning:</b> {@code entryPredicate} must be<i>consistent with equals</i>, as    * documented at {@link Predicate#apply}.    *    * @since 14.0    */
+comment|/**    * Returns a bimap containing the mappings in {@code unfiltered} that satisfy a predicate. The    * returned bimap is a live view of {@code unfiltered}; changes to one affect the other.    *    *<p>The resulting bimap's {@code keySet()}, {@code entrySet()}, and {@code values()} views have    * iterators that don't support {@code remove()}, but all other methods are supported by the bimap    * and its views. When given a key/value pair that doesn't satisfy the predicate, the bimap's    * {@code put()}, {@code forcePut()} and {@code putAll()} methods throw an {@link    * IllegalArgumentException}. Similarly, the map's entries have an {@link Entry#setValue} method    * that throws an {@link IllegalArgumentException} when the existing key and the provided value    * don't satisfy the predicate.    *    *<p>When methods such as {@code removeAll()} and {@code clear()} are called on the filtered    * bimap or its views, only mappings that satisfy the filter will be removed from the underlying    * bimap.    *    *<p>The returned bimap isn't threadsafe or serializable, even if {@code unfiltered} is.    *    *<p>Many of the filtered bimap's methods, such as {@code size()}, iterate across every key/value    * mapping in the underlying bimap and determine which satisfy the filter. When a live view is    *<i>not</i> needed, it may be faster to copy the filtered bimap and use the copy.    *    *<p><b>Warning:</b> {@code entryPredicate} must be<i>consistent with equals</i>, as documented    * at {@link Predicate#apply}.    *    * @since 14.0    */
 DECL|method|filterEntries ( BiMap<K, V> unfiltered, Predicate<? super Entry<K, V>> entryPredicate)
 specifier|public
 specifier|static
@@ -9381,7 +9381,7 @@ name|entryPredicate
 argument_list|)
 return|;
 block|}
-comment|/**    * Support {@code clear()}, {@code removeAll()}, and {@code retainAll()} when    * filtering a filtered map.    */
+comment|/**    * Support {@code clear()}, {@code removeAll()}, and {@code retainAll()} when filtering a filtered    * map.    */
 DECL|method|filterFiltered ( AbstractFilteredMap<K, V> map, Predicate<? super Entry<K, V>> entryPredicate)
 specifier|private
 specifier|static
@@ -10431,7 +10431,7 @@ argument_list|,
 name|V
 argument_list|>
 block|{
-comment|/**      * Entries in this set satisfy the predicate, but they don't validate the      * input to {@code Entry.setValue()}.      */
+comment|/**      * Entries in this set satisfy the predicate, but they don't validate the input to {@code      * Entry.setValue()}.      */
 DECL|field|filteredEntrySet
 specifier|final
 name|Set
@@ -11095,7 +11095,7 @@ return|;
 block|}
 block|}
 block|}
-comment|/**    * Support {@code clear()}, {@code removeAll()}, and {@code retainAll()} when    * filtering a filtered sorted map.    */
+comment|/**    * Support {@code clear()}, {@code removeAll()}, and {@code retainAll()} when filtering a filtered    * sorted map.    */
 DECL|method|filterFiltered ( FilteredEntrySortedMap<K, V> map, Predicate<? super Entry<K, V>> entryPredicate)
 specifier|private
 specifier|static
@@ -11664,7 +11664,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**    * Support {@code clear()}, {@code removeAll()}, and {@code retainAll()} when    * filtering a filtered navigable map.    */
+comment|/**    * Support {@code clear()}, {@code removeAll()}, and {@code retainAll()} when filtering a filtered    * navigable map.    */
 annotation|@
 name|GwtIncompatible
 comment|// NavigableMap
@@ -12448,7 +12448,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**    * Support {@code clear()}, {@code removeAll()}, and {@code retainAll()} when    * filtering a filtered map.    */
+comment|/**    * Support {@code clear()}, {@code removeAll()}, and {@code retainAll()} when filtering a filtered    * map.    */
 DECL|method|filterFiltered ( FilteredEntryBiMap<K, V> map, Predicate<? super Entry<K, V>> entryPredicate)
 specifier|private
 specifier|static
@@ -12556,9 +12556,9 @@ argument_list|,
 name|V
 argument_list|>
 block|{
+DECL|field|inverse
 annotation|@
 name|RetainedWith
-DECL|field|inverse
 specifier|private
 specifier|final
 name|BiMap
@@ -13698,7 +13698,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**    * Returns a synchronized (thread-safe) navigable map backed by the specified    * navigable map.  In order to guarantee serial access, it is critical that    *<b>all</b> access to the backing navigable map is accomplished    * through the returned navigable map (or its views).    *    *<p>It is imperative that the user manually synchronize on the returned    * navigable map when iterating over any of its collection views, or the    * collections views of any of its {@code descendingMap}, {@code subMap},    * {@code headMap} or {@code tailMap} views.<pre>   {@code    *    *   NavigableMap<K, V> map = synchronizedNavigableMap(new TreeMap<K, V>());    *    *   // Needn't be in synchronized block    *   NavigableSet<K> set = map.navigableKeySet();    *    *   synchronized (map) { // Synchronizing on map, not set!    *     Iterator<K> it = set.iterator(); // Must be in synchronized block    *     while (it.hasNext()) {    *       foo(it.next());    *     }    *   }}</pre>    *    *<p>or:<pre>   {@code    *    *   NavigableMap<K, V> map = synchronizedNavigableMap(new TreeMap<K, V>());    *   NavigableMap<K, V> map2 = map.subMap(foo, false, bar, true);    *    *   // Needn't be in synchronized block    *   NavigableSet<K> set2 = map2.descendingKeySet();    *    *   synchronized (map) { // Synchronizing on map, not map2 or set2!    *     Iterator<K> it = set2.iterator(); // Must be in synchronized block    *     while (it.hasNext()) {    *       foo(it.next());    *     }    *   }}</pre>    *    *<p>Failure to follow this advice may result in non-deterministic behavior.    *    *<p>The returned navigable map will be serializable if the specified    * navigable map is serializable.    *    * @param navigableMap the navigable map to be "wrapped" in a synchronized    *    navigable map.    * @return a synchronized view of the specified navigable map.    * @since 13.0    */
+comment|/**    * Returns a synchronized (thread-safe) navigable map backed by the specified navigable map. In    * order to guarantee serial access, it is critical that<b>all</b> access to the backing    * navigable map is accomplished through the returned navigable map (or its views).    *    *<p>It is imperative that the user manually synchronize on the returned navigable map when    * iterating over any of its collection views, or the collections views of any of its {@code    * descendingMap}, {@code subMap}, {@code headMap} or {@code tailMap} views.    *    *<pre>{@code    * NavigableMap<K, V> map = synchronizedNavigableMap(new TreeMap<K, V>());    *    * // Needn't be in synchronized block    * NavigableSet<K> set = map.navigableKeySet();    *    * synchronized (map) { // Synchronizing on map, not set!    *   Iterator<K> it = set.iterator(); // Must be in synchronized block    *   while (it.hasNext()) {    *     foo(it.next());    *   }    * }    * }</pre>    *    *<p>or:    *    *<pre>{@code    * NavigableMap<K, V> map = synchronizedNavigableMap(new TreeMap<K, V>());    * NavigableMap<K, V> map2 = map.subMap(foo, false, bar, true);    *    * // Needn't be in synchronized block    * NavigableSet<K> set2 = map2.descendingKeySet();    *    * synchronized (map) { // Synchronizing on map, not map2 or set2!    *   Iterator<K> it = set2.iterator(); // Must be in synchronized block    *   while (it.hasNext()) {    *     foo(it.next());    *   }    * }    * }</pre>    *    *<p>Failure to follow this advice may result in non-deterministic behavior.    *    *<p>The returned navigable map will be serializable if the specified navigable map is    * serializable.    *    * @param navigableMap the navigable map to be "wrapped" in a synchronized navigable map.    * @return a synchronized view of the specified navigable map.    * @since 13.0    */
 annotation|@
 name|GwtIncompatible
 comment|// NavigableMap
@@ -13736,7 +13736,7 @@ name|navigableMap
 argument_list|)
 return|;
 block|}
-comment|/**    * {@code AbstractMap} extension that makes it easy to cache customized keySet, values,    * and entrySet views.    */
+comment|/**    * {@code AbstractMap} extension that makes it easy to cache customized keySet, values, and    * entrySet views.    */
 annotation|@
 name|GwtCompatible
 DECL|class|ViewCachingAbstractMap
@@ -13757,7 +13757,7 @@ argument_list|,
 name|V
 argument_list|>
 block|{
-comment|/**      * Creates the entry set to be returned by {@link #entrySet()}. This method      * is invoked at most once on a given map, at the time when {@code entrySet}      * is first called.      */
+comment|/**      * Creates the entry set to be returned by {@link #entrySet()}. This method is invoked at most      * once on a given map, at the time when {@code entrySet} is first called.      */
 DECL|method|createEntrySet ()
 specifier|abstract
 name|Set
@@ -14076,7 +14076,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Delegates to {@link Map#get}. Returns {@code null} on {@code    * ClassCastException} and {@code NullPointerException}.    */
+comment|/**    * Delegates to {@link Map#get}. Returns {@code null} on {@code ClassCastException} and {@code    * NullPointerException}.    */
 DECL|method|safeGet (Map<?, V> map, @Nullable Object key)
 specifier|static
 parameter_list|<
@@ -14128,7 +14128,7 @@ literal|null
 return|;
 block|}
 block|}
-comment|/**    * Delegates to {@link Map#containsKey}. Returns {@code false} on {@code    * ClassCastException} and {@code NullPointerException}.    */
+comment|/**    * Delegates to {@link Map#containsKey}. Returns {@code false} on {@code ClassCastException} and    * {@code NullPointerException}.    */
 DECL|method|safeContainsKey (Map<?, ?> map, Object key)
 specifier|static
 name|boolean
@@ -14175,7 +14175,7 @@ literal|false
 return|;
 block|}
 block|}
-comment|/**    * Delegates to {@link Map#remove}. Returns {@code null} on {@code    * ClassCastException} and {@code NullPointerException}.    */
+comment|/**    * Delegates to {@link Map#remove}. Returns {@code null} on {@code ClassCastException} and {@code    * NullPointerException}.    */
 DECL|method|safeRemove (Map<?, V> map, Object key)
 specifier|static
 parameter_list|<
@@ -14225,7 +14225,7 @@ literal|null
 return|;
 block|}
 block|}
-comment|/**    * An admittedly inefficient implementation of {@link Map#containsKey}.    */
+comment|/** An admittedly inefficient implementation of {@link Map#containsKey}. */
 DECL|method|containsKeyImpl (Map<?, ?> map, @Nullable Object key)
 specifier|static
 name|boolean
@@ -14265,7 +14265,7 @@ name|key
 argument_list|)
 return|;
 block|}
-comment|/**    * An implementation of {@link Map#containsValue}.    */
+comment|/** An implementation of {@link Map#containsValue}. */
 DECL|method|containsValueImpl (Map<?, ?> map, @Nullable Object value)
 specifier|static
 name|boolean
@@ -14305,7 +14305,7 @@ name|value
 argument_list|)
 return|;
 block|}
-comment|/**    * Implements {@code Collection.contains} safely for forwarding collections of    * map entries. If {@code o} is an instance of {@code Entry}, it is    * wrapped using {@link #unmodifiableEntry} to protect against a possible    * nefarious equals method.    *    *<p>Note that {@code c} is the backing (delegate) collection, rather than    * the forwarding collection.    *    * @param c the delegate (unwrapped) collection of map entries    * @param o the object that might be contained in {@code c}    * @return {@code true} if {@code c} contains {@code o}    */
+comment|/**    * Implements {@code Collection.contains} safely for forwarding collections of map entries. If    * {@code o} is an instance of {@code Entry}, it is wrapped using {@link #unmodifiableEntry} to    * protect against a possible nefarious equals method.    *    *<p>Note that {@code c} is the backing (delegate) collection, rather than the forwarding    * collection.    *    * @param c the delegate (unwrapped) collection of map entries    * @param o the object that might be contained in {@code c}    * @return {@code true} if {@code c} contains {@code o}    */
 DECL|method|containsEntryImpl (Collection<Entry<K, V>> c, Object o)
 specifier|static
 parameter_list|<
@@ -14365,7 +14365,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Implements {@code Collection.remove} safely for forwarding collections of    * map entries. If {@code o} is an instance of {@code Entry}, it is    * wrapped using {@link #unmodifiableEntry} to protect against a possible    * nefarious equals method.    *    *<p>Note that {@code c} is backing (delegate) collection, rather than the    * forwarding collection.    *    * @param c the delegate (unwrapped) collection of map entries    * @param o the object to remove from {@code c}    * @return {@code true} if {@code c} was changed    */
+comment|/**    * Implements {@code Collection.remove} safely for forwarding collections of map entries. If    * {@code o} is an instance of {@code Entry}, it is wrapped using {@link #unmodifiableEntry} to    * protect against a possible nefarious equals method.    *    *<p>Note that {@code c} is backing (delegate) collection, rather than the forwarding collection.    *    * @param c the delegate (unwrapped) collection of map entries    * @param o the object to remove from {@code c}    * @return {@code true} if {@code c} was changed    */
 DECL|method|removeEntryImpl (Collection<Entry<K, V>> c, Object o)
 specifier|static
 parameter_list|<
@@ -14425,7 +14425,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * An implementation of {@link Map#equals}.    */
+comment|/** An implementation of {@link Map#equals}. */
 DECL|method|equalsImpl (Map<?, ?> map, Object object)
 specifier|static
 name|boolean
@@ -14499,7 +14499,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/**    * An implementation of {@link Map#toString}.    */
+comment|/** An implementation of {@link Map#toString}. */
 DECL|method|toStringImpl (Map<?, ?> map)
 specifier|static
 name|String
@@ -14607,7 +14607,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/**    * An implementation of {@link Map#putAll}.    */
+comment|/** An implementation of {@link Map#putAll}. */
 DECL|method|putAllImpl (Map<K, V> self, Map<? extends K, ? extends V> map)
 specifier|static
 parameter_list|<
@@ -17352,7 +17352,7 @@ argument_list|()
 return|;
 block|}
 block|}
-comment|/**    * Returns a map from the ith element of list to i.    */
+comment|/** Returns a map from the ith element of list to i. */
 DECL|method|indexMap (Collection<E> list)
 specifier|static
 parameter_list|<
@@ -17426,7 +17426,7 @@ name|build
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns a view of the portion of {@code map} whose keys are contained by {@code range}.    *    *<p>This method delegates to the appropriate methods of {@link NavigableMap} (namely    * {@link NavigableMap#subMap(Object, boolean, Object, boolean) subMap()},    * {@link NavigableMap#tailMap(Object, boolean) tailMap()}, and    * {@link NavigableMap#headMap(Object, boolean) headMap()}) to actually construct the view.    * Consult these methods for a full description of the returned view's behavior.    *    *<p><b>Warning:</b> {@code Range}s always represent a range of values using the values' natural    * ordering. {@code NavigableMap} on the other hand can specify a custom ordering via a    * {@link Comparator}, which can violate the natural ordering. Using this method (or in general    * using {@code Range}) with unnaturally-ordered maps can lead to unexpected and undefined    * behavior.    *    * @since 20.0    */
+comment|/**    * Returns a view of the portion of {@code map} whose keys are contained by {@code range}.    *    *<p>This method delegates to the appropriate methods of {@link NavigableMap} (namely {@link    * NavigableMap#subMap(Object, boolean, Object, boolean) subMap()}, {@link    * NavigableMap#tailMap(Object, boolean) tailMap()}, and {@link NavigableMap#headMap(Object,    * boolean) headMap()}) to actually construct the view. Consult these methods for a full    * description of the returned view's behavior.    *    *<p><b>Warning:</b> {@code Range}s always represent a range of values using the values' natural    * ordering. {@code NavigableMap} on the other hand can specify a custom ordering via a {@link    * Comparator}, which can violate the natural ordering. Using this method (or in general using    * {@code Range}) with unnaturally-ordered maps can lead to unexpected and undefined behavior.    *    * @since 20.0    */
 annotation|@
 name|Beta
 annotation|@

@@ -595,7 +595,7 @@ name|K
 argument_list|>
 name|samples
 decl_stmt|;
-DECL|method|MapKeySetGenerator ( OneSizeTestContainerGenerator<Map<K, V>, Entry<K, V>> mapGenerator)
+DECL|method|MapKeySetGenerator (OneSizeTestContainerGenerator<Map<K, V>, Entry<K, V>> mapGenerator)
 specifier|public
 name|MapKeySetGenerator
 parameter_list|(
@@ -1514,7 +1514,7 @@ name|int
 name|length
 parameter_list|)
 block|{
-comment|//noinspection UnnecessaryLocalVariable
+comment|// noinspection UnnecessaryLocalVariable
 specifier|final
 name|V
 index|[]
@@ -1919,7 +1919,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**    * Two bounds (from and to) define how to build a subMap.    */
+comment|/** Two bounds (from and to) define how to build a subMap. */
 DECL|enum|Bound
 specifier|public
 enum|enum
@@ -2409,7 +2409,7 @@ name|lastExclusive
 argument_list|)
 return|;
 block|}
-comment|/**      * Calls the smallest subSet overload that filters out the extreme values.      */
+comment|/** Calls the smallest subSet overload that filters out the extreme values. */
 DECL|method|createSubSet (SortedSet<E> set, E firstExclusive, E lastExclusive)
 name|SortedSet
 argument_list|<

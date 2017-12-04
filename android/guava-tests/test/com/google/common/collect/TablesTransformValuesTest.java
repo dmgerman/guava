@@ -141,9 +141,9 @@ return|;
 block|}
 block|}
 decl_stmt|;
-DECL|method|create ( Object... data)
 annotation|@
 name|Override
+DECL|method|create (Object... data)
 specifier|protected
 name|Table
 argument_list|<
@@ -281,9 +281,9 @@ name|testNullPointerInstance
 parameter_list|()
 block|{}
 comment|// put() and putAll() aren't supported.
-DECL|method|testPut ()
 annotation|@
 name|Override
+DECL|method|testPut ()
 specifier|public
 name|void
 name|testPut
@@ -313,16 +313,16 @@ parameter_list|(
 name|UnsupportedOperationException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 name|assertSize
 argument_list|(
 literal|0
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|testPutAllTable ()
 annotation|@
 name|Override
+DECL|method|testPutAllTable ()
 specifier|public
 name|void
 name|testPutAllTable
@@ -419,7 +419,7 @@ parameter_list|(
 name|UnsupportedOperationException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 name|assertEquals
 argument_list|(
 operator|(
@@ -477,25 +477,25 @@ literal|3
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|testPutNull ()
 annotation|@
 name|Override
+DECL|method|testPutNull ()
 specifier|public
 name|void
 name|testPutNull
 parameter_list|()
 block|{}
-DECL|method|testPutNullReplace ()
 annotation|@
 name|Override
+DECL|method|testPutNullReplace ()
 specifier|public
 name|void
 name|testPutNullReplace
 parameter_list|()
 block|{}
-DECL|method|testRowClearAndPut ()
 annotation|@
 name|Override
+DECL|method|testRowClearAndPut ()
 specifier|public
 name|void
 name|testRowClearAndPut

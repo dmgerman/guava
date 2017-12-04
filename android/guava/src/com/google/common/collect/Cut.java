@@ -91,7 +91,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Implementation detail for the internal structure of {@link Range} instances. Represents  * a unique way of "cutting" a "number line" (actually of instances of type {@code C}, not  * necessarily "numbers") into two sections; this can be done below a certain value, above  * a certain value, below all values or above all values. With this object defined in this  * way, an interval can always be represented by a pair of {@code Cut} instances.  *  * @author Kevin Bourrillion  */
+comment|/**  * Implementation detail for the internal structure of {@link Range} instances. Represents a unique  * way of "cutting" a "number line" (actually of instances of type {@code C}, not necessarily  * "numbers") into two sections; this can be done below a certain value, above a certain value,  * below all values or above all values. With this object defined in this way, an interval can  * always be represented by a pair of {@code Cut} instances.  *  * @author Kevin Bourrillion  */
 end_comment
 
 begin_class
@@ -413,9 +413,9 @@ literal|false
 return|;
 block|}
 comment|// Prevent "missing hashCode" warning by explicitly forcing subclasses implement it
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 specifier|abstract
 name|int

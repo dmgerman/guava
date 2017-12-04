@@ -75,7 +75,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A navigable set which forwards all its method calls to another navigable set. Subclasses should  * override one or more methods to modify the behavior of the backing set as desired per the<a  * href="http://en.wikipedia.org/wiki/Decorator_pattern">decorator pattern</a>.  *  *<p><b>Warning:</b> The methods of {@code ForwardingNavigableSet} forward<i>indiscriminately</i>  * to the methods of the delegate. For example, overriding {@link #add} alone<i>will not</i>  * change the behavior of {@link #addAll}, which can lead to unexpected behavior. In this case, you  * should override {@code addAll} as well, either providing your own implementation, or delegating  * to the provided {@code standardAddAll} method.  *  *<p><b>{@code default} method warning:</b> This class does<i>not</i> forward calls to {@code  * default} methods. Instead, it inherits their default implementations. When those implementations  * invoke methods, they invoke methods on the {@code ForwardingNavigableSet}.  *  *<p>Each of the {@code standard} methods uses the set's comparator (or the natural ordering of  * the elements, if there is no comparator) to test element equality. As a result, if the  * comparator is not consistent with equals, some of the standard implementations may violate the  * {@code Set} contract.  *  *<p>The {@code standard} methods and the collection views they return are not guaranteed to be  * thread-safe, even when all of the methods that they depend on are thread-safe.  *  * @author Louis Wasserman  * @since 12.0  */
+comment|/**  * A navigable set which forwards all its method calls to another navigable set. Subclasses should  * override one or more methods to modify the behavior of the backing set as desired per the<a  * href="http://en.wikipedia.org/wiki/Decorator_pattern">decorator pattern</a>.  *  *<p><b>Warning:</b> The methods of {@code ForwardingNavigableSet} forward<i>indiscriminately</i>  * to the methods of the delegate. For example, overriding {@link #add} alone<i>will not</i> change  * the behavior of {@link #addAll}, which can lead to unexpected behavior. In this case, you should  * override {@code addAll} as well, either providing your own implementation, or delegating to the  * provided {@code standardAddAll} method.  *  *<p><b>{@code default} method warning:</b> This class does<i>not</i> forward calls to {@code  * default} methods. Instead, it inherits their default implementations. When those implementations  * invoke methods, they invoke methods on the {@code ForwardingNavigableSet}.  *  *<p>Each of the {@code standard} methods uses the set's comparator (or the natural ordering of the  * elements, if there is no comparator) to test element equality. As a result, if the comparator is  * not consistent with equals, some of the standard implementations may violate the {@code Set}  * contract.  *  *<p>The {@code standard} methods and the collection views they return are not guaranteed to be  * thread-safe, even when all of the methods that they depend on are thread-safe.  *  * @author Louis Wasserman  * @since 12.0  */
 end_comment
 
 begin_class
@@ -239,7 +239,7 @@ name|e
 argument_list|)
 return|;
 block|}
-comment|/**    * A sensible definition of {@link #ceiling} in terms of the {@code iterator} method of    * {@link #tailSet(Object, boolean)}. If you override {@link #tailSet(Object, boolean)}, you may    * wish to override {@link #ceiling} to forward to this implementation.    */
+comment|/**    * A sensible definition of {@link #ceiling} in terms of the {@code iterator} method of {@link    * #tailSet(Object, boolean)}. If you override {@link #tailSet(Object, boolean)}, you may wish to    * override {@link #ceiling} to forward to this implementation.    */
 DECL|method|standardCeiling (E e)
 specifier|protected
 name|E
@@ -289,7 +289,7 @@ name|e
 argument_list|)
 return|;
 block|}
-comment|/**    * A sensible definition of {@link #higher} in terms of the {@code iterator} method of    * {@link #tailSet(Object, boolean)}. If you override {@link #tailSet(Object, boolean)}, you may    * wish to override {@link #higher} to forward to this implementation.    */
+comment|/**    * A sensible definition of {@link #higher} in terms of the {@code iterator} method of {@link    * #tailSet(Object, boolean)}. If you override {@link #tailSet(Object, boolean)}, you may wish to    * override {@link #higher} to forward to this implementation.    */
 DECL|method|standardHigher (E e)
 specifier|protected
 name|E
@@ -519,7 +519,7 @@ name|toInclusive
 argument_list|)
 return|;
 block|}
-comment|/**    * A sensible definition of {@link #subSet(Object, boolean, Object, boolean)} in terms of the    * {@code headSet} and {@code tailSet} methods. In many cases, you may wish to override    * {@link #subSet(Object, boolean, Object, boolean)} to forward to this implementation.    */
+comment|/**    * A sensible definition of {@link #subSet(Object, boolean, Object, boolean)} in terms of the    * {@code headSet} and {@code tailSet} methods. In many cases, you may wish to override {@link    * #subSet(Object, boolean, Object, boolean)} to forward to this implementation.    */
 annotation|@
 name|Beta
 DECL|method|standardSubSet ( E fromElement, boolean fromInclusive, E toElement, boolean toInclusive)
@@ -559,7 +559,7 @@ name|toInclusive
 argument_list|)
 return|;
 block|}
-comment|/**    * A sensible definition of {@link #subSet(Object, Object)} in terms of the    * {@link #subSet(Object, boolean, Object, boolean)} method. If you override    * {@link #subSet(Object, boolean, Object, boolean)}, you may wish to override    * {@link #subSet(Object, Object)} to forward to this implementation.    */
+comment|/**    * A sensible definition of {@link #subSet(Object, Object)} in terms of the {@link #subSet(Object,    * boolean, Object, boolean)} method. If you override {@link #subSet(Object, boolean, Object,    * boolean)}, you may wish to override {@link #subSet(Object, Object)} to forward to this    * implementation.    */
 annotation|@
 name|Override
 DECL|method|standardSubSet (E fromElement, E toElement)
@@ -619,7 +619,7 @@ name|inclusive
 argument_list|)
 return|;
 block|}
-comment|/**    * A sensible definition of {@link #headSet(Object)} in terms of the    * {@link #headSet(Object, boolean)} method. If you override    * {@link #headSet(Object, boolean)}, you may wish to override    * {@link #headSet(Object)} to forward to this implementation.    */
+comment|/**    * A sensible definition of {@link #headSet(Object)} in terms of the {@link #headSet(Object,    * boolean)} method. If you override {@link #headSet(Object, boolean)}, you may wish to override    * {@link #headSet(Object)} to forward to this implementation.    */
 DECL|method|standardHeadSet (E toElement)
 specifier|protected
 name|SortedSet
@@ -670,7 +670,7 @@ name|inclusive
 argument_list|)
 return|;
 block|}
-comment|/**    * A sensible definition of {@link #tailSet(Object)} in terms of the    * {@link #tailSet(Object, boolean)} method. If you override    * {@link #tailSet(Object, boolean)}, you may wish to override    * {@link #tailSet(Object)} to forward to this implementation.    */
+comment|/**    * A sensible definition of {@link #tailSet(Object)} in terms of the {@link #tailSet(Object,    * boolean)} method. If you override {@link #tailSet(Object, boolean)}, you may wish to override    * {@link #tailSet(Object)} to forward to this implementation.    */
 DECL|method|standardTailSet (E fromElement)
 specifier|protected
 name|SortedSet

@@ -476,7 +476,7 @@ return|;
 block|}
 comment|// no equals and hashCode; it would break the contract!
 block|}
-comment|/**    * Returns the number of elements in {@code iterable}.    */
+comment|/** Returns the number of elements in {@code iterable}. */
 DECL|method|size (Iterable<?> iterable)
 specifier|public
 specifier|static
@@ -586,7 +586,7 @@ name|element
 argument_list|)
 return|;
 block|}
-comment|/**    * Removes, from an iterable, every element that belongs to the provided    * collection.    *    *<p>This method calls {@link Collection#removeAll} if {@code iterable} is a    * collection, and {@link Iterators#removeAll} otherwise.    *    * @param removeFrom the iterable to (potentially) remove elements from    * @param elementsToRemove the elements to remove    * @return {@code true} if any element was removed from {@code iterable}    */
+comment|/**    * Removes, from an iterable, every element that belongs to the provided collection.    *    *<p>This method calls {@link Collection#removeAll} if {@code iterable} is a collection, and    * {@link Iterators#removeAll} otherwise.    *    * @param removeFrom the iterable to (potentially) remove elements from    * @param elementsToRemove the elements to remove    * @return {@code true} if any element was removed from {@code iterable}    */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|removeAll (Iterable<?> removeFrom, Collection<?> elementsToRemove)
@@ -646,7 +646,7 @@ name|elementsToRemove
 argument_list|)
 return|;
 block|}
-comment|/**    * Removes, from an iterable, every element that does not belong to the    * provided collection.    *    *<p>This method calls {@link Collection#retainAll} if {@code iterable} is a    * collection, and {@link Iterators#retainAll} otherwise.    *    * @param removeFrom the iterable to (potentially) remove elements from    * @param elementsToRetain the elements to retain    * @return {@code true} if any element was removed from {@code iterable}    */
+comment|/**    * Removes, from an iterable, every element that does not belong to the provided collection.    *    *<p>This method calls {@link Collection#retainAll} if {@code iterable} is a collection, and    * {@link Iterators#retainAll} otherwise.    *    * @param removeFrom the iterable to (potentially) remove elements from    * @param elementsToRetain the elements to retain    * @return {@code true} if any element was removed from {@code iterable}    */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|retainAll (Iterable<?> removeFrom, Collection<?> elementsToRetain)
@@ -706,7 +706,7 @@ name|elementsToRetain
 argument_list|)
 return|;
 block|}
-comment|/**    * Removes, from an iterable, every element that satisfies the provided    * predicate.    *    *<p>Removals may or may not happen immediately as each element is tested    * against the predicate.  The behavior of this method is not specified if    * {@code predicate} is dependent on {@code removeFrom}.    *    * @param removeFrom the iterable to (potentially) remove elements from    * @param predicate a predicate that determines whether an element should    *     be removed    * @return {@code true} if any elements were removed from the iterable    *    * @throws UnsupportedOperationException if the iterable does not support    *     {@code remove()}.    * @since 2.0    */
+comment|/**    * Removes, from an iterable, every element that satisfies the provided predicate.    *    *<p>Removals may or may not happen immediately as each element is tested against the predicate.    * The behavior of this method is not specified if {@code predicate} is dependent on {@code    * removeFrom}.    *    * @param removeFrom the iterable to (potentially) remove elements from    * @param predicate a predicate that determines whether an element should be removed    * @return {@code true} if any elements were removed from the iterable    * @throws UnsupportedOperationException if the iterable does not support {@code remove()}.    * @since 2.0    */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|removeIf (Iterable<T> removeFrom, Predicate<? super T> predicate)
@@ -1048,7 +1048,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Removes and returns the first matching element, or returns {@code null} if there is none.    */
+comment|/** Removes and returns the first matching element, or returns {@code null} if there is none. */
 annotation|@
 name|Nullable
 DECL|method|removeFirstMatching (Iterable<T> removeFrom, Predicate<? super T> predicate)
@@ -1130,7 +1130,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**    * Determines whether two iterables contain equal elements in the same order.    * More specifically, this method returns {@code true} if {@code iterable1}    * and {@code iterable2} contain the same number of elements and every element    * of {@code iterable1} is equal to the corresponding element of    * {@code iterable2}.    */
+comment|/**    * Determines whether two iterables contain equal elements in the same order. More specifically,    * this method returns {@code true} if {@code iterable1} and {@code iterable2} contain the same    * number of elements and every element of {@code iterable1} is equal to the corresponding element    * of {@code iterable2}.    */
 DECL|method|elementsEqual (Iterable<?> iterable1, Iterable<?> iterable2)
 specifier|public
 specifier|static
@@ -1224,7 +1224,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a string representation of {@code iterable}, with the format {@code    * [e1, e2, ..., en]} (that is, identical to {@link java.util.Arrays    * Arrays}{@code .toString(Iterables.toArray(iterable))}). Note that for    *<i>most</i> implementations of {@link Collection}, {@code    * collection.toString()} also gives the same result, but that behavior is not    * generally guaranteed.    */
+comment|/**    * Returns a string representation of {@code iterable}, with the format {@code [e1, e2, ..., en]}    * (that is, identical to {@link java.util.Arrays Arrays}{@code    * .toString(Iterables.toArray(iterable))}). Note that for<i>most</i> implementations of {@link    * Collection}, {@code collection.toString()} also gives the same result, but that behavior is not    * generally guaranteed.    */
 DECL|method|toString (Iterable<?> iterable)
 specifier|public
 specifier|static
@@ -1319,7 +1319,7 @@ name|defaultValue
 argument_list|)
 return|;
 block|}
-comment|/**    * Copies an iterable's elements into an array.    *    * @param iterable the iterable to copy    * @param type the type of the elements    * @return a newly-allocated array into which all the elements of the iterable    *     have been copied    */
+comment|/**    * Copies an iterable's elements into an array.    *    * @param iterable the iterable to copy    * @param type the type of the elements    * @return a newly-allocated array into which all the elements of the iterable have been copied    */
 annotation|@
 name|GwtIncompatible
 comment|// Array.newInstance(Class, int)
@@ -1408,7 +1408,7 @@ name|array
 argument_list|)
 return|;
 block|}
-comment|/**    * Copies an iterable's elements into an array.    *    * @param iterable the iterable to copy    * @return a newly-allocated array into which all the elements of the iterable    *     have been copied    */
+comment|/**    * Copies an iterable's elements into an array.    *    * @param iterable the iterable to copy    * @return a newly-allocated array into which all the elements of the iterable have been copied    */
 DECL|method|toArray (Iterable<?> iterable)
 specifier|static
 name|Object
@@ -1432,7 +1432,7 @@ name|toArray
 argument_list|()
 return|;
 block|}
-comment|/**    * Converts an iterable into a collection. If the iterable is already a    * collection, it is returned. Otherwise, an {@link java.util.ArrayList} is    * created with the contents of the iterable in the same iteration order.    */
+comment|/**    * Converts an iterable into a collection. If the iterable is already a collection, it is    * returned. Otherwise, an {@link java.util.ArrayList} is created with the contents of the    * iterable in the same iteration order.    */
 DECL|method|castOrCopyToCollection (Iterable<E> iterable)
 specifier|private
 specifier|static
@@ -1478,7 +1478,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Adds all elements in {@code iterable} to {@code collection}.    *    * @return {@code true} if {@code collection} was modified as a result of this    *     operation.    */
+comment|/**    * Adds all elements in {@code iterable} to {@code collection}.    *    * @return {@code true} if {@code collection} was modified as a result of this operation.    */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|addAll (Collection<T> addTo, Iterable<? extends T> elementsToAdd)
@@ -1553,7 +1553,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the number of elements in the specified iterable that equal the specified object. This    * implementation avoids a full iteration when the iterable is a {@link Multiset} or {@link Set}.    *    *<p><b>Java 8 users:</b> In most cases, the {@code Stream} equivalent of this method is {@code    * stream.filter(element::equals).count()}. If {@code element} might be null, use {@code    * stream.filter(Predicate.isEqual(element)).count()} instead.    *    * @see java.util.Collections#frequency(Collection, Object) Collections.frequency(Collection,    *      Object)    */
+comment|/**    * Returns the number of elements in the specified iterable that equal the specified object. This    * implementation avoids a full iteration when the iterable is a {@link Multiset} or {@link Set}.    *    *<p><b>Java 8 users:</b> In most cases, the {@code Stream} equivalent of this method is {@code    * stream.filter(element::equals).count()}. If {@code element} might be null, use {@code    * stream.filter(Predicate.isEqual(element)).count()} instead.    *    * @see java.util.Collections#frequency(Collection, Object) Collections.frequency(Collection,    *     Object)    */
 DECL|method|frequency (Iterable<?> iterable, @Nullable Object element)
 specifier|public
 specifier|static
@@ -1747,7 +1747,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Combines two iterables into a single iterable. The returned iterable has an iterator that    * traverses the elements in {@code a}, followed by the elements in {@code b}. The source    * iterators are not polled until necessary.    *    *<p>The returned iterable's iterator supports {@code remove()} when the corresponding input    * iterator supports it.    *    *<p><b>Java 8 users:</b> The {@code Stream} equivalent of this method is {@code    * Stream.concat(a, b)}.    */
+comment|/**    * Combines two iterables into a single iterable. The returned iterable has an iterator that    * traverses the elements in {@code a}, followed by the elements in {@code b}. The source    * iterators are not polled until necessary.    *    *<p>The returned iterable's iterator supports {@code remove()} when the corresponding input    * iterator supports it.    *    *<p><b>Java 8 users:</b> The {@code Stream} equivalent of this method is {@code Stream.concat(a,    * b)}.    */
 DECL|method|concat (Iterable<? extends T> a, Iterable<? extends T> b)
 specifier|public
 specifier|static
@@ -1970,7 +1970,7 @@ name|inputs
 argument_list|)
 return|;
 block|}
-comment|/**    * Divides an iterable into unmodifiable sublists of the given size (the final    * iterable may be smaller). For example, partitioning an iterable containing    * {@code [a, b, c, d, e]} with a partition size of 3 yields {@code    * [[a, b, c], [d, e]]} -- an outer iterable containing two inner lists of    * three and two elements, all in the original order.    *    *<p>Iterators returned by the returned iterable do not support the {@link    * Iterator#remove()} method. The returned lists implement {@link    * RandomAccess}, whether or not the input list does.    *    *<p><b>Note:</b> if {@code iterable} is a {@link List}, use {@link    * Lists#partition(List, int)} instead.    *    * @param iterable the iterable to return a partitioned view of    * @param size the desired size of each partition (the last may be smaller)    * @return an iterable of unmodifiable lists containing the elements of {@code    *     iterable} divided into partitions    * @throws IllegalArgumentException if {@code size} is nonpositive    */
+comment|/**    * Divides an iterable into unmodifiable sublists of the given size (the final iterable may be    * smaller). For example, partitioning an iterable containing {@code [a, b, c, d, e]} with a    * partition size of 3 yields {@code [[a, b, c], [d, e]]} -- an outer iterable containing two    * inner lists of three and two elements, all in the original order.    *    *<p>Iterators returned by the returned iterable do not support the {@link Iterator#remove()}    * method. The returned lists implement {@link RandomAccess}, whether or not the input list does.    *    *<p><b>Note:</b> if {@code iterable} is a {@link List}, use {@link Lists#partition(List, int)}    * instead.    *    * @param iterable the iterable to return a partitioned view of    * @param size the desired size of each partition (the last may be smaller)    * @return an iterable of unmodifiable lists containing the elements of {@code iterable} divided    *     into partitions    * @throws IllegalArgumentException if {@code size} is nonpositive    */
 DECL|method|partition (final Iterable<T> iterable, final int size)
 specifier|public
 specifier|static
@@ -2051,7 +2051,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/**    * Divides an iterable into unmodifiable sublists of the given size, padding    * the final iterable with null values if necessary. For example, partitioning    * an iterable containing {@code [a, b, c, d, e]} with a partition size of 3    * yields {@code [[a, b, c], [d, e, null]]} -- an outer iterable containing    * two inner lists of three elements each, all in the original order.    *    *<p>Iterators returned by the returned iterable do not support the {@link    * Iterator#remove()} method.    *    * @param iterable the iterable to return a partitioned view of    * @param size the desired size of each partition    * @return an iterable of unmodifiable lists containing the elements of {@code    *     iterable} divided into partitions (the final iterable may have    *     trailing null elements)    * @throws IllegalArgumentException if {@code size} is nonpositive    */
+comment|/**    * Divides an iterable into unmodifiable sublists of the given size, padding the final iterable    * with null values if necessary. For example, partitioning an iterable containing {@code [a, b,    * c, d, e]} with a partition size of 3 yields {@code [[a, b, c], [d, e, null]]} -- an outer    * iterable containing two inner lists of three elements each, all in the original order.    *    *<p>Iterators returned by the returned iterable do not support the {@link Iterator#remove()}    * method.    *    * @param iterable the iterable to return a partitioned view of    * @param size the desired size of each partition    * @return an iterable of unmodifiable lists containing the elements of {@code iterable} divided    *     into partitions (the final iterable may have trailing null elements)    * @throws IllegalArgumentException if {@code size} is nonpositive    */
 DECL|method|paddedPartition (final Iterable<T> iterable, final int size)
 specifier|public
 specifier|static
@@ -2351,7 +2351,7 @@ name|predicate
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the first element in {@code iterable} that satisfies the given    * predicate; use this method only when such an element is known to exist. If    * it is possible that<i>no</i> element will match, use {@link #tryFind} or    * {@link #find(Iterable, Predicate, Object)} instead.    *    *<p><b>{@code Stream} equivalent:</b> {@code stream.filter(predicate).findFirst().get()}    *    * @throws NoSuchElementException if no element in {@code iterable} matches    *     the given predicate    */
+comment|/**    * Returns the first element in {@code iterable} that satisfies the given predicate; use this    * method only when such an element is known to exist. If it is possible that<i>no</i> element    * will match, use {@link #tryFind} or {@link #find(Iterable, Predicate, Object)} instead.    *    *<p><b>{@code Stream} equivalent:</b> {@code stream.filter(predicate).findFirst().get()}    *    * @throws NoSuchElementException if no element in {@code iterable} matches the given predicate    */
 DECL|method|find (Iterable<T> iterable, Predicate<? super T> predicate)
 specifier|public
 specifier|static
@@ -2390,7 +2390,7 @@ name|predicate
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the first element in {@code iterable} that satisfies the given    * predicate, or {@code defaultValue} if none found. Note that this can    * usually be handled more naturally using {@code    * tryFind(iterable, predicate).or(defaultValue)}.    *    *<p><b>{@code Stream} equivalent:</b>    * {@code stream.filter(predicate).findFirst().orElse(defaultValue)}    *    * @since 7.0    */
+comment|/**    * Returns the first element in {@code iterable} that satisfies the given predicate, or {@code    * defaultValue} if none found. Note that this can usually be handled more naturally using {@code    * tryFind(iterable, predicate).or(defaultValue)}.    *    *<p><b>{@code Stream} equivalent:</b> {@code    * stream.filter(predicate).findFirst().orElse(defaultValue)}    *    * @since 7.0    */
 annotation|@
 name|Nullable
 DECL|method|find ( Iterable<? extends T> iterable, Predicate<? super T> predicate, @Nullable T defaultValue)
@@ -2440,7 +2440,7 @@ name|defaultValue
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an {@link Optional} containing the first element in {@code    * iterable} that satisfies the given predicate, if such an element exists.    *    *<p><b>Warning:</b> avoid using a {@code predicate} that matches {@code    * null}. If {@code null} is matched in {@code iterable}, a    * NullPointerException will be thrown.    *    *<p><b>{@code Stream} equivalent:</b>    * {@code stream.filter(predicate).findFirst()}    *    * @since 11.0    */
+comment|/**    * Returns an {@link Optional} containing the first element in {@code iterable} that satisfies the    * given predicate, if such an element exists.    *    *<p><b>Warning:</b> avoid using a {@code predicate} that matches {@code null}. If {@code null}    * is matched in {@code iterable}, a NullPointerException will be thrown.    *    *<p><b>{@code Stream} equivalent:</b> {@code stream.filter(predicate).findFirst()}    *    * @since 11.0    */
 DECL|method|tryFind (Iterable<T> iterable, Predicate<? super T> predicate)
 specifier|public
 specifier|static
@@ -2482,7 +2482,7 @@ name|predicate
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the index in {@code iterable} of the first element that satisfies    * the provided {@code predicate}, or {@code -1} if the Iterable has no such    * elements.    *    *<p>More formally, returns the lowest index {@code i} such that    * {@code predicate.apply(Iterables.get(iterable, i))} returns {@code true},    * or {@code -1} if there is no such index.    *    * @since 2.0    */
+comment|/**    * Returns the index in {@code iterable} of the first element that satisfies the provided {@code    * predicate}, or {@code -1} if the Iterable has no such elements.    *    *<p>More formally, returns the lowest index {@code i} such that {@code    * predicate.apply(Iterables.get(iterable, i))} returns {@code true}, or {@code -1} if there is no    * such index.    *    * @since 2.0    */
 DECL|method|indexOf (Iterable<T> iterable, Predicate<? super T> predicate)
 specifier|public
 specifier|static
@@ -2521,7 +2521,7 @@ name|predicate
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a view containing the result of applying {@code function} to each    * element of {@code fromIterable}.    *    *<p>The returned iterable's iterator supports {@code remove()} if {@code    * fromIterable}'s iterator does. After a successful {@code remove()} call,    * {@code fromIterable} no longer contains the corresponding element.    *    *<p>If the input {@code Iterable} is known to be a {@code List} or other    * {@code Collection}, consider {@link Lists#transform} and {@link    * Collections2#transform}.    *    *<p><b>{@code Stream} equivalent:</b> {@link Stream#map}    */
+comment|/**    * Returns a view containing the result of applying {@code function} to each element of {@code    * fromIterable}.    *    *<p>The returned iterable's iterator supports {@code remove()} if {@code fromIterable}'s    * iterator does. After a successful {@code remove()} call, {@code fromIterable} no longer    * contains the corresponding element.    *    *<p>If the input {@code Iterable} is known to be a {@code List} or other {@code Collection},    * consider {@link Lists#transform} and {@link Collections2#transform}.    *    *<p><b>{@code Stream} equivalent:</b> {@link Stream#map}    */
 DECL|method|transform ( final Iterable<F> fromIterable, final Function<? super F, ? extends T> function)
 specifier|public
 specifier|static
@@ -2602,7 +2602,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/**    * Returns the element at the specified position in an iterable.    *    *<p><b>{@code Stream} equivalent:</b> {@code stream.skip(position).findFirst().get()}    * (throws {@code NoSuchElementException} if out of bounds)    *    * @param position position of the element to return    * @return the element at the specified position in {@code iterable}    * @throws IndexOutOfBoundsException if {@code position} is negative or    *     greater than or equal to the size of {@code iterable}    */
+comment|/**    * Returns the element at the specified position in an iterable.    *    *<p><b>{@code Stream} equivalent:</b> {@code stream.skip(position).findFirst().get()} (throws    * {@code NoSuchElementException} if out of bounds)    *    * @param position position of the element to return    * @return the element at the specified position in {@code iterable}    * @throws IndexOutOfBoundsException if {@code position} is negative or greater than or equal to    *     the size of {@code iterable}    */
 DECL|method|get (Iterable<T> iterable, int position)
 specifier|public
 specifier|static
@@ -2662,7 +2662,7 @@ name|position
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the element at the specified position in an iterable or a default    * value otherwise.    *    *<p><b>{@code Stream} equivalent:</b>    * {@code stream.skip(position).findFirst().orElse(defaultValue)}    * (returns the default value if the index is out of bounds)    *    * @param position position of the element to return    * @param defaultValue the default value to return if {@code position} is    *     greater than or equal to the size of the iterable    * @return the element at the specified position in {@code iterable} or    *     {@code defaultValue} if {@code iterable} contains fewer than    *     {@code position + 1} elements.    * @throws IndexOutOfBoundsException if {@code position} is negative    * @since 4.0    */
+comment|/**    * Returns the element at the specified position in an iterable or a default value otherwise.    *    *<p><b>{@code Stream} equivalent:</b> {@code    * stream.skip(position).findFirst().orElse(defaultValue)} (returns the default value if the index    * is out of bounds)    *    * @param position position of the element to return    * @param defaultValue the default value to return if {@code position} is greater than or equal to    *     the size of the iterable    * @return the element at the specified position in {@code iterable} or {@code defaultValue} if    *     {@code iterable} contains fewer than {@code position + 1} elements.    * @throws IndexOutOfBoundsException if {@code position} is negative    * @since 4.0    */
 annotation|@
 name|Nullable
 DECL|method|get (Iterable<? extends T> iterable, int position, @Nullable T defaultValue)
@@ -2821,7 +2821,7 @@ name|defaultValue
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the last element of {@code iterable}. If {@code iterable} is a {@link List} with    * {@link RandomAccess} support, then this operation is guaranteed to be {@code O(1)}.    *    *<p><b>{@code Stream} equivalent:</b> {@link Streams#findLast Streams.findLast(stream).get()}    *    * @return the last element of {@code iterable}    * @throws NoSuchElementException if the iterable is empty    */
+comment|/**    * Returns the last element of {@code iterable}. If {@code iterable} is a {@link List} with {@link    * RandomAccess} support, then this operation is guaranteed to be {@code O(1)}.    *    *<p><b>{@code Stream} equivalent:</b> {@link Streams#findLast Streams.findLast(stream).get()}    *    * @return the last element of {@code iterable}    * @throws NoSuchElementException if the iterable is empty    */
 DECL|method|getLast (Iterable<T> iterable)
 specifier|public
 specifier|static
@@ -2893,7 +2893,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the last element of {@code iterable} or {@code defaultValue} if    * the iterable is empty. If {@code iterable} is a {@link List} with    * {@link RandomAccess} support, then this operation is guaranteed to be {@code O(1)}.    *    *<p><b>{@code Stream} equivalent:</b> {@code Streams.findLast(stream).orElse(defaultValue)}    *    * @param defaultValue the value to return if {@code iterable} is empty    * @return the last element of {@code iterable} or the default value    * @since 3.0    */
+comment|/**    * Returns the last element of {@code iterable} or {@code defaultValue} if the iterable is empty.    * If {@code iterable} is a {@link List} with {@link RandomAccess} support, then this operation is    * guaranteed to be {@code O(1)}.    *    *<p><b>{@code Stream} equivalent:</b> {@code Streams.findLast(stream).orElse(defaultValue)}    *    * @param defaultValue the value to return if {@code iterable} is empty    * @return the last element of {@code iterable} or the default value    * @since 3.0    */
 annotation|@
 name|Nullable
 DECL|method|getLast (Iterable<? extends T> iterable, @Nullable T defaultValue)
@@ -3018,7 +3018,7 @@ literal|1
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a view of {@code iterable} that skips its first    * {@code numberToSkip} elements. If {@code iterable} contains fewer than    * {@code numberToSkip} elements, the returned iterable skips all of its    * elements.    *    *<p>Modifications to the underlying {@link Iterable} before a call to    * {@code iterator()} are reflected in the returned iterator. That is, the    * iterator skips the first {@code numberToSkip} elements that exist when the    * {@code Iterator} is created, not when {@code skip()} is called.    *    *<p>The returned iterable's iterator supports {@code remove()} if the    * iterator of the underlying iterable supports it. Note that it is    *<i>not</i> possible to delete the last skipped element by immediately    * calling {@code remove()} on that iterator, as the {@code Iterator}    * contract states that a call to {@code remove()} before a call to    * {@code next()} will throw an {@link IllegalStateException}.    *    *<p><b>{@code Stream} equivalent:</b> {@link Stream#skip}    *    * @since 3.0    */
+comment|/**    * Returns a view of {@code iterable} that skips its first {@code numberToSkip} elements. If    * {@code iterable} contains fewer than {@code numberToSkip} elements, the returned iterable skips    * all of its elements.    *    *<p>Modifications to the underlying {@link Iterable} before a call to {@code iterator()} are    * reflected in the returned iterator. That is, the iterator skips the first {@code numberToSkip}    * elements that exist when the {@code Iterator} is created, not when {@code skip()} is called.    *    *<p>The returned iterable's iterator supports {@code remove()} if the iterator of the underlying    * iterable supports it. Note that it is<i>not</i> possible to delete the last skipped element by    * immediately calling {@code remove()} on that iterator, as the {@code Iterator} contract states    * that a call to {@code remove()} before a call to {@code next()} will throw an {@link    * IllegalStateException}.    *    *<p><b>{@code Stream} equivalent:</b> {@link Stream#skip}    *    * @since 3.0    */
 DECL|method|skip (final Iterable<T> iterable, final int numberToSkip)
 specifier|public
 specifier|static
@@ -3227,7 +3227,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/**    * Returns a view of {@code iterable} containing its first {@code limitSize}    * elements. If {@code iterable} contains fewer than {@code limitSize}    * elements, the returned view contains all of its elements. The returned    * iterable's iterator supports {@code remove()} if {@code iterable}'s    * iterator does.    *    *<p><b>{@code Stream} equivalent:</b> {@link Stream#limit}    *    * @param iterable the iterable to limit    * @param limitSize the maximum number of elements in the returned iterable    * @throws IllegalArgumentException if {@code limitSize} is negative    * @since 3.0    */
+comment|/**    * Returns a view of {@code iterable} containing its first {@code limitSize} elements. If {@code    * iterable} contains fewer than {@code limitSize} elements, the returned view contains all of its    * elements. The returned iterable's iterator supports {@code remove()} if {@code iterable}'s    * iterator does.    *    *<p><b>{@code Stream} equivalent:</b> {@link Stream#limit}    *    * @param iterable the iterable to limit    * @param limitSize the maximum number of elements in the returned iterable    * @throws IllegalArgumentException if {@code limitSize} is negative    * @since 3.0    */
 DECL|method|limit (final Iterable<T> iterable, final int limitSize)
 specifier|public
 specifier|static
@@ -3301,7 +3301,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/**    * Returns a view of the supplied iterable that wraps each generated    * {@link Iterator} through {@link Iterators#consumingIterator(Iterator)}.    *    *<p>Note: If {@code iterable} is a {@link Queue}, the returned iterable will    * get entries from {@link Queue#remove()} since {@link Queue}'s iteration    * order is undefined.  Calling {@link Iterator#hasNext()} on a generated    * iterator from the returned iterable may cause an item to be immediately    * dequeued for return on a subsequent call to {@link Iterator#next()}.    *    * @param iterable the iterable to wrap    * @return a view of the supplied iterable that wraps each generated iterator    *     through {@link Iterators#consumingIterator(Iterator)}; for queues,    *     an iterable that generates iterators that return and consume the    *     queue's elements in queue order    *    * @see Iterators#consumingIterator(Iterator)    * @since 2.0    */
+comment|/**    * Returns a view of the supplied iterable that wraps each generated {@link Iterator} through    * {@link Iterators#consumingIterator(Iterator)}.    *    *<p>Note: If {@code iterable} is a {@link Queue}, the returned iterable will get entries from    * {@link Queue#remove()} since {@link Queue}'s iteration order is undefined. Calling {@link    * Iterator#hasNext()} on a generated iterator from the returned iterable may cause an item to be    * immediately dequeued for return on a subsequent call to {@link Iterator#next()}.    *    * @param iterable the iterable to wrap    * @return a view of the supplied iterable that wraps each generated iterator through {@link    *     Iterators#consumingIterator(Iterator)}; for queues, an iterable that generates iterators    *     that return and consume the queue's elements in queue order    * @see Iterators#consumingIterator(Iterator)    * @since 2.0    */
 DECL|method|consumingIterable (final Iterable<T> iterable)
 specifier|public
 specifier|static
@@ -3391,7 +3391,7 @@ block|}
 return|;
 block|}
 comment|// Methods only in Iterables, not in Iterators
-comment|/**    * Determines if the given iterable contains no elements.    *    *<p>There is no precise {@link Iterator} equivalent to this method, since    * one can only ask an iterator whether it has any elements<i>remaining</i>    * (which one does using {@link Iterator#hasNext}).    *    *<p><b>{@code Stream} equivalent:</b> {@code !stream.findAny().isPresent()}    *    * @return {@code true} if the iterable contains no elements    */
+comment|/**    * Determines if the given iterable contains no elements.    *    *<p>There is no precise {@link Iterator} equivalent to this method, since one can only ask an    * iterator whether it has any elements<i>remaining</i> (which one does using {@link    * Iterator#hasNext}).    *    *<p><b>{@code Stream} equivalent:</b> {@code !stream.findAny().isPresent()}    *    * @return {@code true} if the iterable contains no elements    */
 DECL|method|isEmpty (Iterable<?> iterable)
 specifier|public
 specifier|static
@@ -3438,7 +3438,7 @@ name|hasNext
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns an iterable over the merged contents of all given    * {@code iterables}. Equivalent entries will not be de-duplicated.    *    *<p>Callers must ensure that the source {@code iterables} are in    * non-descending order as this method does not sort its input.    *    *<p>For any equivalent elements across all {@code iterables}, it is    * undefined which element is returned first.    *    * @since 11.0    */
+comment|/**    * Returns an iterable over the merged contents of all given {@code iterables}. Equivalent entries    * will not be de-duplicated.    *    *<p>Callers must ensure that the source {@code iterables} are in non-descending order as this    * method does not sort its input.    *    *<p>For any equivalent elements across all {@code iterables}, it is undefined which element is    * returned first.    *    * @since 11.0    */
 annotation|@
 name|Beta
 DECL|method|mergeSorted ( final Iterable<? extends Iterable<? extends T>> iterables, final Comparator<? super T> comparator)

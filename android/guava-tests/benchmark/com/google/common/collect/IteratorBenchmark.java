@@ -82,7 +82,6 @@ specifier|public
 class|class
 name|IteratorBenchmark
 block|{
-DECL|field|size
 annotation|@
 name|Param
 argument_list|(
@@ -100,6 +99,7 @@ block|,
 literal|"65536"
 block|}
 argument_list|)
+DECL|field|size
 name|int
 name|size
 decl_stmt|;
@@ -123,9 +123,9 @@ name|Object
 argument_list|>
 name|linkedList
 decl_stmt|;
-DECL|method|setUp ()
 annotation|@
 name|BeforeExperiment
+DECL|method|setUp ()
 name|void
 name|setUp
 parameter_list|()
@@ -199,9 +199,9 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-DECL|method|arrayIndexed (int reps)
 annotation|@
 name|Benchmark
+DECL|method|arrayIndexed (int reps)
 name|int
 name|arrayIndexed
 parameter_list|(
@@ -260,9 +260,9 @@ return|return
 name|sum
 return|;
 block|}
-DECL|method|arrayIndexedLength (int reps)
 annotation|@
 name|Benchmark
+DECL|method|arrayIndexedLength (int reps)
 name|int
 name|arrayIndexedLength
 parameter_list|(
@@ -323,9 +323,9 @@ return|return
 name|sum
 return|;
 block|}
-DECL|method|arrayFor (int reps)
 annotation|@
 name|Benchmark
+DECL|method|arrayFor (int reps)
 name|int
 name|arrayFor
 parameter_list|(
@@ -374,9 +374,9 @@ return|return
 name|sum
 return|;
 block|}
-DECL|method|arrayListIndexed (int reps)
 annotation|@
 name|Benchmark
+DECL|method|arrayListIndexed (int reps)
 name|int
 name|arrayListIndexed
 parameter_list|(
@@ -437,9 +437,9 @@ return|return
 name|sum
 return|;
 block|}
-DECL|method|arrayListIndexedLength (int reps)
 annotation|@
 name|Benchmark
+DECL|method|arrayListIndexedLength (int reps)
 name|int
 name|arrayListIndexedLength
 parameter_list|(
@@ -503,9 +503,9 @@ return|return
 name|sum
 return|;
 block|}
-DECL|method|arrayListFor (int reps)
 annotation|@
 name|Benchmark
+DECL|method|arrayListFor (int reps)
 name|int
 name|arrayListFor
 parameter_list|(
@@ -554,9 +554,9 @@ return|return
 name|sum
 return|;
 block|}
-DECL|method|arrayListToArrayFor (int reps)
 annotation|@
 name|Benchmark
+DECL|method|arrayListToArrayFor (int reps)
 name|int
 name|arrayListToArrayFor
 parameter_list|(
@@ -608,9 +608,9 @@ return|return
 name|sum
 return|;
 block|}
-DECL|method|linkedListFor (int reps)
 annotation|@
 name|Benchmark
+DECL|method|linkedListFor (int reps)
 name|int
 name|linkedListFor
 parameter_list|(
@@ -659,9 +659,9 @@ return|return
 name|sum
 return|;
 block|}
-DECL|method|linkedListToArrayFor (int reps)
 annotation|@
 name|Benchmark
+DECL|method|linkedListToArrayFor (int reps)
 name|int
 name|linkedListToArrayFor
 parameter_list|(

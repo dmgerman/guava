@@ -67,7 +67,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Test {@link Multimap#asMap()} for an arbitrary multimap with  * {@link MapInterfaceTest}.  *  * @author George van den Driessche  * @author Jared Levy  */
+comment|/**  * Test {@link Multimap#asMap()} for an arbitrary multimap with {@link MapInterfaceTest}.  *  * @author George van den Driessche  * @author Jared Levy  */
 end_comment
 
 begin_class
@@ -188,9 +188,9 @@ literal|333
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|getKeyNotInPopulatedMap ()
 annotation|@
 name|Override
+DECL|method|getKeyNotInPopulatedMap ()
 specifier|protected
 name|String
 name|getKeyNotInPopulatedMap
@@ -202,9 +202,9 @@ return|return
 literal|"zero"
 return|;
 block|}
-DECL|method|getValueNotInPopulatedMap ()
 annotation|@
 name|Override
+DECL|method|getValueNotInPopulatedMap ()
 specifier|protected
 name|Collection
 argument_list|<
@@ -224,10 +224,10 @@ literal|0
 argument_list|)
 return|;
 block|}
-comment|/**    * The version of this test supplied by {@link MapInterfaceTest} fails for    * this particular Map implementation, because {@code map.get()} returns a    * view collection that changes in the course of a call to {@code remove()}.    * Thus, the expectation doesn't hold that {@code map.remove(x)} returns the    * same value which {@code map.get(x)} did immediately beforehand.    */
-DECL|method|testRemove ()
+comment|/**    * The version of this test supplied by {@link MapInterfaceTest} fails for this particular Map    * implementation, because {@code map.get()} returns a view collection that changes in the course    * of a call to {@code remove()}. Thus, the expectation doesn't hold that {@code map.remove(x)}    * returns the same value which {@code map.get(x)} did immediately beforehand.    */
 annotation|@
 name|Override
+DECL|method|testRemove ()
 specifier|public
 name|void
 name|testRemove

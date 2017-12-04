@@ -87,7 +87,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Benchmark for the {@link CharMatcher#whitespace} implementation.  */
+comment|/** Benchmark for the {@link CharMatcher#whitespace} implementation. */
 end_comment
 
 begin_class
@@ -114,15 +114,15 @@ name|OLD_WHITESPACE_TABLE
 init|=
 literal|"\u0001\u0000\u00a0\u0000\u0000\u0000\u0000\u0000"
 operator|+
-literal|"\u0000\u0009\n\u000b\u000c\r\u0000\u0000\u2028\u2029\u0000\u0000\u0000\u0000\u0000\u202f"
+literal|"\u0000\u0009\n\u000b\u000c\r\u0000\u0000\u2028\u2029\u0000\u0000\u0000\u0000\u0000"
 operator|+
-literal|"\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0020\u0000\u0000\u0000\u0000\u0000"
+literal|"\u202f\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0020\u0000\u0000\u0000\u0000"
 operator|+
-literal|"\u0000\u0000\u0000\u0000\u0000\u3000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000"
+literal|"\u0000\u0000\u0000\u0000\u0000\u0000\u3000\u0000\u0000\u0000\u0000\u0000\u0000\u0000"
 operator|+
-literal|"\u0000\u0000\u0085\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a"
+literal|"\u0000\u0000\u0000\u0085\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009"
 operator|+
-literal|"\u0000\u0000\u0000\u0000\u0000\u205f\u1680\u0000\u0000\u180e\u0000\u0000\u0000"
+literal|"\u200a\u0000\u0000\u0000\u0000\u0000\u205f\u1680\u0000\u0000\u180e\u0000\u0000\u0000"
 decl_stmt|;
 DECL|field|OLD_WHITESPACE
 specifier|public
@@ -160,9 +160,9 @@ return|;
 block|}
 block|}
 decl_stmt|;
+DECL|field|useNew
 annotation|@
 name|Param
-DECL|field|useNew
 specifier|private
 name|boolean
 name|useNew
@@ -308,9 +308,9 @@ name|percentMatching
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|countIn (int reps)
 annotation|@
 name|Benchmark
+DECL|method|countIn (int reps)
 specifier|public
 name|int
 name|countIn
@@ -367,9 +367,9 @@ return|return
 name|result
 return|;
 block|}
-DECL|method|collapseFrom (int reps)
 annotation|@
 name|Benchmark
+DECL|method|collapseFrom (int reps)
 specifier|public
 name|int
 name|collapseFrom

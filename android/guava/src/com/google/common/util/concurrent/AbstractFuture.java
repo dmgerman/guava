@@ -843,7 +843,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Waiter links form a Treiber stack, in the {@link #waiters} field.    */
+comment|/** Waiter links form a Treiber stack, in the {@link #waiters} field. */
 DECL|class|Waiter
 specifier|private
 specifier|static
@@ -958,7 +958,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**    * Marks the given node as 'deleted' (null waiter) and then scans the list to unlink all deleted    * nodes. This is an O(n) operation in the common case (and O(n^2) in the worst), but we are saved    * by two things.    *<ul>    *<li>This is only called when a waiting thread times out or is interrupted. Both of which should    *     be rare.    *<li>The waiters list should be very short.    *</ul>    */
+comment|/**    * Marks the given node as 'deleted' (null waiter) and then scans the list to unlink all deleted    * nodes. This is an O(n) operation in the common case (and O(n^2) in the worst), but we are saved    * by two things.    *    *<ul>    *<li>This is only called when a waiting thread times out or is interrupted. Both of which    *       should be rare.    *<li>The waiters list should be very short.    *</ul>    */
 DECL|method|removeWaiter (Waiter node)
 specifier|private
 name|void
@@ -1445,7 +1445,7 @@ block|}
 block|}
 comment|// TODO(lukes): investigate using the @Contended annotation on these fields when jdk8 is
 comment|// available.
-comment|/**    * This field encodes the current state of the future.    *    *<p>The valid values are:    *<ul>    *<li>{@code null} initial state, nothing has happened.    *<li>{@link Cancellation} terminal state, {@code cancel} was called.    *<li>{@link Failure} terminal state, {@code setException} was called.    *<li>{@link SetFuture} intermediate state, {@code setFuture} was called.    *<li>{@link #NULL} terminal state, {@code set(null)} was called.    *<li>Any other non-null value, terminal state, {@code set} was called with a non-null argument.    *</ul>    */
+comment|/**    * This field encodes the current state of the future.    *    *<p>The valid values are:    *    *<ul>    *<li>{@code null} initial state, nothing has happened.    *<li>{@link Cancellation} terminal state, {@code cancel} was called.    *<li>{@link Failure} terminal state, {@code setException} was called.    *<li>{@link SetFuture} intermediate state, {@code setFuture} was called.    *<li>{@link #NULL} terminal state, {@code set(null)} was called.    *<li>Any other non-null value, terminal state, {@code set} was called with a non-null    *       argument.    *</ul>    */
 DECL|field|value
 specifier|private
 specifier|volatile
@@ -1466,7 +1466,7 @@ specifier|volatile
 name|Waiter
 name|waiters
 decl_stmt|;
-comment|/**    * Constructor for use by subclasses.    */
+comment|/** Constructor for use by subclasses. */
 DECL|method|AbstractFuture ()
 specifier|protected
 name|AbstractFuture
@@ -2066,7 +2066,7 @@ name|value
 argument_list|)
 return|;
 block|}
-comment|/**    * Unboxes {@code obj}. Assumes that obj is not {@code null} or a {@link SetFuture}.    */
+comment|/** Unboxes {@code obj}. Assumes that obj is not {@code null} or a {@link SetFuture}. */
 DECL|method|getDoneValue (Object obj)
 specifier|private
 name|V
@@ -3772,7 +3772,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Submits the given runnable to the given {@link Executor} catching and logging all    * {@linkplain RuntimeException runtime exceptions} thrown by the executor.    */
+comment|/**    * Submits the given runnable to the given {@link Executor} catching and logging all {@linkplain    * RuntimeException runtime exceptions} thrown by the executor.    */
 DECL|method|executeListener (Runnable runnable, Executor executor)
 specifier|private
 specifier|static

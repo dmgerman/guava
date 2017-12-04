@@ -159,7 +159,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A synchronization abstraction supporting waiting on arbitrary boolean conditions.  *  *<p>This class is intended as a replacement for {@link ReentrantLock}. Code using {@code Monitor}  * is less error-prone and more readable than code using {@code ReentrantLock}, without significant  * performance loss. {@code Monitor} even has the potential for performance gain by optimizing the  * evaluation and signaling of conditions. Signaling is entirely<a  * href="http://en.wikipedia.org/wiki/Monitor_(synchronization)#Implicit_signaling">implicit</a>.  * By eliminating explicit signaling, this class can guarantee that only one thread is awakened when  * a condition becomes true (no "signaling storms" due to use of {@link  * java.util.concurrent.locks.Condition#signalAll Condition.signalAll}) and that no signals are lost  * (no "hangs" due to incorrect use of {@link java.util.concurrent.locks.Condition#signal  * Condition.signal}).  *  *<p>A thread is said to<i>occupy</i> a monitor if it has<i>entered</i> the monitor but not yet  *<i>left</i>. Only one thread may occupy a given monitor at any moment. A monitor is also  * reentrant, so a thread may enter a monitor any number of times, and then must leave the same  * number of times. The<i>enter</i> and<i>leave</i> operations have the same synchronization  * semantics as the built-in Java language synchronization primitives.  *  *<p>A call to any of the<i>enter</i> methods with<b>void</b> return type should always be  * followed immediately by a<i>try/finally</i> block to ensure that the current thread leaves the  * monitor cleanly:<pre>   {@code  *  *   monitor.enter();  *   try {  *     // do things while occupying the monitor  *   } finally {  *     monitor.leave();  *   }}</pre>  *  *<p>A call to any of the<i>enter</i> methods with<b>boolean</b> return type should always appear  * as the condition of an<i>if</i> statement containing a<i>try/finally</i> block to ensure that  * the current thread leaves the monitor cleanly:<pre>   {@code  *  *   if (monitor.tryEnter()) {  *     try {  *       // do things while occupying the monitor  *     } finally {  *       monitor.leave();  *     }  *   } else {  *     // do other things since the monitor was not available  *   }}</pre>  *  *<h2>Comparison with {@code synchronized} and {@code ReentrantLock}</h2>  *  *<p>The following examples show a simple threadsafe holder expressed using {@code synchronized},  * {@link ReentrantLock}, and {@code Monitor}.  *  *<h3>{@code synchronized}</h3>  *  *<p>This version is the fewest lines of code, largely because the synchronization mechanism used  * is built into the language and runtime. But the programmer has to remember to avoid a couple of  * common bugs: The {@code wait()} must be inside a {@code while} instead of an {@code if}, and  * {@code notifyAll()} must be used instead of {@code notify()} because there are two different  * logical conditions being awaited.<pre>   {@code  *  *   public class SafeBox<V> {  *     private V value;  *  *     public synchronized V get() throws InterruptedException {  *       while (value == null) {  *         wait();  *       }  *       V result = value;  *       value = null;  *       notifyAll();  *       return result;  *     }  *  *     public synchronized void set(V newValue) throws InterruptedException {  *       while (value != null) {  *         wait();  *       }  *       value = newValue;  *       notifyAll();  *     }  *   }}</pre>  *  *<h3>{@code ReentrantLock}</h3>  *  *<p>This version is much more verbose than the {@code synchronized} version, and still suffers  * from the need for the programmer to remember to use {@code while} instead of {@code if}.  * However, one advantage is that we can introduce two separate {@code Condition} objects, which  * allows us to use {@code signal()} instead of {@code signalAll()}, which may be a performance  * benefit.<pre>   {@code  *  *   public class SafeBox<V> {  *     private final ReentrantLock lock = new ReentrantLock();  *     private final Condition valuePresent = lock.newCondition();  *     private final Condition valueAbsent = lock.newCondition();  *     private V value;  *  *     public V get() throws InterruptedException {  *       lock.lock();  *       try {  *         while (value == null) {  *           valuePresent.await();  *         }  *         V result = value;  *         value = null;  *         valueAbsent.signal();  *         return result;  *       } finally {  *         lock.unlock();  *       }  *     }  *  *     public void set(V newValue) throws InterruptedException {  *       lock.lock();  *       try {  *         while (value != null) {  *           valueAbsent.await();  *         }  *         value = newValue;  *         valuePresent.signal();  *       } finally {  *         lock.unlock();  *       }  *     }  *   }}</pre>  *  *<h3>{@code Monitor}</h3>  *  *<p>This version adds some verbosity around the {@code Guard} objects, but removes that same  * verbosity, and more, from the {@code get} and {@code set} methods. {@code Monitor} implements the  * same efficient signaling as we had to hand-code in the {@code ReentrantLock} version above.  * Finally, the programmer no longer has to hand-code the wait loop, and therefore doesn't have to  * remember to use {@code while} instead of {@code if}.<pre>   {@code  *  *   public class SafeBox<V> {  *     private final Monitor monitor = new Monitor();  *     private final Monitor.Guard valuePresent = new Monitor.Guard(monitor) {  *       public boolean isSatisfied() {  *         return value != null;  *       }  *     };  *     private final Monitor.Guard valueAbsent = new Monitor.Guard(monitor) {  *       public boolean isSatisfied() {  *         return value == null;  *       }  *     };  *     private V value;  *  *     public V get() throws InterruptedException {  *       monitor.enterWhen(valuePresent);  *       try {  *         V result = value;  *         value = null;  *         return result;  *       } finally {  *         monitor.leave();  *       }  *     }  *  *     public void set(V newValue) throws InterruptedException {  *       monitor.enterWhen(valueAbsent);  *       try {  *         value = newValue;  *       } finally {  *         monitor.leave();  *       }  *     }  *   }}</pre>  *  * @author Justin T. Sampson  * @author Martin Buchholz  * @since 10.0  */
+comment|/**  * A synchronization abstraction supporting waiting on arbitrary boolean conditions.  *  *<p>This class is intended as a replacement for {@link ReentrantLock}. Code using {@code Monitor}  * is less error-prone and more readable than code using {@code ReentrantLock}, without significant  * performance loss. {@code Monitor} even has the potential for performance gain by optimizing the  * evaluation and signaling of conditions. Signaling is entirely<a  * href="http://en.wikipedia.org/wiki/Monitor_(synchronization)#Implicit_signaling">implicit</a>. By  * eliminating explicit signaling, this class can guarantee that only one thread is awakened when a  * condition becomes true (no "signaling storms" due to use of {@link  * java.util.concurrent.locks.Condition#signalAll Condition.signalAll}) and that no signals are lost  * (no "hangs" due to incorrect use of {@link java.util.concurrent.locks.Condition#signal  * Condition.signal}).  *  *<p>A thread is said to<i>occupy</i> a monitor if it has<i>entered</i> the monitor but not yet  *<i>left</i>. Only one thread may occupy a given monitor at any moment. A monitor is also  * reentrant, so a thread may enter a monitor any number of times, and then must leave the same  * number of times. The<i>enter</i> and<i>leave</i> operations have the same synchronization  * semantics as the built-in Java language synchronization primitives.  *  *<p>A call to any of the<i>enter</i> methods with<b>void</b> return type should always be  * followed immediately by a<i>try/finally</i> block to ensure that the current thread leaves the  * monitor cleanly:  *  *<pre>{@code  * monitor.enter();  * try {  *   // do things while occupying the monitor  * } finally {  *   monitor.leave();  * }  * }</pre>  *  *<p>A call to any of the<i>enter</i> methods with<b>boolean</b> return type should always appear  * as the condition of an<i>if</i> statement containing a<i>try/finally</i> block to ensure that  * the current thread leaves the monitor cleanly:  *  *<pre>{@code  * if (monitor.tryEnter()) {  *   try {  *     // do things while occupying the monitor  *   } finally {  *     monitor.leave();  *   }  * } else {  *   // do other things since the monitor was not available  * }  * }</pre>  *  *<h2>Comparison with {@code synchronized} and {@code ReentrantLock}</h2>  *  *<p>The following examples show a simple threadsafe holder expressed using {@code synchronized},  * {@link ReentrantLock}, and {@code Monitor}.  *  *<h3>{@code synchronized}</h3>  *  *<p>This version is the fewest lines of code, largely because the synchronization mechanism used  * is built into the language and runtime. But the programmer has to remember to avoid a couple of  * common bugs: The {@code wait()} must be inside a {@code while} instead of an {@code if}, and  * {@code notifyAll()} must be used instead of {@code notify()} because there are two different  * logical conditions being awaited.  *  *<pre>{@code  * public class SafeBox<V> {  *   private V value;  *  *   public synchronized V get() throws InterruptedException {  *     while (value == null) {  *       wait();  *     }  *     V result = value;  *     value = null;  *     notifyAll();  *     return result;  *   }  *  *   public synchronized void set(V newValue) throws InterruptedException {  *     while (value != null) {  *       wait();  *     }  *     value = newValue;  *     notifyAll();  *   }  * }  * }</pre>  *  *<h3>{@code ReentrantLock}</h3>  *  *<p>This version is much more verbose than the {@code synchronized} version, and still suffers  * from the need for the programmer to remember to use {@code while} instead of {@code if}. However,  * one advantage is that we can introduce two separate {@code Condition} objects, which allows us to  * use {@code signal()} instead of {@code signalAll()}, which may be a performance benefit.  *  *<pre>{@code  * public class SafeBox<V> {  *   private final ReentrantLock lock = new ReentrantLock();  *   private final Condition valuePresent = lock.newCondition();  *   private final Condition valueAbsent = lock.newCondition();  *   private V value;  *  *   public V get() throws InterruptedException {  *     lock.lock();  *     try {  *       while (value == null) {  *         valuePresent.await();  *       }  *       V result = value;  *       value = null;  *       valueAbsent.signal();  *       return result;  *     } finally {  *       lock.unlock();  *     }  *   }  *  *   public void set(V newValue) throws InterruptedException {  *     lock.lock();  *     try {  *       while (value != null) {  *         valueAbsent.await();  *       }  *       value = newValue;  *       valuePresent.signal();  *     } finally {  *       lock.unlock();  *     }  *   }  * }  * }</pre>  *  *<h3>{@code Monitor}</h3>  *  *<p>This version adds some verbosity around the {@code Guard} objects, but removes that same  * verbosity, and more, from the {@code get} and {@code set} methods. {@code Monitor} implements the  * same efficient signaling as we had to hand-code in the {@code ReentrantLock} version above.  * Finally, the programmer no longer has to hand-code the wait loop, and therefore doesn't have to  * remember to use {@code while} instead of {@code if}.  *  *<pre>{@code  * public class SafeBox<V> {  *   private final Monitor monitor = new Monitor();  *   private final Monitor.Guard valuePresent = new Monitor.Guard(monitor) {  *     public boolean isSatisfied() {  *       return value != null;  *     }  *   };  *   private final Monitor.Guard valueAbsent = new Monitor.Guard(monitor) {  *     public boolean isSatisfied() {  *       return value == null;  *     }  *   };  *   private V value;  *  *   public V get() throws InterruptedException {  *     monitor.enterWhen(valuePresent);  *     try {  *       V result = value;  *       value = null;  *       return result;  *     } finally {  *       monitor.leave();  *     }  *   }  *  *   public void set(V newValue) throws InterruptedException {  *     monitor.enterWhen(valueAbsent);  *     try {  *       value = newValue;  *     } finally {  *       monitor.leave();  *     }  *   }  * }  * }</pre>  *  * @author Justin T. Sampson  * @author Martin Buchholz  * @since 10.0  */
 end_comment
 
 begin_class
@@ -308,14 +308,14 @@ name|isSatisfied
 parameter_list|()
 function_decl|;
 block|}
-comment|/**    * Whether this monitor is fair.    */
+comment|/** Whether this monitor is fair. */
 DECL|field|fair
 specifier|private
 specifier|final
 name|boolean
 name|fair
 decl_stmt|;
-comment|/**    * The lock underlying this monitor.    */
+comment|/** The lock underlying this monitor. */
 DECL|field|lock
 specifier|private
 specifier|final
@@ -373,7 +373,7 @@ name|fair
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates a new {@link Guard} for {@code this} monitor.    *    * @Param isSatisfied The guards boolean condition.  See {@link Guard#isSatisfied}.    */
+comment|/**    * Creates a new {@link Guard} for {@code this} monitor. @Param isSatisfied The guards boolean    * condition. See {@link Guard#isSatisfied}.    */
 DECL|method|newGuard (final BooleanSupplier isSatisfied)
 specifier|public
 name|Guard
@@ -415,7 +415,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/**    * Enters this monitor. Blocks indefinitely.    */
+comment|/** Enters this monitor. Blocks indefinitely. */
 DECL|method|enter ()
 specifier|public
 name|void
@@ -705,7 +705,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**    * Enters this monitor when the guard is satisfied. Blocks indefinitely.    */
+comment|/** Enters this monitor when the guard is satisfied. Blocks indefinitely. */
 DECL|method|enterWhenUninterruptibly (Guard guard)
 specifier|public
 name|void
@@ -2039,7 +2039,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**    * Leaves this monitor. May be called only by a thread currently occupying this monitor.    */
+comment|/** Leaves this monitor. May be called only by a thread currently occupying this monitor. */
 DECL|method|leave ()
 specifier|public
 name|void
@@ -2082,7 +2082,7 @@ expr_stmt|;
 comment|// Will throw IllegalMonitorStateException if not held
 block|}
 block|}
-comment|/**    * Returns whether this monitor is using a fair ordering policy.    */
+comment|/** Returns whether this monitor is using a fair ordering policy. */
 DECL|method|isFair ()
 specifier|public
 name|boolean
@@ -2393,7 +2393,7 @@ name|startTime
 operator|)
 return|;
 block|}
-comment|/**    * Signals some other thread waiting on a satisfied guard, if one exists.    *    * We manage calls to this method carefully, to signal only when necessary, but never losing a    * signal, which is the classic problem of this kind of concurrency construct. We must signal if    * the current thread is about to relinquish the lock and may have changed the state protected by    * the monitor, thereby causing some guard to be satisfied.    *    * In addition, any thread that has been signalled when its guard was satisfied acquires the    * responsibility of signalling the next thread when it again relinquishes the lock. Unlike a    * normal Condition, there is no guarantee that an interrupted thread has not been signalled,    * since the concurrency control must manage multiple Conditions. So this method must generally be    * called when waits are interrupted.    *    * On the other hand, if a signalled thread wakes up to discover that its guard is still not    * satisfied, it does *not* need to call this method before returning to wait. This can only    * happen due to spurious wakeup (ignorable) or another thread acquiring the lock before the    * current thread can and returning the guard to the unsatisfied state. In the latter case the    * other thread (last thread modifying the state protected by the monitor) takes over the    * responsibility of signalling the next waiter.    *    * This method must not be called from within a beginWaitingFor/endWaitingFor block, or else the    * current thread's guard might be mistakenly signalled, leading to a lost signal.    */
+comment|/**    * Signals some other thread waiting on a satisfied guard, if one exists.    *    *<p>We manage calls to this method carefully, to signal only when necessary, but never losing a    * signal, which is the classic problem of this kind of concurrency construct. We must signal if    * the current thread is about to relinquish the lock and may have changed the state protected by    * the monitor, thereby causing some guard to be satisfied.    *    *<p>In addition, any thread that has been signalled when its guard was satisfied acquires the    * responsibility of signalling the next thread when it again relinquishes the lock. Unlike a    * normal Condition, there is no guarantee that an interrupted thread has not been signalled,    * since the concurrency control must manage multiple Conditions. So this method must generally be    * called when waits are interrupted.    *    *<p>On the other hand, if a signalled thread wakes up to discover that its guard is still not    * satisfied, it does *not* need to call this method before returning to wait. This can only    * happen due to spurious wakeup (ignorable) or another thread acquiring the lock before the    * current thread can and returning the guard to the unsatisfied state. In the latter case the    * other thread (last thread modifying the state protected by the monitor) takes over the    * responsibility of signalling the next waiter.    *    *<p>This method must not be called from within a beginWaitingFor/endWaitingFor block, or else    * the current thread's guard might be mistakenly signalled, leading to a lost signal.    */
 annotation|@
 name|GuardedBy
 argument_list|(
@@ -2442,7 +2442,7 @@ break|break;
 block|}
 block|}
 block|}
-comment|/**    * Exactly like signalNextWaiter, but caller guarantees that guardToSkip need not be considered,    * because caller has previously checked that guardToSkip.isSatisfied() returned false. An    * optimization for the case that guardToSkip.isSatisfied() may be expensive.    *    * We decided against using this method, since in practice, isSatisfied() is likely to be very    * cheap (typically one field read). Resurrect this method if you find that not to be true.    */
+comment|/**    * Exactly like signalNextWaiter, but caller guarantees that guardToSkip need not be considered,    * because caller has previously checked that guardToSkip.isSatisfied() returned false. An    * optimization for the case that guardToSkip.isSatisfied() may be expensive.    *    *<p>We decided against using this method, since in practice, isSatisfied() is likely to be very    * cheap (typically one field read). Resurrect this method if you find that not to be true.    */
 comment|//   @GuardedBy("lock")
 comment|//   private void signalNextWaiterSkipping(Guard guardToSkip) {
 comment|//     for (Guard guard = activeGuards; guard != null; guard = guard.next) {
@@ -2495,7 +2495,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Signals all threads waiting on guards.    */
+comment|/** Signals all threads waiting on guards. */
 annotation|@
 name|GuardedBy
 argument_list|(
@@ -2534,7 +2534,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Records that the current thread is about to wait on the specified guard.    */
+comment|/** Records that the current thread is about to wait on the specified guard. */
 annotation|@
 name|GuardedBy
 argument_list|(
@@ -2577,7 +2577,7 @@ name|guard
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Records that the current thread is no longer waiting on the specified guard.    */
+comment|/** Records that the current thread is no longer waiting on the specified guard. */
 annotation|@
 name|GuardedBy
 argument_list|(
@@ -2802,7 +2802,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Caller should check before calling that guard is not satisfied.    */
+comment|/** Caller should check before calling that guard is not satisfied. */
 annotation|@
 name|GuardedBy
 argument_list|(

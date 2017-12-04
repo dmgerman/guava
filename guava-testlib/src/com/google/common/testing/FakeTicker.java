@@ -101,7 +101,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A Ticker whose value can be advanced programmatically in test.  *<p>  * The ticker can be configured so that the time is incremented whenever {@link #read} is called:  * see {@link #setAutoIncrementStep}.  *<p>  * This class is thread-safe.  *  * @author Jige Yu  * @since 10.0  */
+comment|/**  * A Ticker whose value can be advanced programmatically in test.  *  *<p>The ticker can be configured so that the time is incremented whenever {@link #read} is called:  * see {@link #setAutoIncrementStep}.  *  *<p>This class is thread-safe.  *  * @author Jige Yu  * @since 10.0  */
 end_comment
 
 begin_class
@@ -215,9 +215,9 @@ return|return
 name|this
 return|;
 block|}
-DECL|method|read ()
 annotation|@
 name|Override
+DECL|method|read ()
 specifier|public
 name|long
 name|read

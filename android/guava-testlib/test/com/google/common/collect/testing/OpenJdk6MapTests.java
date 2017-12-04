@@ -277,7 +277,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests the {@link Map} implementations of {@link java.util}, suppressing  * tests that trip known bugs in OpenJDK 6 or higher.  *  * @author Kevin Bourrillion  */
+comment|/**  * Tests the {@link Map} implementations of {@link java.util}, suppressing tests that trip known  * bugs in OpenJDK 6 or higher.  *  * @author Kevin Bourrillion  */
 end_comment
 
 begin_comment
@@ -308,9 +308,9 @@ name|allTests
 argument_list|()
 return|;
 block|}
-DECL|method|suppressForTreeMapNatural ()
 annotation|@
 name|Override
+DECL|method|suppressForTreeMapNatural ()
 specifier|protected
 name|Collection
 argument_list|<

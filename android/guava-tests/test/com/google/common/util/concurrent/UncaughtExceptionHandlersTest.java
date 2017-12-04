@@ -71,7 +71,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author Gregory Kick  */
+comment|/** @author Gregory Kick */
 end_comment
 
 begin_class
@@ -87,9 +87,9 @@ specifier|private
 name|Runtime
 name|runtimeMock
 decl_stmt|;
-DECL|method|setUp ()
 annotation|@
 name|Override
+DECL|method|setUp ()
 specifier|protected
 name|void
 name|setUp

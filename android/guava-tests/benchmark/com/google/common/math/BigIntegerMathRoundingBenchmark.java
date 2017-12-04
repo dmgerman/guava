@@ -265,9 +265,9 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Benchmark
 DECL|method|log2 (int reps)
-annotation|@
-name|Benchmark
 name|int
 name|log2
 parameter_list|(
@@ -321,9 +321,9 @@ return|return
 name|tmp
 return|;
 block|}
+annotation|@
+name|Benchmark
 DECL|method|log10 (int reps)
-annotation|@
-name|Benchmark
 name|int
 name|log10
 parameter_list|(
@@ -377,9 +377,9 @@ return|return
 name|tmp
 return|;
 block|}
-DECL|method|sqrt (int reps)
 annotation|@
 name|Benchmark
+DECL|method|sqrt (int reps)
 name|int
 name|sqrt
 parameter_list|(
@@ -436,9 +436,9 @@ return|return
 name|tmp
 return|;
 block|}
-DECL|method|divide (int reps)
 annotation|@
 name|Benchmark
+DECL|method|divide (int reps)
 name|int
 name|divide
 parameter_list|(

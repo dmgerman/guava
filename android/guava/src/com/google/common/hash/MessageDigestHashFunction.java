@@ -531,7 +531,7 @@ name|toString
 argument_list|)
 return|;
 block|}
-comment|/**    * Hasher that updates a message digest.    */
+comment|/** Hasher that updates a message digest. */
 DECL|class|MessageDigestHasher
 specifier|private
 specifier|static

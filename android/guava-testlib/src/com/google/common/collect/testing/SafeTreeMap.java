@@ -143,7 +143,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A wrapper around {@code TreeMap} that aggressively checks to see if keys are  * mutually comparable. This implementation passes the navigable map test  * suites.  *  * @author Louis Wasserman  */
+comment|/**  * A wrapper around {@code TreeMap} that aggressively checks to see if keys are mutually comparable.  * This implementation passes the navigable map test suites.  *  * @author Louis Wasserman  */
 end_comment
 
 begin_class

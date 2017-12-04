@@ -534,7 +534,7 @@ name|array
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the longest string {@code prefix} such that    * {@code a.toString().startsWith(prefix)&& b.toString().startsWith(prefix)}, taking care not to    * split surrogate pairs. If {@code a} and {@code b} have no common prefix, returns the empty    * string.    *    * @since 11.0    */
+comment|/**    * Returns the longest string {@code prefix} such that {@code a.toString().startsWith(prefix)&&    * b.toString().startsWith(prefix)}, taking care not to split surrogate pairs. If {@code a} and    * {@code b} have no common prefix, returns the empty string.    *    * @since 11.0    */
 DECL|method|commonPrefix (CharSequence a, CharSequence b)
 specifier|public
 specifier|static
@@ -645,7 +645,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns the longest string {@code suffix} such that    * {@code a.toString().endsWith(suffix)&& b.toString().endsWith(suffix)}, taking care not to    * split surrogate pairs. If {@code a} and {@code b} have no common suffix, returns the empty    * string.    *    * @since 11.0    */
+comment|/**    * Returns the longest string {@code suffix} such that {@code a.toString().endsWith(suffix)&&    * b.toString().endsWith(suffix)}, taking care not to split surrogate pairs. If {@code a} and    * {@code b} have no common suffix, returns the empty string.    *    * @since 11.0    */
 DECL|method|commonSuffix (CharSequence a, CharSequence b)
 specifier|public
 specifier|static

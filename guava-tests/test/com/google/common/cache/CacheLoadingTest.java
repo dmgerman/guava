@@ -4177,7 +4177,7 @@ parameter_list|(
 name|InvalidCacheLoadException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 for|for
 control|(
 name|Object
@@ -4457,7 +4457,7 @@ parameter_list|(
 name|InvalidCacheLoadException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 for|for
 control|(
 name|Object
@@ -4677,7 +4677,7 @@ parameter_list|(
 name|InvalidCacheLoadException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 name|assertSame
 argument_list|(
 name|extraValue
@@ -4794,7 +4794,7 @@ parameter_list|(
 name|InvalidCacheLoadException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 name|stats
 operator|=
 name|cache
@@ -4862,7 +4862,7 @@ parameter_list|(
 name|InvalidCacheLoadException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 name|stats
 operator|=
 name|cache
@@ -4996,7 +4996,7 @@ parameter_list|(
 name|InvalidCacheLoadException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 name|stats
 operator|=
 name|cache
@@ -5067,7 +5067,7 @@ parameter_list|(
 name|InvalidCacheLoadException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 name|stats
 operator|=
 name|cache
@@ -6301,7 +6301,7 @@ parameter_list|(
 name|InvalidCacheLoadException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 name|stats
 operator|=
 name|cache
@@ -6497,7 +6497,7 @@ parameter_list|(
 name|InvalidCacheLoadException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 name|stats
 operator|=
 name|cache
@@ -14071,7 +14071,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * On a concurrent computation that returns null, all threads should get an    * InvalidCacheLoadException, with the loader only called once. The result should not be cached    * (a later request should call the loader again).    */
+comment|/**    * On a concurrent computation that returns null, all threads should get an    * InvalidCacheLoadException, with the loader only called once. The result should not be cached (a    * later request should call the loader again).    */
 DECL|method|testConcurrentLoadingNull (CacheBuilder<Object, Object> builder)
 specifier|private
 specifier|static
@@ -14256,7 +14256,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * On a concurrent computation that throws an unchecked exception, all threads should get the    * (wrapped) exception, with the loader called only once. The result should not be cached (a later    * request should call the loader again).    */
-DECL|method|testConcurrentLoadingUncheckedException ( CacheBuilder<Object, Object> builder)
+DECL|method|testConcurrentLoadingUncheckedException (CacheBuilder<Object, Object> builder)
 specifier|private
 specifier|static
 name|void
@@ -14470,7 +14470,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * On a concurrent computation that throws a checked exception, all threads should get the    * (wrapped) exception, with the loader called only once. The result should not be cached (a later    * request should call the loader again).    */
-DECL|method|testConcurrentLoadingCheckedException ( CacheBuilder<Object, Object> builder)
+DECL|method|testConcurrentLoadingCheckedException (CacheBuilder<Object, Object> builder)
 specifier|private
 specifier|static
 name|void
@@ -14745,8 +14745,8 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Test-helper method that performs {@code nThreads} concurrent calls to {@code cache.get(key)}    * or {@code cache.getUnchecked(key)}, and returns a List containing each of the results. The    * result for any given call to {@code cache.get} or {@code cache.getUnchecked} is the value    * returned, or the exception thrown.    *    *<p>As we iterate from {@code 0} to {@code nThreads}, threads with an even index will call    * {@code getUnchecked}, and threads with an odd index will call {@code get}. If the cache throws    * exceptions, this difference may be visible in the returned List.    */
-DECL|method|doConcurrentGet (final LoadingCache<K, ?> cache, final K key, int nThreads, final CountDownLatch gettersStartedSignal)
+comment|/**    * Test-helper method that performs {@code nThreads} concurrent calls to {@code cache.get(key)} or    * {@code cache.getUnchecked(key)}, and returns a List containing each of the results. The result    * for any given call to {@code cache.get} or {@code cache.getUnchecked} is the value returned, or    * the exception thrown.    *    *<p>As we iterate from {@code 0} to {@code nThreads}, threads with an even index will call    * {@code getUnchecked}, and threads with an odd index will call {@code get}. If the cache throws    * exceptions, this difference may be visible in the returned List.    */
+DECL|method|doConcurrentGet ( final LoadingCache<K, ?> cache, final K key, int nThreads, final CountDownLatch gettersStartedSignal)
 specifier|private
 specifier|static
 parameter_list|<

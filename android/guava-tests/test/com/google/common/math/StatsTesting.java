@@ -201,7 +201,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Inputs, expected outputs, and helper methods for tests of {@link StatsAccumulator},  * {@link Stats}, {@link PairedStatsAccumulator}, and {@link PairedStats}.  *  * @author Pete Gillin  */
+comment|/**  * Inputs, expected outputs, and helper methods for tests of {@link StatsAccumulator}, {@link  * Stats}, {@link PairedStatsAccumulator}, and {@link PairedStats}.  *  * @author Pete Gillin  */
 end_comment
 
 begin_class
@@ -382,7 +382,7 @@ operator|-
 name|OTHER_TWO_VALUES_MEAN
 operator|)
 decl_stmt|;
-comment|/**    * Helper class for testing with non-finite values. {@link #ALL_MANY_VALUES} gives a number    * instances with many combinations of finite and non-finite values. All have    * {@link #MANY_VALUES_COUNT} values. If all the values are finite then the mean is    * {@link #MANY_VALUES_MEAN} and the sum-of-squares-of-deltas is    * {@link #MANY_VALUES_SUM_OF_SQUARES_OF_DELTAS}. The smallest and largest finite values are    * always {@link #MANY_VALUES_MIN} and {@link #MANY_VALUES_MAX}, although setting non-finite    * values will change the true min and max.    */
+comment|/**    * Helper class for testing with non-finite values. {@link #ALL_MANY_VALUES} gives a number    * instances with many combinations of finite and non-finite values. All have {@link    * #MANY_VALUES_COUNT} values. If all the values are finite then the mean is {@link    * #MANY_VALUES_MEAN} and the sum-of-squares-of-deltas is {@link    * #MANY_VALUES_SUM_OF_SQUARES_OF_DELTAS}. The smallest and largest finite values are always    * {@link #MANY_VALUES_MIN} and {@link #MANY_VALUES_MAX}, although setting non-finite values will    * change the true min and max.    */
 DECL|class|ManyValues
 specifier|static
 class|class
@@ -2657,7 +2657,7 @@ name|transformation
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Asserts that {@code transformation} is horizontal with the given value of {@code y}. Includes    * assertions about all the public instance methods of {@link LinearTransformation}, including an    * assertion that {@link LinearTransformation#transform} and {@link LinearTransformation#slope}    * on its inverse throws as expected.    */
+comment|/**    * Asserts that {@code transformation} is horizontal with the given value of {@code y}. Includes    * assertions about all the public instance methods of {@link LinearTransformation}, including an    * assertion that {@link LinearTransformation#transform} and {@link LinearTransformation#slope} on    * its inverse throws as expected.    */
 DECL|method|assertHorizontalLinearTransformation (LinearTransformation transformation, double y)
 specifier|static
 name|void
@@ -3062,7 +3062,7 @@ name|transformation
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Asserts that {@code transformation} behaves as expected for    * {@link LinearTransformation#forNaN}.    */
+comment|/**    * Asserts that {@code transformation} behaves as expected for {@link    * LinearTransformation#forNaN}.    */
 DECL|method|assertLinearTransformationNaN (LinearTransformation transformation)
 specifier|static
 name|void
@@ -3244,7 +3244,7 @@ return|return
 name|accumulator
 return|;
 block|}
-comment|/**    * Creates a {@link PairedStatsAccumulator} filled with the given lists of {@code x} and {@code y}    * values, which must be of the same size, added in groups of {@code partitionSize} using    * {@link PairedStatsAccumulator#addAll(PairedStats)}.    */
+comment|/**    * Creates a {@link PairedStatsAccumulator} filled with the given lists of {@code x} and {@code y}    * values, which must be of the same size, added in groups of {@code partitionSize} using {@link    * PairedStatsAccumulator#addAll(PairedStats)}.    */
 DECL|method|createPartitionedFilledPairedStatsAccumulator ( List<Double> xValues, List<Double> yValues, int partitionSize)
 specifier|static
 name|PairedStatsAccumulator

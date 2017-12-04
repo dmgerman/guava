@@ -200,9 +200,9 @@ comment|// It is necessary here because otherwise the builder() method
 comment|// would be inherited from the emulated ImmutableSet.
 comment|// TODO(cpovirk): should we be including other methods from the shim here and
 comment|// in ImmutableSortedMap?
-DECL|method|builder ()
 annotation|@
 name|Deprecated
+DECL|method|builder ()
 specifier|public
 specifier|static
 parameter_list|<
@@ -274,7 +274,7 @@ argument_list|,
 literal|false
 argument_list|)
 decl_stmt|;
-DECL|method|emptySet ( Comparator<? super E> comparator)
+DECL|method|emptySet (Comparator<? super E> comparator)
 specifier|static
 parameter_list|<
 name|E
@@ -404,7 +404,7 @@ operator|)
 name|NATURAL_EMPTY_SET
 return|;
 block|}
-DECL|method|of ( E element)
+DECL|method|of (E element)
 specifier|public
 specifier|static
 parameter_list|<
@@ -444,7 +444,7 @@ name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
-DECL|method|of ( E e1, E e2)
+DECL|method|of (E e1, E e2)
 specifier|public
 specifier|static
 parameter_list|<
@@ -489,7 +489,7 @@ name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
-DECL|method|of ( E e1, E e2, E e3)
+DECL|method|of (E e1, E e2, E e3)
 specifier|public
 specifier|static
 parameter_list|<
@@ -539,7 +539,7 @@ name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
-DECL|method|of ( E e1, E e2, E e3, E e4)
+DECL|method|of (E e1, E e2, E e3, E e4)
 specifier|public
 specifier|static
 parameter_list|<
@@ -1001,7 +1001,7 @@ name|elements
 argument_list|)
 return|;
 block|}
-DECL|method|copyOf ( E[] elements)
+DECL|method|copyOf (E[] elements)
 specifier|public
 specifier|static
 parameter_list|<
@@ -1460,7 +1460,7 @@ literal|false
 argument_list|)
 return|;
 block|}
-DECL|method|hasSameComparator ( Iterable<?> elements, Comparator<?> comparator)
+DECL|method|hasSameComparator (Iterable<?> elements, Comparator<?> comparator)
 specifier|private
 specifier|static
 name|boolean
@@ -1587,15 +1587,15 @@ return|;
 block|}
 DECL|field|sortedDelegate
 specifier|private
-specifier|transient
 specifier|final
+specifier|transient
 name|SortedSet
 argument_list|<
 name|E
 argument_list|>
 name|sortedDelegate
 decl_stmt|;
-comment|/**    * Scary constructor for ContiguousSet. This constructor (in this file, the    * GWT emulation of ImmutableSortedSet) creates an empty sortedDelegate,    * which, in a vacuum, sets this object's contents to empty.  By contrast,    * the non-GWT constructor with the same signature uses the comparator only    * as a comparator. It does NOT assume empty contents. (It requires an    * implementation of iterator() to define its contents, and methods like    * contains() are implemented in terms of that method (though they will    * likely be overridden by subclasses for performance reasons).) This means    * that a call to this method have can different behavior in GWT and non-GWT    * environments UNLESS subclasses are careful to always override all methods    * implemented in terms of sortedDelegate (except comparator()).    */
+comment|/**    * Scary constructor for ContiguousSet. This constructor (in this file, the GWT emulation of    * ImmutableSortedSet) creates an empty sortedDelegate, which, in a vacuum, sets this object's    * contents to empty. By contrast, the non-GWT constructor with the same signature uses the    * comparator only as a comparator. It does NOT assume empty contents. (It requires an    * implementation of iterator() to define its contents, and methods like contains() are    * implemented in terms of that method (though they will likely be overridden by subclasses for    * performance reasons).) This means that a call to this method have can different behavior in GWT    * and non-GWT environments UNLESS subclasses are careful to always override all methods    * implemented in terms of sortedDelegate (except comparator()).    */
 DECL|method|ImmutableSortedSet (Comparator<? super E> comparator)
 name|ImmutableSortedSet
 parameter_list|(
@@ -1728,9 +1728,9 @@ name|other
 argument_list|)
 return|;
 block|}
-DECL|method|contains (@ullable Object object)
 annotation|@
 name|Override
+DECL|method|contains (@ullable Object object)
 specifier|public
 name|boolean
 name|contains
@@ -1769,9 +1769,9 @@ literal|false
 return|;
 block|}
 block|}
-DECL|method|containsAll (Collection<?> targets)
 annotation|@
 name|Override
+DECL|method|containsAll (Collection<?> targets)
 specifier|public
 name|boolean
 name|containsAll
@@ -2051,7 +2051,7 @@ literal|false
 argument_list|)
 return|;
 block|}
-DECL|method|subSet (E fromElement, boolean fromInclusive, E toElement, boolean toInclusive)
+DECL|method|subSet ( E fromElement, boolean fromInclusive, E toElement, boolean toInclusive)
 name|ImmutableSortedSet
 argument_list|<
 name|E
@@ -2401,9 +2401,9 @@ name|comparator
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|add (E element)
 annotation|@
 name|Override
+DECL|method|add (E element)
 specifier|public
 name|Builder
 argument_list|<
@@ -2426,9 +2426,9 @@ return|return
 name|this
 return|;
 block|}
-DECL|method|add (E... elements)
 annotation|@
 name|Override
+DECL|method|add (E... elements)
 specifier|public
 name|Builder
 argument_list|<
@@ -2452,9 +2452,9 @@ return|return
 name|this
 return|;
 block|}
-DECL|method|addAll (Iterable<? extends E> elements)
 annotation|@
 name|Override
+DECL|method|addAll (Iterable<? extends E> elements)
 specifier|public
 name|Builder
 argument_list|<
@@ -2482,9 +2482,9 @@ return|return
 name|this
 return|;
 block|}
-DECL|method|addAll (Iterator<? extends E> elements)
 annotation|@
 name|Override
+DECL|method|addAll (Iterator<? extends E> elements)
 specifier|public
 name|Builder
 argument_list|<
@@ -2537,9 +2537,9 @@ return|return
 name|this
 return|;
 block|}
-DECL|method|build ()
 annotation|@
 name|Override
+DECL|method|build ()
 specifier|public
 name|ImmutableSortedSet
 argument_list|<

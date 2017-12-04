@@ -254,7 +254,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Previous version of BigIntegerMath.factorial, kept for timing purposes.    */
+comment|/** Previous version of BigIntegerMath.factorial, kept for timing purposes. */
 DECL|method|oldSlowFactorial (int n)
 specifier|private
 specifier|static
@@ -318,7 +318,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**    * Returns the product of {@code n1} exclusive through {@code n2} inclusive.    */
+comment|/** Returns the product of {@code n1} exclusive through {@code n2} inclusive. */
 DECL|method|oldSlowFactorial (int n1, int n2)
 specifier|private
 specifier|static
@@ -429,9 +429,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-DECL|method|slowFactorial (int reps)
 annotation|@
 name|Benchmark
+DECL|method|slowFactorial (int reps)
 name|int
 name|slowFactorial
 parameter_list|(
@@ -484,9 +484,9 @@ return|return
 name|tmp
 return|;
 block|}
-DECL|method|factorial (int reps)
 annotation|@
 name|Benchmark
+DECL|method|factorial (int reps)
 name|int
 name|factorial
 parameter_list|(
@@ -541,9 +541,9 @@ return|return
 name|tmp
 return|;
 block|}
-DECL|method|binomial (int reps)
 annotation|@
 name|Benchmark
+DECL|method|binomial (int reps)
 name|int
 name|binomial
 parameter_list|(

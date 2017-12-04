@@ -329,7 +329,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Generators of different types of map and related collections, such as  * keys, entries and values.  *  * @author Hayward Chan  */
+comment|/**  * Generators of different types of map and related collections, such as keys, entries and values.  *  * @author Hayward Chan  */
 end_comment
 
 begin_class

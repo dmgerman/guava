@@ -553,7 +553,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Creates, based on your criteria, a JUnit test suite that exhaustively tests  * a {@code Multimap} implementation.  *  * @author Louis Wasserman  */
+comment|/**  * Creates, based on your criteria, a JUnit test suite that exhaustively tests a {@code Multimap}  * implementation.  *  * @author Louis Wasserman  */
 end_comment
 
 begin_class
@@ -782,7 +782,7 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|createDerivedSuites ( FeatureSpecificTestSuiteBuilder< ?, ? extends OneSizeTestContainerGenerator<M, Entry<K, V>>> parentBuilder)
+DECL|method|createDerivedSuites ( FeatureSpecificTestSuiteBuilder<?, ? extends OneSizeTestContainerGenerator<M, Entry<K, V>>> parentBuilder)
 specifier|protected
 name|List
 argument_list|<
@@ -1013,7 +1013,7 @@ return|return
 name|derivedSuites
 return|;
 block|}
-DECL|method|computeValuesTestSuite ( FeatureSpecificTestSuiteBuilder< ?, ? extends OneSizeTestContainerGenerator<M, Entry<K, V>>> parentBuilder)
+DECL|method|computeValuesTestSuite ( FeatureSpecificTestSuiteBuilder<?, ? extends OneSizeTestContainerGenerator<M, Entry<K, V>>> parentBuilder)
 name|TestSuite
 name|computeValuesTestSuite
 parameter_list|(
@@ -1093,7 +1093,7 @@ name|createTestSuite
 argument_list|()
 return|;
 block|}
-DECL|method|computeEntriesTestSuite ( FeatureSpecificTestSuiteBuilder< ?, ? extends OneSizeTestContainerGenerator<M, Entry<K, V>>> parentBuilder)
+DECL|method|computeEntriesTestSuite ( FeatureSpecificTestSuiteBuilder<?, ? extends OneSizeTestContainerGenerator<M, Entry<K, V>>> parentBuilder)
 name|TestSuite
 name|computeEntriesTestSuite
 parameter_list|(
@@ -1173,7 +1173,7 @@ name|createTestSuite
 argument_list|()
 return|;
 block|}
-DECL|method|computeMultimapGetTestSuite ( FeatureSpecificTestSuiteBuilder< ?, ? extends OneSizeTestContainerGenerator<M, Entry<K, V>>> parentBuilder)
+DECL|method|computeMultimapGetTestSuite ( FeatureSpecificTestSuiteBuilder<?, ? extends OneSizeTestContainerGenerator<M, Entry<K, V>>> parentBuilder)
 name|TestSuite
 name|computeMultimapGetTestSuite
 parameter_list|(
@@ -1253,7 +1253,7 @@ name|createTestSuite
 argument_list|()
 return|;
 block|}
-DECL|method|computeMultimapAsMapGetTestSuite ( FeatureSpecificTestSuiteBuilder< ?, ? extends OneSizeTestContainerGenerator<M, Entry<K, V>>> parentBuilder)
+DECL|method|computeMultimapAsMapGetTestSuite ( FeatureSpecificTestSuiteBuilder<?, ? extends OneSizeTestContainerGenerator<M, Entry<K, V>>> parentBuilder)
 name|TestSuite
 name|computeMultimapAsMapGetTestSuite
 parameter_list|(
@@ -1372,7 +1372,7 @@ argument_list|()
 return|;
 block|}
 block|}
-DECL|method|computeKeysTestSuite ( FeatureSpecificTestSuiteBuilder< ?, ? extends OneSizeTestContainerGenerator<M, Entry<K, V>>> parentBuilder)
+DECL|method|computeKeysTestSuite ( FeatureSpecificTestSuiteBuilder<?, ? extends OneSizeTestContainerGenerator<M, Entry<K, V>>> parentBuilder)
 name|TestSuite
 name|computeKeysTestSuite
 parameter_list|(
@@ -4106,7 +4106,7 @@ argument_list|>
 argument_list|>
 name|multimapGenerator
 decl_stmt|;
-DECL|method|MultimapGetGenerator ( OneSizeTestContainerGenerator<M, Entry<K, V>> multimapGenerator)
+DECL|method|MultimapGetGenerator (OneSizeTestContainerGenerator<M, Entry<K, V>> multimapGenerator)
 specifier|public
 name|MultimapGetGenerator
 parameter_list|(

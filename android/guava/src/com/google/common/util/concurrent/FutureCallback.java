@@ -81,7 +81,7 @@ parameter_list|<
 name|V
 parameter_list|>
 block|{
-comment|/**    * Invoked with the result of the {@code Future} computation when it is successful.    */
+comment|/** Invoked with the result of the {@code Future} computation when it is successful. */
 DECL|method|onSuccess (@ullable V result)
 name|void
 name|onSuccess

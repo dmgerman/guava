@@ -445,9 +445,9 @@ name|BytesAsListGenerator
 extends|extends
 name|TestByteListGenerator
 block|{
-DECL|method|create (Byte[] elements)
 annotation|@
 name|Override
+DECL|method|create (Byte[] elements)
 specifier|protected
 name|List
 argument_list|<
@@ -477,9 +477,9 @@ name|BytesAsListHeadSubListGenerator
 extends|extends
 name|TestByteListGenerator
 block|{
-DECL|method|create (Byte[] elements)
 annotation|@
 name|Override
+DECL|method|create (Byte[] elements)
 specifier|protected
 name|List
 argument_list|<
@@ -543,9 +543,9 @@ name|BytesAsListTailSubListGenerator
 extends|extends
 name|TestByteListGenerator
 block|{
-DECL|method|create (Byte[] elements)
 annotation|@
 name|Override
+DECL|method|create (Byte[] elements)
 specifier|protected
 name|List
 argument_list|<
@@ -613,9 +613,9 @@ name|BytesAsListMiddleSubListGenerator
 extends|extends
 name|TestByteListGenerator
 block|{
-DECL|method|create (Byte[] elements)
 annotation|@
 name|Override
+DECL|method|create (Byte[] elements)
 specifier|protected
 name|List
 argument_list|<
@@ -767,8 +767,8 @@ return|;
 block|}
 DECL|class|TestByteListGenerator
 specifier|public
-specifier|static
 specifier|abstract
+specifier|static
 class|class
 name|TestByteListGenerator
 implements|implements
@@ -853,7 +853,7 @@ name|array
 argument_list|)
 return|;
 block|}
-comment|/**      * Creates a new collection containing the given elements; implement this      * method instead of {@link #create(Object...)}.      */
+comment|/**      * Creates a new collection containing the given elements; implement this method instead of      * {@link #create(Object...)}.      */
 DECL|method|create (Byte[] elements)
 specifier|protected
 specifier|abstract

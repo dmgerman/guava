@@ -103,7 +103,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Implementation helper for {@link TestBiMapGenerator} for use with bimaps of  * strings.  *  * @author Chris Povirk  * @author Jared Levy  * @author George van den Driessche  * @author Louis Wasserman  */
+comment|/**  * Implementation helper for {@link TestBiMapGenerator} for use with bimaps of strings.  *  * @author Chris Povirk  * @author Jared Levy  * @author George van den Driessche  * @author Louis Wasserman  */
 end_comment
 
 begin_class

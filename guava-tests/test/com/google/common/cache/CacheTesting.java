@@ -419,7 +419,7 @@ DECL|class|CacheTesting
 class|class
 name|CacheTesting
 block|{
-comment|/**    * Poke into the Cache internals to simulate garbage collection of the value associated with the    * given key. This assumes that the associated entry is a WeakValueReference or a    * SoftValueReference (and not a LoadingValueReference), and throws an IllegalStateException    * if that assumption does not hold.    */
+comment|/**    * Poke into the Cache internals to simulate garbage collection of the value associated with the    * given key. This assumes that the associated entry is a WeakValueReference or a    * SoftValueReference (and not a LoadingValueReference), and throws an IllegalStateException if    * that assumption does not hold.    */
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -662,7 +662,7 @@ name|key
 argument_list|)
 return|;
 block|}
-comment|/**    * Forces the segment containing the given {@code key} to expand (see    * {@link Segment#expand()}.    */
+comment|/**    * Forces the segment containing the given {@code key} to expand (see {@link Segment#expand()}.    */
 DECL|method|forceExpandSegment (Cache<K, V> cache, K key)
 specifier|static
 parameter_list|<
@@ -802,7 +802,7 @@ literal|" doesn't have a LocalCache."
 argument_list|)
 throw|;
 block|}
-comment|/**    * Determines whether the given cache can be converted to a LocalCache by    * {@link #toLocalCache} without throwing an exception.    */
+comment|/**    * Determines whether the given cache can be converted to a LocalCache by {@link #toLocalCache}    * without throwing an exception.    */
 DECL|method|hasLocalCache (Cache<?, ?> cache)
 specifier|static
 name|boolean
@@ -1088,7 +1088,7 @@ return|return
 name|totalSize
 return|;
 block|}
-comment|/**    * Peeks into the cache's internals to check its internal consistency. Verifies that each    * segment's count matches its #elements (after cleanup), each segment is unlocked, each entry    * contains a non-null key and value, and the eviction and expiration queues are consistent    * (see {@link #checkEviction}, {@link #checkExpiration}).    */
+comment|/**    * Peeks into the cache's internals to check its internal consistency. Verifies that each    * segment's count matches its #elements (after cleanup), each segment is unlocked, each entry    * contains a non-null key and value, and the eviction and expiration queues are consistent (see    * {@link #checkEviction}, {@link #checkExpiration}).    */
 DECL|method|checkValidState (Cache<?, ?> cache)
 specifier|static
 name|void
@@ -1261,7 +1261,7 @@ name|cchm
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Peeks into the cache's internals to verify that its expiration queue is consistent. Verifies    * that the next/prev links in the expiration queue are correct, and that the queue is ordered    * by expiration time.    */
+comment|/**    * Peeks into the cache's internals to verify that its expiration queue is consistent. Verifies    * that the next/prev links in the expiration queue are correct, and that the queue is ordered by    * expiration time.    */
 DECL|method|checkExpiration (Cache<?, ?> cache)
 specifier|static
 name|void
@@ -1669,7 +1669,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**    * Peeks into the cache's internals to verify that its eviction queue is consistent. Verifies    * that the prev/next links are correct, and that all items in each segment are also in that    * segment's eviction (recency) queue.    */
+comment|/**    * Peeks into the cache's internals to verify that its eviction queue is consistent. Verifies that    * the prev/next links are correct, and that all items in each segment are also in that segment's    * eviction (recency) queue.    */
 DECL|method|checkEviction (Cache<?, ?> cache)
 specifier|static
 name|void
@@ -2332,8 +2332,8 @@ name|object
 parameter_list|)
 function_decl|;
 block|}
-comment|/**    * Assuming the given cache has maximum size {@code maxSize}, this method populates the cache (by    * getting a bunch of different keys), then makes sure all the items in the cache are also in the    * eviction queue. It will invoke the given {@code operation} on the first element in the    * eviction queue, and then reverify that all items in the cache are in the eviction queue, and    * verify that the head of the eviction queue has changed as a result of the operation.    */
-DECL|method|checkRecency (LoadingCache<Integer, Integer> cache, int maxSize, Receiver<ReferenceEntry<Integer, Integer>> operation)
+comment|/**    * Assuming the given cache has maximum size {@code maxSize}, this method populates the cache (by    * getting a bunch of different keys), then makes sure all the items in the cache are also in the    * eviction queue. It will invoke the given {@code operation} on the first element in the eviction    * queue, and then reverify that all items in the cache are in the eviction queue, and verify that    * the head of the eviction queue has changed as a result of the operation.    */
+DECL|method|checkRecency ( LoadingCache<Integer, Integer> cache, int maxSize, Receiver<ReferenceEntry<Integer, Integer>> operation)
 specifier|static
 name|void
 name|checkRecency
@@ -2510,7 +2510,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Warms the given cache by getting all values in {@code [start, end)}, in order.    */
+comment|/** Warms the given cache by getting all values in {@code [start, end)}, in order. */
 DECL|method|warmUp (LoadingCache<Integer, Integer> map, int start, int end)
 specifier|static
 name|void
@@ -2598,7 +2598,7 @@ name|ticker
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|expireEntries ( LocalCache<?, ?> cchm, long expiringTime, FakeTicker ticker)
+DECL|method|expireEntries (LocalCache<?, ?> cchm, long expiringTime, FakeTicker ticker)
 specifier|static
 name|void
 name|expireEntries

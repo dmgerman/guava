@@ -625,7 +625,7 @@ name|create
 argument_list|()
 return|;
 block|}
-comment|/**    * Confirm that get() returns a List that doesn't implement RandomAccess.    */
+comment|/** Confirm that get() returns a List that doesn't implement RandomAccess. */
 DECL|method|testGetRandomAccess ()
 specifier|public
 name|void
@@ -686,7 +686,7 @@ name|RandomAccess
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Confirm that removeAll() returns a List that implements RandomAccess, even    * though get() doesn't.    */
+comment|/**    * Confirm that removeAll() returns a List that implements RandomAccess, even though get()    * doesn't.    */
 DECL|method|testRemoveAllRandomAccess ()
 specifier|public
 name|void
@@ -747,7 +747,7 @@ name|RandomAccess
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Confirm that replaceValues() returns a List that implements RandomAccess,    * even though get() doesn't.    */
+comment|/**    * Confirm that replaceValues() returns a List that implements RandomAccess, even though get()    * doesn't.    */
 DECL|method|testReplaceValuesRandomAccess ()
 specifier|public
 name|void
@@ -1007,7 +1007,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testLinkedGetAdd ()
 specifier|public
@@ -2281,7 +2281,7 @@ parameter_list|(
 name|UnsupportedOperationException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 name|entries
 operator|.
 name|remove

@@ -1854,7 +1854,7 @@ name|create
 argument_list|()
 return|;
 block|}
-comment|/**    * Create and populate a {@code TreeMultimap} with the natural ordering of    * keys and values.    */
+comment|/** Create and populate a {@code TreeMultimap} with the natural ordering of keys and values. */
 DECL|method|createPopulate ()
 specifier|private
 name|TreeMultimap
@@ -2541,7 +2541,7 @@ operator|.
 name|nullsFirst
 argument_list|()
 decl_stmt|;
-comment|/**    * Test that creating one TreeMultimap from another does not copy the    * comparators from the source TreeMultimap.    */
+comment|/**    * Test that creating one TreeMultimap from another does not copy the comparators from the source    * TreeMultimap.    */
 DECL|method|testCreateFromTreeMultimap ()
 specifier|public
 name|void
@@ -2668,7 +2668,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Test that creating one TreeMultimap from a non-TreeMultimap    * results in natural ordering.    */
+comment|/** Test that creating one TreeMultimap from a non-TreeMultimap results in natural ordering. */
 DECL|method|testCreateFromHashMultimap ()
 specifier|public
 name|void
@@ -2773,7 +2773,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Test that creating one TreeMultimap from a SortedSetMultimap uses natural    * ordering.    */
+comment|/** Test that creating one TreeMultimap from a SortedSetMultimap uses natural ordering. */
 DECL|method|testCreateFromSortedSetMultimap ()
 specifier|public
 name|void

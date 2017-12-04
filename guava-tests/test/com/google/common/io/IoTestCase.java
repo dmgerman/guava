@@ -372,7 +372,7 @@ return|return
 name|testDir
 return|;
 block|}
-comment|/**    * Returns the file with the given name under the testdata directory.    */
+comment|/** Returns the file with the given name under the testdata directory. */
 DECL|method|getTestFile (String name)
 specifier|protected
 specifier|final
@@ -550,7 +550,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a byte array of length size that has values 0 .. size - 1.    */
+comment|/** Returns a byte array of length size that has values 0 .. size - 1. */
 DECL|method|newPreFilledByteArray (int size)
 specifier|static
 name|byte
@@ -570,7 +570,7 @@ name|size
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a byte array of length size that has values offset .. offset + size - 1.    */
+comment|/** Returns a byte array of length size that has values offset .. offset + size - 1. */
 DECL|method|newPreFilledByteArray (int offset, int size)
 specifier|static
 name|byte

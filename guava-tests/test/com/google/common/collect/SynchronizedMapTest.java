@@ -305,9 +305,9 @@ operator|=
 name|mutex
 expr_stmt|;
 block|}
-DECL|method|delegate ()
 annotation|@
 name|Override
+DECL|method|delegate ()
 specifier|protected
 name|Map
 argument_list|<
@@ -322,9 +322,9 @@ return|return
 name|delegate
 return|;
 block|}
-DECL|method|size ()
 annotation|@
 name|Override
+DECL|method|size ()
 specifier|public
 name|int
 name|size
@@ -347,9 +347,9 @@ name|size
 argument_list|()
 return|;
 block|}
-DECL|method|isEmpty ()
 annotation|@
 name|Override
+DECL|method|isEmpty ()
 specifier|public
 name|boolean
 name|isEmpty
@@ -372,9 +372,9 @@ name|isEmpty
 argument_list|()
 return|;
 block|}
-DECL|method|remove (Object object)
 annotation|@
 name|Override
+DECL|method|remove (Object object)
 specifier|public
 name|V
 name|remove
@@ -402,9 +402,9 @@ name|object
 argument_list|)
 return|;
 block|}
-DECL|method|clear ()
 annotation|@
 name|Override
+DECL|method|clear ()
 specifier|public
 name|void
 name|clear
@@ -426,9 +426,9 @@ name|clear
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|containsKey (Object key)
-annotation|@
-name|Override
 specifier|public
 name|boolean
 name|containsKey
@@ -456,9 +456,9 @@ name|key
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|containsValue (Object value)
-annotation|@
-name|Override
 specifier|public
 name|boolean
 name|containsValue
@@ -486,9 +486,9 @@ name|value
 argument_list|)
 return|;
 block|}
-DECL|method|get (Object key)
 annotation|@
 name|Override
+DECL|method|get (Object key)
 specifier|public
 name|V
 name|get
@@ -516,9 +516,9 @@ name|key
 argument_list|)
 return|;
 block|}
-DECL|method|put (K key, V value)
 annotation|@
 name|Override
+DECL|method|put (K key, V value)
 specifier|public
 name|V
 name|put
@@ -551,9 +551,9 @@ name|value
 argument_list|)
 return|;
 block|}
-DECL|method|putAll (Map<? extends K, ? extends V> map)
 annotation|@
 name|Override
+DECL|method|putAll (Map<? extends K, ? extends V> map)
 specifier|public
 name|void
 name|putAll
@@ -589,9 +589,9 @@ name|map
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|keySet ()
 annotation|@
 name|Override
+DECL|method|keySet ()
 specifier|public
 name|Set
 argument_list|<
@@ -617,9 +617,9 @@ name|keySet
 argument_list|()
 return|;
 block|}
-DECL|method|values ()
 annotation|@
 name|Override
+DECL|method|values ()
 specifier|public
 name|Collection
 argument_list|<
@@ -645,9 +645,9 @@ name|values
 argument_list|()
 return|;
 block|}
-DECL|method|entrySet ()
 annotation|@
 name|Override
+DECL|method|entrySet ()
 specifier|public
 name|Set
 argument_list|<
@@ -678,9 +678,9 @@ name|entrySet
 argument_list|()
 return|;
 block|}
-DECL|method|equals (Object obj)
 annotation|@
 name|Override
+DECL|method|equals (Object obj)
 specifier|public
 name|boolean
 name|equals
@@ -708,9 +708,9 @@ name|obj
 argument_list|)
 return|;
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -733,9 +733,9 @@ name|hashCode
 argument_list|()
 return|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString

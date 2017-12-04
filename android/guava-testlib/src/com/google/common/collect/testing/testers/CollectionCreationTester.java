@@ -169,7 +169,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A generic JUnit test which tests creation (typically through a constructor or  * static factory method) of a collection. Can't be invoked directly; please see  * {@link com.google.common.collect.testing.CollectionTestSuiteBuilder}.  *  * @author Chris Povirk  */
+comment|/**  * A generic JUnit test which tests creation (typically through a constructor or static factory  * method) of a collection. Can't be invoked directly; please see {@link  * com.google.common.collect.testing.CollectionTestSuiteBuilder}.  *  * @author Chris Povirk  */
 end_comment
 
 begin_class
@@ -292,7 +292,7 @@ name|expected
 parameter_list|)
 block|{     }
 block|}
-comment|/**    * Returns the {@link Method} instance for {@link    * #testCreateWithNull_unsupported()} so that tests can suppress it    * with {@code FeatureSpecificTestSuiteBuilder.suppressing()} until<a    * href="http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=5045147">Sun    * bug 5045147</a> is fixed.    */
+comment|/**    * Returns the {@link Method} instance for {@link #testCreateWithNull_unsupported()} so that tests    * can suppress it with {@code FeatureSpecificTestSuiteBuilder.suppressing()} until<a    * href="http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=5045147">Sun bug 5045147</a> is fixed.    */
 annotation|@
 name|GwtIncompatible
 comment|// reflection

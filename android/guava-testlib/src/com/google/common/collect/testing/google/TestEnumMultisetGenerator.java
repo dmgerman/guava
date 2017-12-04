@@ -119,7 +119,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An abstract {@code TestMultisetGenerator} for generating multisets containing  * enum values.  *  * @author Jared Levy  */
+comment|/**  * An abstract {@code TestMultisetGenerator} for generating multisets containing enum values.  *  * @author Jared Levy  */
 end_comment
 
 begin_class
@@ -246,7 +246,7 @@ name|length
 index|]
 return|;
 block|}
-comment|/**    * Sorts the enums according to their natural ordering.    */
+comment|/** Sorts the enums according to their natural ordering. */
 annotation|@
 name|Override
 DECL|method|order (List<AnEnum> insertionOrder)

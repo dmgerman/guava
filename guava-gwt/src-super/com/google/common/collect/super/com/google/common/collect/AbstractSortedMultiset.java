@@ -87,7 +87,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This class provides a skeletal implementation of the {@link SortedMultiset} interface.  *  *<p>The {@link #count} and {@link #size} implementations all iterate across the set returned by  * {@link Multiset#entrySet()}, as do many methods acting on the set returned by  * {@link #elementSet()}. Override those methods for better performance.  *  * @author Louis Wasserman  */
+comment|/**  * This class provides a skeletal implementation of the {@link SortedMultiset} interface.  *  *<p>The {@link #count} and {@link #size} implementations all iterate across the set returned by  * {@link Multiset#entrySet()}, as do many methods acting on the set returned by {@link  * #elementSet()}. Override those methods for better performance.  *  * @author Louis Wasserman  */
 end_comment
 
 begin_class
@@ -456,7 +456,7 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|subMultiset (@ullable E fromElement, BoundType fromBoundType, @Nullable E toElement, BoundType toBoundType)
+DECL|method|subMultiset ( @ullable E fromElement, BoundType fromBoundType, @Nullable E toElement, BoundType toBoundType)
 specifier|public
 name|SortedMultiset
 argument_list|<

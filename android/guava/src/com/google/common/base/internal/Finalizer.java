@@ -137,7 +137,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Thread that finalizes referents. All references should implement  * {@code com.google.common.base.FinalizableReference}.  *  *<p>While this class is public, we consider it to be *internal* and not part of our published API.  * It is public so we can access it reflectively across class loaders in secure environments.  *  *<p>This class can't depend on other Guava code. If we were to load this class in the same class  * loader as the rest of Guava, this thread would keep an indirect strong reference to the class  * loader and prevent it from being garbage collected. This poses a problem for environments where  * you want to throw away the class loader. For example, dynamically reloading a web application or  * unloading an OSGi bundle.  *  *<p>{@code com.google.common.base.FinalizableReferenceQueue} loads this class in its own class  * loader. That way, this class doesn't prevent the main class loader from getting garbage  * collected, and this class can detect when the main class loader has been garbage collected and  * stop itself.  */
+comment|/**  * Thread that finalizes referents. All references should implement {@code  * com.google.common.base.FinalizableReference}.  *  *<p>While this class is public, we consider it to be *internal* and not part of our published API.  * It is public so we can access it reflectively across class loaders in secure environments.  *  *<p>This class can't depend on other Guava code. If we were to load this class in the same class  * loader as the rest of Guava, this thread would keep an indirect strong reference to the class  * loader and prevent it from being garbage collected. This poses a problem for environments where  * you want to throw away the class loader. For example, dynamically reloading a web application or  * unloading an OSGi bundle.  *  *<p>{@code com.google.common.base.FinalizableReferenceQueue} loads this class in its own class  * loader. That way, this class doesn't prevent the main class loader from getting garbage  * collected, and this class can detect when the main class loader has been garbage collected and  * stop itself.  */
 end_comment
 
 begin_class
@@ -517,7 +517,7 @@ operator|=
 name|frqReference
 expr_stmt|;
 block|}
-comment|/**    * Loops continuously, pulling references off the queue and cleaning them up.    */
+comment|/** Loops continuously, pulling references off the queue and cleaning them up. */
 annotation|@
 name|SuppressWarnings
 argument_list|(

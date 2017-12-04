@@ -51,7 +51,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests for {@link AbstractFuture} that use a {@link TrustedFuture} for  * {@link AbstractFuture#setFuture} calls.  */
+comment|/**  * Tests for {@link AbstractFuture} that use a {@link TrustedFuture} for {@link  * AbstractFuture#setFuture} calls.  */
 end_comment
 
 begin_class

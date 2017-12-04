@@ -179,7 +179,7 @@ name|T
 name|root
 parameter_list|)
 function_decl|;
-comment|/**    * Returns the children of this node, in left-to-right order.    */
+comment|/** Returns the children of this node, in left-to-right order. */
 annotation|@
 name|Override
 DECL|method|children (final T root)

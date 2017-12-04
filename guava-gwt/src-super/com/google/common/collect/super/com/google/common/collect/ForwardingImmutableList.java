@@ -47,7 +47,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * GWT emulated version of {@link ImmutableList}.  * TODO(cpovirk): more doc  *  * @author Hayward Chan  */
+comment|/**  * GWT emulated version of {@link ImmutableList}. TODO(cpovirk): more doc  *  * @author Hayward Chan  */
 end_comment
 
 begin_class
@@ -67,7 +67,7 @@ block|{
 DECL|method|ForwardingImmutableList ()
 name|ForwardingImmutableList
 parameter_list|()
-block|{   }
+block|{}
 DECL|method|delegateList ()
 specifier|abstract
 name|List
@@ -168,9 +168,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-DECL|method|toArray ()
 annotation|@
 name|Override
+DECL|method|toArray ()
 specifier|public
 name|Object
 index|[]
@@ -194,9 +194,9 @@ index|]
 argument_list|)
 return|;
 block|}
-DECL|method|equals (Object obj)
 annotation|@
 name|Override
+DECL|method|equals (Object obj)
 specifier|public
 name|boolean
 name|equals
@@ -215,9 +215,9 @@ name|obj
 argument_list|)
 return|;
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -231,9 +231,9 @@ name|hashCode
 argument_list|()
 return|;
 block|}
-DECL|method|iterator ()
 annotation|@
 name|Override
+DECL|method|iterator ()
 specifier|public
 name|UnmodifiableIterator
 argument_list|<
@@ -255,9 +255,9 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-DECL|method|contains (@ullable Object object)
 annotation|@
 name|Override
+DECL|method|contains (@ullable Object object)
 specifier|public
 name|boolean
 name|contains
@@ -282,9 +282,9 @@ name|object
 argument_list|)
 return|;
 block|}
-DECL|method|containsAll (Collection<?> targets)
 annotation|@
 name|Override
+DECL|method|containsAll (Collection<?> targets)
 specifier|public
 name|boolean
 name|containsAll
@@ -320,9 +320,9 @@ name|size
 argument_list|()
 return|;
 block|}
-DECL|method|isEmpty ()
 annotation|@
 name|Override
+DECL|method|isEmpty ()
 specifier|public
 name|boolean
 name|isEmpty
@@ -336,9 +336,9 @@ name|isEmpty
 argument_list|()
 return|;
 block|}
-DECL|method|toArray (T[] other)
 annotation|@
 name|Override
+DECL|method|toArray (T[] other)
 specifier|public
 parameter_list|<
 name|T
@@ -362,9 +362,9 @@ name|other
 argument_list|)
 return|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString

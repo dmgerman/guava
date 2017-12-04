@@ -171,7 +171,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests the {@link Set} implementations of {@link java.util}, suppressing  * tests that trip known OpenJDK 6 bugs.  *  * @author Kevin Bourrillion  */
+comment|/**  * Tests the {@link Set} implementations of {@link java.util}, suppressing tests that trip known  * OpenJDK 6 bugs.  *  * @author Kevin Bourrillion  */
 end_comment
 
 begin_class
@@ -198,9 +198,9 @@ name|allTests
 argument_list|()
 return|;
 block|}
-DECL|method|suppressForTreeSetNatural ()
 annotation|@
 name|Override
+DECL|method|suppressForTreeSetNatural ()
 specifier|protected
 name|Collection
 argument_list|<
@@ -225,9 +225,9 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-DECL|method|suppressForCheckedSet ()
 annotation|@
 name|Override
+DECL|method|suppressForCheckedSet ()
 specifier|protected
 name|Collection
 argument_list|<

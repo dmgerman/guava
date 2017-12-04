@@ -811,7 +811,7 @@ name|expected
 parameter_list|)
 block|{     }
 block|}
-comment|/**    * Tests that nHMWES makes hash maps large enough that adding the expected    * number of elements won't cause a rehash.    *    * As of jdk7u40, HashMap has an empty-map optimization.  The argument to    * new HashMap(int) is noted, but the initial table is a zero-length array.    *    * This test may fail miserably on non-OpenJDK environments...    */
+comment|/**    * Tests that nHMWES makes hash maps large enough that adding the expected number of elements    * won't cause a rehash.    *    *<p>As of jdk7u40, HashMap has an empty-map optimization. The argument to new HashMap(int) is    * noted, but the initial table is a zero-length array.    *    *<p>This test may fail miserably on non-OpenJDK environments...    */
 annotation|@
 name|GwtIncompatible
 comment|// reflection
@@ -879,7 +879,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Same test as above but for newLinkedHashMapWithExpectedSize    */
+comment|/** Same test as above but for newLinkedHashMapWithExpectedSize */
 annotation|@
 name|GwtIncompatible
 comment|// reflection
@@ -2016,11 +2016,11 @@ argument_list|)
 expr_stmt|;
 block|}
 DECL|enum|SomeEnum
-DECL|enumConstant|SOME_INSTANCE
 specifier|public
 enum|enum
 name|SomeEnum
 block|{
+DECL|enumConstant|SOME_INSTANCE
 name|SOME_INSTANCE
 block|}
 DECL|method|testEnumMap ()
@@ -2327,7 +2327,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testToStringImplWithNullKeys ()
 specifier|public
@@ -8707,7 +8707,7 @@ parameter_list|(
 name|NullPointerException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 annotation|@
 name|GwtIncompatible
@@ -8788,7 +8788,7 @@ parameter_list|(
 name|ClassCastException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testAsConverter_nominal ()
 specifier|public
@@ -9567,7 +9567,7 @@ parameter_list|(
 name|UnsupportedOperationException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 try|try
 block|{
 name|unmod
@@ -9590,7 +9590,7 @@ parameter_list|(
 name|UnsupportedOperationException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 try|try
 block|{
 name|unmod
@@ -9618,7 +9618,7 @@ parameter_list|(
 name|UnsupportedOperationException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 comment|/* UnsupportedOperationException on indirect modifications. */
 name|BiMap
 argument_list|<
@@ -9655,7 +9655,7 @@ parameter_list|(
 name|UnsupportedOperationException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 try|try
 block|{
 name|inverse
@@ -9678,7 +9678,7 @@ parameter_list|(
 name|UnsupportedOperationException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 try|try
 block|{
 name|inverse
@@ -9706,7 +9706,7 @@ parameter_list|(
 name|UnsupportedOperationException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 name|Set
 argument_list|<
 name|String
@@ -9738,7 +9738,7 @@ parameter_list|(
 name|UnsupportedOperationException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 name|Set
 argument_list|<
 name|Entry
@@ -9791,7 +9791,7 @@ parameter_list|(
 name|UnsupportedOperationException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -9841,7 +9841,7 @@ parameter_list|(
 name|UnsupportedOperationException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testImmutableEntry ()
 specifier|public
@@ -9909,7 +9909,7 @@ parameter_list|(
 name|UnsupportedOperationException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 name|assertEquals
 argument_list|(
 literal|"foo=1"
@@ -9996,7 +9996,7 @@ parameter_list|(
 name|UnsupportedOperationException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 name|assertEquals
 argument_list|(
 literal|"null=null"
@@ -10424,7 +10424,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{       }
 block|}
 DECL|method|testFilteredKeysIllegalPutAll ()
 specifier|public
@@ -10529,7 +10529,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{       }
 name|assertEquals
 argument_list|(
 name|ImmutableMap
@@ -10814,7 +10814,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{       }
 name|assertEquals
 argument_list|(
 name|ImmutableMap
@@ -10946,7 +10946,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{       }
 name|assertEquals
 argument_list|(
 name|ImmutableMap
@@ -11073,7 +11073,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{       }
 name|assertEquals
 argument_list|(
 name|ImmutableMap
@@ -11369,7 +11369,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{       }
 name|assertEquals
 argument_list|(
 name|ImmutableMap
@@ -11532,7 +11532,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{       }
 name|assertEquals
 argument_list|(
 name|ImmutableMap
@@ -12781,7 +12781,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// Logically this would accept a NavigableMap, but that won't work under GWT.
-DECL|method|sortedNotNavigable ( final SortedMap<K, V> map)
+DECL|method|sortedNotNavigable (final SortedMap<K, V> map)
 specifier|private
 specifier|static
 parameter_list|<

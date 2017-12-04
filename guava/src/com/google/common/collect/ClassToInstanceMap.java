@@ -65,7 +65,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A map, each entry of which maps a Java  *<a href="http://tinyurl.com/2cmwkz">raw type</a> to an instance of that type.  * In addition to implementing {@code Map}, the additional type-safe operations  * {@link #putInstance} and {@link #getInstance} are available.  *  *<p>Like any other {@code Map<Class, Object>}, this map may contain entries  * for primitive types, and a primitive type and its corresponding wrapper type  * may map to different values.  *  *<p>See the Guava User Guide article on<a href=  * "https://github.com/google/guava/wiki/NewCollectionTypesExplained#classtoinstancemap">  * {@code ClassToInstanceMap}</a>.  *  *<p>To map a generic type to an instance of that type, use {@link  * com.google.common.reflect.TypeToInstanceMap} instead.  *  * @param<B> the common supertype that all entries must share; often this is  *     simply {@link Object}  *  * @author Kevin Bourrillion  * @since 2.0  */
+comment|/**  * A map, each entry of which maps a Java<a href="http://tinyurl.com/2cmwkz">raw type</a> to an  * instance of that type. In addition to implementing {@code Map}, the additional type-safe  * operations {@link #putInstance} and {@link #getInstance} are available.  *  *<p>Like any other {@code Map<Class, Object>}, this map may contain entries for primitive types,  * and a primitive type and its corresponding wrapper type may map to different values.  *  *<p>See the Guava User Guide article on<a href=  * "https://github.com/google/guava/wiki/NewCollectionTypesExplained#classtoinstancemap"> {@code  * ClassToInstanceMap}</a>.  *  *<p>To map a generic type to an instance of that type, use {@link  * com.google.common.reflect.TypeToInstanceMap} instead.  *  * @param<B> the common supertype that all entries must share; often this is simply {@link Object}  * @author Kevin Bourrillion  * @since 2.0  */
 end_comment
 
 begin_interface
@@ -91,7 +91,7 @@ argument_list|,
 name|B
 argument_list|>
 block|{
-comment|/**    * Returns the value the specified class is mapped to, or {@code null} if no    * entry for this class is present. This will only return a value that was    * bound to this specific class, not a value that may have been bound to a    * subtype.    */
+comment|/**    * Returns the value the specified class is mapped to, or {@code null} if no entry for this class    * is present. This will only return a value that was bound to this specific class, not a value    * that may have been bound to a subtype.    */
 annotation|@
 name|CanIgnoreReturnValue
 comment|// TODO(kak): Consider removing this?
@@ -111,7 +111,7 @@ argument_list|>
 name|type
 parameter_list|)
 function_decl|;
-comment|/**    * Maps the specified class to the specified value. Does<i>not</i> associate    * this value with any of the class's supertypes.    *    * @return the value previously associated with this class (possibly {@code    *     null}), or {@code null} if there was no previous entry.    */
+comment|/**    * Maps the specified class to the specified value. Does<i>not</i> associate this value with any    * of the class's supertypes.    *    * @return the value previously associated with this class (possibly {@code null}), or {@code    *     null} if there was no previous entry.    */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|putInstance (Class<T> type, @Nullable T value)

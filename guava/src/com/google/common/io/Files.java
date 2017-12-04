@@ -2553,7 +2553,7 @@ literal|1
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the file name without its    *<a href="http://en.wikipedia.org/wiki/Filename_extension">file extension</a> or path. This is    * similar to the {@code basename} unix command. The result does not include the '{@code .}'.    *    * @param file The name of the file to trim the extension from. This can be either a fully    *     qualified file name (including a path) or just a file name.    * @return The file name without its path or extension.    * @since 14.0    */
+comment|/**    * Returns the file name without its<a    * href="http://en.wikipedia.org/wiki/Filename_extension">file extension</a> or path. This is    * similar to the {@code basename} unix command. The result does not include the '{@code .}'.    *    * @param file The name of the file to trim the extension from. This can be either a fully    *     qualified file name (including a path) or just a file name.    * @return The file name without its path or extension.    * @since 14.0    */
 DECL|method|getNameWithoutExtension (String file)
 specifier|public
 specifier|static

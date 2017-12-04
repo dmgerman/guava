@@ -188,9 +188,9 @@ name|TEST_VALUE
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|concurrentHashMap (int rep)
 annotation|@
 name|Benchmark
+DECL|method|concurrentHashMap (int rep)
 name|void
 name|concurrentHashMap
 parameter_list|(
@@ -222,9 +222,9 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-DECL|method|cacheBuilder_stats (int rep)
 annotation|@
 name|Benchmark
+DECL|method|cacheBuilder_stats (int rep)
 name|void
 name|cacheBuilder_stats
 parameter_list|(
@@ -256,9 +256,9 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-DECL|method|cacheBuilder (int rep)
 annotation|@
 name|Benchmark
+DECL|method|cacheBuilder (int rep)
 name|void
 name|cacheBuilder
 parameter_list|(

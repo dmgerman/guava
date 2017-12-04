@@ -461,7 +461,7 @@ name|state
 argument_list|()
 return|;
 block|}
-comment|/**    * @since 13.0    */
+comment|/** @since 13.0 */
 annotation|@
 name|Override
 DECL|method|addListener (Listener listener, Executor executor)
@@ -487,7 +487,7 @@ name|executor
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * @since 14.0    */
+comment|/** @since 14.0 */
 annotation|@
 name|Override
 DECL|method|failureCause ()
@@ -504,7 +504,7 @@ name|failureCause
 argument_list|()
 return|;
 block|}
-comment|/**    * @since 15.0    */
+comment|/** @since 15.0 */
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
@@ -525,7 +525,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**    * @since 15.0    */
+comment|/** @since 15.0 */
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
@@ -546,7 +546,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**    * @since 15.0    */
+comment|/** @since 15.0 */
 annotation|@
 name|Override
 DECL|method|awaitRunning ()
@@ -562,7 +562,7 @@ name|awaitRunning
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * @since 15.0    */
+comment|/** @since 15.0 */
 annotation|@
 name|Override
 DECL|method|awaitRunning (long timeout, TimeUnit unit)
@@ -590,7 +590,7 @@ name|unit
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * @since 15.0    */
+comment|/** @since 15.0 */
 annotation|@
 name|Override
 DECL|method|awaitTerminated ()
@@ -606,7 +606,7 @@ name|awaitTerminated
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * @since 15.0    */
+comment|/** @since 15.0 */
 annotation|@
 name|Override
 DECL|method|awaitTerminated (long timeout, TimeUnit unit)

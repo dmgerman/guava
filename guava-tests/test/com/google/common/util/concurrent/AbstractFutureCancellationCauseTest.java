@@ -63,7 +63,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests for {@link AbstractFuture} with the cancellation cause system property set  */
+comment|/** Tests for {@link AbstractFuture} with the cancellation cause system property set */
 end_comment
 
 begin_class
@@ -84,9 +84,9 @@ specifier|private
 name|URLClassLoader
 name|classReloader
 decl_stmt|;
-DECL|method|setUp ()
 annotation|@
 name|Override
+DECL|method|setUp ()
 specifier|protected
 name|void
 name|setUp

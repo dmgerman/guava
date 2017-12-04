@@ -43,7 +43,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Unchecked variant of {@link java.util.concurrent.ExecutionException}. As with  * {@code ExecutionException}, the exception's {@linkplain #getCause() cause} comes from a failed  * task, possibly run in another thread.  *  *<p>{@code UncheckedExecutionException} is intended as an alternative to  * {@code ExecutionException} when the exception thrown by a task is an unchecked exception.  * However, it may also wrap a checked exception in some cases.  *  *<p>When wrapping an {@code Error} from another thread, prefer {@link ExecutionError}. When  * wrapping a checked exception, prefer {@code  * ExecutionException}.  *  * @author Charles Fry  * @since 10.0  */
+comment|/**  * Unchecked variant of {@link java.util.concurrent.ExecutionException}. As with {@code  * ExecutionException}, the exception's {@linkplain #getCause() cause} comes from a failed task,  * possibly run in another thread.  *  *<p>{@code UncheckedExecutionException} is intended as an alternative to {@code  * ExecutionException} when the exception thrown by a task is an unchecked exception. However, it  * may also wrap a checked exception in some cases.  *  *<p>When wrapping an {@code Error} from another thread, prefer {@link ExecutionError}. When  * wrapping a checked exception, prefer {@code ExecutionException}.  *  * @author Charles Fry  * @since 10.0  */
 end_comment
 
 begin_class
@@ -56,13 +56,13 @@ name|UncheckedExecutionException
 extends|extends
 name|RuntimeException
 block|{
-comment|/**    * Creates a new instance with {@code null} as its detail message.    */
+comment|/** Creates a new instance with {@code null} as its detail message. */
 DECL|method|UncheckedExecutionException ()
 specifier|protected
 name|UncheckedExecutionException
 parameter_list|()
 block|{}
-comment|/**    * Creates a new instance with the given detail message.    */
+comment|/** Creates a new instance with the given detail message. */
 DECL|method|UncheckedExecutionException (@ullable String message)
 specifier|protected
 name|UncheckedExecutionException
@@ -79,7 +79,7 @@ name|message
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates a new instance with the given detail message and cause.    */
+comment|/** Creates a new instance with the given detail message and cause. */
 DECL|method|UncheckedExecutionException (@ullable String message, @Nullable Throwable cause)
 specifier|public
 name|UncheckedExecutionException
@@ -103,7 +103,7 @@ name|cause
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates a new instance with the given cause.    */
+comment|/** Creates a new instance with the given cause. */
 DECL|method|UncheckedExecutionException (@ullable Throwable cause)
 specifier|public
 name|UncheckedExecutionException

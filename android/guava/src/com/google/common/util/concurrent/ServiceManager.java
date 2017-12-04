@@ -735,7 +735,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A manager for monitoring and controlling a set of {@linkplain Service services}. This class  * provides methods for {@linkplain #startAsync() starting}, {@linkplain #stopAsync() stopping} and  * {@linkplain #servicesByState inspecting} a collection of {@linkplain Service services}.  * Additionally, users can monitor state transitions with the {@linkplain Listener listener}  * mechanism.  *  *<p>While it is recommended that service lifecycles be managed via this class, state transitions  * initiated via other mechanisms do not impact the correctness of its methods. For example, if the  * services are started by some mechanism besides {@link #startAsync}, the listeners will be invoked  * when appropriate and {@link #awaitHealthy} will still work as expected.  *  *<p>Here is a simple example of how to use a {@code ServiceManager} to start a server.  *<pre>   {@code  * class Server {  *   public static void main(String[] args) {  *     Set<Service> services = ...;  *     ServiceManager manager = new ServiceManager(services);  *     manager.addListener(new Listener() {  *         public void stopped() {}  *         public void healthy() {  *           // Services have been initialized and are healthy, start accepting requests...  *         }  *         public void failure(Service service) {  *           // Something failed, at this point we could log it, notify a load balancer, or take  *           // some other action.  For now we will just exit.  *           System.exit(1);  *         }  *       },  *       MoreExecutors.directExecutor());  *  *     Runtime.getRuntime().addShutdownHook(new Thread() {  *       public void run() {  *         // Give the services 5 seconds to stop to ensure that we are responsive to shutdown  *         // requests.  *         try {  *           manager.stopAsync().awaitStopped(5, TimeUnit.SECONDS);  *         } catch (TimeoutException timeout) {  *           // stopping timed out  *         }  *       }  *     });  *     manager.startAsync();  // start all the services asynchronously  *   }  * }}</pre>  *  *<p>This class uses the ServiceManager's methods to start all of its services, to respond to  * service failure and to ensure that when the JVM is shutting down all the services are stopped.  *  * @author Luke Sandberg  * @since 14.0  */
+comment|/**  * A manager for monitoring and controlling a set of {@linkplain Service services}. This class  * provides methods for {@linkplain #startAsync() starting}, {@linkplain #stopAsync() stopping} and  * {@linkplain #servicesByState inspecting} a collection of {@linkplain Service services}.  * Additionally, users can monitor state transitions with the {@linkplain Listener listener}  * mechanism.  *  *<p>While it is recommended that service lifecycles be managed via this class, state transitions  * initiated via other mechanisms do not impact the correctness of its methods. For example, if the  * services are started by some mechanism besides {@link #startAsync}, the listeners will be invoked  * when appropriate and {@link #awaitHealthy} will still work as expected.  *  *<p>Here is a simple example of how to use a {@code ServiceManager} to start a server.  *  *<pre>{@code  * class Server {  *   public static void main(String[] args) {  *     Set<Service> services = ...;  *     ServiceManager manager = new ServiceManager(services);  *     manager.addListener(new Listener() {  *         public void stopped() {}  *         public void healthy() {  *           // Services have been initialized and are healthy, start accepting requests...  *         }  *         public void failure(Service service) {  *           // Something failed, at this point we could log it, notify a load balancer, or take  *           // some other action.  For now we will just exit.  *           System.exit(1);  *         }  *       },  *       MoreExecutors.directExecutor());  *  *     Runtime.getRuntime().addShutdownHook(new Thread() {  *       public void run() {  *         // Give the services 5 seconds to stop to ensure that we are responsive to shutdown  *         // requests.  *         try {  *           manager.stopAsync().awaitStopped(5, TimeUnit.SECONDS);  *         } catch (TimeoutException timeout) {  *           // stopping timed out  *         }  *       }  *     });  *     manager.startAsync();  // start all the services asynchronously  *   }  * }  * }</pre>  *  *<p>This class uses the ServiceManager's methods to start all of its services, to respond to  * service failure and to ensure that when the JVM is shutting down all the services are stopped.  *  * @author Luke Sandberg  * @since 14.0  */
 end_comment
 
 begin_class
@@ -868,7 +868,7 @@ return|;
 block|}
 block|}
 decl_stmt|;
-comment|/**    * A listener for the aggregate state changes of the services that are under management. Users    * that need to listen to more fine-grained events (such as when each particular    * {@linkplain Service service} starts, or terminates), should attach {@linkplain Service.Listener    * service listeners} to each individual service.    *    * @author Luke Sandberg    * @since 15.0 (present as an interface in 14.0)    */
+comment|/**    * A listener for the aggregate state changes of the services that are under management. Users    * that need to listen to more fine-grained events (such as when each particular {@linkplain    * Service service} starts, or terminates), should attach {@linkplain Service.Listener service    * listeners} to each individual service.    *    * @author Luke Sandberg    * @since 15.0 (present as an interface in 14.0)    */
 annotation|@
 name|Beta
 comment|// Should come out of Beta when ServiceManager does
@@ -879,7 +879,7 @@ specifier|static
 class|class
 name|Listener
 block|{
-comment|/**      * Called when the service initially becomes healthy.      *      *<p>This will be called at most once after all the services have entered the      * {@linkplain State#RUNNING running} state. If any services fail during start up or      * {@linkplain State#FAILED fail}/{@linkplain State#TERMINATED terminate} before all other      * services have started {@linkplain State#RUNNING running} then this method will not be called.      */
+comment|/**      * Called when the service initially becomes healthy.      *      *<p>This will be called at most once after all the services have entered the {@linkplain      * State#RUNNING running} state. If any services fail during start up or {@linkplain      * State#FAILED fail}/{@linkplain State#TERMINATED terminate} before all other services have      * started {@linkplain State#RUNNING running} then this method will not be called.      */
 DECL|method|healthy ()
 specifier|public
 name|void
@@ -904,7 +904,7 @@ name|service
 parameter_list|)
 block|{}
 block|}
-comment|/**    * An encapsulation of all of the state that is accessed by the {@linkplain ServiceListener    * service listeners}. This is extracted into its own object so that {@link ServiceListener} could    * be made {@code static} and its instances can be safely constructed and added in the    * {@link ServiceManager} constructor without having to close over the partially constructed    * {@link ServiceManager} instance (i.e. avoid leaking a pointer to {@code this}).    */
+comment|/**    * An encapsulation of all of the state that is accessed by the {@linkplain ServiceListener    * service listeners}. This is extracted into its own object so that {@link ServiceListener} could    * be made {@code static} and its instances can be safely constructed and added in the {@link    * ServiceManager} constructor without having to close over the partially constructed {@link    * ServiceManager} instance (i.e. avoid leaking a pointer to {@code this}).    */
 DECL|field|state
 specifier|private
 specifier|final
@@ -920,7 +920,7 @@ name|Service
 argument_list|>
 name|services
 decl_stmt|;
-comment|/**    * Constructs a new instance for managing the given services.    *    * @param services The services to manage    *    * @throws IllegalArgumentException if not all services are {@linkplain State#NEW new} or if there    *     are any duplicate services.    */
+comment|/**    * Constructs a new instance for managing the given services.    *    * @param services The services to manage    * @throws IllegalArgumentException if not all services are {@linkplain State#NEW new} or if there    *     are any duplicate services.    */
 DECL|method|ServiceManager (Iterable<? extends Service> services)
 specifier|public
 name|ServiceManager
@@ -1269,7 +1269,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**    * Waits for the all the services to reach a terminal state. After this method returns all    * services will either be {@linkplain Service.State#TERMINATED terminated} or    * {@linkplain Service.State#FAILED failed}.    */
+comment|/**    * Waits for the all the services to reach a terminal state. After this method returns all    * services will either be {@linkplain Service.State#TERMINATED terminated} or {@linkplain    * Service.State#FAILED failed}.    */
 DECL|method|awaitStopped ()
 specifier|public
 name|void
@@ -1615,7 +1615,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**      * Controls how long to wait for all services to reach a terminal state.      */
+comment|/** Controls how long to wait for all services to reach a terminal state. */
 DECL|field|stoppedGuard
 specifier|final
 name|Monitor
@@ -1728,7 +1728,7 @@ name|services
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Attempts to start the timer immediately prior to the service being started via      * {@link Service#startAsync()}.      */
+comment|/**      * Attempts to start the timer immediately prior to the service being started via {@link      * Service#startAsync()}.      */
 DECL|method|tryStartTiming (Service service)
 name|void
 name|tryStartTiming
@@ -2363,7 +2363,7 @@ name|loadTimes
 argument_list|)
 return|;
 block|}
-comment|/**      * Updates the state with the given service transition.      *      *<p>This method performs the main logic of ServiceManager in the following steps.      *<ol>      *<li>Update the {@link #servicesByState()}      *<li>Update the {@link #startupTimers}      *<li>Based on the new state queue listeners to run      *<li>Run the listeners (outside of the lock)      *</ol>      */
+comment|/**      * Updates the state with the given service transition.      *      *<p>This method performs the main logic of ServiceManager in the following steps.      *      *<ol>      *<li>Update the {@link #servicesByState()}      *<li>Update the {@link #startupTimers}      *<li>Based on the new state queue listeners to run      *<li>Run the listeners (outside of the lock)      *</ol>      */
 DECL|method|transitionService (final Service service, State from, State to)
 name|void
 name|transitionService

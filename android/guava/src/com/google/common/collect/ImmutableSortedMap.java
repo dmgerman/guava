@@ -217,7 +217,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link NavigableMap} whose contents will never change, with many other important properties  * detailed at {@link ImmutableCollection}.  *  *<p><b>Warning:</b> as with any sorted collection, you are strongly advised not to use a {@link  * Comparator} or {@link Comparable} type whose comparison behavior is<i>inconsistent with  * equals</i>. That is, {@code a.compareTo(b)} or {@code comparator.compare(a, b)} should equal zero  *<i>if and only if</i> {@code a.equals(b)}. If this advice is not followed, the resulting map will  * not correctly obey its specification.  *  *<p>See the Guava User Guide article on<a href=  * "https://github.com/google/guava/wiki/ImmutableCollectionsExplained">  * immutable collections</a>.  *  * @author Jared Levy  * @author Louis Wasserman  * @since 2.0 (implements {@code NavigableMap} since 12.0)  */
+comment|/**  * A {@link NavigableMap} whose contents will never change, with many other important properties  * detailed at {@link ImmutableCollection}.  *  *<p><b>Warning:</b> as with any sorted collection, you are strongly advised not to use a {@link  * Comparator} or {@link Comparable} type whose comparison behavior is<i>inconsistent with  * equals</i>. That is, {@code a.compareTo(b)} or {@code comparator.compare(a, b)} should equal zero  *<i>if and only if</i> {@code a.equals(b)}. If this advice is not followed, the resulting map will  * not correctly obey its specification.  *  *<p>See the Guava User Guide article on<a href=  * "https://github.com/google/guava/wiki/ImmutableCollectionsExplained"> immutable collections</a>.  *  * @author Jared Levy  * @author Louis Wasserman  * @since 2.0 (implements {@code NavigableMap} since 12.0)  */
 end_comment
 
 begin_class
@@ -375,7 +375,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**    * Returns the empty sorted map.    */
+comment|/** Returns the empty sorted map. */
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -412,7 +412,7 @@ operator|)
 name|NATURAL_EMPTY_MAP
 return|;
 block|}
-comment|/**    * Returns an immutable map containing a single entry.    */
+comment|/** Returns an immutable map containing a single entry. */
 DECL|method|of (K k1, V v1)
 specifier|public
 specifier|static
@@ -457,7 +457,7 @@ name|v1
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an immutable map containing a single entry.    */
+comment|/** Returns an immutable map containing a single entry. */
 DECL|method|of (Comparator<? super K> comparator, K k1, V v1)
 specifier|private
 specifier|static
@@ -573,7 +573,7 @@ name|length
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an immutable sorted map containing the given entries, sorted by the    * natural ordering of their keys.    *    * @throws IllegalArgumentException if the two keys are equal according to    *     their natural ordering    */
+comment|/**    * Returns an immutable sorted map containing the given entries, sorted by the natural ordering of    * their keys.    *    * @throws IllegalArgumentException if the two keys are equal according to their natural ordering    */
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -634,7 +634,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an immutable sorted map containing the given entries, sorted by the    * natural ordering of their keys.    *    * @throws IllegalArgumentException if any two keys are equal according to    *     their natural ordering    */
+comment|/**    * Returns an immutable sorted map containing the given entries, sorted by the natural ordering of    * their keys.    *    * @throws IllegalArgumentException if any two keys are equal according to their natural ordering    */
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -708,7 +708,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an immutable sorted map containing the given entries, sorted by the    * natural ordering of their keys.    *    * @throws IllegalArgumentException if any two keys are equal according to    *     their natural ordering    */
+comment|/**    * Returns an immutable sorted map containing the given entries, sorted by the natural ordering of    * their keys.    *    * @throws IllegalArgumentException if any two keys are equal according to their natural ordering    */
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -795,7 +795,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an immutable sorted map containing the given entries, sorted by the    * natural ordering of their keys.    *    * @throws IllegalArgumentException if any two keys are equal according to    *     their natural ordering    */
+comment|/**    * Returns an immutable sorted map containing the given entries, sorted by the natural ordering of    * their keys.    *    * @throws IllegalArgumentException if any two keys are equal according to their natural ordering    */
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -895,7 +895,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an immutable map containing the same entries as {@code map}, sorted    * by the natural ordering of the keys.    *    *<p>Despite the method name, this method attempts to avoid actually copying    * the data when it is safe to do so. The exact circumstances under which a    * copy will or will not be performed are undocumented and subject to change.    *    *<p>This method is not type-safe, as it may be called on a map with keys    * that are not mutually comparable.    *    * @throws ClassCastException if the keys in {@code map} are not mutually    *         comparable    * @throws NullPointerException if any key or value in {@code map} is null    * @throws IllegalArgumentException if any two keys are equal according to    *         their natural ordering    */
+comment|/**    * Returns an immutable map containing the same entries as {@code map}, sorted by the natural    * ordering of the keys.    *    *<p>Despite the method name, this method attempts to avoid actually copying the data when it is    * safe to do so. The exact circumstances under which a copy will or will not be performed are    * undocumented and subject to change.    *    *<p>This method is not type-safe, as it may be called on a map with keys that are not mutually    * comparable.    *    * @throws ClassCastException if the keys in {@code map} are not mutually comparable    * @throws NullPointerException if any key or value in {@code map} is null    * @throws IllegalArgumentException if any two keys are equal according to their natural ordering    */
 DECL|method|copyOf (Map<? extends K, ? extends V> map)
 specifier|public
 specifier|static
@@ -955,7 +955,7 @@ name|naturalOrder
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an immutable map containing the same entries as {@code map}, with    * keys sorted by the provided comparator.    *    *<p>Despite the method name, this method attempts to avoid actually copying    * the data when it is safe to do so. The exact circumstances under which a    * copy will or will not be performed are undocumented and subject to change.    *    * @throws NullPointerException if any key or value in {@code map} is null    * @throws IllegalArgumentException if any two keys are equal according to the    *         comparator    */
+comment|/**    * Returns an immutable map containing the same entries as {@code map}, with keys sorted by the    * provided comparator.    *    *<p>Despite the method name, this method attempts to avoid actually copying the data when it is    * safe to do so. The exact circumstances under which a copy will or will not be performed are    * undocumented and subject to change.    *    * @throws NullPointerException if any key or value in {@code map} is null    * @throws IllegalArgumentException if any two keys are equal according to the comparator    */
 DECL|method|copyOf ( Map<? extends K, ? extends V> map, Comparator<? super K> comparator)
 specifier|public
 specifier|static
@@ -1005,7 +1005,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an immutable map containing the given entries, with keys sorted    * by the provided comparator.    *    *<p>This method is not type-safe, as it may be called on a map with keys    * that are not mutually comparable.    *    * @throws NullPointerException if any key or value in {@code map} is null    * @throws IllegalArgumentException if any two keys are equal according to the    *         comparator    * @since 19.0    */
+comment|/**    * Returns an immutable map containing the given entries, with keys sorted by the provided    * comparator.    *    *<p>This method is not type-safe, as it may be called on a map with keys that are not mutually    * comparable.    *    * @throws NullPointerException if any key or value in {@code map} is null    * @throws IllegalArgumentException if any two keys are equal according to the comparator    * @since 19.0    */
 annotation|@
 name|Beta
 DECL|method|copyOf ( Iterable<? extends Entry<? extends K, ? extends V>> entries)
@@ -1072,7 +1072,7 @@ name|naturalOrder
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an immutable map containing the given entries, with keys sorted    * by the provided comparator.    *    * @throws NullPointerException if any key or value in {@code map} is null    * @throws IllegalArgumentException if any two keys are equal according to the    *         comparator    * @since 19.0    */
+comment|/**    * Returns an immutable map containing the given entries, with keys sorted by the provided    * comparator.    *    * @throws NullPointerException if any key or value in {@code map} is null    * @throws IllegalArgumentException if any two keys are equal according to the comparator    * @since 19.0    */
 annotation|@
 name|Beta
 DECL|method|copyOf ( Iterable<? extends Entry<? extends K, ? extends V>> entries, Comparator<? super K> comparator)
@@ -1131,7 +1131,7 @@ name|entries
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an immutable map containing the same entries as the provided sorted    * map, with the same ordering.    *    *<p>Despite the method name, this method attempts to avoid actually copying    * the data when it is safe to do so. The exact circumstances under which a    * copy will or will not be performed are undocumented and subject to change.    *    * @throws NullPointerException if any key or value in {@code map} is null    */
+comment|/**    * Returns an immutable map containing the same entries as the provided sorted map, with the same    * ordering.    *    *<p>Despite the method name, this method attempts to avoid actually copying the data when it is    * safe to do so. The exact circumstances under which a copy will or will not be performed are    * undocumented and subject to change.    *    * @throws NullPointerException if any key or value in {@code map} is null    */
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -1421,7 +1421,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Accepts a collection of possibly-null entries.  If {@code sameComparator}, then it is assumed    * that they do not need to be sorted or checked for dupes.    */
+comment|/**    * Accepts a collection of possibly-null entries. If {@code sameComparator}, then it is assumed    * that they do not need to be sorted or checked for dupes.    */
 DECL|method|fromEntries ( Comparator<? super K> comparator, boolean sameComparator, Iterable<? extends Entry<? extends K, ? extends V>> entries)
 specifier|private
 specifier|static
@@ -1929,7 +1929,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**    * Returns a builder that creates immutable sorted maps whose keys are    * ordered by their natural ordering. The sorted maps use {@link    * Ordering#natural()} as the comparator.    */
+comment|/**    * Returns a builder that creates immutable sorted maps whose keys are ordered by their natural    * ordering. The sorted maps use {@link Ordering#natural()} as the comparator.    */
 DECL|method|naturalOrder ()
 specifier|public
 specifier|static
@@ -1964,7 +1964,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a builder that creates immutable sorted maps with an explicit    * comparator. If the comparator has a more general type than the map's keys,    * such as creating a {@code SortedMap<Integer, String>} with a {@code    * Comparator<Number>}, use the {@link Builder} constructor instead.    *    * @throws NullPointerException if {@code comparator} is null    */
+comment|/**    * Returns a builder that creates immutable sorted maps with an explicit comparator. If the    * comparator has a more general type than the map's keys, such as creating a {@code    * SortedMap<Integer, String>} with a {@code Comparator<Number>}, use the {@link Builder}    * constructor instead.    *    * @throws NullPointerException if {@code comparator} is null    */
 DECL|method|orderedBy (Comparator<K> comparator)
 specifier|public
 specifier|static
@@ -1997,7 +1997,7 @@ name|comparator
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a builder that creates immutable sorted maps whose keys are    * ordered by the reverse of their natural ordering.    */
+comment|/**    * Returns a builder that creates immutable sorted maps whose keys are ordered by the reverse of    * their natural ordering.    */
 DECL|method|reverseOrder ()
 specifier|public
 specifier|static
@@ -2035,7 +2035,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * A builder for creating immutable sorted map instances, especially {@code    * public static final} maps ("constant maps"). Example:<pre>   {@code    *    *   static final ImmutableSortedMap<Integer, String> INT_TO_WORD =    *       new ImmutableSortedMap.Builder<Integer, String>(Ordering.natural())    *           .put(1, "one")    *           .put(2, "two")    *           .put(3, "three")    *           .build();}</pre>    *    *<p>For<i>small</i> immutable sorted maps, the {@code ImmutableSortedMap.of()}    * methods are even more convenient.    *    *<p>Builder instances can be reused - it is safe to call {@link #build}    * multiple times to build multiple maps in series. Each map is a superset of    * the maps created before it.    *    * @since 2.0    */
+comment|/**    * A builder for creating immutable sorted map instances, especially {@code public static final}    * maps ("constant maps"). Example:    *    *<pre>{@code    * static final ImmutableSortedMap<Integer, String> INT_TO_WORD =    *     new ImmutableSortedMap.Builder<Integer, String>(Ordering.natural())    *         .put(1, "one")    *         .put(2, "two")    *         .put(3, "three")    *         .build();    * }</pre>    *    *<p>For<i>small</i> immutable sorted maps, the {@code ImmutableSortedMap.of()} methods are even    * more convenient.    *    *<p>Builder instances can be reused - it is safe to call {@link #build} multiple times to build    * multiple maps in series. Each map is a superset of the maps created before it.    *    * @since 2.0    */
 DECL|class|Builder
 specifier|public
 specifier|static
@@ -2081,7 +2081,7 @@ name|K
 argument_list|>
 name|comparator
 decl_stmt|;
-comment|/**      * Creates a new builder. The returned builder is equivalent to the builder      * generated by {@link ImmutableSortedMap#orderedBy}.      */
+comment|/**      * Creates a new builder. The returned builder is equivalent to the builder generated by {@link      * ImmutableSortedMap#orderedBy}.      */
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -2220,7 +2220,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Associates {@code key} with {@code value} in the built map. Duplicate      * keys, according to the comparator (which might be the keys' natural      * order), are not allowed, and will cause {@link #build} to fail.      */
+comment|/**      * Associates {@code key} with {@code value} in the built map. Duplicate keys, according to the      * comparator (which might be the keys' natural order), are not allowed, and will cause {@link      * #build} to fail.      */
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
@@ -2277,7 +2277,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**      * Adds the given {@code entry} to the map, making it immutable if      * necessary. Duplicate keys, according to the comparator (which might be      * the keys' natural order), are not allowed, and will cause {@link #build}      * to fail.      *      * @since 11.0      */
+comment|/**      * Adds the given {@code entry} to the map, making it immutable if necessary. Duplicate keys,      * according to the comparator (which might be the keys' natural order), are not allowed, and      * will cause {@link #build} to fail.      *      * @since 11.0      */
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
@@ -2316,7 +2316,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**      * Associates all of the given map's keys and values in the built map.      * Duplicate keys, according to the comparator (which might be the keys'      * natural order), are not allowed, and will cause {@link #build} to fail.      *      * @throws NullPointerException if any key or value in {@code map} is null      */
+comment|/**      * Associates all of the given map's keys and values in the built map. Duplicate keys, according      * to the comparator (which might be the keys' natural order), are not allowed, and will cause      * {@link #build} to fail.      *      * @throws NullPointerException if any key or value in {@code map} is null      */
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
@@ -2355,7 +2355,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**      * Adds all the given entries to the built map.  Duplicate keys, according      * to the comparator (which might be the keys' natural order), are not      * allowed, and will cause {@link #build} to fail.      *      * @throws NullPointerException if any key, value, or entry is null      * @since 19.0      */
+comment|/**      * Adds all the given entries to the built map. Duplicate keys, according to the comparator      * (which might be the keys' natural order), are not allowed, and will cause {@link #build} to      * fail.      *      * @throws NullPointerException if any key, value, or entry is null      * @since 19.0      */
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
@@ -2437,7 +2437,7 @@ literal|"Not available on ImmutableSortedMap.Builder"
 argument_list|)
 throw|;
 block|}
-comment|/**      * Returns a newly-created immutable sorted map.      *      * @throws IllegalArgumentException if any two keys are equal according to      *     the comparator (which might be the keys' natural order)      */
+comment|/**      * Returns a newly-created immutable sorted map.      *      * @throws IllegalArgumentException if any two keys are equal according to the comparator (which      *     might be the keys' natural order)      */
 annotation|@
 name|Override
 DECL|method|build ()
@@ -2852,7 +2852,7 @@ name|isPartialView
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns an immutable set of the mappings in this map, sorted by the key    * ordering.    */
+comment|/** Returns an immutable set of the mappings in this map, sorted by the key ordering. */
 annotation|@
 name|Override
 DECL|method|entrySet ()
@@ -3063,7 +3063,7 @@ name|EntrySet
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns an immutable sorted set of the keys in this map.    */
+comment|/** Returns an immutable sorted set of the keys in this map. */
 annotation|@
 name|Override
 DECL|method|keySet ()
@@ -3097,7 +3097,7 @@ literal|"should never be called"
 argument_list|)
 throw|;
 block|}
-comment|/**    * Returns an immutable collection of the values in this map, sorted by the    * ordering of the corresponding keys.    */
+comment|/**    * Returns an immutable collection of the values in this map, sorted by the ordering of the    * corresponding keys.    */
 annotation|@
 name|Override
 DECL|method|values ()
@@ -3131,7 +3131,7 @@ literal|"should never be called"
 argument_list|)
 throw|;
 block|}
-comment|/**    * Returns the comparator that orders the keys, which is    * {@link Ordering#natural()} when the natural ordering of the keys is used.    * Note that its behavior is not consistent with {@link TreeMap#comparator()},    * which returns {@code null} to indicate natural ordering.    */
+comment|/**    * Returns the comparator that orders the keys, which is {@link Ordering#natural()} when the    * natural ordering of the keys is used. Note that its behavior is not consistent with {@link    * TreeMap#comparator()}, which returns {@code null} to indicate natural ordering.    */
 annotation|@
 name|Override
 DECL|method|comparator ()
@@ -3262,7 +3262,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**    * This method returns a {@code ImmutableSortedMap}, consisting of the entries    * whose keys are less than {@code toKey}.    *    *<p>The {@link SortedMap#headMap} documentation states that a submap of a    * submap throws an {@link IllegalArgumentException} if passed a {@code toKey}    * greater than an earlier {@code toKey}. However, this method doesn't throw    * an exception in that situation, but instead keeps the original {@code    * toKey}.    */
+comment|/**    * This method returns a {@code ImmutableSortedMap}, consisting of the entries whose keys are less    * than {@code toKey}.    *    *<p>The {@link SortedMap#headMap} documentation states that a submap of a submap throws an    * {@link IllegalArgumentException} if passed a {@code toKey} greater than an earlier {@code    * toKey}. However, this method doesn't throw an exception in that situation, but instead keeps    * the original {@code toKey}.    */
 annotation|@
 name|Override
 DECL|method|headMap (K toKey)
@@ -3288,7 +3288,7 @@ literal|false
 argument_list|)
 return|;
 block|}
-comment|/**    * This method returns a {@code ImmutableSortedMap}, consisting of the entries    * whose keys are less than (or equal to, if {@code inclusive}) {@code toKey}.    *    *<p>The {@link SortedMap#headMap} documentation states that a submap of a    * submap throws an {@link IllegalArgumentException} if passed a {@code toKey}    * greater than an earlier {@code toKey}. However, this method doesn't throw    * an exception in that situation, but instead keeps the original {@code    * toKey}.    *    * @since 12.0    */
+comment|/**    * This method returns a {@code ImmutableSortedMap}, consisting of the entries whose keys are less    * than (or equal to, if {@code inclusive}) {@code toKey}.    *    *<p>The {@link SortedMap#headMap} documentation states that a submap of a submap throws an    * {@link IllegalArgumentException} if passed a {@code toKey} greater than an earlier {@code    * toKey}. However, this method doesn't throw an exception in that situation, but instead keeps    * the original {@code toKey}.    *    * @since 12.0    */
 annotation|@
 name|Override
 DECL|method|headMap (K toKey, boolean inclusive)
@@ -3327,7 +3327,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * This method returns a {@code ImmutableSortedMap}, consisting of the entries    * whose keys ranges from {@code fromKey}, inclusive, to {@code toKey},    * exclusive.    *    *<p>The {@link SortedMap#subMap} documentation states that a submap of a    * submap throws an {@link IllegalArgumentException} if passed a {@code    * fromKey} less than an earlier {@code fromKey}. However, this method doesn't    * throw an exception in that situation, but instead keeps the original {@code    * fromKey}. Similarly, this method keeps the original {@code toKey}, instead    * of throwing an exception, if passed a {@code toKey} greater than an earlier    * {@code toKey}.    */
+comment|/**    * This method returns a {@code ImmutableSortedMap}, consisting of the entries whose keys ranges    * from {@code fromKey}, inclusive, to {@code toKey}, exclusive.    *    *<p>The {@link SortedMap#subMap} documentation states that a submap of a submap throws an {@link    * IllegalArgumentException} if passed a {@code fromKey} less than an earlier {@code fromKey}.    * However, this method doesn't throw an exception in that situation, but instead keeps the    * original {@code fromKey}. Similarly, this method keeps the original {@code toKey}, instead of    * throwing an exception, if passed a {@code toKey} greater than an earlier {@code toKey}.    */
 annotation|@
 name|Override
 DECL|method|subMap (K fromKey, K toKey)
@@ -3360,7 +3360,7 @@ literal|false
 argument_list|)
 return|;
 block|}
-comment|/**    * This method returns a {@code ImmutableSortedMap}, consisting of the entries    * whose keys ranges from {@code fromKey} to {@code toKey}, inclusive or    * exclusive as indicated by the boolean flags.    *    *<p>The {@link SortedMap#subMap} documentation states that a submap of a    * submap throws an {@link IllegalArgumentException} if passed a {@code    * fromKey} less than an earlier {@code fromKey}. However, this method doesn't    * throw an exception in that situation, but instead keeps the original {@code    * fromKey}. Similarly, this method keeps the original {@code toKey}, instead    * of throwing an exception, if passed a {@code toKey} greater than an earlier    * {@code toKey}.    *    * @since 12.0    */
+comment|/**    * This method returns a {@code ImmutableSortedMap}, consisting of the entries whose keys ranges    * from {@code fromKey} to {@code toKey}, inclusive or exclusive as indicated by the boolean    * flags.    *    *<p>The {@link SortedMap#subMap} documentation states that a submap of a submap throws an {@link    * IllegalArgumentException} if passed a {@code fromKey} less than an earlier {@code fromKey}.    * However, this method doesn't throw an exception in that situation, but instead keeps the    * original {@code fromKey}. Similarly, this method keeps the original {@code toKey}, instead of    * throwing an exception, if passed a {@code toKey} greater than an earlier {@code toKey}.    *    * @since 12.0    */
 annotation|@
 name|Override
 DECL|method|subMap ( K fromKey, boolean fromInclusive, K toKey, boolean toInclusive)
@@ -3433,7 +3433,7 @@ name|fromInclusive
 argument_list|)
 return|;
 block|}
-comment|/**    * This method returns a {@code ImmutableSortedMap}, consisting of the entries    * whose keys are greater than or equals to {@code fromKey}.    *    *<p>The {@link SortedMap#tailMap} documentation states that a submap of a    * submap throws an {@link IllegalArgumentException} if passed a {@code    * fromKey} less than an earlier {@code fromKey}. However, this method doesn't    * throw an exception in that situation, but instead keeps the original {@code    * fromKey}.    */
+comment|/**    * This method returns a {@code ImmutableSortedMap}, consisting of the entries whose keys are    * greater than or equals to {@code fromKey}.    *    *<p>The {@link SortedMap#tailMap} documentation states that a submap of a submap throws an    * {@link IllegalArgumentException} if passed a {@code fromKey} less than an earlier {@code    * fromKey}. However, this method doesn't throw an exception in that situation, but instead keeps    * the original {@code fromKey}.    */
 annotation|@
 name|Override
 DECL|method|tailMap (K fromKey)
@@ -3459,7 +3459,7 @@ literal|true
 argument_list|)
 return|;
 block|}
-comment|/**    * This method returns a {@code ImmutableSortedMap}, consisting of the entries    * whose keys are greater than (or equal to, if {@code inclusive})    * {@code fromKey}.    *    *<p>The {@link SortedMap#tailMap} documentation states that a submap of a    * submap throws an {@link IllegalArgumentException} if passed a {@code    * fromKey} less than an earlier {@code fromKey}. However, this method doesn't    * throw an exception in that situation, but instead keeps the original {@code    * fromKey}.    *    * @since 12.0    */
+comment|/**    * This method returns a {@code ImmutableSortedMap}, consisting of the entries whose keys are    * greater than (or equal to, if {@code inclusive}) {@code fromKey}.    *    *<p>The {@link SortedMap#tailMap} documentation states that a submap of a submap throws an    * {@link IllegalArgumentException} if passed a {@code fromKey} less than an earlier {@code    * fromKey}. However, this method doesn't throw an exception in that situation, but instead keeps    * the original {@code fromKey}.    *    * @since 12.0    */
 annotation|@
 name|Override
 DECL|method|tailMap (K fromKey, boolean inclusive)
@@ -3933,7 +3933,7 @@ name|descendingSet
 argument_list|()
 return|;
 block|}
-comment|/**    * Serialized type for all ImmutableSortedMap instances. It captures the    * logical contents and they are reconstructed using public factory methods.    * This ensures that the implementation types remain as implementation    * details.    */
+comment|/**    * Serialized type for all ImmutableSortedMap instances. It captures the logical contents and they    * are reconstructed using public factory methods. This ensures that the implementation types    * remain as implementation details.    */
 DECL|class|SerializedForm
 specifier|private
 specifier|static

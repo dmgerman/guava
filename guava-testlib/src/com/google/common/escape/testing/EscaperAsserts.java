@@ -202,7 +202,7 @@ block|{
 comment|// pass
 block|}
 block|}
-comment|/**    * Asserts that an escaper escapes the given character into the expected    * string.    *    * @param escaper the non-null escaper to test    * @param expected the expected output string    * @param c the character to escape    */
+comment|/**    * Asserts that an escaper escapes the given character into the expected string.    *    * @param escaper the non-null escaper to test    * @param expected the expected output string    * @param c the character to escape    */
 DECL|method|assertEscaping (CharEscaper escaper, String expected, char c)
 specifier|public
 specifier|static
@@ -273,7 +273,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Asserts that a Unicode escaper escapes the given code point into the    * expected string.    *    * @param escaper the non-null escaper to test    * @param expected the expected output string    * @param cp the Unicode code point to escape    */
+comment|/**    * Asserts that a Unicode escaper escapes the given code point into the expected string.    *    * @param escaper the non-null escaper to test    * @param expected the expected output string    * @param cp the Unicode code point to escape    */
 DECL|method|assertEscaping (UnicodeEscaper escaper, String expected, int cp)
 specifier|public
 specifier|static
@@ -344,8 +344,8 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Asserts that a Unicode escaper escapes the given hi/lo surrogate pair into    * the expected string.    *    * @param escaper the non-null escaper to test    * @param expected the expected output string    * @param hi the high surrogate pair character    * @param lo the low surrogate pair character    */
-DECL|method|assertUnicodeEscaping (UnicodeEscaper escaper, String expected, char hi, char lo)
+comment|/**    * Asserts that a Unicode escaper escapes the given hi/lo surrogate pair into the expected string.    *    * @param escaper the non-null escaper to test    * @param expected the expected output string    * @param hi the high surrogate pair character    * @param lo the low surrogate pair character    */
+DECL|method|assertUnicodeEscaping ( UnicodeEscaper escaper, String expected, char hi, char lo)
 specifier|public
 specifier|static
 name|void

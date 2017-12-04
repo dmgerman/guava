@@ -139,7 +139,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Provides supporting data for performance notes in the documentation of {@link  * Ordering#sortedCopy} and {@link Ordering#immutableSortedCopy}, as well as for  * automated code suggestions.  *  */
+comment|/**  * Provides supporting data for performance notes in the documentation of {@link  * Ordering#sortedCopy} and {@link Ordering#immutableSortedCopy}, as well as for automated code  * suggestions.  *  */
 end_comment
 
 begin_class
@@ -148,7 +148,6 @@ specifier|public
 class|class
 name|SortedCopyBenchmark
 block|{
-DECL|field|size
 annotation|@
 name|Param
 argument_list|(
@@ -162,6 +161,7 @@ block|,
 literal|"1000000"
 block|}
 argument_list|)
+DECL|field|size
 name|int
 name|size
 decl_stmt|;

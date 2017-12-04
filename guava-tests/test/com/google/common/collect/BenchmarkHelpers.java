@@ -2398,6 +2398,7 @@ return|;
 block|}
 block|}
 block|;
+DECL|method|create ( Table<R, C, V> contents)
 specifier|abstract
 parameter_list|<
 name|R
@@ -2416,7 +2417,6 @@ argument_list|>
 parameter_list|,
 name|V
 parameter_list|>
-DECL|method|create (Table<R, C, V> contents)
 name|Table
 argument_list|<
 name|R

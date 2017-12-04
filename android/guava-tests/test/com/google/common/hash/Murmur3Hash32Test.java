@@ -83,7 +83,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests for {@link Murmur3_32HashFunction}.  */
+comment|/** Tests for {@link Murmur3_32HashFunction}. */
 end_comment
 
 begin_class

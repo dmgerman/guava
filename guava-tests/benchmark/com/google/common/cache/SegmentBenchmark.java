@@ -108,7 +108,6 @@ specifier|public
 class|class
 name|SegmentBenchmark
 block|{
-DECL|field|capacity
 annotation|@
 name|Param
 argument_list|(
@@ -134,6 +133,7 @@ block|,
 literal|"8192"
 block|}
 argument_list|)
+DECL|field|capacity
 name|int
 name|capacity
 decl_stmt|;
@@ -260,9 +260,9 @@ name|capacity
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|time (int reps)
 annotation|@
 name|Benchmark
+DECL|method|time (int reps)
 name|int
 name|time
 parameter_list|(

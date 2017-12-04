@@ -2250,9 +2250,9 @@ name|end
 argument_list|)
 return|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString
@@ -2329,9 +2329,9 @@ name|iterator
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|iterator ()
 annotation|@
 name|Override
+DECL|method|iterator ()
 specifier|public
 name|Iterator
 argument_list|<
@@ -2347,9 +2347,9 @@ name|iterator
 argument_list|()
 return|;
 block|}
-DECL|method|hasNext ()
 annotation|@
 name|Override
+DECL|method|hasNext ()
 specifier|public
 name|boolean
 name|hasNext
@@ -2362,9 +2362,9 @@ name|hasNext
 argument_list|()
 return|;
 block|}
-DECL|method|next ()
 annotation|@
 name|Override
+DECL|method|next ()
 specifier|public
 name|Integer
 name|next
@@ -2377,9 +2377,9 @@ name|next
 argument_list|()
 return|;
 block|}
-DECL|method|remove ()
 annotation|@
 name|Override
+DECL|method|remove ()
 specifier|public
 name|void
 name|remove

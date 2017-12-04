@@ -251,9 +251,9 @@ operator|=
 name|inverse
 expr_stmt|;
 block|}
-DECL|method|inverse ()
 annotation|@
 name|Override
+DECL|method|inverse ()
 specifier|public
 name|ImmutableBiMap
 argument_list|<

@@ -330,7 +330,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-DECL|method|of ( K k1, V v1, K k2, V v2, K k3, V v3)
+DECL|method|of (K k1, V v1, K k2, V v2, K k3, V v3)
 specifier|public
 specifier|static
 parameter_list|<
@@ -393,7 +393,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-DECL|method|of ( K k1, V v1, K k2, V v2, K k3, V v3, K k4, V v4)
+DECL|method|of (K k1, V v1, K k2, V v2, K k3, V v3, K k4, V v4)
 specifier|public
 specifier|static
 parameter_list|<
@@ -616,9 +616,9 @@ name|initCapacity
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|put (K key, V value)
 annotation|@
 name|Override
+DECL|method|put (K key, V value)
 specifier|public
 name|Builder
 argument_list|<
@@ -648,9 +648,9 @@ return|return
 name|this
 return|;
 block|}
-DECL|method|put (Entry<? extends K, ? extends V> entry)
 annotation|@
 name|Override
+DECL|method|put (Entry<? extends K, ? extends V> entry)
 specifier|public
 name|Builder
 argument_list|<
@@ -684,9 +684,9 @@ return|return
 name|this
 return|;
 block|}
-DECL|method|putAll (Map<? extends K, ? extends V> map)
 annotation|@
 name|Override
+DECL|method|putAll (Map<? extends K, ? extends V> map)
 specifier|public
 name|Builder
 argument_list|<
@@ -720,9 +720,9 @@ return|return
 name|this
 return|;
 block|}
-DECL|method|putAll ( Iterable<? extends Entry<? extends K, ? extends V>> entries)
 annotation|@
 name|Override
+DECL|method|putAll (Iterable<? extends Entry<? extends K, ? extends V>> entries)
 specifier|public
 name|Builder
 argument_list|<
@@ -820,9 +820,9 @@ return|return
 name|this
 return|;
 block|}
-DECL|method|build ()
 annotation|@
 name|Override
+DECL|method|build ()
 specifier|public
 name|ImmutableBiMap
 argument_list|<
@@ -876,7 +876,7 @@ argument_list|)
 return|;
 block|}
 block|}
-DECL|method|copyOf ( Map<? extends K, ? extends V> map)
+DECL|method|copyOf (Map<? extends K, ? extends V> map)
 specifier|public
 specifier|static
 parameter_list|<
@@ -1064,9 +1064,9 @@ argument_list|>
 name|inverse
 parameter_list|()
 function_decl|;
-DECL|method|values ()
 annotation|@
 name|Override
+DECL|method|values ()
 specifier|public
 name|ImmutableSet
 argument_list|<

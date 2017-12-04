@@ -161,7 +161,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A microbenchmark that tests the performance of get() and iteration on various map  * implementations.  Forked from {@link SetContainsBenchmark}.  *  * @author Nicholaus Shupe  */
+comment|/**  * A microbenchmark that tests the performance of get() and iteration on various map  * implementations. Forked from {@link SetContainsBenchmark}.  *  * @author Nicholaus Shupe  */
 end_comment
 
 begin_class
@@ -982,9 +982,9 @@ name|Element
 argument_list|>
 name|values
 decl_stmt|;
-DECL|method|setUp ()
 annotation|@
 name|BeforeExperiment
+DECL|method|setUp ()
 name|void
 name|setUp
 parameter_list|()
@@ -1066,9 +1066,9 @@ name|getQueries
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|get (int reps)
 annotation|@
 name|Benchmark
+DECL|method|get (int reps)
 name|boolean
 name|get
 parameter_list|(
@@ -1148,9 +1148,9 @@ return|return
 name|dummy
 return|;
 block|}
-DECL|method|createAndPopulate (int reps)
 annotation|@
 name|Benchmark
+DECL|method|createAndPopulate (int reps)
 name|int
 name|createAndPopulate
 parameter_list|(
@@ -1195,9 +1195,9 @@ return|return
 name|dummy
 return|;
 block|}
-DECL|method|iterateWithEntrySet (int reps)
 annotation|@
 name|Benchmark
+DECL|method|iterateWithEntrySet (int reps)
 name|boolean
 name|iterateWithEntrySet
 parameter_list|(
@@ -1269,9 +1269,9 @@ return|return
 name|dummy
 return|;
 block|}
-DECL|method|iterateWithKeySetAndGet (int reps)
 annotation|@
 name|Benchmark
+DECL|method|iterateWithKeySetAndGet (int reps)
 name|boolean
 name|iterateWithKeySetAndGet
 parameter_list|(
@@ -1342,9 +1342,9 @@ return|return
 name|dummy
 return|;
 block|}
-DECL|method|iterateValuesAndGet (int reps)
 annotation|@
 name|Benchmark
+DECL|method|iterateValuesAndGet (int reps)
 name|boolean
 name|iterateValuesAndGet
 parameter_list|(

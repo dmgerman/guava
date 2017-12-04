@@ -115,7 +115,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Implementation of {@link ImmutableMap} backed by a non-empty {@link  * java.util.EnumMap}.  *  * @author Louis Wasserman  */
+comment|/**  * Implementation of {@link ImmutableMap} backed by a non-empty {@link java.util.EnumMap}.  *  * @author Louis Wasserman  */
 end_comment
 
 begin_class
@@ -514,9 +514,9 @@ name|unmodifiableEntry
 argument_list|)
 return|;
 block|}
-DECL|method|forEach (BiConsumer<? super K, ? super V> action)
 annotation|@
 name|Override
+DECL|method|forEach (BiConsumer<? super K, ? super V> action)
 specifier|public
 name|void
 name|forEach

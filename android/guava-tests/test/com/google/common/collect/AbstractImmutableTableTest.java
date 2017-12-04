@@ -55,6 +55,7 @@ name|AbstractImmutableTableTest
 extends|extends
 name|TestCase
 block|{
+DECL|method|getTestInstances ()
 specifier|abstract
 name|Iterable
 argument_list|<
@@ -67,7 +68,6 @@ argument_list|,
 name|String
 argument_list|>
 argument_list|>
-DECL|method|getTestInstances ()
 name|getTestInstances
 parameter_list|()
 function_decl|;

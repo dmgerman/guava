@@ -325,7 +325,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Generates a test suite covering the {@link Set} implementations in the  * {@link java.util} package. Can be subclassed to specify tests that should  * be suppressed.  *  * @author Kevin Bourrillion  */
+comment|/**  * Generates a test suite covering the {@link Set} implementations in the {@link java.util} package.  * Can be subclassed to specify tests that should be suppressed.  *  * @author Kevin Bourrillion  */
 end_comment
 
 begin_class
@@ -1488,7 +1488,7 @@ name|createTestSuite
 argument_list|()
 return|;
 block|}
-comment|/**    * Tests regular NavigableSet behavior of synchronizedNavigableSet(treeSet);    * does not test the fact that it's synchronized.    */
+comment|/**    * Tests regular NavigableSet behavior of synchronizedNavigableSet(treeSet); does not test the    * fact that it's synchronized.    */
 DECL|method|testsForSynchronizedNavigableSet ()
 specifier|public
 name|Test

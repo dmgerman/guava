@@ -273,7 +273,7 @@ name|startQueueWorker
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * Starts a worker.  This should only be called if:    *    *<ul>    *<li>{@code isWorkerRunning == true}    *<li>{@code !queue.isEmpty()}    *<li>the {@link #worker} lock is not held    *</ul>    */
+comment|/**    * Starts a worker. This should only be called if:    *    *<ul>    *<li>{@code isWorkerRunning == true}    *<li>{@code !queue.isEmpty()}    *<li>the {@link #worker} lock is not held    *</ul>    */
 DECL|method|startQueueWorker ()
 specifier|private
 name|void
@@ -370,7 +370,7 @@ comment|// We could have tasks left in the queue, so should perhaps try to resta
 comment|// but then the Error will get delayed if we are using a direct (same thread) executor.
 block|}
 block|}
-comment|/**      * Continues executing tasks from {@link #queue} until it is empty.      *      *<p>The thread's interrupt bit is cleared before execution of each task.      *      *<p>If the Thread in use is interrupted before or during execution of the tasks in      * {@link #queue}, the Executor will complete its tasks, and then restore the interruption.      * This means that once the Thread returns to the Executor that this Executor composes, the      * interruption will still be present. If the composed Executor is an ExecutorService, it can      * respond to shutdown() by returning tasks queued on that Thread after {@link #worker} drains      * the queue.      */
+comment|/**      * Continues executing tasks from {@link #queue} until it is empty.      *      *<p>The thread's interrupt bit is cleared before execution of each task.      *      *<p>If the Thread in use is interrupted before or during execution of the tasks in {@link      * #queue}, the Executor will complete its tasks, and then restore the interruption. This means      * that once the Thread returns to the Executor that this Executor composes, the interruption      * will still be present. If the composed Executor is an ExecutorService, it can respond to      * shutdown() by returning tasks queued on that Thread after {@link #worker} drains the queue.      */
 DECL|method|workOnQueue ()
 specifier|private
 name|void

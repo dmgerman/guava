@@ -57,7 +57,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author Luiz-Otavio "Z" Zorzella  */
+comment|/** @author Luiz-Otavio "Z" Zorzella */
 end_comment
 
 begin_class
@@ -400,9 +400,9 @@ name|ran
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|runBare ()
 annotation|@
 name|Override
+DECL|method|runBare ()
 specifier|public
 specifier|final
 name|void
@@ -427,9 +427,9 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-DECL|method|tearDown ()
 annotation|@
 name|Override
+DECL|method|tearDown ()
 specifier|protected
 name|void
 name|tearDown
@@ -441,7 +441,7 @@ name|runTearDown
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * Builds a {@link TearDownStack} that makes sure it's clear by the end of    * this test.    */
+comment|/** Builds a {@link TearDownStack} that makes sure it's clear by the end of this test. */
 DECL|method|buildTearDownStack ()
 specifier|private
 name|TearDownStack

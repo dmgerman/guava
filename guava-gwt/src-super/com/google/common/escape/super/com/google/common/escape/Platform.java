@@ -17,7 +17,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * @author Jesse Wilson  */
+comment|/** @author Jesse Wilson */
 end_comment
 
 begin_class

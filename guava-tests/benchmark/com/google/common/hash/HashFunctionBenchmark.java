@@ -63,7 +63,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Benchmarks for comparing the various {@link HashFunction functions} that we provide.  *  *<p>Parameters for the benchmark are:  *<ul>  *<li>size: The length of the byte array to hash.  *<li>hashFunctionEnum: The {@link HashFunction} to use for hashing.  *</ul>  *  * @author Kurt Alfred Kluever  */
+comment|/**  * Benchmarks for comparing the various {@link HashFunction functions} that we provide.  *  *<p>Parameters for the benchmark are:  *  *<ul>  *<li>size: The length of the byte array to hash.  *<li>hashFunctionEnum: The {@link HashFunction} to use for hashing.  *</ul>  *  * @author Kurt Alfred Kluever  */
 end_comment
 
 begin_class
@@ -116,9 +116,9 @@ name|byte
 index|[]
 name|testBytes
 decl_stmt|;
-DECL|method|setUp ()
 annotation|@
 name|BeforeExperiment
+DECL|method|setUp ()
 name|void
 name|setUp
 parameter_list|()
@@ -139,9 +139,9 @@ name|testBytes
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|hasher (int reps)
 annotation|@
 name|Benchmark
+DECL|method|hasher (int reps)
 name|int
 name|hasher
 parameter_list|(
@@ -203,9 +203,9 @@ return|return
 name|result
 return|;
 block|}
-DECL|method|hashFunction (int reps)
 annotation|@
 name|Benchmark
+DECL|method|hashFunction (int reps)
 name|int
 name|hashFunction
 parameter_list|(
@@ -261,9 +261,9 @@ return|return
 name|result
 return|;
 block|}
-DECL|method|hashFunctionWithOffset (int reps)
 annotation|@
 name|Benchmark
+DECL|method|hashFunctionWithOffset (int reps)
 name|int
 name|hashFunctionWithOffset
 parameter_list|(

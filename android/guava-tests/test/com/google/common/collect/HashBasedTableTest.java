@@ -107,9 +107,9 @@ name|HashBasedTableTest
 extends|extends
 name|AbstractTableTest
 block|{
-DECL|method|create ( Object... data)
 annotation|@
 name|Override
+DECL|method|create (Object... data)
 specifier|protected
 name|Table
 argument_list|<
@@ -528,7 +528,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 try|try
 block|{
 name|HashBasedTable
@@ -550,7 +550,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testCreateCopy ()
 specifier|public

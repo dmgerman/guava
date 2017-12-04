@@ -77,7 +77,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A benchmark that tries invoking {@code Set.contains} on many different sets.  */
+comment|/** A benchmark that tries invoking {@code Set.contains} on many different sets. */
 end_comment
 
 begin_class
@@ -187,9 +187,9 @@ index|[
 literal|0x1000
 index|]
 decl_stmt|;
-DECL|method|setUp ()
 annotation|@
 name|BeforeExperiment
+DECL|method|setUp ()
 name|void
 name|setUp
 parameter_list|()
@@ -329,9 +329,9 @@ expr_stmt|;
 block|}
 block|}
 block|}
-DECL|method|contains (int reps)
 annotation|@
 name|Benchmark
+DECL|method|contains (int reps)
 specifier|public
 name|boolean
 name|contains

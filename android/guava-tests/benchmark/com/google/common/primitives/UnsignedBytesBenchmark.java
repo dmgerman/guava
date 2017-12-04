@@ -135,7 +135,7 @@ argument_list|>
 name|unsafeImpl
 decl_stmt|;
 comment|// 4, 8, 64, 1K, 1M, 1M (unaligned), 64M, 64M (unaligned)
-comment|//@Param({"4", "8", "64", "1024", "1048576", "1048577", "6710884", "6710883"})
+comment|// @Param({"4", "8", "64", "1024", "1048576", "1048577", "6710884", "6710883"})
 annotation|@
 name|Param
 argument_list|(
@@ -271,9 +271,9 @@ operator|.
 name|INSTANCE
 expr_stmt|;
 block|}
-DECL|method|longEqualJava (int reps)
 annotation|@
 name|Benchmark
+DECL|method|longEqualJava (int reps)
 name|void
 name|longEqualJava
 parameter_list|(
@@ -319,9 +319,9 @@ comment|// deoptimization
 block|}
 block|}
 block|}
-DECL|method|longEqualUnsafe (int reps)
 annotation|@
 name|Benchmark
+DECL|method|longEqualUnsafe (int reps)
 name|void
 name|longEqualUnsafe
 parameter_list|(
@@ -367,9 +367,9 @@ comment|// deoptimization
 block|}
 block|}
 block|}
-DECL|method|diffLastJava (int reps)
 annotation|@
 name|Benchmark
+DECL|method|diffLastJava (int reps)
 name|void
 name|diffLastJava
 parameter_list|(
@@ -415,9 +415,9 @@ comment|// deoptimization
 block|}
 block|}
 block|}
-DECL|method|diffLastUnsafe (int reps)
 annotation|@
 name|Benchmark
+DECL|method|diffLastUnsafe (int reps)
 name|void
 name|diffLastUnsafe
 parameter_list|(

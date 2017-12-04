@@ -113,7 +113,7 @@ specifier|final
 class|class
 name|Platform
 block|{
-comment|/**    * Serializes and deserializes the specified object.    */
+comment|/** Serializes and deserializes the specified object. */
 annotation|@
 name|SuppressWarnings
 argument_list|(

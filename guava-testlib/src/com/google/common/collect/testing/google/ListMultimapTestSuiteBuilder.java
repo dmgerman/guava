@@ -279,7 +279,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Creates, based on your criteria, a JUnit test suite that exhaustively tests  * a {@code ListMultimap} implementation.  *  * @author Louis Wasserman  */
+comment|/**  * Creates, based on your criteria, a JUnit test suite that exhaustively tests a {@code  * ListMultimap} implementation.  *  * @author Louis Wasserman  */
 end_comment
 
 begin_class

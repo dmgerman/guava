@@ -1158,8 +1158,8 @@ name|Tested
 block|{}
 DECL|class|A
 specifier|private
-specifier|static
 specifier|abstract
+specifier|static
 class|class
 name|A
 block|{
@@ -1221,9 +1221,9 @@ specifier|transient
 name|long
 name|transientField
 decl_stmt|;
-DECL|method|A (Object finalField)
 annotation|@
 name|Tested
+DECL|method|A (Object finalField)
 specifier|public
 name|A
 parameter_list|(
@@ -1238,40 +1238,40 @@ operator|=
 name|finalField
 expr_stmt|;
 block|}
-DECL|method|abstractMethod ()
 annotation|@
 name|Tested
+DECL|method|abstractMethod ()
 specifier|abstract
 name|void
 name|abstractMethod
 parameter_list|()
 function_decl|;
-DECL|method|overridableMethod ()
 annotation|@
 name|Tested
+DECL|method|overridableMethod ()
 name|void
 name|overridableMethod
 parameter_list|()
 block|{}
-DECL|method|protectedMethod ()
 annotation|@
 name|Tested
+DECL|method|protectedMethod ()
 specifier|protected
 name|void
 name|protectedMethod
 parameter_list|()
 block|{}
-DECL|method|privateMethod ()
 annotation|@
 name|Tested
+DECL|method|privateMethod ()
 specifier|private
 name|void
 name|privateMethod
 parameter_list|()
 block|{}
-DECL|method|publicFinalMethod ()
 annotation|@
 name|Tested
+DECL|method|publicFinalMethod ()
 specifier|public
 specifier|final
 name|void

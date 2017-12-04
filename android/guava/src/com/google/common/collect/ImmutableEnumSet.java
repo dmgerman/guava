@@ -77,7 +77,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Implementation of {@link ImmutableSet} backed by a non-empty {@link  * java.util.EnumSet}.  *  * @author Jared Levy  */
+comment|/**  * Implementation of {@link ImmutableSet} backed by a non-empty {@link java.util.EnumSet}.  *  * @author Jared Levy  */
 end_comment
 
 begin_class
@@ -399,9 +399,9 @@ return|return
 literal|true
 return|;
 block|}
+DECL|field|hashCode
 annotation|@
 name|LazyInit
-DECL|field|hashCode
 specifier|private
 specifier|transient
 name|int

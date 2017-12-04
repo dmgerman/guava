@@ -63,7 +63,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author Gregory Kick  */
+comment|/** @author Gregory Kick */
 end_comment
 
 begin_class
@@ -227,6 +227,7 @@ argument_list|)
 decl_stmt|;
 annotation|@
 name|Override
+DECL|method|getTestInstances ()
 name|Iterable
 argument_list|<
 name|ImmutableTable
@@ -238,7 +239,6 @@ argument_list|,
 name|String
 argument_list|>
 argument_list|>
-DECL|method|getTestInstances ()
 name|getTestInstances
 parameter_list|()
 block|{

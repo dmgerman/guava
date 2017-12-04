@@ -287,7 +287,7 @@ specifier|final
 class|class
 name|ByteStreams
 block|{
-comment|/**    * Creates a new byte array for buffering reads or writes.    */
+comment|/** Creates a new byte array for buffering reads or writes. */
 DECL|method|createBuffer ()
 specifier|static
 name|byte
@@ -303,7 +303,7 @@ literal|8192
 index|]
 return|;
 block|}
-comment|/**    * There are three methods to implement    * {@link FileChannel#transferTo(long, long, WritableByteChannel)}:    *    *<ol>    *<li>Use sendfile(2) or equivalent. Requires that both the input channel and the output channel    *     have their own file descriptors. Generally this only happens when both channels are files    *     or sockets. This performs zero copies - the bytes never enter userspace.    *<li>Use mmap(2) or equivalent. Requires that either the input channel or the output channel    *     have file descriptors. Bytes are copied from the file into a kernel buffer, then directly    *     into the other buffer (userspace). Note that if the file is very large, a naive    *     implementation will effectively put the whole file in memory. On many systems with paging    *     and virtual memory, this is not a problem - because it is mapped read-only, the kernel can    *     always page it to disk "for free". However, on systems where killing processes happens all    *     the time in normal conditions (i.e., android) the OS must make a tradeoff between paging    *     memory and killing other processes - so allocating a gigantic buffer and then sequentially    *     accessing it could result in other processes dying. This is solvable via madvise(2), but    *     that obviously doesn't exist in java.    *<li>Ordinary copy. Kernel copies bytes into a kernel buffer, from a kernel buffer into a    *     userspace buffer (byte[] or ByteBuffer), then copies them from that buffer into the    *     destination channel.    *</ol>    *    * This value is intended to be large enough to make the overhead of system calls negligible,    * without being so large that it causes problems for systems with atypical memory management if    * approaches 2 or 3 are used.    */
+comment|/**    * There are three methods to implement {@link FileChannel#transferTo(long, long,    * WritableByteChannel)}:    *    *<ol>    *<li>Use sendfile(2) or equivalent. Requires that both the input channel and the output    *       channel have their own file descriptors. Generally this only happens when both channels    *       are files or sockets. This performs zero copies - the bytes never enter userspace.    *<li>Use mmap(2) or equivalent. Requires that either the input channel or the output channel    *       have file descriptors. Bytes are copied from the file into a kernel buffer, then directly    *       into the other buffer (userspace). Note that if the file is very large, a naive    *       implementation will effectively put the whole file in memory. On many systems with paging    *       and virtual memory, this is not a problem - because it is mapped read-only, the kernel    *       can always page it to disk "for free". However, on systems where killing processes    *       happens all the time in normal conditions (i.e., android) the OS must make a tradeoff    *       between paging memory and killing other processes - so allocating a gigantic buffer and    *       then sequentially accessing it could result in other processes dying. This is solvable    *       via madvise(2), but that obviously doesn't exist in java.    *<li>Ordinary copy. Kernel copies bytes into a kernel buffer, from a kernel buffer into a    *       userspace buffer (byte[] or ByteBuffer), then copies them from that buffer into the    *       destination channel.    *</ol>    *    * This value is intended to be large enough to make the overhead of system calls negligible,    * without being so large that it causes problems for systems with atypical memory management if    * approaches 2 or 3 are used.    */
 DECL|field|ZERO_COPY_CHUNK_SIZE
 specifier|private
 specifier|static
@@ -801,7 +801,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/**    * BAOS that provides limited access to its internal byte array.    */
+comment|/** BAOS that provides limited access to its internal byte array. */
 DECL|class|FastByteArrayOutputStream
 specifier|private
 specifier|static
@@ -963,7 +963,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a new {@link ByteArrayDataInput} instance to read from the given    * {@code ByteArrayInputStream}. The given input stream is not reset before being read from by the    * returned {@code ByteArrayDataInput}.    *    * @since 17.0    */
+comment|/**    * Returns a new {@link ByteArrayDataInput} instance to read from the given {@code    * ByteArrayInputStream}. The given input stream is not reset before being read from by the    * returned {@code ByteArrayDataInput}.    *    * @since 17.0    */
 DECL|method|newDataInput (ByteArrayInputStream byteArrayInputStream)
 specifier|public
 specifier|static
@@ -1536,7 +1536,7 @@ throw|;
 block|}
 block|}
 block|}
-comment|/**    * Returns a new {@link ByteArrayDataOutput} instance with a default size.    */
+comment|/** Returns a new {@link ByteArrayDataOutput} instance with a default size. */
 DECL|method|newDataOutput ()
 specifier|public
 specifier|static
@@ -1599,7 +1599,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a new {@link ByteArrayDataOutput} instance which writes to the given    * {@code ByteArrayOutputStream}. The given output stream is not reset before being written to by    * the returned {@code ByteArrayDataOutput} and new data will be appended to any existing content.    *    *<p>Note that if the given output stream was not empty or is modified after the    * {@code ByteArrayDataOutput} is created, the contract for    * {@link ByteArrayDataOutput#toByteArray} will not be honored (the bytes returned in the byte    * array may not be exactly what was written via calls to {@code ByteArrayDataOutput}).    *    * @since 17.0    */
+comment|/**    * Returns a new {@link ByteArrayDataOutput} instance which writes to the given {@code    * ByteArrayOutputStream}. The given output stream is not reset before being written to by the    * returned {@code ByteArrayDataOutput} and new data will be appended to any existing content.    *    *<p>Note that if the given output stream was not empty or is modified after the {@code    * ByteArrayDataOutput} is created, the contract for {@link ByteArrayDataOutput#toByteArray} will    * not be honored (the bytes returned in the byte array may not be exactly what was written via    * calls to {@code ByteArrayDataOutput}).    *    * @since 17.0    */
 DECL|method|newDataOutput (ByteArrayOutputStream byteArrayOutputSteam)
 specifier|public
 specifier|static
@@ -2672,7 +2672,7 @@ name|length
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Attempts to read {@code len} bytes from the stream into the given array starting at    * {@code off}, with the same behavior as {@link DataInput#readFully(byte[], int, int)}. Does not    * close the stream.    *    * @param in the input stream to read from.    * @param b the buffer into which the data is read.    * @param off an int specifying the offset into the data.    * @param len an int specifying the number of bytes to read.    * @throws EOFException if this stream reaches the end before reading all the bytes.    * @throws IOException if an I/O error occurs.    */
+comment|/**    * Attempts to read {@code len} bytes from the stream into the given array starting at {@code    * off}, with the same behavior as {@link DataInput#readFully(byte[], int, int)}. Does not close    * the stream.    *    * @param in the input stream to read from.    * @param b the buffer into which the data is read.    * @param off an int specifying the offset into the data.    * @param len an int specifying the number of bytes to read.    * @throws EOFException if this stream reaches the end before reading all the bytes.    * @throws IOException if an I/O error occurs.    */
 DECL|method|readFully (InputStream in, byte[] b, int off, int len)
 specifier|public
 specifier|static
@@ -2895,7 +2895,7 @@ return|return
 name|totalSkipped
 return|;
 block|}
-comment|/**    * Attempts to skip up to {@code n} bytes from the given input stream, but not more than    * {@code in.available()} bytes. This prevents {@code FileInputStream} from skipping more bytes    * than actually remain in the file, something that it {@linkplain    * java.io.FileInputStream#skip(long) specifies} it can do in its Javadoc despite the fact that    * it is violating the contract of {@code InputStream.skip()}.    */
+comment|/**    * Attempts to skip up to {@code n} bytes from the given input stream, but not more than {@code    * in.available()} bytes. This prevents {@code FileInputStream} from skipping more bytes than    * actually remain in the file, something that it {@linkplain java.io.FileInputStream#skip(long)    * specifies} it can do in its Javadoc despite the fact that it is violating the contract of    * {@code InputStream.skip()}.    */
 DECL|method|skipSafely (InputStream in, long n)
 specifier|private
 specifier|static
@@ -3024,7 +3024,7 @@ name|getResult
 argument_list|()
 return|;
 block|}
-comment|/**    * Reads some bytes from an input stream and stores them into the buffer array {@code b}. This    * method blocks until {@code len} bytes of input data have been read into the array, or end of    * file is detected. The number of bytes read is returned, possibly zero. Does not close the    * stream.    *    *<p>A caller can detect EOF if the number of bytes read is less than {@code len}. All subsequent    * calls on the same stream will return zero.    *    *<p>If {@code b} is null, a {@code NullPointerException} is thrown. If {@code off} is negative,    * or {@code len} is negative, or {@code off+len} is greater than the length of the array    * {@code b}, then an {@code IndexOutOfBoundsException} is thrown. If {@code len} is zero, then no    * bytes are read. Otherwise, the first byte read is stored into element {@code b[off]}, the next    * one into {@code b[off+1]}, and so on. The number of bytes read is, at most, equal to    * {@code len}.    *    * @param in the input stream to read from    * @param b the buffer into which the data is read    * @param off an int specifying the offset into the data    * @param len an int specifying the number of bytes to read    * @return the number of bytes read    * @throws IOException if an I/O error occurs    */
+comment|/**    * Reads some bytes from an input stream and stores them into the buffer array {@code b}. This    * method blocks until {@code len} bytes of input data have been read into the array, or end of    * file is detected. The number of bytes read is returned, possibly zero. Does not close the    * stream.    *    *<p>A caller can detect EOF if the number of bytes read is less than {@code len}. All subsequent    * calls on the same stream will return zero.    *    *<p>If {@code b} is null, a {@code NullPointerException} is thrown. If {@code off} is negative,    * or {@code len} is negative, or {@code off+len} is greater than the length of the array {@code    * b}, then an {@code IndexOutOfBoundsException} is thrown. If {@code len} is zero, then no bytes    * are read. Otherwise, the first byte read is stored into element {@code b[off]}, the next one    * into {@code b[off+1]}, and so on. The number of bytes read is, at most, equal to {@code len}.    *    * @param in the input stream to read from    * @param b the buffer into which the data is read    * @param off an int specifying the offset into the data    * @param len an int specifying the number of bytes to read    * @return the number of bytes read    * @throws IOException if an I/O error occurs    */
 annotation|@
 name|CanIgnoreReturnValue
 comment|// Sometimes you don't care how many bytes you actually read, I guess.

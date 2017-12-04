@@ -55,7 +55,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Weak reference with a {@code finalizeReferent()} method which a background thread invokes after  * the garbage collector reclaims the referent. This is a simpler alternative to using a  * {@link ReferenceQueue}.  *  * @author Bob Lee  * @since 2.0  */
+comment|/**  * Weak reference with a {@code finalizeReferent()} method which a background thread invokes after  * the garbage collector reclaims the referent. This is a simpler alternative to using a {@link  * ReferenceQueue}.  *  * @author Bob Lee  * @since 2.0  */
 end_comment
 
 begin_class

@@ -445,9 +445,9 @@ name|FloatsAsListGenerator
 extends|extends
 name|TestFloatListGenerator
 block|{
-DECL|method|create (Float[] elements)
 annotation|@
 name|Override
+DECL|method|create (Float[] elements)
 specifier|protected
 name|List
 argument_list|<
@@ -477,9 +477,9 @@ name|FloatsAsListHeadSubListGenerator
 extends|extends
 name|TestFloatListGenerator
 block|{
-DECL|method|create (Float[] elements)
 annotation|@
 name|Override
+DECL|method|create (Float[] elements)
 specifier|protected
 name|List
 argument_list|<
@@ -543,9 +543,9 @@ name|FloatsAsListTailSubListGenerator
 extends|extends
 name|TestFloatListGenerator
 block|{
-DECL|method|create (Float[] elements)
 annotation|@
 name|Override
+DECL|method|create (Float[] elements)
 specifier|protected
 name|List
 argument_list|<
@@ -613,9 +613,9 @@ name|FloatsAsListMiddleSubListGenerator
 extends|extends
 name|TestFloatListGenerator
 block|{
-DECL|method|create (Float[] elements)
 annotation|@
 name|Override
+DECL|method|create (Float[] elements)
 specifier|protected
 name|List
 argument_list|<
@@ -767,8 +767,8 @@ return|;
 block|}
 DECL|class|TestFloatListGenerator
 specifier|public
-specifier|static
 specifier|abstract
+specifier|static
 class|class
 name|TestFloatListGenerator
 implements|implements
@@ -853,7 +853,7 @@ name|array
 argument_list|)
 return|;
 block|}
-comment|/**      * Creates a new collection containing the given elements; implement this      * method instead of {@link #create(Object...)}.      */
+comment|/**      * Creates a new collection containing the given elements; implement this method instead of      * {@link #create(Object...)}.      */
 DECL|method|create (Float[] elements)
 specifier|protected
 specifier|abstract

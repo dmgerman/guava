@@ -65,7 +65,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A regex pattern implementation which is backed by the {@link Pattern}.  */
+comment|/** A regex pattern implementation which is backed by the {@link Pattern}. */
 end_comment
 
 begin_class

@@ -133,7 +133,7 @@ parameter_list|(
 name|UnsupportedOperationException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testAdd ()
 specifier|public
@@ -206,7 +206,7 @@ parameter_list|(
 name|UnsupportedOperationException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testSet ()
 specifier|public
@@ -279,7 +279,7 @@ parameter_list|(
 name|UnsupportedOperationException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|create ()
 name|UnmodifiableListIterator

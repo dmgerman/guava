@@ -3656,9 +3656,9 @@ enum|enum
 name|TwoConstantEnum
 block|{
 DECL|enumConstant|CONSTANT1
-DECL|enumConstant|CONSTANT2
 name|CONSTANT1
 block|,
+DECL|enumConstant|CONSTANT2
 name|CONSTANT2
 block|}
 end_enum

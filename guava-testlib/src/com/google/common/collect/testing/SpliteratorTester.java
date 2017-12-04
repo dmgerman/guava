@@ -273,7 +273,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tester for {@code Spliterator} implementations.  */
+comment|/** Tester for {@code Spliterator} implementations. */
 end_comment
 
 begin_class
@@ -288,7 +288,7 @@ parameter_list|<
 name|E
 parameter_list|>
 block|{
-comment|/**    * Return type from "contains the following elements" assertions.    */
+comment|/** Return type from "contains the following elements" assertions. */
 DECL|interface|Ordered
 specifier|public
 interface|interface
@@ -301,7 +301,7 @@ name|inOrder
 parameter_list|()
 function_decl|;
 block|}
-comment|/**    * Different ways of decomposing a Spliterator, all of which must produce the same    * elements (up to ordering, if Spliterator.ORDERED is not present).    */
+comment|/**    * Different ways of decomposing a Spliterator, all of which must produce the same elements (up to    * ordering, if Spliterator.ORDERED is not present).    */
 DECL|enum|SpliteratorDecompositionStrategy
 enum|enum
 name|SpliteratorDecompositionStrategy

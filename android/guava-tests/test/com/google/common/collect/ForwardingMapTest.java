@@ -435,9 +435,9 @@ operator|=
 name|backingMap
 expr_stmt|;
 block|}
-DECL|method|delegate ()
 annotation|@
 name|Override
+DECL|method|delegate ()
 specifier|protected
 name|Map
 argument_list|<
@@ -452,9 +452,9 @@ return|return
 name|backingMap
 return|;
 block|}
-DECL|method|containsKey (Object key)
 annotation|@
 name|Override
+DECL|method|containsKey (Object key)
 specifier|public
 name|boolean
 name|containsKey
@@ -470,9 +470,9 @@ name|key
 argument_list|)
 return|;
 block|}
-DECL|method|containsValue (Object value)
 annotation|@
 name|Override
+DECL|method|containsValue (Object value)
 specifier|public
 name|boolean
 name|containsValue
@@ -488,9 +488,9 @@ name|value
 argument_list|)
 return|;
 block|}
-DECL|method|putAll (Map<? extends K, ? extends V> map)
 annotation|@
 name|Override
+DECL|method|putAll (Map<? extends K, ? extends V> map)
 specifier|public
 name|void
 name|putAll
@@ -514,9 +514,9 @@ name|map
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|remove (Object object)
 annotation|@
 name|Override
+DECL|method|remove (Object object)
 specifier|public
 name|V
 name|remove
@@ -532,9 +532,9 @@ name|object
 argument_list|)
 return|;
 block|}
-DECL|method|equals (Object object)
 annotation|@
 name|Override
+DECL|method|equals (Object object)
 specifier|public
 name|boolean
 name|equals
@@ -550,9 +550,9 @@ name|object
 argument_list|)
 return|;
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -563,9 +563,9 @@ name|standardHashCode
 argument_list|()
 return|;
 block|}
-DECL|method|keySet ()
 annotation|@
 name|Override
+DECL|method|keySet ()
 specifier|public
 name|Set
 argument_list|<
@@ -580,9 +580,9 @@ name|StandardKeySet
 argument_list|()
 return|;
 block|}
-DECL|method|values ()
 annotation|@
 name|Override
+DECL|method|values ()
 specifier|public
 name|Collection
 argument_list|<
@@ -597,9 +597,9 @@ name|StandardValues
 argument_list|()
 return|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString
@@ -610,9 +610,9 @@ name|standardToString
 argument_list|()
 return|;
 block|}
-DECL|method|entrySet ()
 annotation|@
 name|Override
+DECL|method|entrySet ()
 specifier|public
 name|Set
 argument_list|<
@@ -660,9 +660,9 @@ block|}
 block|}
 return|;
 block|}
-DECL|method|clear ()
 annotation|@
 name|Override
+DECL|method|clear ()
 specifier|public
 name|void
 name|clear
@@ -672,9 +672,9 @@ name|standardClear
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|isEmpty ()
 annotation|@
 name|Override
+DECL|method|isEmpty ()
 specifier|public
 name|boolean
 name|isEmpty

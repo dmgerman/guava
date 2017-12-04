@@ -51,7 +51,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This class provides a skeletal implementation of the {@code Iterator}  * interface for sequences whose next element can always be derived from the  * previous element. Null elements are not supported, nor is the  * {@link #remove()} method.  *  *<p>Example:<pre>   {@code  *  *   Iterator<Integer> powersOfTwo =  *       new AbstractSequentialIterator<Integer>(1) {  *         protected Integer computeNext(Integer previous) {  *           return (previous == 1<< 30) ? null : previous * 2;  *         }  *       };}</pre>  *  * @author Chris Povirk  * @since 12.0 (in Guava as {@code AbstractLinkedIterator} since 8.0)  */
+comment|/**  * This class provides a skeletal implementation of the {@code Iterator} interface for sequences  * whose next element can always be derived from the previous element. Null elements are not  * supported, nor is the {@link #remove()} method.  *  *<p>Example:  *  *<pre>{@code  * Iterator<Integer> powersOfTwo =  *     new AbstractSequentialIterator<Integer>(1) {  *       protected Integer computeNext(Integer previous) {  *         return (previous == 1<< 30) ? null : previous * 2;  *       }  *     };  * }</pre>  *  * @author Chris Povirk  * @since 12.0 (in Guava as {@code AbstractLinkedIterator} since 8.0)  */
 end_comment
 
 begin_class
@@ -76,7 +76,7 @@ specifier|private
 name|T
 name|nextOrNull
 decl_stmt|;
-comment|/**    * Creates a new iterator with the given first element, or, if {@code    * firstOrNull} is null, creates a new empty iterator.    */
+comment|/**    * Creates a new iterator with the given first element, or, if {@code firstOrNull} is null,    * creates a new empty iterator.    */
 DECL|method|AbstractSequentialIterator (@ullable T firstOrNull)
 specifier|protected
 name|AbstractSequentialIterator
@@ -94,7 +94,7 @@ operator|=
 name|firstOrNull
 expr_stmt|;
 block|}
-comment|/**    * Returns the element that follows {@code previous}, or returns {@code null}    * if no elements remain. This method is invoked during each call to    * {@link #next()} in order to compute the result of a<i>future</i> call to    * {@code next()}.    */
+comment|/**    * Returns the element that follows {@code previous}, or returns {@code null} if no elements    * remain. This method is invoked during each call to {@link #next()} in order to compute the    * result of a<i>future</i> call to {@code next()}.    */
 DECL|method|computeNext (T previous)
 specifier|protected
 specifier|abstract

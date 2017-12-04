@@ -51,7 +51,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Validate that {@link EventBus} behaves carefully when listeners publish  * their own events.  *  * @author Jesse Wilson  */
+comment|/**  * Validate that {@link EventBus} behaves carefully when listeners publish their own events.  *  * @author Jesse Wilson  */
 end_comment
 
 begin_class
@@ -294,9 +294,9 @@ specifier|public
 class|class
 name|EventProcessor
 block|{
-DECL|method|listenForStrings (String event)
 annotation|@
 name|Subscribe
+DECL|method|listenForStrings (String event)
 specifier|public
 name|void
 name|listenForStrings
@@ -331,9 +331,9 @@ operator|.
 name|newArrayList
 argument_list|()
 decl_stmt|;
-DECL|method|listenForEverything (Object event)
 annotation|@
 name|Subscribe
+DECL|method|listenForEverything (Object event)
 specifier|public
 name|void
 name|listenForEverything

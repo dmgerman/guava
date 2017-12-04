@@ -45,7 +45,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Emulation of AggregateFutureState.  */
+comment|/** Emulation of AggregateFutureState. */
 end_comment
 
 begin_class

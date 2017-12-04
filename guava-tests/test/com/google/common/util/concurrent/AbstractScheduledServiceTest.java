@@ -490,9 +490,9 @@ name|NullService
 extends|extends
 name|AbstractScheduledService
 block|{
-DECL|method|runOneIteration ()
 annotation|@
 name|Override
+DECL|method|runOneIteration ()
 specifier|protected
 name|void
 name|runOneIteration
@@ -500,9 +500,9 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{}
-DECL|method|scheduler ()
 annotation|@
 name|Override
+DECL|method|scheduler ()
 specifier|protected
 name|Scheduler
 name|scheduler
@@ -512,9 +512,9 @@ return|return
 name|configuration
 return|;
 block|}
-DECL|method|executor ()
 annotation|@
 name|Override
+DECL|method|executor ()
 specifier|protected
 name|ScheduledExecutorService
 name|executor
@@ -1387,7 +1387,7 @@ parameter_list|(
 name|IllegalStateException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 name|assertTrue
 argument_list|(
 name|executor
@@ -1964,7 +1964,7 @@ name|called
 init|=
 literal|false
 decl_stmt|;
-DECL|method|assertSingleCallWithCorrectParameters (Runnable command, long initialDelay, long delay, TimeUnit unit)
+DECL|method|assertSingleCallWithCorrectParameters ( Runnable command, long initialDelay, long delay, TimeUnit unit)
 specifier|private
 name|void
 name|assertSingleCallWithCorrectParameters
@@ -3032,9 +3032,9 @@ argument_list|(
 literal|2
 argument_list|)
 decl_stmt|;
-DECL|method|runOneIteration ()
 annotation|@
 name|Override
+DECL|method|runOneIteration ()
 specifier|protected
 name|void
 name|runOneIteration
@@ -3064,9 +3064,9 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-DECL|method|executor ()
 annotation|@
 name|Override
+DECL|method|executor ()
 specifier|protected
 name|ScheduledExecutorService
 name|executor
@@ -3082,9 +3082,9 @@ literal|10
 argument_list|)
 return|;
 block|}
-DECL|method|scheduler ()
 annotation|@
 name|Override
+DECL|method|scheduler ()
 specifier|protected
 name|Scheduler
 name|scheduler
@@ -3271,9 +3271,9 @@ argument_list|(
 literal|2
 argument_list|)
 decl_stmt|;
-DECL|method|runOneIteration ()
 annotation|@
 name|Override
+DECL|method|runOneIteration ()
 specifier|protected
 name|void
 name|runOneIteration
@@ -3297,9 +3297,9 @@ name|await
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|executor ()
 annotation|@
 name|Override
+DECL|method|executor ()
 specifier|protected
 name|ScheduledExecutorService
 name|executor
@@ -3315,9 +3315,9 @@ literal|10
 argument_list|)
 return|;
 block|}
-DECL|method|scheduler ()
 annotation|@
 name|Override
+DECL|method|scheduler ()
 specifier|protected
 name|Scheduler
 name|scheduler

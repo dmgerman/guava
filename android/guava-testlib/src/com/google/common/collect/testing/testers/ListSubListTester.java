@@ -337,7 +337,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A generic JUnit test which tests {@code subList()} operations on a list.  * Can't be invoked directly; please see  * {@link com.google.common.collect.testing.ListTestSuiteBuilder}.  *  * @author Chris Povirk  */
+comment|/**  * A generic JUnit test which tests {@code subList()} operations on a list. Can't be invoked  * directly; please see {@link com.google.common.collect.testing.ListTestSuiteBuilder}.  *  * @author Chris Povirk  */
 end_comment
 
 begin_class
@@ -2533,7 +2533,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Returns the {@link Method} instance for    * {@link #testSubList_originalListSetAffectsSubList()} so that tests    * of {@link CopyOnWriteArrayList} can suppress them with    * {@code FeatureSpecificTestSuiteBuilder.suppressing()} until<a    * href="http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6570631">Sun bug    * 6570631</a> is fixed.    */
+comment|/**    * Returns the {@link Method} instance for {@link #testSubList_originalListSetAffectsSubList()} so    * that tests of {@link CopyOnWriteArrayList} can suppress them with {@code    * FeatureSpecificTestSuiteBuilder.suppressing()} until<a    * href="http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6570631">Sun bug 6570631</a> is fixed.    */
 annotation|@
 name|GwtIncompatible
 comment|// reflection
@@ -2555,7 +2555,7 @@ literal|"testSubList_originalListSetAffectsSubList"
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the {@link Method} instance for    * {@link #testSubList_originalListSetAffectsSubListLargeList()} ()} so that    * tests of {@link CopyOnWriteArrayList} can suppress them with    * {@code FeatureSpecificTestSuiteBuilder.suppressing()} until<a    * href="http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6570631">Sun bug    * 6570631</a> is fixed.    */
+comment|/**    * Returns the {@link Method} instance for {@link    * #testSubList_originalListSetAffectsSubListLargeList()} ()} so that tests of {@link    * CopyOnWriteArrayList} can suppress them with {@code    * FeatureSpecificTestSuiteBuilder.suppressing()} until<a    * href="http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6570631">Sun bug 6570631</a> is fixed.    */
 annotation|@
 name|GwtIncompatible
 comment|// reflection
@@ -2577,7 +2577,7 @@ literal|"testSubList_originalListSetAffectsSubListLargeList"
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the {@link Method} instance for    * {@link #testSubList_subListRemoveAffectsOriginalLargeList()} so that tests    * of {@link CopyOnWriteArrayList} can suppress it with    * {@code FeatureSpecificTestSuiteBuilder.suppressing()} until<a    * href="http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6570575">Sun bug    * 6570575</a> is fixed.    */
+comment|/**    * Returns the {@link Method} instance for {@link    * #testSubList_subListRemoveAffectsOriginalLargeList()} so that tests of {@link    * CopyOnWriteArrayList} can suppress it with {@code    * FeatureSpecificTestSuiteBuilder.suppressing()} until<a    * href="http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6570575">Sun bug 6570575</a> is fixed.    */
 annotation|@
 name|GwtIncompatible
 comment|// reflection

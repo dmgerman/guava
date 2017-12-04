@@ -153,7 +153,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An immutable sorted set with one or more elements. TODO(jlevy): Consider  * separate class for a single-element sorted set.  *  * @author Jared Levy  * @author Louis Wasserman  */
+comment|/**  * An immutable sorted set with one or more elements. TODO(jlevy): Consider separate class for a  * single-element sorted set.  *  * @author Jared Levy  * @author Louis Wasserman  */
 end_comment
 
 begin_class

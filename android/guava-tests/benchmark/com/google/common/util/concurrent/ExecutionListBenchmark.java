@@ -305,7 +305,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Benchmarks for {@link ExecutionList}.  */
+comment|/** Benchmarks for {@link ExecutionList}. */
 end_comment
 
 begin_class
@@ -929,7 +929,6 @@ name|Param
 name|Impl
 name|impl
 decl_stmt|;
-DECL|field|numListeners
 annotation|@
 name|Param
 argument_list|(
@@ -941,6 +940,7 @@ block|,
 literal|"10"
 block|}
 argument_list|)
+DECL|field|numListeners
 name|int
 name|numListeners
 decl_stmt|;
@@ -969,9 +969,9 @@ expr_stmt|;
 block|}
 block|}
 decl_stmt|;
-DECL|method|setUp ()
 annotation|@
 name|BeforeExperiment
+DECL|method|setUp ()
 name|void
 name|setUp
 parameter_list|()
@@ -1074,9 +1074,9 @@ argument_list|)
 decl_stmt|;
 block|}
 block|}
-DECL|method|tearDown ()
 annotation|@
 name|AfterExperiment
+DECL|method|tearDown ()
 name|void
 name|tearDown
 parameter_list|()
@@ -1150,9 +1150,9 @@ name|getImpl
 argument_list|()
 return|;
 block|}
-DECL|method|addThenExecute_singleThreaded (int reps)
 annotation|@
 name|Benchmark
+DECL|method|addThenExecute_singleThreaded (int reps)
 name|int
 name|addThenExecute_singleThreaded
 parameter_list|(
@@ -1245,9 +1245,9 @@ return|return
 name|returnValue
 return|;
 block|}
-DECL|method|executeThenAdd_singleThreaded (int reps)
 annotation|@
 name|Benchmark
+DECL|method|executeThenAdd_singleThreaded (int reps)
 name|int
 name|executeThenAdd_singleThreaded
 parameter_list|(
@@ -1365,9 +1365,9 @@ expr_stmt|;
 block|}
 block|}
 decl_stmt|;
-DECL|method|addThenExecute_multiThreaded (final int reps)
 annotation|@
 name|Benchmark
+DECL|method|addThenExecute_multiThreaded (final int reps)
 name|int
 name|addThenExecute_multiThreaded
 parameter_list|(
@@ -1532,9 +1532,9 @@ return|return
 name|returnValue
 return|;
 block|}
-DECL|method|executeThenAdd_multiThreaded (final int reps)
 annotation|@
 name|Benchmark
+DECL|method|executeThenAdd_multiThreaded (final int reps)
 name|int
 name|executeThenAdd_multiThreaded
 parameter_list|(
@@ -2646,7 +2646,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**      * TODO(lukes):  This was copied verbatim from Striped64.java... standardize this?      */
+comment|/** TODO(lukes): This was copied verbatim from Striped64.java... standardize this? */
 DECL|method|getUnsafe ()
 specifier|private
 specifier|static
@@ -2676,7 +2676,7 @@ parameter_list|(
 name|SecurityException
 name|tryReflectionInstead
 parameter_list|)
-block|{}
+block|{       }
 try|try
 block|{
 return|return

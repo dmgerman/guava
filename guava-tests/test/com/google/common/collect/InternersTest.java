@@ -215,7 +215,7 @@ parameter_list|(
 name|NullPointerException
 name|ok
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testStrong_builder ()
 specifier|public
@@ -370,7 +370,7 @@ parameter_list|(
 name|NullPointerException
 name|ok
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testWeak_builder ()
 specifier|public

@@ -515,7 +515,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Creates, based on your criteria, a JUnit test suite that exhaustively tests  * a Map implementation.  *  * @author George van den Driessche  */
+comment|/**  * Creates, based on your criteria, a JUnit test suite that exhaustively tests a Map implementation.  *  * @author George van den Driessche  */
 end_comment
 
 begin_class

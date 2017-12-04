@@ -103,7 +103,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Basic reserialization test for collection types that must preserve {@code equals()} behavior  * when reserialized.  (Sets and Lists, but not bare Collections.)  *  * @author Louis Wasserman  */
+comment|/**  * Basic reserialization test for collection types that must preserve {@code equals()} behavior when  * reserialized. (Sets and Lists, but not bare Collections.)  *  * @author Louis Wasserman  */
 end_comment
 
 begin_class

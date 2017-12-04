@@ -185,7 +185,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**   * Unit test for {@link PeekingIterator}.   *   * @author Mick Killianey   */
+comment|/**  * Unit test for {@link PeekingIterator}.  *  * @author Mick Killianey  */
 end_comment
 
 begin_class
@@ -209,7 +209,7 @@ name|PeekingIteratorTest
 extends|extends
 name|TestCase
 block|{
-comment|/**    * Version of {@link IteratorTester} that compares an iterator over    * a given collection of elements (used as the reference iterator)    * against a {@code PeekingIterator} that *wraps* such an iterator    * (used as the target iterator).    *    *<p>This IteratorTester makes copies of the master so that it can    * later verify that {@link PeekingIterator#remove()} removes the    * same elements as the reference's iterator {@code #remove()}.    */
+comment|/**    * Version of {@link IteratorTester} that compares an iterator over a given collection of elements    * (used as the reference iterator) against a {@code PeekingIterator} that *wraps* such an    * iterator (used as the target iterator).    *    *<p>This IteratorTester makes copies of the master so that it can later verify that {@link    * PeekingIterator#remove()} removes the same elements as the reference's iterator {@code    * #remove()}.    */
 DECL|class|PeekingIteratorTester
 specifier|private
 specifier|static
@@ -278,9 +278,9 @@ operator|=
 name|master
 expr_stmt|;
 block|}
-DECL|method|newTargetIterator ()
 annotation|@
 name|Override
+DECL|method|newTargetIterator ()
 specifier|protected
 name|Iterator
 argument_list|<
@@ -319,9 +319,9 @@ name|iterator
 argument_list|)
 return|;
 block|}
-DECL|method|verify (List<T> elements)
 annotation|@
 name|Override
+DECL|method|verify (List<T> elements)
 specifier|protected
 name|void
 name|verify
@@ -956,7 +956,7 @@ name|RuntimeException
 block|{
 comment|/* nothing */
 block|}
-comment|/**     * This Iterator claims to have more elements than the underlying     * iterable, but when you try to fetch the extra elements, it throws     * an unchecked exception.     */
+comment|/**    * This Iterator claims to have more elements than the underlying iterable, but when you try to    * fetch the extra elements, it throws an unchecked exception.    */
 DECL|class|ThrowsAtEndIterator
 specifier|static
 class|class

@@ -93,7 +93,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Static utility methods pertaining to {@code com.google.common.base.Function} instances; see that  * class for information about migrating to {@code java.util.function}.  *  *<p>All methods return serializable functions as long as they're given serializable parameters.  *  *<p>See the Guava User Guide article on  *<a href="https://github.com/google/guava/wiki/FunctionalExplained">the use of {@code  * Function}</a>.  *  * @author Mike Bostock  * @author Jared Levy  * @since 2.0  */
+comment|/**  * Static utility methods pertaining to {@code com.google.common.base.Function} instances; see that  * class for information about migrating to {@code java.util.function}.  *  *<p>All methods return serializable functions as long as they're given serializable parameters.  *  *<p>See the Guava User Guide article on<a  * href="https://github.com/google/guava/wiki/FunctionalExplained">the use of {@code Function}</a>.  *  * @author Mike Bostock  * @author Jared Levy  * @since 2.0  */
 end_comment
 
 begin_class
@@ -182,7 +182,7 @@ literal|"Functions.toStringFunction()"
 return|;
 block|}
 block|}
-comment|/**    * Returns the identity function.    */
+comment|/** Returns the identity function. */
 comment|// implementation is "fully variant"; E has become a "pass-through" type
 annotation|@
 name|SuppressWarnings
@@ -266,7 +266,7 @@ literal|"Functions.identity()"
 return|;
 block|}
 block|}
-comment|/**    * Returns a function which performs a map lookup. The returned function throws an    * {@link IllegalArgumentException} if given a key that does not exist in the map. See also    * {@link #forMap(Map, Object)}, which returns a default value in this case.    *    *<p>Note: if {@code map} is a {@link com.google.common.collect.BiMap BiMap} (or can be one), you    * can use {@link com.google.common.collect.Maps#asConverter Maps.asConverter} instead to get a    * function that also supports reverse conversion.    *    *<p><b>Java 8 users:</b> if you are okay with {@code null} being returned for an unrecognized    * key (instead of an exception being thrown), you can use the method reference {@code map::get}    * instead.    */
+comment|/**    * Returns a function which performs a map lookup. The returned function throws an {@link    * IllegalArgumentException} if given a key that does not exist in the map. See also {@link    * #forMap(Map, Object)}, which returns a default value in this case.    *    *<p>Note: if {@code map} is a {@link com.google.common.collect.BiMap BiMap} (or can be one), you    * can use {@link com.google.common.collect.Maps#asConverter Maps.asConverter} instead to get a    * function that also supports reverse conversion.    *    *<p><b>Java 8 users:</b> if you are okay with {@code null} being returned for an unrecognized    * key (instead of an exception being thrown), you can use the method reference {@code map::get}    * instead.    */
 DECL|method|forMap (Map<K, V> map)
 specifier|public
 specifier|static
@@ -492,7 +492,7 @@ init|=
 literal|0
 decl_stmt|;
 block|}
-comment|/**    * Returns a function which performs a map lookup with a default value. The function created by    * this method returns {@code defaultValue} for all inputs that do not belong to the map's key    * set. See also {@link #forMap(Map)}, which throws an exception in this case.    *    *<p><b>Java 8 users:</b> you can just write the lambda expression {@code k ->    * map.getWithDefault(k, defaultValue)} instead.    *    * @param map source map that determines the function behavior    * @param defaultValue the value to return for inputs that aren't map keys    * @return function that returns {@code map.get(a)} when {@code a} is a key, or {@code    *         defaultValue} otherwise    */
+comment|/**    * Returns a function which performs a map lookup with a default value. The function created by    * this method returns {@code defaultValue} for all inputs that do not belong to the map's key    * set. See also {@link #forMap(Map)}, which throws an exception in this case.    *    *<p><b>Java 8 users:</b> you can just write the lambda expression {@code k ->    * map.getWithDefault(k, defaultValue)} instead.    *    * @param map source map that determines the function behavior    * @param defaultValue the value to return for inputs that aren't map keys    * @return function that returns {@code map.get(a)} when {@code a} is a key, or {@code    *     defaultValue} otherwise    */
 DECL|method|forMap (Map<K, ? extends V> map, @Nullable V defaultValue)
 specifier|public
 specifier|static
@@ -1043,7 +1043,7 @@ init|=
 literal|0
 decl_stmt|;
 block|}
-comment|/**    * Creates a function that returns the same boolean output as the given predicate for all inputs.    *    *<p>The returned function is<i>consistent with equals</i> (as documented at    * {@link Function#apply}) if and only if {@code predicate} is itself consistent with equals.    *    *<p><b>Java 8 users:</b> use the method reference {@code predicate::test} instead.    */
+comment|/**    * Creates a function that returns the same boolean output as the given predicate for all inputs.    *    *<p>The returned function is<i>consistent with equals</i> (as documented at {@link    * Function#apply}) if and only if {@code predicate} is itself consistent with equals.    *    *<p><b>Java 8 users:</b> use the method reference {@code predicate::test} instead.    */
 DECL|method|forPredicate (Predicate<T> predicate)
 specifier|public
 specifier|static

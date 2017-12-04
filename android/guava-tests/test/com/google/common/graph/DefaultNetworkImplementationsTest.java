@@ -233,7 +233,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Test for {@link Network} methods which have default implementations.  * Currently those implementations are in {@link AbstractNetwork}; in future they might be in  * {@link Network} itself, once we are willing to use Java 8 default methods.  */
+comment|/**  * Test for {@link Network} methods which have default implementations. Currently those  * implementations are in {@link AbstractNetwork}; in future they might be in {@link Network}  * itself, once we are willing to use Java 8 default methods.  */
 end_comment
 
 begin_class

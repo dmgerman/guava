@@ -275,7 +275,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A binary encoding scheme for reversibly translating between byte sequences and printable ASCII  * strings. This class includes several constants for encoding schemes specified by  *<a href="http://tools.ietf.org/html/rfc4648">RFC 4648</a>. For example, the expression:  *  *<pre>   {@code  *   BaseEncoding.base32().encode("foo".getBytes(Charsets.US_ASCII))}</pre>  *  *<p>returns the string {@code "MZXW6==="}, and<pre>   {@code  *  byte[] decoded = BaseEncoding.base32().decode("MZXW6===");}</pre>  *  *<p>...returns the ASCII bytes of the string {@code "foo"}.  *  *<p>By default, {@code BaseEncoding}'s behavior is relatively strict and in accordance with RFC  * 4648. Decoding rejects characters in the wrong case, though padding is optional. To modify  * encoding and decoding behavior, use configuration methods to obtain a new encoding with modified  * behavior:  *  *<pre>   {@code  *  BaseEncoding.base16().lowerCase().decode("deadbeef");}</pre>  *  *<p>Warning: BaseEncoding instances are immutable. Invoking a configuration method has no effect  * on the receiving instance; you must store and use the new encoding instance it returns, instead.  *  *<pre>   {@code  *   // Do NOT do this  *   BaseEncoding hex = BaseEncoding.base16();  *   hex.lowerCase(); // does nothing!  *   return hex.decode("deadbeef"); // throws an IllegalArgumentException}</pre>  *  *<p>It is guaranteed that {@code encoding.decode(encoding.encode(x))} is always equal to  * {@code x}, but the reverse does not necessarily hold.  *  *<table>  *<caption>Encodings</caption>  *<tr>  *<th>Encoding  *<th>Alphabet  *<th>{@code char:byte} ratio  *<th>Default padding  *<th>Comments  *<tr>  *<td>{@link #base16()}  *<td>0-9 A-F  *<td>2.00  *<td>N/A  *<td>Traditional hexadecimal. Defaults to upper case.  *<tr>  *<td>{@link #base32()}  *<td>A-Z 2-7  *<td>1.60  *<td>=  *<td>Human-readable; no possibility of mixing up 0/O or 1/I. Defaults to upper case.  *<tr>  *<td>{@link #base32Hex()}  *<td>0-9 A-V  *<td>1.60  *<td>=  *<td>"Numerical" base 32; extended from the traditional hex alphabet. Defaults to upper case.  *<tr>  *<td>{@link #base64()}  *<td>A-Z a-z 0-9 + /  *<td>1.33  *<td>=  *<td>  *<tr>  *<td>{@link #base64Url()}  *<td>A-Z a-z 0-9 - _  *<td>1.33  *<td>=  *<td>Safe to use as filenames, or to pass in URLs without escaping  *</table>  *  *<p>All instances of this class are immutable, so they may be stored safely as static constants.  *  * @author Louis Wasserman  * @since 14.0  */
+comment|/**  * A binary encoding scheme for reversibly translating between byte sequences and printable ASCII  * strings. This class includes several constants for encoding schemes specified by<a  * href="http://tools.ietf.org/html/rfc4648">RFC 4648</a>. For example, the expression:  *  *<pre>{@code  * BaseEncoding.base32().encode("foo".getBytes(Charsets.US_ASCII))  * }</pre>  *  *<p>returns the string {@code "MZXW6==="}, and  *  *<pre>{@code  * byte[] decoded = BaseEncoding.base32().decode("MZXW6===");  * }</pre>  *  *<p>...returns the ASCII bytes of the string {@code "foo"}.  *  *<p>By default, {@code BaseEncoding}'s behavior is relatively strict and in accordance with RFC  * 4648. Decoding rejects characters in the wrong case, though padding is optional. To modify  * encoding and decoding behavior, use configuration methods to obtain a new encoding with modified  * behavior:  *  *<pre>{@code  * BaseEncoding.base16().lowerCase().decode("deadbeef");  * }</pre>  *  *<p>Warning: BaseEncoding instances are immutable. Invoking a configuration method has no effect  * on the receiving instance; you must store and use the new encoding instance it returns, instead.  *  *<pre>{@code  * // Do NOT do this  * BaseEncoding hex = BaseEncoding.base16();  * hex.lowerCase(); // does nothing!  * return hex.decode("deadbeef"); // throws an IllegalArgumentException  * }</pre>  *  *<p>It is guaranteed that {@code encoding.decode(encoding.encode(x))} is always equal to {@code  * x}, but the reverse does not necessarily hold.  *  *<table>  *<caption>Encodings</caption>  *<tr>  *<th>Encoding  *<th>Alphabet  *<th>{@code char:byte} ratio  *<th>Default padding  *<th>Comments  *<tr>  *<td>{@link #base16()}  *<td>0-9 A-F  *<td>2.00  *<td>N/A  *<td>Traditional hexadecimal. Defaults to upper case.  *<tr>  *<td>{@link #base32()}  *<td>A-Z 2-7  *<td>1.60  *<td>=  *<td>Human-readable; no possibility of mixing up 0/O or 1/I. Defaults to upper case.  *<tr>  *<td>{@link #base32Hex()}  *<td>0-9 A-V  *<td>1.60  *<td>=  *<td>"Numerical" base 32; extended from the traditional hex alphabet. Defaults to upper case.  *<tr>  *<td>{@link #base64()}  *<td>A-Z a-z 0-9 + /  *<td>1.33  *<td>=  *<td>  *<tr>  *<td>{@link #base64Url()}  *<td>A-Z a-z 0-9 - _  *<td>1.33  *<td>=  *<td>Safe to use as filenames, or to pass in URLs without escaping  *</table>  *  *<p>All instances of this class are immutable, so they may be stored safely as static constants.  *  * @author Louis Wasserman  * @since 14.0  */
 end_comment
 
 begin_class
@@ -334,7 +334,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Encodes the specified byte array, and returns the encoded {@code String}.    */
+comment|/** Encodes the specified byte array, and returns the encoded {@code String}. */
 DECL|method|encode (byte[] bytes)
 specifier|public
 name|String
@@ -358,7 +358,7 @@ name|length
 argument_list|)
 return|;
 block|}
-comment|/**    * Encodes the specified range of the specified byte array, and returns the encoded    * {@code String}.    */
+comment|/**    * Encodes the specified range of the specified byte array, and returns the encoded {@code    * String}.    */
 DECL|method|encode (byte[] bytes, int off, int len)
 specifier|public
 specifier|final
@@ -436,7 +436,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns an {@code OutputStream} that encodes bytes using this encoding into the specified    * {@code Writer}. When the returned {@code OutputStream} is closed, so is the backing    * {@code Writer}.    */
+comment|/**    * Returns an {@code OutputStream} that encodes bytes using this encoding into the specified    * {@code Writer}. When the returned {@code OutputStream} is closed, so is the backing {@code    * Writer}.    */
 annotation|@
 name|GwtIncompatible
 comment|// Writer,OutputStream
@@ -660,7 +660,7 @@ name|len
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an {@code InputStream} that decodes base-encoded input from the specified    * {@code Reader}. The returned stream throws a {@link DecodingException} upon decoding-specific    * errors.    */
+comment|/**    * Returns an {@code InputStream} that decodes base-encoded input from the specified {@code    * Reader}. The returned stream throws a {@link DecodingException} upon decoding-specific errors.    */
 annotation|@
 name|GwtIncompatible
 comment|// Reader,InputStream
@@ -674,7 +674,7 @@ name|Reader
 name|reader
 parameter_list|)
 function_decl|;
-comment|/**    * Returns a {@code ByteSource} that reads base-encoded bytes from the specified    * {@code CharSource}.    */
+comment|/**    * Returns a {@code ByteSource} that reads base-encoded bytes from the specified {@code    * CharSource}.    */
 annotation|@
 name|GwtIncompatible
 comment|// ByteSource,CharSource
@@ -858,7 +858,7 @@ argument_list|,
 literal|'='
 argument_list|)
 decl_stmt|;
-comment|/**    * The "base64" base encoding specified by    *<a href="http://tools.ietf.org/html/rfc4648#section-4">RFC 4648 section 4</a>, Base 64    * Encoding. (This is the same as the base 64 encoding from    *<a href="http://tools.ietf.org/html/rfc3548#section-3">RFC 3548</a>.)    *    *<p>The character {@code '='} is used for padding, but can be {@linkplain #omitPadding()    * omitted} or {@linkplain #withPadChar(char) replaced}.    *    *<p>No line feeds are added by default, as per    *<a href="http://tools.ietf.org/html/rfc4648#section-3.1">RFC 4648 section 3.1</a>, Line Feeds    * in Encoded Data. Line feeds may be added using {@link #withSeparator(String, int)}.    */
+comment|/**    * The "base64" base encoding specified by<a    * href="http://tools.ietf.org/html/rfc4648#section-4">RFC 4648 section 4</a>, Base 64 Encoding.    * (This is the same as the base 64 encoding from<a    * href="http://tools.ietf.org/html/rfc3548#section-3">RFC 3548</a>.)    *    *<p>The character {@code '='} is used for padding, but can be {@linkplain #omitPadding()    * omitted} or {@linkplain #withPadChar(char) replaced}.    *    *<p>No line feeds are added by default, as per<a    * href="http://tools.ietf.org/html/rfc4648#section-3.1">RFC 4648 section 3.1</a>, Line Feeds in    * Encoded Data. Line feeds may be added using {@link #withSeparator(String, int)}.    */
 DECL|method|base64 ()
 specifier|public
 specifier|static
@@ -887,7 +887,7 @@ argument_list|,
 literal|'='
 argument_list|)
 decl_stmt|;
-comment|/**    * The "base64url" encoding specified by    *<a href="http://tools.ietf.org/html/rfc4648#section-5">RFC 4648 section 5</a>, Base 64 Encoding    * with URL and Filename Safe Alphabet, also sometimes referred to as the "web safe Base64." (This    * is the same as the base 64 encoding with URL and filename safe alphabet from    *<a href="http://tools.ietf.org/html/rfc3548#section-4">RFC 3548</a>.)    *    *<p>The character {@code '='} is used for padding, but can be {@linkplain #omitPadding()    * omitted} or {@linkplain #withPadChar(char) replaced}.    *    *<p>No line feeds are added by default, as per    *<a href="http://tools.ietf.org/html/rfc4648#section-3.1">RFC 4648 section 3.1</a>, Line Feeds    * in Encoded Data. Line feeds may be added using {@link #withSeparator(String, int)}.    */
+comment|/**    * The "base64url" encoding specified by<a    * href="http://tools.ietf.org/html/rfc4648#section-5">RFC 4648 section 5</a>, Base 64 Encoding    * with URL and Filename Safe Alphabet, also sometimes referred to as the "web safe Base64." (This    * is the same as the base 64 encoding with URL and filename safe alphabet from<a    * href="http://tools.ietf.org/html/rfc3548#section-4">RFC 3548</a>.)    *    *<p>The character {@code '='} is used for padding, but can be {@linkplain #omitPadding()    * omitted} or {@linkplain #withPadChar(char) replaced}.    *    *<p>No line feeds are added by default, as per<a    * href="http://tools.ietf.org/html/rfc4648#section-3.1">RFC 4648 section 3.1</a>, Line Feeds in    * Encoded Data. Line feeds may be added using {@link #withSeparator(String, int)}.    */
 DECL|method|base64Url ()
 specifier|public
 specifier|static
@@ -916,7 +916,7 @@ argument_list|,
 literal|'='
 argument_list|)
 decl_stmt|;
-comment|/**    * The "base32" encoding specified by<a href="http://tools.ietf.org/html/rfc4648#section-6">RFC    * 4648 section 6</a>, Base 32 Encoding. (This is the same as the base 32 encoding from    *<a href="http://tools.ietf.org/html/rfc3548#section-5">RFC 3548</a>.)    *    *<p>The character {@code '='} is used for padding, but can be {@linkplain #omitPadding()    * omitted} or {@linkplain #withPadChar(char) replaced}.    *    *<p>No line feeds are added by default, as per    *<a href="http://tools.ietf.org/html/rfc4648#section-3.1">RFC 4648 section 3.1</a>, Line Feeds    * in Encoded Data. Line feeds may be added using {@link #withSeparator(String, int)}.    */
+comment|/**    * The "base32" encoding specified by<a href="http://tools.ietf.org/html/rfc4648#section-6">RFC    * 4648 section 6</a>, Base 32 Encoding. (This is the same as the base 32 encoding from<a    * href="http://tools.ietf.org/html/rfc3548#section-5">RFC 3548</a>.)    *    *<p>The character {@code '='} is used for padding, but can be {@linkplain #omitPadding()    * omitted} or {@linkplain #withPadChar(char) replaced}.    *    *<p>No line feeds are added by default, as per<a    * href="http://tools.ietf.org/html/rfc4648#section-3.1">RFC 4648 section 3.1</a>, Line Feeds in    * Encoded Data. Line feeds may be added using {@link #withSeparator(String, int)}.    */
 DECL|method|base32 ()
 specifier|public
 specifier|static
@@ -945,7 +945,7 @@ argument_list|,
 literal|'='
 argument_list|)
 decl_stmt|;
-comment|/**    * The "base32hex" encoding specified by    *<a href="http://tools.ietf.org/html/rfc4648#section-7">RFC 4648 section 7</a>, Base 32 Encoding    * with Extended Hex Alphabet. There is no corresponding encoding in RFC 3548.    *    *<p>The character {@code '='} is used for padding, but can be {@linkplain #omitPadding()    * omitted} or {@linkplain #withPadChar(char) replaced}.    *    *<p>No line feeds are added by default, as per    *<a href="http://tools.ietf.org/html/rfc4648#section-3.1">RFC 4648 section 3.1</a>, Line Feeds    * in Encoded Data. Line feeds may be added using {@link #withSeparator(String, int)}.    */
+comment|/**    * The "base32hex" encoding specified by<a    * href="http://tools.ietf.org/html/rfc4648#section-7">RFC 4648 section 7</a>, Base 32 Encoding    * with Extended Hex Alphabet. There is no corresponding encoding in RFC 3548.    *    *<p>The character {@code '='} is used for padding, but can be {@linkplain #omitPadding()    * omitted} or {@linkplain #withPadChar(char) replaced}.    *    *<p>No line feeds are added by default, as per<a    * href="http://tools.ietf.org/html/rfc4648#section-3.1">RFC 4648 section 3.1</a>, Line Feeds in    * Encoded Data. Line feeds may be added using {@link #withSeparator(String, int)}.    */
 DECL|method|base32Hex ()
 specifier|public
 specifier|static
@@ -972,7 +972,7 @@ argument_list|,
 literal|"0123456789ABCDEF"
 argument_list|)
 decl_stmt|;
-comment|/**    * The "base16" encoding specified by<a href="http://tools.ietf.org/html/rfc4648#section-8">RFC    * 4648 section 8</a>, Base 16 Encoding. (This is the same as the base 16 encoding from    *<a href="http://tools.ietf.org/html/rfc3548#section-6">RFC 3548</a>.) This is commonly known as    * "hexadecimal" format.    *    *<p>No padding is necessary in base 16, so {@link #withPadChar(char)} and {@link #omitPadding()}    * have no effect.    *    *<p>No line feeds are added by default, as per    *<a href="http://tools.ietf.org/html/rfc4648#section-3.1">RFC 4648 section 3.1</a>, Line Feeds    * in Encoded Data. Line feeds may be added using {@link #withSeparator(String, int)}.    */
+comment|/**    * The "base16" encoding specified by<a href="http://tools.ietf.org/html/rfc4648#section-8">RFC    * 4648 section 8</a>, Base 16 Encoding. (This is the same as the base 16 encoding from<a    * href="http://tools.ietf.org/html/rfc3548#section-6">RFC 3548</a>.) This is commonly known as    * "hexadecimal" format.    *    *<p>No padding is necessary in base 16, so {@link #withPadChar(char)} and {@link #omitPadding()}    * have no effect.    *    *<p>No line feeds are added by default, as per<a    * href="http://tools.ietf.org/html/rfc4648#section-3.1">RFC 4648 section 3.1</a>, Line Feeds in    * Encoded Data. Line feeds may be added using {@link #withSeparator(String, int)}.    */
 DECL|method|base16 ()
 specifier|public
 specifier|static

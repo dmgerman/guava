@@ -115,7 +115,7 @@ DECL|class|Subscriber
 class|class
 name|Subscriber
 block|{
-comment|/**    * Creates a {@code Subscriber} for {@code method} on {@code listener}.    */
+comment|/** Creates a {@code Subscriber} for {@code method} on {@code listener}. */
 DECL|method|create (EventBus bus, Object listener, Method method)
 specifier|static
 name|Subscriber
@@ -240,7 +240,7 @@ name|executor
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * Dispatches {@code event} to this subscriber using the proper executor.    */
+comment|/** Dispatches {@code event} to this subscriber using the proper executor. */
 DECL|method|dispatchEvent (final Object event)
 specifier|final
 name|void
@@ -396,7 +396,7 @@ name|e
 throw|;
 block|}
 block|}
-comment|/**    * Gets the context for the given event.    */
+comment|/** Gets the context for the given event. */
 DECL|method|context (Object event)
 specifier|private
 name|SubscriberExceptionContext
@@ -502,7 +502,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/**    * Checks whether {@code method} is thread-safe, as indicated by the presence of the    * {@link AllowConcurrentEvents} annotation.    */
+comment|/**    * Checks whether {@code method} is thread-safe, as indicated by the presence of the {@link    * AllowConcurrentEvents} annotation.    */
 DECL|method|isDeclaredThreadSafe (Method method)
 specifier|private
 specifier|static

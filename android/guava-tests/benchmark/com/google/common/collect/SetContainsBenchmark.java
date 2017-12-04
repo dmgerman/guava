@@ -95,7 +95,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A microbenchmark that tests the performance of contains() on various Set  * implementations.  *  * @author Kevin Bourrillion  */
+comment|/**  * A microbenchmark that tests the performance of contains() on various Set implementations.  *  * @author Kevin Bourrillion  */
 end_comment
 
 begin_class
@@ -196,9 +196,9 @@ name|Element
 argument_list|>
 name|setToTest
 decl_stmt|;
-DECL|method|setUp ()
 annotation|@
 name|BeforeExperiment
+DECL|method|setUp ()
 name|void
 name|setUp
 parameter_list|()
@@ -248,9 +248,9 @@ name|getQueries
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|contains (int reps)
 annotation|@
 name|Benchmark
+DECL|method|contains (int reps)
 name|boolean
 name|contains
 parameter_list|(

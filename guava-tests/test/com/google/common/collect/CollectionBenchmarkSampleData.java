@@ -526,9 +526,9 @@ operator|=
 name|hash
 expr_stmt|;
 block|}
-DECL|method|equals (Object obj)
 annotation|@
 name|Override
+DECL|method|equals (Object obj)
 specifier|public
 name|boolean
 name|equals
@@ -560,9 +560,9 @@ name|hash
 operator|)
 return|;
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -596,9 +596,9 @@ name|hash
 argument_list|)
 return|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString
@@ -634,9 +634,9 @@ name|hash
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|equals (Object obj)
 annotation|@
 name|Override
+DECL|method|equals (Object obj)
 specifier|public
 name|boolean
 name|equals
@@ -659,9 +659,9 @@ name|obj
 argument_list|)
 return|;
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -674,9 +674,9 @@ operator|+
 name|hash
 return|;
 block|}
-DECL|method|compareTo (Element e)
 annotation|@
 name|Override
+DECL|method|compareTo (Element e)
 specifier|public
 name|int
 name|compareTo

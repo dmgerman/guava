@@ -104,7 +104,7 @@ argument_list|<
 name|E
 argument_list|>
 block|{
-comment|/**    * Creates a new, empty {@code HashMultiset} using the default initial    * capacity.    */
+comment|/** Creates a new, empty {@code HashMultiset} using the default initial capacity. */
 DECL|method|create ()
 specifier|public
 specifier|static
@@ -127,7 +127,7 @@ argument_list|>
 argument_list|()
 return|;
 block|}
-comment|/**    * Creates a new, empty {@code HashMultiset} with the specified expected    * number of distinct elements.    *    * @param distinctElements the expected number of distinct elements    * @throws IllegalArgumentException if {@code distinctElements} is negative    */
+comment|/**    * Creates a new, empty {@code HashMultiset} with the specified expected number of distinct    * elements.    *    * @param distinctElements the expected number of distinct elements    * @throws IllegalArgumentException if {@code distinctElements} is negative    */
 DECL|method|create (int distinctElements)
 specifier|public
 specifier|static
@@ -155,7 +155,7 @@ name|distinctElements
 argument_list|)
 return|;
 block|}
-comment|/**    * Creates a new {@code HashMultiset} containing the specified elements.    *    *<p>This implementation is highly efficient when {@code elements} is itself    * a {@link Multiset}.    *    * @param elements the elements that the multiset should contain    */
+comment|/**    * Creates a new {@code HashMultiset} containing the specified elements.    *    *<p>This implementation is highly efficient when {@code elements} is itself a {@link Multiset}.    *    * @param elements the elements that the multiset should contain    */
 DECL|method|create (Iterable<? extends E> elements)
 specifier|public
 specifier|static
@@ -243,7 +243,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * @serialData the number of distinct elements, the first element, its count,    *     the second element, its count, and so on    */
+comment|/**    * @serialData the number of distinct elements, the first element, its count, the second element,    *     its count, and so on    */
 annotation|@
 name|GwtIncompatible
 comment|// java.io.ObjectOutputStream

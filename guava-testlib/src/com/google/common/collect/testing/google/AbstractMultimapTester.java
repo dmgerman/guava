@@ -210,7 +210,7 @@ return|return
 name|multimap
 return|;
 block|}
-comment|/**    * @return an array of the proper size with {@code null} as the key of the    * middle element.    */
+comment|/** @return an array of the proper size with {@code null} as the key of the middle element. */
 DECL|method|createArrayWithNullKey ()
 specifier|protected
 name|Entry
@@ -277,7 +277,7 @@ return|return
 name|array
 return|;
 block|}
-comment|/**    * @return an array of the proper size with {@code null} as the value of the    * middle element.    */
+comment|/** @return an array of the proper size with {@code null} as the value of the middle element. */
 DECL|method|createArrayWithNullValue ()
 specifier|protected
 name|Entry
@@ -344,7 +344,7 @@ return|return
 name|array
 return|;
 block|}
-comment|/**    * @return an array of the proper size with {@code null} as the key and value of the    * middle element.    */
+comment|/**    * @return an array of the proper size with {@code null} as the key and value of the middle    *     element.    */
 DECL|method|createArrayWithNullKeyAndValue ()
 specifier|protected
 name|Entry

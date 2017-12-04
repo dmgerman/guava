@@ -169,7 +169,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A generic JUnit test which tests operations on a SortedSet. Can't be  * invoked directly; please see {@code SortedSetTestSuiteBuilder}.  *  * @author Jesse Wilson  * @author Louis Wasserman  */
+comment|/**  * A generic JUnit test which tests operations on a SortedSet. Can't be invoked directly; please see  * {@code SortedSetTestSuiteBuilder}.  *  * @author Jesse Wilson  * @author Louis Wasserman  */
 end_comment
 
 begin_class

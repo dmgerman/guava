@@ -88,7 +88,6 @@ specifier|public
 class|class
 name|PowerSetBenchmark
 block|{
-DECL|field|elements
 annotation|@
 name|Param
 argument_list|(
@@ -102,6 +101,7 @@ block|,
 literal|"16"
 block|}
 argument_list|)
+DECL|field|elements
 name|int
 name|elements
 decl_stmt|;
@@ -115,9 +115,9 @@ argument_list|>
 argument_list|>
 name|powerSet
 decl_stmt|;
-DECL|method|setUp ()
 annotation|@
 name|BeforeExperiment
+DECL|method|setUp ()
 name|void
 name|setUp
 parameter_list|()
@@ -155,9 +155,9 @@ name|set
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|iteration (int reps)
 annotation|@
 name|Benchmark
+DECL|method|iteration (int reps)
 name|int
 name|iteration
 parameter_list|(

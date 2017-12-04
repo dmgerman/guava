@@ -557,7 +557,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Unit tests for {@link Futures#getChecked(Future, Class)}.  */
+comment|/** Unit tests for {@link Futures#getChecked(Future, Class)}. */
 end_comment
 
 begin_class

@@ -139,7 +139,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A generalized interval on any ordering, for internal use. Supports {@code null}. Unlike  * {@link Range}, this allows the use of an arbitrary comparator. This is designed for use in the  * implementation of subcollections of sorted collection types.  *  *<p>Whenever possible, use {@code Range} instead, which is better supported.  *  * @author Louis Wasserman  */
+comment|/**  * A generalized interval on any ordering, for internal use. Supports {@code null}. Unlike {@link  * Range}, this allows the use of an arbitrary comparator. This is designed for use in the  * implementation of subcollections of sorted collection types.  *  *<p>Whenever possible, use {@code Range} instead, which is better supported.  *  * @author Louis Wasserman  */
 end_comment
 
 begin_class
@@ -160,7 +160,7 @@ parameter_list|>
 implements|implements
 name|Serializable
 block|{
-comment|/**    * Converts a Range to a GeneralRange.    */
+comment|/** Converts a Range to a GeneralRange. */
 DECL|method|from (Range<T> range)
 specifier|static
 parameter_list|<
@@ -277,7 +277,7 @@ name|upperBoundType
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the whole range relative to the specified comparator.    */
+comment|/** Returns the whole range relative to the specified comparator. */
 DECL|method|all (Comparator<? super T> comparator)
 specifier|static
 parameter_list|<
@@ -1380,7 +1380,7 @@ name|T
 argument_list|>
 name|reverse
 decl_stmt|;
-comment|/**    * Returns the same range relative to the reversed comparator.    */
+comment|/** Returns the same range relative to the reversed comparator. */
 DECL|method|reverse ()
 name|GeneralRange
 argument_list|<

@@ -243,7 +243,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Static utility methods pertaining to {@code int} primitives, that are not already found in either  * {@link Integer} or {@link Arrays}.  *  *<p>See the Guava User Guide article on  *<a href="https://github.com/google/guava/wiki/PrimitivesExplained">primitive utilities</a>.  *  * @author Kevin Bourrillion  * @since 1.0  */
+comment|/**  * Static utility methods pertaining to {@code int} primitives, that are not already found in either  * {@link Integer} or {@link Arrays}.  *  *<p>See the Guava User Guide article on<a  * href="https://github.com/google/guava/wiki/PrimitivesExplained">primitive utilities</a>.  *  * @author Kevin Bourrillion  * @since 1.0  */
 end_comment
 
 begin_class
@@ -294,7 +294,7 @@ operator|-
 literal|2
 operator|)
 decl_stmt|;
-comment|/**    * Returns a hash code for {@code value}; equal to the result of invoking    * {@code ((Integer) value).hashCode()}.    *    *<p><b>Java 8 users:</b> use {@link Integer#hashCode(int)} instead.    *    * @param value a primitive {@code int} value    * @return a hash code for the value    */
+comment|/**    * Returns a hash code for {@code value}; equal to the result of invoking {@code ((Integer)    * value).hashCode()}.    *    *<p><b>Java 8 users:</b> use {@link Integer#hashCode(int)} instead.    *    * @param value a primitive {@code int} value    * @return a hash code for the value    */
 DECL|method|hashCode (int value)
 specifier|public
 specifier|static
@@ -428,7 +428,7 @@ literal|0
 operator|)
 return|;
 block|}
-comment|/**    * Returns {@code true} if {@code target} is present as an element anywhere in {@code array}.    *    * @param array an array of {@code int} values, possibly empty    * @param target a primitive {@code int} value    * @return {@code true} if {@code array[i] == target} for some value of {@code    *     i}    */
+comment|/**    * Returns {@code true} if {@code target} is present as an element anywhere in {@code array}.    *    * @param array an array of {@code int} values, possibly empty    * @param target a primitive {@code int} value    * @return {@code true} if {@code array[i] == target} for some value of {@code i}    */
 DECL|method|contains (int[] array, int target)
 specifier|public
 specifier|static
@@ -553,7 +553,7 @@ operator|-
 literal|1
 return|;
 block|}
-comment|/**    * Returns the start position of the first occurrence of the specified {@code    * target} within {@code array}, or {@code -1} if there is no such occurrence.    *    *<p>More formally, returns the lowest index {@code i} such that    * {@code Arrays.copyOfRange(array, i, i + target.length)} contains exactly the same elements as    * {@code target}.    *    * @param array the array to search for the sequence {@code target}    * @param target the array to search for as a sub-sequence of {@code array}    */
+comment|/**    * Returns the start position of the first occurrence of the specified {@code target} within    * {@code array}, or {@code -1} if there is no such occurrence.    *    *<p>More formally, returns the lowest index {@code i} such that {@code Arrays.copyOfRange(array,    * i, i + target.length)} contains exactly the same elements as {@code target}.    *    * @param array the array to search for the sequence {@code target}    * @param target the array to search for as a sub-sequence of {@code array}    */
 DECL|method|indexOf (int[] array, int[] target)
 specifier|public
 specifier|static
@@ -893,7 +893,7 @@ return|return
 name|max
 return|;
 block|}
-comment|/**    * Returns the value nearest to {@code value} which is within the closed range {@code [min..max]}.    *    *<p>If {@code value} is within the range {@code [min..max]}, {@code value} is returned    * unchanged. If {@code value} is less than {@code min}, {@code min} is returned, and if    * {@code value} is greater than {@code max}, {@code max} is returned.    *    * @param value the {@code int} value to constrain    * @param min the lower bound (inclusive) of the range to constrain {@code value} to    * @param max the upper bound (inclusive) of the range to constrain {@code value} to    * @throws IllegalArgumentException if {@code min> max}    * @since 21.0    */
+comment|/**    * Returns the value nearest to {@code value} which is within the closed range {@code [min..max]}.    *    *<p>If {@code value} is within the range {@code [min..max]}, {@code value} is returned    * unchanged. If {@code value} is less than {@code min}, {@code min} is returned, and if {@code    * value} is greater than {@code max}, {@code max} is returned.    *    * @param value the {@code int} value to constrain    * @param min the lower bound (inclusive) of the range to constrain {@code value} to    * @param max the upper bound (inclusive) of the range to constrain {@code value} to    * @throws IllegalArgumentException if {@code min> max}    * @since 21.0    */
 annotation|@
 name|Beta
 DECL|method|constrainToRange (int value, int min, int max)
@@ -943,7 +943,7 @@ name|max
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the values from each provided array combined into a single array. For example,    * {@code concat(new int[] {a, b}, new int[] {}, new int[] {c}} returns the array {@code {a, b,    * c}}.    *    * @param arrays zero or more {@code int} arrays    * @return a single array containing all the values from the source arrays, in order    */
+comment|/**    * Returns the values from each provided array combined into a single array. For example, {@code    * concat(new int[] {a, b}, new int[] {}, new int[] {c}} returns the array {@code {a, b, c}}.    *    * @param arrays zero or more {@code int} arrays    * @return a single array containing all the values from the source arrays, in order    */
 DECL|method|concat (int[]... arrays)
 specifier|public
 specifier|static
@@ -1030,7 +1030,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/**    * Returns a big-endian representation of {@code value} in a 4-element byte array; equivalent to    * {@code ByteBuffer.allocate(4).putInt(value).array()}. For example, the input value    * {@code 0x12131415} would yield the byte array {@code {0x12, 0x13, 0x14, 0x15}}.    *    *<p>If you need to convert and concatenate several values (possibly even of different types),    * use a shared {@link java.nio.ByteBuffer} instance, or use    * {@link com.google.common.io.ByteStreams#newDataOutput()} to get a growable buffer.    */
+comment|/**    * Returns a big-endian representation of {@code value} in a 4-element byte array; equivalent to    * {@code ByteBuffer.allocate(4).putInt(value).array()}. For example, the input value {@code    * 0x12131415} would yield the byte array {@code {0x12, 0x13, 0x14, 0x15}}.    *    *<p>If you need to convert and concatenate several values (possibly even of different types),    * use a shared {@link java.nio.ByteBuffer} instance, or use {@link    * com.google.common.io.ByteStreams#newDataOutput()} to get a growable buffer.    */
 DECL|method|toByteArray (int value)
 specifier|public
 specifier|static
@@ -1081,7 +1081,7 @@ name|value
 block|}
 return|;
 block|}
-comment|/**    * Returns the {@code int} value whose big-endian representation is stored in the first 4 bytes of    * {@code bytes}; equivalent to {@code ByteBuffer.wrap(bytes).getInt()}. For example, the input    * byte array {@code {0x12, 0x13, 0x14, 0x15, 0x33}} would yield the {@code int} value    * {@code 0x12131415}.    *    *<p>Arguably, it's preferable to use {@link java.nio.ByteBuffer}; that library exposes much more    * flexibility at little cost in readability.    *    * @throws IllegalArgumentException if {@code bytes} has fewer than 4 elements    */
+comment|/**    * Returns the {@code int} value whose big-endian representation is stored in the first 4 bytes of    * {@code bytes}; equivalent to {@code ByteBuffer.wrap(bytes).getInt()}. For example, the input    * byte array {@code {0x12, 0x13, 0x14, 0x15, 0x33}} would yield the {@code int} value {@code    * 0x12131415}.    *    *<p>Arguably, it's preferable to use {@link java.nio.ByteBuffer}; that library exposes much more    * flexibility at little cost in readability.    *    * @throws IllegalArgumentException if {@code bytes} has fewer than 4 elements    */
 DECL|method|fromByteArray (byte[] bytes)
 specifier|public
 specifier|static
@@ -1279,7 +1279,7 @@ init|=
 literal|1
 decl_stmt|;
 block|}
-comment|/**    * Returns a serializable converter object that converts between strings and integers using    * {@link Integer#decode} and {@link Integer#toString()}. The returned converter throws    * {@link NumberFormatException} if the input string is invalid.    *    *<p><b>Warning:</b> please see {@link Integer#decode} to understand exactly how strings are    * parsed. For example, the string {@code "0123"} is treated as<i>octal</i> and converted to the    * value {@code 83}.    *    * @since 16.0    */
+comment|/**    * Returns a serializable converter object that converts between strings and integers using {@link    * Integer#decode} and {@link Integer#toString()}. The returned converter throws {@link    * NumberFormatException} if the input string is invalid.    *    *<p><b>Warning:</b> please see {@link Integer#decode} to understand exactly how strings are    * parsed. For example, the string {@code "0123"} is treated as<i>octal</i> and converted to the    * value {@code 83}.    *    * @since 16.0    */
 annotation|@
 name|Beta
 DECL|method|stringConverter ()
@@ -1300,7 +1300,7 @@ operator|.
 name|INSTANCE
 return|;
 block|}
-comment|/**    * Returns an array containing the same values as {@code array}, but guaranteed to be of a    * specified minimum length. If {@code array} already has a length of at least {@code minLength},    * it is returned directly. Otherwise, a new array of size {@code minLength + padding} is    * returned, containing the values of {@code array}, and zeroes in the remaining places.    *    * @param array the source array    * @param minLength the minimum length the returned array must guarantee    * @param padding an extra amount to "grow" the array by if growth is necessary    * @throws IllegalArgumentException if {@code minLength} or {@code padding} is negative    * @return an array containing the values of {@code array}, with guaranteed minimum length    *     {@code minLength}    */
+comment|/**    * Returns an array containing the same values as {@code array}, but guaranteed to be of a    * specified minimum length. If {@code array} already has a length of at least {@code minLength},    * it is returned directly. Otherwise, a new array of size {@code minLength + padding} is    * returned, containing the values of {@code array}, and zeroes in the remaining places.    *    * @param array the source array    * @param minLength the minimum length the returned array must guarantee    * @param padding an extra amount to "grow" the array by if growth is necessary    * @throws IllegalArgumentException if {@code minLength} or {@code padding} is negative    * @return an array containing the values of {@code array}, with guaranteed minimum length {@code    *     minLength}    */
 DECL|method|ensureCapacity (int[] array, int minLength, int padding)
 specifier|public
 specifier|static
@@ -1791,7 +1791,7 @@ name|tmp
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Returns an array containing each value of {@code collection}, converted to a {@code int} value    * in the manner of {@link Number#intValue}.    *    *<p>Elements are copied from the argument collection as if by {@code    * collection.toArray()}. Calling this method is as thread-safe as calling that method.    *    * @param collection a collection of {@code Number} instances    * @return an array containing the same values as {@code collection}, in the same order, converted    *     to primitives    * @throws NullPointerException if {@code collection} or any of its elements is null    * @since 1.0 (parameter was {@code Collection<Integer>} before 12.0)    */
+comment|/**    * Returns an array containing each value of {@code collection}, converted to a {@code int} value    * in the manner of {@link Number#intValue}.    *    *<p>Elements are copied from the argument collection as if by {@code collection.toArray()}.    * Calling this method is as thread-safe as calling that method.    *    * @param collection a collection of {@code Number} instances    * @return an array containing the same values as {@code collection}, in the same order, converted    *     to primitives    * @throws NullPointerException if {@code collection} or any of its elements is null    * @since 1.0 (parameter was {@code Collection<Integer>} before 12.0)    */
 DECL|method|toArray (Collection<? extends Number> collection)
 specifier|public
 specifier|static
@@ -2660,7 +2660,7 @@ literal|10
 argument_list|)
 return|;
 block|}
-comment|/**    * Parses the specified string as a signed integer value using the specified radix. The ASCII    * character {@code '-'} (<code>'&#92;u002D'</code>) is recognized as the minus sign.    *    *<p>Unlike {@link Integer#parseInt(String, int)}, this method returns {@code null} instead of    * throwing an exception if parsing fails. Additionally, this method only accepts ASCII digits,    * and returns {@code null} if non-ASCII digits are present in the string.    *    *<p>Note that strings prefixed with ASCII {@code '+'} are rejected, even under JDK 7, despite    * the change to {@link Integer#parseInt(String, int)} for that version.    *    * @param string the string representation of an integer value    * @param radix the radix to use when parsing    * @return the integer value represented by {@code string} using {@code radix}, or {@code null} if    *     {@code string} has a length of zero or cannot be parsed as an integer value    * @throws IllegalArgumentException if {@code radix< Character.MIN_RADIX} or    *     {@code radix> Character.MAX_RADIX}    * @since 19.0    */
+comment|/**    * Parses the specified string as a signed integer value using the specified radix. The ASCII    * character {@code '-'} (<code>'&#92;u002D'</code>) is recognized as the minus sign.    *    *<p>Unlike {@link Integer#parseInt(String, int)}, this method returns {@code null} instead of    * throwing an exception if parsing fails. Additionally, this method only accepts ASCII digits,    * and returns {@code null} if non-ASCII digits are present in the string.    *    *<p>Note that strings prefixed with ASCII {@code '+'} are rejected, even under JDK 7, despite    * the change to {@link Integer#parseInt(String, int)} for that version.    *    * @param string the string representation of an integer value    * @param radix the radix to use when parsing    * @return the integer value represented by {@code string} using {@code radix}, or {@code null} if    *     {@code string} has a length of zero or cannot be parsed as an integer value    * @throws IllegalArgumentException if {@code radix< Character.MIN_RADIX} or {@code radix>    *     Character.MAX_RADIX}    * @since 19.0    */
 annotation|@
 name|Beta
 annotation|@

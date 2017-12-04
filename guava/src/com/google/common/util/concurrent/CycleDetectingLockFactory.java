@@ -371,7 +371,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * The {@code CycleDetectingLockFactory} creates {@link ReentrantLock} instances and  * {@link ReentrantReadWriteLock} instances that detect potential deadlock by checking for cycles in  * lock acquisition order.  *  *<p>Potential deadlocks detected when calling the {@code lock()}, {@code lockInterruptibly()}, or  * {@code tryLock()} methods will result in the execution of the {@link Policy} specified when  * creating the factory. The currently available policies are:  *<ul>  *<li>DISABLED  *<li>WARN  *<li>THROW  *</ul>  *  *<p>The locks created by a factory instance will detect lock acquisition cycles with locks created  * by other {@code CycleDetectingLockFactory} instances (except those with {@code Policy.DISABLED}).  * A lock's behavior when a cycle is detected, however, is defined by the {@code Policy} of the  * factory that created it. This allows detection of cycles across components while delegating  * control over lock behavior to individual components.  *  *<p>Applications are encouraged to use a {@code CycleDetectingLockFactory} to create any locks for  * which external/unmanaged code is executed while the lock is held. (See caveats under  *<strong>Performance</strong>).  *  *<p><strong>Cycle Detection</strong>  *  *<p>Deadlocks can arise when locks are acquired in an order that forms a cycle. In a simple  * example involving two locks and two threads, deadlock occurs when one thread acquires Lock A, and  * then Lock B, while another thread acquires Lock B, and then Lock A:  *  *<pre>  * Thread1: acquire(LockA) --X acquire(LockB)  * Thread2: acquire(LockB) --X acquire(LockA)  *</pre>  *  *<p>Neither thread will progress because each is waiting for the other. In more complex  * applications, cycles can arise from interactions among more than 2 locks:  *  *<pre>  * Thread1: acquire(LockA) --X acquire(LockB)  * Thread2: acquire(LockB) --X acquire(LockC)  * ...  * ThreadN: acquire(LockN) --X acquire(LockA)  *</pre>  *  *<p>The implementation detects cycles by constructing a directed graph in which each lock  * represents a node and each edge represents an acquisition ordering between two locks.  *<ul>  *<li>Each lock adds (and removes) itself to/from a ThreadLocal Set of acquired locks when the  *     Thread acquires its first hold (and releases its last remaining hold).  *<li>Before the lock is acquired, the lock is checked against the current set of acquired  *     locks---to each of the acquired locks, an edge from the soon-to-be-acquired lock is either  *     verified or created.  *<li>If a new edge needs to be created, the outgoing edges of the acquired locks are traversed to  *     check for a cycle that reaches the lock to be acquired. If no cycle is detected, a new "safe"  *     edge is created.  *<li>If a cycle is detected, an "unsafe" (cyclic) edge is created to represent a potential  *     deadlock situation, and the appropriate Policy is executed.  *</ul>  *  *<p>Note that detection of potential deadlock does not necessarily indicate that deadlock will  * happen, as it is possible that higher level application logic prevents the cyclic lock  * acquisition from occurring. One example of a false positive is:  *  *<pre>  * LockA -&gt; LockB -&gt; LockC  * LockA -&gt; LockC -&gt; LockB  *</pre>  *  *<p><strong>ReadWriteLocks</strong>  *  *<p>While {@code ReadWriteLock} instances have different properties and can form cycles without  * potential deadlock, this class treats {@code ReadWriteLock} instances as equivalent to  * traditional exclusive locks. Although this increases the false positives that the locks detect  * (i.e. cycles that will not actually result in deadlock), it simplifies the algorithm and  * implementation considerably. The assumption is that a user of this factory wishes to eliminate  * any cyclic acquisition ordering.  *  *<p><strong>Explicit Lock Acquisition Ordering</strong>  *  *<p>The {@link CycleDetectingLockFactory.WithExplicitOrdering} class can be used to enforce an  * application-specific ordering in addition to performing general cycle detection.  *  *<p><strong>Garbage Collection</strong>  *  *<p>In order to allow proper garbage collection of unused locks, the edges of the lock graph are  * weak references.  *  *<p><strong>Performance</strong>  *  *<p>The extra bookkeeping done by cycle detecting locks comes at some cost to performance.  * Benchmarks (as of December 2011) show that:  *  *<ul>  *<li>for an unnested {@code lock()} and {@code unlock()}, a cycle detecting lock takes 38ns as  *     opposed to the 24ns taken by a plain lock.  *<li>for nested locking, the cost increases with the depth of the nesting:  *<ul>  *<li>2 levels: average of 64ns per lock()/unlock()  *<li>3 levels: average of 77ns per lock()/unlock()  *<li>4 levels: average of 99ns per lock()/unlock()  *<li>5 levels: average of 103ns per lock()/unlock()  *<li>10 levels: average of 184ns per lock()/unlock()  *<li>20 levels: average of 393ns per lock()/unlock()  *</ul>  *</ul>  *  *<p>As such, the CycleDetectingLockFactory may not be suitable for performance-critical  * applications which involve tightly-looped or deeply-nested locking algorithms.  *  * @author Darick Tong  * @since 13.0  */
+comment|/**  * The {@code CycleDetectingLockFactory} creates {@link ReentrantLock} instances and {@link  * ReentrantReadWriteLock} instances that detect potential deadlock by checking for cycles in lock  * acquisition order.  *  *<p>Potential deadlocks detected when calling the {@code lock()}, {@code lockInterruptibly()}, or  * {@code tryLock()} methods will result in the execution of the {@link Policy} specified when  * creating the factory. The currently available policies are:  *  *<ul>  *<li>DISABLED  *<li>WARN  *<li>THROW  *</ul>  *  *<p>The locks created by a factory instance will detect lock acquisition cycles with locks created  * by other {@code CycleDetectingLockFactory} instances (except those with {@code Policy.DISABLED}).  * A lock's behavior when a cycle is detected, however, is defined by the {@code Policy} of the  * factory that created it. This allows detection of cycles across components while delegating  * control over lock behavior to individual components.  *  *<p>Applications are encouraged to use a {@code CycleDetectingLockFactory} to create any locks for  * which external/unmanaged code is executed while the lock is held. (See caveats under  *<strong>Performance</strong>).  *  *<p><strong>Cycle Detection</strong>  *  *<p>Deadlocks can arise when locks are acquired in an order that forms a cycle. In a simple  * example involving two locks and two threads, deadlock occurs when one thread acquires Lock A, and  * then Lock B, while another thread acquires Lock B, and then Lock A:  *  *<pre>  * Thread1: acquire(LockA) --X acquire(LockB)  * Thread2: acquire(LockB) --X acquire(LockA)  *</pre>  *  *<p>Neither thread will progress because each is waiting for the other. In more complex  * applications, cycles can arise from interactions among more than 2 locks:  *  *<pre>  * Thread1: acquire(LockA) --X acquire(LockB)  * Thread2: acquire(LockB) --X acquire(LockC)  * ...  * ThreadN: acquire(LockN) --X acquire(LockA)  *</pre>  *  *<p>The implementation detects cycles by constructing a directed graph in which each lock  * represents a node and each edge represents an acquisition ordering between two locks.  *  *<ul>  *<li>Each lock adds (and removes) itself to/from a ThreadLocal Set of acquired locks when the  *       Thread acquires its first hold (and releases its last remaining hold).  *<li>Before the lock is acquired, the lock is checked against the current set of acquired  *       locks---to each of the acquired locks, an edge from the soon-to-be-acquired lock is either  *       verified or created.  *<li>If a new edge needs to be created, the outgoing edges of the acquired locks are traversed  *       to check for a cycle that reaches the lock to be acquired. If no cycle is detected, a new  *       "safe" edge is created.  *<li>If a cycle is detected, an "unsafe" (cyclic) edge is created to represent a potential  *       deadlock situation, and the appropriate Policy is executed.  *</ul>  *  *<p>Note that detection of potential deadlock does not necessarily indicate that deadlock will  * happen, as it is possible that higher level application logic prevents the cyclic lock  * acquisition from occurring. One example of a false positive is:  *  *<pre>  * LockA -&gt; LockB -&gt; LockC  * LockA -&gt; LockC -&gt; LockB  *</pre>  *  *<p><strong>ReadWriteLocks</strong>  *  *<p>While {@code ReadWriteLock} instances have different properties and can form cycles without  * potential deadlock, this class treats {@code ReadWriteLock} instances as equivalent to  * traditional exclusive locks. Although this increases the false positives that the locks detect  * (i.e. cycles that will not actually result in deadlock), it simplifies the algorithm and  * implementation considerably. The assumption is that a user of this factory wishes to eliminate  * any cyclic acquisition ordering.  *  *<p><strong>Explicit Lock Acquisition Ordering</strong>  *  *<p>The {@link CycleDetectingLockFactory.WithExplicitOrdering} class can be used to enforce an  * application-specific ordering in addition to performing general cycle detection.  *  *<p><strong>Garbage Collection</strong>  *  *<p>In order to allow proper garbage collection of unused locks, the edges of the lock graph are  * weak references.  *  *<p><strong>Performance</strong>  *  *<p>The extra bookkeeping done by cycle detecting locks comes at some cost to performance.  * Benchmarks (as of December 2011) show that:  *  *<ul>  *<li>for an unnested {@code lock()} and {@code unlock()}, a cycle detecting lock takes 38ns as  *       opposed to the 24ns taken by a plain lock.  *<li>for nested locking, the cost increases with the depth of the nesting:  *<ul>  *<li>2 levels: average of 64ns per lock()/unlock()  *<li>3 levels: average of 77ns per lock()/unlock()  *<li>4 levels: average of 99ns per lock()/unlock()  *<li>5 levels: average of 103ns per lock()/unlock()  *<li>10 levels: average of 184ns per lock()/unlock()  *<li>20 levels: average of 393ns per lock()/unlock()  *</ul>  *</ul>  *  *<p>As such, the CycleDetectingLockFactory may not be suitable for performance-critical  * applications which involve tightly-looped or deeply-nested locking algorithms.  *  * @author Darick Tong  * @since 13.0  */
 end_comment
 
 begin_class
@@ -395,7 +395,7 @@ specifier|public
 interface|interface
 name|Policy
 block|{
-comment|/**      * Called when a potential deadlock is encountered. Implementations can throw the given      * {@code exception} and/or execute other desired logic.      *      *<p>Note that the method will be called even upon an invocation of {@code tryLock()}. Although      * {@code tryLock()} technically recovers from deadlock by eventually timing out, this behavior      * is chosen based on the assumption that it is the application's wish to prohibit any cyclical      * lock acquisitions.      */
+comment|/**      * Called when a potential deadlock is encountered. Implementations can throw the given {@code      * exception} and/or execute other desired logic.      *      *<p>Note that the method will be called even upon an invocation of {@code tryLock()}. Although      * {@code tryLock()} technically recovers from deadlock by eventually timing out, this behavior      * is chosen based on the assumption that it is the application's wish to prohibit any cyclical      * lock acquisitions.      */
 DECL|method|handlePotentialDeadlock (PotentialDeadlockException exception)
 name|void
 name|handlePotentialDeadlock
@@ -415,7 +415,7 @@ name|Policies
 implements|implements
 name|Policy
 block|{
-comment|/**      * When potential deadlock is detected, this policy results in the throwing of the      * {@code PotentialDeadlockException} indicating the potential deadlock, which includes stack      * traces illustrating the cycle in lock acquisition order.      */
+comment|/**      * When potential deadlock is detected, this policy results in the throwing of the {@code      * PotentialDeadlockException} indicating the potential deadlock, which includes stack traces      * illustrating the cycle in lock acquisition order.      */
 DECL|enumConstant|THROW
 name|THROW
 block|{
@@ -435,7 +435,7 @@ throw|;
 block|}
 block|}
 block|,
-comment|/**      * When potential deadlock is detected, this policy results in the logging of a      * {@link Level#SEVERE} message indicating the potential deadlock, which includes stack traces      * illustrating the cycle in lock acquisition order.      */
+comment|/**      * When potential deadlock is detected, this policy results in the logging of a {@link      * Level#SEVERE} message indicating the potential deadlock, which includes stack traces      * illustrating the cycle in lock acquisition order.      */
 DECL|enumConstant|WARN
 name|WARN
 block|{
@@ -481,7 +481,7 @@ parameter_list|)
 block|{}
 block|}
 block|;   }
-comment|/**    * Creates a new factory with the specified policy.    */
+comment|/** Creates a new factory with the specified policy. */
 DECL|method|newInstance (Policy policy)
 specifier|public
 specifier|static
@@ -500,7 +500,7 @@ name|policy
 argument_list|)
 return|;
 block|}
-comment|/**    * Equivalent to {@code newReentrantLock(lockName, false)}.    */
+comment|/** Equivalent to {@code newReentrantLock(lockName, false)}. */
 DECL|method|newReentrantLock (String lockName)
 specifier|public
 name|ReentrantLock
@@ -558,7 +558,7 @@ name|fair
 argument_list|)
 return|;
 block|}
-comment|/**    * Equivalent to {@code newReentrantReadWriteLock(lockName, false)}.    */
+comment|/** Equivalent to {@code newReentrantReadWriteLock(lockName, false)}. */
 DECL|method|newReentrantReadWriteLock (String lockName)
 specifier|public
 name|ReentrantReadWriteLock
@@ -651,7 +651,7 @@ operator|.
 name|makeMap
 argument_list|()
 decl_stmt|;
-comment|/**    * Creates a {@code CycleDetectingLockFactory.WithExplicitOrdering<E>}.    */
+comment|/** Creates a {@code CycleDetectingLockFactory.WithExplicitOrdering<E>}. */
 DECL|method|newInstanceWithExplicitOrdering ( Class<E> enumClass, Policy policy)
 specifier|public
 specifier|static
@@ -817,7 +817,7 @@ name|created
 argument_list|)
 return|;
 block|}
-comment|/**    * For a given Enum type, creates an immutable map from each of the Enum's values to a    * corresponding LockGraphNode, with the {@code allowedPriorLocks} and    * {@code disallowedPriorLocks} prepopulated with nodes according to the natural ordering of the    * associated Enum values.    */
+comment|/**    * For a given Enum type, creates an immutable map from each of the Enum's values to a    * corresponding LockGraphNode, with the {@code allowedPriorLocks} and {@code    * disallowedPriorLocks} prepopulated with nodes according to the natural ordering of the    * associated Enum values.    */
 annotation|@
 name|VisibleForTesting
 DECL|method|createNodes (Class<E> clazz)
@@ -1052,7 +1052,7 @@ name|name
 argument_list|()
 return|;
 block|}
-comment|/**    *<p>A {@code CycleDetectingLockFactory.WithExplicitOrdering} provides the additional enforcement    * of an application-specified ordering of lock acquisitions. The application defines the allowed    * ordering with an {@code Enum} whose values each correspond to a lock type. The order in which    * the values are declared dictates the allowed order of lock acquisition. In other words, locks    * corresponding to smaller values of {@link Enum#ordinal()} should only be acquired before locks    * with larger ordinals. Example:    *    *<pre>   {@code    * enum MyLockOrder {    *   FIRST, SECOND, THIRD;    * }    *    * CycleDetectingLockFactory.WithExplicitOrdering<MyLockOrder> factory =    *   CycleDetectingLockFactory.newInstanceWithExplicitOrdering(Policies.THROW);    *    * Lock lock1 = factory.newReentrantLock(MyLockOrder.FIRST);    * Lock lock2 = factory.newReentrantLock(MyLockOrder.SECOND);    * Lock lock3 = factory.newReentrantLock(MyLockOrder.THIRD);    *    * lock1.lock();    * lock3.lock();    * lock2.lock();  // will throw an IllegalStateException}</pre>    *    *<p>As with all locks created by instances of {@code CycleDetectingLockFactory} explicitly    * ordered locks participate in general cycle detection with all other cycle detecting locks, and    * a lock's behavior when detecting a cyclic lock acquisition is defined by the {@code Policy} of    * the factory that created it.    *    *<p>Note, however, that although multiple locks can be created for a given Enum value, whether    * it be through separate factory instances or through multiple calls to the same factory,    * attempting to acquire multiple locks with the same Enum value (within the same thread) will    * result in an IllegalStateException regardless of the factory's policy. For example:    *    *<pre>   {@code    * CycleDetectingLockFactory.WithExplicitOrdering<MyLockOrder> factory1 =    *   CycleDetectingLockFactory.newInstanceWithExplicitOrdering(...);    * CycleDetectingLockFactory.WithExplicitOrdering<MyLockOrder> factory2 =    *   CycleDetectingLockFactory.newInstanceWithExplicitOrdering(...);    *    * Lock lockA = factory1.newReentrantLock(MyLockOrder.FIRST);    * Lock lockB = factory1.newReentrantLock(MyLockOrder.FIRST);    * Lock lockC = factory2.newReentrantLock(MyLockOrder.FIRST);    *    * lockA.lock();    *    * lockB.lock();  // will throw an IllegalStateException    * lockC.lock();  // will throw an IllegalStateException    *    * lockA.lock();  // reentrant acquisition is okay}</pre>    *    *<p>It is the responsibility of the application to ensure that multiple lock instances with the    * same rank are never acquired in the same thread.    *    * @param<E> The Enum type representing the explicit lock ordering.    * @since 13.0    */
+comment|/**    * A {@code CycleDetectingLockFactory.WithExplicitOrdering} provides the additional enforcement of    * an application-specified ordering of lock acquisitions. The application defines the allowed    * ordering with an {@code Enum} whose values each correspond to a lock type. The order in which    * the values are declared dictates the allowed order of lock acquisition. In other words, locks    * corresponding to smaller values of {@link Enum#ordinal()} should only be acquired before locks    * with larger ordinals. Example:    *    *<pre>{@code    * enum MyLockOrder {    *   FIRST, SECOND, THIRD;    * }    *    * CycleDetectingLockFactory.WithExplicitOrdering<MyLockOrder> factory =    *   CycleDetectingLockFactory.newInstanceWithExplicitOrdering(Policies.THROW);    *    * Lock lock1 = factory.newReentrantLock(MyLockOrder.FIRST);    * Lock lock2 = factory.newReentrantLock(MyLockOrder.SECOND);    * Lock lock3 = factory.newReentrantLock(MyLockOrder.THIRD);    *    * lock1.lock();    * lock3.lock();    * lock2.lock();  // will throw an IllegalStateException    * }</pre>    *    *<p>As with all locks created by instances of {@code CycleDetectingLockFactory} explicitly    * ordered locks participate in general cycle detection with all other cycle detecting locks, and    * a lock's behavior when detecting a cyclic lock acquisition is defined by the {@code Policy} of    * the factory that created it.    *    *<p>Note, however, that although multiple locks can be created for a given Enum value, whether    * it be through separate factory instances or through multiple calls to the same factory,    * attempting to acquire multiple locks with the same Enum value (within the same thread) will    * result in an IllegalStateException regardless of the factory's policy. For example:    *    *<pre>{@code    * CycleDetectingLockFactory.WithExplicitOrdering<MyLockOrder> factory1 =    *   CycleDetectingLockFactory.newInstanceWithExplicitOrdering(...);    * CycleDetectingLockFactory.WithExplicitOrdering<MyLockOrder> factory2 =    *   CycleDetectingLockFactory.newInstanceWithExplicitOrdering(...);    *    * Lock lockA = factory1.newReentrantLock(MyLockOrder.FIRST);    * Lock lockB = factory1.newReentrantLock(MyLockOrder.FIRST);    * Lock lockC = factory2.newReentrantLock(MyLockOrder.FIRST);    *    * lockA.lock();    *    * lockB.lock();  // will throw an IllegalStateException    * lockC.lock();  // will throw an IllegalStateException    *    * lockA.lock();  // reentrant acquisition is okay    * }</pre>    *    *<p>It is the responsibility of the application to ensure that multiple lock instances with the    * same rank are never acquired in the same thread.    *    * @param<E> The Enum type representing the explicit lock ordering.    * @since 13.0    */
 annotation|@
 name|Beta
 DECL|class|WithExplicitOrdering
@@ -1112,7 +1112,7 @@ operator|=
 name|lockGraphNodes
 expr_stmt|;
 block|}
-comment|/**      * Equivalent to {@code newReentrantLock(rank, false)}.      */
+comment|/** Equivalent to {@code newReentrantLock(rank, false)}. */
 DECL|method|newReentrantLock (E rank)
 specifier|public
 name|ReentrantLock
@@ -1171,7 +1171,7 @@ name|fair
 argument_list|)
 return|;
 block|}
-comment|/**      * Equivalent to {@code newReentrantReadWriteLock(rank, false)}.      */
+comment|/** Equivalent to {@code newReentrantReadWriteLock(rank, false)}. */
 DECL|method|newReentrantReadWriteLock (E rank)
 specifier|public
 name|ReentrantReadWriteLock
@@ -1274,7 +1274,7 @@ name|policy
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Tracks the currently acquired locks for each Thread, kept up to date by calls to    * {@link #aboutToAcquire(CycleDetectingLock)} and {@link #lockStateChanged(CycleDetectingLock)}.    */
+comment|/**    * Tracks the currently acquired locks for each Thread, kept up to date by calls to {@link    * #aboutToAcquire(CycleDetectingLock)} and {@link #lockStateChanged(CycleDetectingLock)}.    */
 comment|// This is logically a Set, but an ArrayList is used to minimize the amount
 comment|// of allocation done on lock()/unlock().
 DECL|field|acquiredLocks
@@ -1560,7 +1560,7 @@ return|return
 name|conflictingStackTrace
 return|;
 block|}
-comment|/**      * Appends the chain of messages from the {@code conflictingStackTrace} to the original      * {@code message}.      */
+comment|/**      * Appends the chain of messages from the {@code conflictingStackTrace} to the original {@code      * message}.      */
 annotation|@
 name|Override
 DECL|method|getMessage ()
@@ -1775,7 +1775,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Checks the acquisition-ordering between {@code this}, which is about to be acquired, and the      * specified {@code acquiredLock}.      *      *<p>When this method returns, the {@code acquiredLock} should be in either the      * {@code preAcquireLocks} map, for the case in which it is safe to acquire {@code this} after      * the {@code acquiredLock}, or in the {@code disallowedPriorLocks} map, in which case it is not      * safe.      */
+comment|/**      * Checks the acquisition-ordering between {@code this}, which is about to be acquired, and the      * specified {@code acquiredLock}.      *      *<p>When this method returns, the {@code acquiredLock} should be in either the {@code      * preAcquireLocks} map, for the case in which it is safe to acquire {@code this} after the      * {@code acquiredLock}, or in the {@code disallowedPriorLocks} map, in which case it is not      * safe.      */
 DECL|method|checkAcquiredLock (Policy policy, LockGraphNode acquiredLock)
 name|void
 name|checkAcquiredLock
@@ -1960,7 +1960,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Performs a depth-first traversal of the graph edges defined by each node's      * {@code allowedPriorLocks} to find a path between {@code this} and the specified {@code lock}.      *      * @return If a path was found, a chained {@link ExampleStackTrace} illustrating the path to the      *     {@code lock}, or {@code null} if no path was found.      */
+comment|/**      * Performs a depth-first traversal of the graph edges defined by each node's {@code      * allowedPriorLocks} to find a path between {@code this} and the specified {@code lock}.      *      * @return If a path was found, a chained {@link ExampleStackTrace} illustrating the path to the      *     {@code lock}, or {@code null} if no path was found.      */
 annotation|@
 name|Nullable
 DECL|method|findPathTo (LockGraphNode node, Set<LockGraphNode> seen)

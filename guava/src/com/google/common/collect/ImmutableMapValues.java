@@ -275,9 +275,9 @@ block|}
 block|}
 return|;
 block|}
-DECL|method|spliterator ()
 annotation|@
 name|Override
+DECL|method|spliterator ()
 specifier|public
 name|Spliterator
 argument_list|<

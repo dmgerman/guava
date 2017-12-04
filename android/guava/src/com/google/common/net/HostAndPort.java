@@ -155,7 +155,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An immutable representation of a host and port.  *  *<p>Example usage:  *  *<pre>  * HostAndPort hp = HostAndPort.fromString("[2001:db8::1]")  *     .withDefaultPort(80)  *     .requireBracketsForIPv6();  * hp.getHost();   // returns "2001:db8::1"  * hp.getPort();   // returns 80  * hp.toString();  // returns "[2001:db8::1]:80"  *</pre>  *  *<p>Here are some examples of recognized formats:  *<ul>  *<li>example.com  *<li>example.com:80  *<li>192.0.2.1  *<li>192.0.2.1:80  *<li>[2001:db8::1] - {@link #getHost()} omits brackets  *<li>[2001:db8::1]:80 - {@link #getHost()} omits brackets  *<li>2001:db8::1 - Use {@link #requireBracketsForIPv6()} to prohibit this  *</ul>  *  *<p>Note that this is not an exhaustive list, because these methods are only concerned with  * brackets, colons, and port numbers. Full validation of the host field (if desired) is the  * caller's responsibility.  *  * @author Paul Marks  * @since 10.0  */
+comment|/**  * An immutable representation of a host and port.  *  *<p>Example usage:  *  *<pre>  * HostAndPort hp = HostAndPort.fromString("[2001:db8::1]")  *     .withDefaultPort(80)  *     .requireBracketsForIPv6();  * hp.getHost();   // returns "2001:db8::1"  * hp.getPort();   // returns 80  * hp.toString();  // returns "[2001:db8::1]:80"  *</pre>  *  *<p>Here are some examples of recognized formats:  *  *<ul>  *<li>example.com  *<li>example.com:80  *<li>192.0.2.1  *<li>192.0.2.1:80  *<li>[2001:db8::1] - {@link #getHost()} omits brackets  *<li>[2001:db8::1]:80 - {@link #getHost()} omits brackets  *<li>2001:db8::1 - Use {@link #requireBracketsForIPv6()} to prohibit this  *</ul>  *  *<p>Note that this is not an exhaustive list, because these methods are only concerned with  * brackets, colons, and port numbers. Full validation of the host field (if desired) is the  * caller's responsibility.  *  * @author Paul Marks  * @since 10.0  */
 end_comment
 
 begin_class
@@ -279,7 +279,7 @@ return|return
 name|port
 return|;
 block|}
-comment|/**    * Returns the current port number, with a default if no port is defined.    */
+comment|/** Returns the current port number, with a default if no port is defined. */
 DECL|method|getPortOrDefault (int defaultPort)
 specifier|public
 name|int
@@ -397,7 +397,7 @@ return|return
 name|parsedHost
 return|;
 block|}
-comment|/**    * Split a freeform string into a host and port, without strict validation.    *    * Note that the host-only formats will leave the port field undefined. You can use    * {@link #withDefaultPort(int)} to patch in a default value.    *    * @param hostPortString the input string to parse.    * @return if parsing was successful, a populated HostAndPort object.    * @throws IllegalArgumentException if nothing meaningful could be parsed.    */
+comment|/**    * Split a freeform string into a host and port, without strict validation.    *    *<p>Note that the host-only formats will leave the port field undefined. You can use {@link    * #withDefaultPort(int)} to patch in a default value.    *    * @param hostPortString the input string to parse.    * @return if parsing was successful, a populated HostAndPort object.    * @throws IllegalArgumentException if nothing meaningful could be parsed.    */
 DECL|method|fromString (String hostPortString)
 specifier|public
 specifier|static
@@ -806,7 +806,7 @@ block|}
 return|;
 block|}
 block|}
-comment|/**    * Provide a default port if the parsed string contained only a host.    *    * You can chain this after {@link #fromString(String)} to include a port in case the port was    * omitted from the input string. If a port was already provided, then this method is a no-op.    *    * @param defaultPort a port number, from [0..65535]    * @return a HostAndPort instance, guaranteed to have a defined port.    */
+comment|/**    * Provide a default port if the parsed string contained only a host.    *    *<p>You can chain this after {@link #fromString(String)} to include a port in case the port was    * omitted from the input string. If a port was already provided, then this method is a no-op.    *    * @param defaultPort a port number, from [0..65535]    * @return a HostAndPort instance, guaranteed to have a defined port.    */
 DECL|method|withDefaultPort (int defaultPort)
 specifier|public
 name|HostAndPort

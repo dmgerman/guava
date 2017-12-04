@@ -33,7 +33,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A type which will never be used as the element type of any collection in our  * tests, and so can be used to test how a Collection behaves when given input  * of the wrong type.  */
+comment|/**  * A type which will never be used as the element type of any collection in our tests, and so can be  * used to test how a Collection behaves when given input of the wrong type.  */
 end_comment
 
 begin_enum

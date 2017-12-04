@@ -255,9 +255,9 @@ operator|new
 name|TearDownStack
 argument_list|()
 decl_stmt|;
-DECL|method|setUp ()
 annotation|@
 name|Override
+DECL|method|setUp ()
 specifier|protected
 name|void
 name|setUp
@@ -354,7 +354,7 @@ name|runTearDown
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * This first test doesn't test anything in Uninterruptibles, just    * demonstrates some normal behavior of futures so that you can contrast    * the next test with it.    */
+comment|/**    * This first test doesn't test anything in Uninterruptibles, just demonstrates some normal    * behavior of futures so that you can contrast the next test with it.    */
 DECL|method|testRegularFutureInterrupted ()
 specifier|public
 name|void
@@ -803,7 +803,7 @@ name|interruptReporter
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|runNInterruptsTest (int times, SettableFuture<String> future, FutureTask<Boolean> interruptReporter)
+DECL|method|runNInterruptsTest ( int times, SettableFuture<String> future, FutureTask<Boolean> interruptReporter)
 specifier|private
 specifier|static
 name|void
@@ -893,7 +893,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Confirms that the test code triggers {@link InterruptedException} in a    * standard {@link Future}.    */
+comment|/**    * Confirms that the test code triggers {@link InterruptedException} in a standard {@link Future}.    */
 DECL|method|testMakeUninterruptible_plainFutureSanityCheck ()
 specifier|public
 name|void
@@ -1157,7 +1157,7 @@ block|}
 argument_list|)
 return|;
 block|}
-DECL|method|timedInterruptReporter ( final Future<?> future)
+DECL|method|timedInterruptReporter (final Future<?> future)
 specifier|private
 specifier|static
 name|FutureTask

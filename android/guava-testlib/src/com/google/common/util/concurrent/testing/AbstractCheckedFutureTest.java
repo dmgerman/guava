@@ -105,7 +105,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Test case to make sure the {@link CheckedFuture#checkedGet()} and  * {@link CheckedFuture#checkedGet(long, TimeUnit)} methods work correctly.  *  * @author Sven Mawson  * @since 10.0  */
+comment|/**  * Test case to make sure the {@link CheckedFuture#checkedGet()} and {@link  * CheckedFuture#checkedGet(long, TimeUnit)} methods work correctly.  *  * @author Sven Mawson  * @since 10.0  */
 end_comment
 
 begin_class
@@ -121,8 +121,8 @@ name|AbstractCheckedFutureTest
 extends|extends
 name|AbstractListenableFutureTest
 block|{
-comment|/**    * More specific type for the create method.    */
-DECL|method|createCheckedFuture (V value, Exception except, CountDownLatch waitOn)
+comment|/** More specific type for the create method. */
+DECL|method|createCheckedFuture ( V value, Exception except, CountDownLatch waitOn)
 specifier|protected
 specifier|abstract
 parameter_list|<
@@ -146,7 +146,7 @@ name|CountDownLatch
 name|waitOn
 parameter_list|)
 function_decl|;
-comment|/**    * Checks that the exception is the correct type of cancellation exception.    */
+comment|/** Checks that the exception is the correct type of cancellation exception. */
 DECL|method|checkCancelledException (Exception e)
 specifier|protected
 specifier|abstract
@@ -157,7 +157,7 @@ name|Exception
 name|e
 parameter_list|)
 function_decl|;
-comment|/**    * Checks that the exception is the correct type of execution exception.    */
+comment|/** Checks that the exception is the correct type of execution exception. */
 DECL|method|checkExecutionException (Exception e)
 specifier|protected
 specifier|abstract
@@ -168,7 +168,7 @@ name|Exception
 name|e
 parameter_list|)
 function_decl|;
-comment|/**    * Checks that the exception is the correct type of interruption exception.    */
+comment|/** Checks that the exception is the correct type of interruption exception. */
 DECL|method|checkInterruptedException (Exception e)
 specifier|protected
 specifier|abstract
@@ -181,7 +181,7 @@ parameter_list|)
 function_decl|;
 annotation|@
 name|Override
-DECL|method|createListenableFuture (V value, Exception except, CountDownLatch waitOn)
+DECL|method|createListenableFuture ( V value, Exception except, CountDownLatch waitOn)
 specifier|protected
 parameter_list|<
 name|V
@@ -213,7 +213,7 @@ name|waitOn
 argument_list|)
 return|;
 block|}
-comment|/**    * Tests that the {@link CheckedFuture#checkedGet()} method throws the correct    * type of cancellation exception when it is cancelled.    */
+comment|/**    * Tests that the {@link CheckedFuture#checkedGet()} method throws the correct type of    * cancellation exception when it is cancelled.    */
 DECL|method|testCheckedGetThrowsApplicationExceptionOnCancellation ()
 specifier|public
 name|void

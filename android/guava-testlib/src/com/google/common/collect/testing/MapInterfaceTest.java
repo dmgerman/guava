@@ -229,7 +229,7 @@ specifier|final
 name|boolean
 name|supportsIteratorRemove
 decl_stmt|;
-comment|/**    * Creates a new, empty instance of the class under test.    *    * @return a new, empty map instance.    * @throws UnsupportedOperationException if it's not possible to make an    * empty instance of the class under test.    */
+comment|/**    * Creates a new, empty instance of the class under test.    *    * @return a new, empty map instance.    * @throws UnsupportedOperationException if it's not possible to make an empty instance of the    *     class under test.    */
 DECL|method|makeEmptyMap ()
 specifier|protected
 specifier|abstract
@@ -244,7 +244,7 @@ parameter_list|()
 throws|throws
 name|UnsupportedOperationException
 function_decl|;
-comment|/**    * Creates a new, non-empty instance of the class under test.    *    * @return a new, non-empty map instance.    * @throws UnsupportedOperationException if it's not possible to make a    * non-empty instance of the class under test.    */
+comment|/**    * Creates a new, non-empty instance of the class under test.    *    * @return a new, non-empty map instance.    * @throws UnsupportedOperationException if it's not possible to make a non-empty instance of the    *     class under test.    */
 DECL|method|makePopulatedMap ()
 specifier|protected
 specifier|abstract
@@ -259,7 +259,7 @@ parameter_list|()
 throws|throws
 name|UnsupportedOperationException
 function_decl|;
-comment|/**    * Creates a new key that is not expected to be found    * in {@link #makePopulatedMap()}.    *    * @return a key.    * @throws UnsupportedOperationException if it's not possible to make a key    * that will not be found in the map.    */
+comment|/**    * Creates a new key that is not expected to be found in {@link #makePopulatedMap()}.    *    * @return a key.    * @throws UnsupportedOperationException if it's not possible to make a key that will not be found    *     in the map.    */
 DECL|method|getKeyNotInPopulatedMap ()
 specifier|protected
 specifier|abstract
@@ -269,7 +269,7 @@ parameter_list|()
 throws|throws
 name|UnsupportedOperationException
 function_decl|;
-comment|/**    * Creates a new value that is not expected to be found    * in {@link #makePopulatedMap()}.    *    * @return a value.    * @throws UnsupportedOperationException if it's not possible to make a value    * that will not be found in the map.    */
+comment|/**    * Creates a new value that is not expected to be found in {@link #makePopulatedMap()}.    *    * @return a value.    * @throws UnsupportedOperationException if it's not possible to make a value that will not be    *     found in the map.    */
 DECL|method|getValueNotInPopulatedMap ()
 specifier|protected
 specifier|abstract
@@ -279,7 +279,7 @@ parameter_list|()
 throws|throws
 name|UnsupportedOperationException
 function_decl|;
-comment|/**    * Constructor that assigns {@code supportsIteratorRemove} the same value as    * {@code supportsRemove}.    */
+comment|/**    * Constructor that assigns {@code supportsIteratorRemove} the same value as {@code    * supportsRemove}.    */
 DECL|method|MapInterfaceTest ( boolean allowsNullKeys, boolean allowsNullValues, boolean supportsPut, boolean supportsRemove, boolean supportsClear)
 specifier|protected
 name|MapInterfaceTest
@@ -316,7 +316,7 @@ name|supportsRemove
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Constructor with an explicit {@code supportsIteratorRemove} parameter.    */
+comment|/** Constructor with an explicit {@code supportsIteratorRemove} parameter. */
 DECL|method|MapInterfaceTest ( boolean allowsNullKeys, boolean allowsNullValues, boolean supportsPut, boolean supportsRemove, boolean supportsClear, boolean supportsIteratorRemove)
 specifier|protected
 name|MapInterfaceTest
@@ -377,7 +377,7 @@ operator|=
 name|supportsIteratorRemove
 expr_stmt|;
 block|}
-comment|/**    * Used by tests that require a map, but don't care whether it's    * populated or not.    *    * @return a new map instance.    */
+comment|/**    * Used by tests that require a map, but don't care whether it's populated or not.    *    * @return a new map instance.    */
 DECL|method|makeEitherMap ()
 specifier|protected
 name|Map
@@ -477,7 +477,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/**    * Checks all the properties that should always hold of a map. Also calls    * {@link #assertMoreInvariants} to check invariants that are peculiar to    * specific implementations.    *    * @see #assertMoreInvariants    * @param map the map to check.    */
+comment|/**    * Checks all the properties that should always hold of a map. Also calls {@link    * #assertMoreInvariants} to check invariants that are peculiar to specific implementations.    *    * @see #assertMoreInvariants    * @param map the map to check.    */
 DECL|method|assertInvariants (Map<K, V> map)
 specifier|protected
 specifier|final
@@ -1297,7 +1297,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Override this to check invariants which should hold true for a particular    * implementation, but which are not generally applicable to every instance    * of Map.    *    * @param map the map whose additional invariants to check.    */
+comment|/**    * Override this to check invariants which should hold true for a particular implementation, but    * which are not generally applicable to every instance of Map.    *    * @param map the map whose additional invariants to check.    */
 DECL|method|assertMoreInvariants (Map<K, V> map)
 specifier|protected
 name|void
@@ -4268,7 +4268,7 @@ argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|//no-inspection ObjectEqualsNull
+comment|// no-inspection ObjectEqualsNull
 name|assertFalse
 argument_list|(
 name|map
@@ -4504,7 +4504,7 @@ argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|//noinspection ObjectEqualsNull
+comment|// noinspection ObjectEqualsNull
 name|assertFalse
 argument_list|(
 name|map

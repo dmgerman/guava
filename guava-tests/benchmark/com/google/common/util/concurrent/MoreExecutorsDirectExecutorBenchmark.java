@@ -177,7 +177,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A benchmark comparing the {@link MoreExecutors#newDirectExecutorService()} to  * {@link MoreExecutors#directExecutor}.  */
+comment|/**  * A benchmark comparing the {@link MoreExecutors#newDirectExecutorService()} to {@link  * MoreExecutors#directExecutor}.  */
 end_comment
 
 begin_class
@@ -266,9 +266,9 @@ operator|new
 name|AtomicInteger
 argument_list|()
 decl_stmt|;
-DECL|method|run ()
 annotation|@
 name|Override
+DECL|method|run ()
 specifier|public
 name|void
 name|run
@@ -301,9 +301,9 @@ name|HashSet
 argument_list|<>
 argument_list|()
 decl_stmt|;
-DECL|method|before ()
 annotation|@
 name|BeforeExperiment
+DECL|method|before ()
 name|void
 name|before
 parameter_list|()
@@ -392,9 +392,9 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-DECL|method|after ()
 annotation|@
 name|AfterExperiment
+DECL|method|after ()
 name|void
 name|after
 parameter_list|()
@@ -420,9 +420,9 @@ name|clear
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|measureSize ()
 annotation|@
 name|Footprint
+DECL|method|measureSize ()
 name|Object
 name|measureSize
 parameter_list|()
@@ -431,9 +431,9 @@ return|return
 name|executor
 return|;
 block|}
-DECL|method|timeUncontendedExecute (int reps)
 annotation|@
 name|Benchmark
+DECL|method|timeUncontendedExecute (int reps)
 name|int
 name|timeUncontendedExecute
 parameter_list|(
@@ -489,9 +489,9 @@ name|get
 argument_list|()
 return|;
 block|}
-DECL|method|timeContendedExecute (int reps)
 annotation|@
 name|Benchmark
+DECL|method|timeContendedExecute (int reps)
 name|int
 name|timeContendedExecute
 parameter_list|(

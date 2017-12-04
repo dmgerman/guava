@@ -81,7 +81,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author David Beaumont  */
+comment|/** @author David Beaumont */
 end_comment
 
 begin_class

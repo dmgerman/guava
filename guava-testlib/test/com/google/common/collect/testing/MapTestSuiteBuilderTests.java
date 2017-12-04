@@ -277,7 +277,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests {@link MapTestSuiteBuilder} by using it against maps that have various  * negative behaviors.  *  * @author George van den Driessche  */
+comment|/**  * Tests {@link MapTestSuiteBuilder} by using it against maps that have various negative behaviors.  *  * @author George van den Driessche  */
 end_comment
 
 begin_class
@@ -344,9 +344,9 @@ name|WrappedHashMapGenerator
 extends|extends
 name|TestStringMapGenerator
 block|{
-DECL|method|create ( Entry<String, String>[] entries)
 annotation|@
 name|Override
+DECL|method|create (Entry<String, String>[] entries)
 specifier|protected
 specifier|final
 name|Map

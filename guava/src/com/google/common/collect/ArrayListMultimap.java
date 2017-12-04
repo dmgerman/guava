@@ -155,7 +155,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Implementation of {@code Multimap} that uses an {@code ArrayList} to store  * the values for a given key. A {@link HashMap} associates each key with an  * {@link ArrayList} of values.  *  *<p>When iterating through the collections supplied by this class, the  * ordering of values for a given key agrees with the order in which the values  * were added.  *  *<p>This multimap allows duplicate key-value pairs. After adding a new  * key-value pair equal to an existing key-value pair, the {@code  * ArrayListMultimap} will contain entries for both the new value and the old  * value.  *  *<p>Keys and values may be null. All optional multimap methods are supported,  * and all returned views are modifiable.  *  *<p>The lists returned by {@link #get}, {@link #removeAll}, and {@link  * #replaceValues} all implement {@link java.util.RandomAccess}.  *  *<p>This class is not threadsafe when any concurrent operations update the  * multimap. Concurrent read operations will work correctly. To allow concurrent  * update operations, wrap your multimap with a call to {@link  * Multimaps#synchronizedListMultimap}.  *  *<p>See the Guava User Guide article on<a href=  * "https://github.com/google/guava/wiki/NewCollectionTypesExplained#multimap">  * {@code Multimap}</a>.  *  * @author Jared Levy  * @since 2.0  */
+comment|/**  * Implementation of {@code Multimap} that uses an {@code ArrayList} to store the values for a given  * key. A {@link HashMap} associates each key with an {@link ArrayList} of values.  *  *<p>When iterating through the collections supplied by this class, the ordering of values for a  * given key agrees with the order in which the values were added.  *  *<p>This multimap allows duplicate key-value pairs. After adding a new key-value pair equal to an  * existing key-value pair, the {@code ArrayListMultimap} will contain entries for both the new  * value and the old value.  *  *<p>Keys and values may be null. All optional multimap methods are supported, and all returned  * views are modifiable.  *  *<p>The lists returned by {@link #get}, {@link #removeAll}, and {@link #replaceValues} all  * implement {@link java.util.RandomAccess}.  *  *<p>This class is not threadsafe when any concurrent operations update the multimap. Concurrent  * read operations will work correctly. To allow concurrent update operations, wrap your multimap  * with a call to {@link Multimaps#synchronizedListMultimap}.  *  *<p>See the Guava User Guide article on<a href=  * "https://github.com/google/guava/wiki/NewCollectionTypesExplained#multimap"> {@code  * Multimap}</a>.  *  * @author Jared Levy  * @since 2.0  */
 end_comment
 
 begin_class
@@ -428,7 +428,7 @@ name|multimap
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates a new, empty {@code ArrayList} to hold the collection of values for    * an arbitrary key.    */
+comment|/**    * Creates a new, empty {@code ArrayList} to hold the collection of values for an arbitrary key.    */
 annotation|@
 name|Override
 DECL|method|createCollection ()
@@ -495,7 +495,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**    * @serialData expectedValuesPerKey, number of distinct keys, and then for    *     each distinct key: the key, number of values for that key, and the    *     key's values    */
+comment|/**    * @serialData expectedValuesPerKey, number of distinct keys, and then for each distinct key: the    *     key, number of values for that key, and the key's values    */
 annotation|@
 name|GwtIncompatible
 comment|// java.io.ObjectOutputStream

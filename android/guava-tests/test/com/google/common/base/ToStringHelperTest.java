@@ -2239,7 +2239,7 @@ name|toTest
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Test class for testing formatting of inner classes.    */
+comment|/** Test class for testing formatting of inner classes. */
 DECL|class|TestClass
 specifier|private
 specifier|static

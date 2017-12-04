@@ -178,7 +178,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**    * Closes the current input stream and opens the next one, if any.    */
+comment|/** Closes the current input stream and opens the next one, if any. */
 DECL|method|advance ()
 specifier|private
 name|void

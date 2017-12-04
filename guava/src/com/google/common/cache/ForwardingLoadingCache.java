@@ -71,7 +71,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A cache which forwards all its method calls to another cache. Subclasses should override one or  * more methods to modify the behavior of the backing cache as desired per the  *<a href="http://en.wikipedia.org/wiki/Decorator_pattern">decorator pattern</a>.  *  *<p>Note that {@link #get}, {@link #getUnchecked}, and {@link #apply} all expose the same  * underlying functionality, so should probably be overridden as a group.  *  * @author Charles Fry  * @since 11.0  */
+comment|/**  * A cache which forwards all its method calls to another cache. Subclasses should override one or  * more methods to modify the behavior of the backing cache as desired per the<a  * href="http://en.wikipedia.org/wiki/Decorator_pattern">decorator pattern</a>.  *  *<p>Note that {@link #get}, {@link #getUnchecked}, and {@link #apply} all expose the same  * underlying functionality, so should probably be overridden as a group.  *  * @author Charles Fry  * @since 11.0  */
 end_comment
 
 begin_class

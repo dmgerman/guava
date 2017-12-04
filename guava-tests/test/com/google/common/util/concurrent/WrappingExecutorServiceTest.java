@@ -1135,9 +1135,9 @@ name|callable
 argument_list|)
 return|;
 block|}
-DECL|method|wrapTask (Runnable command)
 annotation|@
 name|Override
+DECL|method|wrapTask (Runnable command)
 specifier|protected
 name|Runnable
 name|wrapTask
@@ -1740,7 +1740,7 @@ name|command
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|assertTaskWrapped ( Collection<? extends Callable<T>> tasks)
+DECL|method|assertTaskWrapped (Collection<? extends Callable<T>> tasks)
 specifier|private
 specifier|static
 parameter_list|<

@@ -427,7 +427,7 @@ name|create
 argument_list|()
 return|;
 block|}
-comment|/**    * Confirm that get() returns a List implementing RandomAccess.    */
+comment|/** Confirm that get() returns a List implementing RandomAccess. */
 DECL|method|testGetRandomAccess ()
 specifier|public
 name|void
@@ -488,7 +488,7 @@ name|RandomAccess
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Confirm that removeAll() returns a List implementing RandomAccess.    */
+comment|/** Confirm that removeAll() returns a List implementing RandomAccess. */
 DECL|method|testRemoveAllRandomAccess ()
 specifier|public
 name|void
@@ -549,7 +549,7 @@ name|RandomAccess
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Confirm that replaceValues() returns a List implementing RandomAccess.    */
+comment|/** Confirm that replaceValues() returns a List implementing RandomAccess. */
 DECL|method|testReplaceValuesRandomAccess ()
 specifier|public
 name|void
@@ -624,7 +624,7 @@ name|RandomAccess
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Test throwing ConcurrentModificationException when a sublist's ancestor's    * delegate changes.    */
+comment|/** Test throwing ConcurrentModificationException when a sublist's ancestor's delegate changes. */
 DECL|method|testSublistConcurrentModificationException ()
 specifier|public
 name|void
@@ -777,7 +777,7 @@ parameter_list|(
 name|ConcurrentModificationException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testCreateFromMultimap ()
 specifier|public
@@ -935,7 +935,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 try|try
 block|{
 name|ArrayListMultimap
@@ -957,7 +957,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testCreateFromHashMultimap ()
 specifier|public

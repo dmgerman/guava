@@ -255,7 +255,7 @@ name|HashMap
 argument_list|<>
 argument_list|()
 decl_stmt|;
-comment|/**    * Given a set of features, add to it all the features directly or indirectly    * implied by any of them, and return it.    * @param features the set of features to expand    * @return the same set of features, expanded with all implied features    */
+comment|/**    * Given a set of features, add to it all the features directly or indirectly implied by any of    * them, and return it.    *    * @param features the set of features to expand    * @return the same set of features, expanded with all implied features    */
 DECL|method|addImpliedFeatures (Set<Feature<?>> features)
 specifier|public
 specifier|static
@@ -352,7 +352,7 @@ return|return
 name|features
 return|;
 block|}
-comment|/**    * Given a set of features, return a new set of all features directly or    * indirectly implied by any of them.    * @param features the set of features whose implications to find    * @return the implied set of features    */
+comment|/**    * Given a set of features, return a new set of all features directly or indirectly implied by any    * of them.    *    * @param features the set of features whose implications to find    * @return the implied set of features    */
 DECL|method|impliedFeatures (Set<Feature<?>> features)
 specifier|public
 specifier|static
@@ -471,7 +471,7 @@ return|return
 name|impliedSet
 return|;
 block|}
-comment|/**    * Get the full set of requirements for a tester class.    * @param testerClass a tester class    * @return all the constraints implicitly or explicitly required by the class    * or any of its superclasses.    * @throws ConflictingRequirementsException if the requirements are mutually    * inconsistent.    */
+comment|/**    * Get the full set of requirements for a tester class.    *    * @param testerClass a tester class    * @return all the constraints implicitly or explicitly required by the class or any of its    *     superclasses.    * @throws ConflictingRequirementsException if the requirements are mutually inconsistent.    */
 DECL|method|getTesterRequirements (Class<?> testerClass)
 specifier|public
 specifier|static
@@ -531,7 +531,7 @@ name|requirements
 return|;
 block|}
 block|}
-comment|/**    * Get the full set of requirements for a tester class.    * @param testerMethod a test method of a tester class    * @return all the constraints implicitly or explicitly required by the    * method, its declaring class, or any of its superclasses.    * @throws ConflictingRequirementsException if the requirements are    * mutually inconsistent.    */
+comment|/**    * Get the full set of requirements for a tester class.    *    * @param testerMethod a test method of a tester class    * @return all the constraints implicitly or explicitly required by the method, its declaring    *     class, or any of its superclasses.    * @throws ConflictingRequirementsException if the requirements are mutually inconsistent.    */
 DECL|method|getTesterRequirements (Method testerMethod)
 specifier|public
 specifier|static
@@ -588,7 +588,7 @@ name|requirements
 return|;
 block|}
 block|}
-comment|/**    * Construct the full set of requirements for a tester class.    * @param testerClass a tester class    * @return all the constraints implicitly or explicitly required by the class    * or any of its superclasses.    * @throws ConflictingRequirementsException if the requirements are mutually    * inconsistent.    */
+comment|/**    * Construct the full set of requirements for a tester class.    *    * @param testerClass a tester class    * @return all the constraints implicitly or explicitly required by the class or any of its    *     superclasses.    * @throws ConflictingRequirementsException if the requirements are mutually inconsistent.    */
 DECL|method|buildTesterRequirements (Class<?> testerClass)
 specifier|static
 name|TesterRequirements
@@ -661,7 +661,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**    * Construct the full set of requirements for a tester method.    * @param testerMethod a test method of a tester class    * @return all the constraints implicitly or explicitly required by the    * method, its declaring class, or any of its superclasses.    * @throws ConflictingRequirementsException if the requirements are mutually    * inconsistent.    */
+comment|/**    * Construct the full set of requirements for a tester method.    *    * @param testerMethod a test method of a tester class    * @return all the constraints implicitly or explicitly required by the method, its declaring    *     class, or any of its superclasses.    * @throws ConflictingRequirementsException if the requirements are mutually inconsistent.    */
 DECL|method|buildTesterRequirements (Method testerMethod)
 specifier|static
 name|TesterRequirements
@@ -707,7 +707,7 @@ name|testerMethod
 argument_list|)
 return|;
 block|}
-comment|/**    * Construct the set of requirements specified by annotations    * directly on a tester class or method.    * @param classOrMethod a tester class or a test method thereof    * @return all the constraints implicitly or explicitly required by    *         annotations on the class or method.    * @throws ConflictingRequirementsException if the requirements are mutually    *         inconsistent.    */
+comment|/**    * Construct the set of requirements specified by annotations directly on a tester class or    * method.    *    * @param classOrMethod a tester class or a test method thereof    * @return all the constraints implicitly or explicitly required by annotations on the class or    *     method.    * @throws ConflictingRequirementsException if the requirements are mutually inconsistent.    */
 DECL|method|buildDeclaredTesterRequirements (AnnotatedElement classOrMethod)
 specifier|public
 specifier|static
@@ -768,7 +768,7 @@ return|return
 name|requirements
 return|;
 block|}
-comment|/**    * Find all the tester annotations declared on a tester class or method.    * @param classOrMethod a class or method whose tester annotations to find    * @return an iterable sequence of tester annotations on the class    */
+comment|/**    * Find all the tester annotations declared on a tester class or method.    *    * @param classOrMethod a class or method whose tester annotations to find    * @return an iterable sequence of tester annotations on the class    */
 DECL|method|getTesterAnnotations (AnnotatedElement classOrMethod)
 specifier|public
 specifier|static
@@ -873,7 +873,7 @@ name|annotations
 return|;
 block|}
 block|}
-comment|/**    * Find all the constraints explicitly or implicitly specified by a single    * tester annotation.    * @param testerAnnotation a tester annotation    * @return the requirements specified by the annotation    * @throws ConflictingRequirementsException if the requirements are mutually    *         inconsistent.    */
+comment|/**    * Find all the constraints explicitly or implicitly specified by a single tester annotation.    *    * @param testerAnnotation a tester annotation    * @return the requirements specified by the annotation    * @throws ConflictingRequirementsException if the requirements are mutually inconsistent.    */
 DECL|method|buildTesterRequirements (Annotation testerAnnotation)
 specifier|private
 specifier|static
@@ -1064,7 +1064,7 @@ name|allAbsentFeatures
 argument_list|)
 return|;
 block|}
-comment|/**    * Incorporate additional requirements into an existing requirements object.    * @param requirements the existing requirements object    * @param moreRequirements more requirements to incorporate    * @param source the source of the additional requirements    *        (used only for error reporting)    * @return the existing requirements object, modified to include the    *         additional requirements    * @throws ConflictingRequirementsException if the additional requirements    *         are inconsistent with the existing requirements    */
+comment|/**    * Incorporate additional requirements into an existing requirements object.    *    * @param requirements the existing requirements object    * @param moreRequirements more requirements to incorporate    * @param source the source of the additional requirements (used only for error reporting)    * @return the existing requirements object, modified to include the additional requirements    * @throws ConflictingRequirementsException if the additional requirements are inconsistent with    *     the existing requirements    */
 DECL|method|incorporateRequirements ( TesterRequirements requirements, TesterRequirements moreRequirements, Object source)
 specifier|private
 specifier|static
@@ -1266,7 +1266,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Construct a new {@link java.util.Set} that is the intersection    * of the given sets.    */
+comment|/** Construct a new {@link java.util.Set} that is the intersection of the given sets. */
 DECL|method|intersection (Set<? extends T> set1, Set<? extends T> set2)
 specifier|public
 specifier|static

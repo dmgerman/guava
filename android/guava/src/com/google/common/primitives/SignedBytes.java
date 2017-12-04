@@ -99,7 +99,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Static utility methods pertaining to {@code byte} primitives that interpret values as signed. The  * corresponding methods that treat the values as unsigned are found in {@link UnsignedBytes}, and  * the methods for which signedness is not an issue are in {@link Bytes}.  *  *<p>See the Guava User Guide article on  *<a href="https://github.com/google/guava/wiki/PrimitivesExplained">primitive utilities</a>.  *  * @author Kevin Bourrillion  * @since 1.0  */
+comment|/**  * Static utility methods pertaining to {@code byte} primitives that interpret values as signed. The  * corresponding methods that treat the values as unsigned are found in {@link UnsignedBytes}, and  * the methods for which signedness is not an issue are in {@link Bytes}.  *  *<p>See the Guava User Guide article on<a  * href="https://github.com/google/guava/wiki/PrimitivesExplained">primitive utilities</a>.  *  * @author Kevin Bourrillion  * @since 1.0  */
 end_comment
 
 begin_comment
@@ -476,7 +476,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns a comparator that compares two {@code byte} arrays<a    * href="http://en.wikipedia.org/wiki/Lexicographical_order">lexicographically</a>. That is, it    * compares, using {@link #compare(byte, byte)}), the first pair of values that follow any common    * prefix, or when one array is a prefix of the other, treats the shorter array as the lesser. For    * example, {@code []< [0x01]< [0x01, 0x80]< [0x01, 0x7F]< [0x02]}. Values are treated as    * signed.    *    *<p>The returned comparator is inconsistent with {@link Object#equals(Object)} (since arrays    * support only identity equality), but it is consistent with    * {@link java.util.Arrays#equals(byte[], byte[])}.    *    * @since 2.0    */
+comment|/**    * Returns a comparator that compares two {@code byte} arrays<a    * href="http://en.wikipedia.org/wiki/Lexicographical_order">lexicographically</a>. That is, it    * compares, using {@link #compare(byte, byte)}), the first pair of values that follow any common    * prefix, or when one array is a prefix of the other, treats the shorter array as the lesser. For    * example, {@code []< [0x01]< [0x01, 0x80]< [0x01, 0x7F]< [0x02]}. Values are treated as    * signed.    *    *<p>The returned comparator is inconsistent with {@link Object#equals(Object)} (since arrays    * support only identity equality), but it is consistent with {@link    * java.util.Arrays#equals(byte[], byte[])}.    *    * @since 2.0    */
 DECL|method|lexicographicalComparator ()
 specifier|public
 specifier|static

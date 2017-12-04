@@ -1002,7 +1002,7 @@ parameter_list|(
 name|ArithmeticException
 name|expected
 parameter_list|)
-block|{}
+block|{       }
 block|}
 block|}
 annotation|@
@@ -1046,7 +1046,7 @@ parameter_list|(
 name|ArithmeticException
 name|expected
 parameter_list|)
-block|{}
+block|{       }
 block|}
 block|}
 annotation|@
@@ -1090,7 +1090,7 @@ parameter_list|(
 name|ArithmeticException
 name|expected
 parameter_list|)
-block|{}
+block|{       }
 try|try
 block|{
 name|DoubleMath
@@ -1115,7 +1115,7 @@ parameter_list|(
 name|ArithmeticException
 name|expected
 parameter_list|)
-block|{}
+block|{       }
 block|}
 block|}
 annotation|@
@@ -1455,7 +1455,7 @@ parameter_list|(
 name|ArithmeticException
 name|expected
 parameter_list|)
-block|{}
+block|{       }
 block|}
 block|}
 annotation|@
@@ -1499,7 +1499,7 @@ parameter_list|(
 name|ArithmeticException
 name|expected
 parameter_list|)
-block|{}
+block|{       }
 block|}
 block|}
 annotation|@
@@ -1543,7 +1543,7 @@ parameter_list|(
 name|ArithmeticException
 name|expected
 parameter_list|)
-block|{}
+block|{       }
 try|try
 block|{
 name|DoubleMath
@@ -1568,7 +1568,7 @@ parameter_list|(
 name|ArithmeticException
 name|expected
 parameter_list|)
-block|{}
+block|{       }
 block|}
 block|}
 annotation|@
@@ -1784,7 +1784,7 @@ parameter_list|(
 name|ArithmeticException
 name|expected
 parameter_list|)
-block|{}
+block|{       }
 block|}
 block|}
 annotation|@
@@ -1828,7 +1828,7 @@ parameter_list|(
 name|ArithmeticException
 name|expected
 parameter_list|)
-block|{}
+block|{       }
 block|}
 block|}
 annotation|@
@@ -1872,7 +1872,7 @@ parameter_list|(
 name|ArithmeticException
 name|expected
 parameter_list|)
-block|{}
+block|{       }
 try|try
 block|{
 name|DoubleMath
@@ -1897,7 +1897,7 @@ parameter_list|(
 name|ArithmeticException
 name|expected
 parameter_list|)
-block|{}
+block|{       }
 block|}
 block|}
 annotation|@
@@ -2581,7 +2581,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{         }
 block|}
 block|}
 block|}
@@ -2633,7 +2633,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{         }
 block|}
 block|}
 block|}
@@ -3351,7 +3351,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{       }
 block|}
 block|}
 DECL|field|FINITE_TOLERANCE_CANDIDATES

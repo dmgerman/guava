@@ -154,7 +154,7 @@ name|array
 argument_list|)
 return|;
 block|}
-comment|/**    * Creates a new collection containing the given elements; implement this    * method instead of {@link #create(Object...)}.    */
+comment|/**    * Creates a new collection containing the given elements; implement this method instead of {@link    * #create(Object...)}.    */
 DECL|method|create (String[] elements)
 specifier|protected
 specifier|abstract

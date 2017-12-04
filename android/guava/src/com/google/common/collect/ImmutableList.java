@@ -281,7 +281,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link List} whose contents will never change, with many other important properties detailed at  * {@link ImmutableCollection}.  *  *<p>See the Guava User Guide article on<a href=  * "https://github.com/google/guava/wiki/ImmutableCollectionsExplained">  * immutable collections</a>.  *  * @see ImmutableMap  * @see ImmutableSet  * @author Kevin Bourrillion  * @since 2.0  */
+comment|/**  * A {@link List} whose contents will never change, with many other important properties detailed at  * {@link ImmutableCollection}.  *  *<p>See the Guava User Guide article on<a href=  * "https://github.com/google/guava/wiki/ImmutableCollectionsExplained"> immutable collections</a>.  *  * @see ImmutableMap  * @see ImmutableSet  * @author Kevin Bourrillion  * @since 2.0  */
 end_comment
 
 begin_class
@@ -323,7 +323,7 @@ argument_list|>
 implements|,
 name|RandomAccess
 block|{
-comment|/**    * Returns the empty immutable list. This list behaves and performs comparably    * to {@link Collections#emptyList}, and is preferable mainly for consistency    * and maintainability of your code.    */
+comment|/**    * Returns the empty immutable list. This list behaves and performs comparably to {@link    * Collections#emptyList}, and is preferable mainly for consistency and maintainability of your    * code.    */
 comment|// Casting to any type is safe because the list will never hold any elements.
 annotation|@
 name|SuppressWarnings
@@ -353,7 +353,7 @@ operator|)
 name|EMPTY
 return|;
 block|}
-comment|/**    * Returns an immutable list containing a single element. This list behaves    * and performs comparably to {@link Collections#singleton}, but will not    * accept a null element. It is preferable mainly for consistency and    * maintainability of your code.    *    * @throws NullPointerException if {@code element} is null    */
+comment|/**    * Returns an immutable list containing a single element. This list behaves and performs    * comparably to {@link Collections#singleton}, but will not accept a null element. It is    * preferable mainly for consistency and maintainability of your code.    *    * @throws NullPointerException if {@code element} is null    */
 DECL|method|of (E element)
 specifier|public
 specifier|static
@@ -1073,7 +1073,7 @@ name|array
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an immutable list containing the given elements, in order. If    * {@code elements} is a {@link Collection}, this method behaves exactly as    * {@link #copyOf(Collection)}; otherwise, it behaves exactly as {@code    * copyOf(elements.iterator()}.    *    * @throws NullPointerException if any of {@code elements} is null    */
+comment|/**    * Returns an immutable list containing the given elements, in order. If {@code elements} is a    * {@link Collection}, this method behaves exactly as {@link #copyOf(Collection)}; otherwise, it    * behaves exactly as {@code copyOf(elements.iterator()}.    *    * @throws NullPointerException if any of {@code elements} is null    */
 DECL|method|copyOf (Iterable<? extends E> elements)
 specifier|public
 specifier|static
@@ -1130,7 +1130,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an immutable list containing the given elements, in order.    *    *<p>Despite the method name, this method attempts to avoid actually copying    * the data when it is safe to do so. The exact circumstances under which a    * copy will or will not be performed are undocumented and subject to change.    *    *<p>Note that if {@code list} is a {@code List<String>}, then {@code    * ImmutableList.copyOf(list)} returns an {@code ImmutableList<String>}    * containing each of the strings in {@code list}, while    * ImmutableList.of(list)} returns an {@code ImmutableList<List<String>>}    * containing one element (the given list itself).    *    *<p>This method is safe to use even when {@code elements} is a synchronized    * or concurrent collection that is currently being modified by another    * thread.    *    * @throws NullPointerException if any of {@code elements} is null    */
+comment|/**    * Returns an immutable list containing the given elements, in order.    *    *<p>Despite the method name, this method attempts to avoid actually copying the data when it is    * safe to do so. The exact circumstances under which a copy will or will not be performed are    * undocumented and subject to change.    *    *<p>Note that if {@code list} is a {@code List<String>}, then {@code ImmutableList.copyOf(list)}    * returns an {@code ImmutableList<String>} containing each of the strings in {@code list}, while    * ImmutableList.of(list)} returns an {@code ImmutableList<List<String>>} containing one element    * (the given list itself).    *    *<p>This method is safe to use even when {@code elements} is a synchronized or concurrent    * collection that is currently being modified by another thread.    *    * @throws NullPointerException if any of {@code elements} is null    */
 DECL|method|copyOf (Collection<? extends E> elements)
 specifier|public
 specifier|static
@@ -1505,7 +1505,7 @@ name|array
 argument_list|)
 return|;
 block|}
-comment|/**    * Views the array as an immutable list.  Checks for nulls; does not copy.    */
+comment|/** Views the array as an immutable list. Checks for nulls; does not copy. */
 DECL|method|construct (Object... elements)
 specifier|private
 specifier|static
@@ -1533,7 +1533,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Views the array as an immutable list.  Does not check for nulls; does not copy.    *    *<p>The array must be internally created.    */
+comment|/**    * Views the array as an immutable list. Does not check for nulls; does not copy.    *    *<p>The array must be internally created.    */
 DECL|method|asImmutableList (Object[] elements)
 specifier|static
 parameter_list|<
@@ -1891,7 +1891,7 @@ literal|0
 return|;
 block|}
 comment|// constrain the return type to ImmutableList<E>
-comment|/**    * Returns an immutable list of the elements between the specified {@code    * fromIndex}, inclusive, and {@code toIndex}, exclusive. (If {@code    * fromIndex} and {@code toIndex} are equal, the empty immutable list is    * returned.)    */
+comment|/**    * Returns an immutable list of the elements between the specified {@code fromIndex}, inclusive,    * and {@code toIndex}, exclusive. (If {@code fromIndex} and {@code toIndex} are equal, the empty    * immutable list is returned.)    */
 annotation|@
 name|Override
 DECL|method|subList (int fromIndex, int toIndex)
@@ -1963,7 +1963,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**    * Called by the default implementation of {@link #subList} when {@code    * toIndex - fromIndex> 1}, after index validation has already been    * performed.    */
+comment|/**    * Called by the default implementation of {@link #subList} when {@code toIndex - fromIndex> 1},    * after index validation has already been performed.    */
 DECL|method|subListUnchecked (int fromIndex, int toIndex)
 name|ImmutableList
 argument_list|<
@@ -2308,7 +2308,7 @@ operator|+
 name|size
 return|;
 block|}
-comment|/**    * Returns a view of this immutable list in reverse order. For example, {@code    * ImmutableList.of(1, 2, 3).reverse()} is equivalent to {@code    * ImmutableList.of(3, 2, 1)}.    *    * @return a view of this immutable list in reverse order    * @since 7.0    */
+comment|/**    * Returns a view of this immutable list in reverse order. For example, {@code ImmutableList.of(1,    * 2, 3).reverse()} is equivalent to {@code ImmutableList.of(3, 2, 1)}.    *    * @return a view of this immutable list in reverse order    * @since 7.0    */
 DECL|method|reverse ()
 specifier|public
 name|ImmutableList
@@ -2808,7 +2808,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a new builder. The generated builder is equivalent to the builder    * created by the {@link Builder} constructor.    */
+comment|/**    * Returns a new builder. The generated builder is equivalent to the builder created by the {@link    * Builder} constructor.    */
 DECL|method|builder ()
 specifier|public
 specifier|static
@@ -2870,7 +2870,7 @@ name|expectedSize
 argument_list|)
 return|;
 block|}
-comment|/**    * A builder for creating immutable list instances, especially {@code public    * static final} lists ("constant lists"). Example:<pre>   {@code    *    *   public static final ImmutableList<Color> GOOGLE_COLORS    *       = new ImmutableList.Builder<Color>()    *           .addAll(WEBSAFE_COLORS)    *           .add(new Color(0, 191, 255))    *           .build();}</pre>    *    *<p>Elements appear in the resulting list in the same order they were added    * to the builder.    *    *<p>Builder instances can be reused; it is safe to call {@link #build} multiple    * times to build multiple lists in series. Each new list contains all the    * elements of the ones created before it.    *    * @since 2.0    */
+comment|/**    * A builder for creating immutable list instances, especially {@code public static final} lists    * ("constant lists"). Example:    *    *<pre>{@code    * public static final ImmutableList<Color> GOOGLE_COLORS    *     = new ImmutableList.Builder<Color>()    *         .addAll(WEBSAFE_COLORS)    *         .add(new Color(0, 191, 255))    *         .build();    * }</pre>    *    *<p>Elements appear in the resulting list in the same order they were added to the builder.    *    *<p>Builder instances can be reused; it is safe to call {@link #build} multiple times to build    * multiple lists in series. Each new list contains all the elements of the ones created before    * it.    *    * @since 2.0    */
 DECL|class|Builder
 specifier|public
 specifier|static
@@ -2888,7 +2888,7 @@ argument_list|<
 name|E
 argument_list|>
 block|{
-comment|/**      * Creates a new builder. The returned builder is equivalent to the builder      * generated by {@link ImmutableList#builder}.      */
+comment|/**      * Creates a new builder. The returned builder is equivalent to the builder generated by {@link      * ImmutableList#builder}.      */
 DECL|method|Builder ()
 specifier|public
 name|Builder
@@ -2941,7 +2941,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**      * Adds each element of {@code elements} to the {@code ImmutableList}.      *      * @param elements the {@code Iterable} to add to the {@code ImmutableList}      * @return this {@code Builder} object      * @throws NullPointerException if {@code elements} is null or contains a      *     null element      */
+comment|/**      * Adds each element of {@code elements} to the {@code ImmutableList}.      *      * @param elements the {@code Iterable} to add to the {@code ImmutableList}      * @return this {@code Builder} object      * @throws NullPointerException if {@code elements} is null or contains a null element      */
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
@@ -2974,7 +2974,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**      * Adds each element of {@code elements} to the {@code ImmutableList}.      *      * @param elements the {@code Iterable} to add to the {@code ImmutableList}      * @return this {@code Builder} object      * @throws NullPointerException if {@code elements} is null or contains a      *     null element      */
+comment|/**      * Adds each element of {@code elements} to the {@code ImmutableList}.      *      * @param elements the {@code Iterable} to add to the {@code ImmutableList}      * @return this {@code Builder} object      * @throws NullPointerException if {@code elements} is null or contains a null element      */
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
@@ -3003,7 +3003,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**      * Adds each element of {@code elements} to the {@code ImmutableList}.      *      * @param elements the {@code Iterable} to add to the {@code ImmutableList}      * @return this {@code Builder} object      * @throws NullPointerException if {@code elements} is null or contains a      *     null element      */
+comment|/**      * Adds each element of {@code elements} to the {@code ImmutableList}.      *      * @param elements the {@code Iterable} to add to the {@code ImmutableList}      * @return this {@code Builder} object      * @throws NullPointerException if {@code elements} is null or contains a null element      */
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
@@ -3036,7 +3036,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**      * Returns a newly-created {@code ImmutableList} based on the contents of      * the {@code Builder}.      */
+comment|/**      * Returns a newly-created {@code ImmutableList} based on the contents of the {@code Builder}.      */
 annotation|@
 name|Override
 DECL|method|build ()

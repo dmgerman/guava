@@ -438,7 +438,7 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
-comment|/**    * Adds {@code elem} as a candidate for the top {@code k} elements. This operation takes    * amortized O(1) time.    */
+comment|/**    * Adds {@code elem} as a candidate for the top {@code k} elements. This operation takes amortized    * O(1) time.    */
 DECL|method|offer (@ullable T elem)
 specifier|public
 name|void
@@ -558,7 +558,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**    * Quickselects the top k elements from the 2k elements in the buffer.  O(k) expected time,    * O(k log k) worst case.    */
+comment|/**    * Quickselects the top k elements from the 2k elements in the buffer. O(k) expected time, O(k log    * k) worst case.    */
 DECL|method|trim ()
 specifier|private
 name|void
@@ -957,7 +957,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**    * Adds each member of {@code elements} as a candidate for the top {@code k} elements. This    * operation takes amortized linear time in the length of {@code elements}.    *    *<p>If all input data to this {@code TopKSelector} is in a single {@code Iterable},    * prefer {@link Ordering#leastOf(Iterable, int)}, which provides a simpler API for that use    * case.    */
+comment|/**    * Adds each member of {@code elements} as a candidate for the top {@code k} elements. This    * operation takes amortized linear time in the length of {@code elements}.    *    *<p>If all input data to this {@code TopKSelector} is in a single {@code Iterable}, prefer    * {@link Ordering#leastOf(Iterable, int)}, which provides a simpler API for that use case.    */
 DECL|method|offerAll (Iterable<? extends T> elements)
 specifier|public
 name|void
@@ -981,7 +981,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Adds each member of {@code elements} as a candidate for the top {@code k} elements. This    * operation takes amortized linear time in the length of {@code elements}. The iterator is    * consumed after this operation completes.    *    *<p>If all input data to this {@code TopKSelector} is in a single {@code Iterator},    * prefer {@link Ordering#leastOf(Iterator, int)}, which provides a simpler API for that use    * case.    */
+comment|/**    * Adds each member of {@code elements} as a candidate for the top {@code k} elements. This    * operation takes amortized linear time in the length of {@code elements}. The iterator is    * consumed after this operation completes.    *    *<p>If all input data to this {@code TopKSelector} is in a single {@code Iterator}, prefer    * {@link Ordering#leastOf(Iterator, int)}, which provides a simpler API for that use case.    */
 DECL|method|offerAll (Iterator<? extends T> elements)
 specifier|public
 name|void

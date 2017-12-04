@@ -229,7 +229,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Basic implementation of {@code Multiset<E>} backed by an instance of {@code  * Map<E, Count>}.  *  *<p>For serialization to work, the subclass must specify explicit {@code  * readObject} and {@code writeObject} methods.  *  * @author Kevin Bourrillion  */
+comment|/**  * Basic implementation of {@code Multiset<E>} backed by an instance of {@code Map<E, Count>}.  *  *<p>For serialization to work, the subclass must specify explicit {@code readObject} and {@code  * writeObject} methods.  *  * @author Kevin Bourrillion  */
 end_comment
 
 begin_class
@@ -329,7 +329,7 @@ name|backingMap
 expr_stmt|;
 block|}
 comment|// Required Implementations
-comment|/**    * {@inheritDoc}    *    *<p>Invoking {@link Multiset.Entry#getCount} on an entry in the returned    * set always returns the current count of that element in the multiset, as    * opposed to the count at the time the entry was retrieved.    */
+comment|/**    * {@inheritDoc}    *    *<p>Invoking {@link Multiset.Entry#getCount} on an entry in the returned set always returns the    * current count of that element in the multiset, as opposed to the count at the time the entry    * was retrieved.    */
 annotation|@
 name|Override
 DECL|method|entrySet ()
@@ -593,9 +593,9 @@ block|}
 block|}
 return|;
 block|}
-DECL|method|forEachEntry (ObjIntConsumer<? super E> action)
 annotation|@
 name|Override
+DECL|method|forEachEntry (ObjIntConsumer<? super E> action)
 specifier|public
 name|void
 name|forEachEntry
@@ -961,7 +961,7 @@ argument_list|()
 return|;
 block|}
 comment|// Optional Operations - Modification Operations
-comment|/**    * {@inheritDoc}    *    * @throws IllegalArgumentException if the call would result in more than    *     {@link Integer#MAX_VALUE} occurrences of {@code element} in this    *     multiset.    */
+comment|/**    * {@inheritDoc}    *    * @throws IllegalArgumentException if the call would result in more than {@link    *     Integer#MAX_VALUE} occurrences of {@code element} in this multiset.    */
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@

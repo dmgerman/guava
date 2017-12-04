@@ -155,7 +155,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Unit tests for {@link Futures#getDone}.  */
+comment|/** Unit tests for {@link Futures#getDone}. */
 end_comment
 
 begin_class

@@ -1569,7 +1569,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/**    * Wrap an appendable in an appendable to defeat any type specific optimizations.    */
+comment|/** Wrap an appendable in an appendable to defeat any type specific optimizations. */
 DECL|method|wrapAsGenericAppendable (final Appendable a)
 specifier|private
 specifier|static
@@ -1668,7 +1668,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/**    * Wrap a readable in a readable to defeat any type specific optimizations.    */
+comment|/** Wrap a readable in a readable to defeat any type specific optimizations. */
 DECL|method|wrapAsGenericReadable (final Readable a)
 specifier|private
 specifier|static

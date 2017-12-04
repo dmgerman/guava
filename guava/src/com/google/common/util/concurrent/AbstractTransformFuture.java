@@ -66,24 +66,6 @@ name|concurrent
 operator|.
 name|MoreExecutors
 operator|.
-name|directExecutor
-import|;
-end_import
-
-begin_import
-import|import static
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|util
-operator|.
-name|concurrent
-operator|.
-name|MoreExecutors
-operator|.
 name|rejectionPropagatingExecutor
 import|;
 end_import
@@ -189,7 +171,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Implementations of {@code Futures.transform*}.  */
+comment|/** Implementations of {@code Futures.transform*}. */
 end_comment
 
 begin_class
@@ -708,7 +690,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**    * An {@link AbstractTransformFuture} that delegates to an {@link AsyncFunction} and    * {@link #setFuture(ListenableFuture)}.    */
+comment|/**    * An {@link AbstractTransformFuture} that delegates to an {@link AsyncFunction} and {@link    * #setFuture(ListenableFuture)}.    */
 DECL|class|AsyncTransformFuture
 specifier|private
 specifier|static
@@ -859,7 +841,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * An {@link AbstractTransformFuture} that delegates to a {@link Function} and    * {@link #set(Object)}.    */
+comment|/**    * An {@link AbstractTransformFuture} that delegates to a {@link Function} and {@link    * #set(Object)}.    */
 DECL|class|TransformFuture
 specifier|private
 specifier|static

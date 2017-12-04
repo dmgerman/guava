@@ -173,7 +173,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A benchmark that times how long it takes to add a given number of  */
+comment|/** A benchmark that times how long it takes to add a given number of */
 end_comment
 
 begin_class
@@ -215,9 +215,9 @@ name|?
 argument_list|>
 name|notDoneFuture
 decl_stmt|;
-DECL|method|setUp ()
 annotation|@
 name|BeforeExperiment
+DECL|method|setUp ()
 name|void
 name|setUp
 parameter_list|()
@@ -232,9 +232,9 @@ name|newFacade
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|timeComplete_Normal (int reps)
 annotation|@
 name|Benchmark
+DECL|method|timeComplete_Normal (int reps)
 specifier|public
 name|long
 name|timeComplete_Normal
@@ -340,9 +340,9 @@ return|return
 name|r
 return|;
 block|}
-DECL|method|timeComplete_Failure (int reps)
 annotation|@
 name|Benchmark
+DECL|method|timeComplete_Failure (int reps)
 specifier|public
 name|long
 name|timeComplete_Failure
@@ -471,9 +471,9 @@ return|return
 name|r
 return|;
 block|}
-DECL|method|timeComplete_Cancel (int reps)
 annotation|@
 name|Benchmark
+DECL|method|timeComplete_Cancel (int reps)
 specifier|public
 name|long
 name|timeComplete_Cancel
@@ -602,9 +602,9 @@ return|return
 name|r
 return|;
 block|}
-DECL|method|timeGetWith0Timeout (long reps)
 annotation|@
 name|Benchmark
+DECL|method|timeGetWith0Timeout (long reps)
 specifier|public
 name|long
 name|timeGetWith0Timeout
@@ -677,9 +677,9 @@ return|return
 name|r
 return|;
 block|}
-DECL|method|timeGetWithSmallTimeout (long reps)
 annotation|@
 name|Benchmark
+DECL|method|timeGetWithSmallTimeout (long reps)
 specifier|public
 name|long
 name|timeGetWithSmallTimeout

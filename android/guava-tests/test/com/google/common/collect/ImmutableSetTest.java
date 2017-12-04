@@ -794,9 +794,9 @@ return|return
 name|suite
 return|;
 block|}
-DECL|method|of ()
 annotation|@
 name|Override
+DECL|method|of ()
 specifier|protected
 parameter_list|<
 name|E
@@ -822,9 +822,9 @@ name|of
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|of (E e)
-annotation|@
-name|Override
 specifier|protected
 parameter_list|<
 name|E
@@ -855,9 +855,9 @@ name|e
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|of (E e1, E e2)
-annotation|@
-name|Override
 specifier|protected
 parameter_list|<
 name|E
@@ -893,9 +893,9 @@ name|e2
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|of (E e1, E e2, E e3)
-annotation|@
-name|Override
 specifier|protected
 parameter_list|<
 name|E
@@ -936,9 +936,9 @@ name|e3
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|of (E e1, E e2, E e3, E e4)
-annotation|@
-name|Override
 specifier|protected
 parameter_list|<
 name|E
@@ -984,9 +984,9 @@ name|e4
 argument_list|)
 return|;
 block|}
-DECL|method|of (E e1, E e2, E e3, E e4, E e5)
 annotation|@
 name|Override
+DECL|method|of (E e1, E e2, E e3, E e4, E e5)
 specifier|protected
 parameter_list|<
 name|E
@@ -1042,9 +1042,9 @@ name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
-DECL|method|of ( E e1, E e2, E e3, E e4, E e5, E e6, E... rest)
 annotation|@
 name|Override
+DECL|method|of ( E e1, E e2, E e3, E e4, E e5, E e6, E... rest)
 specifier|protected
 parameter_list|<
 name|E
@@ -1106,9 +1106,9 @@ name|rest
 argument_list|)
 return|;
 block|}
-DECL|method|copyOf (E[] elements)
 annotation|@
 name|Override
+DECL|method|copyOf (E[] elements)
 specifier|protected
 parameter_list|<
 name|E
@@ -1140,9 +1140,9 @@ name|elements
 argument_list|)
 return|;
 block|}
-DECL|method|copyOf ( Collection<? extends E> elements)
 annotation|@
 name|Override
+DECL|method|copyOf (Collection<? extends E> elements)
 specifier|protected
 parameter_list|<
 name|E
@@ -1178,9 +1178,9 @@ name|elements
 argument_list|)
 return|;
 block|}
-DECL|method|copyOf ( Iterable<? extends E> elements)
 annotation|@
 name|Override
+DECL|method|copyOf (Iterable<? extends E> elements)
 specifier|protected
 parameter_list|<
 name|E
@@ -1216,9 +1216,9 @@ name|elements
 argument_list|)
 return|;
 block|}
-DECL|method|copyOf ( Iterator<? extends E> elements)
 annotation|@
 name|Override
+DECL|method|copyOf (Iterator<? extends E> elements)
 specifier|protected
 parameter_list|<
 name|E
@@ -2198,9 +2198,9 @@ name|verifyThreadSafe
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|builder ()
 annotation|@
 name|Override
+DECL|method|builder ()
 argument_list|<
 name|E
 extends|extends
@@ -2223,9 +2223,9 @@ name|builder
 argument_list|()
 return|;
 block|}
-DECL|method|getComplexBuilderSetLastElement ()
 annotation|@
 name|Override
+DECL|method|getComplexBuilderSetLastElement ()
 name|int
 name|getComplexBuilderSetLastElement
 parameter_list|()

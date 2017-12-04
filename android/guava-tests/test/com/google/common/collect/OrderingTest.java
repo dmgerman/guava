@@ -859,7 +859,7 @@ parameter_list|(
 name|NullPointerException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 try|try
 block|{
 name|comparator
@@ -880,7 +880,7 @@ parameter_list|(
 name|NullPointerException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 try|try
 block|{
 name|comparator
@@ -901,7 +901,7 @@ parameter_list|(
 name|NullPointerException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 name|assertSame
 argument_list|(
 name|comparator
@@ -2107,7 +2107,7 @@ argument_list|(
 name|objects
 argument_list|)
 decl_stmt|;
-comment|//bad IDEA
+comment|// bad IDEA
 name|Ordering
 argument_list|<
 name|Number
@@ -2180,7 +2180,7 @@ name|objects
 argument_list|)
 argument_list|)
 decl_stmt|;
-comment|//bad IDEA
+comment|// bad IDEA
 name|Ordering
 argument_list|<
 name|Number
@@ -5115,7 +5115,7 @@ literal|2
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|runLeastOfComparison ( int iterations, int elements, int seeds)
+DECL|method|runLeastOfComparison (int iterations, int elements, int seeds)
 specifier|private
 specifier|static
 name|void
@@ -6329,9 +6329,9 @@ argument_list|<
 name|Number
 argument_list|>
 block|{
-DECL|method|compare (Number a, Number b)
 annotation|@
 name|Override
+DECL|method|compare (Number a, Number b)
 specifier|public
 name|int
 name|compare
@@ -6363,9 +6363,9 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -6380,9 +6380,9 @@ name|hashCode
 argument_list|()
 return|;
 block|}
-DECL|method|equals (Object other)
 annotation|@
 name|Override
+DECL|method|equals (Object other)
 specifier|public
 name|boolean
 name|equals
@@ -6580,7 +6580,7 @@ name|array
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Requires at least 3 elements in {@code strictlyOrderedElements} in order to    * test the varargs version of min/max.    */
+comment|/**    * Requires at least 3 elements in {@code strictlyOrderedElements} in order to test the varargs    * version of min/max.    */
 DECL|method|testExhaustively ( Ordering<? super T> ordering, T... strictlyOrderedElements)
 specifier|private
 specifier|static
@@ -6756,7 +6756,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**    * An aggregation of an ordering with a list (of size> 1) that should prove    * to be in strictly increasing order according to that ordering.    */
+comment|/**    * An aggregation of an ordering with a list (of size> 1) that should prove to be in strictly    * increasing order according to that ordering.    */
 DECL|class|Scenario
 specifier|private
 specifier|static
@@ -7279,7 +7279,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**    * A means for changing an Ordering into another Ordering. Each instance is    * responsible for creating the alternate Ordering, and providing a List that    * is known to be ordered, based on an input List known to be ordered    * according to the input Ordering.    */
+comment|/**    * A means for changing an Ordering into another Ordering. Each instance is responsible for    * creating the alternate Ordering, and providing a List that is known to be ordered, based on an    * input List known to be ordered according to the input Ordering.    */
 DECL|enum|OrderingMutation
 specifier|private
 enum|enum
@@ -8101,7 +8101,7 @@ name|scenario
 parameter_list|)
 function_decl|;
 block|}
-comment|/**    * A dummy object we create so that we can have something meaningful to have    * a compound ordering over.    */
+comment|/**    * A dummy object we create so that we can have something meaningful to have a compound ordering    * over.    */
 DECL|class|Composite
 specifier|private
 specifier|static

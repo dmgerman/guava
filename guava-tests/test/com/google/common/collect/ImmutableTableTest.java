@@ -175,9 +175,9 @@ name|ImmutableTableTest
 extends|extends
 name|AbstractTableReadTest
 block|{
-DECL|method|create (Object... data)
 annotation|@
 name|Override
+DECL|method|create (Object... data)
 specifier|protected
 name|Table
 argument_list|<
@@ -2270,7 +2270,7 @@ name|built
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|validateViewOrdering ( Table<R, C, V> original, Table<R, C, V> copy)
+DECL|method|validateViewOrdering (Table<R, C, V> original, Table<R, C, V> copy)
 specifier|private
 specifier|static
 parameter_list|<

@@ -143,7 +143,7 @@ name|getName
 argument_list|()
 argument_list|)
 decl_stmt|;
-comment|/**    * The runnable, executor pairs to execute.  This acts as a stack threaded through the {@link    * RunnableExecutorPair#next} field.    */
+comment|/**    * The runnable, executor pairs to execute. This acts as a stack threaded through the {@link    * RunnableExecutorPair#next} field.    */
 annotation|@
 name|GuardedBy
 argument_list|(

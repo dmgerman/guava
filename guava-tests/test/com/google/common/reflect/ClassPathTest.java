@@ -575,7 +575,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Functional tests of {@link ClassPath}.  */
+comment|/** Functional tests of {@link ClassPath}. */
 end_comment
 
 begin_class
@@ -4190,9 +4190,9 @@ name|HashSet
 argument_list|<>
 argument_list|()
 decl_stmt|;
-DECL|method|scanDirectory (ClassLoader loader, File root)
 annotation|@
 name|Override
+DECL|method|scanDirectory (ClassLoader loader, File root)
 specifier|protected
 name|void
 name|scanDirectory
@@ -4262,9 +4262,9 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-DECL|method|scanJarFile (ClassLoader loader, JarFile file)
 annotation|@
 name|Override
+DECL|method|scanJarFile (ClassLoader loader, JarFile file)
 specifier|protected
 name|void
 name|scanJarFile
@@ -4432,9 +4432,9 @@ name|found
 return|;
 block|}
 block|}
-DECL|method|scanJarFile (ClassLoader loader, JarFile file)
 annotation|@
 name|Override
+DECL|method|scanJarFile (ClassLoader loader, JarFile file)
 specifier|protected
 name|void
 name|scanJarFile
@@ -4467,9 +4467,9 @@ name|StopScanningException
 argument_list|()
 throw|;
 block|}
-DECL|method|scanDirectory (ClassLoader loader, File root)
 annotation|@
 name|Override
+DECL|method|scanDirectory (ClassLoader loader, File root)
 specifier|protected
 name|void
 name|scanDirectory

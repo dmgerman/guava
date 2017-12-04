@@ -115,7 +115,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This class implements the GWT serialization of {@link  * RegularImmutableList}.  *  * @author Hayward Chan  */
+comment|/**  * This class implements the GWT serialization of {@link RegularImmutableList}.  *  * @author Hayward Chan  */
 end_comment
 
 begin_class

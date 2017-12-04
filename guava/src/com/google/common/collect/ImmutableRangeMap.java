@@ -379,7 +379,7 @@ name|valueFunction
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an empty immutable range map.    */
+comment|/** Returns an empty immutable range map. */
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -419,7 +419,7 @@ operator|)
 name|EMPTY
 return|;
 block|}
-comment|/**    * Returns an immutable range map mapping a single range to a single value.    */
+comment|/** Returns an immutable range map mapping a single range to a single value. */
 DECL|method|of (Range<K> range, V value)
 specifier|public
 specifier|static
@@ -650,7 +650,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a new builder for an immutable range map.    */
+comment|/** Returns a new builder for an immutable range map. */
 DECL|method|builder ()
 specifier|public
 specifier|static
@@ -794,7 +794,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**      * Copies all associations from the specified range map into this builder.      */
+comment|/** Copies all associations from the specified range map into this builder. */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|putAll (RangeMap<K, ? extends V> rangeMap)
@@ -2113,7 +2113,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/**    * This class is used to serialize ImmutableRangeMap instances.    * Serializes the {@link #asMapOfRanges()} form.    */
+comment|/**    * This class is used to serialize ImmutableRangeMap instances. Serializes the {@link    * #asMapOfRanges()} form.    */
 DECL|class|SerializedForm
 specifier|private
 specifier|static

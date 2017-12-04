@@ -360,9 +360,9 @@ operator|=
 name|mutex
 expr_stmt|;
 block|}
-DECL|method|delegate ()
 annotation|@
 name|Override
+DECL|method|delegate ()
 specifier|protected
 name|Set
 argument_list|<
@@ -375,9 +375,9 @@ return|return
 name|delegate
 return|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString
@@ -400,9 +400,9 @@ name|toString
 argument_list|()
 return|;
 block|}
-DECL|method|equals (@ullable Object o)
 annotation|@
 name|Override
+DECL|method|equals (@ullable Object o)
 specifier|public
 name|boolean
 name|equals
@@ -432,9 +432,9 @@ name|o
 argument_list|)
 return|;
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -457,9 +457,9 @@ name|hashCode
 argument_list|()
 return|;
 block|}
-DECL|method|add (@ullable E o)
 annotation|@
 name|Override
+DECL|method|add (@ullable E o)
 specifier|public
 name|boolean
 name|add
@@ -489,9 +489,9 @@ name|o
 argument_list|)
 return|;
 block|}
-DECL|method|addAll (Collection<? extends E> c)
 annotation|@
 name|Override
+DECL|method|addAll (Collection<? extends E> c)
 specifier|public
 name|boolean
 name|addAll
@@ -524,9 +524,9 @@ name|c
 argument_list|)
 return|;
 block|}
-DECL|method|clear ()
 annotation|@
 name|Override
+DECL|method|clear ()
 specifier|public
 name|void
 name|clear
@@ -548,9 +548,9 @@ name|clear
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|contains (@ullable Object o)
 annotation|@
 name|Override
+DECL|method|contains (@ullable Object o)
 specifier|public
 name|boolean
 name|contains
@@ -580,9 +580,9 @@ name|o
 argument_list|)
 return|;
 block|}
-DECL|method|containsAll (Collection<?> c)
 annotation|@
 name|Override
+DECL|method|containsAll (Collection<?> c)
 specifier|public
 name|boolean
 name|containsAll
@@ -613,9 +613,9 @@ name|c
 argument_list|)
 return|;
 block|}
-DECL|method|isEmpty ()
 annotation|@
 name|Override
+DECL|method|isEmpty ()
 specifier|public
 name|boolean
 name|isEmpty
@@ -639,9 +639,9 @@ argument_list|()
 return|;
 block|}
 comment|/* Don't test iterator(); it may or may not hold the mutex. */
-DECL|method|remove (@ullable Object o)
 annotation|@
 name|Override
+DECL|method|remove (@ullable Object o)
 specifier|public
 name|boolean
 name|remove
@@ -671,9 +671,9 @@ name|o
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|removeAll (Collection<?> c)
-annotation|@
-name|Override
 specifier|public
 name|boolean
 name|removeAll
@@ -704,9 +704,9 @@ name|c
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|retainAll (Collection<?> c)
-annotation|@
-name|Override
 specifier|public
 name|boolean
 name|retainAll
@@ -737,9 +737,9 @@ name|c
 argument_list|)
 return|;
 block|}
-DECL|method|size ()
 annotation|@
 name|Override
+DECL|method|size ()
 specifier|public
 name|int
 name|size
@@ -762,9 +762,9 @@ name|size
 argument_list|()
 return|;
 block|}
-DECL|method|toArray ()
 annotation|@
 name|Override
+DECL|method|toArray ()
 specifier|public
 name|Object
 index|[]
@@ -788,9 +788,9 @@ name|toArray
 argument_list|()
 return|;
 block|}
-DECL|method|toArray (T[] a)
 annotation|@
 name|Override
+DECL|method|toArray (T[] a)
 specifier|public
 parameter_list|<
 name|T

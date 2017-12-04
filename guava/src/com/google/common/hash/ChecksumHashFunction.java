@@ -222,7 +222,7 @@ return|return
 name|toString
 return|;
 block|}
-comment|/**    * Hasher that updates a checksum.    */
+comment|/** Hasher that updates a checksum. */
 DECL|class|ChecksumHasher
 specifier|private
 specifier|final

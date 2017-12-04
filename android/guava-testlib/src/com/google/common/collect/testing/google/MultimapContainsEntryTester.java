@@ -438,7 +438,7 @@ block|{
 comment|// success
 block|}
 block|}
-comment|/**    * Copy of the {@link #testContainsEntryNullDisallowed} test. Needed because    * "optional" feature requirements are not supported.    */
+comment|/**    * Copy of the {@link #testContainsEntryNullDisallowed} test. Needed because "optional" feature    * requirements are not supported.    */
 annotation|@
 name|MapFeature
 operator|.

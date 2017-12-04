@@ -81,7 +81,7 @@ parameter_list|()
 block|{}
 block|}
 decl_stmt|;
-comment|/**    * Returns a {@link Runnable} instance that does nothing when run.    */
+comment|/** Returns a {@link Runnable} instance that does nothing when run. */
 DECL|method|doNothing ()
 specifier|public
 specifier|static

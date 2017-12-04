@@ -2890,7 +2890,7 @@ parameter_list|(
 name|NullPointerException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testConcatPeformingFiniteCycle ()
 specifier|public
@@ -3722,7 +3722,7 @@ name|obj
 range|:
 name|iterable
 control|)
-block|{     }
+block|{}
 block|}
 annotation|@
 name|GwtIncompatible
@@ -4164,7 +4164,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testIsEmpty ()
 specifier|public
@@ -4572,7 +4572,7 @@ parameter_list|(
 name|IllegalStateException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testSkip_allOfMutableList_modifiable ()
 specifier|public
@@ -4627,7 +4627,7 @@ parameter_list|(
 name|IllegalStateException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testSkip_allOfImmutableList_modifiable ()
 specifier|public
@@ -4684,7 +4684,7 @@ parameter_list|(
 name|UnsupportedOperationException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 annotation|@
 name|GwtIncompatible
@@ -5236,7 +5236,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testGetOnAbc (Iterable<String> iterable)
 specifier|private
@@ -5271,7 +5271,7 @@ parameter_list|(
 name|IndexOutOfBoundsException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 name|assertEquals
 argument_list|(
 literal|"a"
@@ -5334,7 +5334,7 @@ parameter_list|(
 name|IndexOutOfBoundsException
 name|nsee
 parameter_list|)
-block|{}
+block|{     }
 try|try
 block|{
 name|Iterables
@@ -5355,7 +5355,7 @@ parameter_list|(
 name|IndexOutOfBoundsException
 name|nsee
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testGetOnEmpty (Iterable<String> iterable)
 specifier|private
@@ -5389,7 +5389,7 @@ parameter_list|(
 name|IndexOutOfBoundsException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testGet_list ()
 specifier|public
@@ -5939,7 +5939,7 @@ parameter_list|(
 name|NoSuchElementException
 name|e
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testGetLast_sortedSet ()
 specifier|public
@@ -6107,7 +6107,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * {@link ArrayList} extension that forbids the use of    * {@link Collection#iterator} for tests that need to prove that it isn't    * called.    */
+comment|/**    * {@link ArrayList} extension that forbids the use of {@link Collection#iterator} for tests that    * need to prove that it isn't called.    */
 DECL|class|DiesOnIteratorArrayList
 specifier|private
 specifier|static
@@ -6119,7 +6119,7 @@ argument_list|<
 name|String
 argument_list|>
 block|{
-comment|/**      * @throws UnsupportedOperationException all the time      */
+comment|/** @throws UnsupportedOperationException all the time */
 annotation|@
 name|Override
 DECL|method|iterator ()
@@ -6212,7 +6212,7 @@ parameter_list|(
 name|NoSuchElementException
 name|e
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testGetLast_iterable ()
 specifier|public
@@ -6285,7 +6285,7 @@ parameter_list|(
 name|NoSuchElementException
 name|e
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testUnmodifiableIterable ()
 specifier|public
@@ -6353,7 +6353,7 @@ parameter_list|(
 name|UnsupportedOperationException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 name|assertEquals
 argument_list|(
 literal|"[a, b, c]"
@@ -8873,9 +8873,9 @@ operator|=
 name|queue
 expr_stmt|;
 block|}
-DECL|method|iterator ()
 annotation|@
 name|Override
+DECL|method|iterator ()
 specifier|public
 name|Iterator
 argument_list|<
@@ -8890,9 +8890,9 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
-DECL|method|delegate ()
 annotation|@
 name|Override
+DECL|method|delegate ()
 specifier|protected
 name|Queue
 argument_list|<
@@ -9801,7 +9801,7 @@ name|testNulls
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|verifyMergeSorted (Iterable<Iterable<Integer>> iterables, Iterable<Integer> unsortedExpected)
+DECL|method|verifyMergeSorted ( Iterable<Iterable<Integer>> iterables, Iterable<Integer> unsortedExpected)
 specifier|private
 specifier|static
 name|void

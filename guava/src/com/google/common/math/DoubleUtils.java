@@ -237,7 +237,7 @@ name|EXPONENT_BIAS
 init|=
 literal|1023
 decl_stmt|;
-comment|/**    * The implicit 1 bit that is omitted in significands of normal doubles.    */
+comment|/** The implicit 1 bit that is omitted in significands of normal doubles. */
 DECL|field|IMPLICIT_BIT
 specifier|static
 specifier|final
@@ -546,7 +546,7 @@ name|bits
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns its argument if it is non-negative, zero if it is negative.    */
+comment|/** Returns its argument if it is non-negative, zero if it is negative. */
 DECL|method|ensureNonNegative (double value)
 specifier|static
 name|double
@@ -583,9 +583,9 @@ literal|0.0
 return|;
 block|}
 block|}
+DECL|field|ONE_BITS
 annotation|@
 name|VisibleForTesting
-DECL|field|ONE_BITS
 specifier|static
 specifier|final
 name|long

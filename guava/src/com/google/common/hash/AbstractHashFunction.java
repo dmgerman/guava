@@ -71,7 +71,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**   * Skeleton implementation of {@link HashFunction} in terms of {@link #newHasher()}.  *   * TODO(lowasser): make public   */
+comment|/**  * Skeleton implementation of {@link HashFunction} in terms of {@link #newHasher()}.  *  *<p>TODO(lowasser): make public  */
 end_comment
 
 begin_class

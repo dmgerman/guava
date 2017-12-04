@@ -122,7 +122,7 @@ name|chunkSize
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Constructor for use by subclasses. This hasher instance will process chunks of the specified    * size, using an internal buffer of {@code bufferSize} size, which must be a multiple of    * {@code chunkSize}.    *    * @param chunkSize the number of bytes available per {@link #process(ByteBuffer)} invocation;    *     must be at least 4    * @param bufferSize the size of the internal buffer. Must be a multiple of chunkSize    */
+comment|/**    * Constructor for use by subclasses. This hasher instance will process chunks of the specified    * size, using an internal buffer of {@code bufferSize} size, which must be a multiple of {@code    * chunkSize}.    *    * @param chunkSize the number of bytes available per {@link #process(ByteBuffer)} invocation;    *     must be at least 4    * @param bufferSize the size of the internal buffer. Must be a multiple of chunkSize    */
 DECL|method|AbstractStreamingHasher (int chunkSize, int bufferSize)
 specifier|protected
 name|AbstractStreamingHasher
@@ -179,7 +179,7 @@ operator|=
 name|chunkSize
 expr_stmt|;
 block|}
-comment|/**    * Processes the available bytes of the buffer (at most {@code chunk} bytes).    */
+comment|/** Processes the available bytes of the buffer (at most {@code chunk} bytes). */
 DECL|method|process (ByteBuffer bb)
 specifier|protected
 specifier|abstract
@@ -634,7 +634,7 @@ name|makeHash
 argument_list|()
 return|;
 block|}
-comment|/**    * Computes a hash code based on the data that have been provided to this hasher.  This is called    * after all chunks are handled with {@link #process} and any leftover bytes that did not make    * a complete chunk are handled with {@link #processRemaining}.    */
+comment|/**    * Computes a hash code based on the data that have been provided to this hasher. This is called    * after all chunks are handled with {@link #process} and any leftover bytes that did not make a    * complete chunk are handled with {@link #processRemaining}.    */
 DECL|method|makeHash ()
 specifier|protected
 specifier|abstract

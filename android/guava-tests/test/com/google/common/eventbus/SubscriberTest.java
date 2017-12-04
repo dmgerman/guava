@@ -526,7 +526,7 @@ argument_list|()
 throw|;
 block|}
 block|}
-comment|/**    * Records the provided object in {@link #methodArgument} and sets {@link #methodCalled}.  This    * method is called reflectively by Subscriber during tests, and must remain public.    *    * @param arg argument to record.    */
+comment|/**    * Records the provided object in {@link #methodArgument} and sets {@link #methodCalled}. This    * method is called reflectively by Subscriber during tests, and must remain public.    *    * @param arg argument to record.    */
 annotation|@
 name|Subscribe
 DECL|method|recordingMethod (Object arg)
@@ -571,7 +571,7 @@ name|IntentionalException
 argument_list|()
 throw|;
 block|}
-comment|/**    * Local exception subclass to check variety of exception thrown.    */
+comment|/** Local exception subclass to check variety of exception thrown. */
 DECL|class|IntentionalException
 class|class
 name|IntentionalException
@@ -618,8 +618,8 @@ parameter_list|(
 name|Object
 name|arg
 parameter_list|)
-block|{   }
-comment|/**    * Local Error subclass to check variety of error thrown.    */
+block|{}
+comment|/** Local Error subclass to check variety of error thrown. */
 DECL|class|JudgmentError
 class|class
 name|JudgmentError

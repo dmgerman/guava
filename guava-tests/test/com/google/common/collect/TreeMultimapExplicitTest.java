@@ -165,7 +165,7 @@ name|TreeMultimapExplicitTest
 extends|extends
 name|TestCase
 block|{
-comment|/**    * Compare strings lengths, and if the lengths are equal compare the strings.    * A {@code null} is less than any non-null value.    */
+comment|/**    * Compare strings lengths, and if the lengths are equal compare the strings. A {@code null} is    * less than any non-null value.    */
 DECL|enum|StringLength
 specifier|private
 enum|enum
@@ -268,7 +268,7 @@ return|;
 block|}
 block|}
 block|}
-comment|/**    * Decreasing integer values. A {@code null} comes before any non-null value.    */
+comment|/** Decreasing integer values. A {@code null} comes before any non-null value. */
 DECL|field|DECREASING_INT_COMPARATOR
 specifier|private
 specifier|static
@@ -317,7 +317,7 @@ name|DECREASING_INT_COMPARATOR
 argument_list|)
 return|;
 block|}
-comment|/**    * Create and populate a {@code TreeMultimap} with explicit comparators.    */
+comment|/** Create and populate a {@code TreeMultimap} with explicit comparators. */
 DECL|method|createPopulate ()
 specifier|private
 name|TreeMultimap
@@ -415,7 +415,7 @@ return|return
 name|multimap
 return|;
 block|}
-comment|/**    * Test that a TreeMultimap created from another uses the natural ordering.    */
+comment|/** Test that a TreeMultimap created from another uses the natural ordering. */
 DECL|method|testMultimapCreateFromTreeMultimap ()
 specifier|public
 name|void

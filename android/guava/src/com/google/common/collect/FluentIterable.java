@@ -215,7 +215,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An expanded {@code Iterable} API, providing functionality similar to Java 8's powerful<a href=  * "https://docs.oracle.com/javase/8/docs/api/java/util/stream/package-summary.html#package.description"  *>streams library</a> in a slightly different way.  *  *<p>The following types of methods are provided:  *  *<ul>  *<li>chaining methods which return a new {@code FluentIterable} based in some way on the contents  *     of the current one (for example {@link #transform})  *<li>element extraction methods which facilitate the retrieval of certain elements (for example  *     {@link #last})  *<li>query methods which answer questions about the {@code FluentIterable}'s contents (for example  *     {@link #anyMatch})  *<li>conversion methods which copy the {@code FluentIterable}'s contents into a new collection or  *     array (for example {@link #toList})  *</ul>  *  *<p>Several lesser-used features are currently available only as static methods on the {@link  * Iterables} class.  *  *<a name="streams"></a>  *<h3>Comparison to streams</h3>  *  *<p>Starting with Java 8, the core Java class libraries provide a new "Streams" library (in {@code  * java.util.stream}), which is similar to {@code FluentIterable} but generally more powerful. Key  * differences include:  *  *<ul>  *<li>A stream is<i>single-use</i>; it becomes invalid as soon as any "terminal operation" such as  *     {@code findFirst()} or {@code iterator()} is invoked. (Even though {@code Stream} contains  *     all the right method<i>signatures</i> to implement {@link Iterable}, it does not actually do  *     so, to avoid implying repeat-iterability.) {@code FluentIterable}, on the other hand, is  *     multiple-use, and does implement {@link Iterable}.  *<li>Streams offer many features not found here, including {@code min/max}, {@code distinct},  *     {@code reduce}, {@code sorted}, the very powerful {@code collect}, and built-in support for  *     parallelizing stream operations.  *<li>{@code FluentIterable} contains several features not available on {@code Stream}, which are  *     noted in the method descriptions below.  *<li>Streams include primitive-specialized variants such as {@code IntStream}, the use of which is  *     strongly recommended.  *<li>Streams are standard Java, not requiring a third-party dependency (but do render your code  *     incompatible with Java 7 and earlier).  *</ul>  *  *<h3>Example</h3>  *  *<p>Here is an example that accepts a list from a database call, filters it based on a predicate,  * transforms it by invoking {@code toString()} on each element, and returns the first 10 elements  * as a {@code List}:  *  *<pre>{@code  * ImmutableList<String> results =  *     FluentIterable.from(database.getClientList())  *         .filter(Client::isActiveInLastMonth)  *         .transform(Object::toString)  *         .limit(10)  *         .toList();  * }</pre>  *  * The approximate stream equivalent is:  *  *<pre>{@code  * List<String> results =  *     database.getClientList()  *         .stream()  *         .filter(Client::isActiveInLastMonth)  *         .map(Object::toString)  *         .limit(10)  *         .collect(Collectors.toList());  * }</pre>  *  * @author Marcin Mikosik  * @since 12.0  */
+comment|/**  * An expanded {@code Iterable} API, providing functionality similar to Java 8's powerful<a href=  * "https://docs.oracle.com/javase/8/docs/api/java/util/stream/package-summary.html#package.description"  *>streams library</a> in a slightly different way.  *  *<p>The following types of methods are provided:  *  *<ul>  *<li>chaining methods which return a new {@code FluentIterable} based in some way on the  *       contents of the current one (for example {@link #transform})  *<li>element extraction methods which facilitate the retrieval of certain elements (for example  *       {@link #last})  *<li>query methods which answer questions about the {@code FluentIterable}'s contents (for  *       example {@link #anyMatch})  *<li>conversion methods which copy the {@code FluentIterable}'s contents into a new collection  *       or array (for example {@link #toList})  *</ul>  *  *<p>Several lesser-used features are currently available only as static methods on the {@link  * Iterables} class.  *  *<p><a name="streams"></a>  *  *<h3>Comparison to streams</h3>  *  *<p>Starting with Java 8, the core Java class libraries provide a new "Streams" library (in {@code  * java.util.stream}), which is similar to {@code FluentIterable} but generally more powerful. Key  * differences include:  *  *<ul>  *<li>A stream is<i>single-use</i>; it becomes invalid as soon as any "terminal operation" such  *       as {@code findFirst()} or {@code iterator()} is invoked. (Even though {@code Stream}  *       contains all the right method<i>signatures</i> to implement {@link Iterable}, it does not  *       actually do so, to avoid implying repeat-iterability.) {@code FluentIterable}, on the other  *       hand, is multiple-use, and does implement {@link Iterable}.  *<li>Streams offer many features not found here, including {@code min/max}, {@code distinct},  *       {@code reduce}, {@code sorted}, the very powerful {@code collect}, and built-in support for  *       parallelizing stream operations.  *<li>{@code FluentIterable} contains several features not available on {@code Stream}, which are  *       noted in the method descriptions below.  *<li>Streams include primitive-specialized variants such as {@code IntStream}, the use of which  *       is strongly recommended.  *<li>Streams are standard Java, not requiring a third-party dependency (but do render your code  *       incompatible with Java 7 and earlier).  *</ul>  *  *<h3>Example</h3>  *  *<p>Here is an example that accepts a list from a database call, filters it based on a predicate,  * transforms it by invoking {@code toString()} on each element, and returns the first 10 elements  * as a {@code List}:  *  *<pre>{@code  * ImmutableList<String> results =  *     FluentIterable.from(database.getClientList())  *         .filter(Client::isActiveInLastMonth)  *         .transform(Object::toString)  *         .limit(10)  *         .toList();  * }</pre>  *  * The approximate stream equivalent is:  *  *<pre>{@code  * List<String> results =  *     database.getClientList()  *         .stream()  *         .filter(Client::isActiveInLastMonth)  *         .map(Object::toString)  *         .limit(10)  *         .collect(Collectors.toList());  * }</pre>  *  * @author Marcin Mikosik  * @since 12.0  */
 end_comment
 
 begin_class
@@ -324,7 +324,7 @@ name|this
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a fluent iterable that wraps {@code iterable}, or {@code iterable} itself if it is    * already a {@code FluentIterable}.    *    *<p><b>{@code Stream} equivalent:</b> {@code iterable.stream()} if {@code iterable} is a    * {@link Collection}; {@code StreamSupport.stream(iterable.spliterator(), false)} otherwise.    */
+comment|/**    * Returns a fluent iterable that wraps {@code iterable}, or {@code iterable} itself if it is    * already a {@code FluentIterable}.    *    *<p><b>{@code Stream} equivalent:</b> {@code iterable.stream()} if {@code iterable} is a {@link    * Collection}; {@code StreamSupport.stream(iterable.spliterator(), false)} otherwise.    */
 DECL|method|from (final Iterable<E> iterable)
 specifier|public
 specifier|static
@@ -421,7 +421,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Construct a fluent iterable from another fluent iterable. This is obviously never necessary,    * but is intended to help call out cases where one migration from {@code Iterable} to    * {@code FluentIterable} has obviated the need to explicitly convert to a {@code FluentIterable}.    *    * @deprecated instances of {@code FluentIterable} don't need to be converted to    *     {@code FluentIterable}    */
+comment|/**    * Construct a fluent iterable from another fluent iterable. This is obviously never necessary,    * but is intended to help call out cases where one migration from {@code Iterable} to {@code    * FluentIterable} has obviated the need to explicitly convert to a {@code FluentIterable}.    *    * @deprecated instances of {@code FluentIterable} don't need to be converted to {@code    *     FluentIterable}    */
 annotation|@
 name|Deprecated
 DECL|method|from (FluentIterable<E> iterable)
@@ -980,7 +980,7 @@ block|}
 end_function
 
 begin_comment
-comment|/**    * Returns {@code true} if this fluent iterable contains any object for which    * {@code equals(target)} is true.    *    *<p><b>{@code Stream} equivalent:</b> {@code stream.anyMatch(Predicate.isEqual(target))}.    */
+comment|/**    * Returns {@code true} if this fluent iterable contains any object for which {@code    * equals(target)} is true.    *    *<p><b>{@code Stream} equivalent:</b> {@code stream.anyMatch(Predicate.isEqual(target))}.    */
 end_comment
 
 begin_function
@@ -1011,7 +1011,7 @@ block|}
 end_function
 
 begin_comment
-comment|/**    * Returns a fluent iterable whose {@code Iterator} cycles indefinitely over the elements of this    * fluent iterable.    *    *<p>That iterator supports {@code remove()} if {@code iterable.iterator()} does. After    * {@code remove()} is called, subsequent cycles omit the removed element, which is no longer in    * this fluent iterable. The iterator's {@code hasNext()} method returns {@code true} until this    * fluent iterable is empty.    *    *<p><b>Warning:</b> Typical uses of the resulting iterator may produce an infinite loop. You    * should use an explicit {@code break} or be certain that you will eventually remove all the    * elements.    *    *<p><b>{@code Stream} equivalent:</b> if the source iterable has only a single element {@code    * e}, use {@code Stream.generate(() -> e)}. Otherwise, collect your stream into a collection and    * use {@code Stream.generate(() -> collection).flatMap(Collection::stream)}.    */
+comment|/**    * Returns a fluent iterable whose {@code Iterator} cycles indefinitely over the elements of this    * fluent iterable.    *    *<p>That iterator supports {@code remove()} if {@code iterable.iterator()} does. After {@code    * remove()} is called, subsequent cycles omit the removed element, which is no longer in this    * fluent iterable. The iterator's {@code hasNext()} method returns {@code true} until this fluent    * iterable is empty.    *    *<p><b>Warning:</b> Typical uses of the resulting iterator may produce an infinite loop. You    * should use an explicit {@code break} or be certain that you will eventually remove all the    * elements.    *    *<p><b>{@code Stream} equivalent:</b> if the source iterable has only a single element {@code    * e}, use {@code Stream.generate(() -> e)}. Otherwise, collect your stream into a collection and    * use {@code Stream.generate(() -> collection).flatMap(Collection::stream)}.    */
 end_comment
 
 begin_function
@@ -1456,7 +1456,7 @@ block|}
 end_function
 
 begin_comment
-comment|/**    * Returns an {@link Optional} containing the last element in this fluent iterable. If the    * iterable is empty, {@code Optional.absent()} is returned. If the underlying {@code iterable}    * is a {@link List} with {@link java.util.RandomAccess} support, then this operation is    * guaranteed to be {@code O(1)}.    *    *<p><b>{@code Stream} equivalent:</b> {@code stream.reduce((a, b) -> b)}.    *    * @throws NullPointerException if the last element is null; if this is a possibility, use    *     {@link Iterables#getLast} instead.    */
+comment|/**    * Returns an {@link Optional} containing the last element in this fluent iterable. If the    * iterable is empty, {@code Optional.absent()} is returned. If the underlying {@code iterable} is    * a {@link List} with {@link java.util.RandomAccess} support, then this operation is guaranteed    * to be {@code O(1)}.    *    *<p><b>{@code Stream} equivalent:</b> {@code stream.reduce((a, b) -> b)}.    *    * @throws NullPointerException if the last element is null; if this is a possibility, use {@link    *     Iterables#getLast} instead.    */
 end_comment
 
 begin_function
@@ -2019,7 +2019,7 @@ block|}
 end_function
 
 begin_comment
-comment|/**    * Returns an array containing all of the elements from this fluent iterable in iteration order.    *    *<p><b>{@code Stream} equivalent:</b> if an object array is acceptable, use    * {@code stream.toArray()}; if {@code type} is a class literal such as {@code MyType.class}, use    * {@code stream.toArray(MyType[]::new)}. Otherwise use {@code stream.toArray(    * len -> (E[]) Array.newInstance(type, len))}.    *    * @param type the type of the elements    * @return a newly-allocated array into which all the elements of this fluent iterable have been    *     copied    */
+comment|/**    * Returns an array containing all of the elements from this fluent iterable in iteration order.    *    *<p><b>{@code Stream} equivalent:</b> if an object array is acceptable, use {@code    * stream.toArray()}; if {@code type} is a class literal such as {@code MyType.class}, use {@code    * stream.toArray(MyType[]::new)}. Otherwise use {@code stream.toArray( len -> (E[])    * Array.newInstance(type, len))}.    *    * @param type the type of the elements    * @return a newly-allocated array into which all the elements of this fluent iterable have been    *     copied    */
 end_comment
 
 begin_function
@@ -2055,7 +2055,7 @@ block|}
 end_function
 
 begin_comment
-comment|/**    * Copies all the elements from this fluent iterable to {@code collection}. This is equivalent to    * calling {@code Iterables.addAll(collection, this)}.    *    *<p><b>{@code Stream} equivalent:</b> {@code stream.forEachOrdered(collection::add)} or    * {@code stream.forEach(collection::add)}.    *    * @param collection the collection to copy elements to    * @return {@code collection}, for convenience    * @since 14.0    */
+comment|/**    * Copies all the elements from this fluent iterable to {@code collection}. This is equivalent to    * calling {@code Iterables.addAll(collection, this)}.    *    *<p><b>{@code Stream} equivalent:</b> {@code stream.forEachOrdered(collection::add)} or {@code    * stream.forEach(collection::add)}.    *    * @param collection the collection to copy elements to    * @return {@code collection}, for convenience    * @since 14.0    */
 end_comment
 
 begin_function
@@ -2141,7 +2141,7 @@ block|}
 end_function
 
 begin_comment
-comment|/**    * Returns a {@link String} containing all of the elements of this fluent iterable joined with    * {@code joiner}.    *    *<p><b>{@code Stream} equivalent:</b> {@code joiner.join(stream.iterator())}, or, if you are not    * using any optional {@code Joiner} features,    * {@code stream.collect(Collectors.joining(delimiter)}.    *    * @since 18.0    */
+comment|/**    * Returns a {@link String} containing all of the elements of this fluent iterable joined with    * {@code joiner}.    *    *<p><b>{@code Stream} equivalent:</b> {@code joiner.join(stream.iterator())}, or, if you are not    * using any optional {@code Joiner} features, {@code    * stream.collect(Collectors.joining(delimiter)}.    *    * @since 18.0    */
 end_comment
 
 begin_function
@@ -2202,7 +2202,7 @@ block|}
 end_function
 
 begin_comment
-comment|/**    * Function that transforms {@code Iterable<E>} into a fluent iterable.    */
+comment|/** Function that transforms {@code Iterable<E>} into a fluent iterable. */
 end_comment
 
 begin_class

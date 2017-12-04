@@ -155,7 +155,7 @@ argument_list|,
 name|String
 argument_list|>
 block|{
-comment|/**    * Constructor that assigns {@code supportsIteratorRemove} the same value as    * {@code supportsRemove}.    */
+comment|/**    * Constructor that assigns {@code supportsIteratorRemove} the same value as {@code    * supportsRemove}.    */
 DECL|method|MapsTransformValuesTest ( boolean allowsNullKeys, boolean allowsNullValues, boolean supportsPut, boolean supportsRemove, boolean supportsClear)
 specifier|protected
 name|MapsTransformValuesTest
@@ -314,9 +314,9 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-DECL|method|getKeyNotInPopulatedMap ()
 annotation|@
 name|Override
+DECL|method|getKeyNotInPopulatedMap ()
 specifier|protected
 name|String
 name|getKeyNotInPopulatedMap
@@ -328,9 +328,9 @@ return|return
 literal|"z"
 return|;
 block|}
-DECL|method|getValueNotInPopulatedMap ()
 annotation|@
 name|Override
+DECL|method|getValueNotInPopulatedMap ()
 specifier|protected
 name|String
 name|getValueNotInPopulatedMap
@@ -1930,9 +1930,9 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|testKeySetRemoveAllNullFromEmpty ()
 annotation|@
 name|Override
+DECL|method|testKeySetRemoveAllNullFromEmpty ()
 specifier|public
 name|void
 name|testKeySetRemoveAllNullFromEmpty
@@ -1955,9 +1955,9 @@ block|{
 comment|// GWT's HashMap.keySet().removeAll(null) doesn't throws NPE.
 block|}
 block|}
-DECL|method|testEntrySetRemoveAllNullFromEmpty ()
 annotation|@
 name|Override
+DECL|method|testEntrySetRemoveAllNullFromEmpty ()
 specifier|public
 name|void
 name|testEntrySetRemoveAllNullFromEmpty

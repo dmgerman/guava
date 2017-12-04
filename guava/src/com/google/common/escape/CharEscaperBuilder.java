@@ -290,7 +290,7 @@ init|=
 operator|-
 literal|1
 decl_stmt|;
-comment|/**    * Construct a new sparse array builder.    */
+comment|/** Construct a new sparse array builder. */
 DECL|method|CharEscaperBuilder ()
 specifier|public
 name|CharEscaperBuilder
@@ -306,7 +306,7 @@ argument_list|<>
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * Add a new mapping from an index to an object to the escaping.    */
+comment|/** Add a new mapping from an index to an object to the escaping. */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|addEscape (char c, String r)
@@ -349,7 +349,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**    * Add multiple mappings at once for a particular index.    */
+comment|/** Add multiple mappings at once for a particular index. */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|addEscapes (char[] cs, String r)

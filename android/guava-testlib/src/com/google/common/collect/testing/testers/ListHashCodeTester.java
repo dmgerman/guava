@@ -157,7 +157,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Returns the {@link Method} instance for {@link #testHashCode()} so that    * list tests on unhashable objects can suppress it with    * {@code FeatureSpecificTestSuiteBuilder.suppressing()}.    */
+comment|/**    * Returns the {@link Method} instance for {@link #testHashCode()} so that list tests on    * unhashable objects can suppress it with {@code FeatureSpecificTestSuiteBuilder.suppressing()}.    */
 annotation|@
 name|GwtIncompatible
 comment|// reflection

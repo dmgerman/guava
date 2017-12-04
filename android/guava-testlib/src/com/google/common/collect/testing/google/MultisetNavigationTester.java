@@ -416,7 +416,7 @@ name|E
 argument_list|>
 name|c
 decl_stmt|;
-comment|/**    * Used to avoid http://bugs.sun.com/view_bug.do?bug_id=6558557    */
+comment|/** Used to avoid http://bugs.sun.com/view_bug.do?bug_id=6558557 */
 DECL|method|cast (Multiset<T> iterable)
 specifier|static
 parameter_list|<
@@ -602,7 +602,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**    * Resets the contents of sortedMultiset to have entries a, c, for the navigation tests.    */
+comment|/** Resets the contents of sortedMultiset to have entries a, c, for the navigation tests. */
 annotation|@
 name|SuppressWarnings
 argument_list|(

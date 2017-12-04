@@ -601,7 +601,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests for {@link PairedStats}. This tests instances created by  * {@link PairedStatsAccumulator#snapshot}.  *  * @author Pete Gillin  */
+comment|/**  * Tests for {@link PairedStats}. This tests instances created by {@link  * PairedStatsAccumulator#snapshot}.  *  * @author Pete Gillin  */
 end_comment
 
 begin_class
@@ -2058,7 +2058,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{       }
+block|{     }
 block|}
 DECL|method|testFromByteArrayWithTooShortArrayInputThrowsIllegalArgumentException ()
 specifier|public

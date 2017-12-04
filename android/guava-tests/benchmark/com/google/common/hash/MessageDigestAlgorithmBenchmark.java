@@ -92,7 +92,6 @@ specifier|public
 class|class
 name|MessageDigestAlgorithmBenchmark
 block|{
-DECL|field|size
 annotation|@
 name|Param
 argument_list|(
@@ -106,6 +105,7 @@ block|,
 literal|"1000000"
 block|}
 argument_list|)
+DECL|field|size
 name|int
 name|size
 decl_stmt|;
@@ -249,7 +249,7 @@ argument_list|()
 return|;
 block|}
 block|}
-block|;;
+block|;     ;
 DECL|method|hash (Algorithm algorithm, byte[] input)
 specifier|public
 specifier|abstract
@@ -425,9 +425,9 @@ name|byte
 index|[]
 name|testBytes
 decl_stmt|;
-DECL|method|setUp ()
 annotation|@
 name|BeforeExperiment
+DECL|method|setUp ()
 name|void
 name|setUp
 parameter_list|()
@@ -452,9 +452,9 @@ name|testBytes
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|hashing (int reps)
 annotation|@
 name|Benchmark
+DECL|method|hashing (int reps)
 name|byte
 name|hashing
 parameter_list|(

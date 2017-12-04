@@ -87,7 +87,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author Max Ross  */
+comment|/** @author Max Ross */
 end_comment
 
 begin_class

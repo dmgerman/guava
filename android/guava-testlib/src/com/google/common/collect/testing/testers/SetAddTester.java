@@ -173,7 +173,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A generic JUnit test which tests add operations on a set. Can't be  * invoked directly; please see  * {@link com.google.common.collect.testing.SetTestSuiteBuilder}.  *  * @author Kevin Bourrillion  */
+comment|/**  * A generic JUnit test which tests add operations on a set. Can't be invoked directly; please see  * {@link com.google.common.collect.testing.SetTestSuiteBuilder}.  *  * @author Kevin Bourrillion  */
 end_comment
 
 begin_class
@@ -301,7 +301,7 @@ name|array
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Returns the {@link Method} instance for    * {@link #testAdd_supportedNullPresent()} so that tests can suppress it. See    * {@link CollectionAddTester#getAddNullSupportedMethod()} for details.    */
+comment|/**    * Returns the {@link Method} instance for {@link #testAdd_supportedNullPresent()} so that tests    * can suppress it. See {@link CollectionAddTester#getAddNullSupportedMethod()} for details.    */
 annotation|@
 name|GwtIncompatible
 comment|// reflection

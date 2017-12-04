@@ -41,7 +41,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Simple benchmark: create, start, read. This does not currently report the  * most useful result because it's ambiguous to what extent the stopwatch  * benchmark is being affected by GC.  *  * @author Kevin Bourrillion  */
+comment|/**  * Simple benchmark: create, start, read. This does not currently report the most useful result  * because it's ambiguous to what extent the stopwatch benchmark is being affected by GC.  *  * @author Kevin Bourrillion  */
 end_comment
 
 begin_class
@@ -50,9 +50,9 @@ specifier|public
 class|class
 name|StopwatchBenchmark
 block|{
-DECL|method|stopwatch (int reps)
 annotation|@
 name|Benchmark
+DECL|method|stopwatch (int reps)
 name|long
 name|stopwatch
 parameter_list|(
@@ -105,9 +105,9 @@ return|return
 name|total
 return|;
 block|}
-DECL|method|manual (int reps)
 annotation|@
 name|Benchmark
+DECL|method|manual (int reps)
 name|long
 name|manual
 parameter_list|(

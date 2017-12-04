@@ -75,7 +75,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Workaround for  *<a href="http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6312706">  * EnumMap bug</a>. If you want to pass an {@code EnumMap}, with the  * intention of using its {@code entrySet()} method, you should  * wrap the {@code EnumMap} in this class instead.  *  *<p>This class is not thread-safe even if the underlying map is.  *  * @author Dimitris Andreou  */
+comment|/**  * Workaround for<a href="http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6312706">EnumMap  * bug</a>. If you want to pass an {@code EnumMap}, with the intention of using its {@code  * entrySet()} method, you should wrap the {@code EnumMap} in this class instead.  *  *<p>This class is not thread-safe even if the underlying map is.  *  * @author Dimitris Andreou  */
 end_comment
 
 begin_class
@@ -142,7 +142,7 @@ operator|=
 name|delegate
 expr_stmt|;
 block|}
-comment|/**    * Wraps the given map into a {@code WellBehavedEntriesMap}, which    * intercepts its {@code entrySet()} method by taking the    * {@code Set<K> keySet()} and transforming it to    * {@code Set<Entry<K, V>>}. All other invocations are delegated as-is.    */
+comment|/**    * Wraps the given map into a {@code WellBehavedEntriesMap}, which intercepts its {@code    * entrySet()} method by taking the {@code Set<K> keySet()} and transforming it to {@code    * Set<Entry<K, V>>}. All other invocations are delegated as-is.    */
 DECL|method|wrap (Map<K, V> delegate)
 specifier|static
 parameter_list|<

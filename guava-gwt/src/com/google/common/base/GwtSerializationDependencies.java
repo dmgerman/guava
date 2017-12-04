@@ -51,7 +51,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Contains dummy collection implementations to convince GWT that part of  * serializing a collection is serializing its elements.  *  *<p>See {@linkplain com.google.common.collect.GwtSerializationDependencies the  * com.google.common.collect version} for more details.  *  * @author Chris Povirk  */
+comment|/**  * Contains dummy collection implementations to convince GWT that part of serializing a collection  * is serializing its elements.  *  *<p>See {@linkplain com.google.common.collect.GwtSerializationDependencies the  * com.google.common.collect version} for more details.  *  * @author Chris Povirk  */
 end_comment
 
 begin_class

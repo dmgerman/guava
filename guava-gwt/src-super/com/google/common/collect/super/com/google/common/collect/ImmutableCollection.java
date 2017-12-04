@@ -445,7 +445,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/**    * GWT emulated version of {@link ImmutableCollection.Builder}.    */
+comment|/** GWT emulated version of {@link ImmutableCollection.Builder}. */
 DECL|class|Builder
 specifier|public
 specifier|abstract

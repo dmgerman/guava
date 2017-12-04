@@ -171,7 +171,7 @@ DECL|method|HashCode ()
 name|HashCode
 parameter_list|()
 block|{}
-comment|/**    * Returns the number of bits in this hash code; a positive multiple of 8.    */
+comment|/** Returns the number of bits in this hash code; a positive multiple of 8. */
 DECL|method|bits ()
 specifier|public
 specifier|abstract
@@ -1471,7 +1471,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/**    * Returns a "Java hash code" for this {@code HashCode} instance; this is well-defined (so, for    * example, you can safely put {@code HashCode} instances into a {@code    * HashSet}) but is otherwise probably not what you want to use.    */
+comment|/**    * Returns a "Java hash code" for this {@code HashCode} instance; this is well-defined (so, for    * example, you can safely put {@code HashCode} instances into a {@code HashSet}) but is otherwise    * probably not what you want to use.    */
 annotation|@
 name|Override
 DECL|method|hashCode ()

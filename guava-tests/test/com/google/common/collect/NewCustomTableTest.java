@@ -94,9 +94,9 @@ name|NewCustomTableTest
 extends|extends
 name|AbstractTableTest
 block|{
-DECL|method|create ( Object... data)
 annotation|@
 name|Override
+DECL|method|create (Object... data)
 specifier|protected
 name|Table
 argument_list|<

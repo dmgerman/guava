@@ -3230,7 +3230,7 @@ parameter_list|(
 name|NullPointerException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testGet_array ()
 specifier|public
@@ -4320,9 +4320,9 @@ enum|enum
 name|Direction
 block|{
 DECL|enumConstant|UP
-DECL|enumConstant|DOWN
 name|UP
 block|,
+DECL|enumConstant|DOWN
 name|DOWN
 block|}
 DECL|interface|SomeInterface
@@ -4332,8 +4332,8 @@ name|SomeInterface
 block|{}
 DECL|class|SomeAbstractClass
 specifier|public
-specifier|static
 specifier|abstract
+specifier|static
 class|class
 name|SomeAbstractClass
 block|{

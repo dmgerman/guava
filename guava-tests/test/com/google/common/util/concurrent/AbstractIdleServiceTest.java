@@ -152,9 +152,9 @@ name|DefaultService
 extends|extends
 name|AbstractIdleService
 block|{
-DECL|method|startUp ()
 annotation|@
 name|Override
+DECL|method|startUp ()
 specifier|protected
 name|void
 name|startUp
@@ -162,9 +162,9 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{}
-DECL|method|shutDown ()
 annotation|@
 name|Override
+DECL|method|shutDown ()
 specifier|protected
 name|void
 name|shutDown
@@ -1121,9 +1121,9 @@ operator|.
 name|newArrayList
 argument_list|()
 decl_stmt|;
-DECL|method|startUp ()
 annotation|@
 name|Override
+DECL|method|startUp ()
 specifier|protected
 name|void
 name|startUp
@@ -1159,9 +1159,9 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|shutDown ()
 annotation|@
 name|Override
+DECL|method|shutDown ()
 specifier|protected
 name|void
 name|shutDown
@@ -1197,9 +1197,9 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|executor ()
 annotation|@
 name|Override
+DECL|method|executor ()
 specifier|protected
 name|Executor
 name|executor

@@ -277,7 +277,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A builder for a multimap implementation that allows customization of the backing map and value  * collection implementations used in a particular multimap.  *  *<p>This can be used to easily configure multimap data structure implementations not provided  * explicitly in {@code com.google.common.collect}, for example:  *  *<pre>   {@code  *   ListMultimap<String, Integer> treeListMultimap =  *       MultimapBuilder.treeKeys().arrayListValues().build();  *   SetMultimap<Integer, MyEnum> hashEnumMultimap =  *       MultimapBuilder.hashKeys().enumSetValues(MyEnum.class).build();}</pre>  *  *<p>{@code MultimapBuilder} instances are immutable.  Invoking a configuration method has no  * effect on the receiving instance; you must store and use the new builder instance it returns  * instead.  *  *<p>The generated multimaps are serializable if the key and value types are serializable,  * unless stated otherwise in one of the configuration methods.  *  * @author Louis Wasserman  * @param<K0> An upper bound on the key type of the generated multimap.  * @param<V0> An upper bound on the value type of the generated multimap.  * @since 16.0  */
+comment|/**  * A builder for a multimap implementation that allows customization of the backing map and value  * collection implementations used in a particular multimap.  *  *<p>This can be used to easily configure multimap data structure implementations not provided  * explicitly in {@code com.google.common.collect}, for example:  *  *<pre>{@code  * ListMultimap<String, Integer> treeListMultimap =  *     MultimapBuilder.treeKeys().arrayListValues().build();  * SetMultimap<Integer, MyEnum> hashEnumMultimap =  *     MultimapBuilder.hashKeys().enumSetValues(MyEnum.class).build();  * }</pre>  *  *<p>{@code MultimapBuilder} instances are immutable. Invoking a configuration method has no effect  * on the receiving instance; you must store and use the new builder instance it returns instead.  *  *<p>The generated multimaps are serializable if the key and value types are serializable, unless  * stated otherwise in one of the configuration methods.  *  * @author Louis Wasserman  * @param<K0> An upper bound on the key type of the generated multimap.  * @param<V0> An upper bound on the value type of the generated multimap.  * @since 16.0  */
 end_comment
 
 begin_class
@@ -311,7 +311,7 @@ name|DEFAULT_EXPECTED_KEYS
 init|=
 literal|8
 decl_stmt|;
-comment|/**    * Uses a {@link HashMap} to map keys to value collections.    */
+comment|/** Uses a {@link HashMap} to map keys to value collections. */
 DECL|method|hashKeys ()
 specifier|public
 specifier|static
@@ -390,7 +390,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/**    * Uses a {@link LinkedHashMap} to map keys to value collections.    *    *<p>The collections returned by {@link Multimap#keySet()}, {@link Multimap#keys()}, and    * {@link Multimap#asMap()} will iterate through the keys in the order that they were first added    * to the multimap, save that if all values associated with a key are removed and then the key is    * added back into the multimap, that key will come last in the key iteration order.    */
+comment|/**    * Uses a {@link LinkedHashMap} to map keys to value collections.    *    *<p>The collections returned by {@link Multimap#keySet()}, {@link Multimap#keys()}, and {@link    * Multimap#asMap()} will iterate through the keys in the order that they were first added to the    * multimap, save that if all values associated with a key are removed and then the key is added    * back into the multimap, that key will come last in the key iteration order.    */
 DECL|method|linkedHashKeys ()
 specifier|public
 specifier|static
@@ -408,7 +408,7 @@ name|DEFAULT_EXPECTED_KEYS
 argument_list|)
 return|;
 block|}
-comment|/**    * Uses a {@link LinkedHashMap} to map keys to value collections, initialized to expect the    * specified number of keys.    *    *<p>The collections returned by {@link Multimap#keySet()}, {@link Multimap#keys()}, and    * {@link Multimap#asMap()} will iterate through the keys in the order that they were first added    * to the multimap, save that if all values associated with a key are removed and then the key is    * added back into the multimap, that key will come last in the key iteration order.    */
+comment|/**    * Uses a {@link LinkedHashMap} to map keys to value collections, initialized to expect the    * specified number of keys.    *    *<p>The collections returned by {@link Multimap#keySet()}, {@link Multimap#keys()}, and {@link    * Multimap#asMap()} will iterate through the keys in the order that they were first added to the    * multimap, save that if all values associated with a key are removed and then the key is added    * back into the multimap, that key will come last in the key iteration order.    */
 DECL|method|linkedHashKeys (final int expectedKeys)
 specifier|public
 specifier|static
@@ -467,7 +467,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/**    * Uses a naturally-ordered {@link TreeMap} to map keys to value collections.    *    *<p>The collections returned by {@link Multimap#keySet()}, {@link Multimap#keys()}, and    * {@link Multimap#asMap()} will iterate through the keys in sorted order.    *    *<p>For all multimaps generated by the resulting builder, the {@link Multimap#keySet()} can be    * safely cast to a {@link java.util.SortedSet}, and the {@link Multimap#asMap()} can safely be    * cast to a {@link java.util.SortedMap}.    */
+comment|/**    * Uses a naturally-ordered {@link TreeMap} to map keys to value collections.    *    *<p>The collections returned by {@link Multimap#keySet()}, {@link Multimap#keys()}, and {@link    * Multimap#asMap()} will iterate through the keys in sorted order.    *    *<p>For all multimaps generated by the resulting builder, the {@link Multimap#keySet()} can be    * safely cast to a {@link java.util.SortedSet}, and the {@link Multimap#asMap()} can safely be    * cast to a {@link java.util.SortedMap}.    */
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -493,7 +493,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Uses a {@link TreeMap} sorted by the specified comparator to map keys to value collections.    *    *<p>The collections returned by {@link Multimap#keySet()}, {@link Multimap#keys()}, and    * {@link Multimap#asMap()} will iterate through the keys in sorted order.    *    *<p>For all multimaps generated by the resulting builder, the {@link Multimap#keySet()} can be    * safely cast to a {@link java.util.SortedSet}, and the {@link Multimap#asMap()} can safely be    * cast to a {@link java.util.SortedMap}.    *    *<p>Multimaps generated by the resulting builder will not be serializable if {@code comparator}    * is not serializable.    */
+comment|/**    * Uses a {@link TreeMap} sorted by the specified comparator to map keys to value collections.    *    *<p>The collections returned by {@link Multimap#keySet()}, {@link Multimap#keys()}, and {@link    * Multimap#asMap()} will iterate through the keys in sorted order.    *    *<p>For all multimaps generated by the resulting builder, the {@link Multimap#keySet()} can be    * safely cast to a {@link java.util.SortedSet}, and the {@link Multimap#asMap()} can safely be    * cast to a {@link java.util.SortedMap}.    *    *<p>Multimaps generated by the resulting builder will not be serializable if {@code comparator}    * is not serializable.    */
 DECL|method|treeKeys (final Comparator<K0> comparator)
 specifier|public
 specifier|static
@@ -1087,7 +1087,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**    * An intermediate stage in a {@link MultimapBuilder} in which the key-value collection map    * implementation has been specified, but the value collection implementation has not.    *    * @param<K0> The upper bound on the key type of the generated multimap.    *    * @since 16.0    */
+comment|/**    * An intermediate stage in a {@link MultimapBuilder} in which the key-value collection map    * implementation has been specified, but the value collection implementation has not.    *    * @param<K0> The upper bound on the key type of the generated multimap.    * @since 16.0    */
 DECL|class|MultimapBuilderWithKeys
 specifier|public
 specifier|abstract
@@ -1132,7 +1132,7 @@ argument_list|>
 name|createMap
 parameter_list|()
 function_decl|;
-comment|/**      * Uses an {@link ArrayList} to store value collections.      */
+comment|/** Uses an {@link ArrayList} to store value collections. */
 DECL|method|arrayListValues ()
 specifier|public
 name|ListMultimapBuilder
@@ -1234,7 +1234,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/**      * Uses a {@link LinkedList} to store value collections.      */
+comment|/** Uses a {@link LinkedList} to store value collections. */
 DECL|method|linkedListValues ()
 specifier|public
 name|ListMultimapBuilder
@@ -1305,7 +1305,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/**      * Uses a {@link HashSet} to store value collections.      */
+comment|/** Uses a {@link HashSet} to store value collections. */
 DECL|method|hashSetValues ()
 specifier|public
 name|SetMultimapBuilder
@@ -1407,7 +1407,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/**      * Uses a {@link LinkedHashSet} to store value collections.      */
+comment|/** Uses a {@link LinkedHashSet} to store value collections. */
 DECL|method|linkedHashSetValues ()
 specifier|public
 name|SetMultimapBuilder
@@ -1509,7 +1509,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/**      * Uses a naturally-ordered {@link TreeSet} to store value collections.      */
+comment|/** Uses a naturally-ordered {@link TreeSet} to store value collections. */
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -1536,7 +1536,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**      * Uses a {@link TreeSet} ordered by the specified comparator to store value collections.      *      *<p>Multimaps generated by the resulting builder will not be serializable if      * {@code comparator} is not serializable.      */
+comment|/**      * Uses a {@link TreeSet} ordered by the specified comparator to store value collections.      *      *<p>Multimaps generated by the resulting builder will not be serializable if {@code      * comparator} is not serializable.      */
 DECL|method|treeSetValues (final Comparator<V0> comparator)
 specifier|public
 parameter_list|<
@@ -1627,7 +1627,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/**      * Uses an {@link EnumSet} to store value collections.      */
+comment|/** Uses an {@link EnumSet} to store value collections. */
 DECL|method|enumSetValues ( final Class<V0> valueClass)
 specifier|public
 parameter_list|<
@@ -1749,7 +1749,7 @@ block|}
 return|;
 block|}
 block|}
-comment|/**    * Returns a new, empty {@code Multimap} with the specified implementation.    */
+comment|/** Returns a new, empty {@code Multimap} with the specified implementation. */
 DECL|method|build ()
 specifier|public
 specifier|abstract

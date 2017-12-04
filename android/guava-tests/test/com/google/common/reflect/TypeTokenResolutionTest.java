@@ -675,8 +675,8 @@ end_function
 begin_class
 DECL|class|Bar
 specifier|private
-specifier|static
 specifier|abstract
+specifier|static
 class|class
 name|Bar
 parameter_list|<
@@ -1051,8 +1051,8 @@ end_function
 begin_class
 DECL|class|StringIntegerFoo
 specifier|private
-specifier|static
 specifier|abstract
+specifier|static
 class|class
 name|StringIntegerFoo
 extends|extends
@@ -1117,8 +1117,8 @@ parameter_list|>
 block|{
 DECL|class|Nested
 specifier|private
-specifier|static
 specifier|abstract
+specifier|static
 class|class
 name|Nested
 parameter_list|<
@@ -1756,7 +1756,7 @@ parameter_list|(
 name|NullPointerException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 end_function
 

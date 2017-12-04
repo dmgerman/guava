@@ -81,7 +81,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author David Beaumont  */
+comment|/** @author David Beaumont */
 end_comment
 
 begin_class
@@ -604,7 +604,7 @@ comment|// pass
 block|}
 block|}
 comment|// A trival non-optimized escaper for testing.
-DECL|method|createSimpleCharEscaper ( final ImmutableMap<Character, char[]> replacementMap)
+DECL|method|createSimpleCharEscaper (final ImmutableMap<Character, char[]> replacementMap)
 specifier|static
 name|CharEscaper
 name|createSimpleCharEscaper

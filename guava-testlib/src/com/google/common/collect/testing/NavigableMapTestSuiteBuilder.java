@@ -225,7 +225,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Creates, based on your criteria, a JUnit test suite that exhaustively tests  * a NavigableMap implementation.  */
+comment|/**  * Creates, based on your criteria, a JUnit test suite that exhaustively tests a NavigableMap  * implementation.  */
 end_comment
 
 begin_class
@@ -877,7 +877,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Create a suite whose maps are descending views of other maps.    */
+comment|/** Create a suite whose maps are descending views of other maps. */
 DECL|method|createDescendingSuite ( final FeatureSpecificTestSuiteBuilder< ?, ? extends OneSizeTestContainerGenerator<Map<K, V>, Entry<K, V>>> parentBuilder)
 specifier|private
 name|TestSuite

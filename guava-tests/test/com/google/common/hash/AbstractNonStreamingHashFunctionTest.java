@@ -107,7 +107,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests for AbstractNonStreamingHashFunction.  */
+comment|/** Tests for AbstractNonStreamingHashFunction. */
 end_comment
 
 begin_class

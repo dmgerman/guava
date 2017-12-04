@@ -158,7 +158,7 @@ parameter_list|()
 throws|throws
 name|X
 function_decl|;
-comment|/**    * Exception checking version of {@link Future#get(long, TimeUnit)} that will translate {@link    * InterruptedException}, {@link CancellationException} and {@link ExecutionException} into    * application-specific exceptions.  On timeout this method throws a normal {@link    * TimeoutException}.    *    * @return the result of executing the future.    * @throws TimeoutException if retrieving the result timed out.    * @throws X on interruption, cancellation or execution exceptions.    */
+comment|/**    * Exception checking version of {@link Future#get(long, TimeUnit)} that will translate {@link    * InterruptedException}, {@link CancellationException} and {@link ExecutionException} into    * application-specific exceptions. On timeout this method throws a normal {@link    * TimeoutException}.    *    * @return the result of executing the future.    * @throws TimeoutException if retrieving the result timed out.    * @throws X on interruption, cancellation or execution exceptions.    */
 DECL|method|checkedGet (long timeout, TimeUnit unit)
 name|V
 name|checkedGet

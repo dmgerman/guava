@@ -119,7 +119,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Benchmarks some algorithms providing the same functionality as {@link Quantiles}.  */
+comment|/** Benchmarks some algorithms providing the same functionality as {@link Quantiles}. */
 end_comment
 
 begin_class
@@ -176,9 +176,9 @@ DECL|field|datasetSize
 name|int
 name|datasetSize
 decl_stmt|;
+DECL|field|algorithm
 annotation|@
 name|Param
-DECL|field|algorithm
 name|QuantilesAlgorithm
 name|algorithm
 decl_stmt|;
@@ -291,9 +291,9 @@ name|clone
 argument_list|()
 return|;
 block|}
-DECL|method|median (int reps)
 annotation|@
 name|Benchmark
+DECL|method|median (int reps)
 name|double
 name|median
 parameter_list|(
@@ -342,9 +342,9 @@ return|return
 name|dummy
 return|;
 block|}
-DECL|method|percentile90 (int reps)
 annotation|@
 name|Benchmark
+DECL|method|percentile90 (int reps)
 name|double
 name|percentile90
 parameter_list|(
@@ -393,9 +393,9 @@ return|return
 name|dummy
 return|;
 block|}
-DECL|method|percentile99 (int reps)
 annotation|@
 name|Benchmark
+DECL|method|percentile99 (int reps)
 name|double
 name|percentile99
 parameter_list|(
@@ -444,9 +444,9 @@ return|return
 name|dummy
 return|;
 block|}
-DECL|method|percentiles90And99 (int reps)
 annotation|@
 name|Benchmark
+DECL|method|percentiles90And99 (int reps)
 name|double
 name|percentiles90And99
 parameter_list|(
@@ -507,9 +507,9 @@ return|return
 name|dummy
 return|;
 block|}
-DECL|method|threePercentiles (int reps)
 annotation|@
 name|Benchmark
+DECL|method|threePercentiles (int reps)
 name|double
 name|threePercentiles
 parameter_list|(
@@ -572,9 +572,9 @@ return|return
 name|dummy
 return|;
 block|}
-DECL|method|allDeciles (int reps)
 annotation|@
 name|Benchmark
+DECL|method|allDeciles (int reps)
 name|double
 name|allDeciles
 parameter_list|(

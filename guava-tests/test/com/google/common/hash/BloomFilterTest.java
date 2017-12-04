@@ -1302,7 +1302,7 @@ literal|0.00033
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Sanity checking with many combinations of false positive rates and expected insertions    */
+comment|/** Sanity checking with many combinations of false positive rates and expected insertions */
 DECL|method|testBasic ()
 specifier|public
 name|void
@@ -1390,7 +1390,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 try|try
 block|{
 name|BloomFilter
@@ -1417,7 +1417,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 try|try
 block|{
 name|BloomFilter
@@ -1443,7 +1443,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 try|try
 block|{
 name|BloomFilter
@@ -1469,7 +1469,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testFailureWhenMoreThan255HashFunctionsAreNeeded ()
 specifier|public
@@ -1512,7 +1512,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testNullPointers ()
 specifier|public
@@ -1554,7 +1554,7 @@ name|class
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Tests that we never get an optimal hashes number of zero.    */
+comment|/** Tests that we never get an optimal hashes number of zero. */
 DECL|method|testOptimalHashes ()
 specifier|public
 name|void
@@ -1630,7 +1630,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Tests that we always get a non-negative optimal size.    */
+comment|/** Tests that we always get a non-negative optimal size. */
 DECL|method|testOptimalSize ()
 specifier|public
 name|void
@@ -3370,7 +3370,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * This test will fail whenever someone updates/reorders the BloomFilterStrategies constants.    * Only appending a new constant is allowed.    */
+comment|/**    * This test will fail whenever someone updates/reorders the BloomFilterStrategies constants. Only    * appending a new constant is allowed.    */
 DECL|method|testBloomFilterStrategies ()
 specifier|public
 name|void

@@ -738,7 +738,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Runs {@code callable} concurrently {@code numberOfThreads} times.    */
+comment|/** Runs {@code callable} concurrently {@code numberOfThreads} times. */
 annotation|@
 name|GwtIncompatible
 comment|// concurrency

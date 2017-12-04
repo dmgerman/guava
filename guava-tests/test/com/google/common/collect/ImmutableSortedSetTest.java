@@ -1045,9 +1045,9 @@ name|StringLengthComparator
 operator|.
 name|INSTANCE
 decl_stmt|;
-DECL|method|of ()
 annotation|@
 name|Override
+DECL|method|of ()
 specifier|protected
 parameter_list|<
 name|E
@@ -1073,9 +1073,9 @@ name|of
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|of (E e)
-annotation|@
-name|Override
 specifier|protected
 parameter_list|<
 name|E
@@ -1106,9 +1106,9 @@ name|e
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|of (E e1, E e2)
-annotation|@
-name|Override
 specifier|protected
 parameter_list|<
 name|E
@@ -1144,9 +1144,9 @@ name|e2
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|of (E e1, E e2, E e3)
-annotation|@
-name|Override
 specifier|protected
 parameter_list|<
 name|E
@@ -1187,9 +1187,9 @@ name|e3
 argument_list|)
 return|;
 block|}
-DECL|method|of ( E e1, E e2, E e3, E e4)
 annotation|@
 name|Override
+DECL|method|of (E e1, E e2, E e3, E e4)
 specifier|protected
 parameter_list|<
 name|E
@@ -1235,9 +1235,9 @@ name|e4
 argument_list|)
 return|;
 block|}
-DECL|method|of ( E e1, E e2, E e3, E e4, E e5)
 annotation|@
 name|Override
+DECL|method|of (E e1, E e2, E e3, E e4, E e5)
 specifier|protected
 parameter_list|<
 name|E
@@ -1293,9 +1293,9 @@ name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
-DECL|method|of (E e1, E e2, E e3, E e4, E e5, E e6, E... rest)
 annotation|@
 name|Override
+DECL|method|of ( E e1, E e2, E e3, E e4, E e5, E e6, E... rest)
 specifier|protected
 parameter_list|<
 name|E
@@ -1357,9 +1357,9 @@ name|rest
 argument_list|)
 return|;
 block|}
-DECL|method|copyOf (E[] elements)
 annotation|@
 name|Override
+DECL|method|copyOf (E[] elements)
 specifier|protected
 parameter_list|<
 name|E
@@ -1391,9 +1391,9 @@ name|elements
 argument_list|)
 return|;
 block|}
-DECL|method|copyOf ( Collection<? extends E> elements)
 annotation|@
 name|Override
+DECL|method|copyOf ( Collection<? extends E> elements)
 specifier|protected
 parameter_list|<
 name|E
@@ -1429,9 +1429,9 @@ name|elements
 argument_list|)
 return|;
 block|}
-DECL|method|copyOf ( Iterable<? extends E> elements)
 annotation|@
 name|Override
+DECL|method|copyOf (Iterable<? extends E> elements)
 specifier|protected
 parameter_list|<
 name|E
@@ -1467,9 +1467,9 @@ name|elements
 argument_list|)
 return|;
 block|}
-DECL|method|copyOf ( Iterator<? extends E> elements)
 annotation|@
 name|Override
+DECL|method|copyOf (Iterator<? extends E> elements)
 specifier|protected
 parameter_list|<
 name|E
@@ -2257,7 +2257,7 @@ name|Comparable
 argument_list|<
 name|Interface
 argument_list|>
-block|{   }
+block|{}
 DECL|class|Impl
 specifier|static
 class|class
@@ -2277,9 +2277,9 @@ init|=
 name|nextId
 operator|++
 decl_stmt|;
-DECL|method|compareTo (Interface other)
 annotation|@
 name|Override
+DECL|method|compareTo (Interface other)
 specifier|public
 name|int
 name|compareTo
@@ -7069,9 +7069,9 @@ name|inOrder
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|builder ()
 annotation|@
 name|Override
+DECL|method|builder ()
 argument_list|<
 name|E
 extends|extends
@@ -7096,9 +7096,9 @@ name|naturalOrder
 argument_list|()
 return|;
 block|}
-DECL|method|getComplexBuilderSetLastElement ()
 annotation|@
 name|Override
+DECL|method|getComplexBuilderSetLastElement ()
 name|int
 name|getComplexBuilderSetLastElement
 parameter_list|()
@@ -7960,7 +7960,7 @@ block|}
 comment|// In GWT, java.util.TreeSet throws ClassCastException when the comparator
 comment|// throws it, unlike JDK6.  Therefore, we accept ClassCastException as a
 comment|// valid result thrown by java.util.TreeSet#equals.
-DECL|method|assertNotEqualLenient ( TreeSet<?> unexpected, SortedSet<?> actual)
+DECL|method|assertNotEqualLenient (TreeSet<?> unexpected, SortedSet<?> actual)
 specifier|private
 specifier|static
 name|void

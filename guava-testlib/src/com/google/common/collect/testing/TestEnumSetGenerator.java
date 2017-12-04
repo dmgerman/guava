@@ -208,7 +208,7 @@ name|length
 index|]
 return|;
 block|}
-comment|/**    * Sorts the enums according to their natural ordering.    */
+comment|/** Sorts the enums according to their natural ordering. */
 annotation|@
 name|Override
 DECL|method|order (List<AnEnum> insertionOrder)

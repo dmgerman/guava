@@ -293,7 +293,7 @@ return|return
 name|suite
 return|;
 block|}
-comment|/**    * A typical timeout value we'll use in the tests.    */
+comment|/** A typical timeout value we'll use in the tests. */
 DECL|field|SMALL_TIMEOUT_MILLIS
 specifier|private
 specifier|static
@@ -303,7 +303,7 @@ name|SMALL_TIMEOUT_MILLIS
 init|=
 literal|10
 decl_stmt|;
-comment|/**    * How long to wait when determining that a thread is blocked if we expect it to be blocked.    */
+comment|/** How long to wait when determining that a thread is blocked if we expect it to be blocked. */
 DECL|field|EXPECTED_HANG_DELAY_MILLIS
 specifier|private
 specifier|static
@@ -381,7 +381,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**    * Timeout values to combine with each {@link Scenario}.    */
+comment|/** Timeout values to combine with each {@link Scenario}. */
 DECL|enum|Timeout
 specifier|private
 enum|enum
@@ -500,7 +500,7 @@ name|label
 return|;
 block|}
 block|}
-comment|/**    * Convenient subsets of the {@link Timeout} enumeration for specifying scenario outcomes.    */
+comment|/** Convenient subsets of the {@link Timeout} enumeration for specifying scenario outcomes. */
 DECL|enum|TimeoutsToUse
 specifier|private
 enum|enum
@@ -605,7 +605,7 @@ end_expr_stmt
 
 begin_comment
 unit|}
-comment|/**    * Possible outcomes of calling any of the methods under test.    */
+comment|/** Possible outcomes of calling any of the methods under test. */
 end_comment
 
 begin_enum
@@ -614,19 +614,19 @@ unit|private
 enum|enum
 name|Outcome
 block|{
-comment|/**      * The method returned normally and is either void or returned true.      */
+comment|/** The method returned normally and is either void or returned true. */
 DECL|enumConstant|SUCCESS
 name|SUCCESS
 block|,
-comment|/**      * The method returned false.      */
+comment|/** The method returned false. */
 DECL|enumConstant|FAILURE
 name|FAILURE
 block|,
-comment|/**      * The method threw an InterruptedException.      */
+comment|/** The method threw an InterruptedException. */
 DECL|enumConstant|INTERRUPT
 name|INTERRUPT
 block|,
-comment|/**      * The method did not return or throw anything.      */
+comment|/** The method did not return or throw anything. */
 DECL|enumConstant|HANG
 name|HANG
 block|;
@@ -658,7 +658,7 @@ block|}
 end_enum
 
 begin_comment
-comment|/**    * Identifies all enterXxx and tryEnterXxx methods.    */
+comment|/** Identifies all enterXxx and tryEnterXxx methods. */
 end_comment
 
 begin_function
@@ -697,7 +697,7 @@ block|}
 end_function
 
 begin_comment
-comment|/**    * Identifies just tryEnterXxx methods (a subset of {@link #isAnyEnter}), which never block.    */
+comment|/** Identifies just tryEnterXxx methods (a subset of {@link #isAnyEnter}), which never block. */
 end_comment
 
 begin_function
@@ -755,7 +755,7 @@ block|}
 end_function
 
 begin_comment
-comment|/**    * Identifies all waitForXxx methods, which must be called while occupying the monitor.    */
+comment|/** Identifies all waitForXxx methods, which must be called while occupying the monitor. */
 end_comment
 
 begin_function
@@ -784,7 +784,7 @@ block|}
 end_function
 
 begin_comment
-comment|/**    * Determines whether the given method takes a Guard as its first parameter.    */
+comment|/** Determines whether the given method takes a Guard as its first parameter. */
 end_comment
 
 begin_function
@@ -832,7 +832,7 @@ block|}
 end_function
 
 begin_comment
-comment|/**    * Determines whether the given method takes a time and unit as its last two parameters.    */
+comment|/** Determines whether the given method takes a time and unit as its last two parameters. */
 end_comment
 
 begin_function
@@ -895,7 +895,7 @@ block|}
 end_function
 
 begin_comment
-comment|/**    * Determines whether the given method returns a boolean value.    */
+comment|/** Determines whether the given method returns a boolean value. */
 end_comment
 
 begin_function
@@ -923,7 +923,7 @@ block|}
 end_function
 
 begin_comment
-comment|/**    * Determines whether the given method can throw InterruptedException.    */
+comment|/** Determines whether the given method can throw InterruptedException. */
 end_comment
 
 begin_function
@@ -959,7 +959,7 @@ block|}
 end_function
 
 begin_comment
-comment|/**    * Sorts the given methods primarily by name and secondarily by number of parameters.    */
+comment|/** Sorts the given methods primarily by name and secondarily by number of parameters. */
 end_comment
 
 begin_function
@@ -1058,7 +1058,7 @@ block|}
 end_function
 
 begin_comment
-comment|/**    * Validates that the given method's signature meets all of our assumptions.    */
+comment|/** Validates that the given method's signature meets all of our assumptions. */
 end_comment
 
 begin_function
@@ -1416,7 +1416,7 @@ block|}
 end_function
 
 begin_comment
-comment|/**    * Generates all test cases appropriate for the given method.    */
+comment|/** Generates all test cases appropriate for the given method. */
 end_comment
 
 begin_function
@@ -1929,7 +1929,7 @@ comment|/**    * Generates test cases for the given combination of scenario and 
 end_comment
 
 begin_function
-DECL|method|addTests (TestSuite suite, Method method, Scenario scenario, TimeoutsToUse timeoutsToUse, Outcome expectedOutcome)
+DECL|method|addTests ( TestSuite suite, Method method, Scenario scenario, TimeoutsToUse timeoutsToUse, Outcome expectedOutcome)
 specifier|private
 specifier|static
 name|void
@@ -2063,7 +2063,7 @@ block|}
 end_function
 
 begin_comment
-comment|/**    * A guard that encapsulates a simple, mutable boolean flag.    */
+comment|/** A guard that encapsulates a simple, mutable boolean flag. */
 end_comment
 
 begin_class
@@ -3456,7 +3456,7 @@ comment|/**    * Generates a test case verifying that calling any enterXxx, tryE
 end_comment
 
 begin_function
-DECL|method|generateGuardWithWrongMonitorTestCase (final Method method, final boolean fair1, final boolean fair2)
+DECL|method|generateGuardWithWrongMonitorTestCase ( final Method method, final boolean fair1, final boolean fair2)
 specifier|private
 specifier|static
 name|TestCase
@@ -3654,7 +3654,7 @@ comment|/**    * Generates a test case verifying that calling any waitForXxx met
 end_comment
 
 begin_function
-DECL|method|generateWaitForWhenNotOccupyingTestCase (final Method method, final boolean fair)
+DECL|method|generateWaitForWhenNotOccupyingTestCase ( final Method method, final boolean fair)
 specifier|private
 specifier|static
 name|TestCase

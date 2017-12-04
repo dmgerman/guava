@@ -849,7 +849,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testCreate_invalidSubtype ()
 specifier|public
@@ -877,7 +877,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testCreate_wildcardTypeDeclaredSubtype ()
 specifier|public
@@ -905,7 +905,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testCreateApplicationType ()
 specifier|public
@@ -1414,7 +1414,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testWithParameter ()
 specifier|public
@@ -1555,7 +1555,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testWithCharset ()
 specifier|public
@@ -1853,7 +1853,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testParse_badInput ()
 specifier|public
@@ -1879,7 +1879,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 try|try
 block|{
 name|MediaType
@@ -1898,7 +1898,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 try|try
 block|{
 name|MediaType
@@ -1917,7 +1917,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 try|try
 block|{
 name|MediaType
@@ -1936,7 +1936,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 try|try
 block|{
 name|MediaType
@@ -1955,7 +1955,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 try|try
 block|{
 name|MediaType
@@ -1974,7 +1974,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 try|try
 block|{
 name|MediaType
@@ -1993,7 +1993,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 try|try
 block|{
 name|MediaType
@@ -2012,7 +2012,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 try|try
 block|{
 name|MediaType
@@ -2031,7 +2031,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 try|try
 block|{
 name|MediaType
@@ -2050,7 +2050,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 try|try
 block|{
 name|MediaType
@@ -2069,7 +2069,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 try|try
 block|{
 name|MediaType
@@ -2088,7 +2088,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 try|try
 block|{
 name|MediaType
@@ -2107,7 +2107,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 try|try
 block|{
 name|MediaType
@@ -2126,7 +2126,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 try|try
 block|{
 name|MediaType
@@ -2145,7 +2145,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 try|try
 block|{
 name|MediaType
@@ -2164,7 +2164,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testGetCharset ()
 specifier|public
@@ -2267,7 +2267,7 @@ parameter_list|(
 name|IllegalStateException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testGetCharset_illegalCharset ()
 specifier|public
@@ -2301,7 +2301,7 @@ parameter_list|(
 name|IllegalCharsetNameException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testGetCharset_unsupportedCharset ()
 specifier|public
@@ -2335,7 +2335,7 @@ parameter_list|(
 name|UnsupportedCharsetException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testEquals ()
 specifier|public

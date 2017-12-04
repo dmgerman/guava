@@ -146,7 +146,7 @@ argument_list|,
 name|X
 argument_list|>
 block|{
-comment|/**    * Constructs an {@code AbstractCheckedFuture} that wraps a delegate.    */
+comment|/** Constructs an {@code AbstractCheckedFuture} that wraps a delegate. */
 DECL|method|AbstractCheckedFuture (ListenableFuture<V> delegate)
 specifier|protected
 name|AbstractCheckedFuture

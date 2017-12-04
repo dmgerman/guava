@@ -141,7 +141,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author Julien Silland  */
+comment|/** @author Julien Silland */
 end_comment
 
 begin_class
@@ -241,7 +241,7 @@ name|inOrder
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * All of the infrastructure of split and splitToString is identical, so we    * do one test of splitToString. All other cases should be covered by testing    * of split.    *    *<p>TODO(user): It would be good to make all the relevant tests run on    * both split and splitToString automatically.    */
+comment|/**    * All of the infrastructure of split and splitToString is identical, so we do one test of    * splitToString. All other cases should be covered by testing of split.    *    *<p>TODO(user): It would be good to make all the relevant tests run on both split and    * splitToString automatically.    */
 DECL|method|testCharacterSimpleSplitToList ()
 specifier|public
 name|void

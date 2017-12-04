@@ -95,7 +95,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An ordering that orders elements by applying an order to the result of a  * function on those elements.  */
+comment|/**  * An ordering that orders elements by applying an order to the result of a function on those  * elements.  */
 end_comment
 
 begin_class

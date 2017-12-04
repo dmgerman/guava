@@ -225,7 +225,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A benchmark comparing the various striped implementations.  */
+comment|/** A benchmark comparing the various striped implementations. */
 end_comment
 
 begin_class
@@ -277,7 +277,6 @@ return|;
 block|}
 block|}
 decl_stmt|;
-DECL|field|numStripes
 annotation|@
 name|Param
 argument_list|(
@@ -293,6 +292,7 @@ block|,
 literal|"65536"
 block|}
 argument_list|)
+DECL|field|numStripes
 name|int
 name|numStripes
 decl_stmt|;
@@ -427,9 +427,9 @@ name|Integer
 argument_list|>
 name|bulkGetSet
 decl_stmt|;
-DECL|method|setUp ()
 annotation|@
 name|BeforeExperiment
+DECL|method|setUp ()
 name|void
 name|setUp
 parameter_list|()
@@ -521,9 +521,9 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|sizeOfStriped ()
 annotation|@
 name|Footprint
+DECL|method|sizeOfStriped ()
 name|Object
 name|sizeOfStriped
 parameter_list|()
@@ -553,9 +553,9 @@ argument_list|(
 name|numStripes
 argument_list|)
 decl_stmt|;
-DECL|method|sizeOfPopulatedStriped ()
 annotation|@
 name|Footprint
+DECL|method|sizeOfPopulatedStriped ()
 name|Object
 name|sizeOfPopulatedStriped
 parameter_list|()
@@ -603,9 +603,9 @@ return|return
 name|striped
 return|;
 block|}
-DECL|method|timeConstruct (long reps)
 annotation|@
 name|Benchmark
+DECL|method|timeConstruct (long reps)
 name|long
 name|timeConstruct
 parameter_list|(
@@ -660,9 +660,9 @@ return|return
 name|rvalue
 return|;
 block|}
-DECL|method|timeGetAt (long reps)
 annotation|@
 name|Benchmark
+DECL|method|timeGetAt (long reps)
 name|long
 name|timeGetAt
 parameter_list|(
@@ -738,9 +738,9 @@ return|return
 name|rvalue
 return|;
 block|}
-DECL|method|timeBulkGet (long reps)
 annotation|@
 name|Benchmark
+DECL|method|timeBulkGet (long reps)
 name|long
 name|timeBulkGet
 parameter_list|(

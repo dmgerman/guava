@@ -451,9 +451,9 @@ name|IntsAsListGenerator
 extends|extends
 name|TestIntegerListGenerator
 block|{
-DECL|method|create (Integer[] elements)
 annotation|@
 name|Override
+DECL|method|create (Integer[] elements)
 specifier|protected
 name|List
 argument_list|<
@@ -483,9 +483,9 @@ name|IntsAsListHeadSubListGenerator
 extends|extends
 name|TestIntegerListGenerator
 block|{
-DECL|method|create (Integer[] elements)
 annotation|@
 name|Override
+DECL|method|create (Integer[] elements)
 specifier|protected
 name|List
 argument_list|<
@@ -549,9 +549,9 @@ name|IntsAsListTailSubListGenerator
 extends|extends
 name|TestIntegerListGenerator
 block|{
-DECL|method|create (Integer[] elements)
 annotation|@
 name|Override
+DECL|method|create (Integer[] elements)
 specifier|protected
 name|List
 argument_list|<
@@ -619,9 +619,9 @@ name|IntsAsListMiddleSubListGenerator
 extends|extends
 name|TestIntegerListGenerator
 block|{
-DECL|method|create (Integer[] elements)
 annotation|@
 name|Override
+DECL|method|create (Integer[] elements)
 specifier|protected
 name|List
 argument_list|<
@@ -773,8 +773,8 @@ return|;
 block|}
 DECL|class|TestIntegerListGenerator
 specifier|public
-specifier|static
 specifier|abstract
+specifier|static
 class|class
 name|TestIntegerListGenerator
 implements|implements
@@ -859,7 +859,7 @@ name|array
 argument_list|)
 return|;
 block|}
-comment|/**      * Creates a new collection containing the given elements; implement this      * method instead of {@link #create(Object...)}.      */
+comment|/**      * Creates a new collection containing the given elements; implement this method instead of      * {@link #create(Object...)}.      */
 DECL|method|create (Integer[] elements)
 specifier|protected
 specifier|abstract
@@ -874,9 +874,9 @@ index|[]
 name|elements
 parameter_list|)
 function_decl|;
-DECL|method|createArray (int length)
 annotation|@
 name|Override
+DECL|method|createArray (int length)
 specifier|public
 name|Integer
 index|[]

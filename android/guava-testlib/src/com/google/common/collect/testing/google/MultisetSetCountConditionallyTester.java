@@ -143,7 +143,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A generic JUnit test which tests conditional {@code setCount()} operations on  * a multiset. Can't be invoked directly; please see  * {@link MultisetTestSuiteBuilder}.  *  * @author Chris Povirk  */
+comment|/**  * A generic JUnit test which tests conditional {@code setCount()} operations on a multiset. Can't  * be invoked directly; please see {@link MultisetTestSuiteBuilder}.  *  * @author Chris Povirk  */
 end_comment
 
 begin_class

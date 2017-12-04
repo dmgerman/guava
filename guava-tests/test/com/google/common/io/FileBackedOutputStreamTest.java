@@ -384,7 +384,7 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|testThreshold (int fileThreshold, int dataSize, boolean singleByte, boolean resetOnFinalize)
+DECL|method|testThreshold ( int fileThreshold, int dataSize, boolean singleByte, boolean resetOnFinalize)
 specifier|private
 name|void
 name|testThreshold
@@ -599,7 +599,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-DECL|method|write ( OutputStream out, byte[] b, int off, int len, boolean singleByte)
+DECL|method|write (OutputStream out, byte[] b, int off, int len, boolean singleByte)
 specifier|private
 specifier|static
 name|void

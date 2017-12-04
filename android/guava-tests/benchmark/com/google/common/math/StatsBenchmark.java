@@ -715,15 +715,15 @@ DECL|field|n
 name|int
 name|n
 decl_stmt|;
+DECL|field|meanAlgorithm
 annotation|@
 name|Param
-DECL|field|meanAlgorithm
 name|MeanAlgorithm
 name|meanAlgorithm
 decl_stmt|;
+DECL|field|varianceAlgorithm
 annotation|@
 name|Param
-DECL|field|varianceAlgorithm
 name|VarianceAlgorithm
 name|varianceAlgorithm
 decl_stmt|;
@@ -812,9 +812,9 @@ expr_stmt|;
 block|}
 block|}
 block|}
-DECL|method|meanAndVariance (int reps)
 annotation|@
 name|Benchmark
+DECL|method|meanAndVariance (int reps)
 name|int
 name|meanAndVariance
 parameter_list|(

@@ -153,15 +153,15 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tester for {@link Equivalence} relationships between groups of objects.  *  *<p>  * To use, create a new {@link EquivalenceTester} and add equivalence groups  * where each group contains objects that are supposed to be equal to each  * other. Objects of different groups are expected to be unequal. For example:  *  *<pre>  * {@code  * EquivalenceTester.of(someStringEquivalence)  *     .addEquivalenceGroup("hello", "h" + "ello")  *     .addEquivalenceGroup("world", "wor" + "ld")  *     .test();  * }  *</pre>  *  *<p>  * Note that testing {@link Object#equals(Object)} is more simply done using  * the {@link EqualsTester}. It includes an extra test against an instance of an  * arbitrary class without having to explicitly add another equivalence group.  *  * @author Gregory Kick  * @since 10.0  */
+comment|/**  * Tester for {@link Equivalence} relationships between groups of objects.  *  *<p>To use, create a new {@link EquivalenceTester} and add equivalence groups where each group  * contains objects that are supposed to be equal to each other. Objects of different groups are  * expected to be unequal. For example:  *  *<pre>{@code  * EquivalenceTester.of(someStringEquivalence)  *     .addEquivalenceGroup("hello", "h" + "ello")  *     .addEquivalenceGroup("world", "wor" + "ld")  *     .test();  * }</pre>  *  *<p>Note that testing {@link Object#equals(Object)} is more simply done using the {@link  * EqualsTester}. It includes an extra test against an instance of an arbitrary class without having  * to explicitly add another equivalence group.  *  * @author Gregory Kick  * @since 10.0  */
 end_comment
 
 begin_class
 annotation|@
 name|Beta
-DECL|class|EquivalenceTester
 annotation|@
 name|GwtCompatible
+DECL|class|EquivalenceTester
 specifier|public
 specifier|final
 class|class
@@ -289,7 +289,7 @@ name|equivalence
 argument_list|)
 return|;
 block|}
-comment|/**    * Adds a group of objects that are supposed to be equivalent to each other    * and not equivalent to objects in any other equivalence group added to this    * tester.    */
+comment|/**    * Adds a group of objects that are supposed to be equivalent to each other and not equivalent to    * objects in any other equivalence group added to this tester.    */
 DECL|method|addEquivalenceGroup (T first, T... rest)
 specifier|public
 name|EquivalenceTester

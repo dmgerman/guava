@@ -243,7 +243,7 @@ literal|true
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Keeps a weak reference to the underlying reference queue. When this    * reference is cleared, we know that the background thread has stopped    * and released its strong reference.    */
+comment|/**    * Keeps a weak reference to the underlying reference queue. When this reference is cleared, we    * know that the background thread has stopped and released its strong reference.    */
 DECL|field|queueReference
 specifier|private
 name|WeakReference
@@ -272,7 +272,7 @@ name|queueReference
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * If we don't keep a strong reference to the reference object, it won't    * be enqueued.    */
+comment|/** If we don't keep a strong reference to the reference object, it won't be enqueued. */
 DECL|field|reference
 name|FinalizableWeakReference
 argument_list|<
@@ -280,7 +280,7 @@ name|Object
 argument_list|>
 name|reference
 decl_stmt|;
-comment|/**    * Create the FRQ in a method that goes out of scope so that we're sure    * it will be reclaimed.    */
+comment|/** Create the FRQ in a method that goes out of scope so that we're sure it will be reclaimed. */
 DECL|method|weaklyReferenceQueue ()
 specifier|private
 name|void

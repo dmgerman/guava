@@ -45,7 +45,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Thrown when requirements on a tester method or class conflict with  * each other.  *  * @author George van den Driessche  */
+comment|/**  * Thrown when requirements on a tester method or class conflict with each other.  *  * @author George van den Driessche  */
 end_comment
 
 begin_class

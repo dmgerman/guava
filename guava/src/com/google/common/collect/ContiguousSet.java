@@ -121,7 +121,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A sorted set of contiguous values in a given {@link DiscreteDomain}. Example:  *  *<pre>{@code  * ContiguousSet.create(Range.closed(5, 42), DiscreteDomain.integers())  * }</pre>  *  *<p>Note that because bounded ranges over {@code int} and {@code long} values are so common, this  * particular example can be written as just:  *  *<pre>{@code  * ContiguousSet.closed(5, 42)  * }</pre>  *  *<p><b>Warning:</b> Be extremely careful what you do with conceptually large instances (such as  * {@code ContiguousSet.create(Range.greaterThan(0), DiscreteDomain.integers()}). Certain  * operations on such a set can be performed efficiently, but others (such as {@link Set#hashCode}  * or {@link Collections#frequency}) can cause major performance problems.  *  * @author Gregory Kick  * @since 10.0  */
+comment|/**  * A sorted set of contiguous values in a given {@link DiscreteDomain}. Example:  *  *<pre>{@code  * ContiguousSet.create(Range.closed(5, 42), DiscreteDomain.integers())  * }</pre>  *  *<p>Note that because bounded ranges over {@code int} and {@code long} values are so common, this  * particular example can be written as just:  *  *<pre>{@code  * ContiguousSet.closed(5, 42)  * }</pre>  *  *<p><b>Warning:</b> Be extremely careful what you do with conceptually large instances (such as  * {@code ContiguousSet.create(Range.greaterThan(0), DiscreteDomain.integers()}). Certain operations  * on such a set can be performed efficiently, but others (such as {@link Set#hashCode} or {@link  * Collections#frequency}) can cause major performance problems.  *  * @author Gregory Kick  * @since 10.0  */
 end_comment
 
 begin_class
@@ -154,7 +154,7 @@ argument_list|<
 name|C
 argument_list|>
 block|{
-comment|/**    * Returns a {@code ContiguousSet} containing the same values in the given domain    * {@linkplain Range#contains contained} by the range.    *    * @throws IllegalArgumentException if neither range nor the domain has a lower bound, or if    *     neither has an upper bound    *    * @since 13.0    */
+comment|/**    * Returns a {@code ContiguousSet} containing the same values in the given domain {@linkplain    * Range#contains contained} by the range.    *    * @throws IllegalArgumentException if neither range nor the domain has a lower bound, or if    *     neither has an upper bound    * @since 13.0    */
 DECL|method|create ( Range<C> range, DiscreteDomain<C> domain)
 specifier|public
 specifier|static
@@ -329,7 +329,7 @@ name|domain
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a nonempty contiguous set containing all {@code int} values from {@code lower}    * (inclusive) to {@code upper} (inclusive). (These are the same values contained in {@code    * Range.closed(lower, upper)}.)    *    * @throws IllegalArgumentException if {@code lower} is greater than {@code upper}    *    * @since 23.0    */
+comment|/**    * Returns a nonempty contiguous set containing all {@code int} values from {@code lower}    * (inclusive) to {@code upper} (inclusive). (These are the same values contained in {@code    * Range.closed(lower, upper)}.)    *    * @throws IllegalArgumentException if {@code lower} is greater than {@code upper}    * @since 23.0    */
 annotation|@
 name|Beta
 DECL|method|closed (int lower, int upper)
@@ -367,7 +367,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a nonempty contiguous set containing all {@code long} values from {@code lower}    * (inclusive) to {@code upper} (inclusive). (These are the same values contained in {@code    * Range.closed(lower, upper)}.)    *    * @throws IllegalArgumentException if {@code lower} is greater than {@code upper}    *    * @since 23.0    */
+comment|/**    * Returns a nonempty contiguous set containing all {@code long} values from {@code lower}    * (inclusive) to {@code upper} (inclusive). (These are the same values contained in {@code    * Range.closed(lower, upper)}.)    *    * @throws IllegalArgumentException if {@code lower} is greater than {@code upper}    * @since 23.0    */
 annotation|@
 name|Beta
 DECL|method|closed (long lower, long upper)
@@ -405,7 +405,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a contiguous set containing all {@code int} values from {@code lower} (inclusive) to    * {@code upper} (exclusive). If the endpoints are equal, an empty set is returned. (These are the    * same values contained in {@code Range.closedOpen(lower, upper)}.)    *    * @throws IllegalArgumentException if {@code lower} is greater than {@code upper}    *    * @since 23.0    */
+comment|/**    * Returns a contiguous set containing all {@code int} values from {@code lower} (inclusive) to    * {@code upper} (exclusive). If the endpoints are equal, an empty set is returned. (These are the    * same values contained in {@code Range.closedOpen(lower, upper)}.)    *    * @throws IllegalArgumentException if {@code lower} is greater than {@code upper}    * @since 23.0    */
 annotation|@
 name|Beta
 DECL|method|closedOpen (int lower, int upper)
@@ -443,7 +443,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a contiguous set containing all {@code long} values from {@code lower} (inclusive) to    * {@code upper} (exclusive). If the endpoints are equal, an empty set is returned. (These are the    * same values contained in {@code Range.closedOpen(lower, upper)}.)    *    * @throws IllegalArgumentException if {@code lower} is greater than {@code upper}    *    * @since 23.0    */
+comment|/**    * Returns a contiguous set containing all {@code long} values from {@code lower} (inclusive) to    * {@code upper} (exclusive). If the endpoints are equal, an empty set is returned. (These are the    * same values contained in {@code Range.closedOpen(lower, upper)}.)    *    * @throws IllegalArgumentException if {@code lower} is greater than {@code upper}    * @since 23.0    */
 annotation|@
 name|Beta
 DECL|method|closedOpen (long lower, long upper)
@@ -540,7 +540,7 @@ literal|false
 argument_list|)
 return|;
 block|}
-comment|/**    * @since 12.0    */
+comment|/** @since 12.0 */
 annotation|@
 name|GwtIncompatible
 comment|// NavigableSet
@@ -628,7 +628,7 @@ literal|false
 argument_list|)
 return|;
 block|}
-comment|/**    * @since 12.0    */
+comment|/** @since 12.0 */
 annotation|@
 name|GwtIncompatible
 comment|// NavigableSet
@@ -719,7 +719,7 @@ literal|true
 argument_list|)
 return|;
 block|}
-comment|/**    * @since 12.0    */
+comment|/** @since 12.0 */
 annotation|@
 name|GwtIncompatible
 comment|// NavigableSet
@@ -808,7 +808,7 @@ name|boolean
 name|inclusive
 parameter_list|)
 function_decl|;
-comment|/**    * Returns the set of values that are contained in both this set and the other.    *    *<p>This method should always be used instead of    * {@link Sets#intersection} for {@link ContiguousSet} instances.    */
+comment|/**    * Returns the set of values that are contained in both this set and the other.    *    *<p>This method should always be used instead of {@link Sets#intersection} for {@link    * ContiguousSet} instances.    */
 DECL|method|intersection (ContiguousSet<C> other)
 specifier|public
 specifier|abstract
@@ -825,7 +825,7 @@ argument_list|>
 name|other
 parameter_list|)
 function_decl|;
-comment|/**    * Returns a range, closed on both ends, whose endpoints are the minimum and maximum values    * contained in this set.  This is equivalent to {@code range(CLOSED, CLOSED)}.    *    * @throws NoSuchElementException if this set is empty    */
+comment|/**    * Returns a range, closed on both ends, whose endpoints are the minimum and maximum values    * contained in this set. This is equivalent to {@code range(CLOSED, CLOSED)}.    *    * @throws NoSuchElementException if this set is empty    */
 DECL|method|range ()
 specifier|public
 specifier|abstract
@@ -836,7 +836,7 @@ argument_list|>
 name|range
 parameter_list|()
 function_decl|;
-comment|/**    * Returns the minimal range with the given boundary types for which all values in this set are    * {@linkplain Range#contains(Comparable) contained} within the range.    *    *<p>Note that this method will return ranges with unbounded endpoints if {@link BoundType#OPEN}    * is requested for a domain minimum or maximum.  For example, if {@code set} was created from the    * range {@code [1..Integer.MAX_VALUE]} then {@code set.range(CLOSED, OPEN)} must return    * {@code [1..â)}.    *    * @throws NoSuchElementException if this set is empty    */
+comment|/**    * Returns the minimal range with the given boundary types for which all values in this set are    * {@linkplain Range#contains(Comparable) contained} within the range.    *    *<p>Note that this method will return ranges with unbounded endpoints if {@link BoundType#OPEN}    * is requested for a domain minimum or maximum. For example, if {@code set} was created from the    * range {@code [1..Integer.MAX_VALUE]} then {@code set.range(CLOSED, OPEN)} must return {@code    * [1..â)}.    *    * @throws NoSuchElementException if this set is empty    */
 DECL|method|range (BoundType lowerBoundType, BoundType upperBoundType)
 specifier|public
 specifier|abstract

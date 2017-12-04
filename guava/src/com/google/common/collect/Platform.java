@@ -59,7 +59,7 @@ specifier|final
 class|class
 name|Platform
 block|{
-comment|/**    * Returns a new array of the given length with the same type as a reference    * array.    *    * @param reference any array of the desired type    * @param length the length of the new array    */
+comment|/**    * Returns a new array of the given length with the same type as a reference array.    *    * @param reference any array of the desired type    * @param length the length of the new array    */
 DECL|method|newArray (T[] reference, int length)
 specifier|static
 parameter_list|<
@@ -119,7 +119,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/**    * Configures the given map maker to use weak keys, if possible; does nothing    * otherwise (i.e., in GWT). This is sometimes acceptable, when only    * server-side code could generate enough volume that reclamation becomes    * important.    */
+comment|/**    * Configures the given map maker to use weak keys, if possible; does nothing otherwise (i.e., in    * GWT). This is sometimes acceptable, when only server-side code could generate enough volume    * that reclamation becomes important.    */
 DECL|method|tryWeakKeys (MapMaker mapMaker)
 specifier|static
 name|MapMaker

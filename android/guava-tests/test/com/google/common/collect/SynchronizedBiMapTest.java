@@ -356,9 +356,9 @@ return|return
 name|suite
 return|;
 block|}
-DECL|method|create ()
 annotation|@
 name|Override
+DECL|method|create ()
 specifier|protected
 parameter_list|<
 name|K
@@ -782,9 +782,9 @@ name|inverse
 argument_list|()
 return|;
 block|}
-DECL|method|values ()
 annotation|@
 name|Override
+DECL|method|values ()
 specifier|public
 name|Set
 argument_list|<
@@ -904,9 +904,9 @@ name|mutex
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|testValues ()
 annotation|@
 name|Override
+DECL|method|testValues ()
 specifier|public
 name|void
 name|testValues

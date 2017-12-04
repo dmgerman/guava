@@ -88,9 +88,9 @@ operator|new
 name|TearDownStack
 argument_list|()
 decl_stmt|;
-DECL|method|setUp ()
 annotation|@
 name|Override
+DECL|method|setUp ()
 specifier|protected
 name|void
 name|setUp
@@ -288,9 +288,9 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-DECL|method|runBare ()
 annotation|@
 name|Override
+DECL|method|runBare ()
 specifier|public
 specifier|final
 name|void
@@ -315,9 +315,9 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-DECL|method|tearDown ()
 annotation|@
 name|Override
+DECL|method|tearDown ()
 specifier|protected
 name|void
 name|tearDown

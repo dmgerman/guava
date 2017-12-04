@@ -135,7 +135,7 @@ specifier|private
 name|Callables
 parameter_list|()
 block|{}
-comment|/**    * Creates a {@code Callable} which immediately returns a preset value each time it is called.    */
+comment|/** Creates a {@code Callable} which immediately returns a preset value each time it is called. */
 DECL|method|returning (@ullable final T value)
 specifier|public
 specifier|static
@@ -177,7 +177,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/**    * Creates an {@link AsyncCallable} from a {@link Callable}.    *    *<p>The {@link AsyncCallable} returns the {@link ListenableFuture} resulting from    * {@link ListeningExecutorService#submit(Callable)}.    *    * @since 20.0    */
+comment|/**    * Creates an {@link AsyncCallable} from a {@link Callable}.    *    *<p>The {@link AsyncCallable} returns the {@link ListenableFuture} resulting from {@link    * ListeningExecutorService#submit(Callable)}.    *    * @since 20.0    */
 annotation|@
 name|Beta
 annotation|@

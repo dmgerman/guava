@@ -139,7 +139,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This class provides a skeletal implementation of the {@link Multiset}  * interface. A new multiset implementation can be created easily by extending  * this class and implementing the {@link Multiset#entrySet()} method, plus  * optionally overriding {@link #add(Object, int)} and  * {@link #remove(Object, int)} to enable modifications to the multiset.  *  *<p>The {@link #count} and {@link #size} implementations all iterate across  * the set returned by {@link Multiset#entrySet()}, as do many methods acting on  * the set returned by {@link #elementSet()}. Override those methods for better  * performance.  *  * @author Kevin Bourrillion  * @author Louis Wasserman  */
+comment|/**  * This class provides a skeletal implementation of the {@link Multiset} interface. A new multiset  * implementation can be created easily by extending this class and implementing the {@link  * Multiset#entrySet()} method, plus optionally overriding {@link #add(Object, int)} and {@link  * #remove(Object, int)} to enable modifications to the multiset.  *  *<p>The {@link #count} and {@link #size} implementations all iterate across the set returned by  * {@link Multiset#entrySet()}, as do many methods acting on the set returned by {@link  * #elementSet()}. Override those methods for better performance.  *  * @author Kevin Bourrillion  * @author Louis Wasserman  */
 end_comment
 
 begin_class
@@ -456,7 +456,7 @@ argument_list|)
 return|;
 block|}
 comment|// Bulk Operations
-comment|/**    * {@inheritDoc}    *    *<p>This implementation is highly efficient when {@code elementsToAdd}    * is itself a {@link Multiset}.    */
+comment|/**    * {@inheritDoc}    *    *<p>This implementation is highly efficient when {@code elementsToAdd} is itself a {@link    * Multiset}.    */
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
@@ -605,7 +605,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/**    * Creates a new instance of this multiset's element set, which will be    * returned by {@link #elementSet()}.    */
+comment|/**    * Creates a new instance of this multiset's element set, which will be returned by {@link    * #elementSet()}.    */
 DECL|method|createElementSet ()
 name|Set
 argument_list|<
@@ -804,7 +804,7 @@ argument_list|()
 return|;
 block|}
 comment|// Object methods
-comment|/**    * {@inheritDoc}    *    *<p>This implementation returns {@code true} if {@code object} is a multiset    * of the same size and if, for each element, the two multisets have the same    * count.    */
+comment|/**    * {@inheritDoc}    *    *<p>This implementation returns {@code true} if {@code object} is a multiset of the same size    * and if, for each element, the two multisets have the same count.    */
 annotation|@
 name|Override
 DECL|method|equals (@ullable Object object)
@@ -829,7 +829,7 @@ name|object
 argument_list|)
 return|;
 block|}
-comment|/**    * {@inheritDoc}    *    *<p>This implementation returns the hash code of {@link    * Multiset#entrySet()}.    */
+comment|/**    * {@inheritDoc}    *    *<p>This implementation returns the hash code of {@link Multiset#entrySet()}.    */
 annotation|@
 name|Override
 DECL|method|hashCode ()
@@ -846,7 +846,7 @@ name|hashCode
 argument_list|()
 return|;
 block|}
-comment|/**    * {@inheritDoc}    *    *<p>This implementation returns the result of invoking {@code toString} on    * {@link Multiset#entrySet()}.    */
+comment|/**    * {@inheritDoc}    *    *<p>This implementation returns the result of invoking {@code toString} on {@link    * Multiset#entrySet()}.    */
 annotation|@
 name|Override
 DECL|method|toString ()

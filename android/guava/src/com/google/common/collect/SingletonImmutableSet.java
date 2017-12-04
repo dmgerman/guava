@@ -108,9 +108,9 @@ comment|// A race condition is avoided since threads will either see that the va
 comment|// is zero and recalculate it themselves, or two threads will see it at
 comment|// the same time, and both recalculate it.  If the cachedHashCode is 0,
 comment|// it will always be recalculated, unfortunately.
+DECL|field|cachedHashCode
 annotation|@
 name|LazyInit
-DECL|field|cachedHashCode
 specifier|private
 specifier|transient
 name|int

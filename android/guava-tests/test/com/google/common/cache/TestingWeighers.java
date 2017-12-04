@@ -26,7 +26,7 @@ specifier|public
 class|class
 name|TestingWeighers
 block|{
-comment|/**    * Returns a {@link Weigher} that returns the given {@code constant} for every request.    */
+comment|/** Returns a {@link Weigher} that returns the given {@code constant} for every request. */
 DECL|method|constantWeigher (int constant)
 specifier|static
 name|Weigher
@@ -49,7 +49,7 @@ name|constant
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a {@link Weigher} that uses the integer key as the weight.    */
+comment|/** Returns a {@link Weigher} that uses the integer key as the weight. */
 DECL|method|intKeyWeigher ()
 specifier|static
 name|Weigher
@@ -67,7 +67,7 @@ name|IntKeyWeigher
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns a {@link Weigher} that uses the integer value as the weight.    */
+comment|/** Returns a {@link Weigher} that uses the integer value as the weight. */
 DECL|method|intValueWeigher ()
 specifier|static
 name|Weigher

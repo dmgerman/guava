@@ -233,7 +233,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Generates a test suite covering the {@link Queue} implementations in the  * {@link java.util} package. Can be subclassed to specify tests that should  * be suppressed.  *  * @author Jared Levy  */
+comment|/**  * Generates a test suite covering the {@link Queue} implementations in the {@link java.util}  * package. Can be subclassed to specify tests that should be suppressed.  *  * @author Jared Levy  */
 end_comment
 
 begin_class

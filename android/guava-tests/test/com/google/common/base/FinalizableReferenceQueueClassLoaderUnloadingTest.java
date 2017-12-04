@@ -236,7 +236,7 @@ specifier|public
 name|void
 name|finalizeReferent
 parameter_list|()
-block|{     }
+block|{}
 block|}
 DECL|class|PermissivePolicy
 specifier|private

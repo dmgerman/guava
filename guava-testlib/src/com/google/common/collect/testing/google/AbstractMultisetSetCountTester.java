@@ -323,7 +323,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Common superclass for {@link MultisetSetCountUnconditionallyTester} and  * {@link MultisetSetCountConditionallyTester}. It is used by those testers to  * test calls to the unconditional {@code setCount()} method and calls to the  * conditional {@code setCount()} method when the expected present count is  * correct.  *  * @author Chris Povirk  */
+comment|/**  * Common superclass for {@link MultisetSetCountUnconditionallyTester} and {@link  * MultisetSetCountConditionallyTester}. It is used by those testers to test calls to the  * unconditional {@code setCount()} method and calls to the conditional {@code setCount()} method  * when the expected present count is correct.  *  * @author Chris Povirk  */
 end_comment
 
 begin_class
@@ -427,7 +427,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Call the {@code setCount()} method under test, and check its return value.    */
+comment|/** Call the {@code setCount()} method under test, and check its return value. */
 DECL|method|setCountCheckReturnValue (E element, int count)
 specifier|abstract
 name|void
@@ -440,7 +440,7 @@ name|int
 name|count
 parameter_list|)
 function_decl|;
-comment|/**    * Call the {@code setCount()} method under test, but do not check its return    * value. Callers should use this method over    * {@link #setCountCheckReturnValue(Object, int)} when they expect    * {@code setCount()} to throw an exception, as checking the return value    * could produce an incorrect error message like    * "setCount() should return the original count" instead of the message passed    * to a later invocation of {@code fail()}, like "setCount should throw    * UnsupportedOperationException."    */
+comment|/**    * Call the {@code setCount()} method under test, but do not check its return value. Callers    * should use this method over {@link #setCountCheckReturnValue(Object, int)} when they expect    * {@code setCount()} to throw an exception, as checking the return value could produce an    * incorrect error message like "setCount() should return the original count" instead of the    * message passed to a later invocation of {@code fail()}, like "setCount should throw    * UnsupportedOperationException."    */
 DECL|method|setCountNoCheckReturnValue (E element, int count)
 specifier|abstract
 name|void
@@ -1732,7 +1732,7 @@ parameter_list|)
 block|{     }
 block|}
 comment|// TODO: test adding element of wrong type
-comment|/**    * Returns {@link Method} instances for the {@code setCount()} tests that    * assume multisets support duplicates so that the test of {@code    * Multisets.forSet()} can suppress them.    */
+comment|/**    * Returns {@link Method} instances for the {@code setCount()} tests that assume multisets support    * duplicates so that the test of {@code Multisets.forSet()} can suppress them.    */
 annotation|@
 name|GwtIncompatible
 comment|// reflection

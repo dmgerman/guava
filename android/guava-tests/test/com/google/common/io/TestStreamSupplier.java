@@ -26,13 +26,13 @@ specifier|public
 interface|interface
 name|TestStreamSupplier
 block|{
-comment|/**    * Returns whether or not a new stream was opened.    */
+comment|/** Returns whether or not a new stream was opened. */
 DECL|method|wasStreamOpened ()
 name|boolean
 name|wasStreamOpened
 parameter_list|()
 function_decl|;
-comment|/**    * Returns whether or not an open stream was closed.    */
+comment|/** Returns whether or not an open stream was closed. */
 DECL|method|wasStreamClosed ()
 name|boolean
 name|wasStreamClosed

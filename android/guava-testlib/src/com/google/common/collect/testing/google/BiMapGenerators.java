@@ -109,7 +109,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Generators of various {@link com.google.common.collect.BiMap}s and derived  * collections.  *  * @author Jared Levy  * @author Hayward Chan  */
+comment|/**  * Generators of various {@link com.google.common.collect.BiMap}s and derived collections.  *  * @author Jared Levy  * @author Hayward Chan  */
 end_comment
 
 begin_class

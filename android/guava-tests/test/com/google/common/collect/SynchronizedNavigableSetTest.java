@@ -359,9 +359,9 @@ name|mutex
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|delegate ()
 annotation|@
 name|Override
+DECL|method|delegate ()
 specifier|protected
 name|NavigableSet
 argument_list|<
@@ -383,9 +383,9 @@ name|delegate
 argument_list|()
 return|;
 block|}
-DECL|method|ceiling (E e)
 annotation|@
 name|Override
+DECL|method|ceiling (E e)
 specifier|public
 name|E
 name|ceiling
@@ -414,9 +414,9 @@ name|e
 argument_list|)
 return|;
 block|}
-DECL|method|descendingIterator ()
 annotation|@
 name|Override
+DECL|method|descendingIterator ()
 specifier|public
 name|Iterator
 argument_list|<
@@ -433,9 +433,9 @@ name|descendingIterator
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|descendingSet ()
-annotation|@
-name|Override
 specifier|public
 name|NavigableSet
 argument_list|<
@@ -462,9 +462,9 @@ name|descendingSet
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|floor (E e)
-annotation|@
-name|Override
 specifier|public
 name|E
 name|floor
@@ -493,9 +493,9 @@ name|e
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|headSet (E toElement, boolean inclusive)
-annotation|@
-name|Override
 specifier|public
 name|NavigableSet
 argument_list|<
@@ -532,9 +532,9 @@ name|inclusive
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|headSet (E toElement)
-annotation|@
-name|Override
 specifier|public
 name|SortedSet
 argument_list|<
@@ -555,9 +555,9 @@ literal|false
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|higher (E e)
-annotation|@
-name|Override
 specifier|public
 name|E
 name|higher
@@ -586,9 +586,9 @@ name|e
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|lower (E e)
-annotation|@
-name|Override
 specifier|public
 name|E
 name|lower
@@ -607,9 +607,9 @@ name|e
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|pollFirst ()
-annotation|@
-name|Override
 specifier|public
 name|E
 name|pollFirst
@@ -633,9 +633,9 @@ name|pollFirst
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|pollLast ()
-annotation|@
-name|Override
 specifier|public
 name|E
 name|pollLast
@@ -659,9 +659,9 @@ name|pollLast
 argument_list|()
 return|;
 block|}
-DECL|method|subSet (E fromElement, boolean fromInclusive, E toElement, boolean toInclusive)
 annotation|@
 name|Override
+DECL|method|subSet ( E fromElement, boolean fromInclusive, E toElement, boolean toInclusive)
 specifier|public
 name|NavigableSet
 argument_list|<
@@ -708,9 +708,9 @@ name|toInclusive
 argument_list|)
 return|;
 block|}
-DECL|method|subSet (E fromElement, E toElement)
 annotation|@
 name|Override
+DECL|method|subSet (E fromElement, E toElement)
 specifier|public
 name|SortedSet
 argument_list|<
@@ -738,9 +738,9 @@ literal|false
 argument_list|)
 return|;
 block|}
-DECL|method|tailSet (E fromElement, boolean inclusive)
 annotation|@
 name|Override
+DECL|method|tailSet (E fromElement, boolean inclusive)
 specifier|public
 name|NavigableSet
 argument_list|<
@@ -777,9 +777,9 @@ name|inclusive
 argument_list|)
 return|;
 block|}
-DECL|method|tailSet (E fromElement)
 annotation|@
 name|Override
+DECL|method|tailSet (E fromElement)
 specifier|public
 name|SortedSet
 argument_list|<
@@ -800,9 +800,9 @@ literal|true
 argument_list|)
 return|;
 block|}
-DECL|method|comparator ()
 annotation|@
 name|Override
+DECL|method|comparator ()
 specifier|public
 name|Comparator
 argument_list|<
@@ -831,9 +831,9 @@ name|comparator
 argument_list|()
 return|;
 block|}
-DECL|method|first ()
 annotation|@
 name|Override
+DECL|method|first ()
 specifier|public
 name|E
 name|first
@@ -857,9 +857,9 @@ name|first
 argument_list|()
 return|;
 block|}
-DECL|method|last ()
 annotation|@
 name|Override
+DECL|method|last ()
 specifier|public
 name|E
 name|last

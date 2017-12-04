@@ -71,7 +71,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This class implements the GWT serialization of {@link HashMultimap}.  *  * @author Jord Sonneveld  *  */
+comment|/**  * This class implements the GWT serialization of {@link HashMultimap}.  *  * @author Jord Sonneveld  */
 end_comment
 
 begin_class

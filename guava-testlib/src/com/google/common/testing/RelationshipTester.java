@@ -194,7 +194,7 @@ operator|.
 name|newArrayList
 argument_list|()
 decl_stmt|;
-DECL|method|RelationshipTester (Equivalence<? super T> equivalence, String relationshipName, String hashName, ItemReporter itemReporter)
+DECL|method|RelationshipTester ( Equivalence<? super T> equivalence, String relationshipName, String hashName, ItemReporter itemReporter)
 name|RelationshipTester
 parameter_list|(
 name|Equivalence
@@ -567,7 +567,7 @@ name|relatedHash
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|assertUnrelated (int groupNumber, int itemNumber, int unrelatedGroupNumber, int unrelatedItemNumber)
+DECL|method|assertUnrelated ( int groupNumber, int itemNumber, int unrelatedGroupNumber, int unrelatedItemNumber)
 specifier|private
 name|void
 name|assertUnrelated
@@ -808,9 +808,9 @@ operator|=
 name|itemNumber
 expr_stmt|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString

@@ -27,7 +27,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Holder for extra methods of {@code Objects} only in web.  */
+comment|/** Holder for extra methods of {@code Objects} only in web. */
 end_comment
 
 begin_class

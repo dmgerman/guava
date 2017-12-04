@@ -17,7 +17,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * Test nulls for the entire package.  */
+comment|/** Test nulls for the entire package. */
 end_comment
 
 begin_class

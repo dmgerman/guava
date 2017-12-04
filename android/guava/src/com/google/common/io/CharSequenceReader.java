@@ -141,7 +141,7 @@ specifier|private
 name|int
 name|mark
 decl_stmt|;
-comment|/**    * Creates a new reader wrapping the given character sequence.    */
+comment|/** Creates a new reader wrapping the given character sequence. */
 DECL|method|CharSequenceReader (CharSequence seq)
 specifier|public
 name|CharSequenceReader

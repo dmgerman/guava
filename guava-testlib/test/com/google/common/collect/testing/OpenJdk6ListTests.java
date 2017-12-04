@@ -167,7 +167,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests the {@link List} implementations of {@link java.util}, suppressing  * tests that trip known OpenJDK 6 bugs.  *  * @author Kevin Bourrillion  */
+comment|/**  * Tests the {@link List} implementations of {@link java.util}, suppressing tests that trip known  * OpenJDK 6 bugs.  *  * @author Kevin Bourrillion  */
 end_comment
 
 begin_class
@@ -194,9 +194,9 @@ name|allTests
 argument_list|()
 return|;
 block|}
-DECL|method|suppressForArraysAsList ()
 annotation|@
 name|Override
+DECL|method|suppressForArraysAsList ()
 specifier|protected
 name|Collection
 argument_list|<
@@ -215,9 +215,9 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-DECL|method|suppressForCheckedList ()
 annotation|@
 name|Override
+DECL|method|suppressForCheckedList ()
 specifier|protected
 name|Collection
 argument_list|<

@@ -4802,7 +4802,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * A reference implementation for {@code tryParse} that just catches the exception from    * {@link Double#valueOf}.    */
+comment|/**    * A reference implementation for {@code tryParse} that just catches the exception from {@link    * Double#valueOf}.    */
 DECL|method|referenceTryParse (String input)
 specifier|private
 specifier|static

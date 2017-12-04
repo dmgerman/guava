@@ -45,7 +45,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<b>Do not use this class directly. For access to public-suffix information,  * use {@link com.google.common.net.InternetDomainName}.</b>  *  *<p>Specifies the type of a top-level domain definition.  *  * @since 23.3  */
+comment|/**  *<b>Do not use this class directly. For access to public-suffix information, use {@link  * com.google.common.net.InternetDomainName}.</b>  *  *<p>Specifies the type of a top-level domain definition.  *  * @since 23.3  */
 end_comment
 
 begin_enum

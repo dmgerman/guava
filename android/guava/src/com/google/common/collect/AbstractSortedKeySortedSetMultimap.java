@@ -61,7 +61,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Basic implementation of a {@link SortedSetMultimap} with a sorted key set.  *  *<p>This superclass allows {@code TreeMultimap} to override methods to return  * navigable set and map types in non-GWT only, while GWT code will inherit the  * SortedMap/SortedSet overrides.  *  * @author Louis Wasserman  */
+comment|/**  * Basic implementation of a {@link SortedSetMultimap} with a sorted key set.  *  *<p>This superclass allows {@code TreeMultimap} to override methods to return navigable set and  * map types in non-GWT only, while GWT code will inherit the SortedMap/SortedSet overrides.  *  * @author Louis Wasserman  */
 end_comment
 
 begin_class

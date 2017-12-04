@@ -380,7 +380,7 @@ return|return
 name|toString
 return|;
 block|}
-comment|/**    * Hasher that updates a {@link Mac} (message authentication code).    */
+comment|/** Hasher that updates a {@link Mac} (message authentication code). */
 DECL|class|MacHasher
 specifier|private
 specifier|static

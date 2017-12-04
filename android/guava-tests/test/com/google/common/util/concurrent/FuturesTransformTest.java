@@ -104,9 +104,9 @@ name|RESULT_DATA
 init|=
 literal|"SUCCESS"
 decl_stmt|;
-DECL|method|buildChainingFuture ( ListenableFuture<Integer> inputFuture)
 annotation|@
 name|Override
+DECL|method|buildChainingFuture (ListenableFuture<Integer> inputFuture)
 specifier|protected
 name|ListenableFuture
 argument_list|<
@@ -135,9 +135,9 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-DECL|method|getSuccessfulResult ()
 annotation|@
 name|Override
+DECL|method|getSuccessfulResult ()
 specifier|protected
 name|String
 name|getSuccessfulResult

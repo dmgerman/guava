@@ -1769,7 +1769,7 @@ class|class
 name|MyException
 extends|extends
 name|Exception
-block|{   }
+block|{}
 annotation|@
 name|GwtIncompatible
 comment|// immediateCheckedFuture
@@ -2052,7 +2052,7 @@ specifier|private
 specifier|static
 class|class
 name|Foo
-block|{    }
+block|{}
 DECL|class|FooChild
 specifier|private
 specifier|static
@@ -2060,13 +2060,13 @@ class|class
 name|FooChild
 extends|extends
 name|Foo
-block|{    }
+block|{}
 DECL|class|Bar
 specifier|private
 specifier|static
 class|class
 name|Bar
-block|{    }
+block|{}
 DECL|class|BarChild
 specifier|private
 specifier|static
@@ -2074,7 +2074,7 @@ class|class
 name|BarChild
 extends|extends
 name|Bar
-block|{    }
+block|{}
 DECL|method|testTransform_genericsNull ()
 specifier|public
 name|void
@@ -3130,7 +3130,7 @@ parameter_list|(
 name|CancellationException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 comment|// TODO(cpovirk): implement interruption, updating this test:
 comment|// https://github.com/google/guava/issues/1989
 name|assertEquals
@@ -4210,7 +4210,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Tests that the function is invoked only once, even if it throws an exception.    */
+comment|/** Tests that the function is invoked only once, even if it throws an exception. */
 DECL|method|testTransformValueRemainsMemoized ()
 specifier|public
 name|void
@@ -4467,14 +4467,14 @@ class|class
 name|MyError
 extends|extends
 name|Error
-block|{    }
+block|{}
 DECL|class|MyRuntimeException
 specifier|static
 class|class
 name|MyRuntimeException
 extends|extends
 name|RuntimeException
-block|{    }
+block|{}
 comment|/**    * Test that the function is invoked only once, even if it throws an exception. Also, test that    * that function's result is wrapped in an ExecutionException.    */
 annotation|@
 name|GwtIncompatible
@@ -5815,7 +5815,7 @@ init|=
 operator|new
 name|Exception
 argument_list|()
-block|{     }
+block|{}
 decl_stmt|;
 name|runExpectedExceptionCatchingAsyncTest
 argument_list|(
@@ -5972,7 +5972,7 @@ init|=
 operator|new
 name|Exception
 argument_list|()
-block|{     }
+block|{}
 decl_stmt|;
 name|runExpectedExceptionCatchingAsyncTest
 argument_list|(
@@ -6829,7 +6829,7 @@ parameter_list|(
 name|CancellationException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 comment|// TODO(cpovirk): implement interruption, updating this test:
 comment|// https://github.com/google/guava/issues/1989
 name|assertEquals
@@ -9427,7 +9427,7 @@ argument_list|<
 name|BarChild
 argument_list|>
 argument_list|()
-block|{             }
+block|{}
 decl_stmt|;
 name|future
 operator|.
@@ -11576,7 +11576,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Runnable which can be called a single time, and only after {@link #expectCall} is called.    */
+comment|/** Runnable which can be called a single time, and only after {@link #expectCall} is called. */
 comment|// TODO(cpovirk): top-level class?
 DECL|class|SingleCallListener
 specifier|private
@@ -12936,7 +12936,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Test the case where the futures are fulfilled prior to constructing the ListFuture.  There was    * a bug where the loop that connects a Listener to each of the futures would die on the last    * loop-check as done() on ListFuture nulled out the variable being looped over (the list of    * futures).    */
+comment|/**    * Test the case where the futures are fulfilled prior to constructing the ListFuture. There was a    * bug where the loop that connects a Listener to each of the futures would die on the last    * loop-check as done() on ListFuture nulled out the variable being looped over (the list of    * futures).    */
 DECL|method|testAllAsList_doneFutures ()
 specifier|public
 name|void
@@ -13085,7 +13085,7 @@ name|inOrder
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * A single non-error failure is not logged because it is reported via the output future.    */
+comment|/** A single non-error failure is not logged because it is reported via the output future. */
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -13156,7 +13156,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Ensure that errors are always logged.    */
+comment|/** Ensure that errors are always logged. */
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -13254,7 +13254,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * All as list will log extra exceptions that have already occurred.    */
+comment|/** All as list will log extra exceptions that have already occurred. */
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -13359,7 +13359,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * All as list will log extra exceptions that occur later.    */
+comment|/** All as list will log extra exceptions that occur later. */
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -13532,7 +13532,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * The same exception happening on multiple futures should not be logged.    */
+comment|/** The same exception happening on multiple futures should not be logged. */
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -13683,7 +13683,7 @@ name|void
 name|run
 parameter_list|()
 block|{
-comment|/*          * firstFuture just completed, but AggregateFuture hasn't yet had time to record the          * exception in seenExceptions. When we complete secondFuture with the same exception,          * we want for AggregateFuture to still detect that it's been previously seen.          */
+comment|/*              * firstFuture just completed, but AggregateFuture hasn't yet had time to record the              * exception in seenExceptions. When we complete secondFuture with the same exception,              * we want for AggregateFuture to still detect that it's been previously seen.              */
 name|secondFuture
 operator|.
 name|setException
@@ -13820,7 +13820,7 @@ name|void
 name|run
 parameter_list|()
 block|{
-comment|/*          * This is similar to the above test, but this time we're making sure that we recognize that          * the output Future is done early not because of an exception but because of a          * cancellation.          */
+comment|/*              * This is similar to the above test, but this time we're making sure that we recognize              * that the output Future is done early not because of an exception but because of a              * cancellation.              */
 name|secondFuture
 operator|.
 name|setException
@@ -14726,7 +14726,7 @@ parameter_list|(
 name|CancellationException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 try|try
 block|{
 name|resultFuture
@@ -14743,7 +14743,7 @@ parameter_list|(
 name|CancellationException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 annotation|@
 name|GwtIncompatible
@@ -14928,7 +14928,7 @@ parameter_list|(
 name|CancellationException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 name|gotException
 operator|.
 name|await
@@ -15638,7 +15638,7 @@ class|class
 name|PartialResultException
 extends|extends
 name|Exception
-block|{      }
+block|{}
 specifier|final
 name|SettableFuture
 argument_list|<
@@ -15804,7 +15804,7 @@ specifier|final
 name|Runnable
 name|finisher
 decl_stmt|;
-DECL|method|TestFuture ( ListenableFuture<String> future, String name, Runnable finisher)
+DECL|method|TestFuture (ListenableFuture<String> future, String name, Runnable finisher)
 name|TestFuture
 parameter_list|(
 name|ListenableFuture
@@ -16130,7 +16130,7 @@ specifier|public
 name|void
 name|run
 parameter_list|()
-block|{       }
+block|{}
 block|}
 decl_stmt|;
 DECL|field|finishSuccess
@@ -16239,7 +16239,7 @@ expr_stmt|;
 block|}
 block|}
 decl_stmt|;
-comment|/**      * All the futures, together with human-readable names for use by {@link #smartToString}.      */
+comment|/** All the futures, together with human-readable names for use by {@link #smartToString}. */
 DECL|field|allFutures
 specifier|final
 name|ImmutableList
@@ -16483,7 +16483,7 @@ name|inputNames
 argument_list|)
 return|;
 block|}
-DECL|method|smartAssertTrue (ImmutableSet<ListenableFuture<String>> inputs, Exception cause, boolean expression)
+DECL|method|smartAssertTrue ( ImmutableSet<ListenableFuture<String>> inputs, Exception cause, boolean expression)
 name|void
 name|smartAssertTrue
 parameter_list|(
@@ -16577,7 +16577,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-DECL|method|assertHasDelayed ( ListenableFuture<String> a, ListenableFuture<String> b, Exception e)
+DECL|method|assertHasDelayed (ListenableFuture<String> a, ListenableFuture<String> b, Exception e)
 name|void
 name|assertHasDelayed
 parameter_list|(
@@ -16630,7 +16630,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|assertHasFailure ( ListenableFuture<String> a, ListenableFuture<String> b, Exception e)
+DECL|method|assertHasFailure (ListenableFuture<String> a, ListenableFuture<String> b, Exception e)
 name|void
 name|assertHasFailure
 parameter_list|(
@@ -16694,7 +16694,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|assertHasCancel ( ListenableFuture<String> a, ListenableFuture<String> b, Exception e)
+DECL|method|assertHasCancel (ListenableFuture<String> a, ListenableFuture<String> b, Exception e)
 name|void
 name|assertHasCancel
 parameter_list|(
@@ -16882,7 +16882,7 @@ specifier|private
 interface|interface
 name|Merger
 block|{
-DECL|method|merged ( ListenableFuture<String> a, ListenableFuture<String> b)
+DECL|method|merged (ListenableFuture<String> a, ListenableFuture<String> b)
 name|ListenableFuture
 argument_list|<
 name|List
@@ -17629,7 +17629,7 @@ block|}
 block|}
 block|}
 block|}
-comment|/**    * Call the non-timed {@link Future#get()} in a way that allows us to abort if it's expected to    * hang forever. More precisely, if it's expected to return, we simply call it[*], but if it's    * expected to hang (because one of the input futures that we know makes it up isn't done yet),    * then we call it in a separate thread (using pseudoTimedGet). The result is that we wait as long    * as necessary when the method is expected to return (at the cost of hanging forever if there is    * a bug in the class under test) but that we time out fairly promptly when the method is expected    * to hang (possibly too quickly, but too-quick failures should be very unlikely, given that we    * used to bail after 20ms during the expected-successful tests, and there we saw a failure rate    * of ~1/5000, meaning that the other thread's get() call nearly always completes within 20ms if    * it's going to complete at all).    *    * [*] To avoid hangs, I've disabled the in-thread calls. This makes the test take (very roughly)    * 2.5s longer. (2.5s is also the maximum length of time we will wait for a timed get that is    * expected to succeed; the fact that the numbers match is only a coincidence.) See the comment    * below for how to restore the fast but hang-y version.    */
+comment|/**    * Call the non-timed {@link Future#get()} in a way that allows us to abort if it's expected to    * hang forever. More precisely, if it's expected to return, we simply call it[*], but if it's    * expected to hang (because one of the input futures that we know makes it up isn't done yet),    * then we call it in a separate thread (using pseudoTimedGet). The result is that we wait as long    * as necessary when the method is expected to return (at the cost of hanging forever if there is    * a bug in the class under test) but that we time out fairly promptly when the method is expected    * to hang (possibly too quickly, but too-quick failures should be very unlikely, given that we    * used to bail after 20ms during the expected-successful tests, and there we saw a failure rate    * of ~1/5000, meaning that the other thread's get() call nearly always completes within 20ms if    * it's going to complete at all).    *    *<p>[*] To avoid hangs, I've disabled the in-thread calls. This makes the test take (very    * roughly) 2.5s longer. (2.5s is also the maximum length of time we will wait for a timed get    * that is expected to succeed; the fact that the numbers match is only a coincidence.) See the    * comment below for how to restore the fast but hang-y version.    */
 annotation|@
 name|GwtIncompatible
 comment|// used only in GwtIncompatible tests
@@ -18764,7 +18764,7 @@ name|isCancelled
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|/*          * This test relies on behavior that's unspecified but currently          * guaranteed by the implementation: Cancellation of inputs is          * performed in the order they were provided to the constructor. Verify          * that as a sanity check:          */
+comment|/*              * This test relies on behavior that's unspecified but currently              * guaranteed by the implementation: Cancellation of inputs is              * performed in the order they were provided to the constructor. Verify              * that as a sanity check:              */
 name|assertFalse
 argument_list|(
 name|future2
@@ -19116,7 +19116,7 @@ name|inOrder
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * Non-Error exceptions are never logged.    */
+comment|/** Non-Error exceptions are never logged. */
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -19227,7 +19227,7 @@ name|isEmpty
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * Ensure that errors are always logged.    */
+comment|/** Ensure that errors are always logged. */
 annotation|@
 name|SuppressWarnings
 argument_list|(

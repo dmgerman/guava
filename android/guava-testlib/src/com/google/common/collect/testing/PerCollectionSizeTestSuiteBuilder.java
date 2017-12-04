@@ -161,7 +161,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This builder creates a composite test suite, containing a separate test suite  * for each {@link CollectionSize} present in the features specified  * by {@link #withFeatures(Feature...)}.  *  * @param<B> The concrete type of this builder (the 'self-type'). All the  * Builder methods of this class (such as {@link #named(String)}) return this  * type, so that Builder methods of more derived classes can be chained onto  * them without casting.  * @param<G> The type of the generator to be passed to testers in the  * generated test suite. An instance of G should somehow provide an  * instance of the class under test, plus any other information required  * to parameterize the test.  *  * @see FeatureSpecificTestSuiteBuilder  *  * @author George van den Driessche  */
+comment|/**  * This builder creates a composite test suite, containing a separate test suite for each {@link  * CollectionSize} present in the features specified by {@link #withFeatures(Feature...)}.  *  * @param<B> The concrete type of this builder (the 'self-type'). All the Builder methods of this  *     class (such as {@link #named(String)}) return this type, so that Builder methods of more  *     derived classes can be chained onto them without casting.  * @param<G> The type of the generator to be passed to testers in the generated test suite. An  *     instance of G should somehow provide an instance of the class under test, plus any other  *     information required to parameterize the test.  * @see FeatureSpecificTestSuiteBuilder  * @author George van den Driessche  */
 end_comment
 
 begin_class
@@ -226,7 +226,7 @@ name|getName
 argument_list|()
 argument_list|)
 decl_stmt|;
-comment|/**    * Creates a runnable JUnit test suite based on the criteria already given.    */
+comment|/** Creates a runnable JUnit test suite based on the criteria already given. */
 annotation|@
 name|Override
 DECL|method|createTestSuite ()

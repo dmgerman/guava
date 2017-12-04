@@ -508,7 +508,7 @@ parameter_list|(
 name|UnsupportedOperationException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 try|try
 block|{
 name|visitor
@@ -534,7 +534,7 @@ parameter_list|(
 name|UnsupportedOperationException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|class|BaseTypeVisitor
 specifier|private
@@ -544,9 +544,9 @@ name|BaseTypeVisitor
 extends|extends
 name|TypeVisitor
 block|{
-DECL|method|visitTypeVariable (TypeVariable<?> t)
 annotation|@
 name|Override
+DECL|method|visitTypeVariable (TypeVariable<?> t)
 name|void
 name|visitTypeVariable
 parameter_list|(
@@ -563,9 +563,9 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
-DECL|method|visitWildcardType (WildcardType t)
 annotation|@
 name|Override
+DECL|method|visitWildcardType (WildcardType t)
 name|void
 name|visitWildcardType
 parameter_list|(
@@ -579,9 +579,9 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
-DECL|method|visitParameterizedType (ParameterizedType t)
 annotation|@
 name|Override
+DECL|method|visitParameterizedType (ParameterizedType t)
 name|void
 name|visitParameterizedType
 parameter_list|(
@@ -595,9 +595,9 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
-DECL|method|visitClass (Class<?> t)
 annotation|@
 name|Override
+DECL|method|visitClass (Class<?> t)
 name|void
 name|visitClass
 parameter_list|(
@@ -614,9 +614,9 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
-DECL|method|visitGenericArrayType (GenericArrayType t)
 annotation|@
 name|Override
+DECL|method|visitGenericArrayType (GenericArrayType t)
 name|void
 name|visitGenericArrayType
 parameter_list|(

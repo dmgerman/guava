@@ -115,13 +115,13 @@ argument_list|,
 name|T
 argument_list|>
 block|{
-comment|/**    * Constructor for use by subclasses.    */
+comment|/** Constructor for use by subclasses. */
 DECL|method|Equivalence ()
 specifier|protected
 name|Equivalence
 parameter_list|()
 block|{}
-comment|/**    * Returns {@code true} if the given objects are considered equivalent.    *    *<p>This method describes an<i>equivalence relation</i> on object references, meaning that for    * all references {@code x}, {@code y}, and {@code z} (any of which may be null):    *    *<ul>    *<li>{@code equivalent(x, x)} is true (<i>reflexive</i> property)    *<li>{@code equivalent(x, y)} and {@code equivalent(y, x)} each return the same result    *     (<i>symmetric</i> property)    *<li>If {@code equivalent(x, y)} and {@code equivalent(y, z)} are both true, then    *     {@code equivalent(x, z)} is also true (<i>transitive</i> property)    *</ul>    *    *<p>Note that all calls to {@code equivalent(x, y)} are expected to return the same result as    * long as neither {@code x} nor {@code y} is modified.    */
+comment|/**    * Returns {@code true} if the given objects are considered equivalent.    *    *<p>This method describes an<i>equivalence relation</i> on object references, meaning that for    * all references {@code x}, {@code y}, and {@code z} (any of which may be null):    *    *<ul>    *<li>{@code equivalent(x, x)} is true (<i>reflexive</i> property)    *<li>{@code equivalent(x, y)} and {@code equivalent(y, x)} each return the same result    *       (<i>symmetric</i> property)    *<li>If {@code equivalent(x, y)} and {@code equivalent(y, z)} are both true, then {@code    *       equivalent(x, z)} is also true (<i>transitive</i> property)    *</ul>    *    *<p>Note that all calls to {@code equivalent(x, y)} are expected to return the same result as    * long as neither {@code x} nor {@code y} is modified.    */
 DECL|method|equivalent (@ullable T a, @Nullable T b)
 specifier|public
 specifier|final
@@ -174,7 +174,7 @@ name|b
 argument_list|)
 return|;
 block|}
-comment|/**    * @deprecated Provided only to satisfy the {@link BiPredicate} interface; use    *     {@link #equivalent} instead.    * @since 21.0    */
+comment|/**    * @deprecated Provided only to satisfy the {@link BiPredicate} interface; use {@link #equivalent}    *     instead.    * @since 21.0    */
 annotation|@
 name|Deprecated
 annotation|@
@@ -205,7 +205,7 @@ name|u
 argument_list|)
 return|;
 block|}
-comment|/**    * Implemented by the user to determine whether {@code a} and {@code b} are considered    * equivalent, subject to the requirements specified in {@link #equivalent}.    *    *<p>This method should not be called except by {@link #equivalent}. When {@link #equivalent}    * calls this method, {@code a} and {@code b} are guaranteed to be distinct, non-null instances.    *    * @since 10.0 (previously, subclasses would override equivalent())    */
+comment|/**    * Implemented by the user to determine whether {@code a} and {@code b} are considered equivalent,    * subject to the requirements specified in {@link #equivalent}.    *    *<p>This method should not be called except by {@link #equivalent}. When {@link #equivalent}    * calls this method, {@code a} and {@code b} are guaranteed to be distinct, non-null instances.    *    * @since 10.0 (previously, subclasses would override equivalent())    */
 annotation|@
 name|ForOverride
 DECL|method|doEquivalent (T a, T b)
@@ -221,7 +221,7 @@ name|T
 name|b
 parameter_list|)
 function_decl|;
-comment|/**    * Returns a hash code for {@code t}.    *    *<p>The {@code hash} has the following properties:    *<ul>    *<li>It is<i>consistent</i>: for any reference {@code x}, multiple invocations of    *     {@code hash(x}} consistently return the same value provided {@code x} remains unchanged    *     according to the definition of the equivalence. The hash need not remain consistent from    *     one execution of an application to another execution of the same application.    *<li>It is<i>distributable across equivalence</i>: for any references {@code x} and {@code y},    *     if {@code equivalent(x, y)}, then {@code hash(x) == hash(y)}. It is<i>not</i> necessary    *     that the hash be distributable across<i>inequivalence</i>. If {@code equivalence(x, y)} is    *     false, {@code hash(x) == hash(y)} may still be true.    *<li>{@code hash(null)} is {@code 0}.    *</ul>    */
+comment|/**    * Returns a hash code for {@code t}.    *    *<p>The {@code hash} has the following properties:    *    *<ul>    *<li>It is<i>consistent</i>: for any reference {@code x}, multiple invocations of {@code    *       hash(x}} consistently return the same value provided {@code x} remains unchanged    *       according to the definition of the equivalence. The hash need not remain consistent from    *       one execution of an application to another execution of the same application.    *<li>It is<i>distributable across equivalence</i>: for any references {@code x} and {@code    *       y}, if {@code equivalent(x, y)}, then {@code hash(x) == hash(y)}. It is<i>not</i>    *       necessary that the hash be distributable across<i>inequivalence</i>. If {@code    *       equivalence(x, y)} is false, {@code hash(x) == hash(y)} may still be true.    *<li>{@code hash(null)} is {@code 0}.    *</ul>    */
 DECL|method|hash (@ullable T t)
 specifier|public
 specifier|final
@@ -265,7 +265,7 @@ name|T
 name|t
 parameter_list|)
 function_decl|;
-comment|/**    * Returns a new equivalence relation for {@code F} which evaluates equivalence by first applying    * {@code function} to the argument, then evaluating using {@code this}. That is, for any pair of    * non-null objects {@code x} and {@code y}, {@code    * equivalence.onResultOf(function).equivalent(a, b)} is true if and only if {@code    * equivalence.equivalent(function.apply(a), function.apply(b))} is true.    *    *<p>For example:    *    *<pre>   {@code    *    Equivalence<Person> SAME_AGE = Equivalence.equals().onResultOf(GET_PERSON_AGE);}</pre>    *    *<p>{@code function} will never be invoked with a null value.    *    *<p>Note that {@code function} must be consistent according to {@code this} equivalence    * relation. That is, invoking {@link Function#apply} multiple times for a given value must return    * equivalent results. For example,    * {@code Equivalence.identity().onResultOf(Functions.toStringFunction())} is broken because it's    * not guaranteed that {@link Object#toString}) always returns the same string instance.    *    * @since 10.0    */
+comment|/**    * Returns a new equivalence relation for {@code F} which evaluates equivalence by first applying    * {@code function} to the argument, then evaluating using {@code this}. That is, for any pair of    * non-null objects {@code x} and {@code y}, {@code equivalence.onResultOf(function).equivalent(a,    * b)} is true if and only if {@code equivalence.equivalent(function.apply(a), function.apply(b))}    * is true.    *    *<p>For example:    *    *<pre>{@code    * Equivalence<Person> SAME_AGE = Equivalence.equals().onResultOf(GET_PERSON_AGE);    * }</pre>    *    *<p>{@code function} will never be invoked with a null value.    *    *<p>Note that {@code function} must be consistent according to {@code this} equivalence    * relation. That is, invoking {@link Function#apply} multiple times for a given value must return    * equivalent results. For example, {@code    * Equivalence.identity().onResultOf(Functions.toStringFunction())} is broken because it's not    * guaranteed that {@link Object#toString}) always returns the same string instance.    *    * @since 10.0    */
 DECL|method|onResultOf (Function<F, ? extends T> function)
 specifier|public
 specifier|final
@@ -300,7 +300,7 @@ name|this
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a wrapper of {@code reference} that implements {@link Wrapper#equals(Object)    * Object.equals()} such that {@code wrap(a).equals(wrap(b))} if and only if    * {@code equivalent(a, b)}.    *    * @since 10.0    */
+comment|/**    * Returns a wrapper of {@code reference} that implements {@link Wrapper#equals(Object)    * Object.equals()} such that {@code wrap(a).equals(wrap(b))} if and only if {@code equivalent(a,    * b)}.    *    * @since 10.0    */
 DECL|method|wrap (@ullable S reference)
 specifier|public
 specifier|final
@@ -334,7 +334,7 @@ name|reference
 argument_list|)
 return|;
 block|}
-comment|/**    * Wraps an object so that {@link #equals(Object)} and {@link #hashCode()} delegate to an    * {@link Equivalence}.    *    *<p>For example, given an {@link Equivalence} for {@link String strings} named {@code equiv}    * that tests equivalence using their lengths:    *    *<pre>   {@code    *   equiv.wrap("a").equals(equiv.wrap("b")) // true    *   equiv.wrap("a").equals(equiv.wrap("hello")) // false}</pre>    *    *<p>Note in particular that an equivalence wrapper is never equal to the object it wraps.    *    *<pre>   {@code    *   equiv.wrap(obj).equals(obj) // always false}</pre>    *    * @since 10.0    */
+comment|/**    * Wraps an object so that {@link #equals(Object)} and {@link #hashCode()} delegate to an {@link    * Equivalence}.    *    *<p>For example, given an {@link Equivalence} for {@link String strings} named {@code equiv}    * that tests equivalence using their lengths:    *    *<pre>{@code    * equiv.wrap("a").equals(equiv.wrap("b")) // true    * equiv.wrap("a").equals(equiv.wrap("hello")) // false    * }</pre>    *    *<p>Note in particular that an equivalence wrapper is never equal to the object it wraps.    *    *<pre>{@code    * equiv.wrap(obj).equals(obj) // always false    * }</pre>    *    * @since 10.0    */
 DECL|class|Wrapper
 specifier|public
 specifier|static
@@ -516,7 +516,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/**      * Returns the result of {@link Equivalence#hash(Object)} applied to the wrapped reference.      */
+comment|/** Returns the result of {@link Equivalence#hash(Object)} applied to the wrapped reference. */
 annotation|@
 name|Override
 DECL|method|hashCode ()
@@ -563,7 +563,7 @@ init|=
 literal|0
 decl_stmt|;
 block|}
-comment|/**    * Returns an equivalence over iterables based on the equivalence of their elements. More    * specifically, two iterables are considered equivalent if they both contain the same number of    * elements, and each pair of corresponding elements is equivalent according to {@code this}. Null    * iterables are equivalent to one another.    *    *<p>Note that this method performs a similar function for equivalences as    * {@link com.google.common.collect.Ordering#lexicographical} does for orderings.    *    * @since 10.0    */
+comment|/**    * Returns an equivalence over iterables based on the equivalence of their elements. More    * specifically, two iterables are considered equivalent if they both contain the same number of    * elements, and each pair of corresponding elements is equivalent according to {@code this}. Null    * iterables are equivalent to one another.    *    *<p>Note that this method performs a similar function for equivalences as {@link    * com.google.common.collect.Ordering#lexicographical} does for orderings.    *    * @since 10.0    */
 annotation|@
 name|GwtCompatible
 argument_list|(
@@ -855,7 +855,7 @@ operator|.
 name|INSTANCE
 return|;
 block|}
-comment|/**    * Returns an equivalence that uses {@code ==} to compare values and    * {@link System#identityHashCode(Object)} to compute the hash code.    * {@link Equivalence#equivalent} returns {@code true} if {@code a == b}, including in the case    * that a and b are both null.    *    * @since 13.0    * @since 4.0 (in Equivalences)    */
+comment|/**    * Returns an equivalence that uses {@code ==} to compare values and {@link    * System#identityHashCode(Object)} to compute the hash code. {@link Equivalence#equivalent}    * returns {@code true} if {@code a == b}, including in the case that a and b are both null.    *    * @since 13.0    * @since 4.0 (in Equivalences)    */
 DECL|method|identity ()
 specifier|public
 specifier|static

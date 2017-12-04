@@ -217,7 +217,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Static utility methods pertaining to {@code short} primitives, that are not already found in  * either {@link Short} or {@link Arrays}.  *  *<p>See the Guava User Guide article on  *<a href="https://github.com/google/guava/wiki/PrimitivesExplained">primitive utilities</a>.  *  * @author Kevin Bourrillion  * @since 1.0  */
+comment|/**  * Static utility methods pertaining to {@code short} primitives, that are not already found in  * either {@link Short} or {@link Arrays}.  *  *<p>See the Guava User Guide article on<a  * href="https://github.com/google/guava/wiki/PrimitivesExplained">primitive utilities</a>.  *  * @author Kevin Bourrillion  * @since 1.0  */
 end_comment
 
 begin_class
@@ -273,7 +273,7 @@ operator|-
 literal|2
 operator|)
 decl_stmt|;
-comment|/**    * Returns a hash code for {@code value}; equal to the result of invoking    * {@code ((Short) value).hashCode()}.    *    *<p><b>Java 8 users:</b> use {@link Short#hashCode(short)} instead.    *    * @param value a primitive {@code short} value    * @return a hash code for the value    */
+comment|/**    * Returns a hash code for {@code value}; equal to the result of invoking {@code ((Short)    * value).hashCode()}.    *    *<p><b>Java 8 users:</b> use {@link Short#hashCode(short)} instead.    *    * @param value a primitive {@code short} value    * @return a hash code for the value    */
 DECL|method|hashCode (short value)
 specifier|public
 specifier|static
@@ -391,7 +391,7 @@ name|b
 return|;
 comment|// safe due to restricted range
 block|}
-comment|/**    * Returns {@code true} if {@code target} is present as an element anywhere in {@code array}.    *    * @param array an array of {@code short} values, possibly empty    * @param target a primitive {@code short} value    * @return {@code true} if {@code array[i] == target} for some value of {@code    *     i}    */
+comment|/**    * Returns {@code true} if {@code target} is present as an element anywhere in {@code array}.    *    * @param array an array of {@code short} values, possibly empty    * @param target a primitive {@code short} value    * @return {@code true} if {@code array[i] == target} for some value of {@code i}    */
 DECL|method|contains (short[] array, short target)
 specifier|public
 specifier|static
@@ -516,7 +516,7 @@ operator|-
 literal|1
 return|;
 block|}
-comment|/**    * Returns the start position of the first occurrence of the specified {@code    * target} within {@code array}, or {@code -1} if there is no such occurrence.    *    *<p>More formally, returns the lowest index {@code i} such that    * {@code Arrays.copyOfRange(array, i, i + target.length)} contains exactly the same elements as    * {@code target}.    *    * @param array the array to search for the sequence {@code target}    * @param target the array to search for as a sub-sequence of {@code array}    */
+comment|/**    * Returns the start position of the first occurrence of the specified {@code target} within    * {@code array}, or {@code -1} if there is no such occurrence.    *    *<p>More formally, returns the lowest index {@code i} such that {@code Arrays.copyOfRange(array,    * i, i + target.length)} contains exactly the same elements as {@code target}.    *    * @param array the array to search for the sequence {@code target}    * @param target the array to search for as a sub-sequence of {@code array}    */
 DECL|method|indexOf (short[] array, short[] target)
 specifier|public
 specifier|static
@@ -856,7 +856,7 @@ return|return
 name|max
 return|;
 block|}
-comment|/**    * Returns the value nearest to {@code value} which is within the closed range {@code [min..max]}.    *    *<p>If {@code value} is within the range {@code [min..max]}, {@code value} is returned    * unchanged. If {@code value} is less than {@code min}, {@code min} is returned, and if    * {@code value} is greater than {@code max}, {@code max} is returned.    *    * @param value the {@code short} value to constrain    * @param min the lower bound (inclusive) of the range to constrain {@code value} to    * @param max the upper bound (inclusive) of the range to constrain {@code value} to    * @throws IllegalArgumentException if {@code min> max}    * @since 21.0    */
+comment|/**    * Returns the value nearest to {@code value} which is within the closed range {@code [min..max]}.    *    *<p>If {@code value} is within the range {@code [min..max]}, {@code value} is returned    * unchanged. If {@code value} is less than {@code min}, {@code min} is returned, and if {@code    * value} is greater than {@code max}, {@code max} is returned.    *    * @param value the {@code short} value to constrain    * @param min the lower bound (inclusive) of the range to constrain {@code value} to    * @param max the upper bound (inclusive) of the range to constrain {@code value} to    * @throws IllegalArgumentException if {@code min> max}    * @since 21.0    */
 annotation|@
 name|Beta
 DECL|method|constrainToRange (short value, short min, short max)
@@ -904,7 +904,7 @@ else|:
 name|max
 return|;
 block|}
-comment|/**    * Returns the values from each provided array combined into a single array. For example,    * {@code concat(new short[] {a, b}, new short[] {}, new short[] {c}} returns the array    * {@code {a, b, c}}.    *    * @param arrays zero or more {@code short} arrays    * @return a single array containing all the values from the source arrays, in order    */
+comment|/**    * Returns the values from each provided array combined into a single array. For example, {@code    * concat(new short[] {a, b}, new short[] {}, new short[] {c}} returns the array {@code {a, b,    * c}}.    *    * @param arrays zero or more {@code short} arrays    * @return a single array containing all the values from the source arrays, in order    */
 DECL|method|concat (short[]... arrays)
 specifier|public
 specifier|static
@@ -991,7 +991,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/**    * Returns a big-endian representation of {@code value} in a 2-element byte array; equivalent to    * {@code ByteBuffer.allocate(2).putShort(value).array()}. For example, the input value {@code    * (short) 0x1234} would yield the byte array {@code {0x12, 0x34}}.    *    *<p>If you need to convert and concatenate several values (possibly even of different types),    * use a shared {@link java.nio.ByteBuffer} instance, or use    * {@link com.google.common.io.ByteStreams#newDataOutput()} to get a growable buffer.    */
+comment|/**    * Returns a big-endian representation of {@code value} in a 2-element byte array; equivalent to    * {@code ByteBuffer.allocate(2).putShort(value).array()}. For example, the input value {@code    * (short) 0x1234} would yield the byte array {@code {0x12, 0x34}}.    *    *<p>If you need to convert and concatenate several values (possibly even of different types),    * use a shared {@link java.nio.ByteBuffer} instance, or use {@link    * com.google.common.io.ByteStreams#newDataOutput()} to get a growable buffer.    */
 annotation|@
 name|GwtIncompatible
 comment|// doesn't work
@@ -1206,7 +1206,7 @@ init|=
 literal|1
 decl_stmt|;
 block|}
-comment|/**    * Returns a serializable converter object that converts between strings and shorts using    * {@link Short#decode} and {@link Short#toString()}. The returned converter throws    * {@link NumberFormatException} if the input string is invalid.    *    *<p><b>Warning:</b> please see {@link Short#decode} to understand exactly how strings are    * parsed. For example, the string {@code "0123"} is treated as<i>octal</i> and converted to the    * value {@code 83}.    *    * @since 16.0    */
+comment|/**    * Returns a serializable converter object that converts between strings and shorts using {@link    * Short#decode} and {@link Short#toString()}. The returned converter throws {@link    * NumberFormatException} if the input string is invalid.    *    *<p><b>Warning:</b> please see {@link Short#decode} to understand exactly how strings are    * parsed. For example, the string {@code "0123"} is treated as<i>octal</i> and converted to the    * value {@code 83}.    *    * @since 16.0    */
 annotation|@
 name|Beta
 DECL|method|stringConverter ()
@@ -1227,7 +1227,7 @@ operator|.
 name|INSTANCE
 return|;
 block|}
-comment|/**    * Returns an array containing the same values as {@code array}, but guaranteed to be of a    * specified minimum length. If {@code array} already has a length of at least {@code minLength},    * it is returned directly. Otherwise, a new array of size {@code minLength + padding} is    * returned, containing the values of {@code array}, and zeroes in the remaining places.    *    * @param array the source array    * @param minLength the minimum length the returned array must guarantee    * @param padding an extra amount to "grow" the array by if growth is necessary    * @throws IllegalArgumentException if {@code minLength} or {@code padding} is negative    * @return an array containing the values of {@code array}, with guaranteed minimum length    *     {@code minLength}    */
+comment|/**    * Returns an array containing the same values as {@code array}, but guaranteed to be of a    * specified minimum length. If {@code array} already has a length of at least {@code minLength},    * it is returned directly. Otherwise, a new array of size {@code minLength + padding} is    * returned, containing the values of {@code array}, and zeroes in the remaining places.    *    * @param array the source array    * @param minLength the minimum length the returned array must guarantee    * @param padding an extra amount to "grow" the array by if growth is necessary    * @throws IllegalArgumentException if {@code minLength} or {@code padding} is negative    * @return an array containing the values of {@code array}, with guaranteed minimum length {@code    *     minLength}    */
 DECL|method|ensureCapacity (short[] array, int minLength, int padding)
 specifier|public
 specifier|static
@@ -1291,7 +1291,7 @@ else|:
 name|array
 return|;
 block|}
-comment|/**    * Returns a string containing the supplied {@code short} values separated by {@code separator}.    * For example, {@code join("-", (short) 1, (short) 2,    * (short) 3)} returns the string {@code "1-2-3"}.    *    * @param separator the text that should appear between consecutive values in the resulting string    *     (but not at the start or end)    * @param array an array of {@code short} values, possibly empty    */
+comment|/**    * Returns a string containing the supplied {@code short} values separated by {@code separator}.    * For example, {@code join("-", (short) 1, (short) 2, (short) 3)} returns the string {@code    * "1-2-3"}.    *    * @param separator the text that should appear between consecutive values in the resulting string    *     (but not at the start or end)    * @param array an array of {@code short} values, possibly empty    */
 DECL|method|join (String separator, short... array)
 specifier|public
 specifier|static
@@ -1388,7 +1388,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns a comparator that compares two {@code short} arrays<a    * href="http://en.wikipedia.org/wiki/Lexicographical_order">lexicographically</a>. That is, it    * compares, using {@link #compare(short, short)}), the first pair of values that follow any    * common prefix, or when one array is a prefix of the other, treats the shorter array as the    * lesser. For example, {@code []< [(short) 1]< [(short) 1, (short) 2]< [(short) 2]}.    *    *<p>The returned comparator is inconsistent with {@link Object#equals(Object)} (since arrays    * support only identity equality), but it is consistent with    * {@link Arrays#equals(short[], short[])}.    *    * @since 2.0    */
+comment|/**    * Returns a comparator that compares two {@code short} arrays<a    * href="http://en.wikipedia.org/wiki/Lexicographical_order">lexicographically</a>. That is, it    * compares, using {@link #compare(short, short)}), the first pair of values that follow any    * common prefix, or when one array is a prefix of the other, treats the shorter array as the    * lesser. For example, {@code []< [(short) 1]< [(short) 1, (short) 2]< [(short) 2]}.    *    *<p>The returned comparator is inconsistent with {@link Object#equals(Object)} (since arrays    * support only identity equality), but it is consistent with {@link Arrays#equals(short[],    * short[])}.    *    * @since 2.0    */
 DECL|method|lexicographicalComparator ()
 specifier|public
 specifier|static
@@ -1718,7 +1718,7 @@ name|tmp
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Returns an array containing each value of {@code collection}, converted to a {@code short}    * value in the manner of {@link Number#shortValue}.    *    *<p>Elements are copied from the argument collection as if by {@code    * collection.toArray()}. Calling this method is as thread-safe as calling that method.    *    * @param collection a collection of {@code Number} instances    * @return an array containing the same values as {@code collection}, in the same order, converted    *     to primitives    * @throws NullPointerException if {@code collection} or any of its elements is null    * @since 1.0 (parameter was {@code Collection<Short>} before 12.0)    */
+comment|/**    * Returns an array containing each value of {@code collection}, converted to a {@code short}    * value in the manner of {@link Number#shortValue}.    *    *<p>Elements are copied from the argument collection as if by {@code collection.toArray()}.    * Calling this method is as thread-safe as calling that method.    *    * @param collection a collection of {@code Number} instances    * @return an array containing the same values as {@code collection}, in the same order, converted    *     to primitives    * @throws NullPointerException if {@code collection} or any of its elements is null    * @since 1.0 (parameter was {@code Collection<Short>} before 12.0)    */
 DECL|method|toArray (Collection<? extends Number> collection)
 specifier|public
 specifier|static
@@ -1822,7 +1822,7 @@ return|return
 name|array
 return|;
 block|}
-comment|/**    * Returns a fixed-size list backed by the specified array, similar to    * {@link Arrays#asList(Object[])}. The list supports {@link List#set(int, Object)}, but any    * attempt to set a value to {@code null} will result in a {@link NullPointerException}.    *    *<p>The returned list maintains the values, but not the identities, of {@code Short} objects    * written to or read from it. For example, whether {@code list.get(0) == list.get(0)} is true for    * the returned list is unspecified.    *    * @param backingArray the array to back the list    * @return a list view of the array    */
+comment|/**    * Returns a fixed-size list backed by the specified array, similar to {@link    * Arrays#asList(Object[])}. The list supports {@link List#set(int, Object)}, but any attempt to    * set a value to {@code null} will result in a {@link NullPointerException}.    *    *<p>The returned list maintains the values, but not the identities, of {@code Short} objects    * written to or read from it. For example, whether {@code list.get(0) == list.get(0)} is true for    * the returned list is unspecified.    *    * @param backingArray the array to back the list    * @return a list view of the array    */
 DECL|method|asList (short... backingArray)
 specifier|public
 specifier|static

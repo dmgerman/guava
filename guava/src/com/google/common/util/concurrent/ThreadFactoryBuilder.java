@@ -153,7 +153,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A ThreadFactory builder, providing any combination of these features:  *<ul>  *<li>whether threads should be marked as {@linkplain Thread#setDaemon daemon} threads  *<li>a {@linkplain ThreadFactoryBuilder#setNameFormat naming format}  *<li>a {@linkplain Thread#setPriority thread priority}  *<li>an {@linkplain Thread#setUncaughtExceptionHandler uncaught exception handler}  *<li>a {@linkplain ThreadFactory#newThread backing thread factory}  *</ul>  *<p>If no backing thread factory is provided, a default backing thread factory is used as if by  * calling {@code setThreadFactory(}{@link Executors#defaultThreadFactory()}{@code )}.  *  * @author Kurt Alfred Kluever  * @since 4.0  */
+comment|/**  * A ThreadFactory builder, providing any combination of these features:  *  *<ul>  *<li>whether threads should be marked as {@linkplain Thread#setDaemon daemon} threads  *<li>a {@linkplain ThreadFactoryBuilder#setNameFormat naming format}  *<li>a {@linkplain Thread#setPriority thread priority}  *<li>an {@linkplain Thread#setUncaughtExceptionHandler uncaught exception handler}  *<li>a {@linkplain ThreadFactory#newThread backing thread factory}  *</ul>  *  *<p>If no backing thread factory is provided, a default backing thread factory is used as if by  * calling {@code setThreadFactory(}{@link Executors#defaultThreadFactory()}{@code )}.  *  * @author Kurt Alfred Kluever  * @since 4.0  */
 end_comment
 
 begin_class
@@ -202,13 +202,13 @@ name|backingThreadFactory
 init|=
 literal|null
 decl_stmt|;
-comment|/**    * Creates a new {@link ThreadFactory} builder.    */
+comment|/** Creates a new {@link ThreadFactory} builder. */
 DECL|method|ThreadFactoryBuilder ()
 specifier|public
 name|ThreadFactoryBuilder
 parameter_list|()
 block|{}
-comment|/**    * Sets the naming format to use when naming threads ({@link Thread#setName}) which are created    * with this ThreadFactory.    *    * @param nameFormat a {@link String#format(String, Object...)}-compatible format String, to which    *     a unique integer (0, 1, etc.) will be supplied as the single parameter. This integer will    *     be unique to the built instance of the ThreadFactory and will be assigned sequentially. For    *     example, {@code "rpc-pool-%d"} will generate thread names like {@code "rpc-pool-0"},    *     {@code "rpc-pool-1"}, {@code "rpc-pool-2"}, etc.    * @return this for the builder pattern    */
+comment|/**    * Sets the naming format to use when naming threads ({@link Thread#setName}) which are created    * with this ThreadFactory.    *    * @param nameFormat a {@link String#format(String, Object...)}-compatible format String, to which    *     a unique integer (0, 1, etc.) will be supplied as the single parameter. This integer will    *     be unique to the built instance of the ThreadFactory and will be assigned sequentially. For    *     example, {@code "rpc-pool-%d"} will generate thread names like {@code "rpc-pool-0"}, {@code    *     "rpc-pool-1"}, {@code "rpc-pool-2"}, etc.    * @return this for the builder pattern    */
 DECL|method|setNameFormat (String nameFormat)
 specifier|public
 name|ThreadFactoryBuilder
@@ -338,7 +338,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**    * Sets the backing {@link ThreadFactory} for new threads created with this ThreadFactory. Threads    * will be created by invoking #newThread(Runnable) on this backing {@link ThreadFactory}.    *    * @param backingThreadFactory the backing {@link ThreadFactory} which will be delegated to during    *     thread creation.    * @return this for the builder pattern    *    * @see MoreExecutors    */
+comment|/**    * Sets the backing {@link ThreadFactory} for new threads created with this ThreadFactory. Threads    * will be created by invoking #newThread(Runnable) on this backing {@link ThreadFactory}.    *    * @param backingThreadFactory the backing {@link ThreadFactory} which will be delegated to during    *     thread creation.    * @return this for the builder pattern    * @see MoreExecutors    */
 DECL|method|setThreadFactory (ThreadFactory backingThreadFactory)
 specifier|public
 name|ThreadFactoryBuilder

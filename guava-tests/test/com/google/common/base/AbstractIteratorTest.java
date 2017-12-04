@@ -732,7 +732,7 @@ block|}
 comment|// Technically we should test other reentrant scenarios (4 combinations of
 comment|// hasNext/next), but we'll cop out for now, knowing that
 comment|// next() both start by invoking hasNext() anyway.
-comment|/**    * Throws a undeclared checked exception.    */
+comment|/** Throws a undeclared checked exception. */
 DECL|method|sneakyThrow (Throwable t)
 specifier|private
 specifier|static
@@ -794,7 +794,7 @@ class|class
 name|SomeCheckedException
 extends|extends
 name|Exception
-block|{   }
+block|{}
 DECL|class|SomeUncheckedException
 specifier|private
 specifier|static
@@ -802,7 +802,7 @@ class|class
 name|SomeUncheckedException
 extends|extends
 name|RuntimeException
-block|{   }
+block|{}
 block|}
 end_class
 

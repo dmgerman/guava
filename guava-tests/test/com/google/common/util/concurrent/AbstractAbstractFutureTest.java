@@ -1572,7 +1572,7 @@ class|class
 name|BadRunnableException
 extends|extends
 name|RuntimeException
-block|{     }
+block|{}
 name|Runnable
 name|bad
 init|=
@@ -1624,7 +1624,7 @@ class|class
 name|BadRunnableException
 extends|extends
 name|RuntimeException
-block|{     }
+block|{}
 name|CountingRunnable
 name|before
 init|=
@@ -2057,7 +2057,7 @@ literal|1
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Concrete subclass for testing.    */
+comment|/** Concrete subclass for testing. */
 DECL|class|TestedFuture
 specifier|private
 specifier|static

@@ -101,7 +101,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Since annotations have some reusability issues that force copy and paste  * all over the place, it's worth having a test to ensure that all our Feature  * enums have their annotations correctly set up.  *  * @author George van den Driessche  */
+comment|/**  * Since annotations have some reusability issues that force copy and paste all over the place, it's  * worth having a test to ensure that all our Feature enums have their annotations correctly set up.  *  * @author George van den Driessche  */
 end_comment
 
 begin_class
@@ -112,7 +112,7 @@ name|FeatureEnumTest
 extends|extends
 name|TestCase
 block|{
-DECL|method|assertGoodTesterAnnotation ( Class<? extends Annotation> annotationClass)
+DECL|method|assertGoodTesterAnnotation (Class<? extends Annotation> annotationClass)
 specifier|private
 specifier|static
 name|void

@@ -233,7 +233,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Static utility methods pertaining to {@link Queue} and {@link Deque} instances.  * Also see this class's counterparts {@link Lists}, {@link Sets}, and {@link Maps}.  *  * @author Kurt Alfred Kluever  * @since 11.0  */
+comment|/**  * Static utility methods pertaining to {@link Queue} and {@link Deque} instances. Also see this  * class's counterparts {@link Lists}, {@link Sets}, and {@link Maps}.  *  * @author Kurt Alfred Kluever  * @since 11.0  */
 end_comment
 
 begin_class
@@ -256,7 +256,7 @@ name|Queues
 parameter_list|()
 block|{}
 comment|// ArrayBlockingQueue
-comment|/**    * Creates an empty {@code ArrayBlockingQueue} with the given (fixed) capacity    * and nonfair access policy.    */
+comment|/**    * Creates an empty {@code ArrayBlockingQueue} with the given (fixed) capacity and nonfair access    * policy.    */
 annotation|@
 name|GwtIncompatible
 comment|// ArrayBlockingQueue
@@ -311,7 +311,7 @@ argument_list|>
 argument_list|()
 return|;
 block|}
-comment|/**    * Creates an {@code ArrayDeque} containing the elements of the specified iterable,    * in the order they are returned by the iterable's iterator.    *    * @since 12.0    */
+comment|/**    * Creates an {@code ArrayDeque} containing the elements of the specified iterable, in the order    * they are returned by the iterable's iterator.    *    * @since 12.0    */
 DECL|method|newArrayDeque (Iterable<? extends E> elements)
 specifier|public
 specifier|static
@@ -383,7 +383,7 @@ name|deque
 return|;
 block|}
 comment|// ConcurrentLinkedQueue
-comment|/**    * Creates an empty {@code ConcurrentLinkedQueue}.    */
+comment|/** Creates an empty {@code ConcurrentLinkedQueue}. */
 annotation|@
 name|GwtIncompatible
 comment|// ConcurrentLinkedQueue
@@ -409,7 +409,7 @@ argument_list|>
 argument_list|()
 return|;
 block|}
-comment|/**    * Creates a {@code ConcurrentLinkedQueue} containing the elements of the specified iterable,    * in the order they are returned by the iterable's iterator.    */
+comment|/**    * Creates a {@code ConcurrentLinkedQueue} containing the elements of the specified iterable, in    * the order they are returned by the iterable's iterator.    */
 annotation|@
 name|GwtIncompatible
 comment|// ConcurrentLinkedQueue
@@ -541,7 +541,7 @@ name|capacity
 argument_list|)
 return|;
 block|}
-comment|/**    * Creates a {@code LinkedBlockingDeque} with a capacity of {@link Integer#MAX_VALUE},    * containing the elements of the specified iterable,    * in the order they are returned by the iterable's iterator.    *    * @since 12.0    */
+comment|/**    * Creates a {@code LinkedBlockingDeque} with a capacity of {@link Integer#MAX_VALUE}, containing    * the elements of the specified iterable, in the order they are returned by the iterable's    * iterator.    *    * @since 12.0    */
 annotation|@
 name|GwtIncompatible
 comment|// LinkedBlockingDeque
@@ -616,7 +616,7 @@ name|deque
 return|;
 block|}
 comment|// LinkedBlockingQueue
-comment|/**    * Creates an empty {@code LinkedBlockingQueue} with a capacity of {@link Integer#MAX_VALUE}.    */
+comment|/** Creates an empty {@code LinkedBlockingQueue} with a capacity of {@link Integer#MAX_VALUE}. */
 annotation|@
 name|GwtIncompatible
 comment|// LinkedBlockingQueue
@@ -673,7 +673,7 @@ name|capacity
 argument_list|)
 return|;
 block|}
-comment|/**    * Creates a {@code LinkedBlockingQueue} with a capacity of {@link Integer#MAX_VALUE},    * containing the elements of the specified iterable,    * in the order they are returned by the iterable's iterator.    *    * @param elements the elements that the queue should contain, in order    * @return a new {@code LinkedBlockingQueue} containing those elements    */
+comment|/**    * Creates a {@code LinkedBlockingQueue} with a capacity of {@link Integer#MAX_VALUE}, containing    * the elements of the specified iterable, in the order they are returned by the iterable's    * iterator.    *    * @param elements the elements that the queue should contain, in order    * @return a new {@code LinkedBlockingQueue} containing those elements    */
 annotation|@
 name|GwtIncompatible
 comment|// LinkedBlockingQueue
@@ -749,7 +749,7 @@ return|;
 block|}
 comment|// LinkedList: see {@link com.google.common.collect.Lists}
 comment|// PriorityBlockingQueue
-comment|/**    * Creates an empty {@code PriorityBlockingQueue} with the ordering given by its    * elements' natural ordering.    *    * @since 11.0 (requires that {@code E} be {@code Comparable} since 15.0).    */
+comment|/**    * Creates an empty {@code PriorityBlockingQueue} with the ordering given by its elements' natural    * ordering.    *    * @since 11.0 (requires that {@code E} be {@code Comparable} since 15.0).    */
 annotation|@
 name|GwtIncompatible
 comment|// PriorityBlockingQueue
@@ -777,7 +777,7 @@ argument_list|>
 argument_list|()
 return|;
 block|}
-comment|/**    * Creates a {@code PriorityBlockingQueue} containing the given elements.    *    *<b>Note:</b> If the specified iterable is a {@code SortedSet} or a {@code PriorityQueue},    * this priority queue will be ordered according to the same ordering.    *    * @since 11.0 (requires that {@code E} be {@code Comparable} since 15.0).    */
+comment|/**    * Creates a {@code PriorityBlockingQueue} containing the given elements.    *    *<p><b>Note:</b> If the specified iterable is a {@code SortedSet} or a {@code PriorityQueue},    * this priority queue will be ordered according to the same ordering.    *    * @since 11.0 (requires that {@code E} be {@code Comparable} since 15.0).    */
 annotation|@
 name|GwtIncompatible
 comment|// PriorityBlockingQueue
@@ -854,7 +854,7 @@ name|queue
 return|;
 block|}
 comment|// PriorityQueue
-comment|/**    * Creates an empty {@code PriorityQueue} with the ordering given by its    * elements' natural ordering.    *    * @since 11.0 (requires that {@code E} be {@code Comparable} since 15.0).    */
+comment|/**    * Creates an empty {@code PriorityQueue} with the ordering given by its elements' natural    * ordering.    *    * @since 11.0 (requires that {@code E} be {@code Comparable} since 15.0).    */
 DECL|method|newPriorityQueue ()
 specifier|public
 specifier|static
@@ -879,7 +879,7 @@ argument_list|>
 argument_list|()
 return|;
 block|}
-comment|/**    * Creates a {@code PriorityQueue} containing the given elements.    *    *<b>Note:</b> If the specified iterable is a {@code SortedSet} or a {@code PriorityQueue},    * this priority queue will be ordered according to the same ordering.    *    * @since 11.0 (requires that {@code E} be {@code Comparable} since 15.0).    */
+comment|/**    * Creates a {@code PriorityQueue} containing the given elements.    *    *<p><b>Note:</b> If the specified iterable is a {@code SortedSet} or a {@code PriorityQueue},    * this priority queue will be ordered according to the same ordering.    *    * @since 11.0 (requires that {@code E} be {@code Comparable} since 15.0).    */
 DECL|method|newPriorityQueue ( Iterable<? extends E> elements)
 specifier|public
 specifier|static
@@ -953,7 +953,7 @@ name|queue
 return|;
 block|}
 comment|// SynchronousQueue
-comment|/**    * Creates an empty {@code SynchronousQueue} with nonfair access policy.    */
+comment|/** Creates an empty {@code SynchronousQueue} with nonfair access policy. */
 annotation|@
 name|GwtIncompatible
 comment|// SynchronousQueue
@@ -979,7 +979,7 @@ argument_list|>
 argument_list|()
 return|;
 block|}
-comment|/**    * Drains the queue as {@link BlockingQueue#drainTo(Collection, int)}, but if the requested    * {@code numElements} elements are not available, it will wait for them up to the specified    * timeout.    *    * @param q the blocking queue to be drained    * @param buffer where to add the transferred elements    * @param numElements the number of elements to be waited for    * @param timeout how long to wait before giving up, in units of {@code unit}    * @param unit a {@code TimeUnit} determining how to interpret the timeout parameter    * @return the number of elements transferred    * @throws InterruptedException if interrupted while waiting    */
+comment|/**    * Drains the queue as {@link BlockingQueue#drainTo(Collection, int)}, but if the requested {@code    * numElements} elements are not available, it will wait for them up to the specified timeout.    *    * @param q the blocking queue to be drained    * @param buffer where to add the transferred elements    * @param numElements the number of elements to be waited for    * @param timeout how long to wait before giving up, in units of {@code unit}    * @param unit a {@code TimeUnit} determining how to interpret the timeout parameter    * @return the number of elements transferred    * @throws InterruptedException if interrupted while waiting    */
 annotation|@
 name|Beta
 annotation|@
@@ -1125,7 +1125,7 @@ return|return
 name|added
 return|;
 block|}
-comment|/**    * Drains the queue as {@linkplain #drain(BlockingQueue, Collection, int, long, TimeUnit)},    * but with a different behavior in case it is interrupted while waiting. In that case, the    * operation will continue as usual, and in the end the thread's interruption status will be set    * (no {@code InterruptedException} is thrown).    *    * @param q the blocking queue to be drained    * @param buffer where to add the transferred elements    * @param numElements the number of elements to be waited for    * @param timeout how long to wait before giving up, in units of {@code unit}    * @param unit a {@code TimeUnit} determining how to interpret the timeout parameter    * @return the number of elements transferred    */
+comment|/**    * Drains the queue as {@linkplain #drain(BlockingQueue, Collection, int, long, TimeUnit)}, but    * with a different behavior in case it is interrupted while waiting. In that case, the operation    * will continue as usual, and in the end the thread's interruption status will be set (no {@code    * InterruptedException} is thrown).    *    * @param q the blocking queue to be drained    * @param buffer where to add the transferred elements    * @param numElements the number of elements to be waited for    * @param timeout how long to wait before giving up, in units of {@code unit}    * @param unit a {@code TimeUnit} determining how to interpret the timeout parameter    * @return the number of elements transferred    */
 annotation|@
 name|Beta
 annotation|@
@@ -1318,7 +1318,7 @@ return|return
 name|added
 return|;
 block|}
-comment|/**    * Returns a synchronized (thread-safe) queue backed by the specified queue. In order to    * guarantee serial access, it is critical that<b>all</b> access to the backing queue is    * accomplished through the returned queue.    *    *<p>It is imperative that the user manually synchronize on the returned queue when accessing    * the queue's iterator:<pre>   {@code    *    *   Queue<E> queue = Queues.synchronizedQueue(MinMaxPriorityQueue.<E>create());    *   ...    *   queue.add(element);  // Needn't be in synchronized block    *   ...    *   synchronized (queue) {  // Must synchronize on queue!    *     Iterator<E> i = queue.iterator(); // Must be in synchronized block    *     while (i.hasNext()) {    *       foo(i.next());    *     }    *   }}</pre>    *    *<p>Failure to follow this advice may result in non-deterministic behavior.    *    *<p>The returned queue will be serializable if the specified queue is serializable.    *    * @param queue the queue to be wrapped in a synchronized view    * @return a synchronized view of the specified queue    * @since 14.0    */
+comment|/**    * Returns a synchronized (thread-safe) queue backed by the specified queue. In order to guarantee    * serial access, it is critical that<b>all</b> access to the backing queue is accomplished    * through the returned queue.    *    *<p>It is imperative that the user manually synchronize on the returned queue when accessing the    * queue's iterator:    *    *<pre>{@code    * Queue<E> queue = Queues.synchronizedQueue(MinMaxPriorityQueue.<E>create());    * ...    * queue.add(element);  // Needn't be in synchronized block    * ...    * synchronized (queue) {  // Must synchronize on queue!    *   Iterator<E> i = queue.iterator(); // Must be in synchronized block    *   while (i.hasNext()) {    *     foo(i.next());    *   }    * }    * }</pre>    *    *<p>Failure to follow this advice may result in non-deterministic behavior.    *    *<p>The returned queue will be serializable if the specified queue is serializable.    *    * @param queue the queue to be wrapped in a synchronized view    * @return a synchronized view of the specified queue    * @since 14.0    */
 DECL|method|synchronizedQueue (Queue<E> queue)
 specifier|public
 specifier|static
@@ -1349,7 +1349,7 @@ literal|null
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a synchronized (thread-safe) deque backed by the specified deque. In order to    * guarantee serial access, it is critical that<b>all</b> access to the backing deque is    * accomplished through the returned deque.    *    *<p>It is imperative that the user manually synchronize on the returned deque when accessing    * any of the deque's iterators:<pre>   {@code    *    *   Deque<E> deque = Queues.synchronizedDeque(Queues.<E>newArrayDeque());    *   ...    *   deque.add(element);  // Needn't be in synchronized block    *   ...    *   synchronized (deque) {  // Must synchronize on deque!    *     Iterator<E> i = deque.iterator(); // Must be in synchronized block    *     while (i.hasNext()) {    *       foo(i.next());    *     }    *   }}</pre>    *    *<p>Failure to follow this advice may result in non-deterministic behavior.    *    *<p>The returned deque will be serializable if the specified deque is serializable.    *    * @param deque the deque to be wrapped in a synchronized view    * @return a synchronized view of the specified deque    * @since 15.0    */
+comment|/**    * Returns a synchronized (thread-safe) deque backed by the specified deque. In order to guarantee    * serial access, it is critical that<b>all</b> access to the backing deque is accomplished    * through the returned deque.    *    *<p>It is imperative that the user manually synchronize on the returned deque when accessing any    * of the deque's iterators:    *    *<pre>{@code    * Deque<E> deque = Queues.synchronizedDeque(Queues.<E>newArrayDeque());    * ...    * deque.add(element);  // Needn't be in synchronized block    * ...    * synchronized (deque) {  // Must synchronize on deque!    *   Iterator<E> i = deque.iterator(); // Must be in synchronized block    *   while (i.hasNext()) {    *     foo(i.next());    *   }    * }    * }</pre>    *    *<p>Failure to follow this advice may result in non-deterministic behavior.    *    *<p>The returned deque will be serializable if the specified deque is serializable.    *    * @param deque the deque to be wrapped in a synchronized view    * @return a synchronized view of the specified deque    * @since 15.0    */
 DECL|method|synchronizedDeque (Deque<E> deque)
 specifier|public
 specifier|static

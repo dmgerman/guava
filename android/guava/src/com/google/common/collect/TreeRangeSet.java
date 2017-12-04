@@ -254,7 +254,7 @@ argument_list|>
 argument_list|>
 name|rangesByLowerBound
 decl_stmt|;
-comment|/**    * Creates an empty {@code TreeRangeSet} instance.    */
+comment|/** Creates an empty {@code TreeRangeSet} instance. */
 DECL|method|create ()
 specifier|public
 specifier|static
@@ -297,7 +297,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a {@code TreeRangeSet} initialized with the ranges in the specified range set.    */
+comment|/** Returns a {@code TreeRangeSet} initialized with the ranges in the specified range set. */
 DECL|method|create (RangeSet<C> rangeSet)
 specifier|public
 specifier|static

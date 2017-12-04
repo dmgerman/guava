@@ -202,7 +202,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/**    * Returns the children of the specified node.  Must not contain null.    */
+comment|/** Returns the children of the specified node. Must not contain null. */
 DECL|method|children (T root)
 specifier|public
 specifier|abstract

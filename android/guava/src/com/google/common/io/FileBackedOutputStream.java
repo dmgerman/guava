@@ -247,7 +247,7 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates a new instance that uses the given file threshold, and optionally resets the data when    * the {@link ByteSource} returned by {@link #asByteSource} is finalized.    *    * @param fileThreshold the number of bytes before the stream should switch to buffering to a file    * @param resetOnFinalize if true, the {@link #reset} method will be called when the    *     {@link ByteSource} returned by {@link #asByteSource} is finalized    */
+comment|/**    * Creates a new instance that uses the given file threshold, and optionally resets the data when    * the {@link ByteSource} returned by {@link #asByteSource} is finalized.    *    * @param fileThreshold the number of bytes before the stream should switch to buffering to a file    * @param resetOnFinalize if true, the {@link #reset} method will be called when the {@link    *     ByteSource} returned by {@link #asByteSource} is finalized    */
 DECL|method|FileBackedOutputStream (int fileThreshold, boolean resetOnFinalize)
 specifier|public
 name|FileBackedOutputStream

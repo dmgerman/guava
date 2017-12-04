@@ -89,9 +89,9 @@ name|delegate
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|delegateList ()
 annotation|@
 name|Override
+DECL|method|delegateList ()
 name|List
 argument_list|<
 name|E

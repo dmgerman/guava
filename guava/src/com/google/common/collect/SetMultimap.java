@@ -97,7 +97,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@code Multimap} that cannot hold duplicate key-value pairs. Adding a  * key-value pair that's already in the multimap has no effect. See the {@link  * Multimap} documentation for information common to all multimaps.  *  *<p>The {@link #get}, {@link #removeAll}, and {@link #replaceValues} methods  * each return a {@link Set} of values, while {@link #entries} returns a {@code  * Set} of map entries. Though the method signature doesn't say so explicitly,  * the map returned by {@link #asMap} has {@code Set} values.  *  *<p>If the values corresponding to a single key should be ordered according to  * a {@link java.util.Comparator} (or the natural order), see the  * {@link SortedSetMultimap} subinterface.  *  *<p>Since the value collections are sets, the behavior of a {@code SetMultimap}  * is not specified if key<em>or value</em> objects already present in the  * multimap change in a manner that affects {@code equals} comparisons.  * Use caution if mutable objects are used as keys or values in a  * {@code SetMultimap}.  *  *<p>See the Guava User Guide article on<a href=  * "https://github.com/google/guava/wiki/NewCollectionTypesExplained#multimap">  * {@code Multimap}</a>.  *  * @author Jared Levy  * @since 2.0  */
+comment|/**  * A {@code Multimap} that cannot hold duplicate key-value pairs. Adding a key-value pair that's  * already in the multimap has no effect. See the {@link Multimap} documentation for information  * common to all multimaps.  *  *<p>The {@link #get}, {@link #removeAll}, and {@link #replaceValues} methods each return a {@link  * Set} of values, while {@link #entries} returns a {@code Set} of map entries. Though the method  * signature doesn't say so explicitly, the map returned by {@link #asMap} has {@code Set} values.  *  *<p>If the values corresponding to a single key should be ordered according to a {@link  * java.util.Comparator} (or the natural order), see the {@link SortedSetMultimap} subinterface.  *  *<p>Since the value collections are sets, the behavior of a {@code SetMultimap} is not specified  * if key<em>or value</em> objects already present in the multimap change in a manner that affects  * {@code equals} comparisons. Use caution if mutable objects are used as keys or values in a {@code  * SetMultimap}.  *  *<p>See the Guava User Guide article on<a href=  * "https://github.com/google/guava/wiki/NewCollectionTypesExplained#multimap"> {@code  * Multimap}</a>.  *  * @author Jared Levy  * @since 2.0  */
 end_comment
 
 begin_interface
@@ -120,7 +120,7 @@ argument_list|,
 name|V
 argument_list|>
 block|{
-comment|/**    * {@inheritDoc}    *    *<p>Because a {@code SetMultimap} has unique values for a given key, this    * method returns a {@link Set}, instead of the {@link java.util.Collection}    * specified in the {@link Multimap} interface.    */
+comment|/**    * {@inheritDoc}    *    *<p>Because a {@code SetMultimap} has unique values for a given key, this method returns a    * {@link Set}, instead of the {@link java.util.Collection} specified in the {@link Multimap}    * interface.    */
 annotation|@
 name|Override
 DECL|method|get (@ullable K key)
@@ -136,7 +136,7 @@ name|K
 name|key
 parameter_list|)
 function_decl|;
-comment|/**    * {@inheritDoc}    *    *<p>Because a {@code SetMultimap} has unique values for a given key, this    * method returns a {@link Set}, instead of the {@link java.util.Collection}    * specified in the {@link Multimap} interface.    */
+comment|/**    * {@inheritDoc}    *    *<p>Because a {@code SetMultimap} has unique values for a given key, this method returns a    * {@link Set}, instead of the {@link java.util.Collection} specified in the {@link Multimap}    * interface.    */
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
@@ -154,7 +154,7 @@ name|Object
 name|key
 parameter_list|)
 function_decl|;
-comment|/**    * {@inheritDoc}    *    *<p>Because a {@code SetMultimap} has unique values for a given key, this    * method returns a {@link Set}, instead of the {@link java.util.Collection}    * specified in the {@link Multimap} interface.    *    *<p>Any duplicates in {@code values} will be stored in the multimap once.    */
+comment|/**    * {@inheritDoc}    *    *<p>Because a {@code SetMultimap} has unique values for a given key, this method returns a    * {@link Set}, instead of the {@link java.util.Collection} specified in the {@link Multimap}    * interface.    *    *<p>Any duplicates in {@code values} will be stored in the multimap once.    */
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
@@ -178,7 +178,7 @@ argument_list|>
 name|values
 parameter_list|)
 function_decl|;
-comment|/**    * {@inheritDoc}    *    *<p>Because a {@code SetMultimap} has unique values for a given key, this    * method returns a {@link Set}, instead of the {@link java.util.Collection}    * specified in the {@link Multimap} interface.    */
+comment|/**    * {@inheritDoc}    *    *<p>Because a {@code SetMultimap} has unique values for a given key, this method returns a    * {@link Set}, instead of the {@link java.util.Collection} specified in the {@link Multimap}    * interface.    */
 annotation|@
 name|Override
 DECL|method|entries ()
@@ -194,7 +194,7 @@ argument_list|>
 name|entries
 parameter_list|()
 function_decl|;
-comment|/**    * {@inheritDoc}    *    *<p><b>Note:</b> The returned map's values are guaranteed to be of type    * {@link Set}. To obtain this map with the more specific generic type    * {@code Map<K, Set<V>>}, call {@link Multimaps#asMap(SetMultimap)} instead.    */
+comment|/**    * {@inheritDoc}    *    *<p><b>Note:</b> The returned map's values are guaranteed to be of type {@link Set}. To obtain    * this map with the more specific generic type {@code Map<K, Set<V>>}, call {@link    * Multimaps#asMap(SetMultimap)} instead.    */
 annotation|@
 name|Override
 DECL|method|asMap ()
@@ -210,7 +210,7 @@ argument_list|>
 name|asMap
 parameter_list|()
 function_decl|;
-comment|/**    * Compares the specified object to this multimap for equality.    *    *<p>Two {@code SetMultimap} instances are equal if, for each key, they    * contain the same values. Equality does not depend on the ordering of keys    * or values.    *    *<p>An empty {@code SetMultimap} is equal to any other empty {@code    * Multimap}, including an empty {@code ListMultimap}.    */
+comment|/**    * Compares the specified object to this multimap for equality.    *    *<p>Two {@code SetMultimap} instances are equal if, for each key, they contain the same values.    * Equality does not depend on the ordering of keys or values.    *    *<p>An empty {@code SetMultimap} is equal to any other empty {@code Multimap}, including an    * empty {@code ListMultimap}.    */
 annotation|@
 name|Override
 DECL|method|equals (@ullable Object obj)

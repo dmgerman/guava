@@ -346,9 +346,9 @@ name|NoOpService
 extends|extends
 name|AbstractService
 block|{
-DECL|method|doStart ()
 annotation|@
 name|Override
+DECL|method|doStart ()
 specifier|protected
 name|void
 name|doStart
@@ -358,9 +358,9 @@ name|notifyStarted
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|doStop ()
 annotation|@
 name|Override
+DECL|method|doStop ()
 specifier|protected
 name|void
 name|doStop
@@ -400,9 +400,9 @@ operator|=
 name|delay
 expr_stmt|;
 block|}
-DECL|method|doStart ()
 annotation|@
 name|Override
+DECL|method|doStart ()
 specifier|protected
 name|void
 name|doStart
@@ -440,9 +440,9 @@ name|start
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|doStop ()
 annotation|@
 name|Override
+DECL|method|doStop ()
 specifier|protected
 name|void
 name|doStop
@@ -489,9 +489,9 @@ name|FailStartService
 extends|extends
 name|NoOpService
 block|{
-DECL|method|doStart ()
 annotation|@
 name|Override
+DECL|method|doStart ()
 specifier|protected
 name|void
 name|doStart
@@ -516,9 +516,9 @@ name|FailRunService
 extends|extends
 name|NoOpService
 block|{
-DECL|method|doStart ()
 annotation|@
 name|Override
+DECL|method|doStart ()
 specifier|protected
 name|void
 name|doStart
@@ -548,9 +548,9 @@ name|FailStopService
 extends|extends
 name|NoOpService
 block|{
-DECL|method|doStop ()
 annotation|@
 name|Override
+DECL|method|doStop ()
 specifier|protected
 name|void
 name|doStop
@@ -1975,7 +1975,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * This is for covering a case where the ServiceManager would behave strangely if constructed    * with no service under management.  Listeners would never fire because the ServiceManager was    * healthy and stopped at the same time.  This test ensures that listeners fire and isHealthy    * makes sense.    */
+comment|/**    * This is for covering a case where the ServiceManager would behave strangely if constructed with    * no service under management. Listeners would never fire because the ServiceManager was healthy    * and stopped at the same time. This test ensures that listeners fire and isHealthy makes sense.    */
 DECL|method|testEmptyServiceManager ()
 specifier|public
 name|void
@@ -2277,7 +2277,8 @@ block|{
 name|notifyStarted
 argument_list|()
 expr_stmt|;
-comment|// We need to wait for the main thread to leave the ServiceManager.startAsync call to
+comment|// We need to wait for the main thread to leave the ServiceManager.startAsync call
+comment|// to
 comment|// ensure that the thread running the failure callbacks is not the main thread.
 name|Uninterruptibles
 operator|.
@@ -2455,7 +2456,7 @@ argument_list|()
 expr_stmt|;
 comment|// release the background thread
 block|}
-comment|/**    * Catches a bug where when constructing a service manager failed, later interactions with the    * service could cause IllegalStateExceptions inside the partially constructed ServiceManager.    * This ISE wouldn't actually bubble up but would get logged by ExecutionQueue.  This obfuscated    * the original error (which was not constructing ServiceManager correctly).    */
+comment|/**    * Catches a bug where when constructing a service manager failed, later interactions with the    * service could cause IllegalStateExceptions inside the partially constructed ServiceManager.    * This ISE wouldn't actually bubble up but would get logged by ExecutionQueue. This obfuscated    * the original error (which was not constructing ServiceManager correctly).    */
 DECL|method|testPartiallyConstructedManager ()
 specifier|public
 name|void
@@ -2529,7 +2530,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 name|service
 operator|.
 name|stopAsync
@@ -2810,7 +2811,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * This test is for a case where two Service.Listener callbacks for the same service would call    * transitionService in the wrong order due to a race.  Due to the fact that it is a race this    * test isn't guaranteed to expose the issue, but it is at least likely to become flaky if the    * race sneaks back in, and in this case flaky means something is definitely wrong.    *    *<p>Before the bug was fixed this test would fail at least 30% of the time.    */
+comment|/**    * This test is for a case where two Service.Listener callbacks for the same service would call    * transitionService in the wrong order due to a race. Due to the fact that it is a race this test    * isn't guaranteed to expose the issue, but it is at least likely to become flaky if the race    * sneaks back in, and in this case flaky means something is definitely wrong.    *    *<p>Before the bug was fixed this test would fail at least 30% of the time.    */
 DECL|method|testTransitionRace ()
 specifier|public
 name|void
@@ -2944,9 +2945,9 @@ operator|=
 name|index
 expr_stmt|;
 block|}
-DECL|method|run ()
 annotation|@
 name|Override
+DECL|method|run ()
 specifier|protected
 name|void
 name|run
@@ -2960,9 +2961,9 @@ name|await
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|triggerShutdown ()
 annotation|@
 name|Override
+DECL|method|triggerShutdown ()
 specifier|protected
 name|void
 name|triggerShutdown
@@ -2974,9 +2975,9 @@ name|countDown
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|serviceName ()
 annotation|@
 name|Override
+DECL|method|serviceName ()
 specifier|protected
 name|String
 name|serviceName
@@ -3077,9 +3078,9 @@ operator|.
 name|newConcurrentHashSet
 argument_list|()
 decl_stmt|;
-DECL|method|healthy ()
 annotation|@
 name|Override
+DECL|method|healthy ()
 specifier|public
 name|void
 name|healthy
@@ -3090,9 +3091,9 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
-DECL|method|stopped ()
 annotation|@
 name|Override
+DECL|method|stopped ()
 specifier|public
 name|void
 name|stopped
@@ -3103,9 +3104,9 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
-DECL|method|failure (Service service)
 annotation|@
 name|Override
+DECL|method|failure (Service service)
 specifier|public
 name|void
 name|failure

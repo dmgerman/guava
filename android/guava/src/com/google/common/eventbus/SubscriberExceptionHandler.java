@@ -26,7 +26,7 @@ specifier|public
 interface|interface
 name|SubscriberExceptionHandler
 block|{
-comment|/**    * Handles exceptions thrown by subscribers.    */
+comment|/** Handles exceptions thrown by subscribers. */
 DECL|method|handleException (Throwable exception, SubscriberExceptionContext context)
 name|void
 name|handleException

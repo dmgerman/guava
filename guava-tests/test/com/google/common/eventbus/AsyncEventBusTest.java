@@ -94,9 +94,9 @@ specifier|private
 name|AsyncEventBus
 name|bus
 decl_stmt|;
-DECL|method|setUp ()
 annotation|@
 name|Override
+DECL|method|setUp ()
 specifier|protected
 name|void
 name|setUp
@@ -234,7 +234,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * An {@link Executor} wanna-be that simply records the tasks it's given.    * Arguably the Worst Executor Ever.    *    * @author cbiffle    *    */
+comment|/**    * An {@link Executor} wanna-be that simply records the tasks it's given. Arguably the Worst    * Executor Ever.    *    * @author cbiffle    */
 DECL|class|FakeExecutor
 specifier|public
 specifier|static

@@ -201,7 +201,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Ensures that all interface methods of {@code forwarderClass} are forwarded to the    * {@link ForwardingObject#delegate}. {@code forwarderClass} is assumed to only implement one    * interface.    */
+comment|/**    * Ensures that all interface methods of {@code forwarderClass} are forwarded to the {@link    * ForwardingObject#delegate}. {@code forwarderClass} is assumed to only implement one interface.    */
 DECL|method|testForwardingObject (final Class<T> forwarderClass)
 specifier|static
 parameter_list|<

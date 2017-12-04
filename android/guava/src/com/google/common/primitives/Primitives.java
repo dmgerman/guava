@@ -407,7 +407,7 @@ name|key
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Returns an immutable set of all nine primitive types (including {@code    * void}). Note that a simpler way to test whether a {@code Class} instance is a member of this    * set is to call {@link Class#isPrimitive}.    *    * @since 3.0    */
+comment|/**    * Returns an immutable set of all nine primitive types (including {@code void}). Note that a    * simpler way to test whether a {@code Class} instance is a member of this set is to call {@link    * Class#isPrimitive}.    *    * @since 3.0    */
 DECL|method|allPrimitiveTypes ()
 specifier|public
 specifier|static
@@ -449,7 +449,7 @@ name|keySet
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns {@code true} if {@code type} is one of the nine primitive-wrapper types, such as    * {@link Integer}.    *    * @see Class#isPrimitive    */
+comment|/**    * Returns {@code true} if {@code type} is one of the nine primitive-wrapper types, such as {@link    * Integer}.    *    * @see Class#isPrimitive    */
 DECL|method|isWrapperType (Class<?> type)
 specifier|public
 specifier|static

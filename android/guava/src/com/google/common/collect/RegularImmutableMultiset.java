@@ -150,9 +150,9 @@ specifier|transient
 name|int
 name|size
 decl_stmt|;
+DECL|field|elementSet
 annotation|@
 name|LazyInit
-DECL|field|elementSet
 specifier|private
 specifier|transient
 name|ImmutableSet

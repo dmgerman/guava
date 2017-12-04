@@ -300,7 +300,7 @@ DECL|field|mapsImpl
 name|MapsImplEnum
 name|mapsImpl
 decl_stmt|;
-comment|/**    * A map of contents pre-created before experiment starts to only measure map creation cost.    * The implementation for the creation of contents is independent and could be different from    * that of the map under test.    */
+comment|/**    * A map of contents pre-created before experiment starts to only measure map creation cost. The    * implementation for the creation of contents is independent and could be different from that of    * the map under test.    */
 DECL|field|contents
 name|Map
 argument_list|<
@@ -310,7 +310,7 @@ name|Element
 argument_list|>
 name|contents
 decl_stmt|;
-comment|/**    * Map pre-created before experiment starts to only measure iteration cost during experiment.    */
+comment|/** Map pre-created before experiment starts to only measure iteration cost during experiment. */
 DECL|field|map
 name|Map
 argument_list|<

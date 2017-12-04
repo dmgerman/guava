@@ -51,7 +51,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A class that implements {@code Comparable} without generics, such as those  * found in libraries that support Java 1.4 and before. Our library needs to  * do the bare minimum to accommodate such types, though their use may still  * require an explicit type parameter and/or warning suppression.  *  * @author Kevin Bourrillion  */
+comment|/**  * A class that implements {@code Comparable} without generics, such as those found in libraries  * that support Java 1.4 and before. Our library needs to do the bare minimum to accommodate such  * types, though their use may still require an explicit type parameter and/or warning suppression.  *  * @author Kevin Bourrillion  */
 end_comment
 
 begin_class
@@ -194,9 +194,9 @@ name|value
 argument_list|)
 return|;
 block|}
-DECL|method|equals (Object object)
 annotation|@
 name|Override
+DECL|method|equals (Object object)
 specifier|public
 name|boolean
 name|equals
@@ -237,9 +237,9 @@ return|return
 literal|false
 return|;
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode

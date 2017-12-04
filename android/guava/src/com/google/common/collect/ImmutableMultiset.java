@@ -171,7 +171,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link Multiset} whose contents will never change, with many other important properties  * detailed at {@link ImmutableCollection}.  *  *<p><b>Grouped iteration.</b> In all current implementations, duplicate elements always appear  * consecutively when iterating. Elements iterate in order by the<i>first</i> appearance of  * that element when the multiset was created.  *  *<p>See the Guava User Guide article on<a href=  * "https://github.com/google/guava/wiki/ImmutableCollectionsExplained">  * immutable collections</a>.  *  * @author Jared Levy  * @author Louis Wasserman  * @since 2.0  */
+comment|/**  * A {@link Multiset} whose contents will never change, with many other important properties  * detailed at {@link ImmutableCollection}.  *  *<p><b>Grouped iteration.</b> In all current implementations, duplicate elements always appear  * consecutively when iterating. Elements iterate in order by the<i>first</i> appearance of that  * element when the multiset was created.  *  *<p>See the Guava User Guide article on<a href=  * "https://github.com/google/guava/wiki/ImmutableCollectionsExplained"> immutable collections</a>.  *  * @author Jared Levy  * @author Louis Wasserman  * @since 2.0  */
 end_comment
 
 begin_class
@@ -211,7 +211,7 @@ argument_list|<
 name|E
 argument_list|>
 block|{
-comment|/**    * Returns the empty immutable multiset.    */
+comment|/** Returns the empty immutable multiset. */
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -933,9 +933,9 @@ block|}
 block|}
 return|;
 block|}
+DECL|field|asList
 annotation|@
 name|LazyInit
-DECL|field|asList
 specifier|private
 specifier|transient
 name|ImmutableList
@@ -1244,9 +1244,9 @@ argument_list|>
 name|elementSet
 parameter_list|()
 function_decl|;
+DECL|field|entrySet
 annotation|@
 name|LazyInit
-DECL|field|entrySet
 specifier|private
 specifier|transient
 name|ImmutableSet
@@ -1773,7 +1773,7 @@ name|this
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a new builder. The generated builder is equivalent to the builder    * created by the {@link Builder} constructor.    */
+comment|/**    * Returns a new builder. The generated builder is equivalent to the builder created by the {@link    * Builder} constructor.    */
 DECL|method|builder ()
 specifier|public
 specifier|static
@@ -1796,7 +1796,7 @@ argument_list|>
 argument_list|()
 return|;
 block|}
-comment|/**    * A builder for creating immutable multiset instances, especially {@code    * public static final} multisets ("constant multisets"). Example:    *<pre> {@code    *    *   public static final ImmutableMultiset<Bean> BEANS =    *       new ImmutableMultiset.Builder<Bean>()    *           .addCopies(Bean.COCOA, 4)    *           .addCopies(Bean.GARDEN, 6)    *           .addCopies(Bean.RED, 8)    *           .addCopies(Bean.BLACK_EYED, 10)    *           .build();}</pre>    *    *<p>Builder instances can be reused; it is safe to call {@link #build} multiple    * times to build multiple multisets in series.    *    * @since 2.0    */
+comment|/**    * A builder for creating immutable multiset instances, especially {@code public static final}    * multisets ("constant multisets"). Example:    *    *<pre>{@code    * public static final ImmutableMultiset<Bean> BEANS =    *     new ImmutableMultiset.Builder<Bean>()    *         .addCopies(Bean.COCOA, 4)    *         .addCopies(Bean.GARDEN, 6)    *         .addCopies(Bean.RED, 8)    *         .addCopies(Bean.BLACK_EYED, 10)    *         .build();    * }</pre>    *    *<p>Builder instances can be reused; it is safe to call {@link #build} multiple times to build    * multiple multisets in series.    *    * @since 2.0    */
 DECL|class|Builder
 specifier|public
 specifier|static
@@ -1820,21 +1820,21 @@ name|E
 argument_list|>
 name|contents
 decl_stmt|;
-comment|/**      * If build() has been called on the current contents multiset, we need to copy it on any      * future modifications, or we'll modify the already-built ImmutableMultiset.      */
+comment|/**      * If build() has been called on the current contents multiset, we need to copy it on any future      * modifications, or we'll modify the already-built ImmutableMultiset.      */
 DECL|field|buildInvoked
 name|boolean
 name|buildInvoked
 init|=
 literal|false
 decl_stmt|;
-comment|/**      * In the event of a setCount(elem, 0) call, we may need to remove elements, which destroys the      * insertion order property of ObjectCountHashMap.  In that event, we need to convert to a      * ObjectCountLinkedHashMap, but we need to know we did that so we can convert back.      */
+comment|/**      * In the event of a setCount(elem, 0) call, we may need to remove elements, which destroys the      * insertion order property of ObjectCountHashMap. In that event, we need to convert to a      * ObjectCountLinkedHashMap, but we need to know we did that so we can convert back.      */
 DECL|field|isLinkedHash
 name|boolean
 name|isLinkedHash
 init|=
 literal|false
 decl_stmt|;
-comment|/**      * Creates a new builder. The returned builder is equivalent to the builder      * generated by {@link ImmutableMultiset#builder}.      */
+comment|/**      * Creates a new builder. The returned builder is equivalent to the builder generated by {@link      * ImmutableMultiset#builder}.      */
 DECL|method|Builder ()
 specifier|public
 name|Builder
@@ -1906,7 +1906,7 @@ literal|1
 argument_list|)
 return|;
 block|}
-comment|/**      * Adds a number of occurrences of an element to this {@code      * ImmutableMultiset}.      *      * @param element the element to add      * @param occurrences the number of occurrences of the element to add. May      *     be zero, in which case no change will be made.      * @return this {@code Builder} object      * @throws NullPointerException if {@code element} is null      * @throws IllegalArgumentException if {@code occurrences} is negative, or      *     if this operation would result in more than {@link Integer#MAX_VALUE}      *     occurrences of the element      */
+comment|/**      * Adds a number of occurrences of an element to this {@code ImmutableMultiset}.      *      * @param element the element to add      * @param occurrences the number of occurrences of the element to add. May be zero, in which      *     case no change will be made.      * @return this {@code Builder} object      * @throws NullPointerException if {@code element} is null      * @throws IllegalArgumentException if {@code occurrences} is negative, or if this operation      *     would result in more than {@link Integer#MAX_VALUE} occurrences of the element      */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|addCopies (E element, int occurrences)
@@ -1985,7 +1985,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**      * Adds or removes the necessary occurrences of an element such that the      * element attains the desired count.      *      * @param element the element to add or remove occurrences of      * @param count the desired count of the element in this multiset      * @return this {@code Builder} object      * @throws NullPointerException if {@code element} is null      * @throws IllegalArgumentException if {@code count} is negative      */
+comment|/**      * Adds or removes the necessary occurrences of an element such that the element attains the      * desired count.      *      * @param element the element to add or remove occurrences of      * @param count the desired count of the element in this multiset      * @return this {@code Builder} object      * @throws NullPointerException if {@code element} is null      * @throws IllegalArgumentException if {@code count} is negative      */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|setCount (E element, int count)
@@ -2096,7 +2096,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**      * Adds each element of {@code elements} to the {@code ImmutableMultiset}.      *      * @param elements the elements to add      * @return this {@code Builder} object      * @throws NullPointerException if {@code elements} is null or contains a      *     null element      */
+comment|/**      * Adds each element of {@code elements} to the {@code ImmutableMultiset}.      *      * @param elements the elements to add      * @return this {@code Builder} object      * @throws NullPointerException if {@code elements} is null or contains a null element      */
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
@@ -2125,7 +2125,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**      * Adds each element of {@code elements} to the {@code ImmutableMultiset}.      *      * @param elements the {@code Iterable} to add to the {@code      *     ImmutableMultiset}      * @return this {@code Builder} object      * @throws NullPointerException if {@code elements} is null or contains a      *     null element      */
+comment|/**      * Adds each element of {@code elements} to the {@code ImmutableMultiset}.      *      * @param elements the {@code Iterable} to add to the {@code ImmutableMultiset}      * @return this {@code Builder} object      * @throws NullPointerException if {@code elements} is null or contains a null element      */
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
@@ -2214,7 +2214,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**      * Adds each element of {@code elements} to the {@code ImmutableMultiset}.      *      * @param elements the elements to add to the {@code ImmutableMultiset}      * @return this {@code Builder} object      * @throws NullPointerException if {@code elements} is null or contains a      *     null element      */
+comment|/**      * Adds each element of {@code elements} to the {@code ImmutableMultiset}.      *      * @param elements the elements to add to the {@code ImmutableMultiset}      * @return this {@code Builder} object      * @throws NullPointerException if {@code elements} is null or contains a null element      */
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
@@ -2247,7 +2247,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**      * Returns a newly-created {@code ImmutableMultiset} based on the contents      * of the {@code Builder}.      */
+comment|/**      * Returns a newly-created {@code ImmutableMultiset} based on the contents of the {@code      * Builder}.      */
 annotation|@
 name|Override
 DECL|method|build ()

@@ -3146,9 +3146,9 @@ operator|=
 name|max
 expr_stmt|;
 block|}
-DECL|method|skip (long n)
 annotation|@
 name|Override
+DECL|method|skip (long n)
 specifier|public
 name|long
 name|skip

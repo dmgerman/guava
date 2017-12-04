@@ -418,7 +418,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**    * Must be called at the end of each sub-class's constructor.    */
+comment|/** Must be called at the end of each sub-class's constructor. */
 DECL|method|init (RunningState runningState)
 specifier|final
 name|void
@@ -819,7 +819,7 @@ argument_list|)
 decl_stmt|;
 block|}
 block|}
-comment|/**      * Handles the input at the given index completing.      */
+comment|/** Handles the input at the given index completing. */
 DECL|method|handleOneInputDone (int index, Future<? extends InputT> future)
 specifier|private
 name|void
@@ -1053,7 +1053,7 @@ name|handleAllCompleted
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**      * Listeners implicitly keep a reference to {@link RunningState} as they're inner classes, so we      * free resources here as well for the allMustSucceed=true case (i.e. when a future fails, we      * immediately release resources we no longer need); additionally, the future will release its      * reference to {@link RunningState}, which should free all associated memory when all the      * futures complete and the listeners are released.      *      * TODO(user): Write tests for memory retention      */
+comment|/**      * Listeners implicitly keep a reference to {@link RunningState} as they're inner classes, so we      * free resources here as well for the allMustSucceed=true case (i.e. when a future fails, we      * immediately release resources we no longer need); additionally, the future will release its      * reference to {@link RunningState}, which should free all associated memory when all the      * futures complete and the listeners are released.      *      *<p>TODO(user): Write tests for memory retention      */
 annotation|@
 name|ForOverride
 annotation|@

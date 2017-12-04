@@ -172,7 +172,7 @@ operator|.
 name|LITTLE_ENDIAN
 argument_list|)
 decl_stmt|;
-comment|/**    * Updates this hasher with the given byte.    */
+comment|/** Updates this hasher with the given byte. */
 DECL|method|update (byte b)
 specifier|protected
 specifier|abstract
@@ -183,7 +183,7 @@ name|byte
 name|b
 parameter_list|)
 function_decl|;
-comment|/**    * Updates this hasher with the given bytes.    */
+comment|/** Updates this hasher with the given bytes. */
 DECL|method|update (byte[] b)
 specifier|protected
 name|void
@@ -206,7 +206,7 @@ name|length
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Updates this hasher with {@code len} bytes starting at {@code off} in the given buffer.    */
+comment|/** Updates this hasher with {@code len} bytes starting at {@code off} in the given buffer. */
 DECL|method|update (byte[] b, int off, int len)
 specifier|protected
 name|void
@@ -443,7 +443,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**    * Updates the sink with the given number of bytes from the buffer.    */
+comment|/** Updates the sink with the given number of bytes from the buffer. */
 DECL|method|update (int bytes)
 specifier|private
 name|Hasher

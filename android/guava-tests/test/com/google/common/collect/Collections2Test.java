@@ -3570,7 +3570,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|assertNextPermutation (List<T> expectedPermutation, Iterator<List<T>> permutations)
+DECL|method|assertNextPermutation ( List<T> expectedPermutation, Iterator<List<T>> permutations)
 specifier|private
 parameter_list|<
 name|T
@@ -3615,7 +3615,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|assertNoMorePermutations ( Iterator<List<T>> permutations)
+DECL|method|assertNoMorePermutations (Iterator<List<T>> permutations)
 specifier|private
 parameter_list|<
 name|T
@@ -3661,7 +3661,7 @@ parameter_list|(
 name|NoSuchElementException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|assertPermutationsCount (int expected, Collection<List<T>> permutationSet)
 specifier|private

@@ -118,9 +118,9 @@ operator|=
 name|satisfied
 expr_stmt|;
 block|}
-DECL|method|isSatisfied ()
 annotation|@
 name|Override
+DECL|method|isSatisfied ()
 specifier|public
 name|boolean
 name|isSatisfied
@@ -203,9 +203,9 @@ operator|=
 name|interruptible
 expr_stmt|;
 block|}
-DECL|method|setUp ()
 annotation|@
 name|Override
+DECL|method|setUp ()
 specifier|protected
 specifier|final
 name|void
@@ -265,9 +265,9 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|tearDown ()
 annotation|@
 name|Override
+DECL|method|tearDown ()
 specifier|protected
 specifier|final
 name|void

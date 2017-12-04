@@ -37,7 +37,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A GWT-only class only used by GWT emulations.  It is used to consolidate the  * definitions of method delegation to save code size.  *  * @author Hayward Chan  */
+comment|/**  * A GWT-only class only used by GWT emulations. It is used to consolidate the definitions of method  * delegation to save code size.  *  * @author Hayward Chan  */
 end_comment
 
 begin_comment
@@ -58,8 +58,8 @@ name|E
 argument_list|>
 block|{
 DECL|field|delegate
-specifier|transient
 specifier|final
+specifier|transient
 name|Collection
 argument_list|<
 name|E
@@ -83,9 +83,9 @@ operator|=
 name|delegate
 expr_stmt|;
 block|}
-DECL|method|iterator ()
 annotation|@
 name|Override
+DECL|method|iterator ()
 specifier|public
 name|UnmodifiableIterator
 argument_list|<
@@ -106,9 +106,9 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-DECL|method|contains (@ullable Object object)
 annotation|@
 name|Override
+DECL|method|contains (@ullable Object object)
 specifier|public
 name|boolean
 name|contains
@@ -132,9 +132,9 @@ name|object
 argument_list|)
 return|;
 block|}
-DECL|method|containsAll (Collection<?> targets)
 annotation|@
 name|Override
+DECL|method|containsAll (Collection<?> targets)
 specifier|public
 name|boolean
 name|containsAll
@@ -168,9 +168,9 @@ name|size
 argument_list|()
 return|;
 block|}
-DECL|method|isEmpty ()
 annotation|@
 name|Override
+DECL|method|isEmpty ()
 specifier|public
 name|boolean
 name|isEmpty
@@ -183,9 +183,9 @@ name|isEmpty
 argument_list|()
 return|;
 block|}
-DECL|method|toArray ()
 annotation|@
 name|Override
+DECL|method|toArray ()
 specifier|public
 name|Object
 index|[]
@@ -199,9 +199,9 @@ name|toArray
 argument_list|()
 return|;
 block|}
-DECL|method|toArray (T[] other)
 annotation|@
 name|Override
+DECL|method|toArray (T[] other)
 specifier|public
 parameter_list|<
 name|T
@@ -224,9 +224,9 @@ name|other
 argument_list|)
 return|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString

@@ -145,7 +145,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@code BiMap} backed by an {@code EnumMap} instance for keys-to-values, and  * a {@code HashMap} instance for values-to-keys. Null keys are not permitted,  * but null values are. An {@code EnumHashBiMap} and its inverse are both  * serializable.  *  *<p>See the Guava User Guide article on<a href=  * "https://github.com/google/guava/wiki/NewCollectionTypesExplained#bimap">  * {@code BiMap}</a>.  *  * @author Mike Bostock  * @since 2.0  */
+comment|/**  * A {@code BiMap} backed by an {@code EnumMap} instance for keys-to-values, and a {@code HashMap}  * instance for values-to-keys. Null keys are not permitted, but null values are. An {@code  * EnumHashBiMap} and its inverse are both serializable.  *  *<p>See the Guava User Guide article on<a href=  * "https://github.com/google/guava/wiki/NewCollectionTypesExplained#bimap"> {@code BiMap}</a>.  *  * @author Mike Bostock  * @since 2.0  */
 end_comment
 
 begin_class
@@ -226,7 +226,7 @@ name|keyType
 argument_list|)
 return|;
 block|}
-comment|/**    * Constructs a new bimap with the same mappings as the specified map. If the    * specified map is an {@code EnumHashBiMap} or an {@link EnumBiMap}, the new    * bimap has the same key type as the input bimap. Otherwise, the specified    * map must contain at least one mapping, in order to determine the key type.    *    * @param map the map whose mappings are to be placed in this map    * @throws IllegalArgumentException if map is not an {@code EnumBiMap} or an    *     {@code EnumHashBiMap} instance and contains no mappings    */
+comment|/**    * Constructs a new bimap with the same mappings as the specified map. If the specified map is an    * {@code EnumHashBiMap} or an {@link EnumBiMap}, the new bimap has the same key type as the input    * bimap. Otherwise, the specified map must contain at least one mapping, in order to determine    * the key type.    *    * @param map the map whose mappings are to be placed in this map    * @throws IllegalArgumentException if map is not an {@code EnumBiMap} or an {@code EnumHashBiMap}    *     instance and contains no mappings    */
 DECL|method|create (Map<K, ? extends V> map)
 specifier|public
 specifier|static
@@ -432,7 +432,7 @@ return|return
 name|keyType
 return|;
 block|}
-comment|/**    * @serialData the key class, number of entries, first key, first value,    *     second key, second value, and so on.    */
+comment|/**    * @serialData the key class, number of entries, first key, first value, second key, second value,    *     and so on.    */
 annotation|@
 name|GwtIncompatible
 comment|// java.io.ObjectOutputStream

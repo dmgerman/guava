@@ -351,8 +351,8 @@ decl_stmt|;
 comment|/*    * We have a whole series of abstract test classes that "stack", so e.g. the tests for filtered    * NavigableSets inherit the tests for filtered Iterables, Collections, Sets, and SortedSets. The    * actual implementation tests are further down.    */
 DECL|class|AbstractFilteredIterableTest
 specifier|public
-specifier|static
 specifier|abstract
+specifier|static
 class|class
 name|AbstractFilteredIterableTest
 parameter_list|<
@@ -586,8 +586,8 @@ block|}
 block|}
 DECL|class|AbstractFilteredCollectionTest
 specifier|public
-specifier|static
 specifier|abstract
+specifier|static
 class|class
 name|AbstractFilteredCollectionTest
 parameter_list|<
@@ -1125,7 +1125,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{         }
 try|try
 block|{
 name|filtered2
@@ -1146,7 +1146,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{         }
 name|filtered2
 operator|.
 name|add
@@ -1246,8 +1246,8 @@ block|}
 block|}
 DECL|class|AbstractFilteredSetTest
 specifier|public
-specifier|static
 specifier|abstract
+specifier|static
 class|class
 name|AbstractFilteredSetTest
 parameter_list|<
@@ -1346,8 +1346,8 @@ block|}
 block|}
 DECL|class|AbstractFilteredSortedSetTest
 specifier|public
-specifier|static
 specifier|abstract
+specifier|static
 class|class
 name|AbstractFilteredSortedSetTest
 parameter_list|<
@@ -1777,8 +1777,8 @@ block|}
 block|}
 DECL|class|AbstractFilteredNavigableSetTest
 specifier|public
-specifier|static
 specifier|abstract
+specifier|static
 class|class
 name|AbstractFilteredNavigableSetTest
 extends|extends
@@ -2852,7 +2852,7 @@ specifier|public
 name|void
 name|testNoop
 parameter_list|()
-block|{   }
+block|{}
 block|}
 end_class
 

@@ -41,7 +41,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Superinterface of {@link SortedMultiset} to introduce a bridge method for  * {@code elementSet()}, to ensure binary compatibility with older Guava versions  * that specified {@code elementSet()} to return {@code SortedSet}.  *  * @author Louis Wasserman  */
+comment|/**  * Superinterface of {@link SortedMultiset} to introduce a bridge method for {@code elementSet()},  * to ensure binary compatibility with older Guava versions that specified {@code elementSet()} to  * return {@code SortedSet}.  *  * @author Louis Wasserman  */
 end_comment
 
 begin_interface

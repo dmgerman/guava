@@ -261,9 +261,9 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-DECL|method|roundToInt (int reps)
 annotation|@
 name|Benchmark
+DECL|method|roundToInt (int reps)
 name|int
 name|roundToInt
 parameter_list|(
@@ -317,9 +317,9 @@ return|return
 name|tmp
 return|;
 block|}
-DECL|method|roundToLong (int reps)
 annotation|@
 name|Benchmark
+DECL|method|roundToLong (int reps)
 name|long
 name|roundToLong
 parameter_list|(
@@ -373,9 +373,9 @@ return|return
 name|tmp
 return|;
 block|}
-DECL|method|roundToBigInteger (int reps)
 annotation|@
 name|Benchmark
+DECL|method|roundToBigInteger (int reps)
 name|int
 name|roundToBigInteger
 parameter_list|(
@@ -432,9 +432,9 @@ return|return
 name|tmp
 return|;
 block|}
-DECL|method|log2Round (int reps)
 annotation|@
 name|Benchmark
+DECL|method|log2Round (int reps)
 name|int
 name|log2Round
 parameter_list|(

@@ -398,9 +398,9 @@ name|Object
 argument_list|>
 name|map
 decl_stmt|;
-DECL|method|setUp ()
 annotation|@
 name|Override
+DECL|method|setUp ()
 specifier|protected
 name|void
 name|setUp
@@ -453,7 +453,7 @@ parameter_list|(
 name|UnsupportedOperationException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testPutAllThrows ()
 specifier|public
@@ -497,7 +497,7 @@ parameter_list|(
 name|UnsupportedOperationException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testEntrySetMutationThrows ()
 specifier|public
@@ -588,7 +588,7 @@ parameter_list|(
 name|UnsupportedOperationException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testEntrySetToArrayMutationThrows ()
 specifier|public
@@ -685,7 +685,7 @@ parameter_list|(
 name|UnsupportedOperationException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testEntrySetToTypedArrayMutationThrows ()
 specifier|public
@@ -780,7 +780,7 @@ parameter_list|(
 name|UnsupportedOperationException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testPutAndGetInstance ()
 specifier|public
@@ -1514,7 +1514,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testPutInstance_withTypeVariable ()
 specifier|public
@@ -1553,7 +1553,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|anyIterableType ()
 specifier|private

@@ -110,8 +110,8 @@ expr_stmt|;
 block|}
 DECL|class|FailToForward
 specifier|private
-specifier|static
 specifier|abstract
+specifier|static
 class|class
 name|FailToForward
 extends|extends
@@ -119,9 +119,9 @@ name|ForwardingObject
 implements|implements
 name|Runnable
 block|{
-DECL|method|run ()
 annotation|@
 name|Override
+DECL|method|run ()
 specifier|public
 name|void
 name|run
@@ -130,8 +130,8 @@ block|{}
 block|}
 DECL|class|ForwardToDelegate
 specifier|private
-specifier|static
 specifier|abstract
+specifier|static
 class|class
 name|ForwardToDelegate
 extends|extends
@@ -139,9 +139,9 @@ name|ForwardingObject
 implements|implements
 name|Runnable
 block|{
-DECL|method|run ()
 annotation|@
 name|Override
+DECL|method|run ()
 specifier|public
 name|void
 name|run
@@ -154,9 +154,9 @@ name|run
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|delegate ()
 annotation|@
 name|Override
+DECL|method|delegate ()
 specifier|protected
 specifier|abstract
 name|Runnable

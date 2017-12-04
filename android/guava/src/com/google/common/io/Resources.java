@@ -233,7 +233,7 @@ name|url
 argument_list|)
 return|;
 block|}
-comment|/**    * A byte source that reads from a URL using {@link URL#openStream()}.    */
+comment|/** A byte source that reads from a URL using {@link URL#openStream()}. */
 DECL|class|UrlByteSource
 specifier|private
 specifier|static
@@ -421,7 +421,7 @@ name|callback
 argument_list|)
 return|;
 block|}
-comment|/**    * Reads all of the lines from a URL. The lines do not include line-termination characters, but do    * include other leading and trailing whitespace.    *    *<p>This method returns a mutable {@code List}. For an {@code ImmutableList}, use    * {@code Resources.asCharSource(url, charset).readLines()}.    *    * @param url the URL to read from    * @param charset the charset used to decode the input stream; see {@link Charsets} for helpful    *     predefined constants    * @return a mutable {@link List} containing all the lines    * @throws IOException if an I/O error occurs    */
+comment|/**    * Reads all of the lines from a URL. The lines do not include line-termination characters, but do    * include other leading and trailing whitespace.    *    *<p>This method returns a mutable {@code List}. For an {@code ImmutableList}, use {@code    * Resources.asCharSource(url, charset).readLines()}.    *    * @param url the URL to read from    * @param charset the charset used to decode the input stream; see {@link Charsets} for helpful    *     predefined constants    * @return a mutable {@link List} containing all the lines    * @throws IOException if an I/O error occurs    */
 DECL|method|readLines (URL url, Charset charset)
 specifier|public
 specifier|static

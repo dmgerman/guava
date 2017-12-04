@@ -123,7 +123,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Skeleton for a tester of a {@code BiMap}.  */
+comment|/** Skeleton for a tester of a {@code BiMap}. */
 end_comment
 
 begin_class

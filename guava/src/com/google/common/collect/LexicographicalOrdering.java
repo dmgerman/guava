@@ -71,7 +71,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An ordering which sorts iterables by comparing corresponding elements  * pairwise.  */
+comment|/** An ordering which sorts iterables by comparing corresponding elements pairwise. */
 end_comment
 
 begin_class

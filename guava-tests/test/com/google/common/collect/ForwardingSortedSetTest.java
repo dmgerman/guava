@@ -263,9 +263,9 @@ operator|=
 name|backingSortedSet
 expr_stmt|;
 block|}
-DECL|method|delegate ()
 annotation|@
 name|Override
+DECL|method|delegate ()
 specifier|protected
 name|SortedSet
 argument_list|<
@@ -278,9 +278,9 @@ return|return
 name|backingSortedSet
 return|;
 block|}
-DECL|method|equals (Object object)
 annotation|@
 name|Override
+DECL|method|equals (Object object)
 specifier|public
 name|boolean
 name|equals
@@ -296,9 +296,9 @@ name|object
 argument_list|)
 return|;
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -309,9 +309,9 @@ name|standardHashCode
 argument_list|()
 return|;
 block|}
-DECL|method|addAll (Collection<? extends T> collection)
 annotation|@
 name|Override
+DECL|method|addAll (Collection<? extends T> collection)
 specifier|public
 name|boolean
 name|addAll
@@ -332,9 +332,9 @@ name|collection
 argument_list|)
 return|;
 block|}
-DECL|method|clear ()
 annotation|@
 name|Override
+DECL|method|clear ()
 specifier|public
 name|void
 name|clear
@@ -344,9 +344,9 @@ name|standardClear
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|contains (Object object)
 annotation|@
 name|Override
+DECL|method|contains (Object object)
 specifier|public
 name|boolean
 name|contains
@@ -362,9 +362,9 @@ name|object
 argument_list|)
 return|;
 block|}
-DECL|method|containsAll (Collection<?> collection)
 annotation|@
 name|Override
+DECL|method|containsAll (Collection<?> collection)
 specifier|public
 name|boolean
 name|containsAll
@@ -383,9 +383,9 @@ name|collection
 argument_list|)
 return|;
 block|}
-DECL|method|remove (Object object)
 annotation|@
 name|Override
+DECL|method|remove (Object object)
 specifier|public
 name|boolean
 name|remove
@@ -401,9 +401,9 @@ name|object
 argument_list|)
 return|;
 block|}
-DECL|method|removeAll (Collection<?> collection)
 annotation|@
 name|Override
+DECL|method|removeAll (Collection<?> collection)
 specifier|public
 name|boolean
 name|removeAll
@@ -422,9 +422,9 @@ name|collection
 argument_list|)
 return|;
 block|}
-DECL|method|retainAll (Collection<?> collection)
 annotation|@
 name|Override
+DECL|method|retainAll (Collection<?> collection)
 specifier|public
 name|boolean
 name|retainAll
@@ -443,9 +443,9 @@ name|collection
 argument_list|)
 return|;
 block|}
-DECL|method|toArray ()
 annotation|@
 name|Override
+DECL|method|toArray ()
 specifier|public
 name|Object
 index|[]
@@ -457,9 +457,9 @@ name|standardToArray
 argument_list|()
 return|;
 block|}
-DECL|method|toArray (T[] array)
 annotation|@
 name|Override
+DECL|method|toArray (T[] array)
 specifier|public
 parameter_list|<
 name|T
@@ -480,9 +480,9 @@ name|array
 argument_list|)
 return|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString
@@ -493,9 +493,9 @@ name|standardToString
 argument_list|()
 return|;
 block|}
-DECL|method|subSet (T fromElement, T toElement)
 annotation|@
 name|Override
+DECL|method|subSet (T fromElement, T toElement)
 specifier|public
 name|SortedSet
 argument_list|<

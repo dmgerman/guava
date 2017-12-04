@@ -1256,7 +1256,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**    * Checks idempotency, and that we observe the promised number of stripes.    */
+comment|/** Checks idempotency, and that we observe the promised number of stripes. */
 DECL|method|testBasicInvariants ()
 specifier|public
 name|void
@@ -1435,7 +1435,7 @@ parameter_list|(
 name|RuntimeException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 try|try
 block|{
 name|striped
@@ -1457,7 +1457,7 @@ parameter_list|(
 name|RuntimeException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testMaxSize ()
 specifier|public

@@ -309,9 +309,9 @@ expr_stmt|;
 block|}
 block|}
 decl_stmt|;
-DECL|method|tearDown ()
 annotation|@
 name|Override
+DECL|method|tearDown ()
 specifier|protected
 specifier|final
 name|void
@@ -666,9 +666,9 @@ name|State
 operator|.
 name|STOPPING
 decl_stmt|;
-DECL|method|startUp ()
 annotation|@
 name|Override
+DECL|method|startUp ()
 specifier|protected
 name|void
 name|startUp
@@ -704,9 +704,9 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|run ()
 annotation|@
 name|Override
+DECL|method|run ()
 specifier|protected
 name|void
 name|run
@@ -769,9 +769,9 @@ argument_list|)
 throw|;
 block|}
 block|}
-DECL|method|shutDown ()
 annotation|@
 name|Override
+DECL|method|shutDown ()
 specifier|protected
 name|void
 name|shutDown
@@ -805,9 +805,9 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|triggerShutdown ()
 annotation|@
 name|Override
+DECL|method|triggerShutdown ()
 specifier|protected
 name|void
 name|triggerShutdown
@@ -819,9 +819,9 @@ name|countDown
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|executor ()
 annotation|@
 name|Override
+DECL|method|executor ()
 specifier|protected
 name|Executor
 name|executor
@@ -944,9 +944,9 @@ name|startUpCalled
 init|=
 literal|false
 decl_stmt|;
-DECL|method|startUp ()
 annotation|@
 name|Override
+DECL|method|startUp ()
 specifier|protected
 name|void
 name|startUp
@@ -964,9 +964,9 @@ literal|"kaboom!"
 argument_list|)
 throw|;
 block|}
-DECL|method|run ()
 annotation|@
 name|Override
+DECL|method|run ()
 specifier|protected
 name|void
 name|run
@@ -980,9 +980,9 @@ literal|"run() should not be called"
 argument_list|)
 throw|;
 block|}
-DECL|method|executor ()
 annotation|@
 name|Override
+DECL|method|executor ()
 specifier|protected
 name|Executor
 name|executor
@@ -1202,9 +1202,9 @@ name|throwOnShutDown
 init|=
 literal|false
 decl_stmt|;
-DECL|method|run ()
 annotation|@
 name|Override
+DECL|method|run ()
 specifier|protected
 name|void
 name|run
@@ -1218,9 +1218,9 @@ literal|"kaboom!"
 argument_list|)
 throw|;
 block|}
-DECL|method|shutDown ()
 annotation|@
 name|Override
+DECL|method|shutDown ()
 specifier|protected
 name|void
 name|shutDown
@@ -1244,9 +1244,9 @@ argument_list|)
 throw|;
 block|}
 block|}
-DECL|method|executor ()
 annotation|@
 name|Override
+DECL|method|executor ()
 specifier|protected
 name|Executor
 name|executor
@@ -1344,9 +1344,9 @@ name|ThrowOnShutDown
 extends|extends
 name|AbstractExecutionThreadService
 block|{
-DECL|method|run ()
 annotation|@
 name|Override
+DECL|method|run ()
 specifier|protected
 name|void
 name|run
@@ -1375,9 +1375,9 @@ argument_list|)
 throw|;
 block|}
 block|}
-DECL|method|shutDown ()
 annotation|@
 name|Override
+DECL|method|shutDown ()
 specifier|protected
 name|void
 name|shutDown
@@ -1391,9 +1391,9 @@ literal|"kaboom!"
 argument_list|)
 throw|;
 block|}
-DECL|method|executor ()
 annotation|@
 name|Override
+DECL|method|executor ()
 specifier|protected
 name|Executor
 name|executor
@@ -1474,9 +1474,9 @@ name|TimeoutOnStartUp
 extends|extends
 name|AbstractExecutionThreadService
 block|{
-DECL|method|executor ()
 annotation|@
 name|Override
+DECL|method|executor ()
 specifier|protected
 name|Executor
 name|executor
@@ -1496,7 +1496,7 @@ parameter_list|(
 name|Runnable
 name|command
 parameter_list|)
-block|{         }
+block|{}
 block|}
 return|;
 block|}
@@ -1509,7 +1509,7 @@ name|run
 parameter_list|()
 throws|throws
 name|Exception
-block|{     }
+block|{}
 block|}
 DECL|method|testStopWhileStarting_runNotCalled ()
 specifier|public
@@ -1863,9 +1863,9 @@ name|runCalled
 init|=
 literal|0
 decl_stmt|;
-DECL|method|startUp ()
 annotation|@
 name|Override
+DECL|method|startUp ()
 specifier|protected
 name|void
 name|startUp
@@ -1898,9 +1898,9 @@ name|startupCalled
 operator|++
 expr_stmt|;
 block|}
-DECL|method|run ()
 annotation|@
 name|Override
+DECL|method|run ()
 specifier|protected
 name|void
 name|run
@@ -1933,9 +1933,9 @@ name|runCalled
 operator|++
 expr_stmt|;
 block|}
-DECL|method|shutDown ()
 annotation|@
 name|Override
+DECL|method|shutDown ()
 specifier|protected
 name|void
 name|shutDown
@@ -1973,9 +1973,9 @@ name|shutdownCalled
 operator|++
 expr_stmt|;
 block|}
-DECL|method|executor ()
 annotation|@
 name|Override
+DECL|method|executor ()
 specifier|protected
 name|Executor
 name|executor
@@ -1985,9 +1985,9 @@ return|return
 name|executor
 return|;
 block|}
-DECL|method|tearDown ()
 annotation|@
 name|Override
+DECL|method|tearDown ()
 specifier|public
 name|void
 name|tearDown

@@ -949,7 +949,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests for {@link Stats}. This tests instances created by both {@link Stats#of} and  * {@link StatsAccumulator#snapshot}.  *  * @author Pete Gillin  */
+comment|/**  * Tests for {@link Stats}. This tests instances created by both {@link Stats#of} and {@link  * StatsAccumulator#snapshot}.  *  * @author Pete Gillin  */
 end_comment
 
 begin_class

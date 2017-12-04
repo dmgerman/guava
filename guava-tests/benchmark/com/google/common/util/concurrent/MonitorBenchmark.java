@@ -88,7 +88,6 @@ specifier|public
 class|class
 name|MonitorBenchmark
 block|{
-DECL|field|capacity
 annotation|@
 name|Param
 argument_list|(
@@ -100,10 +99,10 @@ block|,
 literal|"1000"
 block|}
 argument_list|)
+DECL|field|capacity
 name|int
 name|capacity
 decl_stmt|;
-DECL|field|queueType
 annotation|@
 name|Param
 argument_list|(
@@ -113,6 +112,7 @@ block|,
 literal|"Priority"
 block|}
 argument_list|)
+DECL|field|queueType
 name|String
 name|queueType
 decl_stmt|;
@@ -245,9 +245,9 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-DECL|method|addsAndRemoves (int reps)
 annotation|@
 name|Benchmark
+DECL|method|addsAndRemoves (int reps)
 name|void
 name|addsAndRemoves
 parameter_list|(

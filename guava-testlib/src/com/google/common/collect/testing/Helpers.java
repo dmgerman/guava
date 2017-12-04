@@ -1971,7 +1971,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**    * Returns a collection that simulates concurrent modification by    * having its size method return incorrect values.  This is useful    * for testing methods that must treat the return value from size()    * as a hint only.    *    * @param delta the difference between the true size of the    * collection and the values returned by the size method    */
+comment|/**    * Returns a collection that simulates concurrent modification by having its size method return    * incorrect values. This is useful for testing methods that must treat the return value from    * size() as a hint only.    *    * @param delta the difference between the true size of the collection and the values returned by    *     the size method    */
 DECL|method|misleadingSizeCollection (final int delta)
 specifier|public
 specifier|static
@@ -2026,7 +2026,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/**    * Returns a "nefarious" map entry with the specified key and value,    * meaning an entry that is suitable for testing that map entries cannot be    * modified via a nefarious implementation of equals. This is used for testing    * unmodifiable collections of map entries; for example, it should not be    * possible to access the raw (modifiable) map entry via a nefarious equals    * method.    */
+comment|/**    * Returns a "nefarious" map entry with the specified key and value, meaning an entry that is    * suitable for testing that map entries cannot be modified via a nefarious implementation of    * equals. This is used for testing unmodifiable collections of map entries; for example, it    * should not be possible to access the raw (modifiable) map entry via a nefarious equals method.    */
 DECL|method|nefariousMapEntry (final K key, final V value)
 specifier|public
 specifier|static

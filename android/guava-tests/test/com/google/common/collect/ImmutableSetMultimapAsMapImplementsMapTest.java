@@ -67,7 +67,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Test {@link Multimap#asMap()} for an {@link ImmutableSetMultimap} with  * {@link MapInterfaceTest}.  *  * @author Mike Ward  */
+comment|/**  * Test {@link Multimap#asMap()} for an {@link ImmutableSetMultimap} with {@link MapInterfaceTest}.  *  * @author Mike Ward  */
 end_comment
 
 begin_class
@@ -95,9 +95,9 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|makeEmptyMap ()
 annotation|@
 name|Override
+DECL|method|makeEmptyMap ()
 specifier|protected
 name|Map
 argument_list|<
@@ -126,9 +126,9 @@ name|asMap
 argument_list|()
 return|;
 block|}
-DECL|method|makePopulatedMap ()
 annotation|@
 name|Override
+DECL|method|makePopulatedMap ()
 specifier|protected
 name|Map
 argument_list|<

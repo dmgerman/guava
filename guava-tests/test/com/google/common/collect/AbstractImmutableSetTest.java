@@ -225,7 +225,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Base class for {@link ImmutableSet} and  {@link ImmutableSortedSet} tests.  *  * @author Kevin Bourrillion  * @author Jared Levy  */
+comment|/**  * Base class for {@link ImmutableSet} and {@link ImmutableSortedSet} tests.  *  * @author Kevin Bourrillion  * @author Jared Levy  */
 end_comment
 
 begin_class
@@ -1357,19 +1357,19 @@ parameter_list|)
 block|{     }
 block|}
 DECL|enum|TestEnum
-DECL|enumConstant|A
-DECL|enumConstant|B
-DECL|enumConstant|C
-DECL|enumConstant|D
 enum|enum
 name|TestEnum
 block|{
+DECL|enumConstant|A
 name|A
 block|,
+DECL|enumConstant|B
 name|B
 block|,
+DECL|enumConstant|C
 name|C
 block|,
+DECL|enumConstant|D
 name|D
 block|}
 DECL|method|testCopyOf_collection_enumSet ()
@@ -3367,7 +3367,7 @@ name|expected
 parameter_list|)
 block|{     }
 block|}
-comment|/**    * Verify thread safety by using a collection whose size() may be inconsistent    * with the actual number of elements.  Tests using this method might fail in    * GWT because the GWT emulations might count on size() during copy.  It is    * safe to do so in GWT because javascript is single-threaded.    */
+comment|/**    * Verify thread safety by using a collection whose size() may be inconsistent with the actual    * number of elements. Tests using this method might fail in GWT because the GWT emulations might    * count on size() during copy. It is safe to do so in GWT because javascript is single-threaded.    */
 comment|// TODO(benyu): turn this into a test once all copyOf(Collection) are
 comment|// thread-safe
 annotation|@

@@ -376,9 +376,9 @@ name|k
 expr_stmt|;
 block|}
 block|}
-DECL|method|pow (int reps)
 annotation|@
 name|Benchmark
+DECL|method|pow (int reps)
 name|int
 name|pow
 parameter_list|(
@@ -435,9 +435,9 @@ return|return
 name|tmp
 return|;
 block|}
-DECL|method|mod (int reps)
 annotation|@
 name|Benchmark
+DECL|method|mod (int reps)
 name|int
 name|mod
 parameter_list|(
@@ -494,9 +494,9 @@ return|return
 name|tmp
 return|;
 block|}
-DECL|method|gCD (int reps)
 annotation|@
 name|Benchmark
+DECL|method|gCD (int reps)
 name|int
 name|gCD
 parameter_list|(
@@ -553,9 +553,9 @@ return|return
 name|tmp
 return|;
 block|}
-DECL|method|factorial (int reps)
 annotation|@
 name|Benchmark
+DECL|method|factorial (int reps)
 name|int
 name|factorial
 parameter_list|(
@@ -607,9 +607,9 @@ return|return
 name|tmp
 return|;
 block|}
-DECL|method|binomial (int reps)
 annotation|@
 name|Benchmark
+DECL|method|binomial (int reps)
 name|int
 name|binomial
 parameter_list|(
@@ -672,9 +672,9 @@ return|return
 name|tmp
 return|;
 block|}
-DECL|method|isPrime (int reps)
 annotation|@
 name|Benchmark
+DECL|method|isPrime (int reps)
 name|int
 name|isPrime
 parameter_list|(

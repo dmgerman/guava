@@ -86,7 +86,6 @@ specifier|public
 class|class
 name|MultisetIteratorBenchmark
 block|{
-DECL|field|size
 annotation|@
 name|Param
 argument_list|(
@@ -104,6 +103,7 @@ block|,
 literal|"65536"
 block|}
 argument_list|)
+DECL|field|size
 name|int
 name|size
 decl_stmt|;
@@ -129,9 +129,9 @@ name|Integer
 argument_list|>
 name|treeMultiset
 decl_stmt|;
-DECL|method|setUp ()
 annotation|@
 name|BeforeExperiment
+DECL|method|setUp ()
 name|void
 name|setUp
 parameter_list|()
@@ -253,7 +253,7 @@ name|count
 argument_list|)
 expr_stmt|;
 block|}
-comment|//TODO(kevinb): convert to assert once benchmark tests enable asserts by default
+comment|// TODO(kevinb): convert to assert once benchmark tests enable asserts by default
 name|Preconditions
 operator|.
 name|checkState
@@ -267,9 +267,9 @@ name|size
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Benchmark
 DECL|method|hashMultiset (int reps)
-annotation|@
-name|Benchmark
 name|int
 name|hashMultiset
 parameter_list|(
@@ -318,9 +318,9 @@ return|return
 name|sum
 return|;
 block|}
+annotation|@
+name|Benchmark
 DECL|method|linkedHashMultiset (int reps)
-annotation|@
-name|Benchmark
 name|int
 name|linkedHashMultiset
 parameter_list|(
@@ -369,9 +369,9 @@ return|return
 name|sum
 return|;
 block|}
-DECL|method|treeMultiset (int reps)
 annotation|@
 name|Benchmark
+DECL|method|treeMultiset (int reps)
 name|int
 name|treeMultiset
 parameter_list|(

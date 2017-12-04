@@ -606,7 +606,7 @@ parameter_list|(
 name|MyException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 name|assertEquals
 argument_list|(
 name|oldName

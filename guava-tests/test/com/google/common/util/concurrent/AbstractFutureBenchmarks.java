@@ -133,7 +133,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Utilities for the AbstractFutureBenchmarks  */
+comment|/** Utilities for the AbstractFutureBenchmarks */
 end_comment
 
 begin_class
@@ -477,14 +477,14 @@ operator|new
 name|ExecutionList
 argument_list|()
 decl_stmt|;
-comment|/**      * Constructor for use by subclasses.      */
+comment|/** Constructor for use by subclasses. */
 DECL|method|OldAbstractFuture ()
 specifier|protected
 name|OldAbstractFuture
 parameter_list|()
 block|{}
 comment|/*      * Improve the documentation of when InterruptedException is thrown. Our      * behavior matches the JDK's, but the JDK's documentation is misleading.      */
-comment|/**      * {@inheritDoc}      *      *<p>The default {@link AbstractFuture} implementation throws {@code      * InterruptedException} if the current thread is interrupted before or during      * the call, even if the value is already available.      *      * @throws InterruptedException if the current thread was interrupted before      *     or during the call (optional but recommended).      * @throws CancellationException {@inheritDoc}      */
+comment|/**      * {@inheritDoc}      *      *<p>The default {@link AbstractFuture} implementation throws {@code InterruptedException} if      * the current thread is interrupted before or during the call, even if the value is already      * available.      *      * @throws InterruptedException if the current thread was interrupted before or during the call      *     (optional but recommended).      * @throws CancellationException {@inheritDoc}      */
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
@@ -522,7 +522,7 @@ argument_list|)
 return|;
 block|}
 comment|/*      * Improve the documentation of when InterruptedException is thrown. Our      * behavior matches the JDK's, but the JDK's documentation is misleading.      */
-comment|/**      * {@inheritDoc}      *      *<p>The default {@link AbstractFuture} implementation throws {@code      * InterruptedException} if the current thread is interrupted before or during      * the call, even if the value is already available.      *      * @throws InterruptedException if the current thread was interrupted before      *     or during the call (optional but recommended).      * @throws CancellationException {@inheritDoc}      */
+comment|/**      * {@inheritDoc}      *      *<p>The default {@link AbstractFuture} implementation throws {@code InterruptedException} if      * the current thread is interrupted before or during the call, even if the value is already      * available.      *      * @throws InterruptedException if the current thread was interrupted before or during the call      *     (optional but recommended).      * @throws CancellationException {@inheritDoc}      */
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
@@ -620,14 +620,14 @@ return|return
 literal|true
 return|;
 block|}
-comment|/**      * Subclasses can override this method to implement interruption of the      * future's computation. The method is invoked automatically by a successful      * call to {@link #cancel(boolean) cancel(true)}.      *      *<p>The default implementation does nothing.      *      * @since 10.0      */
+comment|/**      * Subclasses can override this method to implement interruption of the future's computation.      * The method is invoked automatically by a successful call to {@link #cancel(boolean)      * cancel(true)}.      *      *<p>The default implementation does nothing.      *      * @since 10.0      */
 DECL|method|interruptTask ()
 specifier|protected
 name|void
 name|interruptTask
 parameter_list|()
-block|{     }
-comment|/**      * Returns true if this future was cancelled with {@code      * mayInterruptIfRunning} set to {@code true}.      *      * @since 14.0      */
+block|{}
+comment|/**      * Returns true if this future was cancelled with {@code mayInterruptIfRunning} set to {@code      * true}.      *      * @since 14.0      */
 DECL|method|wasInterrupted ()
 specifier|protected
 specifier|final
@@ -667,7 +667,7 @@ name|exec
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Subclasses should invoke this method to set the result of the computation      * to {@code value}.  This will set the state of the future to      * {@link OldAbstractFuture.Sync#COMPLETED} and invoke the listeners if the      * state was successfully changed.      *      * @param value the value that was the result of the task.      * @return true if the state was successfully changed.      */
+comment|/**      * Subclasses should invoke this method to set the result of the computation to {@code value}.      * This will set the state of the future to {@link OldAbstractFuture.Sync#COMPLETED} and invoke      * the listeners if the state was successfully changed.      *      * @param value the value that was the result of the task.      * @return true if the state was successfully changed.      */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|set (@ullable V value)
@@ -706,7 +706,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/**      * Subclasses should invoke this method to set the result of the computation      * to an error, {@code throwable}.  This will set the state of the future to      * {@link OldAbstractFuture.Sync#COMPLETED} and invoke the listeners if the      * state was successfully changed.      *      * @param throwable the exception that the task failed with.      * @return true if the state was successfully changed.      */
+comment|/**      * Subclasses should invoke this method to set the result of the computation to an error, {@code      * throwable}. This will set the state of the future to {@link OldAbstractFuture.Sync#COMPLETED}      * and invoke the listeners if the state was successfully changed.      *      * @param throwable the exception that the task failed with.      * @return true if the state was successfully changed.      */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|setException (Throwable throwable)
@@ -746,7 +746,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/**      *<p>Following the contract of {@link AbstractQueuedSynchronizer} we create a      * private subclass to hold the synchronizer.  This synchronizer is used to      * implement the blocking and waiting calls as well as to handle state changes      * in a thread-safe manner.  The current state of the future is held in the      * Sync state, and the lock is released whenever the state changes to      * {@link #COMPLETED}, {@link #CANCELLED}, or {@link #INTERRUPTED}      *      *<p>To avoid races between threads doing release and acquire, we transition      * to the final state in two steps.  One thread will successfully CAS from      * RUNNING to COMPLETING, that thread will then set the result of the      * computation, and only then transition to COMPLETED, CANCELLED, or      * INTERRUPTED.      *      *<p>We don't use the integer argument passed between acquire methods so we      * pass around a -1 everywhere.      */
+comment|/**      * Following the contract of {@link AbstractQueuedSynchronizer} we create a private subclass to      * hold the synchronizer. This synchronizer is used to implement the blocking and waiting calls      * as well as to handle state changes in a thread-safe manner. The current state of the future      * is held in the Sync state, and the lock is released whenever the state changes to {@link      * #COMPLETED}, {@link #CANCELLED}, or {@link #INTERRUPTED}      *      *<p>To avoid races between threads doing release and acquire, we transition to the final state      * in two steps. One thread will successfully CAS from RUNNING to COMPLETING, that thread will      * then set the result of the computation, and only then transition to COMPLETED, CANCELLED, or      * INTERRUPTED.      *      *<p>We don't use the integer argument passed between acquire methods so we pass around a -1      * everywhere.      */
 DECL|class|Sync
 specifier|static
 specifier|final
@@ -866,7 +866,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/**        * Blocks until the task is complete or the timeout expires.  Throws a        * {@link TimeoutException} if the timer expires, otherwise behaves like        * {@link #get()}.        */
+comment|/**        * Blocks until the task is complete or the timeout expires. Throws a {@link TimeoutException}        * if the timer expires, otherwise behaves like {@link #get()}.        */
 DECL|method|get (long nanos)
 name|V
 name|get
@@ -909,7 +909,7 @@ name|getValue
 argument_list|()
 return|;
 block|}
-comment|/**        * Blocks until {@link #complete(Object, Throwable, int)} has been        * successfully called.  Throws a {@link CancellationException} if the task        * was cancelled, or a {@link ExecutionException} if the task completed with        * an error.        */
+comment|/**        * Blocks until {@link #complete(Object, Throwable, int)} has been successfully called. Throws        * a {@link CancellationException} if the task was cancelled, or a {@link ExecutionException}        * if the task completed with an error.        */
 DECL|method|get ()
 name|V
 name|get
@@ -933,7 +933,7 @@ name|getValue
 argument_list|()
 return|;
 block|}
-comment|/**        * Implementation of the actual value retrieval.  Will return the value        * on success, an exception on failure, a cancellation on cancellation, or        * an illegal state if the synchronizer is in an invalid state.        */
+comment|/**        * Implementation of the actual value retrieval. Will return the value on success, an        * exception on failure, a cancellation on cancellation, or an illegal state if the        * synchronizer is in an invalid state.        */
 DECL|method|getValue ()
 specifier|private
 name|V
@@ -1005,7 +1005,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**        * Checks if the state is {@link #COMPLETED}, {@link #CANCELLED}, or {@link #INTERRUPTED}.        */
+comment|/** Checks if the state is {@link #COMPLETED}, {@link #CANCELLED}, or {@link #INTERRUPTED}. */
 DECL|method|isDone ()
 name|boolean
 name|isDone
@@ -1028,7 +1028,7 @@ operator|!=
 literal|0
 return|;
 block|}
-comment|/**        * Checks if the state is {@link #CANCELLED} or {@link #INTERRUPTED}.        */
+comment|/** Checks if the state is {@link #CANCELLED} or {@link #INTERRUPTED}. */
 DECL|method|isCancelled ()
 name|boolean
 name|isCancelled
@@ -1049,7 +1049,7 @@ operator|!=
 literal|0
 return|;
 block|}
-comment|/**        * Checks if the state is {@link #INTERRUPTED}.        */
+comment|/** Checks if the state is {@link #INTERRUPTED}. */
 DECL|method|wasInterrupted ()
 name|boolean
 name|wasInterrupted
@@ -1062,7 +1062,7 @@ operator|==
 name|INTERRUPTED
 return|;
 block|}
-comment|/**        * Transition to the COMPLETED state and set the value.        */
+comment|/** Transition to the COMPLETED state and set the value. */
 DECL|method|set (@ullable V v)
 name|boolean
 name|set
@@ -1084,7 +1084,7 @@ name|COMPLETED
 argument_list|)
 return|;
 block|}
-comment|/**        * Transition to the COMPLETED state and set the exception.        */
+comment|/** Transition to the COMPLETED state and set the exception. */
 DECL|method|setException (Throwable t)
 name|boolean
 name|setException
@@ -1104,7 +1104,7 @@ name|COMPLETED
 argument_list|)
 return|;
 block|}
-comment|/**        * Transition to the CANCELLED or INTERRUPTED state.        */
+comment|/** Transition to the CANCELLED or INTERRUPTED state. */
 DECL|method|cancel (boolean interrupt)
 name|boolean
 name|cancel
@@ -1128,7 +1128,7 @@ name|CANCELLED
 argument_list|)
 return|;
 block|}
-comment|/**        * Implementation of completing a task.  Either {@code v} or {@code t} will        * be set but not both.  The {@code finalState} is the state to change to        * from {@link #RUNNING}.  If the state is not in the RUNNING state we        * return {@code false} after waiting for the state to be set to a valid        * final state ({@link #COMPLETED}, {@link #CANCELLED}, or {@link        * #INTERRUPTED}).        *        * @param v the value to set as the result of the computation.        * @param t the exception to set as the result of the computation.        * @param finalState the state to transition to.        */
+comment|/**        * Implementation of completing a task. Either {@code v} or {@code t} will be set but not        * both. The {@code finalState} is the state to change to from {@link #RUNNING}. If the state        * is not in the RUNNING state we return {@code false} after waiting for the state to be set        * to a valid final state ({@link #COMPLETED}, {@link #CANCELLED}, or {@link #INTERRUPTED}).        *        * @param v the value to set as the result of the computation.        * @param t the exception to set as the result of the computation.        * @param finalState the state to transition to.        */
 DECL|method|complete (@ullable V v, @Nullable Throwable t, int finalState)
 specifier|private
 name|boolean

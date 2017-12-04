@@ -149,9 +149,9 @@ specifier|private
 name|EventBus
 name|bus
 decl_stmt|;
-DECL|method|setUp ()
 annotation|@
 name|Override
+DECL|method|setUp ()
 specifier|protected
 name|void
 name|setUp
@@ -238,7 +238,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Tests that events are distributed to any subscribers to their type or any    * supertype, including interfaces and superclasses.    *    * Also checks delivery ordering in such cases.    */
+comment|/**    * Tests that events are distributed to any subscribers to their type or any supertype, including    * interfaces and superclasses.    *    *<p>Also checks delivery ordering in such cases.    */
 DECL|method|testPolymorphicDistribution ()
 specifier|public
 name|void
@@ -1371,7 +1371,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Tests that bridge methods are not subscribed to events. In Java 8,    * annotations are included on the bridge method in addition to the original    * method, which causes both the original and bridge methods to be subscribed    * (since both are annotated @Subscribe) without specifically checking for    * bridge methods.    */
+comment|/**    * Tests that bridge methods are not subscribed to events. In Java 8, annotations are included on    * the bridge method in addition to the original method, which causes both the original and bridge    * methods to be subscribed (since both are annotated @Subscribe) without specifically checking    * for bridge methods.    */
 DECL|method|testRegistrationWithBridgeMethod ()
 specifier|public
 name|void
@@ -1436,7 +1436,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Records thrown exception information.    */
+comment|/** Records thrown exception information. */
 DECL|class|RecordingSubscriberExceptionHandler
 specifier|private
 specifier|static
@@ -1484,7 +1484,7 @@ name|context
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Runnable which registers a StringCatcher on an event bus and adds it to a    * list.    */
+comment|/** Runnable which registers a StringCatcher on an event bus and adds it to a list. */
 DECL|class|Registrator
 specifier|private
 specifier|static
@@ -1565,7 +1565,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * A collector for DeadEvents.    *    * @author cbiffle    *    */
+comment|/**    * A collector for DeadEvents.    *    * @author cbiffle    */
 DECL|class|GhostCatcher
 specifier|public
 specifier|static

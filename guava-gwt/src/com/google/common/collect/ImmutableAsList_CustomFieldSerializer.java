@@ -17,7 +17,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * Even though {@link ImmutableAsList} cannot be instantiated, we still need  * a custom field serializer. TODO(cpovirk): why?  *  * @author Hayward Chan  */
+comment|/**  * Even though {@link ImmutableAsList} cannot be instantiated, we still need a custom field  * serializer. TODO(cpovirk): why?  *  * @author Hayward Chan  */
 end_comment
 
 begin_class

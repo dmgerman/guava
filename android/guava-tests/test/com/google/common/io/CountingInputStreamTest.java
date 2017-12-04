@@ -79,9 +79,9 @@ specifier|private
 name|CountingInputStream
 name|counter
 decl_stmt|;
-DECL|method|setUp ()
 annotation|@
 name|Override
+DECL|method|setUp ()
 specifier|protected
 name|void
 name|setUp

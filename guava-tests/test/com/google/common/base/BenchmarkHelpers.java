@@ -177,7 +177,7 @@ name|toString
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * Sample CharMatcher instances for benchmarking.    */
+comment|/** Sample CharMatcher instances for benchmarking. */
 DECL|enum|SampleMatcherConfig
 specifier|public
 enum|enum
@@ -279,9 +279,9 @@ literal|"0123456789ABCDEF"
 argument_list|)
 block|,
 DECL|enumConstant|HEX_22
-DECL|enumConstant|CharMatcher.inRange
 name|HEX_22
 argument_list|(
+DECL|enumConstant|CharMatcher.inRange
 name|CharMatcher
 operator|.
 name|inRange
@@ -290,8 +290,6 @@ literal|'0'
 argument_list|,
 literal|'9'
 argument_list|)
-DECL|enumConstant|or
-DECL|enumConstant|CharMatcher.inRange
 DECL|enumConstant|or
 DECL|enumConstant|CharMatcher.inRange
 operator|.
@@ -306,6 +304,8 @@ argument_list|,
 literal|'F'
 argument_list|)
 argument_list|)
+DECL|enumConstant|or
+DECL|enumConstant|CharMatcher.inRange
 operator|.
 name|or
 argument_list|(
@@ -323,9 +323,9 @@ literal|"0123456789ABCDEFabcdef"
 argument_list|)
 block|,
 DECL|enumConstant|GERMAN_59
-DECL|enumConstant|CharMatcher.inRange
 name|GERMAN_59
 argument_list|(
+DECL|enumConstant|CharMatcher.inRange
 name|CharMatcher
 operator|.
 name|inRange
@@ -336,8 +336,6 @@ literal|'z'
 argument_list|)
 DECL|enumConstant|or
 DECL|enumConstant|CharMatcher.inRange
-DECL|enumConstant|or
-DECL|enumConstant|CharMatcher.anyOf
 operator|.
 name|or
 argument_list|(
@@ -350,6 +348,8 @@ argument_list|,
 literal|'Z'
 argument_list|)
 argument_list|)
+DECL|enumConstant|or
+DECL|enumConstant|CharMatcher.anyOf
 operator|.
 name|or
 argument_list|(

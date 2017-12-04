@@ -75,7 +75,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@code Multiset} implementation with predictable iteration order. Its  * iterator orders elements according to when the first occurrence of the  * element was added. When the multiset contains multiple instances of an  * element, those instances are consecutive in the iteration order. If all  * occurrences of an element are removed, after which that element is added to  * the multiset, the element will appear at the end of the iteration.  *  *<p>See the Guava User Guide article on<a href=  * "https://github.com/google/guava/wiki/NewCollectionTypesExplained#multiset">  * {@code Multiset}</a>.  *  * @author Kevin Bourrillion  * @author Jared Levy  * @since 2.0  */
+comment|/**  * A {@code Multiset} implementation with predictable iteration order. Its iterator orders elements  * according to when the first occurrence of the element was added. When the multiset contains  * multiple instances of an element, those instances are consecutive in the iteration order. If all  * occurrences of an element are removed, after which that element is added to the multiset, the  * element will appear at the end of the iteration.  *  *<p>See the Guava User Guide article on<a href=  * "https://github.com/google/guava/wiki/NewCollectionTypesExplained#multiset"> {@code  * Multiset}</a>.  *  * @author Kevin Bourrillion  * @author Jared Levy  * @since 2.0  */
 end_comment
 
 begin_class
@@ -110,7 +110,7 @@ argument_list|<
 name|E
 argument_list|>
 block|{
-comment|/**    * Creates a new, empty {@code LinkedHashMultiset} using the default initial    * capacity.    */
+comment|/** Creates a new, empty {@code LinkedHashMultiset} using the default initial capacity. */
 DECL|method|create ()
 specifier|public
 specifier|static
@@ -133,7 +133,7 @@ argument_list|>
 argument_list|()
 return|;
 block|}
-comment|/**    * Creates a new, empty {@code LinkedHashMultiset} with the specified expected    * number of distinct elements.    *    * @param distinctElements the expected number of distinct elements    * @throws IllegalArgumentException if {@code distinctElements} is negative    */
+comment|/**    * Creates a new, empty {@code LinkedHashMultiset} with the specified expected number of distinct    * elements.    *    * @param distinctElements the expected number of distinct elements    * @throws IllegalArgumentException if {@code distinctElements} is negative    */
 DECL|method|create (int distinctElements)
 specifier|public
 specifier|static
@@ -161,7 +161,7 @@ name|distinctElements
 argument_list|)
 return|;
 block|}
-comment|/**    * Creates a new {@code LinkedHashMultiset} containing the specified elements.    *    *<p>This implementation is highly efficient when {@code elements} is itself    * a {@link Multiset}.    *    * @param elements the elements that the multiset should contain    */
+comment|/**    * Creates a new {@code LinkedHashMultiset} containing the specified elements.    *    *<p>This implementation is highly efficient when {@code elements} is itself a {@link Multiset}.    *    * @param elements the elements that the multiset should contain    */
 DECL|method|create (Iterable<? extends E> elements)
 specifier|public
 specifier|static
@@ -249,7 +249,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * @serialData the number of distinct elements, the first element, its count,    *     the second element, its count, and so on    */
+comment|/**    * @serialData the number of distinct elements, the first element, its count, the second element,    *     its count, and so on    */
 annotation|@
 name|GwtIncompatible
 comment|// java.io.ObjectOutputStream

@@ -87,7 +87,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Abstract implementation of {@link InvocationHandler} that handles {@link Object#equals},  * {@link Object#hashCode} and {@link Object#toString}. For example:<pre>  * class Unsupported extends AbstractInvocationHandler {  *   protected Object handleInvocation(Object proxy, Method method, Object[] args) {  *     throw new UnsupportedOperationException();  *   }  * }  *  * CharSequence unsupported = Reflection.newProxy(CharSequence.class, new Unsupported());  *</pre>  *  * @author Ben Yu  * @since 12.0  */
+comment|/**  * Abstract implementation of {@link InvocationHandler} that handles {@link Object#equals}, {@link  * Object#hashCode} and {@link Object#toString}. For example:  *  *<pre>  * class Unsupported extends AbstractInvocationHandler {  *   protected Object handleInvocation(Object proxy, Method method, Object[] args) {  *     throw new UnsupportedOperationException();  *   }  * }  *  * CharSequence unsupported = Reflection.newProxy(CharSequence.class, new Unsupported());  *</pre>  *  * @author Ben Yu  * @since 12.0  */
 end_comment
 
 begin_class
@@ -111,7 +111,7 @@ name|NO_ARGS
 init|=
 block|{}
 decl_stmt|;
-comment|/**    * {@inheritDoc}    *    *<ul>    *<li>{@code proxy.hashCode()} delegates to {@link AbstractInvocationHandler#hashCode}    *<li>{@code proxy.toString()} delegates to {@link AbstractInvocationHandler#toString}    *<li>{@code proxy.equals(argument)} returns true if:    *<ul>    *<li>{@code proxy} and {@code argument} are of the same type    *<li>and {@link AbstractInvocationHandler#equals} returns true for the    *       {@link InvocationHandler} of {@code argument}    *</ul>    *<li>other method calls are dispatched to {@link #handleInvocation}.    *</ul>    */
+comment|/**    * {@inheritDoc}    *    *<ul>    *<li>{@code proxy.hashCode()} delegates to {@link AbstractInvocationHandler#hashCode}    *<li>{@code proxy.toString()} delegates to {@link AbstractInvocationHandler#toString}    *<li>{@code proxy.equals(argument)} returns true if:    *<ul>    *<li>{@code proxy} and {@code argument} are of the same type    *<li>and {@link AbstractInvocationHandler#equals} returns true for the {@link    *             InvocationHandler} of {@code argument}    *</ul>    *<li>other method calls are dispatched to {@link #handleInvocation}.    *</ul>    */
 annotation|@
 name|Override
 DECL|method|invoke (Object proxy, Method method, @Nullable Object[] args)

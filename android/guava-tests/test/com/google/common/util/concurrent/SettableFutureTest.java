@@ -167,7 +167,7 @@ parameter_list|(
 name|TimeoutException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testSetValue ()
 specifier|public

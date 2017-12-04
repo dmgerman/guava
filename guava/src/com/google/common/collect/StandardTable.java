@@ -363,7 +363,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * {@link Table} implementation backed by a map that associates row keys with  * column key / value secondary maps. This class provides rapid access to  * records by the row key alone or by both keys, but not by just the column key.  *  *<p>The views returned by {@link #column}, {@link #columnKeySet()}, and {@link  * #columnMap()} have iterators that don't support {@code remove()}. Otherwise,  * all optional operations are supported. Null row keys, columns keys, and  * values are not supported.  *  *<p>Lookups by row key are often faster than lookups by column key, because  * the data is stored in a {@code Map<R, Map<C, V>>}. A method call like {@code  * column(columnKey).get(rowKey)} still runs quickly, since the row key is  * provided. However, {@code column(columnKey).size()} takes longer, since an  * iteration across all row keys occurs.  *  *<p>Note that this implementation is not synchronized. If multiple threads  * access this table concurrently and one of the threads modifies the table, it  * must be synchronized externally.  *  * @author Jared Levy  */
+comment|/**  * {@link Table} implementation backed by a map that associates row keys with column key / value  * secondary maps. This class provides rapid access to records by the row key alone or by both keys,  * but not by just the column key.  *  *<p>The views returned by {@link #column}, {@link #columnKeySet()}, and {@link #columnMap()} have  * iterators that don't support {@code remove()}. Otherwise, all optional operations are supported.  * Null row keys, columns keys, and values are not supported.  *  *<p>Lookups by row key are often faster than lookups by column key, because the data is stored in  * a {@code Map<R, Map<C, V>>}. A method call like {@code column(columnKey).get(rowKey)} still runs  * quickly, since the row key is provided. However, {@code column(columnKey).size()} takes longer,  * since an iteration across all row keys occurs.  *  *<p>Note that this implementation is not synchronized. If multiple threads access this table  * concurrently and one of the threads modifies the table, it must be synchronized externally.  *  * @author Jared Levy  */
 end_comment
 
 begin_class
@@ -1140,7 +1140,7 @@ literal|false
 return|;
 block|}
 comment|// Views
-comment|/**    * Abstract set whose {@code isEmpty()} returns whether the table is empty and    * whose {@code clear()} clears all table mappings.    */
+comment|/**    * Abstract set whose {@code isEmpty()} returns whether the table is empty and whose {@code    * clear()} clears all table mappings.    */
 annotation|@
 name|WeakOuter
 DECL|class|TableSet
@@ -1187,7 +1187,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**    * {@inheritDoc}    *    *<p>The set's iterator traverses the mappings for the first row, the    * mappings for the second row, and so on.    *    *<p>Each cell is an immutable snapshot of a row key / column key / value    * mapping, taken at the time the cell is returned by a method call to the    * set or its iterator.    */
+comment|/**    * {@inheritDoc}    *    *<p>The set's iterator traverses the mappings for the first row, the mappings for the second    * row, and so on.    *    *<p>Each cell is an immutable snapshot of a row key / column key / value mapping, taken at the    * time the cell is returned by a method call to the set or its iterator.    */
 annotation|@
 name|Override
 DECL|method|cellSet ()
@@ -2252,7 +2252,7 @@ block|}
 return|;
 block|}
 block|}
-comment|/**    * {@inheritDoc}    *    *<p>The returned map's views have iterators that don't support    * {@code remove()}.    */
+comment|/**    * {@inheritDoc}    *    *<p>The returned map's views have iterators that don't support {@code remove()}.    */
 annotation|@
 name|Override
 DECL|method|column (C columnKey)
@@ -2412,7 +2412,7 @@ name|columnKey
 argument_list|)
 return|;
 block|}
-comment|/**      * Removes all {@code Column} mappings whose row key and value satisfy the      * given predicate.      */
+comment|/** Removes all {@code Column} mappings whose row key and value satisfy the given predicate. */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|removeFromColumnIf (Predicate<? super Entry<R, V>> predicate)
@@ -3334,7 +3334,7 @@ name|C
 argument_list|>
 name|columnKeySet
 decl_stmt|;
-comment|/**    * {@inheritDoc}    *    *<p>The returned set has an iterator that does not support {@code remove()}.    *    *<p>The set's iterator traverses the columns of the first row, the    * columns of the second row, etc., skipping any columns that have    * appeared previously.    */
+comment|/**    * {@inheritDoc}    *    *<p>The returned set has an iterator that does not support {@code remove()}.    *    *<p>The set's iterator traverses the columns of the first row, the columns of the second row,    * etc., skipping any columns that have appeared previously.    */
 annotation|@
 name|Override
 DECL|method|columnKeySet ()
@@ -3748,7 +3748,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**    * Creates an iterator that returns each column value with duplicates    * omitted.    */
+comment|/** Creates an iterator that returns each column value with duplicates omitted. */
 DECL|method|createColumnKeyIterator ()
 name|Iterator
 argument_list|<
@@ -3932,7 +3932,7 @@ block|}
 block|}
 block|}
 block|}
-comment|/**    * {@inheritDoc}    *    *<p>The collection's iterator traverses the values for the first row,    * the values for the second row, and so on.    */
+comment|/**    * {@inheritDoc}    *    *<p>The collection's iterator traverses the values for the first row, the values for the second    * row, and so on.    */
 annotation|@
 name|Override
 DECL|method|values ()

@@ -177,7 +177,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A reference queue with an associated background thread that dequeues references and invokes  * {@link FinalizableReference#finalizeReferent()} on them.  *  *<p>Keep a strong reference to this object until all of the associated referents have been  * finalized. If this object is garbage collected earlier, the backing thread will not invoke {@code  * finalizeReferent()} on the remaining references.  *  *<p>As an example of how this is used, imagine you have a class {@code MyServer} that creates a a  * {@link java.net.ServerSocket ServerSocket}, and you would like to ensure that the  * {@code ServerSocket} is closed even if the {@code MyServer} object is garbage-collected without  * calling its {@code close} method. You<em>could</em> use a finalizer to accomplish this, but that  * has a number of well-known problems. Here is how you might use this class instead:  *  *<pre>   {@code  * public class MyServer implements Closeable {  *   private static final FinalizableReferenceQueue frq = new FinalizableReferenceQueue();  *   // You might also share this between several objects.  *  *   private static final Set<Reference<?>> references = Sets.newConcurrentHashSet();  *   // This ensures that the FinalizablePhantomReference itself is not garbage-collected.  *  *   private final ServerSocket serverSocket;  *  *   private MyServer(...) {  *     ...  *     this.serverSocket = new ServerSocket(...);  *     ...  *   }  *  *   public static MyServer create(...) {  *     MyServer myServer = new MyServer(...);  *     final ServerSocket serverSocket = myServer.serverSocket;  *     Reference<?> reference = new FinalizablePhantomReference<MyServer>(myServer, frq) {  *       public void finalizeReferent() {  *         references.remove(this):  *         if (!serverSocket.isClosed()) {  *           ...log a message about how nobody called close()...  *           try {  *             serverSocket.close();  *           } catch (IOException e) {  *             ...  *           }  *         }  *       }  *     };  *     references.add(reference);  *     return myServer;  *   }  *  *   public void close() {  *     serverSocket.close();  *   }  * }}</pre>  *  * @author Bob Lee  * @since 2.0  */
+comment|/**  * A reference queue with an associated background thread that dequeues references and invokes  * {@link FinalizableReference#finalizeReferent()} on them.  *  *<p>Keep a strong reference to this object until all of the associated referents have been  * finalized. If this object is garbage collected earlier, the backing thread will not invoke {@code  * finalizeReferent()} on the remaining references.  *  *<p>As an example of how this is used, imagine you have a class {@code MyServer} that creates a a  * {@link java.net.ServerSocket ServerSocket}, and you would like to ensure that the {@code  * ServerSocket} is closed even if the {@code MyServer} object is garbage-collected without calling  * its {@code close} method. You<em>could</em> use a finalizer to accomplish this, but that has a  * number of well-known problems. Here is how you might use this class instead:  *  *<pre>{@code  * public class MyServer implements Closeable {  *   private static final FinalizableReferenceQueue frq = new FinalizableReferenceQueue();  *   // You might also share this between several objects.  *  *   private static final Set<Reference<?>> references = Sets.newConcurrentHashSet();  *   // This ensures that the FinalizablePhantomReference itself is not garbage-collected.  *  *   private final ServerSocket serverSocket;  *  *   private MyServer(...) {  *     ...  *     this.serverSocket = new ServerSocket(...);  *     ...  *   }  *  *   public static MyServer create(...) {  *     MyServer myServer = new MyServer(...);  *     final ServerSocket serverSocket = myServer.serverSocket;  *     Reference<?> reference = new FinalizablePhantomReference<MyServer>(myServer, frq) {  *       public void finalizeReferent() {  *         references.remove(this):  *         if (!serverSocket.isClosed()) {  *           ...log a message about how nobody called close()...  *           try {  *             serverSocket.close();  *           } catch (IOException e) {  *             ...  *           }  *         }  *       }  *     };  *     references.add(reference);  *     return myServer;  *   }  *  *   public void close() {  *     serverSocket.close();  *   }  * }  * }</pre>  *  * @author Bob Lee  * @since 2.0  */
 end_comment
 
 begin_class
@@ -258,7 +258,7 @@ name|finalizer
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * The actual reference queue that our background thread will poll.    */
+comment|/** The actual reference queue that our background thread will poll. */
 DECL|field|queue
 specifier|final
 name|ReferenceQueue
@@ -275,13 +275,13 @@ name|Object
 argument_list|>
 name|frqRef
 decl_stmt|;
-comment|/**    * Whether or not the background thread started successfully.    */
+comment|/** Whether or not the background thread started successfully. */
 DECL|field|threadStarted
 specifier|final
 name|boolean
 name|threadStarted
 decl_stmt|;
-comment|/**    * Constructs a new queue.    */
+comment|/** Constructs a new queue. */
 DECL|method|FinalizableReferenceQueue ()
 specifier|public
 name|FinalizableReferenceQueue
@@ -396,7 +396,7 @@ name|cleanUp
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * Repeatedly dequeues references from the queue and invokes    * {@link FinalizableReference#finalizeReferent()} on them until the queue is empty. This method    * is a no-op if the background thread was created successfully.    */
+comment|/**    * Repeatedly dequeues references from the queue and invokes {@link    * FinalizableReference#finalizeReferent()} on them until the queue is empty. This method is a    * no-op if the background thread was created successfully.    */
 DECL|method|cleanUp ()
 name|void
 name|cleanUp
@@ -522,7 +522,7 @@ name|AssertionError
 argument_list|()
 throw|;
 block|}
-comment|/**    * Loads Finalizer.class.    */
+comment|/** Loads Finalizer.class. */
 DECL|interface|FinalizerLoader
 interface|interface
 name|FinalizerLoader
@@ -727,7 +727,7 @@ literal|null
 return|;
 block|}
 block|}
-comment|/**      * Gets URL for base of path containing Finalizer.class.      */
+comment|/** Gets URL for base of path containing Finalizer.class. */
 DECL|method|getBaseUrl ()
 name|URL
 name|getBaseUrl
@@ -912,7 +912,7 @@ throw|;
 block|}
 block|}
 block|}
-comment|/**    * Looks up Finalizer.startFinalizer().    */
+comment|/** Looks up Finalizer.startFinalizer(). */
 DECL|method|getStartFinalizer (Class<?> finalizer)
 specifier|static
 name|Method

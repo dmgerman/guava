@@ -57,7 +57,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An iterator that transforms a backing iterator; for internal use. This avoids  * the object overhead of constructing a {@link com.google.common.base.Function  * Function} for internal methods.  *  * @author Louis Wasserman  */
+comment|/**  * An iterator that transforms a backing iterator; for internal use. This avoids the object overhead  * of constructing a {@link com.google.common.base.Function Function} for internal methods.  *  * @author Louis Wasserman  */
 end_comment
 
 begin_class

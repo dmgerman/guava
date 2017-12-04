@@ -37,7 +37,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A test factory for byte or char sources or sinks. In addition to creating sources or sinks, the  * factory specifies what content should be expected to be read from a source or contained in a sink  * given the content data that was used to create the source or that was written to the sink.  *  *<p>A single {@code SourceSinkFactory} implementation generally corresponds to one specific way of  * creating a source or sink, such as {@link Files#asByteSource(File)}. Implementations of  * {@code SourceSinkFactory} for common.io are found in {@link SourceSinkFactories}.  *  * @param<S> the source or sink type  * @param<T> the data type (byte[] or String)  * @author Colin Decker  */
+comment|/**  * A test factory for byte or char sources or sinks. In addition to creating sources or sinks, the  * factory specifies what content should be expected to be read from a source or contained in a sink  * given the content data that was used to create the source or that was written to the sink.  *  *<p>A single {@code SourceSinkFactory} implementation generally corresponds to one specific way of  * creating a source or sink, such as {@link Files#asByteSource(File)}. Implementations of {@code  * SourceSinkFactory} for common.io are found in {@link SourceSinkFactories}.  *  * @param<S> the source or sink type  * @param<T> the data type (byte[] or String)  * @author Colin Decker  */
 end_comment
 
 begin_interface
@@ -60,7 +60,7 @@ name|T
 name|data
 parameter_list|)
 function_decl|;
-comment|/**    * Cleans up anything created when creating the source or sink.    */
+comment|/** Cleans up anything created when creating the source or sink. */
 DECL|method|tearDown ()
 specifier|public
 specifier|abstract
@@ -70,7 +70,7 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Factory for byte or char sources.    */
+comment|/** Factory for byte or char sources. */
 DECL|interface|SourceFactory
 specifier|public
 interface|interface
@@ -88,7 +88,7 @@ argument_list|,
 name|T
 argument_list|>
 block|{
-comment|/**      * Creates a new source containing some or all of the given data.      */
+comment|/** Creates a new source containing some or all of the given data. */
 DECL|method|createSource (T data)
 name|S
 name|createSource
@@ -100,7 +100,7 @@ throws|throws
 name|IOException
 function_decl|;
 block|}
-comment|/**    * Factory for byte or char sinks.    */
+comment|/** Factory for byte or char sinks. */
 DECL|interface|SinkFactory
 specifier|public
 interface|interface
@@ -118,7 +118,7 @@ argument_list|,
 name|T
 argument_list|>
 block|{
-comment|/**      * Creates a new sink.      */
+comment|/** Creates a new sink. */
 DECL|method|createSink ()
 name|S
 name|createSink
@@ -126,7 +126,7 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/**      * Gets the current content of the created sink.      */
+comment|/** Gets the current content of the created sink. */
 DECL|method|getSinkContents ()
 name|T
 name|getSinkContents
@@ -135,7 +135,7 @@ throws|throws
 name|IOException
 function_decl|;
 block|}
-comment|/**    * Factory for {@link ByteSource} instances.    */
+comment|/** Factory for {@link ByteSource} instances. */
 DECL|interface|ByteSourceFactory
 specifier|public
 interface|interface
@@ -148,8 +148,8 @@ argument_list|,
 name|byte
 index|[]
 argument_list|>
-block|{   }
-comment|/**    * Factory for {@link ByteSink} instances.    */
+block|{}
+comment|/** Factory for {@link ByteSink} instances. */
 DECL|interface|ByteSinkFactory
 specifier|public
 interface|interface
@@ -162,8 +162,8 @@ argument_list|,
 name|byte
 index|[]
 argument_list|>
-block|{   }
-comment|/**    * Factory for {@link CharSource} instances.    */
+block|{}
+comment|/** Factory for {@link CharSource} instances. */
 DECL|interface|CharSourceFactory
 specifier|public
 interface|interface
@@ -175,8 +175,8 @@ name|CharSource
 argument_list|,
 name|String
 argument_list|>
-block|{   }
-comment|/**    * Factory for {@link CharSink} instances.    */
+block|{}
+comment|/** Factory for {@link CharSink} instances. */
 DECL|interface|CharSinkFactory
 specifier|public
 interface|interface
@@ -188,7 +188,7 @@ name|CharSink
 argument_list|,
 name|String
 argument_list|>
-block|{   }
+block|{}
 block|}
 end_interface
 

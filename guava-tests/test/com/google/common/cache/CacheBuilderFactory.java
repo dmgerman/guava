@@ -845,7 +845,7 @@ return|;
 block|}
 block|}
 empty_stmt|;
-comment|/**    * Sets.cartesianProduct doesn't allow sets that contain null, but we want null to mean    * "don't call the associated CacheBuilder method" - that is, get the default CacheBuilder    * behavior. This method wraps the elements in the input sets (which may contain null) as    * Optionals, calls Sets.cartesianProduct with those, then transforms the result to unwrap    * the Optionals.    */
+comment|/**    * Sets.cartesianProduct doesn't allow sets that contain null, but we want null to mean "don't    * call the associated CacheBuilder method" - that is, get the default CacheBuilder behavior. This    * method wraps the elements in the input sets (which may contain null) as Optionals, calls    * Sets.cartesianProduct with those, then transforms the result to unwrap the Optionals.    */
 DECL|method|buildCartesianProduct (Set<?>.... sets)
 specifier|private
 name|Iterable

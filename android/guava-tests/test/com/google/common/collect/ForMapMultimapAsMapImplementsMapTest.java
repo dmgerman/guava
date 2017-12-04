@@ -67,7 +67,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Test {@link Multimap#asMap()} for a {@link Multimaps#forMap} multimap with  * {@link MapInterfaceTest}.  *  * @author Jared Levy  */
+comment|/**  * Test {@link Multimap#asMap()} for a {@link Multimaps#forMap} multimap with {@link  * MapInterfaceTest}.  *  * @author Jared Levy  */
 end_comment
 
 begin_class
@@ -95,9 +95,9 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|makeEmptyMap ()
 annotation|@
 name|Override
+DECL|method|makeEmptyMap ()
 specifier|protected
 name|Map
 argument_list|<
@@ -136,9 +136,9 @@ name|asMap
 argument_list|()
 return|;
 block|}
-DECL|method|makePopulatedMap ()
 annotation|@
 name|Override
+DECL|method|makePopulatedMap ()
 specifier|protected
 name|Map
 argument_list|<
@@ -204,9 +204,9 @@ name|asMap
 argument_list|()
 return|;
 block|}
-DECL|method|testEntrySetRemoveAllNullFromEmpty ()
 annotation|@
 name|Override
+DECL|method|testEntrySetRemoveAllNullFromEmpty ()
 specifier|public
 name|void
 name|testEntrySetRemoveAllNullFromEmpty
@@ -229,9 +229,9 @@ block|{
 comment|// GWT's HashMap.entrySet().removeAll(null) doesn't throws NPE.
 block|}
 block|}
-DECL|method|testEntrySetRetainAllNullFromEmpty ()
 annotation|@
 name|Override
+DECL|method|testEntrySetRetainAllNullFromEmpty ()
 specifier|public
 name|void
 name|testEntrySetRetainAllNullFromEmpty
@@ -254,9 +254,9 @@ block|{
 comment|// GWT's HashMap.entrySet().retainAll(null) doesn't throws NPE.
 block|}
 block|}
-DECL|method|testKeySetRemoveAllNullFromEmpty ()
 annotation|@
 name|Override
+DECL|method|testKeySetRemoveAllNullFromEmpty ()
 specifier|public
 name|void
 name|testKeySetRemoveAllNullFromEmpty
@@ -279,9 +279,9 @@ block|{
 comment|// GWT's HashMap.keySet().removeAll(null) doesn't throws NPE.
 block|}
 block|}
-DECL|method|testKeySetRetainAllNullFromEmpty ()
 annotation|@
 name|Override
+DECL|method|testKeySetRetainAllNullFromEmpty ()
 specifier|public
 name|void
 name|testKeySetRetainAllNullFromEmpty
@@ -304,9 +304,9 @@ block|{
 comment|// GWT's HashMap.keySet().retainAll(null) doesn't throws NPE.
 block|}
 block|}
-DECL|method|testValuesRemoveAllNullFromEmpty ()
 annotation|@
 name|Override
+DECL|method|testValuesRemoveAllNullFromEmpty ()
 specifier|public
 name|void
 name|testValuesRemoveAllNullFromEmpty
@@ -329,9 +329,9 @@ block|{
 comment|// GWT's HashMap.values().removeAll(null) doesn't throws NPE.
 block|}
 block|}
-DECL|method|testValuesRetainAllNullFromEmpty ()
 annotation|@
 name|Override
+DECL|method|testValuesRetainAllNullFromEmpty ()
 specifier|public
 name|void
 name|testValuesRetainAllNullFromEmpty

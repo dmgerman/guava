@@ -511,7 +511,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 try|try
 block|{
 name|limiter
@@ -531,7 +531,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testAcquireParameterValidation ()
 specifier|public
@@ -2660,7 +2660,7 @@ literal|"R1.00"
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Make sure that bursts can never go above 1-second-worth-of-work for the current    * rate, even when we change the rate.    */
+comment|/**    * Make sure that bursts can never go above 1-second-worth-of-work for the current rate, even when    * we change the rate.    */
 DECL|method|testWeNeverGetABurstMoreThanOneSec ()
 specifier|public
 name|void
@@ -2772,7 +2772,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * This neat test shows that no matter what weights we use in our requests, if we push X    * amount of permits in a cool state, where X = rate * timeToCoolDown, and we have    * specified a timeToWarmUp() period, it will cost as the prescribed amount of time. E.g.,    * calling [acquire(5), acquire(1)] takes exactly the same time as    * [acquire(2), acquire(3), acquire(1)].    */
+comment|/**    * This neat test shows that no matter what weights we use in our requests, if we push X amount of    * permits in a cool state, where X = rate * timeToCoolDown, and we have specified a    * timeToWarmUp() period, it will cost as the prescribed amount of time. E.g., calling    * [acquire(5), acquire(1)] takes exactly the same time as [acquire(2), acquire(3), acquire(1)].    */
 DECL|method|testTimeToWarmUpIsHonouredEvenWithWeights ()
 specifier|public
 name|void
@@ -3149,7 +3149,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * The stopwatch gathers events and presents them as strings.    * R0.6 means a delay of 0.6 seconds caused by the (R)ateLimiter    * U1.0 means the (U)ser caused the stopwatch to sleep for a second.    */
+comment|/**    * The stopwatch gathers events and presents them as strings. R0.6 means a delay of 0.6 seconds    * caused by the (R)ateLimiter U1.0 means the (U)ser caused the stopwatch to sleep for a second.    */
 DECL|class|FakeStopwatch
 specifier|static
 class|class

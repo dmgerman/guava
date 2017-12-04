@@ -71,7 +71,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A skeleton implementation of a descending multiset.  Only needs  * {@code forwardMultiset()} and {@code entryIterator()}.  *  * @author Louis Wasserman  */
+comment|/**  * A skeleton implementation of a descending multiset. Only needs {@code forwardMultiset()} and  * {@code entryIterator()}.  *  * @author Louis Wasserman  */
 end_comment
 
 begin_class
@@ -120,9 +120,9 @@ name|E
 argument_list|>
 name|comparator
 decl_stmt|;
-DECL|method|comparator ()
 annotation|@
 name|Override
+DECL|method|comparator ()
 specifier|public
 name|Comparator
 argument_list|<
@@ -184,9 +184,9 @@ name|E
 argument_list|>
 name|elementSet
 decl_stmt|;
-DECL|method|elementSet ()
 annotation|@
 name|Override
+DECL|method|elementSet ()
 specifier|public
 name|SortedSet
 argument_list|<
@@ -229,9 +229,9 @@ return|return
 name|result
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|pollFirstEntry ()
-annotation|@
-name|Override
 specifier|public
 name|Entry
 argument_list|<
@@ -248,9 +248,9 @@ name|pollLastEntry
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|pollLastEntry ()
-annotation|@
-name|Override
 specifier|public
 name|Entry
 argument_list|<
@@ -267,9 +267,9 @@ name|pollFirstEntry
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|headMultiset (E toElement, BoundType boundType)
-annotation|@
-name|Override
 specifier|public
 name|SortedMultiset
 argument_list|<
@@ -299,9 +299,9 @@ name|descendingMultiset
 argument_list|()
 return|;
 block|}
-DECL|method|subMultiset (E fromElement, BoundType fromBoundType, E toElement, BoundType toBoundType)
 annotation|@
 name|Override
+DECL|method|subMultiset ( E fromElement, BoundType fromBoundType, E toElement, BoundType toBoundType)
 specifier|public
 name|SortedMultiset
 argument_list|<
@@ -341,9 +341,9 @@ name|descendingMultiset
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|tailMultiset (E fromElement, BoundType boundType)
-annotation|@
-name|Override
 specifier|public
 name|SortedMultiset
 argument_list|<
@@ -373,9 +373,9 @@ name|descendingMultiset
 argument_list|()
 return|;
 block|}
-DECL|method|delegate ()
 annotation|@
 name|Override
+DECL|method|delegate ()
 specifier|protected
 name|Multiset
 argument_list|<
@@ -389,9 +389,9 @@ name|forwardMultiset
 argument_list|()
 return|;
 block|}
-DECL|method|descendingMultiset ()
 annotation|@
 name|Override
+DECL|method|descendingMultiset ()
 specifier|public
 name|SortedMultiset
 argument_list|<
@@ -405,9 +405,9 @@ name|forwardMultiset
 argument_list|()
 return|;
 block|}
-DECL|method|firstEntry ()
 annotation|@
 name|Override
+DECL|method|firstEntry ()
 specifier|public
 name|Entry
 argument_list|<
@@ -424,9 +424,9 @@ name|lastEntry
 argument_list|()
 return|;
 block|}
-DECL|method|lastEntry ()
 annotation|@
 name|Override
+DECL|method|lastEntry ()
 specifier|public
 name|Entry
 argument_list|<
@@ -467,9 +467,9 @@ argument_list|>
 argument_list|>
 name|entrySet
 decl_stmt|;
-DECL|method|entrySet ()
 annotation|@
 name|Override
+DECL|method|entrySet ()
 specifier|public
 name|Set
 argument_list|<
@@ -582,9 +582,9 @@ block|}
 block|}
 return|;
 block|}
-DECL|method|iterator ()
 annotation|@
 name|Override
+DECL|method|iterator ()
 specifier|public
 name|Iterator
 argument_list|<
@@ -602,9 +602,9 @@ name|this
 argument_list|)
 return|;
 block|}
-DECL|method|toArray ()
 annotation|@
 name|Override
+DECL|method|toArray ()
 specifier|public
 name|Object
 index|[]
@@ -616,9 +616,9 @@ name|standardToArray
 argument_list|()
 return|;
 block|}
-DECL|method|toArray (T[] array)
 annotation|@
 name|Override
+DECL|method|toArray (T[] array)
 specifier|public
 parameter_list|<
 name|T
@@ -639,9 +639,9 @@ name|array
 argument_list|)
 return|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString

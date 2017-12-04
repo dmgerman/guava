@@ -247,7 +247,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author Charles Fry  */
+comment|/** @author Charles Fry */
 end_comment
 
 begin_class
@@ -1218,14 +1218,14 @@ argument_list|,
 name|two
 argument_list|)
 expr_stmt|;
-comment|//TODO(cgruber): Confirm with fry@ that this is a reasonable substitute.
-comment|//Set<Entry<Object, Object>> entries = map.entrySet();
-comment|//assertThat(entries).containsExactly(
+comment|// TODO(cgruber): Confirm with fry@ that this is a reasonable substitute.
+comment|// Set<Entry<Object, Object>> entries = map.entrySet();
+comment|// assertThat(entries).containsExactly(
 comment|//    Maps.immutableEntry(three, one), Maps.immutableEntry(one, two));
-comment|//Set<Object> keys = map.keySet();
-comment|//assertThat(keys).containsExactly(one, three);
-comment|//Collection<Object> values = map.values();
-comment|//assertThat(values).containsExactly(one, two);
+comment|// Set<Object> keys = map.keySet();
+comment|// assertThat(keys).containsExactly(one, three);
+comment|// Collection<Object> values = map.values();
+comment|// assertThat(values).containsExactly(one, two);
 name|map
 operator|.
 name|clear
@@ -2118,7 +2118,7 @@ name|actualValues
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Lookups on the map view shouldn't impact the recency queue.    */
+comment|/** Lookups on the map view shouldn't impact the recency queue. */
 DECL|method|testAsMapRecency ()
 specifier|public
 name|void

@@ -56,7 +56,7 @@ name|AsyncEventBus
 extends|extends
 name|EventBus
 block|{
-comment|/**    * Creates a new AsyncEventBus that will use {@code executor} to dispatch events. Assigns    * {@code identifier} as the bus's name for logging purposes.    *    * @param identifier short name for the bus, for logging purposes.    * @param executor Executor to use to dispatch events. It is the caller's responsibility to shut    *     down the executor after the last event has been posted to this event bus.    */
+comment|/**    * Creates a new AsyncEventBus that will use {@code executor} to dispatch events. Assigns {@code    * identifier} as the bus's name for logging purposes.    *    * @param identifier short name for the bus, for logging purposes.    * @param executor Executor to use to dispatch events. It is the caller's responsibility to shut    *     down the executor after the last event has been posted to this event bus.    */
 DECL|method|AsyncEventBus (String identifier, Executor executor)
 specifier|public
 name|AsyncEventBus

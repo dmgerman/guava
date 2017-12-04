@@ -145,7 +145,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A wrapper class for unsigned {@code int} values, supporting arithmetic operations.  *  *<p>In some cases, when speed is more important than code readability, it may be faster simply to  * treat primitive {@code int} values as unsigned, using the methods from {@link UnsignedInts}.  *  *<p>See the Guava User Guide article on  *<a href="https://github.com/google/guava/wiki/PrimitivesExplained#unsigned-support">unsigned  * primitive utilities</a>.  *  * @author Louis Wasserman  * @since 11.0  */
+comment|/**  * A wrapper class for unsigned {@code int} values, supporting arithmetic operations.  *  *<p>In some cases, when speed is more important than code readability, it may be faster simply to  * treat primitive {@code int} values as unsigned, using the methods from {@link UnsignedInts}.  *  *<p>See the Guava User Guide article on<a  * href="https://github.com/google/guava/wiki/PrimitivesExplained#unsigned-support">unsigned  * primitive utilities</a>.  *  * @author Louis Wasserman  * @since 11.0  */
 end_comment
 
 begin_class
@@ -285,7 +285,7 @@ name|value
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a {@code UnsignedInteger} representing the same value as the specified    * {@link BigInteger}. This is the inverse operation of {@link #bigIntegerValue()}.    *    * @throws IllegalArgumentException if {@code value} is negative or {@code value>= 2^32}    */
+comment|/**    * Returns a {@code UnsignedInteger} representing the same value as the specified {@link    * BigInteger}. This is the inverse operation of {@link #bigIntegerValue()}.    *    * @throws IllegalArgumentException if {@code value} is negative or {@code value>= 2^32}    */
 DECL|method|valueOf (BigInteger value)
 specifier|public
 specifier|static
@@ -531,7 +531,7 @@ return|return
 name|value
 return|;
 block|}
-comment|/**    * Returns the value of this {@code UnsignedInteger} as a {@code long}.    */
+comment|/** Returns the value of this {@code UnsignedInteger} as a {@code long}. */
 annotation|@
 name|Override
 DECL|method|longValue ()
@@ -575,7 +575,7 @@ name|longValue
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns the value of this {@code UnsignedInteger} as a {@link BigInteger}.    */
+comment|/** Returns the value of this {@code UnsignedInteger} as a {@link BigInteger}. */
 DECL|method|bigIntegerValue ()
 specifier|public
 name|BigInteger
@@ -592,7 +592,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Compares this unsigned integer to another unsigned integer. Returns {@code 0} if they are    * equal, a negative number if {@code this< other}, and a positive number if    * {@code this> other}.    */
+comment|/**    * Compares this unsigned integer to another unsigned integer. Returns {@code 0} if they are    * equal, a negative number if {@code this< other}, and a positive number if {@code this>    * other}.    */
 annotation|@
 name|Override
 DECL|method|compareTo (UnsignedInteger other)
@@ -672,7 +672,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/**    * Returns a string representation of the {@code UnsignedInteger} value, in base 10.    */
+comment|/** Returns a string representation of the {@code UnsignedInteger} value, in base 10. */
 annotation|@
 name|Override
 DECL|method|toString ()
@@ -688,7 +688,7 @@ literal|10
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a string representation of the {@code UnsignedInteger} value, in base {@code radix}. If    * {@code radix< Character.MIN_RADIX} or {@code radix> Character.MAX_RADIX}, the radix    * {@code 10} is used.    */
+comment|/**    * Returns a string representation of the {@code UnsignedInteger} value, in base {@code radix}. If    * {@code radix< Character.MIN_RADIX} or {@code radix> Character.MAX_RADIX}, the radix {@code    * 10} is used.    */
 DECL|method|toString (int radix)
 specifier|public
 name|String

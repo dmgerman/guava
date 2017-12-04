@@ -17,7 +17,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * Even though {@link ImmutableMultiset} cannot be instantiated, we still need  * a custom field serializer to unify the type signature of  * {@code ImmutableMultiset[]} on server and client side.  *  * @author Chris Povirk  */
+comment|/**  * Even though {@link ImmutableMultiset} cannot be instantiated, we still need a custom field  * serializer to unify the type signature of {@code ImmutableMultiset[]} on server and client side.  *  * @author Chris Povirk  */
 end_comment
 
 begin_class

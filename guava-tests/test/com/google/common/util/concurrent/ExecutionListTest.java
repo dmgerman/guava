@@ -647,9 +647,9 @@ operator|=
 name|countDownLatch
 expr_stmt|;
 block|}
-DECL|method|run ()
 annotation|@
 name|Override
+DECL|method|run ()
 specifier|public
 name|void
 name|run

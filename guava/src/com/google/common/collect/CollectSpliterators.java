@@ -165,7 +165,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Spliterator utilities for {@code common.collect} internals.  */
+comment|/** Spliterator utilities for {@code common.collect} internals. */
 end_comment
 
 begin_class

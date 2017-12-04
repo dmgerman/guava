@@ -165,9 +165,9 @@ specifier|private
 name|MockEquivalence
 name|equivalenceMock
 decl_stmt|;
-DECL|method|setUp ()
 annotation|@
 name|Override
+DECL|method|setUp ()
 specifier|public
 name|void
 name|setUp
@@ -227,7 +227,7 @@ parameter_list|(
 name|NullPointerException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testTest_NoData ()
 specifier|public
@@ -1006,7 +1006,7 @@ specifier|final
 name|int
 name|item
 decl_stmt|;
-DECL|method|TestObject (int group , int item)
+DECL|method|TestObject (int group, int item)
 name|TestObject
 parameter_list|(
 name|int
@@ -1029,9 +1029,9 @@ operator|=
 name|item
 expr_stmt|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString
@@ -1231,9 +1231,9 @@ name|build
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|doEquivalent (Object a, Object b)
 annotation|@
 name|Override
+DECL|method|doEquivalent (Object a, Object b)
 specifier|protected
 name|boolean
 name|doEquivalent
@@ -1256,9 +1256,9 @@ name|b
 argument_list|)
 return|;
 block|}
-DECL|method|doHash (Object object)
 annotation|@
 name|Override
+DECL|method|doHash (Object object)
 specifier|protected
 name|int
 name|doHash

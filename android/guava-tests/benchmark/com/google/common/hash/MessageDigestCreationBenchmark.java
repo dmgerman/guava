@@ -97,9 +97,9 @@ specifier|private
 name|MessageDigest
 name|md
 decl_stmt|;
-DECL|method|setUp ()
 annotation|@
 name|BeforeExperiment
+DECL|method|setUp ()
 name|void
 name|setUp
 parameter_list|()
@@ -116,9 +116,9 @@ name|algorithm
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|getInstance (int reps)
 annotation|@
 name|Benchmark
+DECL|method|getInstance (int reps)
 name|int
 name|getInstance
 parameter_list|(
@@ -165,9 +165,9 @@ return|return
 name|retValue
 return|;
 block|}
-DECL|method|clone (int reps)
 annotation|@
 name|Benchmark
+DECL|method|clone (int reps)
 name|int
 name|clone
 parameter_list|(

@@ -43,7 +43,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Emulation of Uninterruptibles in GWT.  */
+comment|/** Emulation of Uninterruptibles in GWT. */
 end_comment
 
 begin_class
@@ -57,7 +57,7 @@ DECL|method|Uninterruptibles ()
 specifier|private
 name|Uninterruptibles
 parameter_list|()
-block|{   }
+block|{}
 DECL|method|getUninterruptibly (Future<V> future)
 specifier|public
 specifier|static

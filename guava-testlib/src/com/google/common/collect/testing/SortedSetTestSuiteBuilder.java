@@ -163,7 +163,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Creates, based on your criteria, a JUnit test suite that exhaustively tests  * a SortedSet implementation.  */
+comment|/**  * Creates, based on your criteria, a JUnit test suite that exhaustively tests a SortedSet  * implementation.  */
 end_comment
 
 begin_class
@@ -453,7 +453,7 @@ return|return
 name|derivedSuites
 return|;
 block|}
-comment|/**    * Creates a suite whose set has some elements filtered out of view.    *    *<p>Because the set may be ascending or descending, this test must derive    * the relative order of these extreme values rather than relying on their    * regular sort ordering.    */
+comment|/**    * Creates a suite whose set has some elements filtered out of view.    *    *<p>Because the set may be ascending or descending, this test must derive the relative order of    * these extreme values rather than relying on their regular sort ordering.    */
 DECL|method|createSubsetSuite ( final FeatureSpecificTestSuiteBuilder< ?, ? extends OneSizeTestContainerGenerator<Collection<E>, E>> parentBuilder, final Bound from, final Bound to)
 specifier|final
 name|TestSuite

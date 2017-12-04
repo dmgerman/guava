@@ -43,7 +43,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Base class for collection testers.  *  * @param<E> the element type of the collection to be tested.  *  * @author Kevin Bourrillion  */
+comment|/**  * Base class for collection testers.  *  * @param<E> the element type of the collection to be tested.  * @author Kevin Bourrillion  */
 end_comment
 
 begin_class
@@ -134,7 +134,7 @@ name|resetContainer
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * @return an array of the proper size with {@code null} inserted into the    * middle element.    */
+comment|/** @return an array of the proper size with {@code null} inserted into the middle element. */
 DECL|method|createArrayWithNullElement ()
 specifier|protected
 name|E
@@ -186,7 +186,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Equivalent to {@link #expectMissing(Object[]) expectMissing}{@code (null)}    * except that the call to {@code contains(null)} is permitted to throw a    * {@code NullPointerException}.    *    * @param message message to use upon assertion failure    */
+comment|/**    * Equivalent to {@link #expectMissing(Object[]) expectMissing}{@code (null)} except that the call    * to {@code contains(null)} is permitted to throw a {@code NullPointerException}.    *    * @param message message to use upon assertion failure    */
 DECL|method|expectNullMissingWhenNullUnsupported (String message)
 specifier|protected
 name|void

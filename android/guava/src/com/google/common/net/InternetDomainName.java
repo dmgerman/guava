@@ -321,7 +321,7 @@ name|MAX_LENGTH
 init|=
 literal|253
 decl_stmt|;
-comment|/**    * Maximum size of a single part of a domain name. See    *<a href="http://www.ietf.org/rfc/rfc2181.txt">RFC 2181</a> part 11.    */
+comment|/**    * Maximum size of a single part of a domain name. See<a    * href="http://www.ietf.org/rfc/rfc2181.txt">RFC 2181</a> part 11.    */
 DECL|field|MAX_DOMAIN_PART_LENGTH
 specifier|private
 specifier|static
@@ -331,14 +331,14 @@ name|MAX_DOMAIN_PART_LENGTH
 init|=
 literal|63
 decl_stmt|;
-comment|/**    * The full domain name, converted to lower case.    */
+comment|/** The full domain name, converted to lower case. */
 DECL|field|name
 specifier|private
 specifier|final
 name|String
 name|name
 decl_stmt|;
-comment|/**    * The parts of the domain name, converted to lower case.    */
+comment|/** The parts of the domain name, converted to lower case. */
 DECL|field|parts
 specifier|private
 specifier|final
@@ -362,7 +362,7 @@ specifier|final
 name|int
 name|registrySuffixIndex
 decl_stmt|;
-comment|/**    * Constructor used to implement {@link #from(String)}, and from subclasses.    */
+comment|/** Constructor used to implement {@link #from(String)}, and from subclasses. */
 DECL|method|InternetDomainName (String name)
 name|InternetDomainName
 parameter_list|(
@@ -906,7 +906,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/**    * Returns the individual components of this domain name, normalized to all lower case. For    * example, for the domain name {@code mail.google.com}, this method returns the list    * {@code ["mail", "google", "com"]}.    */
+comment|/**    * Returns the individual components of this domain name, normalized to all lower case. For    * example, for the domain name {@code mail.google.com}, this method returns the list {@code    * ["mail", "google", "com"]}.    */
 DECL|method|parts ()
 specifier|public
 name|ImmutableList
@@ -946,7 +946,7 @@ operator|!=
 name|NO_SUFFIX_FOUND
 return|;
 block|}
-comment|/**    * Returns the {@linkplain #isPublicSuffix() public suffix} portion of the domain name, or    * {@code null} if no public suffix is present.    *    * @since 6.0    */
+comment|/**    * Returns the {@linkplain #isPublicSuffix() public suffix} portion of the domain name, or {@code    * null} if no public suffix is present.    *    * @since 6.0    */
 DECL|method|publicSuffix ()
 specifier|public
 name|InternetDomainName
@@ -1134,7 +1134,7 @@ literal|1
 argument_list|)
 return|;
 block|}
-comment|/**    * Indicates whether this domain is composed of two or more parts.    */
+comment|/** Indicates whether this domain is composed of two or more parts. */
 DECL|method|hasParent ()
 specifier|public
 name|boolean
@@ -1150,7 +1150,7 @@ operator|>
 literal|1
 return|;
 block|}
-comment|/**    * Returns an {@code InternetDomainName} that is the immediate ancestor of this one; that is, the    * current domain with the leftmost part removed. For example, the parent of    * {@code www.google.com} is {@code google.com}.    *    * @throws IllegalStateException if the domain has no parent, as determined by {@link #hasParent}    */
+comment|/**    * Returns an {@code InternetDomainName} that is the immediate ancestor of this one; that is, the    * current domain with the leftmost part removed. For example, the parent of {@code    * www.google.com} is {@code google.com}.    *    * @throws IllegalStateException if the domain has no parent, as determined by {@link #hasParent}    */
 DECL|method|parent ()
 specifier|public
 name|InternetDomainName
@@ -1206,7 +1206,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Creates and returns a new {@code InternetDomainName} by prepending the argument and a dot to    * the current name. For example, {@code    * InternetDomainName.from("foo.com").child("www.bar")} returns a new {@code InternetDomainName}    * with the value {@code www.bar.foo.com}. Only lenient validation is performed, as described    * {@link #from(String) here}.    *    * @throws NullPointerException if leftParts is null    * @throws IllegalArgumentException if the resulting name is not valid    */
+comment|/**    * Creates and returns a new {@code InternetDomainName} by prepending the argument and a dot to    * the current name. For example, {@code InternetDomainName.from("foo.com").child("www.bar")}    * returns a new {@code InternetDomainName} with the value {@code www.bar.foo.com}. Only lenient    * validation is performed, as described {@link #from(String) here}.    *    * @throws NullPointerException if leftParts is null    * @throws IllegalArgumentException if the resulting name is not valid    */
 DECL|method|child (String leftParts)
 specifier|public
 name|InternetDomainName
@@ -1230,7 +1230,7 @@ name|name
 argument_list|)
 return|;
 block|}
-comment|/**    * Indicates whether the argument is a syntactically valid domain name using lenient validation.    * Specifically, validation against<a href="http://www.ietf.org/rfc/rfc3490.txt">RFC 3490</a>    * ("Internationalizing Domain Names in Applications") is skipped.    *    *<p>The following two code snippets are equivalent:    *    *<pre>   {@code    *   domainName = InternetDomainName.isValid(name)    *       ? InternetDomainName.from(name)    *       : DEFAULT_DOMAIN;}</pre>    *    *<pre>   {@code    *   try {    *     domainName = InternetDomainName.from(name);    *   } catch (IllegalArgumentException e) {    *     domainName = DEFAULT_DOMAIN;    *   }}</pre>    *    * @since 8.0 (previously named {@code isValidLenient})    */
+comment|/**    * Indicates whether the argument is a syntactically valid domain name using lenient validation.    * Specifically, validation against<a href="http://www.ietf.org/rfc/rfc3490.txt">RFC 3490</a>    * ("Internationalizing Domain Names in Applications") is skipped.    *    *<p>The following two code snippets are equivalent:    *    *<pre>{@code    * domainName = InternetDomainName.isValid(name)    *     ? InternetDomainName.from(name)    *     : DEFAULT_DOMAIN;    * }</pre>    *    *<pre>{@code    * try {    *   domainName = InternetDomainName.from(name);    * } catch (IllegalArgumentException e) {    *   domainName = DEFAULT_DOMAIN;    * }    * }</pre>    *    * @since 8.0 (previously named {@code isValidLenient})    */
 DECL|method|isValid (String name)
 specifier|public
 specifier|static
@@ -1363,7 +1363,7 @@ name|isPresent
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns the domain name, normalized to all lower case.    */
+comment|/** Returns the domain name, normalized to all lower case. */
 annotation|@
 name|Override
 DECL|method|toString ()
@@ -1376,7 +1376,7 @@ return|return
 name|name
 return|;
 block|}
-comment|/**    * Equality testing is based on the text supplied by the caller, after normalization as described    * in the class documentation. For example, a non-ASCII Unicode domain name and the Punycode    * version of the same domain name would not be considered equal.    *    */
+comment|/**    * Equality testing is based on the text supplied by the caller, after normalization as described    * in the class documentation. For example, a non-ASCII Unicode domain name and the Punycode    * version of the same domain name would not be considered equal.    */
 annotation|@
 name|Override
 DECL|method|equals (@ullable Object object)

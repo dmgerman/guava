@@ -51,7 +51,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @see com.google.common.collect.Maps#immutableEntry(Object, Object)  */
+comment|/** @see com.google.common.collect.Maps#immutableEntry(Object, Object) */
 end_comment
 
 begin_class

@@ -369,7 +369,7 @@ argument_list|>
 implements|,
 name|Serializable
 block|{
-comment|/**    * Returns a new, empty {@code HashBiMap} with the default initial capacity (16).    */
+comment|/** Returns a new, empty {@code HashBiMap} with the default initial capacity (16). */
 DECL|method|create ()
 specifier|public
 specifier|static
@@ -757,7 +757,7 @@ operator|=
 literal|0
 expr_stmt|;
 block|}
-comment|/**    * Finds and removes {@code entry} from the bucket linked lists in both the    * key-to-value direction and the value-to-key direction.    */
+comment|/**    * Finds and removes {@code entry} from the bucket linked lists in both the key-to-value direction    * and the value-to-key direction.    */
 DECL|method|delete (BiEntry<K, V> entry)
 specifier|private
 name|void
@@ -2953,9 +2953,9 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+DECL|field|inverse
 annotation|@
 name|RetainedWith
-DECL|field|inverse
 specifier|private
 specifier|transient
 name|BiMap

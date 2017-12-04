@@ -157,7 +157,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Measures the size of AbstractFuture implementations.  */
+comment|/** Measures the size of AbstractFuture implementations. */
 end_comment
 
 begin_class
@@ -167,19 +167,19 @@ class|class
 name|AbstractFutureFootprintBenchmark
 block|{
 DECL|enum|State
-DECL|enumConstant|NOT_DONE
-DECL|enumConstant|FINISHED
-DECL|enumConstant|CANCELLED
-DECL|enumConstant|FAILED
 enum|enum
 name|State
 block|{
+DECL|enumConstant|NOT_DONE
 name|NOT_DONE
 block|,
+DECL|enumConstant|FINISHED
 name|FINISHED
 block|,
+DECL|enumConstant|CANCELLED
 name|CANCELLED
 block|,
+DECL|enumConstant|FAILED
 name|FAILED
 block|}
 DECL|field|state
@@ -194,7 +194,6 @@ name|Param
 name|Impl
 name|impl
 decl_stmt|;
-DECL|field|numListeners
 annotation|@
 name|Param
 argument_list|(
@@ -208,10 +207,10 @@ block|,
 literal|"10"
 block|}
 argument_list|)
+DECL|field|numListeners
 name|int
 name|numListeners
 decl_stmt|;
-DECL|field|numThreads
 annotation|@
 name|Param
 argument_list|(
@@ -225,6 +224,7 @@ block|,
 literal|"10"
 block|}
 argument_list|)
+DECL|field|numThreads
 name|int
 name|numThreads
 decl_stmt|;
@@ -242,9 +242,9 @@ name|HashSet
 argument_list|<>
 argument_list|()
 decl_stmt|;
-DECL|method|setUp ()
 annotation|@
 name|BeforeExperiment
+DECL|method|setUp ()
 name|void
 name|setUp
 parameter_list|()
@@ -381,7 +381,7 @@ parameter_list|(
 name|Throwable
 name|expected
 parameter_list|)
-block|{}
+block|{               }
 block|}
 block|}
 decl_stmt|;

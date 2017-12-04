@@ -596,9 +596,9 @@ name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
-DECL|method|setUp ()
 annotation|@
 name|Override
+DECL|method|setUp ()
 specifier|protected
 name|void
 name|setUp
@@ -961,7 +961,7 @@ name|expected
 parameter_list|)
 block|{     }
 block|}
-comment|/**    * Simulate some of the races that can happen on add. We can't easily simulate the race that    * happens when an {@link AtomicInteger#compareAndSet} fails, but we can simulate the case where    * the putIfAbsent returns a non-null value, and the case where the replace() of an observed    * zero fails.    */
+comment|/**    * Simulate some of the races that can happen on add. We can't easily simulate the race that    * happens when an {@link AtomicInteger#compareAndSet} fails, but we can simulate the case where    * the putIfAbsent returns a non-null value, and the case where the replace() of an observed zero    * fails.    */
 DECL|method|testAdd_withFailures ()
 specifier|public
 name|void
@@ -1520,7 +1520,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 name|assertTrue
 argument_list|(
 name|cms
@@ -2023,7 +2023,7 @@ name|WEAK
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|testIdentityKeyEquality ( MapMakerInternalMap.Strength keyStrength)
+DECL|method|testIdentityKeyEquality (MapMakerInternalMap.Strength keyStrength)
 specifier|private
 name|void
 name|testIdentityKeyEquality
@@ -2256,7 +2256,7 @@ name|WEAK
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|testLogicalKeyEquality ( MapMakerInternalMap.Strength keyStrength)
+DECL|method|testLogicalKeyEquality (MapMakerInternalMap.Strength keyStrength)
 specifier|private
 name|void
 name|testLogicalKeyEquality

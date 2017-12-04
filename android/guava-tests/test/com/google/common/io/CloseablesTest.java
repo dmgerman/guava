@@ -113,7 +113,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Unit tests for {@link Closeables}.  *  *<p>Checks proper closing behavior, and ensures that  * IOExceptions on Closeable.close() are not  * propagated out from the {@link Closeables#close} method if {@code  * swallowException} is true.  *  * @author Michael Lancaster  */
+comment|/**  * Unit tests for {@link Closeables}.  *  *<p>Checks proper closing behavior, and ensures that IOExceptions on Closeable.close() are not  * propagated out from the {@link Closeables#close} method if {@code swallowException} is true.  *  * @author Michael Lancaster  */
 end_comment
 
 begin_class

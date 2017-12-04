@@ -511,7 +511,7 @@ return|;
 block|}
 block|}
 block|,
-comment|/**    * Uses {@link Quantiles}.    */
+comment|/** Uses {@link Quantiles}. */
 DECL|enumConstant|TARGET
 name|TARGET
 block|{
@@ -595,7 +595,7 @@ return|;
 block|}
 block|}
 block|,   ;
-comment|/**    * Calculates a single quantile. Equivalent to    * {@code Quantiles.scale(scale).index(index).computeInPlace(dataset)}.    */
+comment|/**    * Calculates a single quantile. Equivalent to {@code    * Quantiles.scale(scale).index(index).computeInPlace(dataset)}.    */
 DECL|method|singleQuantile (int index, int scale, double[] dataset)
 specifier|abstract
 name|double
@@ -612,7 +612,7 @@ index|[]
 name|dataset
 parameter_list|)
 function_decl|;
-comment|/**    * Calculates multiple quantiles. Equivalent to    * {@code Quantiles.scale(scale).indexes(indexes).computeInPlace(dataset)}.    */
+comment|/**    * Calculates multiple quantiles. Equivalent to {@code    * Quantiles.scale(scale).indexes(indexes).computeInPlace(dataset)}.    */
 DECL|method|multipleQuantiles ( Collection<Integer> indexes, int scale, double[] dataset)
 specifier|abstract
 name|Map

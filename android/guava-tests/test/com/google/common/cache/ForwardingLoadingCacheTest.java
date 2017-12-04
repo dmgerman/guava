@@ -140,9 +140,9 @@ argument_list|(
 literal|"unchecked"
 argument_list|)
 comment|// mock
-DECL|method|setUp ()
 annotation|@
 name|Override
+DECL|method|setUp ()
 specifier|public
 name|void
 name|setUp
@@ -546,7 +546,7 @@ name|cleanUp
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * Make sure that all methods are forwarded.    */
+comment|/** Make sure that all methods are forwarded. */
 DECL|class|OnlyGet
 specifier|private
 specifier|static

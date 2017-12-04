@@ -62,7 +62,6 @@ specifier|public
 class|class
 name|StringsRepeatBenchmark
 block|{
-DECL|field|count
 annotation|@
 name|Param
 argument_list|(
@@ -76,10 +75,10 @@ block|,
 literal|"125"
 block|}
 argument_list|)
+DECL|field|count
 name|int
 name|count
 decl_stmt|;
-DECL|field|length
 annotation|@
 name|Param
 argument_list|(
@@ -89,6 +88,7 @@ block|,
 literal|"10"
 block|}
 argument_list|)
+DECL|field|length
 name|int
 name|length
 decl_stmt|;
@@ -97,9 +97,9 @@ specifier|private
 name|String
 name|originalString
 decl_stmt|;
-DECL|method|setUp ()
 annotation|@
 name|BeforeExperiment
+DECL|method|setUp ()
 name|void
 name|setUp
 parameter_list|()
@@ -116,9 +116,9 @@ name|length
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Benchmark
 DECL|method|oldRepeat (int reps)
-annotation|@
-name|Benchmark
 name|void
 name|oldRepeat
 parameter_list|(
@@ -180,9 +180,9 @@ throw|;
 block|}
 block|}
 block|}
+annotation|@
+name|Benchmark
 DECL|method|mikeRepeat (int reps)
-annotation|@
-name|Benchmark
 name|void
 name|mikeRepeat
 parameter_list|(
@@ -244,9 +244,9 @@ throw|;
 block|}
 block|}
 block|}
-DECL|method|martinRepeat (int reps)
 annotation|@
 name|Benchmark
+DECL|method|martinRepeat (int reps)
 name|void
 name|martinRepeat
 parameter_list|(

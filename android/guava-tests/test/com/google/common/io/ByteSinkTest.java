@@ -476,7 +476,7 @@ parameter_list|(
 name|IOException
 name|expected
 parameter_list|)
-block|{}
+block|{       }
 comment|// ensure stream was closed IF it was opened (depends on implementation whether or not it's
 comment|// opened at all if source.newInputStream() throws).
 name|assertTrue

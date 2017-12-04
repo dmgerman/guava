@@ -79,7 +79,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Test Java8 map.compute in concurrent cache context.  */
+comment|/** Test Java8 map.compute in concurrent cache context. */
 end_comment
 
 begin_class

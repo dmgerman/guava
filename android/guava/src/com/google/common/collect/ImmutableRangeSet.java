@@ -385,7 +385,7 @@ argument_list|()
 argument_list|)
 argument_list|)
 decl_stmt|;
-comment|/**    * Returns an empty immutable range set.    */
+comment|/** Returns an empty immutable range set. */
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -416,7 +416,7 @@ operator|)
 name|EMPTY
 return|;
 block|}
-comment|/**    * Returns an immutable range set containing the single range {@link Range#all()}.    */
+comment|/** Returns an immutable range set containing the single range {@link Range#all()}. */
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -524,7 +524,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**    * Returns an immutable copy of the specified {@code RangeSet}.    */
+comment|/** Returns an immutable copy of the specified {@code RangeSet}. */
 DECL|method|copyOf (RangeSet<C> rangeSet)
 specifier|public
 specifier|static
@@ -1380,9 +1380,9 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+DECL|field|complement
 annotation|@
 name|LazyInit
-DECL|field|complement
 specifier|private
 specifier|transient
 name|ImmutableRangeSet
@@ -1888,7 +1888,7 @@ name|copy
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a list containing the nonempty intersections of {@code range}    * with the ranges in this range set.    */
+comment|/**    * Returns a list containing the nonempty intersections of {@code range} with the ranges in this    * range set.    */
 DECL|method|intersectRanges (final Range<C> range)
 specifier|private
 name|ImmutableList
@@ -2167,7 +2167,7 @@ block|}
 return|;
 block|}
 block|}
-comment|/**    * Returns a view of the intersection of this range set with the given range.    */
+comment|/** Returns a view of the intersection of this range set with the given range. */
 annotation|@
 name|Override
 DECL|method|subRangeSet (Range<C> range)
@@ -2246,7 +2246,7 @@ name|of
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns an {@link ImmutableSortedSet} containing the same values in the given domain    * {@linkplain RangeSet#contains contained} by this range set.    *    *<p><b>Note:</b> {@code a.asSet(d).equals(b.asSet(d))} does not imply {@code a.equals(b)}! For    * example, {@code a} and {@code b} could be {@code [2..4]} and {@code (1..5)}, or the empty    * ranges {@code [3..3)} and {@code [4..4)}.    *    *<p><b>Warning:</b> Be extremely careful what you do with the {@code asSet} view of a large    * range set (such as {@code ImmutableRangeSet.of(Range.greaterThan(0))}). Certain operations on    * such a set can be performed efficiently, but others (such as {@link Set#hashCode} or    * {@link Collections#frequency}) can cause major performance problems.    *    *<p>The returned set's {@link Object#toString} method returns a short-hand form of the set's    * contents, such as {@code "[1..100]}"}.    *    * @throws IllegalArgumentException if neither this range nor the domain has a lower bound, or if    *         neither has an upper bound    */
+comment|/**    * Returns an {@link ImmutableSortedSet} containing the same values in the given domain    * {@linkplain RangeSet#contains contained} by this range set.    *    *<p><b>Note:</b> {@code a.asSet(d).equals(b.asSet(d))} does not imply {@code a.equals(b)}! For    * example, {@code a} and {@code b} could be {@code [2..4]} and {@code (1..5)}, or the empty    * ranges {@code [3..3)} and {@code [4..4)}.    *    *<p><b>Warning:</b> Be extremely careful what you do with the {@code asSet} view of a large    * range set (such as {@code ImmutableRangeSet.of(Range.greaterThan(0))}). Certain operations on    * such a set can be performed efficiently, but others (such as {@link Set#hashCode} or {@link    * Collections#frequency}) can cause major performance problems.    *    *<p>The returned set's {@link Object#toString} method returns a short-hand form of the set's    * contents, such as {@code "[1..100]}"}.    *    * @throws IllegalArgumentException if neither this range nor the domain has a lower bound, or if    *     neither has an upper bound    */
 DECL|method|asSet (DiscreteDomain<C> domain)
 specifier|public
 name|ImmutableSortedSet
@@ -3224,7 +3224,7 @@ name|isPartialView
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns a new builder for an immutable range set.    */
+comment|/** Returns a new builder for an immutable range set. */
 DECL|method|builder ()
 specifier|public
 specifier|static

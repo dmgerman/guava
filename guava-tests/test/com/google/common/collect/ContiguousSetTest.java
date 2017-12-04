@@ -439,7 +439,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author Gregory Kick  */
+comment|/** @author Gregory Kick */
 end_comment
 
 begin_class
@@ -597,7 +597,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 try|try
 block|{
 name|ContiguousSet
@@ -618,7 +618,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testInvalidLongRange ()
 specifier|public
@@ -646,7 +646,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 try|try
 block|{
 name|ContiguousSet
@@ -667,7 +667,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testEquals ()
 specifier|public
@@ -1168,7 +1168,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testCreate_noMax ()
 specifier|public
@@ -1211,7 +1211,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testCreate_empty ()
 specifier|public
@@ -2216,7 +2216,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testSubSet_tooLarge ()
 specifier|public

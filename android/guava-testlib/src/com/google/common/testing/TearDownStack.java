@@ -259,7 +259,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Causes teardown to execute.    */
+comment|/** Causes teardown to execute. */
 DECL|method|runTearDown ()
 specifier|public
 specifier|final

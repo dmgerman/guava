@@ -3111,9 +3111,9 @@ DECL|field|invoked
 name|boolean
 name|invoked
 decl_stmt|;
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString

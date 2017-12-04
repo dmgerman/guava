@@ -53,7 +53,7 @@ parameter_list|,
 name|Object
 name|obj
 parameter_list|)
-block|{   }
+block|{}
 DECL|method|clone (T[] array)
 specifier|static
 parameter_list|<

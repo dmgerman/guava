@@ -132,7 +132,7 @@ argument_list|<
 name|Map
 argument_list|>
 block|{
-comment|/**    * The map does not throw {@code NullPointerException} on calls such as    * {@code containsKey(null)}, {@code get(null)},    * {@code keySet().contains(null)} or {@code remove(null)}.    */
+comment|/**    * The map does not throw {@code NullPointerException} on calls such as {@code containsKey(null)},    * {@code get(null)}, {@code keySet().contains(null)} or {@code remove(null)}.    */
 DECL|enumConstant|ALLOWS_NULL_KEY_QUERIES
 name|ALLOWS_NULL_KEY_QUERIES
 block|,
@@ -142,7 +142,7 @@ parameter_list|(
 name|ALLOWS_NULL_KEY_QUERIES
 parameter_list|)
 operator|,
-comment|/**    * The map does not throw {@code NullPointerException} on calls such as    * {@code containsValue(null)}, {@code values().contains(null)} or    * {@code values().remove(null)}.    */
+comment|/**    * The map does not throw {@code NullPointerException} on calls such as {@code    * containsValue(null)}, {@code values().contains(null)} or {@code values().remove(null)}.    */
 DECL|enumConstant|ALLOWS_NULL_VALUE_QUERIES
 constructor|ALLOWS_NULL_VALUE_QUERIES
 operator|,
@@ -150,11 +150,11 @@ DECL|enumConstant|ALLOWS_NULL_VALUES
 constructor|ALLOWS_NULL_VALUES(ALLOWS_NULL_VALUE_QUERIES
 block|)
 enum|,
-comment|/**    * The map does not throw {@code NullPointerException} on calls such as    * {@code entrySet().contains(null)} or {@code entrySet().remove(null)}    */
+comment|/**    * The map does not throw {@code NullPointerException} on calls such as {@code    * entrySet().contains(null)} or {@code entrySet().remove(null)}    */
 DECL|enumConstant|ALLOWS_NULL_ENTRY_QUERIES
 name|ALLOWS_NULL_ENTRY_QUERIES
 operator|,
-comment|/**    * The map does not throw {@code NullPointerException} on any {@code null}    * queries.    *    * @see #ALLOWS_NULL_KEY_QUERIES    * @see #ALLOWS_NULL_VALUE_QUERIES    * @see #ALLOWS_NULL_ENTRY_QUERIES    */
+comment|/**    * The map does not throw {@code NullPointerException} on any {@code null} queries.    *    * @see #ALLOWS_NULL_KEY_QUERIES    * @see #ALLOWS_NULL_VALUE_QUERIES    * @see #ALLOWS_NULL_ENTRY_QUERIES    */
 DECL|enumConstant|ALLOWS_ANY_NULL_QUERIES
 name|ALLOWS_ANY_NULL_QUERIES
 argument_list|(
@@ -180,7 +180,7 @@ operator|,
 DECL|enumConstant|FAILS_FAST_ON_CONCURRENT_MODIFICATION
 name|FAILS_FAST_ON_CONCURRENT_MODIFICATION
 operator|,
-comment|/**    * Indicates that the constructor or factory method of a map, usually an    * immutable map, throws an {@link IllegalArgumentException} when presented    * with duplicate keys instead of discarding all but one.    */
+comment|/**    * Indicates that the constructor or factory method of a map, usually an immutable map, throws an    * {@link IllegalArgumentException} when presented with duplicate keys instead of discarding all    * but one.    */
 DECL|enumConstant|REJECTS_DUPLICATES_AT_CREATION
 name|REJECTS_DUPLICATES_AT_CREATION
 operator|,

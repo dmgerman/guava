@@ -71,7 +71,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Encapsulates the constraints that a class under test must satisfy in order  * for a tester method to be run against that class.  *  * @author George van den Driessche  */
+comment|/**  * Encapsulates the constraints that a class under test must satisfy in order for a tester method to  * be run against that class.  *  * @author George van den Driessche  */
 end_comment
 
 begin_class

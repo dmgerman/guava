@@ -545,7 +545,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests for {@link StatsAccumulator}. This tests the stats methods for instances built with  * {@link StatsAccumulator#add} and {@link StatsAccumulator#addAll}, and various error cases of the  * {@link StatsAccumulator#add} and {@link StatsAccumulator#addAll} methods. For tests of the  * {@link StatsAccumulator#snapshot} method which returns {@link Stats} instances, see  * {@link StatsTest}.  *  * @author Pete Gillin  */
+comment|/**  * Tests for {@link StatsAccumulator}. This tests the stats methods for instances built with {@link  * StatsAccumulator#add} and {@link StatsAccumulator#addAll}, and various error cases of the {@link  * StatsAccumulator#add} and {@link StatsAccumulator#addAll} methods. For tests of the {@link  * StatsAccumulator#snapshot} method which returns {@link Stats} instances, see {@link StatsTest}.  *  * @author Pete Gillin  */
 end_comment
 
 begin_class

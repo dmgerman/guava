@@ -125,7 +125,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Implementation of {@code Table} whose iteration ordering across row keys is  * sorted by their natural ordering or by a supplied comparator. Note that  * iterations across the columns keys for a single row key may or may not be  * ordered, depending on the implementation. When rows and columns are both  * sorted, it's easier to use the {@link TreeBasedTable} subclass.  *  *<p>The {@link #rowKeySet} method returns a {@link SortedSet} and the {@link  * #rowMap} method returns a {@link SortedMap}, instead of the {@link Set} and  * {@link Map} specified by the {@link Table} interface.  *  *<p>Null keys and values are not supported.  *  *<p>See the {@link StandardTable} superclass for more information about the  * behavior of this class.  *  * @author Jared Levy  */
+comment|/**  * Implementation of {@code Table} whose iteration ordering across row keys is sorted by their  * natural ordering or by a supplied comparator. Note that iterations across the columns keys for a  * single row key may or may not be ordered, depending on the implementation. When rows and columns  * are both sorted, it's easier to use the {@link TreeBasedTable} subclass.  *  *<p>The {@link #rowKeySet} method returns a {@link SortedSet} and the {@link #rowMap} method  * returns a {@link SortedMap}, instead of the {@link Set} and {@link Map} specified by the {@link  * Table} interface.  *  *<p>Null keys and values are not supported.  *  *<p>See the {@link StandardTable} superclass for more information about the behavior of this  * class.  *  * @author Jared Levy  */
 end_comment
 
 begin_class
@@ -232,7 +232,7 @@ operator|)
 name|backingMap
 return|;
 block|}
-comment|/**    * {@inheritDoc}    *    *<p>This method returns a {@link SortedSet}, instead of the {@code Set}    * specified in the {@link Table} interface.    */
+comment|/**    * {@inheritDoc}    *    *<p>This method returns a {@link SortedSet}, instead of the {@code Set} specified in the {@link    * Table} interface.    */
 annotation|@
 name|Override
 DECL|method|rowKeySet ()
@@ -258,7 +258,7 @@ name|keySet
 argument_list|()
 return|;
 block|}
-comment|/**    * {@inheritDoc}    *    *<p>This method returns a {@link SortedMap}, instead of the {@code Map}    * specified in the {@link Table} interface.    */
+comment|/**    * {@inheritDoc}    *    *<p>This method returns a {@link SortedMap}, instead of the {@code Map} specified in the {@link    * Table} interface.    */
 annotation|@
 name|Override
 DECL|method|rowMap ()

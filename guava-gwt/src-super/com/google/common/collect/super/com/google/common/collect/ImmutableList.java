@@ -573,7 +573,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-DECL|method|of ( E e1, E e2, E e3, E e4, E e5, E e6, E e7)
+DECL|method|of (E e1, E e2, E e3, E e4, E e5, E e6, E e7)
 specifier|public
 specifier|static
 parameter_list|<
@@ -638,7 +638,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-DECL|method|of ( E e1, E e2, E e3, E e4, E e5, E e6, E e7, E e8)
+DECL|method|of (E e1, E e2, E e3, E e4, E e5, E e6, E e7, E e8)
 specifier|public
 specifier|static
 parameter_list|<
@@ -708,7 +708,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-DECL|method|of ( E e1, E e2, E e3, E e4, E e5, E e6, E e7, E e8, E e9)
+DECL|method|of (E e1, E e2, E e3, E e4, E e5, E e6, E e7, E e8, E e9)
 specifier|public
 specifier|static
 parameter_list|<
@@ -1303,7 +1303,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-DECL|method|copyFromCollection ( Collection<? extends E> collection)
+DECL|method|copyFromCollection (Collection<? extends E> collection)
 specifier|private
 specifier|static
 parameter_list|<
@@ -1466,7 +1466,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**    * Views the array as an immutable list.  The array must have only {@code E} elements.    *    *<p>The array must be internally created.    */
+comment|/**    * Views the array as an immutable list. The array must have only {@code E} elements.    *    *<p>The array must be internally created.    */
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -1871,9 +1871,9 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
-DECL|method|iterator ()
 annotation|@
 name|Override
+DECL|method|iterator ()
 specifier|public
 name|UnmodifiableIterator
 argument_list|<
@@ -1887,9 +1887,9 @@ name|listIterator
 argument_list|()
 return|;
 block|}
-DECL|method|subList (int fromIndex, int toIndex)
 annotation|@
 name|Override
+DECL|method|subList (int fromIndex, int toIndex)
 specifier|public
 name|ImmutableList
 argument_list|<
@@ -1920,9 +1920,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-DECL|method|listIterator ()
 annotation|@
 name|Override
+DECL|method|listIterator ()
 specifier|public
 name|UnmodifiableListIterator
 argument_list|<
@@ -1938,9 +1938,9 @@ literal|0
 argument_list|)
 return|;
 block|}
-DECL|method|listIterator (int index)
 annotation|@
 name|Override
+DECL|method|listIterator (int index)
 specifier|public
 name|UnmodifiableListIterator
 argument_list|<
@@ -1989,9 +1989,9 @@ block|}
 block|}
 return|;
 block|}
-DECL|method|asList ()
 annotation|@
 name|Override
+DECL|method|asList ()
 specifier|public
 name|ImmutableList
 argument_list|<
@@ -2188,9 +2188,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|add (E element)
 annotation|@
 name|Override
+DECL|method|add (E element)
 specifier|public
 name|Builder
 argument_list|<
@@ -2218,9 +2218,9 @@ return|;
 block|}
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|addAll (Iterable<? extends E> elements)
 annotation|@
 name|Override
+DECL|method|addAll (Iterable<? extends E> elements)
 specifier|public
 name|Builder
 argument_list|<
@@ -2250,9 +2250,9 @@ return|;
 block|}
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|add (E... elements)
 annotation|@
 name|Override
+DECL|method|add (E... elements)
 specifier|public
 name|Builder
 argument_list|<
@@ -2284,9 +2284,9 @@ return|;
 block|}
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|addAll (Iterator<? extends E> elements)
 annotation|@
 name|Override
+DECL|method|addAll (Iterator<? extends E> elements)
 specifier|public
 name|Builder
 argument_list|<
@@ -2348,9 +2348,9 @@ return|return
 name|this
 return|;
 block|}
-DECL|method|build ()
 annotation|@
 name|Override
+DECL|method|build ()
 specifier|public
 name|ImmutableList
 argument_list|<

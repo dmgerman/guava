@@ -819,7 +819,7 @@ block|}
 block|}
 return|;
 block|}
-DECL|method|asSlicedByteSourceFactory (final ByteSourceFactory factory, final long off, final long len)
+DECL|method|asSlicedByteSourceFactory ( final ByteSourceFactory factory, final long off, final long len)
 specifier|public
 specifier|static
 name|ByteSourceFactory
@@ -1023,7 +1023,7 @@ name|tearDown
 parameter_list|()
 throws|throws
 name|IOException
-block|{     }
+block|{}
 block|}
 DECL|class|ByteArraySourceFactory
 specifier|private
@@ -1082,7 +1082,7 @@ name|tearDown
 parameter_list|()
 throws|throws
 name|IOException
-block|{     }
+block|{}
 block|}
 DECL|class|EmptyCharSourceFactory
 specifier|private
@@ -1136,7 +1136,7 @@ name|tearDown
 parameter_list|()
 throws|throws
 name|IOException
-block|{     }
+block|{}
 block|}
 DECL|class|EmptyByteSourceFactory
 specifier|private
@@ -1197,7 +1197,7 @@ name|tearDown
 parameter_list|()
 throws|throws
 name|IOException
-block|{     }
+block|{}
 block|}
 DECL|class|FileFactory
 specifier|private

@@ -501,7 +501,7 @@ parameter_list|(
 name|UnsupportedOperationException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 name|assertTrue
 argument_list|(
 name|multiset
@@ -544,9 +544,9 @@ operator|.
 name|newHashMap
 argument_list|()
 decl_stmt|;
-DECL|method|add (@ullable E element, int occurrences)
 annotation|@
 name|Override
+DECL|method|add (@ullable E element, int occurrences)
 specifier|public
 name|int
 name|add

@@ -572,7 +572,7 @@ name|ColumnMap
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * An immutable map implementation backed by an indexed nullable array.    */
+comment|/** An immutable map implementation backed by an indexed nullable array. */
 DECL|class|ImmutableArrayMap
 specifier|private
 specifier|abstract

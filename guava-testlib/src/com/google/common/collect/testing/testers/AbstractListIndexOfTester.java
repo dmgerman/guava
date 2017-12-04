@@ -127,7 +127,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Common parent class for {@link ListIndexOfTester} and  * {@link ListLastIndexOfTester}.  *  * @author Chris Povirk  */
+comment|/**  * Common parent class for {@link ListIndexOfTester} and {@link ListLastIndexOfTester}.  *  * @author Chris Povirk  */
 end_comment
 
 begin_class
@@ -158,7 +158,7 @@ name|Object
 name|o
 parameter_list|)
 function_decl|;
-comment|/**    * Override to return "indexOf" or "lastIndexOf()" for use in failure    * messages.    */
+comment|/** Override to return "indexOf" or "lastIndexOf()" for use in failure messages. */
 DECL|method|getMethodName ()
 specifier|protected
 specifier|abstract

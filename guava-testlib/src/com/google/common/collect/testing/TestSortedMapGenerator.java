@@ -94,7 +94,7 @@ modifier|...
 name|elements
 parameter_list|)
 function_decl|;
-comment|/**    * Returns an entry with a key less than the keys of the {@link #samples()}    * and less than the key of {@link #belowSamplesGreater()}.    */
+comment|/**    * Returns an entry with a key less than the keys of the {@link #samples()} and less than the key    * of {@link #belowSamplesGreater()}.    */
 DECL|method|belowSamplesLesser ()
 name|Entry
 argument_list|<
@@ -105,7 +105,7 @@ argument_list|>
 name|belowSamplesLesser
 parameter_list|()
 function_decl|;
-comment|/**    * Returns an entry with a key less than the keys of the {@link #samples()}    * but greater than the key of {@link #belowSamplesLesser()}.    */
+comment|/**    * Returns an entry with a key less than the keys of the {@link #samples()} but greater than the    * key of {@link #belowSamplesLesser()}.    */
 DECL|method|belowSamplesGreater ()
 name|Entry
 argument_list|<
@@ -116,7 +116,7 @@ argument_list|>
 name|belowSamplesGreater
 parameter_list|()
 function_decl|;
-comment|/**    * Returns an entry with a key greater than the keys of the {@link #samples()}    * but less than the key of {@link #aboveSamplesGreater()}.    */
+comment|/**    * Returns an entry with a key greater than the keys of the {@link #samples()} but less than the    * key of {@link #aboveSamplesGreater()}.    */
 DECL|method|aboveSamplesLesser ()
 name|Entry
 argument_list|<
@@ -127,7 +127,7 @@ argument_list|>
 name|aboveSamplesLesser
 parameter_list|()
 function_decl|;
-comment|/**    * Returns an entry with a key greater than the keys of the {@link #samples()}    * and greater than the key of {@link #aboveSamplesLesser()}.    */
+comment|/**    * Returns an entry with a key greater than the keys of the {@link #samples()} and greater than    * the key of {@link #aboveSamplesLesser()}.    */
 DECL|method|aboveSamplesGreater ()
 name|Entry
 argument_list|<

@@ -134,9 +134,9 @@ name|GcFinalizationTest
 extends|extends
 name|TestCase
 block|{
-comment|//----------------------------------------------------------------
+comment|// ----------------------------------------------------------------
 comment|// Ordinary tests of successful method execution
-comment|//----------------------------------------------------------------
+comment|// ----------------------------------------------------------------
 DECL|method|testAwait_CountDownLatch ()
 specifier|public
 name|void
@@ -443,10 +443,10 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|//----------------------------------------------------------------
+comment|// ----------------------------------------------------------------
 comment|// Test that interrupts result in RuntimeException, not InterruptedException.
 comment|// Trickier than it looks, because runFinalization swallows interrupts.
-comment|//----------------------------------------------------------------
+comment|// ----------------------------------------------------------------
 DECL|class|Interruptenator
 class|class
 name|Interruptenator
@@ -901,7 +901,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**    * awaitFullGc() is not quite as reliable a way to ensure calling of a    * specific finalize method as the more direct await* methods, but should be    * reliable enough in practice to avoid flakiness of this test.  (And if it    * isn't, we'd like to know about it first!)    */
+comment|/**    * awaitFullGc() is not quite as reliable a way to ensure calling of a specific finalize method as    * the more direct await* methods, but should be reliable enough in practice to avoid flakiness of    * this test. (And if it isn't, we'd like to know about it first!)    */
 DECL|method|testAwaitFullGc ()
 specifier|public
 name|void

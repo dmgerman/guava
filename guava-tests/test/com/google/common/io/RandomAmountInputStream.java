@@ -118,9 +118,9 @@ name|random
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|read (byte[] b, int off, int len)
 annotation|@
 name|Override
+DECL|method|read (byte[] b, int off, int len)
 specifier|public
 name|int
 name|read

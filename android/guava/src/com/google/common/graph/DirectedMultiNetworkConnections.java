@@ -361,9 +361,9 @@ name|selfLoopCount
 argument_list|)
 return|;
 block|}
+DECL|field|predecessorsReference
 annotation|@
 name|LazyInit
-DECL|field|predecessorsReference
 specifier|private
 specifier|transient
 name|Reference
@@ -452,9 +452,9 @@ return|return
 name|predecessors
 return|;
 block|}
+DECL|field|successorsReference
 annotation|@
 name|LazyInit
-DECL|field|successorsReference
 specifier|private
 specifier|transient
 name|Reference

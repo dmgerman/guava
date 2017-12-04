@@ -1196,7 +1196,7 @@ name|cache
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Tests that when a single entry exceeds the segment's max weight, the new entry is    * immediately evicted and nothing else.    */
+comment|/**    * Tests that when a single entry exceeds the segment's max weight, the new entry is immediately    * evicted and nothing else.    */
 DECL|method|testEviction_maxWeight_entryTooBig ()
 specifier|public
 name|void

@@ -4,7 +4,7 @@ comment|/*  * Copyright (C) 2012 The Guava Authors  *  * Licensed under the Apac
 end_comment
 
 begin_comment
-comment|/**  * This package contains utilities to work with Java reflection. It is a part of the open-source  *<a href="http://github.com/google/guava">Guava</a> library.  */
+comment|/**  * This package contains utilities to work with Java reflection. It is a part of the open-source<a  * href="http://github.com/google/guava">Guava</a> library.  */
 end_comment
 
 begin_annotation

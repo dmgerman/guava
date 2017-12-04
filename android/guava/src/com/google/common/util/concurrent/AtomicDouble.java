@@ -129,7 +129,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates a new {@code AtomicDouble} with initial value {@code 0.0}.    */
+comment|/** Creates a new {@code AtomicDouble} with initial value {@code 0.0}. */
 DECL|method|AtomicDouble ()
 specifier|public
 name|AtomicDouble
@@ -244,7 +244,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Atomically sets the value to the given updated value    * if the current value is<a href="#bitEquals">bitwise equal</a>    * to the expected value.    *    * @param expect the expected value    * @param update the new value    * @return {@code true} if successful. False return indicates that    * the actual value was not bitwise equal to the expected value.    */
+comment|/**    * Atomically sets the value to the given updated value if the current value is<a    * href="#bitEquals">bitwise equal</a> to the expected value.    *    * @param expect the expected value    * @param update the new value    * @return {@code true} if successful. False return indicates that the actual value was not    *     bitwise equal to the expected value.    */
 DECL|method|compareAndSet (double expect, double update)
 specifier|public
 specifier|final
@@ -275,7 +275,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Atomically sets the value to the given updated value    * if the current value is<a href="#bitEquals">bitwise equal</a>    * to the expected value.    *    *<p>May<a    * href="http://download.oracle.com/javase/7/docs/api/java/util/concurrent/atomic/package-summary.html#Spurious">    * fail spuriously</a>    * and does not provide ordering guarantees, so is only rarely an    * appropriate alternative to {@code compareAndSet}.    *    * @param expect the expected value    * @param update the new value    * @return {@code true} if successful    */
+comment|/**    * Atomically sets the value to the given updated value if the current value is<a    * href="#bitEquals">bitwise equal</a> to the expected value.    *    *<p>May<a    * href="http://download.oracle.com/javase/7/docs/api/java/util/concurrent/atomic/package-summary.html#Spurious">    * fail spuriously</a> and does not provide ordering guarantees, so is only rarely an appropriate    * alternative to {@code compareAndSet}.    *    * @param expect the expected value    * @param update the new value    * @return {@code true} if successful    */
 DECL|method|weakCompareAndSet (double expect, double update)
 specifier|public
 specifier|final
@@ -440,7 +440,7 @@ return|;
 block|}
 block|}
 block|}
-comment|/**    * Returns the String representation of the current value.    * @return the String representation of the current value    */
+comment|/**    * Returns the String representation of the current value.    *    * @return the String representation of the current value    */
 DECL|method|toString ()
 specifier|public
 name|String
@@ -457,7 +457,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the value of this {@code AtomicDouble} as an {@code int}    * after a narrowing primitive conversion.    */
+comment|/**    * Returns the value of this {@code AtomicDouble} as an {@code int} after a narrowing primitive    * conversion.    */
 DECL|method|intValue ()
 specifier|public
 name|int
@@ -472,7 +472,7 @@ name|get
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns the value of this {@code AtomicDouble} as a {@code long}    * after a narrowing primitive conversion.    */
+comment|/**    * Returns the value of this {@code AtomicDouble} as a {@code long} after a narrowing primitive    * conversion.    */
 DECL|method|longValue ()
 specifier|public
 name|long
@@ -487,7 +487,7 @@ name|get
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns the value of this {@code AtomicDouble} as a {@code float}    * after a narrowing primitive conversion.    */
+comment|/**    * Returns the value of this {@code AtomicDouble} as a {@code float} after a narrowing primitive    * conversion.    */
 DECL|method|floatValue ()
 specifier|public
 name|float
@@ -502,7 +502,7 @@ name|get
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns the value of this {@code AtomicDouble} as a {@code double}.    */
+comment|/** Returns the value of this {@code AtomicDouble} as a {@code double}. */
 DECL|method|doubleValue ()
 specifier|public
 name|double
@@ -548,7 +548,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Reconstitutes the instance from a stream (that is, deserializes it).    */
+comment|/** Reconstitutes the instance from a stream (that is, deserializes it). */
 DECL|method|readObject (java.io.ObjectInputStream s)
 specifier|private
 name|void

@@ -1947,7 +1947,7 @@ name|expected
 parameter_list|)
 block|{     }
 block|}
-comment|/**    * @return the number of exceptions that were suppressed on the expected thrown exception    */
+comment|/** @return the number of exceptions that were suppressed on the expected thrown exception */
 DECL|method|runSuppressionFailureTest (CharSource in, CharSink out)
 specifier|private
 specifier|static

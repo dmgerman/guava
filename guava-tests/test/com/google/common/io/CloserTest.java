@@ -1739,7 +1739,7 @@ parameter_list|(
 name|IOException
 name|expected
 parameter_list|)
-block|{}
+block|{       }
 name|assertTrue
 argument_list|(
 name|logHandler
@@ -2145,7 +2145,7 @@ name|suppressions
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Suppressor that records suppressions.    */
+comment|/** Suppressor that records suppressions. */
 DECL|class|TestSuppressor
 specifier|private
 specifier|static
@@ -2204,7 +2204,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Record of a call to suppress.    */
+comment|/** Record of a call to suppress. */
 DECL|class|Suppression
 specifier|private
 specifier|static

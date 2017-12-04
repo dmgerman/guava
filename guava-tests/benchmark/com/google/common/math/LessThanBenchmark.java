@@ -266,9 +266,9 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-DECL|method|branchFreeLtIntInlined (int reps)
 annotation|@
 name|Benchmark
+DECL|method|branchFreeLtIntInlined (int reps)
 name|int
 name|branchFreeLtIntInlined
 parameter_list|(
@@ -352,9 +352,9 @@ return|return
 name|tmp
 return|;
 block|}
-DECL|method|branchFreeLtInt (int reps)
 annotation|@
 name|Benchmark
+DECL|method|branchFreeLtInt (int reps)
 name|int
 name|branchFreeLtInt
 parameter_list|(
@@ -431,9 +431,9 @@ return|return
 name|tmp
 return|;
 block|}
-DECL|method|ternaryLtIntAddOutsideTernary (int reps)
 annotation|@
 name|Benchmark
+DECL|method|ternaryLtIntAddOutsideTernary (int reps)
 name|int
 name|ternaryLtIntAddOutsideTernary
 parameter_list|(
@@ -513,9 +513,9 @@ return|return
 name|tmp
 return|;
 block|}
-DECL|method|ternaryLtIntAddInsideTernary (int reps)
 annotation|@
 name|Benchmark
+DECL|method|ternaryLtIntAddInsideTernary (int reps)
 name|int
 name|ternaryLtIntAddInsideTernary
 parameter_list|(
@@ -593,9 +593,9 @@ return|return
 name|tmp
 return|;
 block|}
-DECL|method|branchFreeLtLongInlined (int reps)
 annotation|@
 name|Benchmark
+DECL|method|branchFreeLtLongInlined (int reps)
 name|int
 name|branchFreeLtLongInlined
 parameter_list|(
@@ -682,9 +682,9 @@ return|return
 name|tmp
 return|;
 block|}
-DECL|method|branchFreeLtLong (int reps)
 annotation|@
 name|Benchmark
+DECL|method|branchFreeLtLong (int reps)
 name|int
 name|branchFreeLtLong
 parameter_list|(
@@ -761,9 +761,9 @@ return|return
 name|tmp
 return|;
 block|}
-DECL|method|ternaryLtLongAddOutsideTernary (int reps)
 annotation|@
 name|Benchmark
+DECL|method|ternaryLtLongAddOutsideTernary (int reps)
 name|int
 name|ternaryLtLongAddOutsideTernary
 parameter_list|(
@@ -843,9 +843,9 @@ return|return
 name|tmp
 return|;
 block|}
-DECL|method|ternaryLtLongAddInsideTernary (int reps)
 annotation|@
 name|Benchmark
+DECL|method|ternaryLtLongAddInsideTernary (int reps)
 name|int
 name|ternaryLtLongAddInsideTernary
 parameter_list|(

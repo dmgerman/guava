@@ -114,9 +114,9 @@ operator|=
 name|element
 expr_stmt|;
 block|}
-DECL|method|delegateList ()
 annotation|@
 name|Override
+DECL|method|delegateList ()
 name|List
 argument_list|<
 name|E

@@ -251,7 +251,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A class for arithmetic on values of type {@code long}. Where possible, methods are defined and  * named analogously to their {@code BigInteger} counterparts.  *  *<p>The implementations of many methods in this class are based on material from Henry S. Warren,  * Jr.'s<i>Hacker's Delight</i>, (Addison Wesley, 2002).  *  *<p>Similar functionality for {@code int} and for {@link BigInteger} can be found in  * {@link IntMath} and {@link BigIntegerMath} respectively. For other common operations on  * {@code long} values, see {@link com.google.common.primitives.Longs}.  *  * @author Louis Wasserman  * @since 11.0  */
+comment|/**  * A class for arithmetic on values of type {@code long}. Where possible, methods are defined and  * named analogously to their {@code BigInteger} counterparts.  *  *<p>The implementations of many methods in this class are based on material from Henry S. Warren,  * Jr.'s<i>Hacker's Delight</i>, (Addison Wesley, 2002).  *  *<p>Similar functionality for {@code int} and for {@link BigInteger} can be found in {@link  * IntMath} and {@link BigIntegerMath} respectively. For other common operations on {@code long}  * values, see {@link com.google.common.primitives.Longs}.  *  * @author Louis Wasserman  * @since 11.0  */
 end_comment
 
 begin_class
@@ -287,7 +287,7 @@ operator|-
 literal|2
 operator|)
 decl_stmt|;
-comment|/**    * Returns the smallest power of two greater than or equal to {@code x}.  This is equivalent to    * {@code checkedPow(2, log2(x, CEILING))}.    *    * @throws IllegalArgumentException if {@code x<= 0}    * @throws ArithmeticException of the next-higher power of two is not representable as a    *         {@code long}, i.e. when {@code x> 2^62}    * @since 20.0    */
+comment|/**    * Returns the smallest power of two greater than or equal to {@code x}. This is equivalent to    * {@code checkedPow(2, log2(x, CEILING))}.    *    * @throws IllegalArgumentException if {@code x<= 0}    * @throws ArithmeticException of the next-higher power of two is not representable as a {@code    *     long}, i.e. when {@code x> 2^62}    * @since 20.0    */
 annotation|@
 name|Beta
 DECL|method|ceilingPowerOfTwo (long x)
@@ -340,7 +340,7 @@ literal|1
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the largest power of two less than or equal to {@code x}.  This is equivalent to    * {@code checkedPow(2, log2(x, FLOOR))}.    *    * @throws IllegalArgumentException if {@code x<= 0}    * @since 20.0    */
+comment|/**    * Returns the largest power of two less than or equal to {@code x}. This is equivalent to {@code    * checkedPow(2, log2(x, FLOOR))}.    *    * @throws IllegalArgumentException if {@code x<= 0}    * @since 20.0    */
 annotation|@
 name|Beta
 DECL|method|floorPowerOfTwo (long x)
@@ -383,7 +383,7 @@ argument_list|)
 operator|)
 return|;
 block|}
-comment|/**    * Returns {@code true} if {@code x} represents a power of two.    *    *<p>This differs from {@code Long.bitCount(x) == 1}, because    * {@code Long.bitCount(Long.MIN_VALUE) == 1}, but {@link Long#MIN_VALUE} is not a power of two.    */
+comment|/**    * Returns {@code true} if {@code x} represents a power of two.    *    *<p>This differs from {@code Long.bitCount(x) == 1}, because {@code    * Long.bitCount(Long.MIN_VALUE) == 1}, but {@link Long#MIN_VALUE} is not a power of two.    */
 DECL|method|isPowerOfTwo (long x)
 specifier|public
 specifier|static
@@ -1225,7 +1225,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**    * Returns the square root of {@code x}, rounded with the specified rounding mode.    *    * @throws IllegalArgumentException if {@code x< 0}    * @throws ArithmeticException if {@code mode} is {@link RoundingMode#UNNECESSARY} and    *     {@code sqrt(x)} is not an integer    */
+comment|/**    * Returns the square root of {@code x}, rounded with the specified rounding mode.    *    * @throws IllegalArgumentException if {@code x< 0}    * @throws ArithmeticException if {@code mode} is {@link RoundingMode#UNNECESSARY} and {@code    *     sqrt(x)} is not an integer    */
 annotation|@
 name|GwtIncompatible
 comment|// TODO
@@ -1416,7 +1416,7 @@ argument_list|()
 throw|;
 block|}
 block|}
-comment|/**    * Returns the result of dividing {@code p} by {@code q}, rounding using the specified    * {@code RoundingMode}.    *    * @throws ArithmeticException if {@code q == 0}, or if {@code mode == UNNECESSARY} and {@code a}    *     is not an integer multiple of {@code b}    */
+comment|/**    * Returns the result of dividing {@code p} by {@code q}, rounding using the specified {@code    * RoundingMode}.    *    * @throws ArithmeticException if {@code q == 0}, or if {@code mode == UNNECESSARY} and {@code a}    *     is not an integer multiple of {@code b}    */
 annotation|@
 name|GwtIncompatible
 comment|// TODO
@@ -1647,7 +1647,7 @@ else|:
 name|div
 return|;
 block|}
-comment|/**    * Returns {@code x mod m}, a non-negative value less than {@code m}. This differs from    * {@code x % m}, which might be negative.    *    *<p>For example:    *    *<pre> {@code    *    * mod(7, 4) == 3    * mod(-7, 4) == 1    * mod(-1, 4) == 3    * mod(-8, 4) == 0    * mod(8, 4) == 0}</pre>    *    * @throws ArithmeticException if {@code m<= 0}    * @see<a href="http://docs.oracle.com/javase/specs/jls/se7/html/jls-15.html#jls-15.17.3">    *     Remainder Operator</a>    */
+comment|/**    * Returns {@code x mod m}, a non-negative value less than {@code m}. This differs from {@code x %    * m}, which might be negative.    *    *<p>For example:    *    *<pre>{@code    * mod(7, 4) == 3    * mod(-7, 4) == 1    * mod(-1, 4) == 3    * mod(-8, 4) == 0    * mod(8, 4) == 0    * }</pre>    *    * @throws ArithmeticException if {@code m<= 0}    * @see<a href="http://docs.oracle.com/javase/specs/jls/se7/html/jls-15.html#jls-15.17.3">    *     Remainder Operator</a>    */
 annotation|@
 name|GwtIncompatible
 comment|// TODO
@@ -1680,7 +1680,7 @@ name|m
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns {@code x mod m}, a non-negative value less than {@code m}. This differs from    * {@code x % m}, which might be negative.    *    *<p>For example:    *    *<pre> {@code    *    * mod(7, 4) == 3    * mod(-7, 4) == 1    * mod(-1, 4) == 3    * mod(-8, 4) == 0    * mod(8, 4) == 0}</pre>    *    * @throws ArithmeticException if {@code m<= 0}    * @see<a href="http://docs.oracle.com/javase/specs/jls/se7/html/jls-15.html#jls-15.17.3">    *     Remainder Operator</a>    */
+comment|/**    * Returns {@code x mod m}, a non-negative value less than {@code m}. This differs from {@code x %    * m}, which might be negative.    *    *<p>For example:    *    *<pre>{@code    * mod(7, 4) == 3    * mod(-7, 4) == 1    * mod(-1, 4) == 3    * mod(-8, 4) == 0    * mod(8, 4) == 0    * }</pre>    *    * @throws ArithmeticException if {@code m<= 0}    * @see<a href="http://docs.oracle.com/javase/specs/jls/se7/html/jls-15.html#jls-15.17.3">    *     Remainder Operator</a>    */
 annotation|@
 name|GwtIncompatible
 comment|// TODO
@@ -1733,7 +1733,7 @@ operator|+
 name|m
 return|;
 block|}
-comment|/**    * Returns the greatest common divisor of {@code a, b}. Returns {@code 0} if    * {@code a == 0&& b == 0}.    *    * @throws IllegalArgumentException if {@code a< 0} or {@code b< 0}    */
+comment|/**    * Returns the greatest common divisor of {@code a, b}. Returns {@code 0} if {@code a == 0&& b ==    * 0}.    *    * @throws IllegalArgumentException if {@code a< 0} or {@code b< 0}    */
 DECL|method|gcd (long a, long b)
 specifier|public
 specifier|static
@@ -2104,7 +2104,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/**    * Returns the {@code b} to the {@code k}th power, provided it does not overflow.    *    * @throws ArithmeticException if {@code b} to the {@code k}th power overflows in signed    *     {@code long} arithmetic    */
+comment|/**    * Returns the {@code b} to the {@code k}th power, provided it does not overflow.    *    * @throws ArithmeticException if {@code b} to the {@code k}th power overflows in signed {@code    *     long} arithmetic    */
 annotation|@
 name|GwtIncompatible
 comment|// TODO
@@ -3704,7 +3704,7 @@ return|;
 block|}
 block|}
 block|}
-comment|/**    * Returns (x * numerator / denominator), which is assumed to come out to an integral value.    */
+comment|/** Returns (x * numerator / denominator), which is assumed to come out to an integral value. */
 DECL|method|multiplyFraction (long x, long numerator, long denominator)
 specifier|static
 name|long
@@ -4041,7 +4041,7 @@ literal|29
 operator|)
 operator|)
 decl_stmt|;
-comment|/**    * Returns {@code true} if {@code n} is a    *<a href="http://mathworld.wolfram.com/PrimeNumber.html">prime number</a>: an integer<i>greater    * than one</i> that cannot be factored into a product of<i>smaller</i> positive integers.    * Returns {@code false} if {@code n} is zero, one, or a composite number (one which<i>can</i>    * be factored into smaller positive integers).    *    *<p>To test larger numbers, use {@link BigInteger#isProbablePrime}.    *    * @throws IllegalArgumentException if {@code n} is negative    * @since 20.0    */
+comment|/**    * Returns {@code true} if {@code n} is a<a    * href="http://mathworld.wolfram.com/PrimeNumber.html">prime number</a>: an integer<i>greater    * than one</i> that cannot be factored into a product of<i>smaller</i> positive integers.    * Returns {@code false} if {@code n} is zero, one, or a composite number (one which<i>can</i> be    * factored into smaller positive integers).    *    *<p>To test larger numbers, use {@link BigInteger#isProbablePrime}.    *    * @throws IllegalArgumentException if {@code n} is negative    * @since 20.0    */
 annotation|@
 name|GwtIncompatible
 comment|// TODO
@@ -4392,7 +4392,7 @@ return|;
 block|}
 block|}
 block|,
-comment|/**      * Works for all nonnegative signed longs.      */
+comment|/** Works for all nonnegative signed longs. */
 DECL|enumConstant|LARGE
 name|LARGE
 block|{
@@ -4435,7 +4435,7 @@ name|b
 operator|)
 return|;
 block|}
-comment|/**        * Returns (a * 2^32) mod m. a may be any unsigned long.        */
+comment|/** Returns (a * 2^32) mod m. a may be any unsigned long. */
 specifier|private
 name|long
 name|times2ToThe32Mod
@@ -4774,7 +4774,7 @@ name|n
 argument_list|)
 return|;
 block|}
-comment|/**      * Returns a * b mod m.      */
+comment|/** Returns a * b mod m. */
 DECL|method|mulMod (long a, long b, long m)
 specifier|abstract
 name|long
@@ -4790,7 +4790,7 @@ name|long
 name|m
 parameter_list|)
 function_decl|;
-comment|/**      * Returns a^2 mod m.      */
+comment|/** Returns a^2 mod m. */
 DECL|method|squareMod (long a, long m)
 specifier|abstract
 name|long
@@ -4803,7 +4803,7 @@ name|long
 name|m
 parameter_list|)
 function_decl|;
-comment|/**      * Returns a^p mod m.      */
+comment|/** Returns a^p mod m. */
 DECL|method|powMod (long a, long p, long m)
 specifier|private
 name|long
@@ -4873,7 +4873,7 @@ return|return
 name|res
 return|;
 block|}
-comment|/**      * Returns true if n is a strong probable prime relative to the specified base.      */
+comment|/** Returns true if n is a strong probable prime relative to the specified base. */
 DECL|method|testWitness (long base, long n)
 specifier|private
 name|boolean

@@ -282,7 +282,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/**    * Returns a {@link CacheLoader} that returns the given {@code constant} for every request.    */
+comment|/** Returns a {@link CacheLoader} that returns the given {@code constant} for every request. */
 DECL|method|constantLoader (@ullable V constant)
 specifier|static
 parameter_list|<
@@ -313,7 +313,7 @@ name|constant
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a {@link CacheLoader} that returns the given {@code constant} for every request.    */
+comment|/** Returns a {@link CacheLoader} that returns the given {@code constant} for every request. */
 DECL|method|incrementingLoader ()
 specifier|static
 name|IncrementingLoader
@@ -326,7 +326,7 @@ name|IncrementingLoader
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns a {@link CacheLoader} that throws the given error for every request.    */
+comment|/** Returns a {@link CacheLoader} that throws the given error for every request. */
 DECL|method|errorLoader (final Error e)
 specifier|static
 parameter_list|<
@@ -379,7 +379,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/**    * Returns a {@link CacheLoader} that throws the given exception for every request.    */
+comment|/** Returns a {@link CacheLoader} that throws the given exception for every request. */
 DECL|method|exceptionLoader (final Exception e)
 specifier|static
 parameter_list|<
@@ -434,7 +434,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/**    * Returns a {@link CacheLoader} that returns the key for every request.    */
+comment|/** Returns a {@link CacheLoader} that returns the key for every request. */
 DECL|method|identityLoader ()
 specifier|static
 parameter_list|<

@@ -41,7 +41,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Exception thrown upon the failure of a  *<a href="https://github.com/google/guava/wiki/ConditionalFailuresExplained">verification  * check</a>, including those performed by the convenience methods of the {@link Verify} class.  *  * @since 17.0  */
+comment|/**  * Exception thrown upon the failure of a<a  * href="https://github.com/google/guava/wiki/ConditionalFailuresExplained">verification check</a>,  * including those performed by the convenience methods of the {@link Verify} class.  *  * @since 17.0  */
 end_comment
 
 begin_class
@@ -77,7 +77,7 @@ name|message
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Constructs a {@code VerifyException} with the cause {@code cause} and a message that is    * {@code null} if {@code cause} is null, and {@code cause.toString()} otherwise.    *    * @since 19.0    */
+comment|/**    * Constructs a {@code VerifyException} with the cause {@code cause} and a message that is {@code    * null} if {@code cause} is null, and {@code cause.toString()} otherwise.    *    * @since 19.0    */
 DECL|method|VerifyException (@ullable Throwable cause)
 specifier|public
 name|VerifyException
@@ -94,7 +94,7 @@ name|cause
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Constructs a {@code VerifyException} with the message {@code message} and the cause    * {@code cause}.    *    * @since 19.0    */
+comment|/**    * Constructs a {@code VerifyException} with the message {@code message} and the cause {@code    * cause}.    *    * @since 19.0    */
 DECL|method|VerifyException (@ullable String message, @Nullable Throwable cause)
 specifier|public
 name|VerifyException

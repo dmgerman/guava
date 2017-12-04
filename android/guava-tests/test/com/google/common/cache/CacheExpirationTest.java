@@ -451,7 +451,7 @@ name|removalListener
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|checkExpiration (LoadingCache<String, Integer> cache, WatchedCreatorLoader loader, FakeTicker ticker, CountingRemovalListener<String, Integer> removalListener)
+DECL|method|checkExpiration ( LoadingCache<String, Integer> cache, WatchedCreatorLoader loader, FakeTicker ticker, CountingRemovalListener<String, Integer> removalListener)
 specifier|private
 name|void
 name|checkExpiration
@@ -802,7 +802,7 @@ name|removalListener
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|runExpirationTest (LoadingCache<String, Integer> cache, WatchedCreatorLoader loader, FakeTicker ticker, CountingRemovalListener<String, Integer> removalListener)
+DECL|method|runExpirationTest ( LoadingCache<String, Integer> cache, WatchedCreatorLoader loader, FakeTicker ticker, CountingRemovalListener<String, Integer> removalListener)
 specifier|private
 name|void
 name|runExpirationTest
@@ -3073,7 +3073,7 @@ name|EXPIRED
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|runRemovalScheduler (LoadingCache<String, Integer> cache, CountingRemovalListener<String, Integer> removalListener, WatchedCreatorLoader loader, FakeTicker ticker, String keyPrefix, long ttl)
+DECL|method|runRemovalScheduler ( LoadingCache<String, Integer> cache, CountingRemovalListener<String, Integer> removalListener, WatchedCreatorLoader loader, FakeTicker ticker, String keyPrefix, long ttl)
 specifier|private
 name|void
 name|runRemovalScheduler
@@ -3483,7 +3483,7 @@ DECL|method|WatchedCreatorLoader ()
 specifier|public
 name|WatchedCreatorLoader
 parameter_list|()
-block|{     }
+block|{}
 DECL|method|reset ()
 specifier|public
 name|void
@@ -3537,9 +3537,9 @@ operator|=
 name|valuePrefix
 expr_stmt|;
 block|}
-DECL|method|load (String key)
 annotation|@
 name|Override
+DECL|method|load (String key)
 specifier|public
 name|Integer
 name|load

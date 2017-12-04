@@ -93,7 +93,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Implementation of {@link ImmutableMap} backed by a non-empty {@link  * java.util.EnumMap}.  *  * @author Louis Wasserman  */
+comment|/**  * Implementation of {@link ImmutableMap} backed by a non-empty {@link java.util.EnumMap}.  *  * @author Louis Wasserman  */
 end_comment
 
 begin_class

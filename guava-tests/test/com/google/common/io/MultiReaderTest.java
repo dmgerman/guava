@@ -81,7 +81,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author ricebin  */
+comment|/** @author ricebin */
 end_comment
 
 begin_class

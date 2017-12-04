@@ -235,9 +235,9 @@ specifier|transient
 name|int
 name|hashCode
 decl_stmt|;
+DECL|field|elementSet
 annotation|@
 name|LazyInit
-DECL|field|elementSet
 specifier|private
 specifier|transient
 name|ImmutableSet

@@ -93,7 +93,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A utility for performing a chained comparison statement. For example:  *<pre>   {@code  *  *   public int compareTo(Foo that) {  *     return ComparisonChain.start()  *         .compare(this.aString, that.aString)  *         .compare(this.anInt, that.anInt)  *         .compare(this.anEnum, that.anEnum, Ordering.natural().nullsLast())  *         .result();  *   }}</pre>  *  *<p>The value of this expression will have the same sign as the<i>first  * nonzero</i> comparison result in the chain, or will be zero if every  * comparison result was zero.  *  *<p><b>Note:</b> {@code ComparisonChain} instances are<b>immutable</b>. For  * this utility to work correctly, calls must be chained as illustrated above.  *  *<p>Performance note: Even though the {@code ComparisonChain} caller always  * invokes its {@code compare} methods unconditionally, the {@code  * ComparisonChain} implementation stops calling its inputs' {@link  * Comparable#compareTo compareTo} and {@link Comparator#compare compare}  * methods as soon as one of them returns a nonzero result. This optimization is  * typically important only in the presence of expensive {@code compareTo} and  * {@code compare} implementations.  *  *<p>See the Guava User Guide article on<a href=  * "https://github.com/google/guava/wiki/CommonObjectUtilitiesExplained#comparecompareto">  * {@code ComparisonChain}</a>.  *  * @author Mark Davis  * @author Kevin Bourrillion  * @since 2.0  */
+comment|/**  * A utility for performing a chained comparison statement. For example:  *  *<pre>{@code  * public int compareTo(Foo that) {  *   return ComparisonChain.start()  *       .compare(this.aString, that.aString)  *       .compare(this.anInt, that.anInt)  *       .compare(this.anEnum, that.anEnum, Ordering.natural().nullsLast())  *       .result();  * }  * }</pre>  *  *<p>The value of this expression will have the same sign as the<i>first nonzero</i> comparison  * result in the chain, or will be zero if every comparison result was zero.  *  *<p><b>Note:</b> {@code ComparisonChain} instances are<b>immutable</b>. For this utility to work  * correctly, calls must be chained as illustrated above.  *  *<p>Performance note: Even though the {@code ComparisonChain} caller always invokes its {@code  * compare} methods unconditionally, the {@code ComparisonChain} implementation stops calling its  * inputs' {@link Comparable#compareTo compareTo} and {@link Comparator#compare compare} methods as  * soon as one of them returns a nonzero result. This optimization is typically important only in  * the presence of expensive {@code compareTo} and {@code compare} implementations.  *  *<p>See the Guava User Guide article on<a href=  * "https://github.com/google/guava/wiki/CommonObjectUtilitiesExplained#comparecompareto"> {@code  * ComparisonChain}</a>.  *  * @author Mark Davis  * @author Kevin Bourrillion  * @since 2.0  */
 end_comment
 
 begin_class
@@ -110,7 +110,7 @@ specifier|private
 name|ComparisonChain
 parameter_list|()
 block|{}
-comment|/**    * Begins a new chained comparison statement. See example in the class    * documentation.    */
+comment|/** Begins a new chained comparison statement. See example in the class documentation. */
 DECL|method|start ()
 specifier|public
 specifier|static
@@ -637,7 +637,7 @@ name|result
 return|;
 block|}
 block|}
-comment|/**    * Compares two comparable objects as specified by {@link    * Comparable#compareTo},<i>if</i> the result of this comparison chain    * has not already been determined.    */
+comment|/**    * Compares two comparable objects as specified by {@link Comparable#compareTo},<i>if</i> the    * result of this comparison chain has not already been determined.    */
 DECL|method|compare (Comparable<?> left, Comparable<?> right)
 specifier|public
 specifier|abstract
@@ -657,7 +657,7 @@ argument_list|>
 name|right
 parameter_list|)
 function_decl|;
-comment|/**    * Compares two objects using a comparator,<i>if</i> the result of this    * comparison chain has not already been determined.    */
+comment|/**    * Compares two objects using a comparator,<i>if</i> the result of this comparison chain has not    * already been determined.    */
 DECL|method|compare ( @ullable T left, @Nullable T right, Comparator<T> comparator)
 specifier|public
 specifier|abstract
@@ -684,7 +684,7 @@ argument_list|>
 name|comparator
 parameter_list|)
 function_decl|;
-comment|/**    * Compares two {@code int} values as specified by {@link Ints#compare},    *<i>if</i> the result of this comparison chain has not already been    * determined.    */
+comment|/**    * Compares two {@code int} values as specified by {@link Ints#compare},<i>if</i> the result of    * this comparison chain has not already been determined.    */
 DECL|method|compare (int left, int right)
 specifier|public
 specifier|abstract
@@ -698,7 +698,7 @@ name|int
 name|right
 parameter_list|)
 function_decl|;
-comment|/**    * Compares two {@code long} values as specified by {@link Longs#compare},    *<i>if</i> the result of this comparison chain has not already been    * determined.    */
+comment|/**    * Compares two {@code long} values as specified by {@link Longs#compare},<i>if</i> the result of    * this comparison chain has not already been determined.    */
 DECL|method|compare (long left, long right)
 specifier|public
 specifier|abstract
@@ -712,7 +712,7 @@ name|long
 name|right
 parameter_list|)
 function_decl|;
-comment|/**    * Compares two {@code float} values as specified by {@link    * Float#compare},<i>if</i> the result of this comparison chain has not    * already been determined.    */
+comment|/**    * Compares two {@code float} values as specified by {@link Float#compare},<i>if</i> the result    * of this comparison chain has not already been determined.    */
 DECL|method|compare (float left, float right)
 specifier|public
 specifier|abstract
@@ -726,7 +726,7 @@ name|float
 name|right
 parameter_list|)
 function_decl|;
-comment|/**    * Compares two {@code double} values as specified by {@link    * Double#compare},<i>if</i> the result of this comparison chain has not    * already been determined.    */
+comment|/**    * Compares two {@code double} values as specified by {@link Double#compare},<i>if</i> the result    * of this comparison chain has not already been determined.    */
 DECL|method|compare (double left, double right)
 specifier|public
 specifier|abstract
@@ -740,7 +740,7 @@ name|double
 name|right
 parameter_list|)
 function_decl|;
-comment|/**    * Discouraged synonym for {@link #compareFalseFirst}.    *    * @deprecated Use {@link #compareFalseFirst}; or, if the parameters passed    *     are being either negated or reversed, undo the negation or reversal and    *     use {@link #compareTrueFirst}.    * @since 19.0    */
+comment|/**    * Discouraged synonym for {@link #compareFalseFirst}.    *    * @deprecated Use {@link #compareFalseFirst}; or, if the parameters passed are being either    *     negated or reversed, undo the negation or reversal and use {@link #compareTrueFirst}.    * @since 19.0    */
 annotation|@
 name|Deprecated
 DECL|method|compare (Boolean left, Boolean right)
@@ -765,7 +765,7 @@ name|right
 argument_list|)
 return|;
 block|}
-comment|/**    * Compares two {@code boolean} values, considering {@code true} to be less    * than {@code false},<i>if</i> the result of this comparison chain has not    * already been determined.    *    * @since 12.0    */
+comment|/**    * Compares two {@code boolean} values, considering {@code true} to be less than {@code false},    *<i>if</i> the result of this comparison chain has not already been determined.    *    * @since 12.0    */
 DECL|method|compareTrueFirst (boolean left, boolean right)
 specifier|public
 specifier|abstract
@@ -779,7 +779,7 @@ name|boolean
 name|right
 parameter_list|)
 function_decl|;
-comment|/**    * Compares two {@code boolean} values, considering {@code false} to be less    * than {@code true},<i>if</i> the result of this comparison chain has not    * already been determined.    *    * @since 12.0 (present as {@code compare} since 2.0)    */
+comment|/**    * Compares two {@code boolean} values, considering {@code false} to be less than {@code true},    *<i>if</i> the result of this comparison chain has not already been determined.    *    * @since 12.0 (present as {@code compare} since 2.0)    */
 DECL|method|compareFalseFirst (boolean left, boolean right)
 specifier|public
 specifier|abstract
@@ -793,7 +793,7 @@ name|boolean
 name|right
 parameter_list|)
 function_decl|;
-comment|/**    * Ends this comparison chain and returns its result: a value having the    * same sign as the first nonzero comparison result in the chain, or zero if    * every result was zero.    */
+comment|/**    * Ends this comparison chain and returns its result: a value having the same sign as the first    * nonzero comparison result in the chain, or zero if every result was zero.    */
 DECL|method|result ()
 specifier|public
 specifier|abstract

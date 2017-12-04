@@ -4615,7 +4615,7 @@ parameter_list|(
 name|NoSuchElementException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 annotation|@
 name|GwtIncompatible
@@ -5289,7 +5289,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Illustrates the somewhat bizarre behavior when a null is passed in.    */
+comment|/** Illustrates the somewhat bizarre behavior when a null is passed in. */
 DECL|method|testConcatContainingNull ()
 specifier|public
 name|void
@@ -5829,8 +5829,8 @@ name|GwtIncompatible
 comment|// Only used by @GwtIncompatible code
 DECL|class|EmptyIteratorTester
 specifier|private
-specifier|static
 specifier|abstract
+specifier|static
 class|class
 name|EmptyIteratorTester
 extends|extends
@@ -5872,8 +5872,8 @@ name|GwtIncompatible
 comment|// Only used by @GwtIncompatible code
 DECL|class|SingletonIteratorTester
 specifier|private
-specifier|static
 specifier|abstract
+specifier|static
 class|class
 name|SingletonIteratorTester
 extends|extends
@@ -5912,8 +5912,8 @@ name|GwtIncompatible
 comment|// Only used by @GwtIncompatible code
 DECL|class|DoubletonIteratorTester
 specifier|private
-specifier|static
 specifier|abstract
+specifier|static
 class|class
 name|DoubletonIteratorTester
 extends|extends
@@ -7502,7 +7502,7 @@ parameter_list|(
 name|NoSuchElementException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testForArrayTypical ()
 specifier|public
@@ -7575,7 +7575,7 @@ parameter_list|(
 name|UnsupportedOperationException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 name|assertEquals
 argument_list|(
 literal|"bar"
@@ -7610,7 +7610,7 @@ parameter_list|(
 name|NoSuchElementException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testForArrayOffset ()
 specifier|public
@@ -7719,7 +7719,7 @@ parameter_list|(
 name|IndexOutOfBoundsException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testForArrayLength0 ()
 specifier|public
@@ -7819,7 +7819,7 @@ parameter_list|(
 name|IndexOutOfBoundsException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 try|try
 block|{
 name|Iterators
@@ -7844,7 +7844,7 @@ parameter_list|(
 name|IndexOutOfBoundsException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 annotation|@
 name|GwtIncompatible
@@ -9550,7 +9550,7 @@ parameter_list|(
 name|IndexOutOfBoundsException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 name|assertFalse
 argument_list|(
 name|iterator
@@ -9618,7 +9618,7 @@ parameter_list|(
 name|IndexOutOfBoundsException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 name|assertFalse
 argument_list|(
 name|iterator
@@ -9672,7 +9672,7 @@ parameter_list|(
 name|IndexOutOfBoundsException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 name|assertFalse
 argument_list|(
 name|iterator
@@ -9733,7 +9733,7 @@ parameter_list|(
 name|IndexOutOfBoundsException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testGet_withDefault_basic ()
 specifier|public
@@ -10162,7 +10162,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testFrequency ()
 specifier|public

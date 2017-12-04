@@ -51,7 +51,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * GWT emulation of {@code SortedMultiset}, with {@code elementSet} reduced  * to returning a {@code SortedSet} for GWT compatibility.  *  * @author Louis Wasserman  * @since 11.0  */
+comment|/**  * GWT emulation of {@code SortedMultiset}, with {@code elementSet} reduced to returning a {@code  * SortedSet} for GWT compatibility.  *  * @author Louis Wasserman  * @since 11.0  */
 end_comment
 
 begin_interface
@@ -117,10 +117,10 @@ argument_list|>
 name|pollLastEntry
 parameter_list|()
 function_decl|;
-comment|/**    * Returns a {@link SortedSet} view of the distinct elements in this multiset.    * (Outside GWT, this returns a {@code NavigableSet}.)    */
-DECL|method|elementSet ()
+comment|/**    * Returns a {@link SortedSet} view of the distinct elements in this multiset. (Outside GWT, this    * returns a {@code NavigableSet}.)    */
 annotation|@
 name|Override
+DECL|method|elementSet ()
 name|SortedSet
 argument_list|<
 name|E
@@ -150,7 +150,7 @@ name|BoundType
 name|boundType
 parameter_list|)
 function_decl|;
-DECL|method|subMultiset (E lowerBound, BoundType lowerBoundType, E upperBound, BoundType upperBoundType)
+DECL|method|subMultiset ( E lowerBound, BoundType lowerBoundType, E upperBound, BoundType upperBoundType)
 name|SortedMultiset
 argument_list|<
 name|E

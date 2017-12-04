@@ -256,7 +256,7 @@ specifier|final
 class|class
 name|BigIntegerMath
 block|{
-comment|/**    * Returns the smallest power of two greater than or equal to {@code x}.  This is equivalent to    * {@code BigInteger.valueOf(2).pow(log2(x, CEILING))}.    *    * @throws IllegalArgumentException if {@code x<= 0}    * @since 20.0    */
+comment|/**    * Returns the smallest power of two greater than or equal to {@code x}. This is equivalent to    * {@code BigInteger.valueOf(2).pow(log2(x, CEILING))}.    *    * @throws IllegalArgumentException if {@code x<= 0}    * @since 20.0    */
 annotation|@
 name|Beta
 DECL|method|ceilingPowerOfTwo (BigInteger x)
@@ -287,7 +287,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the largest power of two less than or equal to {@code x}.  This is equivalent to    * {@code BigInteger.valueOf(2).pow(log2(x, FLOOR))}.    *    * @throws IllegalArgumentException if {@code x<= 0}    * @since 20.0    */
+comment|/**    * Returns the largest power of two less than or equal to {@code x}. This is equivalent to {@code    * BigInteger.valueOf(2).pow(log2(x, FLOOR))}.    *    * @throws IllegalArgumentException if {@code x<= 0}    * @since 20.0    */
 annotation|@
 name|Beta
 DECL|method|floorPowerOfTwo (BigInteger x)
@@ -318,7 +318,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns {@code true} if {@code x} represents a power of two.    */
+comment|/** Returns {@code true} if {@code x} represents a power of two. */
 DECL|method|isPowerOfTwo (BigInteger x)
 specifier|public
 specifier|static
@@ -918,7 +918,7 @@ argument_list|(
 literal|2
 argument_list|)
 decl_stmt|;
-comment|/**    * Returns the square root of {@code x}, rounded with the specified rounding mode.    *    * @throws IllegalArgumentException if {@code x< 0}    * @throws ArithmeticException if {@code mode} is {@link RoundingMode#UNNECESSARY} and    *     {@code sqrt(x)} is not an integer    */
+comment|/**    * Returns the square root of {@code x}, rounded with the specified rounding mode.    *    * @throws IllegalArgumentException if {@code x< 0}    * @throws ArithmeticException if {@code mode} is {@link RoundingMode#UNNECESSARY} and {@code    *     sqrt(x)} is not an integer    */
 annotation|@
 name|GwtIncompatible
 comment|// TODO
@@ -1319,7 +1319,7 @@ name|HALF_EVEN
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the result of dividing {@code p} by {@code q}, rounding using the specified    * {@code RoundingMode}.    *    * @throws ArithmeticException if {@code q == 0}, or if {@code mode == UNNECESSARY} and {@code a}    *     is not an integer multiple of {@code b}    */
+comment|/**    * Returns the result of dividing {@code p} by {@code q}, rounding using the specified {@code    * RoundingMode}.    *    * @throws ArithmeticException if {@code q == 0}, or if {@code mode == UNNECESSARY} and {@code a}    *     is not an integer multiple of {@code b}    */
 annotation|@
 name|GwtIncompatible
 comment|// TODO

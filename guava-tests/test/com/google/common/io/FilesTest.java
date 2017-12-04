@@ -972,7 +972,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**    * A {@link File} that provides a specialized value for {@link File#length()}.    */
+comment|/** A {@link File} that provides a specialized value for {@link File#length()}. */
 DECL|class|BadLengthFile
 specifier|private
 specifier|static
@@ -4722,7 +4722,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Returns a root path for the file system.    */
+comment|/** Returns a root path for the file system. */
 DECL|method|root ()
 specifier|private
 specifier|static
@@ -4740,7 +4740,7 @@ literal|0
 index|]
 return|;
 block|}
-comment|/**    * Returns a {@code File} object for the given path parts.    */
+comment|/** Returns a {@code File} object for the given path parts. */
 DECL|method|file (String first, String... more)
 specifier|private
 specifier|static
@@ -4768,7 +4768,7 @@ name|more
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a {@code File} object for the given path parts.    */
+comment|/** Returns a {@code File} object for the given path parts. */
 DECL|method|file (File first, String... more)
 specifier|private
 specifier|static

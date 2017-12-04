@@ -277,7 +277,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests for {@code Multiset#remove}, {@code Multiset.removeAll}, and {@code Multiset.retainAll}  * not already covered by the corresponding Collection testers.  *  * @author Jared Levy  */
+comment|/**  * Tests for {@code Multiset#remove}, {@code Multiset.removeAll}, and {@code Multiset.retainAll} not  * already covered by the corresponding Collection testers.  *  * @author Jared Levy  */
 end_comment
 
 begin_class
@@ -1045,7 +1045,7 @@ name|contents
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Returns {@link Method} instances for the remove tests that assume multisets    * support duplicates so that the test of {@code Multisets.forSet()} can    * suppress them.    */
+comment|/**    * Returns {@link Method} instances for the remove tests that assume multisets support duplicates    * so that the test of {@code Multisets.forSet()} can suppress them.    */
 annotation|@
 name|GwtIncompatible
 comment|// reflection

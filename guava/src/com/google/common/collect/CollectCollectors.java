@@ -95,7 +95,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Collectors utilities for {@code common.collect} internals.  */
+comment|/** Collectors utilities for {@code common.collect} internals. */
 end_comment
 
 begin_class

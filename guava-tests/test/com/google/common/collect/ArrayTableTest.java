@@ -183,9 +183,9 @@ name|ArrayTableTest
 extends|extends
 name|AbstractTableTest
 block|{
-DECL|method|create ( Object... data)
 annotation|@
 name|Override
+DECL|method|create (Object... data)
 specifier|protected
 name|ArrayTable
 argument_list|<
@@ -248,9 +248,9 @@ return|return
 name|table
 return|;
 block|}
-DECL|method|assertSize (int expectedSize)
 annotation|@
 name|Override
+DECL|method|assertSize (int expectedSize)
 specifier|protected
 name|void
 name|assertSize
@@ -270,9 +270,9 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|supportsRemove ()
 annotation|@
 name|Override
+DECL|method|supportsRemove ()
 specifier|protected
 name|boolean
 name|supportsRemove
@@ -282,9 +282,9 @@ return|return
 literal|false
 return|;
 block|}
-DECL|method|supportsNullValues ()
 annotation|@
 name|Override
+DECL|method|supportsNullValues ()
 specifier|protected
 name|boolean
 name|supportsNullValues
@@ -295,9 +295,9 @@ literal|true
 return|;
 block|}
 comment|// Overriding tests of behavior that differs for ArrayTable.
-DECL|method|testContains ()
 annotation|@
 name|Override
+DECL|method|testContains ()
 specifier|public
 name|void
 name|testContains
@@ -473,9 +473,9 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|testContainsRow ()
 annotation|@
 name|Override
+DECL|method|testContainsRow ()
 specifier|public
 name|void
 name|testContainsRow
@@ -555,9 +555,9 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|testContainsColumn ()
 annotation|@
 name|Override
+DECL|method|testContainsColumn ()
 specifier|public
 name|void
 name|testContainsColumn
@@ -638,9 +638,9 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|testContainsValue ()
 annotation|@
 name|Override
+DECL|method|testContainsValue ()
 specifier|public
 name|void
 name|testContainsValue
@@ -720,9 +720,9 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|testIsEmpty ()
 annotation|@
 name|Override
+DECL|method|testIsEmpty ()
 specifier|public
 name|void
 name|testIsEmpty
@@ -768,9 +768,9 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|testEquals ()
 annotation|@
 name|Override
+DECL|method|testEquals ()
 specifier|public
 name|void
 name|testEquals
@@ -1000,9 +1000,9 @@ name|testEquals
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|testHashCode ()
 annotation|@
 name|Override
+DECL|method|testHashCode ()
 specifier|public
 name|void
 name|testHashCode
@@ -1120,9 +1120,9 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|testRow ()
 annotation|@
 name|Override
+DECL|method|testRow ()
 specifier|public
 name|void
 name|testRow
@@ -1204,9 +1204,9 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|testColumn ()
 annotation|@
 name|Override
+DECL|method|testColumn ()
 specifier|public
 name|void
 name|testColumn
@@ -1288,9 +1288,9 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|testToStringSize1 ()
 annotation|@
 name|Override
+DECL|method|testToStringSize1 ()
 specifier|public
 name|void
 name|testToStringSize1
@@ -1379,7 +1379,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testCreateDuplicateColumns ()
 specifier|public
@@ -1421,7 +1421,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testCreateEmptyRows ()
 specifier|public
@@ -1462,7 +1462,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testCreateEmptyColumns ()
 specifier|public
@@ -1501,7 +1501,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testCreateEmptyRowsXColumns ()
 specifier|public
@@ -1622,7 +1622,7 @@ parameter_list|(
 name|IndexOutOfBoundsException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 annotation|@
 name|GwtIncompatible
@@ -2767,7 +2767,7 @@ parameter_list|(
 name|IndexOutOfBoundsException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 try|try
 block|{
 name|table
@@ -2789,7 +2789,7 @@ parameter_list|(
 name|IndexOutOfBoundsException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 try|try
 block|{
 name|table
@@ -2810,7 +2810,7 @@ parameter_list|(
 name|IndexOutOfBoundsException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 try|try
 block|{
 name|table
@@ -2832,7 +2832,7 @@ parameter_list|(
 name|IndexOutOfBoundsException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testSet ()
 specifier|public
@@ -2991,7 +2991,7 @@ parameter_list|(
 name|IndexOutOfBoundsException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 try|try
 block|{
 name|table
@@ -3015,7 +3015,7 @@ parameter_list|(
 name|IndexOutOfBoundsException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 try|try
 block|{
 name|table
@@ -3038,7 +3038,7 @@ parameter_list|(
 name|IndexOutOfBoundsException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 try|try
 block|{
 name|table
@@ -3062,7 +3062,7 @@ parameter_list|(
 name|IndexOutOfBoundsException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 name|assertFalse
 argument_list|(
 name|table
@@ -3778,7 +3778,7 @@ parameter_list|(
 name|UnsupportedOperationException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testColumnMissing ()
 specifier|public
@@ -3852,7 +3852,7 @@ parameter_list|(
 name|UnsupportedOperationException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testRowPutIllegal ()
 specifier|public

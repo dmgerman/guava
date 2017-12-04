@@ -849,7 +849,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author Charles Fry  */
+comment|/** @author Charles Fry */
 end_comment
 
 begin_class
@@ -16308,7 +16308,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-DECL|method|checkAndDrainRecencyQueue (LocalCache<K, V> map, Segment<K, V> segment, List<ReferenceEntry<K, V>> reads)
+DECL|method|checkAndDrainRecencyQueue ( LocalCache<K, V> map, Segment<K, V> segment, List<ReferenceEntry<K, V>> reads)
 specifier|static
 parameter_list|<
 name|K
@@ -16380,7 +16380,7 @@ name|drainRecencyQueue
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|checkEvictionQueues (LocalCache<K, V> map, Segment<K, V> segment, List<ReferenceEntry<K, V>> readOrder, List<ReferenceEntry<K, V>> writeOrder)
+DECL|method|checkEvictionQueues ( LocalCache<K, V> map, Segment<K, V> segment, List<ReferenceEntry<K, V>> readOrder, List<ReferenceEntry<K, V>> writeOrder)
 specifier|static
 parameter_list|<
 name|K
@@ -16481,7 +16481,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-DECL|method|assertSameEntries (List<ReferenceEntry<K, V>> expectedEntries, List<ReferenceEntry<K, V>> actualEntries)
+DECL|method|assertSameEntries ( List<ReferenceEntry<K, V>> expectedEntries, List<ReferenceEntry<K, V>> actualEntries)
 specifier|private
 specifier|static
 parameter_list|<
@@ -19973,7 +19973,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/**    * Returns an iterable containing all combinations of maximumSize and expireAfterAccess/Write.    */
+comment|/** Returns an iterable containing all combinations of maximumSize and expireAfterAccess/Write. */
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -20063,7 +20063,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an iterable containing all combinations weakKeys and weak/softValues.    */
+comment|/** Returns an iterable containing all combinations weakKeys and weak/softValues. */
 annotation|@
 name|SuppressWarnings
 argument_list|(

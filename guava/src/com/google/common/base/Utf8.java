@@ -85,7 +85,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Low-level, high-performance utility methods related to the {@linkplain Charsets#UTF_8 UTF-8}  * character encoding. UTF-8 is defined in section D92 of  *<a href="http://www.unicode.org/versions/Unicode6.2.0/ch03.pdf">The Unicode Standard Core  * Specification, Chapter 3</a>.  *  *<p>The variant of UTF-8 implemented by this class is the restricted definition of UTF-8  * introduced in Unicode 3.1. One implication of this is that it rejects  *<a href="http://www.unicode.org/versions/corrigendum1.html">"non-shortest form"</a> byte  * sequences, even though the JDK decoder may accept them.  *  * @author Martin Buchholz  * @author ClÃ©ment Roux  * @since 16.0  */
+comment|/**  * Low-level, high-performance utility methods related to the {@linkplain Charsets#UTF_8 UTF-8}  * character encoding. UTF-8 is defined in section D92 of<a  * href="http://www.unicode.org/versions/Unicode6.2.0/ch03.pdf">The Unicode Standard Core  * Specification, Chapter 3</a>.  *  *<p>The variant of UTF-8 implemented by this class is the restricted definition of UTF-8  * introduced in Unicode 3.1. One implication of this is that it rejects<a  * href="http://www.unicode.org/versions/corrigendum1.html">"non-shortest form"</a> byte sequences,  * even though the JDK decoder may accept them.  *  * @author Martin Buchholz  * @author ClÃ©ment Roux  * @since 16.0  */
 end_comment
 
 begin_class

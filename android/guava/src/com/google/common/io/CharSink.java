@@ -113,7 +113,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A destination to which characters can be written, such as a text file. Unlike a {@link Writer}, a  * {@code CharSink} is not an open, stateful stream that can be written to and closed. Instead, it  * is an immutable<i>supplier</i> of {@code Writer} instances.  *  *<p>{@code CharSink} provides two kinds of methods:  *<ul>  *<li><b>Methods that return a writer:</b> These methods should return a<i>new</i>, independent  *     instance each time they are called. The caller is responsible for ensuring that the returned  *     writer is closed.  *<li><b>Convenience methods:</b> These are implementations of common operations that are typically  *     implemented by opening a writer using one of the methods in the first category, doing  *     something and finally closing the writer that was opened.  *</ul>  *  *<p>Any {@link ByteSink} may be viewed as a {@code CharSink} with a specific {@linkplain Charset  * character encoding} using {@link ByteSink#asCharSink(Charset)}. Characters written to the  * resulting {@code CharSink} will written to the {@code ByteSink} as encoded bytes.  *  * @since 14.0  * @author Colin Decker  */
+comment|/**  * A destination to which characters can be written, such as a text file. Unlike a {@link Writer}, a  * {@code CharSink} is not an open, stateful stream that can be written to and closed. Instead, it  * is an immutable<i>supplier</i> of {@code Writer} instances.  *  *<p>{@code CharSink} provides two kinds of methods:  *  *<ul>  *<li><b>Methods that return a writer:</b> These methods should return a<i>new</i>, independent  *       instance each time they are called. The caller is responsible for ensuring that the  *       returned writer is closed.  *<li><b>Convenience methods:</b> These are implementations of common operations that are  *       typically implemented by opening a writer using one of the methods in the first category,  *       doing something and finally closing the writer that was opened.  *</ul>  *  *<p>Any {@link ByteSink} may be viewed as a {@code CharSink} with a specific {@linkplain Charset  * character encoding} using {@link ByteSink#asCharSink(Charset)}. Characters written to the  * resulting {@code CharSink} will written to the {@code ByteSink} as encoded bytes.  *  * @since 14.0  * @author Colin Decker  */
 end_comment
 
 begin_class
@@ -125,7 +125,7 @@ specifier|abstract
 class|class
 name|CharSink
 block|{
-comment|/**    * Constructor for use by subclasses.    */
+comment|/** Constructor for use by subclasses. */
 DECL|method|CharSink ()
 specifier|protected
 name|CharSink
@@ -251,7 +251,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Writes the given lines of text to this sink with each line (including the last) terminated with    * the operating system's default line separator. This method is equivalent to    * {@code writeLines(lines, System.getProperty("line.separator"))}.    *    * @throws IOException if an I/O error occurs while writing to this sink    */
+comment|/**    * Writes the given lines of text to this sink with each line (including the last) terminated with    * the operating system's default line separator. This method is equivalent to {@code    * writeLines(lines, System.getProperty("line.separator"))}.    *    * @throws IOException if an I/O error occurs while writing to this sink    */
 DECL|method|writeLines (Iterable<? extends CharSequence> lines)
 specifier|public
 name|void

@@ -145,7 +145,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Utility methods for working with {@link Enum} instances.  *  * @author Steve McKay  *  * @since 9.0  */
+comment|/**  * Utility methods for working with {@link Enum} instances.  *  * @author Steve McKay  * @since 9.0  */
 end_comment
 
 begin_class
@@ -167,7 +167,7 @@ specifier|private
 name|Enums
 parameter_list|()
 block|{}
-comment|/**    * Returns the {@link Field} in which {@code enumValue} is defined. For example, to get the    * {@code Description} annotation on the {@code GOLF} constant of enum {@code Sport}, use    * {@code Enums.getField(Sport.GOLF).getAnnotation(Description.class)}.    *    * @since 12.0    */
+comment|/**    * Returns the {@link Field} in which {@code enumValue} is defined. For example, to get the {@code    * Description} annotation on the {@code GOLF} constant of enum {@code Sport}, use {@code    * Enums.getField(Sport.GOLF).getAnnotation(Description.class)}.    *    * @since 12.0    */
 annotation|@
 name|GwtIncompatible
 comment|// reflection
@@ -224,7 +224,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Returns an optional enum constant for the given type, using {@link Enum#valueOf}. If the    * constant does not exist, {@link Optional#absent} is returned. A common use case is for parsing    * user input or falling back to a default enum constant. For example,    * {@code Enums.getIfPresent(Country.class, countryInput).or(Country.DEFAULT);}    *    * @since 12.0    */
+comment|/**    * Returns an optional enum constant for the given type, using {@link Enum#valueOf}. If the    * constant does not exist, {@link Optional#absent} is returned. A common use case is for parsing    * user input or falling back to a default enum constant. For example, {@code    * Enums.getIfPresent(Country.class, countryInput).or(Country.DEFAULT);}    *    * @since 12.0    */
 DECL|method|getIfPresent (Class<T> enumClass, String value)
 specifier|public
 specifier|static
@@ -505,7 +505,7 @@ name|constants
 return|;
 block|}
 block|}
-comment|/**    * Returns a converter that converts between strings and {@code enum} values of type    * {@code enumClass} using {@link Enum#valueOf(Class, String)} and {@link Enum#name()}. The    * converter will throw an {@code IllegalArgumentException} if the argument is not the name of any    * enum constant in the specified enum.    *    * @since 16.0    */
+comment|/**    * Returns a converter that converts between strings and {@code enum} values of type {@code    * enumClass} using {@link Enum#valueOf(Class, String)} and {@link Enum#name()}. The converter    * will throw an {@code IllegalArgumentException} if the argument is not the name of any enum    * constant in the specified enum.    *    * @since 16.0    */
 DECL|method|stringConverter (final Class<T> enumClass)
 specifier|public
 specifier|static

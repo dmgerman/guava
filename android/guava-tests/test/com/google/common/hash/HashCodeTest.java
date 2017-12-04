@@ -2304,7 +2304,7 @@ parameter_list|(
 name|IllegalStateException
 name|expected
 parameter_list|)
-block|{}
+block|{       }
 block|}
 else|else
 block|{

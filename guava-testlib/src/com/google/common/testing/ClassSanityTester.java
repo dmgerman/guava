@@ -471,7 +471,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tester that runs automated sanity tests for any given class. A typical use case is to test static  * factory classes like:<pre>  * interface Book {...}  * public class Books {  *   public static Book hardcover(String title) {...}  *   public static Book paperback(String title) {...}  * }  *</pre>  *<p>And all the created {@code Book} instances can be tested with:<pre>  * new ClassSanityTester()  *     .forAllPublicStaticMethods(Books.class)  *     .thatReturn(Book.class)  *     .testEquals(); // or testNulls(), testSerializable() etc.  *</pre>  *  * @author Ben Yu  * @since 14.0  */
+comment|/**  * Tester that runs automated sanity tests for any given class. A typical use case is to test static  * factory classes like:  *  *<pre>  * interface Book {...}  * public class Books {  *   public static Book hardcover(String title) {...}  *   public static Book paperback(String title) {...}  * }  *</pre>  *  *<p>And all the created {@code Book} instances can be tested with:  *  *<pre>  * new ClassSanityTester()  *     .forAllPublicStaticMethods(Books.class)  *     .thatReturn(Book.class)  *     .testEquals(); // or testNulls(), testSerializable() etc.  *</pre>  *  * @author Ben Yu  * @since 14.0  */
 end_comment
 
 begin_class
@@ -880,7 +880,7 @@ name|class
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Sets the default value for {@code type}. The default value isn't used in testing {@link    * Object#equals} because more than one sample instances are needed for testing inequality.    * To set distinct values for equality testing, use {@link #setDistinctValues} instead.    */
+comment|/**    * Sets the default value for {@code type}. The default value isn't used in testing {@link    * Object#equals} because more than one sample instances are needed for testing inequality. To set    * distinct values for equality testing, use {@link #setDistinctValues} instead.    */
 DECL|method|setDefault (Class<T> type, T value)
 specifier|public
 parameter_list|<
@@ -1000,7 +1000,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**    * Tests that {@code cls} properly checks null on all constructor and method parameters that    * aren't annotated with {@link javax.annotation.Nullable}. In details:    *<ul>    *<li>All non-private static methods are checked such that passing null for any parameter that's    *     not annotated with {@link javax.annotation.Nullable} should throw {@link    *     NullPointerException}.    *<li>If there is any non-private constructor or non-private static factory method declared by    *     {@code cls}, all non-private instance methods will be checked too using the instance    *     created by invoking the constructor or static factory method.    *<li>If there is any non-private constructor or non-private static factory method declared by    *     {@code cls}:    *<ul>    *<li>Test will fail if default value for a parameter cannot be determined.    *<li>Test will fail if the factory method returns null so testing instance methods is    *         impossible.    *<li>Test will fail if the constructor or factory method throws exception.    *</ul>    *<li>If there is no non-private constructor or non-private static factory method declared by    *     {@code cls}, instance methods are skipped for nulls test.    *<li>Nulls test is not performed on method return values unless the method is a non-private    *     static factory method whose return type is {@code cls} or {@code cls}'s subtype.    *</ul>    */
+comment|/**    * Tests that {@code cls} properly checks null on all constructor and method parameters that    * aren't annotated with {@link javax.annotation.Nullable}. In details:    *    *<ul>    *<li>All non-private static methods are checked such that passing null for any parameter    *       that's not annotated with {@link javax.annotation.Nullable} should throw {@link    *       NullPointerException}.    *<li>If there is any non-private constructor or non-private static factory method declared by    *       {@code cls}, all non-private instance methods will be checked too using the instance    *       created by invoking the constructor or static factory method.    *<li>If there is any non-private constructor or non-private static factory method declared by    *       {@code cls}:    *<ul>    *<li>Test will fail if default value for a parameter cannot be determined.    *<li>Test will fail if the factory method returns null so testing instance methods is    *             impossible.    *<li>Test will fail if the constructor or factory method throws exception.    *</ul>    *<li>If there is no non-private constructor or non-private static factory method declared by    *       {@code cls}, instance methods are skipped for nulls test.    *<li>Nulls test is not performed on method return values unless the method is a non-private    *       static factory method whose return type is {@code cls} or {@code cls}'s subtype.    *</ul>    */
 DECL|method|testNulls (Class<?> cls)
 specifier|public
 name|void
@@ -1204,7 +1204,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/**    * Tests the {@link Object#equals} and {@link Object#hashCode} of {@code cls}. In details:    *<ul>    *<li>The non-private constructor or non-private static factory method with the most parameters    *     is used to construct the sample instances. In case of tie, the candidate constructors or    *     factories are tried one after another until one can be used to construct sample instances.    *<li>For the constructor or static factory method used to construct instances, it's checked that    *     when equal parameters are passed, the result instance should also be equal; and vice versa.    *<li>If a non-private constructor or non-private static factory method exists:<ul>    *<li>Test will fail if default value for a parameter cannot be determined.    *<li>Test will fail if the factory method returns null so testing instance methods is    *         impossible.    *<li>Test will fail if the constructor or factory method throws exception.    *</ul>    *<li>If there is no non-private constructor or non-private static factory method declared by    *     {@code cls}, no test is performed.    *<li>Equality test is not performed on method return values unless the method is a non-private    *     static factory method whose return type is {@code cls} or {@code cls}'s subtype.    *<li>Inequality check is not performed against state mutation methods such as {@link List#add},    *     or functional update methods such as {@link com.google.common.base.Joiner#skipNulls}.    *</ul>    *    *<p>Note that constructors taking a builder object cannot be tested effectively because    * semantics of builder can be arbitrarily complex. Still, a factory class can be created in the    * test to facilitate equality testing. For example:<pre>    * public class FooTest {    *    *   private static class FooFactoryForTest {    *     public static Foo create(String a, String b, int c, boolean d) {    *       return Foo.builder()    *           .setA(a)    *           .setB(b)    *           .setC(c)    *           .setD(d)    *           .build();    *     }    *   }    *    *   public void testEquals() {    *     new ClassSanityTester()    *       .forAllPublicStaticMethods(FooFactoryForTest.class)    *       .thatReturn(Foo.class)    *       .testEquals();    *   }    * }    *</pre>    *<p>It will test that Foo objects created by the {@code create(a, b, c, d)} factory method with    * equal parameters are equal and vice versa, thus indirectly tests the builder equality.    */
+comment|/**    * Tests the {@link Object#equals} and {@link Object#hashCode} of {@code cls}. In details:    *    *<ul>    *<li>The non-private constructor or non-private static factory method with the most parameters    *       is used to construct the sample instances. In case of tie, the candidate constructors or    *       factories are tried one after another until one can be used to construct sample    *       instances.    *<li>For the constructor or static factory method used to construct instances, it's checked    *       that when equal parameters are passed, the result instance should also be equal; and vice    *       versa.    *<li>If a non-private constructor or non-private static factory method exists:    *<ul>    *<li>Test will fail if default value for a parameter cannot be determined.    *<li>Test will fail if the factory method returns null so testing instance methods is    *             impossible.    *<li>Test will fail if the constructor or factory method throws exception.    *</ul>    *<li>If there is no non-private constructor or non-private static factory method declared by    *       {@code cls}, no test is performed.    *<li>Equality test is not performed on method return values unless the method is a non-private    *       static factory method whose return type is {@code cls} or {@code cls}'s subtype.    *<li>Inequality check is not performed against state mutation methods such as {@link    *       List#add}, or functional update methods such as {@link    *       com.google.common.base.Joiner#skipNulls}.    *</ul>    *    *<p>Note that constructors taking a builder object cannot be tested effectively because    * semantics of builder can be arbitrarily complex. Still, a factory class can be created in the    * test to facilitate equality testing. For example:    *    *<pre>    * public class FooTest {    *    *   private static class FooFactoryForTest {    *     public static Foo create(String a, String b, int c, boolean d) {    *       return Foo.builder()    *           .setA(a)    *           .setB(b)    *           .setC(c)    *           .setD(d)    *           .build();    *     }    *   }    *    *   public void testEquals() {    *     new ClassSanityTester()    *       .forAllPublicStaticMethods(FooFactoryForTest.class)    *       .thatReturn(Foo.class)    *       .testEquals();    *   }    * }    *</pre>    *    *<p>It will test that Foo objects created by the {@code create(a, b, c, d)} factory method with    * equal parameters are equal and vice versa, thus indirectly tests the builder equality.    */
 DECL|method|testEquals (Class<?> cls)
 specifier|public
 name|void
@@ -1489,14 +1489,14 @@ name|nullErrors
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Instantiates {@code cls} by invoking one of its non-private constructors or non-private static    * factory methods with the parameters automatically provided using dummy values.    *    * @return The instantiated instance, or {@code null} if the class has no non-private constructor    *         or factory method to be constructed.    */
-DECL|method|instantiate (Class<T> cls)
+comment|/**    * Instantiates {@code cls} by invoking one of its non-private constructors or non-private static    * factory methods with the parameters automatically provided using dummy values.    *    * @return The instantiated instance, or {@code null} if the class has no non-private constructor    *     or factory method to be constructed.    */
 annotation|@
 name|javax
 operator|.
 name|annotation
 operator|.
 name|Nullable
+DECL|method|instantiate (Class<T> cls)
 argument_list|<
 name|T
 argument_list|>
@@ -1710,7 +1710,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**    * Returns an object responsible for performing sanity tests against the return values    * of all public static methods declared by {@code cls}, excluding superclasses.    */
+comment|/**    * Returns an object responsible for performing sanity tests against the return values of all    * public static methods declared by {@code cls}, excluding superclasses.    */
 DECL|method|forAllPublicStaticMethods (Class<?> cls)
 specifier|public
 name|FactoryMethodReturnValueTester
@@ -2433,14 +2433,14 @@ name|factoriesToTest
 return|;
 block|}
 block|}
-comment|/**    * Instantiates using {@code factory}. If {@code factory} is annotated with {@link javax.annotation.Nullable} and    * returns null, null will be returned.    *    * @throws ParameterNotInstantiableException if the static methods cannot be invoked because    *         the default value of a parameter cannot be determined.    * @throws IllegalAccessException if the class isn't public or is nested inside a non-public    *         class, preventing its methods from being accessible.    * @throws InvocationTargetException if a static method threw exception.    */
-DECL|method|instantiate (Invokable<?, ? extends T> factory)
+comment|/**    * Instantiates using {@code factory}. If {@code factory} is annotated with {@link    * javax.annotation.Nullable} and returns null, null will be returned.    *    * @throws ParameterNotInstantiableException if the static methods cannot be invoked because the    *     default value of a parameter cannot be determined.    * @throws IllegalAccessException if the class isn't public or is nested inside a non-public    *     class, preventing its methods from being accessible.    * @throws InvocationTargetException if a static method threw exception.    */
 annotation|@
 name|javax
 operator|.
 name|annotation
 operator|.
 name|Nullable
+DECL|method|instantiate (Invokable<?, ? extends T> factory)
 specifier|private
 parameter_list|<
 name|T
@@ -3226,13 +3226,13 @@ return|return
 name|generator
 return|;
 block|}
-DECL|method|generateDummyArg (Parameter param, FreshValueGenerator generator)
 annotation|@
 name|javax
 operator|.
 name|annotation
 operator|.
 name|Nullable
+DECL|method|generateDummyArg (Parameter param, FreshValueGenerator generator)
 specifier|private
 specifier|static
 name|Object
@@ -3874,13 +3874,13 @@ return|return
 name|instance
 return|;
 block|}
-DECL|method|invoke (Invokable<?, ? extends T> factory, List<?> args)
 annotation|@
 name|javax
 operator|.
 name|annotation
 operator|.
 name|Nullable
+DECL|method|invoke (Invokable<?, ? extends T> factory, List<?> args)
 specifier|private
 specifier|static
 parameter_list|<
@@ -3960,9 +3960,9 @@ name|returnValue
 return|;
 block|}
 comment|/**    * Thrown if the test tries to invoke a constructor or static factory method but failed because    * the dummy value of a constructor or method parameter is unknown.    */
-DECL|class|ParameterNotInstantiableException
 annotation|@
 name|VisibleForTesting
+DECL|class|ParameterNotInstantiableException
 specifier|static
 class|class
 name|ParameterNotInstantiableException
@@ -3994,9 +3994,9 @@ expr_stmt|;
 block|}
 block|}
 comment|/**    * Thrown if the test fails to generate two distinct non-null values of a constructor or factory    * parameter in order to test {@link Object#equals} and {@link Object#hashCode} of the declaring    * class.    */
-DECL|class|ParameterHasNoDistinctValueException
 annotation|@
 name|VisibleForTesting
+DECL|class|ParameterHasNoDistinctValueException
 specifier|static
 class|class
 name|ParameterHasNoDistinctValueException
@@ -4027,9 +4027,9 @@ expr_stmt|;
 block|}
 block|}
 comment|/**    * Thrown if the test tries to invoke a static factory method to test instance methods but the    * factory returned null.    */
-DECL|class|FactoryMethodReturnsNullException
 annotation|@
 name|VisibleForTesting
+DECL|class|FactoryMethodReturnsNullException
 specifier|static
 class|class
 name|FactoryMethodReturnsNullException
@@ -4090,9 +4090,9 @@ operator|=
 name|tester
 expr_stmt|;
 block|}
-DECL|method|dummyReturnValue (TypeToken<R> returnType)
 annotation|@
 name|Override
+DECL|method|dummyReturnValue (TypeToken<R> returnType)
 argument_list|<
 name|R
 argument_list|>
@@ -4115,9 +4115,9 @@ name|returnType
 argument_list|)
 return|;
 block|}
-DECL|method|equals (Object obj)
 annotation|@
 name|Override
+DECL|method|equals (Object obj)
 specifier|public
 name|boolean
 name|equals
@@ -4132,9 +4132,9 @@ operator|instanceof
 name|SerializableDummyProxy
 return|;
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode

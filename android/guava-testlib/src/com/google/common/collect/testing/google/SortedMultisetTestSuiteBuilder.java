@@ -403,7 +403,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Creates, based on your criteria, a JUnit test suite that exhaustively tests a  * {@code SortedMultiset} implementation.  *  *<p><b>Warning:</b> expects that {@code E} is a String.  *  * @author Louis Wasserman  */
+comment|/**  * Creates, based on your criteria, a JUnit test suite that exhaustively tests a {@code  * SortedMultiset} implementation.  *  *<p><b>Warning:</b> expects that {@code E} is a String.  *  * @author Louis Wasserman  */
 end_comment
 
 begin_class
@@ -634,7 +634,7 @@ name|createTestSuite
 argument_list|()
 return|;
 block|}
-comment|/**    * To avoid infinite recursion, test suites with these marker features won't    * have derived suites created for them.    */
+comment|/**    * To avoid infinite recursion, test suites with these marker features won't have derived suites    * created for them.    */
 DECL|enum|NoRecurse
 enum|enum
 name|NoRecurse
@@ -674,7 +674,7 @@ argument_list|()
 return|;
 block|}
 block|}
-comment|/**    * Two bounds (from and to) define how to build a subMultiset.    */
+comment|/** Two bounds (from and to) define how to build a subMultiset. */
 DECL|enum|Bound
 enum|enum
 name|Bound
@@ -1487,7 +1487,7 @@ name|createTestSuite
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns an array of four bogus elements that will always be too high or too    * low for the display. This includes two values for each extreme.    *    *<p>    * This method (dangerously) assume that the strings {@code "!! a"} and    * {@code "~~ z"} will work for this purpose, which may cause problems for    * navigable maps with non-string or unicode generators.    */
+comment|/**    * Returns an array of four bogus elements that will always be too high or too low for the    * display. This includes two values for each extreme.    *    *<p>This method (dangerously) assume that the strings {@code "!! a"} and {@code "~~ z"} will    * work for this purpose, which may cause problems for navigable maps with non-string or unicode    * generators.    */
 DECL|method|getExtremeValues ()
 specifier|private
 name|List

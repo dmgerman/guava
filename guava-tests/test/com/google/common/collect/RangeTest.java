@@ -4831,7 +4831,7 @@ parameter_list|(
 name|NoSuchElementException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testEncloseAll_nullValue ()
 specifier|public
@@ -4872,7 +4872,7 @@ parameter_list|(
 name|NullPointerException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 name|List
 argument_list|<
 name|Integer
@@ -4906,7 +4906,7 @@ parameter_list|(
 name|NullPointerException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testEquivalentFactories ()
 specifier|public

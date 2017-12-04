@@ -873,7 +873,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * A Future that doesn't implement ListenableFuture, useful for testing    * listenInPoolThread.    */
+comment|/** A Future that doesn't implement ListenableFuture, useful for testing listenInPoolThread. */
 DECL|class|NonListenableSettableFuture
 specifier|private
 specifier|static
@@ -923,9 +923,9 @@ operator|.
 name|create
 argument_list|()
 decl_stmt|;
-DECL|method|delegate ()
 annotation|@
 name|Override
+DECL|method|delegate ()
 specifier|protected
 name|Future
 argument_list|<

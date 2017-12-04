@@ -171,7 +171,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Provides utility methods for working with character streams.  *  *<p>All method parameters must be non-null unless documented otherwise.  *  *<p>Some of the methods in this class take arguments with a generic type of  * {@code Readable& Closeable}. A {@link java.io.Reader} implements both of those interfaces.  * Similarly for {@code Appendable& Closeable} and {@link java.io.Writer}.  *  * @author Chris Nokleberg  * @author Bin Zhu  * @author Colin Decker  * @since 1.0  */
+comment|/**  * Provides utility methods for working with character streams.  *  *<p>All method parameters must be non-null unless documented otherwise.  *  *<p>Some of the methods in this class take arguments with a generic type of {@code Readable&  * Closeable}. A {@link java.io.Reader} implements both of those interfaces. Similarly for {@code  * Appendable& Closeable} and {@link java.io.Writer}.  *  * @author Chris Nokleberg  * @author Bin Zhu  * @author Colin Decker  * @since 1.0  */
 end_comment
 
 begin_class
@@ -195,7 +195,7 @@ name|DEFAULT_BUF_SIZE
 init|=
 literal|0x800
 decl_stmt|;
-comment|/**    * Creates a new {@code CharBuffer} for buffering reads or writes.    */
+comment|/** Creates a new {@code CharBuffer} for buffering reads or writes. */
 DECL|method|createBuffer ()
 specifier|static
 name|CharBuffer
@@ -592,7 +592,7 @@ return|return
 name|sb
 return|;
 block|}
-comment|/**    * Reads all of the lines from a {@link Readable} object. The lines do not include    * line-termination characters, but do include other leading and trailing whitespace.    *    *<p>Does not close the {@code Readable}. If reading files or resources you should use the    * {@link Files#readLines} and {@link Resources#readLines} methods.    *    * @param r the object to read from    * @return a mutable {@link List} containing all the lines    * @throws IOException if an I/O error occurs    */
+comment|/**    * Reads all of the lines from a {@link Readable} object. The lines do not include    * line-termination characters, but do include other leading and trailing whitespace.    *    *<p>Does not close the {@code Readable}. If reading files or resources you should use the {@link    * Files#readLines} and {@link Resources#readLines} methods.    *    * @param r the object to read from    * @return a mutable {@link List} containing all the lines    * @throws IOException if an I/O error occurs    */
 DECL|method|readLines (Readable r)
 specifier|public
 specifier|static
@@ -739,7 +739,7 @@ name|getResult
 argument_list|()
 return|;
 block|}
-comment|/**    * Reads and discards data from the given {@code Readable} until the end of the stream is    * reached. Returns the total number of chars read. Does not close the stream.    *    * @since 20.0    */
+comment|/**    * Reads and discards data from the given {@code Readable} until the end of the stream is reached.    * Returns the total number of chars read. Does not close the stream.    *    * @since 20.0    */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|exhaust (Readable readable)

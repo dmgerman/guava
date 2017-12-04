@@ -125,7 +125,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This class implements the GWT serialization of  * {@link RegularImmutableSortedSet}.  *  * @author Chris Povirk  */
+comment|/**  * This class implements the GWT serialization of {@link RegularImmutableSortedSet}.  *  * @author Chris Povirk  */
 end_comment
 
 begin_class

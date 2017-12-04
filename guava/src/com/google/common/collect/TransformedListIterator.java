@@ -55,7 +55,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An iterator that transforms a backing list iterator; for internal use. This  * avoids the object overhead of constructing a {@link Function} for internal  * methods.  *  * @author Louis Wasserman  */
+comment|/**  * An iterator that transforms a backing list iterator; for internal use. This avoids the object  * overhead of constructing a {@link Function} for internal methods.  *  * @author Louis Wasserman  */
 end_comment
 
 begin_class

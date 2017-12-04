@@ -235,7 +235,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A generic JUnit test which tests operations on a NavigableMap. Can't be  * invoked directly; please see {@code NavigableMapTestSuiteBuilder}.  *  * @author Jesse Wilson  * @author Louis Wasserman  */
+comment|/**  * A generic JUnit test which tests operations on a NavigableMap. Can't be invoked directly; please  * see {@code NavigableMapTestSuiteBuilder}.  *  * @author Jesse Wilson  * @author Louis Wasserman  */
 end_comment
 
 begin_class
@@ -434,7 +434,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**    * Resets the contents of navigableMap to have entries a, c, for the    * navigation tests.    */
+comment|/** Resets the contents of navigableMap to have entries a, c, for the navigation tests. */
 annotation|@
 name|SuppressWarnings
 argument_list|(

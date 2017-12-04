@@ -100,7 +100,7 @@ specifier|private
 name|Comparators
 parameter_list|()
 block|{}
-comment|/**    * Returns a new comparator which sorts iterables by comparing corresponding elements pairwise    * until a nonzero result is found; imposes "dictionary order." If the end of one iterable is    * reached, but not the other, the shorter iterable is considered to be less than the longer one.    * For example, a lexicographical natural ordering over integers considers {@code    * []< [1]< [1, 1]< [1, 2]< [2]}.    *    *<p>Note that {@code Collections.reverseOrder(lexicographical(comparator))} is not    * equivalent to {@code lexicographical(Collections.reverseOrder(comparator))} (consider how each    * would order {@code [1]} and {@code [1, 1]}).    */
+comment|/**    * Returns a new comparator which sorts iterables by comparing corresponding elements pairwise    * until a nonzero result is found; imposes "dictionary order." If the end of one iterable is    * reached, but not the other, the shorter iterable is considered to be less than the longer one.    * For example, a lexicographical natural ordering over integers considers {@code []< [1]< [1,    * 1]< [1, 2]< [2]}.    *    *<p>Note that {@code Collections.reverseOrder(lexicographical(comparator))} is not equivalent to    * {@code lexicographical(Collections.reverseOrder(comparator))} (consider how each would order    * {@code [1]} and {@code [1, 1]}).    */
 comment|// Note: 90% of the time we don't add type parameters or wildcards that serve only to "tweak" the
 comment|// desired return type. However, *nested* generics introduce a special class of problems that we
 comment|// think tip it over into being worthwhile.
@@ -144,7 +144,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns {@code true} if each element in {@code iterable} after the first is greater than or    * equal to the element that preceded it, according to the specified comparator. Note that this    * is always true when the iterable has fewer than two elements.    */
+comment|/**    * Returns {@code true} if each element in {@code iterable} after the first is greater than or    * equal to the element that preceded it, according to the specified comparator. Note that this is    * always true when the iterable has fewer than two elements.    */
 DECL|method|isInOrder (Iterable<? extends T> iterable, Comparator<T> comparator)
 specifier|public
 specifier|static

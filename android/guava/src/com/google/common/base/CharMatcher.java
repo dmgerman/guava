@@ -127,7 +127,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Determines a true or false value for any Java {@code char} value, just as {@link Predicate} does  * for any {@link Object}. Also offers basic text processing methods based on this function.  * Implementations are strongly encouraged to be side-effect-free and immutable.  *  *<p>Throughout the documentation of this class, the phrase "matching character" is used to mean  * "any {@code char} value {@code c} for which {@code this.matches(c)} returns {@code true}".  *  *<p><b>Warning:</b> This class deals only with {@code char} values, that is,  *<a href="http://www.unicode.org/glossary/#BMP_character">BMP characters</a>.  * It does not understand  *<a href="http://www.unicode.org/glossary/#supplementary_code_point">supplementary Unicode  * code points</a> in the range {@code 0x10000} to {@code 0x10FFFF}  * which includes the majority of assigned characters, including important CJK characters and emoji.  *  *<p>Supplementary characters are  *<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Character.html#supplementary">  * encoded into a {@code String} using surrogate pairs</a>,  * and a {@code CharMatcher} treats these just as two separate characters.  * {@link #countIn} counts each supplementary character as 2 {@code char}s.  *  *<p>For up-to-date Unicode character properties (digit, letter, etc.) and support for  * supplementary code points, use ICU4J UCharacter and UnicodeSet (freeze() after building).  * For basic text processing based on UnicodeSet use the ICU4J UnicodeSetSpanner.  *  *<p>Example usages:  *  *<pre>  *   String trimmed = {@link #whitespace() whitespace()}.{@link #trimFrom trimFrom}(userInput);  *   if ({@link #ascii() ascii()}.{@link #matchesAllOf matchesAllOf}(s)) { ... }</pre>  *  *<p>See the Guava User Guide article on<a  * href="https://github.com/google/guava/wiki/StringsExplained#charmatcher">{@code CharMatcher}  *</a>.  *  * @author Kevin Bourrillion  * @since 1.0  */
+comment|/**  * Determines a true or false value for any Java {@code char} value, just as {@link Predicate} does  * for any {@link Object}. Also offers basic text processing methods based on this function.  * Implementations are strongly encouraged to be side-effect-free and immutable.  *  *<p>Throughout the documentation of this class, the phrase "matching character" is used to mean  * "any {@code char} value {@code c} for which {@code this.matches(c)} returns {@code true}".  *  *<p><b>Warning:</b> This class deals only with {@code char} values, that is,<a  * href="http://www.unicode.org/glossary/#BMP_character">BMP characters</a>. It does not understand  *<a href="http://www.unicode.org/glossary/#supplementary_code_point">supplementary Unicode code  * points</a> in the range {@code 0x10000} to {@code 0x10FFFF} which includes the majority of  * assigned characters, including important CJK characters and emoji.  *  *<p>Supplementary characters are<a  * href="https://docs.oracle.com/javase/8/docs/api/java/lang/Character.html#supplementary">encoded  * into a {@code String} using surrogate pairs</a>, and a {@code CharMatcher} treats these just as  * two separate characters. {@link #countIn} counts each supplementary character as 2 {@code char}s.  *  *<p>For up-to-date Unicode character properties (digit, letter, etc.) and support for  * supplementary code points, use ICU4J UCharacter and UnicodeSet (freeze() after building). For  * basic text processing based on UnicodeSet use the ICU4J UnicodeSetSpanner.  *  *<p>Example usages:  *  *<pre>  *   String trimmed = {@link #whitespace() whitespace()}.{@link #trimFrom trimFrom}(userInput);  *   if ({@link #ascii() ascii()}.{@link #matchesAllOf matchesAllOf}(s)) { ... }</pre>  *  *<p>See the Guava User Guide article on<a  * href="https://github.com/google/guava/wiki/StringsExplained#charmatcher">{@code CharMatcher}  *</a>.  *  * @author Kevin Bourrillion  * @since 1.0  */
 end_comment
 
 begin_class
@@ -179,7 +179,7 @@ operator|.
 name|INSTANCE
 return|;
 block|}
-comment|/**    * Determines whether a character is whitespace according to the latest Unicode standard, as    * illustrated    *<a href="http://unicode.org/cldr/utility/list-unicodeset.jsp?a=%5Cp%7Bwhitespace%7D">here</a>.    * This is not the same definition used by other Java APIs. (See a    *<a href="https://goo.gl/Y6SLWx">comparison of several definitions of    * "whitespace"</a>.)    *    *<p>All Unicode White_Space characters are on the BMP and thus supported by this API.    *    *<p><b>Note:</b> as the Unicode definition evolves, we will modify this matcher to keep it up to    * date.    *    * @since 19.0 (since 1.0 as constant {@code WHITESPACE})    */
+comment|/**    * Determines whether a character is whitespace according to the latest Unicode standard, as    * illustrated<a    * href="http://unicode.org/cldr/utility/list-unicodeset.jsp?a=%5Cp%7Bwhitespace%7D">here</a>.    * This is not the same definition used by other Java APIs. (See a<a    * href="https://goo.gl/Y6SLWx">comparison of several definitions of "whitespace"</a>.)    *    *<p>All Unicode White_Space characters are on the BMP and thus supported by this API.    *    *<p><b>Note:</b> as the Unicode definition evolves, we will modify this matcher to keep it up to    * date.    *    * @since 19.0 (since 1.0 as constant {@code WHITESPACE})    */
 DECL|method|whitespace ()
 specifier|public
 specifier|static
@@ -221,7 +221,7 @@ operator|.
 name|INSTANCE
 return|;
 block|}
-comment|/**    * Determines whether a character is a BMP digit according to    *<a href="http://unicode.org/cldr/utility/list-unicodeset.jsp?a=%5Cp%7Bdigit%7D">Unicode</a>. If    * you only care to match ASCII digits, you can use {@code inRange('0', '9')}.    *    * @deprecated Many digits are supplementary characters; see the class documentation.    * @since 19.0 (since 1.0 as constant {@code DIGIT})    */
+comment|/**    * Determines whether a character is a BMP digit according to<a    * href="http://unicode.org/cldr/utility/list-unicodeset.jsp?a=%5Cp%7Bdigit%7D">Unicode</a>. If    * you only care to match ASCII digits, you can use {@code inRange('0', '9')}.    *    * @deprecated Many digits are supplementary characters; see the class documentation.    * @since 19.0 (since 1.0 as constant {@code DIGIT})    */
 annotation|@
 name|Deprecated
 DECL|method|digit ()
@@ -253,7 +253,7 @@ operator|.
 name|INSTANCE
 return|;
 block|}
-comment|/**    * Determines whether a character is a BMP letter according to    * {@linkplain Character#isLetter(char) Java's definition}.    * If you only care to match letters of the Latin alphabet, you can use    * {@code inRange('a', 'z').or(inRange('A', 'Z'))}.    *    * @deprecated Most letters are supplementary characters; see the class documentation.    * @since 19.0 (since 1.0 as constant {@code JAVA_LETTER})    */
+comment|/**    * Determines whether a character is a BMP letter according to {@linkplain    * Character#isLetter(char) Java's definition}. If you only care to match letters of the Latin    * alphabet, you can use {@code inRange('a', 'z').or(inRange('A', 'Z'))}.    *    * @deprecated Most letters are supplementary characters; see the class documentation.    * @since 19.0 (since 1.0 as constant {@code JAVA_LETTER})    */
 annotation|@
 name|Deprecated
 DECL|method|javaLetter ()
@@ -269,7 +269,7 @@ operator|.
 name|INSTANCE
 return|;
 block|}
-comment|/**    * Determines whether a character is a BMP letter or digit according to    * {@linkplain Character#isLetterOrDigit(char) Java's definition}.    *    * @deprecated Most letters and digits are supplementary characters; see the class documentation.    * @since 19.0 (since 1.0 as constant {@code JAVA_LETTER_OR_DIGIT}).    */
+comment|/**    * Determines whether a character is a BMP letter or digit according to {@linkplain    * Character#isLetterOrDigit(char) Java's definition}.    *    * @deprecated Most letters and digits are supplementary characters; see the class documentation.    * @since 19.0 (since 1.0 as constant {@code JAVA_LETTER_OR_DIGIT}).    */
 annotation|@
 name|Deprecated
 DECL|method|javaLetterOrDigit ()
@@ -285,7 +285,7 @@ operator|.
 name|INSTANCE
 return|;
 block|}
-comment|/**    * Determines whether a BMP character is upper case according to    * {@linkplain Character#isUpperCase(char) Java's definition}.    *    * @deprecated Some uppercase characters are supplementary characters;    *     see the class documentation.    * @since 19.0 (since 1.0 as constant {@code JAVA_UPPER_CASE})    */
+comment|/**    * Determines whether a BMP character is upper case according to {@linkplain    * Character#isUpperCase(char) Java's definition}.    *    * @deprecated Some uppercase characters are supplementary characters; see the class    *     documentation.    * @since 19.0 (since 1.0 as constant {@code JAVA_UPPER_CASE})    */
 annotation|@
 name|Deprecated
 DECL|method|javaUpperCase ()
@@ -301,7 +301,7 @@ operator|.
 name|INSTANCE
 return|;
 block|}
-comment|/**    * Determines whether a BMP character is lower case according to    * {@linkplain Character#isLowerCase(char) Java's definition}.    *    * @deprecated Some lowercase characters are supplementary characters;    *     see the class documentation.    * @since 19.0 (since 1.0 as constant {@code JAVA_LOWER_CASE})    */
+comment|/**    * Determines whether a BMP character is lower case according to {@linkplain    * Character#isLowerCase(char) Java's definition}.    *    * @deprecated Some lowercase characters are supplementary characters; see the class    *     documentation.    * @since 19.0 (since 1.0 as constant {@code JAVA_LOWER_CASE})    */
 annotation|@
 name|Deprecated
 DECL|method|javaLowerCase ()
@@ -317,7 +317,7 @@ operator|.
 name|INSTANCE
 return|;
 block|}
-comment|/**    * Determines whether a character is an ISO control character as specified by    * {@link Character#isISOControl(char)}.    *    *<p>All ISO control codes are on the BMP and thus supported by this API.    *    * @since 19.0 (since 1.0 as constant {@code JAVA_ISO_CONTROL})    */
+comment|/**    * Determines whether a character is an ISO control character as specified by {@link    * Character#isISOControl(char)}.    *    *<p>All ISO control codes are on the BMP and thus supported by this API.    *    * @since 19.0 (since 1.0 as constant {@code JAVA_ISO_CONTROL})    */
 DECL|method|javaIsoControl ()
 specifier|public
 specifier|static
@@ -331,7 +331,7 @@ operator|.
 name|INSTANCE
 return|;
 block|}
-comment|/**    * Determines whether a character is invisible; that is, if its Unicode category is any of    * SPACE_SEPARATOR, LINE_SEPARATOR, PARAGRAPH_SEPARATOR, CONTROL, FORMAT, SURROGATE, and    * PRIVATE_USE according to ICU4J.    *    *<p>See also the Unicode Default_Ignorable_Code_Point property (available via ICU).    *    * @deprecated Most invisible characters are supplementary characters;    *     see the class documentation.    * @since 19.0 (since 1.0 as constant {@code INVISIBLE})    */
+comment|/**    * Determines whether a character is invisible; that is, if its Unicode category is any of    * SPACE_SEPARATOR, LINE_SEPARATOR, PARAGRAPH_SEPARATOR, CONTROL, FORMAT, SURROGATE, and    * PRIVATE_USE according to ICU4J.    *    *<p>See also the Unicode Default_Ignorable_Code_Point property (available via ICU).    *    * @deprecated Most invisible characters are supplementary characters; see the class    *     documentation.    * @since 19.0 (since 1.0 as constant {@code INVISIBLE})    */
 annotation|@
 name|Deprecated
 DECL|method|invisible ()
@@ -364,7 +364,7 @@ name|INSTANCE
 return|;
 block|}
 comment|// Legacy constants
-comment|/**    * Determines whether a character is whitespace according to the latest Unicode    * standard, as illustrated    *<a href="http://unicode.org/cldr/utility/list-unicodeset.jsp?a=%5Cp%7Bwhitespace%7D">here</a>.    * This is not the same definition used by other Java APIs. (See a    *<a href="https://goo.gl/Y6SLWx">comparison of several definitions of    * "whitespace"</a>.)    *    *<p><b>Note:</b> as the Unicode definition evolves, we will modify this constant    * to keep it up to date.    *    * @deprecated Use {@link #whitespace()} instead. This constant is scheduled to be    *     removed in June 2018.    */
+comment|/**    * Determines whether a character is whitespace according to the latest Unicode    * standard, as illustrated    *<a   // href="http://unicode.org/cldr/utility/list-unicodeset.jsp?a=%5Cp%7Bwhitespace%7D">here</a>.    * This is not the same definition used by other Java APIs. (See a    *<a href="https://goo.gl/Y6SLWx">comparison of several definitions of    * "whitespace"</a>.)    *    *<p><b>Note:</b> as the Unicode definition evolves, we will modify this constant    * to keep it up to date.    *    * @deprecated Use {@link #whitespace()} instead. This constant is scheduled to be    *     removed in June 2018.    */
 annotation|@
 name|com
 operator|.
@@ -687,7 +687,7 @@ name|none
 argument_list|()
 decl_stmt|;
 comment|// Static factories
-comment|/**    * Returns a {@code char} matcher that matches only one specified BMP character.    */
+comment|/** Returns a {@code char} matcher that matches only one specified BMP character. */
 DECL|method|is (final char match)
 specifier|public
 specifier|static
@@ -883,7 +883,7 @@ argument_list|)
 return|;
 block|}
 comment|// Constructors
-comment|/**    * Constructor for use by subclasses. When subclassing, you may want to override    * {@code toString()} to provide a useful description.    */
+comment|/**    * Constructor for use by subclasses. When subclassing, you may want to override {@code    * toString()} to provide a useful description.    */
 DECL|method|CharMatcher ()
 specifier|protected
 name|CharMatcher
@@ -902,7 +902,7 @@ name|c
 parameter_list|)
 function_decl|;
 comment|// Non-static factories
-comment|/**    * Returns a matcher that matches any character not matched by this matcher.    */
+comment|/** Returns a matcher that matches any character not matched by this matcher. */
 comment|// @Override under Java 8 but not under Java 7
 DECL|method|negate ()
 specifier|public
@@ -1295,7 +1295,7 @@ operator|)
 return|;
 comment|// err on the side of BitSetMatcher
 block|}
-comment|/**    * Sets bits in {@code table} matched by this matcher.    */
+comment|/** Sets bits in {@code table} matched by this matcher. */
 annotation|@
 name|GwtIncompatible
 comment|// used only from other GwtIncompatible code
@@ -1419,7 +1419,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/**    * Returns {@code true} if a character sequence contains no matching BMP characters. Equivalent to    * {@code !matchesAnyOf(sequence)}.    *    *<p>The default implementation iterates over the sequence, invoking {@link #matches} for each    * character, until this returns {@code true} or the end is reached.    *    * @param sequence the character sequence to examine, possibly empty    * @return {@code true} if this matcher matches no characters in the sequence, including when    *     the sequence is empty    */
+comment|/**    * Returns {@code true} if a character sequence contains no matching BMP characters. Equivalent to    * {@code !matchesAnyOf(sequence)}.    *    *<p>The default implementation iterates over the sequence, invoking {@link #matches} for each    * character, until this returns {@code true} or the end is reached.    *    * @param sequence the character sequence to examine, possibly empty    * @return {@code true} if this matcher matches no characters in the sequence, including when the    *     sequence is empty    */
 DECL|method|matchesNoneOf (CharSequence sequence)
 specifier|public
 name|boolean
@@ -1439,7 +1439,7 @@ operator|-
 literal|1
 return|;
 block|}
-comment|/**    * Returns the index of the first matching BMP character in a character sequence,    * or {@code -1} if no matching character is present.    *    *<p>The default implementation iterates over the sequence in forward order calling    * {@link #matches} for each character.    *    * @param sequence the character sequence to examine from the beginning    * @return an index, or {@code -1} if no character matches    */
+comment|/**    * Returns the index of the first matching BMP character in a character sequence, or {@code -1} if    * no matching character is present.    *    *<p>The default implementation iterates over the sequence in forward order calling {@link    * #matches} for each character.    *    * @param sequence the character sequence to examine from the beginning    * @return an index, or {@code -1} if no character matches    */
 DECL|method|indexIn (CharSequence sequence)
 specifier|public
 name|int
@@ -1458,7 +1458,7 @@ literal|0
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the index of the first matching BMP character in a character sequence, starting from a    * given position, or {@code -1} if no character matches after that position.    *    *<p>The default implementation iterates over the sequence in forward order, beginning at {@code    * start}, calling {@link #matches} for each character.    *    * @param sequence the character sequence to examine    * @param start the first index to examine; must be nonnegative and no greater than {@code    *        sequence.length()}    * @return the index of the first matching character, guaranteed to be no less than {@code start},    *     or {@code -1} if no character matches    * @throws IndexOutOfBoundsException if start is negative or greater than {@code    *         sequence.length()}    */
+comment|/**    * Returns the index of the first matching BMP character in a character sequence, starting from a    * given position, or {@code -1} if no character matches after that position.    *    *<p>The default implementation iterates over the sequence in forward order, beginning at {@code    * start}, calling {@link #matches} for each character.    *    * @param sequence the character sequence to examine    * @param start the first index to examine; must be nonnegative and no greater than {@code    *     sequence.length()}    * @return the index of the first matching character, guaranteed to be no less than {@code start},    *     or {@code -1} if no character matches    * @throws IndexOutOfBoundsException if start is negative or greater than {@code    *     sequence.length()}    */
 DECL|method|indexIn (CharSequence sequence, int start)
 specifier|public
 name|int
@@ -1524,7 +1524,7 @@ operator|-
 literal|1
 return|;
 block|}
-comment|/**    * Returns the index of the last matching BMP character in a character sequence,    * or {@code -1} if no matching character is present.    *    *<p>The default implementation iterates over the sequence in reverse order calling    * {@link #matches} for each character.    *    * @param sequence the character sequence to examine from the end    * @return an index, or {@code -1} if no character matches    */
+comment|/**    * Returns the index of the last matching BMP character in a character sequence, or {@code -1} if    * no matching character is present.    *    *<p>The default implementation iterates over the sequence in reverse order calling {@link    * #matches} for each character.    *    * @param sequence the character sequence to examine from the end    * @return an index, or {@code -1} if no character matches    */
 DECL|method|lastIndexIn (CharSequence sequence)
 specifier|public
 name|int
@@ -1632,7 +1632,7 @@ return|return
 name|count
 return|;
 block|}
-comment|/**    * Returns a string containing all non-matching characters of a character sequence, in order. For    * example:<pre>   {@code    *    *   CharMatcher.is('a').removeFrom("bazaar")}</pre>    *    * ... returns {@code "bzr"}.    */
+comment|/**    * Returns a string containing all non-matching characters of a character sequence, in order. For    * example:    *    *<pre>{@code    * CharMatcher.is('a').removeFrom("bazaar")    * }</pre>    *    * ... returns {@code "bzr"}.    */
 DECL|method|removeFrom (CharSequence sequence)
 specifier|public
 name|String
@@ -1760,7 +1760,7 @@ name|spread
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a string containing all matching BMP characters of a character sequence, in order. For    * example:<pre>   {@code    *    *   CharMatcher.is('a').retainFrom("bazaar")}</pre>    *    * ... returns {@code "aaa"}.    */
+comment|/**    * Returns a string containing all matching BMP characters of a character sequence, in order. For    * example:    *    *<pre>{@code    * CharMatcher.is('a').retainFrom("bazaar")    * }</pre>    *    * ... returns {@code "aaa"}.    */
 DECL|method|retainFrom (CharSequence sequence)
 specifier|public
 name|String
@@ -1780,7 +1780,7 @@ name|sequence
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a string copy of the input character sequence, with each matching BMP character    * replaced by a given replacement character. For example:<pre>   {@code    *    *   CharMatcher.is('a').replaceFrom("radar", 'o')}</pre>    *    * ... returns {@code "rodor"}.    *    *<p>The default implementation uses {@link #indexIn(CharSequence)} to find the first matching    * character, then iterates the remainder of the sequence calling {@link #matches(char)} for each    * character.    *    * @param sequence the character sequence to replace matching characters in    * @param replacement the character to append to the result string in place of each matching    *     character in {@code sequence}    * @return the new string    */
+comment|/**    * Returns a string copy of the input character sequence, with each matching BMP character    * replaced by a given replacement character. For example:    *    *<pre>{@code    * CharMatcher.is('a').replaceFrom("radar", 'o')    * }</pre>    *    * ... returns {@code "rodor"}.    *    *<p>The default implementation uses {@link #indexIn(CharSequence)} to find the first matching    * character, then iterates the remainder of the sequence calling {@link #matches(char)} for each    * character.    *    * @param sequence the character sequence to replace matching characters in    * @param replacement the character to append to the result string in place of each matching    *     character in {@code sequence}    * @return the new string    */
 DECL|method|replaceFrom (CharSequence sequence, char replacement)
 specifier|public
 name|String
@@ -1884,7 +1884,7 @@ name|chars
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a string copy of the input character sequence, with each matching BMP character    * replaced by a given replacement sequence. For example:<pre>   {@code    *    *   CharMatcher.is('a').replaceFrom("yaha", "oo")}</pre>    *    * ... returns {@code "yoohoo"}.    *    *<p><b>Note:</b> If the replacement is a fixed string with only one character, you are better    * off calling {@link #replaceFrom(CharSequence, char)} directly.    *    * @param sequence the character sequence to replace matching characters in    * @param replacement the characters to append to the result string in place of each matching    *     character in {@code sequence}    * @return the new string    */
+comment|/**    * Returns a string copy of the input character sequence, with each matching BMP character    * replaced by a given replacement sequence. For example:    *    *<pre>{@code    * CharMatcher.is('a').replaceFrom("yaha", "oo")    * }</pre>    *    * ... returns {@code "yoohoo"}.    *    *<p><b>Note:</b> If the replacement is a fixed string with only one character, you are better    * off calling {@link #replaceFrom(CharSequence, char)} directly.    *    * @param sequence the character sequence to replace matching characters in    * @param replacement the characters to append to the result string in place of each matching    *     character in {@code sequence}    * @return the new string    */
 DECL|method|replaceFrom (CharSequence sequence, CharSequence replacement)
 specifier|public
 name|String
@@ -2060,7 +2060,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns a substring of the input character sequence that omits all matching BMP characters    * from the beginning and from the end of the string. For example:<pre>   {@code    *    *   CharMatcher.anyOf("ab").trimFrom("abacatbab")}</pre>    *    * ... returns {@code "cat"}.    *    *<p>Note that:<pre>   {@code    *    *   CharMatcher.inRange('\0', ' ').trimFrom(str)}</pre>    *    * ... is equivalent to {@link String#trim()}.    */
+comment|/**    * Returns a substring of the input character sequence that omits all matching BMP characters from    * the beginning and from the end of the string. For example:    *    *<pre>{@code    * CharMatcher.anyOf("ab").trimFrom("abacatbab")    * }</pre>    *    * ... returns {@code "cat"}.    *    *<p>Note that:    *    *<pre>{@code    * CharMatcher.inRange('\0', ' ').trimFrom(str)    * }</pre>    *    * ... is equivalent to {@link String#trim()}.    */
 DECL|method|trimFrom (CharSequence sequence)
 specifier|public
 name|String
@@ -2164,7 +2164,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns a substring of the input character sequence that omits all matching BMP characters    * from the beginning of the string. For example:<pre> {@code    *    *   CharMatcher.anyOf("ab").trimLeadingFrom("abacatbab")}</pre>    *    * ... returns {@code "catbab"}.    */
+comment|/**    * Returns a substring of the input character sequence that omits all matching BMP characters from    * the beginning of the string. For example:    *    *<pre>{@code    * CharMatcher.anyOf("ab").trimLeadingFrom("abacatbab")    * }</pre>    *    * ... returns {@code "catbab"}.    */
 DECL|method|trimLeadingFrom (CharSequence sequence)
 specifier|public
 name|String
@@ -2230,7 +2230,7 @@ return|return
 literal|""
 return|;
 block|}
-comment|/**    * Returns a substring of the input character sequence that omits all matching BMP characters    * from the end of the string. For example:<pre> {@code    *    *   CharMatcher.anyOf("ab").trimTrailingFrom("abacatbab")}</pre>    *    * ... returns {@code "abacat"}.    */
+comment|/**    * Returns a substring of the input character sequence that omits all matching BMP characters from    * the end of the string. For example:    *    *<pre>{@code    * CharMatcher.anyOf("ab").trimTrailingFrom("abacatbab")    * }</pre>    *    * ... returns {@code "abacat"}.    */
 DECL|method|trimTrailingFrom (CharSequence sequence)
 specifier|public
 name|String
@@ -2300,7 +2300,7 @@ return|return
 literal|""
 return|;
 block|}
-comment|/**    * Returns a string copy of the input character sequence, with each group of consecutive    * matching BMP characters replaced by a single replacement character. For example:    *<pre>   {@code    *    *   CharMatcher.anyOf("eko").collapseFrom("bookkeeper", '-')}</pre>    *    * ... returns {@code "b-p-r"}.    *    *<p>The default implementation uses {@link #indexIn(CharSequence)} to find the first matching    * character, then iterates the remainder of the sequence calling {@link #matches(char)} for each    * character.    *    * @param sequence the character sequence to replace matching groups of characters in    * @param replacement the character to append to the result string in place of each group of    *     matching characters in {@code sequence}    * @return the new string    */
+comment|/**    * Returns a string copy of the input character sequence, with each group of consecutive matching    * BMP characters replaced by a single replacement character. For example:    *    *<pre>{@code    * CharMatcher.anyOf("eko").collapseFrom("bookkeeper", '-')    * }</pre>    *    * ... returns {@code "b-p-r"}.    *    *<p>The default implementation uses {@link #indexIn(CharSequence)} to find the first matching    * character, then iterates the remainder of the sequence calling {@link #matches(char)} for each    * character.    *    * @param sequence the character sequence to replace matching groups of characters in    * @param replacement the character to append to the result string in place of each group of    *     matching characters in {@code sequence}    * @return the new string    */
 DECL|method|collapseFrom (CharSequence sequence, char replacement)
 specifier|public
 name|String
@@ -2683,7 +2683,7 @@ name|character
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a string representation of this {@code CharMatcher}, such as    * {@code CharMatcher.or(WHITESPACE, JAVA_DIGIT)}.    */
+comment|/**    * Returns a string representation of this {@code CharMatcher}, such as {@code    * CharMatcher.or(WHITESPACE, JAVA_DIGIT)}.    */
 annotation|@
 name|Override
 DECL|method|toString ()
@@ -2699,7 +2699,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns the Java Unicode escape sequence for the given {@code char}, in the form "\u12AB"    * where "12AB" is the four hexadecimal digits representing the 16-bit code unit.    */
+comment|/**    * Returns the Java Unicode escape sequence for the given {@code char}, in the form "\u12AB" where    * "12AB" is the four hexadecimal digits representing the 16-bit code unit.    */
 DECL|method|showCharacter (char c)
 specifier|private
 specifier|static

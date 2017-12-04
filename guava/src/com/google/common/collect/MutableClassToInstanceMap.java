@@ -185,7 +185,7 @@ argument_list|>
 implements|,
 name|Serializable
 block|{
-comment|/**    * Returns a new {@code MutableClassToInstanceMap} instance backed by a {@link    * HashMap} using the default initial capacity and load factor.    */
+comment|/**    * Returns a new {@code MutableClassToInstanceMap} instance backed by a {@link HashMap} using the    * default initial capacity and load factor.    */
 DECL|method|create ()
 specifier|public
 specifier|static
@@ -222,7 +222,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a new {@code MutableClassToInstanceMap} instance backed by a given    * empty {@code backingMap}. The caller surrenders control of the backing map,    * and thus should not allow any direct references to it to remain accessible.    */
+comment|/**    * Returns a new {@code MutableClassToInstanceMap} instance backed by a given empty {@code    * backingMap}. The caller surrenders control of the backing map, and thus should not allow any    * direct references to it to remain accessible.    */
 DECL|method|create (Map<Class<? extends B>, B> backingMap)
 specifier|public
 specifier|static
@@ -916,7 +916,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Serialized form of the map, to avoid serializing the constraint.    */
+comment|/** Serialized form of the map, to avoid serializing the constraint. */
 DECL|class|SerializedForm
 specifier|private
 specifier|static

@@ -76,25 +76,25 @@ modifier|...
 name|elements
 parameter_list|)
 function_decl|;
-comment|/**    * Returns an element less than the {@link #samples()} and less than    * {@link #belowSamplesGreater()}.    */
+comment|/**    * Returns an element less than the {@link #samples()} and less than {@link    * #belowSamplesGreater()}.    */
 DECL|method|belowSamplesLesser ()
 name|E
 name|belowSamplesLesser
 parameter_list|()
 function_decl|;
-comment|/**    * Returns an element less than the {@link #samples()} but greater than    * {@link #belowSamplesLesser()}.    */
+comment|/**    * Returns an element less than the {@link #samples()} but greater than {@link    * #belowSamplesLesser()}.    */
 DECL|method|belowSamplesGreater ()
 name|E
 name|belowSamplesGreater
 parameter_list|()
 function_decl|;
-comment|/**    * Returns an element greater than the {@link #samples()} but less than    * {@link #aboveSamplesGreater()}.    */
+comment|/**    * Returns an element greater than the {@link #samples()} but less than {@link    * #aboveSamplesGreater()}.    */
 DECL|method|aboveSamplesLesser ()
 name|E
 name|aboveSamplesLesser
 parameter_list|()
 function_decl|;
-comment|/**    * Returns an element greater than the {@link #samples()} and greater than    * {@link #aboveSamplesLesser()}.    */
+comment|/**    * Returns an element greater than the {@link #samples()} and greater than {@link    * #aboveSamplesLesser()}.    */
 DECL|method|aboveSamplesGreater ()
 name|E
 name|aboveSamplesGreater

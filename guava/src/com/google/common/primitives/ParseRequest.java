@@ -31,7 +31,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A string to be parsed as a number and the radix to interpret it in.  */
+comment|/** A string to be parsed as a number and the radix to interpret it in. */
 end_comment
 
 begin_class

@@ -58,7 +58,7 @@ specifier|public
 interface|interface
 name|TearDownAccepter
 block|{
-comment|/**    * Registers a TearDown implementor which will be run after the test proper.    *    *<p>In JUnit4 language, that means as an {@code @After}.    *    *<p>In JUnit3 language, that means during the    * {@link junit.framework.TestCase#tearDown()} step.    */
+comment|/**    * Registers a TearDown implementor which will be run after the test proper.    *    *<p>In JUnit4 language, that means as an {@code @After}.    *    *<p>In JUnit3 language, that means during the {@link junit.framework.TestCase#tearDown()} step.    */
 DECL|method|addTearDown (TearDown tearDown)
 name|void
 name|addTearDown

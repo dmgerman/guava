@@ -31,7 +31,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests nulls for the entire package.  */
+comment|/** Tests nulls for the entire package. */
 end_comment
 
 begin_class

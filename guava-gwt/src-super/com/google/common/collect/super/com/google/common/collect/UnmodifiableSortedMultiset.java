@@ -63,7 +63,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Implementation of {@link Multisets#unmodifiableSortedMultiset(SortedMultiset)}  * for GWT.  *  * @author Louis Wasserman  */
+comment|/**  * Implementation of {@link Multisets#unmodifiableSortedMultiset(SortedMultiset)} for GWT.  *  * @author Louis Wasserman  */
 end_comment
 
 begin_class

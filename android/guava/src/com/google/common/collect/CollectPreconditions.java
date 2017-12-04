@@ -61,7 +61,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Precondition checks useful in collection implementations.  */
+comment|/** Precondition checks useful in collection implementations. */
 end_comment
 
 begin_class

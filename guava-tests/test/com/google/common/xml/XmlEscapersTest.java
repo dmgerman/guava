@@ -239,7 +239,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// Helper to assert common properties of xml escapers.
-DECL|method|assertBasicXmlEscaper (CharEscaper xmlEscaper, boolean shouldEscapeQuotes, boolean shouldEscapeWhitespaceChars)
+DECL|method|assertBasicXmlEscaper ( CharEscaper xmlEscaper, boolean shouldEscapeQuotes, boolean shouldEscapeWhitespaceChars)
 specifier|static
 name|void
 name|assertBasicXmlEscaper

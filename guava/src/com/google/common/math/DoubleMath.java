@@ -601,7 +601,7 @@ argument_list|()
 throw|;
 block|}
 block|}
-comment|/**    * Returns the {@code int} value that is equal to {@code x} rounded with the specified rounding    * mode, if possible.    *    * @throws ArithmeticException if    *<ul>    *<li>{@code x} is infinite or NaN    *<li>{@code x}, after being rounded to a mathematical integer using the specified rounding    *         mode, is either less than {@code Integer.MIN_VALUE} or greater than {@code    *         Integer.MAX_VALUE}    *<li>{@code x} is not a mathematical integer and {@code mode} is    *         {@link RoundingMode#UNNECESSARY}    *</ul>    */
+comment|/**    * Returns the {@code int} value that is equal to {@code x} rounded with the specified rounding    * mode, if possible.    *    * @throws ArithmeticException if    *<ul>    *<li>{@code x} is infinite or NaN    *<li>{@code x}, after being rounded to a mathematical integer using the specified rounding    *           mode, is either less than {@code Integer.MIN_VALUE} or greater than {@code    *           Integer.MAX_VALUE}    *<li>{@code x} is not a mathematical integer and {@code mode} is {@link    *           RoundingMode#UNNECESSARY}    *</ul>    */
 annotation|@
 name|GwtIncompatible
 comment|// #roundIntermediate
@@ -671,7 +671,7 @@ literal|0x1p31
 operator|-
 literal|1.0
 decl_stmt|;
-comment|/**    * Returns the {@code long} value that is equal to {@code x} rounded with the specified rounding    * mode, if possible.    *    * @throws ArithmeticException if    *<ul>    *<li>{@code x} is infinite or NaN    *<li>{@code x}, after being rounded to a mathematical integer using the specified rounding    *         mode, is either less than {@code Long.MIN_VALUE} or greater than {@code    *         Long.MAX_VALUE}    *<li>{@code x} is not a mathematical integer and {@code mode} is    *         {@link RoundingMode#UNNECESSARY}    *</ul>    */
+comment|/**    * Returns the {@code long} value that is equal to {@code x} rounded with the specified rounding    * mode, if possible.    *    * @throws ArithmeticException if    *<ul>    *<li>{@code x} is infinite or NaN    *<li>{@code x}, after being rounded to a mathematical integer using the specified rounding    *           mode, is either less than {@code Long.MIN_VALUE} or greater than {@code    *           Long.MAX_VALUE}    *<li>{@code x} is not a mathematical integer and {@code mode} is {@link    *           RoundingMode#UNNECESSARY}    *</ul>    */
 annotation|@
 name|GwtIncompatible
 comment|// #roundIntermediate
@@ -738,7 +738,7 @@ name|MAX_LONG_AS_DOUBLE_PLUS_ONE
 init|=
 literal|0x1p63
 decl_stmt|;
-comment|/**    * Returns the {@code BigInteger} value that is equal to {@code x} rounded with the specified    * rounding mode, if possible.    *    * @throws ArithmeticException if    *<ul>    *<li>{@code x} is infinite or NaN    *<li>{@code x} is not a mathematical integer and {@code mode} is    *         {@link RoundingMode#UNNECESSARY}    *</ul>    */
+comment|/**    * Returns the {@code BigInteger} value that is equal to {@code x} rounded with the specified    * rounding mode, if possible.    *    * @throws ArithmeticException if    *<ul>    *<li>{@code x} is infinite or NaN    *<li>{@code x} is not a mathematical integer and {@code mode} is {@link    *           RoundingMode#UNNECESSARY}    *</ul>    */
 comment|// #roundIntermediate, java.lang.Math.getExponent, com.google.common.math.DoubleUtils
 annotation|@
 name|GwtIncompatible
@@ -889,7 +889,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/**    * Returns the base 2 logarithm of a double value.    *    *<p>Special cases:    *<ul>    *<li>If {@code x} is NaN or less than zero, the result is NaN.    *<li>If {@code x} is positive infinity, the result is positive infinity.    *<li>If {@code x} is positive or negative zero, the result is negative infinity.    *</ul>    *    *<p>The computed result is within 1 ulp of the exact result.    *    *<p>If the result of this method will be immediately rounded to an {@code int},    * {@link #log2(double, RoundingMode)} is faster.    */
+comment|/**    * Returns the base 2 logarithm of a double value.    *    *<p>Special cases:    *    *<ul>    *<li>If {@code x} is NaN or less than zero, the result is NaN.    *<li>If {@code x} is positive infinity, the result is positive infinity.    *<li>If {@code x} is positive or negative zero, the result is negative infinity.    *</ul>    *    *<p>The computed result is within 1 ulp of the exact result.    *    *<p>If the result of this method will be immediately rounded to an {@code int}, {@link    * #log2(double, RoundingMode)} is faster.    */
 DECL|method|log2 (double x)
 specifier|public
 specifier|static
@@ -1153,7 +1153,7 @@ argument_list|)
 operator|)
 return|;
 block|}
-comment|/**    * Returns {@code n!}, that is, the product of the first {@code n} positive integers, {@code 1} if    * {@code n == 0}, or {@code n!}, or {@link Double#POSITIVE_INFINITY} if    * {@code n!> Double.MAX_VALUE}.    *    *<p>The result is within 1 ulp of the true value.    *    * @throws IllegalArgumentException if {@code n< 0}    */
+comment|/**    * Returns {@code n!}, that is, the product of the first {@code n} positive integers, {@code 1} if    * {@code n == 0}, or {@code n!}, or {@link Double#POSITIVE_INFINITY} if {@code n!>    * Double.MAX_VALUE}.    *    *<p>The result is within 1 ulp of the true value.    *    * @throws IllegalArgumentException if {@code n< 0}    */
 DECL|method|factorial (int n)
 specifier|public
 specifier|static
@@ -1354,7 +1354,7 @@ argument_list|)
 operator|)
 return|;
 block|}
-comment|/**    * Compares {@code a} and {@code b} "fuzzily," with a tolerance for nearly-equal values.    *    *<p>This method is equivalent to    * {@code fuzzyEquals(a, b, tolerance) ? 0 : Double.compare(a, b)}. In particular, like    * {@link Double#compare(double, double)}, it treats all NaN values as equal and greater than all    * other values (including {@link Double#POSITIVE_INFINITY}).    *    *<p>This is<em>not</em> a total ordering and is<em>not</em> suitable for use in    * {@link Comparable#compareTo} implementations. In particular, it is not transitive.    *    * @throws IllegalArgumentException if {@code tolerance} is {@code< 0} or NaN    * @since 13.0    */
+comment|/**    * Compares {@code a} and {@code b} "fuzzily," with a tolerance for nearly-equal values.    *    *<p>This method is equivalent to {@code fuzzyEquals(a, b, tolerance) ? 0 : Double.compare(a,    * b)}. In particular, like {@link Double#compare(double, double)}, it treats all NaN values as    * equal and greater than all other values (including {@link Double#POSITIVE_INFINITY}).    *    *<p>This is<em>not</em> a total ordering and is<em>not</em> suitable for use in {@link    * Comparable#compareTo} implementations. In particular, it is not transitive.    *    * @throws IllegalArgumentException if {@code tolerance} is {@code< 0} or NaN    * @since 13.0    */
 DECL|method|fuzzyCompare (double a, double b, double tolerance)
 specifier|public
 specifier|static

@@ -19,7 +19,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * Methods factored out so that they can be emulated differently in GWT.  */
+comment|/** Methods factored out so that they can be emulated differently in GWT. */
 end_comment
 
 begin_class

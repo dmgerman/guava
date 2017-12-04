@@ -257,7 +257,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link Multimap} whose contents will never change, with many other important properties  * detailed at {@link ImmutableCollection}.  *  *<p><b>Warning:</b> avoid<i>direct</i> usage of {@link ImmutableMultimap} as a type (as with  * {@link Multimap} itself). Prefer subtypes such as {@link ImmutableSetMultimap} or {@link  * ImmutableListMultimap}, which have well-defined {@link #equals} semantics, thus avoiding a common  * source of bugs and confusion.  *  *<p><b>Note:</b> every {@link ImmutableMultimap} offers an {@link #inverse} view, so there is no  * need for a distinct {@code ImmutableBiMultimap} type.  *  *<a name="iteration"></a>  *<p><b>Key-grouped iteration.</b> All view collections follow the same iteration order. In all  * current implementations, the iteration order always keeps multiple entries with the same key  * together. Any creation method that would customarily respect insertion order (such as {@link  * #copyOf(Multimap)}) instead preserves key-grouped order by inserting entries for an existing key  * immediately after the last entry having that key.  *  *<p>See the Guava User Guide article on<a href=  * "https://github.com/google/guava/wiki/ImmutableCollectionsExplained">  * immutable collections</a>.  *  * @author Jared Levy  * @since 2.0  */
+comment|/**  * A {@link Multimap} whose contents will never change, with many other important properties  * detailed at {@link ImmutableCollection}.  *  *<p><b>Warning:</b> avoid<i>direct</i> usage of {@link ImmutableMultimap} as a type (as with  * {@link Multimap} itself). Prefer subtypes such as {@link ImmutableSetMultimap} or {@link  * ImmutableListMultimap}, which have well-defined {@link #equals} semantics, thus avoiding a common  * source of bugs and confusion.  *  *<p><b>Note:</b> every {@link ImmutableMultimap} offers an {@link #inverse} view, so there is no  * need for a distinct {@code ImmutableBiMultimap} type.  *  *<p><a name="iteration"></a>  *  *<p><b>Key-grouped iteration.</b> All view collections follow the same iteration order. In all  * current implementations, the iteration order always keeps multiple entries with the same key  * together. Any creation method that would customarily respect insertion order (such as {@link  * #copyOf(Multimap)}) instead preserves key-grouped order by inserting entries for an existing key  * immediately after the last entry having that key.  *  *<p>See the Guava User Guide article on<a href=  * "https://github.com/google/guava/wiki/ImmutableCollectionsExplained"> immutable collections</a>.  *  * @author Jared Levy  * @since 2.0  */
 end_comment
 
 begin_class
@@ -313,7 +313,7 @@ name|of
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns an immutable multimap containing a single entry.    */
+comment|/** Returns an immutable multimap containing a single entry. */
 DECL|method|of (K k1, V v1)
 specifier|public
 specifier|static
@@ -348,7 +348,7 @@ name|v1
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an immutable multimap containing the given entries, in order.    */
+comment|/** Returns an immutable multimap containing the given entries, in order. */
 DECL|method|of (K k1, V v1, K k2, V v2)
 specifier|public
 specifier|static
@@ -393,7 +393,7 @@ name|v2
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an immutable multimap containing the given entries, in the    * "key-grouped" insertion order described in the    *<a href="#iteration">class documentation</a>.    */
+comment|/**    * Returns an immutable multimap containing the given entries, in the "key-grouped" insertion    * order described in the<a href="#iteration">class documentation</a>.    */
 DECL|method|of (K k1, V v1, K k2, V v2, K k3, V v3)
 specifier|public
 specifier|static
@@ -448,7 +448,7 @@ name|v3
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an immutable multimap containing the given entries, in the    * "key-grouped" insertion order described in the    *<a href="#iteration">class documentation</a>.    */
+comment|/**    * Returns an immutable multimap containing the given entries, in the "key-grouped" insertion    * order described in the<a href="#iteration">class documentation</a>.    */
 DECL|method|of (K k1, V v1, K k2, V v2, K k3, V v3, K k4, V v4)
 specifier|public
 specifier|static
@@ -513,7 +513,7 @@ name|v4
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an immutable multimap containing the given entries, in the    * "key-grouped" insertion order described in the    *<a href="#iteration">class documentation</a>.    */
+comment|/**    * Returns an immutable multimap containing the given entries, in the "key-grouped" insertion    * order described in the<a href="#iteration">class documentation</a>.    */
 DECL|method|of ( K k1, V v1, K k2, V v2, K k3, V v3, K k4, V v4, K k5, V v5)
 specifier|public
 specifier|static
@@ -589,7 +589,7 @@ argument_list|)
 return|;
 block|}
 comment|// looking for of() with> 5 entries? Use the builder instead.
-comment|/**    * Returns a new builder. The generated builder is equivalent to the builder    * created by the {@link Builder} constructor.    */
+comment|/**    * Returns a new builder. The generated builder is equivalent to the builder created by the {@link    * Builder} constructor.    */
 DECL|method|builder ()
 specifier|public
 specifier|static
@@ -614,7 +614,7 @@ argument_list|<>
 argument_list|()
 return|;
 block|}
-comment|/**    * A builder for creating immutable multimap instances, especially    * {@code public static final} multimaps ("constant multimaps"). Example:    *<pre>   {@code    *    *   static final Multimap<String, Integer> STRING_TO_INTEGER_MULTIMAP =    *       new ImmutableMultimap.Builder<String, Integer>()    *           .put("one", 1)    *           .putAll("several", 1, 2, 3)    *           .putAll("many", 1, 2, 3, 4, 5)    *           .build();}</pre>    *    *<p>Builder instances can be reused; it is safe to call {@link #build} multiple    * times to build multiple multimaps in series. Each multimap contains the    * key-value mappings in the previously created multimaps.    *    * @since 2.0    */
+comment|/**    * A builder for creating immutable multimap instances, especially {@code public static final}    * multimaps ("constant multimaps"). Example:    *    *<pre>{@code    * static final Multimap<String, Integer> STRING_TO_INTEGER_MULTIMAP =    *     new ImmutableMultimap.Builder<String, Integer>()    *         .put("one", 1)    *         .putAll("several", 1, 2, 3)    *         .putAll("many", 1, 2, 3, 4, 5)    *         .build();    * }</pre>    *    *<p>Builder instances can be reused; it is safe to call {@link #build} multiple times to build    * multiple multimaps in series. Each multimap contains the key-value mappings in the previously    * created multimaps.    *    * @since 2.0    */
 DECL|class|Builder
 specifier|public
 specifier|static
@@ -653,7 +653,7 @@ name|V
 argument_list|>
 name|valueComparator
 decl_stmt|;
-comment|/**      * Creates a new builder. The returned builder is equivalent to the builder      * generated by {@link ImmutableMultimap#builder}.      */
+comment|/**      * Creates a new builder. The returned builder is equivalent to the builder generated by {@link      * ImmutableMultimap#builder}.      */
 DECL|method|Builder ()
 specifier|public
 name|Builder
@@ -698,7 +698,7 @@ operator|=
 name|builderMultimap
 expr_stmt|;
 block|}
-comment|/**      * Adds a key-value mapping to the built multimap.      */
+comment|/** Adds a key-value mapping to the built multimap. */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|put (K key, V value)
@@ -839,7 +839,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**      * Stores a collection of values with the same key in the built multimap.      *      * @throws NullPointerException if {@code key}, {@code values}, or any      *     element in {@code values} is null. The builder is left in an invalid      *     state.      */
+comment|/**      * Stores a collection of values with the same key in the built multimap.      *      * @throws NullPointerException if {@code key}, {@code values}, or any element in {@code values}      *     is null. The builder is left in an invalid state.      */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|putAll (K key, Iterable<? extends V> values)
@@ -926,7 +926,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**      * Stores an array of values with the same key in the built multimap.      *      * @throws NullPointerException if the key or any value is null. The builder      *     is left in an invalid state.      */
+comment|/**      * Stores an array of values with the same key in the built multimap.      *      * @throws NullPointerException if the key or any value is null. The builder is left in an      *     invalid state.      */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|putAll (K key, V... values)
@@ -961,7 +961,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**      * Stores another multimap's entries in the built multimap. The generated      * multimap's key and value orderings correspond to the iteration ordering      * of the {@code multimap.asMap()} view, with new keys and values following      * any existing keys and values.      *      * @throws NullPointerException if any key or value in {@code multimap} is      *     null. The builder is left in an invalid state.      */
+comment|/**      * Stores another multimap's entries in the built multimap. The generated multimap's key and      * value orderings correspond to the iteration ordering of the {@code multimap.asMap()} view,      * with new keys and values following any existing keys and values.      *      * @throws NullPointerException if any key or value in {@code multimap} is null. The builder is      *     left in an invalid state.      */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|putAll (Multimap<? extends K, ? extends V> multimap)
@@ -1134,7 +1134,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**      * Returns a newly-created immutable multimap.      */
+comment|/** Returns a newly-created immutable multimap. */
 DECL|method|build ()
 specifier|public
 name|ImmutableMultimap
@@ -1313,7 +1313,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**    * Returns an immutable multimap containing the same mappings as {@code    * multimap}, in the "key-grouped" iteration order described in the class    * documentation.    *    *<p>Despite the method name, this method attempts to avoid actually copying    * the data when it is safe to do so. The exact circumstances under which a    * copy will or will not be performed are undocumented and subject to change.    *    * @throws NullPointerException if any key or value in {@code multimap} is    *         null    */
+comment|/**    * Returns an immutable multimap containing the same mappings as {@code multimap}, in the    * "key-grouped" iteration order described in the class documentation.    *    *<p>Despite the method name, this method attempts to avoid actually copying the data when it is    * safe to do so. The exact circumstances under which a copy will or will not be performed are    * undocumented and subject to change.    *    * @throws NullPointerException if any key or value in {@code multimap} is null    */
 DECL|method|copyOf (Multimap<? extends K, ? extends V> multimap)
 specifier|public
 specifier|static
@@ -1397,7 +1397,7 @@ name|multimap
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an immutable multimap containing the specified entries.  The    * returned multimap iterates over keys in the order they were first    * encountered in the input, and the values for each key are iterated in the    * order they were encountered.    *    * @throws NullPointerException if any key, value, or entry is null    * @since 19.0    */
+comment|/**    * Returns an immutable multimap containing the specified entries. The returned multimap iterates    * over keys in the order they were first encountered in the input, and the values for each key    * are iterated in the order they were encountered.    *    * @throws NullPointerException if any key, value, or entry is null    * @since 19.0    */
 annotation|@
 name|Beta
 DECL|method|copyOf ( Iterable<? extends Entry<? extends K, ? extends V>> entries)
@@ -1652,7 +1652,7 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
-comment|/**    * Returns an immutable collection of the values for the given key.  If no    * mappings in the multimap have the provided key, an empty immutable    * collection is returned. The values are in the same order as the parameters    * used to build this multimap.    */
+comment|/**    * Returns an immutable collection of the values for the given key. If no mappings in the multimap    * have the provided key, an empty immutable collection is returned. The values are in the same    * order as the parameters used to build this multimap.    */
 annotation|@
 name|Override
 DECL|method|get (K key)
@@ -1668,7 +1668,7 @@ name|K
 name|key
 parameter_list|)
 function_decl|;
-comment|/**    * Returns an immutable multimap which is the inverse of this one. For every    * key-value mapping in the original, the result will have a mapping with    * key and value reversed.    *    * @since 11.0    */
+comment|/**    * Returns an immutable multimap which is the inverse of this one. For every key-value mapping in    * the original, the result will have a mapping with key and value reversed.    *    * @since 11.0    */
 DECL|method|inverse ()
 specifier|public
 specifier|abstract
@@ -1792,7 +1792,7 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
-comment|/**    * Returns {@code true} if this immutable multimap's implementation contains references to    * user-created objects that aren't accessible via this multimap's methods. This is generally    * used to determine whether {@code copyOf} implementations should make an explicit copy to avoid    * memory leaks.    */
+comment|/**    * Returns {@code true} if this immutable multimap's implementation contains references to    * user-created objects that aren't accessible via this multimap's methods. This is generally used    * to determine whether {@code copyOf} implementations should make an explicit copy to avoid    * memory leaks.    */
 DECL|method|isPartialView ()
 name|boolean
 name|isPartialView
@@ -1867,7 +1867,7 @@ name|size
 return|;
 block|}
 comment|// views
-comment|/**    * Returns an immutable set of the distinct keys in this multimap, in the same    * order as they appear in this multimap.    */
+comment|/**    * Returns an immutable set of the distinct keys in this multimap, in the same order as they    * appear in this multimap.    */
 annotation|@
 name|Override
 DECL|method|keySet ()
@@ -1886,7 +1886,7 @@ name|keySet
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns an immutable map that associates each key with its corresponding    * values in the multimap. Keys and values appear in the same order as in this    * multimap.    */
+comment|/**    * Returns an immutable map that associates each key with its corresponding values in the    * multimap. Keys and values appear in the same order as in this multimap.    */
 annotation|@
 name|Override
 annotation|@
@@ -1939,7 +1939,7 @@ literal|"should never be called"
 argument_list|)
 throw|;
 block|}
-comment|/**    * Returns an immutable collection of all key-value pairs in the multimap.    */
+comment|/** Returns an immutable collection of all key-value pairs in the multimap. */
 annotation|@
 name|Override
 DECL|method|entries ()
@@ -2534,7 +2534,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Returns an immutable multiset containing all the keys in this multimap, in    * the same order and with the same frequencies as they appear in this    * multimap; to get only a single occurrence of each key, use {@link #keySet}.    */
+comment|/**    * Returns an immutable multiset containing all the keys in this multimap, in the same order and    * with the same frequencies as they appear in this multimap; to get only a single occurrence of    * each key, use {@link #keySet}.    */
 annotation|@
 name|Override
 DECL|method|keys ()
@@ -2761,7 +2761,7 @@ literal|true
 return|;
 block|}
 block|}
-comment|/**    * Returns an immutable collection of the values in this multimap. Its    * iterator traverses the values for the first key, the values for the second    * key, and so on.    */
+comment|/**    * Returns an immutable collection of the values in this multimap. Its iterator traverses the    * values for the first key, the values for the second key, and so on.    */
 annotation|@
 name|Override
 DECL|method|values ()

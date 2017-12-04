@@ -31,7 +31,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Pluggable interface for compiling a regex pattern. By default this package uses the  * {@code java.util.regex} library, but an alternate implementation can be supplied  * using the {@link java.util.ServiceLoader} mechanism.  */
+comment|/**  * Pluggable interface for compiling a regex pattern. By default this package uses the {@code  * java.util.regex} library, but an alternate implementation can be supplied using the {@link  * java.util.ServiceLoader} mechanism.  */
 end_comment
 
 begin_interface

@@ -171,7 +171,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A map containing {@code long} values that can be atomically updated. While writes to a  * traditional {@code Map} rely on {@code put(K, V)}, the typical mechanism for writing to this map  * is {@code addAndGet(K, long)}, which adds a {@code long} to the value currently associated with  * {@code K}. If a key has not yet been associated with a value, its implicit value is zero.  *  *<p>Most methods in this class treat absent values and zero values identically, as individually  * documented. Exceptions to this are {@link #containsKey}, {@link #size}, {@link #isEmpty},  * {@link #asMap}, and {@link #toString}.  *  *<p>Instances of this class may be used by multiple threads concurrently. All operations are  * atomic unless otherwise noted.  *  *<p><b>Note:</b> If your values are always positive and less than 2^31, you may wish to use a  * {@link com.google.common.collect.Multiset} such as  * {@link com.google.common.collect.ConcurrentHashMultiset} instead.  *  *<b>Warning:</b> Unlike {@code Multiset}, entries whose values are zero are not automatically  * removed from the map. Instead they must be removed manually with {@link #removeAllZeros}.  *  * @author Charles Fry  * @since 11.0  */
+comment|/**  * A map containing {@code long} values that can be atomically updated. While writes to a  * traditional {@code Map} rely on {@code put(K, V)}, the typical mechanism for writing to this map  * is {@code addAndGet(K, long)}, which adds a {@code long} to the value currently associated with  * {@code K}. If a key has not yet been associated with a value, its implicit value is zero.  *  *<p>Most methods in this class treat absent values and zero values identically, as individually  * documented. Exceptions to this are {@link #containsKey}, {@link #size}, {@link #isEmpty}, {@link  * #asMap}, and {@link #toString}.  *  *<p>Instances of this class may be used by multiple threads concurrently. All operations are  * atomic unless otherwise noted.  *  *<p><b>Note:</b> If your values are always positive and less than 2^31, you may wish to use a  * {@link com.google.common.collect.Multiset} such as {@link  * com.google.common.collect.ConcurrentHashMultiset} instead.  *  *<p><b>Warning:</b> Unlike {@code Multiset}, entries whose values are zero are not automatically  * removed from the map. Instead they must be removed manually with {@link #removeAllZeros}.  *  * @author Charles Fry  * @since 11.0  */
 end_comment
 
 begin_class
@@ -222,7 +222,7 @@ name|map
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates an {@code AtomicLongMap}.    */
+comment|/** Creates an {@code AtomicLongMap}. */
 DECL|method|create ()
 specifier|public
 specifier|static
@@ -250,7 +250,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Creates an {@code AtomicLongMap} with the same mappings as the specified {@code Map}.    */
+comment|/** Creates an {@code AtomicLongMap} with the same mappings as the specified {@code Map}. */
 DECL|method|create (Map<? extends K, ? extends Long> m)
 specifier|public
 specifier|static
@@ -459,7 +459,7 @@ name|sum
 argument_list|)
 return|;
 block|}
-comment|/**    * Updates the value currently associated with {@code key} with the specified function,    * and returns the new value.  If there is not currently a value associated with {@code key},    * the function is applied to {@code 0L}.    *    * @since 21.0    */
+comment|/**    * Updates the value currently associated with {@code key} with the specified function, and    * returns the new value. If there is not currently a value associated with {@code key}, the    * function is applied to {@code 0L}.    *    * @since 21.0    */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|updateAndGet (K key, LongUnaryOperator updaterFunction)
@@ -512,7 +512,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Updates the value currently associated with {@code key} with the specified function,    * and returns the old value.  If there is not currently a value associated with {@code key},    * the function is applied to {@code 0L}.    *    * @since 21.0    */
+comment|/**    * Updates the value currently associated with {@code key} with the specified function, and    * returns the old value. If there is not currently a value associated with {@code key}, the    * function is applied to {@code 0L}.    *    * @since 21.0    */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|getAndUpdate (K key, LongUnaryOperator updaterFunction)
@@ -593,7 +593,7 @@ name|get
 argument_list|()
 return|;
 block|}
-comment|/**    * Updates the value currently associated with {@code key} by combining it with {@code x}    * via the specified accumulator function, returning the new value.  The previous value    * associated with {@code key} (or zero, if there is none) is passed as the first argument    * to {@code accumulatorFunction}, and {@code x} is passed as the second argument.    *    * @since 21.0    */
+comment|/**    * Updates the value currently associated with {@code key} by combining it with {@code x} via the    * specified accumulator function, returning the new value. The previous value associated with    * {@code key} (or zero, if there is none) is passed as the first argument to {@code    * accumulatorFunction}, and {@code x} is passed as the second argument.    *    * @since 21.0    */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|accumulateAndGet (K key, long x, LongBinaryOperator accumulatorFunction)
@@ -634,7 +634,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Updates the value currently associated with {@code key} by combining it with {@code x}    * via the specified accumulator function, returning the old value.  The previous value    * associated with {@code key} (or zero, if there is none) is passed as the first argument    * to {@code accumulatorFunction}, and {@code x} is passed as the second argument.    *    * @since 21.0    */
+comment|/**    * Updates the value currently associated with {@code key} by combining it with {@code x} via the    * specified accumulator function, returning the old value. The previous value associated with    * {@code key} (or zero, if there is none) is passed as the first argument to {@code    * accumulatorFunction}, and {@code x} is passed as the second argument.    *    * @since 21.0    */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|getAndAccumulate (K key, long x, LongBinaryOperator accumulatorFunction)
@@ -730,7 +730,7 @@ name|put
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Removes and returns the value associated with {@code key}. If {@code key} is not    * in the map, this method has no effect and returns zero.    */
+comment|/**    * Removes and returns the value associated with {@code key}. If {@code key} is not in the map,    * this method has no effect and returns zero.    */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|remove (K key)
@@ -790,7 +790,7 @@ literal|0
 argument_list|)
 return|;
 block|}
-comment|/**    * Removes all mappings from this map whose values are zero.    *    *<p>This method is not atomic: the map may be visible in intermediate states, where some    * of the zero values have been removed and others have not.    */
+comment|/**    * Removes all mappings from this map whose values are zero.    *    *<p>This method is not atomic: the map may be visible in intermediate states, where some of the    * zero values have been removed and others have not.    */
 DECL|method|removeAllZeros ()
 specifier|public
 name|void
@@ -850,7 +850,7 @@ name|Long
 argument_list|>
 name|asMap
 decl_stmt|;
-comment|/**    * Returns a live, read-only view of the map backing this {@code AtomicLongMap}.    */
+comment|/** Returns a live, read-only view of the map backing this {@code AtomicLongMap}. */
 DECL|method|asMap ()
 specifier|public
 name|Map
@@ -907,7 +907,7 @@ name|map
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns true if this map contains a mapping for the specified key.    */
+comment|/** Returns true if this map contains a mapping for the specified key. */
 DECL|method|containsKey (Object key)
 specifier|public
 name|boolean
@@ -926,7 +926,7 @@ name|key
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the number of key-value mappings in this map. If the map contains more than    * {@code Integer.MAX_VALUE} elements, returns {@code Integer.MAX_VALUE}.    */
+comment|/**    * Returns the number of key-value mappings in this map. If the map contains more than {@code    * Integer.MAX_VALUE} elements, returns {@code Integer.MAX_VALUE}.    */
 DECL|method|size ()
 specifier|public
 name|int
@@ -940,7 +940,7 @@ name|size
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns {@code true} if this map contains no key-value mappings.    */
+comment|/** Returns {@code true} if this map contains no key-value mappings. */
 DECL|method|isEmpty ()
 specifier|public
 name|boolean
@@ -982,7 +982,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/**    * If {@code key} is not already associated with a value or if {@code key} is associated with    * zero, associate it with {@code newValue}. Returns the previous value associated with    * {@code key}, or zero if there was no mapping for {@code key}.    */
+comment|/**    * If {@code key} is not already associated with a value or if {@code key} is associated with    * zero, associate it with {@code newValue}. Returns the previous value associated with {@code    * key}, or zero if there was no mapping for {@code key}.    */
 DECL|method|putIfAbsent (K key, long newValue)
 name|long
 name|putIfAbsent
@@ -1064,7 +1064,7 @@ name|longValue
 argument_list|()
 return|;
 block|}
-comment|/**    * If {@code (key, expectedOldValue)} is currently in the map, this method replaces    * {@code expectedOldValue} with {@code newValue} and returns true; otherwise, this method    * returns false.    *    *<p>If {@code expectedOldValue} is zero, this method will succeed if {@code (key, zero)}    * is currently in the map, or if {@code key} is not in the map at all.    */
+comment|/**    * If {@code (key, expectedOldValue)} is currently in the map, this method replaces {@code    * expectedOldValue} with {@code newValue} and returns true; otherwise, this method returns false.    *    *<p>If {@code expectedOldValue} is zero, this method will succeed if {@code (key, zero)} is    * currently in the map, or if {@code key} is not in the map at all.    */
 DECL|method|replace (K key, long expectedOldValue, long newValue)
 name|boolean
 name|replace
@@ -1113,7 +1113,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**    * If {@code (key, value)} is currently in the map, this method removes it and returns    * true; otherwise, this method returns false.    */
+comment|/**    * If {@code (key, value)} is currently in the map, this method removes it and returns true;    * otherwise, this method returns false.    */
 DECL|method|remove (K key, long value)
 name|boolean
 name|remove

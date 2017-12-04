@@ -129,7 +129,7 @@ operator|=
 name|value
 expr_stmt|;
 block|}
-DECL|method|SingletonImmutableBiMap ( K key, V value, SingletonImmutableBiMap<V, K> inverse)
+DECL|method|SingletonImmutableBiMap (K key, V value, SingletonImmutableBiMap<V, K> inverse)
 specifier|private
 name|SingletonImmutableBiMap
 parameter_list|(

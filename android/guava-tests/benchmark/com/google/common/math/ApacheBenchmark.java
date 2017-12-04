@@ -1060,9 +1060,9 @@ name|k
 expr_stmt|;
 block|}
 block|}
-DECL|method|factorialDouble (int reps)
 annotation|@
 name|Benchmark
+DECL|method|factorialDouble (int reps)
 name|long
 name|factorialDouble
 parameter_list|(
@@ -1119,9 +1119,9 @@ return|return
 name|tmp
 return|;
 block|}
-DECL|method|intGCD (int reps)
 annotation|@
 name|Benchmark
+DECL|method|intGCD (int reps)
 name|int
 name|intGCD
 parameter_list|(
@@ -1184,9 +1184,9 @@ return|return
 name|tmp
 return|;
 block|}
-DECL|method|longGCD (int reps)
 annotation|@
 name|Benchmark
+DECL|method|longGCD (int reps)
 name|long
 name|longGCD
 parameter_list|(
@@ -1249,9 +1249,9 @@ return|return
 name|tmp
 return|;
 block|}
-DECL|method|binomialCoefficient (int reps)
 annotation|@
 name|Benchmark
+DECL|method|binomialCoefficient (int reps)
 name|long
 name|binomialCoefficient
 parameter_list|(
@@ -1314,9 +1314,9 @@ return|return
 name|tmp
 return|;
 block|}
-DECL|method|intAddOverflow (int reps)
 annotation|@
 name|Benchmark
+DECL|method|intAddOverflow (int reps)
 name|int
 name|intAddOverflow
 parameter_list|(
@@ -1384,9 +1384,9 @@ return|return
 name|tmp
 return|;
 block|}
-DECL|method|longAddOverflow (int reps)
 annotation|@
 name|Benchmark
+DECL|method|longAddOverflow (int reps)
 name|int
 name|longAddOverflow
 parameter_list|(
@@ -1454,9 +1454,9 @@ return|return
 name|tmp
 return|;
 block|}
-DECL|method|intMulOverflow (int reps)
 annotation|@
 name|Benchmark
+DECL|method|intMulOverflow (int reps)
 name|int
 name|intMulOverflow
 parameter_list|(
@@ -1524,9 +1524,9 @@ return|return
 name|tmp
 return|;
 block|}
-DECL|method|longMulOverflow (int reps)
 annotation|@
 name|Benchmark
+DECL|method|longMulOverflow (int reps)
 name|int
 name|longMulOverflow
 parameter_list|(

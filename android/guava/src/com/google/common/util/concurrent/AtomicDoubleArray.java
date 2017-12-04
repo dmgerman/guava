@@ -123,7 +123,7 @@ specifier|transient
 name|AtomicLongArray
 name|longs
 decl_stmt|;
-comment|/**    * Creates a new {@code AtomicDoubleArray} of the given length,    * with all elements initially zero.    *    * @param length the length of the array    */
+comment|/**    * Creates a new {@code AtomicDoubleArray} of the given length, with all elements initially zero.    *    * @param length the length of the array    */
 DECL|method|AtomicDoubleArray (int length)
 specifier|public
 name|AtomicDoubleArray
@@ -143,7 +143,7 @@ name|length
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates a new {@code AtomicDoubleArray} with the same length    * as, and all elements copied from, the given array.    *    * @param array the array to copy elements from    * @throws NullPointerException if array is null    */
+comment|/**    * Creates a new {@code AtomicDoubleArray} with the same length as, and all elements copied from,    * the given array.    *    * @param array the array to copy elements from    * @throws NullPointerException if array is null    */
 DECL|method|AtomicDoubleArray (double[] array)
 specifier|public
 name|AtomicDoubleArray
@@ -313,7 +313,7 @@ name|next
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Atomically sets the element at position {@code i} to the given value    * and returns the old value.    *    * @param i the index    * @param newValue the new value    * @return the previous value    */
+comment|/**    * Atomically sets the element at position {@code i} to the given value and returns the old value.    *    * @param i the index    * @param newValue the new value    * @return the previous value    */
 DECL|method|getAndSet (int i, double newValue)
 specifier|public
 specifier|final
@@ -349,7 +349,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Atomically sets the element at position {@code i} to the given    * updated value    * if the current value is<a href="#bitEquals">bitwise equal</a>    * to the expected value.    *    * @param i the index    * @param expect the expected value    * @param update the new value    * @return true if successful. False return indicates that    * the actual value was not equal to the expected value.    */
+comment|/**    * Atomically sets the element at position {@code i} to the given updated value if the current    * value is<a href="#bitEquals">bitwise equal</a> to the expected value.    *    * @param i the index    * @param expect the expected value    * @param update the new value    * @return true if successful. False return indicates that the actual value was not equal to the    *     expected value.    */
 DECL|method|compareAndSet (int i, double expect, double update)
 specifier|public
 specifier|final
@@ -385,7 +385,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Atomically sets the element at position {@code i} to the given    * updated value    * if the current value is<a href="#bitEquals">bitwise equal</a>    * to the expected value.    *    *<p>May<a    * href="http://download.oracle.com/javase/7/docs/api/java/util/concurrent/atomic/package-summary.html#Spurious">    * fail spuriously</a>    * and does not provide ordering guarantees, so is only rarely an    * appropriate alternative to {@code compareAndSet}.    *    * @param i the index    * @param expect the expected value    * @param update the new value    * @return true if successful    */
+comment|/**    * Atomically sets the element at position {@code i} to the given updated value if the current    * value is<a href="#bitEquals">bitwise equal</a> to the expected value.    *    *<p>May<a    * href="http://download.oracle.com/javase/7/docs/api/java/util/concurrent/atomic/package-summary.html#Spurious">    * fail spuriously</a> and does not provide ordering guarantees, so is only rarely an appropriate    * alternative to {@code compareAndSet}.    *    * @param i the index    * @param expect the expected value    * @param update the new value    * @return true if successful    */
 DECL|method|weakCompareAndSet (int i, double expect, double update)
 specifier|public
 specifier|final
@@ -568,7 +568,7 @@ return|;
 block|}
 block|}
 block|}
-comment|/**    * Returns the String representation of the current values of array.    * @return the String representation of the current values of array    */
+comment|/**    * Returns the String representation of the current values of array.    *    * @return the String representation of the current values of array    */
 DECL|method|toString ()
 specifier|public
 name|String
@@ -682,7 +682,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Saves the state to a stream (that is, serializes it).    *    * @serialData The length of the array is emitted (int), followed by all    *             of its elements (each a {@code double}) in the proper order.    */
+comment|/**    * Saves the state to a stream (that is, serializes it).    *    * @serialData The length of the array is emitted (int), followed by all of its elements (each a    *     {@code double}) in the proper order.    */
 DECL|method|writeObject (java.io.ObjectOutputStream s)
 specifier|private
 name|void
@@ -749,7 +749,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Reconstitutes the instance from a stream (that is, deserializes it).    */
+comment|/** Reconstitutes the instance from a stream (that is, deserializes it). */
 DECL|method|readObject (java.io.ObjectInputStream s)
 specifier|private
 name|void

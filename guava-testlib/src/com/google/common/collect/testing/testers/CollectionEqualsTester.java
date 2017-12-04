@@ -101,7 +101,7 @@ name|void
 name|testEquals_null
 parameter_list|()
 block|{
-comment|//noinspection ObjectEqualsNull
+comment|// noinspection ObjectEqualsNull
 name|assertFalse
 argument_list|(
 literal|"An object should not be equal to null."
@@ -121,7 +121,7 @@ name|void
 name|testEquals_notACollection
 parameter_list|()
 block|{
-comment|//noinspection EqualsBetweenInconvertibleTypes
+comment|// noinspection EqualsBetweenInconvertibleTypes
 name|assertFalse
 argument_list|(
 literal|"A Collection should never equal an object that is not a Collection."

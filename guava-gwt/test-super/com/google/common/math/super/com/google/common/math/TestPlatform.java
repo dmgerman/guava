@@ -31,7 +31,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author Chris Povirk  */
+comment|/** @author Chris Povirk */
 end_comment
 
 begin_class

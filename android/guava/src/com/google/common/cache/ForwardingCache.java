@@ -129,7 +129,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A cache which forwards all its method calls to another cache. Subclasses should override one or  * more methods to modify the behavior of the backing cache as desired per the  *<a href="http://en.wikipedia.org/wiki/Decorator_pattern">decorator pattern</a>.  *  * @author Charles Fry  * @since 10.0  */
+comment|/**  * A cache which forwards all its method calls to another cache. Subclasses should override one or  * more methods to modify the behavior of the backing cache as desired per the<a  * href="http://en.wikipedia.org/wiki/Decorator_pattern">decorator pattern</a>.  *  * @author Charles Fry  * @since 10.0  */
 end_comment
 
 begin_class
@@ -175,7 +175,7 @@ argument_list|>
 name|delegate
 parameter_list|()
 function_decl|;
-comment|/**    * @since 11.0    */
+comment|/** @since 11.0 */
 annotation|@
 name|Override
 annotation|@
@@ -199,7 +199,7 @@ name|key
 argument_list|)
 return|;
 block|}
-comment|/**    * @since 11.0    */
+comment|/** @since 11.0 */
 annotation|@
 name|Override
 DECL|method|get (K key, Callable<? extends V> valueLoader)
@@ -233,7 +233,7 @@ name|valueLoader
 argument_list|)
 return|;
 block|}
-comment|/**    * @since 11.0    */
+comment|/** @since 11.0 */
 annotation|@
 name|Override
 DECL|method|getAllPresent (Iterable<?> keys)
@@ -263,7 +263,7 @@ name|keys
 argument_list|)
 return|;
 block|}
-comment|/**    * @since 11.0    */
+comment|/** @since 11.0 */
 annotation|@
 name|Override
 DECL|method|put (K key, V value)
@@ -289,7 +289,7 @@ name|value
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * @since 12.0    */
+comment|/** @since 12.0 */
 annotation|@
 name|Override
 DECL|method|putAll (Map<? extends K, ? extends V> m)
@@ -339,7 +339,7 @@ name|key
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * @since 11.0    */
+comment|/** @since 11.0 */
 annotation|@
 name|Override
 DECL|method|invalidateAll (Iterable<?> keys)

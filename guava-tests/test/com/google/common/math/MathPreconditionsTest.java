@@ -90,7 +90,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testCheckPositive_maxInt ()
 specifier|public
@@ -138,7 +138,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testCheckPositive_positiveInt ()
 specifier|public
@@ -183,7 +183,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testCheckPositive_zeroLong ()
 specifier|public
@@ -211,7 +211,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testCheckPositive_maxLong ()
 specifier|public
@@ -259,7 +259,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testCheckPositive_positiveLong ()
 specifier|public
@@ -304,7 +304,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testCheckPositive_zeroBigInteger ()
 specifier|public
@@ -334,7 +334,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testCheckPositive_postiveBigInteger ()
 specifier|public
@@ -385,7 +385,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testCheckNonNegative_zeroInt ()
 specifier|public
@@ -449,7 +449,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testCheckNonNegative_positiveInt ()
 specifier|public
@@ -494,7 +494,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testCheckNonNegative_zeroLong ()
 specifier|public
@@ -558,7 +558,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testCheckNonNegative_positiveLong ()
 specifier|public
@@ -603,7 +603,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testCheckNonNegative_zeroBigInteger ()
 specifier|public
@@ -672,7 +672,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testCheckNonNegative_zeroFloat ()
 specifier|public
@@ -769,7 +769,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testCheckNonNegative_nanFloat ()
 specifier|public
@@ -799,7 +799,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testCheckNonNegative_zeroDouble ()
 specifier|public
@@ -896,7 +896,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testCheckNonNegative_nanDouble ()
 specifier|public
@@ -926,7 +926,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testCheckRoundingUnnnecessary_success ()
 specifier|public
@@ -966,7 +966,7 @@ parameter_list|(
 name|ArithmeticException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testCheckInRange_success ()
 specifier|public
@@ -1006,7 +1006,7 @@ parameter_list|(
 name|ArithmeticException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testCheckNoOverflow_success ()
 specifier|public
@@ -1046,7 +1046,7 @@ parameter_list|(
 name|ArithmeticException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 block|}
 end_class

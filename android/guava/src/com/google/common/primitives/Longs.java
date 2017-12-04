@@ -223,7 +223,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Static utility methods pertaining to {@code long} primitives, that are not already found in  * either {@link Long} or {@link Arrays}.  *  *<p>See the Guava User Guide article on  *<a href="https://github.com/google/guava/wiki/PrimitivesExplained">primitive utilities</a>.  *  * @author Kevin Bourrillion  * @since 1.0  */
+comment|/**  * Static utility methods pertaining to {@code long} primitives, that are not already found in  * either {@link Long} or {@link Arrays}.  *  *<p>See the Guava User Guide article on<a  * href="https://github.com/google/guava/wiki/PrimitivesExplained">primitive utilities</a>.  *  * @author Kevin Bourrillion  * @since 1.0  */
 end_comment
 
 begin_class
@@ -274,7 +274,7 @@ operator|-
 literal|2
 operator|)
 decl_stmt|;
-comment|/**    * Returns a hash code for {@code value}; equal to the result of invoking    * {@code ((Long) value).hashCode()}.    *    *<p>This method always return the value specified by {@link Long#hashCode()} in java, which    * might be different from {@code ((Long) value).hashCode()} in GWT because    * {@link Long#hashCode()} in GWT does not obey the JRE contract.    *    *<p><b>Java 8 users:</b> use {@link Long#hashCode(long)} instead.    *    * @param value a primitive {@code long} value    * @return a hash code for the value    */
+comment|/**    * Returns a hash code for {@code value}; equal to the result of invoking {@code ((Long)    * value).hashCode()}.    *    *<p>This method always return the value specified by {@link Long#hashCode()} in java, which    * might be different from {@code ((Long) value).hashCode()} in GWT because {@link    * Long#hashCode()} in GWT does not obey the JRE contract.    *    *<p><b>Java 8 users:</b> use {@link Long#hashCode(long)} instead.    *    * @param value a primitive {@code long} value    * @return a hash code for the value    */
 DECL|method|hashCode (long value)
 specifier|public
 specifier|static
@@ -337,7 +337,7 @@ literal|0
 operator|)
 return|;
 block|}
-comment|/**    * Returns {@code true} if {@code target} is present as an element anywhere in {@code array}.    *    * @param array an array of {@code long} values, possibly empty    * @param target a primitive {@code long} value    * @return {@code true} if {@code array[i] == target} for some value of {@code    *     i}    */
+comment|/**    * Returns {@code true} if {@code target} is present as an element anywhere in {@code array}.    *    * @param array an array of {@code long} values, possibly empty    * @param target a primitive {@code long} value    * @return {@code true} if {@code array[i] == target} for some value of {@code i}    */
 DECL|method|contains (long[] array, long target)
 specifier|public
 specifier|static
@@ -462,7 +462,7 @@ operator|-
 literal|1
 return|;
 block|}
-comment|/**    * Returns the start position of the first occurrence of the specified {@code    * target} within {@code array}, or {@code -1} if there is no such occurrence.    *    *<p>More formally, returns the lowest index {@code i} such that    * {@code Arrays.copyOfRange(array, i, i + target.length)} contains exactly the same elements as    * {@code target}.    *    * @param array the array to search for the sequence {@code target}    * @param target the array to search for as a sub-sequence of {@code array}    */
+comment|/**    * Returns the start position of the first occurrence of the specified {@code target} within    * {@code array}, or {@code -1} if there is no such occurrence.    *    *<p>More formally, returns the lowest index {@code i} such that {@code Arrays.copyOfRange(array,    * i, i + target.length)} contains exactly the same elements as {@code target}.    *    * @param array the array to search for the sequence {@code target}    * @param target the array to search for as a sub-sequence of {@code array}    */
 DECL|method|indexOf (long[] array, long[] target)
 specifier|public
 specifier|static
@@ -802,7 +802,7 @@ return|return
 name|max
 return|;
 block|}
-comment|/**    * Returns the value nearest to {@code value} which is within the closed range {@code [min..max]}.    *    *<p>If {@code value} is within the range {@code [min..max]}, {@code value} is returned    * unchanged. If {@code value} is less than {@code min}, {@code min} is returned, and if    * {@code value} is greater than {@code max}, {@code max} is returned.    *    * @param value the {@code long} value to constrain    * @param min the lower bound (inclusive) of the range to constrain {@code value} to    * @param max the upper bound (inclusive) of the range to constrain {@code value} to    * @throws IllegalArgumentException if {@code min> max}    * @since 21.0    */
+comment|/**    * Returns the value nearest to {@code value} which is within the closed range {@code [min..max]}.    *    *<p>If {@code value} is within the range {@code [min..max]}, {@code value} is returned    * unchanged. If {@code value} is less than {@code min}, {@code min} is returned, and if {@code    * value} is greater than {@code max}, {@code max} is returned.    *    * @param value the {@code long} value to constrain    * @param min the lower bound (inclusive) of the range to constrain {@code value} to    * @param max the upper bound (inclusive) of the range to constrain {@code value} to    * @throws IllegalArgumentException if {@code min> max}    * @since 21.0    */
 annotation|@
 name|Beta
 DECL|method|constrainToRange (long value, long min, long max)
@@ -852,7 +852,7 @@ name|max
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the values from each provided array combined into a single array. For example,    * {@code concat(new long[] {a, b}, new long[] {}, new long[] {c}} returns the array    * {@code {a, b, c}}.    *    * @param arrays zero or more {@code long} arrays    * @return a single array containing all the values from the source arrays, in order    */
+comment|/**    * Returns the values from each provided array combined into a single array. For example, {@code    * concat(new long[] {a, b}, new long[] {}, new long[] {c}} returns the array {@code {a, b, c}}.    *    * @param arrays zero or more {@code long} arrays    * @return a single array containing all the values from the source arrays, in order    */
 DECL|method|concat (long[]... arrays)
 specifier|public
 specifier|static
@@ -939,7 +939,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/**    * Returns a big-endian representation of {@code value} in an 8-element byte array; equivalent to    * {@code ByteBuffer.allocate(8).putLong(value).array()}. For example, the input value    * {@code 0x1213141516171819L} would yield the byte array {@code {0x12, 0x13, 0x14, 0x15, 0x16,    * 0x17, 0x18, 0x19}}.    *    *<p>If you need to convert and concatenate several values (possibly even of different types),    * use a shared {@link java.nio.ByteBuffer} instance, or use    * {@link com.google.common.io.ByteStreams#newDataOutput()} to get a growable buffer.    */
+comment|/**    * Returns a big-endian representation of {@code value} in an 8-element byte array; equivalent to    * {@code ByteBuffer.allocate(8).putLong(value).array()}. For example, the input value {@code    * 0x1213141516171819L} would yield the byte array {@code {0x12, 0x13, 0x14, 0x15, 0x16, 0x17,    * 0x18, 0x19}}.    *    *<p>If you need to convert and concatenate several values (possibly even of different types),    * use a shared {@link java.nio.ByteBuffer} instance, or use {@link    * com.google.common.io.ByteStreams#newDataOutput()} to get a growable buffer.    */
 DECL|method|toByteArray (long value)
 specifier|public
 specifier|static
@@ -1323,7 +1323,7 @@ literal|1
 return|;
 block|}
 block|}
-comment|/**    * Parses the specified string as a signed decimal long value. The ASCII character {@code '-'}    * (<code>'&#92;u002D'</code>) is recognized as the minus sign.    *    *<p>Unlike {@link Long#parseLong(String)}, this method returns {@code null} instead of throwing    * an exception if parsing fails. Additionally, this method only accepts ASCII digits, and returns    * {@code null} if non-ASCII digits are present in the string.    *    *<p>Note that strings prefixed with ASCII {@code '+'} are rejected, even under JDK 7, despite    * the change to {@link Long#parseLong(String)} for that version.    *    * @param string the string representation of a long value    * @return the long value represented by {@code string}, or {@code null} if {@code string} has a    *     length of zero or cannot be parsed as a long value    * @since 14.0    */
+comment|/**    * Parses the specified string as a signed decimal long value. The ASCII character {@code '-'} (    *<code>'&#92;u002D'</code>) is recognized as the minus sign.    *    *<p>Unlike {@link Long#parseLong(String)}, this method returns {@code null} instead of throwing    * an exception if parsing fails. Additionally, this method only accepts ASCII digits, and returns    * {@code null} if non-ASCII digits are present in the string.    *    *<p>Note that strings prefixed with ASCII {@code '+'} are rejected, even under JDK 7, despite    * the change to {@link Long#parseLong(String)} for that version.    *    * @param string the string representation of a long value    * @return the long value represented by {@code string}, or {@code null} if {@code string} has a    *     length of zero or cannot be parsed as a long value    * @since 14.0    */
 annotation|@
 name|Beta
 annotation|@
@@ -1349,7 +1349,7 @@ literal|10
 argument_list|)
 return|;
 block|}
-comment|/**    * Parses the specified string as a signed long value using the specified radix. The ASCII    * character {@code '-'} (<code>'&#92;u002D'</code>) is recognized as the minus sign.    *    *<p>Unlike {@link Long#parseLong(String, int)}, this method returns {@code null} instead of    * throwing an exception if parsing fails. Additionally, this method only accepts ASCII digits,    * and returns {@code null} if non-ASCII digits are present in the string.    *    *<p>Note that strings prefixed with ASCII {@code '+'} are rejected, even under JDK 7, despite    * the change to {@link Long#parseLong(String, int)} for that version.    *    * @param string the string representation of an long value    * @param radix the radix to use when parsing    * @return the long value represented by {@code string} using {@code radix}, or {@code null} if    *     {@code string} has a length of zero or cannot be parsed as a long value    * @throws IllegalArgumentException if {@code radix< Character.MIN_RADIX} or    *     {@code radix> Character.MAX_RADIX}    * @since 19.0    */
+comment|/**    * Parses the specified string as a signed long value using the specified radix. The ASCII    * character {@code '-'} (<code>'&#92;u002D'</code>) is recognized as the minus sign.    *    *<p>Unlike {@link Long#parseLong(String, int)}, this method returns {@code null} instead of    * throwing an exception if parsing fails. Additionally, this method only accepts ASCII digits,    * and returns {@code null} if non-ASCII digits are present in the string.    *    *<p>Note that strings prefixed with ASCII {@code '+'} are rejected, even under JDK 7, despite    * the change to {@link Long#parseLong(String, int)} for that version.    *    * @param string the string representation of an long value    * @param radix the radix to use when parsing    * @return the long value represented by {@code string} using {@code radix}, or {@code null} if    *     {@code string} has a length of zero or cannot be parsed as a long value    * @throws IllegalArgumentException if {@code radix< Character.MIN_RADIX} or {@code radix>    *     Character.MAX_RADIX}    * @since 19.0    */
 annotation|@
 name|Beta
 annotation|@
@@ -1685,7 +1685,7 @@ init|=
 literal|1
 decl_stmt|;
 block|}
-comment|/**    * Returns a serializable converter object that converts between strings and longs using    * {@link Long#decode} and {@link Long#toString()}. The returned converter throws    * {@link NumberFormatException} if the input string is invalid.    *    *<p><b>Warning:</b> please see {@link Long#decode} to understand exactly how strings are parsed.    * For example, the string {@code "0123"} is treated as<i>octal</i> and converted to the value    * {@code 83L}.    *    * @since 16.0    */
+comment|/**    * Returns a serializable converter object that converts between strings and longs using {@link    * Long#decode} and {@link Long#toString()}. The returned converter throws {@link    * NumberFormatException} if the input string is invalid.    *    *<p><b>Warning:</b> please see {@link Long#decode} to understand exactly how strings are parsed.    * For example, the string {@code "0123"} is treated as<i>octal</i> and converted to the value    * {@code 83L}.    *    * @since 16.0    */
 annotation|@
 name|Beta
 DECL|method|stringConverter ()
@@ -1706,7 +1706,7 @@ operator|.
 name|INSTANCE
 return|;
 block|}
-comment|/**    * Returns an array containing the same values as {@code array}, but guaranteed to be of a    * specified minimum length. If {@code array} already has a length of at least {@code minLength},    * it is returned directly. Otherwise, a new array of size {@code minLength + padding} is    * returned, containing the values of {@code array}, and zeroes in the remaining places.    *    * @param array the source array    * @param minLength the minimum length the returned array must guarantee    * @param padding an extra amount to "grow" the array by if growth is necessary    * @throws IllegalArgumentException if {@code minLength} or {@code padding} is negative    * @return an array containing the values of {@code array}, with guaranteed minimum length    *     {@code minLength}    */
+comment|/**    * Returns an array containing the same values as {@code array}, but guaranteed to be of a    * specified minimum length. If {@code array} already has a length of at least {@code minLength},    * it is returned directly. Otherwise, a new array of size {@code minLength + padding} is    * returned, containing the values of {@code array}, and zeroes in the remaining places.    *    * @param array the source array    * @param minLength the minimum length the returned array must guarantee    * @param padding an extra amount to "grow" the array by if growth is necessary    * @throws IllegalArgumentException if {@code minLength} or {@code padding} is negative    * @return an array containing the values of {@code array}, with guaranteed minimum length {@code    *     minLength}    */
 DECL|method|ensureCapacity (long[] array, int minLength, int padding)
 specifier|public
 specifier|static
@@ -1867,7 +1867,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns a comparator that compares two {@code long} arrays<a    * href="http://en.wikipedia.org/wiki/Lexicographical_order">lexicographically</a>. That is, it    * compares, using {@link #compare(long, long)}), the first pair of values that follow any common    * prefix, or when one array is a prefix of the other, treats the shorter array as the lesser. For    * example, {@code []< [1L]< [1L, 2L]< [2L]}.    *    *<p>The returned comparator is inconsistent with {@link Object#equals(Object)} (since arrays    * support only identity equality), but it is consistent with    * {@link Arrays#equals(long[], long[])}.    *    * @since 2.0    */
+comment|/**    * Returns a comparator that compares two {@code long} arrays<a    * href="http://en.wikipedia.org/wiki/Lexicographical_order">lexicographically</a>. That is, it    * compares, using {@link #compare(long, long)}), the first pair of values that follow any common    * prefix, or when one array is a prefix of the other, treats the shorter array as the lesser. For    * example, {@code []< [1L]< [1L, 2L]< [2L]}.    *    *<p>The returned comparator is inconsistent with {@link Object#equals(Object)} (since arrays    * support only identity equality), but it is consistent with {@link Arrays#equals(long[],    * long[])}.    *    * @since 2.0    */
 DECL|method|lexicographicalComparator ()
 specifier|public
 specifier|static
@@ -2197,7 +2197,7 @@ name|tmp
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Returns an array containing each value of {@code collection}, converted to a {@code long} value    * in the manner of {@link Number#longValue}.    *    *<p>Elements are copied from the argument collection as if by {@code    * collection.toArray()}. Calling this method is as thread-safe as calling that method.    *    * @param collection a collection of {@code Number} instances    * @return an array containing the same values as {@code collection}, in the same order, converted    *     to primitives    * @throws NullPointerException if {@code collection} or any of its elements is null    * @since 1.0 (parameter was {@code Collection<Long>} before 12.0)    */
+comment|/**    * Returns an array containing each value of {@code collection}, converted to a {@code long} value    * in the manner of {@link Number#longValue}.    *    *<p>Elements are copied from the argument collection as if by {@code collection.toArray()}.    * Calling this method is as thread-safe as calling that method.    *    * @param collection a collection of {@code Number} instances    * @return an array containing the same values as {@code collection}, in the same order, converted    *     to primitives    * @throws NullPointerException if {@code collection} or any of its elements is null    * @since 1.0 (parameter was {@code Collection<Long>} before 12.0)    */
 DECL|method|toArray (Collection<? extends Number> collection)
 specifier|public
 specifier|static

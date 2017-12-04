@@ -831,7 +831,7 @@ parameter_list|(
 name|IndexOutOfBoundsException
 name|ok
 parameter_list|)
-block|{}
+block|{     }
 try|try
 block|{
 name|sink
@@ -858,7 +858,7 @@ parameter_list|(
 name|IndexOutOfBoundsException
 name|ok
 parameter_list|)
-block|{}
+block|{     }
 try|try
 block|{
 name|sink
@@ -886,9 +886,9 @@ parameter_list|(
 name|IndexOutOfBoundsException
 name|ok
 parameter_list|)
-block|{}
+block|{     }
 block|}
-comment|/**    * This test creates a long random sequence of inputs, then a lot of differently configured    * sinks process it; all should produce the same answer, the only difference should be the    * number of process()/processRemaining() invocations, due to alignment.    */
+comment|/**    * This test creates a long random sequence of inputs, then a lot of differently configured sinks    * process it; all should produce the same answer, the only difference should be the number of    * process()/processRemaining() invocations, due to alignment.    */
 annotation|@
 name|AndroidIncompatible
 comment|// slow. TODO(cpovirk): Maybe just reduce iterations under Android.
@@ -1231,9 +1231,9 @@ operator|=
 name|chunkSize
 expr_stmt|;
 block|}
-DECL|method|makeHash ()
 annotation|@
 name|Override
+DECL|method|makeHash ()
 specifier|protected
 name|HashCode
 name|makeHash
@@ -1251,9 +1251,9 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-DECL|method|process (ByteBuffer bb)
 annotation|@
 name|Override
+DECL|method|process (ByteBuffer bb)
 specifier|protected
 name|void
 name|process
@@ -1314,9 +1314,9 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-DECL|method|processRemaining (ByteBuffer bb)
 annotation|@
 name|Override
+DECL|method|processRemaining (ByteBuffer bb)
 specifier|protected
 name|void
 name|processRemaining

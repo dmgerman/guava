@@ -141,7 +141,6 @@ name|SampleMatcherConfig
 name|config
 decl_stmt|;
 comment|// Length of string to match against
-DECL|field|length
 annotation|@
 name|Param
 argument_list|(
@@ -151,11 +150,11 @@ block|,
 literal|"1024"
 block|}
 argument_list|)
+DECL|field|length
 name|int
 name|length
 decl_stmt|;
 comment|// Percent of string that the CharMatcher matches
-DECL|field|percent
 annotation|@
 name|Param
 argument_list|(
@@ -169,16 +168,17 @@ block|,
 literal|"100"
 block|}
 argument_list|)
+DECL|field|percent
 name|int
 name|percent
 decl_stmt|;
 comment|// Whether to use a precomputed CharMatcher
-DECL|field|precomputed
 annotation|@
 name|Param
 argument_list|(
 literal|"true"
 argument_list|)
+DECL|field|precomputed
 name|boolean
 name|precomputed
 decl_stmt|;
@@ -200,22 +200,22 @@ name|size
 decl_stmt|;
 comment|// Whether to ensure there is a matching character in the first position
 comment|// to force the trimming code to run.
-DECL|field|forceSlow
 annotation|@
 name|Param
 argument_list|(
 literal|"false"
 argument_list|)
+DECL|field|forceSlow
 name|boolean
 name|forceSlow
 decl_stmt|;
 comment|// Use web-derived sampler.
-DECL|field|web
 annotation|@
 name|Param
 argument_list|(
 literal|"false"
 argument_list|)
+DECL|field|web
 name|boolean
 name|web
 decl_stmt|;
@@ -230,9 +230,9 @@ name|String
 name|string
 decl_stmt|;
 comment|// Caliper invokes setUp() after injecting params
-DECL|method|setUp ()
 annotation|@
 name|BeforeExperiment
+DECL|method|setUp ()
 name|void
 name|setUp
 parameter_list|()
@@ -324,9 +324,9 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// Caliper recognizes int-parameter methods beginning with "time"
-DECL|method|trimAndCollapseFromString (int reps)
 annotation|@
 name|Benchmark
+DECL|method|trimAndCollapseFromString (int reps)
 name|int
 name|trimAndCollapseFromString
 parameter_list|(
@@ -373,9 +373,9 @@ return|return
 name|dummy
 return|;
 block|}
-DECL|method|matches (int reps)
 annotation|@
 name|Benchmark
+DECL|method|matches (int reps)
 name|int
 name|matches
 parameter_list|(
@@ -440,7 +440,7 @@ name|NONMATCHING_CHARS
 init|=
 literal|"abcdefghijklmnopqrstuvwxyz0123456789"
 decl_stmt|;
-DECL|method|checkString (int length, int percent, String matchingChars, Random rand, boolean forceSlow, boolean web)
+DECL|method|checkString ( int length, int percent, String matchingChars, Random rand, boolean forceSlow, boolean web)
 specifier|private
 specifier|static
 name|String
@@ -710,7 +710,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**   * Provides samples on a random distribution derived from the web.   *   * Adapted from data provided by Mark Davis.   *   * @author Christopher Swenson   */
+comment|/**    * Provides samples on a random distribution derived from the web.    *    *<p>Adapted from data provided by Mark Davis.    *    * @author Christopher Swenson    */
 DECL|class|CharSamples
 specifier|static
 class|class

@@ -127,7 +127,7 @@ operator|.
 name|INSTANCE
 return|;
 block|}
-comment|/**    * Dispatches the given {@code event} to the given {@code subscribers}.    */
+comment|/** Dispatches the given {@code event} to the given {@code subscribers}. */
 DECL|method|dispatch (Object event, Iterator<Subscriber> subscribers)
 specifier|abstract
 name|void
@@ -143,7 +143,7 @@ argument_list|>
 name|subscribers
 parameter_list|)
 function_decl|;
-comment|/**    * Implementation of a {@link #perThreadDispatchQueue()} dispatcher.    */
+comment|/** Implementation of a {@link #perThreadDispatchQueue()} dispatcher. */
 DECL|class|PerThreadQueuedDispatcher
 specifier|private
 specifier|static
@@ -154,7 +154,7 @@ extends|extends
 name|Dispatcher
 block|{
 comment|// This dispatcher matches the original dispatch behavior of EventBus.
-comment|/**      * Per-thread queue of events to dispatch.      */
+comment|/** Per-thread queue of events to dispatch. */
 DECL|field|queue
 specifier|private
 specifier|final
@@ -196,7 +196,7 @@ return|;
 block|}
 block|}
 decl_stmt|;
-comment|/**      * Per-thread dispatch state, used to avoid reentrant event dispatching.      */
+comment|/** Per-thread dispatch state, used to avoid reentrant event dispatching. */
 DECL|field|dispatching
 specifier|private
 specifier|final
@@ -404,7 +404,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**    * Implementation of a {@link #legacyAsync()} dispatcher.    */
+comment|/** Implementation of a {@link #legacyAsync()} dispatcher. */
 DECL|class|LegacyAsyncDispatcher
 specifier|private
 specifier|static
@@ -431,7 +431,7 @@ comment|// All this makes me really wonder if there's any value in queueing here
 comment|// that simply loops through the subscribers and dispatches the event to each would actually
 comment|// probably provide a stronger order guarantee, though that order would obviously be different
 comment|// in some cases.
-comment|/**      * Global event queue.      */
+comment|/** Global event queue. */
 DECL|field|queue
 specifier|private
 specifier|final
@@ -567,7 +567,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**    * Implementation of {@link #immediate()}.    */
+comment|/** Implementation of {@link #immediate()}. */
 DECL|class|ImmediateDispatcher
 specifier|private
 specifier|static

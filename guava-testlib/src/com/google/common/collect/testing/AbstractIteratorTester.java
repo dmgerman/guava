@@ -167,7 +167,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Most of the logic for {@link IteratorTester} and {@link ListIteratorTester}.  *  * @param<E> the type of element returned by the iterator  * @param<I> the type of the iterator ({@link Iterator} or  *     {@link ListIterator})  *  * @author Kevin Bourrillion  * @author Chris Povirk  */
+comment|/**  * Most of the logic for {@link IteratorTester} and {@link ListIteratorTester}.  *  * @param<E> the type of element returned by the iterator  * @param<I> the type of the iterator ({@link Iterator} or {@link ListIterator})  * @author Kevin Bourrillion  * @author Chris Povirk  */
 end_comment
 
 begin_class
@@ -494,7 +494,7 @@ init|=
 literal|0
 decl_stmt|;
 block|}
-comment|/**    * Quasi-implementation of {@link ListIterator} that works from a list of    * elements and a set of features to support (from the enclosing    * {@link AbstractIteratorTester} instance). Instead of throwing exceptions    * like {@link NoSuchElementException} at the appropriate times, it throws    * {@link PermittedMetaException} instances, which wrap a set of all    * exceptions that the iterator could throw during the invocation of that    * method. This is necessary because, e.g., a call to    * {@code iterator().remove()} of an unmodifiable list could throw either    * {@link IllegalStateException} or {@link UnsupportedOperationException}.    * Note that iterator implementations should always throw one of the    * exceptions in a {@code PermittedExceptions} instance, since    * {@code PermittedExceptions} is thrown only when a method call is invalid.    *    *<p>This class is accessible but not supported in GWT as it references    * {@link PermittedMetaException}.    */
+comment|/**    * Quasi-implementation of {@link ListIterator} that works from a list of elements and a set of    * features to support (from the enclosing {@link AbstractIteratorTester} instance). Instead of    * throwing exceptions like {@link NoSuchElementException} at the appropriate times, it throws    * {@link PermittedMetaException} instances, which wrap a set of all exceptions that the iterator    * could throw during the invocation of that method. This is necessary because, e.g., a call to    * {@code iterator().remove()} of an unmodifiable list could throw either {@link    * IllegalStateException} or {@link UnsupportedOperationException}. Note that iterator    * implementations should always throw one of the exceptions in a {@code PermittedExceptions}    * instance, since {@code PermittedExceptions} is thrown only when a method call is invalid.    *    *<p>This class is accessible but not supported in GWT as it references {@link    * PermittedMetaException}.    */
 DECL|class|MultiExceptionListIterator
 specifier|protected
 specifier|final
@@ -510,7 +510,7 @@ comment|// TODO: track seen elements when order isn't guaranteed
 comment|// TODO: verify contents afterward
 comment|// TODO: something shiny and new instead of Stack
 comment|// TODO: test whether null is supported (create a Feature)
-comment|/**      * The elements to be returned by future calls to {@code next()}, with the      * first at the top of the stack.      */
+comment|/**      * The elements to be returned by future calls to {@code next()}, with the first at the top of      * the stack.      */
 DECL|field|nextElements
 specifier|final
 name|Stack
@@ -526,7 +526,7 @@ name|E
 argument_list|>
 argument_list|()
 decl_stmt|;
-comment|/**      * The elements to be returned by future calls to {@code previous()}, with      * the first at the top of the stack.      */
+comment|/**      * The elements to be returned by future calls to {@code previous()}, with the first at the top      * of the stack.      */
 DECL|field|previousElements
 specifier|final
 name|Stack
@@ -542,7 +542,7 @@ name|E
 argument_list|>
 argument_list|()
 decl_stmt|;
-comment|/**      * {@link #nextElements} if {@code next()} was called more recently then      * {@code previous}, {@link #previousElements} if the reverse is true, or --      * overriding both of these -- {@code null} if {@code remove()} or      * {@code add()} has been called more recently than either. We use this to      * determine which stack to pop from on a call to {@code remove()} (or to      * pop from and push to on a call to {@code set()}.      */
+comment|/**      * {@link #nextElements} if {@code next()} was called more recently then {@code previous},      * {@link #previousElements} if the reverse is true, or -- overriding both of these -- {@code      * null} if {@code remove()} or {@code add()} has been called more recently than either. We use      * this to determine which stack to pop from on a call to {@code remove()} (or to pop from and      * push to on a call to {@code set()}.      */
 DECL|field|stackWithLastReturnedElementAtTop
 name|Stack
 argument_list|<
@@ -797,7 +797,7 @@ name|e
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Moves the given element from its current position in      * {@link #nextElements} to the top of the stack so that it is returned by      * the next call to {@link Iterator#next()}. If the element is not in      * {@link #nextElements}, this method throws an      * {@link UnknownElementException}.      *      *<p>This method is used when testing iterators without a known ordering.      * We poll the target iterator's next element and pass it to the reference      * iterator through this method so it can return the same element. This      * enables the assertion to pass and the reference iterator to properly      * update its state.      */
+comment|/**      * Moves the given element from its current position in {@link #nextElements} to the top of the      * stack so that it is returned by the next call to {@link Iterator#next()}. If the element is      * not in {@link #nextElements}, this method throws an {@link UnknownElementException}.      *      *<p>This method is used when testing iterators without a known ordering. We poll the target      * iterator's next element and pass it to the reference iterator through this method so it can      * return the same element. This enables the assertion to pass and the reference iterator to      * properly update its state.      */
 DECL|method|promoteToNext (E e)
 name|void
 name|promoteToNext
@@ -1119,7 +1119,7 @@ operator|=
 name|startIndex
 expr_stmt|;
 block|}
-comment|/**    * I'd like to make this a parameter to the constructor, but I can't because    * the stimulus instances refer to {@code this}.    */
+comment|/**    * I'd like to make this a parameter to the constructor, but I can't because the stimulus    * instances refer to {@code this}.    */
 DECL|method|getStimulusValues ()
 specifier|protected
 specifier|abstract
@@ -1139,7 +1139,7 @@ argument_list|>
 name|getStimulusValues
 parameter_list|()
 function_decl|;
-comment|/**    * Returns a new target iterator each time it's called. This is the iterator    * you are trying to test. This must return an Iterator that returns the    * expected elements passed to the constructor in the given order. Warning: it    * is not enough to simply pull multiple iterators from the same source    * Iterable, unless that Iterator is unmodifiable.    */
+comment|/**    * Returns a new target iterator each time it's called. This is the iterator you are trying to    * test. This must return an Iterator that returns the expected elements passed to the constructor    * in the given order. Warning: it is not enough to simply pull multiple iterators from the same    * source Iterable, unless that Iterator is unmodifiable.    */
 DECL|method|newTargetIterator ()
 specifier|protected
 specifier|abstract
@@ -1147,7 +1147,7 @@ name|I
 name|newTargetIterator
 parameter_list|()
 function_decl|;
-comment|/**    * Override this to verify anything after running a list of Stimuli.    *    *<p>For example, verify that calls to remove() actually removed    * the correct elements.    *    * @param elements the expected elements passed to the constructor, as mutated    *     by {@code remove()}, {@code set()}, and {@code add()} calls    */
+comment|/**    * Override this to verify anything after running a list of Stimuli.    *    *<p>For example, verify that calls to remove() actually removed the correct elements.    *    * @param elements the expected elements passed to the constructor, as mutated by {@code    *     remove()}, {@code set()}, and {@code add()} calls    */
 DECL|method|verify (List<E> elements)
 specifier|protected
 name|void
@@ -1160,7 +1160,7 @@ argument_list|>
 name|elements
 parameter_list|)
 block|{}
-comment|/**    * Executes the test.    */
+comment|/** Executes the test. */
 DECL|method|test ()
 specifier|public
 specifier|final
@@ -1582,7 +1582,7 @@ name|iterator
 parameter_list|)
 function_decl|;
 block|}
-comment|/**    * Apply this method to both iterators and return normally only if both    * produce the same response.    *    * @see Stimulus#executeAndCompare(ListIterator, Iterator)    */
+comment|/**    * Apply this method to both iterators and return normally only if both produce the same response.    *    * @see Stimulus#executeAndCompare(ListIterator, Iterator)    */
 DECL|method|internalExecuteAndCompare ( T reference, T target, IteratorOperation method)
 specifier|private
 parameter_list|<
@@ -2077,7 +2077,7 @@ operator|=
 name|toString
 expr_stmt|;
 block|}
-comment|/**      * Send this stimulus to both iterators and return normally only if both      * produce the same response.      */
+comment|/**      * Send this stimulus to both iterators and return normally only if both produce the same      * response.      */
 DECL|method|executeAndCompare (ListIterator<E> reference, T target)
 specifier|abstract
 name|void

@@ -77,7 +77,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Implementation of an {@link Optional} containing a reference.  */
+comment|/** Implementation of an {@link Optional} containing a reference. */
 end_comment
 
 begin_class

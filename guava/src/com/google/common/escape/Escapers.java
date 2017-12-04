@@ -184,7 +184,7 @@ return|;
 block|}
 block|}
 decl_stmt|;
-comment|/**    * Returns a builder for creating simple, fast escapers. A builder instance can be reused and each    * escaper that is created will be a snapshot of the current builder state. Builders are not    * thread safe.    *    *<p>The initial state of the builder is such that:    *<ul>    *<li>There are no replacement mappings    *<li>{@code safeMin == Character.MIN_VALUE}    *<li>{@code safeMax == Character.MAX_VALUE}    *<li>{@code unsafeReplacement == null}    *</ul>    *<p>For performance reasons escapers created by this builder are not Unicode aware and will not    * validate the well-formedness of their input.    */
+comment|/**    * Returns a builder for creating simple, fast escapers. A builder instance can be reused and each    * escaper that is created will be a snapshot of the current builder state. Builders are not    * thread safe.    *    *<p>The initial state of the builder is such that:    *    *<ul>    *<li>There are no replacement mappings    *<li>{@code safeMin == Character.MIN_VALUE}    *<li>{@code safeMax == Character.MAX_VALUE}    *<li>{@code unsafeReplacement == null}    *</ul>    *    *<p>For performance reasons escapers created by this builder are not Unicode aware and will not    * validate the well-formedness of their input.    */
 DECL|method|builder ()
 specifier|public
 specifier|static
@@ -198,7 +198,7 @@ name|Builder
 argument_list|()
 return|;
 block|}
-comment|/**    * A builder for simple, fast escapers.    *    *<p>Typically an escaper needs to deal with the escaping of high valued characters or code    * points. In these cases it is necessary to extend either {@link ArrayBasedCharEscaper} or    * {@link ArrayBasedUnicodeEscaper} to provide the desired behavior. However this builder is    * suitable for creating escapers that replace a relative small set of characters.    *    * @author David Beaumont    * @since 15.0    */
+comment|/**    * A builder for simple, fast escapers.    *    *<p>Typically an escaper needs to deal with the escaping of high valued characters or code    * points. In these cases it is necessary to extend either {@link ArrayBasedCharEscaper} or {@link    * ArrayBasedUnicodeEscaper} to provide the desired behavior. However this builder is suitable for    * creating escapers that replace a relative small set of characters.    *    * @author David Beaumont    * @since 15.0    */
 annotation|@
 name|Beta
 DECL|class|Builder
@@ -255,7 +255,7 @@ specifier|private
 name|Builder
 parameter_list|()
 block|{}
-comment|/**      * Sets the safe range of characters for the escaper. Characters in this range that have no      * explicit replacement are considered 'safe' and remain unescaped in the output. If      * {@code safeMax< safeMin} then the safe range is empty.      *      * @param safeMin the lowest 'safe' character      * @param safeMax the highest 'safe' character      * @return the builder instance      */
+comment|/**      * Sets the safe range of characters for the escaper. Characters in this range that have no      * explicit replacement are considered 'safe' and remain unescaped in the output. If {@code      * safeMax< safeMin} then the safe range is empty.      *      * @param safeMin the lowest 'safe' character      * @param safeMax the highest 'safe' character      * @return the builder instance      */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|setSafeRange (char safeMin, char safeMax)
@@ -344,7 +344,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**      * Returns a new escaper based on the current state of the builder.      */
+comment|/** Returns a new escaper based on the current state of the builder. */
 DECL|method|build ()
 specifier|public
 name|Escaper
@@ -398,7 +398,7 @@ block|}
 return|;
 block|}
 block|}
-comment|/**    * Returns a {@link UnicodeEscaper} equivalent to the given escaper instance. If the escaper is    * already a UnicodeEscaper then it is simply returned, otherwise it is wrapped in a    * UnicodeEscaper.    *    *<p>When a {@link CharEscaper} escaper is wrapped by this method it acquires extra behavior with    * respect to the well-formedness of Unicode character sequences and will throw    * {@link IllegalArgumentException} when given bad input.    *    * @param escaper the instance to be wrapped    * @return a UnicodeEscaper with the same behavior as the given instance    * @throws NullPointerException if escaper is null    * @throws IllegalArgumentException if escaper is not a UnicodeEscaper or a CharEscaper    */
+comment|/**    * Returns a {@link UnicodeEscaper} equivalent to the given escaper instance. If the escaper is    * already a UnicodeEscaper then it is simply returned, otherwise it is wrapped in a    * UnicodeEscaper.    *    *<p>When a {@link CharEscaper} escaper is wrapped by this method it acquires extra behavior with    * respect to the well-formedness of Unicode character sequences and will throw {@link    * IllegalArgumentException} when given bad input.    *    * @param escaper the instance to be wrapped    * @return a UnicodeEscaper with the same behavior as the given instance    * @throws NullPointerException if escaper is null    * @throws IllegalArgumentException if escaper is not a UnicodeEscaper or a CharEscaper    */
 DECL|method|asUnicodeEscaper (Escaper escaper)
 specifier|static
 name|UnicodeEscaper
@@ -463,7 +463,7 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-comment|/**    * Returns a string that would replace the given character in the specified escaper, or    * {@code null} if no replacement should be made. This method is intended for use in tests through    * the {@code EscaperAsserts} class; production users of {@link CharEscaper} should limit    * themselves to its public interface.    *    * @param c the character to escape if necessary    * @return the replacement string, or {@code null} if no escaping was needed    */
+comment|/**    * Returns a string that would replace the given character in the specified escaper, or {@code    * null} if no replacement should be made. This method is intended for use in tests through the    * {@code EscaperAsserts} class; production users of {@link CharEscaper} should limit themselves    * to its public interface.    *    * @param c the character to escape if necessary    * @return the replacement string, or {@code null} if no escaping was needed    */
 DECL|method|computeReplacement (CharEscaper escaper, char c)
 specifier|public
 specifier|static
@@ -489,7 +489,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a string that would replace the given character in the specified escaper, or    * {@code null} if no replacement should be made. This method is intended for use in tests through    * the {@code EscaperAsserts} class; production users of {@link UnicodeEscaper} should limit    * themselves to its public interface.    *    * @param cp the Unicode code point to escape if necessary    * @return the replacement string, or {@code null} if no escaping was needed    */
+comment|/**    * Returns a string that would replace the given character in the specified escaper, or {@code    * null} if no replacement should be made. This method is intended for use in tests through the    * {@code EscaperAsserts} class; production users of {@link UnicodeEscaper} should limit    * themselves to its public interface.    *    * @param cp the Unicode code point to escape if necessary    * @return the replacement string, or {@code null} if no escaping was needed    */
 DECL|method|computeReplacement (UnicodeEscaper escaper, int cp)
 specifier|public
 specifier|static

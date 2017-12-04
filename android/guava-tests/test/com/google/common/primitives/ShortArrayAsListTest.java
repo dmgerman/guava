@@ -445,9 +445,9 @@ name|ShortsAsListGenerator
 extends|extends
 name|TestShortListGenerator
 block|{
-DECL|method|create (Short[] elements)
 annotation|@
 name|Override
+DECL|method|create (Short[] elements)
 specifier|protected
 name|List
 argument_list|<
@@ -477,9 +477,9 @@ name|ShortsAsListHeadSubListGenerator
 extends|extends
 name|TestShortListGenerator
 block|{
-DECL|method|create (Short[] elements)
 annotation|@
 name|Override
+DECL|method|create (Short[] elements)
 specifier|protected
 name|List
 argument_list|<
@@ -543,9 +543,9 @@ name|ShortsAsListTailSubListGenerator
 extends|extends
 name|TestShortListGenerator
 block|{
-DECL|method|create (Short[] elements)
 annotation|@
 name|Override
+DECL|method|create (Short[] elements)
 specifier|protected
 name|List
 argument_list|<
@@ -613,9 +613,9 @@ name|ShortsAsListMiddleSubListGenerator
 extends|extends
 name|TestShortListGenerator
 block|{
-DECL|method|create (Short[] elements)
 annotation|@
 name|Override
+DECL|method|create (Short[] elements)
 specifier|protected
 name|List
 argument_list|<
@@ -767,8 +767,8 @@ return|;
 block|}
 DECL|class|TestShortListGenerator
 specifier|public
-specifier|static
 specifier|abstract
+specifier|static
 class|class
 name|TestShortListGenerator
 implements|implements
@@ -853,7 +853,7 @@ name|array
 argument_list|)
 return|;
 block|}
-comment|/**      * Creates a new collection containing the given elements; implement this      * method instead of {@link #create(Object...)}.      */
+comment|/**      * Creates a new collection containing the given elements; implement this method instead of      * {@link #create(Object...)}.      */
 DECL|method|create (Short[] elements)
 specifier|protected
 specifier|abstract

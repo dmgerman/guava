@@ -224,7 +224,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// Visible for other tests to use
-DECL|method|assertConstantNameMatchesString (Class<?> clazz, ImmutableBiMap<String, String> specialCases, ImmutableSet<String> uppercaseAcronyms)
+DECL|method|assertConstantNameMatchesString ( Class<?> clazz, ImmutableBiMap<String, String> specialCases, ImmutableSet<String> uppercaseAcronyms)
 specifier|static
 name|void
 name|assertConstantNameMatchesString
@@ -390,7 +390,7 @@ argument_list|(
 literal|'-'
 argument_list|)
 decl_stmt|;
-DECL|method|upperToHttpHeaderName (String constantName, ImmutableBiMap<String, String> specialCases, ImmutableSet<String> uppercaseAcronyms)
+DECL|method|upperToHttpHeaderName ( String constantName, ImmutableBiMap<String, String> specialCases, ImmutableSet<String> uppercaseAcronyms)
 specifier|private
 specifier|static
 name|String

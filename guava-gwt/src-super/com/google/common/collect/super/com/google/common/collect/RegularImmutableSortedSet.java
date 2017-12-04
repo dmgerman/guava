@@ -98,9 +98,9 @@ operator|=
 name|isSubset
 expr_stmt|;
 block|}
-DECL|method|createAsList ()
 annotation|@
 name|Override
+DECL|method|createAsList ()
 name|ImmutableList
 argument_list|<
 name|E

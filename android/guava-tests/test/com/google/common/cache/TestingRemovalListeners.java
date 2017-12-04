@@ -86,7 +86,7 @@ DECL|class|TestingRemovalListeners
 class|class
 name|TestingRemovalListeners
 block|{
-comment|/**    * Returns a new no-op {@code RemovalListener}.    */
+comment|/** Returns a new no-op {@code RemovalListener}. */
 DECL|method|nullRemovalListener ()
 specifier|static
 parameter_list|<
@@ -110,7 +110,7 @@ argument_list|<>
 argument_list|()
 return|;
 block|}
-comment|/**    * Type-inferring factory method for creating a {@link QueuingRemovalListener}.    */
+comment|/** Type-inferring factory method for creating a {@link QueuingRemovalListener}. */
 annotation|@
 name|GwtIncompatible
 comment|// ConcurrentLinkedQueue
@@ -137,7 +137,7 @@ argument_list|<>
 argument_list|()
 return|;
 block|}
-comment|/**    * Type-inferring factory method for creating a {@link CountingRemovalListener}.    */
+comment|/** Type-inferring factory method for creating a {@link CountingRemovalListener}. */
 DECL|method|countingRemovalListener ()
 specifier|static
 parameter_list|<
@@ -161,7 +161,7 @@ argument_list|<>
 argument_list|()
 return|;
 block|}
-comment|/**    * {@link RemovalListener} that adds all {@link RemovalNotification} objects to a queue.    */
+comment|/** {@link RemovalListener} that adds all {@link RemovalNotification} objects to a queue. */
 annotation|@
 name|GwtIncompatible
 comment|// ConcurrentLinkedQueue
@@ -335,7 +335,7 @@ name|lastNotification
 return|;
 block|}
 block|}
-comment|/**    * No-op {@link RemovalListener}.    */
+comment|/** No-op {@link RemovalListener}. */
 DECL|class|NullRemovalListener
 specifier|static
 class|class

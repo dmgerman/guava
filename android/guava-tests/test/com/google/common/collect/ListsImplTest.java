@@ -173,7 +173,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests the package level *impl methods directly using various types of lists.  */
+comment|/** Tests the package level *impl methods directly using various types of lists. */
 end_comment
 
 begin_class
@@ -191,7 +191,7 @@ name|ListsImplTest
 extends|extends
 name|TestCase
 block|{
-comment|/**    * Describes how a list is modifiable    */
+comment|/** Describes how a list is modifiable */
 DECL|enum|Modifiability
 specifier|public
 enum|enum
@@ -216,8 +216,8 @@ block|}
 comment|/** Handles the creation of lists needed for the tests */
 DECL|class|ListExample
 specifier|public
-specifier|static
 specifier|abstract
+specifier|static
 class|class
 name|ListExample
 block|{
@@ -257,7 +257,7 @@ operator|=
 name|modifiability
 expr_stmt|;
 block|}
-comment|/**      * Gets the name of the example      */
+comment|/** Gets the name of the example */
 DECL|method|getName ()
 specifier|public
 name|String
@@ -268,7 +268,7 @@ return|return
 name|name
 return|;
 block|}
-comment|/**      * Creates a new list with the given contents.      */
+comment|/** Creates a new list with the given contents. */
 DECL|method|createList (Class<T> listType, Collection<? extends T> contents)
 specifier|public
 specifier|abstract
@@ -296,7 +296,7 @@ argument_list|>
 name|contents
 parameter_list|)
 function_decl|;
-comment|/**      * The modifiablity of this list example.      */
+comment|/** The modifiablity of this list example. */
 DECL|method|modifiability ()
 specifier|public
 name|Modifiability

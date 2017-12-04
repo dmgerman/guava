@@ -1551,7 +1551,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Supplies an arbitrary "default" instance for a wide range of types, often useful in testing  * utilities.  *  *<p>Covers arrays, enums and common types defined in {@code java.lang}, {@code java.lang.reflect},  * {@code java.io}, {@code java.nio}, {@code java.math}, {@code java.util}, {@code  * java.util.concurrent}, {@code java.util.regex}, {@code com.google.common.base}, {@code  * com.google.common.collect} and {@code com.google.common.primitives}. In addition, if the type  * exposes at least one public static final constant of the same type, one of the constants will be  * used; or if the class exposes a public parameter-less constructor then it will be "new"d and  * returned.  *  *<p>All default instances returned by {@link #get} are generics-safe. Clients won't get type  * errors for using {@code get(Comparator.class)} as a {@code Comparator<Foo>}, for example.  * Immutable empty instances are returned for collection types; {@code ""} for string;  * {@code 0} for number types; reasonable default instance for other stateless types. For mutable  * types, a fresh instance is created each time {@code get()} is called.  *  * @author Kevin Bourrillion  * @author Ben Yu  * @since 12.0  */
+comment|/**  * Supplies an arbitrary "default" instance for a wide range of types, often useful in testing  * utilities.  *  *<p>Covers arrays, enums and common types defined in {@code java.lang}, {@code java.lang.reflect},  * {@code java.io}, {@code java.nio}, {@code java.math}, {@code java.util}, {@code  * java.util.concurrent}, {@code java.util.regex}, {@code com.google.common.base}, {@code  * com.google.common.collect} and {@code com.google.common.primitives}. In addition, if the type  * exposes at least one public static final constant of the same type, one of the constants will be  * used; or if the class exposes a public parameter-less constructor then it will be "new"d and  * returned.  *  *<p>All default instances returned by {@link #get} are generics-safe. Clients won't get type  * errors for using {@code get(Comparator.class)} as a {@code Comparator<Foo>}, for example.  * Immutable empty instances are returned for collection types; {@code ""} for string; {@code 0} for  * number types; reasonable default instance for other stateless types. For mutable types, a fresh  * instance is created each time {@code get()} is called.  *  * @author Kevin Bourrillion  * @author Ben Yu  * @since 12.0  */
 end_comment
 
 begin_class
@@ -3161,10 +3161,10 @@ name|getName
 argument_list|()
 argument_list|)
 decl_stmt|;
-comment|/**    * Returns an arbitrary instance for {@code type}, or {@code null} if no arbitrary instance can    * be determined.    */
-DECL|method|get (Class<T> type)
+comment|/**    * Returns an arbitrary instance for {@code type}, or {@code null} if no arbitrary instance can be    * determined.    */
 annotation|@
 name|Nullable
+DECL|method|get (Class<T> type)
 specifier|public
 specifier|static
 parameter_list|<
@@ -3427,9 +3427,9 @@ argument_list|)
 return|;
 block|}
 block|}
-DECL|method|arbitraryConstantInstanceOrNull (Class<T> type)
 annotation|@
 name|Nullable
+DECL|method|arbitraryConstantInstanceOrNull (Class<T> type)
 specifier|private
 specifier|static
 parameter_list|<
@@ -3747,9 +3747,9 @@ name|Runnable
 implements|,
 name|Serializable
 block|{
-DECL|method|run ()
 annotation|@
 name|Override
+DECL|method|run ()
 specifier|public
 name|void
 name|run
@@ -3767,9 +3767,9 @@ name|ThreadFactory
 implements|,
 name|Serializable
 block|{
-DECL|method|newThread (Runnable r)
 annotation|@
 name|Override
+DECL|method|newThread (Runnable r)
 specifier|public
 name|Thread
 name|newThread
@@ -3798,9 +3798,9 @@ name|Executor
 implements|,
 name|Serializable
 block|{
-DECL|method|execute (Runnable command)
 annotation|@
 name|Override
+DECL|method|execute (Runnable command)
 specifier|public
 name|void
 name|execute
@@ -3833,9 +3833,9 @@ operator|new
 name|NullByteSink
 argument_list|()
 decl_stmt|;
-DECL|method|openStream ()
 annotation|@
 name|Override
+DECL|method|openStream ()
 specifier|public
 name|OutputStream
 name|openStream
@@ -3877,9 +3877,9 @@ operator|new
 name|ByToString
 argument_list|()
 decl_stmt|;
-DECL|method|compareTo (Object o)
 annotation|@
 name|Override
+DECL|method|compareTo (Object o)
 specifier|public
 name|int
 name|compareTo
@@ -3901,9 +3901,9 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString
@@ -3950,9 +3950,9 @@ operator|new
 name|AlwaysEqual
 argument_list|()
 decl_stmt|;
-DECL|method|compare (Object o1, Object o2)
 annotation|@
 name|Override
+DECL|method|compare (Object o1, Object o2)
 specifier|public
 name|int
 name|compare
@@ -3968,9 +3968,9 @@ return|return
 literal|0
 return|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString

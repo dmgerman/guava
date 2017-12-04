@@ -167,7 +167,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tester for {@code Collector} implementations.  *  *<p>Example usage:  *<pre>  * CollectorTester.of(Collectors.summingInt(Integer::parseInt))  *     .expectCollects(3, "1", "2")  *     .expectCollects(10, "1", "4", "3", "2")  *     .expectCollects(5, "-3", "0", "8");  *</pre>  *  * @author Louis Wasserman  * @since 21.0  */
+comment|/**  * Tester for {@code Collector} implementations.  *  *<p>Example usage:  *  *<pre>  * CollectorTester.of(Collectors.summingInt(Integer::parseInt))  *     .expectCollects(3, "1", "2")  *     .expectCollects(10, "1", "4", "3", "2")  *     .expectCollects(5, "-3", "0", "8");  *</pre>  *  * @author Louis Wasserman  * @since 21.0  */
 end_comment
 
 begin_class
@@ -232,7 +232,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Creates a {@code CollectorTester} for the specified {@code Collector}. The result of the {@code    * Collector} will be compared to the expected value using the specified {@code equivalence}.    */
-DECL|method|of (Collector<T, A, R> collector, BiPredicate<? super R, ? super R> equivalence)
+DECL|method|of ( Collector<T, A, R> collector, BiPredicate<? super R, ? super R> equivalence)
 specifier|public
 specifier|static
 parameter_list|<
@@ -360,12 +360,12 @@ name|equivalence
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Different orderings for combining the elements of an input array, which must    * all produce the same result.    */
+comment|/**    * Different orderings for combining the elements of an input array, which must all produce the    * same result.    */
 DECL|enum|CollectStrategy
 enum|enum
 name|CollectStrategy
 block|{
-comment|/**      * Get one accumulator and accumulate the elements into it sequentially.      */
+comment|/** Get one accumulator and accumulate the elements into it sequentially. */
 DECL|enumConstant|SEQUENTIAL
 name|SEQUENTIAL
 block|{
@@ -437,7 +437,7 @@ return|;
 block|}
 block|}
 block|,
-comment|/**      * Get one accumulator for each element and merge the accumulators      * left-to-right.      */
+comment|/** Get one accumulator for each element and merge the accumulators left-to-right. */
 DECL|enumConstant|MERGE_LEFT_ASSOCIATIVE
 name|MERGE_LEFT_ASSOCIATIVE
 block|{
@@ -534,7 +534,7 @@ return|;
 block|}
 block|}
 block|,
-comment|/**      * Get one accumulator for each element and merge the accumulators      * right-to-left.      */
+comment|/** Get one accumulator for each element and merge the accumulators right-to-left. */
 DECL|enumConstant|MERGE_RIGHT_ASSOCIATIVE
 name|MERGE_RIGHT_ASSOCIATIVE
 block|{
@@ -765,7 +765,7 @@ name|inputs
 parameter_list|)
 function_decl|;
 block|}
-comment|/**    * Verifies that the specified expected result is always produced by collecting the    * specified inputs, regardless of how the elements are divided.    */
+comment|/**    * Verifies that the specified expected result is always produced by collecting the specified    * inputs, regardless of how the elements are divided.    */
 annotation|@
 name|SafeVarargs
 DECL|method|expectCollects (@ullable R expectedResult, T... inputs)

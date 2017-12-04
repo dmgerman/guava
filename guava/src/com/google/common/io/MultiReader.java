@@ -137,7 +137,7 @@ name|advance
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * Closes the current reader and opens the next one, if any.    */
+comment|/** Closes the current reader and opens the next one, if any. */
 DECL|method|advance ()
 specifier|private
 name|void

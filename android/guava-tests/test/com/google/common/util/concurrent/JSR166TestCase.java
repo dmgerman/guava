@@ -367,7 +367,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Base class for JSR166 Junit TCK tests.  Defines some constants,  * utility methods and classes, as well as a simple framework for  * helping to make sure that assertions failing in generated threads  * cause the associated test that generated them to itself fail (which  * JUnit does not otherwise arrange).  The rules for creating such  * tests are:  *  *<ol>  *  *<li> All assertions in code running in generated threads must use  * the forms {@link #threadFail}, {@link #threadAssertTrue}, {@link  * #threadAssertEquals}, or {@link #threadAssertNull}, (not  * {@code fail}, {@code assertTrue}, etc.) It is OK (but not  * particularly recommended) for other code to use these forms too.  * Only the most typically used JUnit assertion methods are defined  * this way, but enough to live with.</li>  *  *<li> If you override {@link #setUp} or {@link #tearDown}, make sure  * to invoke {@code super.setUp} and {@code super.tearDown} within  * them. These methods are used to clear and check for thread  * assertion failures.</li>  *  *<li>All delays and timeouts must use one of the constants {@code  * SHORT_DELAY_MS}, {@code SMALL_DELAY_MS}, {@code MEDIUM_DELAY_MS},  * {@code LONG_DELAY_MS}. The idea here is that a SHORT is always  * discriminable from zero time, and always allows enough time for the  * small amounts of computation (creating a thread, calling a few  * methods, etc) needed to reach a timeout point. Similarly, a SMALL  * is always discriminable as larger than SHORT and smaller than  * MEDIUM.  And so on. These constants are set to conservative values,  * but even so, if there is ever any doubt, they can all be increased  * in one spot to rerun tests on slower platforms.</li>  *  *<li> All threads generated must be joined inside each test case  * method (or {@code fail} to do so) before returning from the  * method. The {@code joinPool} method can be used to do this when  * using Executors.</li>  *  *</ol>  *  *<p><b>Other notes</b>  *<ul>  *  *<li> Usually, there is one testcase method per JSR166 method  * covering "normal" operation, and then as many exception-testing  * methods as there are exceptions the method can throw. Sometimes  * there are multiple tests per JSR166 method when the different  * "normal" behaviors differ significantly. And sometimes testcases  * cover multiple methods when they cannot be tested in  * isolation.</li>  *  *<li> The documentation style for testcases is to provide as javadoc  * a simple sentence or two describing the property that the testcase  * method purports to test. The javadocs do not say anything about how  * the property is tested. To find out, read the code.</li>  *  *<li> These tests are "conformance tests", and do not attempt to  * test throughput, latency, scalability or other performance factors  * (see the separate "jtreg" tests for a set intended to check these  * for the most central aspects of functionality.) So, most tests use  * the smallest sensible numbers of threads, collection sizes, etc  * needed to check basic conformance.</li>  *  *<li>The test classes currently do not declare inclusion in  * any particular package to simplify things for people integrating  * them in TCK test suites.</li>  *  *<li> As a convenience, the {@code main} of this class (JSR166TestCase)  * runs all JSR166 unit tests.</li>  *  *</ul>  */
+comment|/**  * Base class for JSR166 Junit TCK tests. Defines some constants, utility methods and classes, as  * well as a simple framework for helping to make sure that assertions failing in generated threads  * cause the associated test that generated them to itself fail (which JUnit does not otherwise  * arrange). The rules for creating such tests are:  *  *<ol>  *<li>All assertions in code running in generated threads must use the forms {@link #threadFail},  *       {@link #threadAssertTrue}, {@link #threadAssertEquals}, or {@link #threadAssertNull}, (not  *       {@code fail}, {@code assertTrue}, etc.) It is OK (but not particularly recommended) for  *       other code to use these forms too. Only the most typically used JUnit assertion methods are  *       defined this way, but enough to live with.  *<li>If you override {@link #setUp} or {@link #tearDown}, make sure to invoke {@code  *       super.setUp} and {@code super.tearDown} within them. These methods are used to clear and  *       check for thread assertion failures.  *<li>All delays and timeouts must use one of the constants {@code SHORT_DELAY_MS}, {@code  *       SMALL_DELAY_MS}, {@code MEDIUM_DELAY_MS}, {@code LONG_DELAY_MS}. The idea here is that a  *       SHORT is always discriminable from zero time, and always allows enough time for the small  *       amounts of computation (creating a thread, calling a few methods, etc) needed to reach a  *       timeout point. Similarly, a SMALL is always discriminable as larger than SHORT and smaller  *       than MEDIUM. And so on. These constants are set to conservative values, but even so, if  *       there is ever any doubt, they can all be increased in one spot to rerun tests on slower  *       platforms.  *<li>All threads generated must be joined inside each test case method (or {@code fail} to do  *       so) before returning from the method. The {@code joinPool} method can be used to do this  *       when using Executors.  *</ol>  *  *<p><b>Other notes</b>  *  *<ul>  *<li>Usually, there is one testcase method per JSR166 method covering "normal" operation, and  *       then as many exception-testing methods as there are exceptions the method can throw.  *       Sometimes there are multiple tests per JSR166 method when the different "normal" behaviors  *       differ significantly. And sometimes testcases cover multiple methods when they cannot be  *       tested in isolation.  *<li>The documentation style for testcases is to provide as javadoc a simple sentence or two  *       describing the property that the testcase method purports to test. The javadocs do not say  *       anything about how the property is tested. To find out, read the code.  *<li>These tests are "conformance tests", and do not attempt to test throughput, latency,  *       scalability or other performance factors (see the separate "jtreg" tests for a set intended  *       to check these for the most central aspects of functionality.) So, most tests use the  *       smallest sensible numbers of threads, collection sizes, etc needed to check basic  *       conformance.  *<li>The test classes currently do not declare inclusion in any particular package to simplify  *       things for people integrating them in TCK test suites.  *<li>As a convenience, the {@code main} of this class (JSR166TestCase) runs all JSR166 unit  *       tests.  *</ul>  */
 end_comment
 
 begin_class
@@ -406,7 +406,7 @@ argument_list|(
 literal|"jsr166.expensiveTests"
 argument_list|)
 decl_stmt|;
-comment|/**      * If true, report on stdout all "slow" tests, that is, ones that      * take more than profileThreshold milliseconds to execute.      */
+comment|/**    * If true, report on stdout all "slow" tests, that is, ones that take more than profileThreshold    * milliseconds to execute.    */
 DECL|field|profileTests
 specifier|private
 specifier|static
@@ -421,7 +421,7 @@ argument_list|(
 literal|"jsr166.profileTests"
 argument_list|)
 decl_stmt|;
-comment|/**      * The number of milliseconds that tests are permitted for      * execution without being reported, when profileTests is set.      */
+comment|/**    * The number of milliseconds that tests are permitted for execution without being reported, when    * profileTests is set.    */
 DECL|field|profileThreshold
 specifier|private
 specifier|static
@@ -650,7 +650,7 @@ specifier|static
 name|long
 name|LONG_DELAY_MS
 decl_stmt|;
-comment|/**      * Returns the shortest timed delay. This could      * be reimplemented to use for example a Property.      */
+comment|/**    * Returns the shortest timed delay. This could be reimplemented to use for example a Property.    */
 DECL|method|getShortDelay ()
 specifier|protected
 name|long
@@ -661,7 +661,7 @@ return|return
 literal|50
 return|;
 block|}
-comment|/**      * Sets delays as multiples of SHORT_DELAY.      */
+comment|/** Sets delays as multiples of SHORT_DELAY. */
 DECL|method|setDelays ()
 specifier|protected
 name|void
@@ -692,7 +692,7 @@ operator|*
 literal|200
 expr_stmt|;
 block|}
-comment|/**      * Returns a timeout in milliseconds to be used in tests that      * verify that operations block or time out.      */
+comment|/**    * Returns a timeout in milliseconds to be used in tests that verify that operations block or time    * out.    */
 DECL|method|timeoutMillis ()
 name|long
 name|timeoutMillis
@@ -704,7 +704,7 @@ operator|/
 literal|4
 return|;
 block|}
-comment|/**      * Returns a new Date instance representing a time delayMillis      * milliseconds in the future.      */
+comment|/** Returns a new Date instance representing a time delayMillis milliseconds in the future. */
 DECL|method|delayedDate (long delayMillis)
 name|Date
 name|delayedDate
@@ -743,7 +743,7 @@ argument_list|(
 literal|null
 argument_list|)
 decl_stmt|;
-comment|/**      * Records an exception so that it can be rethrown later in the test      * harness thread, triggering a test case failure.  Only the first      * failure is recorded; subsequent calls to this method from within      * the same test have no effect.      */
+comment|/**    * Records an exception so that it can be rethrown later in the test harness thread, triggering a    * test case failure. Only the first failure is recorded; subsequent calls to this method from    * within the same test have no effect.    */
 DECL|method|threadRecordFailure (Throwable t)
 specifier|public
 name|void
@@ -773,7 +773,7 @@ name|setDelays
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**      * Extra checks that get done for all test cases.      *      * Triggers test case failure if any thread assertions have failed,      * by rethrowing, in the test harness thread, any exception recorded      * earlier by threadRecordFailure.      *      * Triggers test case failure if interrupt status is set in the main thread.      */
+comment|/**    * Extra checks that get done for all test cases.    *    *<p>Triggers test case failure if any thread assertions have failed, by rethrowing, in the test    * harness thread, any exception recorded earlier by threadRecordFailure.    *    *<p>Triggers test case failure if interrupt status is set in the main thread.    */
 DECL|method|tearDown ()
 specifier|public
 name|void
@@ -878,7 +878,7 @@ literal|"interrupt status set in main thread"
 argument_list|)
 throw|;
 block|}
-comment|/**      * Just like fail(reason), but additionally recording (using      * threadRecordFailure) any AssertionFailedError thrown, so that      * the current testcase will fail.      */
+comment|/**    * Just like fail(reason), but additionally recording (using threadRecordFailure) any    * AssertionFailedError thrown, so that the current testcase will fail.    */
 DECL|method|threadFail (String reason)
 specifier|public
 name|void
@@ -914,7 +914,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Just like assertTrue(b), but additionally recording (using      * threadRecordFailure) any AssertionFailedError thrown, so that      * the current testcase will fail.      */
+comment|/**    * Just like assertTrue(b), but additionally recording (using threadRecordFailure) any    * AssertionFailedError thrown, so that the current testcase will fail.    */
 DECL|method|threadAssertTrue (boolean b)
 specifier|public
 name|void
@@ -948,7 +948,7 @@ name|t
 throw|;
 block|}
 block|}
-comment|/**      * Just like assertFalse(b), but additionally recording (using      * threadRecordFailure) any AssertionFailedError thrown, so that      * the current testcase will fail.      */
+comment|/**    * Just like assertFalse(b), but additionally recording (using threadRecordFailure) any    * AssertionFailedError thrown, so that the current testcase will fail.    */
 DECL|method|threadAssertFalse (boolean b)
 specifier|public
 name|void
@@ -982,7 +982,7 @@ name|t
 throw|;
 block|}
 block|}
-comment|/**      * Just like assertNull(x), but additionally recording (using      * threadRecordFailure) any AssertionFailedError thrown, so that      * the current testcase will fail.      */
+comment|/**    * Just like assertNull(x), but additionally recording (using threadRecordFailure) any    * AssertionFailedError thrown, so that the current testcase will fail.    */
 DECL|method|threadAssertNull (Object x)
 specifier|public
 name|void
@@ -1016,7 +1016,7 @@ name|t
 throw|;
 block|}
 block|}
-comment|/**      * Just like assertEquals(x, y), but additionally recording (using      * threadRecordFailure) any AssertionFailedError thrown, so that      * the current testcase will fail.      */
+comment|/**    * Just like assertEquals(x, y), but additionally recording (using threadRecordFailure) any    * AssertionFailedError thrown, so that the current testcase will fail.    */
 DECL|method|threadAssertEquals (long x, long y)
 specifier|public
 name|void
@@ -1055,7 +1055,7 @@ name|t
 throw|;
 block|}
 block|}
-comment|/**      * Just like assertEquals(x, y), but additionally recording (using      * threadRecordFailure) any AssertionFailedError thrown, so that      * the current testcase will fail.      */
+comment|/**    * Just like assertEquals(x, y), but additionally recording (using threadRecordFailure) any    * AssertionFailedError thrown, so that the current testcase will fail.    */
 DECL|method|threadAssertEquals (Object x, Object y)
 specifier|public
 name|void
@@ -1106,7 +1106,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Just like assertSame(x, y), but additionally recording (using      * threadRecordFailure) any AssertionFailedError thrown, so that      * the current testcase will fail.      */
+comment|/**    * Just like assertSame(x, y), but additionally recording (using threadRecordFailure) any    * AssertionFailedError thrown, so that the current testcase will fail.    */
 DECL|method|threadAssertSame (Object x, Object y)
 specifier|public
 name|void
@@ -1145,7 +1145,7 @@ name|t
 throw|;
 block|}
 block|}
-comment|/**      * Calls threadFail with message "should throw exception".      */
+comment|/** Calls threadFail with message "should throw exception". */
 DECL|method|threadShouldThrow ()
 specifier|public
 name|void
@@ -1158,7 +1158,7 @@ literal|"should throw exception"
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Calls threadFail with message "should throw" + exceptionName.      */
+comment|/** Calls threadFail with message "should throw" + exceptionName. */
 DECL|method|threadShouldThrow (String exceptionName)
 specifier|public
 name|void
@@ -1176,7 +1176,7 @@ name|exceptionName
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Records the given exception using {@link #threadRecordFailure},      * then rethrows the exception, wrapping it in an      * AssertionFailedError if necessary.      */
+comment|/**    * Records the given exception using {@link #threadRecordFailure}, then rethrows the exception,    * wrapping it in an AssertionFailedError if necessary.    */
 DECL|method|threadUnexpectedException (Throwable t)
 specifier|public
 name|void
@@ -1246,7 +1246,7 @@ name|afe
 throw|;
 block|}
 block|}
-comment|/**      * Delays, via Thread.sleep, for the given millisecond delay, but      * if the sleep is shorter than specified, may re-sleep or yield      * until time elapses.      */
+comment|/**    * Delays, via Thread.sleep, for the given millisecond delay, but if the sleep is shorter than    * specified, may re-sleep or yield until time elapses.    */
 DECL|method|delay (long millis)
 specifier|static
 name|void
@@ -1335,7 +1335,7 @@ else|else
 break|break;
 block|}
 block|}
-comment|/**      * Waits out termination of a thread pool or fails doing so.      */
+comment|/** Waits out termination of a thread pool or fails doing so. */
 DECL|method|joinPool (ExecutorService exec)
 name|void
 name|joinPool
@@ -1389,7 +1389,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Checks that thread does not terminate within the default      * millisecond delay of {@code timeoutMillis()}.      */
+comment|/**    * Checks that thread does not terminate within the default millisecond delay of {@code    * timeoutMillis()}.    */
 DECL|method|assertThreadStaysAlive (Thread thread)
 name|void
 name|assertThreadStaysAlive
@@ -1407,7 +1407,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Checks that thread does not terminate within the given millisecond delay.      */
+comment|/** Checks that thread does not terminate within the given millisecond delay. */
 DECL|method|assertThreadStaysAlive (Thread thread, long millis)
 name|void
 name|assertThreadStaysAlive
@@ -1449,7 +1449,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Checks that the threads do not terminate within the default      * millisecond delay of {@code timeoutMillis()}.      */
+comment|/**    * Checks that the threads do not terminate within the default millisecond delay of {@code    * timeoutMillis()}.    */
 DECL|method|assertThreadsStayAlive (Thread... threads)
 name|void
 name|assertThreadsStayAlive
@@ -1468,7 +1468,7 @@ name|threads
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Checks that the threads do not terminate within the given millisecond delay.      */
+comment|/** Checks that the threads do not terminate within the given millisecond delay. */
 DECL|method|assertThreadsStayAlive (long millis, Thread... threads)
 name|void
 name|assertThreadsStayAlive
@@ -1518,7 +1518,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Checks that future.get times out, with the default timeout of      * {@code timeoutMillis()}.      */
+comment|/** Checks that future.get times out, with the default timeout of {@code timeoutMillis()}. */
 DECL|method|assertFutureTimesOut (Future future)
 name|void
 name|assertFutureTimesOut
@@ -1536,7 +1536,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Checks that future.get times out, with the given millisecond timeout.      */
+comment|/** Checks that future.get times out, with the given millisecond timeout. */
 DECL|method|assertFutureTimesOut (Future future, long timeoutMillis)
 name|void
 name|assertFutureTimesOut
@@ -1576,7 +1576,7 @@ parameter_list|(
 name|TimeoutException
 name|success
 parameter_list|)
-block|{         }
+block|{     }
 catch|catch
 parameter_list|(
 name|Exception
@@ -1610,7 +1610,7 @@ name|timeoutMillis
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Fails with message "should throw exception".      */
+comment|/** Fails with message "should throw exception". */
 DECL|method|shouldThrow ()
 specifier|public
 name|void
@@ -1623,7 +1623,7 @@ literal|"Should throw exception"
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Fails with message "should throw " + exceptionName.      */
+comment|/** Fails with message "should throw " + exceptionName. */
 DECL|method|shouldThrow (String exceptionName)
 specifier|public
 name|void
@@ -1641,7 +1641,7 @@ name|exceptionName
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * The number of elements to place in collections, arrays, etc.      */
+comment|/** The number of elements to place in collections, arrays, etc. */
 DECL|field|SIZE
 specifier|public
 specifier|static
@@ -1880,7 +1880,7 @@ operator|-
 literal|10
 argument_list|)
 decl_stmt|;
-comment|/**      * Runs Runnable r with a security policy that permits precisely      * the specified permissions.  If there is no current security      * manager, the runnable is run twice, both with and without a      * security manager.  We require that any security manager permit      * getPolicy/setPolicy.      */
+comment|/**    * Runs Runnable r with a security policy that permits precisely the specified permissions. If    * there is no current security manager, the runnable is run twice, both with and without a    * security manager. We require that any security manager permit getPolicy/setPolicy.    */
 DECL|method|runWithPermissions (Runnable r, Permission... permissions)
 specifier|public
 name|void
@@ -2024,7 +2024,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**      * Runs a runnable without any permissions.      */
+comment|/** Runs a runnable without any permissions. */
 DECL|method|runWithoutPermissions (Runnable r)
 specifier|public
 name|void
@@ -2040,7 +2040,7 @@ name|r
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * A security policy where new permissions can be dynamically added      * or all cleared.      */
+comment|/** A security policy where new permissions can be dynamically added or all cleared. */
 DECL|class|AdjustablePolicy
 specifier|public
 specifier|static
@@ -2166,7 +2166,7 @@ name|refresh
 parameter_list|()
 block|{}
 block|}
-comment|/**      * Returns a policy containing all the permissions we ever need.      */
+comment|/** Returns a policy containing all the permissions we ever need. */
 DECL|method|permissivePolicy ()
 specifier|public
 specifier|static
@@ -2245,7 +2245,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**      * Sleeps until the given time has elapsed.      * Throws AssertionFailedError if interrupted.      */
+comment|/** Sleeps until the given time has elapsed. Throws AssertionFailedError if interrupted. */
 DECL|method|sleep (long millis)
 name|void
 name|sleep
@@ -2289,7 +2289,7 @@ name|afe
 throw|;
 block|}
 block|}
-comment|/**      * Spin-waits up to the specified number of milliseconds for the given      * thread to enter a wait state: BLOCKED, WAITING, or TIMED_WAITING.      */
+comment|/**    * Spin-waits up to the specified number of milliseconds for the given thread to enter a wait    * state: BLOCKED, WAITING, or TIMED_WAITING.    */
 DECL|method|waitForThreadToEnterWaitState (Thread thread, long timeoutMillis)
 name|void
 name|waitForThreadToEnterWaitState
@@ -2396,7 +2396,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Waits up to LONG_DELAY_MS for the given thread to enter a wait      * state: BLOCKED, WAITING, or TIMED_WAITING.      */
+comment|/**    * Waits up to LONG_DELAY_MS for the given thread to enter a wait state: BLOCKED, WAITING, or    * TIMED_WAITING.    */
 DECL|method|waitForThreadToEnterWaitState (Thread thread)
 name|void
 name|waitForThreadToEnterWaitState
@@ -2413,7 +2413,7 @@ name|LONG_DELAY_MS
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Returns the number of milliseconds since time given by      * startNanoTime, which must have been previously returned from a      * call to {@link System.nanoTime()}.      */
+comment|/**    * Returns the number of milliseconds since time given by startNanoTime, which must have been    * previously returned from a call to {@link System.nanoTime()}.    */
 DECL|method|millisElapsedSince (long startNanoTime)
 name|long
 name|millisElapsedSince
@@ -2436,7 +2436,7 @@ name|startNanoTime
 argument_list|)
 return|;
 block|}
-comment|/**      * Returns a new started daemon Thread running the given runnable.      */
+comment|/** Returns a new started daemon Thread running the given runnable. */
 DECL|method|newStartedThread (Runnable runnable)
 name|Thread
 name|newStartedThread
@@ -2470,7 +2470,7 @@ return|return
 name|t
 return|;
 block|}
-comment|/**      * Waits for the specified time (in milliseconds) for the thread      * to terminate (using {@link Thread#join(long)}), else interrupts      * the thread (in the hope that it may terminate later) and fails.      */
+comment|/**    * Waits for the specified time (in milliseconds) for the thread to terminate (using {@link    * Thread#join(long)}), else interrupts the thread (in the hope that it may terminate later) and    * fails.    */
 DECL|method|awaitTermination (Thread t, long timeoutMillis)
 name|void
 name|awaitTermination
@@ -2533,7 +2533,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**      * Waits for LONG_DELAY_MS milliseconds for the thread to      * terminate (using {@link Thread#join(long)}), else interrupts      * the thread (in the hope that it may terminate later) and fails.      */
+comment|/**    * Waits for LONG_DELAY_MS milliseconds for the thread to terminate (using {@link    * Thread#join(long)}), else interrupts the thread (in the hope that it may terminate later) and    * fails.    */
 DECL|method|awaitTermination (Thread t)
 name|void
 name|awaitTermination
@@ -3082,7 +3082,7 @@ parameter_list|(
 name|InterruptedException
 name|quittingTime
 parameter_list|)
-block|{}
+block|{         }
 return|return
 name|TEST_STRING
 return|;
@@ -3350,7 +3350,7 @@ parameter_list|(
 name|InterruptedException
 name|ok
 parameter_list|)
-block|{}
+block|{       }
 block|}
 block|}
 DECL|class|SmallCallable
@@ -3457,7 +3457,7 @@ parameter_list|(
 name|InterruptedException
 name|ok
 parameter_list|)
-block|{}
+block|{         }
 block|}
 block|}
 return|;
@@ -3488,7 +3488,7 @@ parameter_list|(
 name|InterruptedException
 name|ok
 parameter_list|)
-block|{}
+block|{       }
 block|}
 block|}
 DECL|class|LongPossiblyInterruptedRunnable
@@ -3517,10 +3517,10 @@ parameter_list|(
 name|InterruptedException
 name|ok
 parameter_list|)
-block|{}
+block|{       }
 block|}
 block|}
-comment|/**      * For use as ThreadFactory in constructors      */
+comment|/** For use as ThreadFactory in constructors */
 DECL|class|SimpleThreadFactory
 specifier|public
 specifier|static
@@ -3614,7 +3614,7 @@ parameter_list|(
 name|InterruptedException
 name|ok
 parameter_list|)
-block|{}
+block|{         }
 block|}
 block|}
 return|;
@@ -3658,7 +3658,7 @@ parameter_list|(
 name|InterruptedException
 name|ok
 parameter_list|)
-block|{}
+block|{       }
 block|}
 block|}
 DECL|class|TrackedSmallRunnable
@@ -3700,7 +3700,7 @@ parameter_list|(
 name|InterruptedException
 name|ok
 parameter_list|)
-block|{}
+block|{       }
 block|}
 block|}
 DECL|class|TrackedMediumRunnable
@@ -3742,7 +3742,7 @@ parameter_list|(
 name|InterruptedException
 name|ok
 parameter_list|)
-block|{}
+block|{       }
 block|}
 block|}
 DECL|class|TrackedLongRunnable
@@ -3784,7 +3784,7 @@ parameter_list|(
 name|InterruptedException
 name|ok
 parameter_list|)
-block|{}
+block|{       }
 block|}
 block|}
 DECL|class|TrackedNoOpRunnable
@@ -3854,7 +3854,7 @@ parameter_list|(
 name|InterruptedException
 name|ok
 parameter_list|)
-block|{}
+block|{       }
 return|return
 name|Boolean
 operator|.
@@ -3889,7 +3889,7 @@ comment|//                 return null;
 comment|//             }
 comment|//         }
 comment|//     }
-comment|/**      * For use as RejectedExecutionHandler in constructors      */
+comment|/** For use as RejectedExecutionHandler in constructors */
 DECL|class|NoOpREHandler
 specifier|public
 specifier|static
@@ -3911,7 +3911,7 @@ name|executor
 parameter_list|)
 block|{}
 block|}
-comment|/**      * A CyclicBarrier that uses timed await and fails with      * AssertionFailedErrors instead of throwing checked exceptions.      */
+comment|/**    * A CyclicBarrier that uses timed await and fails with AssertionFailedErrors instead of throwing    * checked exceptions.    */
 DECL|class|CheckedBarrier
 specifier|public
 class|class
@@ -4110,7 +4110,7 @@ parameter_list|(
 name|NoSuchElementException
 name|success
 parameter_list|)
-block|{}
+block|{       }
 try|try
 block|{
 name|q
@@ -4130,7 +4130,7 @@ parameter_list|(
 name|NoSuchElementException
 name|success
 parameter_list|)
-block|{}
+block|{       }
 try|try
 block|{
 name|q
@@ -4147,7 +4147,7 @@ parameter_list|(
 name|NoSuchElementException
 name|success
 parameter_list|)
-block|{}
+block|{       }
 block|}
 catch|catch
 parameter_list|(

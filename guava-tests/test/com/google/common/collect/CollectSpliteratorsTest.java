@@ -117,7 +117,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests for {@code CollectSpliterators}.  */
+comment|/** Tests for {@code CollectSpliterators}. */
 end_comment
 
 begin_class

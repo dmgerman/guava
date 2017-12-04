@@ -871,7 +871,7 @@ expr_stmt|;
 block|}
 block|}
 comment|// fails in Maven with 64-bit JDK: http://code.google.com/p/guava-libraries/issues/detail?id=1568
-DECL|method|assertCleanup (LoadingCache<Integer, String> cache, CountingRemovalListener<Integer, String> removalListener)
+DECL|method|assertCleanup ( LoadingCache<Integer, String> cache, CountingRemovalListener<Integer, String> removalListener)
 specifier|private
 name|void
 name|assertCleanup
@@ -1012,7 +1012,7 @@ parameter_list|(
 name|OutOfMemoryError
 name|e
 parameter_list|)
-block|{}
+block|{       }
 block|}
 name|CacheTesting
 operator|.
@@ -1077,9 +1077,9 @@ operator|=
 name|value
 expr_stmt|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 specifier|synchronized
 name|String

@@ -97,7 +97,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Basic implementation of the {@link SetMultimap} interface. It's a wrapper  * around {@link AbstractMapBasedMultimap} that converts the returned collections into  * {@code Sets}. The {@link #createCollection} method must return a {@code Set}.  *  * @author Jared Levy  */
+comment|/**  * Basic implementation of the {@link SetMultimap} interface. It's a wrapper around {@link  * AbstractMapBasedMultimap} that converts the returned collections into {@code Sets}. The {@link  * #createCollection} method must return a {@code Set}.  *  * @author Jared Levy  */
 end_comment
 
 begin_class
@@ -127,7 +127,7 @@ argument_list|,
 name|V
 argument_list|>
 block|{
-comment|/**    * Creates a new multimap that uses the provided map.    *    * @param map place to store the mapping from each key to its corresponding    *     values    */
+comment|/**    * Creates a new multimap that uses the provided map.    *    * @param map place to store the mapping from each key to its corresponding values    */
 DECL|method|AbstractSetMultimap (Map<K, Collection<V>> map)
 specifier|protected
 name|AbstractSetMultimap
@@ -179,7 +179,7 @@ argument_list|()
 return|;
 block|}
 comment|// Following Javadoc copied from SetMultimap.
-comment|/**    * {@inheritDoc}    *    *<p>Because a {@code SetMultimap} has unique values for a given key, this    * method returns a {@link Set}, instead of the {@link Collection} specified    * in the {@link Multimap} interface.    */
+comment|/**    * {@inheritDoc}    *    *<p>Because a {@code SetMultimap} has unique values for a given key, this method returns a    * {@link Set}, instead of the {@link Collection} specified in the {@link Multimap} interface.    */
 annotation|@
 name|Override
 DECL|method|get (@ullable K key)
@@ -211,7 +211,7 @@ name|key
 argument_list|)
 return|;
 block|}
-comment|/**    * {@inheritDoc}    *    *<p>Because a {@code SetMultimap} has unique values for a given key, this    * method returns a {@link Set}, instead of the {@link Collection} specified    * in the {@link Multimap} interface.    */
+comment|/**    * {@inheritDoc}    *    *<p>Because a {@code SetMultimap} has unique values for a given key, this method returns a    * {@link Set}, instead of the {@link Collection} specified in the {@link Multimap} interface.    */
 annotation|@
 name|Override
 DECL|method|entries ()
@@ -246,7 +246,7 @@ name|entries
 argument_list|()
 return|;
 block|}
-comment|/**    * {@inheritDoc}    *    *<p>Because a {@code SetMultimap} has unique values for a given key, this    * method returns a {@link Set}, instead of the {@link Collection} specified    * in the {@link Multimap} interface.    */
+comment|/**    * {@inheritDoc}    *    *<p>Because a {@code SetMultimap} has unique values for a given key, this method returns a    * {@link Set}, instead of the {@link Collection} specified in the {@link Multimap} interface.    */
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
@@ -280,7 +280,7 @@ name|key
 argument_list|)
 return|;
 block|}
-comment|/**    * {@inheritDoc}    *    *<p>Because a {@code SetMultimap} has unique values for a given key, this    * method returns a {@link Set}, instead of the {@link Collection} specified    * in the {@link Multimap} interface.    *    *<p>Any duplicates in {@code values} will be stored in the multimap once.    */
+comment|/**    * {@inheritDoc}    *    *<p>Because a {@code SetMultimap} has unique values for a given key, this method returns a    * {@link Set}, instead of the {@link Collection} specified in the {@link Multimap} interface.    *    *<p>Any duplicates in {@code values} will be stored in the multimap once.    */
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
@@ -324,7 +324,7 @@ name|values
 argument_list|)
 return|;
 block|}
-comment|/**    * {@inheritDoc}    *    *<p>Though the method signature doesn't say so explicitly, the returned map    * has {@link Set} values.    */
+comment|/**    * {@inheritDoc}    *    *<p>Though the method signature doesn't say so explicitly, the returned map has {@link Set}    * values.    */
 annotation|@
 name|Override
 DECL|method|asMap ()
@@ -348,7 +348,7 @@ name|asMap
 argument_list|()
 return|;
 block|}
-comment|/**    * Stores a key-value pair in the multimap.    *    * @param key key to store in the multimap    * @param value value to store in the multimap    * @return {@code true} if the method increased the size of the multimap, or    *     {@code false} if the multimap already contained the key-value pair    */
+comment|/**    * Stores a key-value pair in the multimap.    *    * @param key key to store in the multimap    * @param value value to store in the multimap    * @return {@code true} if the method increased the size of the multimap, or {@code false} if the    *     multimap already contained the key-value pair    */
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
@@ -380,7 +380,7 @@ name|value
 argument_list|)
 return|;
 block|}
-comment|/**    * Compares the specified object to this multimap for equality.    *    *<p>Two {@code SetMultimap} instances are equal if, for each key, they    * contain the same values. Equality does not depend on the ordering of keys    * or values.    */
+comment|/**    * Compares the specified object to this multimap for equality.    *    *<p>Two {@code SetMultimap} instances are equal if, for each key, they contain the same values.    * Equality does not depend on the ordering of keys or values.    */
 annotation|@
 name|Override
 DECL|method|equals (@ullable Object object)

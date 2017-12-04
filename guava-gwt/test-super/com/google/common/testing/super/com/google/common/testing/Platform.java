@@ -42,7 +42,7 @@ specifier|final
 class|class
 name|Platform
 block|{
-comment|/**    * Serializes and deserializes the specified object (a no-op under GWT).    */
+comment|/** Serializes and deserializes the specified object (a no-op under GWT). */
 annotation|@
 name|SuppressWarnings
 argument_list|(

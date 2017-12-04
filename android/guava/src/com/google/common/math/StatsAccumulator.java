@@ -181,7 +181,7 @@ init|=
 name|NaN
 decl_stmt|;
 comment|// any value will do
-comment|/**    * Adds the given value to the dataset.    */
+comment|/** Adds the given value to the dataset. */
 DECL|method|add (double value)
 specifier|public
 name|void
@@ -644,7 +644,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Returns an immutable snapshot of the current statistics.    */
+comment|/** Returns an immutable snapshot of the current statistics. */
 DECL|method|snapshot ()
 specifier|public
 name|Stats
@@ -667,7 +667,7 @@ name|max
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the number of values.    */
+comment|/** Returns the number of values. */
 DECL|method|count ()
 specifier|public
 name|long
@@ -678,7 +678,7 @@ return|return
 name|count
 return|;
 block|}
-comment|/**    * Returns the<a href="http://en.wikipedia.org/wiki/Arithmetic_mean">arithmetic mean</a> of the    * values. The count must be non-zero.    *    *<p>If these values are a sample drawn from a population, this is also an unbiased estimator of    * the arithmetic mean of the population.    *    *<h3>Non-finite values</h3>    *    *<p>If the dataset contains {@link Double#NaN} then the result is {@link Double#NaN}. If it    * contains both {@link Double#POSITIVE_INFINITY} and {@link Double#NEGATIVE_INFINITY} then the    * result is {@link Double#NaN}. If it contains {@link Double#POSITIVE_INFINITY} and finite values    * only or {@link Double#POSITIVE_INFINITY} only, the result is {@link Double#POSITIVE_INFINITY}.    * If it contains {@link Double#NEGATIVE_INFINITY} and finite values only or    * {@link Double#NEGATIVE_INFINITY} only, the result is {@link Double#NEGATIVE_INFINITY}.    *    * @throws IllegalStateException if the dataset is empty    */
+comment|/**    * Returns the<a href="http://en.wikipedia.org/wiki/Arithmetic_mean">arithmetic mean</a> of the    * values. The count must be non-zero.    *    *<p>If these values are a sample drawn from a population, this is also an unbiased estimator of    * the arithmetic mean of the population.    *    *<h3>Non-finite values</h3>    *    *<p>If the dataset contains {@link Double#NaN} then the result is {@link Double#NaN}. If it    * contains both {@link Double#POSITIVE_INFINITY} and {@link Double#NEGATIVE_INFINITY} then the    * result is {@link Double#NaN}. If it contains {@link Double#POSITIVE_INFINITY} and finite values    * only or {@link Double#POSITIVE_INFINITY} only, the result is {@link Double#POSITIVE_INFINITY}.    * If it contains {@link Double#NEGATIVE_INFINITY} and finite values only or {@link    * Double#NEGATIVE_INFINITY} only, the result is {@link Double#NEGATIVE_INFINITY}.    *    * @throws IllegalStateException if the dataset is empty    */
 DECL|method|mean ()
 specifier|public
 name|double
@@ -696,7 +696,7 @@ return|return
 name|mean
 return|;
 block|}
-comment|/**    * Returns the sum of the values.    *    *<h3>Non-finite values</h3>    *    *<p>If the dataset contains {@link Double#NaN} then the result is {@link Double#NaN}. If it    * contains both {@link Double#POSITIVE_INFINITY} and {@link Double#NEGATIVE_INFINITY} then the    * result is {@link Double#NaN}. If it contains {@link Double#POSITIVE_INFINITY} and finite values    * only or {@link Double#POSITIVE_INFINITY} only, the result is {@link Double#POSITIVE_INFINITY}.    * If it contains {@link Double#NEGATIVE_INFINITY} and finite values only or    * {@link Double#NEGATIVE_INFINITY} only, the result is {@link Double#NEGATIVE_INFINITY}.    */
+comment|/**    * Returns the sum of the values.    *    *<h3>Non-finite values</h3>    *    *<p>If the dataset contains {@link Double#NaN} then the result is {@link Double#NaN}. If it    * contains both {@link Double#POSITIVE_INFINITY} and {@link Double#NEGATIVE_INFINITY} then the    * result is {@link Double#NaN}. If it contains {@link Double#POSITIVE_INFINITY} and finite values    * only or {@link Double#POSITIVE_INFINITY} only, the result is {@link Double#POSITIVE_INFINITY}.    * If it contains {@link Double#NEGATIVE_INFINITY} and finite values only or {@link    * Double#NEGATIVE_INFINITY} only, the result is {@link Double#NEGATIVE_INFINITY}.    */
 DECL|method|sum ()
 specifier|public
 specifier|final
@@ -710,7 +710,7 @@ operator|*
 name|count
 return|;
 block|}
-comment|/**    * Returns the<a href="http://en.wikipedia.org/wiki/Variance#Population_variance">population    * variance</a> of the values. The count must be non-zero.    *    *<p>This is guaranteed to return zero if the dataset contains only exactly one finite value.    * It is not guaranteed to return zero when the dataset consists of the same value multiple times,    * due to numerical errors. However, it is guaranteed never to return a negative result.    *    *<h3>Non-finite values</h3>    *    *<p>If the dataset contains any non-finite values ({@link Double#POSITIVE_INFINITY},    * {@link Double#NEGATIVE_INFINITY}, or {@link Double#NaN}) then the result is {@link Double#NaN}.    *    * @throws IllegalStateException if the dataset is empty    */
+comment|/**    * Returns the<a href="http://en.wikipedia.org/wiki/Variance#Population_variance">population    * variance</a> of the values. The count must be non-zero.    *    *<p>This is guaranteed to return zero if the dataset contains only exactly one finite value. It    * is not guaranteed to return zero when the dataset consists of the same value multiple times,    * due to numerical errors. However, it is guaranteed never to return a negative result.    *    *<h3>Non-finite values</h3>    *    *<p>If the dataset contains any non-finite values ({@link Double#POSITIVE_INFINITY}, {@link    * Double#NEGATIVE_INFINITY}, or {@link Double#NaN}) then the result is {@link Double#NaN}.    *    * @throws IllegalStateException if the dataset is empty    */
 DECL|method|populationVariance ()
 specifier|public
 specifier|final
@@ -757,7 +757,7 @@ operator|/
 name|count
 return|;
 block|}
-comment|/**    * Returns the    *<a href="http://en.wikipedia.org/wiki/Standard_deviation#Definition_of_population_values">    * population standard deviation</a> of the values. The count must be non-zero.    *    *<p>This is guaranteed to return zero if the dataset contains only exactly one finite value.    * It is not guaranteed to return zero when the dataset consists of the same value multiple times,    * due to numerical errors. However, it is guaranteed never to return a negative result.    *    *<h3>Non-finite values</h3>    *    *<p>If the dataset contains any non-finite values ({@link Double#POSITIVE_INFINITY},    * {@link Double#NEGATIVE_INFINITY}, or {@link Double#NaN}) then the result is {@link Double#NaN}.    *    * @throws IllegalStateException if the dataset is empty    */
+comment|/**    * Returns the<a    * href="http://en.wikipedia.org/wiki/Standard_deviation#Definition_of_population_values">    * population standard deviation</a> of the values. The count must be non-zero.    *    *<p>This is guaranteed to return zero if the dataset contains only exactly one finite value. It    * is not guaranteed to return zero when the dataset consists of the same value multiple times,    * due to numerical errors. However, it is guaranteed never to return a negative result.    *    *<h3>Non-finite values</h3>    *    *<p>If the dataset contains any non-finite values ({@link Double#POSITIVE_INFINITY}, {@link    * Double#NEGATIVE_INFINITY}, or {@link Double#NaN}) then the result is {@link Double#NaN}.    *    * @throws IllegalStateException if the dataset is empty    */
 DECL|method|populationStandardDeviation ()
 specifier|public
 specifier|final
@@ -775,7 +775,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the<a href="http://en.wikipedia.org/wiki/Variance#Sample_variance">unbiased sample    * variance</a> of the values. If this dataset is a sample drawn from a population, this is an    * unbiased estimator of the population variance of the population. The count must be greater than    * one.    *    *<p>This is not guaranteed to return zero when the dataset consists of the same value multiple    * times, due to numerical errors. However, it is guaranteed never to return a negative result.    *    *<h3>Non-finite values</h3>    *    *<p>If the dataset contains any non-finite values ({@link Double#POSITIVE_INFINITY},    * {@link Double#NEGATIVE_INFINITY}, or {@link Double#NaN}) then the result is {@link Double#NaN}.    *    * @throws IllegalStateException if the dataset is empty or contains a single value    */
+comment|/**    * Returns the<a href="http://en.wikipedia.org/wiki/Variance#Sample_variance">unbiased sample    * variance</a> of the values. If this dataset is a sample drawn from a population, this is an    * unbiased estimator of the population variance of the population. The count must be greater than    * one.    *    *<p>This is not guaranteed to return zero when the dataset consists of the same value multiple    * times, due to numerical errors. However, it is guaranteed never to return a negative result.    *    *<h3>Non-finite values</h3>    *    *<p>If the dataset contains any non-finite values ({@link Double#POSITIVE_INFINITY}, {@link    * Double#NEGATIVE_INFINITY}, or {@link Double#NaN}) then the result is {@link Double#NaN}.    *    * @throws IllegalStateException if the dataset is empty or contains a single value    */
 DECL|method|sampleVariance ()
 specifier|public
 specifier|final
@@ -815,7 +815,7 @@ literal|1
 operator|)
 return|;
 block|}
-comment|/**    * Returns the    *<a href="http://en.wikipedia.org/wiki/Standard_deviation#Corrected_sample_standard_deviation">    * corrected sample standard deviation</a> of the values. If this dataset is a sample drawn from a    * population, this is an estimator of the population standard deviation of the population which    * is less biased than {@link #populationStandardDeviation()} (the unbiased estimator depends on    * the distribution). The count must be greater than one.    *    *<p>This is not guaranteed to return zero when the dataset consists of the same value multiple    * times, due to numerical errors. However, it is guaranteed never to return a negative result.    *    *<h3>Non-finite values</h3>    *    *<p>If the dataset contains any non-finite values ({@link Double#POSITIVE_INFINITY},    * {@link Double#NEGATIVE_INFINITY}, or {@link Double#NaN}) then the result is {@link Double#NaN}.    *    * @throws IllegalStateException if the dataset is empty or contains a single value    */
+comment|/**    * Returns the<a    * href="http://en.wikipedia.org/wiki/Standard_deviation#Corrected_sample_standard_deviation">    * corrected sample standard deviation</a> of the values. If this dataset is a sample drawn from a    * population, this is an estimator of the population standard deviation of the population which    * is less biased than {@link #populationStandardDeviation()} (the unbiased estimator depends on    * the distribution). The count must be greater than one.    *    *<p>This is not guaranteed to return zero when the dataset consists of the same value multiple    * times, due to numerical errors. However, it is guaranteed never to return a negative result.    *    *<h3>Non-finite values</h3>    *    *<p>If the dataset contains any non-finite values ({@link Double#POSITIVE_INFINITY}, {@link    * Double#NEGATIVE_INFINITY}, or {@link Double#NaN}) then the result is {@link Double#NaN}.    *    * @throws IllegalStateException if the dataset is empty or contains a single value    */
 DECL|method|sampleStandardDeviation ()
 specifier|public
 specifier|final
@@ -833,7 +833,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the lowest value in the dataset. The count must be non-zero.    *    *<h3>Non-finite values</h3>    *    *<p>If the dataset contains {@link Double#NaN} then the result is {@link Double#NaN}. If it    * contains {@link Double#NEGATIVE_INFINITY} and not {@link Double#NaN} then the result is    * {@link Double#NEGATIVE_INFINITY}. If it contains {@link Double#POSITIVE_INFINITY} and finite    * values only then the result is the lowest finite value. If it contains    * {@link Double#POSITIVE_INFINITY} only then the result is {@link Double#POSITIVE_INFINITY}.    *    * @throws IllegalStateException if the dataset is empty    */
+comment|/**    * Returns the lowest value in the dataset. The count must be non-zero.    *    *<h3>Non-finite values</h3>    *    *<p>If the dataset contains {@link Double#NaN} then the result is {@link Double#NaN}. If it    * contains {@link Double#NEGATIVE_INFINITY} and not {@link Double#NaN} then the result is {@link    * Double#NEGATIVE_INFINITY}. If it contains {@link Double#POSITIVE_INFINITY} and finite values    * only then the result is the lowest finite value. If it contains {@link    * Double#POSITIVE_INFINITY} only then the result is {@link Double#POSITIVE_INFINITY}.    *    * @throws IllegalStateException if the dataset is empty    */
 DECL|method|min ()
 specifier|public
 name|double
@@ -851,7 +851,7 @@ return|return
 name|min
 return|;
 block|}
-comment|/**    * Returns the highest value in the dataset. The count must be non-zero.    *    *<h3>Non-finite values</h3>    *    *<p>If the dataset contains {@link Double#NaN} then the result is {@link Double#NaN}. If it    * contains {@link Double#POSITIVE_INFINITY} and not {@link Double#NaN} then the result is    * {@link Double#POSITIVE_INFINITY}. If it contains {@link Double#NEGATIVE_INFINITY} and finite    * values only then the result is the highest finite value. If it contains    * {@link Double#NEGATIVE_INFINITY} only then the result is {@link Double#NEGATIVE_INFINITY}.    *    * @throws IllegalStateException if the dataset is empty    */
+comment|/**    * Returns the highest value in the dataset. The count must be non-zero.    *    *<h3>Non-finite values</h3>    *    *<p>If the dataset contains {@link Double#NaN} then the result is {@link Double#NaN}. If it    * contains {@link Double#POSITIVE_INFINITY} and not {@link Double#NaN} then the result is {@link    * Double#POSITIVE_INFINITY}. If it contains {@link Double#NEGATIVE_INFINITY} and finite values    * only then the result is the highest finite value. If it contains {@link    * Double#NEGATIVE_INFINITY} only then the result is {@link Double#NEGATIVE_INFINITY}.    *    * @throws IllegalStateException if the dataset is empty    */
 DECL|method|max ()
 specifier|public
 name|double

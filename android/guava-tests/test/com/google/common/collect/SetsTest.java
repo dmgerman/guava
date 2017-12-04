@@ -2116,20 +2116,20 @@ argument_list|()
 return|;
 block|}
 DECL|enum|SomeEnum
-DECL|enumConstant|A
-DECL|enumConstant|B
-DECL|enumConstant|C
-DECL|enumConstant|D
 specifier|private
 enum|enum
 name|SomeEnum
 block|{
+DECL|enumConstant|A
 name|A
 block|,
+DECL|enumConstant|B
 name|B
 block|,
+DECL|enumConstant|C
 name|C
 block|,
+DECL|enumConstant|D
 name|D
 block|}
 DECL|method|testImmutableEnumSet ()
@@ -2198,7 +2198,7 @@ parameter_list|(
 name|UnsupportedOperationException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 try|try
 block|{
 name|units
@@ -2221,7 +2221,7 @@ parameter_list|(
 name|UnsupportedOperationException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 annotation|@
 name|GwtIncompatible
@@ -4225,7 +4225,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 annotation|@
 name|GwtIncompatible
@@ -4423,11 +4423,11 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 comment|// TODO: the overwhelming number of suppressions below suggests that maybe
 comment|// it's not worth having a varargs form of this method at all...
-comment|/**    * The 0-ary cartesian product is a single empty list.    */
+comment|/** The 0-ary cartesian product is a single empty list. */
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -4455,7 +4455,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * A unary cartesian product is one list of size 1 for each element in the    * input set.    */
+comment|/** A unary cartesian product is one list of size 1 for each element in the input set. */
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -6822,7 +6822,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Test that a hash code miscomputed by "input.hashCode() * tooFarValue / 2"    * is correct under our {@code hashCode} implementation.    */
+comment|/**    * Test that a hash code miscomputed by "input.hashCode() * tooFarValue / 2" is correct under our    * {@code hashCode} implementation.    */
 DECL|method|testPowerSetHashCode_inputHashCodeTimesTooFarValueIsZero ()
 specifier|public
 name|void
@@ -7533,7 +7533,7 @@ name|elements
 argument_list|)
 return|;
 block|}
-comment|/**    * Utility method to verify that the given LinkedHashSet is equal to and    * hashes identically to a set constructed with the elements in the given    * collection.  Also verifies that the ordering in the set is the same    * as the ordering of the given contents.    */
+comment|/**    * Utility method to verify that the given LinkedHashSet is equal to and hashes identically to a    * set constructed with the elements in the given collection. Also verifies that the ordering in    * the set is the same as the ordering of the given contents.    */
 DECL|method|verifyLinkedHashSetContents ( LinkedHashSet<E> set, Collection<E> contents)
 specifier|private
 specifier|static
@@ -7587,7 +7587,7 @@ name|contents
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Utility method to verify that the given SortedSet is equal to and    * hashes identically to a set constructed with the elements in the    * given iterable.  Also verifies that the comparator is the same as the    * given comparator.    */
+comment|/**    * Utility method to verify that the given SortedSet is equal to and hashes identically to a set    * constructed with the elements in the given iterable. Also verifies that the comparator is the    * same as the given comparator.    */
 DECL|method|verifySortedSetContents ( SortedSet<E> set, Iterable<E> iterable, @Nullable Comparator<E> comparator)
 specifier|private
 specifier|static
@@ -7636,7 +7636,7 @@ name|iterable
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Utility method that verifies that the given set is equal to and hashes    * identically to a set constructed with the elements in the given iterable.    */
+comment|/**    * Utility method that verifies that the given set is equal to and hashes identically to a set    * constructed with the elements in the given iterable.    */
 DECL|method|verifySetContents (Set<E> set, Iterable<E> contents)
 specifier|private
 specifier|static
@@ -7721,7 +7721,7 @@ name|set
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Simple base class to verify that we handle generics correctly.    */
+comment|/** Simple base class to verify that we handle generics correctly. */
 DECL|class|Base
 specifier|static
 class|class
@@ -7755,9 +7755,9 @@ operator|=
 name|s
 expr_stmt|;
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -7771,9 +7771,9 @@ name|hashCode
 argument_list|()
 return|;
 block|}
-DECL|method|equals (Object other)
 annotation|@
 name|Override
+DECL|method|equals (Object other)
 specifier|public
 name|boolean
 name|equals
@@ -7856,7 +7856,7 @@ init|=
 literal|0
 decl_stmt|;
 block|}
-comment|/**    * Simple derived class to verify that we handle generics correctly.    */
+comment|/** Simple derived class to verify that we handle generics correctly. */
 DECL|class|Derived
 specifier|static
 class|class

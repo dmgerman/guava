@@ -56,7 +56,7 @@ specifier|final
 class|class
 name|Platform
 block|{
-comment|/**    * Format the template with args, only supports the placeholder    * {@code %s}.    */
+comment|/** Format the template with args, only supports the placeholder {@code %s}. */
 DECL|method|format (String template, Object... args)
 specifier|static
 name|String

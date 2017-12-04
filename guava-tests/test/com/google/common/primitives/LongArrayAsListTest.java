@@ -445,9 +445,9 @@ name|LongsAsListGenerator
 extends|extends
 name|TestLongListGenerator
 block|{
-DECL|method|create (Long[] elements)
 annotation|@
 name|Override
+DECL|method|create (Long[] elements)
 specifier|protected
 name|List
 argument_list|<
@@ -477,9 +477,9 @@ name|LongsAsListHeadSubListGenerator
 extends|extends
 name|TestLongListGenerator
 block|{
-DECL|method|create (Long[] elements)
 annotation|@
 name|Override
+DECL|method|create (Long[] elements)
 specifier|protected
 name|List
 argument_list|<
@@ -543,9 +543,9 @@ name|LongsAsListTailSubListGenerator
 extends|extends
 name|TestLongListGenerator
 block|{
-DECL|method|create (Long[] elements)
 annotation|@
 name|Override
+DECL|method|create (Long[] elements)
 specifier|protected
 name|List
 argument_list|<
@@ -613,9 +613,9 @@ name|LongsAsListMiddleSubListGenerator
 extends|extends
 name|TestLongListGenerator
 block|{
-DECL|method|create (Long[] elements)
 annotation|@
 name|Override
+DECL|method|create (Long[] elements)
 specifier|protected
 name|List
 argument_list|<
@@ -767,8 +767,8 @@ return|;
 block|}
 DECL|class|TestLongListGenerator
 specifier|public
-specifier|static
 specifier|abstract
+specifier|static
 class|class
 name|TestLongListGenerator
 implements|implements
@@ -853,7 +853,7 @@ name|array
 argument_list|)
 return|;
 block|}
-comment|/**      * Creates a new collection containing the given elements; implement this      * method instead of {@link #create(Object...)}.      */
+comment|/**      * Creates a new collection containing the given elements; implement this method instead of      * {@link #create(Object...)}.      */
 DECL|method|create (Long[] elements)
 specifier|protected
 specifier|abstract

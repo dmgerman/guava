@@ -418,7 +418,7 @@ name|upperBound
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a range that contains all values strictly greater than {@code    * lower} and strictly less than {@code upper}.    *    * @throws IllegalArgumentException if {@code lower} is greater than<i>or    *     equal to</i> {@code upper}    * @since 14.0    */
+comment|/**    * Returns a range that contains all values strictly greater than {@code lower} and strictly less    * than {@code upper}.    *    * @throws IllegalArgumentException if {@code lower} is greater than<i>or equal to</i> {@code    *     upper}    * @since 14.0    */
 DECL|method|open (C lower, C upper)
 specifier|public
 specifier|static
@@ -462,7 +462,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a range that contains all values greater than or equal to    * {@code lower} and less than or equal to {@code upper}.    *    * @throws IllegalArgumentException if {@code lower} is greater than {@code    *     upper}    * @since 14.0    */
+comment|/**    * Returns a range that contains all values greater than or equal to {@code lower} and less than    * or equal to {@code upper}.    *    * @throws IllegalArgumentException if {@code lower} is greater than {@code upper}    * @since 14.0    */
 DECL|method|closed (C lower, C upper)
 specifier|public
 specifier|static
@@ -506,7 +506,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a range that contains all values greater than or equal to    * {@code lower} and strictly less than {@code upper}.    *    * @throws IllegalArgumentException if {@code lower} is greater than {@code    *     upper}    * @since 14.0    */
+comment|/**    * Returns a range that contains all values greater than or equal to {@code lower} and strictly    * less than {@code upper}.    *    * @throws IllegalArgumentException if {@code lower} is greater than {@code upper}    * @since 14.0    */
 DECL|method|closedOpen (C lower, C upper)
 specifier|public
 specifier|static
@@ -550,7 +550,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a range that contains all values strictly greater than {@code    * lower} and less than or equal to {@code upper}.    *    * @throws IllegalArgumentException if {@code lower} is greater than {@code    *     upper}    * @since 14.0    */
+comment|/**    * Returns a range that contains all values strictly greater than {@code lower} and less than or    * equal to {@code upper}.    *    * @throws IllegalArgumentException if {@code lower} is greater than {@code upper}    * @since 14.0    */
 DECL|method|openClosed (C lower, C upper)
 specifier|public
 specifier|static
@@ -594,7 +594,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a range that contains any value from {@code lower} to {@code    * upper}, where each endpoint may be either inclusive (closed) or exclusive    * (open).    *    * @throws IllegalArgumentException if {@code lower} is greater than {@code    *     upper}    * @since 14.0    */
+comment|/**    * Returns a range that contains any value from {@code lower} to {@code upper}, where each    * endpoint may be either inclusive (closed) or exclusive (open).    *    * @throws IllegalArgumentException if {@code lower} is greater than {@code upper}    * @since 14.0    */
 DECL|method|range ( C lower, BoundType lowerType, C upper, BoundType upperType)
 specifier|public
 specifier|static
@@ -700,7 +700,7 @@ name|upperBound
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a range that contains all values strictly less than {@code    * endpoint}.    *    * @since 14.0    */
+comment|/**    * Returns a range that contains all values strictly less than {@code endpoint}.    *    * @since 14.0    */
 DECL|method|lessThan (C endpoint)
 specifier|public
 specifier|static
@@ -742,7 +742,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a range that contains all values less than or equal to    * {@code endpoint}.    *    * @since 14.0    */
+comment|/**    * Returns a range that contains all values less than or equal to {@code endpoint}.    *    * @since 14.0    */
 DECL|method|atMost (C endpoint)
 specifier|public
 specifier|static
@@ -784,7 +784,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a range with no lower bound up to the given endpoint, which may be    * either inclusive (closed) or exclusive (open).    *    * @since 14.0    */
+comment|/**    * Returns a range with no lower bound up to the given endpoint, which may be either inclusive    * (closed) or exclusive (open).    *    * @since 14.0    */
 DECL|method|upTo (C endpoint, BoundType boundType)
 specifier|public
 specifier|static
@@ -840,7 +840,7 @@ argument_list|()
 throw|;
 block|}
 block|}
-comment|/**    * Returns a range that contains all values strictly greater than {@code    * endpoint}.    *    * @since 14.0    */
+comment|/**    * Returns a range that contains all values strictly greater than {@code endpoint}.    *    * @since 14.0    */
 DECL|method|greaterThan (C endpoint)
 specifier|public
 specifier|static
@@ -882,7 +882,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a range that contains all values greater than or equal to    * {@code endpoint}.    *    * @since 14.0    */
+comment|/**    * Returns a range that contains all values greater than or equal to {@code endpoint}.    *    * @since 14.0    */
 DECL|method|atLeast (C endpoint)
 specifier|public
 specifier|static
@@ -924,7 +924,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a range from the given endpoint, which may be either inclusive    * (closed) or exclusive (open), with no upper bound.    *    * @since 14.0    */
+comment|/**    * Returns a range from the given endpoint, which may be either inclusive (closed) or exclusive    * (open), with no upper bound.    *    * @since 14.0    */
 DECL|method|downTo (C endpoint, BoundType boundType)
 specifier|public
 specifier|static
@@ -1036,7 +1036,7 @@ operator|)
 name|ALL
 return|;
 block|}
-comment|/**    * Returns a range that {@linkplain Range#contains(Comparable) contains} only    * the given value. The returned range is {@linkplain BoundType#CLOSED closed}    * on both ends.    *    * @since 14.0    */
+comment|/**    * Returns a range that {@linkplain Range#contains(Comparable) contains} only the given value. The    * returned range is {@linkplain BoundType#CLOSED closed} on both ends.    *    * @since 14.0    */
 DECL|method|singleton (C value)
 specifier|public
 specifier|static
@@ -1067,7 +1067,7 @@ name|value
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the minimal range that    * {@linkplain Range#contains(Comparable) contains} all of the given values.    * The returned range is {@linkplain BoundType#CLOSED closed} on both ends.    *    * @throws ClassCastException if the parameters are not<i>mutually    *     comparable</i>    * @throws NoSuchElementException if {@code values} is empty    * @throws NullPointerException if any of {@code values} is null    * @since 14.0    */
+comment|/**    * Returns the minimal range that {@linkplain Range#contains(Comparable) contains} all of the    * given values. The returned range is {@linkplain BoundType#CLOSED closed} on both ends.    *    * @throws ClassCastException if the parameters are not<i>mutually comparable</i>    * @throws NoSuchElementException if {@code values} is empty    * @throws NullPointerException if any of {@code values} is null    * @since 14.0    */
 DECL|method|encloseAll (Iterable<C> values)
 specifier|public
 specifier|static
@@ -1344,7 +1344,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Returns {@code true} if this range has a lower endpoint.    */
+comment|/** Returns {@code true} if this range has a lower endpoint. */
 DECL|method|hasLowerBound ()
 specifier|public
 name|boolean
@@ -1388,7 +1388,7 @@ name|typeAsLowerBound
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns {@code true} if this range has an upper endpoint.    */
+comment|/** Returns {@code true} if this range has an upper endpoint. */
 DECL|method|hasUpperBound ()
 specifier|public
 name|boolean
@@ -1432,7 +1432,7 @@ name|typeAsUpperBound
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns {@code true} if this range is of the form {@code [v..v)} or {@code (v..v]}. (This does    * not encompass ranges of the form {@code (v..v)}, because such ranges are<i>invalid</i> and    * can't be constructed at all.)    *    *<p>Note that certain discrete ranges such as the integer range {@code (3..4)} are<b>not</b>    * considered empty, even though they contain no actual values.  In these cases, it may be    * helpful to preprocess ranges with {@link #canonical(DiscreteDomain)}.    */
+comment|/**    * Returns {@code true} if this range is of the form {@code [v..v)} or {@code (v..v]}. (This does    * not encompass ranges of the form {@code (v..v)}, because such ranges are<i>invalid</i> and    * can't be constructed at all.)    *    *<p>Note that certain discrete ranges such as the integer range {@code (3..4)} are<b>not</b>    * considered empty, even though they contain no actual values. In these cases, it may be helpful    * to preprocess ranges with {@link #canonical(DiscreteDomain)}.    */
 DECL|method|isEmpty ()
 specifier|public
 name|boolean
@@ -1625,7 +1625,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/**    * Returns {@code true} if the bounds of {@code other} do not extend outside the bounds of this    * range. Examples:    *    *<ul>    *<li>{@code [3..6]} encloses {@code [4..5]}    *<li>{@code (3..6)} encloses {@code (3..6)}    *<li>{@code [3..6]} encloses {@code [4..4)} (even though the latter is empty)    *<li>{@code (3..6]} does not enclose {@code [3..6]}    *<li>{@code [4..5]} does not enclose {@code (3..6)} (even though it contains every value    *     contained by the latter range)    *<li>{@code [3..6]} does not enclose {@code (1..1]} (even though it contains every value    *     contained by the latter range)    *</ul>    *    *<p>Note that if {@code a.encloses(b)}, then {@code b.contains(v)} implies    * {@code a.contains(v)}, but as the last two examples illustrate, the converse is not always    * true.    *    *<p>Being reflexive, antisymmetric and transitive, the {@code encloses} relation defines a    *<i>partial order</i> over ranges. There exists a unique {@linkplain Range#all maximal} range    * according to this relation, and also numerous {@linkplain #isEmpty minimal} ranges. Enclosure    * also implies {@linkplain #isConnected connectedness}.    */
+comment|/**    * Returns {@code true} if the bounds of {@code other} do not extend outside the bounds of this    * range. Examples:    *    *<ul>    *<li>{@code [3..6]} encloses {@code [4..5]}    *<li>{@code (3..6)} encloses {@code (3..6)}    *<li>{@code [3..6]} encloses {@code [4..4)} (even though the latter is empty)    *<li>{@code (3..6]} does not enclose {@code [3..6]}    *<li>{@code [4..5]} does not enclose {@code (3..6)} (even though it contains every value    *       contained by the latter range)    *<li>{@code [3..6]} does not enclose {@code (1..1]} (even though it contains every value    *       contained by the latter range)    *</ul>    *    *<p>Note that if {@code a.encloses(b)}, then {@code b.contains(v)} implies {@code    * a.contains(v)}, but as the last two examples illustrate, the converse is not always true.    *    *<p>Being reflexive, antisymmetric and transitive, the {@code encloses} relation defines a    *<i>partial order</i> over ranges. There exists a unique {@linkplain Range#all maximal} range    * according to this relation, and also numerous {@linkplain #isEmpty minimal} ranges. Enclosure    * also implies {@linkplain #isConnected connectedness}.    */
 DECL|method|encloses (Range<C> other)
 specifier|public
 name|boolean
@@ -1662,7 +1662,7 @@ operator|>=
 literal|0
 return|;
 block|}
-comment|/**    * Returns {@code true} if there exists a (possibly empty) range which is {@linkplain #encloses    * enclosed} by both this range and {@code other}.    *    *<p>For example,    *<ul>    *<li>{@code [2, 4)} and {@code [5, 7)} are not connected    *<li>{@code [2, 4)} and {@code [3, 5)} are connected, because both enclose {@code [3, 4)}    *<li>{@code [2, 4)} and {@code [4, 6)} are connected, because both enclose the empty range    *     {@code [4, 4)}    *</ul>    *    *<p>Note that this range and {@code other} have a well-defined {@linkplain #span union} and    * {@linkplain #intersection intersection} (as a single, possibly-empty range) if and only if this    * method returns {@code true}.    *    *<p>The connectedness relation is both reflexive and symmetric, but does not form an {@linkplain    * Equivalence equivalence relation} as it is not transitive.    *    *<p>Note that certain discrete ranges are not considered connected, even though there are no    * elements "between them."  For example, {@code [3, 5]} is not considered connected to {@code    * [6, 10]}.  In these cases, it may be desirable for both input ranges to be preprocessed with    * {@link #canonical(DiscreteDomain)} before testing for connectedness.    */
+comment|/**    * Returns {@code true} if there exists a (possibly empty) range which is {@linkplain #encloses    * enclosed} by both this range and {@code other}.    *    *<p>For example,    *    *<ul>    *<li>{@code [2, 4)} and {@code [5, 7)} are not connected    *<li>{@code [2, 4)} and {@code [3, 5)} are connected, because both enclose {@code [3, 4)}    *<li>{@code [2, 4)} and {@code [4, 6)} are connected, because both enclose the empty range    *       {@code [4, 4)}    *</ul>    *    *<p>Note that this range and {@code other} have a well-defined {@linkplain #span union} and    * {@linkplain #intersection intersection} (as a single, possibly-empty range) if and only if this    * method returns {@code true}.    *    *<p>The connectedness relation is both reflexive and symmetric, but does not form an {@linkplain    * Equivalence equivalence relation} as it is not transitive.    *    *<p>Note that certain discrete ranges are not considered connected, even though there are no    * elements "between them." For example, {@code [3, 5]} is not considered connected to {@code [6,    * 10]}. In these cases, it may be desirable for both input ranges to be preprocessed with {@link    * #canonical(DiscreteDomain)} before testing for connectedness.    */
 DECL|method|isConnected (Range<C> other)
 specifier|public
 name|boolean
@@ -1937,7 +1937,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**    * Returns the canonical form of this range in the given domain. The canonical form has the    * following properties:    *    *<ul>    *<li>equivalence: {@code a.canonical().contains(v) == a.contains(v)} for all {@code v} (in other    *     words, {@code ContiguousSet.create(a.canonical(domain), domain).equals(    *     ContiguousSet.create(a, domain))}    *<li>uniqueness: unless {@code a.isEmpty()},    *     {@code ContiguousSet.create(a, domain).equals(ContiguousSet.create(b, domain))} implies    *     {@code a.canonical(domain).equals(b.canonical(domain))}    *<li>idempotence: {@code a.canonical(domain).canonical(domain).equals(a.canonical(domain))}    *</ul>    *    *<p>Furthermore, this method guarantees that the range returned will be one of the following    * canonical forms:    *    *<ul>    *<li>[start..end)    *<li>[start..+â)    *<li>(-â..end) (only if type {@code C} is unbounded below)    *<li>(-â..+â) (only if type {@code C} is unbounded below)    *</ul>    */
+comment|/**    * Returns the canonical form of this range in the given domain. The canonical form has the    * following properties:    *    *<ul>    *<li>equivalence: {@code a.canonical().contains(v) == a.contains(v)} for all {@code v} (in    *       other words, {@code ContiguousSet.create(a.canonical(domain), domain).equals(    *       ContiguousSet.create(a, domain))}    *<li>uniqueness: unless {@code a.isEmpty()}, {@code ContiguousSet.create(a,    *       domain).equals(ContiguousSet.create(b, domain))} implies {@code    *       a.canonical(domain).equals(b.canonical(domain))}    *<li>idempotence: {@code a.canonical(domain).canonical(domain).equals(a.canonical(domain))}    *</ul>    *    *<p>Furthermore, this method guarantees that the range returned will be one of the following    * canonical forms:    *    *<ul>    *<li>[start..end)    *<li>[start..+â)    *<li>(-â..end) (only if type {@code C} is unbounded below)    *<li>(-â..+â) (only if type {@code C} is unbounded below)    *</ul>    */
 DECL|method|canonical (DiscreteDomain<C> domain)
 specifier|public
 name|Range
@@ -2161,7 +2161,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/**    * Used to avoid http://bugs.sun.com/view_bug.do?bug_id=6558557    */
+comment|/** Used to avoid http://bugs.sun.com/view_bug.do?bug_id=6558557 */
 DECL|method|cast (Iterable<T> iterable)
 specifier|private
 specifier|static
@@ -2245,7 +2245,7 @@ name|right
 argument_list|)
 return|;
 block|}
-comment|/**    * Needed to serialize sorted collections of Ranges.    */
+comment|/** Needed to serialize sorted collections of Ranges. */
 DECL|class|RangeLexOrdering
 specifier|private
 specifier|static

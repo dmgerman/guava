@@ -1631,7 +1631,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{             }
 try|try
 block|{
 name|network
@@ -1652,7 +1652,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{             }
 block|}
 name|boolean
 name|isSelfLoop

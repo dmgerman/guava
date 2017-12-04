@@ -223,7 +223,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Test case for {@link TrustedListenableFutureTask}.  */
+comment|/** Test case for {@link TrustedListenableFutureTask}. */
 end_comment
 
 begin_class
@@ -598,7 +598,7 @@ name|e
 throw|;
 block|}
 finally|finally
-block|{             }
+block|{                 }
 block|}
 block|}
 argument_list|)

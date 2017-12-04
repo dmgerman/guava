@@ -468,7 +468,7 @@ parameter_list|(
 name|CancellationException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testFailedFuture (@ullable String message)
 specifier|public

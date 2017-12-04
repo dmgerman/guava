@@ -27,7 +27,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * GWT emulation of {@link ImmutableEnumSet}.  The type parameter is not bounded  * by {@code Enum<E>} to avoid code-size bloat.  *  * @author Hayward Chan  */
+comment|/**  * GWT emulation of {@link ImmutableEnumSet}. The type parameter is not bounded by {@code Enum<E>}  * to avoid code-size bloat.  *  * @author Hayward Chan  */
 end_comment
 
 begin_class

@@ -135,7 +135,7 @@ specifier|final
 name|Pattern
 name|pattern
 decl_stmt|;
-comment|/**    * Constructs a pattern file name filter object.    *    * @param patternStr the pattern string on which to filter file names    *    * @throws PatternSyntaxException if pattern compilation fails (runtime)    */
+comment|/**    * Constructs a pattern file name filter object.    *    * @param patternStr the pattern string on which to filter file names    * @throws PatternSyntaxException if pattern compilation fails (runtime)    */
 DECL|method|PatternFilenameFilter (String patternStr)
 specifier|public
 name|PatternFilenameFilter

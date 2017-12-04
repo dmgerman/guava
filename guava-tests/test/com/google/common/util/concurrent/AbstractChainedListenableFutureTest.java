@@ -71,7 +71,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Unit tests for any listenable future that chains other listenable futures.  * Unit tests need only override buildChainingFuture and getSuccessfulResult,  * but they can add custom tests as needed.  *  * @author Nishant Thakkar  */
+comment|/**  * Unit tests for any listenable future that chains other listenable futures. Unit tests need only  * override buildChainingFuture and getSuccessfulResult, but they can add custom tests as needed.  *  * @author Nishant Thakkar  */
 end_comment
 
 begin_class
@@ -210,7 +210,7 @@ parameter_list|(
 name|TimeoutException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testFutureGetThrowsWrappedException ()
 specifier|public
@@ -315,8 +315,8 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Override to return a chaining listenableFuture that returns the result of    * getSuccessfulResult() when inputFuture returns VALID_INPUT_DATA, and sets    * the exception to EXCEPTION in all other cases.    */
-DECL|method|buildChainingFuture ( ListenableFuture<Integer> inputFuture)
+comment|/**    * Override to return a chaining listenableFuture that returns the result of getSuccessfulResult()    * when inputFuture returns VALID_INPUT_DATA, and sets the exception to EXCEPTION in all other    * cases.    */
+DECL|method|buildChainingFuture (ListenableFuture<Integer> inputFuture)
 specifier|protected
 specifier|abstract
 name|ListenableFuture
@@ -332,7 +332,7 @@ argument_list|>
 name|inputFuture
 parameter_list|)
 function_decl|;
-comment|/**    * Override to return the result when VALID_INPUT_DATA is passed in to    * the chaining listenableFuture    */
+comment|/**    * Override to return the result when VALID_INPUT_DATA is passed in to the chaining    * listenableFuture    */
 DECL|method|getSuccessfulResult ()
 specifier|protected
 specifier|abstract

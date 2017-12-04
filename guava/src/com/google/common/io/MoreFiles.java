@@ -1161,7 +1161,7 @@ name|charset
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a view of the given {@code path} as a {@link CharSink} using the given {@code    * charset}.    *    *<p>Any {@linkplain OpenOption open options} provided are used when opening streams to the file    * and may affect the behavior of the returned sink and the streams it provides. See {@link    * StandardOpenOption} for the standard options that may be provided. Providing no options is    * equivalent to providing the {@link StandardOpenOption#CREATE CREATE}, {@link    * StandardOpenOption#TRUNCATE_EXISTING TRUNCATE_EXISTING} and {@link StandardOpenOption#WRITE    * WRITE} options.    */
+comment|/**    * Returns a view of the given {@code path} as a {@link CharSink} using the given {@code charset}.    *    *<p>Any {@linkplain OpenOption open options} provided are used when opening streams to the file    * and may affect the behavior of the returned sink and the streams it provides. See {@link    * StandardOpenOption} for the standard options that may be provided. Providing no options is    * equivalent to providing the {@link StandardOpenOption#CREATE CREATE}, {@link    * StandardOpenOption#TRUNCATE_EXISTING TRUNCATE_EXISTING} and {@link StandardOpenOption#WRITE    * WRITE} options.    */
 DECL|method|asCharSink (Path path, Charset charset, OpenOption... options)
 specifier|public
 specifier|static
@@ -1764,8 +1764,8 @@ comment|// created it here.
 block|}
 block|}
 block|}
-comment|/**    * Creates any necessary but nonexistent parent directories of the specified path. Note that if    * this operation fails, it may have succeeded in creating some (but not all) of the necessary    * parent directories. The parent directory is created with the given {@code attrs}.    *    * @throws IOException if an I/O error occurs, or if any necessary but nonexistent parent    *                     directories of the specified file could not be created.    */
-DECL|method|createParentDirectories ( Path path, FileAttribute<?>... attrs)
+comment|/**    * Creates any necessary but nonexistent parent directories of the specified path. Note that if    * this operation fails, it may have succeeded in creating some (but not all) of the necessary    * parent directories. The parent directory is created with the given {@code attrs}.    *    * @throws IOException if an I/O error occurs, or if any necessary but nonexistent parent    *     directories of the specified file could not be created.    */
+DECL|method|createParentDirectories (Path path, FileAttribute<?>... attrs)
 specifier|public
 specifier|static
 name|void
@@ -1934,7 +1934,7 @@ literal|1
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the file name without its    *<a href="http://en.wikipedia.org/wiki/Filename_extension">file extension</a> or path. This is    * similar to the {@code basename} unix command. The result does not include the '{@code .}'.    */
+comment|/**    * Returns the file name without its<a    * href="http://en.wikipedia.org/wiki/Filename_extension">file extension</a> or path. This is    * similar to the {@code basename} unix command. The result does not include the '{@code .}'.    */
 DECL|method|getNameWithoutExtension (Path path)
 specifier|public
 specifier|static
@@ -2001,8 +2001,8 @@ name|dotIndex
 argument_list|)
 return|;
 block|}
-comment|/**    * Deletes the file or directory at the given {@code path} recursively. Deletes symbolic links,    * not their targets (subject to the caveat below).    *    *<p>If an I/O exception occurs attempting to read, open or delete any file under the given    * directory, this method skips that file and continues. All such exceptions are collected and,    * after attempting to delete all files, an {@code IOException} is thrown containing those    * exceptions as {@linkplain Throwable#getSuppressed() suppressed exceptions}.    *    *<h2>Warning: Security of recursive deletes</h2>    *    *<p>On a file system that supports symbolic links and does<i>not</i> support    * {@link SecureDirectoryStream}, it is possible for a recursive delete to delete files and    * directories that are<i>outside</i> the directory being deleted. This can happen if, after    * checking that a file is a directory (and not a symbolic link), that directory is replaced by a    * symbolic link to an outside directory before the call that opens the directory to read its    * entries.    *    *<p>By default, this method throws {@link InsecureRecursiveDeleteException} if it can't    * guarantee the security of recursive deletes. If you wish to allow the recursive deletes    * anyway, pass {@link RecursiveDeleteOption#ALLOW_INSECURE} to this method to override that    * behavior.    *    * @throws NoSuchFileException if {@code path} does not exist<i>(optional specific    *     exception)</i>    * @throws InsecureRecursiveDeleteException if the security of recursive deletes can't be    *     guaranteed for the file system and {@link RecursiveDeleteOption#ALLOW_INSECURE} was not    *     specified    * @throws IOException if {@code path} or any file in the subtree rooted at it can't be deleted    *     for any reason    */
-DECL|method|deleteRecursively ( Path path, RecursiveDeleteOption... options)
+comment|/**    * Deletes the file or directory at the given {@code path} recursively. Deletes symbolic links,    * not their targets (subject to the caveat below).    *    *<p>If an I/O exception occurs attempting to read, open or delete any file under the given    * directory, this method skips that file and continues. All such exceptions are collected and,    * after attempting to delete all files, an {@code IOException} is thrown containing those    * exceptions as {@linkplain Throwable#getSuppressed() suppressed exceptions}.    *    *<h2>Warning: Security of recursive deletes</h2>    *    *<p>On a file system that supports symbolic links and does<i>not</i> support {@link    * SecureDirectoryStream}, it is possible for a recursive delete to delete files and directories    * that are<i>outside</i> the directory being deleted. This can happen if, after checking that a    * file is a directory (and not a symbolic link), that directory is replaced by a symbolic link to    * an outside directory before the call that opens the directory to read its entries.    *    *<p>By default, this method throws {@link InsecureRecursiveDeleteException} if it can't    * guarantee the security of recursive deletes. If you wish to allow the recursive deletes anyway,    * pass {@link RecursiveDeleteOption#ALLOW_INSECURE} to this method to override that behavior.    *    * @throws NoSuchFileException if {@code path} does not exist<i>(optional specific exception)</i>    * @throws InsecureRecursiveDeleteException if the security of recursive deletes can't be    *     guaranteed for the file system and {@link RecursiveDeleteOption#ALLOW_INSECURE} was not    *     specified    * @throws IOException if {@code path} or any file in the subtree rooted at it can't be deleted    *     for any reason    */
+DECL|method|deleteRecursively (Path path, RecursiveDeleteOption... options)
 specifier|public
 specifier|static
 name|void
@@ -2177,8 +2177,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Deletes all files within the directory at the given {@code path}    * {@linkplain #deleteRecursively recursively}. Does not delete the directory itself. Deletes    * symbolic links, not their targets (subject to the caveat below). If {@code path} itself is    * a symbolic link to a directory, that link is followed and the contents of the directory it    * targets are deleted.    *    *<p>If an I/O exception occurs attempting to read, open or delete any file under the given    * directory, this method skips that file and continues. All such exceptions are collected and,    * after attempting to delete all files, an {@code IOException} is thrown containing those    * exceptions as {@linkplain Throwable#getSuppressed() suppressed exceptions}.    *    *<h2>Warning: Security of recursive deletes</h2>    *    *<p>On a file system that supports symbolic links and does<i>not</i> support    * {@link SecureDirectoryStream}, it is possible for a recursive delete to delete files and    * directories that are<i>outside</i> the directory being deleted. This can happen if, after    * checking that a file is a directory (and not a symbolic link), that directory is replaced by a    * symbolic link to an outside directory before the call that opens the directory to read its    * entries.    *    *<p>By default, this method throws {@link InsecureRecursiveDeleteException} if it can't    * guarantee the security of recursive deletes. If you wish to allow the recursive deletes    * anyway, pass {@link RecursiveDeleteOption#ALLOW_INSECURE} to this method to override that    * behavior.    *    * @throws NoSuchFileException if {@code path} does not exist<i>(optional specific    *     exception)</i>    * @throws NotDirectoryException if the file at {@code path} is not a directory<i>(optional    *     specific exception)</i>    * @throws InsecureRecursiveDeleteException if the security of recursive deletes can't be    *     guaranteed for the file system and {@link RecursiveDeleteOption#ALLOW_INSECURE} was not    *     specified    * @throws IOException if one or more files can't be deleted for any reason    */
-DECL|method|deleteDirectoryContents ( Path path, RecursiveDeleteOption... options)
+comment|/**    * Deletes all files within the directory at the given {@code path} {@linkplain #deleteRecursively    * recursively}. Does not delete the directory itself. Deletes symbolic links, not their targets    * (subject to the caveat below). If {@code path} itself is a symbolic link to a directory, that    * link is followed and the contents of the directory it targets are deleted.    *    *<p>If an I/O exception occurs attempting to read, open or delete any file under the given    * directory, this method skips that file and continues. All such exceptions are collected and,    * after attempting to delete all files, an {@code IOException} is thrown containing those    * exceptions as {@linkplain Throwable#getSuppressed() suppressed exceptions}.    *    *<h2>Warning: Security of recursive deletes</h2>    *    *<p>On a file system that supports symbolic links and does<i>not</i> support {@link    * SecureDirectoryStream}, it is possible for a recursive delete to delete files and directories    * that are<i>outside</i> the directory being deleted. This can happen if, after checking that a    * file is a directory (and not a symbolic link), that directory is replaced by a symbolic link to    * an outside directory before the call that opens the directory to read its entries.    *    *<p>By default, this method throws {@link InsecureRecursiveDeleteException} if it can't    * guarantee the security of recursive deletes. If you wish to allow the recursive deletes anyway,    * pass {@link RecursiveDeleteOption#ALLOW_INSECURE} to this method to override that behavior.    *    * @throws NoSuchFileException if {@code path} does not exist<i>(optional specific exception)</i>    * @throws NotDirectoryException if the file at {@code path} is not a directory<i>(optional    *     specific exception)</i>    * @throws InsecureRecursiveDeleteException if the security of recursive deletes can't be    *     guaranteed for the file system and {@link RecursiveDeleteOption#ALLOW_INSECURE} was not    *     specified    * @throws IOException if one or more files can't be deleted for any reason    */
+DECL|method|deleteDirectoryContents (Path path, RecursiveDeleteOption... options)
 specifier|public
 specifier|static
 name|void
@@ -2310,7 +2310,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Secure recursive delete using {@code SecureDirectoryStream}. Returns a collection of    * exceptions that occurred or null if no exceptions were thrown.    */
+comment|/**    * Secure recursive delete using {@code SecureDirectoryStream}. Returns a collection of exceptions    * that occurred or null if no exceptions were thrown.    */
 annotation|@
 name|Nullable
 DECL|method|deleteRecursivelySecure ( SecureDirectoryStream<Path> dir, Path path)
@@ -2606,7 +2606,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**    * Simple, insecure method for deleting the contents of a directory for file systems that don't    * support {@code SecureDirectoryStream}. Returns a collection of exceptions that occurred or    * null if no exceptions were thrown.    */
+comment|/**    * Simple, insecure method for deleting the contents of a directory for file systems that don't    * support {@code SecureDirectoryStream}. Returns a collection of exceptions that occurred or null    * if no exceptions were thrown.    */
 annotation|@
 name|Nullable
 DECL|method|deleteDirectoryContentsInsecure ( DirectoryStream<Path> dir)
@@ -2759,8 +2759,8 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**    * Checks that the given options allow an insecure delete, throwing an exception if not.    */
-DECL|method|checkAllowsInsecure ( Path path, RecursiveDeleteOption[] options)
+comment|/** Checks that the given options allow an insecure delete, throwing an exception if not. */
+DECL|method|checkAllowsInsecure (Path path, RecursiveDeleteOption[] options)
 specifier|private
 specifier|static
 name|void
@@ -2806,7 +2806,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Returns whether or not the file with the given name in the given dir is a directory.    */
+comment|/** Returns whether or not the file with the given name in the given dir is a directory. */
 DECL|method|isDirectory ( SecureDirectoryStream<Path> dir, Path name, LinkOption... options)
 specifier|private
 specifier|static
@@ -2850,7 +2850,7 @@ name|isDirectory
 argument_list|()
 return|;
 block|}
-comment|/**    * Adds the given exception to the given collection, creating the collection if it's null.    * Returns the collection.    */
+comment|/**    * Adds the given exception to the given collection, creating the collection if it's null. Returns    * the collection.    */
 DECL|method|addException ( @ullable Collection<IOException> exceptions, IOException e)
 specifier|private
 specifier|static
@@ -2959,8 +2959,8 @@ return|return
 name|exceptions
 return|;
 block|}
-comment|/**    * Throws an exception indicating that one or more files couldn't be deleted. The thrown    * exception contains all the exceptions in the given collection as suppressed exceptions.    */
-DECL|method|throwDeleteFailed ( Path path, Collection<IOException> exceptions)
+comment|/**    * Throws an exception indicating that one or more files couldn't be deleted. The thrown exception    * contains all the exceptions in the given collection as suppressed exceptions.    */
+DECL|method|throwDeleteFailed (Path path, Collection<IOException> exceptions)
 specifier|private
 specifier|static
 name|void

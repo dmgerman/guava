@@ -77,7 +77,6 @@ class|class
 name|SplitterBenchmark
 block|{
 comment|// overall size of string
-DECL|field|length
 annotation|@
 name|Param
 argument_list|(
@@ -91,11 +90,11 @@ block|,
 literal|"1000"
 block|}
 argument_list|)
+DECL|field|length
 name|int
 name|length
 decl_stmt|;
 comment|// Number of matching strings
-DECL|field|text
 annotation|@
 name|Param
 argument_list|(
@@ -109,6 +108,7 @@ block|,
 literal|"XXXX"
 block|}
 argument_list|)
+DECL|field|text
 name|String
 name|text
 decl_stmt|;
@@ -145,9 +145,9 @@ argument_list|(
 literal|"X"
 argument_list|)
 decl_stmt|;
-DECL|method|setUp ()
 annotation|@
 name|BeforeExperiment
+DECL|method|setUp ()
 name|void
 name|setUp
 parameter_list|()
@@ -164,9 +164,9 @@ name|length
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|charSplitter (int reps)
 annotation|@
 name|Benchmark
+DECL|method|charSplitter (int reps)
 name|void
 name|charSplitter
 parameter_list|(
@@ -210,9 +210,9 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-DECL|method|stringSplitter (int reps)
 annotation|@
 name|Benchmark
+DECL|method|stringSplitter (int reps)
 name|void
 name|stringSplitter
 parameter_list|(

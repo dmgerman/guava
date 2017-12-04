@@ -690,7 +690,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-DECL|method|of ( K k1, V v1, K k2, V v2, K k3, V v3)
+DECL|method|of (K k1, V v1, K k2, V v2, K k3, V v3)
 specifier|public
 specifier|static
 parameter_list|<
@@ -757,7 +757,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-DECL|method|of ( K k1, V v1, K k2, V v2, K k3, V v3, K k4, V v4)
+DECL|method|of (K k1, V v1, K k2, V v2, K k3, V v3, K k4, V v4)
 specifier|public
 specifier|static
 parameter_list|<
@@ -1598,7 +1598,7 @@ argument_list|)
 return|;
 block|}
 block|}
-DECL|method|copyOf ( Map<? extends K, ? extends V> map)
+DECL|method|copyOf (Map<? extends K, ? extends V> map)
 specifier|public
 specifier|static
 parameter_list|<
@@ -2448,9 +2448,9 @@ name|V
 argument_list|>
 argument_list|>
 block|{
-DECL|method|size ()
 annotation|@
 name|Override
+DECL|method|size ()
 specifier|public
 name|int
 name|size
@@ -2465,9 +2465,9 @@ name|size
 argument_list|()
 return|;
 block|}
-DECL|method|keySet ()
 annotation|@
 name|Override
+DECL|method|keySet ()
 specifier|public
 name|ImmutableSet
 argument_list|<
@@ -2485,9 +2485,9 @@ name|keySet
 argument_list|()
 return|;
 block|}
-DECL|method|containsKey (@ullable Object key)
 annotation|@
 name|Override
+DECL|method|containsKey (@ullable Object key)
 specifier|public
 name|boolean
 name|containsKey
@@ -2509,9 +2509,9 @@ name|key
 argument_list|)
 return|;
 block|}
-DECL|method|get (@ullable Object key)
 annotation|@
 name|Override
+DECL|method|get (@ullable Object key)
 specifier|public
 name|ImmutableSet
 argument_list|<
@@ -2554,9 +2554,9 @@ name|outerValue
 argument_list|)
 return|;
 block|}
-DECL|method|isPartialView ()
 annotation|@
 name|Override
+DECL|method|isPartialView ()
 name|boolean
 name|isPartialView
 parameter_list|()
@@ -2570,9 +2570,9 @@ name|isPartialView
 argument_list|()
 return|;
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -2764,9 +2764,9 @@ name|this
 argument_list|)
 return|;
 block|}
-DECL|method|equals (@ullable Object object)
 annotation|@
 name|Override
+DECL|method|equals (@ullable Object object)
 specifier|public
 name|boolean
 name|equals
@@ -2788,9 +2788,9 @@ name|object
 argument_list|)
 return|;
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -2806,9 +2806,9 @@ name|hashCode
 argument_list|()
 return|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString

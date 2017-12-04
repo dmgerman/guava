@@ -365,7 +365,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link Map} whose contents will never change, with many other important properties detailed at  * {@link ImmutableCollection}.  *  *<p>See the Guava User Guide article on<a href=  * "https://github.com/google/guava/wiki/ImmutableCollectionsExplained">  * immutable collections</a>.  *  * @author Jesse Wilson  * @author Kevin Bourrillion  * @since 2.0  */
+comment|/**  * A {@link Map} whose contents will never change, with many other important properties detailed at  * {@link ImmutableCollection}.  *  *<p>See the Guava User Guide article on<a href=  * "https://github.com/google/guava/wiki/ImmutableCollectionsExplained"> immutable collections</a>.  *  * @author Jesse Wilson  * @author Kevin Bourrillion  * @since 2.0  */
 end_comment
 
 begin_class
@@ -406,7 +406,7 @@ argument_list|>
 implements|,
 name|Serializable
 block|{
-comment|/**    * Returns a {@link Collector} that accumulates elements into an {@code ImmutableMap} whose keys    * and values are the result of applying the provided mapping functions to the input elements.    * Entries appear in the result {@code ImmutableMap} in encounter order.    *    *<p>If the mapped keys contain duplicates (according to {@link Object#equals(Object)}, an    * {@code IllegalArgumentException} is thrown when the collection operation is performed.    * (This differs from the {@code Collector} returned by    * {@link Collectors#toMap(Function, Function)}, which throws an {@code IllegalStateException}.)    *    * @since 21.0    */
+comment|/**    * Returns a {@link Collector} that accumulates elements into an {@code ImmutableMap} whose keys    * and values are the result of applying the provided mapping functions to the input elements.    * Entries appear in the result {@code ImmutableMap} in encounter order.    *    *<p>If the mapped keys contain duplicates (according to {@link Object#equals(Object)}, an {@code    * IllegalArgumentException} is thrown when the collection operation is performed. (This differs    * from the {@code Collector} returned by {@link Collectors#toMap(Function, Function)}, which    * throws an {@code IllegalStateException}.)    *    * @since 21.0    */
 annotation|@
 name|Beta
 DECL|method|toImmutableMap ( Function<? super T, ? extends K> keyFunction, Function<? super T, ? extends V> valueFunction)
@@ -570,7 +570,7 @@ name|copyOf
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the empty map. This map behaves and performs comparably to    * {@link Collections#emptyMap}, and is preferable mainly for consistency    * and maintainability of your code.    */
+comment|/**    * Returns the empty map. This map behaves and performs comparably to {@link    * Collections#emptyMap}, and is preferable mainly for consistency and maintainability of your    * code.    */
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -607,7 +607,7 @@ operator|.
 name|EMPTY
 return|;
 block|}
-comment|/**    * Returns an immutable map containing a single entry. This map behaves and    * performs comparably to {@link Collections#singletonMap} but will not accept    * a null key or value. It is preferable mainly for consistency and    * maintainability of your code.    */
+comment|/**    * Returns an immutable map containing a single entry. This map behaves and performs comparably to    * {@link Collections#singletonMap} but will not accept a null key or value. It is preferable    * mainly for consistency and maintainability of your code.    */
 DECL|method|of (K k1, V v1)
 specifier|public
 specifier|static
@@ -968,7 +968,7 @@ name|value
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a new builder. The generated builder is equivalent to the builder    * created by the {@link Builder} constructor.    */
+comment|/**    * Returns a new builder. The generated builder is equivalent to the builder created by the {@link    * Builder} constructor.    */
 DECL|method|builder ()
 specifier|public
 specifier|static
@@ -993,7 +993,7 @@ argument_list|<>
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns a new builder, expecting the specified number of entries to be added.    *    *<p>If {@code expectedSize} is exactly the number of entries added to the builder before {@link    * Builder#build} is called, the builder is likely to perform better than an unsized {@link    * #builder()} would have.    *    *<p>It is not specified if any performance benefits apply if {@code expectedSize} is close to,    * but not exactly, the number of entries added to the builder.    *     * @since 23.1    */
+comment|/**    * Returns a new builder, expecting the specified number of entries to be added.    *    *<p>If {@code expectedSize} is exactly the number of entries added to the builder before {@link    * Builder#build} is called, the builder is likely to perform better than an unsized {@link    * #builder()} would have.    *    *<p>It is not specified if any performance benefits apply if {@code expectedSize} is close to,    * but not exactly, the number of entries added to the builder.    *    * @since 23.1    */
 annotation|@
 name|Beta
 DECL|method|builderWithExpectedSize (int expectedSize)
@@ -1085,7 +1085,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * A builder for creating immutable map instances, especially {@code public static final} maps    * ("constant maps"). Example:<pre>   {@code    *    *   static final ImmutableMap<String, Integer> WORD_TO_INT =    *       new ImmutableMap.Builder<String, Integer>()    *           .put("one", 1)    *           .put("two", 2)    *           .put("three", 3)    *           .build();}</pre>    *    *<p>For<i>small</i> immutable maps, the {@code ImmutableMap.of()} methods are even more    * convenient.    *    *<p>By default, a {@code Builder} will generate maps that iterate over entries in the order    * they were inserted into the builder, equivalently to {@code LinkedHashMap}.  For example, in    * the above example, {@code WORD_TO_INT.entrySet()} is guaranteed to iterate over the entries in    * the order {@code "one"=1, "two"=2, "three"=3}, and {@code keySet()} and {@code values()}    * respect the same order.   If you want a different order, consider using     * {@link ImmutableSortedMap} to sort by keys, or call {@link #orderEntriesByValue(Comparator)},     * which changes this builder to sort entries by value.    *    *<p>Builder instances can be reused - it is safe to call {@link #build}    * multiple times to build multiple maps in series. Each map is a superset of    * the maps created before it.    *    * @since 2.0    */
+comment|/**    * A builder for creating immutable map instances, especially {@code public static final} maps    * ("constant maps"). Example:    *    *<pre>{@code    * static final ImmutableMap<String, Integer> WORD_TO_INT =    *     new ImmutableMap.Builder<String, Integer>()    *         .put("one", 1)    *         .put("two", 2)    *         .put("three", 3)    *         .build();    * }</pre>    *    *<p>For<i>small</i> immutable maps, the {@code ImmutableMap.of()} methods are even more    * convenient.    *    *<p>By default, a {@code Builder} will generate maps that iterate over entries in the order they    * were inserted into the builder, equivalently to {@code LinkedHashMap}. For example, in the    * above example, {@code WORD_TO_INT.entrySet()} is guaranteed to iterate over the entries in the    * order {@code "one"=1, "two"=2, "three"=3}, and {@code keySet()} and {@code values()} respect    * the same order. If you want a different order, consider using {@link ImmutableSortedMap} to    * sort by keys, or call {@link #orderEntriesByValue(Comparator)}, which changes this builder to    * sort entries by value.    *    *<p>Builder instances can be reused - it is safe to call {@link #build} multiple times to build    * multiple maps in series. Each map is a superset of the maps created before it.    *    * @since 2.0    */
 DECL|class|Builder
 specifier|public
 specifier|static
@@ -1124,7 +1124,7 @@ DECL|field|entriesUsed
 name|boolean
 name|entriesUsed
 decl_stmt|;
-comment|/**      * Creates a new builder. The returned builder is equivalent to the builder      * generated by {@link ImmutableMap#builder}.      */
+comment|/**      * Creates a new builder. The returned builder is equivalent to the builder generated by {@link      * ImmutableMap#builder}.      */
 DECL|method|Builder ()
 specifier|public
 name|Builder
@@ -1221,7 +1221,7 @@ literal|false
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Associates {@code key} with {@code value} in the built map. Duplicate      * keys are not allowed, and will cause {@link #build} to fail.      */
+comment|/**      * Associates {@code key} with {@code value} in the built map. Duplicate keys are not allowed,      * and will cause {@link #build} to fail.      */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|put (K key, V value)
@@ -1276,7 +1276,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**      * Adds the given {@code entry} to the map, making it immutable if      * necessary. Duplicate keys are not allowed, and will cause {@link #build}      * to fail.      *      * @since 11.0      */
+comment|/**      * Adds the given {@code entry} to the map, making it immutable if necessary. Duplicate keys are      * not allowed, and will cause {@link #build} to fail.      *      * @since 11.0      */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|put (Entry<? extends K, ? extends V> entry)
@@ -1317,7 +1317,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**      * Associates all of the given map's keys and values in the built map.      * Duplicate keys are not allowed, and will cause {@link #build} to fail.      *      * @throws NullPointerException if any key or value in {@code map} is null      */
+comment|/**      * Associates all of the given map's keys and values in the built map. Duplicate keys are not      * allowed, and will cause {@link #build} to fail.      *      * @throws NullPointerException if any key or value in {@code map} is null      */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|putAll (Map<? extends K, ? extends V> map)
@@ -1353,7 +1353,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**      * Adds all of the given entries to the built map.  Duplicate keys are not      * allowed, and will cause {@link #build} to fail.      *      * @throws NullPointerException if any key, value, or entry is null      * @since 19.0      */
+comment|/**      * Adds all of the given entries to the built map. Duplicate keys are not allowed, and will      * cause {@link #build} to fail.      *      * @throws NullPointerException if any key, value, or entry is null      * @since 19.0      */
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
@@ -1439,7 +1439,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**      * Configures this {@code Builder} to order entries by value according to the specified      * comparator.      *      *<p>The sort order is stable, that is, if two entries have values that compare      * as equivalent, the entry that was inserted first will be first in the built map's      * iteration order.      *      * @throws IllegalStateException if this method was already called      * @since 19.0      */
+comment|/**      * Configures this {@code Builder} to order entries by value according to the specified      * comparator.      *      *<p>The sort order is stable, that is, if two entries have values that compare as equivalent,      * the entry that was inserted first will be first in the built map's iteration order.      *      * @throws IllegalStateException if this method was already called      * @since 19.0      */
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
@@ -1561,7 +1561,7 @@ name|this
 return|;
 block|}
 comment|/*      * TODO(kevinb): Should build() and the ImmutableBiMap& ImmutableSortedMap      * versions throw an IllegalStateException instead?      */
-comment|/**      * Returns a newly-created immutable map.  The iteration order of the returned map is      * the order in which entries were inserted into the builder, unless      * {@link #orderEntriesByValue} was called, in which case entries are sorted by value.      *      * @throws IllegalArgumentException if duplicate keys were added      */
+comment|/**      * Returns a newly-created immutable map. The iteration order of the returned map is the order      * in which entries were inserted into the builder, unless {@link #orderEntriesByValue} was      * called, in which case entries are sorted by value.      *      * @throws IllegalArgumentException if duplicate keys were added      */
 DECL|method|build ()
 specifier|public
 name|ImmutableMap
@@ -1685,7 +1685,7 @@ return|;
 block|}
 block|}
 block|}
-comment|/**    * Returns an immutable map containing the same entries as {@code map}. The returned map iterates    * over entries in the same order as the {@code entrySet} of the original map.  If {@code map}    * somehow contains entries with duplicate keys (for example, if it is a {@code SortedMap}    * whose comparator is not<i>consistent with equals</i>), the results of this method are    * undefined.    *    *<p>Despite the method name, this method attempts to avoid actually copying    * the data when it is safe to do so. The exact circumstances under which a    * copy will or will not be performed are undocumented and subject to change.    *    * @throws NullPointerException if any key or value in {@code map} is null    */
+comment|/**    * Returns an immutable map containing the same entries as {@code map}. The returned map iterates    * over entries in the same order as the {@code entrySet} of the original map. If {@code map}    * somehow contains entries with duplicate keys (for example, if it is a {@code SortedMap} whose    * comparator is not<i>consistent with equals</i>), the results of this method are undefined.    *    *<p>Despite the method name, this method attempts to avoid actually copying the data when it is    * safe to do so. The exact circumstances under which a copy will or will not be performed are    * undocumented and subject to change.    *    * @throws NullPointerException if any key or value in {@code map} is null    */
 DECL|method|copyOf (Map<? extends K, ? extends V> map)
 specifier|public
 specifier|static
@@ -1826,7 +1826,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an immutable map containing the specified entries.  The returned    * map iterates over entries in the same order as the original iterable.    *    * @throws NullPointerException if any key, value, or entry is null    * @throws IllegalArgumentException if two entries have the same key    * @since 19.0    */
+comment|/**    * Returns an immutable map containing the specified entries. The returned map iterates over    * entries in the same order as the original iterable.    *    * @throws NullPointerException if any key, value, or entry is null    * @throws IllegalArgumentException if two entries have the same key    * @since 19.0    */
 annotation|@
 name|Beta
 DECL|method|copyOf ( Iterable<? extends Entry<? extends K, ? extends V>> entries)
@@ -2741,9 +2741,9 @@ else|:
 name|defaultValue
 return|;
 block|}
+DECL|field|entrySet
 annotation|@
 name|LazyInit
-DECL|field|entrySet
 specifier|private
 specifier|transient
 name|ImmutableSet
@@ -2757,7 +2757,7 @@ argument_list|>
 argument_list|>
 name|entrySet
 decl_stmt|;
-comment|/**    * Returns an immutable set of the mappings in this map.  The iteration order is specified by    * the method used to create this map.  Typically, this is insertion order.    */
+comment|/**    * Returns an immutable set of the mappings in this map. The iteration order is specified by the    * method used to create this map. Typically, this is insertion order.    */
 annotation|@
 name|Override
 DECL|method|entrySet ()
@@ -2816,9 +2816,9 @@ argument_list|>
 name|createEntrySet
 parameter_list|()
 function_decl|;
+DECL|field|keySet
 annotation|@
 name|LazyInit
-DECL|field|keySet
 specifier|private
 specifier|transient
 name|ImmutableSet
@@ -2827,7 +2827,7 @@ name|K
 argument_list|>
 name|keySet
 decl_stmt|;
-comment|/**    * Returns an immutable set of the keys in this map, in the same order that they appear in    * {@link #entrySet}.    */
+comment|/**    * Returns an immutable set of the keys in this map, in the same order that they appear in {@link    * #entrySet}.    */
 annotation|@
 name|Override
 DECL|method|keySet ()
@@ -2965,9 +2965,9 @@ name|getKey
 argument_list|)
 return|;
 block|}
+DECL|field|values
 annotation|@
 name|LazyInit
-DECL|field|values
 specifier|private
 specifier|transient
 name|ImmutableCollection
@@ -3022,9 +3022,9 @@ name|createValues
 parameter_list|()
 function_decl|;
 comment|// cached so that this.multimapView().inverse() only computes inverse once
+DECL|field|multimapView
 annotation|@
 name|LazyInit
-DECL|field|multimapView
 specifier|private
 specifier|transient
 name|ImmutableSetMultimap
@@ -3500,7 +3500,7 @@ name|this
 argument_list|)
 return|;
 block|}
-comment|/**    * Serialized type for all ImmutableMap instances. It captures the logical    * contents and they are reconstructed using public factory methods. This    * ensures that the implementation types remain as implementation details.    */
+comment|/**    * Serialized type for all ImmutableMap instances. It captures the logical contents and they are    * reconstructed using public factory methods. This ensures that the implementation types remain    * as implementation details.    */
 DECL|class|SerializedForm
 specifier|static
 class|class

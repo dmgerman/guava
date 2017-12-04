@@ -3769,7 +3769,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * This test attempts to create a situation in which one thread is constantly changing a file    * from being a real directory to being a symlink to another directory. It then calls    * deleteDirectoryContents thousands of times on a directory whose subtree contains the file    * that's switching between directory and symlink to try to ensure that under no circumstance    * does deleteDirectoryContents follow the symlink to the other directory and delete that    * directory's contents.    *    *<p>We can only test this with a file system that supports SecureDirectoryStream, because it's    * not possible to protect against this if the file system doesn't.    */
+comment|/**    * This test attempts to create a situation in which one thread is constantly changing a file from    * being a real directory to being a symlink to another directory. It then calls    * deleteDirectoryContents thousands of times on a directory whose subtree contains the file    * that's switching between directory and symlink to try to ensure that under no circumstance does    * deleteDirectoryContents follow the symlink to the other directory and delete that directory's    * contents.    *    *<p>We can only test this with a file system that supports SecureDirectoryStream, because it's    * not possible to protect against this if the file system doesn't.    */
 DECL|method|testDirectoryDeletion_directorySymlinkRace ()
 specifier|public
 name|void
@@ -4085,7 +4085,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Starts a new task on the given executor that switches (deletes and replaces) a file between    * being a directory and being a symlink. The given {@code file} is the file that should switch    * between being a directory and being a symlink, while the given {@code target} is the target    * the symlink should have.    */
+comment|/**    * Starts a new task on the given executor that switches (deletes and replaces) a file between    * being a directory and being a symlink. The given {@code file} is the file that should switch    * between being a directory and being a symlink, while the given {@code target} is the target the    * symlink should have.    */
 DECL|method|startDirectorySymlinkSwitching ( final Path file, final Path target, ExecutorService executor)
 specifier|private
 specifier|static
@@ -4209,7 +4209,7 @@ block|}
 argument_list|)
 decl_stmt|;
 block|}
-comment|/**    * Enum defining the two MoreFiles methods that delete directory contents.    */
+comment|/** Enum defining the two MoreFiles methods that delete directory contents. */
 DECL|enum|DirectoryDeleteMethod
 specifier|private
 enum|enum

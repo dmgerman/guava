@@ -95,7 +95,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Private replacement for {@link com.google.gwt.user.client.rpc.GwtTransient}  * to work around build-system quirks. This annotation should be used  *<b>only</b> in {@code com.google.common.collect}.  */
+comment|/**  * Private replacement for {@link com.google.gwt.user.client.rpc.GwtTransient} to work around  * build-system quirks. This annotation should be used<b>only</b> in {@code  * com.google.common.collect}.  */
 end_comment
 
 begin_annotation_defn

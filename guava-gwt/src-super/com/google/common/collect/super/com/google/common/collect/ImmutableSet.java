@@ -952,9 +952,9 @@ argument_list|)
 return|;
 block|}
 block|}
-DECL|method|equals (Object obj)
 annotation|@
 name|Override
+DECL|method|equals (Object obj)
 specifier|public
 name|boolean
 name|equals
@@ -974,9 +974,9 @@ name|obj
 argument_list|)
 return|;
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -1213,9 +1213,9 @@ name|initialCapacity
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|add (E element)
 annotation|@
 name|Override
+DECL|method|add (E element)
 specifier|public
 name|Builder
 argument_list|<
@@ -1241,9 +1241,9 @@ return|return
 name|this
 return|;
 block|}
-DECL|method|add (E... elements)
 annotation|@
 name|Override
+DECL|method|add (E... elements)
 specifier|public
 name|Builder
 argument_list|<
@@ -1287,9 +1287,9 @@ return|return
 name|this
 return|;
 block|}
-DECL|method|addAll (Iterable<? extends E> elements)
 annotation|@
 name|Override
+DECL|method|addAll (Iterable<? extends E> elements)
 specifier|public
 name|Builder
 argument_list|<
@@ -1354,9 +1354,9 @@ return|return
 name|this
 return|;
 block|}
-DECL|method|addAll (Iterator<? extends E> elements)
 annotation|@
 name|Override
+DECL|method|addAll (Iterator<? extends E> elements)
 specifier|public
 name|Builder
 argument_list|<
@@ -1411,9 +1411,9 @@ return|return
 name|this
 return|;
 block|}
-DECL|method|build ()
 annotation|@
 name|Override
+DECL|method|build ()
 specifier|public
 name|ImmutableSet
 argument_list|<

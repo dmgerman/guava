@@ -33,7 +33,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Unit test for {@link AtomicDoubleArray}.  */
+comment|/** Unit test for {@link AtomicDoubleArray}. */
 end_comment
 
 begin_class
@@ -195,7 +195,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * constructor creates array of given size with all elements zero    */
+comment|/** constructor creates array of given size with all elements zero */
 DECL|method|testConstructor ()
 specifier|public
 name|void
@@ -240,7 +240,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * constructor with null array throws NPE    */
+comment|/** constructor with null array throws NPE */
 DECL|method|testConstructor2NPE ()
 specifier|public
 name|void
@@ -270,9 +270,9 @@ parameter_list|(
 name|NullPointerException
 name|success
 parameter_list|)
-block|{}
+block|{     }
 block|}
-comment|/**    * constructor with array is of same size and has all elements    */
+comment|/** constructor with array is of same size and has all elements */
 DECL|method|testConstructor2 ()
 specifier|public
 name|void
@@ -334,7 +334,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * constructor with empty array has size 0 and contains no elements    */
+comment|/** constructor with empty array has size 0 and contains no elements */
 DECL|method|testConstructorEmptyArray ()
 specifier|public
 name|void
@@ -382,9 +382,9 @@ parameter_list|(
 name|IndexOutOfBoundsException
 name|success
 parameter_list|)
-block|{}
+block|{     }
 block|}
-comment|/**    * constructor with length zero has size 0 and contains no elements    */
+comment|/** constructor with length zero has size 0 and contains no elements */
 DECL|method|testConstructorZeroLength ()
 specifier|public
 name|void
@@ -428,9 +428,9 @@ parameter_list|(
 name|IndexOutOfBoundsException
 name|success
 parameter_list|)
-block|{}
+block|{     }
 block|}
-comment|/**    * get and set for out of bound indices throw IndexOutOfBoundsException    */
+comment|/** get and set for out of bound indices throw IndexOutOfBoundsException */
 DECL|method|testIndexing ()
 specifier|public
 name|void
@@ -480,7 +480,7 @@ parameter_list|(
 name|IndexOutOfBoundsException
 name|success
 parameter_list|)
-block|{}
+block|{       }
 try|try
 block|{
 name|aa
@@ -501,7 +501,7 @@ parameter_list|(
 name|IndexOutOfBoundsException
 name|success
 parameter_list|)
-block|{}
+block|{       }
 try|try
 block|{
 name|aa
@@ -522,7 +522,7 @@ parameter_list|(
 name|IndexOutOfBoundsException
 name|success
 parameter_list|)
-block|{}
+block|{       }
 try|try
 block|{
 name|aa
@@ -545,7 +545,7 @@ parameter_list|(
 name|IndexOutOfBoundsException
 name|success
 parameter_list|)
-block|{}
+block|{       }
 try|try
 block|{
 name|aa
@@ -568,7 +568,7 @@ parameter_list|(
 name|IndexOutOfBoundsException
 name|success
 parameter_list|)
-block|{}
+block|{       }
 try|try
 block|{
 name|aa
@@ -589,7 +589,7 @@ parameter_list|(
 name|IndexOutOfBoundsException
 name|success
 parameter_list|)
-block|{}
+block|{       }
 try|try
 block|{
 name|aa
@@ -610,10 +610,10 @@ parameter_list|(
 name|IndexOutOfBoundsException
 name|success
 parameter_list|)
-block|{}
+block|{       }
 block|}
 block|}
-comment|/**    * get returns the last value set at index    */
+comment|/** get returns the last value set at index */
 DECL|method|testGetSet ()
 specifier|public
 name|void
@@ -712,7 +712,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * get returns the last value lazySet at index by same thread    */
+comment|/** get returns the last value lazySet at index by same thread */
 DECL|method|testGetLazySet ()
 specifier|public
 name|void
@@ -811,7 +811,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * compareAndSet succeeds in changing value if equal to expected else fails    */
+comment|/** compareAndSet succeeds in changing value if equal to expected else fails */
 DECL|method|testCompareAndSet ()
 specifier|public
 name|void
@@ -939,7 +939,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**    * compareAndSet in one thread enables another waiting for value    * to succeed    */
+comment|/** compareAndSet in one thread enables another waiting for value to succeed */
 DECL|method|testCompareAndSetInMultipleThreads ()
 specifier|public
 name|void
@@ -1038,7 +1038,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * repeated weakCompareAndSet succeeds in changing value when equal    * to expected    */
+comment|/** repeated weakCompareAndSet succeeds in changing value when equal to expected */
 DECL|method|testWeakCompareAndSet ()
 specifier|public
 name|void
@@ -1169,7 +1169,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**    * getAndSet returns previous value and sets to given value at given index    */
+comment|/** getAndSet returns previous value and sets to given value at given index */
 DECL|method|testGetAndSet ()
 specifier|public
 name|void
@@ -1236,7 +1236,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**    * getAndAdd returns previous value and adds given value    */
+comment|/** getAndAdd returns previous value and adds given value */
 DECL|method|testGetAndAdd ()
 specifier|public
 name|void
@@ -1331,7 +1331,7 @@ block|}
 block|}
 block|}
 block|}
-comment|/**    * addAndGet adds given value to current, and returns current value    */
+comment|/** addAndGet adds given value to current, and returns current value */
 DECL|method|testAddAndGet ()
 specifier|public
 name|void
@@ -1559,7 +1559,7 @@ block|}
 block|}
 block|}
 block|}
-comment|/**    * Multiple threads using same array of counters successfully    * update a number of times equal to total count    */
+comment|/**    * Multiple threads using same array of counters successfully update a number of times equal to    * total count    */
 DECL|method|testCountingInMultipleThreads ()
 specifier|public
 name|void
@@ -1666,7 +1666,7 @@ name|counts
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * a deserialized serialized array holds same values    */
+comment|/** a deserialized serialized array holds same values */
 DECL|method|testSerialization ()
 specifier|public
 name|void
@@ -1860,7 +1860,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * toString returns current value    */
+comment|/** toString returns current value */
 DECL|method|testToString ()
 specifier|public
 name|void
@@ -1924,7 +1924,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * compareAndSet treats +0.0 and -0.0 as distinct values    */
+comment|/** compareAndSet treats +0.0 and -0.0 as distinct values */
 DECL|method|testDistinctZeros ()
 specifier|public
 name|void

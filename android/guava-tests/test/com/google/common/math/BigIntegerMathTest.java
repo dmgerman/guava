@@ -752,7 +752,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{       }
 block|}
 block|}
 DECL|method|testLog2NegativeAlwaysThrows ()
@@ -797,7 +797,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{       }
 block|}
 block|}
 DECL|method|testLog2Floor ()
@@ -1305,7 +1305,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{       }
 block|}
 block|}
 annotation|@
@@ -1353,7 +1353,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{       }
 block|}
 block|}
 annotation|@
@@ -1974,7 +1974,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{       }
 block|}
 block|}
 annotation|@
@@ -2982,7 +2982,7 @@ parameter_list|(
 name|ArithmeticException
 name|expected
 parameter_list|)
-block|{}
+block|{         }
 block|}
 block|}
 block|}
@@ -3090,7 +3090,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testBinomialSmall ()
 specifier|public
@@ -3260,7 +3260,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{       }
 try|try
 block|{
 name|BigIntegerMath
@@ -3285,7 +3285,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{       }
 block|}
 block|}
 annotation|@

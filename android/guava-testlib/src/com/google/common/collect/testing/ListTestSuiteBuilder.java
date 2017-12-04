@@ -545,7 +545,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Creates, based on your criteria, a JUnit test suite that exhaustively tests  * a List implementation.  *  * @author George van den Driessche  */
+comment|/**  * Creates, based on your criteria, a JUnit test suite that exhaustively tests a List  * implementation.  *  * @author George van den Driessche  */
 end_comment
 
 begin_class
@@ -815,7 +815,7 @@ return|return
 name|testers
 return|;
 block|}
-comment|/**    * Specifies {@link CollectionFeature#KNOWN_ORDER} for all list tests, since    * lists have an iteration ordering corresponding to the insertion order.    */
+comment|/**    * Specifies {@link CollectionFeature#KNOWN_ORDER} for all list tests, since lists have an    * iteration ordering corresponding to the insertion order.    */
 annotation|@
 name|Override
 DECL|method|createTestSuite ()

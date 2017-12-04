@@ -253,7 +253,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A ScheduledExecutorService that executes all scheduled actions immediately  * in the calling thread.  *  * See {@link TestingExecutors#sameThreadScheduledExecutor()} for a full list of  * constraints.  *  * @author John Sirois  * @author Zach van Schouwen  */
+comment|/**  * A ScheduledExecutorService that executes all scheduled actions immediately in the calling thread.  *  *<p>See {@link TestingExecutors#sameThreadScheduledExecutor()} for a full list of constraints.  *  * @author John Sirois  * @author Zach van Schouwen  */
 end_comment
 
 begin_class
@@ -495,7 +495,7 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|invokeAll ( Collection<? extends Callable<T>> tasks)
+DECL|method|invokeAll (Collection<? extends Callable<T>> tasks)
 specifier|public
 parameter_list|<
 name|T
@@ -931,7 +931,7 @@ block|}
 block|}
 annotation|@
 name|Override
-DECL|method|schedule (final Callable<V> callable, long delay, TimeUnit unit)
+DECL|method|schedule ( final Callable<V> callable, long delay, TimeUnit unit)
 specifier|public
 parameter_list|<
 name|V
@@ -998,7 +998,7 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|scheduleAtFixedRate (Runnable command, long initialDelay, long period, TimeUnit unit)
+DECL|method|scheduleAtFixedRate ( Runnable command, long initialDelay, long period, TimeUnit unit)
 specifier|public
 name|ListenableScheduledFuture
 argument_list|<
@@ -1029,7 +1029,7 @@ throw|;
 block|}
 annotation|@
 name|Override
-DECL|method|scheduleWithFixedDelay (Runnable command, long initialDelay, long delay, TimeUnit unit)
+DECL|method|scheduleWithFixedDelay ( Runnable command, long initialDelay, long delay, TimeUnit unit)
 specifier|public
 name|ListenableScheduledFuture
 argument_list|<

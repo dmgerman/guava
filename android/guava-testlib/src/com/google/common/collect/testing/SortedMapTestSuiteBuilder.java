@@ -197,7 +197,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Creates, based on your criteria, a JUnit test suite that exhaustively tests  * a SortedMap implementation.  */
+comment|/**  * Creates, based on your criteria, a JUnit test suite that exhaustively tests a SortedMap  * implementation.  */
 end_comment
 
 begin_class
@@ -543,7 +543,7 @@ name|keySetGenerator
 argument_list|)
 return|;
 block|}
-comment|/**    * To avoid infinite recursion, test suites with these marker features won't    * have derived suites created for them.    */
+comment|/**    * To avoid infinite recursion, test suites with these marker features won't have derived suites    * created for them.    */
 DECL|enum|NoRecurse
 enum|enum
 name|NoRecurse
@@ -583,7 +583,7 @@ argument_list|()
 return|;
 block|}
 block|}
-comment|/**    * Creates a suite whose map has some elements filtered out of view.    *    *<p>Because the map may be ascending or descending, this test must derive    * the relative order of these extreme values rather than relying on their    * regular sort ordering.    */
+comment|/**    * Creates a suite whose map has some elements filtered out of view.    *    *<p>Because the map may be ascending or descending, this test must derive the relative order of    * these extreme values rather than relying on their regular sort ordering.    */
 DECL|method|createSubmapSuite ( final FeatureSpecificTestSuiteBuilder< ?, ? extends OneSizeTestContainerGenerator<Map<K, V>, Entry<K, V>>> parentBuilder, final Bound from, final Bound to)
 specifier|final
 name|TestSuite

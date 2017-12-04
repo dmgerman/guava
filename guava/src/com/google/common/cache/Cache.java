@@ -147,7 +147,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A semi-persistent mapping from keys to values. Cache entries are manually added using  * {@link #get(Object, Callable)} or {@link #put(Object, Object)}, and are stored in the cache until  * either evicted or manually invalidated. The common way to build instances is using  * {@link CacheBuilder}.  *  *<p>Implementations of this interface are expected to be thread-safe, and can be safely accessed  * by multiple concurrent threads.  *  * @author Charles Fry  * @since 10.0  */
+comment|/**  * A semi-persistent mapping from keys to values. Cache entries are manually added using {@link  * #get(Object, Callable)} or {@link #put(Object, Object)}, and are stored in the cache until either  * evicted or manually invalidated. The common way to build instances is using {@link CacheBuilder}.  *  *<p>Implementations of this interface are expected to be thread-safe, and can be safely accessed  * by multiple concurrent threads.  *  * @author Charles Fry  * @since 10.0  */
 end_comment
 
 begin_interface
@@ -179,7 +179,7 @@ name|Object
 name|key
 parameter_list|)
 function_decl|;
-comment|/**    * Returns the value associated with {@code key} in this cache, obtaining that value from {@code    * loader} if necessary. The method improves upon the conventional "if cached, return; otherwise    * create, cache and return" pattern. For further improvements, use {@link LoadingCache} and its    * {@link LoadingCache#get(Object) get(K)} method instead of this one.    *    *<p>Among the improvements that this method and {@code LoadingCache.get(K)} both provide are:    *    *<ul>    *<li>{@linkplain LoadingCache#get(Object) awaiting the result of a pending load} rather than    *     starting a redundant one    *<li>eliminating the error-prone caching boilerplate    *<li>tracking load {@linkplain #stats statistics}    *</ul>    *    *<p>Among the further improvements that {@code LoadingCache} can provide but this method cannot:    *    *<ul>    *<li>consolidation of the loader logic to {@linkplain CacheBuilder#build(CacheLoader) a single    *     authoritative location}    *<li>{@linkplain LoadingCache#refresh refreshing of entries}, including {@linkplain    *     CacheBuilder#refreshAfterWrite automated refreshing}    *<li>{@linkplain LoadingCache#getAll bulk loading requests}, including {@linkplain    *     CacheLoader#loadAll bulk loading implementations}    *</ul>    *    *<p><b>Warning:</b> For any given key, every {@code loader} used with it should compute the same    * value. Otherwise, a call that passes one {@code loader} may return the result of another call    * with a differently behaving {@code loader}. For example, a call that requests a short timeout    * for an RPC may wait for a similar call that requests a long timeout, or a call by an    * unprivileged user may return a resource accessible only to a privileged user making a similar    * call. To prevent this problem, create a key object that includes all values that affect the    * result of the query. Or use {@code LoadingCache.get(K)}, which lacks the ability to refer to    * state other than that in the key.    *    *<p><b>Warning:</b> as with {@link CacheLoader#load}, {@code loader}<b>must not</b> return    * {@code null}; it may either return a non-null value or throw an exception.    *    *<p>No observable state associated with this cache is modified until loading completes.    *    * @throws ExecutionException if a checked exception was thrown while loading the value    * @throws UncheckedExecutionException if an unchecked exception was thrown while loading the    *     value    * @throws ExecutionError if an error was thrown while loading the value    *    * @since 11.0    */
+comment|/**    * Returns the value associated with {@code key} in this cache, obtaining that value from {@code    * loader} if necessary. The method improves upon the conventional "if cached, return; otherwise    * create, cache and return" pattern. For further improvements, use {@link LoadingCache} and its    * {@link LoadingCache#get(Object) get(K)} method instead of this one.    *    *<p>Among the improvements that this method and {@code LoadingCache.get(K)} both provide are:    *    *<ul>    *<li>{@linkplain LoadingCache#get(Object) awaiting the result of a pending load} rather than    *       starting a redundant one    *<li>eliminating the error-prone caching boilerplate    *<li>tracking load {@linkplain #stats statistics}    *</ul>    *    *<p>Among the further improvements that {@code LoadingCache} can provide but this method cannot:    *    *<ul>    *<li>consolidation of the loader logic to {@linkplain CacheBuilder#build(CacheLoader) a single    *       authoritative location}    *<li>{@linkplain LoadingCache#refresh refreshing of entries}, including {@linkplain    *       CacheBuilder#refreshAfterWrite automated refreshing}    *<li>{@linkplain LoadingCache#getAll bulk loading requests}, including {@linkplain    *       CacheLoader#loadAll bulk loading implementations}    *</ul>    *    *<p><b>Warning:</b> For any given key, every {@code loader} used with it should compute the same    * value. Otherwise, a call that passes one {@code loader} may return the result of another call    * with a differently behaving {@code loader}. For example, a call that requests a short timeout    * for an RPC may wait for a similar call that requests a long timeout, or a call by an    * unprivileged user may return a resource accessible only to a privileged user making a similar    * call. To prevent this problem, create a key object that includes all values that affect the    * result of the query. Or use {@code LoadingCache.get(K)}, which lacks the ability to refer to    * state other than that in the key.    *    *<p><b>Warning:</b> as with {@link CacheLoader#load}, {@code loader}<b>must not</b> return    * {@code null}; it may either return a non-null value or throw an exception.    *    *<p>No observable state associated with this cache is modified until loading completes.    *    * @throws ExecutionException if a checked exception was thrown while loading the value    * @throws UncheckedExecutionException if an unchecked exception was thrown while loading the    *     value    * @throws ExecutionError if an error was thrown while loading the value    * @since 11.0    */
 DECL|method|get (K key, Callable<? extends V> loader)
 name|V
 name|get
@@ -245,7 +245,7 @@ argument_list|>
 name|m
 parameter_list|)
 function_decl|;
-comment|/**    * Discards any cached value for key {@code key}.    */
+comment|/** Discards any cached value for key {@code key}. */
 DECL|method|invalidate (@ompatibleWithR) Object key)
 name|void
 name|invalidate
@@ -271,13 +271,13 @@ argument_list|>
 name|keys
 parameter_list|)
 function_decl|;
-comment|/**    * Discards all entries in the cache.    */
+comment|/** Discards all entries in the cache. */
 DECL|method|invalidateAll ()
 name|void
 name|invalidateAll
 parameter_list|()
 function_decl|;
-comment|/**    * Returns the approximate number of entries in this cache.    */
+comment|/** Returns the approximate number of entries in this cache. */
 DECL|method|size ()
 name|long
 name|size

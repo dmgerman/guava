@@ -67,7 +67,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An abstract implementation of {@link Hasher}, which only requires subtypes to implement  * {@link #putByte}.  Subtypes may provide more efficient implementations, however.  *  * @author Dimitris Andreou  */
+comment|/**  * An abstract implementation of {@link Hasher}, which only requires subtypes to implement {@link  * #putByte}. Subtypes may provide more efficient implementations, however.  *  * @author Dimitris Andreou  */
 end_comment
 
 begin_class

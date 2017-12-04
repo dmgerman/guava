@@ -101,7 +101,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests the {@link Queue} implementations of {@link java.util}, suppressing  * tests that trip known OpenJDK 6 bugs.  *  * @author Kevin Bourrillion  */
+comment|/**  * Tests the {@link Queue} implementations of {@link java.util}, suppressing tests that trip known  * OpenJDK 6 bugs.  *  * @author Kevin Bourrillion  */
 end_comment
 
 begin_class
@@ -146,9 +146,9 @@ name|getCreateWithNullUnsupportedMethod
 argument_list|()
 argument_list|)
 decl_stmt|;
-DECL|method|suppressForPriorityBlockingQueue ()
 annotation|@
 name|Override
+DECL|method|suppressForPriorityBlockingQueue ()
 specifier|protected
 name|Collection
 argument_list|<
@@ -161,9 +161,9 @@ return|return
 name|PQ_SUPPRESS
 return|;
 block|}
-DECL|method|suppressForPriorityQueue ()
 annotation|@
 name|Override
+DECL|method|suppressForPriorityQueue ()
 specifier|protected
 name|Collection
 argument_list|<

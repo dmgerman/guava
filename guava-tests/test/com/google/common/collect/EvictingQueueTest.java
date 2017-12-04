@@ -267,7 +267,7 @@ parameter_list|(
 name|NoSuchElementException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 name|assertNull
 argument_list|(
 name|queue
@@ -300,7 +300,7 @@ parameter_list|(
 name|NoSuchElementException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testRemainingCapacity_maxSize0 ()
 specifier|public

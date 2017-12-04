@@ -144,7 +144,8 @@ name|Character
 argument_list|>
 name|table
 decl_stmt|;
-comment|/**    * Creates a table with the specified data.    *    * @param data the table data, repeating the sequence row key, column key,    *     value once per mapping    * @throws IllegalArgumentException if the size of {@code data} isn't a    *     multiple of 3    * @throws ClassCastException if a data element has the wrong type    */
+comment|/**    * Creates a table with the specified data.    *    * @param data the table data, repeating the sequence row key, column key, value once per mapping    * @throws IllegalArgumentException if the size of {@code data} isn't a multiple of 3    * @throws ClassCastException if a data element has the wrong type    */
+DECL|method|create (Object... data)
 specifier|protected
 specifier|abstract
 name|Table
@@ -155,7 +156,6 @@ name|Integer
 argument_list|,
 name|Character
 argument_list|>
-DECL|method|create (Object... data)
 name|create
 parameter_list|(
 name|Object
@@ -183,9 +183,9 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|setUp ()
 annotation|@
 name|Override
+DECL|method|setUp ()
 specifier|public
 name|void
 name|setUp
@@ -1202,7 +1202,7 @@ parameter_list|(
 name|NullPointerException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testColumn ()
 specifier|public
@@ -1305,7 +1305,7 @@ parameter_list|(
 name|NullPointerException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testColumnSetPartialOverlap ()
 specifier|public

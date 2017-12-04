@@ -403,7 +403,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Microbenchmark for {@link Futures#getChecked}.  */
+comment|/** Microbenchmark for {@link Futures#getChecked}. */
 end_comment
 
 begin_class
@@ -645,27 +645,27 @@ decl_stmt|;
 end_decl_stmt
 
 begin_decl_stmt
+DECL|field|validator
 annotation|@
 name|Param
-DECL|field|validator
 name|Validator
 name|validator
 decl_stmt|;
 end_decl_stmt
 
 begin_decl_stmt
+DECL|field|result
 annotation|@
 name|Param
-DECL|field|result
 name|Result
 name|result
 decl_stmt|;
 end_decl_stmt
 
 begin_decl_stmt
+DECL|field|exceptionType
 annotation|@
 name|Param
-DECL|field|exceptionType
 name|ExceptionType
 name|exceptionType
 decl_stmt|;

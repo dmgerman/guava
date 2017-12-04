@@ -215,7 +215,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A generic JUnit test which tests {@code toArray()} operations on a  * collection. Can't be invoked directly; please see  * {@link com.google.common.collect.testing.CollectionTestSuiteBuilder}.  *  * @author Kevin Bourrillion  * @author Chris Povirk  */
+comment|/**  * A generic JUnit test which tests {@code toArray()} operations on a collection. Can't be invoked  * directly; please see {@link com.google.common.collect.testing.CollectionTestSuiteBuilder}.  *  * @author Kevin Bourrillion  * @author Chris Povirk  */
 end_comment
 
 begin_class
@@ -263,7 +263,7 @@ name|array
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * {@link Collection#toArray(Object[])} says: "Note that    *<tt>toArray(new Object[0])</tt> is identical in function to    *<tt>toArray()</tt>."    *    *<p>For maximum effect, the collection under test should be created from an    * element array of a type other than {@code Object[]}.    */
+comment|/**    * {@link Collection#toArray(Object[])} says: "Note that<tt>toArray(new Object[0])</tt> is    * identical in function to<tt>toArray()</tt>."    *    *<p>For maximum effect, the collection under test should be created from an element array of a    * type other than {@code Object[]}.    */
 DECL|method|testToArray_isPlainObjectArray ()
 specifier|public
 name|void
@@ -1070,7 +1070,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Returns the {@link Method} instance for    * {@link #testToArray_isPlainObjectArray()} so that tests of    * {@link Arrays#asList(Object[])} can suppress it with {@code    * FeatureSpecificTestSuiteBuilder.suppressing()} until<a    * href="http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6260652">Sun bug    * 6260652</a> is fixed.    */
+comment|/**    * Returns the {@link Method} instance for {@link #testToArray_isPlainObjectArray()} so that tests    * of {@link Arrays#asList(Object[])} can suppress it with {@code    * FeatureSpecificTestSuiteBuilder.suppressing()} until<a    * href="http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6260652">Sun bug 6260652</a> is fixed.    */
 annotation|@
 name|GwtIncompatible
 comment|// reflection

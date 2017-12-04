@@ -569,6 +569,7 @@ name|build
 argument_list|()
 return|;
 block|}
+DECL|method|of (K k1, V v1)
 specifier|public
 specifier|static
 parameter_list|<
@@ -589,7 +590,6 @@ name|K
 argument_list|,
 name|V
 argument_list|>
-DECL|method|of (K k1, V v1)
 name|of
 parameter_list|(
 name|K
@@ -611,6 +611,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+DECL|method|of ( K k1, V v1, K k2, V v2)
 specifier|public
 specifier|static
 parameter_list|<
@@ -631,7 +632,6 @@ name|K
 argument_list|,
 name|V
 argument_list|>
-DECL|method|of (K k1, V v1, K k2, V v2)
 name|of
 parameter_list|(
 name|K
@@ -680,6 +680,7 @@ name|build
 argument_list|()
 return|;
 block|}
+DECL|method|of ( K k1, V v1, K k2, V v2, K k3, V v3)
 specifier|public
 specifier|static
 parameter_list|<
@@ -700,7 +701,6 @@ name|K
 argument_list|,
 name|V
 argument_list|>
-DECL|method|of (K k1, V v1, K k2, V v2, K k3, V v3)
 name|of
 parameter_list|(
 name|K
@@ -762,6 +762,7 @@ name|build
 argument_list|()
 return|;
 block|}
+DECL|method|of ( K k1, V v1, K k2, V v2, K k3, V v3, K k4, V v4)
 specifier|public
 specifier|static
 parameter_list|<
@@ -782,7 +783,6 @@ name|K
 argument_list|,
 name|V
 argument_list|>
-DECL|method|of (K k1, V v1, K k2, V v2, K k3, V v3, K k4, V v4)
 name|of
 parameter_list|(
 name|K
@@ -857,6 +857,7 @@ name|build
 argument_list|()
 return|;
 block|}
+DECL|method|of ( K k1, V v1, K k2, V v2, K k3, V v3, K k4, V v4, K k5, V v5)
 specifier|public
 specifier|static
 parameter_list|<
@@ -877,7 +878,6 @@ name|K
 argument_list|,
 name|V
 argument_list|>
-DECL|method|of (K k1, V v1, K k2, V v2, K k3, V v3, K k4, V v4, K k5, V v5)
 name|of
 parameter_list|(
 name|K
@@ -965,20 +965,20 @@ name|build
 argument_list|()
 return|;
 block|}
-specifier|public
-specifier|static
-parameter_list|<
-name|K
-parameter_list|,
-name|V
-parameter_list|>
-name|ImmutableSortedMap
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
 DECL|method|copyOf (Map<? extends K, ? extends V> map)
+specifier|public
+specifier|static
+parameter_list|<
+name|K
+parameter_list|,
+name|V
+parameter_list|>
+name|ImmutableSortedMap
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
 name|copyOf
 parameter_list|(
 name|Map
@@ -1182,7 +1182,7 @@ name|build
 argument_list|()
 return|;
 block|}
-DECL|method|copyOfSorted ( SortedMap<K, ? extends V> map)
+DECL|method|copyOfSorted (SortedMap<K, ? extends V> map)
 specifier|public
 specifier|static
 parameter_list|<
@@ -1710,9 +1710,9 @@ name|comparator
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|put (K key, V value)
 annotation|@
 name|Override
+DECL|method|put (K key, V value)
 specifier|public
 name|Builder
 argument_list|<
@@ -1745,9 +1745,9 @@ return|return
 name|this
 return|;
 block|}
-DECL|method|put (Entry<? extends K, ? extends V> entry)
 annotation|@
 name|Override
+DECL|method|put (Entry<? extends K, ? extends V> entry)
 specifier|public
 name|Builder
 argument_list|<
@@ -1781,9 +1781,9 @@ return|return
 name|this
 return|;
 block|}
-DECL|method|putAll (Map<? extends K, ? extends V> map)
 annotation|@
 name|Override
+DECL|method|putAll (Map<? extends K, ? extends V> map)
 specifier|public
 name|Builder
 argument_list|<
@@ -1816,9 +1816,9 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-DECL|method|putAll ( Iterable<? extends Entry<? extends K, ? extends V>> entries)
 annotation|@
 name|Override
+DECL|method|putAll (Iterable<? extends Entry<? extends K, ? extends V>> entries)
 specifier|public
 name|Builder
 argument_list|<
@@ -1931,9 +1931,9 @@ literal|"Not available on ImmutableSortedMap.Builder"
 argument_list|)
 throw|;
 block|}
-DECL|method|build ()
 annotation|@
 name|Override
+DECL|method|build ()
 specifier|public
 name|ImmutableSortedMap
 argument_list|<
@@ -2004,9 +2004,9 @@ name|K
 argument_list|>
 name|keySet
 decl_stmt|;
-DECL|method|keySet ()
 annotation|@
 name|Override
+DECL|method|keySet ()
 specifier|public
 name|ImmutableSortedSet
 argument_list|<
@@ -2040,9 +2040,9 @@ else|:
 name|ks
 return|;
 block|}
-DECL|method|createKeySet ()
 annotation|@
 name|Override
+DECL|method|createKeySet ()
 name|ImmutableSortedSet
 argument_list|<
 name|K

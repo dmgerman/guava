@@ -192,9 +192,9 @@ name|Element
 argument_list|>
 name|setToTest
 decl_stmt|;
-DECL|method|setUp ()
 annotation|@
 name|BeforeExperiment
+DECL|method|setUp ()
 name|void
 name|setUp
 parameter_list|()
@@ -233,9 +233,9 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|iteration (int reps)
 annotation|@
 name|Benchmark
+DECL|method|iteration (int reps)
 name|int
 name|iteration
 parameter_list|(

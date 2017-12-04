@@ -485,7 +485,7 @@ literal|0
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|verifyOccupiedMethodsInCurrentThread (Monitor monitor, boolean expectedIsOccupied, boolean expectedIsOccupiedByCurrentThread, int expectedOccupiedDepth)
+DECL|method|verifyOccupiedMethodsInCurrentThread ( Monitor monitor, boolean expectedIsOccupied, boolean expectedIsOccupiedByCurrentThread, int expectedOccupiedDepth)
 specifier|private
 specifier|static
 name|void
@@ -535,7 +535,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|verifyOccupiedMethodsInAnotherThread (final Monitor monitor, boolean expectedIsOccupied, boolean expectedIsOccupiedByCurrentThread, int expectedOccupiedDepth)
+DECL|method|verifyOccupiedMethodsInAnotherThread ( final Monitor monitor, boolean expectedIsOccupied, boolean expectedIsOccupiedByCurrentThread, int expectedOccupiedDepth)
 specifier|private
 specifier|static
 name|void

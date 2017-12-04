@@ -157,7 +157,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A helper which does some thread-safe operations for aggregate futures, which must be implemented  * differently in GWT. Namely:  *<ul>  *<li>Lazily initializes a set of seen exceptions  *<li>Decrements a counter atomically  *</ul>  */
+comment|/**  * A helper which does some thread-safe operations for aggregate futures, which must be implemented  * differently in GWT. Namely:  *  *<ul>  *<li>Lazily initializes a set of seen exceptions  *<li>Decrements a counter atomically  *</ul>  */
 end_comment
 
 begin_class

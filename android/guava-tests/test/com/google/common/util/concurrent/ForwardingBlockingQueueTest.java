@@ -29,7 +29,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Unit tests for {@link ForwardingBlockingQueue}  */
+comment|/** Unit tests for {@link ForwardingBlockingQueue} */
 end_comment
 
 begin_class

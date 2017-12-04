@@ -596,7 +596,7 @@ argument_list|)
 expr_stmt|;
 comment|// idempotent
 block|}
-comment|/**    * Test that giving a null 'safeChars' string causes a    * {@link NullPointerException}.    */
+comment|/** Test that giving a null 'safeChars' string causes a {@link NullPointerException}. */
 DECL|method|testBadArguments_null ()
 specifier|public
 name|void
@@ -628,7 +628,7 @@ block|{
 comment|// pass
 block|}
 block|}
-comment|/**    * Tests that specifying any alphanumeric characters as 'safe' causes an    * {@link IllegalArgumentException}.    */
+comment|/**    * Tests that specifying any alphanumeric characters as 'safe' causes an {@link    * IllegalArgumentException}.    */
 DECL|method|testBadArguments_badchars ()
 specifier|public
 name|void
@@ -676,7 +676,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Tests that if space is a safe character you cannot also specify    * 'plusForSpace' (throws {@link IllegalArgumentException}).    */
+comment|/**    * Tests that if space is a safe character you cannot also specify 'plusForSpace' (throws {@link    * IllegalArgumentException}).    */
 DECL|method|testBadArguments_plusforspace ()
 specifier|public
 name|void

@@ -831,7 +831,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testStaticMethod_returnType ()
 specifier|public
@@ -1529,7 +1529,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testInstanceMethod_returnType ()
 specifier|public
@@ -2159,7 +2159,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testPrivateInstanceMethod_isOverridable ()
 specifier|public

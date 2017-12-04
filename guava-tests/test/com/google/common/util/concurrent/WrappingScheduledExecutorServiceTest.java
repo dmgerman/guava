@@ -189,7 +189,7 @@ specifier|public
 name|void
 name|run
 parameter_list|()
-block|{     }
+block|{}
 block|}
 decl_stmt|;
 DECL|method|testSchedule ()
@@ -562,9 +562,9 @@ name|callable
 argument_list|)
 return|;
 block|}
-DECL|method|wrapTask (Runnable command)
 annotation|@
 name|Override
+DECL|method|wrapTask (Runnable command)
 specifier|protected
 name|Runnable
 name|wrapTask

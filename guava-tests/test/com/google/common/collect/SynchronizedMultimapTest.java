@@ -463,9 +463,9 @@ literal|1
 argument_list|)
 decl_stmt|;
 comment|// something Serializable
-DECL|method|delegate ()
 annotation|@
 name|Override
+DECL|method|delegate ()
 specifier|protected
 name|SetMultimap
 argument_list|<
@@ -480,9 +480,9 @@ return|return
 name|delegate
 return|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString
@@ -505,9 +505,9 @@ name|toString
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|equals (@ullable Object o)
-annotation|@
-name|Override
 specifier|public
 name|boolean
 name|equals
@@ -537,9 +537,9 @@ name|o
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|hashCode ()
-annotation|@
-name|Override
 specifier|public
 name|int
 name|hashCode
@@ -562,9 +562,9 @@ name|hashCode
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|size ()
-annotation|@
-name|Override
 specifier|public
 name|int
 name|size
@@ -587,9 +587,9 @@ name|size
 argument_list|()
 return|;
 block|}
-DECL|method|isEmpty ()
 annotation|@
 name|Override
+DECL|method|isEmpty ()
 specifier|public
 name|boolean
 name|isEmpty
@@ -612,9 +612,9 @@ name|isEmpty
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|containsKey (@ullable Object key)
-annotation|@
-name|Override
 specifier|public
 name|boolean
 name|containsKey
@@ -644,9 +644,9 @@ name|key
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|containsValue (@ullable Object value)
-annotation|@
-name|Override
 specifier|public
 name|boolean
 name|containsValue
@@ -676,9 +676,9 @@ name|value
 argument_list|)
 return|;
 block|}
-DECL|method|containsEntry (@ullable Object key, @Nullable Object value)
 annotation|@
 name|Override
+DECL|method|containsEntry (@ullable Object key, @Nullable Object value)
 specifier|public
 name|boolean
 name|containsEntry
@@ -715,9 +715,9 @@ name|value
 argument_list|)
 return|;
 block|}
-DECL|method|get (@ullable K key)
 annotation|@
 name|Override
+DECL|method|get (@ullable K key)
 specifier|public
 name|Set
 argument_list|<
@@ -751,9 +751,9 @@ name|key
 argument_list|)
 return|;
 block|}
-DECL|method|put (K key, V value)
 annotation|@
 name|Override
+DECL|method|put (K key, V value)
 specifier|public
 name|boolean
 name|put
@@ -786,9 +786,9 @@ name|value
 argument_list|)
 return|;
 block|}
-DECL|method|putAll (@ullable K key, Iterable<? extends V> values)
 annotation|@
 name|Override
+DECL|method|putAll (@ullable K key, Iterable<? extends V> values)
 specifier|public
 name|boolean
 name|putAll
@@ -828,9 +828,9 @@ name|values
 argument_list|)
 return|;
 block|}
-DECL|method|putAll (Multimap<? extends K, ? extends V> map)
 annotation|@
 name|Override
+DECL|method|putAll (Multimap<? extends K, ? extends V> map)
 specifier|public
 name|boolean
 name|putAll
@@ -867,9 +867,9 @@ name|map
 argument_list|)
 return|;
 block|}
-DECL|method|replaceValues (@ullable K key, Iterable<? extends V> values)
 annotation|@
 name|Override
+DECL|method|replaceValues (@ullable K key, Iterable<? extends V> values)
 specifier|public
 name|Set
 argument_list|<
@@ -912,9 +912,9 @@ name|values
 argument_list|)
 return|;
 block|}
-DECL|method|remove (@ullable Object key, @Nullable Object value)
 annotation|@
 name|Override
+DECL|method|remove (@ullable Object key, @Nullable Object value)
 specifier|public
 name|boolean
 name|remove
@@ -951,9 +951,9 @@ name|value
 argument_list|)
 return|;
 block|}
-DECL|method|removeAll (@ullable Object key)
 annotation|@
 name|Override
+DECL|method|removeAll (@ullable Object key)
 specifier|public
 name|Set
 argument_list|<
@@ -986,9 +986,9 @@ name|key
 argument_list|)
 return|;
 block|}
-DECL|method|clear ()
 annotation|@
 name|Override
+DECL|method|clear ()
 specifier|public
 name|void
 name|clear
@@ -1010,9 +1010,9 @@ name|clear
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|keySet ()
 annotation|@
 name|Override
+DECL|method|keySet ()
 specifier|public
 name|Set
 argument_list|<
@@ -1039,9 +1039,9 @@ name|keySet
 argument_list|()
 return|;
 block|}
-DECL|method|keys ()
 annotation|@
 name|Override
+DECL|method|keys ()
 specifier|public
 name|Multiset
 argument_list|<
@@ -1068,9 +1068,9 @@ name|keys
 argument_list|()
 return|;
 block|}
-DECL|method|values ()
 annotation|@
 name|Override
+DECL|method|values ()
 specifier|public
 name|Collection
 argument_list|<
@@ -1097,9 +1097,9 @@ name|values
 argument_list|()
 return|;
 block|}
-DECL|method|entries ()
 annotation|@
 name|Override
+DECL|method|entries ()
 specifier|public
 name|Set
 argument_list|<
@@ -1131,9 +1131,9 @@ name|entries
 argument_list|()
 return|;
 block|}
-DECL|method|asMap ()
 annotation|@
 name|Override
+DECL|method|asMap ()
 specifier|public
 name|Map
 argument_list|<

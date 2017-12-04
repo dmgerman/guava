@@ -69,7 +69,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This is meant to be used with {@code --measureMemory} to measure the memory  * usage of various {@code Set} implementations.  *  * @author Christopher Swenson  */
+comment|/**  * This is meant to be used with {@code --measureMemory} to measure the memory usage of various  * {@code Set} implementations.  *  * @author Christopher Swenson  */
 end_comment
 
 begin_class
@@ -163,9 +163,9 @@ specifier|private
 name|CollectionBenchmarkSampleData
 name|sampleData
 decl_stmt|;
-DECL|method|setUp ()
 annotation|@
 name|BeforeExperiment
+DECL|method|setUp ()
 name|void
 name|setUp
 parameter_list|()
@@ -185,9 +185,9 @@ name|size
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|creation (int reps)
 annotation|@
 name|Benchmark
+DECL|method|creation (int reps)
 name|int
 name|creation
 parameter_list|(

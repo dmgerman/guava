@@ -57,7 +57,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Implementation of {@code Entry} for {@link ImmutableMap} that adds extra methods to traverse  * hash buckets for the key and the value. This allows reuse in {@link RegularImmutableMap} and  * {@link RegularImmutableBiMap}, which don't have to recopy the entries created by their  * {@code Builder} implementations.  *  *<p>This base implementation has no key or value pointers, so instances of ImmutableMapEntry  * (but not its subclasses) can be reused when copied from one ImmutableMap to another.  *  * @author Louis Wasserman  */
+comment|/**  * Implementation of {@code Entry} for {@link ImmutableMap} that adds extra methods to traverse hash  * buckets for the key and the value. This allows reuse in {@link RegularImmutableMap} and {@link  * RegularImmutableBiMap}, which don't have to recopy the entries created by their {@code Builder}  * implementations.  *  *<p>This base implementation has no key or value pointers, so instances of ImmutableMapEntry (but  * not its subclasses) can be reused when copied from one ImmutableMap to another.  *  * @author Louis Wasserman  */
 end_comment
 
 begin_class
@@ -80,7 +80,7 @@ argument_list|,
 name|V
 argument_list|>
 block|{
-comment|/**    * Creates an {@code ImmutableMapEntry} array to hold parameterized entries. The    * result must never be upcast back to ImmutableMapEntry[] (or Object[], etc.), or    * allowed to escape the class.    */
+comment|/**    * Creates an {@code ImmutableMapEntry} array to hold parameterized entries. The result must never    * be upcast back to ImmutableMapEntry[] (or Object[], etc.), or allowed to escape the class.    */
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -199,7 +199,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**    * Returns true if this entry has no bucket links and can safely be reused as a terminal    * entry in a bucket in another map.    */
+comment|/**    * Returns true if this entry has no bucket links and can safely be reused as a terminal entry in    * a bucket in another map.    */
 DECL|method|isReusable ()
 name|boolean
 name|isReusable

@@ -387,7 +387,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A test utility that verifies that your methods and constructors throw {@link  * NullPointerException} or {@link UnsupportedOperationException} whenever null  * is passed to a parameter that isn't annotated with {@link Nullable}.  *  *<p>The tested methods and constructors are invoked -- each time with one  * parameter being null and the rest not null -- and the test fails if no  * expected exception is thrown. {@code NullPointerTester} uses best effort to  * pick non-null default values for many common JDK and Guava types, and also  * for interfaces and public classes that have public parameter-less  * constructors. When the non-null default value for a particular parameter type  * cannot be provided by {@code NullPointerTester}, the caller can provide a  * custom non-null default value for the parameter type via {@link #setDefault}.  *  * @author Kevin Bourrillion  * @since 10.0  */
+comment|/**  * A test utility that verifies that your methods and constructors throw {@link  * NullPointerException} or {@link UnsupportedOperationException} whenever null is passed to a  * parameter that isn't annotated with {@link Nullable}.  *  *<p>The tested methods and constructors are invoked -- each time with one parameter being null and  * the rest not null -- and the test fails if no expected exception is thrown. {@code  * NullPointerTester} uses best effort to pick non-null default values for many common JDK and Guava  * types, and also for interfaces and public classes that have public parameter-less constructors.  * When the non-null default value for a particular parameter type cannot be provided by {@code  * NullPointerTester}, the caller can provide a custom non-null default value for the parameter type  * via {@link #setDefault}.  *  * @author Kevin Bourrillion  * @since 10.0  */
 end_comment
 
 begin_class
@@ -438,7 +438,7 @@ name|ExceptionTypePolicy
 operator|.
 name|NPE_OR_UOE
 decl_stmt|;
-comment|/**    * Sets a default value that can be used for any parameter of type    * {@code type}. Returns this object.    */
+comment|/**    * Sets a default value that can be used for any parameter of type {@code type}. Returns this    * object.    */
 DECL|method|setDefault (Class<T> type, T value)
 specifier|public
 parameter_list|<
@@ -524,7 +524,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**    * Runs {@link #testConstructor} on every constructor in class {@code c} that    * has at least {@code minimalVisibility}.    */
+comment|/**    * Runs {@link #testConstructor} on every constructor in class {@code c} that has at least {@code    * minimalVisibility}.    */
 DECL|method|testConstructors (Class<?> c, Visibility minimalVisibility)
 specifier|public
 name|void
@@ -578,7 +578,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**    * Runs {@link #testConstructor} on every public constructor in class {@code    * c}.    */
+comment|/** Runs {@link #testConstructor} on every public constructor in class {@code c}. */
 DECL|method|testAllPublicConstructors (Class<?> c)
 specifier|public
 name|void
@@ -601,7 +601,7 @@ name|PUBLIC
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Runs {@link #testMethod} on every static method of class {@code c} that has    * at least {@code minimalVisibility}, including those "inherited" from    * superclasses of the same package.    */
+comment|/**    * Runs {@link #testMethod} on every static method of class {@code c} that has at least {@code    * minimalVisibility}, including those "inherited" from superclasses of the same package.    */
 DECL|method|testStaticMethods (Class<?> c, Visibility minimalVisibility)
 specifier|public
 name|void
@@ -649,7 +649,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**    * Runs {@link #testMethod} on every public static method of class {@code c},    * including those "inherited" from superclasses of the same package.    */
+comment|/**    * Runs {@link #testMethod} on every public static method of class {@code c}, including those    * "inherited" from superclasses of the same package.    */
 DECL|method|testAllPublicStaticMethods (Class<?> c)
 specifier|public
 name|void
@@ -672,7 +672,7 @@ name|PUBLIC
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Runs {@link #testMethod} on every instance method of the class of    * {@code instance} with at least {@code minimalVisibility}, including those    * inherited from superclasses of the same package.    */
+comment|/**    * Runs {@link #testMethod} on every instance method of the class of {@code instance} with at    * least {@code minimalVisibility}, including those inherited from superclasses of the same    * package.    */
 DECL|method|testInstanceMethods (Object instance, Visibility minimalVisibility)
 specifier|public
 name|void
@@ -778,7 +778,7 @@ name|build
 argument_list|()
 return|;
 block|}
-comment|/**    * Runs {@link #testMethod} on every public instance method of the class of    * {@code instance}, including those inherited from superclasses of the same    * package.    */
+comment|/**    * Runs {@link #testMethod} on every public instance method of the class of {@code instance},    * including those inherited from superclasses of the same package.    */
 DECL|method|testAllPublicInstanceMethods (Object instance)
 specifier|public
 name|void
@@ -798,7 +798,7 @@ name|PUBLIC
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Verifies that {@code method} produces a {@link NullPointerException}    * or {@link UnsupportedOperationException} whenever<i>any</i> of its    * non-{@link Nullable} parameters are null.    *    * @param instance the instance to invoke {@code method} on, or null if    *     {@code method} is static    */
+comment|/**    * Verifies that {@code method} produces a {@link NullPointerException} or {@link    * UnsupportedOperationException} whenever<i>any</i> of its non-{@link Nullable} parameters are    * null.    *    * @param instance the instance to invoke {@code method} on, or null if {@code method} is static    */
 DECL|method|testMethod (@ullable Object instance, Method method)
 specifier|public
 name|void
@@ -853,7 +853,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Verifies that {@code ctor} produces a {@link NullPointerException} or    * {@link UnsupportedOperationException} whenever<i>any</i> of its    * non-{@link Nullable} parameters are null.    */
+comment|/**    * Verifies that {@code ctor} produces a {@link NullPointerException} or {@link    * UnsupportedOperationException} whenever<i>any</i> of its non-{@link Nullable} parameters are    * null.    */
 DECL|method|testConstructor (Constructor<?> ctor)
 specifier|public
 name|void
@@ -942,7 +942,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Verifies that {@code method} produces a {@link NullPointerException} or    * {@link UnsupportedOperationException} when the parameter in position {@code    * paramIndex} is null.  If this parameter is marked {@link Nullable}, this    * method does nothing.    *    * @param instance the instance to invoke {@code method} on, or null if    *     {@code method} is static    */
+comment|/**    * Verifies that {@code method} produces a {@link NullPointerException} or {@link    * UnsupportedOperationException} when the parameter in position {@code paramIndex} is null. If    * this parameter is marked {@link Nullable}, this method does nothing.    *    * @param instance the instance to invoke {@code method} on, or null if {@code method} is static    */
 DECL|method|testMethodParameter ( @ullable final Object instance, final Method method, int paramIndex)
 specifier|public
 name|void
@@ -989,7 +989,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Verifies that {@code ctor} produces a {@link NullPointerException} or    * {@link UnsupportedOperationException} when the parameter in position {@code    * paramIndex} is null.  If this parameter is marked {@link Nullable}, this    * method does nothing.    */
+comment|/**    * Verifies that {@code ctor} produces a {@link NullPointerException} or {@link    * UnsupportedOperationException} when the parameter in position {@code paramIndex} is null. If    * this parameter is marked {@link Nullable}, this method does nothing.    */
 DECL|method|testConstructorParameter (Constructor<?> ctor, int paramIndex)
 specifier|public
 name|void
@@ -1124,7 +1124,7 @@ name|int
 name|modifiers
 parameter_list|)
 function_decl|;
-comment|/**      * Returns {@code true} if {@code member} is visible under {@code this}      * visibility.      */
+comment|/** Returns {@code true} if {@code member} is visible under {@code this} visibility. */
 DECL|method|isVisible (Member member)
 specifier|final
 name|boolean
@@ -1490,9 +1490,9 @@ operator|=
 name|parameterTypes
 expr_stmt|;
 block|}
-DECL|method|equals (Object obj)
 annotation|@
 name|Override
+DECL|method|equals (Object obj)
 specifier|public
 name|boolean
 name|equals
@@ -1540,9 +1540,9 @@ return|return
 literal|false
 return|;
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -1560,8 +1560,8 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**    * Verifies that {@code invokable} produces a {@link NullPointerException} or    * {@link UnsupportedOperationException} when the parameter in position {@code    * paramIndex} is null.  If this parameter is marked {@link Nullable}, this    * method does nothing.    *    * @param instance the instance to invoke {@code invokable} on, or null if    *     {@code invokable} is static    */
-DECL|method|testParameter (Object instance, Invokable<?, ?> invokable, int paramIndex, Class<?> testedClass)
+comment|/**    * Verifies that {@code invokable} produces a {@link NullPointerException} or {@link    * UnsupportedOperationException} when the parameter in position {@code paramIndex} is null. If    * this parameter is marked {@link Nullable}, this method does nothing.    *    * @param instance the instance to invoke {@code invokable} on, or null if {@code invokable} is    *     static    */
+DECL|method|testParameter ( Object instance, Invokable<?, ?> invokable, int paramIndex, Class<?> testedClass)
 specifier|private
 name|void
 name|testParameter
@@ -2598,13 +2598,13 @@ return|return
 literal|true
 return|;
 block|}
-comment|/**    * Strategy for exception type matching used by {@link NullPointerTester}.    */
+comment|/** Strategy for exception type matching used by {@link NullPointerTester}. */
 DECL|enum|ExceptionTypePolicy
 specifier|private
 enum|enum
 name|ExceptionTypePolicy
 block|{
-comment|/**      * Exceptions should be {@link NullPointerException} or      * {@link UnsupportedOperationException}.      */
+comment|/**      * Exceptions should be {@link NullPointerException} or {@link UnsupportedOperationException}.      */
 DECL|enumConstant|NPE_OR_UOE
 DECL|method|NPE_OR_UOE ()
 name|NPE_OR_UOE
@@ -2632,7 +2632,7 @@ return|;
 block|}
 block|}
 block|,
-comment|/**      * Exceptions should be {@link NullPointerException},      * {@link IllegalArgumentException}, or      * {@link UnsupportedOperationException}.      */
+comment|/**      * Exceptions should be {@link NullPointerException}, {@link IllegalArgumentException}, or      * {@link UnsupportedOperationException}.      */
 DECL|enumConstant|NPE_IAE_OR_UOE
 DECL|method|NPE_IAE_OR_UOE ()
 name|NPE_IAE_OR_UOE

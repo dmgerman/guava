@@ -271,7 +271,7 @@ name|EXPECTED_TAKE
 init|=
 literal|"expectedTake"
 decl_stmt|;
-comment|/**    * Timeout to use when we don't expect the timeout to expire.    */
+comment|/** Timeout to use when we don't expect the timeout to expire. */
 DECL|field|LONG_DELAY_MS
 specifier|private
 specifier|static
@@ -1648,7 +1648,7 @@ name|assertInterrupted
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * Wrapper around {@link Stopwatch} which also contains an    * "expected completion time." Creating a {@code Completion} starts the    * underlying stopwatch.    */
+comment|/**    * Wrapper around {@link Stopwatch} which also contains an "expected completion time." Creating a    * {@code Completion} starts the underlying stopwatch.    */
 DECL|class|Completion
 specifier|private
 specifier|static
@@ -1687,7 +1687,7 @@ name|createStarted
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**      * Asserts that the expected completion time has passed (and not "too much"      * time beyond that).      */
+comment|/**      * Asserts that the expected completion time has passed (and not "too much" time beyond that).      */
 DECL|method|assertCompletionExpected ()
 name|void
 name|assertCompletionExpected
@@ -1710,7 +1710,7 @@ name|LONG_DELAY_MS
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Asserts that at least {@code timeout} has passed but the expected      * completion time has not.      */
+comment|/**      * Asserts that at least {@code timeout} has passed but the expected completion time has not.      */
 DECL|method|assertCompletionNotExpected (long timeout)
 name|void
 name|assertCompletionNotExpected
@@ -1743,7 +1743,7 @@ name|expectedCompletionWaitMillis
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|assertAtLeastTimePassed ( Stopwatch stopwatch, long expectedMillis)
+DECL|method|assertAtLeastTimePassed (Stopwatch stopwatch, long expectedMillis)
 specifier|private
 specifier|static
 name|void
@@ -1787,7 +1787,7 @@ expr_stmt|;
 block|}
 block|}
 comment|// TODO(cpovirk): Split this into separate CountDownLatch and IncrementableCountDownLatch classes.
-comment|/**    * Manages a {@link BlockingQueue} and associated timings for a {@code put}    * call.    */
+comment|/** Manages a {@link BlockingQueue} and associated timings for a {@code put} call. */
 DECL|class|TimedPutQueue
 specifier|private
 specifier|static
@@ -1808,7 +1808,7 @@ specifier|final
 name|Completion
 name|completed
 decl_stmt|;
-comment|/**      * Creates a {@link EnableWrites} which open up a spot for a {@code put} to      * succeed in {@code countdownInMillis}.      */
+comment|/**      * Creates a {@link EnableWrites} which open up a spot for a {@code put} to succeed in {@code      * countdownInMillis}.      */
 DECL|method|createWithDelay (long countdownInMillis)
 specifier|static
 name|TimedPutQueue
@@ -1875,7 +1875,7 @@ name|countdownInMillis
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Perform a {@code put} and assert that operation completed in the expected      * timeframe.      */
+comment|/** Perform a {@code put} and assert that operation completed in the expected timeframe. */
 DECL|method|putSuccessfully ()
 name|void
 name|putSuccessfully
@@ -1904,7 +1904,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|scheduleEnableWrites ( BlockingQueue<String> queue, long countdownInMillis)
+DECL|method|scheduleEnableWrites (BlockingQueue<String> queue, long countdownInMillis)
 specifier|private
 specifier|static
 name|void
@@ -1948,7 +1948,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Manages a {@link BlockingQueue} and associated timings for a {@code take}    * call.    */
+comment|/** Manages a {@link BlockingQueue} and associated timings for a {@code take} call. */
 DECL|class|TimedTakeQueue
 specifier|private
 specifier|static
@@ -1969,7 +1969,7 @@ specifier|final
 name|Completion
 name|completed
 decl_stmt|;
-comment|/**      * Creates a {@link EnableReads} which insert an element for a {@code take}      * to receive in {@code countdownInMillis}.      */
+comment|/**      * Creates a {@link EnableReads} which insert an element for a {@code take} to receive in {@code      * countdownInMillis}.      */
 DECL|method|createWithDelay (long countdownInMillis)
 specifier|static
 name|TimedTakeQueue
@@ -2026,7 +2026,7 @@ name|countdownInMillis
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Perform a {@code take} and assert that operation completed in the      * expected timeframe.      */
+comment|/** Perform a {@code take} and assert that operation completed in the expected timeframe. */
 DECL|method|takeSuccessfully ()
 name|void
 name|takeSuccessfully
@@ -2056,7 +2056,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|scheduleEnableReads ( BlockingQueue<String> queue, long countdownInMillis)
+DECL|method|scheduleEnableReads (BlockingQueue<String> queue, long countdownInMillis)
 specifier|private
 specifier|static
 name|void
@@ -2100,7 +2100,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Manages a {@link Semaphore} and associated timings.    */
+comment|/** Manages a {@link Semaphore} and associated timings. */
 DECL|class|TimedSemaphore
 specifier|private
 specifier|static
@@ -2118,7 +2118,7 @@ specifier|final
 name|Completion
 name|completed
 decl_stmt|;
-comment|/**      * Create a {@link Release} which will release a semaphore permit in      * {@code countdownInMillis}.      */
+comment|/**      * Create a {@link Release} which will release a semaphore permit in {@code countdownInMillis}.      */
 DECL|method|createWithDelay (long countdownInMillis)
 specifier|static
 name|TimedSemaphore
@@ -2197,7 +2197,7 @@ name|assertCompletionExpected
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**      * Requests a permit from the semaphore with a timeout and asserts that the wait returned      * within the expected timeout.      */
+comment|/**      * Requests a permit from the semaphore with a timeout and asserts that the wait returned within      * the expected timeout.      */
 DECL|method|tryAcquireUnsuccessfully (long timeoutMillis)
 specifier|private
 name|void
@@ -2821,7 +2821,7 @@ specifier|protected
 name|void
 name|doAction
 parameter_list|()
-block|{     }
+block|{}
 block|}
 DECL|class|Release
 specifier|private
@@ -2944,7 +2944,7 @@ name|timelimitMillis
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Await an interrupt, then clear the interrupt status. Similar to    * {@code assertTrue(Thread.interrupted())} except that this version tolerates    * late interrupts.    */
+comment|/**    * Await an interrupt, then clear the interrupt status. Similar to {@code    * assertTrue(Thread.interrupted())} except that this version tolerates late interrupts.    */
 DECL|method|assertInterrupted ()
 specifier|private
 specifier|static

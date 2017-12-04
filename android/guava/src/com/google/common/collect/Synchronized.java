@@ -281,7 +281,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Synchronized collection views. The returned synchronized collection views are  * serializable if the backing collection and the mutex are serializable.  *  *<p>If {@code null} is passed as the {@code mutex} parameter to any of this  * class's top-level methods or inner class constructors, the created object  * uses itself as the synchronization mutex.  *  *<p>This class should be used by other collection classes only.  *  * @author Mike Bostock  * @author Jared Levy  */
+comment|/**  * Synchronized collection views. The returned synchronized collection views are serializable if the  * backing collection and the mutex are serializable.  *  *<p>If {@code null} is passed as the {@code mutex} parameter to any of this class's top-level  * methods or inner class constructors, the created object uses itself as the synchronization mutex.  *  *<p>This class should be used by other collection classes only.  *  * @author Mike Bostock  * @author Jared Levy  */
 end_comment
 
 begin_class
@@ -5649,9 +5649,9 @@ name|V
 argument_list|>
 name|valueSet
 decl_stmt|;
+DECL|field|inverse
 annotation|@
 name|RetainedWith
-DECL|field|inverse
 specifier|private
 specifier|transient
 name|BiMap

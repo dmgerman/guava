@@ -112,7 +112,6 @@ specifier|public
 class|class
 name|LoadingCacheSingleThreadBenchmark
 block|{
-DECL|field|maximumSize
 annotation|@
 name|Param
 argument_list|(
@@ -122,35 +121,36 @@ block|,
 literal|"2000"
 block|}
 argument_list|)
+DECL|field|maximumSize
 name|int
 name|maximumSize
 decl_stmt|;
-DECL|field|distinctKeys
 annotation|@
 name|Param
 argument_list|(
 literal|"5000"
 argument_list|)
+DECL|field|distinctKeys
 name|int
 name|distinctKeys
 decl_stmt|;
-DECL|field|segments
 annotation|@
 name|Param
 argument_list|(
 literal|"4"
 argument_list|)
+DECL|field|segments
 name|int
 name|segments
 decl_stmt|;
 comment|// 1 means uniform likelihood of keys; higher means some keys are more popular
 comment|// tweak this to control hit rate
-DECL|field|concentration
 annotation|@
 name|Param
 argument_list|(
 literal|"2.5"
 argument_list|)
+DECL|field|concentration
 name|double
 name|concentration
 decl_stmt|;
@@ -197,9 +197,9 @@ argument_list|(
 literal|0
 argument_list|)
 decl_stmt|;
-DECL|method|setUp ()
 annotation|@
 name|BeforeExperiment
+DECL|method|setUp ()
 name|void
 name|setUp
 parameter_list|()
@@ -308,9 +308,9 @@ literal|0
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|time (int reps)
 annotation|@
 name|Benchmark
+DECL|method|time (int reps)
 name|int
 name|time
 parameter_list|(
@@ -393,9 +393,9 @@ name|concentration
 argument_list|)
 return|;
 block|}
-DECL|method|tearDown ()
 annotation|@
 name|AfterExperiment
+DECL|method|tearDown ()
 name|void
 name|tearDown
 parameter_list|()

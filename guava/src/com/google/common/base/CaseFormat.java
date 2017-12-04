@@ -78,7 +78,7 @@ specifier|public
 enum|enum
 name|CaseFormat
 block|{
-comment|/**    * Hyphenated variable naming convention, e.g., "lower-hyphen".    */
+comment|/** Hyphenated variable naming convention, e.g., "lower-hyphen". */
 DECL|enumConstant|LOWER_HYPHEN
 DECL|enumConstant|CharMatcher.is
 name|LOWER_HYPHEN
@@ -177,7 +177,7 @@ return|;
 block|}
 block|}
 block|,
-comment|/**    * C++ variable naming convention, e.g., "lower_underscore".    */
+comment|/** C++ variable naming convention, e.g., "lower_underscore". */
 DECL|enumConstant|LOWER_UNDERSCORE
 DECL|enumConstant|CharMatcher.is
 name|LOWER_UNDERSCORE
@@ -269,7 +269,7 @@ return|;
 block|}
 block|}
 block|,
-comment|/**    * Java variable naming convention, e.g., "lowerCamel".    */
+comment|/** Java variable naming convention, e.g., "lowerCamel". */
 DECL|enumConstant|LOWER_CAMEL
 DECL|enumConstant|CharMatcher.inRange
 name|LOWER_CAMEL
@@ -304,7 +304,7 @@ return|;
 block|}
 block|}
 block|,
-comment|/**    * Java and C++ class naming convention, e.g., "UpperCamel".    */
+comment|/** Java and C++ class naming convention, e.g., "UpperCamel". */
 DECL|enumConstant|UPPER_CAMEL
 DECL|enumConstant|CharMatcher.inRange
 name|UPPER_CAMEL
@@ -339,7 +339,7 @@ return|;
 block|}
 block|}
 block|,
-comment|/**    * Java and C++ constant naming convention, e.g., "UPPER_UNDERSCORE".    */
+comment|/** Java and C++ constant naming convention, e.g., "UPPER_UNDERSCORE". */
 DECL|enumConstant|UPPER_UNDERSCORE
 DECL|enumConstant|CharMatcher.is
 name|UPPER_UNDERSCORE
@@ -512,7 +512,7 @@ name|str
 argument_list|)
 return|;
 block|}
-comment|/**    * Enum values can override for performance reasons.    */
+comment|/** Enum values can override for performance reasons. */
 DECL|method|convert (CaseFormat format, String s)
 name|String
 name|convert

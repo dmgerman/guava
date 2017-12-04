@@ -109,7 +109,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests may use this to intercept messages that are logged by the code under  * test.  Example:  *<pre>  *   TestLogHandler handler;  *  *   protected void setUp() throws Exception {  *     super.setUp();  *     handler = new TestLogHandler();  *     SomeClass.logger.addHandler(handler);  *     addTearDown(new TearDown() {  *       public void tearDown() throws Exception {  *         SomeClass.logger.removeHandler(handler);  *       }  *     });  *   }  *  *   public void test() {  *     SomeClass.foo();  *     LogRecord firstRecord = handler.getStoredLogRecords().get(0);  *     assertEquals("some message", firstRecord.getMessage());  *   }  *</pre>  *  * @author Kevin Bourrillion  * @since 10.0  */
+comment|/**  * Tests may use this to intercept messages that are logged by the code under test. Example:  *  *<pre>  *   TestLogHandler handler;  *  *   protected void setUp() throws Exception {  *     super.setUp();  *     handler = new TestLogHandler();  *     SomeClass.logger.addHandler(handler);  *     addTearDown(new TearDown() {  *       public void tearDown() throws Exception {  *         SomeClass.logger.removeHandler(handler);  *       }  *     });  *   }  *  *   public void test() {  *     SomeClass.foo();  *     LogRecord firstRecord = handler.getStoredLogRecords().get(0);  *     assertEquals("some message", firstRecord.getMessage());  *   }  *</pre>  *  * @author Kevin Bourrillion  * @since 10.0  */
 end_comment
 
 begin_class
@@ -139,7 +139,7 @@ name|ArrayList
 argument_list|<>
 argument_list|()
 decl_stmt|;
-comment|/**    * Adds the most recently logged record to our list.    */
+comment|/** Adds the most recently logged record to our list. */
 annotation|@
 name|Override
 DECL|method|publish (@ullable LogRecord record)
@@ -191,7 +191,7 @@ name|clear
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * Returns a snapshot of the logged records.    */
+comment|/** Returns a snapshot of the logged records. */
 comment|/*    * TODO(cpovirk): consider higher-level APIs here (say, assertNoRecordsLogged(),    * getOnlyRecordLogged(), getAndClearLogRecords()...)    *    * TODO(cpovirk): consider renaming this method to reflect that it takes a snapshot (and/or return    * an ImmutableList)    */
 DECL|method|getStoredLogRecords ()
 specifier|public

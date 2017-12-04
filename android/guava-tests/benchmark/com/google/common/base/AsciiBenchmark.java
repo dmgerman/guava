@@ -148,7 +148,6 @@ name|NONALPHA
 init|=
 literal|"0123456789`~-_=+[]{}|;:',.<>/?!@#$%^&*()\"\\"
 decl_stmt|;
-DECL|field|size
 annotation|@
 name|Param
 argument_list|(
@@ -158,10 +157,10 @@ block|,
 literal|"2000"
 block|}
 argument_list|)
+DECL|field|size
 name|int
 name|size
 decl_stmt|;
-DECL|field|nonAlphaRatio
 annotation|@
 name|Param
 argument_list|(
@@ -171,6 +170,7 @@ block|,
 literal|"20"
 block|}
 argument_list|)
+DECL|field|nonAlphaRatio
 name|int
 name|nonAlphaRatio
 decl_stmt|;
@@ -189,9 +189,9 @@ DECL|field|testString
 name|String
 name|testString
 decl_stmt|;
-DECL|method|setUp ()
 annotation|@
 name|BeforeExperiment
+DECL|method|setUp ()
 name|void
 name|setUp
 parameter_list|()
@@ -357,9 +357,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-DECL|method|asciiStringToUpperCase (int reps)
 annotation|@
 name|Benchmark
+DECL|method|asciiStringToUpperCase (int reps)
 name|int
 name|asciiStringToUpperCase
 parameter_list|(
@@ -418,9 +418,9 @@ return|return
 name|dummy
 return|;
 block|}
-DECL|method|asciiCharSequenceToUpperCase (int reps)
 annotation|@
 name|Benchmark
+DECL|method|asciiCharSequenceToUpperCase (int reps)
 name|int
 name|asciiCharSequenceToUpperCase
 parameter_list|(
@@ -475,9 +475,9 @@ return|return
 name|dummy
 return|;
 block|}
-DECL|method|stringToUpperCase (int reps)
 annotation|@
 name|Benchmark
+DECL|method|stringToUpperCase (int reps)
 name|int
 name|stringToUpperCase
 parameter_list|(
@@ -540,9 +540,9 @@ return|return
 name|dummy
 return|;
 block|}
-DECL|method|equalsIgnoreCaseCharSequence (int reps)
 annotation|@
 name|Benchmark
+DECL|method|equalsIgnoreCaseCharSequence (int reps)
 name|boolean
 name|equalsIgnoreCaseCharSequence
 parameter_list|(
@@ -657,9 +657,9 @@ return|return
 name|dummy
 return|;
 block|}
-DECL|method|equalsIgnoreCaseStringOnly (int reps)
 annotation|@
 name|Benchmark
+DECL|method|equalsIgnoreCaseStringOnly (int reps)
 name|boolean
 name|equalsIgnoreCaseStringOnly
 parameter_list|(
@@ -717,9 +717,9 @@ return|return
 name|dummy
 return|;
 block|}
-DECL|method|equalsIgnoreCaseJDK (int reps)
 annotation|@
 name|Benchmark
+DECL|method|equalsIgnoreCaseJDK (int reps)
 name|boolean
 name|equalsIgnoreCaseJDK
 parameter_list|(
@@ -775,9 +775,9 @@ return|return
 name|dummy
 return|;
 block|}
-DECL|method|isUpperCase (int reps)
 annotation|@
 name|Benchmark
+DECL|method|isUpperCase (int reps)
 name|boolean
 name|isUpperCase
 parameter_list|(

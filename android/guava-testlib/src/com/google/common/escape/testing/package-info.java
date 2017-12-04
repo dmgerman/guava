@@ -4,7 +4,7 @@ comment|/*  * Copyright (C) 2016 The Guava Authors  *  * Licensed under the Apac
 end_comment
 
 begin_comment
-comment|/**  * Testing utilities for use in tests of {@code com.google.common.escape}.  *  *<p>This package is a part of the open-source  *<a href="http://github.com/google/guava">Guava</a> library.  */
+comment|/**  * Testing utilities for use in tests of {@code com.google.common.escape}.  *  *<p>This package is a part of the open-source<a href="http://github.com/google/guava">Guava</a>  * library.  */
 end_comment
 
 begin_annotation

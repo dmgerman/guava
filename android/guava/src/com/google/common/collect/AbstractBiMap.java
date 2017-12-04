@@ -239,7 +239,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A general-purpose bimap implementation using any two backing {@code Map}  * instances.  *  *<p>Note that this class contains {@code equals()} calls that keep it from  * supporting {@code IdentityHashMap} backing maps.  *  * @author Kevin Bourrillion  * @author Mike Bostock  */
+comment|/**  * A general-purpose bimap implementation using any two backing {@code Map} instances.  *  *<p>Note that this class contains {@code equals()} calls that keep it from supporting {@code  * IdentityHashMap} backing maps.  *  * @author Kevin Bourrillion  * @author Mike Bostock  */
 end_comment
 
 begin_class
@@ -287,9 +287,9 @@ name|V
 argument_list|>
 name|delegate
 decl_stmt|;
+DECL|field|inverse
 annotation|@
 name|RetainedWith
-DECL|field|inverse
 specifier|transient
 name|AbstractBiMap
 argument_list|<
@@ -376,7 +376,7 @@ return|return
 name|delegate
 return|;
 block|}
-comment|/**    * Returns its input, or throws an exception if this is not a valid key.    */
+comment|/** Returns its input, or throws an exception if this is not a valid key. */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|checkKey (@ullable K key)
@@ -393,7 +393,7 @@ return|return
 name|key
 return|;
 block|}
-comment|/**    * Returns its input, or throws an exception if this is not a valid value.    */
+comment|/** Returns its input, or throws an exception if this is not a valid value. */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|checkValue (@ullable V value)
@@ -410,7 +410,7 @@ return|return
 name|value
 return|;
 block|}
-comment|/**    * Specifies the delegate maps going in each direction. Called by the    * constructor and by subclasses during deserialization.    */
+comment|/**    * Specifies the delegate maps going in each direction. Called by the constructor and by    * subclasses during deserialization.    */
 DECL|method|setDelegates (Map<K, V> forward, Map<V, K> backward)
 name|void
 name|setDelegates
@@ -2020,7 +2020,7 @@ name|value
 argument_list|)
 return|;
 block|}
-comment|/**      * @serialData the forward bimap      */
+comment|/** @serialData the forward bimap */
 annotation|@
 name|GwtIncompatible
 comment|// java.io.ObjectOutputStream

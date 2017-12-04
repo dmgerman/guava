@@ -1446,6 +1446,7 @@ condition|;
 name|i
 operator|--
 control|)
+block|{
 name|list
 operator|.
 name|add
@@ -1456,6 +1457,7 @@ name|i
 index|]
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|Lists
 operator|.
@@ -1555,6 +1557,7 @@ operator|,
 name|j
 operator|++
 control|)
+block|{
 name|reverseElements
 index|[
 name|j
@@ -1565,6 +1568,7 @@ index|[
 name|i
 index|]
 expr_stmt|;
+block|}
 return|return
 name|Lists
 operator|.
@@ -1659,6 +1663,7 @@ condition|;
 name|i
 operator|--
 control|)
+block|{
 name|list
 operator|.
 name|add
@@ -1669,6 +1674,7 @@ name|i
 index|]
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|Lists
 operator|.
@@ -1762,6 +1768,7 @@ condition|;
 name|i
 operator|--
 control|)
+block|{
 name|builder
 operator|.
 name|add
@@ -1772,6 +1779,7 @@ name|i
 index|]
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|Lists
 operator|.
@@ -2521,7 +2529,7 @@ name|class
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * This is just here to illustrate how {@code Arrays#asList} differs from    * {@code Lists#newArrayList}.    */
+comment|/**    * This is just here to illustrate how {@code Arrays#asList} differs from {@code    * Lists#newArrayList}.    */
 DECL|method|testArraysAsList ()
 specifier|public
 name|void
@@ -4266,7 +4274,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testTransformHashCodeRandomAccess ()
 specifier|public
@@ -4451,7 +4459,7 @@ parameter_list|(
 name|UnsupportedOperationException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 name|list
 operator|.
 name|remove
@@ -4514,7 +4522,7 @@ parameter_list|(
 name|UnsupportedOperationException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 name|list
 operator|.
 name|clear
@@ -5084,7 +5092,7 @@ parameter_list|(
 name|NoSuchElementException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 name|assertEquals
 argument_list|(
 literal|3
@@ -5180,7 +5188,7 @@ parameter_list|(
 name|NoSuchElementException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 name|iterator
 operator|.
 name|remove
@@ -5235,7 +5243,7 @@ parameter_list|(
 name|IllegalStateException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 try|try
 block|{
 name|iterator
@@ -5262,7 +5270,7 @@ parameter_list|(
 name|IllegalStateException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testTransformIteratorRandomAccess ()
 specifier|public
@@ -5589,7 +5597,7 @@ parameter_list|(
 name|NoSuchElementException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 name|iterator
 operator|.
 name|remove

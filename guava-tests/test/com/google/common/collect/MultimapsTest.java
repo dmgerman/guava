@@ -2380,7 +2380,7 @@ parameter_list|(
 name|UnsupportedOperationException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 name|entry
 operator|=
 operator|(
@@ -2422,7 +2422,7 @@ parameter_list|(
 name|UnsupportedOperationException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 name|Entry
 argument_list|<
 name|String
@@ -2490,7 +2490,7 @@ parameter_list|(
 name|UnsupportedOperationException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 name|assertFalse
 argument_list|(
 name|unmod
@@ -2523,7 +2523,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * The supplied multimap will be mutated and an unmodifiable instance used    * in its stead. The multimap must support null keys and values.    */
+comment|/**    * The supplied multimap will be mutated and an unmodifiable instance used in its stead. The    * multimap must support null keys and values.    */
 DECL|method|checkUnmodifiableMultimap ( Multimap<String, Integer> multimap, boolean permitsDuplicates)
 specifier|private
 specifier|static
@@ -2554,7 +2554,7 @@ literal|null
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * The supplied multimap will be mutated and an unmodifiable instance used    * in its stead. If the multimap does not support null keys or values,    * alternatives may be specified for tests involving nulls.    */
+comment|/**    * The supplied multimap will be mutated and an unmodifiable instance used in its stead. If the    * multimap does not support null keys or values, alternatives may be specified for tests    * involving nulls.    */
 DECL|method|checkUnmodifiableMultimap ( Multimap<String, Integer> multimap, boolean permitsDuplicates, @Nullable String nullKey, @Nullable Integer nullValue)
 specifier|private
 specifier|static
@@ -2749,7 +2749,7 @@ name|Serializable
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Prepares the multimap for unmodifiable tests, returning an unmodifiable view    * of the map.    */
+comment|/** Prepares the multimap for unmodifiable tests, returning an unmodifiable view of the map. */
 DECL|method|prepareUnmodifiableTests ( Multimap<String, Integer> multimap, boolean permitsDuplicates, @Nullable String nullKey, @Nullable Integer nullValue)
 specifier|private
 specifier|static
@@ -3732,7 +3732,7 @@ parameter_list|(
 name|UnsupportedOperationException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 try|try
 block|{
 name|multimapView
@@ -3760,7 +3760,7 @@ parameter_list|(
 name|UnsupportedOperationException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 try|try
 block|{
 name|multimapView
@@ -3781,7 +3781,7 @@ parameter_list|(
 name|UnsupportedOperationException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 try|try
 block|{
 name|multimapView
@@ -3810,7 +3810,7 @@ parameter_list|(
 name|UnsupportedOperationException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 name|multimapView
 operator|.
 name|remove
@@ -4752,20 +4752,20 @@ argument_list|()
 expr_stmt|;
 block|}
 DECL|enum|Color
-DECL|enumConstant|BLUE
-DECL|enumConstant|RED
-DECL|enumConstant|YELLOW
-DECL|enumConstant|GREEN
 specifier|private
 enum|enum
 name|Color
 block|{
+DECL|enumConstant|BLUE
 name|BLUE
 block|,
+DECL|enumConstant|RED
 name|RED
 block|,
+DECL|enumConstant|YELLOW
 name|YELLOW
 block|,
+DECL|enumConstant|GREEN
 name|GREEN
 block|}
 DECL|class|CountingSupplier
@@ -4826,9 +4826,9 @@ name|Integer
 argument_list|>
 argument_list|>
 block|{
-DECL|method|getImpl ()
 annotation|@
 name|Override
+DECL|method|getImpl ()
 specifier|public
 name|Queue
 argument_list|<
@@ -5448,9 +5448,9 @@ name|Integer
 argument_list|>
 argument_list|>
 block|{
-DECL|method|getImpl ()
 annotation|@
 name|Override
+DECL|method|getImpl ()
 specifier|public
 name|LinkedList
 argument_list|<
@@ -5757,9 +5757,9 @@ name|Integer
 argument_list|>
 argument_list|>
 block|{
-DECL|method|getImpl ()
 annotation|@
 name|Override
+DECL|method|getImpl ()
 specifier|public
 name|Set
 argument_list|<
@@ -6043,9 +6043,9 @@ name|Integer
 argument_list|>
 argument_list|>
 block|{
-DECL|method|getImpl ()
 annotation|@
 name|Override
+DECL|method|getImpl ()
 specifier|public
 name|TreeSet
 argument_list|<

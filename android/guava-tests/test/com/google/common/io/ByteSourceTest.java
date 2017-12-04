@@ -1596,8 +1596,8 @@ return|;
 block|}
 block|}
 block|}
-comment|/**    * @param input      the size of the input source    * @param offset     the first argument to {@link ByteSource#slice}    * @param length     the second argument to {@link ByteSource#slice}    * @param expectRead the number of bytes we expect to read    */
-DECL|method|assertCorrectSlice ( int input, int offset, long length, int expectRead)
+comment|/**    * @param input the size of the input source    * @param offset the first argument to {@link ByteSource#slice}    * @param length the second argument to {@link ByteSource#slice}    * @param expectRead the number of bytes we expect to read    */
+DECL|method|assertCorrectSlice (int input, int offset, long length, int expectRead)
 specifier|private
 specifier|static
 name|void
@@ -2755,7 +2755,7 @@ name|expected
 parameter_list|)
 block|{     }
 block|}
-comment|/**    * @return the number of exceptions that were suppressed on the expected thrown exception    */
+comment|/** @return the number of exceptions that were suppressed on the expected thrown exception */
 DECL|method|runSuppressionFailureTest (ByteSource in, ByteSink out)
 specifier|private
 specifier|static

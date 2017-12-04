@@ -315,7 +315,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A generic JUnit test which tests {@code listIterator} operations on a list.  * Can't be invoked directly; please see  * {@link com.google.common.collect.testing.ListTestSuiteBuilder}.  *  * @author Chris Povirk  * @author Kevin Bourrillion  */
+comment|/**  * A generic JUnit test which tests {@code listIterator} operations on a list. Can't be invoked  * directly; please see {@link com.google.common.collect.testing.ListTestSuiteBuilder}.  *  * @author Chris Povirk  * @author Kevin Bourrillion  */
 end_comment
 
 begin_class
@@ -565,7 +565,7 @@ argument_list|)
 expr_stmt|;
 comment|// TODO: run the iterator through ListIteratorTester
 block|}
-comment|/**    * Returns the {@link Method} instance for    * {@link #testListIterator_fullyModifiable()} so that tests of    * {@link CopyOnWriteArraySet} can suppress it with    * {@code FeatureSpecificTestSuiteBuilder.suppressing()} until<a    * href="http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6570575">Sun bug    * 6570575</a> is fixed.    */
+comment|/**    * Returns the {@link Method} instance for {@link #testListIterator_fullyModifiable()} so that    * tests of {@link CopyOnWriteArraySet} can suppress it with {@code    * FeatureSpecificTestSuiteBuilder.suppressing()} until<a    * href="http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6570575">Sun bug 6570575</a> is fixed.    */
 annotation|@
 name|GwtIncompatible
 comment|// reflection
@@ -589,7 +589,7 @@ literal|"testListIterator_fullyModifiable"
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the {@link Method} instance for    * {@link #testListIterator_unmodifiable()} so that it can be suppressed in    * GWT tests.    */
+comment|/**    * Returns the {@link Method} instance for {@link #testListIterator_unmodifiable()} so that it can    * be suppressed in GWT tests.    */
 annotation|@
 name|GwtIncompatible
 comment|// reflection

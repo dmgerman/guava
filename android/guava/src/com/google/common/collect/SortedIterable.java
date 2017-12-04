@@ -80,7 +80,7 @@ argument_list|>
 name|comparator
 parameter_list|()
 function_decl|;
-comment|/**    * Returns an iterator over elements of type {@code T}. The elements are returned in    * nondecreasing order according to the associated {@link #comparator}.    */
+comment|/**    * Returns an iterator over elements of type {@code T}. The elements are returned in nondecreasing    * order according to the associated {@link #comparator}.    */
 annotation|@
 name|Override
 DECL|method|iterator ()

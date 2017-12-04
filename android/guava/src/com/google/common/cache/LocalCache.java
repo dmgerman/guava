@@ -917,7 +917,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * The concurrent hash map implementation built by {@link CacheBuilder}.  *  *<p>This implementation is heavily derived from revision 1.96 of  *<a href="http://tinyurl.com/ConcurrentHashMap">ConcurrentHashMap.java</a>.  *  * @author Charles Fry  * @author Bob Lee ({@code com.google.common.collect.MapMaker})  * @author Doug Lea ({@code ConcurrentHashMap})  */
+comment|/**  * The concurrent hash map implementation built by {@link CacheBuilder}.  *  *<p>This implementation is heavily derived from revision 1.96 of<a  * href="http://tinyurl.com/ConcurrentHashMap">ConcurrentHashMap.java</a>.  *  * @author Charles Fry  * @author Bob Lee ({@code com.google.common.collect.MapMaker})  * @author Doug Lea ({@code ConcurrentHashMap})  */
 end_comment
 
 begin_class
@@ -1162,7 +1162,7 @@ specifier|final
 name|StatsCounter
 name|globalStatsCounter
 decl_stmt|;
-comment|/**    * The default cache loader to use on loading operations.    */
+comment|/** The default cache loader to use on loading operations. */
 DECL|field|defaultLoader
 annotation|@
 name|Nullable
@@ -2112,7 +2112,7 @@ return|;
 block|}
 block|}
 block|;
-comment|/**      * Creates a reference for the given value according to this value strength.      */
+comment|/** Creates a reference for the given value according to this value strength. */
 DECL|method|referenceValue ( Segment<K, V> segment, ReferenceEntry<K, V> entry, V value, int weight)
 specifier|abstract
 parameter_list|<
@@ -2162,7 +2162,7 @@ name|defaultEquivalence
 parameter_list|()
 function_decl|;
 block|}
-comment|/**    * Creates new entries.    */
+comment|/** Creates new entries. */
 DECL|enum|EntryFactory
 enum|enum
 name|EntryFactory
@@ -3106,7 +3106,7 @@ name|WEAK_MASK
 init|=
 literal|4
 decl_stmt|;
-comment|/**      * Look-up table for factories.      */
+comment|/** Look-up table for factories. */
 DECL|field|factories
 specifier|static
 specifier|final
@@ -3419,7 +3419,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * A reference to a value.    */
+comment|/** A reference to a value. */
 DECL|interface|ValueReference
 interface|interface
 name|ValueReference
@@ -3429,7 +3429,7 @@ parameter_list|,
 name|V
 parameter_list|>
 block|{
-comment|/**      * Returns the value. Does not block or throw exceptions.      */
+comment|/** Returns the value. Does not block or throw exceptions. */
 annotation|@
 name|Nullable
 DECL|method|get ()
@@ -3445,7 +3445,7 @@ parameter_list|()
 throws|throws
 name|ExecutionException
 function_decl|;
-comment|/**      * Returns the weight of this entry. This is assumed to be static between calls to setValue.      */
+comment|/** Returns the weight of this entry. This is assumed to be static between calls to setValue. */
 DECL|method|getWeight ()
 name|int
 name|getWeight
@@ -3518,7 +3518,7 @@ name|isActive
 parameter_list|()
 function_decl|;
 block|}
-comment|/**    * Placeholder. Indicates that the value hasn't been set yet.    */
+comment|/** Placeholder. Indicates that the value hasn't been set yet. */
 DECL|field|UNSET
 specifier|static
 specifier|final
@@ -3657,7 +3657,7 @@ parameter_list|)
 block|{}
 block|}
 decl_stmt|;
-comment|/**    * Singleton placeholder that indicates a value is being loaded.    */
+comment|/** Singleton placeholder that indicates a value is being loaded. */
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -4414,7 +4414,7 @@ return|;
 block|}
 block|}
 decl_stmt|;
-comment|/**    * Queue that discards all elements.    */
+comment|/** Queue that discards all elements. */
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -4441,7 +4441,7 @@ name|DISCARDING_QUEUE
 return|;
 block|}
 comment|/*    * Note: All of this duplicate code sucks, but it saves a lot of memory. If only Java had mixins!    * To maintain this code, make a change for the strong reference type. Then, cut and paste, and    * replace "Strong" with "Soft" or "Weak" within the pasted text. The primary difference is that    * strong entries store the key reference directly while soft and weak entries delegate to their    * respective superclasses.    */
-comment|/**    * Used for strongly-referenced keys.    */
+comment|/** Used for strongly-referenced keys. */
 DECL|class|StrongEntry
 specifier|static
 class|class
@@ -5347,7 +5347,7 @@ name|previous
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Used for weakly-referenced keys.    */
+comment|/** Used for weakly-referenced keys. */
 DECL|class|WeakEntry
 specifier|static
 class|class
@@ -6512,7 +6512,7 @@ name|previous
 expr_stmt|;
 block|}
 block|}
-comment|/**    * References a weak value.    */
+comment|/** References a weak value. */
 DECL|class|WeakValueReference
 specifier|static
 class|class
@@ -6701,7 +6701,7 @@ argument_list|()
 return|;
 block|}
 block|}
-comment|/**    * References a soft value.    */
+comment|/** References a soft value. */
 DECL|class|SoftValueReference
 specifier|static
 class|class
@@ -6890,7 +6890,7 @@ argument_list|()
 return|;
 block|}
 block|}
-comment|/**    * References a strong value.    */
+comment|/** References a strong value. */
 DECL|class|StrongValueReference
 specifier|static
 class|class
@@ -7051,7 +7051,7 @@ name|newValue
 parameter_list|)
 block|{}
 block|}
-comment|/**    * References a weak value.    */
+comment|/** References a weak value. */
 DECL|class|WeightedWeakValueReference
 specifier|static
 specifier|final
@@ -7173,7 +7173,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**    * References a soft value.    */
+comment|/** References a soft value. */
 DECL|class|WeightedSoftValueReference
 specifier|static
 specifier|final
@@ -7295,7 +7295,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**    * References a strong value.    */
+comment|/** References a strong value. */
 DECL|class|WeightedStrongValueReference
 specifier|static
 specifier|final
@@ -7892,7 +7892,7 @@ name|value
 return|;
 block|}
 comment|// expiration
-comment|/**    * Returns true if the entry has expired.    */
+comment|/** Returns true if the entry has expired. */
 DECL|method|isExpired (ReferenceEntry<K, V> entry, long now)
 name|boolean
 name|isExpired
@@ -8261,13 +8261,13 @@ name|V
 argument_list|>
 name|map
 decl_stmt|;
-comment|/**      * The number of live elements in this segment's region.      */
+comment|/** The number of live elements in this segment's region. */
 DECL|field|count
 specifier|volatile
 name|int
 name|count
 decl_stmt|;
-comment|/**      * The weight of the live elements in this segment's region.      */
+comment|/** The weight of the live elements in this segment's region. */
 annotation|@
 name|GuardedBy
 argument_list|(
@@ -8287,7 +8287,7 @@ DECL|field|threshold
 name|int
 name|threshold
 decl_stmt|;
-comment|/**      * The per-segment table.      */
+comment|/** The per-segment table. */
 DECL|field|table
 specifier|volatile
 name|AtomicReferenceArray
@@ -8301,7 +8301,7 @@ argument_list|>
 argument_list|>
 name|table
 decl_stmt|;
-comment|/**      * The maximum weight of this segment. UNSET_INT if there is no maximum.      */
+comment|/** The maximum weight of this segment. UNSET_INT if there is no maximum. */
 DECL|field|maxSegmentWeight
 specifier|final
 name|long
@@ -8831,7 +8831,7 @@ return|return
 name|newEntry
 return|;
 block|}
-comment|/**      * Sets a new value of an entry. Adds newly created entries at the end of the access queue.      */
+comment|/** Sets a new value of an entry. Adds newly created entries at the end of the access queue. */
 annotation|@
 name|GuardedBy
 argument_list|(
@@ -9910,7 +9910,7 @@ return|return
 name|loadingFuture
 return|;
 block|}
-comment|/**      * Waits uninterruptibly for {@code newValue} to be loaded, and then records loading stats.      */
+comment|/** Waits uninterruptibly for {@code newValue} to be loaded, and then records loading stats. */
 DECL|method|getAndRecordStats ( K key, int hash, LoadingValueReference<K, V> loadingValueReference, ListenableFuture<V> newValue)
 name|V
 name|getAndRecordStats
@@ -10512,7 +10512,7 @@ expr_stmt|;
 block|}
 block|}
 comment|// reference queues, for garbage collection cleanup
-comment|/**      * Cleanup collected entries when the lock is available.      */
+comment|/** Cleanup collected entries when the lock is available. */
 DECL|method|tryDrainReferenceQueues ()
 name|void
 name|tryDrainReferenceQueues
@@ -10732,7 +10732,7 @@ break|break;
 block|}
 block|}
 block|}
-comment|/**      * Clears all entries from the key and value reference queues.      */
+comment|/** Clears all entries from the key and value reference queues. */
 DECL|method|clearReferenceQueues ()
 name|void
 name|clearReferenceQueues
@@ -11021,7 +11021,7 @@ block|}
 block|}
 block|}
 comment|// expiration
-comment|/**      * Cleanup expired entries when the lock is available.      */
+comment|/** Cleanup expired entries when the lock is available. */
 DECL|method|tryExpireEntries (long now)
 name|void
 name|tryExpireEntries
@@ -11436,7 +11436,7 @@ name|AssertionError
 argument_list|()
 throw|;
 block|}
-comment|/**      * Returns first entry of bin for given hash.      */
+comment|/** Returns first entry of bin for given hash. */
 DECL|method|getFirst (int hash)
 name|ReferenceEntry
 argument_list|<
@@ -12524,7 +12524,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Expands the table if possible.      */
+comment|/** Expands the table if possible. */
 annotation|@
 name|GuardedBy
 argument_list|(
@@ -14996,7 +14996,7 @@ name|entry
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Removes an entry whose key has been garbage collected.      */
+comment|/** Removes an entry whose key has been garbage collected. */
 DECL|method|reclaimKey (ReferenceEntry<K, V> entry, int hash)
 name|boolean
 name|reclaimKey
@@ -15185,7 +15185,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Removes an entry whose value has been garbage collected.      */
+comment|/** Removes an entry whose value has been garbage collected. */
 DECL|method|reclaimValue (K key, int hash, ValueReference<K, V> valueReference)
 name|boolean
 name|reclaimValue
@@ -15871,7 +15871,7 @@ name|now
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Performs routine cleanup following a write.      */
+comment|/** Performs routine cleanup following a write. */
 DECL|method|postWriteCleanup ()
 name|void
 name|postWriteCleanup
@@ -17132,7 +17132,7 @@ block|}
 return|;
 block|}
 block|}
-comment|/**    * A custom queue for managing access order. Note that this is tightly integrated with    * {@code ReferenceEntry}, upon which it relies to perform its linking.    *    *<p>Note that this entire implementation makes the assumption that all elements which are in the    * map are also in this queue, and that all elements not in the queue are not in the map.    *    *<p>The benefits of creating our own queue are that (1) we can replace elements in the middle of    * the queue as part of copyWriteEntry, and (2) the contains method is highly optimized for the    * current model.    */
+comment|/**    * A custom queue for managing access order. Note that this is tightly integrated with {@code    * ReferenceEntry}, upon which it relies to perform its linking.    *    *<p>Note that this entire implementation makes the assumption that all elements which are in the    * map are also in this queue, and that all elements not in the queue are not in the map.    *    *<p>The benefits of creating our own queue are that (1) we can replace elements in the middle of    * the queue as part of copyWriteEntry, and (2) the contains method is highly optimized for the    * current model.    */
 DECL|class|AccessQueue
 specifier|static
 specifier|final
@@ -20049,7 +20049,7 @@ block|}
 block|}
 block|}
 block|}
-comment|/**      * Finds the next entry in the current chain. Returns true if an entry was found.      */
+comment|/** Finds the next entry in the current chain. Returns true if an entry was found. */
 DECL|method|nextInChain ()
 name|boolean
 name|nextInChain
@@ -20101,7 +20101,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/**      * Finds the next entry in the current table. Returns true if an entry was found.      */
+comment|/** Finds the next entry in the current table. Returns true if an entry was found. */
 DECL|method|nextInTable ()
 name|boolean
 name|nextInTable
@@ -21279,7 +21279,7 @@ return|;
 block|}
 block|}
 comment|// Serialization Support
-comment|/**    * Serializes the configuration of a LocalCache, reconstituting it as a Cache using CacheBuilder    * upon deserialization. An instance of this class is fit for use by the writeReplace of    * LocalManualCache.    *    * Unfortunately, readResolve() doesn't get called when a circular dependency is present, so the    * proxy must be able to behave as the cache itself.    */
+comment|/**    * Serializes the configuration of a LocalCache, reconstituting it as a Cache using CacheBuilder    * upon deserialization. An instance of this class is fit for use by the writeReplace of    * LocalManualCache.    *    *<p>Unfortunately, readResolve() doesn't get called when a circular dependency is present, so    * the proxy must be able to behave as the cache itself.    */
 DECL|class|ManualSerializationProxy
 specifier|static
 class|class
@@ -21858,7 +21858,7 @@ name|delegate
 return|;
 block|}
 block|}
-comment|/**    * Serializes the configuration of a LocalCache, reconstituting it as an LoadingCache using    * CacheBuilder upon deserialization. An instance of this class is fit for use by the writeReplace    * of LocalLoadingCache.    *    * Unfortunately, readResolve() doesn't get called when a circular dependency is present, so the    * proxy must be able to behave as the cache itself.    */
+comment|/**    * Serializes the configuration of a LocalCache, reconstituting it as an LoadingCache using    * CacheBuilder upon deserialization. An instance of this class is fit for use by the writeReplace    * of LocalLoadingCache.    *    *<p>Unfortunately, readResolve() doesn't get called when a circular dependency is present, so    * the proxy must be able to behave as the cache itself.    */
 DECL|class|LoadingSerializationProxy
 specifier|static
 specifier|final

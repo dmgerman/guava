@@ -1123,7 +1123,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testNulls ()
 specifier|public
@@ -1258,9 +1258,9 @@ operator|=
 name|runnable
 expr_stmt|;
 block|}
-DECL|method|run ()
 annotation|@
 name|Override
+DECL|method|run ()
 specifier|public
 name|void
 name|run
@@ -1272,9 +1272,9 @@ name|run
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString
@@ -1334,9 +1334,9 @@ operator|=
 name|arithmetic
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|add (int a, int b)
-annotation|@
-name|Override
 specifier|public
 name|int
 name|add
@@ -1359,9 +1359,9 @@ name|b
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|minus (int a, int b)
-annotation|@
-name|Override
 specifier|public
 name|int
 name|minus
@@ -1384,9 +1384,9 @@ name|b
 argument_list|)
 return|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString
@@ -1428,9 +1428,9 @@ operator|=
 name|adder
 expr_stmt|;
 block|}
-DECL|method|add (int a, int b)
 annotation|@
 name|Override
+DECL|method|add (int a, int b)
 specifier|public
 name|int
 name|add
@@ -1453,9 +1453,9 @@ name|a
 argument_list|)
 return|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString
@@ -1497,9 +1497,9 @@ operator|=
 name|adder
 expr_stmt|;
 block|}
-DECL|method|add (int a, int b)
 annotation|@
 name|Override
+DECL|method|add (int a, int b)
 specifier|public
 name|int
 name|add
@@ -1524,9 +1524,9 @@ operator|+
 literal|1
 return|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString
@@ -1568,9 +1568,9 @@ operator|=
 name|adder
 expr_stmt|;
 block|}
-DECL|method|add (int a, int b)
 annotation|@
 name|Override
+DECL|method|add (int a, int b)
 specifier|public
 name|int
 name|add
@@ -1607,9 +1607,9 @@ literal|0
 return|;
 block|}
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString
@@ -1670,9 +1670,9 @@ operator|=
 name|arithmetic
 expr_stmt|;
 block|}
-DECL|method|minus (int a, int b)
 annotation|@
 name|Override
+DECL|method|minus (int a, int b)
 specifier|public
 name|int
 name|minus
@@ -1696,9 +1696,9 @@ name|b
 argument_list|)
 return|;
 block|}
-DECL|method|add (int a, int b)
 annotation|@
 name|Override
+DECL|method|add (int a, int b)
 specifier|public
 name|int
 name|add
@@ -1721,9 +1721,9 @@ name|b
 argument_list|)
 return|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString
@@ -1742,7 +1742,7 @@ specifier|private
 interface|interface
 name|ParameterTypesDifferent
 block|{
-DECL|method|foo (String s, Runnable r, Number n, Iterable<?> it, boolean b, Equivalence<String> eq, Exception e, InputStream in, Comparable<?> c, Ordering<Integer> ord, Charset charset, TimeUnit unit, Class<?> cls, Joiner joiner, Pattern pattern, UnsignedInteger ui, UnsignedLong ul, StringBuilder sb, Predicate<?> pred, Function<?, ?> func, Object obj)
+DECL|method|foo ( String s, Runnable r, Number n, Iterable<?> it, boolean b, Equivalence<String> eq, Exception e, InputStream in, Comparable<?> c, Ordering<Integer> ord, Charset charset, TimeUnit unit, Class<?> cls, Joiner joiner, Pattern pattern, UnsignedInteger ui, UnsignedLong ul, StringBuilder sb, Predicate<?> pred, Function<?, ?> func, Object obj)
 name|void
 name|foo
 parameter_list|(
@@ -1863,9 +1863,9 @@ operator|=
 name|delegate
 expr_stmt|;
 block|}
-DECL|method|foo ( String s, Runnable r, Number n, Iterable<?> it, boolean b, Equivalence<String> eq, Exception e, InputStream in, Comparable<?> c, Ordering<Integer> ord, Charset charset, TimeUnit unit, Class<?> cls, Joiner joiner, Pattern pattern, UnsignedInteger ui, UnsignedLong ul, StringBuilder sb, Predicate<?> pred, Function<?, ?> func, Object obj)
 annotation|@
 name|Override
+DECL|method|foo ( String s, Runnable r, Number n, Iterable<?> it, boolean b, Equivalence<String> eq, Exception e, InputStream in, Comparable<?> c, Ordering<Integer> ord, Charset charset, TimeUnit unit, Class<?> cls, Joiner joiner, Pattern pattern, UnsignedInteger ui, UnsignedLong ul, StringBuilder sb, Predicate<?> pred, Function<?, ?> func, Object obj)
 specifier|public
 name|void
 name|foo
@@ -2005,9 +2005,9 @@ name|obj
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString
@@ -2084,9 +2084,9 @@ name|Sub
 extends|extends
 name|Base
 block|{
-DECL|method|getId ()
 annotation|@
 name|Override
+DECL|method|getId ()
 name|String
 name|getId
 parameter_list|()
@@ -2120,9 +2120,9 @@ operator|=
 name|delegate
 expr_stmt|;
 block|}
-DECL|method|getId ()
 annotation|@
 name|Override
+DECL|method|getId ()
 specifier|public
 name|String
 name|getId
@@ -2135,9 +2135,9 @@ name|getId
 argument_list|()
 return|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString
@@ -2156,9 +2156,9 @@ specifier|private
 interface|interface
 name|Equals
 block|{
-DECL|method|equals (Object obj)
 annotation|@
 name|Override
+DECL|method|equals (Object obj)
 name|boolean
 name|equals
 parameter_list|(
@@ -2166,16 +2166,16 @@ name|Object
 name|obj
 parameter_list|)
 function_decl|;
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 name|int
 name|hashCode
 parameter_list|()
 function_decl|;
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 name|String
 name|toString
 parameter_list|()
@@ -2249,9 +2249,9 @@ operator|=
 name|delegate
 expr_stmt|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString
@@ -2328,7 +2328,7 @@ literal|"Should have failed"
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * An interface for the 2 ways that a chaining call might be defined.    */
+comment|/** An interface for the 2 ways that a chaining call might be defined. */
 DECL|interface|ChainingCalls
 specifier|private
 interface|interface
@@ -2374,9 +2374,9 @@ operator|=
 name|delegate
 expr_stmt|;
 block|}
-DECL|method|chainingCall ()
 annotation|@
 name|Override
+DECL|method|chainingCall ()
 specifier|public
 name|ForwardingChainingCalls
 name|chainingCall
@@ -2391,9 +2391,9 @@ return|return
 name|this
 return|;
 block|}
-DECL|method|nonChainingCall ()
 annotation|@
 name|Override
+DECL|method|nonChainingCall ()
 specifier|public
 name|ChainingCalls
 name|nonChainingCall
@@ -2406,9 +2406,9 @@ name|nonChainingCall
 argument_list|()
 return|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString

@@ -228,9 +228,9 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-DECL|method|log2 (int reps)
 annotation|@
 name|Benchmark
+DECL|method|log2 (int reps)
 name|long
 name|log2
 parameter_list|(
@@ -287,9 +287,9 @@ return|return
 name|tmp
 return|;
 block|}
-DECL|method|factorial (int reps)
 annotation|@
 name|Benchmark
+DECL|method|factorial (int reps)
 name|long
 name|factorial
 parameter_list|(
@@ -346,9 +346,9 @@ return|return
 name|tmp
 return|;
 block|}
-DECL|method|isMathematicalInteger (int reps)
 annotation|@
 name|Benchmark
+DECL|method|isMathematicalInteger (int reps)
 name|int
 name|isMathematicalInteger
 parameter_list|(
@@ -405,9 +405,9 @@ return|return
 name|tmp
 return|;
 block|}
-DECL|method|isPowerOfTwo (int reps)
 annotation|@
 name|Benchmark
+DECL|method|isPowerOfTwo (int reps)
 name|int
 name|isPowerOfTwo
 parameter_list|(

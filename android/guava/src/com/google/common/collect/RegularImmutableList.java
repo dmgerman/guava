@@ -116,9 +116,9 @@ argument_list|,
 literal|0
 argument_list|)
 decl_stmt|;
+DECL|field|array
 annotation|@
 name|VisibleForTesting
-DECL|field|array
 specifier|final
 specifier|transient
 name|Object

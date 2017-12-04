@@ -147,7 +147,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Static utility methods pertaining to {@code Predicate} instances.  *  *<p>All methods return serializable predicates as long as they're given serializable parameters.  *  *<p>See the Guava User Guide article on  *<a href="https://github.com/google/guava/wiki/FunctionalExplained">the use of  * {@code Predicate}</a>.  *  * @author Kevin Bourrillion  * @since 2.0  */
+comment|/**  * Static utility methods pertaining to {@code Predicate} instances.  *  *<p>All methods return serializable predicates as long as they're given serializable parameters.  *  *<p>See the Guava User Guide article on<a  * href="https://github.com/google/guava/wiki/FunctionalExplained">the use of {@code Predicate}</a>.  *  * @author Kevin Bourrillion  * @since 2.0  */
 end_comment
 
 begin_class
@@ -171,7 +171,7 @@ parameter_list|()
 block|{}
 comment|// TODO(kevinb): considering having these implement a VisitablePredicate
 comment|// interface which specifies an accept(PredicateVisitor) method.
-comment|/**    * Returns a predicate that always evaluates to {@code true}.    */
+comment|/** Returns a predicate that always evaluates to {@code true}. */
 annotation|@
 name|GwtCompatible
 argument_list|(
@@ -201,7 +201,7 @@ name|withNarrowedType
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns a predicate that always evaluates to {@code false}.    */
+comment|/** Returns a predicate that always evaluates to {@code false}. */
 annotation|@
 name|GwtCompatible
 argument_list|(
@@ -291,7 +291,7 @@ name|withNarrowedType
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns a predicate that evaluates to {@code true} if the given predicate evaluates to    * {@code false}.    */
+comment|/**    * Returns a predicate that evaluates to {@code true} if the given predicate evaluates to {@code    * false}.    */
 DECL|method|not (Predicate<T> predicate)
 specifier|public
 specifier|static
@@ -322,7 +322,7 @@ name|predicate
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a predicate that evaluates to {@code true} if each of its components evaluates to    * {@code true}. The components are evaluated in order, and evaluation will be "short-circuited"    * as soon as a false predicate is found. It defensively copies the iterable passed in, so future    * changes to it won't alter the behavior of this predicate. If {@code    * components} is empty, the returned predicate will always evaluate to {@code    * true}.    */
+comment|/**    * Returns a predicate that evaluates to {@code true} if each of its components evaluates to    * {@code true}. The components are evaluated in order, and evaluation will be "short-circuited"    * as soon as a false predicate is found. It defensively copies the iterable passed in, so future    * changes to it won't alter the behavior of this predicate. If {@code components} is empty, the    * returned predicate will always evaluate to {@code true}.    */
 DECL|method|and (Iterable<? extends Predicate<? super T>> components)
 specifier|public
 specifier|static
@@ -363,7 +363,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a predicate that evaluates to {@code true} if each of its components evaluates to    * {@code true}. The components are evaluated in order, and evaluation will be "short-circuited"    * as soon as a false predicate is found. It defensively copies the array passed in, so future    * changes to it won't alter the behavior of this predicate. If {@code    * components} is empty, the returned predicate will always evaluate to {@code    * true}.    */
+comment|/**    * Returns a predicate that evaluates to {@code true} if each of its components evaluates to    * {@code true}. The components are evaluated in order, and evaluation will be "short-circuited"    * as soon as a false predicate is found. It defensively copies the array passed in, so future    * changes to it won't alter the behavior of this predicate. If {@code components} is empty, the    * returned predicate will always evaluate to {@code true}.    */
 annotation|@
 name|SafeVarargs
 DECL|method|and (Predicate<? super T>.... components)
@@ -402,7 +402,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a predicate that evaluates to {@code true} if both of its components evaluate to    * {@code true}. The components are evaluated in order, and evaluation will be "short-circuited"    * as soon as a false predicate is found.    */
+comment|/**    * Returns a predicate that evaluates to {@code true} if both of its components evaluate to {@code    * true}. The components are evaluated in order, and evaluation will be "short-circuited" as soon    * as a false predicate is found.    */
 DECL|method|and (Predicate<? super T> first, Predicate<? super T> second)
 specifier|public
 specifier|static
@@ -459,7 +459,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a predicate that evaluates to {@code true} if any one of its components evaluates to    * {@code true}. The components are evaluated in order, and evaluation will be "short-circuited"    * as soon as a true predicate is found. It defensively copies the iterable passed in, so future    * changes to it won't alter the behavior of this predicate. If {@code    * components} is empty, the returned predicate will always evaluate to {@code    * false}.    */
+comment|/**    * Returns a predicate that evaluates to {@code true} if any one of its components evaluates to    * {@code true}. The components are evaluated in order, and evaluation will be "short-circuited"    * as soon as a true predicate is found. It defensively copies the iterable passed in, so future    * changes to it won't alter the behavior of this predicate. If {@code components} is empty, the    * returned predicate will always evaluate to {@code false}.    */
 DECL|method|or (Iterable<? extends Predicate<? super T>> components)
 specifier|public
 specifier|static
@@ -500,7 +500,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a predicate that evaluates to {@code true} if any one of its components evaluates to    * {@code true}. The components are evaluated in order, and evaluation will be "short-circuited"    * as soon as a true predicate is found. It defensively copies the array passed in, so future    * changes to it won't alter the behavior of this predicate. If {@code    * components} is empty, the returned predicate will always evaluate to {@code    * false}.    */
+comment|/**    * Returns a predicate that evaluates to {@code true} if any one of its components evaluates to    * {@code true}. The components are evaluated in order, and evaluation will be "short-circuited"    * as soon as a true predicate is found. It defensively copies the array passed in, so future    * changes to it won't alter the behavior of this predicate. If {@code components} is empty, the    * returned predicate will always evaluate to {@code false}.    */
 annotation|@
 name|SafeVarargs
 DECL|method|or (Predicate<? super T>.... components)
@@ -640,7 +640,7 @@ name|target
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a predicate that evaluates to {@code true} if the object being tested is an instance of    * the given class. If the object being tested is {@code null} this predicate evaluates to    * {@code false}.    *    *<p>If you want to filter an {@code Iterable} to narrow its type, consider using    * {@link com.google.common.collect.Iterables#filter(Iterable, Class)} in preference.    *    *<p><b>Warning:</b> contrary to the typical assumptions about predicates (as documented at    * {@link Predicate#apply}), the returned predicate may not be<i>consistent with equals</i>. For    * example, {@code instanceOf(ArrayList.class)} will yield different results for the two equal    * instances {@code Lists.newArrayList(1)} and {@code Arrays.asList(1)}.    */
+comment|/**    * Returns a predicate that evaluates to {@code true} if the object being tested is an instance of    * the given class. If the object being tested is {@code null} this predicate evaluates to {@code    * false}.    *    *<p>If you want to filter an {@code Iterable} to narrow its type, consider using {@link    * com.google.common.collect.Iterables#filter(Iterable, Class)} in preference.    *    *<p><b>Warning:</b> contrary to the typical assumptions about predicates (as documented at    * {@link Predicate#apply}), the returned predicate may not be<i>consistent with equals</i>. For    * example, {@code instanceOf(ArrayList.class)} will yield different results for the two equal    * instances {@code Lists.newArrayList(1)} and {@code Arrays.asList(1)}.    */
 annotation|@
 name|GwtIncompatible
 comment|// Class.isInstance
@@ -668,7 +668,7 @@ name|clazz
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a predicate that evaluates to {@code true} if the class being tested is assignable    *<b>TO</b> {@code clazz}, that is, if it is a<b>subtype</b> of {@code clazz}. Yes, this method    * is named very incorrectly! Example:<pre>   {@code    *    *   List<Class<?>> classes = Arrays.asList(    *       Object.class, String.class, Number.class, Long.class);    *   return Iterables.filter(classes, assignableFrom(Number.class));}</pre>    *    * The code above returns {@code Number.class} and {@code Long.class},<b>not</b> {@code    * Number.class} and {@code Object.class} as the name implies!    *    *<p>The returned predicate does not allow null inputs.    *    * @deprecated Use the correctly-named method {@link #subtypeOf} instead. This method is scheduled    *     to be removed in January 2018.    * @since 10.0    */
+comment|/**    * Returns a predicate that evaluates to {@code true} if the class being tested is assignable    *<b>TO</b> {@code clazz}, that is, if it is a<b>subtype</b> of {@code clazz}. Yes, this method    * is named very incorrectly! Example:    *    *<pre>{@code    * List<Class<?>> classes = Arrays.asList(    *     Object.class, String.class, Number.class, Long.class);    * return Iterables.filter(classes, assignableFrom(Number.class));    * }</pre>    *    * The code above returns {@code Number.class} and {@code Long.class},<b>not</b> {@code    * Number.class} and {@code Object.class} as the name implies!    *    *<p>The returned predicate does not allow null inputs.    *    * @deprecated Use the correctly-named method {@link #subtypeOf} instead. This method is scheduled    *     to be removed in January 2018.    * @since 10.0    */
 annotation|@
 name|GwtIncompatible
 comment|// Class.isAssignableFrom
@@ -702,7 +702,7 @@ name|clazz
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a predicate that evaluates to {@code true} if the class being tested is assignable    * to (is a subtype of) {@code clazz}. Example:<pre>   {@code    *    *   List<Class<?>> classes = Arrays.asList(    *       Object.class, String.class, Number.class, Long.class);    *   return Iterables.filter(classes, subtypeOf(Number.class));}</pre>    *    * The code above returns an iterable containing {@code Number.class} and {@code Long.class}.    *    * @since 20.0 (since 10.0 under the incorrect name {@code assignableFrom})    */
+comment|/**    * Returns a predicate that evaluates to {@code true} if the class being tested is assignable to    * (is a subtype of) {@code clazz}. Example:    *    *<pre>{@code    * List<Class<?>> classes = Arrays.asList(    *     Object.class, String.class, Number.class, Long.class);    * return Iterables.filter(classes, subtypeOf(Number.class));    * }</pre>    *    * The code above returns an iterable containing {@code Number.class} and {@code Long.class}.    *    * @since 20.0 (since 10.0 under the incorrect name {@code assignableFrom})    */
 annotation|@
 name|GwtIncompatible
 comment|// Class.isAssignableFrom

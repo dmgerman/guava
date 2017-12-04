@@ -93,7 +93,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests for {@link Murmur3_128HashFunction}.  */
+comment|/** Tests for {@link Murmur3_128HashFunction}. */
 end_comment
 
 begin_class
@@ -304,7 +304,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Returns a {@link HashCode} for a sequence of longs, in big-endian order.    */
+comment|/** Returns a {@link HashCode} for a sequence of longs, in big-endian order. */
 DECL|method|toHashCode (long... longs)
 specifier|private
 specifier|static

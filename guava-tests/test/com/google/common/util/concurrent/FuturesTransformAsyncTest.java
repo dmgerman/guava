@@ -200,9 +200,9 @@ specifier|private
 name|CountDownLatch
 name|funcCompletionLatch
 decl_stmt|;
-DECL|method|buildChainingFuture ( ListenableFuture<Integer> inputFuture)
 annotation|@
 name|Override
+DECL|method|buildChainingFuture (ListenableFuture<Integer> inputFuture)
 specifier|protected
 name|ListenableFuture
 argument_list|<
@@ -254,9 +254,9 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-DECL|method|getSuccessfulResult ()
 annotation|@
 name|Override
+DECL|method|getSuccessfulResult ()
 specifier|protected
 name|String
 name|getSuccessfulResult
@@ -400,7 +400,7 @@ parameter_list|(
 name|CancellationException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testFutureGetThrowsCancellationIfOutputCancelled ()
 specifier|public
@@ -445,7 +445,7 @@ parameter_list|(
 name|CancellationException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testFutureCancelBeforeInputCompletion ()
 specifier|public
@@ -509,7 +509,7 @@ parameter_list|(
 name|CancellationException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testFutureCancellableBeforeOutputCompletion ()
 specifier|public
@@ -580,7 +580,7 @@ parameter_list|(
 name|CancellationException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testFutureCancellableBeforeFunctionCompletion ()
 specifier|public
@@ -675,7 +675,7 @@ parameter_list|(
 name|CancellationException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 name|funcCompletionLatch
 operator|.
 name|countDown
@@ -702,7 +702,7 @@ parameter_list|(
 name|CancellationException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testFutureCancelAfterCompletion ()
 specifier|public
@@ -833,7 +833,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Proxy to throw a {@link RuntimeException} out of the {@link #get()} method.    */
+comment|/** Proxy to throw a {@link RuntimeException} out of the {@link #get()} method. */
 DECL|class|BadFuture
 specifier|public
 specifier|static

@@ -161,7 +161,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Static utility methods pertaining to {@code byte} primitives that interpret values as  *<i>unsigned</i> (that is, any negative value {@code b} is treated as the positive value  * {@code 256 + b}). The corresponding methods that treat the values as signed are found in  * {@link SignedBytes}, and the methods for which signedness is not an issue are in {@link Bytes}.  *  *<p>See the Guava User Guide article on  *<a href="https://github.com/google/guava/wiki/PrimitivesExplained">primitive utilities</a>.  *  * @author Kevin Bourrillion  * @author Martin Buchholz  * @author Hiroshi Yamauchi  * @author Louis Wasserman  * @since 1.0  */
+comment|/**  * Static utility methods pertaining to {@code byte} primitives that interpret values as  *<i>unsigned</i> (that is, any negative value {@code b} is treated as the positive value {@code  * 256 + b}). The corresponding methods that treat the values as signed are found in {@link  * SignedBytes}, and the methods for which signedness is not an issue are in {@link Bytes}.  *  *<p>See the Guava User Guide article on<a  * href="https://github.com/google/guava/wiki/PrimitivesExplained">primitive utilities</a>.  *  * @author Kevin Bourrillion  * @author Martin Buchholz  * @author Hiroshi Yamauchi  * @author Louis Wasserman  * @since 1.0  */
 end_comment
 
 begin_class
@@ -178,7 +178,7 @@ specifier|private
 name|UnsignedBytes
 parameter_list|()
 block|{}
-comment|/**    * The largest power of two that can be represented as an unsigned {@code    * byte}.    *    * @since 10.0    */
+comment|/**    * The largest power of two that can be represented as an unsigned {@code byte}.    *    * @since 10.0    */
 DECL|field|MAX_POWER_OF_TWO
 specifier|public
 specifier|static
@@ -265,7 +265,7 @@ operator|)
 name|value
 return|;
 block|}
-comment|/**    * Returns the {@code byte} value that, when treated as unsigned, is nearest in value to    * {@code value}.    *    * @param value any {@code long} value    * @return {@code (byte) 255} if {@code value>= 255}, {@code (byte) 0} if {@code value<= 0}, and    *     {@code value} cast to {@code byte} otherwise    */
+comment|/**    * Returns the {@code byte} value that, when treated as unsigned, is nearest in value to {@code    * value}.    *    * @param value any {@code long} value    * @return {@code (byte) 255} if {@code value>= 255}, {@code (byte) 0} if {@code value<= 0}, and    *     {@code value} cast to {@code byte} otherwise    */
 DECL|method|saturatedCast (long value)
 specifier|public
 specifier|static
@@ -570,7 +570,7 @@ name|radix
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the unsigned {@code byte} value represented by the given decimal string.    *    * @throws NumberFormatException if the string does not contain a valid unsigned {@code byte}    *     value    * @throws NullPointerException if {@code string} is null (in contrast to    *     {@link Byte#parseByte(String)})    * @since 13.0    */
+comment|/**    * Returns the unsigned {@code byte} value represented by the given decimal string.    *    * @throws NumberFormatException if the string does not contain a valid unsigned {@code byte}    *     value    * @throws NullPointerException if {@code string} is null (in contrast to {@link    *     Byte#parseByte(String)})    * @since 13.0    */
 annotation|@
 name|Beta
 annotation|@
@@ -594,7 +594,7 @@ literal|10
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the unsigned {@code byte} value represented by a string with the given radix.    *    * @param string the string containing the unsigned {@code byte} representation to be parsed.    * @param radix the radix to use while parsing {@code string}    * @throws NumberFormatException if the string does not contain a valid unsigned {@code byte} with    *     the given radix, or if {@code radix} is not between {@link Character#MIN_RADIX} and    *     {@link Character#MAX_RADIX}.    * @throws NullPointerException if {@code string} is null (in contrast to    *     {@link Byte#parseByte(String)})    * @since 13.0    */
+comment|/**    * Returns the unsigned {@code byte} value represented by a string with the given radix.    *    * @param string the string containing the unsigned {@code byte} representation to be parsed.    * @param radix the radix to use while parsing {@code string}    * @throws NumberFormatException if the string does not contain a valid unsigned {@code byte} with    *     the given radix, or if {@code radix} is not between {@link Character#MIN_RADIX} and {@link    *     Character#MAX_RADIX}.    * @throws NullPointerException if {@code string} is null (in contrast to {@link    *     Byte#parseByte(String)})    * @since 13.0    */
 annotation|@
 name|Beta
 annotation|@
@@ -659,7 +659,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Returns a string containing the supplied {@code byte} values separated by {@code separator}.    * For example, {@code join(":", (byte) 1, (byte) 2,    * (byte) 255)} returns the string {@code "1:2:255"}.    *    * @param separator the text that should appear between consecutive values in the resulting string    *     (but not at the start or end)    * @param array an array of {@code byte} values, possibly empty    */
+comment|/**    * Returns a string containing the supplied {@code byte} values separated by {@code separator}.    * For example, {@code join(":", (byte) 1, (byte) 2, (byte) 255)} returns the string {@code    * "1:2:255"}.    *    * @param separator the text that should appear between consecutive values in the resulting string    *     (but not at the start or end)    * @param array an array of {@code byte} values, possibly empty    */
 DECL|method|join (String separator, byte... array)
 specifier|public
 specifier|static
@@ -769,7 +769,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns a comparator that compares two {@code byte} arrays<a    * href="http://en.wikipedia.org/wiki/Lexicographical_order">lexicographically</a>. That is, it    * compares, using {@link #compare(byte, byte)}), the first pair of values that follow any common    * prefix, or when one array is a prefix of the other, treats the shorter array as the lesser. For    * example, {@code []< [0x01]< [0x01, 0x7F]< [0x01, 0x80]< [0x02]}. Values are treated as    * unsigned.    *    *<p>The returned comparator is inconsistent with {@link Object#equals(Object)} (since arrays    * support only identity equality), but it is consistent with    * {@link java.util.Arrays#equals(byte[], byte[])}.    *    * @since 2.0    */
+comment|/**    * Returns a comparator that compares two {@code byte} arrays<a    * href="http://en.wikipedia.org/wiki/Lexicographical_order">lexicographically</a>. That is, it    * compares, using {@link #compare(byte, byte)}), the first pair of values that follow any common    * prefix, or when one array is a prefix of the other, treats the shorter array as the lesser. For    * example, {@code []< [0x01]< [0x01, 0x7F]< [0x01, 0x80]< [0x02]}. Values are treated as    * unsigned.    *    *<p>The returned comparator is inconsistent with {@link Object#equals(Object)} (since arrays    * support only identity equality), but it is consistent with {@link    * java.util.Arrays#equals(byte[], byte[])}.    *    * @since 2.0    */
 DECL|method|lexicographicalComparator ()
 specifier|public
 specifier|static

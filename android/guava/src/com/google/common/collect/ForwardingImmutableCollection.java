@@ -31,7 +31,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Dummy class that makes the GWT serialization policy happy.  It isn't used  * on the server-side.  *  * @author Hayward Chan  */
+comment|/**  * Dummy class that makes the GWT serialization policy happy. It isn't used on the server-side.  *  * @author Hayward Chan  */
 end_comment
 
 begin_class

@@ -2305,7 +2305,7 @@ return|;
 block|}
 block|}
 decl_stmt|;
-comment|/**    * Test a TreeMultiset with a comparator that can return 0 when comparing    * unequal values.    */
+comment|/** Test a TreeMultiset with a comparator that can return 0 when comparing unequal values. */
 DECL|method|testDegenerateComparator ()
 specifier|public
 name|void

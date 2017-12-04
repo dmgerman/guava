@@ -422,7 +422,7 @@ argument_list|(
 operator|new
 name|byte
 index|[]
-block|{ }
+block|{}
 argument_list|,
 literal|0x726fdb47dd0e0e31L
 argument_list|)

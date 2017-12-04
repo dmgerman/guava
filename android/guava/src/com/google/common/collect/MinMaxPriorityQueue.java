@@ -315,7 +315,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A double-ended priority queue, which provides constant-time access to both  * its least element and its greatest element, as determined by the queue's  * specified comparator. If no comparator is given at creation time, the  * natural order of elements is used. If no maximum size is given at creation time,  * the queue is unbounded.  *  *<p>Usage example:<pre>   {@code  *  *   MinMaxPriorityQueue<User> users = MinMaxPriorityQueue.orderedBy(userComparator)  *       .maximumSize(1000)  *       .create();}</pre>  *  *<p>As a {@link Queue} it functions exactly as a {@link PriorityQueue}: its  * head element -- the implicit target of the methods {@link #peek()}, {@link  * #poll()} and {@link #remove()} -- is defined as the<i>least</i> element in  * the queue according to the queue's comparator. But unlike a regular priority  * queue, the methods {@link #peekLast}, {@link #pollLast} and  * {@link #removeLast} are also provided, to act on the<i>greatest</i> element  * in the queue instead.  *  *<p>A min-max priority queue can be configured with a maximum size. If so,  * each time the size of the queue exceeds that value, the queue automatically  * removes its greatest element according to its comparator (which might be the  * element that was just added). This is different from conventional bounded  * queues, which either block or reject new elements when full.  *  *<p>This implementation is based on the  *<a href="http://portal.acm.org/citation.cfm?id=6621">min-max heap</a>  * developed by Atkinson, et al. Unlike many other double-ended priority queues,  * it stores elements in a single array, as compact as the traditional heap data  * structure used in {@link PriorityQueue}.  *  *<p>This class is not thread-safe, and does not accept null elements.  *  *<p><i>Performance notes:</i>  *  *<ul>  *<li>If you only access one end of the queue, and do use a maximum size,  *     this class will perform significantly worse than a {@code PriorityQueue}  *     with manual eviction above the maximum size.  In many cases  *     {@link Ordering#leastOf} may work for your use case with significantly  *     improved (and asymptotically superior) performance.  *<li>The retrieval operations {@link #peek}, {@link #peekFirst}, {@link  *     #peekLast}, {@link #element}, and {@link #size} are constant-time.  *<li>The enqueuing and dequeuing operations ({@link #offer}, {@link #add}, and  *     all the forms of {@link #poll} and {@link #remove()}) run in {@code  *     O(log n) time}.  *<li>The {@link #remove(Object)} and {@link #contains} operations require  *     linear ({@code O(n)}) time.  *<li>If you only access one end of the queue, and don't use a maximum size,  *     this class is functionally equivalent to {@link PriorityQueue}, but  *     significantly slower.  *</ul>  *  * @author Sverre Sundsdal  * @author Torbjorn Gannholm  * @since 8.0  */
+comment|/**  * A double-ended priority queue, which provides constant-time access to both its least element and  * its greatest element, as determined by the queue's specified comparator. If no comparator is  * given at creation time, the natural order of elements is used. If no maximum size is given at  * creation time, the queue is unbounded.  *  *<p>Usage example:  *  *<pre>{@code  * MinMaxPriorityQueue<User> users = MinMaxPriorityQueue.orderedBy(userComparator)  *     .maximumSize(1000)  *     .create();  * }</pre>  *  *<p>As a {@link Queue} it functions exactly as a {@link PriorityQueue}: its head element -- the  * implicit target of the methods {@link #peek()}, {@link #poll()} and {@link #remove()} -- is  * defined as the<i>least</i> element in the queue according to the queue's comparator. But unlike  * a regular priority queue, the methods {@link #peekLast}, {@link #pollLast} and {@link  * #removeLast} are also provided, to act on the<i>greatest</i> element in the queue instead.  *  *<p>A min-max priority queue can be configured with a maximum size. If so, each time the size of  * the queue exceeds that value, the queue automatically removes its greatest element according to  * its comparator (which might be the element that was just added). This is different from  * conventional bounded queues, which either block or reject new elements when full.  *  *<p>This implementation is based on the<a  * href="http://portal.acm.org/citation.cfm?id=6621">min-max heap</a> developed by Atkinson, et al.  * Unlike many other double-ended priority queues, it stores elements in a single array, as compact  * as the traditional heap data structure used in {@link PriorityQueue}.  *  *<p>This class is not thread-safe, and does not accept null elements.  *  *<p><i>Performance notes:</i>  *  *<ul>  *<li>If you only access one end of the queue, and do use a maximum size, this class will perform  *       significantly worse than a {@code PriorityQueue} with manual eviction above the maximum  *       size. In many cases {@link Ordering#leastOf} may work for your use case with significantly  *       improved (and asymptotically superior) performance.  *<li>The retrieval operations {@link #peek}, {@link #peekFirst}, {@link #peekLast}, {@link  *       #element}, and {@link #size} are constant-time.  *<li>The enqueuing and dequeuing operations ({@link #offer}, {@link #add}, and all the forms of  *       {@link #poll} and {@link #remove()}) run in {@code O(log n) time}.  *<li>The {@link #remove(Object)} and {@link #contains} operations require linear ({@code O(n)})  *       time.  *<li>If you only access one end of the queue, and don't use a maximum size, this class is  *       functionally equivalent to {@link PriorityQueue}, but significantly slower.  *</ul>  *  * @author Sverre Sundsdal  * @author Torbjorn Gannholm  * @since 8.0  */
 end_comment
 
 begin_class
@@ -337,7 +337,7 @@ argument_list|<
 name|E
 argument_list|>
 block|{
-comment|/**    * Creates a new min-max priority queue with default settings: natural order,    * no maximum size, no initial contents, and an initial expected size of 11.    */
+comment|/**    * Creates a new min-max priority queue with default settings: natural order, no maximum size, no    * initial contents, and an initial expected size of 11.    */
 DECL|method|create ()
 specifier|public
 specifier|static
@@ -373,7 +373,7 @@ name|create
 argument_list|()
 return|;
 block|}
-comment|/**    * Creates a new min-max priority queue using natural order, no maximum size,    * and initially containing the given elements.    */
+comment|/**    * Creates a new min-max priority queue using natural order, no maximum size, and initially    * containing the given elements.    */
 DECL|method|create ( Iterable<? extends E> initialContents)
 specifier|public
 specifier|static
@@ -422,7 +422,7 @@ name|initialContents
 argument_list|)
 return|;
 block|}
-comment|/**    * Creates and returns a new builder, configured to build {@code    * MinMaxPriorityQueue} instances that use {@code comparator} to determine the    * least and greatest elements.    */
+comment|/**    * Creates and returns a new builder, configured to build {@code MinMaxPriorityQueue} instances    * that use {@code comparator} to determine the least and greatest elements.    */
 DECL|method|orderedBy (Comparator<B> comparator)
 specifier|public
 specifier|static
@@ -453,7 +453,7 @@ name|comparator
 argument_list|)
 return|;
 block|}
-comment|/**    * Creates and returns a new builder, configured to build {@code    * MinMaxPriorityQueue} instances sized appropriately to hold {@code    * expectedSize} elements.    */
+comment|/**    * Creates and returns a new builder, configured to build {@code MinMaxPriorityQueue} instances    * sized appropriately to hold {@code expectedSize} elements.    */
 DECL|method|expectedSize (int expectedSize)
 specifier|public
 specifier|static
@@ -486,7 +486,7 @@ name|expectedSize
 argument_list|)
 return|;
 block|}
-comment|/**    * Creates and returns a new builder, configured to build {@code    * MinMaxPriorityQueue} instances that are limited to {@code maximumSize}    * elements. Each time a queue grows beyond this bound, it immediately    * removes its greatest element (according to its comparator), which might be    * the element that was just added.    */
+comment|/**    * Creates and returns a new builder, configured to build {@code MinMaxPriorityQueue} instances    * that are limited to {@code maximumSize} elements. Each time a queue grows beyond this bound, it    * immediately removes its greatest element (according to its comparator), which might be the    * element that was just added.    */
 DECL|method|maximumSize (int maximumSize)
 specifier|public
 specifier|static
@@ -519,7 +519,7 @@ name|maximumSize
 argument_list|)
 return|;
 block|}
-comment|/**    * The builder class used in creation of min-max priority queues. Instead of    * constructing one directly, use {@link    * MinMaxPriorityQueue#orderedBy(Comparator)}, {@link    * MinMaxPriorityQueue#expectedSize(int)} or {@link    * MinMaxPriorityQueue#maximumSize(int)}.    *    * @param<B> the upper bound on the eventual type that can be produced by    *     this builder (for example, a {@code Builder<Number>} can produce a    *     {@code Queue<Number>} or {@code Queue<Integer>} but not a {@code    *     Queue<Object>}).    * @since 8.0    */
+comment|/**    * The builder class used in creation of min-max priority queues. Instead of constructing one    * directly, use {@link MinMaxPriorityQueue#orderedBy(Comparator)}, {@link    * MinMaxPriorityQueue#expectedSize(int)} or {@link MinMaxPriorityQueue#maximumSize(int)}.    *    * @param<B> the upper bound on the eventual type that can be produced by this builder (for    *     example, a {@code Builder<Number>} can produce a {@code Queue<Number>} or {@code    *     Queue<Integer>} but not a {@code Queue<Object>}).    * @since 8.0    */
 annotation|@
 name|Beta
 DECL|class|Builder
@@ -589,7 +589,7 @@ name|comparator
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Configures this builder to build min-max priority queues with an initial      * expected size of {@code expectedSize}.      */
+comment|/**      * Configures this builder to build min-max priority queues with an initial expected size of      * {@code expectedSize}.      */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|expectedSize (int expectedSize)
@@ -621,7 +621,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**      * Configures this builder to build {@code MinMaxPriorityQueue} instances      * that are limited to {@code maximumSize} elements. Each time a queue grows      * beyond this bound, it immediately removes its greatest element (according      * to its comparator), which might be the element that was just added.      */
+comment|/**      * Configures this builder to build {@code MinMaxPriorityQueue} instances that are limited to      * {@code maximumSize} elements. Each time a queue grows beyond this bound, it immediately      * removes its greatest element (according to its comparator), which might be the element that      * was just added.      */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|maximumSize (int maximumSize)
@@ -653,7 +653,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**      * Builds a new min-max priority queue using the previously specified      * options, and having no initial contents.      */
+comment|/**      * Builds a new min-max priority queue using the previously specified options, and having no      * initial contents.      */
 DECL|method|create ()
 specifier|public
 parameter_list|<
@@ -681,7 +681,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**      * Builds a new min-max priority queue using the previously specified      * options, and having the given initial elements.      */
+comment|/**      * Builds a new min-max priority queue using the previously specified options, and having the      * given initial elements.      */
 DECL|method|create (Iterable<? extends T> initialContents)
 specifier|public
 parameter_list|<
@@ -913,7 +913,7 @@ return|return
 name|size
 return|;
 block|}
-comment|/**    * Adds the given element to this queue. If this queue has a maximum size,    * after adding {@code element} the queue will automatically evict its    * greatest element (according to its comparator), which may be {@code    * element} itself.    *    * @return {@code true} always    */
+comment|/**    * Adds the given element to this queue. If this queue has a maximum size, after adding {@code    * element} the queue will automatically evict its greatest element (according to its comparator),    * which may be {@code element} itself.    *    * @return {@code true} always    */
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
@@ -981,7 +981,7 @@ return|return
 name|modified
 return|;
 block|}
-comment|/**    * Adds the given element to this queue. If this queue has a maximum size,    * after adding {@code element} the queue will automatically evict its    * greatest element (according to its comparator), which may be {@code    * element} itself.    */
+comment|/**    * Adds the given element to this queue. If this queue has a maximum size, after adding {@code    * element} the queue will automatically evict its greatest element (according to its comparator),    * which may be {@code element} itself.    */
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
@@ -1103,7 +1103,7 @@ literal|0
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the index of the max element.    */
+comment|/** Returns the index of the max element. */
 DECL|method|getMaxElementIndex ()
 specifier|private
 name|int
@@ -1152,7 +1152,7 @@ literal|2
 return|;
 block|}
 block|}
-comment|/**    * Removes and returns the least element of this queue, or returns {@code    * null} if the queue is empty.    */
+comment|/**    * Removes and returns the least element of this queue, or returns {@code null} if the queue is    * empty.    */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|pollFirst ()
@@ -1180,7 +1180,7 @@ name|remove
 argument_list|()
 return|;
 block|}
-comment|/**    * Retrieves, but does not remove, the least element of this queue, or returns    * {@code null} if the queue is empty.    */
+comment|/**    * Retrieves, but does not remove, the least element of this queue, or returns {@code null} if the    * queue is empty.    */
 DECL|method|peekFirst ()
 specifier|public
 name|E
@@ -1192,7 +1192,7 @@ name|peek
 argument_list|()
 return|;
 block|}
-comment|/**    * Removes and returns the greatest element of this queue, or returns {@code    * null} if the queue is empty.    */
+comment|/**    * Removes and returns the greatest element of this queue, or returns {@code null} if the queue is    * empty.    */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|pollLast ()
@@ -1243,7 +1243,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Retrieves, but does not remove, the greatest element of this queue, or    * returns {@code null} if the queue is empty.    */
+comment|/**    * Retrieves, but does not remove, the greatest element of this queue, or returns {@code null} if    * the queue is empty.    */
 DECL|method|peekLast ()
 specifier|public
 name|E
@@ -1263,7 +1263,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Removes the element at position {@code index}.    *    *<p>Normally this method leaves the elements at up to {@code index - 1},    * inclusive, untouched.  Under these circumstances, it returns {@code null}.    *    *<p>Occasionally, in order to maintain the heap invariant, it must swap a    * later element of the list with one before {@code index}. Under these    * circumstances it returns a pair of elements as a {@link MoveDesc}. The    * first one is the element that was previously at the end of the heap and is    * now at some position before {@code index}. The second element is the one    * that was swapped down to replace the element at {@code index}. This fact is    * used by iterator.remove so as to visit elements during a traversal once and    * only once.    */
+comment|/**    * Removes the element at position {@code index}.    *    *<p>Normally this method leaves the elements at up to {@code index - 1}, inclusive, untouched.    * Under these circumstances, it returns {@code null}.    *    *<p>Occasionally, in order to maintain the heap invariant, it must swap a later element of the    * list with one before {@code index}. Under these circumstances it returns a pair of elements as    * a {@link MoveDesc}. The first one is the element that was previously at the end of the heap and    * is now at some position before {@code index}. The second element is the one that was swapped    * down to replace the element at {@code index}. This fact is used by iterator.remove so as to    * visit elements during a traversal once and only once.    */
 annotation|@
 name|VisibleForTesting
 annotation|@
@@ -1580,7 +1580,7 @@ name|replaced
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Removes and returns the value at {@code index}.    */
+comment|/** Removes and returns the value at {@code index}. */
 DECL|method|removeAndGet (int index)
 specifier|private
 name|E
@@ -1691,7 +1691,7 @@ name|ODD_POWERS_OF_TWO
 operator|)
 return|;
 block|}
-comment|/**    * Returns {@code true} if the MinMax heap structure holds. This is only used    * in testing.    *    * TODO(kevinb): move to the test class?    */
+comment|/**    * Returns {@code true} if the MinMax heap structure holds. This is only used in testing.    *    *<p>TODO(kevinb): move to the test class?    */
 annotation|@
 name|VisibleForTesting
 DECL|method|isIntact ()
@@ -1737,7 +1737,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/**    * Each instance of MinMaxPriortyQueue encapsulates two instances of Heap:    * a min-heap and a max-heap. Conceptually, these might each have their own    * array for storage, but for efficiency's sake they are stored interleaved on    * alternate heap levels in the same array (MMPQ.queue).    */
+comment|/**    * Each instance of MinMaxPriortyQueue encapsulates two instances of Heap: a min-heap and a    * max-heap. Conceptually, these might each have their own array for storage, but for efficiency's    * sake they are stored interleaved on alternate heap levels in the same array (MMPQ.queue).    */
 annotation|@
 name|WeakOuter
 DECL|class|Heap
@@ -1804,7 +1804,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**      * Tries to move {@code toTrickle} from a min to a max level and      * bubble up there. If it moved before {@code removeIndex} this method      * returns a pair as described in {@link #removeAt}.      */
+comment|/**      * Tries to move {@code toTrickle} from a min to a max level and bubble up there. If it moved      * before {@code removeIndex} this method returns a pair as described in {@link #removeAt}.      */
 DECL|method|tryCrossOverAndBubbleUp (int removeIndex, int vacated, E toTrickle)
 name|MoveDesc
 argument_list|<
@@ -1916,7 +1916,7 @@ literal|null
 return|;
 block|}
 block|}
-comment|/**      * Bubbles a value from {@code index} up the appropriate heap if required.      */
+comment|/** Bubbles a value from {@code index} up the appropriate heap if required. */
 DECL|method|bubbleUp (int index, E x)
 name|void
 name|bubbleUp
@@ -1974,7 +1974,7 @@ name|x
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Bubbles a value from {@code index} up the levels of this heap, and      * returns the index the element ended up at.      */
+comment|/**      * Bubbles a value from {@code index} up the levels of this heap, and returns the index the      * element ended up at.      */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|bubbleUpAlternatingLevels (int index, E x)
@@ -2050,7 +2050,7 @@ return|return
 name|index
 return|;
 block|}
-comment|/**      * Returns the index of minimum value between {@code index} and      * {@code index + len}, or {@code -1} if {@code index} is greater than      * {@code size}.      */
+comment|/**      * Returns the index of minimum value between {@code index} and {@code index + len}, or {@code      * -1} if {@code index} is greater than {@code size}.      */
 DECL|method|findMin (int index, int len)
 name|int
 name|findMin
@@ -2141,7 +2141,7 @@ return|return
 name|minIndex
 return|;
 block|}
-comment|/**      * Returns the minimum child or {@code -1} if no child exists.      */
+comment|/** Returns the minimum child or {@code -1} if no child exists. */
 DECL|method|findMinChild (int index)
 name|int
 name|findMinChild
@@ -2162,7 +2162,7 @@ literal|2
 argument_list|)
 return|;
 block|}
-comment|/**      * Returns the minimum grand child or -1 if no grand child exists.      */
+comment|/** Returns the minimum grand child or -1 if no grand child exists. */
 DECL|method|findMinGrandChild (int index)
 name|int
 name|findMinGrandChild
@@ -2203,7 +2203,7 @@ literal|4
 argument_list|)
 return|;
 block|}
-comment|/**      * Moves an element one level up from a min level to a max level      * (or vice versa).      * Returns the new position of the element.      */
+comment|/**      * Moves an element one level up from a min level to a max level (or vice versa). Returns the      * new position of the element.      */
 DECL|method|crossOverUp (int index, E x)
 name|int
 name|crossOverUp
@@ -2366,7 +2366,7 @@ return|return
 name|index
 return|;
 block|}
-comment|/**      * Swap {@code actualLastElement} with the conceptually correct last element of the heap.      * Returns the index that {@code actualLastElement} now resides in.      *      *<p>Since the last element of the array is actually in the      * middle of the sorted structure, a childless uncle node could be      * smaller, which would corrupt the invariant if this element      * becomes the new parent of the uncle. In that case, we first      * switch the last element with its uncle, before returning.      */
+comment|/**      * Swap {@code actualLastElement} with the conceptually correct last element of the heap.      * Returns the index that {@code actualLastElement} now resides in.      *      *<p>Since the last element of the array is actually in the middle of the sorted structure, a      * childless uncle node could be smaller, which would corrupt the invariant if this element      * becomes the new parent of the uncle. In that case, we first switch the last element with its      * uncle, before returning.      */
 DECL|method|swapWithConceptuallyLastElement (E actualLastElement)
 name|int
 name|swapWithConceptuallyLastElement
@@ -2466,7 +2466,7 @@ return|return
 name|size
 return|;
 block|}
-comment|/**      * Crosses an element over to the opposite heap by moving it one level down      * (or up if there are no elements below it).      *      * Returns the new position of the element.      */
+comment|/**      * Crosses an element over to the opposite heap by moving it one level down (or up if there are      * no elements below it).      *      *<p>Returns the new position of the element.      */
 DECL|method|crossOver (int index, E x)
 name|int
 name|crossOver
@@ -2543,7 +2543,7 @@ name|x
 argument_list|)
 return|;
 block|}
-comment|/**      * Fills the hole at {@code index} by moving in the least of its      * grandchildren to this position, then recursively filling the new hole      * created.      *      * @return the position of the new hole (where the lowest grandchild moved      *     from, that had no grandchild to replace it)      */
+comment|/**      * Fills the hole at {@code index} by moving in the least of its grandchildren to this position,      * then recursively filling the new hole created.      *      * @return the position of the new hole (where the lowest grandchild moved from, that had no      *     grandchild to replace it)      */
 DECL|method|fillHoleAt (int index)
 name|int
 name|fillHoleAt
@@ -2790,7 +2790,7 @@ return|;
 comment|// (i - 3) / 4
 block|}
 block|}
-comment|/**    * Iterates the elements of the queue in no particular order.    *    * If the underlying queue is modified during iteration an exception will be    * thrown.    */
+comment|/**    * Iterates the elements of the queue in no particular order.    *    *<p>If the underlying queue is modified during iteration an exception will be thrown.    */
 DECL|class|QueueIterator
 specifier|private
 class|class
@@ -3260,7 +3260,7 @@ argument_list|()
 throw|;
 block|}
 block|}
-comment|/**      * Advances nextCursor to the index of the first element after {@code c} that is not in      * {@code skipMe} and returns {@code size()} if there is no such element.      */
+comment|/**      * Advances nextCursor to the index of the first element after {@code c} that is not in {@code      * skipMe} and returns {@code size()} if there is no such element.      */
 DECL|method|nextNotInSkipMe (int c)
 specifier|private
 name|void
@@ -3314,7 +3314,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**    * Returns an iterator over the elements contained in this collection,    *<i>in no particular order</i>.    *    *<p>The iterator is<i>fail-fast</i>: If the MinMaxPriorityQueue is modified    * at any time after the iterator is created, in any way except through the    * iterator's own remove method, the iterator will generally throw a    * {@link ConcurrentModificationException}. Thus, in the face of concurrent    * modification, the iterator fails quickly and cleanly, rather than risking    * arbitrary, non-deterministic behavior at an undetermined time in the    * future.    *    *<p>Note that the fail-fast behavior of an iterator cannot be guaranteed    * as it is, generally speaking, impossible to make any hard guarantees in the    * presence of unsynchronized concurrent modification.  Fail-fast iterators    * throw {@code ConcurrentModificationException} on a best-effort basis.    * Therefore, it would be wrong to write a program that depended on this    * exception for its correctness:<i>the fail-fast behavior of iterators    * should be used only to detect bugs.</i>    *    * @return an iterator over the elements contained in this collection    */
+comment|/**    * Returns an iterator over the elements contained in this collection,<i>in no particular    * order</i>.    *    *<p>The iterator is<i>fail-fast</i>: If the MinMaxPriorityQueue is modified at any time after    * the iterator is created, in any way except through the iterator's own remove method, the    * iterator will generally throw a {@link ConcurrentModificationException}. Thus, in the face of    * concurrent modification, the iterator fails quickly and cleanly, rather than risking arbitrary,    * non-deterministic behavior at an undetermined time in the future.    *    *<p>Note that the fail-fast behavior of an iterator cannot be guaranteed as it is, generally    * speaking, impossible to make any hard guarantees in the presence of unsynchronized concurrent    * modification. Fail-fast iterators throw {@code ConcurrentModificationException} on a    * best-effort basis. Therefore, it would be wrong to write a program that depended on this    * exception for its correctness:<i>the fail-fast behavior of iterators should be used only to    * detect bugs.</i>    *    * @return an iterator over the elements contained in this collection    */
 annotation|@
 name|Override
 DECL|method|iterator ()
@@ -3406,7 +3406,7 @@ return|return
 name|copyTo
 return|;
 block|}
-comment|/**    * Returns the comparator used to order the elements in this queue. Obeys the    * general contract of {@link PriorityQueue#comparator}, but returns {@link    * Ordering#natural} instead of {@code null} to indicate natural ordering.    */
+comment|/**    * Returns the comparator used to order the elements in this queue. Obeys the general contract of    * {@link PriorityQueue#comparator}, but returns {@link Ordering#natural} instead of {@code null}    * to indicate natural ordering.    */
 DECL|method|comparator ()
 specifier|public
 name|Comparator

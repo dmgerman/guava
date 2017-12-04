@@ -1008,7 +1008,7 @@ name|AssertionError
 argument_list|()
 throw|;
 block|}
-comment|/**    * Returns a fresh {@link MapMakerInternalMap} with {@link MapMaker.Dummy} values but otherwise as    * specified by the given {@code builder}. The returned {@link MapMakerInternalMap} will be    * optimized to saved memory. Since {@link MapMaker.Dummy} is a singleton, we don't need to store    * any values at all. Because of this optimization, {@code build.getValueStrength()} must    * be {@link Strength#STRONG}.    *    *<p>This method is intended to only be used by the internal implementation of {@link Interners},    * since a map of dummy values is the exact use case there.    */
+comment|/**    * Returns a fresh {@link MapMakerInternalMap} with {@link MapMaker.Dummy} values but otherwise as    * specified by the given {@code builder}. The returned {@link MapMakerInternalMap} will be    * optimized to saved memory. Since {@link MapMaker.Dummy} is a singleton, we don't need to store    * any values at all. Because of this optimization, {@code build.getValueStrength()} must be    * {@link Strength#STRONG}.    *    *<p>This method is intended to only be used by the internal implementation of {@link Interners},    * since a map of dummy values is the exact use case there.    */
 specifier|static
 parameter_list|<
 name|K
@@ -1352,13 +1352,13 @@ name|E
 name|getNext
 parameter_list|()
 function_decl|;
-comment|/**      * Gets the entry's hash.      */
+comment|/** Gets the entry's hash. */
 DECL|method|getHash ()
 name|int
 name|getHash
 parameter_list|()
 function_decl|;
-comment|/**      * Gets the key for this entry.      */
+comment|/** Gets the key for this entry. */
 DECL|method|getKey ()
 name|K
 name|getKey
@@ -5054,7 +5054,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**    * Applies a supplemental hash function to a given hash code, which defends against poor quality    * hash functions. This is critical when the concurrent hash map uses power-of-two length hash    * tables, that otherwise encounter collisions for hash codes that do not differ in lower or    * upper bits.    *    * @param h hash code    */
+comment|/**    * Applies a supplemental hash function to a given hash code, which defends against poor quality    * hash functions. This is critical when the concurrent hash map uses power-of-two length hash    * tables, that otherwise encounter collisions for hash codes that do not differ in lower or upper    * bits.    *    * @param h hash code    */
 DECL|method|rehash (int h)
 specifier|static
 name|int
@@ -5511,7 +5511,7 @@ specifier|volatile
 name|int
 name|count
 decl_stmt|;
-comment|/**      * Number of updates that alter the size of the table. This is used during bulk-read methods to      * make sure they see a consistent snapshot: If modCounts change during a traversal of segments      * computing size or checking containsValue, then we might have an inconsistent view of state      * so (usually) must retry.      */
+comment|/**      * Number of updates that alter the size of the table. This is used during bulk-read methods to      * make sure they see a consistent snapshot: If modCounts change during a traversal of segments      * computing size or checking containsValue, then we might have an inconsistent view of state so      * (usually) must retry.      */
 DECL|field|modCount
 name|int
 name|modCount
@@ -5530,7 +5530,7 @@ name|E
 argument_list|>
 name|table
 decl_stmt|;
-comment|/**      * The maximum size of this map. MapMaker.UNSET_INT if there is no maximum.      */
+comment|/** The maximum size of this map. MapMaker.UNSET_INT if there is no maximum. */
 DECL|field|maxSegmentSize
 specifier|final
 name|int
@@ -6160,7 +6160,7 @@ argument_list|)
 return|;
 block|}
 comment|// reference queues, for garbage collection cleanup
-comment|/**      * Cleanup collected entries when the lock is available.      */
+comment|/** Cleanup collected entries when the lock is available. */
 DECL|method|tryDrainReferenceQueues ()
 name|void
 name|tryDrainReferenceQueues
@@ -7054,7 +7054,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Expands the table if possible.      */
+comment|/** Expands the table if possible. */
 annotation|@
 name|GuardedBy
 argument_list|(
@@ -9200,7 +9200,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Performs routine cleanup prior to executing a write. This should be called every time a      * write thread acquires the segment lock, immediately after acquiring the lock.      */
+comment|/**      * Performs routine cleanup prior to executing a write. This should be called every time a write      * thread acquires the segment lock, immediately after acquiring the lock.      */
 annotation|@
 name|GuardedBy
 argument_list|(
@@ -12149,7 +12149,7 @@ block|}
 block|}
 block|}
 block|}
-comment|/**      * Finds the next entry in the current chain. Returns {@code true} if an entry was found.      */
+comment|/** Finds the next entry in the current chain. Returns {@code true} if an entry was found. */
 DECL|method|nextInChain ()
 name|boolean
 name|nextInChain
@@ -12201,7 +12201,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/**      * Finds the next entry in the current table. Returns {@code true} if an entry was found.      */
+comment|/** Finds the next entry in the current table. Returns {@code true} if an entry was found. */
 DECL|method|nextInTable ()
 name|boolean
 name|nextInTable
@@ -12447,7 +12447,7 @@ argument_list|()
 return|;
 block|}
 block|}
-comment|/**    * Custom Entry class used by EntryIterator.next(), that relays setValue changes to the    * underlying map.    */
+comment|/**    * Custom Entry class used by EntryIterator.next(), that relays setValue changes to the underlying    * map.    */
 DECL|class|WriteThroughEntry
 specifier|final
 class|class

@@ -528,13 +528,13 @@ argument_list|<
 name|E
 argument_list|>
 parameter_list|>
+DECL|method|newInstanceWithExplicitOrdering ( Class<E> enumClass, Policy policy)
 name|CycleDetectingLockFactory
 operator|.
 name|WithExplicitOrdering
 argument_list|<
 name|E
 argument_list|>
-DECL|method|newInstanceWithExplicitOrdering (Class<E> enumClass, Policy policy)
 name|newInstanceWithExplicitOrdering
 parameter_list|(
 name|Class
@@ -2325,12 +2325,12 @@ enum|enum
 name|MyOrder
 block|{
 DECL|enumConstant|FIRST
-DECL|enumConstant|SECOND
-DECL|enumConstant|THIRD
 name|FIRST
 block|,
+DECL|enumConstant|SECOND
 name|SECOND
 block|,
+DECL|enumConstant|THIRD
 name|THIRD
 block|;   }
 DECL|enum|OtherOrder
@@ -2339,19 +2339,19 @@ enum|enum
 name|OtherOrder
 block|{
 DECL|enumConstant|FIRST
-DECL|enumConstant|SECOND
-DECL|enumConstant|THIRD
 name|FIRST
 block|,
+DECL|enumConstant|SECOND
 name|SECOND
 block|,
+DECL|enumConstant|THIRD
 name|THIRD
 block|;   }
 comment|// Given a sequence of lock acquisition descriptions
 comment|// (e.g. "LockA -> LockB", "LockB -> LockC", ...)
 comment|// Checks that the exception.getMessage() matches a regex of the form:
 comment|// "LockA -> LockB \b.*\b LockB -> LockC \b.*\b LockC -> LockA"
-DECL|method|checkMessage ( IllegalStateException exception, String... expectedLockCycle)
+DECL|method|checkMessage (IllegalStateException exception, String... expectedLockCycle)
 specifier|private
 name|void
 name|checkMessage

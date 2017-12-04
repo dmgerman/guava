@@ -73,7 +73,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Benchmarks {@link Joiner} against some common implementations of delimiter-based  * string joining.  *  * @author Adomas Paltanavicius  */
+comment|/**  * Benchmarks {@link Joiner} against some common implementations of delimiter-based string joining.  *  * @author Adomas Paltanavicius  */
 end_comment
 
 begin_class
@@ -128,7 +128,6 @@ argument_list|(
 name|DELIMITER_CHARACTER
 argument_list|)
 decl_stmt|;
-DECL|field|count
 annotation|@
 name|Param
 argument_list|(
@@ -140,10 +139,10 @@ block|,
 literal|"300"
 block|}
 argument_list|)
+DECL|field|count
 name|int
 name|count
 decl_stmt|;
-DECL|field|componentLength
 annotation|@
 name|Param
 argument_list|(
@@ -159,6 +158,7 @@ block|,
 literal|"100"
 block|}
 argument_list|)
+DECL|field|componentLength
 name|int
 name|componentLength
 decl_stmt|;
@@ -218,10 +218,10 @@ name|raw
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * {@link Joiner} with a string delimiter.    */
-DECL|method|joinerWithStringDelimiter (int reps)
+comment|/** {@link Joiner} with a string delimiter. */
 annotation|@
 name|Benchmark
+DECL|method|joinerWithStringDelimiter (int reps)
 name|int
 name|joinerWithStringDelimiter
 parameter_list|(
@@ -266,10 +266,10 @@ return|return
 name|dummy
 return|;
 block|}
-comment|/**    * {@link Joiner} with a character delimiter.    */
-DECL|method|joinerWithCharacterDelimiter (int reps)
+comment|/** {@link Joiner} with a character delimiter. */
 annotation|@
 name|Benchmark
+DECL|method|joinerWithCharacterDelimiter (int reps)
 name|int
 name|joinerWithCharacterDelimiter
 parameter_list|(
@@ -314,10 +314,10 @@ return|return
 name|dummy
 return|;
 block|}
-comment|/**    * Mimics what the {@link Joiner} class does internally when no extra options like    * ignoring {@code null} values are used.    */
-DECL|method|joinerInlined (int reps)
+comment|/**    * Mimics what the {@link Joiner} class does internally when no extra options like ignoring {@code    * null} values are used.    */
 annotation|@
 name|Benchmark
+DECL|method|joinerInlined (int reps)
 name|int
 name|joinerInlined
 parameter_list|(
@@ -426,10 +426,10 @@ return|return
 name|dummy
 return|;
 block|}
-comment|/**    * Only appends delimiter if the accumulated string is non-empty.    * Note: this isn't a candidate implementation for Joiner since it fails on leading    * empty components.    */
-DECL|method|stringBuilderIsEmpty (int reps)
+comment|/**    * Only appends delimiter if the accumulated string is non-empty. Note: this isn't a candidate    * implementation for Joiner since it fails on leading empty components.    */
 annotation|@
 name|Benchmark
+DECL|method|stringBuilderIsEmpty (int reps)
 name|int
 name|stringBuilderIsEmpty
 parameter_list|(
@@ -513,10 +513,10 @@ return|return
 name|dummy
 return|;
 block|}
-comment|/**    * Similar to the above, but keeps a boolean flag rather than checking for the string    * accumulated so far being empty. As a result, it does not have the above-mentioned bug.    */
-DECL|method|booleanIfFirst (int reps)
+comment|/**    * Similar to the above, but keeps a boolean flag rather than checking for the string accumulated    * so far being empty. As a result, it does not have the above-mentioned bug.    */
 annotation|@
 name|Benchmark
+DECL|method|booleanIfFirst (int reps)
 name|int
 name|booleanIfFirst
 parameter_list|(
@@ -604,10 +604,10 @@ return|return
 name|dummy
 return|;
 block|}
-comment|/**    * Starts with an empty delimiter and changes to the desired value at the end of the    * iteration.    */
-DECL|method|assignDelimiter (int reps)
+comment|/**    * Starts with an empty delimiter and changes to the desired value at the end of the iteration.    */
 annotation|@
 name|Benchmark
+DECL|method|assignDelimiter (int reps)
 name|int
 name|assignDelimiter
 parameter_list|(
@@ -689,10 +689,10 @@ return|return
 name|dummy
 return|;
 block|}
-comment|/**    * Always append the delimiter after the component, and in the very end shortens the buffer    * to get rid of the extra trailing delimiter.    */
-DECL|method|alwaysAppendThenBackUp (int reps)
+comment|/**    * Always append the delimiter after the component, and in the very end shortens the buffer to get    * rid of the extra trailing delimiter.    */
 annotation|@
 name|Benchmark
+DECL|method|alwaysAppendThenBackUp (int reps)
 name|int
 name|alwaysAppendThenBackUp
 parameter_list|(

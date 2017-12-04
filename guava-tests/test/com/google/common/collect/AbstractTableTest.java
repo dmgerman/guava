@@ -71,7 +71,7 @@ name|AbstractTableTest
 extends|extends
 name|AbstractTableReadTest
 block|{
-DECL|method|populate ( Table<String, Integer, Character> table, Object... data)
+DECL|method|populate (Table<String, Integer, Character> table, Object... data)
 specifier|protected
 name|void
 name|populate
@@ -254,7 +254,7 @@ parameter_list|(
 name|UnsupportedOperationException
 name|expected
 parameter_list|)
-block|{}
+block|{       }
 block|}
 block|}
 DECL|method|testPut ()
@@ -462,7 +462,7 @@ parameter_list|(
 name|NullPointerException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 try|try
 block|{
 name|table
@@ -485,7 +485,7 @@ parameter_list|(
 name|NullPointerException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 if|if
 condition|(
 name|supportsNullValues
@@ -543,7 +543,7 @@ parameter_list|(
 name|NullPointerException
 name|expected
 parameter_list|)
-block|{}
+block|{       }
 block|}
 name|assertSize
 argument_list|(
@@ -642,7 +642,7 @@ parameter_list|(
 name|NullPointerException
 name|expected
 parameter_list|)
-block|{}
+block|{       }
 block|}
 block|}
 DECL|method|testPutAllTable ()
@@ -1026,7 +1026,7 @@ parameter_list|(
 name|UnsupportedOperationException
 name|expected
 parameter_list|)
-block|{}
+block|{       }
 name|assertEquals
 argument_list|(
 operator|(

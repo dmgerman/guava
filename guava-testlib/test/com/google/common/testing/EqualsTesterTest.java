@@ -203,7 +203,7 @@ literal|2
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Test null reference yields error    */
+comment|/** Test null reference yields error */
 DECL|method|testAddNullReference ()
 specifier|public
 name|void
@@ -233,9 +233,9 @@ parameter_list|(
 name|NullPointerException
 name|e
 parameter_list|)
-block|{}
+block|{     }
 block|}
-comment|/**    * Test equalObjects after adding multiple instances at once with a null    */
+comment|/** Test equalObjects after adding multiple instances at once with a null */
 DECL|method|testAddTwoEqualObjectsAtOnceWithNull ()
 specifier|public
 name|void
@@ -266,9 +266,9 @@ parameter_list|(
 name|NullPointerException
 name|e
 parameter_list|)
-block|{}
+block|{     }
 block|}
-comment|/**    * Test adding null equal object yields error    */
+comment|/** Test adding null equal object yields error */
 DECL|method|testAddNullEqualObject ()
 specifier|public
 name|void
@@ -301,9 +301,9 @@ parameter_list|(
 name|NullPointerException
 name|e
 parameter_list|)
-block|{}
+block|{     }
 block|}
-comment|/**    * Test adding objects only by addEqualityGroup, with no reference object    * specified in the constructor.    */
+comment|/**    * Test adding objects only by addEqualityGroup, with no reference object specified in the    * constructor.    */
 DECL|method|testAddEqualObjectWithOArgConstructor ()
 specifier|public
 name|void
@@ -354,7 +354,7 @@ literal|"Should get not equal to equal object error"
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Test EqualsTester with no equals or not equals objects.  This checks    * proper handling of null, incompatible class and reflexive tests    */
+comment|/**    * Test EqualsTester with no equals or not equals objects. This checks proper handling of null,    * incompatible class and reflexive tests    */
 DECL|method|testTestEqualsEmptyLists ()
 specifier|public
 name|void
@@ -374,7 +374,7 @@ name|testEquals
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * Test EqualsTester after populating equalObjects.  This checks proper    * handling of equality and verifies hashCode for valid objects    */
+comment|/**    * Test EqualsTester after populating equalObjects. This checks proper handling of equality and    * verifies hashCode for valid objects    */
 DECL|method|testTestEqualsEqualsObjects ()
 specifier|public
 name|void
@@ -398,7 +398,7 @@ name|testEquals
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * Test proper handling of case where an object is not equal to itself    */
+comment|/** Test proper handling of case where an object is not equal to itself */
 DECL|method|testNonreflexiveEquals ()
 specifier|public
 name|void
@@ -450,7 +450,7 @@ literal|"Should get non-reflexive error"
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Test proper handling where an object tests equal to null    */
+comment|/** Test proper handling where an object tests equal to null */
 DECL|method|testInvalidEqualsNull ()
 specifier|public
 name|void
@@ -502,7 +502,7 @@ literal|"Should get equal to null error"
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Test proper handling where an object incorrectly tests for an    * incompatible class    */
+comment|/** Test proper handling where an object incorrectly tests for an incompatible class */
 DECL|method|testInvalidEqualsIncompatibleClass ()
 specifier|public
 name|void
@@ -554,7 +554,7 @@ literal|"Should get equal to incompatible class error"
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Test proper handling where an object is not equal to one the user has    * said should be equal    */
+comment|/** Test proper handling where an object is not equal to one the user has said should be equal */
 DECL|method|testInvalidNotEqualsEqualObject ()
 specifier|public
 name|void
@@ -610,7 +610,7 @@ literal|"Should get not equal to equal object error"
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Test for an invalid hashCode method, i.e., one that returns different    * value for objects that are equal according to the equals method    */
+comment|/**    * Test for an invalid hashCode method, i.e., one that returns different value for objects that    * are equal according to the equals method    */
 DECL|method|testInvalidHashCode ()
 specifier|public
 name|void
@@ -732,7 +732,7 @@ parameter_list|(
 name|NullPointerException
 name|e
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testNullObjectInEqualityGroup ()
 specifier|public
@@ -1159,7 +1159,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Test class with valid equals and hashCode methods.  Testers created    * with instances of this class should always pass.    */
+comment|/**    * Test class with valid equals and hashCode methods. Testers created with instances of this class    * should always pass.    */
 DECL|class|ValidTestObject
 specifier|private
 specifier|static
@@ -1199,9 +1199,9 @@ operator|=
 name|aspect2
 expr_stmt|;
 block|}
-DECL|method|equals (Object o)
 annotation|@
 name|Override
+DECL|method|equals (Object o)
 specifier|public
 name|boolean
 name|equals
@@ -1262,9 +1262,9 @@ return|return
 literal|true
 return|;
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -1336,9 +1336,9 @@ operator|=
 name|aspect2
 expr_stmt|;
 block|}
-DECL|method|equals (Object o)
 annotation|@
 name|Override
+DECL|method|equals (Object o)
 specifier|public
 name|boolean
 name|equals
@@ -1400,16 +1400,16 @@ literal|true
 return|;
 block|}
 block|}
-comment|/** Test class that violates reflexivity.  It is not equal to itself */
+comment|/** Test class that violates reflexivity. It is not equal to itself */
 DECL|class|NonReflexiveObject
 specifier|private
 specifier|static
 class|class
 name|NonReflexiveObject
 block|{
-DECL|method|equals (Object o)
 annotation|@
 name|Override
+DECL|method|equals (Object o)
 specifier|public
 name|boolean
 name|equals
@@ -1422,9 +1422,9 @@ return|return
 literal|false
 return|;
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -1445,9 +1445,9 @@ specifier|static
 class|class
 name|InvalidEqualsNullObject
 block|{
-DECL|method|equals (Object o)
 annotation|@
 name|Override
+DECL|method|equals (Object o)
 specifier|public
 name|boolean
 name|equals
@@ -1466,9 +1466,9 @@ operator|==
 literal|null
 return|;
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -1479,16 +1479,16 @@ literal|0
 return|;
 block|}
 block|}
-comment|/**    * Test class that returns true even if the test object is of the wrong class    */
+comment|/** Test class that returns true even if the test object is of the wrong class */
 DECL|class|InvalidEqualsIncompatibleClassObject
 specifier|private
 specifier|static
 class|class
 name|InvalidEqualsIncompatibleClassObject
 block|{
-DECL|method|equals (Object o)
 annotation|@
 name|Override
+DECL|method|equals (Object o)
 specifier|public
 name|boolean
 name|equals
@@ -1503,9 +1503,9 @@ operator|!=
 literal|null
 return|;
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -1604,9 +1604,9 @@ return|return
 name|this
 return|;
 block|}
-DECL|method|equals (Object obj)
 annotation|@
 name|Override
+DECL|method|equals (Object obj)
 specifier|public
 name|boolean
 name|equals
@@ -1654,9 +1654,9 @@ return|return
 literal|false
 return|;
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -1666,9 +1666,9 @@ return|return
 literal|0
 return|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString

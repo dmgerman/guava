@@ -113,7 +113,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Benchmark for {@code BaseEncoding} performance.  */
+comment|/** Benchmark for {@code BaseEncoding} performance. */
 end_comment
 
 begin_class
@@ -214,9 +214,9 @@ name|encoding
 expr_stmt|;
 block|}
 block|}
+DECL|field|encoding
 annotation|@
 name|Param
-DECL|field|encoding
 name|EncodingOption
 name|encoding
 decl_stmt|;
@@ -335,9 +335,9 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-DECL|method|encode (int reps)
 annotation|@
 name|Benchmark
+DECL|method|encode (int reps)
 specifier|public
 name|int
 name|encode
@@ -392,9 +392,9 @@ return|return
 name|tmp
 return|;
 block|}
-DECL|method|decode (int reps)
 annotation|@
 name|Benchmark
+DECL|method|decode (int reps)
 specifier|public
 name|int
 name|decode
@@ -449,9 +449,9 @@ return|return
 name|tmp
 return|;
 block|}
-DECL|method|encodingStream (int reps)
 annotation|@
 name|Benchmark
+DECL|method|encodingStream (int reps)
 specifier|public
 name|int
 name|encodingStream
@@ -537,9 +537,9 @@ return|return
 name|tmp
 return|;
 block|}
-DECL|method|decodingStream (int reps)
 annotation|@
 name|Benchmark
+DECL|method|decodingStream (int reps)
 specifier|public
 name|int
 name|decodingStream

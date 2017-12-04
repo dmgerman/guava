@@ -281,9 +281,9 @@ index|]
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Benchmark
 DECL|method|divide (int reps)
-annotation|@
-name|Benchmark
 name|long
 name|divide
 parameter_list|(
@@ -340,9 +340,9 @@ return|return
 name|tmp
 return|;
 block|}
+annotation|@
+name|Benchmark
 DECL|method|remainder (int reps)
-annotation|@
-name|Benchmark
 name|long
 name|remainder
 parameter_list|(
@@ -399,9 +399,9 @@ return|return
 name|tmp
 return|;
 block|}
-DECL|method|parseUnsignedLong (int reps)
 annotation|@
 name|Benchmark
+DECL|method|parseUnsignedLong (int reps)
 name|long
 name|parseUnsignedLong
 parameter_list|(
@@ -492,9 +492,9 @@ return|return
 name|tmp
 return|;
 block|}
-DECL|method|parseDecode10 (int reps)
 annotation|@
 name|Benchmark
+DECL|method|parseDecode10 (int reps)
 name|long
 name|parseDecode10
 parameter_list|(
@@ -546,9 +546,9 @@ return|return
 name|tmp
 return|;
 block|}
-DECL|method|parseDecode16 (int reps)
 annotation|@
 name|Benchmark
+DECL|method|parseDecode16 (int reps)
 name|long
 name|parseDecode16
 parameter_list|(
@@ -600,9 +600,9 @@ return|return
 name|tmp
 return|;
 block|}
-DECL|method|toString (int reps)
 annotation|@
 name|Benchmark
+DECL|method|toString (int reps)
 name|int
 name|toString
 parameter_list|(

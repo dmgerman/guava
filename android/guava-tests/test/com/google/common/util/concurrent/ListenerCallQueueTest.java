@@ -199,7 +199,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests for {@link ListenerCallQueue}.  */
+comment|/** Tests for {@link ListenerCallQueue}. */
 end_comment
 
 begin_class

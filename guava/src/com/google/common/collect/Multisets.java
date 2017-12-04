@@ -321,7 +321,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Provides static utility methods for creating and working with {@link  * Multiset} instances.  *  *<p>See the Guava User Guide article on<a href=  * "https://github.com/google/guava/wiki/CollectionUtilitiesExplained#multisets">  * {@code Multisets}</a>.  *  * @author Kevin Bourrillion  * @author Mike Bostock  * @author Louis Wasserman  * @since 2.0  */
+comment|/**  * Provides static utility methods for creating and working with {@link Multiset} instances.  *  *<p>See the Guava User Guide article on<a href=  * "https://github.com/google/guava/wiki/CollectionUtilitiesExplained#multisets"> {@code  * Multisets}</a>.  *  * @author Kevin Bourrillion  * @author Mike Bostock  * @author Louis Wasserman  * @since 2.0  */
 end_comment
 
 begin_class
@@ -477,7 +477,7 @@ end_class
 
 begin_comment
 unit|}
-comment|/**    * Returns an unmodifiable view of the specified multiset. Query operations on    * the returned multiset "read through" to the specified multiset, and    * attempts to modify the returned multiset result in an    * {@link UnsupportedOperationException}.    *    *<p>The returned multiset will be serializable if the specified multiset is    * serializable.    *    * @param multiset the multiset for which an unmodifiable view is to be    *     generated    * @return an unmodifiable view of the multiset    */
+comment|/**    * Returns an unmodifiable view of the specified multiset. Query operations on the returned    * multiset "read through" to the specified multiset, and attempts to modify the returned multiset    * result in an {@link UnsupportedOperationException}.    *    *<p>The returned multiset will be serializable if the specified multiset is serializable.    *    * @param multiset the multiset for which an unmodifiable view is to be generated    * @return an unmodifiable view of the multiset    */
 end_comment
 
 begin_function
@@ -1031,7 +1031,7 @@ block|}
 end_class
 
 begin_comment
-comment|/**    * Returns an unmodifiable view of the specified sorted multiset. Query    * operations on the returned multiset "read through" to the specified    * multiset, and attempts to modify the returned multiset result in an {@link    * UnsupportedOperationException}.    *    *<p>The returned multiset will be serializable if the specified multiset is    * serializable.    *    * @param sortedMultiset the sorted multiset for which an unmodifiable view is    *     to be generated    * @return an unmodifiable view of the multiset    * @since 11.0    */
+comment|/**    * Returns an unmodifiable view of the specified sorted multiset. Query operations on the returned    * multiset "read through" to the specified multiset, and attempts to modify the returned multiset    * result in an {@link UnsupportedOperationException}.    *    *<p>The returned multiset will be serializable if the specified multiset is serializable.    *    * @param sortedMultiset the sorted multiset for which an unmodifiable view is to be generated    * @return an unmodifiable view of the multiset    * @since 11.0    */
 end_comment
 
 begin_function
@@ -1074,7 +1074,7 @@ block|}
 end_function
 
 begin_comment
-comment|/**    * Returns an immutable multiset entry with the specified element and count.    * The entry will be serializable if {@code e} is.    *    * @param e the element to be associated with the returned entry    * @param n the count to be associated with the returned entry    * @throws IllegalArgumentException if {@code n} is negative    */
+comment|/**    * Returns an immutable multiset entry with the specified element and count. The entry will be    * serializable if {@code e} is.    *    * @param e the element to be associated with the returned entry    * @param n the count to be associated with the returned entry    * @throws IllegalArgumentException if {@code n} is negative    */
 end_comment
 
 begin_function
@@ -1232,7 +1232,7 @@ block|}
 end_class
 
 begin_comment
-comment|/**    * Returns a view of the elements of {@code unfiltered} that satisfy a predicate. The returned    * multiset is a live view of {@code unfiltered}; changes to one affect the other.    *    *<p>The resulting multiset's iterators, and those of its {@code entrySet()} and    * {@code elementSet()}, do not support {@code remove()}.  However, all other multiset methods    * supported by {@code unfiltered} are supported by the returned multiset. When given an element    * that doesn't satisfy the predicate, the multiset's {@code add()} and {@code addAll()} methods    * throw an {@link IllegalArgumentException}. When methods such as {@code removeAll()} and    * {@code clear()} are called on the filtered multiset, only elements that satisfy the filter    * will be removed from the underlying multiset.    *    *<p>The returned multiset isn't threadsafe or serializable, even if {@code unfiltered} is.    *    *<p>Many of the filtered multiset's methods, such as {@code size()}, iterate across every    * element in the underlying multiset and determine which elements satisfy the filter. When a    * live view is<i>not</i> needed, it may be faster to copy the returned multiset and use the    * copy.    *    *<p><b>Warning:</b> {@code predicate} must be<i>consistent with equals</i>, as documented at    * {@link Predicate#apply}. Do not provide a predicate such as    * {@code Predicates.instanceOf(ArrayList.class)}, which is inconsistent with equals. (See    * {@link Iterables#filter(Iterable, Class)} for related functionality.)    *    * @since 14.0    */
+comment|/**    * Returns a view of the elements of {@code unfiltered} that satisfy a predicate. The returned    * multiset is a live view of {@code unfiltered}; changes to one affect the other.    *    *<p>The resulting multiset's iterators, and those of its {@code entrySet()} and {@code    * elementSet()}, do not support {@code remove()}. However, all other multiset methods supported    * by {@code unfiltered} are supported by the returned multiset. When given an element that    * doesn't satisfy the predicate, the multiset's {@code add()} and {@code addAll()} methods throw    * an {@link IllegalArgumentException}. When methods such as {@code removeAll()} and {@code    * clear()} are called on the filtered multiset, only elements that satisfy the filter will be    * removed from the underlying multiset.    *    *<p>The returned multiset isn't threadsafe or serializable, even if {@code unfiltered} is.    *    *<p>Many of the filtered multiset's methods, such as {@code size()}, iterate across every    * element in the underlying multiset and determine which elements satisfy the filter. When a live    * view is<i>not</i> needed, it may be faster to copy the returned multiset and use the copy.    *    *<p><b>Warning:</b> {@code predicate} must be<i>consistent with equals</i>, as documented at    * {@link Predicate#apply}. Do not provide a predicate such as {@code    * Predicates.instanceOf(ArrayList.class)}, which is inconsistent with equals. (See {@link    * Iterables#filter(Iterable, Class)} for related functionality.)    *    * @since 14.0    */
 end_comment
 
 begin_function
@@ -1737,7 +1737,7 @@ block|}
 end_class
 
 begin_comment
-comment|/**    * Returns the expected number of distinct elements given the specified    * elements. The number of distinct elements is only computed if {@code    * elements} is an instance of {@code Multiset}; otherwise the default value    * of 11 is returned.    */
+comment|/**    * Returns the expected number of distinct elements given the specified elements. The number of    * distinct elements is only computed if {@code elements} is an instance of {@code Multiset};    * otherwise the default value of 11 is returned.    */
 end_comment
 
 begin_function
@@ -1786,7 +1786,7 @@ block|}
 end_function
 
 begin_comment
-comment|/**    * Returns an unmodifiable view of the union of two multisets.    * In the returned multiset, the count of each element is the<i>maximum</i>    * of its counts in the two backing multisets. The iteration order of the    * returned multiset matches that of the element set of {@code multiset1}    * followed by the members of the element set of {@code multiset2} that are    * not contained in {@code multiset1}, with repeated occurrences of the same    * element appearing consecutively.    *    *<p>Results are undefined if {@code multiset1} and {@code multiset2} are    * based on different equivalence relations (as {@code HashMultiset} and    * {@code TreeMultiset} are).    *    * @since 14.0    */
+comment|/**    * Returns an unmodifiable view of the union of two multisets. In the returned multiset, the count    * of each element is the<i>maximum</i> of its counts in the two backing multisets. The iteration    * order of the returned multiset matches that of the element set of {@code multiset1} followed by    * the members of the element set of {@code multiset2} that are not contained in {@code    * multiset1}, with repeated occurrences of the same element appearing consecutively.    *    *<p>Results are undefined if {@code multiset1} and {@code multiset2} are based on different    * equivalence relations (as {@code HashMultiset} and {@code TreeMultiset} are).    *    * @since 14.0    */
 end_comment
 
 begin_function
@@ -2162,7 +2162,7 @@ block|}
 end_function
 
 begin_comment
-comment|/**    * Returns an unmodifiable view of the intersection of two multisets.    * In the returned multiset, the count of each element is the<i>minimum</i>    * of its counts in the two backing multisets, with elements that would have    * a count of 0 not included. The iteration order of the returned multiset    * matches that of the element set of {@code multiset1}, with repeated    * occurrences of the same element appearing consecutively.    *    *<p>Results are undefined if {@code multiset1} and {@code multiset2} are    * based on different equivalence relations (as {@code HashMultiset} and    * {@code TreeMultiset} are).    *    * @since 2.0    */
+comment|/**    * Returns an unmodifiable view of the intersection of two multisets. In the returned multiset,    * the count of each element is the<i>minimum</i> of its counts in the two backing multisets,    * with elements that would have a count of 0 not included. The iteration order of the returned    * multiset matches that of the element set of {@code multiset1}, with repeated occurrences of the    * same element appearing consecutively.    *    *<p>Results are undefined if {@code multiset1} and {@code multiset2} are based on different    * equivalence relations (as {@code HashMultiset} and {@code TreeMultiset} are).    *    * @since 2.0    */
 end_comment
 
 begin_function
@@ -2425,7 +2425,7 @@ block|}
 end_function
 
 begin_comment
-comment|/**    * Returns an unmodifiable view of the sum of two multisets.    * In the returned multiset, the count of each element is the<i>sum</i> of    * its counts in the two backing multisets. The iteration order of the    * returned multiset matches that of the element set of {@code multiset1}    * followed by the members of the element set of {@code multiset2} that    * are not contained in {@code multiset1}, with repeated occurrences of the    * same element appearing consecutively.    *    *<p>Results are undefined if {@code multiset1} and {@code multiset2} are    * based on different equivalence relations (as {@code HashMultiset} and    * {@code TreeMultiset} are).    *    * @since 14.0    */
+comment|/**    * Returns an unmodifiable view of the sum of two multisets. In the returned multiset, the count    * of each element is the<i>sum</i> of its counts in the two backing multisets. The iteration    * order of the returned multiset matches that of the element set of {@code multiset1} followed by    * the members of the element set of {@code multiset2} that are not contained in {@code    * multiset1}, with repeated occurrences of the same element appearing consecutively.    *    *<p>Results are undefined if {@code multiset1} and {@code multiset2} are based on different    * equivalence relations (as {@code HashMultiset} and {@code TreeMultiset} are).    *    * @since 14.0    */
 end_comment
 
 begin_function
@@ -2815,7 +2815,7 @@ block|}
 end_function
 
 begin_comment
-comment|/**    * Returns an unmodifiable view of the difference of two multisets.    * In the returned multiset, the count of each element is the result of the    *<i>zero-truncated subtraction</i> of its count in the second multiset from    * its count in the first multiset, with elements that would have a count of    * 0 not included. The iteration order of the returned multiset matches that    * of the element set of {@code multiset1}, with repeated occurrences of the    * same element appearing consecutively.    *    *<p>Results are undefined if {@code multiset1} and {@code multiset2} are    * based on different equivalence relations (as {@code HashMultiset} and    * {@code TreeMultiset} are).    *    * @since 14.0    */
+comment|/**    * Returns an unmodifiable view of the difference of two multisets. In the returned multiset, the    * count of each element is the result of the<i>zero-truncated subtraction</i> of its count in    * the second multiset from its count in the first multiset, with elements that would have a count    * of 0 not included. The iteration order of the returned multiset matches that of the element set    * of {@code multiset1}, with repeated occurrences of the same element appearing consecutively.    *    *<p>Results are undefined if {@code multiset1} and {@code multiset2} are based on different    * equivalence relations (as {@code HashMultiset} and {@code TreeMultiset} are).    *    * @since 14.0    */
 end_comment
 
 begin_function
@@ -3055,7 +3055,7 @@ block|}
 end_function
 
 begin_comment
-comment|/**    * Returns {@code true} if {@code subMultiset.count(o)<=    * superMultiset.count(o)} for all {@code o}.    *    * @since 10.0    */
+comment|/**    * Returns {@code true} if {@code subMultiset.count(o)<= superMultiset.count(o)} for all {@code    * o}.    *    * @since 10.0    */
 end_comment
 
 begin_function
@@ -3139,7 +3139,7 @@ block|}
 end_function
 
 begin_comment
-comment|/**    * Modifies {@code multisetToModify} so that its count for an element    * {@code e} is at most {@code multisetToRetain.count(e)}.    *    *<p>To be precise, {@code multisetToModify.count(e)} is set to    * {@code Math.min(multisetToModify.count(e),    * multisetToRetain.count(e))}. This is similar to    * {@link #intersection(Multiset, Multiset) intersection}    * {@code (multisetToModify, multisetToRetain)}, but mutates    * {@code multisetToModify} instead of returning a view.    *    *<p>In contrast, {@code multisetToModify.retainAll(multisetToRetain)} keeps    * all occurrences of elements that appear at all in {@code    * multisetToRetain}, and deletes all occurrences of all other elements.    *    * @return {@code true} if {@code multisetToModify} was changed as a result    *         of this operation    * @since 10.0    */
+comment|/**    * Modifies {@code multisetToModify} so that its count for an element {@code e} is at most {@code    * multisetToRetain.count(e)}.    *    *<p>To be precise, {@code multisetToModify.count(e)} is set to {@code    * Math.min(multisetToModify.count(e), multisetToRetain.count(e))}. This is similar to {@link    * #intersection(Multiset, Multiset) intersection} {@code (multisetToModify, multisetToRetain)},    * but mutates {@code multisetToModify} instead of returning a view.    *    *<p>In contrast, {@code multisetToModify.retainAll(multisetToRetain)} keeps all occurrences of    * elements that appear at all in {@code multisetToRetain}, and deletes all occurrences of all    * other elements.    *    * @return {@code true} if {@code multisetToModify} was changed as a result of this operation    * @since 10.0    */
 end_comment
 
 begin_function
@@ -3176,7 +3176,7 @@ block|}
 end_function
 
 begin_comment
-comment|/**    * Delegate implementation which cares about the element type.    */
+comment|/** Delegate implementation which cares about the element type. */
 end_comment
 
 begin_function
@@ -3320,7 +3320,7 @@ block|}
 end_function
 
 begin_comment
-comment|/**    * For each occurrence of an element {@code e} in {@code occurrencesToRemove},    * removes one occurrence of {@code e} in {@code multisetToModify}.    *    *<p>Equivalently, this method modifies {@code multisetToModify} so that    * {@code multisetToModify.count(e)} is set to    * {@code Math.max(0, multisetToModify.count(e) -    * Iterables.frequency(occurrencesToRemove, e))}.    *    *<p>This is<i>not</i> the same as {@code multisetToModify.}    * {@link Multiset#removeAll removeAll}{@code (occurrencesToRemove)}, which    * removes all occurrences of elements that appear in    * {@code occurrencesToRemove}. However, this operation<i>is</i> equivalent    * to, albeit sometimes more efficient than, the following:<pre>   {@code    *    *   for (E e : occurrencesToRemove) {    *     multisetToModify.remove(e);    *   }}</pre>    *    * @return {@code true} if {@code multisetToModify} was changed as a result of    *         this operation    * @since 18.0 (present in 10.0 with a requirement that the second parameter    *     be a {@code Multiset})    */
+comment|/**    * For each occurrence of an element {@code e} in {@code occurrencesToRemove}, removes one    * occurrence of {@code e} in {@code multisetToModify}.    *    *<p>Equivalently, this method modifies {@code multisetToModify} so that {@code    * multisetToModify.count(e)} is set to {@code Math.max(0, multisetToModify.count(e) -    * Iterables.frequency(occurrencesToRemove, e))}.    *    *<p>This is<i>not</i> the same as {@code multisetToModify.} {@link Multiset#removeAll    * removeAll}{@code (occurrencesToRemove)}, which removes all occurrences of elements that appear    * in {@code occurrencesToRemove}. However, this operation<i>is</i> equivalent to, albeit    * sometimes more efficient than, the following:    *    *<pre>{@code    * for (E e : occurrencesToRemove) {    *   multisetToModify.remove(e);    * }    * }</pre>    *    * @return {@code true} if {@code multisetToModify} was changed as a result of this operation    * @since 18.0 (present in 10.0 with a requirement that the second parameter be a {@code    *     Multiset})    */
 end_comment
 
 begin_function
@@ -3410,7 +3410,7 @@ block|}
 end_function
 
 begin_comment
-comment|/**    * For each occurrence of an element {@code e} in {@code occurrencesToRemove},    * removes one occurrence of {@code e} in {@code multisetToModify}.    *    *<p>Equivalently, this method modifies {@code multisetToModify} so that    * {@code multisetToModify.count(e)} is set to    * {@code Math.max(0, multisetToModify.count(e) -    * occurrencesToRemove.count(e))}.    *    *<p>This is<i>not</i> the same as {@code multisetToModify.}    * {@link Multiset#removeAll removeAll}{@code (occurrencesToRemove)}, which    * removes all occurrences of elements that appear in    * {@code occurrencesToRemove}. However, this operation<i>is</i> equivalent    * to, albeit sometimes more efficient than, the following:<pre>   {@code    *    *   for (E e : occurrencesToRemove) {    *     multisetToModify.remove(e);    *   }}</pre>    *    * @return {@code true} if {@code multisetToModify} was changed as a result of    *         this operation    * @since 10.0 (missing in 18.0 when only the overload taking an {@code Iterable} was present)    */
+comment|/**    * For each occurrence of an element {@code e} in {@code occurrencesToRemove}, removes one    * occurrence of {@code e} in {@code multisetToModify}.    *    *<p>Equivalently, this method modifies {@code multisetToModify} so that {@code    * multisetToModify.count(e)} is set to {@code Math.max(0, multisetToModify.count(e) -    * occurrencesToRemove.count(e))}.    *    *<p>This is<i>not</i> the same as {@code multisetToModify.} {@link Multiset#removeAll    * removeAll}{@code (occurrencesToRemove)}, which removes all occurrences of elements that appear    * in {@code occurrencesToRemove}. However, this operation<i>is</i> equivalent to, albeit    * sometimes more efficient than, the following:    *    *<pre>{@code    * for (E e : occurrencesToRemove) {    *   multisetToModify.remove(e);    * }    * }</pre>    *    * @return {@code true} if {@code multisetToModify} was changed as a result of this operation    * @since 10.0 (missing in 18.0 when only the overload taking an {@code Iterable} was present)    */
 end_comment
 
 begin_function
@@ -3554,7 +3554,7 @@ block|}
 end_function
 
 begin_comment
-comment|/**    * Implementation of the {@code equals}, {@code hashCode}, and    * {@code toString} methods of {@link Multiset.Entry}.    */
+comment|/**    * Implementation of the {@code equals}, {@code hashCode}, and {@code toString} methods of {@link    * Multiset.Entry}.    */
 end_comment
 
 begin_class
@@ -3574,7 +3574,7 @@ argument_list|<
 name|E
 argument_list|>
 block|{
-comment|/**      * Indicates whether an object equals this entry, following the behavior      * specified in {@link Multiset.Entry#equals}.      */
+comment|/**      * Indicates whether an object equals this entry, following the behavior specified in {@link      * Multiset.Entry#equals}.      */
 annotation|@
 name|Override
 DECL|method|equals (@ullable Object object)
@@ -3646,7 +3646,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/**      * Return this entry's hash code, following the behavior specified in      * {@link Multiset.Entry#hashCode}.      */
+comment|/**      * Return this entry's hash code, following the behavior specified in {@link      * Multiset.Entry#hashCode}.      */
 annotation|@
 name|Override
 DECL|method|hashCode ()
@@ -3681,7 +3681,7 @@ name|getCount
 argument_list|()
 return|;
 block|}
-comment|/**      * Returns a string representation of this multiset entry. The string      * representation consists of the associated element if the associated count      * is one, and otherwise the associated element followed by the characters      * " x " (space, x and space) followed by the count. Elements and counts are      * converted to strings as by {@code String.valueOf}.      */
+comment|/**      * Returns a string representation of this multiset entry. The string representation consists of      * the associated element if the associated count is one, and otherwise the associated element      * followed by the characters " x " (space, x and space) followed by the count. Elements and      * counts are converted to strings as by {@code String.valueOf}.      */
 annotation|@
 name|Override
 DECL|method|toString ()
@@ -3729,7 +3729,7 @@ block|}
 end_class
 
 begin_comment
-comment|/**    * An implementation of {@link Multiset#equals}.    */
+comment|/** An implementation of {@link Multiset#equals}. */
 end_comment
 
 begin_function
@@ -3864,7 +3864,7 @@ block|}
 end_function
 
 begin_comment
-comment|/**    * An implementation of {@link Multiset#addAll}.    */
+comment|/** An implementation of {@link Multiset#addAll}. */
 end_comment
 
 begin_function
@@ -3978,7 +3978,7 @@ block|}
 end_function
 
 begin_comment
-comment|/**    * An implementation of {@link Multiset#removeAll}.    */
+comment|/** An implementation of {@link Multiset#removeAll}. */
 end_comment
 
 begin_function
@@ -4042,7 +4042,7 @@ block|}
 end_function
 
 begin_comment
-comment|/**    * An implementation of {@link Multiset#retainAll}.    */
+comment|/** An implementation of {@link Multiset#retainAll}. */
 end_comment
 
 begin_function
@@ -4111,7 +4111,7 @@ block|}
 end_function
 
 begin_comment
-comment|/**    * An implementation of {@link Multiset#setCount(Object, int)}.    */
+comment|/** An implementation of {@link Multiset#setCount(Object, int)}. */
 end_comment
 
 begin_function
@@ -4203,7 +4203,7 @@ block|}
 end_function
 
 begin_comment
-comment|/**    * An implementation of {@link Multiset#setCount(Object, int, int)}.    */
+comment|/** An implementation of {@link Multiset#setCount(Object, int, int)}. */
 end_comment
 
 begin_function
@@ -4713,7 +4713,7 @@ block|}
 end_class
 
 begin_comment
-comment|/**    * An implementation of {@link Multiset#iterator}.    */
+comment|/** An implementation of {@link Multiset#iterator}. */
 end_comment
 
 begin_function
@@ -5075,7 +5075,7 @@ block|}
 end_function
 
 begin_comment
-comment|/**    * An implementation of {@link Multiset#size}.    */
+comment|/** An implementation of {@link Multiset#size}. */
 end_comment
 
 begin_function
@@ -5130,7 +5130,7 @@ block|}
 end_function
 
 begin_comment
-comment|/**    * Used to avoid http://bugs.sun.com/view_bug.do?bug_id=6558557    */
+comment|/** Used to avoid http://bugs.sun.com/view_bug.do?bug_id=6558557 */
 end_comment
 
 begin_function
@@ -5271,9 +5271,9 @@ operator|new
 name|DecreasingCount
 argument_list|()
 decl_stmt|;
-DECL|method|compare (Entry<?> entry1, Entry<?> entry2)
 annotation|@
 name|Override
+DECL|method|compare (Entry<?> entry1, Entry<?> entry2)
 specifier|public
 name|int
 name|compare

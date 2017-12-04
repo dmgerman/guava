@@ -239,7 +239,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A generic JUnit test which tests operations on a NavigableSet. Can't be  * invoked directly; please see {@code NavigableSetTestSuiteBuilder}.  *  * @author Jesse Wilson  * @author Louis Wasserman  */
+comment|/**  * A generic JUnit test which tests operations on a NavigableSet. Can't be invoked directly; please  * see {@code NavigableSetTestSuiteBuilder}.  *  * @author Jesse Wilson  * @author Louis Wasserman  */
 end_comment
 
 begin_class
@@ -400,7 +400,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**    * Resets the contents of navigableSet to have elements a, c, for the    * navigation tests.    */
+comment|/** Resets the contents of navigableSet to have elements a, c, for the navigation tests. */
 DECL|method|resetWithHole ()
 specifier|protected
 name|void

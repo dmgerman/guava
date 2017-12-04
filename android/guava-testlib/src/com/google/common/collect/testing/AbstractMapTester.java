@@ -95,7 +95,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Base class for map testers.  *  * TODO: see how much of this is actually needed once Map testers are written.  * (It was cloned from AbstractCollectionTester.)  *  * @param<K> the key type of the map to be tested.  * @param<V> the value type of the map to be tested.  *  * @author George van den Driessche  */
+comment|/**  * Base class for map testers.  *  *<p>TODO: see how much of this is actually needed once Map testers are written. (It was cloned  * from AbstractCollectionTester.)  *  * @param<K> the key type of the map to be tested.  * @param<V> the value type of the map to be tested.  * @author George van den Driessche  */
 end_comment
 
 begin_class
@@ -250,7 +250,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * @return an array of the proper size with {@code null} as the key of the    * middle element.    */
+comment|/** @return an array of the proper size with {@code null} as the key of the middle element. */
 DECL|method|createArrayWithNullKey ()
 specifier|protected
 name|Entry
@@ -400,7 +400,7 @@ name|next
 argument_list|()
 return|;
 block|}
-comment|/**    * @return an array of the proper size with {@code null} as the value of the    * middle element.    */
+comment|/** @return an array of the proper size with {@code null} as the value of the middle element. */
 DECL|method|createArrayWithNullValue ()
 specifier|protected
 name|Entry
@@ -491,7 +491,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Equivalent to {@link #expectMissingKeys(Object[]) expectMissingKeys}    * {@code (null)}    * except that the call to {@code contains(null)} is permitted to throw a    * {@code NullPointerException}.    * @param message message to use upon assertion failure    */
+comment|/**    * Equivalent to {@link #expectMissingKeys(Object[]) expectMissingKeys} {@code (null)} except that    * the call to {@code contains(null)} is permitted to throw a {@code NullPointerException}.    *    * @param message message to use upon assertion failure    */
 DECL|method|expectNullKeyMissingWhenNullKeysUnsupported (String message)
 specifier|protected
 name|void
@@ -526,7 +526,7 @@ block|{
 comment|// Tolerated
 block|}
 block|}
-comment|/**    * Equivalent to {@link #expectMissingValues(Object[]) expectMissingValues}    * {@code (null)}    * except that the call to {@code contains(null)} is permitted to throw a    * {@code NullPointerException}.    * @param message message to use upon assertion failure    */
+comment|/**    * Equivalent to {@link #expectMissingValues(Object[]) expectMissingValues} {@code (null)} except    * that the call to {@code contains(null)} is permitted to throw a {@code NullPointerException}.    *    * @param message message to use upon assertion failure    */
 DECL|method|expectNullValueMissingWhenNullValuesUnsupported (String message)
 specifier|protected
 name|void
@@ -1009,7 +1009,7 @@ argument_list|)
 argument_list|)
 throw|;
 block|}
-comment|/**    * Wrapper for {@link Map#get(Object)} that forces the caller to pass in a key    * of the same type as the map. Besides being slightly shorter than code that    * uses {@link #getMap()}, it also ensures that callers don't pass an    * {@link Entry} by mistake.    */
+comment|/**    * Wrapper for {@link Map#get(Object)} that forces the caller to pass in a key of the same type as    * the map. Besides being slightly shorter than code that uses {@link #getMap()}, it also ensures    * that callers don't pass an {@link Entry} by mistake.    */
 DECL|method|get (K key)
 specifier|protected
 name|V

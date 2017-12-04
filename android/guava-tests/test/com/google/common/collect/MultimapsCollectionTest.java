@@ -854,7 +854,7 @@ return|;
 block|}
 block|}
 decl_stmt|;
-DECL|method|populateMultimapForGet ( Multimap<Integer, String> multimap, String[] elements)
+DECL|method|populateMultimapForGet (Multimap<Integer, String> multimap, String[] elements)
 specifier|static
 name|void
 name|populateMultimapForGet
@@ -900,7 +900,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-DECL|method|populateMultimapForKeySet ( Multimap<String, Integer> multimap, String[] elements)
+DECL|method|populateMultimapForKeySet (Multimap<String, Integer> multimap, String[] elements)
 specifier|static
 name|void
 name|populateMultimapForKeySet
@@ -946,7 +946,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-DECL|method|populateMultimapForValues ( Multimap<Integer, String> multimap, String[] elements)
+DECL|method|populateMultimapForValues (Multimap<Integer, String> multimap, String[] elements)
 specifier|static
 name|void
 name|populateMultimapForValues
@@ -997,7 +997,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-DECL|method|populateMultimapForKeys ( Multimap<String, Integer> multimap, String[] elements)
+DECL|method|populateMultimapForKeys (Multimap<String, Integer> multimap, String[] elements)
 specifier|static
 name|void
 name|populateMultimapForKeys
@@ -1046,7 +1046,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Implements {@code Multimap.put()} -- and no other methods -- for a {@code    * Map} by ignoring all but the latest value for each key. This class exists    * only so that we can use    * {@link MultimapsCollectionTest#populateMultimapForGet(Multimap, String[])}    * and similar methods to populate a map to be passed to    * {@link Multimaps#forMap(Map)}. All tests should run against the result of    * {@link #build()}.    */
+comment|/**    * Implements {@code Multimap.put()} -- and no other methods -- for a {@code Map} by ignoring all    * but the latest value for each key. This class exists only so that we can use {@link    * MultimapsCollectionTest#populateMultimapForGet(Multimap, String[])} and similar methods to    * populate a map to be passed to {@link Multimaps#forMap(Map)}. All tests should run against the    * result of {@link #build()}.    */
 DECL|class|PopulatableMapAsMultimap
 specifier|private
 specifier|static
@@ -1192,9 +1192,9 @@ block|}
 block|)
 empty_stmt|;
 block|}
-DECL|method|delegate ()
 annotation|@
 name|Override
+DECL|method|delegate ()
 specifier|protected
 name|Multimap
 argument_list|<
@@ -1209,9 +1209,9 @@ return|return
 name|unusableDelegate
 return|;
 block|}
-DECL|method|put (K key, V value)
 annotation|@
 name|Override
+DECL|method|put (K key, V value)
 specifier|public
 name|boolean
 name|put
@@ -1485,7 +1485,7 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|order ( List<Entry<String, Integer>> insertionOrder)
+DECL|method|order (List<Entry<String, Integer>> insertionOrder)
 specifier|public
 name|List
 argument_list|<
@@ -1537,9 +1537,9 @@ name|Integer
 argument_list|>
 argument_list|>
 block|{
-DECL|method|create (Object... elements)
 annotation|@
 name|Override
+DECL|method|create (Object... elements)
 specifier|public
 name|List
 argument_list|<
@@ -2132,8 +2132,8 @@ end_function
 
 begin_class
 DECL|class|TransformedMultimapGenerator
-specifier|static
 specifier|abstract
+specifier|static
 class|class
 name|TransformedMultimapGenerator
 parameter_list|<
@@ -2591,8 +2591,8 @@ end_class
 
 begin_class
 DECL|class|TransformedListMultimapGenerator
-specifier|static
 specifier|abstract
+specifier|static
 class|class
 name|TransformedListMultimapGenerator
 extends|extends
@@ -2612,7 +2612,7 @@ name|String
 argument_list|,
 name|String
 argument_list|>
-block|{   }
+block|{}
 end_class
 
 begin_function
@@ -2981,8 +2981,8 @@ end_function
 
 begin_class
 DECL|class|TestFilteredMultimapGenerator
-specifier|static
 specifier|abstract
+specifier|static
 class|class
 name|TestFilteredMultimapGenerator
 parameter_list|<
@@ -3225,8 +3225,8 @@ end_class
 
 begin_class
 DECL|class|FilteredSetMultimapGenerator
-specifier|static
 specifier|abstract
+specifier|static
 class|class
 name|FilteredSetMultimapGenerator
 extends|extends
@@ -3383,8 +3383,8 @@ end_class
 
 begin_class
 DECL|class|FilteredListMultimapGenerator
-specifier|static
 specifier|abstract
+specifier|static
 class|class
 name|FilteredListMultimapGenerator
 extends|extends

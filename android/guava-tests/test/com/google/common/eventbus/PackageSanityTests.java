@@ -155,7 +155,7 @@ name|Nullable
 name|Object
 name|anything
 parameter_list|)
-block|{     }
+block|{}
 DECL|method|toSubscriber ()
 name|Subscriber
 name|toSubscriber

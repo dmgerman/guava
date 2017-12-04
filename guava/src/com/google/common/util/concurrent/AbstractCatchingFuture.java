@@ -66,24 +66,6 @@ name|concurrent
 operator|.
 name|MoreExecutors
 operator|.
-name|directExecutor
-import|;
-end_import
-
-begin_import
-import|import static
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|util
-operator|.
-name|concurrent
-operator|.
-name|MoreExecutors
-operator|.
 name|rejectionPropagatingExecutor
 import|;
 end_import
@@ -183,7 +165,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Implementations of {@code Futures.catching*}.  */
+comment|/** Implementations of {@code Futures.catching*}. */
 end_comment
 
 begin_class
@@ -781,7 +763,7 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
-comment|/**    * An {@link AbstractCatchingFuture} that delegates to an {@link AsyncFunction} and    * {@link #setFuture(ListenableFuture)}.    */
+comment|/**    * An {@link AbstractCatchingFuture} that delegates to an {@link AsyncFunction} and {@link    * #setFuture(ListenableFuture)}.    */
 DECL|class|AsyncCatchingFuture
 specifier|private
 specifier|static

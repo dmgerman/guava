@@ -445,9 +445,9 @@ name|DoublesAsListGenerator
 extends|extends
 name|TestDoubleListGenerator
 block|{
-DECL|method|create (Double[] elements)
 annotation|@
 name|Override
+DECL|method|create (Double[] elements)
 specifier|protected
 name|List
 argument_list|<
@@ -477,9 +477,9 @@ name|DoublsAsListHeadSubListGenerator
 extends|extends
 name|TestDoubleListGenerator
 block|{
-DECL|method|create (Double[] elements)
 annotation|@
 name|Override
+DECL|method|create (Double[] elements)
 specifier|protected
 name|List
 argument_list|<
@@ -543,9 +543,9 @@ name|DoublesAsListTailSubListGenerator
 extends|extends
 name|TestDoubleListGenerator
 block|{
-DECL|method|create (Double[] elements)
 annotation|@
 name|Override
+DECL|method|create (Double[] elements)
 specifier|protected
 name|List
 argument_list|<
@@ -613,9 +613,9 @@ name|DoublesAsListMiddleSubListGenerator
 extends|extends
 name|TestDoubleListGenerator
 block|{
-DECL|method|create (Double[] elements)
 annotation|@
 name|Override
+DECL|method|create (Double[] elements)
 specifier|protected
 name|List
 argument_list|<
@@ -767,8 +767,8 @@ return|;
 block|}
 DECL|class|TestDoubleListGenerator
 specifier|public
-specifier|static
 specifier|abstract
+specifier|static
 class|class
 name|TestDoubleListGenerator
 implements|implements
@@ -853,7 +853,7 @@ name|array
 argument_list|)
 return|;
 block|}
-comment|/**      * Creates a new collection containing the given elements; implement this      * method instead of {@link #create(Object...)}.      */
+comment|/**      * Creates a new collection containing the given elements; implement this method instead of      * {@link #create(Object...)}.      */
 DECL|method|create (Double[] elements)
 specifier|protected
 specifier|abstract

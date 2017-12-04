@@ -740,9 +740,9 @@ literal|"blah"
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|getTestInstances ()
 annotation|@
 name|Override
+DECL|method|getTestInstances ()
 name|Iterable
 argument_list|<
 name|ImmutableTable

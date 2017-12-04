@@ -156,7 +156,7 @@ name|temp
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * @see #create(Collection)    */
+comment|/** @see #create(Collection) */
 DECL|method|create (Throwable... exceptions)
 specifier|public
 specifier|static
@@ -193,7 +193,7 @@ name|temp
 argument_list|)
 return|;
 block|}
-comment|/**    * Given a collection of exceptions, returns a {@link RuntimeException}, with    * the following rules:    *    *<ul>    *<li>If {@code exceptions} has a single exception and that exception is a    *    {@link RuntimeException}, return it    *<li>If {@code exceptions} has a single exceptions and that exceptions is    *<em>not</em> a {@link RuntimeException}, return a simple    *    {@code RuntimeException} that wraps it    *<li>Otherwise, return an instance of {@link ClusterException} that wraps    *    the first exception in the {@code exceptions} collection.    *</ul>    *    *<p>Though this method takes any {@link Collection}, it often makes most    * sense to pass a {@link java.util.List} or some other collection that    * preserves the order in which the exceptions got added.    *    * @throws NullPointerException if {@code exceptions} is null    * @throws IllegalArgumentException if {@code exceptions} is empty    */
+comment|/**    * Given a collection of exceptions, returns a {@link RuntimeException}, with the following rules:    *    *<ul>    *<li>If {@code exceptions} has a single exception and that exception is a {@link    *       RuntimeException}, return it    *<li>If {@code exceptions} has a single exceptions and that exceptions is<em>not</em> a    *       {@link RuntimeException}, return a simple {@code RuntimeException} that wraps it    *<li>Otherwise, return an instance of {@link ClusterException} that wraps the first exception    *       in the {@code exceptions} collection.    *</ul>    *    *<p>Though this method takes any {@link Collection}, it often makes most sense to pass a {@link    * java.util.List} or some other collection that preserves the order in which the exceptions got    * added.    *    * @throws NullPointerException if {@code exceptions} is null    * @throws IllegalArgumentException if {@code exceptions} is empty    */
 DECL|method|create (Collection<? extends Throwable> exceptions)
 specifier|public
 specifier|static

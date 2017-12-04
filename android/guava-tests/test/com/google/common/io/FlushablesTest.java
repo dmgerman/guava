@@ -83,7 +83,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Unit tests for {@link Flushables}.  *  *<p>Checks proper flushing behavior, and ensures that  * IOExceptions on Flushable.flush() are not  * propagated out from the {@link Flushables#flush} method if {@code  * swallowException} is true.  *  * @author Michael Lancaster  */
+comment|/**  * Unit tests for {@link Flushables}.  *  *<p>Checks proper flushing behavior, and ensures that IOExceptions on Flushable.flush() are not  * propagated out from the {@link Flushables#flush} method if {@code swallowException} is true.  *  * @author Michael Lancaster  */
 end_comment
 
 begin_class

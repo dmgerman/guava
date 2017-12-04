@@ -270,7 +270,7 @@ operator|=
 name|key
 expr_stmt|;
 block|}
-comment|/**    * Returns the key used to lookup this system property.    */
+comment|/** Returns the key used to lookup this system property. */
 DECL|method|key ()
 specifier|public
 name|String
@@ -281,7 +281,7 @@ return|return
 name|key
 return|;
 block|}
-comment|/**    * Returns the current value for this system property by delegating to    * {@link System#getProperty(String)}.    */
+comment|/**    * Returns the current value for this system property by delegating to {@link    * System#getProperty(String)}.    */
 annotation|@
 name|Nullable
 DECL|method|value ()
@@ -299,7 +299,7 @@ name|key
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a string representation of this system property.    */
+comment|/** Returns a string representation of this system property. */
 annotation|@
 name|Override
 DECL|method|toString ()

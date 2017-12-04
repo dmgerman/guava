@@ -124,7 +124,7 @@ name|ByteBuffer
 name|bytes
 parameter_list|)
 function_decl|;
-comment|/**    * Puts a short into this sink.    */
+comment|/** Puts a short into this sink. */
 DECL|method|putShort (short s)
 name|PrimitiveSink
 name|putShort
@@ -133,7 +133,7 @@ name|short
 name|s
 parameter_list|)
 function_decl|;
-comment|/**    * Puts an int into this sink.    */
+comment|/** Puts an int into this sink. */
 DECL|method|putInt (int i)
 name|PrimitiveSink
 name|putInt
@@ -142,7 +142,7 @@ name|int
 name|i
 parameter_list|)
 function_decl|;
-comment|/**    * Puts a long into this sink.    */
+comment|/** Puts a long into this sink. */
 DECL|method|putLong (long l)
 name|PrimitiveSink
 name|putLong
@@ -151,7 +151,7 @@ name|long
 name|l
 parameter_list|)
 function_decl|;
-comment|/**    * Puts a float into this sink.    */
+comment|/** Puts a float into this sink. */
 DECL|method|putFloat (float f)
 name|PrimitiveSink
 name|putFloat
@@ -160,7 +160,7 @@ name|float
 name|f
 parameter_list|)
 function_decl|;
-comment|/**    * Puts a double into this sink.    */
+comment|/** Puts a double into this sink. */
 DECL|method|putDouble (double d)
 name|PrimitiveSink
 name|putDouble
@@ -169,7 +169,7 @@ name|double
 name|d
 parameter_list|)
 function_decl|;
-comment|/**    * Puts a boolean into this sink.    */
+comment|/** Puts a boolean into this sink. */
 DECL|method|putBoolean (boolean b)
 name|PrimitiveSink
 name|putBoolean
@@ -178,7 +178,7 @@ name|boolean
 name|b
 parameter_list|)
 function_decl|;
-comment|/**    * Puts a character into this sink.    */
+comment|/** Puts a character into this sink. */
 DECL|method|putChar (char c)
 name|PrimitiveSink
 name|putChar

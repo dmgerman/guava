@@ -44,24 +44,6 @@ name|collect
 operator|.
 name|testing
 operator|.
-name|Helpers
-operator|.
-name|mapEntry
-import|;
-end_import
-
-begin_import
-import|import static
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|collect
-operator|.
-name|testing
-operator|.
 name|features
 operator|.
 name|CollectionFeature

@@ -78,7 +78,6 @@ specifier|public
 class|class
 name|ChainBenchmark
 block|{
-DECL|field|length
 annotation|@
 name|Param
 argument_list|(
@@ -96,6 +95,7 @@ block|,
 literal|"6"
 block|}
 argument_list|)
+DECL|field|length
 name|int
 name|length
 decl_stmt|;
@@ -228,9 +228,9 @@ expr_stmt|;
 block|}
 block|}
 block|}
-DECL|method|time (int reps)
 annotation|@
 name|Benchmark
+DECL|method|time (int reps)
 name|int
 name|time
 parameter_list|(

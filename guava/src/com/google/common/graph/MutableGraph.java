@@ -75,7 +75,7 @@ name|N
 name|node
 parameter_list|)
 function_decl|;
-comment|/**    * Adds an edge connecting {@code nodeU} to {@code nodeV} if one is not already present. In an    * undirected graph, the edge will also connect {@code nodeV} to {@code nodeU}.    *    *<p>If {@code nodeU} and {@code nodeV} are not already present in this graph, this method    * will silently {@link #addNode(Object) add} {@code nodeU} and {@code nodeV} to the graph.    *    * @return {@code true} if the graph was modified as a result of this call    * @throws IllegalArgumentException if the introduction of the edge would violate {@link    *     #allowsSelfLoops()}    */
+comment|/**    * Adds an edge connecting {@code nodeU} to {@code nodeV} if one is not already present. In an    * undirected graph, the edge will also connect {@code nodeV} to {@code nodeU}.    *    *<p>If {@code nodeU} and {@code nodeV} are not already present in this graph, this method will    * silently {@link #addNode(Object) add} {@code nodeU} and {@code nodeV} to the graph.    *    * @return {@code true} if the graph was modified as a result of this call    * @throws IllegalArgumentException if the introduction of the edge would violate {@link    *     #allowsSelfLoops()}    */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|putEdge (N nodeU, N nodeV)

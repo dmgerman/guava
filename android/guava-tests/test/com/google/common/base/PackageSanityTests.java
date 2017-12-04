@@ -31,7 +31,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Basic sanity tests for classes in {@code common.base}.  */
+comment|/** Basic sanity tests for classes in {@code common.base}. */
 end_comment
 
 begin_class

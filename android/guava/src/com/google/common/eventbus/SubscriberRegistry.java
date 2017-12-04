@@ -439,7 +439,7 @@ operator|.
 name|newConcurrentMap
 argument_list|()
 decl_stmt|;
-comment|/**    * The event bus this registry belongs to.    */
+comment|/** The event bus this registry belongs to. */
 DECL|field|bus
 annotation|@
 name|Weak
@@ -465,7 +465,7 @@ name|bus
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Registers all subscriber methods on the given listener object.    */
+comment|/** Registers all subscriber methods on the given listener object. */
 DECL|method|register (Object listener)
 name|void
 name|register
@@ -596,7 +596,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Unregisters all subscribers on the given listener object.    */
+comment|/** Unregisters all subscribers on the given listener object. */
 DECL|method|unregister (Object listener)
 name|void
 name|unregister
@@ -1242,7 +1242,7 @@ block|}
 end_function
 
 begin_comment
-comment|/**    * Global cache of classes to their flattened hierarchy of supertypes.    */
+comment|/** Global cache of classes to their flattened hierarchy of supertypes. */
 end_comment
 
 begin_decl_stmt

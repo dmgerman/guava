@@ -147,7 +147,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Unit tests for {@link Converter}.  */
+comment|/** Unit tests for {@link Converter}. */
 end_comment
 
 begin_class

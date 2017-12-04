@@ -114,9 +114,9 @@ name|delegate
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|iterator ()
 annotation|@
 name|Override
+DECL|method|iterator ()
 specifier|public
 name|UnmodifiableIterator
 argument_list|<
@@ -137,9 +137,9 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-DECL|method|contains (@ullable Object object)
 annotation|@
 name|Override
+DECL|method|contains (@ullable Object object)
 specifier|public
 name|boolean
 name|contains
@@ -163,9 +163,9 @@ name|object
 argument_list|)
 return|;
 block|}
-DECL|method|containsAll (Collection<?> targets)
 annotation|@
 name|Override
+DECL|method|containsAll (Collection<?> targets)
 specifier|public
 name|boolean
 name|containsAll
@@ -186,9 +186,9 @@ name|targets
 argument_list|)
 return|;
 block|}
-DECL|method|size ()
 annotation|@
 name|Override
+DECL|method|size ()
 specifier|public
 name|int
 name|size
@@ -201,9 +201,9 @@ name|size
 argument_list|()
 return|;
 block|}
-DECL|method|isEmpty ()
 annotation|@
 name|Override
+DECL|method|isEmpty ()
 specifier|public
 name|boolean
 name|isEmpty
@@ -216,9 +216,9 @@ name|isEmpty
 argument_list|()
 return|;
 block|}
-DECL|method|toArray ()
 annotation|@
 name|Override
+DECL|method|toArray ()
 specifier|public
 name|Object
 index|[]
@@ -232,9 +232,9 @@ name|toArray
 argument_list|()
 return|;
 block|}
-DECL|method|toArray (T[] other)
 annotation|@
 name|Override
+DECL|method|toArray (T[] other)
 specifier|public
 parameter_list|<
 name|T
@@ -257,9 +257,9 @@ name|other
 argument_list|)
 return|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString
@@ -273,9 +273,9 @@ argument_list|()
 return|;
 block|}
 comment|// TODO(cpovirk): equals(), as well, in case it's any faster than Sets.equalsImpl?
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode

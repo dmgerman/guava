@@ -127,7 +127,7 @@ operator|)
 name|collection
 return|;
 block|}
-comment|/**    * {@inheritDoc}    *<p>    * The {@code AbstractListTester} implementation overrides    * {@link AbstractCollectionTester#expectContents(Collection)} to verify that    * the order of the elements in the list under test matches what is expected.    */
+comment|/**    * {@inheritDoc}    *    *<p>The {@code AbstractListTester} implementation overrides {@link    * AbstractCollectionTester#expectContents(Collection)} to verify that the order of the elements    * in the list under test matches what is expected.    */
 annotation|@
 name|Override
 DECL|method|expectContents (Collection<E> expectedCollection)
@@ -258,7 +258,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**    * Used to delay string formatting until actually required, as it    * otherwise shows up in the test execution profile when running an    * extremely large numbers of tests.    */
+comment|/**    * Used to delay string formatting until actually required, as it otherwise shows up in the test    * execution profile when running an extremely large numbers of tests.    */
 DECL|method|reportContext (List<E> expected)
 specifier|private
 name|String

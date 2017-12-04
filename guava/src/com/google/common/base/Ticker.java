@@ -73,13 +73,13 @@ specifier|abstract
 class|class
 name|Ticker
 block|{
-comment|/**    * Constructor for use by subclasses.    */
+comment|/** Constructor for use by subclasses. */
 DECL|method|Ticker ()
 specifier|protected
 name|Ticker
 parameter_list|()
 block|{}
-comment|/**    * Returns the number of nanoseconds elapsed since this ticker's fixed point of reference.    */
+comment|/** Returns the number of nanoseconds elapsed since this ticker's fixed point of reference. */
 annotation|@
 name|CanIgnoreReturnValue
 comment|// TODO(kak): Consider removing this

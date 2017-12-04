@@ -264,9 +264,9 @@ name|SynchronizedNavigableMapTest
 extends|extends
 name|SynchronizedMapTest
 block|{
-DECL|method|create ()
 annotation|@
 name|Override
+DECL|method|create ()
 specifier|protected
 parameter_list|<
 name|K
@@ -418,9 +418,9 @@ operator|=
 name|mutex
 expr_stmt|;
 block|}
-DECL|method|delegate ()
 annotation|@
 name|Override
+DECL|method|delegate ()
 specifier|protected
 name|Entry
 argument_list|<
@@ -435,9 +435,9 @@ return|return
 name|delegate
 return|;
 block|}
-DECL|method|equals (Object object)
 annotation|@
 name|Override
+DECL|method|equals (Object object)
 specifier|public
 name|boolean
 name|equals
@@ -465,9 +465,9 @@ name|object
 argument_list|)
 return|;
 block|}
-DECL|method|getKey ()
 annotation|@
 name|Override
+DECL|method|getKey ()
 specifier|public
 name|K
 name|getKey
@@ -490,9 +490,9 @@ name|getKey
 argument_list|()
 return|;
 block|}
-DECL|method|getValue ()
 annotation|@
 name|Override
+DECL|method|getValue ()
 specifier|public
 name|V
 name|getValue
@@ -515,9 +515,9 @@ name|getValue
 argument_list|()
 return|;
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -540,9 +540,9 @@ name|hashCode
 argument_list|()
 return|;
 block|}
-DECL|method|setValue (V value)
 annotation|@
 name|Override
+DECL|method|setValue (V value)
 specifier|public
 name|V
 name|setValue
@@ -630,9 +630,9 @@ name|mutex
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|delegate ()
 annotation|@
 name|Override
+DECL|method|delegate ()
 specifier|protected
 name|NavigableMap
 argument_list|<
@@ -658,9 +658,9 @@ name|delegate
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|ceilingEntry (K key)
-annotation|@
-name|Override
 specifier|public
 name|Entry
 argument_list|<
@@ -694,9 +694,9 @@ name|key
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|ceilingKey (K key)
-annotation|@
-name|Override
 specifier|public
 name|K
 name|ceilingKey
@@ -725,9 +725,9 @@ name|key
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|descendingKeySet ()
-annotation|@
-name|Override
 specifier|public
 name|NavigableSet
 argument_list|<
@@ -754,9 +754,9 @@ name|descendingKeySet
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|descendingMap ()
-annotation|@
-name|Override
 specifier|public
 name|NavigableMap
 argument_list|<
@@ -785,9 +785,9 @@ name|descendingMap
 argument_list|()
 return|;
 block|}
-DECL|method|firstEntry ()
 annotation|@
 name|Override
+DECL|method|firstEntry ()
 specifier|public
 name|Entry
 argument_list|<
@@ -816,9 +816,9 @@ name|firstEntry
 argument_list|()
 return|;
 block|}
-DECL|method|floorEntry (K key)
 annotation|@
 name|Override
+DECL|method|floorEntry (K key)
 specifier|public
 name|Entry
 argument_list|<
@@ -852,9 +852,9 @@ name|key
 argument_list|)
 return|;
 block|}
-DECL|method|floorKey (K key)
 annotation|@
 name|Override
+DECL|method|floorKey (K key)
 specifier|public
 name|K
 name|floorKey
@@ -883,9 +883,9 @@ name|key
 argument_list|)
 return|;
 block|}
-DECL|method|headMap (K toKey, boolean inclusive)
 annotation|@
 name|Override
+DECL|method|headMap (K toKey, boolean inclusive)
 specifier|public
 name|NavigableMap
 argument_list|<
@@ -924,9 +924,9 @@ name|inclusive
 argument_list|)
 return|;
 block|}
-DECL|method|headMap (K toKey)
 annotation|@
 name|Override
+DECL|method|headMap (K toKey)
 specifier|public
 name|SortedMap
 argument_list|<
@@ -949,9 +949,9 @@ literal|false
 argument_list|)
 return|;
 block|}
-DECL|method|higherEntry (K key)
 annotation|@
 name|Override
+DECL|method|higherEntry (K key)
 specifier|public
 name|Entry
 argument_list|<
@@ -985,9 +985,9 @@ name|key
 argument_list|)
 return|;
 block|}
-DECL|method|higherKey (K key)
 annotation|@
 name|Override
+DECL|method|higherKey (K key)
 specifier|public
 name|K
 name|higherKey
@@ -1016,9 +1016,9 @@ name|key
 argument_list|)
 return|;
 block|}
-DECL|method|lastEntry ()
 annotation|@
 name|Override
+DECL|method|lastEntry ()
 specifier|public
 name|Entry
 argument_list|<
@@ -1047,9 +1047,9 @@ name|lastEntry
 argument_list|()
 return|;
 block|}
-DECL|method|lowerEntry (K key)
 annotation|@
 name|Override
+DECL|method|lowerEntry (K key)
 specifier|public
 name|Entry
 argument_list|<
@@ -1083,9 +1083,9 @@ name|key
 argument_list|)
 return|;
 block|}
-DECL|method|lowerKey (K key)
 annotation|@
 name|Override
+DECL|method|lowerKey (K key)
 specifier|public
 name|K
 name|lowerKey
@@ -1114,9 +1114,9 @@ name|key
 argument_list|)
 return|;
 block|}
-DECL|method|navigableKeySet ()
 annotation|@
 name|Override
+DECL|method|navigableKeySet ()
 specifier|public
 name|NavigableSet
 argument_list|<
@@ -1143,9 +1143,9 @@ name|navigableKeySet
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|pollFirstEntry ()
-annotation|@
-name|Override
 specifier|public
 name|Entry
 argument_list|<
@@ -1174,9 +1174,9 @@ name|pollFirstEntry
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|pollLastEntry ()
-annotation|@
-name|Override
 specifier|public
 name|Entry
 argument_list|<
@@ -1205,9 +1205,9 @@ name|pollLastEntry
 argument_list|()
 return|;
 block|}
-DECL|method|subMap ( K fromKey, boolean fromInclusive, K toKey, boolean toInclusive)
 annotation|@
 name|Override
+DECL|method|subMap ( K fromKey, boolean fromInclusive, K toKey, boolean toInclusive)
 specifier|public
 name|NavigableMap
 argument_list|<
@@ -1256,9 +1256,9 @@ name|toInclusive
 argument_list|)
 return|;
 block|}
-DECL|method|subMap (K fromKey, K toKey)
 annotation|@
 name|Override
+DECL|method|subMap (K fromKey, K toKey)
 specifier|public
 name|SortedMap
 argument_list|<
@@ -1291,9 +1291,9 @@ literal|false
 argument_list|)
 return|;
 block|}
-DECL|method|tailMap (K fromKey, boolean inclusive)
 annotation|@
 name|Override
+DECL|method|tailMap (K fromKey, boolean inclusive)
 specifier|public
 name|NavigableMap
 argument_list|<
@@ -1332,9 +1332,9 @@ name|inclusive
 argument_list|)
 return|;
 block|}
-DECL|method|tailMap (K fromKey)
 annotation|@
 name|Override
+DECL|method|tailMap (K fromKey)
 specifier|public
 name|SortedMap
 argument_list|<
@@ -1357,9 +1357,9 @@ literal|true
 argument_list|)
 return|;
 block|}
-DECL|method|comparator ()
 annotation|@
 name|Override
+DECL|method|comparator ()
 specifier|public
 name|Comparator
 argument_list|<
@@ -1388,9 +1388,9 @@ name|comparator
 argument_list|()
 return|;
 block|}
-DECL|method|firstKey ()
 annotation|@
 name|Override
+DECL|method|firstKey ()
 specifier|public
 name|K
 name|firstKey
@@ -1414,9 +1414,9 @@ name|firstKey
 argument_list|()
 return|;
 block|}
-DECL|method|lastKey ()
 annotation|@
 name|Override
+DECL|method|lastKey ()
 specifier|public
 name|K
 name|lastKey
@@ -2414,9 +2414,9 @@ name|mutex
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|testSerialization ()
 annotation|@
 name|Override
+DECL|method|testSerialization ()
 specifier|public
 name|void
 name|testSerialization

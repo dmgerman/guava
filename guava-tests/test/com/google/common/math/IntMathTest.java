@@ -1124,7 +1124,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{       }
 block|}
 block|}
 DECL|method|testLog2NegativeAlwaysThrows ()
@@ -1171,7 +1171,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{         }
 block|}
 block|}
 block|}
@@ -1328,7 +1328,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{       }
 block|}
 block|}
 annotation|@
@@ -1378,7 +1378,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{         }
 block|}
 block|}
 block|}
@@ -1638,7 +1638,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{         }
 block|}
 block|}
 block|}
@@ -2158,7 +2158,7 @@ parameter_list|(
 name|ArithmeticException
 name|expected
 parameter_list|)
-block|{}
+block|{         }
 block|}
 block|}
 block|}
@@ -2259,7 +2259,7 @@ parameter_list|(
 name|ArithmeticException
 name|expected
 parameter_list|)
-block|{}
+block|{         }
 block|}
 block|}
 block|}
@@ -2299,7 +2299,7 @@ parameter_list|(
 name|ArithmeticException
 name|expected
 parameter_list|)
-block|{}
+block|{       }
 block|}
 block|}
 DECL|method|testGCD ()
@@ -2449,7 +2449,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{       }
 try|try
 block|{
 name|IntMath
@@ -2472,7 +2472,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{       }
 block|}
 block|}
 DECL|method|testGCDNegativeZeroThrows ()
@@ -2511,7 +2511,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{       }
 try|try
 block|{
 name|IntMath
@@ -2534,7 +2534,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{       }
 block|}
 block|}
 annotation|@
@@ -3398,7 +3398,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{       }
 block|}
 block|}
 comment|// Depends on the correctness of BigIntegerMath.binomial.
@@ -3528,7 +3528,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{       }
 try|try
 block|{
 name|IntMath
@@ -3553,7 +3553,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{       }
 block|}
 block|}
 DECL|method|testBinomialNegative ()
@@ -3592,7 +3592,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{       }
 block|}
 block|}
 annotation|@
@@ -3836,7 +3836,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**    * Helper method that asserts the arithmetic mean of x and y is equal    * to the expectedMean.    */
+comment|/** Helper method that asserts the arithmetic mean of x and y is equal to the expectedMean. */
 DECL|method|assertMean (int expectedMean, int x, int y)
 specifier|private
 specifier|static
@@ -3875,7 +3875,7 @@ name|y
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Helper method that asserts the arithmetic mean of x and y is equal    * to the result of computeMeanSafely.    */
+comment|/**    * Helper method that asserts the arithmetic mean of x and y is equal to the result of    * computeMeanSafely.    */
 DECL|method|assertMean (int x, int y)
 specifier|private
 specifier|static
@@ -3930,7 +3930,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Computes the mean in a way that is obvious and resilient to    * overflow by using BigInteger arithmetic.    */
+comment|/**    * Computes the mean in a way that is obvious and resilient to overflow by using BigInteger    * arithmetic.    */
 DECL|method|computeMeanSafely (int x, int y)
 specifier|private
 specifier|static

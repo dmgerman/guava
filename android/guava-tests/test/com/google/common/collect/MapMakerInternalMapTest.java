@@ -193,7 +193,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author Charles Fry  */
+comment|/** @author Charles Fry */
 end_comment
 
 begin_class

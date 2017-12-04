@@ -95,7 +95,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An abstract {@code ScheduledExecutorService} that allows subclasses to  * {@linkplain #wrapTask(Callable) wrap} tasks before they are submitted to the underlying executor.  *  *<p>Note that task wrapping may occur even if the task is never executed.  *  * @author Luke Sandberg  */
+comment|/**  * An abstract {@code ScheduledExecutorService} that allows subclasses to {@linkplain  * #wrapTask(Callable) wrap} tasks before they are submitted to the underlying executor.  *  *<p>Note that task wrapping may occur even if the task is never executed.  *  * @author Luke Sandberg  */
 end_comment
 
 begin_class

@@ -3404,13 +3404,13 @@ extends|extends
 name|TestCase
 block|{
 DECL|enum|WrapWithIterable
-DECL|enumConstant|WRAP
-DECL|enumConstant|NO_WRAP
 enum|enum
 name|WrapWithIterable
 block|{
+DECL|enumConstant|WRAP
 name|WRAP
 block|,
+DECL|enumConstant|NO_WRAP
 name|NO_WRAP
 block|}
 DECL|method|runConcurrentlyMutatedTest ( Collection<Integer> initialContents, Iterable<ListFrobber> actionsToPerformConcurrently, WrapWithIterable wrap)
@@ -3923,11 +3923,11 @@ name|Integer
 argument_list|>
 name|list
 parameter_list|)
-block|{         }
+block|{}
 block|}
 return|;
 block|}
-comment|/**      * A list that mutates itself after every call to each of its {@link List}      * methods.      */
+comment|/** A list that mutates itself after every call to each of its {@link List} methods. */
 DECL|interface|ConcurrentlyMutatedList
 interface|interface
 name|ConcurrentlyMutatedList
@@ -3940,7 +3940,7 @@ argument_list|<
 name|E
 argument_list|>
 block|{
-comment|/**        * The elements of a {@link ConcurrentlyMutatedList} are added and removed        * over time. This method returns every state that the list has passed        * through at some point.        */
+comment|/**        * The elements of a {@link ConcurrentlyMutatedList} are added and removed over time. This        * method returns every state that the list has passed through at some point.        */
 DECL|method|getAllStates ()
 name|Set
 argument_list|<
@@ -3953,7 +3953,7 @@ name|getAllStates
 parameter_list|()
 function_decl|;
 block|}
-comment|/**      * Returns a {@link ConcurrentlyMutatedList} that performs the given      * operations as its concurrent modifications. The mutations occur in the      * same thread as the triggering method call.      */
+comment|/**      * Returns a {@link ConcurrentlyMutatedList} that performs the given operations as its      * concurrent modifications. The mutations occur in the same thread as the triggering method      * call.      */
 DECL|method|newConcurrentlyMutatedList ( final Collection<Integer> initialContents, final Iterable<ListFrobber> actionsToPerformConcurrently)
 specifier|private
 specifier|static

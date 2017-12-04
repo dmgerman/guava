@@ -67,7 +67,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Implementation of the {@code equals}, {@code hashCode}, and {@code toString}  * methods of {@code Entry}.  *  * @author Jared Levy  */
+comment|/**  * Implementation of the {@code equals}, {@code hashCode}, and {@code toString} methods of {@code  * Entry}.  *  * @author Jared Levy  */
 end_comment
 
 begin_class
@@ -251,7 +251,7 @@ argument_list|()
 operator|)
 return|;
 block|}
-comment|/**    * Returns a string representation of the form {@code {key}={value}}.    */
+comment|/** Returns a string representation of the form {@code {key}={value}}. */
 annotation|@
 name|Override
 DECL|method|toString ()

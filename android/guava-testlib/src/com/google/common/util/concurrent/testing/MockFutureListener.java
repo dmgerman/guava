@@ -129,7 +129,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A simple mock implementation of {@code Runnable} that can be used for  * testing ListenableFutures.  *  * @author Nishant Thakkar  * @since 10.0  */
+comment|/**  * A simple mock implementation of {@code Runnable} that can be used for testing ListenableFutures.  *  * @author Nishant Thakkar  * @since 10.0  */
 end_comment
 
 begin_class
@@ -211,7 +211,7 @@ name|countDown
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * Verify that the listener completes in a reasonable amount of time, and    * Asserts that the future returns the expected data.    * @throws Throwable if the listener isn't called or if it resulted in a    *     throwable or if the result doesn't match the expected value.    */
+comment|/**    * Verify that the listener completes in a reasonable amount of time, and Asserts that the future    * returns the expected data.    *    * @throws Throwable if the listener isn't called or if it resulted in a throwable or if the    *     result doesn't match the expected value.    */
 DECL|method|assertSuccess (Object expectedData)
 specifier|public
 name|void
@@ -269,7 +269,7 @@ argument_list|()
 throw|;
 block|}
 block|}
-comment|/**    * Verify that the listener completes in a reasonable amount of time, and    * Asserts that the future throws an {@code ExecutableException} and that the    * cause of the {@code ExecutableException} is {@code expectedCause}.    */
+comment|/**    * Verify that the listener completes in a reasonable amount of time, and Asserts that the future    * throws an {@code ExecutableException} and that the cause of the {@code ExecutableException} is    * {@code expectedCause}.    */
 DECL|method|assertException (Throwable expectedCause)
 specifier|public
 name|void

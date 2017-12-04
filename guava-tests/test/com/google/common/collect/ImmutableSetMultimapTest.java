@@ -1671,7 +1671,7 @@ parameter_list|(
 name|NullPointerException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 try|try
 block|{
 name|builder
@@ -1701,7 +1701,7 @@ parameter_list|(
 name|NullPointerException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 try|try
 block|{
 name|builder
@@ -1726,7 +1726,7 @@ parameter_list|(
 name|NullPointerException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 try|try
 block|{
 name|builder
@@ -1745,7 +1745,7 @@ parameter_list|(
 name|NullPointerException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testBuilderPutNullValue ()
 specifier|public
@@ -1810,7 +1810,7 @@ parameter_list|(
 name|NullPointerException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 try|try
 block|{
 name|builder
@@ -1840,7 +1840,7 @@ parameter_list|(
 name|NullPointerException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 try|try
 block|{
 name|builder
@@ -1865,7 +1865,7 @@ parameter_list|(
 name|NullPointerException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 try|try
 block|{
 name|builder
@@ -1884,7 +1884,7 @@ parameter_list|(
 name|NullPointerException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testBuilderOrderKeysBy ()
 specifier|public
@@ -3273,7 +3273,7 @@ parameter_list|(
 name|NullPointerException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testCopyOfNullValue ()
 specifier|public
@@ -3330,7 +3330,7 @@ parameter_list|(
 name|NullPointerException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testToImmutableSetMultimap ()
 specifier|public
@@ -4716,7 +4716,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|assertMultimapEquals (Multimap<K, V> multimap, Object... alternatingKeysAndValues)
+DECL|method|assertMultimapEquals ( Multimap<K, V> multimap, Object... alternatingKeysAndValues)
 specifier|private
 specifier|static
 parameter_list|<

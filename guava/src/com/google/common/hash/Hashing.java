@@ -185,7 +185,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Static methods to obtain {@link HashFunction} instances, and other static hashing-related  * utilities.  *  *<p>A comparison of the various hash functions can be found  *<a href="http://goo.gl/jS7HH">here</a>.  *  * @author Kevin Bourrillion  * @author Dimitris Andreou  * @author Kurt Alfred Kluever  * @since 11.0  */
+comment|/**  * Static methods to obtain {@link HashFunction} instances, and other static hashing-related  * utilities.  *  *<p>A comparison of the various hash functions can be found<a  * href="http://goo.gl/jS7HH">here</a>.  *  * @author Kevin Bourrillion  * @author Dimitris Andreou  * @author Kurt Alfred Kluever  * @since 11.0  */
 end_comment
 
 begin_class
@@ -332,7 +332,7 @@ operator|.
 name|currentTimeMillis
 argument_list|()
 decl_stmt|;
-comment|/**    * Returns a hash function implementing the    *<a href="https://github.com/aappleby/smhasher/blob/master/src/MurmurHash3.cpp">32-bit murmur3    * algorithm, x86 variant</a> (little-endian variant), using the given seed value.    *    *<p>The exact C++ equivalent is the MurmurHash3_x86_32 function (Murmur3A).    */
+comment|/**    * Returns a hash function implementing the<a    * href="https://github.com/aappleby/smhasher/blob/master/src/MurmurHash3.cpp">32-bit murmur3    * algorithm, x86 variant</a> (little-endian variant), using the given seed value.    *    *<p>The exact C++ equivalent is the MurmurHash3_x86_32 function (Murmur3A).    */
 DECL|method|murmur3_32 (int seed)
 specifier|public
 specifier|static
@@ -351,7 +351,7 @@ name|seed
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a hash function implementing the    *<a href="https://github.com/aappleby/smhasher/blob/master/src/MurmurHash3.cpp">32-bit murmur3    * algorithm, x86 variant</a> (little-endian variant), using a seed value of zero.    *    *<p>The exact C++ equivalent is the MurmurHash3_x86_32 function (Murmur3A).    */
+comment|/**    * Returns a hash function implementing the<a    * href="https://github.com/aappleby/smhasher/blob/master/src/MurmurHash3.cpp">32-bit murmur3    * algorithm, x86 variant</a> (little-endian variant), using a seed value of zero.    *    *<p>The exact C++ equivalent is the MurmurHash3_x86_32 function (Murmur3A).    */
 DECL|method|murmur3_32 ()
 specifier|public
 specifier|static
@@ -365,7 +365,7 @@ operator|.
 name|MURMUR3_32
 return|;
 block|}
-comment|/**    * Returns a hash function implementing the    *<a href="https://github.com/aappleby/smhasher/blob/master/src/MurmurHash3.cpp">128-bit murmur3    * algorithm, x64 variant</a> (little-endian variant), using the given seed value.    *    *<p>The exact C++ equivalent is the MurmurHash3_x64_128 function (Murmur3F).    */
+comment|/**    * Returns a hash function implementing the<a    * href="https://github.com/aappleby/smhasher/blob/master/src/MurmurHash3.cpp">128-bit murmur3    * algorithm, x64 variant</a> (little-endian variant), using the given seed value.    *    *<p>The exact C++ equivalent is the MurmurHash3_x64_128 function (Murmur3F).    */
 DECL|method|murmur3_128 (int seed)
 specifier|public
 specifier|static
@@ -384,7 +384,7 @@ name|seed
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a hash function implementing the    *<a href="https://github.com/aappleby/smhasher/blob/master/src/MurmurHash3.cpp">128-bit murmur3    * algorithm, x64 variant</a> (little-endian variant), using a seed value of zero.    *    *<p>The exact C++ equivalent is the MurmurHash3_x64_128 function (Murmur3F).    */
+comment|/**    * Returns a hash function implementing the<a    * href="https://github.com/aappleby/smhasher/blob/master/src/MurmurHash3.cpp">128-bit murmur3    * algorithm, x64 variant</a> (little-endian variant), using a seed value of zero.    *    *<p>The exact C++ equivalent is the MurmurHash3_x64_128 function (Murmur3F).    */
 DECL|method|murmur3_128 ()
 specifier|public
 specifier|static
@@ -1003,7 +1003,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Returns a hash function implementing FarmHash's Fingerprint64, an open-source algorithm.    *    *<p>This is designed for generating persistent fingerprints of strings. It isn't    * cryptographically secure, but it produces a high-quality hash with fewer collisions than some    * alternatives we've used in the past.    *    *<p>FarmHash fingerprints are encoded by {@link HashCode#asBytes} in little-endian order. This    * means {@link HashCode#asLong} is guaranteed to return the same value that    * farmhash::Fingerprint64() would for the same input (when compared using    * {@link com.google.common.primitives.UnsignedLongs}'s encoding of 64-bit unsigned numbers).    *    *<p>This function is best understood as a<a    * href="https://en.wikipedia.org/wiki/Fingerprint_(computing)">fingerprint</a> rather than a true    *<a href="https://en.wikipedia.org/wiki/Hash_function">hash function</a>.    *    * @since 20.0    */
+comment|/**    * Returns a hash function implementing FarmHash's Fingerprint64, an open-source algorithm.    *    *<p>This is designed for generating persistent fingerprints of strings. It isn't    * cryptographically secure, but it produces a high-quality hash with fewer collisions than some    * alternatives we've used in the past.    *    *<p>FarmHash fingerprints are encoded by {@link HashCode#asBytes} in little-endian order. This    * means {@link HashCode#asLong} is guaranteed to return the same value that    * farmhash::Fingerprint64() would for the same input (when compared using {@link    * com.google.common.primitives.UnsignedLongs}'s encoding of 64-bit unsigned numbers).    *    *<p>This function is best understood as a<a    * href="https://en.wikipedia.org/wiki/Fingerprint_(computing)">fingerprint</a> rather than a true    *<a href="https://en.wikipedia.org/wiki/Hash_function">hash function</a>.    *    * @since 20.0    */
 DECL|method|farmHashFingerprint64 ()
 specifier|public
 specifier|static
@@ -1017,7 +1017,7 @@ operator|.
 name|FARMHASH_FINGERPRINT_64
 return|;
 block|}
-comment|/**    * Assigns to {@code hashCode} a "bucket" in the range {@code [0, buckets)}, in a uniform manner    * that minimizes the need for remapping as {@code buckets} grows. That is, {@code    * consistentHash(h, n)} equals:    *    *<ul>    *<li>{@code n - 1}, with approximate probability {@code 1/n}    *<li>{@code consistentHash(h, n - 1)}, otherwise (probability {@code 1 - 1/n})    *</ul>    *    *<p>This method is suitable for the common use case of dividing work among buckets that meet the    * following conditions:    *    *<ul>    *<li>You want to assign the same fraction of inputs to each bucket.    *<li>When you reduce the number of buckets, you can accept that the most recently added buckets    * will be removed first. More concretely, if you are dividing traffic among tasks, you can    * decrease the number of tasks from 15 and 10, killing off the final 5 tasks, and {@code    * consistentHash} will handle it. If, however, you are dividing traffic among servers {@code    * alpha}, {@code bravo}, and {@code charlie} and you occasionally need to take each of the    * servers offline, {@code consistentHash} will be a poor fit: It provides no way for you to    * specify which of the three buckets is disappearing. Thus, if your buckets change from {@code    * [alpha, bravo, charlie]} to {@code [bravo, charlie]}, it will assign all the old {@code alpha}    * traffic to {@code bravo} and all the old {@code bravo} traffic to {@code charlie}, rather than    * letting {@code bravo} keep its traffic.    *</ul>    *    *    *<p>See the<a href="http://en.wikipedia.org/wiki/Consistent_hashing">Wikipedia article on    * consistent hashing</a> for more information.    */
+comment|/**    * Assigns to {@code hashCode} a "bucket" in the range {@code [0, buckets)}, in a uniform manner    * that minimizes the need for remapping as {@code buckets} grows. That is, {@code    * consistentHash(h, n)} equals:    *    *<ul>    *<li>{@code n - 1}, with approximate probability {@code 1/n}    *<li>{@code consistentHash(h, n - 1)}, otherwise (probability {@code 1 - 1/n})    *</ul>    *    *<p>This method is suitable for the common use case of dividing work among buckets that meet the    * following conditions:    *    *<ul>    *<li>You want to assign the same fraction of inputs to each bucket.    *<li>When you reduce the number of buckets, you can accept that the most recently added    *       buckets will be removed first. More concretely, if you are dividing traffic among tasks,    *       you can decrease the number of tasks from 15 and 10, killing off the final 5 tasks, and    *       {@code consistentHash} will handle it. If, however, you are dividing traffic among    *       servers {@code alpha}, {@code bravo}, and {@code charlie} and you occasionally need to    *       take each of the servers offline, {@code consistentHash} will be a poor fit: It provides    *       no way for you to specify which of the three buckets is disappearing. Thus, if your    *       buckets change from {@code [alpha, bravo, charlie]} to {@code [bravo, charlie]}, it will    *       assign all the old {@code alpha} traffic to {@code bravo} and all the old {@code bravo}    *       traffic to {@code charlie}, rather than letting {@code bravo} keep its traffic.    *</ul>    *    *    *<p>See the<a href="http://en.wikipedia.org/wiki/Consistent_hashing">Wikipedia article on    * consistent hashing</a> for more information.    */
 DECL|method|consistentHash (HashCode hashCode, int buckets)
 specifier|public
 specifier|static
@@ -1043,7 +1043,7 @@ name|buckets
 argument_list|)
 return|;
 block|}
-comment|/**    * Assigns to {@code input} a "bucket" in the range {@code [0, buckets)}, in a uniform manner that    * minimizes the need for remapping as {@code buckets} grows. That is, {@code consistentHash(h,    * n)} equals:    *    *<ul>    *<li>{@code n - 1}, with approximate probability {@code 1/n}    *<li>{@code consistentHash(h, n - 1)}, otherwise (probability {@code 1 - 1/n})    *</ul>    *    *<p>This method is suitable for the common use case of dividing work among buckets that meet the    * following conditions:    *    *<ul>    *<li>You want to assign the same fraction of inputs to each bucket.    *<li>When you reduce the number of buckets, you can accept that the most recently added buckets    * will be removed first. More concretely, if you are dividing traffic among tasks, you can    * decrease the number of tasks from 15 and 10, killing off the final 5 tasks, and {@code    * consistentHash} will handle it. If, however, you are dividing traffic among servers {@code    * alpha}, {@code bravo}, and {@code charlie} and you occasionally need to take each of the    * servers offline, {@code consistentHash} will be a poor fit: It provides no way for you to    * specify which of the three buckets is disappearing. Thus, if your buckets change from {@code    * [alpha, bravo, charlie]} to {@code [bravo, charlie]}, it will assign all the old {@code alpha}    * traffic to {@code bravo} and all the old {@code bravo} traffic to {@code charlie}, rather than    * letting {@code bravo} keep its traffic.    *</ul>    *    *    *<p>See the<a href="http://en.wikipedia.org/wiki/Consistent_hashing">Wikipedia article on    * consistent hashing</a> for more information.    */
+comment|/**    * Assigns to {@code input} a "bucket" in the range {@code [0, buckets)}, in a uniform manner that    * minimizes the need for remapping as {@code buckets} grows. That is, {@code consistentHash(h,    * n)} equals:    *    *<ul>    *<li>{@code n - 1}, with approximate probability {@code 1/n}    *<li>{@code consistentHash(h, n - 1)}, otherwise (probability {@code 1 - 1/n})    *</ul>    *    *<p>This method is suitable for the common use case of dividing work among buckets that meet the    * following conditions:    *    *<ul>    *<li>You want to assign the same fraction of inputs to each bucket.    *<li>When you reduce the number of buckets, you can accept that the most recently added    *       buckets will be removed first. More concretely, if you are dividing traffic among tasks,    *       you can decrease the number of tasks from 15 and 10, killing off the final 5 tasks, and    *       {@code consistentHash} will handle it. If, however, you are dividing traffic among    *       servers {@code alpha}, {@code bravo}, and {@code charlie} and you occasionally need to    *       take each of the servers offline, {@code consistentHash} will be a poor fit: It provides    *       no way for you to specify which of the three buckets is disappearing. Thus, if your    *       buckets change from {@code [alpha, bravo, charlie]} to {@code [bravo, charlie]}, it will    *       assign all the old {@code alpha} traffic to {@code bravo} and all the old {@code bravo}    *       traffic to {@code charlie}, rather than letting {@code bravo} keep its traffic.    *</ul>    *    *    *<p>See the<a href="http://en.wikipedia.org/wiki/Consistent_hashing">Wikipedia article on    * consistent hashing</a> for more information.    */
 DECL|method|consistentHash (long input, int buckets)
 specifier|public
 specifier|static
@@ -1392,7 +1392,7 @@ name|resultBytes
 argument_list|)
 return|;
 block|}
-comment|/**    * Checks that the passed argument is positive, and ceils it to a multiple of 32.    */
+comment|/** Checks that the passed argument is positive, and ceils it to a multiple of 32. */
 DECL|method|checkPositiveAndMakeMultipleOf32 (int bits)
 specifier|static
 name|int

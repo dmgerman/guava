@@ -54,16 +54,6 @@ begin_import
 import|import
 name|java
 operator|.
-name|lang
-operator|.
-name|InterruptedException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
 name|util
 operator|.
 name|List

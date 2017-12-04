@@ -182,7 +182,7 @@ DECL|method|InternerBuilder ()
 specifier|private
 name|InternerBuilder
 parameter_list|()
-block|{     }
+block|{}
 comment|/**      * Instructs the {@link InternerBuilder} to build a strong interner.      *      * @see Interners#newStrongInterner()      */
 DECL|method|strong ()
 specifier|public
@@ -320,7 +320,7 @@ name|build
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns a new thread-safe interner which retains a weak reference to each instance it has    * interned, and so does not prevent these instances from being garbage-collected. This most    * likely does not perform as well as {@link #newStrongInterner}, but is the best alternative    * when the memory usage of that implementation is unacceptable.    */
+comment|/**    * Returns a new thread-safe interner which retains a weak reference to each instance it has    * interned, and so does not prevent these instances from being garbage-collected. This most    * likely does not perform as well as {@link #newStrongInterner}, but is the best alternative when    * the memory usage of that implementation is unacceptable.    */
 annotation|@
 name|GwtIncompatible
 argument_list|(
@@ -367,9 +367,9 @@ name|E
 argument_list|>
 block|{
 comment|// MapMaker is our friend, we know about this type
+DECL|field|map
 annotation|@
 name|VisibleForTesting
-DECL|field|map
 specifier|final
 name|MapMakerInternalMap
 argument_list|<

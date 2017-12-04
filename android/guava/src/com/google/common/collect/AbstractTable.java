@@ -1201,7 +1201,7 @@ name|hashCode
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns the string representation {@code rowMap().toString()}.    */
+comment|/** Returns the string representation {@code rowMap().toString()}. */
 annotation|@
 name|Override
 DECL|method|toString ()

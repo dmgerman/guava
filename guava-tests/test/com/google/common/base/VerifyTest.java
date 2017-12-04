@@ -99,7 +99,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Unit test for {@link com.google.common.base.Verify}.  */
+comment|/** Unit test for {@link com.google.common.base.Verify}. */
 end_comment
 
 begin_class

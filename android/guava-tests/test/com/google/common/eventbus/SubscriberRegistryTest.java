@@ -908,7 +908,7 @@ parameter_list|(
 name|String
 name|s
 parameter_list|)
-block|{     }
+block|{}
 block|}
 DECL|class|IntegerSubscriber
 specifier|public
@@ -926,7 +926,7 @@ parameter_list|(
 name|Integer
 name|i
 parameter_list|)
-block|{     }
+block|{}
 block|}
 DECL|class|ObjectSubscriber
 specifier|public
@@ -944,7 +944,7 @@ parameter_list|(
 name|Object
 name|o
 parameter_list|)
-block|{     }
+block|{}
 block|}
 DECL|method|testFlattenHierarchy ()
 specifier|public

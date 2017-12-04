@@ -121,7 +121,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A descriptor for a<i>discrete</i> {@code Comparable} domain such as all  * {@link Integer} instances. A discrete domain is one that supports the three basic  * operations: {@link #next}, {@link #previous} and {@link #distance}, according  * to their specifications. The methods {@link #minValue} and {@link #maxValue}  * should also be overridden for bounded types.  *  *<p>A discrete domain always represents the<i>entire</i> set of values of its  * type; it cannot represent partial domains such as "prime integers" or  * "strings of length 5."  *  *<p>See the Guava User Guide section on<a href=  * "https://github.com/google/guava/wiki/RangesExplained#discrete-domains">  * {@code DiscreteDomain}</a>.  *  * @author Kevin Bourrillion  * @since 10.0  */
+comment|/**  * A descriptor for a<i>discrete</i> {@code Comparable} domain such as all {@link Integer}  * instances. A discrete domain is one that supports the three basic operations: {@link #next},  * {@link #previous} and {@link #distance}, according to their specifications. The methods {@link  * #minValue} and {@link #maxValue} should also be overridden for bounded types.  *  *<p>A discrete domain always represents the<i>entire</i> set of values of its type; it cannot  * represent partial domains such as "prime integers" or "strings of length 5."  *  *<p>See the Guava User Guide section on<a href=  * "https://github.com/google/guava/wiki/RangesExplained#discrete-domains"> {@code  * DiscreteDomain}</a>.  *  * @author Kevin Bourrillion  * @since 10.0  */
 end_comment
 
 begin_class
@@ -919,7 +919,7 @@ operator|=
 name|supportsFastOffset
 expr_stmt|;
 block|}
-comment|/**    * Returns, conceptually, "origin + distance", or equivalently, the result of calling    * {@link #next} on {@code origin} {@code distance} times.    */
+comment|/**    * Returns, conceptually, "origin + distance", or equivalently, the result of calling {@link    * #next} on {@code origin} {@code distance} times.    */
 DECL|method|offset (C origin, long distance)
 name|C
 name|offset
@@ -965,7 +965,7 @@ return|return
 name|origin
 return|;
 block|}
-comment|/**    * Returns the unique least value of type {@code C} that is greater than    * {@code value}, or {@code null} if none exists. Inverse operation to {@link    * #previous}.    *    * @param value any value of type {@code C}    * @return the least value greater than {@code value}, or {@code null} if    *     {@code value} is {@code maxValue()}    */
+comment|/**    * Returns the unique least value of type {@code C} that is greater than {@code value}, or {@code    * null} if none exists. Inverse operation to {@link #previous}.    *    * @param value any value of type {@code C}    * @return the least value greater than {@code value}, or {@code null} if {@code value} is {@code    *     maxValue()}    */
 DECL|method|next (C value)
 specifier|public
 specifier|abstract
@@ -976,7 +976,7 @@ name|C
 name|value
 parameter_list|)
 function_decl|;
-comment|/**    * Returns the unique greatest value of type {@code C} that is less than    * {@code value}, or {@code null} if none exists. Inverse operation to {@link    * #next}.    *    * @param value any value of type {@code C}    * @return the greatest value less than {@code value}, or {@code null} if    *     {@code value} is {@code minValue()}    */
+comment|/**    * Returns the unique greatest value of type {@code C} that is less than {@code value}, or {@code    * null} if none exists. Inverse operation to {@link #next}.    *    * @param value any value of type {@code C}    * @return the greatest value less than {@code value}, or {@code null} if {@code value} is {@code    *     minValue()}    */
 DECL|method|previous (C value)
 specifier|public
 specifier|abstract
@@ -987,7 +987,7 @@ name|C
 name|value
 parameter_list|)
 function_decl|;
-comment|/**    * Returns a signed value indicating how many nested invocations of {@link    * #next} (if positive) or {@link #previous} (if negative) are needed to reach    * {@code end} starting from {@code start}. For example, if {@code end =    * next(next(next(start)))}, then {@code distance(start, end) == 3} and {@code    * distance(end, start) == -3}. As well, {@code distance(a, a)} is always    * zero.    *    *<p>Note that this function is necessarily well-defined for any discrete    * type.    *    * @return the distance as described above, or {@link Long#MIN_VALUE} or    *     {@link Long#MAX_VALUE} if the distance is too small or too large,    *     respectively.    */
+comment|/**    * Returns a signed value indicating how many nested invocations of {@link #next} (if positive) or    * {@link #previous} (if negative) are needed to reach {@code end} starting from {@code start}.    * For example, if {@code end = next(next(next(start)))}, then {@code distance(start, end) == 3}    * and {@code distance(end, start) == -3}. As well, {@code distance(a, a)} is always zero.    *    *<p>Note that this function is necessarily well-defined for any discrete type.    *    * @return the distance as described above, or {@link Long#MIN_VALUE} or {@link Long#MAX_VALUE} if    *     the distance is too small or too large, respectively.    */
 DECL|method|distance (C start, C end)
 specifier|public
 specifier|abstract
@@ -1001,7 +1001,7 @@ name|C
 name|end
 parameter_list|)
 function_decl|;
-comment|/**    * Returns the minimum value of type {@code C}, if it has one. The minimum    * value is the unique value for which {@link Comparable#compareTo(Object)}    * never returns a positive value for any input of type {@code C}.    *    *<p>The default implementation throws {@code NoSuchElementException}.    *    * @return the minimum value of type {@code C}; never null    * @throws NoSuchElementException if the type has no (practical) minimum    *     value; for example, {@link java.math.BigInteger}    */
+comment|/**    * Returns the minimum value of type {@code C}, if it has one. The minimum value is the unique    * value for which {@link Comparable#compareTo(Object)} never returns a positive value for any    * input of type {@code C}.    *    *<p>The default implementation throws {@code NoSuchElementException}.    *    * @return the minimum value of type {@code C}; never null    * @throws NoSuchElementException if the type has no (practical) minimum value; for example,    *     {@link java.math.BigInteger}    */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|minValue ()
@@ -1016,7 +1016,7 @@ name|NoSuchElementException
 argument_list|()
 throw|;
 block|}
-comment|/**    * Returns the maximum value of type {@code C}, if it has one. The maximum    * value is the unique value for which {@link Comparable#compareTo(Object)}    * never returns a negative value for any input of type {@code C}.    *    *<p>The default implementation throws {@code NoSuchElementException}.    *    * @return the maximum value of type {@code C}; never null    * @throws NoSuchElementException if the type has no (practical) maximum    *     value; for example, {@link java.math.BigInteger}    */
+comment|/**    * Returns the maximum value of type {@code C}, if it has one. The maximum value is the unique    * value for which {@link Comparable#compareTo(Object)} never returns a negative value for any    * input of type {@code C}.    *    *<p>The default implementation throws {@code NoSuchElementException}.    *    * @return the maximum value of type {@code C}; never null    * @throws NoSuchElementException if the type has no (practical) maximum value; for example,    *     {@link java.math.BigInteger}    */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|maxValue ()

@@ -223,7 +223,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A generic JUnit test which tests {@code retainAll} operations on a  * collection. Can't be invoked directly; please see  * {@link com.google.common.collect.testing.CollectionTestSuiteBuilder}.  *  * @author Chris Povirk  */
+comment|/**  * A generic JUnit test which tests {@code retainAll} operations on a collection. Can't be invoked  * directly; please see {@link com.google.common.collect.testing.CollectionTestSuiteBuilder}.  *  * @author Chris Povirk  */
 end_comment
 
 begin_class
@@ -248,7 +248,7 @@ argument_list|<
 name|E
 argument_list|>
 block|{
-comment|/**    * A collection of elements to retain, along with a description for use in    * failure messages.    */
+comment|/** A collection of elements to retain, along with a description for use in failure messages. */
 DECL|class|Target
 specifier|private
 class|class

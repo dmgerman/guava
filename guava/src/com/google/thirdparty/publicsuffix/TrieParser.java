@@ -83,7 +83,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Parser for a map of reversed domain names stored as a serialized radix tree.  */
+comment|/** Parser for a map of reversed domain names stored as a serialized radix tree. */
 end_comment
 
 begin_class

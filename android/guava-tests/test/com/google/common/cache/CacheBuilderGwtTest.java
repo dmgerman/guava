@@ -197,7 +197,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Test suite for {@link CacheBuilder}.  * TODO(cpovirk): merge into CacheBuilderTest?  *  * @author Jon Donovan  */
+comment|/**  * Test suite for {@link CacheBuilder}. TODO(cpovirk): merge into CacheBuilderTest?  *  * @author Jon Donovan  */
 end_comment
 
 begin_class

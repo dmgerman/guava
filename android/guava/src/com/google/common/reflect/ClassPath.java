@@ -835,7 +835,7 @@ name|build
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns all top level classes whose package name is {@code packageName} or starts with    * {@code packageName} followed by a '.'.    */
+comment|/**    * Returns all top level classes whose package name is {@code packageName} or starts with {@code    * packageName} followed by a '.'.    */
 DECL|method|getTopLevelClassesRecursive (String packageName)
 specifier|public
 name|ImmutableSet
@@ -1682,7 +1682,7 @@ parameter_list|)
 block|{         }
 block|}
 block|}
-comment|/**      * Returns the class path URIs specified by the {@code Class-Path} manifest attribute, according      * to      *<a href="http://docs.oracle.com/javase/8/docs/technotes/guides/jar/jar.html#Main_Attributes">      * JAR File Specification</a>. If {@code manifest} is null, it means the jar file has no      * manifest, and an empty set will be returned.      */
+comment|/**      * Returns the class path URIs specified by the {@code Class-Path} manifest attribute, according      * to<a      * href="http://docs.oracle.com/javase/8/docs/technotes/guides/jar/jar.html#Main_Attributes">JAR      * File Specification</a>. If {@code manifest} is null, it means the jar file has no manifest,      * and an empty set will be returned.      */
 annotation|@
 name|VisibleForTesting
 DECL|method|getClassPathFromManifest (File jarFile, @Nullable Manifest manifest)
@@ -2148,7 +2148,7 @@ name|build
 argument_list|()
 return|;
 block|}
-comment|/**      * Returns the absolute uri of the Class-Path entry value as specified in      *<a href="http://docs.oracle.com/javase/8/docs/technotes/guides/jar/jar.html#Main_Attributes">      * JAR File Specification</a>. Even though the specification only talks about relative urls,      * absolute urls are actually supported too (for example, in Maven surefire plugin).      */
+comment|/**      * Returns the absolute uri of the Class-Path entry value as specified in<a      * href="http://docs.oracle.com/javase/8/docs/technotes/guides/jar/jar.html#Main_Attributes">JAR      * File Specification</a>. Even though the specification only talks about relative urls,      * absolute urls are actually supported too (for example, in Maven surefire plugin).      */
 annotation|@
 name|VisibleForTesting
 DECL|method|getClassPathEntry (File jarFile, String path)

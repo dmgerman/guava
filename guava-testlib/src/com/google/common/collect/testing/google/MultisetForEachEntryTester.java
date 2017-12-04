@@ -150,7 +150,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|Arrays
+name|ArrayList
 import|;
 end_import
 
@@ -160,7 +160,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|ArrayList
+name|Arrays
 import|;
 end_import
 
@@ -447,7 +447,7 @@ name|actual
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Returns {@link Method} instances for the remove tests that assume multisets    * support duplicates so that the test of {@code Multisets.forSet()} can    * suppress them.    */
+comment|/**    * Returns {@link Method} instances for the remove tests that assume multisets support duplicates    * so that the test of {@code Multisets.forSet()} can suppress them.    */
 annotation|@
 name|GwtIncompatible
 comment|// reflection

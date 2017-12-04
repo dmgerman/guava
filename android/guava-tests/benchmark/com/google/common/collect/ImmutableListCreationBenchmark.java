@@ -86,9 +86,9 @@ operator|new
 name|Object
 argument_list|()
 decl_stmt|;
-DECL|method|builderAdd (int reps)
 annotation|@
 name|Benchmark
+DECL|method|builderAdd (int reps)
 name|int
 name|builderAdd
 parameter_list|(
@@ -174,9 +174,9 @@ return|return
 name|dummy
 return|;
 block|}
-DECL|method|preSizedBuilderAdd (int reps)
 annotation|@
 name|Benchmark
+DECL|method|preSizedBuilderAdd (int reps)
 name|int
 name|preSizedBuilderAdd
 parameter_list|(
@@ -266,9 +266,9 @@ return|return
 name|dummy
 return|;
 block|}
-DECL|method|copyArrayList (int reps)
 annotation|@
 name|Benchmark
+DECL|method|copyArrayList (int reps)
 name|int
 name|copyArrayList
 parameter_list|(
@@ -354,9 +354,9 @@ return|return
 name|dummy
 return|;
 block|}
-DECL|method|copyPreSizedArrayList (int reps)
 annotation|@
 name|Benchmark
+DECL|method|copyPreSizedArrayList (int reps)
 name|int
 name|copyPreSizedArrayList
 parameter_list|(

@@ -38,9 +38,9 @@ specifier|public
 class|class
 name|InternersBenchmark
 block|{
-DECL|method|weakInterner (int reps)
 annotation|@
 name|Benchmark
+DECL|method|weakInterner (int reps)
 name|int
 name|weakInterner
 parameter_list|(
@@ -94,9 +94,9 @@ return|return
 name|reps
 return|;
 block|}
-DECL|method|strongInterner (int reps)
 annotation|@
 name|Benchmark
+DECL|method|strongInterner (int reps)
 name|int
 name|strongInterner
 parameter_list|(
@@ -150,9 +150,9 @@ return|return
 name|reps
 return|;
 block|}
-DECL|method|stringIntern (int reps)
 annotation|@
 name|Benchmark
+DECL|method|stringIntern (int reps)
 name|int
 name|stringIntern
 parameter_list|(

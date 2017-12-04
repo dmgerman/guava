@@ -1572,7 +1572,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Check a few "golden" values to see that implementations across languages    * are equivalent.    */
+comment|/**    * Check a few "golden" values to see that implementations across languages are equivalent.    *    */
 DECL|method|testConsistentHash_linearCongruentialGeneratorCompatibility ()
 specifier|public
 name|void

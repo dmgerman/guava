@@ -75,7 +75,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * List returned by {@link ImmutableCollection#asList} that delegates {@code contains} checks  * to the backing collection.  *  * @author Jared Levy  * @author Louis Wasserman  */
+comment|/**  * List returned by {@link ImmutableCollection#asList} that delegates {@code contains} checks to the  * backing collection.  *  * @author Jared Levy  * @author Louis Wasserman  */
 end_comment
 
 begin_class
@@ -187,7 +187,7 @@ name|isPartialView
 argument_list|()
 return|;
 block|}
-comment|/**    * Serialized form that leads to the same performance as the original list.    */
+comment|/** Serialized form that leads to the same performance as the original list. */
 annotation|@
 name|GwtIncompatible
 comment|// serialization

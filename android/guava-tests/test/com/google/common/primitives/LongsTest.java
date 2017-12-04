@@ -5182,7 +5182,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Applies {@link Longs#tryParse(String)} to the given string and asserts that    * the result is as expected.    */
+comment|/**    * Applies {@link Longs#tryParse(String)} to the given string and asserts that the result is as    * expected.    */
 DECL|method|tryParseAndAssertEquals (Long expected, String value)
 specifier|private
 specifier|static
@@ -5392,7 +5392,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Encodes the long as a string with given radix, then uses    * {@link Longs#tryParse(String, int)} to parse the result. Asserts the result    * is the same as what we started with.    */
+comment|/**    * Encodes the long as a string with given radix, then uses {@link Longs#tryParse(String, int)} to    * parse the result. Asserts the result is the same as what we started with.    */
 DECL|method|radixEncodeParseAndAssertEquals (Long value, int radix)
 specifier|private
 specifier|static

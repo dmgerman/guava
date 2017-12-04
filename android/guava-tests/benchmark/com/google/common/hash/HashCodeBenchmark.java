@@ -83,7 +83,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Benchmarks for comparing the various {@link HashCode#equals} methods.  *  *<p>Parameters for the benchmark are:  *<ul>  *<li>size: the length of the byte array to hash  *<li>whereToDiffer: where in the array the bytes should differ  *<li>equalsImpl: which implementation of array equality to use  *</ul>  *  *<p><b>Important note:</b> the primary goal of this benchmark is to ensure that varying {@code  * whereToDiffer} produces no observable change in performance. We want to make sure that the  * array equals implementation is *not* short-circuiting to prevent timing-based attacks. Being  * fast is only a secondary goal.  *  * @author Kurt Alfred Kluever  */
+comment|/**  * Benchmarks for comparing the various {@link HashCode#equals} methods.  *  *<p>Parameters for the benchmark are:  *  *<ul>  *<li>size: the length of the byte array to hash  *<li>whereToDiffer: where in the array the bytes should differ  *<li>equalsImpl: which implementation of array equality to use  *</ul>  *  *<p><b>Important note:</b> the primary goal of this benchmark is to ensure that varying {@code  * whereToDiffer} produces no observable change in performance. We want to make sure that the array  * equals implementation is *not* short-circuiting to prevent timing-based attacks. Being fast is  * only a secondary goal.  *  * @author Kurt Alfred Kluever  */
 end_comment
 
 begin_class
@@ -474,9 +474,9 @@ name|byte
 index|[]
 name|testBytesB
 decl_stmt|;
-DECL|method|setUp ()
 annotation|@
 name|BeforeExperiment
+DECL|method|setUp ()
 name|void
 name|setUp
 parameter_list|()
@@ -574,9 +574,9 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-DECL|method|hashFunction (int reps)
 annotation|@
 name|Benchmark
+DECL|method|hashFunction (int reps)
 name|boolean
 name|hashFunction
 parameter_list|(

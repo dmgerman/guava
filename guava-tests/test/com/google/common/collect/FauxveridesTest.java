@@ -231,7 +231,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests that all {@code public static} methods "inherited" from superclasses  * are "overridden" in each immutable-collection class. This ensures, for  * example, that a call written "{@code ImmutableSortedSet.copyOf()}" cannot  * secretly be a call to {@code ImmutableSet.copyOf()}.  *  * @author Chris Povirk  */
+comment|/**  * Tests that all {@code public static} methods "inherited" from superclasses are "overridden" in  * each immutable-collection class. This ensures, for example, that a call written "{@code  * ImmutableSortedSet.copyOf()}" cannot secretly be a call to {@code ImmutableSet.copyOf()}.  *  * @author Chris Povirk  */
 end_comment
 
 begin_class
@@ -617,7 +617,7 @@ name|class
 argument_list|)
 return|;
 block|}
-DECL|method|getAllFauxveridden ( Class<?> descendant, Class<?> ancestor)
+DECL|method|getAllFauxveridden (Class<?> descendant, Class<?> ancestor)
 specifier|private
 specifier|static
 name|Set
@@ -785,7 +785,7 @@ name|publicStaticMethods
 return|;
 block|}
 comment|/** [descendant, ancestor) */
-DECL|method|getClassesBetween ( Class<?> descendant, Class<?> ancestor)
+DECL|method|getClassesBetween (Class<?> descendant, Class<?> ancestor)
 specifier|private
 specifier|static
 name|Set
@@ -852,7 +852,7 @@ return|return
 name|classes
 return|;
 block|}
-comment|/**    * Not really a signature -- just the parts that affect whether one method is    * a fauxveride of a method from an ancestor class.    *<p>    * See JLS 8.4.2 for the definition of the related "override-equivalent."    */
+comment|/**    * Not really a signature -- just the parts that affect whether one method is a fauxveride of a    * method from an ancestor class.    *    *<p>See JLS 8.4.2 for the definition of the related "override-equivalent."    */
 DECL|class|MethodSignature
 specifier|private
 specifier|static
@@ -924,9 +924,9 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|equals (Object obj)
 annotation|@
 name|Override
+DECL|method|equals (Object obj)
 specifier|public
 name|boolean
 name|equals
@@ -983,9 +983,9 @@ return|return
 literal|false
 return|;
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -1004,9 +1004,9 @@ name|typeSignature
 argument_list|)
 return|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString
@@ -1028,9 +1028,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-DECL|method|compareTo (MethodSignature o)
 annotation|@
 name|Override
+DECL|method|compareTo (MethodSignature o)
 specifier|public
 name|int
 name|compareTo
@@ -1127,9 +1127,9 @@ block|}
 block|)
 empty_stmt|;
 block|}
-DECL|method|equals (Object obj)
 annotation|@
 name|Override
+DECL|method|equals (Object obj)
 specifier|public
 name|boolean
 name|equals
@@ -1168,9 +1168,9 @@ return|return
 literal|false
 return|;
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -1183,9 +1183,9 @@ name|hashCode
 argument_list|()
 return|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString
@@ -1272,9 +1272,9 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|equals (Object obj)
 annotation|@
 name|Override
+DECL|method|equals (Object obj)
 specifier|public
 name|boolean
 name|equals
@@ -1314,9 +1314,9 @@ return|return
 literal|false
 return|;
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -1329,9 +1329,9 @@ name|hashCode
 argument_list|()
 return|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString

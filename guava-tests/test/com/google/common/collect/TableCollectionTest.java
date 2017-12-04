@@ -4171,8 +4171,8 @@ block|}
 block|}
 DECL|class|TestCellSetGenerator
 specifier|private
-specifier|static
 specifier|abstract
+specifier|static
 class|class
 name|TestCellSetGenerator
 implements|implements
@@ -4270,7 +4270,7 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|create ( Object... elements)
+DECL|method|create (Object... elements)
 specifier|public
 name|Set
 argument_list|<
@@ -4467,8 +4467,8 @@ block|}
 block|}
 DECL|class|MapTests
 specifier|private
-specifier|static
 specifier|abstract
+specifier|static
 class|class
 name|MapTests
 extends|extends
@@ -4479,7 +4479,7 @@ argument_list|,
 name|Integer
 argument_list|>
 block|{
-DECL|method|MapTests (boolean allowsNullValues, boolean supportsPut, boolean supportsRemove, boolean supportsClear, boolean supportsIteratorRemove)
+DECL|method|MapTests ( boolean allowsNullValues, boolean supportsPut, boolean supportsRemove, boolean supportsClear, boolean supportsIteratorRemove)
 name|MapTests
 parameter_list|(
 name|boolean
@@ -4514,9 +4514,9 @@ name|supportsIteratorRemove
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|getKeyNotInPopulatedMap ()
 annotation|@
 name|Override
+DECL|method|getKeyNotInPopulatedMap ()
 specifier|protected
 name|String
 name|getKeyNotInPopulatedMap
@@ -4526,9 +4526,9 @@ return|return
 literal|"four"
 return|;
 block|}
-DECL|method|getValueNotInPopulatedMap ()
 annotation|@
 name|Override
+DECL|method|getValueNotInPopulatedMap ()
 specifier|protected
 name|Integer
 name|getValueNotInPopulatedMap
@@ -4541,14 +4541,14 @@ block|}
 block|}
 DECL|class|RowTests
 specifier|private
-specifier|static
 specifier|abstract
+specifier|static
 class|class
 name|RowTests
 extends|extends
 name|MapTests
 block|{
-DECL|method|RowTests (boolean allowsNullValues, boolean supportsPut, boolean supportsRemove, boolean supportsClear, boolean supportsIteratorRemove)
+DECL|method|RowTests ( boolean allowsNullValues, boolean supportsPut, boolean supportsRemove, boolean supportsClear, boolean supportsIteratorRemove)
 name|RowTests
 parameter_list|(
 name|boolean
@@ -4594,9 +4594,9 @@ argument_list|>
 name|makeTable
 parameter_list|()
 function_decl|;
-DECL|method|makeEmptyMap ()
 annotation|@
 name|Override
+DECL|method|makeEmptyMap ()
 specifier|protected
 name|Map
 argument_list|<
@@ -4617,9 +4617,9 @@ literal|'a'
 argument_list|)
 return|;
 block|}
-DECL|method|makePopulatedMap ()
 annotation|@
 name|Override
+DECL|method|makePopulatedMap ()
 specifier|protected
 name|Map
 argument_list|<
@@ -4727,9 +4727,9 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|getKeyNotInPopulatedMap ()
 annotation|@
 name|Override
+DECL|method|getKeyNotInPopulatedMap ()
 specifier|protected
 name|String
 name|getKeyNotInPopulatedMap
@@ -4741,9 +4741,9 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
-DECL|method|makeEmptyMap ()
 annotation|@
 name|Override
+DECL|method|makeEmptyMap ()
 specifier|protected
 name|Map
 argument_list|<
@@ -4760,9 +4760,9 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
-DECL|method|makeTable ()
 annotation|@
 name|Override
+DECL|method|makeTable ()
 specifier|protected
 name|Table
 argument_list|<
@@ -4834,9 +4834,9 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|makeTable ()
 annotation|@
 name|Override
+DECL|method|makeTable ()
 name|Table
 argument_list|<
 name|Character
@@ -4883,9 +4883,9 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|makeTable ()
 annotation|@
 name|Override
+DECL|method|makeTable ()
 name|Table
 argument_list|<
 name|Character
@@ -4932,9 +4932,9 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|makeTable ()
 annotation|@
 name|Override
+DECL|method|makeTable ()
 name|Table
 argument_list|<
 name|Character
@@ -5045,9 +5045,9 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|makeTable ()
 annotation|@
 name|Override
+DECL|method|makeTable ()
 name|Table
 argument_list|<
 name|Character
@@ -5085,9 +5085,9 @@ name|DIVIDE_BY_2
 argument_list|)
 return|;
 block|}
-DECL|method|makePopulatedMap ()
 annotation|@
 name|Override
+DECL|method|makePopulatedMap ()
 specifier|protected
 name|Map
 argument_list|<
@@ -5201,9 +5201,9 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|makeTable ()
 annotation|@
 name|Override
+DECL|method|makeTable ()
 name|Table
 argument_list|<
 name|Character
@@ -5239,9 +5239,9 @@ name|table
 argument_list|)
 return|;
 block|}
-DECL|method|makePopulatedMap ()
 annotation|@
 name|Override
+DECL|method|makePopulatedMap ()
 specifier|protected
 name|Map
 argument_list|<
@@ -5353,9 +5353,9 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|makeTable ()
 annotation|@
 name|Override
+DECL|method|makeTable ()
 name|Table
 argument_list|<
 name|Character
@@ -5391,9 +5391,9 @@ name|table
 argument_list|)
 return|;
 block|}
-DECL|method|makePopulatedMap ()
 annotation|@
 name|Override
+DECL|method|makePopulatedMap ()
 specifier|protected
 name|Map
 argument_list|<
@@ -5480,14 +5480,14 @@ block|}
 block|}
 DECL|class|ColumnTests
 specifier|private
-specifier|static
 specifier|abstract
+specifier|static
 class|class
 name|ColumnTests
 extends|extends
 name|MapTests
 block|{
-DECL|method|ColumnTests (boolean allowsNullValues, boolean supportsPut, boolean supportsRemove, boolean supportsClear, boolean supportsIteratorRemove)
+DECL|method|ColumnTests ( boolean allowsNullValues, boolean supportsPut, boolean supportsRemove, boolean supportsClear, boolean supportsIteratorRemove)
 name|ColumnTests
 parameter_list|(
 name|boolean
@@ -5533,9 +5533,9 @@ argument_list|>
 name|makeTable
 parameter_list|()
 function_decl|;
-DECL|method|makeEmptyMap ()
 annotation|@
 name|Override
+DECL|method|makeEmptyMap ()
 specifier|protected
 name|Map
 argument_list|<
@@ -5556,9 +5556,9 @@ literal|'a'
 argument_list|)
 return|;
 block|}
-DECL|method|makePopulatedMap ()
 annotation|@
 name|Override
+DECL|method|makePopulatedMap ()
 specifier|protected
 name|Map
 argument_list|<
@@ -5666,9 +5666,9 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|getKeyNotInPopulatedMap ()
 annotation|@
 name|Override
+DECL|method|getKeyNotInPopulatedMap ()
 specifier|protected
 name|String
 name|getKeyNotInPopulatedMap
@@ -5680,9 +5680,9 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
-DECL|method|makeEmptyMap ()
 annotation|@
 name|Override
+DECL|method|makeEmptyMap ()
 specifier|protected
 name|Map
 argument_list|<
@@ -5699,9 +5699,9 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
-DECL|method|makeTable ()
 annotation|@
 name|Override
+DECL|method|makeTable ()
 name|Table
 argument_list|<
 name|String
@@ -5772,9 +5772,9 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|makeTable ()
 annotation|@
 name|Override
+DECL|method|makeTable ()
 name|Table
 argument_list|<
 name|String
@@ -5821,9 +5821,9 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|makeTable ()
 annotation|@
 name|Override
+DECL|method|makeTable ()
 name|Table
 argument_list|<
 name|String
@@ -5870,9 +5870,9 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|makeTable ()
 annotation|@
 name|Override
+DECL|method|makeTable ()
 name|Table
 argument_list|<
 name|String
@@ -5936,9 +5936,9 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|makeTable ()
 annotation|@
 name|Override
+DECL|method|makeTable ()
 name|Table
 argument_list|<
 name|String
@@ -5976,9 +5976,9 @@ name|DIVIDE_BY_2
 argument_list|)
 return|;
 block|}
-DECL|method|makePopulatedMap ()
 annotation|@
 name|Override
+DECL|method|makePopulatedMap ()
 specifier|protected
 name|Map
 argument_list|<
@@ -6092,9 +6092,9 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|makeTable ()
 annotation|@
 name|Override
+DECL|method|makeTable ()
 name|Table
 argument_list|<
 name|String
@@ -6130,9 +6130,9 @@ name|table
 argument_list|)
 return|;
 block|}
-DECL|method|makePopulatedMap ()
 annotation|@
 name|Override
+DECL|method|makePopulatedMap ()
 specifier|protected
 name|Map
 argument_list|<
@@ -6244,9 +6244,9 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|makeTable ()
 annotation|@
 name|Override
+DECL|method|makeTable ()
 name|Table
 argument_list|<
 name|String
@@ -6282,9 +6282,9 @@ name|table
 argument_list|)
 return|;
 block|}
-DECL|method|makePopulatedMap ()
 annotation|@
 name|Override
+DECL|method|makePopulatedMap ()
 specifier|protected
 name|Map
 argument_list|<
@@ -6371,8 +6371,8 @@ block|}
 block|}
 DECL|class|MapMapTests
 specifier|private
-specifier|static
 specifier|abstract
+specifier|static
 class|class
 name|MapMapTests
 extends|extends
@@ -6388,7 +6388,7 @@ name|Character
 argument_list|>
 argument_list|>
 block|{
-DECL|method|MapMapTests (boolean allowsNullValues, boolean supportsRemove, boolean supportsClear, boolean supportsIteratorRemove)
+DECL|method|MapMapTests ( boolean allowsNullValues, boolean supportsRemove, boolean supportsClear, boolean supportsIteratorRemove)
 name|MapMapTests
 parameter_list|(
 name|boolean
@@ -6420,9 +6420,9 @@ name|supportsIteratorRemove
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|getKeyNotInPopulatedMap ()
 annotation|@
 name|Override
+DECL|method|getKeyNotInPopulatedMap ()
 specifier|protected
 name|String
 name|getKeyNotInPopulatedMap
@@ -6432,9 +6432,9 @@ return|return
 literal|"cat"
 return|;
 block|}
-DECL|method|getValueNotInPopulatedMap ()
 annotation|@
 name|Override
+DECL|method|getValueNotInPopulatedMap ()
 specifier|protected
 name|Map
 argument_list|<
@@ -6452,10 +6452,10 @@ name|of
 argument_list|()
 return|;
 block|}
-comment|/**      * The version of this test supplied by {@link MapInterfaceTest} fails for      * this particular map implementation, because {@code map.get()} returns a      * view collection that changes in the course of a call to {@code remove()}.      * Thus, the expectation doesn't hold that {@code map.remove(x)} returns the      * same value which {@code map.get(x)} did immediately beforehand.      */
-DECL|method|testRemove ()
+comment|/**      * The version of this test supplied by {@link MapInterfaceTest} fails for this particular map      * implementation, because {@code map.get()} returns a view collection that changes in the      * course of a call to {@code remove()}. Thus, the expectation doesn't hold that {@code      * map.remove(x)} returns the same value which {@code map.get(x)} did immediately beforehand.      */
 annotation|@
 name|Override
+DECL|method|testRemove ()
 specifier|public
 name|void
 name|testRemove
@@ -6593,14 +6593,14 @@ block|}
 block|}
 DECL|class|RowMapTests
 specifier|private
-specifier|static
 specifier|abstract
+specifier|static
 class|class
 name|RowMapTests
 extends|extends
 name|MapMapTests
 block|{
-DECL|method|RowMapTests (boolean allowsNullValues, boolean supportsRemove, boolean supportsClear, boolean supportsIteratorRemove)
+DECL|method|RowMapTests ( boolean allowsNullValues, boolean supportsRemove, boolean supportsClear, boolean supportsIteratorRemove)
 name|RowMapTests
 parameter_list|(
 name|boolean
@@ -6643,6 +6643,7 @@ parameter_list|()
 function_decl|;
 annotation|@
 name|Override
+DECL|method|makePopulatedMap ()
 specifier|protected
 name|Map
 argument_list|<
@@ -6655,7 +6656,6 @@ argument_list|,
 name|Character
 argument_list|>
 argument_list|>
-DECL|method|makePopulatedMap ()
 name|makePopulatedMap
 parameter_list|()
 block|{
@@ -6733,9 +6733,9 @@ literal|'c'
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|makeEmptyMap ()
 annotation|@
 name|Override
+DECL|method|makeEmptyMap ()
 specifier|protected
 name|Map
 argument_list|<
@@ -6788,9 +6788,9 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|makeTable ()
 annotation|@
 name|Override
+DECL|method|makeTable ()
 name|Table
 argument_list|<
 name|String
@@ -6831,9 +6831,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-DECL|method|makeEmptyMap ()
 annotation|@
 name|Override
+DECL|method|makeEmptyMap ()
 specifier|protected
 name|Map
 argument_list|<
@@ -6881,9 +6881,9 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|makeTable ()
 annotation|@
 name|Override
+DECL|method|makeTable ()
 name|Table
 argument_list|<
 name|String
@@ -6928,9 +6928,9 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|makeTable ()
 annotation|@
 name|Override
+DECL|method|makeTable ()
 name|Table
 argument_list|<
 name|String
@@ -6975,9 +6975,9 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|makeTable ()
 annotation|@
 name|Override
+DECL|method|makeTable ()
 name|TreeBasedTable
 argument_list|<
 name|String
@@ -7021,6 +7021,7 @@ return|;
 block|}
 annotation|@
 name|Override
+DECL|method|makePopulatedMap ()
 specifier|protected
 name|Map
 argument_list|<
@@ -7033,7 +7034,6 @@ argument_list|,
 name|Character
 argument_list|>
 argument_list|>
-DECL|method|makePopulatedMap ()
 name|makePopulatedMap
 parameter_list|()
 block|{
@@ -7067,9 +7067,9 @@ literal|"x"
 argument_list|)
 return|;
 block|}
-DECL|method|makeEmptyMap ()
 annotation|@
 name|Override
+DECL|method|makeEmptyMap ()
 specifier|protected
 name|Map
 argument_list|<
@@ -7098,9 +7098,9 @@ literal|"x"
 argument_list|)
 return|;
 block|}
-DECL|method|getKeyNotInPopulatedMap ()
 annotation|@
 name|Override
+DECL|method|getKeyNotInPopulatedMap ()
 specifier|protected
 name|String
 name|getKeyNotInPopulatedMap
@@ -7136,9 +7136,9 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|makeTable ()
 annotation|@
 name|Override
+DECL|method|makeTable ()
 name|TreeBasedTable
 argument_list|<
 name|String
@@ -7182,6 +7182,7 @@ return|;
 block|}
 annotation|@
 name|Override
+DECL|method|makePopulatedMap ()
 specifier|protected
 name|Map
 argument_list|<
@@ -7194,7 +7195,6 @@ argument_list|,
 name|Character
 argument_list|>
 argument_list|>
-DECL|method|makePopulatedMap ()
 name|makePopulatedMap
 parameter_list|()
 block|{
@@ -7228,9 +7228,9 @@ literal|"b"
 argument_list|)
 return|;
 block|}
-DECL|method|makeEmptyMap ()
 annotation|@
 name|Override
+DECL|method|makeEmptyMap ()
 specifier|protected
 name|Map
 argument_list|<
@@ -7259,9 +7259,9 @@ literal|"b"
 argument_list|)
 return|;
 block|}
-DECL|method|getKeyNotInPopulatedMap ()
 annotation|@
 name|Override
+DECL|method|getKeyNotInPopulatedMap ()
 specifier|protected
 name|String
 name|getKeyNotInPopulatedMap
@@ -7297,9 +7297,9 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|makeTable ()
 annotation|@
 name|Override
+DECL|method|makeTable ()
 name|TreeBasedTable
 argument_list|<
 name|String
@@ -7354,6 +7354,7 @@ return|;
 block|}
 annotation|@
 name|Override
+DECL|method|makePopulatedMap ()
 specifier|protected
 name|Map
 argument_list|<
@@ -7366,7 +7367,6 @@ argument_list|,
 name|Character
 argument_list|>
 argument_list|>
-DECL|method|makePopulatedMap ()
 name|makePopulatedMap
 parameter_list|()
 block|{
@@ -7402,9 +7402,9 @@ literal|"x"
 argument_list|)
 return|;
 block|}
-DECL|method|makeEmptyMap ()
 annotation|@
 name|Override
+DECL|method|makeEmptyMap ()
 specifier|protected
 name|Map
 argument_list|<
@@ -7435,9 +7435,9 @@ literal|"x"
 argument_list|)
 return|;
 block|}
-DECL|method|getKeyNotInPopulatedMap ()
 annotation|@
 name|Override
+DECL|method|getKeyNotInPopulatedMap ()
 specifier|protected
 name|String
 name|getKeyNotInPopulatedMap
@@ -7521,9 +7521,9 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|makeTable ()
 annotation|@
 name|Override
+DECL|method|makeTable ()
 name|Table
 argument_list|<
 name|String
@@ -7667,9 +7667,9 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|makeTable ()
 annotation|@
 name|Override
+DECL|method|makeTable ()
 name|Table
 argument_list|<
 name|String
@@ -7809,9 +7809,9 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|makeTable ()
 annotation|@
 name|Override
+DECL|method|makeTable ()
 name|RowSortedTable
 argument_list|<
 name|String
@@ -7928,14 +7928,14 @@ block|}
 block|}
 DECL|class|ColumnMapTests
 specifier|private
-specifier|static
 specifier|abstract
+specifier|static
 class|class
 name|ColumnMapTests
 extends|extends
 name|MapMapTests
 block|{
-DECL|method|ColumnMapTests (boolean allowsNullValues, boolean supportsRemove, boolean supportsClear, boolean supportsIteratorRemove)
+DECL|method|ColumnMapTests ( boolean allowsNullValues, boolean supportsRemove, boolean supportsClear, boolean supportsIteratorRemove)
 name|ColumnMapTests
 parameter_list|(
 name|boolean
@@ -7978,6 +7978,7 @@ parameter_list|()
 function_decl|;
 annotation|@
 name|Override
+DECL|method|makePopulatedMap ()
 specifier|protected
 name|Map
 argument_list|<
@@ -7990,7 +7991,6 @@ argument_list|,
 name|Character
 argument_list|>
 argument_list|>
-DECL|method|makePopulatedMap ()
 name|makePopulatedMap
 parameter_list|()
 block|{
@@ -8047,9 +8047,9 @@ name|columnMap
 argument_list|()
 return|;
 block|}
-DECL|method|makeEmptyMap ()
 annotation|@
 name|Override
+DECL|method|makeEmptyMap ()
 specifier|protected
 name|Map
 argument_list|<
@@ -8102,9 +8102,9 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|makeTable ()
 annotation|@
 name|Override
+DECL|method|makeTable ()
 name|Table
 argument_list|<
 name|Integer
@@ -8145,9 +8145,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-DECL|method|makeEmptyMap ()
 annotation|@
 name|Override
+DECL|method|makeEmptyMap ()
 specifier|protected
 name|Map
 argument_list|<
@@ -8195,9 +8195,9 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|makeTable ()
 annotation|@
 name|Override
+DECL|method|makeTable ()
 name|Table
 argument_list|<
 name|Integer
@@ -8242,9 +8242,9 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|makeTable ()
 annotation|@
 name|Override
+DECL|method|makeTable ()
 name|Table
 argument_list|<
 name|Integer
@@ -8289,9 +8289,9 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|makeTable ()
 annotation|@
 name|Override
+DECL|method|makeTable ()
 name|Table
 argument_list|<
 name|Integer
@@ -8435,9 +8435,9 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|makeTable ()
 annotation|@
 name|Override
+DECL|method|makeTable ()
 name|Table
 argument_list|<
 name|Integer
@@ -8577,9 +8577,9 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|makeTable ()
 annotation|@
 name|Override
+DECL|method|makeTable ()
 name|Table
 argument_list|<
 name|Integer

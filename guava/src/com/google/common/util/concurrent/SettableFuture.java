@@ -71,7 +71,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link ListenableFuture} whose result can be set by a {@link #set(Object)}, {@link  * #setException(Throwable)} or {@link #setFuture(ListenableFuture)} call. It can also, like any  * other {@code Future}, be {@linkplain #cancel cancelled}.  *  *<p>{@code SettableFuture} is the recommended {@code ListenableFuture} implementation when your  * task cannot be implemented with {@link ListeningExecutorService}, the various {@link Futures}  * utility methods, or {@link ListenableFutureTask}. Those APIs have less opportunity for developer  * error. If your needs are more complex than {@code SettableFuture} supports, use  * {@link AbstractFuture}, which offers an extensible version of the API.  *  * @author Sven Mawson  * @since 9.0 (in 1.0 as {@code ValueFuture})  */
+comment|/**  * A {@link ListenableFuture} whose result can be set by a {@link #set(Object)}, {@link  * #setException(Throwable)} or {@link #setFuture(ListenableFuture)} call. It can also, like any  * other {@code Future}, be {@linkplain #cancel cancelled}.  *  *<p>{@code SettableFuture} is the recommended {@code ListenableFuture} implementation when your  * task cannot be implemented with {@link ListeningExecutorService}, the various {@link Futures}  * utility methods, or {@link ListenableFutureTask}. Those APIs have less opportunity for developer  * error. If your needs are more complex than {@code SettableFuture} supports, use {@link  * AbstractFuture}, which offers an extensible version of the API.  *  * @author Sven Mawson  * @since 9.0 (in 1.0 as {@code ValueFuture})  */
 end_comment
 
 begin_class

@@ -68,7 +68,7 @@ name|AsciiTest
 extends|extends
 name|TestCase
 block|{
-comment|/**    * The Unicode points {@code 00c1} and {@code 00e1} are the upper- and    * lowercase forms of A-with-acute-accent, {@code Ã} and {@code Ã¡}.    */
+comment|/**    * The Unicode points {@code 00c1} and {@code 00e1} are the upper- and lowercase forms of    * A-with-acute-accent, {@code Ã} and {@code Ã¡}.    */
 DECL|field|IGNORED
 specifier|private
 specifier|static
@@ -699,7 +699,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 try|try
 block|{
 name|truncated
@@ -724,7 +724,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 try|try
 block|{
 name|truncated
@@ -750,7 +750,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 try|try
 block|{
 name|truncated
@@ -776,7 +776,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testEqualsIgnoreCase ()
 specifier|public

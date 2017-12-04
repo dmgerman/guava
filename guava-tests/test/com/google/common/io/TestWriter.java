@@ -79,7 +79,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author Colin Decker  */
+comment|/** @author Colin Decker */
 end_comment
 
 begin_class

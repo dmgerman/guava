@@ -107,7 +107,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A wrapper class for unsigned {@code long} values, supporting arithmetic operations.  *  *<p>In some cases, when speed is more important than code readability, it may be faster simply to  * treat primitive {@code long} values as unsigned, using the methods from {@link UnsignedLongs}.  *  *<p>See the Guava User Guide article on  *<a href="https://github.com/google/guava/wiki/PrimitivesExplained#unsigned-support">unsigned  * primitive utilities</a>.  *  * @author Louis Wasserman  * @author Colin Evans  * @since 11.0  */
+comment|/**  * A wrapper class for unsigned {@code long} values, supporting arithmetic operations.  *  *<p>In some cases, when speed is more important than code readability, it may be faster simply to  * treat primitive {@code long} values as unsigned, using the methods from {@link UnsignedLongs}.  *  *<p>See the Guava User Guide article on<a  * href="https://github.com/google/guava/wiki/PrimitivesExplained#unsigned-support">unsigned  * primitive utilities</a>.  *  * @author Louis Wasserman  * @author Colin Evans  * @since 11.0  */
 end_comment
 
 begin_class
@@ -327,7 +327,7 @@ literal|10
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an {@code UnsignedLong} holding the value of the specified {@code String}, parsed as an    * unsigned {@code long} value in the specified radix.    *    * @throws NumberFormatException if the string does not contain a parsable unsigned {@code long}    *     value, or {@code radix} is not between {@link Character#MIN_RADIX} and    *     {@link Character#MAX_RADIX}    */
+comment|/**    * Returns an {@code UnsignedLong} holding the value of the specified {@code String}, parsed as an    * unsigned {@code long} value in the specified radix.    *    * @throws NumberFormatException if the string does not contain a parsable unsigned {@code long}    *     value, or {@code radix} is not between {@link Character#MIN_RADIX} and {@link    *     Character#MAX_RADIX}    */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|valueOf (String string, int radix)
@@ -491,7 +491,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the value of this {@code UnsignedLong} as an {@code int}.    */
+comment|/** Returns the value of this {@code UnsignedLong} as an {@code int}. */
 annotation|@
 name|Override
 DECL|method|intValue ()
@@ -606,7 +606,7 @@ return|return
 name|dValue
 return|;
 block|}
-comment|/**    * Returns the value of this {@code UnsignedLong} as a {@link BigInteger}.    */
+comment|/** Returns the value of this {@code UnsignedLong} as a {@link BigInteger}. */
 DECL|method|bigIntegerValue ()
 specifier|public
 name|BigInteger
@@ -736,7 +736,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/**    * Returns a string representation of the {@code UnsignedLong} value, in base 10.    */
+comment|/** Returns a string representation of the {@code UnsignedLong} value, in base 10. */
 annotation|@
 name|Override
 DECL|method|toString ()
@@ -754,7 +754,7 @@ name|value
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a string representation of the {@code UnsignedLong} value, in base {@code radix}. If    * {@code radix< Character.MIN_RADIX} or {@code radix> Character.MAX_RADIX}, the radix    * {@code 10} is used.    */
+comment|/**    * Returns a string representation of the {@code UnsignedLong} value, in base {@code radix}. If    * {@code radix< Character.MIN_RADIX} or {@code radix> Character.MAX_RADIX}, the radix {@code    * 10} is used.    */
 DECL|method|toString (int radix)
 specifier|public
 name|String

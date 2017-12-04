@@ -141,7 +141,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A class for reading lines of text. Provides the same functionality as  * {@link java.io.BufferedReader#readLine()} but for all {@link Readable} objects, not just  * instances of {@link Reader}.  *  * @author Chris Nokleberg  * @since 1.0  */
+comment|/**  * A class for reading lines of text. Provides the same functionality as {@link  * java.io.BufferedReader#readLine()} but for all {@link Readable} objects, not just instances of  * {@link Reader}.  *  * @author Chris Nokleberg  * @since 1.0  */
 end_comment
 
 begin_class
@@ -235,7 +235,7 @@ expr_stmt|;
 block|}
 block|}
 decl_stmt|;
-comment|/**    * Creates a new instance that will read lines from the given {@code Readable} object.    */
+comment|/** Creates a new instance that will read lines from the given {@code Readable} object. */
 DECL|method|LineReader (Readable readable)
 specifier|public
 name|LineReader
@@ -271,7 +271,7 @@ else|:
 literal|null
 expr_stmt|;
 block|}
-comment|/**    * Reads a line of text. A line is considered to be terminated by any one of a line feed    * ({@code '\n'}), a carriage return ({@code '\r'}), or a carriage return followed immediately by    * a linefeed ({@code "\r\n"}).    *    * @return a {@code String} containing the contents of the line, not including any    *     line-termination characters, or {@code null} if the end of the stream has been reached.    * @throws IOException if an I/O error occurs    */
+comment|/**    * Reads a line of text. A line is considered to be terminated by any one of a line feed ({@code    * '\n'}), a carriage return ({@code '\r'}), or a carriage return followed immediately by a    * linefeed ({@code "\r\n"}).    *    * @return a {@code String} containing the contents of the line, not including any    *     line-termination characters, or {@code null} if the end of the stream has been reached.    * @throws IOException if an I/O error occurs    */
 annotation|@
 name|CanIgnoreReturnValue
 comment|// to skip a line

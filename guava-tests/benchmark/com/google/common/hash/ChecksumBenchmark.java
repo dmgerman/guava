@@ -99,7 +99,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Benchmarks for comparing {@link Checksum}s and {@link HashFunction}s that wrap {@link Checksum}s.  *  *<p>Parameters for the benchmark are:<ul><li>size: The length of the byte array to hash.</ul>  *  * @author Colin Decker  */
+comment|/**  * Benchmarks for comparing {@link Checksum}s and {@link HashFunction}s that wrap {@link Checksum}s.  *  *<p>Parameters for the benchmark are:  *  *<ul>  *<li>size: The length of the byte array to hash.  *</ul>  *  * @author Colin Decker  */
 end_comment
 
 begin_class
@@ -175,9 +175,9 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// CRC32
-DECL|method|crc32HashFunction (int reps)
 annotation|@
 name|Benchmark
+DECL|method|crc32HashFunction (int reps)
 name|byte
 name|crc32HashFunction
 parameter_list|(
@@ -197,9 +197,9 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-DECL|method|crc32Checksum (int reps)
 annotation|@
 name|Benchmark
+DECL|method|crc32Checksum (int reps)
 name|byte
 name|crc32Checksum
 parameter_list|(
@@ -263,9 +263,9 @@ name|result
 return|;
 block|}
 comment|// Adler32
-DECL|method|adler32HashFunction (int reps)
 annotation|@
 name|Benchmark
+DECL|method|adler32HashFunction (int reps)
 name|byte
 name|adler32HashFunction
 parameter_list|(
@@ -285,9 +285,9 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-DECL|method|adler32Checksum (int reps)
 annotation|@
 name|Benchmark
+DECL|method|adler32Checksum (int reps)
 name|byte
 name|adler32Checksum
 parameter_list|(

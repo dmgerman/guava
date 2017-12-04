@@ -1419,7 +1419,7 @@ parameter_list|(
 name|NullPointerException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testCopyOf_collection_empty ()
 specifier|public
@@ -1609,7 +1609,7 @@ parameter_list|(
 name|NullPointerException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testCopyOf_multiset_empty ()
 specifier|public
@@ -1804,7 +1804,7 @@ parameter_list|(
 name|NullPointerException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testCopyOf_iterator_empty ()
 specifier|public
@@ -1992,7 +1992,7 @@ parameter_list|(
 name|NullPointerException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testToImmutableMultiset ()
 specifier|public
@@ -3343,7 +3343,7 @@ parameter_list|(
 name|NullPointerException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testBuilderAddAllHandlesNullsCorrectly ()
 specifier|public
@@ -3390,7 +3390,7 @@ parameter_list|(
 name|NullPointerException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 name|builder
 operator|=
 name|ImmutableMultiset
@@ -3433,7 +3433,7 @@ parameter_list|(
 name|NullPointerException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 name|builder
 operator|=
 name|ImmutableMultiset
@@ -3481,7 +3481,7 @@ parameter_list|(
 name|NullPointerException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testBuilderAddCopiesHandlesNullsCorrectly ()
 specifier|public
@@ -3524,7 +3524,7 @@ parameter_list|(
 name|NullPointerException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testBuilderAddCopiesIllegal ()
 specifier|public
@@ -3568,7 +3568,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testBuilderSetCountHandlesNullsCorrectly ()
 specifier|public
@@ -3611,7 +3611,7 @@ parameter_list|(
 name|NullPointerException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testBuilderSetCountIllegal ()
 specifier|public
@@ -3655,7 +3655,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 annotation|@
 name|GwtIncompatible

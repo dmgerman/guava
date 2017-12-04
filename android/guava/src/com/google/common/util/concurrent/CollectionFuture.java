@@ -153,7 +153,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Aggregate future that collects (stores) results of each future.  */
+comment|/** Aggregate future that collects (stores) results of each future. */
 end_comment
 
 begin_class

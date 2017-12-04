@@ -262,7 +262,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/**    * mark() is not supported for HashingInputStream    */
+comment|/** mark() is not supported for HashingInputStream */
 annotation|@
 name|Override
 DECL|method|mark (int readlimit)

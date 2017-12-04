@@ -263,7 +263,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link ListMultimap} whose contents will never change, with many other important properties  * detailed at {@link ImmutableCollection}.  *  *<p>See the Guava User Guide article on<a href=  * "https://github.com/google/guava/wiki/ImmutableCollectionsExplained">  * immutable collections</a>.  *  * @author Jared Levy  * @since 2.0  */
+comment|/**  * A {@link ListMultimap} whose contents will never change, with many other important properties  * detailed at {@link ImmutableCollection}.  *  *<p>See the Guava User Guide article on<a href=  * "https://github.com/google/guava/wiki/ImmutableCollectionsExplained"> immutable collections</a>.  *  * @author Jared Levy  * @since 2.0  */
 end_comment
 
 begin_class
@@ -302,7 +302,7 @@ argument_list|,
 name|V
 argument_list|>
 block|{
-comment|/**    * Returns a {@link Collector} that accumulates elements into an {@code ImmutableListMultimap}    * whose keys and values are the result of applying the provided mapping functions to the input    * elements.    *    *<p>For streams with {@linkplain java.util.stream#Ordering defined encounter order}, that order    * is preserved, but entries are<a href="ImmutableMultimap.html#iteration">grouped by key</a>.    *    * Example:    *<pre>   {@code    *    *   static final Multimap<Character, String> FIRST_LETTER_MULTIMAP =    *       Stream.of("banana", "apple", "carrot", "asparagus", "cherry")    *           .collect(toImmutableListMultimap(str -> str.charAt(0), str -> str.substring(1)));    *    *   // is equivalent to    *    *   static final Multimap<Character, String> FIRST_LETTER_MULTIMAP =    *       new ImmutableListMultimap.Builder<Character, String>()    *           .put('b', "anana")    *           .putAll('a', "pple", "sparagus")    *           .putAll('c', "arrot", "herry")    *           .build();}</pre>    *    * @since 21.0    */
+comment|/**    * Returns a {@link Collector} that accumulates elements into an {@code ImmutableListMultimap}    * whose keys and values are the result of applying the provided mapping functions to the input    * elements.    *    *<p>For streams with {@linkplain java.util.stream#Ordering defined encounter order}, that order    * is preserved, but entries are<a href="ImmutableMultimap.html#iteration">grouped by key</a>.    *    *<p>Example:    *    *<pre>{@code    * static final Multimap<Character, String> FIRST_LETTER_MULTIMAP =    *     Stream.of("banana", "apple", "carrot", "asparagus", "cherry")    *         .collect(toImmutableListMultimap(str -> str.charAt(0), str -> str.substring(1)));    *    * // is equivalent to    *    * static final Multimap<Character, String> FIRST_LETTER_MULTIMAP =    *     new ImmutableListMultimap.Builder<Character, String>()    *         .put('b', "anana")    *         .putAll('a', "pple", "sparagus")    *         .putAll('c', "arrot", "herry")    *         .build();    * }</pre>    *    * @since 21.0    */
 annotation|@
 name|Beta
 DECL|method|toImmutableListMultimap ( Function<? super T, ? extends K> keyFunction, Function<? super T, ? extends V> valueFunction)
@@ -587,7 +587,7 @@ operator|.
 name|INSTANCE
 return|;
 block|}
-comment|/**    * Returns an immutable multimap containing a single entry.    */
+comment|/** Returns an immutable multimap containing a single entry. */
 DECL|method|of (K k1, V v1)
 specifier|public
 specifier|static
@@ -642,7 +642,7 @@ name|build
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns an immutable multimap containing the given entries, in order.    */
+comment|/** Returns an immutable multimap containing the given entries, in order. */
 DECL|method|of (K k1, V v1, K k2, V v2)
 specifier|public
 specifier|static
@@ -712,7 +712,7 @@ name|build
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns an immutable multimap containing the given entries, in order.    */
+comment|/** Returns an immutable multimap containing the given entries, in order. */
 DECL|method|of (K k1, V v1, K k2, V v2, K k3, V v3)
 specifier|public
 specifier|static
@@ -797,7 +797,7 @@ name|build
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns an immutable multimap containing the given entries, in order.    */
+comment|/** Returns an immutable multimap containing the given entries, in order. */
 DECL|method|of ( K k1, V v1, K k2, V v2, K k3, V v3, K k4, V v4)
 specifier|public
 specifier|static
@@ -897,7 +897,7 @@ name|build
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns an immutable multimap containing the given entries, in order.    */
+comment|/** Returns an immutable multimap containing the given entries, in order. */
 DECL|method|of ( K k1, V v1, K k2, V v2, K k3, V v3, K k4, V v4, K k5, V v5)
 specifier|public
 specifier|static
@@ -1013,7 +1013,7 @@ argument_list|()
 return|;
 block|}
 comment|// looking for of() with> 5 entries? Use the builder instead.
-comment|/**    * Returns a new builder. The generated builder is equivalent to the builder    * created by the {@link Builder} constructor.    */
+comment|/**    * Returns a new builder. The generated builder is equivalent to the builder created by the {@link    * Builder} constructor.    */
 DECL|method|builder ()
 specifier|public
 specifier|static
@@ -1038,7 +1038,7 @@ argument_list|<>
 argument_list|()
 return|;
 block|}
-comment|/**    * A builder for creating immutable {@code ListMultimap} instances, especially    * {@code public static final} multimaps ("constant multimaps"). Example:    *<pre>   {@code    *    *   static final Multimap<String, Integer> STRING_TO_INTEGER_MULTIMAP =    *       new ImmutableListMultimap.Builder<String, Integer>()    *           .put("one", 1)    *           .putAll("several", 1, 2, 3)    *           .putAll("many", 1, 2, 3, 4, 5)    *           .build();}</pre>    *    *<p>Builder instances can be reused; it is safe to call {@link #build} multiple    * times to build multiple multimaps in series. Each multimap contains the    * key-value mappings in the previously created multimaps.    *    * @since 2.0    */
+comment|/**    * A builder for creating immutable {@code ListMultimap} instances, especially {@code public    * static final} multimaps ("constant multimaps"). Example:    *    *<pre>{@code    * static final Multimap<String, Integer> STRING_TO_INTEGER_MULTIMAP =    *     new ImmutableListMultimap.Builder<String, Integer>()    *         .put("one", 1)    *         .putAll("several", 1, 2, 3)    *         .putAll("many", 1, 2, 3, 4, 5)    *         .build();    * }</pre>    *    *<p>Builder instances can be reused; it is safe to call {@link #build} multiple times to build    * multiple multimaps in series. Each multimap contains the key-value mappings in the previously    * created multimaps.    *    * @since 2.0    */
 DECL|class|Builder
 specifier|public
 specifier|static
@@ -1060,7 +1060,7 @@ argument_list|,
 name|V
 argument_list|>
 block|{
-comment|/**      * Creates a new builder. The returned builder is equivalent to the builder      * generated by {@link ImmutableListMultimap#builder}.      */
+comment|/**      * Creates a new builder. The returned builder is equivalent to the builder generated by {@link      * ImmutableListMultimap#builder}.      */
 DECL|method|Builder ()
 specifier|public
 name|Builder
@@ -1402,7 +1402,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**      * Returns a newly-created immutable list multimap.      */
+comment|/** Returns a newly-created immutable list multimap. */
 annotation|@
 name|Override
 DECL|method|build ()
@@ -1432,7 +1432,7 @@ argument_list|()
 return|;
 block|}
 block|}
-comment|/**    * Returns an immutable multimap containing the same mappings as {@code    * multimap}. The generated multimap's key and value orderings correspond to    * the iteration ordering of the {@code multimap.asMap()} view.    *    *<p>Despite the method name, this method attempts to avoid actually copying    * the data when it is safe to do so. The exact circumstances under which a    * copy will or will not be performed are undocumented and subject to change.    *    * @throws NullPointerException if any key or value in {@code multimap} is    *         null    */
+comment|/**    * Returns an immutable multimap containing the same mappings as {@code multimap}. The generated    * multimap's key and value orderings correspond to the iteration ordering of the {@code    * multimap.asMap()} view.    *    *<p>Despite the method name, this method attempts to avoid actually copying the data when it is    * safe to do so. The exact circumstances under which a copy will or will not be performed are    * undocumented and subject to change.    *    * @throws NullPointerException if any key or value in {@code multimap} is null    */
 DECL|method|copyOf ( Multimap<? extends K, ? extends V> multimap)
 specifier|public
 specifier|static
@@ -1642,7 +1642,7 @@ name|size
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an immutable multimap containing the specified entries.  The    * returned multimap iterates over keys in the order they were first    * encountered in the input, and the values for each key are iterated in the    * order they were encountered.    *    * @throws NullPointerException if any key, value, or entry is null    * @since 19.0    */
+comment|/**    * Returns an immutable multimap containing the specified entries. The returned multimap iterates    * over keys in the order they were first encountered in the input, and the values for each key    * are iterated in the order they were encountered.    *    * @throws NullPointerException if any key, value, or entry is null    * @since 19.0    */
 annotation|@
 name|Beta
 DECL|method|copyOf ( Iterable<? extends Entry<? extends K, ? extends V>> entries)
@@ -1725,7 +1725,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// views
-comment|/**    * Returns an immutable list of the values for the given key.  If no mappings    * in the multimap have the provided key, an empty immutable list is    * returned. The values are in the same order as the parameters used to build    * this multimap.    */
+comment|/**    * Returns an immutable list of the values for the given key. If no mappings in the multimap have    * the provided key, an empty immutable list is returned. The values are in the same order as the    * parameters used to build this multimap.    */
 annotation|@
 name|Override
 DECL|method|get (@ullable K key)
@@ -1780,11 +1780,11 @@ else|:
 name|list
 return|;
 block|}
+DECL|field|inverse
 annotation|@
 name|LazyInit
 annotation|@
 name|RetainedWith
-DECL|field|inverse
 specifier|private
 specifier|transient
 name|ImmutableListMultimap
@@ -1795,7 +1795,7 @@ name|K
 argument_list|>
 name|inverse
 decl_stmt|;
-comment|/**    * {@inheritDoc}    *    *<p>Because an inverse of a list multimap can contain multiple pairs with    * the same key and value, this method returns an {@code    * ImmutableListMultimap} rather than the {@code ImmutableMultimap} specified    * in the {@code ImmutableMultimap} class.    *    * @since 11.0    */
+comment|/**    * {@inheritDoc}    *    *<p>Because an inverse of a list multimap can contain multiple pairs with the same key and    * value, this method returns an {@code ImmutableListMultimap} rather than the {@code    * ImmutableMultimap} specified in the {@code ImmutableMultimap} class.    *    * @since 11.0    */
 annotation|@
 name|Override
 DECL|method|inverse ()
@@ -1969,7 +1969,7 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
-comment|/**    * @serialData number of distinct keys, and then for each distinct key: the    *     key, the number of values for that key, and the key's values    */
+comment|/**    * @serialData number of distinct keys, and then for each distinct key: the key, the number of    *     values for that key, and the key's values    */
 annotation|@
 name|GwtIncompatible
 comment|// java.io.ObjectOutputStream

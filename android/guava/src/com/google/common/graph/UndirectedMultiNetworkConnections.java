@@ -311,9 +311,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+DECL|field|adjacentNodesReference
 annotation|@
 name|LazyInit
-DECL|field|adjacentNodesReference
 specifier|private
 specifier|transient
 name|Reference

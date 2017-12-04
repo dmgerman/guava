@@ -443,7 +443,7 @@ block|}
 block|}
 decl_stmt|;
 comment|// 1. Tests on a hardcoded dataset for chains starting with median(), quartiles(), and scale(10):
-comment|/**    * The squares of the 16 integers from 0 to 15, in an arbitrary order.    */
+comment|/** The squares of the 16 integers from 0 to 15, in an arbitrary order. */
 DECL|field|SIXTEEN_SQUARES_DOUBLES
 specifier|private
 specifier|static

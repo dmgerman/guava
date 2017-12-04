@@ -50,7 +50,6 @@ specifier|public
 class|class
 name|ToStringHelperBenchmark
 block|{
-DECL|field|dataSize
 annotation|@
 name|Param
 argument_list|(
@@ -64,6 +63,7 @@ block|,
 literal|"10"
 block|}
 argument_list|)
+DECL|field|dataSize
 name|int
 name|dataSize
 decl_stmt|;
@@ -152,9 +152,9 @@ literal|'x'
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|toString (int reps)
 annotation|@
 name|Benchmark
+DECL|method|toString (int reps)
 name|int
 name|toString
 parameter_list|(

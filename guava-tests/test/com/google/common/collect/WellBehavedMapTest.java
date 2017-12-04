@@ -87,15 +87,15 @@ enum|enum
 name|Foo
 block|{
 DECL|enumConstant|X
-DECL|enumConstant|Y
-DECL|enumConstant|Z
-DECL|enumConstant|T
 name|X
 block|,
+DECL|enumConstant|Y
 name|Y
 block|,
+DECL|enumConstant|Z
 name|Z
 block|,
+DECL|enumConstant|T
 name|T
 block|}
 DECL|method|testEntrySet_contain ()

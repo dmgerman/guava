@@ -73,7 +73,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A simplistic collection which implements only the bare minimum allowed by the  * spec, and throws exceptions whenever it can.  *  * @author Kevin Bourrillion  */
+comment|/**  * A simplistic collection which implements only the bare minimum allowed by the spec, and throws  * exceptions whenever it can.  *  * @author Kevin Bourrillion  */
 end_comment
 
 begin_class

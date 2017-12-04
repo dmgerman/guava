@@ -831,7 +831,7 @@ return|;
 block|}
 block|}
 comment|// Constructor
-comment|/**    * Constructs a new instance of this class (only invokable by the subclass    * constructor, typically implicit).    */
+comment|/**    * Constructs a new instance of this class (only invokable by the subclass constructor, typically    * implicit).    */
 DECL|method|Ordering ()
 specifier|protected
 name|Ordering
@@ -1424,7 +1424,7 @@ return|return
 name|maxSoFar
 return|;
 block|}
-comment|/**    * Returns the greatest of the specified values according to this ordering. If    * there are multiple greatest values, the first of those is returned.    *    *<p><b>Java 8 users:</b> If {@code iterable} is a {@link Collection}, use {@code    * Collections.max(collection, thisComparator)} instead. Otherwise, continue to use this method    * for now. After the next release of Guava, use {@code    * Streams.stream(iterable).max(thisComparator).get()} instead. Note that these alternatives do    * not guarantee which tied maximum element is returned)    *    * @param iterable the iterable whose maximum element is to be determined    * @throws NoSuchElementException if {@code iterable} is empty    * @throws ClassCastException if the parameters are not<i>mutually    *     comparable</i> under this ordering.    */
+comment|/**    * Returns the greatest of the specified values according to this ordering. If there are multiple    * greatest values, the first of those is returned.    *    *<p><b>Java 8 users:</b> If {@code iterable} is a {@link Collection}, use {@code    * Collections.max(collection, thisComparator)} instead. Otherwise, continue to use this method    * for now. After the next release of Guava, use {@code    * Streams.stream(iterable).max(thisComparator).get()} instead. Note that these alternatives do    * not guarantee which tied maximum element is returned)    *    * @param iterable the iterable whose maximum element is to be determined    * @throws NoSuchElementException if {@code iterable} is empty    * @throws ClassCastException if the parameters are not<i>mutually comparable</i> under this    *     ordering.    */
 annotation|@
 name|CanIgnoreReturnValue
 comment|// TODO(kak): Consider removing this
@@ -2218,7 +2218,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/**    * {@link Collections#binarySearch(List, Object, Comparator) Searches}    * {@code sortedList} for {@code key} using the binary search algorithm. The    * list must be sorted using this ordering.    *    * @param sortedList the list to be searched    * @param key the key to be searched for    * @deprecated Use {@link Collections#binarySearch(List, Object, Comparator)} directly.    */
+comment|/**    * {@link Collections#binarySearch(List, Object, Comparator) Searches} {@code sortedList} for    * {@code key} using the binary search algorithm. The list must be sorted using this ordering.    *    * @param sortedList the list to be searched    * @param key the key to be searched for    * @deprecated Use {@link Collections#binarySearch(List, Object, Comparator)} directly.    */
 annotation|@
 name|Deprecated
 DECL|method|binarySearch (List<? extends T> sortedList, @Nullable T key)
@@ -2253,7 +2253,7 @@ name|this
 argument_list|)
 return|;
 block|}
-comment|/**    * Exception thrown by a {@link Ordering#explicit(List)} or {@link    * Ordering#explicit(Object, Object[])} comparator when comparing a value    * outside the set of values it can compare. Extending {@link    * ClassCastException} may seem odd, but it is required.    */
+comment|/**    * Exception thrown by a {@link Ordering#explicit(List)} or {@link Ordering#explicit(Object,    * Object[])} comparator when comparing a value outside the set of values it can compare.    * Extending {@link ClassCastException} may seem odd, but it is required.    */
 annotation|@
 name|VisibleForTesting
 DECL|class|IncomparableValueException

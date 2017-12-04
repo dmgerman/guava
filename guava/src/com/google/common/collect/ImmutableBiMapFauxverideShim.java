@@ -67,7 +67,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * "Overrides" the {@link ImmutableMap} static methods that lack  * {@link ImmutableBiMap} equivalents with deprecated, exception-throwing  * versions. See {@link ImmutableSortedSetFauxverideShim} for details.  *  * @author Louis Wasserman  */
+comment|/**  * "Overrides" the {@link ImmutableMap} static methods that lack {@link ImmutableBiMap} equivalents  * with deprecated, exception-throwing versions. See {@link ImmutableSortedSetFauxverideShim} for  * details.  *  * @author Louis Wasserman  */
 end_comment
 
 begin_class

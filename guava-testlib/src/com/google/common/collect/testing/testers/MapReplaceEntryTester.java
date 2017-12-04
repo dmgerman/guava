@@ -177,7 +177,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A generic JUnit test which tests {@link Map#replace(Object, Object, Object)}. Can't   * be invoked directly; please see  * {@link com.google.common.collect.testing.MapTestSuiteBuilder}.  *   * @author Louis Wasserman  */
+comment|/**  * A generic JUnit test which tests {@link Map#replace(Object, Object, Object)}. Can't be invoked  * directly; please see {@link com.google.common.collect.testing.MapTestSuiteBuilder}.  *  * @author Louis Wasserman  */
 end_comment
 
 begin_class
@@ -445,7 +445,7 @@ parameter_list|(
 name|NullPointerException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 name|expectUnchanged
 argument_list|()
 expr_stmt|;
@@ -702,7 +702,7 @@ parameter_list|(
 name|UnsupportedOperationException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 name|expectUnchanged
 argument_list|()
 expr_stmt|;

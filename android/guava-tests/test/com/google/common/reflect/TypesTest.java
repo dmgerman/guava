@@ -862,7 +862,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testNewParameterizedType_ownerMissing ()
 specifier|public
@@ -944,7 +944,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testNewParameterizedType_primitiveTypeParameters ()
 specifier|public
@@ -984,7 +984,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testNewArrayType ()
 specifier|public
@@ -1658,7 +1658,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testNewWildcardType_serializable ()
 specifier|public
@@ -1709,7 +1709,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|assertEqualWildcardType ( WildcardType expected, WildcardType actual)
+DECL|method|assertEqualWildcardType (WildcardType expected, WildcardType actual)
 specifier|private
 specifier|static
 name|void
@@ -2117,7 +2117,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testNewTypeVariable_serializable ()
 specifier|public
@@ -2154,7 +2154,7 @@ parameter_list|(
 name|RuntimeException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|withBounds ( TypeVariable<D> typeVariable, Type... bounds)
 specifier|private
@@ -2292,7 +2292,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-DECL|method|assertEqualTypeVariable ( TypeVariable<?> expected, TypeVariable<?> actual)
+DECL|method|assertEqualTypeVariable (TypeVariable<?> expected, TypeVariable<?> actual)
 specifier|private
 specifier|static
 name|void
@@ -2405,7 +2405,7 @@ name|inOrder
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * Working with arrays requires defensive code. Verify that we clone the    * type array for both input and output.    */
+comment|/**    * Working with arrays requires defensive code. Verify that we clone the type array for both input    * and output.    */
 DECL|method|testNewParameterizedTypeImmutability ()
 specifier|public
 name|void
@@ -2546,7 +2546,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testToString ()
 specifier|public

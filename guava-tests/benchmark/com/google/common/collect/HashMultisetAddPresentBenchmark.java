@@ -203,9 +203,9 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-DECL|method|add (int reps)
 annotation|@
 name|Benchmark
+DECL|method|add (int reps)
 name|int
 name|add
 parameter_list|(

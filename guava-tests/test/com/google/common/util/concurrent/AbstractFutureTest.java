@@ -1636,7 +1636,7 @@ name|shutdown
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * He did the bash, he did the future bash    * The future bash, it was a concurrency smash    * He did the bash, it caught on in a flash    * He did the bash, he did the future bash    */
+comment|/**    * He did the bash, he did the future bash The future bash, it was a concurrency smash He did the    * bash, it caught on in a flash He did the bash, he did the future bash    */
 DECL|method|testFutureBash ()
 specifier|public
 name|void
@@ -4155,7 +4155,7 @@ literal|"get"
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|findStackFrame ( ExecutionException e, String clazz, String method)
+DECL|method|findStackFrame (ExecutionException e, String clazz, String method)
 specifier|private
 specifier|static
 name|int
@@ -4261,7 +4261,7 @@ throw|throw
 name|failure
 throw|;
 block|}
-DECL|method|getExpectingExecutionException ( AbstractFuture<String> future)
+DECL|method|getExpectingExecutionException (AbstractFuture<String> future)
 specifier|private
 name|ExecutionException
 name|getExpectingExecutionException
@@ -4344,9 +4344,9 @@ operator|=
 name|future
 expr_stmt|;
 block|}
-DECL|method|run ()
 annotation|@
 name|Override
+DECL|method|run ()
 specifier|public
 name|void
 name|run
@@ -4476,9 +4476,9 @@ operator|=
 name|unit
 expr_stmt|;
 block|}
-DECL|method|run ()
 annotation|@
 name|Override
+DECL|method|run ()
 specifier|public
 name|void
 name|run
@@ -4595,9 +4595,9 @@ operator|=
 name|future
 expr_stmt|;
 block|}
-DECL|method|run ()
 annotation|@
 name|Override
+DECL|method|run ()
 specifier|public
 name|void
 name|run
@@ -4681,9 +4681,9 @@ DECL|field|interruptTaskWasCalled
 name|boolean
 name|interruptTaskWasCalled
 decl_stmt|;
-DECL|method|interruptTask ()
 annotation|@
 name|Override
+DECL|method|interruptTask ()
 specifier|protected
 name|void
 name|interruptTask

@@ -103,7 +103,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A wrapper around {@code TreeSet} that aggressively checks to see if elements  * are mutually comparable. This implementation passes the navigable set test  * suites.  *  * @author Louis Wasserman  */
+comment|/**  * A wrapper around {@code TreeSet} that aggressively checks to see if elements are mutually  * comparable. This implementation passes the navigable set test suites.  *  * @author Louis Wasserman  */
 end_comment
 
 begin_class

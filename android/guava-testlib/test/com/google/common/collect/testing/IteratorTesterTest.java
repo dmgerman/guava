@@ -518,7 +518,7 @@ name|tester
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * This Iterator wraps another iterator and gives it a bug found    * in JDK6.    *    *<p>This bug is this: if you create an iterator from a TreeSet    * and call next() on that iterator when hasNext() is false, so    * that next() throws a NoSuchElementException, then subsequent    * calls to remove() will incorrectly throw an IllegalStateException,    * instead of removing the last element returned.    *    *<p>See    *<a href="http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6529795">    * Sun bug 6529795</a>    */
+comment|/**    * This Iterator wraps another iterator and gives it a bug found in JDK6.    *    *<p>This bug is this: if you create an iterator from a TreeSet and call next() on that iterator    * when hasNext() is false, so that next() throws a NoSuchElementException, then subsequent calls    * to remove() will incorrectly throw an IllegalStateException, instead of removing the last    * element returned.    *    *<p>See<a href="http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6529795">Sun bug 6529795</a>    */
 DECL|class|IteratorWithSunJavaBug6529795
 specifier|static
 class|class
@@ -773,9 +773,9 @@ DECL|field|numCallsToVerify
 name|int
 name|numCallsToVerify
 decl_stmt|;
-DECL|method|newTargetIterator ()
 annotation|@
 name|Override
+DECL|method|newTargetIterator ()
 specifier|protected
 name|Iterator
 argument_list|<
@@ -799,9 +799,9 @@ name|iterator
 argument_list|()
 return|;
 block|}
-DECL|method|verify (List<Integer> elements)
 annotation|@
 name|Override
+DECL|method|verify (List<Integer> elements)
 specifier|protected
 name|void
 name|verify

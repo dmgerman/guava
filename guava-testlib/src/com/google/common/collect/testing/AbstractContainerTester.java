@@ -97,7 +97,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Base class for testers of classes (including {@link Collection}  * and {@link java.util.Map Map}) that contain elements.  *  * @param<C> the type of the container  * @param<E> the type of the container's contents  *  * @author George van den Driessche  */
+comment|/**  * Base class for testers of classes (including {@link Collection} and {@link java.util.Map Map})  * that contain elements.  *  * @param<C> the type of the container  * @param<E> the type of the container's contents  * @author George van den Driessche  */
 end_comment
 
 begin_class
@@ -168,7 +168,7 @@ name|resetContainer
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * @return the contents of the container under test, for use by    * {@link #expectContents(Object[]) expectContents(E...)} and its friends.    */
+comment|/**    * @return the contents of the container under test, for use by {@link #expectContents(Object[])    *     expectContents(E...)} and its friends.    */
 DECL|method|actualContents ()
 specifier|protected
 specifier|abstract
@@ -179,7 +179,7 @@ argument_list|>
 name|actualContents
 parameter_list|()
 function_decl|;
-comment|/**    * Replaces the existing container under test with a new container created    * by the subject generator.    *    * @see #resetContainer(Object) resetContainer(C)    *    * @return the new container instance.    */
+comment|/**    * Replaces the existing container under test with a new container created by the subject    * generator.    *    * @see #resetContainer(Object) resetContainer(C)    * @return the new container instance.    */
 DECL|method|resetContainer ()
 specifier|protected
 name|C
@@ -197,7 +197,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Replaces the existing container under test with a new container.    * This is useful when a single test method needs to create multiple    * containers while retaining the ability to use    * {@link #expectContents(Object[]) expectContents(E...)} and other    * convenience methods. The creation of multiple containers in a single    * method is discouraged in most cases, but it is vital to the iterator tests.    *    * @return the new container instance    * @param newValue the new container instance    */
+comment|/**    * Replaces the existing container under test with a new container. This is useful when a single    * test method needs to create multiple containers while retaining the ability to use {@link    * #expectContents(Object[]) expectContents(E...)} and other convenience methods. The creation of    * multiple containers in a single method is discouraged in most cases, but it is vital to the    * iterator tests.    *    * @return the new container instance    * @param newValue the new container instance    */
 DECL|method|resetContainer (C newValue)
 specifier|protected
 name|C
@@ -215,7 +215,7 @@ return|return
 name|container
 return|;
 block|}
-comment|/**    * @see #expectContents(java.util.Collection)    *    * @param elements expected contents of {@link #container}    */
+comment|/**    * @see #expectContents(java.util.Collection)    * @param elements expected contents of {@link #container}    */
 DECL|method|expectContents (E... elements)
 specifier|protected
 specifier|final
@@ -238,7 +238,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Asserts that the collection under test contains exactly the given elements,    * respecting cardinality but not order. Subclasses may override this method    * to provide stronger assertions, e.g., to check ordering in lists, but    * realize that<strong>unless a test extends    * {@link com.google.common.collect.testing.testers.AbstractListTester    * AbstractListTester}, a call to {@code expectContents()} invokes this    * version</strong>.    *    * @param expected expected value of {@link #container}    */
+comment|/**    * Asserts that the collection under test contains exactly the given elements, respecting    * cardinality but not order. Subclasses may override this method to provide stronger assertions,    * e.g., to check ordering in lists, but realize that<strong>unless a test extends {@link    * com.google.common.collect.testing.testers.AbstractListTester AbstractListTester}, a call to    * {@code expectContents()} invokes this version</strong>.    *    * @param expected expected value of {@link #container}    */
 comment|/*    * TODO: improve this and other implementations and move out of this framework    * for wider use    *    * TODO: could we incorporate the overriding logic from AbstractListTester, by    * examining whether the features include KNOWN_ORDER?    */
 DECL|method|expectContents (Collection<E> expected)
 specifier|protected
@@ -276,7 +276,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Asserts that the collection under test contains exactly the elements it was    * initialized with plus the given elements, according to    * {@link #expectContents(java.util.Collection)}. In other words, for the    * default {@code expectContents()} implementation, the number of occurrences    * of each given element has increased by one since the test collection was    * created, and the number of occurrences of all other elements has not    * changed.    *    *<p>Note: This means that a test like the following will fail if    * {@code collection} is a {@code Set}:    *    *<pre>    * collection.add(existingElement);    * expectAdded(existingElement);</pre>    *    *<p>In this case, {@code collection} was not modified as a result of the    * {@code add()} call, and the test will fail because the number of    * occurrences of {@code existingElement} is unchanged.    *    * @param elements expected additional contents of {@link #container}    */
+comment|/**    * Asserts that the collection under test contains exactly the elements it was initialized with    * plus the given elements, according to {@link #expectContents(java.util.Collection)}. In other    * words, for the default {@code expectContents()} implementation, the number of occurrences of    * each given element has increased by one since the test collection was created, and the number    * of occurrences of all other elements has not changed.    *    *<p>Note: This means that a test like the following will fail if {@code collection} is a {@code    * Set}:    *    *<pre>    * collection.add(existingElement);    * expectAdded(existingElement);</pre>    *    *<p>In this case, {@code collection} was not modified as a result of the {@code add()} call, and    * the test will fail because the number of occurrences of {@code existingElement} is unchanged.    *    * @param elements expected additional contents of {@link #container}    */
 DECL|method|expectAdded (E... elements)
 specifier|protected
 specifier|final
@@ -540,7 +540,7 @@ name|duplicate
 expr_stmt|;
 block|}
 block|}
-comment|/**    * @return an array of the proper size with a duplicate element.    * The size must be at least three.    */
+comment|/**    * @return an array of the proper size with a duplicate element. The size must be at least three.    */
 DECL|method|createArrayWithDuplicateElement ()
 specifier|protected
 name|ArrayWithDuplicate
@@ -658,7 +658,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the {@linkplain #getSampleElements() sample elements} as ordered by    * {@link TestContainerGenerator#order(List)}. Tests should used this method    * only if they declare requirement {@link    * com.google.common.collect.testing.features.CollectionFeature#KNOWN_ORDER}.    */
+comment|/**    * Returns the {@linkplain #getSampleElements() sample elements} as ordered by {@link    * TestContainerGenerator#order(List)}. Tests should used this method only if they declare    * requirement {@link com.google.common.collect.testing.features.CollectionFeature#KNOWN_ORDER}.    */
 DECL|method|getOrderedElements ()
 specifier|protected
 name|List
@@ -720,7 +720,7 @@ name|list
 argument_list|)
 return|;
 block|}
-comment|/**    * @return a suitable location for a null element, to use when initializing    * containers for tests that involve a null element being present.    */
+comment|/**    * @return a suitable location for a null element, to use when initializing containers for tests    *     that involve a null element being present.    */
 DECL|method|getNullLocation ()
 specifier|protected
 name|int

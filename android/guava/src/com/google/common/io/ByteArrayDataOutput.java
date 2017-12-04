@@ -215,7 +215,7 @@ name|String
 name|s
 parameter_list|)
 function_decl|;
-comment|/**    * Returns the contents that have been written to this instance, as a byte array.    */
+comment|/** Returns the contents that have been written to this instance, as a byte array. */
 DECL|method|toByteArray ()
 name|byte
 index|[]

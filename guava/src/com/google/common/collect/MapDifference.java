@@ -67,13 +67,13 @@ parameter_list|,
 name|V
 parameter_list|>
 block|{
-comment|/**    * Returns {@code true} if there are no differences between the two maps;    * that is, if the maps are equal.    */
+comment|/**    * Returns {@code true} if there are no differences between the two maps; that is, if the maps are    * equal.    */
 DECL|method|areEqual ()
 name|boolean
 name|areEqual
 parameter_list|()
 function_decl|;
-comment|/**    * Returns an unmodifiable map containing the entries from the left map whose    * keys are not present in the right map.    */
+comment|/**    * Returns an unmodifiable map containing the entries from the left map whose keys are not present    * in the right map.    */
 DECL|method|entriesOnlyOnLeft ()
 name|Map
 argument_list|<
@@ -84,7 +84,7 @@ argument_list|>
 name|entriesOnlyOnLeft
 parameter_list|()
 function_decl|;
-comment|/**    * Returns an unmodifiable map containing the entries from the right map whose    * keys are not present in the left map.    */
+comment|/**    * Returns an unmodifiable map containing the entries from the right map whose keys are not    * present in the left map.    */
 DECL|method|entriesOnlyOnRight ()
 name|Map
 argument_list|<
@@ -95,7 +95,7 @@ argument_list|>
 name|entriesOnlyOnRight
 parameter_list|()
 function_decl|;
-comment|/**    * Returns an unmodifiable map containing the entries that appear in both    * maps; that is, the intersection of the two maps.    */
+comment|/**    * Returns an unmodifiable map containing the entries that appear in both maps; that is, the    * intersection of the two maps.    */
 DECL|method|entriesInCommon ()
 name|Map
 argument_list|<
@@ -106,7 +106,7 @@ argument_list|>
 name|entriesInCommon
 parameter_list|()
 function_decl|;
-comment|/**    * Returns an unmodifiable map describing keys that appear in both maps, but    * with different values.    */
+comment|/**    * Returns an unmodifiable map describing keys that appear in both maps, but with different    * values.    */
 DECL|method|entriesDiffering ()
 name|Map
 argument_list|<
@@ -120,7 +120,7 @@ argument_list|>
 name|entriesDiffering
 parameter_list|()
 function_decl|;
-comment|/**    * Compares the specified object with this instance for equality. Returns    * {@code true} if the given object is also a {@code MapDifference} and the    * values returned by the {@link #entriesOnlyOnLeft()}, {@link    * #entriesOnlyOnRight()}, {@link #entriesInCommon()} and {@link    * #entriesDiffering()} of the two instances are equal.    */
+comment|/**    * Compares the specified object with this instance for equality. Returns {@code true} if the    * given object is also a {@code MapDifference} and the values returned by the {@link    * #entriesOnlyOnLeft()}, {@link #entriesOnlyOnRight()}, {@link #entriesInCommon()} and {@link    * #entriesDiffering()} of the two instances are equal.    */
 annotation|@
 name|Override
 DECL|method|equals (@ullable Object object)
@@ -133,7 +133,7 @@ name|Object
 name|object
 parameter_list|)
 function_decl|;
-comment|/**    * Returns the hash code for this instance. This is defined as the hash code    * of<pre>   {@code    *    *   Arrays.asList(entriesOnlyOnLeft(), entriesOnlyOnRight(),    *       entriesInCommon(), entriesDiffering())}</pre>    */
+comment|/**    * Returns the hash code for this instance. This is defined as the hash code of    *    *<pre>{@code    * Arrays.asList(entriesOnlyOnLeft(), entriesOnlyOnRight(),    *     entriesInCommon(), entriesDiffering())    * }</pre>    */
 annotation|@
 name|Override
 DECL|method|hashCode ()
@@ -141,7 +141,7 @@ name|int
 name|hashCode
 parameter_list|()
 function_decl|;
-comment|/**    * A difference between the mappings from two maps with the same key. The    * {@link #leftValue} and {@link #rightValue} are not equal, and one but not    * both of them may be null.    *    * @since 2.0    */
+comment|/**    * A difference between the mappings from two maps with the same key. The {@link #leftValue} and    * {@link #rightValue} are not equal, and one but not both of them may be null.    *    * @since 2.0    */
 DECL|interface|ValueDifference
 interface|interface
 name|ValueDifference
@@ -149,19 +149,19 @@ parameter_list|<
 name|V
 parameter_list|>
 block|{
-comment|/**      * Returns the value from the left map (possibly null).      */
+comment|/** Returns the value from the left map (possibly null). */
 DECL|method|leftValue ()
 name|V
 name|leftValue
 parameter_list|()
 function_decl|;
-comment|/**      * Returns the value from the right map (possibly null).      */
+comment|/** Returns the value from the right map (possibly null). */
 DECL|method|rightValue ()
 name|V
 name|rightValue
 parameter_list|()
 function_decl|;
-comment|/**      * Two instances are considered equal if their {@link #leftValue()}      * values are equal and their {@link #rightValue()} values are also equal.      */
+comment|/**      * Two instances are considered equal if their {@link #leftValue()} values are equal and their      * {@link #rightValue()} values are also equal.      */
 annotation|@
 name|Override
 DECL|method|equals (@ullable Object other)
@@ -174,7 +174,7 @@ name|Object
 name|other
 parameter_list|)
 function_decl|;
-comment|/**      * The hash code equals the value      * {@code Arrays.asList(leftValue(), rightValue()).hashCode()}.      */
+comment|/**      * The hash code equals the value {@code Arrays.asList(leftValue(), rightValue()).hashCode()}.      */
 annotation|@
 name|Override
 DECL|method|hashCode ()

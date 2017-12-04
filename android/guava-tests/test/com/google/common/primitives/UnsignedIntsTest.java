@@ -1856,7 +1856,7 @@ parameter_list|(
 name|NumberFormatException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testParseIntWithRadix ()
 specifier|public
@@ -2018,7 +2018,7 @@ parameter_list|(
 name|NumberFormatException
 name|expected
 parameter_list|)
-block|{}
+block|{       }
 block|}
 block|}
 DECL|method|testParseIntThrowsExceptionForInvalidRadix ()
@@ -2053,7 +2053,7 @@ parameter_list|(
 name|NumberFormatException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 try|try
 block|{
 name|UnsignedInts
@@ -2078,7 +2078,7 @@ parameter_list|(
 name|NumberFormatException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 comment|// The radix is used as an array index, so try a negative value.
 try|try
 block|{
@@ -2101,7 +2101,7 @@ parameter_list|(
 name|NumberFormatException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testDecodeInt ()
 specifier|public

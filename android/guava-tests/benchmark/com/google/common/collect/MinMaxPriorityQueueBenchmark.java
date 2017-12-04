@@ -135,7 +135,6 @@ name|comparator
 decl_stmt|;
 comment|// TODO(kevinb): add 1000000 back when we have the ability to throw
 comment|// NotApplicableException in the expensive comparator case.
-DECL|field|size
 annotation|@
 name|Param
 argument_list|(
@@ -145,6 +144,7 @@ block|,
 literal|"10000"
 block|}
 argument_list|)
+DECL|field|size
 specifier|private
 name|int
 name|size
@@ -174,9 +174,9 @@ operator|new
 name|Random
 argument_list|()
 decl_stmt|;
-DECL|method|setUp ()
 annotation|@
 name|BeforeExperiment
+DECL|method|setUp ()
 name|void
 name|setUp
 parameter_list|()
@@ -220,9 +220,9 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-DECL|method|pollAndAdd (int reps)
 annotation|@
 name|Benchmark
+DECL|method|pollAndAdd (int reps)
 name|void
 name|pollAndAdd
 parameter_list|(
@@ -263,9 +263,9 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-DECL|method|populate (int reps)
 annotation|@
 name|Benchmark
+DECL|method|populate (int reps)
 name|void
 name|populate
 parameter_list|(
@@ -322,7 +322,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**    * Implementation of the InvertedMinMaxPriorityQueue which forwards all calls to    * a MinMaxPriorityQueue, except poll, which is forwarded to pollMax. That way    * we can benchmark pollMax using the same code that benchmarks poll.    */
+comment|/**    * Implementation of the InvertedMinMaxPriorityQueue which forwards all calls to a    * MinMaxPriorityQueue, except poll, which is forwarded to pollMax. That way we can benchmark    * pollMax using the same code that benchmarks poll.    */
 DECL|class|InvertedMinMaxPriorityQueue
 specifier|static
 specifier|final
@@ -516,7 +516,7 @@ name|comparator
 parameter_list|)
 function_decl|;
 block|}
-comment|/**    * Does a CPU intensive operation on Integer and returns a BigInteger    * Used to implement an ordering that spends a lot of cpu.    */
+comment|/**    * Does a CPU intensive operation on Integer and returns a BigInteger Used to implement an    * ordering that spends a lot of cpu.    */
 DECL|class|ExpensiveComputation
 specifier|static
 class|class

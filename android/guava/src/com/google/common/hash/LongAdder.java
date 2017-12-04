@@ -75,7 +75,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * One or more variables that together maintain an initially zero  * {@code long} sum.  When updates (method {@link #add}) are contended  * across threads, the set of variables may grow dynamically to reduce  * contention. Method {@link #sum} (or, equivalently, {@link  * #longValue}) returns the current total combined across the  * variables maintaining the sum.  *  *<p>This class is usually preferable to {@link AtomicLong} when  * multiple threads update a common sum that is used for purposes such  * as collecting statistics, not for fine-grained synchronization  * control.  Under low update contention, the two classes have similar  * characteristics. But under high contention, expected throughput of  * this class is significantly higher, at the expense of higher space  * consumption.  *  *<p>This class extends {@link Number}, but does<em>not</em> define  * methods such as {@code equals}, {@code hashCode} and {@code  * compareTo} because instances are expected to be mutated, and so are  * not useful as collection keys.  *  *<p><em>jsr166e note: This class is targeted to be placed in  * java.util.concurrent.atomic.</em>  *  * @since 1.8  * @author Doug Lea  */
+comment|/**  * One or more variables that together maintain an initially zero {@code long} sum. When updates  * (method {@link #add}) are contended across threads, the set of variables may grow dynamically to  * reduce contention. Method {@link #sum} (or, equivalently, {@link #longValue}) returns the current  * total combined across the variables maintaining the sum.  *  *<p>This class is usually preferable to {@link AtomicLong} when multiple threads update a common  * sum that is used for purposes such as collecting statistics, not for fine-grained synchronization  * control. Under low update contention, the two classes have similar characteristics. But under  * high contention, expected throughput of this class is significantly higher, at the expense of  * higher space consumption.  *  *<p>This class extends {@link Number}, but does<em>not</em> define methods such as {@code  * equals}, {@code hashCode} and {@code compareTo} because instances are expected to be mutated, and  * so are not useful as collection keys.  *  *<p><em>jsr166e note: This class is targeted to be placed in java.util.concurrent.atomic.</em>  *  * @since 1.8  * @author Doug Lea  */
 end_comment
 
 begin_class
@@ -99,7 +99,7 @@ name|serialVersionUID
 init|=
 literal|7249069246863182397L
 decl_stmt|;
-comment|/**      * Version of plus for use in retryUpdate      */
+comment|/** Version of plus for use in retryUpdate */
 DECL|method|fn (long v, long x)
 specifier|final
 name|long
@@ -118,13 +118,13 @@ operator|+
 name|x
 return|;
 block|}
-comment|/**      * Creates a new adder with initial sum of zero.      */
+comment|/** Creates a new adder with initial sum of zero. */
 DECL|method|LongAdder ()
 specifier|public
 name|LongAdder
 parameter_list|()
-block|{     }
-comment|/**      * Adds the given value.      *      * @param x the value to add      */
+block|{}
+comment|/**    * Adds the given value.    *    * @param x the value to add    */
 DECL|method|add (long x)
 specifier|public
 name|void
@@ -259,7 +259,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Equivalent to {@code add(1)}.      */
+comment|/** Equivalent to {@code add(1)}. */
 DECL|method|increment ()
 specifier|public
 name|void
@@ -272,7 +272,7 @@ literal|1L
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Equivalent to {@code add(-1)}.      */
+comment|/** Equivalent to {@code add(-1)}. */
 DECL|method|decrement ()
 specifier|public
 name|void
@@ -286,7 +286,7 @@ literal|1L
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Returns the current sum.  The returned value is<em>NOT</em> an      * atomic snapshot; invocation in the absence of concurrent      * updates returns an accurate result, but concurrent updates that      * occur while the sum is being calculated might not be      * incorporated.      *      * @return the sum      */
+comment|/**    * Returns the current sum. The returned value is<em>NOT</em> an atomic snapshot; invocation in    * the absence of concurrent updates returns an accurate result, but concurrent updates that occur    * while the sum is being calculated might not be incorporated.    *    * @return the sum    */
 DECL|method|sum ()
 specifier|public
 name|long
@@ -359,7 +359,7 @@ return|return
 name|sum
 return|;
 block|}
-comment|/**      * Resets variables maintaining the sum to zero.  This method may      * be a useful alternative to creating a new adder, but is only      * effective if there are no concurrent updates.  Because this      * method is intrinsically racy, it should only be used when it is      * known that no threads are concurrently updating.      */
+comment|/**    * Resets variables maintaining the sum to zero. This method may be a useful alternative to    * creating a new adder, but is only effective if there are no concurrent updates. Because this    * method is intrinsically racy, it should only be used when it is known that no threads are    * concurrently updating.    */
 DECL|method|reset ()
 specifier|public
 name|void
@@ -372,7 +372,7 @@ literal|0L
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Equivalent in effect to {@link #sum} followed by {@link      * #reset}. This method may apply for example during quiescent      * points between multithreaded computations.  If there are      * updates concurrent with this method, the returned value is      *<em>not</em> guaranteed to be the final value occurring before      * the reset.      *      * @return the sum      */
+comment|/**    * Equivalent in effect to {@link #sum} followed by {@link #reset}. This method may apply for    * example during quiescent points between multithreaded computations. If there are updates    * concurrent with this method, the returned value is<em>not</em> guaranteed to be the final    * value occurring before the reset.    *    * @return the sum    */
 DECL|method|sumThenReset ()
 specifier|public
 name|long
@@ -457,7 +457,7 @@ return|return
 name|sum
 return|;
 block|}
-comment|/**      * Returns the String representation of the {@link #sum}.      * @return the String representation of the {@link #sum}      */
+comment|/**    * Returns the String representation of the {@link #sum}.    *    * @return the String representation of the {@link #sum}    */
 DECL|method|toString ()
 specifier|public
 name|String
@@ -474,7 +474,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**      * Equivalent to {@link #sum}.      *      * @return the sum      */
+comment|/**    * Equivalent to {@link #sum}.    *    * @return the sum    */
 DECL|method|longValue ()
 specifier|public
 name|long
@@ -486,7 +486,7 @@ name|sum
 argument_list|()
 return|;
 block|}
-comment|/**      * Returns the {@link #sum} as an {@code int} after a narrowing      * primitive conversion.      */
+comment|/** Returns the {@link #sum} as an {@code int} after a narrowing primitive conversion. */
 DECL|method|intValue ()
 specifier|public
 name|int
@@ -501,7 +501,7 @@ name|sum
 argument_list|()
 return|;
 block|}
-comment|/**      * Returns the {@link #sum} as a {@code float}      * after a widening primitive conversion.      */
+comment|/** Returns the {@link #sum} as a {@code float} after a widening primitive conversion. */
 DECL|method|floatValue ()
 specifier|public
 name|float
@@ -516,7 +516,7 @@ name|sum
 argument_list|()
 return|;
 block|}
-comment|/**      * Returns the {@link #sum} as a {@code double} after a widening      * primitive conversion.      */
+comment|/** Returns the {@link #sum} as a {@code double} after a widening primitive conversion. */
 DECL|method|doubleValue ()
 specifier|public
 name|double

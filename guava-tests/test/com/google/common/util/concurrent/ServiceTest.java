@@ -159,7 +159,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Unit tests for {@link Service}  */
+comment|/** Unit tests for {@link Service} */
 end_comment
 
 begin_class

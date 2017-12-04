@@ -263,7 +263,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Generates a test suite covering the {@link Set} implementations in the  * {@link java.util} package. Can be subclassed to specify tests that should  * be suppressed.  *  * @author Kevin Bourrillion  */
+comment|/**  * Generates a test suite covering the {@link Set} implementations in the {@link java.util} package.  * Can be subclassed to specify tests that should be suppressed.  *  * @author Kevin Bourrillion  */
 end_comment
 
 begin_class

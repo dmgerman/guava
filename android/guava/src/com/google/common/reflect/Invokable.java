@@ -215,7 +215,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Wrapper around either a {@link Method} or a {@link Constructor}. Convenience API is provided to  * make common reflective operation easier to deal with, such as {@link #isPublic},  * {@link #getParameters} etc.  *  *<p>In addition to convenience methods, {@link TypeToken#method} and {@link TypeToken#constructor}  * will resolve the type parameters of the method or constructor in the context of the owner type,  * which may be a subtype of the declaring class. For example:  *  *<pre>   {@code  *   Method getMethod = List.class.getMethod("get", int.class);  *   Invokable<List<String>, ?> invokable = new TypeToken<List<String>>() {}.method(getMethod);  *   assertEquals(TypeToken.of(String.class), invokable.getReturnType()); // Not Object.class!  *   assertEquals(new TypeToken<List<String>>() {}, invokable.getOwnerType());}</pre>  *  * @param<T> the type that owns this method or constructor.  * @param<R> the return type of (or supertype thereof) the method or the declaring type of the  *     constructor.  * @author Ben Yu  * @since 14.0  */
+comment|/**  * Wrapper around either a {@link Method} or a {@link Constructor}. Convenience API is provided to  * make common reflective operation easier to deal with, such as {@link #isPublic}, {@link  * #getParameters} etc.  *  *<p>In addition to convenience methods, {@link TypeToken#method} and {@link TypeToken#constructor}  * will resolve the type parameters of the method or constructor in the context of the owner type,  * which may be a subtype of the declaring class. For example:  *  *<pre>{@code  * Method getMethod = List.class.getMethod("get", int.class);  * Invokable<List<String>, ?> invokable = new TypeToken<List<String>>() {}.method(getMethod);  * assertEquals(TypeToken.of(String.class), invokable.getReturnType()); // Not Object.class!  * assertEquals(new TypeToken<List<String>>() {}, invokable.getOwnerType());  * }</pre>  *  * @param<T> the type that owns this method or constructor.  * @param<R> the return type of (or supertype thereof) the method or the declaring type of the  *     constructor.  * @author Ben Yu  * @since 14.0  */
 end_comment
 
 begin_class
@@ -411,7 +411,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns all declared parameters of this {@code Invokable}. Note that if this is a constructor    * of a non-static inner class, unlike {@link Constructor#getParameterTypes}, the hidden    * {@code this} parameter of the enclosing class is excluded from the returned parameters.    */
+comment|/**    * Returns all declared parameters of this {@code Invokable}. Note that if this is a constructor    * of a non-static inner class, unlike {@link Constructor#getParameterTypes}, the hidden {@code    * this} parameter of the enclosing class is excluded from the returned parameters.    */
 DECL|method|getParameters ()
 specifier|public
 specifier|final
@@ -590,7 +590,7 @@ name|build
 argument_list|()
 return|;
 block|}
-comment|/**    * Explicitly specifies the return type of this {@code Invokable}. For example:    *<pre>   {@code    *   Method factoryMethod = Person.class.getMethod("create");    *   Invokable<?, Person> factory = Invokable.of(getNameMethod).returning(Person.class);}</pre>    */
+comment|/**    * Explicitly specifies the return type of this {@code Invokable}. For example:    *    *<pre>{@code    * Method factoryMethod = Person.class.getMethod("create");    * Invokable<?, Person> factory = Invokable.of(getNameMethod).returning(Person.class);    * }</pre>    */
 DECL|method|returning (Class<R1> returnType)
 specifier|public
 specifier|final
@@ -1294,7 +1294,7 @@ name|getParameterAnnotations
 argument_list|()
 return|;
 block|}
-comment|/**      * {@inheritDoc}      *      * {@code [<E>]} will be returned for ArrayList's constructor. When both the class and the      * constructor have type parameters, the class parameters are prepended before those of the      * constructor's. This is an arbitrary rule since no existing language spec mandates one way or      * the other. From the declaration syntax, the class type parameter appears first, but the call      * syntax may show up in opposite order such as {@code new<A>Foo<B>()}.      */
+comment|/**      * {@inheritDoc}      *      *<p>{@code [<E>]} will be returned for ArrayList's constructor. When both the class and the      * constructor have type parameters, the class parameters are prepended before those of the      * constructor's. This is an arbitrary rule since no existing language spec mandates one way or      * the other. From the declaration syntax, the class type parameter appears first, but the call      * syntax may show up in opposite order such as {@code new<A>Foo<B>()}.      */
 annotation|@
 name|Override
 DECL|method|getTypeParameters ()

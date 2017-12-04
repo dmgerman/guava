@@ -163,7 +163,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Aggregate future that computes its value by calling a callable.  */
+comment|/** Aggregate future that computes its value by calling a callable. */
 end_comment
 
 begin_class

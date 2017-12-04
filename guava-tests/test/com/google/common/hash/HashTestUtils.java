@@ -197,7 +197,7 @@ specifier|private
 name|HashTestUtils
 parameter_list|()
 block|{}
-comment|/**    * Converts a string, which should contain only ascii-representable characters, to a byte[].    */
+comment|/** Converts a string, which should contain only ascii-representable characters, to a byte[]. */
 DECL|method|ascii (String string)
 specifier|static
 name|byte
@@ -1592,7 +1592,7 @@ index|]
 return|;
 block|}
 block|}
-comment|/**    * Test that the hash function contains no funnels. A funnel is a situation where a set of input    * (key) bits 'affects' a strictly smaller set of output bits. Funneling is bad because it can    * result in more-than-ideal collisions for a non-uniformly distributed key space. In practice,    * most key spaces are ANYTHING BUT uniformly distributed. A bit(i) in the input is said to    * 'affect' a bit(j) in the output if two inputs, identical but for bit(i), will differ at output    * bit(j) about half the time    *    *<p>Funneling is pretty simple to detect. The key idea is to find example keys which    * unequivocally demonstrate that funneling cannot be occurring. This is done bit-by-bit. For    * each input bit(i) and output bit(j), two pairs of keys must be found with all bits identical    * except bit(i). One pair must differ in output bit(j), and one pair must not. This proves that    * input bit(i) can alter output bit(j).    */
+comment|/**    * Test that the hash function contains no funnels. A funnel is a situation where a set of input    * (key) bits 'affects' a strictly smaller set of output bits. Funneling is bad because it can    * result in more-than-ideal collisions for a non-uniformly distributed key space. In practice,    * most key spaces are ANYTHING BUT uniformly distributed. A bit(i) in the input is said to    * 'affect' a bit(j) in the output if two inputs, identical but for bit(i), will differ at output    * bit(j) about half the time    *    *<p>Funneling is pretty simple to detect. The key idea is to find example keys which    * unequivocally demonstrate that funneling cannot be occurring. This is done bit-by-bit. For each    * input bit(i) and output bit(j), two pairs of keys must be found with all bits identical except    * bit(i). One pair must differ in output bit(j), and one pair must not. This proves that input    * bit(i) can alter output bit(j).    */
 DECL|method|checkNoFunnels (HashFunction function)
 specifier|static
 name|void
@@ -2056,7 +2056,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**    * Test for 2-bit characteristics. A characteristic is a delta in the input which is repeated in    * the output. For example, if f() is a block cipher and c is a characteristic, then    * f(x^c) = f(x)^c with greater than expected probability. The test for funneling is merely a test    * for 1-bit characteristics.    *    *<p>There is more general code provided by Bob Jenkins to test arbitrarily sized characteristics    * using the magic of gaussian elimination: http://burtleburtle.net/bob/crypto/findingc.html.    */
+comment|/**    * Test for 2-bit characteristics. A characteristic is a delta in the input which is repeated in    * the output. For example, if f() is a block cipher and c is a characteristic, then f(x^c) =    * f(x)^c with greater than expected probability. The test for funneling is merely a test for    * 1-bit characteristics.    *    *<p>There is more general code provided by Bob Jenkins to test arbitrarily sized characteristics    * using the magic of gaussian elimination: http://burtleburtle.net/bob/crypto/findingc.html.    */
 DECL|method|checkNo2BitCharacteristics (HashFunction function)
 specifier|static
 name|void
@@ -2542,7 +2542,7 @@ block|}
 block|}
 block|}
 block|}
-comment|/**    * Checks that a Hasher returns the same HashCode when given the same input, and also    * that the collision rate looks sane.    */
+comment|/**    * Checks that a Hasher returns the same HashCode when given the same input, and also that the    * collision rate looks sane.    */
 DECL|method|assertInvariants (HashFunction hashFunction)
 specifier|static
 name|void
@@ -3179,7 +3179,7 @@ parameter_list|(
 name|IndexOutOfBoundsException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 try|try
 block|{
 name|hashFunction
@@ -3209,7 +3209,7 @@ parameter_list|(
 name|IndexOutOfBoundsException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 try|try
 block|{
 name|hashFunction
@@ -3239,7 +3239,7 @@ parameter_list|(
 name|IndexOutOfBoundsException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|assertIndependentHashers (HashFunction hashFunction)
 specifier|static
