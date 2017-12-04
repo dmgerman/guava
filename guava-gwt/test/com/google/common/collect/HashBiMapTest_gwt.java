@@ -342,10 +342,10 @@ name|testInsertionOrderAfterRemoveMiddle
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|testInverseEntrySetValue ()
+DECL|method|testInverseEntrySetValueNewKey ()
 specifier|public
 name|void
-name|testInverseEntrySetValue
+name|testInverseEntrySetValueNewKey
 parameter_list|()
 throws|throws
 name|Exception
@@ -375,7 +375,7 @@ argument_list|()
 decl_stmt|;
 name|testCase
 operator|.
-name|testInverseEntrySetValue
+name|testInverseEntrySetValueNewKey
 argument_list|()
 expr_stmt|;
 block|}
@@ -450,6 +450,43 @@ decl_stmt|;
 name|testCase
 operator|.
 name|testInverseInsertionOrderAfterInverseForcePut
+argument_list|()
+expr_stmt|;
+block|}
+DECL|method|testInverseInsertionOrderAfterInverseForcePutPresentKey ()
+specifier|public
+name|void
+name|testInverseInsertionOrderAfterInverseForcePutPresentKey
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|collect
+operator|.
+name|HashBiMapTest
+name|testCase
+init|=
+operator|new
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|collect
+operator|.
+name|HashBiMapTest
+argument_list|()
+decl_stmt|;
+name|testCase
+operator|.
+name|testInverseInsertionOrderAfterInverseForcePutPresentKey
 argument_list|()
 expr_stmt|;
 block|}

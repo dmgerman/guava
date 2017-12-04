@@ -2226,6 +2226,13 @@ name|expectedModCount
 init|=
 name|modCount
 decl_stmt|;
+DECL|field|remaining
+name|int
+name|remaining
+init|=
+name|size
+argument_list|()
+decl_stmt|;
 annotation|@
 name|Override
 DECL|method|hasNext ()
@@ -2251,6 +2258,10 @@ return|return
 name|next
 operator|!=
 literal|null
+operator|&&
+name|remaining
+operator|>
+literal|0
 return|;
 block|}
 annotation|@
@@ -2293,6 +2304,9 @@ expr_stmt|;
 name|toRemove
 operator|=
 name|entry
+expr_stmt|;
+name|remaining
+operator|--
 expr_stmt|;
 return|return
 name|output

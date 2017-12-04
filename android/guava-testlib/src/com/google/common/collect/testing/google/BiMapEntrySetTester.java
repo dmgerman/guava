@@ -255,7 +255,6 @@ argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
-break|break;
 block|}
 block|}
 name|expectReplacement
@@ -344,7 +343,6 @@ name|IllegalArgumentException
 name|expected
 parameter_list|)
 block|{         }
-break|break;
 block|}
 block|}
 name|expectUnchanged
