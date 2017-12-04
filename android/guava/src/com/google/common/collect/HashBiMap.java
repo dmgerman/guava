@@ -90,6 +90,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|j2objc
+operator|.
+name|annotations
+operator|.
+name|RetainedWith
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -4292,6 +4306,8 @@ return|;
 block|}
 block|}
 DECL|field|inverse
+annotation|@
+name|RetainedWith
 specifier|private
 specifier|transient
 name|BiMap

@@ -2979,9 +2979,19 @@ argument_list|>
 name|inverse
 parameter_list|()
 block|{
+name|BiMap
+argument_list|<
+name|V
+argument_list|,
+name|K
+argument_list|>
+name|result
+init|=
+name|inverse
+decl_stmt|;
 return|return
 operator|(
-name|inverse
+name|result
 operator|==
 literal|null
 operator|)
@@ -2992,7 +3002,7 @@ operator|new
 name|Inverse
 argument_list|()
 else|:
-name|inverse
+name|result
 return|;
 block|}
 DECL|class|Inverse
@@ -3646,8 +3656,6 @@ name|expectedModCount
 operator|=
 name|modCount
 expr_stmt|;
-comment|// This is safe because entries can only get bumped up to earlier in the iteration,
-comment|// so they can't get revisited.
 return|return
 name|oldKey
 return|;
@@ -3916,11 +3924,6 @@ operator|.
 name|defaultReadObject
 argument_list|()
 expr_stmt|;
-name|init
-argument_list|(
-literal|16
-argument_list|)
-expr_stmt|;
 name|int
 name|size
 init|=
@@ -3931,6 +3934,12 @@ argument_list|(
 name|stream
 argument_list|)
 decl_stmt|;
+name|init
+argument_list|(
+literal|16
+argument_list|)
+expr_stmt|;
+comment|// resist hostile attempts to allocate gratuitous heap
 name|Serialization
 operator|.
 name|populateMap
