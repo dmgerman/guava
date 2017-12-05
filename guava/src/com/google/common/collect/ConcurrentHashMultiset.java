@@ -1824,6 +1824,9 @@ block|}
 block|}
 return|;
 block|}
+comment|/**    * @deprecated Internal method, use {@link #entrySet()}.    */
+annotation|@
+name|Deprecated
 annotation|@
 name|Override
 DECL|method|createEntrySet ()
