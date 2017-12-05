@@ -1542,11 +1542,17 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|annotation
+name|checkerframework
 operator|.
-name|Nullable
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -3103,7 +3109,7 @@ literal|"unchecked"
 argument_list|)
 comment|// it's a subtype map
 annotation|@
-name|Nullable
+name|NullableDecl
 DECL|method|getImplementation (Class<T> type)
 specifier|private
 specifier|static
@@ -3163,7 +3169,7 @@ argument_list|)
 decl_stmt|;
 comment|/**    * Returns an arbitrary instance for {@code type}, or {@code null} if no arbitrary instance can be    * determined.    */
 annotation|@
-name|Nullable
+name|NullableDecl
 DECL|method|get (Class<T> type)
 specifier|public
 specifier|static
@@ -3428,7 +3434,7 @@ return|;
 block|}
 block|}
 annotation|@
-name|Nullable
+name|NullableDecl
 DECL|method|arbitraryConstantInstanceOrNull (Class<T> type)
 specifier|private
 specifier|static

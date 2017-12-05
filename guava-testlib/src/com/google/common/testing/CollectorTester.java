@@ -158,11 +158,17 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|annotation
+name|checkerframework
 operator|.
-name|Nullable
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -768,7 +774,7 @@ block|}
 comment|/**    * Verifies that the specified expected result is always produced by collecting the specified    * inputs, regardless of how the elements are divided.    */
 annotation|@
 name|SafeVarargs
-DECL|method|expectCollects (@ullable R expectedResult, T... inputs)
+DECL|method|expectCollects ( @ullableDecl R expectedResult, T... inputs)
 specifier|public
 specifier|final
 name|CollectorTester
@@ -782,7 +788,7 @@ argument_list|>
 name|expectCollects
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|R
 name|expectedResult
 parameter_list|,
@@ -847,13 +853,13 @@ return|return
 name|this
 return|;
 block|}
-DECL|method|doExpectCollects (@ullable R expectedResult, List<T> inputs)
+DECL|method|doExpectCollects (@ullableDecl R expectedResult, List<T> inputs)
 specifier|private
 name|void
 name|doExpectCollects
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|R
 name|expectedResult
 parameter_list|,
@@ -936,18 +942,18 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-DECL|method|assertEquivalent (@ullable R expected, @Nullable R actual)
+DECL|method|assertEquivalent (@ullableDecl R expected, @NullableDecl R actual)
 specifier|private
 name|void
 name|assertEquivalent
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|R
 name|expected
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|R
 name|actual
 parameter_list|)

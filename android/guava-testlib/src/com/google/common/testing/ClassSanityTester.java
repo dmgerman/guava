@@ -65,6 +65,22 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|testing
+operator|.
+name|NullPointerTester
+operator|.
+name|isNullable
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -467,6 +483,22 @@ operator|.
 name|framework
 operator|.
 name|AssertionFailedError
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|checkerframework
+operator|.
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -1000,7 +1032,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**    * Tests that {@code cls} properly checks null on all constructor and method parameters that    * aren't annotated with {@link javax.annotation.Nullable}. In details:    *    *<ul>    *<li>All non-private static methods are checked such that passing null for any parameter    *       that's not annotated with {@link javax.annotation.Nullable} should throw {@link    *       NullPointerException}.    *<li>If there is any non-private constructor or non-private static factory method declared by    *       {@code cls}, all non-private instance methods will be checked too using the instance    *       created by invoking the constructor or static factory method.    *<li>If there is any non-private constructor or non-private static factory method declared by    *       {@code cls}:    *<ul>    *<li>Test will fail if default value for a parameter cannot be determined.    *<li>Test will fail if the factory method returns null so testing instance methods is    *             impossible.    *<li>Test will fail if the constructor or factory method throws exception.    *</ul>    *<li>If there is no non-private constructor or non-private static factory method declared by    *       {@code cls}, instance methods are skipped for nulls test.    *<li>Nulls test is not performed on method return values unless the method is a non-private    *       static factory method whose return type is {@code cls} or {@code cls}'s subtype.    *</ul>    */
+comment|/**    * Tests that {@code cls} properly checks null on all constructor and method parameters that    * aren't annotated nullable (according to the rules of {@link NullPointerTester}). In details:    *    *<ul>    *<li>All non-private static methods are checked such that passing null for any parameter    *       that's not annotated nullable should throw {@link NullPointerException}.    *<li>If there is any non-private constructor or non-private static factory method declared by    *       {@code cls}, all non-private instance methods will be checked too using the instance    *       created by invoking the constructor or static factory method.    *<li>If there is any non-private constructor or non-private static factory method declared by    *       {@code cls}:    *<ul>    *<li>Test will fail if default value for a parameter cannot be determined.    *<li>Test will fail if the factory method returns null so testing instance methods is    *             impossible.    *<li>Test will fail if the constructor or factory method throws exception.    *</ul>    *<li>If there is no non-private constructor or non-private static factory method declared by    *       {@code cls}, instance methods are skipped for nulls test.    *<li>Nulls test is not performed on method return values unless the method is a non-private    *       static factory method whose return type is {@code cls} or {@code cls}'s subtype.    *</ul>    */
 DECL|method|testNulls (Class<?> cls)
 specifier|public
 name|void
@@ -1491,11 +1523,7 @@ expr_stmt|;
 block|}
 comment|/**    * Instantiates {@code cls} by invoking one of its non-private constructors or non-private static    * factory methods with the parameters automatically provided using dummy values.    *    * @return The instantiated instance, or {@code null} if the class has no non-private constructor    *     or factory method to be constructed.    */
 annotation|@
-name|javax
-operator|.
-name|annotation
-operator|.
-name|Nullable
+name|NullableDecl
 DECL|method|instantiate (Class<T> cls)
 argument_list|<
 name|T
@@ -2433,13 +2461,9 @@ name|factoriesToTest
 return|;
 block|}
 block|}
-comment|/**    * Instantiates using {@code factory}. If {@code factory} is annotated with {@link    * javax.annotation.Nullable} and returns null, null will be returned.    *    * @throws ParameterNotInstantiableException if the static methods cannot be invoked because the    *     default value of a parameter cannot be determined.    * @throws IllegalAccessException if the class isn't public or is nested inside a non-public    *     class, preventing its methods from being accessible.    * @throws InvocationTargetException if a static method threw exception.    */
+comment|/**    * Instantiates using {@code factory}. If {@code factory} is annotated nullable and returns null,    * null will be returned.    *    * @throws ParameterNotInstantiableException if the static methods cannot be invoked because the    *     default value of a parameter cannot be determined.    * @throws IllegalAccessException if the class isn't public or is nested inside a non-public    *     class, preventing its methods from being accessible.    * @throws InvocationTargetException if a static method threw exception.    */
 annotation|@
-name|javax
-operator|.
-name|annotation
-operator|.
-name|Nullable
+name|NullableDecl
 DECL|method|instantiate (Invokable<?, ? extends T> factory)
 specifier|private
 parameter_list|<
@@ -3227,11 +3251,7 @@ name|generator
 return|;
 block|}
 annotation|@
-name|javax
-operator|.
-name|annotation
-operator|.
-name|Nullable
+name|NullableDecl
 DECL|method|generateDummyArg (Parameter param, FreshValueGenerator generator)
 specifier|private
 specifier|static
@@ -3249,17 +3269,9 @@ name|ParameterNotInstantiableException
 block|{
 if|if
 condition|(
-name|param
-operator|.
-name|isAnnotationPresent
+name|isNullable
 argument_list|(
-name|javax
-operator|.
-name|annotation
-operator|.
-name|Nullable
-operator|.
-name|class
+name|param
 argument_list|)
 condition|)
 block|{
@@ -3639,17 +3651,9 @@ control|)
 block|{
 if|if
 condition|(
-name|param
-operator|.
-name|isAnnotationPresent
+name|isNullable
 argument_list|(
-name|javax
-operator|.
-name|annotation
-operator|.
-name|Nullable
-operator|.
-name|class
+name|param
 argument_list|)
 condition|)
 block|{
@@ -3875,11 +3879,7 @@ name|instance
 return|;
 block|}
 annotation|@
-name|javax
-operator|.
-name|annotation
-operator|.
-name|Nullable
+name|NullableDecl
 DECL|method|invoke (Invokable<?, ? extends T> factory, List<?> args)
 specifier|private
 specifier|static
@@ -3938,19 +3938,11 @@ name|assertTrue
 argument_list|(
 name|factory
 operator|+
-literal|" returns null but it's not annotated with @Nullable"
+literal|" returns null but it's not annotated with @NullableDecl"
 argument_list|,
-name|factory
-operator|.
-name|isAnnotationPresent
+name|isNullable
 argument_list|(
-name|javax
-operator|.
-name|annotation
-operator|.
-name|Nullable
-operator|.
-name|class
+name|factory
 argument_list|)
 argument_list|)
 expr_stmt|;

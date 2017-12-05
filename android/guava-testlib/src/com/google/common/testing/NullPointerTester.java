@@ -238,6 +238,18 @@ name|lang
 operator|.
 name|reflect
 operator|.
+name|AnnotatedElement
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|lang
+operator|.
+name|reflect
+operator|.
 name|Constructor
 import|;
 end_import
@@ -348,26 +360,6 @@ end_import
 
 begin_import
 import|import
-name|javax
-operator|.
-name|annotation
-operator|.
-name|CheckForNull
-import|;
-end_import
-
-begin_import
-import|import
-name|javax
-operator|.
-name|annotation
-operator|.
-name|Nullable
-import|;
-end_import
-
-begin_import
-import|import
 name|junit
 operator|.
 name|framework
@@ -386,8 +378,24 @@ name|AssertionFailedError
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|checkerframework
+operator|.
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
+import|;
+end_import
+
 begin_comment
-comment|/**  * A test utility that verifies that your methods and constructors throw {@link  * NullPointerException} or {@link UnsupportedOperationException} whenever null is passed to a  * parameter that isn't annotated with {@link Nullable}.  *  *<p>The tested methods and constructors are invoked -- each time with one parameter being null and  * the rest not null -- and the test fails if no expected exception is thrown. {@code  * NullPointerTester} uses best effort to pick non-null default values for many common JDK and Guava  * types, and also for interfaces and public classes that have public parameter-less constructors.  * When the non-null default value for a particular parameter type cannot be provided by {@code  * NullPointerTester}, the caller can provide a custom non-null default value for the parameter type  * via {@link #setDefault}.  *  * @author Kevin Bourrillion  * @since 10.0  */
+comment|/**  * A test utility that verifies that your methods and constructors throw {@link  * NullPointerException} or {@link UnsupportedOperationException} whenever null is passed to a  * parameter that isn't annotated with {@link javax.annotation.Nullable}, {@link  * javax.annotation.CheckForNull}, or {@link  * org.checkerframework.checker.nullness.compatqual.NullableDecl}.  *  *<p>The tested methods and constructors are invoked -- each time with one parameter being null and  * the rest not null -- and the test fails if no expected exception is thrown. {@code  * NullPointerTester} uses best effort to pick non-null default values for many common JDK and Guava  * types, and also for interfaces and public classes that have public parameter-less constructors.  * When the non-null default value for a particular parameter type cannot be provided by {@code  * NullPointerTester}, the caller can provide a custom non-null default value for the parameter type  * via {@link #setDefault}.  *  * @author Kevin Bourrillion  * @since 10.0  */
 end_comment
 
 begin_class
@@ -798,14 +806,14 @@ name|PUBLIC
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Verifies that {@code method} produces a {@link NullPointerException} or {@link    * UnsupportedOperationException} whenever<i>any</i> of its non-{@link Nullable} parameters are    * null.    *    * @param instance the instance to invoke {@code method} on, or null if {@code method} is static    */
-DECL|method|testMethod (@ullable Object instance, Method method)
+comment|/**    * Verifies that {@code method} produces a {@link NullPointerException} or {@link    * UnsupportedOperationException} whenever<i>any</i> of its non-nullable parameters are null.    *    * @param instance the instance to invoke {@code method} on, or null if {@code method} is static    */
+DECL|method|testMethod (@ullableDecl Object instance, Method method)
 specifier|public
 name|void
 name|testMethod
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|instance
 parameter_list|,
@@ -853,7 +861,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Verifies that {@code ctor} produces a {@link NullPointerException} or {@link    * UnsupportedOperationException} whenever<i>any</i> of its non-{@link Nullable} parameters are    * null.    */
+comment|/**    * Verifies that {@code ctor} produces a {@link NullPointerException} or {@link    * UnsupportedOperationException} whenever<i>any</i> of its non-nullable parameters are null.    */
 DECL|method|testConstructor (Constructor<?> ctor)
 specifier|public
 name|void
@@ -942,14 +950,14 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Verifies that {@code method} produces a {@link NullPointerException} or {@link    * UnsupportedOperationException} when the parameter in position {@code paramIndex} is null. If    * this parameter is marked {@link Nullable}, this method does nothing.    *    * @param instance the instance to invoke {@code method} on, or null if {@code method} is static    */
-DECL|method|testMethodParameter ( @ullable final Object instance, final Method method, int paramIndex)
+comment|/**    * Verifies that {@code method} produces a {@link NullPointerException} or {@link    * UnsupportedOperationException} when the parameter in position {@code paramIndex} is null. If    * this parameter is marked nullable, this method does nothing.    *    * @param instance the instance to invoke {@code method} on, or null if {@code method} is static    */
+DECL|method|testMethodParameter ( @ullableDecl final Object instance, final Method method, int paramIndex)
 specifier|public
 name|void
 name|testMethodParameter
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 specifier|final
 name|Object
 name|instance
@@ -989,7 +997,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Verifies that {@code ctor} produces a {@link NullPointerException} or {@link    * UnsupportedOperationException} when the parameter in position {@code paramIndex} is null. If    * this parameter is marked {@link Nullable}, this method does nothing.    */
+comment|/**    * Verifies that {@code ctor} produces a {@link NullPointerException} or {@link    * UnsupportedOperationException} when the parameter in position {@code paramIndex} is null. If    * this parameter is marked nullable, this method does nothing.    */
 DECL|method|testConstructorParameter (Constructor<?> ctor, int paramIndex)
 specifier|public
 name|void
@@ -1560,7 +1568,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**    * Verifies that {@code invokable} produces a {@link NullPointerException} or {@link    * UnsupportedOperationException} when the parameter in position {@code paramIndex} is null. If    * this parameter is marked {@link Nullable}, this method does nothing.    *    * @param instance the instance to invoke {@code invokable} on, or null if {@code invokable} is    *     static    */
+comment|/**    * Verifies that {@code invokable} produces a {@link NullPointerException} or {@link    * UnsupportedOperationException} when the parameter in position {@code paramIndex} is null. If    * this parameter is marked nullable, this method does nothing.    *    * @param instance the instance to invoke {@code invokable} on, or null if {@code invokable} is    *     static    */
 DECL|method|testParameter ( Object instance, Invokable<?, ?> invokable, int paramIndex, Class<?> testedClass)
 specifier|private
 name|void
@@ -2357,7 +2365,7 @@ name|type
 argument_list|)
 return|;
 block|}
-DECL|method|invokable (@ullable Object instance, Method method)
+DECL|method|invokable (@ullableDecl Object instance, Method method)
 specifier|private
 specifier|static
 name|Invokable
@@ -2369,7 +2377,7 @@ argument_list|>
 name|invokable
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|instance
 parameter_list|,
@@ -2440,31 +2448,47 @@ name|param
 argument_list|)
 return|;
 block|}
-DECL|method|isNullable (Parameter param)
-specifier|private
+DECL|method|isNullable (AnnotatedElement e)
 specifier|static
 name|boolean
 name|isNullable
 parameter_list|(
-name|Parameter
-name|param
+name|AnnotatedElement
+name|e
 parameter_list|)
 block|{
 return|return
-name|param
+name|e
 operator|.
 name|isAnnotationPresent
 argument_list|(
+name|javax
+operator|.
+name|annotation
+operator|.
 name|CheckForNull
 operator|.
 name|class
 argument_list|)
 operator|||
-name|param
+name|e
 operator|.
 name|isAnnotationPresent
 argument_list|(
+name|javax
+operator|.
+name|annotation
+operator|.
 name|Nullable
+operator|.
+name|class
+argument_list|)
+operator|||
+name|e
+operator|.
+name|isAnnotationPresent
+argument_list|(
+name|NullableDecl
 operator|.
 name|class
 argument_list|)
@@ -2498,7 +2522,7 @@ name|member
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns true if the the given member is a method that overrides {@link Object#equals(Object)}.    *    *<p>The documentation for {@link Object#equals} says it should accept null, so don't require an    * explicit {@code @Nullable} annotation (see<a    * href="https://github.com/google/guava/issues/1819">#1819</a>).    *    *<p>It is not necessary to consider visibility, return type, or type parameter declarations. The    * declaration of a method with the same name and formal parameters as {@link Object#equals} that    * is not public and boolean-returning, or that declares any type parameters, would be rejected at    * compile-time.    */
+comment|/**    * Returns true if the the given member is a method that overrides {@link Object#equals(Object)}.    *    *<p>The documentation for {@link Object#equals} says it should accept null, so don't require an    * explicit {@code @NullableDecl} annotation (see<a    * href="https://github.com/google/guava/issues/1819">#1819</a>).    *    *<p>It is not necessary to consider visibility, return type, or type parameter declarations. The    * declaration of a method with the same name and formal parameters as {@link Object#equals} that    * is not public and boolean-returning, or that declares any type parameters, would be rejected at    * compile-time.    */
 DECL|method|isEquals (Member member)
 specifier|private
 specifier|static

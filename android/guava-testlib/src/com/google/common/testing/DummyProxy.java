@@ -33,6 +33,22 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|testing
+operator|.
+name|NullPointerTester
+operator|.
+name|isNullable
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -427,17 +443,9 @@ decl_stmt|;
 if|if
 condition|(
 operator|!
-name|param
-operator|.
-name|isAnnotationPresent
+name|isNullable
 argument_list|(
-name|javax
-operator|.
-name|annotation
-operator|.
-name|Nullable
-operator|.
-name|class
+name|param
 argument_list|)
 condition|)
 block|{

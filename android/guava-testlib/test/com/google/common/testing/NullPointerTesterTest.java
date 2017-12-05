@@ -382,26 +382,6 @@ end_import
 
 begin_import
 import|import
-name|javax
-operator|.
-name|annotation
-operator|.
-name|CheckForNull
-import|;
-end_import
-
-begin_import
-import|import
-name|javax
-operator|.
-name|annotation
-operator|.
-name|Nullable
-import|;
-end_import
-
-begin_import
-import|import
 name|junit
 operator|.
 name|framework
@@ -417,6 +397,22 @@ operator|.
 name|framework
 operator|.
 name|TestCase
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|checkerframework
+operator|.
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -510,13 +506,17 @@ parameter_list|)
 block|{
 comment|// should catch as failure
 block|}
-DECL|method|staticOneArgCheckForNullCorrectlyDoesNotThrowNPE (@heckForNull String s)
+DECL|method|staticOneArgCheckForNullCorrectlyDoesNotThrowNPE ( @avax.annotation.CheckForNull String s)
 specifier|public
 specifier|static
 name|void
 name|staticOneArgCheckForNullCorrectlyDoesNotThrowNPE
 parameter_list|(
 annotation|@
+name|javax
+operator|.
+name|annotation
+operator|.
 name|CheckForNull
 name|String
 name|s
@@ -524,27 +524,49 @@ parameter_list|)
 block|{
 comment|// null?  no problem
 block|}
-DECL|method|staticOneArgNullableCorrectlyDoesNotThrowNPE (@ullable String s)
+DECL|method|staticOneArgJsr305NullableCorrectlyDoesNotThrowNPE ( @avax.annotation.Nullable String s)
+specifier|public
+specifier|static
+name|void
+name|staticOneArgJsr305NullableCorrectlyDoesNotThrowNPE
+parameter_list|(
+annotation|@
+name|javax
+operator|.
+name|annotation
+operator|.
+name|Nullable
+name|String
+name|s
+parameter_list|)
+block|{
+comment|// null?  no problem
+block|}
+DECL|method|staticOneArgNullableCorrectlyDoesNotThrowNPE (@ullableDecl String s)
 specifier|public
 specifier|static
 name|void
 name|staticOneArgNullableCorrectlyDoesNotThrowNPE
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|String
 name|s
 parameter_list|)
 block|{
 comment|// null?  no problem
 block|}
-DECL|method|staticOneArgCheckForNullCorrectlyThrowsOtherThanNPE (@heckForNull String s)
+DECL|method|staticOneArgCheckForNullCorrectlyThrowsOtherThanNPE ( @avax.annotation.CheckForNull String s)
 specifier|public
 specifier|static
 name|void
 name|staticOneArgCheckForNullCorrectlyThrowsOtherThanNPE
 parameter_list|(
 annotation|@
+name|javax
+operator|.
+name|annotation
+operator|.
 name|CheckForNull
 name|String
 name|s
@@ -557,14 +579,14 @@ argument_list|()
 throw|;
 comment|// ok, as long as it's not NullPointerException
 block|}
-DECL|method|staticOneArgNullableCorrectlyThrowsOtherThanNPE (@ullable String s)
+DECL|method|staticOneArgNullableCorrectlyThrowsOtherThanNPE (@ullableDecl String s)
 specifier|public
 specifier|static
 name|void
 name|staticOneArgNullableCorrectlyThrowsOtherThanNPE
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|String
 name|s
 parameter_list|)
@@ -576,13 +598,17 @@ argument_list|()
 throw|;
 comment|// ok, as long as it's not NullPointerException
 block|}
-DECL|method|staticOneArgCheckForNullThrowsNPE (@heckForNull String s)
+DECL|method|staticOneArgCheckForNullThrowsNPE (@avax.annotation.CheckForNull String s)
 specifier|public
 specifier|static
 name|void
 name|staticOneArgCheckForNullThrowsNPE
 parameter_list|(
 annotation|@
+name|javax
+operator|.
+name|annotation
+operator|.
 name|CheckForNull
 name|String
 name|s
@@ -595,14 +621,14 @@ argument_list|)
 expr_stmt|;
 comment|// doesn't check if you said you'd accept null, but you don't
 block|}
-DECL|method|staticOneArgNullableThrowsNPE (@ullable String s)
+DECL|method|staticOneArgNullableThrowsNPE (@ullableDecl String s)
 specifier|public
 specifier|static
 name|void
 name|staticOneArgNullableThrowsNPE
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|String
 name|s
 parameter_list|)
@@ -657,12 +683,16 @@ parameter_list|)
 block|{
 comment|// should catch as failure
 block|}
-DECL|method|oneArgCheckForNullCorrectlyDoesNotThrowNPE (@heckForNull String s)
+DECL|method|oneArgCheckForNullCorrectlyDoesNotThrowNPE ( @avax.annotation.CheckForNull String s)
 specifier|public
 name|void
 name|oneArgCheckForNullCorrectlyDoesNotThrowNPE
 parameter_list|(
 annotation|@
+name|javax
+operator|.
+name|annotation
+operator|.
 name|CheckForNull
 name|String
 name|s
@@ -670,25 +700,29 @@ parameter_list|)
 block|{
 comment|// null?  no problem
 block|}
-DECL|method|oneArgNullableCorrectlyDoesNotThrowNPE (@ullable String s)
+DECL|method|oneArgNullableCorrectlyDoesNotThrowNPE (@ullableDecl String s)
 specifier|public
 name|void
 name|oneArgNullableCorrectlyDoesNotThrowNPE
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|String
 name|s
 parameter_list|)
 block|{
 comment|// null?  no problem
 block|}
-DECL|method|oneArgCheckForNullCorrectlyThrowsOtherThanNPE (@heckForNull String s)
+DECL|method|oneArgCheckForNullCorrectlyThrowsOtherThanNPE ( @avax.annotation.CheckForNull String s)
 specifier|public
 name|void
 name|oneArgCheckForNullCorrectlyThrowsOtherThanNPE
 parameter_list|(
 annotation|@
+name|javax
+operator|.
+name|annotation
+operator|.
 name|CheckForNull
 name|String
 name|s
@@ -701,13 +735,13 @@ argument_list|()
 throw|;
 comment|// ok, as long as it's not NullPointerException
 block|}
-DECL|method|oneArgNullableCorrectlyThrowsOtherThanNPE (@ullable String s)
+DECL|method|oneArgNullableCorrectlyThrowsOtherThanNPE (@ullableDecl String s)
 specifier|public
 name|void
 name|oneArgNullableCorrectlyThrowsOtherThanNPE
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|String
 name|s
 parameter_list|)
@@ -719,12 +753,16 @@ argument_list|()
 throw|;
 comment|// ok, as long as it's not NullPointerException
 block|}
-DECL|method|oneArgCheckForNullThrowsNPE (@heckForNull String s)
+DECL|method|oneArgCheckForNullThrowsNPE (@avax.annotation.CheckForNull String s)
 specifier|public
 name|void
 name|oneArgCheckForNullThrowsNPE
 parameter_list|(
 annotation|@
+name|javax
+operator|.
+name|annotation
+operator|.
 name|CheckForNull
 name|String
 name|s
@@ -737,13 +775,13 @@ argument_list|)
 expr_stmt|;
 comment|// doesn't check if you said you'd accept null, but you don't
 block|}
-DECL|method|oneArgNullableThrowsNPE (@ullable String s)
+DECL|method|oneArgNullableThrowsNPE (@ullableDecl String s)
 specifier|public
 name|void
 name|oneArgNullableThrowsNPE
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|String
 name|s
 parameter_list|)
@@ -1624,7 +1662,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** Two-arg method with the second param Nullable. */
-DECL|method|normalNullable (String first, @Nullable Integer second)
+DECL|method|normalNullable (String first, @NullableDecl Integer second)
 specifier|public
 name|void
 name|normalNullable
@@ -1633,7 +1671,7 @@ name|String
 name|first
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Integer
 name|second
 parameter_list|)
@@ -1647,13 +1685,13 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** Two-arg method with the first param Nullable. */
-DECL|method|nullableNormal (@ullable String first, Integer second)
+DECL|method|nullableNormal (@ullableDecl String first, Integer second)
 specifier|public
 name|void
 name|nullableNormal
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|String
 name|first
 parameter_list|,
@@ -1670,18 +1708,18 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** Two-arg method with the both params Nullable. */
-DECL|method|nullableNullable (@ullable String first, @Nullable Integer second)
+DECL|method|nullableNullable (@ullableDecl String first, @NullableDecl Integer second)
 specifier|public
 name|void
 name|nullableNullable
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|String
 name|first
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Integer
 name|second
 parameter_list|)
@@ -2323,24 +2361,24 @@ name|s
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|oneNullableArg (@ullable String s)
+DECL|method|oneNullableArg (@ullableDecl String s)
 specifier|public
 name|void
 name|oneNullableArg
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|String
 name|s
 parameter_list|)
 block|{}
-DECL|method|oneNullableArgThrows (@ullable String s)
+DECL|method|oneNullableArgThrows (@ullableDecl String s)
 specifier|public
 name|void
 name|oneNullableArgThrows
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|String
 name|s
 parameter_list|)
@@ -2374,7 +2412,7 @@ name|intValue
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|twoMixedArgs (String s, @Nullable Integer i)
+DECL|method|twoMixedArgs (String s, @NullableDecl Integer i)
 specifier|public
 name|void
 name|twoMixedArgs
@@ -2383,7 +2421,7 @@ name|String
 name|s
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Integer
 name|i
 parameter_list|)
@@ -2394,7 +2432,7 @@ name|s
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|twoMixedArgsThrows (String s, @Nullable Integer i)
+DECL|method|twoMixedArgsThrows (String s, @NullableDecl Integer i)
 specifier|public
 name|void
 name|twoMixedArgsThrows
@@ -2403,7 +2441,7 @@ name|String
 name|s
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Integer
 name|i
 parameter_list|)
@@ -2419,13 +2457,13 @@ name|i
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|twoMixedArgs (@ullable Integer i, String s)
+DECL|method|twoMixedArgs (@ullableDecl Integer i, String s)
 specifier|public
 name|void
 name|twoMixedArgs
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Integer
 name|i
 parameter_list|,
@@ -2439,13 +2477,13 @@ name|s
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|twoMixedArgsThrows (@ullable Integer i, String s)
+DECL|method|twoMixedArgsThrows (@ullableDecl Integer i, String s)
 specifier|public
 name|void
 name|twoMixedArgsThrows
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Integer
 name|i
 parameter_list|,
@@ -2464,13 +2502,13 @@ name|i
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|twoNullableArgs (@ullable String s, @javax.annotation.Nullable Integer i)
+DECL|method|twoNullableArgs (@ullableDecl String s, @javax.annotation.Nullable Integer i)
 specifier|public
 name|void
 name|twoNullableArgs
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|String
 name|s
 parameter_list|,
@@ -2484,18 +2522,18 @@ name|Integer
 name|i
 parameter_list|)
 block|{}
-DECL|method|twoNullableArgsThrowsFirstArg (@ullable String s, @Nullable Integer i)
+DECL|method|twoNullableArgsThrowsFirstArg (@ullableDecl String s, @NullableDecl Integer i)
 specifier|public
 name|void
 name|twoNullableArgsThrowsFirstArg
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|String
 name|s
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Integer
 name|i
 parameter_list|)
@@ -2506,18 +2544,18 @@ name|s
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|twoNullableArgsThrowsSecondArg (@ullable String s, @Nullable Integer i)
+DECL|method|twoNullableArgsThrowsSecondArg (@ullableDecl String s, @NullableDecl Integer i)
 specifier|public
 name|void
 name|twoNullableArgsThrowsSecondArg
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|String
 name|s
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Integer
 name|i
 parameter_list|)
@@ -2544,26 +2582,26 @@ name|s
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|staticOneNullableArg (@ullable String s)
+DECL|method|staticOneNullableArg (@ullableDecl String s)
 specifier|public
 specifier|static
 name|void
 name|staticOneNullableArg
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|String
 name|s
 parameter_list|)
 block|{}
-DECL|method|staticOneNullableArgThrows (@ullable String s)
+DECL|method|staticOneNullableArgThrows (@ullableDecl String s)
 specifier|public
 specifier|static
 name|void
 name|staticOneNullableArgThrows
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|String
 name|s
 parameter_list|)
@@ -2676,13 +2714,13 @@ name|PassObject
 block|{
 annotation|@
 name|Override
-DECL|method|oneNullableArg (@ullable String s)
+DECL|method|oneNullableArg (@ullableDecl String s)
 specifier|public
 name|void
 name|oneNullableArg
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|String
 name|s
 parameter_list|)
@@ -2905,7 +2943,7 @@ name|PassObject
 block|{
 annotation|@
 name|Override
-DECL|method|twoMixedArgs (String s, @Nullable Integer i)
+DECL|method|twoMixedArgs (String s, @NullableDecl Integer i)
 specifier|public
 name|void
 name|twoMixedArgs
@@ -2914,7 +2952,7 @@ name|String
 name|s
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Integer
 name|i
 parameter_list|)
@@ -2946,7 +2984,7 @@ name|PassObject
 block|{
 annotation|@
 name|Override
-DECL|method|twoMixedArgs (String s, @Nullable Integer i)
+DECL|method|twoMixedArgs (String s, @NullableDecl Integer i)
 specifier|public
 name|void
 name|twoMixedArgs
@@ -2955,7 +2993,7 @@ name|String
 name|s
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Integer
 name|i
 parameter_list|)
@@ -2992,7 +3030,7 @@ name|PassObject
 block|{
 annotation|@
 name|Override
-DECL|method|twoMixedArgs (String s, @Nullable Integer i)
+DECL|method|twoMixedArgs (String s, @NullableDecl Integer i)
 specifier|public
 name|void
 name|twoMixedArgs
@@ -3001,7 +3039,7 @@ name|String
 name|s
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Integer
 name|i
 parameter_list|)
@@ -3043,7 +3081,7 @@ name|PassObject
 block|{
 annotation|@
 name|Override
-DECL|method|twoMixedArgs (String s, @Nullable Integer i)
+DECL|method|twoMixedArgs (String s, @NullableDecl Integer i)
 specifier|public
 name|void
 name|twoMixedArgs
@@ -3052,7 +3090,7 @@ name|String
 name|s
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Integer
 name|i
 parameter_list|)
@@ -3094,13 +3132,13 @@ name|PassObject
 block|{
 annotation|@
 name|Override
-DECL|method|twoMixedArgs (@ullable Integer i, String s)
+DECL|method|twoMixedArgs (@ullableDecl Integer i, String s)
 specifier|public
 name|void
 name|twoMixedArgs
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Integer
 name|i
 parameter_list|,
@@ -3135,13 +3173,13 @@ name|PassObject
 block|{
 annotation|@
 name|Override
-DECL|method|twoMixedArgs (@ullable Integer i, String s)
+DECL|method|twoMixedArgs (@ullableDecl Integer i, String s)
 specifier|public
 name|void
 name|twoMixedArgs
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Integer
 name|i
 parameter_list|,
@@ -3181,18 +3219,18 @@ name|PassObject
 block|{
 annotation|@
 name|Override
-DECL|method|twoNullableArgs (@ullable String s, @Nullable Integer i)
+DECL|method|twoNullableArgs (@ullableDecl String s, @NullableDecl Integer i)
 specifier|public
 name|void
 name|twoNullableArgs
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|String
 name|s
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Integer
 name|i
 parameter_list|)
@@ -3229,18 +3267,18 @@ name|PassObject
 block|{
 annotation|@
 name|Override
-DECL|method|twoNullableArgs (@ullable String s, @Nullable Integer i)
+DECL|method|twoNullableArgs (@ullableDecl String s, @NullableDecl Integer i)
 specifier|public
 name|void
 name|twoNullableArgs
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|String
 name|s
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Integer
 name|i
 parameter_list|)
@@ -3277,18 +3315,18 @@ name|PassObject
 block|{
 annotation|@
 name|Override
-DECL|method|twoNullableArgs (@ullable String s, @Nullable Integer i)
+DECL|method|twoNullableArgs (@ullableDecl String s, @NullableDecl Integer i)
 specifier|public
 name|void
 name|twoNullableArgs
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|String
 name|s
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Integer
 name|i
 parameter_list|)
@@ -3325,18 +3363,18 @@ name|PassObject
 block|{
 annotation|@
 name|Override
-DECL|method|twoNullableArgs (@ullable String s, @Nullable Integer i)
+DECL|method|twoNullableArgs (@ullableDecl String s, @NullableDecl Integer i)
 specifier|public
 name|void
 name|twoNullableArgs
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|String
 name|s
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Integer
 name|i
 parameter_list|)
@@ -3373,18 +3411,18 @@ name|PassObject
 block|{
 annotation|@
 name|Override
-DECL|method|twoNullableArgs (@ullable String s, @Nullable Integer i)
+DECL|method|twoNullableArgs (@ullableDecl String s, @NullableDecl Integer i)
 specifier|public
 name|void
 name|twoNullableArgs
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|String
 name|s
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Integer
 name|i
 parameter_list|)
@@ -3558,13 +3596,13 @@ name|BaseClassThatFailsToThrow
 block|{
 annotation|@
 name|Override
-DECL|method|oneArg (@ullable String s)
+DECL|method|oneArg (@ullableDecl String s)
 specifier|public
 name|void
 name|oneArg
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|String
 name|s
 parameter_list|)
@@ -3598,13 +3636,13 @@ name|SubclassOverridesTheWrongMethod
 extends|extends
 name|BaseClassThatFailsToThrow
 block|{
-DECL|method|oneArg (@ullable CharSequence s)
+DECL|method|oneArg (@ullableDecl CharSequence s)
 specifier|public
 name|void
 name|oneArg
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|CharSequence
 name|s
 parameter_list|)
@@ -3690,13 +3728,13 @@ name|SubclassThatTriesToOverrideBadStaticMethod
 extends|extends
 name|ClassThatFailsToThrowForStatic
 block|{
-DECL|method|staticOneArg (@ullable String s)
+DECL|method|staticOneArg (@ullableDecl String s)
 specifier|static
 name|void
 name|staticOneArg
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|String
 name|s
 parameter_list|)
@@ -3744,13 +3782,13 @@ specifier|static
 class|class
 name|CanCreateDefault
 block|{
-DECL|method|foo (@ullable HardToCreate ignored, String required)
+DECL|method|foo (@ullableDecl HardToCreate ignored, String required)
 specifier|public
 name|void
 name|foo
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|HardToCreate
 name|ignored
 parameter_list|,
@@ -4064,12 +4102,12 @@ specifier|static
 class|class
 name|PrivateClassWithPrivateConstructor
 block|{
-DECL|method|PrivateClassWithPrivateConstructor (@ullable Integer argument)
+DECL|method|PrivateClassWithPrivateConstructor (@ullableDecl Integer argument)
 specifier|private
 name|PrivateClassWithPrivateConstructor
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Integer
 name|argument
 parameter_list|)
