@@ -112,7 +112,6 @@ name|emulated
 operator|=
 literal|true
 argument_list|)
-comment|// TODO(cpovirk): why is this slow (>1m/test) under GWT when fully optimized?
 DECL|class|AbstractIteratorTest
 specifier|public
 class|class
