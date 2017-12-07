@@ -24,6 +24,22 @@ name|google
 operator|.
 name|common
 operator|.
+name|primitives
+operator|.
+name|TestPlatform
+operator|.
+name|reduceIterationsIfGwt
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
 name|testing
 operator|.
 name|SerializableTester
@@ -1199,7 +1215,10 @@ literal|0
 init|;
 name|i
 operator|<
+name|reduceIterationsIfGwt
+argument_list|(
 literal|100
+argument_list|)
 condition|;
 name|i
 operator|++
