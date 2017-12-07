@@ -2318,7 +2318,6 @@ operator|.
 name|BYTES
 index|]
 decl_stmt|;
-comment|// total overkill, but, it takes 0.1 sec so why not...
 for|for
 control|(
 name|int
@@ -2328,7 +2327,7 @@ literal|0
 init|;
 name|i
 operator|<
-literal|10000
+literal|1000
 condition|;
 name|i
 operator|++
