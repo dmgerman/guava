@@ -168,11 +168,17 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|annotation
+name|checkerframework
 operator|.
-name|Nullable
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -529,7 +535,7 @@ name|FinalizerLoader
 block|{
 comment|/**      * Returns Finalizer.class or null if this loader shouldn't or can't load it.      *      * @throws SecurityException if we don't have the appropriate privileges      */
 annotation|@
-name|Nullable
+name|NullableDecl
 DECL|method|loadFinalizer ()
 name|Class
 argument_list|<
@@ -557,7 +563,7 @@ name|boolean
 name|disabled
 decl_stmt|;
 annotation|@
-name|Nullable
+name|NullableDecl
 annotation|@
 name|Override
 DECL|method|loadFinalizer ()
@@ -670,7 +676,7 @@ operator|+
 literal|"issue, or move Guava to your system class path."
 decl_stmt|;
 annotation|@
-name|Nullable
+name|NullableDecl
 annotation|@
 name|Override
 DECL|method|loadFinalizer ()

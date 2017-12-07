@@ -112,11 +112,17 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|annotation
+name|checkerframework
 operator|.
-name|Nullable
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -222,17 +228,17 @@ function_decl|;
 comment|// API (consumer-side) methods
 comment|/**    * Returns a representation of {@code a} as an instance of type {@code B}.    *    * @return the converted value; is null<i>if and only if</i> {@code a} is null    */
 annotation|@
-name|Nullable
+name|NullableDecl
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|convert (@ullable A a)
+DECL|method|convert (@ullableDecl A a)
 specifier|public
 specifier|final
 name|B
 name|convert
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|A
 name|a
 parameter_list|)
@@ -245,13 +251,13 @@ argument_list|)
 return|;
 block|}
 annotation|@
-name|Nullable
-DECL|method|correctedDoForward (@ullable A a)
+name|NullableDecl
+DECL|method|correctedDoForward (@ullableDecl A a)
 name|B
 name|correctedDoForward
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|A
 name|a
 parameter_list|)
@@ -289,13 +295,13 @@ return|;
 block|}
 block|}
 annotation|@
-name|Nullable
-DECL|method|correctedDoBackward (@ullable B b)
+name|NullableDecl
+DECL|method|correctedDoBackward (@ullableDecl B b)
 name|A
 name|correctedDoBackward
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|B
 name|b
 parameter_list|)
@@ -582,13 +588,13 @@ block|}
 annotation|@
 name|Override
 annotation|@
-name|Nullable
-DECL|method|correctedDoForward (@ullable B b)
+name|NullableDecl
+DECL|method|correctedDoForward (@ullableDecl B b)
 name|A
 name|correctedDoForward
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|B
 name|b
 parameter_list|)
@@ -605,13 +611,13 @@ block|}
 annotation|@
 name|Override
 annotation|@
-name|Nullable
-DECL|method|correctedDoBackward (@ullable A a)
+name|NullableDecl
+DECL|method|correctedDoBackward (@ullableDecl A a)
 name|B
 name|correctedDoBackward
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|A
 name|a
 parameter_list|)
@@ -644,13 +650,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|equals (@ullable Object object)
+DECL|method|equals (@ullableDecl Object object)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|object
 parameter_list|)
@@ -918,13 +924,13 @@ block|}
 annotation|@
 name|Override
 annotation|@
-name|Nullable
-DECL|method|correctedDoForward (@ullable A a)
+name|NullableDecl
+DECL|method|correctedDoForward (@ullableDecl A a)
 name|C
 name|correctedDoForward
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|A
 name|a
 parameter_list|)
@@ -946,13 +952,13 @@ block|}
 annotation|@
 name|Override
 annotation|@
-name|Nullable
-DECL|method|correctedDoBackward (@ullable C c)
+name|NullableDecl
+DECL|method|correctedDoBackward (@ullableDecl C c)
 name|A
 name|correctedDoBackward
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|C
 name|c
 parameter_list|)
@@ -973,13 +979,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|equals (@ullable Object object)
+DECL|method|equals (@ullableDecl Object object)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|object
 parameter_list|)
@@ -1097,17 +1103,17 @@ name|Deprecated
 annotation|@
 name|Override
 annotation|@
-name|Nullable
+name|NullableDecl
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|apply (@ullable A a)
+DECL|method|apply (@ullableDecl A a)
 specifier|public
 specifier|final
 name|B
 name|apply
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|A
 name|a
 parameter_list|)
@@ -1122,13 +1128,13 @@ block|}
 comment|/**    * Indicates whether another object is equal to this converter.    *    *<p>Most implementations will have no reason to override the behavior of {@link Object#equals}.    * However, an implementation may also choose to return {@code true} whenever {@code object} is a    * {@link Converter} that it considers<i>interchangeable</i> with this one. "Interchangeable"    *<i>typically</i> means that {@code Objects.equal(this.convert(a), that.convert(a))} is true for    * all {@code a} of type {@code A} (and similarly for {@code reverse}). Note that a {@code false}    * result from this method does not imply that the converters are known<i>not</i> to be    * interchangeable.    */
 annotation|@
 name|Override
-DECL|method|equals (@ullable Object object)
+DECL|method|equals (@ullableDecl Object object)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|object
 parameter_list|)
@@ -1337,13 +1343,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|equals (@ullable Object object)
+DECL|method|equals (@ullableDecl Object object)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|object
 parameter_list|)

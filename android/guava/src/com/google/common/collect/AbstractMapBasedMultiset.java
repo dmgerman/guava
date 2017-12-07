@@ -198,11 +198,17 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|annotation
+name|checkerframework
 operator|.
-name|Nullable
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -743,13 +749,13 @@ block|}
 block|}
 annotation|@
 name|Override
-DECL|method|count (@ullable Object element)
+DECL|method|count (@ullableDecl Object element)
 specifier|public
 name|int
 name|count
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|element
 parameter_list|)
@@ -769,13 +775,13 @@ annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
-DECL|method|add (@ullable E element, int occurrences)
+DECL|method|add (@ullableDecl E element, int occurrences)
 specifier|public
 name|int
 name|add
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|E
 name|element
 parameter_list|,
@@ -868,13 +874,13 @@ annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
-DECL|method|remove (@ullable Object element, int occurrences)
+DECL|method|remove (@ullableDecl Object element, int occurrences)
 specifier|public
 name|int
 name|remove
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|element
 parameter_list|,
@@ -973,13 +979,13 @@ annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
-DECL|method|setCount (@ullable E element, int count)
+DECL|method|setCount (@ullableDecl E element, int count)
 specifier|public
 name|int
 name|setCount
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|E
 name|element
 parameter_list|,

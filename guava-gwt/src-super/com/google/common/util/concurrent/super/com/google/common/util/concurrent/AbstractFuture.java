@@ -220,11 +220,17 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|annotation
+name|checkerframework
 operator|.
-name|Nullable
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -846,13 +852,13 @@ return|return
 name|throwable
 return|;
 block|}
-DECL|method|maybePropagateCancellationTo (@ullable Future<?> related)
+DECL|method|maybePropagateCancellationTo (@ullableDecl Future<?> related)
 specifier|final
 name|void
 name|maybePropagateCancellationTo
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Future
 argument_list|<
 name|?
@@ -1033,7 +1039,7 @@ return|;
 block|}
 comment|/**    * Provide a human-readable explanation of why this future has not yet completed.    *    * @return null if an explanation cannot be provided because the future is done.    */
 annotation|@
-name|Nullable
+name|NullableDecl
 DECL|method|pendingToString ()
 name|String
 name|pendingToString

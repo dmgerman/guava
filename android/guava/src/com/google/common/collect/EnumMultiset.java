@@ -218,11 +218,17 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|annotation
+name|checkerframework
 operator|.
-name|Nullable
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -511,13 +517,13 @@ name|length
 index|]
 expr_stmt|;
 block|}
-DECL|method|isActuallyE (@ullable Object o)
+DECL|method|isActuallyE (@ullableDecl Object o)
 specifier|private
 name|boolean
 name|isActuallyE
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|o
 parameter_list|)
@@ -576,12 +582,12 @@ name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
-DECL|method|checkIsE (@ullable Object element)
+DECL|method|checkIsE (@ullableDecl Object element)
 name|void
 name|checkIsE
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|element
 parameter_list|)
@@ -645,13 +651,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|count (@ullable Object element)
+DECL|method|count (@ullableDecl Object element)
 specifier|public
 name|int
 name|count
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|element
 parameter_list|)
@@ -813,13 +819,13 @@ annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
-DECL|method|remove (@ullable Object element, int occurrences)
+DECL|method|remove (@ullableDecl Object element, int occurrences)
 specifier|public
 name|int
 name|remove
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|element
 parameter_list|,

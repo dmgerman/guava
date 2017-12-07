@@ -18,11 +18,17 @@ end_package
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|annotation
+name|checkerframework
 operator|.
-name|Nullable
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -36,19 +42,19 @@ specifier|abstract
 class|class
 name|ExtraObjectsMethodsForWeb
 block|{
-DECL|method|equal (@ullable String a, @Nullable String b)
+DECL|method|equal (@ullableDecl String a, @NullableDecl String b)
 specifier|public
 specifier|static
 name|boolean
 name|equal
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|String
 name|a
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|String
 name|b
 parameter_list|)

@@ -570,21 +570,27 @@ end_import
 
 begin_import
 import|import
-name|javax
-operator|.
-name|annotation
-operator|.
-name|Nullable
-import|;
-end_import
-
-begin_import
-import|import
 name|junit
 operator|.
 name|framework
 operator|.
 name|TestCase
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|checkerframework
+operator|.
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -2555,7 +2561,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * The supplied multimap will be mutated and an unmodifiable instance used in its stead. If the    * multimap does not support null keys or values, alternatives may be specified for tests    * involving nulls.    */
-DECL|method|checkUnmodifiableMultimap ( Multimap<String, Integer> multimap, boolean permitsDuplicates, @Nullable String nullKey, @Nullable Integer nullValue)
+DECL|method|checkUnmodifiableMultimap ( Multimap<String, Integer> multimap, boolean permitsDuplicates, @NullableDecl String nullKey, @NullableDecl Integer nullValue)
 specifier|private
 specifier|static
 name|void
@@ -2573,12 +2579,12 @@ name|boolean
 name|permitsDuplicates
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|String
 name|nullKey
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Integer
 name|nullValue
 parameter_list|)
@@ -2750,7 +2756,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** Prepares the multimap for unmodifiable tests, returning an unmodifiable view of the map. */
-DECL|method|prepareUnmodifiableTests ( Multimap<String, Integer> multimap, boolean permitsDuplicates, @Nullable String nullKey, @Nullable Integer nullValue)
+DECL|method|prepareUnmodifiableTests ( Multimap<String, Integer> multimap, boolean permitsDuplicates, @NullableDecl String nullKey, @NullableDecl Integer nullValue)
 specifier|private
 specifier|static
 name|Multimap
@@ -2773,12 +2779,12 @@ name|boolean
 name|permitsDuplicates
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|String
 name|nullKey
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Integer
 name|nullValue
 parameter_list|)

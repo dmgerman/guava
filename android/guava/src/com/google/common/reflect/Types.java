@@ -388,11 +388,17 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|annotation
+name|checkerframework
 operator|.
-name|Nullable
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -585,13 +591,13 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns a type where {@code rawType} is parameterized by {@code arguments} and is owned by    * {@code ownerType}.    */
-DECL|method|newParameterizedTypeWithOwner ( @ullable Type ownerType, Class<?> rawType, Type... arguments)
+DECL|method|newParameterizedTypeWithOwner ( @ullableDecl Type ownerType, Class<?> rawType, Type... arguments)
 specifier|static
 name|ParameterizedType
 name|newParameterizedTypeWithOwner
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Type
 name|ownerType
 parameter_list|,
@@ -700,7 +706,7 @@ DECL|enumConstant|OWNED_BY_ENCLOSING_CLASS
 name|OWNED_BY_ENCLOSING_CLASS
 block|{
 annotation|@
-name|Nullable
+name|NullableDecl
 annotation|@
 name|Override
 name|Class
@@ -729,7 +735,7 @@ DECL|enumConstant|LOCAL_CLASS_HAS_NO_OWNER
 name|LOCAL_CLASS_HAS_NO_OWNER
 block|{
 annotation|@
-name|Nullable
+name|NullableDecl
 annotation|@
 name|Override
 name|Class
@@ -770,7 +776,7 @@ block|}
 block|}
 block|;
 annotation|@
-name|Nullable
+name|NullableDecl
 DECL|method|getOwnerType (Class<?> rawType)
 specifier|abstract
 name|Class
@@ -1031,7 +1037,7 @@ argument_list|()
 return|;
 block|}
 annotation|@
-name|Nullable
+name|NullableDecl
 DECL|method|getComponentType (Type type)
 specifier|static
 name|Type
@@ -1170,7 +1176,7 @@ return|;
 block|}
 comment|/**    * Returns {@code ? extends X} if any of {@code bounds} is a subtype of {@code X[]}; or null    * otherwise.    */
 annotation|@
-name|Nullable
+name|NullableDecl
 DECL|method|subtypeOfComponentType (Type[] bounds)
 specifier|private
 specifier|static
@@ -1427,11 +1433,11 @@ name|?
 argument_list|>
 name|rawType
 decl_stmt|;
-DECL|method|ParameterizedTypeImpl (@ullable Type ownerType, Class<?> rawType, Type[] typeArguments)
+DECL|method|ParameterizedTypeImpl (@ullableDecl Type ownerType, Class<?> rawType, Type[] typeArguments)
 name|ParameterizedTypeImpl
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Type
 name|ownerType
 parameter_list|,

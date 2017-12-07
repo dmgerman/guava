@@ -136,11 +136,17 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|annotation
+name|checkerframework
 operator|.
-name|Nullable
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -364,7 +370,7 @@ annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
-DECL|method|put (K key, @Nullable V value)
+DECL|method|put (K key, @NullableDecl V value)
 specifier|public
 name|V
 name|put
@@ -373,7 +379,7 @@ name|K
 name|key
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|V
 name|value
 parameter_list|)
@@ -393,7 +399,7 @@ annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
-DECL|method|forcePut (K key, @Nullable V value)
+DECL|method|forcePut (K key, @NullableDecl V value)
 specifier|public
 name|V
 name|forcePut
@@ -402,7 +408,7 @@ name|K
 name|key
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|V
 name|value
 parameter_list|)

@@ -92,11 +92,17 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|annotation
+name|checkerframework
 operator|.
-name|Nullable
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -176,7 +182,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * If {@code nullableReference} is non-null, returns an {@code Optional} instance containing that    * reference; otherwise returns {@link Optional#absent}.    *    *<p><b>Comparison to {@code java.util.Optional}:</b> this method is equivalent to Java 8's    * {@code Optional.ofNullable}.    */
-DECL|method|fromNullable (@ullable T nullableReference)
+DECL|method|fromNullable (@ullableDecl T nullableReference)
 specifier|public
 specifier|static
 parameter_list|<
@@ -189,7 +195,7 @@ argument_list|>
 name|fromNullable
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|T
 name|nullableReference
 parameter_list|)
@@ -221,8 +227,8 @@ return|;
 block|}
 comment|/**    * Returns the equivalent {@code com.google.common.base.Optional} value to the given {@code    * java.util.Optional}, or {@code null} if the argument is null.    *    * @since 21.0    */
 annotation|@
-name|Nullable
-DECL|method|fromJavaUtil (@ullable java.util.Optional<T> javaUtilOptional)
+name|NullableDecl
+DECL|method|fromJavaUtil (@ullableDecl java.util.Optional<T> javaUtilOptional)
 specifier|public
 specifier|static
 parameter_list|<
@@ -235,7 +241,7 @@ argument_list|>
 name|fromJavaUtil
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|java
 operator|.
 name|util
@@ -269,8 +275,8 @@ return|;
 block|}
 comment|/**    * Returns the equivalent {@code java.util.Optional} value to the given {@code    * com.google.common.base.Optional}, or {@code null} if the argument is null.    *    *<p>If {@code googleOptional} is known to be non-null, use {@code googleOptional.toJavaUtil()}    * instead.    *    *<p>Unfortunately, the method reference {@code Optional::toJavaUtil} will not work, because it    * could refer to either the static or instance version of this method. Write out the lambda    * expression {@code o -> Optional.toJavaUtil(o)} instead.    *    * @since 21.0    */
 annotation|@
-name|Nullable
-DECL|method|toJavaUtil (@ullable Optional<T> googleOptional)
+name|NullableDecl
+DECL|method|toJavaUtil (@ullableDecl Optional<T> googleOptional)
 specifier|public
 specifier|static
 parameter_list|<
@@ -287,7 +293,7 @@ argument_list|>
 name|toJavaUtil
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Optional
 argument_list|<
 name|T
@@ -378,7 +384,7 @@ parameter_list|)
 function_decl|;
 comment|/**    * Returns the contained instance if it is present; {@code null} otherwise. If the instance is    * known to be present, use {@link #get()} instead.    *    *<p><b>Comparison to {@code java.util.Optional}:</b> this method is equivalent to Java 8's    * {@code Optional.orElse(null)}.    */
 annotation|@
-name|Nullable
+name|NullableDecl
 DECL|method|orNull ()
 specifier|public
 specifier|abstract
@@ -452,14 +458,14 @@ block|}
 comment|/**    * Returns {@code true} if {@code object} is an {@code Optional} instance, and either the    * contained references are {@linkplain Object#equals equal} to each other or both are absent.    * Note that {@code Optional} instances of differing parameterized types can be equal.    *    *<p><b>Comparison to {@code java.util.Optional}:</b> no differences.    */
 annotation|@
 name|Override
-DECL|method|equals (@ullable Object object)
+DECL|method|equals (@ullableDecl Object object)
 specifier|public
 specifier|abstract
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|object
 parameter_list|)

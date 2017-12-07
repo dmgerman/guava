@@ -100,11 +100,17 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|annotation
+name|checkerframework
 operator|.
-name|Nullable
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -271,7 +277,7 @@ block|}
 annotation|@
 name|Override
 annotation|@
-name|Nullable
+name|NullableDecl
 DECL|method|getAnnotation (Class<A> annotationType)
 specifier|public
 parameter_list|<
@@ -397,7 +403,7 @@ block|}
 comment|/** @since 18.0 */
 comment|// @Override on JDK8
 annotation|@
-name|Nullable
+name|NullableDecl
 DECL|method|getDeclaredAnnotation (Class<A> annotationType)
 specifier|public
 parameter_list|<
@@ -481,13 +487,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|equals (@ullable Object obj)
+DECL|method|equals (@ullableDecl Object obj)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|obj
 parameter_list|)

@@ -158,11 +158,17 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|annotation
+name|checkerframework
 operator|.
-name|Nullable
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -207,13 +213,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|containsValue (@ullable Object value)
+DECL|method|containsValue (@ullableDecl Object value)
 specifier|public
 name|boolean
 name|containsValue
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|value
 parameter_list|)
@@ -254,18 +260,18 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|containsEntry (@ullable Object key, @Nullable Object value)
+DECL|method|containsEntry (@ullableDecl Object key, @NullableDecl Object value)
 specifier|public
 name|boolean
 name|containsEntry
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|key
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|value
 parameter_list|)
@@ -301,18 +307,18 @@ annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
-DECL|method|remove (@ullable Object key, @Nullable Object value)
+DECL|method|remove (@ullableDecl Object key, @NullableDecl Object value)
 specifier|public
 name|boolean
 name|remove
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|key
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|value
 parameter_list|)
@@ -348,18 +354,18 @@ annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
-DECL|method|put (@ullable K key, @Nullable V value)
+DECL|method|put (@ullableDecl K key, @NullableDecl V value)
 specifier|public
 name|boolean
 name|put
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|K
 name|key
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|V
 name|value
 parameter_list|)
@@ -380,13 +386,13 @@ annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
-DECL|method|putAll (@ullable K key, Iterable<? extends V> values)
+DECL|method|putAll (@ullableDecl K key, Iterable<? extends V> values)
 specifier|public
 name|boolean
 name|putAll
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|K
 name|key
 parameter_list|,
@@ -555,7 +561,7 @@ annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
-DECL|method|replaceValues (@ullable K key, Iterable<? extends V> values)
+DECL|method|replaceValues (@ullableDecl K key, Iterable<? extends V> values)
 specifier|public
 name|Collection
 argument_list|<
@@ -564,7 +570,7 @@ argument_list|>
 name|replaceValues
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|K
 name|key
 parameter_list|,
@@ -812,13 +818,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|equals (@ullable Object obj)
+DECL|method|equals (@ullableDecl Object obj)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|obj
 parameter_list|)
@@ -1131,13 +1137,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|contains (@ullable Object o)
+DECL|method|contains (@ullableDecl Object o)
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|o
 parameter_list|)
@@ -1289,13 +1295,13 @@ function_decl|;
 comment|// Comparison and hashing
 annotation|@
 name|Override
-DECL|method|equals (@ullable Object object)
+DECL|method|equals (@ullableDecl Object object)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|object
 parameter_list|)

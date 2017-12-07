@@ -336,11 +336,17 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|annotation
+name|checkerframework
 operator|.
-name|Nullable
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -1676,7 +1682,7 @@ name|void
 name|accept
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|T
 name|t
 parameter_list|)
@@ -3162,7 +3168,7 @@ name|void
 name|set
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|T
 name|value
 parameter_list|)

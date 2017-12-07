@@ -368,11 +368,17 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|annotation
+name|checkerframework
 operator|.
-name|Nullable
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -707,7 +713,7 @@ argument_list|)
 return|;
 block|}
 comment|/** Returns {@code true} if {@code iterator} contains {@code element}. */
-DECL|method|contains (Iterator<?> iterator, @Nullable Object element)
+DECL|method|contains (Iterator<?> iterator, @NullableDecl Object element)
 specifier|public
 specifier|static
 name|boolean
@@ -720,7 +726,7 @@ argument_list|>
 name|iterator
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|element
 parameter_list|)
@@ -1295,8 +1301,8 @@ annotation|@
 name|CanIgnoreReturnValue
 comment|// TODO(kak): Consider removing this?
 annotation|@
-name|Nullable
-DECL|method|getOnlyElement (Iterator<? extends T> iterator, @Nullable T defaultValue)
+name|NullableDecl
+DECL|method|getOnlyElement (Iterator<? extends T> iterator, @NullableDecl T defaultValue)
 specifier|public
 specifier|static
 parameter_list|<
@@ -1314,7 +1320,7 @@ argument_list|>
 name|iterator
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|T
 name|defaultValue
 parameter_list|)
@@ -1454,7 +1460,7 @@ name|wasModified
 return|;
 block|}
 comment|/**    * Returns the number of elements in the specified iterator that equal the specified object. The    * iterator will be left exhausted: its {@code hasNext()} method will return {@code false}.    *    * @see Collections#frequency    */
-DECL|method|frequency (Iterator<?> iterator, @Nullable Object element)
+DECL|method|frequency (Iterator<?> iterator, @NullableDecl Object element)
 specifier|public
 specifier|static
 name|int
@@ -1467,7 +1473,7 @@ argument_list|>
 name|iterator
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|element
 parameter_list|)
@@ -2690,8 +2696,8 @@ throw|;
 block|}
 comment|/**    * Returns the first element in {@code iterator} that satisfies the given predicate. If no such    * element is found, {@code defaultValue} will be returned from this method and the iterator will    * be left exhausted: its {@code hasNext()} method will return {@code false}. Note that this can    * usually be handled more naturally using {@code tryFind(iterator, predicate).or(defaultValue)}.    *    * @since 7.0    */
 annotation|@
-name|Nullable
-DECL|method|find ( Iterator<? extends T> iterator, Predicate<? super T> predicate, @Nullable T defaultValue)
+name|NullableDecl
+DECL|method|find ( Iterator<? extends T> iterator, Predicate<? super T> predicate, @NullableDecl T defaultValue)
 specifier|public
 specifier|static
 parameter_list|<
@@ -2717,7 +2723,7 @@ argument_list|>
 name|predicate
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|T
 name|defaultValue
 parameter_list|)
@@ -3096,8 +3102,8 @@ block|}
 block|}
 comment|/**    * Advances {@code iterator} {@code position + 1} times, returning the element at the {@code    * position}th position or {@code defaultValue} otherwise.    *    * @param position position of the element to return    * @param defaultValue the default value to return if the iterator is empty or if {@code position}    *     is greater than the number of elements remaining in {@code iterator}    * @return the element at the specified position in {@code iterator} or {@code defaultValue} if    *     {@code iterator} produces fewer than {@code position + 1} elements.    * @throws IndexOutOfBoundsException if {@code position} is negative    * @since 4.0    */
 annotation|@
-name|Nullable
-DECL|method|get (Iterator<? extends T> iterator, int position, @Nullable T defaultValue)
+name|NullableDecl
+DECL|method|get ( Iterator<? extends T> iterator, int position, @NullableDecl T defaultValue)
 specifier|public
 specifier|static
 parameter_list|<
@@ -3118,7 +3124,7 @@ name|int
 name|position
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|T
 name|defaultValue
 parameter_list|)
@@ -3146,8 +3152,8 @@ return|;
 block|}
 comment|/**    * Returns the next element in {@code iterator} or {@code defaultValue} if the iterator is empty.    * The {@link Iterables} analog to this method is {@link Iterables#getFirst}.    *    * @param defaultValue the default value to return if the iterator is empty    * @return the next element of {@code iterator} or the default value    * @since 7.0    */
 annotation|@
-name|Nullable
-DECL|method|getNext (Iterator<? extends T> iterator, @Nullable T defaultValue)
+name|NullableDecl
+DECL|method|getNext (Iterator<? extends T> iterator, @NullableDecl T defaultValue)
 specifier|public
 specifier|static
 parameter_list|<
@@ -3165,7 +3171,7 @@ argument_list|>
 name|iterator
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|T
 name|defaultValue
 parameter_list|)
@@ -3231,8 +3237,8 @@ block|}
 block|}
 comment|/**    * Advances {@code iterator} to the end, returning the last element or {@code defaultValue} if the    * iterator is empty.    *    * @param defaultValue the default value to return if the iterator is empty    * @return the last element of {@code iterator}    * @since 3.0    */
 annotation|@
-name|Nullable
-DECL|method|getLast (Iterator<? extends T> iterator, @Nullable T defaultValue)
+name|NullableDecl
+DECL|method|getLast (Iterator<? extends T> iterator, @NullableDecl T defaultValue)
 specifier|public
 specifier|static
 parameter_list|<
@@ -3250,7 +3256,7 @@ argument_list|>
 name|iterator
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|T
 name|defaultValue
 parameter_list|)
@@ -3537,7 +3543,7 @@ return|;
 block|}
 comment|/**    * Deletes and returns the next value from the iterator, or returns {@code null} if there is no    * such value.    */
 annotation|@
-name|Nullable
+name|NullableDecl
 DECL|method|pollNext (Iterator<T> iterator)
 specifier|static
 parameter_list|<
@@ -3867,7 +3873,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns an iterator containing only {@code value}.    *    *<p>The {@link Iterable} equivalent of this method is {@link Collections#singleton}.    */
-DECL|method|singletonIterator (@ullable final T value)
+DECL|method|singletonIterator (@ullableDecl final T value)
 specifier|public
 specifier|static
 parameter_list|<
@@ -3880,7 +3886,7 @@ argument_list|>
 name|singletonIterator
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 specifier|final
 name|T
 name|value
@@ -4671,7 +4677,7 @@ decl_stmt|;
 comment|// Only becomes nonnull if we encounter nested concatenations.
 DECL|field|metaIterators
 annotation|@
-name|Nullable
+name|NullableDecl
 specifier|private
 name|Deque
 argument_list|<
@@ -4721,7 +4727,7 @@ expr_stmt|;
 block|}
 comment|// Returns a nonempty meta-iterator or, if all meta-iterators are empty, null.
 annotation|@
-name|Nullable
+name|NullableDecl
 DECL|method|getTopMetaIterator ()
 specifier|private
 name|Iterator

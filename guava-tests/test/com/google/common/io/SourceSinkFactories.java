@@ -290,11 +290,17 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|annotation
+name|checkerframework
 operator|.
-name|Nullable
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -1596,12 +1602,12 @@ name|byte
 index|[]
 name|initialBytes
 decl_stmt|;
-DECL|method|FileByteSinkFactory (@ullable byte[] initialBytes)
+DECL|method|FileByteSinkFactory (@ullableDecl byte[] initialBytes)
 specifier|private
 name|FileByteSinkFactory
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|byte
 index|[]
 name|initialBytes
@@ -1972,12 +1978,12 @@ specifier|final
 name|String
 name|initialString
 decl_stmt|;
-DECL|method|FileCharSinkFactory (@ullable String initialString)
+DECL|method|FileCharSinkFactory (@ullableDecl String initialString)
 specifier|private
 name|FileCharSinkFactory
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|String
 name|initialString
 parameter_list|)
@@ -2555,12 +2561,12 @@ name|byte
 index|[]
 name|initialBytes
 decl_stmt|;
-DECL|method|PathByteSinkFactory (@ullable byte[] initialBytes)
+DECL|method|PathByteSinkFactory (@ullableDecl byte[] initialBytes)
 specifier|private
 name|PathByteSinkFactory
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|byte
 index|[]
 name|initialBytes
@@ -2869,12 +2875,12 @@ specifier|final
 name|String
 name|initialString
 decl_stmt|;
-DECL|method|PathCharSinkFactory (@ullable String initialString)
+DECL|method|PathCharSinkFactory (@ullableDecl String initialString)
 specifier|private
 name|PathCharSinkFactory
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|String
 name|initialString
 parameter_list|)

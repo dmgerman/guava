@@ -366,11 +366,17 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|annotation
+name|checkerframework
 operator|.
-name|Nullable
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -413,14 +419,14 @@ specifier|final
 name|Object
 name|mutex
 decl_stmt|;
-DECL|method|SynchronizedObject (Object delegate, @Nullable Object mutex)
+DECL|method|SynchronizedObject (Object delegate, @NullableDecl Object mutex)
 name|SynchronizedObject
 parameter_list|(
 name|Object
 name|delegate
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|mutex
 parameter_list|)
@@ -523,7 +529,7 @@ init|=
 literal|0
 decl_stmt|;
 block|}
-DECL|method|collection (Collection<E> collection, @Nullable Object mutex)
+DECL|method|collection ( Collection<E> collection, @NullableDecl Object mutex)
 specifier|private
 specifier|static
 parameter_list|<
@@ -542,7 +548,7 @@ argument_list|>
 name|collection
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|mutex
 parameter_list|)
@@ -577,7 +583,7 @@ argument_list|<
 name|E
 argument_list|>
 block|{
-DECL|method|SynchronizedCollection (Collection<E> delegate, @Nullable Object mutex)
+DECL|method|SynchronizedCollection (Collection<E> delegate, @NullableDecl Object mutex)
 specifier|private
 name|SynchronizedCollection
 parameter_list|(
@@ -588,7 +594,7 @@ argument_list|>
 name|delegate
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|mutex
 parameter_list|)
@@ -1122,7 +1128,7 @@ decl_stmt|;
 block|}
 annotation|@
 name|VisibleForTesting
-DECL|method|set (Set<E> set, @Nullable Object mutex)
+DECL|method|set (Set<E> set, @NullableDecl Object mutex)
 specifier|static
 parameter_list|<
 name|E
@@ -1140,7 +1146,7 @@ argument_list|>
 name|set
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|mutex
 parameter_list|)
@@ -1176,7 +1182,7 @@ argument_list|<
 name|E
 argument_list|>
 block|{
-DECL|method|SynchronizedSet (Set<E> delegate, @Nullable Object mutex)
+DECL|method|SynchronizedSet (Set<E> delegate, @NullableDecl Object mutex)
 name|SynchronizedSet
 parameter_list|(
 name|Set
@@ -1186,7 +1192,7 @@ argument_list|>
 name|delegate
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|mutex
 parameter_list|)
@@ -1292,7 +1298,7 @@ init|=
 literal|0
 decl_stmt|;
 block|}
-DECL|method|sortedSet (SortedSet<E> set, @Nullable Object mutex)
+DECL|method|sortedSet (SortedSet<E> set, @NullableDecl Object mutex)
 specifier|private
 specifier|static
 parameter_list|<
@@ -1311,7 +1317,7 @@ argument_list|>
 name|set
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|mutex
 parameter_list|)
@@ -1347,7 +1353,7 @@ argument_list|<
 name|E
 argument_list|>
 block|{
-DECL|method|SynchronizedSortedSet (SortedSet<E> delegate, @Nullable Object mutex)
+DECL|method|SynchronizedSortedSet (SortedSet<E> delegate, @NullableDecl Object mutex)
 name|SynchronizedSortedSet
 parameter_list|(
 name|SortedSet
@@ -1357,7 +1363,7 @@ argument_list|>
 name|delegate
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|mutex
 parameter_list|)
@@ -1584,7 +1590,7 @@ init|=
 literal|0
 decl_stmt|;
 block|}
-DECL|method|list (List<E> list, @Nullable Object mutex)
+DECL|method|list (List<E> list, @NullableDecl Object mutex)
 specifier|private
 specifier|static
 parameter_list|<
@@ -1603,7 +1609,7 @@ argument_list|>
 name|list
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|mutex
 parameter_list|)
@@ -1657,7 +1663,7 @@ argument_list|<
 name|E
 argument_list|>
 block|{
-DECL|method|SynchronizedList (List<E> delegate, @Nullable Object mutex)
+DECL|method|SynchronizedList (List<E> delegate, @NullableDecl Object mutex)
 name|SynchronizedList
 parameter_list|(
 name|List
@@ -1667,7 +1673,7 @@ argument_list|>
 name|delegate
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|mutex
 parameter_list|)
@@ -2142,7 +2148,7 @@ argument_list|>
 implements|implements
 name|RandomAccess
 block|{
-DECL|method|SynchronizedRandomAccessList (List<E> list, @Nullable Object mutex)
+DECL|method|SynchronizedRandomAccessList (List<E> list, @NullableDecl Object mutex)
 name|SynchronizedRandomAccessList
 parameter_list|(
 name|List
@@ -2152,7 +2158,7 @@ argument_list|>
 name|list
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|mutex
 parameter_list|)
@@ -2175,7 +2181,7 @@ init|=
 literal|0
 decl_stmt|;
 block|}
-DECL|method|multiset (Multiset<E> multiset, @Nullable Object mutex)
+DECL|method|multiset (Multiset<E> multiset, @NullableDecl Object mutex)
 specifier|static
 parameter_list|<
 name|E
@@ -2193,7 +2199,7 @@ argument_list|>
 name|multiset
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|mutex
 parameter_list|)
@@ -2264,7 +2270,7 @@ argument_list|>
 argument_list|>
 name|entrySet
 decl_stmt|;
-DECL|method|SynchronizedMultiset (Multiset<E> delegate, @Nullable Object mutex)
+DECL|method|SynchronizedMultiset (Multiset<E> delegate, @NullableDecl Object mutex)
 name|SynchronizedMultiset
 parameter_list|(
 name|Multiset
@@ -2274,7 +2280,7 @@ argument_list|>
 name|delegate
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|mutex
 parameter_list|)
@@ -2627,7 +2633,7 @@ init|=
 literal|0
 decl_stmt|;
 block|}
-DECL|method|multimap (Multimap<K, V> multimap, @Nullable Object mutex)
+DECL|method|multimap (Multimap<K, V> multimap, @NullableDecl Object mutex)
 specifier|static
 parameter_list|<
 name|K
@@ -2651,7 +2657,7 @@ argument_list|>
 name|multimap
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|mutex
 parameter_list|)
@@ -2784,7 +2790,7 @@ name|delegate
 argument_list|()
 return|;
 block|}
-DECL|method|SynchronizedMultimap (Multimap<K, V> delegate, @Nullable Object mutex)
+DECL|method|SynchronizedMultimap (Multimap<K, V> delegate, @NullableDecl Object mutex)
 name|SynchronizedMultimap
 parameter_list|(
 name|Multimap
@@ -2796,7 +2802,7 @@ argument_list|>
 name|delegate
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|mutex
 parameter_list|)
@@ -3531,7 +3537,7 @@ init|=
 literal|0
 decl_stmt|;
 block|}
-DECL|method|listMultimap ( ListMultimap<K, V> multimap, @Nullable Object mutex)
+DECL|method|listMultimap ( ListMultimap<K, V> multimap, @NullableDecl Object mutex)
 specifier|static
 parameter_list|<
 name|K
@@ -3555,7 +3561,7 @@ argument_list|>
 name|multimap
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|mutex
 parameter_list|)
@@ -3611,7 +3617,7 @@ argument_list|,
 name|V
 argument_list|>
 block|{
-DECL|method|SynchronizedListMultimap (ListMultimap<K, V> delegate, @Nullable Object mutex)
+DECL|method|SynchronizedListMultimap (ListMultimap<K, V> delegate, @NullableDecl Object mutex)
 name|SynchronizedListMultimap
 parameter_list|(
 name|ListMultimap
@@ -3623,7 +3629,7 @@ argument_list|>
 name|delegate
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|mutex
 parameter_list|)
@@ -3780,7 +3786,7 @@ init|=
 literal|0
 decl_stmt|;
 block|}
-DECL|method|setMultimap (SetMultimap<K, V> multimap, @Nullable Object mutex)
+DECL|method|setMultimap ( SetMultimap<K, V> multimap, @NullableDecl Object mutex)
 specifier|static
 parameter_list|<
 name|K
@@ -3804,7 +3810,7 @@ argument_list|>
 name|multimap
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|mutex
 parameter_list|)
@@ -3873,7 +3879,7 @@ argument_list|>
 argument_list|>
 name|entrySet
 decl_stmt|;
-DECL|method|SynchronizedSetMultimap (SetMultimap<K, V> delegate, @Nullable Object mutex)
+DECL|method|SynchronizedSetMultimap (SetMultimap<K, V> delegate, @NullableDecl Object mutex)
 name|SynchronizedSetMultimap
 parameter_list|(
 name|SetMultimap
@@ -3885,7 +3891,7 @@ argument_list|>
 name|delegate
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|mutex
 parameter_list|)
@@ -4089,7 +4095,7 @@ init|=
 literal|0
 decl_stmt|;
 block|}
-DECL|method|sortedSetMultimap ( SortedSetMultimap<K, V> multimap, @Nullable Object mutex)
+DECL|method|sortedSetMultimap ( SortedSetMultimap<K, V> multimap, @NullableDecl Object mutex)
 specifier|static
 parameter_list|<
 name|K
@@ -4113,7 +4119,7 @@ argument_list|>
 name|multimap
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|mutex
 parameter_list|)
@@ -4165,7 +4171,7 @@ argument_list|,
 name|V
 argument_list|>
 block|{
-DECL|method|SynchronizedSortedSetMultimap (SortedSetMultimap<K, V> delegate, @Nullable Object mutex)
+DECL|method|SynchronizedSortedSetMultimap (SortedSetMultimap<K, V> delegate, @NullableDecl Object mutex)
 name|SynchronizedSortedSetMultimap
 parameter_list|(
 name|SortedSetMultimap
@@ -4177,7 +4183,7 @@ argument_list|>
 name|delegate
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|mutex
 parameter_list|)
@@ -4361,7 +4367,7 @@ init|=
 literal|0
 decl_stmt|;
 block|}
-DECL|method|typePreservingCollection ( Collection<E> collection, @Nullable Object mutex)
+DECL|method|typePreservingCollection ( Collection<E> collection, @NullableDecl Object mutex)
 specifier|private
 specifier|static
 parameter_list|<
@@ -4380,7 +4386,7 @@ argument_list|>
 name|collection
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|mutex
 parameter_list|)
@@ -4460,7 +4466,7 @@ name|mutex
 argument_list|)
 return|;
 block|}
-DECL|method|typePreservingSet (Set<E> set, @Nullable Object mutex)
+DECL|method|typePreservingSet (Set<E> set, @NullableDecl Object mutex)
 specifier|private
 specifier|static
 parameter_list|<
@@ -4479,7 +4485,7 @@ argument_list|>
 name|set
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|mutex
 parameter_list|)
@@ -4542,7 +4548,7 @@ argument_list|>
 argument_list|>
 argument_list|>
 block|{
-DECL|method|SynchronizedAsMapEntries (Set<Entry<K, Collection<V>>> delegate, @Nullable Object mutex)
+DECL|method|SynchronizedAsMapEntries (Set<Entry<K, Collection<V>>> delegate, @NullableDecl Object mutex)
 name|SynchronizedAsMapEntries
 parameter_list|(
 name|Set
@@ -4560,7 +4566,7 @@ argument_list|>
 name|delegate
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|mutex
 parameter_list|)
@@ -4982,7 +4988,7 @@ decl_stmt|;
 block|}
 annotation|@
 name|VisibleForTesting
-DECL|method|map (Map<K, V> map, @Nullable Object mutex)
+DECL|method|map (Map<K, V> map, @NullableDecl Object mutex)
 specifier|static
 parameter_list|<
 name|K
@@ -5006,7 +5012,7 @@ argument_list|>
 name|map
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|mutex
 parameter_list|)
@@ -5071,7 +5077,7 @@ argument_list|>
 argument_list|>
 name|entrySet
 decl_stmt|;
-DECL|method|SynchronizedMap (Map<K, V> delegate, @Nullable Object mutex)
+DECL|method|SynchronizedMap (Map<K, V> delegate, @NullableDecl Object mutex)
 name|SynchronizedMap
 parameter_list|(
 name|Map
@@ -5083,7 +5089,7 @@ argument_list|>
 name|delegate
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|mutex
 parameter_list|)
@@ -5989,7 +5995,7 @@ init|=
 literal|0
 decl_stmt|;
 block|}
-DECL|method|sortedMap (SortedMap<K, V> sortedMap, @Nullable Object mutex)
+DECL|method|sortedMap (SortedMap<K, V> sortedMap, @NullableDecl Object mutex)
 specifier|static
 parameter_list|<
 name|K
@@ -6013,7 +6019,7 @@ argument_list|>
 name|sortedMap
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|mutex
 parameter_list|)
@@ -6053,7 +6059,7 @@ argument_list|,
 name|V
 argument_list|>
 block|{
-DECL|method|SynchronizedSortedMap (SortedMap<K, V> delegate, @Nullable Object mutex)
+DECL|method|SynchronizedSortedMap (SortedMap<K, V> delegate, @NullableDecl Object mutex)
 name|SynchronizedSortedMap
 parameter_list|(
 name|SortedMap
@@ -6065,7 +6071,7 @@ argument_list|>
 name|delegate
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|mutex
 parameter_list|)
@@ -6302,7 +6308,7 @@ init|=
 literal|0
 decl_stmt|;
 block|}
-DECL|method|biMap (BiMap<K, V> bimap, @Nullable Object mutex)
+DECL|method|biMap (BiMap<K, V> bimap, @NullableDecl Object mutex)
 specifier|static
 parameter_list|<
 name|K
@@ -6326,7 +6332,7 @@ argument_list|>
 name|bimap
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|mutex
 parameter_list|)
@@ -6409,7 +6415,7 @@ name|K
 argument_list|>
 name|inverse
 decl_stmt|;
-DECL|method|SynchronizedBiMap ( BiMap<K, V> delegate, @Nullable Object mutex, @Nullable BiMap<V, K> inverse)
+DECL|method|SynchronizedBiMap ( BiMap<K, V> delegate, @NullableDecl Object mutex, @NullableDecl BiMap<V, K> inverse)
 specifier|private
 name|SynchronizedBiMap
 parameter_list|(
@@ -6422,12 +6428,12 @@ argument_list|>
 name|delegate
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|mutex
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|BiMap
 argument_list|<
 name|V
@@ -6658,7 +6664,7 @@ argument_list|>
 argument_list|>
 name|asMapValues
 decl_stmt|;
-DECL|method|SynchronizedAsMap (Map<K, Collection<V>> delegate, @Nullable Object mutex)
+DECL|method|SynchronizedAsMap (Map<K, Collection<V>> delegate, @NullableDecl Object mutex)
 name|SynchronizedAsMap
 parameter_list|(
 name|Map
@@ -6673,7 +6679,7 @@ argument_list|>
 name|delegate
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|mutex
 parameter_list|)
@@ -6886,7 +6892,7 @@ name|V
 argument_list|>
 argument_list|>
 block|{
-DECL|method|SynchronizedAsMapValues (Collection<Collection<V>> delegate, @Nullable Object mutex)
+DECL|method|SynchronizedAsMapValues (Collection<Collection<V>> delegate, @NullableDecl Object mutex)
 name|SynchronizedAsMapValues
 parameter_list|(
 name|Collection
@@ -6899,7 +6905,7 @@ argument_list|>
 name|delegate
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|mutex
 parameter_list|)
@@ -7008,7 +7014,7 @@ argument_list|<
 name|E
 argument_list|>
 block|{
-DECL|method|SynchronizedNavigableSet (NavigableSet<E> delegate, @Nullable Object mutex)
+DECL|method|SynchronizedNavigableSet (NavigableSet<E> delegate, @NullableDecl Object mutex)
 name|SynchronizedNavigableSet
 parameter_list|(
 name|NavigableSet
@@ -7018,7 +7024,7 @@ argument_list|>
 name|delegate
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|mutex
 parameter_list|)
@@ -7514,7 +7520,7 @@ block|}
 annotation|@
 name|GwtIncompatible
 comment|// NavigableSet
-DECL|method|navigableSet (NavigableSet<E> navigableSet, @Nullable Object mutex)
+DECL|method|navigableSet ( NavigableSet<E> navigableSet, @NullableDecl Object mutex)
 specifier|static
 parameter_list|<
 name|E
@@ -7532,7 +7538,7 @@ argument_list|>
 name|navigableSet
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|mutex
 parameter_list|)
@@ -7619,7 +7625,7 @@ block|}
 annotation|@
 name|GwtIncompatible
 comment|// NavigableMap
-DECL|method|navigableMap ( NavigableMap<K, V> navigableMap, @Nullable Object mutex)
+DECL|method|navigableMap ( NavigableMap<K, V> navigableMap, @NullableDecl Object mutex)
 specifier|static
 parameter_list|<
 name|K
@@ -7643,7 +7649,7 @@ argument_list|>
 name|navigableMap
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|mutex
 parameter_list|)
@@ -7688,7 +7694,7 @@ argument_list|,
 name|V
 argument_list|>
 block|{
-DECL|method|SynchronizedNavigableMap (NavigableMap<K, V> delegate, @Nullable Object mutex)
+DECL|method|SynchronizedNavigableMap (NavigableMap<K, V> delegate, @NullableDecl Object mutex)
 name|SynchronizedNavigableMap
 parameter_list|(
 name|NavigableMap
@@ -7700,7 +7706,7 @@ argument_list|>
 name|delegate
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|mutex
 parameter_list|)
@@ -8532,7 +8538,7 @@ block|}
 annotation|@
 name|GwtIncompatible
 comment|// works but is needed only for NavigableMap
-DECL|method|nullableSynchronizedEntry ( @ullable Entry<K, V> entry, @Nullable Object mutex)
+DECL|method|nullableSynchronizedEntry ( @ullableDecl Entry<K, V> entry, @NullableDecl Object mutex)
 specifier|private
 specifier|static
 parameter_list|<
@@ -8549,7 +8555,7 @@ argument_list|>
 name|nullableSynchronizedEntry
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Entry
 argument_list|<
 name|K
@@ -8559,7 +8565,7 @@ argument_list|>
 name|entry
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|mutex
 parameter_list|)
@@ -8609,7 +8615,7 @@ argument_list|,
 name|V
 argument_list|>
 block|{
-DECL|method|SynchronizedEntry (Entry<K, V> delegate, @Nullable Object mutex)
+DECL|method|SynchronizedEntry (Entry<K, V> delegate, @NullableDecl Object mutex)
 name|SynchronizedEntry
 parameter_list|(
 name|Entry
@@ -8621,7 +8627,7 @@ argument_list|>
 name|delegate
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|mutex
 parameter_list|)
@@ -8797,7 +8803,7 @@ init|=
 literal|0
 decl_stmt|;
 block|}
-DECL|method|queue (Queue<E> queue, @Nullable Object mutex)
+DECL|method|queue (Queue<E> queue, @NullableDecl Object mutex)
 specifier|static
 parameter_list|<
 name|E
@@ -8815,7 +8821,7 @@ argument_list|>
 name|queue
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|mutex
 parameter_list|)
@@ -8860,7 +8866,7 @@ argument_list|<
 name|E
 argument_list|>
 block|{
-DECL|method|SynchronizedQueue (Queue<E> delegate, @Nullable Object mutex)
+DECL|method|SynchronizedQueue (Queue<E> delegate, @NullableDecl Object mutex)
 name|SynchronizedQueue
 parameter_list|(
 name|Queue
@@ -8870,7 +8876,7 @@ argument_list|>
 name|delegate
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|mutex
 parameter_list|)
@@ -9031,7 +9037,7 @@ init|=
 literal|0
 decl_stmt|;
 block|}
-DECL|method|deque (Deque<E> deque, @Nullable Object mutex)
+DECL|method|deque (Deque<E> deque, @NullableDecl Object mutex)
 specifier|static
 parameter_list|<
 name|E
@@ -9049,7 +9055,7 @@ argument_list|>
 name|deque
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|mutex
 parameter_list|)
@@ -9087,7 +9093,7 @@ argument_list|<
 name|E
 argument_list|>
 block|{
-DECL|method|SynchronizedDeque (Deque<E> delegate, @Nullable Object mutex)
+DECL|method|SynchronizedDeque (Deque<E> delegate, @NullableDecl Object mutex)
 name|SynchronizedDeque
 parameter_list|(
 name|Deque
@@ -9097,7 +9103,7 @@ argument_list|>
 name|delegate
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|mutex
 parameter_list|)
@@ -9684,18 +9690,18 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|contains (@ullable Object rowKey, @Nullable Object columnKey)
+DECL|method|contains (@ullableDecl Object rowKey, @NullableDecl Object columnKey)
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|rowKey
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|columnKey
 parameter_list|)
@@ -9720,13 +9726,13 @@ block|}
 block|}
 annotation|@
 name|Override
-DECL|method|containsRow (@ullable Object rowKey)
+DECL|method|containsRow (@ullableDecl Object rowKey)
 specifier|public
 name|boolean
 name|containsRow
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|rowKey
 parameter_list|)
@@ -9749,13 +9755,13 @@ block|}
 block|}
 annotation|@
 name|Override
-DECL|method|containsColumn (@ullable Object columnKey)
+DECL|method|containsColumn (@ullableDecl Object columnKey)
 specifier|public
 name|boolean
 name|containsColumn
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|columnKey
 parameter_list|)
@@ -9778,13 +9784,13 @@ block|}
 block|}
 annotation|@
 name|Override
-DECL|method|containsValue (@ullable Object value)
+DECL|method|containsValue (@ullableDecl Object value)
 specifier|public
 name|boolean
 name|containsValue
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|value
 parameter_list|)
@@ -9807,18 +9813,18 @@ block|}
 block|}
 annotation|@
 name|Override
-DECL|method|get (@ullable Object rowKey, @Nullable Object columnKey)
+DECL|method|get (@ullableDecl Object rowKey, @NullableDecl Object columnKey)
 specifier|public
 name|V
 name|get
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|rowKey
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|columnKey
 parameter_list|)
@@ -9908,23 +9914,23 @@ block|}
 block|}
 annotation|@
 name|Override
-DECL|method|put (@ullable R rowKey, @Nullable C columnKey, @Nullable V value)
+DECL|method|put (@ullableDecl R rowKey, @NullableDecl C columnKey, @NullableDecl V value)
 specifier|public
 name|V
 name|put
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|R
 name|rowKey
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|C
 name|columnKey
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|V
 name|value
 parameter_list|)
@@ -9990,18 +9996,18 @@ block|}
 block|}
 annotation|@
 name|Override
-DECL|method|remove (@ullable Object rowKey, @Nullable Object columnKey)
+DECL|method|remove (@ullableDecl Object rowKey, @NullableDecl Object columnKey)
 specifier|public
 name|V
 name|remove
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|rowKey
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|columnKey
 parameter_list|)
@@ -10026,7 +10032,7 @@ block|}
 block|}
 annotation|@
 name|Override
-DECL|method|row (@ullable R rowKey)
+DECL|method|row (@ullableDecl R rowKey)
 specifier|public
 name|Map
 argument_list|<
@@ -10037,7 +10043,7 @@ argument_list|>
 name|row
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|R
 name|rowKey
 parameter_list|)
@@ -10065,7 +10071,7 @@ block|}
 block|}
 annotation|@
 name|Override
-DECL|method|column (@ullable C columnKey)
+DECL|method|column (@ullableDecl C columnKey)
 specifier|public
 name|Map
 argument_list|<
@@ -10076,7 +10082,7 @@ argument_list|>
 name|column
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|C
 name|columnKey
 parameter_list|)
@@ -10453,13 +10459,13 @@ block|}
 block|}
 annotation|@
 name|Override
-DECL|method|equals (@ullable Object obj)
+DECL|method|equals (@ullableDecl Object obj)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|obj
 parameter_list|)

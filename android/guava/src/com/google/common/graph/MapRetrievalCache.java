@@ -28,11 +28,17 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|annotation
+name|checkerframework
 operator|.
-name|Nullable
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -59,7 +65,7 @@ argument_list|>
 block|{
 DECL|field|cacheEntry1
 annotation|@
-name|Nullable
+name|NullableDecl
 specifier|private
 specifier|transient
 name|CacheEntry
@@ -72,7 +78,7 @@ name|cacheEntry1
 decl_stmt|;
 DECL|field|cacheEntry2
 annotation|@
-name|Nullable
+name|NullableDecl
 specifier|private
 specifier|transient
 name|CacheEntry
@@ -109,13 +115,13 @@ argument_list|)
 comment|// Safe because we only cast if key is found in map.
 annotation|@
 name|Override
-DECL|method|get (@ullable Object key)
+DECL|method|get (@ullableDecl Object key)
 specifier|public
 name|V
 name|get
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|key
 parameter_list|)
@@ -171,13 +177,13 @@ block|}
 comment|// Internal methods ('protected' is still package-visible, but treat as only subclass-visible)
 annotation|@
 name|Override
-DECL|method|getIfCached (@ullable Object key)
+DECL|method|getIfCached (@ullableDecl Object key)
 specifier|protected
 name|V
 name|getIfCached
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|key
 parameter_list|)

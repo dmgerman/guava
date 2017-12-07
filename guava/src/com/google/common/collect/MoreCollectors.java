@@ -114,11 +114,17 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|annotation
+name|checkerframework
 operator|.
-name|Nullable
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -372,13 +378,13 @@ literal|4
 decl_stmt|;
 DECL|field|element
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|element
 decl_stmt|;
 DECL|field|extras
 annotation|@
-name|Nullable
+name|NullableDecl
 name|List
 argument_list|<
 name|Object

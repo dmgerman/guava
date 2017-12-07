@@ -104,11 +104,17 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|annotation
+name|checkerframework
 operator|.
-name|Nullable
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -178,13 +184,13 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|accept (@ullable File dir, String fileName)
+DECL|method|accept (@ullableDecl File dir, String fileName)
 specifier|public
 name|boolean
 name|accept
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|File
 name|dir
 parameter_list|,

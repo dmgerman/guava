@@ -314,11 +314,17 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|annotation
+name|checkerframework
 operator|.
-name|Nullable
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -738,7 +744,7 @@ name|smearedValueHash
 decl_stmt|;
 DECL|field|nextInValueBucket
 annotation|@
-name|Nullable
+name|NullableDecl
 name|ValueEntry
 argument_list|<
 name|K
@@ -783,16 +789,16 @@ name|V
 argument_list|>
 name|successorInMultimap
 decl_stmt|;
-DECL|method|ValueEntry ( @ullable K key, @Nullable V value, int smearedValueHash, @Nullable ValueEntry<K, V> nextInValueBucket)
+DECL|method|ValueEntry ( @ullableDecl K key, @NullableDecl V value, int smearedValueHash, @NullableDecl ValueEntry<K, V> nextInValueBucket)
 name|ValueEntry
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|K
 name|key
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|V
 name|value
 parameter_list|,
@@ -800,7 +806,7 @@ name|int
 name|smearedValueHash
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|ValueEntry
 argument_list|<
 name|K
@@ -830,12 +836,12 @@ operator|=
 name|nextInValueBucket
 expr_stmt|;
 block|}
-DECL|method|matchesValue (@ullable Object v, int smearedVHash)
+DECL|method|matchesValue (@ullableDecl Object v, int smearedVHash)
 name|boolean
 name|matchesValue
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|v
 parameter_list|,
@@ -1173,7 +1179,7 @@ annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
-DECL|method|replaceValues (@ullable K key, Iterable<? extends V> values)
+DECL|method|replaceValues (@ullableDecl K key, Iterable<? extends V> values)
 specifier|public
 name|Set
 argument_list|<
@@ -1182,7 +1188,7 @@ argument_list|>
 name|replaceValues
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|K
 name|key
 parameter_list|,
@@ -1768,13 +1774,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|contains (@ullable Object o)
+DECL|method|contains (@ullableDecl Object o)
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|o
 parameter_list|)
@@ -1841,13 +1847,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|add (@ullable V value)
+DECL|method|add (@ullableDecl V value)
 specifier|public
 name|boolean
 name|add
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|V
 name|value
 parameter_list|)
@@ -2132,13 +2138,13 @@ annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
-DECL|method|remove (@ullable Object o)
+DECL|method|remove (@ullableDecl Object o)
 specifier|public
 name|boolean
 name|remove
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|o
 parameter_list|)

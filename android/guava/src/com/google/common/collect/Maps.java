@@ -560,11 +560,17 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|annotation
+name|checkerframework
 operator|.
-name|Nullable
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -614,7 +620,7 @@ block|{
 annotation|@
 name|Override
 annotation|@
-name|Nullable
+name|NullableDecl
 specifier|public
 name|Object
 name|apply
@@ -643,7 +649,7 @@ block|{
 annotation|@
 name|Override
 annotation|@
-name|Nullable
+name|NullableDecl
 specifier|public
 name|Object
 name|apply
@@ -1419,7 +1425,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Creates a<i>mutable</i>, empty {@code TreeMap} instance using the given comparator.    *    *<p><b>Note:</b> if mutability is not required, use {@code    * ImmutableSortedMap.orderedBy(comparator).build()} instead.    *    *<p><b>Note for Java 7 and later:</b> this method is now unnecessary and should be treated as    * deprecated. Instead, use the {@code TreeMap} constructor directly, taking advantage of the new    *<a href="http://goo.gl/iz2Wi">"diamond" syntax</a>.    *    * @param comparator the comparator to sort the keys with    * @return a new, empty {@code TreeMap}    */
-DECL|method|newTreeMap (@ullable Comparator<C> comparator)
+DECL|method|newTreeMap ( @ullableDecl Comparator<C> comparator)
 specifier|public
 specifier|static
 parameter_list|<
@@ -1440,7 +1446,7 @@ argument_list|>
 name|newTreeMap
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Comparator
 argument_list|<
 name|C
@@ -2554,7 +2560,7 @@ specifier|final
 name|V
 name|right
 decl_stmt|;
-DECL|method|create (@ullable V left, @Nullable V right)
+DECL|method|create (@ullableDecl V left, @NullableDecl V right)
 specifier|static
 parameter_list|<
 name|V
@@ -2566,12 +2572,12 @@ argument_list|>
 name|create
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|V
 name|left
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|V
 name|right
 parameter_list|)
@@ -2589,17 +2595,17 @@ name|right
 argument_list|)
 return|;
 block|}
-DECL|method|ValueDifferenceImpl (@ullable V left, @Nullable V right)
+DECL|method|ValueDifferenceImpl (@ullableDecl V left, @NullableDecl V right)
 specifier|private
 name|ValueDifferenceImpl
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|V
 name|left
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|V
 name|right
 parameter_list|)
@@ -2643,13 +2649,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|equals (@ullable Object object)
+DECL|method|equals (@ullableDecl Object object)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|object
 parameter_list|)
@@ -3129,7 +3135,7 @@ name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
-DECL|method|orNaturalOrder (@ullable Comparator<? super E> comparator)
+DECL|method|orNaturalOrder (@ullableDecl Comparator<? super E> comparator)
 specifier|static
 parameter_list|<
 name|E
@@ -3143,7 +3149,7 @@ argument_list|>
 name|orNaturalOrder
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Comparator
 argument_list|<
 name|?
@@ -3464,13 +3470,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|containsKey (@ullable Object key)
+DECL|method|containsKey (@ullableDecl Object key)
 specifier|public
 name|boolean
 name|containsKey
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|key
 parameter_list|)
@@ -3487,13 +3493,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|get (@ullable Object key)
+DECL|method|get (@ullableDecl Object key)
 specifier|public
 name|V
 name|get
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|key
 parameter_list|)
@@ -3543,13 +3549,13 @@ block|}
 block|}
 annotation|@
 name|Override
-DECL|method|remove (@ullable Object key)
+DECL|method|remove (@ullableDecl Object key)
 specifier|public
 name|V
 name|remove
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|key
 parameter_list|)
@@ -4245,14 +4251,14 @@ block|}
 annotation|@
 name|Override
 annotation|@
-name|Nullable
-DECL|method|get (@ullable Object key)
+name|NullableDecl
+DECL|method|get (@ullableDecl Object key)
 specifier|public
 name|V
 name|get
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|key
 parameter_list|)
@@ -5348,7 +5354,7 @@ name|serializable
 operator|=
 literal|true
 argument_list|)
-DECL|method|immutableEntry (@ullable K key, @Nullable V value)
+DECL|method|immutableEntry (@ullableDecl K key, @NullableDecl V value)
 specifier|public
 specifier|static
 parameter_list|<
@@ -5365,12 +5371,12 @@ argument_list|>
 name|immutableEntry
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|K
 name|key
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|V
 name|value
 parameter_list|)
@@ -5784,13 +5790,13 @@ block|}
 comment|// See java.util.Collections.UnmodifiableEntrySet for details on attacks.
 annotation|@
 name|Override
-DECL|method|equals (@ullable Object object)
+DECL|method|equals (@ullableDecl Object object)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|object
 parameter_list|)
@@ -6009,13 +6015,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|equals (@ullable Object object)
+DECL|method|equals (@ullableDecl Object object)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|object
 parameter_list|)
@@ -6253,7 +6259,7 @@ name|V
 argument_list|>
 name|values
 decl_stmt|;
-DECL|method|UnmodifiableBiMap (BiMap<? extends K, ? extends V> delegate, @Nullable BiMap<V, K> inverse)
+DECL|method|UnmodifiableBiMap (BiMap<? extends K, ? extends V> delegate, @NullableDecl BiMap<V, K> inverse)
 name|UnmodifiableBiMap
 parameter_list|(
 name|BiMap
@@ -6269,7 +6275,7 @@ argument_list|>
 name|delegate
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|BiMap
 argument_list|<
 name|V
@@ -6765,17 +6771,17 @@ name|V2
 parameter_list|>
 block|{
 comment|/**      * Determines an output value based on a key-value pair. This method is<i>generally      * expected</i>, but not absolutely required, to have the following properties:      *      *<ul>      *<li>Its execution does not cause any observable side effects.      *<li>The computation is<i>consistent with equals</i>; that is, {@link Objects#equal      *       Objects.equal}{@code (k1, k2)&&} {@link Objects#equal}{@code (v1, v2)} implies that      *       {@code Objects.equal(transformer.transform(k1, v1), transformer.transform(k2, v2))}.      *</ul>      *      * @throws NullPointerException if the key or value is null and this transformer does not accept      *     null arguments      */
-DECL|method|transformEntry (@ullable K key, @Nullable V1 value)
+DECL|method|transformEntry (@ullableDecl K key, @NullableDecl V1 value)
 name|V2
 name|transformEntry
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|K
 name|key
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|V1
 name|value
 parameter_list|)
@@ -6912,7 +6918,7 @@ name|V2
 name|apply
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|V1
 name|v1
 parameter_list|)
@@ -8418,8 +8424,8 @@ argument_list|)
 return|;
 block|}
 annotation|@
-name|Nullable
-DECL|method|transformEntry (@ullable Entry<K, V1> entry)
+name|NullableDecl
+DECL|method|transformEntry (@ullableDecl Entry<K, V1> entry)
 specifier|private
 name|Entry
 argument_list|<
@@ -8430,7 +8436,7 @@ argument_list|>
 name|transformEntry
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Entry
 argument_list|<
 name|K
@@ -9532,17 +9538,17 @@ operator|=
 name|predicate
 expr_stmt|;
 block|}
-DECL|method|apply (@ullable Object key, @Nullable V value)
+DECL|method|apply (@ullableDecl Object key, @NullableDecl V value)
 name|boolean
 name|apply
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|key
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|V
 name|value
 parameter_list|)
@@ -12095,14 +12101,14 @@ block|}
 annotation|@
 name|Override
 annotation|@
-name|Nullable
-DECL|method|get (@ullable Object key)
+name|NullableDecl
+DECL|method|get (@ullableDecl Object key)
 specifier|public
 name|V
 name|get
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|key
 parameter_list|)
@@ -12118,13 +12124,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|containsKey (@ullable Object key)
+DECL|method|containsKey (@ullableDecl Object key)
 specifier|public
 name|boolean
 name|containsKey
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|key
 parameter_list|)
@@ -12165,13 +12171,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|remove (@ullable Object key)
+DECL|method|remove (@ullableDecl Object key)
 specifier|public
 name|V
 name|remove
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|key
 parameter_list|)
@@ -12782,18 +12788,18 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|forcePut (@ullable K key, @Nullable V value)
+DECL|method|forcePut (@ullableDecl K key, @NullableDecl V value)
 specifier|public
 name|V
 name|forcePut
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|K
 name|key
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|V
 name|value
 parameter_list|)
@@ -12935,8 +12941,8 @@ return|;
 block|}
 block|}
 annotation|@
-name|Nullable
-DECL|method|unmodifiableOrNull (@ullable Entry<K, ? extends V> entry)
+name|NullableDecl
+DECL|method|unmodifiableOrNull (@ullableDecl Entry<K, ? extends V> entry)
 specifier|private
 specifier|static
 parameter_list|<
@@ -12953,7 +12959,7 @@ argument_list|>
 name|unmodifiableOrNull
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Entry
 argument_list|<
 name|K
@@ -14077,7 +14083,7 @@ expr_stmt|;
 block|}
 block|}
 comment|/**    * Delegates to {@link Map#get}. Returns {@code null} on {@code ClassCastException} and {@code    * NullPointerException}.    */
-DECL|method|safeGet (Map<?, V> map, @Nullable Object key)
+DECL|method|safeGet (Map<?, V> map, @NullableDecl Object key)
 specifier|static
 parameter_list|<
 name|V
@@ -14094,7 +14100,7 @@ argument_list|>
 name|map
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|key
 parameter_list|)
@@ -14226,7 +14232,7 @@ return|;
 block|}
 block|}
 comment|/** An admittedly inefficient implementation of {@link Map#containsKey}. */
-DECL|method|containsKeyImpl (Map<?, ?> map, @Nullable Object key)
+DECL|method|containsKeyImpl (Map<?, ?> map, @NullableDecl Object key)
 specifier|static
 name|boolean
 name|containsKeyImpl
@@ -14240,7 +14246,7 @@ argument_list|>
 name|map
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|key
 parameter_list|)
@@ -14266,7 +14272,7 @@ argument_list|)
 return|;
 block|}
 comment|/** An implementation of {@link Map#containsValue}. */
-DECL|method|containsValueImpl (Map<?, ?> map, @Nullable Object value)
+DECL|method|containsValueImpl (Map<?, ?> map, @NullableDecl Object value)
 specifier|static
 name|boolean
 name|containsValueImpl
@@ -14280,7 +14286,7 @@ argument_list|>
 name|map
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|value
 parameter_list|)
@@ -14871,8 +14877,8 @@ expr_stmt|;
 block|}
 block|}
 annotation|@
-name|Nullable
-DECL|method|keyOrNull (@ullable Entry<K, ?> entry)
+name|NullableDecl
+DECL|method|keyOrNull (@ullableDecl Entry<K, ?> entry)
 specifier|static
 parameter_list|<
 name|K
@@ -14881,7 +14887,7 @@ name|K
 name|keyOrNull
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Entry
 argument_list|<
 name|K
@@ -14907,8 +14913,8 @@ argument_list|()
 return|;
 block|}
 annotation|@
-name|Nullable
-DECL|method|valueOrNull (@ullable Entry<?, V> entry)
+name|NullableDecl
+DECL|method|valueOrNull (@ullableDecl Entry<?, V> entry)
 specifier|static
 parameter_list|<
 name|V
@@ -14917,7 +14923,7 @@ name|V
 name|valueOrNull
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Entry
 argument_list|<
 name|?
@@ -15971,13 +15977,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|contains (@ullable Object o)
+DECL|method|contains (@ullableDecl Object o)
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|o
 parameter_list|)

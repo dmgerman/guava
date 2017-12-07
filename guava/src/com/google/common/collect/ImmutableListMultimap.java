@@ -254,11 +254,17 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|annotation
+name|checkerframework
 operator|.
-name|Nullable
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -1728,7 +1734,7 @@ comment|// views
 comment|/**    * Returns an immutable list of the values for the given key. If no mappings in the multimap have    * the provided key, an empty immutable list is returned. The values are in the same order as the    * parameters used to build this multimap.    */
 annotation|@
 name|Override
-DECL|method|get (@ullable K key)
+DECL|method|get (@ullableDecl K key)
 specifier|public
 name|ImmutableList
 argument_list|<
@@ -1737,7 +1743,7 @@ argument_list|>
 name|get
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|K
 name|key
 parameter_list|)

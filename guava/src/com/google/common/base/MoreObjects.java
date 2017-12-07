@@ -72,11 +72,17 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|annotation
+name|checkerframework
 operator|.
-name|Nullable
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -94,7 +100,7 @@ class|class
 name|MoreObjects
 block|{
 comment|/**    * Returns the first of two given parameters that is not {@code null}, if either is, or otherwise    * throws a {@link NullPointerException}.    *    *<p>To find the first non-null element in an iterable, use {@code Iterables.find(iterable,    * Predicates.notNull())}. For varargs, use {@code Iterables.find(Arrays.asList(a, b, c, ...),    * Predicates.notNull())}, static importing as necessary.    *    *<p><b>Note:</b> if {@code first} is represented as an {@link Optional}, this can be    * accomplished with {@link Optional#or(Object) first.or(second)}. That approach also allows for    * lazy evaluation of the fallback instance, using {@link Optional#or(Supplier)    * first.or(supplier)}.    *    * @return {@code first} if it is non-null; otherwise {@code second} if it is non-null    * @throws NullPointerException if both {@code first} and {@code second} are null    * @since 18.0 (since 3.0 as {@code Objects.firstNonNull()}).    */
-DECL|method|firstNonNull (@ullable T first, @Nullable T second)
+DECL|method|firstNonNull (@ullableDecl T first, @NullableDecl T second)
 specifier|public
 specifier|static
 parameter_list|<
@@ -104,12 +110,12 @@ name|T
 name|firstNonNull
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|T
 name|first
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|T
 name|second
 parameter_list|)
@@ -290,7 +296,7 @@ block|}
 comment|/**      * Adds a name/value pair to the formatted output in {@code name=value} format. If {@code value}      * is {@code null}, the string {@code "null"} is used, unless {@link #omitNullValues()} is      * called, in which case this name/value pair will not be added.      */
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|add (String name, @Nullable Object value)
+DECL|method|add (String name, @NullableDecl Object value)
 specifier|public
 name|ToStringHelper
 name|add
@@ -299,7 +305,7 @@ name|String
 name|name
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|value
 parameter_list|)
@@ -490,13 +496,13 @@ block|}
 comment|/**      * Adds an unnamed value to the formatted output.      *      *<p>It is strongly encouraged to use {@link #add(String, Object)} instead and give value a      * readable name.      */
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|addValue (@ullable Object value)
+DECL|method|addValue (@ullableDecl Object value)
 specifier|public
 name|ToStringHelper
 name|addValue
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|value
 parameter_list|)
@@ -862,13 +868,13 @@ return|return
 name|valueHolder
 return|;
 block|}
-DECL|method|addHolder (@ullable Object value)
+DECL|method|addHolder (@ullableDecl Object value)
 specifier|private
 name|ToStringHelper
 name|addHolder
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|value
 parameter_list|)
@@ -889,7 +895,7 @@ return|return
 name|this
 return|;
 block|}
-DECL|method|addHolder (String name, @Nullable Object value)
+DECL|method|addHolder (String name, @NullableDecl Object value)
 specifier|private
 name|ToStringHelper
 name|addHolder
@@ -898,7 +904,7 @@ name|String
 name|name
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|value
 parameter_list|)
@@ -937,19 +943,19 @@ name|ValueHolder
 block|{
 DECL|field|name
 annotation|@
-name|Nullable
+name|NullableDecl
 name|String
 name|name
 decl_stmt|;
 DECL|field|value
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|value
 decl_stmt|;
 DECL|field|next
 annotation|@
-name|Nullable
+name|NullableDecl
 name|ValueHolder
 name|next
 decl_stmt|;

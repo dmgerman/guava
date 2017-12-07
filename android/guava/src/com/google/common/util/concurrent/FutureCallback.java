@@ -58,11 +58,17 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|annotation
+name|checkerframework
 operator|.
-name|Nullable
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -82,12 +88,12 @@ name|V
 parameter_list|>
 block|{
 comment|/** Invoked with the result of the {@code Future} computation when it is successful. */
-DECL|method|onSuccess (@ullable V result)
+DECL|method|onSuccess (@ullableDecl V result)
 name|void
 name|onSuccess
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|V
 name|result
 parameter_list|)

@@ -34,11 +34,17 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|annotation
+name|checkerframework
 operator|.
-name|Nullable
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -63,12 +69,12 @@ name|UncheckedExecutionException
 parameter_list|()
 block|{}
 comment|/** Creates a new instance with the given detail message. */
-DECL|method|UncheckedExecutionException (@ullable String message)
+DECL|method|UncheckedExecutionException (@ullableDecl String message)
 specifier|protected
 name|UncheckedExecutionException
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|String
 name|message
 parameter_list|)
@@ -80,17 +86,17 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** Creates a new instance with the given detail message and cause. */
-DECL|method|UncheckedExecutionException (@ullable String message, @Nullable Throwable cause)
+DECL|method|UncheckedExecutionException (@ullableDecl String message, @NullableDecl Throwable cause)
 specifier|public
 name|UncheckedExecutionException
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|String
 name|message
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Throwable
 name|cause
 parameter_list|)
@@ -104,12 +110,12 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** Creates a new instance with the given cause. */
-DECL|method|UncheckedExecutionException (@ullable Throwable cause)
+DECL|method|UncheckedExecutionException (@ullableDecl Throwable cause)
 specifier|public
 name|UncheckedExecutionException
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Throwable
 name|cause
 parameter_list|)

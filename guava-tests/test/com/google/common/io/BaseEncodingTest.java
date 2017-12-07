@@ -264,21 +264,27 @@ end_import
 
 begin_import
 import|import
-name|javax
-operator|.
-name|annotation
-operator|.
-name|Nullable
-import|;
-end_import
-
-begin_import
-import|import
 name|junit
 operator|.
 name|framework
 operator|.
 name|TestCase
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|checkerframework
+operator|.
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -2611,7 +2617,7 @@ literal|null
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|assertFailsToDecode ( BaseEncoding encoding, String cannotDecode, @Nullable String expectedMessage)
+DECL|method|assertFailsToDecode ( BaseEncoding encoding, String cannotDecode, @NullableDecl String expectedMessage)
 specifier|private
 specifier|static
 name|void
@@ -2624,7 +2630,7 @@ name|String
 name|cannotDecode
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|String
 name|expectedMessage
 parameter_list|)

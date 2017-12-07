@@ -46,11 +46,17 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|annotation
+name|checkerframework
 operator|.
-name|Nullable
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -73,16 +79,16 @@ parameter_list|>
 block|{
 comment|/**    * Returns the result of applying this function to {@code input}. This method is<i>generally    * expected</i>, but not absolutely required, to have the following properties:    *    *<ul>    *<li>Its execution does not cause any observable side effects.    *<li>The computation is<i>consistent with equals</i>; that is, {@link Objects#equal    *       Objects.equal}{@code (a, b)} implies that {@code Objects.equal(function.apply(a),    *       function.apply(b))}.    *</ul>    *    * @throws NullPointerException if {@code input} is null and this function does not accept null    *     arguments    */
 annotation|@
-name|Nullable
+name|NullableDecl
 annotation|@
 name|CanIgnoreReturnValue
 comment|// TODO(kevinb): remove this
-DECL|method|apply (@ullable F input)
+DECL|method|apply (@ullableDecl F input)
 name|T
 name|apply
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|F
 name|input
 parameter_list|)
@@ -90,12 +96,12 @@ function_decl|;
 comment|/**    *<i>May</i> return {@code true} if {@code object} is a {@code Function} that behaves identically    * to this function.    *    *<p><b>Warning: do not depend</b> on the behavior of this method.    *    *<p>Historically, {@code Function} instances in this library have implemented this method to    * recognize certain cases where distinct {@code Function} instances would in fact behave    * identically. However, as code migrates to {@code java.util.function}, that behavior will    * disappear. It is best not to depend on it.    */
 annotation|@
 name|Override
-DECL|method|equals (@ullable Object object)
+DECL|method|equals (@ullableDecl Object object)
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|object
 parameter_list|)

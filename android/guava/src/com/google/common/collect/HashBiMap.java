@@ -224,11 +224,17 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|annotation
+name|checkerframework
 operator|.
-name|Nullable
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -962,12 +968,12 @@ operator|)
 return|;
 block|}
 comment|/** Given a key, returns the index of the entry in the tables, or ABSENT if not found. */
-DECL|method|findEntryByKey (@ullable Object key)
+DECL|method|findEntryByKey (@ullableDecl Object key)
 name|int
 name|findEntryByKey
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|key
 parameter_list|)
@@ -987,12 +993,12 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Given a key and its hash, returns the index of the entry in the tables, or ABSENT if not found.    */
-DECL|method|findEntryByKey (@ullable Object key, int keyHash)
+DECL|method|findEntryByKey (@ullableDecl Object key, int keyHash)
 name|int
 name|findEntryByKey
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|key
 parameter_list|,
@@ -1016,12 +1022,12 @@ argument_list|)
 return|;
 block|}
 comment|/** Given a value, returns the index of the entry in the tables, or ABSENT if not found. */
-DECL|method|findEntryByValue (@ullable Object value)
+DECL|method|findEntryByValue (@ullableDecl Object value)
 name|int
 name|findEntryByValue
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|value
 parameter_list|)
@@ -1041,12 +1047,12 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Given a value and its hash, returns the index of the entry in the tables, or ABSENT if not    * found.    */
-DECL|method|findEntryByValue (@ullable Object value, int valueHash)
+DECL|method|findEntryByValue (@ullableDecl Object value, int valueHash)
 name|int
 name|findEntryByValue
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|value
 parameter_list|,
@@ -1069,12 +1075,12 @@ name|values
 argument_list|)
 return|;
 block|}
-DECL|method|findEntry ( @ullable Object o, int oHash, int[] hashTable, int[] nextInBucket, Object[] array)
+DECL|method|findEntry ( @ullableDecl Object o, int oHash, int[] hashTable, int[] nextInBucket, Object[] array)
 name|int
 name|findEntry
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|o
 parameter_list|,
@@ -1145,13 +1151,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|containsKey (@ullable Object key)
+DECL|method|containsKey (@ullableDecl Object key)
 specifier|public
 name|boolean
 name|containsKey
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|key
 parameter_list|)
@@ -1167,13 +1173,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|containsValue (@ullable Object value)
+DECL|method|containsValue (@ullableDecl Object value)
 specifier|public
 name|boolean
 name|containsValue
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|value
 parameter_list|)
@@ -1190,14 +1196,14 @@ block|}
 annotation|@
 name|Override
 annotation|@
-name|Nullable
-DECL|method|get (@ullable Object key)
+name|NullableDecl
+DECL|method|get (@ullableDecl Object key)
 specifier|public
 name|V
 name|get
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|key
 parameter_list|)
@@ -1226,13 +1232,13 @@ index|]
 return|;
 block|}
 annotation|@
-name|Nullable
-DECL|method|getInverse (@ullable Object value)
+name|NullableDecl
+DECL|method|getInverse (@ullableDecl Object value)
 name|K
 name|getInverse
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|value
 parameter_list|)
@@ -1264,18 +1270,18 @@ annotation|@
 name|Override
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|put (@ullable K key, @Nullable V value)
+DECL|method|put (@ullableDecl K key, @NullableDecl V value)
 specifier|public
 name|V
 name|put
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|K
 name|key
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|V
 name|value
 parameter_list|)
@@ -1294,21 +1300,21 @@ block|}
 annotation|@
 name|Override
 annotation|@
-name|Nullable
+name|NullableDecl
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|forcePut (@ullable K key, @Nullable V value)
+DECL|method|forcePut (@ullableDecl K key, @NullableDecl V value)
 specifier|public
 name|V
 name|forcePut
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|K
 name|key
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|V
 name|value
 parameter_list|)
@@ -1325,18 +1331,18 @@ argument_list|)
 return|;
 block|}
 annotation|@
-name|Nullable
-DECL|method|put (@ullable K key, @Nullable V value, boolean force)
+name|NullableDecl
+DECL|method|put (@ullableDecl K key, @NullableDecl V value, boolean force)
 name|V
 name|put
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|K
 name|key
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|V
 name|value
 parameter_list|,
@@ -1526,18 +1532,18 @@ literal|null
 return|;
 block|}
 annotation|@
-name|Nullable
-DECL|method|putInverse (@ullable V value, @Nullable K key, boolean force)
+name|NullableDecl
+DECL|method|putInverse (@ullableDecl V value, @NullableDecl K key, boolean force)
 name|K
 name|putInverse
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|V
 name|value
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|K
 name|key
 parameter_list|,
@@ -2170,7 +2176,7 @@ argument_list|)
 throw|;
 block|}
 comment|/**    * Updates the specified entry to point to the new value: removes the old value from the V-to-K    * mapping and puts the new one in. The entry does not move in the insertion order of the bimap.    */
-DECL|method|replaceValueInEntry (int entry, @Nullable V newValue, boolean force)
+DECL|method|replaceValueInEntry (int entry, @NullableDecl V newValue, boolean force)
 specifier|private
 name|void
 name|replaceValueInEntry
@@ -2179,7 +2185,7 @@ name|int
 name|entry
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|V
 name|newValue
 parameter_list|,
@@ -2292,7 +2298,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Updates the specified entry to point to the new value: removes the old value from the V-to-K    * mapping and puts the new one in. The entry is moved to the end of the insertion order, or to    * the position of the new key if it was previously present.    */
-DECL|method|replaceKeyInEntry (int entry, @Nullable K newKey, boolean force)
+DECL|method|replaceKeyInEntry (int entry, @NullableDecl K newKey, boolean force)
 specifier|private
 name|void
 name|replaceKeyInEntry
@@ -2301,7 +2307,7 @@ name|int
 name|entry
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|K
 name|newKey
 parameter_list|,
@@ -2539,16 +2545,16 @@ block|}
 annotation|@
 name|Override
 annotation|@
-name|Nullable
+name|NullableDecl
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|remove (@ullable Object key)
+DECL|method|remove (@ullableDecl Object key)
 specifier|public
 name|V
 name|remove
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|key
 parameter_list|)
@@ -2587,7 +2593,7 @@ block|}
 else|else
 block|{
 annotation|@
-name|Nullable
+name|NullableDecl
 name|V
 name|value
 init|=
@@ -2609,13 +2615,13 @@ return|;
 block|}
 block|}
 annotation|@
-name|Nullable
-DECL|method|removeInverse (@ullable Object value)
+name|NullableDecl
+DECL|method|removeInverse (@ullableDecl Object value)
 name|K
 name|removeInverse
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|value
 parameter_list|)
@@ -2654,7 +2660,7 @@ block|}
 else|else
 block|{
 annotation|@
-name|Nullable
+name|NullableDecl
 name|K
 name|key
 init|=
@@ -3572,13 +3578,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|contains (@ullable Object o)
+DECL|method|contains (@ullableDecl Object o)
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|o
 parameter_list|)
@@ -3596,13 +3602,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|remove (@ullable Object o)
+DECL|method|remove (@ullableDecl Object o)
 specifier|public
 name|boolean
 name|remove
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|o
 parameter_list|)
@@ -3726,13 +3732,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|contains (@ullable Object o)
+DECL|method|contains (@ullableDecl Object o)
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|o
 parameter_list|)
@@ -3750,13 +3756,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|remove (@ullable Object o)
+DECL|method|remove (@ullableDecl Object o)
 specifier|public
 name|boolean
 name|remove
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|o
 parameter_list|)
@@ -3883,13 +3889,13 @@ argument_list|>
 block|{
 annotation|@
 name|Override
-DECL|method|contains (@ullable Object o)
+DECL|method|contains (@ullableDecl Object o)
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|o
 parameter_list|)
@@ -3920,7 +3926,7 @@ operator|)
 name|o
 decl_stmt|;
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|k
 init|=
@@ -3930,7 +3936,7 @@ name|getKey
 argument_list|()
 decl_stmt|;
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|v
 init|=
@@ -3973,13 +3979,13 @@ annotation|@
 name|Override
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|remove (@ullable Object o)
+DECL|method|remove (@ullableDecl Object o)
 specifier|public
 name|boolean
 name|remove
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|o
 parameter_list|)
@@ -4010,7 +4016,7 @@ operator|)
 name|o
 decl_stmt|;
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|k
 init|=
@@ -4020,7 +4026,7 @@ name|getKey
 argument_list|()
 decl_stmt|;
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|v
 init|=
@@ -4123,7 +4129,7 @@ argument_list|>
 block|{
 DECL|field|key
 annotation|@
-name|Nullable
+name|NullableDecl
 specifier|final
 name|K
 name|key
@@ -4208,7 +4214,7 @@ block|}
 annotation|@
 name|Override
 annotation|@
-name|Nullable
+name|NullableDecl
 DECL|method|getValue ()
 specifier|public
 name|V
@@ -4436,13 +4442,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|containsKey (@ullable Object key)
+DECL|method|containsKey (@ullableDecl Object key)
 specifier|public
 name|boolean
 name|containsKey
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|key
 parameter_list|)
@@ -4459,14 +4465,14 @@ block|}
 annotation|@
 name|Override
 annotation|@
-name|Nullable
-DECL|method|get (@ullable Object key)
+name|NullableDecl
+DECL|method|get (@ullableDecl Object key)
 specifier|public
 name|K
 name|get
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|key
 parameter_list|)
@@ -4482,13 +4488,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|containsValue (@ullable Object value)
+DECL|method|containsValue (@ullableDecl Object value)
 specifier|public
 name|boolean
 name|containsValue
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|value
 parameter_list|)
@@ -4505,21 +4511,21 @@ block|}
 annotation|@
 name|Override
 annotation|@
-name|Nullable
+name|NullableDecl
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|put (@ullable V value, @Nullable K key)
+DECL|method|put (@ullableDecl V value, @NullableDecl K key)
 specifier|public
 name|K
 name|put
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|V
 name|value
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|K
 name|key
 parameter_list|)
@@ -4540,21 +4546,21 @@ block|}
 annotation|@
 name|Override
 annotation|@
-name|Nullable
+name|NullableDecl
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|forcePut (@ullable V value, @Nullable K key)
+DECL|method|forcePut (@ullableDecl V value, @NullableDecl K key)
 specifier|public
 name|K
 name|forcePut
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|V
 name|value
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|K
 name|key
 parameter_list|)
@@ -4592,16 +4598,16 @@ block|}
 annotation|@
 name|Override
 annotation|@
-name|Nullable
+name|NullableDecl
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|remove (@ullable Object value)
+DECL|method|remove (@ullableDecl Object value)
 specifier|public
 name|K
 name|remove
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|value
 parameter_list|)
@@ -4775,13 +4781,13 @@ argument_list|>
 block|{
 annotation|@
 name|Override
-DECL|method|contains (@ullable Object o)
+DECL|method|contains (@ullableDecl Object o)
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|o
 parameter_list|)

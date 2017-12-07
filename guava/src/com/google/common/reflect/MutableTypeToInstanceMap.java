@@ -176,11 +176,17 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|annotation
+name|checkerframework
 operator|.
-name|Nullable
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -239,7 +245,7 @@ name|newHashMap
 argument_list|()
 decl_stmt|;
 annotation|@
-name|Nullable
+name|NullableDecl
 annotation|@
 name|Override
 DECL|method|getInstance (Class<T> type)
@@ -272,12 +278,12 @@ argument_list|)
 return|;
 block|}
 annotation|@
-name|Nullable
+name|NullableDecl
 annotation|@
 name|Override
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|putInstance (Class<T> type, @Nullable T value)
+DECL|method|putInstance (Class<T> type, @NullableDecl T value)
 specifier|public
 parameter_list|<
 name|T
@@ -294,7 +300,7 @@ argument_list|>
 name|type
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|T
 name|value
 parameter_list|)
@@ -314,7 +320,7 @@ argument_list|)
 return|;
 block|}
 annotation|@
-name|Nullable
+name|NullableDecl
 annotation|@
 name|Override
 DECL|method|getInstance (TypeToken<T> type)
@@ -345,12 +351,12 @@ argument_list|)
 return|;
 block|}
 annotation|@
-name|Nullable
+name|NullableDecl
 annotation|@
 name|Override
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|putInstance (TypeToken<T> type, @Nullable T value)
+DECL|method|putInstance (TypeToken<T> type, @NullableDecl T value)
 specifier|public
 parameter_list|<
 name|T
@@ -367,7 +373,7 @@ argument_list|>
 name|type
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|T
 name|value
 parameter_list|)
@@ -514,8 +520,8 @@ literal|"unchecked"
 argument_list|)
 comment|// value could not get in if not a T
 annotation|@
-name|Nullable
-DECL|method|trustedPut (TypeToken<T> type, @Nullable T value)
+name|NullableDecl
+DECL|method|trustedPut (TypeToken<T> type, @NullableDecl T value)
 specifier|private
 parameter_list|<
 name|T
@@ -532,7 +538,7 @@ argument_list|>
 name|type
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|T
 name|value
 parameter_list|)
@@ -558,7 +564,7 @@ literal|"unchecked"
 argument_list|)
 comment|// value could not get in if not a T
 annotation|@
-name|Nullable
+name|NullableDecl
 DECL|method|trustedGet (TypeToken<T> type)
 specifier|private
 parameter_list|<

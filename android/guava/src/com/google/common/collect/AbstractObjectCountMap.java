@@ -178,11 +178,17 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|annotation
+name|checkerframework
 operator|.
-name|Nullable
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -257,13 +263,13 @@ decl_stmt|;
 comment|/**    * Associates the specified value with the specified key in this map. If the map previously    * contained a mapping for the key, the old value is replaced by the specified value. (A map m is    * said to contain a mapping for a key k if and only if m.containsKey(k) would return true.)    *    * @param key key with which the specified value is to be associated    * @param value a positive int value to be associated with the specified key    * @return the previous value associated with key, or 0 if there was no mapping for key.    */
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|put (@ullable K key, int value)
+DECL|method|put (@ullableDecl K key, int value)
 specifier|abstract
 name|int
 name|put
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|K
 name|key
 parameter_list|,
@@ -272,13 +278,13 @@ name|value
 parameter_list|)
 function_decl|;
 comment|/**    * Returns the value to which the specified key is mapped, or 0 if this map contains no mapping    * for the key.    *    * @param key the key whose associated value is to be returned    * @return the int value to which the specified key is mapped, or 0 if this map contains no    *     mapping for the key    */
-DECL|method|get (@ullable Object key)
+DECL|method|get (@ullableDecl Object key)
 specifier|abstract
 name|int
 name|get
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|key
 parameter_list|)
@@ -286,13 +292,13 @@ function_decl|;
 comment|/**    * Removes the mapping for a key from this map if it is present. More formally, if this map    * contains a mapping from key k to value v such that (key==null ? k==null : key.equals(k)), that    * mapping is removed. (The map can contain at most one such mapping.)    *    *<p>Returns the value to which this map previously associated the key, or 0 if the map contained    * no mapping for the key.    *    * @param key key whose mapping is to be removed from the map    * @return the previous int value associated with key, or 0 if there was no mapping for key.    */
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|remove (@ullable Object key)
+DECL|method|remove (@ullableDecl Object key)
 specifier|abstract
 name|int
 name|remove
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|key
 parameter_list|)
@@ -305,13 +311,13 @@ name|clear
 parameter_list|()
 function_decl|;
 comment|/**    * Returns true if this map contains a mapping for the specified key. More formally, returns true    * if and only if this map contains a mapping for a key k such that (key==null ? k==null :    * key.equals(k)). (There can be at most one such mapping.)    *    * @param key key whose presence in this map is to be tested    * @return true if this map contains a mapping for the specified key    */
-DECL|method|containsKey (@ullable Object key)
+DECL|method|containsKey (@ullableDecl Object key)
 specifier|abstract
 name|boolean
 name|containsKey
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|key
 parameter_list|)
@@ -363,13 +369,13 @@ literal|0
 return|;
 block|}
 comment|/**    * Returns index of the specified key in the underlying key array. Implementation specific and    * does not denote ordering of the keys.    */
-DECL|method|indexOf (@ullable Object key)
+DECL|method|indexOf (@ullableDecl Object key)
 specifier|abstract
 name|int
 name|indexOf
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|key
 parameter_list|)
@@ -845,13 +851,13 @@ argument_list|>
 block|{
 annotation|@
 name|Override
-DECL|method|contains (@ullable Object o)
+DECL|method|contains (@ullableDecl Object o)
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|o
 parameter_list|)
@@ -911,13 +917,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|remove (@ullable Object o)
+DECL|method|remove (@ullableDecl Object o)
 specifier|public
 name|boolean
 name|remove
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|o
 parameter_list|)
@@ -1010,7 +1016,7 @@ argument_list|>
 block|{
 DECL|field|key
 annotation|@
-name|Nullable
+name|NullableDecl
 specifier|final
 name|K
 name|key

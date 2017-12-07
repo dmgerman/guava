@@ -164,11 +164,17 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|annotation
+name|checkerframework
 operator|.
-name|Nullable
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -301,7 +307,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Creates a<tt>MonitorBasedPriorityBlockingQueue</tt> with the specified initial capacity that    * orders its elements according to the specified comparator.    *    * @param initialCapacity the initial capacity for this priority queue    * @param comparator the comparator that will be used to order this priority queue. If {@code    *     null}, the {@linkplain Comparable natural ordering} of the elements will be used.    * @throws IllegalArgumentException if<tt>initialCapacity</tt> is less than 1    */
-DECL|method|MonitorBasedPriorityBlockingQueue ( int initialCapacity, @Nullable Comparator<? super E> comparator)
+DECL|method|MonitorBasedPriorityBlockingQueue ( int initialCapacity, @NullableDecl Comparator<? super E> comparator)
 specifier|public
 name|MonitorBasedPriorityBlockingQueue
 parameter_list|(
@@ -309,7 +315,7 @@ name|int
 name|initialCapacity
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Comparator
 argument_list|<
 name|?
@@ -750,13 +756,13 @@ block|}
 comment|/**    * Removes a single instance of the specified element from this queue, if it is present. More    * formally, removes an element {@code e} such that {@code o.equals(e)}, if this queue contains    * one or more such elements. Returns {@code true} if and only if this queue contained the    * specified element (or equivalently, if this queue changed as a result of the call).    *    * @param o element to be removed from this queue, if present    * @return<tt>true</tt> if this queue changed as a result of the call    */
 annotation|@
 name|Override
-DECL|method|remove (@ullable Object o)
+DECL|method|remove (@ullableDecl Object o)
 specifier|public
 name|boolean
 name|remove
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|o
 parameter_list|)
@@ -797,13 +803,13 @@ block|}
 comment|/**    * Returns {@code true} if this queue contains the specified element. More formally, returns    * {@code true} if and only if this queue contains at least one element {@code e} such that {@code    * o.equals(e)}.    *    * @param o object to be checked for containment in this queue    * @return<tt>true</tt> if this queue contains the specified element    */
 annotation|@
 name|Override
-DECL|method|contains (@ullable Object o)
+DECL|method|contains (@ullableDecl Object o)
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|o
 parameter_list|)

@@ -72,11 +72,17 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|annotation
+name|checkerframework
 operator|.
-name|Nullable
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -162,14 +168,14 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|equals (@ullable Object o)
+DECL|method|equals (@ullableDecl Object o)
 specifier|public
 specifier|final
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|o
 parameter_list|)

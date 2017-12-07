@@ -168,11 +168,17 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|annotation
+name|checkerframework
 operator|.
-name|Nullable
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -287,7 +293,7 @@ comment|/**    * Registers the given {@code closeable} to be closed when this {@
 comment|// close. this word no longer has any meaning to me.
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|register (@ullable C closeable)
+DECL|method|register (@ullableDecl C closeable)
 specifier|public
 parameter_list|<
 name|C
@@ -298,7 +304,7 @@ name|C
 name|register
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|C
 name|closeable
 parameter_list|)

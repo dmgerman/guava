@@ -174,11 +174,17 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|annotation
+name|checkerframework
 operator|.
-name|Nullable
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -212,12 +218,12 @@ name|size
 parameter_list|()
 function_decl|;
 comment|/**    * Returns the number of occurrences of an element in this multiset (the<i>count</i> of the    * element). Note that for an {@link Object#equals}-based multiset, this gives the same result as    * {@link Collections#frequency} (which would presumably perform more poorly).    *    *<p><b>Note:</b> the utility method {@link Iterables#frequency} generalizes this operation; it    * correctly delegates to this method when dealing with a multiset, but it can also accept any    * other iterable type.    *    * @param element the element to count occurrences of    * @return the number of occurrences of the element in this multiset; possibly zero but never    *     negative    */
-DECL|method|count (@ullable @ompatibleWithR) Object element)
+DECL|method|count (@ullableDecl @ompatibleWithR) Object element)
 name|int
 name|count
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 annotation|@
 name|CompatibleWith
 argument_list|(
@@ -231,12 +237,12 @@ comment|// Bulk Operations
 comment|/**    * Adds a number of occurrences of an element to this multiset. Note that if {@code occurrences ==    * 1}, this method has the identical effect to {@link #add(Object)}. This method is functionally    * equivalent (except in the case of overflow) to the call {@code    * addAll(Collections.nCopies(element, occurrences))}, which would presumably perform much more    * poorly.    *    * @param element the element to add occurrences of; may be null only if explicitly allowed by the    *     implementation    * @param occurrences the number of occurrences of the element to add. May be zero, in which case    *     no change will be made.    * @return the count of the element before the operation; possibly zero    * @throws IllegalArgumentException if {@code occurrences} is negative, or if this operation would    *     result in more than {@link Integer#MAX_VALUE} occurrences of the element    * @throws NullPointerException if {@code element} is null and this implementation does not permit    *     null elements. Note that if {@code occurrences} is zero, the implementation may opt to    *     return normally.    */
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|add (@ullable E element, int occurrences)
+DECL|method|add (@ullableDecl E element, int occurrences)
 name|int
 name|add
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|E
 name|element
 parameter_list|,
@@ -247,12 +253,12 @@ function_decl|;
 comment|/**    * Removes a number of occurrences of the specified element from this multiset. If the multiset    * contains fewer than this number of occurrences to begin with, all occurrences will be removed.    * Note that if {@code occurrences == 1}, this is functionally equivalent to the call {@code    * remove(element)}.    *    * @param element the element to conditionally remove occurrences of    * @param occurrences the number of occurrences of the element to remove. May be zero, in which    *     case no change will be made.    * @return the count of the element before the operation; possibly zero    * @throws IllegalArgumentException if {@code occurrences} is negative    */
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|remove (@ullable @ompatibleWithR) Object element, int occurrences)
+DECL|method|remove (@ullableDecl @ompatibleWithR) Object element, int occurrences)
 name|int
 name|remove
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 annotation|@
 name|CompatibleWith
 argument_list|(
@@ -418,12 +424,12 @@ comment|/**    * Compares the specified object with this multiset for equality. 
 annotation|@
 name|Override
 comment|// TODO(kevinb): caveats about equivalence-relation?
-DECL|method|equals (@ullable Object object)
+DECL|method|equals (@ullableDecl Object object)
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|object
 parameter_list|)
@@ -459,12 +465,12 @@ function_decl|;
 comment|/**    * Determines whether this multiset contains the specified element.    *    *<p>This method refines {@link Collection#contains} to further specify that it<b>may not</b>    * throw an exception in response to {@code element} being null or of the wrong type.    *    * @param element the element to check for    * @return {@code true} if this multiset contains at least one occurrence of the element    */
 annotation|@
 name|Override
-DECL|method|contains (@ullable Object element)
+DECL|method|contains (@ullableDecl Object element)
 name|boolean
 name|contains
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|element
 parameter_list|)
@@ -501,12 +507,12 @@ annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
-DECL|method|remove (@ullable Object element)
+DECL|method|remove (@ullableDecl Object element)
 name|boolean
 name|remove
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|element
 parameter_list|)

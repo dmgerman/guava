@@ -172,11 +172,17 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|annotation
+name|checkerframework
 operator|.
-name|Nullable
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -322,13 +328,13 @@ name|shutdown
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|testCompletedFuture (@ullable Object expectedValue)
+DECL|method|testCompletedFuture (@ullableDecl Object expectedValue)
 specifier|public
 name|void
 name|testCompletedFuture
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|expectedValue
 parameter_list|)
@@ -470,13 +476,13 @@ name|expected
 parameter_list|)
 block|{     }
 block|}
-DECL|method|testFailedFuture (@ullable String message)
+DECL|method|testFailedFuture (@ullableDecl String message)
 specifier|public
 name|void
 name|testFailedFuture
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|String
 name|message
 parameter_list|)

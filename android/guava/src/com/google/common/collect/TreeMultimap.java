@@ -162,11 +162,17 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|annotation
+name|checkerframework
 operator|.
-name|Nullable
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -488,7 +494,7 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|createCollection (@ullable K key)
+DECL|method|createCollection (@ullableDecl K key)
 name|Collection
 argument_list|<
 name|V
@@ -496,7 +502,7 @@ argument_list|>
 name|createCollection
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|K
 name|key
 parameter_list|)
@@ -569,7 +575,7 @@ name|Override
 annotation|@
 name|GwtIncompatible
 comment|// NavigableSet
-DECL|method|get (@ullable K key)
+DECL|method|get (@ullableDecl K key)
 specifier|public
 name|NavigableSet
 argument_list|<
@@ -578,7 +584,7 @@ argument_list|>
 name|get
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|K
 name|key
 parameter_list|)

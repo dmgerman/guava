@@ -196,16 +196,6 @@ end_import
 
 begin_import
 import|import
-name|javax
-operator|.
-name|annotation
-operator|.
-name|Nullable
-import|;
-end_import
-
-begin_import
-import|import
 name|junit
 operator|.
 name|framework
@@ -231,6 +221,22 @@ operator|.
 name|framework
 operator|.
 name|TestSuite
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|checkerframework
+operator|.
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -507,13 +513,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|equals (@ullable Object o)
+DECL|method|equals (@ullableDecl Object o)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|o
 parameter_list|)
@@ -614,13 +620,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|containsKey (@ullable Object key)
+DECL|method|containsKey (@ullableDecl Object key)
 specifier|public
 name|boolean
 name|containsKey
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|key
 parameter_list|)
@@ -646,13 +652,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|containsValue (@ullable Object value)
+DECL|method|containsValue (@ullableDecl Object value)
 specifier|public
 name|boolean
 name|containsValue
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|value
 parameter_list|)
@@ -678,18 +684,18 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|containsEntry (@ullable Object key, @Nullable Object value)
+DECL|method|containsEntry (@ullableDecl Object key, @NullableDecl Object value)
 specifier|public
 name|boolean
 name|containsEntry
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|key
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|value
 parameter_list|)
@@ -717,7 +723,7 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|get (@ullable K key)
+DECL|method|get (@ullableDecl K key)
 specifier|public
 name|Set
 argument_list|<
@@ -726,7 +732,7 @@ argument_list|>
 name|get
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|K
 name|key
 parameter_list|)
@@ -788,13 +794,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|putAll (@ullable K key, Iterable<? extends V> values)
+DECL|method|putAll (@ullableDecl K key, Iterable<? extends V> values)
 specifier|public
 name|boolean
 name|putAll
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|K
 name|key
 parameter_list|,
@@ -869,7 +875,7 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|replaceValues (@ullable K key, Iterable<? extends V> values)
+DECL|method|replaceValues (@ullableDecl K key, Iterable<? extends V> values)
 specifier|public
 name|Set
 argument_list|<
@@ -878,7 +884,7 @@ argument_list|>
 name|replaceValues
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|K
 name|key
 parameter_list|,
@@ -914,18 +920,18 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|remove (@ullable Object key, @Nullable Object value)
+DECL|method|remove (@ullableDecl Object key, @NullableDecl Object value)
 specifier|public
 name|boolean
 name|remove
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|key
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|value
 parameter_list|)
@@ -953,7 +959,7 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|removeAll (@ullable Object key)
+DECL|method|removeAll (@ullableDecl Object key)
 specifier|public
 name|Set
 argument_list|<
@@ -962,7 +968,7 @@ argument_list|>
 name|removeAll
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|key
 parameter_list|)

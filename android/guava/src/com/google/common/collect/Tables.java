@@ -216,11 +216,17 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|annotation
+name|checkerframework
 operator|.
-name|Nullable
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -243,7 +249,7 @@ name|Tables
 parameter_list|()
 block|{}
 comment|/**    * Returns an immutable cell with the specified row key, column key, and value.    *    *<p>The returned cell is serializable.    *    * @param rowKey the row key to be associated with the returned cell    * @param columnKey the column key to be associated with the returned cell    * @param value the value to be associated with the returned cell    */
-DECL|method|immutableCell ( @ullable R rowKey, @Nullable C columnKey, @Nullable V value)
+DECL|method|immutableCell ( @ullableDecl R rowKey, @NullableDecl C columnKey, @NullableDecl V value)
 specifier|public
 specifier|static
 parameter_list|<
@@ -264,17 +270,17 @@ argument_list|>
 name|immutableCell
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|R
 name|rowKey
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|C
 name|columnKey
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|V
 name|value
 parameter_list|)
@@ -334,21 +340,21 @@ specifier|final
 name|V
 name|value
 decl_stmt|;
-DECL|method|ImmutableCell (@ullable R rowKey, @Nullable C columnKey, @Nullable V value)
+DECL|method|ImmutableCell (@ullableDecl R rowKey, @NullableDecl C columnKey, @NullableDecl V value)
 name|ImmutableCell
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|R
 name|rowKey
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|C
 name|columnKey
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|V
 name|value
 parameter_list|)
@@ -802,18 +808,18 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|contains (@ullable Object rowKey, @Nullable Object columnKey)
+DECL|method|contains (@ullableDecl Object rowKey, @NullableDecl Object columnKey)
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|rowKey
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|columnKey
 parameter_list|)
@@ -831,13 +837,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|containsColumn (@ullable Object columnKey)
+DECL|method|containsColumn (@ullableDecl Object columnKey)
 specifier|public
 name|boolean
 name|containsColumn
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|columnKey
 parameter_list|)
@@ -853,13 +859,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|containsRow (@ullable Object rowKey)
+DECL|method|containsRow (@ullableDecl Object rowKey)
 specifier|public
 name|boolean
 name|containsRow
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|rowKey
 parameter_list|)
@@ -875,13 +881,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|containsValue (@ullable Object value)
+DECL|method|containsValue (@ullableDecl Object value)
 specifier|public
 name|boolean
 name|containsValue
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|value
 parameter_list|)
@@ -897,18 +903,18 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|get (@ullable Object rowKey, @Nullable Object columnKey)
+DECL|method|get (@ullableDecl Object rowKey, @NullableDecl Object columnKey)
 specifier|public
 name|V
 name|get
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|rowKey
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|columnKey
 parameter_list|)
@@ -991,18 +997,18 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|remove (@ullable Object rowKey, @Nullable Object columnKey)
+DECL|method|remove (@ullableDecl Object rowKey, @NullableDecl Object columnKey)
 specifier|public
 name|V
 name|remove
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|rowKey
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|columnKey
 parameter_list|)
@@ -2332,7 +2338,7 @@ throw|;
 block|}
 annotation|@
 name|Override
-DECL|method|column (@ullable C columnKey)
+DECL|method|column (@ullableDecl C columnKey)
 specifier|public
 name|Map
 argument_list|<
@@ -2343,7 +2349,7 @@ argument_list|>
 name|column
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|C
 name|columnKey
 parameter_list|)
@@ -2445,23 +2451,23 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|put (@ullable R rowKey, @Nullable C columnKey, @Nullable V value)
+DECL|method|put (@ullableDecl R rowKey, @NullableDecl C columnKey, @NullableDecl V value)
 specifier|public
 name|V
 name|put
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|R
 name|rowKey
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|C
 name|columnKey
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|V
 name|value
 parameter_list|)
@@ -2504,18 +2510,18 @@ throw|;
 block|}
 annotation|@
 name|Override
-DECL|method|remove (@ullable Object rowKey, @Nullable Object columnKey)
+DECL|method|remove (@ullableDecl Object rowKey, @NullableDecl Object columnKey)
 specifier|public
 name|V
 name|remove
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|rowKey
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|columnKey
 parameter_list|)
@@ -2528,7 +2534,7 @@ throw|;
 block|}
 annotation|@
 name|Override
-DECL|method|row (@ullable R rowKey)
+DECL|method|row (@ullableDecl R rowKey)
 specifier|public
 name|Map
 argument_list|<
@@ -2539,7 +2545,7 @@ argument_list|>
 name|row
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|R
 name|rowKey
 parameter_list|)
@@ -3059,7 +3065,7 @@ literal|null
 argument_list|)
 return|;
 block|}
-DECL|method|equalsImpl (Table<?, ?, ?> table, @Nullable Object obj)
+DECL|method|equalsImpl (Table<?, ?, ?> table, @NullableDecl Object obj)
 specifier|static
 name|boolean
 name|equalsImpl
@@ -3075,7 +3081,7 @@ argument_list|>
 name|table
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|obj
 parameter_list|)

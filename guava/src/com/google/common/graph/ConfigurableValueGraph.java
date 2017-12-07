@@ -96,11 +96,17 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|annotation
+name|checkerframework
 operator|.
-name|Nullable
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -513,8 +519,8 @@ block|}
 annotation|@
 name|Override
 annotation|@
-name|Nullable
-DECL|method|edgeValueOrDefault (N nodeU, N nodeV, @Nullable V defaultValue)
+name|NullableDecl
+DECL|method|edgeValueOrDefault (N nodeU, N nodeV, @NullableDecl V defaultValue)
 specifier|public
 name|V
 name|edgeValueOrDefault
@@ -526,7 +532,7 @@ name|N
 name|nodeV
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|V
 name|defaultValue
 parameter_list|)
@@ -654,14 +660,14 @@ return|return
 name|connections
 return|;
 block|}
-DECL|method|containsNode (@ullable N node)
+DECL|method|containsNode (@ullableDecl N node)
 specifier|protected
 specifier|final
 name|boolean
 name|containsNode
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|N
 name|node
 parameter_list|)

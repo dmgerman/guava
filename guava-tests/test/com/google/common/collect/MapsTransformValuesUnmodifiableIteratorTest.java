@@ -128,11 +128,17 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|annotation
+name|checkerframework
 operator|.
-name|Nullable
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -1294,7 +1300,7 @@ name|Boolean
 name|apply
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|String
 name|from
 parameter_list|)
@@ -2210,7 +2216,7 @@ name|Boolean
 name|apply
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Boolean
 name|from
 parameter_list|)

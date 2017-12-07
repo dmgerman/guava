@@ -198,16 +198,6 @@ end_import
 
 begin_import
 import|import
-name|javax
-operator|.
-name|annotation
-operator|.
-name|Nullable
-import|;
-end_import
-
-begin_import
-import|import
 name|junit
 operator|.
 name|framework
@@ -233,6 +223,22 @@ operator|.
 name|framework
 operator|.
 name|TestSuite
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|checkerframework
+operator|.
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -465,13 +471,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|count (@ullable Object element)
+DECL|method|count (@ullableDecl Object element)
 specifier|public
 name|int
 name|count
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|element
 parameter_list|)
@@ -485,13 +491,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|equals (@ullable Object object)
+DECL|method|equals (@ullableDecl Object object)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|object
 parameter_list|)
@@ -571,13 +577,13 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|contains (@ullable Object object)
+DECL|method|contains (@ullableDecl Object object)
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|object
 parameter_list|)
@@ -641,13 +647,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|remove (@ullable Object object)
+DECL|method|remove (@ullableDecl Object object)
 specifier|public
 name|boolean
 name|remove
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|object
 parameter_list|)

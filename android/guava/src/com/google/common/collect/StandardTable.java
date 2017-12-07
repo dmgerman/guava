@@ -334,11 +334,17 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|annotation
+name|checkerframework
 operator|.
-name|Nullable
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -451,18 +457,18 @@ block|}
 comment|// Accessors
 annotation|@
 name|Override
-DECL|method|contains (@ullable Object rowKey, @Nullable Object columnKey)
+DECL|method|contains (@ullableDecl Object rowKey, @NullableDecl Object columnKey)
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|rowKey
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|columnKey
 parameter_list|)
@@ -488,13 +494,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|containsColumn (@ullable Object columnKey)
+DECL|method|containsColumn (@ullableDecl Object columnKey)
 specifier|public
 name|boolean
 name|containsColumn
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|columnKey
 parameter_list|)
@@ -547,13 +553,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|containsRow (@ullable Object rowKey)
+DECL|method|containsRow (@ullableDecl Object rowKey)
 specifier|public
 name|boolean
 name|containsRow
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|rowKey
 parameter_list|)
@@ -573,13 +579,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|containsValue (@ullable Object value)
+DECL|method|containsValue (@ullableDecl Object value)
 specifier|public
 name|boolean
 name|containsValue
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|value
 parameter_list|)
@@ -599,18 +605,18 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|get (@ullable Object rowKey, @Nullable Object columnKey)
+DECL|method|get (@ullableDecl Object rowKey, @NullableDecl Object columnKey)
 specifier|public
 name|V
 name|get
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|rowKey
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|columnKey
 parameter_list|)
@@ -818,18 +824,18 @@ annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
-DECL|method|remove (@ullable Object rowKey, @Nullable Object columnKey)
+DECL|method|remove (@ullableDecl Object rowKey, @NullableDecl Object columnKey)
 specifier|public
 name|V
 name|remove
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|rowKey
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|columnKey
 parameter_list|)

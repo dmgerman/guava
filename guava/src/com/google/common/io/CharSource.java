@@ -314,11 +314,17 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|annotation
+name|checkerframework
 operator|.
-name|Nullable
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -844,7 +850,7 @@ block|}
 block|}
 comment|/**    * Reads the first line of this source as a string. Returns {@code null} if this source is empty.    *    *<p>Like {@link BufferedReader#readLine()}, this method considers a line to be a sequence of    * text that is terminated by (but does not include) one of {@code \r\n}, {@code \r} or {@code    * \n}. If the source's content does not end in a line termination sequence, it is treated as if    * it does.    *    * @throws IOException if an I/O error occurs while reading from this source    */
 annotation|@
-name|Nullable
+name|NullableDecl
 DECL|method|readFirstLine ()
 specifier|public
 name|String

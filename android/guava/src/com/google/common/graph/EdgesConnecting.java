@@ -96,11 +96,17 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|annotation
+name|checkerframework
 operator|.
-name|Nullable
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -237,13 +243,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|contains (@ullable Object edge)
+DECL|method|contains (@ullableDecl Object edge)
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|edge
 parameter_list|)
@@ -270,7 +276,7 @@ operator|)
 return|;
 block|}
 annotation|@
-name|Nullable
+name|NullableDecl
 DECL|method|getConnectingEdge ()
 specifier|private
 name|E

@@ -114,11 +114,17 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|annotation
+name|checkerframework
 operator|.
-name|Nullable
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -242,13 +248,13 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|containsKey (@ullable Object key)
+DECL|method|containsKey (@ullableDecl Object key)
 specifier|public
 name|boolean
 name|containsKey
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|key
 parameter_list|)
@@ -265,13 +271,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|containsValue (@ullable Object value)
+DECL|method|containsValue (@ullableDecl Object value)
 specifier|public
 name|boolean
 name|containsValue
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|value
 parameter_list|)
@@ -288,13 +294,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|get (@ullable Object key)
+DECL|method|get (@ullableDecl Object key)
 specifier|public
 name|V
 name|get
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|key
 parameter_list|)
@@ -430,13 +436,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|equals (@ullable Object object)
+DECL|method|equals (@ullableDecl Object object)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|object
 parameter_list|)
@@ -503,13 +509,13 @@ block|}
 comment|/**    * A sensible, albeit inefficient, definition of {@link #remove} in terms of the {@code iterator}    * method of {@link #entrySet}. If you override {@link #entrySet}, you may wish to override {@link    * #remove} to forward to this implementation.    *    *<p>Alternately, you may wish to override {@link #remove} with {@code keySet().remove}, assuming    * that approach would not lead to an infinite loop.    *    * @since 7.0    */
 annotation|@
 name|Beta
-DECL|method|standardRemove (@ullable Object key)
+DECL|method|standardRemove (@ullableDecl Object key)
 specifier|protected
 name|V
 name|standardRemove
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|key
 parameter_list|)
@@ -643,13 +649,13 @@ block|}
 comment|/**    * A sensible, albeit inefficient, definition of {@link #containsKey} in terms of the {@code    * iterator} method of {@link #entrySet}. If you override {@link #entrySet}, you may wish to    * override {@link #containsKey} to forward to this implementation.    *    * @since 7.0    */
 annotation|@
 name|Beta
-DECL|method|standardContainsKey (@ullable Object key)
+DECL|method|standardContainsKey (@ullableDecl Object key)
 specifier|protected
 name|boolean
 name|standardContainsKey
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|key
 parameter_list|)
@@ -698,13 +704,13 @@ expr_stmt|;
 block|}
 block|}
 comment|/**    * A sensible definition of {@link #containsValue} in terms of the {@code iterator} method of    * {@link #entrySet}. If you override {@link #entrySet}, you may wish to override {@link    * #containsValue} to forward to this implementation.    *    * @since 7.0    */
-DECL|method|standardContainsValue (@ullable Object value)
+DECL|method|standardContainsValue (@ullableDecl Object value)
 specifier|protected
 name|boolean
 name|standardContainsValue
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|value
 parameter_list|)
@@ -783,13 +789,13 @@ argument_list|()
 return|;
 block|}
 comment|/**    * A sensible definition of {@link #equals} in terms of the {@code equals} method of {@link    * #entrySet}. If you override {@link #entrySet}, you may wish to override {@link #equals} to    * forward to this implementation.    *    * @since 7.0    */
-DECL|method|standardEquals (@ullable Object object)
+DECL|method|standardEquals (@ullableDecl Object object)
 specifier|protected
 name|boolean
 name|standardEquals
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|object
 parameter_list|)

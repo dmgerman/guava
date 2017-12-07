@@ -154,11 +154,17 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|annotation
+name|checkerframework
 operator|.
-name|Nullable
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -330,7 +336,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|collectOneValue (boolean allMustSucceed, int index, @Nullable Object returnValue)
+DECL|method|collectOneValue (boolean allMustSucceed, int index, @NullableDecl Object returnValue)
 name|void
 name|collectOneValue
 parameter_list|(
@@ -341,7 +347,7 @@ name|int
 name|index
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|returnValue
 parameter_list|)

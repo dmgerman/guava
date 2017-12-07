@@ -96,11 +96,17 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|annotation
+name|checkerframework
 operator|.
-name|Nullable
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -707,7 +713,7 @@ literal|"unchecked"
 argument_list|)
 comment|// value could not get in if not a T
 annotation|@
-name|Nullable
+name|NullableDecl
 DECL|method|getInstance (Class<T> type)
 specifier|public
 parameter_list|<

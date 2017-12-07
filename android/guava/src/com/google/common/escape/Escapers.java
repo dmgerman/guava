@@ -96,11 +96,17 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|annotation
+name|checkerframework
 operator|.
-name|Nullable
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -289,13 +295,13 @@ block|}
 comment|/**      * Sets the replacement string for any characters outside the 'safe' range that have no explicit      * replacement. If {@code unsafeReplacement} is {@code null} then no replacement will occur, if      * it is {@code ""} then the unsafe characters are removed from the output.      *      * @param unsafeReplacement the string to replace unsafe characters      * @return the builder instance      */
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|setUnsafeReplacement (@ullable String unsafeReplacement)
+DECL|method|setUnsafeReplacement (@ullableDecl String unsafeReplacement)
 specifier|public
 name|Builder
 name|setUnsafeReplacement
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|String
 name|unsafeReplacement
 parameter_list|)

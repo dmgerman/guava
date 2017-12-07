@@ -104,11 +104,17 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|annotation
+name|checkerframework
 operator|.
-name|Nullable
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -136,7 +142,7 @@ name|Callables
 parameter_list|()
 block|{}
 comment|/** Creates a {@code Callable} which immediately returns a preset value each time it is called. */
-DECL|method|returning (@ullable final T value)
+DECL|method|returning (@ullableDecl final T value)
 specifier|public
 specifier|static
 parameter_list|<
@@ -149,7 +155,7 @@ argument_list|>
 name|returning
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 specifier|final
 name|T
 name|value

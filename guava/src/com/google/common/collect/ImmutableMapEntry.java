@@ -48,11 +48,17 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|annotation
+name|checkerframework
 operator|.
-name|Nullable
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -168,7 +174,7 @@ expr_stmt|;
 comment|// null check would be redundant
 block|}
 annotation|@
-name|Nullable
+name|NullableDecl
 DECL|method|getNextInKeyBucket ()
 name|ImmutableMapEntry
 argument_list|<
@@ -184,7 +190,7 @@ literal|null
 return|;
 block|}
 annotation|@
-name|Nullable
+name|NullableDecl
 DECL|method|getNextInValueBucket ()
 name|ImmutableMapEntry
 argument_list|<
@@ -273,7 +279,7 @@ block|}
 annotation|@
 name|Override
 annotation|@
-name|Nullable
+name|NullableDecl
 DECL|method|getNextInKeyBucket ()
 specifier|final
 name|ImmutableMapEntry
@@ -377,7 +383,7 @@ block|}
 annotation|@
 name|Override
 annotation|@
-name|Nullable
+name|NullableDecl
 DECL|method|getNextInValueBucket ()
 name|ImmutableMapEntry
 argument_list|<

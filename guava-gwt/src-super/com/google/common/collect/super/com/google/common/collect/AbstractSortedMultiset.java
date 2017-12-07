@@ -78,11 +78,17 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|annotation
+name|checkerframework
 operator|.
-name|Nullable
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -456,7 +462,7 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|subMultiset ( @ullable E fromElement, BoundType fromBoundType, @Nullable E toElement, BoundType toBoundType)
+DECL|method|subMultiset ( @ullableDecl E fromElement, BoundType fromBoundType, @NullableDecl E toElement, BoundType toBoundType)
 specifier|public
 name|SortedMultiset
 argument_list|<
@@ -465,7 +471,7 @@ argument_list|>
 name|subMultiset
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|E
 name|fromElement
 parameter_list|,
@@ -473,7 +479,7 @@ name|BoundType
 name|fromBoundType
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|E
 name|toElement
 parameter_list|,

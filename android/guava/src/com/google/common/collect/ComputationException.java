@@ -32,11 +32,17 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|annotation
+name|checkerframework
 operator|.
-name|Nullable
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -55,12 +61,12 @@ extends|extends
 name|RuntimeException
 block|{
 comment|/** Creates a new instance with the given cause. */
-DECL|method|ComputationException (@ullable Throwable cause)
+DECL|method|ComputationException (@ullableDecl Throwable cause)
 specifier|public
 name|ComputationException
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Throwable
 name|cause
 parameter_list|)

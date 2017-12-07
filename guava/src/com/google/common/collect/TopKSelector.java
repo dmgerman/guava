@@ -150,11 +150,17 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|annotation
+name|checkerframework
 operator|.
-name|Nullable
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -439,13 +445,13 @@ literal|null
 expr_stmt|;
 block|}
 comment|/**    * Adds {@code elem} as a candidate for the top {@code k} elements. This operation takes amortized    * O(1) time.    */
-DECL|method|offer (@ullable T elem)
+DECL|method|offer (@ullableDecl T elem)
 specifier|public
 name|void
 name|offer
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|T
 name|elem
 parameter_list|)

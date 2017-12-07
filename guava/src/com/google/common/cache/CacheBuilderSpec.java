@@ -180,11 +180,17 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|annotation
+name|checkerframework
 operator|.
-name|Nullable
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -207,7 +213,7 @@ specifier|private
 interface|interface
 name|ValueParser
 block|{
-DECL|method|parse (CacheBuilderSpec spec, String key, @Nullable String value)
+DECL|method|parse (CacheBuilderSpec spec, String key, @NullableDecl String value)
 name|void
 name|parse
 parameter_list|(
@@ -218,7 +224,7 @@ name|String
 name|key
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|String
 name|value
 parameter_list|)
@@ -988,13 +994,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|equals (@ullable Object obj)
+DECL|method|equals (@ullableDecl Object obj)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|obj
 parameter_list|)
@@ -1182,8 +1188,8 @@ return|;
 block|}
 comment|/**    * Converts an expiration duration/unit pair into a single Long for hashing and equality. Uses    * nanos to match CacheBuilder implementation.    */
 annotation|@
-name|Nullable
-DECL|method|durationInNanos (long duration, @Nullable TimeUnit unit)
+name|NullableDecl
+DECL|method|durationInNanos (long duration, @NullableDecl TimeUnit unit)
 specifier|private
 specifier|static
 name|Long
@@ -1193,7 +1199,7 @@ name|long
 name|duration
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|TimeUnit
 name|unit
 parameter_list|)
@@ -1648,7 +1654,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|parse (CacheBuilderSpec spec, String key, @Nullable String value)
+DECL|method|parse (CacheBuilderSpec spec, String key, @NullableDecl String value)
 specifier|public
 name|void
 name|parse
@@ -1660,7 +1666,7 @@ name|String
 name|key
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|String
 name|value
 parameter_list|)
@@ -1732,7 +1738,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|parse (CacheBuilderSpec spec, String key, @Nullable String value)
+DECL|method|parse (CacheBuilderSpec spec, String key, @NullableDecl String value)
 specifier|public
 name|void
 name|parse
@@ -1744,7 +1750,7 @@ name|String
 name|key
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|String
 name|value
 parameter_list|)
@@ -1795,7 +1801,7 @@ name|ValueParser
 block|{
 annotation|@
 name|Override
-DECL|method|parse (CacheBuilderSpec spec, String key, @Nullable String value)
+DECL|method|parse (CacheBuilderSpec spec, String key, @NullableDecl String value)
 specifier|public
 name|void
 name|parse
@@ -1807,7 +1813,7 @@ name|String
 name|key
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|String
 name|value
 parameter_list|)

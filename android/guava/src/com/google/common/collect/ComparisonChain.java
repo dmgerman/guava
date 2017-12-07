@@ -84,11 +84,17 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|annotation
+name|checkerframework
 operator|.
-name|Nullable
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -173,12 +179,12 @@ name|ComparisonChain
 name|compare
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|T
 name|left
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|T
 name|right
 parameter_list|,
@@ -463,18 +469,18 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|compare (@ullable Comparable left, @Nullable Comparable right)
+DECL|method|compare (@ullableDecl Comparable left, @NullableDecl Comparable right)
 specifier|public
 name|ComparisonChain
 name|compare
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Comparable
 name|left
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Comparable
 name|right
 parameter_list|)
@@ -485,7 +491,7 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|compare ( @ullable T left, @Nullable T right, @Nullable Comparator<T> comparator)
+DECL|method|compare ( @ullableDecl T left, @NullableDecl T right, @NullableDecl Comparator<T> comparator)
 specifier|public
 parameter_list|<
 name|T
@@ -494,17 +500,17 @@ name|ComparisonChain
 name|compare
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|T
 name|left
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|T
 name|right
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Comparator
 argument_list|<
 name|T
@@ -658,7 +664,7 @@ name|right
 parameter_list|)
 function_decl|;
 comment|/**    * Compares two objects using a comparator,<i>if</i> the result of this comparison chain has not    * already been determined.    */
-DECL|method|compare ( @ullable T left, @Nullable T right, Comparator<T> comparator)
+DECL|method|compare ( @ullableDecl T left, @NullableDecl T right, Comparator<T> comparator)
 specifier|public
 specifier|abstract
 parameter_list|<
@@ -668,12 +674,12 @@ name|ComparisonChain
 name|compare
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|T
 name|left
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|T
 name|right
 parameter_list|,

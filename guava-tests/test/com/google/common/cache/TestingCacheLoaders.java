@@ -132,11 +132,17 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|annotation
+name|checkerframework
 operator|.
-name|Nullable
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -283,7 +289,7 @@ block|}
 return|;
 block|}
 comment|/** Returns a {@link CacheLoader} that returns the given {@code constant} for every request. */
-DECL|method|constantLoader (@ullable V constant)
+DECL|method|constantLoader (@ullableDecl V constant)
 specifier|static
 parameter_list|<
 name|K
@@ -299,7 +305,7 @@ argument_list|>
 name|constantLoader
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|V
 name|constant
 parameter_list|)

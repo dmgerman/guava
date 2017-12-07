@@ -82,11 +82,17 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|annotation
+name|checkerframework
 operator|.
-name|Nullable
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -122,11 +128,11 @@ specifier|final
 name|C
 name|endpoint
 decl_stmt|;
-DECL|method|Cut (@ullable C endpoint)
+DECL|method|Cut (@ullableDecl C endpoint)
 name|Cut
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|C
 name|endpoint
 parameter_list|)
@@ -1347,7 +1353,7 @@ case|case
 name|OPEN
 case|:
 annotation|@
-name|Nullable
+name|NullableDecl
 name|C
 name|previous
 init|=
@@ -1418,7 +1424,7 @@ case|case
 name|CLOSED
 case|:
 annotation|@
-name|Nullable
+name|NullableDecl
 name|C
 name|previous
 init|=
@@ -1737,7 +1743,7 @@ case|case
 name|CLOSED
 case|:
 annotation|@
-name|Nullable
+name|NullableDecl
 name|C
 name|next
 init|=
@@ -1804,7 +1810,7 @@ case|case
 name|OPEN
 case|:
 annotation|@
-name|Nullable
+name|NullableDecl
 name|C
 name|next
 init|=

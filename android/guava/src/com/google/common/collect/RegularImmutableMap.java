@@ -126,11 +126,17 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|annotation
+name|checkerframework
 operator|.
-name|Nullable
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -652,14 +658,14 @@ argument_list|)
 annotation|@
 name|Override
 annotation|@
-name|Nullable
-DECL|method|get (@ullable Object key)
+name|NullableDecl
+DECL|method|get (@ullableDecl Object key)
 specifier|public
 name|V
 name|get
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|key
 parameter_list|)
@@ -682,19 +688,19 @@ name|key
 argument_list|)
 return|;
 block|}
-DECL|method|get ( @ullable int[] hashTable, @Nullable Object[] alternatingKeysAndValues, int size, int keyOffset, @Nullable Object key)
+DECL|method|get ( @ullableDecl int[] hashTable, @NullableDecl Object[] alternatingKeysAndValues, int size, int keyOffset, @NullableDecl Object key)
 specifier|static
 name|Object
 name|get
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|int
 index|[]
 name|hashTable
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 index|[]
 name|alternatingKeysAndValues
@@ -706,7 +712,7 @@ name|int
 name|keyOffset
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|key
 parameter_list|)
@@ -1501,13 +1507,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|contains (@ullable Object object)
+DECL|method|contains (@ullableDecl Object object)
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|object
 parameter_list|)

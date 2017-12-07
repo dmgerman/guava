@@ -180,11 +180,17 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|annotation
+name|checkerframework
 operator|.
-name|Nullable
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -736,13 +742,13 @@ annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
-DECL|method|put (@ullable K key, int value)
+DECL|method|put (@ullableDecl K key, int value)
 specifier|public
 name|int
 name|put
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|K
 name|key
 parameter_list|,
@@ -989,7 +995,7 @@ literal|0
 return|;
 block|}
 comment|/**    * Creates a fresh entry with the specified object at the specified position in the entry array.    */
-DECL|method|insertEntry (int entryIndex, @Nullable K key, int value, int hash)
+DECL|method|insertEntry (int entryIndex, @NullableDecl K key, int value, int hash)
 name|void
 name|insertEntry
 parameter_list|(
@@ -997,7 +1003,7 @@ name|int
 name|entryIndex
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|K
 name|key
 parameter_list|,
@@ -1374,12 +1380,12 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|indexOf (@ullable Object key)
+DECL|method|indexOf (@ullableDecl Object key)
 name|int
 name|indexOf
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|key
 parameter_list|)
@@ -1459,13 +1465,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|containsKey (@ullable Object key)
+DECL|method|containsKey (@ullableDecl Object key)
 specifier|public
 name|boolean
 name|containsKey
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|key
 parameter_list|)
@@ -1482,13 +1488,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|get (@ullable Object key)
+DECL|method|get (@ullableDecl Object key)
 specifier|public
 name|int
 name|get
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|key
 parameter_list|)
@@ -1521,13 +1527,13 @@ annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
-DECL|method|remove (@ullable Object key)
+DECL|method|remove (@ullableDecl Object key)
 specifier|public
 name|int
 name|remove
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|key
 parameter_list|)
@@ -1574,13 +1580,13 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-DECL|method|remove (@ullable Object key, int hash)
+DECL|method|remove (@ullableDecl Object key, int hash)
 specifier|private
 name|int
 name|remove
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|key
 parameter_list|,

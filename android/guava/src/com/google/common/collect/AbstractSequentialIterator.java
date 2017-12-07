@@ -42,11 +42,17 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|annotation
+name|checkerframework
 operator|.
-name|Nullable
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -77,12 +83,12 @@ name|T
 name|nextOrNull
 decl_stmt|;
 comment|/**    * Creates a new iterator with the given first element, or, if {@code firstOrNull} is null,    * creates a new empty iterator.    */
-DECL|method|AbstractSequentialIterator (@ullable T firstOrNull)
+DECL|method|AbstractSequentialIterator (@ullableDecl T firstOrNull)
 specifier|protected
 name|AbstractSequentialIterator
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|T
 name|firstOrNull
 parameter_list|)

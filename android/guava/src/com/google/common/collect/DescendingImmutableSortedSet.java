@@ -32,11 +32,17 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|annotation
+name|checkerframework
 operator|.
-name|Nullable
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -104,13 +110,13 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|contains (@ullable Object object)
+DECL|method|contains (@ullableDecl Object object)
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|object
 parameter_list|)
@@ -405,12 +411,12 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|indexOf (@ullable Object target)
+DECL|method|indexOf (@ullableDecl Object target)
 name|int
 name|indexOf
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|target
 parameter_list|)

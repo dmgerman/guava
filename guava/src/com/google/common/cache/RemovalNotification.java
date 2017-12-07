@@ -60,11 +60,17 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|annotation
+name|checkerframework
 operator|.
-name|Nullable
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -100,7 +106,7 @@ name|RemovalCause
 name|cause
 decl_stmt|;
 comment|/**    * Creates a new {@code RemovalNotification} for the given {@code key}/{@code value} pair, with    * the given {@code cause} for the removal. The {@code key} and/or {@code value} may be {@code    * null} if they were already garbage collected.    *    * @since 19.0    */
-DECL|method|create ( @ullable K key, @Nullable V value, RemovalCause cause)
+DECL|method|create ( @ullableDecl K key, @NullableDecl V value, RemovalCause cause)
 specifier|public
 specifier|static
 parameter_list|<
@@ -117,12 +123,12 @@ argument_list|>
 name|create
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|K
 name|key
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|V
 name|value
 parameter_list|,
@@ -142,17 +148,17 @@ name|cause
 argument_list|)
 return|;
 block|}
-DECL|method|RemovalNotification (@ullable K key, @Nullable V value, RemovalCause cause)
+DECL|method|RemovalNotification (@ullableDecl K key, @NullableDecl V value, RemovalCause cause)
 specifier|private
 name|RemovalNotification
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|K
 name|key
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|V
 name|value
 parameter_list|,

@@ -108,11 +108,17 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|annotation
+name|checkerframework
 operator|.
-name|Nullable
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -150,15 +156,15 @@ block|{
 annotation|@
 name|Override
 annotation|@
-name|Nullable
-DECL|method|get (@ullable Object key)
+name|NullableDecl
+DECL|method|get (@ullableDecl Object key)
 specifier|public
 specifier|abstract
 name|V
 name|get
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|key
 parameter_list|)
@@ -166,7 +172,7 @@ function_decl|;
 annotation|@
 name|Override
 annotation|@
-name|Nullable
+name|NullableDecl
 DECL|method|firstEntry ()
 specifier|public
 name|Entry
@@ -193,7 +199,7 @@ block|}
 annotation|@
 name|Override
 annotation|@
-name|Nullable
+name|NullableDecl
 DECL|method|lastEntry ()
 specifier|public
 name|Entry
@@ -220,7 +226,7 @@ block|}
 annotation|@
 name|Override
 annotation|@
-name|Nullable
+name|NullableDecl
 DECL|method|pollFirstEntry ()
 specifier|public
 name|Entry
@@ -245,7 +251,7 @@ block|}
 annotation|@
 name|Override
 annotation|@
-name|Nullable
+name|NullableDecl
 DECL|method|pollLastEntry ()
 specifier|public
 name|Entry
@@ -354,7 +360,7 @@ block|}
 annotation|@
 name|Override
 annotation|@
-name|Nullable
+name|NullableDecl
 DECL|method|lowerEntry (K key)
 specifier|public
 name|Entry
@@ -384,7 +390,7 @@ block|}
 annotation|@
 name|Override
 annotation|@
-name|Nullable
+name|NullableDecl
 DECL|method|floorEntry (K key)
 specifier|public
 name|Entry
@@ -414,7 +420,7 @@ block|}
 annotation|@
 name|Override
 annotation|@
-name|Nullable
+name|NullableDecl
 DECL|method|ceilingEntry (K key)
 specifier|public
 name|Entry
@@ -444,7 +450,7 @@ block|}
 annotation|@
 name|Override
 annotation|@
-name|Nullable
+name|NullableDecl
 DECL|method|higherEntry (K key)
 specifier|public
 name|Entry

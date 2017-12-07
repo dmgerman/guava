@@ -218,11 +218,17 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|annotation
+name|checkerframework
 operator|.
-name|Nullable
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -416,7 +422,7 @@ literal|null
 return|;
 block|}
 annotation|@
-name|Nullable
+name|NullableDecl
 DECL|method|ipStringToBytes (String ipString)
 specifier|private
 specifier|static
@@ -579,7 +585,7 @@ literal|null
 return|;
 block|}
 annotation|@
-name|Nullable
+name|NullableDecl
 DECL|method|textToNumericFormatV4 (String ipString)
 specifier|private
 specifier|static
@@ -655,7 +661,7 @@ literal|null
 return|;
 block|}
 annotation|@
-name|Nullable
+name|NullableDecl
 DECL|method|textToNumericFormatV6 (String ipString)
 specifier|private
 specifier|static
@@ -1015,7 +1021,7 @@ argument_list|()
 return|;
 block|}
 annotation|@
-name|Nullable
+name|NullableDecl
 DECL|method|convertDottedQuadToHex (String ipString)
 specifier|private
 specifier|static
@@ -1755,7 +1761,7 @@ name|addr
 return|;
 block|}
 annotation|@
-name|Nullable
+name|NullableDecl
 DECL|method|forUriStringNoThrow (String hostAddr)
 specifier|private
 specifier|static
@@ -2144,17 +2150,17 @@ name|flags
 decl_stmt|;
 comment|/**      * Constructs a TeredoInfo instance.      *      *<p>Both server and client can be {@code null}, in which case the value {@code "0.0.0.0"} will      * be assumed.      *      * @throws IllegalArgumentException if either of the {@code port} or the {@code flags} arguments      *     are out of range of an unsigned short      */
 comment|// TODO: why is this public?
-DECL|method|TeredoInfo ( @ullable Inet4Address server, @Nullable Inet4Address client, int port, int flags)
+DECL|method|TeredoInfo ( @ullableDecl Inet4Address server, @NullableDecl Inet4Address client, int port, int flags)
 specifier|public
 name|TeredoInfo
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Inet4Address
 name|server
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Inet4Address
 name|client
 parameter_list|,

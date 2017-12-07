@@ -296,11 +296,17 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|annotation
+name|checkerframework
 operator|.
-name|Nullable
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -2197,7 +2203,7 @@ name|executor
 decl_stmt|;
 DECL|field|next
 annotation|@
-name|Nullable
+name|NullableDecl
 name|RunnableExecutorPair
 name|next
 decl_stmt|;
@@ -2516,7 +2522,7 @@ name|executor
 decl_stmt|;
 DECL|field|next
 annotation|@
-name|Nullable
+name|NullableDecl
 name|RunnableExecutorPair
 name|next
 decl_stmt|;
@@ -3043,7 +3049,7 @@ decl_stmt|;
 comment|// Volatile because this is written on one thread and read on another with no synchronization.
 DECL|field|next
 annotation|@
-name|Nullable
+name|NullableDecl
 specifier|volatile
 name|RunnableExecutorPair
 name|next

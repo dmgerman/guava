@@ -224,11 +224,17 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|annotation
+name|checkerframework
 operator|.
-name|Nullable
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -2521,13 +2527,13 @@ name|descendingIterator
 parameter_list|()
 function_decl|;
 comment|/** Returns the position of an element within the set, or -1 if not present. */
-DECL|method|indexOf (@ullable Object target)
+DECL|method|indexOf (@ullableDecl Object target)
 specifier|abstract
 name|int
 name|indexOf
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|target
 parameter_list|)

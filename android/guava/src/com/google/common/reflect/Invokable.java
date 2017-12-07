@@ -206,11 +206,17 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|annotation
+name|checkerframework
 operator|.
-name|Nullable
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -339,14 +345,14 @@ literal|"unchecked"
 argument_list|)
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|invoke (@ullable T receiver, Object... args)
+DECL|method|invoke (@ullableDecl T receiver, Object... args)
 specifier|public
 specifier|final
 name|R
 name|invoke
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|T
 name|receiver
 parameter_list|,
@@ -775,13 +781,13 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-DECL|method|invokeInternal (@ullable Object receiver, Object[] args)
+DECL|method|invokeInternal (@ullableDecl Object receiver, Object[] args)
 specifier|abstract
 name|Object
 name|invokeInternal
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|receiver
 parameter_list|,
@@ -864,13 +870,13 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|invokeInternal (@ullable Object receiver, Object[] args)
+DECL|method|invokeInternal (@ullableDecl Object receiver, Object[] args)
 specifier|final
 name|Object
 name|invokeInternal
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|receiver
 parameter_list|,
@@ -1073,13 +1079,13 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|invokeInternal (@ullable Object receiver, Object[] args)
+DECL|method|invokeInternal (@ullableDecl Object receiver, Object[] args)
 specifier|final
 name|Object
 name|invokeInternal
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|receiver
 parameter_list|,

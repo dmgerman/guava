@@ -88,11 +88,17 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|annotation
+name|checkerframework
 operator|.
-name|Nullable
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -277,13 +283,13 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|write (@ullable String str)
+DECL|method|write (@ullableDecl String str)
 specifier|public
 name|void
 name|write
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|String
 name|str
 parameter_list|)
@@ -303,13 +309,13 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|write (@ullable String str, int off, int len)
+DECL|method|write (@ullableDecl String str, int off, int len)
 specifier|public
 name|void
 name|write
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|String
 name|str
 parameter_list|,
@@ -369,13 +375,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|append (@ullable CharSequence charSeq)
+DECL|method|append (@ullableDecl CharSequence charSeq)
 specifier|public
 name|Writer
 name|append
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|CharSequence
 name|charSeq
 parameter_list|)
@@ -398,13 +404,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|append (@ullable CharSequence charSeq, int start, int end)
+DECL|method|append (@ullableDecl CharSequence charSeq, int start, int end)
 specifier|public
 name|Writer
 name|append
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|CharSequence
 name|charSeq
 parameter_list|,

@@ -68,11 +68,17 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|annotation
+name|checkerframework
 operator|.
-name|Nullable
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -244,13 +250,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|equals (@ullable Object obj)
+DECL|method|equals (@ullableDecl Object obj)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|obj
 parameter_list|)
@@ -940,7 +946,7 @@ literal|0
 decl_stmt|;
 block|}
 comment|/** Returns a supplier that always supplies {@code instance}. */
-DECL|method|ofInstance (@ullable T instance)
+DECL|method|ofInstance (@ullableDecl T instance)
 specifier|public
 specifier|static
 parameter_list|<
@@ -953,7 +959,7 @@ argument_list|>
 name|ofInstance
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|T
 name|instance
 parameter_list|)
@@ -990,11 +996,11 @@ specifier|final
 name|T
 name|instance
 decl_stmt|;
-DECL|method|SupplierOfInstance (@ullable T instance)
+DECL|method|SupplierOfInstance (@ullableDecl T instance)
 name|SupplierOfInstance
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|T
 name|instance
 parameter_list|)
@@ -1020,13 +1026,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|equals (@ullable Object obj)
+DECL|method|equals (@ullableDecl Object obj)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|obj
 parameter_list|)

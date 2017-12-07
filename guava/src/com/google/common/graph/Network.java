@@ -52,11 +52,17 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|annotation
+name|checkerframework
 operator|.
-name|Nullable
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -318,7 +324,7 @@ parameter_list|)
 function_decl|;
 comment|/**    * Returns the single edge directly connecting {@code nodeU} to {@code nodeV}, if one is present,    * or {@code null} if no such edge exists.    *    *<p>In an undirected network, this is equal to {@code edgeConnectingOrNull(nodeV, nodeU)}.    *    * @throws IllegalArgumentException if there are multiple parallel edges connecting {@code nodeU}    *     to {@code nodeV}    * @throws IllegalArgumentException if {@code nodeU} or {@code nodeV} is not an element of this    *     network    * @since 23.0    */
 annotation|@
-name|Nullable
+name|NullableDecl
 DECL|method|edgeConnectingOrNull (N nodeU, N nodeV)
 name|E
 name|edgeConnectingOrNull
@@ -348,12 +354,12 @@ comment|//
 comment|/**    * Returns {@code true} iff {@code object} is a {@link Network} that has the same elements and the    * same structural relationships as those in this network.    *    *<p>Thus, two networks A and B are equal if<b>all</b> of the following are true:    *    *<ul>    *<li>A and B have equal {@link #isDirected() directedness}.    *<li>A and B have equal {@link #nodes() node sets}.    *<li>A and B have equal {@link #edges() edge sets}.    *<li>Every edge in A and B connects the same nodes in the same direction (if any).    *</ul>    *    *<p>Network properties besides {@link #isDirected() directedness} do<b>not</b> affect equality.    * For example, two networks may be considered equal even if one allows parallel edges and the    * other doesn't. Additionally, the order in which nodes or edges are added to the network, and    * the order in which they are iterated over, are irrelevant.    *    *<p>A reference implementation of this is provided by {@link AbstractNetwork#equals(Object)}.    */
 annotation|@
 name|Override
-DECL|method|equals (@ullable Object object)
+DECL|method|equals (@ullableDecl Object object)
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|object
 parameter_list|)

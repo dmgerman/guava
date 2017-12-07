@@ -142,11 +142,17 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|annotation
+name|checkerframework
 operator|.
-name|Nullable
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -368,17 +374,17 @@ argument_list|)
 decl_stmt|;
 DECL|field|value
 annotation|@
-name|Nullable
+name|NullableDecl
 specifier|private
 specifier|final
 name|V
 name|value
 decl_stmt|;
-DECL|method|ImmediateSuccessfulFuture (@ullable V value)
+DECL|method|ImmediateSuccessfulFuture (@ullableDecl V value)
 name|ImmediateSuccessfulFuture
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|V
 name|value
 parameter_list|)
@@ -455,17 +461,17 @@ argument_list|>
 block|{
 DECL|field|value
 annotation|@
-name|Nullable
+name|NullableDecl
 specifier|private
 specifier|final
 name|V
 name|value
 decl_stmt|;
-DECL|method|ImmediateSuccessfulCheckedFuture (@ullable V value)
+DECL|method|ImmediateSuccessfulCheckedFuture (@ullableDecl V value)
 name|ImmediateSuccessfulCheckedFuture
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|V
 name|value
 parameter_list|)

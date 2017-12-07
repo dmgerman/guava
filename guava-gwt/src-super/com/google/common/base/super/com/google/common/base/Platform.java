@@ -42,16 +42,6 @@ end_import
 
 begin_import
 import|import
-name|javax
-operator|.
-name|annotation
-operator|.
-name|Nullable
-import|;
-end_import
-
-begin_import
-import|import
 name|jsinterop
 operator|.
 name|annotations
@@ -67,6 +57,22 @@ operator|.
 name|annotations
 operator|.
 name|JsType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|checkerframework
+operator|.
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -207,14 +213,14 @@ return|;
 block|}
 annotation|@
 name|JsMethod
-DECL|method|stringIsNullOrEmpty (@ullable String string)
+DECL|method|stringIsNullOrEmpty (@ullableDecl String string)
 specifier|static
 specifier|native
 name|boolean
 name|stringIsNullOrEmpty
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|String
 name|string
 parameter_list|)

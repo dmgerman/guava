@@ -188,11 +188,17 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|annotation
+name|checkerframework
 operator|.
-name|Nullable
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -620,8 +626,8 @@ expr_stmt|;
 block|}
 block|}
 annotation|@
-name|Nullable
-DECL|method|getReference (@ullable Reference<T> reference)
+name|NullableDecl
+DECL|method|getReference (@ullableDecl Reference<T> reference)
 specifier|private
 specifier|static
 parameter_list|<
@@ -631,7 +637,7 @@ name|T
 name|getReference
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Reference
 argument_list|<
 name|T

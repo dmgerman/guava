@@ -86,11 +86,17 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|annotation
+name|checkerframework
 operator|.
-name|Nullable
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -274,18 +280,18 @@ name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
-DECL|method|unsafeCompare (@ullable Object o1, @Nullable Object o2)
+DECL|method|unsafeCompare (@ullableDecl Object o1, @NullableDecl Object o2)
 specifier|private
 name|int
 name|unsafeCompare
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|o1
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|o2
 parameter_list|)
@@ -346,13 +352,13 @@ annotation|@
 name|Override
 annotation|@
 name|Beta
-DECL|method|standardContains (@ullable Object object)
+DECL|method|standardContains (@ullableDecl Object object)
 specifier|protected
 name|boolean
 name|standardContains
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|object
 parameter_list|)
@@ -423,13 +429,13 @@ annotation|@
 name|Override
 annotation|@
 name|Beta
-DECL|method|standardRemove (@ullable Object object)
+DECL|method|standardRemove (@ullableDecl Object object)
 specifier|protected
 name|boolean
 name|standardRemove
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|object
 parameter_list|)

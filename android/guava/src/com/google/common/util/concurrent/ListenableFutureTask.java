@@ -70,11 +70,17 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|annotation
+name|checkerframework
 operator|.
-name|Nullable
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -149,7 +155,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Creates a {@code ListenableFutureTask} that will upon running, execute the given {@code    * Runnable}, and arrange that {@code get} will return the given result on successful completion.    *    * @param runnable the runnable task    * @param result the result to return on successful completion. If you don't need a particular    *     result, consider using constructions of the form: {@code ListenableFuture<?> f =    *     ListenableFutureTask.create(runnable, null)}    * @since 10.0    */
-DECL|method|create (Runnable runnable, @Nullable V result)
+DECL|method|create (Runnable runnable, @NullableDecl V result)
 specifier|public
 specifier|static
 parameter_list|<
@@ -165,7 +171,7 @@ name|Runnable
 name|runnable
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|V
 name|result
 parameter_list|)
@@ -199,14 +205,14 @@ name|callable
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|ListenableFutureTask (Runnable runnable, @Nullable V result)
+DECL|method|ListenableFutureTask (Runnable runnable, @NullableDecl V result)
 name|ListenableFutureTask
 parameter_list|(
 name|Runnable
 name|runnable
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|V
 name|result
 parameter_list|)

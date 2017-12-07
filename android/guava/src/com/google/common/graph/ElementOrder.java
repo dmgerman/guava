@@ -170,11 +170,17 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|annotation
+name|checkerframework
 operator|.
-name|Nullable
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -209,7 +215,7 @@ literal|"Immutable"
 argument_list|)
 comment|// Hopefully the comparator provided is immutable!
 annotation|@
-name|Nullable
+name|NullableDecl
 DECL|field|comparator
 specifier|private
 specifier|final
@@ -234,7 +240,7 @@ block|,
 DECL|enumConstant|SORTED
 name|SORTED
 block|}
-DECL|method|ElementOrder (Type type, @Nullable Comparator<T> comparator)
+DECL|method|ElementOrder (Type type, @NullableDecl Comparator<T> comparator)
 specifier|private
 name|ElementOrder
 parameter_list|(
@@ -242,7 +248,7 @@ name|Type
 name|type
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Comparator
 argument_list|<
 name|T
@@ -460,13 +466,13 @@ throw|;
 block|}
 annotation|@
 name|Override
-DECL|method|equals (@ullable Object obj)
+DECL|method|equals (@ullableDecl Object obj)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|obj
 parameter_list|)

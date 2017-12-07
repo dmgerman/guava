@@ -350,11 +350,17 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|annotation
+name|checkerframework
 operator|.
-name|Nullable
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -2118,7 +2124,7 @@ decl_stmt|;
 comment|/**      * The exception that caused this service to fail. This will be {@code null} unless the service      * has failed.      */
 DECL|field|failure
 annotation|@
-name|Nullable
+name|NullableDecl
 specifier|final
 name|Throwable
 name|failure
@@ -2140,7 +2146,7 @@ literal|null
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|StateSnapshot ( State internalState, boolean shutdownWhenStartupFinishes, @Nullable Throwable failure)
+DECL|method|StateSnapshot ( State internalState, boolean shutdownWhenStartupFinishes, @NullableDecl Throwable failure)
 name|StateSnapshot
 parameter_list|(
 name|State
@@ -2150,7 +2156,7 @@ name|boolean
 name|shutdownWhenStartupFinishes
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Throwable
 name|failure
 parameter_list|)

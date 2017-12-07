@@ -46,11 +46,17 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|annotation
+name|checkerframework
 operator|.
-name|Nullable
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -368,7 +374,7 @@ name|newValue
 parameter_list|)
 function_decl|;
 comment|/**    * Handles cases of updates involving initialization, resizing, creating new Cells, and/or    * contention. See above for explanation. This method suffers the usual non-modularity problems of    * optimistic retry code, relying on rechecked sets of reads.    *    * @param x the value    * @param hc the hash code holder    * @param wasUncontended false if CAS failed before call    */
-DECL|method|retryUpdate (long x, @Nullable int[] hc, boolean wasUncontended)
+DECL|method|retryUpdate (long x, @NullableDecl int[] hc, boolean wasUncontended)
 specifier|final
 name|void
 name|retryUpdate
@@ -377,7 +383,7 @@ name|long
 name|x
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|int
 index|[]
 name|hc

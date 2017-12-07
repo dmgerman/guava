@@ -138,11 +138,17 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|annotation
+name|checkerframework
 operator|.
-name|Nullable
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -597,7 +603,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns a predicate that evaluates to {@code true} if the object being tested {@code equals()}    * the given target or both are null.    */
-DECL|method|equalTo (@ullable T target)
+DECL|method|equalTo (@ullableDecl T target)
 specifier|public
 specifier|static
 parameter_list|<
@@ -610,7 +616,7 @@ argument_list|>
 name|equalTo
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|T
 name|target
 parameter_list|)
@@ -891,7 +897,7 @@ name|boolean
 name|apply
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|o
 parameter_list|)
@@ -924,7 +930,7 @@ name|boolean
 name|apply
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|o
 parameter_list|)
@@ -957,7 +963,7 @@ name|boolean
 name|apply
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|o
 parameter_list|)
@@ -992,7 +998,7 @@ name|boolean
 name|apply
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|o
 parameter_list|)
@@ -1091,13 +1097,13 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|apply (@ullable T t)
+DECL|method|apply (@ullableDecl T t)
 specifier|public
 name|boolean
 name|apply
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|T
 name|t
 parameter_list|)
@@ -1130,13 +1136,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|equals (@ullable Object obj)
+DECL|method|equals (@ullableDecl Object obj)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|obj
 parameter_list|)
@@ -1263,13 +1269,13 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|apply (@ullable T t)
+DECL|method|apply (@ullableDecl T t)
 specifier|public
 name|boolean
 name|apply
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|T
 name|t
 parameter_list|)
@@ -1338,13 +1344,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|equals (@ullable Object obj)
+DECL|method|equals (@ullableDecl Object obj)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|obj
 parameter_list|)
@@ -1472,13 +1478,13 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|apply (@ullable T t)
+DECL|method|apply (@ullableDecl T t)
 specifier|public
 name|boolean
 name|apply
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|T
 name|t
 parameter_list|)
@@ -1546,13 +1552,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|equals (@ullable Object obj)
+DECL|method|equals (@ullableDecl Object obj)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|obj
 parameter_list|)
@@ -1781,13 +1787,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|equals (@ullable Object obj)
+DECL|method|equals (@ullableDecl Object obj)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|obj
 parameter_list|)
@@ -1903,13 +1909,13 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|apply (@ullable Object o)
+DECL|method|apply (@ullableDecl Object o)
 specifier|public
 name|boolean
 name|apply
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|o
 parameter_list|)
@@ -1940,13 +1946,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|equals (@ullable Object obj)
+DECL|method|equals (@ullableDecl Object obj)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|obj
 parameter_list|)
@@ -2097,13 +2103,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|equals (@ullable Object obj)
+DECL|method|equals (@ullableDecl Object obj)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|obj
 parameter_list|)
@@ -2213,13 +2219,13 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|apply (@ullable T t)
+DECL|method|apply (@ullableDecl T t)
 specifier|public
 name|boolean
 name|apply
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|T
 name|t
 parameter_list|)
@@ -2250,13 +2256,13 @@ block|}
 block|}
 annotation|@
 name|Override
-DECL|method|equals (@ullable Object obj)
+DECL|method|equals (@ullableDecl Object obj)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|obj
 parameter_list|)
@@ -2419,13 +2425,13 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|apply (@ullable A a)
+DECL|method|apply (@ullableDecl A a)
 specifier|public
 name|boolean
 name|apply
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|A
 name|a
 parameter_list|)
@@ -2446,13 +2452,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|equals (@ullable Object obj)
+DECL|method|equals (@ullableDecl Object obj)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|obj
 parameter_list|)
@@ -2646,13 +2652,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|equals (@ullable Object obj)
+DECL|method|equals (@ullableDecl Object obj)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|obj
 parameter_list|)

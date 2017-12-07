@@ -220,11 +220,17 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|annotation
+name|checkerframework
 operator|.
-name|Nullable
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -866,7 +872,7 @@ name|hashCode
 expr_stmt|;
 block|}
 comment|// checkNoConflictInKeyBucket is static imported from RegularImmutableMap
-DECL|method|checkNoConflictInValueBucket ( Object value, Entry<?, ?> entry, @Nullable ImmutableMapEntry<?, ?> valueBucketHead)
+DECL|method|checkNoConflictInValueBucket ( Object value, Entry<?, ?> entry, @NullableDecl ImmutableMapEntry<?, ?> valueBucketHead)
 specifier|private
 specifier|static
 name|void
@@ -884,7 +890,7 @@ argument_list|>
 name|entry
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|ImmutableMapEntry
 argument_list|<
 name|?
@@ -934,14 +940,14 @@ block|}
 annotation|@
 name|Override
 annotation|@
-name|Nullable
-DECL|method|get (@ullable Object key)
+name|NullableDecl
+DECL|method|get (@ullableDecl Object key)
 specifier|public
 name|V
 name|get
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|key
 parameter_list|)
@@ -1302,13 +1308,13 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|get (@ullable Object value)
+DECL|method|get (@ullableDecl Object value)
 specifier|public
 name|K
 name|get
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|value
 parameter_list|)

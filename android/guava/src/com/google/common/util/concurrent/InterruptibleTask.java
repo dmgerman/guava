@@ -62,11 +62,17 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|annotation
+name|checkerframework
 operator|.
-name|Nullable
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -293,18 +299,18 @@ throws|throws
 name|Exception
 function_decl|;
 comment|/**    * Any interruption that happens as a result of calling interruptTask will arrive before this    * method is called. Complete Futures here.    */
-DECL|method|afterRanInterruptibly (@ullable T result, @Nullable Throwable error)
+DECL|method|afterRanInterruptibly (@ullableDecl T result, @NullableDecl Throwable error)
 specifier|abstract
 name|void
 name|afterRanInterruptibly
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|T
 name|result
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Throwable
 name|error
 parameter_list|)

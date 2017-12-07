@@ -438,11 +438,17 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|annotation
+name|checkerframework
 operator|.
-name|Nullable
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -573,7 +579,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Creates a {@code ListenableFuture} which has its value set immediately upon construction. The    * getters just return the value. This {@code Future} can't be canceled or timed out and its    * {@code isDone()} method always returns {@code true}.    */
-DECL|method|immediateFuture (@ullable V value)
+DECL|method|immediateFuture (@ullableDecl V value)
 specifier|public
 specifier|static
 parameter_list|<
@@ -586,7 +592,7 @@ argument_list|>
 name|immediateFuture
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|V
 name|value
 parameter_list|)
@@ -642,7 +648,7 @@ name|Deprecated
 annotation|@
 name|GwtIncompatible
 comment|// TODO
-DECL|method|immediateCheckedFuture ( @ullable V value)
+DECL|method|immediateCheckedFuture ( @ullableDecl V value)
 specifier|public
 specifier|static
 parameter_list|<
@@ -661,7 +667,7 @@ argument_list|>
 name|immediateCheckedFuture
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|V
 name|value
 parameter_list|)

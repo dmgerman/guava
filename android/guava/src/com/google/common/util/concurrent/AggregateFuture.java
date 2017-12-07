@@ -202,11 +202,17 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|annotation
+name|checkerframework
 operator|.
-name|Nullable
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -1071,7 +1077,7 @@ literal|null
 expr_stmt|;
 block|}
 comment|/**      * Called only if {@code collectsValues} is true.      *      *<p>If {@code allMustSucceed} is true, called as each future completes; otherwise, called for      * each future when all futures complete.      */
-DECL|method|collectOneValue (boolean allMustSucceed, int index, @Nullable InputT returnValue)
+DECL|method|collectOneValue ( boolean allMustSucceed, int index, @NullableDecl InputT returnValue)
 specifier|abstract
 name|void
 name|collectOneValue
@@ -1083,7 +1089,7 @@ name|int
 name|index
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|InputT
 name|returnValue
 parameter_list|)

@@ -56,11 +56,17 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|annotation
+name|checkerframework
 operator|.
-name|Nullable
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -114,7 +120,7 @@ function_decl|;
 comment|/**    * Maps the specified class to the specified value. Does<i>not</i> associate this value with any    * of the class's supertypes.    *    * @return the value previously associated with this class (possibly {@code null}), or {@code    *     null} if there was no previous entry.    */
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|putInstance (Class<T> type, @Nullable T value)
+DECL|method|putInstance (Class<T> type, @NullableDecl T value)
 argument_list|<
 name|T
 extends|extends
@@ -130,7 +136,7 @@ argument_list|>
 name|type
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|T
 name|value
 parameter_list|)

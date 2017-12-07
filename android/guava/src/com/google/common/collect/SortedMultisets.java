@@ -158,11 +158,17 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|annotation
+name|checkerframework
 operator|.
-name|Nullable
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -818,7 +824,7 @@ name|getElement
 argument_list|()
 return|;
 block|}
-DECL|method|getElementOrNull (@ullable Entry<E> entry)
+DECL|method|getElementOrNull (@ullableDecl Entry<E> entry)
 specifier|private
 specifier|static
 parameter_list|<
@@ -828,7 +834,7 @@ name|E
 name|getElementOrNull
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Entry
 argument_list|<
 name|E

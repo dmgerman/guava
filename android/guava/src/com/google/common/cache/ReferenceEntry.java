@@ -48,11 +48,17 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|annotation
+name|checkerframework
 operator|.
-name|Nullable
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -99,7 +105,7 @@ parameter_list|)
 function_decl|;
 comment|/** Returns the next entry in the chain. */
 annotation|@
-name|Nullable
+name|NullableDecl
 DECL|method|getNext ()
 name|ReferenceEntry
 argument_list|<
@@ -118,7 +124,7 @@ parameter_list|()
 function_decl|;
 comment|/** Returns the key for this entry. */
 annotation|@
-name|Nullable
+name|NullableDecl
 DECL|method|getKey ()
 name|K
 name|getKey

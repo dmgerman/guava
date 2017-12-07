@@ -266,11 +266,17 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|annotation
+name|checkerframework
 operator|.
-name|Nullable
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -368,7 +374,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Delegates to {@link Collection#contains}. Returns {@code false} if the {@code contains} method    * throws a {@code ClassCastException} or {@code NullPointerException}.    */
-DECL|method|safeContains (Collection<?> collection, @Nullable Object object)
+DECL|method|safeContains (Collection<?> collection, @NullableDecl Object object)
 specifier|static
 name|boolean
 name|safeContains
@@ -380,7 +386,7 @@ argument_list|>
 name|collection
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|object
 parameter_list|)
@@ -415,7 +421,7 @@ return|;
 block|}
 block|}
 comment|/**    * Delegates to {@link Collection#remove}. Returns {@code false} if the {@code remove} method    * throws a {@code ClassCastException} or {@code NullPointerException}.    */
-DECL|method|safeRemove (Collection<?> collection, @Nullable Object object)
+DECL|method|safeRemove (Collection<?> collection, @NullableDecl Object object)
 specifier|static
 name|boolean
 name|safeRemove
@@ -427,7 +433,7 @@ argument_list|>
 name|collection
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|object
 parameter_list|)
@@ -657,13 +663,13 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|contains (@ullable Object element)
+DECL|method|contains (@ullableDecl Object element)
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|element
 parameter_list|)
@@ -1975,13 +1981,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|contains (@ullable Object obj)
+DECL|method|contains (@ullableDecl Object obj)
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|obj
 parameter_list|)
@@ -2495,13 +2501,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|contains (@ullable Object obj)
+DECL|method|contains (@ullableDecl Object obj)
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|obj
 parameter_list|)

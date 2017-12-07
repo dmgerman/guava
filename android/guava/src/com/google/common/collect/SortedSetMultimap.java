@@ -96,11 +96,17 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|annotation
+name|checkerframework
 operator|.
-name|Nullable
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -132,7 +138,7 @@ comment|// Following Javadoc copied from Multimap.
 comment|/**    * Returns a collection view of all values associated with a key. If no mappings in the multimap    * have the provided key, an empty collection is returned.    *    *<p>Changes to the returned collection will update the underlying multimap, and vice versa.    *    *<p>Because a {@code SortedSetMultimap} has unique sorted values for a given key, this method    * returns a {@link SortedSet}, instead of the {@link java.util.Collection} specified in the    * {@link Multimap} interface.    */
 annotation|@
 name|Override
-DECL|method|get (@ullable K key)
+DECL|method|get (@ullableDecl K key)
 name|SortedSet
 argument_list|<
 name|V
@@ -140,7 +146,7 @@ argument_list|>
 name|get
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|K
 name|key
 parameter_list|)
@@ -150,7 +156,7 @@ annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
-DECL|method|removeAll (@ullable Object key)
+DECL|method|removeAll (@ullableDecl Object key)
 name|SortedSet
 argument_list|<
 name|V
@@ -158,7 +164,7 @@ argument_list|>
 name|removeAll
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|key
 parameter_list|)

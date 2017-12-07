@@ -232,11 +232,17 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|annotation
+name|checkerframework
 operator|.
-name|Nullable
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -304,7 +310,7 @@ name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
-DECL|method|create (@ullable Comparator<? super E> comparator)
+DECL|method|create (@ullableDecl Comparator<? super E> comparator)
 specifier|public
 specifier|static
 parameter_list|<
@@ -317,7 +323,7 @@ argument_list|>
 name|create
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Comparator
 argument_list|<
 name|?
@@ -583,7 +589,7 @@ name|long
 name|treeAggregate
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|AvlNode
 argument_list|<
 name|?
@@ -632,7 +638,7 @@ name|long
 name|treeAggregate
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|AvlNode
 argument_list|<
 name|?
@@ -668,13 +674,13 @@ argument_list|>
 name|node
 parameter_list|)
 function_decl|;
-DECL|method|treeAggregate (@ullable AvlNode<?> root)
+DECL|method|treeAggregate (@ullableDecl AvlNode<?> root)
 specifier|abstract
 name|long
 name|treeAggregate
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|AvlNode
 argument_list|<
 name|?
@@ -753,7 +759,7 @@ return|return
 name|total
 return|;
 block|}
-DECL|method|aggregateBelowRange (Aggregate aggr, @Nullable AvlNode<E> node)
+DECL|method|aggregateBelowRange (Aggregate aggr, @NullableDecl AvlNode<E> node)
 specifier|private
 name|long
 name|aggregateBelowRange
@@ -762,7 +768,7 @@ name|Aggregate
 name|aggr
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|AvlNode
 argument_list|<
 name|E
@@ -904,7 +910,7 @@ argument_list|)
 return|;
 block|}
 block|}
-DECL|method|aggregateAboveRange (Aggregate aggr, @Nullable AvlNode<E> node)
+DECL|method|aggregateAboveRange (Aggregate aggr, @NullableDecl AvlNode<E> node)
 specifier|private
 name|long
 name|aggregateAboveRange
@@ -913,7 +919,7 @@ name|Aggregate
 name|aggr
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|AvlNode
 argument_list|<
 name|E
@@ -1100,13 +1106,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|count (@ullable Object element)
+DECL|method|count (@ullableDecl Object element)
 specifier|public
 name|int
 name|count
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|element
 parameter_list|)
@@ -1185,13 +1191,13 @@ annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
-DECL|method|add (@ullable E element, int occurrences)
+DECL|method|add (@ullableDecl E element, int occurrences)
 specifier|public
 name|int
 name|add
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|E
 name|element
 parameter_list|,
@@ -1348,13 +1354,13 @@ annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
-DECL|method|remove (@ullable Object element, int occurrences)
+DECL|method|remove (@ullableDecl Object element, int occurrences)
 specifier|public
 name|int
 name|remove
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|element
 parameter_list|,
@@ -1494,13 +1500,13 @@ annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
-DECL|method|setCount (@ullable E element, int count)
+DECL|method|setCount (@ullableDecl E element, int count)
 specifier|public
 name|int
 name|setCount
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|E
 name|element
 parameter_list|,
@@ -1625,13 +1631,13 @@ annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
-DECL|method|setCount (@ullable E element, int oldCount, int newCount)
+DECL|method|setCount (@ullableDecl E element, int oldCount, int newCount)
 specifier|public
 name|boolean
 name|setCount
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|E
 name|element
 parameter_list|,
@@ -1850,7 +1856,7 @@ return|;
 block|}
 comment|/** Returns the first node in the tree that is in range. */
 annotation|@
-name|Nullable
+name|NullableDecl
 DECL|method|firstNode ()
 specifier|private
 name|AvlNode
@@ -1998,7 +2004,7 @@ name|node
 return|;
 block|}
 annotation|@
-name|Nullable
+name|NullableDecl
 DECL|method|lastNode ()
 specifier|private
 name|AvlNode
@@ -2515,7 +2521,7 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|headMultiset (@ullable E upperBound, BoundType boundType)
+DECL|method|headMultiset (@ullableDecl E upperBound, BoundType boundType)
 specifier|public
 name|SortedMultiset
 argument_list|<
@@ -2524,7 +2530,7 @@ argument_list|>
 name|headMultiset
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|E
 name|upperBound
 parameter_list|,
@@ -2564,7 +2570,7 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|tailMultiset (@ullable E lowerBound, BoundType boundType)
+DECL|method|tailMultiset (@ullableDecl E lowerBound, BoundType boundType)
 specifier|public
 name|SortedMultiset
 argument_list|<
@@ -2573,7 +2579,7 @@ argument_list|>
 name|tailMultiset
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|E
 name|lowerBound
 parameter_list|,
@@ -2611,13 +2617,13 @@ name|header
 argument_list|)
 return|;
 block|}
-DECL|method|distinctElements (@ullable AvlNode<?> node)
+DECL|method|distinctElements (@ullableDecl AvlNode<?> node)
 specifier|static
 name|int
 name|distinctElements
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|AvlNode
 argument_list|<
 name|?
@@ -2651,13 +2657,13 @@ parameter_list|>
 block|{
 DECL|field|value
 annotation|@
-name|Nullable
+name|NullableDecl
 specifier|private
 name|T
 name|value
 decl_stmt|;
 annotation|@
-name|Nullable
+name|NullableDecl
 DECL|method|get ()
 specifier|public
 name|T
@@ -2668,13 +2674,13 @@ return|return
 name|value
 return|;
 block|}
-DECL|method|checkAndSet (@ullable T expected, T newValue)
+DECL|method|checkAndSet (@ullableDecl T expected, T newValue)
 specifier|public
 name|void
 name|checkAndSet
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|T
 name|expected
 parameter_list|,
@@ -2720,7 +2726,7 @@ argument_list|>
 block|{
 DECL|field|elem
 annotation|@
-name|Nullable
+name|NullableDecl
 specifier|private
 specifier|final
 name|E
@@ -2779,11 +2785,11 @@ name|E
 argument_list|>
 name|succ
 decl_stmt|;
-DECL|method|AvlNode (@ullable E elem, int elemCount)
+DECL|method|AvlNode (@ullableDecl E elem, int elemCount)
 name|AvlNode
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|E
 name|elem
 parameter_list|,
@@ -3048,7 +3054,7 @@ return|return
 name|this
 return|;
 block|}
-DECL|method|add (Comparator<? super E> comparator, @Nullable E e, int count, int[] result)
+DECL|method|add (Comparator<? super E> comparator, @NullableDecl E e, int count, int[] result)
 name|AvlNode
 argument_list|<
 name|E
@@ -3064,7 +3070,7 @@ argument_list|>
 name|comparator
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|E
 name|e
 parameter_list|,
@@ -3323,7 +3329,7 @@ return|return
 name|this
 return|;
 block|}
-DECL|method|remove (Comparator<? super E> comparator, @Nullable E e, int count, int[] result)
+DECL|method|remove ( Comparator<? super E> comparator, @NullableDecl E e, int count, int[] result)
 name|AvlNode
 argument_list|<
 name|E
@@ -3339,7 +3345,7 @@ argument_list|>
 name|comparator
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|E
 name|e
 parameter_list|,
@@ -3610,7 +3616,7 @@ name|this
 return|;
 block|}
 block|}
-DECL|method|setCount (Comparator<? super E> comparator, @Nullable E e, int count, int[] result)
+DECL|method|setCount ( Comparator<? super E> comparator, @NullableDecl E e, int count, int[] result)
 name|AvlNode
 argument_list|<
 name|E
@@ -3626,7 +3632,7 @@ argument_list|>
 name|comparator
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|E
 name|e
 parameter_list|,
@@ -3925,7 +3931,7 @@ return|return
 name|this
 return|;
 block|}
-DECL|method|setCount ( Comparator<? super E> comparator, @Nullable E e, int expectedCount, int newCount, int[] result)
+DECL|method|setCount ( Comparator<? super E> comparator, @NullableDecl E e, int expectedCount, int newCount, int[] result)
 name|AvlNode
 argument_list|<
 name|E
@@ -3941,7 +3947,7 @@ argument_list|>
 name|comparator
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|E
 name|e
 parameter_list|,
@@ -4874,14 +4880,14 @@ return|return
 name|newTop
 return|;
 block|}
-DECL|method|totalCount (@ullable AvlNode<?> node)
+DECL|method|totalCount (@ullableDecl AvlNode<?> node)
 specifier|private
 specifier|static
 name|long
 name|totalCount
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|AvlNode
 argument_list|<
 name|?
@@ -4903,14 +4909,14 @@ operator|.
 name|totalCount
 return|;
 block|}
-DECL|method|height (@ullable AvlNode<?> node)
+DECL|method|height (@ullableDecl AvlNode<?> node)
 specifier|private
 specifier|static
 name|int
 name|height
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|AvlNode
 argument_list|<
 name|?
@@ -4933,7 +4939,7 @@ name|height
 return|;
 block|}
 annotation|@
-name|Nullable
+name|NullableDecl
 DECL|method|ceiling (Comparator<? super E> comparator, E e)
 specifier|private
 name|AvlNode
@@ -5034,7 +5040,7 @@ return|;
 block|}
 block|}
 annotation|@
-name|Nullable
+name|NullableDecl
 DECL|method|floor (Comparator<? super E> comparator, E e)
 specifier|private
 name|AvlNode

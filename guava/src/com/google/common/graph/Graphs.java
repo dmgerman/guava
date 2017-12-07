@@ -210,11 +210,17 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|annotation
+name|checkerframework
 operator|.
-name|Nullable
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -422,7 +428,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Performs a traversal of the nodes reachable from {@code node}. If we ever reach a node we've    * already visited (following only outgoing edges and without reusing edges), we know there's a    * cycle in the graph.    */
-DECL|method|subgraphHasCycle ( Graph<N> graph, Map<Object, NodeVisitState> visitedNodes, N node, @Nullable N previousNode)
+DECL|method|subgraphHasCycle ( Graph<N> graph, Map<Object, NodeVisitState> visitedNodes, N node, @NullableDecl N previousNode)
 specifier|private
 specifier|static
 parameter_list|<
@@ -449,7 +455,7 @@ name|N
 name|node
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|N
 name|previousNode
 parameter_list|)
@@ -558,7 +564,7 @@ literal|false
 return|;
 block|}
 comment|/**    * Determines whether an edge has already been used during traversal. In the directed case a cycle    * is always detected before reusing an edge, so no special logic is required. In the undirected    * case, we must take care not to "backtrack" over an edge (i.e. going from A to B and then going    * from B to A).    */
-DECL|method|canTraverseWithoutReusingEdge ( Graph<?> graph, Object nextNode, @Nullable Object previousNode)
+DECL|method|canTraverseWithoutReusingEdge ( Graph<?> graph, Object nextNode, @NullableDecl Object previousNode)
 specifier|private
 specifier|static
 name|boolean
@@ -574,7 +580,7 @@ name|Object
 name|nextNode
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|previousNode
 parameter_list|)
@@ -947,14 +953,14 @@ comment|/**    * @deprecated Use {@link Graph#equals(Object)} instead. This meth
 comment|// TODO(user): Delete this method.
 annotation|@
 name|Deprecated
-DECL|method|equivalent (@ullable Graph<?> graphA, @Nullable Graph<?> graphB)
+DECL|method|equivalent (@ullableDecl Graph<?> graphA, @NullableDecl Graph<?> graphB)
 specifier|public
 specifier|static
 name|boolean
 name|equivalent
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Graph
 argument_list|<
 name|?
@@ -962,7 +968,7 @@ argument_list|>
 name|graphA
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Graph
 argument_list|<
 name|?
@@ -985,14 +991,14 @@ comment|/**    * @deprecated Use {@link ValueGraph#equals(Object)} instead. This
 comment|// TODO(user): Delete this method.
 annotation|@
 name|Deprecated
-DECL|method|equivalent ( @ullable ValueGraph<?, ?> graphA, @Nullable ValueGraph<?, ?> graphB)
+DECL|method|equivalent ( @ullableDecl ValueGraph<?, ?> graphA, @NullableDecl ValueGraph<?, ?> graphB)
 specifier|public
 specifier|static
 name|boolean
 name|equivalent
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|ValueGraph
 argument_list|<
 name|?
@@ -1002,7 +1008,7 @@ argument_list|>
 name|graphA
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|ValueGraph
 argument_list|<
 name|?
@@ -1027,14 +1033,14 @@ comment|/**    * @deprecated Use {@link Network#equals(Object)} instead. This me
 comment|// TODO(user): Delete this method.
 annotation|@
 name|Deprecated
-DECL|method|equivalent ( @ullable Network<?, ?> networkA, @Nullable Network<?, ?> networkB)
+DECL|method|equivalent ( @ullableDecl Network<?, ?> networkA, @NullableDecl Network<?, ?> networkB)
 specifier|public
 specifier|static
 name|boolean
 name|equivalent
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Network
 argument_list|<
 name|?
@@ -1044,7 +1050,7 @@ argument_list|>
 name|networkA
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Network
 argument_list|<
 name|?
@@ -1605,8 +1611,8 @@ block|}
 annotation|@
 name|Override
 annotation|@
-name|Nullable
-DECL|method|edgeValueOrDefault (N nodeU, N nodeV, @Nullable V defaultValue)
+name|NullableDecl
+DECL|method|edgeValueOrDefault (N nodeU, N nodeV, @NullableDecl V defaultValue)
 specifier|public
 name|V
 name|edgeValueOrDefault
@@ -1618,7 +1624,7 @@ name|N
 name|nodeV
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|V
 name|defaultValue
 parameter_list|)

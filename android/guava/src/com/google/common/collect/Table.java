@@ -104,11 +104,17 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|annotation
+name|checkerframework
 operator|.
-name|Nullable
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -134,12 +140,12 @@ block|{
 comment|// TODO(jlevy): Consider adding methods similar to ConcurrentMap methods.
 comment|// Accessors
 comment|/**    * Returns {@code true} if the table contains a mapping with the specified row and column keys.    *    * @param rowKey key of row to search for    * @param columnKey key of column to search for    */
-DECL|method|contains ( @ullable @ompatibleWithR) Object rowKey, @Nullable @CompatibleWith(R) Object columnKey)
+DECL|method|contains ( @ullableDecl @ompatibleWithR) Object rowKey, @NullableDecl @CompatibleWith(R) Object columnKey)
 name|boolean
 name|contains
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 annotation|@
 name|CompatibleWith
 argument_list|(
@@ -149,7 +155,7 @@ name|Object
 name|rowKey
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 annotation|@
 name|CompatibleWith
 argument_list|(
@@ -160,12 +166,12 @@ name|columnKey
 parameter_list|)
 function_decl|;
 comment|/**    * Returns {@code true} if the table contains a mapping with the specified row key.    *    * @param rowKey key of row to search for    */
-DECL|method|containsRow (@ullable @ompatibleWithR) Object rowKey)
+DECL|method|containsRow (@ullableDecl @ompatibleWithR) Object rowKey)
 name|boolean
 name|containsRow
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 annotation|@
 name|CompatibleWith
 argument_list|(
@@ -176,12 +182,12 @@ name|rowKey
 parameter_list|)
 function_decl|;
 comment|/**    * Returns {@code true} if the table contains a mapping with the specified column.    *    * @param columnKey key of column to search for    */
-DECL|method|containsColumn (@ullable @ompatibleWithR) Object columnKey)
+DECL|method|containsColumn (@ullableDecl @ompatibleWithR) Object columnKey)
 name|boolean
 name|containsColumn
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 annotation|@
 name|CompatibleWith
 argument_list|(
@@ -192,12 +198,12 @@ name|columnKey
 parameter_list|)
 function_decl|;
 comment|/**    * Returns {@code true} if the table contains a mapping with the specified value.    *    * @param value value to search for    */
-DECL|method|containsValue (@ullable @ompatibleWithR) Object value)
+DECL|method|containsValue (@ullableDecl @ompatibleWithR) Object value)
 name|boolean
 name|containsValue
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 annotation|@
 name|CompatibleWith
 argument_list|(
@@ -208,12 +214,12 @@ name|value
 parameter_list|)
 function_decl|;
 comment|/**    * Returns the value corresponding to the given row and column keys, or {@code null} if no such    * mapping exists.    *    * @param rowKey key of row to search for    * @param columnKey key of column to search for    */
-DECL|method|get ( @ullable @ompatibleWithR) Object rowKey, @Nullable @CompatibleWith(R) Object columnKey)
+DECL|method|get ( @ullableDecl @ompatibleWithR) Object rowKey, @NullableDecl @CompatibleWith(R) Object columnKey)
 name|V
 name|get
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 annotation|@
 name|CompatibleWith
 argument_list|(
@@ -223,7 +229,7 @@ name|Object
 name|rowKey
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 annotation|@
 name|CompatibleWith
 argument_list|(
@@ -248,12 +254,12 @@ function_decl|;
 comment|/**    * Compares the specified object with this table for equality. Two tables are equal when their    * cell views, as returned by {@link #cellSet}, are equal.    */
 annotation|@
 name|Override
-DECL|method|equals (@ullable Object obj)
+DECL|method|equals (@ullableDecl Object obj)
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|obj
 parameter_list|)
@@ -277,7 +283,7 @@ comment|/**    * Associates the specified value with the specified keys. If the 
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
-name|Nullable
+name|NullableDecl
 DECL|method|put (R rowKey, C columnKey, V value)
 name|V
 name|put
@@ -318,13 +324,13 @@ comment|/**    * Removes the mapping, if any, associated with the given keys.   
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
-name|Nullable
-DECL|method|remove ( @ullable @ompatibleWithR) Object rowKey, @Nullable @CompatibleWith(R) Object columnKey)
+name|NullableDecl
+DECL|method|remove ( @ullableDecl @ompatibleWithR) Object rowKey, @NullableDecl @CompatibleWith(R) Object columnKey)
 name|V
 name|remove
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 annotation|@
 name|CompatibleWith
 argument_list|(
@@ -334,7 +340,7 @@ name|Object
 name|rowKey
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 annotation|@
 name|CompatibleWith
 argument_list|(
@@ -462,7 +468,7 @@ parameter_list|>
 block|{
 comment|/** Returns the row key of this cell. */
 annotation|@
-name|Nullable
+name|NullableDecl
 DECL|method|getRowKey ()
 name|R
 name|getRowKey
@@ -470,7 +476,7 @@ parameter_list|()
 function_decl|;
 comment|/** Returns the column key of this cell. */
 annotation|@
-name|Nullable
+name|NullableDecl
 DECL|method|getColumnKey ()
 name|C
 name|getColumnKey
@@ -478,7 +484,7 @@ parameter_list|()
 function_decl|;
 comment|/** Returns the value of this cell. */
 annotation|@
-name|Nullable
+name|NullableDecl
 DECL|method|getValue ()
 name|V
 name|getValue
@@ -487,12 +493,12 @@ function_decl|;
 comment|/**      * Compares the specified object with this cell for equality. Two cells are equal when they have      * equal row keys, column keys, and values.      */
 annotation|@
 name|Override
-DECL|method|equals (@ullable Object obj)
+DECL|method|equals (@ullableDecl Object obj)
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|obj
 parameter_list|)

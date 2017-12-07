@@ -384,11 +384,17 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|annotation
+name|checkerframework
 operator|.
-name|Nullable
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -5770,13 +5776,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|contains (@ullable Object o)
+DECL|method|contains (@ullableDecl Object o)
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|o
 parameter_list|)
@@ -5849,13 +5855,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|remove (@ullable Object o)
+DECL|method|remove (@ullableDecl Object o)
 specifier|public
 name|boolean
 name|remove
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|o
 parameter_list|)
@@ -5940,13 +5946,13 @@ block|}
 block|}
 annotation|@
 name|Override
-DECL|method|contains (@ullable Object element)
+DECL|method|contains (@ullableDecl Object element)
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|element
 parameter_list|)
@@ -5988,13 +5994,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|count (@ullable Object element)
+DECL|method|count (@ullableDecl Object element)
 specifier|public
 name|int
 name|count
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|element
 parameter_list|)
@@ -6034,13 +6040,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|remove (@ullable Object element, int occurrences)
+DECL|method|remove (@ullableDecl Object element, int occurrences)
 specifier|public
 name|int
 name|remove
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|element
 parameter_list|,
@@ -6249,13 +6255,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|contains (@ullable Object o)
+DECL|method|contains (@ullableDecl Object o)
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|o
 parameter_list|)
@@ -6315,13 +6321,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|remove (@ullable Object o)
+DECL|method|remove (@ullableDecl Object o)
 specifier|public
 name|boolean
 name|remove
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|o
 parameter_list|)
@@ -7714,7 +7720,7 @@ name|predicate
 argument_list|)
 return|;
 block|}
-DECL|method|equalsImpl (Multimap<?, ?> multimap, @Nullable Object object)
+DECL|method|equalsImpl (Multimap<?, ?> multimap, @NullableDecl Object object)
 specifier|static
 name|boolean
 name|equalsImpl
@@ -7728,7 +7734,7 @@ argument_list|>
 name|multimap
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|object
 parameter_list|)

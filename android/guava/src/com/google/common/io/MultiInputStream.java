@@ -78,11 +78,17 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|annotation
+name|checkerframework
 operator|.
-name|Nullable
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -298,13 +304,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|read (@ullable byte[] b, int off, int len)
+DECL|method|read (@ullableDecl byte[] b, int off, int len)
 specifier|public
 name|int
 name|read
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|byte
 index|[]
 name|b

@@ -62,11 +62,17 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|annotation
+name|checkerframework
 operator|.
-name|Nullable
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -108,7 +114,7 @@ throw|;
 block|}
 block|}
 comment|/**    * Ensures that {@code expression} is {@code true}, throwing a {@code VerifyException} with a    * custom message otherwise.    *    * @param expression a boolean expression    * @param errorMessageTemplate a template for the exception message should the check fail. The    *     message is formed by replacing each {@code %s} placeholder in the template with an    *     argument. These are matched by position - the first {@code %s} gets {@code    *     errorMessageArgs[0]}, etc. Unmatched arguments will be appended to the formatted message in    *     square braces. Unmatched placeholders will be left as-is.    * @param errorMessageArgs the arguments to be substituted into the message template. Arguments    *     are converted to strings using {@link String#valueOf(Object)}.    * @throws VerifyException if {@code expression} is {@code false}    * @see Preconditions#checkState Preconditions.checkState()    */
-DECL|method|verify ( boolean expression, @Nullable String errorMessageTemplate, @Nullable Object... errorMessageArgs)
+DECL|method|verify ( boolean expression, @NullableDecl String errorMessageTemplate, @NullableDecl Object... errorMessageArgs)
 specifier|public
 specifier|static
 name|void
@@ -118,12 +124,12 @@ name|boolean
 name|expression
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|String
 name|errorMessageTemplate
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 modifier|...
 name|errorMessageArgs
@@ -150,7 +156,7 @@ throw|;
 block|}
 block|}
 comment|/**    * Ensures that {@code expression} is {@code true}, throwing a {@code VerifyException} with a    * custom message otherwise.    *    *<p>See {@link #verify(boolean, String, Object...)} for details.    *    * @since 23.1 (varargs overload since 17.0)    */
-DECL|method|verify (boolean expression, @Nullable String errorMessageTemplate, char p1)
+DECL|method|verify ( boolean expression, @NullableDecl String errorMessageTemplate, char p1)
 specifier|public
 specifier|static
 name|void
@@ -160,7 +166,7 @@ name|boolean
 name|expression
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|String
 name|errorMessageTemplate
 parameter_list|,
@@ -189,7 +195,7 @@ throw|;
 block|}
 block|}
 comment|/**    * Ensures that {@code expression} is {@code true}, throwing a {@code VerifyException} with a    * custom message otherwise.    *    *<p>See {@link #verify(boolean, String, Object...)} for details.    *    * @since 23.1 (varargs overload since 17.0)    */
-DECL|method|verify (boolean expression, @Nullable String errorMessageTemplate, int p1)
+DECL|method|verify (boolean expression, @NullableDecl String errorMessageTemplate, int p1)
 specifier|public
 specifier|static
 name|void
@@ -199,7 +205,7 @@ name|boolean
 name|expression
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|String
 name|errorMessageTemplate
 parameter_list|,
@@ -228,7 +234,7 @@ throw|;
 block|}
 block|}
 comment|/**    * Ensures that {@code expression} is {@code true}, throwing a {@code VerifyException} with a    * custom message otherwise.    *    *<p>See {@link #verify(boolean, String, Object...)} for details.    *    * @since 23.1 (varargs overload since 17.0)    */
-DECL|method|verify (boolean expression, @Nullable String errorMessageTemplate, long p1)
+DECL|method|verify ( boolean expression, @NullableDecl String errorMessageTemplate, long p1)
 specifier|public
 specifier|static
 name|void
@@ -238,7 +244,7 @@ name|boolean
 name|expression
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|String
 name|errorMessageTemplate
 parameter_list|,
@@ -267,7 +273,7 @@ throw|;
 block|}
 block|}
 comment|/**    * Ensures that {@code expression} is {@code true}, throwing a {@code VerifyException} with a    * custom message otherwise.    *    *<p>See {@link #verify(boolean, String, Object...)} for details.    *    * @since 23.1 (varargs overload since 17.0)    */
-DECL|method|verify ( boolean expression, @Nullable String errorMessageTemplate, @Nullable Object p1)
+DECL|method|verify ( boolean expression, @NullableDecl String errorMessageTemplate, @NullableDecl Object p1)
 specifier|public
 specifier|static
 name|void
@@ -277,12 +283,12 @@ name|boolean
 name|expression
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|String
 name|errorMessageTemplate
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|p1
 parameter_list|)
@@ -308,7 +314,7 @@ throw|;
 block|}
 block|}
 comment|/**    * Ensures that {@code expression} is {@code true}, throwing a {@code VerifyException} with a    * custom message otherwise.    *    *<p>See {@link #verify(boolean, String, Object...)} for details.    *    * @since 23.1 (varargs overload since 17.0)    */
-DECL|method|verify ( boolean expression, @Nullable String errorMessageTemplate, char p1, char p2)
+DECL|method|verify ( boolean expression, @NullableDecl String errorMessageTemplate, char p1, char p2)
 specifier|public
 specifier|static
 name|void
@@ -318,55 +324,11 @@ name|boolean
 name|expression
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|String
 name|errorMessageTemplate
 parameter_list|,
 name|char
-name|p1
-parameter_list|,
-name|char
-name|p2
-parameter_list|)
-block|{
-if|if
-condition|(
-operator|!
-name|expression
-condition|)
-block|{
-throw|throw
-operator|new
-name|VerifyException
-argument_list|(
-name|format
-argument_list|(
-name|errorMessageTemplate
-argument_list|,
-name|p1
-argument_list|,
-name|p2
-argument_list|)
-argument_list|)
-throw|;
-block|}
-block|}
-comment|/**    * Ensures that {@code expression} is {@code true}, throwing a {@code VerifyException} with a    * custom message otherwise.    *    *<p>See {@link #verify(boolean, String, Object...)} for details.    *    * @since 23.1 (varargs overload since 17.0)    */
-DECL|method|verify ( boolean expression, @Nullable String errorMessageTemplate, int p1, char p2)
-specifier|public
-specifier|static
-name|void
-name|verify
-parameter_list|(
-name|boolean
-name|expression
-parameter_list|,
-annotation|@
-name|Nullable
-name|String
-name|errorMessageTemplate
-parameter_list|,
-name|int
 name|p1
 parameter_list|,
 name|char
@@ -396,7 +358,7 @@ throw|;
 block|}
 block|}
 comment|/**    * Ensures that {@code expression} is {@code true}, throwing a {@code VerifyException} with a    * custom message otherwise.    *    *<p>See {@link #verify(boolean, String, Object...)} for details.    *    * @since 23.1 (varargs overload since 17.0)    */
-DECL|method|verify ( boolean expression, @Nullable String errorMessageTemplate, long p1, char p2)
+DECL|method|verify ( boolean expression, @NullableDecl String errorMessageTemplate, int p1, char p2)
 specifier|public
 specifier|static
 name|void
@@ -406,7 +368,51 @@ name|boolean
 name|expression
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
+name|String
+name|errorMessageTemplate
+parameter_list|,
+name|int
+name|p1
+parameter_list|,
+name|char
+name|p2
+parameter_list|)
+block|{
+if|if
+condition|(
+operator|!
+name|expression
+condition|)
+block|{
+throw|throw
+operator|new
+name|VerifyException
+argument_list|(
+name|format
+argument_list|(
+name|errorMessageTemplate
+argument_list|,
+name|p1
+argument_list|,
+name|p2
+argument_list|)
+argument_list|)
+throw|;
+block|}
+block|}
+comment|/**    * Ensures that {@code expression} is {@code true}, throwing a {@code VerifyException} with a    * custom message otherwise.    *    *<p>See {@link #verify(boolean, String, Object...)} for details.    *    * @since 23.1 (varargs overload since 17.0)    */
+DECL|method|verify ( boolean expression, @NullableDecl String errorMessageTemplate, long p1, char p2)
+specifier|public
+specifier|static
+name|void
+name|verify
+parameter_list|(
+name|boolean
+name|expression
+parameter_list|,
+annotation|@
+name|NullableDecl
 name|String
 name|errorMessageTemplate
 parameter_list|,
@@ -440,7 +446,7 @@ throw|;
 block|}
 block|}
 comment|/**    * Ensures that {@code expression} is {@code true}, throwing a {@code VerifyException} with a    * custom message otherwise.    *    *<p>See {@link #verify(boolean, String, Object...)} for details.    *    * @since 23.1 (varargs overload since 17.0)    */
-DECL|method|verify ( boolean expression, @Nullable String errorMessageTemplate, @Nullable Object p1, char p2)
+DECL|method|verify ( boolean expression, @NullableDecl String errorMessageTemplate, @NullableDecl Object p1, char p2)
 specifier|public
 specifier|static
 name|void
@@ -450,12 +456,12 @@ name|boolean
 name|expression
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|String
 name|errorMessageTemplate
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|p1
 parameter_list|,
@@ -486,7 +492,7 @@ throw|;
 block|}
 block|}
 comment|/**    * Ensures that {@code expression} is {@code true}, throwing a {@code VerifyException} with a    * custom message otherwise.    *    *<p>See {@link #verify(boolean, String, Object...)} for details.    *    * @since 23.1 (varargs overload since 17.0)    */
-DECL|method|verify ( boolean expression, @Nullable String errorMessageTemplate, char p1, int p2)
+DECL|method|verify ( boolean expression, @NullableDecl String errorMessageTemplate, char p1, int p2)
 specifier|public
 specifier|static
 name|void
@@ -496,7 +502,7 @@ name|boolean
 name|expression
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|String
 name|errorMessageTemplate
 parameter_list|,
@@ -530,7 +536,7 @@ throw|;
 block|}
 block|}
 comment|/**    * Ensures that {@code expression} is {@code true}, throwing a {@code VerifyException} with a    * custom message otherwise.    *    *<p>See {@link #verify(boolean, String, Object...)} for details.    *    * @since 23.1 (varargs overload since 17.0)    */
-DECL|method|verify ( boolean expression, @Nullable String errorMessageTemplate, int p1, int p2)
+DECL|method|verify ( boolean expression, @NullableDecl String errorMessageTemplate, int p1, int p2)
 specifier|public
 specifier|static
 name|void
@@ -540,7 +546,7 @@ name|boolean
 name|expression
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|String
 name|errorMessageTemplate
 parameter_list|,
@@ -574,7 +580,7 @@ throw|;
 block|}
 block|}
 comment|/**    * Ensures that {@code expression} is {@code true}, throwing a {@code VerifyException} with a    * custom message otherwise.    *    *<p>See {@link #verify(boolean, String, Object...)} for details.    *    * @since 23.1 (varargs overload since 17.0)    */
-DECL|method|verify ( boolean expression, @Nullable String errorMessageTemplate, long p1, int p2)
+DECL|method|verify ( boolean expression, @NullableDecl String errorMessageTemplate, long p1, int p2)
 specifier|public
 specifier|static
 name|void
@@ -584,7 +590,7 @@ name|boolean
 name|expression
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|String
 name|errorMessageTemplate
 parameter_list|,
@@ -618,7 +624,7 @@ throw|;
 block|}
 block|}
 comment|/**    * Ensures that {@code expression} is {@code true}, throwing a {@code VerifyException} with a    * custom message otherwise.    *    *<p>See {@link #verify(boolean, String, Object...)} for details.    *    * @since 23.1 (varargs overload since 17.0)    */
-DECL|method|verify ( boolean expression, @Nullable String errorMessageTemplate, @Nullable Object p1, int p2)
+DECL|method|verify ( boolean expression, @NullableDecl String errorMessageTemplate, @NullableDecl Object p1, int p2)
 specifier|public
 specifier|static
 name|void
@@ -628,12 +634,12 @@ name|boolean
 name|expression
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|String
 name|errorMessageTemplate
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|p1
 parameter_list|,
@@ -664,7 +670,7 @@ throw|;
 block|}
 block|}
 comment|/**    * Ensures that {@code expression} is {@code true}, throwing a {@code VerifyException} with a    * custom message otherwise.    *    *<p>See {@link #verify(boolean, String, Object...)} for details.    *    * @since 23.1 (varargs overload since 17.0)    */
-DECL|method|verify ( boolean expression, @Nullable String errorMessageTemplate, char p1, long p2)
+DECL|method|verify ( boolean expression, @NullableDecl String errorMessageTemplate, char p1, long p2)
 specifier|public
 specifier|static
 name|void
@@ -674,7 +680,7 @@ name|boolean
 name|expression
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|String
 name|errorMessageTemplate
 parameter_list|,
@@ -708,7 +714,7 @@ throw|;
 block|}
 block|}
 comment|/**    * Ensures that {@code expression} is {@code true}, throwing a {@code VerifyException} with a    * custom message otherwise.    *    *<p>See {@link #verify(boolean, String, Object...)} for details.    *    * @since 23.1 (varargs overload since 17.0)    */
-DECL|method|verify ( boolean expression, @Nullable String errorMessageTemplate, int p1, long p2)
+DECL|method|verify ( boolean expression, @NullableDecl String errorMessageTemplate, int p1, long p2)
 specifier|public
 specifier|static
 name|void
@@ -718,7 +724,7 @@ name|boolean
 name|expression
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|String
 name|errorMessageTemplate
 parameter_list|,
@@ -752,7 +758,7 @@ throw|;
 block|}
 block|}
 comment|/**    * Ensures that {@code expression} is {@code true}, throwing a {@code VerifyException} with a    * custom message otherwise.    *    *<p>See {@link #verify(boolean, String, Object...)} for details.    *    * @since 23.1 (varargs overload since 17.0)    */
-DECL|method|verify ( boolean expression, @Nullable String errorMessageTemplate, long p1, long p2)
+DECL|method|verify ( boolean expression, @NullableDecl String errorMessageTemplate, long p1, long p2)
 specifier|public
 specifier|static
 name|void
@@ -762,7 +768,7 @@ name|boolean
 name|expression
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|String
 name|errorMessageTemplate
 parameter_list|,
@@ -796,7 +802,7 @@ throw|;
 block|}
 block|}
 comment|/**    * Ensures that {@code expression} is {@code true}, throwing a {@code VerifyException} with a    * custom message otherwise.    *    *<p>See {@link #verify(boolean, String, Object...)} for details.    *    * @since 23.1 (varargs overload since 17.0)    */
-DECL|method|verify ( boolean expression, @Nullable String errorMessageTemplate, @Nullable Object p1, long p2)
+DECL|method|verify ( boolean expression, @NullableDecl String errorMessageTemplate, @NullableDecl Object p1, long p2)
 specifier|public
 specifier|static
 name|void
@@ -806,12 +812,12 @@ name|boolean
 name|expression
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|String
 name|errorMessageTemplate
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|p1
 parameter_list|,
@@ -842,7 +848,7 @@ throw|;
 block|}
 block|}
 comment|/**    * Ensures that {@code expression} is {@code true}, throwing a {@code VerifyException} with a    * custom message otherwise.    *    *<p>See {@link #verify(boolean, String, Object...)} for details.    *    * @since 23.1 (varargs overload since 17.0)    */
-DECL|method|verify ( boolean expression, @Nullable String errorMessageTemplate, char p1, @Nullable Object p2)
+DECL|method|verify ( boolean expression, @NullableDecl String errorMessageTemplate, char p1, @NullableDecl Object p2)
 specifier|public
 specifier|static
 name|void
@@ -852,7 +858,7 @@ name|boolean
 name|expression
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|String
 name|errorMessageTemplate
 parameter_list|,
@@ -860,7 +866,7 @@ name|char
 name|p1
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|p2
 parameter_list|)
@@ -888,7 +894,7 @@ throw|;
 block|}
 block|}
 comment|/**    * Ensures that {@code expression} is {@code true}, throwing a {@code VerifyException} with a    * custom message otherwise.    *    *<p>See {@link #verify(boolean, String, Object...)} for details.    *    * @since 23.1 (varargs overload since 17.0)    */
-DECL|method|verify ( boolean expression, @Nullable String errorMessageTemplate, int p1, @Nullable Object p2)
+DECL|method|verify ( boolean expression, @NullableDecl String errorMessageTemplate, int p1, @NullableDecl Object p2)
 specifier|public
 specifier|static
 name|void
@@ -898,7 +904,7 @@ name|boolean
 name|expression
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|String
 name|errorMessageTemplate
 parameter_list|,
@@ -906,7 +912,7 @@ name|int
 name|p1
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|p2
 parameter_list|)
@@ -934,7 +940,7 @@ throw|;
 block|}
 block|}
 comment|/**    * Ensures that {@code expression} is {@code true}, throwing a {@code VerifyException} with a    * custom message otherwise.    *    *<p>See {@link #verify(boolean, String, Object...)} for details.    *    * @since 23.1 (varargs overload since 17.0)    */
-DECL|method|verify ( boolean expression, @Nullable String errorMessageTemplate, long p1, @Nullable Object p2)
+DECL|method|verify ( boolean expression, @NullableDecl String errorMessageTemplate, long p1, @NullableDecl Object p2)
 specifier|public
 specifier|static
 name|void
@@ -944,7 +950,7 @@ name|boolean
 name|expression
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|String
 name|errorMessageTemplate
 parameter_list|,
@@ -952,7 +958,7 @@ name|long
 name|p1
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|p2
 parameter_list|)
@@ -980,7 +986,7 @@ throw|;
 block|}
 block|}
 comment|/**    * Ensures that {@code expression} is {@code true}, throwing a {@code VerifyException} with a    * custom message otherwise.    *    *<p>See {@link #verify(boolean, String, Object...)} for details.    *    * @since 23.1 (varargs overload since 17.0)    */
-DECL|method|verify ( boolean expression, @Nullable String errorMessageTemplate, @Nullable Object p1, @Nullable Object p2)
+DECL|method|verify ( boolean expression, @NullableDecl String errorMessageTemplate, @NullableDecl Object p1, @NullableDecl Object p2)
 specifier|public
 specifier|static
 name|void
@@ -990,17 +996,17 @@ name|boolean
 name|expression
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|String
 name|errorMessageTemplate
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|p1
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|p2
 parameter_list|)
@@ -1028,7 +1034,7 @@ throw|;
 block|}
 block|}
 comment|/**    * Ensures that {@code expression} is {@code true}, throwing a {@code VerifyException} with a    * custom message otherwise.    *    *<p>See {@link #verify(boolean, String, Object...)} for details.    *    * @since 23.1 (varargs overload since 17.0)    */
-DECL|method|verify ( boolean expression, @Nullable String errorMessageTemplate, @Nullable Object p1, @Nullable Object p2, @Nullable Object p3)
+DECL|method|verify ( boolean expression, @NullableDecl String errorMessageTemplate, @NullableDecl Object p1, @NullableDecl Object p2, @NullableDecl Object p3)
 specifier|public
 specifier|static
 name|void
@@ -1038,22 +1044,22 @@ name|boolean
 name|expression
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|String
 name|errorMessageTemplate
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|p1
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|p2
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|p3
 parameter_list|)
@@ -1083,7 +1089,7 @@ throw|;
 block|}
 block|}
 comment|/**    * Ensures that {@code expression} is {@code true}, throwing a {@code VerifyException} with a    * custom message otherwise.    *    *<p>See {@link #verify(boolean, String, Object...)} for details.    *    * @since 23.1 (varargs overload since 17.0)    */
-DECL|method|verify ( boolean expression, @Nullable String errorMessageTemplate, @Nullable Object p1, @Nullable Object p2, @Nullable Object p3, @Nullable Object p4)
+DECL|method|verify ( boolean expression, @NullableDecl String errorMessageTemplate, @NullableDecl Object p1, @NullableDecl Object p2, @NullableDecl Object p3, @NullableDecl Object p4)
 specifier|public
 specifier|static
 name|void
@@ -1093,27 +1099,27 @@ name|boolean
 name|expression
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|String
 name|errorMessageTemplate
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|p1
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|p2
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|p3
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|p4
 parameter_list|)
@@ -1147,7 +1153,7 @@ block|}
 comment|/**    * Ensures that {@code reference} is non-null, throwing a {@code VerifyException} with a default    * message otherwise.    *    * @return {@code reference}, guaranteed to be non-null, for convenience    * @throws VerifyException if {@code reference} is {@code null}    * @see Preconditions#checkNotNull Preconditions.checkNotNull()    */
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|verifyNotNull (@ullable T reference)
+DECL|method|verifyNotNull (@ullableDecl T reference)
 specifier|public
 specifier|static
 parameter_list|<
@@ -1157,7 +1163,7 @@ name|T
 name|verifyNotNull
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|T
 name|reference
 parameter_list|)
@@ -1174,7 +1180,7 @@ block|}
 comment|/**    * Ensures that {@code reference} is non-null, throwing a {@code VerifyException} with a custom    * message otherwise.    *    * @param errorMessageTemplate a template for the exception message should the check fail. The    *     message is formed by replacing each {@code %s} placeholder in the template with an    *     argument. These are matched by position - the first {@code %s} gets {@code    *     errorMessageArgs[0]}, etc. Unmatched arguments will be appended to the formatted message in    *     square braces. Unmatched placeholders will be left as-is.    * @param errorMessageArgs the arguments to be substituted into the message template. Arguments    *     are converted to strings using {@link String#valueOf(Object)}.    * @return {@code reference}, guaranteed to be non-null, for convenience    * @throws VerifyException if {@code reference} is {@code null}    * @see Preconditions#checkNotNull Preconditions.checkNotNull()    */
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|verifyNotNull ( @ullable T reference, @Nullable String errorMessageTemplate, @Nullable Object... errorMessageArgs)
+DECL|method|verifyNotNull ( @ullableDecl T reference, @NullableDecl String errorMessageTemplate, @NullableDecl Object... errorMessageArgs)
 specifier|public
 specifier|static
 parameter_list|<
@@ -1184,17 +1190,17 @@ name|T
 name|verifyNotNull
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|T
 name|reference
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|String
 name|errorMessageTemplate
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 modifier|...
 name|errorMessageArgs

@@ -62,11 +62,17 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|annotation
+name|checkerframework
 operator|.
-name|Nullable
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -112,7 +118,7 @@ argument_list|()
 return|;
 block|}
 comment|/**    * Creates an {@code AtomicReference} instance with the given initial value.    *    * @param initialValue the initial value    * @return a new {@code AtomicReference} with the given initial value    */
-DECL|method|newReference (@ullable V initialValue)
+DECL|method|newReference (@ullableDecl V initialValue)
 specifier|public
 specifier|static
 parameter_list|<
@@ -125,7 +131,7 @@ argument_list|>
 name|newReference
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|V
 name|initialValue
 parameter_list|)

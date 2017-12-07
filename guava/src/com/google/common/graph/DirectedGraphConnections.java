@@ -228,11 +228,17 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|annotation
+name|checkerframework
 operator|.
-name|Nullable
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -702,7 +708,7 @@ name|boolean
 name|contains
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|obj
 parameter_list|)
@@ -852,7 +858,7 @@ name|boolean
 name|contains
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|obj
 parameter_list|)
@@ -1339,14 +1345,14 @@ name|previousValue
 return|;
 block|}
 block|}
-DECL|method|isPredecessor (@ullable Object value)
+DECL|method|isPredecessor (@ullableDecl Object value)
 specifier|private
 specifier|static
 name|boolean
 name|isPredecessor
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|value
 parameter_list|)
@@ -1365,14 +1371,14 @@ name|PredAndSucc
 operator|)
 return|;
 block|}
-DECL|method|isSuccessor (@ullable Object value)
+DECL|method|isSuccessor (@ullableDecl Object value)
 specifier|private
 specifier|static
 name|boolean
 name|isSuccessor
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|value
 parameter_list|)

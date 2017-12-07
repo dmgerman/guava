@@ -32,11 +32,17 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|annotation
+name|checkerframework
 operator|.
-name|Nullable
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -61,12 +67,12 @@ name|VerifyException
 parameter_list|()
 block|{}
 comment|/** Constructs a {@code VerifyException} with the message {@code message}. */
-DECL|method|VerifyException (@ullable String message)
+DECL|method|VerifyException (@ullableDecl String message)
 specifier|public
 name|VerifyException
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|String
 name|message
 parameter_list|)
@@ -78,12 +84,12 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Constructs a {@code VerifyException} with the cause {@code cause} and a message that is {@code    * null} if {@code cause} is null, and {@code cause.toString()} otherwise.    *    * @since 19.0    */
-DECL|method|VerifyException (@ullable Throwable cause)
+DECL|method|VerifyException (@ullableDecl Throwable cause)
 specifier|public
 name|VerifyException
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Throwable
 name|cause
 parameter_list|)
@@ -95,17 +101,17 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Constructs a {@code VerifyException} with the message {@code message} and the cause {@code    * cause}.    *    * @since 19.0    */
-DECL|method|VerifyException (@ullable String message, @Nullable Throwable cause)
+DECL|method|VerifyException (@ullableDecl String message, @NullableDecl Throwable cause)
 specifier|public
 name|VerifyException
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|String
 name|message
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Throwable
 name|cause
 parameter_list|)

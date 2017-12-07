@@ -34,11 +34,17 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|annotation
+name|checkerframework
 operator|.
-name|Nullable
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -61,12 +67,12 @@ specifier|public
 name|UncheckedTimeoutException
 parameter_list|()
 block|{}
-DECL|method|UncheckedTimeoutException (@ullable String message)
+DECL|method|UncheckedTimeoutException (@ullableDecl String message)
 specifier|public
 name|UncheckedTimeoutException
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|String
 name|message
 parameter_list|)
@@ -77,12 +83,12 @@ name|message
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|UncheckedTimeoutException (@ullable Throwable cause)
+DECL|method|UncheckedTimeoutException (@ullableDecl Throwable cause)
 specifier|public
 name|UncheckedTimeoutException
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Throwable
 name|cause
 parameter_list|)
@@ -93,17 +99,17 @@ name|cause
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|UncheckedTimeoutException (@ullable String message, @Nullable Throwable cause)
+DECL|method|UncheckedTimeoutException (@ullableDecl String message, @NullableDecl Throwable cause)
 specifier|public
 name|UncheckedTimeoutException
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|String
 name|message
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Throwable
 name|cause
 parameter_list|)

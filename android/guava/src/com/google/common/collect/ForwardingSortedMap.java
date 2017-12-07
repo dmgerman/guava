@@ -92,11 +92,17 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|annotation
+name|checkerframework
 operator|.
-name|Nullable
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -401,13 +407,13 @@ annotation|@
 name|Override
 annotation|@
 name|Beta
-DECL|method|standardContainsKey (@ullable Object key)
+DECL|method|standardContainsKey (@ullableDecl Object key)
 specifier|protected
 name|boolean
 name|standardContainsKey
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|key
 parameter_list|)

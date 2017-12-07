@@ -102,11 +102,17 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|annotation
+name|checkerframework
 operator|.
-name|Nullable
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -665,7 +671,7 @@ argument_list|)
 return|;
 block|}
 annotation|@
-name|Nullable
+name|NullableDecl
 DECL|method|getValue (int keyIndex)
 specifier|abstract
 name|V
@@ -715,13 +721,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|get (@ullable Object key)
+DECL|method|get (@ullableDecl Object key)
 specifier|public
 name|V
 name|get
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|key
 parameter_list|)
@@ -1320,18 +1326,18 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|get (@ullable Object rowKey, @Nullable Object columnKey)
+DECL|method|get (@ullableDecl Object rowKey, @NullableDecl Object columnKey)
 specifier|public
 name|V
 name|get
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|rowKey
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|columnKey
 parameter_list|)

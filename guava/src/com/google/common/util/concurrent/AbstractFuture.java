@@ -384,11 +384,17 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|annotation
+name|checkerframework
 operator|.
-name|Nullable
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -866,14 +872,14 @@ argument_list|)
 decl_stmt|;
 DECL|field|thread
 annotation|@
-name|Nullable
+name|NullableDecl
 specifier|volatile
 name|Thread
 name|thread
 decl_stmt|;
 DECL|field|next
 annotation|@
-name|Nullable
+name|NullableDecl
 specifier|volatile
 name|Waiter
 name|next
@@ -1130,7 +1136,7 @@ decl_stmt|;
 comment|// writes to next are made visible by subsequent CAS's on the listeners field
 DECL|field|next
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Listener
 name|next
 decl_stmt|;
@@ -1300,19 +1306,19 @@ name|wasInterrupted
 decl_stmt|;
 DECL|field|cause
 annotation|@
-name|Nullable
+name|NullableDecl
 specifier|final
 name|Throwable
 name|cause
 decl_stmt|;
-DECL|method|Cancellation (boolean wasInterrupted, @Nullable Throwable cause)
+DECL|method|Cancellation (boolean wasInterrupted, @NullableDecl Throwable cause)
 name|Cancellation
 parameter_list|(
 name|boolean
 name|wasInterrupted
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Throwable
 name|cause
 parameter_list|)
@@ -2585,13 +2591,13 @@ block|}
 comment|/**    * Sets the result of this {@code Future} unless this {@code Future} has already been cancelled or    * set (including {@linkplain #setFuture set asynchronously}). When a call to this method returns,    * the {@code Future} is guaranteed to be {@linkplain #isDone done}<b>only if</b> the call was    * accepted (in which case it returns {@code true}). If it returns {@code false}, the {@code    * Future} may have previously been set asynchronously, in which case its result may not be known    * yet. That result, though not yet known, cannot be overridden by a call to a {@code set*}    * method, only by a call to {@link #cancel}.    *    * @param value the value to be used as the result    * @return true if the attempt was accepted, completing the {@code Future}    */
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|set (@ullable V value)
+DECL|method|set (@ullableDecl V value)
 specifier|protected
 name|boolean
 name|set
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|V
 name|value
 parameter_list|)
@@ -3271,13 +3277,13 @@ name|exception
 return|;
 block|}
 comment|/**    * If this future has been cancelled (and possibly interrupted), cancels (and possibly interrupts)    * the given future (if available).    */
-DECL|method|maybePropagateCancellationTo (@ullable Future<?> related)
+DECL|method|maybePropagateCancellationTo (@ullableDecl Future<?> related)
 specifier|final
 name|void
 name|maybePropagateCancellationTo
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Future
 argument_list|<
 name|?
@@ -3599,7 +3605,7 @@ return|;
 block|}
 comment|/**    * Provide a human-readable explanation of why this future has not yet completed.    *    * @return null if an explanation cannot be provided because the future is done.    * @since 23.0    */
 annotation|@
-name|Nullable
+name|NullableDecl
 DECL|method|pendingToString ()
 specifier|protected
 name|String
@@ -4874,19 +4880,19 @@ return|;
 block|}
 block|}
 block|}
-DECL|method|cancellationExceptionWithCause ( @ullable String message, @Nullable Throwable cause)
+DECL|method|cancellationExceptionWithCause ( @ullableDecl String message, @NullableDecl Throwable cause)
 specifier|private
 specifier|static
 name|CancellationException
 name|cancellationExceptionWithCause
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|String
 name|message
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Throwable
 name|cause
 parameter_list|)

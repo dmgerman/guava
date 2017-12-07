@@ -204,21 +204,17 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|annotation
+name|checkerframework
 operator|.
-name|CheckForNull
-import|;
-end_import
-
-begin_import
-import|import
-name|javax
+name|checker
 operator|.
-name|annotation
+name|nullness
 operator|.
-name|Nullable
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -2320,13 +2316,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|equals (@ullable Object object)
+DECL|method|equals (@ullableDecl Object object)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|object
 parameter_list|)
@@ -2593,9 +2589,7 @@ comment|/**    * Parses the specified string as a signed decimal integer value. 
 annotation|@
 name|Beta
 annotation|@
-name|Nullable
-annotation|@
-name|CheckForNull
+name|NullableDecl
 DECL|method|tryParse (String string)
 specifier|public
 specifier|static
@@ -2619,9 +2613,7 @@ comment|/**    * Parses the specified string as a signed integer value using the
 annotation|@
 name|Beta
 annotation|@
-name|Nullable
-annotation|@
-name|CheckForNull
+name|NullableDecl
 DECL|method|tryParse (String string, int radix)
 specifier|public
 specifier|static

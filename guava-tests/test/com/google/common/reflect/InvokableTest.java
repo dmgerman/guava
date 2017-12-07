@@ -172,21 +172,27 @@ end_import
 
 begin_import
 import|import
-name|javax
-operator|.
-name|annotation
-operator|.
-name|Nullable
-import|;
-end_import
-
-begin_import
-import|import
 name|junit
 operator|.
 name|framework
 operator|.
 name|TestCase
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|checkerframework
+operator|.
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -2852,11 +2858,11 @@ argument_list|(
 literal|"unused"
 argument_list|)
 comment|// called by reflection
-DECL|method|InnerWithAnnotatedConstructorParameter (@ullable String s)
+DECL|method|InnerWithAnnotatedConstructorParameter (@ullableDecl String s)
 name|InnerWithAnnotatedConstructorParameter
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|String
 name|s
 parameter_list|)
@@ -3836,7 +3842,7 @@ comment|// called by reflection
 name|LocalWithAnnotatedConstructorParameter
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|String
 name|s
 parameter_list|)

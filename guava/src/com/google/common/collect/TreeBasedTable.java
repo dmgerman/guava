@@ -182,11 +182,17 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|annotation
+name|checkerframework
 operator|.
-name|Nullable
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -630,14 +636,14 @@ argument_list|>
 block|{
 DECL|field|lowerBound
 annotation|@
-name|Nullable
+name|NullableDecl
 specifier|final
 name|C
 name|lowerBound
 decl_stmt|;
 DECL|field|upperBound
 annotation|@
-name|Nullable
+name|NullableDecl
 specifier|final
 name|C
 name|upperBound
@@ -659,19 +665,19 @@ literal|null
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|TreeRow (R rowKey, @Nullable C lowerBound, @Nullable C upperBound)
+DECL|method|TreeRow (R rowKey, @NullableDecl C lowerBound, @NullableDecl C upperBound)
 name|TreeRow
 parameter_list|(
 name|R
 name|rowKey
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|C
 name|lowerBound
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|C
 name|upperBound
 parameter_list|)
@@ -798,12 +804,12 @@ name|b
 argument_list|)
 return|;
 block|}
-DECL|method|rangeContains (@ullable Object o)
+DECL|method|rangeContains (@ullableDecl Object o)
 name|boolean
 name|rangeContains
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|o
 parameter_list|)

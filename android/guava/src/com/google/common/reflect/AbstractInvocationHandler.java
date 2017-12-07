@@ -78,11 +78,17 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|annotation
+name|checkerframework
 operator|.
-name|Nullable
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -114,7 +120,7 @@ decl_stmt|;
 comment|/**    * {@inheritDoc}    *    *<ul>    *<li>{@code proxy.hashCode()} delegates to {@link AbstractInvocationHandler#hashCode}    *<li>{@code proxy.toString()} delegates to {@link AbstractInvocationHandler#toString}    *<li>{@code proxy.equals(argument)} returns true if:    *<ul>    *<li>{@code proxy} and {@code argument} are of the same type    *<li>and {@link AbstractInvocationHandler#equals} returns true for the {@link    *             InvocationHandler} of {@code argument}    *</ul>    *<li>other method calls are dispatched to {@link #handleInvocation}.    *</ul>    */
 annotation|@
 name|Override
-DECL|method|invoke (Object proxy, Method method, @Nullable Object[] args)
+DECL|method|invoke (Object proxy, Method method, @NullableDecl Object[] args)
 specifier|public
 specifier|final
 name|Object
@@ -127,7 +133,7 @@ name|Method
 name|method
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 index|[]
 name|args

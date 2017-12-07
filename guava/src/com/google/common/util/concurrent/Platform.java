@@ -34,11 +34,17 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|annotation
+name|checkerframework
 operator|.
-name|Nullable
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -59,13 +65,13 @@ specifier|final
 class|class
 name|Platform
 block|{
-DECL|method|isInstanceOfThrowableClass ( @ullable Throwable t, Class<? extends Throwable> expectedClass)
+DECL|method|isInstanceOfThrowableClass ( @ullableDecl Throwable t, Class<? extends Throwable> expectedClass)
 specifier|static
 name|boolean
 name|isInstanceOfThrowableClass
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Throwable
 name|t
 parameter_list|,

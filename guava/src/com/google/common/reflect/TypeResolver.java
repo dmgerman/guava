@@ -274,11 +274,17 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|annotation
+name|checkerframework
 operator|.
-name|Nullable
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -2490,13 +2496,13 @@ name|id
 argument_list|)
 return|;
 block|}
-DECL|method|captureNullable (@ullable Type type)
+DECL|method|captureNullable (@ullableDecl Type type)
 specifier|private
 name|Type
 name|captureNullable
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Type
 name|type
 parameter_list|)

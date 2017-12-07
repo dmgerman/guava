@@ -146,11 +146,17 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|annotation
+name|checkerframework
 operator|.
-name|Nullable
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -1425,14 +1431,14 @@ block|}
 comment|/**    * Returns {@code true} if {@code object} is a {@link HashCode} instance with the identical byte    * representation to this hash code.    *    *<p><b>Security note:</b> this method uses a constant-time (not short-circuiting) implementation    * to protect against<a href="http://en.wikipedia.org/wiki/Timing_attack">timing attacks</a>.    */
 annotation|@
 name|Override
-DECL|method|equals (@ullable Object object)
+DECL|method|equals (@ullableDecl Object object)
 specifier|public
 specifier|final
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|object
 parameter_list|)

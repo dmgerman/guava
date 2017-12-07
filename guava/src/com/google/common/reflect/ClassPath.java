@@ -514,11 +514,17 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|annotation
+name|checkerframework
 operator|.
-name|Nullable
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -1685,7 +1691,7 @@ block|}
 comment|/**      * Returns the class path URIs specified by the {@code Class-Path} manifest attribute, according      * to<a      * href="http://docs.oracle.com/javase/8/docs/technotes/guides/jar/jar.html#Main_Attributes">JAR      * File Specification</a>. If {@code manifest} is null, it means the jar file has no manifest,      * and an empty set will be returned.      */
 annotation|@
 name|VisibleForTesting
-DECL|method|getClassPathFromManifest (File jarFile, @Nullable Manifest manifest)
+DECL|method|getClassPathFromManifest ( File jarFile, @NullableDecl Manifest manifest)
 specifier|static
 name|ImmutableSet
 argument_list|<
@@ -1697,7 +1703,7 @@ name|File
 name|jarFile
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Manifest
 name|manifest
 parameter_list|)

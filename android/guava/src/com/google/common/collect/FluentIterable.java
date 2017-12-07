@@ -206,11 +206,17 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|annotation
+name|checkerframework
 operator|.
-name|Nullable
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -892,7 +898,7 @@ end_comment
 begin_function
 annotation|@
 name|Beta
-DECL|method|of (@ullable E element, E... elements)
+DECL|method|of (@ullableDecl E element, E... elements)
 specifier|public
 specifier|static
 parameter_list|<
@@ -905,7 +911,7 @@ argument_list|>
 name|of
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|E
 name|element
 parameter_list|,
@@ -984,14 +990,14 @@ comment|/**    * Returns {@code true} if this fluent iterable contains any objec
 end_comment
 
 begin_function
-DECL|method|contains (@ullable Object target)
+DECL|method|contains (@ullableDecl Object target)
 specifier|public
 specifier|final
 name|boolean
 name|contains
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|target
 parameter_list|)
@@ -2173,7 +2179,7 @@ comment|/**    * Returns the element at the specified position in this fluent it
 end_comment
 
 begin_comment
-comment|// TODO(kevinb): add @Nullable?
+comment|// TODO(kevinb): add @NullableDecl?
 end_comment
 
 begin_function

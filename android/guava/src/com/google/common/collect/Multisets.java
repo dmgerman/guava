@@ -290,11 +290,17 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|annotation
+name|checkerframework
 operator|.
-name|Nullable
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -893,7 +899,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns an immutable multiset entry with the specified element and count. The entry will be    * serializable if {@code e} is.    *    * @param e the element to be associated with the returned entry    * @param n the count to be associated with the returned entry    * @throws IllegalArgumentException if {@code n} is negative    */
-DECL|method|immutableEntry (@ullable E e, int n)
+DECL|method|immutableEntry (@ullableDecl E e, int n)
 specifier|public
 specifier|static
 parameter_list|<
@@ -908,7 +914,7 @@ argument_list|>
 name|immutableEntry
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|E
 name|e
 parameter_list|,
@@ -946,7 +952,7 @@ name|Serializable
 block|{
 DECL|field|element
 annotation|@
-name|Nullable
+name|NullableDecl
 specifier|private
 specifier|final
 name|E
@@ -958,11 +964,11 @@ specifier|final
 name|int
 name|count
 decl_stmt|;
-DECL|method|ImmutableEntry (@ullable E element, int count)
+DECL|method|ImmutableEntry (@ullableDecl E element, int count)
 name|ImmutableEntry
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|E
 name|element
 parameter_list|,
@@ -993,7 +999,7 @@ block|}
 annotation|@
 name|Override
 annotation|@
-name|Nullable
+name|NullableDecl
 DECL|method|getElement ()
 specifier|public
 specifier|final
@@ -1361,13 +1367,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|count (@ullable Object element)
+DECL|method|count (@ullableDecl Object element)
 specifier|public
 name|int
 name|count
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|element
 parameter_list|)
@@ -1422,13 +1428,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|add (@ullable E element, int occurrences)
+DECL|method|add (@ullableDecl E element, int occurrences)
 specifier|public
 name|int
 name|add
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|E
 name|element
 parameter_list|,
@@ -1465,13 +1471,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|remove (@ullable Object element, int occurrences)
+DECL|method|remove (@ullableDecl Object element, int occurrences)
 specifier|public
 name|int
 name|remove
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|element
 parameter_list|,
@@ -1639,7 +1645,7 @@ name|boolean
 name|contains
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|element
 parameter_list|)
@@ -2267,7 +2273,7 @@ name|boolean
 name|contains
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|element
 parameter_list|)
@@ -2647,7 +2653,7 @@ name|int
 name|count
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|element
 parameter_list|)
@@ -3314,13 +3320,13 @@ block|{
 comment|/**      * Indicates whether an object equals this entry, following the behavior specified in {@link      * Multiset.Entry#equals}.      */
 annotation|@
 name|Override
-DECL|method|equals (@ullable Object object)
+DECL|method|equals (@ullableDecl Object object)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|object
 parameter_list|)
@@ -3464,7 +3470,7 @@ return|;
 block|}
 block|}
 comment|/** An implementation of {@link Multiset#equals}. */
-DECL|method|equalsImpl (Multiset<?> multiset, @Nullable Object object)
+DECL|method|equalsImpl (Multiset<?> multiset, @NullableDecl Object object)
 specifier|static
 name|boolean
 name|equalsImpl
@@ -3476,7 +3482,7 @@ argument_list|>
 name|multiset
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|object
 parameter_list|)
@@ -4211,13 +4217,13 @@ parameter_list|()
 function_decl|;
 annotation|@
 name|Override
-DECL|method|contains (@ullable Object o)
+DECL|method|contains (@ullableDecl Object o)
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|o
 parameter_list|)

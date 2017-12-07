@@ -66,11 +66,17 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|annotation
+name|checkerframework
 operator|.
-name|Nullable
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -105,18 +111,18 @@ name|CanIgnoreReturnValue
 annotation|@
 name|Override
 annotation|@
-name|Nullable
-DECL|method|put (@ullable K key, @Nullable V value)
+name|NullableDecl
+DECL|method|put (@ullableDecl K key, @NullableDecl V value)
 name|V
 name|put
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|K
 name|key
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|V
 name|value
 parameter_list|)
@@ -125,18 +131,18 @@ comment|/**    * An alternate form of {@code put} that silently removes any exis
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
-name|Nullable
-DECL|method|forcePut (@ullable K key, @Nullable V value)
+name|NullableDecl
+DECL|method|forcePut (@ullableDecl K key, @NullableDecl V value)
 name|V
 name|forcePut
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|K
 name|key
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|V
 name|value
 parameter_list|)

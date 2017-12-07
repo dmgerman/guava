@@ -114,11 +114,17 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|annotation
+name|checkerframework
 operator|.
-name|Nullable
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -152,7 +158,7 @@ comment|// the entry was returned by the iterator, except through the setValue o
 comment|// As such, this field must be cleared before every map mutation.
 DECL|field|entrySetCache
 annotation|@
-name|Nullable
+name|NullableDecl
 specifier|private
 specifier|transient
 name|Entry
@@ -187,18 +193,18 @@ expr_stmt|;
 block|}
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|put (@ullable K key, @Nullable V value)
+DECL|method|put (@ullableDecl K key, @NullableDecl V value)
 specifier|public
 name|V
 name|put
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|K
 name|key
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|V
 name|value
 parameter_list|)
@@ -219,13 +225,13 @@ return|;
 block|}
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|remove (@ullable Object key)
+DECL|method|remove (@ullableDecl Object key)
 specifier|public
 name|V
 name|remove
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|key
 parameter_list|)
@@ -257,13 +263,13 @@ name|clear
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|get (@ullable Object key)
+DECL|method|get (@ullableDecl Object key)
 specifier|public
 name|V
 name|get
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|key
 parameter_list|)
@@ -291,14 +297,14 @@ name|key
 argument_list|)
 return|;
 block|}
-DECL|method|getWithoutCaching (@ullable Object key)
+DECL|method|getWithoutCaching (@ullableDecl Object key)
 specifier|public
 specifier|final
 name|V
 name|getWithoutCaching
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|key
 parameter_list|)
@@ -312,14 +318,14 @@ name|key
 argument_list|)
 return|;
 block|}
-DECL|method|containsKey (@ullable Object key)
+DECL|method|containsKey (@ullableDecl Object key)
 specifier|public
 specifier|final
 name|boolean
 name|containsKey
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|key
 parameter_list|)
@@ -466,7 +472,7 @@ name|boolean
 name|contains
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|key
 parameter_list|)
@@ -482,13 +488,13 @@ block|}
 return|;
 block|}
 comment|// Internal methods ('protected' is still package-visible, but treat as only subclass-visible)
-DECL|method|getIfCached (@ullable Object key)
+DECL|method|getIfCached (@ullableDecl Object key)
 specifier|protected
 name|V
 name|getIfCached
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|key
 parameter_list|)

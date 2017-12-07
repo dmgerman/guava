@@ -176,11 +176,17 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|annotation
+name|checkerframework
 operator|.
-name|Nullable
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -518,7 +524,7 @@ operator|&
 name|mask
 decl_stmt|;
 annotation|@
-name|Nullable
+name|NullableDecl
 name|ImmutableMapEntry
 argument_list|<
 name|K
@@ -696,7 +702,7 @@ operator|=
 name|mask
 expr_stmt|;
 block|}
-DECL|method|checkNoConflictInKeyBucket ( Object key, Entry<?, ?> entry, @Nullable ImmutableMapEntry<?, ?> keyBucketHead)
+DECL|method|checkNoConflictInKeyBucket ( Object key, Entry<?, ?> entry, @NullableDecl ImmutableMapEntry<?, ?> keyBucketHead)
 specifier|static
 name|void
 name|checkNoConflictInKeyBucket
@@ -713,7 +719,7 @@ argument_list|>
 name|entry
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|ImmutableMapEntry
 argument_list|<
 name|?
@@ -772,13 +778,13 @@ literal|1.2
 decl_stmt|;
 annotation|@
 name|Override
-DECL|method|get (@ullable Object key)
+DECL|method|get (@ullableDecl Object key)
 specifier|public
 name|V
 name|get
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|key
 parameter_list|)
@@ -795,8 +801,8 @@ argument_list|)
 return|;
 block|}
 annotation|@
-name|Nullable
-DECL|method|get (@ullable Object key, @Nullable ImmutableMapEntry<?, V>[] keyTable, int mask)
+name|NullableDecl
+DECL|method|get ( @ullableDecl Object key, @NullableDecl ImmutableMapEntry<?, V>[] keyTable, int mask)
 specifier|static
 parameter_list|<
 name|V
@@ -805,12 +811,12 @@ name|V
 name|get
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|key
 parameter_list|,
 annotation|@
-name|Nullable
+name|NullableDecl
 name|ImmutableMapEntry
 argument_list|<
 name|?

@@ -394,11 +394,17 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|annotation
+name|checkerframework
 operator|.
-name|Nullable
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -927,7 +933,7 @@ return|;
 block|}
 comment|/**    * Returns the generic superclass of this type or {@code null} if the type represents {@link    * Object} or an interface. This method is similar but different from {@link    * Class#getGenericSuperclass}. For example, {@code new TypeToken<StringArrayList>()    * {}.getGenericSuperclass()} will return {@code new TypeToken<ArrayList<String>>() {}}; while    * {@code StringArrayList.class.getGenericSuperclass()} will return {@code ArrayList<E>}, where    * {@code E} is the type variable declared by class {@code ArrayList}.    *    *<p>If this type is a type variable or wildcard, its first upper bound is examined and returned    * if the bound is a class or extends from a class. This means that the returned type could be a    * type variable too.    */
 annotation|@
-name|Nullable
+name|NullableDecl
 DECL|method|getGenericSuperclass ()
 specifier|final
 name|TypeToken
@@ -1046,7 +1052,7 @@ name|superToken
 return|;
 block|}
 annotation|@
-name|Nullable
+name|NullableDecl
 DECL|method|boundAsSuperclass (Type bound)
 specifier|private
 name|TypeToken
@@ -2078,7 +2084,7 @@ return|;
 block|}
 comment|/**    * Returns the array component type if this type represents an array ({@code int[]}, {@code T[]},    * {@code<? extends Map<String, Integer>[]>} etc.), or else {@code null} is returned.    */
 annotation|@
-name|Nullable
+name|NullableDecl
 DECL|method|getComponentType ()
 specifier|public
 specifier|final
@@ -3225,13 +3231,13 @@ end_comment
 begin_function
 annotation|@
 name|Override
-DECL|method|equals (@ullable Object o)
+DECL|method|equals (@ullableDecl Object o)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|Object
 name|o
 parameter_list|)
@@ -4403,7 +4409,7 @@ end_comment
 
 begin_function
 annotation|@
-name|Nullable
+name|NullableDecl
 DECL|method|getOwnerTypeIfPresent ()
 specifier|private
 name|Type
@@ -5326,7 +5332,7 @@ argument_list|()
 return|;
 block|}
 annotation|@
-name|Nullable
+name|NullableDecl
 annotation|@
 name|Override
 name|TypeToken
@@ -5425,7 +5431,7 @@ argument_list|)
 return|;
 block|}
 annotation|@
-name|Nullable
+name|NullableDecl
 annotation|@
 name|Override
 name|Class
@@ -5909,7 +5915,7 @@ name|type
 parameter_list|)
 function_decl|;
 annotation|@
-name|Nullable
+name|NullableDecl
 DECL|method|getSuperclass (K type)
 specifier|abstract
 name|K

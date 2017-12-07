@@ -270,11 +270,17 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|annotation
+name|checkerframework
 operator|.
-name|Nullable
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
 import|;
 end_import
 
@@ -1101,7 +1107,7 @@ argument_list|)
 control|)
 block|{
 annotation|@
-name|Nullable
+name|NullableDecl
 name|X
 name|instance
 init|=
@@ -1264,7 +1270,7 @@ end_class
 
 begin_function
 annotation|@
-name|Nullable
+name|NullableDecl
 DECL|method|newFromConstructor (Constructor<X> constructor, Throwable cause)
 specifier|private
 specifier|static
