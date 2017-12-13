@@ -216,6 +216,16 @@ name|RandomAccess
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/**  * Static utility methods pertaining to {@code short} primitives, that are not already found in  * either {@link Short} or {@link Arrays}.  *  *<p>See the Guava User Guide article on<a  * href="https://github.com/google/guava/wiki/PrimitivesExplained">primitive utilities</a>.  *  * @author Kevin Bourrillion  * @since 1.0  */
 end_comment
@@ -2003,11 +2013,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|contains (Object target)
+DECL|method|contains (@ullable Object target)
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
+annotation|@
+name|Nullable
 name|Object
 name|target
 parameter_list|)
@@ -2042,11 +2054,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|indexOf (Object target)
+DECL|method|indexOf (@ullable Object target)
 specifier|public
 name|int
 name|indexOf
 parameter_list|(
+annotation|@
+name|Nullable
 name|Object
 name|target
 parameter_list|)
@@ -2099,11 +2113,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|lastIndexOf (Object target)
+DECL|method|lastIndexOf (@ullable Object target)
 specifier|public
 name|int
 name|lastIndexOf
 parameter_list|(
+annotation|@
+name|Nullable
 name|Object
 name|target
 parameter_list|)
@@ -2267,11 +2283,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|equals (Object object)
+DECL|method|equals (@ullable Object object)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
+annotation|@
+name|Nullable
 name|Object
 name|object
 parameter_list|)
