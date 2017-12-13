@@ -4640,6 +4640,8 @@ specifier|public
 name|Appendable
 name|append
 parameter_list|(
+annotation|@
+name|NullableDecl
 name|CharSequence
 name|chars
 parameter_list|,
@@ -4664,6 +4666,8 @@ specifier|public
 name|Appendable
 name|append
 parameter_list|(
+annotation|@
+name|NullableDecl
 name|CharSequence
 name|chars
 parameter_list|)
