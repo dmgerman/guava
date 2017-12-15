@@ -2061,6 +2061,8 @@ name|E
 argument_list|>
 argument_list|>
 block|{
+annotation|@
+name|NullableDecl
 DECL|field|nextPermutation
 name|List
 argument_list|<
