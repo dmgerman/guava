@@ -2779,6 +2779,39 @@ return|;
 block|}
 annotation|@
 name|GwtIncompatible
+comment|// java serialization
+DECL|class|SetFieldSettersHolder
+specifier|private
+specifier|static
+specifier|final
+class|class
+name|SetFieldSettersHolder
+block|{
+DECL|field|EMPTY_SET_FIELD_SETTER
+specifier|static
+specifier|final
+name|Serialization
+operator|.
+name|FieldSetter
+argument_list|<
+name|ImmutableSetMultimap
+argument_list|>
+name|EMPTY_SET_FIELD_SETTER
+init|=
+name|Serialization
+operator|.
+name|getFieldSetter
+argument_list|(
+name|ImmutableSetMultimap
+operator|.
+name|class
+argument_list|,
+literal|"emptySet"
+argument_list|)
+decl_stmt|;
+block|}
+annotation|@
+name|GwtIncompatible
 comment|// java.io.ObjectInputStream
 comment|// Serialization type safety is at the caller's mercy.
 annotation|@
@@ -3069,7 +3102,7 @@ argument_list|,
 name|tmpSize
 argument_list|)
 expr_stmt|;
-name|FieldSettersHolder
+name|SetFieldSettersHolder
 operator|.
 name|EMPTY_SET_FIELD_SETTER
 operator|.
