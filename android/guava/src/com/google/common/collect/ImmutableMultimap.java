@@ -2538,6 +2538,74 @@ return|return
 literal|true
 return|;
 block|}
+comment|// We can't label this with @Override, because it doesn't override anything
+comment|// in the GWT emulated version.
+DECL|method|writeReplace ()
+name|Object
+name|writeReplace
+parameter_list|()
+block|{
+return|return
+operator|new
+name|KeysSerializedForm
+argument_list|(
+name|ImmutableMultimap
+operator|.
+name|this
+argument_list|)
+return|;
+block|}
+block|}
+DECL|class|KeysSerializedForm
+specifier|private
+specifier|static
+specifier|final
+class|class
+name|KeysSerializedForm
+implements|implements
+name|Serializable
+block|{
+DECL|field|multimap
+specifier|final
+name|ImmutableMultimap
+argument_list|<
+name|?
+argument_list|,
+name|?
+argument_list|>
+name|multimap
+decl_stmt|;
+DECL|method|KeysSerializedForm (ImmutableMultimap<?, ?> multimap)
+name|KeysSerializedForm
+parameter_list|(
+name|ImmutableMultimap
+argument_list|<
+name|?
+argument_list|,
+name|?
+argument_list|>
+name|multimap
+parameter_list|)
+block|{
+name|this
+operator|.
+name|multimap
+operator|=
+name|multimap
+expr_stmt|;
+block|}
+DECL|method|readResolve ()
+name|Object
+name|readResolve
+parameter_list|()
+block|{
+return|return
+name|multimap
+operator|.
+name|keys
+argument_list|()
+return|;
+block|}
 block|}
 comment|/**    * Returns an immutable collection of the values in this multimap. Its iterator traverses the    * values for the first key, the values for the second key, and so on.    */
 annotation|@
