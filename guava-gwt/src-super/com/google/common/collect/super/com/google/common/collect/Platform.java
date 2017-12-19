@@ -190,6 +190,50 @@ name|expectedSize
 argument_list|)
 return|;
 block|}
+comment|/**    * Returns the platform preferred map implementation that preserves insertion order when used only    * for insertions.    */
+DECL|method|preservesInsertionOrderOnPutsMap ()
+specifier|static
+parameter_list|<
+name|K
+parameter_list|,
+name|V
+parameter_list|>
+name|Map
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|preservesInsertionOrderOnPutsMap
+parameter_list|()
+block|{
+return|return
+name|Maps
+operator|.
+name|newLinkedHashMap
+argument_list|()
+return|;
+block|}
+comment|/**    * Returns the platform preferred set implementation that preserves insertion order when used only    * for insertions.    */
+DECL|method|preservesInsertionOrderOnAddsSet ()
+specifier|static
+parameter_list|<
+name|E
+parameter_list|>
+name|Set
+argument_list|<
+name|E
+argument_list|>
+name|preservesInsertionOrderOnAddsSet
+parameter_list|()
+block|{
+return|return
+name|Sets
+operator|.
+name|newLinkedHashSet
+argument_list|()
+return|;
+block|}
 DECL|method|newArray (T[] reference, int length)
 specifier|static
 parameter_list|<

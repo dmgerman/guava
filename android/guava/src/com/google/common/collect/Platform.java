@@ -187,6 +187,50 @@ name|expectedSize
 argument_list|)
 return|;
 block|}
+comment|/**    * Returns the platform preferred map implementation that preserves insertion order when used only    * for insertions.    */
+DECL|method|preservesInsertionOrderOnPutsMap ()
+specifier|static
+parameter_list|<
+name|K
+parameter_list|,
+name|V
+parameter_list|>
+name|Map
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|preservesInsertionOrderOnPutsMap
+parameter_list|()
+block|{
+return|return
+name|CompactHashMap
+operator|.
+name|create
+argument_list|()
+return|;
+block|}
+comment|/**    * Returns the platform preferred set implementation that preserves insertion order when used only    * for insertions.    */
+DECL|method|preservesInsertionOrderOnAddsSet ()
+specifier|static
+parameter_list|<
+name|E
+parameter_list|>
+name|Set
+argument_list|<
+name|E
+argument_list|>
+name|preservesInsertionOrderOnAddsSet
+parameter_list|()
+block|{
+return|return
+name|CompactHashSet
+operator|.
+name|create
+argument_list|()
+return|;
+block|}
 comment|/**    * Returns a new array of the given length with the same type as a reference array.    *    * @param reference any array of the desired type    * @param length the length of the new array    */
 DECL|method|newArray (T[] reference, int length)
 specifier|static
