@@ -309,24 +309,12 @@ specifier|private
 name|ArrayListMultimap
 parameter_list|()
 block|{
-name|super
+name|this
 argument_list|(
-operator|new
-name|HashMap
-argument_list|<
-name|K
+literal|12
 argument_list|,
-name|Collection
-argument_list|<
-name|V
-argument_list|>
-argument_list|>
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|expectedValuesPerKey
-operator|=
 name|DEFAULT_VALUES_PER_KEY
+argument_list|)
 expr_stmt|;
 block|}
 DECL|method|ArrayListMultimap (int expectedKeys, int expectedValuesPerKey)
@@ -342,7 +330,7 @@ parameter_list|)
 block|{
 name|super
 argument_list|(
-name|Maps
+name|Platform
 operator|.
 expr|<
 name|K

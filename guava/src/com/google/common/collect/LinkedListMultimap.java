@@ -747,12 +747,10 @@ DECL|method|LinkedListMultimap ()
 name|LinkedListMultimap
 parameter_list|()
 block|{
-name|keyToKeyList
-operator|=
-name|Maps
-operator|.
-name|newHashMap
-argument_list|()
+name|this
+argument_list|(
+literal|12
+argument_list|)
 expr_stmt|;
 block|}
 DECL|method|LinkedListMultimap (int expectedKeys)
@@ -765,9 +763,9 @@ parameter_list|)
 block|{
 name|keyToKeyList
 operator|=
-operator|new
-name|HashMap
-argument_list|<>
+name|Platform
+operator|.
+name|newHashMapWithExpectedSize
 argument_list|(
 name|expectedKeys
 argument_list|)

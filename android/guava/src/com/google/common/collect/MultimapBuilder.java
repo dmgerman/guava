@@ -49,22 +49,6 @@ import|;
 end_import
 
 begin_import
-import|import static
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|collect
-operator|.
-name|Maps
-operator|.
-name|newLinkedHashMapWithExpectedSize
-import|;
-end_import
-
-begin_import
 import|import
 name|com
 operator|.
@@ -163,46 +147,6 @@ operator|.
 name|util
 operator|.
 name|EnumSet
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|HashMap
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|HashSet
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|LinkedHashMap
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|LinkedHashSet
 import|;
 end_import
 
@@ -311,7 +255,7 @@ name|DEFAULT_EXPECTED_KEYS
 init|=
 literal|8
 decl_stmt|;
-comment|/** Uses a {@link HashMap} to map keys to value collections. */
+comment|/** Uses a hash table to map keys to value collections. */
 DECL|method|hashKeys ()
 specifier|public
 specifier|static
@@ -329,7 +273,7 @@ name|DEFAULT_EXPECTED_KEYS
 argument_list|)
 return|;
 block|}
-comment|/**    * Uses a {@link HashMap} to map keys to value collections, initialized to expect the specified    * number of keys.    *    * @throws IllegalArgumentException if {@code expectedKeys< 0}    */
+comment|/**    * Uses a hash table to map keys to value collections, initialized to expect the specified    * number of keys.    *    * @throws IllegalArgumentException if {@code expectedKeys< 0}    */
 DECL|method|hashKeys (final int expectedKeys)
 specifier|public
 specifier|static
@@ -379,7 +323,7 @@ name|createMap
 parameter_list|()
 block|{
 return|return
-name|Maps
+name|Platform
 operator|.
 name|newHashMapWithExpectedSize
 argument_list|(
@@ -390,7 +334,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/**    * Uses a {@link LinkedHashMap} to map keys to value collections.    *    *<p>The collections returned by {@link Multimap#keySet()}, {@link Multimap#keys()}, and {@link    * Multimap#asMap()} will iterate through the keys in the order that they were first added to the    * multimap, save that if all values associated with a key are removed and then the key is added    * back into the multimap, that key will come last in the key iteration order.    */
+comment|/**    * Uses a hash table to map keys to value collections.    *    *<p>The collections returned by {@link Multimap#keySet()}, {@link Multimap#keys()}, and {@link    * Multimap#asMap()} will iterate through the keys in the order that they were first added to the    * multimap, save that if all values associated with a key are removed and then the key is added    * back into the multimap, that key will come last in the key iteration order.    */
 DECL|method|linkedHashKeys ()
 specifier|public
 specifier|static
@@ -408,7 +352,7 @@ name|DEFAULT_EXPECTED_KEYS
 argument_list|)
 return|;
 block|}
-comment|/**    * Uses a {@link LinkedHashMap} to map keys to value collections, initialized to expect the    * specified number of keys.    *    *<p>The collections returned by {@link Multimap#keySet()}, {@link Multimap#keys()}, and {@link    * Multimap#asMap()} will iterate through the keys in the order that they were first added to the    * multimap, save that if all values associated with a key are removed and then the key is added    * back into the multimap, that key will come last in the key iteration order.    */
+comment|/**    * Uses an hash table to map keys to value collections, initialized to expect the    * specified number of keys.    *    *<p>The collections returned by {@link Multimap#keySet()}, {@link Multimap#keys()}, and {@link    * Multimap#asMap()} will iterate through the keys in the order that they were first added to the    * multimap, save that if all values associated with a key are removed and then the key is added    * back into the multimap, that key will come last in the key iteration order.    */
 DECL|method|linkedHashKeys (final int expectedKeys)
 specifier|public
 specifier|static
@@ -458,6 +402,8 @@ name|createMap
 parameter_list|()
 block|{
 return|return
+name|Platform
+operator|.
 name|newLinkedHashMapWithExpectedSize
 argument_list|(
 name|expectedKeys
@@ -861,7 +807,7 @@ name|get
 parameter_list|()
 block|{
 return|return
-name|Sets
+name|Platform
 operator|.
 name|newHashSetWithExpectedSize
 argument_list|(
@@ -927,7 +873,7 @@ name|get
 parameter_list|()
 block|{
 return|return
-name|Sets
+name|Platform
 operator|.
 name|newLinkedHashSetWithExpectedSize
 argument_list|(
@@ -1305,7 +1251,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/** Uses a {@link HashSet} to store value collections. */
+comment|/** Uses a hash-based {@code Set} to store value collections. */
 DECL|method|hashSetValues ()
 specifier|public
 name|SetMultimapBuilder
@@ -1324,7 +1270,7 @@ name|DEFAULT_EXPECTED_VALUES_PER_KEY
 argument_list|)
 return|;
 block|}
-comment|/**      * Uses a {@link HashSet} to store value collections, initialized to expect the specified number      * of values per key.      *      * @throws IllegalArgumentException if {@code expectedValuesPerKey< 0}      */
+comment|/**      * Uses a hash-based {@code Set} to store value collections, initialized to expect the specified number      * of values per key.      *      * @throws IllegalArgumentException if {@code expectedValuesPerKey< 0}      */
 DECL|method|hashSetValues (final int expectedValuesPerKey)
 specifier|public
 name|SetMultimapBuilder
@@ -1407,7 +1353,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/** Uses a {@link LinkedHashSet} to store value collections. */
+comment|/** Uses an insertion-ordered hash-based {@code Set} to store value collections. */
 DECL|method|linkedHashSetValues ()
 specifier|public
 name|SetMultimapBuilder
@@ -1426,7 +1372,7 @@ name|DEFAULT_EXPECTED_VALUES_PER_KEY
 argument_list|)
 return|;
 block|}
-comment|/**      * Uses a {@link LinkedHashSet} to store value collections, initialized to expect the specified      * number of values per key.      *      * @throws IllegalArgumentException if {@code expectedValuesPerKey< 0}      */
+comment|/**      * Uses an insertion-ordered hash-based {@code Set} to store value collections, initialized to expect the specified      * number of values per key.      *      * @throws IllegalArgumentException if {@code expectedValuesPerKey< 0}      */
 DECL|method|linkedHashSetValues (final int expectedValuesPerKey)
 specifier|public
 name|SetMultimapBuilder
