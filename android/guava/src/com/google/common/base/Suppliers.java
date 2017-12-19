@@ -452,6 +452,8 @@ decl_stmt|;
 comment|// "value" does not need to be volatile; visibility piggy-backs
 comment|// on volatile read of "initialized".
 DECL|field|value
+annotation|@
+name|NullableDecl
 specifier|transient
 name|T
 name|value
@@ -587,6 +589,8 @@ decl_stmt|;
 comment|// "value" does not need to be volatile; visibility piggy-backs
 comment|// on volatile read of "initialized".
 DECL|field|value
+annotation|@
+name|NullableDecl
 name|T
 name|value
 decl_stmt|;
@@ -758,6 +762,8 @@ name|long
 name|durationNanos
 decl_stmt|;
 DECL|field|value
+annotation|@
+name|NullableDecl
 specifier|transient
 specifier|volatile
 name|T

@@ -88,6 +88,8 @@ name|T
 argument_list|>
 block|{
 DECL|field|value
+annotation|@
+name|NullableDecl
 name|T
 name|value
 decl_stmt|;
