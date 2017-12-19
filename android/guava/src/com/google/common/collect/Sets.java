@@ -5881,7 +5881,7 @@ if|if
 condition|(
 name|set
 operator|instanceof
-name|ImmutableSortedSet
+name|ImmutableCollection
 operator|||
 name|set
 operator|instanceof
