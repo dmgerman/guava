@@ -771,13 +771,12 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|keySet ()
-specifier|public
+DECL|method|createKeySet ()
 name|Set
 argument_list|<
 name|K
 argument_list|>
-name|keySet
+name|createKeySet
 parameter_list|()
 block|{
 return|return

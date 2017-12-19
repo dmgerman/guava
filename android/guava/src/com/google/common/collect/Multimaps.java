@@ -172,6 +172,38 @@ name|common
 operator|.
 name|collect
 operator|.
+name|AbstractMultimap
+operator|.
+name|Entries
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|collect
+operator|.
+name|AbstractMultimap
+operator|.
+name|EntrySet
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|collect
+operator|.
 name|Maps
 operator|.
 name|EntryTransformer
@@ -4148,13 +4180,12 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|keySet ()
-specifier|public
+DECL|method|createKeySet ()
 name|Set
 argument_list|<
 name|K
 argument_list|>
-name|keySet
+name|createKeySet
 parameter_list|()
 block|{
 return|return
@@ -4166,13 +4197,12 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|values ()
-specifier|public
+DECL|method|createValues ()
 name|Collection
 argument_list|<
 name|V
 argument_list|>
-name|values
+name|createValues
 parameter_list|()
 block|{
 return|return
@@ -4203,6 +4233,54 @@ name|map
 operator|.
 name|entrySet
 argument_list|()
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|createEntries ()
+name|Collection
+argument_list|<
+name|Entry
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+argument_list|>
+name|createEntries
+parameter_list|()
+block|{
+throw|throw
+operator|new
+name|AssertionError
+argument_list|(
+literal|"unreachable"
+argument_list|)
+throw|;
+block|}
+annotation|@
+name|Override
+DECL|method|createKeys ()
+name|Multiset
+argument_list|<
+name|K
+argument_list|>
+name|createKeys
+parameter_list|()
+block|{
+return|return
+operator|new
+name|Multimaps
+operator|.
+name|Keys
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+argument_list|(
+name|this
+argument_list|)
 return|;
 block|}
 annotation|@
@@ -4678,6 +4756,27 @@ return|;
 block|}
 annotation|@
 name|Override
+DECL|method|createEntries ()
+name|Collection
+argument_list|<
+name|Entry
+argument_list|<
+name|K
+argument_list|,
+name|V2
+argument_list|>
+argument_list|>
+name|createEntries
+parameter_list|()
+block|{
+return|return
+operator|new
+name|Entries
+argument_list|()
+return|;
+block|}
+annotation|@
+name|Override
 DECL|method|entryIterator ()
 name|Iterator
 argument_list|<
@@ -4766,13 +4865,12 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|keySet ()
-specifier|public
+DECL|method|createKeySet ()
 name|Set
 argument_list|<
 name|K
 argument_list|>
-name|keySet
+name|createKeySet
 parameter_list|()
 block|{
 return|return
@@ -4784,13 +4882,12 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|keys ()
-specifier|public
+DECL|method|createKeys ()
 name|Multiset
 argument_list|<
 name|K
 argument_list|>
-name|keys
+name|createKeys
 parameter_list|()
 block|{
 return|return
