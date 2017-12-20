@@ -331,6 +331,14 @@ return|return
 name|suite
 return|;
 block|}
+DECL|method|testDummyMethod ()
+specifier|public
+name|void
+name|testDummyMethod
+parameter_list|()
+block|{
+comment|// Just make sure the test runner doesn't complain about no test methods.
+block|}
 block|}
 end_class
 
