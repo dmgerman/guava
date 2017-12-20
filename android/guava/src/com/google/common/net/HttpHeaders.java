@@ -833,7 +833,7 @@ name|SERVER
 init|=
 literal|"Server"
 decl_stmt|;
-comment|/**    * The HTTP<a href="https://www.w3.org/TR/server-timing/">{@code Server-Timing}</a> header field    * name.    *    * @since NEXT    */
+comment|/**    * The HTTP<a href="https://www.w3.org/TR/server-timing/">{@code Server-Timing}</a> header field    * name.    *    * @since 23.6    */
 DECL|field|SERVER_TIMING
 specifier|public
 specifier|static

@@ -409,7 +409,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**    * Invokes {@code condition.}{@link Condition#await(long, TimeUnit) await(timeout, unit)}    * uninterruptibly.    *    * @since NEXT    */
+comment|/**    * Invokes {@code condition.}{@link Condition#await(long, TimeUnit) await(timeout, unit)}    * uninterruptibly.    *    * @since 23.6    */
 annotation|@
 name|GwtIncompatible
 comment|// concurrency
