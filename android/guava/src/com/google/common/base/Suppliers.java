@@ -998,6 +998,8 @@ implements|,
 name|Serializable
 block|{
 DECL|field|instance
+annotation|@
+name|NullableDecl
 specifier|final
 name|T
 name|instance
