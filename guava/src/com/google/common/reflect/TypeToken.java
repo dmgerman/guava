@@ -404,6 +404,22 @@ name|nullness
 operator|.
 name|compatqual
 operator|.
+name|MonotonicNonNullDecl
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|checkerframework
+operator|.
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
 name|NullableDecl
 import|;
 end_import
@@ -445,6 +461,8 @@ name|runtimeType
 decl_stmt|;
 comment|/** Resolver for resolving types with {@link #runtimeType} as context. */
 DECL|field|typeResolver
+annotation|@
+name|MonotonicNonNullDecl
 specifier|private
 specifier|transient
 name|TypeResolver
@@ -2430,6 +2448,8 @@ implements|implements
 name|Serializable
 block|{
 DECL|field|types
+annotation|@
+name|MonotonicNonNullDecl
 specifier|private
 specifier|transient
 name|ImmutableSet
@@ -2660,6 +2680,8 @@ name|TypeSet
 name|allTypes
 decl_stmt|;
 DECL|field|interfaces
+annotation|@
+name|MonotonicNonNullDecl
 specifier|private
 specifier|transient
 name|ImmutableSet
@@ -2913,6 +2935,8 @@ extends|extends
 name|TypeSet
 block|{
 DECL|field|classes
+annotation|@
+name|MonotonicNonNullDecl
 specifier|private
 specifier|transient
 name|ImmutableSet

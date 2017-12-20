@@ -1410,6 +1410,8 @@ implements|,
 name|Serializable
 block|{
 DECL|field|ownerType
+annotation|@
+name|NullableDecl
 specifier|private
 specifier|final
 name|Type
