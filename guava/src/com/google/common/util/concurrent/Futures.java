@@ -2245,7 +2245,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**      * Creates the {@link ListenableFuture} which will return the result of running {@code combiner}      * when all Futures complete. {@code combiner} will run using {@code executor}.      *      *<p>If the combiner throws a {@code CancellationException}, the returned future will be      * cancelled.      *      *<p>Canceling this Future will attempt to cancel all the component futures.      */
+comment|/**      * Creates the {@link ListenableFuture} which will return the result of running {@code combiner}      * when all Futures complete. {@code combiner} will run using {@code executor}.      *      *<p>If the combiner throws a {@code CancellationException}, the returned future will be      * cancelled.      *      *<p>Canceling this Future will attempt to cancel all the component futures.      *      * @since NEXT      */
 DECL|method|run (final Runnable combiner, Executor executor)
 specifier|public
 name|ListenableFuture
