@@ -1453,6 +1453,8 @@ comment|// TODO(lukes): investigate using the @Contended annotation on these fie
 comment|// available.
 comment|/**    * This field encodes the current state of the future.    *    *<p>The valid values are:    *    *<ul>    *<li>{@code null} initial state, nothing has happened.    *<li>{@link Cancellation} terminal state, {@code cancel} was called.    *<li>{@link Failure} terminal state, {@code setException} was called.    *<li>{@link SetFuture} intermediate state, {@code setFuture} was called.    *<li>{@link #NULL} terminal state, {@code set(null)} was called.    *<li>Any other non-null value, terminal state, {@code set} was called with a non-null    *       argument.    *</ul>    */
 DECL|field|value
+annotation|@
+name|NullableDecl
 specifier|private
 specifier|volatile
 name|Object
@@ -1460,6 +1462,8 @@ name|value
 decl_stmt|;
 comment|/** All listeners. */
 DECL|field|listeners
+annotation|@
+name|NullableDecl
 specifier|private
 specifier|volatile
 name|Listener
@@ -1467,6 +1471,8 @@ name|listeners
 decl_stmt|;
 comment|/** All waiting threads. */
 DECL|field|waiters
+annotation|@
+name|NullableDecl
 specifier|private
 specifier|volatile
 name|Waiter

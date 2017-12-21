@@ -218,6 +218,22 @@ name|TimeUnit
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|checkerframework
+operator|.
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|MonotonicNonNullDecl
+import|;
+end_import
+
 begin_comment
 comment|/**  * A rate limiter. Conceptually, a rate limiter distributes permits at a configurable rate. Each  * {@link #acquire()} blocks if necessary until a permit is available, and then takes it. Once  * acquired, permits need not be released.  *  *<p>{@code RateLimiter} is safe for concurrent use: It will restrict the total rate of calls from  * all threads. Note, however, that it does not guarantee fairness.  *  *<p>Rate limiters are often used to restrict the rate at which some physical or logical resource  * is accessed. This is in contrast to {@link java.util.concurrent.Semaphore} which restricts the  * number of concurrent accesses instead of the rate (note though that concurrency and rate are  * closely related, e.g. see<a href="http://en.wikipedia.org/wiki/Little%27s_law">Little's  * Law</a>).  *  *<p>A {@code RateLimiter} is defined primarily by the rate at which permits are issued. Absent  * additional configuration, permits will be distributed at a fixed rate, defined in terms of  * permits per second. Permits will be distributed smoothly, with the delay between individual  * permits being adjusted to ensure that the configured rate is maintained.  *  *<p>It is possible to configure a {@code RateLimiter} to have a warmup period during which time  * the permits issued each second steadily increases until it hits the stable rate.  *  *<p>As an example, imagine that we have a list of tasks to execute, but we don't want to submit  * more than 2 per second:  *  *<pre>{@code  * final RateLimiter rateLimiter = RateLimiter.create(2.0); // rate is "2 permits per second"  * void submitTasks(List<Runnable> tasks, Executor executor) {  *   for (Runnable task : tasks) {  *     rateLimiter.acquire(); // may wait  *     executor.execute(task);  *   }  * }  * }</pre>  *  *<p>As another example, imagine that we produce a stream of data, and we want to cap it at 5kb per  * second. This could be accomplished by requiring a permit per byte, and specifying a rate of 5000  * permits per second:  *  *<pre>{@code  * final RateLimiter rateLimiter = RateLimiter.create(5000.0); // rate = 5000 permits per second  * void submitPacket(byte[] packet) {  *   rateLimiter.acquire(packet.length);  *   networkService.send(packet);  * }  * }</pre>  *  *<p>It is important to note that the number of permits requested<i>never</i> affects the  * throttling of the request itself (an invocation to {@code acquire(1)} and an invocation to {@code  * acquire(1000)} will result in exactly the same throttling, if any), but it affects the throttling  * of the<i>next</i> request. I.e., if an expensive task arrives at an idle RateLimiter, it will be  * granted immediately, but it is the<i>next</i> request that will experience extra throttling,  * thus paying for the cost of the expensive task.  *  * @author Dimitris Andreou  * @since 13.0  */
 end_comment
@@ -408,6 +424,8 @@ name|stopwatch
 decl_stmt|;
 comment|// Can't be initialized in the constructor because mocks don't call the constructor.
 DECL|field|mutexDoNotUseDirectly
+annotation|@
+name|MonotonicNonNullDecl
 specifier|private
 specifier|volatile
 name|Object

@@ -182,6 +182,22 @@ name|AtomicLong
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|checkerframework
+operator|.
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|MonotonicNonNullDecl
+import|;
+end_import
+
 begin_comment
 comment|/**  * A map containing {@code long} values that can be atomically updated. While writes to a  * traditional {@code Map} rely on {@code put(K, V)}, the typical mechanism for writing to this map  * is {@code addAndGet(K, long)}, which adds a {@code long} to the value currently associated with  * {@code K}. If a key has not yet been associated with a value, its implicit value is zero.  *  *<p>Most methods in this class treat absent values and zero values identically, as individually  * documented. Exceptions to this are {@link #containsKey}, {@link #size}, {@link #isEmpty}, {@link  * #asMap}, and {@link #toString}.  *  *<p>Instances of this class may be used by multiple threads concurrently. All operations are  * atomic unless otherwise noted.  *  *<p><b>Note:</b> If your values are always positive and less than 2^31, you may wish to use a  * {@link com.google.common.collect.Multiset} such as {@link  * com.google.common.collect.ConcurrentHashMultiset} instead.  *  *<p><b>Warning:</b> Unlike {@code Multiset}, entries whose values are zero are not automatically  * removed from the map. Instead they must be removed manually with {@link #removeAllZeros}.  *  * @author Charles Fry  * @since 11.0  */
 end_comment
@@ -1121,6 +1137,8 @@ name|sum
 return|;
 block|}
 DECL|field|asMap
+annotation|@
+name|MonotonicNonNullDecl
 specifier|private
 specifier|transient
 name|Map
