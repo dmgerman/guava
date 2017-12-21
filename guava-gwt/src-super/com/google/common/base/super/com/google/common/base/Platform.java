@@ -241,15 +241,12 @@ name|namespace
 operator|=
 name|GLOBAL
 argument_list|)
-DECL|class|Number
+DECL|interface|Number
 specifier|private
-specifier|static
-class|class
+interface|interface
 name|Number
 block|{
 DECL|method|toPrecision (int precision)
-specifier|public
-specifier|native
 name|double
 name|toPrecision
 parameter_list|(
