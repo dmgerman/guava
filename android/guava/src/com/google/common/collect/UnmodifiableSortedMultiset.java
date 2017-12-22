@@ -66,6 +66,22 @@ name|NavigableSet
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|checkerframework
+operator|.
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|MonotonicNonNullDecl
+import|;
+end_import
+
 begin_comment
 comment|/**  * Implementation of {@link Multisets#unmodifiableSortedMultiset(SortedMultiset)}, split out into  * its own file so it can be GWT emulated (to deal with the differing elementSet() types in GWT and  * non-GWT).  *  * @author Louis Wasserman  */
 end_comment
@@ -205,6 +221,8 @@ argument_list|()
 return|;
 block|}
 DECL|field|descendingMultiset
+annotation|@
+name|MonotonicNonNullDecl
 specifier|private
 specifier|transient
 name|UnmodifiableSortedMultiset
