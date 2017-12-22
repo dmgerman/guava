@@ -575,6 +575,8 @@ argument_list|>
 name|map
 decl_stmt|;
 DECL|field|defaultValue
+annotation|@
+name|NullableDecl
 specifier|final
 name|V
 name|defaultValue
@@ -1294,6 +1296,8 @@ implements|,
 name|Serializable
 block|{
 DECL|field|value
+annotation|@
+name|NullableDecl
 specifier|private
 specifier|final
 name|E
