@@ -74,6 +74,22 @@ name|Set
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|checkerframework
+operator|.
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|MonotonicNonNullDecl
+import|;
+end_import
+
 begin_comment
 comment|/**  * Workaround for<a href="http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6312706">EnumMap  * bug</a>. If you want to pass an {@code EnumMap}, with the intention of using its {@code  * entrySet()} method, you should wrap the {@code EnumMap} in this class instead.  *  *<p>This class is not thread-safe even if the underlying map is.  *  * @author Dimitris Andreou  */
 end_comment
@@ -110,6 +126,8 @@ argument_list|>
 name|delegate
 decl_stmt|;
 DECL|field|entrySet
+annotation|@
+name|MonotonicNonNullDecl
 specifier|private
 name|Set
 argument_list|<
