@@ -285,6 +285,8 @@ argument_list|()
 decl_stmt|;
 comment|/** Table of cells. When non-null, size is a power of 2. */
 DECL|field|cells
+annotation|@
+name|NullableDecl
 specifier|transient
 specifier|volatile
 name|Cell
