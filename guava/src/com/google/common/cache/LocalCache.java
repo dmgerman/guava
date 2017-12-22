@@ -968,6 +968,22 @@ name|nullness
 operator|.
 name|compatqual
 operator|.
+name|MonotonicNonNullDecl
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|checkerframework
+operator|.
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
 name|NullableDecl
 import|;
 end_import
@@ -4580,6 +4596,8 @@ name|int
 name|hash
 decl_stmt|;
 DECL|field|next
+annotation|@
+name|NullableDecl
 specifier|final
 name|ReferenceEntry
 argument_list|<
@@ -5721,6 +5739,8 @@ name|int
 name|hash
 decl_stmt|;
 DECL|field|next
+annotation|@
+name|NullableDecl
 specifier|final
 name|ReferenceEntry
 argument_list|<
@@ -8345,6 +8365,8 @@ name|threshold
 decl_stmt|;
 comment|/** The per-segment table. */
 DECL|field|table
+annotation|@
+name|MonotonicNonNullDecl
 specifier|volatile
 name|AtomicReferenceArray
 argument_list|<
@@ -8365,6 +8387,8 @@ name|maxSegmentWeight
 decl_stmt|;
 comment|/**      * The key reference queue contains entries whose keys have been garbage collected, and which      * need to be cleaned up internally.      */
 DECL|field|keyReferenceQueue
+annotation|@
+name|NullableDecl
 specifier|final
 name|ReferenceQueue
 argument_list|<
@@ -8374,6 +8398,8 @@ name|keyReferenceQueue
 decl_stmt|;
 comment|/**      * The value reference queue contains value references whose values have been garbage collected,      * and which need to be cleaned up internally.      */
 DECL|field|valueReferenceQueue
+annotation|@
+name|NullableDecl
 specifier|final
 name|ReferenceQueue
 argument_list|<
@@ -20542,6 +20568,8 @@ expr_stmt|;
 block|}
 block|}
 DECL|field|keySet
+annotation|@
+name|MonotonicNonNullDecl
 name|Set
 argument_list|<
 name|K
@@ -20589,6 +20617,8 @@ operator|)
 return|;
 block|}
 DECL|field|values
+annotation|@
+name|MonotonicNonNullDecl
 name|Collection
 argument_list|<
 name|V
@@ -20636,6 +20666,8 @@ operator|)
 return|;
 block|}
 DECL|field|entrySet
+annotation|@
+name|MonotonicNonNullDecl
 name|Set
 argument_list|<
 name|Entry
@@ -20723,6 +20755,8 @@ name|int
 name|nextTableIndex
 decl_stmt|;
 DECL|field|currentSegment
+annotation|@
+name|MonotonicNonNullDecl
 name|Segment
 argument_list|<
 name|K
@@ -20732,6 +20766,8 @@ argument_list|>
 name|currentSegment
 decl_stmt|;
 DECL|field|currentTable
+annotation|@
+name|MonotonicNonNullDecl
 name|AtomicReferenceArray
 argument_list|<
 name|ReferenceEntry
@@ -20744,6 +20780,8 @@ argument_list|>
 name|currentTable
 decl_stmt|;
 DECL|field|nextEntry
+annotation|@
+name|NullableDecl
 name|ReferenceEntry
 argument_list|<
 name|K
@@ -20753,10 +20791,14 @@ argument_list|>
 name|nextEntry
 decl_stmt|;
 DECL|field|nextExternal
+annotation|@
+name|NullableDecl
 name|WriteThroughEntry
 name|nextExternal
 decl_stmt|;
 DECL|field|lastReturned
+annotation|@
+name|NullableDecl
 name|WriteThroughEntry
 name|lastReturned
 decl_stmt|;
@@ -22389,6 +22431,8 @@ argument_list|>
 name|removalListener
 decl_stmt|;
 DECL|field|ticker
+annotation|@
+name|NullableDecl
 specifier|final
 name|Ticker
 name|ticker
@@ -22406,6 +22450,8 @@ argument_list|>
 name|loader
 decl_stmt|;
 DECL|field|delegate
+annotation|@
+name|MonotonicNonNullDecl
 specifier|transient
 name|Cache
 argument_list|<
@@ -22906,6 +22952,8 @@ init|=
 literal|1
 decl_stmt|;
 DECL|field|autoDelegate
+annotation|@
+name|MonotonicNonNullDecl
 specifier|transient
 name|LoadingCache
 argument_list|<

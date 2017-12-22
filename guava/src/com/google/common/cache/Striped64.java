@@ -44,6 +44,22 @@ name|Random
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|checkerframework
+operator|.
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
+import|;
+end_import
+
 begin_comment
 comment|/**  * A package-local class holding common representation and mechanics for classes supporting dynamic  * striping on 64bit values. The class extends Number so that concrete subclasses must publicly do  * so.  */
 end_comment
@@ -269,6 +285,8 @@ argument_list|()
 decl_stmt|;
 comment|/** Table of cells. When non-null, size is a power of 2. */
 DECL|field|cells
+annotation|@
+name|NullableDecl
 specifier|transient
 specifier|volatile
 name|Cell

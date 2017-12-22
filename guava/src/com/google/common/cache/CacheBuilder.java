@@ -340,6 +340,22 @@ name|Logger
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|checkerframework
+operator|.
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|MonotonicNonNullDecl
+import|;
+end_import
+
 begin_comment
 comment|/**  * A builder of {@link LoadingCache} and {@link Cache} instances having any combination of the  * following features:  *  *<ul>  *<li>automatic loading of entries into the cache  *<li>least-recently-used eviction when a maximum size is exceeded  *<li>time-based expiration of entries, measured since last access or last write  *<li>keys automatically wrapped in {@linkplain WeakReference weak} references  *<li>values automatically wrapped in {@linkplain WeakReference weak} or {@linkplain  *       SoftReference soft} references  *<li>notification of evicted (or otherwise removed) entries  *<li>accumulation of cache access statistics  *</ul>  *  *  *<p>These features are all optional; caches can be created using all or none of them. By default  * cache instances created by {@code CacheBuilder} will not perform any type of eviction.  *  *<p>Usage example:  *  *<pre>{@code  * LoadingCache<Key, Graph> graphs = CacheBuilder.newBuilder()  *     .maximumSize(10000)  *     .expireAfterWrite(10, TimeUnit.MINUTES)  *     .removalListener(MY_LISTENER)  *     .build(  *         new CacheLoader<Key, Graph>() {  *           public Graph load(Key key) throws AnyException {  *             return createExpensiveGraph(key);  *           }  *         });  * }</pre>  *  *<p>Or equivalently,  *  *<pre>{@code  * // In real life this would come from a command-line flag or config file  * String spec = "maximumSize=10000,expireAfterWrite=10m";  *  * LoadingCache<Key, Graph> graphs = CacheBuilder.from(spec)  *     .removalListener(MY_LISTENER)  *     .build(  *         new CacheLoader<Key, Graph>() {  *           public Graph load(Key key) throws AnyException {  *             return createExpensiveGraph(key);  *           }  *         });  * }</pre>  *  *<p>The returned cache is implemented as a hash table with similar performance characteristics to  * {@link ConcurrentHashMap}. It implements all optional operations of the {@link LoadingCache} and  * {@link Cache} interfaces. The {@code asMap} view (and its collection views) have<i>weakly  * consistent iterators</i>. This means that they are safe for concurrent use, but if other threads  * modify the cache after the iterator is created, it is undefined which of these changes, if any,  * are reflected in that iterator. These iterators never throw {@link  * ConcurrentModificationException}.  *  *<p><b>Note:</b> by default, the returned cache uses equality comparisons (the {@link  * Object#equals equals} method) to determine equality for keys or values. However, if {@link  * #weakKeys} was specified, the cache uses identity ({@code ==}) comparisons instead for keys.  * Likewise, if {@link #weakValues} or {@link #softValues} was specified, the cache uses identity  * comparisons for values.  *  *<p>Entries are automatically evicted from the cache when any of {@linkplain #maximumSize(long)  * maximumSize}, {@linkplain #maximumWeight(long) maximumWeight}, {@linkplain #expireAfterWrite  * expireAfterWrite}, {@linkplain #expireAfterAccess expireAfterAccess}, {@linkplain #weakKeys  * weakKeys}, {@linkplain #weakValues weakValues}, or {@linkplain #softValues softValues} are  * requested.  *  *<p>If {@linkplain #maximumSize(long) maximumSize} or {@linkplain #maximumWeight(long)  * maximumWeight} is requested entries may be evicted on each cache modification.  *  *<p>If {@linkplain #expireAfterWrite expireAfterWrite} or {@linkplain #expireAfterAccess  * expireAfterAccess} is requested entries may be evicted on each cache modification, on occasional  * cache accesses, or on calls to {@link Cache#cleanUp}. Expired entries may be counted by {@link  * Cache#size}, but will never be visible to read or write operations.  *  *<p>If {@linkplain #weakKeys weakKeys}, {@linkplain #weakValues weakValues}, or {@linkplain  * #softValues softValues} are requested, it is possible for a key or value present in the cache to  * be reclaimed by the garbage collector. Entries with reclaimed keys or values may be removed from  * the cache on each cache modification, on occasional cache accesses, or on calls to {@link  * Cache#cleanUp}; such entries may be counted in {@link Cache#size}, but will never be visible to  * read or write operations.  *  *<p>Certain cache configurations will result in the accrual of periodic maintenance tasks which  * will be performed during write operations, or during occasional read operations in the absence of  * writes. The {@link Cache#cleanUp} method of the returned cache will also perform maintenance, but  * calling it should not be necessary with a high throughput cache. Only caches built with  * {@linkplain #removalListener removalListener}, {@linkplain #expireAfterWrite expireAfterWrite},  * {@linkplain #expireAfterAccess expireAfterAccess}, {@linkplain #weakKeys weakKeys}, {@linkplain  * #weakValues weakValues}, or {@linkplain #softValues softValues} perform periodic maintenance.  *  *<p>The caches produced by {@code CacheBuilder} are serializable, and the deserialized caches  * retain all the configuration properties of the original cache. Note that the serialized form does  *<i>not</i> include cache contents, but only configuration.  *  *<p>See the Guava User Guide article on<a  * href="https://github.com/google/guava/wiki/CachesExplained">caching</a> for a higher-level  * explanation.  *  * @param<K> the base key type for all caches created by this builder  * @param<V> the base value type for all caches created by this builder  * @author Charles Fry  * @author Kevin Bourrillion  * @since 10.0  */
 end_comment
@@ -678,6 +694,8 @@ init|=
 name|UNSET_INT
 decl_stmt|;
 DECL|field|weigher
+annotation|@
+name|MonotonicNonNullDecl
 name|Weigher
 argument_list|<
 name|?
@@ -691,10 +709,14 @@ argument_list|>
 name|weigher
 decl_stmt|;
 DECL|field|keyStrength
+annotation|@
+name|MonotonicNonNullDecl
 name|Strength
 name|keyStrength
 decl_stmt|;
 DECL|field|valueStrength
+annotation|@
+name|MonotonicNonNullDecl
 name|Strength
 name|valueStrength
 decl_stmt|;
@@ -717,6 +739,8 @@ init|=
 name|UNSET_INT
 decl_stmt|;
 DECL|field|keyEquivalence
+annotation|@
+name|MonotonicNonNullDecl
 name|Equivalence
 argument_list|<
 name|Object
@@ -724,6 +748,8 @@ argument_list|>
 name|keyEquivalence
 decl_stmt|;
 DECL|field|valueEquivalence
+annotation|@
+name|MonotonicNonNullDecl
 name|Equivalence
 argument_list|<
 name|Object
@@ -731,6 +757,8 @@ argument_list|>
 name|valueEquivalence
 decl_stmt|;
 DECL|field|removalListener
+annotation|@
+name|MonotonicNonNullDecl
 name|RemovalListener
 argument_list|<
 name|?
@@ -744,6 +772,8 @@ argument_list|>
 name|removalListener
 decl_stmt|;
 DECL|field|ticker
+annotation|@
+name|MonotonicNonNullDecl
 name|Ticker
 name|ticker
 decl_stmt|;
