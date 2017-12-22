@@ -138,6 +138,22 @@ name|OutputStream
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|checkerframework
+operator|.
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
+import|;
+end_import
+
 begin_comment
 comment|/**  * An {@link OutputStream} that starts buffering to a byte array, but switches to file buffering  * once the data reaches a configurable size.  *  *<p>This class is thread-safe.  *  * @author Chris Nokleberg  * @since 1.0  */
 end_comment
@@ -184,6 +200,8 @@ name|MemoryOutput
 name|memory
 decl_stmt|;
 DECL|field|file
+annotation|@
+name|NullableDecl
 specifier|private
 name|File
 name|file

@@ -140,6 +140,22 @@ name|Queue
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|checkerframework
+operator|.
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
+import|;
+end_import
+
 begin_comment
 comment|/**  * A class for reading lines of text. Provides the same functionality as {@link  * java.io.BufferedReader#readLine()} but for all {@link Readable} objects, not just instances of  * {@link Reader}.  *  * @author Chris Nokleberg  * @since 1.0  */
 end_comment
@@ -162,6 +178,8 @@ name|Readable
 name|readable
 decl_stmt|;
 DECL|field|reader
+annotation|@
+name|NullableDecl
 specifier|private
 specifier|final
 name|Reader

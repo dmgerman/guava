@@ -115,6 +115,8 @@ argument_list|>
 name|it
 decl_stmt|;
 DECL|field|current
+annotation|@
+name|NullableDecl
 specifier|private
 name|Reader
 name|current
