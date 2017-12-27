@@ -2754,6 +2754,8 @@ name|int
 name|height
 decl_stmt|;
 DECL|field|left
+annotation|@
+name|NullableDecl
 specifier|private
 name|AvlNode
 argument_list|<
@@ -2762,6 +2764,8 @@ argument_list|>
 name|left
 decl_stmt|;
 DECL|field|right
+annotation|@
+name|NullableDecl
 specifier|private
 name|AvlNode
 argument_list|<
@@ -2770,6 +2774,8 @@ argument_list|>
 name|right
 decl_stmt|;
 DECL|field|pred
+annotation|@
+name|NullableDecl
 specifier|private
 name|AvlNode
 argument_list|<
@@ -2778,6 +2784,8 @@ argument_list|>
 name|pred
 decl_stmt|;
 DECL|field|succ
+annotation|@
+name|NullableDecl
 specifier|private
 name|AvlNode
 argument_list|<
