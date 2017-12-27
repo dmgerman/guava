@@ -579,6 +579,26 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
+DECL|method|createAsMap ()
+name|Map
+argument_list|<
+name|K
+argument_list|,
+name|Collection
+argument_list|<
+name|V
+argument_list|>
+argument_list|>
+name|createAsMap
+parameter_list|()
+block|{
+return|return
+name|createMaybeNavigableAsMap
+argument_list|()
+return|;
+block|}
+annotation|@
+name|Override
 DECL|method|createCollection ()
 specifier|protected
 name|Collection
@@ -850,6 +870,26 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
+DECL|method|createAsMap ()
+name|Map
+argument_list|<
+name|K
+argument_list|,
+name|Collection
+argument_list|<
+name|V
+argument_list|>
+argument_list|>
+name|createAsMap
+parameter_list|()
+block|{
+return|return
+name|createMaybeNavigableAsMap
+argument_list|()
+return|;
+block|}
+annotation|@
+name|Override
 DECL|method|createCollection ()
 specifier|protected
 name|List
@@ -1116,6 +1156,26 @@ argument_list|(
 name|factory
 argument_list|)
 expr_stmt|;
+block|}
+annotation|@
+name|Override
+DECL|method|createAsMap ()
+name|Map
+argument_list|<
+name|K
+argument_list|,
+name|Collection
+argument_list|<
+name|V
+argument_list|>
+argument_list|>
+name|createAsMap
+parameter_list|()
+block|{
+return|return
+name|createMaybeNavigableAsMap
+argument_list|()
+return|;
 block|}
 annotation|@
 name|Override
@@ -1405,6 +1465,26 @@ operator|.
 name|comparator
 argument_list|()
 expr_stmt|;
+block|}
+annotation|@
+name|Override
+DECL|method|createAsMap ()
+name|Map
+argument_list|<
+name|K
+argument_list|,
+name|Collection
+argument_list|<
+name|V
+argument_list|>
+argument_list|>
+name|createAsMap
+parameter_list|()
+block|{
+return|return
+name|createMaybeNavigableAsMap
+argument_list|()
+return|;
 block|}
 annotation|@
 name|Override

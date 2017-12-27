@@ -116,6 +116,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|Map
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|NavigableMap
 import|;
 end_import
@@ -469,6 +479,26 @@ argument_list|(
 name|multimap
 argument_list|)
 expr_stmt|;
+block|}
+annotation|@
+name|Override
+DECL|method|createAsMap ()
+name|Map
+argument_list|<
+name|K
+argument_list|,
+name|Collection
+argument_list|<
+name|V
+argument_list|>
+argument_list|>
+name|createAsMap
+parameter_list|()
+block|{
+return|return
+name|createMaybeNavigableAsMap
+argument_list|()
+return|;
 block|}
 comment|/**    * {@inheritDoc}    *    *<p>Creates an empty {@code TreeSet} for a collection of values for one key.    *    * @return a new {@code TreeSet} containing a collection of values for one key    */
 annotation|@
