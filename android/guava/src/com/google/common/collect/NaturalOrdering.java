@@ -56,6 +56,22 @@ name|Serializable
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|checkerframework
+operator|.
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|MonotonicNonNullDecl
+import|;
+end_import
+
 begin_comment
 comment|/** An ordering that uses the natural order of the values. */
 end_comment
@@ -97,6 +113,8 @@ name|NaturalOrdering
 argument_list|()
 decl_stmt|;
 DECL|field|nullsFirst
+annotation|@
+name|MonotonicNonNullDecl
 specifier|private
 specifier|transient
 name|Ordering
@@ -106,6 +124,8 @@ argument_list|>
 name|nullsFirst
 decl_stmt|;
 DECL|field|nullsLast
+annotation|@
+name|MonotonicNonNullDecl
 specifier|private
 specifier|transient
 name|Ordering
