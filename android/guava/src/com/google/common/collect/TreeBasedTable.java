@@ -1059,6 +1059,8 @@ argument_list|()
 return|;
 block|}
 DECL|field|wholeRow
+annotation|@
+name|NullableDecl
 specifier|transient
 name|SortedMap
 argument_list|<
