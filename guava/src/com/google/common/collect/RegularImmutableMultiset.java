@@ -241,6 +241,8 @@ index|[]
 name|entries
 decl_stmt|;
 DECL|field|hashTable
+annotation|@
+name|NullableDecl
 specifier|private
 specifier|final
 specifier|transient
