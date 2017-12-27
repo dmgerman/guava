@@ -376,6 +376,22 @@ name|nullness
 operator|.
 name|compatqual
 operator|.
+name|MonotonicNonNullDecl
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|checkerframework
+operator|.
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
 name|NullableDecl
 import|;
 end_import
@@ -2252,6 +2268,8 @@ name|E
 argument_list|>
 block|{
 DECL|field|elementSet
+annotation|@
+name|MonotonicNonNullDecl
 specifier|transient
 name|Set
 argument_list|<
@@ -2260,6 +2278,8 @@ argument_list|>
 name|elementSet
 decl_stmt|;
 DECL|field|entrySet
+annotation|@
+name|MonotonicNonNullDecl
 specifier|transient
 name|Set
 argument_list|<
@@ -2709,6 +2729,8 @@ name|V
 argument_list|>
 block|{
 DECL|field|keySet
+annotation|@
+name|MonotonicNonNullDecl
 specifier|transient
 name|Set
 argument_list|<
@@ -2717,6 +2739,8 @@ argument_list|>
 name|keySet
 decl_stmt|;
 DECL|field|valuesCollection
+annotation|@
+name|MonotonicNonNullDecl
 specifier|transient
 name|Collection
 argument_list|<
@@ -2725,6 +2749,8 @@ argument_list|>
 name|valuesCollection
 decl_stmt|;
 DECL|field|entries
+annotation|@
+name|MonotonicNonNullDecl
 specifier|transient
 name|Collection
 argument_list|<
@@ -2738,6 +2764,8 @@ argument_list|>
 name|entries
 decl_stmt|;
 DECL|field|asMap
+annotation|@
+name|MonotonicNonNullDecl
 specifier|transient
 name|Map
 argument_list|<
@@ -2751,6 +2779,8 @@ argument_list|>
 name|asMap
 decl_stmt|;
 DECL|field|keys
+annotation|@
+name|MonotonicNonNullDecl
 specifier|transient
 name|Multiset
 argument_list|<
@@ -3867,6 +3897,8 @@ name|V
 argument_list|>
 block|{
 DECL|field|entrySet
+annotation|@
+name|MonotonicNonNullDecl
 specifier|transient
 name|Set
 argument_list|<
@@ -5049,6 +5081,8 @@ name|V
 argument_list|>
 block|{
 DECL|field|keySet
+annotation|@
+name|MonotonicNonNullDecl
 specifier|transient
 name|Set
 argument_list|<
@@ -5057,6 +5091,8 @@ argument_list|>
 name|keySet
 decl_stmt|;
 DECL|field|values
+annotation|@
+name|MonotonicNonNullDecl
 specifier|transient
 name|Collection
 argument_list|<
@@ -5065,6 +5101,8 @@ argument_list|>
 name|values
 decl_stmt|;
 DECL|field|entrySet
+annotation|@
+name|MonotonicNonNullDecl
 specifier|transient
 name|Set
 argument_list|<
@@ -6394,6 +6432,8 @@ implements|,
 name|Serializable
 block|{
 DECL|field|valueSet
+annotation|@
+name|MonotonicNonNullDecl
 specifier|private
 specifier|transient
 name|Set
@@ -6403,6 +6443,8 @@ argument_list|>
 name|valueSet
 decl_stmt|;
 DECL|field|inverse
+annotation|@
+name|MonotonicNonNullDecl
 annotation|@
 name|RetainedWith
 specifier|private
@@ -6638,6 +6680,8 @@ argument_list|>
 argument_list|>
 block|{
 DECL|field|asMapEntrySet
+annotation|@
+name|MonotonicNonNullDecl
 specifier|transient
 name|Set
 argument_list|<
@@ -6654,6 +6698,8 @@ argument_list|>
 name|asMapEntrySet
 decl_stmt|;
 DECL|field|asMapValues
+annotation|@
+name|MonotonicNonNullDecl
 specifier|transient
 name|Collection
 argument_list|<
@@ -7108,6 +7154,8 @@ return|;
 comment|// manually synchronized
 block|}
 DECL|field|descendingSet
+annotation|@
+name|MonotonicNonNullDecl
 specifier|transient
 name|NavigableSet
 argument_list|<
@@ -7811,6 +7859,8 @@ return|;
 block|}
 block|}
 DECL|field|descendingKeySet
+annotation|@
+name|MonotonicNonNullDecl
 specifier|transient
 name|NavigableSet
 argument_list|<
@@ -7864,6 +7914,8 @@ return|;
 block|}
 block|}
 DECL|field|descendingMap
+annotation|@
+name|MonotonicNonNullDecl
 specifier|transient
 name|NavigableMap
 argument_list|<
@@ -8233,6 +8285,8 @@ argument_list|()
 return|;
 block|}
 DECL|field|navigableKeySet
+annotation|@
+name|MonotonicNonNullDecl
 specifier|transient
 name|NavigableSet
 argument_list|<
