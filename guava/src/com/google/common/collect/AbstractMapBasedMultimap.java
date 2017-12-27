@@ -3783,6 +3783,23 @@ argument_list|>
 name|createKeySet
 parameter_list|()
 block|{
+return|return
+operator|new
+name|KeySet
+argument_list|(
+name|map
+argument_list|)
+return|;
+block|}
+DECL|method|createMaybeNavigableKeySet ()
+specifier|final
+name|Set
+argument_list|<
+name|K
+argument_list|>
+name|createMaybeNavigableKeySet
+parameter_list|()
+block|{
 if|if
 condition|(
 name|map

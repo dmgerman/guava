@@ -579,6 +579,21 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
+DECL|method|createKeySet ()
+name|Set
+argument_list|<
+name|K
+argument_list|>
+name|createKeySet
+parameter_list|()
+block|{
+return|return
+name|createMaybeNavigableKeySet
+argument_list|()
+return|;
+block|}
+annotation|@
+name|Override
 DECL|method|createAsMap ()
 name|Map
 argument_list|<
@@ -870,6 +885,21 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
+DECL|method|createKeySet ()
+name|Set
+argument_list|<
+name|K
+argument_list|>
+name|createKeySet
+parameter_list|()
+block|{
+return|return
+name|createMaybeNavigableKeySet
+argument_list|()
+return|;
+block|}
+annotation|@
+name|Override
 DECL|method|createAsMap ()
 name|Map
 argument_list|<
@@ -1156,6 +1186,21 @@ argument_list|(
 name|factory
 argument_list|)
 expr_stmt|;
+block|}
+annotation|@
+name|Override
+DECL|method|createKeySet ()
+name|Set
+argument_list|<
+name|K
+argument_list|>
+name|createKeySet
+parameter_list|()
+block|{
+return|return
+name|createMaybeNavigableKeySet
+argument_list|()
+return|;
 block|}
 annotation|@
 name|Override
@@ -1465,6 +1510,21 @@ operator|.
 name|comparator
 argument_list|()
 expr_stmt|;
+block|}
+annotation|@
+name|Override
+DECL|method|createKeySet ()
+name|Set
+argument_list|<
+name|K
+argument_list|>
+name|createKeySet
+parameter_list|()
+block|{
+return|return
+name|createMaybeNavigableKeySet
+argument_list|()
+return|;
 block|}
 annotation|@
 name|Override
