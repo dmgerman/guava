@@ -1652,6 +1652,8 @@ argument_list|<
 name|T
 argument_list|>
 block|{
+annotation|@
+name|NullableDecl
 name|T
 name|holder
 decl_stmt|;
