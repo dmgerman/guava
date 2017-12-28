@@ -1029,6 +1029,8 @@ implements|,
 name|RandomAccess
 block|{
 DECL|field|first
+annotation|@
+name|NullableDecl
 specifier|final
 name|E
 name|first
@@ -1197,11 +1199,15 @@ implements|,
 name|RandomAccess
 block|{
 DECL|field|first
+annotation|@
+name|NullableDecl
 specifier|final
 name|E
 name|first
 decl_stmt|;
 DECL|field|second
+annotation|@
+name|NullableDecl
 specifier|final
 name|E
 name|second
