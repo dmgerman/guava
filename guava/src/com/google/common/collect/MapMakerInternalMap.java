@@ -11868,6 +11868,8 @@ expr_stmt|;
 block|}
 block|}
 DECL|field|keySet
+annotation|@
+name|MonotonicNonNullDecl
 specifier|transient
 name|Set
 argument_list|<
@@ -11913,6 +11915,8 @@ operator|)
 return|;
 block|}
 DECL|field|values
+annotation|@
+name|MonotonicNonNullDecl
 specifier|transient
 name|Collection
 argument_list|<
@@ -11958,6 +11962,8 @@ operator|)
 return|;
 block|}
 DECL|field|entrySet
+annotation|@
+name|MonotonicNonNullDecl
 specifier|transient
 name|Set
 argument_list|<
