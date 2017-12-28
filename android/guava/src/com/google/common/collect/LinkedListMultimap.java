@@ -363,15 +363,21 @@ name|V
 argument_list|>
 block|{
 DECL|field|key
+annotation|@
+name|NullableDecl
 specifier|final
 name|K
 name|key
 decl_stmt|;
 DECL|field|value
+annotation|@
+name|NullableDecl
 name|V
 name|value
 decl_stmt|;
 DECL|field|next
+annotation|@
+name|NullableDecl
 name|Node
 argument_list|<
 name|K
@@ -382,6 +388,8 @@ name|next
 decl_stmt|;
 comment|// the next node (with any key)
 DECL|field|previous
+annotation|@
+name|NullableDecl
 name|Node
 argument_list|<
 name|K
@@ -392,6 +400,8 @@ name|previous
 decl_stmt|;
 comment|// the previous node (with any key)
 DECL|field|nextSibling
+annotation|@
+name|NullableDecl
 name|Node
 argument_list|<
 name|K
@@ -402,6 +412,8 @@ name|nextSibling
 decl_stmt|;
 comment|// the next node with the same key
 DECL|field|previousSibling
+annotation|@
+name|NullableDecl
 name|Node
 argument_list|<
 name|K
@@ -569,6 +581,8 @@ expr_stmt|;
 block|}
 block|}
 DECL|field|head
+annotation|@
+name|NullableDecl
 specifier|private
 specifier|transient
 name|Node
@@ -581,6 +595,8 @@ name|head
 decl_stmt|;
 comment|// the head for all keys
 DECL|field|tail
+annotation|@
+name|NullableDecl
 specifier|private
 specifier|transient
 name|Node
@@ -1380,6 +1396,8 @@ name|int
 name|nextIndex
 decl_stmt|;
 DECL|field|next
+annotation|@
+name|NullableDecl
 name|Node
 argument_list|<
 name|K
@@ -1389,6 +1407,8 @@ argument_list|>
 name|next
 decl_stmt|;
 DECL|field|current
+annotation|@
+name|NullableDecl
 name|Node
 argument_list|<
 name|K
@@ -1398,6 +1418,8 @@ argument_list|>
 name|current
 decl_stmt|;
 DECL|field|previous
+annotation|@
+name|NullableDecl
 name|Node
 argument_list|<
 name|K
@@ -1986,6 +2008,8 @@ name|V
 argument_list|>
 block|{
 DECL|field|key
+annotation|@
+name|NullableDecl
 specifier|final
 name|Object
 name|key
@@ -1995,6 +2019,8 @@ name|int
 name|nextIndex
 decl_stmt|;
 DECL|field|next
+annotation|@
+name|NullableDecl
 name|Node
 argument_list|<
 name|K
@@ -2004,6 +2030,8 @@ argument_list|>
 name|next
 decl_stmt|;
 DECL|field|current
+annotation|@
+name|NullableDecl
 name|Node
 argument_list|<
 name|K
@@ -2013,6 +2041,8 @@ argument_list|>
 name|current
 decl_stmt|;
 DECL|field|previous
+annotation|@
+name|NullableDecl
 name|Node
 argument_list|<
 name|K
