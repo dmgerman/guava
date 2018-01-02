@@ -148,6 +148,22 @@ name|nullness
 operator|.
 name|compatqual
 operator|.
+name|MonotonicNonNullDecl
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|checkerframework
+operator|.
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
 name|NullableDecl
 import|;
 end_import
@@ -591,6 +607,8 @@ name|result
 return|;
 block|}
 DECL|field|entries
+annotation|@
+name|MonotonicNonNullDecl
 specifier|private
 specifier|transient
 name|Collection
@@ -792,6 +810,8 @@ name|entryIterator
 parameter_list|()
 function_decl|;
 DECL|field|keySet
+annotation|@
+name|MonotonicNonNullDecl
 specifier|private
 specifier|transient
 name|Set
@@ -844,6 +864,8 @@ name|createKeySet
 parameter_list|()
 function_decl|;
 DECL|field|keys
+annotation|@
+name|MonotonicNonNullDecl
 specifier|private
 specifier|transient
 name|Multiset
@@ -896,6 +918,8 @@ name|createKeys
 parameter_list|()
 function_decl|;
 DECL|field|values
+annotation|@
+name|MonotonicNonNullDecl
 specifier|private
 specifier|transient
 name|Collection
@@ -1054,6 +1078,8 @@ argument_list|)
 return|;
 block|}
 DECL|field|asMap
+annotation|@
+name|MonotonicNonNullDecl
 specifier|private
 specifier|transient
 name|Map
