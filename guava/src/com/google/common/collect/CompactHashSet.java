@@ -274,6 +274,22 @@ name|nullness
 operator|.
 name|compatqual
 operator|.
+name|MonotonicNonNullDecl
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|checkerframework
+operator|.
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
 name|NullableDecl
 import|;
 end_import
@@ -512,6 +528,8 @@ literal|1
 decl_stmt|;
 comment|/**    * The hashtable. Its values are indexes to both the elements and entries arrays.    *    *<p>Currently, the UNSET value means "null pointer", and any non negative value x is the actual    * index.    *    *<p>Its size must be a power of two.    */
 DECL|field|table
+annotation|@
+name|MonotonicNonNullDecl
 specifier|private
 specifier|transient
 name|int
@@ -520,6 +538,8 @@ name|table
 decl_stmt|;
 comment|/**    * Contains the logical entries, in the range of [0, size()). The high 32 bits of each long is the    * smeared hash of the element, whereas the low 32 bits is the "next" pointer (pointing to the    * next entry in the bucket chain). The pointers in [size(), entries.length) are all "null"    * (UNSET).    */
 DECL|field|entries
+annotation|@
+name|MonotonicNonNullDecl
 specifier|private
 specifier|transient
 name|long
@@ -528,6 +548,8 @@ name|entries
 decl_stmt|;
 comment|/** The elements contained in the set, in the range of [0, size()). */
 DECL|field|elements
+annotation|@
+name|MonotonicNonNullDecl
 specifier|transient
 name|Object
 index|[]
