@@ -336,6 +336,22 @@ name|nullness
 operator|.
 name|compatqual
 operator|.
+name|MonotonicNonNullDecl
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|checkerframework
+operator|.
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
 name|NullableDecl
 import|;
 end_import
@@ -490,6 +506,8 @@ literal|1
 decl_stmt|;
 comment|/**    * The hashtable. Its values are indexes to the keys, values, and entries arrays.    *    *<p>Currently, the UNSET value means "null pointer", and any non negative value x is the actual    * index.    *    *<p>Its size must be a power of two.    */
 DECL|field|table
+annotation|@
+name|MonotonicNonNullDecl
 specifier|private
 specifier|transient
 name|int
@@ -498,6 +516,8 @@ name|table
 decl_stmt|;
 comment|/**    * Contains the logical entries, in the range of [0, size()). The high 32 bits of each long is the    * smeared hash of the element, whereas the low 32 bits is the "next" pointer (pointing to the    * next entry in the bucket chain). The pointers in [size(), entries.length) are all "null"    * (UNSET).    */
 DECL|field|entries
+annotation|@
+name|MonotonicNonNullDecl
 annotation|@
 name|VisibleForTesting
 specifier|transient
@@ -508,6 +528,8 @@ decl_stmt|;
 comment|/**    * The keys of the entries in the map, in the range of [0, size()). The keys in [size(),    * keys.length) are all {@code null}.    */
 DECL|field|keys
 annotation|@
+name|MonotonicNonNullDecl
+annotation|@
 name|VisibleForTesting
 specifier|transient
 name|Object
@@ -516,6 +538,8 @@ name|keys
 decl_stmt|;
 comment|/**    * The values of the entries in the map, in the range of [0, size()). The values in [size(),    * values.length) are all {@code null}.    */
 DECL|field|values
+annotation|@
+name|MonotonicNonNullDecl
 annotation|@
 name|VisibleForTesting
 specifier|transient
@@ -2421,6 +2445,8 @@ expr_stmt|;
 block|}
 block|}
 DECL|field|keySetView
+annotation|@
+name|MonotonicNonNullDecl
 specifier|private
 specifier|transient
 name|Set
@@ -2802,6 +2828,8 @@ expr_stmt|;
 block|}
 block|}
 DECL|field|entrySetView
+annotation|@
+name|MonotonicNonNullDecl
 specifier|private
 specifier|transient
 name|Set
@@ -3459,6 +3487,8 @@ literal|false
 return|;
 block|}
 DECL|field|valuesView
+annotation|@
+name|MonotonicNonNullDecl
 specifier|private
 specifier|transient
 name|Collection
