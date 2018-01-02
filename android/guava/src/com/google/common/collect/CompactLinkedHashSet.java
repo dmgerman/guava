@@ -60,6 +60,22 @@ name|Collections
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|checkerframework
+operator|.
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|MonotonicNonNullDecl
+import|;
+end_import
+
 begin_comment
 comment|/**  * CompactLinkedHashSet is an implementation of a Set, which a predictable iteration order  * that matches the insertion order. All optional operations (adding and  * removing) are supported. All elements, including {@code null}, are permitted.  *  *<p>{@code contains(x)}, {@code add(x)} and {@code remove(x)}, are all (expected and amortized)  * constant time operations. Expected in the hashtable sense (depends on the hash function  * doing a good job of distributing the elements to the buckets to a distribution not far from  * uniform), and amortized since some operations can trigger a hash table resize.  *  *<p>This implementation consumes significantly less memory than {@code java.util.LinkedHashSet}  * or even {@code java.util.HashSet}, and places considerably less load on the garbage collector.  * Like {@code java.util.LinkedHashSet}, it offers insertion-order iteration, with identical  * behavior.  *  * @author Louis Wasserman  */
 end_comment
@@ -237,6 +253,8 @@ comment|// Might also explore collocating all of [hash, next, predecessor, succe
 comment|// entry in a *single* long[], though that reduces the maximum size of the set by a factor of 2
 comment|/**    * Pointer to the predecessor of an entry in insertion order. ENDPOINT indicates a node is the    * first node in insertion order; all values at indices â¥ {@link #size()} are UNSET.    */
 DECL|field|predecessor
+annotation|@
+name|MonotonicNonNullDecl
 specifier|private
 specifier|transient
 name|int
@@ -245,6 +263,8 @@ name|predecessor
 decl_stmt|;
 comment|/**    * Pointer to the successor of an entry in insertion order. ENDPOINT indicates a node is the last    * node in insertion order; all values at indices â¥ {@link #size()} are UNSET.    */
 DECL|field|successor
+annotation|@
+name|MonotonicNonNullDecl
 specifier|private
 specifier|transient
 name|int
