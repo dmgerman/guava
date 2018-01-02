@@ -54,6 +54,22 @@ name|Arrays
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|checkerframework
+operator|.
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|MonotonicNonNullDecl
+import|;
+end_import
+
 begin_comment
 comment|/**  * CompactLinkedHashMap is an implementation of a Map with insertion or LRU iteration order,  * maintained with a doubly linked list through the entries. All optional operations (put and  * remove) are supported. Null keys and values are supported.  *  *<p>{@code containsKey(k)}, {@code put(k, v)} and {@code remove(k)} are all (expected and  * amortized) constant time operations. Expected in the hashtable sense (depends on the hash  * function doing a good job of distributing the elements to the buckets to a distribution not  * far from uniform), and amortized since some operations can trigger a hash table resize.  *  *<p>As compared with {@link java.util.LinkedHashMap}, this structure places significantly  * reduced load on the garbage collector by only using a constant number of internal objects.  *  * @author Louis Wasserman  */
 end_comment
@@ -146,6 +162,8 @@ literal|2
 decl_stmt|;
 comment|/**    * Contains the link pointers corresponding with the entries, in the range of [0, size()). The    * high 32 bits of each long is the "prev" pointer, whereas the low 32 bits is the "succ" pointer    * (pointing to the next entry in the linked list). The pointers in [size(), entries.length) are    * all "null" (UNSET).    *    * A node with "prev" pointer equal to {@code ENDPOINT} is the first node in the linked list,    * and a node with "next" pointer equal to {@code ENDPOINT} is the last node.    */
 DECL|field|links
+annotation|@
+name|MonotonicNonNullDecl
 annotation|@
 name|VisibleForTesting
 specifier|transient
