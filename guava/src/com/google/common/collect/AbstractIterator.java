@@ -70,6 +70,22 @@ name|NoSuchElementException
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|checkerframework
+operator|.
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
+import|;
+end_import
+
 begin_comment
 comment|/**  * This class provides a skeletal implementation of the {@code Iterator} interface, to make this  * interface easier to implement for certain types of data sources.  *  *<p>{@code Iterator} requires its implementations to support querying the end-of-data status  * without changing the iterator's state, using the {@link #hasNext} method. But many data sources,  * such as {@link java.io.Reader#read()}, do not expose this information; the only way to discover  * whether there is any data left is by trying to retrieve it. These types of data sources are  * ordinarily difficult to write iterators for. But using this class, one must implement only the  * {@link #computeNext} method, and invoke the {@link #endOfData} method when appropriate.  *  *<p>Another example is an iterator that skips over null elements in a backing iterator. This could  * be implemented as:  *  *<pre>{@code  * public static Iterator<String> skipNulls(final Iterator<String> in) {  *   return new AbstractIterator<String>() {  *     protected String computeNext() {  *       while (in.hasNext()) {  *         String s = in.next();  *         if (s != null) {  *           return s;  *         }  *       }  *       return endOfData();  *     }  *   };  * }  * }</pre>  *  *<p>This class supports iterators that include null elements.  *  * @author Kevin Bourrillion  * @since 2.0  */
 end_comment
@@ -136,6 +152,8 @@ DECL|enumConstant|FAILED
 name|FAILED
 block|,   }
 DECL|field|next
+annotation|@
+name|NullableDecl
 specifier|private
 name|T
 name|next
