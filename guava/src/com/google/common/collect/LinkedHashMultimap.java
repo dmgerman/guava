@@ -754,6 +754,8 @@ argument_list|>
 name|nextInValueBucket
 decl_stmt|;
 DECL|field|predecessorInValueSet
+annotation|@
+name|NullableDecl
 name|ValueSetLink
 argument_list|<
 name|K
@@ -763,6 +765,8 @@ argument_list|>
 name|predecessorInValueSet
 decl_stmt|;
 DECL|field|successorInValueSet
+annotation|@
+name|NullableDecl
 name|ValueSetLink
 argument_list|<
 name|K
@@ -772,6 +776,8 @@ argument_list|>
 name|successorInValueSet
 decl_stmt|;
 DECL|field|predecessorInMultimap
+annotation|@
+name|NullableDecl
 name|ValueEntry
 argument_list|<
 name|K
@@ -781,6 +787,8 @@ argument_list|>
 name|predecessorInMultimap
 decl_stmt|;
 DECL|field|successorInMultimap
+annotation|@
+name|NullableDecl
 name|ValueEntry
 argument_list|<
 name|K
