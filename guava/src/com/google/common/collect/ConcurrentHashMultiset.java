@@ -2116,6 +2116,26 @@ return|;
 block|}
 annotation|@
 name|Override
+DECL|method|iterator ()
+specifier|public
+name|Iterator
+argument_list|<
+name|E
+argument_list|>
+name|iterator
+parameter_list|()
+block|{
+return|return
+name|Multisets
+operator|.
+name|iteratorImpl
+argument_list|(
+name|this
+argument_list|)
+return|;
+block|}
+annotation|@
+name|Override
 DECL|method|clear ()
 specifier|public
 name|void
