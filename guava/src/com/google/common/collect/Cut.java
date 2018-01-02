@@ -124,6 +124,8 @@ implements|,
 name|Serializable
 block|{
 DECL|field|endpoint
+annotation|@
+name|NullableDecl
 specifier|final
 name|C
 name|endpoint
