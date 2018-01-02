@@ -4106,6 +4106,8 @@ name|boolean
 name|hasPeeked
 decl_stmt|;
 DECL|field|peekedElement
+annotation|@
+name|NullableDecl
 specifier|private
 name|E
 name|peekedElement
@@ -4638,6 +4640,8 @@ argument_list|>
 block|{
 comment|/* The last iterator to return an element.  Calls to remove() go to this iterator. */
 DECL|field|toRemove
+annotation|@
+name|NullableDecl
 specifier|private
 name|Iterator
 argument_list|<
