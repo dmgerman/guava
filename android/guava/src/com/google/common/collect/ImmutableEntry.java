@@ -87,11 +87,15 @@ implements|implements
 name|Serializable
 block|{
 DECL|field|key
+annotation|@
+name|NullableDecl
 specifier|final
 name|K
 name|key
 decl_stmt|;
 DECL|field|value
+annotation|@
+name|NullableDecl
 specifier|final
 name|V
 name|value
