@@ -78,6 +78,8 @@ name|T
 argument_list|>
 block|{
 DECL|field|nextOrNull
+annotation|@
+name|NullableDecl
 specifier|private
 name|T
 name|nextOrNull
