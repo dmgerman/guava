@@ -3768,6 +3768,8 @@ name|K
 argument_list|>
 argument_list|()
 block|{
+annotation|@
+name|NullableDecl
 name|Entry
 argument_list|<
 name|K
@@ -3855,6 +3857,10 @@ name|collection
 operator|.
 name|clear
 argument_list|()
+expr_stmt|;
+name|entry
+operator|=
+literal|null
 expr_stmt|;
 block|}
 block|}
@@ -6062,6 +6068,8 @@ name|iterator
 argument_list|()
 decl_stmt|;
 DECL|field|collection
+annotation|@
+name|NullableDecl
 name|Collection
 argument_list|<
 name|V
@@ -6137,6 +6145,13 @@ name|void
 name|remove
 parameter_list|()
 block|{
+name|checkRemove
+argument_list|(
+name|collection
+operator|!=
+literal|null
+argument_list|)
+expr_stmt|;
 name|delegateIterator
 operator|.
 name|remove
@@ -6153,6 +6168,10 @@ name|collection
 operator|.
 name|clear
 argument_list|()
+expr_stmt|;
+name|collection
+operator|=
+literal|null
 expr_stmt|;
 block|}
 block|}
