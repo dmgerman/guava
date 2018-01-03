@@ -423,6 +423,8 @@ argument_list|>
 argument_list|>
 argument_list|()
 block|{
+annotation|@
+name|NullableDecl
 name|Map
 operator|.
 name|Entry

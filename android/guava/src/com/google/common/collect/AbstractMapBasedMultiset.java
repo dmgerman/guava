@@ -388,6 +388,8 @@ argument_list|>
 argument_list|>
 argument_list|()
 block|{
+annotation|@
+name|NullableDecl
 name|Entry
 argument_list|<
 name|E
