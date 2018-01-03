@@ -1771,6 +1771,8 @@ argument_list|>
 argument_list|>
 argument_list|()
 block|{
+annotation|@
+name|NullableDecl
 name|Entry
 argument_list|<
 name|K
@@ -1851,6 +1853,10 @@ name|removeFromInverseMap
 argument_list|(
 name|value
 argument_list|)
+expr_stmt|;
+name|entry
+operator|=
+literal|null
 expr_stmt|;
 block|}
 block|}
