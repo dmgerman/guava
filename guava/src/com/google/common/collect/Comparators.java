@@ -535,7 +535,7 @@ end_comment
 begin_function
 annotation|@
 name|Beta
-DECL|method|emptiesFirst (Comparator<T> valueComparator)
+DECL|method|emptiesFirst (Comparator<? super T> valueComparator)
 specifier|public
 specifier|static
 parameter_list|<
@@ -552,6 +552,8 @@ name|emptiesFirst
 parameter_list|(
 name|Comparator
 argument_list|<
+name|?
+super|super
 name|T
 argument_list|>
 name|valueComparator
@@ -594,7 +596,7 @@ end_comment
 begin_function
 annotation|@
 name|Beta
-DECL|method|emptiesLast (Comparator<T> valueComparator)
+DECL|method|emptiesLast (Comparator<? super T> valueComparator)
 specifier|public
 specifier|static
 parameter_list|<
@@ -611,6 +613,8 @@ name|emptiesLast
 parameter_list|(
 name|Comparator
 argument_list|<
+name|?
+super|super
 name|T
 argument_list|>
 name|valueComparator

@@ -41,6 +41,18 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|java
+operator|.
+name|util
+operator|.
+name|Comparator
+operator|.
+name|naturalOrder
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -870,6 +882,17 @@ argument_list|,
 name|z
 argument_list|,
 name|abc
+argument_list|)
+expr_stmt|;
+comment|// No explicit type parameter required:
+name|comparator
+operator|=
+name|Comparators
+operator|.
+name|emptiesFirst
+argument_list|(
+name|naturalOrder
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
