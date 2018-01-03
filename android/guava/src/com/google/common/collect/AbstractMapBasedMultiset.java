@@ -321,23 +321,6 @@ name|backingMap
 expr_stmt|;
 block|}
 comment|// Required Implementations
-annotation|@
-name|Override
-DECL|method|createElementSet ()
-name|Set
-argument_list|<
-name|E
-argument_list|>
-name|createElementSet
-parameter_list|()
-block|{
-return|return
-name|backingMap
-operator|.
-name|keySet
-argument_list|()
-return|;
-block|}
 comment|/**    * {@inheritDoc}    *    *<p>Invoking {@link Multiset.Entry#getCount} on an entry in the returned set always returns the    * current count of that element in the multiset, as opposed to the count at the time the entry    * was retrieved.    */
 annotation|@
 name|Override

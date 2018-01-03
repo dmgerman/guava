@@ -6345,6 +6345,21 @@ return|;
 block|}
 annotation|@
 name|Override
+DECL|method|size ()
+specifier|public
+name|int
+name|size
+parameter_list|()
+block|{
+return|return
+name|multimap
+operator|.
+name|size
+argument_list|()
+return|;
+block|}
+annotation|@
+name|Override
 DECL|method|contains (@ullableDecl Object element)
 specifier|public
 name|boolean
