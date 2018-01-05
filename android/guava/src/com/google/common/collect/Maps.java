@@ -13853,6 +13853,8 @@ name|createEntrySet
 parameter_list|()
 function_decl|;
 DECL|field|entrySet
+annotation|@
+name|MonotonicNonNullDecl
 specifier|private
 specifier|transient
 name|Set
@@ -13911,6 +13913,8 @@ name|result
 return|;
 block|}
 DECL|field|keySet
+annotation|@
+name|MonotonicNonNullDecl
 specifier|private
 specifier|transient
 name|Set
@@ -13971,6 +13975,8 @@ argument_list|)
 return|;
 block|}
 DECL|field|values
+annotation|@
+name|MonotonicNonNullDecl
 specifier|private
 specifier|transient
 name|Collection
@@ -16536,6 +16542,8 @@ argument_list|()
 return|;
 block|}
 DECL|field|comparator
+annotation|@
+name|MonotonicNonNullDecl
 specifier|private
 specifier|transient
 name|Comparator
@@ -16982,6 +16990,8 @@ argument_list|()
 return|;
 block|}
 DECL|field|entrySet
+annotation|@
+name|MonotonicNonNullDecl
 specifier|private
 specifier|transient
 name|Set
@@ -17139,6 +17149,8 @@ argument_list|()
 return|;
 block|}
 DECL|field|navigableKeySet
+annotation|@
+name|MonotonicNonNullDecl
 specifier|private
 specifier|transient
 name|NavigableSet
