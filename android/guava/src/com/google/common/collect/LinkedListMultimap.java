@@ -1846,6 +1846,8 @@ init|=
 name|head
 decl_stmt|;
 DECL|field|current
+annotation|@
+name|NullableDecl
 name|Node
 argument_list|<
 name|K
