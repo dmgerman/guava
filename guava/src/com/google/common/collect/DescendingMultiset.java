@@ -84,6 +84,22 @@ name|Set
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|checkerframework
+operator|.
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|MonotonicNonNullDecl
+import|;
+end_import
+
 begin_comment
 comment|/**  * A skeleton implementation of a descending multiset. Only needs {@code forwardMultiset()} and  * {@code entryIterator()}.  *  * @author Louis Wasserman  */
 end_comment
@@ -124,6 +140,8 @@ name|forwardMultiset
 parameter_list|()
 function_decl|;
 DECL|field|comparator
+annotation|@
+name|MonotonicNonNullDecl
 specifier|private
 specifier|transient
 name|Comparator
@@ -190,6 +208,8 @@ name|result
 return|;
 block|}
 DECL|field|elementSet
+annotation|@
+name|MonotonicNonNullDecl
 specifier|private
 specifier|transient
 name|NavigableSet
@@ -470,6 +490,8 @@ name|entryIterator
 parameter_list|()
 function_decl|;
 DECL|field|entrySet
+annotation|@
+name|MonotonicNonNullDecl
 specifier|private
 specifier|transient
 name|Set
