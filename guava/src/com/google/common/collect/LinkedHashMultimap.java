@@ -1546,6 +1546,8 @@ name|nextEntry
 init|=
 name|firstEntry
 decl_stmt|;
+annotation|@
+name|NullableDecl
 name|ValueEntry
 argument_list|<
 name|K
@@ -2401,6 +2403,8 @@ name|multimapHeaderEntry
 operator|.
 name|successorInMultimap
 decl_stmt|;
+annotation|@
+name|NullableDecl
 name|ValueEntry
 argument_list|<
 name|K
