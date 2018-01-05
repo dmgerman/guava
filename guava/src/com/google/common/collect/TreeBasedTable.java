@@ -1468,6 +1468,8 @@ name|C
 argument_list|>
 argument_list|()
 block|{
+annotation|@
+name|NullableDecl
 name|C
 name|lastValue
 decl_stmt|;
