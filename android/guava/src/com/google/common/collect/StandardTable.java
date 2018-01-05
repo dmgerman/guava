@@ -1282,6 +1282,8 @@ name|iterator
 argument_list|()
 decl_stmt|;
 DECL|field|rowEntry
+annotation|@
+name|NullableDecl
 name|Entry
 argument_list|<
 name|R
@@ -1440,6 +1442,10 @@ name|rowIterator
 operator|.
 name|remove
 argument_list|()
+expr_stmt|;
+name|rowEntry
+operator|=
+literal|null
 expr_stmt|;
 block|}
 block|}
