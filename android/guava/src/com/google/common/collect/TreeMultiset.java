@@ -2184,6 +2184,8 @@ init|=
 name|firstNode
 argument_list|()
 decl_stmt|;
+annotation|@
+name|NullableDecl
 name|Entry
 argument_list|<
 name|E
