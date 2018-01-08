@@ -102,6 +102,16 @@ name|AbstractPackageSanityTestsTest
 extends|extends
 name|TestCase
 block|{
+comment|/*    * This is a public type so that the Android test runner can create an instance directly as it    * insists upon doing. It then runs the test, which behaves exactly like this package's existing    * PackageSanityTests. (The test would run on the JVM, too, if not for the suppression below, and    * that would be a problem because it violates small-test rules. Note that we strip the    * suppression externally, but it's OK because we don't enforce test-size rules there.)    *    * We'd just use PackageSanityTests directly, saving us from needing this separate type, but we're    * currently skipping MediumTests on Android, and we skip them by not making them present at    * runtime at all. I could just make _this_ test a MediumTest, but then it wouldn't run on    * Android.... The right long-term fix is probably to get MediumTests running under Android by    * default and then suppress them strategically as needed.    */
+DECL|class|ConcretePackageSanityTests
+specifier|public
+specifier|static
+specifier|final
+class|class
+name|ConcretePackageSanityTests
+extends|extends
+name|AbstractPackageSanityTests
+block|{}
 DECL|field|sanityTests
 specifier|private
 specifier|final
@@ -109,9 +119,8 @@ name|AbstractPackageSanityTests
 name|sanityTests
 init|=
 operator|new
-name|AbstractPackageSanityTests
+name|ConcretePackageSanityTests
 argument_list|()
-block|{}
 decl_stmt|;
 DECL|method|testFindClassesToTest_testClass ()
 specifier|public
