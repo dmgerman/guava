@@ -703,6 +703,33 @@ operator|.
 name|this
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|iterator ()
+specifier|public
+name|Iterator
+argument_list|<
+name|E
+argument_list|>
+name|iterator
+parameter_list|()
+block|{
+return|return
+name|Multisets
+operator|.
+name|elementIterator
+argument_list|(
+name|multiset
+argument_list|()
+operator|.
+name|entrySet
+argument_list|()
+operator|.
+name|iterator
+argument_list|()
+argument_list|)
+return|;
+block|}
 block|}
 comment|/**    * A sensible definition of {@link #iterator} in terms of {@link #entrySet} and {@link    * #remove(Object)}. If you override either of these methods, you may wish to override {@link    * #iterator} to forward to this implementation.    *    * @since 7.0    */
 DECL|method|standardIterator ()

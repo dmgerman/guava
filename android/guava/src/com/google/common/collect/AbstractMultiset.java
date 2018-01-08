@@ -300,6 +300,7 @@ annotation|@
 name|Override
 DECL|method|add (@ullableDecl E element)
 specifier|public
+specifier|final
 name|boolean
 name|add
 parameter_list|(
@@ -350,6 +351,7 @@ annotation|@
 name|Override
 DECL|method|remove (@ullableDecl Object element)
 specifier|public
+specifier|final
 name|boolean
 name|remove
 parameter_list|(
@@ -465,6 +467,7 @@ annotation|@
 name|Override
 DECL|method|addAll (Collection<? extends E> elementsToAdd)
 specifier|public
+specifier|final
 name|boolean
 name|addAll
 parameter_list|(
@@ -494,6 +497,7 @@ annotation|@
 name|Override
 DECL|method|removeAll (Collection<?> elementsToRemove)
 specifier|public
+specifier|final
 name|boolean
 name|removeAll
 parameter_list|(
@@ -521,6 +525,7 @@ annotation|@
 name|Override
 DECL|method|retainAll (Collection<?> elementsToRetain)
 specifier|public
+specifier|final
 name|boolean
 name|retainAll
 parameter_list|(
@@ -653,23 +658,30 @@ operator|.
 name|this
 return|;
 block|}
-block|}
-DECL|method|entryIterator ()
-specifier|abstract
+annotation|@
+name|Override
+DECL|method|iterator ()
+specifier|public
 name|Iterator
-argument_list|<
-name|Entry
 argument_list|<
 name|E
 argument_list|>
-argument_list|>
-name|entryIterator
+name|iterator
 parameter_list|()
-function_decl|;
-DECL|method|distinctElements ()
+block|{
+return|return
+name|elementIterator
+argument_list|()
+return|;
+block|}
+block|}
+DECL|method|elementIterator ()
 specifier|abstract
-name|int
-name|distinctElements
+name|Iterator
+argument_list|<
+name|E
+argument_list|>
+name|elementIterator
 parameter_list|()
 function_decl|;
 DECL|field|entrySet
@@ -809,12 +821,31 @@ name|EntrySet
 argument_list|()
 return|;
 block|}
+DECL|method|entryIterator ()
+specifier|abstract
+name|Iterator
+argument_list|<
+name|Entry
+argument_list|<
+name|E
+argument_list|>
+argument_list|>
+name|entryIterator
+parameter_list|()
+function_decl|;
+DECL|method|distinctElements ()
+specifier|abstract
+name|int
+name|distinctElements
+parameter_list|()
+function_decl|;
 comment|// Object methods
 comment|/**    * {@inheritDoc}    *    *<p>This implementation returns {@code true} if {@code object} is a multiset of the same size    * and if, for each element, the two multisets have the same count.    */
 annotation|@
 name|Override
 DECL|method|equals (@ullableDecl Object object)
 specifier|public
+specifier|final
 name|boolean
 name|equals
 parameter_list|(
@@ -840,6 +871,7 @@ annotation|@
 name|Override
 DECL|method|hashCode ()
 specifier|public
+specifier|final
 name|int
 name|hashCode
 parameter_list|()
@@ -857,6 +889,7 @@ annotation|@
 name|Override
 DECL|method|toString ()
 specifier|public
+specifier|final
 name|String
 name|toString
 parameter_list|()

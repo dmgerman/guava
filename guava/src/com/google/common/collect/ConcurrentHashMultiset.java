@@ -1830,6 +1830,24 @@ block|}
 block|}
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|elementIterator ()
+name|Iterator
+argument_list|<
+name|E
+argument_list|>
+name|elementIterator
+parameter_list|()
+block|{
+throw|throw
+operator|new
+name|AssertionError
+argument_list|(
+literal|"should never be called"
+argument_list|)
+throw|;
+block|}
 comment|/** @deprecated Internal method, use {@link #entrySet()}. */
 annotation|@
 name|Deprecated

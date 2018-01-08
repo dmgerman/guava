@@ -1654,7 +1654,7 @@ name|E
 argument_list|>
 block|{
 DECL|field|contents
-name|AbstractObjectCountMap
+name|ObjectCountHashMap
 argument_list|<
 name|E
 argument_list|>
@@ -2103,8 +2103,10 @@ if|if
 condition|(
 name|contents
 operator|.
-name|isEmpty
+name|size
 argument_list|()
+operator|==
+literal|0
 condition|)
 block|{
 return|return
@@ -2147,12 +2149,6 @@ argument_list|<
 name|E
 argument_list|>
 argument_list|(
-operator|(
-name|ObjectCountHashMap
-argument_list|<
-name|E
-argument_list|>
-operator|)
 name|contents
 argument_list|)
 return|;

@@ -634,6 +634,26 @@ return|;
 block|}
 annotation|@
 name|Override
+DECL|method|elementIterator ()
+name|Iterator
+argument_list|<
+name|E
+argument_list|>
+name|elementIterator
+parameter_list|()
+block|{
+return|return
+name|Multisets
+operator|.
+name|elementIterator
+argument_list|(
+name|entryIterator
+argument_list|()
+argument_list|)
+return|;
+block|}
+annotation|@
+name|Override
 DECL|method|entryIterator ()
 name|Iterator
 argument_list|<

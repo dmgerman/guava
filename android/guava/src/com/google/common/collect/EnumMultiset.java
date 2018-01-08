@@ -208,16 +208,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Set
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|checkerframework
@@ -1241,27 +1231,12 @@ block|}
 block|}
 annotation|@
 name|Override
-DECL|method|createElementSet ()
-name|Set
-argument_list|<
-name|E
-argument_list|>
-name|createElementSet
-parameter_list|()
-block|{
-return|return
-operator|new
-name|ElementSet
-argument_list|()
-block|{
-annotation|@
-name|Override
-specifier|public
+DECL|method|elementIterator ()
 name|Iterator
 argument_list|<
 name|E
 argument_list|>
-name|iterator
+name|elementIterator
 parameter_list|()
 block|{
 return|return
@@ -1286,9 +1261,6 @@ name|enumConstants
 index|[
 name|index
 index|]
-return|;
-block|}
-block|}
 return|;
 block|}
 block|}
