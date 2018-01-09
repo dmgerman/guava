@@ -322,6 +322,16 @@ name|List
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|Ignore
+import|;
+end_import
+
 begin_comment
 comment|/**  * Common superclass for {@link MultisetSetCountUnconditionallyTester} and {@link  * MultisetSetCountConditionallyTester}. It is used by those testers to test calls to the  * unconditional {@code setCount()} method and calls to the conditional {@code setCount()} method  * when the expected present count is correct.  *  * @author Chris Povirk  */
 end_comment
@@ -334,6 +344,9 @@ name|emulated
 operator|=
 literal|true
 argument_list|)
+annotation|@
+name|Ignore
+comment|// Affects only Android test runner, which respects JUnit 4 annotations on JUnit 3 tests.
 DECL|class|AbstractMultisetSetCountTester
 specifier|public
 specifier|abstract

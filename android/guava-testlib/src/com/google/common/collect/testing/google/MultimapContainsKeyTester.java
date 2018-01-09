@@ -144,6 +144,16 @@ name|MapFeature
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|Ignore
+import|;
+end_import
+
 begin_comment
 comment|/**  * Tester for the {@code containsKey} methods of {@code Multimap} and its {@code asMap()} view.  *  * @author Louis Wasserman  */
 end_comment
@@ -151,6 +161,9 @@ end_comment
 begin_class
 annotation|@
 name|GwtCompatible
+annotation|@
+name|Ignore
+comment|// Affects only Android test runner, which respects JUnit 4 annotations on JUnit 3 tests.
 DECL|class|MultimapContainsKeyTester
 specifier|public
 class|class

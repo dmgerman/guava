@@ -168,6 +168,16 @@ name|Method
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|Ignore
+import|;
+end_import
+
 begin_comment
 comment|/**  * A generic JUnit test which tests creation (typically through a constructor or static factory  * method) of a collection. Can't be invoked directly; please see {@link  * com.google.common.collect.testing.CollectionTestSuiteBuilder}.  *  * @author Chris Povirk  */
 end_comment
@@ -180,6 +190,9 @@ name|emulated
 operator|=
 literal|true
 argument_list|)
+annotation|@
+name|Ignore
+comment|// Affects only Android test runner, which respects JUnit 4 annotations on JUnit 3 tests.
 DECL|class|CollectionCreationTester
 specifier|public
 class|class

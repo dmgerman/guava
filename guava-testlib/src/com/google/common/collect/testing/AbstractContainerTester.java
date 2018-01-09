@@ -96,6 +96,16 @@ name|List
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|Ignore
+import|;
+end_import
+
 begin_comment
 comment|/**  * Base class for testers of classes (including {@link Collection} and {@link java.util.Map Map})  * that contain elements.  *  * @param<C> the type of the container  * @param<E> the type of the container's contents  * @author George van den Driessche  */
 end_comment
@@ -103,6 +113,9 @@ end_comment
 begin_class
 annotation|@
 name|GwtCompatible
+annotation|@
+name|Ignore
+comment|// Affects only Android test runner, which respects JUnit 4 annotations on JUnit 3 tests.
 DECL|class|AbstractContainerTester
 specifier|public
 specifier|abstract

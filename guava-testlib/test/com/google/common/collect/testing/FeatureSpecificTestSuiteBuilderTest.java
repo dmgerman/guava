@@ -86,6 +86,16 @@ name|TestResult
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|Ignore
+import|;
+end_import
+
 begin_comment
 comment|/** @author Max Ross */
 end_comment
@@ -123,6 +133,9 @@ operator|=
 literal|false
 expr_stmt|;
 block|}
+annotation|@
+name|Ignore
+comment|// Affects only Android test runner, which respects JUnit 4 annotations on JUnit 3 tests.
 DECL|class|MyAbstractTester
 specifier|public
 specifier|static

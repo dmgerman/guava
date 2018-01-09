@@ -102,6 +102,16 @@ name|SerializableTester
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|Ignore
+import|;
+end_import
+
 begin_comment
 comment|/**  * Basic reserialization test for collection types that must preserve {@code equals()} behavior when  * reserialized. (Sets and Lists, but not bare Collections.)  *  * @author Louis Wasserman  */
 end_comment
@@ -109,6 +119,9 @@ end_comment
 begin_class
 annotation|@
 name|GwtCompatible
+annotation|@
+name|Ignore
+comment|// Affects only Android test runner, which respects JUnit 4 annotations on JUnit 3 tests.
 DECL|class|CollectionSerializationEqualTester
 specifier|public
 class|class

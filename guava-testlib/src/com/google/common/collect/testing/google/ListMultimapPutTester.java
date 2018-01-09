@@ -180,6 +180,16 @@ name|Entry
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|Ignore
+import|;
+end_import
+
 begin_comment
 comment|/**  * Testers for {@link ListMultimap#put(Object, Object)}.  *  * @author Louis Wasserman  */
 end_comment
@@ -187,6 +197,9 @@ end_comment
 begin_class
 annotation|@
 name|GwtCompatible
+annotation|@
+name|Ignore
+comment|// Affects only Android test runner, which respects JUnit 4 annotations on JUnit 3 tests.
 DECL|class|ListMultimapPutTester
 specifier|public
 class|class

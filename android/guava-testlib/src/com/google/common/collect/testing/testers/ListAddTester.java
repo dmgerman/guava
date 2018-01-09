@@ -182,6 +182,16 @@ name|List
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|Ignore
+import|;
+end_import
+
 begin_comment
 comment|/**  * A generic JUnit test which tests {@code add(Object)} operations on a list. Can't be invoked  * directly; please see {@link com.google.common.collect.testing.ListTestSuiteBuilder}.  *  * @author Chris Povirk  */
 end_comment
@@ -200,6 +210,9 @@ name|emulated
 operator|=
 literal|true
 argument_list|)
+annotation|@
+name|Ignore
+comment|// Affects only Android test runner, which respects JUnit 4 annotations on JUnit 3 tests.
 DECL|class|ListAddTester
 specifier|public
 class|class

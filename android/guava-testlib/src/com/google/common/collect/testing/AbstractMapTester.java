@@ -94,6 +94,16 @@ name|Entry
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|Ignore
+import|;
+end_import
+
 begin_comment
 comment|/**  * Base class for map testers.  *  *<p>TODO: see how much of this is actually needed once Map testers are written. (It was cloned  * from AbstractCollectionTester.)  *  * @param<K> the key type of the map to be tested.  * @param<V> the value type of the map to be tested.  * @author George van den Driessche  */
 end_comment
@@ -101,6 +111,9 @@ end_comment
 begin_class
 annotation|@
 name|GwtCompatible
+annotation|@
+name|Ignore
+comment|// Affects only Android test runner, which respects JUnit 4 annotations on JUnit 3 tests.
 DECL|class|AbstractMapTester
 specifier|public
 specifier|abstract
