@@ -3633,6 +3633,8 @@ block|{
 return|return
 literal|"setFuture=["
 operator|+
+name|userObjectToString
+argument_list|(
 operator|(
 operator|(
 name|SetFuture
@@ -3641,6 +3643,7 @@ name|localValue
 operator|)
 operator|.
 name|future
+argument_list|)
 operator|+
 literal|"]"
 return|;
@@ -3705,7 +3708,10 @@ argument_list|)
 operator|.
 name|append
 argument_list|(
+name|userObjectToString
+argument_list|(
 name|value
+argument_list|)
 argument_list|)
 operator|.
 name|append
@@ -3783,6 +3789,40 @@ literal|" thrown from get()]"
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+comment|/** Helper for printing user supplied objects into our toString method. */
+DECL|method|userObjectToString (Object o)
+specifier|private
+name|String
+name|userObjectToString
+parameter_list|(
+name|Object
+name|o
+parameter_list|)
+block|{
+comment|// This is some basic recursion detection for when people create cycles via set/setFuture
+comment|// This is however only partial protection though since it only detects self loops.  We could
+comment|// detect arbitrary cycles using a thread local or possibly by catching StackOverflowExceptions
+comment|// but this should be a good enough solution (it is also what jdk collections do in these cases)
+if|if
+condition|(
+name|o
+operator|==
+name|this
+condition|)
+block|{
+return|return
+literal|"this future"
+return|;
+block|}
+return|return
+name|String
+operator|.
+name|valueOf
+argument_list|(
+name|o
+argument_list|)
+return|;
 block|}
 comment|/**    * Submits the given runnable to the given {@link Executor} catching and logging all {@linkplain    * RuntimeException runtime exceptions} thrown by the executor.    */
 DECL|method|executeListener (Runnable runnable, Executor executor)
