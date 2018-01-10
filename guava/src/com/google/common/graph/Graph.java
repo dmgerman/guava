@@ -182,6 +182,23 @@ function_decl|;
 comment|/** {@inheritDoc} */
 annotation|@
 name|Override
+DECL|method|incidentEdges (N node)
+name|Set
+argument_list|<
+name|EndpointPair
+argument_list|<
+name|N
+argument_list|>
+argument_list|>
+name|incidentEdges
+parameter_list|(
+name|N
+name|node
+parameter_list|)
+function_decl|;
+comment|/** {@inheritDoc} */
+annotation|@
+name|Override
 DECL|method|degree (N node)
 name|int
 name|degree

@@ -139,7 +139,22 @@ name|N
 name|node
 parameter_list|)
 function_decl|;
-comment|/**    * Returns the count of {@code node}'s incident edges, counting self-loops twice (equivalently,    * the number of times an edge touches {@code node}).    *    *<p>For directed graphs, this is equal to {@code inDegree(node) + outDegree(node)}.    *    *<p>For undirected graphs, this is equal to {@code adjacentNodes(node).size()} + (1 if {@code    * node} has an incident self-loop, 0 otherwise).    *    *<p>If the count is greater than {@code Integer.MAX_VALUE}, returns {@code Integer.MAX_VALUE}.    *    * @throws IllegalArgumentException if {@code node} is not an element of this graph    */
+comment|/**    * Returns the edges in this graph whose endpoints include {@code node}.    *    * @throws IllegalArgumentException if {@code node} is not an element of this graph    */
+DECL|method|incidentEdges (N node)
+name|Set
+argument_list|<
+name|EndpointPair
+argument_list|<
+name|N
+argument_list|>
+argument_list|>
+name|incidentEdges
+parameter_list|(
+name|N
+name|node
+parameter_list|)
+function_decl|;
+comment|/**    * Returns the count of {@code node}'s incident edges, counting self-loops twice (equivalently,    * the number of times an edge touches {@code node}).    *    *<p>For directed graphs, this is equal to {@code inDegree(node) + outDegree(node)}.    *    *<p>For undirected graphs, this is equal to {@code incidentEdges(node).size()} + (number of    * self-loops incident to {@code node}).    *    *<p>If the count is greater than {@code Integer.MAX_VALUE}, returns {@code Integer.MAX_VALUE}.    *    * @throws IllegalArgumentException if {@code node} is not an element of this graph    */
 DECL|method|degree (N node)
 name|int
 name|degree
