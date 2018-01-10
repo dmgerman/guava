@@ -452,10 +452,6 @@ name|inputFuture
 operator|=
 literal|null
 expr_stmt|;
-name|function
-operator|=
-literal|null
-expr_stmt|;
 comment|/*      * Any of the setException() calls below can fail if the output Future is cancelled between now      * and then. This means that we're silently swallowing an exception -- maybe even an Error. But      * this is no worse than what FutureTask does in that situation. Additionally, because the      * Future was cancelled, its listeners have been run, so its consumers will not hang.      *      * Contrast this to the situation we have if setResult() throws, a situation described below.      */
 name|I
 name|sourceResult
@@ -577,6 +573,13 @@ argument_list|)
 expr_stmt|;
 return|return;
 block|}
+finally|finally
+block|{
+name|function
+operator|=
+literal|null
+expr_stmt|;
+block|}
 comment|/*      * If set()/setValue() throws an Error, we let it propagate. Why? The most likely Error is a      * StackOverflowError (from deep transform(..., directExecutor()) nesting), and calling      * setException(stackOverflowError) would fail:      *      * - If the stack overflowed before set()/setValue() could even store the result in the output      * Future, then a call setException() would likely also overflow.      *      * - If the stack overflowed after set()/setValue() stored its result, then a call to      * setException() will be a no-op because the Future is already done.      *      * Both scenarios are bad: The output Future might never complete, or, if it does complete, it      * might not run some of its listeners. The likely result is that the app will hang. (And of      * course stack overflows are bad news in general. For example, we may have overflowed in the      * middle of defining a class. If so, that class will never be loadable in this process.) The      * best we can do (since logging may overflow the stack) is to let the error propagate. Because      * it is an Error, it won't be caught and logged by AbstractFuture.executeListener. Instead, it      * can propagate through many layers of AbstractTransformFuture up to the root call to set().      *      * https://github.com/google/guava/issues/2254      *      * Other kinds of Errors are possible:      *      * - OutOfMemoryError from allocations in setFuture(): The calculus here is similar to      * StackOverflowError: We can't reliably call setException(error).      *      * - Any kind of Error from a listener. Even if we could distinguish that case (by exposing some      * extra state from AbstractFuture), our options are limited: A call to setException() would be      * a no-op. We could log, but if that's what we really want, we should modify      * AbstractFuture.executeListener to do so, since that method would have the ability to continue      * to execute other listeners.      *      * What about RuntimeException? If there is a bug in set()/setValue() that produces one, it will      * propagate, too, but only as far as AbstractFuture.executeListener, which will catch and log      * it.      */
 name|setResult
 argument_list|(
@@ -686,6 +689,22 @@ operator|+
 name|localInputFuture
 operator|+
 literal|"], function=["
+operator|+
+name|localFunction
+operator|+
+literal|"]"
+return|;
+block|}
+elseif|else
+if|if
+condition|(
+name|localFunction
+operator|!=
+literal|null
+condition|)
+block|{
+return|return
+literal|"function=["
 operator|+
 name|localFunction
 operator|+
