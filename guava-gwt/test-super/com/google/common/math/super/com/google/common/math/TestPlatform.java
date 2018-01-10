@@ -56,6 +56,16 @@ return|return
 literal|true
 return|;
 block|}
+DECL|method|isAndroid ()
+specifier|static
+name|boolean
+name|isAndroid
+parameter_list|()
+block|{
+return|return
+literal|false
+return|;
+block|}
 block|}
 end_class
 

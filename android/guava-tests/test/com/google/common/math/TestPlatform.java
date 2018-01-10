@@ -56,6 +56,29 @@ return|return
 literal|false
 return|;
 block|}
+DECL|method|isAndroid ()
+specifier|static
+name|boolean
+name|isAndroid
+parameter_list|()
+block|{
+return|return
+name|System
+operator|.
+name|getProperties
+argument_list|()
+operator|.
+name|getProperty
+argument_list|(
+literal|"java.runtime.name"
+argument_list|)
+operator|.
+name|contains
+argument_list|(
+literal|"Android"
+argument_list|)
+return|;
+block|}
 block|}
 end_class
 

@@ -1990,9 +1990,6 @@ name|result
 return|;
 block|}
 comment|/**    * Returns the product of {@code a} and {@code b}, provided it does not overflow.    *    * @throws ArithmeticException if {@code a * b} overflows in signed {@code long} arithmetic    */
-annotation|@
-name|GwtIncompatible
-comment|// TODO
 DECL|method|checkedMultiply (long a, long b)
 specifier|public
 specifier|static

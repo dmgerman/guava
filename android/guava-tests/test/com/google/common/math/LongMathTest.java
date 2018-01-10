@@ -162,6 +162,22 @@ end_import
 
 begin_import
 import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|truth
+operator|.
+name|Truth
+operator|.
+name|assert_
+import|;
+end_import
+
+begin_import
+import|import static
 name|java
 operator|.
 name|math
@@ -3194,9 +3210,6 @@ block|}
 block|}
 block|}
 annotation|@
-name|GwtIncompatible
-comment|// TODO
-annotation|@
 name|AndroidIncompatible
 comment|// slow
 DECL|method|testCheckedMultiply ()
@@ -3208,20 +3221,10 @@ block|{
 name|boolean
 name|isAndroid
 init|=
-name|System
+name|TestPlatform
 operator|.
-name|getProperties
+name|isAndroid
 argument_list|()
-operator|.
-name|getProperty
-argument_list|(
-literal|"java.runtime.name"
-argument_list|)
-operator|.
-name|contains
-argument_list|(
-literal|"Android"
-argument_list|)
 decl_stmt|;
 for|for
 control|(
@@ -5142,9 +5145,6 @@ name|expected
 parameter_list|)
 block|{     }
 block|}
-annotation|@
-name|GwtIncompatible
-comment|// String.format
 DECL|method|failFormat (String template, Object... args)
 specifier|private
 specifier|static
@@ -5159,16 +5159,14 @@ modifier|...
 name|args
 parameter_list|)
 block|{
-name|fail
-argument_list|(
-name|String
+name|assert_
+argument_list|()
 operator|.
-name|format
+name|fail
 argument_list|(
 name|template
 argument_list|,
 name|args
-argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
