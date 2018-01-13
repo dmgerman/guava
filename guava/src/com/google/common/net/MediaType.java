@@ -292,6 +292,20 @@ name|common
 operator|.
 name|collect
 operator|.
+name|ImmutableSet
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|collect
+operator|.
 name|Maps
 import|;
 end_import
@@ -2495,17 +2509,20 @@ name|parameters
 argument_list|)
 return|;
 block|}
-comment|/**    *<em>Replaces</em> all parameters with the given attribute with a single parameter with the    * given value. If multiple parameters with the same attributes are necessary use {@link    * #withParameters}. Prefer {@link #withCharset} for setting the {@code charset} parameter when    * using a {@link Charset} object.    *    * @throws IllegalArgumentException if either {@code attribute} or {@code value} is invalid    */
-DECL|method|withParameter (String attribute, String value)
+comment|/**    *<em>Replaces</em> all parameters with the given attribute with parameters using the given    * values. If there are no values, any existing parameters with the given attribute are    * removed.    *    * @throws IllegalArgumentException if either {@code attribute} or {@code values} is invalid    * @since NEXT    */
+DECL|method|withParameters (String attribute, Iterable<String> values)
 specifier|public
 name|MediaType
-name|withParameter
+name|withParameters
 parameter_list|(
 name|String
 name|attribute
 parameter_list|,
+name|Iterable
+argument_list|<
 name|String
-name|value
+argument_list|>
+name|values
 parameter_list|)
 block|{
 name|checkNotNull
@@ -2515,7 +2532,7 @@ argument_list|)
 expr_stmt|;
 name|checkNotNull
 argument_list|(
-name|value
+name|values
 argument_list|)
 expr_stmt|;
 name|String
@@ -2590,6 +2607,14 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+for|for
+control|(
+name|String
+name|value
+range|:
+name|values
+control|)
+block|{
 name|builder
 operator|.
 name|put
@@ -2604,6 +2629,7 @@ name|value
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 name|MediaType
 name|mediaType
 init|=
@@ -2655,6 +2681,33 @@ name|mediaType
 argument_list|)
 argument_list|,
 name|mediaType
+argument_list|)
+return|;
+block|}
+comment|/**    *<em>Replaces</em> all parameters with the given attribute with a single parameter with the    * given value. If multiple parameters with the same attributes are necessary use {@link    * #withParameters(String, Iterable)}. Prefer {@link #withCharset} for setting the {@code charset}    * parameter when using a {@link Charset} object.    *    * @throws IllegalArgumentException if either {@code attribute} or {@code value} is invalid    */
+DECL|method|withParameter (String attribute, String value)
+specifier|public
+name|MediaType
+name|withParameter
+parameter_list|(
+name|String
+name|attribute
+parameter_list|,
+name|String
+name|value
+parameter_list|)
+block|{
+return|return
+name|withParameters
+argument_list|(
+name|attribute
+argument_list|,
+name|ImmutableSet
+operator|.
+name|of
+argument_list|(
+name|value
+argument_list|)
 argument_list|)
 return|;
 block|}
