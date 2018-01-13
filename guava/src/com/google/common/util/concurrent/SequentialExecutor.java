@@ -19,6 +19,102 @@ package|;
 end_package
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Preconditions
+operator|.
+name|checkNotNull
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|SequentialExecutor
+operator|.
+name|WorkerRunningState
+operator|.
+name|IDLE
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|SequentialExecutor
+operator|.
+name|WorkerRunningState
+operator|.
+name|QUEUED
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|SequentialExecutor
+operator|.
+name|WorkerRunningState
+operator|.
+name|QUEUING
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|SequentialExecutor
+operator|.
+name|WorkerRunningState
+operator|.
+name|RUNNING
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -92,7 +188,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|Queue
+name|Deque
 import|;
 end_import
 
@@ -105,6 +201,18 @@ operator|.
 name|concurrent
 operator|.
 name|Executor
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|RejectedExecutionException
 import|;
 end_import
 
@@ -165,6 +273,25 @@ name|getName
 argument_list|()
 argument_list|)
 decl_stmt|;
+DECL|enum|WorkerRunningState
+enum|enum
+name|WorkerRunningState
+block|{
+comment|/** Runnable is not running and not queued for execution */
+DECL|enumConstant|IDLE
+name|IDLE
+block|,
+comment|/** Runnable is not running, but is being queued for execution */
+DECL|enumConstant|QUEUING
+name|QUEUING
+block|,
+comment|/** runnable has been submitted but has not yet begun execution */
+DECL|enumConstant|QUEUED
+name|QUEUED
+block|,
+DECL|enumConstant|RUNNING
+name|RUNNING
+block|,   }
 comment|/** Underlying executor that all submitted Runnable objects are run on. */
 DECL|field|executor
 specifier|private
@@ -180,7 +307,7 @@ argument_list|)
 DECL|field|queue
 specifier|private
 specifier|final
-name|Queue
+name|Deque
 argument_list|<
 name|Runnable
 argument_list|>
@@ -191,17 +318,31 @@ name|ArrayDeque
 argument_list|<>
 argument_list|()
 decl_stmt|;
+comment|/** see {@link WorkerRunningState} */
 annotation|@
 name|GuardedBy
 argument_list|(
 literal|"queue"
 argument_list|)
-DECL|field|isWorkerRunning
+DECL|field|workerRunningState
 specifier|private
-name|boolean
-name|isWorkerRunning
+name|WorkerRunningState
+name|workerRunningState
 init|=
-literal|false
+name|IDLE
+decl_stmt|;
+comment|/**    * This counter prevents an ABA issue where a thread may successfully schedule the worker, the    * worker runs and exhausts the queue, another thread enqueues a task and fails to schedule the    * worker, and then the first thread's call to delegate.execute() returns. Without this counter,    * it would observe the QUEUING state and set it to QUEUED, and the worker would never be    * scheduled again for future submissions.    */
+annotation|@
+name|GuardedBy
+argument_list|(
+literal|"queue"
+argument_list|)
+DECL|field|workerRunCount
+specifier|private
+name|long
+name|workerRunCount
+init|=
+literal|0
 decl_stmt|;
 DECL|field|worker
 specifier|private
@@ -236,19 +377,46 @@ block|}
 comment|/**    * Adds a task to the queue and makes sure a worker thread is running.    *    *<p>If this method throws, e.g. a {@code RejectedExecutionException} from the delegate executor,    * execution of tasks will stop until a call to this method or to {@link #resume()} is made.    */
 annotation|@
 name|Override
-DECL|method|execute (Runnable task)
+DECL|method|execute (final Runnable task)
 specifier|public
 name|void
 name|execute
 parameter_list|(
+specifier|final
 name|Runnable
 name|task
 parameter_list|)
 block|{
+name|checkNotNull
+argument_list|(
+name|task
+argument_list|)
+expr_stmt|;
+specifier|final
+name|Runnable
+name|submittedTask
+decl_stmt|;
+specifier|final
+name|long
+name|oldRunCount
+decl_stmt|;
 synchronized|synchronized
 init|(
 name|queue
 init|)
+block|{
+comment|// If the worker is already running (or execute() on the delegate returned successfully, and
+comment|// the worker has yet to start) then we don't need to start the worker.
+if|if
+condition|(
+name|workerRunningState
+operator|==
+name|RUNNING
+operator|||
+name|workerRunningState
+operator|==
+name|QUEUED
+condition|)
 block|{
 name|queue
 operator|.
@@ -257,34 +425,51 @@ argument_list|(
 name|task
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|isWorkerRunning
-condition|)
-block|{
 return|return;
 block|}
-name|isWorkerRunning
+name|oldRunCount
 operator|=
-literal|true
+name|workerRunCount
 expr_stmt|;
-block|}
-name|startQueueWorker
+comment|// If the worker is not yet running, the delegate Executor might reject our attempt to start
+comment|// it. To preserve FIFO order and failure atomicity of rejected execution when the same
+comment|// Runnable is executed more than once, allocate a wrapper that we know is safe to remove by
+comment|// object identity.
+comment|// A data structure that returned a removal handle from add() would allow eliminating this
+comment|// allocation.
+name|submittedTask
+operator|=
+operator|new
+name|Runnable
+argument_list|()
+block|{
+annotation|@
+name|Override
+specifier|public
+name|void
+name|run
+parameter_list|()
+block|{
+name|task
+operator|.
+name|run
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * Starts a worker. This should only be called if:    *    *<ul>    *<li>{@code isWorkerRunning == true}    *<li>{@code !queue.isEmpty()}    *<li>the {@link #worker} lock is not held    *</ul>    */
-DECL|method|startQueueWorker ()
-specifier|private
-name|void
-name|startQueueWorker
-parameter_list|()
-block|{
-name|boolean
-name|executionRejected
-init|=
-literal|true
-decl_stmt|;
+block|}
+expr_stmt|;
+name|queue
+operator|.
+name|add
+argument_list|(
+name|submittedTask
+argument_list|)
+expr_stmt|;
+name|workerRunningState
+operator|=
+name|QUEUING
+expr_stmt|;
+block|}
 try|try
 block|{
 name|executor
@@ -294,30 +479,101 @@ argument_list|(
 name|worker
 argument_list|)
 expr_stmt|;
-name|executionRejected
-operator|=
-literal|false
-expr_stmt|;
 block|}
-finally|finally
+catch|catch
+parameter_list|(
+name|RuntimeException
+decl||
+name|Error
+name|t
+parameter_list|)
 block|{
-if|if
-condition|(
-name|executionRejected
-condition|)
-block|{
-comment|// The best we can do is to stop executing the queue, but reset the state so that
-comment|// execution can be resumed later if the caller so wishes.
 synchronized|synchronized
 init|(
 name|queue
 init|)
 block|{
-name|isWorkerRunning
-operator|=
-literal|false
-expr_stmt|;
+name|boolean
+name|removed
+init|=
+operator|(
+name|workerRunningState
+operator|==
+name|IDLE
+operator|||
+name|workerRunningState
+operator|==
+name|QUEUING
+operator|)
+operator|&&
+name|queue
+operator|.
+name|removeLastOccurrence
+argument_list|(
+name|submittedTask
+argument_list|)
+decl_stmt|;
+comment|// If the delegate is directExecutor(), the submitted runnable could have thrown a REE. But
+comment|// that's handled by the log check that catches RuntimeExceptions in the queue worker.
+if|if
+condition|(
+operator|!
+operator|(
+name|t
+operator|instanceof
+name|RejectedExecutionException
+operator|)
+operator|||
+name|removed
+condition|)
+block|{
+throw|throw
+name|t
+throw|;
 block|}
+block|}
+return|return;
+block|}
+comment|/*      * This is an unsynchronized read! After the read, the function returns immediately or acquires      * the lock to check again. Since an IDLE state was observed inside the preceding synchronized      * block, and reference field assignment is atomic, this may save reacquiring the lock when      * another thread or the worker task has cleared the count and set the state.      *      *<p>When {@link #executor} is a directExecutor(), the value written to      * {@code workerRunningState} will be available synchronously, and behaviour will be      * deterministic.      */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"GuardedBy"
+argument_list|)
+name|boolean
+name|alreadyMarkedQueued
+init|=
+name|workerRunningState
+operator|!=
+name|QUEUING
+decl_stmt|;
+if|if
+condition|(
+name|alreadyMarkedQueued
+condition|)
+block|{
+return|return;
+block|}
+synchronized|synchronized
+init|(
+name|queue
+init|)
+block|{
+if|if
+condition|(
+name|workerRunCount
+operator|==
+name|oldRunCount
+operator|&&
+name|workerRunningState
+operator|==
+name|QUEUING
+condition|)
+block|{
+name|workerRunningState
+operator|=
+name|QUEUED
+expr_stmt|;
 block|}
 block|}
 block|}
@@ -357,9 +613,9 @@ init|(
 name|queue
 init|)
 block|{
-name|isWorkerRunning
+name|workerRunningState
 operator|=
-literal|false
+name|IDLE
 expr_stmt|;
 block|}
 throw|throw
@@ -382,6 +638,11 @@ name|interruptedDuringTask
 init|=
 literal|false
 decl_stmt|;
+name|boolean
+name|hasSetRunning
+init|=
+literal|false
+decl_stmt|;
 try|try
 block|{
 while|while
@@ -389,16 +650,6 @@ condition|(
 literal|true
 condition|)
 block|{
-comment|// Remove the interrupt bit before each task. The interrupt is for the "current task" when
-comment|// it is sent, so subsequent tasks in the queue should not be caused to be interrupted
-comment|// by a previous one in the queue being interrupted.
-name|interruptedDuringTask
-operator||=
-name|Thread
-operator|.
-name|interrupted
-argument_list|()
-expr_stmt|;
 name|Runnable
 name|task
 decl_stmt|;
@@ -407,6 +658,42 @@ init|(
 name|queue
 init|)
 block|{
+comment|// Choose whether this thread will run or not after acquiring the lock on the first
+comment|// iteration
+if|if
+condition|(
+operator|!
+name|hasSetRunning
+condition|)
+block|{
+if|if
+condition|(
+name|workerRunningState
+operator|==
+name|RUNNING
+condition|)
+block|{
+comment|// Don't want to have two workers pulling from the queue.
+return|return;
+block|}
+else|else
+block|{
+comment|// Increment the run counter to avoid the ABA problem of a submitter marking the
+comment|// thread as QUEUED after it already ran and exhausted the queue before returning
+comment|// from execute().
+name|workerRunCount
+operator|++
+expr_stmt|;
+name|workerRunningState
+operator|=
+name|RUNNING
+expr_stmt|;
+name|hasSetRunning
+operator|=
+literal|true
+expr_stmt|;
+block|}
+block|}
 name|task
 operator|=
 name|queue
@@ -421,13 +708,23 @@ operator|==
 literal|null
 condition|)
 block|{
-name|isWorkerRunning
+name|workerRunningState
 operator|=
-literal|false
+name|IDLE
 expr_stmt|;
 return|return;
 block|}
 block|}
+comment|// Remove the interrupt bit before each task. The interrupt is for the "current task" when
+comment|// it is sent, so subsequent tasks in the queue should not be caused to be interrupted
+comment|// by a previous one in the queue being interrupted.
+name|interruptedDuringTask
+operator||=
+name|Thread
+operator|.
+name|interrupted
+argument_list|()
+expr_stmt|;
 try|try
 block|{
 name|task
