@@ -332,7 +332,6 @@ block|}
 comment|/**    * Wraps a collection of tasks.    *    * @throws NullPointerException if any element of {@code tasks} is null    */
 DECL|method|wrapTasks (Collection<? extends Callable<T>> tasks)
 specifier|private
-specifier|final
 parameter_list|<
 name|T
 parameter_list|>

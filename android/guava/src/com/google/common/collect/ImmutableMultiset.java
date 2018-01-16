@@ -1326,7 +1326,6 @@ return|;
 block|}
 DECL|method|createEntrySet ()
 specifier|private
-specifier|final
 name|ImmutableSet
 argument_list|<
 name|Entry

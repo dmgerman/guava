@@ -91,7 +91,6 @@ name|char
 name|leafNodeCode
 decl_stmt|;
 DECL|method|PublicSuffixType (char innerNodeCode, char leafNodeCode)
-specifier|private
 name|PublicSuffixType
 parameter_list|(
 name|char

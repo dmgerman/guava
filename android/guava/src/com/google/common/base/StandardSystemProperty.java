@@ -262,7 +262,6 @@ name|String
 name|key
 decl_stmt|;
 DECL|method|StandardSystemProperty (String key)
-specifier|private
 name|StandardSystemProperty
 parameter_list|(
 name|String

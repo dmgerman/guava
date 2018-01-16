@@ -728,7 +728,6 @@ block|}
 DECL|method|forCellsInternal ( Iterable<Cell<R, C, V>> cells, @NullableDecl Comparator<? super R> rowComparator, @NullableDecl Comparator<? super C> columnComparator)
 specifier|private
 specifier|static
-specifier|final
 parameter_list|<
 name|R
 parameter_list|,

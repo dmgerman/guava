@@ -1657,7 +1657,6 @@ end_function
 begin_function
 DECL|method|createEntrySet ()
 specifier|private
-specifier|final
 name|ImmutableSet
 argument_list|<
 name|Entry

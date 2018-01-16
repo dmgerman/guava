@@ -963,7 +963,6 @@ function_decl|;
 DECL|method|createFromSystemTimer ()
 specifier|public
 specifier|static
-specifier|final
 name|SleepingStopwatch
 name|createFromSystemTimer
 parameter_list|()
