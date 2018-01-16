@@ -280,6 +280,11 @@ block|}
 comment|// This exclusion doesn't exclude the TOMBSTONE objects we set. So 'done' NEW futures will look
 comment|// larger than they are.
 annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"FutureReturnValueIgnored"
+argument_list|)
+annotation|@
 name|Footprint
 argument_list|(
 name|exclude
