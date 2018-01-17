@@ -1644,6 +1644,32 @@ return|;
 block|}
 annotation|@
 name|Override
+DECL|method|copyIntoArray (Object[] dst, int offset)
+name|int
+name|copyIntoArray
+parameter_list|(
+name|Object
+index|[]
+name|dst
+parameter_list|,
+name|int
+name|offset
+parameter_list|)
+block|{
+return|return
+name|asList
+argument_list|()
+operator|.
+name|copyIntoArray
+argument_list|(
+name|dst
+argument_list|,
+name|offset
+argument_list|)
+return|;
+block|}
+annotation|@
+name|Override
 DECL|method|createAsList ()
 name|ImmutableList
 argument_list|<
