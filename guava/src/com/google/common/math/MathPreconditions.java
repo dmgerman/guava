@@ -415,13 +415,22 @@ argument_list|)
 throw|;
 block|}
 block|}
-DECL|method|checkNoOverflow (boolean condition)
+DECL|method|checkNoOverflow (boolean condition, String methodName, int a, int b)
 specifier|static
 name|void
 name|checkNoOverflow
 parameter_list|(
 name|boolean
 name|condition
+parameter_list|,
+name|String
+name|methodName
+parameter_list|,
+name|int
+name|a
+parameter_list|,
+name|int
+name|b
 parameter_list|)
 block|{
 if|if
@@ -434,7 +443,64 @@ throw|throw
 operator|new
 name|ArithmeticException
 argument_list|(
-literal|"overflow"
+literal|"overflow: "
+operator|+
+name|methodName
+operator|+
+literal|"("
+operator|+
+name|a
+operator|+
+literal|", "
+operator|+
+name|b
+operator|+
+literal|")"
+argument_list|)
+throw|;
+block|}
+block|}
+DECL|method|checkNoOverflow (boolean condition, String methodName, long a, long b)
+specifier|static
+name|void
+name|checkNoOverflow
+parameter_list|(
+name|boolean
+name|condition
+parameter_list|,
+name|String
+name|methodName
+parameter_list|,
+name|long
+name|a
+parameter_list|,
+name|long
+name|b
+parameter_list|)
+block|{
+if|if
+condition|(
+operator|!
+name|condition
+condition|)
+block|{
+throw|throw
+operator|new
+name|ArithmeticException
+argument_list|(
+literal|"overflow: "
+operator|+
+name|methodName
+operator|+
+literal|"("
+operator|+
+name|a
+operator|+
+literal|", "
+operator|+
+name|b
+operator|+
+literal|")"
 argument_list|)
 throw|;
 block|}

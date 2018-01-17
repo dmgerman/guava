@@ -17,6 +17,22 @@ package|;
 end_package
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|truth
+operator|.
+name|Truth
+operator|.
+name|assertThat
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -1019,6 +1035,12 @@ operator|.
 name|checkNoOverflow
 argument_list|(
 literal|true
+argument_list|,
+literal|"testCheckNoOverflow_success"
+argument_list|,
+literal|0
+argument_list|,
+literal|0
 argument_list|)
 expr_stmt|;
 block|}
@@ -1035,6 +1057,12 @@ operator|.
 name|checkNoOverflow
 argument_list|(
 literal|false
+argument_list|,
+literal|"testCheckNoOverflow_failure"
+argument_list|,
+literal|0
+argument_list|,
+literal|0
 argument_list|)
 expr_stmt|;
 name|fail
@@ -1046,7 +1074,21 @@ parameter_list|(
 name|ArithmeticException
 name|expected
 parameter_list|)
-block|{     }
+block|{
+name|assertThat
+argument_list|(
+name|expected
+argument_list|)
+operator|.
+name|hasMessageThat
+argument_list|()
+operator|.
+name|contains
+argument_list|(
+literal|"testCheckNoOverflow_failure(0, 0)"
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 block|}
 end_class
