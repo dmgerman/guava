@@ -139,7 +139,7 @@ name|N
 name|node
 parameter_list|)
 function_decl|;
-comment|/**    * Returns the edges in this graph whose endpoints include {@code node}.    *    * @throws IllegalArgumentException if {@code node} is not an element of this graph    */
+comment|/**    * Returns the edges in this graph whose endpoints include {@code node}.    *    * @throws IllegalArgumentException if {@code node} is not an element of this graph    * @since NEXT    */
 DECL|method|incidentEdges (N node)
 name|Set
 argument_list|<

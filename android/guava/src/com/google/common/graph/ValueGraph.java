@@ -81,7 +81,7 @@ block|{
 comment|//
 comment|// ValueGraph-level accessors
 comment|//
-comment|/** {@inheritDoc} */
+comment|/** Returns all nodes in this graph, in the order specified by {@link #nodeOrder()}. */
 annotation|@
 name|Override
 DECL|method|nodes ()
@@ -92,7 +92,7 @@ argument_list|>
 name|nodes
 parameter_list|()
 function_decl|;
-comment|/** {@inheritDoc} */
+comment|/** Returns all edges in this graph. */
 annotation|@
 name|Override
 DECL|method|edges ()
@@ -118,7 +118,7 @@ function_decl|;
 comment|//
 comment|// ValueGraph properties
 comment|//
-comment|/** {@inheritDoc} */
+comment|/**    * Returns true if the edges in this graph are directed. Directed edges connect a {@link    * EndpointPair#source() source node} to a {@link EndpointPair#target() target node}, while    * undirected edges connect a pair of nodes to each other.    */
 annotation|@
 name|Override
 DECL|method|isDirected ()
@@ -126,7 +126,7 @@ name|boolean
 name|isDirected
 parameter_list|()
 function_decl|;
-comment|/** {@inheritDoc} */
+comment|/**    * Returns true if this graph allows self-loops (edges that connect a node to itself). Attempting    * to add a self-loop to a graph that does not allow them will throw an {@link    * IllegalArgumentException}.    */
 annotation|@
 name|Override
 DECL|method|allowsSelfLoops ()
@@ -134,7 +134,7 @@ name|boolean
 name|allowsSelfLoops
 parameter_list|()
 function_decl|;
-comment|/** {@inheritDoc} */
+comment|/** Returns the order of iteration for the elements of {@link #nodes()}. */
 annotation|@
 name|Override
 DECL|method|nodeOrder ()
@@ -148,7 +148,7 @@ function_decl|;
 comment|//
 comment|// Element-level accessors
 comment|//
-comment|/** {@inheritDoc} */
+comment|/**    * Returns the nodes which have an incident edge in common with {@code node} in this graph.    *    * @throws IllegalArgumentException if {@code node} is not an element of this graph    */
 annotation|@
 name|Override
 DECL|method|adjacentNodes (N node)
@@ -162,7 +162,7 @@ name|N
 name|node
 parameter_list|)
 function_decl|;
-comment|/** {@inheritDoc} */
+comment|/**    * Returns all nodes in this graph adjacent to {@code node} which can be reached by traversing    * {@code node}'s incoming edges<i>against</i> the direction (if any) of the edge.    *    *<p>In an undirected graph, this is equivalent to {@link #adjacentNodes(Object)}.    *    * @throws IllegalArgumentException if {@code node} is not an element of this graph    */
 annotation|@
 name|Override
 DECL|method|predecessors (N node)
@@ -176,7 +176,7 @@ name|N
 name|node
 parameter_list|)
 function_decl|;
-comment|/** {@inheritDoc} */
+comment|/**    * Returns all nodes in this graph adjacent to {@code node} which can be reached by traversing    * {@code node}'s outgoing edges in the direction (if any) of the edge.    *    *<p>In an undirected graph, this is equivalent to {@link #adjacentNodes(Object)}.    *    *<p>This is<i>not</i> the same as "all nodes reachable from {@code node} by following outgoing    * edges". For that functionality, see {@link Graphs#reachableNodes(Graph, Object)}.    *    * @throws IllegalArgumentException if {@code node} is not an element of this graph    */
 annotation|@
 name|Override
 DECL|method|successors (N node)
@@ -190,7 +190,7 @@ name|N
 name|node
 parameter_list|)
 function_decl|;
-comment|/** {@inheritDoc} */
+comment|/**    * Returns the edges in this graph whose endpoints include {@code node}.    *    * @throws IllegalArgumentException if {@code node} is not an element of this graph    * @since NEXT    */
 annotation|@
 name|Override
 DECL|method|incidentEdges (N node)
@@ -207,7 +207,7 @@ name|N
 name|node
 parameter_list|)
 function_decl|;
-comment|/** {@inheritDoc} */
+comment|/**    * Returns the count of {@code node}'s incident edges, counting self-loops twice (equivalently,    * the number of times an edge touches {@code node}).    *    *<p>For directed graphs, this is equal to {@code inDegree(node) + outDegree(node)}.    *    *<p>For undirected graphs, this is equal to {@code incidentEdges(node).size()} + (number of    * self-loops incident to {@code node}).    *    *<p>If the count is greater than {@code Integer.MAX_VALUE}, returns {@code Integer.MAX_VALUE}.    *    * @throws IllegalArgumentException if {@code node} is not an element of this graph    */
 annotation|@
 name|Override
 DECL|method|degree (N node)
@@ -218,7 +218,7 @@ name|N
 name|node
 parameter_list|)
 function_decl|;
-comment|/** {@inheritDoc} */
+comment|/**    * Returns the count of {@code node}'s incoming edges (equal to {@code predecessors(node).size()})    * in a directed graph. In an undirected graph, returns the {@link #degree(Object)}.    *    *<p>If the count is greater than {@code Integer.MAX_VALUE}, returns {@code Integer.MAX_VALUE}.    *    * @throws IllegalArgumentException if {@code node} is not an element of this graph    */
 annotation|@
 name|Override
 DECL|method|inDegree (N node)
@@ -229,7 +229,7 @@ name|N
 name|node
 parameter_list|)
 function_decl|;
-comment|/** {@inheritDoc} */
+comment|/**    * Returns the count of {@code node}'s outgoing edges (equal to {@code successors(node).size()})    * in a directed graph. In an undirected graph, returns the {@link #degree(Object)}.    *    *<p>If the count is greater than {@code Integer.MAX_VALUE}, returns {@code Integer.MAX_VALUE}.    *    * @throws IllegalArgumentException if {@code node} is not an element of this graph    */
 annotation|@
 name|Override
 DECL|method|outDegree (N node)
@@ -240,7 +240,7 @@ name|N
 name|node
 parameter_list|)
 function_decl|;
-comment|/** {@inheritDoc} */
+comment|/**    * Returns true if there is an edge directly connecting {@code nodeU} to {@code nodeV}. This is    * equivalent to {@code nodes().contains(nodeU)&& successors(nodeU).contains(nodeV)}.    *    *<p>In an undirected graph, this is equal to {@code hasEdgeConnecting(nodeV, nodeU)}.    *    * @since 23.0    */
 annotation|@
 name|Override
 DECL|method|hasEdgeConnecting (N nodeU, N nodeV)
