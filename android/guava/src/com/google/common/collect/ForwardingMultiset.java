@@ -760,7 +760,7 @@ block|{
 return|return
 name|Multisets
 operator|.
-name|sizeImpl
+name|linearTimeSizeImpl
 argument_list|(
 name|this
 argument_list|)
