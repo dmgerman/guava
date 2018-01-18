@@ -276,6 +276,16 @@ name|HOST
 init|=
 literal|"Host"
 decl_stmt|;
+comment|/**    * The HTTP<a href="https://tools.ietf.org/html/rfc7540#section-3.2.1">{@code HTTP2-Settings}    *</a> header field name.    *    * @since NEXT    */
+DECL|field|HTTP2_SETTINGS
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|HTTP2_SETTINGS
+init|=
+literal|"HTTP2-Settings"
+decl_stmt|;
 comment|/** The HTTP {@code If-Match} header field name. */
 DECL|field|IF_MATCH
 specifier|public

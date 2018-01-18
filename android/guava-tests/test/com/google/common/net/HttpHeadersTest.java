@@ -194,6 +194,8 @@ literal|"DNT"
 argument_list|,
 literal|"DNS"
 argument_list|,
+literal|"HTTP2"
+argument_list|,
 literal|"IP"
 argument_list|,
 literal|"MD5"
