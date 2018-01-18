@@ -118,6 +118,12 @@ name|void
 name|interruptTask
 parameter_list|()
 block|{}
+DECL|method|toPendingString ()
+specifier|abstract
+name|String
+name|toPendingString
+parameter_list|()
+function_decl|;
 block|}
 end_class
 

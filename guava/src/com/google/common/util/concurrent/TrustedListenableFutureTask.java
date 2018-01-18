@@ -397,7 +397,10 @@ literal|"]"
 return|;
 block|}
 return|return
-literal|null
+name|super
+operator|.
+name|pendingToString
+argument_list|()
 return|;
 block|}
 annotation|@
@@ -516,10 +519,9 @@ block|}
 block|}
 annotation|@
 name|Override
-DECL|method|toString ()
-specifier|public
+DECL|method|toPendingString ()
 name|String
-name|toString
+name|toPendingString
 parameter_list|()
 block|{
 return|return
@@ -658,10 +660,9 @@ block|}
 block|}
 annotation|@
 name|Override
-DECL|method|toString ()
-specifier|public
+DECL|method|toPendingString ()
 name|String
-name|toString
+name|toPendingString
 parameter_list|()
 block|{
 return|return

@@ -723,10 +723,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|toString ()
-specifier|public
+DECL|method|toPendingString ()
 name|String
-name|toString
+name|toPendingString
 parameter_list|()
 block|{
 return|return
@@ -830,10 +829,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|toString ()
-specifier|public
+DECL|method|toPendingString ()
 name|String
-name|toString
+name|toPendingString
 parameter_list|()
 block|{
 return|return

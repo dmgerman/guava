@@ -19,6 +19,22 @@ package|;
 end_package
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|truth
+operator|.
+name|Truth
+operator|.
+name|assertThat
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -311,6 +327,31 @@ operator|.
 name|assertSuccess
 argument_list|(
 name|getSuccessfulResult
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+DECL|method|testInputFutureToString ()
+specifier|public
+name|void
+name|testInputFutureToString
+parameter_list|()
+throws|throws
+name|Throwable
+block|{
+name|assertThat
+argument_list|(
+name|resultFuture
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+operator|.
+name|contains
+argument_list|(
+name|inputFuture
+operator|.
+name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;

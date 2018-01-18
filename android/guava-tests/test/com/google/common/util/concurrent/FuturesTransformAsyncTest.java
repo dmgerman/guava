@@ -26,6 +26,22 @@ name|google
 operator|.
 name|common
 operator|.
+name|truth
+operator|.
+name|Truth
+operator|.
+name|assertThat
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
 name|util
 operator|.
 name|concurrent
@@ -446,6 +462,38 @@ name|CancellationException
 name|expected
 parameter_list|)
 block|{     }
+block|}
+DECL|method|testAsyncToString ()
+specifier|public
+name|void
+name|testAsyncToString
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|inputFuture
+operator|.
+name|set
+argument_list|(
+name|SLOW_OUTPUT_VALID_INPUT_DATA
+argument_list|)
+expr_stmt|;
+name|assertThat
+argument_list|(
+name|resultFuture
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+operator|.
+name|contains
+argument_list|(
+name|outputFuture
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+expr_stmt|;
 block|}
 DECL|method|testFutureCancelBeforeInputCompletion ()
 specifier|public
