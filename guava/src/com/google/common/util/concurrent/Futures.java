@@ -523,7 +523,8 @@ specifier|private
 name|Futures
 parameter_list|()
 block|{}
-comment|/**    * Creates a {@link CheckedFuture} out of a normal {@link ListenableFuture} and a {@link Function}    * that maps from {@link Exception} instances into the appropriate checked type.    *    *<p><b>Warning:</b> We recommend against using {@code CheckedFuture} in new projects. {@code    * CheckedFuture} is difficult to build libraries atop. {@code CheckedFuture} ports of methods    * like {@link Futures#transformAsync} have historically had bugs, and some of these bugs are    * necessary, unavoidable consequences of the {@code CheckedFuture} API. Additionally, {@code    * CheckedFuture} encourages users to take exceptions from one thread and rethrow them in another,    * producing confusing stack traces.    *    *<p>The given mapping function will be applied to an {@link InterruptedException}, a {@link    * CancellationException}, or an {@link ExecutionException}. See {@link Future#get()} for details    * on the exceptions thrown.    *    * @since 9.0 (source-compatible since 1.0)    * @deprecated {@link CheckedFuture} cannot properly support the chained operations that are the    *     primary goal of {@link ListenableFuture}. {@code CheckedFuture} also encourages users to    *     rethrow exceptions from one thread in another thread, producing misleading stack traces.    *     Additionally, it has a surprising policy about which exceptions to map and which to leave    *     untouched. Guava users who want a {@code CheckedFuture} can fork the classes for their own    *     use, possibly specializing them to the particular exception type they use. We recommend    *     that most people use {@code ListenableFuture} and perform any exception wrapping    *     themselves. This method is scheduled for removal from Guava in February 2018.    */
+comment|/**    * Creates a {@link CheckedFuture} out of a normal {@link ListenableFuture} and a {@link Function}    * that maps from {@link Exception} instances into the appropriate checked type.    *    *<p><b>Warning:</b> We recommend against using {@code CheckedFuture} in new projects. {@code    * CheckedFuture} is difficult to build libraries atop. {@code CheckedFuture} ports of methods    * like {@link Futures#transformAsync} have historically had bugs, and some of these bugs are    * necessary, unavoidable consequences of the {@code CheckedFuture} API. Additionally, {@code    * CheckedFuture} encourages users to take exceptions from one thread and rethrow them in another,    * producing confusing stack traces.    *    *<p>The given mapping function will be applied to an {@link InterruptedException}, a {@link    * CancellationException}, or an {@link ExecutionException}. See {@link Future#get()} for details    * on the exceptions thrown.    *    * @since 9.0 (source-compatible since 1.0)    * @deprecated {@link CheckedFuture} cannot properly support the chained operations that are the    *     primary goal of {@link ListenableFuture}. {@code CheckedFuture} also encourages users to    *     rethrow exceptions from one thread in another thread, producing misleading stack traces.    *     Additionally, it has a surprising policy about which exceptions to map and which to leave    *     untouched. Guava users who want a {@code CheckedFuture} can fork the classes for their own    *     use, possibly specializing them to the particular exception type they use. We recommend    *     that most people use {@code ListenableFuture} and perform any exception wrapping    *     themselves. This method is scheduled for removal from Guava in April 2018.    */
+comment|// TODO(b/72241575): Remove by 2018-04
 annotation|@
 name|Deprecated
 annotation|@
@@ -642,7 +643,8 @@ name|value
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a {@code CheckedFuture} which has its value set immediately upon construction.    *    *<p>The returned {@code Future} can't be cancelled, and its {@code isDone()} method always    * returns {@code true}. Calling {@code get()} or {@code checkedGet()} will immediately return the    * provided value.    *    * @deprecated {@link CheckedFuture} cannot properly support the chained operations that are the    *     primary goal of {@link ListenableFuture}. {@code CheckedFuture} also encourages users to    *     rethrow exceptions from one thread in another thread, producing misleading stack traces.    *     Additionally, it has a surprising policy about which exceptions to map and which to leave    *     untouched. Guava users who want a {@code CheckedFuture} can fork the classes for their own    *     use, possibly specializing them to the particular exception type they use. We recommend    *     that most people use {@code ListenableFuture} and perform any exception wrapping    *     themselves. This method is scheduled for removal from Guava in February 2018.    */
+comment|/**    * Returns a {@code CheckedFuture} which has its value set immediately upon construction.    *    *<p>The returned {@code Future} can't be cancelled, and its {@code isDone()} method always    * returns {@code true}. Calling {@code get()} or {@code checkedGet()} will immediately return the    * provided value.    *    * @deprecated {@link CheckedFuture} cannot properly support the chained operations that are the    *     primary goal of {@link ListenableFuture}. {@code CheckedFuture} also encourages users to    *     rethrow exceptions from one thread in another thread, producing misleading stack traces.    *     Additionally, it has a surprising policy about which exceptions to map and which to leave    *     untouched. Guava users who want a {@code CheckedFuture} can fork the classes for their own    *     use, possibly specializing them to the particular exception type they use. We recommend    *     that most people use {@code ListenableFuture} and perform any exception wrapping    *     themselves. This method is scheduled for removal from Guava in April 2018.    */
+comment|// TODO(b/72241893): Remove by 2018-04
 annotation|@
 name|Deprecated
 annotation|@
@@ -737,7 +739,8 @@ argument_list|>
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns a {@code CheckedFuture} which has an exception set immediately upon construction.    *    *<p>The returned {@code Future} can't be cancelled, and its {@code isDone()} method always    * returns {@code true}. Calling {@code get()} will immediately throw the provided {@code    * Exception} wrapped in an {@code ExecutionException}, and calling {@code checkedGet()} will    * throw the provided exception itself.    *    * @deprecated {@link CheckedFuture} cannot properly support the chained operations that are the    *     primary goal of {@link ListenableFuture}. {@code CheckedFuture} also encourages users to    *     rethrow exceptions from one thread in another thread, producing misleading stack traces.    *     Additionally, it has a surprising policy about which exceptions to map and which to leave    *     untouched. Guava users who want a {@code CheckedFuture} can fork the classes for their own    *     use, possibly specializing them to the particular exception type they use. We recommend    *     that most people use {@code ListenableFuture} and perform any exception wrapping    *     themselves. This method is scheduled for removal from Guava in February 2018.    */
+comment|/**    * Returns a {@code CheckedFuture} which has an exception set immediately upon construction.    *    *<p>The returned {@code Future} can't be cancelled, and its {@code isDone()} method always    * returns {@code true}. Calling {@code get()} will immediately throw the provided {@code    * Exception} wrapped in an {@code ExecutionException}, and calling {@code checkedGet()} will    * throw the provided exception itself.    *    * @deprecated {@link CheckedFuture} cannot properly support the chained operations that are the    *     primary goal of {@link ListenableFuture}. {@code CheckedFuture} also encourages users to    *     rethrow exceptions from one thread in another thread, producing misleading stack traces.    *     Additionally, it has a surprising policy about which exceptions to map and which to leave    *     untouched. Guava users who want a {@code CheckedFuture} can fork the classes for their own    *     use, possibly specializing them to the particular exception type they use. We recommend    *     that most people use {@code ListenableFuture} and perform any exception wrapping    *     themselves. This method is scheduled for removal from Guava in April 2018.    */
+comment|// TODO(b/72241500): Remove by 2018-04
 annotation|@
 name|Deprecated
 annotation|@
@@ -1649,112 +1652,6 @@ block|}
 block|}
 return|;
 block|}
-comment|/**    * Returns a new {@code ListenableFuture} whose result is the product of calling {@code get()} on    * the {@code Future} nested within the given {@code Future}, effectively chaining the futures one    * after the other. Example:    *    *<pre>{@code    * SettableFuture<ListenableFuture<String>> nested = SettableFuture.create();    * ListenableFuture<String> dereferenced = dereference(nested);    * }</pre>    *    *<p>Most users will not need this method. To create a {@code Future} that completes with the    * result of another {@code Future}, create a {@link SettableFuture}, and call {@link    * SettableFuture#setFuture setFuture(otherFuture)} on it.    *    *<p>{@code dereference} has the same cancellation and execution semantics as {@link    * #transformAsync(ListenableFuture, AsyncFunction, Executor)}, in that the returned {@code    * Future} attempts to keep its cancellation state in sync with both the input {@code Future} and    * the nested {@code Future}. The transformation is very lightweight and therefore takes place in    * the same thread (either the thread that called {@code dereference}, or the thread in which the    * dereferenced future completes).    *    * @deprecated Use {@link #submitAsync(AsyncCallable, Executor)} or {@link    *     SettableFuture#setFuture} instead. Or, if you're dereferencing the output of {@link    *     #transform} or {@link #catching}, switch to {@link #transformAsync} or {@link    *     #catchingAsync} (and likewise for similar APIs). If the cancellation of this method's    *     output future races with completion of the outer input future, cancellation may not be    *     propagated to the inner input future. This method is scheduled to be removed in January    *     2018.    * @param nested The nested future to transform.    * @return A future that holds result of the inner future.    * @since 13.0    */
-annotation|@
-name|Deprecated
-annotation|@
-name|SuppressWarnings
-argument_list|(
-block|{
-literal|"rawtypes"
-block|,
-literal|"unchecked"
-block|}
-argument_list|)
-DECL|method|dereference ( ListenableFuture<? extends ListenableFuture<? extends V>> nested)
-specifier|public
-specifier|static
-parameter_list|<
-name|V
-parameter_list|>
-name|ListenableFuture
-argument_list|<
-name|V
-argument_list|>
-name|dereference
-parameter_list|(
-name|ListenableFuture
-argument_list|<
-name|?
-extends|extends
-name|ListenableFuture
-argument_list|<
-name|?
-extends|extends
-name|V
-argument_list|>
-argument_list|>
-name|nested
-parameter_list|)
-block|{
-return|return
-name|transformAsync
-argument_list|(
-operator|(
-name|ListenableFuture
-operator|)
-name|nested
-argument_list|,
-operator|(
-name|AsyncFunction
-operator|)
-name|DEREFERENCER
-argument_list|,
-name|directExecutor
-argument_list|()
-argument_list|)
-return|;
-block|}
-comment|/** Helper {@code Function} for {@link #dereference}. */
-DECL|field|DEREFERENCER
-specifier|private
-specifier|static
-specifier|final
-name|AsyncFunction
-argument_list|<
-name|ListenableFuture
-argument_list|<
-name|Object
-argument_list|>
-argument_list|,
-name|Object
-argument_list|>
-name|DEREFERENCER
-init|=
-operator|new
-name|AsyncFunction
-argument_list|<
-name|ListenableFuture
-argument_list|<
-name|Object
-argument_list|>
-argument_list|,
-name|Object
-argument_list|>
-argument_list|()
-block|{
-annotation|@
-name|Override
-specifier|public
-name|ListenableFuture
-argument_list|<
-name|Object
-argument_list|>
-name|apply
-parameter_list|(
-name|ListenableFuture
-argument_list|<
-name|Object
-argument_list|>
-name|input
-parameter_list|)
-block|{
-return|return
-name|input
-return|;
-block|}
-block|}
-decl_stmt|;
 comment|/**    * Creates a new {@code ListenableFuture} whose value is a list containing the values of all its    * input futures, if all succeed.    *    *<p>The list of results is in the same order as the input list.    *    *<p>Canceling this future will attempt to cancel all the component futures, and if any of the    * provided futures fails or is canceled, this one is, too.    *    * @param futures futures to combine    * @return a future that provides a list of the results of the component futures    * @since 10.0    */
 annotation|@
 name|Beta

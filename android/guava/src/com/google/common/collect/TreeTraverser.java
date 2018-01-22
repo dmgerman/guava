@@ -115,7 +115,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Views elements of a type {@code T} as nodes in a tree, and provides methods to traverse the trees  * induced by this traverser.  *  *<p>For example, the tree  *  *<pre>{@code  *        h  *      / | \  *     /  e  \  *    d       g  *   /|\      |  *  / | \     f  * a  b  c  * }</pre>  *  *<p>can be iterated over in preorder (hdabcegf), postorder (abcdefgh), or breadth-first order  * (hdegabcf).  *  *<p>Null nodes are strictly forbidden.  *  *<p><b>For Java 8 users:</b> Because this is an abstract class, not an interface, you can't use a  * lambda expression to extend it:  *  *<pre>{@code  * // won't work  * TreeTraverser<NodeType> traverser = node -> node.getChildNodes();  * }</pre>  *  * Instead, you can pass a lambda expression to the {@code using} factory method:  *  *<pre>{@code  * TreeTraverser<NodeType> traverser = TreeTraverser.using(node -> node.getChildNodes());  * }</pre>  *  * @author Louis Wasserman  * @since 15.0  * @deprecated Use {@link com.google.common.graph.Traverser} instead. All instance methods have  *     their equivalent on the result of {@code Traverser.forTree(tree)} where {@code tree}  *     implements {@code SuccessorsFunction}, which has a similar API as {@link #children} or can be  *     the same lambda function as passed into {@link #using(Function)}.  *<p>This class is scheduled to be removed in January 2018.  */
+comment|/**  * Views elements of a type {@code T} as nodes in a tree, and provides methods to traverse the trees  * induced by this traverser.  *  *<p>For example, the tree  *  *<pre>{@code  *        h  *      / | \  *     /  e  \  *    d       g  *   /|\      |  *  / | \     f  * a  b  c  * }</pre>  *  *<p>can be iterated over in preorder (hdabcegf), postorder (abcdefgh), or breadth-first order  * (hdegabcf).  *  *<p>Null nodes are strictly forbidden.  *  *<p><b>For Java 8 users:</b> Because this is an abstract class, not an interface, you can't use a  * lambda expression to extend it:  *  *<pre>{@code  * // won't work  * TreeTraverser<NodeType> traverser = node -> node.getChildNodes();  * }</pre>  *  * Instead, you can pass a lambda expression to the {@code using} factory method:  *  *<pre>{@code  * TreeTraverser<NodeType> traverser = TreeTraverser.using(node -> node.getChildNodes());  * }</pre>  *  * @author Louis Wasserman  * @since 15.0  * @deprecated Use {@link com.google.common.graph.Traverser} instead. All instance methods have  *     their equivalent on the result of {@code Traverser.forTree(tree)} where {@code tree}  *     implements {@code SuccessorsFunction}, which has a similar API as {@link #children} or can be  *     the same lambda function as passed into {@link #using(Function)}.  *<p>This class is scheduled to be removed in April 2018.  */
 end_comment
 
 begin_class
@@ -266,7 +266,6 @@ block|}
 block|}
 return|;
 block|}
-comment|// overridden in BinaryTreeTraverser
 DECL|method|preOrderIterator (T root)
 name|UnmodifiableIterator
 argument_list|<
@@ -488,7 +487,6 @@ block|}
 block|}
 return|;
 block|}
-comment|// overridden in BinaryTreeTraverser
 DECL|method|postOrderIterator (T root)
 name|UnmodifiableIterator
 argument_list|<

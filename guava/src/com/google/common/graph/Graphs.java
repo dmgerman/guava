@@ -949,8 +949,8 @@ name|visitedNodes
 argument_list|)
 return|;
 block|}
-comment|/**    * @deprecated Use {@link Graph#equals(Object)} instead. This method will be removed in January    *     2018.    */
-comment|// TODO(user): Delete this method.
+comment|/**    * @deprecated Use {@link Graph#equals(Object)} instead. This method is scheduled to be removed in    *     April 2018.    */
+comment|// TODO(b/72241742): Remove by 2018-04
 annotation|@
 name|Deprecated
 DECL|method|equivalent (@ullableDecl Graph<?> graphA, @NullableDecl Graph<?> graphB)
@@ -987,8 +987,8 @@ name|graphB
 argument_list|)
 return|;
 block|}
-comment|/**    * @deprecated Use {@link ValueGraph#equals(Object)} instead. This method will be removed in    *     January 2018.    */
-comment|// TODO(user): Delete this method.
+comment|/**    * @deprecated Use {@link ValueGraph#equals(Object)} instead. This method is scheduled to be    *     removed in April 2018.    */
+comment|// TODO(b/72241742): Remove by 2018-04
 annotation|@
 name|Deprecated
 DECL|method|equivalent ( @ullableDecl ValueGraph<?, ?> graphA, @NullableDecl ValueGraph<?, ?> graphB)
@@ -1029,8 +1029,8 @@ name|graphB
 argument_list|)
 return|;
 block|}
-comment|/**    * @deprecated Use {@link Network#equals(Object)} instead. This method will be removed in January    *     2018.    */
-comment|// TODO(user): Delete this method.
+comment|/**    * @deprecated Use {@link Network#equals(Object)} instead. This method is scheduled to be removed    *     in April 2018.    */
+comment|// TODO(b/72241742): Remove by 2018-04
 annotation|@
 name|Deprecated
 DECL|method|equivalent ( @ullableDecl Network<?, ?> networkA, @NullableDecl Network<?, ?> networkB)
