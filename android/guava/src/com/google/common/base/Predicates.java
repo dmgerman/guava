@@ -674,41 +674,6 @@ name|clazz
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a predicate that evaluates to {@code true} if the class being tested is assignable    *<b>TO</b> {@code clazz}, that is, if it is a<b>subtype</b> of {@code clazz}. Yes, this method    * is named very incorrectly! Example:    *    *<pre>{@code    * List<Class<?>> classes = Arrays.asList(    *     Object.class, String.class, Number.class, Long.class);    * return Iterables.filter(classes, assignableFrom(Number.class));    * }</pre>    *    * The code above returns {@code Number.class} and {@code Long.class},<b>not</b> {@code    * Number.class} and {@code Object.class} as the name implies!    *    *<p>The returned predicate does not allow null inputs.    *    * @deprecated Use the correctly-named method {@link #subtypeOf} instead. This method is scheduled    *     to be removed in April 2018.    * @since 10.0    */
-comment|// TODO(b/72241559): Remove by 2018-04
-annotation|@
-name|GwtIncompatible
-comment|// Class.isAssignableFrom
-annotation|@
-name|Beta
-annotation|@
-name|Deprecated
-DECL|method|assignableFrom (Class<?> clazz)
-specifier|public
-specifier|static
-name|Predicate
-argument_list|<
-name|Class
-argument_list|<
-name|?
-argument_list|>
-argument_list|>
-name|assignableFrom
-parameter_list|(
-name|Class
-argument_list|<
-name|?
-argument_list|>
-name|clazz
-parameter_list|)
-block|{
-return|return
-name|subtypeOf
-argument_list|(
-name|clazz
-argument_list|)
-return|;
-block|}
 comment|/**    * Returns a predicate that evaluates to {@code true} if the class being tested is assignable to    * (is a subtype of) {@code clazz}. Example:    *    *<pre>{@code    * List<Class<?>> classes = Arrays.asList(    *     Object.class, String.class, Number.class, Long.class);    * return Iterables.filter(classes, subtypeOf(Number.class));    * }</pre>    *    * The code above returns an iterable containing {@code Number.class} and {@code Long.class}.    *    * @since 20.0 (since 10.0 under the incorrect name {@code assignableFrom})    */
 annotation|@
 name|GwtIncompatible

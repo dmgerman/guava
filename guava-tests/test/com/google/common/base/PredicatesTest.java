@@ -3606,11 +3606,6 @@ block|}
 annotation|@
 name|GwtIncompatible
 comment|// Predicates.subtypeOf
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"deprecation"
-argument_list|)
 DECL|method|testSubtypeOf_equality ()
 specifier|public
 name|void
@@ -3626,24 +3621,6 @@ argument_list|(
 name|Predicates
 operator|.
 name|subtypeOf
-argument_list|(
-name|Integer
-operator|.
-name|class
-argument_list|)
-argument_list|,
-name|Predicates
-operator|.
-name|subtypeOf
-argument_list|(
-name|Integer
-operator|.
-name|class
-argument_list|)
-argument_list|,
-name|Predicates
-operator|.
-name|assignableFrom
 argument_list|(
 name|Integer
 operator|.
