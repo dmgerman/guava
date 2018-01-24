@@ -28,6 +28,22 @@ name|base
 operator|.
 name|Preconditions
 operator|.
+name|checkArgument
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Preconditions
+operator|.
 name|checkElementIndex
 import|;
 end_import
@@ -964,7 +980,7 @@ return|;
 block|}
 comment|// These go up to eleven. After that, you just get the varargs form, and
 comment|// whatever warnings might come along with it. :(
-comment|/**    * Returns an immutable list containing the given elements, in order.    *    * @throws NullPointerException if any element is null    * @since 3.0 (source-compatible since 2.0)    */
+comment|/**    * Returns an immutable list containing the given elements, in order.    *    *<p>The array {@code others} must not be longer than {@code Integer.MAX_VALUE - 12}.    *    * @throws NullPointerException if any element is null    * @since 3.0 (source-compatible since 2.0)    */
 annotation|@
 name|SafeVarargs
 comment|// For Eclipse. For internal javac we have disabled this pointless type of warning.
@@ -1021,6 +1037,21 @@ modifier|...
 name|others
 parameter_list|)
 block|{
+name|checkArgument
+argument_list|(
+name|others
+operator|.
+name|length
+operator|<=
+name|Integer
+operator|.
+name|MAX_VALUE
+operator|-
+literal|12
+argument_list|,
+literal|"the total number of elements must fit in an int"
+argument_list|)
+expr_stmt|;
 name|Object
 index|[]
 name|array

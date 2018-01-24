@@ -523,7 +523,7 @@ name|e5
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an immutable set containing the given elements, minus duplicates, in the order each was    * first specified. That is, if multiple elements are {@linkplain Object#equals equal}, all except    * the first are ignored.    *    * @since 3.0 (source-compatible since 2.0)    */
+comment|/**    * Returns an immutable set containing the given elements, minus duplicates, in the order each was    * first specified. That is, if multiple elements are {@linkplain Object#equals equal}, all except    * the first are ignored.    *    *<p>The array {@code others} must not be longer than {@code Integer.MAX_VALUE - 6}.    *    * @since 3.0 (source-compatible since 2.0)    */
 annotation|@
 name|SafeVarargs
 comment|// For Eclipse. For internal javac we have disabled this pointless type of warning.
@@ -562,6 +562,21 @@ modifier|...
 name|others
 parameter_list|)
 block|{
+name|checkArgument
+argument_list|(
+name|others
+operator|.
+name|length
+operator|<=
+name|Integer
+operator|.
+name|MAX_VALUE
+operator|-
+literal|6
+argument_list|,
+literal|"the total number of elements must fit in an int"
+argument_list|)
+expr_stmt|;
 specifier|final
 name|int
 name|paramCount

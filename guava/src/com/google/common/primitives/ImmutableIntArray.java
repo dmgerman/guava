@@ -520,7 +520,7 @@ argument_list|)
 return|;
 block|}
 comment|// TODO(kevinb): go up to 11?
-comment|/** Returns an immutable array containing the given values, in order. */
+comment|/**    * Returns an immutable array containing the given values, in order.    *    *<p>The array {@code rest} must not be longer than {@code Integer.MAX_VALUE - 1}.    */
 comment|// Use (first, rest) so that `of(someIntArray)` won't compile (they should use copyOf), which is
 comment|// okay since we have to copy the just-created array anyway.
 DECL|method|of (int first, int... rest)
@@ -537,6 +537,21 @@ modifier|...
 name|rest
 parameter_list|)
 block|{
+name|checkArgument
+argument_list|(
+name|rest
+operator|.
+name|length
+operator|<=
+name|Integer
+operator|.
+name|MAX_VALUE
+operator|-
+literal|1
+argument_list|,
+literal|"the total number of elements must fit in an int"
+argument_list|)
+expr_stmt|;
 name|int
 index|[]
 name|array
