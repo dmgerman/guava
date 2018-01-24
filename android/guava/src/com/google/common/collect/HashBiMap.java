@@ -3298,9 +3298,14 @@ block|}
 comment|/** Shared supertype of keySet, values, entrySet, and inverse.entrySet. */
 DECL|class|View
 specifier|abstract
+specifier|static
 class|class
 name|View
 parameter_list|<
+name|K
+parameter_list|,
+name|V
+parameter_list|,
 name|T
 parameter_list|>
 extends|extends
@@ -3309,6 +3314,35 @@ argument_list|<
 name|T
 argument_list|>
 block|{
+DECL|field|biMap
+specifier|final
+name|HashBiMap
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|biMap
+decl_stmt|;
+DECL|method|View (HashBiMap<K, V> biMap)
+name|View
+parameter_list|(
+name|HashBiMap
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|biMap
+parameter_list|)
+block|{
+name|this
+operator|.
+name|biMap
+operator|=
+name|biMap
+expr_stmt|;
+block|}
 DECL|method|forEntry (int entry)
 specifier|abstract
 name|T
@@ -3341,6 +3375,8 @@ specifier|private
 name|int
 name|index
 init|=
+name|biMap
+operator|.
 name|firstInInsertionOrder
 decl_stmt|;
 specifier|private
@@ -3353,6 +3389,8 @@ specifier|private
 name|int
 name|expectedModCount
 init|=
+name|biMap
+operator|.
 name|modCount
 decl_stmt|;
 comment|// Calls to setValue on inverse entries can move already-visited entries to the end.
@@ -3361,6 +3399,8 @@ specifier|private
 name|int
 name|remaining
 init|=
+name|biMap
+operator|.
 name|size
 decl_stmt|;
 specifier|private
@@ -3370,6 +3410,8 @@ parameter_list|()
 block|{
 if|if
 condition|(
+name|biMap
+operator|.
 name|modCount
 operator|!=
 name|expectedModCount
@@ -3436,6 +3478,8 @@ name|index
 expr_stmt|;
 name|index
 operator|=
+name|biMap
+operator|.
 name|nextInInsertionOrder
 index|[
 name|index
@@ -3467,6 +3511,8 @@ operator|!=
 name|ABSENT
 argument_list|)
 expr_stmt|;
+name|biMap
+operator|.
 name|removeEntry
 argument_list|(
 name|indexToRemove
@@ -3476,6 +3522,8 @@ if|if
 condition|(
 name|index
 operator|==
+name|biMap
+operator|.
 name|size
 condition|)
 block|{
@@ -3490,6 +3538,8 @@ name|ABSENT
 expr_stmt|;
 name|expectedModCount
 operator|=
+name|biMap
+operator|.
 name|modCount
 expr_stmt|;
 block|}
@@ -3505,6 +3555,8 @@ name|size
 parameter_list|()
 block|{
 return|return
+name|biMap
+operator|.
 name|size
 return|;
 block|}
@@ -3516,9 +3568,7 @@ name|void
 name|clear
 parameter_list|()
 block|{
-name|HashBiMap
-operator|.
-name|this
+name|biMap
 operator|.
 name|clear
 argument_list|()
@@ -3577,8 +3627,24 @@ extends|extends
 name|View
 argument_list|<
 name|K
+argument_list|,
+name|V
+argument_list|,
+name|K
 argument_list|>
 block|{
+DECL|method|KeySet ()
+name|KeySet
+parameter_list|()
+block|{
+name|super
+argument_list|(
+name|HashBiMap
+operator|.
+name|this
+argument_list|)
+expr_stmt|;
+block|}
 annotation|@
 name|Override
 DECL|method|forEntry (int entry)
@@ -3730,9 +3796,25 @@ name|ValueSet
 extends|extends
 name|View
 argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|,
 name|V
 argument_list|>
 block|{
+DECL|method|ValueSet ()
+name|ValueSet
+parameter_list|()
+block|{
+name|super
+argument_list|(
+name|HashBiMap
+operator|.
+name|this
+argument_list|)
+expr_stmt|;
+block|}
 annotation|@
 name|Override
 DECL|method|forEntry (int entry)
@@ -3899,6 +3981,10 @@ name|EntrySet
 extends|extends
 name|View
 argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|,
 name|Entry
 argument_list|<
 name|K
@@ -3907,6 +3993,18 @@ name|V
 argument_list|>
 argument_list|>
 block|{
+DECL|method|EntrySet ()
+name|EntrySet
+parameter_list|()
+block|{
+name|super
+argument_list|(
+name|HashBiMap
+operator|.
+name|this
+argument_list|)
+expr_stmt|;
+block|}
 annotation|@
 name|Override
 DECL|method|contains (@ullableDecl Object o)
@@ -4745,11 +4843,16 @@ operator|)
 condition|?
 name|inverseEntrySet
 operator|=
-name|forward
-operator|.
-expr|new
+operator|new
 name|InverseEntrySet
-argument_list|()
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+argument_list|(
+name|forward
+argument_list|)
 else|:
 name|result
 return|;
@@ -4788,11 +4891,21 @@ expr_stmt|;
 block|}
 block|}
 DECL|class|InverseEntrySet
+specifier|static
 class|class
 name|InverseEntrySet
+parameter_list|<
+name|K
+parameter_list|,
+name|V
+parameter_list|>
 extends|extends
 name|View
 argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|,
 name|Entry
 argument_list|<
 name|V
@@ -4801,6 +4914,24 @@ name|K
 argument_list|>
 argument_list|>
 block|{
+DECL|method|InverseEntrySet (HashBiMap<K, V> biMap)
+name|InverseEntrySet
+parameter_list|(
+name|HashBiMap
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|biMap
+parameter_list|)
+block|{
+name|super
+argument_list|(
+name|biMap
+argument_list|)
+expr_stmt|;
+block|}
 annotation|@
 name|Override
 DECL|method|contains (@ullableDecl Object o)
@@ -4858,6 +4989,8 @@ decl_stmt|;
 name|int
 name|eIndex
 init|=
+name|biMap
+operator|.
 name|findEntryByValue
 argument_list|(
 name|v
@@ -4872,6 +5005,8 @@ name|Objects
 operator|.
 name|equal
 argument_list|(
+name|biMap
+operator|.
 name|keys
 index|[
 name|eIndex
@@ -4950,6 +5085,8 @@ decl_stmt|;
 name|int
 name|eIndex
 init|=
+name|biMap
+operator|.
 name|findEntryByValue
 argument_list|(
 name|v
@@ -4967,6 +5104,8 @@ name|Objects
 operator|.
 name|equal
 argument_list|(
+name|biMap
+operator|.
 name|keys
 index|[
 name|eIndex
@@ -4976,6 +5115,8 @@ name|k
 argument_list|)
 condition|)
 block|{
+name|biMap
+operator|.
 name|removeEntryValueHashKnown
 argument_list|(
 name|eIndex
@@ -5010,7 +5151,14 @@ block|{
 return|return
 operator|new
 name|EntryForValue
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
 argument_list|(
+name|biMap
+argument_list|,
 name|entry
 argument_list|)
 return|;
@@ -5018,9 +5166,15 @@ block|}
 block|}
 comment|/**    * An {@code Entry} implementation that attempts to follow its value around the map -- that is, if    * the value is moved, deleted, or reinserted, it will account for that -- while not doing any    * extra work if the value has not moved.    */
 DECL|class|EntryForValue
+specifier|static
 specifier|final
 class|class
 name|EntryForValue
+parameter_list|<
+name|K
+parameter_list|,
+name|V
+parameter_list|>
 extends|extends
 name|AbstractMapEntry
 argument_list|<
@@ -5029,6 +5183,16 @@ argument_list|,
 name|K
 argument_list|>
 block|{
+DECL|field|biMap
+specifier|final
+name|HashBiMap
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|biMap
+decl_stmt|;
 DECL|field|value
 specifier|final
 name|V
@@ -5038,17 +5202,33 @@ DECL|field|index
 name|int
 name|index
 decl_stmt|;
-DECL|method|EntryForValue (int index)
+DECL|method|EntryForValue (HashBiMap<K, V> biMap, int index)
 name|EntryForValue
 parameter_list|(
+name|HashBiMap
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|biMap
+parameter_list|,
 name|int
 name|index
 parameter_list|)
 block|{
 name|this
 operator|.
+name|biMap
+operator|=
+name|biMap
+expr_stmt|;
+name|this
+operator|.
 name|value
 operator|=
+name|biMap
+operator|.
 name|values
 index|[
 name|index
@@ -5075,6 +5255,8 @@ name|ABSENT
 operator|||
 name|index
 operator|>
+name|biMap
+operator|.
 name|size
 operator|||
 operator|!
@@ -5084,6 +5266,8 @@ name|equal
 argument_list|(
 name|value
 argument_list|,
+name|biMap
+operator|.
 name|values
 index|[
 name|index
@@ -5093,6 +5277,8 @@ condition|)
 block|{
 name|index
 operator|=
+name|biMap
+operator|.
 name|findEntryByValue
 argument_list|(
 name|value
@@ -5132,6 +5318,8 @@ operator|)
 condition|?
 literal|null
 else|:
+name|biMap
+operator|.
 name|keys
 index|[
 name|index
@@ -5160,9 +5348,7 @@ name|ABSENT
 condition|)
 block|{
 return|return
-name|HashBiMap
-operator|.
-name|this
+name|biMap
 operator|.
 name|putInverse
 argument_list|(
@@ -5177,6 +5363,8 @@ block|}
 name|K
 name|oldKey
 init|=
+name|biMap
+operator|.
 name|keys
 index|[
 name|index
@@ -5198,6 +5386,8 @@ return|return
 name|key
 return|;
 block|}
+name|biMap
+operator|.
 name|replaceKeyInEntry
 argument_list|(
 name|index
