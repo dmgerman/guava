@@ -1000,7 +1000,7 @@ block|}
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns human readable string representation of {@code type}.    *    *<ul>    *<li>For array type {@code Foo[]}, {@code "com.mypackage.Foo[]"} are returned.    *<li>For any class, {@code theClass.getName()} are returned.    *<li>For all other types, {@code type.toString()} are returned.    *</ul>    */
+comment|/**    * Returns human readable string representation of {@code type}.    *    *<p>The format is subject to change.    */
 DECL|method|toString (Type type)
 specifier|static
 name|String
