@@ -50,6 +50,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|Immutable
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|nio
@@ -75,6 +89,8 @@ comment|/**  * An abstract composition of multiple hash functions. {@linkplain #
 end_comment
 
 begin_class
+annotation|@
+name|Immutable
 DECL|class|AbstractCompositeHashFunction
 specifier|abstract
 class|class
@@ -82,6 +98,12 @@ name|AbstractCompositeHashFunction
 extends|extends
 name|AbstractHashFunction
 block|{
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"Immutable"
+argument_list|)
+comment|// array not modified after creation
 DECL|field|functions
 specifier|final
 name|HashFunction

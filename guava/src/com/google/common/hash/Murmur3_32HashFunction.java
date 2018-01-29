@@ -144,6 +144,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|Immutable
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -205,6 +219,8 @@ comment|/**  * See MurmurHash3_x86_32 in<a  * href="https://github.com/aappleby/
 end_comment
 
 begin_class
+annotation|@
+name|Immutable
 DECL|class|Murmur3_32HashFunction
 specifier|final
 class|class

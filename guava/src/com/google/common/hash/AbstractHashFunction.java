@@ -50,6 +50,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|Immutable
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|nio
@@ -75,6 +89,8 @@ comment|/**  * Skeleton implementation of {@link HashFunction} in terms of {@lin
 end_comment
 
 begin_class
+annotation|@
+name|Immutable
 DECL|class|AbstractHashFunction
 specifier|abstract
 class|class

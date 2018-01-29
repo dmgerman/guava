@@ -38,6 +38,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|Immutable
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -77,6 +91,8 @@ comment|/**  * {@link HashFunction} implementation of SipHash-c-d.  *  * @author
 end_comment
 
 begin_class
+annotation|@
+name|Immutable
 DECL|class|SipHashFunction
 specifier|final
 class|class

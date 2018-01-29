@@ -32,6 +32,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|Immutable
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -87,6 +101,8 @@ comment|/**  * Skeleton implementation of {@link HashFunction}, appropriate for 
 end_comment
 
 begin_class
+annotation|@
+name|Immutable
 DECL|class|AbstractNonStreamingHashFunction
 specifier|abstract
 class|class

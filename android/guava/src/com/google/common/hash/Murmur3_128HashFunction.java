@@ -42,6 +42,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|Immutable
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -91,6 +105,8 @@ comment|/**  * See MurmurHash3_x64_128 in<a href="http://smhasher.googlecode.com
 end_comment
 
 begin_class
+annotation|@
+name|Immutable
 DECL|class|Murmur3_128HashFunction
 specifier|final
 class|class

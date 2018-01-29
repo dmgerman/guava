@@ -54,11 +54,11 @@ name|com
 operator|.
 name|google
 operator|.
-name|common
+name|errorprone
 operator|.
-name|base
+name|annotations
 operator|.
-name|Supplier
+name|Immutable
 import|;
 end_import
 
@@ -89,6 +89,8 @@ comment|/**  * {@link HashFunction} adapter for {@link Checksum} instances.  *  
 end_comment
 
 begin_class
+annotation|@
+name|Immutable
 DECL|class|ChecksumHashFunction
 specifier|final
 class|class
@@ -101,7 +103,7 @@ block|{
 DECL|field|checksumSupplier
 specifier|private
 specifier|final
-name|Supplier
+name|ImmutableSupplier
 argument_list|<
 name|?
 extends|extends
@@ -121,10 +123,10 @@ specifier|final
 name|String
 name|toString
 decl_stmt|;
-DECL|method|ChecksumHashFunction (Supplier<? extends Checksum> checksumSupplier, int bits, String toString)
+DECL|method|ChecksumHashFunction ( ImmutableSupplier<? extends Checksum> checksumSupplier, int bits, String toString)
 name|ChecksumHashFunction
 parameter_list|(
-name|Supplier
+name|ImmutableSupplier
 argument_list|<
 name|?
 extends|extends

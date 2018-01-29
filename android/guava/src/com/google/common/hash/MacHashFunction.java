@@ -50,6 +50,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|Immutable
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|nio
@@ -103,6 +117,8 @@ comment|/**  * {@link HashFunction} adapter for {@link Mac} instances.  *  * @au
 end_comment
 
 begin_class
+annotation|@
+name|Immutable
 DECL|class|MacHashFunction
 specifier|final
 class|class
@@ -110,12 +126,24 @@ name|MacHashFunction
 extends|extends
 name|AbstractHashFunction
 block|{
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"Immutable"
+argument_list|)
+comment|// cloned before each use
 DECL|field|prototype
 specifier|private
 specifier|final
 name|Mac
 name|prototype
 decl_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"Immutable"
+argument_list|)
+comment|// keys are immutable, but not provably so
 DECL|field|key
 specifier|private
 specifier|final

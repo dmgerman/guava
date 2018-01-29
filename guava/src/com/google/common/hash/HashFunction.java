@@ -46,6 +46,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|Immutable
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|nio
@@ -73,6 +87,8 @@ end_comment
 begin_interface
 annotation|@
 name|Beta
+annotation|@
+name|Immutable
 DECL|interface|HashFunction
 specifier|public
 interface|interface

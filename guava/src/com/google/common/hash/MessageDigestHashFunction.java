@@ -66,6 +66,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|Immutable
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -119,6 +133,8 @@ comment|/**  * {@link HashFunction} adapter for {@link MessageDigest} instances.
 end_comment
 
 begin_class
+annotation|@
+name|Immutable
 DECL|class|MessageDigestHashFunction
 specifier|final
 class|class
@@ -128,6 +144,12 @@ name|AbstractHashFunction
 implements|implements
 name|Serializable
 block|{
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"Immutable"
+argument_list|)
+comment|// cloned before each use
 DECL|field|prototype
 specifier|private
 specifier|final

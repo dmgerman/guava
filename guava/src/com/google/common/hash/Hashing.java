@@ -68,11 +68,11 @@ name|com
 operator|.
 name|google
 operator|.
-name|common
+name|errorprone
 operator|.
-name|base
+name|annotations
 operator|.
-name|Supplier
+name|Immutable
 import|;
 end_import
 
@@ -929,11 +929,13 @@ operator|.
 name|hashFunction
 return|;
 block|}
+annotation|@
+name|Immutable
 DECL|enum|ChecksumType
 enum|enum
 name|ChecksumType
 implements|implements
-name|Supplier
+name|ImmutableSupplier
 argument_list|<
 name|Checksum
 argument_list|>

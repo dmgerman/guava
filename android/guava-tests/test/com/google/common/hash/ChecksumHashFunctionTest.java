@@ -54,20 +54,6 @@ end_import
 
 begin_import
 import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|base
-operator|.
-name|Supplier
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|util
@@ -322,13 +308,13 @@ literal|"The quick brown fox jumps over the lazy cog"
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|assertChecksum (Supplier<Checksum> supplier, String input)
+DECL|method|assertChecksum (ImmutableSupplier<Checksum> supplier, String input)
 specifier|private
 specifier|static
 name|void
 name|assertChecksum
 parameter_list|(
-name|Supplier
+name|ImmutableSupplier
 argument_list|<
 name|Checksum
 argument_list|>
@@ -422,7 +408,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|assertHash32 (int expected, Supplier<Checksum> supplier, String input)
+DECL|method|assertHash32 ( int expected, ImmutableSupplier<Checksum> supplier, String input)
 specifier|private
 specifier|static
 name|void
@@ -431,7 +417,7 @@ parameter_list|(
 name|int
 name|expected
 parameter_list|,
-name|Supplier
+name|ImmutableSupplier
 argument_list|<
 name|Checksum
 argument_list|>
