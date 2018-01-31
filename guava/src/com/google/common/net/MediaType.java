@@ -2509,7 +2509,7 @@ name|parameters
 argument_list|)
 return|;
 block|}
-comment|/**    *<em>Replaces</em> all parameters with the given attribute with parameters using the given    * values. If there are no values, any existing parameters with the given attribute are    * removed.    *    * @throws IllegalArgumentException if either {@code attribute} or {@code values} is invalid    * @since NEXT    */
+comment|/**    *<em>Replaces</em> all parameters with the given attribute with parameters using the given    * values. If there are no values, any existing parameters with the given attribute are    * removed.    *    * @throws IllegalArgumentException if either {@code attribute} or {@code values} is invalid    * @since 24.0    */
 DECL|method|withParameters (String attribute, Iterable<String> values)
 specifier|public
 name|MediaType
