@@ -923,6 +923,33 @@ name|safe
 condition|)
 block|{
 throw|throw
+name|conflictException
+argument_list|(
+name|conflictDescription
+argument_list|,
+name|entry1
+argument_list|,
+name|entry2
+argument_list|)
+throw|;
+block|}
+block|}
+DECL|method|conflictException ( String conflictDescription, Object entry1, Object entry2)
+specifier|static
+name|IllegalArgumentException
+name|conflictException
+parameter_list|(
+name|String
+name|conflictDescription
+parameter_list|,
+name|Object
+name|entry1
+parameter_list|,
+name|Object
+name|entry2
+parameter_list|)
+block|{
+return|return
 operator|new
 name|IllegalArgumentException
 argument_list|(
@@ -938,8 +965,7 @@ literal|" and "
 operator|+
 name|entry2
 argument_list|)
-throw|;
-block|}
+return|;
 block|}
 comment|/**    * A builder for creating immutable map instances, especially {@code public static final} maps    * ("constant maps"). Example:    *    *<pre>{@code    * static final ImmutableMap<String, Integer> WORD_TO_INT =    *     new ImmutableMap.Builder<String, Integer>()    *         .put("one", 1)    *         .put("two", 2)    *         .put("three", 3)    *         .build();    * }</pre>    *    *<p>For<i>small</i> immutable maps, the {@code ImmutableMap.of()} methods are even more    * convenient.    *    *<p>By default, a {@code Builder} will generate maps that iterate over entries in the order they    * were inserted into the builder, equivalently to {@code LinkedHashMap}. For example, in the    * above example, {@code WORD_TO_INT.entrySet()} is guaranteed to iterate over the entries in the    * order {@code "one"=1, "two"=2, "three"=3}, and {@code keySet()} and {@code values()} respect    * the same order. If you want a different order, consider using {@link ImmutableSortedMap} to    * sort by keys, or call {@link #orderEntriesByValue(Comparator)}, which changes this builder to    * sort entries by value.    *    *<p>Builder instances can be reused - it is safe to call {@link #build} multiple times to build    * multiple maps in series. Each map is a superset of the maps created before it.    *    * @since 2.0    */
 DECL|class|Builder

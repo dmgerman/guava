@@ -1467,6 +1467,21 @@ name|entries
 argument_list|)
 return|;
 block|}
+DECL|method|buildJdkBacked ()
+name|ImmutableMap
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|buildJdkBacked
+parameter_list|()
+block|{
+return|return
+name|build
+argument_list|()
+return|;
+block|}
 block|}
 DECL|method|fromEntryList ( Collection<? extends Entry<? extends K, ? extends V>> entries)
 specifier|static
