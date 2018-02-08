@@ -875,6 +875,23 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|buildJdkBacked ()
+name|ImmutableBiMap
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|buildJdkBacked
+parameter_list|()
+block|{
+return|return
+name|build
+argument_list|()
+return|;
+block|}
 block|}
 DECL|method|copyOf (Map<? extends K, ? extends V> map)
 specifier|public
