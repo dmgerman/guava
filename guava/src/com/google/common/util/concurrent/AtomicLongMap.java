@@ -783,6 +783,29 @@ name|longValue
 argument_list|()
 return|;
 block|}
+comment|/**    * If {@code (key, value)} is currently in the map, this method removes it and returns true;    * otherwise, this method returns false.    */
+DECL|method|remove (K key, long value)
+name|boolean
+name|remove
+parameter_list|(
+name|K
+name|key
+parameter_list|,
+name|long
+name|value
+parameter_list|)
+block|{
+return|return
+name|map
+operator|.
+name|remove
+argument_list|(
+name|key
+argument_list|,
+name|value
+argument_list|)
+return|;
+block|}
 comment|/**    * Atomically remove {@code key} from the map iff its associated value is 0.    *    * @since 20.0    */
 annotation|@
 name|Beta
@@ -1130,29 +1153,6 @@ name|newValue
 argument_list|)
 return|;
 block|}
-block|}
-comment|/**    * If {@code (key, value)} is currently in the map, this method removes it and returns true;    * otherwise, this method returns false.    */
-DECL|method|remove (K key, long value)
-name|boolean
-name|remove
-parameter_list|(
-name|K
-name|key
-parameter_list|,
-name|long
-name|value
-parameter_list|)
-block|{
-return|return
-name|map
-operator|.
-name|remove
-argument_list|(
-name|key
-argument_list|,
-name|value
-argument_list|)
-return|;
 block|}
 block|}
 end_class

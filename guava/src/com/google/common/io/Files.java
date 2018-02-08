@@ -1168,6 +1168,40 @@ name|from
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**    * Writes a character sequence (such as a string) to a file using the given character set.    *    * @param from the character sequence to write    * @param to the destination file    * @param charset the charset used to encode the output stream; see {@link StandardCharsets} for    *     helpful predefined constants    * @throws IOException if an I/O error occurs    * @deprecated Prefer {@code asCharSink(to, charset).write(from)}. This method is scheduled to be    *     removed in January 2019.    */
+annotation|@
+name|Deprecated
+DECL|method|write (CharSequence from, File to, Charset charset)
+specifier|public
+specifier|static
+name|void
+name|write
+parameter_list|(
+name|CharSequence
+name|from
+parameter_list|,
+name|File
+name|to
+parameter_list|,
+name|Charset
+name|charset
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+name|asCharSink
+argument_list|(
+name|to
+argument_list|,
+name|charset
+argument_list|)
+operator|.
+name|write
+argument_list|(
+name|from
+argument_list|)
+expr_stmt|;
+block|}
 comment|/**    * Copies all bytes from a file to an output stream.    *    *<p><b>{@link java.nio.file.Path} equivalent:</b> {@link    * java.nio.file.Files#copy(java.nio.file.Path, OutputStream)}.    *    * @param from the source file    * @param to the output stream    * @throws IOException if an I/O error occurs    */
 DECL|method|copy (File from, OutputStream to)
 specifier|public
@@ -1242,37 +1276,37 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Writes a character sequence (such as a string) to a file using the given character set.    *    * @param from the character sequence to write    * @param to the destination file    * @param charset the charset used to encode the output stream; see {@link StandardCharsets} for    *     helpful predefined constants    * @throws IOException if an I/O error occurs    * @deprecated Prefer {@code asCharSink(to, charset).write(from)}. This method is scheduled to be    *     removed in January 2019.    */
+comment|/**    * Copies all characters from a file to an appendable object, using the given character set.    *    * @param from the source file    * @param charset the charset used to decode the input stream; see {@link StandardCharsets} for    *     helpful predefined constants    * @param to the appendable object    * @throws IOException if an I/O error occurs    * @deprecated Prefer {@code asCharSource(from, charset).copyTo(to)}. This method is scheduled to    *     be removed in January 2019.    */
 annotation|@
 name|Deprecated
-DECL|method|write (CharSequence from, File to, Charset charset)
+DECL|method|copy (File from, Charset charset, Appendable to)
 specifier|public
 specifier|static
 name|void
-name|write
+name|copy
 parameter_list|(
-name|CharSequence
-name|from
-parameter_list|,
 name|File
-name|to
+name|from
 parameter_list|,
 name|Charset
 name|charset
+parameter_list|,
+name|Appendable
+name|to
 parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|asCharSink
+name|asCharSource
 argument_list|(
-name|to
+name|from
 argument_list|,
 name|charset
 argument_list|)
 operator|.
-name|write
+name|copyTo
 argument_list|(
-name|from
+name|to
 argument_list|)
 expr_stmt|;
 block|}
@@ -1311,40 +1345,6 @@ operator|.
 name|write
 argument_list|(
 name|from
-argument_list|)
-expr_stmt|;
-block|}
-comment|/**    * Copies all characters from a file to an appendable object, using the given character set.    *    * @param from the source file    * @param charset the charset used to decode the input stream; see {@link StandardCharsets} for    *     helpful predefined constants    * @param to the appendable object    * @throws IOException if an I/O error occurs    * @deprecated Prefer {@code asCharSource(from, charset).copyTo(to)}. This method is scheduled to    *     be removed in January 2019.    */
-annotation|@
-name|Deprecated
-DECL|method|copy (File from, Charset charset, Appendable to)
-specifier|public
-specifier|static
-name|void
-name|copy
-parameter_list|(
-name|File
-name|from
-parameter_list|,
-name|Charset
-name|charset
-parameter_list|,
-name|Appendable
-name|to
-parameter_list|)
-throws|throws
-name|IOException
-block|{
-name|asCharSource
-argument_list|(
-name|from
-argument_list|,
-name|charset
-argument_list|)
-operator|.
-name|copyTo
-argument_list|(
-name|to
 argument_list|)
 expr_stmt|;
 block|}

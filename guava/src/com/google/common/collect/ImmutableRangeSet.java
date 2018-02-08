@@ -490,36 +490,6 @@ operator|)
 name|EMPTY
 return|;
 block|}
-comment|/** Returns an immutable range set containing the single range {@link Range#all()}. */
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
-DECL|method|all ()
-specifier|static
-parameter_list|<
-name|C
-extends|extends
-name|Comparable
-parameter_list|>
-name|ImmutableRangeSet
-argument_list|<
-name|C
-argument_list|>
-name|all
-parameter_list|()
-block|{
-return|return
-operator|(
-name|ImmutableRangeSet
-argument_list|<
-name|C
-argument_list|>
-operator|)
-name|ALL
-return|;
-block|}
 comment|/**    * Returns an immutable range set containing the specified single range. If {@link Range#isEmpty()    * range.isEmpty()}, this is equivalent to {@link ImmutableRangeSet#of()}.    */
 DECL|method|of (Range<C> range)
 specifier|public
@@ -597,6 +567,36 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+block|}
+comment|/** Returns an immutable range set containing the single range {@link Range#all()}. */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
+DECL|method|all ()
+specifier|static
+parameter_list|<
+name|C
+extends|extends
+name|Comparable
+parameter_list|>
+name|ImmutableRangeSet
+argument_list|<
+name|C
+argument_list|>
+name|all
+parameter_list|()
+block|{
+return|return
+operator|(
+name|ImmutableRangeSet
+argument_list|<
+name|C
+argument_list|>
+operator|)
+name|ALL
+return|;
 block|}
 comment|/** Returns an immutable copy of the specified {@code RangeSet}. */
 DECL|method|copyOf (RangeSet<C> rangeSet)
@@ -714,46 +714,6 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an {@code ImmutableRangeSet} representing the union of the specified ranges.    *    *<p>This is the smallest {@code RangeSet} which encloses each of the specified ranges. Duplicate    * or connected ranges are permitted, and will be coalesced in the result.    *    * @since 21.0    */
-DECL|method|unionOf (Iterable<Range<C>> ranges)
-specifier|public
-specifier|static
-parameter_list|<
-name|C
-extends|extends
-name|Comparable
-argument_list|<
-name|?
-argument_list|>
-parameter_list|>
-name|ImmutableRangeSet
-argument_list|<
-name|C
-argument_list|>
-name|unionOf
-parameter_list|(
-name|Iterable
-argument_list|<
-name|Range
-argument_list|<
-name|C
-argument_list|>
-argument_list|>
-name|ranges
-parameter_list|)
-block|{
-return|return
-name|copyOf
-argument_list|(
-name|TreeRangeSet
-operator|.
-name|create
-argument_list|(
-name|ranges
-argument_list|)
-argument_list|)
-return|;
-block|}
 comment|/**    * Returns an {@code ImmutableRangeSet} containing each of the specified disjoint ranges.    * Overlapping ranges and empty ranges are forbidden, though adjacent ranges are permitted and    * will be merged.    *    * @throws IllegalArgumentException if any ranges overlap or are empty    * @since 21.0    */
 DECL|method|copyOf (Iterable<Range<C>> ranges)
 specifier|public
@@ -799,6 +759,46 @@ argument_list|)
 operator|.
 name|build
 argument_list|()
+return|;
+block|}
+comment|/**    * Returns an {@code ImmutableRangeSet} representing the union of the specified ranges.    *    *<p>This is the smallest {@code RangeSet} which encloses each of the specified ranges. Duplicate    * or connected ranges are permitted, and will be coalesced in the result.    *    * @since 21.0    */
+DECL|method|unionOf (Iterable<Range<C>> ranges)
+specifier|public
+specifier|static
+parameter_list|<
+name|C
+extends|extends
+name|Comparable
+argument_list|<
+name|?
+argument_list|>
+parameter_list|>
+name|ImmutableRangeSet
+argument_list|<
+name|C
+argument_list|>
+name|unionOf
+parameter_list|(
+name|Iterable
+argument_list|<
+name|Range
+argument_list|<
+name|C
+argument_list|>
+argument_list|>
+name|ranges
+parameter_list|)
+block|{
+return|return
+name|copyOf
+argument_list|(
+name|TreeRangeSet
+operator|.
+name|create
+argument_list|(
+name|ranges
+argument_list|)
+argument_list|)
 return|;
 block|}
 DECL|method|ImmutableRangeSet (ImmutableList<Range<C>> ranges)

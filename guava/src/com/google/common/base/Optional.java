@@ -314,6 +314,34 @@ name|toJavaUtil
 argument_list|()
 return|;
 block|}
+comment|/**    * Returns the equivalent {@code java.util.Optional} value to this optional.    *    *<p>Unfortunately, the method reference {@code Optional::toJavaUtil} will not work, because it    * could refer to either the static or instance version of this method. Write out the lambda    * expression {@code o -> o.toJavaUtil()} instead.    *    * @since 21.0    */
+DECL|method|toJavaUtil ()
+specifier|public
+name|java
+operator|.
+name|util
+operator|.
+name|Optional
+argument_list|<
+name|T
+argument_list|>
+name|toJavaUtil
+parameter_list|()
+block|{
+return|return
+name|java
+operator|.
+name|util
+operator|.
+name|Optional
+operator|.
+name|ofNullable
+argument_list|(
+name|orNull
+argument_list|()
+argument_list|)
+return|;
+block|}
 DECL|method|Optional ()
 name|Optional
 parameter_list|()
@@ -427,34 +455,6 @@ argument_list|>
 name|function
 parameter_list|)
 function_decl|;
-comment|/**    * Returns the equivalent {@code java.util.Optional} value to this optional.    *    *<p>Unfortunately, the method reference {@code Optional::toJavaUtil} will not work, because it    * could refer to either the static or instance version of this method. Write out the lambda    * expression {@code o -> o.toJavaUtil()} instead.    *    * @since 21.0    */
-DECL|method|toJavaUtil ()
-specifier|public
-name|java
-operator|.
-name|util
-operator|.
-name|Optional
-argument_list|<
-name|T
-argument_list|>
-name|toJavaUtil
-parameter_list|()
-block|{
-return|return
-name|java
-operator|.
-name|util
-operator|.
-name|Optional
-operator|.
-name|ofNullable
-argument_list|(
-name|orNull
-argument_list|()
-argument_list|)
-return|;
-block|}
 comment|/**    * Returns {@code true} if {@code object} is an {@code Optional} instance, and either the    * contained references are {@linkplain Object#equals equal} to each other or both are absent.    * Note that {@code Optional} instances of differing parameterized types can be equal.    *    *<p><b>Comparison to {@code java.util.Optional}:</b> no differences.    */
 annotation|@
 name|Override

@@ -3134,6 +3134,35 @@ annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
+DECL|method|add (E... elements)
+specifier|public
+name|Builder
+argument_list|<
+name|E
+argument_list|>
+name|add
+parameter_list|(
+name|E
+modifier|...
+name|elements
+parameter_list|)
+block|{
+name|super
+operator|.
+name|add
+argument_list|(
+name|elements
+argument_list|)
+expr_stmt|;
+return|return
+name|this
+return|;
+block|}
+comment|/**      * Adds each element of {@code elements} to the {@code ImmutableList}.      *      * @param elements the {@code Iterable} to add to the {@code ImmutableList}      * @return this {@code Builder} object      * @throws NullPointerException if {@code elements} is null or contains a null element      */
+annotation|@
+name|CanIgnoreReturnValue
+annotation|@
+name|Override
 DECL|method|addAll (Iterable<? extends E> elements)
 specifier|public
 name|Builder
@@ -3154,35 +3183,6 @@ block|{
 name|super
 operator|.
 name|addAll
-argument_list|(
-name|elements
-argument_list|)
-expr_stmt|;
-return|return
-name|this
-return|;
-block|}
-comment|/**      * Adds each element of {@code elements} to the {@code ImmutableList}.      *      * @param elements the {@code Iterable} to add to the {@code ImmutableList}      * @return this {@code Builder} object      * @throws NullPointerException if {@code elements} is null or contains a null element      */
-annotation|@
-name|CanIgnoreReturnValue
-annotation|@
-name|Override
-DECL|method|add (E... elements)
-specifier|public
-name|Builder
-argument_list|<
-name|E
-argument_list|>
-name|add
-parameter_list|(
-name|E
-modifier|...
-name|elements
-parameter_list|)
-block|{
-name|super
-operator|.
-name|add
 argument_list|(
 name|elements
 argument_list|)

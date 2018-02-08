@@ -1511,6 +1511,50 @@ block|}
 block|}
 return|;
 block|}
+comment|/** Returns whether or not the file with the given name in the given dir is a directory. */
+DECL|method|isDirectory ( SecureDirectoryStream<Path> dir, Path name, LinkOption... options)
+specifier|private
+specifier|static
+name|boolean
+name|isDirectory
+parameter_list|(
+name|SecureDirectoryStream
+argument_list|<
+name|Path
+argument_list|>
+name|dir
+parameter_list|,
+name|Path
+name|name
+parameter_list|,
+name|LinkOption
+modifier|...
+name|options
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+return|return
+name|dir
+operator|.
+name|getFileAttributeView
+argument_list|(
+name|name
+argument_list|,
+name|BasicFileAttributeView
+operator|.
+name|class
+argument_list|,
+name|options
+argument_list|)
+operator|.
+name|readAttributes
+argument_list|()
+operator|.
+name|isDirectory
+argument_list|()
+return|;
+block|}
 comment|/**    * Returns a predicate that returns the result of {@link java.nio.file.Files#isRegularFile(Path,    * LinkOption...)} on input paths with the given link options.    */
 DECL|method|isRegularFile (LinkOption... options)
 specifier|public
@@ -2811,50 +2855,6 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-block|}
-comment|/** Returns whether or not the file with the given name in the given dir is a directory. */
-DECL|method|isDirectory ( SecureDirectoryStream<Path> dir, Path name, LinkOption... options)
-specifier|private
-specifier|static
-name|boolean
-name|isDirectory
-parameter_list|(
-name|SecureDirectoryStream
-argument_list|<
-name|Path
-argument_list|>
-name|dir
-parameter_list|,
-name|Path
-name|name
-parameter_list|,
-name|LinkOption
-modifier|...
-name|options
-parameter_list|)
-throws|throws
-name|IOException
-block|{
-return|return
-name|dir
-operator|.
-name|getFileAttributeView
-argument_list|(
-name|name
-argument_list|,
-name|BasicFileAttributeView
-operator|.
-name|class
-argument_list|,
-name|options
-argument_list|)
-operator|.
-name|readAttributes
-argument_list|()
-operator|.
-name|isDirectory
-argument_list|()
-return|;
 block|}
 comment|/**    * Adds the given exception to the given collection, creating the collection if it's null. Returns    * the collection.    */
 DECL|method|addException ( @ullableDecl Collection<IOException> exceptions, IOException e)

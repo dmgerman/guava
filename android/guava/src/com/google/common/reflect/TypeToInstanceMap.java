@@ -116,6 +116,25 @@ argument_list|>
 name|type
 parameter_list|)
 function_decl|;
+comment|/**    * Returns the value the specified type is mapped to, or {@code null} if no entry for this type is    * present. This will only return a value that was bound to this specific type, not a value that    * may have been bound to a subtype.    */
+annotation|@
+name|NullableDecl
+DECL|method|getInstance (TypeToken<T> type)
+argument_list|<
+name|T
+extends|extends
+name|B
+argument_list|>
+name|T
+name|getInstance
+parameter_list|(
+name|TypeToken
+argument_list|<
+name|T
+argument_list|>
+name|type
+parameter_list|)
+function_decl|;
 comment|/**    * Maps the specified class to the specified value. Does<i>not</i> associate this value with any    * of the class's supertypes.    *    *<p>{@code putInstance(Foo.class, foo)} is equivalent to {@code    * putInstance(TypeToken.of(Foo.class), foo)}.    *    * @return the value previously associated with this class (possibly {@code null}), or {@code    *     null} if there was no previous entry.    */
 annotation|@
 name|NullableDecl
@@ -140,25 +159,6 @@ annotation|@
 name|NullableDecl
 name|T
 name|value
-parameter_list|)
-function_decl|;
-comment|/**    * Returns the value the specified type is mapped to, or {@code null} if no entry for this type is    * present. This will only return a value that was bound to this specific type, not a value that    * may have been bound to a subtype.    */
-annotation|@
-name|NullableDecl
-DECL|method|getInstance (TypeToken<T> type)
-argument_list|<
-name|T
-extends|extends
-name|B
-argument_list|>
-name|T
-name|getInstance
-parameter_list|(
-name|TypeToken
-argument_list|<
-name|T
-argument_list|>
-name|type
 parameter_list|)
 function_decl|;
 comment|/**    * Maps the specified type to the specified value. Does<i>not</i> associate this value with any    * of the type's supertypes.    *    * @return the value previously associated with this type (possibly {@code null}), or {@code null}    *     if there was no previous entry.    */

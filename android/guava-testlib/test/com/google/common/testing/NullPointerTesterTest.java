@@ -2432,6 +2432,26 @@ name|s
 argument_list|)
 expr_stmt|;
 block|}
+DECL|method|twoMixedArgs (@ullableDecl Integer i, String s)
+specifier|public
+name|void
+name|twoMixedArgs
+parameter_list|(
+annotation|@
+name|NullableDecl
+name|Integer
+name|i
+parameter_list|,
+name|String
+name|s
+parameter_list|)
+block|{
+name|checkNotNull
+argument_list|(
+name|s
+argument_list|)
+expr_stmt|;
+block|}
 DECL|method|twoMixedArgsThrows (String s, @NullableDecl Integer i)
 specifier|public
 name|void
@@ -2454,26 +2474,6 @@ expr_stmt|;
 name|doThrow
 argument_list|(
 name|i
-argument_list|)
-expr_stmt|;
-block|}
-DECL|method|twoMixedArgs (@ullableDecl Integer i, String s)
-specifier|public
-name|void
-name|twoMixedArgs
-parameter_list|(
-annotation|@
-name|NullableDecl
-name|Integer
-name|i
-parameter_list|,
-name|String
-name|s
-parameter_list|)
-block|{
-name|checkNotNull
-argument_list|(
-name|s
 argument_list|)
 expr_stmt|;
 block|}

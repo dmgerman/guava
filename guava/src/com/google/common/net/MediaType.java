@@ -2898,101 +2898,6 @@ return|return
 name|mediaType
 return|;
 block|}
-comment|/**    * Creates a media type with the "application" type and the given subtype.    *    * @throws IllegalArgumentException if subtype is invalid    */
-DECL|method|createApplicationType (String subtype)
-specifier|static
-name|MediaType
-name|createApplicationType
-parameter_list|(
-name|String
-name|subtype
-parameter_list|)
-block|{
-return|return
-name|create
-argument_list|(
-name|APPLICATION_TYPE
-argument_list|,
-name|subtype
-argument_list|)
-return|;
-block|}
-comment|/**    * Creates a media type with the "audio" type and the given subtype.    *    * @throws IllegalArgumentException if subtype is invalid    */
-DECL|method|createAudioType (String subtype)
-specifier|static
-name|MediaType
-name|createAudioType
-parameter_list|(
-name|String
-name|subtype
-parameter_list|)
-block|{
-return|return
-name|create
-argument_list|(
-name|AUDIO_TYPE
-argument_list|,
-name|subtype
-argument_list|)
-return|;
-block|}
-comment|/**    * Creates a media type with the "image" type and the given subtype.    *    * @throws IllegalArgumentException if subtype is invalid    */
-DECL|method|createImageType (String subtype)
-specifier|static
-name|MediaType
-name|createImageType
-parameter_list|(
-name|String
-name|subtype
-parameter_list|)
-block|{
-return|return
-name|create
-argument_list|(
-name|IMAGE_TYPE
-argument_list|,
-name|subtype
-argument_list|)
-return|;
-block|}
-comment|/**    * Creates a media type with the "text" type and the given subtype.    *    * @throws IllegalArgumentException if subtype is invalid    */
-DECL|method|createTextType (String subtype)
-specifier|static
-name|MediaType
-name|createTextType
-parameter_list|(
-name|String
-name|subtype
-parameter_list|)
-block|{
-return|return
-name|create
-argument_list|(
-name|TEXT_TYPE
-argument_list|,
-name|subtype
-argument_list|)
-return|;
-block|}
-comment|/**    * Creates a media type with the "video" type and the given subtype.    *    * @throws IllegalArgumentException if subtype is invalid    */
-DECL|method|createVideoType (String subtype)
-specifier|static
-name|MediaType
-name|createVideoType
-parameter_list|(
-name|String
-name|subtype
-parameter_list|)
-block|{
-return|return
-name|create
-argument_list|(
-name|VIDEO_TYPE
-argument_list|,
-name|subtype
-argument_list|)
-return|;
-block|}
 DECL|method|create ( String type, String subtype, Multimap<String, String> parameters)
 specifier|private
 specifier|static
@@ -3155,6 +3060,101 @@ name|mediaType
 argument_list|)
 argument_list|,
 name|mediaType
+argument_list|)
+return|;
+block|}
+comment|/**    * Creates a media type with the "application" type and the given subtype.    *    * @throws IllegalArgumentException if subtype is invalid    */
+DECL|method|createApplicationType (String subtype)
+specifier|static
+name|MediaType
+name|createApplicationType
+parameter_list|(
+name|String
+name|subtype
+parameter_list|)
+block|{
+return|return
+name|create
+argument_list|(
+name|APPLICATION_TYPE
+argument_list|,
+name|subtype
+argument_list|)
+return|;
+block|}
+comment|/**    * Creates a media type with the "audio" type and the given subtype.    *    * @throws IllegalArgumentException if subtype is invalid    */
+DECL|method|createAudioType (String subtype)
+specifier|static
+name|MediaType
+name|createAudioType
+parameter_list|(
+name|String
+name|subtype
+parameter_list|)
+block|{
+return|return
+name|create
+argument_list|(
+name|AUDIO_TYPE
+argument_list|,
+name|subtype
+argument_list|)
+return|;
+block|}
+comment|/**    * Creates a media type with the "image" type and the given subtype.    *    * @throws IllegalArgumentException if subtype is invalid    */
+DECL|method|createImageType (String subtype)
+specifier|static
+name|MediaType
+name|createImageType
+parameter_list|(
+name|String
+name|subtype
+parameter_list|)
+block|{
+return|return
+name|create
+argument_list|(
+name|IMAGE_TYPE
+argument_list|,
+name|subtype
+argument_list|)
+return|;
+block|}
+comment|/**    * Creates a media type with the "text" type and the given subtype.    *    * @throws IllegalArgumentException if subtype is invalid    */
+DECL|method|createTextType (String subtype)
+specifier|static
+name|MediaType
+name|createTextType
+parameter_list|(
+name|String
+name|subtype
+parameter_list|)
+block|{
+return|return
+name|create
+argument_list|(
+name|TEXT_TYPE
+argument_list|,
+name|subtype
+argument_list|)
+return|;
+block|}
+comment|/**    * Creates a media type with the "video" type and the given subtype.    *    * @throws IllegalArgumentException if subtype is invalid    */
+DECL|method|createVideoType (String subtype)
+specifier|static
+name|MediaType
+name|createVideoType
+parameter_list|(
+name|String
+name|subtype
+parameter_list|)
+block|{
+return|return
+name|create
+argument_list|(
+name|VIDEO_TYPE
+argument_list|,
+name|subtype
 argument_list|)
 return|;
 block|}

@@ -504,6 +504,63 @@ name|handler
 argument_list|)
 return|;
 block|}
+comment|// TODO: replace with version in common.reflect if and when it's open-sourced
+DECL|method|newProxy (Class<T> interfaceType, InvocationHandler handler)
+specifier|private
+specifier|static
+parameter_list|<
+name|T
+parameter_list|>
+name|T
+name|newProxy
+parameter_list|(
+name|Class
+argument_list|<
+name|T
+argument_list|>
+name|interfaceType
+parameter_list|,
+name|InvocationHandler
+name|handler
+parameter_list|)
+block|{
+name|Object
+name|object
+init|=
+name|Proxy
+operator|.
+name|newProxyInstance
+argument_list|(
+name|interfaceType
+operator|.
+name|getClassLoader
+argument_list|()
+argument_list|,
+operator|new
+name|Class
+argument_list|<
+name|?
+argument_list|>
+index|[]
+block|{
+name|interfaceType
+block|}
+operator|,
+name|handler
+block|)
+function|;
+return|return
+name|interfaceType
+operator|.
+name|cast
+argument_list|(
+name|object
+argument_list|)
+return|;
+block|}
+end_class
+
+begin_function
 specifier|private
 DECL|method|callWithTimeout ( Callable<T> callable, long timeoutDuration, TimeUnit timeoutUnit, boolean amInterruptible)
 parameter_list|<
@@ -650,6 +707,9 @@ argument_list|)
 throw|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
@@ -763,6 +823,9 @@ argument_list|()
 throw|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
@@ -874,6 +937,9 @@ argument_list|()
 throw|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|runWithTimeout (Runnable runnable, long timeoutDuration, TimeUnit timeoutUnit)
@@ -976,6 +1042,9 @@ argument_list|()
 throw|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|runUninterruptiblyWithTimeout ( Runnable runnable, long timeoutDuration, TimeUnit timeoutUnit)
@@ -1076,6 +1145,9 @@ argument_list|()
 throw|;
 block|}
 block|}
+end_function
+
+begin_function
 DECL|method|throwCause (Exception e, boolean combineStackTraces)
 specifier|private
 specifier|static
@@ -1179,6 +1251,9 @@ throw|throw
 name|e
 throw|;
 block|}
+end_function
+
+begin_function
 DECL|method|findInterruptibleMethods (Class<?> interfaceType)
 specifier|private
 specifier|static
@@ -1238,6 +1313,9 @@ return|return
 name|set
 return|;
 block|}
+end_function
+
+begin_function
 DECL|method|declaresInterruptedEx (Method method)
 specifier|private
 specifier|static
@@ -1281,61 +1359,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|// TODO: replace with version in common.reflect if and when it's open-sourced
-DECL|method|newProxy (Class<T> interfaceType, InvocationHandler handler)
-specifier|private
-specifier|static
-parameter_list|<
-name|T
-parameter_list|>
-name|T
-name|newProxy
-parameter_list|(
-name|Class
-argument_list|<
-name|T
-argument_list|>
-name|interfaceType
-parameter_list|,
-name|InvocationHandler
-name|handler
-parameter_list|)
-block|{
-name|Object
-name|object
-init|=
-name|Proxy
-operator|.
-name|newProxyInstance
-argument_list|(
-name|interfaceType
-operator|.
-name|getClassLoader
-argument_list|()
-argument_list|,
-operator|new
-name|Class
-argument_list|<
-name|?
-argument_list|>
-index|[]
-block|{
-name|interfaceType
-block|}
-operator|,
-name|handler
-block|)
-function|;
-return|return
-name|interfaceType
-operator|.
-name|cast
-argument_list|(
-name|object
-argument_list|)
-return|;
-block|}
-end_class
+end_function
 
 begin_function
 DECL|method|wrapAndThrowExecutionExceptionOrError (Throwable cause)

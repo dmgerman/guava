@@ -1738,6 +1738,46 @@ return|return
 literal|null
 return|;
 block|}
+comment|/**    * Instantiates using {@code factory}. If {@code factory} is annotated nullable and returns null,    * null will be returned.    *    * @throws ParameterNotInstantiableException if the static methods cannot be invoked because the    *     default value of a parameter cannot be determined.    * @throws IllegalAccessException if the class isn't public or is nested inside a non-public    *     class, preventing its methods from being accessible.    * @throws InvocationTargetException if a static method threw exception.    */
+annotation|@
+name|NullableDecl
+DECL|method|instantiate (Invokable<?, ? extends T> factory)
+specifier|private
+parameter_list|<
+name|T
+parameter_list|>
+name|T
+name|instantiate
+parameter_list|(
+name|Invokable
+argument_list|<
+name|?
+argument_list|,
+name|?
+extends|extends
+name|T
+argument_list|>
+name|factory
+parameter_list|)
+throws|throws
+name|ParameterNotInstantiableException
+throws|,
+name|InvocationTargetException
+throws|,
+name|IllegalAccessException
+block|{
+return|return
+name|invoke
+argument_list|(
+name|factory
+argument_list|,
+name|getDummyArguments
+argument_list|(
+name|factory
+argument_list|)
+argument_list|)
+return|;
+block|}
 comment|/**    * Returns an object responsible for performing sanity tests against the return values of all    * public static methods declared by {@code cls}, excluding superclasses.    */
 DECL|method|forAllPublicStaticMethods (Class<?> cls)
 specifier|public
@@ -2460,46 +2500,6 @@ return|return
 name|factoriesToTest
 return|;
 block|}
-block|}
-comment|/**    * Instantiates using {@code factory}. If {@code factory} is annotated nullable and returns null,    * null will be returned.    *    * @throws ParameterNotInstantiableException if the static methods cannot be invoked because the    *     default value of a parameter cannot be determined.    * @throws IllegalAccessException if the class isn't public or is nested inside a non-public    *     class, preventing its methods from being accessible.    * @throws InvocationTargetException if a static method threw exception.    */
-annotation|@
-name|NullableDecl
-DECL|method|instantiate (Invokable<?, ? extends T> factory)
-specifier|private
-parameter_list|<
-name|T
-parameter_list|>
-name|T
-name|instantiate
-parameter_list|(
-name|Invokable
-argument_list|<
-name|?
-argument_list|,
-name|?
-extends|extends
-name|T
-argument_list|>
-name|factory
-parameter_list|)
-throws|throws
-name|ParameterNotInstantiableException
-throws|,
-name|InvocationTargetException
-throws|,
-name|IllegalAccessException
-block|{
-return|return
-name|invoke
-argument_list|(
-name|factory
-argument_list|,
-name|getDummyArguments
-argument_list|(
-name|factory
-argument_list|)
-argument_list|)
-return|;
 block|}
 DECL|method|testEqualsUsing (final Invokable<?, ?> factory)
 specifier|private

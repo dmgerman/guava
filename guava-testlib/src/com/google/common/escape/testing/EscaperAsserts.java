@@ -246,33 +246,6 @@ name|escaped
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Asserts that an escaper does not escape the given character.    *    * @param escaper the non-null escaper to test    * @param c the character to test    */
-DECL|method|assertUnescaped (CharEscaper escaper, char c)
-specifier|public
-specifier|static
-name|void
-name|assertUnescaped
-parameter_list|(
-name|CharEscaper
-name|escaper
-parameter_list|,
-name|char
-name|c
-parameter_list|)
-block|{
-name|Assert
-operator|.
-name|assertNull
-argument_list|(
-name|computeReplacement
-argument_list|(
-name|escaper
-argument_list|,
-name|c
-argument_list|)
-argument_list|)
-expr_stmt|;
-block|}
 comment|/**    * Asserts that a Unicode escaper escapes the given code point into the expected string.    *    * @param escaper the non-null escaper to test    * @param expected the expected output string    * @param cp the Unicode code point to escape    */
 DECL|method|assertEscaping (UnicodeEscaper escaper, String expected, int cp)
 specifier|public
@@ -314,6 +287,33 @@ argument_list|(
 name|expected
 argument_list|,
 name|escaped
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**    * Asserts that an escaper does not escape the given character.    *    * @param escaper the non-null escaper to test    * @param c the character to test    */
+DECL|method|assertUnescaped (CharEscaper escaper, char c)
+specifier|public
+specifier|static
+name|void
+name|assertUnescaped
+parameter_list|(
+name|CharEscaper
+name|escaper
+parameter_list|,
+name|char
+name|c
+parameter_list|)
+block|{
+name|Assert
+operator|.
+name|assertNull
+argument_list|(
+name|computeReplacement
+argument_list|(
+name|escaper
+argument_list|,
+name|c
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}

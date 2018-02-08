@@ -3295,6 +3295,29 @@ name|RuntimeException
 argument_list|()
 throw|;
 block|}
+comment|// Good!
+DECL|method|create (String a, int b)
+specifier|static
+name|GoodEquals
+name|create
+parameter_list|(
+name|String
+name|a
+parameter_list|,
+name|int
+name|b
+parameter_list|)
+block|{
+return|return
+operator|new
+name|GoodEquals
+argument_list|(
+name|a
+argument_list|,
+name|b
+argument_list|)
+return|;
+block|}
 comment|// keep trying
 annotation|@
 name|SuppressWarnings
@@ -3318,29 +3341,6 @@ parameter_list|)
 block|{
 return|return
 literal|null
-return|;
-block|}
-comment|// Good!
-DECL|method|create (String a, int b)
-specifier|static
-name|GoodEquals
-name|create
-parameter_list|(
-name|String
-name|a
-parameter_list|,
-name|int
-name|b
-parameter_list|)
-block|{
-return|return
-operator|new
-name|GoodEquals
-argument_list|(
-name|a
-argument_list|,
-name|b
-argument_list|)
 return|;
 block|}
 annotation|@

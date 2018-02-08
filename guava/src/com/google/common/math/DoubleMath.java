@@ -910,18 +910,6 @@ name|LN_2
 return|;
 comment|// surprisingly within 1 ulp according to tests
 block|}
-DECL|field|LN_2
-specifier|private
-specifier|static
-specifier|final
-name|double
-name|LN_2
-init|=
-name|log
-argument_list|(
-literal|2
-argument_list|)
-decl_stmt|;
 comment|/**    * Returns the base 2 logarithm of a double value, rounded with the specified rounding mode to an    * {@code int}.    *    *<p>Regardless of the rounding mode, this is faster than {@code (int) log2(x)}.    *    * @throws IllegalArgumentException if {@code x<= 0.0}, {@code x} is NaN, or {@code x} is    *     infinite    */
 annotation|@
 name|GwtIncompatible
@@ -1109,6 +1097,18 @@ else|:
 name|exponent
 return|;
 block|}
+DECL|field|LN_2
+specifier|private
+specifier|static
+specifier|final
+name|double
+name|LN_2
+init|=
+name|log
+argument_list|(
+literal|2
+argument_list|)
+decl_stmt|;
 comment|/**    * Returns {@code true} if {@code x} represents a mathematical integer.    *    *<p>This is equivalent to, but not necessarily implemented as, the expression {@code    * !Double.isNaN(x)&& !Double.isInfinite(x)&& x == Math.rint(x)}.    */
 annotation|@
 name|GwtIncompatible

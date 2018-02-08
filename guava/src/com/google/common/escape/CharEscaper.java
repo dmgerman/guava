@@ -154,6 +154,18 @@ return|return
 name|string
 return|;
 block|}
+comment|/**    * Returns the escaped form of the given character, or {@code null} if this character does not    * need to be escaped. If an empty array is returned, this effectively strips the input character    * from the resulting text.    *    *<p>If the character does not need to be escaped, this method should return {@code null}, rather    * than a one-character array containing the character itself. This enables the escaping algorithm    * to perform more efficiently.    *    *<p>An escaper is expected to be able to deal with any {@code char} value, so this method should    * not throw any exceptions.    *    * @param c the character to escape if necessary    * @return the replacement characters, or {@code null} if no escaping was needed    */
+DECL|method|escape (char c)
+specifier|protected
+specifier|abstract
+name|char
+index|[]
+name|escape
+parameter_list|(
+name|char
+name|c
+parameter_list|)
+function_decl|;
 comment|/**    * Returns the escaped form of a given literal string, starting at the given index. This method is    * called by the {@link #escape(String)} method when it discovers that escaping is required. It is    * protected to allow subclasses to override the fastpath escaping function to inline their    * escaping test. See {@link CharEscaperBuilder} for an example usage.    *    * @param s the literal string to be escaped    * @param index the index to start escaping from    * @return the escaped form of {@code string}    * @throws NullPointerException if {@code string} is null    */
 DECL|method|escapeSlow (String s, int index)
 specifier|protected
@@ -431,18 +443,6 @@ name|destIndex
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the escaped form of the given character, or {@code null} if this character does not    * need to be escaped. If an empty array is returned, this effectively strips the input character    * from the resulting text.    *    *<p>If the character does not need to be escaped, this method should return {@code null}, rather    * than a one-character array containing the character itself. This enables the escaping algorithm    * to perform more efficiently.    *    *<p>An escaper is expected to be able to deal with any {@code char} value, so this method should    * not throw any exceptions.    *    * @param c the character to escape if necessary    * @return the replacement characters, or {@code null} if no escaping was needed    */
-DECL|method|escape (char c)
-specifier|protected
-specifier|abstract
-name|char
-index|[]
-name|escape
-parameter_list|(
-name|char
-name|c
-parameter_list|)
-function_decl|;
 comment|/**    * Helper method to grow the character buffer as needed, this only happens once in a while so it's    * ok if it's in a method call. If the index passed in is 0 then no copying will be done.    */
 DECL|method|growBuffer (char[] dest, int index, int size)
 specifier|private

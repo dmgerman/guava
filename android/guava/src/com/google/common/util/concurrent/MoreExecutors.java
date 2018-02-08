@@ -528,6 +528,33 @@ name|timeUnit
 argument_list|)
 return|;
 block|}
+comment|/**    * Converts the given ThreadPoolExecutor into an ExecutorService that exits when the application    * is complete. It does so by using daemon threads and adding a shutdown hook to wait for their    * completion.    *    *<p>This method waits 120 seconds before continuing with JVM termination, even if the executor    * has not finished its work.    *    *<p>This is mainly for fixed thread pools. See {@link Executors#newFixedThreadPool(int)}.    *    * @param executor the executor to modify to make sure it exits when the application is finished    * @return an unmodifiable version of the input which will not hang the JVM    */
+annotation|@
+name|Beta
+annotation|@
+name|GwtIncompatible
+comment|// concurrency
+DECL|method|getExitingExecutorService (ThreadPoolExecutor executor)
+specifier|public
+specifier|static
+name|ExecutorService
+name|getExitingExecutorService
+parameter_list|(
+name|ThreadPoolExecutor
+name|executor
+parameter_list|)
+block|{
+return|return
+operator|new
+name|Application
+argument_list|()
+operator|.
+name|getExitingExecutorService
+argument_list|(
+name|executor
+argument_list|)
+return|;
+block|}
 comment|/**    * Converts the given ScheduledThreadPoolExecutor into a ScheduledExecutorService that exits when    * the application is complete. It does so by using daemon threads and adding a shutdown hook to    * wait for their completion.    *    *<p>This is mainly for fixed thread pools. See {@link Executors#newScheduledThreadPool(int)}.    *    * @param executor the executor to modify to make sure it exits when the application is finished    * @param terminationTimeout how long to wait for the executor to finish before terminating the    *     JVM    * @param timeUnit unit of time for the time parameter    * @return an unmodifiable version of the input which will not hang the JVM    */
 annotation|@
 name|Beta
@@ -562,6 +589,33 @@ argument_list|,
 name|terminationTimeout
 argument_list|,
 name|timeUnit
+argument_list|)
+return|;
+block|}
+comment|/**    * Converts the given ScheduledThreadPoolExecutor into a ScheduledExecutorService that exits when    * the application is complete. It does so by using daemon threads and adding a shutdown hook to    * wait for their completion.    *    *<p>This method waits 120 seconds before continuing with JVM termination, even if the executor    * has not finished its work.    *    *<p>This is mainly for fixed thread pools. See {@link Executors#newScheduledThreadPool(int)}.    *    * @param executor the executor to modify to make sure it exits when the application is finished    * @return an unmodifiable version of the input which will not hang the JVM    */
+annotation|@
+name|Beta
+annotation|@
+name|GwtIncompatible
+comment|// TODO
+DECL|method|getExitingScheduledExecutorService ( ScheduledThreadPoolExecutor executor)
+specifier|public
+specifier|static
+name|ScheduledExecutorService
+name|getExitingScheduledExecutorService
+parameter_list|(
+name|ScheduledThreadPoolExecutor
+name|executor
+parameter_list|)
+block|{
+return|return
+operator|new
+name|Application
+argument_list|()
+operator|.
+name|getExitingScheduledExecutorService
+argument_list|(
+name|executor
 argument_list|)
 return|;
 block|}
@@ -600,60 +654,6 @@ argument_list|,
 name|timeUnit
 argument_list|)
 expr_stmt|;
-block|}
-comment|/**    * Converts the given ThreadPoolExecutor into an ExecutorService that exits when the application    * is complete. It does so by using daemon threads and adding a shutdown hook to wait for their    * completion.    *    *<p>This method waits 120 seconds before continuing with JVM termination, even if the executor    * has not finished its work.    *    *<p>This is mainly for fixed thread pools. See {@link Executors#newFixedThreadPool(int)}.    *    * @param executor the executor to modify to make sure it exits when the application is finished    * @return an unmodifiable version of the input which will not hang the JVM    */
-annotation|@
-name|Beta
-annotation|@
-name|GwtIncompatible
-comment|// concurrency
-DECL|method|getExitingExecutorService (ThreadPoolExecutor executor)
-specifier|public
-specifier|static
-name|ExecutorService
-name|getExitingExecutorService
-parameter_list|(
-name|ThreadPoolExecutor
-name|executor
-parameter_list|)
-block|{
-return|return
-operator|new
-name|Application
-argument_list|()
-operator|.
-name|getExitingExecutorService
-argument_list|(
-name|executor
-argument_list|)
-return|;
-block|}
-comment|/**    * Converts the given ScheduledThreadPoolExecutor into a ScheduledExecutorService that exits when    * the application is complete. It does so by using daemon threads and adding a shutdown hook to    * wait for their completion.    *    *<p>This method waits 120 seconds before continuing with JVM termination, even if the executor    * has not finished its work.    *    *<p>This is mainly for fixed thread pools. See {@link Executors#newScheduledThreadPool(int)}.    *    * @param executor the executor to modify to make sure it exits when the application is finished    * @return an unmodifiable version of the input which will not hang the JVM    */
-annotation|@
-name|Beta
-annotation|@
-name|GwtIncompatible
-comment|// TODO
-DECL|method|getExitingScheduledExecutorService ( ScheduledThreadPoolExecutor executor)
-specifier|public
-specifier|static
-name|ScheduledExecutorService
-name|getExitingScheduledExecutorService
-parameter_list|(
-name|ScheduledThreadPoolExecutor
-name|executor
-parameter_list|)
-block|{
-return|return
-operator|new
-name|Application
-argument_list|()
-operator|.
-name|getExitingScheduledExecutorService
-argument_list|(
-name|executor
-argument_list|)
-return|;
 block|}
 comment|/** Represents the current application to register shutdown hooks. */
 annotation|@
@@ -709,6 +709,28 @@ return|return
 name|service
 return|;
 block|}
+DECL|method|getExitingExecutorService (ThreadPoolExecutor executor)
+specifier|final
+name|ExecutorService
+name|getExitingExecutorService
+parameter_list|(
+name|ThreadPoolExecutor
+name|executor
+parameter_list|)
+block|{
+return|return
+name|getExitingExecutorService
+argument_list|(
+name|executor
+argument_list|,
+literal|120
+argument_list|,
+name|TimeUnit
+operator|.
+name|SECONDS
+argument_list|)
+return|;
+block|}
 DECL|method|getExitingScheduledExecutorService ( ScheduledThreadPoolExecutor executor, long terminationTimeout, TimeUnit timeUnit)
 specifier|final
 name|ScheduledExecutorService
@@ -750,6 +772,28 @@ argument_list|)
 expr_stmt|;
 return|return
 name|service
+return|;
+block|}
+DECL|method|getExitingScheduledExecutorService ( ScheduledThreadPoolExecutor executor)
+specifier|final
+name|ScheduledExecutorService
+name|getExitingScheduledExecutorService
+parameter_list|(
+name|ScheduledThreadPoolExecutor
+name|executor
+parameter_list|)
+block|{
+return|return
+name|getExitingScheduledExecutorService
+argument_list|(
+name|executor
+argument_list|,
+literal|120
+argument_list|,
+name|TimeUnit
+operator|.
+name|SECONDS
+argument_list|)
 return|;
 block|}
 DECL|method|addDelayedShutdownHook ( final ExecutorService service, final long terminationTimeout, final TimeUnit timeUnit)
@@ -836,50 +880,6 @@ block|}
 argument_list|)
 argument_list|)
 expr_stmt|;
-block|}
-DECL|method|getExitingExecutorService (ThreadPoolExecutor executor)
-specifier|final
-name|ExecutorService
-name|getExitingExecutorService
-parameter_list|(
-name|ThreadPoolExecutor
-name|executor
-parameter_list|)
-block|{
-return|return
-name|getExitingExecutorService
-argument_list|(
-name|executor
-argument_list|,
-literal|120
-argument_list|,
-name|TimeUnit
-operator|.
-name|SECONDS
-argument_list|)
-return|;
-block|}
-DECL|method|getExitingScheduledExecutorService ( ScheduledThreadPoolExecutor executor)
-specifier|final
-name|ScheduledExecutorService
-name|getExitingScheduledExecutorService
-parameter_list|(
-name|ScheduledThreadPoolExecutor
-name|executor
-parameter_list|)
-block|{
-return|return
-name|getExitingScheduledExecutorService
-argument_list|(
-name|executor
-argument_list|,
-literal|120
-argument_list|,
-name|TimeUnit
-operator|.
-name|SECONDS
-argument_list|)
-return|;
 block|}
 annotation|@
 name|VisibleForTesting

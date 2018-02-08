@@ -215,42 +215,6 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a {@code TopKSelector} that collects the greatest {@code k} elements added to it,    * relative to the natural ordering of the elements, and returns them via {@link #topK} in    * descending order.    *    * @throws IllegalArgumentException if {@code k< 0}    */
-DECL|method|greatest (int k)
-specifier|public
-specifier|static
-parameter_list|<
-name|T
-extends|extends
-name|Comparable
-argument_list|<
-name|?
-super|super
-name|T
-argument_list|>
-parameter_list|>
-name|TopKSelector
-argument_list|<
-name|T
-argument_list|>
-name|greatest
-parameter_list|(
-name|int
-name|k
-parameter_list|)
-block|{
-return|return
-name|greatest
-argument_list|(
-name|k
-argument_list|,
-name|Ordering
-operator|.
-name|natural
-argument_list|()
-argument_list|)
-return|;
-block|}
 comment|/**    * Returns a {@code TopKSelector} that collects the lowest {@code k} elements added to it,    * relative to the specified comparator, and returns them via {@link #topK} in ascending order.    *    * @throws IllegalArgumentException if {@code k< 0}    */
 DECL|method|least (int k, Comparator<? super T> comparator)
 specifier|public
@@ -286,6 +250,42 @@ argument_list|(
 name|comparator
 argument_list|,
 name|k
+argument_list|)
+return|;
+block|}
+comment|/**    * Returns a {@code TopKSelector} that collects the greatest {@code k} elements added to it,    * relative to the natural ordering of the elements, and returns them via {@link #topK} in    * descending order.    *    * @throws IllegalArgumentException if {@code k< 0}    */
+DECL|method|greatest (int k)
+specifier|public
+specifier|static
+parameter_list|<
+name|T
+extends|extends
+name|Comparable
+argument_list|<
+name|?
+super|super
+name|T
+argument_list|>
+parameter_list|>
+name|TopKSelector
+argument_list|<
+name|T
+argument_list|>
+name|greatest
+parameter_list|(
+name|int
+name|k
+parameter_list|)
+block|{
+return|return
+name|greatest
+argument_list|(
+name|k
+argument_list|,
+name|Ordering
+operator|.
+name|natural
+argument_list|()
 argument_list|)
 return|;
 block|}

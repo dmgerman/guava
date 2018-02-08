@@ -1155,31 +1155,6 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**      * Returns a string containing the string representation of each entry of {@code map}, using the      * previously configured separator and key-value separator.      */
-DECL|method|join (Map<?, ?> map)
-specifier|public
-name|String
-name|join
-parameter_list|(
-name|Map
-argument_list|<
-name|?
-argument_list|,
-name|?
-argument_list|>
-name|map
-parameter_list|)
-block|{
-return|return
-name|join
-argument_list|(
-name|map
-operator|.
-name|entrySet
-argument_list|()
-argument_list|)
-return|;
-block|}
 comment|/**      * Appends the string representation of each entry in {@code entries}, using the previously      * configured separator and key-value separator, to {@code appendable}.      *      * @since 10.0      */
 annotation|@
 name|Beta
@@ -1491,6 +1466,31 @@ throw|;
 block|}
 return|return
 name|builder
+return|;
+block|}
+comment|/**      * Returns a string containing the string representation of each entry of {@code map}, using the      * previously configured separator and key-value separator.      */
+DECL|method|join (Map<?, ?> map)
+specifier|public
+name|String
+name|join
+parameter_list|(
+name|Map
+argument_list|<
+name|?
+argument_list|,
+name|?
+argument_list|>
+name|map
+parameter_list|)
+block|{
+return|return
+name|join
+argument_list|(
+name|map
+operator|.
+name|entrySet
+argument_list|()
+argument_list|)
 return|;
 block|}
 comment|/**      * Returns a string containing the string representation of each entry in {@code entries}, using      * the previously configured separator and key-value separator.      *      * @since 10.0      */

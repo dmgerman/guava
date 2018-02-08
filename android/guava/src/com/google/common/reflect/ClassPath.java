@@ -1452,38 +1452,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** Called when a directory is scanned for resource files. */
-DECL|method|scanDirectory (ClassLoader loader, File directory)
-specifier|protected
-specifier|abstract
-name|void
-name|scanDirectory
-parameter_list|(
-name|ClassLoader
-name|loader
-parameter_list|,
-name|File
-name|directory
-parameter_list|)
-throws|throws
-name|IOException
-function_decl|;
-comment|/** Called when a jar file is scanned for resource entries. */
-DECL|method|scanJarFile (ClassLoader loader, JarFile file)
-specifier|protected
-specifier|abstract
-name|void
-name|scanJarFile
-parameter_list|(
-name|ClassLoader
-name|loader
-parameter_list|,
-name|JarFile
-name|file
-parameter_list|)
-throws|throws
-name|IOException
-function_decl|;
 annotation|@
 name|VisibleForTesting
 DECL|method|scan (File file, ClassLoader classloader)
@@ -1522,6 +1490,38 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/** Called when a directory is scanned for resource files. */
+DECL|method|scanDirectory (ClassLoader loader, File directory)
+specifier|protected
+specifier|abstract
+name|void
+name|scanDirectory
+parameter_list|(
+name|ClassLoader
+name|loader
+parameter_list|,
+name|File
+name|directory
+parameter_list|)
+throws|throws
+name|IOException
+function_decl|;
+comment|/** Called when a jar file is scanned for resource entries. */
+DECL|method|scanJarFile (ClassLoader loader, JarFile file)
+specifier|protected
+specifier|abstract
+name|void
+name|scanJarFile
+parameter_list|(
+name|ClassLoader
+name|loader
+parameter_list|,
+name|JarFile
+name|file
+parameter_list|)
+throws|throws
+name|IOException
+function_decl|;
 DECL|method|scanFrom (File file, ClassLoader classloader)
 specifier|private
 name|void

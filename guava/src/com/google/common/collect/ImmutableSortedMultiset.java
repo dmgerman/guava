@@ -2069,6 +2069,35 @@ return|return
 name|this
 return|;
 block|}
+comment|/**      * Adds each element of {@code elements} to the {@code ImmutableSortedMultiset}.      *      * @param elements the elements to add      * @return this {@code Builder} object      * @throws NullPointerException if {@code elements} is null or contains a null element      */
+annotation|@
+name|CanIgnoreReturnValue
+annotation|@
+name|Override
+DECL|method|add (E... elements)
+specifier|public
+name|Builder
+argument_list|<
+name|E
+argument_list|>
+name|add
+parameter_list|(
+name|E
+modifier|...
+name|elements
+parameter_list|)
+block|{
+name|super
+operator|.
+name|add
+argument_list|(
+name|elements
+argument_list|)
+expr_stmt|;
+return|return
+name|this
+return|;
+block|}
 comment|/**      * Adds a number of occurrences of an element to this {@code ImmutableSortedMultiset}.      *      * @param element the element to add      * @param occurrences the number of occurrences of the element to add. May be zero, in which      *     case no change will be made.      * @return this {@code Builder} object      * @throws NullPointerException if {@code element} is null      * @throws IllegalArgumentException if {@code occurrences} is negative, or if this operation      *     would result in more than {@link Integer#MAX_VALUE} occurrences of the element      */
 annotation|@
 name|CanIgnoreReturnValue
@@ -2129,35 +2158,6 @@ argument_list|(
 name|element
 argument_list|,
 name|count
-argument_list|)
-expr_stmt|;
-return|return
-name|this
-return|;
-block|}
-comment|/**      * Adds each element of {@code elements} to the {@code ImmutableSortedMultiset}.      *      * @param elements the elements to add      * @return this {@code Builder} object      * @throws NullPointerException if {@code elements} is null or contains a null element      */
-annotation|@
-name|CanIgnoreReturnValue
-annotation|@
-name|Override
-DECL|method|add (E... elements)
-specifier|public
-name|Builder
-argument_list|<
-name|E
-argument_list|>
-name|add
-parameter_list|(
-name|E
-modifier|...
-name|elements
-parameter_list|)
-block|{
-name|super
-operator|.
-name|add
-argument_list|(
-name|elements
 argument_list|)
 expr_stmt|;
 return|return

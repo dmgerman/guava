@@ -3255,38 +3255,6 @@ function_decl|;
 end_function_decl
 
 begin_function
-DECL|method|typeName (Type type)
-name|String
-name|typeName
-parameter_list|(
-name|Type
-name|type
-parameter_list|)
-block|{
-return|return
-name|Types
-operator|.
-name|toString
-argument_list|(
-name|type
-argument_list|)
-return|;
-block|}
-end_function
-
-begin_function
-DECL|method|jdkTypeDuplicatesOwnerName ()
-name|boolean
-name|jdkTypeDuplicatesOwnerName
-parameter_list|()
-block|{
-return|return
-literal|true
-return|;
-block|}
-end_function
-
-begin_function
 DECL|method|usedInGenericType (Type[] types)
 specifier|final
 name|ImmutableList
@@ -3337,6 +3305,38 @@ name|builder
 operator|.
 name|build
 argument_list|()
+return|;
+block|}
+end_function
+
+begin_function
+DECL|method|typeName (Type type)
+name|String
+name|typeName
+parameter_list|(
+name|Type
+name|type
+parameter_list|)
+block|{
+return|return
+name|Types
+operator|.
+name|toString
+argument_list|(
+name|type
+argument_list|)
+return|;
+block|}
+end_function
+
+begin_function
+DECL|method|jdkTypeDuplicatesOwnerName ()
+name|boolean
+name|jdkTypeDuplicatesOwnerName
+parameter_list|()
+block|{
+return|return
+literal|true
 return|;
 block|}
 end_function
