@@ -1713,9 +1713,7 @@ specifier|final
 class|class
 name|EntrySet
 extends|extends
-name|ImmutableSet
-operator|.
-name|Indexed
+name|IndexedImmutableSet
 argument_list|<
 name|Entry
 argument_list|<

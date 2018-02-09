@@ -881,9 +881,7 @@ specifier|final
 class|class
 name|ElementSet
 extends|extends
-name|ImmutableSet
-operator|.
-name|Indexed
+name|IndexedImmutableSet
 argument_list|<
 name|E
 argument_list|>

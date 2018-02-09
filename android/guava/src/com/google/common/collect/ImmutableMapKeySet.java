@@ -106,9 +106,7 @@ parameter_list|,
 name|V
 parameter_list|>
 extends|extends
-name|ImmutableSet
-operator|.
-name|Indexed
+name|IndexedImmutableSet
 argument_list|<
 name|K
 argument_list|>

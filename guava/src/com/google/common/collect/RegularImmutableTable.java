@@ -224,9 +224,7 @@ specifier|final
 class|class
 name|CellSet
 extends|extends
-name|ImmutableSet
-operator|.
-name|Indexed
+name|IndexedImmutableSet
 argument_list|<
 name|Cell
 argument_list|<
