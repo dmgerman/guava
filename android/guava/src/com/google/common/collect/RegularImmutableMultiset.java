@@ -38,6 +38,20 @@ name|google
 operator|.
 name|common
 operator|.
+name|annotations
+operator|.
+name|GwtIncompatible
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
 name|collect
 operator|.
 name|Multiset
@@ -124,6 +138,10 @@ begin_class
 annotation|@
 name|GwtCompatible
 argument_list|(
+name|emulated
+operator|=
+literal|true
+argument_list|,
 name|serializable
 operator|=
 literal|true
@@ -438,6 +456,8 @@ name|index
 argument_list|)
 return|;
 block|}
+annotation|@
+name|GwtIncompatible
 DECL|class|SerializedForm
 specifier|private
 specifier|static
@@ -615,8 +635,10 @@ init|=
 literal|0
 decl_stmt|;
 block|}
-comment|//We can't label this with @Override, because it doesn't override anything
-comment|// in the GWT emulated version.
+annotation|@
+name|GwtIncompatible
+annotation|@
+name|Override
 DECL|method|writeReplace ()
 name|Object
 name|writeReplace

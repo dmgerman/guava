@@ -2760,8 +2760,10 @@ return|return
 literal|true
 return|;
 block|}
-comment|// We can't label this with @Override, because it doesn't override anything
-comment|// in the GWT emulated version.
+annotation|@
+name|GwtIncompatible
+annotation|@
+name|Override
 DECL|method|writeReplace ()
 name|Object
 name|writeReplace
@@ -2778,6 +2780,8 @@ argument_list|)
 return|;
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
 DECL|class|KeysSerializedForm
 specifier|private
 specifier|static

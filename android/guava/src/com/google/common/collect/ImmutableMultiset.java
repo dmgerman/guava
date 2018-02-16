@@ -1517,9 +1517,10 @@ name|hashCode
 argument_list|()
 return|;
 block|}
-comment|// We can't label this with @Override, because it doesn't override anything
-comment|// in the GWT emulated version.
-comment|// TODO(cpovirk): try making all copies of this method @GwtIncompatible instead
+annotation|@
+name|GwtIncompatible
+annotation|@
+name|Override
 DECL|method|writeReplace ()
 name|Object
 name|writeReplace
@@ -1548,6 +1549,8 @@ init|=
 literal|0
 decl_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
 DECL|class|EntrySetSerializedForm
 specifier|static
 class|class
@@ -1596,8 +1599,10 @@ argument_list|()
 return|;
 block|}
 block|}
-comment|// We can't label this with @Override, because it doesn't override anything
-comment|// in the GWT emulated version.
+annotation|@
+name|GwtIncompatible
+annotation|@
+name|Override
 DECL|method|writeReplace ()
 specifier|abstract
 name|Object
