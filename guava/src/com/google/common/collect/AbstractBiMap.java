@@ -2197,42 +2197,6 @@ block|}
 comment|/*      * Serialization stores the forward bimap, the inverse of this inverse.      * Deserialization calls inverse() on the forward bimap and returns that      * inverse.      *      * If a bimap and its inverse are serialized together, the deserialized      * instances have inverse() methods that return the other.      */
 annotation|@
 name|Override
-DECL|method|forcePut (K key, V value)
-specifier|public
-name|V
-name|forcePut
-parameter_list|(
-name|K
-name|key
-parameter_list|,
-name|V
-name|value
-parameter_list|)
-block|{
-name|V
-name|result
-init|=
-name|get
-argument_list|(
-name|key
-argument_list|)
-decl_stmt|;
-name|inverse
-argument_list|()
-operator|.
-name|forcePut
-argument_list|(
-name|value
-argument_list|,
-name|key
-argument_list|)
-expr_stmt|;
-return|return
-name|result
-return|;
-block|}
-annotation|@
-name|Override
 DECL|method|checkKey (K key)
 name|K
 name|checkKey
