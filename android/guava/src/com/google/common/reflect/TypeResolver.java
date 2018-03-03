@@ -336,13 +336,14 @@ operator|=
 name|typeTable
 expr_stmt|;
 block|}
-DECL|method|accordingTo (Type type)
+comment|/**    * Returns a resolver that resolves types "covariantly".    *<p>For example, when resolving {@code List<T>} in the context of {@code ArrayList<?>},    * {@code<T>} is covariantly resolved to {@code<?>} such that return type of {@code List::get}    * is {@code<?>}.    *    */
+DECL|method|covariantly (Type contextType)
 specifier|static
 name|TypeResolver
-name|accordingTo
+name|covariantly
 parameter_list|(
 name|Type
-name|type
+name|contextType
 parameter_list|)
 block|{
 return|return
@@ -356,7 +357,45 @@ name|TypeMappingIntrospector
 operator|.
 name|getTypeMappings
 argument_list|(
-name|type
+name|contextType
+argument_list|)
+argument_list|)
+return|;
+block|}
+comment|/**    * Returns a resolver that resolves types "invariantly".    *    *<p>For example, when resolving {@code List<T>} in the context of {@code ArrayList<?>},    * {@code<T>} cannot be invariantly resolved to {@code<?>} because otherwise the parameter type    * of {@code List::set} will be {@code<?>} and it'll falsely say any object can be passed into    * {@code ArrayList<?>::set}.    *    *<p>Instead, {@code<?>} will be resolved to a capture in the form of a type variable    * {@code<capture-of-? extends Object>}, effectively preventing {@code set} from accepting any    * type.    */
+DECL|method|invariantly (Type contextType)
+specifier|static
+name|TypeResolver
+name|invariantly
+parameter_list|(
+name|Type
+name|contextType
+parameter_list|)
+block|{
+name|Type
+name|invariantContext
+init|=
+name|WildcardCapturer
+operator|.
+name|INSTANCE
+operator|.
+name|capture
+argument_list|(
+name|contextType
+argument_list|)
+decl_stmt|;
+return|return
+operator|new
+name|TypeResolver
+argument_list|()
+operator|.
+name|where
+argument_list|(
+name|TypeMappingIntrospector
+operator|.
+name|getTypeMappings
+argument_list|(
+name|invariantContext
 argument_list|)
 argument_list|)
 return|;
@@ -438,7 +477,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-DECL|method|populateTypeMappings ( final Map<TypeVariableKey, Type> mappings, Type from, final Type to)
+DECL|method|populateTypeMappings ( final Map<TypeVariableKey, Type> mappings, final Type from, final Type to)
 specifier|private
 specifier|static
 name|void
@@ -453,6 +492,7 @@ name|Type
 argument_list|>
 name|mappings
 parameter_list|,
+specifier|final
 name|Type
 name|from
 parameter_list|,
@@ -1014,6 +1054,51 @@ return|return
 name|type
 return|;
 block|}
+block|}
+DECL|method|resolveTypesInPlace (Type[] types)
+name|Type
+index|[]
+name|resolveTypesInPlace
+parameter_list|(
+name|Type
+index|[]
+name|types
+parameter_list|)
+block|{
+for|for
+control|(
+name|int
+name|i
+init|=
+literal|0
+init|;
+name|i
+operator|<
+name|types
+operator|.
+name|length
+condition|;
+name|i
+operator|++
+control|)
+block|{
+name|types
+index|[
+name|i
+index|]
+operator|=
+name|resolveType
+argument_list|(
+name|types
+index|[
+name|i
+index|]
+argument_list|)
+expr_stmt|;
+block|}
+return|return
+name|types
+return|;
 block|}
 DECL|method|resolveTypes (Type[] types)
 specifier|private
@@ -1669,17 +1754,6 @@ name|TypeMappingIntrospector
 extends|extends
 name|TypeVisitor
 block|{
-DECL|field|wildcardCapturer
-specifier|private
-specifier|static
-specifier|final
-name|WildcardCapturer
-name|wildcardCapturer
-init|=
-operator|new
-name|WildcardCapturer
-argument_list|()
-decl_stmt|;
 DECL|field|mappings
 specifier|private
 specifier|final
@@ -1711,6 +1785,11 @@ name|Type
 name|contextType
 parameter_list|)
 block|{
+name|checkNotNull
+argument_list|(
+name|contextType
+argument_list|)
+expr_stmt|;
 name|TypeMappingIntrospector
 name|introspector
 init|=
@@ -1722,12 +1801,7 @@ name|introspector
 operator|.
 name|visit
 argument_list|(
-name|wildcardCapturer
-operator|.
-name|capture
-argument_list|(
 name|contextType
-argument_list|)
 argument_list|)
 expr_stmt|;
 return|return
@@ -2045,6 +2119,16 @@ specifier|static
 class|class
 name|WildcardCapturer
 block|{
+DECL|field|INSTANCE
+specifier|static
+specifier|final
+name|WildcardCapturer
+name|INSTANCE
+init|=
+operator|new
+name|WildcardCapturer
+argument_list|()
+decl_stmt|;
 DECL|field|id
 specifier|private
 specifier|final
@@ -2052,6 +2136,7 @@ name|AtomicInteger
 name|id
 decl_stmt|;
 DECL|method|WildcardCapturer ()
+specifier|private
 name|WildcardCapturer
 parameter_list|()
 block|{

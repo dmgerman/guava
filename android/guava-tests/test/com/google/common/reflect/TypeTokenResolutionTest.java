@@ -826,7 +826,7 @@ name|typeResolver
 init|=
 name|TypeResolver
 operator|.
-name|accordingTo
+name|covariantly
 argument_list|(
 name|parameterized
 operator|.
