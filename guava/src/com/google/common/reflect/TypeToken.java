@@ -1617,6 +1617,22 @@ argument_list|(
 name|resolvedTypeArgs
 argument_list|)
 decl_stmt|;
+name|checkArgument
+argument_list|(
+name|subtype
+operator|.
+name|isSubtypeOf
+argument_list|(
+name|this
+argument_list|)
+argument_list|,
+literal|"%s does not appear to be a subtype of %s"
+argument_list|,
+name|subtype
+argument_list|,
+name|this
+argument_list|)
+expr_stmt|;
 return|return
 name|subtype
 return|;
