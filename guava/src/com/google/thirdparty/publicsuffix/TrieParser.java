@@ -171,13 +171,8 @@ name|newLinkedList
 argument_list|()
 argument_list|,
 name|encoded
-operator|.
-name|subSequence
-argument_list|(
-name|idx
 argument_list|,
-name|encodedLen
-argument_list|)
+name|idx
 argument_list|,
 name|builder
 argument_list|)
@@ -190,8 +185,8 @@ name|build
 argument_list|()
 return|;
 block|}
-comment|/**    * Parses a trie node and returns the number of characters consumed.    *    * @param stack The prefixes that precede the characters represented by this node. Each entry of    *     the stack is in reverse order.    * @param encoded The serialized trie.    * @param builder A map builder to which all entries will be added.    * @return The number of characters consumed from {@code encoded}.    */
-DECL|method|doParseTrieToBuilder ( List<CharSequence> stack, CharSequence encoded, ImmutableMap.Builder<String, PublicSuffixType> builder)
+comment|/**    * Parses a trie node and returns the number of characters consumed.    *    * @param stack The prefixes that precede the characters represented by this node. Each entry of    *     the stack is in reverse order.    * @param encoded The serialized trie.    * @param start An index in the encoded serialized trie to begin reading characters from.    * @param builder A map builder to which all entries will be added.    * @return The number of characters consumed from {@code encoded}.    */
+DECL|method|doParseTrieToBuilder ( List<CharSequence> stack, CharSequence encoded, int start, ImmutableMap.Builder<String, PublicSuffixType> builder)
 specifier|private
 specifier|static
 name|int
@@ -205,6 +200,9 @@ name|stack
 parameter_list|,
 name|CharSequence
 name|encoded
+parameter_list|,
+name|int
+name|start
 parameter_list|,
 name|ImmutableMap
 operator|.
@@ -228,7 +226,7 @@ decl_stmt|;
 name|int
 name|idx
 init|=
-literal|0
+name|start
 decl_stmt|;
 name|char
 name|c
@@ -294,7 +292,7 @@ name|encoded
 operator|.
 name|subSequence
 argument_list|(
-literal|0
+name|start
 argument_list|,
 name|idx
 argument_list|)
@@ -389,13 +387,8 @@ argument_list|(
 name|stack
 argument_list|,
 name|encoded
-operator|.
-name|subSequence
-argument_list|(
-name|idx
 argument_list|,
-name|encodedLen
-argument_list|)
+name|idx
 argument_list|,
 name|builder
 argument_list|)
@@ -438,6 +431,8 @@ argument_list|)
 expr_stmt|;
 return|return
 name|idx
+operator|-
+name|start
 return|;
 block|}
 DECL|method|reverse (CharSequence s)
