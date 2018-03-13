@@ -1078,6 +1078,18 @@ name|X_USER_IP
 init|=
 literal|"X-User-IP"
 decl_stmt|;
+comment|/**    * The HTTP<a href="https://goo.gl/VKpXxa">{@code X-Download-Options}</a> header field name.    *    *<p>When the new X-Download-Options header is present with the value {@code noopen}, the user is    * prevented from opening a file download directly; instead, they must first save the file    * locally.    *    * @since NEXT    */
+annotation|@
+name|Beta
+DECL|field|X_DOWNLOAD_OPTIONS
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|X_DOWNLOAD_OPTIONS
+init|=
+literal|"X-Download-Options"
+decl_stmt|;
 comment|/** The HTTP {@code X-XSS-Protection} header field name. */
 DECL|field|X_XSS_PROTECTION
 specifier|public
