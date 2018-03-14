@@ -346,7 +346,7 @@ name|N
 name|startNode
 parameter_list|)
 function_decl|;
-comment|/**    * Returns an unmodifiable {@code Iterable} over the nodes reachable from any of the {@code    * startNodes}, in the order of a breadth-first traversal. This is equivalent to a breadth-first    * traversal of a graph with an additional root node whose successors are the listed {@code    * startNodes}.    *    * @throws IllegalArgumentException if any of {@code startNodes} is not an element of the graph    * @see #breadthFirst(Object)    * @since NEXT    */
+comment|/**    * Returns an unmodifiable {@code Iterable} over the nodes reachable from any of the {@code    * startNodes}, in the order of a breadth-first traversal. This is equivalent to a breadth-first    * traversal of a graph with an additional root node whose successors are the listed {@code    * startNodes}.    *    * @throws IllegalArgumentException if any of {@code startNodes} is not an element of the graph    * @see #breadthFirst(Object)    * @since 24.1    */
 DECL|method|breadthFirst (Iterable<? extends N> startNodes)
 specifier|public
 specifier|abstract
@@ -379,7 +379,7 @@ name|N
 name|startNode
 parameter_list|)
 function_decl|;
-comment|/**    * Returns an unmodifiable {@code Iterable} over the nodes reachable from any of the {@code    * startNodes}, in the order of a depth-first pre-order traversal. This is equivalent to a    * depth-first pre-order traversal of a graph with an additional root node whose successors are    * the listed {@code startNodes}.    *    * @throws IllegalArgumentException if any of {@code startNodes} is not an element of the graph    * @see #depthFirstPreOrder(Object)    * @since NEXT    */
+comment|/**    * Returns an unmodifiable {@code Iterable} over the nodes reachable from any of the {@code    * startNodes}, in the order of a depth-first pre-order traversal. This is equivalent to a    * depth-first pre-order traversal of a graph with an additional root node whose successors are    * the listed {@code startNodes}.    *    * @throws IllegalArgumentException if any of {@code startNodes} is not an element of the graph    * @see #depthFirstPreOrder(Object)    * @since 24.1    */
 DECL|method|depthFirstPreOrder (Iterable<? extends N> startNodes)
 specifier|public
 specifier|abstract
@@ -412,7 +412,7 @@ name|N
 name|startNode
 parameter_list|)
 function_decl|;
-comment|/**    * Returns an unmodifiable {@code Iterable} over the nodes reachable from any of the {@code    * startNodes}, in the order of a depth-first post-order traversal. This is equivalent to a    * depth-first post-order traversal of a graph with an additional root node whose successors are    * the listed {@code startNodes}.    *    * @throws IllegalArgumentException if any of {@code startNodes} is not an element of the graph    * @see #depthFirstPostOrder(Object)    * @since NEXT    */
+comment|/**    * Returns an unmodifiable {@code Iterable} over the nodes reachable from any of the {@code    * startNodes}, in the order of a depth-first post-order traversal. This is equivalent to a    * depth-first post-order traversal of a graph with an additional root node whose successors are    * the listed {@code startNodes}.    *    * @throws IllegalArgumentException if any of {@code startNodes} is not an element of the graph    * @see #depthFirstPostOrder(Object)    * @since 24.1    */
 DECL|method|depthFirstPostOrder (Iterable<? extends N> startNodes)
 specifier|public
 specifier|abstract

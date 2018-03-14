@@ -1229,7 +1229,7 @@ argument_list|,
 literal|"webm"
 argument_list|)
 decl_stmt|;
-comment|/**    * Media type for L16 audio, as defined by<a href="https://tools.ietf.org/html/rfc2586">RFC    * 2586</a>.    *    * @since NEXT    */
+comment|/**    * Media type for L16 audio, as defined by<a href="https://tools.ietf.org/html/rfc2586">RFC    * 2586</a>.    *    * @since 24.1    */
 DECL|field|L16_AUDIO
 specifier|public
 specifier|static
