@@ -63,7 +63,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Static methods pertaining to ASCII characters (those in the range of values {@code 0x00} through  * {@code 0x7F}), and to strings containing such characters.  *  *<p>ASCII utilities also exist in other classes of this package:  *  *<ul>  *<!-- TODO(kevinb): how can we make this not produce a warning when building gwt javadoc? -->  *<li>{@link Charsets#US_ASCII} specifies the {@code Charset} of ASCII characters.  *<li>{@link CharMatcher#ascii} matches ASCII characters and provides text processing methods  *       which operate only on the ASCII characters of a string.  *</ul>  *  * @author Craig Berry  * @author Gregory Kick  * @since 7.0  */
+comment|/**  * Static methods pertaining to ASCII characters (those in the range of values {@code 0x00} through  * {@code 0x7F}), and to strings containing such characters.  *  *<p>ASCII utilities also exist in other classes of this package:  *  *<ul>  *<!-- TODO(kevinb): how can we make this not produce a warning when building gwt javadoc? -->  *<li>{@link Charsets#US_ASCII} specifies the {@code Charset} of ASCII characters.  *<li>{@link CharMatcher#ascii} matches ASCII characters and provides text processing methods  *       which operate only on the ASCII characters of a string.  *</ul>  *  * @author Catherine Berry  * @author Gregory Kick  * @since 7.0  */
 end_comment
 
 begin_class
@@ -485,6 +485,16 @@ name|MAX
 init|=
 literal|127
 decl_stmt|;
+comment|/** A bit mask which selects the bit encoding ASCII character case. */
+DECL|field|CASE_MASK
+specifier|private
+specifier|static
+specifier|final
+name|char
+name|CASE_MASK
+init|=
+literal|0x20
+decl_stmt|;
 comment|/**    * Returns a copy of the input string in which all {@linkplain #isUpperCase(char) uppercase ASCII    * characters} have been converted to lowercase. All other characters are copied without    * modification.    */
 DECL|method|toLowerCase (String string)
 specifier|public
@@ -579,7 +589,7 @@ call|)
 argument_list|(
 name|c
 operator|^
-literal|0x20
+name|CASE_MASK
 argument_list|)
 expr_stmt|;
 block|}
@@ -704,7 +714,7 @@ call|)
 argument_list|(
 name|c
 operator|^
-literal|0x20
+name|CASE_MASK
 argument_list|)
 else|:
 name|c
@@ -803,8 +813,8 @@ name|char
 call|)
 argument_list|(
 name|c
-operator|&
-literal|0x5f
+operator|^
+name|CASE_MASK
 argument_list|)
 expr_stmt|;
 block|}
@@ -928,8 +938,8 @@ name|char
 call|)
 argument_list|(
 name|c
-operator|&
-literal|0x5f
+operator|^
+name|CASE_MASK
 argument_list|)
 else|:
 name|c
@@ -1247,7 +1257,7 @@ argument_list|(
 operator|(
 name|c
 operator||
-literal|0x20
+name|CASE_MASK
 operator|)
 operator|-
 literal|'a'
