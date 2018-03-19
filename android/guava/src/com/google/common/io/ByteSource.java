@@ -318,6 +318,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|Collection
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|Iterator
 import|;
 end_import
@@ -906,7 +916,33 @@ name|openStream
 argument_list|()
 argument_list|)
 decl_stmt|;
+name|Optional
+argument_list|<
+name|Long
+argument_list|>
+name|size
+init|=
+name|sizeIfKnown
+argument_list|()
+decl_stmt|;
 return|return
+name|size
+operator|.
+name|isPresent
+argument_list|()
+condition|?
+name|ByteStreams
+operator|.
+name|toByteArray
+argument_list|(
+name|in
+argument_list|,
+name|size
+operator|.
+name|get
+argument_list|()
+argument_list|)
+else|:
 name|ByteStreams
 operator|.
 name|toByteArray
@@ -2505,6 +2541,28 @@ argument_list|>
 name|sizeIfKnown
 parameter_list|()
 block|{
+if|if
+condition|(
+operator|!
+operator|(
+name|sources
+operator|instanceof
+name|Collection
+operator|)
+condition|)
+block|{
+comment|// Infinite Iterables can cause problems here. Of course, it's true that most of the other
+comment|// methods on this class also have potential problems with infinite  Iterables. But unlike
+comment|// those, this method can cause issues even if the user is dealing with a (finite) slice()
+comment|// of this source, since the slice's sizeIfKnown() method needs to know the size of the
+comment|// underlying source to know what its size actually is.
+return|return
+name|Optional
+operator|.
+name|absent
+argument_list|()
+return|;
+block|}
 name|long
 name|result
 init|=
@@ -2552,6 +2610,29 @@ operator|.
 name|get
 argument_list|()
 expr_stmt|;
+if|if
+condition|(
+name|result
+operator|<
+literal|0
+condition|)
+block|{
+comment|// Overflow (or one or more sources that returned a negative size, but all bets are off in
+comment|// that case)
+comment|// Can't represent anything higher, and realistically there probably isn't anything that
+comment|// can actually be done anyway with the supposed 8+ exbibytes of data the source is
+comment|// claiming to have if we get here, so just stop.
+return|return
+name|Optional
+operator|.
+name|of
+argument_list|(
+name|Long
+operator|.
+name|MAX_VALUE
+argument_list|)
+return|;
+block|}
 block|}
 return|return
 name|Optional
@@ -2592,6 +2673,24 @@ operator|.
 name|size
 argument_list|()
 expr_stmt|;
+if|if
+condition|(
+name|result
+operator|<
+literal|0
+condition|)
+block|{
+comment|// Overflow (or one or more sources that returned a negative size, but all bets are off in
+comment|// that case)
+comment|// Can't represent anything higher, and realistically there probably isn't anything that
+comment|// can actually be done anyway with the supposed 8+ exbibytes of data the source is
+comment|// claiming to have if we get here, so just stop.
+return|return
+name|Long
+operator|.
+name|MAX_VALUE
+return|;
+block|}
 block|}
 return|return
 name|result

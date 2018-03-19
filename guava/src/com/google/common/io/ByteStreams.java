@@ -287,6 +287,15 @@ specifier|final
 class|class
 name|ByteStreams
 block|{
+DECL|field|BUFFER_SIZE
+specifier|private
+specifier|static
+specifier|final
+name|int
+name|BUFFER_SIZE
+init|=
+literal|8192
+decl_stmt|;
 comment|/** Creates a new byte array for buffering reads or writes. */
 DECL|method|createBuffer ()
 specifier|static
@@ -299,7 +308,7 @@ return|return
 operator|new
 name|byte
 index|[
-literal|8192
+name|BUFFER_SIZE
 index|]
 return|;
 block|}
@@ -587,9 +596,6 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|// Presize the ByteArrayOutputStream since we know how large it will need
-comment|// to be, unless that value is less than the default ByteArrayOutputStream
-comment|// size (32).
 name|ByteArrayOutputStream
 name|out
 init|=
@@ -600,7 +606,7 @@ name|Math
 operator|.
 name|max
 argument_list|(
-literal|32
+name|BUFFER_SIZE
 argument_list|,
 name|in
 operator|.
@@ -624,7 +630,7 @@ argument_list|()
 return|;
 block|}
 comment|/**    * Reads all bytes from an input stream into a byte array. The given expected size is used to    * create an initial byte array, but if the actual number of bytes read from the stream differs,    * the correct result will be returned anyway.    */
-DECL|method|toByteArray (InputStream in, int expectedSize)
+DECL|method|toByteArray (InputStream in, long expectedSize)
 specifier|static
 name|byte
 index|[]
@@ -633,12 +639,42 @@ parameter_list|(
 name|InputStream
 name|in
 parameter_list|,
-name|int
+name|long
 name|expectedSize
 parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|checkArgument
+argument_list|(
+name|expectedSize
+operator|>=
+literal|0
+argument_list|,
+literal|"expectedSize (%s) must be non-negative"
+argument_list|,
+name|expectedSize
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|expectedSize
+operator|>
+name|Integer
+operator|.
+name|MAX_VALUE
+condition|)
+block|{
+throw|throw
+operator|new
+name|OutOfMemoryError
+argument_list|(
+name|expectedSize
+operator|+
+literal|" bytes is too large to fit in a byte array"
+argument_list|)
+throw|;
+block|}
 name|byte
 index|[]
 name|bytes
@@ -646,12 +682,18 @@ init|=
 operator|new
 name|byte
 index|[
+operator|(
+name|int
+operator|)
 name|expectedSize
 index|]
 decl_stmt|;
 name|int
 name|remaining
 init|=
+operator|(
+name|int
+operator|)
 name|expectedSize
 decl_stmt|;
 while|while
@@ -664,6 +706,9 @@ block|{
 name|int
 name|off
 init|=
+operator|(
+name|int
+operator|)
 name|expectedSize
 operator|-
 name|remaining
@@ -735,16 +780,10 @@ name|out
 init|=
 operator|new
 name|FastByteArrayOutputStream
-argument_list|()
-decl_stmt|;
-name|out
-operator|.
-name|write
 argument_list|(
-name|b
+name|BUFFER_SIZE
 argument_list|)
-expr_stmt|;
-comment|// write the byte we read when testing for end of stream
+decl_stmt|;
 name|copy
 argument_list|(
 name|in
@@ -756,35 +795,35 @@ name|byte
 index|[]
 name|result
 init|=
-operator|new
-name|byte
-index|[
+name|Arrays
+operator|.
+name|copyOf
+argument_list|(
+name|bytes
+argument_list|,
 name|bytes
 operator|.
 name|length
+operator|+
+literal|1
 operator|+
 name|out
 operator|.
 name|size
 argument_list|()
-index|]
+argument_list|)
 decl_stmt|;
-name|System
-operator|.
-name|arraycopy
-argument_list|(
-name|bytes
-argument_list|,
-literal|0
-argument_list|,
 name|result
-argument_list|,
-literal|0
-argument_list|,
+index|[
 name|bytes
 operator|.
 name|length
-argument_list|)
+index|]
+operator|=
+operator|(
+name|byte
+operator|)
+name|b
 expr_stmt|;
 name|out
 operator|.
@@ -795,6 +834,8 @@ argument_list|,
 name|bytes
 operator|.
 name|length
+operator|+
+literal|1
 argument_list|)
 expr_stmt|;
 return|return
@@ -811,6 +852,19 @@ name|FastByteArrayOutputStream
 extends|extends
 name|ByteArrayOutputStream
 block|{
+DECL|method|FastByteArrayOutputStream (int initialSize)
+name|FastByteArrayOutputStream
+parameter_list|(
+name|int
+name|initialSize
+parameter_list|)
+block|{
+name|super
+argument_list|(
+name|initialSize
+argument_list|)
+expr_stmt|;
+block|}
 comment|/**      * Writes the contents of the internal buffer to the given array starting at the given offset.      * Assumes the array has space to hold count bytes.      */
 DECL|method|writeTo (byte[] b, int off)
 name|void

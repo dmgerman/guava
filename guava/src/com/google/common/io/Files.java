@@ -336,16 +336,6 @@ name|java
 operator|.
 name|io
 operator|.
-name|InputStream
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
 name|InputStreamReader
 import|;
 end_import
@@ -779,7 +769,9 @@ argument_list|()
 argument_list|)
 decl_stmt|;
 return|return
-name|readFile
+name|ByteStreams
+operator|.
+name|toByteArray
 argument_list|(
 name|in
 argument_list|,
@@ -833,72 +825,6 @@ operator|+
 literal|")"
 return|;
 block|}
-block|}
-comment|/**    * Reads a file of the given expected size from the given input stream, if it will fit into a byte    * array. This method handles the case where the file size changes between when the size is read    * and when the contents are read from the stream.    */
-DECL|method|readFile (InputStream in, long expectedSize)
-specifier|static
-name|byte
-index|[]
-name|readFile
-parameter_list|(
-name|InputStream
-name|in
-parameter_list|,
-name|long
-name|expectedSize
-parameter_list|)
-throws|throws
-name|IOException
-block|{
-if|if
-condition|(
-name|expectedSize
-operator|>
-name|Integer
-operator|.
-name|MAX_VALUE
-condition|)
-block|{
-throw|throw
-operator|new
-name|OutOfMemoryError
-argument_list|(
-literal|"file is too large to fit in a byte array: "
-operator|+
-name|expectedSize
-operator|+
-literal|" bytes"
-argument_list|)
-throw|;
-block|}
-comment|// some special files may return size 0 but have content, so read
-comment|// the file normally in that case guessing at the buffer size to use.  Note, there is no point
-comment|// in calling the 'toByteArray' overload that doesn't take a size because that calls
-comment|// InputStream.available(), but our caller has already done that.  So instead just guess that
-comment|// the file is 4K bytes long and rely on the fallback in toByteArray to expand the buffer if
-comment|// needed.
-comment|// This also works around an app-engine bug where FileInputStream.available() consistently
-comment|// throws an IOException for certain files, even though FileInputStream.getChannel().size() does
-comment|// not!
-return|return
-name|ByteStreams
-operator|.
-name|toByteArray
-argument_list|(
-name|in
-argument_list|,
-name|expectedSize
-operator|==
-literal|0
-condition|?
-literal|4096
-else|:
-operator|(
-name|int
-operator|)
-name|expectedSize
-argument_list|)
-return|;
 block|}
 comment|/**    * Returns a new {@link ByteSink} for writing bytes to the given file. The given {@code modes}    * control how the file is opened for writing. When no mode is provided, the file will be    * truncated before writing. When the {@link FileWriteMode#APPEND APPEND} mode is provided, writes    * will append to the end of the file without truncating it.    *    * @since 14.0    */
 DECL|method|asByteSink (File file, FileWriteMode... modes)
