@@ -6491,6 +6491,26 @@ block|}
 block|}
 end_class
 
+begin_comment
+comment|// This happens to be the hash of the class as of now. So setting it makes a backward compatible
+end_comment
+
+begin_comment
+comment|// change. Going forward, if any incompatible change is added, we can change the UID back to 1.
+end_comment
+
+begin_decl_stmt
+DECL|field|serialVersionUID
+specifier|private
+specifier|static
+specifier|final
+name|long
+name|serialVersionUID
+init|=
+literal|3637540370352322684L
+decl_stmt|;
+end_decl_stmt
+
 unit|}
 end_unit
 
