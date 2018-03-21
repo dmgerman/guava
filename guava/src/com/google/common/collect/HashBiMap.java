@@ -1667,9 +1667,6 @@ name|nextInKeyInsertionOrder
 operator|=
 literal|null
 expr_stmt|;
-name|rehashIfNecessary
-argument_list|()
-expr_stmt|;
 return|return
 name|oldEntryForKey
 operator|.
