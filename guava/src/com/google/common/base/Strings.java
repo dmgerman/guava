@@ -124,15 +124,12 @@ name|string
 parameter_list|)
 block|{
 return|return
-operator|(
+name|Platform
+operator|.
+name|nullToEmpty
+argument_list|(
 name|string
-operator|==
-literal|null
-operator|)
-condition|?
-literal|""
-else|:
-name|string
+argument_list|)
 return|;
 block|}
 comment|/**    * Returns the given string if it is nonempty; {@code null} otherwise.    *    * @param string the string to test and possibly return    * @return {@code string} itself if it is nonempty; {@code null} if it is empty or null    */
@@ -151,14 +148,12 @@ name|string
 parameter_list|)
 block|{
 return|return
-name|isNullOrEmpty
+name|Platform
+operator|.
+name|emptyToNull
 argument_list|(
 name|string
 argument_list|)
-condition|?
-literal|null
-else|:
-name|string
 return|;
 block|}
 comment|/**    * Returns {@code true} if the given string is null or is the empty string.    *    *<p>Consider normalizing your string references with {@link #nullToEmpty}. If you do, you can    * use {@link String#isEmpty()} instead of this method, and you won't need special null-safe forms    * of methods like {@link String#toUpperCase} either. Or, if you'd like to normalize "in the other    * direction," converting empty strings to {@code null}, you can use {@link #emptyToNull}.    *    * @param string a string reference to check    * @return {@code true} if the string is null or is the empty string    */

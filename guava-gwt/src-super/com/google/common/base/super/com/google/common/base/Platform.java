@@ -227,6 +227,36 @@ parameter_list|)
 comment|/*-{     return !string;   }-*/
 function_decl|;
 annotation|@
+name|JsMethod
+DECL|method|nullToEmpty (@ullableDecl String string)
+specifier|static
+specifier|native
+name|String
+name|nullToEmpty
+parameter_list|(
+annotation|@
+name|NullableDecl
+name|String
+name|string
+parameter_list|)
+comment|/*-{     return string || "";   }-*/
+function_decl|;
+annotation|@
+name|JsMethod
+DECL|method|emptyToNull (@ullableDecl String string)
+specifier|static
+specifier|native
+name|String
+name|emptyToNull
+parameter_list|(
+annotation|@
+name|NullableDecl
+name|String
+name|string
+parameter_list|)
+comment|/*-{     return string || null;   }-*/
+function_decl|;
+annotation|@
 name|JsType
 argument_list|(
 name|isNative
