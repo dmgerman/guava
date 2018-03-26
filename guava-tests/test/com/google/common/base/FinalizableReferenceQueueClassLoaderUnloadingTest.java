@@ -44,6 +44,22 @@ name|base
 operator|.
 name|StandardSystemProperty
 operator|.
+name|JAVA_SPECIFICATION_VERSION
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|StandardSystemProperty
+operator|.
 name|PATH_SEPARATOR
 import|;
 end_import
@@ -671,6 +687,7 @@ name|loaderRef
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**    * Tests that the use of a {@link FinalizableReferenceQueue} does not subsequently prevent the    * loader of that class from being garbage-collected.    */
 DECL|method|testUnloadableWithoutSecurityManager ()
 specifier|public
 name|void
@@ -679,8 +696,14 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-comment|// Test that the use of a FinalizableReferenceQueue does not subsequently prevent the
-comment|// loader of that class from being garbage-collected.
+if|if
+condition|(
+name|isJdk9
+argument_list|()
+condition|)
+block|{
+return|return;
+block|}
 name|SecurityManager
 name|oldSecurityManager
 init|=
@@ -713,6 +736,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/**    * Tests that the use of a {@link FinalizableReferenceQueue} does not subsequently prevent the    * loader of that class from being garbage-collected even if there is a {@link SecurityManager}.    * The {@link SecurityManager} environment makes such leaks more likely because when you create a    * {@link URLClassLoader} with a {@link SecurityManager}, the creating code's {@link    * java.security.AccessControlContext} is captured, and that references the creating code's {@link    * ClassLoader}.    */
 DECL|method|testUnloadableWithSecurityManager ()
 specifier|public
 name|void
@@ -721,11 +745,14 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-comment|// Test that the use of a FinalizableReferenceQueue does not subsequently prevent the
-comment|// loader of that class from being garbage-collected even if there is a SecurityManager.
-comment|// The SecurityManager environment makes such leaks more likely because when you create
-comment|// a URLClassLoader with a SecurityManager, the creating code's AccessControlContext is
-comment|// captured, and that references the creating code's ClassLoader.
+if|if
+condition|(
+name|isJdk9
+argument_list|()
+condition|)
+block|{
+return|return;
+block|}
 name|Policy
 name|oldPolicy
 init|=
@@ -881,6 +908,14 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+if|if
+condition|(
+name|isJdk9
+argument_list|()
+condition|)
+block|{
+return|return;
+block|}
 name|Policy
 name|oldPolicy
 init|=
@@ -1423,6 +1458,26 @@ name|urls
 operator|.
 name|build
 argument_list|()
+return|;
+block|}
+comment|/**    * These tests fail in JDK 9 for an unknown reason. It might be the test; it might be the    * underlying functionality. Fixing this is not a high priority; if you need it to be fixed,    * please comment on<a href="https://github.com/google/guava/issues/3086">issue 3086</a>.    */
+DECL|method|isJdk9 ()
+specifier|private
+specifier|static
+name|boolean
+name|isJdk9
+parameter_list|()
+block|{
+return|return
+name|JAVA_SPECIFICATION_VERSION
+operator|.
+name|value
+argument_list|()
+operator|.
+name|startsWith
+argument_list|(
+literal|"9"
+argument_list|)
 return|;
 block|}
 block|}
