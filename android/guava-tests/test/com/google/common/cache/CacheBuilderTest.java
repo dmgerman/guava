@@ -138,6 +138,20 @@ name|concurrent
 operator|.
 name|TimeUnit
 operator|.
+name|MILLISECONDS
+import|;
+end_import
+
+begin_import
+import|import static
+name|java
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|TimeUnit
+operator|.
 name|NANOSECONDS
 import|;
 end_import
@@ -347,18 +361,6 @@ operator|.
 name|concurrent
 operator|.
 name|Future
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|concurrent
-operator|.
-name|TimeUnit
 import|;
 end_import
 
@@ -3142,8 +3144,6 @@ name|expireAfterWrite
 argument_list|(
 literal|100
 argument_list|,
-name|TimeUnit
-operator|.
 name|MILLISECONDS
 argument_list|)
 operator|.
@@ -3269,8 +3269,6 @@ name|awaitTermination
 argument_list|(
 literal|300
 argument_list|,
-name|TimeUnit
-operator|.
 name|SECONDS
 argument_list|)
 expr_stmt|;
