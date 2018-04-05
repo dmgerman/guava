@@ -15,7 +15,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * Emulation of Future. Since GWT environment is single threaded, attempting to block on the future  * by calling {@link #get()} or {@link #get(long, TimeUnit)} when the it is not yet done is  * considered illegal because it would lead to a deadlock. Future implementations must throw {@link  * IllegalStateException} to avoid a deadlock.  *  * @param<V> value type returned by the future.  */
+comment|/**  * Emulation of Future. Since GWT environment is single threaded, attempting to block on the future  * by calling {@link #get()} or {@link #get(long, TimeUnit)} when the future is not yet done is  * considered illegal because it would lead to a deadlock. Future implementations must throw {@link  * IllegalStateException} to avoid a deadlock.  *  * @param<V> value type returned by the future.  */
 end_comment
 
 begin_interface
