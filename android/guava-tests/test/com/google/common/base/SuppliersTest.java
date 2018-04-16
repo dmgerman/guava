@@ -33,6 +33,22 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|truth
+operator|.
+name|Truth
+operator|.
+name|assertThat
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -244,6 +260,18 @@ return|return
 name|calls
 operator|*
 literal|10
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|toString ()
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+literal|"CountingSupplier"
 return|;
 block|}
 block|}
@@ -590,6 +618,19 @@ argument_list|(
 name|countingSupplier
 argument_list|)
 decl_stmt|;
+name|assertThat
+argument_list|(
+name|memoizedSupplier
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+operator|.
+name|isEqualTo
+argument_list|(
+literal|"Suppliers.memoize(CountingSupplier)"
+argument_list|)
+expr_stmt|;
 name|checkMemoize
 argument_list|(
 name|countingSupplier
@@ -602,6 +643,19 @@ name|memoizedSupplier
 operator|.
 name|get
 argument_list|()
+expr_stmt|;
+name|assertThat
+argument_list|(
+name|memoizedSupplier
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+operator|.
+name|isEqualTo
+argument_list|(
+literal|"Suppliers.memoize(<supplier that returned 10>)"
+argument_list|)
 expr_stmt|;
 comment|// Should get an exception when we try to serialize.
 try|try
@@ -673,6 +727,19 @@ argument_list|(
 name|countingSupplier
 argument_list|)
 decl_stmt|;
+name|assertThat
+argument_list|(
+name|memoizedSupplier
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+operator|.
+name|isEqualTo
+argument_list|(
+literal|"Suppliers.memoize(CountingSupplier)"
+argument_list|)
+expr_stmt|;
 name|checkMemoize
 argument_list|(
 name|countingSupplier
@@ -685,6 +752,19 @@ name|memoizedSupplier
 operator|.
 name|get
 argument_list|()
+expr_stmt|;
+name|assertThat
+argument_list|(
+name|memoizedSupplier
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+operator|.
+name|isEqualTo
+argument_list|(
+literal|"Suppliers.memoize(<supplier that returned 10>)"
+argument_list|)
 expr_stmt|;
 name|Supplier
 argument_list|<
