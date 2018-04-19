@@ -646,6 +646,39 @@ argument_list|)
 return|;
 block|}
 comment|// Static factories
+comment|/**    * Creates a {@code Striped<L>} with eagerly initialized, strongly referenced locks. Every lock    * is obtained from the passed supplier.    *    * @param stripes the minimum number of stripes (locks) required    * @param supplier a {@code Supplier<L>} object to obtain locks from    * @return a new {@code Striped<L>}    */
+DECL|method|custom (int stripes, Supplier<L> supplier)
+specifier|static
+parameter_list|<
+name|L
+parameter_list|>
+name|Striped
+argument_list|<
+name|L
+argument_list|>
+name|custom
+parameter_list|(
+name|int
+name|stripes
+parameter_list|,
+name|Supplier
+argument_list|<
+name|L
+argument_list|>
+name|supplier
+parameter_list|)
+block|{
+return|return
+operator|new
+name|CompactStriped
+argument_list|<>
+argument_list|(
+name|stripes
+argument_list|,
+name|supplier
+argument_list|)
+return|;
+block|}
 comment|/**    * Creates a {@code Striped<Lock>} with eagerly initialized, strongly referenced locks. Every lock    * is reentrant.    *    * @param stripes the minimum number of stripes (locks) required    * @return a new {@code Striped<Lock>}    */
 DECL|method|lock (int stripes)
 specifier|public
@@ -661,9 +694,7 @@ name|stripes
 parameter_list|)
 block|{
 return|return
-operator|new
-name|CompactStriped
-argument_list|<>
+name|custom
 argument_list|(
 name|stripes
 argument_list|,
@@ -805,9 +836,7 @@ name|permits
 parameter_list|)
 block|{
 return|return
-operator|new
-name|CompactStriped
-argument_list|<>
+name|custom
 argument_list|(
 name|stripes
 argument_list|,
@@ -903,9 +932,7 @@ name|stripes
 parameter_list|)
 block|{
 return|return
-operator|new
-name|CompactStriped
-argument_list|<>
+name|custom
 argument_list|(
 name|stripes
 argument_list|,
