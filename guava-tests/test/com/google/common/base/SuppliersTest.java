@@ -538,15 +538,28 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|memoizeExceptionThrownTest (ThrowingSupplier memoizedSupplier)
+DECL|method|memoizeExceptionThrownTest (ThrowingSupplier throwingSupplier)
 specifier|private
 name|void
 name|memoizeExceptionThrownTest
 parameter_list|(
 name|ThrowingSupplier
-name|memoizedSupplier
+name|throwingSupplier
 parameter_list|)
 block|{
+name|Supplier
+argument_list|<
+name|Integer
+argument_list|>
+name|memoizedSupplier
+init|=
+name|Suppliers
+operator|.
+name|memoize
+argument_list|(
+name|throwingSupplier
+argument_list|)
+decl_stmt|;
 comment|// call get() twice to make sure that memoization doesn't interfere
 comment|// with throwing the exception
 for|for
