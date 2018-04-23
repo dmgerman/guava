@@ -76,20 +76,6 @@ end_import
 
 begin_import
 import|import
-name|com
-operator|.
-name|google
-operator|.
-name|errorprone
-operator|.
-name|annotations
-operator|.
-name|DoNotMock
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|util
@@ -155,11 +141,6 @@ end_comment
 begin_class
 annotation|@
 name|Beta
-annotation|@
-name|DoNotMock
-argument_list|(
-literal|"Use FluentFuture.from(Futures.immediate*Future) or SettableFuture"
-argument_list|)
 annotation|@
 name|GwtCompatible
 argument_list|(

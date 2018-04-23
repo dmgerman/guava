@@ -184,20 +184,6 @@ name|errorprone
 operator|.
 name|annotations
 operator|.
-name|DoNotMock
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|errorprone
-operator|.
-name|annotations
-operator|.
 name|ForOverride
 import|;
 end_import
@@ -409,11 +395,6 @@ argument_list|(
 literal|"ShortCircuitBoolean"
 argument_list|)
 comment|// we use non-short circuiting comparisons intentionally
-annotation|@
-name|DoNotMock
-argument_list|(
-literal|"Use Futures.immediate*Future or SettableFuture"
-argument_list|)
 annotation|@
 name|GwtCompatible
 argument_list|(
