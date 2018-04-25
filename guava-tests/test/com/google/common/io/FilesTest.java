@@ -269,7 +269,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Unit test for {@link Files}.  *  *<p>Note: {@link Files#fileTreeTraverser()} is tested in {@link FileTreeTraverserTest} and {@link  * Files#fileTraverser()} is tested in {@link FilesFileTraverserTest}.  *  * @author Chris Nokleberg  */
+comment|/**  * Unit test for {@link Files}.  *  *<p>Note: {@link Files#fileTraverser()} is tested in {@link FilesFileTraverserTest}.  *  * @author Chris Nokleberg  */
 end_comment
 
 begin_class

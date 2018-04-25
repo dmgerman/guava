@@ -2537,11 +2537,10 @@ name|dotIndex
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a {@link TreeTraverser} instance for {@link File} trees.    *    *<p><b>Warning:</b> {@code File} provides no support for symbolic links, and as such there is no    * way to ensure that a symbolic link to a directory is not followed when traversing the tree. In    * this case, iterables created by this traverser could contain files that are outside of the    * given directory or even be infinite if there is a symbolic link loop.    *    * @since 15.0    * @deprecated The returned {@link TreeTraverser} type is deprecated. Use the replacement method    *     {@link #fileTraverser()} instead with the same semantics as this method. This method is    *     scheduled to be removed in April 2018.    */
+comment|/**    * Returns a {@link TreeTraverser} instance for {@link File} trees.    *    *<p><b>Warning:</b> {@code File} provides no support for symbolic links, and as such there is no    * way to ensure that a symbolic link to a directory is not followed when traversing the tree. In    * this case, iterables created by this traverser could contain files that are outside of the    * given directory or even be infinite if there is a symbolic link loop.    *    * @since 15.0    * @deprecated The returned {@link TreeTraverser} type is deprecated. Use the replacement method    *     {@link #fileTraverser()} instead with the same semantics as this method.    */
 annotation|@
 name|Deprecated
 DECL|method|fileTreeTraverser ()
-specifier|public
 specifier|static
 name|TreeTraverser
 argument_list|<
