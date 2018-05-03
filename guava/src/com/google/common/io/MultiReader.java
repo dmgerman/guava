@@ -179,7 +179,7 @@ block|}
 block|}
 annotation|@
 name|Override
-DECL|method|read (@ullableDecl char cbuf[], int off, int len)
+DECL|method|read (@ullableDecl char[] cbuf, int off, int len)
 specifier|public
 name|int
 name|read
@@ -187,8 +187,8 @@ parameter_list|(
 annotation|@
 name|NullableDecl
 name|char
-name|cbuf
 index|[]
+name|cbuf
 parameter_list|,
 name|int
 name|off
