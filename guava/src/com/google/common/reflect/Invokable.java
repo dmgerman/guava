@@ -106,6 +106,18 @@ name|lang
 operator|.
 name|reflect
 operator|.
+name|AnnotatedType
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|lang
+operator|.
+name|reflect
+operator|.
 name|Constructor
 import|;
 end_import
@@ -443,6 +455,13 @@ init|=
 name|getParameterAnnotations
 argument_list|()
 decl_stmt|;
+name|AnnotatedType
+index|[]
+name|annotatedTypes
+init|=
+name|getAnnotatedParameterTypes
+argument_list|()
+decl_stmt|;
 name|ImmutableList
 operator|.
 name|Builder
@@ -495,6 +514,11 @@ index|]
 argument_list|)
 argument_list|,
 name|annotations
+index|[
+name|i
+index|]
+argument_list|,
+name|annotatedTypes
 index|[
 name|i
 index|]
@@ -807,6 +831,13 @@ index|[]
 name|getGenericParameterTypes
 parameter_list|()
 function_decl|;
+DECL|method|getAnnotatedParameterTypes ()
+specifier|abstract
+name|AnnotatedType
+index|[]
+name|getAnnotatedParameterTypes
+parameter_list|()
+function_decl|;
 comment|/** This should never return a type that's not a subtype of Throwable. */
 DECL|method|getGenericExceptionTypes ()
 specifier|abstract
@@ -926,6 +957,21 @@ return|return
 name|method
 operator|.
 name|getGenericParameterTypes
+argument_list|()
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|getAnnotatedParameterTypes ()
+name|AnnotatedType
+index|[]
+name|getAnnotatedParameterTypes
+parameter_list|()
+block|{
+return|return
+name|method
+operator|.
+name|getAnnotatedParameterTypes
 argument_list|()
 return|;
 block|}
@@ -1266,6 +1312,21 @@ block|}
 block|}
 return|return
 name|types
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|getAnnotatedParameterTypes ()
+name|AnnotatedType
+index|[]
+name|getAnnotatedParameterTypes
+parameter_list|()
+block|{
+return|return
+name|constructor
+operator|.
+name|getAnnotatedParameterTypes
+argument_list|()
 return|;
 block|}
 annotation|@

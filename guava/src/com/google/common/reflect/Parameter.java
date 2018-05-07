@@ -100,6 +100,18 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|lang
+operator|.
+name|reflect
+operator|.
+name|AnnotatedType
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|checkerframework
@@ -164,7 +176,13 @@ name|Annotation
 argument_list|>
 name|annotations
 decl_stmt|;
-DECL|method|Parameter ( Invokable<?, ?> declaration, int position, TypeToken<?> type, Annotation[] annotations)
+DECL|field|annotatedType
+specifier|private
+specifier|final
+name|AnnotatedType
+name|annotatedType
+decl_stmt|;
+DECL|method|Parameter ( Invokable<?, ?> declaration, int position, TypeToken<?> type, Annotation[] annotations, AnnotatedType annotatedType)
 name|Parameter
 parameter_list|(
 name|Invokable
@@ -187,6 +205,9 @@ parameter_list|,
 name|Annotation
 index|[]
 name|annotations
+parameter_list|,
+name|AnnotatedType
+name|annotatedType
 parameter_list|)
 block|{
 name|this
@@ -217,6 +238,12 @@ name|copyOf
 argument_list|(
 name|annotations
 argument_list|)
+expr_stmt|;
+name|this
+operator|.
+name|annotatedType
+operator|=
+name|annotatedType
 expr_stmt|;
 block|}
 comment|/** Returns the type of the parameter. */
@@ -483,6 +510,18 @@ name|toArray
 argument_list|(
 name|annotationType
 argument_list|)
+return|;
+block|}
+comment|/** @since NEXT */
+comment|// @Override on JDK8
+DECL|method|getAnnotatedType ()
+specifier|public
+name|AnnotatedType
+name|getAnnotatedType
+parameter_list|()
+block|{
+return|return
+name|annotatedType
 return|;
 block|}
 annotation|@

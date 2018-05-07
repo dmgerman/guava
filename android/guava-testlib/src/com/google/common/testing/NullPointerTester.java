@@ -2474,7 +2474,7 @@ name|param
 argument_list|)
 return|;
 block|}
-DECL|field|NULLABLE_ANNOTATIONS
+DECL|field|NULLABLE_ANNOTATION_SIMPLE_NAMES
 specifier|private
 specifier|static
 specifier|final
@@ -2482,17 +2482,19 @@ name|ImmutableSet
 argument_list|<
 name|String
 argument_list|>
-name|NULLABLE_ANNOTATIONS
+name|NULLABLE_ANNOTATION_SIMPLE_NAMES
 init|=
 name|ImmutableSet
 operator|.
 name|of
 argument_list|(
-literal|"javax.annotation.CheckForNull"
+literal|"CheckForNull"
 argument_list|,
-literal|"javax.annotation.Nullable"
+literal|"Nullable"
 argument_list|,
-literal|"org.checkerframework.checker.nullness.compatqual.NullableDecl"
+literal|"NullableDecl"
+argument_list|,
+literal|"NullableType"
 argument_list|)
 decl_stmt|;
 DECL|method|isNullable (AnnotatedElement e)
@@ -2517,7 +2519,7 @@ control|)
 block|{
 if|if
 condition|(
-name|NULLABLE_ANNOTATIONS
+name|NULLABLE_ANNOTATION_SIMPLE_NAMES
 operator|.
 name|contains
 argument_list|(
@@ -2526,7 +2528,7 @@ operator|.
 name|annotationType
 argument_list|()
 operator|.
-name|getName
+name|getSimpleName
 argument_list|()
 argument_list|)
 condition|)
