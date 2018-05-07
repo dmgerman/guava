@@ -860,6 +860,13 @@ name|Type
 name|getGenericReturnType
 parameter_list|()
 function_decl|;
+DECL|method|getAnnotatedReturnType ()
+specifier|public
+specifier|abstract
+name|AnnotatedType
+name|getAnnotatedReturnType
+parameter_list|()
+function_decl|;
 DECL|class|MethodInvokable
 specifier|static
 class|class
@@ -972,6 +979,21 @@ return|return
 name|method
 operator|.
 name|getAnnotatedParameterTypes
+argument_list|()
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|getAnnotatedReturnType ()
+specifier|public
+name|AnnotatedType
+name|getAnnotatedReturnType
+parameter_list|()
+block|{
+return|return
+name|method
+operator|.
+name|getAnnotatedReturnType
 argument_list|()
 return|;
 block|}
@@ -1326,6 +1348,21 @@ return|return
 name|constructor
 operator|.
 name|getAnnotatedParameterTypes
+argument_list|()
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|getAnnotatedReturnType ()
+specifier|public
+name|AnnotatedType
+name|getAnnotatedReturnType
+parameter_list|()
+block|{
+return|return
+name|constructor
+operator|.
+name|getAnnotatedReturnType
 argument_list|()
 return|;
 block|}
