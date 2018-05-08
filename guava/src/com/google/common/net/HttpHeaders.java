@@ -1130,6 +1130,36 @@ name|PING_TO
 init|=
 literal|"Ping-To"
 decl_stmt|;
+comment|/**    * The HTTP<a href="https://tools.ietf.org/html/draft-ietf-tokbind-https">{@code    * Sec-Token-Binding}</a> header field name.    *    * @since NEXT    */
+DECL|field|SEC_TOKEN_BINDING
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|SEC_TOKEN_BINDING
+init|=
+literal|"Sec-Token-Binding"
+decl_stmt|;
+comment|/**    * The HTTP<a href="https://tools.ietf.org/html/draft-ietf-tokbind-ttrp">{@code    * Sec-Provided-Token-Binding-ID}</a> header field name.    *    * @since NEXT    */
+DECL|field|SEC_PROVIDED_TOKEN_BINDING_ID
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|SEC_PROVIDED_TOKEN_BINDING_ID
+init|=
+literal|"Sec-Provided-Token-Binding-ID"
+decl_stmt|;
+comment|/**    * The HTTP<a href="https://tools.ietf.org/html/draft-ietf-tokbind-ttrp">{@code    * Sec-Referred-Token-Binding-ID}</a> header field name.    *    * @since NEXT    */
+DECL|field|SEC_REFERRED_TOKEN_BINDING_ID
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|SEC_REFERRED_TOKEN_BINDING_ID
+init|=
+literal|"Sec-Referred-Token-Binding-ID"
+decl_stmt|;
 block|}
 end_class
 
