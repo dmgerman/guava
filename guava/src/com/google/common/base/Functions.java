@@ -92,9 +92,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -243,14 +243,14 @@ block|;
 annotation|@
 name|Override
 annotation|@
-name|NullableDecl
-DECL|method|apply (@ullableDecl Object o)
+name|Nullable
+DECL|method|apply (@ullable Object o)
 specifier|public
 name|Object
 name|apply
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|o
 parameter_list|)
@@ -308,7 +308,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns a function which performs a map lookup with a default value. The function created by    * this method returns {@code defaultValue} for all inputs that do not belong to the map's key    * set. See also {@link #forMap(Map)}, which throws an exception in this case.    *    *<p><b>Java 8 users:</b> you can just write the lambda expression {@code k ->    * map.getWithDefault(k, defaultValue)} instead.    *    * @param map source map that determines the function behavior    * @param defaultValue the value to return for inputs that aren't map keys    * @return function that returns {@code map.get(a)} when {@code a} is a key, or {@code    *     defaultValue} otherwise    */
-DECL|method|forMap ( Map<K, ? extends V> map, @NullableDecl V defaultValue)
+DECL|method|forMap (Map<K, ? extends V> map, @Nullable V defaultValue)
 specifier|public
 specifier|static
 parameter_list|<
@@ -335,7 +335,7 @@ argument_list|>
 name|map
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|V
 name|defaultValue
 parameter_list|)
@@ -405,13 +405,13 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|apply (@ullableDecl K key)
+DECL|method|apply (@ullable K key)
 specifier|public
 name|V
 name|apply
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|K
 name|key
 parameter_list|)
@@ -450,13 +450,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|equals (@ullableDecl Object o)
+DECL|method|equals (@ullable Object o)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|o
 parameter_list|)
@@ -576,12 +576,12 @@ name|map
 decl_stmt|;
 DECL|field|defaultValue
 annotation|@
-name|NullableDecl
+name|Nullable
 specifier|final
 name|V
 name|defaultValue
 decl_stmt|;
-DECL|method|ForMapWithDefault (Map<K, ? extends V> map, @NullableDecl V defaultValue)
+DECL|method|ForMapWithDefault (Map<K, ? extends V> map, @Nullable V defaultValue)
 name|ForMapWithDefault
 parameter_list|(
 name|Map
@@ -595,7 +595,7 @@ argument_list|>
 name|map
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|V
 name|defaultValue
 parameter_list|)
@@ -618,13 +618,13 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|apply (@ullableDecl K key)
+DECL|method|apply (@ullable K key)
 specifier|public
 name|V
 name|apply
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|K
 name|key
 parameter_list|)
@@ -660,13 +660,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|equals (@ullableDecl Object o)
+DECL|method|equals (@ullable Object o)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|o
 parameter_list|)
@@ -911,13 +911,13 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|apply (@ullableDecl A a)
+DECL|method|apply (@ullable A a)
 specifier|public
 name|C
 name|apply
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|A
 name|a
 parameter_list|)
@@ -938,13 +938,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|equals (@ullableDecl Object obj)
+DECL|method|equals (@ullable Object obj)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|obj
 parameter_list|)
@@ -1135,13 +1135,13 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|apply (@ullableDecl T t)
+DECL|method|apply (@ullable T t)
 specifier|public
 name|Boolean
 name|apply
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|T
 name|t
 parameter_list|)
@@ -1157,13 +1157,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|equals (@ullableDecl Object obj)
+DECL|method|equals (@ullable Object obj)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|obj
 parameter_list|)
@@ -1246,7 +1246,7 @@ literal|0
 decl_stmt|;
 block|}
 comment|/**    * Returns a function that ignores its input and always returns {@code value}.    *    *<p><b>Java 8 users:</b> use the lambda expression {@code o -> value} instead.    *    * @param value the constant value for the function to return    * @return a function that always returns {@code value}    */
-DECL|method|constant (@ullableDecl E value)
+DECL|method|constant (@ullable E value)
 specifier|public
 specifier|static
 parameter_list|<
@@ -1261,7 +1261,7 @@ argument_list|>
 name|constant
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|E
 name|value
 parameter_list|)
@@ -1297,18 +1297,18 @@ name|Serializable
 block|{
 DECL|field|value
 annotation|@
-name|NullableDecl
+name|Nullable
 specifier|private
 specifier|final
 name|E
 name|value
 decl_stmt|;
-DECL|method|ConstantFunction (@ullableDecl E value)
+DECL|method|ConstantFunction (@ullable E value)
 specifier|public
 name|ConstantFunction
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|E
 name|value
 parameter_list|)
@@ -1322,13 +1322,13 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|apply (@ullableDecl Object from)
+DECL|method|apply (@ullable Object from)
 specifier|public
 name|E
 name|apply
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|from
 parameter_list|)
@@ -1339,13 +1339,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|equals (@ullableDecl Object obj)
+DECL|method|equals (@ullable Object obj)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|obj
 parameter_list|)
@@ -1521,13 +1521,13 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|apply (@ullableDecl Object input)
+DECL|method|apply (@ullable Object input)
 specifier|public
 name|T
 name|apply
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|input
 parameter_list|)
@@ -1541,13 +1541,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|equals (@ullableDecl Object obj)
+DECL|method|equals (@ullable Object obj)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|obj
 parameter_list|)

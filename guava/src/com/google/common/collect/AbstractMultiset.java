@@ -140,9 +140,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -190,13 +190,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|contains (@ullableDecl Object element)
+DECL|method|contains (@ullable Object element)
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|element
 parameter_list|)
@@ -215,14 +215,14 @@ annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
-DECL|method|add (@ullableDecl E element)
+DECL|method|add (@ullable E element)
 specifier|public
 specifier|final
 name|boolean
 name|add
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|E
 name|element
 parameter_list|)
@@ -242,13 +242,13 @@ annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
-DECL|method|add (@ullableDecl E element, int occurrences)
+DECL|method|add (@ullable E element, int occurrences)
 specifier|public
 name|int
 name|add
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|E
 name|element
 parameter_list|,
@@ -266,14 +266,14 @@ annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
-DECL|method|remove (@ullableDecl Object element)
+DECL|method|remove (@ullable Object element)
 specifier|public
 specifier|final
 name|boolean
 name|remove
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|element
 parameter_list|)
@@ -293,13 +293,13 @@ annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
-DECL|method|remove (@ullableDecl Object element, int occurrences)
+DECL|method|remove (@ullable Object element, int occurrences)
 specifier|public
 name|int
 name|remove
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|element
 parameter_list|,
@@ -317,13 +317,13 @@ annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
-DECL|method|setCount (@ullableDecl E element, int count)
+DECL|method|setCount (@ullable E element, int count)
 specifier|public
 name|int
 name|setCount
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|E
 name|element
 parameter_list|,
@@ -346,13 +346,13 @@ annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
-DECL|method|setCount (@ullableDecl E element, int oldCount, int newCount)
+DECL|method|setCount (@ullable E element, int oldCount, int newCount)
 specifier|public
 name|boolean
 name|setCount
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|E
 name|element
 parameter_list|,
@@ -752,14 +752,14 @@ comment|// Object methods
 comment|/**    * {@inheritDoc}    *    *<p>This implementation returns {@code true} if {@code object} is a multiset of the same size    * and if, for each element, the two multisets have the same count.    */
 annotation|@
 name|Override
-DECL|method|equals (@ullableDecl Object object)
+DECL|method|equals (@ullable Object object)
 specifier|public
 specifier|final
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|object
 parameter_list|)

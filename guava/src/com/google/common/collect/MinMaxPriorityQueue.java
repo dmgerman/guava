@@ -340,9 +340,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -2882,7 +2882,7 @@ name|skipMe
 decl_stmt|;
 DECL|field|lastFromForgetMeNot
 annotation|@
-name|NullableDecl
+name|Nullable
 specifier|private
 name|E
 name|lastFromForgetMeNot

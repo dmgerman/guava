@@ -266,9 +266,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -417,12 +417,12 @@ block|}
 comment|/** Returns its input, or throws an exception if this is not a valid key. */
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|checkKey (@ullableDecl K key)
+DECL|method|checkKey (@ullable K key)
 name|K
 name|checkKey
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|K
 name|key
 parameter_list|)
@@ -434,12 +434,12 @@ block|}
 comment|/** Returns its input, or throws an exception if this is not a valid value. */
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|checkValue (@ullableDecl V value)
+DECL|method|checkValue (@ullable V value)
 name|V
 name|checkValue
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|V
 name|value
 parameter_list|)
@@ -571,13 +571,13 @@ block|}
 comment|// Query Operations (optimizations)
 annotation|@
 name|Override
-DECL|method|containsValue (@ullableDecl Object value)
+DECL|method|containsValue (@ullable Object value)
 specifier|public
 name|boolean
 name|containsValue
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|value
 parameter_list|)
@@ -596,18 +596,18 @@ annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
-DECL|method|put (@ullableDecl K key, @NullableDecl V value)
+DECL|method|put (@ullable K key, @Nullable V value)
 specifier|public
 name|V
 name|put
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|K
 name|key
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|V
 name|value
 parameter_list|)
@@ -627,18 +627,18 @@ annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
-DECL|method|forcePut (@ullableDecl K key, @NullableDecl V value)
+DECL|method|forcePut (@ullable K key, @Nullable V value)
 specifier|public
 name|V
 name|forcePut
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|K
 name|key
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|V
 name|value
 parameter_list|)
@@ -654,18 +654,18 @@ literal|true
 argument_list|)
 return|;
 block|}
-DECL|method|putInBothMaps (@ullableDecl K key, @NullableDecl V value, boolean force)
+DECL|method|putInBothMaps (@ullable K key, @Nullable V value, boolean force)
 specifier|private
 name|V
 name|putInBothMaps
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|K
 name|key
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|V
 name|value
 parameter_list|,
@@ -814,13 +814,13 @@ annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
-DECL|method|remove (@ullableDecl Object key)
+DECL|method|remove (@ullable Object key)
 specifier|public
 name|V
 name|remove
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|key
 parameter_list|)
@@ -1772,7 +1772,7 @@ argument_list|>
 argument_list|()
 block|{
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Entry
 argument_list|<
 name|K

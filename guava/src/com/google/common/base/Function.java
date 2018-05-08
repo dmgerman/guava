@@ -54,9 +54,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -95,16 +95,16 @@ block|{
 annotation|@
 name|Override
 annotation|@
-name|NullableDecl
+name|Nullable
 annotation|@
 name|CanIgnoreReturnValue
 comment|// TODO(kevinb): remove this
-DECL|method|apply (@ullableDecl F input)
+DECL|method|apply (@ullable F input)
 name|T
 name|apply
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|F
 name|input
 parameter_list|)
@@ -112,12 +112,12 @@ function_decl|;
 comment|/**    *<i>May</i> return {@code true} if {@code object} is a {@code Function} that behaves identically    * to this function.    *    *<p><b>Warning: do not depend</b> on the behavior of this method.    *    *<p>Historically, {@code Function} instances in this library have implemented this method to    * recognize certain cases where distinct {@code Function} instances would in fact behave    * identically. However, as code migrates to {@code java.util.function}, that behavior will    * disappear. It is best not to depend on it.    */
 annotation|@
 name|Override
-DECL|method|equals (@ullableDecl Object object)
+DECL|method|equals (@ullable Object object)
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|object
 parameter_list|)

@@ -128,9 +128,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -185,7 +185,7 @@ comment|/** @since 11.0 */
 annotation|@
 name|Override
 annotation|@
-name|NullableDecl
+name|Nullable
 DECL|method|getIfPresent (Object key)
 specifier|public
 name|V

@@ -96,9 +96,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -129,7 +129,7 @@ block|{
 comment|/**    * {@inheritDoc}    *    *<p>Because a {@code SetMultimap} has unique values for a given key, this method returns a    * {@link Set}, instead of the {@link java.util.Collection} specified in the {@link Multimap}    * interface.    */
 annotation|@
 name|Override
-DECL|method|get (@ullableDecl K key)
+DECL|method|get (@ullable K key)
 name|Set
 argument_list|<
 name|V
@@ -137,7 +137,7 @@ argument_list|>
 name|get
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|K
 name|key
 parameter_list|)
@@ -147,7 +147,7 @@ annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
-DECL|method|removeAll (@ullableDecl Object key)
+DECL|method|removeAll (@ullable Object key)
 name|Set
 argument_list|<
 name|V
@@ -155,7 +155,7 @@ argument_list|>
 name|removeAll
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|key
 parameter_list|)
@@ -219,12 +219,12 @@ function_decl|;
 comment|/**    * Compares the specified object to this multimap for equality.    *    *<p>Two {@code SetMultimap} instances are equal if, for each key, they contain the same values.    * Equality does not depend on the ordering of keys or values.    *    *<p>An empty {@code SetMultimap} is equal to any other empty {@code Multimap}, including an    * empty {@code ListMultimap}.    */
 annotation|@
 name|Override
-DECL|method|equals (@ullableDecl Object obj)
+DECL|method|equals (@ullable Object obj)
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|obj
 parameter_list|)

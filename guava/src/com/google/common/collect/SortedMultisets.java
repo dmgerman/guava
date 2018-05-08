@@ -166,9 +166,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -851,7 +851,7 @@ name|getElement
 argument_list|()
 return|;
 block|}
-DECL|method|getElementOrNull (@ullableDecl Entry<E> entry)
+DECL|method|getElementOrNull (@ullable Entry<E> entry)
 specifier|private
 specifier|static
 parameter_list|<
@@ -861,7 +861,7 @@ name|E
 name|getElementOrNull
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Entry
 argument_list|<
 name|E

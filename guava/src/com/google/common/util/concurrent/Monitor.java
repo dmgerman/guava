@@ -168,9 +168,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -280,9 +280,9 @@ name|GuardedBy
 argument_list|(
 literal|"monitor.lock"
 argument_list|)
-DECL|field|next
 annotation|@
-name|NullableDecl
+name|Nullable
+DECL|field|next
 name|Guard
 name|next
 decl_stmt|;

@@ -340,9 +340,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -1911,13 +1911,13 @@ block|}
 block|}
 annotation|@
 name|Override
-DECL|method|indexOf (@ullableDecl Object object)
+DECL|method|indexOf (@ullable Object object)
 specifier|public
 name|int
 name|indexOf
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|object
 parameter_list|)
@@ -1944,13 +1944,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|lastIndexOf (@ullableDecl Object object)
+DECL|method|lastIndexOf (@ullable Object object)
 specifier|public
 name|int
 name|lastIndexOf
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|object
 parameter_list|)
@@ -1977,13 +1977,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|contains (@ullableDecl Object object)
+DECL|method|contains (@ullable Object object)
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|object
 parameter_list|)
@@ -2634,13 +2634,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|contains (@ullableDecl Object object)
+DECL|method|contains (@ullable Object object)
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|object
 parameter_list|)
@@ -2656,13 +2656,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|indexOf (@ullableDecl Object object)
+DECL|method|indexOf (@ullable Object object)
 specifier|public
 name|int
 name|indexOf
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|object
 parameter_list|)
@@ -2695,13 +2695,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|lastIndexOf (@ullableDecl Object object)
+DECL|method|lastIndexOf (@ullable Object object)
 specifier|public
 name|int
 name|lastIndexOf
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|object
 parameter_list|)
@@ -2842,13 +2842,13 @@ block|}
 block|}
 annotation|@
 name|Override
-DECL|method|equals (@ullableDecl Object obj)
+DECL|method|equals (@ullable Object obj)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|obj
 parameter_list|)

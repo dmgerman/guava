@@ -218,9 +218,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -428,7 +428,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Performs a traversal of the nodes reachable from {@code node}. If we ever reach a node we've    * already visited (following only outgoing edges and without reusing edges), we know there's a    * cycle in the graph.    */
-DECL|method|subgraphHasCycle ( Graph<N> graph, Map<Object, NodeVisitState> visitedNodes, N node, @NullableDecl N previousNode)
+DECL|method|subgraphHasCycle ( Graph<N> graph, Map<Object, NodeVisitState> visitedNodes, N node, @Nullable N previousNode)
 specifier|private
 specifier|static
 parameter_list|<
@@ -455,7 +455,7 @@ name|N
 name|node
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|N
 name|previousNode
 parameter_list|)
@@ -564,7 +564,7 @@ literal|false
 return|;
 block|}
 comment|/**    * Determines whether an edge has already been used during traversal. In the directed case a cycle    * is always detected before reusing an edge, so no special logic is required. In the undirected    * case, we must take care not to "backtrack" over an edge (i.e. going from A to B and then going    * from B to A).    */
-DECL|method|canTraverseWithoutReusingEdge ( Graph<?> graph, Object nextNode, @NullableDecl Object previousNode)
+DECL|method|canTraverseWithoutReusingEdge ( Graph<?> graph, Object nextNode, @Nullable Object previousNode)
 specifier|private
 specifier|static
 name|boolean
@@ -580,7 +580,7 @@ name|Object
 name|nextNode
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|previousNode
 parameter_list|)
@@ -1561,8 +1561,8 @@ block|}
 annotation|@
 name|Override
 annotation|@
-name|NullableDecl
-DECL|method|edgeValueOrDefault (N nodeU, N nodeV, @NullableDecl V defaultValue)
+name|Nullable
+DECL|method|edgeValueOrDefault (N nodeU, N nodeV, @Nullable V defaultValue)
 specifier|public
 name|V
 name|edgeValueOrDefault
@@ -1574,7 +1574,7 @@ name|N
 name|nodeV
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|V
 name|defaultValue
 parameter_list|)

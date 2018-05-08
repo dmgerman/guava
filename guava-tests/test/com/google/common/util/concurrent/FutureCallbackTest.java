@@ -142,9 +142,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -920,7 +920,7 @@ argument_list|>
 block|{
 DECL|field|value
 annotation|@
-name|NullableDecl
+name|Nullable
 specifier|private
 name|String
 name|value
@@ -929,7 +929,7 @@ literal|null
 decl_stmt|;
 DECL|field|failure
 annotation|@
-name|NullableDecl
+name|Nullable
 specifier|private
 name|Throwable
 name|failure

@@ -312,9 +312,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -382,20 +382,20 @@ argument_list|>
 block|{
 DECL|field|key
 annotation|@
-name|NullableDecl
+name|Nullable
 specifier|final
 name|K
 name|key
 decl_stmt|;
 DECL|field|value
 annotation|@
-name|NullableDecl
+name|Nullable
 name|V
 name|value
 decl_stmt|;
 DECL|field|next
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Node
 argument_list|<
 name|K
@@ -407,7 +407,7 @@ decl_stmt|;
 comment|// the next node (with any key)
 DECL|field|previous
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Node
 argument_list|<
 name|K
@@ -419,7 +419,7 @@ decl_stmt|;
 comment|// the previous node (with any key)
 DECL|field|nextSibling
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Node
 argument_list|<
 name|K
@@ -431,7 +431,7 @@ decl_stmt|;
 comment|// the next node with the same key
 DECL|field|previousSibling
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Node
 argument_list|<
 name|K
@@ -441,16 +441,16 @@ argument_list|>
 name|previousSibling
 decl_stmt|;
 comment|// the previous node with the same key
-DECL|method|Node (@ullableDecl K key, @NullableDecl V value)
+DECL|method|Node (@ullable K key, @Nullable V value)
 name|Node
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|K
 name|key
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|V
 name|value
 parameter_list|)
@@ -494,13 +494,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|setValue (@ullableDecl V newValue)
+DECL|method|setValue (@ullable V newValue)
 specifier|public
 name|V
 name|setValue
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|V
 name|newValue
 parameter_list|)
@@ -600,7 +600,7 @@ block|}
 block|}
 DECL|field|head
 annotation|@
-name|NullableDecl
+name|Nullable
 specifier|private
 specifier|transient
 name|Node
@@ -614,7 +614,7 @@ decl_stmt|;
 comment|// the head for all keys
 DECL|field|tail
 annotation|@
-name|NullableDecl
+name|Nullable
 specifier|private
 specifier|transient
 name|Node
@@ -814,7 +814,7 @@ block|}
 comment|/**    * Adds a new node for the specified key-value pair before the specified {@code nextSibling}    * element, or at the end of the list if {@code nextSibling} is null. Note: if {@code nextSibling}    * is specified, it MUST be for an node for the same {@code key}!    */
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|addNode ( @ullableDecl K key, @NullableDecl V value, @NullableDecl Node<K, V> nextSibling)
+DECL|method|addNode (@ullable K key, @Nullable V value, @Nullable Node<K, V> nextSibling)
 specifier|private
 name|Node
 argument_list|<
@@ -825,17 +825,17 @@ argument_list|>
 name|addNode
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|K
 name|key
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|V
 name|value
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Node
 argument_list|<
 name|K
@@ -1343,13 +1343,13 @@ operator|--
 expr_stmt|;
 block|}
 comment|/** Removes all nodes for the specified key. */
-DECL|method|removeAllNodes (@ullableDecl Object key)
+DECL|method|removeAllNodes (@ullable Object key)
 specifier|private
 name|void
 name|removeAllNodes
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|key
 parameter_list|)
@@ -1367,14 +1367,14 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** Helper method for verifying that an iterator element is present. */
-DECL|method|checkElement (@ullableDecl Object node)
+DECL|method|checkElement (@ullable Object node)
 specifier|private
 specifier|static
 name|void
 name|checkElement
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|node
 parameter_list|)
@@ -1415,7 +1415,7 @@ name|nextIndex
 decl_stmt|;
 DECL|field|next
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Node
 argument_list|<
 name|K
@@ -1426,7 +1426,7 @@ name|next
 decl_stmt|;
 DECL|field|current
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Node
 argument_list|<
 name|K
@@ -1437,7 +1437,7 @@ name|current
 decl_stmt|;
 DECL|field|previous
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Node
 argument_list|<
 name|K
@@ -1865,7 +1865,7 @@ name|head
 decl_stmt|;
 DECL|field|current
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Node
 argument_list|<
 name|K
@@ -2029,7 +2029,7 @@ argument_list|>
 block|{
 DECL|field|key
 annotation|@
-name|NullableDecl
+name|Nullable
 specifier|final
 name|Object
 name|key
@@ -2040,7 +2040,7 @@ name|nextIndex
 decl_stmt|;
 DECL|field|next
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Node
 argument_list|<
 name|K
@@ -2051,7 +2051,7 @@ name|next
 decl_stmt|;
 DECL|field|current
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Node
 argument_list|<
 name|K
@@ -2062,7 +2062,7 @@ name|current
 decl_stmt|;
 DECL|field|previous
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Node
 argument_list|<
 name|K
@@ -2072,11 +2072,11 @@ argument_list|>
 name|previous
 decl_stmt|;
 comment|/** Constructs a new iterator over all values for the specified key. */
-DECL|method|ValueForKeyIterator (@ullableDecl Object key)
+DECL|method|ValueForKeyIterator (@ullable Object key)
 name|ValueForKeyIterator
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|key
 parameter_list|)
@@ -2118,12 +2118,12 @@ name|head
 expr_stmt|;
 block|}
 comment|/**      * Constructs a new iterator over all values for the specified key starting at the specified      * index. This constructor is optimized so that it starts at either the head or the tail,      * depending on which is closer to the specified index. This allows adds to the tail to be done      * in constant time.      *      * @throws IndexOutOfBoundsException if index is invalid      */
-DECL|method|ValueForKeyIterator (@ullableDecl Object key, int index)
+DECL|method|ValueForKeyIterator (@ullable Object key, int index)
 specifier|public
 name|ValueForKeyIterator
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|key
 parameter_list|,
@@ -2522,13 +2522,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|containsKey (@ullableDecl Object key)
+DECL|method|containsKey (@ullable Object key)
 specifier|public
 name|boolean
 name|containsKey
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|key
 parameter_list|)
@@ -2544,13 +2544,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|containsValue (@ullableDecl Object value)
+DECL|method|containsValue (@ullable Object value)
 specifier|public
 name|boolean
 name|containsValue
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|value
 parameter_list|)
@@ -2571,18 +2571,18 @@ annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
-DECL|method|put (@ullableDecl K key, @NullableDecl V value)
+DECL|method|put (@ullable K key, @Nullable V value)
 specifier|public
 name|boolean
 name|put
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|K
 name|key
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|V
 name|value
 parameter_list|)
@@ -2606,7 +2606,7 @@ annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
-DECL|method|replaceValues (@ullableDecl K key, Iterable<? extends V> values)
+DECL|method|replaceValues (@ullable K key, Iterable<? extends V> values)
 specifier|public
 name|List
 argument_list|<
@@ -2615,7 +2615,7 @@ argument_list|>
 name|replaceValues
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|K
 name|key
 parameter_list|,
@@ -2738,7 +2738,7 @@ return|return
 name|oldValues
 return|;
 block|}
-DECL|method|getCopy (@ullableDecl Object key)
+DECL|method|getCopy (@ullable Object key)
 specifier|private
 name|List
 argument_list|<
@@ -2747,7 +2747,7 @@ argument_list|>
 name|getCopy
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|key
 parameter_list|)
@@ -2773,7 +2773,7 @@ annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
-DECL|method|removeAll (@ullableDecl Object key)
+DECL|method|removeAll (@ullable Object key)
 specifier|public
 name|List
 argument_list|<
@@ -2782,7 +2782,7 @@ argument_list|>
 name|removeAll
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|key
 parameter_list|)
@@ -2840,7 +2840,7 @@ comment|// Views
 comment|/**    * {@inheritDoc}    *    *<p>If the multimap is modified while an iteration over the list is in progress (except through    * the iterator's own {@code add}, {@code set} or {@code remove} operations) the results of the    * iteration are undefined.    *    *<p>The returned list is not serializable and does not have random access.    */
 annotation|@
 name|Override
-DECL|method|get (final @NullableDecl K key)
+DECL|method|get (final @Nullable K key)
 specifier|public
 name|List
 argument_list|<
@@ -2850,7 +2850,7 @@ name|get
 parameter_list|(
 specifier|final
 annotation|@
-name|NullableDecl
+name|Nullable
 name|K
 name|key
 parameter_list|)

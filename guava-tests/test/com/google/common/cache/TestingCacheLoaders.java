@@ -140,9 +140,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -289,7 +289,7 @@ block|}
 return|;
 block|}
 comment|/** Returns a {@link CacheLoader} that returns the given {@code constant} for every request. */
-DECL|method|constantLoader (@ullableDecl V constant)
+DECL|method|constantLoader (@ullable V constant)
 specifier|static
 parameter_list|<
 name|K
@@ -305,7 +305,7 @@ argument_list|>
 name|constantLoader
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|V
 name|constant
 parameter_list|)

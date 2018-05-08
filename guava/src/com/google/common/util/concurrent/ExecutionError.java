@@ -42,9 +42,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -69,12 +69,12 @@ name|ExecutionError
 parameter_list|()
 block|{}
 comment|/** Creates a new instance with the given detail message. */
-DECL|method|ExecutionError (@ullableDecl String message)
+DECL|method|ExecutionError (@ullable String message)
 specifier|protected
 name|ExecutionError
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|String
 name|message
 parameter_list|)
@@ -86,17 +86,17 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** Creates a new instance with the given detail message and cause. */
-DECL|method|ExecutionError (@ullableDecl String message, @NullableDecl Error cause)
+DECL|method|ExecutionError (@ullable String message, @Nullable Error cause)
 specifier|public
 name|ExecutionError
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|String
 name|message
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Error
 name|cause
 parameter_list|)
@@ -110,12 +110,12 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** Creates a new instance with the given cause. */
-DECL|method|ExecutionError (@ullableDecl Error cause)
+DECL|method|ExecutionError (@ullable Error cause)
 specifier|public
 name|ExecutionError
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Error
 name|cause
 parameter_list|)

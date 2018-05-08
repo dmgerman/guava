@@ -240,9 +240,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -597,13 +597,13 @@ throw|;
 block|}
 annotation|@
 name|Override
-DECL|method|count (@ullableDecl Object element)
+DECL|method|count (@ullable Object element)
 specifier|public
 name|int
 name|count
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|element
 parameter_list|)
@@ -649,13 +649,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|add (@ullableDecl E element, int occurrences)
+DECL|method|add (@ullable E element, int occurrences)
 specifier|public
 name|int
 name|add
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|E
 name|element
 parameter_list|,

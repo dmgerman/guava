@@ -92,9 +92,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -118,12 +118,12 @@ name|InsecureRecursiveDeleteException
 extends|extends
 name|FileSystemException
 block|{
-DECL|method|InsecureRecursiveDeleteException (@ullableDecl String file)
+DECL|method|InsecureRecursiveDeleteException (@ullable String file)
 specifier|public
 name|InsecureRecursiveDeleteException
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|String
 name|file
 parameter_list|)

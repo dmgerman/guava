@@ -282,9 +282,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -2581,13 +2581,13 @@ name|id
 argument_list|)
 return|;
 block|}
-DECL|method|captureNullable (@ullableDecl Type type)
+DECL|method|captureNullable (@ullable Type type)
 specifier|private
 name|Type
 name|captureNullable
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Type
 name|type
 parameter_list|)

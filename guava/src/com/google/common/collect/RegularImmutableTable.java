@@ -120,9 +120,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -279,13 +279,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|contains (@ullableDecl Object object)
+DECL|method|contains (@ullable Object object)
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|object
 parameter_list|)
@@ -468,7 +468,7 @@ literal|true
 return|;
 block|}
 block|}
-DECL|method|forCells ( List<Cell<R, C, V>> cells, @NullableDecl final Comparator<? super R> rowComparator, @NullableDecl final Comparator<? super C> columnComparator)
+DECL|method|forCells ( List<Cell<R, C, V>> cells, @Nullable final Comparator<? super R> rowComparator, @Nullable final Comparator<? super C> columnComparator)
 specifier|static
 parameter_list|<
 name|R
@@ -501,7 +501,7 @@ argument_list|>
 name|cells
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 specifier|final
 name|Comparator
 argument_list|<
@@ -512,7 +512,7 @@ argument_list|>
 name|rowComparator
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 specifier|final
 name|Comparator
 argument_list|<
@@ -723,7 +723,7 @@ literal|null
 argument_list|)
 return|;
 block|}
-DECL|method|forCellsInternal ( Iterable<Cell<R, C, V>> cells, @NullableDecl Comparator<? super R> rowComparator, @NullableDecl Comparator<? super C> columnComparator)
+DECL|method|forCellsInternal ( Iterable<Cell<R, C, V>> cells, @Nullable Comparator<? super R> rowComparator, @Nullable Comparator<? super C> columnComparator)
 specifier|private
 specifier|static
 parameter_list|<
@@ -757,7 +757,7 @@ argument_list|>
 name|cells
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Comparator
 argument_list|<
 name|?
@@ -767,7 +767,7 @@ argument_list|>
 name|rowComparator
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Comparator
 argument_list|<
 name|?

@@ -42,9 +42,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -67,12 +67,12 @@ specifier|public
 name|UncheckedTimeoutException
 parameter_list|()
 block|{}
-DECL|method|UncheckedTimeoutException (@ullableDecl String message)
+DECL|method|UncheckedTimeoutException (@ullable String message)
 specifier|public
 name|UncheckedTimeoutException
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|String
 name|message
 parameter_list|)
@@ -83,12 +83,12 @@ name|message
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|UncheckedTimeoutException (@ullableDecl Throwable cause)
+DECL|method|UncheckedTimeoutException (@ullable Throwable cause)
 specifier|public
 name|UncheckedTimeoutException
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Throwable
 name|cause
 parameter_list|)
@@ -99,17 +99,17 @@ name|cause
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|UncheckedTimeoutException (@ullableDecl String message, @NullableDecl Throwable cause)
+DECL|method|UncheckedTimeoutException (@ullable String message, @Nullable Throwable cause)
 specifier|public
 name|UncheckedTimeoutException
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|String
 name|message
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Throwable
 name|cause
 parameter_list|)

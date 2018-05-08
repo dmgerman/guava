@@ -1108,9 +1108,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -19688,11 +19688,11 @@ name|TestException
 extends|extends
 name|Exception
 block|{
-DECL|method|TestException (@ullableDecl Throwable cause)
+DECL|method|TestException (@ullable Throwable cause)
 name|TestException
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Throwable
 name|cause
 parameter_list|)

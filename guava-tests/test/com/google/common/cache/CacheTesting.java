@@ -404,9 +404,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -2327,12 +2327,12 @@ parameter_list|<
 name|T
 parameter_list|>
 block|{
-DECL|method|accept (@ullableDecl T object)
+DECL|method|accept (@ullable T object)
 name|void
 name|accept
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|T
 name|object
 parameter_list|)

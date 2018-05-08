@@ -128,9 +128,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -317,13 +317,13 @@ name|value
 argument_list|)
 return|;
 block|}
-DECL|method|stringIsNullOrEmpty (@ullableDecl String string)
+DECL|method|stringIsNullOrEmpty (@ullable String string)
 specifier|static
 name|boolean
 name|stringIsNullOrEmpty
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|String
 name|string
 parameter_list|)
@@ -339,13 +339,13 @@ name|isEmpty
 argument_list|()
 return|;
 block|}
-DECL|method|nullToEmpty (@ullableDecl String string)
+DECL|method|nullToEmpty (@ullable String string)
 specifier|static
 name|String
 name|nullToEmpty
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|String
 name|string
 parameter_list|)
@@ -362,13 +362,13 @@ else|:
 name|string
 return|;
 block|}
-DECL|method|emptyToNull (@ullableDecl String string)
+DECL|method|emptyToNull (@ullable String string)
 specifier|static
 name|String
 name|emptyToNull
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|String
 name|string
 parameter_list|)

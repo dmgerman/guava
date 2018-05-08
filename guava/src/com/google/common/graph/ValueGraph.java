@@ -60,9 +60,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -281,8 +281,8 @@ parameter_list|)
 function_decl|;
 comment|/**    * Returns the value of the edge connecting {@code nodeU} to {@code nodeV}, if one is present;    * otherwise, returns {@code defaultValue}.    *    *<p>In an undirected graph, this is equal to {@code edgeValueOrDefault(nodeV, nodeU,    * defaultValue)}.    *    * @throws IllegalArgumentException if {@code nodeU} or {@code nodeV} is not an element of this    *     graph    */
 annotation|@
-name|NullableDecl
-DECL|method|edgeValueOrDefault (N nodeU, N nodeV, @NullableDecl V defaultValue)
+name|Nullable
+DECL|method|edgeValueOrDefault (N nodeU, N nodeV, @Nullable V defaultValue)
 name|V
 name|edgeValueOrDefault
 parameter_list|(
@@ -293,7 +293,7 @@ name|N
 name|nodeV
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|V
 name|defaultValue
 parameter_list|)
@@ -304,12 +304,12 @@ comment|//
 comment|/**    * Returns {@code true} iff {@code object} is a {@link ValueGraph} that has the same elements and    * the same structural relationships as those in this graph.    *    *<p>Thus, two value graphs A and B are equal if<b>all</b> of the following are true:    *    *<ul>    *<li>A and B have equal {@link #isDirected() directedness}.    *<li>A and B have equal {@link #nodes() node sets}.    *<li>A and B have equal {@link #edges() edge sets}.    *<li>The {@link #edgeValue(Object, Object) value} of a given edge is the same in both A and B.    *</ul>    *    *<p>Graph properties besides {@link #isDirected() directedness} do<b>not</b> affect equality.    * For example, two graphs may be considered equal even if one allows self-loops and the other    * doesn't. Additionally, the order in which nodes or edges are added to the graph, and the order    * in which they are iterated over, are irrelevant.    *    *<p>A reference implementation of this is provided by {@link AbstractValueGraph#equals(Object)}.    */
 annotation|@
 name|Override
-DECL|method|equals (@ullableDecl Object object)
+DECL|method|equals (@ullable Object object)
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|object
 parameter_list|)

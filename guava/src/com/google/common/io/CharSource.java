@@ -322,9 +322,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -850,7 +850,7 @@ block|}
 block|}
 comment|/**    * Reads the first line of this source as a string. Returns {@code null} if this source is empty.    *    *<p>Like {@link BufferedReader#readLine()}, this method considers a line to be a sequence of    * text that is terminated by (but does not include) one of {@code \r\n}, {@code \r} or {@code    * \n}. If the source's content does not end in a line termination sequence, it is treated as if    * it does.    *    * @throws IOException if an I/O error occurs while reading from this source    */
 annotation|@
-name|NullableDecl
+name|Nullable
 DECL|method|readFirstLine ()
 specifier|public
 name|String

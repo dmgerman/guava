@@ -76,9 +76,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -154,7 +154,7 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|get (@ullableDecl K key)
+DECL|method|get (@ullable K key)
 specifier|public
 name|Set
 argument_list|<
@@ -163,7 +163,7 @@ argument_list|>
 name|get
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|K
 name|key
 parameter_list|)
@@ -182,7 +182,7 @@ annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
-DECL|method|removeAll (@ullableDecl Object key)
+DECL|method|removeAll (@ullable Object key)
 specifier|public
 name|Set
 argument_list|<
@@ -191,7 +191,7 @@ argument_list|>
 name|removeAll
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|key
 parameter_list|)

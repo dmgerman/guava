@@ -86,9 +86,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -111,14 +111,14 @@ name|Strings
 parameter_list|()
 block|{}
 comment|/**    * Returns the given string if it is non-null; the empty string otherwise.    *    * @param string the string to test and possibly return    * @return {@code string} itself if it is non-null; {@code ""} if it is null    */
-DECL|method|nullToEmpty (@ullableDecl String string)
+DECL|method|nullToEmpty (@ullable String string)
 specifier|public
 specifier|static
 name|String
 name|nullToEmpty
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|String
 name|string
 parameter_list|)
@@ -134,15 +134,15 @@ return|;
 block|}
 comment|/**    * Returns the given string if it is nonempty; {@code null} otherwise.    *    * @param string the string to test and possibly return    * @return {@code string} itself if it is nonempty; {@code null} if it is empty or null    */
 annotation|@
-name|NullableDecl
-DECL|method|emptyToNull (@ullableDecl String string)
+name|Nullable
+DECL|method|emptyToNull (@ullable String string)
 specifier|public
 specifier|static
 name|String
 name|emptyToNull
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|String
 name|string
 parameter_list|)
@@ -157,14 +157,14 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns {@code true} if the given string is null or is the empty string.    *    *<p>Consider normalizing your string references with {@link #nullToEmpty}. If you do, you can    * use {@link String#isEmpty()} instead of this method, and you won't need special null-safe forms    * of methods like {@link String#toUpperCase} either. Or, if you'd like to normalize "in the other    * direction," converting empty strings to {@code null}, you can use {@link #emptyToNull}.    *    * @param string a string reference to check    * @return {@code true} if the string is null or is the empty string    */
-DECL|method|isNullOrEmpty (@ullableDecl String string)
+DECL|method|isNullOrEmpty (@ullable String string)
 specifier|public
 specifier|static
 name|boolean
 name|isNullOrEmpty
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|String
 name|string
 parameter_list|)

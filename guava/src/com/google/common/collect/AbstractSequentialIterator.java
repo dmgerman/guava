@@ -50,9 +50,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -79,18 +79,18 @@ argument_list|>
 block|{
 DECL|field|nextOrNull
 annotation|@
-name|NullableDecl
+name|Nullable
 specifier|private
 name|T
 name|nextOrNull
 decl_stmt|;
 comment|/**    * Creates a new iterator with the given first element, or, if {@code firstOrNull} is null,    * creates a new empty iterator.    */
-DECL|method|AbstractSequentialIterator (@ullableDecl T firstOrNull)
+DECL|method|AbstractSequentialIterator (@ullable T firstOrNull)
 specifier|protected
 name|AbstractSequentialIterator
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|T
 name|firstOrNull
 parameter_list|)

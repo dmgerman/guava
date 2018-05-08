@@ -524,18 +524,14 @@ parameter_list|)
 block|{
 comment|// null?  no problem
 block|}
-DECL|method|staticOneArgJsr305NullableCorrectlyDoesNotThrowNPE ( @avax.annotation.Nullable String s)
+DECL|method|staticOneArgJsr305NullableCorrectlyDoesNotThrowNPE (@ullableDecl String s)
 specifier|public
 specifier|static
 name|void
 name|staticOneArgJsr305NullableCorrectlyDoesNotThrowNPE
 parameter_list|(
 annotation|@
-name|javax
-operator|.
-name|annotation
-operator|.
-name|Nullable
+name|NullableDecl
 name|String
 name|s
 parameter_list|)
@@ -2502,7 +2498,7 @@ name|i
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|twoNullableArgs (@ullableDecl String s, @javax.annotation.Nullable Integer i)
+DECL|method|twoNullableArgs (@ullableDecl String s, @NullableDecl Integer i)
 specifier|public
 name|void
 name|twoNullableArgs
@@ -2513,11 +2509,7 @@ name|String
 name|s
 parameter_list|,
 annotation|@
-name|javax
-operator|.
-name|annotation
-operator|.
-name|Nullable
+name|NullableDecl
 name|Integer
 name|i
 parameter_list|)

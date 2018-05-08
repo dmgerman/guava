@@ -146,9 +146,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -171,7 +171,7 @@ parameter_list|>
 block|{
 comment|/**    * Returns the value associated with {@code key} in this cache, or {@code null} if there is no    * cached value for {@code key}.    *    * @since 11.0    */
 annotation|@
-name|NullableDecl
+name|Nullable
 DECL|method|getIfPresent (@ompatibleWithR) Object key)
 name|V
 name|getIfPresent

@@ -86,9 +86,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -118,7 +118,7 @@ name|it
 decl_stmt|;
 DECL|field|in
 annotation|@
-name|NullableDecl
+name|Nullable
 specifier|private
 name|InputStream
 name|in
@@ -306,32 +306,32 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|read (@ullableDecl byte[] b, int off, int len)
+DECL|method|read (byte @Nullable [] b, int off, int len)
 specifier|public
 name|int
 name|read
-parameter_list|(
-annotation|@
-name|NullableDecl
+argument_list|(
 name|byte
+expr|@
+name|Nullable
 index|[]
 name|b
-parameter_list|,
+argument_list|,
 name|int
 name|off
-parameter_list|,
+argument_list|,
 name|int
 name|len
-parameter_list|)
+argument_list|)
 throws|throws
 name|IOException
 block|{
-while|while
-condition|(
+decl|while
+argument_list|(
 name|in
 operator|!=
 literal|null
-condition|)
+argument_list|)
 block|{
 name|int
 name|result
@@ -368,6 +368,9 @@ operator|-
 literal|1
 return|;
 block|}
+end_class
+
+begin_function
 annotation|@
 name|Override
 DECL|method|skip (long n)
@@ -443,8 +446,8 @@ literal|1
 argument_list|)
 return|;
 block|}
-block|}
-end_class
+end_function
 
+unit|}
 end_unit
 

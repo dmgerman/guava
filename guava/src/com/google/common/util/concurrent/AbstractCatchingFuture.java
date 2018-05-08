@@ -164,9 +164,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -369,7 +369,7 @@ block|}
 comment|/*    * In certain circumstances, this field might theoretically not be visible to an afterDone() call    * triggered by cancel(). For details, see the comments on the fields of TimeoutFuture.    */
 DECL|field|inputFuture
 annotation|@
-name|NullableDecl
+name|Nullable
 name|ListenableFuture
 argument_list|<
 name|?
@@ -380,7 +380,7 @@ name|inputFuture
 decl_stmt|;
 DECL|field|exceptionType
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Class
 argument_list|<
 name|X
@@ -389,7 +389,7 @@ name|exceptionType
 decl_stmt|;
 DECL|field|fallback
 annotation|@
-name|NullableDecl
+name|Nullable
 name|F
 name|fallback
 decl_stmt|;
@@ -747,7 +747,7 @@ comment|/** Template method for subtypes to actually run the fallback. */
 annotation|@
 name|ForOverride
 annotation|@
-name|NullableDecl
+name|Nullable
 DECL|method|doFallback (F fallback, X throwable)
 specifier|abstract
 name|T
@@ -765,13 +765,13 @@ function_decl|;
 comment|/** Template method for subtypes to actually set the result. */
 annotation|@
 name|ForOverride
-DECL|method|setResult (@ullableDecl T result)
+DECL|method|setResult (@ullable T result)
 specifier|abstract
 name|void
 name|setResult
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|T
 name|result
 parameter_list|)
@@ -1046,7 +1046,7 @@ block|}
 annotation|@
 name|Override
 annotation|@
-name|NullableDecl
+name|Nullable
 DECL|method|doFallback (Function<? super X, ? extends V> fallback, X cause)
 name|V
 name|doFallback
@@ -1080,12 +1080,12 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|setResult (@ullableDecl V result)
+DECL|method|setResult (@ullable V result)
 name|void
 name|setResult
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|V
 name|result
 parameter_list|)

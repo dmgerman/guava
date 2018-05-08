@@ -116,9 +116,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -156,15 +156,15 @@ block|{
 annotation|@
 name|Override
 annotation|@
-name|NullableDecl
-DECL|method|get (@ullableDecl Object key)
+name|Nullable
+DECL|method|get (@ullable Object key)
 specifier|public
 specifier|abstract
 name|V
 name|get
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|key
 parameter_list|)
@@ -172,7 +172,7 @@ function_decl|;
 annotation|@
 name|Override
 annotation|@
-name|NullableDecl
+name|Nullable
 DECL|method|firstEntry ()
 specifier|public
 name|Entry
@@ -199,7 +199,7 @@ block|}
 annotation|@
 name|Override
 annotation|@
-name|NullableDecl
+name|Nullable
 DECL|method|lastEntry ()
 specifier|public
 name|Entry
@@ -226,7 +226,7 @@ block|}
 annotation|@
 name|Override
 annotation|@
-name|NullableDecl
+name|Nullable
 DECL|method|pollFirstEntry ()
 specifier|public
 name|Entry
@@ -251,7 +251,7 @@ block|}
 annotation|@
 name|Override
 annotation|@
-name|NullableDecl
+name|Nullable
 DECL|method|pollLastEntry ()
 specifier|public
 name|Entry
@@ -360,7 +360,7 @@ block|}
 annotation|@
 name|Override
 annotation|@
-name|NullableDecl
+name|Nullable
 DECL|method|lowerEntry (K key)
 specifier|public
 name|Entry
@@ -390,7 +390,7 @@ block|}
 annotation|@
 name|Override
 annotation|@
-name|NullableDecl
+name|Nullable
 DECL|method|floorEntry (K key)
 specifier|public
 name|Entry
@@ -420,7 +420,7 @@ block|}
 annotation|@
 name|Override
 annotation|@
-name|NullableDecl
+name|Nullable
 DECL|method|ceilingEntry (K key)
 specifier|public
 name|Entry
@@ -450,7 +450,7 @@ block|}
 annotation|@
 name|Override
 annotation|@
-name|NullableDecl
+name|Nullable
 DECL|method|higherEntry (K key)
 specifier|public
 name|Entry

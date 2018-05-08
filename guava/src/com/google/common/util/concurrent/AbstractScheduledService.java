@@ -314,9 +314,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -1401,7 +1401,7 @@ argument_list|(
 literal|"lock"
 argument_list|)
 annotation|@
-name|NullableDecl
+name|Nullable
 DECL|field|currentFuture
 specifier|private
 name|Future

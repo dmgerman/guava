@@ -158,9 +158,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -368,7 +368,7 @@ decl_stmt|;
 comment|/**    * The largest of the lowest k elements we've seen so far relative to this comparator. If    * bufferSize â¥ k, then we can ignore any elements greater than this value.    */
 DECL|field|threshold
 annotation|@
-name|NullableDecl
+name|Nullable
 specifier|private
 name|T
 name|threshold
@@ -447,13 +447,13 @@ literal|null
 expr_stmt|;
 block|}
 comment|/**    * Adds {@code elem} as a candidate for the top {@code k} elements. This operation takes amortized    * O(1) time.    */
-DECL|method|offer (@ullableDecl T elem)
+DECL|method|offer (@ullable T elem)
 specifier|public
 name|void
 name|offer
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|T
 name|elem
 parameter_list|)

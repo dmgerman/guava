@@ -90,9 +90,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -201,13 +201,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|equals (@ullableDecl Object object)
+DECL|method|equals (@ullable Object object)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|object
 parameter_list|)
@@ -239,13 +239,13 @@ argument_list|()
 return|;
 block|}
 comment|/**    * A sensible definition of {@link #equals(Object)} in terms of {@link #getKey()} and {@link    * #getValue()}. If you override either of these methods, you may wish to override {@link    * #equals(Object)} to forward to this implementation.    *    * @since 7.0    */
-DECL|method|standardEquals (@ullableDecl Object object)
+DECL|method|standardEquals (@ullable Object object)
 specifier|protected
 name|boolean
 name|standardEquals
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|object
 parameter_list|)

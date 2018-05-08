@@ -774,9 +774,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -7696,7 +7696,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Utility method to verify that the given SortedSet is equal to and hashes identically to a set    * constructed with the elements in the given iterable. Also verifies that the comparator is the    * same as the given comparator.    */
-DECL|method|verifySortedSetContents ( SortedSet<E> set, Iterable<E> iterable, @NullableDecl Comparator<E> comparator)
+DECL|method|verifySortedSetContents ( SortedSet<E> set, Iterable<E> iterable, @Nullable Comparator<E> comparator)
 specifier|private
 specifier|static
 parameter_list|<
@@ -7718,7 +7718,7 @@ argument_list|>
 name|iterable
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Comparator
 argument_list|<
 name|E

@@ -2116,7 +2116,7 @@ argument_list|)
 operator|.
 name|contains
 argument_list|(
-literal|"@NullableDecl"
+literal|"@Nullable"
 argument_list|)
 expr_stmt|;
 return|return;

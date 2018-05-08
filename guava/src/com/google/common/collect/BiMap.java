@@ -74,9 +74,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -111,18 +111,18 @@ name|CanIgnoreReturnValue
 annotation|@
 name|Override
 annotation|@
-name|NullableDecl
-DECL|method|put (@ullableDecl K key, @NullableDecl V value)
+name|Nullable
+DECL|method|put (@ullable K key, @Nullable V value)
 name|V
 name|put
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|K
 name|key
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|V
 name|value
 parameter_list|)
@@ -131,18 +131,18 @@ comment|/**    * An alternate form of {@code put} that silently removes any exis
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
-name|NullableDecl
-DECL|method|forcePut (@ullableDecl K key, @NullableDecl V value)
+name|Nullable
+DECL|method|forcePut (@ullable K key, @Nullable V value)
 name|V
 name|forcePut
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|K
 name|key
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|V
 name|value
 parameter_list|)

@@ -192,9 +192,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -311,7 +311,7 @@ comment|/**    * Registers the given {@code closeable} to be closed when this {@
 comment|// close. this word no longer has any meaning to me.
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|register (@ullableDecl C closeable)
+DECL|method|register (@ullable C closeable)
 specifier|public
 parameter_list|<
 name|C
@@ -322,7 +322,7 @@ name|C
 name|register
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|C
 name|closeable
 parameter_list|)

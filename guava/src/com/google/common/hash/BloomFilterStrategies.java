@@ -118,9 +118,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -1315,13 +1315,13 @@ block|}
 block|}
 annotation|@
 name|Override
-DECL|method|equals (@ullableDecl Object o)
+DECL|method|equals (@ullable Object o)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|o
 parameter_list|)

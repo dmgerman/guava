@@ -116,9 +116,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -492,7 +492,7 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|subMultiset ( @ullableDecl E fromElement, BoundType fromBoundType, @NullableDecl E toElement, BoundType toBoundType)
+DECL|method|subMultiset ( @ullable E fromElement, BoundType fromBoundType, @Nullable E toElement, BoundType toBoundType)
 specifier|public
 name|SortedMultiset
 argument_list|<
@@ -501,7 +501,7 @@ argument_list|>
 name|subMultiset
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|E
 name|fromElement
 parameter_list|,
@@ -509,7 +509,7 @@ name|BoundType
 name|fromBoundType
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|E
 name|toElement
 parameter_list|,

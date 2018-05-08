@@ -134,9 +134,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -247,7 +247,7 @@ block|}
 comment|/*    * Memory visibility of these fields. There are two cases to consider.    *    * 1. visibility of the writes to these fields to Fire.run:    *    * The initial write to delegateRef is made definitely visible via the semantics of    * addListener/SES.schedule. The later racy write in cancel() is not guaranteed to be observed,    * however that is fine since the correctness is based on the atomic state in our base class. The    * initial write to timer is never definitely visible to Fire.run since it is assigned after    * SES.schedule is called. Therefore Fire.run has to check for null. However, it should be visible    * if Fire.run is called by delegate.addListener since addListener is called after the assignment    * to timer, and importantly this is the main situation in which we need to be able to see the    * write.    *    * 2. visibility of the writes to an afterDone() call triggered by cancel():    *    * Since these fields are non-final that means that TimeoutFuture is not being 'safely published',    * thus a motivated caller may be able to expose the reference to another thread that would then    * call cancel() and be unable to cancel the delegate.    * There are a number of ways to solve this, none of which are very pretty, and it is currently    * believed to be a purely theoretical problem (since the other actions should supply sufficient    * write-barriers).    */
 DECL|field|delegateRef
 annotation|@
-name|NullableDecl
+name|Nullable
 specifier|private
 name|ListenableFuture
 argument_list|<
@@ -257,7 +257,7 @@ name|delegateRef
 decl_stmt|;
 DECL|field|timer
 annotation|@
-name|NullableDecl
+name|Nullable
 specifier|private
 name|Future
 argument_list|<
@@ -303,7 +303,7 @@ name|Runnable
 block|{
 DECL|field|timeoutFutureRef
 annotation|@
-name|NullableDecl
+name|Nullable
 name|TimeoutFuture
 argument_list|<
 name|V

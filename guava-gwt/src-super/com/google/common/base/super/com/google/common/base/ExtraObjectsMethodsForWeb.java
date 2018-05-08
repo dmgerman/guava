@@ -26,9 +26,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -42,19 +42,19 @@ specifier|abstract
 class|class
 name|ExtraObjectsMethodsForWeb
 block|{
-DECL|method|equal (@ullableDecl String a, @NullableDecl String b)
+DECL|method|equal (@ullable String a, @Nullable String b)
 specifier|public
 specifier|static
 name|boolean
 name|equal
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|String
 name|a
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|String
 name|b
 parameter_list|)

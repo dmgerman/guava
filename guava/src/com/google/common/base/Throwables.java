@@ -230,9 +230,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -317,7 +317,7 @@ name|Deprecated
 annotation|@
 name|GwtIncompatible
 comment|// throwIfInstanceOf
-DECL|method|propagateIfInstanceOf ( @ullableDecl Throwable throwable, Class<X> declaredType)
+DECL|method|propagateIfInstanceOf ( @ullable Throwable throwable, Class<X> declaredType)
 specifier|public
 specifier|static
 parameter_list|<
@@ -329,7 +329,7 @@ name|void
 name|propagateIfInstanceOf
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Throwable
 name|throwable
 parameter_list|,
@@ -408,14 +408,14 @@ annotation|@
 name|Deprecated
 annotation|@
 name|GwtIncompatible
-DECL|method|propagateIfPossible (@ullableDecl Throwable throwable)
+DECL|method|propagateIfPossible (@ullable Throwable throwable)
 specifier|public
 specifier|static
 name|void
 name|propagateIfPossible
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Throwable
 name|throwable
 parameter_list|)
@@ -438,7 +438,7 @@ comment|/**    * Propagates {@code throwable} exactly as-is, if and only if it i
 annotation|@
 name|GwtIncompatible
 comment|// propagateIfInstanceOf
-DECL|method|propagateIfPossible ( @ullableDecl Throwable throwable, Class<X> declaredType)
+DECL|method|propagateIfPossible ( @ullable Throwable throwable, Class<X> declaredType)
 specifier|public
 specifier|static
 parameter_list|<
@@ -450,7 +450,7 @@ name|void
 name|propagateIfPossible
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Throwable
 name|throwable
 parameter_list|,
@@ -480,7 +480,7 @@ comment|/**    * Propagates {@code throwable} exactly as-is, if and only if it i
 annotation|@
 name|GwtIncompatible
 comment|// propagateIfInstanceOf
-DECL|method|propagateIfPossible ( @ullableDecl Throwable throwable, Class<X1> declaredType1, Class<X2> declaredType2)
+DECL|method|propagateIfPossible ( @ullable Throwable throwable, Class<X1> declaredType1, Class<X2> declaredType2)
 specifier|public
 specifier|static
 parameter_list|<
@@ -496,7 +496,7 @@ name|void
 name|propagateIfPossible
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Throwable
 name|throwable
 parameter_list|,
@@ -1120,7 +1120,7 @@ annotation|@
 name|GwtIncompatible
 comment|// java.lang.reflect
 annotation|@
-name|NullableDecl
+name|Nullable
 DECL|field|jla
 specifier|private
 specifier|static
@@ -1136,7 +1136,7 @@ annotation|@
 name|GwtIncompatible
 comment|// java.lang.reflect
 annotation|@
-name|NullableDecl
+name|Nullable
 DECL|field|getStackTraceElementMethod
 specifier|private
 specifier|static
@@ -1160,7 +1160,7 @@ annotation|@
 name|GwtIncompatible
 comment|// java.lang.reflect
 annotation|@
-name|NullableDecl
+name|Nullable
 DECL|field|getStackTraceDepthMethod
 specifier|private
 specifier|static
@@ -1184,7 +1184,7 @@ annotation|@
 name|GwtIncompatible
 comment|// java.lang.reflect
 annotation|@
-name|NullableDecl
+name|Nullable
 DECL|method|getJLA ()
 specifier|private
 specifier|static
@@ -1258,7 +1258,7 @@ annotation|@
 name|GwtIncompatible
 comment|// java.lang.reflect
 annotation|@
-name|NullableDecl
+name|Nullable
 DECL|method|getGetMethod ()
 specifier|private
 specifier|static
@@ -1286,7 +1286,7 @@ annotation|@
 name|GwtIncompatible
 comment|// java.lang.reflect
 annotation|@
-name|NullableDecl
+name|Nullable
 DECL|method|getSizeMethod ()
 specifier|private
 specifier|static
@@ -1354,7 +1354,7 @@ annotation|@
 name|GwtIncompatible
 comment|// java.lang.reflect
 annotation|@
-name|NullableDecl
+name|Nullable
 DECL|method|getJlaMethod (String name, Class<?>... parameterTypes)
 specifier|private
 specifier|static

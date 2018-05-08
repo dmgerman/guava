@@ -64,9 +64,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -120,7 +120,7 @@ function_decl|;
 comment|/**    * Maps the specified class to the specified value. Does<i>not</i> associate this value with any    * of the class's supertypes.    *    * @return the value previously associated with this class (possibly {@code null}), or {@code    *     null} if there was no previous entry.    */
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|putInstance (Class<T> type, @NullableDecl T value)
+DECL|method|putInstance (Class<T> type, @Nullable T value)
 argument_list|<
 name|T
 extends|extends
@@ -136,7 +136,7 @@ argument_list|>
 name|type
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|T
 name|value
 parameter_list|)

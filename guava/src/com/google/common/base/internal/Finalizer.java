@@ -136,9 +136,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -435,7 +435,7 @@ comment|// By preference, we will use the Thread constructor that has an `inheri
 comment|// But before Java 9, our only way not to inherit ThreadLocals is to zap them after the thread
 comment|// is created, by accessing a private field.
 annotation|@
-name|NullableDecl
+name|Nullable
 DECL|field|bigThreadConstructor
 specifier|private
 specifier|static
@@ -450,7 +450,7 @@ name|getBigThreadConstructor
 argument_list|()
 decl_stmt|;
 annotation|@
-name|NullableDecl
+name|Nullable
 DECL|field|inheritableThreadLocals
 specifier|private
 specifier|static
@@ -671,7 +671,7 @@ return|;
 block|}
 comment|/** Looks up FinalizableReference.finalizeReferent() method. */
 annotation|@
-name|NullableDecl
+name|Nullable
 DECL|method|getFinalizeReferentMethod ()
 specifier|private
 name|Method
@@ -728,7 +728,7 @@ throw|;
 block|}
 block|}
 annotation|@
-name|NullableDecl
+name|Nullable
 DECL|method|getInheritableThreadLocalsField ()
 specifier|private
 specifier|static
@@ -786,7 +786,7 @@ return|;
 block|}
 block|}
 annotation|@
-name|NullableDecl
+name|Nullable
 DECL|method|getBigThreadConstructor ()
 specifier|private
 specifier|static

@@ -54,9 +54,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -131,13 +131,13 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-DECL|method|smearedHash (@ullableDecl Object o)
+DECL|method|smearedHash (@ullable Object o)
 specifier|static
 name|int
 name|smearedHash
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|o
 parameter_list|)

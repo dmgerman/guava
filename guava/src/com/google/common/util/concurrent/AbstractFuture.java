@@ -378,9 +378,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -853,14 +853,14 @@ argument_list|)
 decl_stmt|;
 DECL|field|thread
 annotation|@
-name|NullableDecl
+name|Nullable
 specifier|volatile
 name|Thread
 name|thread
 decl_stmt|;
 DECL|field|next
 annotation|@
-name|NullableDecl
+name|Nullable
 specifier|volatile
 name|Waiter
 name|next
@@ -1117,7 +1117,7 @@ decl_stmt|;
 comment|// writes to next are made visible by subsequent CAS's on the listeners field
 DECL|field|next
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Listener
 name|next
 decl_stmt|;
@@ -1287,19 +1287,19 @@ name|wasInterrupted
 decl_stmt|;
 DECL|field|cause
 annotation|@
-name|NullableDecl
+name|Nullable
 specifier|final
 name|Throwable
 name|cause
 decl_stmt|;
-DECL|method|Cancellation (boolean wasInterrupted, @NullableDecl Throwable cause)
+DECL|method|Cancellation (boolean wasInterrupted, @Nullable Throwable cause)
 name|Cancellation
 parameter_list|(
 name|boolean
 name|wasInterrupted
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Throwable
 name|cause
 parameter_list|)
@@ -1435,7 +1435,7 @@ comment|// available.
 comment|/**    * This field encodes the current state of the future.    *    *<p>The valid values are:    *    *<ul>    *<li>{@code null} initial state, nothing has happened.    *<li>{@link Cancellation} terminal state, {@code cancel} was called.    *<li>{@link Failure} terminal state, {@code setException} was called.    *<li>{@link SetFuture} intermediate state, {@code setFuture} was called.    *<li>{@link #NULL} terminal state, {@code set(null)} was called.    *<li>Any other non-null value, terminal state, {@code set} was called with a non-null    *       argument.    *</ul>    */
 DECL|field|value
 annotation|@
-name|NullableDecl
+name|Nullable
 specifier|private
 specifier|volatile
 name|Object
@@ -1444,7 +1444,7 @@ decl_stmt|;
 comment|/** All listeners. */
 DECL|field|listeners
 annotation|@
-name|NullableDecl
+name|Nullable
 specifier|private
 specifier|volatile
 name|Listener
@@ -1453,7 +1453,7 @@ decl_stmt|;
 comment|/** All waiting threads. */
 DECL|field|waiters
 annotation|@
-name|NullableDecl
+name|Nullable
 specifier|private
 specifier|volatile
 name|Waiter
@@ -2578,13 +2578,13 @@ block|}
 comment|/**    * Sets the result of this {@code Future} unless this {@code Future} has already been cancelled or    * set (including {@linkplain #setFuture set asynchronously}). When a call to this method returns,    * the {@code Future} is guaranteed to be {@linkplain #isDone done}<b>only if</b> the call was    * accepted (in which case it returns {@code true}). If it returns {@code false}, the {@code    * Future} may have previously been set asynchronously, in which case its result may not be known    * yet. That result, though not yet known, cannot be overridden by a call to a {@code set*}    * method, only by a call to {@link #cancel}.    *    * @param value the value to be used as the result    * @return true if the attempt was accepted, completing the {@code Future}    */
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|set (@ullableDecl V value)
+DECL|method|set (@ullable V value)
 specifier|protected
 name|boolean
 name|set
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|V
 name|value
 parameter_list|)
@@ -3264,13 +3264,13 @@ name|exception
 return|;
 block|}
 comment|/**    * If this future has been cancelled (and possibly interrupted), cancels (and possibly interrupts)    * the given future (if available).    */
-DECL|method|maybePropagateCancellationTo (@ullableDecl Future<?> related)
+DECL|method|maybePropagateCancellationTo (@ullable Future<?> related)
 specifier|final
 name|void
 name|maybePropagateCancellationTo
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Future
 argument_list|<
 name|?
@@ -3592,7 +3592,7 @@ return|;
 block|}
 comment|/**    * Provide a human-readable explanation of why this future has not yet completed.    *    * @return null if an explanation cannot be provided because the future is done.    * @since 23.0    */
 annotation|@
-name|NullableDecl
+name|Nullable
 DECL|method|pendingToString ()
 specifier|protected
 name|String
@@ -4907,19 +4907,19 @@ return|;
 block|}
 block|}
 block|}
-DECL|method|cancellationExceptionWithCause ( @ullableDecl String message, @NullableDecl Throwable cause)
+DECL|method|cancellationExceptionWithCause ( @ullable String message, @Nullable Throwable cause)
 specifier|private
 specifier|static
 name|CancellationException
 name|cancellationExceptionWithCause
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|String
 name|message
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Throwable
 name|cause
 parameter_list|)

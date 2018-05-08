@@ -446,9 +446,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -580,7 +580,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Creates a {@code ListenableFuture} which has its value set immediately upon construction. The    * getters just return the value. This {@code Future} can't be canceled or timed out and its    * {@code isDone()} method always returns {@code true}.    */
-DECL|method|immediateFuture (@ullableDecl V value)
+DECL|method|immediateFuture (@ullable V value)
 specifier|public
 specifier|static
 parameter_list|<
@@ -593,7 +593,7 @@ argument_list|>
 name|immediateFuture
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|V
 name|value
 parameter_list|)
@@ -650,7 +650,7 @@ name|Deprecated
 annotation|@
 name|GwtIncompatible
 comment|// TODO
-DECL|method|immediateCheckedFuture ( @ullableDecl V value)
+DECL|method|immediateCheckedFuture ( @ullable V value)
 specifier|public
 specifier|static
 parameter_list|<
@@ -669,7 +669,7 @@ argument_list|>
 name|immediateCheckedFuture
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|V
 name|value
 parameter_list|)

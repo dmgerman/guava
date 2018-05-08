@@ -42,9 +42,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -65,13 +65,13 @@ specifier|final
 class|class
 name|Platform
 block|{
-DECL|method|isInstanceOfThrowableClass ( @ullableDecl Throwable t, Class<? extends Throwable> expectedClass)
+DECL|method|isInstanceOfThrowableClass ( @ullable Throwable t, Class<? extends Throwable> expectedClass)
 specifier|static
 name|boolean
 name|isInstanceOfThrowableClass
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Throwable
 name|t
 parameter_list|,

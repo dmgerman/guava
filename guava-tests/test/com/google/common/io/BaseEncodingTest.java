@@ -282,9 +282,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -2617,7 +2617,7 @@ literal|null
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|assertFailsToDecode ( BaseEncoding encoding, String cannotDecode, @NullableDecl String expectedMessage)
+DECL|method|assertFailsToDecode ( BaseEncoding encoding, String cannotDecode, @Nullable String expectedMessage)
 specifier|private
 specifier|static
 name|void
@@ -2630,7 +2630,7 @@ name|String
 name|cannotDecode
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|String
 name|expectedMessage
 parameter_list|)

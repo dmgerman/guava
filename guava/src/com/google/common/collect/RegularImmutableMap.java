@@ -198,9 +198,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -571,7 +571,7 @@ operator|&
 name|mask
 decl_stmt|;
 annotation|@
-name|NullableDecl
+name|Nullable
 name|ImmutableMapEntry
 argument_list|<
 name|K
@@ -854,7 +854,7 @@ block|}
 comment|/**    * @return number of entries in this bucket    * @throws IllegalArgumentException if another entry in the bucket has the same key    */
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|checkNoConflictInKeyBucket ( Object key, Entry<?, ?> entry, @NullableDecl ImmutableMapEntry<?, ?> keyBucketHead)
+DECL|method|checkNoConflictInKeyBucket ( Object key, Entry<?, ?> entry, @Nullable ImmutableMapEntry<?, ?> keyBucketHead)
 specifier|static
 name|int
 name|checkNoConflictInKeyBucket
@@ -871,7 +871,7 @@ argument_list|>
 name|entry
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|ImmutableMapEntry
 argument_list|<
 name|?
@@ -931,13 +931,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|get (@ullableDecl Object key)
+DECL|method|get (@ullable Object key)
 specifier|public
 name|V
 name|get
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|key
 parameter_list|)
@@ -954,34 +954,34 @@ argument_list|)
 return|;
 block|}
 annotation|@
-name|NullableDecl
-DECL|method|get ( @ullableDecl Object key, @NullableDecl ImmutableMapEntry<?, V>[] keyTable, int mask)
+name|Nullable
+DECL|method|get (@ullable Object key, ImmutableMapEntry<?, V> @Nullable [] keyTable, int mask)
 specifier|static
-parameter_list|<
+argument_list|<
 name|V
-parameter_list|>
+argument_list|>
 name|V
 name|get
-parameter_list|(
+argument_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|key
-parameter_list|,
-annotation|@
-name|NullableDecl
+argument_list|,
 name|ImmutableMapEntry
 argument_list|<
 name|?
 argument_list|,
 name|V
 argument_list|>
+expr|@
+name|Nullable
 index|[]
 name|keyTable
-parameter_list|,
+operator|,
 name|int
 name|mask
-parameter_list|)
+argument_list|)
 block|{
 if|if
 condition|(

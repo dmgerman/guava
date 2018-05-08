@@ -40,9 +40,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -61,12 +61,12 @@ extends|extends
 name|RuntimeException
 block|{
 comment|/** Creates a new instance with the given cause. */
-DECL|method|ComputationException (@ullableDecl Throwable cause)
+DECL|method|ComputationException (@ullable Throwable cause)
 specifier|public
 name|ComputationException
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Throwable
 name|cause
 parameter_list|)

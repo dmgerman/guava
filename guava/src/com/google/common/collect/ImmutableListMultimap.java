@@ -272,9 +272,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -1609,7 +1609,7 @@ argument_list|()
 return|;
 block|}
 comment|/** Creates an ImmutableListMultimap from an asMap.entrySet. */
-DECL|method|fromMapEntries ( Collection<? extends Map.Entry<? extends K, ? extends Collection<? extends V>>> mapEntries, @NullableDecl Comparator<? super V> valueComparator)
+DECL|method|fromMapEntries ( Collection<? extends Map.Entry<? extends K, ? extends Collection<? extends V>>> mapEntries, @Nullable Comparator<? super V> valueComparator)
 specifier|static
 parameter_list|<
 name|K
@@ -1649,7 +1649,7 @@ argument_list|>
 name|mapEntries
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Comparator
 argument_list|<
 name|?
@@ -1844,7 +1844,7 @@ comment|// views
 comment|/**    * Returns an immutable list of the values for the given key. If no mappings in the multimap have    * the provided key, an empty immutable list is returned. The values are in the same order as the    * parameters used to build this multimap.    */
 annotation|@
 name|Override
-DECL|method|get (@ullableDecl K key)
+DECL|method|get (@ullable K key)
 specifier|public
 name|ImmutableList
 argument_list|<
@@ -1853,7 +1853,7 @@ argument_list|>
 name|get
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|K
 name|key
 parameter_list|)

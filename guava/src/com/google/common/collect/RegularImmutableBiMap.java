@@ -242,9 +242,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -875,7 +875,7 @@ comment|// checkNoConflictInKeyBucket is static imported from RegularImmutableMa
 comment|/**    * @return number of entries in this bucket    * @throws IllegalArgumentException if another entry in the bucket has the same key    */
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|checkNoConflictInValueBucket ( Object value, Entry<?, ?> entry, @NullableDecl ImmutableMapEntry<?, ?> valueBucketHead)
+DECL|method|checkNoConflictInValueBucket ( Object value, Entry<?, ?> entry, @Nullable ImmutableMapEntry<?, ?> valueBucketHead)
 specifier|private
 specifier|static
 name|int
@@ -893,7 +893,7 @@ argument_list|>
 name|entry
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|ImmutableMapEntry
 argument_list|<
 name|?
@@ -954,14 +954,14 @@ block|}
 annotation|@
 name|Override
 annotation|@
-name|NullableDecl
-DECL|method|get (@ullableDecl Object key)
+name|Nullable
+DECL|method|get (@ullable Object key)
 specifier|public
 name|V
 name|get
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|key
 parameter_list|)
@@ -1322,13 +1322,13 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|get (@ullableDecl Object value)
+DECL|method|get (@ullable Object value)
 specifier|public
 name|K
 name|get
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|value
 parameter_list|)

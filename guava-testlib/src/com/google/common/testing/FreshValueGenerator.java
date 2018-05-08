@@ -1320,9 +1320,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -1590,7 +1590,7 @@ expr_stmt|;
 block|}
 comment|/**    * Returns a fresh instance for {@code type} if possible. The returned instance could be:    *    *<ul>    *<li>exactly of the given type, including generic type parameters, such as {@code    *       ImmutableList<String>};    *<li>of the raw type;    *<li>null if no value can be generated.    *</ul>    */
 annotation|@
-name|NullableDecl
+name|Nullable
 DECL|method|generateFresh (TypeToken<?> type)
 specifier|final
 name|Object
@@ -1629,7 +1629,7 @@ name|generated
 return|;
 block|}
 annotation|@
-name|NullableDecl
+name|Nullable
 DECL|method|generateFresh (Class<T> type)
 specifier|final
 parameter_list|<
@@ -2299,13 +2299,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|equals (@ullableDecl Object obj)
+DECL|method|equals (@ullable Object obj)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|obj
 parameter_list|)

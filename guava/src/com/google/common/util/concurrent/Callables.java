@@ -112,9 +112,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -142,7 +142,7 @@ name|Callables
 parameter_list|()
 block|{}
 comment|/** Creates a {@code Callable} which immediately returns a preset value each time it is called. */
-DECL|method|returning (@ullableDecl final T value)
+DECL|method|returning (@ullable final T value)
 specifier|public
 specifier|static
 parameter_list|<
@@ -155,7 +155,7 @@ argument_list|>
 name|returning
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 specifier|final
 name|T
 name|value

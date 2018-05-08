@@ -228,9 +228,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -519,13 +519,13 @@ name|length
 index|]
 expr_stmt|;
 block|}
-DECL|method|isActuallyE (@ullableDecl Object o)
+DECL|method|isActuallyE (@ullable Object o)
 specifier|private
 name|boolean
 name|isActuallyE
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|o
 parameter_list|)
@@ -584,12 +584,12 @@ name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
-DECL|method|checkIsE (@ullableDecl Object element)
+DECL|method|checkIsE (@ullable Object element)
 name|void
 name|checkIsE
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|element
 parameter_list|)
@@ -653,13 +653,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|count (@ullableDecl Object element)
+DECL|method|count (@ullable Object element)
 specifier|public
 name|int
 name|count
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|element
 parameter_list|)
@@ -821,13 +821,13 @@ annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
-DECL|method|remove (@ullableDecl Object element, int occurrences)
+DECL|method|remove (@ullable Object element, int occurrences)
 specifier|public
 name|int
 name|remove
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|element
 parameter_list|,

@@ -152,9 +152,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -300,7 +300,7 @@ block|}
 block|}
 annotation|@
 name|Override
-DECL|method|collectOneValue (boolean allMustSucceed, int index, @NullableDecl V returnValue)
+DECL|method|collectOneValue (boolean allMustSucceed, int index, @Nullable V returnValue)
 specifier|final
 name|void
 name|collectOneValue
@@ -312,7 +312,7 @@ name|int
 name|index
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|V
 name|returnValue
 parameter_list|)

@@ -94,9 +94,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -256,7 +256,7 @@ comment|// Following Javadoc copied from ListMultimap.
 comment|/**    * {@inheritDoc}    *    *<p>Because the values for a given key may have duplicates and follow the insertion ordering,    * this method returns a {@link List}, instead of the {@link Collection} specified in the {@link    * Multimap} interface.    */
 annotation|@
 name|Override
-DECL|method|get (@ullableDecl K key)
+DECL|method|get (@ullable K key)
 specifier|public
 name|List
 argument_list|<
@@ -265,7 +265,7 @@ argument_list|>
 name|get
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|K
 name|key
 parameter_list|)
@@ -290,7 +290,7 @@ annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
-DECL|method|removeAll (@ullableDecl Object key)
+DECL|method|removeAll (@ullable Object key)
 specifier|public
 name|List
 argument_list|<
@@ -299,7 +299,7 @@ argument_list|>
 name|removeAll
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|key
 parameter_list|)
@@ -324,7 +324,7 @@ annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
-DECL|method|replaceValues (@ullableDecl K key, Iterable<? extends V> values)
+DECL|method|replaceValues (@ullable K key, Iterable<? extends V> values)
 specifier|public
 name|List
 argument_list|<
@@ -333,7 +333,7 @@ argument_list|>
 name|replaceValues
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|K
 name|key
 parameter_list|,
@@ -368,18 +368,18 @@ annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
-DECL|method|put (@ullableDecl K key, @NullableDecl V value)
+DECL|method|put (@ullable K key, @Nullable V value)
 specifier|public
 name|boolean
 name|put
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|K
 name|key
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|V
 name|value
 parameter_list|)
@@ -422,13 +422,13 @@ block|}
 comment|/**    * Compares the specified object to this multimap for equality.    *    *<p>Two {@code ListMultimap} instances are equal if, for each key, they contain the same values    * in the same order. If the value orderings disagree, the multimaps will not be considered equal.    */
 annotation|@
 name|Override
-DECL|method|equals (@ullableDecl Object object)
+DECL|method|equals (@ullable Object object)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|object
 parameter_list|)

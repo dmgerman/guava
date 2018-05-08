@@ -374,9 +374,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -5954,7 +5954,7 @@ name|Object
 name|apply
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Integer
 name|input
 parameter_list|)

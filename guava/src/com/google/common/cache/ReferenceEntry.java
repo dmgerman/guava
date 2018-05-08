@@ -56,9 +56,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -105,7 +105,7 @@ parameter_list|)
 function_decl|;
 comment|/** Returns the next entry in the chain. */
 annotation|@
-name|NullableDecl
+name|Nullable
 DECL|method|getNext ()
 name|ReferenceEntry
 argument_list|<
@@ -124,7 +124,7 @@ parameter_list|()
 function_decl|;
 comment|/** Returns the key for this entry. */
 annotation|@
-name|NullableDecl
+name|Nullable
 DECL|method|getKey ()
 name|K
 name|getKey

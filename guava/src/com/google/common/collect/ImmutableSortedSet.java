@@ -290,9 +290,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -3039,13 +3039,13 @@ name|descendingIterator
 parameter_list|()
 function_decl|;
 comment|/** Returns the position of an element within the set, or -1 if not present. */
-DECL|method|indexOf (@ullableDecl Object target)
+DECL|method|indexOf (@ullable Object target)
 specifier|abstract
 name|int
 name|indexOf
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|target
 parameter_list|)

@@ -66,9 +66,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -88,12 +88,12 @@ name|V
 parameter_list|>
 block|{
 comment|/** Invoked with the result of the {@code Future} computation when it is successful. */
-DECL|method|onSuccess (@ullableDecl V result)
+DECL|method|onSuccess (@ullable V result)
 name|void
 name|onSuccess
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|V
 name|result
 parameter_list|)

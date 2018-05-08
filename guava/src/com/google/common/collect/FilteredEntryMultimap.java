@@ -234,9 +234,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -454,13 +454,13 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|apply (@ullableDecl V value)
+DECL|method|apply (@ullable V value)
 specifier|public
 name|boolean
 name|apply
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|V
 name|value
 parameter_list|)
@@ -541,13 +541,13 @@ block|}
 block|}
 annotation|@
 name|Override
-DECL|method|containsKey (@ullableDecl Object key)
+DECL|method|containsKey (@ullable Object key)
 specifier|public
 name|boolean
 name|containsKey
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|key
 parameter_list|)
@@ -566,7 +566,7 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|removeAll (@ullableDecl Object key)
+DECL|method|removeAll (@ullable Object key)
 specifier|public
 name|Collection
 argument_list|<
@@ -575,7 +575,7 @@ argument_list|>
 name|removeAll
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|key
 parameter_list|)
@@ -971,13 +971,13 @@ argument_list|>
 block|{
 annotation|@
 name|Override
-DECL|method|containsKey (@ullableDecl Object key)
+DECL|method|containsKey (@ullable Object key)
 specifier|public
 name|boolean
 name|containsKey
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|key
 parameter_list|)
@@ -1009,7 +1009,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|get (@ullableDecl Object key)
+DECL|method|get (@ullable Object key)
 specifier|public
 name|Collection
 argument_list|<
@@ -1018,7 +1018,7 @@ argument_list|>
 name|get
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|key
 parameter_list|)
@@ -1090,7 +1090,7 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|remove (@ullableDecl Object key)
+DECL|method|remove (@ullable Object key)
 specifier|public
 name|Collection
 argument_list|<
@@ -1099,7 +1099,7 @@ argument_list|>
 name|remove
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|key
 parameter_list|)
@@ -1363,7 +1363,7 @@ name|boolean
 name|remove
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|o
 parameter_list|)
@@ -1720,7 +1720,7 @@ name|boolean
 name|remove
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|o
 parameter_list|)
@@ -2003,13 +2003,13 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|remove (@ullableDecl Object key, int occurrences)
+DECL|method|remove (@ullable Object key, int occurrences)
 specifier|public
 name|int
 name|remove
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|key
 parameter_list|,

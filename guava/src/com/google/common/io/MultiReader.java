@@ -84,9 +84,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -116,7 +116,7 @@ name|it
 decl_stmt|;
 DECL|field|current
 annotation|@
-name|NullableDecl
+name|Nullable
 specifier|private
 name|Reader
 name|current
@@ -179,32 +179,32 @@ block|}
 block|}
 annotation|@
 name|Override
-DECL|method|read (@ullableDecl char[] cbuf, int off, int len)
+DECL|method|read (char @Nullable [] cbuf, int off, int len)
 specifier|public
 name|int
 name|read
-parameter_list|(
-annotation|@
-name|NullableDecl
+argument_list|(
 name|char
+expr|@
+name|Nullable
 index|[]
 name|cbuf
-parameter_list|,
+argument_list|,
 name|int
 name|off
-parameter_list|,
+argument_list|,
 name|int
 name|len
-parameter_list|)
+argument_list|)
 throws|throws
 name|IOException
 block|{
-if|if
-condition|(
+decl|if
+argument_list|(
 name|current
 operator|==
 literal|null
-condition|)
+argument_list|)
 block|{
 return|return
 operator|-
@@ -251,6 +251,9 @@ return|return
 name|result
 return|;
 block|}
+end_class
+
+begin_function
 annotation|@
 name|Override
 DECL|method|skip (long n)
@@ -319,6 +322,9 @@ return|return
 literal|0
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|ready ()
@@ -342,6 +348,9 @@ name|ready
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|close ()
@@ -376,8 +385,8 @@ expr_stmt|;
 block|}
 block|}
 block|}
-block|}
-end_class
+end_function
 
+unit|}
 end_unit
 

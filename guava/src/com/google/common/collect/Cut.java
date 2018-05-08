@@ -90,9 +90,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -125,16 +125,16 @@ name|Serializable
 block|{
 DECL|field|endpoint
 annotation|@
-name|NullableDecl
+name|Nullable
 specifier|final
 name|C
 name|endpoint
 decl_stmt|;
-DECL|method|Cut (@ullableDecl C endpoint)
+DECL|method|Cut (@ullable C endpoint)
 name|Cut
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|C
 name|endpoint
 parameter_list|)
@@ -1355,7 +1355,7 @@ case|case
 name|OPEN
 case|:
 annotation|@
-name|NullableDecl
+name|Nullable
 name|C
 name|previous
 init|=
@@ -1426,7 +1426,7 @@ case|case
 name|CLOSED
 case|:
 annotation|@
-name|NullableDecl
+name|Nullable
 name|C
 name|previous
 init|=
@@ -1745,7 +1745,7 @@ case|case
 name|CLOSED
 case|:
 annotation|@
-name|NullableDecl
+name|Nullable
 name|C
 name|next
 init|=
@@ -1812,7 +1812,7 @@ case|case
 name|OPEN
 case|:
 annotation|@
-name|NullableDecl
+name|Nullable
 name|C
 name|next
 init|=

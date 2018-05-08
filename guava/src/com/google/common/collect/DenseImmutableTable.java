@@ -110,9 +110,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -671,7 +671,7 @@ argument_list|)
 return|;
 block|}
 annotation|@
-name|NullableDecl
+name|Nullable
 DECL|method|getValue (int keyIndex)
 specifier|abstract
 name|V
@@ -721,13 +721,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|get (@ullableDecl Object key)
+DECL|method|get (@ullable Object key)
 specifier|public
 name|V
 name|get
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|key
 parameter_list|)
@@ -1326,18 +1326,18 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|get (@ullableDecl Object rowKey, @NullableDecl Object columnKey)
+DECL|method|get (@ullable Object rowKey, @Nullable Object columnKey)
 specifier|public
 name|V
 name|get
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|rowKey
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|columnKey
 parameter_list|)

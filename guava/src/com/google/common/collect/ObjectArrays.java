@@ -116,9 +116,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -306,7 +306,7 @@ name|result
 return|;
 block|}
 comment|/**    * Returns a new array that prepends {@code element} to {@code array}.    *    * @param element the element to prepend to the front of {@code array}    * @param array the array of elements to append    * @return an array whose size is one larger than {@code array}, with {@code element} occupying    *     the first position, and the elements of {@code array} occupying the remaining elements.    */
-DECL|method|concat (@ullableDecl T element, T[] array)
+DECL|method|concat (@ullable T element, T[] array)
 specifier|public
 specifier|static
 parameter_list|<
@@ -317,7 +317,7 @@ index|[]
 name|concat
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|T
 name|element
 parameter_list|,
@@ -370,7 +370,7 @@ name|result
 return|;
 block|}
 comment|/**    * Returns a new array that appends {@code element} to {@code array}.    *    * @param array the array of elements to prepend    * @param element the element to append to the end    * @return an array whose size is one larger than {@code array}, with the same contents as {@code    *     array}, plus {@code element} occupying the last position.    */
-DECL|method|concat (T[] array, @NullableDecl T element)
+DECL|method|concat (T[] array, @Nullable T element)
 specifier|public
 specifier|static
 parameter_list|<
@@ -385,7 +385,7 @@ index|[]
 name|array
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|T
 name|element
 parameter_list|)

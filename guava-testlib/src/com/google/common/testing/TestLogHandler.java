@@ -108,9 +108,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -148,14 +148,14 @@ decl_stmt|;
 comment|/** Adds the most recently logged record to our list. */
 annotation|@
 name|Override
-DECL|method|publish (@ullableDecl LogRecord record)
+DECL|method|publish (@ullable LogRecord record)
 specifier|public
 specifier|synchronized
 name|void
 name|publish
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|LogRecord
 name|record
 parameter_list|)

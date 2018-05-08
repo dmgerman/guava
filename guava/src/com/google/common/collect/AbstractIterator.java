@@ -80,9 +80,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -153,7 +153,7 @@ name|FAILED
 block|,   }
 DECL|field|next
 annotation|@
-name|NullableDecl
+name|Nullable
 specifier|private
 name|T
 name|next

@@ -244,9 +244,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -411,10 +411,10 @@ name|E
 argument_list|>
 argument_list|()
 block|{
-annotation|@
-name|NullableDecl
 name|Map
 operator|.
+expr|@
+name|Nullable
 name|Entry
 argument_list|<
 name|E
@@ -422,7 +422,7 @@ argument_list|,
 name|Count
 argument_list|>
 name|toRemove
-decl_stmt|;
+expr_stmt|;
 annotation|@
 name|Override
 specifier|public
@@ -558,10 +558,10 @@ argument_list|>
 argument_list|>
 argument_list|()
 block|{
-annotation|@
-name|NullableDecl
 name|Map
 operator|.
+expr|@
+name|Nullable
 name|Entry
 argument_list|<
 name|E
@@ -569,7 +569,7 @@ argument_list|,
 name|Count
 argument_list|>
 name|toRemove
-decl_stmt|;
+expr_stmt|;
 annotation|@
 name|Override
 specifier|public
@@ -1083,13 +1083,13 @@ block|}
 block|}
 annotation|@
 name|Override
-DECL|method|count (@ullableDecl Object element)
+DECL|method|count (@ullable Object element)
 specifier|public
 name|int
 name|count
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|element
 parameter_list|)
@@ -1127,13 +1127,13 @@ annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
-DECL|method|add (@ullableDecl E element, int occurrences)
+DECL|method|add (@ullable E element, int occurrences)
 specifier|public
 name|int
 name|add
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|E
 name|element
 parameter_list|,
@@ -1259,13 +1259,13 @@ annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
-DECL|method|remove (@ullableDecl Object element, int occurrences)
+DECL|method|remove (@ullable Object element, int occurrences)
 specifier|public
 name|int
 name|remove
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|element
 parameter_list|,
@@ -1377,13 +1377,13 @@ annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
-DECL|method|setCount (@ullableDecl E element, int count)
+DECL|method|setCount (@ullable E element, int count)
 specifier|public
 name|int
 name|setCount
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|E
 name|element
 parameter_list|,
@@ -1484,14 +1484,14 @@ return|return
 name|oldCount
 return|;
 block|}
-DECL|method|getAndSet (@ullableDecl Count i, int count)
+DECL|method|getAndSet (@ullable Count i, int count)
 specifier|private
 specifier|static
 name|int
 name|getAndSet
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Count
 name|i
 parameter_list|,

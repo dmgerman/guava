@@ -150,9 +150,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -374,17 +374,17 @@ argument_list|)
 decl_stmt|;
 DECL|field|value
 annotation|@
-name|NullableDecl
+name|Nullable
 specifier|private
 specifier|final
 name|V
 name|value
 decl_stmt|;
-DECL|method|ImmediateSuccessfulFuture (@ullableDecl V value)
+DECL|method|ImmediateSuccessfulFuture (@ullable V value)
 name|ImmediateSuccessfulFuture
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|V
 name|value
 parameter_list|)
@@ -461,17 +461,17 @@ argument_list|>
 block|{
 DECL|field|value
 annotation|@
-name|NullableDecl
+name|Nullable
 specifier|private
 specifier|final
 name|V
 name|value
 decl_stmt|;
-DECL|method|ImmediateSuccessfulCheckedFuture (@ullableDecl V value)
+DECL|method|ImmediateSuccessfulCheckedFuture (@ullable V value)
 name|ImmediateSuccessfulCheckedFuture
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|V
 name|value
 parameter_list|)

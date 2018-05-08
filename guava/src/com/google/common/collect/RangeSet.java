@@ -74,9 +74,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -394,12 +394,12 @@ comment|// Object methods
 comment|/**    * Returns {@code true} if {@code obj} is another {@code RangeSet} that contains the same ranges    * according to {@link Range#equals(Object)}.    */
 annotation|@
 name|Override
-DECL|method|equals (@ullableDecl Object obj)
+DECL|method|equals (@ullable Object obj)
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|obj
 parameter_list|)

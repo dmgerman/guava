@@ -226,9 +226,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -357,14 +357,14 @@ literal|"unchecked"
 argument_list|)
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|invoke (@ullableDecl T receiver, Object... args)
+DECL|method|invoke (@ullable T receiver, Object... args)
 specifier|public
 specifier|final
 name|R
 name|invoke
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|T
 name|receiver
 parameter_list|,
@@ -805,13 +805,13 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-DECL|method|invokeInternal (@ullableDecl Object receiver, Object[] args)
+DECL|method|invokeInternal (@ullable Object receiver, Object[] args)
 specifier|abstract
 name|Object
 name|invokeInternal
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|receiver
 parameter_list|,
@@ -908,13 +908,13 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|invokeInternal (@ullableDecl Object receiver, Object[] args)
+DECL|method|invokeInternal (@ullable Object receiver, Object[] args)
 specifier|final
 name|Object
 name|invokeInternal
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|receiver
 parameter_list|,
@@ -1147,13 +1147,13 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|invokeInternal (@ullableDecl Object receiver, Object[] args)
+DECL|method|invokeInternal (@ullable Object receiver, Object[] args)
 specifier|final
 name|Object
 name|invokeInternal
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|receiver
 parameter_list|,

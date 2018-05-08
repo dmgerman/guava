@@ -104,9 +104,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -321,7 +321,7 @@ comment|// Following Javadoc copied from Multimap and SortedSetMultimap.
 comment|/**    * Returns a collection view of all values associated with a key. If no mappings in the multimap    * have the provided key, an empty collection is returned.    *    *<p>Changes to the returned collection will update the underlying multimap, and vice versa.    *    *<p>Because a {@code SortedSetMultimap} has unique sorted values for a given key, this method    * returns a {@link SortedSet}, instead of the {@link Collection} specified in the {@link    * Multimap} interface.    */
 annotation|@
 name|Override
-DECL|method|get (@ullableDecl K key)
+DECL|method|get (@ullable K key)
 specifier|public
 name|SortedSet
 argument_list|<
@@ -330,7 +330,7 @@ argument_list|>
 name|get
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|K
 name|key
 parameter_list|)
@@ -355,7 +355,7 @@ annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
-DECL|method|removeAll (@ullableDecl Object key)
+DECL|method|removeAll (@ullable Object key)
 specifier|public
 name|SortedSet
 argument_list|<
@@ -364,7 +364,7 @@ argument_list|>
 name|removeAll
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|key
 parameter_list|)
@@ -389,7 +389,7 @@ annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
-DECL|method|replaceValues (@ullableDecl K key, Iterable<? extends V> values)
+DECL|method|replaceValues (@ullable K key, Iterable<? extends V> values)
 specifier|public
 name|SortedSet
 argument_list|<
@@ -398,7 +398,7 @@ argument_list|>
 name|replaceValues
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|K
 name|key
 parameter_list|,

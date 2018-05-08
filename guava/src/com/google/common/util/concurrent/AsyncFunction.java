@@ -54,9 +54,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -80,7 +80,7 @@ name|O
 parameter_list|>
 block|{
 comment|/**    * Returns an output {@code Future} to use in place of the given {@code input}. The output {@code    * Future} need not be {@linkplain Future#isDone done}, making {@code AsyncFunction} suitable for    * asynchronous derivations.    *    *<p>Throwing an exception from this method is equivalent to returning a failing {@code Future}.    */
-DECL|method|apply (@ullableDecl I input)
+DECL|method|apply (@ullable I input)
 name|ListenableFuture
 argument_list|<
 name|O
@@ -88,7 +88,7 @@ argument_list|>
 name|apply
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|I
 name|input
 parameter_list|)

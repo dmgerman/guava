@@ -100,9 +100,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -407,13 +407,13 @@ annotation|@
 name|Override
 annotation|@
 name|Beta
-DECL|method|standardContainsKey (@ullableDecl Object key)
+DECL|method|standardContainsKey (@ullable Object key)
 specifier|protected
 name|boolean
 name|standardContainsKey
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|key
 parameter_list|)

@@ -96,9 +96,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -125,7 +125,7 @@ parameter_list|>
 block|{
 comment|/**    * Returns the value associated with the specified key, or {@code null} if there is no such value.    *    *<p>Specifically, if any range in this range map contains the specified key, the value    * associated with that range is returned.    */
 annotation|@
-name|NullableDecl
+name|Nullable
 DECL|method|get (K key)
 name|V
 name|get
@@ -136,7 +136,7 @@ parameter_list|)
 function_decl|;
 comment|/**    * Returns the range containing this key and its associated value, if such a range is present in    * the range map, or {@code null} otherwise.    */
 annotation|@
-name|NullableDecl
+name|Nullable
 DECL|method|getEntry (K key)
 name|Entry
 argument_list|<
@@ -272,12 +272,12 @@ function_decl|;
 comment|/**    * Returns {@code true} if {@code obj} is another {@code RangeMap} that has an equivalent {@link    * #asMapOfRanges()}.    */
 annotation|@
 name|Override
-DECL|method|equals (@ullableDecl Object o)
+DECL|method|equals (@ullable Object o)
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|o
 parameter_list|)

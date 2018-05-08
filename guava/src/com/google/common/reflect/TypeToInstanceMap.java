@@ -64,9 +64,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -99,7 +99,7 @@ argument_list|>
 block|{
 comment|/**    * Returns the value the specified class is mapped to, or {@code null} if no entry for this class    * is present. This will only return a value that was bound to this specific class, not a value    * that may have been bound to a subtype.    *    *<p>{@code getInstance(Foo.class)} is equivalent to {@code    * getInstance(TypeToken.of(Foo.class))}.    */
 annotation|@
-name|NullableDecl
+name|Nullable
 DECL|method|getInstance (Class<T> type)
 argument_list|<
 name|T
@@ -118,7 +118,7 @@ parameter_list|)
 function_decl|;
 comment|/**    * Returns the value the specified type is mapped to, or {@code null} if no entry for this type is    * present. This will only return a value that was bound to this specific type, not a value that    * may have been bound to a subtype.    */
 annotation|@
-name|NullableDecl
+name|Nullable
 DECL|method|getInstance (TypeToken<T> type)
 argument_list|<
 name|T
@@ -137,10 +137,10 @@ parameter_list|)
 function_decl|;
 comment|/**    * Maps the specified class to the specified value. Does<i>not</i> associate this value with any    * of the class's supertypes.    *    *<p>{@code putInstance(Foo.class, foo)} is equivalent to {@code    * putInstance(TypeToken.of(Foo.class), foo)}.    *    * @return the value previously associated with this class (possibly {@code null}), or {@code    *     null} if there was no previous entry.    */
 annotation|@
-name|NullableDecl
+name|Nullable
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|putInstance (Class<T> type, @NullableDecl T value)
+DECL|method|putInstance (Class<T> type, @Nullable T value)
 argument_list|<
 name|T
 extends|extends
@@ -156,17 +156,17 @@ argument_list|>
 name|type
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|T
 name|value
 parameter_list|)
 function_decl|;
 comment|/**    * Maps the specified type to the specified value. Does<i>not</i> associate this value with any    * of the type's supertypes.    *    * @return the value previously associated with this type (possibly {@code null}), or {@code null}    *     if there was no previous entry.    */
 annotation|@
-name|NullableDecl
+name|Nullable
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|putInstance (TypeToken<T> type, @NullableDecl T value)
+DECL|method|putInstance (TypeToken<T> type, @Nullable T value)
 argument_list|<
 name|T
 extends|extends
@@ -182,7 +182,7 @@ argument_list|>
 name|type
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|T
 name|value
 parameter_list|)

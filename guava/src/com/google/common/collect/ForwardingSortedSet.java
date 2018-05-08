@@ -94,9 +94,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -280,18 +280,18 @@ name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
-DECL|method|unsafeCompare (@ullableDecl Object o1, @NullableDecl Object o2)
+DECL|method|unsafeCompare (@ullable Object o1, @Nullable Object o2)
 specifier|private
 name|int
 name|unsafeCompare
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|o1
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|o2
 parameter_list|)
@@ -352,13 +352,13 @@ annotation|@
 name|Override
 annotation|@
 name|Beta
-DECL|method|standardContains (@ullableDecl Object object)
+DECL|method|standardContains (@ullable Object object)
 specifier|protected
 name|boolean
 name|standardContains
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|object
 parameter_list|)
@@ -429,13 +429,13 @@ annotation|@
 name|Override
 annotation|@
 name|Beta
-DECL|method|standardRemove (@ullableDecl Object object)
+DECL|method|standardRemove (@ullable Object object)
 specifier|protected
 name|boolean
 name|standardRemove
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|object
 parameter_list|)

@@ -112,9 +112,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -282,13 +282,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|equals (@ullableDecl Object object)
+DECL|method|equals (@ullable Object object)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|object
 parameter_list|)
@@ -387,13 +387,13 @@ block|}
 comment|/**    * A sensible definition of {@link #contains} in terms of {@link #count}. If you override {@link    * #count}, you may wish to override {@link #contains} to forward to this implementation.    *    * @since 7.0    */
 annotation|@
 name|Override
-DECL|method|standardContains (@ullableDecl Object object)
+DECL|method|standardContains (@ullable Object object)
 specifier|protected
 name|boolean
 name|standardContains
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|object
 parameter_list|)
@@ -431,13 +431,13 @@ block|}
 comment|/**    * A sensible, albeit inefficient, definition of {@link #count} in terms of {@link #entrySet}. If    * you override {@link #entrySet}, you may wish to override {@link #count} to forward to this    * implementation.    *    * @since 7.0    */
 annotation|@
 name|Beta
-DECL|method|standardCount (@ullableDecl Object object)
+DECL|method|standardCount (@ullable Object object)
 specifier|protected
 name|int
 name|standardCount
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|object
 parameter_list|)
@@ -767,13 +767,13 @@ argument_list|)
 return|;
 block|}
 comment|/**    * A sensible, albeit inefficient, definition of {@link #equals} in terms of {@code    * entrySet().size()} and {@link #count}. If you override either of these methods, you may wish to    * override {@link #equals} to forward to this implementation.    *    * @since 7.0    */
-DECL|method|standardEquals (@ullableDecl Object object)
+DECL|method|standardEquals (@ullable Object object)
 specifier|protected
 name|boolean
 name|standardEquals
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|object
 parameter_list|)

@@ -290,9 +290,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -1767,13 +1767,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|equals (@ullableDecl Object other)
+DECL|method|equals (@ullable Object other)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|other
 parameter_list|)
@@ -1845,12 +1845,12 @@ name|alphabet
 decl_stmt|;
 DECL|field|paddingChar
 annotation|@
-name|NullableDecl
+name|Nullable
 specifier|final
 name|Character
 name|paddingChar
 decl_stmt|;
-DECL|method|StandardBaseEncoding (String name, String alphabetChars, @NullableDecl Character paddingChar)
+DECL|method|StandardBaseEncoding (String name, String alphabetChars, @Nullable Character paddingChar)
 name|StandardBaseEncoding
 parameter_list|(
 name|String
@@ -1860,7 +1860,7 @@ name|String
 name|alphabetChars
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Character
 name|paddingChar
 parameter_list|)
@@ -1882,14 +1882,14 @@ name|paddingChar
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|StandardBaseEncoding (Alphabet alphabet, @NullableDecl Character paddingChar)
+DECL|method|StandardBaseEncoding (Alphabet alphabet, @Nullable Character paddingChar)
 name|StandardBaseEncoding
 parameter_list|(
 name|Alphabet
 name|alphabet
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Character
 name|paddingChar
 parameter_list|)
@@ -3405,7 +3405,7 @@ return|return
 name|result
 return|;
 block|}
-DECL|method|newInstance (Alphabet alphabet, @NullableDecl Character paddingChar)
+DECL|method|newInstance (Alphabet alphabet, @Nullable Character paddingChar)
 name|BaseEncoding
 name|newInstance
 parameter_list|(
@@ -3413,7 +3413,7 @@ name|Alphabet
 name|alphabet
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Character
 name|paddingChar
 parameter_list|)
@@ -3511,13 +3511,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|equals (@ullableDecl Object other)
+DECL|method|equals (@ullable Object other)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|other
 parameter_list|)
@@ -3918,7 +3918,7 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|newInstance (Alphabet alphabet, @NullableDecl Character paddingChar)
+DECL|method|newInstance (Alphabet alphabet, @Nullable Character paddingChar)
 name|BaseEncoding
 name|newInstance
 parameter_list|(
@@ -3926,7 +3926,7 @@ name|Alphabet
 name|alphabet
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Character
 name|paddingChar
 parameter_list|)
@@ -3948,7 +3948,7 @@ name|Base64Encoding
 extends|extends
 name|StandardBaseEncoding
 block|{
-DECL|method|Base64Encoding (String name, String alphabetChars, @NullableDecl Character paddingChar)
+DECL|method|Base64Encoding (String name, String alphabetChars, @Nullable Character paddingChar)
 name|Base64Encoding
 parameter_list|(
 name|String
@@ -3958,7 +3958,7 @@ name|String
 name|alphabetChars
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Character
 name|paddingChar
 parameter_list|)
@@ -3980,7 +3980,7 @@ name|paddingChar
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|Base64Encoding (Alphabet alphabet, @NullableDecl Character paddingChar)
+DECL|method|Base64Encoding (Alphabet alphabet, @Nullable Character paddingChar)
 specifier|private
 name|Base64Encoding
 parameter_list|(
@@ -3988,7 +3988,7 @@ name|Alphabet
 name|alphabet
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Character
 name|paddingChar
 parameter_list|)
@@ -4420,7 +4420,7 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|newInstance (Alphabet alphabet, @NullableDecl Character paddingChar)
+DECL|method|newInstance (Alphabet alphabet, @Nullable Character paddingChar)
 name|BaseEncoding
 name|newInstance
 parameter_list|(
@@ -4428,7 +4428,7 @@ name|Alphabet
 name|alphabet
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Character
 name|paddingChar
 parameter_list|)
@@ -4661,7 +4661,7 @@ name|Appendable
 name|append
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|CharSequence
 name|chars
 parameter_list|,
@@ -4687,7 +4687,7 @@ name|Appendable
 name|append
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|CharSequence
 name|chars
 parameter_list|)

@@ -150,9 +150,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -179,7 +179,7 @@ name|readable
 decl_stmt|;
 DECL|field|reader
 annotation|@
-name|NullableDecl
+name|Nullable
 specifier|private
 specifier|final
 name|Reader

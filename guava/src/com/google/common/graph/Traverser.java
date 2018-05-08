@@ -188,9 +188,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -1271,7 +1271,7 @@ name|NodeAndSuccessors
 block|{
 DECL|field|node
 annotation|@
-name|NullableDecl
+name|Nullable
 specifier|final
 name|N
 name|node
@@ -1286,11 +1286,11 @@ name|N
 argument_list|>
 name|successorIterator
 decl_stmt|;
-DECL|method|NodeAndSuccessors (@ullableDecl N node, Iterable<? extends N> successors)
+DECL|method|NodeAndSuccessors (@ullable N node, Iterable<? extends N> successors)
 name|NodeAndSuccessors
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|N
 name|node
 parameter_list|,
@@ -2170,7 +2170,7 @@ name|NodeAndChildren
 block|{
 DECL|field|node
 annotation|@
-name|NullableDecl
+name|Nullable
 specifier|final
 name|N
 name|node
@@ -2185,11 +2185,11 @@ name|N
 argument_list|>
 name|childIterator
 decl_stmt|;
-DECL|method|NodeAndChildren (@ullableDecl N node, Iterable<? extends N> children)
+DECL|method|NodeAndChildren (@ullable N node, Iterable<? extends N> children)
 name|NodeAndChildren
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|N
 name|node
 parameter_list|,

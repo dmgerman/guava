@@ -138,9 +138,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -575,7 +575,7 @@ block|}
 block|}
 return|;
 block|}
-DECL|method|equalsOrThrow (Comparable<?> left, @NullableDecl Comparable<?> right)
+DECL|method|equalsOrThrow (Comparable<?> left, @Nullable Comparable<?> right)
 specifier|private
 specifier|static
 name|boolean
@@ -588,7 +588,7 @@ argument_list|>
 name|left
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Comparable
 argument_list|<
 name|?
@@ -790,13 +790,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|contains (@ullableDecl Object object)
+DECL|method|contains (@ullable Object object)
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|object
 parameter_list|)
@@ -1073,13 +1073,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|equals (@ullableDecl Object object)
+DECL|method|equals (@ullable Object object)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|object
 parameter_list|)

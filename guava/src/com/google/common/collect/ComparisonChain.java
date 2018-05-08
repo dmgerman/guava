@@ -92,9 +92,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -179,12 +179,12 @@ name|ComparisonChain
 name|compare
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|T
 name|left
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|T
 name|right
 parameter_list|,
@@ -469,18 +469,18 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|compare (@ullableDecl Comparable left, @NullableDecl Comparable right)
+DECL|method|compare (@ullable Comparable left, @Nullable Comparable right)
 specifier|public
 name|ComparisonChain
 name|compare
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Comparable
 name|left
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Comparable
 name|right
 parameter_list|)
@@ -491,7 +491,7 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|compare ( @ullableDecl T left, @NullableDecl T right, @NullableDecl Comparator<T> comparator)
+DECL|method|compare ( @ullable T left, @Nullable T right, @Nullable Comparator<T> comparator)
 specifier|public
 parameter_list|<
 name|T
@@ -500,17 +500,17 @@ name|ComparisonChain
 name|compare
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|T
 name|left
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|T
 name|right
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Comparator
 argument_list|<
 name|T
@@ -664,7 +664,7 @@ name|right
 parameter_list|)
 function_decl|;
 comment|/**    * Compares two objects using a comparator,<i>if</i> the result of this comparison chain has not    * already been determined.    */
-DECL|method|compare ( @ullableDecl T left, @NullableDecl T right, Comparator<T> comparator)
+DECL|method|compare ( @ullable T left, @Nullable T right, Comparator<T> comparator)
 specifier|public
 specifier|abstract
 parameter_list|<
@@ -674,12 +674,12 @@ name|ComparisonChain
 name|compare
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|T
 name|left
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|T
 name|right
 parameter_list|,

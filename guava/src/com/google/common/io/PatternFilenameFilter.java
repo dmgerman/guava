@@ -112,9 +112,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -184,13 +184,13 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|accept (@ullableDecl File dir, String fileName)
+DECL|method|accept (@ullable File dir, String fileName)
 specifier|public
 name|boolean
 name|accept
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|File
 name|dir
 parameter_list|,

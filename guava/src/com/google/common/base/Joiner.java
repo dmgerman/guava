@@ -146,9 +146,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -411,7 +411,7 @@ block|}
 comment|/** Appends to {@code appendable} the string representation of each of the remaining arguments. */
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|appendTo ( A appendable, @NullableDecl Object first, @NullableDecl Object second, Object... rest)
+DECL|method|appendTo ( A appendable, @Nullable Object first, @Nullable Object second, Object... rest)
 specifier|public
 specifier|final
 parameter_list|<
@@ -426,12 +426,12 @@ name|A
 name|appendable
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|first
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|second
 parameter_list|,
@@ -573,7 +573,7 @@ block|}
 comment|/**    * Appends to {@code builder} the string representation of each of the remaining arguments.    * Identical to {@link #appendTo(Appendable, Object, Object, Object...)}, except that it does not    * throw {@link IOException}.    */
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|appendTo ( StringBuilder builder, @NullableDecl Object first, @NullableDecl Object second, Object... rest)
+DECL|method|appendTo ( StringBuilder builder, @Nullable Object first, @Nullable Object second, Object... rest)
 specifier|public
 specifier|final
 name|StringBuilder
@@ -583,12 +583,12 @@ name|StringBuilder
 name|builder
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|first
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|second
 parameter_list|,
@@ -690,19 +690,19 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns a string containing the string representation of each argument, using the previously    * configured separator between each.    */
-DECL|method|join ( @ullableDecl Object first, @NullableDecl Object second, Object... rest)
+DECL|method|join (@ullable Object first, @Nullable Object second, Object... rest)
 specifier|public
 specifier|final
 name|String
 name|join
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|first
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|second
 parameter_list|,
@@ -754,7 +754,7 @@ name|CharSequence
 name|toString
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|part
 parameter_list|)

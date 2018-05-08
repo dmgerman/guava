@@ -150,9 +150,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -692,8 +692,6 @@ index|[]
 name|entries
 decl_stmt|;
 DECL|field|hashTable
-annotation|@
-name|NullableDecl
 specifier|private
 specifier|final
 specifier|transient
@@ -703,7 +701,9 @@ name|ImmutableEntry
 argument_list|<
 name|E
 argument_list|>
-index|[]
+annotation|@
+name|Nullable
+type|[]
 name|hashTable
 decl_stmt|;
 DECL|field|size
@@ -880,13 +880,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|count (@ullableDecl Object element)
+DECL|method|count (@ullable Object element)
 specifier|public
 name|int
 name|count
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|element
 parameter_list|)

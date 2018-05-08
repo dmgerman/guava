@@ -190,9 +190,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -636,14 +636,14 @@ argument_list|>
 block|{
 DECL|field|lowerBound
 annotation|@
-name|NullableDecl
+name|Nullable
 specifier|final
 name|C
 name|lowerBound
 decl_stmt|;
 DECL|field|upperBound
 annotation|@
-name|NullableDecl
+name|Nullable
 specifier|final
 name|C
 name|upperBound
@@ -665,19 +665,19 @@ literal|null
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|TreeRow (R rowKey, @NullableDecl C lowerBound, @NullableDecl C upperBound)
+DECL|method|TreeRow (R rowKey, @Nullable C lowerBound, @Nullable C upperBound)
 name|TreeRow
 parameter_list|(
 name|R
 name|rowKey
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|C
 name|lowerBound
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|C
 name|upperBound
 parameter_list|)
@@ -804,12 +804,12 @@ name|b
 argument_list|)
 return|;
 block|}
-DECL|method|rangeContains (@ullableDecl Object o)
+DECL|method|rangeContains (@ullable Object o)
 name|boolean
 name|rangeContains
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|o
 parameter_list|)
@@ -1060,7 +1060,7 @@ return|;
 block|}
 DECL|field|wholeRow
 annotation|@
-name|NullableDecl
+name|Nullable
 specifier|transient
 name|SortedMap
 argument_list|<
@@ -1469,7 +1469,7 @@ argument_list|>
 argument_list|()
 block|{
 annotation|@
-name|NullableDecl
+name|Nullable
 name|C
 name|lastValue
 decl_stmt|;

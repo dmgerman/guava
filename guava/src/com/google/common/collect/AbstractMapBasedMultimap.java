@@ -360,9 +360,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -533,7 +533,7 @@ name|createCollection
 parameter_list|()
 function_decl|;
 comment|/**    * Creates the collection of values for an explicitly provided key. By default, it simply calls    * {@link #createCollection()}, which is the correct behavior for most implementations. The {@link    * LinkedHashMultimap} class overrides it.    *    * @param key key to associate with values in the collection    * @return an empty collection of values    */
-DECL|method|createCollection (@ullableDecl K key)
+DECL|method|createCollection (@ullable K key)
 name|Collection
 argument_list|<
 name|V
@@ -541,7 +541,7 @@ argument_list|>
 name|createCollection
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|K
 name|key
 parameter_list|)
@@ -583,13 +583,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|containsKey (@ullableDecl Object key)
+DECL|method|containsKey (@ullable Object key)
 specifier|public
 name|boolean
 name|containsKey
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|key
 parameter_list|)
@@ -606,18 +606,18 @@ block|}
 comment|// Modification Operations
 annotation|@
 name|Override
-DECL|method|put (@ullableDecl K key, @NullableDecl V value)
+DECL|method|put (@ullable K key, @Nullable V value)
 specifier|public
 name|boolean
 name|put
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|K
 name|key
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|V
 name|value
 parameter_list|)
@@ -711,7 +711,7 @@ literal|false
 return|;
 block|}
 block|}
-DECL|method|getOrCreateCollection (@ullableDecl K key)
+DECL|method|getOrCreateCollection (@ullable K key)
 specifier|private
 name|Collection
 argument_list|<
@@ -720,7 +720,7 @@ argument_list|>
 name|getOrCreateCollection
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|K
 name|key
 parameter_list|)
@@ -770,7 +770,7 @@ comment|// Bulk Operations
 comment|/**    * {@inheritDoc}    *    *<p>The returned collection is immutable.    */
 annotation|@
 name|Override
-DECL|method|replaceValues (@ullableDecl K key, Iterable<? extends V> values)
+DECL|method|replaceValues (@ullable K key, Iterable<? extends V> values)
 specifier|public
 name|Collection
 argument_list|<
@@ -779,7 +779,7 @@ argument_list|>
 name|replaceValues
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|K
 name|key
 parameter_list|,
@@ -897,7 +897,7 @@ block|}
 comment|/**    * {@inheritDoc}    *    *<p>The returned collection is immutable.    */
 annotation|@
 name|Override
-DECL|method|removeAll (@ullableDecl Object key)
+DECL|method|removeAll (@ullable Object key)
 specifier|public
 name|Collection
 argument_list|<
@@ -906,7 +906,7 @@ argument_list|>
 name|removeAll
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|key
 parameter_list|)
@@ -1040,7 +1040,7 @@ comment|// Views
 comment|/**    * {@inheritDoc}    *    *<p>The returned collection is not serializable.    */
 annotation|@
 name|Override
-DECL|method|get (@ullableDecl K key)
+DECL|method|get (@ullable K key)
 specifier|public
 name|Collection
 argument_list|<
@@ -1049,7 +1049,7 @@ argument_list|>
 name|get
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|K
 name|key
 parameter_list|)
@@ -1092,7 +1092,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Generates a decorated collection that remains consistent with the values in the multimap for    * the provided key. Changes to the multimap may alter the returned collection, and vice versa.    */
-DECL|method|wrapCollection (@ullableDecl K key, Collection<V> collection)
+DECL|method|wrapCollection (@ullable K key, Collection<V> collection)
 name|Collection
 argument_list|<
 name|V
@@ -1100,7 +1100,7 @@ argument_list|>
 name|wrapCollection
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|K
 name|key
 parameter_list|,
@@ -1123,7 +1123,7 @@ literal|null
 argument_list|)
 return|;
 block|}
-DECL|method|wrapList ( @ullableDecl K key, List<V> list, @NullableDecl WrappedCollection ancestor)
+DECL|method|wrapList (@ullable K key, List<V> list, @Nullable WrappedCollection ancestor)
 specifier|final
 name|List
 argument_list|<
@@ -1132,7 +1132,7 @@ argument_list|>
 name|wrapList
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|K
 name|key
 parameter_list|,
@@ -1143,7 +1143,7 @@ argument_list|>
 name|list
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|WrappedCollection
 name|ancestor
 parameter_list|)
@@ -1190,7 +1190,7 @@ argument_list|>
 block|{
 DECL|field|key
 annotation|@
-name|NullableDecl
+name|Nullable
 specifier|final
 name|K
 name|key
@@ -1204,14 +1204,14 @@ name|delegate
 decl_stmt|;
 DECL|field|ancestor
 annotation|@
-name|NullableDecl
+name|Nullable
 specifier|final
 name|WrappedCollection
 name|ancestor
 decl_stmt|;
 DECL|field|ancestorDelegate
 annotation|@
-name|NullableDecl
+name|Nullable
 specifier|final
 name|Collection
 argument_list|<
@@ -1219,11 +1219,11 @@ name|V
 argument_list|>
 name|ancestorDelegate
 decl_stmt|;
-DECL|method|WrappedCollection ( @ullableDecl K key, Collection<V> delegate, @NullableDecl WrappedCollection ancestor)
+DECL|method|WrappedCollection ( @ullable K key, Collection<V> delegate, @Nullable WrappedCollection ancestor)
 name|WrappedCollection
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|K
 name|key
 parameter_list|,
@@ -1234,7 +1234,7 @@ argument_list|>
 name|delegate
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|WrappedCollection
 name|ancestor
 parameter_list|)
@@ -1444,13 +1444,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|equals (@ullableDecl Object object)
+DECL|method|equals (@ullable Object object)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|object
 parameter_list|)
@@ -2189,11 +2189,11 @@ argument_list|<
 name|V
 argument_list|>
 block|{
-DECL|method|WrappedSet (@ullableDecl K key, Set<V> delegate)
+DECL|method|WrappedSet (@ullable K key, Set<V> delegate)
 name|WrappedSet
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|K
 name|key
 parameter_list|,
@@ -2312,11 +2312,11 @@ argument_list|<
 name|V
 argument_list|>
 block|{
-DECL|method|WrappedSortedSet ( @ullableDecl K key, SortedSet<V> delegate, @NullableDecl WrappedCollection ancestor)
+DECL|method|WrappedSortedSet (@ullable K key, SortedSet<V> delegate, @Nullable WrappedCollection ancestor)
 name|WrappedSortedSet
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|K
 name|key
 parameter_list|,
@@ -2327,7 +2327,7 @@ argument_list|>
 name|delegate
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|WrappedCollection
 name|ancestor
 parameter_list|)
@@ -2577,11 +2577,11 @@ argument_list|<
 name|V
 argument_list|>
 block|{
-DECL|method|WrappedNavigableSet ( @ullableDecl K key, NavigableSet<V> delegate, @NullableDecl WrappedCollection ancestor)
+DECL|method|WrappedNavigableSet ( @ullable K key, NavigableSet<V> delegate, @Nullable WrappedCollection ancestor)
 name|WrappedNavigableSet
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|K
 name|key
 parameter_list|,
@@ -2592,7 +2592,7 @@ argument_list|>
 name|delegate
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|WrappedCollection
 name|ancestor
 parameter_list|)
@@ -2953,11 +2953,11 @@ argument_list|<
 name|V
 argument_list|>
 block|{
-DECL|method|WrappedList (@ullableDecl K key, List<V> delegate, @NullableDecl WrappedCollection ancestor)
+DECL|method|WrappedList (@ullable K key, List<V> delegate, @Nullable WrappedCollection ancestor)
 name|WrappedList
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|K
 name|key
 parameter_list|,
@@ -2968,7 +2968,7 @@ argument_list|>
 name|delegate
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|WrappedCollection
 name|ancestor
 parameter_list|)
@@ -3562,11 +3562,11 @@ name|WrappedList
 implements|implements
 name|RandomAccess
 block|{
-DECL|method|RandomAccessWrappedList ( @ullableDecl K key, List<V> delegate, @NullableDecl WrappedCollection ancestor)
+DECL|method|RandomAccessWrappedList ( @ullable K key, List<V> delegate, @Nullable WrappedCollection ancestor)
 name|RandomAccessWrappedList
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|K
 name|key
 parameter_list|,
@@ -3577,7 +3577,7 @@ argument_list|>
 name|delegate
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|WrappedCollection
 name|ancestor
 parameter_list|)
@@ -3769,7 +3769,7 @@ argument_list|>
 argument_list|()
 block|{
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Entry
 argument_list|<
 name|K
@@ -3995,13 +3995,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|equals (@ullableDecl Object object)
+DECL|method|equals (@ullable Object object)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|object
 parameter_list|)
@@ -4752,7 +4752,7 @@ name|keyIterator
 decl_stmt|;
 DECL|field|key
 annotation|@
-name|NullableDecl
+name|Nullable
 name|K
 name|key
 decl_stmt|;
@@ -5699,13 +5699,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|equals (@ullableDecl Object object)
+DECL|method|equals (@ullable Object object)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|object
 parameter_list|)
@@ -6069,7 +6069,7 @@ argument_list|()
 decl_stmt|;
 DECL|field|collection
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Collection
 argument_list|<
 name|V

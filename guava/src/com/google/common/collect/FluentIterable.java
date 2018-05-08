@@ -226,9 +226,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -904,7 +904,7 @@ end_comment
 begin_function
 annotation|@
 name|Beta
-DECL|method|of (@ullableDecl E element, E... elements)
+DECL|method|of (@ullable E element, E... elements)
 specifier|public
 specifier|static
 parameter_list|<
@@ -917,7 +917,7 @@ argument_list|>
 name|of
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|E
 name|element
 parameter_list|,
@@ -996,14 +996,14 @@ comment|/**    * Returns {@code true} if this fluent iterable contains any objec
 end_comment
 
 begin_function
-DECL|method|contains (@ullableDecl Object target)
+DECL|method|contains (@ullable Object target)
 specifier|public
 specifier|final
 name|boolean
 name|contains
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|target
 parameter_list|)
@@ -2185,7 +2185,7 @@ comment|/**    * Returns the element at the specified position in this fluent it
 end_comment
 
 begin_comment
-comment|// TODO(kevinb): add @NullableDecl?
+comment|// TODO(kevinb): add @Nullable?
 end_comment
 
 begin_function

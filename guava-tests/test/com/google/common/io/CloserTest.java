@@ -204,9 +204,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -2293,12 +2293,12 @@ name|IOException
 argument_list|()
 throw|;
 block|}
-DECL|method|TestCloseable (@ullableDecl Throwable throwOnClose)
+DECL|method|TestCloseable (@ullable Throwable throwOnClose)
 specifier|private
 name|TestCloseable
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Throwable
 name|throwOnClose
 parameter_list|)

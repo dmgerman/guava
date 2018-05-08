@@ -272,9 +272,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -599,7 +599,7 @@ parameter_list|)
 function_decl|;
 block|}
 annotation|@
-name|NullableDecl
+name|Nullable
 DECL|method|trySplitTestingSize (Spliterator<E> spliterator)
 specifier|private
 specifier|static

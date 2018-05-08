@@ -370,9 +370,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -1968,7 +1968,7 @@ block|}
 block|}
 comment|/**      * Performs a depth-first traversal of the graph edges defined by each node's {@code      * allowedPriorLocks} to find a path between {@code this} and the specified {@code lock}.      *      * @return If a path was found, a chained {@link ExampleStackTrace} illustrating the path to the      *     {@code lock}, or {@code null} if no path was found.      */
 annotation|@
-name|NullableDecl
+name|Nullable
 DECL|method|findPathTo (LockGraphNode node, Set<LockGraphNode> seen)
 specifier|private
 name|ExampleStackTrace

@@ -170,9 +170,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -359,7 +359,7 @@ block|}
 comment|/*    * In certain circumstances, this field might theoretically not be visible to an afterDone() call    * triggered by cancel(). For details, see the comments on the fields of TimeoutFuture.    */
 DECL|field|inputFuture
 annotation|@
-name|NullableDecl
+name|Nullable
 name|ListenableFuture
 argument_list|<
 name|?
@@ -370,7 +370,7 @@ name|inputFuture
 decl_stmt|;
 DECL|field|function
 annotation|@
-name|NullableDecl
+name|Nullable
 name|F
 name|function
 decl_stmt|;
@@ -591,8 +591,8 @@ comment|/** Template method for subtypes to actually run the transform. */
 annotation|@
 name|ForOverride
 annotation|@
-name|NullableDecl
-DECL|method|doTransform (F function, @NullableDecl I result)
+name|Nullable
+DECL|method|doTransform (F function, @Nullable I result)
 specifier|abstract
 name|T
 name|doTransform
@@ -601,7 +601,7 @@ name|F
 name|function
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|I
 name|result
 parameter_list|)
@@ -611,13 +611,13 @@ function_decl|;
 comment|/** Template method for subtypes to actually set the result. */
 annotation|@
 name|ForOverride
-DECL|method|setResult (@ullableDecl T result)
+DECL|method|setResult (@ullable T result)
 specifier|abstract
 name|void
 name|setResult
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|T
 name|result
 parameter_list|)
@@ -808,7 +808,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|doTransform ( AsyncFunction<? super I, ? extends O> function, @NullableDecl I input)
+DECL|method|doTransform ( AsyncFunction<? super I, ? extends O> function, @Nullable I input)
 name|ListenableFuture
 argument_list|<
 name|?
@@ -830,7 +830,7 @@ argument_list|>
 name|function
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|I
 name|input
 parameter_list|)
@@ -955,8 +955,8 @@ block|}
 annotation|@
 name|Override
 annotation|@
-name|NullableDecl
-DECL|method|doTransform (Function<? super I, ? extends O> function, @NullableDecl I input)
+name|Nullable
+DECL|method|doTransform (Function<? super I, ? extends O> function, @Nullable I input)
 name|O
 name|doTransform
 parameter_list|(
@@ -973,7 +973,7 @@ argument_list|>
 name|function
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|I
 name|input
 parameter_list|)
@@ -990,12 +990,12 @@ comment|// TODO(lukes): move the UndeclaredThrowable catch block here?
 block|}
 annotation|@
 name|Override
-DECL|method|setResult (@ullableDecl O result)
+DECL|method|setResult (@ullable O result)
 name|void
 name|setResult
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|O
 name|result
 parameter_list|)

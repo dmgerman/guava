@@ -242,9 +242,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -1153,25 +1153,25 @@ argument_list|)
 return|;
 block|}
 comment|// Regular instance methods
-comment|// Override to add @NullableDecl
+comment|// Override to add @Nullable
 annotation|@
 name|CanIgnoreReturnValue
 comment|// TODO(kak): Consider removing this
 annotation|@
 name|Override
-DECL|method|compare (@ullableDecl T left, @NullableDecl T right)
+DECL|method|compare (@ullable T left, @Nullable T right)
 specifier|public
 specifier|abstract
 name|int
 name|compare
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|T
 name|left
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|T
 name|right
 parameter_list|)
@@ -1266,7 +1266,7 @@ comment|/**    * Returns the lesser of the two values according to this ordering
 annotation|@
 name|CanIgnoreReturnValue
 comment|// TODO(kak): Consider removing this
-DECL|method|min (@ullableDecl E a, @NullableDecl E b)
+DECL|method|min (@ullable E a, @Nullable E b)
 specifier|public
 parameter_list|<
 name|E
@@ -1277,12 +1277,12 @@ name|E
 name|min
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|E
 name|a
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|E
 name|b
 parameter_list|)
@@ -1308,7 +1308,7 @@ comment|/**    * Returns the least of the specified values according to this ord
 annotation|@
 name|CanIgnoreReturnValue
 comment|// TODO(kak): Consider removing this
-DECL|method|min (@ullableDecl E a, @NullableDecl E b, @NullableDecl E c, E... rest)
+DECL|method|min (@ullable E a, @Nullable E b, @Nullable E c, E... rest)
 specifier|public
 parameter_list|<
 name|E
@@ -1319,17 +1319,17 @@ name|E
 name|min
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|E
 name|a
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|E
 name|b
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|E
 name|c
 parameter_list|,
@@ -1465,7 +1465,7 @@ comment|/**    * Returns the greater of the two values according to this orderin
 annotation|@
 name|CanIgnoreReturnValue
 comment|// TODO(kak): Consider removing this
-DECL|method|max (@ullableDecl E a, @NullableDecl E b)
+DECL|method|max (@ullable E a, @Nullable E b)
 specifier|public
 parameter_list|<
 name|E
@@ -1476,12 +1476,12 @@ name|E
 name|max
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|E
 name|a
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|E
 name|b
 parameter_list|)
@@ -1507,7 +1507,7 @@ comment|/**    * Returns the greatest of the specified values according to this 
 annotation|@
 name|CanIgnoreReturnValue
 comment|// TODO(kak): Consider removing this
-DECL|method|max (@ullableDecl E a, @NullableDecl E b, @NullableDecl E c, E... rest)
+DECL|method|max (@ullable E a, @Nullable E b, @Nullable E c, E... rest)
 specifier|public
 parameter_list|<
 name|E
@@ -1518,17 +1518,17 @@ name|E
 name|max
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|E
 name|a
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|E
 name|b
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|E
 name|c
 parameter_list|,
@@ -2227,7 +2227,7 @@ block|}
 comment|/**    * {@link Collections#binarySearch(List, Object, Comparator) Searches} {@code sortedList} for    * {@code key} using the binary search algorithm. The list must be sorted using this ordering.    *    * @param sortedList the list to be searched    * @param key the key to be searched for    * @deprecated Use {@link Collections#binarySearch(List, Object, Comparator)} directly.    */
 annotation|@
 name|Deprecated
-DECL|method|binarySearch (List<? extends T> sortedList, @NullableDecl T key)
+DECL|method|binarySearch (List<? extends T> sortedList, @Nullable T key)
 specifier|public
 name|int
 name|binarySearch
@@ -2241,7 +2241,7 @@ argument_list|>
 name|sortedList
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|T
 name|key
 parameter_list|)

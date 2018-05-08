@@ -104,9 +104,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -713,7 +713,7 @@ literal|"unchecked"
 argument_list|)
 comment|// value could not get in if not a T
 annotation|@
-name|NullableDecl
+name|Nullable
 DECL|method|getInstance (Class<T> type)
 specifier|public
 parameter_list|<

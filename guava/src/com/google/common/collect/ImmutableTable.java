@@ -236,9 +236,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -2235,18 +2235,18 @@ parameter_list|()
 function_decl|;
 annotation|@
 name|Override
-DECL|method|contains (@ullableDecl Object rowKey, @NullableDecl Object columnKey)
+DECL|method|contains (@ullable Object rowKey, @Nullable Object columnKey)
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|rowKey
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|columnKey
 parameter_list|)
@@ -2264,13 +2264,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|containsValue (@ullableDecl Object value)
+DECL|method|containsValue (@ullable Object value)
 specifier|public
 name|boolean
 name|containsValue
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|value
 parameter_list|)

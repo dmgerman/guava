@@ -232,9 +232,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -1343,7 +1343,7 @@ comment|/**    * Parses the specified string as a signed decimal long value. The
 annotation|@
 name|Beta
 annotation|@
-name|NullableDecl
+name|Nullable
 DECL|method|tryParse (String string)
 specifier|public
 specifier|static
@@ -1367,7 +1367,7 @@ comment|/**    * Parses the specified string as a signed long value using the sp
 annotation|@
 name|Beta
 annotation|@
-name|NullableDecl
+name|Nullable
 DECL|method|tryParse (String string, int radix)
 specifier|public
 specifier|static
@@ -2783,13 +2783,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|equals (@ullableDecl Object object)
+DECL|method|equals (@ullable Object object)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|object
 parameter_list|)

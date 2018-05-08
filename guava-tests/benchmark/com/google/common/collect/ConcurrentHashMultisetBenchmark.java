@@ -272,9 +272,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -989,13 +989,13 @@ comment|// Query Operations
 comment|/**      * Returns the number of occurrences of {@code element} in this multiset.      *      * @param element the element to look for      * @return the nonnegative number of occurrences of the element      */
 annotation|@
 name|Override
-DECL|method|count (@ullableDecl Object element)
+DECL|method|count (@ullable Object element)
 specifier|public
 name|int
 name|count
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|element
 parameter_list|)
@@ -1318,13 +1318,13 @@ block|}
 comment|/**      * Removes a number of occurrences of the specified element from this multiset. If the multiset      * contains fewer than this number of occurrences to begin with, all occurrences will be      * removed.      *      * @param element the element whose occurrences should be removed      * @param occurrences the number of occurrences of the element to remove      * @return the count of the element before the operation; possibly zero      * @throws IllegalArgumentException if {@code occurrences} is negative      */
 annotation|@
 name|Override
-DECL|method|remove (@ullableDecl Object element, int occurrences)
+DECL|method|remove (@ullable Object element, int occurrences)
 specifier|public
 name|int
 name|remove
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|element
 parameter_list|,
@@ -1446,13 +1446,13 @@ comment|// If we're still here, there was a race, so just try again.
 block|}
 block|}
 comment|/**      * Removes<b>all</b> occurrences of the specified element from this multiset. This method      * complements {@link Multiset#remove(Object)}, which removes only one occurrence at a time.      *      * @param element the element whose occurrences should all be removed      * @return the number of occurrences successfully removed, possibly zero      */
-DECL|method|removeAllOccurrences (@ullableDecl Object element)
+DECL|method|removeAllOccurrences (@ullable Object element)
 specifier|private
 name|int
 name|removeAllOccurrences
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|element
 parameter_list|)
@@ -1485,13 +1485,13 @@ return|;
 block|}
 block|}
 comment|/**      * Removes exactly the specified number of occurrences of {@code element}, or makes no change if      * this is not possible.      *      *<p>This method, in contrast to {@link #remove(Object, int)}, has no effect when the element      * count is smaller than {@code occurrences}.      *      * @param element the element to remove      * @param occurrences the number of occurrences of {@code element} to remove      * @return {@code true} if the removal was possible (including if {@code occurrences} is zero)      */
-DECL|method|removeExactly (@ullableDecl Object element, int occurrences)
+DECL|method|removeExactly (@ullable Object element, int occurrences)
 specifier|public
 name|boolean
 name|removeExactly
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|element
 parameter_list|,
@@ -2297,14 +2297,14 @@ return|;
 block|}
 block|}
 comment|/** We use a special form of unboxing that treats null as zero. */
-DECL|method|unbox (@ullableDecl Integer i)
+DECL|method|unbox (@ullable Integer i)
 specifier|private
 specifier|static
 name|int
 name|unbox
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Integer
 name|i
 parameter_list|)

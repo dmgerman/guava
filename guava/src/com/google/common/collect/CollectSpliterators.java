@@ -164,9 +164,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -389,7 +389,7 @@ block|}
 annotation|@
 name|Override
 annotation|@
-name|NullableDecl
+name|Nullable
 specifier|public
 name|Spliterator
 argument_list|<
@@ -1055,7 +1055,7 @@ name|T
 argument_list|>
 block|{
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Spliterator
 argument_list|<
 name|T

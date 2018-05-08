@@ -176,9 +176,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -686,13 +686,13 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Asserts that a prior call that had caused this thread to block or wait has since returned    * normally.    */
-DECL|method|assertPriorCallReturns (@ullableDecl String methodName)
+DECL|method|assertPriorCallReturns (@ullable String methodName)
 specifier|public
 name|void
 name|assertPriorCallReturns
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|String
 name|methodName
 parameter_list|)
@@ -714,7 +714,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Asserts that a prior call that had caused this thread to block or wait has since returned the    * expected boolean value.    */
-DECL|method|assertPriorCallReturns (boolean expected, @NullableDecl String methodName)
+DECL|method|assertPriorCallReturns (boolean expected, @Nullable String methodName)
 specifier|public
 name|void
 name|assertPriorCallReturns
@@ -723,7 +723,7 @@ name|boolean
 name|expected
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|String
 name|methodName
 parameter_list|)

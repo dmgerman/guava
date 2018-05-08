@@ -76,9 +76,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -250,13 +250,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|equals (@ullableDecl Object obj)
+DECL|method|equals (@ullable Object obj)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|obj
 parameter_list|)
@@ -453,7 +453,7 @@ comment|// "value" does not need to be volatile; visibility piggy-backs
 comment|// on volatile read of "initialized".
 DECL|field|value
 annotation|@
-name|NullableDecl
+name|Nullable
 specifier|transient
 name|T
 name|value
@@ -600,7 +600,7 @@ comment|// "value" does not need to be volatile; visibility piggy-backs
 comment|// on volatile read of "initialized".
 DECL|field|value
 annotation|@
-name|NullableDecl
+name|Nullable
 name|T
 name|value
 decl_stmt|;
@@ -795,7 +795,7 @@ name|durationNanos
 decl_stmt|;
 DECL|field|value
 annotation|@
-name|NullableDecl
+name|Nullable
 specifier|transient
 specifier|volatile
 name|T
@@ -984,7 +984,7 @@ literal|0
 decl_stmt|;
 block|}
 comment|/** Returns a supplier that always supplies {@code instance}. */
-DECL|method|ofInstance (@ullableDecl T instance)
+DECL|method|ofInstance (@ullable T instance)
 specifier|public
 specifier|static
 parameter_list|<
@@ -997,7 +997,7 @@ argument_list|>
 name|ofInstance
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|T
 name|instance
 parameter_list|)
@@ -1031,16 +1031,16 @@ name|Serializable
 block|{
 DECL|field|instance
 annotation|@
-name|NullableDecl
+name|Nullable
 specifier|final
 name|T
 name|instance
 decl_stmt|;
-DECL|method|SupplierOfInstance (@ullableDecl T instance)
+DECL|method|SupplierOfInstance (@ullable T instance)
 name|SupplierOfInstance
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|T
 name|instance
 parameter_list|)
@@ -1066,13 +1066,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|equals (@ullableDecl Object obj)
+DECL|method|equals (@ullable Object obj)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|obj
 parameter_list|)

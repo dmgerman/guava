@@ -92,9 +92,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -128,19 +128,19 @@ name|Equivalence
 parameter_list|()
 block|{}
 comment|/**    * Returns {@code true} if the given objects are considered equivalent.    *    *<p>This method describes an<i>equivalence relation</i> on object references, meaning that for    * all references {@code x}, {@code y}, and {@code z} (any of which may be null):    *    *<ul>    *<li>{@code equivalent(x, x)} is true (<i>reflexive</i> property)    *<li>{@code equivalent(x, y)} and {@code equivalent(y, x)} each return the same result    *       (<i>symmetric</i> property)    *<li>If {@code equivalent(x, y)} and {@code equivalent(y, z)} are both true, then {@code    *       equivalent(x, z)} is also true (<i>transitive</i> property)    *</ul>    *    *<p>Note that all calls to {@code equivalent(x, y)} are expected to return the same result as    * long as neither {@code x} nor {@code y} is modified.    */
-DECL|method|equivalent (@ullableDecl T a, @NullableDecl T b)
+DECL|method|equivalent (@ullable T a, @Nullable T b)
 specifier|public
 specifier|final
 name|boolean
 name|equivalent
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|T
 name|a
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|T
 name|b
 parameter_list|)
@@ -185,19 +185,19 @@ annotation|@
 name|Deprecated
 annotation|@
 name|Override
-DECL|method|test (@ullableDecl T t, @NullableDecl T u)
+DECL|method|test (@ullable T t, @Nullable T u)
 specifier|public
 specifier|final
 name|boolean
 name|test
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|T
 name|t
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|T
 name|u
 parameter_list|)
@@ -228,14 +228,14 @@ name|b
 parameter_list|)
 function_decl|;
 comment|/**    * Returns a hash code for {@code t}.    *    *<p>The {@code hash} has the following properties:    *    *<ul>    *<li>It is<i>consistent</i>: for any reference {@code x}, multiple invocations of {@code    *       hash(x}} consistently return the same value provided {@code x} remains unchanged    *       according to the definition of the equivalence. The hash need not remain consistent from    *       one execution of an application to another execution of the same application.    *<li>It is<i>distributable across equivalence</i>: for any references {@code x} and {@code    *       y}, if {@code equivalent(x, y)}, then {@code hash(x) == hash(y)}. It is<i>not</i>    *       necessary that the hash be distributable across<i>inequivalence</i>. If {@code    *       equivalence(x, y)} is false, {@code hash(x) == hash(y)} may still be true.    *<li>{@code hash(null)} is {@code 0}.    *</ul>    */
-DECL|method|hash (@ullableDecl T t)
+DECL|method|hash (@ullable T t)
 specifier|public
 specifier|final
 name|int
 name|hash
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|T
 name|t
 parameter_list|)
@@ -307,7 +307,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns a wrapper of {@code reference} that implements {@link Wrapper#equals(Object)    * Object.equals()} such that {@code wrap(a).equals(wrap(b))} if and only if {@code equivalent(a,    * b)}.    *    * @since 10.0    */
-DECL|method|wrap (@ullableDecl S reference)
+DECL|method|wrap (@ullable S reference)
 specifier|public
 specifier|final
 parameter_list|<
@@ -322,7 +322,7 @@ argument_list|>
 name|wrap
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|S
 name|reference
 parameter_list|)
@@ -366,13 +366,13 @@ name|equivalence
 decl_stmt|;
 DECL|field|reference
 annotation|@
-name|NullableDecl
+name|Nullable
 specifier|private
 specifier|final
 name|T
 name|reference
 decl_stmt|;
-DECL|method|Wrapper (Equivalence<? super T> equivalence, @NullableDecl T reference)
+DECL|method|Wrapper (Equivalence<? super T> equivalence, @Nullable T reference)
 specifier|private
 name|Wrapper
 parameter_list|(
@@ -385,7 +385,7 @@ argument_list|>
 name|equivalence
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|T
 name|reference
 parameter_list|)
@@ -408,7 +408,7 @@ expr_stmt|;
 block|}
 comment|/** Returns the (possibly null) reference wrapped by this instance. */
 annotation|@
-name|NullableDecl
+name|Nullable
 DECL|method|get ()
 specifier|public
 name|T
@@ -422,13 +422,13 @@ block|}
 comment|/**      * Returns {@code true} if {@link Equivalence#equivalent(Object, Object)} applied to the wrapped      * references is {@code true} and both wrappers use the {@link Object#equals(Object) same}      * equivalence.      */
 annotation|@
 name|Override
-DECL|method|equals (@ullableDecl Object obj)
+DECL|method|equals (@ullable Object obj)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|obj
 parameter_list|)
@@ -609,7 +609,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns a predicate that evaluates to true if and only if the input is equivalent to {@code    * target} according to this equivalence relation.    *    * @since 10.0    */
-DECL|method|equivalentTo (@ullableDecl T target)
+DECL|method|equivalentTo (@ullable T target)
 specifier|public
 specifier|final
 name|Predicate
@@ -619,7 +619,7 @@ argument_list|>
 name|equivalentTo
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|T
 name|target
 parameter_list|)
@@ -665,13 +665,13 @@ name|equivalence
 decl_stmt|;
 DECL|field|target
 annotation|@
-name|NullableDecl
+name|Nullable
 specifier|private
 specifier|final
 name|T
 name|target
 decl_stmt|;
-DECL|method|EquivalentToPredicate (Equivalence<T> equivalence, @NullableDecl T target)
+DECL|method|EquivalentToPredicate (Equivalence<T> equivalence, @Nullable T target)
 name|EquivalentToPredicate
 parameter_list|(
 name|Equivalence
@@ -681,7 +681,7 @@ argument_list|>
 name|equivalence
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|T
 name|target
 parameter_list|)
@@ -704,13 +704,13 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|apply (@ullableDecl T input)
+DECL|method|apply (@ullable T input)
 specifier|public
 name|boolean
 name|apply
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|T
 name|input
 parameter_list|)
@@ -728,13 +728,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|equals (@ullableDecl Object obj)
+DECL|method|equals (@ullable Object obj)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|obj
 parameter_list|)

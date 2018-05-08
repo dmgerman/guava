@@ -302,9 +302,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -2015,7 +2015,7 @@ block|}
 annotation|@
 name|Override
 annotation|@
-name|NullableDecl
+name|Nullable
 DECL|method|getIfPresent (Object key)
 specifier|public
 name|V
@@ -2401,7 +2401,7 @@ specifier|final
 name|long
 name|maximumSize
 decl_stmt|;
-DECL|method|CapacityEnforcingLinkedHashMap ( int initialCapacity, float loadFactor, boolean accessOrder, long maximumSize, StatsCounter statsCounter, @NullableDecl RemovalListener removalListener)
+DECL|method|CapacityEnforcingLinkedHashMap ( int initialCapacity, float loadFactor, boolean accessOrder, long maximumSize, StatsCounter statsCounter, @Nullable RemovalListener removalListener)
 specifier|public
 name|CapacityEnforcingLinkedHashMap
 parameter_list|(
@@ -2421,7 +2421,7 @@ name|StatsCounter
 name|statsCounter
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|RemovalListener
 name|removalListener
 parameter_list|)
@@ -3248,13 +3248,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|equals (@ullableDecl Object object)
+DECL|method|equals (@ullable Object object)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|object
 parameter_list|)

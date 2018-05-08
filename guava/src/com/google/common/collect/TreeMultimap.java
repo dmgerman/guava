@@ -180,9 +180,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -524,7 +524,7 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|createCollection (@ullableDecl K key)
+DECL|method|createCollection (@ullable K key)
 name|Collection
 argument_list|<
 name|V
@@ -532,7 +532,7 @@ argument_list|>
 name|createCollection
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|K
 name|key
 parameter_list|)
@@ -605,7 +605,7 @@ name|Override
 annotation|@
 name|GwtIncompatible
 comment|// NavigableSet
-DECL|method|get (@ullableDecl K key)
+DECL|method|get (@ullable K key)
 specifier|public
 name|NavigableSet
 argument_list|<
@@ -614,7 +614,7 @@ argument_list|>
 name|get
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|K
 name|key
 parameter_list|)

@@ -46,9 +46,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -369,8 +369,8 @@ block|}
 annotation|@
 name|Override
 annotation|@
-name|NullableDecl
-DECL|method|edgeValueOrDefault (N nodeU, N nodeV, @NullableDecl V defaultValue)
+name|Nullable
+DECL|method|edgeValueOrDefault (N nodeU, N nodeV, @Nullable V defaultValue)
 specifier|public
 name|V
 name|edgeValueOrDefault
@@ -382,7 +382,7 @@ name|N
 name|nodeV
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|V
 name|defaultValue
 parameter_list|)

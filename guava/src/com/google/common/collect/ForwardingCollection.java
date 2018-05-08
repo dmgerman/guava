@@ -88,9 +88,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -419,13 +419,13 @@ argument_list|)
 return|;
 block|}
 comment|/**    * A sensible definition of {@link #contains} in terms of {@link #iterator}. If you override    * {@link #iterator}, you may wish to override {@link #contains} to forward to this    * implementation.    *    * @since 7.0    */
-DECL|method|standardContains (@ullableDecl Object object)
+DECL|method|standardContains (@ullable Object object)
 specifier|protected
 name|boolean
 name|standardContains
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|object
 parameter_list|)
@@ -496,13 +496,13 @@ argument_list|)
 return|;
 block|}
 comment|/**    * A sensible definition of {@link #remove} in terms of {@link #iterator}, using the iterator's    * {@code remove} method. If you override {@link #iterator}, you may wish to override {@link    * #remove} to forward to this implementation.    *    * @since 7.0    */
-DECL|method|standardRemove (@ullableDecl Object object)
+DECL|method|standardRemove (@ullable Object object)
 specifier|protected
 name|boolean
 name|standardRemove
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|object
 parameter_list|)

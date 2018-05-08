@@ -166,9 +166,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -946,14 +946,14 @@ return|return
 name|referenceNode
 return|;
 block|}
-DECL|method|containsNode (@ullableDecl N node)
+DECL|method|containsNode (@ullable N node)
 specifier|protected
 specifier|final
 name|boolean
 name|containsNode
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|N
 name|node
 parameter_list|)
@@ -967,14 +967,14 @@ name|node
 argument_list|)
 return|;
 block|}
-DECL|method|containsEdge (@ullableDecl E edge)
+DECL|method|containsEdge (@ullable E edge)
 specifier|protected
 specifier|final
 name|boolean
 name|containsEdge
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|E
 name|edge
 parameter_list|)

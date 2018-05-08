@@ -106,9 +106,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -228,7 +228,7 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|submit (Runnable task, @NullableDecl T result)
+DECL|method|submit (Runnable task, @Nullable T result)
 specifier|public
 parameter_list|<
 name|T
@@ -243,7 +243,7 @@ name|Runnable
 name|task
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|T
 name|result
 parameter_list|)

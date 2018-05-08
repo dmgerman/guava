@@ -86,9 +86,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -120,33 +120,33 @@ decl_stmt|;
 comment|/**    * {@inheritDoc}    *    *<ul>    *<li>{@code proxy.hashCode()} delegates to {@link AbstractInvocationHandler#hashCode}    *<li>{@code proxy.toString()} delegates to {@link AbstractInvocationHandler#toString}    *<li>{@code proxy.equals(argument)} returns true if:    *<ul>    *<li>{@code proxy} and {@code argument} are of the same type    *<li>and {@link AbstractInvocationHandler#equals} returns true for the {@link    *             InvocationHandler} of {@code argument}    *</ul>    *<li>other method calls are dispatched to {@link #handleInvocation}.    *</ul>    */
 annotation|@
 name|Override
-DECL|method|invoke (Object proxy, Method method, @NullableDecl Object[] args)
+DECL|method|invoke (Object proxy, Method method, Object @Nullable [] args)
 specifier|public
 specifier|final
 name|Object
 name|invoke
-parameter_list|(
+argument_list|(
 name|Object
 name|proxy
-parameter_list|,
+argument_list|,
 name|Method
 name|method
-parameter_list|,
-annotation|@
-name|NullableDecl
+argument_list|,
 name|Object
+expr|@
+name|Nullable
 index|[]
 name|args
-parameter_list|)
+argument_list|)
 throws|throws
 name|Throwable
 block|{
-if|if
-condition|(
+decl|if
+argument_list|(
 name|args
 operator|==
 literal|null
-condition|)
+argument_list|)
 block|{
 name|args
 operator|=
@@ -295,7 +295,13 @@ name|args
 argument_list|)
 return|;
 block|}
+end_class
+
+begin_comment
 comment|/**    * {@link #invoke} delegates to this method upon any method invocation on the proxy instance,    * except {@link Object#equals}, {@link Object#hashCode} and {@link Object#toString}. The result    * will be returned as the proxied method's return value.    *    *<p>Unlike {@link #invoke}, {@code args} will never be null. When the method has no parameter,    * an empty array is passed in.    */
+end_comment
+
+begin_function_decl
 DECL|method|handleInvocation (Object proxy, Method method, Object[] args)
 specifier|protected
 specifier|abstract
@@ -315,7 +321,13 @@ parameter_list|)
 throws|throws
 name|Throwable
 function_decl|;
+end_function_decl
+
+begin_comment
 comment|/**    * By default delegates to {@link Object#equals} so instances are only equal if they are    * identical. {@code proxy.equals(argument)} returns true if:    *    *<ul>    *<li>{@code proxy} and {@code argument} are of the same type    *<li>and this method returns true for the {@link InvocationHandler} of {@code argument}    *</ul>    *    *<p>Subclasses can override this method to provide custom equality.    */
+end_comment
+
+begin_function
 annotation|@
 name|Override
 DECL|method|equals (Object obj)
@@ -336,7 +348,13 @@ name|obj
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * By default delegates to {@link Object#hashCode}. The dynamic proxies' {@code hashCode()} will    * delegate to this method. Subclasses can override this method to provide custom equality.    */
+end_comment
+
+begin_function
 annotation|@
 name|Override
 DECL|method|hashCode ()
@@ -352,7 +370,13 @@ name|hashCode
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * By default delegates to {@link Object#toString}. The dynamic proxies' {@code toString()} will    * delegate to this method. Subclasses can override this method to provide custom string    * representation for the proxies.    */
+end_comment
+
+begin_function
 annotation|@
 name|Override
 DECL|method|toString ()
@@ -368,6 +392,9 @@ name|toString
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 DECL|method|isProxyOfSameInterfaces (Object arg, Class<?> proxyClass)
 specifier|private
 specifier|static
@@ -428,8 +455,8 @@ argument_list|)
 operator|)
 return|;
 block|}
-block|}
-end_class
+end_function
 
+unit|}
 end_unit
 

@@ -358,9 +358,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -2124,7 +2124,7 @@ decl_stmt|;
 comment|/**      * The exception that caused this service to fail. This will be {@code null} unless the service      * has failed.      */
 DECL|field|failure
 annotation|@
-name|NullableDecl
+name|Nullable
 specifier|final
 name|Throwable
 name|failure
@@ -2146,7 +2146,7 @@ literal|null
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|StateSnapshot ( State internalState, boolean shutdownWhenStartupFinishes, @NullableDecl Throwable failure)
+DECL|method|StateSnapshot ( State internalState, boolean shutdownWhenStartupFinishes, @Nullable Throwable failure)
 name|StateSnapshot
 parameter_list|(
 name|State
@@ -2156,7 +2156,7 @@ name|boolean
 name|shutdownWhenStartupFinishes
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Throwable
 name|failure
 parameter_list|)

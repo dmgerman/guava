@@ -304,9 +304,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -2213,7 +2213,7 @@ name|executor
 decl_stmt|;
 DECL|field|next
 annotation|@
-name|NullableDecl
+name|Nullable
 name|RunnableExecutorPair
 name|next
 decl_stmt|;
@@ -2532,7 +2532,7 @@ name|executor
 decl_stmt|;
 DECL|field|next
 annotation|@
-name|NullableDecl
+name|Nullable
 name|RunnableExecutorPair
 name|next
 decl_stmt|;
@@ -3059,7 +3059,7 @@ decl_stmt|;
 comment|// Volatile because this is written on one thread and read on another with no synchronization.
 DECL|field|next
 annotation|@
-name|NullableDecl
+name|Nullable
 specifier|volatile
 name|RunnableExecutorPair
 name|next

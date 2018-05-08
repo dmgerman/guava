@@ -122,9 +122,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -378,13 +378,13 @@ literal|4
 decl_stmt|;
 DECL|field|element
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|element
 decl_stmt|;
 DECL|field|extras
 annotation|@
-name|NullableDecl
+name|Nullable
 name|List
 argument_list|<
 name|Object

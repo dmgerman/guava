@@ -332,9 +332,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -557,13 +557,13 @@ comment|// Query Operations
 comment|/**    * Returns the number of occurrences of {@code element} in this multiset.    *    * @param element the element to look for    * @return the nonnegative number of occurrences of the element    */
 annotation|@
 name|Override
-DECL|method|count (@ullableDecl Object element)
+DECL|method|count (@ullable Object element)
 specifier|public
 name|int
 name|count
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|element
 parameter_list|)
@@ -981,18 +981,18 @@ comment|// If we're still here, there was a race, so just try again.
 block|}
 block|}
 comment|/**    * Removes a number of occurrences of the specified element from this multiset. If the multiset    * contains fewer than this number of occurrences to begin with, all occurrences will be removed.    *    * @param element the element whose occurrences should be removed    * @param occurrences the number of occurrences of the element to remove    * @return the count of the element before the operation; possibly zero    * @throws IllegalArgumentException if {@code occurrences} is negative    */
-comment|/*    * TODO(cpovirk): remove and removeExactly currently accept null inputs only    * if occurrences == 0. This satisfies both NullPointerTester and    * CollectionRemoveTester.testRemove_nullAllowed, but it's not clear that it's    * a good policy, especially because, in order for the test to pass, the    * parameter must be misleadingly annotated as @NullableDecl. I suspect that    * we'll want to remove @NullableDecl, add an eager checkNotNull, and loosen up    * testRemove_nullAllowed.    */
+comment|/*    * TODO(cpovirk): remove and removeExactly currently accept null inputs only    * if occurrences == 0. This satisfies both NullPointerTester and    * CollectionRemoveTester.testRemove_nullAllowed, but it's not clear that it's    * a good policy, especially because, in order for the test to pass, the    * parameter must be misleadingly annotated as @Nullable. I suspect that    * we'll want to remove @Nullable, add an eager checkNotNull, and loosen up    * testRemove_nullAllowed.    */
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
-DECL|method|remove (@ullableDecl Object element, int occurrences)
+DECL|method|remove (@ullable Object element, int occurrences)
 specifier|public
 name|int
 name|remove
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|element
 parameter_list|,
@@ -1127,13 +1127,13 @@ block|}
 comment|/**    * Removes exactly the specified number of occurrences of {@code element}, or makes no change if    * this is not possible.    *    *<p>This method, in contrast to {@link #remove(Object, int)}, has no effect when the element    * count is smaller than {@code occurrences}.    *    * @param element the element to remove    * @param occurrences the number of occurrences of {@code element} to remove    * @return {@code true} if the removal was possible (including if {@code occurrences} is zero)    * @throws IllegalArgumentException if {@code occurrences} is negative    */
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|removeExactly (@ullableDecl Object element, int occurrences)
+DECL|method|removeExactly (@ullable Object element, int occurrences)
 specifier|public
 name|boolean
 name|removeExactly
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|element
 parameter_list|,
@@ -1742,7 +1742,7 @@ name|boolean
 name|contains
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|object
 parameter_list|)
@@ -2052,7 +2052,7 @@ argument_list|>
 argument_list|()
 block|{
 annotation|@
-name|NullableDecl
+name|Nullable
 specifier|private
 name|Entry
 argument_list|<

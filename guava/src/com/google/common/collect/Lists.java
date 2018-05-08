@@ -444,9 +444,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -976,7 +976,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns an unmodifiable list containing the specified first element and backed by the specified    * array of additional elements. Changes to the {@code rest} array will be reflected in the    * returned list. Unlike {@link Arrays#asList}, the returned list is unmodifiable.    *    *<p>This is useful when a varargs method needs to use a signature such as {@code (Foo firstFoo,    * Foo... moreFoos)}, in order to avoid overload ambiguity or to enforce a minimum argument count.    *    *<p>The returned list is serializable and implements {@link RandomAccess}.    *    * @param first the first element    * @param rest an array of additional elements, possibly empty    * @return an unmodifiable list containing the specified elements    */
-DECL|method|asList (@ullableDecl E first, E[] rest)
+DECL|method|asList (@ullable E first, E[] rest)
 specifier|public
 specifier|static
 parameter_list|<
@@ -989,7 +989,7 @@ argument_list|>
 name|asList
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|E
 name|first
 parameter_list|,
@@ -1010,7 +1010,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns an unmodifiable list containing the specified first and second element, and backed by    * the specified array of additional elements. Changes to the {@code rest} array will be reflected    * in the returned list. Unlike {@link Arrays#asList}, the returned list is unmodifiable.    *    *<p>This is useful when a varargs method needs to use a signature such as {@code (Foo firstFoo,    * Foo secondFoo, Foo... moreFoos)}, in order to avoid overload ambiguity or to enforce a minimum    * argument count.    *    *<p>The returned list is serializable and implements {@link RandomAccess}.    *    * @param first the first element    * @param second the second element    * @param rest an array of additional elements, possibly empty    * @return an unmodifiable list containing the specified elements    */
-DECL|method|asList (@ullableDecl E first, @NullableDecl E second, E[] rest)
+DECL|method|asList (@ullable E first, @Nullable E second, E[] rest)
 specifier|public
 specifier|static
 parameter_list|<
@@ -1023,12 +1023,12 @@ argument_list|>
 name|asList
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|E
 name|first
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|E
 name|second
 parameter_list|,
@@ -1071,7 +1071,7 @@ name|RandomAccess
 block|{
 DECL|field|first
 annotation|@
-name|NullableDecl
+name|Nullable
 specifier|final
 name|E
 name|first
@@ -1082,11 +1082,11 @@ name|E
 index|[]
 name|rest
 decl_stmt|;
-DECL|method|OnePlusArrayList (@ullableDecl E first, E[] rest)
+DECL|method|OnePlusArrayList (@ullable E first, E[] rest)
 name|OnePlusArrayList
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|E
 name|first
 parameter_list|,
@@ -1200,14 +1200,14 @@ name|RandomAccess
 block|{
 DECL|field|first
 annotation|@
-name|NullableDecl
+name|Nullable
 specifier|final
 name|E
 name|first
 decl_stmt|;
 DECL|field|second
 annotation|@
-name|NullableDecl
+name|Nullable
 specifier|final
 name|E
 name|second
@@ -1218,16 +1218,16 @@ name|E
 index|[]
 name|rest
 decl_stmt|;
-DECL|method|TwoPlusArrayList (@ullableDecl E first, @NullableDecl E second, E[] rest)
+DECL|method|TwoPlusArrayList (@ullable E first, @Nullable E second, E[] rest)
 name|TwoPlusArrayList
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|E
 name|first
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|E
 name|second
 parameter_list|,
@@ -2340,13 +2340,13 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|indexOf (@ullableDecl Object object)
+DECL|method|indexOf (@ullable Object object)
 specifier|public
 name|int
 name|indexOf
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|object
 parameter_list|)
@@ -2374,13 +2374,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|lastIndexOf (@ullableDecl Object object)
+DECL|method|lastIndexOf (@ullable Object object)
 specifier|public
 name|int
 name|lastIndexOf
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|object
 parameter_list|)
@@ -2792,7 +2792,7 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|add (int index, @NullableDecl T element)
+DECL|method|add (int index, @Nullable T element)
 specifier|public
 name|void
 name|add
@@ -2801,7 +2801,7 @@ name|int
 name|index
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|T
 name|element
 parameter_list|)
@@ -2883,7 +2883,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|set (int index, @NullableDecl T element)
+DECL|method|set (int index, @Nullable T element)
 specifier|public
 name|T
 name|set
@@ -2892,7 +2892,7 @@ name|int
 name|index
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|T
 name|element
 parameter_list|)
@@ -3348,7 +3348,7 @@ name|hashCode
 return|;
 block|}
 comment|/** An implementation of {@link List#equals(Object)}. */
-DECL|method|equalsImpl (List<?> thisList, @NullableDecl Object other)
+DECL|method|equalsImpl (List<?> thisList, @Nullable Object other)
 specifier|static
 name|boolean
 name|equalsImpl
@@ -3360,7 +3360,7 @@ argument_list|>
 name|thisList
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|other
 parameter_list|)
@@ -3578,7 +3578,7 @@ name|changed
 return|;
 block|}
 comment|/** An implementation of {@link List#indexOf(Object)}. */
-DECL|method|indexOfImpl (List<?> list, @NullableDecl Object element)
+DECL|method|indexOfImpl (List<?> list, @Nullable Object element)
 specifier|static
 name|int
 name|indexOfImpl
@@ -3590,7 +3590,7 @@ argument_list|>
 name|list
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|element
 parameter_list|)
@@ -3661,7 +3661,7 @@ literal|1
 return|;
 block|}
 block|}
-DECL|method|indexOfRandomAccess (List<?> list, @NullableDecl Object element)
+DECL|method|indexOfRandomAccess (List<?> list, @Nullable Object element)
 specifier|private
 specifier|static
 name|int
@@ -3674,7 +3674,7 @@ argument_list|>
 name|list
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|element
 parameter_list|)
@@ -3771,7 +3771,7 @@ literal|1
 return|;
 block|}
 comment|/** An implementation of {@link List#lastIndexOf(Object)}. */
-DECL|method|lastIndexOfImpl (List<?> list, @NullableDecl Object element)
+DECL|method|lastIndexOfImpl (List<?> list, @Nullable Object element)
 specifier|static
 name|int
 name|lastIndexOfImpl
@@ -3783,7 +3783,7 @@ argument_list|>
 name|list
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|element
 parameter_list|)
@@ -3859,7 +3859,7 @@ literal|1
 return|;
 block|}
 block|}
-DECL|method|lastIndexOfRandomAccess (List<?> list, @NullableDecl Object element)
+DECL|method|lastIndexOfRandomAccess (List<?> list, @Nullable Object element)
 specifier|private
 specifier|static
 name|int
@@ -3872,7 +3872,7 @@ argument_list|>
 name|list
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|element
 parameter_list|)

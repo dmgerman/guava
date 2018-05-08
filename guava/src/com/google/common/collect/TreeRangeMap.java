@@ -280,9 +280,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -552,7 +552,7 @@ block|}
 annotation|@
 name|Override
 annotation|@
-name|NullableDecl
+name|Nullable
 DECL|method|get (K key)
 specifier|public
 name|V
@@ -596,7 +596,7 @@ block|}
 annotation|@
 name|Override
 annotation|@
-name|NullableDecl
+name|Nullable
 DECL|method|getEntry (K key)
 specifier|public
 name|Entry
@@ -896,7 +896,7 @@ name|coalescedRange
 return|;
 block|}
 comment|/** Returns the range that spans the given range and entry, if the entry can be coalesced. */
-DECL|method|coalesce ( Range<K> range, V value, @NullableDecl Entry<Cut<K>, RangeMapEntry<K, V>> entry)
+DECL|method|coalesce ( Range<K> range, V value, @Nullable Entry<Cut<K>, RangeMapEntry<K, V>> entry)
 specifier|private
 specifier|static
 parameter_list|<
@@ -922,7 +922,7 @@ name|V
 name|value
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Entry
 argument_list|<
 name|Cut
@@ -1574,13 +1574,13 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|containsKey (@ullableDecl Object key)
+DECL|method|containsKey (@ullable Object key)
 specifier|public
 name|boolean
 name|containsKey
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|key
 parameter_list|)
@@ -1596,13 +1596,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|get (@ullableDecl Object key)
+DECL|method|get (@ullable Object key)
 specifier|public
 name|V
 name|get
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|key
 parameter_list|)
@@ -1796,7 +1796,7 @@ block|{
 annotation|@
 name|Override
 annotation|@
-name|NullableDecl
+name|Nullable
 specifier|public
 name|Object
 name|get
@@ -1812,7 +1812,7 @@ block|}
 annotation|@
 name|Override
 annotation|@
-name|NullableDecl
+name|Nullable
 specifier|public
 name|Entry
 argument_list|<
@@ -2057,7 +2057,7 @@ block|}
 annotation|@
 name|Override
 annotation|@
-name|NullableDecl
+name|Nullable
 DECL|method|get (K key)
 specifier|public
 name|V
@@ -2090,7 +2090,7 @@ block|}
 annotation|@
 name|Override
 annotation|@
-name|NullableDecl
+name|Nullable
 DECL|method|getEntry (K key)
 specifier|public
 name|Entry
@@ -2895,13 +2895,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|equals (@ullableDecl Object o)
+DECL|method|equals (@ullable Object o)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|o
 parameter_list|)
@@ -3434,7 +3434,7 @@ name|boolean
 name|remove
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|o
 parameter_list|)
@@ -3946,13 +3946,13 @@ block|}
 block|}
 annotation|@
 name|Override
-DECL|method|equals (@ullableDecl Object o)
+DECL|method|equals (@ullable Object o)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|o
 parameter_list|)

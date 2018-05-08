@@ -302,9 +302,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -724,7 +724,7 @@ name|smearedValueHash
 decl_stmt|;
 DECL|field|nextInValueBucket
 annotation|@
-name|NullableDecl
+name|Nullable
 name|ValueEntry
 argument_list|<
 name|K
@@ -735,7 +735,7 @@ name|nextInValueBucket
 decl_stmt|;
 DECL|field|predecessorInValueSet
 annotation|@
-name|NullableDecl
+name|Nullable
 name|ValueSetLink
 argument_list|<
 name|K
@@ -746,7 +746,7 @@ name|predecessorInValueSet
 decl_stmt|;
 DECL|field|successorInValueSet
 annotation|@
-name|NullableDecl
+name|Nullable
 name|ValueSetLink
 argument_list|<
 name|K
@@ -757,7 +757,7 @@ name|successorInValueSet
 decl_stmt|;
 DECL|field|predecessorInMultimap
 annotation|@
-name|NullableDecl
+name|Nullable
 name|ValueEntry
 argument_list|<
 name|K
@@ -768,7 +768,7 @@ name|predecessorInMultimap
 decl_stmt|;
 DECL|field|successorInMultimap
 annotation|@
-name|NullableDecl
+name|Nullable
 name|ValueEntry
 argument_list|<
 name|K
@@ -777,16 +777,16 @@ name|V
 argument_list|>
 name|successorInMultimap
 decl_stmt|;
-DECL|method|ValueEntry ( @ullableDecl K key, @NullableDecl V value, int smearedValueHash, @NullableDecl ValueEntry<K, V> nextInValueBucket)
+DECL|method|ValueEntry ( @ullable K key, @Nullable V value, int smearedValueHash, @Nullable ValueEntry<K, V> nextInValueBucket)
 name|ValueEntry
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|K
 name|key
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|V
 name|value
 parameter_list|,
@@ -794,7 +794,7 @@ name|int
 name|smearedValueHash
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|ValueEntry
 argument_list|<
 name|K
@@ -824,12 +824,12 @@ operator|=
 name|nextInValueBucket
 expr_stmt|;
 block|}
-DECL|method|matchesValue (@ullableDecl Object v, int smearedVHash)
+DECL|method|matchesValue (@ullable Object v, int smearedVHash)
 name|boolean
 name|matchesValue
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|v
 parameter_list|,
@@ -1166,7 +1166,7 @@ annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
-DECL|method|replaceValues (@ullableDecl K key, Iterable<? extends V> values)
+DECL|method|replaceValues (@ullable K key, Iterable<? extends V> values)
 specifier|public
 name|Set
 argument_list|<
@@ -1175,7 +1175,7 @@ argument_list|>
 name|replaceValues
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|K
 name|key
 parameter_list|,
@@ -1527,7 +1527,7 @@ init|=
 name|firstEntry
 decl_stmt|;
 annotation|@
-name|NullableDecl
+name|Nullable
 name|ValueEntry
 argument_list|<
 name|K
@@ -1763,13 +1763,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|contains (@ullableDecl Object o)
+DECL|method|contains (@ullable Object o)
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|o
 parameter_list|)
@@ -1836,13 +1836,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|add (@ullableDecl V value)
+DECL|method|add (@ullable V value)
 specifier|public
 name|boolean
 name|add
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|V
 name|value
 parameter_list|)
@@ -2127,13 +2127,13 @@ annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
-DECL|method|remove (@ullableDecl Object o)
+DECL|method|remove (@ullable Object o)
 specifier|public
 name|boolean
 name|remove
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|o
 parameter_list|)
@@ -2384,7 +2384,7 @@ operator|.
 name|successorInMultimap
 decl_stmt|;
 annotation|@
-name|NullableDecl
+name|Nullable
 name|ValueEntry
 argument_list|<
 name|K

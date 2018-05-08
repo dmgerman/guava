@@ -56,9 +56,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -174,7 +174,7 @@ expr_stmt|;
 comment|// null check would be redundant
 block|}
 annotation|@
-name|NullableDecl
+name|Nullable
 DECL|method|getNextInKeyBucket ()
 name|ImmutableMapEntry
 argument_list|<
@@ -190,7 +190,7 @@ literal|null
 return|;
 block|}
 annotation|@
-name|NullableDecl
+name|Nullable
 DECL|method|getNextInValueBucket ()
 name|ImmutableMapEntry
 argument_list|<
@@ -279,7 +279,7 @@ block|}
 annotation|@
 name|Override
 annotation|@
-name|NullableDecl
+name|Nullable
 DECL|method|getNextInKeyBucket ()
 specifier|final
 name|ImmutableMapEntry
@@ -383,7 +383,7 @@ block|}
 annotation|@
 name|Override
 annotation|@
-name|NullableDecl
+name|Nullable
 DECL|method|getNextInValueBucket ()
 name|ImmutableMapEntry
 argument_list|<

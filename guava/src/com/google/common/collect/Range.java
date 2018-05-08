@@ -148,9 +148,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -2014,13 +2014,13 @@ block|}
 comment|/**    * Returns {@code true} if {@code object} is a range having the same endpoints and bound types as    * this range. Note that discrete ranges such as {@code (1..4)} and {@code [2..3]} are<b>not</b>    * equal to one another, despite the fact that they each contain precisely the same set of values.    * Similarly, empty ranges are not equal unless they have exactly the same representation, so    * {@code [3..3)}, {@code (3..3]}, {@code (4..4]} are all unequal.    */
 annotation|@
 name|Override
-DECL|method|equals (@ullableDecl Object object)
+DECL|method|equals (@ullable Object object)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|object
 parameter_list|)

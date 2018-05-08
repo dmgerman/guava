@@ -64,9 +64,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -84,13 +84,13 @@ specifier|final
 class|class
 name|MathPreconditions
 block|{
-DECL|method|checkPositive (@ullableDecl String role, int x)
+DECL|method|checkPositive (@ullable String role, int x)
 specifier|static
 name|int
 name|checkPositive
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|String
 name|role
 parameter_list|,
@@ -123,13 +123,13 @@ return|return
 name|x
 return|;
 block|}
-DECL|method|checkPositive (@ullableDecl String role, long x)
+DECL|method|checkPositive (@ullable String role, long x)
 specifier|static
 name|long
 name|checkPositive
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|String
 name|role
 parameter_list|,
@@ -162,13 +162,13 @@ return|return
 name|x
 return|;
 block|}
-DECL|method|checkPositive (@ullableDecl String role, BigInteger x)
+DECL|method|checkPositive (@ullable String role, BigInteger x)
 specifier|static
 name|BigInteger
 name|checkPositive
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|String
 name|role
 parameter_list|,
@@ -204,13 +204,13 @@ return|return
 name|x
 return|;
 block|}
-DECL|method|checkNonNegative (@ullableDecl String role, int x)
+DECL|method|checkNonNegative (@ullable String role, int x)
 specifier|static
 name|int
 name|checkNonNegative
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|String
 name|role
 parameter_list|,
@@ -243,13 +243,13 @@ return|return
 name|x
 return|;
 block|}
-DECL|method|checkNonNegative (@ullableDecl String role, long x)
+DECL|method|checkNonNegative (@ullable String role, long x)
 specifier|static
 name|long
 name|checkNonNegative
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|String
 name|role
 parameter_list|,
@@ -282,13 +282,13 @@ return|return
 name|x
 return|;
 block|}
-DECL|method|checkNonNegative (@ullableDecl String role, BigInteger x)
+DECL|method|checkNonNegative (@ullable String role, BigInteger x)
 specifier|static
 name|BigInteger
 name|checkNonNegative
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|String
 name|role
 parameter_list|,
@@ -324,13 +324,13 @@ return|return
 name|x
 return|;
 block|}
-DECL|method|checkNonNegative (@ullableDecl String role, double x)
+DECL|method|checkNonNegative (@ullable String role, double x)
 specifier|static
 name|double
 name|checkNonNegative
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|String
 name|role
 parameter_list|,

@@ -254,9 +254,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -732,13 +732,13 @@ block|}
 comment|/**    * {@inheritDoc}    *    *<p><b>Note:</b> This tests exact equality of the calculated statistics, including the floating    * point values. Two instances are guaranteed to be considered equal if one is copied from the    * other using {@code second = new StatsAccumulator().addAll(first).snapshot()}, if both were    * obtained by calling {@code snapshot()} on the same {@link StatsAccumulator} without adding any    * values in between the two calls, or if one is obtained from the other after round-tripping    * through java serialization. However, floating point rounding errors mean that it may be false    * for some instances where the statistics are mathematically equal, including instances    * constructed from the same values in a different order... or (in the general case) even in the    * same order. (It is guaranteed to return true for instances constructed from the same values in    * the same order if {@code strictfp} is in effect, or if the system architecture guarantees    * {@code strictfp}-like semantics.)    */
 annotation|@
 name|Override
-DECL|method|equals (@ullableDecl Object obj)
+DECL|method|equals (@ullable Object obj)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|obj
 parameter_list|)

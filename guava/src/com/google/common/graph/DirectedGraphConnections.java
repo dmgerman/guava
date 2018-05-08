@@ -236,9 +236,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -708,7 +708,7 @@ name|boolean
 name|contains
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|obj
 parameter_list|)
@@ -858,7 +858,7 @@ name|boolean
 name|contains
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|obj
 parameter_list|)
@@ -1345,14 +1345,14 @@ name|previousValue
 return|;
 block|}
 block|}
-DECL|method|isPredecessor (@ullableDecl Object value)
+DECL|method|isPredecessor (@ullable Object value)
 specifier|private
 specifier|static
 name|boolean
 name|isPredecessor
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|value
 parameter_list|)
@@ -1371,14 +1371,14 @@ name|PredAndSucc
 operator|)
 return|;
 block|}
-DECL|method|isSuccessor (@ullableDecl Object value)
+DECL|method|isSuccessor (@ullable Object value)
 specifier|private
 specifier|static
 name|boolean
 name|isSuccessor
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|value
 parameter_list|)

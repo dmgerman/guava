@@ -70,9 +70,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -213,14 +213,14 @@ return|;
 block|}
 annotation|@
 name|JsMethod
-DECL|method|stringIsNullOrEmpty (@ullableDecl String string)
+DECL|method|stringIsNullOrEmpty (@ullable String string)
 specifier|static
 specifier|native
 name|boolean
 name|stringIsNullOrEmpty
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|String
 name|string
 parameter_list|)
@@ -228,14 +228,14 @@ comment|/*-{     return !string;   }-*/
 function_decl|;
 annotation|@
 name|JsMethod
-DECL|method|nullToEmpty (@ullableDecl String string)
+DECL|method|nullToEmpty (@ullable String string)
 specifier|static
 specifier|native
 name|String
 name|nullToEmpty
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|String
 name|string
 parameter_list|)
@@ -243,14 +243,14 @@ comment|/*-{     return string || "";   }-*/
 function_decl|;
 annotation|@
 name|JsMethod
-DECL|method|emptyToNull (@ullableDecl String string)
+DECL|method|emptyToNull (@ullable String string)
 specifier|static
 specifier|native
 name|String
 name|emptyToNull
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|String
 name|string
 parameter_list|)

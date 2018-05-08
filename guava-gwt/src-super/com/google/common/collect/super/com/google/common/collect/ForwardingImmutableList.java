@@ -46,9 +46,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -83,13 +83,13 @@ argument_list|>
 name|delegateList
 parameter_list|()
 function_decl|;
-DECL|method|indexOf (@ullableDecl Object object)
+DECL|method|indexOf (@ullable Object object)
 specifier|public
 name|int
 name|indexOf
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|object
 parameter_list|)
@@ -104,13 +104,13 @@ name|object
 argument_list|)
 return|;
 block|}
-DECL|method|lastIndexOf (@ullableDecl Object object)
+DECL|method|lastIndexOf (@ullable Object object)
 specifier|public
 name|int
 name|lastIndexOf
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|object
 parameter_list|)
@@ -263,13 +263,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|contains (@ullableDecl Object object)
+DECL|method|contains (@ullable Object object)
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|object
 parameter_list|)

@@ -54,9 +54,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -285,12 +285,12 @@ argument_list|()
 decl_stmt|;
 comment|/** Table of cells. When non-null, size is a power of 2. */
 DECL|field|cells
-annotation|@
-name|NullableDecl
 specifier|transient
 specifier|volatile
 name|Cell
-index|[]
+annotation|@
+name|Nullable
+type|[]
 name|cells
 decl_stmt|;
 comment|/**    * Base value, used mainly when there is no contention, but also as a fallback during table    * initialization races. Updated via CAS.    */

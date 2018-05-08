@@ -40,9 +40,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -288,7 +288,7 @@ return|;
 block|}
 comment|/**    * Returns the current value for this system property by delegating to {@link    * System#getProperty(String)}.    */
 annotation|@
-name|NullableDecl
+name|Nullable
 DECL|method|value ()
 specifier|public
 name|String

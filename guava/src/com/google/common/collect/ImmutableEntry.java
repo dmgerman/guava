@@ -50,9 +50,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -88,28 +88,28 @@ name|Serializable
 block|{
 DECL|field|key
 annotation|@
-name|NullableDecl
+name|Nullable
 specifier|final
 name|K
 name|key
 decl_stmt|;
 DECL|field|value
 annotation|@
-name|NullableDecl
+name|Nullable
 specifier|final
 name|V
 name|value
 decl_stmt|;
-DECL|method|ImmutableEntry (@ullableDecl K key, @NullableDecl V value)
+DECL|method|ImmutableEntry (@ullable K key, @Nullable V value)
 name|ImmutableEntry
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|K
 name|key
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|V
 name|value
 parameter_list|)
@@ -128,7 +128,7 @@ name|value
 expr_stmt|;
 block|}
 annotation|@
-name|NullableDecl
+name|Nullable
 annotation|@
 name|Override
 DECL|method|getKey ()
@@ -143,7 +143,7 @@ name|key
 return|;
 block|}
 annotation|@
-name|NullableDecl
+name|Nullable
 annotation|@
 name|Override
 DECL|method|getValue ()

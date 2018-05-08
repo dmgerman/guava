@@ -110,9 +110,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -155,9 +155,9 @@ name|GuardedBy
 argument_list|(
 literal|"this"
 argument_list|)
-DECL|field|runnables
 annotation|@
-name|NullableDecl
+name|Nullable
+DECL|field|runnables
 specifier|private
 name|RunnableExecutorPair
 name|runnables
@@ -427,7 +427,7 @@ name|executor
 decl_stmt|;
 DECL|field|next
 annotation|@
-name|NullableDecl
+name|Nullable
 name|RunnableExecutorPair
 name|next
 decl_stmt|;

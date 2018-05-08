@@ -50,9 +50,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -96,7 +96,7 @@ parameter_list|()
 function_decl|;
 comment|/**    * Returns the value associated with the edge connecting the origin node to {@code node}, or null    * if there is no such edge.    */
 annotation|@
-name|NullableDecl
+name|Nullable
 DECL|method|value (N node)
 name|V
 name|value

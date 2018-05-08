@@ -190,9 +190,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -2858,11 +2858,11 @@ argument_list|(
 literal|"unused"
 argument_list|)
 comment|// called by reflection
-DECL|method|InnerWithAnnotatedConstructorParameter (@ullableDecl String s)
+DECL|method|InnerWithAnnotatedConstructorParameter (@ullable String s)
 name|InnerWithAnnotatedConstructorParameter
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|String
 name|s
 parameter_list|)
@@ -3842,7 +3842,7 @@ comment|// called by reflection
 name|LocalWithAnnotatedConstructorParameter
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|String
 name|s
 parameter_list|)

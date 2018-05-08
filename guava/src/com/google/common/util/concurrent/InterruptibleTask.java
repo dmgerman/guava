@@ -70,9 +70,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -299,18 +299,18 @@ throws|throws
 name|Exception
 function_decl|;
 comment|/**    * Any interruption that happens as a result of calling interruptTask will arrive before this    * method is called. Complete Futures here.    */
-DECL|method|afterRanInterruptibly (@ullableDecl T result, @NullableDecl Throwable error)
+DECL|method|afterRanInterruptibly (@ullable T result, @Nullable Throwable error)
 specifier|abstract
 name|void
 name|afterRanInterruptibly
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|T
 name|result
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Throwable
 name|error
 parameter_list|)

@@ -300,9 +300,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -616,7 +616,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns {@code true} if {@code iterable} contains any element {@code o} for which {@code    * Objects.equals(o, element)} would return {@code true}. Otherwise returns {@code false}, even in    * cases where {@link Collection#contains} might throw {@link NullPointerException} or {@link    * ClassCastException}.    */
-DECL|method|contains (Iterable<?> iterable, @NullableDecl Object element)
+DECL|method|contains (Iterable<?> iterable, @Nullable Object element)
 specifier|public
 specifier|static
 name|boolean
@@ -629,7 +629,7 @@ argument_list|>
 name|iterable
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|element
 parameter_list|)
@@ -867,7 +867,7 @@ return|;
 block|}
 comment|/** Removes and returns the first matching element, or returns {@code null} if there is none. */
 annotation|@
-name|NullableDecl
+name|Nullable
 DECL|method|removeFirstMatching (Iterable<T> removeFrom, Predicate<? super T> predicate)
 specifier|static
 parameter_list|<
@@ -1098,8 +1098,8 @@ return|;
 block|}
 comment|/**    * Returns the single element contained in {@code iterable}, or {@code defaultValue} if the    * iterable is empty.    *    *<p><b>Java 8 users:</b> the {@code Stream} equivalent to this method is {@code    * stream.collect(MoreCollectors.toOptional()).orElse(defaultValue)}.    *    * @throws IllegalArgumentException if the iterator contains multiple elements    */
 annotation|@
-name|NullableDecl
-DECL|method|getOnlyElement (Iterable<? extends T> iterable, @NullableDecl T defaultValue)
+name|Nullable
+DECL|method|getOnlyElement (Iterable<? extends T> iterable, @Nullable T defaultValue)
 specifier|public
 specifier|static
 parameter_list|<
@@ -1117,7 +1117,7 @@ argument_list|>
 name|iterable
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|T
 name|defaultValue
 parameter_list|)
@@ -1371,7 +1371,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns the number of elements in the specified iterable that equal the specified object. This    * implementation avoids a full iteration when the iterable is a {@link Multiset} or {@link Set}.    *    *<p><b>Java 8 users:</b> In most cases, the {@code Stream} equivalent of this method is {@code    * stream.filter(element::equals).count()}. If {@code element} might be null, use {@code    * stream.filter(Predicate.isEqual(element)).count()} instead.    *    * @see java.util.Collections#frequency(Collection, Object) Collections.frequency(Collection,    *     Object)    */
-DECL|method|frequency (Iterable<?> iterable, @NullableDecl Object element)
+DECL|method|frequency (Iterable<?> iterable, @Nullable Object element)
 specifier|public
 specifier|static
 name|int
@@ -1384,7 +1384,7 @@ argument_list|>
 name|iterable
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|element
 parameter_list|)
@@ -2316,8 +2316,8 @@ return|;
 block|}
 comment|/**    * Returns the first element in {@code iterable} that satisfies the given predicate, or {@code    * defaultValue} if none found. Note that this can usually be handled more naturally using {@code    * tryFind(iterable, predicate).or(defaultValue)}.    *    *<p><b>{@code Stream} equivalent:</b> {@code    * stream.filter(predicate).findFirst().orElse(defaultValue)}    *    * @since 7.0    */
 annotation|@
-name|NullableDecl
-DECL|method|find ( Iterable<? extends T> iterable, Predicate<? super T> predicate, @NullableDecl T defaultValue)
+name|Nullable
+DECL|method|find ( Iterable<? extends T> iterable, Predicate<? super T> predicate, @Nullable T defaultValue)
 specifier|public
 specifier|static
 parameter_list|<
@@ -2343,7 +2343,7 @@ argument_list|>
 name|predicate
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|T
 name|defaultValue
 parameter_list|)
@@ -2655,8 +2655,8 @@ return|;
 block|}
 comment|/**    * Returns the element at the specified position in an iterable or a default value otherwise.    *    *<p><b>{@code Stream} equivalent:</b> {@code    * stream.skip(position).findFirst().orElse(defaultValue)} (returns the default value if the index    * is out of bounds)    *    * @param position position of the element to return    * @param defaultValue the default value to return if {@code position} is greater than or equal to    *     the size of the iterable    * @return the element at the specified position in {@code iterable} or {@code defaultValue} if    *     {@code iterable} contains fewer than {@code position + 1} elements.    * @throws IndexOutOfBoundsException if {@code position} is negative    * @since 4.0    */
 annotation|@
-name|NullableDecl
-DECL|method|get ( Iterable<? extends T> iterable, int position, @NullableDecl T defaultValue)
+name|Nullable
+DECL|method|get (Iterable<? extends T> iterable, int position, @Nullable T defaultValue)
 specifier|public
 specifier|static
 parameter_list|<
@@ -2677,7 +2677,7 @@ name|int
 name|position
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|T
 name|defaultValue
 parameter_list|)
@@ -2774,8 +2774,8 @@ block|}
 block|}
 comment|/**    * Returns the first element in {@code iterable} or {@code defaultValue} if the iterable is empty.    * The {@link Iterators} analog to this method is {@link Iterators#getNext}.    *    *<p>If no default value is desired (and the caller instead wants a {@link    * NoSuchElementException} to be thrown), it is recommended that {@code    * iterable.iterator().next()} is used instead.    *    *<p>To get the only element in a single-element {@code Iterable}, consider using {@link    * #getOnlyElement(Iterable)} or {@link #getOnlyElement(Iterable, Object)} instead.    *    *<p><b>{@code Stream} equivalent:</b> {@code stream.findFirst().orElse(defaultValue)}    *    * @param defaultValue the default value to return if the iterable is empty    * @return the first element of {@code iterable} or the default value    * @since 7.0    */
 annotation|@
-name|NullableDecl
-DECL|method|getFirst (Iterable<? extends T> iterable, @NullableDecl T defaultValue)
+name|Nullable
+DECL|method|getFirst (Iterable<? extends T> iterable, @Nullable T defaultValue)
 specifier|public
 specifier|static
 parameter_list|<
@@ -2793,7 +2793,7 @@ argument_list|>
 name|iterable
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|T
 name|defaultValue
 parameter_list|)
@@ -2886,8 +2886,8 @@ return|;
 block|}
 comment|/**    * Returns the last element of {@code iterable} or {@code defaultValue} if the iterable is empty.    * If {@code iterable} is a {@link List} with {@link RandomAccess} support, then this operation is    * guaranteed to be {@code O(1)}.    *    *<p><b>{@code Stream} equivalent:</b> {@code Streams.findLast(stream).orElse(defaultValue)}    *    * @param defaultValue the value to return if {@code iterable} is empty    * @return the last element of {@code iterable} or the default value    * @since 3.0    */
 annotation|@
-name|NullableDecl
-DECL|method|getLast (Iterable<? extends T> iterable, @NullableDecl T defaultValue)
+name|Nullable
+DECL|method|getLast (Iterable<? extends T> iterable, @Nullable T defaultValue)
 specifier|public
 specifier|static
 parameter_list|<
@@ -2905,7 +2905,7 @@ argument_list|>
 name|iterable
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|T
 name|defaultValue
 parameter_list|)

@@ -272,9 +272,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -867,7 +867,7 @@ name|getKeyRole
 parameter_list|()
 function_decl|;
 annotation|@
-name|NullableDecl
+name|Nullable
 DECL|method|getValue (int index)
 specifier|abstract
 name|V
@@ -878,7 +878,7 @@ name|index
 parameter_list|)
 function_decl|;
 annotation|@
-name|NullableDecl
+name|Nullable
 DECL|method|setValue (int index, V newValue)
 specifier|abstract
 name|V
@@ -1108,13 +1108,13 @@ block|}
 comment|// TODO(lowasser): consider an optimized values() implementation
 annotation|@
 name|Override
-DECL|method|containsKey (@ullableDecl Object key)
+DECL|method|containsKey (@ullable Object key)
 specifier|public
 name|boolean
 name|containsKey
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|key
 parameter_list|)
@@ -1130,13 +1130,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|get (@ullableDecl Object key)
+DECL|method|get (@ullable Object key)
 specifier|public
 name|V
 name|get
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|key
 parameter_list|)
@@ -1339,7 +1339,7 @@ block|}
 comment|/**    * Associates {@code value} with the specified row and column indices. The logic {@code    * put(rowKeyList().get(rowIndex), columnKeyList().get(columnIndex), value)} has the same    * behavior, but this method runs more quickly.    *    * @param rowIndex position of the row key in {@link #rowKeyList()}    * @param columnIndex position of the row key in {@link #columnKeyList()}    * @param value value to store in the table    * @return the previous value with the specified row and column    * @throws IndexOutOfBoundsException if either index is negative, {@code rowIndex} is greater than    *     or equal to the number of allowed row keys, or {@code columnIndex} is greater than or equal    *     to the number of allowed column keys    */
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|set (int rowIndex, int columnIndex, @NullableDecl V value)
+DECL|method|set (int rowIndex, int columnIndex, @Nullable V value)
 specifier|public
 name|V
 name|set
@@ -1351,7 +1351,7 @@ name|int
 name|columnIndex
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|V
 name|value
 parameter_list|)
@@ -1549,18 +1549,18 @@ block|}
 comment|/**    * Returns {@code true} if the provided keys are among the keys provided when the table was    * constructed.    */
 annotation|@
 name|Override
-DECL|method|contains (@ullableDecl Object rowKey, @NullableDecl Object columnKey)
+DECL|method|contains (@ullable Object rowKey, @Nullable Object columnKey)
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|rowKey
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|columnKey
 parameter_list|)
@@ -1580,13 +1580,13 @@ block|}
 comment|/**    * Returns {@code true} if the provided column key is among the column keys provided when the    * table was constructed.    */
 annotation|@
 name|Override
-DECL|method|containsColumn (@ullableDecl Object columnKey)
+DECL|method|containsColumn (@ullable Object columnKey)
 specifier|public
 name|boolean
 name|containsColumn
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|columnKey
 parameter_list|)
@@ -1603,13 +1603,13 @@ block|}
 comment|/**    * Returns {@code true} if the provided row key is among the row keys provided when the table was    * constructed.    */
 annotation|@
 name|Override
-DECL|method|containsRow (@ullableDecl Object rowKey)
+DECL|method|containsRow (@ullable Object rowKey)
 specifier|public
 name|boolean
 name|containsRow
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|rowKey
 parameter_list|)
@@ -1625,13 +1625,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|containsValue (@ullableDecl Object value)
+DECL|method|containsValue (@ullable Object value)
 specifier|public
 name|boolean
 name|containsValue
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|value
 parameter_list|)
@@ -1677,18 +1677,18 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|get (@ullableDecl Object rowKey, @NullableDecl Object columnKey)
+DECL|method|get (@ullable Object rowKey, @Nullable Object columnKey)
 specifier|public
 name|V
 name|get
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|rowKey
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|columnKey
 parameter_list|)
@@ -1760,7 +1760,7 @@ annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
-DECL|method|put (R rowKey, C columnKey, @NullableDecl V value)
+DECL|method|put (R rowKey, C columnKey, @Nullable V value)
 specifier|public
 name|V
 name|put
@@ -1772,7 +1772,7 @@ name|C
 name|columnKey
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|V
 name|value
 parameter_list|)
@@ -1906,18 +1906,18 @@ block|}
 comment|/**    * Associates the value {@code null} with the specified keys, assuming both keys are valid. If    * either key is null or isn't among the keys provided during construction, this method has no    * effect.    *    *<p>This method is equivalent to {@code put(rowKey, columnKey, null)} when both provided keys    * are valid.    *    * @param rowKey row key of mapping to be erased    * @param columnKey column key of mapping to be erased    * @return the value previously associated with the keys, or {@code null} if no mapping existed    *     for the keys    */
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|erase (@ullableDecl Object rowKey, @NullableDecl Object columnKey)
+DECL|method|erase (@ullable Object rowKey, @Nullable Object columnKey)
 specifier|public
 name|V
 name|erase
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|rowKey
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|columnKey
 parameter_list|)

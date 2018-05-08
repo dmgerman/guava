@@ -114,9 +114,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -454,18 +454,18 @@ block|}
 comment|// Overriding so NullPointerTester test passes.
 annotation|@
 name|Override
-DECL|method|contains (@ullableDecl Object rowKey, @NullableDecl Object columnKey)
+DECL|method|contains (@ullable Object rowKey, @Nullable Object columnKey)
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|rowKey
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|columnKey
 parameter_list|)
@@ -483,13 +483,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|containsColumn (@ullableDecl Object columnKey)
+DECL|method|containsColumn (@ullable Object columnKey)
 specifier|public
 name|boolean
 name|containsColumn
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|columnKey
 parameter_list|)
@@ -505,13 +505,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|containsRow (@ullableDecl Object rowKey)
+DECL|method|containsRow (@ullable Object rowKey)
 specifier|public
 name|boolean
 name|containsRow
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|rowKey
 parameter_list|)
@@ -527,13 +527,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|containsValue (@ullableDecl Object value)
+DECL|method|containsValue (@ullable Object value)
 specifier|public
 name|boolean
 name|containsValue
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|value
 parameter_list|)
@@ -549,18 +549,18 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|get (@ullableDecl Object rowKey, @NullableDecl Object columnKey)
+DECL|method|get (@ullable Object rowKey, @Nullable Object columnKey)
 specifier|public
 name|V
 name|get
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|rowKey
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|columnKey
 parameter_list|)
@@ -578,13 +578,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|equals (@ullableDecl Object obj)
+DECL|method|equals (@ullable Object obj)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|obj
 parameter_list|)
@@ -602,18 +602,18 @@ annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
-DECL|method|remove (@ullableDecl Object rowKey, @NullableDecl Object columnKey)
+DECL|method|remove (@ullable Object rowKey, @Nullable Object columnKey)
 specifier|public
 name|V
 name|remove
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|rowKey
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|columnKey
 parameter_list|)

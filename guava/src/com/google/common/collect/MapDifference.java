@@ -50,9 +50,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -129,12 +129,12 @@ function_decl|;
 comment|/**    * Compares the specified object with this instance for equality. Returns {@code true} if the    * given object is also a {@code MapDifference} and the values returned by the {@link    * #entriesOnlyOnLeft()}, {@link #entriesOnlyOnRight()}, {@link #entriesInCommon()} and {@link    * #entriesDiffering()} of the two instances are equal.    */
 annotation|@
 name|Override
-DECL|method|equals (@ullableDecl Object object)
+DECL|method|equals (@ullable Object object)
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|object
 parameter_list|)
@@ -170,12 +170,12 @@ function_decl|;
 comment|/**      * Two instances are considered equal if their {@link #leftValue()} values are equal and their      * {@link #rightValue()} values are also equal.      */
 annotation|@
 name|Override
-DECL|method|equals (@ullableDecl Object other)
+DECL|method|equals (@ullable Object other)
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|other
 parameter_list|)

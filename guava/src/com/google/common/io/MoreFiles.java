@@ -492,9 +492,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -2276,7 +2276,7 @@ block|}
 block|}
 comment|/**    * Secure recursive delete using {@code SecureDirectoryStream}. Returns a collection of exceptions    * that occurred or null if no exceptions were thrown.    */
 annotation|@
-name|NullableDecl
+name|Nullable
 DECL|method|deleteRecursivelySecure ( SecureDirectoryStream<Path> dir, Path path)
 specifier|private
 specifier|static
@@ -2394,7 +2394,7 @@ block|}
 block|}
 comment|/**    * Secure method for deleting the contents of a directory using {@code SecureDirectoryStream}.    * Returns a collection of exceptions that occurred or null if no exceptions were thrown.    */
 annotation|@
-name|NullableDecl
+name|Nullable
 DECL|method|deleteDirectoryContentsSecure ( SecureDirectoryStream<Path> dir)
 specifier|private
 specifier|static
@@ -2472,7 +2472,7 @@ block|}
 block|}
 comment|/**    * Insecure recursive delete for file systems that don't support {@code SecureDirectoryStream}.    * Returns a collection of exceptions that occurred or null if no exceptions were thrown.    */
 annotation|@
-name|NullableDecl
+name|Nullable
 DECL|method|deleteRecursivelyInsecure (Path path)
 specifier|private
 specifier|static
@@ -2572,7 +2572,7 @@ block|}
 block|}
 comment|/**    * Simple, insecure method for deleting the contents of a directory for file systems that don't    * support {@code SecureDirectoryStream}. Returns a collection of exceptions that occurred or null    * if no exceptions were thrown.    */
 annotation|@
-name|NullableDecl
+name|Nullable
 DECL|method|deleteDirectoryContentsInsecure ( DirectoryStream<Path> dir)
 specifier|private
 specifier|static
@@ -2645,7 +2645,7 @@ block|}
 block|}
 comment|/**    * Returns a path to the parent directory of the given path. If the path actually has a parent    * path, this is simple. Otherwise, we need to do some trickier things. Returns null if the path    * is a root or is the empty path.    */
 annotation|@
-name|NullableDecl
+name|Nullable
 DECL|method|getParentPath (Path path)
 specifier|private
 specifier|static
@@ -2771,7 +2771,7 @@ throw|;
 block|}
 block|}
 comment|/**    * Adds the given exception to the given collection, creating the collection if it's null. Returns    * the collection.    */
-DECL|method|addException ( @ullableDecl Collection<IOException> exceptions, IOException e)
+DECL|method|addException ( @ullable Collection<IOException> exceptions, IOException e)
 specifier|private
 specifier|static
 name|Collection
@@ -2781,7 +2781,7 @@ argument_list|>
 name|addException
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Collection
 argument_list|<
 name|IOException
@@ -2821,8 +2821,8 @@ return|;
 block|}
 comment|/**    * Concatenates the contents of the two given collections of exceptions. If either collection is    * null, the other collection is returned. Otherwise, the elements of {@code other} are added to    * {@code exceptions} and {@code exceptions} is returned.    */
 annotation|@
-name|NullableDecl
-DECL|method|concat ( @ullableDecl Collection<IOException> exceptions, @NullableDecl Collection<IOException> other)
+name|Nullable
+DECL|method|concat ( @ullable Collection<IOException> exceptions, @Nullable Collection<IOException> other)
 specifier|private
 specifier|static
 name|Collection
@@ -2832,7 +2832,7 @@ argument_list|>
 name|concat
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Collection
 argument_list|<
 name|IOException
@@ -2840,7 +2840,7 @@ argument_list|>
 name|exceptions
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Collection
 argument_list|<
 name|IOException

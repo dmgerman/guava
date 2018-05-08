@@ -196,9 +196,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -626,8 +626,8 @@ expr_stmt|;
 block|}
 block|}
 annotation|@
-name|NullableDecl
-DECL|method|getReference (@ullableDecl Reference<T> reference)
+name|Nullable
+DECL|method|getReference (@ullable Reference<T> reference)
 specifier|private
 specifier|static
 parameter_list|<
@@ -637,7 +637,7 @@ name|T
 name|getReference
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Reference
 argument_list|<
 name|T

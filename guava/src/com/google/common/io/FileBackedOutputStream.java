@@ -148,9 +148,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -201,7 +201,7 @@ name|memory
 decl_stmt|;
 DECL|field|file
 annotation|@
-name|NullableDecl
+name|Nullable
 specifier|private
 name|File
 name|file

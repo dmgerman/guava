@@ -274,9 +274,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -374,7 +374,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Delegates to {@link Collection#contains}. Returns {@code false} if the {@code contains} method    * throws a {@code ClassCastException} or {@code NullPointerException}.    */
-DECL|method|safeContains (Collection<?> collection, @NullableDecl Object object)
+DECL|method|safeContains (Collection<?> collection, @Nullable Object object)
 specifier|static
 name|boolean
 name|safeContains
@@ -386,7 +386,7 @@ argument_list|>
 name|collection
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|object
 parameter_list|)
@@ -421,7 +421,7 @@ return|;
 block|}
 block|}
 comment|/**    * Delegates to {@link Collection#remove}. Returns {@code false} if the {@code remove} method    * throws a {@code ClassCastException} or {@code NullPointerException}.    */
-DECL|method|safeRemove (Collection<?> collection, @NullableDecl Object object)
+DECL|method|safeRemove (Collection<?> collection, @Nullable Object object)
 specifier|static
 name|boolean
 name|safeRemove
@@ -433,7 +433,7 @@ argument_list|>
 name|collection
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|object
 parameter_list|)
@@ -663,13 +663,13 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|contains (@ullableDecl Object element)
+DECL|method|contains (@ullable Object element)
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|element
 parameter_list|)
@@ -1981,13 +1981,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|contains (@ullableDecl Object obj)
+DECL|method|contains (@ullable Object obj)
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|obj
 parameter_list|)
@@ -2063,7 +2063,7 @@ argument_list|>
 block|{
 DECL|field|nextPermutation
 annotation|@
-name|NullableDecl
+name|Nullable
 name|List
 argument_list|<
 name|E
@@ -2503,13 +2503,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|contains (@ullableDecl Object obj)
+DECL|method|contains (@ullable Object obj)
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|obj
 parameter_list|)

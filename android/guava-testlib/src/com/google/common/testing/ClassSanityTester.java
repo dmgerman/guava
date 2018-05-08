@@ -3938,7 +3938,7 @@ name|assertTrue
 argument_list|(
 name|factory
 operator|+
-literal|" returns null but it's not annotated with @NullableDecl"
+literal|" returns null but it's not annotated with @Nullable"
 argument_list|,
 name|isNullable
 argument_list|(

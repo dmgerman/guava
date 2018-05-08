@@ -344,9 +344,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -1653,7 +1653,7 @@ name|T
 argument_list|>
 block|{
 annotation|@
-name|NullableDecl
+name|Nullable
 name|T
 name|holder
 decl_stmt|;
@@ -1684,7 +1684,7 @@ name|void
 name|accept
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|T
 name|t
 parameter_list|)
@@ -3170,7 +3170,7 @@ name|void
 name|set
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|T
 name|value
 parameter_list|)

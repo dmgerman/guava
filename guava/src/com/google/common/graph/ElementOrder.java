@@ -178,9 +178,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -215,7 +215,7 @@ literal|"Immutable"
 argument_list|)
 comment|// Hopefully the comparator provided is immutable!
 annotation|@
-name|NullableDecl
+name|Nullable
 DECL|field|comparator
 specifier|private
 specifier|final
@@ -240,7 +240,7 @@ block|,
 DECL|enumConstant|SORTED
 name|SORTED
 block|}
-DECL|method|ElementOrder (Type type, @NullableDecl Comparator<T> comparator)
+DECL|method|ElementOrder (Type type, @Nullable Comparator<T> comparator)
 specifier|private
 name|ElementOrder
 parameter_list|(
@@ -248,7 +248,7 @@ name|Type
 name|type
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Comparator
 argument_list|<
 name|T
@@ -466,13 +466,13 @@ throw|;
 block|}
 annotation|@
 name|Override
-DECL|method|equals (@ullableDecl Object obj)
+DECL|method|equals (@ullable Object obj)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|obj
 parameter_list|)

@@ -154,9 +154,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -204,7 +204,7 @@ name|range
 parameter_list|)
 block|{
 annotation|@
-name|NullableDecl
+name|Nullable
 name|T
 name|lowerEndpoint
 init|=
@@ -236,7 +236,7 @@ else|:
 name|OPEN
 decl_stmt|;
 annotation|@
-name|NullableDecl
+name|Nullable
 name|T
 name|upperEndpoint
 init|=
@@ -344,7 +344,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns everything above the endpoint relative to the specified comparator, with the specified    * endpoint behavior.    */
-DECL|method|downTo ( Comparator<? super T> comparator, @NullableDecl T endpoint, BoundType boundType)
+DECL|method|downTo ( Comparator<? super T> comparator, @Nullable T endpoint, BoundType boundType)
 specifier|static
 parameter_list|<
 name|T
@@ -364,7 +364,7 @@ argument_list|>
 name|comparator
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|T
 name|endpoint
 parameter_list|,
@@ -396,7 +396,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns everything below the endpoint relative to the specified comparator, with the specified    * endpoint behavior.    */
-DECL|method|upTo ( Comparator<? super T> comparator, @NullableDecl T endpoint, BoundType boundType)
+DECL|method|upTo ( Comparator<? super T> comparator, @Nullable T endpoint, BoundType boundType)
 specifier|static
 parameter_list|<
 name|T
@@ -416,7 +416,7 @@ argument_list|>
 name|comparator
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|T
 name|endpoint
 parameter_list|,
@@ -448,7 +448,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns everything between the endpoints relative to the specified comparator, with the    * specified endpoint behavior.    */
-DECL|method|range ( Comparator<? super T> comparator, @NullableDecl T lower, BoundType lowerType, @NullableDecl T upper, BoundType upperType)
+DECL|method|range ( Comparator<? super T> comparator, @Nullable T lower, BoundType lowerType, @Nullable T upper, BoundType upperType)
 specifier|static
 parameter_list|<
 name|T
@@ -468,7 +468,7 @@ argument_list|>
 name|comparator
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|T
 name|lower
 parameter_list|,
@@ -476,7 +476,7 @@ name|BoundType
 name|lowerType
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|T
 name|upper
 parameter_list|,
@@ -526,7 +526,7 @@ name|hasLowerBound
 decl_stmt|;
 DECL|field|lowerEndpoint
 annotation|@
-name|NullableDecl
+name|Nullable
 specifier|private
 specifier|final
 name|T
@@ -546,7 +546,7 @@ name|hasUpperBound
 decl_stmt|;
 DECL|field|upperEndpoint
 annotation|@
-name|NullableDecl
+name|Nullable
 specifier|private
 specifier|final
 name|T
@@ -558,7 +558,7 @@ specifier|final
 name|BoundType
 name|upperBoundType
 decl_stmt|;
-DECL|method|GeneralRange ( Comparator<? super T> comparator, boolean hasLowerBound, @NullableDecl T lowerEndpoint, BoundType lowerBoundType, boolean hasUpperBound, @NullableDecl T upperEndpoint, BoundType upperBoundType)
+DECL|method|GeneralRange ( Comparator<? super T> comparator, boolean hasLowerBound, @Nullable T lowerEndpoint, BoundType lowerBoundType, boolean hasUpperBound, @Nullable T upperEndpoint, BoundType upperBoundType)
 specifier|private
 name|GeneralRange
 parameter_list|(
@@ -574,7 +574,7 @@ name|boolean
 name|hasLowerBound
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|T
 name|lowerEndpoint
 parameter_list|,
@@ -585,7 +585,7 @@ name|boolean
 name|hasUpperBound
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|T
 name|upperEndpoint
 parameter_list|,
@@ -789,12 +789,12 @@ argument_list|)
 operator|)
 return|;
 block|}
-DECL|method|tooLow (@ullableDecl T t)
+DECL|method|tooLow (@ullable T t)
 name|boolean
 name|tooLow
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|T
 name|t
 parameter_list|)
@@ -845,12 +845,12 @@ name|OPEN
 operator|)
 return|;
 block|}
-DECL|method|tooHigh (@ullableDecl T t)
+DECL|method|tooHigh (@ullable T t)
 name|boolean
 name|tooHigh
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|T
 name|t
 parameter_list|)
@@ -901,12 +901,12 @@ name|OPEN
 operator|)
 return|;
 block|}
-DECL|method|contains (@ullableDecl T t)
+DECL|method|contains (@ullable T t)
 name|boolean
 name|contains
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|T
 name|t
 parameter_list|)
@@ -965,7 +965,7 @@ operator|.
 name|hasLowerBound
 decl_stmt|;
 annotation|@
-name|NullableDecl
+name|Nullable
 name|T
 name|lowEnd
 init|=
@@ -1075,7 +1075,7 @@ operator|.
 name|hasUpperBound
 decl_stmt|;
 annotation|@
-name|NullableDecl
+name|Nullable
 name|T
 name|upEnd
 init|=
@@ -1257,13 +1257,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|equals (@ullableDecl Object obj)
+DECL|method|equals (@ullable Object obj)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|obj
 parameter_list|)

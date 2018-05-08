@@ -210,9 +210,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -262,7 +262,7 @@ decl_stmt|;
 comment|/*    * In certain circumstances, this field might theoretically not be visible to an afterDone() call    * triggered by cancel(). For details, see the comments on the fields of TimeoutFuture.    */
 DECL|field|runningState
 annotation|@
-name|NullableDecl
+name|Nullable
 specifier|private
 name|RunningState
 name|runningState
@@ -1079,7 +1079,7 @@ literal|null
 expr_stmt|;
 block|}
 comment|/**      * Called only if {@code collectsValues} is true.      *      *<p>If {@code allMustSucceed} is true, called as each future completes; otherwise, called for      * each future when all futures complete.      */
-DECL|method|collectOneValue ( boolean allMustSucceed, int index, @NullableDecl InputT returnValue)
+DECL|method|collectOneValue (boolean allMustSucceed, int index, @Nullable InputT returnValue)
 specifier|abstract
 name|void
 name|collectOneValue
@@ -1091,7 +1091,7 @@ name|int
 name|index
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|InputT
 name|returnValue
 parameter_list|)

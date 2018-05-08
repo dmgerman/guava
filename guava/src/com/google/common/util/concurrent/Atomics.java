@@ -70,9 +70,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -118,7 +118,7 @@ argument_list|()
 return|;
 block|}
 comment|/**    * Creates an {@code AtomicReference} instance with the given initial value.    *    * @param initialValue the initial value    * @return a new {@code AtomicReference} with the given initial value    */
-DECL|method|newReference (@ullableDecl V initialValue)
+DECL|method|newReference (@ullable V initialValue)
 specifier|public
 specifier|static
 parameter_list|<
@@ -131,7 +131,7 @@ argument_list|>
 name|newReference
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|V
 name|initialValue
 parameter_list|)

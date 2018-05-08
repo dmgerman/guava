@@ -2812,7 +2812,7 @@ comment|// Views
 comment|/**    * {@inheritDoc}    *    *<p>If the multimap is modified while an iteration over the list is in progress (except through    * the iterator's own {@code add}, {@code set} or {@code remove} operations) the results of the    * iteration are undefined.    *    *<p>The returned list is not serializable and does not have random access.    */
 annotation|@
 name|Override
-DECL|method|get (final @NullableDecl K key)
+DECL|method|get (@ullableDecl final K key)
 specifier|public
 name|List
 argument_list|<
@@ -2820,9 +2820,9 @@ name|V
 argument_list|>
 name|get
 parameter_list|(
-specifier|final
 annotation|@
 name|NullableDecl
+specifier|final
 name|K
 name|key
 parameter_list|)

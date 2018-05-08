@@ -74,9 +74,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -190,13 +190,13 @@ comment|// ImmutableSortedSet.indexOf
 comment|// TODO(cpovirk): consider manual binary search under GWT to preserve O(log N) lookup
 annotation|@
 name|Override
-DECL|method|indexOf (@ullableDecl Object target)
+DECL|method|indexOf (@ullable Object target)
 specifier|public
 name|int
 name|indexOf
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|target
 parameter_list|)
@@ -244,13 +244,13 @@ name|GwtIncompatible
 comment|// ImmutableSortedSet.indexOf
 annotation|@
 name|Override
-DECL|method|lastIndexOf (@ullableDecl Object target)
+DECL|method|lastIndexOf (@ullable Object target)
 specifier|public
 name|int
 name|lastIndexOf
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|target
 parameter_list|)

@@ -50,9 +50,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -114,18 +114,18 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|compare (@ullableDecl T left, @NullableDecl T right)
+DECL|method|compare (@ullable T left, @Nullable T right)
 specifier|public
 name|int
 name|compare
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|T
 name|left
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|T
 name|right
 parameter_list|)
@@ -258,13 +258,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|equals (@ullableDecl Object object)
+DECL|method|equals (@ullable Object object)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|object
 parameter_list|)

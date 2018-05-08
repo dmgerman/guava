@@ -278,9 +278,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -1107,7 +1107,7 @@ argument_list|)
 control|)
 block|{
 annotation|@
-name|NullableDecl
+name|Nullable
 name|X
 name|instance
 init|=
@@ -1270,7 +1270,7 @@ end_class
 
 begin_function
 annotation|@
-name|NullableDecl
+name|Nullable
 DECL|method|newFromConstructor (Constructor<X> constructor, Throwable cause)
 specifier|private
 specifier|static

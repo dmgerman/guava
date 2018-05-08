@@ -54,9 +54,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -285,12 +285,12 @@ argument_list|()
 decl_stmt|;
 comment|/** Table of cells. When non-null, size is a power of 2. */
 DECL|field|cells
-annotation|@
-name|NullableDecl
 specifier|transient
 specifier|volatile
 name|Cell
-index|[]
+annotation|@
+name|Nullable
+type|[]
 name|cells
 decl_stmt|;
 comment|/**    * Base value, used mainly when there is no contention, but also as a fallback during table    * initialization races. Updated via CAS.    */
@@ -376,23 +376,23 @@ name|newValue
 parameter_list|)
 function_decl|;
 comment|/**    * Handles cases of updates involving initialization, resizing, creating new Cells, and/or    * contention. See above for explanation. This method suffers the usual non-modularity problems of    * optimistic retry code, relying on rechecked sets of reads.    *    * @param x the value    * @param hc the hash code holder    * @param wasUncontended false if CAS failed before call    */
-DECL|method|retryUpdate (long x, @NullableDecl int[] hc, boolean wasUncontended)
+DECL|method|retryUpdate (long x, int @Nullable [] hc, boolean wasUncontended)
 specifier|final
 name|void
 name|retryUpdate
-parameter_list|(
+argument_list|(
 name|long
 name|x
-parameter_list|,
-annotation|@
-name|NullableDecl
+argument_list|,
 name|int
+expr|@
+name|Nullable
 index|[]
 name|hc
-parameter_list|,
+argument_list|,
 name|boolean
 name|wasUncontended
-parameter_list|)
+argument_list|)
 block|{
 name|int
 name|h

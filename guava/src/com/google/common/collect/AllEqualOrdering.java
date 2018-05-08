@@ -60,9 +60,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -102,18 +102,18 @@ argument_list|()
 decl_stmt|;
 annotation|@
 name|Override
-DECL|method|compare (@ullableDecl Object left, @NullableDecl Object right)
+DECL|method|compare (@ullable Object left, @Nullable Object right)
 specifier|public
 name|int
 name|compare
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|left
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|right
 parameter_list|)

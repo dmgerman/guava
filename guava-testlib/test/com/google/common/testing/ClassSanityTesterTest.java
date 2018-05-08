@@ -292,9 +292,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -347,7 +347,7 @@ specifier|static
 class|class
 name|GoodEqualsFactory
 block|{
-DECL|method|good ( String a, int b, @SuppressWarnings(R) OneConstantEnum oneConstantOnly, @SuppressWarnings(R) @NullableDecl NoConstantEnum noConstant)
+DECL|method|good ( String a, int b, @SuppressWarnings(R) OneConstantEnum oneConstantOnly, @SuppressWarnings(R) @Nullable NoConstantEnum noConstant)
 specifier|public
 specifier|static
 name|Object
@@ -375,7 +375,7 @@ argument_list|(
 literal|"unused"
 argument_list|)
 annotation|@
-name|NullableDecl
+name|Nullable
 name|NoConstantEnum
 name|noConstant
 parameter_list|)
@@ -542,7 +542,7 @@ argument_list|(
 literal|"unused"
 argument_list|)
 comment|// Called by reflection
-DECL|method|bad (String a, int b, @NullableDecl OneConstantEnum oneConstantOnly)
+DECL|method|bad (String a, int b, @Nullable OneConstantEnum oneConstantOnly)
 specifier|public
 specifier|static
 name|Object
@@ -555,7 +555,7 @@ name|int
 name|b
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|OneConstantEnum
 name|oneConstantOnly
 parameter_list|)
@@ -1254,7 +1254,7 @@ class|class
 name|FactoryThatReturnsNullAndAnnotated
 block|{
 annotation|@
-name|NullableDecl
+name|Nullable
 DECL|method|bad ()
 specifier|public
 specifier|static
@@ -2158,7 +2158,7 @@ argument_list|)
 operator|.
 name|contains
 argument_list|(
-literal|"@NullableDecl"
+literal|"@Nullable"
 argument_list|)
 expr_stmt|;
 return|return;
@@ -2803,13 +2803,13 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|equals (@ullableDecl Object obj)
+DECL|method|equals (@ullable Object obj)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|obj
 parameter_list|)
@@ -3039,13 +3039,13 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|equals (@ullableDecl Object obj)
+DECL|method|equals (@ullable Object obj)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|obj
 parameter_list|)
@@ -3367,7 +3367,7 @@ argument_list|(
 literal|"unused"
 argument_list|)
 annotation|@
-name|NullableDecl
+name|Nullable
 DECL|method|createMayReturnNull (int a, int b)
 specifier|public
 specifier|static
@@ -3387,13 +3387,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|equals (@ullableDecl Object obj)
+DECL|method|equals (@ullable Object obj)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|obj
 parameter_list|)
@@ -3461,7 +3461,7 @@ name|BadEquals
 parameter_list|()
 block|{}
 comment|// ignored by testEquals() since it has less parameters.
-DECL|method|create (@uppressWarningsR) @ullableDecl String s)
+DECL|method|create (@uppressWarningsR) @ullable String s)
 specifier|public
 specifier|static
 name|BadEquals
@@ -3473,7 +3473,7 @@ argument_list|(
 literal|"unused"
 argument_list|)
 annotation|@
-name|NullableDecl
+name|Nullable
 name|String
 name|s
 parameter_list|)
@@ -3486,13 +3486,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|equals (@ullableDecl Object obj)
+DECL|method|equals (@ullable Object obj)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|obj
 parameter_list|)
@@ -4820,13 +4820,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|equals (@ullableDecl Object obj)
+DECL|method|equals (@ullable Object obj)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|obj
 parameter_list|)
@@ -4946,12 +4946,12 @@ argument_list|(
 literal|"unused"
 argument_list|)
 comment|// reflected
-DECL|method|nullableOnly (@ullableDecl String s)
+DECL|method|nullableOnly (@ullable String s)
 name|void
 name|nullableOnly
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|String
 name|s
 parameter_list|)
@@ -4968,12 +4968,12 @@ argument_list|(
 literal|"unused"
 argument_list|)
 comment|// reflected
-DECL|method|primitiveAndNullable (@ullableDecl String s, int i)
+DECL|method|primitiveAndNullable (@ullable String s, int i)
 name|void
 name|primitiveAndNullable
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|String
 name|s
 parameter_list|,
@@ -5014,7 +5014,7 @@ name|FactoryMethodReturnsNullAndAnnotated
 parameter_list|()
 block|{}
 annotation|@
-name|NullableDecl
+name|Nullable
 DECL|method|returnsNull ()
 specifier|public
 specifier|static
@@ -5052,13 +5052,13 @@ operator|=
 name|name
 expr_stmt|;
 block|}
-DECL|method|create (@ullableDecl String name)
+DECL|method|create (@ullable String name)
 specifier|static
 name|FactoryMethodAcceptsNull
 name|create
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|String
 name|name
 parameter_list|)
@@ -5129,12 +5129,12 @@ specifier|final
 name|String
 name|name
 decl_stmt|;
-DECL|method|ConstructorAcceptsNull (@ullableDecl String name)
+DECL|method|ConstructorAcceptsNull (@ullable String name)
 specifier|public
 name|ConstructorAcceptsNull
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|String
 name|name
 parameter_list|)
@@ -5235,13 +5235,13 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|equals (@ullableDecl Object obj)
+DECL|method|equals (@ullable Object obj)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|obj
 parameter_list|)
@@ -5317,13 +5317,13 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|equals (@ullableDecl Object obj)
+DECL|method|equals (@ullable Object obj)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Object
 name|obj
 parameter_list|)

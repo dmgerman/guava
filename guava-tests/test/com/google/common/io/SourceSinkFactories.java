@@ -298,9 +298,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -1602,40 +1602,39 @@ name|byte
 index|[]
 name|initialBytes
 decl_stmt|;
-DECL|method|FileByteSinkFactory (@ullableDecl byte[] initialBytes)
+DECL|method|FileByteSinkFactory (byte @Nullable [] initialBytes)
 specifier|private
 name|FileByteSinkFactory
-parameter_list|(
-annotation|@
-name|NullableDecl
+argument_list|(
 name|byte
+expr|@
+name|Nullable
 index|[]
 name|initialBytes
-parameter_list|)
+argument_list|)
 block|{
 name|this
 operator|.
 name|initialBytes
 operator|=
 name|initialBytes
-expr_stmt|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|Override
 DECL|method|createSink ()
 specifier|public
 name|ByteSink
 name|createSink
-parameter_list|()
+argument_list|()
 throws|throws
 name|IOException
 block|{
 name|File
 name|file
-init|=
+operator|=
 name|createFile
 argument_list|()
-decl_stmt|;
+expr_stmt|;
 if|if
 condition|(
 name|initialBytes
@@ -1861,6 +1860,9 @@ argument_list|()
 return|;
 block|}
 block|}
+end_class
+
+begin_class
 DECL|class|FileCharSourceFactory
 specifier|private
 specifier|static
@@ -1962,6 +1964,9 @@ argument_list|)
 return|;
 block|}
 block|}
+end_class
+
+begin_class
 DECL|class|FileCharSinkFactory
 specifier|private
 specifier|static
@@ -1978,12 +1983,12 @@ specifier|final
 name|String
 name|initialString
 decl_stmt|;
-DECL|method|FileCharSinkFactory (@ullableDecl String initialString)
+DECL|method|FileCharSinkFactory (@ullable String initialString)
 specifier|private
 name|FileCharSinkFactory
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|String
 name|initialString
 parameter_list|)
@@ -2200,6 +2205,9 @@ argument_list|()
 return|;
 block|}
 block|}
+end_class
+
+begin_class
 DECL|class|UrlByteSourceFactory
 specifier|private
 specifier|static
@@ -2252,6 +2260,9 @@ argument_list|)
 return|;
 block|}
 block|}
+end_class
+
+begin_class
 DECL|class|UrlCharSourceFactory
 specifier|private
 specifier|static
@@ -2308,6 +2319,9 @@ argument_list|)
 return|;
 block|}
 block|}
+end_class
+
+begin_class
 annotation|@
 name|AndroidIncompatible
 DECL|class|Jdk7FileFactory
@@ -2460,6 +2474,9 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+end_class
+
+begin_class
 annotation|@
 name|AndroidIncompatible
 DECL|class|PathByteSourceFactory
@@ -2542,6 +2559,9 @@ argument_list|)
 return|;
 block|}
 block|}
+end_class
+
+begin_class
 annotation|@
 name|AndroidIncompatible
 DECL|class|PathByteSinkFactory
@@ -2561,40 +2581,39 @@ name|byte
 index|[]
 name|initialBytes
 decl_stmt|;
-DECL|method|PathByteSinkFactory (@ullableDecl byte[] initialBytes)
+DECL|method|PathByteSinkFactory (byte @Nullable [] initialBytes)
 specifier|private
 name|PathByteSinkFactory
-parameter_list|(
-annotation|@
-name|NullableDecl
+argument_list|(
 name|byte
+expr|@
+name|Nullable
 index|[]
 name|initialBytes
-parameter_list|)
+argument_list|)
 block|{
 name|this
 operator|.
 name|initialBytes
 operator|=
 name|initialBytes
-expr_stmt|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|Override
 DECL|method|createSink ()
 specifier|public
 name|ByteSink
 name|createSink
-parameter_list|()
+argument_list|()
 throws|throws
 name|IOException
 block|{
 name|Path
 name|file
-init|=
+operator|=
 name|createFile
 argument_list|()
-decl_stmt|;
+expr_stmt|;
 if|if
 condition|(
 name|initialBytes
@@ -2639,6 +2658,9 @@ name|file
 argument_list|)
 return|;
 block|}
+end_class
+
+begin_function
 annotation|@
 name|Override
 DECL|method|getExpected (byte[] bytes)
@@ -2725,6 +2747,9 @@ name|result
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|getSinkContents ()
@@ -2757,29 +2782,30 @@ name|file
 argument_list|)
 return|;
 block|}
-block|}
-annotation|@
+end_function
+
+begin_expr_stmt
+unit|}    @
 name|AndroidIncompatible
 DECL|class|PathCharSourceFactory
 specifier|private
 specifier|static
-class|class
+name|class
 name|PathCharSourceFactory
-extends|extends
+expr|extends
 name|Jdk7FileFactory
-implements|implements
+expr|implements
 name|CharSourceFactory
-block|{
-annotation|@
+block|{      @
 name|Override
 DECL|method|createSource (String string)
 specifier|public
 name|CharSource
 name|createSource
-parameter_list|(
+argument_list|(
 name|String
 name|string
-parameter_list|)
+argument_list|)
 throws|throws
 name|IOException
 block|{
@@ -2787,13 +2813,13 @@ name|checkNotNull
 argument_list|(
 name|string
 argument_list|)
-expr_stmt|;
+block|;
 name|Path
 name|file
-init|=
+operator|=
 name|createFile
 argument_list|()
-decl_stmt|;
+block|;
 try|try
 init|(
 name|Writer
@@ -2825,6 +2851,9 @@ name|string
 argument_list|)
 expr_stmt|;
 block|}
+end_expr_stmt
+
+begin_return
 return|return
 name|MoreFiles
 operator|.
@@ -2837,8 +2866,10 @@ operator|.
 name|UTF_8
 argument_list|)
 return|;
-block|}
-annotation|@
+end_return
+
+begin_function
+unit|}      @
 name|Override
 DECL|method|getExpected (String string)
 specifier|public
@@ -2856,58 +2887,59 @@ name|string
 argument_list|)
 return|;
 block|}
-block|}
-annotation|@
+end_function
+
+begin_expr_stmt
+unit|}    @
 name|AndroidIncompatible
 DECL|class|PathCharSinkFactory
 specifier|private
 specifier|static
-class|class
+name|class
 name|PathCharSinkFactory
-extends|extends
+expr|extends
 name|Jdk7FileFactory
-implements|implements
+expr|implements
 name|CharSinkFactory
 block|{
 DECL|field|initialString
 specifier|private
-specifier|final
+name|final
 name|String
 name|initialString
-decl_stmt|;
-DECL|method|PathCharSinkFactory (@ullableDecl String initialString)
+block|;
+DECL|method|PathCharSinkFactory (@ullable String initialString)
 specifier|private
 name|PathCharSinkFactory
-parameter_list|(
+argument_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|String
 name|initialString
-parameter_list|)
+argument_list|)
 block|{
 name|this
 operator|.
 name|initialString
 operator|=
 name|initialString
-expr_stmt|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|Override
 DECL|method|createSink ()
 specifier|public
 name|CharSink
 name|createSink
-parameter_list|()
+argument_list|()
 throws|throws
 name|IOException
 block|{
 name|Path
 name|file
-init|=
+operator|=
 name|createFile
 argument_list|()
-decl_stmt|;
+block|;
 if|if
 condition|(
 name|initialString
@@ -2946,6 +2978,9 @@ name|initialString
 argument_list|)
 expr_stmt|;
 block|}
+end_expr_stmt
+
+begin_return
 return|return
 name|MoreFiles
 operator|.
@@ -2962,8 +2997,10 @@ operator|.
 name|APPEND
 argument_list|)
 return|;
-block|}
-return|return
+end_return
+
+begin_expr_stmt
+unit|}       return
 name|MoreFiles
 operator|.
 name|asCharSink
@@ -2974,9 +3011,11 @@ name|Charsets
 operator|.
 name|UTF_8
 argument_list|)
-return|;
-block|}
-annotation|@
+expr_stmt|;
+end_expr_stmt
+
+begin_function
+unit|}      @
 name|Override
 DECL|method|getExpected (String string)
 specifier|public
@@ -3004,6 +3043,9 @@ operator|+
 name|string
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|getSinkContents ()
@@ -3092,9 +3134,8 @@ argument_list|()
 return|;
 block|}
 block|}
-block|}
-block|}
-end_class
+end_function
 
+unit|} }
 end_unit
 
