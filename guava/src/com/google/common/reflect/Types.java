@@ -706,9 +706,9 @@ DECL|enumConstant|OWNED_BY_ENCLOSING_CLASS
 name|OWNED_BY_ENCLOSING_CLASS
 block|{
 annotation|@
-name|Nullable
-annotation|@
 name|Override
+annotation|@
+name|Nullable
 name|Class
 argument_list|<
 name|?
@@ -735,9 +735,9 @@ DECL|enumConstant|LOCAL_CLASS_HAS_NO_OWNER
 name|LOCAL_CLASS_HAS_NO_OWNER
 block|{
 annotation|@
-name|Nullable
-annotation|@
 name|Override
+annotation|@
+name|Nullable
 name|Class
 argument_list|<
 name|?
@@ -775,10 +775,10 @@ block|}
 block|}
 block|}
 block|;
-annotation|@
-name|Nullable
 DECL|method|getOwnerType (Class<?> rawType)
 specifier|abstract
+annotation|@
+name|Nullable
 name|Class
 argument_list|<
 name|?
@@ -1036,10 +1036,10 @@ name|toString
 argument_list|()
 return|;
 block|}
-annotation|@
-name|Nullable
 DECL|method|getComponentType (Type type)
 specifier|static
+annotation|@
+name|Nullable
 name|Type
 name|getComponentType
 parameter_list|(
@@ -1175,11 +1175,11 @@ argument_list|()
 return|;
 block|}
 comment|/**    * Returns {@code ? extends X} if any of {@code bounds} is a subtype of {@code X[]}; or null    * otherwise.    */
-annotation|@
-name|Nullable
 DECL|method|subtypeOfComponentType (Type[] bounds)
 specifier|private
 specifier|static
+annotation|@
+name|Nullable
 name|Type
 name|subtypeOfComponentType
 parameter_list|(
@@ -1410,10 +1410,10 @@ implements|,
 name|Serializable
 block|{
 DECL|field|ownerType
-annotation|@
-name|Nullable
 specifier|private
 specifier|final
+annotation|@
+name|Nullable
 name|Type
 name|ownerType
 decl_stmt|;

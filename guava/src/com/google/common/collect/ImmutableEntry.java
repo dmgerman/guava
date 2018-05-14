@@ -87,16 +87,16 @@ implements|implements
 name|Serializable
 block|{
 DECL|field|key
+specifier|final
 annotation|@
 name|Nullable
-specifier|final
 name|K
 name|key
 decl_stmt|;
 DECL|field|value
+specifier|final
 annotation|@
 name|Nullable
-specifier|final
 name|V
 name|value
 decl_stmt|;
@@ -128,12 +128,12 @@ name|value
 expr_stmt|;
 block|}
 annotation|@
-name|Nullable
-annotation|@
 name|Override
 DECL|method|getKey ()
 specifier|public
 specifier|final
+annotation|@
+name|Nullable
 name|K
 name|getKey
 parameter_list|()
@@ -143,12 +143,12 @@ name|key
 return|;
 block|}
 annotation|@
-name|Nullable
-annotation|@
 name|Override
 DECL|method|getValue ()
 specifier|public
 specifier|final
+annotation|@
+name|Nullable
 name|V
 name|getValue
 parameter_list|()

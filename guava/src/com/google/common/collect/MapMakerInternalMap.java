@@ -1437,9 +1437,9 @@ name|int
 name|hash
 decl_stmt|;
 DECL|field|next
+specifier|final
 annotation|@
 name|Nullable
-specifier|final
 name|E
 name|next
 decl_stmt|;
@@ -1686,10 +1686,10 @@ argument_list|>
 argument_list|>
 block|{
 DECL|field|value
-annotation|@
-name|Nullable
 specifier|private
 specifier|volatile
+annotation|@
+name|Nullable
 name|V
 name|value
 init|=
@@ -1727,10 +1727,10 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-annotation|@
-name|Nullable
 DECL|method|getValue ()
 specifier|public
+annotation|@
+name|Nullable
 name|V
 name|getValue
 parameter_list|()
@@ -3105,9 +3105,9 @@ name|int
 name|hash
 decl_stmt|;
 DECL|field|next
+specifier|final
 annotation|@
 name|Nullable
-specifier|final
 name|E
 name|next
 decl_stmt|;
@@ -3644,10 +3644,10 @@ argument_list|>
 argument_list|>
 block|{
 DECL|field|value
-annotation|@
-name|Nullable
 specifier|private
 specifier|volatile
+annotation|@
+name|Nullable
 name|V
 name|value
 init|=
@@ -3693,10 +3693,10 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-annotation|@
-name|Nullable
 DECL|method|getValue ()
 specifier|public
+annotation|@
+name|Nullable
 name|V
 name|getValue
 parameter_list|()

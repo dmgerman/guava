@@ -895,10 +895,10 @@ annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
-annotation|@
-name|Nullable
 DECL|method|put (@ullable K key, @Nullable V value)
 specifier|public
+annotation|@
+name|Nullable
 name|V
 name|put
 parameter_list|(
@@ -1708,10 +1708,10 @@ annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
-annotation|@
-name|Nullable
 DECL|method|remove (@ullable Object key)
 specifier|public
+annotation|@
+name|Nullable
 name|V
 name|remove
 parameter_list|(
@@ -1733,10 +1733,10 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-annotation|@
-name|Nullable
 DECL|method|remove (@ullable Object key, int hash)
 specifier|private
+annotation|@
+name|Nullable
 name|V
 name|remove
 parameter_list|(
@@ -3210,10 +3210,10 @@ name|V
 argument_list|>
 block|{
 DECL|field|key
-annotation|@
-name|Nullable
 specifier|private
 specifier|final
+annotation|@
+name|Nullable
 name|K
 name|key
 decl_stmt|;

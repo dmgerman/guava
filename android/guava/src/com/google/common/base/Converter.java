@@ -246,9 +246,9 @@ function_decl|;
 comment|// API (consumer-side) methods
 comment|/**    * Returns a representation of {@code a} as an instance of type {@code B}.    *    * @return the converted value; is null<i>if and only if</i> {@code a} is null    */
 annotation|@
-name|NullableDecl
-annotation|@
 name|CanIgnoreReturnValue
+annotation|@
+name|NullableDecl
 DECL|method|convert (@ullableDecl A a)
 specifier|public
 specifier|final
@@ -1121,9 +1121,9 @@ name|Deprecated
 annotation|@
 name|Override
 annotation|@
-name|NullableDecl
-annotation|@
 name|CanIgnoreReturnValue
+annotation|@
+name|NullableDecl
 DECL|method|apply (@ullableDecl A a)
 specifier|public
 specifier|final

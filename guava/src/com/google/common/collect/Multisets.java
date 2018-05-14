@@ -1159,10 +1159,10 @@ implements|implements
 name|Serializable
 block|{
 DECL|field|element
-annotation|@
-name|Nullable
 specifier|private
 specifier|final
+annotation|@
+name|Nullable
 name|E
 name|element
 decl_stmt|;
@@ -1206,11 +1206,11 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-annotation|@
-name|Nullable
 DECL|method|getElement ()
 specifier|public
 specifier|final
+annotation|@
+name|Nullable
 name|E
 name|getElement
 parameter_list|()

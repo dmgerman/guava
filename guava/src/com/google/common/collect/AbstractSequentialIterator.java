@@ -78,9 +78,9 @@ name|T
 argument_list|>
 block|{
 DECL|field|nextOrNull
+specifier|private
 annotation|@
 name|Nullable
-specifier|private
 name|T
 name|nextOrNull
 decl_stmt|;

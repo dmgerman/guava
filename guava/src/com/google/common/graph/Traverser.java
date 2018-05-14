@@ -1270,9 +1270,9 @@ class|class
 name|NodeAndSuccessors
 block|{
 DECL|field|node
+specifier|final
 annotation|@
 name|Nullable
-specifier|final
 name|N
 name|node
 decl_stmt|;
@@ -2169,9 +2169,9 @@ class|class
 name|NodeAndChildren
 block|{
 DECL|field|node
+specifier|final
 annotation|@
 name|Nullable
-specifier|final
 name|N
 name|node
 decl_stmt|;

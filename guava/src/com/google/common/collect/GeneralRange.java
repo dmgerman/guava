@@ -525,10 +525,10 @@ name|boolean
 name|hasLowerBound
 decl_stmt|;
 DECL|field|lowerEndpoint
-annotation|@
-name|Nullable
 specifier|private
 specifier|final
+annotation|@
+name|Nullable
 name|T
 name|lowerEndpoint
 decl_stmt|;
@@ -545,10 +545,10 @@ name|boolean
 name|hasUpperBound
 decl_stmt|;
 DECL|field|upperEndpoint
-annotation|@
-name|Nullable
 specifier|private
 specifier|final
+annotation|@
+name|Nullable
 name|T
 name|upperEndpoint
 decl_stmt|;

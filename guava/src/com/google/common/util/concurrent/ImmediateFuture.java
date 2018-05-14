@@ -373,10 +373,10 @@ literal|null
 argument_list|)
 decl_stmt|;
 DECL|field|value
-annotation|@
-name|Nullable
 specifier|private
 specifier|final
+annotation|@
+name|Nullable
 name|V
 name|value
 decl_stmt|;
@@ -460,10 +460,10 @@ name|X
 argument_list|>
 block|{
 DECL|field|value
-annotation|@
-name|Nullable
 specifier|private
 specifier|final
+annotation|@
+name|Nullable
 name|V
 name|value
 decl_stmt|;

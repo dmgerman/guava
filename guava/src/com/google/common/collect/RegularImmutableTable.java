@@ -468,7 +468,7 @@ literal|true
 return|;
 block|}
 block|}
-DECL|method|forCells ( List<Cell<R, C, V>> cells, @Nullable final Comparator<? super R> rowComparator, @Nullable final Comparator<? super C> columnComparator)
+DECL|method|forCells ( List<Cell<R, C, V>> cells, final @Nullable Comparator<? super R> rowComparator, final @Nullable Comparator<? super C> columnComparator)
 specifier|static
 parameter_list|<
 name|R
@@ -500,9 +500,9 @@ argument_list|>
 argument_list|>
 name|cells
 parameter_list|,
+specifier|final
 annotation|@
 name|Nullable
-specifier|final
 name|Comparator
 argument_list|<
 name|?
@@ -511,9 +511,9 @@ name|R
 argument_list|>
 name|rowComparator
 parameter_list|,
+specifier|final
 annotation|@
 name|Nullable
-specifier|final
 name|Comparator
 argument_list|<
 name|?

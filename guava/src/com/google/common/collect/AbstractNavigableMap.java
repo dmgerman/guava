@@ -155,11 +155,11 @@ argument_list|>
 block|{
 annotation|@
 name|Override
-annotation|@
-name|Nullable
 DECL|method|get (@ullable Object key)
 specifier|public
 specifier|abstract
+annotation|@
+name|Nullable
 name|V
 name|get
 parameter_list|(
@@ -171,10 +171,10 @@ parameter_list|)
 function_decl|;
 annotation|@
 name|Override
-annotation|@
-name|Nullable
 DECL|method|firstEntry ()
 specifier|public
+annotation|@
+name|Nullable
 name|Entry
 argument_list|<
 name|K
@@ -198,10 +198,10 @@ return|;
 block|}
 annotation|@
 name|Override
-annotation|@
-name|Nullable
 DECL|method|lastEntry ()
 specifier|public
+annotation|@
+name|Nullable
 name|Entry
 argument_list|<
 name|K
@@ -225,10 +225,10 @@ return|;
 block|}
 annotation|@
 name|Override
-annotation|@
-name|Nullable
 DECL|method|pollFirstEntry ()
 specifier|public
+annotation|@
+name|Nullable
 name|Entry
 argument_list|<
 name|K
@@ -250,10 +250,10 @@ return|;
 block|}
 annotation|@
 name|Override
-annotation|@
-name|Nullable
 DECL|method|pollLastEntry ()
 specifier|public
+annotation|@
+name|Nullable
 name|Entry
 argument_list|<
 name|K
@@ -359,10 +359,10 @@ block|}
 block|}
 annotation|@
 name|Override
-annotation|@
-name|Nullable
 DECL|method|lowerEntry (K key)
 specifier|public
+annotation|@
+name|Nullable
 name|Entry
 argument_list|<
 name|K
@@ -389,10 +389,10 @@ return|;
 block|}
 annotation|@
 name|Override
-annotation|@
-name|Nullable
 DECL|method|floorEntry (K key)
 specifier|public
+annotation|@
+name|Nullable
 name|Entry
 argument_list|<
 name|K
@@ -419,10 +419,10 @@ return|;
 block|}
 annotation|@
 name|Override
-annotation|@
-name|Nullable
 DECL|method|ceilingEntry (K key)
 specifier|public
+annotation|@
+name|Nullable
 name|Entry
 argument_list|<
 name|K
@@ -449,10 +449,10 @@ return|;
 block|}
 annotation|@
 name|Override
-annotation|@
-name|Nullable
 DECL|method|higherEntry (K key)
 specifier|public
+annotation|@
+name|Nullable
 name|Entry
 argument_list|<
 name|K

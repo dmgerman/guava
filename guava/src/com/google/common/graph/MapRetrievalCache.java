@@ -64,10 +64,10 @@ name|V
 argument_list|>
 block|{
 DECL|field|cacheEntry1
-annotation|@
-name|Nullable
 specifier|private
 specifier|transient
+annotation|@
+name|Nullable
 name|CacheEntry
 argument_list|<
 name|K
@@ -77,10 +77,10 @@ argument_list|>
 name|cacheEntry1
 decl_stmt|;
 DECL|field|cacheEntry2
-annotation|@
-name|Nullable
 specifier|private
 specifier|transient
+annotation|@
+name|Nullable
 name|CacheEntry
 argument_list|<
 name|K

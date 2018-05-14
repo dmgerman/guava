@@ -2123,9 +2123,9 @@ name|shutdownWhenStartupFinishes
 decl_stmt|;
 comment|/**      * The exception that caused this service to fail. This will be {@code null} unless the service      * has failed.      */
 DECL|field|failure
+specifier|final
 annotation|@
 name|Nullable
-specifier|final
 name|Throwable
 name|failure
 decl_stmt|;

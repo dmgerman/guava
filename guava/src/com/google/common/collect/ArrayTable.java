@@ -866,10 +866,10 @@ name|String
 name|getKeyRole
 parameter_list|()
 function_decl|;
-annotation|@
-name|Nullable
 DECL|method|getValue (int index)
 specifier|abstract
+annotation|@
+name|Nullable
 name|V
 name|getValue
 parameter_list|(
@@ -877,10 +877,10 @@ name|int
 name|index
 parameter_list|)
 function_decl|;
-annotation|@
-name|Nullable
 DECL|method|setValue (int index, V newValue)
 specifier|abstract
+annotation|@
+name|Nullable
 name|V
 name|setValue
 parameter_list|(

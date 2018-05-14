@@ -128,9 +128,9 @@ name|value
 expr_stmt|;
 block|}
 annotation|@
-name|NullableDecl
-annotation|@
 name|Override
+annotation|@
+name|NullableDecl
 DECL|method|getKey ()
 specifier|public
 specifier|final
@@ -143,9 +143,9 @@ name|key
 return|;
 block|}
 annotation|@
-name|NullableDecl
-annotation|@
 name|Override
+annotation|@
+name|NullableDecl
 DECL|method|getValue ()
 specifier|public
 specifier|final

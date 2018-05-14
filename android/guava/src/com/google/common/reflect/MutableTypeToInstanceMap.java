@@ -245,9 +245,9 @@ name|newHashMap
 argument_list|()
 decl_stmt|;
 annotation|@
-name|NullableDecl
-annotation|@
 name|Override
+annotation|@
+name|NullableDecl
 DECL|method|getInstance (Class<T> type)
 specifier|public
 parameter_list|<
@@ -278,9 +278,9 @@ argument_list|)
 return|;
 block|}
 annotation|@
-name|NullableDecl
-annotation|@
 name|Override
+annotation|@
+name|NullableDecl
 DECL|method|getInstance (TypeToken<T> type)
 specifier|public
 parameter_list|<
@@ -309,11 +309,11 @@ argument_list|)
 return|;
 block|}
 annotation|@
-name|NullableDecl
-annotation|@
 name|Override
 annotation|@
 name|CanIgnoreReturnValue
+annotation|@
+name|NullableDecl
 DECL|method|putInstance (Class<T> type, @NullableDecl T value)
 specifier|public
 parameter_list|<
@@ -351,11 +351,11 @@ argument_list|)
 return|;
 block|}
 annotation|@
-name|NullableDecl
-annotation|@
 name|Override
 annotation|@
 name|CanIgnoreReturnValue
+annotation|@
+name|NullableDecl
 DECL|method|putInstance (TypeToken<T> type, @NullableDecl T value)
 specifier|public
 parameter_list|<

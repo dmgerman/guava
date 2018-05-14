@@ -200,9 +200,9 @@ name|MemoryOutput
 name|memory
 decl_stmt|;
 DECL|field|file
+specifier|private
 annotation|@
 name|Nullable
-specifier|private
 name|File
 name|file
 decl_stmt|;

@@ -1223,11 +1223,11 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Converts an expiration duration/unit pair into a single Long for hashing and equality. Uses    * nanos to match CacheBuilder implementation.    */
-annotation|@
-name|Nullable
 DECL|method|durationInNanos (long duration, @Nullable TimeUnit unit)
 specifier|private
 specifier|static
+annotation|@
+name|Nullable
 name|Long
 name|durationInNanos
 parameter_list|(

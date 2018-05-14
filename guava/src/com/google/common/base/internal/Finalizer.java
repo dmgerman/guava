@@ -434,12 +434,12 @@ decl_stmt|;
 comment|// By preference, we will use the Thread constructor that has an `inheritThreadLocals` parameter.
 comment|// But before Java 9, our only way not to inherit ThreadLocals is to zap them after the thread
 comment|// is created, by accessing a private field.
-annotation|@
-name|Nullable
 DECL|field|bigThreadConstructor
 specifier|private
 specifier|static
 specifier|final
+annotation|@
+name|Nullable
 name|Constructor
 argument_list|<
 name|Thread
@@ -449,12 +449,12 @@ init|=
 name|getBigThreadConstructor
 argument_list|()
 decl_stmt|;
-annotation|@
-name|Nullable
 DECL|field|inheritableThreadLocals
 specifier|private
 specifier|static
 specifier|final
+annotation|@
+name|Nullable
 name|Field
 name|inheritableThreadLocals
 init|=
@@ -670,10 +670,10 @@ literal|true
 return|;
 block|}
 comment|/** Looks up FinalizableReference.finalizeReferent() method. */
-annotation|@
-name|Nullable
 DECL|method|getFinalizeReferentMethod ()
 specifier|private
+annotation|@
+name|Nullable
 name|Method
 name|getFinalizeReferentMethod
 parameter_list|()
@@ -727,11 +727,11 @@ argument_list|)
 throw|;
 block|}
 block|}
-annotation|@
-name|Nullable
 DECL|method|getInheritableThreadLocalsField ()
 specifier|private
 specifier|static
+annotation|@
+name|Nullable
 name|Field
 name|getInheritableThreadLocalsField
 parameter_list|()
@@ -785,11 +785,11 @@ literal|null
 return|;
 block|}
 block|}
-annotation|@
-name|Nullable
 DECL|method|getBigThreadConstructor ()
 specifier|private
 specifier|static
+annotation|@
+name|Nullable
 name|Constructor
 argument_list|<
 name|Thread

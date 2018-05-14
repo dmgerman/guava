@@ -287,10 +287,10 @@ name|key
 return|;
 block|}
 comment|/**    * Returns the current value for this system property by delegating to {@link    * System#getProperty(String)}.    */
-annotation|@
-name|Nullable
 DECL|method|value ()
 specifier|public
+annotation|@
+name|Nullable
 name|String
 name|value
 parameter_list|()

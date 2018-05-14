@@ -746,10 +746,10 @@ block|}
 comment|/** Template method for subtypes to actually run the fallback. */
 annotation|@
 name|ForOverride
-annotation|@
-name|Nullable
 DECL|method|doFallback (F fallback, X throwable)
 specifier|abstract
+annotation|@
+name|Nullable
 name|T
 name|doFallback
 parameter_list|(

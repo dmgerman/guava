@@ -152,9 +152,9 @@ DECL|enumConstant|FAILED
 name|FAILED
 block|,   }
 DECL|field|next
+specifier|private
 annotation|@
 name|Nullable
-specifier|private
 name|T
 name|next
 decl_stmt|;

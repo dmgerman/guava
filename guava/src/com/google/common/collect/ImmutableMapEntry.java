@@ -278,10 +278,10 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-annotation|@
-name|Nullable
 DECL|method|getNextInKeyBucket ()
 specifier|final
+annotation|@
+name|Nullable
 name|ImmutableMapEntry
 argument_list|<
 name|K

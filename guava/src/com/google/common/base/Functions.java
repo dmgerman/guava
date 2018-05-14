@@ -242,10 +242,10 @@ name|INSTANCE
 block|;
 annotation|@
 name|Override
-annotation|@
-name|Nullable
 DECL|method|apply (@ullable Object o)
 specifier|public
+annotation|@
+name|Nullable
 name|Object
 name|apply
 parameter_list|(
@@ -575,9 +575,9 @@ argument_list|>
 name|map
 decl_stmt|;
 DECL|field|defaultValue
+specifier|final
 annotation|@
 name|Nullable
-specifier|final
 name|V
 name|defaultValue
 decl_stmt|;
@@ -1296,10 +1296,10 @@ implements|,
 name|Serializable
 block|{
 DECL|field|value
-annotation|@
-name|Nullable
 specifier|private
 specifier|final
+annotation|@
+name|Nullable
 name|E
 name|value
 decl_stmt|;

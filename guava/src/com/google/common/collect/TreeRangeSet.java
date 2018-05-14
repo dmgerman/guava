@@ -675,10 +675,10 @@ block|}
 block|}
 annotation|@
 name|Override
-annotation|@
-name|Nullable
 DECL|method|rangeContaining (C value)
 specifier|public
+annotation|@
+name|Nullable
 name|Range
 argument_list|<
 name|C
@@ -940,10 +940,10 @@ name|range
 argument_list|)
 return|;
 block|}
-annotation|@
-name|Nullable
 DECL|method|rangeEnclosing (Range<C> range)
 specifier|private
+annotation|@
+name|Nullable
 name|Range
 argument_list|<
 name|C
@@ -3936,10 +3936,10 @@ return|;
 block|}
 annotation|@
 name|Override
-annotation|@
-name|Nullable
 DECL|method|get (Object key)
 specifier|public
+annotation|@
+name|Nullable
 name|Range
 argument_list|<
 name|C
@@ -4624,10 +4624,10 @@ return|;
 block|}
 annotation|@
 name|Override
-annotation|@
-name|Nullable
 DECL|method|get (@ullable Object key)
 specifier|public
+annotation|@
+name|Nullable
 name|Range
 argument_list|<
 name|C
@@ -5515,10 +5515,10 @@ return|;
 block|}
 annotation|@
 name|Override
-annotation|@
-name|Nullable
 DECL|method|rangeContaining (C value)
 specifier|public
+annotation|@
+name|Nullable
 name|Range
 argument_list|<
 name|C

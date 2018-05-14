@@ -2051,9 +2051,9 @@ argument_list|>
 argument_list|>
 argument_list|()
 block|{
+specifier|private
 annotation|@
 name|Nullable
-specifier|private
 name|Entry
 argument_list|<
 name|E

@@ -265,10 +265,10 @@ return|;
 block|}
 annotation|@
 name|Override
-annotation|@
-name|Nullable
 DECL|method|orNull ()
 specifier|public
+annotation|@
+name|Nullable
 name|T
 name|orNull
 parameter_list|()

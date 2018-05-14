@@ -184,10 +184,10 @@ function_decl|;
 comment|/** @since 11.0 */
 annotation|@
 name|Override
-annotation|@
-name|Nullable
 DECL|method|getIfPresent (Object key)
 specifier|public
+annotation|@
+name|Nullable
 name|V
 name|getIfPresent
 parameter_list|(

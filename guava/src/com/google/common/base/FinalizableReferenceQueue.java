@@ -563,11 +563,11 @@ name|boolean
 name|disabled
 decl_stmt|;
 annotation|@
-name|Nullable
-annotation|@
 name|Override
 DECL|method|loadFinalizer ()
 specifier|public
+annotation|@
+name|Nullable
 name|Class
 argument_list|<
 name|?
@@ -676,11 +676,11 @@ operator|+
 literal|"issue, or move Guava to your system class path."
 decl_stmt|;
 annotation|@
-name|Nullable
-annotation|@
 name|Override
 DECL|method|loadFinalizer ()
 specifier|public
+annotation|@
+name|Nullable
 name|Class
 argument_list|<
 name|?

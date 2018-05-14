@@ -706,9 +706,9 @@ DECL|enumConstant|OWNED_BY_ENCLOSING_CLASS
 name|OWNED_BY_ENCLOSING_CLASS
 block|{
 annotation|@
-name|NullableDecl
-annotation|@
 name|Override
+annotation|@
+name|NullableDecl
 name|Class
 argument_list|<
 name|?
@@ -735,9 +735,9 @@ DECL|enumConstant|LOCAL_CLASS_HAS_NO_OWNER
 name|LOCAL_CLASS_HAS_NO_OWNER
 block|{
 annotation|@
-name|NullableDecl
-annotation|@
 name|Override
+annotation|@
+name|NullableDecl
 name|Class
 argument_list|<
 name|?

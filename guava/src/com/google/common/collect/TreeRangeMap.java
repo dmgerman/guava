@@ -551,10 +551,10 @@ block|}
 block|}
 annotation|@
 name|Override
-annotation|@
-name|Nullable
 DECL|method|get (K key)
 specifier|public
+annotation|@
+name|Nullable
 name|V
 name|get
 parameter_list|(
@@ -595,10 +595,10 @@ return|;
 block|}
 annotation|@
 name|Override
-annotation|@
-name|Nullable
 DECL|method|getEntry (K key)
 specifier|public
+annotation|@
+name|Nullable
 name|Entry
 argument_list|<
 name|Range
@@ -1795,9 +1795,9 @@ argument_list|()
 block|{
 annotation|@
 name|Override
+specifier|public
 annotation|@
 name|Nullable
-specifier|public
 name|Object
 name|get
 parameter_list|(
@@ -1811,9 +1811,9 @@ return|;
 block|}
 annotation|@
 name|Override
+specifier|public
 annotation|@
 name|Nullable
-specifier|public
 name|Entry
 argument_list|<
 name|Range
@@ -2056,10 +2056,10 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-annotation|@
-name|Nullable
 DECL|method|get (K key)
 specifier|public
+annotation|@
+name|Nullable
 name|V
 name|get
 parameter_list|(
@@ -2089,10 +2089,10 @@ return|;
 block|}
 annotation|@
 name|Override
-annotation|@
-name|Nullable
 DECL|method|getEntry (K key)
 specifier|public
+annotation|@
+name|Nullable
 name|Entry
 argument_list|<
 name|Range

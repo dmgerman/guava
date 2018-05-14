@@ -115,9 +115,9 @@ argument_list|>
 name|it
 decl_stmt|;
 DECL|field|current
+specifier|private
 annotation|@
 name|Nullable
-specifier|private
 name|Reader
 name|current
 decl_stmt|;

@@ -670,10 +670,10 @@ name|index
 argument_list|)
 return|;
 block|}
-annotation|@
-name|Nullable
 DECL|method|getValue (int keyIndex)
 specifier|abstract
+annotation|@
+name|Nullable
 name|V
 name|getValue
 parameter_list|(

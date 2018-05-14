@@ -2025,10 +2025,10 @@ block|}
 return|;
 block|}
 comment|/** Returns the first node in the tree that is in range. */
-annotation|@
-name|Nullable
 DECL|method|firstNode ()
 specifier|private
+annotation|@
+name|Nullable
 name|AvlNode
 argument_list|<
 name|E
@@ -2173,10 +2173,10 @@ else|:
 name|node
 return|;
 block|}
-annotation|@
-name|Nullable
 DECL|method|lastNode ()
 specifier|private
+annotation|@
+name|Nullable
 name|AvlNode
 argument_list|<
 name|E
@@ -2915,16 +2915,16 @@ name|T
 parameter_list|>
 block|{
 DECL|field|value
+specifier|private
 annotation|@
 name|Nullable
-specifier|private
 name|T
 name|value
 decl_stmt|;
-annotation|@
-name|Nullable
 DECL|method|get ()
 specifier|public
+annotation|@
+name|Nullable
 name|T
 name|get
 parameter_list|()
@@ -2987,10 +2987,10 @@ name|E
 parameter_list|>
 block|{
 DECL|field|elem
-annotation|@
-name|Nullable
 specifier|private
 specifier|final
+annotation|@
+name|Nullable
 name|E
 name|elem
 decl_stmt|;
@@ -3016,9 +3016,9 @@ name|int
 name|height
 decl_stmt|;
 DECL|field|left
+specifier|private
 annotation|@
 name|Nullable
-specifier|private
 name|AvlNode
 argument_list|<
 name|E
@@ -3026,9 +3026,9 @@ argument_list|>
 name|left
 decl_stmt|;
 DECL|field|right
+specifier|private
 annotation|@
 name|Nullable
-specifier|private
 name|AvlNode
 argument_list|<
 name|E
@@ -3036,9 +3036,9 @@ argument_list|>
 name|right
 decl_stmt|;
 DECL|field|pred
+specifier|private
 annotation|@
 name|Nullable
-specifier|private
 name|AvlNode
 argument_list|<
 name|E
@@ -3046,9 +3046,9 @@ argument_list|>
 name|pred
 decl_stmt|;
 DECL|field|succ
+specifier|private
 annotation|@
 name|Nullable
-specifier|private
 name|AvlNode
 argument_list|<
 name|E
@@ -5208,10 +5208,10 @@ operator|.
 name|height
 return|;
 block|}
-annotation|@
-name|Nullable
 DECL|method|ceiling (Comparator<? super E> comparator, E e)
 specifier|private
+annotation|@
+name|Nullable
 name|AvlNode
 argument_list|<
 name|E
@@ -5309,10 +5309,10 @@ argument_list|)
 return|;
 block|}
 block|}
-annotation|@
-name|Nullable
 DECL|method|floor (Comparator<? super E> comparator, E e)
 specifier|private
+annotation|@
+name|Nullable
 name|AvlNode
 argument_list|<
 name|E

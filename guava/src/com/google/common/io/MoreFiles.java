@@ -2275,11 +2275,11 @@ expr_stmt|;
 block|}
 block|}
 comment|/**    * Secure recursive delete using {@code SecureDirectoryStream}. Returns a collection of exceptions    * that occurred or null if no exceptions were thrown.    */
-annotation|@
-name|Nullable
 DECL|method|deleteRecursivelySecure ( SecureDirectoryStream<Path> dir, Path path)
 specifier|private
 specifier|static
+annotation|@
+name|Nullable
 name|Collection
 argument_list|<
 name|IOException
@@ -2393,11 +2393,11 @@ return|;
 block|}
 block|}
 comment|/**    * Secure method for deleting the contents of a directory using {@code SecureDirectoryStream}.    * Returns a collection of exceptions that occurred or null if no exceptions were thrown.    */
-annotation|@
-name|Nullable
 DECL|method|deleteDirectoryContentsSecure ( SecureDirectoryStream<Path> dir)
 specifier|private
 specifier|static
+annotation|@
+name|Nullable
 name|Collection
 argument_list|<
 name|IOException
@@ -2471,11 +2471,11 @@ return|;
 block|}
 block|}
 comment|/**    * Insecure recursive delete for file systems that don't support {@code SecureDirectoryStream}.    * Returns a collection of exceptions that occurred or null if no exceptions were thrown.    */
-annotation|@
-name|Nullable
 DECL|method|deleteRecursivelyInsecure (Path path)
 specifier|private
 specifier|static
+annotation|@
+name|Nullable
 name|Collection
 argument_list|<
 name|IOException
@@ -2571,11 +2571,11 @@ return|;
 block|}
 block|}
 comment|/**    * Simple, insecure method for deleting the contents of a directory for file systems that don't    * support {@code SecureDirectoryStream}. Returns a collection of exceptions that occurred or null    * if no exceptions were thrown.    */
-annotation|@
-name|Nullable
 DECL|method|deleteDirectoryContentsInsecure ( DirectoryStream<Path> dir)
 specifier|private
 specifier|static
+annotation|@
+name|Nullable
 name|Collection
 argument_list|<
 name|IOException
@@ -2644,11 +2644,11 @@ return|;
 block|}
 block|}
 comment|/**    * Returns a path to the parent directory of the given path. If the path actually has a parent    * path, this is simple. Otherwise, we need to do some trickier things. Returns null if the path    * is a root or is the empty path.    */
-annotation|@
-name|Nullable
 DECL|method|getParentPath (Path path)
 specifier|private
 specifier|static
+annotation|@
+name|Nullable
 name|Path
 name|getParentPath
 parameter_list|(
@@ -2820,11 +2820,11 @@ name|exceptions
 return|;
 block|}
 comment|/**    * Concatenates the contents of the two given collections of exceptions. If either collection is    * null, the other collection is returned. Otherwise, the elements of {@code other} are added to    * {@code exceptions} and {@code exceptions} is returned.    */
-annotation|@
-name|Nullable
 DECL|method|concat ( @ullable Collection<IOException> exceptions, @Nullable Collection<IOException> other)
 specifier|private
 specifier|static
+annotation|@
+name|Nullable
 name|Collection
 argument_list|<
 name|IOException

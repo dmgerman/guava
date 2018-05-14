@@ -157,10 +157,10 @@ comment|// Per JDK: "the behavior of a map entry is undefined if the backing map
 comment|// the entry was returned by the iterator, except through the setValue operation on the map entry"
 comment|// As such, this field must be cleared before every map mutation.
 DECL|field|entrySetCache
-annotation|@
-name|Nullable
 specifier|private
 specifier|transient
+annotation|@
+name|Nullable
 name|Entry
 argument_list|<
 name|K

@@ -1552,9 +1552,9 @@ DECL|field|asList
 annotation|@
 name|LazyInit
 annotation|@
-name|NullableDecl
-annotation|@
 name|RetainedWith
+annotation|@
+name|NullableDecl
 specifier|private
 specifier|transient
 name|ImmutableList

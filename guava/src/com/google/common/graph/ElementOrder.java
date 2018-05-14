@@ -214,11 +214,11 @@ argument_list|(
 literal|"Immutable"
 argument_list|)
 comment|// Hopefully the comparator provided is immutable!
-annotation|@
-name|Nullable
 DECL|field|comparator
 specifier|private
 specifier|final
+annotation|@
+name|Nullable
 name|Comparator
 argument_list|<
 name|T

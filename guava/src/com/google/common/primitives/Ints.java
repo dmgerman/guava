@@ -2633,11 +2633,11 @@ block|}
 comment|/**    * Parses the specified string as a signed decimal integer value. The ASCII character {@code '-'}    * (<code>'&#92;u002D'</code>) is recognized as the minus sign.    *    *<p>Unlike {@link Integer#parseInt(String)}, this method returns {@code null} instead of    * throwing an exception if parsing fails. Additionally, this method only accepts ASCII digits,    * and returns {@code null} if non-ASCII digits are present in the string.    *    *<p>Note that strings prefixed with ASCII {@code '+'} are rejected, even under JDK 7, despite    * the change to {@link Integer#parseInt(String)} for that version.    *    * @param string the string representation of an integer value    * @return the integer value represented by {@code string}, or {@code null} if {@code string} has    *     a length of zero or cannot be parsed as an integer value    * @since 11.0    */
 annotation|@
 name|Beta
-annotation|@
-name|Nullable
 DECL|method|tryParse (String string)
 specifier|public
 specifier|static
+annotation|@
+name|Nullable
 name|Integer
 name|tryParse
 parameter_list|(
@@ -2657,11 +2657,11 @@ block|}
 comment|/**    * Parses the specified string as a signed integer value using the specified radix. The ASCII    * character {@code '-'} (<code>'&#92;u002D'</code>) is recognized as the minus sign.    *    *<p>Unlike {@link Integer#parseInt(String, int)}, this method returns {@code null} instead of    * throwing an exception if parsing fails. Additionally, this method only accepts ASCII digits,    * and returns {@code null} if non-ASCII digits are present in the string.    *    *<p>Note that strings prefixed with ASCII {@code '+'} are rejected, even under JDK 7, despite    * the change to {@link Integer#parseInt(String, int)} for that version.    *    * @param string the string representation of an integer value    * @param radix the radix to use when parsing    * @return the integer value represented by {@code string} using {@code radix}, or {@code null} if    *     {@code string} has a length of zero or cannot be parsed as an integer value    * @throws IllegalArgumentException if {@code radix< Character.MIN_RADIX} or {@code radix>    *     Character.MAX_RADIX}    * @since 19.0    */
 annotation|@
 name|Beta
-annotation|@
-name|Nullable
 DECL|method|tryParse (String string, int radix)
 specifier|public
 specifier|static
+annotation|@
+name|Nullable
 name|Integer
 name|tryParse
 parameter_list|(

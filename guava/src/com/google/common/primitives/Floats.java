@@ -2389,13 +2389,13 @@ comment|/**    * Parses the specified string as a single-precision floating poin
 annotation|@
 name|Beta
 annotation|@
-name|Nullable
-annotation|@
 name|GwtIncompatible
 comment|// regular expressions
 DECL|method|tryParse (String string)
 specifier|public
 specifier|static
+annotation|@
+name|Nullable
 name|Float
 name|tryParse
 parameter_list|(

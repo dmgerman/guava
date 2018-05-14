@@ -178,10 +178,10 @@ name|Readable
 name|readable
 decl_stmt|;
 DECL|field|reader
-annotation|@
-name|Nullable
 specifier|private
 specifier|final
+annotation|@
+name|Nullable
 name|Reader
 name|reader
 decl_stmt|;

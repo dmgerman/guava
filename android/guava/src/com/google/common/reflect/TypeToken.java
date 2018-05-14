@@ -5789,9 +5789,9 @@ argument_list|()
 return|;
 block|}
 annotation|@
-name|NullableDecl
-annotation|@
 name|Override
+annotation|@
+name|NullableDecl
 name|TypeToken
 argument_list|<
 name|?
@@ -5888,9 +5888,9 @@ argument_list|)
 return|;
 block|}
 annotation|@
-name|NullableDecl
-annotation|@
 name|Override
+annotation|@
+name|NullableDecl
 name|Class
 argument_list|<
 name|?

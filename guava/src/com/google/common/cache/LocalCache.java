@@ -1236,9 +1236,9 @@ name|globalStatsCounter
 decl_stmt|;
 comment|/** The default cache loader to use on loading operations. */
 DECL|field|defaultLoader
+specifier|final
 annotation|@
 name|Nullable
-specifier|final
 name|CacheLoader
 argument_list|<
 name|?
@@ -4596,9 +4596,9 @@ name|int
 name|hash
 decl_stmt|;
 DECL|field|next
+specifier|final
 annotation|@
 name|Nullable
-specifier|final
 name|ReferenceEntry
 argument_list|<
 name|K
@@ -5739,9 +5739,9 @@ name|int
 name|hash
 decl_stmt|;
 DECL|field|next
+specifier|final
 annotation|@
 name|Nullable
-specifier|final
 name|ReferenceEntry
 argument_list|<
 name|K
@@ -8387,9 +8387,9 @@ name|maxSegmentWeight
 decl_stmt|;
 comment|/**      * The key reference queue contains entries whose keys have been garbage collected, and which      * need to be cleaned up internally.      */
 DECL|field|keyReferenceQueue
+specifier|final
 annotation|@
 name|Nullable
-specifier|final
 name|ReferenceQueue
 argument_list|<
 name|K
@@ -8398,9 +8398,9 @@ name|keyReferenceQueue
 decl_stmt|;
 comment|/**      * The value reference queue contains value references whose values have been garbage collected,      * and which need to be cleaned up internally.      */
 DECL|field|valueReferenceQueue
+specifier|final
 annotation|@
 name|Nullable
-specifier|final
 name|ReferenceQueue
 argument_list|<
 name|V
@@ -18620,10 +18620,10 @@ return|;
 block|}
 annotation|@
 name|Override
-annotation|@
-name|Nullable
 DECL|method|get (@ullable Object key)
 specifier|public
+annotation|@
+name|Nullable
 name|V
 name|get
 parameter_list|(
@@ -18713,10 +18713,10 @@ name|loader
 argument_list|)
 return|;
 block|}
-annotation|@
-name|Nullable
 DECL|method|getIfPresent (Object key)
 specifier|public
+annotation|@
+name|Nullable
 name|V
 name|getIfPresent
 parameter_list|(
@@ -18781,10 +18781,10 @@ return|;
 block|}
 comment|// Only becomes available in Java 8 when it's on the interface.
 comment|// @Override
-annotation|@
-name|Nullable
 DECL|method|getOrDefault (@ullable Object key, @Nullable V defaultValue)
 specifier|public
+annotation|@
+name|Nullable
 name|V
 name|getOrDefault
 parameter_list|(
@@ -22467,9 +22467,9 @@ argument_list|>
 name|removalListener
 decl_stmt|;
 DECL|field|ticker
+specifier|final
 annotation|@
 name|Nullable
-specifier|final
 name|Ticker
 name|ticker
 decl_stmt|;
@@ -23268,10 +23268,10 @@ block|}
 comment|// Cache methods
 annotation|@
 name|Override
-annotation|@
-name|Nullable
 DECL|method|getIfPresent (Object key)
 specifier|public
+annotation|@
+name|Nullable
 name|V
 name|getIfPresent
 parameter_list|(

@@ -590,10 +590,10 @@ block|}
 comment|/** Template method for subtypes to actually run the transform. */
 annotation|@
 name|ForOverride
-annotation|@
-name|Nullable
 DECL|method|doTransform (F function, @Nullable I result)
 specifier|abstract
+annotation|@
+name|Nullable
 name|T
 name|doTransform
 parameter_list|(

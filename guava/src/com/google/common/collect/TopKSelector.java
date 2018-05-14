@@ -367,9 +367,9 @@ name|bufferSize
 decl_stmt|;
 comment|/**    * The largest of the lowest k elements we've seen so far relative to this comparator. If    * bufferSize â¥ k, then we can ignore any elements greater than this value.    */
 DECL|field|threshold
+specifier|private
 annotation|@
 name|Nullable
-specifier|private
 name|T
 name|threshold
 decl_stmt|;

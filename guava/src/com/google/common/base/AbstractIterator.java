@@ -148,9 +148,9 @@ DECL|enumConstant|FAILED
 name|FAILED
 block|,   }
 DECL|field|next
+specifier|private
 annotation|@
 name|Nullable
-specifier|private
 name|T
 name|next
 decl_stmt|;
@@ -162,12 +162,12 @@ name|computeNext
 parameter_list|()
 function_decl|;
 annotation|@
-name|Nullable
-annotation|@
 name|CanIgnoreReturnValue
 DECL|method|endOfData ()
 specifier|protected
 specifier|final
+annotation|@
+name|Nullable
 name|T
 name|endOfData
 parameter_list|()

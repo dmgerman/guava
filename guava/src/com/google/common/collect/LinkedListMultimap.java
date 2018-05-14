@@ -381,9 +381,9 @@ name|V
 argument_list|>
 block|{
 DECL|field|key
+specifier|final
 annotation|@
 name|Nullable
-specifier|final
 name|K
 name|key
 decl_stmt|;
@@ -599,10 +599,10 @@ expr_stmt|;
 block|}
 block|}
 DECL|field|head
-annotation|@
-name|Nullable
 specifier|private
 specifier|transient
+annotation|@
+name|Nullable
 name|Node
 argument_list|<
 name|K
@@ -613,10 +613,10 @@ name|head
 decl_stmt|;
 comment|// the head for all keys
 DECL|field|tail
-annotation|@
-name|Nullable
 specifier|private
 specifier|transient
+annotation|@
+name|Nullable
 name|Node
 argument_list|<
 name|K
@@ -2028,9 +2028,9 @@ name|V
 argument_list|>
 block|{
 DECL|field|key
+specifier|final
 annotation|@
 name|Nullable
-specifier|final
 name|Object
 name|key
 decl_stmt|;

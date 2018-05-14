@@ -142,7 +142,7 @@ name|Callables
 parameter_list|()
 block|{}
 comment|/** Creates a {@code Callable} which immediately returns a preset value each time it is called. */
-DECL|method|returning (@ullable final T value)
+DECL|method|returning (final @Nullable T value)
 specifier|public
 specifier|static
 parameter_list|<
@@ -154,9 +154,9 @@ name|T
 argument_list|>
 name|returning
 parameter_list|(
+specifier|final
 annotation|@
 name|Nullable
-specifier|final
 name|T
 name|value
 parameter_list|)

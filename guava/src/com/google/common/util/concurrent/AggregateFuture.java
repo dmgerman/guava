@@ -261,9 +261,9 @@ argument_list|)
 decl_stmt|;
 comment|/*    * In certain circumstances, this field might theoretically not be visible to an afterDone() call    * triggered by cancel(). For details, see the comments on the fields of TimeoutFuture.    */
 DECL|field|runningState
+specifier|private
 annotation|@
 name|Nullable
-specifier|private
 name|RunningState
 name|runningState
 decl_stmt|;

@@ -712,8 +712,6 @@ argument_list|(
 literal|"unchecked"
 argument_list|)
 comment|// value could not get in if not a T
-annotation|@
-name|Nullable
 DECL|method|getInstance (Class<T> type)
 specifier|public
 parameter_list|<
@@ -721,6 +719,8 @@ name|T
 extends|extends
 name|B
 parameter_list|>
+annotation|@
+name|Nullable
 name|T
 name|getInstance
 parameter_list|(

@@ -852,16 +852,16 @@ comment|/* ignored param */
 argument_list|)
 decl_stmt|;
 DECL|field|thread
+specifier|volatile
 annotation|@
 name|Nullable
-specifier|volatile
 name|Thread
 name|thread
 decl_stmt|;
 DECL|field|next
+specifier|volatile
 annotation|@
 name|Nullable
-specifier|volatile
 name|Waiter
 name|next
 decl_stmt|;
@@ -1286,9 +1286,9 @@ name|boolean
 name|wasInterrupted
 decl_stmt|;
 DECL|field|cause
+specifier|final
 annotation|@
 name|Nullable
-specifier|final
 name|Throwable
 name|cause
 decl_stmt|;
@@ -1434,28 +1434,28 @@ comment|// TODO(lukes): investigate using the @Contended annotation on these fie
 comment|// available.
 comment|/**    * This field encodes the current state of the future.    *    *<p>The valid values are:    *    *<ul>    *<li>{@code null} initial state, nothing has happened.    *<li>{@link Cancellation} terminal state, {@code cancel} was called.    *<li>{@link Failure} terminal state, {@code setException} was called.    *<li>{@link SetFuture} intermediate state, {@code setFuture} was called.    *<li>{@link #NULL} terminal state, {@code set(null)} was called.    *<li>Any other non-null value, terminal state, {@code set} was called with a non-null    *       argument.    *</ul>    */
 DECL|field|value
-annotation|@
-name|Nullable
 specifier|private
 specifier|volatile
+annotation|@
+name|Nullable
 name|Object
 name|value
 decl_stmt|;
 comment|/** All listeners. */
 DECL|field|listeners
-annotation|@
-name|Nullable
 specifier|private
 specifier|volatile
+annotation|@
+name|Nullable
 name|Listener
 name|listeners
 decl_stmt|;
 comment|/** All waiting threads. */
 DECL|field|waiters
-annotation|@
-name|Nullable
 specifier|private
 specifier|volatile
+annotation|@
+name|Nullable
 name|Waiter
 name|waiters
 decl_stmt|;
@@ -3591,10 +3591,10 @@ argument_list|()
 return|;
 block|}
 comment|/**    * Provide a human-readable explanation of why this future has not yet completed.    *    * @return null if an explanation cannot be provided because the future is done.    * @since 23.0    */
-annotation|@
-name|Nullable
 DECL|method|pendingToString ()
 specifier|protected
+annotation|@
+name|Nullable
 name|String
 name|pendingToString
 parameter_list|()

@@ -647,10 +647,10 @@ index|[]
 name|hashTableVToK
 decl_stmt|;
 DECL|field|firstInKeyInsertionOrder
-annotation|@
-name|Nullable
 specifier|private
 specifier|transient
+annotation|@
+name|Nullable
 name|BiEntry
 argument_list|<
 name|K
@@ -660,10 +660,10 @@ argument_list|>
 name|firstInKeyInsertionOrder
 decl_stmt|;
 DECL|field|lastInKeyInsertionOrder
-annotation|@
-name|Nullable
 specifier|private
 specifier|transient
+annotation|@
+name|Nullable
 name|BiEntry
 argument_list|<
 name|K
@@ -1429,11 +1429,11 @@ literal|null
 return|;
 block|}
 annotation|@
-name|Nullable
-annotation|@
 name|Override
 DECL|method|get (@ullable Object key)
 specifier|public
+annotation|@
+name|Nullable
 name|V
 name|get
 parameter_list|(
@@ -1721,10 +1721,10 @@ literal|true
 argument_list|)
 return|;
 block|}
-annotation|@
-name|Nullable
 DECL|method|putInverse (@ullable V value, @Nullable K key, boolean force)
 specifier|private
+annotation|@
+name|Nullable
 name|K
 name|putInverse
 parameter_list|(

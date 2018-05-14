@@ -1119,12 +1119,12 @@ comment|/** Access to some fancy internal JVM internals. */
 annotation|@
 name|GwtIncompatible
 comment|// java.lang.reflect
-annotation|@
-name|Nullable
 DECL|field|jla
 specifier|private
 specifier|static
 specifier|final
+annotation|@
+name|Nullable
 name|Object
 name|jla
 init|=
@@ -1135,12 +1135,12 @@ comment|/**    * The "getStackTraceElementMethod" method, only available on some
 annotation|@
 name|GwtIncompatible
 comment|// java.lang.reflect
-annotation|@
-name|Nullable
 DECL|field|getStackTraceElementMethod
 specifier|private
 specifier|static
 specifier|final
+annotation|@
+name|Nullable
 name|Method
 name|getStackTraceElementMethod
 init|=
@@ -1159,12 +1159,12 @@ comment|/**    * The "getStackTraceDepth" method, only available on some JDKs so
 annotation|@
 name|GwtIncompatible
 comment|// java.lang.reflect
-annotation|@
-name|Nullable
 DECL|field|getStackTraceDepthMethod
 specifier|private
 specifier|static
 specifier|final
+annotation|@
+name|Nullable
 name|Method
 name|getStackTraceDepthMethod
 init|=
@@ -1183,11 +1183,11 @@ comment|/**    * Returns the JavaLangAccess class that is present in all Sun JDK
 annotation|@
 name|GwtIncompatible
 comment|// java.lang.reflect
-annotation|@
-name|Nullable
 DECL|method|getJLA ()
 specifier|private
 specifier|static
+annotation|@
+name|Nullable
 name|Object
 name|getJLA
 parameter_list|()
@@ -1257,11 +1257,11 @@ comment|/**    * Returns the Method that can be used to resolve an individual St
 annotation|@
 name|GwtIncompatible
 comment|// java.lang.reflect
-annotation|@
-name|Nullable
 DECL|method|getGetMethod ()
 specifier|private
 specifier|static
+annotation|@
+name|Nullable
 name|Method
 name|getGetMethod
 parameter_list|()
@@ -1285,11 +1285,11 @@ comment|/**    * Returns the Method that can be used to return the size of a sta
 annotation|@
 name|GwtIncompatible
 comment|// java.lang.reflect
-annotation|@
-name|Nullable
 DECL|method|getSizeMethod ()
 specifier|private
 specifier|static
+annotation|@
+name|Nullable
 name|Method
 name|getSizeMethod
 parameter_list|()
@@ -1353,11 +1353,11 @@ block|}
 annotation|@
 name|GwtIncompatible
 comment|// java.lang.reflect
-annotation|@
-name|Nullable
 DECL|method|getJlaMethod (String name, Class<?>... parameterTypes)
 specifier|private
 specifier|static
+annotation|@
+name|Nullable
 name|Method
 name|getJlaMethod
 parameter_list|(

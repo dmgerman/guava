@@ -117,9 +117,9 @@ argument_list|>
 name|it
 decl_stmt|;
 DECL|field|in
+specifier|private
 annotation|@
 name|Nullable
-specifier|private
 name|InputStream
 name|in
 decl_stmt|;

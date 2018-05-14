@@ -275,10 +275,10 @@ argument_list|)
 operator|)
 return|;
 block|}
-annotation|@
-name|Nullable
 DECL|method|getConnectingEdge ()
 specifier|private
+annotation|@
+name|Nullable
 name|E
 name|getConnectingEdge
 parameter_list|()

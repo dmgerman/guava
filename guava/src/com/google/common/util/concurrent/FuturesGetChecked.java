@@ -1269,14 +1269,14 @@ expr_stmt|;
 end_class
 
 begin_function
-annotation|@
-name|Nullable
 DECL|method|newFromConstructor (Constructor<X> constructor, Throwable cause)
 specifier|private
 specifier|static
 parameter_list|<
 name|X
 parameter_list|>
+annotation|@
+name|Nullable
 name|X
 name|newFromConstructor
 parameter_list|(

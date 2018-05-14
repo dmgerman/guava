@@ -245,8 +245,6 @@ name|newHashMap
 argument_list|()
 decl_stmt|;
 annotation|@
-name|Nullable
-annotation|@
 name|Override
 DECL|method|getInstance (Class<T> type)
 specifier|public
@@ -255,6 +253,8 @@ name|T
 extends|extends
 name|B
 parameter_list|>
+annotation|@
+name|Nullable
 name|T
 name|getInstance
 parameter_list|(
@@ -278,8 +278,6 @@ argument_list|)
 return|;
 block|}
 annotation|@
-name|Nullable
-annotation|@
 name|Override
 DECL|method|getInstance (TypeToken<T> type)
 specifier|public
@@ -288,6 +286,8 @@ name|T
 extends|extends
 name|B
 parameter_list|>
+annotation|@
+name|Nullable
 name|T
 name|getInstance
 parameter_list|(
@@ -309,8 +309,6 @@ argument_list|)
 return|;
 block|}
 annotation|@
-name|Nullable
-annotation|@
 name|Override
 annotation|@
 name|CanIgnoreReturnValue
@@ -321,6 +319,8 @@ name|T
 extends|extends
 name|B
 parameter_list|>
+annotation|@
+name|Nullable
 name|T
 name|putInstance
 parameter_list|(
@@ -351,8 +351,6 @@ argument_list|)
 return|;
 block|}
 annotation|@
-name|Nullable
-annotation|@
 name|Override
 annotation|@
 name|CanIgnoreReturnValue
@@ -363,6 +361,8 @@ name|T
 extends|extends
 name|B
 parameter_list|>
+annotation|@
+name|Nullable
 name|T
 name|putInstance
 parameter_list|(
@@ -519,8 +519,6 @@ argument_list|(
 literal|"unchecked"
 argument_list|)
 comment|// value could not get in if not a T
-annotation|@
-name|Nullable
 DECL|method|trustedPut (TypeToken<T> type, @Nullable T value)
 specifier|private
 parameter_list|<
@@ -528,6 +526,8 @@ name|T
 extends|extends
 name|B
 parameter_list|>
+annotation|@
+name|Nullable
 name|T
 name|trustedPut
 parameter_list|(
@@ -563,8 +563,6 @@ argument_list|(
 literal|"unchecked"
 argument_list|)
 comment|// value could not get in if not a T
-annotation|@
-name|Nullable
 DECL|method|trustedGet (TypeToken<T> type)
 specifier|private
 parameter_list|<
@@ -572,6 +570,8 @@ name|T
 extends|extends
 name|B
 parameter_list|>
+annotation|@
+name|Nullable
 name|T
 name|trustedGet
 parameter_list|(

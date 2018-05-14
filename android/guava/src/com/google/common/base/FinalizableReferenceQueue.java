@@ -563,9 +563,9 @@ name|boolean
 name|disabled
 decl_stmt|;
 annotation|@
-name|NullableDecl
-annotation|@
 name|Override
+annotation|@
+name|NullableDecl
 DECL|method|loadFinalizer ()
 specifier|public
 name|Class
@@ -676,9 +676,9 @@ operator|+
 literal|"issue, or move Guava to your system class path."
 decl_stmt|;
 annotation|@
-name|NullableDecl
-annotation|@
 name|Override
+annotation|@
+name|NullableDecl
 DECL|method|loadFinalizer ()
 specifier|public
 name|Class

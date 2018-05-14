@@ -303,8 +303,6 @@ return|;
 block|}
 annotation|@
 name|Override
-annotation|@
-name|Nullable
 DECL|method|getAnnotation (Class<A> annotationType)
 specifier|public
 parameter_list|<
@@ -312,6 +310,8 @@ name|A
 extends|extends
 name|Annotation
 parameter_list|>
+annotation|@
+name|Nullable
 name|A
 name|getAnnotation
 parameter_list|(
@@ -429,8 +429,6 @@ return|;
 block|}
 comment|/** @since 18.0 */
 comment|// @Override on JDK8
-annotation|@
-name|Nullable
 DECL|method|getDeclaredAnnotation (Class<A> annotationType)
 specifier|public
 parameter_list|<
@@ -438,6 +436,8 @@ name|A
 extends|extends
 name|Annotation
 parameter_list|>
+annotation|@
+name|Nullable
 name|A
 name|getDeclaredAnnotation
 parameter_list|(

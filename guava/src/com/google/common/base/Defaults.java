@@ -110,8 +110,6 @@ argument_list|)
 decl_stmt|;
 comment|/**    * Returns the default value of {@code type} as defined by JLS --- {@code 0} for numbers, {@code    * false} for {@code boolean} and {@code '\0'} for {@code char}. For non-primitive types and    * {@code void}, {@code null} is returned.    */
 annotation|@
-name|Nullable
-annotation|@
 name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
@@ -122,6 +120,8 @@ specifier|static
 parameter_list|<
 name|T
 parameter_list|>
+annotation|@
+name|Nullable
 name|T
 name|defaultValue
 parameter_list|(

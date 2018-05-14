@@ -388,9 +388,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
+specifier|public
 annotation|@
 name|Nullable
-specifier|public
 name|Spliterator
 argument_list|<
 name|T

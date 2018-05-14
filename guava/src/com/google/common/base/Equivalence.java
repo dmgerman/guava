@@ -365,10 +365,10 @@ argument_list|>
 name|equivalence
 decl_stmt|;
 DECL|field|reference
-annotation|@
-name|Nullable
 specifier|private
 specifier|final
+annotation|@
+name|Nullable
 name|T
 name|reference
 decl_stmt|;
@@ -407,10 +407,10 @@ name|reference
 expr_stmt|;
 block|}
 comment|/** Returns the (possibly null) reference wrapped by this instance. */
-annotation|@
-name|Nullable
 DECL|method|get ()
 specifier|public
+annotation|@
+name|Nullable
 name|T
 name|get
 parameter_list|()
@@ -664,10 +664,10 @@ argument_list|>
 name|equivalence
 decl_stmt|;
 DECL|field|target
-annotation|@
-name|Nullable
 specifier|private
 specifier|final
+annotation|@
+name|Nullable
 name|T
 name|target
 decl_stmt|;

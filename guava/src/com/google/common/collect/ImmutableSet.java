@@ -1356,11 +1356,11 @@ DECL|field|asList
 annotation|@
 name|LazyInit
 annotation|@
-name|Nullable
-annotation|@
 name|RetainedWith
 specifier|private
 specifier|transient
+annotation|@
+name|Nullable
 name|ImmutableList
 argument_list|<
 name|E

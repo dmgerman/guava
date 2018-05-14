@@ -518,10 +518,10 @@ return|;
 block|}
 annotation|@
 name|Override
-annotation|@
-name|Nullable
 DECL|method|edgeValueOrDefault (N nodeU, N nodeV, @Nullable V defaultValue)
 specifier|public
+annotation|@
+name|Nullable
 name|V
 name|edgeValueOrDefault
 parameter_list|(

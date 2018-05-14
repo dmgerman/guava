@@ -2881,9 +2881,9 @@ argument_list|>
 name|skipMe
 decl_stmt|;
 DECL|field|lastFromForgetMeNot
+specifier|private
 annotation|@
 name|Nullable
-specifier|private
 name|E
 name|lastFromForgetMeNot
 decl_stmt|;

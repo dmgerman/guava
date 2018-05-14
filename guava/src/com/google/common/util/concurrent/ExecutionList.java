@@ -155,10 +155,10 @@ name|GuardedBy
 argument_list|(
 literal|"this"
 argument_list|)
-annotation|@
-name|Nullable
 DECL|field|runnables
 specifier|private
+annotation|@
+name|Nullable
 name|RunnableExecutorPair
 name|runnables
 decl_stmt|;

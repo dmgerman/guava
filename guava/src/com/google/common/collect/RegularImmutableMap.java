@@ -953,13 +953,13 @@ name|mask
 argument_list|)
 return|;
 block|}
-annotation|@
-name|Nullable
-DECL|method|get (@ullable Object key, ImmutableMapEntry<?, V> @Nullable [] keyTable, int mask)
+DECL|method|get ( @ullable Object key, ImmutableMapEntry<?, V> @Nullable [] keyTable, int mask)
 specifier|static
 argument_list|<
 name|V
 argument_list|>
+annotation|@
+name|Nullable
 name|V
 name|get
 argument_list|(

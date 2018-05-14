@@ -162,9 +162,9 @@ name|computeNext
 parameter_list|()
 function_decl|;
 annotation|@
-name|NullableDecl
-annotation|@
 name|CanIgnoreReturnValue
+annotation|@
+name|NullableDecl
 DECL|method|endOfData ()
 specifier|protected
 specifier|final

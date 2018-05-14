@@ -1844,9 +1844,9 @@ name|Alphabet
 name|alphabet
 decl_stmt|;
 DECL|field|paddingChar
+specifier|final
 annotation|@
 name|Nullable
-specifier|final
 name|Character
 name|paddingChar
 decl_stmt|;

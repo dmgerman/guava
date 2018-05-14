@@ -919,10 +919,10 @@ name|supertype
 return|;
 block|}
 comment|/**    * Returns the generic superclass of this type or {@code null} if the type represents {@link    * Object} or an interface. This method is similar but different from {@link    * Class#getGenericSuperclass}. For example, {@code new TypeToken<StringArrayList>()    * {}.getGenericSuperclass()} will return {@code new TypeToken<ArrayList<String>>() {}}; while    * {@code StringArrayList.class.getGenericSuperclass()} will return {@code ArrayList<E>}, where    * {@code E} is the type variable declared by class {@code ArrayList}.    *    *<p>If this type is a type variable or wildcard, its first upper bound is examined and returned    * if the bound is a class or extends from a class. This means that the returned type could be a    * type variable too.    */
-annotation|@
-name|Nullable
 DECL|method|getGenericSuperclass ()
 specifier|final
+annotation|@
+name|Nullable
 name|TypeToken
 argument_list|<
 name|?
@@ -1038,10 +1038,10 @@ return|return
 name|superToken
 return|;
 block|}
-annotation|@
-name|Nullable
 DECL|method|boundAsSuperclass (Type bound)
 specifier|private
+annotation|@
+name|Nullable
 name|TypeToken
 argument_list|<
 name|?
@@ -2086,11 +2086,11 @@ name|this
 return|;
 block|}
 comment|/**    * Returns the array component type if this type represents an array ({@code int[]}, {@code T[]},    * {@code<? extends Map<String, Integer>[]>} etc.), or else {@code null} is returned.    */
-annotation|@
-name|Nullable
 DECL|method|getComponentType ()
 specifier|public
 specifier|final
+annotation|@
+name|Nullable
 name|TypeToken
 argument_list|<
 name|?
@@ -4787,10 +4787,10 @@ comment|/**    * Returns the owner type of a {@link ParameterizedType} or enclos
 end_comment
 
 begin_function
-annotation|@
-name|Nullable
 DECL|method|getOwnerTypeIfPresent ()
 specifier|private
+annotation|@
+name|Nullable
 name|Type
 name|getOwnerTypeIfPresent
 parameter_list|()
@@ -5789,9 +5789,9 @@ argument_list|()
 return|;
 block|}
 annotation|@
-name|Nullable
-annotation|@
 name|Override
+annotation|@
+name|Nullable
 name|TypeToken
 argument_list|<
 name|?
@@ -5888,9 +5888,9 @@ argument_list|)
 return|;
 block|}
 annotation|@
-name|Nullable
-annotation|@
 name|Override
+annotation|@
+name|Nullable
 name|Class
 argument_list|<
 name|?
@@ -6371,10 +6371,10 @@ name|K
 name|type
 parameter_list|)
 function_decl|;
-annotation|@
-name|Nullable
 DECL|method|getSuperclass (K type)
 specifier|abstract
+annotation|@
+name|Nullable
 name|K
 name|getSuperclass
 parameter_list|(

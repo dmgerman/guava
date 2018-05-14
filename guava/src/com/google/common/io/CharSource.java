@@ -849,10 +849,10 @@ expr_stmt|;
 block|}
 block|}
 comment|/**    * Reads the first line of this source as a string. Returns {@code null} if this source is empty.    *    *<p>Like {@link BufferedReader#readLine()}, this method considers a line to be a sequence of    * text that is terminated by (but does not include) one of {@code \r\n}, {@code \r} or {@code    * \n}. If the source's content does not end in a line termination sequence, it is treated as if    * it does.    *    * @throws IOException if an I/O error occurs while reading from this source    */
-annotation|@
-name|Nullable
 DECL|method|readFirstLine ()
 specifier|public
+annotation|@
+name|Nullable
 name|String
 name|readFirstLine
 parameter_list|()

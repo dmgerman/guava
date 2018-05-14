@@ -2519,13 +2519,13 @@ comment|/**    * Parses the specified string as a double-precision floating poin
 annotation|@
 name|Beta
 annotation|@
-name|Nullable
-annotation|@
 name|GwtIncompatible
 comment|// regular expressions
 DECL|method|tryParse (String string)
 specifier|public
 specifier|static
+annotation|@
+name|Nullable
 name|Double
 name|tryParse
 parameter_list|(

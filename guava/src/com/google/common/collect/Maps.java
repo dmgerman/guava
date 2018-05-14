@@ -715,9 +715,9 @@ name|KEY
 block|{
 annotation|@
 name|Override
+specifier|public
 annotation|@
 name|Nullable
-specifier|public
 name|Object
 name|apply
 parameter_list|(
@@ -744,9 +744,9 @@ name|VALUE
 block|{
 annotation|@
 name|Override
+specifier|public
 annotation|@
 name|Nullable
-specifier|public
 name|Object
 name|apply
 parameter_list|(
@@ -3553,18 +3553,18 @@ name|V
 argument_list|>
 block|{
 DECL|field|left
-annotation|@
-name|Nullable
 specifier|private
 specifier|final
+annotation|@
+name|Nullable
 name|V
 name|left
 decl_stmt|;
 DECL|field|right
-annotation|@
-name|Nullable
 specifier|private
 specifier|final
+annotation|@
+name|Nullable
 name|V
 name|right
 decl_stmt|;
@@ -5199,10 +5199,10 @@ return|;
 block|}
 annotation|@
 name|Override
-annotation|@
-name|Nullable
 DECL|method|get (@ullable Object key)
 specifier|public
+annotation|@
+name|Nullable
 name|V
 name|get
 parameter_list|(
@@ -5223,10 +5223,10 @@ return|;
 block|}
 annotation|@
 name|Override
-annotation|@
-name|Nullable
 DECL|method|getOrDefault (@ullable Object key, @Nullable V defaultValue)
 specifier|public
+annotation|@
+name|Nullable
 name|V
 name|getOrDefault
 parameter_list|(
@@ -8603,10 +8603,10 @@ return|;
 block|}
 annotation|@
 name|Override
-annotation|@
-name|Nullable
 DECL|method|get (@ullable Object key)
 specifier|public
+annotation|@
+name|Nullable
 name|V2
 name|get
 parameter_list|(
@@ -8633,10 +8633,10 @@ literal|"unchecked"
 argument_list|)
 annotation|@
 name|Override
-annotation|@
-name|Nullable
 DECL|method|getOrDefault (@ullable Object key, @Nullable V2 defaultValue)
 specifier|public
+annotation|@
+name|Nullable
 name|V2
 name|getOrDefault
 parameter_list|(
@@ -9799,10 +9799,10 @@ name|transformer
 argument_list|)
 return|;
 block|}
-annotation|@
-name|Nullable
 DECL|method|transformEntry (@ullable Entry<K, V1> entry)
 specifier|private
+annotation|@
+name|Nullable
 name|Entry
 argument_list|<
 name|K
@@ -13679,10 +13679,10 @@ return|;
 block|}
 annotation|@
 name|Override
-annotation|@
-name|Nullable
 DECL|method|get (@ullable Object key)
 specifier|public
+annotation|@
+name|Nullable
 name|V
 name|get
 parameter_list|(
@@ -14510,9 +14510,7 @@ block|}
 end_function
 
 begin_function
-annotation|@
-name|Nullable
-DECL|method|unmodifiableOrNull (@ullable Entry<K, ? extends V> entry)
+DECL|method|unmodifiableOrNull ( @ullable Entry<K, ? extends V> entry)
 specifier|private
 specifier|static
 parameter_list|<
@@ -14520,6 +14518,8 @@ name|K
 parameter_list|,
 name|V
 parameter_list|>
+annotation|@
+name|Nullable
 name|Entry
 argument_list|<
 name|K
@@ -16686,13 +16686,13 @@ block|}
 end_class
 
 begin_function
-annotation|@
-name|Nullable
 DECL|method|keyOrNull (@ullable Entry<K, ?> entry)
 specifier|static
 parameter_list|<
 name|K
 parameter_list|>
+annotation|@
+name|Nullable
 name|K
 name|keyOrNull
 parameter_list|(
@@ -16725,13 +16725,13 @@ block|}
 end_function
 
 begin_function
-annotation|@
-name|Nullable
 DECL|method|valueOrNull (@ullable Entry<?, V> entry)
 specifier|static
 parameter_list|<
 name|V
 parameter_list|>
+annotation|@
+name|Nullable
 name|V
 name|valueOrNull
 parameter_list|(

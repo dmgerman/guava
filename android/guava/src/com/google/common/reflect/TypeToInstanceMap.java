@@ -137,9 +137,9 @@ parameter_list|)
 function_decl|;
 comment|/**    * Maps the specified class to the specified value. Does<i>not</i> associate this value with any    * of the class's supertypes.    *    *<p>{@code putInstance(Foo.class, foo)} is equivalent to {@code    * putInstance(TypeToken.of(Foo.class), foo)}.    *    * @return the value previously associated with this class (possibly {@code null}), or {@code    *     null} if there was no previous entry.    */
 annotation|@
-name|NullableDecl
-annotation|@
 name|CanIgnoreReturnValue
+annotation|@
+name|NullableDecl
 DECL|method|putInstance (Class<T> type, @NullableDecl T value)
 argument_list|<
 name|T
@@ -163,9 +163,9 @@ parameter_list|)
 function_decl|;
 comment|/**    * Maps the specified type to the specified value. Does<i>not</i> associate this value with any    * of the type's supertypes.    *    * @return the value previously associated with this type (possibly {@code null}), or {@code null}    *     if there was no previous entry.    */
 annotation|@
-name|NullableDecl
-annotation|@
 name|CanIgnoreReturnValue
+annotation|@
+name|NullableDecl
 DECL|method|putInstance (TypeToken<T> type, @NullableDecl T value)
 argument_list|<
 name|T

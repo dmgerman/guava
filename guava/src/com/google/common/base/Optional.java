@@ -226,14 +226,14 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns the equivalent {@code com.google.common.base.Optional} value to the given {@code    * java.util.Optional}, or {@code null} if the argument is null.    *    * @since 21.0    */
-annotation|@
-name|Nullable
-DECL|method|fromJavaUtil (java.util.@ullable Optional<T> javaUtilOptional)
+DECL|method|fromJavaUtil ( java.util.@ullable Optional<T> javaUtilOptional)
 specifier|public
 specifier|static
 argument_list|<
 name|T
 argument_list|>
+annotation|@
+name|Nullable
 name|Optional
 argument_list|<
 name|T
@@ -411,11 +411,11 @@ name|supplier
 parameter_list|)
 function_decl|;
 comment|/**    * Returns the contained instance if it is present; {@code null} otherwise. If the instance is    * known to be present, use {@link #get()} instead.    *    *<p><b>Comparison to {@code java.util.Optional}:</b> this method is equivalent to Java 8's    * {@code Optional.orElse(null)}.    */
-annotation|@
-name|Nullable
 DECL|method|orNull ()
 specifier|public
 specifier|abstract
+annotation|@
+name|Nullable
 name|T
 name|orNull
 parameter_list|()

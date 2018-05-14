@@ -1045,10 +1045,10 @@ block|}
 block|}
 annotation|@
 name|Override
-annotation|@
-name|Nullable
 DECL|method|edgeConnectingOrNull (N nodeU, N nodeV)
 specifier|public
+annotation|@
+name|Nullable
 name|E
 name|edgeConnectingOrNull
 parameter_list|(

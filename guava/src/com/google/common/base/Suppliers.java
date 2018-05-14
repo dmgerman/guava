@@ -452,9 +452,9 @@ decl_stmt|;
 comment|// "value" does not need to be volatile; visibility piggy-backs
 comment|// on volatile read of "initialized".
 DECL|field|value
+specifier|transient
 annotation|@
 name|Nullable
-specifier|transient
 name|T
 name|value
 decl_stmt|;
@@ -794,10 +794,10 @@ name|long
 name|durationNanos
 decl_stmt|;
 DECL|field|value
-annotation|@
-name|Nullable
 specifier|transient
 specifier|volatile
+annotation|@
+name|Nullable
 name|T
 name|value
 decl_stmt|;
@@ -1030,9 +1030,9 @@ implements|,
 name|Serializable
 block|{
 DECL|field|instance
+specifier|final
 annotation|@
 name|Nullable
-specifier|final
 name|T
 name|instance
 decl_stmt|;

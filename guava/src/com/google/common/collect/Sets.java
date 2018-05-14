@@ -4223,10 +4223,10 @@ return|;
 block|}
 annotation|@
 name|Override
-annotation|@
-name|Nullable
 DECL|method|lower (E e)
 specifier|public
+annotation|@
+name|Nullable
 name|E
 name|lower
 parameter_list|(
@@ -4260,10 +4260,10 @@ return|;
 block|}
 annotation|@
 name|Override
-annotation|@
-name|Nullable
 DECL|method|floor (E e)
 specifier|public
+annotation|@
+name|Nullable
 name|E
 name|floor
 parameter_list|(

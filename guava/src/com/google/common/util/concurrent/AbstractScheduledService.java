@@ -1400,10 +1400,10 @@ name|GuardedBy
 argument_list|(
 literal|"lock"
 argument_list|)
-annotation|@
-name|Nullable
 DECL|field|currentFuture
 specifier|private
+annotation|@
+name|Nullable
 name|Future
 argument_list|<
 name|Void

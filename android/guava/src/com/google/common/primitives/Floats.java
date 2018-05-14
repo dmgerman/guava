@@ -2389,10 +2389,10 @@ comment|/**    * Parses the specified string as a single-precision floating poin
 annotation|@
 name|Beta
 annotation|@
-name|NullableDecl
-annotation|@
 name|GwtIncompatible
 comment|// regular expressions
+annotation|@
+name|NullableDecl
 DECL|method|tryParse (String string)
 specifier|public
 specifier|static

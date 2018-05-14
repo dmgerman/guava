@@ -820,14 +820,14 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-annotation|@
-name|Nullable
 DECL|method|getReference (@ullable Reference<T> reference)
 specifier|private
 specifier|static
 parameter_list|<
 name|T
 parameter_list|>
+annotation|@
+name|Nullable
 name|T
 name|getReference
 parameter_list|(
