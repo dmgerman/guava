@@ -250,9 +250,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -466,18 +466,18 @@ operator|!=
 literal|null
 return|;
 block|}
-annotation|@
-name|NullableDecl
 DECL|method|ipStringToBytes (String ipString)
 specifier|private
 specifier|static
 name|byte
-index|[]
+annotation|@
+name|Nullable
+type|[]
 name|ipStringToBytes
-parameter_list|(
+function|(
 name|String
 name|ipString
-parameter_list|)
+function|)
 block|{
 comment|// Make a first pass to categorize the characters in this string.
 name|boolean
@@ -629,18 +629,18 @@ return|return
 literal|null
 return|;
 block|}
-annotation|@
-name|NullableDecl
 DECL|method|textToNumericFormatV4 (String ipString)
 specifier|private
 specifier|static
 name|byte
-index|[]
+annotation|@
+name|Nullable
+type|[]
 name|textToNumericFormatV4
-parameter_list|(
+function|(
 name|String
 name|ipString
-parameter_list|)
+function|)
 block|{
 name|byte
 index|[]
@@ -705,18 +705,18 @@ else|:
 literal|null
 return|;
 block|}
-annotation|@
-name|NullableDecl
 DECL|method|textToNumericFormatV6 (String ipString)
 specifier|private
 specifier|static
 name|byte
-index|[]
+annotation|@
+name|Nullable
+type|[]
 name|textToNumericFormatV6
-parameter_list|(
+function|(
 name|String
 name|ipString
-parameter_list|)
+function|)
 block|{
 comment|// An address can have [2..8] colons, and N colons make N+1 parts.
 name|List
@@ -1075,11 +1075,11 @@ name|array
 argument_list|()
 return|;
 block|}
-annotation|@
-name|NullableDecl
 DECL|method|convertDottedQuadToHex (String ipString)
 specifier|private
 specifier|static
+annotation|@
+name|Nullable
 name|String
 name|convertDottedQuadToHex
 parameter_list|(
@@ -1815,11 +1815,11 @@ return|return
 name|addr
 return|;
 block|}
-annotation|@
-name|NullableDecl
 DECL|method|forUriStringNoThrow (String hostAddr)
 specifier|private
 specifier|static
+annotation|@
+name|Nullable
 name|InetAddress
 name|forUriStringNoThrow
 parameter_list|(
@@ -2205,17 +2205,17 @@ name|flags
 decl_stmt|;
 comment|/**      * Constructs a TeredoInfo instance.      *      *<p>Both server and client can be {@code null}, in which case the value {@code "0.0.0.0"} will      * be assumed.      *      * @throws IllegalArgumentException if either of the {@code port} or the {@code flags} arguments      *     are out of range of an unsigned short      */
 comment|// TODO: why is this public?
-DECL|method|TeredoInfo ( @ullableDecl Inet4Address server, @NullableDecl Inet4Address client, int port, int flags)
+DECL|method|TeredoInfo ( @ullable Inet4Address server, @Nullable Inet4Address client, int port, int flags)
 specifier|public
 name|TeredoInfo
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Inet4Address
 name|server
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|Inet4Address
 name|client
 parameter_list|,

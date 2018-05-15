@@ -60,9 +60,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -91,13 +91,13 @@ argument_list|()
 decl_stmt|;
 annotation|@
 name|Subscribe
-DECL|method|hereHaveAString (@ullableDecl String string)
+DECL|method|hereHaveAString (@ullable String string)
 specifier|public
 name|void
 name|hereHaveAString
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|String
 name|string
 parameter_list|)
@@ -110,13 +110,13 @@ name|string
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|methodWithoutAnnotation (@ullableDecl String string)
+DECL|method|methodWithoutAnnotation (@ullable String string)
 specifier|public
 name|void
 name|methodWithoutAnnotation
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|String
 name|string
 parameter_list|)

@@ -80,9 +80,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -147,7 +147,7 @@ name|char
 name|safeMaxChar
 decl_stmt|;
 comment|/**    * Creates a new ArrayBasedUnicodeEscaper instance with the given replacement map and specified    * safe range. If {@code safeMax< safeMin} then no code points are considered safe.    *    *<p>If a code point has no mapped replacement then it is checked against the safe range. If it    * lies outside that, then {@link #escapeUnsafe} is called, otherwise no escaping is performed.    *    * @param replacementMap a map of characters to their escaped representations    * @param safeMin the lowest character value in the safe range    * @param safeMax the highest character value in the safe range    * @param unsafeReplacement the default replacement for unsafe characters or null if no default    *     replacement is required    */
-DECL|method|ArrayBasedUnicodeEscaper ( Map<Character, String> replacementMap, int safeMin, int safeMax, @NullableDecl String unsafeReplacement)
+DECL|method|ArrayBasedUnicodeEscaper ( Map<Character, String> replacementMap, int safeMin, int safeMax, @Nullable String unsafeReplacement)
 specifier|protected
 name|ArrayBasedUnicodeEscaper
 parameter_list|(
@@ -166,7 +166,7 @@ name|int
 name|safeMax
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|String
 name|unsafeReplacement
 parameter_list|)
@@ -189,7 +189,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Creates a new ArrayBasedUnicodeEscaper instance with the given replacement map and specified    * safe range. If {@code safeMax< safeMin} then no code points are considered safe. This    * initializer is useful when explicit instances of ArrayBasedEscaperMap are used to allow the    * sharing of large replacement mappings.    *    *<p>If a code point has no mapped replacement then it is checked against the safe range. If it    * lies outside that, then {@link #escapeUnsafe} is called, otherwise no escaping is performed.    *    * @param escaperMap the map of replacements    * @param safeMin the lowest character value in the safe range    * @param safeMax the highest character value in the safe range    * @param unsafeReplacement the default replacement for unsafe characters or null if no default    *     replacement is required    */
-DECL|method|ArrayBasedUnicodeEscaper ( ArrayBasedEscaperMap escaperMap, int safeMin, int safeMax, @NullableDecl String unsafeReplacement)
+DECL|method|ArrayBasedUnicodeEscaper ( ArrayBasedEscaperMap escaperMap, int safeMin, int safeMax, @Nullable String unsafeReplacement)
 specifier|protected
 name|ArrayBasedUnicodeEscaper
 parameter_list|(
@@ -203,7 +203,7 @@ name|int
 name|safeMax
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|String
 name|unsafeReplacement
 parameter_list|)
