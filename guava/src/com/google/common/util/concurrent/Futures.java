@@ -308,6 +308,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|DoNotCall
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -930,6 +944,8 @@ comment|/**    * Returns a {@code Future} whose result is taken from the given p
 annotation|@
 name|Deprecated
 annotation|@
+name|DoNotCall
+annotation|@
 name|Partially
 operator|.
 name|GwtIncompatible
@@ -1070,6 +1086,8 @@ name|CanIgnoreReturnValue
 comment|// TODO(kak): @CheckReturnValue
 annotation|@
 name|Deprecated
+annotation|@
+name|DoNotCall
 annotation|@
 name|Partially
 operator|.
@@ -1258,6 +1276,8 @@ block|}
 comment|/**    * Returns a new {@code Future} whose result is asynchronously derived from the result of the    * given {@code Future}. If the given {@code Future} fails, the returned {@code Future} fails with    * the same exception (and the function is not invoked).    *    *<p>More precisely, the returned {@code Future} takes its result from a {@code Future} produced    * by applying the given {@code AsyncFunction} to the result of the original {@code Future}.    * Example usage:    *    *<pre>{@code    * ListenableFuture<RowKey> rowKeyFuture = indexService.lookUp(query);    * ListenableFuture<QueryResult> queryFuture =    *     transformAsync(rowKeyFuture, dataService::readFuture);    * }</pre>    *    *<p>This overload, which does not accept an executor, uses {@code directExecutor}, a dangerous    * choice in some cases. See the discussion in the {@link ListenableFuture#addListener    * ListenableFuture.addListener} documentation. All its warnings about heavyweight listeners are    * also applicable to heavyweight functions passed to this method. (Specifically, {@code    * directExecutor} functions should avoid heavyweight operations inside {@code    * AsyncFunction.apply}. Any heavyweight operations should occur in other threads responsible for    * completing the returned {@code Future}.)    *    *<p>The returned {@code Future} attempts to keep its cancellation state in sync with that of the    * input future and that of the future returned by the function. That is, if the returned {@code    * Future} is cancelled, it will attempt to cancel the other two, and if either of the other two    * is cancelled, the returned {@code Future} will receive a callback in which it will attempt to    * cancel itself.    *    * @param input The future to transform    * @param function A function to transform the result of the input future to the result of the    *     output future    * @return A future that holds result of the function (if the input succeeded) or the original    *     input's failure (if not)    * @since 19.0 (in 11.0 as {@code transform})    * @deprecated Use {@linkplain #transformAsync(ListenableFuture, AsyncFunction, Executor) the    *     overload that requires an executor}. For identical behavior, pass {@link    *     MoreExecutors#directExecutor}, but consider whether another executor would be safer, as    *     discussed in the {@link ListenableFuture#addListener ListenableFuture.addListener}    *     documentation. This method is scheduled to be removed in July 2018.    */
 annotation|@
 name|Deprecated
+annotation|@
+name|DoNotCall
 DECL|method|transformAsync ( ListenableFuture<I> input, AsyncFunction<? super I, ? extends O> function)
 specifier|public
 specifier|static
@@ -1358,6 +1378,8 @@ block|}
 comment|/**    * Returns a new {@code Future} whose result is derived from the result of the given {@code    * Future}. If {@code input} fails, the returned {@code Future} fails with the same exception (and    * the function is not invoked). Example usage:    *    *<pre>{@code    * ListenableFuture<QueryResult> queryFuture = ...;    * ListenableFuture<List<Row>> rowsFuture =    *     transform(queryFuture, QueryResult::getRows);    * }</pre>    *    *<p>This overload, which does not accept an executor, uses {@code directExecutor}, a dangerous    * choice in some cases. See the discussion in the {@link ListenableFuture#addListener    * ListenableFuture.addListener} documentation. All its warnings about heavyweight listeners are    * also applicable to heavyweight functions passed to this method.    *    *<p>The returned {@code Future} attempts to keep its cancellation state in sync with that of the    * input future. That is, if the returned {@code Future} is cancelled, it will attempt to cancel    * the input, and if the input is cancelled, the returned {@code Future} will receive a callback    * in which it will attempt to cancel itself.    *    *<p>An example use of this method is to convert a serializable object returned from an RPC into    * a POJO.    *    * @param input The future to transform    * @param function A Function to transform the results of the provided future to the results of    *     the returned future. This will be run in the thread that notifies input it is complete.    * @return A future that holds result of the transformation.    * @since 9.0 (in 1.0 as {@code compose})    * @deprecated Use {@linkplain #transform(ListenableFuture, Function, Executor) the overload that    *     requires an executor}. For identical behavior, pass {@link MoreExecutors#directExecutor},    *     but consider whether another executor would be safer, as discussed in the {@link    *     ListenableFuture#addListener ListenableFuture.addListener} documentation. This method is    *     scheduled to be removed in July 2018.    */
 annotation|@
 name|Deprecated
+annotation|@
+name|DoNotCall
 DECL|method|transform ( ListenableFuture<I> input, Function<? super I, ? extends O> function)
 specifier|public
 specifier|static
@@ -2038,6 +2060,8 @@ block|}
 comment|/**      * Like {@link #callAsync(AsyncCallable, Executor)} but using {@linkplain      * MoreExecutors#directExecutor direct executor}.      *      * @deprecated Use {@linkplain #callAsync(AsyncCallable, Executor) the overload that requires an      *     executor}. For identical behavior, pass {@link MoreExecutors#directExecutor}, but      *     consider whether another executor would be safer, as discussed in the {@link      *     ListenableFuture#addListener ListenableFuture.addListener} documentation. This method is      *     scheduled to be removed in July 2018.      */
 annotation|@
 name|Deprecated
+annotation|@
+name|DoNotCall
 DECL|method|callAsync (AsyncCallable<C> combiner)
 specifier|public
 parameter_list|<
@@ -2114,6 +2138,8 @@ name|CanIgnoreReturnValue
 comment|// TODO(cpovirk): Remove this
 annotation|@
 name|Deprecated
+annotation|@
+name|DoNotCall
 DECL|method|call (Callable<C> combiner)
 specifier|public
 parameter_list|<
@@ -3166,6 +3192,8 @@ block|}
 comment|/**    * Registers separate success and failure callbacks to be run when the {@code Future}'s    * computation is {@linkplain java.util.concurrent.Future#isDone() complete} or, if the    * computation is already complete, immediately.    *    *<p>There is no guaranteed ordering of execution of callbacks, but any callback added through    * this method is guaranteed to be called once the computation is complete.    *    *<p>Example:    *    *<pre>{@code    * ListenableFuture<QueryResult> future = ...;    * addCallback(future,    *     new FutureCallback<QueryResult>() {    *       public void onSuccess(QueryResult result) {    *         storeInCache(result);    *       }    *       public void onFailure(Throwable t) {    *         reportError(t);    *       }    *     });    * }</pre>    *    *<p>This overload, which does not accept an executor, uses {@code directExecutor}, a dangerous    * choice in some cases. See the discussion in the {@link ListenableFuture#addListener    * ListenableFuture.addListener} documentation. All its warnings about heavyweight listeners are    * also applicable to heavyweight callbacks passed to this method.    *    *<p>For a more general interface to attach a completion listener to a {@code Future}, see {@link    * ListenableFuture#addListener addListener}.    *    * @param future The future attach the callback to.    * @param callback The callback to invoke when {@code future} is completed.    * @since 10.0    * @deprecated Use {@linkplain #addCallback(ListenableFuture, FutureCallback, Executor) the    *     overload that requires an executor}. For identical behavior, pass {@link    *     MoreExecutors#directExecutor}, but consider whether another executor would be safer, as    *     discussed in the {@link ListenableFuture#addListener ListenableFuture.addListener}    *     documentation. This method is scheduled to be removed in July 2018.    */
 annotation|@
 name|Deprecated
+annotation|@
+name|DoNotCall
 DECL|method|addCallback ( ListenableFuture<V> future, FutureCallback<? super V> callback)
 specifier|public
 specifier|static
