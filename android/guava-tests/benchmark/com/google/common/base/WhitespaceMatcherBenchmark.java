@@ -54,20 +54,6 @@ end_import
 
 begin_import
 import|import
-name|com
-operator|.
-name|google
-operator|.
-name|caliper
-operator|.
-name|runner
-operator|.
-name|CaliperMain
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|util
@@ -193,34 +179,6 @@ specifier|private
 name|CharMatcher
 name|matcher
 decl_stmt|;
-DECL|method|main (String[] args)
-specifier|public
-specifier|static
-name|void
-name|main
-parameter_list|(
-name|String
-index|[]
-name|args
-parameter_list|)
-throws|throws
-name|Exception
-block|{
-name|CaliperMain
-operator|.
-name|main
-argument_list|(
-name|WhitespaceMatcherBenchmark
-operator|.
-name|class
-argument_list|,
-operator|new
-name|String
-index|[]
-block|{}
-argument_list|)
-expr_stmt|;
-block|}
 annotation|@
 name|BeforeExperiment
 DECL|method|setUp ()
