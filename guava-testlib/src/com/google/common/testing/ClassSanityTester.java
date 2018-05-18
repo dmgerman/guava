@@ -496,9 +496,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -1522,12 +1522,12 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Instantiates {@code cls} by invoking one of its non-private constructors or non-private static    * factory methods with the parameters automatically provided using dummy values.    *    * @return The instantiated instance, or {@code null} if the class has no non-private constructor    *     or factory method to be constructed.    */
-annotation|@
-name|NullableDecl
 DECL|method|instantiate (Class<T> cls)
-argument_list|<
+parameter_list|<
 name|T
-argument_list|>
+parameter_list|>
+annotation|@
+name|Nullable
 name|T
 name|instantiate
 parameter_list|(
@@ -1739,13 +1739,13 @@ literal|null
 return|;
 block|}
 comment|/**    * Instantiates using {@code factory}. If {@code factory} is annotated nullable and returns null,    * null will be returned.    *    * @throws ParameterNotInstantiableException if the static methods cannot be invoked because the    *     default value of a parameter cannot be determined.    * @throws IllegalAccessException if the class isn't public or is nested inside a non-public    *     class, preventing its methods from being accessible.    * @throws InvocationTargetException if a static method threw exception.    */
-annotation|@
-name|NullableDecl
 DECL|method|instantiate (Invokable<?, ? extends T> factory)
 specifier|private
 parameter_list|<
 name|T
 parameter_list|>
+annotation|@
+name|Nullable
 name|T
 name|instantiate
 parameter_list|(
@@ -3250,11 +3250,11 @@ return|return
 name|generator
 return|;
 block|}
-annotation|@
-name|NullableDecl
 DECL|method|generateDummyArg (Parameter param, FreshValueGenerator generator)
 specifier|private
 specifier|static
+annotation|@
+name|Nullable
 name|Object
 name|generateDummyArg
 parameter_list|(
@@ -3878,14 +3878,14 @@ return|return
 name|instance
 return|;
 block|}
-annotation|@
-name|NullableDecl
 DECL|method|invoke (Invokable<?, ? extends T> factory, List<?> args)
 specifier|private
 specifier|static
 parameter_list|<
 name|T
 parameter_list|>
+annotation|@
+name|Nullable
 name|T
 name|invoke
 parameter_list|(
@@ -3938,7 +3938,7 @@ name|assertTrue
 argument_list|(
 name|factory
 operator|+
-literal|" returns null but it's not annotated with @NullableDecl"
+literal|" returns null but it's not annotated with @Nullable"
 argument_list|,
 name|isNullable
 argument_list|(
