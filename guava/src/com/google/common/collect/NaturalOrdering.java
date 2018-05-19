@@ -66,9 +66,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|MonotonicNonNullDecl
+name|MonotonicNonNull
 import|;
 end_import
 
@@ -113,10 +113,10 @@ name|NaturalOrdering
 argument_list|()
 decl_stmt|;
 DECL|field|nullsFirst
-annotation|@
-name|MonotonicNonNullDecl
 specifier|private
 specifier|transient
+annotation|@
+name|MonotonicNonNull
 name|Ordering
 argument_list|<
 name|Comparable
@@ -124,10 +124,10 @@ argument_list|>
 name|nullsFirst
 decl_stmt|;
 DECL|field|nullsLast
-annotation|@
-name|MonotonicNonNullDecl
 specifier|private
 specifier|transient
+annotation|@
+name|MonotonicNonNull
 name|Ordering
 argument_list|<
 name|Comparable

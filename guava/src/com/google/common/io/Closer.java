@@ -176,9 +176,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|MonotonicNonNullDecl
+name|MonotonicNonNull
 import|;
 end_import
 
@@ -282,7 +282,7 @@ argument_list|)
 decl_stmt|;
 DECL|field|thrown
 annotation|@
-name|MonotonicNonNullDecl
+name|MonotonicNonNull
 specifier|private
 name|Throwable
 name|thrown

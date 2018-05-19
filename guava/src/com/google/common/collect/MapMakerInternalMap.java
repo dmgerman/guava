@@ -420,9 +420,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|MonotonicNonNullDecl
+name|MonotonicNonNull
 import|;
 end_import
 
@@ -5550,7 +5550,7 @@ decl_stmt|;
 comment|/** The per-segment table. */
 DECL|field|table
 annotation|@
-name|MonotonicNonNullDecl
+name|MonotonicNonNull
 specifier|volatile
 name|AtomicReferenceArray
 argument_list|<
@@ -11869,7 +11869,7 @@ block|}
 block|}
 DECL|field|keySet
 annotation|@
-name|MonotonicNonNullDecl
+name|MonotonicNonNull
 specifier|transient
 name|Set
 argument_list|<
@@ -11916,7 +11916,7 @@ return|;
 block|}
 DECL|field|values
 annotation|@
-name|MonotonicNonNullDecl
+name|MonotonicNonNull
 specifier|transient
 name|Collection
 argument_list|<
@@ -11963,7 +11963,7 @@ return|;
 block|}
 DECL|field|entrySet
 annotation|@
-name|MonotonicNonNullDecl
+name|MonotonicNonNull
 specifier|transient
 name|Set
 argument_list|<
@@ -12047,7 +12047,7 @@ name|nextTableIndex
 decl_stmt|;
 DECL|field|currentSegment
 annotation|@
-name|MonotonicNonNullDecl
+name|MonotonicNonNull
 name|Segment
 argument_list|<
 name|K
@@ -12062,7 +12062,7 @@ name|currentSegment
 decl_stmt|;
 DECL|field|currentTable
 annotation|@
-name|MonotonicNonNullDecl
+name|MonotonicNonNull
 name|AtomicReferenceArray
 argument_list|<
 name|E

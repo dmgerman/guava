@@ -274,9 +274,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|MonotonicNonNullDecl
+name|MonotonicNonNull
 import|;
 end_import
 
@@ -3286,18 +3286,18 @@ argument_list|)
 return|;
 block|}
 DECL|field|upperCase
-annotation|@
-name|MonotonicNonNullDecl
 specifier|private
 specifier|transient
+annotation|@
+name|MonotonicNonNull
 name|BaseEncoding
 name|upperCase
 decl_stmt|;
 DECL|field|lowerCase
-annotation|@
-name|MonotonicNonNullDecl
 specifier|private
 specifier|transient
+annotation|@
+name|MonotonicNonNull
 name|BaseEncoding
 name|lowerCase
 decl_stmt|;

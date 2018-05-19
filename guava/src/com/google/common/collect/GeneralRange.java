@@ -138,9 +138,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|MonotonicNonNullDecl
+name|MonotonicNonNull
 import|;
 end_import
 
@@ -1394,10 +1394,10 @@ argument_list|)
 return|;
 block|}
 DECL|field|reverse
-annotation|@
-name|MonotonicNonNullDecl
 specifier|private
 specifier|transient
+annotation|@
+name|MonotonicNonNull
 name|GeneralRange
 argument_list|<
 name|T

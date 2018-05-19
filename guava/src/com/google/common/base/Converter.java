@@ -120,9 +120,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|MonotonicNonNullDecl
+name|MonotonicNonNull
 import|;
 end_import
 
@@ -177,10 +177,10 @@ comment|// We lazily cache the reverse view to avoid allocating on every call to
 DECL|field|reverse
 annotation|@
 name|LazyInit
-annotation|@
-name|MonotonicNonNullDecl
 specifier|private
 specifier|transient
+annotation|@
+name|MonotonicNonNull
 name|Converter
 argument_list|<
 name|B

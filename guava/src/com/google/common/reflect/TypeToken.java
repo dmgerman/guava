@@ -422,9 +422,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|MonotonicNonNullDecl
+name|MonotonicNonNull
 import|;
 end_import
 
@@ -481,19 +481,19 @@ name|runtimeType
 decl_stmt|;
 comment|/** Resolver for resolving parameter and field types with {@link #runtimeType} as context. */
 DECL|field|invariantTypeResolver
-annotation|@
-name|MonotonicNonNullDecl
 specifier|private
 specifier|transient
+annotation|@
+name|MonotonicNonNull
 name|TypeResolver
 name|invariantTypeResolver
 decl_stmt|;
 comment|/** Resolver for resolving covariant types with {@link #runtimeType} as context. */
 DECL|field|covariantTypeResolver
-annotation|@
-name|MonotonicNonNullDecl
 specifier|private
 specifier|transient
+annotation|@
+name|MonotonicNonNull
 name|TypeResolver
 name|covariantTypeResolver
 decl_stmt|;
@@ -2445,10 +2445,10 @@ implements|implements
 name|Serializable
 block|{
 DECL|field|types
-annotation|@
-name|MonotonicNonNullDecl
 specifier|private
 specifier|transient
+annotation|@
+name|MonotonicNonNull
 name|ImmutableSet
 argument_list|<
 name|TypeToken
@@ -2677,10 +2677,10 @@ name|TypeSet
 name|allTypes
 decl_stmt|;
 DECL|field|interfaces
-annotation|@
-name|MonotonicNonNullDecl
 specifier|private
 specifier|transient
+annotation|@
+name|MonotonicNonNull
 name|ImmutableSet
 argument_list|<
 name|TypeToken
@@ -2932,10 +2932,10 @@ extends|extends
 name|TypeSet
 block|{
 DECL|field|classes
-annotation|@
-name|MonotonicNonNullDecl
 specifier|private
 specifier|transient
+annotation|@
+name|MonotonicNonNull
 name|ImmutableSet
 argument_list|<
 name|TypeToken

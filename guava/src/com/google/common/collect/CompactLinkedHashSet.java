@@ -118,9 +118,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|MonotonicNonNullDecl
+name|MonotonicNonNull
 import|;
 end_import
 
@@ -301,22 +301,22 @@ comment|// Might also explore collocating all of [hash, next, predecessor, succe
 comment|// entry in a *single* long[], though that reduces the maximum size of the set by a factor of 2
 comment|/**    * Pointer to the predecessor of an entry in insertion order. ENDPOINT indicates a node is the    * first node in insertion order; all values at indices â¥ {@link #size()} are UNSET.    */
 DECL|field|predecessor
-annotation|@
-name|MonotonicNonNullDecl
 specifier|private
 specifier|transient
 name|int
-index|[]
+annotation|@
+name|MonotonicNonNull
+type|[]
 name|predecessor
 decl_stmt|;
 comment|/**    * Pointer to the successor of an entry in insertion order. ENDPOINT indicates a node is the last    * node in insertion order; all values at indices â¥ {@link #size()} are UNSET.    */
 DECL|field|successor
-annotation|@
-name|MonotonicNonNullDecl
 specifier|private
 specifier|transient
 name|int
-index|[]
+annotation|@
+name|MonotonicNonNull
+type|[]
 name|successor
 decl_stmt|;
 DECL|field|firstEntry

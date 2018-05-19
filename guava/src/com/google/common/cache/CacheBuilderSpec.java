@@ -188,9 +188,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|MonotonicNonNullDecl
+name|MonotonicNonNull
 import|;
 end_import
 
@@ -430,7 +430,7 @@ argument_list|()
 decl_stmt|;
 DECL|field|initialCapacity
 annotation|@
-name|MonotonicNonNullDecl
+name|MonotonicNonNull
 annotation|@
 name|VisibleForTesting
 name|Integer
@@ -438,7 +438,7 @@ name|initialCapacity
 decl_stmt|;
 DECL|field|maximumSize
 annotation|@
-name|MonotonicNonNullDecl
+name|MonotonicNonNull
 annotation|@
 name|VisibleForTesting
 name|Long
@@ -446,7 +446,7 @@ name|maximumSize
 decl_stmt|;
 DECL|field|maximumWeight
 annotation|@
-name|MonotonicNonNullDecl
+name|MonotonicNonNull
 annotation|@
 name|VisibleForTesting
 name|Long
@@ -454,7 +454,7 @@ name|maximumWeight
 decl_stmt|;
 DECL|field|concurrencyLevel
 annotation|@
-name|MonotonicNonNullDecl
+name|MonotonicNonNull
 annotation|@
 name|VisibleForTesting
 name|Integer
@@ -462,7 +462,7 @@ name|concurrencyLevel
 decl_stmt|;
 DECL|field|keyStrength
 annotation|@
-name|MonotonicNonNullDecl
+name|MonotonicNonNull
 annotation|@
 name|VisibleForTesting
 name|Strength
@@ -470,7 +470,7 @@ name|keyStrength
 decl_stmt|;
 DECL|field|valueStrength
 annotation|@
-name|MonotonicNonNullDecl
+name|MonotonicNonNull
 annotation|@
 name|VisibleForTesting
 name|Strength
@@ -478,7 +478,7 @@ name|valueStrength
 decl_stmt|;
 DECL|field|recordStats
 annotation|@
-name|MonotonicNonNullDecl
+name|MonotonicNonNull
 annotation|@
 name|VisibleForTesting
 name|Boolean
@@ -492,7 +492,7 @@ name|writeExpirationDuration
 decl_stmt|;
 DECL|field|writeExpirationTimeUnit
 annotation|@
-name|MonotonicNonNullDecl
+name|MonotonicNonNull
 annotation|@
 name|VisibleForTesting
 name|TimeUnit
@@ -506,7 +506,7 @@ name|accessExpirationDuration
 decl_stmt|;
 DECL|field|accessExpirationTimeUnit
 annotation|@
-name|MonotonicNonNullDecl
+name|MonotonicNonNull
 annotation|@
 name|VisibleForTesting
 name|TimeUnit
@@ -520,7 +520,7 @@ name|refreshDuration
 decl_stmt|;
 DECL|field|refreshTimeUnit
 annotation|@
-name|MonotonicNonNullDecl
+name|MonotonicNonNull
 annotation|@
 name|VisibleForTesting
 name|TimeUnit

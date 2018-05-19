@@ -362,9 +362,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|MonotonicNonNullDecl
+name|MonotonicNonNull
 import|;
 end_import
 
@@ -3356,10 +3356,10 @@ argument_list|()
 return|;
 block|}
 DECL|field|columnKeySet
-annotation|@
-name|MonotonicNonNullDecl
 specifier|private
 specifier|transient
+annotation|@
+name|MonotonicNonNull
 name|Set
 argument_list|<
 name|C
@@ -3984,10 +3984,10 @@ argument_list|()
 return|;
 block|}
 DECL|field|rowMap
-annotation|@
-name|MonotonicNonNullDecl
 specifier|private
 specifier|transient
+annotation|@
+name|MonotonicNonNull
 name|Map
 argument_list|<
 name|R
@@ -4449,10 +4449,10 @@ block|}
 block|}
 block|}
 DECL|field|columnMap
-annotation|@
-name|MonotonicNonNullDecl
 specifier|private
 specifier|transient
+annotation|@
+name|MonotonicNonNull
 name|ColumnMap
 name|columnMap
 decl_stmt|;

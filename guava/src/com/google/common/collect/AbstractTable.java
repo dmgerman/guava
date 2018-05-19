@@ -154,9 +154,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|MonotonicNonNullDecl
+name|MonotonicNonNull
 import|;
 end_import
 
@@ -643,10 +643,10 @@ expr_stmt|;
 block|}
 block|}
 DECL|field|cellSet
-annotation|@
-name|MonotonicNonNullDecl
 specifier|private
 specifier|transient
+annotation|@
+name|MonotonicNonNull
 name|Set
 argument_list|<
 name|Cell
@@ -1060,10 +1060,10 @@ return|;
 block|}
 block|}
 DECL|field|values
-annotation|@
-name|MonotonicNonNullDecl
 specifier|private
 specifier|transient
+annotation|@
+name|MonotonicNonNull
 name|Collection
 argument_list|<
 name|V

@@ -230,9 +230,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|MonotonicNonNullDecl
+name|MonotonicNonNull
 import|;
 end_import
 
@@ -300,19 +300,19 @@ name|UNSET_INT
 decl_stmt|;
 DECL|field|keyStrength
 annotation|@
-name|MonotonicNonNullDecl
+name|MonotonicNonNull
 name|Strength
 name|keyStrength
 decl_stmt|;
 DECL|field|valueStrength
 annotation|@
-name|MonotonicNonNullDecl
+name|MonotonicNonNull
 name|Strength
 name|valueStrength
 decl_stmt|;
 DECL|field|keyEquivalence
 annotation|@
-name|MonotonicNonNullDecl
+name|MonotonicNonNull
 name|Equivalence
 argument_list|<
 name|Object

@@ -160,18 +160,18 @@ init|=
 operator|-
 literal|2
 decl_stmt|;
-comment|/**    * Contains the link pointers corresponding with the entries, in the range of [0, size()). The    * high 32 bits of each long is the "prev" pointer, whereas the low 32 bits is the "succ" pointer    * (pointing to the next entry in the linked list). The pointers in [size(), entries.length) are    * all "null" (UNSET).    *    * A node with "prev" pointer equal to {@code ENDPOINT} is the first node in the linked list,    * and a node with "next" pointer equal to {@code ENDPOINT} is the last node.    */
+comment|/**    * Contains the link pointers corresponding with the entries, in the range of [0, size()). The    * high 32 bits of each long is the "prev" pointer, whereas the low 32 bits is the "succ" pointer    * (pointing to the next entry in the linked list). The pointers in [size(), entries.length) are    * all "null" (UNSET).    *    *<p>A node with "prev" pointer equal to {@code ENDPOINT} is the first node in the linked list,    * and a node with "next" pointer equal to {@code ENDPOINT} is the last node.    */
 DECL|field|links
 annotation|@
-name|MonotonicNonNullDecl
-annotation|@
 name|VisibleForTesting
+annotation|@
+name|MonotonicNonNullDecl
 specifier|transient
 name|long
 index|[]
 name|links
 decl_stmt|;
-comment|/**    * Pointer to the first node in the linked list, or {@code ENDPOINT} if there are no entries.    */
+comment|/** Pointer to the first node in the linked list, or {@code ENDPOINT} if there are no entries. */
 DECL|field|firstEntry
 specifier|private
 specifier|transient

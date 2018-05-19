@@ -330,9 +330,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|MonotonicNonNullDecl
+name|MonotonicNonNull
 import|;
 end_import
 
@@ -2978,7 +2978,7 @@ block|}
 block|}
 DECL|field|inverse
 annotation|@
-name|MonotonicNonNullDecl
+name|MonotonicNonNull
 annotation|@
 name|RetainedWith
 specifier|private

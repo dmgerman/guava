@@ -238,9 +238,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|MonotonicNonNullDecl
+name|MonotonicNonNull
 import|;
 end_import
 
@@ -1172,7 +1172,7 @@ name|int
 name|remaining
 decl_stmt|;
 annotation|@
-name|MonotonicNonNullDecl
+name|MonotonicNonNull
 name|E
 name|element
 decl_stmt|;

@@ -250,9 +250,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|MonotonicNonNullDecl
+name|MonotonicNonNull
 import|;
 end_import
 
@@ -311,10 +311,10 @@ implements|,
 name|Serializable
 block|{
 DECL|field|delegate
-annotation|@
-name|MonotonicNonNullDecl
 specifier|private
 specifier|transient
+annotation|@
+name|MonotonicNonNull
 name|Map
 argument_list|<
 name|K
@@ -325,7 +325,7 @@ name|delegate
 decl_stmt|;
 DECL|field|inverse
 annotation|@
-name|MonotonicNonNullDecl
+name|MonotonicNonNull
 annotation|@
 name|RetainedWith
 specifier|transient
@@ -1147,10 +1147,10 @@ name|inverse
 return|;
 block|}
 DECL|field|keySet
-annotation|@
-name|MonotonicNonNullDecl
 specifier|private
 specifier|transient
+annotation|@
+name|MonotonicNonNull
 name|Set
 argument_list|<
 name|K
@@ -1339,10 +1339,10 @@ return|;
 block|}
 block|}
 DECL|field|valueSet
-annotation|@
-name|MonotonicNonNullDecl
 specifier|private
 specifier|transient
+annotation|@
+name|MonotonicNonNull
 name|Set
 argument_list|<
 name|V
@@ -1501,10 +1501,10 @@ return|;
 block|}
 block|}
 DECL|field|entrySet
-annotation|@
-name|MonotonicNonNullDecl
 specifier|private
 specifier|transient
+annotation|@
+name|MonotonicNonNull
 name|Set
 argument_list|<
 name|Entry

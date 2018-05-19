@@ -94,9 +94,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|MonotonicNonNullDecl
+name|MonotonicNonNull
 import|;
 end_import
 
@@ -140,10 +140,10 @@ name|forwardMultiset
 parameter_list|()
 function_decl|;
 DECL|field|comparator
-annotation|@
-name|MonotonicNonNullDecl
 specifier|private
 specifier|transient
+annotation|@
+name|MonotonicNonNull
 name|Comparator
 argument_list|<
 name|?
@@ -208,10 +208,10 @@ name|result
 return|;
 block|}
 DECL|field|elementSet
-annotation|@
-name|MonotonicNonNullDecl
 specifier|private
 specifier|transient
+annotation|@
+name|MonotonicNonNull
 name|NavigableSet
 argument_list|<
 name|E
@@ -490,10 +490,10 @@ name|entryIterator
 parameter_list|()
 function_decl|;
 DECL|field|entrySet
-annotation|@
-name|MonotonicNonNullDecl
 specifier|private
 specifier|transient
+annotation|@
+name|MonotonicNonNull
 name|Set
 argument_list|<
 name|Entry

@@ -228,9 +228,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|MonotonicNonNullDecl
+name|MonotonicNonNull
 import|;
 end_import
 
@@ -425,7 +425,7 @@ decl_stmt|;
 comment|// Can't be initialized in the constructor because mocks don't call the constructor.
 DECL|field|mutexDoNotUseDirectly
 annotation|@
-name|MonotonicNonNullDecl
+name|MonotonicNonNull
 specifier|private
 specifier|volatile
 name|Object

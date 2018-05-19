@@ -320,9 +320,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|MonotonicNonNullDecl
+name|MonotonicNonNull
 import|;
 end_import
 
@@ -684,7 +684,7 @@ return|;
 block|}
 DECL|field|elementSet
 annotation|@
-name|MonotonicNonNullDecl
+name|MonotonicNonNull
 specifier|transient
 name|Set
 argument_list|<
@@ -751,7 +751,7 @@ return|;
 block|}
 DECL|field|entrySet
 annotation|@
-name|MonotonicNonNullDecl
+name|MonotonicNonNull
 specifier|transient
 name|Set
 argument_list|<
@@ -4976,7 +4976,7 @@ name|entryIterator
 decl_stmt|;
 DECL|field|currentEntry
 annotation|@
-name|MonotonicNonNullDecl
+name|MonotonicNonNull
 specifier|private
 name|Entry
 argument_list|<

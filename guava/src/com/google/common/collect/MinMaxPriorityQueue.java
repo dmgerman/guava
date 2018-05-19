@@ -324,9 +324,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|MonotonicNonNullDecl
+name|MonotonicNonNull
 import|;
 end_import
 
@@ -1787,7 +1787,7 @@ name|ordering
 decl_stmt|;
 DECL|field|otherHeap
 annotation|@
-name|MonotonicNonNullDecl
+name|MonotonicNonNull
 annotation|@
 name|Weak
 name|Heap
@@ -2862,7 +2862,7 @@ comment|// The same element is not allowed in both forgetMeNot and skipMe, but d
 comment|// either of them, up to the same multiplicity as the queue.
 DECL|field|forgetMeNot
 annotation|@
-name|MonotonicNonNullDecl
+name|MonotonicNonNull
 specifier|private
 name|Queue
 argument_list|<
@@ -2872,7 +2872,7 @@ name|forgetMeNot
 decl_stmt|;
 DECL|field|skipMe
 annotation|@
-name|MonotonicNonNullDecl
+name|MonotonicNonNull
 specifier|private
 name|List
 argument_list|<

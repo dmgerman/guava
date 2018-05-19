@@ -304,9 +304,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|MonotonicNonNullDecl
+name|MonotonicNonNull
 import|;
 end_import
 
@@ -2474,10 +2474,10 @@ name|domain
 expr_stmt|;
 block|}
 DECL|field|size
-annotation|@
-name|MonotonicNonNullDecl
 specifier|private
 specifier|transient
+annotation|@
+name|MonotonicNonNull
 name|Integer
 name|size
 decl_stmt|;

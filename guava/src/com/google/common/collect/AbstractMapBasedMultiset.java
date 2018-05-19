@@ -228,9 +228,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|MonotonicNonNullDecl
+name|MonotonicNonNull
 import|;
 end_import
 
@@ -910,10 +910,10 @@ argument_list|>
 name|entryIterator
 decl_stmt|;
 DECL|field|currentEntry
-annotation|@
-name|MonotonicNonNullDecl
 name|Map
 operator|.
+expr|@
+name|MonotonicNonNull
 name|Entry
 argument_list|<
 name|E
@@ -921,7 +921,7 @@ argument_list|,
 name|Count
 argument_list|>
 name|currentEntry
-decl_stmt|;
+expr_stmt|;
 DECL|field|occurrencesLeft
 name|int
 name|occurrencesLeft

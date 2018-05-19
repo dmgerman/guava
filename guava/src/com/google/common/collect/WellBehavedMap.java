@@ -84,9 +84,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|MonotonicNonNullDecl
+name|MonotonicNonNull
 import|;
 end_import
 
@@ -127,7 +127,7 @@ name|delegate
 decl_stmt|;
 DECL|field|entrySet
 annotation|@
-name|MonotonicNonNullDecl
+name|MonotonicNonNull
 specifier|private
 name|Set
 argument_list|<

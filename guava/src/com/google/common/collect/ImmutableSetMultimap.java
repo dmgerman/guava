@@ -310,9 +310,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|MonotonicNonNullDecl
+name|MonotonicNonNull
 import|;
 end_import
 
@@ -2117,13 +2117,13 @@ name|emptySet
 argument_list|)
 return|;
 block|}
+DECL|field|inverse
 annotation|@
 name|LazyInit
 annotation|@
-name|MonotonicNonNullDecl
+name|MonotonicNonNull
 annotation|@
 name|RetainedWith
-DECL|field|inverse
 specifier|private
 specifier|transient
 name|ImmutableSetMultimap
@@ -2307,10 +2307,10 @@ argument_list|()
 throw|;
 block|}
 DECL|field|entries
-annotation|@
-name|MonotonicNonNullDecl
 specifier|private
 specifier|transient
+annotation|@
+name|MonotonicNonNull
 name|ImmutableSet
 argument_list|<
 name|Entry

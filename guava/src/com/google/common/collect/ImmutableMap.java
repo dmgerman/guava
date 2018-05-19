@@ -366,9 +366,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|MonotonicNonNullDecl
+name|MonotonicNonNull
 import|;
 end_import
 
@@ -1149,7 +1149,7 @@ parameter_list|>
 block|{
 DECL|field|valueComparator
 annotation|@
-name|MonotonicNonNullDecl
+name|MonotonicNonNull
 name|Comparator
 argument_list|<
 name|?

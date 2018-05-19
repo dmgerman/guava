@@ -256,9 +256,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|MonotonicNonNullDecl
+name|MonotonicNonNull
 import|;
 end_import
 
@@ -662,7 +662,7 @@ name|builderMap
 decl_stmt|;
 DECL|field|keyComparator
 annotation|@
-name|MonotonicNonNullDecl
+name|MonotonicNonNull
 name|Comparator
 argument_list|<
 name|?
@@ -673,7 +673,7 @@ name|keyComparator
 decl_stmt|;
 DECL|field|valueComparator
 annotation|@
-name|MonotonicNonNullDecl
+name|MonotonicNonNull
 name|Comparator
 argument_list|<
 name|?

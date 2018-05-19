@@ -166,9 +166,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|MonotonicNonNullDecl
+name|MonotonicNonNull
 import|;
 end_import
 
@@ -627,10 +627,10 @@ name|result
 return|;
 block|}
 DECL|field|entries
-annotation|@
-name|MonotonicNonNullDecl
 specifier|private
 specifier|transient
+annotation|@
+name|MonotonicNonNull
 name|Collection
 argument_list|<
 name|Entry
@@ -889,10 +889,10 @@ argument_list|)
 return|;
 block|}
 DECL|field|keySet
-annotation|@
-name|MonotonicNonNullDecl
 specifier|private
 specifier|transient
+annotation|@
+name|MonotonicNonNull
 name|Set
 argument_list|<
 name|K
@@ -943,10 +943,10 @@ name|createKeySet
 parameter_list|()
 function_decl|;
 DECL|field|keys
-annotation|@
-name|MonotonicNonNullDecl
 specifier|private
 specifier|transient
+annotation|@
+name|MonotonicNonNull
 name|Multiset
 argument_list|<
 name|K
@@ -997,10 +997,10 @@ name|createKeys
 parameter_list|()
 function_decl|;
 DECL|field|values
-annotation|@
-name|MonotonicNonNullDecl
 specifier|private
 specifier|transient
+annotation|@
+name|MonotonicNonNull
 name|Collection
 argument_list|<
 name|V
@@ -1196,10 +1196,10 @@ argument_list|)
 return|;
 block|}
 DECL|field|asMap
-annotation|@
-name|MonotonicNonNullDecl
 specifier|private
 specifier|transient
+annotation|@
+name|MonotonicNonNull
 name|Map
 argument_list|<
 name|K

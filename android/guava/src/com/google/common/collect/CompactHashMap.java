@@ -455,9 +455,9 @@ decl_stmt|;
 comment|/**    * Contains the logical entries, in the range of [0, size()). The high 32 bits of each long is the    * smeared hash of the element, whereas the low 32 bits is the "next" pointer (pointing to the    * next entry in the bucket chain). The pointers in [size(), entries.length) are all "null"    * (UNSET).    */
 DECL|field|entries
 annotation|@
-name|MonotonicNonNullDecl
-annotation|@
 name|VisibleForTesting
+annotation|@
+name|MonotonicNonNullDecl
 specifier|transient
 name|long
 index|[]
@@ -466,9 +466,9 @@ decl_stmt|;
 comment|/**    * The keys of the entries in the map, in the range of [0, size()). The keys in [size(),    * keys.length) are all {@code null}.    */
 DECL|field|keys
 annotation|@
-name|MonotonicNonNullDecl
-annotation|@
 name|VisibleForTesting
+annotation|@
+name|MonotonicNonNullDecl
 specifier|transient
 name|Object
 index|[]
@@ -477,9 +477,9 @@ decl_stmt|;
 comment|/**    * The values of the entries in the map, in the range of [0, size()). The values in [size(),    * values.length) are all {@code null}.    */
 DECL|field|values
 annotation|@
-name|MonotonicNonNullDecl
-annotation|@
 name|VisibleForTesting
+annotation|@
+name|MonotonicNonNullDecl
 specifier|transient
 name|Object
 index|[]

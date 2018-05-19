@@ -344,9 +344,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|MonotonicNonNullDecl
+name|MonotonicNonNull
 import|;
 end_import
 
@@ -4758,7 +4758,7 @@ name|key
 decl_stmt|;
 DECL|field|collection
 annotation|@
-name|MonotonicNonNullDecl
+name|MonotonicNonNull
 name|Collection
 argument_list|<
 name|V
@@ -6403,7 +6403,7 @@ return|;
 block|}
 DECL|field|sortedKeySet
 annotation|@
-name|MonotonicNonNullDecl
+name|MonotonicNonNull
 name|SortedSet
 argument_list|<
 name|K

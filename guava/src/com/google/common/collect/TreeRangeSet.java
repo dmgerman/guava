@@ -206,9 +206,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|MonotonicNonNullDecl
+name|MonotonicNonNull
 import|;
 end_import
 
@@ -439,10 +439,10 @@ name|rangesByLowerCut
 expr_stmt|;
 block|}
 DECL|field|asRanges
-annotation|@
-name|MonotonicNonNullDecl
 specifier|private
 specifier|transient
+annotation|@
+name|MonotonicNonNull
 name|Set
 argument_list|<
 name|Range
@@ -453,10 +453,10 @@ argument_list|>
 name|asRanges
 decl_stmt|;
 DECL|field|asDescendingSetOfRanges
-annotation|@
-name|MonotonicNonNullDecl
 specifier|private
 specifier|transient
+annotation|@
+name|MonotonicNonNull
 name|Set
 argument_list|<
 name|Range
@@ -1611,10 +1611,10 @@ expr_stmt|;
 block|}
 block|}
 DECL|field|complement
-annotation|@
-name|MonotonicNonNullDecl
 specifier|private
 specifier|transient
+annotation|@
+name|MonotonicNonNull
 name|RangeSet
 argument_list|<
 name|C

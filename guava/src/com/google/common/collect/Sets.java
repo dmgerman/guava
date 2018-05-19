@@ -428,9 +428,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|MonotonicNonNullDecl
+name|MonotonicNonNull
 import|;
 end_import
 
@@ -840,7 +840,7 @@ argument_list|)
 decl_stmt|;
 DECL|field|set
 annotation|@
-name|MonotonicNonNullDecl
+name|MonotonicNonNull
 specifier|private
 name|EnumSet
 argument_list|<
@@ -6693,10 +6693,10 @@ argument_list|()
 throw|;
 block|}
 DECL|field|descendingSet
-annotation|@
-name|MonotonicNonNullDecl
 specifier|private
 specifier|transient
+annotation|@
+name|MonotonicNonNull
 name|UnmodifiableNavigableSet
 argument_list|<
 name|E

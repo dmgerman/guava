@@ -256,9 +256,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|MonotonicNonNullDecl
+name|MonotonicNonNull
 import|;
 end_import
 
@@ -2430,10 +2430,10 @@ argument_list|()
 return|;
 block|}
 DECL|field|columnMap
-annotation|@
-name|MonotonicNonNullDecl
 specifier|private
 specifier|transient
+annotation|@
+name|MonotonicNonNull
 name|ColumnMap
 name|columnMap
 decl_stmt|;
@@ -2767,10 +2767,10 @@ argument_list|()
 return|;
 block|}
 DECL|field|rowMap
-annotation|@
-name|MonotonicNonNullDecl
 specifier|private
 specifier|transient
+annotation|@
+name|MonotonicNonNull
 name|RowMap
 name|rowMap
 decl_stmt|;

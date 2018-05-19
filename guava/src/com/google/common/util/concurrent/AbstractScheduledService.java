@@ -298,9 +298,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|MonotonicNonNullDecl
+name|MonotonicNonNull
 import|;
 end_import
 
@@ -570,7 +570,7 @@ comment|// A handle to the running task so that we can stop it when a shutdown h
 comment|// These two fields are volatile because their values will be accessed from multiple threads.
 DECL|field|runningTask
 annotation|@
-name|MonotonicNonNullDecl
+name|MonotonicNonNull
 specifier|private
 specifier|volatile
 name|Future
@@ -581,7 +581,7 @@ name|runningTask
 decl_stmt|;
 DECL|field|executorService
 annotation|@
-name|MonotonicNonNullDecl
+name|MonotonicNonNull
 specifier|private
 specifier|volatile
 name|ScheduledExecutorService
