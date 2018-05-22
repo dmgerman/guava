@@ -49,6 +49,20 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|java
+operator|.
+name|util
+operator|.
+name|logging
+operator|.
+name|Level
+operator|.
+name|WARNING
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -73,6 +87,18 @@ operator|.
 name|annotations
 operator|.
 name|VisibleForTesting
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|logging
+operator|.
+name|Logger
 import|;
 end_import
 
@@ -789,9 +815,8 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns the given {@code template} string with each occurrence of {@code "%s"} replaced with    * the corresponding argument value from {@code args}; or, if the placeholder and argument counts    * do not match, returns a best-effort form of that string. Will not throw an exception under any    * circumstances (as long as all arguments' {@code toString} methods successfully return).    *    *<p><b>Note:</b> For most string-formatting needs, use {@link String#format}, {@link    * PrintWriter#format}, and related methods. These support the full range of {@linkplain    * Formatter#syntax format specifiers}, and alert you to usage errors by throwing {@link    * InvalidFormatException}.    *    *<p>In certain cases, such as outputting debugging information or constructing a message to be    * used for another unchecked exception, an exception during string formatting would serve little    * purpose except to supplant the real information you were trying to provide. These are the cases    * this method is made for; it instead generates a best-effort string with all supplied argument    * values present. This method is also useful in environments such as GWT where {@code    * String.format} is not available. As an example, method implementations of the {@link    * Preconditions} class use this formatter, for both of the reasons just discussed.    *    *<p><b>Warning:</b> Only the exact two-character placeholder sequence {@code "%s"} is    * recognized.    *    * @param template a string containing zero or more {@code "%s"} placeholder sequences. {@code    *     null} is treated as the four-character string {@code "null"}.    * @param args the arguments to be substituted into the message template. The first argument    *     specified is substituted for the first occurrence of {@code "%s"} in the template, and so    *     forth. A {@code null} argument is converted to the four-character string {@code "null"};    *     non-null values are converted to strings using {@link Object#toString()}.    * @since NEXT    */
+comment|/**    * Returns the given {@code template} string with each occurrence of {@code "%s"} replaced with    * the corresponding argument value from {@code args}; or, if the placeholder and argument counts    * do not match, returns a best-effort form of that string. Will not throw an exception under    * normal conditions.    *    *<p><b>Note:</b> For most string-formatting needs, use {@link String#format}, {@link    * PrintWriter#format}, and related methods. These support the full range of {@linkplain    * Formatter#syntax format specifiers}, and alert you to usage errors by throwing {@link    * InvalidFormatException}.    *    *<p>In certain cases, such as outputting debugging information or constructing a message to be    * used for another unchecked exception, an exception during string formatting would serve little    * purpose except to supplant the real information you were trying to provide. These are the cases    * this method is made for; it instead generates a best-effort string with all supplied argument    * values present. This method is also useful in environments such as GWT where {@code    * String.format} is not available. As an example, method implementations of the {@link    * Preconditions} class use this formatter, for both of the reasons just discussed.    *    *<p><b>Warning:</b> Only the exact two-character placeholder sequence {@code "%s"} is    * recognized.    *    * @param template a string containing zero or more {@code "%s"} placeholder sequences. {@code    *     null} is treated as the four-character string {@code "null"}.    * @param args the arguments to be substituted into the message template. The first argument    *     specified is substituted for the first occurrence of {@code "%s"} in the template, and so    *     forth. A {@code null} argument is converted to the four-character string {@code "null"};    *     non-null values are converted to strings using {@link Object#toString()}.    * @since NEXT    */
 comment|// TODO(diamondm) consider using Arrays.toString() for array parameters
-comment|// TODO(diamondm) capture exceptions thrown from arguments' toString methods
 DECL|method|lenientFormat (@ullableDecl String template, @NullableDecl Object... args)
 specifier|public
 specifier|static
@@ -820,21 +845,57 @@ name|template
 argument_list|)
 expr_stmt|;
 comment|// null -> "null"
-name|args
-operator|=
+if|if
+condition|(
 name|args
 operator|==
 literal|null
-condition|?
+condition|)
+block|{
+name|args
+operator|=
 operator|new
 name|Object
 index|[]
 block|{
 literal|"(Object[])null"
 block|}
-else|:
-name|args
 expr_stmt|;
+block|}
+else|else
+block|{
+for|for
+control|(
+name|int
+name|i
+init|=
+literal|0
+init|;
+name|i
+operator|<
+name|args
+operator|.
+name|length
+condition|;
+name|i
+operator|++
+control|)
+block|{
+name|args
+index|[
+name|i
+index|]
+operator|=
+name|lenientToString
+argument_list|(
+name|args
+index|[
+name|i
+index|]
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 comment|// start substituting the arguments into the '%s' placeholders
 name|StringBuilder
 name|builder
@@ -1008,6 +1069,99 @@ operator|.
 name|toString
 argument_list|()
 return|;
+block|}
+DECL|method|lenientToString (@ullableDecl Object o)
+specifier|private
+specifier|static
+name|String
+name|lenientToString
+parameter_list|(
+annotation|@
+name|NullableDecl
+name|Object
+name|o
+parameter_list|)
+block|{
+try|try
+block|{
+return|return
+name|String
+operator|.
+name|valueOf
+argument_list|(
+name|o
+argument_list|)
+return|;
+block|}
+catch|catch
+parameter_list|(
+name|Exception
+name|e
+parameter_list|)
+block|{
+comment|// Default toString() behavior - see Object.toString()
+name|String
+name|objectToString
+init|=
+name|o
+operator|.
+name|getClass
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|'@'
+operator|+
+name|Integer
+operator|.
+name|toHexString
+argument_list|(
+name|System
+operator|.
+name|identityHashCode
+argument_list|(
+name|o
+argument_list|)
+argument_list|)
+decl_stmt|;
+comment|// Logger is created inline with fixed name to avoid forcing Proguard to create another class.
+name|Logger
+operator|.
+name|getLogger
+argument_list|(
+literal|"com.google.common.base.Strings"
+argument_list|)
+operator|.
+name|log
+argument_list|(
+name|WARNING
+argument_list|,
+literal|"Exception during lenientFormat for "
+operator|+
+name|objectToString
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
+return|return
+literal|"<"
+operator|+
+name|objectToString
+operator|+
+literal|" threw "
+operator|+
+name|e
+operator|.
+name|getClass
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|">"
+return|;
+block|}
 block|}
 comment|/**    * True when a valid surrogate pair starts at the given {@code index} in the given {@code string}.    * Out-of-range indexes return false.    */
 annotation|@
