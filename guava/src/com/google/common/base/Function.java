@@ -95,10 +95,10 @@ block|{
 annotation|@
 name|Override
 annotation|@
-name|Nullable
-annotation|@
 name|CanIgnoreReturnValue
 comment|// TODO(kevinb): remove this
+annotation|@
+name|Nullable
 DECL|method|apply (@ullable F input)
 name|T
 name|apply

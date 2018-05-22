@@ -1521,9 +1521,9 @@ block|}
 annotation|@
 name|Override
 annotation|@
-name|NullableDecl
-annotation|@
 name|CanIgnoreReturnValue
+annotation|@
+name|NullableDecl
 DECL|method|forcePut (@ullableDecl K key, @NullableDecl V value)
 specifier|public
 name|V
@@ -2565,9 +2565,9 @@ block|}
 annotation|@
 name|Override
 annotation|@
-name|NullableDecl
-annotation|@
 name|CanIgnoreReturnValue
+annotation|@
+name|NullableDecl
 DECL|method|remove (@ullableDecl Object key)
 specifier|public
 name|V
@@ -4631,9 +4631,9 @@ block|}
 annotation|@
 name|Override
 annotation|@
-name|NullableDecl
-annotation|@
 name|CanIgnoreReturnValue
+annotation|@
+name|NullableDecl
 DECL|method|put (@ullableDecl V value, @NullableDecl K key)
 specifier|public
 name|K
@@ -4666,9 +4666,9 @@ block|}
 annotation|@
 name|Override
 annotation|@
-name|NullableDecl
-annotation|@
 name|CanIgnoreReturnValue
+annotation|@
+name|NullableDecl
 DECL|method|forcePut (@ullableDecl V value, @NullableDecl K key)
 specifier|public
 name|K
@@ -4718,9 +4718,9 @@ block|}
 annotation|@
 name|Override
 annotation|@
-name|NullableDecl
-annotation|@
 name|CanIgnoreReturnValue
+annotation|@
+name|NullableDecl
 DECL|method|remove (@ullableDecl Object value)
 specifier|public
 name|K
