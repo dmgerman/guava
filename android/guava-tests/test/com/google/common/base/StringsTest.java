@@ -17,22 +17,6 @@ package|;
 end_package
 
 begin_import
-import|import static
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|truth
-operator|.
-name|Truth
-operator|.
-name|assertThat
-import|;
-end_import
-
-begin_import
 import|import
 name|com
 operator|.
@@ -1760,84 +1744,6 @@ literal|null
 argument_list|)
 argument_list|)
 expr_stmt|;
-block|}
-annotation|@
-name|GwtIncompatible
-comment|// GWT reflection includes less data
-DECL|method|testLenientFormat_badArgumentToString ()
-specifier|public
-name|void
-name|testLenientFormat_badArgumentToString
-parameter_list|()
-block|{
-name|assertThat
-argument_list|(
-name|Strings
-operator|.
-name|lenientFormat
-argument_list|(
-literal|"boiler %s plate"
-argument_list|,
-operator|new
-name|ThrowsOnToString
-argument_list|()
-argument_list|)
-argument_list|)
-operator|.
-name|matches
-argument_list|(
-literal|"boiler<com\\.google\\.common\\.base\\.StringsTest\\$ThrowsOnToString@[0-9a-f]+ "
-operator|+
-literal|"threw java\\.lang\\.UnsupportedOperationException> plate"
-argument_list|)
-expr_stmt|;
-block|}
-DECL|method|testLenientFormat_badArgumentToString_gwtFriendly ()
-specifier|public
-name|void
-name|testLenientFormat_badArgumentToString_gwtFriendly
-parameter_list|()
-block|{
-name|assertThat
-argument_list|(
-name|Strings
-operator|.
-name|lenientFormat
-argument_list|(
-literal|"boiler %s plate"
-argument_list|,
-operator|new
-name|ThrowsOnToString
-argument_list|()
-argument_list|)
-argument_list|)
-operator|.
-name|matches
-argument_list|(
-literal|"boiler<.*> plate"
-argument_list|)
-expr_stmt|;
-block|}
-DECL|class|ThrowsOnToString
-specifier|private
-specifier|static
-class|class
-name|ThrowsOnToString
-block|{
-annotation|@
-name|Override
-DECL|method|toString ()
-specifier|public
-name|String
-name|toString
-parameter_list|()
-block|{
-throw|throw
-operator|new
-name|UnsupportedOperationException
-argument_list|()
-throw|;
-block|}
 block|}
 annotation|@
 name|GwtIncompatible
