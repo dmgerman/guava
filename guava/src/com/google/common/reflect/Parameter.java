@@ -512,7 +512,7 @@ name|annotationType
 argument_list|)
 return|;
 block|}
-comment|/** @since NEXT */
+comment|/** @since 25.1 */
 comment|// @Override on JDK8
 DECL|method|getAnnotatedType ()
 specifier|public
