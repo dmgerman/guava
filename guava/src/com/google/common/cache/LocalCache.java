@@ -10280,17 +10280,23 @@ argument_list|(
 name|newValue
 argument_list|)
 expr_stmt|;
-name|setValue
+name|e
+operator|.
+name|setValueReference
+argument_list|(
+name|valueReference
+argument_list|)
+expr_stmt|;
+name|recordWrite
 argument_list|(
 name|e
 argument_list|,
-name|key
-argument_list|,
-name|newValue
+literal|0
 argument_list|,
 name|now
 argument_list|)
 expr_stmt|;
+comment|// no change in weight
 return|return
 name|newValue
 return|;
