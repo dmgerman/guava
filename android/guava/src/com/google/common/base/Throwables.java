@@ -1179,7 +1179,7 @@ else|:
 name|getSizeMethod
 argument_list|()
 decl_stmt|;
-comment|/**    * Returns the JavaLangAccess class that is present in all Sun JDKs. It is not whitelisted for    * AppEngine, and not present in non-Sun JDKs.    */
+comment|/**    * Returns the JavaLangAccess class that is present in all Sun JDKs. It is not allowed in    * AppEngine, and not present in non-Sun JDKs.    */
 annotation|@
 name|GwtIncompatible
 comment|// java.lang.reflect
@@ -1247,7 +1247,7 @@ name|Throwable
 name|t
 parameter_list|)
 block|{
-comment|/*        * This is not one of AppEngine's whitelisted classes, so even in Sun JDKs, this can fail with        * a NoClassDefFoundError. Other apps might deny access to sun.misc packages.        */
+comment|/*        * This is not one of AppEngine's allowed classes, so even in Sun JDKs, this can fail with        * a NoClassDefFoundError. Other apps might deny access to sun.misc packages.        */
 return|return
 literal|null
 return|;

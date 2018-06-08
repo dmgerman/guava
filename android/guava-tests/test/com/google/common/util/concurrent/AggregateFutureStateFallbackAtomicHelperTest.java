@@ -148,7 +148,7 @@ name|AggregateFutureStateFallbackAtomicHelperTest
 extends|extends
 name|TestCase
 block|{
-comment|/**    * This classloader blacklists AtomicReferenceFieldUpdater and AtomicIntegerFieldUpdate which will    * prevent us from selecting our {@code SafeAtomicHelper} strategy.    *    *<p>Stashing this in a static field avoids loading it over and over again and speeds up test    * execution significantly.    */
+comment|/**    * This classloader disallows AtomicReferenceFieldUpdater and AtomicIntegerFieldUpdate which will    * prevent us from selecting our {@code SafeAtomicHelper} strategy.    *    *<p>Stashing this in a static field avoids loading it over and over again and speeds up test    * execution significantly.    */
 DECL|field|NO_ATOMIC_FIELD_UPDATER
 specifier|private
 specifier|static
@@ -292,7 +292,7 @@ argument_list|,
 literal|"SynchronizedAtomicHelper"
 argument_list|)
 expr_stmt|;
-comment|// Run the corresponding FuturesTest test method in a new classloader that blacklists
+comment|// Run the corresponding FuturesTest test method in a new classloader that disallows
 comment|// certain core jdk classes.
 name|ClassLoader
 name|oldClassLoader
@@ -482,7 +482,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|getClassLoader (final Set<String> blacklist)
+DECL|method|getClassLoader (final Set<String> blocklist)
 specifier|private
 specifier|static
 name|ClassLoader
@@ -493,7 +493,7 @@ name|Set
 argument_list|<
 name|String
 argument_list|>
-name|blacklist
+name|blocklist
 parameter_list|)
 block|{
 specifier|final
@@ -550,7 +550,7 @@ name|ClassNotFoundException
 block|{
 if|if
 condition|(
-name|blacklist
+name|blocklist
 operator|.
 name|contains
 argument_list|(

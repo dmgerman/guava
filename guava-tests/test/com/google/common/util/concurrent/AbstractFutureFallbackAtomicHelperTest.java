@@ -136,7 +136,7 @@ name|TestCase
 block|{
 comment|// stash these in static fields to avoid loading them over and over again (speeds up test
 comment|// execution significantly)
-comment|/**    * This classloader blacklists sun.misc.Unsafe which will prevent us from selecting our preferred    * strategy {@code UnsafeAtomicHelper}.    */
+comment|/**    * This classloader disallows {@link sun.misc.Unsafe}, which will prevent us from selecting our    * preferred strategy {@code UnsafeAtomicHelper}.    */
 DECL|field|NO_UNSAFE
 specifier|private
 specifier|static
@@ -163,7 +163,7 @@ argument_list|()
 argument_list|)
 argument_list|)
 decl_stmt|;
-comment|/**    * This classloader blacklists sun.misc.Unsafe and AtomicReferenceFieldUpdater which will prevent    * us from selecting our {@code SafeAtomicHelper} strategy.    */
+comment|/**    * This classloader disallows {@link sun.misc.Unsafe} and {@link AtomicReferenceFieldUpdater},    * which will prevent us from selecting our {@code SafeAtomicHelper} strategy.    */
 DECL|field|NO_ATOMIC_REFERENCE_FIELD_UPDATER
 specifier|private
 specifier|static
@@ -318,7 +318,7 @@ argument_list|,
 literal|"SynchronizedHelper"
 argument_list|)
 expr_stmt|;
-comment|// Run the corresponding AbstractFutureTest test method in a new classloader that blacklists
+comment|// Run the corresponding AbstractFutureTest test method in a new classloader that disallows
 comment|// certain core jdk classes.
 name|ClassLoader
 name|oldClassLoader
@@ -510,7 +510,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|getClassLoader (final Set<String> blacklist)
+DECL|method|getClassLoader (final Set<String> disallowedClassNames)
 specifier|private
 specifier|static
 name|ClassLoader
@@ -521,7 +521,7 @@ name|Set
 argument_list|<
 name|String
 argument_list|>
-name|blacklist
+name|disallowedClassNames
 parameter_list|)
 block|{
 specifier|final
@@ -578,7 +578,7 @@ name|ClassNotFoundException
 block|{
 if|if
 condition|(
-name|blacklist
+name|disallowedClassNames
 operator|.
 name|contains
 argument_list|(
