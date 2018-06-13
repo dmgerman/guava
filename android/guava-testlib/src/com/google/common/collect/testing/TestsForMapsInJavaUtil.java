@@ -685,6 +685,16 @@ name|MapEntrySetTester
 operator|.
 name|getSetValueMethod
 argument_list|()
+argument_list|,
+name|MapEntrySetTester
+operator|.
+name|getSetValueWithNullValuesAbsentMethod
+argument_list|()
+argument_list|,
+name|MapEntrySetTester
+operator|.
+name|getSetValueWithNullValuesPresentMethod
+argument_list|()
 argument_list|)
 return|;
 block|}
