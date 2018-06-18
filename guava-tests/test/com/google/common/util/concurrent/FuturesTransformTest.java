@@ -104,6 +104,19 @@ name|RESULT_DATA
 init|=
 literal|"SUCCESS"
 decl_stmt|;
+DECL|field|WRAPPED_EXCEPTION
+specifier|private
+specifier|static
+specifier|final
+name|UndeclaredThrowableException
+name|WRAPPED_EXCEPTION
+init|=
+operator|new
+name|UndeclaredThrowableException
+argument_list|(
+name|EXCEPTION
+argument_list|)
+decl_stmt|;
 annotation|@
 name|Override
 DECL|method|buildChainingFuture (ListenableFuture<Integer> inputFuture)
@@ -187,11 +200,7 @@ block|}
 else|else
 block|{
 throw|throw
-operator|new
-name|UndeclaredThrowableException
-argument_list|(
-name|EXCEPTION
-argument_list|)
+name|WRAPPED_EXCEPTION
 throw|;
 block|}
 block|}
@@ -215,7 +224,7 @@ name|listener
 operator|.
 name|assertException
 argument_list|(
-name|EXCEPTION
+name|WRAPPED_EXCEPTION
 argument_list|)
 expr_stmt|;
 block|}

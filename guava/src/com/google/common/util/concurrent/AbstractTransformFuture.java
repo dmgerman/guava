@@ -116,18 +116,6 @@ begin_import
 import|import
 name|java
 operator|.
-name|lang
-operator|.
-name|reflect
-operator|.
-name|UndeclaredThrowableException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
 name|util
 operator|.
 name|concurrent
@@ -541,23 +529,6 @@ argument_list|,
 name|sourceResult
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|UndeclaredThrowableException
-name|e
-parameter_list|)
-block|{
-comment|// Set the cause of the exception as this future's exception.
-name|setException
-argument_list|(
-name|e
-operator|.
-name|getCause
-argument_list|()
-argument_list|)
-expr_stmt|;
-return|return;
 block|}
 catch|catch
 parameter_list|(
@@ -986,7 +957,6 @@ argument_list|(
 name|input
 argument_list|)
 return|;
-comment|// TODO(lukes): move the UndeclaredThrowable catch block here?
 block|}
 annotation|@
 name|Override
