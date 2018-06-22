@@ -10338,12 +10338,10 @@ name|e
 parameter_list|)
 block|{
 return|return
-operator|(
 name|castForTesting
 argument_list|(
 name|e
 argument_list|)
-operator|)
 operator|.
 name|getValueReference
 argument_list|()

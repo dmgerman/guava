@@ -1868,10 +1868,8 @@ literal|1
 argument_list|)
 operator|)
 operator|/
-operator|(
 literal|0x1
 literal|.0p31
-operator|)
 return|;
 block|}
 block|}

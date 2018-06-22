@@ -607,7 +607,6 @@ operator|)
 name|obj
 decl_stmt|;
 return|return
-operator|(
 name|xStats
 operator|.
 name|equals
@@ -616,9 +615,7 @@ name|other
 operator|.
 name|xStats
 argument_list|)
-operator|)
 operator|&&
-operator|(
 name|yStats
 operator|.
 name|equals
@@ -627,9 +624,7 @@ name|other
 operator|.
 name|yStats
 argument_list|)
-operator|)
 operator|&&
-operator|(
 name|doubleToLongBits
 argument_list|(
 name|sumOfProductsOfDeltas
@@ -641,7 +636,6 @@ name|other
 operator|.
 name|sumOfProductsOfDeltas
 argument_list|)
-operator|)
 return|;
 block|}
 comment|/**    * {@inheritDoc}    *    *<p><b>Note:</b> This hash code is consistent with exact equality of the calculated statistics,    * including the floating point values. See the note on {@link #equals} for details.    */

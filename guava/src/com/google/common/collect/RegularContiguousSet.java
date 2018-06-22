@@ -230,14 +230,12 @@ name|other
 parameter_list|)
 block|{
 return|return
-operator|(
 name|range
 operator|.
 name|isConnected
 argument_list|(
 name|other
 argument_list|)
-operator|)
 condition|?
 name|ContiguousSet
 operator|.

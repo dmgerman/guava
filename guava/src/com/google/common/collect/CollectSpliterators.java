@@ -268,11 +268,9 @@ argument_list|(
 operator|(
 name|extraCharacteristics
 operator|&
-operator|(
 name|Spliterator
 operator|.
 name|SORTED
-operator|)
 operator|)
 operator|!=
 literal|0

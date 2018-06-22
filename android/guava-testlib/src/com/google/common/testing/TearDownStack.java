@@ -359,10 +359,8 @@ block|}
 block|}
 if|if
 condition|(
-operator|(
 operator|!
 name|suppressThrows
-operator|)
 operator|&&
 operator|(
 name|exceptions

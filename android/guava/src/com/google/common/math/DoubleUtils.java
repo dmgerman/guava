@@ -516,11 +516,9 @@ call|(
 name|long
 call|)
 argument_list|(
-operator|(
 name|exponent
 operator|+
 name|EXPONENT_BIAS
-operator|)
 argument_list|)
 operator|<<
 name|SIGNIFICAND_BITS

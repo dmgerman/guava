@@ -964,12 +964,10 @@ name|word
 parameter_list|)
 block|{
 return|return
-operator|(
 name|word
 operator|.
 name|isEmpty
 argument_list|()
-operator|)
 condition|?
 name|word
 else|:

@@ -226,7 +226,6 @@ name|replaceAll
 argument_list|(
 name|e
 lambda|->
-operator|(
 name|e
 operator|.
 name|equals
@@ -236,7 +235,6 @@ operator|.
 name|e0
 argument_list|()
 argument_list|)
-operator|)
 condition|?
 name|samples
 operator|.

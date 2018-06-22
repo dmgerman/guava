@@ -702,13 +702,10 @@ name|that
 argument_list|)
 expr_stmt|;
 return|return
-operator|(
 name|this
 operator|!=
 name|that
-operator|)
 operator|&&
-operator|(
 name|this
 operator|.
 name|numHashFunctions
@@ -716,9 +713,7 @@ operator|==
 name|that
 operator|.
 name|numHashFunctions
-operator|)
 operator|&&
-operator|(
 name|this
 operator|.
 name|bitSize
@@ -728,9 +723,7 @@ name|that
 operator|.
 name|bitSize
 argument_list|()
-operator|)
 operator|&&
-operator|(
 name|this
 operator|.
 name|strategy
@@ -741,9 +734,7 @@ name|that
 operator|.
 name|strategy
 argument_list|)
-operator|)
 operator|&&
-operator|(
 name|this
 operator|.
 name|funnel
@@ -754,7 +745,6 @@ name|that
 operator|.
 name|funnel
 argument_list|)
-operator|)
 return|;
 block|}
 comment|/**    * Combines this Bloom filter with another Bloom filter by performing a bitwise OR of the    * underlying data. The mutations happen to<b>this</b> instance. Callers must ensure the Bloom    * filters are appropriately sized to avoid saturating them.    *    * @param that The Bloom filter to combine this Bloom filter with. It is not mutated.    * @throws IllegalArgumentException if {@code isCompatible(that) == false}    * @since 15.0    */

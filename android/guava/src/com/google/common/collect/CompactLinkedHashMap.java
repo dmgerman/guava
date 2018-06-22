@@ -395,10 +395,8 @@ block|{
 name|long
 name|predMask
 init|=
-operator|(
 operator|~
 literal|0L
-operator|)
 operator|<<
 literal|32
 decl_stmt|;
