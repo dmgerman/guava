@@ -1656,6 +1656,21 @@ argument_list|,
 literal|"x-gzip"
 argument_list|)
 decl_stmt|;
+comment|/**    * Media type for the<a href="https://tools.ietf.org/html/draft-kelly-json-hal-08#section-3">JSON    * Hypertext Application Language (HAL) documents</a>.    *    * @since NEXT    */
+DECL|field|HAL_JSON
+specifier|public
+specifier|static
+specifier|final
+name|MediaType
+name|HAL_JSON
+init|=
+name|createConstant
+argument_list|(
+name|APPLICATION_TYPE
+argument_list|,
+literal|"hal+json"
+argument_list|)
+decl_stmt|;
 comment|/**    *<a href="http://www.rfc-editor.org/rfc/rfc4329.txt">RFC 4329</a> declares this to be the    * correct media type for JavaScript, but {@link #TEXT_JAVASCRIPT_UTF_8 text/javascript} may be    * necessary in certain situations for compatibility.    */
 DECL|field|JAVASCRIPT_UTF_8
 specifier|public
@@ -2524,7 +2539,7 @@ name|parameters
 argument_list|)
 return|;
 block|}
-comment|/**    *<em>Replaces</em> all parameters with the given attribute with parameters using the given    * values. If there are no values, any existing parameters with the given attribute are    * removed.    *    * @throws IllegalArgumentException if either {@code attribute} or {@code values} is invalid    * @since 24.0    */
+comment|/**    *<em>Replaces</em> all parameters with the given attribute with parameters using the given    * values. If there are no values, any existing parameters with the given attribute are removed.    *    * @throws IllegalArgumentException if either {@code attribute} or {@code values} is invalid    * @since 24.0    */
 DECL|method|withParameters (String attribute, Iterable<String> values)
 specifier|public
 name|MediaType
