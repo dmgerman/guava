@@ -698,7 +698,7 @@ name|Exception
 block|{
 if|if
 condition|(
-name|isJdk9
+name|isJdk9OrHigher
 argument_list|()
 condition|)
 block|{
@@ -747,7 +747,7 @@ name|Exception
 block|{
 if|if
 condition|(
-name|isJdk9
+name|isJdk9OrHigher
 argument_list|()
 condition|)
 block|{
@@ -910,7 +910,7 @@ name|Exception
 block|{
 if|if
 condition|(
-name|isJdk9
+name|isJdk9OrHigher
 argument_list|()
 condition|)
 block|{
@@ -1460,12 +1460,12 @@ name|build
 argument_list|()
 return|;
 block|}
-comment|/**    * These tests fail in JDK 9 for an unknown reason. It might be the test; it might be the    * underlying functionality. Fixing this is not a high priority; if you need it to be fixed,    * please comment on<a href="https://github.com/google/guava/issues/3086">issue 3086</a>.    */
-DECL|method|isJdk9 ()
+comment|/**    * These tests fail in JDK 9 and JDK 10 for an unknown reason. It might be the test; it might be    * the underlying functionality. Fixing this is not a high priority; if you need it to be fixed,    * please comment on<a href="https://github.com/google/guava/issues/3086">issue 3086</a>.    */
+DECL|method|isJdk9OrHigher ()
 specifier|private
 specifier|static
 name|boolean
-name|isJdk9
+name|isJdk9OrHigher
 parameter_list|()
 block|{
 return|return
@@ -1477,6 +1477,16 @@ operator|.
 name|startsWith
 argument_list|(
 literal|"9"
+argument_list|)
+operator|||
+name|JAVA_SPECIFICATION_VERSION
+operator|.
+name|value
+argument_list|()
+operator|.
+name|startsWith
+argument_list|(
+literal|"10"
 argument_list|)
 return|;
 block|}

@@ -2792,7 +2792,7 @@ name|void
 name|testLazyStackTraceWorksInProd
 parameter_list|()
 block|{
-comment|// TODO(b/64442212): Remove this guard once lazyStackTrace() works in Java 9.
+comment|// TODO(b/64442212): Remove this guard once lazyStackTrace() works in Java 9+.
 if|if
 condition|(
 name|JAVA_SPECIFICATION_VERSION
@@ -2803,6 +2803,16 @@ operator|.
 name|equals
 argument_list|(
 literal|"9"
+argument_list|)
+operator|||
+name|JAVA_SPECIFICATION_VERSION
+operator|.
+name|value
+argument_list|()
+operator|.
+name|equals
+argument_list|(
+literal|"10"
 argument_list|)
 condition|)
 block|{
