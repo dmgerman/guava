@@ -43,6 +43,7 @@ class|class
 name|CommonPattern
 block|{
 DECL|method|matcher (CharSequence t)
+specifier|public
 specifier|abstract
 name|CommonMatcher
 name|matcher
@@ -52,18 +53,20 @@ name|t
 parameter_list|)
 function_decl|;
 DECL|method|pattern ()
+specifier|public
 specifier|abstract
 name|String
 name|pattern
 parameter_list|()
 function_decl|;
 DECL|method|flags ()
+specifier|public
 specifier|abstract
 name|int
 name|flags
 parameter_list|()
 function_decl|;
-comment|// Re-declare these as abstract to force subclasses to override.
+comment|// Re-declare this as abstract to force subclasses to override.
 annotation|@
 name|Override
 DECL|method|toString ()
@@ -73,27 +76,24 @@ name|String
 name|toString
 parameter_list|()
 function_decl|;
-annotation|@
-name|Override
-DECL|method|hashCode ()
-specifier|public
-specifier|abstract
-name|int
-name|hashCode
-parameter_list|()
-function_decl|;
-annotation|@
-name|Override
-DECL|method|equals (Object o)
-specifier|public
-specifier|abstract
-name|boolean
-name|equals
+DECL|method|compile (String pattern)
+specifier|static
+name|CommonPattern
+name|compile
 parameter_list|(
-name|Object
-name|o
+name|String
+name|pattern
 parameter_list|)
-function_decl|;
+block|{
+return|return
+name|Platform
+operator|.
+name|compilePattern
+argument_list|(
+name|pattern
+argument_list|)
+return|;
+block|}
 block|}
 end_class
 

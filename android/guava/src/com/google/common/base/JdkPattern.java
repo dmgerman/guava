@@ -108,6 +108,7 @@ block|}
 annotation|@
 name|Override
 DECL|method|matcher (CharSequence t)
+specifier|public
 name|CommonMatcher
 name|matcher
 parameter_list|(
@@ -131,6 +132,7 @@ block|}
 annotation|@
 name|Override
 DECL|method|pattern ()
+specifier|public
 name|String
 name|pattern
 parameter_list|()
@@ -145,6 +147,7 @@ block|}
 annotation|@
 name|Override
 DECL|method|flags ()
+specifier|public
 name|int
 name|flags
 parameter_list|()
@@ -169,62 +172,6 @@ name|pattern
 operator|.
 name|toString
 argument_list|()
-return|;
-block|}
-annotation|@
-name|Override
-DECL|method|hashCode ()
-specifier|public
-name|int
-name|hashCode
-parameter_list|()
-block|{
-return|return
-name|pattern
-operator|.
-name|hashCode
-argument_list|()
-return|;
-block|}
-annotation|@
-name|Override
-DECL|method|equals (Object o)
-specifier|public
-name|boolean
-name|equals
-parameter_list|(
-name|Object
-name|o
-parameter_list|)
-block|{
-if|if
-condition|(
-operator|!
-operator|(
-name|o
-operator|instanceof
-name|JdkPattern
-operator|)
-condition|)
-block|{
-return|return
-literal|false
-return|;
-block|}
-return|return
-name|pattern
-operator|.
-name|equals
-argument_list|(
-operator|(
-operator|(
-name|JdkPattern
-operator|)
-name|o
-operator|)
-operator|.
-name|pattern
-argument_list|)
 return|;
 block|}
 DECL|class|JdkMatcher
@@ -263,6 +210,7 @@ block|}
 annotation|@
 name|Override
 DECL|method|matches ()
+specifier|public
 name|boolean
 name|matches
 parameter_list|()
@@ -277,6 +225,7 @@ block|}
 annotation|@
 name|Override
 DECL|method|find ()
+specifier|public
 name|boolean
 name|find
 parameter_list|()
@@ -291,6 +240,7 @@ block|}
 annotation|@
 name|Override
 DECL|method|find (int index)
+specifier|public
 name|boolean
 name|find
 parameter_list|(
@@ -310,6 +260,7 @@ block|}
 annotation|@
 name|Override
 DECL|method|replaceAll (String replacement)
+specifier|public
 name|String
 name|replaceAll
 parameter_list|(
@@ -329,6 +280,7 @@ block|}
 annotation|@
 name|Override
 DECL|method|end ()
+specifier|public
 name|int
 name|end
 parameter_list|()
@@ -343,6 +295,7 @@ block|}
 annotation|@
 name|Override
 DECL|method|start ()
+specifier|public
 name|int
 name|start
 parameter_list|()

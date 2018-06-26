@@ -43,18 +43,21 @@ class|class
 name|CommonMatcher
 block|{
 DECL|method|matches ()
+specifier|public
 specifier|abstract
 name|boolean
 name|matches
 parameter_list|()
 function_decl|;
 DECL|method|find ()
+specifier|public
 specifier|abstract
 name|boolean
 name|find
 parameter_list|()
 function_decl|;
 DECL|method|find (int index)
+specifier|public
 specifier|abstract
 name|boolean
 name|find
@@ -64,6 +67,7 @@ name|index
 parameter_list|)
 function_decl|;
 DECL|method|replaceAll (String replacement)
+specifier|public
 specifier|abstract
 name|String
 name|replaceAll
@@ -73,12 +77,14 @@ name|replacement
 parameter_list|)
 function_decl|;
 DECL|method|end ()
+specifier|public
 specifier|abstract
 name|int
 name|end
 parameter_list|()
 function_decl|;
 DECL|method|start ()
+specifier|public
 specifier|abstract
 name|int
 name|start
