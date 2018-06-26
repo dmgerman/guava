@@ -262,6 +262,18 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|regex
+operator|.
+name|Pattern
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|checkerframework
@@ -2436,16 +2448,10 @@ comment|/**    * This is adapted from the regex suggested by {@link Double#value
 annotation|@
 name|GwtIncompatible
 comment|// regular expressions
+DECL|field|FLOATING_POINT_PATTERN
 specifier|static
 specifier|final
-name|java
-operator|.
-name|util
-operator|.
-name|regex
-operator|.
 name|Pattern
-DECL|field|FLOATING_POINT_PATTERN
 name|FLOATING_POINT_PATTERN
 init|=
 name|fpPattern
@@ -2454,16 +2460,10 @@ decl_stmt|;
 annotation|@
 name|GwtIncompatible
 comment|// regular expressions
+DECL|method|fpPattern ()
 specifier|private
 specifier|static
-name|java
-operator|.
-name|util
-operator|.
-name|regex
-operator|.
 name|Pattern
-DECL|method|fpPattern ()
 name|fpPattern
 parameter_list|()
 block|{
@@ -2507,12 +2507,6 @@ operator|+
 literal|")"
 decl_stmt|;
 return|return
-name|java
-operator|.
-name|util
-operator|.
-name|regex
-operator|.
 name|Pattern
 operator|.
 name|compile
