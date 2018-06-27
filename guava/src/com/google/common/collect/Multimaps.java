@@ -2688,7 +2688,7 @@ block|}
 end_function
 
 begin_comment
-comment|/**    * Returns an unmodifiable view of the specified multimap. Query operations on the returned    * multimap "read through" to the specified multimap, and attempts to modify the returned    * multimap, either directly or through the multimap's views, result in an {@code    * UnsupportedOperationException}.    *    *<p>Note that the generated multimap's {@link Multimap#removeAll} and {@link    * Multimap#replaceValues} methods return collections that are modifiable.    *    *<p>The returned multimap will be serializable if the specified multimap is serializable.    *    * @param delegate the multimap for which an unmodifiable view is to be returned    * @return an unmodifiable view of the specified multimap    */
+comment|/**    * Returns an unmodifiable view of the specified multimap. Query operations on the returned    * multimap "read through" to the specified multimap, and attempts to modify the returned    * multimap, either directly or through the multimap's views, result in an {@code    * UnsupportedOperationException}.    *    *<p>The returned multimap will be serializable if the specified multimap is serializable.    *    * @param delegate the multimap for which an unmodifiable view is to be returned    * @return an unmodifiable view of the specified multimap    */
 end_comment
 
 begin_function
@@ -3974,7 +3974,7 @@ block|}
 end_function
 
 begin_comment
-comment|/**    * Returns an unmodifiable view of the specified {@code SetMultimap}. Query operations on the    * returned multimap "read through" to the specified multimap, and attempts to modify the returned    * multimap, either directly or through the multimap's views, result in an {@code    * UnsupportedOperationException}.    *    *<p>Note that the generated multimap's {@link Multimap#removeAll} and {@link    * Multimap#replaceValues} methods return collections that are modifiable.    *    *<p>The returned multimap will be serializable if the specified multimap is serializable.    *    * @param delegate the multimap for which an unmodifiable view is to be returned    * @return an unmodifiable view of the specified multimap    */
+comment|/**    * Returns an unmodifiable view of the specified {@code SetMultimap}. Query operations on the    * returned multimap "read through" to the specified multimap, and attempts to modify the returned    * multimap, either directly or through the multimap's views, result in an {@code    * UnsupportedOperationException}.    *    *<p>The returned multimap will be serializable if the specified multimap is serializable.    *    * @param delegate the multimap for which an unmodifiable view is to be returned    * @return an unmodifiable view of the specified multimap    */
 end_comment
 
 begin_function
@@ -4114,7 +4114,7 @@ block|}
 end_function
 
 begin_comment
-comment|/**    * Returns an unmodifiable view of the specified {@code SortedSetMultimap}. Query operations on    * the returned multimap "read through" to the specified multimap, and attempts to modify the    * returned multimap, either directly or through the multimap's views, result in an {@code    * UnsupportedOperationException}.    *    *<p>Note that the generated multimap's {@link Multimap#removeAll} and {@link    * Multimap#replaceValues} methods return collections that are modifiable.    *    *<p>The returned multimap will be serializable if the specified multimap is serializable.    *    * @param delegate the multimap for which an unmodifiable view is to be returned    * @return an unmodifiable view of the specified multimap    */
+comment|/**    * Returns an unmodifiable view of the specified {@code SortedSetMultimap}. Query operations on    * the returned multimap "read through" to the specified multimap, and attempts to modify the    * returned multimap, either directly or through the multimap's views, result in an {@code    * UnsupportedOperationException}.    *    *<p>The returned multimap will be serializable if the specified multimap is serializable.    *    * @param delegate the multimap for which an unmodifiable view is to be returned    * @return an unmodifiable view of the specified multimap    */
 end_comment
 
 begin_function
@@ -4209,7 +4209,7 @@ block|}
 end_function
 
 begin_comment
-comment|/**    * Returns an unmodifiable view of the specified {@code ListMultimap}. Query operations on the    * returned multimap "read through" to the specified multimap, and attempts to modify the returned    * multimap, either directly or through the multimap's views, result in an {@code    * UnsupportedOperationException}.    *    *<p>Note that the generated multimap's {@link Multimap#removeAll} and {@link    * Multimap#replaceValues} methods return collections that are modifiable.    *    *<p>The returned multimap will be serializable if the specified multimap is serializable.    *    * @param delegate the multimap for which an unmodifiable view is to be returned    * @return an unmodifiable view of the specified multimap    */
+comment|/**    * Returns an unmodifiable view of the specified {@code ListMultimap}. Query operations on the    * returned multimap "read through" to the specified multimap, and attempts to modify the returned    * multimap, either directly or through the multimap's views, result in an {@code    * UnsupportedOperationException}.    *    *<p>The returned multimap will be serializable if the specified multimap is serializable.    *    * @param delegate the multimap for which an unmodifiable view is to be returned    * @return an unmodifiable view of the specified multimap    */
 end_comment
 
 begin_function
