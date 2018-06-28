@@ -2383,8 +2383,6 @@ block|}
 end_class
 
 begin_class
-annotation|@
-name|WeakOuter
 DECL|class|ElementSet
 specifier|static
 specifier|final
@@ -2413,6 +2411,7 @@ argument_list|>
 argument_list|>
 name|entries
 decl_stmt|;
+comment|// TODO(cpovirk): @Weak?
 DECL|field|delegate
 specifier|private
 specifier|final
