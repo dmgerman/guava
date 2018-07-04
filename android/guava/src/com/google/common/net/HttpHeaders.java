@@ -1130,6 +1130,16 @@ name|PING_TO
 init|=
 literal|"Ping-To"
 decl_stmt|;
+comment|/**    * The HTTP<a href="https://github.com/mikewest/sec-metadata">{@code Sec-Metadata}</a> header    * field name.    *    * @since NEXT    */
+DECL|field|SEC_METADATA
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|SEC_METADATA
+init|=
+literal|"Sec-Metadata"
+decl_stmt|;
 comment|/**    * The HTTP<a href="https://tools.ietf.org/html/draft-ietf-tokbind-https">{@code    * Sec-Token-Binding}</a> header field name.    *    * @since 25.1    */
 DECL|field|SEC_TOKEN_BINDING
 specifier|public
