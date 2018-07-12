@@ -2361,9 +2361,9 @@ block|{
 if|if
 condition|(
 operator|!
-name|Platform
+name|CommonPattern
 operator|.
-name|usingJdkPatternCompiler
+name|isPcreLike
 argument_list|()
 condition|)
 block|{
@@ -3217,9 +3217,9 @@ block|{
 if|if
 condition|(
 operator|!
-name|Platform
+name|CommonPattern
 operator|.
-name|usingJdkPatternCompiler
+name|isPcreLike
 argument_list|()
 condition|)
 block|{

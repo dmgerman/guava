@@ -300,15 +300,17 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
-DECL|method|usingJdkPatternCompiler ()
+DECL|method|patternCompilerIsPcreLike ()
 specifier|static
 name|boolean
-name|usingJdkPatternCompiler
+name|patternCompilerIsPcreLike
 parameter_list|()
 block|{
-return|return
-literal|false
-return|;
+throw|throw
+operator|new
+name|UnsupportedOperationException
+argument_list|()
+throw|;
 block|}
 DECL|method|Platform ()
 specifier|private

@@ -389,16 +389,17 @@ name|pattern
 argument_list|)
 return|;
 block|}
-DECL|method|usingJdkPatternCompiler ()
+DECL|method|patternCompilerIsPcreLike ()
 specifier|static
 name|boolean
-name|usingJdkPatternCompiler
+name|patternCompilerIsPcreLike
 parameter_list|()
 block|{
 return|return
 name|patternCompiler
-operator|instanceof
-name|JdkPatternCompiler
+operator|.
+name|isPcreLike
+argument_list|()
 return|;
 block|}
 DECL|method|loadPatternCompiler ()
@@ -469,6 +470,18 @@ argument_list|(
 name|pattern
 argument_list|)
 argument_list|)
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|isPcreLike ()
+specifier|public
+name|boolean
+name|isPcreLike
+parameter_list|()
+block|{
+return|return
+literal|true
 return|;
 block|}
 block|}

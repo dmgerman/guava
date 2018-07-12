@@ -77,6 +77,7 @@ name|toString
 parameter_list|()
 function_decl|;
 DECL|method|compile (String pattern)
+specifier|public
 specifier|static
 name|CommonPattern
 name|compile
@@ -92,6 +93,20 @@ name|compilePattern
 argument_list|(
 name|pattern
 argument_list|)
+return|;
+block|}
+DECL|method|isPcreLike ()
+specifier|public
+specifier|static
+name|boolean
+name|isPcreLike
+parameter_list|()
+block|{
+return|return
+name|Platform
+operator|.
+name|patternCompilerIsPcreLike
+argument_list|()
 return|;
 block|}
 block|}

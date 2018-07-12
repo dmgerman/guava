@@ -242,18 +242,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|regex
-operator|.
-name|Pattern
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|checkerframework
@@ -2403,10 +2391,16 @@ comment|/**    * This is adapted from the regex suggested by {@link Double#value
 annotation|@
 name|GwtIncompatible
 comment|// regular expressions
-DECL|field|FLOATING_POINT_PATTERN
 specifier|static
 specifier|final
+name|java
+operator|.
+name|util
+operator|.
+name|regex
+operator|.
 name|Pattern
+DECL|field|FLOATING_POINT_PATTERN
 name|FLOATING_POINT_PATTERN
 init|=
 name|fpPattern
@@ -2415,29 +2409,36 @@ decl_stmt|;
 annotation|@
 name|GwtIncompatible
 comment|// regular expressions
-DECL|method|fpPattern ()
 specifier|private
 specifier|static
+name|java
+operator|.
+name|util
+operator|.
+name|regex
+operator|.
 name|Pattern
+DECL|method|fpPattern ()
 name|fpPattern
 parameter_list|()
 block|{
+comment|/*      * We use # instead of * for possessive quantifiers. This lets us strip them out when building      * the regex for RE2 (which doesn't support them) but leave them in when building it for      * java.util.regex (where we want them in order to avoid catastrophic backtracking).      */
 name|String
 name|decimal
 init|=
-literal|"(?:\\d++(?:\\.\\d*+)?|\\.\\d++)"
+literal|"(?:\\d+#(?:\\.\\d*#)?|\\.\\d+#)"
 decl_stmt|;
 name|String
 name|completeDec
 init|=
 name|decimal
 operator|+
-literal|"(?:[eE][+-]?\\d++)?[fFdD]?"
+literal|"(?:[eE][+-]?\\d+#)?[fFdD]?"
 decl_stmt|;
 name|String
 name|hex
 init|=
-literal|"(?:\\p{XDigit}++(?:\\.\\p{XDigit}*+)?|\\.\\p{XDigit}++)"
+literal|"(?:[0-9a-fA-F]+#(?:\\.[0-9a-fA-F]*#)?|\\.[0-9a-fA-F]+#)"
 decl_stmt|;
 name|String
 name|completeHex
@@ -2446,7 +2447,7 @@ literal|"0[xX]"
 operator|+
 name|hex
 operator|+
-literal|"[pP][+-]?\\d++[fFdD]?"
+literal|"[pP][+-]?\\d+#[fFdD]?"
 decl_stmt|;
 name|String
 name|fpPattern
@@ -2461,7 +2462,24 @@ name|completeHex
 operator|+
 literal|")"
 decl_stmt|;
+name|fpPattern
+operator|=
+name|fpPattern
+operator|.
+name|replace
+argument_list|(
+literal|"#"
+argument_list|,
+literal|"+"
+argument_list|)
+expr_stmt|;
 return|return
+name|java
+operator|.
+name|util
+operator|.
+name|regex
+operator|.
 name|Pattern
 operator|.
 name|compile

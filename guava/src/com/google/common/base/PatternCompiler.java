@@ -50,6 +50,12 @@ name|String
 name|pattern
 parameter_list|)
 function_decl|;
+comment|/**    * Returns {@code true} if the regex implementation behaves like Perl -- notably, by supporting    * possessive quantifiers but also being susceptible to catastrophic backtracking.    */
+DECL|method|isPcreLike ()
+name|boolean
+name|isPcreLike
+parameter_list|()
+function_decl|;
 block|}
 end_interface
 
