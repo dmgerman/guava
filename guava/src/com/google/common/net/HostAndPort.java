@@ -933,14 +933,6 @@ operator|==
 name|that
 operator|.
 name|port
-operator|&&
-name|this
-operator|.
-name|hasBracketlessColons
-operator|==
-name|that
-operator|.
-name|hasBracketlessColons
 return|;
 block|}
 return|return
@@ -963,8 +955,6 @@ argument_list|(
 name|host
 argument_list|,
 name|port
-argument_list|,
-name|hasBracketlessColons
 argument_list|)
 return|;
 block|}
