@@ -2690,7 +2690,7 @@ name|SynchronizedMultimap
 operator|||
 name|multimap
 operator|instanceof
-name|ImmutableMultimap
+name|BaseImmutableMultimap
 condition|)
 block|{
 return|return
@@ -3604,7 +3604,7 @@ name|SynchronizedListMultimap
 operator|||
 name|multimap
 operator|instanceof
-name|ImmutableListMultimap
+name|BaseImmutableMultimap
 condition|)
 block|{
 return|return
@@ -3853,7 +3853,7 @@ name|SynchronizedSetMultimap
 operator|||
 name|multimap
 operator|instanceof
-name|ImmutableSetMultimap
+name|BaseImmutableMultimap
 condition|)
 block|{
 return|return

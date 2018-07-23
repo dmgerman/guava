@@ -279,7 +279,7 @@ parameter_list|,
 name|V
 parameter_list|>
 extends|extends
-name|AbstractMultimap
+name|BaseImmutableMultimap
 argument_list|<
 name|K
 argument_list|,
