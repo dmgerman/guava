@@ -145,8 +145,8 @@ name|boolean
 name|plusForSpace
 parameter_list|)
 block|{
-comment|// TODO(user): Switch to static factory methods for creation now that class is final.
-comment|// TODO(user): Support escapers where alphanumeric chars are not safe.
+comment|// TODO(dbeaumont): Switch to static factory methods for creation now that class is final.
+comment|// TODO(dbeaumont): Support escapers where alphanumeric chars are not safe.
 name|checkNotNull
 argument_list|(
 name|safeChars

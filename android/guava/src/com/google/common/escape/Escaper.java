@@ -57,7 +57,7 @@ specifier|abstract
 class|class
 name|Escaper
 block|{
-comment|// TODO(user): evaluate custom implementations, considering package private constructor.
+comment|// TODO(dbeaumont): evaluate custom implementations, considering package private constructor.
 comment|/** Constructor for use by subclasses. */
 DECL|method|Escaper ()
 specifier|protected

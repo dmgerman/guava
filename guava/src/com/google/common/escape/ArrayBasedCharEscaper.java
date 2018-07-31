@@ -375,7 +375,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Escapes a {@code char} value that has no direct explicit value in the replacement array and    * lies outside the stated safe range. Subclasses should override this method to provide    * generalized escaping for characters.    *    *<p>Note that arrays returned by this method must not be modified once they have been returned.    * However it is acceptable to return the same array multiple times (even for different input    * characters).    *    * @param c the character to escape    * @return the replacement characters, or {@code null} if no escaping was required    */
-comment|// TODO(user,cpovirk): Rename this something better once refactoring done
+comment|// TODO(dbeaumont,cpovirk): Rename this something better once refactoring done
 DECL|method|escapeUnsafe (char c)
 specifier|protected
 specifier|abstract
