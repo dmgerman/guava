@@ -152,20 +152,6 @@ name|com
 operator|.
 name|google
 operator|.
-name|common
-operator|.
-name|base
-operator|.
-name|Ascii
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
 name|errorprone
 operator|.
 name|annotations
@@ -229,6 +215,16 @@ operator|.
 name|security
 operator|.
 name|PrivilegedExceptionAction
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Locale
 import|;
 end_import
 
@@ -1833,14 +1829,16 @@ name|timeout
 operator|+
 literal|" "
 operator|+
-name|Ascii
-operator|.
-name|toLowerCase
-argument_list|(
 name|unit
 operator|.
 name|toString
 argument_list|()
+operator|.
+name|toLowerCase
+argument_list|(
+name|Locale
+operator|.
+name|ROOT
 argument_list|)
 operator|+
 literal|" but future completed as timeout expired"
@@ -1857,14 +1855,16 @@ name|timeout
 operator|+
 literal|" "
 operator|+
-name|Ascii
-operator|.
-name|toLowerCase
-argument_list|(
 name|unit
 operator|.
 name|toString
 argument_list|()
+operator|.
+name|toLowerCase
+argument_list|(
+name|Locale
+operator|.
+name|ROOT
 argument_list|)
 operator|+
 literal|" for "
