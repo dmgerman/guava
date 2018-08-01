@@ -1130,7 +1130,7 @@ name|PING_TO
 init|=
 literal|"Ping-To"
 decl_stmt|;
-comment|/**    * The HTTP<a href="https://github.com/mikewest/sec-metadata">{@code Sec-Metadata}</a> header    * field name.    *    * @since NEXT    */
+comment|/**    * The HTTP<a href="https://github.com/mikewest/sec-metadata">{@code Sec-Metadata}</a> header    * field name.    *    * @since 26.0    */
 DECL|field|SEC_METADATA
 specifier|public
 specifier|static

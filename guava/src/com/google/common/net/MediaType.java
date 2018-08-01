@@ -1656,7 +1656,7 @@ argument_list|,
 literal|"x-gzip"
 argument_list|)
 decl_stmt|;
-comment|/**    * Media type for the<a href="https://tools.ietf.org/html/draft-kelly-json-hal-08#section-3">JSON    * Hypertext Application Language (HAL) documents</a>.    *    * @since NEXT    */
+comment|/**    * Media type for the<a href="https://tools.ietf.org/html/draft-kelly-json-hal-08#section-3">JSON    * Hypertext Application Language (HAL) documents</a>.    *    * @since 26.0    */
 DECL|field|HAL_JSON
 specifier|public
 specifier|static

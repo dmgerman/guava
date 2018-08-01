@@ -201,7 +201,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Serializes execution of a set of operations. This class guarantees that a submitted callable will  * not be called before previously submitted callables (and any {@code Future}s returned from them)  * have completed.  *  *<p>This class implements a superset of the behavior of {@link  * MoreExecutors#newSequentialExecutor}. If your tasks all run on the same underlying executor and  * don't need to wait for {@code Future}s returned from {@code AsyncCallable}s, use it instead.  *  * @since NEXT  */
+comment|/**  * Serializes execution of a set of operations. This class guarantees that a submitted callable will  * not be called before previously submitted callables (and any {@code Future}s returned from them)  * have completed.  *  *<p>This class implements a superset of the behavior of {@link  * MoreExecutors#newSequentialExecutor}. If your tasks all run on the same underlying executor and  * don't need to wait for {@code Future}s returned from {@code AsyncCallable}s, use it instead.  *  * @since 26.0  */
 end_comment
 
 begin_class
