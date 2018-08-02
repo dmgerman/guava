@@ -86,24 +86,6 @@ end_import
 
 begin_import
 import|import static
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|util
-operator|.
-name|concurrent
-operator|.
-name|MoreExecutors
-operator|.
-name|directExecutor
-import|;
-end_import
-
-begin_import
-import|import static
 name|java
 operator|.
 name|util
@@ -143,6 +125,22 @@ operator|.
 name|annotations
 operator|.
 name|GwtCompatible
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|DirectExecutor
 import|;
 end_import
 
@@ -2795,8 +2793,9 @@ name|addListener
 argument_list|(
 name|valueToSet
 argument_list|,
-name|directExecutor
-argument_list|()
+name|DirectExecutor
+operator|.
+name|INSTANCE
 argument_list|)
 expr_stmt|;
 block|}
