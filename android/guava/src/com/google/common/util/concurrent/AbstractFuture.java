@@ -3099,7 +3099,8 @@ name|releaseWaiters
 argument_list|()
 expr_stmt|;
 comment|// We call this before the listeners in order to avoid needing to manage a separate stack data
-comment|// structure for them.
+comment|// structure for them.  Also, some implementations rely on this running prior to listeners
+comment|// so that the cleanup work is visible to listeners.
 comment|// afterDone() should be generally fast and only used for cleanup work... but in theory can
 comment|// also be recursive and create StackOverflowErrors
 name|future
