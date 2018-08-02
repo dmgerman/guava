@@ -44,22 +44,6 @@ name|common
 operator|.
 name|base
 operator|.
-name|Strings
-operator|.
-name|isNullOrEmpty
-import|;
-end_import
-
-begin_import
-import|import static
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|base
-operator|.
 name|Throwables
 operator|.
 name|throwIfUnchecked
@@ -3513,11 +3497,15 @@ comment|// The future may complete during or before the call to getPendingToStri
 comment|// as a signal that we should try checking if the future is done again.
 if|if
 condition|(
-operator|!
-name|isNullOrEmpty
-argument_list|(
 name|pendingDescription
-argument_list|)
+operator|!=
+literal|null
+operator|&&
+operator|!
+name|pendingDescription
+operator|.
+name|isEmpty
+argument_list|()
 condition|)
 block|{
 name|builder
