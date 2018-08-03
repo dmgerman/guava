@@ -411,19 +411,6 @@ literal|"false"
 argument_list|)
 argument_list|)
 decl_stmt|;
-comment|/**    * Tag interface marking trusted subclasses. This enables some optimizations.    * The implementation of this interface must also be an AbstractureFuture and    * must not override or expose for overriding all the public methods of ListenableFuture.    * */
-DECL|interface|Trusted
-interface|interface
-name|Trusted
-parameter_list|<
-name|V
-parameter_list|>
-extends|extends
-name|ListenableFuture
-argument_list|<
-name|V
-argument_list|>
-block|{}
 comment|/**    * A less abstract subclass of AbstractFuture. This can be used to optimize setFuture by ensuring    * that {@link #get} calls exactly the implementation of {@link AbstractFuture#get}.    */
 DECL|class|TrustedFuture
 specifier|abstract
@@ -435,11 +422,6 @@ name|V
 parameter_list|>
 extends|extends
 name|AbstractFuture
-argument_list|<
-name|V
-argument_list|>
-implements|implements
-name|Trusted
 argument_list|<
 name|V
 argument_list|>
@@ -2326,7 +2308,7 @@ if|if
 condition|(
 name|futureToPropagateTo
 operator|instanceof
-name|Trusted
+name|TrustedFuture
 condition|)
 block|{
 comment|// If the future is a TrustedFuture then we specifically avoid calling cancel()
@@ -2897,7 +2879,7 @@ if|if
 condition|(
 name|future
 operator|instanceof
-name|Trusted
+name|TrustedFuture
 condition|)
 block|{
 comment|// Break encapsulation for TrustedFuture instances since we know that subclasses cannot
