@@ -413,6 +413,43 @@ argument_list|)
 return|;
 block|}
 block|}
+comment|/** If this collection is backed by an array of its elements in insertion order, returns it. */
+annotation|@
+name|Nullable
+DECL|method|internalArray ()
+name|Object
+index|[]
+name|internalArray
+parameter_list|()
+block|{
+return|return
+literal|null
+return|;
+block|}
+comment|/**    * If this collection is backed by an array of its elements in insertion order, returns the offset    * where this collection's elements start.    */
+DECL|method|internalArrayStart ()
+name|int
+name|internalArrayStart
+parameter_list|()
+block|{
+throw|throw
+operator|new
+name|UnsupportedOperationException
+argument_list|()
+throw|;
+block|}
+comment|/**    * If this collection is backed by an array of its elements in insertion order, returns the offset    * where this collection's elements end.    */
+DECL|method|internalArrayEnd ()
+name|int
+name|internalArrayEnd
+parameter_list|()
+block|{
+throw|throw
+operator|new
+name|UnsupportedOperationException
+argument_list|()
+throw|;
+block|}
 DECL|method|unsafeDelegate (Collection<E> delegate)
 specifier|static
 parameter_list|<

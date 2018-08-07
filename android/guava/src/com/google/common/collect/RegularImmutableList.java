@@ -181,6 +181,40 @@ return|;
 block|}
 annotation|@
 name|Override
+DECL|method|internalArray ()
+name|Object
+index|[]
+name|internalArray
+parameter_list|()
+block|{
+return|return
+name|array
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|internalArrayStart ()
+name|int
+name|internalArrayStart
+parameter_list|()
+block|{
+return|return
+literal|0
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|internalArrayEnd ()
+name|int
+name|internalArrayEnd
+parameter_list|()
+block|{
+return|return
+name|size
+return|;
+block|}
+annotation|@
+name|Override
 DECL|method|copyIntoArray (Object[] dst, int dstOff)
 name|int
 name|copyIntoArray

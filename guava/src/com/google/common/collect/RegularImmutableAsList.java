@@ -287,6 +287,49 @@ return|;
 block|}
 annotation|@
 name|Override
+DECL|method|internalArray ()
+name|Object
+index|[]
+name|internalArray
+parameter_list|()
+block|{
+return|return
+name|delegateList
+operator|.
+name|internalArray
+argument_list|()
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|internalArrayStart ()
+name|int
+name|internalArrayStart
+parameter_list|()
+block|{
+return|return
+name|delegateList
+operator|.
+name|internalArrayStart
+argument_list|()
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|internalArrayEnd ()
+name|int
+name|internalArrayEnd
+parameter_list|()
+block|{
+return|return
+name|delegateList
+operator|.
+name|internalArrayEnd
+argument_list|()
+return|;
+block|}
+annotation|@
+name|Override
 DECL|method|get (int index)
 specifier|public
 name|E
