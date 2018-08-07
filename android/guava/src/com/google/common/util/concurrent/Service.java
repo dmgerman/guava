@@ -341,7 +341,7 @@ name|State
 name|from
 parameter_list|)
 block|{}
-comment|/**      * Called when the service transitions to the {@linkplain State#TERMINATED TERMINATED} state.      * The {@linkplain State#TERMINATED TERMINATED} state is a terminal state in the transition      * diagram. Therefore, if this method is called, no other methods will be called on the {@link      * Listener}.      *      * @param from The previous state that is being transitioned from. The only valid values for      *     this are {@linkplain State#NEW NEW}, {@linkplain State#RUNNING RUNNING} or {@linkplain      *     State#STOPPING STOPPING}.      */
+comment|/**      * Called when the service transitions to the {@linkplain State#TERMINATED TERMINATED} state.      * The {@linkplain State#TERMINATED TERMINATED} state is a terminal state in the transition      * diagram. Therefore, if this method is called, no other methods will be called on the {@link      * Listener}.      *      * @param from The previous state that is being transitioned from. Failure can occur in any      *     state with the exception of {@linkplain State#FAILED FAILED} and {@linkplain      *     State#TERMINATED TERMINATED}.      */
 DECL|method|terminated (State from)
 specifier|public
 name|void

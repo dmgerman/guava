@@ -532,6 +532,23 @@ argument_list|(
 name|NEW
 argument_list|)
 decl_stmt|;
+DECL|field|TERMINATED_FROM_STARTING_EVENT
+specifier|private
+specifier|static
+specifier|final
+name|ListenerCallQueue
+operator|.
+name|Event
+argument_list|<
+name|Listener
+argument_list|>
+name|TERMINATED_FROM_STARTING_EVENT
+init|=
+name|terminatedEvent
+argument_list|(
+name|STARTING
+argument_list|)
+decl_stmt|;
 DECL|field|TERMINATED_FROM_RUNNING_EVENT
 specifier|private
 specifier|static
@@ -955,7 +972,7 @@ name|void
 name|doStart
 parameter_list|()
 function_decl|;
-comment|/**    * This method should be used to initiate service shutdown. The invocation of this method should    * cause a call to {@link #notifyStopped()}, either during this method's run, or after it has    * returned. If shutdown fails, the invocation should cause a call to {@link    * #notifyFailed(Throwable)} instead.    *    *<p>This method should return promptly; prefer to do work on a different thread where it is    * convenient. It is invoked exactly once on service shutdown, even when {@link #stopAsync} is    * called multiple times.    */
+comment|/**    * This method should be used to initiate service shutdown. The invocation of this method should    * cause a call to {@link #notifyStopped()}, either during this method's run, or after it has    * returned. If shutdown fails, the invocation should cause a call to {@link    * #notifyFailed(Throwable)} instead.    *    *<p>This method should return promptly; prefer to do work on a different thread where it is    * convenient. It is invoked exactly once on service shutdown, even when {@link #stopAsync} is    * called multiple times.    *    *<p>If {@link #stopAsync} is called on a {@link State#STARTING} service, this method is not    * invoked immediately. Instead, it will be deferred until after the service is {@link    * State#RUNNING}. Services that need to cancel startup work can override {#link #doCancelStart}.    */
 annotation|@
 name|ForOverride
 DECL|method|doStop ()
@@ -965,6 +982,15 @@ name|void
 name|doStop
 parameter_list|()
 function_decl|;
+comment|/**    * This method is called by {@link #stopAsync} when the service is still starting (i.e. {@link    * #startAsync} has been called but {@link #notifyStarted} has not). Subclasses can override the    * method to cancel pending work and then call {@link #notifyStopped} to stop the service.    *    *<p>This method should return promptly; prefer to do work on a different thread where it is    * convenient. It is invoked exactly once on service shutdown, even when {@link #stopAsync} is    * called multiple times.    *    *<p>When this method is called {@link #state()} will return {@link State#STOPPING}, which    * is the external state observable by the caller of {@link #stopAsync}.    *    * @since NEXT    */
+annotation|@
+name|ForOverride
+DECL|method|doCancelStart ()
+specifier|protected
+name|void
+name|doCancelStart
+parameter_list|()
+block|{}
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
@@ -1116,6 +1142,9 @@ argument_list|(
 name|STARTING
 argument_list|)
 expr_stmt|;
+name|doCancelStart
+argument_list|()
+expr_stmt|;
 break|break;
 case|case
 name|RUNNING
@@ -1152,16 +1181,6 @@ operator|new
 name|AssertionError
 argument_list|(
 literal|"isStoppable is incorrectly implemented, saw: "
-operator|+
-name|previous
-argument_list|)
-throw|;
-default|default:
-throw|throw
-operator|new
-name|AssertionError
-argument_list|(
-literal|"Unexpected state: "
 operator|+
 name|previous
 argument_list|)
@@ -1571,7 +1590,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Implementing classes should invoke this method once their service has stopped. It will cause    * the service to transition from {@link State#STOPPING} to {@link State#TERMINATED}.    *    * @throws IllegalStateException if the service is neither {@link State#STOPPING} nor {@link    *     State#RUNNING}.    */
+comment|/**    * Implementing classes should invoke this method once their service has stopped. It will cause    * the service to transition from {@link State#STARTING} or {@link State#STOPPING} to {@link    * State#TERMINATED}.    *    * @throws IllegalStateException if the service is not one of {@link State#STOPPING}, {@link    *     State#STARTING}, or {@link State#RUNNING}.    */
 DECL|method|notifyStopped ()
 specifier|protected
 specifier|final
@@ -1586,29 +1605,27 @@ argument_list|()
 expr_stmt|;
 try|try
 block|{
-comment|// We check the internal state of the snapshot instead of state() directly so we don't allow
-comment|// notifyStopped() to be called while STARTING, even if stop() has already been called.
 name|State
 name|previous
 init|=
-name|snapshot
-operator|.
 name|state
+argument_list|()
 decl_stmt|;
-if|if
+switch|switch
 condition|(
 name|previous
-operator|!=
-name|STOPPING
-operator|&&
-name|previous
-operator|!=
-name|RUNNING
 condition|)
 block|{
-name|IllegalStateException
-name|failure
-init|=
+case|case
+name|NEW
+case|:
+case|case
+name|TERMINATED
+case|:
+case|case
+name|FAILED
+case|:
+throw|throw
 operator|new
 name|IllegalStateException
 argument_list|(
@@ -1616,16 +1633,16 @@ literal|"Cannot notifyStopped() when the service is "
 operator|+
 name|previous
 argument_list|)
-decl_stmt|;
-name|notifyFailed
-argument_list|(
-name|failure
-argument_list|)
-expr_stmt|;
-throw|throw
-name|failure
 throw|;
-block|}
+case|case
+name|RUNNING
+case|:
+case|case
+name|STARTING
+case|:
+case|case
+name|STOPPING
+case|:
 name|snapshot
 operator|=
 operator|new
@@ -1639,6 +1656,8 @@ argument_list|(
 name|previous
 argument_list|)
 expr_stmt|;
+break|break;
+block|}
 block|}
 finally|finally
 block|{
@@ -1737,16 +1756,6 @@ name|FAILED
 case|:
 comment|// Do nothing
 break|break;
-default|default:
-throw|throw
-operator|new
-name|AssertionError
-argument_list|(
-literal|"Unexpected state: "
-operator|+
-name|previous
-argument_list|)
-throw|;
 block|}
 block|}
 finally|finally
@@ -1991,6 +2000,17 @@ argument_list|)
 expr_stmt|;
 break|break;
 case|case
+name|STARTING
+case|:
+name|listeners
+operator|.
+name|enqueue
+argument_list|(
+name|TERMINATED_FROM_STARTING_EVENT
+argument_list|)
+expr_stmt|;
+break|break;
+case|case
 name|RUNNING
 case|:
 name|listeners
@@ -2013,15 +2033,11 @@ argument_list|)
 expr_stmt|;
 break|break;
 case|case
-name|STARTING
-case|:
-case|case
 name|TERMINATED
 case|:
 case|case
 name|FAILED
 case|:
-default|default:
 throw|throw
 operator|new
 name|AssertionError
