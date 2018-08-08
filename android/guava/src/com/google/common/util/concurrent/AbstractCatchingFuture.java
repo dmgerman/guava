@@ -939,7 +939,9 @@ name|replacement
 argument_list|,
 literal|"AsyncFunction.apply returned null instead of a Future. "
 operator|+
-literal|"Did you mean to return immediateFuture(null)?"
+literal|"Did you mean to return immediateFuture(null)? %s"
+argument_list|,
+name|fallback
 argument_list|)
 expr_stmt|;
 return|return

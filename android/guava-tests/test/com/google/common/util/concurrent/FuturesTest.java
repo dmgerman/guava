@@ -6793,7 +6793,10 @@ argument_list|(
 name|cause
 argument_list|)
 operator|.
-name|hasMessage
+name|hasMessageThat
+argument_list|()
+operator|.
+name|contains
 argument_list|(
 literal|"AsyncFunction.apply returned null instead of a Future. "
 operator|+
@@ -10158,7 +10161,10 @@ argument_list|(
 name|cause
 argument_list|)
 operator|.
-name|hasMessage
+name|hasMessageThat
+argument_list|()
+operator|.
+name|contains
 argument_list|(
 literal|"AsyncFunction.apply returned null instead of a Future. "
 operator|+
@@ -10693,7 +10699,10 @@ argument_list|(
 name|cause
 argument_list|)
 operator|.
-name|hasMessage
+name|hasMessageThat
+argument_list|()
+operator|.
+name|contains
 argument_list|(
 literal|"AsyncCallable.call returned null instead of a Future. "
 operator|+
@@ -11292,7 +11301,10 @@ argument_list|(
 name|cause
 argument_list|)
 operator|.
-name|hasMessage
+name|hasMessageThat
+argument_list|()
+operator|.
+name|contains
 argument_list|(
 literal|"AsyncCallable.call returned null instead of a Future. "
 operator|+

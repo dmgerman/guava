@@ -698,7 +698,9 @@ name|result
 argument_list|,
 literal|"AsyncCallable.call returned null instead of a Future. "
 operator|+
-literal|"Did you mean to return immediateFuture(null)?"
+literal|"Did you mean to return immediateFuture(null)? %s"
+argument_list|,
+name|callable
 argument_list|)
 return|;
 block|}
