@@ -62,7 +62,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|HashMap
+name|LinkedHashMap
 import|;
 end_import
 
@@ -160,7 +160,7 @@ argument_list|>
 name|primToWrap
 init|=
 operator|new
-name|HashMap
+name|LinkedHashMap
 argument_list|<>
 argument_list|(
 literal|16
@@ -181,7 +181,7 @@ argument_list|>
 name|wrapToPrim
 init|=
 operator|new
-name|HashMap
+name|LinkedHashMap
 argument_list|<>
 argument_list|(
 literal|16
