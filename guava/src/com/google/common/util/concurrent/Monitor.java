@@ -391,7 +391,7 @@ name|fair
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates a new {@link Guard} for {@code this} monitor. @Param isSatisfied The guards boolean    * condition. See {@link Guard#isSatisfied}.    */
+comment|/**    * Creates a new {@link Guard} for {@code this} monitor. @Param isSatisfied The guards boolean    * condition. See {@link Guard#isSatisfied}.    *    * @since 21.0    */
 DECL|method|newGuard (final BooleanSupplier isSatisfied)
 specifier|public
 name|Guard
