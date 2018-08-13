@@ -3006,9 +3006,6 @@ argument_list|>
 name|future
 parameter_list|)
 block|{
-name|Object
-name|valueToSet
-decl_stmt|;
 if|if
 condition|(
 name|future
@@ -3091,7 +3088,7 @@ return|;
 block|}
 else|else
 block|{
-comment|// Otherwise calculate valueToSet by calling .get()
+comment|// Otherwise calculate the value by calling .get()
 try|try
 block|{
 name|Object
@@ -3102,8 +3099,7 @@ argument_list|(
 name|future
 argument_list|)
 decl_stmt|;
-name|valueToSet
-operator|=
+return|return
 name|v
 operator|==
 literal|null
@@ -3111,7 +3107,7 @@ condition|?
 name|NULL
 else|:
 name|v
-expr_stmt|;
+return|;
 block|}
 catch|catch
 parameter_list|(
@@ -3119,8 +3115,7 @@ name|ExecutionException
 name|exception
 parameter_list|)
 block|{
-name|valueToSet
-operator|=
+return|return
 operator|new
 name|Failure
 argument_list|(
@@ -3129,7 +3124,7 @@ operator|.
 name|getCause
 argument_list|()
 argument_list|)
-expr_stmt|;
+return|;
 block|}
 catch|catch
 parameter_list|(
@@ -3137,8 +3132,7 @@ name|CancellationException
 name|cancellation
 parameter_list|)
 block|{
-name|valueToSet
-operator|=
+return|return
 operator|new
 name|Cancellation
 argument_list|(
@@ -3146,7 +3140,7 @@ literal|false
 argument_list|,
 name|cancellation
 argument_list|)
-expr_stmt|;
+return|;
 block|}
 catch|catch
 parameter_list|(
@@ -3154,19 +3148,15 @@ name|Throwable
 name|t
 parameter_list|)
 block|{
-name|valueToSet
-operator|=
+return|return
 operator|new
 name|Failure
 argument_list|(
 name|t
 argument_list|)
-expr_stmt|;
-block|}
-block|}
-return|return
-name|valueToSet
 return|;
+block|}
+block|}
 block|}
 comment|/** Unblocks all threads and runs all listeners. */
 DECL|method|complete (AbstractFuture<?> future)
