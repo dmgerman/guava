@@ -1492,8 +1492,9 @@ name|ExecutionException
 block|{
 comment|// NOTE: if timeout< 0, remainingNanos will be< 0 and we will fall into the while(true) loop
 comment|// at the bottom and throw a timeoutexception.
+specifier|final
 name|long
-name|remainingNanos
+name|timeoutNanos
 init|=
 name|unit
 operator|.
@@ -1503,6 +1504,11 @@ name|timeout
 argument_list|)
 decl_stmt|;
 comment|// we rely on the implicit null check on unit.
+name|long
+name|remainingNanos
+init|=
+name|timeoutNanos
+decl_stmt|;
 if|if
 condition|(
 name|Thread
@@ -1794,6 +1800,148 @@ init|=
 name|toString
 argument_list|()
 decl_stmt|;
+specifier|final
+name|String
+name|unitString
+init|=
+name|unit
+operator|.
+name|toString
+argument_list|()
+operator|.
+name|toLowerCase
+argument_list|(
+name|Locale
+operator|.
+name|ROOT
+argument_list|)
+decl_stmt|;
+name|String
+name|message
+init|=
+literal|"Waited "
+operator|+
+name|timeout
+operator|+
+literal|" "
+operator|+
+name|unit
+operator|.
+name|toString
+argument_list|()
+operator|.
+name|toLowerCase
+argument_list|(
+name|Locale
+operator|.
+name|ROOT
+argument_list|)
+decl_stmt|;
+comment|// Only report scheduling delay if larger than our spin threshold - otherwise it's just noise
+if|if
+condition|(
+name|remainingNanos
+operator|+
+name|SPIN_THRESHOLD_NANOS
+operator|<
+literal|0
+condition|)
+block|{
+comment|// We over-waited for our timeout.
+name|message
+operator|+=
+literal|" (plus "
+expr_stmt|;
+name|long
+name|overWaitNanos
+init|=
+operator|-
+name|remainingNanos
+decl_stmt|;
+name|long
+name|overWaitUnits
+init|=
+name|unit
+operator|.
+name|convert
+argument_list|(
+name|overWaitNanos
+argument_list|,
+name|TimeUnit
+operator|.
+name|NANOSECONDS
+argument_list|)
+decl_stmt|;
+name|long
+name|overWaitLeftoverNanos
+init|=
+name|overWaitNanos
+operator|-
+name|unit
+operator|.
+name|toNanos
+argument_list|(
+name|overWaitUnits
+argument_list|)
+decl_stmt|;
+name|boolean
+name|shouldShowExtraNanos
+init|=
+name|overWaitUnits
+operator|==
+literal|0
+operator|||
+name|overWaitLeftoverNanos
+operator|>
+name|SPIN_THRESHOLD_NANOS
+decl_stmt|;
+if|if
+condition|(
+name|overWaitUnits
+operator|>
+literal|0
+condition|)
+block|{
+name|message
+operator|+=
+name|overWaitUnits
+operator|+
+literal|" "
+operator|+
+name|unitString
+expr_stmt|;
+if|if
+condition|(
+name|shouldShowExtraNanos
+condition|)
+block|{
+name|message
+operator|+=
+literal|","
+expr_stmt|;
+block|}
+name|message
+operator|+=
+literal|" "
+expr_stmt|;
+block|}
+if|if
+condition|(
+name|shouldShowExtraNanos
+condition|)
+block|{
+name|message
+operator|+=
+name|overWaitLeftoverNanos
+operator|+
+literal|" nanoseconds "
+expr_stmt|;
+block|}
+name|message
+operator|+=
+literal|"delay)"
+expr_stmt|;
+block|}
 comment|// It's confusing to see a completed future in a timeout message; if isDone() returns false,
 comment|// then we know it must have given a pending toString value earlier. If not, then the future
 comment|// completed after the timeout expired, and the message might be success.
@@ -1807,23 +1955,7 @@ throw|throw
 operator|new
 name|TimeoutException
 argument_list|(
-literal|"Waited "
-operator|+
-name|timeout
-operator|+
-literal|" "
-operator|+
-name|unit
-operator|.
-name|toString
-argument_list|()
-operator|.
-name|toLowerCase
-argument_list|(
-name|Locale
-operator|.
-name|ROOT
-argument_list|)
+name|message
 operator|+
 literal|" but future completed as timeout expired"
 argument_list|)
@@ -1833,23 +1965,7 @@ throw|throw
 operator|new
 name|TimeoutException
 argument_list|(
-literal|"Waited "
-operator|+
-name|timeout
-operator|+
-literal|" "
-operator|+
-name|unit
-operator|.
-name|toString
-argument_list|()
-operator|.
-name|toLowerCase
-argument_list|(
-name|Locale
-operator|.
-name|ROOT
-argument_list|)
+name|message
 operator|+
 literal|" for "
 operator|+
