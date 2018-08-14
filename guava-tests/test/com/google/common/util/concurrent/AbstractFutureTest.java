@@ -35,6 +35,22 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|truth
+operator|.
+name|Truth
+operator|.
+name|assertWithMessage
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -1216,6 +1232,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/**    * This test attempts to cause a future to wait for longer than it was requested to from a timed    * get() call. As measurements of time are prone to flakiness, it tries to assert based on ranges    * derived from observing how much time actually passed for various operations.    */
 DECL|method|testToString_delayedTimeout ()
 specifier|public
 name|void
@@ -1247,15 +1264,6 @@ argument_list|)
 decl_stmt|;
 name|thread
 operator|.
-name|setPriority
-argument_list|(
-name|Thread
-operator|.
-name|MIN_PRIORITY
-argument_list|)
-expr_stmt|;
-name|thread
-operator|.
 name|start
 argument_list|()
 expr_stmt|;
@@ -1269,11 +1277,33 @@ operator|.
 name|suspend
 argument_list|()
 expr_stmt|;
+comment|// Sleep for enough time to add 1500 milliseconds of overwait to the get() call.
+name|long
+name|toWaitMillis
+init|=
+literal|3500
+operator|-
+name|TimeUnit
+operator|.
+name|NANOSECONDS
+operator|.
+name|toMillis
+argument_list|(
+name|System
+operator|.
+name|nanoTime
+argument_list|()
+operator|-
+name|thread
+operator|.
+name|startTime
+argument_list|)
+decl_stmt|;
 name|Thread
 operator|.
 name|sleep
 argument_list|(
-literal|3500
+name|toWaitMillis
 argument_list|)
 expr_stmt|;
 name|thread
@@ -1295,7 +1325,96 @@ operator|.
 name|join
 argument_list|()
 expr_stmt|;
-name|assertThat
+comment|// It's possible to race and suspend the thread just before the park call actually takes effect,
+comment|// causing the thread to be suspended for 3.5 seconds, and then park itself for 2 seconds after
+comment|// being resumed. To avoid a flake in this scenario, calculate how long that thread actually
+comment|// waited and assert based on that time. Empirically, the race where the thread ends up waiting
+comment|// for 5.5 seconds happens about 2% of the time.
+name|boolean
+name|longWait
+init|=
+name|TimeUnit
+operator|.
+name|NANOSECONDS
+operator|.
+name|toSeconds
+argument_list|(
+name|thread
+operator|.
+name|timeSpentBlocked
+argument_list|)
+operator|>=
+literal|5
+decl_stmt|;
+comment|// Count how long it actually took to return; we'll accept any number between the expected delay
+comment|// and the approximate actual delay, to be robust to variance in thread scheduling.
+name|char
+name|overWaitNanosFirstDigit
+init|=
+name|Long
+operator|.
+name|toString
+argument_list|(
+name|thread
+operator|.
+name|timeSpentBlocked
+operator|-
+name|TimeUnit
+operator|.
+name|MILLISECONDS
+operator|.
+name|toNanos
+argument_list|(
+name|longWait
+condition|?
+literal|5000
+else|:
+literal|3000
+argument_list|)
+argument_list|)
+operator|.
+name|charAt
+argument_list|(
+literal|0
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|overWaitNanosFirstDigit
+operator|<
+literal|'4'
+condition|)
+block|{
+name|overWaitNanosFirstDigit
+operator|=
+literal|'9'
+expr_stmt|;
+block|}
+name|String
+name|nanosRegex
+init|=
+literal|"[4-"
+operator|+
+name|overWaitNanosFirstDigit
+operator|+
+literal|"][0-9]+"
+decl_stmt|;
+name|assertWithMessage
+argument_list|(
+literal|"Spent "
+operator|+
+name|thread
+operator|.
+name|timeSpentBlocked
+operator|+
+literal|" ns blocked; slept for "
+operator|+
+name|toWaitMillis
+operator|+
+literal|" ms"
+argument_list|)
+operator|.
+name|that
 argument_list|(
 name|thread
 operator|.
@@ -1307,7 +1426,21 @@ argument_list|()
 operator|.
 name|matches
 argument_list|(
-literal|"Waited 2 seconds \\(plus 1 seconds, [5-6][0-9]+ nanoseconds delay\\).*"
+literal|"Waited 2 seconds \\(plus "
+operator|+
+operator|(
+name|longWait
+condition|?
+literal|"3"
+else|:
+literal|"1"
+operator|)
+operator|+
+literal|" seconds, "
+operator|+
+name|nanosRegex
+operator|+
+literal|" nanoseconds delay\\).*"
 argument_list|)
 expr_stmt|;
 block|}
@@ -4685,19 +4818,16 @@ name|boolean
 name|isBlocked
 parameter_list|()
 block|{
-switch|switch
-condition|(
+return|return
 name|getState
 argument_list|()
-condition|)
-block|{
-case|case
-name|TIMED_WAITING
-case|:
-case|case
+operator|==
+name|Thread
+operator|.
+name|State
+operator|.
 name|WAITING
-case|:
-return|return
+operator|&&
 name|LockSupport
 operator|.
 name|getBlocker
@@ -4707,11 +4837,6 @@ argument_list|)
 operator|==
 name|future
 return|;
-default|default:
-return|return
-literal|false
-return|;
-block|}
 block|}
 block|}
 DECL|class|TimedWaiterThread
@@ -4747,6 +4872,17 @@ DECL|field|exception
 specifier|private
 name|Exception
 name|exception
+decl_stmt|;
+DECL|field|startTime
+specifier|private
+specifier|volatile
+name|long
+name|startTime
+decl_stmt|;
+DECL|field|timeSpentBlocked
+specifier|private
+name|long
+name|timeSpentBlocked
 decl_stmt|;
 DECL|method|TimedWaiterThread (AbstractFuture<?> future, long timeout, TimeUnit unit)
 name|TimedWaiterThread
@@ -4791,6 +4927,13 @@ name|void
 name|run
 parameter_list|()
 block|{
+name|startTime
+operator|=
+name|System
+operator|.
+name|nanoTime
+argument_list|()
+expr_stmt|;
 try|try
 block|{
 name|future
@@ -4813,6 +4956,18 @@ comment|// nothing
 name|exception
 operator|=
 name|e
+expr_stmt|;
+block|}
+finally|finally
+block|{
+name|timeSpentBlocked
+operator|=
+name|System
+operator|.
+name|nanoTime
+argument_list|()
+operator|-
+name|startTime
 expr_stmt|;
 block|}
 block|}
@@ -4859,19 +5014,16 @@ name|boolean
 name|isBlocked
 parameter_list|()
 block|{
-switch|switch
-condition|(
+return|return
 name|getState
 argument_list|()
-condition|)
-block|{
-case|case
+operator|==
+name|Thread
+operator|.
+name|State
+operator|.
 name|TIMED_WAITING
-case|:
-case|case
-name|WAITING
-case|:
-return|return
+operator|&&
 name|LockSupport
 operator|.
 name|getBlocker
@@ -4881,11 +5033,6 @@ argument_list|)
 operator|==
 name|future
 return|;
-default|default:
-return|return
-literal|false
-return|;
-block|}
 block|}
 block|}
 DECL|class|PollingThread
