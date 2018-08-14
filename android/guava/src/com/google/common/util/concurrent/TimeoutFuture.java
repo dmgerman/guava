@@ -167,7 +167,7 @@ parameter_list|<
 name|V
 parameter_list|>
 extends|extends
-name|AbstractFuture
+name|FluentFuture
 operator|.
 name|TrustedFuture
 argument_list|<

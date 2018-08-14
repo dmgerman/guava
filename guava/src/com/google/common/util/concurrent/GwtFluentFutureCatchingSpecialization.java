@@ -51,8 +51,8 @@ name|GwtFluentFutureCatchingSpecialization
 parameter_list|<
 name|V
 parameter_list|>
-implements|implements
-name|ListenableFuture
+extends|extends
+name|AbstractFuture
 argument_list|<
 name|V
 argument_list|>

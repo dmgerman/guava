@@ -247,12 +247,25 @@ name|AbstractFuture
 parameter_list|<
 name|V
 parameter_list|>
-extends|extends
-name|FluentFuture
+implements|implements
+name|ListenableFuture
 argument_list|<
 name|V
 argument_list|>
 block|{
+comment|/**    * Tag interface marking trusted subclasses. This enables some optimizations. The implementation    * of this interface must also be an AbstractFuture and must not override or expose for overriding    * any of the public methods of ListenableFuture.    */
+DECL|interface|Trusted
+interface|interface
+name|Trusted
+parameter_list|<
+name|V
+parameter_list|>
+extends|extends
+name|ListenableFuture
+argument_list|<
+name|V
+argument_list|>
+block|{}
 DECL|class|TrustedFuture
 specifier|abstract
 specifier|static
@@ -266,8 +279,121 @@ name|AbstractFuture
 argument_list|<
 name|V
 argument_list|>
+implements|implements
+name|Trusted
+argument_list|<
+name|V
+argument_list|>
 block|{
-comment|/*      * We don't need to override most of methods that we override in the prod version (and in fact      * we can't) because they are already final in AbstractFuture itself under GWT.      */
+annotation|@
+name|Override
+DECL|method|get ()
+specifier|public
+specifier|final
+name|V
+name|get
+parameter_list|()
+throws|throws
+name|InterruptedException
+throws|,
+name|ExecutionException
+block|{
+return|return
+name|super
+operator|.
+name|get
+argument_list|()
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|get (long timeout, TimeUnit unit)
+specifier|public
+specifier|final
+name|V
+name|get
+parameter_list|(
+name|long
+name|timeout
+parameter_list|,
+name|TimeUnit
+name|unit
+parameter_list|)
+throws|throws
+name|InterruptedException
+throws|,
+name|ExecutionException
+throws|,
+name|TimeoutException
+block|{
+return|return
+name|super
+operator|.
+name|get
+argument_list|(
+name|timeout
+argument_list|,
+name|unit
+argument_list|)
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|isDone ()
+specifier|public
+specifier|final
+name|boolean
+name|isDone
+parameter_list|()
+block|{
+return|return
+name|super
+operator|.
+name|isDone
+argument_list|()
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|isCancelled ()
+specifier|public
+specifier|final
+name|boolean
+name|isCancelled
+parameter_list|()
+block|{
+return|return
+name|super
+operator|.
+name|isCancelled
+argument_list|()
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|addListener (Runnable listener, Executor executor)
+specifier|public
+specifier|final
+name|void
+name|addListener
+parameter_list|(
+name|Runnable
+name|listener
+parameter_list|,
+name|Executor
+name|executor
+parameter_list|)
+block|{
+name|super
+operator|.
+name|addListener
+argument_list|(
+name|listener
+argument_list|,
+name|executor
+argument_list|)
+expr_stmt|;
+block|}
 annotation|@
 name|Override
 DECL|method|cancel (boolean mayInterruptIfRunning)
@@ -441,7 +567,6 @@ annotation|@
 name|Override
 DECL|method|isCancelled ()
 specifier|public
-specifier|final
 name|boolean
 name|isCancelled
 parameter_list|()
@@ -457,7 +582,6 @@ annotation|@
 name|Override
 DECL|method|isDone ()
 specifier|public
-specifier|final
 name|boolean
 name|isDone
 parameter_list|()
@@ -469,12 +593,11 @@ name|isDone
 argument_list|()
 return|;
 block|}
-comment|/*    * We let people override {@code get()} in the server version (though perhaps we shouldn't). Here,    * we don't want that, and anyway, users can't, thanks to the package-private parameter.    */
+comment|/*    * ForwardingFluentFuture needs to override those methods, so they are not final.    */
 annotation|@
 name|Override
 DECL|method|get ()
 specifier|public
-specifier|final
 name|V
 name|get
 parameter_list|()
@@ -498,7 +621,6 @@ annotation|@
 name|Override
 DECL|method|get (long timeout, TimeUnit unit)
 specifier|public
-specifier|final
 name|V
 name|get
 parameter_list|(
@@ -529,7 +651,6 @@ annotation|@
 name|Override
 DECL|method|addListener (Runnable runnable, Executor executor)
 specifier|public
-specifier|final
 name|void
 name|addListener
 parameter_list|(

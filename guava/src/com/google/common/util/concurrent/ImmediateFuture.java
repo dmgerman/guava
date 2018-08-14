@@ -175,8 +175,8 @@ name|ImmediateFuture
 parameter_list|<
 name|V
 parameter_list|>
-extends|extends
-name|FluentFuture
+implements|implements
+name|ListenableFuture
 argument_list|<
 name|V
 argument_list|>

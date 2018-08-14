@@ -193,7 +193,7 @@ parameter_list|,
 name|T
 parameter_list|>
 extends|extends
-name|AbstractFuture
+name|FluentFuture
 operator|.
 name|TrustedFuture
 argument_list|<

@@ -383,8 +383,8 @@ name|AbstractFuture
 parameter_list|<
 name|V
 parameter_list|>
-extends|extends
-name|FluentFuture
+implements|implements
+name|ListenableFuture
 argument_list|<
 name|V
 argument_list|>
@@ -411,7 +411,7 @@ literal|"false"
 argument_list|)
 argument_list|)
 decl_stmt|;
-comment|/**    * Tag interface marking trusted subclasses. This enables some optimizations.    * The implementation of this interface must also be an AbstractureFuture and    * must not override or expose for overriding all the public methods of ListenableFuture.    * */
+comment|/**    * Tag interface marking trusted subclasses. This enables some optimizations. The implementation    * of this interface must also be an AbstractFuture and must not override or expose for overriding    * any of the public methods of ListenableFuture.    */
 DECL|interface|Trusted
 interface|interface
 name|Trusted
@@ -3530,7 +3530,7 @@ return|return
 name|reversedList
 return|;
 block|}
-comment|// TODO(user) move this up into FluentFuture, or parts as a default method on ListenableFuture?
+comment|// TODO(user): move parts into a default method on ListenableFuture?
 annotation|@
 name|Override
 DECL|method|toString ()
