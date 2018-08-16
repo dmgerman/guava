@@ -70,6 +70,24 @@ end_import
 
 begin_import
 import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|Uninterruptibles
+operator|.
+name|getUninterruptibly
+import|;
+end_import
+
+begin_import
+import|import static
 name|java
 operator|.
 name|util
@@ -3086,15 +3104,36 @@ return|return
 name|v
 return|;
 block|}
-else|else
+name|boolean
+name|wasCancelled
+init|=
+name|future
+operator|.
+name|isCancelled
+argument_list|()
+decl_stmt|;
+comment|// Don't allocate a CancellationException if it's not necessary
+if|if
+condition|(
+operator|!
+name|GENERATE_CANCELLATION_CAUSES
+operator|&
+name|wasCancelled
+condition|)
 block|{
+return|return
+name|Cancellation
+operator|.
+name|CAUSELESS_CANCELLED
+return|;
+block|}
 comment|// Otherwise calculate the value by calling .get()
 try|try
 block|{
 name|Object
 name|v
 init|=
-name|getDone
+name|getUninterruptibly
 argument_list|(
 name|future
 argument_list|)
@@ -3132,6 +3171,28 @@ name|CancellationException
 name|cancellation
 parameter_list|)
 block|{
+if|if
+condition|(
+operator|!
+name|wasCancelled
+condition|)
+block|{
+return|return
+operator|new
+name|Failure
+argument_list|(
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"get() threw CancellationException, despite reporting isCancelled() == false: "
+operator|+
+name|future
+argument_list|,
+name|cancellation
+argument_list|)
+argument_list|)
+return|;
+block|}
 return|return
 operator|new
 name|Cancellation
@@ -3155,7 +3216,6 @@ argument_list|(
 name|t
 argument_list|)
 return|;
-block|}
 block|}
 block|}
 comment|/** Unblocks all threads and runs all listeners. */
