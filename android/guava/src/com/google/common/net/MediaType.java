@@ -1715,6 +1715,7 @@ argument_list|,
 literal|"manifest+json"
 argument_list|)
 decl_stmt|;
+comment|/**    * Media type for<a href="http://www.opengeospatial.org/standards/kml/">OGC KML (Keyhole Markup    * Language)</a>.    */
 DECL|field|KML
 specifier|public
 specifier|static
@@ -1729,6 +1730,7 @@ argument_list|,
 literal|"vnd.google-earth.kml+xml"
 argument_list|)
 decl_stmt|;
+comment|/**    * Media type for<a href="http://www.opengeospatial.org/standards/kml/">OGC KML (Keyhole Markup    * Language)</a>, compressed using the ZIP format into KMZ archives.    */
 DECL|field|KMZ
 specifier|public
 specifier|static
@@ -1743,6 +1745,7 @@ argument_list|,
 literal|"vnd.google-earth.kmz"
 argument_list|)
 decl_stmt|;
+comment|/** Media type for the<a href="https://tools.ietf.org/html/rfc4155">mbox database format</a>. */
 DECL|field|MBOX
 specifier|public
 specifier|static
