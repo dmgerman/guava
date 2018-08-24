@@ -109,6 +109,11 @@ end_comment
 begin_class
 annotation|@
 name|GwtCompatible
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"MissingTestCall"
+argument_list|)
 DECL|class|EqualsTesterTest
 specifier|public
 class|class
