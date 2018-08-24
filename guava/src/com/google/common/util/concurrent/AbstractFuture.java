@@ -3102,6 +3102,29 @@ argument_list|(
 name|future
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|wasCancelled
+condition|)
+block|{
+return|return
+operator|new
+name|Cancellation
+argument_list|(
+literal|false
+argument_list|,
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"get() did not throw CancellationException, despite reporting "
+operator|+
+literal|"isCancelled() == true: "
+operator|+
+name|future
+argument_list|)
+argument_list|)
+return|;
+block|}
 return|return
 name|v
 operator|==
@@ -3118,6 +3141,31 @@ name|ExecutionException
 name|exception
 parameter_list|)
 block|{
+if|if
+condition|(
+name|wasCancelled
+condition|)
+block|{
+return|return
+operator|new
+name|Cancellation
+argument_list|(
+literal|false
+argument_list|,
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"get() did not throw CancellationException, despite reporting "
+operator|+
+literal|"isCancelled() == true: "
+operator|+
+name|future
+argument_list|,
+name|exception
+argument_list|)
+argument_list|)
+return|;
+block|}
 return|return
 operator|new
 name|Failure
