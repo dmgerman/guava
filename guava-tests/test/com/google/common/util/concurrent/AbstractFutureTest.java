@@ -1233,6 +1233,15 @@ expr_stmt|;
 block|}
 block|}
 comment|/**    * This test attempts to cause a future to wait for longer than it was requested to from a timed    * get() call. As measurements of time are prone to flakiness, it tries to assert based on ranges    * derived from observing how much time actually passed for various operations.    */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+block|{
+literal|"DeprecatedThreadMethods"
+block|,
+literal|"ThreadPriorityCheck"
+block|}
+argument_list|)
 DECL|method|testToString_delayedTimeout ()
 specifier|public
 name|void
