@@ -440,6 +440,36 @@ name|inputFuture
 operator|=
 literal|null
 expr_stmt|;
+if|if
+condition|(
+name|localInputFuture
+operator|.
+name|isCancelled
+argument_list|()
+condition|)
+block|{
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
+name|boolean
+name|unused
+init|=
+name|setFuture
+argument_list|(
+operator|(
+name|ListenableFuture
+argument_list|<
+name|O
+argument_list|>
+operator|)
+name|localInputFuture
+argument_list|)
+decl_stmt|;
+comment|// Respects cancellation cause setting
+return|return;
+block|}
 comment|/*      * Any of the setException() calls below can fail if the output Future is cancelled between now      * and then. This means that we're silently swallowing an exception -- maybe even an Error. But      * this is no worse than what FutureTask does in that situation. Additionally, because the      * Future was cancelled, its listeners have been run, so its consumers will not hang.      *      * Contrast this to the situation we have if setResult() throws, a situation described below.      */
 name|I
 name|sourceResult
@@ -460,6 +490,8 @@ name|CancellationException
 name|e
 parameter_list|)
 block|{
+comment|// TODO(user): verify future behavior - unify logic with getFutureValue in AbstractFuture. This
+comment|// code should be unreachable with correctly implemented Futures.
 comment|// Cancel this future and return.
 comment|// At this point, inputFuture is cancelled and outputFuture doesn't exist, so the value of
 comment|// mayInterruptIfRunning is irrelevant.
