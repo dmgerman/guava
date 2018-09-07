@@ -56,6 +56,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|math
+operator|.
+name|RoundingMode
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|checkerframework
@@ -391,13 +401,19 @@ argument_list|)
 throw|;
 block|}
 block|}
-DECL|method|checkInRange (boolean condition)
+DECL|method|checkInRangeForRoundingInputs (boolean condition, double input, RoundingMode mode)
 specifier|static
 name|void
-name|checkInRange
+name|checkInRangeForRoundingInputs
 parameter_list|(
 name|boolean
 name|condition
+parameter_list|,
+name|double
+name|input
+parameter_list|,
+name|RoundingMode
+name|mode
 parameter_list|)
 block|{
 if|if
@@ -410,7 +426,13 @@ throw|throw
 operator|new
 name|ArithmeticException
 argument_list|(
-literal|"not in range"
+literal|"rounded value is out of range for input "
+operator|+
+name|input
+operator|+
+literal|" and rounding mode "
+operator|+
+name|mode
 argument_list|)
 throw|;
 block|}

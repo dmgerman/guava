@@ -140,7 +140,7 @@ name|math
 operator|.
 name|MathPreconditions
 operator|.
-name|checkInRange
+name|checkInRangeForRoundingInputs
 import|;
 end_import
 
@@ -628,7 +628,7 @@ argument_list|,
 name|mode
 argument_list|)
 decl_stmt|;
-name|checkInRange
+name|checkInRangeForRoundingInputs
 argument_list|(
 name|z
 operator|>
@@ -641,6 +641,10 @@ operator|<
 name|MAX_INT_AS_DOUBLE
 operator|+
 literal|1.0
+argument_list|,
+name|x
+argument_list|,
+name|mode
 argument_list|)
 expr_stmt|;
 return|return
@@ -698,7 +702,7 @@ argument_list|,
 name|mode
 argument_list|)
 decl_stmt|;
-name|checkInRange
+name|checkInRangeForRoundingInputs
 argument_list|(
 name|MIN_LONG_AS_DOUBLE
 operator|-
@@ -709,6 +713,10 @@ operator|&
 name|z
 operator|<
 name|MAX_LONG_AS_DOUBLE_PLUS_ONE
+argument_list|,
+name|x
+argument_list|,
+name|mode
 argument_list|)
 expr_stmt|;
 return|return
