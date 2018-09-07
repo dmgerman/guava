@@ -635,6 +635,10 @@ name|keys
 operator|.
 name|toArray
 argument_list|(
+operator|(
+name|Object
+index|[]
+operator|)
 literal|null
 argument_list|)
 expr_stmt|;
