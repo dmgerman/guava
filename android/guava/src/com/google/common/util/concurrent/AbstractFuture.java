@@ -2582,6 +2582,22 @@ argument_list|,
 literal|"Executor was null."
 argument_list|)
 expr_stmt|;
+comment|// Checking isDone and listeners != TOMBSTONE may seem redundant, but our contract for
+comment|// addListener says that listeners execute 'immediate' if the future isDone(). However, our
+comment|// protocol for completing a future is to assign the value field (which sets isDone to true) and
+comment|// then to release waiters, followed by executing afterDone(), followed by releasing listeners.
+comment|// That means that it is possible to observe that the future isDone and that your listeners
+comment|// don't execute 'immediately'.  By checking isDone here we avoid that.
+comment|// A corollary to all that is that we don't need to check isDone inside the loop because if we
+comment|// get into the loop we know that we weren't done when we entered and therefore we aren't under
+comment|// an obligation to execute 'immediately'.
+if|if
+condition|(
+operator|!
+name|isDone
+argument_list|()
+condition|)
+block|{
 name|Listener
 name|oldHead
 init|=
@@ -2646,6 +2662,7 @@ operator|.
 name|TOMBSTONE
 condition|)
 do|;
+block|}
 block|}
 comment|// If we get here then the Listener TOMBSTONE was set, which means the future is done, call
 comment|// the listener.
