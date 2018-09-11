@@ -104,6 +104,24 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|internal
+operator|.
+name|InternalFutureFailureAccess
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -247,6 +265,8 @@ name|AbstractFuture
 parameter_list|<
 name|V
 parameter_list|>
+extends|extends
+name|InternalFutureFailureAccess
 implements|implements
 name|ListenableFuture
 argument_list|<
@@ -954,6 +974,27 @@ name|void
 name|afterDone
 parameter_list|()
 block|{}
+annotation|@
+name|Override
+DECL|method|tryInternalFastPathGetFailure ()
+specifier|protected
+specifier|final
+name|Throwable
+name|tryInternalFastPathGetFailure
+parameter_list|()
+block|{
+return|return
+name|state
+operator|==
+name|State
+operator|.
+name|FAILURE
+condition|?
+name|throwable
+else|:
+literal|null
+return|;
+block|}
 DECL|method|trustedGetException ()
 specifier|final
 name|Throwable
