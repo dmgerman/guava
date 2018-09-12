@@ -3619,24 +3619,6 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**    * Returns the exception that this {@code Future} completed with. This includes completion through    * a call to {@link #setException} or {@link #setFuture setFuture}{@code (failedFuture)} but not    * cancellation.    *    * @throws RuntimeException if the {@code Future} has not failed    */
-DECL|method|trustedGetException ()
-specifier|final
-name|Throwable
-name|trustedGetException
-parameter_list|()
-block|{
-return|return
-operator|(
-operator|(
-name|Failure
-operator|)
-name|value
-operator|)
-operator|.
-name|exception
-return|;
-block|}
 comment|/**    * If this future has been cancelled (and possibly interrupted), cancels (and possibly interrupts)    * the given future (if available).    */
 DECL|method|maybePropagateCancellationTo (@ullable Future<?> related)
 specifier|final

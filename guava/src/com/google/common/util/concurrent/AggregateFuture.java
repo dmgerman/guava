@@ -821,7 +821,7 @@ name|addCausalChain
 argument_list|(
 name|seen
 argument_list|,
-name|trustedGetException
+name|tryInternalFastPathGetFailure
 argument_list|()
 argument_list|)
 decl_stmt|;
