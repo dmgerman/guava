@@ -573,9 +573,9 @@ name|localExceptionType
 argument_list|)
 condition|)
 block|{
-name|setException
+name|setFuture
 argument_list|(
-name|throwable
+name|localInputFuture
 argument_list|)
 expr_stmt|;
 comment|// TODO(cpovirk): Test that fallback is not run in this case.
