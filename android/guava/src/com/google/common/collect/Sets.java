@@ -4948,6 +4948,23 @@ argument_list|>
 name|input
 parameter_list|)
 block|{
+name|checkArgument
+argument_list|(
+name|input
+operator|.
+name|size
+argument_list|()
+operator|<=
+literal|30
+argument_list|,
+literal|"Too many elements to create power set: %s> 30"
+argument_list|,
+name|input
+operator|.
+name|size
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|this
 operator|.
 name|inputSet
@@ -4957,23 +4974,6 @@ operator|.
 name|indexMap
 argument_list|(
 name|input
-argument_list|)
-expr_stmt|;
-name|checkArgument
-argument_list|(
-name|inputSet
-operator|.
-name|size
-argument_list|()
-operator|<=
-literal|30
-argument_list|,
-literal|"Too many elements to create power set: %s> 30"
-argument_list|,
-name|inputSet
-operator|.
-name|size
-argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
