@@ -1097,6 +1097,10 @@ name|values
 operator|.
 name|toArray
 argument_list|(
+operator|(
+name|Object
+index|[]
+operator|)
 literal|null
 argument_list|)
 expr_stmt|;
@@ -1560,6 +1564,15 @@ name|entries
 operator|.
 name|toArray
 argument_list|(
+operator|(
+name|Entry
+argument_list|<
+name|Object
+argument_list|,
+name|Object
+argument_list|>
+index|[]
+operator|)
 literal|null
 argument_list|)
 expr_stmt|;
