@@ -224,6 +224,16 @@ name|COOKIE
 init|=
 literal|"Cookie"
 decl_stmt|;
+comment|/**    * The HTTP<a href="https://tools.ietf.org/html/rfc8470">{@code Early-Data}</a> header field    * name.    *    * @since NEXT    */
+DECL|field|EARLY_DATA
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|EARLY_DATA
+init|=
+literal|"Early-Data"
+decl_stmt|;
 comment|/** The HTTP {@code Expect} header field name. */
 DECL|field|EXPECT
 specifier|public
