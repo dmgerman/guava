@@ -2013,8 +2013,8 @@ name|void
 name|run
 parameter_list|()
 block|{
-comment|// This prevents cancellation from propagating because we don't assign delegate until
-comment|// delegate is already done, so calling cancel() on it is a no-op.
+comment|// This prevents cancellation from propagating because we don't call setFuture(delegate) until
+comment|// delegate is already done, so calling cancel() on this future won't affect it.
 name|ListenableFuture
 argument_list|<
 name|V
