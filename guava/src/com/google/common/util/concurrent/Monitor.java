@@ -433,6 +433,12 @@ argument_list|()
 expr_stmt|;
 block|}
 comment|/**    * Enters this monitor. Blocks at most the given time.    *    * @return whether the monitor was entered    */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"GoodTime"
+argument_list|)
+comment|// should accept a java.time.Duration
 DECL|method|enter (long time, TimeUnit unit)
 specifier|public
 name|boolean
@@ -579,6 +585,12 @@ argument_list|()
 expr_stmt|;
 block|}
 comment|/**    * Enters this monitor. Blocks at most the given time, and may be interrupted.    *    * @return whether the monitor was entered    * @throws InterruptedException if interrupted while waiting    */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"GoodTime"
+argument_list|)
+comment|// should accept a java.time.Duration
 DECL|method|enterInterruptibly (long time, TimeUnit unit)
 specifier|public
 name|boolean
@@ -710,6 +722,12 @@ block|}
 block|}
 block|}
 comment|/**    * Enters this monitor when the guard is satisfied. Blocks at most the given time, including both    * the time to acquire the lock and the time to wait for the guard to be satisfied, and may be    * interrupted.    *    * @return whether the monitor was entered, which guarantees that the guard is now satisfied    * @throws InterruptedException if interrupted while waiting    */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"GoodTime"
+argument_list|)
+comment|// should accept a java.time.Duration
 DECL|method|enterWhen (Guard guard, long time, TimeUnit unit)
 specifier|public
 name|boolean
@@ -1010,6 +1028,12 @@ block|}
 block|}
 block|}
 comment|/**    * Enters this monitor when the guard is satisfied. Blocks at most the given time, including both    * the time to acquire the lock and the time to wait for the guard to be satisfied.    *    * @return whether the monitor was entered, which guarantees that the guard is now satisfied    */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"GoodTime"
+argument_list|)
+comment|// should accept a java.time.Duration
 DECL|method|enterWhenUninterruptibly (Guard guard, long time, TimeUnit unit)
 specifier|public
 name|boolean
@@ -1360,6 +1384,12 @@ block|}
 block|}
 block|}
 comment|/**    * Enters this monitor if the guard is satisfied. Blocks at most the given time acquiring the    * lock, but does not wait for the guard to be satisfied.    *    * @return whether the monitor was entered, which guarantees that the guard is now satisfied    */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"GoodTime"
+argument_list|)
+comment|// should accept a java.time.Duration
 DECL|method|enterIf (Guard guard, long time, TimeUnit unit)
 specifier|public
 name|boolean
@@ -1510,6 +1540,12 @@ block|}
 block|}
 block|}
 comment|/**    * Enters this monitor if the guard is satisfied. Blocks at most the given time acquiring the    * lock, but does not wait for the guard to be satisfied, and may be interrupted.    *    * @return whether the monitor was entered, which guarantees that the guard is now satisfied    */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"GoodTime"
+argument_list|)
+comment|// should accept a java.time.Duration
 DECL|method|enterIfInterruptibly (Guard guard, long time, TimeUnit unit)
 specifier|public
 name|boolean
@@ -1733,6 +1769,12 @@ expr_stmt|;
 block|}
 block|}
 comment|/**    * Waits for the guard to be satisfied. Waits at most the given time, and may be interrupted. May    * be called only by a thread currently occupying this monitor.    *    * @return whether the guard is now satisfied    * @throws InterruptedException if interrupted while waiting    */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"GoodTime"
+argument_list|)
+comment|// should accept a java.time.Duration
 DECL|method|waitFor (Guard guard, long time, TimeUnit unit)
 specifier|public
 name|boolean
@@ -1877,6 +1919,12 @@ expr_stmt|;
 block|}
 block|}
 comment|/**    * Waits for the guard to be satisfied. Waits at most the given time. May be called only by a    * thread currently occupying this monitor.    *    * @return whether the guard is now satisfied    */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"GoodTime"
+argument_list|)
+comment|// should accept a java.time.Duration
 DECL|method|waitForUninterruptibly (Guard guard, long time, TimeUnit unit)
 specifier|public
 name|boolean

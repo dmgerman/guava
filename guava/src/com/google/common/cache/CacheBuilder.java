@@ -1709,6 +1709,12 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Specifies that each entry should be automatically removed from the cache once a fixed duration    * has elapsed after the entry's creation, or the most recent replacement of its value.    *    *<p>When {@code duration} is zero, this method hands off to {@link #maximumSize(long)    * maximumSize}{@code (0)}, ignoring any otherwise-specified maximum size or weight. This can be    * useful in testing, or to disable caching temporarily without a code change.    *    *<p>Expired entries may be counted in {@link Cache#size}, but will never be visible to read or    * write operations. Expired entries are cleaned up as part of the routine maintenance described    * in the class javadoc.    *    *<p>If you can represent the duration as a {@link java.time.Duration} (which should be preferred    * when feasible), use {@link #expireAfterWrite(Duration)} instead.    *    * @param duration the length of time after an entry is created that it should be automatically    *     removed    * @param unit the unit that {@code duration} is expressed in    * @return this {@code CacheBuilder} instance (for chaining)    * @throws IllegalArgumentException if {@code duration} is negative    * @throws IllegalStateException if the time to live or time to idle was already set    */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"GoodTime"
+argument_list|)
+comment|// should accept a java.time.Duration
 DECL|method|expireAfterWrite (long duration, TimeUnit unit)
 specifier|public
 name|CacheBuilder
@@ -1821,6 +1827,12 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Specifies that each entry should be automatically removed from the cache once a fixed duration    * has elapsed after the entry's creation, the most recent replacement of its value, or its last    * access. Access time is reset by all cache read and write operations (including {@code    * Cache.asMap().get(Object)} and {@code Cache.asMap().put(K, V)}), but not by operations on the    * collection-views of {@link Cache#asMap}.    *    *<p>When {@code duration} is zero, this method hands off to {@link #maximumSize(long)    * maximumSize}{@code (0)}, ignoring any otherwise-specified maximum size or weight. This can be    * useful in testing, or to disable caching temporarily without a code change.    *    *<p>Expired entries may be counted in {@link Cache#size}, but will never be visible to read or    * write operations. Expired entries are cleaned up as part of the routine maintenance described    * in the class javadoc.    *    *<p>If you can represent the duration as a {@link java.time.Duration} (which should be preferred    * when feasible), use {@link #expireAfterAccess(Duration)} instead.    *    * @param duration the length of time after an entry is last accessed that it should be    *     automatically removed    * @param unit the unit that {@code duration} is expressed in    * @return this {@code CacheBuilder} instance (for chaining)    * @throws IllegalArgumentException if {@code duration} is negative    * @throws IllegalStateException if the time to idle or time to live was already set    */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"GoodTime"
+argument_list|)
+comment|// should accept a java.time.Duration
 DECL|method|expireAfterAccess (long duration, TimeUnit unit)
 specifier|public
 name|CacheBuilder
@@ -1936,6 +1948,12 @@ comment|/**    * Specifies that active entries are eligible for automatic refres
 annotation|@
 name|GwtIncompatible
 comment|// To be supported (synchronously).
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"GoodTime"
+argument_list|)
+comment|// should accept a java.time.Duration
 DECL|method|refreshAfterWrite (long duration, TimeUnit unit)
 specifier|public
 name|CacheBuilder

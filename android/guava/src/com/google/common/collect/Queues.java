@@ -987,6 +987,12 @@ name|CanIgnoreReturnValue
 annotation|@
 name|GwtIncompatible
 comment|// BlockingQueue
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"GoodTime"
+argument_list|)
+comment|// should accept a java.time.Duration
 DECL|method|drain ( BlockingQueue<E> q, Collection<? super E> buffer, int numElements, long timeout, TimeUnit unit)
 specifier|public
 specifier|static
@@ -1133,6 +1139,12 @@ name|CanIgnoreReturnValue
 annotation|@
 name|GwtIncompatible
 comment|// BlockingQueue
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"GoodTime"
+argument_list|)
+comment|// should accept a java.time.Duration
 DECL|method|drainUninterruptibly ( BlockingQueue<E> q, Collection<? super E> buffer, int numElements, long timeout, TimeUnit unit)
 specifier|public
 specifier|static

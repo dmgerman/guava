@@ -365,6 +365,12 @@ class|class
 name|Scheduler
 block|{
 comment|/**      * Returns a {@link Scheduler} that schedules the task using the {@link      * ScheduledExecutorService#scheduleWithFixedDelay} method.      *      * @param initialDelay the time to delay first execution      * @param delay the delay between the termination of one execution and the commencement of the      *     next      * @param unit the time unit of the initialDelay and delay parameters      */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"GoodTime"
+argument_list|)
+comment|// should accept a java.time.Duration
 DECL|method|newFixedDelaySchedule ( final long initialDelay, final long delay, final TimeUnit unit)
 specifier|public
 specifier|static
@@ -443,6 +449,12 @@ block|}
 return|;
 block|}
 comment|/**      * Returns a {@link Scheduler} that schedules the task using the {@link      * ScheduledExecutorService#scheduleAtFixedRate} method.      *      * @param initialDelay the time to delay first execution      * @param period the period between successive executions of the task      * @param unit the time unit of the initialDelay and period parameters      */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"GoodTime"
+argument_list|)
+comment|// should accept a java.time.Duration
 DECL|method|newFixedRateSchedule ( final long initialDelay, final long period, final TimeUnit unit)
 specifier|public
 specifier|static

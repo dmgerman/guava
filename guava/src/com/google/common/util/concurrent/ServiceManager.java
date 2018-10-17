@@ -1218,6 +1218,12 @@ argument_list|()
 expr_stmt|;
 block|}
 comment|/**    * Waits for the {@link ServiceManager} to become {@linkplain #isHealthy() healthy} for no more    * than the given time. The manager will become healthy after all the component services have    * reached the {@linkplain State#RUNNING running} state.    *    * @param timeout the maximum time to wait    * @param unit the time unit of the timeout argument    * @throws TimeoutException if not all of the services have finished starting within the deadline    * @throws IllegalStateException if the service manager reaches a state from which it cannot    *     become {@linkplain #isHealthy() healthy}.    */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"GoodTime"
+argument_list|)
+comment|// should accept a java.time.Duration
 DECL|method|awaitHealthy (long timeout, TimeUnit unit)
 specifier|public
 name|void
@@ -1283,6 +1289,12 @@ argument_list|()
 expr_stmt|;
 block|}
 comment|/**    * Waits for the all the services to reach a terminal state for no more than the given time. After    * this method returns all services will either be {@linkplain Service.State#TERMINATED    * terminated} or {@linkplain Service.State#FAILED failed}.    *    * @param timeout the maximum time to wait    * @param unit the time unit of the timeout argument    * @throws TimeoutException if not all of the services have stopped within the deadline    */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"GoodTime"
+argument_list|)
+comment|// should accept a java.time.Duration
 DECL|method|awaitStopped (long timeout, TimeUnit unit)
 specifier|public
 name|void

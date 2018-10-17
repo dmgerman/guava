@@ -145,6 +145,12 @@ name|awaitRunning
 parameter_list|()
 function_decl|;
 comment|/**    * Waits for the {@link Service} to reach the {@linkplain State#RUNNING running state} for no more    * than the given time.    *    * @param timeout the maximum time to wait    * @param unit the time unit of the timeout argument    * @throws TimeoutException if the service has not reached the given state within the deadline    * @throws IllegalStateException if the service reaches a state from which it is not possible to    *     enter the {@link State#RUNNING RUNNING} state. e.g. if the {@code state} is {@code    *     State#TERMINATED} when this method is called then this will throw an IllegalStateException.    * @since 15.0    */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"GoodTime"
+argument_list|)
+comment|// should accept a java.time.Duration
 DECL|method|awaitRunning (long timeout, TimeUnit unit)
 name|void
 name|awaitRunning
@@ -165,6 +171,12 @@ name|awaitTerminated
 parameter_list|()
 function_decl|;
 comment|/**    * Waits for the {@link Service} to reach a terminal state (either {@link Service.State#TERMINATED    * terminated} or {@link Service.State#FAILED failed}) for no more than the given time.    *    * @param timeout the maximum time to wait    * @param unit the time unit of the timeout argument    * @throws TimeoutException if the service has not reached the given state within the deadline    * @throws IllegalStateException if the service {@linkplain State#FAILED fails}.    * @since 15.0    */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"GoodTime"
+argument_list|)
+comment|// should accept a java.time.Duration
 DECL|method|awaitTerminated (long timeout, TimeUnit unit)
 name|void
 name|awaitTerminated

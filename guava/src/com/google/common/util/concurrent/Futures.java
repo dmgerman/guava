@@ -833,6 +833,12 @@ comment|/**    * Schedules {@code callable} on the specified {@code executor}, r
 annotation|@
 name|GwtIncompatible
 comment|// java.util.concurrent.ScheduledExecutorService
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"GoodTime"
+argument_list|)
+comment|// should accept a java.time.Duration
 DECL|method|scheduleAsync ( AsyncCallable<O> callable, long delay, TimeUnit timeUnit, ScheduledExecutorService executorService)
 specifier|public
 specifier|static
@@ -1071,6 +1077,12 @@ comment|/**    * Returns a future that delegates to another but will finish earl
 annotation|@
 name|GwtIncompatible
 comment|// java.util.concurrent.ScheduledExecutorService
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"GoodTime"
+argument_list|)
+comment|// should accept a java.time.Duration
 DECL|method|withTimeout ( ListenableFuture<V> delegate, long time, TimeUnit unit, ScheduledExecutorService scheduledExecutor)
 specifier|public
 specifier|static
@@ -3171,6 +3183,12 @@ name|CanIgnoreReturnValue
 annotation|@
 name|GwtIncompatible
 comment|// reflection
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"GoodTime"
+argument_list|)
+comment|// should accept a java.time.Duration
 DECL|method|getChecked ( Future<V> future, Class<X> exceptionClass, long timeout, TimeUnit unit)
 specifier|public
 specifier|static

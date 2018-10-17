@@ -497,6 +497,12 @@ name|Beta
 annotation|@
 name|GwtIncompatible
 comment|// TODO
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"GoodTime"
+argument_list|)
+comment|// should accept a java.time.Duration
 DECL|method|getExitingExecutorService ( ThreadPoolExecutor executor, long terminationTimeout, TimeUnit timeUnit)
 specifier|public
 specifier|static
@@ -561,6 +567,12 @@ name|Beta
 annotation|@
 name|GwtIncompatible
 comment|// TODO
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"GoodTime"
+argument_list|)
+comment|// should accept a java.time.Duration
 DECL|method|getExitingScheduledExecutorService ( ScheduledThreadPoolExecutor executor, long terminationTimeout, TimeUnit timeUnit)
 specifier|public
 specifier|static
@@ -625,6 +637,12 @@ name|Beta
 annotation|@
 name|GwtIncompatible
 comment|// TODO
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"GoodTime"
+argument_list|)
+comment|// should accept a java.time.Duration
 DECL|method|addDelayedShutdownHook ( ExecutorService service, long terminationTimeout, TimeUnit timeUnit)
 specifier|public
 specifier|static
@@ -2083,6 +2101,12 @@ block|}
 block|}
 comment|/*    * This following method is a modified version of one found in    * http://gee.cs.oswego.edu/cgi-bin/viewcvs.cgi/jsr166/src/test/tck/AbstractExecutorServiceTest.java?revision=1.30    * which contained the following notice:    *    * Written by Doug Lea with assistance from members of JCP JSR-166 Expert Group and released to    * the public domain, as explained at http://creativecommons.org/publicdomain/zero/1.0/    *    * Other contributors include Andrew Wright, Jeffrey Hayes, Pat Fisher, Mike Judd.    */
 comment|/**    * An implementation of {@link ExecutorService#invokeAny} for {@link ListeningExecutorService}    * implementations.    */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"GoodTime"
+argument_list|)
+comment|// should accept a java.time.Duration
 DECL|method|invokeAnyImpl ( ListeningExecutorService executorService, Collection<? extends Callable<T>> tasks, boolean timed, long timeout, TimeUnit unit)
 annotation|@
 name|GwtIncompatible
@@ -3090,6 +3114,12 @@ name|CanIgnoreReturnValue
 annotation|@
 name|GwtIncompatible
 comment|// concurrency
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"GoodTime"
+argument_list|)
+comment|// should accept a java.time.Duration
 DECL|method|shutdownAndAwaitTermination ( ExecutorService service, long timeout, TimeUnit unit)
 specifier|public
 specifier|static

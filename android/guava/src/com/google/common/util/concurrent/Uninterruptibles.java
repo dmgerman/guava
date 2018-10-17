@@ -307,6 +307,12 @@ comment|// TODO(cpovirk): Consider being more strict.
 annotation|@
 name|GwtIncompatible
 comment|// concurrency
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"GoodTime"
+argument_list|)
+comment|// should accept a java.time.Duration
 DECL|method|awaitUninterruptibly (CountDownLatch latch, long timeout, TimeUnit unit)
 specifier|public
 specifier|static
@@ -413,6 +419,12 @@ comment|/**    * Invokes {@code condition.}{@link Condition#await(long, TimeUnit
 annotation|@
 name|GwtIncompatible
 comment|// concurrency
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"GoodTime"
+argument_list|)
+comment|// should accept a java.time.Duration
 DECL|method|awaitUninterruptibly (Condition condition, long timeout, TimeUnit unit)
 specifier|public
 specifier|static
@@ -584,6 +596,12 @@ comment|/**    * Invokes {@code unit.}{@link TimeUnit#timedJoin(Thread, long) ti
 annotation|@
 name|GwtIncompatible
 comment|// concurrency
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"GoodTime"
+argument_list|)
+comment|// should accept a java.time.Duration
 DECL|method|joinUninterruptibly (Thread toJoin, long timeout, TimeUnit unit)
 specifier|public
 specifier|static
@@ -772,6 +790,12 @@ name|CanIgnoreReturnValue
 annotation|@
 name|GwtIncompatible
 comment|// TODO
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"GoodTime"
+argument_list|)
+comment|// should accept a java.time.Duration
 DECL|method|getUninterruptibly (Future<V> future, long timeout, TimeUnit unit)
 specifier|public
 specifier|static
@@ -1038,6 +1062,12 @@ comment|/** Invokes {@code unit.}{@link TimeUnit#sleep(long) sleep(sleepFor)} un
 annotation|@
 name|GwtIncompatible
 comment|// concurrency
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"GoodTime"
+argument_list|)
+comment|// should accept a java.time.Duration
 DECL|method|sleepUninterruptibly (long sleepFor, TimeUnit unit)
 specifier|public
 specifier|static
@@ -1139,6 +1169,12 @@ comment|/**    * Invokes {@code semaphore.}{@link Semaphore#tryAcquire(int, long
 annotation|@
 name|GwtIncompatible
 comment|// concurrency
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"GoodTime"
+argument_list|)
+comment|// should accept a java.time.Duration
 DECL|method|tryAcquireUninterruptibly ( Semaphore semaphore, long timeout, TimeUnit unit)
 specifier|public
 specifier|static
@@ -1172,6 +1208,12 @@ comment|/**    * Invokes {@code semaphore.}{@link Semaphore#tryAcquire(int, long
 annotation|@
 name|GwtIncompatible
 comment|// concurrency
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"GoodTime"
+argument_list|)
+comment|// should accept a java.time.Duration
 DECL|method|tryAcquireUninterruptibly ( Semaphore semaphore, int permits, long timeout, TimeUnit unit)
 specifier|public
 specifier|static

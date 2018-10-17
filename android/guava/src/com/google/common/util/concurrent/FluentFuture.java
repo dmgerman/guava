@@ -516,6 +516,12 @@ comment|/**    * Returns a future that delegates to this future but will finish 
 annotation|@
 name|GwtIncompatible
 comment|// ScheduledExecutorService
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"GoodTime"
+argument_list|)
+comment|// should accept a java.time.Duration
 DECL|method|withTimeout ( long timeout, TimeUnit unit, ScheduledExecutorService scheduledExecutor)
 specifier|public
 specifier|final

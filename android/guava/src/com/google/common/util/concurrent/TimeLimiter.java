@@ -117,6 +117,12 @@ annotation|@
 name|Beta
 annotation|@
 name|GwtIncompatible
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"GoodTime"
+argument_list|)
+comment|// should have java.time.Duration overloads
 DECL|interface|TimeLimiter
 specifier|public
 interface|interface

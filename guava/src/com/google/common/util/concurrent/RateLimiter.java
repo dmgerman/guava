@@ -251,6 +251,12 @@ annotation|@
 name|Beta
 annotation|@
 name|GwtIncompatible
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"GoodTime"
+argument_list|)
+comment|// lots of violations - also how should we model a rate?
 DECL|class|RateLimiter
 specifier|public
 specifier|abstract

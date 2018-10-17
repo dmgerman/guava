@@ -743,6 +743,12 @@ return|;
 block|}
 block|}
 comment|/**    * Returns a supplier that caches the instance supplied by the delegate and removes the cached    * value after the specified time has passed. Subsequent calls to {@code get()} return the cached    * value if the expiration time has not passed. After the expiration time, a new value is    * retrieved, cached, and returned. See:<a    * href="http://en.wikipedia.org/wiki/Memoization">memoization</a>    *    *<p>The returned supplier is thread-safe. The supplier's serialized form does not contain the    * cached value, which will be recalculated when {@code get()} is called on the reserialized    * instance. The actual memoization does not happen when the underlying delegate throws an    * exception.    *    *<p>When the underlying delegate throws an exception then this memoizing supplier will keep    * delegating calls until it returns valid data.    *    * @param duration the length of time after a value is created that it should stop being returned    *     by subsequent {@code get()} calls    * @param unit the unit that {@code duration} is expressed in    * @throws IllegalArgumentException if {@code duration} is not positive    * @since 2.0    */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"GoodTime"
+argument_list|)
+comment|// should accept a java.time.Duration
 DECL|method|memoizeWithExpiration ( Supplier<T> delegate, long duration, TimeUnit unit)
 specifier|public
 specifier|static
