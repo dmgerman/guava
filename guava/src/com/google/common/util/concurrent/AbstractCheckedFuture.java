@@ -109,7 +109,11 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A delegating wrapper around a {@link ListenableFuture} that adds support for the {@link  * #checkedGet()} and {@link #checkedGet(long, TimeUnit)} methods.  *  * @author Sven Mawson  * @since 1.0  * @deprecated {@link CheckedFuture} cannot properly support the chained operations that are the  *     primary goal of {@link ListenableFuture}. {@code CheckedFuture} also encourages users to  *     rethrow exceptions from one thread in another thread, producing misleading stack traces.  *     Additionally, it has a surprising policy about which exceptions to map and which to leave  *     untouched. Guava users who want a {@code CheckedFuture} can fork the classes for their own  *     use, possibly specializing them to the particular exception type they use. We recommend that  *     most people use {@code ListenableFuture} and perform any exception wrapping themselves. This  *     class is scheduled for removal from Guava in October 2018.  */
+comment|/**  * A delegating wrapper around a {@link ListenableFuture} that adds support for the {@link  * #checkedGet()} and {@link #checkedGet(long, TimeUnit)} methods.  *  * @author Sven Mawson  * @since 1.0  * @deprecated {@link CheckedFuture} cannot properly support the chained operations that are the  *     primary goal of {@link ListenableFuture}. {@code CheckedFuture} also encourages users to  *     rethrow exceptions from one thread in another thread, producing misleading stack traces.  *     Additionally, it has a surprising policy about which exceptions to map and which to leave  *     untouched. Guava users who want a {@code CheckedFuture} can fork the classes for their own  *     use, possibly specializing them to the particular exception type they use. We recommend that  *     most people use {@code ListenableFuture} and perform any exception wrapping themselves. This  *     class is scheduled for removal from Guava in January 2019.  */
+end_comment
+
+begin_comment
+comment|// TODO(b/72241575): Remove by 2019-01
 end_comment
 
 begin_class
