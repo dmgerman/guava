@@ -1824,7 +1824,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**    * Returns the maximal range lying between this range and {@code otherRange}, if such a range    * exists. The resulting range may be empty if the two ranges are adjacent but non-overlapping.    *    *<p>For example, the gap of {@code [1..5]} and {@code (7..10)} is {@code (5..7]}. The resulting    * range may be empty; for example, the gap between {@code [1..5)} {@code [5..7)} yields the empty    * range {@code [5..5)}.    *    *<p>The gap exists if and only if the two ranges are either disconnected or immediately adjacent    * (any intersection must be an empty range).    *    *<p>The gap operation is commutative.    *    * @throws IllegalArgumentException if this range and {@code otherRange} have a nonempty    *     intersection    * @since NEXT    */
+comment|/**    * Returns the maximal range lying between this range and {@code otherRange}, if such a range    * exists. The resulting range may be empty if the two ranges are adjacent but non-overlapping.    *    *<p>For example, the gap of {@code [1..5]} and {@code (7..10)} is {@code (5..7]}. The resulting    * range may be empty; for example, the gap between {@code [1..5)} {@code [5..7)} yields the empty    * range {@code [5..5)}.    *    *<p>The gap exists if and only if the two ranges are either disconnected or immediately adjacent    * (any intersection must be an empty range).    *    *<p>The gap operation is commutative.    *    * @throws IllegalArgumentException if this range and {@code otherRange} have a nonempty    *     intersection    * @since 27.0    */
 DECL|method|gap (Range<C> otherRange)
 specifier|public
 name|Range

@@ -1817,7 +1817,7 @@ argument_list|,
 literal|"msword"
 argument_list|)
 decl_stmt|;
-comment|/**    * Media type for WASM applications. For more information see<a    * href="https://webassembly.org/">the Web Assembly overview</a>.    *    * @since NEXT    */
+comment|/**    * Media type for WASM applications. For more information see<a    * href="https://webassembly.org/">the Web Assembly overview</a>.    *    * @since 27.0    */
 DECL|field|WASM_APPLICATION
 specifier|public
 specifier|static

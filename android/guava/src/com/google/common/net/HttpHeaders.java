@@ -224,7 +224,7 @@ name|COOKIE
 init|=
 literal|"Cookie"
 decl_stmt|;
-comment|/**    * The HTTP<a href="https://tools.ietf.org/html/rfc8470">{@code Early-Data}</a> header field    * name.    *    * @since NEXT    */
+comment|/**    * The HTTP<a href="https://tools.ietf.org/html/rfc8470">{@code Early-Data}</a> header field    * name.    *    * @since 27.0    */
 DECL|field|EARLY_DATA
 specifier|public
 specifier|static
