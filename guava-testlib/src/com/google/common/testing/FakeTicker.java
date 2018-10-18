@@ -133,6 +133,12 @@ name|long
 name|autoIncrementStepNanos
 decl_stmt|;
 comment|/** Advances the ticker value by {@code time} in {@code timeUnit}. */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"GoodTime"
+argument_list|)
+comment|// should accept a java.time.Duration
 DECL|method|advance (long time, TimeUnit timeUnit)
 specifier|public
 name|FakeTicker
@@ -158,6 +164,12 @@ argument_list|)
 return|;
 block|}
 comment|/** Advances the ticker value by {@code nanoseconds}. */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"GoodTime"
+argument_list|)
+comment|// should accept a java.time.Duration
 DECL|method|advance (long nanoseconds)
 specifier|public
 name|FakeTicker
@@ -179,6 +191,12 @@ name|this
 return|;
 block|}
 comment|/**    * Sets the increment applied to the ticker whenever it is queried.    *    *<p>The default behavior is to auto increment by zero. i.e: The ticker is left unchanged when    * queried.    */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"GoodTime"
+argument_list|)
+comment|// should accept a java.time.Duration
 DECL|method|setAutoIncrementStep (long autoIncrementStep, TimeUnit timeUnit)
 specifier|public
 name|FakeTicker
