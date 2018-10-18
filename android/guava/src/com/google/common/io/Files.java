@@ -1391,6 +1391,12 @@ literal|"java.io.tmpdir"
 argument_list|)
 argument_list|)
 decl_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"GoodTime"
+argument_list|)
+comment|// reading system time without TimeSource
 name|String
 name|baseName
 init|=
@@ -1469,6 +1475,12 @@ argument_list|)
 throw|;
 block|}
 comment|/**    * Creates an empty file or updates the last updated timestamp on the same as the unix command of    * the same name.    *    * @param file the file to create or update    * @throws IOException if an I/O error occurs    */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"GoodTime"
+argument_list|)
+comment|// reading system time without TimeSource
 DECL|method|touch (File file)
 specifier|public
 specifier|static

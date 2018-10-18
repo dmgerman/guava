@@ -166,6 +166,12 @@ name|Platform
 parameter_list|()
 block|{}
 comment|/** Calls {@link System#nanoTime()}. */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"GoodTime"
+argument_list|)
+comment|// reading system time without TimeSource
 DECL|method|systemNanoTime ()
 specifier|static
 name|long

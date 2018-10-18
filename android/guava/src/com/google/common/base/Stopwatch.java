@@ -193,6 +193,12 @@ end_comment
 begin_class
 annotation|@
 name|GwtCompatible
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"GoodTime"
+argument_list|)
+comment|// lots of violations
 DECL|class|Stopwatch
 specifier|public
 specifier|final

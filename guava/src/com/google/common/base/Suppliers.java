@@ -791,6 +791,12 @@ return|;
 block|}
 annotation|@
 name|VisibleForTesting
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"GoodTime"
+argument_list|)
+comment|// lots of violations
 DECL|class|ExpiringMemoizingSupplier
 specifier|static
 class|class

@@ -324,6 +324,12 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Used to randomize {@link #goodFastHash} instances, so that programs which persist anything    * dependent on the hash codes they produce will fail sooner.    */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"GoodTime"
+argument_list|)
+comment|// reading system time without TimeSource
 DECL|field|GOOD_FAST_HASH_SEED
 specifier|static
 specifier|final

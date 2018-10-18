@@ -1660,6 +1660,12 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Like the unix command of the same name, creates an empty file or updates the last modified    * timestamp of the existing file at the given path to the current system time.    */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"GoodTime"
+argument_list|)
+comment|// reading system time without TimeSource
 DECL|method|touch (Path path)
 specifier|public
 specifier|static

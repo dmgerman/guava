@@ -103,6 +103,12 @@ return|return
 name|matcher
 return|;
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"GoodTime"
+argument_list|)
+comment|// reading system time without TimeSource
 DECL|method|systemNanoTime ()
 specifier|static
 name|long
