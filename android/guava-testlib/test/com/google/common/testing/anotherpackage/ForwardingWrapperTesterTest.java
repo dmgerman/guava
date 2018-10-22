@@ -557,6 +557,11 @@ name|runnable
 argument_list|)
 block|{
 annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"EqualsHashCode"
+argument_list|)
+annotation|@
 name|Override
 specifier|public
 name|boolean

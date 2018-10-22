@@ -1342,6 +1342,11 @@ name|aspect2
 expr_stmt|;
 block|}
 annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"EqualsHashCode"
+argument_list|)
+annotation|@
 name|Override
 DECL|method|equals (Object o)
 specifier|public

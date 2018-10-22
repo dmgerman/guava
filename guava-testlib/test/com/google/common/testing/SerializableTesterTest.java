@@ -298,6 +298,11 @@ init|=
 literal|2L
 decl_stmt|;
 annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"EqualsHashCode"
+argument_list|)
+annotation|@
 name|Override
 DECL|method|equals (Object other)
 specifier|public
