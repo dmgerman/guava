@@ -75,7 +75,7 @@ name|N
 name|node
 parameter_list|)
 function_decl|;
-comment|/**    * Adds an edge connecting {@code nodeU} to {@code nodeV} if one is not already present. In an    * undirected graph, the edge will also connect {@code nodeV} to {@code nodeU}.    *    *<p>If {@code nodeU} and {@code nodeV} are not already present in this graph, this method will    * silently {@link #addNode(Object) add} {@code nodeU} and {@code nodeV} to the graph.    *    * @return {@code true} if the graph was modified as a result of this call    * @throws IllegalArgumentException if the introduction of the edge would violate {@link    *     #allowsSelfLoops()}    */
+comment|/**    * Adds an edge connecting {@code nodeU} to {@code nodeV} if one is not already present.    *    *<p>If the graph is directed, the resultant edge will be directed; otherwise, it will be    * undirected.    *    *<p>If {@code nodeU} and {@code nodeV} are not already present in this graph, this method will    * silently {@link #addNode(Object) add} {@code nodeU} and {@code nodeV} to the graph.    *    * @return {@code true} if the graph was modified as a result of this call    * @throws IllegalArgumentException if the introduction of the edge would violate {@link    *     #allowsSelfLoops()}    */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|putEdge (N nodeU, N nodeV)
@@ -87,6 +87,20 @@ name|nodeU
 parameter_list|,
 name|N
 name|nodeV
+parameter_list|)
+function_decl|;
+comment|/**    * Adds an edge connecting {@code endpoints} (in the order, if any, specified by {@code    * endpoints}) if one is not already present.    *    *<p>If this graph is directed, {@code endpoints} must be ordered and the added edge will be    * directed; if it is undirected, the added edge will be undirected.    *    *<p>If this graph is directed, {@code endpoints} must be ordered.    *    *<p>If either or both endpoints are not already present in this graph, this method will silently    * {@link #addNode(Object) add} each missing endpoint to the graph.    *    * @return {@code true} if the graph was modified as a result of this call    * @throws IllegalArgumentException if the introduction of the edge would violate {@link    *     #allowsSelfLoops()}    * @throws IllegalArgumentException if the endpoints are unordered and the graph is directed    */
+annotation|@
+name|CanIgnoreReturnValue
+DECL|method|putEdge (EndpointPair<N> endpoints)
+name|boolean
+name|putEdge
+parameter_list|(
+name|EndpointPair
+argument_list|<
+name|N
+argument_list|>
+name|endpoints
 parameter_list|)
 function_decl|;
 comment|/**    * Removes {@code node} if it is present; all edges incident to {@code node} will also be removed.    *    * @return {@code true} if the graph was modified as a result of this call    */
@@ -112,6 +126,20 @@ name|nodeU
 parameter_list|,
 name|N
 name|nodeV
+parameter_list|)
+function_decl|;
+comment|/**    * Removes the edge connecting {@code endpoints}, if it is present.    *    *<p>If this graph is directed, {@code endpoints} must be ordered.    *    * @throws IllegalArgumentException if the endpoints are unordered and the graph is directed    * @return {@code true} if the graph was modified as a result of this call    */
+annotation|@
+name|CanIgnoreReturnValue
+DECL|method|removeEdge (EndpointPair<N> endpoints)
+name|boolean
+name|removeEdge
+parameter_list|(
+name|EndpointPair
+argument_list|<
+name|N
+argument_list|>
+name|endpoints
 parameter_list|)
 function_decl|;
 block|}

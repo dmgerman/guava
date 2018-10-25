@@ -305,6 +305,30 @@ name|nodeV
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|hasEdgeConnecting (EndpointPair<N> endpoints)
+specifier|public
+name|boolean
+name|hasEdgeConnecting
+parameter_list|(
+name|EndpointPair
+argument_list|<
+name|N
+argument_list|>
+name|endpoints
+parameter_list|)
+block|{
+return|return
+name|delegate
+argument_list|()
+operator|.
+name|hasEdgeConnecting
+argument_list|(
+name|endpoints
+argument_list|)
+return|;
+block|}
 block|}
 end_class
 

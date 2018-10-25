@@ -150,6 +150,14 @@ name|EDGE_ALREADY_EXISTS
 init|=
 literal|"Edge %s already exists in the graph."
 decl_stmt|;
+DECL|field|ENDPOINTS_MISMATCH
+specifier|static
+specifier|final
+name|String
+name|ENDPOINTS_MISMATCH
+init|=
+literal|"Mismatch: unordered endpoints cannot be used with directed graphs"
+decl_stmt|;
 comment|/** Singleton edge value for {@link Graph} implementations backed by {@link ValueGraph}s. */
 DECL|enum|Presence
 enum|enum

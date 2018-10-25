@@ -418,6 +418,37 @@ return|;
 block|}
 annotation|@
 name|Override
+DECL|method|edgeValue (EndpointPair<N> endpoints)
+specifier|public
+name|Optional
+argument_list|<
+name|V
+argument_list|>
+name|edgeValue
+parameter_list|(
+name|EndpointPair
+argument_list|<
+name|N
+argument_list|>
+name|endpoints
+parameter_list|)
+block|{
+return|return
+name|Optional
+operator|.
+name|ofNullable
+argument_list|(
+name|edgeValueOrDefault
+argument_list|(
+name|endpoints
+argument_list|,
+literal|null
+argument_list|)
+argument_list|)
+return|;
+block|}
+annotation|@
+name|Override
 DECL|method|equals (@ullable Object obj)
 specifier|public
 specifier|final

@@ -292,7 +292,7 @@ name|E
 name|edge
 parameter_list|)
 function_decl|;
-comment|/**    * Returns the set of edges directly connecting {@code nodeU} to {@code nodeV}.    *    *<p>In an undirected network, this is equal to {@code edgesConnecting(nodeV, nodeU)}.    *    *<p>The resulting set of edges will be parallel (i.e. have equal {@link #incidentNodes(Object)}.    * If this network does not {@link #allowsParallelEdges() allow parallel edges}, the resulting set    * will contain at most one edge (equivalent to {@code edgeConnecting(nodeU, nodeV).asSet()}).    *    * @throws IllegalArgumentException if {@code nodeU} or {@code nodeV} is not an element of this    *     network    */
+comment|/**    * Returns the set of edges that each directly connect {@code nodeU} to {@code nodeV}.    *    *<p>In an undirected network, this is equal to {@code edgesConnecting(nodeV, nodeU)}.    *    *<p>The resulting set of edges will be parallel (i.e. have equal {@link #incidentNodes(Object)}.    * If this network does not {@link #allowsParallelEdges() allow parallel edges}, the resulting set    * will contain at most one edge (equivalent to {@code edgeConnecting(nodeU, nodeV).asSet()}).    *    * @throws IllegalArgumentException if {@code nodeU} or {@code nodeV} is not an element of this    *     network    */
 DECL|method|edgesConnecting (N nodeU, N nodeV)
 name|Set
 argument_list|<
@@ -307,7 +307,22 @@ name|N
 name|nodeV
 parameter_list|)
 function_decl|;
-comment|/**    * Returns the single edge directly connecting {@code nodeU} to {@code nodeV}, if one is present,    * or {@code Optional.empty()} if no such edge exists.    *    *<p>In an undirected network, this is equal to {@code edgeConnecting(nodeV, nodeU)}.    *    * @throws IllegalArgumentException if there are multiple parallel edges connecting {@code nodeU}    *     to {@code nodeV}    * @throws IllegalArgumentException if {@code nodeU} or {@code nodeV} is not an element of this    *     network    * @since 23.0    */
+comment|/**    * Returns the set of edges that each directly connect {@code endpoints} (in the order, if any,    * specified by {@code endpoints}).    *    *<p>The resulting set of edges will be parallel (i.e. have equal {@link #incidentNodes(Object)}.    * If this network does not {@link #allowsParallelEdges() allow parallel edges}, the resulting set    * will contain at most one edge (equivalent to {@code edgeConnecting(endpoints).asSet()}).    *    *<p>If this network is directed, {@code endpoints} must be ordered.    *    * @throws IllegalArgumentException if either endpoint is not an element of this network    * @throws IllegalArgumentException if the endpoints are unordered and the graph is directed    * @since NEXT    */
+DECL|method|edgesConnecting (EndpointPair<N> endpoints)
+name|Set
+argument_list|<
+name|E
+argument_list|>
+name|edgesConnecting
+parameter_list|(
+name|EndpointPair
+argument_list|<
+name|N
+argument_list|>
+name|endpoints
+parameter_list|)
+function_decl|;
+comment|/**    * Returns the single edge that directly connects {@code nodeU} to {@code nodeV}, if one is    * present, or {@code Optional.empty()} if no such edge exists.    *    *<p>In an undirected network, this is equal to {@code edgeConnecting(nodeV, nodeU)}.    *    * @throws IllegalArgumentException if there are multiple parallel edges connecting {@code nodeU}    *     to {@code nodeV}    * @throws IllegalArgumentException if {@code nodeU} or {@code nodeV} is not an element of this    *     network    * @since 23.0    */
 DECL|method|edgeConnecting (N nodeU, N nodeV)
 name|Optional
 argument_list|<
@@ -322,7 +337,22 @@ name|N
 name|nodeV
 parameter_list|)
 function_decl|;
-comment|/**    * Returns the single edge directly connecting {@code nodeU} to {@code nodeV}, if one is present,    * or {@code null} if no such edge exists.    *    *<p>In an undirected network, this is equal to {@code edgeConnectingOrNull(nodeV, nodeU)}.    *    * @throws IllegalArgumentException if there are multiple parallel edges connecting {@code nodeU}    *     to {@code nodeV}    * @throws IllegalArgumentException if {@code nodeU} or {@code nodeV} is not an element of this    *     network    * @since 23.0    */
+comment|/**    * Returns the single edge that directly connects {@code endpoints} (in the order, if any,    * specified by {@code endpoints}), if one is present, or {@code Optional.empty()} if no such edge    * exists.    *    *<p>If this graph is directed, the endpoints must be ordered.    *    * @throws IllegalArgumentException if there are multiple parallel edges connecting {@code nodeU}    *     to {@code nodeV}    * @throws IllegalArgumentException if either endpoint is not an element of this network    * @throws IllegalArgumentException if the endpoints are unordered and the graph is directed    * @since NEXT    */
+DECL|method|edgeConnecting (EndpointPair<N> endpoints)
+name|Optional
+argument_list|<
+name|E
+argument_list|>
+name|edgeConnecting
+parameter_list|(
+name|EndpointPair
+argument_list|<
+name|N
+argument_list|>
+name|endpoints
+parameter_list|)
+function_decl|;
+comment|/**    * Returns the single edge that directly connects {@code nodeU} to {@code nodeV}, if one is    * present, or {@code null} if no such edge exists.    *    *<p>In an undirected network, this is equal to {@code edgeConnectingOrNull(nodeV, nodeU)}.    *    * @throws IllegalArgumentException if there are multiple parallel edges connecting {@code nodeU}    *     to {@code nodeV}    * @throws IllegalArgumentException if {@code nodeU} or {@code nodeV} is not an element of this    *     network    * @since 23.0    */
 annotation|@
 name|Nullable
 DECL|method|edgeConnectingOrNull (N nodeU, N nodeV)
@@ -336,7 +366,21 @@ name|N
 name|nodeV
 parameter_list|)
 function_decl|;
-comment|/**    * Returns true if there is an edge directly connecting {@code nodeU} to {@code nodeV}. This is    * equivalent to {@code nodes().contains(nodeU)&& successors(nodeU).contains(nodeV)}, and to    * {@code edgeConnectingOrNull(nodeU, nodeV) != null}.    *    *<p>In an undirected graph, this is equal to {@code hasEdgeConnecting(nodeV, nodeU)}.    *    * @since 23.0    */
+comment|/**    * Returns the single edge that directly connects {@code endpoints} (in the order, if any,    * specified by {@code endpoints}), if one is present, or {@code null} if no such edge exists.    *    *<p>If this graph is directed, the endpoints must be ordered.    *    * @throws IllegalArgumentException if there are multiple parallel edges connecting {@code nodeU}    *     to {@code nodeV}    * @throws IllegalArgumentException if either endpoint is not an element of this network    * @throws IllegalArgumentException if the endpoints are unordered and the graph is directed    * @since NEXT    */
+annotation|@
+name|Nullable
+DECL|method|edgeConnectingOrNull (EndpointPair<N> endpoints)
+name|E
+name|edgeConnectingOrNull
+parameter_list|(
+name|EndpointPair
+argument_list|<
+name|N
+argument_list|>
+name|endpoints
+parameter_list|)
+function_decl|;
+comment|/**    * Returns true if there is an edge that directly connects {@code nodeU} to {@code nodeV}. This is    * equivalent to {@code nodes().contains(nodeU)&& successors(nodeU).contains(nodeV)}, and to    * {@code edgeConnectingOrNull(nodeU, nodeV) != null}.    *    *<p>In an undirected graph, this is equal to {@code hasEdgeConnecting(nodeV, nodeU)}.    *    * @since 23.0    */
 DECL|method|hasEdgeConnecting (N nodeU, N nodeV)
 name|boolean
 name|hasEdgeConnecting
@@ -346,6 +390,18 @@ name|nodeU
 parameter_list|,
 name|N
 name|nodeV
+parameter_list|)
+function_decl|;
+comment|/**    * Returns true if there is an edge that directly connects {@code endpoints} (in the order, if    * any, specified by {@code endpoints}).    *    *<p>Unlike the other {@code EndpointPair}-accepting methods, this method does not throw if the    * endpoints are unordered and the graph is directed; it simply returns {@code false}. This is for    * consistency with {@link Graph#hasEdgeConnecting(EndpointPair)} and {@link    * ValueGraph#hasEdgeConnecting(EndpointPair)}.    *    * @since NEXT    */
+DECL|method|hasEdgeConnecting (EndpointPair<N> endpoints)
+name|boolean
+name|hasEdgeConnecting
+parameter_list|(
+name|EndpointPair
+argument_list|<
+name|N
+argument_list|>
+name|endpoints
 parameter_list|)
 function_decl|;
 comment|//

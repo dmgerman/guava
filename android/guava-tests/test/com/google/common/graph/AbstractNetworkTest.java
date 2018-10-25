@@ -513,7 +513,7 @@ name|n
 argument_list|)
 return|;
 block|}
-comment|/**    * A proxy method that adds the edge {@code e} to the graph being tested. In case of Immutable    * graph implementations, this method should add {@code e} to the graph builder and build a new    * graph with the current builder state.    *    *<p>This method should be used in tests of specific implementations if you want to ensure    * uniform behavior (including side effects) with how edges are added elsewhere in the tests. For    * example, the existing implementations of this method explicitly add the supplied nodes to the    * graph, and then call {@code graph.addEdge()} to connect the edge to the nodes; this is not part    * of the contract of {@code graph.addEdge()} and is done for convenience. In cases where you want    * to avoid such side effects (e.g., if you're testing what happens in your implementation if you    * add an edge whose end-points don't already exist in the graph), you should<b>not</b> use this    * method.    *    * @return {@code true} iff the graph was modified as a result of this call    */
+comment|/**    * A proxy method that adds the edge {@code e} to the graph being tested. In case of Immutable    * graph implementations, this method should add {@code e} to the graph builder and build a new    * graph with the current builder state.    *    *<p>This method should be used in tests of specific implementations if you want to ensure    * uniform behavior (including side effects) with how edges are added elsewhere in the tests. For    * example, the existing implementations of this method explicitly add the supplied nodes to the    * graph, and then call {@code graph.addEdge()} to connect the edge to the nodes; this is not part    * of the contract of {@code graph.addEdge()} and is done for convenience. In cases where you want    * to avoid such side effects (e.g., if you're testing what happens in your implementation if you    * add an edge whose end-points don't already exist in the graph), you should<b>not</b> use this    * method.    *    * TODO(user): remove the addNode() calls, that's now contractually guaranteed    *    * @return {@code true} iff the graph was modified as a result of this call    */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|addEdge (Integer n1, Integer n2, String e)
@@ -553,6 +553,52 @@ argument_list|(
 name|n1
 argument_list|,
 name|n2
+argument_list|,
+name|e
+argument_list|)
+return|;
+block|}
+DECL|method|addEdge (EndpointPair<Integer> endpoints, String e)
+specifier|protected
+name|boolean
+name|addEdge
+parameter_list|(
+name|EndpointPair
+argument_list|<
+name|Integer
+argument_list|>
+name|endpoints
+parameter_list|,
+name|String
+name|e
+parameter_list|)
+block|{
+name|network
+operator|.
+name|addNode
+argument_list|(
+name|endpoints
+operator|.
+name|nodeU
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|network
+operator|.
+name|addNode
+argument_list|(
+name|endpoints
+operator|.
+name|nodeV
+argument_list|()
+argument_list|)
+expr_stmt|;
+return|return
+name|network
+operator|.
+name|addEdge
+argument_list|(
+name|endpoints
 argument_list|,
 name|e
 argument_list|)
