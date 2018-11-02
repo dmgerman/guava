@@ -1775,6 +1775,7 @@ argument_list|,
 literal|"x-apple-aspen-config"
 argument_list|)
 decl_stmt|;
+comment|/** Media type for<a href="http://goo.gl/XDQ1h2">Microsoft Excel</a> spreadsheets. */
 DECL|field|MICROSOFT_EXCEL
 specifier|public
 specifier|static
@@ -1789,6 +1790,22 @@ argument_list|,
 literal|"vnd.ms-excel"
 argument_list|)
 decl_stmt|;
+comment|/**    * Media type for<a href="http://goo.gl/XrTEqG">Microsoft Outlook</a> items.    *    * @since NEXT    */
+DECL|field|MICROSOFT_OUTLOOK
+specifier|public
+specifier|static
+specifier|final
+name|MediaType
+name|MICROSOFT_OUTLOOK
+init|=
+name|createConstant
+argument_list|(
+name|APPLICATION_TYPE
+argument_list|,
+literal|"vnd.ms-outlook"
+argument_list|)
+decl_stmt|;
+comment|/** Media type for<a href="http://goo.gl/XDQ1h2">Microsoft Powerpoint</a> presentations. */
 DECL|field|MICROSOFT_POWERPOINT
 specifier|public
 specifier|static
@@ -1803,6 +1820,7 @@ argument_list|,
 literal|"vnd.ms-powerpoint"
 argument_list|)
 decl_stmt|;
+comment|/** Media type for<a href="http://goo.gl/XDQ1h2">Microsoft Word</a> documents. */
 DECL|field|MICROSOFT_WORD
 specifier|public
 specifier|static
