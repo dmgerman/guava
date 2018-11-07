@@ -28,6 +28,22 @@ name|base
 operator|.
 name|Preconditions
 operator|.
+name|checkArgument
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Preconditions
+operator|.
 name|checkNotNull
 import|;
 end_import
@@ -1041,6 +1057,44 @@ argument_list|,
 name|columnSpace
 argument_list|)
 return|;
+block|}
+comment|/** @throws IllegalArgumentException if {@code existingValue} is not null. */
+comment|/*    * We could have declared this method 'static' but the additional compile-time checks achieved by    * referencing the type variables seem worthwhile.    */
+DECL|method|checkNoDuplicate (R rowKey, C columnKey, V existingValue, V newValue)
+specifier|final
+name|void
+name|checkNoDuplicate
+parameter_list|(
+name|R
+name|rowKey
+parameter_list|,
+name|C
+name|columnKey
+parameter_list|,
+name|V
+name|existingValue
+parameter_list|,
+name|V
+name|newValue
+parameter_list|)
+block|{
+name|checkArgument
+argument_list|(
+name|existingValue
+operator|==
+literal|null
+argument_list|,
+literal|"Duplicate key: (row=%s, column=%s), values: [%s, %s]."
+argument_list|,
+name|rowKey
+argument_list|,
+name|columnKey
+argument_list|,
+name|newValue
+argument_list|,
+name|existingValue
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 end_class

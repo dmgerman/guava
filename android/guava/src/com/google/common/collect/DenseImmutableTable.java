@@ -17,22 +17,6 @@ package|;
 end_package
 
 begin_import
-import|import static
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|base
-operator|.
-name|Preconditions
-operator|.
-name|checkArgument
-import|;
-end_import
-
-begin_import
 import|import
 name|com
 operator|.
@@ -496,17 +480,18 @@ index|[
 name|columnIndex
 index|]
 decl_stmt|;
-name|checkArgument
+name|checkNoDuplicate
 argument_list|(
-name|existingValue
-operator|==
-literal|null
-argument_list|,
-literal|"duplicate key: (%s, %s)"
-argument_list|,
 name|rowKey
 argument_list|,
 name|columnKey
+argument_list|,
+name|existingValue
+argument_list|,
+name|cell
+operator|.
+name|getValue
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|values

@@ -485,35 +485,17 @@ argument_list|,
 name|value
 argument_list|)
 decl_stmt|;
-if|if
-condition|(
-name|oldValue
-operator|!=
-literal|null
-condition|)
-block|{
-throw|throw
-operator|new
-name|IllegalArgumentException
+name|checkNoDuplicate
 argument_list|(
-literal|"Duplicate value for row="
-operator|+
 name|rowKey
-operator|+
-literal|", column="
-operator|+
+argument_list|,
 name|columnKey
-operator|+
-literal|": "
-operator|+
-name|value
-operator|+
-literal|", "
-operator|+
+argument_list|,
 name|oldValue
+argument_list|,
+name|value
 argument_list|)
-throw|;
-block|}
+expr_stmt|;
 name|columns
 operator|.
 name|get
