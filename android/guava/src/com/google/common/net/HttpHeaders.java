@@ -803,6 +803,16 @@ name|LOCATION
 init|=
 literal|"Location"
 decl_stmt|;
+comment|/**    * The HTTP<a href="https://googlechrome.github.io/OriginTrials/#header">{@code Origin-Trial}</a>    * header field name.    */
+DECL|field|ORIGIN_TRIAL
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|ORIGIN_TRIAL
+init|=
+literal|"Origin-Trial"
+decl_stmt|;
 comment|/** The HTTP {@code P3P} header field name. Limited browser support. */
 DECL|field|P3P
 specifier|public
