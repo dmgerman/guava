@@ -257,10 +257,10 @@ block|{
 name|assertThat
 argument_list|(
 name|expected
-operator|.
-name|getCause
-argument_list|()
 argument_list|)
+operator|.
+name|hasCauseThat
+argument_list|()
 operator|.
 name|isEqualTo
 argument_list|(

@@ -82,6 +82,22 @@ end_import
 
 begin_import
 import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|truth
+operator|.
+name|Truth
+operator|.
+name|assertThat
+import|;
+end_import
+
+begin_import
+import|import static
 name|java
 operator|.
 name|util
@@ -697,14 +713,17 @@ name|UncheckedExecutionException
 name|uee
 parameter_list|)
 block|{
-name|assertSame
+name|assertThat
+argument_list|(
+name|uee
+argument_list|)
+operator|.
+name|hasCauseThat
+argument_list|()
+operator|.
+name|isSameAs
 argument_list|(
 name|e
-argument_list|,
-name|uee
-operator|.
-name|getCause
-argument_list|()
 argument_list|)
 expr_stmt|;
 block|}

@@ -646,7 +646,10 @@ argument_list|(
 name|e
 argument_list|)
 operator|.
-name|hasMessage
+name|hasMessageThat
+argument_list|()
+operator|.
+name|isEqualTo
 argument_list|(
 literal|"resource no such resource not found."
 argument_list|)
@@ -703,7 +706,10 @@ argument_list|(
 name|e
 argument_list|)
 operator|.
-name|hasMessage
+name|hasMessageThat
+argument_list|()
+operator|.
+name|isEqualTo
 argument_list|(
 literal|"resource com/google/common/io/testdata/i18n.txt"
 operator|+

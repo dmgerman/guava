@@ -477,7 +477,10 @@ argument_list|(
 name|expected
 argument_list|)
 operator|.
-name|hasMessage
+name|hasMessageThat
+argument_list|()
+operator|.
+name|isEqualTo
 argument_list|(
 literal|"No public static methods that return java.lang.Object or subtype are found in "
 operator|+
@@ -706,7 +709,10 @@ argument_list|(
 name|expected
 argument_list|)
 operator|.
-name|hasMessage
+name|hasMessageThat
+argument_list|()
+operator|.
+name|isEqualTo
 argument_list|(
 literal|"No public static methods that return java.lang.Iterable or subtype are found in "
 operator|+

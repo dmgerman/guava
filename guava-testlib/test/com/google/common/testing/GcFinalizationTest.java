@@ -574,10 +574,10 @@ block|{
 name|assertThat
 argument_list|(
 name|e
-operator|.
-name|getMessage
-argument_list|()
 argument_list|)
+operator|.
+name|hasMessageThat
+argument_list|()
 operator|.
 name|contains
 argument_list|(
@@ -587,10 +587,10 @@ expr_stmt|;
 name|assertThat
 argument_list|(
 name|e
-operator|.
-name|getCause
-argument_list|()
 argument_list|)
+operator|.
+name|hasCauseThat
+argument_list|()
 operator|.
 name|isInstanceOf
 argument_list|(

@@ -192,7 +192,10 @@ argument_list|(
 name|expected
 argument_list|)
 operator|.
-name|hasMessage
+name|hasMessageThat
+argument_list|()
+operator|.
+name|isEqualTo
 argument_list|(
 literal|"message"
 argument_list|)
@@ -414,7 +417,10 @@ argument_list|(
 name|e
 argument_list|)
 operator|.
-name|hasMessage
+name|hasMessageThat
+argument_list|()
+operator|.
+name|isEqualTo
 argument_list|(
 literal|"I ate 5 pies."
 argument_list|)

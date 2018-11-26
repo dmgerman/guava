@@ -1627,7 +1627,10 @@ argument_list|(
 name|e
 argument_list|)
 operator|.
-name|hasMessage
+name|hasMessageThat
+argument_list|()
+operator|.
+name|isEqualTo
 argument_list|(
 literal|"Timed out waiting for Foo [STARTING] to reach the RUNNING state."
 argument_list|)

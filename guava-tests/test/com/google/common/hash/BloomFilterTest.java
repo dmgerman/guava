@@ -1803,7 +1803,10 @@ argument_list|(
 name|expected
 argument_list|)
 operator|.
-name|hasMessage
+name|hasMessageThat
+argument_list|()
+operator|.
+name|isEqualTo
 argument_list|(
 literal|"Could not create BloomFilter of 3327428144502 bits"
 argument_list|)

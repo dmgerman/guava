@@ -1201,10 +1201,10 @@ block|{
 name|assertThat
 argument_list|(
 name|ex
-operator|.
-name|getCause
-argument_list|()
 argument_list|)
+operator|.
+name|hasCauseThat
+argument_list|()
 operator|.
 name|isInstanceOf
 argument_list|(
@@ -1846,10 +1846,10 @@ block|{
 name|assertThat
 argument_list|(
 name|ex
-operator|.
-name|getCause
-argument_list|()
 argument_list|)
+operator|.
+name|hasCauseThat
+argument_list|()
 operator|.
 name|isInstanceOf
 argument_list|(
@@ -1929,10 +1929,10 @@ block|{
 name|assertThat
 argument_list|(
 name|ex
-operator|.
-name|getCause
-argument_list|()
 argument_list|)
+operator|.
+name|hasCauseThat
+argument_list|()
 operator|.
 name|isInstanceOf
 argument_list|(
@@ -4193,7 +4193,10 @@ argument_list|(
 name|expected
 argument_list|)
 operator|.
-name|hasMessage
+name|hasMessageThat
+argument_list|()
+operator|.
+name|isEqualTo
 argument_list|(
 literal|"Mark not set"
 argument_list|)
@@ -4242,7 +4245,10 @@ argument_list|(
 name|expected
 argument_list|)
 operator|.
-name|hasMessage
+name|hasMessageThat
+argument_list|()
+operator|.
+name|isEqualTo
 argument_list|(
 literal|"Mark not supported"
 argument_list|)

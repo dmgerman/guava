@@ -509,7 +509,10 @@ argument_list|(
 name|expected
 argument_list|)
 operator|.
-name|hasMessage
+name|hasMessageThat
+argument_list|()
+operator|.
+name|isEqualTo
 argument_list|(
 literal|"readLine is not supported"
 argument_list|)

@@ -19,6 +19,22 @@ package|;
 end_package
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|truth
+operator|.
+name|Truth
+operator|.
+name|assertThat
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -378,14 +394,17 @@ name|ExecutionException
 name|e
 parameter_list|)
 block|{
-name|assertSame
+name|assertThat
+argument_list|(
+name|e
+argument_list|)
+operator|.
+name|hasCauseThat
+argument_list|()
+operator|.
+name|isSameAs
 argument_list|(
 name|expected
-argument_list|,
-name|e
-operator|.
-name|getCause
-argument_list|()
 argument_list|)
 expr_stmt|;
 block|}

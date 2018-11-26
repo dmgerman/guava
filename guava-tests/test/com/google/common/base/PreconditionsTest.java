@@ -353,7 +353,10 @@ argument_list|(
 name|expected
 argument_list|)
 operator|.
-name|hasMessage
+name|hasMessageThat
+argument_list|()
+operator|.
+name|isEqualTo
 argument_list|(
 literal|"null"
 argument_list|)
@@ -837,7 +840,10 @@ argument_list|(
 name|expected
 argument_list|)
 operator|.
-name|hasMessage
+name|hasMessageThat
+argument_list|()
+operator|.
+name|isEqualTo
 argument_list|(
 literal|"null"
 argument_list|)
@@ -1205,7 +1211,10 @@ argument_list|(
 name|expected
 argument_list|)
 operator|.
-name|hasMessage
+name|hasMessageThat
+argument_list|()
+operator|.
+name|isEqualTo
 argument_list|(
 literal|"index (-1) must not be negative"
 argument_list|)
@@ -1244,7 +1253,10 @@ argument_list|(
 name|expected
 argument_list|)
 operator|.
-name|hasMessage
+name|hasMessageThat
+argument_list|()
+operator|.
+name|isEqualTo
 argument_list|(
 literal|"index (1) must be less than size (1)"
 argument_list|)
@@ -1286,7 +1298,10 @@ argument_list|(
 name|expected
 argument_list|)
 operator|.
-name|hasMessage
+name|hasMessageThat
+argument_list|()
+operator|.
+name|isEqualTo
 argument_list|(
 literal|"foo (-1) must not be negative"
 argument_list|)
@@ -1327,7 +1342,10 @@ argument_list|(
 name|expected
 argument_list|)
 operator|.
-name|hasMessage
+name|hasMessageThat
+argument_list|()
+operator|.
+name|isEqualTo
 argument_list|(
 literal|"foo (1) must be less than size (1)"
 argument_list|)
@@ -1448,7 +1466,10 @@ argument_list|(
 name|expected
 argument_list|)
 operator|.
-name|hasMessage
+name|hasMessageThat
+argument_list|()
+operator|.
+name|isEqualTo
 argument_list|(
 literal|"index (-1) must not be negative"
 argument_list|)
@@ -1487,7 +1508,10 @@ argument_list|(
 name|expected
 argument_list|)
 operator|.
-name|hasMessage
+name|hasMessageThat
+argument_list|()
+operator|.
+name|isEqualTo
 argument_list|(
 literal|"index (2) must not be greater than size (1)"
 argument_list|)
@@ -1529,7 +1553,10 @@ argument_list|(
 name|expected
 argument_list|)
 operator|.
-name|hasMessage
+name|hasMessageThat
+argument_list|()
+operator|.
+name|isEqualTo
 argument_list|(
 literal|"foo (-1) must not be negative"
 argument_list|)
@@ -1570,7 +1597,10 @@ argument_list|(
 name|expected
 argument_list|)
 operator|.
-name|hasMessage
+name|hasMessageThat
+argument_list|()
+operator|.
+name|isEqualTo
 argument_list|(
 literal|"foo (2) must not be greater than size (1)"
 argument_list|)
@@ -1694,7 +1724,10 @@ argument_list|(
 name|expected
 argument_list|)
 operator|.
-name|hasMessage
+name|hasMessageThat
+argument_list|()
+operator|.
+name|isEqualTo
 argument_list|(
 literal|"start index (-1) must not be negative"
 argument_list|)
@@ -1735,7 +1768,10 @@ argument_list|(
 name|expected
 argument_list|)
 operator|.
-name|hasMessage
+name|hasMessageThat
+argument_list|()
+operator|.
+name|isEqualTo
 argument_list|(
 literal|"end index (2) must not be greater than size (1)"
 argument_list|)
@@ -1776,7 +1812,10 @@ argument_list|(
 name|expected
 argument_list|)
 operator|.
-name|hasMessage
+name|hasMessageThat
+argument_list|()
+operator|.
+name|isEqualTo
 argument_list|(
 literal|"end index (0) must not be less than start index (1)"
 argument_list|)
@@ -2230,10 +2269,11 @@ argument_list|(
 name|throwable
 argument_list|)
 operator|.
-name|hasMessage
-argument_list|(
-literal|null
-argument_list|)
+name|hasMessageThat
+argument_list|()
+operator|.
+name|isNull
+argument_list|()
 expr_stmt|;
 block|}
 elseif|else
@@ -2251,10 +2291,11 @@ argument_list|(
 name|throwable
 argument_list|)
 operator|.
-name|hasMessage
-argument_list|(
-literal|""
-argument_list|)
+name|hasMessageThat
+argument_list|()
+operator|.
+name|isEmpty
+argument_list|()
 expr_stmt|;
 block|}
 else|else
@@ -2264,7 +2305,10 @@ argument_list|(
 name|throwable
 argument_list|)
 operator|.
-name|hasMessage
+name|hasMessageThat
+argument_list|()
+operator|.
+name|isEqualTo
 argument_list|(
 name|Strings
 operator|.
@@ -2895,7 +2939,10 @@ argument_list|(
 name|e
 argument_list|)
 operator|.
-name|hasMessage
+name|hasMessageThat
+argument_list|()
+operator|.
+name|isEqualTo
 argument_list|(
 literal|"A message"
 argument_list|)
@@ -2919,7 +2966,10 @@ argument_list|(
 name|e
 argument_list|)
 operator|.
-name|hasMessage
+name|hasMessageThat
+argument_list|()
+operator|.
+name|isEqualTo
 argument_list|(
 literal|"I ate 5 pies."
 argument_list|)
