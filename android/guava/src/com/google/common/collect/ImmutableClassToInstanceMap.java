@@ -76,6 +76,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|Immutable
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -115,6 +129,13 @@ comment|/**  * A {@link ClassToInstanceMap} whose contents will never change, wi
 end_comment
 
 begin_class
+annotation|@
+name|Immutable
+argument_list|(
+name|containerOf
+operator|=
+literal|"B"
+argument_list|)
 annotation|@
 name|GwtIncompatible
 DECL|class|ImmutableClassToInstanceMap
