@@ -985,6 +985,7 @@ argument_list|,
 literal|"vcard"
 argument_list|)
 decl_stmt|;
+comment|/**    * UTF-8 encoded<a href="https://en.wikipedia.org/wiki/Wireless_Markup_Language">Wireless Markup    * Language</a>.    *    * @since 13.0    */
 DECL|field|WML_UTF_8
 specifier|public
 specifier|static
@@ -1029,7 +1030,7 @@ argument_list|,
 literal|"vtt"
 argument_list|)
 decl_stmt|;
-comment|/* image types */
+comment|/**    *<a href="https://en.wikipedia.org/wiki/BMP_file_format">Bitmap file format</a> ({@code bmp}    * files).    *    * @since 13.0    */
 DECL|field|BMP
 specifier|public
 specifier|static
@@ -1044,7 +1045,7 @@ argument_list|,
 literal|"bmp"
 argument_list|)
 decl_stmt|;
-comment|/**    * The media type for the<a href="http://en.wikipedia.org/wiki/Camera_Image_File_Format">Canon    * Image File Format</a> ({@code crw} files), a widely-used "raw image" format for cameras. It is    * found in {@code /etc/mime.types}, e.g. in<a href=    * "http://anonscm.debian.org/gitweb/?p=collab-maint/mime-support.git;a=blob;f=mime.types;hb=HEAD"    *>Debian 3.48-1</a>.    *    * @since 15.0    */
+comment|/**    * The media type for the<a href="https://en.wikipedia.org/wiki/Camera_Image_File_Format">Canon    * Image File Format</a> ({@code crw} files), a widely-used "raw image" format for cameras. It is    * found in {@code /etc/mime.types}, e.g. in<a href=    * "http://anonscm.debian.org/gitweb/?p=collab-maint/mime-support.git;a=blob;f=mime.types;hb=HEAD"    *>Debian 3.48-1</a>.    *    * @since 15.0    */
 DECL|field|CRW
 specifier|public
 specifier|static
@@ -1158,6 +1159,7 @@ argument_list|,
 literal|"tiff"
 argument_list|)
 decl_stmt|;
+comment|/**    *<a href="https://en.wikipedia.org/wiki/WebP">WebP image format</a>.    *    * @since 13.0    */
 DECL|field|WEBP
 specifier|public
 specifier|static
@@ -1495,7 +1497,7 @@ literal|"3gpp2"
 argument_list|)
 decl_stmt|;
 comment|/* application types */
-comment|/**    * As described in<a href="http://www.ietf.org/rfc/rfc3023.txt">RFC 3023</a>, this constant    * ({@code application/xml}) is used for XML documents that are "unreadable by casual users."    * {@link #XML_UTF_8} is provided for documents that may be read by users.    */
+comment|/**    * As described in<a href="http://www.ietf.org/rfc/rfc3023.txt">RFC 3023</a>, this constant    * ({@code application/xml}) is used for XML documents that are "unreadable by casual users."    * {@link #XML_UTF_8} is provided for documents that may be read by users.    *    * @since 14.0    */
 DECL|field|APPLICATION_XML_UTF_8
 specifier|public
 specifier|static
@@ -1745,7 +1747,7 @@ argument_list|,
 literal|"vnd.google-earth.kmz"
 argument_list|)
 decl_stmt|;
-comment|/** Media type for the<a href="https://tools.ietf.org/html/rfc4155">mbox database format</a>. */
+comment|/**    * Media type for the<a href="https://tools.ietf.org/html/rfc4155">mbox database format</a>.    *    * @since 13.0    */
 DECL|field|MBOX
 specifier|public
 specifier|static
@@ -2049,6 +2051,7 @@ argument_list|,
 literal|"protobuf"
 argument_list|)
 decl_stmt|;
+comment|/**    *<a href="https://en.wikipedia.org/wiki/RDF/XML">RDF/XML</a> documents, which are XML    * serializations of<a    * href="https://en.wikipedia.org/wiki/Resource_Description_Framework">Resource Description    * Framework</a> graphs.    *    * @since 14.0    */
 DECL|field|RDF_XML_UTF_8
 specifier|public
 specifier|static
@@ -2106,6 +2109,7 @@ argument_list|,
 literal|"x-shockwave-flash"
 argument_list|)
 decl_stmt|;
+comment|/**    * {@code skp} files produced by the 3D Modeling software<a    * href="https://www.sketchup.com/">SketchUp</a>    *    * @since 13.0    */
 DECL|field|SKETCHUP
 specifier|public
 specifier|static
@@ -2193,7 +2197,7 @@ argument_list|,
 literal|"xhtml+xml"
 argument_list|)
 decl_stmt|;
-comment|/**    * Media type for Extensible Resource Descriptors. This is not yet registered with the IANA, but    * it is specified by OASIS in the<a    * href="http://docs.oasis-open.org/xri/xrd/v1.0/cd02/xrd-1.0-cd02.html">XRD definition</a> and    * implemented in projects such as<a href="http://code.google.com/p/webfinger/">WebFinger</a>.    */
+comment|/**    * Media type for Extensible Resource Descriptors. This is not yet registered with the IANA, but    * it is specified by OASIS in the<a    * href="http://docs.oasis-open.org/xri/xrd/v1.0/cd02/xrd-1.0-cd02.html">XRD definition</a> and    * implemented in projects such as<a href="http://code.google.com/p/webfinger/">WebFinger</a>.    *    * @since 14.0    */
 DECL|field|XRD_UTF_8
 specifier|public
 specifier|static
