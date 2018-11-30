@@ -1045,7 +1045,7 @@ argument_list|,
 literal|"bmp"
 argument_list|)
 decl_stmt|;
-comment|/**    * The media type for the<a href="https://en.wikipedia.org/wiki/Camera_Image_File_Format">Canon    * Image File Format</a> ({@code crw} files), a widely-used "raw image" format for cameras. It is    * found in {@code /etc/mime.types}, e.g. in<a href=    * "http://anonscm.debian.org/gitweb/?p=collab-maint/mime-support.git;a=blob;f=mime.types;hb=HEAD"    *>Debian 3.48-1</a>.    *    * @since 15.0    */
+comment|/**    * The<a href="https://en.wikipedia.org/wiki/Camera_Image_File_Format">Canon Image File    * Format</a> ({@code crw} files), a widely-used "raw image" format for cameras. It is found in    * {@code /etc/mime.types}, e.g. in<a href=    * "http://anonscm.debian.org/gitweb/?p=collab-maint/mime-support.git;a=blob;f=mime.types;hb=HEAD"    *>Debian 3.48-1</a>.    *    * @since 15.0    */
 DECL|field|CRW
 specifier|public
 specifier|static
@@ -1116,7 +1116,7 @@ argument_list|,
 literal|"png"
 argument_list|)
 decl_stmt|;
-comment|/**    * The media type for the Photoshop File Format ({@code psd} files) as defined by<a    * href="http://www.iana.org/assignments/media-types/image/vnd.adobe.photoshop">IANA</a>, and    * found in {@code /etc/mime.types}, e.g.<a    * href="http://svn.apache.org/repos/asf/httpd/httpd/branches/1.3.x/conf/mime.types"></a> of the    * Apache<a href="http://httpd.apache.org/">HTTPD project</a>; for the specification, see<a    * href="http://www.adobe.com/devnet-apps/photoshop/fileformatashtml/PhotoshopFileFormats.htm">    * Adobe Photoshop Document Format</a> and<a    * href="http://en.wikipedia.org/wiki/Adobe_Photoshop#File_format">Wikipedia</a>; this is the    * regular output/input of Photoshop (which can also export to various image formats; note that    * files with extension "PSB" are in a distinct but related format).    *    *<p>This is a more recent replacement for the older, experimental type {@code x-photoshop}:<a    * href="http://tools.ietf.org/html/rfc2046#section-6">RFC-2046.6</a>.    *    * @since 15.0    */
+comment|/**    * The Photoshop File Format ({@code psd} files) as defined by<a    * href="http://www.iana.org/assignments/media-types/image/vnd.adobe.photoshop">IANA</a>, and    * found in {@code /etc/mime.types}, e.g.<a    * href="http://svn.apache.org/repos/asf/httpd/httpd/branches/1.3.x/conf/mime.types"></a> of the    * Apache<a href="http://httpd.apache.org/">HTTPD project</a>; for the specification, see<a    * href="http://www.adobe.com/devnet-apps/photoshop/fileformatashtml/PhotoshopFileFormats.htm">    * Adobe Photoshop Document Format</a> and<a    * href="http://en.wikipedia.org/wiki/Adobe_Photoshop#File_format">Wikipedia</a>; this is the    * regular output/input of Photoshop (which can also export to various image formats; note that    * files with extension "PSB" are in a distinct but related format).    *    *<p>This is a more recent replacement for the older, experimental type {@code x-photoshop}:<a    * href="http://tools.ietf.org/html/rfc2046#section-6">RFC-2046.6</a>.    *    * @since 15.0    */
 DECL|field|PSD
 specifier|public
 specifier|static
@@ -1231,7 +1231,7 @@ argument_list|,
 literal|"webm"
 argument_list|)
 decl_stmt|;
-comment|/**    * Media type for L16 audio, as defined by<a href="https://tools.ietf.org/html/rfc2586">RFC    * 2586</a>.    *    * @since 24.1    */
+comment|/**    * L16 audio, as defined by<a href="https://tools.ietf.org/html/rfc2586">RFC 2586</a>.    *    * @since 24.1    */
 DECL|field|L16_AUDIO
 specifier|public
 specifier|static
@@ -1246,7 +1246,7 @@ argument_list|,
 literal|"l16"
 argument_list|)
 decl_stmt|;
-comment|/**    * Media type for L24 audio, as defined by<a href="https://tools.ietf.org/html/rfc3190">RFC    * 3190</a>.    *    * @since 20.0    */
+comment|/**    * L24 audio, as defined by<a href="https://tools.ietf.org/html/rfc3190">RFC 3190</a>.    *    * @since 20.0    */
 DECL|field|L24_AUDIO
 specifier|public
 specifier|static
@@ -1261,7 +1261,7 @@ argument_list|,
 literal|"l24"
 argument_list|)
 decl_stmt|;
-comment|/**    * Media type for Basic Audio, as defined by<a    * href="http://tools.ietf.org/html/rfc2046#section-4.3">RFC 2046</a>.    *    * @since 20.0    */
+comment|/**    * Basic Audio, as defined by<a href="http://tools.ietf.org/html/rfc2046#section-4.3">RFC    * 2046</a>.    *    * @since 20.0    */
 DECL|field|BASIC_AUDIO
 specifier|public
 specifier|static
@@ -1276,7 +1276,7 @@ argument_list|,
 literal|"basic"
 argument_list|)
 decl_stmt|;
-comment|/**    * Media type for Advanced Audio Coding. For more information, see<a    * href="https://en.wikipedia.org/wiki/Advanced_Audio_Coding">Advanced Audio Coding</a>.    *    * @since 20.0    */
+comment|/**    * Advanced Audio Coding. For more information, see<a    * href="https://en.wikipedia.org/wiki/Advanced_Audio_Coding">Advanced Audio Coding</a>.    *    * @since 20.0    */
 DECL|field|AAC_AUDIO
 specifier|public
 specifier|static
@@ -1291,7 +1291,7 @@ argument_list|,
 literal|"aac"
 argument_list|)
 decl_stmt|;
-comment|/**    * Media type for Vorbis Audio, as defined by<a href="http://tools.ietf.org/html/rfc5215">RFC    * 5215</a>.    *    * @since 20.0    */
+comment|/**    * Vorbis Audio, as defined by<a href="http://tools.ietf.org/html/rfc5215">RFC 5215</a>.    *    * @since 20.0    */
 DECL|field|VORBIS_AUDIO
 specifier|public
 specifier|static
@@ -1306,7 +1306,7 @@ argument_list|,
 literal|"vorbis"
 argument_list|)
 decl_stmt|;
-comment|/**    * Media type for Windows Media Audio. For more information, see<a    * href="https://msdn.microsoft.com/en-us/library/windows/desktop/dd562994(v=vs.85).aspx">file    * name extensions for Windows Media metafiles</a>.    *    * @since 20.0    */
+comment|/**    * Windows Media Audio. For more information, see<a    * href="https://msdn.microsoft.com/en-us/library/windows/desktop/dd562994(v=vs.85).aspx">file    * name extensions for Windows Media metafiles</a>.    *    * @since 20.0    */
 DECL|field|WMA_AUDIO
 specifier|public
 specifier|static
@@ -1321,7 +1321,7 @@ argument_list|,
 literal|"x-ms-wma"
 argument_list|)
 decl_stmt|;
-comment|/**    * Media type for Windows Media metafiles. For more information, see<a    * href="https://msdn.microsoft.com/en-us/library/windows/desktop/dd562994(v=vs.85).aspx">file    * name extensions for Windows Media metafiles</a>.    *    * @since 20.0    */
+comment|/**    * Windows Media metafiles. For more information, see<a    * href="https://msdn.microsoft.com/en-us/library/windows/desktop/dd562994(v=vs.85).aspx">file    * name extensions for Windows Media metafiles</a>.    *    * @since 20.0    */
 DECL|field|WAX_AUDIO
 specifier|public
 specifier|static
@@ -1336,7 +1336,7 @@ argument_list|,
 literal|"x-ms-wax"
 argument_list|)
 decl_stmt|;
-comment|/**    * Media type for Real Audio. For more information, see<a    * href="http://service.real.com/help/faq/rp8/configrp8win.html">this link</a>.    *    * @since 20.0    */
+comment|/**    * Real Audio. For more information, see<a    * href="http://service.real.com/help/faq/rp8/configrp8win.html">this link</a>.    *    * @since 20.0    */
 DECL|field|VND_REAL_AUDIO
 specifier|public
 specifier|static
@@ -1351,7 +1351,7 @@ argument_list|,
 literal|"vnd.rn-realaudio"
 argument_list|)
 decl_stmt|;
-comment|/**    * Media type for WAVE format, as defined by<a href="https://tools.ietf.org/html/rfc2361">RFC    * 2361</a>.    *    * @since 20.0    */
+comment|/**    * WAVE format, as defined by<a href="https://tools.ietf.org/html/rfc2361">RFC 2361</a>.    *    * @since 20.0    */
 DECL|field|VND_WAVE_AUDIO
 specifier|public
 specifier|static
@@ -1451,7 +1451,7 @@ argument_list|,
 literal|"x-ms-wmv"
 argument_list|)
 decl_stmt|;
-comment|/**    * Media type for Flash video. For more information, see<a href=    * "http://help.adobe.com/en_US/ActionScript/3.0_ProgrammingAS3/WS5b3ccc516d4fbf351e63e3d118a9b90204-7d48.html"    *>this link</a>.    *    * @since 20.0    */
+comment|/**    * Flash video. For more information, see<a href=    * "http://help.adobe.com/en_US/ActionScript/3.0_ProgrammingAS3/WS5b3ccc516d4fbf351e63e3d118a9b90204-7d48.html"    *>this link</a>.    *    * @since 20.0    */
 DECL|field|FLV_VIDEO
 specifier|public
 specifier|static
@@ -1466,7 +1466,7 @@ argument_list|,
 literal|"x-flv"
 argument_list|)
 decl_stmt|;
-comment|/**    * Media type for the 3GP multimedia container format. For more information, see<a    * href="ftp://www.3gpp.org/tsg_sa/TSG_SA/TSGS_23/Docs/PDF/SP-040065.pdf#page=10">3GPP TS    * 26.244</a>.    *    * @since 20.0    */
+comment|/**    * The 3GP multimedia container format. For more information, see<a    * href="ftp://www.3gpp.org/tsg_sa/TSG_SA/TSGS_23/Docs/PDF/SP-040065.pdf#page=10">3GPP TS    * 26.244</a>.    *    * @since 20.0    */
 DECL|field|THREE_GPP_VIDEO
 specifier|public
 specifier|static
@@ -1481,7 +1481,7 @@ argument_list|,
 literal|"3gpp"
 argument_list|)
 decl_stmt|;
-comment|/**    * Media type for the 3G2 multimedia container format. For more information, see<a    * href="http://www.3gpp2.org/Public_html/specs/C.S0050-B_v1.0_070521.pdf#page=16">3GPP2    * C.S0050-B</a>.    *    * @since 20.0    */
+comment|/**    * The 3G2 multimedia container format. For more information, see<a    * href="http://www.3gpp2.org/Public_html/specs/C.S0050-B_v1.0_070521.pdf#page=16">3GPP2    * C.S0050-B</a>.    *    * @since 20.0    */
 DECL|field|THREE_GPP2_VIDEO
 specifier|public
 specifier|static
@@ -1540,7 +1540,7 @@ argument_list|,
 literal|"x-bzip2"
 argument_list|)
 decl_stmt|;
-comment|/**    * Media type for<a href="https://www.dartlang.org/articles/embedding-in-html/">dart files</a>.    *    * @since 19.0    */
+comment|/**    * Files in the<a href="https://www.dartlang.org/articles/embedding-in-html/">dart</a>    * programming language.    *    * @since 19.0    */
 DECL|field|DART_UTF_8
 specifier|public
 specifier|static
@@ -1555,7 +1555,7 @@ argument_list|,
 literal|"dart"
 argument_list|)
 decl_stmt|;
-comment|/**    * Media type for<a href="https://goo.gl/2QoMvg">Apple Passbook</a>.    *    * @since 19.0    */
+comment|/**    *<a href="https://goo.gl/2QoMvg">Apple Passbook</a>.    *    * @since 19.0    */
 DECL|field|APPLE_PASSBOOK
 specifier|public
 specifier|static
@@ -1570,7 +1570,7 @@ argument_list|,
 literal|"vnd.apple.pkpass"
 argument_list|)
 decl_stmt|;
-comment|/**    * Media type for<a href="http://en.wikipedia.org/wiki/Embedded_OpenType">Embedded OpenType</a>    * fonts. This is<a    * href="http://www.iana.org/assignments/media-types/application/vnd.ms-fontobject">registered    *</a> with the IANA.    *    * @since 17.0    */
+comment|/**    *<a href="http://en.wikipedia.org/wiki/Embedded_OpenType">Embedded OpenType</a> fonts. This is    *<a href="http://www.iana.org/assignments/media-types/application/vnd.ms-fontobject">registered    *</a> with the IANA.    *    * @since 17.0    */
 DECL|field|EOT
 specifier|public
 specifier|static
@@ -1658,7 +1658,7 @@ argument_list|,
 literal|"x-gzip"
 argument_list|)
 decl_stmt|;
-comment|/**    * Media type for the<a href="https://tools.ietf.org/html/draft-kelly-json-hal-08#section-3">JSON    * Hypertext Application Language (HAL) documents</a>.    *    * @since 26.0    */
+comment|/**    *<a href="https://tools.ietf.org/html/draft-kelly-json-hal-08#section-3">JSON Hypertext    * Application Language (HAL) documents</a>.    *    * @since 26.0    */
 DECL|field|HAL_JSON
 specifier|public
 specifier|static
@@ -1702,7 +1702,7 @@ argument_list|,
 literal|"json"
 argument_list|)
 decl_stmt|;
-comment|/**    * Media type for the<a href="http://www.w3.org/TR/appmanifest/">Manifest for a web    * application</a>.    *    * @since 19.0    */
+comment|/**    * The<a href="http://www.w3.org/TR/appmanifest/">Manifest for a web application</a>.    *    * @since 19.0    */
 DECL|field|MANIFEST_JSON_UTF_8
 specifier|public
 specifier|static
@@ -1717,7 +1717,7 @@ argument_list|,
 literal|"manifest+json"
 argument_list|)
 decl_stmt|;
-comment|/**    * Media type for<a href="http://www.opengeospatial.org/standards/kml/">OGC KML (Keyhole Markup    * Language)</a>.    */
+comment|/**    *<a href="http://www.opengeospatial.org/standards/kml/">OGC KML (Keyhole Markup Language)</a>.    */
 DECL|field|KML
 specifier|public
 specifier|static
@@ -1732,7 +1732,7 @@ argument_list|,
 literal|"vnd.google-earth.kml+xml"
 argument_list|)
 decl_stmt|;
-comment|/**    * Media type for<a href="http://www.opengeospatial.org/standards/kml/">OGC KML (Keyhole Markup    * Language)</a>, compressed using the ZIP format into KMZ archives.    */
+comment|/**    *<a href="http://www.opengeospatial.org/standards/kml/">OGC KML (Keyhole Markup Language)</a>,    * compressed using the ZIP format into KMZ archives.    */
 DECL|field|KMZ
 specifier|public
 specifier|static
@@ -1747,7 +1747,7 @@ argument_list|,
 literal|"vnd.google-earth.kmz"
 argument_list|)
 decl_stmt|;
-comment|/**    * Media type for the<a href="https://tools.ietf.org/html/rfc4155">mbox database format</a>.    *    * @since 13.0    */
+comment|/**    * The<a href="https://tools.ietf.org/html/rfc4155">mbox database format</a>.    *    * @since 13.0    */
 DECL|field|MBOX
 specifier|public
 specifier|static
@@ -1762,7 +1762,7 @@ argument_list|,
 literal|"mbox"
 argument_list|)
 decl_stmt|;
-comment|/**    * Media type for<a href="http://goo.gl/1pGBFm">Apple over-the-air mobile configuration    * profiles</a>.    *    * @since 18.0    */
+comment|/**    *<a href="http://goo.gl/1pGBFm">Apple over-the-air mobile configuration profiles</a>.    *    * @since 18.0    */
 DECL|field|APPLE_MOBILE_CONFIG
 specifier|public
 specifier|static
@@ -1777,7 +1777,7 @@ argument_list|,
 literal|"x-apple-aspen-config"
 argument_list|)
 decl_stmt|;
-comment|/** Media type for<a href="http://goo.gl/XDQ1h2">Microsoft Excel</a> spreadsheets. */
+comment|/**<a href="http://goo.gl/XDQ1h2">Microsoft Excel</a> spreadsheets. */
 DECL|field|MICROSOFT_EXCEL
 specifier|public
 specifier|static
@@ -1792,7 +1792,7 @@ argument_list|,
 literal|"vnd.ms-excel"
 argument_list|)
 decl_stmt|;
-comment|/**    * Media type for<a href="http://goo.gl/XrTEqG">Microsoft Outlook</a> items.    *    * @since NEXT    */
+comment|/**    *<a href="http://goo.gl/XrTEqG">Microsoft Outlook</a> items.    *    * @since NEXT    */
 DECL|field|MICROSOFT_OUTLOOK
 specifier|public
 specifier|static
@@ -1807,7 +1807,7 @@ argument_list|,
 literal|"vnd.ms-outlook"
 argument_list|)
 decl_stmt|;
-comment|/** Media type for<a href="http://goo.gl/XDQ1h2">Microsoft Powerpoint</a> presentations. */
+comment|/**<a href="http://goo.gl/XDQ1h2">Microsoft Powerpoint</a> presentations. */
 DECL|field|MICROSOFT_POWERPOINT
 specifier|public
 specifier|static
@@ -1822,7 +1822,7 @@ argument_list|,
 literal|"vnd.ms-powerpoint"
 argument_list|)
 decl_stmt|;
-comment|/** Media type for<a href="http://goo.gl/XDQ1h2">Microsoft Word</a> documents. */
+comment|/**<a href="http://goo.gl/XDQ1h2">Microsoft Word</a> documents. */
 DECL|field|MICROSOFT_WORD
 specifier|public
 specifier|static
@@ -1837,7 +1837,7 @@ argument_list|,
 literal|"msword"
 argument_list|)
 decl_stmt|;
-comment|/**    * Media type for WASM applications. For more information see<a    * href="https://webassembly.org/">the Web Assembly overview</a>.    *    * @since 27.0    */
+comment|/**    * WASM applications. For more information see<a href="https://webassembly.org/">the Web Assembly    * overview</a>.    *    * @since 27.0    */
 DECL|field|WASM_APPLICATION
 specifier|public
 specifier|static
@@ -1852,7 +1852,7 @@ argument_list|,
 literal|"wasm"
 argument_list|)
 decl_stmt|;
-comment|/**    * Media type for NaCl applications. For more information see<a    * href="https://developer.chrome.com/native-client/devguide/coding/application-structure">the    * Developer Guide for Native Client Application Structure</a>.    *    * @since 20.0    */
+comment|/**    * NaCl applications. For more information see<a    * href="https://developer.chrome.com/native-client/devguide/coding/application-structure">the    * Developer Guide for Native Client Application Structure</a>.    *    * @since 20.0    */
 DECL|field|NACL_APPLICATION
 specifier|public
 specifier|static
@@ -1867,7 +1867,7 @@ argument_list|,
 literal|"x-nacl"
 argument_list|)
 decl_stmt|;
-comment|/**    * Media type for NaCl portable applications. For more information see<a    * href="https://developer.chrome.com/native-client/devguide/coding/application-structure">the    * Developer Guide for Native Client Application Structure</a>.    *    * @since 20.0    */
+comment|/**    * NaCl portable applications. For more information see<a    * href="https://developer.chrome.com/native-client/devguide/coding/application-structure">the    * Developer Guide for Native Client Application Structure</a>.    *    * @since 20.0    */
 DECL|field|NACL_PORTABLE_APPLICATION
 specifier|public
 specifier|static
@@ -2080,7 +2080,7 @@ argument_list|,
 literal|"rtf"
 argument_list|)
 decl_stmt|;
-comment|/**    * Media type for SFNT fonts (which includes<a    * href="http://en.wikipedia.org/wiki/TrueType/">TrueType</a> and<a    * href="http://en.wikipedia.org/wiki/OpenType/">OpenType</a> fonts). This is<a    * href="http://www.iana.org/assignments/media-types/application/font-sfnt">registered</a> with    * the IANA.    *    * @since 17.0    */
+comment|/**    * SFNT fonts (which includes<a href="http://en.wikipedia.org/wiki/TrueType/">TrueType</a> and<a    * href="http://en.wikipedia.org/wiki/OpenType/">OpenType</a> fonts). This is<a    * href="http://www.iana.org/assignments/media-types/application/font-sfnt">registered</a> with    * the IANA.    *    * @since 17.0    */
 DECL|field|SFNT
 specifier|public
 specifier|static
@@ -2153,7 +2153,7 @@ argument_list|,
 literal|"x-tar"
 argument_list|)
 decl_stmt|;
-comment|/**    * Media type for the<a href="http://en.wikipedia.org/wiki/Web_Open_Font_Format">Web Open Font    * Format</a> (WOFF)<a href="http://www.w3.org/TR/WOFF/">defined</a> by the W3C. This is<a    * href="http://www.iana.org/assignments/media-types/application/font-woff">registered</a> with    * the IANA.    *    * @since 17.0    */
+comment|/**    *<a href="http://en.wikipedia.org/wiki/Web_Open_Font_Format">Web Open Font Format</a> (WOFF)<a    * href="http://www.w3.org/TR/WOFF/">defined</a> by the W3C. This is<a    * href="http://www.iana.org/assignments/media-types/application/font-woff">registered</a> with    * the IANA.    *    * @since 17.0    */
 DECL|field|WOFF
 specifier|public
 specifier|static
@@ -2168,7 +2168,7 @@ argument_list|,
 literal|"font-woff"
 argument_list|)
 decl_stmt|;
-comment|/**    * Media type for the<a href="http://en.wikipedia.org/wiki/Web_Open_Font_Format">Web Open Font    * Format</a> (WOFF) version 2<a href="https://www.w3.org/TR/WOFF2/">defined</a> by the W3C.    *    * @since 20.0    */
+comment|/**    *<a href="http://en.wikipedia.org/wiki/Web_Open_Font_Format">Web Open Font Format</a> (WOFF)    * version 2<a href="https://www.w3.org/TR/WOFF2/">defined</a> by the W3C.    *    * @since 20.0    */
 DECL|field|WOFF2
 specifier|public
 specifier|static
@@ -2197,7 +2197,7 @@ argument_list|,
 literal|"xhtml+xml"
 argument_list|)
 decl_stmt|;
-comment|/**    * Media type for Extensible Resource Descriptors. This is not yet registered with the IANA, but    * it is specified by OASIS in the<a    * href="http://docs.oasis-open.org/xri/xrd/v1.0/cd02/xrd-1.0-cd02.html">XRD definition</a> and    * implemented in projects such as<a href="http://code.google.com/p/webfinger/">WebFinger</a>.    *    * @since 14.0    */
+comment|/**    * Extensible Resource Descriptors. This is not yet registered with the IANA, but it is specified    * by OASIS in the<a href="http://docs.oasis-open.org/xri/xrd/v1.0/cd02/xrd-1.0-cd02.html">XRD    * definition</a> and implemented in projects such as<a    * href="http://code.google.com/p/webfinger/">WebFinger</a>.    *    * @since 14.0    */
 DECL|field|XRD_UTF_8
 specifier|public
 specifier|static
