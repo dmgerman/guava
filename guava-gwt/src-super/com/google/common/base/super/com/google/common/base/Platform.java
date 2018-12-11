@@ -271,7 +271,7 @@ literal|true
 argument_list|,
 name|name
 operator|=
-literal|"Number"
+literal|"number"
 argument_list|,
 name|namespace
 operator|=
