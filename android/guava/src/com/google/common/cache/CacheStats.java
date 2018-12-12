@@ -152,6 +152,12 @@ name|long
 name|evictionCount
 decl_stmt|;
 comment|/**    * Constructs a new {@code CacheStats} instance.    *    *<p>Five parameters of the same type in a row is a bad thing, but this class is not constructed    * by end users and is too fine-grained for a builder.    */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"GoodTime"
+argument_list|)
+comment|// should accept a java.time.Duration
 DECL|method|CacheStats ( long hitCount, long missCount, long loadSuccessCount, long loadExceptionCount, long totalLoadTime, long evictionCount)
 specifier|public
 name|CacheStats
@@ -416,6 +422,12 @@ name|totalLoadCount
 return|;
 block|}
 comment|/**    * Returns the total number of nanoseconds the cache has spent loading new values. This can be    * used to calculate the miss penalty. This value is increased every time {@code loadSuccessCount}    * or {@code loadExceptionCount} is incremented.    */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"GoodTime"
+argument_list|)
+comment|// should return a java.time.Duration
 DECL|method|totalLoadTime ()
 specifier|public
 name|long

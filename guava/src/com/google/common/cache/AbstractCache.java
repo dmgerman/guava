@@ -494,6 +494,12 @@ name|count
 parameter_list|)
 function_decl|;
 comment|/**      * Records the successful load of a new entry. This should be called when a cache request causes      * an entry to be loaded, and the loading completes successfully. In contrast to {@link      * #recordMisses}, this method should only be called by the loading thread.      *      * @param loadTime the number of nanoseconds the cache spent computing or retrieving the new      *     value      */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"GoodTime"
+argument_list|)
+comment|// should accept a java.time.Duration
 DECL|method|recordLoadSuccess (long loadTime)
 name|void
 name|recordLoadSuccess
@@ -503,6 +509,12 @@ name|loadTime
 parameter_list|)
 function_decl|;
 comment|/**      * Records the failed load of a new entry. This should be called when a cache request causes an      * entry to be loaded, but an exception is thrown while loading the entry. In contrast to {@link      * #recordMisses}, this method should only be called by the loading thread.      *      * @param loadTime the number of nanoseconds the cache spent computing or retrieving the new      *     value prior to an exception being thrown      */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"GoodTime"
+argument_list|)
+comment|// should accept a java.time.Duration
 DECL|method|recordLoadException (long loadTime)
 name|void
 name|recordLoadException
