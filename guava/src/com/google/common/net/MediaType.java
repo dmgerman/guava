@@ -1688,6 +1688,36 @@ argument_list|,
 literal|"javascript"
 argument_list|)
 decl_stmt|;
+comment|/**    * For<a href="https://tools.ietf.org/html/rfc7515">JWS or JWE objects using the Compact    * Serialization</a>.    *    * @since NEXT    */
+DECL|field|JOSE
+specifier|public
+specifier|static
+specifier|final
+name|MediaType
+name|JOSE
+init|=
+name|createConstant
+argument_list|(
+name|APPLICATION_TYPE
+argument_list|,
+literal|"jose"
+argument_list|)
+decl_stmt|;
+comment|/**    * For<a href="https://tools.ietf.org/html/rfc7515">JWS or JWE objects using the JSON    * Serialization</a>.    *    * @since NEXT    */
+DECL|field|JOSE_JSON
+specifier|public
+specifier|static
+specifier|final
+name|MediaType
+name|JOSE_JSON
+init|=
+name|createConstant
+argument_list|(
+name|APPLICATION_TYPE
+argument_list|,
+literal|"jose+json"
+argument_list|)
+decl_stmt|;
 DECL|field|JSON_UTF_8
 specifier|public
 specifier|static
