@@ -1205,8 +1205,8 @@ block|}
 comment|/**    * Copies all characters from a file to an appendable object, using the given character set.    *    * @param from the source file    * @param charset the charset used to decode the input stream; see {@link StandardCharsets} for    *     helpful predefined constants    * @param to the appendable object    * @throws IOException if an I/O error occurs    * @deprecated Prefer {@code asCharSource(from, charset).copyTo(to)}. This method is scheduled to    *     be removed in January 2019.    */
 annotation|@
 name|Deprecated
-DECL|method|copy (File from, Charset charset, Appendable to)
 specifier|public
+DECL|method|copy (File from, Charset charset, Appendable to)
 specifier|static
 name|void
 name|copy
@@ -1239,8 +1239,8 @@ block|}
 comment|/**    * Appends a character sequence (such as a string) to a file using the given character set.    *    * @param from the character sequence to append    * @param to the destination file    * @param charset the charset used to encode the output stream; see {@link StandardCharsets} for    *     helpful predefined constants    * @throws IOException if an I/O error occurs    * @deprecated Prefer {@code asCharSink(to, charset, FileWriteMode.APPEND).write(from)}. This    *     method is scheduled to be removed in January 2019.    */
 annotation|@
 name|Deprecated
-DECL|method|append (CharSequence from, File to, Charset charset)
 specifier|public
+DECL|method|append (CharSequence from, File to, Charset charset)
 specifier|static
 name|void
 name|append
@@ -1697,8 +1697,8 @@ block|}
 comment|/**    * Reads the first line from a file. The line does not include line-termination characters, but    * does include other leading and trailing whitespace.    *    * @param file the file to read from    * @param charset the charset used to decode the input stream; see {@link StandardCharsets} for    *     helpful predefined constants    * @return the first line, or null if the file is empty    * @throws IOException if an I/O error occurs    * @deprecated Prefer {@code asCharSource(file, charset).readFirstLine()}. This method is    *     scheduled to be removed in January 2019.    */
 annotation|@
 name|Deprecated
-DECL|method|readFirstLine (File file, Charset charset)
 specifier|public
+DECL|method|readFirstLine (File file, Charset charset)
 specifier|static
 name|String
 name|readFirstLine
@@ -1822,8 +1822,8 @@ name|Deprecated
 annotation|@
 name|CanIgnoreReturnValue
 comment|// some processors won't return a useful result
-DECL|method|readLines (File file, Charset charset, LineProcessor<T> callback)
 specifier|public
+DECL|method|readLines (File file, Charset charset, LineProcessor<T> callback)
 specifier|static
 parameter_list|<
 name|T
@@ -1866,8 +1866,8 @@ name|Deprecated
 annotation|@
 name|CanIgnoreReturnValue
 comment|// some processors won't return a useful result
-DECL|method|readBytes (File file, ByteProcessor<T> processor)
 specifier|public
+DECL|method|readBytes (File file, ByteProcessor<T> processor)
 specifier|static
 parameter_list|<
 name|T
@@ -1902,8 +1902,8 @@ block|}
 comment|/**    * Computes the hash code of the {@code file} using {@code hashFunction}.    *    * @param file the file to read    * @param hashFunction the hash function to use to hash the data    * @return the {@link HashCode} of all of the bytes in the file    * @throws IOException if an I/O error occurs    * @since 12.0    * @deprecated Prefer {@code asByteSource(file).hash(hashFunction)}. This method is scheduled to    *     be removed in January 2019.    */
 annotation|@
 name|Deprecated
-DECL|method|hash (File file, HashFunction hashFunction)
 specifier|public
+DECL|method|hash (File file, HashFunction hashFunction)
 specifier|static
 name|HashCode
 name|hash
