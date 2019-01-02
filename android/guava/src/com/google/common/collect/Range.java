@@ -424,7 +424,7 @@ name|upperBound
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a range that contains all values strictly greater than {@code lower} and strictly less    * than {@code upper}.    *    * @throws IllegalArgumentException if {@code lower} is greater than<i>or equal to</i> {@code    *     upper}    * @since 14.0    */
+comment|/**    * Returns a range that contains all values strictly greater than {@code lower} and strictly less    * than {@code upper}.    *    * @throws IllegalArgumentException if {@code lower} is greater than<i>or equal to</i> {@code    *     upper}    * @throws ClassCastException if {@code lower} and {@code upper} are not mutually comparable    * @since 14.0    */
 DECL|method|open (C lower, C upper)
 specifier|public
 specifier|static
@@ -468,7 +468,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a range that contains all values greater than or equal to {@code lower} and less than    * or equal to {@code upper}.    *    * @throws IllegalArgumentException if {@code lower} is greater than {@code upper}    * @since 14.0    */
+comment|/**    * Returns a range that contains all values greater than or equal to {@code lower} and less than    * or equal to {@code upper}.    *    * @throws IllegalArgumentException if {@code lower} is greater than {@code upper}    * @throws ClassCastException if {@code lower} and {@code upper} are not mutually comparable    * @since 14.0    */
 DECL|method|closed (C lower, C upper)
 specifier|public
 specifier|static
@@ -512,7 +512,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a range that contains all values greater than or equal to {@code lower} and strictly    * less than {@code upper}.    *    * @throws IllegalArgumentException if {@code lower} is greater than {@code upper}    * @since 14.0    */
+comment|/**    * Returns a range that contains all values greater than or equal to {@code lower} and strictly    * less than {@code upper}.    *    * @throws IllegalArgumentException if {@code lower} is greater than {@code upper}    * @throws ClassCastException if {@code lower} and {@code upper} are not mutually comparable    * @since 14.0    */
 DECL|method|closedOpen (C lower, C upper)
 specifier|public
 specifier|static
@@ -556,7 +556,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a range that contains all values strictly greater than {@code lower} and less than or    * equal to {@code upper}.    *    * @throws IllegalArgumentException if {@code lower} is greater than {@code upper}    * @since 14.0    */
+comment|/**    * Returns a range that contains all values strictly greater than {@code lower} and less than or    * equal to {@code upper}.    *    * @throws IllegalArgumentException if {@code lower} is greater than {@code upper}    * @throws ClassCastException if {@code lower} and {@code upper} are not mutually comparable    * @since 14.0    */
 DECL|method|openClosed (C lower, C upper)
 specifier|public
 specifier|static
@@ -600,7 +600,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a range that contains any value from {@code lower} to {@code upper}, where each    * endpoint may be either inclusive (closed) or exclusive (open).    *    * @throws IllegalArgumentException if {@code lower} is greater than {@code upper}    * @since 14.0    */
+comment|/**    * Returns a range that contains any value from {@code lower} to {@code upper}, where each    * endpoint may be either inclusive (closed) or exclusive (open).    *    * @throws IllegalArgumentException if {@code lower} is greater than {@code upper}    * @throws ClassCastException if {@code lower} and {@code upper} are not mutually comparable    * @since 14.0    */
 DECL|method|range ( C lower, BoundType lowerType, C upper, BoundType upperType)
 specifier|public
 specifier|static
@@ -1073,7 +1073,7 @@ name|value
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the minimal range that {@linkplain Range#contains(Comparable) contains} all of the    * given values. The returned range is {@linkplain BoundType#CLOSED closed} on both ends.    *    * @throws ClassCastException if the parameters are not<i>mutually comparable</i>    * @throws NoSuchElementException if {@code values} is empty    * @throws NullPointerException if any of {@code values} is null    * @since 14.0    */
+comment|/**    * Returns the minimal range that {@linkplain Range#contains(Comparable) contains} all of the    * given values. The returned range is {@linkplain BoundType#CLOSED closed} on both ends.    *    * @throws ClassCastException if the values are not mutually comparable    * @throws NoSuchElementException if {@code values} is empty    * @throws NullPointerException if any of {@code values} is null    * @since 14.0    */
 DECL|method|encloseAll (Iterable<C> values)
 specifier|public
 specifier|static
