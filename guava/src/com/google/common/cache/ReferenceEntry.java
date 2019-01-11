@@ -138,6 +138,12 @@ name|getAccessTime
 parameter_list|()
 function_decl|;
 comment|/** Sets the entry access time in ns. */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"GoodTime"
+argument_list|)
+comment|// b/122668874
 DECL|method|setAccessTime (long time)
 name|void
 name|setAccessTime
@@ -204,6 +210,12 @@ name|getWriteTime
 parameter_list|()
 function_decl|;
 comment|/** Sets the entry write time in ns. */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"GoodTime"
+argument_list|)
+comment|// b/122668874
 DECL|method|setWriteTime (long time)
 name|void
 name|setWriteTime

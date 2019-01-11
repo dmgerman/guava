@@ -944,6 +944,12 @@ end_comment
 
 begin_class
 annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"GoodTime"
+argument_list|)
+comment|// lots of violations (nanosecond math)
+annotation|@
 name|GwtCompatible
 argument_list|(
 name|emulated

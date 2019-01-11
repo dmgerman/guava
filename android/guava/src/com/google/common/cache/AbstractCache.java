@@ -659,6 +659,12 @@ argument_list|)
 expr_stmt|;
 block|}
 annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"GoodTime"
+argument_list|)
+comment|// b/122668874
+annotation|@
 name|Override
 DECL|method|recordLoadSuccess (long loadTime)
 specifier|public
@@ -682,6 +688,12 @@ name|loadTime
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"GoodTime"
+argument_list|)
+comment|// b/122668874
 annotation|@
 name|Override
 DECL|method|recordLoadException (long loadTime)

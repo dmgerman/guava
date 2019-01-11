@@ -397,6 +397,12 @@ name|DEFAULT_CONCURRENCY_LEVEL
 init|=
 literal|4
 decl_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"GoodTime"
+argument_list|)
+comment|// should be a java.time.Duration
 DECL|field|DEFAULT_EXPIRATION_NANOS
 specifier|private
 specifier|static
@@ -406,6 +412,12 @@ name|DEFAULT_EXPIRATION_NANOS
 init|=
 literal|0
 decl_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"GoodTime"
+argument_list|)
+comment|// should be a java.time.Duration
 DECL|field|DEFAULT_REFRESH_NANOS
 specifier|private
 specifier|static
@@ -455,6 +467,12 @@ name|count
 parameter_list|)
 block|{}
 annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"GoodTime"
+argument_list|)
+comment|// b/122668874
+annotation|@
 name|Override
 specifier|public
 name|void
@@ -464,6 +482,12 @@ name|long
 name|loadTime
 parameter_list|)
 block|{}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"GoodTime"
+argument_list|)
+comment|// b/122668874
 annotation|@
 name|Override
 specifier|public
@@ -720,18 +744,36 @@ name|MonotonicNonNullDecl
 name|Strength
 name|valueStrength
 decl_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"GoodTime"
+argument_list|)
+comment|// should be a java.time.Duration
 DECL|field|expireAfterWriteNanos
 name|long
 name|expireAfterWriteNanos
 init|=
 name|UNSET_INT
 decl_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"GoodTime"
+argument_list|)
+comment|// should be a java.time.Duration
 DECL|field|expireAfterAccessNanos
 name|long
 name|expireAfterAccessNanos
 init|=
 name|UNSET_INT
 decl_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"GoodTime"
+argument_list|)
+comment|// should be a java.time.Duration
 DECL|field|refreshNanos
 name|long
 name|refreshNanos

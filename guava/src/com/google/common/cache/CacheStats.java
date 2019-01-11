@@ -139,6 +139,12 @@ specifier|final
 name|long
 name|loadExceptionCount
 decl_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"GoodTime"
+argument_list|)
+comment|// should be a java.time.Duration
 DECL|field|totalLoadTime
 specifier|private
 specifier|final

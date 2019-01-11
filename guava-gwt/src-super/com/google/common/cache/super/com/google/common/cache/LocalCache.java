@@ -1382,6 +1382,12 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"GoodTime"
+argument_list|)
+comment|// timestamps as numeric primitives
 DECL|method|load (Object key)
 specifier|private
 name|V
@@ -1679,6 +1685,12 @@ name|key
 argument_list|)
 return|;
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"GoodTime"
+argument_list|)
+comment|// timestamps as numeric primitives
 DECL|class|Timestamped
 specifier|private
 specifier|static
