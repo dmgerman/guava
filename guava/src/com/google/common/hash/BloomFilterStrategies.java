@@ -1034,7 +1034,7 @@ call|)
 argument_list|(
 name|bitIndex
 operator|>>>
-literal|6
+name|LONG_ADDRESSABLE_BITS
 argument_list|)
 argument_list|)
 operator|&
