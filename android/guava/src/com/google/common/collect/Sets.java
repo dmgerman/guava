@@ -2373,9 +2373,9 @@ name|Collections
 operator|.
 name|disjoint
 argument_list|(
-name|set1
-argument_list|,
 name|set2
+argument_list|,
+name|set1
 argument_list|)
 return|;
 block|}
