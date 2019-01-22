@@ -1177,9 +1177,6 @@ name|right
 parameter_list|)
 function_decl|;
 comment|/**    * Returns the least of the specified values according to this ordering. If there are multiple    * least values, the first of those is returned. The iterator will be left exhausted: its {@code    * hasNext()} method will return {@code false}.    *    *<p><b>Java 8 users:</b> Continue to use this method for now. After the next release of Guava,    * use {@code Streams.stream(iterator).min(thisComparator).get()} instead (but note that it does    * not guarantee which tied minimum element is returned).    *    * @param iterator the iterator whose minimum element is to be determined    * @throws NoSuchElementException if {@code iterator} is empty    * @throws ClassCastException if the parameters are not<i>mutually comparable</i> under this    *     ordering.    * @since 11.0    */
-annotation|@
-name|CanIgnoreReturnValue
-comment|// TODO(kak): Consider removing this
 DECL|method|min (Iterator<E> iterator)
 specifier|public
 parameter_list|<
@@ -1232,9 +1229,6 @@ name|minSoFar
 return|;
 block|}
 comment|/**    * Returns the least of the specified values according to this ordering. If there are multiple    * least values, the first of those is returned.    *    *<p><b>Java 8 users:</b> If {@code iterable} is a {@link Collection}, use {@code    * Collections.min(collection, thisComparator)} instead. Otherwise, continue to use this method    * for now. After the next release of Guava, use {@code    * Streams.stream(iterable).min(thisComparator).get()} instead. Note that these alternatives do    * not guarantee which tied minimum element is returned)    *    * @param iterable the iterable whose minimum element is to be determined    * @throws NoSuchElementException if {@code iterable} is empty    * @throws ClassCastException if the parameters are not<i>mutually comparable</i> under this    *     ordering.    */
-annotation|@
-name|CanIgnoreReturnValue
-comment|// TODO(kak): Consider removing this
 DECL|method|min (Iterable<E> iterable)
 specifier|public
 parameter_list|<
@@ -1263,9 +1257,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns the lesser of the two values according to this ordering. If the values compare as 0,    * the first is returned.    *    *<p><b>Implementation note:</b> this method is invoked by the default implementations of the    * other {@code min} overloads, so overriding it will affect their behavior.    *    *<p><b>Java 8 users:</b> Use {@code Collections.min(Arrays.asList(a, b), thisComparator)}    * instead (but note that it does not guarantee which tied minimum element is returned).    *    * @param a value to compare, returned if less than or equal to b.    * @param b value to compare.    * @throws ClassCastException if the parameters are not<i>mutually comparable</i> under this    *     ordering.    */
-annotation|@
-name|CanIgnoreReturnValue
-comment|// TODO(kak): Consider removing this
 DECL|method|min (@ullableDecl E a, @NullableDecl E b)
 specifier|public
 parameter_list|<
@@ -1305,9 +1296,6 @@ name|b
 return|;
 block|}
 comment|/**    * Returns the least of the specified values according to this ordering. If there are multiple    * least values, the first of those is returned.    *    *<p><b>Java 8 users:</b> Use {@code Collections.min(Arrays.asList(a, b, c...), thisComparator)}    * instead (but note that it does not guarantee which tied minimum element is returned).    *    * @param a value to compare, returned if less than or equal to the rest.    * @param b value to compare    * @param c value to compare    * @param rest values to compare    * @throws ClassCastException if the parameters are not<i>mutually comparable</i> under this    *     ordering.    */
-annotation|@
-name|CanIgnoreReturnValue
-comment|// TODO(kak): Consider removing this
 DECL|method|min (@ullableDecl E a, @NullableDecl E b, @NullableDecl E c, E... rest)
 specifier|public
 parameter_list|<
@@ -1376,9 +1364,6 @@ name|minSoFar
 return|;
 block|}
 comment|/**    * Returns the greatest of the specified values according to this ordering. If there are multiple    * greatest values, the first of those is returned. The iterator will be left exhausted: its    * {@code hasNext()} method will return {@code false}.    *    *<p><b>Java 8 users:</b> Continue to use this method for now. After the next release of Guava,    * use {@code Streams.stream(iterator).max(thisComparator).get()} instead (but note that it does    * not guarantee which tied maximum element is returned).    *    * @param iterator the iterator whose maximum element is to be determined    * @throws NoSuchElementException if {@code iterator} is empty    * @throws ClassCastException if the parameters are not<i>mutually comparable</i> under this    *     ordering.    * @since 11.0    */
-annotation|@
-name|CanIgnoreReturnValue
-comment|// TODO(kak): Consider removing this
 DECL|method|max (Iterator<E> iterator)
 specifier|public
 parameter_list|<
@@ -1431,9 +1416,6 @@ name|maxSoFar
 return|;
 block|}
 comment|/**    * Returns the greatest of the specified values according to this ordering. If there are multiple    * greatest values, the first of those is returned.    *    *<p><b>Java 8 users:</b> If {@code iterable} is a {@link Collection}, use {@code    * Collections.max(collection, thisComparator)} instead. Otherwise, continue to use this method    * for now. After the next release of Guava, use {@code    * Streams.stream(iterable).max(thisComparator).get()} instead. Note that these alternatives do    * not guarantee which tied maximum element is returned)    *    * @param iterable the iterable whose maximum element is to be determined    * @throws NoSuchElementException if {@code iterable} is empty    * @throws ClassCastException if the parameters are not<i>mutually comparable</i> under this    *     ordering.    */
-annotation|@
-name|CanIgnoreReturnValue
-comment|// TODO(kak): Consider removing this
 DECL|method|max (Iterable<E> iterable)
 specifier|public
 parameter_list|<
@@ -1462,9 +1444,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns the greater of the two values according to this ordering. If the values compare as 0,    * the first is returned.    *    *<p><b>Implementation note:</b> this method is invoked by the default implementations of the    * other {@code max} overloads, so overriding it will affect their behavior.    *    *<p><b>Java 8 users:</b> Use {@code Collections.max(Arrays.asList(a, b), thisComparator)}    * instead (but note that it does not guarantee which tied maximum element is returned).    *    * @param a value to compare, returned if greater than or equal to b.    * @param b value to compare.    * @throws ClassCastException if the parameters are not<i>mutually comparable</i> under this    *     ordering.    */
-annotation|@
-name|CanIgnoreReturnValue
-comment|// TODO(kak): Consider removing this
 DECL|method|max (@ullableDecl E a, @NullableDecl E b)
 specifier|public
 parameter_list|<
@@ -1504,9 +1483,6 @@ name|b
 return|;
 block|}
 comment|/**    * Returns the greatest of the specified values according to this ordering. If there are multiple    * greatest values, the first of those is returned.    *    *<p><b>Java 8 users:</b> Use {@code Collections.max(Arrays.asList(a, b, c...), thisComparator)}    * instead (but note that it does not guarantee which tied maximum element is returned).    *    * @param a value to compare, returned if greater than or equal to the rest.    * @param b value to compare    * @param c value to compare    * @param rest values to compare    * @throws ClassCastException if the parameters are not<i>mutually comparable</i> under this    *     ordering.    */
-annotation|@
-name|CanIgnoreReturnValue
-comment|// TODO(kak): Consider removing this
 DECL|method|max (@ullableDecl E a, @NullableDecl E b, @NullableDecl E c, E... rest)
 specifier|public
 parameter_list|<
