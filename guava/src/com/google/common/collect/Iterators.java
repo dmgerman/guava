@@ -1169,9 +1169,6 @@ argument_list|()
 return|;
 block|}
 comment|/**    * Returns the single element contained in {@code iterator}.    *    * @throws NoSuchElementException if the iterator is empty    * @throws IllegalArgumentException if the iterator contains multiple elements. The state of the    *     iterator is unspecified.    */
-annotation|@
-name|CanIgnoreReturnValue
-comment|// TODO(kak): Consider removing this?
 DECL|method|getOnlyElement (Iterator<T> iterator)
 specifier|public
 specifier|static
@@ -1297,9 +1294,6 @@ argument_list|)
 throw|;
 block|}
 comment|/**    * Returns the single element contained in {@code iterator}, or {@code defaultValue} if the    * iterator is empty.    *    * @throws IllegalArgumentException if the iterator contains multiple elements. The state of the    *     iterator is unspecified.    */
-annotation|@
-name|CanIgnoreReturnValue
-comment|// TODO(kak): Consider removing this?
 DECL|method|getOnlyElement ( Iterator<? extends T> iterator, @Nullable T defaultValue)
 specifier|public
 specifier|static
