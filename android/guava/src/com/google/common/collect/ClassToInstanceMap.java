@@ -98,15 +98,12 @@ name|B
 argument_list|>
 block|{
 comment|/**    * Returns the value the specified class is mapped to, or {@code null} if no entry for this class    * is present. This will only return a value that was bound to this specific class, not a value    * that may have been bound to a subtype.    */
-annotation|@
-name|CanIgnoreReturnValue
-comment|// TODO(kak): Consider removing this?
 DECL|method|getInstance (Class<T> type)
-argument_list|<
+parameter_list|<
 name|T
 extends|extends
 name|B
-argument_list|>
+parameter_list|>
 name|T
 name|getInstance
 parameter_list|(
