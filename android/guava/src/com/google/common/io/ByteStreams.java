@@ -1921,12 +1921,6 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"deprecation"
-argument_list|)
-comment|// for writeBytes
 DECL|class|ByteArrayDataOutputStream
 specifier|private
 specifier|static

@@ -105,7 +105,7 @@ argument_list|)
 annotation|@
 name|SuppressWarnings
 argument_list|(
-literal|"unchecked"
+literal|"rawtypes"
 argument_list|)
 comment|// allow ungenerified Comparable types
 DECL|class|EmptyContiguousSet

@@ -177,7 +177,11 @@ argument_list|)
 annotation|@
 name|SuppressWarnings
 argument_list|(
+block|{
 literal|"serial"
+block|,
+literal|"rawtypes"
+block|}
 argument_list|)
 DECL|class|RegularImmutableSortedSet
 specifier|final

@@ -100,12 +100,6 @@ name|emulated
 operator|=
 literal|true
 argument_list|)
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"serial"
-argument_list|)
-comment|// we're overriding default serialization
 DECL|class|LinkedHashMultiset
 specifier|public
 specifier|final

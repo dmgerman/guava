@@ -579,11 +579,6 @@ literal|false
 return|;
 block|}
 comment|/**    * Returns {@code element} cast to {@code E}, if it actually is a nonnull E. Otherwise, throws    * either a NullPointerException or a ClassCastException as appropriate.    */
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
 DECL|method|checkIsE (@ullable Object element)
 name|void
 name|checkIsE

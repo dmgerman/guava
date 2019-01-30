@@ -81,7 +81,11 @@ argument_list|)
 annotation|@
 name|SuppressWarnings
 argument_list|(
+block|{
 literal|"unchecked"
+block|,
+literal|"rawtypes"
+block|}
 argument_list|)
 comment|// TODO(kevinb): the right way to explain this??
 DECL|class|ReverseNaturalOrdering
