@@ -843,6 +843,16 @@ name|REFRESH
 init|=
 literal|"Refresh"
 decl_stmt|;
+comment|/**    * The HTTP<a href="https://www.w3.org/TR/reporting/">{@code Report-To}</a> header field name.    */
+DECL|field|REPORT_TO
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|REPORT_TO
+init|=
+literal|"Report-To"
+decl_stmt|;
 comment|/** The HTTP {@code Retry-After} header field name. */
 DECL|field|RETRY_AFTER
 specifier|public
