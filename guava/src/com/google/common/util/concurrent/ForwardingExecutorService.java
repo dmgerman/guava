@@ -475,6 +475,8 @@ name|command
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|submit (Callable<T> task)
 specifier|public
 parameter_list|<

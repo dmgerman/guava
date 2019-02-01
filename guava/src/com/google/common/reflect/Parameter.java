@@ -375,6 +375,8 @@ return|;
 block|}
 comment|/** @since 18.0 */
 comment|// @Override on JDK8
+annotation|@
+name|Override
 DECL|method|getAnnotationsByType (Class<A> annotationType)
 specifier|public
 parameter_list|<
@@ -429,6 +431,8 @@ return|;
 block|}
 comment|/** @since 18.0 */
 comment|// @Override on JDK8
+annotation|@
+name|Override
 DECL|method|getDeclaredAnnotation (Class<A> annotationType)
 specifier|public
 parameter_list|<
@@ -475,6 +479,8 @@ return|;
 block|}
 comment|/** @since 18.0 */
 comment|// @Override on JDK8
+annotation|@
+name|Override
 DECL|method|getDeclaredAnnotationsByType (Class<A> annotationType)
 specifier|public
 parameter_list|<

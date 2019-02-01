@@ -217,6 +217,8 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|makeEmptyMap ()
 specifier|protected
 name|Map

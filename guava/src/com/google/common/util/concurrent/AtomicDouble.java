@@ -495,6 +495,8 @@ block|}
 block|}
 block|}
 comment|/**    * Returns the String representation of the current value.    *    * @return the String representation of the current value    */
+annotation|@
+name|Override
 DECL|method|toString ()
 specifier|public
 name|String
@@ -512,6 +514,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns the value of this {@code AtomicDouble} as an {@code int} after a narrowing primitive    * conversion.    */
+annotation|@
+name|Override
 DECL|method|intValue ()
 specifier|public
 name|int
@@ -527,6 +531,8 @@ argument_list|()
 return|;
 block|}
 comment|/**    * Returns the value of this {@code AtomicDouble} as a {@code long} after a narrowing primitive    * conversion.    */
+annotation|@
+name|Override
 DECL|method|longValue ()
 specifier|public
 name|long
@@ -542,6 +548,8 @@ argument_list|()
 return|;
 block|}
 comment|/**    * Returns the value of this {@code AtomicDouble} as a {@code float} after a narrowing primitive    * conversion.    */
+annotation|@
+name|Override
 DECL|method|floatValue ()
 specifier|public
 name|float
@@ -557,6 +565,8 @@ argument_list|()
 return|;
 block|}
 comment|/** Returns the value of this {@code AtomicDouble} as a {@code double}. */
+annotation|@
+name|Override
 DECL|method|doubleValue ()
 specifier|public
 name|double

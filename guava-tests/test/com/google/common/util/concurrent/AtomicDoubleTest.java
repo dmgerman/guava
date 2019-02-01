@@ -482,6 +482,8 @@ operator|new
 name|CheckedRunnable
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|realRun

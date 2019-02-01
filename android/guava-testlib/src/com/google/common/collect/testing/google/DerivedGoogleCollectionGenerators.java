@@ -475,6 +475,8 @@ name|length
 index|]
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getInnerGenerator ()
 specifier|public
 name|TestSubjectGenerator
@@ -893,6 +895,8 @@ name|length
 index|]
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getInnerGenerator ()
 specifier|public
 name|TestSubjectGenerator
@@ -1259,6 +1263,8 @@ return|return
 name|insertionOrder
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getInnerGenerator ()
 specifier|public
 name|TestSubjectGenerator

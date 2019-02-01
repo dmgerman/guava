@@ -581,6 +581,8 @@ function_decl|;
 comment|// Non-static factories
 comment|/** Returns a matcher that matches any character not matched by this matcher. */
 comment|// @Override under Java 8 but not under Java 7
+annotation|@
+name|Override
 DECL|method|negate ()
 specifier|public
 name|CharMatcher

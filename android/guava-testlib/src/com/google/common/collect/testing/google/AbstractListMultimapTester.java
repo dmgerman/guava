@@ -130,6 +130,8 @@ name|V
 argument_list|>
 argument_list|>
 block|{
+annotation|@
+name|Override
 DECL|method|assertGet (K key, V... values)
 specifier|protected
 name|void
@@ -156,6 +158,8 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|assertGet (K key, Collection<V> values)
 specifier|protected
 name|void

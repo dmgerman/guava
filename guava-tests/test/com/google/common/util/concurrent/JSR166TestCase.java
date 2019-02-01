@@ -438,6 +438,8 @@ argument_list|,
 literal|100
 argument_list|)
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|runTest ()
 specifier|protected
 name|void
@@ -763,6 +765,8 @@ name|t
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|setUp ()
 specifier|public
 name|void
@@ -774,6 +778,8 @@ argument_list|()
 expr_stmt|;
 block|}
 comment|/**    * Extra checks that get done for all test cases.    *    *<p>Triggers test case failure if any thread assertions have failed, by rethrowing, in the test    * harness thread, any exception recorded earlier by threadRecordFailure.    *    *<p>Triggers test case failure if interrupt status is set in the main thread.    */
+annotation|@
+name|Override
 DECL|method|tearDown ()
 specifier|public
 name|void
@@ -2112,6 +2118,8 @@ name|Permissions
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|getPermissions (CodeSource cs)
 specifier|public
 name|PermissionCollection
@@ -2125,6 +2133,8 @@ return|return
 name|perms
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getPermissions (ProtectionDomain pd)
 specifier|public
 name|PermissionCollection
@@ -2138,6 +2148,8 @@ return|return
 name|perms
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|implies (ProtectionDomain pd, Permission p)
 specifier|public
 name|boolean
@@ -2159,6 +2171,8 @@ name|p
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|refresh ()
 specifier|public
 name|void
@@ -2568,6 +2582,8 @@ parameter_list|()
 throws|throws
 name|Throwable
 function_decl|;
+annotation|@
+name|Override
 DECL|method|run ()
 specifier|public
 specifier|final
@@ -2642,6 +2658,8 @@ operator|=
 name|exceptionClass
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|run ()
 specifier|public
 specifier|final
@@ -2734,6 +2752,8 @@ operator|=
 name|exceptionClass
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|run ()
 specifier|public
 specifier|final
@@ -2796,6 +2816,8 @@ parameter_list|()
 throws|throws
 name|Throwable
 function_decl|;
+annotation|@
+name|Override
 DECL|method|run ()
 specifier|public
 specifier|final
@@ -2866,6 +2888,8 @@ parameter_list|()
 throws|throws
 name|Throwable
 function_decl|;
+annotation|@
+name|Override
 DECL|method|call ()
 specifier|public
 specifier|final
@@ -2920,6 +2944,8 @@ parameter_list|()
 throws|throws
 name|Throwable
 function_decl|;
+annotation|@
+name|Override
 DECL|method|call ()
 specifier|public
 specifier|final
@@ -2984,6 +3010,8 @@ name|NoOpRunnable
 implements|implements
 name|Runnable
 block|{
+annotation|@
+name|Override
 DECL|method|run ()
 specifier|public
 name|void
@@ -2999,6 +3027,8 @@ name|NoOpCallable
 implements|implements
 name|Callable
 block|{
+annotation|@
+name|Override
 DECL|method|call ()
 specifier|public
 name|Object
@@ -3032,6 +3062,8 @@ argument_list|<
 name|String
 argument_list|>
 block|{
+annotation|@
+name|Override
 DECL|method|call ()
 specifier|public
 name|String
@@ -3064,6 +3096,8 @@ name|String
 argument_list|>
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|protected
 name|String
 name|realCall
@@ -3105,6 +3139,8 @@ operator|new
 name|CheckedRunnable
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|realRun
@@ -3223,6 +3259,8 @@ argument_list|<
 name|String
 argument_list|>
 block|{
+annotation|@
+name|Override
 DECL|method|call ()
 specifier|public
 name|String
@@ -3247,6 +3285,8 @@ argument_list|<
 name|Integer
 argument_list|>
 block|{
+annotation|@
+name|Override
 DECL|method|call ()
 specifier|public
 name|Integer
@@ -3265,6 +3305,8 @@ name|ShortRunnable
 extends|extends
 name|CheckedRunnable
 block|{
+annotation|@
+name|Override
 DECL|method|realRun ()
 specifier|protected
 name|void
@@ -3287,6 +3329,8 @@ name|ShortInterruptedRunnable
 extends|extends
 name|CheckedInterruptedRunnable
 block|{
+annotation|@
+name|Override
 DECL|method|realRun ()
 specifier|protected
 name|void
@@ -3309,6 +3353,8 @@ name|SmallRunnable
 extends|extends
 name|CheckedRunnable
 block|{
+annotation|@
+name|Override
 DECL|method|realRun ()
 specifier|protected
 name|void
@@ -3331,6 +3377,8 @@ name|SmallPossiblyInterruptedRunnable
 extends|extends
 name|CheckedRunnable
 block|{
+annotation|@
+name|Override
 DECL|method|realRun ()
 specifier|protected
 name|void
@@ -3360,6 +3408,8 @@ name|SmallCallable
 extends|extends
 name|CheckedCallable
 block|{
+annotation|@
+name|Override
 DECL|method|realCall ()
 specifier|protected
 name|Object
@@ -3387,6 +3437,8 @@ name|MediumRunnable
 extends|extends
 name|CheckedRunnable
 block|{
+annotation|@
+name|Override
 DECL|method|realRun ()
 specifier|protected
 name|void
@@ -3409,6 +3461,8 @@ name|MediumInterruptedRunnable
 extends|extends
 name|CheckedInterruptedRunnable
 block|{
+annotation|@
+name|Override
 DECL|method|realRun ()
 specifier|protected
 name|void
@@ -3439,6 +3493,8 @@ operator|new
 name|CheckedRunnable
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|protected
 name|void
 name|realRun
@@ -3469,6 +3525,8 @@ name|MediumPossiblyInterruptedRunnable
 extends|extends
 name|CheckedRunnable
 block|{
+annotation|@
+name|Override
 DECL|method|realRun ()
 specifier|protected
 name|void
@@ -3498,6 +3556,8 @@ name|LongPossiblyInterruptedRunnable
 extends|extends
 name|CheckedRunnable
 block|{
+annotation|@
+name|Override
 DECL|method|realRun ()
 specifier|protected
 name|void
@@ -3529,6 +3589,8 @@ name|SimpleThreadFactory
 implements|implements
 name|ThreadFactory
 block|{
+annotation|@
+name|Override
 DECL|method|newThread (Runnable r)
 specifier|public
 name|Thread
@@ -3583,6 +3645,8 @@ name|done
 init|=
 literal|false
 decl_stmt|;
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|isDone
@@ -3592,6 +3656,8 @@ return|return
 name|done
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|run
@@ -3635,6 +3701,8 @@ name|done
 init|=
 literal|false
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|run ()
 specifier|public
 name|void
@@ -3677,6 +3745,8 @@ name|done
 init|=
 literal|false
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|run ()
 specifier|public
 name|void
@@ -3719,6 +3789,8 @@ name|done
 init|=
 literal|false
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|run ()
 specifier|public
 name|void
@@ -3761,6 +3833,8 @@ name|done
 init|=
 literal|false
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|run ()
 specifier|public
 name|void
@@ -3803,6 +3877,8 @@ name|done
 init|=
 literal|false
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|run ()
 specifier|public
 name|void
@@ -3831,6 +3907,8 @@ name|done
 init|=
 literal|false
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|call ()
 specifier|public
 name|Object
@@ -3898,6 +3976,8 @@ name|NoOpREHandler
 implements|implements
 name|RejectedExecutionHandler
 block|{
+annotation|@
+name|Override
 DECL|method|rejectedExecution (Runnable r, ThreadPoolExecutor executor)
 specifier|public
 name|void
@@ -3933,6 +4013,8 @@ name|parties
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|await ()
 specifier|public
 name|int

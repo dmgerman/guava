@@ -597,6 +597,8 @@ block|}
 annotation|@
 name|GwtIncompatible
 comment|// NavigableSet
+annotation|@
+name|Override
 DECL|method|createDescendingSet ()
 name|ImmutableSortedSet
 argument_list|<

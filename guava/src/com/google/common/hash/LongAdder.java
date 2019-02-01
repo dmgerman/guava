@@ -100,6 +100,8 @@ init|=
 literal|7249069246863182397L
 decl_stmt|;
 comment|/** Version of plus for use in retryUpdate */
+annotation|@
+name|Override
 DECL|method|fn (long v, long x)
 specifier|final
 name|long
@@ -125,6 +127,8 @@ name|LongAdder
 parameter_list|()
 block|{}
 comment|/**    * Adds the given value.    *    * @param x the value to add    */
+annotation|@
+name|Override
 DECL|method|add (long x)
 specifier|public
 name|void
@@ -260,6 +264,8 @@ expr_stmt|;
 block|}
 block|}
 comment|/** Equivalent to {@code add(1)}. */
+annotation|@
+name|Override
 DECL|method|increment ()
 specifier|public
 name|void
@@ -287,6 +293,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Returns the current sum. The returned value is<em>NOT</em> an atomic snapshot; invocation in    * the absence of concurrent updates returns an accurate result, but concurrent updates that occur    * while the sum is being calculated might not be incorporated.    *    * @return the sum    */
+annotation|@
+name|Override
 DECL|method|sum ()
 specifier|public
 name|long
@@ -458,6 +466,8 @@ name|sum
 return|;
 block|}
 comment|/**    * Returns the String representation of the {@link #sum}.    *    * @return the String representation of the {@link #sum}    */
+annotation|@
+name|Override
 DECL|method|toString ()
 specifier|public
 name|String
@@ -475,6 +485,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Equivalent to {@link #sum}.    *    * @return the sum    */
+annotation|@
+name|Override
 DECL|method|longValue ()
 specifier|public
 name|long
@@ -487,6 +499,8 @@ argument_list|()
 return|;
 block|}
 comment|/** Returns the {@link #sum} as an {@code int} after a narrowing primitive conversion. */
+annotation|@
+name|Override
 DECL|method|intValue ()
 specifier|public
 name|int
@@ -502,6 +516,8 @@ argument_list|()
 return|;
 block|}
 comment|/** Returns the {@link #sum} as a {@code float} after a widening primitive conversion. */
+annotation|@
+name|Override
 DECL|method|floatValue ()
 specifier|public
 name|float
@@ -517,6 +533,8 @@ argument_list|()
 return|;
 block|}
 comment|/** Returns the {@link #sum} as a {@code double} after a widening primitive conversion. */
+annotation|@
+name|Override
 DECL|method|doubleValue ()
 specifier|public
 name|double

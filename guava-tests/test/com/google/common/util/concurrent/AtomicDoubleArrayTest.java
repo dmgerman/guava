@@ -976,6 +976,8 @@ operator|new
 name|CheckedRunnable
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|realRun
@@ -1464,6 +1466,8 @@ operator|=
 name|a
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|realRun ()
 specifier|public
 name|void

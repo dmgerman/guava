@@ -583,6 +583,8 @@ block|}
 block|}
 block|}
 comment|/**    * Returns the String representation of the current values of array.    *    * @return the String representation of the current values of array    */
+annotation|@
+name|Override
 DECL|method|toString ()
 specifier|public
 name|String

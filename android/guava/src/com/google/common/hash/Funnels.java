@@ -142,6 +142,8 @@ block|{
 DECL|enumConstant|INSTANCE
 name|INSTANCE
 block|;
+annotation|@
+name|Override
 DECL|method|funnel (byte[] from, PrimitiveSink into)
 specifier|public
 name|void
@@ -206,6 +208,8 @@ block|{
 DECL|enumConstant|INSTANCE
 name|INSTANCE
 block|;
+annotation|@
+name|Override
 DECL|method|funnel (CharSequence from, PrimitiveSink into)
 specifier|public
 name|void
@@ -299,6 +303,8 @@ name|charset
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|funnel (CharSequence from, PrimitiveSink into)
 specifier|public
 name|void
@@ -510,6 +516,8 @@ block|{
 DECL|enumConstant|INSTANCE
 name|INSTANCE
 block|;
+annotation|@
+name|Override
 DECL|method|funnel (Integer from, PrimitiveSink into)
 specifier|public
 name|void
@@ -631,6 +639,8 @@ name|elementFunnel
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|funnel (Iterable<? extends E> from, PrimitiveSink into)
 specifier|public
 name|void
@@ -785,6 +795,8 @@ block|{
 DECL|enumConstant|INSTANCE
 name|INSTANCE
 block|;
+annotation|@
+name|Override
 DECL|method|funnel (Long from, PrimitiveSink into)
 specifier|public
 name|void

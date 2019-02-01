@@ -111,6 +111,8 @@ name|E
 argument_list|>
 block|{
 comment|/**    * Returns the comparator that orders this multiset, or {@link Ordering#natural()} if the natural    * ordering of the elements is used.    */
+annotation|@
+name|Override
 DECL|method|comparator ()
 name|Comparator
 argument_list|<
