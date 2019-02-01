@@ -278,7 +278,7 @@ argument_list|>
 name|endpoints
 parameter_list|)
 function_decl|;
-comment|/**    * Returns the value of the edge that connects {@code nodeU} to {@code nodeV} (in the order, if    * any, specified by {@code endpoints}), if one is present;    * otherwise, returns {@code Optional.empty()}.    *    * @throws IllegalArgumentException if {@code nodeU} or {@code nodeV} is not an element of this    *     graph    * @since 23.0 (since 20.0 with return type {@code V})    */
+comment|/**    * Returns the value of the edge that connects {@code nodeU} to {@code nodeV} (in the order, if    * any, specified by {@code endpoints}), if one is present; otherwise, returns {@code    * Optional.empty()}.    *    * @throws IllegalArgumentException if {@code nodeU} or {@code nodeV} is not an element of this    *     graph    * @since 23.0 (since 20.0 with return type {@code V})    */
 DECL|method|edgeValue (N nodeU, N nodeV)
 name|Optional
 argument_list|<

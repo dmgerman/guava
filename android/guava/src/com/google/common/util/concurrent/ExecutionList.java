@@ -155,9 +155,9 @@ name|GuardedBy
 argument_list|(
 literal|"this"
 argument_list|)
-DECL|field|runnables
 annotation|@
 name|NullableDecl
+DECL|field|runnables
 specifier|private
 name|RunnableExecutorPair
 name|runnables

@@ -15,7 +15,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * Emulation of Executor.  */
+comment|/** Emulation of Executor. */
 end_comment
 
 begin_interface

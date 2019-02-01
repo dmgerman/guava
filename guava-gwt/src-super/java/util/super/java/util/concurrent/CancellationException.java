@@ -15,7 +15,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * Emulation of CancellationException.  */
+comment|/** Emulation of CancellationException. */
 end_comment
 
 begin_class

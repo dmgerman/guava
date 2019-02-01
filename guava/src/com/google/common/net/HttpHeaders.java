@@ -1109,9 +1109,9 @@ init|=
 literal|"X-User-IP"
 decl_stmt|;
 comment|/**    * The HTTP<a href="https://goo.gl/VKpXxa">{@code X-Download-Options}</a> header field name.    *    *<p>When the new X-Download-Options header is present with the value {@code noopen}, the user is    * prevented from opening a file download directly; instead, they must first save the file    * locally.    *    * @since 24.1    */
+DECL|field|X_DOWNLOAD_OPTIONS
 annotation|@
 name|Beta
-DECL|field|X_DOWNLOAD_OPTIONS
 specifier|public
 specifier|static
 specifier|final

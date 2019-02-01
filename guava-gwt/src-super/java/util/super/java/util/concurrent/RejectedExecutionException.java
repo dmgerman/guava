@@ -15,7 +15,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * GWT emulation of RejectedExecutionException.  */
+comment|/** GWT emulation of RejectedExecutionException. */
 end_comment
 
 begin_class
@@ -30,7 +30,7 @@ DECL|method|RejectedExecutionException ()
 specifier|public
 name|RejectedExecutionException
 parameter_list|()
-block|{   }
+block|{}
 DECL|method|RejectedExecutionException (String message)
 specifier|public
 name|RejectedExecutionException

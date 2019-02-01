@@ -482,7 +482,7 @@ name|Throwable
 name|error
 parameter_list|)
 function_decl|;
-comment|/**    * Interrupts the running task. Because this internally calls {@link Thread#interrupt()} which can in turn    * invoke arbitrary code it is not safe to call while holding a lock.    */
+comment|/**    * Interrupts the running task. Because this internally calls {@link Thread#interrupt()} which can    * in turn invoke arbitrary code it is not safe to call while holding a lock.    */
 DECL|method|interruptTask ()
 specifier|final
 name|void

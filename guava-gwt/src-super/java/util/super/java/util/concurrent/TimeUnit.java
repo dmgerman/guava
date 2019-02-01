@@ -15,7 +15,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * GWT emulation of TimeUnit, created by removing unsupported operations from  * Doug Lea's public domain version.  */
+comment|/**  * GWT emulation of TimeUnit, created by removing unsupported operations from Doug Lea's public  * domain version.  */
 end_comment
 
 begin_enum

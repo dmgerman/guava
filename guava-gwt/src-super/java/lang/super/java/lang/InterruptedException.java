@@ -13,7 +13,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * Minimal emulation of {@link java.lang.InterruptedException}, that should  * only be used in method signatures.  New GWT code should not reference this  * class at all.  It is here only to ease the GWTification of common code.  *  * @author Tom O'Neill  */
+comment|/**  * Minimal emulation of {@link java.lang.InterruptedException}, that should only be used in method  * signatures. New GWT code should not reference this class at all. It is here only to ease the  * GWTification of common code.  *  * @author Tom O'Neill  */
 end_comment
 
 begin_class

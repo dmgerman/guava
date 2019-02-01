@@ -15,7 +15,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * Emulation of Delayed.  */
+comment|/** Emulation of Delayed. */
 end_comment
 
 begin_interface

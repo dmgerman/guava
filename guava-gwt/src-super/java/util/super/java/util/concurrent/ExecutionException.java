@@ -30,7 +30,7 @@ DECL|method|ExecutionException ()
 specifier|protected
 name|ExecutionException
 parameter_list|()
-block|{ }
+block|{}
 DECL|method|ExecutionException (String message)
 specifier|protected
 name|ExecutionException

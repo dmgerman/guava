@@ -15,7 +15,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * Emulation of TimeoutException.  */
+comment|/** Emulation of TimeoutException. */
 end_comment
 
 begin_class

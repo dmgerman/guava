@@ -1220,7 +1220,7 @@ name|isEmpty
 argument_list|()
 return|;
 block|}
-comment|/**    * Throws an IllegalArgumentException if the ordering of {@code endpoints} is not compatible    * with the directionality of this graph.    */
+comment|/**    * Throws an IllegalArgumentException if the ordering of {@code endpoints} is not compatible with    * the directionality of this graph.    */
 DECL|method|validateEndpoints (EndpointPair<?> endpoints)
 specifier|protected
 specifier|final

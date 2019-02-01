@@ -144,7 +144,7 @@ argument_list|<
 name|E
 argument_list|>
 block|{
-comment|/**    * Creates an empty {@code CompactLinkedHashSet} instance.    */
+comment|/** Creates an empty {@code CompactLinkedHashSet} instance. */
 DECL|method|create ()
 specifier|public
 specifier|static
@@ -167,7 +167,7 @@ argument_list|>
 argument_list|()
 return|;
 block|}
-comment|/**    * Creates a<i>mutable</i> {@code CompactLinkedHashSet} instance containing the elements    * of the given collection in the order returned by the collection's iterator.    *    * @param collection the elements that the set should contain    * @return a new {@code CompactLinkedHashSet} containing those elements (minus duplicates)    */
+comment|/**    * Creates a<i>mutable</i> {@code CompactLinkedHashSet} instance containing the elements of the    * given collection in the order returned by the collection's iterator.    *    * @param collection the elements that the set should contain    * @return a new {@code CompactLinkedHashSet} containing those elements (minus duplicates)    */
 DECL|method|create (Collection<? extends E> collection)
 specifier|public
 specifier|static
@@ -214,7 +214,7 @@ return|return
 name|set
 return|;
 block|}
-comment|/**    * Creates a {@code CompactLinkedHashSet} instance containing the given elements in    * unspecified order.    *    * @param elements the elements that the set should contain    * @return a new {@code CompactLinkedHashSet} containing those elements (minus duplicates)    */
+comment|/**    * Creates a {@code CompactLinkedHashSet} instance containing the given elements in unspecified    * order.    *    * @param elements the elements that the set should contain    * @return a new {@code CompactLinkedHashSet} containing those elements (minus duplicates)    */
 DECL|method|create (E... elements)
 specifier|public
 specifier|static
@@ -258,7 +258,7 @@ return|return
 name|set
 return|;
 block|}
-comment|/**    * Creates a {@code CompactLinkedHashSet} instance, with a high enough "initial capacity"    * that it<i>should</i> hold {@code expectedSize} elements without rebuilding internal    * data structures.    *    * @param expectedSize the number of elements you expect to add to the returned set    * @return a new, empty {@code CompactLinkedHashSet} with enough capacity to hold {@code    *         expectedSize} elements without resizing    * @throws IllegalArgumentException if {@code expectedSize} is negative    */
+comment|/**    * Creates a {@code CompactLinkedHashSet} instance, with a high enough "initial capacity" that it    *<i>should</i> hold {@code expectedSize} elements without rebuilding internal data structures.    *    * @param expectedSize the number of elements you expect to add to the returned set    * @return a new, empty {@code CompactLinkedHashSet} with enough capacity to hold {@code    *     expectedSize} elements without resizing    * @throws IllegalArgumentException if {@code expectedSize} is negative    */
 DECL|method|createWithExpectedSize (int expectedSize)
 specifier|public
 specifier|static
@@ -821,9 +821,9 @@ name|entryIndex
 index|]
 return|;
 block|}
-DECL|method|spliterator ()
 annotation|@
 name|Override
+DECL|method|spliterator ()
 specifier|public
 name|Spliterator
 argument_list|<
@@ -849,9 +849,9 @@ name|DISTINCT
 argument_list|)
 return|;
 block|}
-DECL|method|forEach (Consumer<? super E> action)
 annotation|@
 name|Override
+DECL|method|forEach (Consumer<? super E> action)
 specifier|public
 name|void
 name|forEach

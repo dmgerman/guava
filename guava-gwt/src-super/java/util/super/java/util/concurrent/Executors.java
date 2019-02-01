@@ -15,7 +15,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * Emulation of executors.  */
+comment|/** Emulation of executors. */
 end_comment
 
 begin_class
@@ -175,7 +175,7 @@ DECL|method|Executors ()
 specifier|private
 name|Executors
 parameter_list|()
-block|{   }
+block|{}
 block|}
 end_class
 

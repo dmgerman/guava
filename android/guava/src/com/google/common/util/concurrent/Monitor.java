@@ -254,9 +254,9 @@ name|GuardedBy
 argument_list|(
 literal|"monitor.lock"
 argument_list|)
-DECL|field|next
 annotation|@
 name|NullableDecl
+DECL|field|next
 name|Guard
 name|next
 decl_stmt|;

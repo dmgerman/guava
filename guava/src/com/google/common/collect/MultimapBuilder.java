@@ -273,7 +273,7 @@ name|DEFAULT_EXPECTED_KEYS
 argument_list|)
 return|;
 block|}
-comment|/**    * Uses a hash table to map keys to value collections, initialized to expect the specified    * number of keys.    *    * @throws IllegalArgumentException if {@code expectedKeys< 0}    */
+comment|/**    * Uses a hash table to map keys to value collections, initialized to expect the specified number    * of keys.    *    * @throws IllegalArgumentException if {@code expectedKeys< 0}    */
 DECL|method|hashKeys (final int expectedKeys)
 specifier|public
 specifier|static
@@ -352,7 +352,7 @@ name|DEFAULT_EXPECTED_KEYS
 argument_list|)
 return|;
 block|}
-comment|/**    * Uses an hash table to map keys to value collections, initialized to expect the    * specified number of keys.    *    *<p>The collections returned by {@link Multimap#keySet()}, {@link Multimap#keys()}, and {@link    * Multimap#asMap()} will iterate through the keys in the order that they were first added to the    * multimap, save that if all values associated with a key are removed and then the key is added    * back into the multimap, that key will come last in the key iteration order.    */
+comment|/**    * Uses an hash table to map keys to value collections, initialized to expect the specified number    * of keys.    *    *<p>The collections returned by {@link Multimap#keySet()}, {@link Multimap#keys()}, and {@link    * Multimap#asMap()} will iterate through the keys in the order that they were first added to the    * multimap, save that if all values associated with a key are removed and then the key is added    * back into the multimap, that key will come last in the key iteration order.    */
 DECL|method|linkedHashKeys (final int expectedKeys)
 specifier|public
 specifier|static
@@ -1270,7 +1270,7 @@ name|DEFAULT_EXPECTED_VALUES_PER_KEY
 argument_list|)
 return|;
 block|}
-comment|/**      * Uses a hash-based {@code Set} to store value collections, initialized to expect the specified number      * of values per key.      *      * @throws IllegalArgumentException if {@code expectedValuesPerKey< 0}      */
+comment|/**      * Uses a hash-based {@code Set} to store value collections, initialized to expect the specified      * number of values per key.      *      * @throws IllegalArgumentException if {@code expectedValuesPerKey< 0}      */
 DECL|method|hashSetValues (final int expectedValuesPerKey)
 specifier|public
 name|SetMultimapBuilder
@@ -1372,7 +1372,7 @@ name|DEFAULT_EXPECTED_VALUES_PER_KEY
 argument_list|)
 return|;
 block|}
-comment|/**      * Uses an insertion-ordered hash-based {@code Set} to store value collections, initialized to expect the specified      * number of values per key.      *      * @throws IllegalArgumentException if {@code expectedValuesPerKey< 0}      */
+comment|/**      * Uses an insertion-ordered hash-based {@code Set} to store value collections, initialized to      * expect the specified number of values per key.      *      * @throws IllegalArgumentException if {@code expectedValuesPerKey< 0}      */
 DECL|method|linkedHashSetValues (final int expectedValuesPerKey)
 specifier|public
 name|SetMultimapBuilder

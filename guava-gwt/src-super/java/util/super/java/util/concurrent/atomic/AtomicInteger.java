@@ -17,7 +17,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * GWT emulated version of {@link AtomicInteger}.  It's a thin wrapper  * around the primitive {@code int}.  *  * @author Hayward Chan  */
+comment|/**  * GWT emulated version of {@link AtomicInteger}. It's a thin wrapper around the primitive {@code  * int}.  *  * @author Hayward Chan  */
 end_comment
 
 begin_class
@@ -56,7 +56,7 @@ DECL|method|AtomicInteger ()
 specifier|public
 name|AtomicInteger
 parameter_list|()
-block|{   }
+block|{}
 DECL|method|get ()
 specifier|public
 specifier|final
@@ -246,9 +246,9 @@ return|return
 name|value
 return|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString

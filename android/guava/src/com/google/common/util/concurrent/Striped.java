@@ -646,7 +646,7 @@ argument_list|)
 return|;
 block|}
 comment|// Static factories
-comment|/**    * Creates a {@code Striped<L>} with eagerly initialized, strongly referenced locks. Every lock    * is obtained from the passed supplier.    *    * @param stripes the minimum number of stripes (locks) required    * @param supplier a {@code Supplier<L>} object to obtain locks from    * @return a new {@code Striped<L>}    */
+comment|/**    * Creates a {@code Striped<L>} with eagerly initialized, strongly referenced locks. Every lock is    * obtained from the passed supplier.    *    * @param stripes the minimum number of stripes (locks) required    * @param supplier a {@code Supplier<L>} object to obtain locks from    * @return a new {@code Striped<L>}    */
 DECL|method|custom (int stripes, Supplier<L> supplier)
 specifier|static
 parameter_list|<

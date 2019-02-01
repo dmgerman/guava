@@ -155,7 +155,7 @@ throw|;
 block|}
 block|}
 comment|/**    * Ensures the truth of an expression involving one or more parameters to the calling method.    *    * @param expression a boolean expression    * @param errorMessageTemplate a template for the exception message should the check fail. The    *     message is formed by replacing each {@code %s} placeholder in the template with an    *     argument. These are matched by position - the first {@code %s} gets {@code    *     errorMessageArgs[0]}, etc. Unmatched arguments will be appended to the formatted message in    *     square braces. Unmatched placeholders will be left as-is.    * @param errorMessageArgs the arguments to be substituted into the message template. Arguments    *     are converted to strings using {@link String#valueOf(Object)}.    * @throws IllegalArgumentException if {@code expression} is false    */
-DECL|method|checkArgument ( boolean expression, @Nullable String errorMessageTemplate, Object @Nullable... errorMessageArgs)
+DECL|method|checkArgument ( boolean expression, @Nullable String errorMessageTemplate, Object @Nullable ... errorMessageArgs)
 specifier|public
 specifier|static
 name|void
@@ -1252,7 +1252,7 @@ throw|;
 block|}
 block|}
 comment|/**    * Ensures the truth of an expression involving the state of the calling instance, but not    * involving any parameters to the calling method.    *    * @param expression a boolean expression    * @param errorMessageTemplate a template for the exception message should the check fail. The    *     message is formed by replacing each {@code %s} placeholder in the template with an    *     argument. These are matched by position - the first {@code %s} gets {@code    *     errorMessageArgs[0]}, etc. Unmatched arguments will be appended to the formatted message in    *     square braces. Unmatched placeholders will be left as-is.    * @param errorMessageArgs the arguments to be substituted into the message template. Arguments    *     are converted to strings using {@link String#valueOf(Object)}.    * @throws IllegalStateException if {@code expression} is false    * @see Verify#verify Verify.verify()    */
-DECL|method|checkState ( boolean expression, @Nullable String errorMessageTemplate, @Nullable Object @Nullable... errorMessageArgs)
+DECL|method|checkState ( boolean expression, @Nullable String errorMessageTemplate, @Nullable Object @Nullable ... errorMessageArgs)
 specifier|public
 specifier|static
 name|void
@@ -2371,7 +2371,7 @@ block|}
 comment|/**    * Ensures that an object reference passed as a parameter to the calling method is not null.    *    * @param reference an object reference    * @param errorMessageTemplate a template for the exception message should the check fail. The    *     message is formed by replacing each {@code %s} placeholder in the template with an    *     argument. These are matched by position - the first {@code %s} gets {@code    *     errorMessageArgs[0]}, etc. Unmatched arguments will be appended to the formatted message in    *     square braces. Unmatched placeholders will be left as-is.    * @param errorMessageArgs the arguments to be substituted into the message template. Arguments    *     are converted to strings using {@link String#valueOf(Object)}.    * @return the non-null reference that was validated    * @throws NullPointerException if {@code reference} is null    * @see Verify#verifyNotNull Verify.verifyNotNull()    */
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|checkNotNull ( T reference, @Nullable String errorMessageTemplate, Object @Nullable... errorMessageArgs)
+DECL|method|checkNotNull ( T reference, @Nullable String errorMessageTemplate, Object @Nullable ... errorMessageArgs)
 specifier|public
 specifier|static
 parameter_list|<

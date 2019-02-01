@@ -75,7 +75,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Minimal emulation of {@link java.util.concurrent.ConcurrentHashMap}.  * Note that the javascript interpreter is<a  * href="http://code.google.com/docreader/#p=google-web-toolkit-doc-1-5&t=DevGuideJavaCompatibility">  * single-threaded</a>, it is essentially a {@link java.util.HashMap},  * implementing the new methods introduced by {@link ConcurrentMap}.  *  * @author Hayward Chan  */
+comment|/**  * Minimal emulation of {@link java.util.concurrent.ConcurrentHashMap}. Note that the javascript  * interpreter is<a  * href="http://code.google.com/docreader/#p=google-web-toolkit-doc-1-5&t=DevGuideJavaCompatibility">  * single-threaded</a>, it is essentially a {@link java.util.HashMap}, implementing the new methods  * introduced by {@link ConcurrentMap}.  *  * @author Hayward Chan  */
 end_comment
 
 begin_class
@@ -424,9 +424,9 @@ literal|null
 return|;
 block|}
 block|}
-DECL|method|containsKey (Object key)
 annotation|@
 name|Override
+DECL|method|containsKey (Object key)
 specifier|public
 name|boolean
 name|containsKey
@@ -457,9 +457,9 @@ name|key
 argument_list|)
 return|;
 block|}
-DECL|method|get (Object key)
 annotation|@
 name|Override
+DECL|method|get (Object key)
 specifier|public
 name|V
 name|get
@@ -490,9 +490,9 @@ name|key
 argument_list|)
 return|;
 block|}
-DECL|method|put (K key, V value)
 annotation|@
 name|Override
+DECL|method|put (K key, V value)
 specifier|public
 name|V
 name|put
@@ -532,9 +532,9 @@ name|value
 argument_list|)
 return|;
 block|}
-DECL|method|containsValue (Object value)
 annotation|@
 name|Override
+DECL|method|containsValue (Object value)
 specifier|public
 name|boolean
 name|containsValue
@@ -565,9 +565,9 @@ name|value
 argument_list|)
 return|;
 block|}
-DECL|method|remove (Object key)
 annotation|@
 name|Override
+DECL|method|remove (Object key)
 specifier|public
 name|V
 name|remove
@@ -598,9 +598,9 @@ name|key
 argument_list|)
 return|;
 block|}
-DECL|method|entrySet ()
 annotation|@
 name|Override
+DECL|method|entrySet ()
 specifier|public
 name|Set
 argument_list|<

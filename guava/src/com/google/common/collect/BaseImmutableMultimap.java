@@ -31,7 +31,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A dummy superclass of {@link ImmutableMultimap} that can be instanceof'd without ProGuard retaining  * additional implementation details of {@link ImmutableMultimap}.  */
+comment|/**  * A dummy superclass of {@link ImmutableMultimap} that can be instanceof'd without ProGuard  * retaining additional implementation details of {@link ImmutableMultimap}.  */
 end_comment
 
 begin_class

@@ -4,7 +4,7 @@ comment|/*  * Copyright (C) 2015 The Guava Authors  *  * Licensed under the Apac
 end_comment
 
 begin_comment
-comment|/**  * Atomically sets the value to the given updated value  * if the current value {@code ==} the expected value.  *  *<p>May<a href="package-summary.html#Spurious">fail spuriously</a>  * and does not provide ordering guarantees, so is only rarely an  * appropriate alternative to {@code compareAndSet}.  *  * @param expect the expected value  * @param update the new value  * @return true if successful.  */
+comment|/**  * Atomically sets the value to the given updated value if the current value {@code ==} the expected  * value.  *  *<p>May<a href="package-summary.html#Spurious">fail spuriously</a> and does not provide ordering  * guarantees, so is only rarely an appropriate alternative to {@code compareAndSet}.  *  * @param expect the expected value  * @param update the new value  * @return true if successful.  */
 end_comment
 
 begin_package
@@ -21,7 +21,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * GWT emulation of AtomicBoolean.  */
+comment|/** GWT emulation of AtomicBoolean. */
 end_comment
 
 begin_class
@@ -58,7 +58,7 @@ DECL|method|AtomicBoolean ()
 specifier|public
 name|AtomicBoolean
 parameter_list|()
-block|{   }
+block|{}
 DECL|method|get ()
 specifier|public
 specifier|final

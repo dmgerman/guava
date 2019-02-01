@@ -15,7 +15,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * Emulation of RunnableFuture.  */
+comment|/** Emulation of RunnableFuture. */
 end_comment
 
 begin_interface
@@ -33,7 +33,7 @@ name|Future
 argument_list|<
 name|V
 argument_list|>
-block|{ }
+block|{}
 end_interface
 
 end_unit

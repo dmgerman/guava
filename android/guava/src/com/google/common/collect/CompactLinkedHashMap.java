@@ -95,7 +95,7 @@ name|V
 argument_list|>
 block|{
 comment|// TODO(lowasser): implement removeEldestEntry so this can be used as a drop-in replacement
-comment|/**    * Creates an empty {@code CompactLinkedHashMap} instance.    */
+comment|/** Creates an empty {@code CompactLinkedHashMap} instance. */
 DECL|method|create ()
 specifier|public
 specifier|static
@@ -120,7 +120,7 @@ argument_list|<>
 argument_list|()
 return|;
 block|}
-comment|/**    * Creates a {@code CompactLinkedHashMap} instance, with a high enough "initial capacity"    * that it<i>should</i> hold {@code expectedSize} elements without growth.    *    * @param expectedSize the number of elements you expect to add to the returned set    * @return a new, empty {@code CompactLinkedHashMap} with enough capacity to hold {@code    *         expectedSize} elements without resizing    * @throws IllegalArgumentException if {@code expectedSize} is negative    */
+comment|/**    * Creates a {@code CompactLinkedHashMap} instance, with a high enough "initial capacity" that it    *<i>should</i> hold {@code expectedSize} elements without growth.    *    * @param expectedSize the number of elements you expect to add to the returned set    * @return a new, empty {@code CompactLinkedHashMap} with enough capacity to hold {@code    *     expectedSize} elements without resizing    * @throws IllegalArgumentException if {@code expectedSize} is negative    */
 DECL|method|createWithExpectedSize (int expectedSize)
 specifier|public
 specifier|static
@@ -178,7 +178,7 @@ specifier|transient
 name|int
 name|firstEntry
 decl_stmt|;
-comment|/**    * Pointer to the last node in the linked list, or {@code ENDPOINT} if there are no entries.    */
+comment|/** Pointer to the last node in the linked list, or {@code ENDPOINT} if there are no entries. */
 DECL|field|lastEntry
 specifier|private
 specifier|transient
