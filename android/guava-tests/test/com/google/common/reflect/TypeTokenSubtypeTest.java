@@ -648,7 +648,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|class|OwnerTypeSubtypingTests
 specifier|private
@@ -1795,7 +1795,7 @@ argument_list|>
 argument_list|>
 argument_list|>
 argument_list|>
-DECL|method|wildcardBoundUsesImplicitlyRecursiveBoundedWildcard ( UseList<? extends List<Enum<?>>> arg)
+DECL|method|wildcardBoundUsesImplicitlyRecursiveBoundedWildcard (UseList<? extends List<Enum<?>>> arg)
 name|wildcardBoundUsesImplicitlyRecursiveBoundedWildcard
 parameter_list|(
 name|UseList
@@ -1849,7 +1849,7 @@ argument_list|>
 argument_list|>
 argument_list|>
 argument_list|>
-DECL|method|wildcardBoundHasImplicitBoundAtsInvariantPosition ( UseList<? extends List<Enum<?>>> arg)
+DECL|method|wildcardBoundHasImplicitBoundAtsInvariantPosition (UseList<? extends List<Enum<?>>> arg)
 name|wildcardBoundHasImplicitBoundAtsInvariantPosition
 parameter_list|(
 name|UseList
@@ -2509,6 +2509,7 @@ name|suppressGetSubtype
 operator|=
 literal|true
 argument_list|)
+DECL|method|listOfExplicitBoundedIsSubtypeOfListOfImplicitlyBounded ( List<UseIterable<? extends Iterable<?>>> withExplicitBounds)
 specifier|public
 name|Iterable
 argument_list|<
@@ -2517,7 +2518,6 @@ argument_list|<
 name|?
 argument_list|>
 argument_list|>
-DECL|method|listOfExplicitBoundedIsSubtypeOfListOfImplicitlyBounded ( List<UseIterable<? extends Iterable<?>>> withExplicitBounds)
 name|listOfExplicitBoundedIsSubtypeOfListOfImplicitlyBounded
 parameter_list|(
 name|List
