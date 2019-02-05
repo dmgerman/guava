@@ -2639,13 +2639,13 @@ init|=
 literal|0
 decl_stmt|;
 block|}
-DECL|method|readObject (ObjectInputStream stream)
+DECL|method|readObject (ObjectInputStream unused)
 specifier|private
 name|void
 name|readObject
 parameter_list|(
 name|ObjectInputStream
-name|stream
+name|unused
 parameter_list|)
 throws|throws
 name|InvalidObjectException
