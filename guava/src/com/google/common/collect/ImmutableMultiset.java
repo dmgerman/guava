@@ -42,20 +42,6 @@ name|common
 operator|.
 name|annotations
 operator|.
-name|Beta
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|annotations
-operator|.
 name|GwtCompatible
 import|;
 end_import
@@ -302,8 +288,6 @@ name|E
 argument_list|>
 block|{
 comment|/**    * Returns a {@code Collector} that accumulates the input elements into a new {@code    * ImmutableMultiset}. Elements iterate in order by the<i>first</i> appearance of that element in    * encounter order.    *    * @since 21.0    */
-annotation|@
-name|Beta
 DECL|method|toImmutableMultiset ()
 specifier|public
 specifier|static

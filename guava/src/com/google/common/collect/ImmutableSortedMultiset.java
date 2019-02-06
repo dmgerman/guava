@@ -58,20 +58,6 @@ name|common
 operator|.
 name|annotations
 operator|.
-name|Beta
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|annotations
-operator|.
 name|GwtIncompatible
 import|;
 end_import
@@ -241,8 +227,6 @@ argument_list|>
 block|{
 comment|// TODO(lowasser): GWT compatibility
 comment|/**    * Returns a {@code Collector} that accumulates the input elements into a new {@code    * ImmutableMultiset}. Elements are sorted by the specified comparator.    *    *<p><b>Warning:</b> {@code comparator} should be<i>consistent with {@code equals}</i> as    * explained in the {@link Comparator} documentation.    *    * @since 21.0    */
-annotation|@
-name|Beta
 DECL|method|toImmutableSortedMultiset ( Comparator<? super E> comparator)
 specifier|public
 specifier|static

@@ -312,8 +312,6 @@ end_comment
 
 begin_class
 annotation|@
-name|Beta
-annotation|@
 name|GwtIncompatible
 DECL|class|ByteStreams
 specifier|public
@@ -1144,6 +1142,8 @@ block|}
 comment|/**    * Reads and discards data from the given {@code InputStream} until the end of the stream is    * reached. Returns the total number of bytes read. Does not close the stream.    *    * @since 20.0    */
 annotation|@
 name|CanIgnoreReturnValue
+annotation|@
+name|Beta
 DECL|method|exhaust (InputStream in)
 specifier|public
 specifier|static
@@ -1198,6 +1198,8 @@ name|total
 return|;
 block|}
 comment|/**    * Returns a new {@link ByteArrayDataInput} instance to read from the {@code bytes} array from the    * beginning.    */
+annotation|@
+name|Beta
 DECL|method|newDataInput (byte[] bytes)
 specifier|public
 specifier|static
@@ -1221,6 +1223,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns a new {@link ByteArrayDataInput} instance to read from the {@code bytes} array,    * starting at the given position.    *    * @throws IndexOutOfBoundsException if {@code start} is negative or greater than the length of    *     the array    */
+annotation|@
+name|Beta
 DECL|method|newDataInput (byte[] bytes, int start)
 specifier|public
 specifier|static
@@ -1264,6 +1268,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns a new {@link ByteArrayDataInput} instance to read from the given {@code    * ByteArrayInputStream}. The given input stream is not reset before being read from by the    * returned {@code ByteArrayDataInput}.    *    * @since 17.0    */
+annotation|@
+name|Beta
 DECL|method|newDataInput (ByteArrayInputStream byteArrayInputStream)
 specifier|public
 specifier|static
@@ -1837,6 +1843,8 @@ block|}
 block|}
 block|}
 comment|/** Returns a new {@link ByteArrayDataOutput} instance with a default size. */
+annotation|@
+name|Beta
 DECL|method|newDataOutput ()
 specifier|public
 specifier|static
@@ -1854,6 +1862,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns a new {@link ByteArrayDataOutput} instance sized to hold {@code size} bytes before    * resizing.    *    * @throws IllegalArgumentException if {@code size} is negative    */
+annotation|@
+name|Beta
 DECL|method|newDataOutput (int size)
 specifier|public
 specifier|static
@@ -1900,6 +1910,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns a new {@link ByteArrayDataOutput} instance which writes to the given {@code    * ByteArrayOutputStream}. The given output stream is not reset before being written to by the    * returned {@code ByteArrayDataOutput} and new data will be appended to any existing content.    *    *<p>Note that if the given output stream was not empty or is modified after the {@code    * ByteArrayDataOutput} is created, the contract for {@link ByteArrayDataOutput#toByteArray} will    * not be honored (the bytes returned in the byte array may not be exactly what was written via    * calls to {@code ByteArrayDataOutput}).    *    * @since 17.0    */
+annotation|@
+name|Beta
 DECL|method|newDataOutput (ByteArrayOutputStream byteArrayOutputSteam)
 specifier|public
 specifier|static
@@ -2572,6 +2584,8 @@ block|}
 block|}
 decl_stmt|;
 comment|/**    * Returns an {@link OutputStream} that simply discards written bytes.    *    * @since 14.0 (since 1.0 as com.google.common.io.NullOutputStream)    */
+annotation|@
+name|Beta
 DECL|method|nullOutputStream ()
 specifier|public
 specifier|static
@@ -2584,6 +2598,8 @@ name|NULL_OUTPUT_STREAM
 return|;
 block|}
 comment|/**    * Wraps a {@link InputStream}, limiting the number of bytes which can be read.    *    * @param in the input stream to be wrapped    * @param limit the maximum number of bytes to be read    * @return a length-limited {@link InputStream}    * @since 14.0 (since 1.0 as com.google.common.io.LimitInputStream)    */
+annotation|@
+name|Beta
 DECL|method|limit (InputStream in, long limit)
 specifier|public
 specifier|static
@@ -2936,6 +2952,8 @@ return|;
 block|}
 block|}
 comment|/**    * Attempts to read enough bytes from the stream to fill the given byte array, with the same    * behavior as {@link DataInput#readFully(byte[])}. Does not close the stream.    *    * @param in the input stream to read from.    * @param b the buffer into which the data is read.    * @throws EOFException if this stream reaches the end before reading all the bytes.    * @throws IOException if an I/O error occurs.    */
+annotation|@
+name|Beta
 DECL|method|readFully (InputStream in, byte[] b)
 specifier|public
 specifier|static
@@ -2967,6 +2985,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Attempts to read {@code len} bytes from the stream into the given array starting at {@code    * off}, with the same behavior as {@link DataInput#readFully(byte[], int, int)}. Does not close    * the stream.    *    * @param in the input stream to read from.    * @param b the buffer into which the data is read.    * @param off an int specifying the offset into the data.    * @param len an int specifying the number of bytes to read.    * @throws EOFException if this stream reaches the end before reading all the bytes.    * @throws IOException if an I/O error occurs.    */
+annotation|@
+name|Beta
 DECL|method|readFully (InputStream in, byte[] b, int off, int len)
 specifier|public
 specifier|static
@@ -3028,6 +3048,8 @@ throw|;
 block|}
 block|}
 comment|/**    * Discards {@code n} bytes of data from the input stream. This method will block until the full    * amount has been skipped. Does not close the stream.    *    * @param in the input stream to read from    * @param n the number of bytes to skip    * @throws EOFException if this stream reaches the end before skipping all the bytes    * @throws IOException if an I/O error occurs, or the stream does not support skipping    */
+annotation|@
+name|Beta
 DECL|method|skipFully (InputStream in, long n)
 specifier|public
 specifier|static
@@ -3237,6 +3259,8 @@ return|;
 block|}
 comment|/**    * Process the bytes of the given input stream using the given processor.    *    * @param input the input stream to process    * @param processor the object to which to pass the bytes of the stream    * @return the result of the byte processor    * @throws IOException if an I/O error occurs    * @since 14.0    */
 annotation|@
+name|Beta
+annotation|@
 name|CanIgnoreReturnValue
 comment|// some processors won't return a useful result
 DECL|method|readBytes (InputStream input, ByteProcessor<T> processor)
@@ -3319,6 +3343,8 @@ argument_list|()
 return|;
 block|}
 comment|/**    * Reads some bytes from an input stream and stores them into the buffer array {@code b}. This    * method blocks until {@code len} bytes of input data have been read into the array, or end of    * file is detected. The number of bytes read is returned, possibly zero. Does not close the    * stream.    *    *<p>A caller can detect EOF if the number of bytes read is less than {@code len}. All subsequent    * calls on the same stream will return zero.    *    *<p>If {@code b} is null, a {@code NullPointerException} is thrown. If {@code off} is negative,    * or {@code len} is negative, or {@code off+len} is greater than the length of the array {@code    * b}, then an {@code IndexOutOfBoundsException} is thrown. If {@code len} is zero, then no bytes    * are read. Otherwise, the first byte read is stored into element {@code b[off]}, the next one    * into {@code b[off+1]}, and so on. The number of bytes read is, at most, equal to {@code len}.    *    * @param in the input stream to read from    * @param b the buffer into which the data is read    * @param off an int specifying the offset into the data    * @param len an int specifying the number of bytes to read    * @return the number of bytes read    * @throws IOException if an I/O error occurs    */
+annotation|@
+name|Beta
 annotation|@
 name|CanIgnoreReturnValue
 comment|// Sometimes you don't care how many bytes you actually read, I guess.

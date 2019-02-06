@@ -974,8 +974,6 @@ name|serializable
 operator|=
 literal|true
 argument_list|)
-annotation|@
-name|Beta
 DECL|method|immutableEnumMap ( Map<K, ? extends V> map)
 specifier|public
 specifier|static
@@ -1417,8 +1415,6 @@ return|;
 block|}
 block|}
 comment|/**    * Returns a {@link Collector} that accumulates elements into an {@code ImmutableMap} whose keys    * and values are the result of applying the provided mapping functions to the input elements. The    * resulting implementation is specialized for enum key types. The returned map and its views will    * iterate over keys in their enum definition order, not encounter order.    *    *<p>If the mapped keys contain duplicates, an {@code IllegalArgumentException} is thrown when    * the collection operation is performed. (This differs from the {@code Collector} returned by    * {@link java.util.stream.Collectors#toMap(java.util.function.Function,    * java.util.function.Function) Collectors.toMap(Function, Function)}, which throws an {@code    * IllegalStateException}.)    *    * @since 21.0    */
-annotation|@
-name|Beta
 DECL|method|toImmutableEnumMap ( java.util.function.Function<? super T, ? extends K> keyFunction, java.util.function.Function<? super T, ? extends V> valueFunction)
 specifier|public
 specifier|static
@@ -1612,23 +1608,21 @@ comment|/**    * Returns a {@link Collector} that accumulates elements into an {
 end_comment
 
 begin_function
-unit|@
-name|Beta
 DECL|method|toImmutableEnumMap ( java.util.function.Function<? super T, ? extends K> keyFunction, java.util.function.Function<? super T, ? extends V> valueFunction, BinaryOperator<V> mergeFunction)
-specifier|public
+unit|public
 specifier|static
-argument_list|<
+parameter_list|<
 name|T
-argument_list|,
+parameter_list|,
 name|K
 extends|extends
 name|Enum
 argument_list|<
 name|K
 argument_list|>
-argument_list|,
+parameter_list|,
 name|V
-argument_list|>
+parameter_list|>
 name|Collector
 argument_list|<
 name|T
@@ -6970,8 +6964,6 @@ comment|/**    * Returns a {@link Converter} that converts values using {@link B
 end_comment
 
 begin_function
-annotation|@
-name|Beta
 DECL|method|asConverter (final BiMap<A, B> bimap)
 specifier|public
 specifier|static

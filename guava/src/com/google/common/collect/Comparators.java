@@ -134,8 +134,6 @@ end_comment
 
 begin_class
 annotation|@
-name|Beta
-annotation|@
 name|GwtCompatible
 DECL|class|Comparators
 specifier|public
@@ -152,6 +150,8 @@ comment|/**    * Returns a new comparator which sorts iterables by comparing cor
 comment|// Note: 90% of the time we don't add type parameters or wildcards that serve only to "tweak" the
 comment|// desired return type. However, *nested* generics introduce a special class of problems that we
 comment|// think tip it over into being worthwhile.
+annotation|@
+name|Beta
 DECL|method|lexicographical (Comparator<T> comparator)
 specifier|public
 specifier|static
@@ -193,6 +193,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns {@code true} if each element in {@code iterable} after the first is greater than or    * equal to the element that preceded it, according to the specified comparator. Note that this is    * always true when the iterable has fewer than two elements.    */
+annotation|@
+name|Beta
 DECL|method|isInOrder (Iterable<? extends T> iterable, Comparator<T> comparator)
 specifier|public
 specifier|static
@@ -296,6 +298,8 @@ literal|true
 return|;
 block|}
 comment|/**    * Returns {@code true} if each element in {@code iterable} after the first is<i>strictly</i>    * greater than the element that preceded it, according to the specified comparator. Note that    * this is always true when the iterable has fewer than two elements.    */
+annotation|@
+name|Beta
 DECL|method|isInStrictOrder ( Iterable<? extends T> iterable, Comparator<T> comparator)
 specifier|public
 specifier|static

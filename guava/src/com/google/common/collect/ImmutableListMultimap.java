@@ -319,8 +319,6 @@ name|V
 argument_list|>
 block|{
 comment|/**    * Returns a {@link Collector} that accumulates elements into an {@code ImmutableListMultimap}    * whose keys and values are the result of applying the provided mapping functions to the input    * elements.    *    *<p>For streams with {@linkplain java.util.stream#Ordering defined encounter order}, that order    * is preserved, but entries are<a href="ImmutableMultimap.html#iteration">grouped by key</a>.    *    *<p>Example:    *    *<pre>{@code    * static final Multimap<Character, String> FIRST_LETTER_MULTIMAP =    *     Stream.of("banana", "apple", "carrot", "asparagus", "cherry")    *         .collect(toImmutableListMultimap(str -> str.charAt(0), str -> str.substring(1)));    *    * // is equivalent to    *    * static final Multimap<Character, String> FIRST_LETTER_MULTIMAP =    *     new ImmutableListMultimap.Builder<Character, String>()    *         .put('b', "anana")    *         .putAll('a', "pple", "sparagus")    *         .putAll('c', "arrot", "herry")    *         .build();    * }</pre>    *    * @since 21.0    */
-annotation|@
-name|Beta
 DECL|method|toImmutableListMultimap ( Function<? super T, ? extends K> keyFunction, Function<? super T, ? extends V> valueFunction)
 specifier|public
 specifier|static
@@ -439,8 +437,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns a {@code Collector} accumulating entries into an {@code ImmutableListMultimap}. Each    * input element is mapped to a key and a stream of values, each of which are put into the    * resulting {@code Multimap}, in the encounter order of the stream and the encounter order of the    * streams of values.    *    *<p>Example:    *    *<pre>{@code    * static final ImmutableListMultimap<Character, Character> FIRST_LETTER_MULTIMAP =    *     Stream.of("banana", "apple", "carrot", "asparagus", "cherry")    *         .collect(    *             flatteningToImmutableListMultimap(    *                  str -> str.charAt(0),    *                  str -> str.substring(1).chars().mapToObj(c -> (char) c));    *    * // is equivalent to    *    * static final ImmutableListMultimap<Character, Character> FIRST_LETTER_MULTIMAP =    *     ImmutableListMultimap.<Character, Character>builder()    *         .putAll('b', Arrays.asList('a', 'n', 'a', 'n', 'a'))    *         .putAll('a', Arrays.asList('p', 'p', 'l', 'e'))    *         .putAll('c', Arrays.asList('a', 'r', 'r', 'o', 't'))    *         .putAll('a', Arrays.asList('s', 'p', 'a', 'r', 'a', 'g', 'u', 's'))    *         .putAll('c', Arrays.asList('h', 'e', 'r', 'r', 'y'))    *         .build();    * }    * }</pre>    *    * @since 21.0    */
-annotation|@
-name|Beta
 specifier|public
 specifier|static
 parameter_list|<

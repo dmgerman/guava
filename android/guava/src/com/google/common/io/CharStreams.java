@@ -176,8 +176,6 @@ end_comment
 
 begin_class
 annotation|@
-name|Beta
-annotation|@
 name|GwtIncompatible
 DECL|class|CharStreams
 specifier|public
@@ -593,6 +591,8 @@ name|sb
 return|;
 block|}
 comment|/**    * Reads all of the lines from a {@link Readable} object. The lines do not include    * line-termination characters, but do include other leading and trailing whitespace.    *    *<p>Does not close the {@code Readable}. If reading files or resources you should use the {@link    * Files#readLines} and {@link Resources#readLines} methods.    *    * @param r the object to read from    * @return a mutable {@link List} containing all the lines    * @throws IOException if an I/O error occurs    */
+annotation|@
+name|Beta
 DECL|method|readLines (Readable r)
 specifier|public
 specifier|static
@@ -658,6 +658,8 @@ name|result
 return|;
 block|}
 comment|/**    * Streams lines from a {@link Readable} object, stopping when the processor returns {@code false}    * or all lines have been read and returning the result produced by the processor. Does not close    * {@code readable}. Note that this method may not fully consume the contents of {@code readable}    * if the processor stops processing early.    *    * @throws IOException if an I/O error occurs    * @since 14.0    */
+annotation|@
+name|Beta
 annotation|@
 name|CanIgnoreReturnValue
 comment|// some processors won't return a useful result
@@ -741,6 +743,8 @@ return|;
 block|}
 comment|/**    * Reads and discards data from the given {@code Readable} until the end of the stream is reached.    * Returns the total number of chars read. Does not close the stream.    *    * @since 20.0    */
 annotation|@
+name|Beta
+annotation|@
 name|CanIgnoreReturnValue
 DECL|method|exhaust (Readable readable)
 specifier|public
@@ -800,6 +804,8 @@ name|total
 return|;
 block|}
 comment|/**    * Discards {@code n} characters of data from the reader. This method will block until the full    * amount has been skipped. Does not close the reader.    *    * @param reader the reader to read from    * @param n the number of characters to skip    * @throws EOFException if this stream reaches the end before skipping all the characters    * @throws IOException if an I/O error occurs    */
+annotation|@
+name|Beta
 DECL|method|skipFully (Reader reader, long n)
 specifier|public
 specifier|static
@@ -857,6 +863,8 @@ expr_stmt|;
 block|}
 block|}
 comment|/**    * Returns a {@link Writer} that simply discards written chars.    *    * @since 15.0    */
+annotation|@
+name|Beta
 DECL|method|nullWriter ()
 specifier|public
 specifier|static
@@ -1098,6 +1106,8 @@ return|;
 block|}
 block|}
 comment|/**    * Returns a Writer that sends all output to the given {@link Appendable} target. Closing the    * writer will close the target if it is {@link Closeable}, and flushing the writer will flush the    * target if it is {@link java.io.Flushable}.    *    * @param target the object to which output will be sent    * @return a new Writer object, unless target is a Writer, in which case the target is returned    */
+annotation|@
+name|Beta
 DECL|method|asWriter (Appendable target)
 specifier|public
 specifier|static

@@ -1071,8 +1071,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Splits {@code sequence} into string components and returns them as an immutable list. If you    * want an {@link Iterable} which may be lazily evaluated, use {@link #split(CharSequence)}.    *    * @param sequence the sequence of characters to split    * @return an immutable list of the segments split from the parameter    * @since 15.0    */
-annotation|@
-name|Beta
 DECL|method|splitToList (CharSequence sequence)
 specifier|public
 name|List

@@ -390,8 +390,6 @@ implements|,
 name|RandomAccess
 block|{
 comment|/**    * Returns a {@code Collector} that accumulates the input elements into a new {@code    * ImmutableList}, in encounter order.    *    * @since 21.0    */
-annotation|@
-name|Beta
 DECL|method|toImmutableList ()
 specifier|public
 specifier|static

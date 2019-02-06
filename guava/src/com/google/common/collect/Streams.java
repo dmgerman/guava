@@ -356,8 +356,6 @@ end_comment
 
 begin_class
 annotation|@
-name|Beta
-annotation|@
 name|GwtCompatible
 DECL|class|Streams
 specifier|public
@@ -420,6 +418,8 @@ return|;
 block|}
 comment|/**    * Returns {@link Collection#stream}.    *    * @deprecated There is no reason to use this; just invoke {@code collection.stream()} directly.    */
 annotation|@
+name|Beta
+annotation|@
 name|Deprecated
 DECL|method|stream (Collection<T> collection)
 specifier|public
@@ -448,6 +448,8 @@ argument_list|()
 return|;
 block|}
 comment|/**    * Returns a sequential {@link Stream} of the remaining contents of {@code iterator}. Do not use    * {@code iterator} directly after passing it to this method.    */
+annotation|@
+name|Beta
 DECL|method|stream (Iterator<T> iterator)
 specifier|public
 specifier|static
@@ -486,6 +488,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * If a value is present in {@code optional}, returns a stream containing only that element,    * otherwise returns an empty stream.    */
+annotation|@
+name|Beta
 DECL|method|stream (com.google.common.base.Optional<T> optional)
 specifier|public
 specifier|static
@@ -536,6 +540,8 @@ argument_list|()
 return|;
 block|}
 comment|/**    * If a value is present in {@code optional}, returns a stream containing only that element,    * otherwise returns an empty stream.    *    *<p><b>Java 9 users:</b> use {@code optional.stream()} instead.    */
+annotation|@
+name|Beta
 DECL|method|stream (java.util.Optional<T> optional)
 specifier|public
 specifier|static
@@ -582,6 +588,8 @@ argument_list|()
 return|;
 block|}
 comment|/**    * If a value is present in {@code optional}, returns a stream containing only that element,    * otherwise returns an empty stream.    *    *<p><b>Java 9 users:</b> use {@code optional.stream()} instead.    */
+annotation|@
+name|Beta
 DECL|method|stream (OptionalInt optional)
 specifier|public
 specifier|static
@@ -615,6 +623,8 @@ argument_list|()
 return|;
 block|}
 comment|/**    * If a value is present in {@code optional}, returns a stream containing only that element,    * otherwise returns an empty stream.    *    *<p><b>Java 9 users:</b> use {@code optional.stream()} instead.    */
+annotation|@
+name|Beta
 DECL|method|stream (OptionalLong optional)
 specifier|public
 specifier|static
@@ -648,6 +658,8 @@ argument_list|()
 return|;
 block|}
 comment|/**    * If a value is present in {@code optional}, returns a stream containing only that element,    * otherwise returns an empty stream.    *    *<p><b>Java 9 users:</b> use {@code optional.stream()} instead.    */
+annotation|@
+name|Beta
 DECL|method|stream (OptionalDouble optional)
 specifier|public
 specifier|static
@@ -992,6 +1004,8 @@ comment|/**    * Returns a stream in which each element is the result of passing
 end_comment
 
 begin_function
+annotation|@
+name|Beta
 DECL|method|zip ( Stream<A> streamA, Stream<B> streamB, BiFunction<? super A, ? super B, R> function)
 specifier|public
 specifier|static
@@ -1247,6 +1261,8 @@ comment|/**    * Invokes {@code consumer} once for each pair of<i>corresponding<
 end_comment
 
 begin_function
+annotation|@
+name|Beta
 DECL|method|forEachPair ( Stream<A> streamA, Stream<B> streamB, BiConsumer<? super A, ? super B> consumer)
 specifier|public
 specifier|static
@@ -1445,6 +1461,8 @@ comment|/**    * Returns a stream consisting of the results of applying the give
 end_comment
 
 begin_function
+annotation|@
+name|Beta
 DECL|method|mapWithIndex ( Stream<T> stream, FunctionWithIndex<? super T, ? extends R> function)
 specifier|public
 specifier|static
@@ -1811,6 +1829,8 @@ comment|/**    * Returns a stream consisting of the results of applying the give
 end_comment
 
 begin_function
+annotation|@
+name|Beta
 DECL|method|mapWithIndex (IntStream stream, IntFunctionWithIndex<R> function)
 specifier|public
 specifier|static
@@ -2149,6 +2169,8 @@ comment|/**    * Returns a stream consisting of the results of applying the give
 end_comment
 
 begin_function
+annotation|@
+name|Beta
 DECL|method|mapWithIndex (LongStream stream, LongFunctionWithIndex<R> function)
 specifier|public
 specifier|static
@@ -2487,6 +2509,8 @@ comment|/**    * Returns a stream consisting of the results of applying the give
 end_comment
 
 begin_function
+annotation|@
+name|Beta
 DECL|method|mapWithIndex ( DoubleStream stream, DoubleFunctionWithIndex<R> function)
 specifier|public
 specifier|static
@@ -3130,6 +3154,8 @@ comment|/**    * Returns the last element of the specified stream, or {@link jav
 end_comment
 
 begin_function
+annotation|@
+name|Beta
 DECL|method|findLast (Stream<T> stream)
 specifier|public
 specifier|static
@@ -3451,6 +3477,8 @@ comment|/**    * Returns the last element of the specified stream, or {@link Opt
 end_comment
 
 begin_function
+annotation|@
+name|Beta
 DECL|method|findLast (IntStream stream)
 specifier|public
 specifier|static
@@ -3509,6 +3537,8 @@ comment|/**    * Returns the last element of the specified stream, or {@link Opt
 end_comment
 
 begin_function
+annotation|@
+name|Beta
 DECL|method|findLast (LongStream stream)
 specifier|public
 specifier|static
@@ -3567,6 +3597,8 @@ comment|/**    * Returns the last element of the specified stream, or {@link Opt
 end_comment
 
 begin_function
+annotation|@
+name|Beta
 DECL|method|findLast (DoubleStream stream)
 specifier|public
 specifier|static

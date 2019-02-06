@@ -431,8 +431,6 @@ implements|,
 name|Serializable
 block|{
 comment|/**    * Returns a {@link Collector} that accumulates elements into an {@code ImmutableMap} whose keys    * and values are the result of applying the provided mapping functions to the input elements.    * Entries appear in the result {@code ImmutableMap} in encounter order.    *    *<p>If the mapped keys contain duplicates (according to {@link Object#equals(Object)}, an {@code    * IllegalArgumentException} is thrown when the collection operation is performed. (This differs    * from the {@code Collector} returned by {@link Collectors#toMap(Function, Function)}, which    * throws an {@code IllegalStateException}.)    *    * @since 21.0    */
-annotation|@
-name|Beta
 DECL|method|toImmutableMap ( Function<? super T, ? extends K> keyFunction, Function<? super T, ? extends V> valueFunction)
 specifier|public
 specifier|static
@@ -495,8 +493,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns a {@link Collector} that accumulates elements into an {@code ImmutableMap} whose keys    * and values are the result of applying the provided mapping functions to the input elements.    *    *<p>If the mapped keys contain duplicates (according to {@link Object#equals(Object)}), the    * values are merged using the specified merging function. Entries will appear in the encounter    * order of the first occurrence of the key.    *    * @since 21.0    */
-annotation|@
-name|Beta
 DECL|method|toImmutableMap ( Function<? super T, ? extends K> keyFunction, Function<? super T, ? extends V> valueFunction, BinaryOperator<V> mergeFunction)
 specifier|public
 specifier|static

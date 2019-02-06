@@ -74,20 +74,6 @@ name|common
 operator|.
 name|annotations
 operator|.
-name|Beta
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|annotations
-operator|.
 name|GwtCompatible
 import|;
 end_import
@@ -361,8 +347,6 @@ operator|.
 name|SORTED
 decl_stmt|;
 comment|/**    * Returns a {@code Collector} that accumulates the input elements into a new {@code    * ImmutableSortedSet}, ordered by the specified comparator.    *    *<p>If the elements contain duplicates (according to the comparator), only the first duplicate    * in encounter order will appear in the result.    *    * @since 21.0    */
-annotation|@
-name|Beta
 DECL|method|toImmutableSortedSet ( Comparator<? super E> comparator)
 specifier|public
 specifier|static

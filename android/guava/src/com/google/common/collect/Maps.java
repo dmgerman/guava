@@ -894,8 +894,6 @@ name|serializable
 operator|=
 literal|true
 argument_list|)
-annotation|@
-name|Beta
 DECL|method|immutableEnumMap ( Map<K, ? extends V> map)
 specifier|public
 specifier|static
@@ -5899,8 +5897,6 @@ return|;
 block|}
 block|}
 comment|/**    * Returns a {@link Converter} that converts values using {@link BiMap#get bimap.get()}, and whose    * inverse view converts values using {@link BiMap#inverse bimap.inverse()}{@code .get()}.    *    *<p>To use a plain {@link Map} as a {@link Function}, see {@link    * com.google.common.base.Functions#forMap(Map)} or {@link    * com.google.common.base.Functions#forMap(Map, Object)}.    *    * @since 16.0    */
-annotation|@
-name|Beta
 DECL|method|asConverter (final BiMap<A, B> bimap)
 specifier|public
 specifier|static
