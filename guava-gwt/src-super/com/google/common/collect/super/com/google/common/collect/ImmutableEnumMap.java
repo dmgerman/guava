@@ -150,6 +150,7 @@ argument_list|)
 return|;
 block|}
 DECL|method|ImmutableEnumMap (Map<? extends K, ? extends V> delegate)
+specifier|private
 name|ImmutableEnumMap
 parameter_list|(
 name|Map
