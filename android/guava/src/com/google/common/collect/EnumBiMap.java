@@ -322,10 +322,6 @@ parameter_list|)
 block|{
 name|super
 argument_list|(
-name|WellBehavedMap
-operator|.
-name|wrap
-argument_list|(
 operator|new
 name|EnumMap
 argument_list|<
@@ -336,12 +332,7 @@ argument_list|>
 argument_list|(
 name|keyType
 argument_list|)
-argument_list|)
 argument_list|,
-name|WellBehavedMap
-operator|.
-name|wrap
-argument_list|(
 operator|new
 name|EnumMap
 argument_list|<
@@ -351,7 +342,6 @@ name|K
 argument_list|>
 argument_list|(
 name|valueType
-argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -701,10 +691,6 @@ argument_list|()
 expr_stmt|;
 name|setDelegates
 argument_list|(
-name|WellBehavedMap
-operator|.
-name|wrap
-argument_list|(
 operator|new
 name|EnumMap
 argument_list|<
@@ -715,12 +701,7 @@ argument_list|>
 argument_list|(
 name|keyType
 argument_list|)
-argument_list|)
 argument_list|,
-name|WellBehavedMap
-operator|.
-name|wrap
-argument_list|(
 operator|new
 name|EnumMap
 argument_list|<
@@ -730,7 +711,6 @@ name|K
 argument_list|>
 argument_list|(
 name|valueType
-argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
