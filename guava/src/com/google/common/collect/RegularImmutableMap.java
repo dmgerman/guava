@@ -1223,8 +1223,6 @@ name|K
 argument_list|>
 block|{
 DECL|field|map
-annotation|@
-name|Weak
 specifier|private
 specifier|final
 name|RegularImmutableMap
