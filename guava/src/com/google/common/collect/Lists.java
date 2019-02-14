@@ -258,20 +258,6 @@ end_import
 
 begin_import
 import|import
-name|com
-operator|.
-name|google
-operator|.
-name|errorprone
-operator|.
-name|annotations
-operator|.
-name|CanIgnoreReturnValue
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|io
@@ -506,9 +492,6 @@ comment|/**    * Creates a<i>mutable</i> {@code ArrayList} instance containing t
 annotation|@
 name|SafeVarargs
 annotation|@
-name|CanIgnoreReturnValue
-comment|// TODO(kak): Remove this
-annotation|@
 name|GwtCompatible
 argument_list|(
 name|serializable
@@ -577,9 +560,6 @@ return|;
 block|}
 comment|/**    * Creates a<i>mutable</i> {@code ArrayList} instance containing the given elements; a very thin    * shortcut for creating an empty list then calling {@link Iterables#addAll}.    *    *<p><b>Note:</b> if mutability is not required and the elements are non-null, use {@link    * ImmutableList#copyOf(Iterable)} instead. (Or, change {@code elements} to be a {@link    * FluentIterable} and call {@code elements.toList()}.)    *    *<p><b>Note for Java 7 and later:</b> if {@code elements} is a {@link Collection}, you don't    * need this method. Use the {@code ArrayList} {@linkplain ArrayList#ArrayList(Collection)    * constructor} directly, taking advantage of the new<a href="http://goo.gl/iz2Wi">"diamond"    * syntax</a>.    */
 annotation|@
-name|CanIgnoreReturnValue
-comment|// TODO(kak): Remove this
-annotation|@
 name|GwtCompatible
 argument_list|(
 name|serializable
@@ -643,9 +623,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Creates a<i>mutable</i> {@code ArrayList} instance containing the given elements; a very thin    * shortcut for creating an empty list and then calling {@link Iterators#addAll}.    *    *<p><b>Note:</b> if mutability is not required and the elements are non-null, use {@link    * ImmutableList#copyOf(Iterator)} instead.    */
-annotation|@
-name|CanIgnoreReturnValue
-comment|// TODO(kak): Remove this
 annotation|@
 name|GwtCompatible
 argument_list|(
