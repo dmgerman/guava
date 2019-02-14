@@ -72,6 +72,22 @@ name|nullness
 operator|.
 name|compatqual
 operator|.
+name|NonNullDecl
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|checkerframework
+operator|.
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
 name|NullableDecl
 import|;
 end_import
@@ -2291,15 +2307,21 @@ block|}
 comment|/**    * Ensures that an object reference passed as a parameter to the calling method is not null.    *    * @param reference an object reference    * @return the non-null reference that was validated    * @throws NullPointerException if {@code reference} is null    * @see Verify#verifyNotNull Verify.verifyNotNull()    */
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|checkNotNull (T reference)
+annotation|@
+name|NonNullDecl
+DECL|method|checkNotNull (@onNullDecl T reference)
 specifier|public
 specifier|static
 parameter_list|<
 name|T
+extends|extends
+name|Object
 parameter_list|>
 name|T
 name|checkNotNull
 parameter_list|(
+annotation|@
+name|NonNullDecl
 name|T
 name|reference
 parameter_list|)
@@ -2324,15 +2346,21 @@ block|}
 comment|/**    * Ensures that an object reference passed as a parameter to the calling method is not null.    *    * @param reference an object reference    * @param errorMessage the exception message to use if the check fails; will be converted to a    *     string using {@link String#valueOf(Object)}    * @return the non-null reference that was validated    * @throws NullPointerException if {@code reference} is null    * @see Verify#verifyNotNull Verify.verifyNotNull()    */
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|checkNotNull (T reference, @NullableDecl Object errorMessage)
+annotation|@
+name|NonNullDecl
+DECL|method|checkNotNull ( @onNullDecl T reference, @NullableDecl Object errorMessage)
 specifier|public
 specifier|static
 parameter_list|<
 name|T
+extends|extends
+name|Object
 parameter_list|>
 name|T
 name|checkNotNull
 parameter_list|(
+annotation|@
+name|NonNullDecl
 name|T
 name|reference
 parameter_list|,
@@ -2369,15 +2397,21 @@ block|}
 comment|/**    * Ensures that an object reference passed as a parameter to the calling method is not null.    *    * @param reference an object reference    * @param errorMessageTemplate a template for the exception message should the check fail. The    *     message is formed by replacing each {@code %s} placeholder in the template with an    *     argument. These are matched by position - the first {@code %s} gets {@code    *     errorMessageArgs[0]}, etc. Unmatched arguments will be appended to the formatted message in    *     square braces. Unmatched placeholders will be left as-is.    * @param errorMessageArgs the arguments to be substituted into the message template. Arguments    *     are converted to strings using {@link String#valueOf(Object)}.    * @return the non-null reference that was validated    * @throws NullPointerException if {@code reference} is null    * @see Verify#verifyNotNull Verify.verifyNotNull()    */
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|checkNotNull ( T reference, @NullableDecl String errorMessageTemplate, @NullableDecl Object... errorMessageArgs)
+annotation|@
+name|NonNullDecl
+DECL|method|checkNotNull ( @onNullDecl T reference, @NullableDecl String errorMessageTemplate, @NullableDecl Object... errorMessageArgs)
 specifier|public
 specifier|static
 parameter_list|<
 name|T
+extends|extends
+name|Object
 parameter_list|>
 name|T
 name|checkNotNull
 parameter_list|(
+annotation|@
+name|NonNullDecl
 name|T
 name|reference
 parameter_list|,
@@ -2420,15 +2454,21 @@ block|}
 comment|/**    * Ensures that an object reference passed as a parameter to the calling method is not null.    *    *<p>See {@link #checkNotNull(Object, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|checkNotNull (T obj, @NullableDecl String errorMessageTemplate, char p1)
+annotation|@
+name|NonNullDecl
+DECL|method|checkNotNull ( @onNullDecl T obj, @NullableDecl String errorMessageTemplate, char p1)
 specifier|public
 specifier|static
 parameter_list|<
 name|T
+extends|extends
+name|Object
 parameter_list|>
 name|T
 name|checkNotNull
 parameter_list|(
+annotation|@
+name|NonNullDecl
 name|T
 name|obj
 parameter_list|,
@@ -2468,15 +2508,21 @@ block|}
 comment|/**    * Ensures that an object reference passed as a parameter to the calling method is not null.    *    *<p>See {@link #checkNotNull(Object, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|checkNotNull (T obj, @NullableDecl String errorMessageTemplate, int p1)
+annotation|@
+name|NonNullDecl
+DECL|method|checkNotNull ( @onNullDecl T obj, @NullableDecl String errorMessageTemplate, int p1)
 specifier|public
 specifier|static
 parameter_list|<
 name|T
+extends|extends
+name|Object
 parameter_list|>
 name|T
 name|checkNotNull
 parameter_list|(
+annotation|@
+name|NonNullDecl
 name|T
 name|obj
 parameter_list|,
@@ -2516,15 +2562,21 @@ block|}
 comment|/**    * Ensures that an object reference passed as a parameter to the calling method is not null.    *    *<p>See {@link #checkNotNull(Object, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|checkNotNull (T obj, @NullableDecl String errorMessageTemplate, long p1)
+annotation|@
+name|NonNullDecl
+DECL|method|checkNotNull ( @onNullDecl T obj, @NullableDecl String errorMessageTemplate, long p1)
 specifier|public
 specifier|static
 parameter_list|<
 name|T
+extends|extends
+name|Object
 parameter_list|>
 name|T
 name|checkNotNull
 parameter_list|(
+annotation|@
+name|NonNullDecl
 name|T
 name|obj
 parameter_list|,
@@ -2564,15 +2616,21 @@ block|}
 comment|/**    * Ensures that an object reference passed as a parameter to the calling method is not null.    *    *<p>See {@link #checkNotNull(Object, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|checkNotNull ( T obj, @NullableDecl String errorMessageTemplate, @NullableDecl Object p1)
+annotation|@
+name|NonNullDecl
+DECL|method|checkNotNull ( @onNullDecl T obj, @NullableDecl String errorMessageTemplate, @NullableDecl Object p1)
 specifier|public
 specifier|static
 parameter_list|<
 name|T
+extends|extends
+name|Object
 parameter_list|>
 name|T
 name|checkNotNull
 parameter_list|(
+annotation|@
+name|NonNullDecl
 name|T
 name|obj
 parameter_list|,
@@ -2614,15 +2672,21 @@ block|}
 comment|/**    * Ensures that an object reference passed as a parameter to the calling method is not null.    *    *<p>See {@link #checkNotNull(Object, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|checkNotNull ( T obj, @NullableDecl String errorMessageTemplate, char p1, char p2)
+annotation|@
+name|NonNullDecl
+DECL|method|checkNotNull ( @onNullDecl T obj, @NullableDecl String errorMessageTemplate, char p1, char p2)
 specifier|public
 specifier|static
 parameter_list|<
 name|T
+extends|extends
+name|Object
 parameter_list|>
 name|T
 name|checkNotNull
 parameter_list|(
+annotation|@
+name|NonNullDecl
 name|T
 name|obj
 parameter_list|,
@@ -2667,15 +2731,21 @@ block|}
 comment|/**    * Ensures that an object reference passed as a parameter to the calling method is not null.    *    *<p>See {@link #checkNotNull(Object, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|checkNotNull ( T obj, @NullableDecl String errorMessageTemplate, char p1, int p2)
+annotation|@
+name|NonNullDecl
+DECL|method|checkNotNull ( @onNullDecl T obj, @NullableDecl String errorMessageTemplate, char p1, int p2)
 specifier|public
 specifier|static
 parameter_list|<
 name|T
+extends|extends
+name|Object
 parameter_list|>
 name|T
 name|checkNotNull
 parameter_list|(
+annotation|@
+name|NonNullDecl
 name|T
 name|obj
 parameter_list|,
@@ -2720,15 +2790,21 @@ block|}
 comment|/**    * Ensures that an object reference passed as a parameter to the calling method is not null.    *    *<p>See {@link #checkNotNull(Object, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|checkNotNull ( T obj, @NullableDecl String errorMessageTemplate, char p1, long p2)
+annotation|@
+name|NonNullDecl
+DECL|method|checkNotNull ( @onNullDecl T obj, @NullableDecl String errorMessageTemplate, char p1, long p2)
 specifier|public
 specifier|static
 parameter_list|<
 name|T
+extends|extends
+name|Object
 parameter_list|>
 name|T
 name|checkNotNull
 parameter_list|(
+annotation|@
+name|NonNullDecl
 name|T
 name|obj
 parameter_list|,
@@ -2773,15 +2849,21 @@ block|}
 comment|/**    * Ensures that an object reference passed as a parameter to the calling method is not null.    *    *<p>See {@link #checkNotNull(Object, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|checkNotNull ( T obj, @NullableDecl String errorMessageTemplate, char p1, @NullableDecl Object p2)
+annotation|@
+name|NonNullDecl
+DECL|method|checkNotNull ( @onNullDecl T obj, @NullableDecl String errorMessageTemplate, char p1, @NullableDecl Object p2)
 specifier|public
 specifier|static
 parameter_list|<
 name|T
+extends|extends
+name|Object
 parameter_list|>
 name|T
 name|checkNotNull
 parameter_list|(
+annotation|@
+name|NonNullDecl
 name|T
 name|obj
 parameter_list|,
@@ -2828,15 +2910,21 @@ block|}
 comment|/**    * Ensures that an object reference passed as a parameter to the calling method is not null.    *    *<p>See {@link #checkNotNull(Object, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|checkNotNull ( T obj, @NullableDecl String errorMessageTemplate, int p1, char p2)
+annotation|@
+name|NonNullDecl
+DECL|method|checkNotNull ( @onNullDecl T obj, @NullableDecl String errorMessageTemplate, int p1, char p2)
 specifier|public
 specifier|static
 parameter_list|<
 name|T
+extends|extends
+name|Object
 parameter_list|>
 name|T
 name|checkNotNull
 parameter_list|(
+annotation|@
+name|NonNullDecl
 name|T
 name|obj
 parameter_list|,
@@ -2881,15 +2969,21 @@ block|}
 comment|/**    * Ensures that an object reference passed as a parameter to the calling method is not null.    *    *<p>See {@link #checkNotNull(Object, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|checkNotNull ( T obj, @NullableDecl String errorMessageTemplate, int p1, int p2)
+annotation|@
+name|NonNullDecl
+DECL|method|checkNotNull ( @onNullDecl T obj, @NullableDecl String errorMessageTemplate, int p1, int p2)
 specifier|public
 specifier|static
 parameter_list|<
 name|T
+extends|extends
+name|Object
 parameter_list|>
 name|T
 name|checkNotNull
 parameter_list|(
+annotation|@
+name|NonNullDecl
 name|T
 name|obj
 parameter_list|,
@@ -2934,15 +3028,21 @@ block|}
 comment|/**    * Ensures that an object reference passed as a parameter to the calling method is not null.    *    *<p>See {@link #checkNotNull(Object, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|checkNotNull ( T obj, @NullableDecl String errorMessageTemplate, int p1, long p2)
+annotation|@
+name|NonNullDecl
+DECL|method|checkNotNull ( @onNullDecl T obj, @NullableDecl String errorMessageTemplate, int p1, long p2)
 specifier|public
 specifier|static
 parameter_list|<
 name|T
+extends|extends
+name|Object
 parameter_list|>
 name|T
 name|checkNotNull
 parameter_list|(
+annotation|@
+name|NonNullDecl
 name|T
 name|obj
 parameter_list|,
@@ -2987,15 +3087,21 @@ block|}
 comment|/**    * Ensures that an object reference passed as a parameter to the calling method is not null.    *    *<p>See {@link #checkNotNull(Object, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|checkNotNull ( T obj, @NullableDecl String errorMessageTemplate, int p1, @NullableDecl Object p2)
+annotation|@
+name|NonNullDecl
+DECL|method|checkNotNull ( @onNullDecl T obj, @NullableDecl String errorMessageTemplate, int p1, @NullableDecl Object p2)
 specifier|public
 specifier|static
 parameter_list|<
 name|T
+extends|extends
+name|Object
 parameter_list|>
 name|T
 name|checkNotNull
 parameter_list|(
+annotation|@
+name|NonNullDecl
 name|T
 name|obj
 parameter_list|,
@@ -3042,15 +3148,21 @@ block|}
 comment|/**    * Ensures that an object reference passed as a parameter to the calling method is not null.    *    *<p>See {@link #checkNotNull(Object, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|checkNotNull ( T obj, @NullableDecl String errorMessageTemplate, long p1, char p2)
+annotation|@
+name|NonNullDecl
+DECL|method|checkNotNull ( @onNullDecl T obj, @NullableDecl String errorMessageTemplate, long p1, char p2)
 specifier|public
 specifier|static
 parameter_list|<
 name|T
+extends|extends
+name|Object
 parameter_list|>
 name|T
 name|checkNotNull
 parameter_list|(
+annotation|@
+name|NonNullDecl
 name|T
 name|obj
 parameter_list|,
@@ -3095,15 +3207,21 @@ block|}
 comment|/**    * Ensures that an object reference passed as a parameter to the calling method is not null.    *    *<p>See {@link #checkNotNull(Object, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|checkNotNull ( T obj, @NullableDecl String errorMessageTemplate, long p1, int p2)
+annotation|@
+name|NonNullDecl
+DECL|method|checkNotNull ( @onNullDecl T obj, @NullableDecl String errorMessageTemplate, long p1, int p2)
 specifier|public
 specifier|static
 parameter_list|<
 name|T
+extends|extends
+name|Object
 parameter_list|>
 name|T
 name|checkNotNull
 parameter_list|(
+annotation|@
+name|NonNullDecl
 name|T
 name|obj
 parameter_list|,
@@ -3148,15 +3266,21 @@ block|}
 comment|/**    * Ensures that an object reference passed as a parameter to the calling method is not null.    *    *<p>See {@link #checkNotNull(Object, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|checkNotNull ( T obj, @NullableDecl String errorMessageTemplate, long p1, long p2)
+annotation|@
+name|NonNullDecl
+DECL|method|checkNotNull ( @onNullDecl T obj, @NullableDecl String errorMessageTemplate, long p1, long p2)
 specifier|public
 specifier|static
 parameter_list|<
 name|T
+extends|extends
+name|Object
 parameter_list|>
 name|T
 name|checkNotNull
 parameter_list|(
+annotation|@
+name|NonNullDecl
 name|T
 name|obj
 parameter_list|,
@@ -3201,15 +3325,21 @@ block|}
 comment|/**    * Ensures that an object reference passed as a parameter to the calling method is not null.    *    *<p>See {@link #checkNotNull(Object, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|checkNotNull ( T obj, @NullableDecl String errorMessageTemplate, long p1, @NullableDecl Object p2)
+annotation|@
+name|NonNullDecl
+DECL|method|checkNotNull ( @onNullDecl T obj, @NullableDecl String errorMessageTemplate, long p1, @NullableDecl Object p2)
 specifier|public
 specifier|static
 parameter_list|<
 name|T
+extends|extends
+name|Object
 parameter_list|>
 name|T
 name|checkNotNull
 parameter_list|(
+annotation|@
+name|NonNullDecl
 name|T
 name|obj
 parameter_list|,
@@ -3256,15 +3386,21 @@ block|}
 comment|/**    * Ensures that an object reference passed as a parameter to the calling method is not null.    *    *<p>See {@link #checkNotNull(Object, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|checkNotNull ( T obj, @NullableDecl String errorMessageTemplate, @NullableDecl Object p1, char p2)
+annotation|@
+name|NonNullDecl
+DECL|method|checkNotNull ( @onNullDecl T obj, @NullableDecl String errorMessageTemplate, @NullableDecl Object p1, char p2)
 specifier|public
 specifier|static
 parameter_list|<
 name|T
+extends|extends
+name|Object
 parameter_list|>
 name|T
 name|checkNotNull
 parameter_list|(
+annotation|@
+name|NonNullDecl
 name|T
 name|obj
 parameter_list|,
@@ -3311,15 +3447,21 @@ block|}
 comment|/**    * Ensures that an object reference passed as a parameter to the calling method is not null.    *    *<p>See {@link #checkNotNull(Object, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|checkNotNull ( T obj, @NullableDecl String errorMessageTemplate, @NullableDecl Object p1, int p2)
+annotation|@
+name|NonNullDecl
+DECL|method|checkNotNull ( @onNullDecl T obj, @NullableDecl String errorMessageTemplate, @NullableDecl Object p1, int p2)
 specifier|public
 specifier|static
 parameter_list|<
 name|T
+extends|extends
+name|Object
 parameter_list|>
 name|T
 name|checkNotNull
 parameter_list|(
+annotation|@
+name|NonNullDecl
 name|T
 name|obj
 parameter_list|,
@@ -3366,15 +3508,21 @@ block|}
 comment|/**    * Ensures that an object reference passed as a parameter to the calling method is not null.    *    *<p>See {@link #checkNotNull(Object, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|checkNotNull ( T obj, @NullableDecl String errorMessageTemplate, @NullableDecl Object p1, long p2)
+annotation|@
+name|NonNullDecl
+DECL|method|checkNotNull ( @onNullDecl T obj, @NullableDecl String errorMessageTemplate, @NullableDecl Object p1, long p2)
 specifier|public
 specifier|static
 parameter_list|<
 name|T
+extends|extends
+name|Object
 parameter_list|>
 name|T
 name|checkNotNull
 parameter_list|(
+annotation|@
+name|NonNullDecl
 name|T
 name|obj
 parameter_list|,
@@ -3421,15 +3569,21 @@ block|}
 comment|/**    * Ensures that an object reference passed as a parameter to the calling method is not null.    *    *<p>See {@link #checkNotNull(Object, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|checkNotNull ( T obj, @NullableDecl String errorMessageTemplate, @NullableDecl Object p1, @NullableDecl Object p2)
+annotation|@
+name|NonNullDecl
+DECL|method|checkNotNull ( @onNullDecl T obj, @NullableDecl String errorMessageTemplate, @NullableDecl Object p1, @NullableDecl Object p2)
 specifier|public
 specifier|static
 parameter_list|<
 name|T
+extends|extends
+name|Object
 parameter_list|>
 name|T
 name|checkNotNull
 parameter_list|(
+annotation|@
+name|NonNullDecl
 name|T
 name|obj
 parameter_list|,
@@ -3478,15 +3632,21 @@ block|}
 comment|/**    * Ensures that an object reference passed as a parameter to the calling method is not null.    *    *<p>See {@link #checkNotNull(Object, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|checkNotNull ( T obj, @NullableDecl String errorMessageTemplate, @NullableDecl Object p1, @NullableDecl Object p2, @NullableDecl Object p3)
+annotation|@
+name|NonNullDecl
+DECL|method|checkNotNull ( @onNullDecl T obj, @NullableDecl String errorMessageTemplate, @NullableDecl Object p1, @NullableDecl Object p2, @NullableDecl Object p3)
 specifier|public
 specifier|static
 parameter_list|<
 name|T
+extends|extends
+name|Object
 parameter_list|>
 name|T
 name|checkNotNull
 parameter_list|(
+annotation|@
+name|NonNullDecl
 name|T
 name|obj
 parameter_list|,
@@ -3542,15 +3702,21 @@ block|}
 comment|/**    * Ensures that an object reference passed as a parameter to the calling method is not null.    *    *<p>See {@link #checkNotNull(Object, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|checkNotNull ( T obj, @NullableDecl String errorMessageTemplate, @NullableDecl Object p1, @NullableDecl Object p2, @NullableDecl Object p3, @NullableDecl Object p4)
+annotation|@
+name|NonNullDecl
+DECL|method|checkNotNull ( @onNullDecl T obj, @NullableDecl String errorMessageTemplate, @NullableDecl Object p1, @NullableDecl Object p2, @NullableDecl Object p3, @NullableDecl Object p4)
 specifier|public
 specifier|static
 parameter_list|<
 name|T
+extends|extends
+name|Object
 parameter_list|>
 name|T
 name|checkNotNull
 parameter_list|(
+annotation|@
+name|NonNullDecl
 name|T
 name|obj
 parameter_list|,
