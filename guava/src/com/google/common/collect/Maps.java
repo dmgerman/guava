@@ -6443,7 +6443,7 @@ block|}
 end_function
 
 begin_comment
-comment|/**    * Returns an immutable map entry with the specified key and value. The {@link Entry#setValue}    * operation throws an {@link UnsupportedOperationException}.    *    *<p>The returned entry is serializable.    *    * @param key the key to be associated with the returned entry    * @param value the value to be associated with the returned entry    */
+comment|/**    * Returns an immutable map entry with the specified key and value. The {@link Entry#setValue}    * operation throws an {@link UnsupportedOperationException}.    *    *<p>The returned entry is serializable.    *    *<p><b>Java 9 users:</b> consider using {@code java.util.Map.entry(key, value)} if the key and    * value are non-null and the entry does not need to be serializable.    *    * @param key the key to be associated with the returned entry    * @param value the value to be associated with the returned entry    */
 end_comment
 
 begin_function
