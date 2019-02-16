@@ -913,6 +913,18 @@ name|SET_COOKIE2
 init|=
 literal|"Set-Cookie2"
 decl_stmt|;
+comment|/**    * The HTTP<a href="http://goo.gl/Dxx19N">{@code SourceMap}</a> header field name.    *    * @since NEXT    */
+DECL|field|SOURCE_MAP
+annotation|@
+name|Beta
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|SOURCE_MAP
+init|=
+literal|"SourceMap"
+decl_stmt|;
 comment|/**    * The HTTP<a href="http://tools.ietf.org/html/rfc6797#section-6.1">{@code    * Strict-Transport-Security}</a> header field name.    *    * @since 15.0    */
 DECL|field|STRICT_TRANSPORT_SECURITY
 specifier|public

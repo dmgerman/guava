@@ -169,6 +169,10 @@ literal|"ETAG"
 argument_list|,
 literal|"ETag"
 argument_list|,
+literal|"SOURCE_MAP"
+argument_list|,
+literal|"SourceMap"
+argument_list|,
 literal|"X_WEBKIT_CSP"
 argument_list|,
 literal|"X-WebKit-CSP"
