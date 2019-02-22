@@ -3102,6 +3102,8 @@ block|}
 DECL|field|values
 annotation|@
 name|LazyInit
+annotation|@
+name|RetainedWith
 specifier|private
 specifier|transient
 name|ImmutableCollection
