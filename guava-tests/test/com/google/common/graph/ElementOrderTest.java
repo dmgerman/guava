@@ -1532,6 +1532,11 @@ name|value
 return|;
 block|}
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"ComparableType"
+argument_list|)
 DECL|class|ComparableSubClass
 specifier|private
 specifier|static

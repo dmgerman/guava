@@ -56,6 +56,11 @@ end_comment
 
 begin_class
 annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"ComparableType"
+argument_list|)
+annotation|@
 name|GwtCompatible
 DECL|class|LegacyComparable
 class|class

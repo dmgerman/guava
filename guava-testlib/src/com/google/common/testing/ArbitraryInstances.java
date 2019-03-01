@@ -3979,6 +3979,11 @@ block|}
 comment|// Compare by toString() to satisfy 2 properties:
 comment|// 1. compareTo(null) should throw NullPointerException
 comment|// 2. the order is deterministic and easy to understand, for debugging purpose.
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"ComparableType"
+argument_list|)
 DECL|class|ByToString
 specifier|private
 specifier|static
