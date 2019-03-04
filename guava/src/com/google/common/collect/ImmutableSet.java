@@ -2600,15 +2600,16 @@ init|=
 literal|0.001
 decl_stmt|;
 comment|// NB: yes, this is surprisingly high, but that's what the experiments said was necessary
+comment|// The higher it is, the worse constant factors we are willing to accept.
 DECL|field|MAX_RUN_MULTIPLIER
 specifier|static
 specifier|final
 name|int
 name|MAX_RUN_MULTIPLIER
 init|=
-literal|12
+literal|13
 decl_stmt|;
-comment|/**    * Checks the whole hash table for poor hash distribution. Takes O(n).    *    *<p>The online hash flooding detecting in RegularSetBuilderImpl.add can detect e.g. many exactly    * matching hash codes, which would cause construction to take O(n^2), but can't detect e.g. hash    * codes adversarially designed to go into ascending table locations, which keeps construction    * O(n) (as desired) but then can have O(n) queries later.    *    *<p>If this returns false, then no query can take more than O(log n).    *    *<p>Note that for a RegularImmutableSet with elements with truly random hash codes, contains    * operations take expected O(1) time but with high probability take O(log n) for at least some    * element. (https://en.wikipedia.org/wiki/Linear_probing#Analysis)    */
+comment|/**    * Checks the whole hash table for poor hash distribution. Takes O(n) in the worst case, O(n / log    * n) on average.    *    *<p>The online hash flooding detecting in RegularSetBuilderImpl.add can detect e.g. many exactly    * matching hash codes, which would cause construction to take O(n^2), but can't detect e.g. hash    * codes adversarially designed to go into ascending table locations, which keeps construction    * O(n) (as desired) but then can have O(n) queries later.    *    *<p>If this returns false, then no query can take more than O(log n).    *    *<p>Note that for a RegularImmutableSet with elements with truly random hash codes, contains    * operations take expected O(1) time but with high probability take O(log n) for at least some    * element. (https://en.wikipedia.org/wiki/Linear_probing#Analysis)    *    *<p>This method may return {@code true} up to {@link #HASH_FLOODING_FPP} of the time even on    * truly random input.    *    *<p>If this method returns false, there are definitely no runs of length at least {@code    * maxRunBeforeFallback(hashTable.length)} nonnull elements. If there are no runs of length at    * least {@code maxRunBeforeFallback(hashTable.length) / 2} nonnull elements, this method    * definitely returns false. In between those constraints, the result of this method is undefined,    * subject to the above {@link #HASH_FLOODING_FPP} constraint.    */
 DECL|method|hashFloodingDetected (Object[] hashTable)
 specifier|static
 name|boolean
@@ -2629,7 +2630,7 @@ operator|.
 name|length
 argument_list|)
 decl_stmt|;
-comment|// Test for a run wrapping around the end of the table, then check for runs in the middle.
+comment|// Test for a run wrapping around the end of the table of length at least maxRunBeforeFallback.
 name|int
 name|endOfStartRun
 decl_stmt|;
@@ -2729,6 +2730,17 @@ literal|true
 return|;
 block|}
 block|}
+comment|// Now, break the remainder of the table into blocks of maxRunBeforeFallback/2 elements and
+comment|// check that each has at least one null.
+name|int
+name|testBlockSize
+init|=
+name|maxRunBeforeFallback
+operator|/
+literal|2
+decl_stmt|;
+name|blockLoop
+label|:
 for|for
 control|(
 name|int
@@ -2739,57 +2751,59 @@ operator|+
 literal|1
 init|;
 name|i
-operator|<
+operator|+
+name|testBlockSize
+operator|<=
 name|startOfEndRun
 condition|;
 name|i
-operator|++
+operator|+=
+name|testBlockSize
 control|)
 block|{
 for|for
 control|(
 name|int
-name|runLength
+name|j
 init|=
 literal|0
 init|;
-name|i
+name|j
 operator|<
-name|startOfEndRun
-operator|&&
-name|hashTable
-index|[
-name|i
-index|]
-operator|!=
-literal|null
+name|testBlockSize
 condition|;
-name|i
+name|j
 operator|++
 control|)
 block|{
-name|runLength
-operator|++
-expr_stmt|;
 if|if
 condition|(
-name|runLength
-operator|>
-name|maxRunBeforeFallback
+name|hashTable
+index|[
+name|i
+operator|+
+name|j
+index|]
+operator|==
+literal|null
 condition|)
 block|{
+continue|continue
+name|blockLoop
+continue|;
+block|}
+block|}
 return|return
 literal|true
 return|;
-block|}
-block|}
 block|}
 return|return
 literal|false
 return|;
 block|}
-comment|/**    * If more than this many consecutive positions are filled in a table of the specified size,    * report probable hash flooding.    */
+comment|/**    * If more than this many consecutive positions are filled in a table of the specified size,    * report probable hash flooding. ({@link #hashFloodingDetected} may also report hash flooding if    * fewer consecutive positions are filled; see that method for details.)    */
 DECL|method|maxRunBeforeFallback (int tableSize)
+specifier|private
 specifier|static
 name|int
 name|maxRunBeforeFallback
