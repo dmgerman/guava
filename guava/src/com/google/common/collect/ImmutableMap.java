@@ -2301,8 +2301,6 @@ argument_list|>
 name|createEntrySet
 parameter_list|()
 block|{
-annotation|@
-name|WeakOuter
 class|class
 name|EntrySetImpl
 extends|extends
@@ -2876,6 +2874,8 @@ block|}
 DECL|field|entrySet
 annotation|@
 name|LazyInit
+annotation|@
+name|RetainedWith
 specifier|private
 specifier|transient
 name|ImmutableSet

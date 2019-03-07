@@ -124,20 +124,6 @@ end_import
 
 begin_import
 import|import
-name|com
-operator|.
-name|google
-operator|.
-name|j2objc
-operator|.
-name|annotations
-operator|.
-name|WeakOuter
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|util
@@ -2897,8 +2883,6 @@ argument_list|>
 name|createEntrySet
 parameter_list|()
 block|{
-annotation|@
-name|WeakOuter
 class|class
 name|EntrySet
 extends|extends
