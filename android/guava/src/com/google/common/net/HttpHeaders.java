@@ -803,7 +803,7 @@ name|LOCATION
 init|=
 literal|"Location"
 decl_stmt|;
-comment|/**    * The HTTP<a href="https://googlechrome.github.io/OriginTrials/#header">{@code Origin-Trial}</a>    * header field name.    */
+comment|/**    * The HTTP<a href="https://googlechrome.github.io/OriginTrials/#header">{@code Origin-Trial}</a>    * header field name.    *    * @since NEXT    */
 DECL|field|ORIGIN_TRIAL
 specifier|public
 specifier|static
@@ -843,7 +843,7 @@ name|REFRESH
 init|=
 literal|"Refresh"
 decl_stmt|;
-comment|/**    * The HTTP<a href="https://www.w3.org/TR/reporting/">{@code Report-To}</a> header field name.    */
+comment|/**    * The HTTP<a href="https://www.w3.org/TR/reporting/">{@code Report-To}</a> header field name.    *    * @since NEXT    */
 DECL|field|REPORT_TO
 specifier|public
 specifier|static

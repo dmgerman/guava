@@ -96,7 +96,7 @@ name|V
 name|value
 parameter_list|)
 function_decl|;
-comment|/**    * Adds an edge connecting {@code endpoints} if one is not already present, and sets a value for    * that edge to {@code value} (overwriting the existing value, if any).    *    *<p>If the graph is directed, the resultant edge will be directed; otherwise, it will be    * undirected.    *    *<p>If this graph is directed, {@code endpoints} must be ordered.    *    *<p>Values do not have to be unique. However, values must be non-null.    *    *<p>If either or both endpoints are not already present in this graph, this method will silently    * {@link #addNode(Object) add} each missing endpoint to the graph.    *    * @return the value previously associated with the edge connecting {@code nodeU} to {@code    *     nodeV}, or null if there was no such edge.    * @throws IllegalArgumentException if the introduction of the edge would violate {@link    *     #allowsSelfLoops()}    * @throws IllegalArgumentException if the endpoints are unordered and the graph is directed    */
+comment|/**    * Adds an edge connecting {@code endpoints} if one is not already present, and sets a value for    * that edge to {@code value} (overwriting the existing value, if any).    *    *<p>If the graph is directed, the resultant edge will be directed; otherwise, it will be    * undirected.    *    *<p>If this graph is directed, {@code endpoints} must be ordered.    *    *<p>Values do not have to be unique. However, values must be non-null.    *    *<p>If either or both endpoints are not already present in this graph, this method will silently    * {@link #addNode(Object) add} each missing endpoint to the graph.    *    * @return the value previously associated with the edge connecting {@code nodeU} to {@code    *     nodeV}, or null if there was no such edge.    * @throws IllegalArgumentException if the introduction of the edge would violate {@link    *     #allowsSelfLoops()}    * @throws IllegalArgumentException if the endpoints are unordered and the graph is directed    * @since NEXT    */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|putEdgeValue (EndpointPair<N> endpoints, V value)
@@ -138,7 +138,7 @@ name|N
 name|nodeV
 parameter_list|)
 function_decl|;
-comment|/**    * Removes the edge connecting {@code endpoints}, if it is present.    *    *<p>If this graph is directed, {@code endpoints} must be ordered.    *    * @return the value previously associated with the edge connecting {@code endpoints}, or null if    *     there was no such edge.    */
+comment|/**    * Removes the edge connecting {@code endpoints}, if it is present.    *    *<p>If this graph is directed, {@code endpoints} must be ordered.    *    * @return the value previously associated with the edge connecting {@code endpoints}, or null if    *     there was no such edge.    * @since NEXT    */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|removeEdge (EndpointPair<N> endpoints)

@@ -89,7 +89,7 @@ name|N
 name|nodeV
 parameter_list|)
 function_decl|;
-comment|/**    * Adds an edge connecting {@code endpoints} (in the order, if any, specified by {@code    * endpoints}) if one is not already present.    *    *<p>If this graph is directed, {@code endpoints} must be ordered and the added edge will be    * directed; if it is undirected, the added edge will be undirected.    *    *<p>If this graph is directed, {@code endpoints} must be ordered.    *    *<p>If either or both endpoints are not already present in this graph, this method will silently    * {@link #addNode(Object) add} each missing endpoint to the graph.    *    * @return {@code true} if the graph was modified as a result of this call    * @throws IllegalArgumentException if the introduction of the edge would violate {@link    *     #allowsSelfLoops()}    * @throws IllegalArgumentException if the endpoints are unordered and the graph is directed    */
+comment|/**    * Adds an edge connecting {@code endpoints} (in the order, if any, specified by {@code    * endpoints}) if one is not already present.    *    *<p>If this graph is directed, {@code endpoints} must be ordered and the added edge will be    * directed; if it is undirected, the added edge will be undirected.    *    *<p>If this graph is directed, {@code endpoints} must be ordered.    *    *<p>If either or both endpoints are not already present in this graph, this method will silently    * {@link #addNode(Object) add} each missing endpoint to the graph.    *    * @return {@code true} if the graph was modified as a result of this call    * @throws IllegalArgumentException if the introduction of the edge would violate {@link    *     #allowsSelfLoops()}    * @throws IllegalArgumentException if the endpoints are unordered and the graph is directed    * @since NEXT    */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|putEdge (EndpointPair<N> endpoints)
@@ -128,7 +128,7 @@ name|N
 name|nodeV
 parameter_list|)
 function_decl|;
-comment|/**    * Removes the edge connecting {@code endpoints}, if it is present.    *    *<p>If this graph is directed, {@code endpoints} must be ordered.    *    * @throws IllegalArgumentException if the endpoints are unordered and the graph is directed    * @return {@code true} if the graph was modified as a result of this call    */
+comment|/**    * Removes the edge connecting {@code endpoints}, if it is present.    *    *<p>If this graph is directed, {@code endpoints} must be ordered.    *    * @throws IllegalArgumentException if the endpoints are unordered and the graph is directed    * @return {@code true} if the graph was modified as a result of this call    * @since NEXT    */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|removeEdge (EndpointPair<N> endpoints)
