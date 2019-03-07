@@ -1688,7 +1688,7 @@ argument_list|,
 literal|"javascript"
 argument_list|)
 decl_stmt|;
-comment|/**    * For<a href="https://tools.ietf.org/html/rfc7515">JWS or JWE objects using the Compact    * Serialization</a>.    *    * @since NEXT    */
+comment|/**    * For<a href="https://tools.ietf.org/html/rfc7515">JWS or JWE objects using the Compact    * Serialization</a>.    *    * @since 27.1    */
 DECL|field|JOSE
 specifier|public
 specifier|static
@@ -1703,7 +1703,7 @@ argument_list|,
 literal|"jose"
 argument_list|)
 decl_stmt|;
-comment|/**    * For<a href="https://tools.ietf.org/html/rfc7515">JWS or JWE objects using the JSON    * Serialization</a>.    *    * @since NEXT    */
+comment|/**    * For<a href="https://tools.ietf.org/html/rfc7515">JWS or JWE objects using the JSON    * Serialization</a>.    *    * @since 27.1    */
 DECL|field|JOSE_JSON
 specifier|public
 specifier|static
@@ -1822,7 +1822,7 @@ argument_list|,
 literal|"vnd.ms-excel"
 argument_list|)
 decl_stmt|;
-comment|/**    *<a href="http://goo.gl/XrTEqG">Microsoft Outlook</a> items.    *    * @since NEXT    */
+comment|/**    *<a href="http://goo.gl/XrTEqG">Microsoft Outlook</a> items.    *    * @since 27.1    */
 DECL|field|MICROSOFT_OUTLOOK
 specifier|public
 specifier|static

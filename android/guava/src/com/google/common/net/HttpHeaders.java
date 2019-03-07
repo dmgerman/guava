@@ -803,7 +803,7 @@ name|LOCATION
 init|=
 literal|"Location"
 decl_stmt|;
-comment|/**    * The HTTP<a href="https://googlechrome.github.io/OriginTrials/#header">{@code Origin-Trial}</a>    * header field name.    *    * @since NEXT    */
+comment|/**    * The HTTP<a href="https://googlechrome.github.io/OriginTrials/#header">{@code Origin-Trial}</a>    * header field name.    *    * @since 27.1    */
 DECL|field|ORIGIN_TRIAL
 specifier|public
 specifier|static
@@ -843,7 +843,7 @@ name|REFRESH
 init|=
 literal|"Refresh"
 decl_stmt|;
-comment|/**    * The HTTP<a href="https://www.w3.org/TR/reporting/">{@code Report-To}</a> header field name.    *    * @since NEXT    */
+comment|/**    * The HTTP<a href="https://www.w3.org/TR/reporting/">{@code Report-To}</a> header field name.    *    * @since 27.1    */
 DECL|field|REPORT_TO
 specifier|public
 specifier|static
@@ -913,7 +913,7 @@ name|SET_COOKIE2
 init|=
 literal|"Set-Cookie2"
 decl_stmt|;
-comment|/**    * The HTTP<a href="http://goo.gl/Dxx19N">{@code SourceMap}</a> header field name.    *    * @since NEXT    */
+comment|/**    * The HTTP<a href="http://goo.gl/Dxx19N">{@code SourceMap}</a> header field name.    *    * @since 27.1    */
 DECL|field|SOURCE_MAP
 annotation|@
 name|Beta
@@ -1172,7 +1172,7 @@ name|PING_TO
 init|=
 literal|"Ping-To"
 decl_stmt|;
-comment|/**    * The HTTP<a href="https://mikewest.github.io/sec-metadata/">{@code Sec-Fetch-Dest}</a> header    * field name.    *    * @since NEXT    */
+comment|/**    * The HTTP<a href="https://mikewest.github.io/sec-metadata/">{@code Sec-Fetch-Dest}</a> header    * field name.    *    * @since 27.1    */
 DECL|field|SEC_FETCH_DEST
 specifier|public
 specifier|static
@@ -1182,7 +1182,7 @@ name|SEC_FETCH_DEST
 init|=
 literal|"Sec-Fetch-Dest"
 decl_stmt|;
-comment|/**    * The HTTP<a href="https://mikewest.github.io/sec-metadata/">{@code Sec-Fetch-Mode}</a> header    * field name.    *    * @since NEXT    */
+comment|/**    * The HTTP<a href="https://mikewest.github.io/sec-metadata/">{@code Sec-Fetch-Mode}</a> header    * field name.    *    * @since 27.1    */
 DECL|field|SEC_FETCH_MODE
 specifier|public
 specifier|static
@@ -1192,7 +1192,7 @@ name|SEC_FETCH_MODE
 init|=
 literal|"Sec-Fetch-Mode"
 decl_stmt|;
-comment|/**    * The HTTP<a href="https://mikewest.github.io/sec-metadata/">{@code Sec-Fetch-Site}</a> header    * field name.    *    * @since NEXT    */
+comment|/**    * The HTTP<a href="https://mikewest.github.io/sec-metadata/">{@code Sec-Fetch-Site}</a> header    * field name.    *    * @since 27.1    */
 DECL|field|SEC_FETCH_SITE
 specifier|public
 specifier|static
@@ -1202,7 +1202,7 @@ name|SEC_FETCH_SITE
 init|=
 literal|"Sec-Fetch-Site"
 decl_stmt|;
-comment|/**    * The HTTP<a href="https://mikewest.github.io/sec-metadata/">{@code Sec-Fetch-User}</a> header    * field name.    *    * @since NEXT    */
+comment|/**    * The HTTP<a href="https://mikewest.github.io/sec-metadata/">{@code Sec-Fetch-User}</a> header    * field name.    *    * @since 27.1    */
 DECL|field|SEC_FETCH_USER
 specifier|public
 specifier|static

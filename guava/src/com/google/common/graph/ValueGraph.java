@@ -264,7 +264,7 @@ name|N
 name|nodeV
 parameter_list|)
 function_decl|;
-comment|/**    * Returns true if there is an edge that directly connects {@code endpoints} (in the order, if    * any, specified by {@code endpoints}). This is equivalent to {@code    * edges().contains(endpoints)}.    *    *<p>Unlike the other {@code EndpointPair}-accepting methods, this method does not throw if the    * endpoints are unordered and the graph is directed; it simply returns {@code false}. This is for    * consistency with the behavior of {@link Collection#contains(Object)} (which does not generally    * throw if the object cannot be present in the collection), and the desire to have this method's    * behavior be compatible with {@code edges().contains(endpoints)}.    *    * @since NEXT    */
+comment|/**    * Returns true if there is an edge that directly connects {@code endpoints} (in the order, if    * any, specified by {@code endpoints}). This is equivalent to {@code    * edges().contains(endpoints)}.    *    *<p>Unlike the other {@code EndpointPair}-accepting methods, this method does not throw if the    * endpoints are unordered and the graph is directed; it simply returns {@code false}. This is for    * consistency with the behavior of {@link Collection#contains(Object)} (which does not generally    * throw if the object cannot be present in the collection), and the desire to have this method's    * behavior be compatible with {@code edges().contains(endpoints)}.    *    * @since 27.1    */
 annotation|@
 name|Override
 DECL|method|hasEdgeConnecting (EndpointPair<N> endpoints)
@@ -293,7 +293,7 @@ name|N
 name|nodeV
 parameter_list|)
 function_decl|;
-comment|/**    * Returns the value of the edge that connects {@code endpoints} (in the order, if any, specified    * by {@code endpoints}), if one is present; otherwise, returns {@code Optional.empty()}.    *    *<p>If this graph is directed, the endpoints must be ordered.    *    * @throws IllegalArgumentException if either endpoint is not an element of this graph    * @throws IllegalArgumentException if the endpoints are unordered and the graph is directed    * @since NEXT    */
+comment|/**    * Returns the value of the edge that connects {@code endpoints} (in the order, if any, specified    * by {@code endpoints}), if one is present; otherwise, returns {@code Optional.empty()}.    *    *<p>If this graph is directed, the endpoints must be ordered.    *    * @throws IllegalArgumentException if either endpoint is not an element of this graph    * @throws IllegalArgumentException if the endpoints are unordered and the graph is directed    * @since 27.1    */
 DECL|method|edgeValue (EndpointPair<N> endpoints)
 name|Optional
 argument_list|<
@@ -327,7 +327,7 @@ name|V
 name|defaultValue
 parameter_list|)
 function_decl|;
-comment|/**    * Returns the value of the edge that connects {@code endpoints} (in the order, if any, specified    * by {@code endpoints}), if one is present; otherwise, returns {@code defaultValue}.    *    *<p>If this graph is directed, the endpoints must be ordered.    *    * @throws IllegalArgumentException if either endpoint is not an element of this graph    * @throws IllegalArgumentException if the endpoints are unordered and the graph is directed    * @since NEXT    */
+comment|/**    * Returns the value of the edge that connects {@code endpoints} (in the order, if any, specified    * by {@code endpoints}), if one is present; otherwise, returns {@code defaultValue}.    *    *<p>If this graph is directed, the endpoints must be ordered.    *    * @throws IllegalArgumentException if either endpoint is not an element of this graph    * @throws IllegalArgumentException if the endpoints are unordered and the graph is directed    * @since 27.1    */
 annotation|@
 name|Nullable
 DECL|method|edgeValueOrDefault (EndpointPair<N> endpoints, @Nullable V defaultValue)
