@@ -133,7 +133,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link Graph} whose elements and structural relationships will never change. Instances of this  * class may be obtained with {@link #copyOf(Graph)}.  *  *<p>See the Guava User's Guide's<a  * href="https://github.com/google/guava/wiki/GraphsExplained#immutable-implementations">discussion  * of the {@code Immutable*} types</a> for more information on the properties and guarantees  * provided by this class.  *  * @author James Sexton  * @author Joshua O'Madadhain  * @author Omar Darwish  * @param<N> Node parameter type  * @since 20.0  */
+comment|/**  * A {@link Graph} whose elements and structural relationships will never change. Instances of this  * class may be obtained with {@link #copyOf(Graph)}.  *  *<p>See the Guava User's Guide's<a  * href="https://github.com/google/guava/wiki/GraphsExplained#immutable-implementations">discussion  * of the {@code Immutable*} types</a> for more information on the properties and guarantees  * provided by this class.  *  * @author James Sexton  * @author Joshua O'Madadhain  * @author Omar Darwish  * @author Jens Nyman  * @param<N> Node parameter type  * @since 20.0  */
 end_comment
 
 begin_class
