@@ -202,6 +202,45 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+comment|/**    * Returns an {@link ImmutableGraph#Builder} with the properties of this {@link GraphBuilder}.    *    *<p>The returned builder can be used for populating an {@link ImmutableGraph}.    *    * @since NEXT    */
+DECL|method|immutable ()
+specifier|public
+parameter_list|<
+name|N1
+extends|extends
+name|N
+parameter_list|>
+name|ImmutableGraph
+operator|.
+name|Builder
+argument_list|<
+name|N1
+argument_list|>
+name|immutable
+parameter_list|()
+block|{
+name|GraphBuilder
+argument_list|<
+name|N1
+argument_list|>
+name|castBuilder
+init|=
+name|cast
+argument_list|()
+decl_stmt|;
+return|return
+operator|new
+name|ImmutableGraph
+operator|.
+name|Builder
+argument_list|<
+name|N1
+argument_list|>
+argument_list|(
+name|castBuilder
+argument_list|)
+return|;
+block|}
 comment|/**    * Specifies whether the graph will allow self-loops (edges that connect a node to itself).    * Attempting to add a self-loop to a graph that does not allow them will throw an {@link    * UnsupportedOperationException}.    */
 DECL|method|allowsSelfLoops (boolean allowsSelfLoops)
 specifier|public
