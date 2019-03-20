@@ -19,6 +19,22 @@ package|;
 end_package
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Preconditions
+operator|.
+name|checkNotNull
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -377,6 +393,35 @@ name|ForwardingFluentFuture
 argument_list|<
 name|V
 argument_list|>
+argument_list|(
+name|future
+argument_list|)
+return|;
+block|}
+comment|/**    * Simply returns its argument.    *    * @deprecated no need to use this    * @since NEXT    */
+annotation|@
+name|Deprecated
+DECL|method|from (FluentFuture<V> future)
+specifier|public
+specifier|static
+parameter_list|<
+name|V
+parameter_list|>
+name|FluentFuture
+argument_list|<
+name|V
+argument_list|>
+name|from
+parameter_list|(
+name|FluentFuture
+argument_list|<
+name|V
+argument_list|>
+name|future
+parameter_list|)
+block|{
+return|return
+name|checkNotNull
 argument_list|(
 name|future
 argument_list|)
