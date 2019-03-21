@@ -119,8 +119,7 @@ DECL|field|keyHashTable
 specifier|private
 specifier|final
 specifier|transient
-name|int
-index|[]
+name|Object
 name|keyHashTable
 decl_stmt|;
 DECL|field|alternatingKeysAndValues
@@ -278,8 +277,7 @@ argument_list|,
 literal|0
 argument_list|)
 expr_stmt|;
-name|int
-index|[]
+name|Object
 name|valueHashTable
 init|=
 name|RegularImmutableMap
@@ -318,12 +316,11 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** V-to-K constructor. */
-DECL|method|RegularImmutableBiMap ( int[] valueHashTable, Object[] alternatingKeysAndValues, int size, RegularImmutableBiMap<V, K> inverse)
+DECL|method|RegularImmutableBiMap ( Object valueHashTable, Object[] alternatingKeysAndValues, int size, RegularImmutableBiMap<V, K> inverse)
 specifier|private
 name|RegularImmutableBiMap
 parameter_list|(
-name|int
-index|[]
+name|Object
 name|valueHashTable
 parameter_list|,
 name|Object
