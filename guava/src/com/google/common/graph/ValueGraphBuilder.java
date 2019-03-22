@@ -216,6 +216,51 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+comment|/**    * Returns an {@link ImmutableValueGraph#Builder} with the properties of this {@link    * ValueGraphBuilder}.    *    *<p>The returned builder can be used for populating an {@link ImmutableValueGraph}.    *    * @since NEXT    */
+DECL|method|immutable ()
+specifier|public
+parameter_list|<
+name|N1
+extends|extends
+name|N
+parameter_list|,
+name|V1
+extends|extends
+name|V
+parameter_list|>
+name|ImmutableValueGraph
+operator|.
+name|Builder
+argument_list|<
+name|N1
+argument_list|,
+name|V1
+argument_list|>
+name|immutable
+parameter_list|()
+block|{
+name|ValueGraphBuilder
+argument_list|<
+name|N1
+argument_list|,
+name|V1
+argument_list|>
+name|castBuilder
+init|=
+name|cast
+argument_list|()
+decl_stmt|;
+return|return
+operator|new
+name|ImmutableValueGraph
+operator|.
+name|Builder
+argument_list|<>
+argument_list|(
+name|castBuilder
+argument_list|)
+return|;
+block|}
 comment|/**    * Specifies whether the graph will allow self-loops (edges that connect a node to itself).    * Attempting to add a self-loop to a graph that does not allow them will throw an {@link    * UnsupportedOperationException}.    */
 DECL|method|allowsSelfLoops (boolean allowsSelfLoops)
 specifier|public
