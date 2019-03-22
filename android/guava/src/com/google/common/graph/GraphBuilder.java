@@ -233,9 +233,7 @@ operator|new
 name|ImmutableGraph
 operator|.
 name|Builder
-argument_list|<
-name|N1
-argument_list|>
+argument_list|<>
 argument_list|(
 name|castBuilder
 argument_list|)
