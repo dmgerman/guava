@@ -264,6 +264,51 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+comment|/**    * Returns an {@link ImmutableNetwork#Builder} with the properties of this {@link NetworkBuilder}.    *    *<p>The returned builder can be used for populating an {@link ImmutableNetwork}.    *    * @since NEXT    */
+DECL|method|immutable ()
+specifier|public
+parameter_list|<
+name|N1
+extends|extends
+name|N
+parameter_list|,
+name|E1
+extends|extends
+name|E
+parameter_list|>
+name|ImmutableNetwork
+operator|.
+name|Builder
+argument_list|<
+name|N1
+argument_list|,
+name|E1
+argument_list|>
+name|immutable
+parameter_list|()
+block|{
+name|NetworkBuilder
+argument_list|<
+name|N1
+argument_list|,
+name|E1
+argument_list|>
+name|castBuilder
+init|=
+name|cast
+argument_list|()
+decl_stmt|;
+return|return
+operator|new
+name|ImmutableNetwork
+operator|.
+name|Builder
+argument_list|<>
+argument_list|(
+name|castBuilder
+argument_list|)
+return|;
+block|}
 comment|/**    * Specifies whether the network will allow parallel edges. Attempting to add a parallel edge to a    * network that does not allow them will throw an {@link UnsupportedOperationException}.    */
 DECL|method|allowsParallelEdges (boolean allowsParallelEdges)
 specifier|public
