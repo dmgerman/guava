@@ -310,9 +310,7 @@ block|{
 return|return
 operator|new
 name|CompactHashSet
-argument_list|<
-name|E
-argument_list|>
+argument_list|<>
 argument_list|()
 return|;
 block|}
@@ -427,32 +425,18 @@ block|{
 return|return
 operator|new
 name|CompactHashSet
-argument_list|<
-name|E
-argument_list|>
+argument_list|<>
 argument_list|(
 name|expectedSize
 argument_list|)
 return|;
 block|}
-DECL|field|MAXIMUM_CAPACITY
-specifier|private
-specifier|static
-specifier|final
-name|int
-name|MAXIMUM_CAPACITY
-init|=
-literal|1
-operator|<<
-literal|30
-decl_stmt|;
-comment|// TODO(user): decide, and inline, load factor. 0.75?
-DECL|field|DEFAULT_LOAD_FACTOR
+DECL|field|LOAD_FACTOR
 specifier|private
 specifier|static
 specifier|final
 name|float
-name|DEFAULT_LOAD_FACTOR
+name|LOAD_FACTOR
 init|=
 literal|1.0f
 decl_stmt|;
@@ -494,6 +478,7 @@ name|DEFAULT_SIZE
 init|=
 literal|3
 decl_stmt|;
+comment|// used to indicate blank table entries
 DECL|field|UNSET
 specifier|static
 specifier|final
@@ -503,7 +488,7 @@ init|=
 operator|-
 literal|1
 decl_stmt|;
-comment|/**    * The hashtable. Its values are indexes to both the elements and entries arrays.    *    *<p>Currently, the UNSET value means "null pointer", and any non negative value x is the actual    * index.    *    *<p>Its size must be a power of two.    */
+comment|/**    * The hashtable. Its values are indexes to the elements and entries arrays.    *    *<p>Currently, the UNSET value means "null pointer", and any non negative value x is the actual    * index.    *    *<p>Its size must be a power of two.    */
 DECL|field|table
 annotation|@
 name|MonotonicNonNullDecl
@@ -523,7 +508,7 @@ name|long
 index|[]
 name|entries
 decl_stmt|;
-comment|/** The elements contained in the set, in the range of [0, size()). */
+comment|/**    * The elements contained in the set, in the range of [0, size()). The elements in [size(),    * elements.length) are all {@code null}.    */
 DECL|field|elements
 annotation|@
 name|MonotonicNonNullDecl
@@ -532,24 +517,11 @@ name|Object
 index|[]
 name|elements
 decl_stmt|;
-comment|/** The load factor. */
-DECL|field|loadFactor
-specifier|transient
-name|float
-name|loadFactor
-decl_stmt|;
 comment|/**    * Keeps track of modifications of this set, to make it possible to throw    * ConcurrentModificationException in the iterator. Note that we choose not to make this volatile,    * so we do less of a "best effort" to track such errors, for better performance.    */
 DECL|field|modCount
 specifier|transient
 name|int
 name|modCount
-decl_stmt|;
-comment|/** When we have this many elements, resize the hashtable. */
-DECL|field|threshold
-specifier|private
-specifier|transient
-name|int
-name|threshold
 decl_stmt|;
 comment|/** The number of elements contained in the set. */
 DECL|field|size
@@ -566,8 +538,6 @@ block|{
 name|init
 argument_list|(
 name|DEFAULT_SIZE
-argument_list|,
-name|DEFAULT_LOAD_FACTOR
 argument_list|)
 expr_stmt|;
 block|}
@@ -582,21 +552,16 @@ block|{
 name|init
 argument_list|(
 name|expectedSize
-argument_list|,
-name|DEFAULT_LOAD_FACTOR
 argument_list|)
 expr_stmt|;
 block|}
 comment|/** Pseudoconstructor for serialization support. */
-DECL|method|init (int expectedSize, float loadFactor)
+DECL|method|init (int expectedSize)
 name|void
 name|init
 parameter_list|(
 name|int
 name|expectedSize
-parameter_list|,
-name|float
-name|loadFactor
 parameter_list|)
 block|{
 name|Preconditions
@@ -610,26 +575,9 @@ argument_list|,
 literal|"Initial capacity must be non-negative"
 argument_list|)
 expr_stmt|;
-name|Preconditions
-operator|.
-name|checkArgument
-argument_list|(
-name|loadFactor
-operator|>
-literal|0
-argument_list|,
-literal|"Illegal load factor"
-argument_list|)
-expr_stmt|;
 name|this
 operator|.
-name|loadFactor
-operator|=
-name|loadFactor
-expr_stmt|;
-name|this
-operator|.
-name|threshold
+name|modCount
 operator|=
 name|Math
 operator|.
@@ -673,7 +621,7 @@ expr_stmt|;
 name|int
 name|expectedSize
 init|=
-name|threshold
+name|modCount
 decl_stmt|;
 name|int
 name|buckets
@@ -684,7 +632,7 @@ name|closedTableSize
 argument_list|(
 name|expectedSize
 argument_list|,
-name|loadFactor
+name|LOAD_FACTOR
 argument_list|)
 decl_stmt|;
 name|this
@@ -698,16 +646,6 @@ argument_list|)
 expr_stmt|;
 name|this
 operator|.
-name|elements
-operator|=
-operator|new
-name|Object
-index|[
-name|expectedSize
-index|]
-expr_stmt|;
-name|this
-operator|.
 name|entries
 operator|=
 name|newEntries
@@ -717,23 +655,13 @@ argument_list|)
 expr_stmt|;
 name|this
 operator|.
-name|threshold
+name|elements
 operator|=
-name|Math
-operator|.
-name|max
-argument_list|(
-literal|1
-argument_list|,
-call|(
-name|int
-call|)
-argument_list|(
-name|buckets
-operator|*
-name|loadFactor
-argument_list|)
-argument_list|)
+operator|new
+name|Object
+index|[
+name|expectedSize
+index|]
 expr_stmt|;
 block|}
 DECL|method|newTable (int size)
@@ -804,6 +732,20 @@ return|return
 name|array
 return|;
 block|}
+DECL|method|hashTableMask ()
+specifier|private
+name|int
+name|hashTableMask
+parameter_list|()
+block|{
+return|return
+name|table
+operator|.
+name|length
+operator|-
+literal|1
+return|;
+block|}
 DECL|method|getHash (long entry)
 specifier|private
 specifier|static
@@ -869,20 +811,6 @@ name|NEXT_MASK
 operator|&
 name|newNext
 operator|)
-return|;
-block|}
-DECL|method|hashTableMask ()
-specifier|private
-name|int
-name|hashTableMask
-parameter_list|()
-block|{
-return|return
-name|table
-operator|.
-name|length
-operator|-
-literal|1
 return|;
 block|}
 annotation|@
@@ -1093,20 +1021,32 @@ name|size
 operator|=
 name|newSize
 expr_stmt|;
+name|int
+name|oldCapacity
+init|=
+name|table
+operator|.
+name|length
+decl_stmt|;
 if|if
 condition|(
+name|Hashing
+operator|.
+name|needsResizing
+argument_list|(
 name|newEntryIndex
-operator|>=
-name|threshold
+argument_list|,
+name|oldCapacity
+argument_list|,
+name|LOAD_FACTOR
+argument_list|)
 condition|)
 block|{
 name|resizeTable
 argument_list|(
 literal|2
 operator|*
-name|table
-operator|.
-name|length
+name|oldCapacity
 argument_list|)
 expr_stmt|;
 block|}
@@ -1264,7 +1204,7 @@ operator|.
 name|entries
 decl_stmt|;
 name|int
-name|oldSize
+name|oldCapacity
 init|=
 name|entries
 operator|.
@@ -1285,7 +1225,7 @@ if|if
 condition|(
 name|newCapacity
 operator|>
-name|oldSize
+name|oldCapacity
 condition|)
 block|{
 name|Arrays
@@ -1294,7 +1234,7 @@ name|fill
 argument_list|(
 name|entries
 argument_list|,
-name|oldSize
+name|oldCapacity
 argument_list|,
 name|newCapacity
 argument_list|,
@@ -1319,48 +1259,6 @@ name|newCapacity
 parameter_list|)
 block|{
 comment|// newCapacity always a power of two
-name|int
-index|[]
-name|oldTable
-init|=
-name|table
-decl_stmt|;
-name|int
-name|oldCapacity
-init|=
-name|oldTable
-operator|.
-name|length
-decl_stmt|;
-if|if
-condition|(
-name|oldCapacity
-operator|>=
-name|MAXIMUM_CAPACITY
-condition|)
-block|{
-name|threshold
-operator|=
-name|Integer
-operator|.
-name|MAX_VALUE
-expr_stmt|;
-return|return;
-block|}
-name|int
-name|newThreshold
-init|=
-literal|1
-operator|+
-call|(
-name|int
-call|)
-argument_list|(
-name|newCapacity
-operator|*
-name|loadFactor
-argument_list|)
-decl_stmt|;
 name|int
 index|[]
 name|newTable
@@ -1461,12 +1359,6 @@ name|next
 operator|)
 expr_stmt|;
 block|}
-name|this
-operator|.
-name|threshold
-operator|=
-name|newThreshold
-expr_stmt|;
 name|this
 operator|.
 name|table
@@ -1726,7 +1618,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-name|moveEntry
+name|moveLastEntry
 argument_list|(
 name|next
 argument_list|)
@@ -1768,9 +1660,9 @@ literal|false
 return|;
 block|}
 comment|/**    * Moves the last entry in the entry array into {@code dstIndex}, and nulls out its old position.    */
-DECL|method|moveEntry (int dstIndex)
+DECL|method|moveLastEntry (int dstIndex)
 name|void
-name|moveEntry
+name|moveLastEntry
 parameter_list|(
 name|int
 name|dstIndex
@@ -2025,7 +1917,7 @@ init|=
 name|modCount
 decl_stmt|;
 name|int
-name|index
+name|currentIndex
 init|=
 name|firstEntryIndex
 argument_list|()
@@ -2044,7 +1936,7 @@ name|hasNext
 parameter_list|()
 block|{
 return|return
-name|index
+name|currentIndex
 operator|>=
 literal|0
 return|;
@@ -2079,7 +1971,7 @@ throw|;
 block|}
 name|indexToRemove
 operator|=
-name|index
+name|currentIndex
 expr_stmt|;
 name|E
 name|result
@@ -2089,14 +1981,14 @@ name|E
 operator|)
 name|elements
 index|[
-name|index
+name|currentIndex
 index|]
 decl_stmt|;
-name|index
+name|currentIndex
 operator|=
 name|getSuccessor
 argument_list|(
-name|index
+name|currentIndex
 argument_list|)
 expr_stmt|;
 return|return
@@ -2143,11 +2035,11 @@ index|]
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|index
+name|currentIndex
 operator|=
 name|adjustAfterRemove
 argument_list|(
-name|index
+name|currentIndex
 argument_list|,
 name|indexToRemove
 argument_list|)
@@ -2337,65 +2229,18 @@ name|size
 argument_list|)
 expr_stmt|;
 block|}
-comment|// size / loadFactor gives the table size of the appropriate load factor,
-comment|// but that may not be a power of two. We floor it to a power of two by
-comment|// keeping its highest bit. But the smaller table may have a load factor
-comment|// larger than what we want; then we want to go to the next power of 2 if we can
 name|int
 name|minimumTableSize
 init|=
-name|Math
+name|Hashing
 operator|.
-name|max
+name|closedTableSize
 argument_list|(
-literal|1
+name|size
 argument_list|,
-name|Integer
-operator|.
-name|highestOneBit
-argument_list|(
-call|(
-name|int
-call|)
-argument_list|(
-name|size
-operator|/
-name|loadFactor
-argument_list|)
-argument_list|)
+name|LOAD_FACTOR
 argument_list|)
 decl_stmt|;
-if|if
-condition|(
-name|minimumTableSize
-operator|<
-name|MAXIMUM_CAPACITY
-condition|)
-block|{
-name|double
-name|load
-init|=
-operator|(
-name|double
-operator|)
-name|size
-operator|/
-name|minimumTableSize
-decl_stmt|;
-if|if
-condition|(
-name|load
-operator|>
-name|loadFactor
-condition|)
-block|{
-name|minimumTableSize
-operator|<<=
-literal|1
-expr_stmt|;
-comment|// increase to next power if possible
-block|}
-block|}
 if|if
 condition|(
 name|minimumTableSize
@@ -2580,8 +2425,6 @@ block|}
 name|init
 argument_list|(
 name|elementCount
-argument_list|,
-name|DEFAULT_LOAD_FACTOR
 argument_list|)
 expr_stmt|;
 for|for

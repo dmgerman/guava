@@ -120,7 +120,7 @@ argument_list|<>
 argument_list|()
 return|;
 block|}
-comment|/**    * Creates a {@code CompactLinkedHashMap} instance, with a high enough "initial capacity" that it    *<i>should</i> hold {@code expectedSize} elements without growth.    *    * @param expectedSize the number of elements you expect to add to the returned set    * @return a new, empty {@code CompactLinkedHashMap} with enough capacity to hold {@code    *     expectedSize} elements without resizing    * @throws IllegalArgumentException if {@code expectedSize} is negative    */
+comment|/**    * Creates a {@code CompactLinkedHashMap} instance, with a high enough "initial capacity" that it    *<i>should</i> hold {@code expectedSize} elements without rebuilding internal data structures.    *    * @param expectedSize the number of elements you expect to add to the returned set    * @return a new, empty {@code CompactLinkedHashMap} with enough capacity to hold {@code    *     expectedSize} elements without resizing    * @throws IllegalArgumentException if {@code expectedSize} is negative    */
 DECL|method|createWithExpectedSize (int expectedSize)
 specifier|public
 specifier|static
@@ -212,20 +212,15 @@ name|this
 argument_list|(
 name|expectedSize
 argument_list|,
-name|DEFAULT_LOAD_FACTOR
-argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|CompactLinkedHashMap (int expectedSize, float loadFactor, boolean accessOrder)
+DECL|method|CompactLinkedHashMap (int expectedSize, boolean accessOrder)
 name|CompactLinkedHashMap
 parameter_list|(
 name|int
 name|expectedSize
-parameter_list|,
-name|float
-name|loadFactor
 parameter_list|,
 name|boolean
 name|accessOrder
@@ -234,8 +229,6 @@ block|{
 name|super
 argument_list|(
 name|expectedSize
-argument_list|,
-name|loadFactor
 argument_list|)
 expr_stmt|;
 name|this
@@ -247,15 +240,12 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|init (int expectedSize, float loadFactor)
+DECL|method|init (int expectedSize)
 name|void
 name|init
 parameter_list|(
 name|int
 name|expectedSize
-parameter_list|,
-name|float
-name|loadFactor
 parameter_list|)
 block|{
 name|super
@@ -263,14 +253,16 @@ operator|.
 name|init
 argument_list|(
 name|expectedSize
-argument_list|,
-name|loadFactor
 argument_list|)
 expr_stmt|;
+name|this
+operator|.
 name|firstEntry
 operator|=
 name|ENDPOINT
 expr_stmt|;
+name|this
+operator|.
 name|lastEntry
 operator|=
 name|ENDPOINT
@@ -296,6 +288,8 @@ operator|.
 name|length
 decl_stmt|;
 comment|// allocated size may be different than initial capacity
+name|this
+operator|.
 name|links
 operator|=
 operator|new
@@ -617,6 +611,13 @@ argument_list|()
 operator|-
 literal|1
 decl_stmt|;
+name|super
+operator|.
+name|moveLastEntry
+argument_list|(
+name|dstIndex
+argument_list|)
+expr_stmt|;
 name|setSucceeds
 argument_list|(
 name|getPredecessor
@@ -664,13 +665,6 @@ name|srcIndex
 index|]
 operator|=
 name|UNSET
-expr_stmt|;
-name|super
-operator|.
-name|moveLastEntry
-argument_list|(
-name|dstIndex
-argument_list|)
 expr_stmt|;
 block|}
 annotation|@
