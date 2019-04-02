@@ -570,7 +570,7 @@ name|DEFAULT_SIZE
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Constructs a new instance of {@code CompactHashMap} with the specified capacity.    *    * @param capacity the initial capacity of this {@code CompactHashMap}.    */
+comment|/**    * Constructs a new instance of {@code CompactHashMap} with the specified capacity.    *    * @param expectedSize the initial capacity of this {@code CompactHashMap}.    */
 DECL|method|CompactHashMap (int expectedSize)
 name|CompactHashMap
 parameter_list|(
@@ -601,7 +601,7 @@ name|expectedSize
 operator|>=
 literal|0
 argument_list|,
-literal|"Initial capacity must be non-negative"
+literal|"Expected size must be non-negative"
 argument_list|)
 expr_stmt|;
 name|this
