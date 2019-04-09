@@ -1282,6 +1282,56 @@ name|SEC_REFERRED_TOKEN_BINDING_ID
 init|=
 literal|"Sec-Referred-Token-Binding-ID"
 decl_stmt|;
+comment|/**    * The HTTP<a href="https://tools.ietf.org/html/rfc6455">{@code Sec-WebSocket-Accept}</a> header    * field name.    *    * @since NEXT    */
+DECL|field|SEC_WEBSOCKET_ACCEPT
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|SEC_WEBSOCKET_ACCEPT
+init|=
+literal|"Sec-Websocket-Accept"
+decl_stmt|;
+comment|/**    * The HTTP<a href="https://tools.ietf.org/html/rfc6455">{@code Sec-WebSocket-Extensions}</a>    * header field name.    *    * @since NEXT    */
+DECL|field|SEC_WEBSOCKET_EXTENSIONS
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|SEC_WEBSOCKET_EXTENSIONS
+init|=
+literal|"Sec-Websocket-Extensions"
+decl_stmt|;
+comment|/**    * The HTTP<a href="https://tools.ietf.org/html/rfc6455">{@code Sec-WebSocket-Key}</a> header    * field name.    *    * @since NEXT    */
+DECL|field|SEC_WEBSOCKET_KEY
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|SEC_WEBSOCKET_KEY
+init|=
+literal|"Sec-Websocket-Key"
+decl_stmt|;
+comment|/**    * The HTTP<a href="https://tools.ietf.org/html/rfc6455">{@code Sec-WebSocket-Protocol}</a>    * header field name.    *    * @since NEXT    */
+DECL|field|SEC_WEBSOCKET_PROTOCOL
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|SEC_WEBSOCKET_PROTOCOL
+init|=
+literal|"Sec-Websocket-Protocol"
+decl_stmt|;
+comment|/**    * The HTTP<a href="https://tools.ietf.org/html/rfc6455">{@code Sec-WebSocket-Versions}</a>    * header field name.    *    * @since NEXT    */
+DECL|field|SEC_WEBSOCKET_VERSIONS
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|SEC_WEBSOCKET_VERSIONS
+init|=
+literal|"Sec-Websocket-Versions"
+decl_stmt|;
 block|}
 end_class
 
