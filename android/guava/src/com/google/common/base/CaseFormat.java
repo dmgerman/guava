@@ -308,6 +308,24 @@ name|word
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
+name|String
+name|normalizeFirstWord
+parameter_list|(
+name|String
+name|word
+parameter_list|)
+block|{
+return|return
+name|Ascii
+operator|.
+name|toLowerCase
+argument_list|(
+name|word
+argument_list|)
+return|;
+block|}
 block|}
 block|,
 comment|/** Java and C++ class naming convention, e.g., "UpperCamel". */
@@ -925,7 +943,6 @@ name|word
 parameter_list|)
 function_decl|;
 DECL|method|normalizeFirstWord (String word)
-specifier|private
 name|String
 name|normalizeFirstWord
 parameter_list|(
@@ -934,19 +951,6 @@ name|word
 parameter_list|)
 block|{
 return|return
-operator|(
-name|this
-operator|==
-name|LOWER_CAMEL
-operator|)
-condition|?
-name|Ascii
-operator|.
-name|toLowerCase
-argument_list|(
-name|word
-argument_list|)
-else|:
 name|normalizeWord
 argument_list|(
 name|word
