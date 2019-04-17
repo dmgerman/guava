@@ -488,6 +488,8 @@ name|construct
 argument_list|(
 literal|2
 argument_list|,
+literal|2
+argument_list|,
 name|e1
 argument_list|,
 name|e2
@@ -520,6 +522,8 @@ block|{
 return|return
 name|construct
 argument_list|(
+literal|3
+argument_list|,
 literal|3
 argument_list|,
 name|e1
@@ -559,6 +563,8 @@ block|{
 return|return
 name|construct
 argument_list|(
+literal|4
+argument_list|,
 literal|4
 argument_list|,
 name|e1
@@ -603,6 +609,8 @@ block|{
 return|return
 name|construct
 argument_list|(
+literal|5
+argument_list|,
 literal|5
 argument_list|,
 name|e1
@@ -758,11 +766,68 @@ operator|.
 name|length
 argument_list|,
 name|elements
+operator|.
+name|length
+argument_list|,
+name|elements
+argument_list|)
+return|;
+block|}
+comment|/**    * Constructs an {@code ImmutableSet} from the first {@code n} elements of the specified array,    * which we have no particular reason to believe does or does not contain duplicates. If {@code k}    * is the size of the returned {@code ImmutableSet}, then the unique elements of {@code elements}    * will be in the first {@code k} positions, and {@code elements[i] == null} for {@code k<= i<    * n}.    *    *<p>This may modify {@code elements}. Additionally, if {@code n == elements.length} and {@code    * elements} contains no duplicates, {@code elements} may be used without copying in the returned    * {@code ImmutableSet}, in which case the caller must not modify it.    *    *<p>{@code elements} may contain only values of type {@code E}.    *    * @throws NullPointerException if any of the first {@code n} elements of {@code elements} is null    */
+DECL|method|constructUnknownDuplication (int n, Object... elements)
+specifier|private
+specifier|static
+parameter_list|<
+name|E
+parameter_list|>
+name|ImmutableSet
+argument_list|<
+name|E
+argument_list|>
+name|constructUnknownDuplication
+parameter_list|(
+name|int
+name|n
+parameter_list|,
+name|Object
+modifier|...
+name|elements
+parameter_list|)
+block|{
+comment|// Guess the size is "halfway between" all duplicates and no duplicates, on a log scale.
+return|return
+name|construct
+argument_list|(
+name|n
+argument_list|,
+name|Math
+operator|.
+name|max
+argument_list|(
+name|ImmutableCollection
+operator|.
+name|Builder
+operator|.
+name|DEFAULT_INITIAL_CAPACITY
+argument_list|,
+name|IntMath
+operator|.
+name|sqrt
+argument_list|(
+name|n
+argument_list|,
+name|RoundingMode
+operator|.
+name|CEILING
+argument_list|)
+argument_list|)
+argument_list|,
+name|elements
 argument_list|)
 return|;
 block|}
 comment|/**    * Constructs an {@code ImmutableSet} from the first {@code n} elements of the specified array. If    * {@code k} is the size of the returned {@code ImmutableSet}, then the unique elements of {@code    * elements} will be in the first {@code k} positions, and {@code elements[i] == null} for {@code    * k<= i< n}.    *    *<p>This may modify {@code elements}. Additionally, if {@code n == elements.length} and {@code    * elements} contains no duplicates, {@code elements} may be used without copying in the returned    * {@code ImmutableSet}, in which case it may no longer be modified.    *    *<p>{@code elements} may contain only values of type {@code E}.    *    * @throws NullPointerException if any of the first {@code n} elements of {@code elements} is null    */
-DECL|method|construct (int n, Object... elements)
+DECL|method|construct (int n, int expectedSize, Object... elements)
 specifier|private
 specifier|static
 parameter_list|<
@@ -776,6 +841,9 @@ name|construct
 parameter_list|(
 name|int
 name|n
+parameter_list|,
+name|int
+name|expectedSize
 parameter_list|,
 name|Object
 modifier|...
@@ -833,11 +901,7 @@ argument_list|<
 name|E
 argument_list|>
 argument_list|(
-name|ImmutableCollection
-operator|.
-name|Builder
-operator|.
-name|DEFAULT_INITIAL_CAPACITY
+name|expectedSize
 argument_list|)
 decl_stmt|;
 for|for
@@ -994,6 +1058,14 @@ operator|.
 name|toArray
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
+name|elements
+operator|instanceof
+name|Set
+condition|)
+block|{
+comment|// assume probably no duplicates (though it might be using different equality semantics)
 return|return
 name|construct
 argument_list|(
@@ -1002,8 +1074,26 @@ operator|.
 name|length
 argument_list|,
 name|array
+operator|.
+name|length
+argument_list|,
+name|array
 argument_list|)
 return|;
+block|}
+else|else
+block|{
+return|return
+name|constructUnknownDuplication
+argument_list|(
+name|array
+operator|.
+name|length
+argument_list|,
+name|array
+argument_list|)
+return|;
+block|}
 block|}
 comment|/**    * Returns an immutable set containing each of {@code elements}, minus duplicates, in the order    * each appears first in the source iterable. This method iterates over {@code elements} only    * once.    *    *<p><b>Performance note:</b> This method will sometimes recognize that the actual copy operation    * is unnecessary; for example, {@code copyOf(copyOf(anArrayList))} should copy the data only    * once. This reduces the expense of habitually making defensive copies at API boundaries.    * However, the precise conditions for skipping the copy operation are undefined.    *    * @throws NullPointerException if any of {@code elements} is null    */
 DECL|method|copyOf (Iterable<? extends E> elements)
@@ -1190,7 +1280,7 @@ argument_list|)
 return|;
 default|default:
 return|return
-name|construct
+name|constructUnknownDuplication
 argument_list|(
 name|elements
 operator|.
