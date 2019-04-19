@@ -1838,6 +1838,12 @@ expr_stmt|;
 block|}
 block|}
 comment|/** Two-arg method with no Nullable params. */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"GoodTime"
+argument_list|)
+comment|// false positive; b/122617528
 DECL|method|normalNormal (String first, Integer second)
 specifier|public
 name|void
@@ -1859,6 +1865,12 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** Two-arg method with the second param Nullable. */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"GoodTime"
+argument_list|)
+comment|// false positive; b/122617528
 DECL|method|normalNullable (String first, @Nullable Integer second)
 specifier|public
 name|void
@@ -1882,6 +1894,12 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** Two-arg method with the first param Nullable. */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"GoodTime"
+argument_list|)
+comment|// false positive; b/122617528
 DECL|method|nullableNormal (@ullable String first, Integer second)
 specifier|public
 name|void
@@ -1905,6 +1923,12 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** Two-arg method with the both params Nullable. */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"GoodTime"
+argument_list|)
+comment|// false positive; b/122617528
 DECL|method|nullableNullable (@ullable String first, @Nullable Integer second)
 specifier|public
 name|void
