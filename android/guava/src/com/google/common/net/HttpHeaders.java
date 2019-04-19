@@ -1322,15 +1322,15 @@ name|SEC_WEBSOCKET_PROTOCOL
 init|=
 literal|"Sec-Websocket-Protocol"
 decl_stmt|;
-comment|/**    * The HTTP<a href="https://tools.ietf.org/html/rfc6455">{@code Sec-WebSocket-Versions}</a>    * header field name.    *    * @since NEXT    */
-DECL|field|SEC_WEBSOCKET_VERSIONS
+comment|/**    * The HTTP<a href="https://tools.ietf.org/html/rfc6455">{@code Sec-WebSocket-Version}</a> header    * field name.    *    * @since NEXT    */
+DECL|field|SEC_WEBSOCKET_VERSION
 specifier|public
 specifier|static
 specifier|final
 name|String
-name|SEC_WEBSOCKET_VERSIONS
+name|SEC_WEBSOCKET_VERSION
 init|=
-literal|"Sec-Websocket-Versions"
+literal|"Sec-Websocket-Version"
 decl_stmt|;
 block|}
 end_class
