@@ -1290,7 +1290,7 @@ specifier|final
 name|String
 name|SEC_WEBSOCKET_ACCEPT
 init|=
-literal|"Sec-Websocket-Accept"
+literal|"Sec-WebSocket-Accept"
 decl_stmt|;
 comment|/**    * The HTTP<a href="https://tools.ietf.org/html/rfc6455">{@code Sec-WebSocket-Extensions}</a>    * header field name.    *    * @since NEXT    */
 DECL|field|SEC_WEBSOCKET_EXTENSIONS
@@ -1300,7 +1300,7 @@ specifier|final
 name|String
 name|SEC_WEBSOCKET_EXTENSIONS
 init|=
-literal|"Sec-Websocket-Extensions"
+literal|"Sec-WebSocket-Extensions"
 decl_stmt|;
 comment|/**    * The HTTP<a href="https://tools.ietf.org/html/rfc6455">{@code Sec-WebSocket-Key}</a> header    * field name.    *    * @since NEXT    */
 DECL|field|SEC_WEBSOCKET_KEY
@@ -1310,7 +1310,7 @@ specifier|final
 name|String
 name|SEC_WEBSOCKET_KEY
 init|=
-literal|"Sec-Websocket-Key"
+literal|"Sec-WebSocket-Key"
 decl_stmt|;
 comment|/**    * The HTTP<a href="https://tools.ietf.org/html/rfc6455">{@code Sec-WebSocket-Protocol}</a>    * header field name.    *    * @since NEXT    */
 DECL|field|SEC_WEBSOCKET_PROTOCOL
@@ -1320,7 +1320,7 @@ specifier|final
 name|String
 name|SEC_WEBSOCKET_PROTOCOL
 init|=
-literal|"Sec-Websocket-Protocol"
+literal|"Sec-WebSocket-Protocol"
 decl_stmt|;
 comment|/**    * The HTTP<a href="https://tools.ietf.org/html/rfc6455">{@code Sec-WebSocket-Version}</a> header    * field name.    *    * @since NEXT    */
 DECL|field|SEC_WEBSOCKET_VERSION
@@ -1330,7 +1330,7 @@ specifier|final
 name|String
 name|SEC_WEBSOCKET_VERSION
 init|=
-literal|"Sec-Websocket-Version"
+literal|"Sec-WebSocket-Version"
 decl_stmt|;
 block|}
 end_class
