@@ -1729,7 +1729,7 @@ block|}
 end_function
 
 begin_comment
-comment|/**    * Returns an {@code ImmutableList} containing all of the elements from this fluent iterable in    * proper sequence.    *    *<p><b>{@code Stream} equivalent:</b> {@code ImmutableList.copyOf(stream.iterator())}, or after    * the next release of Guava, pass {@link ImmutableList#toImmutableList} to {@code    * stream.collect()}.    *    * @throws NullPointerException if any element is {@code null}    * @since 14.0 (since 12.0 as {@code toImmutableList()}).    */
+comment|/**    * Returns an {@code ImmutableList} containing all of the elements from this fluent iterable in    * proper sequence.    *    *<p><b>{@code Stream} equivalent:</b> {@code ImmutableList.copyOf(stream.iterator())}, or pass    * {@link ImmutableList#toImmutableList} to {@code stream.collect()}.    *    * @throws NullPointerException if any element is {@code null}    * @since 14.0 (since 12.0 as {@code toImmutableList()}).    */
 end_comment
 
 begin_function
@@ -1756,7 +1756,7 @@ block|}
 end_function
 
 begin_comment
-comment|/**    * Returns an {@code ImmutableList} containing all of the elements from this {@code    * FluentIterable} in the order specified by {@code comparator}. To produce an {@code    * ImmutableList} sorted by its natural ordering, use {@code toSortedList(Ordering.natural())}.    *    *<p><b>{@code Stream} equivalent:</b> {@code    * ImmutableList.copyOf(stream.sorted(comparator).iterator())}, or after the next release of    * Guava, pass {@link ImmutableList#toImmutableList} to {@code    * stream.sorted(comparator).collect()}.    *    * @param comparator the function by which to sort list elements    * @throws NullPointerException if any element of this iterable is {@code null}    * @since 14.0 (since 13.0 as {@code toSortedImmutableList()}).    */
+comment|/**    * Returns an {@code ImmutableList} containing all of the elements from this {@code    * FluentIterable} in the order specified by {@code comparator}. To produce an {@code    * ImmutableList} sorted by its natural ordering, use {@code toSortedList(Ordering.natural())}.    *    *<p><b>{@code Stream} equivalent:</b> {@code    * ImmutableList.copyOf(stream.sorted(comparator).iterator())}, or pass {@link    * ImmutableList#toImmutableList} to {@code stream.sorted(comparator).collect()}.    *    * @param comparator the function by which to sort list elements    * @throws NullPointerException if any element of this iterable is {@code null}    * @since 14.0 (since 13.0 as {@code toSortedImmutableList()}).    */
 end_comment
 
 begin_function
@@ -1796,7 +1796,7 @@ block|}
 end_function
 
 begin_comment
-comment|/**    * Returns an {@code ImmutableSet} containing all of the elements from this fluent iterable with    * duplicates removed.    *    *<p><b>{@code Stream} equivalent:</b> {@code ImmutableSet.copyOf(stream.iterator())}, or after    * the next release of Guava, pass {@link ImmutableSet#toImmutableSet} to {@code    * stream.collect()}.    *    * @throws NullPointerException if any element is {@code null}    * @since 14.0 (since 12.0 as {@code toImmutableSet()}).    */
+comment|/**    * Returns an {@code ImmutableSet} containing all of the elements from this fluent iterable with    * duplicates removed.    *    *<p><b>{@code Stream} equivalent:</b> {@code ImmutableSet.copyOf(stream.iterator())}, or pass    * {@link ImmutableSet#toImmutableSet} to {@code stream.collect()}.    *    * @throws NullPointerException if any element is {@code null}    * @since 14.0 (since 12.0 as {@code toImmutableSet()}).    */
 end_comment
 
 begin_function
@@ -1823,7 +1823,7 @@ block|}
 end_function
 
 begin_comment
-comment|/**    * Returns an {@code ImmutableSortedSet} containing all of the elements from this {@code    * FluentIterable} in the order specified by {@code comparator}, with duplicates (determined by    * {@code comparator.compare(x, y) == 0}) removed. To produce an {@code ImmutableSortedSet} sorted    * by its natural ordering, use {@code toSortedSet(Ordering.natural())}.    *    *<p><b>{@code Stream} equivalent:</b> {@code ImmutableSortedSet.copyOf(comparator,    * stream.iterator())}, or after the next release of Guava, pass {@link    * ImmutableSortedSet#toImmutableSortedSet} to {@code stream.collect()}.    *    * @param comparator the function by which to sort set elements    * @throws NullPointerException if any element of this iterable is {@code null}    * @since 14.0 (since 12.0 as {@code toImmutableSortedSet()}).    */
+comment|/**    * Returns an {@code ImmutableSortedSet} containing all of the elements from this {@code    * FluentIterable} in the order specified by {@code comparator}, with duplicates (determined by    * {@code comparator.compare(x, y) == 0}) removed. To produce an {@code ImmutableSortedSet} sorted    * by its natural ordering, use {@code toSortedSet(Ordering.natural())}.    *    *<p><b>{@code Stream} equivalent:</b> {@code ImmutableSortedSet.copyOf(comparator,    * stream.iterator())}, or pass {@link ImmutableSortedSet#toImmutableSortedSet} to {@code    * stream.collect()}.    *    * @param comparator the function by which to sort set elements    * @throws NullPointerException if any element of this iterable is {@code null}    * @since 14.0 (since 12.0 as {@code toImmutableSortedSet()}).    */
 end_comment
 
 begin_function
@@ -1860,7 +1860,7 @@ block|}
 end_function
 
 begin_comment
-comment|/**    * Returns an {@code ImmutableMultiset} containing all of the elements from this fluent iterable.    *    *<p><b>{@code Stream} equivalent:</b> {@code ImmutableMultiset.copyOf(stream.iterator())}, or    * after the next release of Guava, pass {@link ImmutableMultiset#toImmutableMultiset} to {@code    * stream.collect()}.    *    * @throws NullPointerException if any element is null    * @since 19.0    */
+comment|/**    * Returns an {@code ImmutableMultiset} containing all of the elements from this fluent iterable.    *    *<p><b>{@code Stream} equivalent:</b> {@code ImmutableMultiset.copyOf(stream.iterator())}, or    * pass {@link ImmutableMultiset#toImmutableMultiset} to {@code stream.collect()}.    *    * @throws NullPointerException if any element is null    * @since 19.0    */
 end_comment
 
 begin_function
@@ -1887,7 +1887,7 @@ block|}
 end_function
 
 begin_comment
-comment|/**    * Returns an immutable map whose keys are the distinct elements of this {@code FluentIterable}    * and whose value for each key was computed by {@code valueFunction}. The map's iteration order    * is the order of the first appearance of each key in this iterable.    *    *<p>When there are multiple instances of a key in this iterable, it is unspecified whether    * {@code valueFunction} will be applied to more than one instance of that key and, if it is,    * which result will be mapped to that key in the returned map.    *    *<p><b>{@code Stream} equivalent:</b> after the next release of Guava, use {@code    * stream.collect(ImmutableMap.toImmutableMap(k -> k, valueFunction))}. Before then you can use    * {@code ImmutableMap.copyOf(stream.collect(Collectors.toMap(k -> k, valueFunction)))}, but be    * aware that this may not preserve the order of entries.    *    * @throws NullPointerException if any element of this iterable is {@code null}, or if {@code    *     valueFunction} produces {@code null} for any key    * @since 14.0    */
+comment|/**    * Returns an immutable map whose keys are the distinct elements of this {@code FluentIterable}    * and whose value for each key was computed by {@code valueFunction}. The map's iteration order    * is the order of the first appearance of each key in this iterable.    *    *<p>When there are multiple instances of a key in this iterable, it is unspecified whether    * {@code valueFunction} will be applied to more than one instance of that key and, if it is,    * which result will be mapped to that key in the returned map.    *    *<p><b>{@code Stream} equivalent:</b> use {@code stream.collect(ImmutableMap.toImmutableMap(k ->    * k, valueFunction))}. Before then you can use {@code    * ImmutableMap.copyOf(stream.collect(Collectors.toMap(k -> k, valueFunction)))}, but be aware    * that this may not preserve the order of entries.    *    * @throws NullPointerException if any element of this iterable is {@code null}, or if {@code    *     valueFunction} produces {@code null} for any key    * @since 14.0    */
 end_comment
 
 begin_function
@@ -1975,7 +1975,7 @@ block|}
 end_function
 
 begin_comment
-comment|/**    * Returns a map with the contents of this {@code FluentIterable} as its {@code values}, indexed    * by keys derived from those values. In other words, each input value produces an entry in the    * map whose key is the result of applying {@code keyFunction} to that value. These entries appear    * in the same order as they appeared in this fluent iterable. Example usage:    *    *<pre>{@code    * Color red = new Color("red", 255, 0, 0);    * ...    * FluentIterable<Color> allColors = FluentIterable.from(ImmutableSet.of(red, green, blue));    *    * Map<String, Color> colorForName = allColors.uniqueIndex(toStringFunction());    * assertThat(colorForName).containsEntry("red", red);    * }</pre>    *    *<p>If your index may associate multiple values with each key, use {@link #index(Function)    * index}.    *    *<p><b>{@code Stream} equivalent:</b> after the next release of Guava, use {@code    * stream.collect(ImmutableMap.toImmutableMap(keyFunction, v -> v))}. Before then you can use    * {@code ImmutableMap.copyOf(stream.collect(Collectors.toMap(keyFunction, v -> v)))}, but be    * aware that this may not preserve the order of entries.    *    * @param keyFunction the function used to produce the key for each value    * @return a map mapping the result of evaluating the function {@code keyFunction} on each value    *     in this fluent iterable to that value    * @throws IllegalArgumentException if {@code keyFunction} produces the same key for more than one    *     value in this fluent iterable    * @throws NullPointerException if any element of this iterable is {@code null}, or if {@code    *     keyFunction} produces {@code null} for any key    * @since 14.0    */
+comment|/**    * Returns a map with the contents of this {@code FluentIterable} as its {@code values}, indexed    * by keys derived from those values. In other words, each input value produces an entry in the    * map whose key is the result of applying {@code keyFunction} to that value. These entries appear    * in the same order as they appeared in this fluent iterable. Example usage:    *    *<pre>{@code    * Color red = new Color("red", 255, 0, 0);    * ...    * FluentIterable<Color> allColors = FluentIterable.from(ImmutableSet.of(red, green, blue));    *    * Map<String, Color> colorForName = allColors.uniqueIndex(toStringFunction());    * assertThat(colorForName).containsEntry("red", red);    * }</pre>    *    *<p>If your index may associate multiple values with each key, use {@link #index(Function)    * index}.    *    *<p><b>{@code Stream} equivalent:</b> use {@code    * stream.collect(ImmutableMap.toImmutableMap(keyFunction, v -> v))}. Before then you can use    * {@code ImmutableMap.copyOf(stream.collect(Collectors.toMap(keyFunction, v -> v)))}, but be    * aware that this may not preserve the order of entries.    *    * @param keyFunction the function used to produce the key for each value    * @return a map mapping the result of evaluating the function {@code keyFunction} on each value    *     in this fluent iterable to that value    * @throws IllegalArgumentException if {@code keyFunction} produces the same key for more than one    *     value in this fluent iterable    * @throws NullPointerException if any element of this iterable is {@code null}, or if {@code    *     keyFunction} produces {@code null} for any key    * @since 14.0    */
 end_comment
 
 begin_function

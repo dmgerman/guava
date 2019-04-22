@@ -1176,7 +1176,7 @@ name|T
 name|right
 parameter_list|)
 function_decl|;
-comment|/**    * Returns the least of the specified values according to this ordering. If there are multiple    * least values, the first of those is returned. The iterator will be left exhausted: its {@code    * hasNext()} method will return {@code false}.    *    *<p><b>Java 8 users:</b> Continue to use this method for now. After the next release of Guava,    * use {@code Streams.stream(iterator).min(thisComparator).get()} instead (but note that it does    * not guarantee which tied minimum element is returned).    *    * @param iterator the iterator whose minimum element is to be determined    * @throws NoSuchElementException if {@code iterator} is empty    * @throws ClassCastException if the parameters are not<i>mutually comparable</i> under this    *     ordering.    * @since 11.0    */
+comment|/**    * Returns the least of the specified values according to this ordering. If there are multiple    * least values, the first of those is returned. The iterator will be left exhausted: its {@code    * hasNext()} method will return {@code false}.    *    *<p><b>Java 8 users:</b> Use {@code Streams.stream(iterator).min(thisComparator).get()} instead    * (but note that it does not guarantee which tied minimum element is returned).    *    * @param iterator the iterator whose minimum element is to be determined    * @throws NoSuchElementException if {@code iterator} is empty    * @throws ClassCastException if the parameters are not<i>mutually comparable</i> under this    *     ordering.    * @since 11.0    */
 DECL|method|min (Iterator<E> iterator)
 specifier|public
 parameter_list|<
@@ -1228,7 +1228,7 @@ return|return
 name|minSoFar
 return|;
 block|}
-comment|/**    * Returns the least of the specified values according to this ordering. If there are multiple    * least values, the first of those is returned.    *    *<p><b>Java 8 users:</b> If {@code iterable} is a {@link Collection}, use {@code    * Collections.min(collection, thisComparator)} instead. Otherwise, continue to use this method    * for now. After the next release of Guava, use {@code    * Streams.stream(iterable).min(thisComparator).get()} instead. Note that these alternatives do    * not guarantee which tied minimum element is returned)    *    * @param iterable the iterable whose minimum element is to be determined    * @throws NoSuchElementException if {@code iterable} is empty    * @throws ClassCastException if the parameters are not<i>mutually comparable</i> under this    *     ordering.    */
+comment|/**    * Returns the least of the specified values according to this ordering. If there are multiple    * least values, the first of those is returned.    *    *<p><b>Java 8 users:</b> If {@code iterable} is a {@link Collection}, use {@code    * Collections.min(collection, thisComparator)} instead. Otherwise, use {@code    * Streams.stream(iterable).min(thisComparator).get()} instead. Note that these alternatives do    * not guarantee which tied minimum element is returned)    *    * @param iterable the iterable whose minimum element is to be determined    * @throws NoSuchElementException if {@code iterable} is empty    * @throws ClassCastException if the parameters are not<i>mutually comparable</i> under this    *     ordering.    */
 DECL|method|min (Iterable<E> iterable)
 specifier|public
 parameter_list|<
@@ -1363,7 +1363,7 @@ return|return
 name|minSoFar
 return|;
 block|}
-comment|/**    * Returns the greatest of the specified values according to this ordering. If there are multiple    * greatest values, the first of those is returned. The iterator will be left exhausted: its    * {@code hasNext()} method will return {@code false}.    *    *<p><b>Java 8 users:</b> Continue to use this method for now. After the next release of Guava,    * use {@code Streams.stream(iterator).max(thisComparator).get()} instead (but note that it does    * not guarantee which tied maximum element is returned).    *    * @param iterator the iterator whose maximum element is to be determined    * @throws NoSuchElementException if {@code iterator} is empty    * @throws ClassCastException if the parameters are not<i>mutually comparable</i> under this    *     ordering.    * @since 11.0    */
+comment|/**    * Returns the greatest of the specified values according to this ordering. If there are multiple    * greatest values, the first of those is returned. The iterator will be left exhausted: its    * {@code hasNext()} method will return {@code false}.    *    *<p><b>Java 8 users:</b> Continue to use this method for now. Use {@code    * Streams.stream(iterator).max(thisComparator).get()} instead (but note that it does not    * guarantee which tied maximum element is returned).    *    * @param iterator the iterator whose maximum element is to be determined    * @throws NoSuchElementException if {@code iterator} is empty    * @throws ClassCastException if the parameters are not<i>mutually comparable</i> under this    *     ordering.    * @since 11.0    */
 DECL|method|max (Iterator<E> iterator)
 specifier|public
 parameter_list|<
@@ -1415,7 +1415,7 @@ return|return
 name|maxSoFar
 return|;
 block|}
-comment|/**    * Returns the greatest of the specified values according to this ordering. If there are multiple    * greatest values, the first of those is returned.    *    *<p><b>Java 8 users:</b> If {@code iterable} is a {@link Collection}, use {@code    * Collections.max(collection, thisComparator)} instead. Otherwise, continue to use this method    * for now. After the next release of Guava, use {@code    * Streams.stream(iterable).max(thisComparator).get()} instead. Note that these alternatives do    * not guarantee which tied maximum element is returned)    *    * @param iterable the iterable whose maximum element is to be determined    * @throws NoSuchElementException if {@code iterable} is empty    * @throws ClassCastException if the parameters are not<i>mutually comparable</i> under this    *     ordering.    */
+comment|/**    * Returns the greatest of the specified values according to this ordering. If there are multiple    * greatest values, the first of those is returned.    *    *<p><b>Java 8 users:</b> If {@code iterable} is a {@link Collection}, use {@code    * Collections.max(collection, thisComparator)} instead. Otherwise, use {@code    * Streams.stream(iterable).max(thisComparator).get()} instead. Note that these alternatives do    * not guarantee which tied maximum element is returned)    *    * @param iterable the iterable whose maximum element is to be determined    * @throws NoSuchElementException if {@code iterable} is empty    * @throws ClassCastException if the parameters are not<i>mutually comparable</i> under this    *     ordering.    */
 DECL|method|max (Iterable<E> iterable)
 specifier|public
 parameter_list|<
@@ -1686,7 +1686,7 @@ name|k
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the {@code k} least elements from the given iterator according to this ordering, in    * order from least to greatest. If there are fewer than {@code k} elements present, all will be    * included.    *    *<p>The implementation does not necessarily use a<i>stable</i> sorting algorithm; when multiple    * elements are equivalent, it is undefined which will come first.    *    *<p><b>Java 8 users:</b> Continue to use this method for now. After the next release of Guava,    * use {@code Streams.stream(iterator).collect(Comparators.least(k, thisComparator))} instead.    *    * @return an immutable {@code RandomAccess} list of the {@code k} least elements in ascending    *     order    * @throws IllegalArgumentException if {@code k} is negative    * @since 14.0    */
+comment|/**    * Returns the {@code k} least elements from the given iterator according to this ordering, in    * order from least to greatest. If there are fewer than {@code k} elements present, all will be    * included.    *    *<p>The implementation does not necessarily use a<i>stable</i> sorting algorithm; when multiple    * elements are equivalent, it is undefined which will come first.    *    *<p><b>Java 8 users:</b> Use {@code Streams.stream(iterator).collect(Comparators.least(k,    * thisComparator))} instead.    *    * @return an immutable {@code RandomAccess} list of the {@code k} least elements in ascending    *     order    * @throws IllegalArgumentException if {@code k} is negative    * @since 14.0    */
 DECL|method|leastOf (Iterator<E> iterator, int k)
 specifier|public
 parameter_list|<
@@ -1887,7 +1887,7 @@ name|k
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the {@code k} greatest elements from the given iterator according to this ordering, in    * order from greatest to least. If there are fewer than {@code k} elements present, all will be    * included.    *    *<p>The implementation does not necessarily use a<i>stable</i> sorting algorithm; when multiple    * elements are equivalent, it is undefined which will come first.    *    *<p><b>Java 8 users:</b> Continue to use this method for now. After the next release of Guava,    * use {@code Streams.stream(iterator).collect(Comparators.greatest(k, thisComparator))} instead.    *    * @return an immutable {@code RandomAccess} list of the {@code k} greatest elements in    *<i>descending order</i>    * @throws IllegalArgumentException if {@code k} is negative    * @since 14.0    */
+comment|/**    * Returns the {@code k} greatest elements from the given iterator according to this ordering, in    * order from greatest to least. If there are fewer than {@code k} elements present, all will be    * included.    *    *<p>The implementation does not necessarily use a<i>stable</i> sorting algorithm; when multiple    * elements are equivalent, it is undefined which will come first.    *    *<p><b>Java 8 users:</b> Use {@code Streams.stream(iterator).collect(Comparators.greatest(k,    * thisComparator))} instead.    *    * @return an immutable {@code RandomAccess} list of the {@code k} greatest elements in    *<i>descending order</i>    * @throws IllegalArgumentException if {@code k} is negative    * @since 14.0    */
 DECL|method|greatestOf (Iterator<E> iterator, int k)
 specifier|public
 parameter_list|<
