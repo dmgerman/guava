@@ -3135,7 +3135,7 @@ argument_list|(
 name|trimmed
 argument_list|)
 operator|.
-name|isNotSameAs
+name|isNotSameInstanceAs
 argument_list|(
 name|iia
 argument_list|)

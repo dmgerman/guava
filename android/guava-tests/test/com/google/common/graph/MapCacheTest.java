@@ -525,7 +525,7 @@ argument_list|(
 name|fooReference1
 argument_list|)
 operator|.
-name|isNotSameAs
+name|isNotSameInstanceAs
 argument_list|(
 name|fooReference2
 argument_list|)
