@@ -117,7 +117,7 @@ name|sipHash24
 argument_list|()
 decl_stmt|;
 comment|// These constants were originally ported from https://www.131002.net/siphash/siphash24.c. See:
-comment|// https://github.com/nahi/siphash-java-inline/blob/master/src/test/java/SipHashInlineTest.java
+comment|// https://github.com/nahi/siphash-java-inline/blob/master/src/test/java/org/jruby/util/SipHashInlineTest.java
 DECL|field|EXPECTED
 specifier|private
 specifier|static

@@ -2481,7 +2481,6 @@ operator|=
 literal|0
 expr_stmt|;
 block|}
-comment|/**    * The serial form currently mimics Android's java.util.HashSet version, e.g. see    * http://omapzoom.org/?p=platform/libcore.git;a=blob;f=luni/src/main/java/java/util/HashSet.java    */
 DECL|method|writeObject (ObjectOutputStream stream)
 specifier|private
 name|void

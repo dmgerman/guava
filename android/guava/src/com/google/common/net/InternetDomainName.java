@@ -824,7 +824,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/*      * GWT claims to support java.lang.Character's char-classification methods, but it actually only      * works for ASCII. So for now, assume any non-ASCII characters are valid. The only place this      * seems to be documented is here:      * http://osdir.com/ml/GoogleWebToolkitContributors/2010-03/msg00178.html      *      *<p>ASCII characters in the part are expected to be valid per RFC 1035, with underscore also      * being allowed due to widespread practice.      */
+comment|/*      * GWT claims to support java.lang.Character's char-classification methods, but it actually only      * works for ASCII. So for now, assume any non-ASCII characters are valid. The only place this      * seems to be documented is here:      * https://groups.google.com/d/topic/google-web-toolkit-contributors/1UEzsryq1XI      *      *<p>ASCII characters in the part are expected to be valid per RFC 1035, with underscore also      * being allowed due to widespread practice.      */
 name|String
 name|asciiChars
 init|=
