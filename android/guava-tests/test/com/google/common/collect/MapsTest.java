@@ -100,6 +100,22 @@ end_import
 
 begin_import
 import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|truth
+operator|.
+name|Truth
+operator|.
+name|assertWithMessage
+import|;
+end_import
+
+begin_import
+import|import static
 name|java
 operator|.
 name|util
@@ -1020,21 +1036,21 @@ literal|null
 argument_list|)
 expr_stmt|;
 block|}
-name|assertThat
-argument_list|(
-name|bucketsOf
-argument_list|(
-name|map1
-argument_list|)
-argument_list|)
-operator|.
-name|named
+name|assertWithMessage
 argument_list|(
 literal|"table size after adding "
 operator|+
 name|size
 operator|+
 literal|" elements"
+argument_list|)
+operator|.
+name|that
+argument_list|(
+name|bucketsOf
+argument_list|(
+name|map1
+argument_list|)
 argument_list|)
 operator|.
 name|isEqualTo
@@ -1050,21 +1066,21 @@ argument_list|(
 name|map1
 argument_list|)
 expr_stmt|;
-name|assertThat
-argument_list|(
-name|bucketsOf
-argument_list|(
-name|map1
-argument_list|)
-argument_list|)
-operator|.
-name|named
+name|assertWithMessage
 argument_list|(
 literal|"table size after adding "
 operator|+
 name|size
 operator|+
 literal|" elements"
+argument_list|)
+operator|.
+name|that
+argument_list|(
+name|bucketsOf
+argument_list|(
+name|map1
+argument_list|)
 argument_list|)
 operator|.
 name|isEqualTo

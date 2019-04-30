@@ -148,6 +148,22 @@ end_import
 
 begin_import
 import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|truth
+operator|.
+name|Truth
+operator|.
+name|assertWithMessage
+import|;
+end_import
+
+begin_import
+import|import static
 name|java
 operator|.
 name|io
@@ -7594,7 +7610,16 @@ block|}
 block|}
 argument_list|)
 decl_stmt|;
-name|assertThat
+name|assertWithMessage
+argument_list|(
+literal|"Sets.combinations(%s, %s)"
+argument_list|,
+name|sampleSet
+argument_list|,
+name|k
+argument_list|)
+operator|.
+name|that
 argument_list|(
 name|Sets
 operator|.
@@ -7604,15 +7629,6 @@ name|sampleSet
 argument_list|,
 name|k
 argument_list|)
-argument_list|)
-operator|.
-name|named
-argument_list|(
-literal|"Sets.combinations(%s, %s)"
-argument_list|,
-name|sampleSet
-argument_list|,
-name|k
 argument_list|)
 operator|.
 name|containsExactlyElementsIn

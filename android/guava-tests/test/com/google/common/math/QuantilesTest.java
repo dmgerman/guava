@@ -82,6 +82,22 @@ end_import
 
 begin_import
 import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|truth
+operator|.
+name|Truth
+operator|.
+name|assertWithMessage
+import|;
+end_import
+
+begin_import
+import|import static
 name|java
 operator|.
 name|lang
@@ -3032,7 +3048,14 @@ name|index
 operator|++
 control|)
 block|{
-name|assertThat
+name|assertWithMessage
+argument_list|(
+literal|"quantile at index "
+operator|+
+name|index
+argument_list|)
+operator|.
+name|that
 argument_list|(
 name|percentiles
 argument_list|()
@@ -3046,13 +3069,6 @@ name|compute
 argument_list|(
 name|PSEUDORANDOM_DATASET
 argument_list|)
-argument_list|)
-operator|.
-name|named
-argument_list|(
-literal|"quantile at index "
-operator|+
-name|index
 argument_list|)
 operator|.
 name|isWithin
@@ -3106,7 +3122,14 @@ argument_list|(
 name|PSEUDORANDOM_DATASET
 argument_list|)
 decl_stmt|;
-name|assertThat
+name|assertWithMessage
+argument_list|(
+literal|"quantile at index "
+operator|+
+name|index
+argument_list|)
+operator|.
+name|that
 argument_list|(
 name|percentiles
 argument_list|()
@@ -3120,13 +3143,6 @@ name|computeInPlace
 argument_list|(
 name|dataset
 argument_list|)
-argument_list|)
-operator|.
-name|named
-argument_list|(
-literal|"quantile at index "
-operator|+
-name|index
 argument_list|)
 operator|.
 name|isWithin

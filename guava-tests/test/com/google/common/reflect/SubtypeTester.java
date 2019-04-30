@@ -49,6 +49,22 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|truth
+operator|.
+name|Truth
+operator|.
+name|assertWithMessage
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -274,7 +290,16 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
-name|assertThat
+name|assertWithMessage
+argument_list|(
+literal|"%s is subtype of %s"
+argument_list|,
+name|paramType
+argument_list|,
+name|returnType
+argument_list|)
+operator|.
+name|that
 argument_list|(
 name|TypeToken
 operator|.
@@ -289,19 +314,19 @@ name|returnType
 argument_list|)
 argument_list|)
 operator|.
-name|named
-argument_list|(
-literal|"%s is subtype of %s"
-argument_list|,
-name|paramType
-argument_list|,
-name|returnType
-argument_list|)
-operator|.
 name|isTrue
 argument_list|()
 expr_stmt|;
-name|assertThat
+name|assertWithMessage
+argument_list|(
+literal|"%s is supertype of %s"
+argument_list|,
+name|returnType
+argument_list|,
+name|paramType
+argument_list|)
+operator|.
+name|that
 argument_list|(
 name|TypeToken
 operator|.
@@ -314,15 +339,6 @@ name|isSupertypeOf
 argument_list|(
 name|paramType
 argument_list|)
-argument_list|)
-operator|.
-name|named
-argument_list|(
-literal|"%s is supertype of %s"
-argument_list|,
-name|returnType
-argument_list|,
-name|paramType
 argument_list|)
 operator|.
 name|isTrue
@@ -442,7 +458,16 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
-name|assertThat
+name|assertWithMessage
+argument_list|(
+literal|"%s is subtype of %s"
+argument_list|,
+name|paramType
+argument_list|,
+name|returnType
+argument_list|)
+operator|.
+name|that
 argument_list|(
 name|TypeToken
 operator|.
@@ -457,19 +482,19 @@ name|returnType
 argument_list|)
 argument_list|)
 operator|.
-name|named
-argument_list|(
-literal|"%s is subtype of %s"
-argument_list|,
-name|paramType
-argument_list|,
-name|returnType
-argument_list|)
-operator|.
 name|isFalse
 argument_list|()
 expr_stmt|;
-name|assertThat
+name|assertWithMessage
+argument_list|(
+literal|"%s is supertype of %s"
+argument_list|,
+name|returnType
+argument_list|,
+name|paramType
+argument_list|)
+operator|.
+name|that
 argument_list|(
 name|TypeToken
 operator|.
@@ -482,15 +507,6 @@ name|isSupertypeOf
 argument_list|(
 name|paramType
 argument_list|)
-argument_list|)
-operator|.
-name|named
-argument_list|(
-literal|"%s is supertype of %s"
-argument_list|,
-name|returnType
-argument_list|,
-name|paramType
 argument_list|)
 operator|.
 name|isFalse

@@ -513,6 +513,22 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|truth
+operator|.
+name|Truth
+operator|.
+name|assertWithMessage
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -921,16 +937,16 @@ name|hasAnyNonFinite
 argument_list|()
 condition|)
 block|{
-name|assertThat
-argument_list|(
-name|populationCovariance
-argument_list|)
-operator|.
-name|named
+name|assertWithMessage
 argument_list|(
 literal|"population covariance of "
 operator|+
 name|values
+argument_list|)
+operator|.
+name|that
+argument_list|(
+name|populationCovariance
 argument_list|)
 operator|.
 name|isNaN
@@ -939,16 +955,16 @@ expr_stmt|;
 block|}
 else|else
 block|{
-name|assertThat
-argument_list|(
-name|populationCovariance
-argument_list|)
-operator|.
-name|named
+name|assertWithMessage
 argument_list|(
 literal|"population covariance of "
 operator|+
 name|values
+argument_list|)
+operator|.
+name|that
+argument_list|(
+name|populationCovariance
 argument_list|)
 operator|.
 name|isWithin
@@ -1309,16 +1325,16 @@ name|hasAnyNonFinite
 argument_list|()
 condition|)
 block|{
-name|assertThat
-argument_list|(
-name|pearsonsCorrelationCoefficient
-argument_list|)
-operator|.
-name|named
+name|assertWithMessage
 argument_list|(
 literal|"Pearson's correlation coefficient of "
 operator|+
 name|values
+argument_list|)
+operator|.
+name|that
+argument_list|(
+name|pearsonsCorrelationCoefficient
 argument_list|)
 operator|.
 name|isNaN
@@ -1327,16 +1343,16 @@ expr_stmt|;
 block|}
 else|else
 block|{
-name|assertThat
-argument_list|(
-name|pearsonsCorrelationCoefficient
-argument_list|)
-operator|.
-name|named
+name|assertWithMessage
 argument_list|(
 literal|"Pearson's correlation coefficient of "
 operator|+
 name|values
+argument_list|)
+operator|.
+name|that
+argument_list|(
+name|pearsonsCorrelationCoefficient
 argument_list|)
 operator|.
 name|isWithin
