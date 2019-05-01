@@ -2365,7 +2365,7 @@ name|getCause
 argument_list|()
 argument_list|)
 operator|.
-name|isSameAs
+name|isSameInstanceAs
 argument_list|(
 name|expectedException
 argument_list|)
@@ -2396,7 +2396,7 @@ operator|.
 name|hasCauseThat
 argument_list|()
 operator|.
-name|isSameAs
+name|isSameInstanceAs
 argument_list|(
 name|expectedException
 argument_list|)

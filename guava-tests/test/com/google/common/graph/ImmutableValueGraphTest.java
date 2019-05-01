@@ -238,7 +238,7 @@ argument_list|(
 name|graph2
 argument_list|)
 operator|.
-name|isSameAs
+name|isSameInstanceAs
 argument_list|(
 name|graph1
 argument_list|)

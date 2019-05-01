@@ -292,7 +292,7 @@ name|f
 argument_list|)
 argument_list|)
 operator|.
-name|isSameAs
+name|isSameInstanceAs
 argument_list|(
 name|f
 argument_list|)
@@ -333,7 +333,7 @@ name|f
 argument_list|)
 argument_list|)
 operator|.
-name|isSameAs
+name|isSameInstanceAs
 argument_list|(
 name|f
 argument_list|)

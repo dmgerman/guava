@@ -722,7 +722,7 @@ operator|.
 name|hasCauseThat
 argument_list|()
 operator|.
-name|isSameAs
+name|isSameInstanceAs
 argument_list|(
 name|t
 argument_list|)
@@ -6675,7 +6675,7 @@ operator|.
 name|hasCauseThat
 argument_list|()
 operator|.
-name|isSameAs
+name|isSameInstanceAs
 argument_list|(
 name|e
 argument_list|)
@@ -6757,7 +6757,7 @@ operator|.
 name|hasCauseThat
 argument_list|()
 operator|.
-name|isSameAs
+name|isSameInstanceAs
 argument_list|(
 name|e
 argument_list|)
@@ -6928,7 +6928,7 @@ operator|.
 name|hasCauseThat
 argument_list|()
 operator|.
-name|isSameAs
+name|isSameInstanceAs
 argument_list|(
 name|callableError
 argument_list|)
@@ -7013,7 +7013,7 @@ operator|.
 name|hasCauseThat
 argument_list|()
 operator|.
-name|isSameAs
+name|isSameInstanceAs
 argument_list|(
 name|e
 argument_list|)
@@ -8306,7 +8306,7 @@ operator|.
 name|hasCauseThat
 argument_list|()
 operator|.
-name|isSameAs
+name|isSameInstanceAs
 argument_list|(
 name|e
 argument_list|)
@@ -8484,7 +8484,7 @@ operator|.
 name|hasCauseThat
 argument_list|()
 operator|.
-name|isSameAs
+name|isSameInstanceAs
 argument_list|(
 name|e
 argument_list|)
@@ -8566,7 +8566,7 @@ operator|.
 name|hasCauseThat
 argument_list|()
 operator|.
-name|isSameAs
+name|isSameInstanceAs
 argument_list|(
 name|e
 argument_list|)
@@ -8721,7 +8721,7 @@ operator|.
 name|hasCauseThat
 argument_list|()
 operator|.
-name|isSameAs
+name|isSameInstanceAs
 argument_list|(
 name|callableException
 argument_list|)
@@ -8806,7 +8806,7 @@ operator|.
 name|hasCauseThat
 argument_list|()
 operator|.
-name|isSameAs
+name|isSameInstanceAs
 argument_list|(
 name|e
 argument_list|)
@@ -8994,7 +8994,7 @@ operator|.
 name|hasCauseThat
 argument_list|()
 operator|.
-name|isSameAs
+name|isSameInstanceAs
 argument_list|(
 name|e
 argument_list|)
@@ -9085,7 +9085,7 @@ operator|.
 name|hasCauseThat
 argument_list|()
 operator|.
-name|isSameAs
+name|isSameInstanceAs
 argument_list|(
 name|e
 argument_list|)
@@ -9258,7 +9258,7 @@ operator|.
 name|hasCauseThat
 argument_list|()
 operator|.
-name|isSameAs
+name|isSameInstanceAs
 argument_list|(
 name|callableException
 argument_list|)
@@ -9352,7 +9352,7 @@ operator|.
 name|hasCauseThat
 argument_list|()
 operator|.
-name|isSameAs
+name|isSameInstanceAs
 argument_list|(
 name|e
 argument_list|)
@@ -10650,7 +10650,7 @@ operator|.
 name|hasCauseThat
 argument_list|()
 operator|.
-name|isSameAs
+name|isSameInstanceAs
 argument_list|(
 name|e
 argument_list|)
@@ -10834,7 +10834,7 @@ operator|.
 name|hasCauseThat
 argument_list|()
 operator|.
-name|isSameAs
+name|isSameInstanceAs
 argument_list|(
 name|e
 argument_list|)
@@ -11023,7 +11023,7 @@ operator|.
 name|hasCauseThat
 argument_list|()
 operator|.
-name|isSameAs
+name|isSameInstanceAs
 argument_list|(
 name|e
 argument_list|)
@@ -11105,7 +11105,7 @@ operator|.
 name|hasCauseThat
 argument_list|()
 operator|.
-name|isSameAs
+name|isSameInstanceAs
 argument_list|(
 name|e
 argument_list|)
@@ -11260,7 +11260,7 @@ operator|.
 name|hasCauseThat
 argument_list|()
 operator|.
-name|isSameAs
+name|isSameInstanceAs
 argument_list|(
 name|callableException
 argument_list|)
@@ -11345,7 +11345,7 @@ operator|.
 name|hasCauseThat
 argument_list|()
 operator|.
-name|isSameAs
+name|isSameInstanceAs
 argument_list|(
 name|e
 argument_list|)
@@ -12640,7 +12640,7 @@ operator|.
 name|hasCauseThat
 argument_list|()
 operator|.
-name|isSameAs
+name|isSameInstanceAs
 argument_list|(
 name|e
 argument_list|)
@@ -12833,7 +12833,7 @@ operator|.
 name|hasCauseThat
 argument_list|()
 operator|.
-name|isSameAs
+name|isSameInstanceAs
 argument_list|(
 name|e
 argument_list|)
@@ -13522,7 +13522,7 @@ operator|.
 name|hasCauseThat
 argument_list|()
 operator|.
-name|isSameAs
+name|isSameInstanceAs
 argument_list|(
 name|uee
 argument_list|)
@@ -13557,7 +13557,7 @@ operator|.
 name|hasCauseThat
 argument_list|()
 operator|.
-name|isSameAs
+name|isSameInstanceAs
 argument_list|(
 name|uee
 argument_list|)
@@ -13619,7 +13619,7 @@ operator|.
 name|hasCauseThat
 argument_list|()
 operator|.
-name|isSameAs
+name|isSameInstanceAs
 argument_list|(
 name|uee
 argument_list|)
@@ -13654,7 +13654,7 @@ operator|.
 name|hasCauseThat
 argument_list|()
 operator|.
-name|isSameAs
+name|isSameInstanceAs
 argument_list|(
 name|ee
 argument_list|)
@@ -13689,7 +13689,7 @@ operator|.
 name|hasCauseThat
 argument_list|()
 operator|.
-name|isSameAs
+name|isSameInstanceAs
 argument_list|(
 name|ee
 argument_list|)
@@ -13741,7 +13741,7 @@ operator|.
 name|hasCauseThat
 argument_list|()
 operator|.
-name|isSameAs
+name|isSameInstanceAs
 argument_list|(
 name|ee
 argument_list|)
@@ -13872,7 +13872,7 @@ operator|.
 name|hasCauseThat
 argument_list|()
 operator|.
-name|isSameAs
+name|isSameInstanceAs
 argument_list|(
 name|uee
 argument_list|)
@@ -13910,7 +13910,7 @@ operator|.
 name|hasCauseThat
 argument_list|()
 operator|.
-name|isSameAs
+name|isSameInstanceAs
 argument_list|(
 name|ee
 argument_list|)
@@ -14525,7 +14525,7 @@ operator|.
 name|hasCauseThat
 argument_list|()
 operator|.
-name|isSameAs
+name|isSameInstanceAs
 argument_list|(
 name|e
 argument_list|)
@@ -14761,7 +14761,7 @@ operator|.
 name|hasCauseThat
 argument_list|()
 operator|.
-name|isSameAs
+name|isSameInstanceAs
 argument_list|(
 name|e
 argument_list|)
@@ -14802,7 +14802,7 @@ operator|.
 name|hasCauseThat
 argument_list|()
 operator|.
-name|isSameAs
+name|isSameInstanceAs
 argument_list|(
 name|e
 argument_list|)

@@ -5867,7 +5867,7 @@ argument_list|(
 name|t
 argument_list|)
 operator|.
-name|isSameAs
+name|isSameInstanceAs
 argument_list|(
 name|raisedException
 argument_list|)
@@ -6674,7 +6674,7 @@ argument_list|(
 name|t
 argument_list|)
 operator|.
-name|isSameAs
+name|isSameInstanceAs
 argument_list|(
 name|raisedException
 argument_list|)
@@ -7453,7 +7453,7 @@ argument_list|(
 name|t
 argument_list|)
 operator|.
-name|isSameAs
+name|isSameInstanceAs
 argument_list|(
 name|raisedException
 argument_list|)
@@ -14090,7 +14090,7 @@ name|getThrown
 argument_list|()
 argument_list|)
 operator|.
-name|isSameAs
+name|isSameInstanceAs
 argument_list|(
 name|subsequentFailure
 argument_list|)

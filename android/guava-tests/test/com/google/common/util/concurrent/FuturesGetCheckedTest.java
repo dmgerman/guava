@@ -1074,7 +1074,7 @@ operator|.
 name|hasCauseThat
 argument_list|()
 operator|.
-name|isSameAs
+name|isSameInstanceAs
 argument_list|(
 name|CHECKED_EXCEPTION
 argument_list|)
@@ -1698,7 +1698,7 @@ operator|.
 name|hasCauseThat
 argument_list|()
 operator|.
-name|isSameAs
+name|isSameInstanceAs
 argument_list|(
 name|CHECKED_EXCEPTION
 argument_list|)

@@ -2632,7 +2632,7 @@ name|inverse
 argument_list|()
 argument_list|)
 operator|.
-name|isSameAs
+name|isSameInstanceAs
 argument_list|(
 name|transformation
 operator|.
@@ -2651,7 +2651,7 @@ name|inverse
 argument_list|()
 argument_list|)
 operator|.
-name|isSameAs
+name|isSameInstanceAs
 argument_list|(
 name|transformation
 argument_list|)
@@ -2833,7 +2833,7 @@ name|inverse
 argument_list|()
 argument_list|)
 operator|.
-name|isSameAs
+name|isSameInstanceAs
 argument_list|(
 name|transformation
 operator|.
@@ -2852,7 +2852,7 @@ name|inverse
 argument_list|()
 argument_list|)
 operator|.
-name|isSameAs
+name|isSameInstanceAs
 argument_list|(
 name|transformation
 argument_list|)
@@ -3037,7 +3037,7 @@ name|inverse
 argument_list|()
 argument_list|)
 operator|.
-name|isSameAs
+name|isSameInstanceAs
 argument_list|(
 name|transformation
 operator|.
@@ -3056,7 +3056,7 @@ name|inverse
 argument_list|()
 argument_list|)
 operator|.
-name|isSameAs
+name|isSameInstanceAs
 argument_list|(
 name|transformation
 argument_list|)
@@ -3126,7 +3126,7 @@ name|inverse
 argument_list|()
 argument_list|)
 operator|.
-name|isSameAs
+name|isSameInstanceAs
 argument_list|(
 name|transformation
 argument_list|)

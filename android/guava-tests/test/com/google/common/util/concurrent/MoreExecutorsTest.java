@@ -2674,7 +2674,7 @@ operator|.
 name|hasCauseThat
 argument_list|()
 operator|.
-name|isSameAs
+name|isSameInstanceAs
 argument_list|(
 name|expectedCause
 argument_list|)

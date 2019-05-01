@@ -238,7 +238,7 @@ argument_list|(
 name|network2
 argument_list|)
 operator|.
-name|isSameAs
+name|isSameInstanceAs
 argument_list|(
 name|network1
 argument_list|)

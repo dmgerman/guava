@@ -683,7 +683,7 @@ index|]
 argument_list|)
 argument_list|)
 operator|.
-name|isSameAs
+name|isSameInstanceAs
 argument_list|(
 name|ImmutableIntArray
 operator|.
@@ -784,7 +784,7 @@ name|iterable
 argument_list|)
 argument_list|)
 operator|.
-name|isSameAs
+name|isSameInstanceAs
 argument_list|(
 name|ImmutableIntArray
 operator|.
@@ -886,7 +886,7 @@ name|iterable
 argument_list|)
 argument_list|)
 operator|.
-name|isSameAs
+name|isSameInstanceAs
 argument_list|(
 name|ImmutableIntArray
 operator|.
@@ -991,7 +991,7 @@ name|iterable
 argument_list|)
 argument_list|)
 operator|.
-name|isSameAs
+name|isSameInstanceAs
 argument_list|(
 name|ImmutableIntArray
 operator|.
@@ -1082,7 +1082,7 @@ argument_list|()
 argument_list|)
 argument_list|)
 operator|.
-name|isSameAs
+name|isSameInstanceAs
 argument_list|(
 name|ImmutableIntArray
 operator|.
@@ -2874,7 +2874,7 @@ literal|0
 argument_list|)
 argument_list|)
 operator|.
-name|isSameAs
+name|isSameInstanceAs
 argument_list|(
 name|ImmutableIntArray
 operator|.
@@ -2894,7 +2894,7 @@ literal|0
 argument_list|)
 argument_list|)
 operator|.
-name|isSameAs
+name|isSameInstanceAs
 argument_list|(
 name|ImmutableIntArray
 operator|.
@@ -2914,7 +2914,7 @@ literal|1
 argument_list|)
 argument_list|)
 operator|.
-name|isSameAs
+name|isSameInstanceAs
 argument_list|(
 name|ImmutableIntArray
 operator|.
@@ -3355,7 +3355,7 @@ argument_list|()
 argument_list|)
 argument_list|)
 operator|.
-name|isSameAs
+name|isSameInstanceAs
 argument_list|(
 name|ImmutableIntArray
 operator|.
@@ -3385,7 +3385,7 @@ argument_list|)
 argument_list|)
 argument_list|)
 operator|.
-name|isSameAs
+name|isSameInstanceAs
 argument_list|(
 name|ImmutableIntArray
 operator|.
@@ -3504,7 +3504,7 @@ name|trimmed
 argument_list|()
 argument_list|)
 operator|.
-name|isSameAs
+name|isSameInstanceAs
 argument_list|(
 name|iia
 argument_list|)

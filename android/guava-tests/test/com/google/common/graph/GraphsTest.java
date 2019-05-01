@@ -1486,7 +1486,7 @@ name|undirectedGraph
 argument_list|)
 argument_list|)
 operator|.
-name|isSameAs
+name|isSameInstanceAs
 argument_list|(
 name|undirectedGraph
 argument_list|)
@@ -1657,7 +1657,7 @@ name|transpose
 argument_list|)
 argument_list|)
 operator|.
-name|isSameAs
+name|isSameInstanceAs
 argument_list|(
 name|directedGraph
 argument_list|)
@@ -1690,7 +1690,7 @@ name|node
 argument_list|)
 argument_list|)
 operator|.
-name|isSameAs
+name|isSameInstanceAs
 argument_list|(
 name|transpose
 operator|.
@@ -1710,7 +1710,7 @@ name|node
 argument_list|)
 argument_list|)
 operator|.
-name|isSameAs
+name|isSameInstanceAs
 argument_list|(
 name|transpose
 operator|.
@@ -1812,7 +1812,7 @@ name|undirectedGraph
 argument_list|)
 argument_list|)
 operator|.
-name|isSameAs
+name|isSameInstanceAs
 argument_list|(
 name|undirectedGraph
 argument_list|)
@@ -2009,7 +2009,7 @@ name|transpose
 argument_list|)
 argument_list|)
 operator|.
-name|isSameAs
+name|isSameInstanceAs
 argument_list|(
 name|directedGraph
 argument_list|)
@@ -2062,7 +2062,7 @@ name|node
 argument_list|)
 argument_list|)
 operator|.
-name|isSameAs
+name|isSameInstanceAs
 argument_list|(
 name|transpose
 operator|.
@@ -2082,7 +2082,7 @@ name|node
 argument_list|)
 argument_list|)
 operator|.
-name|isSameAs
+name|isSameInstanceAs
 argument_list|(
 name|transpose
 operator|.
@@ -2178,7 +2178,7 @@ name|undirectedGraph
 argument_list|)
 argument_list|)
 operator|.
-name|isSameAs
+name|isSameInstanceAs
 argument_list|(
 name|undirectedGraph
 argument_list|)
@@ -2407,7 +2407,7 @@ name|transpose
 argument_list|)
 argument_list|)
 operator|.
-name|isSameAs
+name|isSameInstanceAs
 argument_list|(
 name|directedGraph
 argument_list|)
@@ -2470,7 +2470,7 @@ name|node
 argument_list|)
 argument_list|)
 operator|.
-name|isSameAs
+name|isSameInstanceAs
 argument_list|(
 name|transpose
 operator|.
@@ -2490,7 +2490,7 @@ name|node
 argument_list|)
 argument_list|)
 operator|.
-name|isSameAs
+name|isSameInstanceAs
 argument_list|(
 name|transpose
 operator|.

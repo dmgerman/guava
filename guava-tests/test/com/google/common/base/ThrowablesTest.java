@@ -2198,7 +2198,7 @@ operator|.
 name|hasCauseThat
 argument_list|()
 operator|.
-name|isSameAs
+name|isSameInstanceAs
 argument_list|(
 name|cause
 argument_list|)
@@ -2671,7 +2671,7 @@ operator|.
 name|hasCauseThat
 argument_list|()
 operator|.
-name|isSameAs
+name|isSameInstanceAs
 argument_list|(
 name|cause
 argument_list|)
@@ -2711,7 +2711,7 @@ operator|.
 name|hasCauseThat
 argument_list|()
 operator|.
-name|isSameAs
+name|isSameInstanceAs
 argument_list|(
 name|cause
 argument_list|)
@@ -2730,7 +2730,7 @@ name|class
 argument_list|)
 argument_list|)
 operator|.
-name|isSameAs
+name|isSameInstanceAs
 argument_list|(
 name|cause
 argument_list|)
@@ -2749,7 +2749,7 @@ name|class
 argument_list|)
 argument_list|)
 operator|.
-name|isSameAs
+name|isSameInstanceAs
 argument_list|(
 name|cause
 argument_list|)
@@ -2787,7 +2787,7 @@ operator|.
 name|hasCauseThat
 argument_list|()
 operator|.
-name|isSameAs
+name|isSameInstanceAs
 argument_list|(
 name|thrown
 argument_list|)
