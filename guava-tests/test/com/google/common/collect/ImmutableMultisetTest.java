@@ -50,6 +50,22 @@ end_import
 
 begin_import
 import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|truth
+operator|.
+name|Truth
+operator|.
+name|assertWithMessage
+import|;
+end_import
+
+begin_import
+import|import static
 name|java
 operator|.
 name|util
@@ -5518,12 +5534,7 @@ name|largeOps
 operator|/
 name|smallOps
 decl_stmt|;
-name|assertThat
-argument_list|(
-name|ratio
-argument_list|)
-operator|.
-name|named
+name|assertWithMessage
 argument_list|(
 literal|"ratio of equals/hashCode/compareTo operations to build an ImmutableMultiset via %s"
 operator|+
@@ -5534,6 +5545,11 @@ argument_list|,
 name|largeSize
 argument_list|,
 name|smallSize
+argument_list|)
+operator|.
+name|that
+argument_list|(
+name|ratio
 argument_list|)
 operator|.
 name|isAtMost
@@ -5690,18 +5706,18 @@ name|worstCaseQueryLarge
 operator|/
 name|worstCaseQuerySmall
 decl_stmt|;
-name|assertThat
-argument_list|(
-name|ratio
-argument_list|)
-operator|.
-name|named
+name|assertWithMessage
 argument_list|(
 literal|"Ratio of worst case query operations for an ImmutableMultiset of size %s versus %s"
 argument_list|,
 name|largeSize
 argument_list|,
 name|smallSize
+argument_list|)
+operator|.
+name|that
+argument_list|(
+name|ratio
 argument_list|)
 operator|.
 name|isAtMost

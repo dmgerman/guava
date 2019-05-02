@@ -33,6 +33,22 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|truth
+operator|.
+name|Truth
+operator|.
+name|assertWithMessage
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -3398,12 +3414,7 @@ operator|.
 name|total
 argument_list|()
 decl_stmt|;
-name|assertThat
-argument_list|(
-name|ratio
-argument_list|)
-operator|.
-name|named
+name|assertWithMessage
 argument_list|(
 literal|"ratio of equals/hashCode/compareTo operations to build an ImmutableSet via pathway "
 operator|+
@@ -3420,6 +3431,11 @@ name|haveSameHashesSmall
 operator|.
 name|size
 argument_list|()
+argument_list|)
+operator|.
+name|that
+argument_list|(
+name|ratio
 argument_list|)
 operator|.
 name|isAtMost
@@ -3576,12 +3592,7 @@ operator|.
 name|size
 argument_list|()
 decl_stmt|;
-name|assertThat
-argument_list|(
-name|ratio
-argument_list|)
-operator|.
-name|named
+name|assertWithMessage
 argument_list|(
 literal|"ratio of equals/hashCode/compareTo operations to worst-case query an ImmutableSet "
 operator|+
@@ -3596,6 +3607,11 @@ name|haveSameHashesSmall
 operator|.
 name|size
 argument_list|()
+argument_list|)
+operator|.
+name|that
+argument_list|(
+name|ratio
 argument_list|)
 operator|.
 name|isAtMost
