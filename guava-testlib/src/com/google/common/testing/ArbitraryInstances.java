@@ -1370,6 +1370,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|UUID
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|concurrent
 operator|.
 name|BlockingDeque
@@ -1919,6 +1929,18 @@ argument_list|,
 name|OptionalDouble
 operator|.
 name|empty
+argument_list|()
+argument_list|)
+operator|.
+name|put
+argument_list|(
+name|UUID
+operator|.
+name|class
+argument_list|,
+name|UUID
+operator|.
+name|randomUUID
 argument_list|()
 argument_list|)
 comment|// common.base
