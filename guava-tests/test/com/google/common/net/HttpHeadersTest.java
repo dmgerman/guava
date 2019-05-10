@@ -173,6 +173,13 @@ argument_list|()
 decl|.
 name|put
 argument_list|(
+literal|"CDN_LOOP"
+argument_list|,
+literal|"CDN-Loop"
+argument_list|)
+decl|.
+name|put
+argument_list|(
 literal|"ETAG"
 argument_list|,
 literal|"ETag"

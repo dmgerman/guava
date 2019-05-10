@@ -1332,6 +1332,16 @@ name|SEC_WEBSOCKET_VERSION
 init|=
 literal|"Sec-WebSocket-Version"
 decl_stmt|;
+comment|/**    * The HTTP<a href="https://tools.ietf.org/html/rfc8586">{@code CDN-Loop}</a> header field name.    *    * @since NEXT    */
+DECL|field|CDN_LOOP
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|CDN_LOOP
+init|=
+literal|"CDN-Loop"
+decl_stmt|;
 block|}
 end_class
 
