@@ -256,7 +256,7 @@ name|SuppressWarnings
 argument_list|(
 literal|"GoodTime"
 argument_list|)
-comment|// lots of violations - also how should we model a rate?
+comment|// lots of violations; how should we model a rate? b/119435646
 DECL|class|RateLimiter
 specifier|public
 specifier|abstract
