@@ -251,12 +251,6 @@ annotation|@
 name|Beta
 annotation|@
 name|GwtIncompatible
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"GoodTime"
-argument_list|)
-comment|// lots of violations; how should we model a rate? b/119435646
 DECL|class|RateLimiter
 specifier|public
 specifier|abstract
@@ -327,6 +321,12 @@ name|rateLimiter
 return|;
 block|}
 comment|/**    * Creates a {@code RateLimiter} with the specified stable throughput, given as "permits per    * second" (commonly referred to as<i>QPS</i>, queries per second), and a<i>warmup period</i>,    * during which the {@code RateLimiter} smoothly ramps up its rate, until it reaches its maximum    * rate at the end of the period (as long as there are enough requests to saturate it). Similarly,    * if the {@code RateLimiter} is left<i>unused</i> for a duration of {@code warmupPeriod}, it    * will gradually return to its "cold" state, i.e. it will go through the same warming up process    * as when it was first created.    *    *<p>The returned {@code RateLimiter} is intended for cases where the resource that actually    * fulfills the requests (e.g., a remote server) needs "warmup" time, rather than being    * immediately accessed at the stable (maximum) rate.    *    *<p>The returned {@code RateLimiter} starts in a "cold" state (i.e. the warmup period will    * follow), and if it is left unused for long enough, it will return to that state.    *    * @param permitsPerSecond the rate of the returned {@code RateLimiter}, measured in how many    *     permits become available per second    * @param warmupPeriod the duration of the period where the {@code RateLimiter} ramps up its rate,    *     before reaching its stable (maximum) rate    * @param unit the time unit of the warmupPeriod argument    * @throws IllegalArgumentException if {@code permitsPerSecond} is negative or zero or {@code    *     warmupPeriod} is negative    */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"GoodTime"
+argument_list|)
+comment|// should accept a java.time.Duration
 DECL|method|create (double permitsPerSecond, long warmupPeriod, TimeUnit unit)
 specifier|public
 specifier|static
@@ -678,6 +678,12 @@ return|;
 block|}
 block|}
 comment|/**    * Acquires a permit from this {@code RateLimiter} if it can be obtained without exceeding the    * specified {@code timeout}, or returns {@code false} immediately (without waiting) if the permit    * would not have been granted before the timeout expired.    *    *<p>This method is equivalent to {@code tryAcquire(1, timeout, unit)}.    *    * @param timeout the maximum time to wait for the permit. Negative values are treated as zero.    * @param unit the time unit of the timeout argument    * @return {@code true} if the permit was acquired, {@code false} otherwise    * @throws IllegalArgumentException if the requested number of permits is negative or zero    */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"GoodTime"
+argument_list|)
+comment|// should accept a java.time.Duration
 DECL|method|tryAcquire (long timeout, TimeUnit unit)
 specifier|public
 name|boolean
@@ -741,6 +747,12 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Acquires the given number of permits from this {@code RateLimiter} if it can be obtained    * without exceeding the specified {@code timeout}, or returns {@code false} immediately (without    * waiting) if the permits would not have been granted before the timeout expired.    *    * @param permits the number of permits to acquire    * @param timeout the maximum time to wait for the permits. Negative values are treated as zero.    * @param unit the time unit of the timeout argument    * @return {@code true} if the permits were acquired, {@code false} otherwise    * @throws IllegalArgumentException if the requested number of permits is negative or zero    */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"GoodTime"
+argument_list|)
+comment|// should accept a java.time.Duration
 DECL|method|tryAcquire (int permits, long timeout, TimeUnit unit)
 specifier|public
 name|boolean
