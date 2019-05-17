@@ -20,6 +20,24 @@ end_package
 
 begin_import
 import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|Internal
+operator|.
+name|saturatedToNanos
+import|;
+end_import
+
+begin_import
+import|import static
 name|java
 operator|.
 name|util
@@ -29,6 +47,20 @@ operator|.
 name|TimeUnit
 operator|.
 name|NANOSECONDS
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|Beta
 import|;
 end_import
 
@@ -85,6 +117,16 @@ operator|.
 name|annotations
 operator|.
 name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|time
+operator|.
+name|Duration
 import|;
 end_import
 
@@ -284,6 +326,44 @@ expr_stmt|;
 block|}
 block|}
 block|}
+comment|/**    * Invokes {@code latch.}{@link CountDownLatch#await(long, TimeUnit) await(timeout, unit)}    * uninterruptibly.    *    * @since NEXT    */
+annotation|@
+name|CanIgnoreReturnValue
+comment|// TODO(cpovirk): Consider being more strict.
+annotation|@
+name|GwtIncompatible
+comment|// concurrency
+annotation|@
+name|Beta
+DECL|method|awaitUninterruptibly (CountDownLatch latch, Duration timeout)
+specifier|public
+specifier|static
+name|boolean
+name|awaitUninterruptibly
+parameter_list|(
+name|CountDownLatch
+name|latch
+parameter_list|,
+name|Duration
+name|timeout
+parameter_list|)
+block|{
+return|return
+name|awaitUninterruptibly
+argument_list|(
+name|latch
+argument_list|,
+name|saturatedToNanos
+argument_list|(
+name|timeout
+argument_list|)
+argument_list|,
+name|TimeUnit
+operator|.
+name|NANOSECONDS
+argument_list|)
+return|;
+block|}
 comment|/**    * Invokes {@code latch.}{@link CountDownLatch#await(long, TimeUnit) await(timeout, unit)}    * uninterruptibly.    */
 annotation|@
 name|CanIgnoreReturnValue
@@ -398,6 +478,41 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+block|}
+comment|/**    * Invokes {@code condition.}{@link Condition#await(long, TimeUnit) await(timeout, unit)}    * uninterruptibly.    *    * @since NEXT    */
+annotation|@
+name|GwtIncompatible
+comment|// concurrency
+annotation|@
+name|Beta
+DECL|method|awaitUninterruptibly (Condition condition, Duration timeout)
+specifier|public
+specifier|static
+name|boolean
+name|awaitUninterruptibly
+parameter_list|(
+name|Condition
+name|condition
+parameter_list|,
+name|Duration
+name|timeout
+parameter_list|)
+block|{
+return|return
+name|awaitUninterruptibly
+argument_list|(
+name|condition
+argument_list|,
+name|saturatedToNanos
+argument_list|(
+name|timeout
+argument_list|)
+argument_list|,
+name|TimeUnit
+operator|.
+name|NANOSECONDS
+argument_list|)
+return|;
 block|}
 comment|/**    * Invokes {@code condition.}{@link Condition#await(long, TimeUnit) await(timeout, unit)}    * uninterruptibly.    *    * @since 23.6    */
 annotation|@
@@ -575,6 +690,40 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+block|}
+comment|/**    * Invokes {@code unit.}{@link TimeUnit#timedJoin(Thread, long) timedJoin(toJoin, timeout)}    * uninterruptibly.    *    * @since NEXT    */
+annotation|@
+name|GwtIncompatible
+comment|// concurrency
+annotation|@
+name|Beta
+DECL|method|joinUninterruptibly (Thread toJoin, Duration timeout)
+specifier|public
+specifier|static
+name|void
+name|joinUninterruptibly
+parameter_list|(
+name|Thread
+name|toJoin
+parameter_list|,
+name|Duration
+name|timeout
+parameter_list|)
+block|{
+name|joinUninterruptibly
+argument_list|(
+name|toJoin
+argument_list|,
+name|saturatedToNanos
+argument_list|(
+name|timeout
+argument_list|)
+argument_list|,
+name|TimeUnit
+operator|.
+name|NANOSECONDS
+argument_list|)
+expr_stmt|;
 block|}
 comment|/**    * Invokes {@code unit.}{@link TimeUnit#timedJoin(Thread, long) timedJoin(toJoin, timeout)}    * uninterruptibly.    */
 annotation|@
@@ -767,6 +916,53 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+block|}
+comment|/**    * Invokes {@code future.}{@link Future#get(long, TimeUnit) get(timeout, unit)} uninterruptibly.    *    *<p>Similar methods:    *    *<ul>    *<li>To retrieve a result from a {@code Future} that is already done, use {@link    *       Futures#getDone Futures.getDone}.    *<li>To treat {@link InterruptedException} uniformly with other exceptions, use {@link    *       Futures#getChecked(Future, Class, long, TimeUnit) Futures.getChecked}.    *<li>To get uninterruptibility and remove checked exceptions, use {@link    *       Futures#getUnchecked}.    *</ul>    *    * @throws ExecutionException if the computation threw an exception    * @throws CancellationException if the computation was cancelled    * @throws TimeoutException if the wait timed out    * @since NEXT    */
+annotation|@
+name|CanIgnoreReturnValue
+annotation|@
+name|GwtIncompatible
+comment|// java.time.Duration
+annotation|@
+name|Beta
+DECL|method|getUninterruptibly (Future<V> future, Duration timeout)
+specifier|public
+specifier|static
+parameter_list|<
+name|V
+parameter_list|>
+name|V
+name|getUninterruptibly
+parameter_list|(
+name|Future
+argument_list|<
+name|V
+argument_list|>
+name|future
+parameter_list|,
+name|Duration
+name|timeout
+parameter_list|)
+throws|throws
+name|ExecutionException
+throws|,
+name|TimeoutException
+block|{
+return|return
+name|getUninterruptibly
+argument_list|(
+name|future
+argument_list|,
+name|saturatedToNanos
+argument_list|(
+name|timeout
+argument_list|)
+argument_list|,
+name|TimeUnit
+operator|.
+name|NANOSECONDS
+argument_list|)
+return|;
 block|}
 comment|/**    * Invokes {@code future.}{@link Future#get(long, TimeUnit) get(timeout, unit)} uninterruptibly.    *    *<p>Similar methods:    *    *<ul>    *<li>To retrieve a result from a {@code Future} that is already done, use {@link    *       Futures#getDone Futures.getDone}.    *<li>To treat {@link InterruptedException} uniformly with other exceptions, use {@link    *       Futures#getChecked(Future, Class, long, TimeUnit) Futures.getChecked}.    *<li>To get uninterruptibility and remove checked exceptions, use {@link    *       Futures#getUnchecked}.    *</ul>    *    * @throws ExecutionException if the computation threw an exception    * @throws CancellationException if the computation was cancelled    * @throws TimeoutException if the wait timed out    */
 annotation|@
@@ -1042,6 +1238,36 @@ block|}
 block|}
 block|}
 comment|// TODO(user): Support Sleeper somehow (wrapper or interface method)?
+comment|/**    * Invokes {@code unit.}{@link TimeUnit#sleep(long) sleep(sleepFor)} uninterruptibly.    *    * @since NEXT    */
+annotation|@
+name|GwtIncompatible
+comment|// concurrency
+annotation|@
+name|Beta
+DECL|method|sleepUninterruptibly (Duration sleepFor)
+specifier|public
+specifier|static
+name|void
+name|sleepUninterruptibly
+parameter_list|(
+name|Duration
+name|sleepFor
+parameter_list|)
+block|{
+name|sleepUninterruptibly
+argument_list|(
+name|saturatedToNanos
+argument_list|(
+name|sleepFor
+argument_list|)
+argument_list|,
+name|TimeUnit
+operator|.
+name|NANOSECONDS
+argument_list|)
+expr_stmt|;
+block|}
+comment|// TODO(user): Support Sleeper somehow (wrapper or interface method)?
 comment|/** Invokes {@code unit.}{@link TimeUnit#sleep(long) sleep(sleepFor)} uninterruptibly. */
 annotation|@
 name|GwtIncompatible
@@ -1149,6 +1375,41 @@ expr_stmt|;
 block|}
 block|}
 block|}
+comment|/**    * Invokes {@code semaphore.}{@link Semaphore#tryAcquire(int, long, TimeUnit) tryAcquire(1,    * timeout, unit)} uninterruptibly.    *    * @since NEXT    */
+annotation|@
+name|GwtIncompatible
+comment|// concurrency
+annotation|@
+name|Beta
+DECL|method|tryAcquireUninterruptibly (Semaphore semaphore, Duration timeout)
+specifier|public
+specifier|static
+name|boolean
+name|tryAcquireUninterruptibly
+parameter_list|(
+name|Semaphore
+name|semaphore
+parameter_list|,
+name|Duration
+name|timeout
+parameter_list|)
+block|{
+return|return
+name|tryAcquireUninterruptibly
+argument_list|(
+name|semaphore
+argument_list|,
+name|saturatedToNanos
+argument_list|(
+name|timeout
+argument_list|)
+argument_list|,
+name|TimeUnit
+operator|.
+name|NANOSECONDS
+argument_list|)
+return|;
+block|}
 comment|/**    * Invokes {@code semaphore.}{@link Semaphore#tryAcquire(int, long, TimeUnit) tryAcquire(1,    * timeout, unit)} uninterruptibly.    *    * @since 18.0    */
 annotation|@
 name|GwtIncompatible
@@ -1185,6 +1446,46 @@ argument_list|,
 name|timeout
 argument_list|,
 name|unit
+argument_list|)
+return|;
+block|}
+comment|/**    * Invokes {@code semaphore.}{@link Semaphore#tryAcquire(int, long, TimeUnit) tryAcquire(permits,    * timeout, unit)} uninterruptibly.    *    * @since NEXT    */
+annotation|@
+name|GwtIncompatible
+comment|// concurrency
+annotation|@
+name|Beta
+DECL|method|tryAcquireUninterruptibly ( Semaphore semaphore, int permits, Duration timeout)
+specifier|public
+specifier|static
+name|boolean
+name|tryAcquireUninterruptibly
+parameter_list|(
+name|Semaphore
+name|semaphore
+parameter_list|,
+name|int
+name|permits
+parameter_list|,
+name|Duration
+name|timeout
+parameter_list|)
+block|{
+return|return
+name|tryAcquireUninterruptibly
+argument_list|(
+name|semaphore
+argument_list|,
+name|permits
+argument_list|,
+name|saturatedToNanos
+argument_list|(
+name|timeout
+argument_list|)
+argument_list|,
+name|TimeUnit
+operator|.
+name|NANOSECONDS
 argument_list|)
 return|;
 block|}
