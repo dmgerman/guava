@@ -420,11 +420,22 @@ name|timeoutFuture
 operator|.
 name|timer
 decl_stmt|;
+name|timeoutFuture
+operator|.
+name|timer
+operator|=
+literal|null
+expr_stmt|;
+comment|// Don't include already elapsed delay in delegate.toString()
 name|String
 name|message
 init|=
 literal|"Timed out"
 decl_stmt|;
+comment|// This try-finally block ensures that we complete the timeout future, even if attempting
+comment|// to produce the message throws (probably StackOverflowError from delegate.toString())
+try|try
+block|{
 if|if
 condition|(
 name|timer
@@ -467,13 +478,15 @@ literal|" ms after scheduled time)"
 expr_stmt|;
 block|}
 block|}
-name|timeoutFuture
-operator|.
-name|timer
-operator|=
-literal|null
+name|message
+operator|+=
+literal|": "
+operator|+
+name|delegate
 expr_stmt|;
-comment|// Don't include already elapsed delay in delegate.toString()
+block|}
+finally|finally
+block|{
 name|timeoutFuture
 operator|.
 name|setException
@@ -482,13 +495,10 @@ operator|new
 name|TimeoutFutureException
 argument_list|(
 name|message
-operator|+
-literal|": "
-operator|+
-name|delegate
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 finally|finally
 block|{
