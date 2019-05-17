@@ -35,6 +35,24 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|Internal
+operator|.
+name|saturatedToNanos
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -101,6 +119,16 @@ operator|.
 name|annotations
 operator|.
 name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|time
+operator|.
+name|Duration
 import|;
 end_import
 
@@ -554,6 +582,42 @@ argument_list|,
 name|fallback
 argument_list|,
 name|executor
+argument_list|)
+return|;
+block|}
+comment|/**    * Returns a future that delegates to this future but will finish early (via a {@link    * TimeoutException} wrapped in an {@link ExecutionException}) if the specified timeout expires.    * If the timeout expires, not only will the output future finish, but also the input future    * ({@code this}) will be cancelled and interrupted.    *    * @param timeout when to time out the future    * @param scheduledExecutor The executor service to enforce the timeout.    * @since NEXT    */
+annotation|@
+name|GwtIncompatible
+comment|// ScheduledExecutorService
+DECL|method|withTimeout ( Duration timeout, ScheduledExecutorService scheduledExecutor)
+specifier|public
+specifier|final
+name|FluentFuture
+argument_list|<
+name|V
+argument_list|>
+name|withTimeout
+parameter_list|(
+name|Duration
+name|timeout
+parameter_list|,
+name|ScheduledExecutorService
+name|scheduledExecutor
+parameter_list|)
+block|{
+return|return
+name|withTimeout
+argument_list|(
+name|saturatedToNanos
+argument_list|(
+name|timeout
+argument_list|)
+argument_list|,
+name|TimeUnit
+operator|.
+name|NANOSECONDS
+argument_list|,
+name|scheduledExecutor
 argument_list|)
 return|;
 block|}
