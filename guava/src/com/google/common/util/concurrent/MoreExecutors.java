@@ -51,6 +51,24 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|Internal
+operator|.
+name|saturatedToNanos
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -219,6 +237,16 @@ operator|.
 name|reflect
 operator|.
 name|InvocationTargetException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|time
+operator|.
+name|Duration
 import|;
 end_import
 
@@ -561,6 +589,41 @@ name|executor
 argument_list|)
 return|;
 block|}
+comment|/**    * Converts the given ScheduledThreadPoolExecutor into a ScheduledExecutorService that exits when    * the application is complete. It does so by using daemon threads and adding a shutdown hook to    * wait for their completion.    *    *<p>This is mainly for fixed thread pools. See {@link Executors#newScheduledThreadPool(int)}.    *    * @param executor the executor to modify to make sure it exits when the application is finished    * @param terminationTimeout how long to wait for the executor to finish before terminating the    *     JVM    * @return an unmodifiable version of the input which will not hang the JVM    * @since NEXT    */
+annotation|@
+name|Beta
+annotation|@
+name|GwtIncompatible
+comment|// java.time.Duration
+DECL|method|getExitingScheduledExecutorService ( ScheduledThreadPoolExecutor executor, Duration terminationTimeout)
+specifier|public
+specifier|static
+name|ScheduledExecutorService
+name|getExitingScheduledExecutorService
+parameter_list|(
+name|ScheduledThreadPoolExecutor
+name|executor
+parameter_list|,
+name|Duration
+name|terminationTimeout
+parameter_list|)
+block|{
+return|return
+name|getExitingScheduledExecutorService
+argument_list|(
+name|executor
+argument_list|,
+name|saturatedToNanos
+argument_list|(
+name|terminationTimeout
+argument_list|)
+argument_list|,
+name|TimeUnit
+operator|.
+name|NANOSECONDS
+argument_list|)
+return|;
+block|}
 comment|/**    * Converts the given ScheduledThreadPoolExecutor into a ScheduledExecutorService that exits when    * the application is complete. It does so by using daemon threads and adding a shutdown hook to    * wait for their completion.    *    *<p>This is mainly for fixed thread pools. See {@link Executors#newScheduledThreadPool(int)}.    *    * @param executor the executor to modify to make sure it exits when the application is finished    * @param terminationTimeout how long to wait for the executor to finish before terminating the    *     JVM    * @param timeUnit unit of time for the time parameter    * @return an unmodifiable version of the input which will not hang the JVM    */
 annotation|@
 name|Beta
@@ -630,6 +693,40 @@ argument_list|(
 name|executor
 argument_list|)
 return|;
+block|}
+comment|/**    * Add a shutdown hook to wait for thread completion in the given {@link ExecutorService service}.    * This is useful if the given service uses daemon threads, and we want to keep the JVM from    * exiting immediately on shutdown, instead giving these daemon threads a chance to terminate    * normally.    *    * @param service ExecutorService which uses daemon threads    * @param terminationTimeout how long to wait for the executor to finish before terminating the    *     JVM    * @since NEXT    */
+annotation|@
+name|Beta
+annotation|@
+name|GwtIncompatible
+comment|// java.time.Duration
+DECL|method|addDelayedShutdownHook (ExecutorService service, Duration terminationTimeout)
+specifier|public
+specifier|static
+name|void
+name|addDelayedShutdownHook
+parameter_list|(
+name|ExecutorService
+name|service
+parameter_list|,
+name|Duration
+name|terminationTimeout
+parameter_list|)
+block|{
+name|addDelayedShutdownHook
+argument_list|(
+name|service
+argument_list|,
+name|saturatedToNanos
+argument_list|(
+name|terminationTimeout
+argument_list|)
+argument_list|,
+name|TimeUnit
+operator|.
+name|NANOSECONDS
+argument_list|)
+expr_stmt|;
 block|}
 comment|/**    * Add a shutdown hook to wait for thread completion in the given {@link ExecutorService service}.    * This is useful if the given service uses daemon threads, and we want to keep the JVM from    * exiting immediately on shutdown, instead giving these daemon threads a chance to terminate    * normally.    *    * @param service ExecutorService which uses daemon threads    * @param terminationTimeout how long to wait for the executor to finish before terminating the    *     JVM    * @param timeUnit unit of time for the time parameter    */
 annotation|@
@@ -2101,6 +2198,64 @@ block|}
 block|}
 comment|/*    * This following method is a modified version of one found in    * http://gee.cs.oswego.edu/cgi-bin/viewcvs.cgi/jsr166/src/test/tck/AbstractExecutorServiceTest.java?revision=1.30    * which contained the following notice:    *    * Written by Doug Lea with assistance from members of JCP JSR-166 Expert Group and released to    * the public domain, as explained at http://creativecommons.org/publicdomain/zero/1.0/    *    * Other contributors include Andrew Wright, Jeffrey Hayes, Pat Fisher, Mike Judd.    */
 comment|/**    * An implementation of {@link ExecutorService#invokeAny} for {@link ListeningExecutorService}    * implementations.    */
+DECL|method|invokeAnyImpl ( ListeningExecutorService executorService, Collection<? extends Callable<T>> tasks, boolean timed, Duration timeout)
+annotation|@
+name|GwtIncompatible
+specifier|static
+parameter_list|<
+name|T
+parameter_list|>
+name|T
+name|invokeAnyImpl
+parameter_list|(
+name|ListeningExecutorService
+name|executorService
+parameter_list|,
+name|Collection
+argument_list|<
+name|?
+extends|extends
+name|Callable
+argument_list|<
+name|T
+argument_list|>
+argument_list|>
+name|tasks
+parameter_list|,
+name|boolean
+name|timed
+parameter_list|,
+name|Duration
+name|timeout
+parameter_list|)
+throws|throws
+name|InterruptedException
+throws|,
+name|ExecutionException
+throws|,
+name|TimeoutException
+block|{
+return|return
+name|invokeAnyImpl
+argument_list|(
+name|executorService
+argument_list|,
+name|tasks
+argument_list|,
+name|timed
+argument_list|,
+name|saturatedToNanos
+argument_list|(
+name|timeout
+argument_list|)
+argument_list|,
+name|TimeUnit
+operator|.
+name|NANOSECONDS
+argument_list|)
+return|;
+block|}
+comment|/**    * An implementation of {@link ExecutorService#invokeAny} for {@link ListeningExecutorService}    * implementations.    */
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -3104,6 +3259,43 @@ argument_list|)
 return|;
 block|}
 block|}
+return|;
+block|}
+comment|/**    * Shuts down the given executor service gradually, first disabling new submissions and later, if    * necessary, cancelling remaining tasks.    *    *<p>The method takes the following steps:    *    *<ol>    *<li>calls {@link ExecutorService#shutdown()}, disabling acceptance of new submitted tasks.    *<li>awaits executor service termination for half of the specified timeout.    *<li>if the timeout expires, it calls {@link ExecutorService#shutdownNow()}, cancelling    *       pending tasks and interrupting running tasks.    *<li>awaits executor service termination for the other half of the specified timeout.    *</ol>    *    *<p>If, at any step of the process, the calling thread is interrupted, the method calls {@link    * ExecutorService#shutdownNow()} and returns.    *    * @param service the {@code ExecutorService} to shut down    * @param timeout the maximum time to wait for the {@code ExecutorService} to terminate    * @return {@code true} if the {@code ExecutorService} was terminated successfully, {@code false}    *     if the call timed out or was interrupted    * @since NEXT    */
+annotation|@
+name|Beta
+annotation|@
+name|CanIgnoreReturnValue
+annotation|@
+name|GwtIncompatible
+comment|// java.time.Duration
+DECL|method|shutdownAndAwaitTermination (ExecutorService service, Duration timeout)
+specifier|public
+specifier|static
+name|boolean
+name|shutdownAndAwaitTermination
+parameter_list|(
+name|ExecutorService
+name|service
+parameter_list|,
+name|Duration
+name|timeout
+parameter_list|)
+block|{
+return|return
+name|shutdownAndAwaitTermination
+argument_list|(
+name|service
+argument_list|,
+name|saturatedToNanos
+argument_list|(
+name|timeout
+argument_list|)
+argument_list|,
+name|TimeUnit
+operator|.
+name|NANOSECONDS
+argument_list|)
 return|;
 block|}
 comment|/**    * Shuts down the given executor service gradually, first disabling new submissions and later, if    * necessary, cancelling remaining tasks.    *    *<p>The method takes the following steps:    *    *<ol>    *<li>calls {@link ExecutorService#shutdown()}, disabling acceptance of new submitted tasks.    *<li>awaits executor service termination for half of the specified timeout.    *<li>if the timeout expires, it calls {@link ExecutorService#shutdownNow()}, cancelling    *       pending tasks and interrupting running tasks.    *<li>awaits executor service termination for the other half of the specified timeout.    *</ol>    *    *<p>If, at any step of the process, the calling thread is interrupted, the method calls {@link    * ExecutorService#shutdownNow()} and returns.    *    * @param service the {@code ExecutorService} to shut down    * @param timeout the maximum time to wait for the {@code ExecutorService} to terminate    * @param unit the time unit of the timeout argument    * @return {@code true} if the {@code ExecutorService} was terminated successfully, {@code false}    *     if the call timed out or was interrupted    * @since 17.0    */
