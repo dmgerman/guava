@@ -3544,6 +3544,8 @@ name|of
 argument_list|(
 literal|"latestPermitAgeSec"
 argument_list|,
+literal|"latestPermitAge"
+argument_list|,
 literal|"setRate"
 argument_list|,
 literal|"getAvailablePermits"
