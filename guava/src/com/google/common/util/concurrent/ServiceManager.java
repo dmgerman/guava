@@ -142,6 +142,24 @@ name|util
 operator|.
 name|concurrent
 operator|.
+name|Internal
+operator|.
+name|saturatedToNanos
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
 name|MoreExecutors
 operator|.
 name|directExecutor
@@ -619,6 +637,16 @@ operator|.
 name|ref
 operator|.
 name|WeakReference
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|time
+operator|.
+name|Duration
 import|;
 end_import
 
@@ -1217,6 +1245,31 @@ name|awaitHealthy
 argument_list|()
 expr_stmt|;
 block|}
+comment|/**    * Waits for the {@link ServiceManager} to become {@linkplain #isHealthy() healthy} for no more    * than the given time. The manager will become healthy after all the component services have    * reached the {@linkplain State#RUNNING running} state.    *    * @param timeout the maximum time to wait    * @throws TimeoutException if not all of the services have finished starting within the deadline    * @throws IllegalStateException if the service manager reaches a state from which it cannot    *     become {@linkplain #isHealthy() healthy}.    * @since NEXT    */
+DECL|method|awaitHealthy (Duration timeout)
+specifier|public
+name|void
+name|awaitHealthy
+parameter_list|(
+name|Duration
+name|timeout
+parameter_list|)
+throws|throws
+name|TimeoutException
+block|{
+name|awaitHealthy
+argument_list|(
+name|saturatedToNanos
+argument_list|(
+name|timeout
+argument_list|)
+argument_list|,
+name|TimeUnit
+operator|.
+name|NANOSECONDS
+argument_list|)
+expr_stmt|;
+block|}
 comment|/**    * Waits for the {@link ServiceManager} to become {@linkplain #isHealthy() healthy} for no more    * than the given time. The manager will become healthy after all the component services have    * reached the {@linkplain State#RUNNING running} state.    *    * @param timeout the maximum time to wait    * @param unit the time unit of the timeout argument    * @throws TimeoutException if not all of the services have finished starting within the deadline    * @throws IllegalStateException if the service manager reaches a state from which it cannot    *     become {@linkplain #isHealthy() healthy}.    */
 annotation|@
 name|SuppressWarnings
@@ -1286,6 +1339,31 @@ name|state
 operator|.
 name|awaitStopped
 argument_list|()
+expr_stmt|;
+block|}
+comment|/**    * Waits for the all the services to reach a terminal state for no more than the given time. After    * this method returns all services will either be {@linkplain Service.State#TERMINATED    * terminated} or {@linkplain Service.State#FAILED failed}.    *    * @param timeout the maximum time to wait    * @throws TimeoutException if not all of the services have stopped within the deadline    * @since NEXT    */
+DECL|method|awaitStopped (Duration timeout)
+specifier|public
+name|void
+name|awaitStopped
+parameter_list|(
+name|Duration
+name|timeout
+parameter_list|)
+throws|throws
+name|TimeoutException
+block|{
+name|awaitStopped
+argument_list|(
+name|saturatedToNanos
+argument_list|(
+name|timeout
+argument_list|)
+argument_list|,
+name|TimeUnit
+operator|.
+name|NANOSECONDS
+argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Waits for the all the services to reach a terminal state for no more than the given time. After    * this method returns all services will either be {@linkplain Service.State#TERMINATED    * terminated} or {@linkplain Service.State#FAILED failed}.    *    * @param timeout the maximum time to wait    * @param unit the time unit of the timeout argument    * @throws TimeoutException if not all of the services have stopped within the deadline    */
