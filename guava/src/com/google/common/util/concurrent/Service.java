@@ -19,6 +19,24 @@ package|;
 end_package
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|Internal
+operator|.
+name|saturatedToNanos
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -57,6 +75,16 @@ operator|.
 name|annotations
 operator|.
 name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|time
+operator|.
+name|Duration
 import|;
 end_import
 
@@ -144,6 +172,31 @@ name|void
 name|awaitRunning
 parameter_list|()
 function_decl|;
+comment|/**    * Waits for the {@link Service} to reach the {@linkplain State#RUNNING running state} for no more    * than the given time.    *    * @param timeout the maximum time to wait    * @throws TimeoutException if the service has not reached the given state within the deadline    * @throws IllegalStateException if the service reaches a state from which it is not possible to    *     enter the {@link State#RUNNING RUNNING} state. e.g. if the {@code state} is {@code    *     State#TERMINATED} when this method is called then this will throw an IllegalStateException.    * @since NEXT    */
+DECL|method|awaitRunning (Duration timeout)
+specifier|default
+name|void
+name|awaitRunning
+parameter_list|(
+name|Duration
+name|timeout
+parameter_list|)
+throws|throws
+name|TimeoutException
+block|{
+name|awaitRunning
+argument_list|(
+name|saturatedToNanos
+argument_list|(
+name|timeout
+argument_list|)
+argument_list|,
+name|TimeUnit
+operator|.
+name|NANOSECONDS
+argument_list|)
+expr_stmt|;
+block|}
 comment|/**    * Waits for the {@link Service} to reach the {@linkplain State#RUNNING running state} for no more    * than the given time.    *    * @param timeout the maximum time to wait    * @param unit the time unit of the timeout argument    * @throws TimeoutException if the service has not reached the given state within the deadline    * @throws IllegalStateException if the service reaches a state from which it is not possible to    *     enter the {@link State#RUNNING RUNNING} state. e.g. if the {@code state} is {@code    *     State#TERMINATED} when this method is called then this will throw an IllegalStateException.    * @since 15.0    */
 annotation|@
 name|SuppressWarnings
@@ -170,6 +223,31 @@ name|void
 name|awaitTerminated
 parameter_list|()
 function_decl|;
+comment|/**    * Waits for the {@link Service} to reach a terminal state (either {@link Service.State#TERMINATED    * terminated} or {@link Service.State#FAILED failed}) for no more than the given time.    *    * @param timeout the maximum time to wait    * @throws TimeoutException if the service has not reached the given state within the deadline    * @throws IllegalStateException if the service {@linkplain State#FAILED fails}.    * @since NEXT    */
+DECL|method|awaitTerminated (Duration timeout)
+specifier|default
+name|void
+name|awaitTerminated
+parameter_list|(
+name|Duration
+name|timeout
+parameter_list|)
+throws|throws
+name|TimeoutException
+block|{
+name|awaitTerminated
+argument_list|(
+name|saturatedToNanos
+argument_list|(
+name|timeout
+argument_list|)
+argument_list|,
+name|TimeUnit
+operator|.
+name|NANOSECONDS
+argument_list|)
+expr_stmt|;
+block|}
 comment|/**    * Waits for the {@link Service} to reach a terminal state (either {@link Service.State#TERMINATED    * terminated} or {@link Service.State#FAILED failed}) for no more than the given time.    *    * @param timeout the maximum time to wait    * @param unit the time unit of the timeout argument    * @throws TimeoutException if the service has not reached the given state within the deadline    * @throws IllegalStateException if the service {@linkplain State#FAILED fails}.    * @since 15.0    */
 annotation|@
 name|SuppressWarnings
