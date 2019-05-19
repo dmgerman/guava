@@ -62,6 +62,24 @@ name|util
 operator|.
 name|concurrent
 operator|.
+name|Internal
+operator|.
+name|saturatedToNanos
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
 name|MoreExecutors
 operator|.
 name|directExecutor
@@ -151,6 +169,16 @@ operator|.
 name|annotations
 operator|.
 name|WeakOuter
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|time
+operator|.
+name|Duration
 import|;
 end_import
 
@@ -364,6 +392,39 @@ specifier|static
 class|class
 name|Scheduler
 block|{
+comment|/**      * Returns a {@link Scheduler} that schedules the task using the {@link      * ScheduledExecutorService#scheduleWithFixedDelay} method.      *      * @param initialDelay the time to delay first execution      * @param delay the delay between the termination of one execution and the commencement of the      *     next      * @since NEXT      */
+DECL|method|newFixedDelaySchedule (Duration initialDelay, Duration delay)
+specifier|public
+specifier|static
+name|Scheduler
+name|newFixedDelaySchedule
+parameter_list|(
+name|Duration
+name|initialDelay
+parameter_list|,
+name|Duration
+name|delay
+parameter_list|)
+block|{
+return|return
+name|newFixedDelaySchedule
+argument_list|(
+name|saturatedToNanos
+argument_list|(
+name|initialDelay
+argument_list|)
+argument_list|,
+name|saturatedToNanos
+argument_list|(
+name|delay
+argument_list|)
+argument_list|,
+name|TimeUnit
+operator|.
+name|NANOSECONDS
+argument_list|)
+return|;
+block|}
 comment|/**      * Returns a {@link Scheduler} that schedules the task using the {@link      * ScheduledExecutorService#scheduleWithFixedDelay} method.      *      * @param initialDelay the time to delay first execution      * @param delay the delay between the termination of one execution and the commencement of the      *     next      * @param unit the time unit of the initialDelay and delay parameters      */
 annotation|@
 name|SuppressWarnings
@@ -446,6 +507,39 @@ argument_list|)
 return|;
 block|}
 block|}
+return|;
+block|}
+comment|/**      * Returns a {@link Scheduler} that schedules the task using the {@link      * ScheduledExecutorService#scheduleAtFixedRate} method.      *      * @param initialDelay the time to delay first execution      * @param period the period between successive executions of the task      * @since NEXT      */
+DECL|method|newFixedRateSchedule (Duration initialDelay, Duration period)
+specifier|public
+specifier|static
+name|Scheduler
+name|newFixedRateSchedule
+parameter_list|(
+name|Duration
+name|initialDelay
+parameter_list|,
+name|Duration
+name|period
+parameter_list|)
+block|{
+return|return
+name|newFixedRateSchedule
+argument_list|(
+name|saturatedToNanos
+argument_list|(
+name|initialDelay
+argument_list|)
+argument_list|,
+name|saturatedToNanos
+argument_list|(
+name|period
+argument_list|)
+argument_list|,
+name|TimeUnit
+operator|.
+name|NANOSECONDS
+argument_list|)
 return|;
 block|}
 comment|/**      * Returns a {@link Scheduler} that schedules the task using the {@link      * ScheduledExecutorService#scheduleAtFixedRate} method.      *      * @param initialDelay the time to delay first execution      * @param period the period between successive executions of the task      * @param unit the time unit of the initialDelay and period parameters      */
