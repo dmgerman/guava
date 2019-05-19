@@ -149,11 +149,6 @@ end_comment
 begin_class
 annotation|@
 name|GwtCompatible
-argument_list|(
-name|emulated
-operator|=
-literal|true
-argument_list|)
 DECL|class|ImmediateFuture
 specifier|abstract
 class|class

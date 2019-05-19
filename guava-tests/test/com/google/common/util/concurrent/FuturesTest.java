@@ -546,18 +546,6 @@ begin_import
 import|import static
 name|java
 operator|.
-name|lang
-operator|.
-name|Thread
-operator|.
-name|currentThread
-import|;
-end_import
-
-begin_import
-import|import static
-name|java
-operator|.
 name|util
 operator|.
 name|Arrays
