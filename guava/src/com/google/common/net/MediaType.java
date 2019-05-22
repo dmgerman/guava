@@ -1644,6 +1644,21 @@ argument_list|,
 literal|"binary"
 argument_list|)
 decl_stmt|;
+comment|/**    * Media type for the<a href="https://tools.ietf.org/html/rfc7946">GeoJSON Format</a>, a    * geospatial data interchange format based on JSON.    *    * @since NEXT    */
+DECL|field|GEO_JSON
+specifier|public
+specifier|static
+specifier|final
+name|MediaType
+name|GEO_JSON
+init|=
+name|createConstant
+argument_list|(
+name|APPLICATION_TYPE
+argument_list|,
+literal|"geo+json"
+argument_list|)
+decl_stmt|;
 DECL|field|GZIP
 specifier|public
 specifier|static
