@@ -224,6 +224,16 @@ name|COOKIE
 init|=
 literal|"Cookie"
 decl_stmt|;
+comment|/**    * The HTTP<a href="https://fetch.spec.whatwg.org/#cross-origin-resource-policy-header">{@code    * Cross-Origin-Resource-Policy}</a> header field name.    *    * @since NEXT    */
+DECL|field|CROSS_ORIGIN_RESOURCE_POLICY
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|CROSS_ORIGIN_RESOURCE_POLICY
+init|=
+literal|"Cross-Origin-Resource-Policy"
+decl_stmt|;
 comment|/**    * The HTTP<a href="https://tools.ietf.org/html/rfc8470">{@code Early-Data}</a> header field    * name.    *    * @since 27.0    */
 DECL|field|EARLY_DATA
 specifier|public
