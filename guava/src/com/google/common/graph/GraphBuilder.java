@@ -202,7 +202,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an {@link ImmutableGraph#Builder} with the properties of this {@link GraphBuilder}.    *    *<p>The returned builder can be used for populating an {@link ImmutableGraph}.    *    * @since NEXT    */
+comment|/**    * Returns an {@link ImmutableGraph.Builder} with the properties of this {@link GraphBuilder}.    *    *<p>The returned builder can be used for populating an {@link ImmutableGraph}.    *    * @since NEXT    */
 DECL|method|immutable ()
 specifier|public
 parameter_list|<

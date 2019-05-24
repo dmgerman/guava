@@ -264,7 +264,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an {@link ImmutableNetwork#Builder} with the properties of this {@link NetworkBuilder}.    *    *<p>The returned builder can be used for populating an {@link ImmutableNetwork}.    *    * @since NEXT    */
+comment|/**    * Returns an {@link ImmutableNetwork.Builder} with the properties of this {@link NetworkBuilder}.    *    *<p>The returned builder can be used for populating an {@link ImmutableNetwork}.    *    * @since NEXT    */
 DECL|method|immutable ()
 specifier|public
 parameter_list|<
