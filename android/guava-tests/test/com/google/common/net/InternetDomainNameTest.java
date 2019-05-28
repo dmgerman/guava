@@ -286,6 +286,10 @@ literal|"foo.net.us\uFF61ocm"
 argument_list|,
 literal|"woo.com."
 argument_list|,
+literal|"8server.shop"
+argument_list|,
+literal|"123.cn"
+argument_list|,
 literal|"a"
 operator|+
 name|DELTA
