@@ -2962,7 +2962,7 @@ name|hashFunction
 operator|.
 name|hashBytes
 argument_list|(
-name|littleEndian
+name|bigEndian
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -2984,7 +2984,7 @@ name|ByteOrder
 operator|.
 name|BIG_ENDIAN
 argument_list|,
-name|littleEndian
+name|bigEndian
 operator|.
 name|order
 argument_list|()
@@ -3089,7 +3089,7 @@ argument_list|()
 operator|.
 name|putBytes
 argument_list|(
-name|littleEndian
+name|bigEndian
 argument_list|)
 operator|.
 name|hash
@@ -3114,7 +3114,7 @@ name|ByteOrder
 operator|.
 name|BIG_ENDIAN
 argument_list|,
-name|littleEndian
+name|bigEndian
 operator|.
 name|order
 argument_list|()
