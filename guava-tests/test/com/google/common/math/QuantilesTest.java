@@ -284,6 +284,22 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|truth
+operator|.
+name|Correspondence
+operator|.
+name|BinaryPredicate
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -404,8 +420,12 @@ name|Double
 argument_list|>
 name|QUANTILE_CORRESPONDENCE
 init|=
-operator|new
 name|Correspondence
+operator|.
+name|from
+argument_list|(
+operator|new
+name|BinaryPredicate
 argument_list|<
 name|Double
 argument_list|,
@@ -417,7 +437,7 @@ annotation|@
 name|Override
 specifier|public
 name|boolean
-name|compare
+name|apply
 parameter_list|(
 annotation|@
 name|Nullable
@@ -430,7 +450,8 @@ name|Double
 name|expected
 parameter_list|)
 block|{
-comment|// Test for equality to allow non-finite values to match; otherwise, use the finite test.
+comment|// Test for equality to allow non-finite values to match; otherwise, use the finite
+comment|// test.
 return|return
 name|actual
 operator|.
@@ -449,20 +470,12 @@ name|expected
 argument_list|)
 return|;
 block|}
-annotation|@
-name|Override
-specifier|public
-name|String
-name|toString
-parameter_list|()
-block|{
-return|return
+block|}
+argument_list|,
 literal|"is identical to or "
 operator|+
 name|FINITE_QUANTILE_CORRESPONDENCE
-return|;
-block|}
-block|}
+argument_list|)
 decl_stmt|;
 comment|// 1. Tests on a hardcoded dataset for chains starting with median(), quartiles(), and scale(10):
 comment|/** The squares of the 16 integers from 0 to 15, in an arbitrary order. */
