@@ -519,6 +519,41 @@ specifier|private
 name|MoreExecutors
 parameter_list|()
 block|{}
+comment|/**    * Converts the given ThreadPoolExecutor into an ExecutorService that exits when the application    * is complete. It does so by using daemon threads and adding a shutdown hook to wait for their    * completion.    *    *<p>This is mainly for fixed thread pools. See {@link Executors#newFixedThreadPool(int)}.    *    * @param executor the executor to modify to make sure it exits when the application is finished    * @param terminationTimeout how long to wait for the executor to finish before terminating the    *     JVM    * @return an unmodifiable version of the input which will not hang the JVM    * @since NEXT    */
+annotation|@
+name|Beta
+annotation|@
+name|GwtIncompatible
+comment|// TODO
+DECL|method|getExitingExecutorService ( ThreadPoolExecutor executor, Duration terminationTimeout)
+specifier|public
+specifier|static
+name|ExecutorService
+name|getExitingExecutorService
+parameter_list|(
+name|ThreadPoolExecutor
+name|executor
+parameter_list|,
+name|Duration
+name|terminationTimeout
+parameter_list|)
+block|{
+return|return
+name|getExitingExecutorService
+argument_list|(
+name|executor
+argument_list|,
+name|saturatedToNanos
+argument_list|(
+name|terminationTimeout
+argument_list|)
+argument_list|,
+name|TimeUnit
+operator|.
+name|NANOSECONDS
+argument_list|)
+return|;
+block|}
 comment|/**    * Converts the given ThreadPoolExecutor into an ExecutorService that exits when the application    * is complete. It does so by using daemon threads and adding a shutdown hook to wait for their    * completion.    *    *<p>This is mainly for fixed thread pools. See {@link Executors#newFixedThreadPool(int)}.    *    * @param executor the executor to modify to make sure it exits when the application is finished    * @param terminationTimeout how long to wait for the executor to finish before terminating the    *     JVM    * @param timeUnit unit of time for the time parameter    * @return an unmodifiable version of the input which will not hang the JVM    */
 annotation|@
 name|Beta
