@@ -2817,8 +2817,6 @@ return|;
 block|}
 comment|/**    * Sets the result of this {@code Future} to match the supplied input {@code Future} once the    * supplied {@code Future} is done, unless this {@code Future} has already been cancelled or set    * (including "set asynchronously," defined below).    *    *<p>If the supplied future is {@linkplain #isDone done} when this method is called and the call    * is accepted, then this future is guaranteed to have been completed with the supplied future by    * the time this method returns. If the supplied future is not done and the call is accepted, then    * the future will be<i>set asynchronously</i>. Note that such a result, though not yet known,    * cannot be overridden by a call to a {@code set*} method, only by a call to {@link #cancel}.    *    *<p>If the call {@code setFuture(delegate)} is accepted and this {@code Future} is later    * cancelled, cancellation will be propagated to {@code delegate}. Additionally, any call to    * {@code setFuture} after any cancellation will propagate cancellation to the supplied {@code    * Future}.    *    *<p>Note that, even if the supplied future is cancelled and it causes this future to complete,    * it will never trigger interruption behavior. In particular, it will not cause this future to    * invoke the {@link #interruptTask} method, and the {@link #wasInterrupted} method will not    * return {@code true}.    *    * @param future the future to delegate to    * @return true if the attempt was accepted, indicating that the {@code Future} was not previously    *     cancelled or set.    * @since 19.0    */
 annotation|@
-name|Beta
-annotation|@
 name|CanIgnoreReturnValue
 DECL|method|setFuture (ListenableFuture<? extends V> future)
 specifier|protected
