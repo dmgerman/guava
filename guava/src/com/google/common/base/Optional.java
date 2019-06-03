@@ -420,7 +420,7 @@ name|T
 name|orNull
 parameter_list|()
 function_decl|;
-comment|/**    * Returns an immutable singleton {@link Set} whose only element is the contained instance if it    * is present; an empty immutable {@link Set} otherwise.    *    *<p><b>Comparison to {@code java.util.Optional}:</b> this method has no equivalent in Java 8's    * {@code Optional} class. However, this common usage:    *    *<pre>{@code    * for (Foo foo : possibleFoo.asSet()) {    *   doSomethingWith(foo);    * }    * }</pre>    *    * ... can be replaced with:    *    *<pre>{@code    * possibleFoo.ifPresent(foo -> doSomethingWith(foo));    * }</pre>    *    * @since 11.0    */
+comment|/**    * Returns an immutable singleton {@link Set} whose only element is the contained instance if it    * is present; an empty immutable {@link Set} otherwise.    *    *<p><b>Comparison to {@code java.util.Optional}:</b> this method has no equivalent in Java 8's    * {@code Optional} class. However, this common usage:    *    *<pre>{@code    * for (Foo foo : possibleFoo.asSet()) {    *   doSomethingWith(foo);    * }    * }</pre>    *    * ... can be replaced with:    *    *<pre>{@code    * possibleFoo.ifPresent(foo -> doSomethingWith(foo));    * }</pre>    *    *<p><b>Java 9 users:</b> some use cases can be written with calls to {@code optional.stream()}.    *    * @since 11.0    */
 DECL|method|asSet ()
 specifier|public
 specifier|abstract
@@ -490,7 +490,7 @@ name|String
 name|toString
 parameter_list|()
 function_decl|;
-comment|/**    * Returns the value of each present instance from the supplied {@code optionals}, in order,    * skipping over occurrences of {@link Optional#absent}. Iterators are unmodifiable and are    * evaluated lazily.    *    *<p><b>Comparison to {@code java.util.Optional}:</b> this method has no equivalent in Java 8's    * {@code Optional} class; use {@code    * optionals.stream().filter(Optional::isPresent).map(Optional::get)} instead.    *    * @since 11.0 (generics widened in 13.0)    */
+comment|/**    * Returns the value of each present instance from the supplied {@code optionals}, in order,    * skipping over occurrences of {@link Optional#absent}. Iterators are unmodifiable and are    * evaluated lazily.    *    *<p><b>Comparison to {@code java.util.Optional}:</b> this method has no equivalent in Java 8's    * {@code Optional} class; use {@code    * optionals.stream().filter(Optional::isPresent).map(Optional::get)} instead.    *    *<p><b>Java 9 users:</b> use {@code optionals.stream().flatMap(Optional::stream)} instead.    *    * @since 11.0 (generics widened in 13.0)    */
 annotation|@
 name|Beta
 DECL|method|presentInstances ( final Iterable<? extends Optional<? extends T>> optionals)
