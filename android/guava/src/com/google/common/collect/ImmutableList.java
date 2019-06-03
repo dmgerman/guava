@@ -1110,7 +1110,7 @@ name|array
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an immutable list containing the given elements, in order. If {@code elements} is a    * {@link Collection}, this method behaves exactly as {@link #copyOf(Collection)}; otherwise, it    * behaves exactly as {@code copyOf(elements.iterator()}.    *    * @throws NullPointerException if any of {@code elements} is null    */
+comment|/**    * Returns an immutable list containing the given elements, in order. If {@code elements} is a    * {@link Collection}, this method behaves exactly as {@link #copyOf(Collection)}; otherwise, it    * behaves exactly as {@code copyOf(elements.iterator()}.    *    * @throws NullPointerException if {@code elements} contains a null element    */
 DECL|method|copyOf (Iterable<? extends E> elements)
 specifier|public
 specifier|static
@@ -1167,7 +1167,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an immutable list containing the given elements, in order.    *    *<p>Despite the method name, this method attempts to avoid actually copying the data when it is    * safe to do so. The exact circumstances under which a copy will or will not be performed are    * undocumented and subject to change.    *    *<p>Note that if {@code list} is a {@code List<String>}, then {@code ImmutableList.copyOf(list)}    * returns an {@code ImmutableList<String>} containing each of the strings in {@code list}, while    * ImmutableList.of(list)} returns an {@code ImmutableList<List<String>>} containing one element    * (the given list itself).    *    *<p>This method is safe to use even when {@code elements} is a synchronized or concurrent    * collection that is currently being modified by another thread.    *    * @throws NullPointerException if any of {@code elements} is null    */
+comment|/**    * Returns an immutable list containing the given elements, in order.    *    *<p>Despite the method name, this method attempts to avoid actually copying the data when it is    * safe to do so. The exact circumstances under which a copy will or will not be performed are    * undocumented and subject to change.    *    *<p>Note that if {@code list} is a {@code List<String>}, then {@code ImmutableList.copyOf(list)}    * returns an {@code ImmutableList<String>} containing each of the strings in {@code list}, while    * ImmutableList.of(list)} returns an {@code ImmutableList<List<String>>} containing one element    * (the given list itself).    *    *<p>This method is safe to use even when {@code elements} is a synchronized or concurrent    * collection that is currently being modified by another thread.    *    * @throws NullPointerException if {@code elements} contains a null element    */
 DECL|method|copyOf (Collection<? extends E> elements)
 specifier|public
 specifier|static
@@ -1253,7 +1253,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an immutable list containing the given elements, in order.    *    * @throws NullPointerException if any of {@code elements} is null    */
+comment|/**    * Returns an immutable list containing the given elements, in order.    *    * @throws NullPointerException if {@code elements} contains a null element    */
 DECL|method|copyOf (Iterator<? extends E> elements)
 specifier|public
 specifier|static
@@ -1341,7 +1341,7 @@ argument_list|()
 return|;
 block|}
 block|}
-comment|/**    * Returns an immutable list containing the given elements, in order.    *    * @throws NullPointerException if any of {@code elements} is null    * @since 3.0    */
+comment|/**    * Returns an immutable list containing the given elements, in order.    *    * @throws NullPointerException if {@code elements} contains a null element    * @since 3.0    */
 DECL|method|copyOf (E[] elements)
 specifier|public
 specifier|static
