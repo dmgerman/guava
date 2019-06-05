@@ -195,7 +195,7 @@ name|N
 name|node
 parameter_list|)
 function_decl|;
-comment|/**    * Returns the edges whose {@link #incidentNodes(Object) incident nodes} in this network include    * {@code node}.    *    * @throws IllegalArgumentException if {@code node} is not an element of this network    */
+comment|/**    * Returns the edges whose {@link #incidentNodes(Object) incident nodes} in this network include    * {@code node}.    *    *<p>This is equal to the union of {@link #inEdges(Object)} and {@link #outEdges(Object)}.    *    * @throws IllegalArgumentException if {@code node} is not an element of this network    */
 DECL|method|incidentEdges (N node)
 name|Set
 argument_list|<
