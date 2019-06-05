@@ -99,7 +99,7 @@ function_decl|;
 comment|//
 comment|// Element-level accessors
 comment|//
-comment|/**    * Returns the nodes which have an incident edge in common with {@code node} in this graph.    *    * @throws IllegalArgumentException if {@code node} is not an element of this graph    */
+comment|/**    * Returns the nodes which have an incident edge in common with {@code node} in this graph.    *    *<p>This is equal to the union of {@link #predecessors(Object)} and {@link #successors(Object)}.    *    * @throws IllegalArgumentException if {@code node} is not an element of this graph    */
 DECL|method|adjacentNodes (N node)
 name|Set
 argument_list|<
