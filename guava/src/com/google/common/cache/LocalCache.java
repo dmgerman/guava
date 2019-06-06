@@ -9634,7 +9634,7 @@ argument_list|)
 condition|)
 block|{
 comment|// This is a duplicate check, as preWriteCleanup already purged expired
-comment|// entries, but let's accomodate an incorrect expiration queue.
+comment|// entries, but let's accommodate an incorrect expiration queue.
 name|enqueueNotification
 argument_list|(
 name|entryKey
