@@ -561,8 +561,8 @@ block|}
 end_class
 
 begin_function
-specifier|private
 DECL|method|callWithTimeout ( Callable<T> callable, long timeoutDuration, TimeUnit timeoutUnit, boolean amInterruptible)
+specifier|private
 parameter_list|<
 name|T
 parameter_list|>
