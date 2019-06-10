@@ -372,10 +372,10 @@ name|class
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|testFindClassesToTeset_ignoreUnderscores ()
+DECL|method|testFindClassesToTest_ignoreUnderscores ()
 specifier|public
 name|void
-name|testFindClassesToTeset_ignoreUnderscores
+name|testFindClassesToTest_ignoreUnderscores
 parameter_list|()
 block|{
 name|assertThat
