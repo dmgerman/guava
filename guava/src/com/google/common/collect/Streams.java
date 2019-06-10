@@ -535,7 +535,7 @@ argument_list|)
 else|:
 name|Stream
 operator|.
-name|of
+name|empty
 argument_list|()
 return|;
 block|}
@@ -583,7 +583,7 @@ argument_list|)
 else|:
 name|Stream
 operator|.
-name|of
+name|empty
 argument_list|()
 return|;
 block|}
