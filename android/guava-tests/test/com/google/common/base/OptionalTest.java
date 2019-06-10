@@ -1524,9 +1524,6 @@ name|containsExactly
 argument_list|(
 literal|2
 argument_list|)
-operator|.
-name|inOrder
-argument_list|()
 expr_stmt|;
 block|}
 DECL|method|getSomeOptionalInt ()
