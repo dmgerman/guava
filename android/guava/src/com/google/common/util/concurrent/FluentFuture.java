@@ -398,7 +398,7 @@ name|future
 argument_list|)
 return|;
 block|}
-comment|/**    * Simply returns its argument.    *    * @deprecated no need to use this    * @since NEXT    */
+comment|/**    * Simply returns its argument.    *    * @deprecated no need to use this    * @since 28.0    */
 annotation|@
 name|Deprecated
 DECL|method|from (FluentFuture<V> future)

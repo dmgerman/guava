@@ -204,7 +204,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**    * Advances the ticker value by {@code duration}.    *    * @since NEXT    */
+comment|/**    * Advances the ticker value by {@code duration}.    *    * @since 28.0    */
 annotation|@
 name|GwtIncompatible
 DECL|method|advance (java.time.Duration duration)
@@ -273,7 +273,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**    * Sets the increment applied to the ticker whenever it is queried.    *    *<p>The default behavior is to auto increment by zero. i.e: The ticker is left unchanged when    * queried.    *    * @since NEXT    */
+comment|/**    * Sets the increment applied to the ticker whenever it is queried.    *    *<p>The default behavior is to auto increment by zero. i.e: The ticker is left unchanged when    * queried.    *    * @since 28.0    */
 annotation|@
 name|GwtIncompatible
 DECL|method|setAutoIncrementStep (java.time.Duration autoIncrementStep)

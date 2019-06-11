@@ -224,7 +224,7 @@ name|COOKIE
 init|=
 literal|"Cookie"
 decl_stmt|;
-comment|/**    * The HTTP<a href="https://fetch.spec.whatwg.org/#cross-origin-resource-policy-header">{@code    * Cross-Origin-Resource-Policy}</a> header field name.    *    * @since NEXT    */
+comment|/**    * The HTTP<a href="https://fetch.spec.whatwg.org/#cross-origin-resource-policy-header">{@code    * Cross-Origin-Resource-Policy}</a> header field name.    *    * @since 28.0    */
 DECL|field|CROSS_ORIGIN_RESOURCE_POLICY
 specifier|public
 specifier|static
@@ -1182,7 +1182,7 @@ name|PING_TO
 init|=
 literal|"Ping-To"
 decl_stmt|;
-comment|/**    * The HTTP<a    * href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Link_prefetching_FAQ#As_a_server_admin.2C_can_I_distinguish_prefetch_requests_from_normal_requests.3F">{@code    * Purpose}</a> header field name.    *    * @since NEXT    */
+comment|/**    * The HTTP<a    * href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Link_prefetching_FAQ#As_a_server_admin.2C_can_I_distinguish_prefetch_requests_from_normal_requests.3F">{@code    * Purpose}</a> header field name.    *    * @since 28.0    */
 DECL|field|PURPOSE
 specifier|public
 specifier|static
@@ -1192,7 +1192,7 @@ name|PURPOSE
 init|=
 literal|"Purpose"
 decl_stmt|;
-comment|/**    * The HTTP<a    * href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Link_prefetching_FAQ#As_a_server_admin.2C_can_I_distinguish_prefetch_requests_from_normal_requests.3F">{@code    * X-Purpose}</a> header field name.    *    * @since NEXT    */
+comment|/**    * The HTTP<a    * href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Link_prefetching_FAQ#As_a_server_admin.2C_can_I_distinguish_prefetch_requests_from_normal_requests.3F">{@code    * X-Purpose}</a> header field name.    *    * @since 28.0    */
 DECL|field|X_PURPOSE
 specifier|public
 specifier|static
@@ -1202,7 +1202,7 @@ name|X_PURPOSE
 init|=
 literal|"X-Purpose"
 decl_stmt|;
-comment|/**    * The HTTP<a    * href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Link_prefetching_FAQ#As_a_server_admin.2C_can_I_distinguish_prefetch_requests_from_normal_requests.3F">{@code    * X-Moz}</a> header field name.    *    * @since NEXT    */
+comment|/**    * The HTTP<a    * href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Link_prefetching_FAQ#As_a_server_admin.2C_can_I_distinguish_prefetch_requests_from_normal_requests.3F">{@code    * X-Moz}</a> header field name.    *    * @since 28.0    */
 DECL|field|X_MOZ
 specifier|public
 specifier|static
@@ -1292,7 +1292,7 @@ name|SEC_REFERRED_TOKEN_BINDING_ID
 init|=
 literal|"Sec-Referred-Token-Binding-ID"
 decl_stmt|;
-comment|/**    * The HTTP<a href="https://tools.ietf.org/html/rfc6455">{@code Sec-WebSocket-Accept}</a> header    * field name.    *    * @since NEXT    */
+comment|/**    * The HTTP<a href="https://tools.ietf.org/html/rfc6455">{@code Sec-WebSocket-Accept}</a> header    * field name.    *    * @since 28.0    */
 DECL|field|SEC_WEBSOCKET_ACCEPT
 specifier|public
 specifier|static
@@ -1302,7 +1302,7 @@ name|SEC_WEBSOCKET_ACCEPT
 init|=
 literal|"Sec-WebSocket-Accept"
 decl_stmt|;
-comment|/**    * The HTTP<a href="https://tools.ietf.org/html/rfc6455">{@code Sec-WebSocket-Extensions}</a>    * header field name.    *    * @since NEXT    */
+comment|/**    * The HTTP<a href="https://tools.ietf.org/html/rfc6455">{@code Sec-WebSocket-Extensions}</a>    * header field name.    *    * @since 28.0    */
 DECL|field|SEC_WEBSOCKET_EXTENSIONS
 specifier|public
 specifier|static
@@ -1312,7 +1312,7 @@ name|SEC_WEBSOCKET_EXTENSIONS
 init|=
 literal|"Sec-WebSocket-Extensions"
 decl_stmt|;
-comment|/**    * The HTTP<a href="https://tools.ietf.org/html/rfc6455">{@code Sec-WebSocket-Key}</a> header    * field name.    *    * @since NEXT    */
+comment|/**    * The HTTP<a href="https://tools.ietf.org/html/rfc6455">{@code Sec-WebSocket-Key}</a> header    * field name.    *    * @since 28.0    */
 DECL|field|SEC_WEBSOCKET_KEY
 specifier|public
 specifier|static
@@ -1322,7 +1322,7 @@ name|SEC_WEBSOCKET_KEY
 init|=
 literal|"Sec-WebSocket-Key"
 decl_stmt|;
-comment|/**    * The HTTP<a href="https://tools.ietf.org/html/rfc6455">{@code Sec-WebSocket-Protocol}</a>    * header field name.    *    * @since NEXT    */
+comment|/**    * The HTTP<a href="https://tools.ietf.org/html/rfc6455">{@code Sec-WebSocket-Protocol}</a>    * header field name.    *    * @since 28.0    */
 DECL|field|SEC_WEBSOCKET_PROTOCOL
 specifier|public
 specifier|static
@@ -1332,7 +1332,7 @@ name|SEC_WEBSOCKET_PROTOCOL
 init|=
 literal|"Sec-WebSocket-Protocol"
 decl_stmt|;
-comment|/**    * The HTTP<a href="https://tools.ietf.org/html/rfc6455">{@code Sec-WebSocket-Version}</a> header    * field name.    *    * @since NEXT    */
+comment|/**    * The HTTP<a href="https://tools.ietf.org/html/rfc6455">{@code Sec-WebSocket-Version}</a> header    * field name.    *    * @since 28.0    */
 DECL|field|SEC_WEBSOCKET_VERSION
 specifier|public
 specifier|static
@@ -1342,7 +1342,7 @@ name|SEC_WEBSOCKET_VERSION
 init|=
 literal|"Sec-WebSocket-Version"
 decl_stmt|;
-comment|/**    * The HTTP<a href="https://tools.ietf.org/html/rfc8586">{@code CDN-Loop}</a> header field name.    *    * @since NEXT    */
+comment|/**    * The HTTP<a href="https://tools.ietf.org/html/rfc8586">{@code CDN-Loop}</a> header field name.    *    * @since 28.0    */
 DECL|field|CDN_LOOP
 specifier|public
 specifier|static

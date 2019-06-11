@@ -1245,7 +1245,7 @@ name|awaitHealthy
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * Waits for the {@link ServiceManager} to become {@linkplain #isHealthy() healthy} for no more    * than the given time. The manager will become healthy after all the component services have    * reached the {@linkplain State#RUNNING running} state.    *    * @param timeout the maximum time to wait    * @throws TimeoutException if not all of the services have finished starting within the deadline    * @throws IllegalStateException if the service manager reaches a state from which it cannot    *     become {@linkplain #isHealthy() healthy}.    * @since NEXT    */
+comment|/**    * Waits for the {@link ServiceManager} to become {@linkplain #isHealthy() healthy} for no more    * than the given time. The manager will become healthy after all the component services have    * reached the {@linkplain State#RUNNING running} state.    *    * @param timeout the maximum time to wait    * @throws TimeoutException if not all of the services have finished starting within the deadline    * @throws IllegalStateException if the service manager reaches a state from which it cannot    *     become {@linkplain #isHealthy() healthy}.    * @since 28.0    */
 DECL|method|awaitHealthy (Duration timeout)
 specifier|public
 name|void
@@ -1341,7 +1341,7 @@ name|awaitStopped
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * Waits for the all the services to reach a terminal state for no more than the given time. After    * this method returns all services will either be {@linkplain Service.State#TERMINATED    * terminated} or {@linkplain Service.State#FAILED failed}.    *    * @param timeout the maximum time to wait    * @throws TimeoutException if not all of the services have stopped within the deadline    * @since NEXT    */
+comment|/**    * Waits for the all the services to reach a terminal state for no more than the given time. After    * this method returns all services will either be {@linkplain Service.State#TERMINATED    * terminated} or {@linkplain Service.State#FAILED failed}.    *    * @param timeout the maximum time to wait    * @throws TimeoutException if not all of the services have stopped within the deadline    * @since 28.0    */
 DECL|method|awaitStopped (Duration timeout)
 specifier|public
 name|void

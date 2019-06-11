@@ -460,7 +460,7 @@ name|lock
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * Enters this monitor. Blocks at most the given time.    *    * @return whether the monitor was entered    * @since NEXT    */
+comment|/**    * Enters this monitor. Blocks at most the given time.    *    * @return whether the monitor was entered    * @since 28.0    */
 DECL|method|enter (Duration time)
 specifier|public
 name|boolean
@@ -636,7 +636,7 @@ name|lockInterruptibly
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * Enters this monitor. Blocks at most the given time, and may be interrupted.    *    * @return whether the monitor was entered    * @throws InterruptedException if interrupted while waiting    * @since NEXT    */
+comment|/**    * Enters this monitor. Blocks at most the given time, and may be interrupted.    *    * @return whether the monitor was entered    * @throws InterruptedException if interrupted while waiting    * @since 28.0    */
 DECL|method|enterInterruptibly (Duration time)
 specifier|public
 name|boolean
@@ -799,7 +799,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**    * Enters this monitor when the guard is satisfied. Blocks at most the given time, including both    * the time to acquire the lock and the time to wait for the guard to be satisfied, and may be    * interrupted.    *    * @return whether the monitor was entered, which guarantees that the guard is now satisfied    * @throws InterruptedException if interrupted while waiting    * @since NEXT    */
+comment|/**    * Enters this monitor when the guard is satisfied. Blocks at most the given time, including both    * the time to acquire the lock and the time to wait for the guard to be satisfied, and may be    * interrupted.    *    * @return whether the monitor was entered, which guarantees that the guard is now satisfied    * @throws InterruptedException if interrupted while waiting    * @since 28.0    */
 DECL|method|enterWhen (Guard guard, Duration time)
 specifier|public
 name|boolean
@@ -1136,7 +1136,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**    * Enters this monitor when the guard is satisfied. Blocks at most the given time, including both    * the time to acquire the lock and the time to wait for the guard to be satisfied.    *    * @return whether the monitor was entered, which guarantees that the guard is now satisfied    * @since NEXT    */
+comment|/**    * Enters this monitor when the guard is satisfied. Blocks at most the given time, including both    * the time to acquire the lock and the time to wait for the guard to be satisfied.    *    * @return whether the monitor was entered, which guarantees that the guard is now satisfied    * @since 28.0    */
 DECL|method|enterWhenUninterruptibly (Guard guard, Duration time)
 specifier|public
 name|boolean
@@ -1521,7 +1521,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**    * Enters this monitor if the guard is satisfied. Blocks at most the given time acquiring the    * lock, but does not wait for the guard to be satisfied.    *    * @return whether the monitor was entered, which guarantees that the guard is now satisfied    * @since NEXT    */
+comment|/**    * Enters this monitor if the guard is satisfied. Blocks at most the given time acquiring the    * lock, but does not wait for the guard to be satisfied.    *    * @return whether the monitor was entered, which guarantees that the guard is now satisfied    * @since 28.0    */
 DECL|method|enterIf (Guard guard, Duration time)
 specifier|public
 name|boolean
@@ -1706,7 +1706,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**    * Enters this monitor if the guard is satisfied. Blocks at most the given time acquiring the    * lock, but does not wait for the guard to be satisfied, and may be interrupted.    *    * @return whether the monitor was entered, which guarantees that the guard is now satisfied    * @since NEXT    */
+comment|/**    * Enters this monitor if the guard is satisfied. Blocks at most the given time acquiring the    * lock, but does not wait for the guard to be satisfied, and may be interrupted.    *    * @return whether the monitor was entered, which guarantees that the guard is now satisfied    * @since 28.0    */
 DECL|method|enterIfInterruptibly (Guard guard, Duration time)
 specifier|public
 name|boolean
@@ -1966,7 +1966,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Waits for the guard to be satisfied. Waits at most the given time, and may be interrupted. May    * be called only by a thread currently occupying this monitor.    *    * @return whether the guard is now satisfied    * @throws InterruptedException if interrupted while waiting    * @since NEXT    */
+comment|/**    * Waits for the guard to be satisfied. Waits at most the given time, and may be interrupted. May    * be called only by a thread currently occupying this monitor.    *    * @return whether the guard is now satisfied    * @throws InterruptedException if interrupted while waiting    * @since 28.0    */
 DECL|method|waitFor (Guard guard, Duration time)
 specifier|public
 name|boolean
@@ -2147,7 +2147,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Waits for the guard to be satisfied. Waits at most the given time. May be called only by a    * thread currently occupying this monitor.    *    * @return whether the guard is now satisfied    * @since NEXT    */
+comment|/**    * Waits for the guard to be satisfied. Waits at most the given time. May be called only by a    * thread currently occupying this monitor.    *    * @return whether the guard is now satisfied    * @since 28.0    */
 DECL|method|waitForUninterruptibly (Guard guard, Duration time)
 specifier|public
 name|boolean

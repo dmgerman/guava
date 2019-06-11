@@ -392,7 +392,7 @@ specifier|static
 class|class
 name|Scheduler
 block|{
-comment|/**      * Returns a {@link Scheduler} that schedules the task using the {@link      * ScheduledExecutorService#scheduleWithFixedDelay} method.      *      * @param initialDelay the time to delay first execution      * @param delay the delay between the termination of one execution and the commencement of the      *     next      * @since NEXT      */
+comment|/**      * Returns a {@link Scheduler} that schedules the task using the {@link      * ScheduledExecutorService#scheduleWithFixedDelay} method.      *      * @param initialDelay the time to delay first execution      * @param delay the delay between the termination of one execution and the commencement of the      *     next      * @since 28.0      */
 DECL|method|newFixedDelaySchedule (Duration initialDelay, Duration delay)
 specifier|public
 specifier|static
@@ -509,7 +509,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/**      * Returns a {@link Scheduler} that schedules the task using the {@link      * ScheduledExecutorService#scheduleAtFixedRate} method.      *      * @param initialDelay the time to delay first execution      * @param period the period between successive executions of the task      * @since NEXT      */
+comment|/**      * Returns a {@link Scheduler} that schedules the task using the {@link      * ScheduledExecutorService#scheduleAtFixedRate} method.      *      * @param initialDelay the time to delay first execution      * @param period the period between successive executions of the task      * @since 28.0      */
 DECL|method|newFixedRateSchedule (Duration initialDelay, Duration period)
 specifier|public
 specifier|static

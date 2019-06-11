@@ -426,7 +426,7 @@ name|future
 argument_list|)
 return|;
 block|}
-comment|/**    * Simply returns its argument.    *    * @deprecated no need to use this    * @since NEXT    */
+comment|/**    * Simply returns its argument.    *    * @deprecated no need to use this    * @since 28.0    */
 annotation|@
 name|Deprecated
 DECL|method|from (FluentFuture<V> future)
@@ -585,7 +585,7 @@ name|executor
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a future that delegates to this future but will finish early (via a {@link    * TimeoutException} wrapped in an {@link ExecutionException}) if the specified timeout expires.    * If the timeout expires, not only will the output future finish, but also the input future    * ({@code this}) will be cancelled and interrupted.    *    * @param timeout when to time out the future    * @param scheduledExecutor The executor service to enforce the timeout.    * @since NEXT    */
+comment|/**    * Returns a future that delegates to this future but will finish early (via a {@link    * TimeoutException} wrapped in an {@link ExecutionException}) if the specified timeout expires.    * If the timeout expires, not only will the output future finish, but also the input future    * ({@code this}) will be cancelled and interrupted.    *    * @param timeout when to time out the future    * @param scheduledExecutor The executor service to enforce the timeout.    * @since 28.0    */
 annotation|@
 name|GwtIncompatible
 comment|// ScheduledExecutorService

@@ -519,7 +519,7 @@ specifier|private
 name|MoreExecutors
 parameter_list|()
 block|{}
-comment|/**    * Converts the given ThreadPoolExecutor into an ExecutorService that exits when the application    * is complete. It does so by using daemon threads and adding a shutdown hook to wait for their    * completion.    *    *<p>This is mainly for fixed thread pools. See {@link Executors#newFixedThreadPool(int)}.    *    * @param executor the executor to modify to make sure it exits when the application is finished    * @param terminationTimeout how long to wait for the executor to finish before terminating the    *     JVM    * @return an unmodifiable version of the input which will not hang the JVM    * @since NEXT    */
+comment|/**    * Converts the given ThreadPoolExecutor into an ExecutorService that exits when the application    * is complete. It does so by using daemon threads and adding a shutdown hook to wait for their    * completion.    *    *<p>This is mainly for fixed thread pools. See {@link Executors#newFixedThreadPool(int)}.    *    * @param executor the executor to modify to make sure it exits when the application is finished    * @param terminationTimeout how long to wait for the executor to finish before terminating the    *     JVM    * @return an unmodifiable version of the input which will not hang the JVM    * @since 28.0    */
 annotation|@
 name|Beta
 annotation|@
@@ -624,7 +624,7 @@ name|executor
 argument_list|)
 return|;
 block|}
-comment|/**    * Converts the given ScheduledThreadPoolExecutor into a ScheduledExecutorService that exits when    * the application is complete. It does so by using daemon threads and adding a shutdown hook to    * wait for their completion.    *    *<p>This is mainly for fixed thread pools. See {@link Executors#newScheduledThreadPool(int)}.    *    * @param executor the executor to modify to make sure it exits when the application is finished    * @param terminationTimeout how long to wait for the executor to finish before terminating the    *     JVM    * @return an unmodifiable version of the input which will not hang the JVM    * @since NEXT    */
+comment|/**    * Converts the given ScheduledThreadPoolExecutor into a ScheduledExecutorService that exits when    * the application is complete. It does so by using daemon threads and adding a shutdown hook to    * wait for their completion.    *    *<p>This is mainly for fixed thread pools. See {@link Executors#newScheduledThreadPool(int)}.    *    * @param executor the executor to modify to make sure it exits when the application is finished    * @param terminationTimeout how long to wait for the executor to finish before terminating the    *     JVM    * @return an unmodifiable version of the input which will not hang the JVM    * @since 28.0    */
 annotation|@
 name|Beta
 annotation|@
@@ -729,7 +729,7 @@ name|executor
 argument_list|)
 return|;
 block|}
-comment|/**    * Add a shutdown hook to wait for thread completion in the given {@link ExecutorService service}.    * This is useful if the given service uses daemon threads, and we want to keep the JVM from    * exiting immediately on shutdown, instead giving these daemon threads a chance to terminate    * normally.    *    * @param service ExecutorService which uses daemon threads    * @param terminationTimeout how long to wait for the executor to finish before terminating the    *     JVM    * @since NEXT    */
+comment|/**    * Add a shutdown hook to wait for thread completion in the given {@link ExecutorService service}.    * This is useful if the given service uses daemon threads, and we want to keep the JVM from    * exiting immediately on shutdown, instead giving these daemon threads a chance to terminate    * normally.    *    * @param service ExecutorService which uses daemon threads    * @param terminationTimeout how long to wait for the executor to finish before terminating the    *     JVM    * @since 28.0    */
 annotation|@
 name|Beta
 annotation|@
@@ -3296,7 +3296,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/**    * Shuts down the given executor service gradually, first disabling new submissions and later, if    * necessary, cancelling remaining tasks.    *    *<p>The method takes the following steps:    *    *<ol>    *<li>calls {@link ExecutorService#shutdown()}, disabling acceptance of new submitted tasks.    *<li>awaits executor service termination for half of the specified timeout.    *<li>if the timeout expires, it calls {@link ExecutorService#shutdownNow()}, cancelling    *       pending tasks and interrupting running tasks.    *<li>awaits executor service termination for the other half of the specified timeout.    *</ol>    *    *<p>If, at any step of the process, the calling thread is interrupted, the method calls {@link    * ExecutorService#shutdownNow()} and returns.    *    * @param service the {@code ExecutorService} to shut down    * @param timeout the maximum time to wait for the {@code ExecutorService} to terminate    * @return {@code true} if the {@code ExecutorService} was terminated successfully, {@code false}    *     if the call timed out or was interrupted    * @since NEXT    */
+comment|/**    * Shuts down the given executor service gradually, first disabling new submissions and later, if    * necessary, cancelling remaining tasks.    *    *<p>The method takes the following steps:    *    *<ol>    *<li>calls {@link ExecutorService#shutdown()}, disabling acceptance of new submitted tasks.    *<li>awaits executor service termination for half of the specified timeout.    *<li>if the timeout expires, it calls {@link ExecutorService#shutdownNow()}, cancelling    *       pending tasks and interrupting running tasks.    *<li>awaits executor service termination for the other half of the specified timeout.    *</ol>    *    *<p>If, at any step of the process, the calling thread is interrupted, the method calls {@link    * ExecutorService#shutdownNow()} and returns.    *    * @param service the {@code ExecutorService} to shut down    * @param timeout the maximum time to wait for the {@code ExecutorService} to terminate    * @return {@code true} if the {@code ExecutorService} was terminated successfully, {@code false}    *     if the call timed out or was interrupted    * @since 28.0    */
 annotation|@
 name|Beta
 annotation|@

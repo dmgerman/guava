@@ -326,7 +326,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**    * Invokes {@code latch.}{@link CountDownLatch#await(long, TimeUnit) await(timeout, unit)}    * uninterruptibly.    *    * @since NEXT    */
+comment|/**    * Invokes {@code latch.}{@link CountDownLatch#await(long, TimeUnit) await(timeout, unit)}    * uninterruptibly.    *    * @since 28.0    */
 annotation|@
 name|CanIgnoreReturnValue
 comment|// TODO(cpovirk): Consider being more strict.
@@ -479,7 +479,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**    * Invokes {@code condition.}{@link Condition#await(long, TimeUnit) await(timeout, unit)}    * uninterruptibly.    *    * @since NEXT    */
+comment|/**    * Invokes {@code condition.}{@link Condition#await(long, TimeUnit) await(timeout, unit)}    * uninterruptibly.    *    * @since 28.0    */
 annotation|@
 name|GwtIncompatible
 comment|// concurrency
@@ -691,7 +691,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**    * Invokes {@code unit.}{@link TimeUnit#timedJoin(Thread, long) timedJoin(toJoin, timeout)}    * uninterruptibly.    *    * @since NEXT    */
+comment|/**    * Invokes {@code unit.}{@link TimeUnit#timedJoin(Thread, long) timedJoin(toJoin, timeout)}    * uninterruptibly.    *    * @since 28.0    */
 annotation|@
 name|GwtIncompatible
 comment|// concurrency
@@ -917,7 +917,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**    * Invokes {@code future.}{@link Future#get(long, TimeUnit) get(timeout, unit)} uninterruptibly.    *    *<p>Similar methods:    *    *<ul>    *<li>To retrieve a result from a {@code Future} that is already done, use {@link    *       Futures#getDone Futures.getDone}.    *<li>To treat {@link InterruptedException} uniformly with other exceptions, use {@link    *       Futures#getChecked(Future, Class, long, TimeUnit) Futures.getChecked}.    *<li>To get uninterruptibility and remove checked exceptions, use {@link    *       Futures#getUnchecked}.    *</ul>    *    * @throws ExecutionException if the computation threw an exception    * @throws CancellationException if the computation was cancelled    * @throws TimeoutException if the wait timed out    * @since NEXT    */
+comment|/**    * Invokes {@code future.}{@link Future#get(long, TimeUnit) get(timeout, unit)} uninterruptibly.    *    *<p>Similar methods:    *    *<ul>    *<li>To retrieve a result from a {@code Future} that is already done, use {@link    *       Futures#getDone Futures.getDone}.    *<li>To treat {@link InterruptedException} uniformly with other exceptions, use {@link    *       Futures#getChecked(Future, Class, long, TimeUnit) Futures.getChecked}.    *<li>To get uninterruptibility and remove checked exceptions, use {@link    *       Futures#getUnchecked}.    *</ul>    *    * @throws ExecutionException if the computation threw an exception    * @throws CancellationException if the computation was cancelled    * @throws TimeoutException if the wait timed out    * @since 28.0    */
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
@@ -1238,7 +1238,7 @@ block|}
 block|}
 block|}
 comment|// TODO(user): Support Sleeper somehow (wrapper or interface method)?
-comment|/**    * Invokes {@code unit.}{@link TimeUnit#sleep(long) sleep(sleepFor)} uninterruptibly.    *    * @since NEXT    */
+comment|/**    * Invokes {@code unit.}{@link TimeUnit#sleep(long) sleep(sleepFor)} uninterruptibly.    *    * @since 28.0    */
 annotation|@
 name|GwtIncompatible
 comment|// concurrency
@@ -1375,7 +1375,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**    * Invokes {@code semaphore.}{@link Semaphore#tryAcquire(int, long, TimeUnit) tryAcquire(1,    * timeout, unit)} uninterruptibly.    *    * @since NEXT    */
+comment|/**    * Invokes {@code semaphore.}{@link Semaphore#tryAcquire(int, long, TimeUnit) tryAcquire(1,    * timeout, unit)} uninterruptibly.    *    * @since 28.0    */
 annotation|@
 name|GwtIncompatible
 comment|// concurrency
@@ -1449,7 +1449,7 @@ name|unit
 argument_list|)
 return|;
 block|}
-comment|/**    * Invokes {@code semaphore.}{@link Semaphore#tryAcquire(int, long, TimeUnit) tryAcquire(permits,    * timeout, unit)} uninterruptibly.    *    * @since NEXT    */
+comment|/**    * Invokes {@code semaphore.}{@link Semaphore#tryAcquire(int, long, TimeUnit) tryAcquire(permits,    * timeout, unit)} uninterruptibly.    *    * @since 28.0    */
 annotation|@
 name|GwtIncompatible
 comment|// concurrency

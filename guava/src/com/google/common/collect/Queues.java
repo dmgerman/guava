@@ -979,7 +979,7 @@ argument_list|>
 argument_list|()
 return|;
 block|}
-comment|/**    * Drains the queue as {@link BlockingQueue#drainTo(Collection, int)}, but if the requested {@code    * numElements} elements are not available, it will wait for them up to the specified timeout.    *    * @param q the blocking queue to be drained    * @param buffer where to add the transferred elements    * @param numElements the number of elements to be waited for    * @param timeout how long to wait before giving up    * @return the number of elements transferred    * @throws InterruptedException if interrupted while waiting    * @since NEXT    */
+comment|/**    * Drains the queue as {@link BlockingQueue#drainTo(Collection, int)}, but if the requested {@code    * numElements} elements are not available, it will wait for them up to the specified timeout.    *    * @param q the blocking queue to be drained    * @param buffer where to add the transferred elements    * @param numElements the number of elements to be waited for    * @param timeout how long to wait before giving up    * @return the number of elements transferred    * @throws InterruptedException if interrupted while waiting    * @since 28.0    */
 annotation|@
 name|Beta
 annotation|@
@@ -1196,7 +1196,7 @@ return|return
 name|added
 return|;
 block|}
-comment|/**    * Drains the queue as {@linkplain #drain(BlockingQueue, Collection, int, Duration)}, but with a    * different behavior in case it is interrupted while waiting. In that case, the operation will    * continue as usual, and in the end the thread's interruption status will be set (no {@code    * InterruptedException} is thrown).    *    * @param q the blocking queue to be drained    * @param buffer where to add the transferred elements    * @param numElements the number of elements to be waited for    * @param timeout how long to wait before giving up    * @return the number of elements transferred    * @since NEXT    */
+comment|/**    * Drains the queue as {@linkplain #drain(BlockingQueue, Collection, int, Duration)}, but with a    * different behavior in case it is interrupted while waiting. In that case, the operation will    * continue as usual, and in the end the thread's interruption status will be set (no {@code    * InterruptedException} is thrown).    *    * @param q the blocking queue to be drained    * @param buffer where to add the transferred elements    * @param numElements the number of elements to be waited for    * @param timeout how long to wait before giving up    * @return the number of elements transferred    * @since 28.0    */
 annotation|@
 name|Beta
 annotation|@
