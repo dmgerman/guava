@@ -1040,7 +1040,7 @@ name|read
 argument_list|()
 return|;
 block|}
-comment|/**    * Reads all characters from a file into a {@link String}, using the given character set.    *    * @param file the file to read from    * @param charset the charset used to decode the input stream; see {@link StandardCharsets} for    *     helpful predefined constants    * @return a string containing all the characters from the file    * @throws IOException if an I/O error occurs    * @deprecated Prefer {@code asCharSource(file, charset).read()}. This method is scheduled to be    *     removed in January 2019.    */
+comment|/**    * Reads all characters from a file into a {@link String}, using the given character set.    *    * @param file the file to read from    * @param charset the charset used to decode the input stream; see {@link StandardCharsets} for    *     helpful predefined constants    * @return a string containing all the characters from the file    * @throws IOException if an I/O error occurs    * @deprecated Prefer {@code asCharSource(file, charset).read()}. This method is scheduled to be    *     removed in October 2019.    */
 annotation|@
 name|Beta
 annotation|@
@@ -1102,7 +1102,7 @@ name|from
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Writes a character sequence (such as a string) to a file using the given character set.    *    * @param from the character sequence to write    * @param to the destination file    * @param charset the charset used to encode the output stream; see {@link StandardCharsets} for    *     helpful predefined constants    * @throws IOException if an I/O error occurs    * @deprecated Prefer {@code asCharSink(to, charset).write(from)}. This method is scheduled to be    *     removed in January 2019.    */
+comment|/**    * Writes a character sequence (such as a string) to a file using the given character set.    *    * @param from the character sequence to write    * @param to the destination file    * @param charset the charset used to encode the output stream; see {@link StandardCharsets} for    *     helpful predefined constants    * @throws IOException if an I/O error occurs    * @deprecated Prefer {@code asCharSink(to, charset).write(from)}. This method is scheduled to be    *     removed in October 2019.    */
 annotation|@
 name|Beta
 annotation|@
@@ -1216,7 +1216,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Copies all characters from a file to an appendable object, using the given character set.    *    * @param from the source file    * @param charset the charset used to decode the input stream; see {@link StandardCharsets} for    *     helpful predefined constants    * @param to the appendable object    * @throws IOException if an I/O error occurs    * @deprecated Prefer {@code asCharSource(from, charset).copyTo(to)}. This method is scheduled to    *     be removed in January 2019.    */
+comment|/**    * Copies all characters from a file to an appendable object, using the given character set.    *    * @param from the source file    * @param charset the charset used to decode the input stream; see {@link StandardCharsets} for    *     helpful predefined constants    * @param to the appendable object    * @throws IOException if an I/O error occurs    * @deprecated Prefer {@code asCharSource(from, charset).copyTo(to)}. This method is scheduled to    *     be removed in October 2019.    */
 annotation|@
 name|Beta
 annotation|@
@@ -1252,7 +1252,7 @@ name|to
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Appends a character sequence (such as a string) to a file using the given character set.    *    * @param from the character sequence to append    * @param to the destination file    * @param charset the charset used to encode the output stream; see {@link StandardCharsets} for    *     helpful predefined constants    * @throws IOException if an I/O error occurs    * @deprecated Prefer {@code asCharSink(to, charset, FileWriteMode.APPEND).write(from)}. This    *     method is scheduled to be removed in January 2019.    */
+comment|/**    * Appends a character sequence (such as a string) to a file using the given character set.    *    * @param from the character sequence to append    * @param to the destination file    * @param charset the charset used to encode the output stream; see {@link StandardCharsets} for    *     helpful predefined constants    * @throws IOException if an I/O error occurs    * @deprecated Prefer {@code asCharSink(to, charset, FileWriteMode.APPEND).write(from)}. This    *     method is scheduled to be removed in October 2019.    */
 annotation|@
 name|Beta
 annotation|@
@@ -1722,7 +1722,7 @@ throw|;
 block|}
 block|}
 block|}
-comment|/**    * Reads the first line from a file. The line does not include line-termination characters, but    * does include other leading and trailing whitespace.    *    * @param file the file to read from    * @param charset the charset used to decode the input stream; see {@link StandardCharsets} for    *     helpful predefined constants    * @return the first line, or null if the file is empty    * @throws IOException if an I/O error occurs    * @deprecated Prefer {@code asCharSource(file, charset).readFirstLine()}. This method is    *     scheduled to be removed in January 2019.    */
+comment|/**    * Reads the first line from a file. The line does not include line-termination characters, but    * does include other leading and trailing whitespace.    *    * @param file the file to read from    * @param charset the charset used to decode the input stream; see {@link StandardCharsets} for    *     helpful predefined constants    * @return the first line, or null if the file is empty    * @throws IOException if an I/O error occurs    * @deprecated Prefer {@code asCharSource(file, charset).readFirstLine()}. This method is    *     scheduled to be removed in October 2019.    */
 annotation|@
 name|Beta
 annotation|@
@@ -1848,7 +1848,7 @@ block|}
 argument_list|)
 return|;
 block|}
-comment|/**    * Streams lines from a {@link File}, stopping when our callback returns false, or we have read    * all of the lines.    *    * @param file the file to read from    * @param charset the charset used to decode the input stream; see {@link StandardCharsets} for    *     helpful predefined constants    * @param callback the {@link LineProcessor} to use to handle the lines    * @return the output of processing the lines    * @throws IOException if an I/O error occurs    * @deprecated Prefer {@code asCharSource(file, charset).readLines(callback)}. This method is    *     scheduled to be removed in January 2019.    */
+comment|/**    * Streams lines from a {@link File}, stopping when our callback returns false, or we have read    * all of the lines.    *    * @param file the file to read from    * @param charset the charset used to decode the input stream; see {@link StandardCharsets} for    *     helpful predefined constants    * @param callback the {@link LineProcessor} to use to handle the lines    * @return the output of processing the lines    * @throws IOException if an I/O error occurs    * @deprecated Prefer {@code asCharSource(file, charset).readLines(callback)}. This method is    *     scheduled to be removed in October 2019.    */
 annotation|@
 name|Beta
 annotation|@
@@ -1894,7 +1894,7 @@ name|callback
 argument_list|)
 return|;
 block|}
-comment|/**    * Process the bytes of a file.    *    *<p>(If this seems too complicated, maybe you're looking for {@link #toByteArray}.)    *    * @param file the file to read    * @param processor the object to which the bytes of the file are passed.    * @return the result of the byte processor    * @throws IOException if an I/O error occurs    * @deprecated Prefer {@code asByteSource(file).read(processor)}. This method is scheduled to be    *     removed in January 2019.    */
+comment|/**    * Process the bytes of a file.    *    *<p>(If this seems too complicated, maybe you're looking for {@link #toByteArray}.)    *    * @param file the file to read    * @param processor the object to which the bytes of the file are passed.    * @return the result of the byte processor    * @throws IOException if an I/O error occurs    * @deprecated Prefer {@code asByteSource(file).read(processor)}. This method is scheduled to be    *     removed in October 2019.    */
 annotation|@
 name|Beta
 annotation|@
@@ -1935,7 +1935,7 @@ name|processor
 argument_list|)
 return|;
 block|}
-comment|/**    * Computes the hash code of the {@code file} using {@code hashFunction}.    *    * @param file the file to read    * @param hashFunction the hash function to use to hash the data    * @return the {@link HashCode} of all of the bytes in the file    * @throws IOException if an I/O error occurs    * @since 12.0    * @deprecated Prefer {@code asByteSource(file).hash(hashFunction)}. This method is scheduled to    *     be removed in January 2019.    */
+comment|/**    * Computes the hash code of the {@code file} using {@code hashFunction}.    *    * @param file the file to read    * @param hashFunction the hash function to use to hash the data    * @return the {@link HashCode} of all of the bytes in the file    * @throws IOException if an I/O error occurs    * @since 12.0    * @deprecated Prefer {@code asByteSource(file).hash(hashFunction)}. This method is scheduled to    *     be removed in October 2019.    */
 annotation|@
 name|Beta
 annotation|@
