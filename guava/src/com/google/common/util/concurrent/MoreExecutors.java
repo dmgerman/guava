@@ -2818,13 +2818,42 @@ argument_list|(
 literal|null
 argument_list|)
 return|;
+comment|/*        * Do not merge the 3 catch blocks below. javac would infer a type of        * ReflectiveOperationException, which Animal Sniffer would reject. (Old versions of Android        * don't *seem* to mind, but there might be edge cases of which we're unaware.)        */
 block|}
 catch|catch
 parameter_list|(
 name|IllegalAccessException
-decl||
+name|e
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"Couldn't invoke ThreadManager.currentRequestThreadFactory"
+argument_list|,
+name|e
+argument_list|)
+throw|;
+block|}
+catch|catch
+parameter_list|(
 name|ClassNotFoundException
-decl||
+name|e
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"Couldn't invoke ThreadManager.currentRequestThreadFactory"
+argument_list|,
+name|e
+argument_list|)
+throw|;
+block|}
+catch|catch
+parameter_list|(
 name|NoSuchMethodException
 name|e
 parameter_list|)

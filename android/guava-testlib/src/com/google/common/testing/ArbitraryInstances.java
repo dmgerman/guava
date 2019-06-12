@@ -3408,11 +3408,24 @@ operator|.
 name|newInstance
 argument_list|()
 return|;
+comment|/*        * Do not merge the 2 catch blocks below. javac would infer a type of        * ReflectiveOperationException, which Animal Sniffer would reject. (Old versions of        * Android don't *seem* to mind, but there might be edge cases of which we're unaware.)        */
 block|}
 catch|catch
 parameter_list|(
 name|InstantiationException
-decl||
+name|impossible
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|AssertionError
+argument_list|(
+name|impossible
+argument_list|)
+throw|;
+block|}
+catch|catch
+parameter_list|(
 name|IllegalAccessException
 name|impossible
 parameter_list|)

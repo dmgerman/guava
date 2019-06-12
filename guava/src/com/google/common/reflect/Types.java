@@ -3045,11 +3045,24 @@ argument_list|(
 literal|"Type.getTypeName should be available in Java 8"
 argument_list|)
 throw|;
+comment|/*            * Do not merge the 2 catch blocks below. javac would infer a type of            * ReflectiveOperationException, which Animal Sniffer would reject. (Old versions of            * Android don't *seem* to mind, but there might be edge cases of which we're unaware.)            */
 block|}
 catch|catch
 parameter_list|(
 name|InvocationTargetException
-decl||
+name|e
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+name|e
+argument_list|)
+throw|;
+block|}
+catch|catch
+parameter_list|(
 name|IllegalAccessException
 name|e
 parameter_list|)

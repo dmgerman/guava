@@ -3064,11 +3064,21 @@ name|US
 argument_list|)
 argument_list|)
 return|;
+comment|/*        * Do not merge the 2 catch blocks below. javac would infer a type of        * ReflectiveOperationException, which Animal Sniffer would reject. (Old versions of        * Android don't *seem* to mind, but there might be edge cases of which we're unaware.)        */
 block|}
 catch|catch
 parameter_list|(
 name|NoSuchMethodException
-decl||
+name|notJava7
+parameter_list|)
+block|{
+return|return
+name|preJava7FreshCurrency
+argument_list|()
+return|;
+block|}
+catch|catch
+parameter_list|(
 name|InvocationTargetException
 name|notJava7
 parameter_list|)
