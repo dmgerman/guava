@@ -1349,7 +1349,7 @@ argument_list|()
 decl_stmt|;
 specifier|final
 name|AtomicInteger
-name|stopppingCount
+name|stoppingCount
 init|=
 operator|new
 name|AtomicInteger
@@ -1373,7 +1373,7 @@ name|State
 name|from
 parameter_list|)
 block|{
-name|stopppingCount
+name|stoppingCount
 operator|.
 name|incrementAndGet
 argument_list|()
@@ -1399,7 +1399,7 @@ name|assertEquals
 argument_list|(
 literal|1
 argument_list|,
-name|stopppingCount
+name|stoppingCount
 operator|.
 name|get
 argument_list|()
@@ -1414,7 +1414,7 @@ name|assertEquals
 argument_list|(
 literal|1
 argument_list|,
-name|stopppingCount
+name|stoppingCount
 operator|.
 name|get
 argument_list|()
