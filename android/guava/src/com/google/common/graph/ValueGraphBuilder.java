@@ -261,7 +261,7 @@ name|castBuilder
 argument_list|)
 return|;
 block|}
-comment|/**    * Specifies whether the graph will allow self-loops (edges that connect a node to itself).    * Attempting to add a self-loop to a graph that does not allow them will throw an {@link    * UnsupportedOperationException}.    */
+comment|/**    * Specifies whether the graph will allow self-loops (edges that connect a node to itself).    * Attempting to add a self-loop to a graph that does not allow them will throw an {@link    * UnsupportedOperationException}.    *    *<p>The default value is {@code false}.    */
 DECL|method|allowsSelfLoops (boolean allowsSelfLoops)
 specifier|public
 name|ValueGraphBuilder
@@ -319,7 +319,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/** Specifies the order of iteration for the elements of {@link Graph#nodes()}. */
+comment|/**    * Specifies the order of iteration for the elements of {@link Graph#nodes()}.    *    *<p>The default value is {@link ElementOrder#insertion() insertion order}.    */
 DECL|method|nodeOrder (ElementOrder<N1> nodeOrder)
 specifier|public
 parameter_list|<

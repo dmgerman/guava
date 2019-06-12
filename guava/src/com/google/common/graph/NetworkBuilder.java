@@ -309,7 +309,7 @@ name|castBuilder
 argument_list|)
 return|;
 block|}
-comment|/**    * Specifies whether the network will allow parallel edges. Attempting to add a parallel edge to a    * network that does not allow them will throw an {@link UnsupportedOperationException}.    */
+comment|/**    * Specifies whether the network will allow parallel edges. Attempting to add a parallel edge to a    * network that does not allow them will throw an {@link UnsupportedOperationException}.    *    *<p>The default value is {@code false}.    */
 DECL|method|allowsParallelEdges (boolean allowsParallelEdges)
 specifier|public
 name|NetworkBuilder
@@ -334,7 +334,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**    * Specifies whether the network will allow self-loops (edges that connect a node to itself).    * Attempting to add a self-loop to a network that does not allow them will throw an {@link    * UnsupportedOperationException}.    */
+comment|/**    * Specifies whether the network will allow self-loops (edges that connect a node to itself).    * Attempting to add a self-loop to a network that does not allow them will throw an {@link    * UnsupportedOperationException}.    *    *<p>The default value is {@code false}.    */
 DECL|method|allowsSelfLoops (boolean allowsSelfLoops)
 specifier|public
 name|NetworkBuilder
@@ -425,7 +425,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/** Specifies the order of iteration for the elements of {@link Network#nodes()}. */
+comment|/**    * Specifies the order of iteration for the elements of {@link Network#nodes()}.    *    *<p>The default value is {@link ElementOrder#insertion() insertion order}.    */
 DECL|method|nodeOrder (ElementOrder<N1> nodeOrder)
 specifier|public
 parameter_list|<
@@ -472,7 +472,7 @@ return|return
 name|newBuilder
 return|;
 block|}
-comment|/** Specifies the order of iteration for the elements of {@link Network#edges()}. */
+comment|/**    * Specifies the order of iteration for the elements of {@link Network#edges()}.    *    *<p>The default value is {@link ElementOrder#insertion() insertion order}.    */
 DECL|method|edgeOrder (ElementOrder<E1> edgeOrder)
 specifier|public
 parameter_list|<
