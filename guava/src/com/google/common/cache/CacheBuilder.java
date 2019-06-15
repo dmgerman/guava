@@ -1745,10 +1745,10 @@ block|{
 return|return
 name|expireAfterWrite
 argument_list|(
+name|saturatedToNanos
+argument_list|(
 name|duration
-operator|.
-name|toNanos
-argument_list|()
+argument_list|)
 argument_list|,
 name|TimeUnit
 operator|.
@@ -1869,10 +1869,10 @@ block|{
 return|return
 name|expireAfterAccess
 argument_list|(
+name|saturatedToNanos
+argument_list|(
 name|duration
-operator|.
-name|toNanos
-argument_list|()
+argument_list|)
 argument_list|,
 name|TimeUnit
 operator|.
@@ -1993,10 +1993,10 @@ block|{
 return|return
 name|refreshAfterWrite
 argument_list|(
+name|saturatedToNanos
+argument_list|(
 name|duration
-operator|.
-name|toNanos
-argument_list|()
+argument_list|)
 argument_list|,
 name|TimeUnit
 operator|.
@@ -2724,6 +2724,63 @@ operator|.
 name|toString
 argument_list|()
 return|;
+block|}
+comment|/**    * Returns the number of nanoseconds of the given duration without throwing or overflowing.    *    *<p>Instead of throwing {@link ArithmeticException}, this method silently saturates to either    * {@link Long#MAX_VALUE} or {@link Long#MIN_VALUE}. This behavior can be useful when decomposing    * a duration in order to call a legacy API which requires a {@code long, TimeUnit} pair.    */
+annotation|@
+name|GwtIncompatible
+comment|// java.time.Duration
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"GoodTime"
+argument_list|)
+comment|// duration decomposition
+DECL|method|saturatedToNanos (java.time.Duration duration)
+specifier|private
+specifier|static
+name|long
+name|saturatedToNanos
+parameter_list|(
+name|java
+operator|.
+name|time
+operator|.
+name|Duration
+name|duration
+parameter_list|)
+block|{
+comment|// Using a try/catch seems lazy, but the catch block will rarely get invoked (except for
+comment|// durations longer than approximately +/- 292 years).
+try|try
+block|{
+return|return
+name|duration
+operator|.
+name|toNanos
+argument_list|()
+return|;
+block|}
+catch|catch
+parameter_list|(
+name|ArithmeticException
+name|tooBig
+parameter_list|)
+block|{
+return|return
+name|duration
+operator|.
+name|isNegative
+argument_list|()
+condition|?
+name|Long
+operator|.
+name|MIN_VALUE
+else|:
+name|Long
+operator|.
+name|MAX_VALUE
+return|;
+block|}
 block|}
 block|}
 end_class

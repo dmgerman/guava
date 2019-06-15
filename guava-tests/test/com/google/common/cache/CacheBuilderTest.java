@@ -1677,10 +1677,10 @@ block|}
 annotation|@
 name|GwtIncompatible
 comment|// java.time.Duration
-DECL|method|testLargeDurations ()
+DECL|method|testLargeDurationsAreOk ()
 specifier|public
 name|void
-name|testLargeDurations
+name|testLargeDurationsAreOk
 parameter_list|()
 block|{
 name|java
@@ -1715,64 +1715,22 @@ name|CacheBuilder
 operator|.
 name|newBuilder
 argument_list|()
-decl_stmt|;
-try|try
-block|{
-name|builder
 operator|.
 name|expireAfterWrite
 argument_list|(
 name|threeHundredYears
 argument_list|)
-expr_stmt|;
-name|fail
-argument_list|()
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|ArithmeticException
-name|expected
-parameter_list|)
-block|{     }
-try|try
-block|{
-name|builder
 operator|.
 name|expireAfterAccess
 argument_list|(
 name|threeHundredYears
 argument_list|)
-expr_stmt|;
-name|fail
-argument_list|()
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|ArithmeticException
-name|expected
-parameter_list|)
-block|{     }
-try|try
-block|{
-name|builder
 operator|.
 name|refreshAfterWrite
 argument_list|(
 name|threeHundredYears
 argument_list|)
-expr_stmt|;
-name|fail
-argument_list|()
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|ArithmeticException
-name|expected
-parameter_list|)
-block|{     }
+decl_stmt|;
 block|}
 DECL|method|testTimeToLive_negative ()
 specifier|public
