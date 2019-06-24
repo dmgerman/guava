@@ -815,11 +815,24 @@ name|long
 name|bits
 parameter_list|)
 block|{
-name|this
+name|checkArgument
 argument_list|(
+name|bits
+operator|>
+literal|0
+argument_list|,
+literal|"data length is zero!"
+argument_list|)
+expr_stmt|;
+comment|// Avoid delegating to this(long[]), since AtomicLongArray(long[]) will clone its input and
+comment|// thus double memory usage.
+name|this
+operator|.
+name|data
+operator|=
 operator|new
-name|long
-index|[
+name|AtomicLongArray
+argument_list|(
 name|Ints
 operator|.
 name|checkedCast
@@ -837,8 +850,16 @@ operator|.
 name|CEILING
 argument_list|)
 argument_list|)
-index|]
 argument_list|)
+expr_stmt|;
+name|this
+operator|.
+name|bitCount
+operator|=
+name|LongAddables
+operator|.
+name|create
+argument_list|()
 expr_stmt|;
 block|}
 comment|// Used by serialization
