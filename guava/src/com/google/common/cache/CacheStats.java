@@ -33,6 +33,38 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|math
+operator|.
+name|LongMath
+operator|.
+name|saturatedAdd
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|math
+operator|.
+name|LongMath
+operator|.
+name|saturatedSubtract
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -266,7 +298,7 @@ operator|=
 name|evictionCount
 expr_stmt|;
 block|}
-comment|/**    * Returns the number of times {@link Cache} lookup methods have returned either a cached or    * uncached value. This is defined as {@code hitCount + missCount}.    */
+comment|/**    * Returns the number of times {@link Cache} lookup methods have returned either a cached or    * uncached value. This is defined as {@code hitCount + missCount}.    *    *<p><b>Note:</b> the values of the metrics are undefined in case of overflow (though it is    * guaranteed not to throw an exception). If you require specific handling, we recommend    * implementing your own stats collector.    */
 DECL|method|requestCount ()
 specifier|public
 name|long
@@ -274,9 +306,12 @@ name|requestCount
 parameter_list|()
 block|{
 return|return
+name|saturatedAdd
+argument_list|(
 name|hitCount
-operator|+
+argument_list|,
 name|missCount
+argument_list|)
 return|;
 block|}
 comment|/** Returns the number of times {@link Cache} lookup methods have returned a cached value. */
@@ -361,7 +396,7 @@ operator|/
 name|requestCount
 return|;
 block|}
-comment|/**    * Returns the total number of times that {@link Cache} lookup methods attempted to load new    * values. This includes both successful load operations, as well as those that threw exceptions.    * This is defined as {@code loadSuccessCount + loadExceptionCount}.    */
+comment|/**    * Returns the total number of times that {@link Cache} lookup methods attempted to load new    * values. This includes both successful load operations, as well as those that threw exceptions.    * This is defined as {@code loadSuccessCount + loadExceptionCount}.    *    *<p><b>Note:</b> the values of the metrics are undefined in case of overflow (though it is    * guaranteed not to throw an exception). If you require specific handling, we recommend    * implementing your own stats collector.    */
 DECL|method|loadCount ()
 specifier|public
 name|long
@@ -369,9 +404,12 @@ name|loadCount
 parameter_list|()
 block|{
 return|return
+name|saturatedAdd
+argument_list|(
 name|loadSuccessCount
-operator|+
+argument_list|,
 name|loadExceptionCount
+argument_list|)
 return|;
 block|}
 comment|/**    * Returns the number of times {@link Cache} lookup methods have successfully loaded a new value.    * This is usually incremented in conjunction with {@link #missCount}, though {@code missCount} is    * also incremented when an exception is encountered during cache loading (see {@link    * #loadExceptionCount}). Multiple concurrent misses for the same key will result in a single load    * operation. This may be incremented not in conjunction with {@code missCount} if the load occurs    * as a result of a refresh or if the cache loader returned more items than was requested. {@code    * missCount} may also be incremented not in conjunction with this (nor {@link    * #loadExceptionCount}) on calls to {@code getIfPresent}.    */
@@ -396,7 +434,7 @@ return|return
 name|loadExceptionCount
 return|;
 block|}
-comment|/**    * Returns the ratio of cache loading attempts which threw exceptions. This is defined as {@code    * loadExceptionCount / (loadSuccessCount + loadExceptionCount)}, or {@code 0.0} when {@code    * loadSuccessCount + loadExceptionCount == 0}.    */
+comment|/**    * Returns the ratio of cache loading attempts which threw exceptions. This is defined as {@code    * loadExceptionCount / (loadSuccessCount + loadExceptionCount)}, or {@code 0.0} when {@code    * loadSuccessCount + loadExceptionCount == 0}.    *    *<p><b>Note:</b> the values of the metrics are undefined in case of overflow (though it is    * guaranteed not to throw an exception). If you require specific handling, we recommend    * implementing your own stats collector.    */
 DECL|method|loadExceptionRate ()
 specifier|public
 name|double
@@ -406,9 +444,12 @@ block|{
 name|long
 name|totalLoadCount
 init|=
+name|saturatedAdd
+argument_list|(
 name|loadSuccessCount
-operator|+
+argument_list|,
 name|loadExceptionCount
+argument_list|)
 decl_stmt|;
 return|return
 operator|(
@@ -444,7 +485,7 @@ return|return
 name|totalLoadTime
 return|;
 block|}
-comment|/**    * Returns the average time spent loading new values. This is defined as {@code totalLoadTime /    * (loadSuccessCount + loadExceptionCount)}.    */
+comment|/**    * Returns the average time spent loading new values. This is defined as {@code totalLoadTime /    * (loadSuccessCount + loadExceptionCount)}.    *    *<p><b>Note:</b> the values of the metrics are undefined in case of overflow (though it is    * guaranteed not to throw an exception). If you require specific handling, we recommend    * implementing your own stats collector.    */
 DECL|method|averageLoadPenalty ()
 specifier|public
 name|double
@@ -454,9 +495,12 @@ block|{
 name|long
 name|totalLoadCount
 init|=
+name|saturatedAdd
+argument_list|(
 name|loadSuccessCount
-operator|+
+argument_list|,
 name|loadExceptionCount
+argument_list|)
 decl_stmt|;
 return|return
 operator|(
@@ -506,12 +550,15 @@ name|max
 argument_list|(
 literal|0
 argument_list|,
+name|saturatedSubtract
+argument_list|(
 name|hitCount
-operator|-
+argument_list|,
 name|other
 operator|.
 name|hitCount
 argument_list|)
+argument_list|)
 argument_list|,
 name|Math
 operator|.
@@ -519,12 +566,15 @@ name|max
 argument_list|(
 literal|0
 argument_list|,
+name|saturatedSubtract
+argument_list|(
 name|missCount
-operator|-
+argument_list|,
 name|other
 operator|.
 name|missCount
 argument_list|)
+argument_list|)
 argument_list|,
 name|Math
 operator|.
@@ -532,24 +582,14 @@ name|max
 argument_list|(
 literal|0
 argument_list|,
+name|saturatedSubtract
+argument_list|(
 name|loadSuccessCount
-operator|-
+argument_list|,
 name|other
 operator|.
 name|loadSuccessCount
 argument_list|)
-argument_list|,
-name|Math
-operator|.
-name|max
-argument_list|(
-literal|0
-argument_list|,
-name|loadExceptionCount
-operator|-
-name|other
-operator|.
-name|loadExceptionCount
 argument_list|)
 argument_list|,
 name|Math
@@ -558,11 +598,14 @@ name|max
 argument_list|(
 literal|0
 argument_list|,
-name|totalLoadTime
-operator|-
+name|saturatedSubtract
+argument_list|(
+name|loadExceptionCount
+argument_list|,
 name|other
 operator|.
-name|totalLoadTime
+name|loadExceptionCount
+argument_list|)
 argument_list|)
 argument_list|,
 name|Math
@@ -571,16 +614,35 @@ name|max
 argument_list|(
 literal|0
 argument_list|,
+name|saturatedSubtract
+argument_list|(
+name|totalLoadTime
+argument_list|,
+name|other
+operator|.
+name|totalLoadTime
+argument_list|)
+argument_list|)
+argument_list|,
+name|Math
+operator|.
+name|max
+argument_list|(
+literal|0
+argument_list|,
+name|saturatedSubtract
+argument_list|(
 name|evictionCount
-operator|-
+argument_list|,
 name|other
 operator|.
 name|evictionCount
+argument_list|)
 argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a new {@code CacheStats} representing the sum of this {@code CacheStats} and {@code    * other}.    *    * @since 11.0    */
+comment|/**    * Returns a new {@code CacheStats} representing the sum of this {@code CacheStats} and {@code    * other}.    *    *<p><b>Note:</b> the values of the metrics are undefined in case of overflow (though it is    * guaranteed not to throw an exception). If you require specific handling, we recommend    * implementing your own stats collector.    *    * @since 11.0    */
 DECL|method|plus (CacheStats other)
 specifier|public
 name|CacheStats
@@ -594,41 +656,59 @@ return|return
 operator|new
 name|CacheStats
 argument_list|(
-name|hitCount
-operator|+
-name|other
-operator|.
+name|saturatedAdd
+argument_list|(
 name|hitCount
 argument_list|,
+name|other
+operator|.
+name|hitCount
+argument_list|)
+argument_list|,
+name|saturatedAdd
+argument_list|(
 name|missCount
-operator|+
+argument_list|,
 name|other
 operator|.
 name|missCount
+argument_list|)
 argument_list|,
+name|saturatedAdd
+argument_list|(
 name|loadSuccessCount
-operator|+
+argument_list|,
 name|other
 operator|.
 name|loadSuccessCount
+argument_list|)
 argument_list|,
+name|saturatedAdd
+argument_list|(
 name|loadExceptionCount
-operator|+
+argument_list|,
 name|other
 operator|.
 name|loadExceptionCount
+argument_list|)
 argument_list|,
+name|saturatedAdd
+argument_list|(
 name|totalLoadTime
-operator|+
+argument_list|,
 name|other
 operator|.
 name|totalLoadTime
+argument_list|)
 argument_list|,
+name|saturatedAdd
+argument_list|(
 name|evictionCount
-operator|+
+argument_list|,
 name|other
 operator|.
 name|evictionCount
+argument_list|)
 argument_list|)
 return|;
 block|}
