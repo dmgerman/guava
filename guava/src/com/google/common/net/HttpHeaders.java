@@ -1212,7 +1212,7 @@ name|X_MOZ
 init|=
 literal|"X-Moz"
 decl_stmt|;
-comment|/**    * The HTTP<a href="https://mikewest.github.io/sec-metadata/">{@code Sec-Fetch-Dest}</a> header    * field name.    *    * @since 27.1    */
+comment|/**    * The HTTP<a href="https://w3c.github.io/webappsec-fetch-metadata/">{@code Sec-Fetch-Dest}</a>    * header field name.    *    * @since 27.1    */
 DECL|field|SEC_FETCH_DEST
 specifier|public
 specifier|static
@@ -1222,7 +1222,7 @@ name|SEC_FETCH_DEST
 init|=
 literal|"Sec-Fetch-Dest"
 decl_stmt|;
-comment|/**    * The HTTP<a href="https://mikewest.github.io/sec-metadata/">{@code Sec-Fetch-Mode}</a> header    * field name.    *    * @since 27.1    */
+comment|/**    * The HTTP<a href="https://w3c.github.io/webappsec-fetch-metadata/">{@code Sec-Fetch-Mode}</a>    * header field name.    *    * @since 27.1    */
 DECL|field|SEC_FETCH_MODE
 specifier|public
 specifier|static
@@ -1232,7 +1232,7 @@ name|SEC_FETCH_MODE
 init|=
 literal|"Sec-Fetch-Mode"
 decl_stmt|;
-comment|/**    * The HTTP<a href="https://mikewest.github.io/sec-metadata/">{@code Sec-Fetch-Site}</a> header    * field name.    *    * @since 27.1    */
+comment|/**    * The HTTP<a href="https://w3c.github.io/webappsec-fetch-metadata/">{@code Sec-Fetch-Site}</a>    * header field name.    *    * @since 27.1    */
 DECL|field|SEC_FETCH_SITE
 specifier|public
 specifier|static
@@ -1242,7 +1242,7 @@ name|SEC_FETCH_SITE
 init|=
 literal|"Sec-Fetch-Site"
 decl_stmt|;
-comment|/**    * The HTTP<a href="https://mikewest.github.io/sec-metadata/">{@code Sec-Fetch-User}</a> header    * field name.    *    * @since 27.1    */
+comment|/**    * The HTTP<a href="https://w3c.github.io/webappsec-fetch-metadata/">{@code Sec-Fetch-User}</a>    * header field name.    *    * @since 27.1    */
 DECL|field|SEC_FETCH_USER
 specifier|public
 specifier|static
@@ -1252,7 +1252,7 @@ name|SEC_FETCH_USER
 init|=
 literal|"Sec-Fetch-User"
 decl_stmt|;
-comment|/**    * The HTTP<a href="https://mikewest.github.io/sec-metadata/">{@code Sec-Metadata}</a> header    * field name.    *    * @since 26.0    */
+comment|/**    * The HTTP<a href="https://w3c.github.io/webappsec-fetch-metadata/">{@code Sec-Metadata}</a>    * header field name.    *    * @since 26.0    */
 DECL|field|SEC_METADATA
 specifier|public
 specifier|static
