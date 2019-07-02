@@ -16,8 +16,34 @@ name|cache
 package|;
 end_package
 
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|truth
+operator|.
+name|Truth
+operator|.
+name|assertThat
+import|;
+end_import
+
+begin_import
+import|import
+name|junit
+operator|.
+name|framework
+operator|.
+name|TestCase
+import|;
+end_import
+
 begin_comment
-comment|/**  * No-op null-pointer test for {@link LongAdder} to override the {@link PackageSanityTests} version,  * which checks package-private methods that we don't want to have to annotate as {@code Nullable}  * because we don't want diffs from jsr166e.  */
+comment|/** Unit tests for {@link LongAdder}. */
 end_comment
 
 begin_class
@@ -25,13 +51,77 @@ DECL|class|LongAdderTest
 specifier|public
 class|class
 name|LongAdderTest
+extends|extends
+name|TestCase
 block|{
+comment|/**    * No-op null-pointer test for {@link LongAdder} to override the {@link PackageSanityTests}    * version, which checks package-private methods that we don't want to have to annotate as {@code    * Nullable} because we don't want diffs from jsr166e.    */
 DECL|method|testNulls ()
 specifier|public
 name|void
 name|testNulls
 parameter_list|()
 block|{}
+DECL|method|testOverflows ()
+specifier|public
+name|void
+name|testOverflows
+parameter_list|()
+block|{
+name|LongAdder
+name|longAdder
+init|=
+operator|new
+name|LongAdder
+argument_list|()
+decl_stmt|;
+name|longAdder
+operator|.
+name|add
+argument_list|(
+name|Long
+operator|.
+name|MAX_VALUE
+argument_list|)
+expr_stmt|;
+name|assertThat
+argument_list|(
+name|longAdder
+operator|.
+name|sum
+argument_list|()
+argument_list|)
+operator|.
+name|isEqualTo
+argument_list|(
+name|Long
+operator|.
+name|MAX_VALUE
+argument_list|)
+expr_stmt|;
+name|longAdder
+operator|.
+name|add
+argument_list|(
+literal|1
+argument_list|)
+expr_stmt|;
+comment|// silently overflows; is this a bug?
+comment|// See https://github.com/google/guava/issues/3503
+name|assertThat
+argument_list|(
+name|longAdder
+operator|.
+name|sum
+argument_list|()
+argument_list|)
+operator|.
+name|isEqualTo
+argument_list|(
+operator|-
+literal|9223372036854775808L
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 end_class
 
