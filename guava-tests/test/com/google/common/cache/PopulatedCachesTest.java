@@ -2010,12 +2010,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
-comment|// generic array creation
 DECL|method|testEntrySet_populated ()
 specifier|public
 name|void
@@ -2101,17 +2095,6 @@ argument_list|)
 operator|.
 name|containsExactlyElementsIn
 argument_list|(
-operator|(
-name|Collection
-argument_list|<
-name|Entry
-argument_list|<
-name|Object
-argument_list|,
-name|Object
-argument_list|>
-argument_list|>
-operator|)
 name|expected
 argument_list|)
 expr_stmt|;
@@ -2128,12 +2111,6 @@ argument_list|()
 operator|.
 name|containsExactlyElementsIn
 argument_list|(
-operator|(
-name|Collection
-argument_list|<
-name|Object
-argument_list|>
-operator|)
 name|expected
 argument_list|)
 expr_stmt|;
@@ -2144,7 +2121,7 @@ operator|.
 name|toArray
 argument_list|(
 operator|new
-name|Entry
+name|Object
 index|[
 literal|0
 index|]
@@ -2156,12 +2133,6 @@ argument_list|()
 operator|.
 name|containsExactlyElementsIn
 argument_list|(
-operator|(
-name|Collection
-argument_list|<
-name|Entry
-argument_list|>
-operator|)
 name|expected
 argument_list|)
 expr_stmt|;
