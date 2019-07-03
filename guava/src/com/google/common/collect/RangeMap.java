@@ -88,18 +88,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|function
-operator|.
-name|BiFunction
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|checkerframework
@@ -234,39 +222,6 @@ argument_list|<
 name|K
 argument_list|>
 name|range
-parameter_list|)
-function_decl|;
-comment|/**    * Merges a value into the map over a range by applying a remapping function.    *    *<p>If any parts of the range are already present in this range map, those parts are mapped to    * new values by applying the remapping function. Any parts of the range not already present in    * this range map are mapped to the specified value, unless the value is {@code null}.    *    *<p>Any existing map entry spanning either range boundary may be split at the boundary, even if    * the merge does not affect its value.    *    *<p>For example, if {@code rangeMap} had one entry {@code [1, 5] => 3} then {@code    * rangeMap.merge(Range.closed(0,2), 3, Math::max)} could yield a range map with the entries    * {@code [0, 1) => 3, [1, 2] => 3, (2, 5] => 3}.    */
-DECL|method|merge ( Range<K> range, @Nullable V value, BiFunction<? super V, ? super V, ? extends V> remappingFunction)
-name|void
-name|merge
-parameter_list|(
-name|Range
-argument_list|<
-name|K
-argument_list|>
-name|range
-parameter_list|,
-annotation|@
-name|Nullable
-name|V
-name|value
-parameter_list|,
-name|BiFunction
-argument_list|<
-name|?
-super|super
-name|V
-argument_list|,
-name|?
-super|super
-name|V
-argument_list|,
-name|?
-extends|extends
-name|V
-argument_list|>
-name|remappingFunction
 parameter_list|)
 function_decl|;
 comment|/**    * Returns a view of this range map as an unmodifiable {@code Map<Range<K>, V>}. Modifications to    * this range map are guaranteed to read through to the returned {@code Map}.    *    *<p>The returned {@code Map} iterates over entries in ascending order of the bounds of the    * {@code Range} entries.    *    *<p>It is guaranteed that no empty ranges will be in the returned {@code Map}.    */
