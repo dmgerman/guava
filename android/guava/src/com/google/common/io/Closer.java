@@ -752,14 +752,14 @@ specifier|final
 name|Method
 name|addSuppressed
 init|=
-name|getAddSuppressed
+name|addSuppressedMethodOrNull
 argument_list|()
 decl_stmt|;
-DECL|method|getAddSuppressed ()
+DECL|method|addSuppressedMethodOrNull ()
 specifier|private
 specifier|static
 name|Method
-name|getAddSuppressed
+name|addSuppressedMethodOrNull
 parameter_list|()
 block|{
 try|try
