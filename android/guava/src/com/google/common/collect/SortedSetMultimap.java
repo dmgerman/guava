@@ -90,6 +90,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|SortedMap
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|SortedSet
 import|;
 end_import
@@ -193,7 +203,7 @@ argument_list|>
 name|values
 parameter_list|)
 function_decl|;
-comment|/**    * Returns a map view that associates each key with the corresponding values in the multimap.    * Changes to the returned map, such as element removal, will update the underlying multimap. The    * map does not support {@code setValue()} on its entries, {@code put}, or {@code putAll}.    *    *<p>When passed a key that is present in the map, {@code asMap().get(Object)} has the same    * behavior as {@link #get}, returning a live collection. When passed a key that is not present,    * however, {@code asMap().get(Object)} returns {@code null} instead of an empty collection.    *    *<p><b>Note:</b> The returned map's values are guaranteed to be of type {@link SortedSet}. To    * obtain this map with the more specific generic type {@code Map<K, SortedSet<V>>}, call {@link    * Multimaps#asMap(SortedSetMultimap)} instead.    */
+comment|/**    * Returns a map view that associates each key with the corresponding values in the multimap.    * Changes to the returned map, such as element removal, will update the underlying multimap. The    * map does not support {@code setValue()} on its entries, {@code put}, or {@code putAll}.    *    *<p>When passed a key that is present in the map, {@code asMap().get(Object)} has the same    * behavior as {@link #get}, returning a live collection. When passed a key that is not present,    * however, {@code asMap().get(Object)} returns {@code null} instead of an empty collection.    *    *<p><b>Note:</b> The returned map's values are guaranteed to be of type {@link SortedSet}. To    * obtain this map with the more specific generic type {@code Map<K, SortedSet<V>>}, call {@link    * Multimaps#asMap(SortedSetMultimap)} instead.<b>However</b>, the returned map<i>itself</i> is    * not necessarily a {@link SortedMap}: A {@code SortedSetMultimap} must expose the<i>values</i>    * for a given key in sorted order, but it need not expose the<i>keys</i> in sorted order.    * Individual {@code SortedSetMultimap} implementations, like those built with {@link    * MultimapBuilder#treeKeys()}, may make additional guarantees.    */
 annotation|@
 name|Override
 DECL|method|asMap ()
