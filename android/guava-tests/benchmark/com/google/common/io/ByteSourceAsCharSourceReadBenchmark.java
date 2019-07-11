@@ -658,12 +658,6 @@ argument_list|)
 expr_stmt|;
 block|}
 annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"GoodTime"
-argument_list|)
-comment|// b/130759882
-annotation|@
 name|Benchmark
 DECL|method|timeCopy (int reps)
 specifier|public

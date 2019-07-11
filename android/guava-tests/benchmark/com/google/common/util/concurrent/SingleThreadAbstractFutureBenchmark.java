@@ -603,12 +603,6 @@ name|r
 return|;
 block|}
 annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"GoodTime"
-argument_list|)
-comment|// b/130759882
-annotation|@
 name|Benchmark
 DECL|method|timeGetWith0Timeout (long reps)
 specifier|public
@@ -683,12 +677,6 @@ return|return
 name|r
 return|;
 block|}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"GoodTime"
-argument_list|)
-comment|// b/130759882
 annotation|@
 name|Benchmark
 DECL|method|timeGetWithSmallTimeout (long reps)
