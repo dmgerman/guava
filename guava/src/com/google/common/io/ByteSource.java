@@ -675,7 +675,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Counts the bytes in the given input stream using skip if possible. Returns SKIP_FAILED if the    * first call to skip threw, in which case skip may just not be supported.    */
+comment|/** Counts the bytes in the given input stream using skip if possible. */
 DECL|method|countBySkipping (InputStream in)
 specifier|private
 name|long
