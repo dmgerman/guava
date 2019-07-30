@@ -880,25 +880,25 @@ name|limit
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a splitter that behaves equivalently to {@code this} splitter but stops splitting after    * it reaches the limit. The limit defines the maximum number of items returned by the iterator,    * or the maximum size of the list returned by {@link #splitToList}.    *    *<p>For example, {@code Splitter.on(',').limit(3).split("a,b,c,d")} returns an iterable    * containing {@code ["a", "b", "c,d"]}. When omitting empty strings, the omitted strings do not    * count. Hence, {@code Splitter.on(',').limit(3).omitEmptyStrings().split("a,,,b,,,c,d")} returns    * an iterable containing {@code ["a", "b", "c,d"}. When trim is requested, all entries are    * trimmed, including the last. Hence {@code Splitter.on(',').limit(3).trimResults().split(" a , b    * , c , d ")} results in {@code ["a", "b", "c , d"]}.    *    * @param limit the maximum number of items returned    * @return a splitter with the desired configuration    * @since 9.0    */
-DECL|method|limit (int limit)
+comment|/**    * Returns a splitter that behaves equivalently to {@code this} splitter but stops splitting after    * it reaches the limit. The limit defines the maximum number of items returned by the iterator,    * or the maximum size of the list returned by {@link #splitToList}.    *    *<p>For example, {@code Splitter.on(',').limit(3).split("a,b,c,d")} returns an iterable    * containing {@code ["a", "b", "c,d"]}. When omitting empty strings, the omitted strings do not    * count. Hence, {@code Splitter.on(',').limit(3).omitEmptyStrings().split("a,,,b,,,c,d")} returns    * an iterable containing {@code ["a", "b", "c,d"}. When trim is requested, all entries are    * trimmed, including the last. Hence {@code Splitter.on(',').limit(3).trimResults().split(" a , b    * , c , d ")} results in {@code ["a", "b", "c , d"]}.    *    * @param maxItems the maximum number of items returned    * @return a splitter with the desired configuration    * @since 9.0    */
+DECL|method|limit (int maxItems)
 specifier|public
 name|Splitter
 name|limit
 parameter_list|(
 name|int
-name|limit
+name|maxItems
 parameter_list|)
 block|{
 name|checkArgument
 argument_list|(
-name|limit
+name|maxItems
 operator|>
 literal|0
 argument_list|,
 literal|"must be greater than zero: %s"
 argument_list|,
-name|limit
+name|maxItems
 argument_list|)
 expr_stmt|;
 return|return
@@ -911,7 +911,7 @@ name|omitEmptyStrings
 argument_list|,
 name|trimmer
 argument_list|,
-name|limit
+name|maxItems
 argument_list|)
 return|;
 block|}
