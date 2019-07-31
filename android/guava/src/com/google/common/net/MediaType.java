@@ -1174,6 +1174,36 @@ argument_list|,
 literal|"webp"
 argument_list|)
 decl_stmt|;
+comment|/**    *<a href="https://www.iana.org/assignments/media-types/image/heif">HEIF image format</a>.    *    * @since NEXT    */
+DECL|field|HEIF
+specifier|public
+specifier|static
+specifier|final
+name|MediaType
+name|HEIF
+init|=
+name|createConstant
+argument_list|(
+name|IMAGE_TYPE
+argument_list|,
+literal|"heif"
+argument_list|)
+decl_stmt|;
+comment|/**    *<a href="https://tools.ietf.org/html/rfc3745">JP2K image format</a>.    *    * @since NEXT    */
+DECL|field|JP2K
+specifier|public
+specifier|static
+specifier|final
+name|MediaType
+name|JP2K
+init|=
+name|createConstant
+argument_list|(
+name|IMAGE_TYPE
+argument_list|,
+literal|"jp2"
+argument_list|)
+decl_stmt|;
 comment|/* audio types */
 DECL|field|MP4_AUDIO
 specifier|public
