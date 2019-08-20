@@ -269,6 +269,21 @@ name|unit
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|toString ()
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+name|delegate
+operator|.
+name|toString
+argument_list|()
+return|;
+block|}
 block|}
 end_class
 
