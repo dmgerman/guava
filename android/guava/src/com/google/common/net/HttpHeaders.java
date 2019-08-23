@@ -542,7 +542,16 @@ name|UPGRADE
 init|=
 literal|"Upgrade"
 decl_stmt|;
-comment|/** The HTTP {@code User-Agent} header field name. */
+comment|/**    * The HTTP<a href="https://w3c.github.io/webappsec-upgrade-insecure-requests/#preference">{@code    * Upgrade-Insecure-Requests}</a> header field name.    *    * @since NEXT    */
+DECL|field|UPGRADE_INSECURE_REQUESTS
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|UPGRADE_INSECURE_REQUESTS
+init|=
+literal|"Upgrade-Insecure-Requests"
+decl_stmt|;
 DECL|field|USER_AGENT
 specifier|public
 specifier|static
