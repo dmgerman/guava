@@ -552,6 +552,7 @@ name|UPGRADE_INSECURE_REQUESTS
 init|=
 literal|"Upgrade-Insecure-Requests"
 decl_stmt|;
+comment|/** The HTTP {@code User-Agent} header field name. */
 DECL|field|USER_AGENT
 specifier|public
 specifier|static
