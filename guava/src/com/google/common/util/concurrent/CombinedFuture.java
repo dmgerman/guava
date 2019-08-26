@@ -722,6 +722,11 @@ argument_list|(
 name|value
 argument_list|)
 expr_stmt|;
+comment|// Eagerly release resources instead of waiting for afterDone. We are done with the inputs,
+comment|// but the actual future may not complete for arbitrarily long.
+name|releaseResources
+argument_list|()
+expr_stmt|;
 block|}
 annotation|@
 name|Override

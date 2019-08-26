@@ -281,6 +281,17 @@ operator|.
 name|afterDone
 argument_list|()
 expr_stmt|;
+name|releaseResources
+argument_list|()
+expr_stmt|;
+block|}
+DECL|method|releaseResources ()
+specifier|protected
+specifier|final
+name|void
+name|releaseResources
+parameter_list|()
+block|{
 name|RunningState
 name|localRunningState
 init|=
