@@ -6043,10 +6043,7 @@ block|{
 name|char
 name|c
 decl_stmt|;
-while|while
-condition|(
-literal|true
-condition|)
+do|do
 block|{
 name|c
 operator|=
@@ -6068,9 +6065,9 @@ operator|+
 literal|1
 argument_list|)
 expr_stmt|;
-if|if
+block|}
+do|while
 condition|(
-operator|!
 name|chars
 operator|.
 name|contains
@@ -6078,10 +6075,7 @@ argument_list|(
 name|c
 argument_list|)
 condition|)
-block|{
-break|break;
-block|}
-block|}
+do|;
 name|chars
 operator|.
 name|add
