@@ -733,7 +733,7 @@ range|:
 name|toClose
 control|)
 block|{
-comment|// TODO(b/198102330): Catch exceptions, rethrowing later with extras as suppressed exceptions.
+comment|// TODO(b/80534298): Catch exceptions, rethrowing later with extras as suppressed exceptions.
 name|stream
 operator|.
 name|close
