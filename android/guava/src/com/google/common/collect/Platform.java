@@ -17,6 +17,34 @@ package|;
 end_package
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Strings
+operator|.
+name|lenientFormat
+import|;
+end_import
+
+begin_import
+import|import static
+name|java
+operator|.
+name|lang
+operator|.
+name|Boolean
+operator|.
+name|parseBoolean
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -395,6 +423,59 @@ block|{
 return|return
 name|exponent
 return|;
+block|}
+DECL|field|GWT_RPC_PROPERTY_NAME
+specifier|private
+specifier|static
+specifier|final
+name|String
+name|GWT_RPC_PROPERTY_NAME
+init|=
+literal|"guava.gwt.emergency_reenable_rpc"
+decl_stmt|;
+DECL|method|checkGwtRpcEnabled ()
+specifier|static
+name|void
+name|checkGwtRpcEnabled
+parameter_list|()
+block|{
+if|if
+condition|(
+operator|!
+name|parseBoolean
+argument_list|(
+name|System
+operator|.
+name|getProperty
+argument_list|(
+name|GWT_RPC_PROPERTY_NAME
+argument_list|,
+literal|"true"
+argument_list|)
+argument_list|)
+condition|)
+block|{
+throw|throw
+operator|new
+name|UnsupportedOperationException
+argument_list|(
+name|lenientFormat
+argument_list|(
+literal|"We are removing GWT-RPC support for Guava types. You can temporarily reenable"
+operator|+
+literal|" support by setting the system property %s to true. For more about system"
+operator|+
+literal|" properties, see %s. For more about Guava's GWT-RPC support, see %s."
+argument_list|,
+name|GWT_RPC_PROPERTY_NAME
+argument_list|,
+literal|"https://stackoverflow.com/q/5189914/28465"
+argument_list|,
+literal|"https://groups.google.com/d/msg/guava-announce/zHZTFg7YF3o/rQNnwdHeEwAJ"
+argument_list|)
+argument_list|)
+throw|;
+block|}
 block|}
 DECL|method|Platform ()
 specifier|private

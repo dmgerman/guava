@@ -17,6 +17,22 @@ package|;
 end_package
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|primitives
+operator|.
+name|Platform
+operator|.
+name|checkGwtRpcEnabled
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -105,6 +121,9 @@ parameter_list|)
 throws|throws
 name|SerializationException
 block|{
+name|checkGwtRpcEnabled
+argument_list|()
+expr_stmt|;
 return|return
 name|UnsignedLong
 operator|.
@@ -132,6 +151,9 @@ parameter_list|)
 throws|throws
 name|SerializationException
 block|{
+name|checkGwtRpcEnabled
+argument_list|()
+expr_stmt|;
 name|writer
 operator|.
 name|writeLong
