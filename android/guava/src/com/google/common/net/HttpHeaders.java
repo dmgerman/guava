@@ -542,7 +542,7 @@ name|UPGRADE
 init|=
 literal|"Upgrade"
 decl_stmt|;
-comment|/**    * The HTTP<a href="https://w3c.github.io/webappsec-upgrade-insecure-requests/#preference">{@code    * Upgrade-Insecure-Requests}</a> header field name.    *    * @since NEXT    */
+comment|/**    * The HTTP<a href="https://w3c.github.io/webappsec-upgrade-insecure-requests/#preference">{@code    * Upgrade-Insecure-Requests}</a> header field name.    *    * @since 28.1    */
 DECL|field|UPGRADE_INSECURE_REQUESTS
 specifier|public
 specifier|static

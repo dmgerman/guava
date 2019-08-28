@@ -1174,7 +1174,7 @@ argument_list|,
 literal|"webp"
 argument_list|)
 decl_stmt|;
-comment|/**    *<a href="https://www.iana.org/assignments/media-types/image/heif">HEIF image format</a>.    *    * @since NEXT    */
+comment|/**    *<a href="https://www.iana.org/assignments/media-types/image/heif">HEIF image format</a>.    *    * @since 28.1    */
 DECL|field|HEIF
 specifier|public
 specifier|static
@@ -1189,7 +1189,7 @@ argument_list|,
 literal|"heif"
 argument_list|)
 decl_stmt|;
-comment|/**    *<a href="https://tools.ietf.org/html/rfc3745">JP2K image format</a>.    *    * @since NEXT    */
+comment|/**    *<a href="https://tools.ietf.org/html/rfc3745">JP2K image format</a>.    *    * @since 28.1    */
 DECL|field|JP2K
 specifier|public
 specifier|static
