@@ -236,7 +236,7 @@ argument_list|>
 name|range
 parameter_list|)
 function_decl|;
-comment|/**    * Merges a value into the map over a range by applying a remapping function.    *    *<p>If any parts of the range are already present in this range map, those parts are mapped to    * new values by applying the remapping function. Any parts of the range not already present in    * this range map are mapped to the specified value, unless the value is {@code null}.    *    *<p>Any existing map entry spanning either range boundary may be split at the boundary, even if    * the merge does not affect its value.    *    *<p>For example, if {@code rangeMap} had one entry {@code [1, 5] => 3} then {@code    * rangeMap.merge(Range.closed(0,2), 3, Math::max)} could yield a range map with the entries    * {@code [0, 1) => 3, [1, 2] => 3, (2, 5] => 3}.    */
+comment|/**    * Merges a value into the map over a range by applying a remapping function.    *    *<p>If any parts of the range are already present in this range map, those parts are mapped to    * new values by applying the remapping function. Any parts of the range not already present in    * this range map are mapped to the specified value, unless the value is {@code null}.    *    *<p>Any existing map entry spanning either range boundary may be split at the boundary, even if    * the merge does not affect its value.    *    *<p>For example, if {@code rangeMap} had one entry {@code [1, 5] => 3} then {@code    * rangeMap.merge(Range.closed(0,2), 3, Math::max)} could yield a range map with the entries    * {@code [0, 1) => 3, [1, 2] => 3, (2, 5] => 3}.    *    * @since 28.1    */
 DECL|method|merge ( Range<K> range, @Nullable V value, BiFunction<? super V, ? super V, ? extends V> remappingFunction)
 name|void
 name|merge
