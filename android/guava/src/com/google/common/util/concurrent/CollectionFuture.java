@@ -26,22 +26,6 @@ name|google
 operator|.
 name|common
 operator|.
-name|base
-operator|.
-name|Preconditions
-operator|.
-name|checkState
-import|;
-end_import
-
-begin_import
-import|import static
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
 name|collect
 operator|.
 name|Lists
@@ -187,13 +171,6 @@ argument_list|,
 name|C
 argument_list|>
 block|{
-DECL|class|CollectionFutureRunningState
-specifier|abstract
-class|class
-name|CollectionFutureRunningState
-extends|extends
-name|RunningState
-block|{
 DECL|field|values
 specifier|private
 name|List
@@ -205,8 +182,8 @@ argument_list|>
 argument_list|>
 name|values
 decl_stmt|;
-DECL|method|CollectionFutureRunningState ( ImmutableCollection<? extends ListenableFuture<? extends V>> futures, boolean allMustSucceed)
-name|CollectionFutureRunningState
+DECL|method|CollectionFuture ( ImmutableCollection<? extends ListenableFuture<? extends V>> futures, boolean allMustSucceed)
+name|CollectionFuture
 parameter_list|(
 name|ImmutableCollection
 argument_list|<
@@ -300,14 +277,11 @@ block|}
 block|}
 annotation|@
 name|Override
-DECL|method|collectOneValue (boolean allMustSucceed, int index, @NullableDecl V returnValue)
+DECL|method|collectOneValue (int index, @NullableDecl V returnValue)
 specifier|final
 name|void
 name|collectOneValue
 parameter_list|(
-name|boolean
-name|allMustSucceed
-parameter_list|,
 name|int
 name|index
 parameter_list|,
@@ -350,22 +324,6 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-else|else
-block|{
-comment|// Some other future failed or has been cancelled, causing this one to also be cancelled or
-comment|// have an exception set. This should only happen if allMustSucceed is true or if the output
-comment|// itself has been cancelled.
-name|checkState
-argument_list|(
-name|allMustSucceed
-operator|||
-name|isCancelled
-argument_list|()
-argument_list|,
-literal|"Future was done before all dependencies completed"
-argument_list|)
-expr_stmt|;
-block|}
 block|}
 annotation|@
 name|Override
@@ -402,27 +360,23 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-else|else
-block|{
-name|checkState
-argument_list|(
-name|isDone
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
 block|}
 annotation|@
 name|Override
-DECL|method|releaseResourcesAfterFailure ()
+DECL|method|releaseResources (ReleaseResourcesReason reason)
 name|void
-name|releaseResourcesAfterFailure
-parameter_list|()
+name|releaseResources
+parameter_list|(
+name|ReleaseResourcesReason
+name|reason
+parameter_list|)
 block|{
 name|super
 operator|.
-name|releaseResourcesAfterFailure
-argument_list|()
+name|releaseResources
+argument_list|(
+name|reason
+argument_list|)
 expr_stmt|;
 name|this
 operator|.
@@ -446,7 +400,6 @@ argument_list|>
 name|values
 parameter_list|)
 function_decl|;
-block|}
 comment|/** Used for {@link Futures#allAsList} and {@link Futures#successfulAsList}. */
 DECL|class|ListFuture
 specifier|static
@@ -487,52 +440,15 @@ name|boolean
 name|allMustSucceed
 parameter_list|)
 block|{
-name|init
-argument_list|(
-operator|new
-name|ListFutureRunningState
-argument_list|(
-name|futures
-argument_list|,
-name|allMustSucceed
-argument_list|)
-argument_list|)
-expr_stmt|;
-block|}
-DECL|class|ListFutureRunningState
-specifier|private
-specifier|final
-class|class
-name|ListFutureRunningState
-extends|extends
-name|CollectionFutureRunningState
-block|{
-DECL|method|ListFutureRunningState ( ImmutableCollection<? extends ListenableFuture<? extends V>> futures, boolean allMustSucceed)
-name|ListFutureRunningState
-parameter_list|(
-name|ImmutableCollection
-argument_list|<
-name|?
-extends|extends
-name|ListenableFuture
-argument_list|<
-name|?
-extends|extends
-name|V
-argument_list|>
-argument_list|>
-name|futures
-parameter_list|,
-name|boolean
-name|allMustSucceed
-parameter_list|)
-block|{
 name|super
 argument_list|(
 name|futures
 argument_list|,
 name|allMustSucceed
 argument_list|)
+expr_stmt|;
+name|init
+argument_list|()
 expr_stmt|;
 block|}
 annotation|@
@@ -603,7 +519,6 @@ argument_list|(
 name|result
 argument_list|)
 return|;
-block|}
 block|}
 block|}
 block|}

@@ -42,11 +42,15 @@ name|google
 operator|.
 name|common
 operator|.
-name|base
+name|util
 operator|.
-name|Preconditions
+name|concurrent
 operator|.
-name|checkState
+name|AggregateFuture
+operator|.
+name|ReleaseResourcesReason
+operator|.
+name|OUTPUT_FUTURE_DONE
 import|;
 end_import
 
@@ -190,6 +194,14 @@ argument_list|,
 name|V
 argument_list|>
 block|{
+DECL|field|task
+specifier|private
+name|CombinedFutureInterruptibleTask
+argument_list|<
+name|?
+argument_list|>
+name|task
+decl_stmt|;
 DECL|method|CombinedFuture ( ImmutableCollection<? extends ListenableFuture<?>> futures, boolean allMustSucceed, Executor listenerExecutor, AsyncCallable<V> callable)
 name|CombinedFuture
 parameter_list|(
@@ -217,15 +229,19 @@ argument_list|>
 name|callable
 parameter_list|)
 block|{
-name|init
-argument_list|(
-operator|new
-name|CombinedFutureRunningState
+name|super
 argument_list|(
 name|futures
 argument_list|,
 name|allMustSucceed
 argument_list|,
+literal|false
+argument_list|)
+expr_stmt|;
+name|this
+operator|.
+name|task
+operator|=
 operator|new
 name|AsyncCallableInterruptibleTask
 argument_list|(
@@ -233,8 +249,9 @@ name|callable
 argument_list|,
 name|listenerExecutor
 argument_list|)
-argument_list|)
-argument_list|)
+expr_stmt|;
+name|init
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|CombinedFuture ( ImmutableCollection<? extends ListenableFuture<?>> futures, boolean allMustSucceed, Executor listenerExecutor, Callable<V> callable)
@@ -264,60 +281,6 @@ argument_list|>
 name|callable
 parameter_list|)
 block|{
-name|init
-argument_list|(
-operator|new
-name|CombinedFutureRunningState
-argument_list|(
-name|futures
-argument_list|,
-name|allMustSucceed
-argument_list|,
-operator|new
-name|CallableInterruptibleTask
-argument_list|(
-name|callable
-argument_list|,
-name|listenerExecutor
-argument_list|)
-argument_list|)
-argument_list|)
-expr_stmt|;
-block|}
-DECL|class|CombinedFutureRunningState
-specifier|private
-specifier|final
-class|class
-name|CombinedFutureRunningState
-extends|extends
-name|RunningState
-block|{
-DECL|field|task
-specifier|private
-name|CombinedFutureInterruptibleTask
-name|task
-decl_stmt|;
-DECL|method|CombinedFutureRunningState ( ImmutableCollection<? extends ListenableFuture<?>> futures, boolean allMustSucceed, CombinedFutureInterruptibleTask task)
-name|CombinedFutureRunningState
-parameter_list|(
-name|ImmutableCollection
-argument_list|<
-name|?
-extends|extends
-name|ListenableFuture
-argument_list|<
-name|?
-argument_list|>
-argument_list|>
-name|futures
-parameter_list|,
-name|boolean
-name|allMustSucceed
-parameter_list|,
-name|CombinedFutureInterruptibleTask
-name|task
-parameter_list|)
-block|{
 name|super
 argument_list|(
 name|futures
@@ -331,18 +294,24 @@ name|this
 operator|.
 name|task
 operator|=
-name|task
+operator|new
+name|CallableInterruptibleTask
+argument_list|(
+name|callable
+argument_list|,
+name|listenerExecutor
+argument_list|)
+expr_stmt|;
+name|init
+argument_list|()
 expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|collectOneValue (boolean allMustSucceed, int index, @NullableDecl Object returnValue)
+DECL|method|collectOneValue (int index, @NullableDecl Object returnValue)
 name|void
 name|collectOneValue
 parameter_list|(
-name|boolean
-name|allMustSucceed
-parameter_list|,
 name|int
 name|index
 parameter_list|,
@@ -360,6 +329,9 @@ name|handleAllCompleted
 parameter_list|()
 block|{
 name|CombinedFutureInterruptibleTask
+argument_list|<
+name|?
+argument_list|>
 name|localTask
 init|=
 name|task
@@ -377,28 +349,32 @@ name|execute
 argument_list|()
 expr_stmt|;
 block|}
-else|else
-block|{
-name|checkState
-argument_list|(
-name|isDone
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
 block|}
 annotation|@
 name|Override
-DECL|method|releaseResourcesAfterFailure ()
+DECL|method|releaseResources (ReleaseResourcesReason reason)
 name|void
-name|releaseResourcesAfterFailure
-parameter_list|()
+name|releaseResources
+parameter_list|(
+name|ReleaseResourcesReason
+name|reason
+parameter_list|)
 block|{
 name|super
 operator|.
-name|releaseResourcesAfterFailure
-argument_list|()
+name|releaseResources
+argument_list|(
+name|reason
+argument_list|)
 expr_stmt|;
+comment|/*      * If the output future is done, then it won't need to interrupt the task later, so it can clear      * its reference to it.      *      * If the output future is *not* done, then the task field will be cleared after the task runs      * or after the output future is done, whichever comes first.      */
+if|if
+condition|(
+name|reason
+operator|==
+name|OUTPUT_FUTURE_DONE
+condition|)
+block|{
 name|this
 operator|.
 name|task
@@ -406,14 +382,19 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
+block|}
 annotation|@
 name|Override
 DECL|method|interruptTask ()
+specifier|protected
 name|void
 name|interruptTask
 parameter_list|()
 block|{
 name|CombinedFutureInterruptibleTask
+argument_list|<
+name|?
+argument_list|>
 name|localTask
 init|=
 name|task
@@ -430,7 +411,6 @@ operator|.
 name|interruptTask
 argument_list|()
 expr_stmt|;
-block|}
 block|}
 block|}
 annotation|@
@@ -462,7 +442,6 @@ init|=
 literal|true
 decl_stmt|;
 DECL|method|CombinedFutureInterruptibleTask (Executor listenerExecutor)
-specifier|public
 name|CombinedFutureInterruptibleTask
 parameter_list|(
 name|Executor
@@ -545,6 +524,15 @@ name|Throwable
 name|error
 parameter_list|)
 block|{
+comment|/*        * The future no longer needs to interrupt this task, so it no longer needs a reference to it.        *        * TODO(cpovirk): It might be nice for our InterruptibleTask subclasses to null out their        *  `callable` fields automatically. That would make it less important for us to null out the        * reference to `task` here (though it's still nice to do so in case our reference to the        * executor keeps it alive). Ideally, nulling out `callable` would be the responsibility of        * InterruptibleTask itself so that its other subclasses also benefit. (Handling `callable` in        * InterruptibleTask itself might also eliminate some of the existing boilerplate for, e.g.,        * pendingToString().)        */
+name|CombinedFuture
+operator|.
+name|this
+operator|.
+name|task
+operator|=
+literal|null
+expr_stmt|;
 if|if
 condition|(
 name|error
@@ -636,7 +624,6 @@ argument_list|>
 name|callable
 decl_stmt|;
 DECL|method|AsyncCallableInterruptibleTask (AsyncCallable<V> callable, Executor listenerExecutor)
-specifier|public
 name|AsyncCallableInterruptibleTask
 parameter_list|(
 name|AsyncCallable
@@ -722,11 +709,6 @@ argument_list|(
 name|value
 argument_list|)
 expr_stmt|;
-comment|// Eagerly release resources instead of waiting for afterDone. We are done with the inputs,
-comment|// but the actual future may not complete for arbitrarily long.
-name|releaseResources
-argument_list|()
-expr_stmt|;
 block|}
 annotation|@
 name|Override
@@ -766,7 +748,6 @@ argument_list|>
 name|callable
 decl_stmt|;
 DECL|method|CallableInterruptibleTask (Callable<V> callable, Executor listenerExecutor)
-specifier|public
 name|CallableInterruptibleTask
 parameter_list|(
 name|Callable

@@ -183,9 +183,19 @@ DECL|class|AggregateFutureState
 specifier|abstract
 class|class
 name|AggregateFutureState
+parameter_list|<
+name|OutputT
+parameter_list|>
+extends|extends
+name|AbstractFuture
+operator|.
+name|TrustedFuture
+argument_list|<
+name|OutputT
+argument_list|>
 block|{
 comment|// Lazily initialized the first time we see an exception; not released until all the input futures
-comment|//& this future completes. Released when the future releases the reference to the running state
+comment|// have completed and we have processed them all.
 DECL|field|seenExceptions
 specifier|private
 specifier|volatile
@@ -345,7 +355,7 @@ argument_list|>
 name|getOrInitSeenExceptions
 parameter_list|()
 block|{
-comment|/*      * The initialization of seenExceptions has to be more complicated than we'd like. The simple      * approach would be for each caller CAS it from null to a Set populated with its exception. But      * there's another race: If the first thread fails with an exception and a second thread      * immediately fails with the same exception:      *      * Thread1: calls setException(), which returns true, context switch before it can CAS      * seenExceptions to its exception      *      * Thread2: calls setException(), which returns false, CASes seenExceptions to its exception,      * and wrongly believes that its exception is new (leading it to logging it when it shouldn't)      *      * Our solution is for threads to CAS seenExceptions from null to a Set population with _the      * initial exception_, no matter which thread does the work. This ensures that seenExceptions      * always contains not just the current thread's exception but also the initial thread's.      */
+comment|/*      * The initialization of seenExceptions has to be more complicated than we'd like. The simple      * approach would be for each caller CAS it from null to a Set populated with its exception. But      * there's another race: If the first thread fails with an exception and a second thread      * immediately fails with the same exception:      *      * Thread1: calls setException(), which returns true, context switch before it can CAS      * seenExceptions to its exception      *      * Thread2: calls setException(), which returns false, CASes seenExceptions to its exception,      * and wrongly believes that its exception is new (leading it to logging it when it shouldn't)      *      * Our solution is for threads to CAS seenExceptions from null to a Set populated with _the      * initial exception_, no matter which thread does the work. This ensures that seenExceptions      * always contains not just the current thread's exception but also the initial thread's.      */
 name|Set
 argument_list|<
 name|Throwable
@@ -361,6 +371,9 @@ operator|==
 literal|null
 condition|)
 block|{
+comment|// TODO(cpovirk): Should we use a simpler (presumably cheaper) data structure?
+comment|/*        * Using weak references here could let us release exceptions earlier, but:        *        * 1. On Android, querying a WeakReference blocks if the GC is doing an otherwise-concurrent        * pass.        *        * 2. We would probably choose to compare exceptions using == instead of equals() (for        * consistency with how weak references are cleared). That's a behavior change -- arguably the        * removal of a feature.        *        * Fortunately, exceptions rarely contain references to expensive resources.        */
+comment|//
 name|seenExceptionsLocal
 operator|=
 name|newConcurrentHashSet
@@ -420,6 +433,17 @@ argument_list|(
 name|this
 argument_list|)
 return|;
+block|}
+DECL|method|clearSeenExceptions ()
+specifier|final
+name|void
+name|clearSeenExceptions
+parameter_list|()
+block|{
+name|seenExceptions
+operator|=
+literal|null
+expr_stmt|;
 block|}
 DECL|class|AtomicHelper
 specifier|private
@@ -637,12 +661,8 @@ init|(
 name|state
 init|)
 block|{
-name|state
-operator|.
-name|remaining
-operator|--
-expr_stmt|;
 return|return
+operator|--
 name|state
 operator|.
 name|remaining

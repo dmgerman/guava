@@ -53,6 +53,16 @@ DECL|class|AggregateFutureState
 specifier|abstract
 class|class
 name|AggregateFutureState
+parameter_list|<
+name|OutputT
+parameter_list|>
+extends|extends
+name|AbstractFuture
+operator|.
+name|TrustedFuture
+argument_list|<
+name|OutputT
+argument_list|>
 block|{
 comment|// Lazily initialized the first time we see an exception; not released until all the input futures
 comment|//& this future completes. Released when the future releases the reference to the running state
@@ -138,6 +148,17 @@ return|return
 operator|--
 name|remaining
 return|;
+block|}
+DECL|method|clearSeenExceptions ()
+specifier|final
+name|void
+name|clearSeenExceptions
+parameter_list|()
+block|{
+name|seenExceptions
+operator|=
+literal|null
+expr_stmt|;
 block|}
 block|}
 end_class
