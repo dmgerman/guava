@@ -125,7 +125,7 @@ specifier|final
 name|boolean
 name|plusForSpace
 decl_stmt|;
-comment|/**    * An array of flags where for any {@code char c} if {@code safeOctets[c]} is true then {@code c}    * should remain unmodified in the output. If {@code c> safeOctets.length} then it should be    * escaped.    */
+comment|/**    * An array of flags where for any {@code char c} if {@code safeOctets[c]} is true then {@code c}    * should remain unmodified in the output. If {@code c>= safeOctets.length} then it should be    * escaped.    */
 DECL|field|safeOctets
 specifier|private
 specifier|final
