@@ -1369,7 +1369,7 @@ literal|true
 argument_list|)
 return|;
 block|}
-comment|/**    * Creates a {@link FutureCombiner} that processes the completed futures whether or not they're    * successful.    *    * @since 20.0    */
+comment|/**    * Creates a {@link FutureCombiner} that processes the completed futures whether or not they're    * successful.    *    *<p>Any failures from the input futures will not be propagated to the returned future.    *    * @since 20.0    */
 annotation|@
 name|Beta
 annotation|@
@@ -1414,7 +1414,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Creates a {@link FutureCombiner} that processes the completed futures whether or not they're    * successful.    *    * @since 20.0    */
+comment|/**    * Creates a {@link FutureCombiner} that processes the completed futures whether or not they're    * successful.    *    *<p>Any failures from the input futures will not be propagated to the returned future.    *    * @since 20.0    */
 annotation|@
 name|Beta
 DECL|method|whenAllComplete ( Iterable<? extends ListenableFuture<? extends V>> futures)
