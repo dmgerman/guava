@@ -143,14 +143,14 @@ import|;
 end_import
 
 begin_comment
-comment|/** Implementation of {@link Futures#immediateFuture}. */
+comment|/** Implementations of {@code Futures.immediate*}. */
 end_comment
 
 begin_class
 annotation|@
 name|GwtCompatible
 DECL|class|ImmediateFuture
-specifier|final
+specifier|abstract
 class|class
 name|ImmediateFuture
 parameter_list|<
@@ -162,22 +162,6 @@ argument_list|<
 name|V
 argument_list|>
 block|{
-DECL|field|NULL
-specifier|static
-specifier|final
-name|ListenableFuture
-argument_list|<
-name|?
-argument_list|>
-name|NULL
-init|=
-operator|new
-name|ImmediateFuture
-argument_list|<>
-argument_list|(
-literal|null
-argument_list|)
-decl_stmt|;
 DECL|field|log
 specifier|private
 specifier|static
@@ -197,30 +181,6 @@ name|getName
 argument_list|()
 argument_list|)
 decl_stmt|;
-DECL|field|value
-annotation|@
-name|NullableDecl
-specifier|private
-specifier|final
-name|V
-name|value
-decl_stmt|;
-DECL|method|ImmediateFuture (@ullableDecl V value)
-name|ImmediateFuture
-parameter_list|(
-annotation|@
-name|NullableDecl
-name|V
-name|value
-parameter_list|)
-block|{
-name|this
-operator|.
-name|value
-operator|=
-name|value
-expr_stmt|;
-block|}
 annotation|@
 name|Override
 DECL|method|addListener (Runnable listener, Executor executor)
@@ -303,19 +263,17 @@ return|return
 literal|false
 return|;
 block|}
-comment|// TODO(lukes): Consider throwing InterruptedException when appropriate.
 annotation|@
 name|Override
 DECL|method|get ()
 specifier|public
+specifier|abstract
 name|V
 name|get
 parameter_list|()
-block|{
-return|return
-name|value
-return|;
-block|}
+throws|throws
+name|ExecutionException
+function_decl|;
 annotation|@
 name|Override
 DECL|method|get (long timeout, TimeUnit unit)
@@ -366,6 +324,72 @@ return|return
 literal|true
 return|;
 block|}
+DECL|class|ImmediateSuccessfulFuture
+specifier|static
+class|class
+name|ImmediateSuccessfulFuture
+parameter_list|<
+name|V
+parameter_list|>
+extends|extends
+name|ImmediateFuture
+argument_list|<
+name|V
+argument_list|>
+block|{
+DECL|field|NULL
+specifier|static
+specifier|final
+name|ImmediateSuccessfulFuture
+argument_list|<
+name|Object
+argument_list|>
+name|NULL
+init|=
+operator|new
+name|ImmediateSuccessfulFuture
+argument_list|<>
+argument_list|(
+literal|null
+argument_list|)
+decl_stmt|;
+DECL|field|value
+annotation|@
+name|NullableDecl
+specifier|private
+specifier|final
+name|V
+name|value
+decl_stmt|;
+DECL|method|ImmediateSuccessfulFuture (@ullableDecl V value)
+name|ImmediateSuccessfulFuture
+parameter_list|(
+annotation|@
+name|NullableDecl
+name|V
+name|value
+parameter_list|)
+block|{
+name|this
+operator|.
+name|value
+operator|=
+name|value
+expr_stmt|;
+block|}
+comment|// TODO(lukes): Consider throwing InterruptedException when appropriate.
+annotation|@
+name|Override
+DECL|method|get ()
+specifier|public
+name|V
+name|get
+parameter_list|()
+block|{
+return|return
+name|value
+return|;
+block|}
 annotation|@
 name|Override
 DECL|method|toString ()
@@ -387,6 +411,7 @@ name|value
 operator|+
 literal|"]]"
 return|;
+block|}
 block|}
 DECL|class|ImmediateFailedFuture
 specifier|static

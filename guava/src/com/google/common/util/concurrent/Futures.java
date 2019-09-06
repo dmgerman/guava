@@ -262,6 +262,24 @@ name|com
 operator|.
 name|google
 operator|.
+name|common
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|ImmediateFuture
+operator|.
+name|ImmediateSuccessfulFuture
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
 name|errorprone
 operator|.
 name|annotations
@@ -521,11 +539,15 @@ operator|==
 literal|null
 condition|)
 block|{
-comment|// This cast is safe because null is assignable to V for all V (i.e. it is bivariant)
+comment|// This cast is safe because null is assignable to V for all V (i.e. it is covariant)
 annotation|@
 name|SuppressWarnings
 argument_list|(
+block|{
 literal|"unchecked"
+block|,
+literal|"rawtypes"
+block|}
 argument_list|)
 name|ListenableFuture
 argument_list|<
@@ -535,11 +557,8 @@ name|typedNull
 init|=
 operator|(
 name|ListenableFuture
-argument_list|<
-name|V
-argument_list|>
 operator|)
-name|ImmediateFuture
+name|ImmediateSuccessfulFuture
 operator|.
 name|NULL
 decl_stmt|;
@@ -549,8 +568,10 @@ return|;
 block|}
 return|return
 operator|new
-name|ImmediateFuture
-argument_list|<>
+name|ImmediateSuccessfulFuture
+argument_list|<
+name|V
+argument_list|>
 argument_list|(
 name|value
 argument_list|)
