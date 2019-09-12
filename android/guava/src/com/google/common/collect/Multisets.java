@@ -4643,6 +4643,9 @@ name|multiset
 init|=
 operator|(
 name|Multiset
+argument_list|<
+name|Object
+argument_list|>
 operator|)
 name|multiset
 argument_list|()

@@ -16869,6 +16869,11 @@ name|e
 init|=
 operator|(
 name|ReferenceEntry
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
 operator|)
 name|o
 decl_stmt|;
@@ -16944,6 +16949,11 @@ name|e
 init|=
 operator|(
 name|ReferenceEntry
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
 operator|)
 name|o
 decl_stmt|;
@@ -17495,6 +17505,11 @@ name|e
 init|=
 operator|(
 name|ReferenceEntry
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
 operator|)
 name|o
 decl_stmt|;
@@ -17570,6 +17585,11 @@ name|e
 init|=
 operator|(
 name|ReferenceEntry
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
 operator|)
 name|o
 decl_stmt|;

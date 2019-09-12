@@ -629,7 +629,6 @@ argument_list|(
 literal|"unchecked"
 argument_list|)
 comment|// covariant casts safe (unmodifiable)
-comment|// Eclipse won't compile if we cast to the parameterized type.
 name|ImmutableClassToInstanceMap
 argument_list|<
 name|B
@@ -638,6 +637,9 @@ name|cast
 init|=
 operator|(
 name|ImmutableClassToInstanceMap
+argument_list|<
+name|B
+argument_list|>
 operator|)
 name|map
 decl_stmt|;

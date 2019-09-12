@@ -14480,6 +14480,11 @@ name|result
 init|=
 operator|(
 name|NavigableMap
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
 operator|)
 name|map
 decl_stmt|;

@@ -18062,6 +18062,9 @@ name|reference
 init|=
 operator|(
 name|Reference
+argument_list|<
+name|Object
+argument_list|>
 operator|)
 name|entry
 decl_stmt|;
@@ -18283,6 +18286,9 @@ name|reference
 init|=
 operator|(
 name|Reference
+argument_list|<
+name|Object
+argument_list|>
 operator|)
 name|valueReference
 decl_stmt|;
@@ -18484,6 +18490,9 @@ name|reference
 init|=
 operator|(
 name|Reference
+argument_list|<
+name|Object
+argument_list|>
 operator|)
 name|entry
 decl_stmt|;
@@ -18712,6 +18721,9 @@ name|reference
 init|=
 operator|(
 name|Reference
+argument_list|<
+name|Object
+argument_list|>
 operator|)
 name|valueReference
 decl_stmt|;

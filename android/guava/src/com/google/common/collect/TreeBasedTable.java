@@ -775,11 +775,7 @@ comment|// pretend we can compare anything
 annotation|@
 name|SuppressWarnings
 argument_list|(
-block|{
-literal|"rawtypes"
-block|,
 literal|"unchecked"
-block|}
 argument_list|)
 name|Comparator
 argument_list|<
@@ -789,6 +785,9 @@ name|cmp
 init|=
 operator|(
 name|Comparator
+argument_list|<
+name|Object
+argument_list|>
 operator|)
 name|comparator
 argument_list|()

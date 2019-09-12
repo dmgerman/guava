@@ -1187,6 +1187,9 @@ name|extremeValues
 init|=
 operator|(
 name|List
+argument_list|<
+name|E
+argument_list|>
 operator|)
 name|getExtremeValues
 argument_list|()
@@ -1205,6 +1208,9 @@ name|normalValues
 init|=
 operator|(
 name|List
+argument_list|<
+name|E
+argument_list|>
 operator|)
 name|Arrays
 operator|.

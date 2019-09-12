@@ -2474,6 +2474,11 @@ name|entry
 init|=
 operator|(
 name|ReferenceEntry
+argument_list|<
+name|Integer
+argument_list|,
+name|Integer
+argument_list|>
 operator|)
 name|originalHead
 decl_stmt|;

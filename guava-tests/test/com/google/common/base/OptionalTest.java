@@ -1893,6 +1893,9 @@ name|first
 init|=
 operator|(
 name|Optional
+argument_list|<
+name|Number
+argument_list|>
 operator|)
 name|numbers
 operator|.
