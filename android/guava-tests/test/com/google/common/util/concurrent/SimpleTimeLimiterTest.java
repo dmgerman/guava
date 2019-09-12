@@ -174,7 +174,7 @@ specifier|final
 name|long
 name|ENOUGH_MS
 init|=
-literal|500
+literal|10000
 decl_stmt|;
 DECL|field|NOT_ENOUGH_MS
 specifier|private

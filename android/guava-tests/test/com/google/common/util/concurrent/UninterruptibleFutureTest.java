@@ -389,7 +389,7 @@ name|delayedFuture
 operator|.
 name|get
 argument_list|(
-literal|10000
+literal|20000
 argument_list|,
 name|TimeUnit
 operator|.

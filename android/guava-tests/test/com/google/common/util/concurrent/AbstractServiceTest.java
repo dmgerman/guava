@@ -275,7 +275,7 @@ specifier|final
 name|long
 name|LONG_TIMEOUT_MILLIS
 init|=
-literal|2500
+literal|10000
 decl_stmt|;
 DECL|field|executionThread
 specifier|private
