@@ -1966,6 +1966,10 @@ throw|;
 block|}
 DECL|field|entries
 annotation|@
+name|LazyInit
+annotation|@
+name|RetainedWith
+annotation|@
 name|MonotonicNonNullDecl
 specifier|private
 specifier|transient

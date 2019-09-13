@@ -2305,6 +2305,10 @@ argument_list|()
 throw|;
 block|}
 DECL|field|entries
+annotation|@
+name|LazyInit
+annotation|@
+name|RetainedWith
 specifier|private
 specifier|transient
 annotation|@
