@@ -5034,6 +5034,38 @@ name|expected
 parameter_list|)
 block|{     }
 block|}
+comment|/**    * Testing the behavior in https://github.com/google/guava/issues/1900 - this behavior may want to    * be changed?    */
+DECL|method|testMapSplitter_extraValueDelimiter ()
+specifier|public
+name|void
+name|testMapSplitter_extraValueDelimiter
+parameter_list|()
+block|{
+try|try
+block|{
+name|COMMA_SPLITTER
+operator|.
+name|withKeyValueSeparator
+argument_list|(
+literal|"="
+argument_list|)
+operator|.
+name|split
+argument_list|(
+literal|"a=1,c=2="
+argument_list|)
+expr_stmt|;
+name|fail
+argument_list|()
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|IllegalArgumentException
+name|expected
+parameter_list|)
+block|{     }
+block|}
 DECL|method|testMapSplitter_orderedResults ()
 specifier|public
 name|void
