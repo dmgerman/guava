@@ -3508,6 +3508,10 @@ name|Whitespace
 extends|extends
 name|NamedFastMatcher
 block|{
+comment|// TABLE is a precomputed hashset of whitespace characters. MULTIPLIER serves as a hash function
+comment|// whose key property is that it maps 25 characters into the 32-slot table without collision.
+comment|// Basically this is an opportunistic fast implementation as opposed to "good code". For most
+comment|// other use-cases, the reduction in readability isn't worth it.
 DECL|field|TABLE
 specifier|static
 specifier|final
