@@ -162,30 +162,6 @@ name|Pattern
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|stream
-operator|.
-name|Stream
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|stream
-operator|.
-name|StreamSupport
-import|;
-end_import
-
 begin_comment
 comment|/**  * Extracts non-overlapping substrings from an input string, typically by recognizing appearances of  * a<i>separator</i> sequence. This separator can be specified as a single {@linkplain #on(char)  * character}, fixed {@linkplain #on(String) string}, {@linkplain #onPattern regular expression} or  * {@link #on(CharMatcher) CharMatcher} instance. Or, instead of using a separator at all, a  * splitter can extract adjacent substrings of a given {@linkplain #fixedLength fixed length}.  *  *<p>For example, this expression:  *  *<pre>{@code  * Splitter.on(',').split("foo,bar,qux")  * }</pre>  *  * ... produces an {@code Iterable} containing {@code "foo"}, {@code "bar"} and {@code "qux"}, in  * that order.  *  *<p>By default, {@code Splitter}'s behavior is simplistic and unassuming. The following  * expression:  *  *<pre>{@code  * Splitter.on(',').split(" foo,,,  bar ,")  * }</pre>  *  * ... yields the substrings {@code [" foo", "", "", " bar ", ""]}. If this is not the desired  * behavior, use configuration methods to obtain a<i>new</i> splitter instance with modified  * behavior:  *  *<pre>{@code  * private static final Splitter MY_SPLITTER = Splitter.on(',')  *     .trimResults()  *     .omitEmptyStrings();  * }</pre>  *  *<p>Now {@code MY_SPLITTER.split("foo,,, bar ,")} returns just {@code ["foo", "bar"]}. Note that  * the order in which these configuration methods are called is never significant.  *  *<p><b>Warning:</b> Splitter instances are immutable. Invoking a configuration method has no  * effect on the receiving instance; you must store and use the new splitter instance it returns  * instead.  *  *<pre>{@code  * // Do NOT do this  * Splitter splitter = Splitter.on('/');  * splitter.trimResults(); // does nothing!  * return splitter.split("wrong / wrong / wrong");  * }</pre>  *  *<p>For separator-based splitters that do not use {@code omitEmptyStrings}, an input string  * containing {@code n} occurrences of the separator naturally yields an iterable of size {@code n +  * 1}. So if the separator does not occur anywhere in the input, a single substring is returned  * containing the entire input. Consequently, all splitters split the empty string to {@code [""]}  * (note: even fixed-length splitters).  *  *<p>Splitter instances are thread-safe immutable, and are therefore safe to store as {@code static  * final} constants.  *  *<p>The {@link Joiner} class provides the inverse operation to splitting, but note that a  * round-trip between the two should be assumed to be lossy.  *  *<p>See the Guava User Guide article on<a  * href="https://github.com/google/guava/wiki/StringsExplained#splitter">{@code Splitter}</a>.  *  * @author Julien Silland  * @author Jesse Wilson  * @author Kevin Bourrillion  * @author Louis Wasserman  * @since 1.0  */
 end_comment
@@ -986,7 +962,7 @@ name|limit
 argument_list|)
 return|;
 block|}
-comment|/**    * Splits {@code sequence} into string components and makes them available through an {@link    * Iterator}, which may be lazily evaluated. If you want an eagerly computed {@link List}, use    * {@link #splitToList(CharSequence)}. Java 8 users may prefer {@link #splitToStream} instead.    *    * @param sequence the sequence of characters to split    * @return an iteration over the segments split from the parameter    */
+comment|/**    * Splits {@code sequence} into string components and makes them available through an {@link    * Iterator}, which may be lazily evaluated. If you want an eagerly computed {@link List}, use    * {@link #splitToList(CharSequence)}.    *    * @param sequence the sequence of characters to split    * @return an iteration over the segments split from the parameter    */
 DECL|method|split (final CharSequence sequence)
 specifier|public
 name|Iterable
@@ -1159,39 +1135,6 @@ operator|.
 name|unmodifiableList
 argument_list|(
 name|result
-argument_list|)
-return|;
-block|}
-comment|/**    * Splits {@code sequence} into string components and makes them available through an {@link    * Stream}, which may be lazily evaluated. If you want an eagerly computed {@link List}, use    * {@link #splitToList(CharSequence)}.    *    * @param sequence the sequence of characters to split    * @return a stream over the segments split from the parameter    * @since NEXT    */
-annotation|@
-name|Beta
-DECL|method|splitToStream (CharSequence sequence)
-specifier|public
-name|Stream
-argument_list|<
-name|String
-argument_list|>
-name|splitToStream
-parameter_list|(
-name|CharSequence
-name|sequence
-parameter_list|)
-block|{
-comment|// Can't use Streams.stream() from base
-return|return
-name|StreamSupport
-operator|.
-name|stream
-argument_list|(
-name|split
-argument_list|(
-name|sequence
-argument_list|)
-operator|.
-name|spliterator
-argument_list|()
-argument_list|,
-literal|false
 argument_list|)
 return|;
 block|}
