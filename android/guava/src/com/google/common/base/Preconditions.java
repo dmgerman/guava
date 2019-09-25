@@ -4077,7 +4077,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**    * Ensures that {@code start} and {@code end} specify valid<i>positions</i> in an array, list or    * string of size {@code size}, and are in order. A position index may range from zero to {@code    * size}, inclusive.    *    * @param start a user-supplied index identifying a starting position in an array, list or string    * @param end a user-supplied index identifying a ending position in an array, list or string    * @param size the size of that array, list or string    * @throws IndexOutOfBoundsException if either index is negative or is greater than {@code size},    *     or if {@code end} is less than {@code start}    * @throws IllegalArgumentException if {@code size} is negative    */
+comment|/**    * Ensures that {@code start} and {@code end} specify valid<i>positions</i> in an array, list or    * string of size {@code size}, and are in order. A position index may range from zero to {@code    * size}, inclusive.    *    * @param start a user-supplied index identifying a starting position in an array, list or string    * @param end a user-supplied index identifying an ending position in an array, list or string    * @param size the size of that array, list or string    * @throws IndexOutOfBoundsException if either index is negative or is greater than {@code size},    *     or if {@code end} is less than {@code start}    * @throws IllegalArgumentException if {@code size} is negative    */
 DECL|method|checkPositionIndexes (int start, int end, int size)
 specifier|public
 specifier|static
