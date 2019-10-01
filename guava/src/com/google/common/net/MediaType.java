@@ -453,7 +453,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Represents an<a href="http://en.wikipedia.org/wiki/Internet_media_type">Internet Media Type</a>  * (also known as a MIME Type or Content Type). This class also supports the concept of media ranges  *<a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.1">defined by HTTP/1.1</a>.  * As such, the {@code *} character is treated as a wildcard and is used to represent any acceptable  * type or subtype value. A media type may not have wildcard type with a declared subtype. The  * {@code *} character has no special meaning as part of a parameter. All values for type, subtype,  * parameter attributes or parameter values must be valid according to RFCs<a  * href="http://www.ietf.org/rfc/rfc2045.txt">2045</a> and<a  * href="http://www.ietf.org/rfc/rfc2046.txt">2046</a>.  *  *<p>All portions of the media type that are case-insensitive (type, subtype, parameter attributes)  * are normalized to lowercase. The value of the {@code charset} parameter is normalized to  * lowercase, but all others are left as-is.  *  *<p>Note that this specifically does<strong>not</strong> represent the value of the MIME {@code  * Content-Type} header and as such has no support for header-specific considerations such as line  * folding and comments.  *  *<p>For media types that take a charset the predefined constants default to UTF-8 and have a  * "_UTF_8" suffix. To get a version without a character set, use {@link #withoutParameters}.  *  * @since 12.0  * @author Gregory Kick  */
+comment|/**  * Represents an<a href="http://en.wikipedia.org/wiki/Internet_media_type">Internet Media Type</a>  * (also known as a MIME Type or Content Type). This class also supports the concept of media ranges  *<a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.1">defined by HTTP/1.1</a>.  * As such, the {@code *} character is treated as a wildcard and is used to represent any acceptable  * type or subtype value. A media type may not have wildcard type with a declared subtype. The  * {@code *} character has no special meaning as part of a parameter. All values for type, subtype,  * parameter attributes or parameter values must be valid according to RFCs<a  * href="https://tools.ietf.org/html/rfc2045">2045</a> and<a  * href="https://tools.ietf.org/html/rfc2046">2046</a>.  *  *<p>All portions of the media type that are case-insensitive (type, subtype, parameter attributes)  * are normalized to lowercase. The value of the {@code charset} parameter is normalized to  * lowercase, but all others are left as-is.  *  *<p>Note that this specifically does<strong>not</strong> represent the value of the MIME {@code  * Content-Type} header and as such has no support for header-specific considerations such as line  * folding and comments.  *  *<p>For media types that take a charset the predefined constants default to UTF-8 and have a  * "_UTF_8" suffix. To get a version without a character set, use {@link #withoutParameters}.  *  * @since 12.0  * @author Gregory Kick  */
 end_comment
 
 begin_class
@@ -3345,6 +3345,27 @@ name|String
 name|value
 parameter_list|)
 block|{
+name|checkNotNull
+argument_list|(
+name|value
+argument_list|)
+expr_stmt|;
+comment|// for GWT
+name|checkArgument
+argument_list|(
+name|ascii
+argument_list|()
+operator|.
+name|matchesAllOf
+argument_list|(
+name|value
+argument_list|)
+argument_list|,
+literal|"parameter values must be ASCII: %s"
+argument_list|,
+name|value
+argument_list|)
+expr_stmt|;
 return|return
 name|CHARSET_ATTRIBUTE
 operator|.
@@ -4124,12 +4145,20 @@ name|value
 parameter_list|)
 block|{
 return|return
+operator|(
 name|TOKEN_MATCHER
 operator|.
 name|matchesAllOf
 argument_list|(
 name|value
 argument_list|)
+operator|&&
+operator|!
+name|value
+operator|.
+name|isEmpty
+argument_list|()
+operator|)
 condition|?
 name|value
 else|:
