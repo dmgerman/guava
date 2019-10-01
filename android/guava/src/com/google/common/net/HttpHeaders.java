@@ -512,7 +512,7 @@ init|=
 literal|"unsafe-url"
 decl_stmt|;
 block|}
-comment|/**    * The HTTP<a href="https://www.w3.org/TR/service-workers/#update-algorithm">{@code    * Service-Worker}</a> header field name.    */
+comment|/**    * The HTTP<a href="https://www.w3.org/TR/service-workers/#update-algorithm">{@code    * Service-Worker}</a> header field name.    *    * @since 20.0    */
 DECL|field|SERVICE_WORKER
 specifier|public
 specifier|static
