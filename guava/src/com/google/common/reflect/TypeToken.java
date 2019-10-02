@@ -5274,13 +5274,14 @@ index|[]
 name|lowerBounds
 parameter_list|)
 block|{
-for|for
-control|(
-name|Type
-name|lowerBound
-range|:
+if|if
+condition|(
 name|lowerBounds
-control|)
+operator|.
+name|length
+operator|>
+literal|0
+condition|)
 block|{
 annotation|@
 name|SuppressWarnings
@@ -5306,7 +5307,10 @@ argument_list|>
 operator|)
 name|of
 argument_list|(
-name|lowerBound
+name|lowerBounds
+index|[
+literal|0
+index|]
 argument_list|)
 decl_stmt|;
 comment|// Java supports only one lowerbound anyway.
