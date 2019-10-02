@@ -174,7 +174,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|HashMap
+name|LinkedHashMap
 import|;
 end_import
 
@@ -765,7 +765,7 @@ operator|=
 name|indexes
 expr_stmt|;
 block|}
-comment|/**      * Computes the quantile values of the given dataset.      *      * @param dataset the dataset to do the calculation on, which must be non-empty, which will be      *     cast to doubles (with any associated lost of precision), and which will not be mutated by      *     this call (it is copied instead)      * @return an unmodifiable map of results: the keys will be the specified quantile indexes, and      *     the values the corresponding quantile values      */
+comment|/**      * Computes the quantile values of the given dataset.      *      * @param dataset the dataset to do the calculation on, which must be non-empty, which will be      *     cast to doubles (with any associated lost of precision), and which will not be mutated by      *     this call (it is copied instead)      * @return an unmodifiable, ordered map of results: the keys will be the specified quantile      *     indexes, and the values the corresponding quantile values. When iterating, entries in the      *     map are ordered by quantile index in the same order they were passed to the {@code      *     indexes} method.      */
 DECL|method|compute (Collection<? extends Number> dataset)
 specifier|public
 name|Map
@@ -797,7 +797,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**      * Computes the quantile values of the given dataset.      *      * @param dataset the dataset to do the calculation on, which must be non-empty, which will not      *     be mutated by this call (it is copied instead)      * @return an unmodifiable map of results: the keys will be the specified quantile indexes, and      *     the values the corresponding quantile values      */
+comment|/**      * Computes the quantile values of the given dataset.      *      * @param dataset the dataset to do the calculation on, which must be non-empty, which will not      *     be mutated by this call (it is copied instead)      * @return an unmodifiable, ordered map of results: the keys will be the specified quantile      *     indexes, and the values the corresponding quantile values. When iterating, entries in the      *     map are ordered by quantile index in the same order they were passed to the {@code      *     indexes} method.      */
 DECL|method|compute (double... dataset)
 specifier|public
 name|Map
@@ -823,7 +823,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**      * Computes the quantile values of the given dataset.      *      * @param dataset the dataset to do the calculation on, which must be non-empty, which will be      *     cast to doubles (with any associated lost of precision), and which will not be mutated by      *     this call (it is copied instead)      * @return an unmodifiable map of results: the keys will be the specified quantile indexes, and      *     the values the corresponding quantile values      */
+comment|/**      * Computes the quantile values of the given dataset.      *      * @param dataset the dataset to do the calculation on, which must be non-empty, which will be      *     cast to doubles (with any associated lost of precision), and which will not be mutated by      *     this call (it is copied instead)      * @return an unmodifiable, ordered map of results: the keys will be the specified quantile      *     indexes, and the values the corresponding quantile values. When iterating, entries in the      *     map are ordered by quantile index in the same order they were passed to the {@code      *     indexes} method.      */
 DECL|method|compute (long... dataset)
 specifier|public
 name|Map
@@ -849,7 +849,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**      * Computes the quantile values of the given dataset.      *      * @param dataset the dataset to do the calculation on, which must be non-empty, which will be      *     cast to doubles, and which will not be mutated by this call (it is copied instead)      * @return an unmodifiable map of results: the keys will be the specified quantile indexes, and      *     the values the corresponding quantile values      */
+comment|/**      * Computes the quantile values of the given dataset.      *      * @param dataset the dataset to do the calculation on, which must be non-empty, which will be      *     cast to doubles, and which will not be mutated by this call (it is copied instead)      * @return an unmodifiable, ordered map of results: the keys will be the specified quantile      *     indexes, and the values the corresponding quantile values. When iterating, entries in the      *     map are ordered by quantile index in the same order they were passed to the {@code      *     indexes} method.      */
 DECL|method|compute (int... dataset)
 specifier|public
 name|Map
@@ -875,7 +875,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**      * Computes the quantile values of the given dataset, performing the computation in-place.      *      * @param dataset the dataset to do the calculation on, which must be non-empty, and which will      *     be arbitrarily reordered by this method call      * @return an unmodifiable map of results: the keys will be the specified quantile indexes, and      *     the values the corresponding quantile values      */
+comment|/**      * Computes the quantile values of the given dataset, performing the computation in-place.      *      * @param dataset the dataset to do the calculation on, which must be non-empty, and which will      *     be arbitrarily reordered by this method call      * @return an unmodifiable, ordered map of results: the keys will be the specified quantile      *     indexes, and the values the corresponding quantile values. When iterating, entries in the      *     map are ordered by quantile index in the same order that the indexes were passed to the      *     {@code indexes} method.      */
 DECL|method|computeInPlace (double... dataset)
 specifier|public
 name|Map
@@ -919,7 +919,7 @@ argument_list|>
 name|nanMap
 init|=
 operator|new
-name|HashMap
+name|LinkedHashMap
 argument_list|<>
 argument_list|()
 decl_stmt|;
@@ -1158,7 +1158,7 @@ argument_list|>
 name|ret
 init|=
 operator|new
-name|HashMap
+name|LinkedHashMap
 argument_list|<>
 argument_list|()
 decl_stmt|;
