@@ -421,10 +421,7 @@ argument_list|(
 operator|new
 name|Annotation
 index|[
-name|annotations
-operator|.
-name|size
-argument_list|()
+literal|0
 index|]
 argument_list|)
 return|;
