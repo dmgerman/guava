@@ -330,7 +330,7 @@ name|index
 argument_list|)
 return|;
 block|}
-comment|/**      * Specifies multiple quantile indexes to be calculated, each index being the k in the kth      * q-quantile.      *      * @param indexes the quantile indexes, each of which must be in the inclusive range [0, q] for      *     q-quantiles; the order of the indexes is unimportant, duplicates will be ignored, and the      *     set will be snapshotted when this method is called      */
+comment|/**      * Specifies multiple quantile indexes to be calculated, each index being the k in the kth      * q-quantile.      *      * @param indexes the quantile indexes, each of which must be in the inclusive range [0, q] for      *     q-quantiles; the order of the indexes is unimportant, duplicates will be ignored, and the      *     set will be snapshotted when this method is called      * @throws IllegalArgumentException if {@code indexes} is empty      */
 DECL|method|indexes (int... indexes)
 specifier|public
 name|ScaleAndIndexes
@@ -354,7 +354,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**      * Specifies multiple quantile indexes to be calculated, each index being the k in the kth      * q-quantile.      *      * @param indexes the quantile indexes, each of which must be in the inclusive range [0, q] for      *     q-quantiles; the order of the indexes is unimportant, duplicates will be ignored, and the      *     set will be snapshotted when this method is called      */
+comment|/**      * Specifies multiple quantile indexes to be calculated, each index being the k in the kth      * q-quantile.      *      * @param indexes the quantile indexes, each of which must be in the inclusive range [0, q] for      *     q-quantiles; the order of the indexes is unimportant, duplicates will be ignored, and the      *     set will be snapshotted when this method is called      * @throws IllegalArgumentException if {@code indexes} is empty      */
 DECL|method|indexes (Collection<Integer> indexes)
 specifier|public
 name|ScaleAndIndexes
@@ -741,6 +741,17 @@ name|scale
 argument_list|)
 expr_stmt|;
 block|}
+name|checkArgument
+argument_list|(
+name|indexes
+operator|.
+name|length
+operator|>
+literal|0
+argument_list|,
+literal|"Indexes must be a non empty array"
+argument_list|)
+expr_stmt|;
 name|this
 operator|.
 name|scale

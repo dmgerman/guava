@@ -4441,6 +4441,50 @@ name|expected
 parameter_list|)
 block|{     }
 block|}
+DECL|method|testScale_indexes_indexes_computeInPlace_empty ()
+specifier|public
+name|void
+name|testScale_indexes_indexes_computeInPlace_empty
+parameter_list|()
+block|{
+name|int
+index|[]
+name|emptyIndexes
+init|=
+block|{}
+decl_stmt|;
+try|try
+block|{
+name|Quantiles
+operator|.
+name|ScaleAndIndexes
+name|unused
+init|=
+name|Quantiles
+operator|.
+name|scale
+argument_list|(
+literal|10
+argument_list|)
+operator|.
+name|indexes
+argument_list|(
+name|emptyIndexes
+argument_list|)
+decl_stmt|;
+name|fail
+argument_list|(
+literal|"Expected IllegalArgumentException"
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|IllegalArgumentException
+name|expected
+parameter_list|)
+block|{     }
+block|}
 block|}
 end_class
 
