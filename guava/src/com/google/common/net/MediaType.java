@@ -1912,6 +1912,21 @@ argument_list|,
 literal|"msword"
 argument_list|)
 decl_stmt|;
+comment|/**    * Media type for<a    * href="https://en.wikipedia.org/wiki/Dynamic_Adaptive_Streaming_over_HTTP">Dynamic Adaptive    * Streaming over HTTP (DASH)</a>. This is<a    * href="https://www.iana.org/assignments/media-types/application/dash+xml">registered</a> with    * the IANA.    *    * @since NEXT    */
+DECL|field|MEDIA_PRESENTATION_DESCRIPTION
+specifier|public
+specifier|static
+specifier|final
+name|MediaType
+name|MEDIA_PRESENTATION_DESCRIPTION
+init|=
+name|createConstant
+argument_list|(
+name|APPLICATION_TYPE
+argument_list|,
+literal|"dash+xml"
+argument_list|)
+decl_stmt|;
 comment|/**    * WASM applications. For more information see<a href="https://webassembly.org/">the Web Assembly    * overview</a>.    *    * @since 27.0    */
 DECL|field|WASM_APPLICATION
 specifier|public
