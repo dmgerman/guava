@@ -773,6 +773,16 @@ name|X_WEBKIT_CSP_REPORT_ONLY
 init|=
 literal|"X-WebKit-CSP-Report-Only"
 decl_stmt|;
+comment|/**    * The HTTP Cross-Origin-Opener-Policy header field name.    *    * @since NEXT    */
+DECL|field|CROSS_ORIGIN_OPENER_POLICY
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|CROSS_ORIGIN_OPENER_POLICY
+init|=
+literal|"Cross-Origin-Opener-Policy"
+decl_stmt|;
 comment|/** The HTTP {@code ETag} header field name. */
 DECL|field|ETAG
 specifier|public
