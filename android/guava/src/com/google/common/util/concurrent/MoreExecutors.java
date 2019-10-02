@@ -2578,7 +2578,7 @@ return|return
 name|future
 return|;
 block|}
-comment|/**    * Returns a default thread factory used to create new threads.    *    *<p>On AppEngine, returns {@code ThreadManager.currentRequestThreadFactory()}. Otherwise,    * returns {@link Executors#defaultThreadFactory()}.    *    * @since 14.0    */
+comment|/**    * Returns a default thread factory used to create new threads.    *    *<p>When running on AppEngine with access to<a    * href="https://cloud.google.com/appengine/docs/standard/java/javadoc/">AppEngine legacy    * APIs</a>, this method returns {@code ThreadManager.currentRequestThreadFactory()}. Otherwise,    * it returns {@link Executors#defaultThreadFactory()}.    *    * @since 14.0    */
 annotation|@
 name|Beta
 annotation|@
@@ -2594,7 +2594,7 @@ block|{
 if|if
 condition|(
 operator|!
-name|isAppEngine
+name|isAppEngineWithApiClasses
 argument_list|()
 condition|)
 block|{
@@ -2700,11 +2700,11 @@ block|}
 annotation|@
 name|GwtIncompatible
 comment|// TODO
-DECL|method|isAppEngine ()
+DECL|method|isAppEngineWithApiClasses ()
 specifier|private
 specifier|static
 name|boolean
-name|isAppEngine
+name|isAppEngineWithApiClasses
 parameter_list|()
 block|{
 if|if
@@ -2718,6 +2718,26 @@ argument_list|)
 operator|==
 literal|null
 condition|)
+block|{
+return|return
+literal|false
+return|;
+block|}
+try|try
+block|{
+name|Class
+operator|.
+name|forName
+argument_list|(
+literal|"com.google.appengine.api.utils.SystemProperty"
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|ClassNotFoundException
+name|e
+parameter_list|)
 block|{
 return|return
 literal|false
@@ -2885,17 +2905,6 @@ argument_list|(
 name|nameSupplier
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|isAppEngine
-argument_list|()
-condition|)
-block|{
-comment|// AppEngine doesn't support thread renaming, so don't even try
-return|return
-name|executor
-return|;
-block|}
 return|return
 operator|new
 name|Executor
@@ -2960,17 +2969,6 @@ argument_list|(
 name|nameSupplier
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|isAppEngine
-argument_list|()
-condition|)
-block|{
-comment|// AppEngine doesn't support thread renaming, so don't even try.
-return|return
-name|service
-return|;
-block|}
 return|return
 operator|new
 name|WrappingExecutorService
@@ -3063,17 +3061,6 @@ argument_list|(
 name|nameSupplier
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|isAppEngine
-argument_list|()
-condition|)
-block|{
-comment|// AppEngine doesn't support thread renaming, so don't even try.
-return|return
-name|service
-return|;
-block|}
 return|return
 operator|new
 name|WrappingScheduledExecutorService
