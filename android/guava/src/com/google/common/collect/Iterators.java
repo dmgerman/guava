@@ -3938,7 +3938,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/**    * Adapts an {@code Enumeration} to the {@code Iterator} interface.    *    *<p>This method has no equivalent in {@link Iterables} because viewing an {@code Enumeration} as    * an {@code Iterable} is impossible. However, the contents can be<i>copied</i> into a collection    * using {@link Collections#list}.    */
+comment|/**    * Adapts an {@code Enumeration} to the {@code Iterator} interface.    *    *<p>This method has no equivalent in {@link Iterables} because viewing an {@code Enumeration} as    * an {@code Iterable} is impossible. However, the contents can be<i>copied</i> into a collection    * using {@link Collections#list}.    *    *<p><b>Java 9 users:</b> use {@code enumeration.asIterator()} instead, unless it is important to    * return an {@code UnmodifiableIterator} instead of a plain {@code Iterator}.    */
 DECL|method|forEnumeration (final Enumeration<T> enumeration)
 specifier|public
 specifier|static
