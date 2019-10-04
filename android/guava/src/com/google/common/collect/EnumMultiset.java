@@ -649,10 +649,6 @@ parameter_list|)
 block|{
 if|if
 condition|(
-name|element
-operator|==
-literal|null
-operator|||
 operator|!
 name|isActuallyE
 argument_list|(
@@ -820,10 +816,6 @@ parameter_list|)
 block|{
 if|if
 condition|(
-name|element
-operator|==
-literal|null
-operator|||
 operator|!
 name|isActuallyE
 argument_list|(
