@@ -66,6 +66,22 @@ name|com
 operator|.
 name|google
 operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|concurrent
+operator|.
+name|LazyInit
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
 name|j2objc
 operator|.
 name|annotations
@@ -476,6 +492,8 @@ function_decl|;
 comment|// Views
 DECL|field|elementSet
 annotation|@
+name|LazyInit
+annotation|@
 name|MonotonicNonNullDecl
 specifier|private
 specifier|transient
@@ -594,6 +612,8 @@ name|elementIterator
 parameter_list|()
 function_decl|;
 DECL|field|entrySet
+annotation|@
+name|LazyInit
 annotation|@
 name|MonotonicNonNullDecl
 specifier|private

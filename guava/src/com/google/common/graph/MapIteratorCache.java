@@ -153,12 +153,11 @@ name|V
 argument_list|>
 name|backingMap
 decl_stmt|;
-comment|// Per JDK: "the behavior of a map entry is undefined if the backing map has been modified after
-comment|// the entry was returned by the iterator, except through the setValue operation on the map entry"
-comment|// As such, this field must be cleared before every map mutation.
-DECL|field|entrySetCache
+comment|/*    * Per JDK: "the behavior of a map entry is undefined if the backing map has been modified after    * the entry was returned by the iterator, except through the setValue operation on the map entry"    * As such, this field must be cleared before every map mutation.    *    * Note about volatile: volatile doesn't make it safe to read from a mutable graph in one thread    * while writing to it in another. All it does is help with _reading_ from multiple threads    * concurrently. For more information, see AbstractNetworkTest.concurrentIteration.    */
+DECL|field|cacheEntry
 specifier|private
 specifier|transient
+specifier|volatile
 annotation|@
 name|Nullable
 name|Entry
@@ -167,7 +166,7 @@ name|K
 argument_list|,
 name|V
 argument_list|>
-name|entrySetCache
+name|cacheEntry
 decl_stmt|;
 DECL|method|MapIteratorCache (Map<K, V> backingMap)
 name|MapIteratorCache
@@ -195,6 +194,7 @@ annotation|@
 name|CanIgnoreReturnValue
 DECL|method|put (@ullable K key, @Nullable V value)
 specifier|public
+specifier|final
 name|V
 name|put
 parameter_list|(
@@ -227,6 +227,7 @@ annotation|@
 name|CanIgnoreReturnValue
 DECL|method|remove (@ullable Object key)
 specifier|public
+specifier|final
 name|V
 name|remove
 parameter_list|(
@@ -250,6 +251,7 @@ return|;
 block|}
 DECL|method|clear ()
 specifier|public
+specifier|final
 name|void
 name|clear
 parameter_list|()
@@ -437,7 +439,7 @@ name|next
 argument_list|()
 decl_stmt|;
 comment|// store local reference for thread-safety
-name|entrySetCache
+name|cacheEntry
 operator|=
 name|entry
 expr_stmt|;
@@ -507,7 +509,7 @@ name|V
 argument_list|>
 name|entry
 init|=
-name|entrySetCache
+name|cacheEntry
 decl_stmt|;
 comment|// store local reference for thread-safety
 comment|// Check cache. We use == on purpose because it's cheaper and a cache miss is ok.
@@ -542,7 +544,7 @@ name|void
 name|clearCache
 parameter_list|()
 block|{
-name|entrySetCache
+name|cacheEntry
 operator|=
 literal|null
 expr_stmt|;

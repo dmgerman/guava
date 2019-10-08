@@ -63,9 +63,11 @@ argument_list|,
 name|V
 argument_list|>
 block|{
+comment|// See the note about volatile in the superclass.
 DECL|field|cacheEntry1
 specifier|private
 specifier|transient
+specifier|volatile
 annotation|@
 name|Nullable
 name|CacheEntry
@@ -79,6 +81,7 @@ decl_stmt|;
 DECL|field|cacheEntry2
 specifier|private
 specifier|transient
+specifier|volatile
 annotation|@
 name|Nullable
 name|CacheEntry
