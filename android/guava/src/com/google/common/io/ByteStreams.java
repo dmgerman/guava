@@ -1912,14 +1912,14 @@ block|}
 comment|/**    * Returns a new {@link ByteArrayDataOutput} instance which writes to the given {@code    * ByteArrayOutputStream}. The given output stream is not reset before being written to by the    * returned {@code ByteArrayDataOutput} and new data will be appended to any existing content.    *    *<p>Note that if the given output stream was not empty or is modified after the {@code    * ByteArrayDataOutput} is created, the contract for {@link ByteArrayDataOutput#toByteArray} will    * not be honored (the bytes returned in the byte array may not be exactly what was written via    * calls to {@code ByteArrayDataOutput}).    *    * @since 17.0    */
 annotation|@
 name|Beta
-DECL|method|newDataOutput (ByteArrayOutputStream byteArrayOutputSteam)
+DECL|method|newDataOutput (ByteArrayOutputStream byteArrayOutputStream)
 specifier|public
 specifier|static
 name|ByteArrayDataOutput
 name|newDataOutput
 parameter_list|(
 name|ByteArrayOutputStream
-name|byteArrayOutputSteam
+name|byteArrayOutputStream
 parameter_list|)
 block|{
 return|return
@@ -1928,7 +1928,7 @@ name|ByteArrayDataOutputStream
 argument_list|(
 name|checkNotNull
 argument_list|(
-name|byteArrayOutputSteam
+name|byteArrayOutputStream
 argument_list|)
 argument_list|)
 return|;
@@ -1946,30 +1946,30 @@ specifier|final
 name|DataOutput
 name|output
 decl_stmt|;
-DECL|field|byteArrayOutputSteam
+DECL|field|byteArrayOutputStream
 specifier|final
 name|ByteArrayOutputStream
-name|byteArrayOutputSteam
+name|byteArrayOutputStream
 decl_stmt|;
-DECL|method|ByteArrayDataOutputStream (ByteArrayOutputStream byteArrayOutputSteam)
+DECL|method|ByteArrayDataOutputStream (ByteArrayOutputStream byteArrayOutputStream)
 name|ByteArrayDataOutputStream
 parameter_list|(
 name|ByteArrayOutputStream
-name|byteArrayOutputSteam
+name|byteArrayOutputStream
 parameter_list|)
 block|{
 name|this
 operator|.
-name|byteArrayOutputSteam
+name|byteArrayOutputStream
 operator|=
-name|byteArrayOutputSteam
+name|byteArrayOutputStream
 expr_stmt|;
 name|output
 operator|=
 operator|new
 name|DataOutputStream
 argument_list|(
-name|byteArrayOutputSteam
+name|byteArrayOutputStream
 argument_list|)
 expr_stmt|;
 block|}
@@ -2499,7 +2499,7 @@ name|toByteArray
 parameter_list|()
 block|{
 return|return
-name|byteArrayOutputSteam
+name|byteArrayOutputStream
 operator|.
 name|toByteArray
 argument_list|()
