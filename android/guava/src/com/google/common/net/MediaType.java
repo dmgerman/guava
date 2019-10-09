@@ -2098,6 +2098,21 @@ argument_list|,
 literal|"vnd.oasis.opendocument.text"
 argument_list|)
 decl_stmt|;
+comment|/**    *<a href="https://tools.ietf.org/id/draft-ellermann-opensearch-01.html">OpenSearch</a>    * Description files are XML files that describe how a website can be used as a search engine by    * consumers (e.g. web browsers).    *    * @since NEXT    */
+DECL|field|OPENSEARCH_DESCRIPTION_UTF_8
+specifier|public
+specifier|static
+specifier|final
+name|MediaType
+name|OPENSEARCH_DESCRIPTION_UTF_8
+init|=
+name|createConstantUtf8
+argument_list|(
+name|APPLICATION_TYPE
+argument_list|,
+literal|"opensearchdescription+xml"
+argument_list|)
+decl_stmt|;
 DECL|field|PDF
 specifier|public
 specifier|static
