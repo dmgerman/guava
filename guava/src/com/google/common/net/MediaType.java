@@ -3338,6 +3338,15 @@ name|token
 argument_list|)
 argument_list|)
 expr_stmt|;
+name|checkArgument
+argument_list|(
+operator|!
+name|token
+operator|.
+name|isEmpty
+argument_list|()
+argument_list|)
+expr_stmt|;
 return|return
 name|Ascii
 operator|.

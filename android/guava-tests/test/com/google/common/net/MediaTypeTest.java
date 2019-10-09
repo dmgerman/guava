@@ -931,10 +931,10 @@ name|expected
 parameter_list|)
 block|{     }
 block|}
-DECL|method|testCreate_nonAsciiParameter ()
+DECL|method|testCreate_nonAsciiType ()
 specifier|public
 name|void
-name|testCreate_nonAsciiParameter
+name|testCreate_nonAsciiType
 parameter_list|()
 block|{
 try|try
@@ -959,10 +959,10 @@ name|expected
 parameter_list|)
 block|{     }
 block|}
-DECL|method|testCreate_nonAsciiParameterValue ()
+DECL|method|testCreate_nonAsciiSubtype ()
 specifier|public
 name|void
-name|testCreate_nonAsciiParameterValue
+name|testCreate_nonAsciiSubtype
 parameter_list|()
 block|{
 try|try
@@ -974,6 +974,62 @@ argument_list|(
 literal|"a"
 argument_list|,
 literal|"â¦"
+argument_list|)
+expr_stmt|;
+name|fail
+argument_list|()
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|IllegalArgumentException
+name|expected
+parameter_list|)
+block|{     }
+block|}
+DECL|method|testCreate_emptyType ()
+specifier|public
+name|void
+name|testCreate_emptyType
+parameter_list|()
+block|{
+try|try
+block|{
+name|MediaType
+operator|.
+name|create
+argument_list|(
+literal|""
+argument_list|,
+literal|"a"
+argument_list|)
+expr_stmt|;
+name|fail
+argument_list|()
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|IllegalArgumentException
+name|expected
+parameter_list|)
+block|{     }
+block|}
+DECL|method|testCreate_emptySubtype ()
+specifier|public
+name|void
+name|testCreate_emptySubtype
+parameter_list|()
+block|{
+try|try
+block|{
+name|MediaType
+operator|.
+name|create
+argument_list|(
+literal|"a"
+argument_list|,
+literal|""
 argument_list|)
 expr_stmt|;
 name|fail
@@ -1806,6 +1862,44 @@ argument_list|(
 literal|"a"
 argument_list|,
 literal|"â¦"
+argument_list|)
+expr_stmt|;
+name|fail
+argument_list|()
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|IllegalArgumentException
+name|expected
+parameter_list|)
+block|{     }
+block|}
+DECL|method|testWithParameter_emptyParameter ()
+specifier|public
+name|void
+name|testWithParameter_emptyParameter
+parameter_list|()
+block|{
+name|MediaType
+name|mediaType
+init|=
+name|MediaType
+operator|.
+name|parse
+argument_list|(
+literal|"text/plain"
+argument_list|)
+decl_stmt|;
+try|try
+block|{
+name|mediaType
+operator|.
+name|withParameter
+argument_list|(
+literal|""
+argument_list|,
+literal|"a"
 argument_list|)
 expr_stmt|;
 name|fail
