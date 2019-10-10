@@ -132,6 +132,11 @@ parameter_list|()
 function_decl|;
 comment|/*    * Used by entries that use access order. Access entries are maintained in a doubly-linked list.    * New entries are added at the tail of the list at write time; stale entries are expired from    * the head of the list.    */
 comment|/** Returns the time that this entry was last accessed, in ns. */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"GoodTime"
+argument_list|)
 DECL|method|getAccessTime ()
 name|long
 name|getAccessTime
@@ -203,6 +208,11 @@ name|previous
 parameter_list|)
 function_decl|;
 comment|/*    * Implemented by entries that use write order. Write entries are maintained in a doubly-linked    * list. New entries are added at the tail of the list at write time and stale entries are    * expired from the head of the list.    */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"GoodTime"
+argument_list|)
 comment|/** Returns the time that this entry was last written, in ns. */
 DECL|method|getWriteTime ()
 name|long

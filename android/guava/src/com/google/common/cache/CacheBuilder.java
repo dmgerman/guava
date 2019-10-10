@@ -1761,6 +1761,12 @@ return|return
 name|this
 return|;
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"GoodTime"
+argument_list|)
+comment|// nanos internally, should be Duration
 DECL|method|getExpireAfterWriteNanos ()
 name|long
 name|getExpireAfterWriteNanos
@@ -1841,6 +1847,12 @@ return|return
 name|this
 return|;
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"GoodTime"
+argument_list|)
+comment|// nanos internally, should be Duration
 DECL|method|getExpireAfterAccessNanos ()
 name|long
 name|getExpireAfterAccessNanos
@@ -1929,6 +1941,12 @@ return|return
 name|this
 return|;
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"GoodTime"
+argument_list|)
+comment|// nanos internally, should be Duration
 DECL|method|getRefreshNanos ()
 name|long
 name|getRefreshNanos
