@@ -1745,7 +1745,7 @@ block|{
 return|return
 name|expireAfterWrite
 argument_list|(
-name|saturatedToNanos
+name|toNanosSaturated
 argument_list|(
 name|duration
 argument_list|)
@@ -1869,7 +1869,7 @@ block|{
 return|return
 name|expireAfterAccess
 argument_list|(
-name|saturatedToNanos
+name|toNanosSaturated
 argument_list|(
 name|duration
 argument_list|)
@@ -1993,7 +1993,7 @@ block|{
 return|return
 name|refreshAfterWrite
 argument_list|(
-name|saturatedToNanos
+name|toNanosSaturated
 argument_list|(
 name|duration
 argument_list|)
@@ -2735,11 +2735,11 @@ argument_list|(
 literal|"GoodTime"
 argument_list|)
 comment|// duration decomposition
-DECL|method|saturatedToNanos (java.time.Duration duration)
+DECL|method|toNanosSaturated (java.time.Duration duration)
 specifier|private
 specifier|static
 name|long
-name|saturatedToNanos
+name|toNanosSaturated
 parameter_list|(
 name|java
 operator|.

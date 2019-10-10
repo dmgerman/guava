@@ -32,7 +32,7 @@ name|concurrent
 operator|.
 name|Internal
 operator|.
-name|saturatedToNanos
+name|toNanosSaturated
 import|;
 end_import
 
@@ -209,7 +209,7 @@ name|target
 argument_list|,
 name|interfaceType
 argument_list|,
-name|saturatedToNanos
+name|toNanosSaturated
 argument_list|(
 name|timeout
 argument_list|)
@@ -287,7 +287,7 @@ name|callWithTimeout
 argument_list|(
 name|callable
 argument_list|,
-name|saturatedToNanos
+name|toNanosSaturated
 argument_list|(
 name|timeout
 argument_list|)
@@ -361,7 +361,7 @@ name|callUninterruptiblyWithTimeout
 argument_list|(
 name|callable
 argument_list|,
-name|saturatedToNanos
+name|toNanosSaturated
 argument_list|(
 name|timeout
 argument_list|)
@@ -418,7 +418,7 @@ name|runWithTimeout
 argument_list|(
 name|runnable
 argument_list|,
-name|saturatedToNanos
+name|toNanosSaturated
 argument_list|(
 name|timeout
 argument_list|)
@@ -471,7 +471,7 @@ name|runUninterruptiblyWithTimeout
 argument_list|(
 name|runnable
 argument_list|,
-name|saturatedToNanos
+name|toNanosSaturated
 argument_list|(
 name|timeout
 argument_list|)

@@ -32,7 +32,7 @@ name|concurrent
 operator|.
 name|Internal
 operator|.
-name|saturatedToNanos
+name|toNanosSaturated
 import|;
 end_import
 
@@ -186,7 +186,7 @@ name|TimeoutException
 block|{
 name|awaitRunning
 argument_list|(
-name|saturatedToNanos
+name|toNanosSaturated
 argument_list|(
 name|timeout
 argument_list|)
@@ -237,7 +237,7 @@ name|TimeoutException
 block|{
 name|awaitTerminated
 argument_list|(
-name|saturatedToNanos
+name|toNanosSaturated
 argument_list|(
 name|timeout
 argument_list|)

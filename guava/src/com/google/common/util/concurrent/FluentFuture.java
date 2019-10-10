@@ -48,7 +48,7 @@ name|concurrent
 operator|.
 name|Internal
 operator|.
-name|saturatedToNanos
+name|toNanosSaturated
 import|;
 end_import
 
@@ -608,7 +608,7 @@ block|{
 return|return
 name|withTimeout
 argument_list|(
-name|saturatedToNanos
+name|toNanosSaturated
 argument_list|(
 name|timeout
 argument_list|)

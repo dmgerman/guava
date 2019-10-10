@@ -32,7 +32,7 @@ name|concurrent
 operator|.
 name|Internal
 operator|.
-name|saturatedToNanos
+name|toNanosSaturated
 import|;
 end_import
 
@@ -353,7 +353,7 @@ name|awaitUninterruptibly
 argument_list|(
 name|latch
 argument_list|,
-name|saturatedToNanos
+name|toNanosSaturated
 argument_list|(
 name|timeout
 argument_list|)
@@ -503,7 +503,7 @@ name|awaitUninterruptibly
 argument_list|(
 name|condition
 argument_list|,
-name|saturatedToNanos
+name|toNanosSaturated
 argument_list|(
 name|timeout
 argument_list|)
@@ -714,7 +714,7 @@ name|joinUninterruptibly
 argument_list|(
 name|toJoin
 argument_list|,
-name|saturatedToNanos
+name|toNanosSaturated
 argument_list|(
 name|timeout
 argument_list|)
@@ -953,7 +953,7 @@ name|getUninterruptibly
 argument_list|(
 name|future
 argument_list|,
-name|saturatedToNanos
+name|toNanosSaturated
 argument_list|(
 name|timeout
 argument_list|)
@@ -1256,7 +1256,7 @@ parameter_list|)
 block|{
 name|sleepUninterruptibly
 argument_list|(
-name|saturatedToNanos
+name|toNanosSaturated
 argument_list|(
 name|sleepFor
 argument_list|)
@@ -1399,7 +1399,7 @@ name|tryAcquireUninterruptibly
 argument_list|(
 name|semaphore
 argument_list|,
-name|saturatedToNanos
+name|toNanosSaturated
 argument_list|(
 name|timeout
 argument_list|)
@@ -1478,7 +1478,7 @@ name|semaphore
 argument_list|,
 name|permits
 argument_list|,
-name|saturatedToNanos
+name|toNanosSaturated
 argument_list|(
 name|timeout
 argument_list|)

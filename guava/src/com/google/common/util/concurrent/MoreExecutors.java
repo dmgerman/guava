@@ -64,7 +64,7 @@ name|concurrent
 operator|.
 name|Internal
 operator|.
-name|saturatedToNanos
+name|toNanosSaturated
 import|;
 end_import
 
@@ -543,7 +543,7 @@ name|getExitingExecutorService
 argument_list|(
 name|executor
 argument_list|,
-name|saturatedToNanos
+name|toNanosSaturated
 argument_list|(
 name|terminationTimeout
 argument_list|)
@@ -648,7 +648,7 @@ name|getExitingScheduledExecutorService
 argument_list|(
 name|executor
 argument_list|,
-name|saturatedToNanos
+name|toNanosSaturated
 argument_list|(
 name|terminationTimeout
 argument_list|)
@@ -752,7 +752,7 @@ name|addDelayedShutdownHook
 argument_list|(
 name|service
 argument_list|,
-name|saturatedToNanos
+name|toNanosSaturated
 argument_list|(
 name|terminationTimeout
 argument_list|)
@@ -2279,7 +2279,7 @@ name|tasks
 argument_list|,
 name|timed
 argument_list|,
-name|saturatedToNanos
+name|toNanosSaturated
 argument_list|(
 name|timeout
 argument_list|)
@@ -3338,7 +3338,7 @@ name|shutdownAndAwaitTermination
 argument_list|(
 name|service
 argument_list|,
-name|saturatedToNanos
+name|toNanosSaturated
 argument_list|(
 name|timeout
 argument_list|)

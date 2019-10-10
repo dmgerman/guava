@@ -64,7 +64,7 @@ name|concurrent
 operator|.
 name|Internal
 operator|.
-name|saturatedToNanos
+name|toNanosSaturated
 import|;
 end_import
 
@@ -791,7 +791,7 @@ name|scheduleAsync
 argument_list|(
 name|callable
 argument_list|,
-name|saturatedToNanos
+name|toNanosSaturated
 argument_list|(
 name|delay
 argument_list|)
@@ -1087,7 +1087,7 @@ name|withTimeout
 argument_list|(
 name|delegate
 argument_list|,
-name|saturatedToNanos
+name|toNanosSaturated
 argument_list|(
 name|time
 argument_list|)
@@ -3270,7 +3270,7 @@ name|future
 argument_list|,
 name|exceptionClass
 argument_list|,
-name|saturatedToNanos
+name|toNanosSaturated
 argument_list|(
 name|timeout
 argument_list|)

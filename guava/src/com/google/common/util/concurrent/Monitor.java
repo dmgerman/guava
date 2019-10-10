@@ -48,7 +48,7 @@ name|concurrent
 operator|.
 name|Internal
 operator|.
-name|saturatedToNanos
+name|toNanosSaturated
 import|;
 end_import
 
@@ -473,7 +473,7 @@ block|{
 return|return
 name|enter
 argument_list|(
-name|saturatedToNanos
+name|toNanosSaturated
 argument_list|(
 name|time
 argument_list|)
@@ -651,7 +651,7 @@ block|{
 return|return
 name|enterInterruptibly
 argument_list|(
-name|saturatedToNanos
+name|toNanosSaturated
 argument_list|(
 name|time
 argument_list|)
@@ -819,7 +819,7 @@ name|enterWhen
 argument_list|(
 name|guard
 argument_list|,
-name|saturatedToNanos
+name|toNanosSaturated
 argument_list|(
 name|time
 argument_list|)
@@ -1154,7 +1154,7 @@ name|enterWhenUninterruptibly
 argument_list|(
 name|guard
 argument_list|,
-name|saturatedToNanos
+name|toNanosSaturated
 argument_list|(
 name|time
 argument_list|)
@@ -1539,7 +1539,7 @@ name|enterIf
 argument_list|(
 name|guard
 argument_list|,
-name|saturatedToNanos
+name|toNanosSaturated
 argument_list|(
 name|time
 argument_list|)
@@ -1726,7 +1726,7 @@ name|enterIfInterruptibly
 argument_list|(
 name|guard
 argument_list|,
-name|saturatedToNanos
+name|toNanosSaturated
 argument_list|(
 name|time
 argument_list|)
@@ -1986,7 +1986,7 @@ name|waitFor
 argument_list|(
 name|guard
 argument_list|,
-name|saturatedToNanos
+name|toNanosSaturated
 argument_list|(
 name|time
 argument_list|)
@@ -2165,7 +2165,7 @@ name|waitForUninterruptibly
 argument_list|(
 name|guard
 argument_list|,
-name|saturatedToNanos
+name|toNanosSaturated
 argument_list|(
 name|time
 argument_list|)

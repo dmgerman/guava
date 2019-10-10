@@ -64,7 +64,7 @@ name|concurrent
 operator|.
 name|Internal
 operator|.
-name|saturatedToNanos
+name|toNanosSaturated
 import|;
 end_import
 
@@ -367,7 +367,7 @@ name|create
 argument_list|(
 name|permitsPerSecond
 argument_list|,
-name|saturatedToNanos
+name|toNanosSaturated
 argument_list|(
 name|warmupPeriod
 argument_list|)
@@ -750,7 +750,7 @@ name|tryAcquire
 argument_list|(
 literal|1
 argument_list|,
-name|saturatedToNanos
+name|toNanosSaturated
 argument_list|(
 name|timeout
 argument_list|)
@@ -848,7 +848,7 @@ name|tryAcquire
 argument_list|(
 name|permits
 argument_list|,
-name|saturatedToNanos
+name|toNanosSaturated
 argument_list|(
 name|timeout
 argument_list|)

@@ -64,7 +64,7 @@ name|concurrent
 operator|.
 name|Internal
 operator|.
-name|saturatedToNanos
+name|toNanosSaturated
 import|;
 end_import
 
@@ -409,12 +409,12 @@ block|{
 return|return
 name|newFixedDelaySchedule
 argument_list|(
-name|saturatedToNanos
+name|toNanosSaturated
 argument_list|(
 name|initialDelay
 argument_list|)
 argument_list|,
-name|saturatedToNanos
+name|toNanosSaturated
 argument_list|(
 name|delay
 argument_list|)
@@ -526,12 +526,12 @@ block|{
 return|return
 name|newFixedRateSchedule
 argument_list|(
-name|saturatedToNanos
+name|toNanosSaturated
 argument_list|(
 name|initialDelay
 argument_list|)
 argument_list|,
-name|saturatedToNanos
+name|toNanosSaturated
 argument_list|(
 name|period
 argument_list|)
