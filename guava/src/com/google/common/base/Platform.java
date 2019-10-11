@@ -571,6 +571,31 @@ argument_list|)
 argument_list|)
 throw|;
 block|}
+name|logger
+operator|.
+name|log
+argument_list|(
+name|java
+operator|.
+name|util
+operator|.
+name|logging
+operator|.
+name|Level
+operator|.
+name|WARNING
+argument_list|,
+literal|"In January 2020, we will remove GWT-RPC support for Guava types. You are seeing this"
+operator|+
+literal|" warning because you are sending a Guava type over GWT-RPC, which will break. You"
+operator|+
+literal|" can identify which type by looking at the class name in the attached stack trace."
+argument_list|,
+operator|new
+name|Throwable
+argument_list|()
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 end_class
