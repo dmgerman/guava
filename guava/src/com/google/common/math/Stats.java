@@ -246,6 +246,54 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|stream
+operator|.
+name|Collector
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|stream
+operator|.
+name|DoubleStream
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|stream
+operator|.
+name|IntStream
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|stream
+operator|.
+name|LongStream
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|checkerframework
@@ -395,7 +443,7 @@ name|snapshot
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns statistics over a dataset containing the given values.    *    * @param values a series of values, which will be converted to {@code double} values (this may    *     cause loss of precision)    */
+comment|/**    * Returns statistics over a dataset containing the given values. The iterator will be completely    * consumed by this method.    *    * @param values a series of values, which will be converted to {@code double} values (this may    *     cause loss of precision)    */
 DECL|method|of (Iterator<? extends Number> values)
 specifier|public
 specifier|static
@@ -531,9 +579,184 @@ name|snapshot
 argument_list|()
 return|;
 block|}
-comment|/** Returns the number of values. */
-DECL|method|count ()
+comment|/**    * Returns statistics over a dataset containing the given values. The stream will be completely    * consumed by this method.    *    *<p>If you have a {@code Stream<Double>} rather than a {@code DoubleStream}, you should collect    * the values using {@link #toStats()} instead.    *    * @param values a series of values    * @since NEXT    */
+DECL|method|of (DoubleStream values)
 specifier|public
+specifier|static
+name|Stats
+name|of
+parameter_list|(
+name|DoubleStream
+name|values
+parameter_list|)
+block|{
+return|return
+name|values
+operator|.
+name|collect
+argument_list|(
+name|StatsAccumulator
+operator|::
+operator|new
+argument_list|,
+name|StatsAccumulator
+operator|::
+name|add
+argument_list|,
+name|StatsAccumulator
+operator|::
+name|addAll
+argument_list|)
+operator|.
+name|snapshot
+argument_list|()
+return|;
+block|}
+comment|/**    * Returns statistics over a dataset containing the given values. The stream will be completely    * consumed by this method.    *    *<p>If you have a {@code Stream<Integer>} rather than an {@code IntStream}, you should collect    * the values using {@link #toStats()} instead.    *    * @param values a series of values    * @since NEXT    */
+DECL|method|of (IntStream values)
+specifier|public
+specifier|static
+name|Stats
+name|of
+parameter_list|(
+name|IntStream
+name|values
+parameter_list|)
+block|{
+return|return
+name|values
+operator|.
+name|collect
+argument_list|(
+name|StatsAccumulator
+operator|::
+operator|new
+argument_list|,
+name|StatsAccumulator
+operator|::
+name|add
+argument_list|,
+name|StatsAccumulator
+operator|::
+name|addAll
+argument_list|)
+operator|.
+name|snapshot
+argument_list|()
+return|;
+block|}
+comment|/**    * Returns statistics over a dataset containing the given values. The stream will be completely    * consumed by this method.    *    *<p>If you have a {@code Stream<Long>} rather than a {@code LongStream}, you should collect the    * values using {@link #toStats()} instead.    *    * @param values a series of values, which will be converted to {@code double} values (this may    *     cause loss of precision for longs of magnitude over 2^53 (slightly over 9e15))    * @since NEXT    */
+DECL|method|of (LongStream values)
+specifier|public
+specifier|static
+name|Stats
+name|of
+parameter_list|(
+name|LongStream
+name|values
+parameter_list|)
+block|{
+return|return
+name|values
+operator|.
+name|collect
+argument_list|(
+name|StatsAccumulator
+operator|::
+operator|new
+argument_list|,
+name|StatsAccumulator
+operator|::
+name|add
+argument_list|,
+name|StatsAccumulator
+operator|::
+name|addAll
+argument_list|)
+operator|.
+name|snapshot
+argument_list|()
+return|;
+block|}
+comment|/**    * Returns a {@link Collector} which accumulates statistics from a {@link java.util.stream.Stream}    * of any type of boxed {@link Number} into a {@link Stats}. Use by calling {@code    * boxedNumericStream.collect(toStats())}. The numbers will be converted to {@code double} values    * (which may cause loss of precision).    *    *<p>If you have any of the primitive streams {@code DoubleStream}, {@code IntStream}, or {@code    * LongStream}, you should use the factory method {@link #of} instead.    *    * @since NEXT    */
+DECL|method|toStats ()
+specifier|public
+specifier|static
+name|Collector
+argument_list|<
+name|Number
+argument_list|,
+name|StatsAccumulator
+argument_list|,
+name|Stats
+argument_list|>
+name|toStats
+parameter_list|()
+block|{
+return|return
+name|Collector
+operator|.
+name|of
+argument_list|(
+name|StatsAccumulator
+operator|::
+operator|new
+argument_list|,
+parameter_list|(
+name|a
+parameter_list|,
+name|x
+parameter_list|)
+lambda|->
+name|a
+operator|.
+name|add
+argument_list|(
+name|x
+operator|.
+name|doubleValue
+argument_list|()
+argument_list|)
+argument_list|,
+parameter_list|(
+name|l
+parameter_list|,
+name|r
+parameter_list|)
+lambda|->
+block|{
+name|l
+operator|.
+name|addAll
+argument_list|(
+name|r
+argument_list|)
+argument_list|;           return
+name|l
+argument_list|;
+block|}
+operator|,
+name|StatsAccumulator
+operator|::
+name|snapshot
+operator|,
+name|Collector
+operator|.
+name|Characteristics
+operator|.
+name|UNORDERED
+block|)
+class|;
+end_class
+
+begin_comment
+unit|}
+comment|/** Returns the number of values. */
+end_comment
+
+begin_function
+DECL|method|count ()
+unit|public
 name|long
 name|count
 parameter_list|()
@@ -542,7 +765,13 @@ return|return
 name|count
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Returns the<a href="http://en.wikipedia.org/wiki/Arithmetic_mean">arithmetic mean</a> of the    * values. The count must be non-zero.    *    *<p>If these values are a sample drawn from a population, this is also an unbiased estimator of    * the arithmetic mean of the population.    *    *<h3>Non-finite values</h3>    *    *<p>If the dataset contains {@link Double#NaN} then the result is {@link Double#NaN}. If it    * contains both {@link Double#POSITIVE_INFINITY} and {@link Double#NEGATIVE_INFINITY} then the    * result is {@link Double#NaN}. If it contains {@link Double#POSITIVE_INFINITY} and finite values    * only or {@link Double#POSITIVE_INFINITY} only, the result is {@link Double#POSITIVE_INFINITY}.    * If it contains {@link Double#NEGATIVE_INFINITY} and finite values only or {@link    * Double#NEGATIVE_INFINITY} only, the result is {@link Double#NEGATIVE_INFINITY}.    *    *<p>If you only want to calculate the mean, use {#meanOf} instead of creating a {@link Stats}    * instance.    *    * @throws IllegalStateException if the dataset is empty    */
+end_comment
+
+begin_function
 DECL|method|mean ()
 specifier|public
 name|double
@@ -560,7 +789,13 @@ return|return
 name|mean
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Returns the sum of the values.    *    *<h3>Non-finite values</h3>    *    *<p>If the dataset contains {@link Double#NaN} then the result is {@link Double#NaN}. If it    * contains both {@link Double#POSITIVE_INFINITY} and {@link Double#NEGATIVE_INFINITY} then the    * result is {@link Double#NaN}. If it contains {@link Double#POSITIVE_INFINITY} and finite values    * only or {@link Double#POSITIVE_INFINITY} only, the result is {@link Double#POSITIVE_INFINITY}.    * If it contains {@link Double#NEGATIVE_INFINITY} and finite values only or {@link    * Double#NEGATIVE_INFINITY} only, the result is {@link Double#NEGATIVE_INFINITY}.    */
+end_comment
+
+begin_function
 DECL|method|sum ()
 specifier|public
 name|double
@@ -573,7 +808,13 @@ operator|*
 name|count
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Returns the<a href="http://en.wikipedia.org/wiki/Variance#Population_variance">population    * variance</a> of the values. The count must be non-zero.    *    *<p>This is guaranteed to return zero if the dataset contains only exactly one finite value. It    * is not guaranteed to return zero when the dataset consists of the same value multiple times,    * due to numerical errors. However, it is guaranteed never to return a negative result.    *    *<h3>Non-finite values</h3>    *    *<p>If the dataset contains any non-finite values ({@link Double#POSITIVE_INFINITY}, {@link    * Double#NEGATIVE_INFINITY}, or {@link Double#NaN}) then the result is {@link Double#NaN}.    *    * @throws IllegalStateException if the dataset is empty    */
+end_comment
+
+begin_function
 DECL|method|populationVariance ()
 specifier|public
 name|double
@@ -620,7 +861,13 @@ name|count
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Returns the<a    * href="http://en.wikipedia.org/wiki/Standard_deviation#Definition_of_population_values">    * population standard deviation</a> of the values. The count must be non-zero.    *    *<p>This is guaranteed to return zero if the dataset contains only exactly one finite value. It    * is not guaranteed to return zero when the dataset consists of the same value multiple times,    * due to numerical errors. However, it is guaranteed never to return a negative result.    *    *<h3>Non-finite values</h3>    *    *<p>If the dataset contains any non-finite values ({@link Double#POSITIVE_INFINITY}, {@link    * Double#NEGATIVE_INFINITY}, or {@link Double#NaN}) then the result is {@link Double#NaN}.    *    * @throws IllegalStateException if the dataset is empty    */
+end_comment
+
+begin_function
 DECL|method|populationStandardDeviation ()
 specifier|public
 name|double
@@ -637,7 +884,13 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Returns the<a href="http://en.wikipedia.org/wiki/Variance#Sample_variance">unbiased sample    * variance</a> of the values. If this dataset is a sample drawn from a population, this is an    * unbiased estimator of the population variance of the population. The count must be greater than    * one.    *    *<p>This is not guaranteed to return zero when the dataset consists of the same value multiple    * times, due to numerical errors. However, it is guaranteed never to return a negative result.    *    *<h3>Non-finite values</h3>    *    *<p>If the dataset contains any non-finite values ({@link Double#POSITIVE_INFINITY}, {@link    * Double#NEGATIVE_INFINITY}, or {@link Double#NaN}) then the result is {@link Double#NaN}.    *    * @throws IllegalStateException if the dataset is empty or contains a single value    */
+end_comment
+
+begin_function
 DECL|method|sampleVariance ()
 specifier|public
 name|double
@@ -676,7 +929,13 @@ literal|1
 operator|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Returns the<a    * href="http://en.wikipedia.org/wiki/Standard_deviation#Corrected_sample_standard_deviation">    * corrected sample standard deviation</a> of the values. If this dataset is a sample drawn from a    * population, this is an estimator of the population standard deviation of the population which    * is less biased than {@link #populationStandardDeviation()} (the unbiased estimator depends on    * the distribution). The count must be greater than one.    *    *<p>This is not guaranteed to return zero when the dataset consists of the same value multiple    * times, due to numerical errors. However, it is guaranteed never to return a negative result.    *    *<h3>Non-finite values</h3>    *    *<p>If the dataset contains any non-finite values ({@link Double#POSITIVE_INFINITY}, {@link    * Double#NEGATIVE_INFINITY}, or {@link Double#NaN}) then the result is {@link Double#NaN}.    *    * @throws IllegalStateException if the dataset is empty or contains a single value    */
+end_comment
+
+begin_function
 DECL|method|sampleStandardDeviation ()
 specifier|public
 name|double
@@ -693,7 +952,13 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Returns the lowest value in the dataset. The count must be non-zero.    *    *<h3>Non-finite values</h3>    *    *<p>If the dataset contains {@link Double#NaN} then the result is {@link Double#NaN}. If it    * contains {@link Double#NEGATIVE_INFINITY} and not {@link Double#NaN} then the result is {@link    * Double#NEGATIVE_INFINITY}. If it contains {@link Double#POSITIVE_INFINITY} and finite values    * only then the result is the lowest finite value. If it contains {@link    * Double#POSITIVE_INFINITY} only then the result is {@link Double#POSITIVE_INFINITY}.    *    * @throws IllegalStateException if the dataset is empty    */
+end_comment
+
+begin_function
 DECL|method|min ()
 specifier|public
 name|double
@@ -711,7 +976,13 @@ return|return
 name|min
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Returns the highest value in the dataset. The count must be non-zero.    *    *<h3>Non-finite values</h3>    *    *<p>If the dataset contains {@link Double#NaN} then the result is {@link Double#NaN}. If it    * contains {@link Double#POSITIVE_INFINITY} and not {@link Double#NaN} then the result is {@link    * Double#POSITIVE_INFINITY}. If it contains {@link Double#NEGATIVE_INFINITY} and finite values    * only then the result is the highest finite value. If it contains {@link    * Double#NEGATIVE_INFINITY} only then the result is {@link Double#NEGATIVE_INFINITY}.    *    * @throws IllegalStateException if the dataset is empty    */
+end_comment
+
+begin_function
 DECL|method|max ()
 specifier|public
 name|double
@@ -729,7 +1000,13 @@ return|return
 name|max
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * {@inheritDoc}    *    *<p><b>Note:</b> This tests exact equality of the calculated statistics, including the floating    * point values. Two instances are guaranteed to be considered equal if one is copied from the    * other using {@code second = new StatsAccumulator().addAll(first).snapshot()}, if both were    * obtained by calling {@code snapshot()} on the same {@link StatsAccumulator} without adding any    * values in between the two calls, or if one is obtained from the other after round-tripping    * through java serialization. However, floating point rounding errors mean that it may be false    * for some instances where the statistics are mathematically equal, including instances    * constructed from the same values in a different order... or (in the general case) even in the    * same order. (It is guaranteed to return true for instances constructed from the same values in    * the same order if {@code strictfp} is in effect, or if the system architecture guarantees    * {@code strictfp}-like semantics.)    */
+end_comment
+
+begin_function
 annotation|@
 name|Override
 DECL|method|equals (@ullable Object obj)
@@ -843,7 +1120,13 @@ argument_list|)
 operator|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * {@inheritDoc}    *    *<p><b>Note:</b> This hash code is consistent with exact equality of the calculated statistics,    * including the floating point values. See the note on {@link #equals} for details.    */
+end_comment
+
+begin_function
 annotation|@
 name|Override
 DECL|method|hashCode ()
@@ -869,6 +1152,9 @@ name|max
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|toString ()
@@ -955,6 +1241,9 @@ argument_list|()
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 DECL|method|sumOfSquaresOfDeltas ()
 name|double
 name|sumOfSquaresOfDeltas
@@ -964,7 +1253,13 @@ return|return
 name|sumOfSquaresOfDeltas
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Returns the<a href="http://en.wikipedia.org/wiki/Arithmetic_mean">arithmetic mean</a> of the    * values. The count must be non-zero.    *    *<p>The definition of the mean is the same as {@link Stats#mean}.    *    * @param values a series of values, which will be converted to {@code double} values (this may    *     cause loss of precision)    * @throws IllegalArgumentException if the dataset is empty    */
+end_comment
+
+begin_function
 DECL|method|meanOf (Iterable<? extends Number> values)
 specifier|public
 specifier|static
@@ -990,7 +1285,13 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Returns the<a href="http://en.wikipedia.org/wiki/Arithmetic_mean">arithmetic mean</a> of the    * values. The count must be non-zero.    *    *<p>The definition of the mean is the same as {@link Stats#mean}.    *    * @param values a series of values, which will be converted to {@code double} values (this may    *     cause loss of precision)    * @throws IllegalArgumentException if the dataset is empty    */
+end_comment
+
+begin_function
 DECL|method|meanOf (Iterator<? extends Number> values)
 specifier|public
 specifier|static
@@ -1094,7 +1395,13 @@ return|return
 name|mean
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Returns the<a href="http://en.wikipedia.org/wiki/Arithmetic_mean">arithmetic mean</a> of the    * values. The count must be non-zero.    *    *<p>The definition of the mean is the same as {@link Stats#mean}.    *    * @param values a series of values    * @throws IllegalArgumentException if the dataset is empty    */
+end_comment
+
+begin_function
 DECL|method|meanOf (double... values)
 specifier|public
 specifier|static
@@ -1194,7 +1501,13 @@ return|return
 name|mean
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Returns the<a href="http://en.wikipedia.org/wiki/Arithmetic_mean">arithmetic mean</a> of the    * values. The count must be non-zero.    *    *<p>The definition of the mean is the same as {@link Stats#mean}.    *    * @param values a series of values    * @throws IllegalArgumentException if the dataset is empty    */
+end_comment
+
+begin_function
 DECL|method|meanOf (int... values)
 specifier|public
 specifier|static
@@ -1294,7 +1607,13 @@ return|return
 name|mean
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Returns the<a href="http://en.wikipedia.org/wiki/Arithmetic_mean">arithmetic mean</a> of the    * values. The count must be non-zero.    *    *<p>The definition of the mean is the same as {@link Stats#mean}.    *    * @param values a series of values, which will be converted to {@code double} values (this may    *     cause loss of precision for longs of magnitude over 2^53 (slightly over 9e15))    * @throws IllegalArgumentException if the dataset is empty    */
+end_comment
+
+begin_function
 DECL|method|meanOf (long... values)
 specifier|public
 specifier|static
@@ -1394,8 +1713,17 @@ return|return
 name|mean
 return|;
 block|}
+end_function
+
+begin_comment
 comment|// Serialization helpers
+end_comment
+
+begin_comment
 comment|/** The size of byte array representation in bytes. */
+end_comment
+
+begin_decl_stmt
 DECL|field|BYTES
 specifier|static
 specifier|final
@@ -1418,7 +1746,13 @@ name|Byte
 operator|.
 name|SIZE
 decl_stmt|;
+end_decl_stmt
+
+begin_comment
 comment|/**    * Gets a byte array representation of this instance.    *    *<p><b>Note:</b> No guarantees are made regarding stability of the representation between    * versions.    */
+end_comment
+
+begin_function
 DECL|method|toByteArray ()
 specifier|public
 name|byte
@@ -1455,7 +1789,13 @@ name|array
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Writes to the given {@link ByteBuffer} a byte representation of this instance.    *    *<p><b>Note:</b> No guarantees are made regarding stability of the representation between    * versions.    *    * @param buffer A {@link ByteBuffer} with at least BYTES {@link ByteBuffer#remaining}, ordered as    *     {@link ByteOrder#LITTLE_ENDIAN}, to which a BYTES-long byte representation of this instance    *     is written. In the process increases the position of {@link ByteBuffer} by BYTES.    */
+end_comment
+
+begin_function
 DECL|method|writeTo (ByteBuffer buffer)
 name|void
 name|writeTo
@@ -1516,7 +1856,13 @@ name|max
 argument_list|)
 expr_stmt|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Creates a Stats instance from the given byte representation which was obtained by {@link    * #toByteArray}.    *    *<p><b>Note:</b> No guarantees are made regarding stability of the representation between    * versions.    */
+end_comment
+
+begin_function
 DECL|method|fromByteArray (byte[] byteArray)
 specifier|public
 specifier|static
@@ -1569,7 +1915,13 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Creates a Stats instance from the byte representation read from the given {@link ByteBuffer}.    *    *<p><b>Note:</b> No guarantees are made regarding stability of the representation between    * versions.    *    * @param buffer A {@link ByteBuffer} with at least BYTES {@link ByteBuffer#remaining}, ordered as    *     {@link ByteOrder#LITTLE_ENDIAN}, from which a BYTES-long byte representation of this    *     instance is read. In the process increases the position of {@link ByteBuffer} by BYTES.    */
+end_comment
+
+begin_function
 DECL|method|readFrom (ByteBuffer buffer)
 specifier|static
 name|Stats
@@ -1634,6 +1986,9 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_decl_stmt
 DECL|field|serialVersionUID
 specifier|private
 specifier|static
@@ -1643,8 +1998,8 @@ name|serialVersionUID
 init|=
 literal|0
 decl_stmt|;
-block|}
-end_class
+end_decl_stmt
 
+unit|}
 end_unit
 

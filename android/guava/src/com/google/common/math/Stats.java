@@ -395,7 +395,7 @@ name|snapshot
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns statistics over a dataset containing the given values.    *    * @param values a series of values, which will be converted to {@code double} values (this may    *     cause loss of precision)    */
+comment|/**    * Returns statistics over a dataset containing the given values. The iterator will be completely    * consumed by this method.    *    * @param values a series of values, which will be converted to {@code double} values (this may    *     cause loss of precision)    */
 DECL|method|of (Iterator<? extends Number> values)
 specifier|public
 specifier|static
