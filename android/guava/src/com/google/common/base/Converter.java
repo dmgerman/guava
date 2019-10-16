@@ -1526,10 +1526,14 @@ DECL|field|INSTANCE
 specifier|static
 specifier|final
 name|IdentityConverter
+argument_list|<
+name|?
+argument_list|>
 name|INSTANCE
 init|=
 operator|new
 name|IdentityConverter
+argument_list|<>
 argument_list|()
 decl_stmt|;
 annotation|@
