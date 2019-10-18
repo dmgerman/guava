@@ -3120,12 +3120,12 @@ name|totalSkipped
 init|=
 literal|0
 decl_stmt|;
+comment|// A buffer is allocated if skipSafely does not skip any bytes.
 name|byte
 index|[]
 name|buf
 init|=
-name|createBuffer
-argument_list|()
+literal|null
 decl_stmt|;
 while|while
 condition|(
@@ -3172,11 +3172,28 @@ name|min
 argument_list|(
 name|remaining
 argument_list|,
-name|buf
-operator|.
-name|length
+name|BUFFER_SIZE
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|buf
+operator|==
+literal|null
+condition|)
+block|{
+comment|// Allocate a buffer bounded by the maximum size that can be requested, for
+comment|// example an array of BUFFER_SIZE is unnecessary when the value of remaining
+comment|// is smaller.
+name|buf
+operator|=
+operator|new
+name|byte
+index|[
+name|skip
+index|]
+expr_stmt|;
+block|}
 if|if
 condition|(
 operator|(
