@@ -447,7 +447,7 @@ operator|)
 name|EMPTY
 return|;
 block|}
-comment|/**    * Returns an immutable list containing a single element. This list behaves and performs    * comparably to {@link Collections#singleton}, but will not accept a null element. It is    * preferable mainly for consistency and maintainability of your code.    *    * @throws NullPointerException if {@code element} is null    */
+comment|/**    * Returns an immutable list containing a single element. This list behaves and performs    * comparably to {@link Collections#singletonList}, but will not accept a null element. It is    * preferable mainly for consistency and maintainability of your code.    *    * @throws NullPointerException if {@code element} is null    */
 DECL|method|of (E element)
 specifier|public
 specifier|static
