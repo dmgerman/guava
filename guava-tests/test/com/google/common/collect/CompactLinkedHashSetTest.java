@@ -412,7 +412,7 @@ argument_list|)
 operator|.
 name|hasLength
 argument_list|(
-name|CompactHashSet
+name|CompactHashing
 operator|.
 name|DEFAULT_SIZE
 argument_list|)
@@ -433,7 +433,7 @@ literal|0
 init|;
 name|i
 operator|<=
-name|CompactHashSet
+name|CompactHashing
 operator|.
 name|DEFAULT_SIZE
 condition|;

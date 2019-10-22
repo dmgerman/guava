@@ -124,6 +124,22 @@ name|MonotonicNonNull
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|checkerframework
+operator|.
+name|checker
+operator|.
+name|nullness
+operator|.
+name|qual
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/**  * CompactLinkedHashMap is an implementation of a Map with insertion or LRU iteration order,  * maintained with a doubly linked list through the entries. All optional operations (put and  * remove) are supported. Null keys and values are supported.  *  *<p>{@code containsKey(k)}, {@code put(k, v)} and {@code remove(k)} are all (expected and  * amortized) constant time operations. Expected in the hashtable sense (depends on the hash  * function doing a good job of distributing the elements to the buckets to a distribution not far  * from uniform), and amortized since some operations can trigger a hash table resize.  *  *<p>As compared with {@link java.util.LinkedHashMap}, this structure places significantly reduced  * load on the garbage collector by only using a constant number of internal objects.  *  *<p>This class should not be assumed to be universally superior to {@code  * java.util.LinkedHashMap}. Generally speaking, this class reduces object allocation and memory  * consumption at the price of moderately increased constant factors of CPU. Only use this class  * when there is a specific reason to prioritize memory over CPU.  *  * @author Louis Wasserman  */
 end_comment
@@ -251,6 +267,8 @@ parameter_list|()
 block|{
 name|this
 argument_list|(
+name|CompactHashing
+operator|.
 name|DEFAULT_SIZE
 argument_list|)
 expr_stmt|;
@@ -325,23 +343,18 @@ block|}
 annotation|@
 name|Override
 DECL|method|allocArrays ()
-name|void
+name|int
 name|allocArrays
 parameter_list|()
 block|{
+name|int
+name|expectedSize
+init|=
 name|super
 operator|.
 name|allocArrays
 argument_list|()
-expr_stmt|;
-name|int
-name|expectedSize
-init|=
-name|keys
-operator|.
-name|length
 decl_stmt|;
-comment|// allocated size may be different than initial capacity
 name|this
 operator|.
 name|links
@@ -352,15 +365,9 @@ index|[
 name|expectedSize
 index|]
 expr_stmt|;
-name|Arrays
-operator|.
-name|fill
-argument_list|(
-name|links
-argument_list|,
-name|UNSET
-argument_list|)
-expr_stmt|;
+return|return
+name|expectedSize
+return|;
 block|}
 DECL|method|getPredecessor (int entry)
 specifier|private
@@ -372,6 +379,7 @@ name|entry
 parameter_list|)
 block|{
 return|return
+operator|(
 call|(
 name|int
 call|)
@@ -383,6 +391,9 @@ index|]
 operator|>>>
 literal|32
 argument_list|)
+operator|)
+operator|-
+literal|1
 return|;
 block|}
 annotation|@
@@ -397,12 +408,16 @@ parameter_list|)
 block|{
 return|return
 operator|(
+operator|(
 name|int
 operator|)
 name|links
 index|[
 name|entry
 index|]
+operator|)
+operator|-
+literal|1
 return|;
 block|}
 DECL|method|setSuccessor (int entry, int succ)
@@ -443,7 +458,11 @@ name|succMask
 operator|)
 operator||
 operator|(
+operator|(
 name|succ
+operator|+
+literal|1
+operator|)
 operator|&
 name|succMask
 operator|)
@@ -485,10 +504,14 @@ name|predMask
 operator|)
 operator||
 operator|(
-operator|(
+call|(
 name|long
-operator|)
+call|)
+argument_list|(
 name|pred
+operator|+
+literal|1
+argument_list|)
 operator|<<
 literal|32
 operator|)
@@ -553,21 +576,28 @@ block|}
 block|}
 annotation|@
 name|Override
-DECL|method|insertEntry (int entryIndex, K key, V value, int hash)
+DECL|method|insertEntry (int entryIndex, @Nullable K key, @Nullable V value, int hash, int mask)
 name|void
 name|insertEntry
 parameter_list|(
 name|int
 name|entryIndex
 parameter_list|,
+annotation|@
+name|Nullable
 name|K
 name|key
 parameter_list|,
+annotation|@
+name|Nullable
 name|V
 name|value
 parameter_list|,
 name|int
 name|hash
+parameter_list|,
+name|int
+name|mask
 parameter_list|)
 block|{
 name|super
@@ -581,6 +611,8 @@ argument_list|,
 name|value
 argument_list|,
 name|hash
+argument_list|,
+name|mask
 argument_list|)
 expr_stmt|;
 name|setSucceeds
@@ -642,19 +674,22 @@ argument_list|,
 name|ENDPOINT
 argument_list|)
 expr_stmt|;
-name|modCount
-operator|++
+name|incrementModCount
+argument_list|()
 expr_stmt|;
 block|}
 block|}
 annotation|@
 name|Override
-DECL|method|moveLastEntry (int dstIndex)
+DECL|method|moveLastEntry (int dstIndex, int mask)
 name|void
 name|moveLastEntry
 parameter_list|(
 name|int
 name|dstIndex
+parameter_list|,
+name|int
+name|mask
 parameter_list|)
 block|{
 name|int
@@ -670,6 +705,8 @@ operator|.
 name|moveLastEntry
 argument_list|(
 name|dstIndex
+argument_list|,
+name|mask
 argument_list|)
 expr_stmt|;
 name|setSucceeds
@@ -718,7 +755,7 @@ index|[
 name|srcIndex
 index|]
 operator|=
-name|UNSET
+literal|0
 expr_stmt|;
 block|}
 annotation|@
@@ -738,13 +775,6 @@ argument_list|(
 name|newCapacity
 argument_list|)
 expr_stmt|;
-name|int
-name|oldCapacity
-init|=
-name|links
-operator|.
-name|length
-decl_stmt|;
 name|links
 operator|=
 name|Arrays
@@ -756,27 +786,6 @@ argument_list|,
 name|newCapacity
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|oldCapacity
-operator|<
-name|newCapacity
-condition|)
-block|{
-name|Arrays
-operator|.
-name|fill
-argument_list|(
-name|links
-argument_list|,
-name|oldCapacity
-argument_list|,
-name|newCapacity
-argument_list|,
-name|UNSET
-argument_list|)
-expr_stmt|;
-block|}
 block|}
 annotation|@
 name|Override
@@ -1099,7 +1108,7 @@ argument_list|,
 name|size
 argument_list|()
 argument_list|,
-name|UNSET
+literal|0
 argument_list|)
 expr_stmt|;
 name|super

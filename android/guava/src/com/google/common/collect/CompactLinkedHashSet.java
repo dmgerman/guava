@@ -76,6 +76,22 @@ name|MonotonicNonNullDecl
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|checkerframework
+operator|.
+name|checker
+operator|.
+name|nullness
+operator|.
+name|compatqual
+operator|.
+name|NullableDecl
+import|;
+end_import
+
 begin_comment
 comment|/**  * CompactLinkedHashSet is an implementation of a Set, which a predictable iteration order that  * matches the insertion order. All optional operations (adding and removing) are supported. All  * elements, including {@code null}, are permitted.  *  *<p>{@code contains(x)}, {@code add(x)} and {@code remove(x)}, are all (expected and amortized)  * constant time operations. Expected in the hashtable sense (depends on the hash function doing a  * good job of distributing the elements to the buckets to a distribution not far from uniform), and  * amortized since some operations can trigger a hash table resize.  *  *<p>This implementation consumes significantly less memory than {@code java.util.LinkedHashSet} or  * even {@code java.util.HashSet}, and places considerably less load on the garbage collector. Like  * {@code java.util.LinkedHashSet}, it offers insertion-order iteration, with identical behavior.  *  *<p>This class should not be assumed to be universally superior to {@code  * java.util.LinkedHashSet}. Generally speaking, this class reduces object allocation and memory  * consumption at the price of moderately increased constant factors of CPU. Only use this class  * when there is a specific reason to prioritize memory over CPU.  *  * @author Louis Wasserman  */
 end_comment
@@ -165,6 +181,8 @@ name|set
 return|;
 block|}
 comment|/**    * Creates a {@code CompactLinkedHashSet} instance containing the given elements in unspecified    * order.    *    * @param elements the elements that the set should contain    * @return a new {@code CompactLinkedHashSet} containing those elements (minus duplicates)    */
+annotation|@
+name|SafeVarargs
 DECL|method|create (E... elements)
 specifier|public
 specifier|static
@@ -245,7 +263,7 @@ operator|-
 literal|2
 decl_stmt|;
 comment|// TODO(user): predecessors and successors should be collocated (reducing cache misses).
-comment|// Might also explore collocating all of [hash, next, predecessor, succesor] fields of an
+comment|// Might also explore collocating all of [hash, next, predecessor, successor] fields of an
 comment|// entry in a *single* long[], though that reduces the maximum size of the set by a factor of 2
 comment|/**    * Pointer to the predecessor of an entry in insertion order. ENDPOINT indicates a node is the    * first node in insertion order; all values at indices â¥ {@link #size()} are UNSET.    */
 DECL|field|predecessor
@@ -335,23 +353,18 @@ block|}
 annotation|@
 name|Override
 DECL|method|allocArrays ()
-name|void
+name|int
 name|allocArrays
 parameter_list|()
 block|{
+name|int
+name|expectedSize
+init|=
 name|super
 operator|.
 name|allocArrays
 argument_list|()
-expr_stmt|;
-name|int
-name|expectedSize
-init|=
-name|elements
-operator|.
-name|length
 decl_stmt|;
-comment|// allocated size may be different than initial capacity
 name|this
 operator|.
 name|predecessor
@@ -372,24 +385,9 @@ index|[
 name|expectedSize
 index|]
 expr_stmt|;
-name|Arrays
-operator|.
-name|fill
-argument_list|(
-name|predecessor
-argument_list|,
-name|UNSET
-argument_list|)
-expr_stmt|;
-name|Arrays
-operator|.
-name|fill
-argument_list|(
-name|successor
-argument_list|,
-name|UNSET
-argument_list|)
-expr_stmt|;
+return|return
+name|expectedSize
+return|;
 block|}
 DECL|method|getPredecessor (int entry)
 specifier|private
@@ -405,6 +403,8 @@ name|predecessor
 index|[
 name|entry
 index|]
+operator|-
+literal|1
 return|;
 block|}
 annotation|@
@@ -422,6 +422,8 @@ name|successor
 index|[
 name|entry
 index|]
+operator|-
+literal|1
 return|;
 block|}
 DECL|method|setSuccessor (int entry, int succ)
@@ -442,6 +444,8 @@ name|entry
 index|]
 operator|=
 name|succ
+operator|+
+literal|1
 expr_stmt|;
 block|}
 DECL|method|setPredecessor (int entry, int pred)
@@ -462,6 +466,8 @@ name|entry
 index|]
 operator|=
 name|pred
+operator|+
+literal|1
 expr_stmt|;
 block|}
 DECL|method|setSucceeds (int pred, int succ)
@@ -523,18 +529,23 @@ block|}
 block|}
 annotation|@
 name|Override
-DECL|method|insertEntry (int entryIndex, E object, int hash)
+DECL|method|insertEntry (int entryIndex, @NullableDecl E object, int hash, int mask)
 name|void
 name|insertEntry
 parameter_list|(
 name|int
 name|entryIndex
 parameter_list|,
+annotation|@
+name|NullableDecl
 name|E
 name|object
 parameter_list|,
 name|int
 name|hash
+parameter_list|,
+name|int
+name|mask
 parameter_list|)
 block|{
 name|super
@@ -546,6 +557,8 @@ argument_list|,
 name|object
 argument_list|,
 name|hash
+argument_list|,
+name|mask
 argument_list|)
 expr_stmt|;
 name|setSucceeds
@@ -565,12 +578,15 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|moveLastEntry (int dstIndex)
+DECL|method|moveLastEntry (int dstIndex, int mask)
 name|void
 name|moveLastEntry
 parameter_list|(
 name|int
 name|dstIndex
+parameter_list|,
+name|int
+name|mask
 parameter_list|)
 block|{
 name|int
@@ -586,6 +602,8 @@ operator|.
 name|moveLastEntry
 argument_list|(
 name|dstIndex
+argument_list|,
+name|mask
 argument_list|)
 expr_stmt|;
 name|setSucceeds
@@ -634,14 +652,14 @@ index|[
 name|srcIndex
 index|]
 operator|=
-name|UNSET
+literal|0
 expr_stmt|;
 name|successor
 index|[
 name|srcIndex
 index|]
 operator|=
-name|UNSET
+literal|0
 expr_stmt|;
 block|}
 annotation|@
@@ -661,13 +679,6 @@ argument_list|(
 name|newCapacity
 argument_list|)
 expr_stmt|;
-name|int
-name|oldCapacity
-init|=
-name|predecessor
-operator|.
-name|length
-decl_stmt|;
 name|predecessor
 operator|=
 name|Arrays
@@ -690,40 +701,6 @@ argument_list|,
 name|newCapacity
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|oldCapacity
-operator|<
-name|newCapacity
-condition|)
-block|{
-name|Arrays
-operator|.
-name|fill
-argument_list|(
-name|predecessor
-argument_list|,
-name|oldCapacity
-argument_list|,
-name|newCapacity
-argument_list|,
-name|UNSET
-argument_list|)
-expr_stmt|;
-name|Arrays
-operator|.
-name|fill
-argument_list|(
-name|successor
-argument_list|,
-name|oldCapacity
-argument_list|,
-name|newCapacity
-argument_list|,
-name|UNSET
-argument_list|)
-expr_stmt|;
-block|}
 block|}
 annotation|@
 name|Override
@@ -846,7 +823,7 @@ argument_list|,
 name|size
 argument_list|()
 argument_list|,
-name|UNSET
+literal|0
 argument_list|)
 expr_stmt|;
 name|Arrays
@@ -860,7 +837,7 @@ argument_list|,
 name|size
 argument_list|()
 argument_list|,
-name|UNSET
+literal|0
 argument_list|)
 expr_stmt|;
 name|super

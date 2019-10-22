@@ -643,7 +643,7 @@ name|map
 operator|.
 name|remove
 argument_list|(
-literal|3
+literal|4
 argument_list|)
 expr_stmt|;
 name|testHasMapEntriesInOrder
@@ -654,9 +654,9 @@ literal|1
 argument_list|,
 literal|"a"
 argument_list|,
-literal|4
+literal|3
 argument_list|,
-literal|"b"
+literal|"d"
 argument_list|,
 literal|2
 argument_list|,
@@ -1200,7 +1200,7 @@ argument_list|)
 operator|.
 name|hasLength
 argument_list|(
-name|CompactLinkedHashMap
+name|CompactHashing
 operator|.
 name|DEFAULT_SIZE
 argument_list|)
@@ -1214,7 +1214,7 @@ argument_list|)
 operator|.
 name|hasLength
 argument_list|(
-name|CompactLinkedHashMap
+name|CompactHashing
 operator|.
 name|DEFAULT_SIZE
 argument_list|)
@@ -1228,7 +1228,7 @@ argument_list|)
 operator|.
 name|hasLength
 argument_list|(
-name|CompactLinkedHashMap
+name|CompactHashing
 operator|.
 name|DEFAULT_SIZE
 argument_list|)
@@ -1242,7 +1242,7 @@ argument_list|)
 operator|.
 name|hasLength
 argument_list|(
-name|CompactLinkedHashMap
+name|CompactHashing
 operator|.
 name|DEFAULT_SIZE
 argument_list|)
@@ -1263,7 +1263,7 @@ literal|0
 init|;
 name|i
 operator|<=
-name|CompactLinkedHashMap
+name|CompactHashing
 operator|.
 name|DEFAULT_SIZE
 condition|;

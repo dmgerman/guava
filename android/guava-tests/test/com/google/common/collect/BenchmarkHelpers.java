@@ -623,22 +623,7 @@ argument_list|)
 return|;
 block|}
 block|}
-block|,
-comment|//    @GoogleInternal
-comment|//    CompactHashSetImpl {
-comment|//      @Override
-comment|//      public<E extends Comparable<E>> Set<E> create(Collection<E> contents) {
-comment|//        return CompactHashSet.create(contents);
-comment|//      }
-comment|//    },
-comment|//    @GoogleInternal
-comment|//    CompactLinkedHashSetImpl {
-comment|//      @Override
-comment|//      public<E extends Comparable<E>> Set<E> create(Collection<E> contents) {
-comment|//        return CompactLinkedHashSet.create(contents);
-comment|//      }
-comment|//    },
-block|;   }
+block|,     ;   }
 DECL|enum|ListMultimapImpl
 specifier|public
 enum|enum
@@ -1257,24 +1242,6 @@ return|;
 block|}
 block|}
 block|,
-comment|//    @GoogleInternal
-comment|//    CompactHashmapImpl {
-comment|//      @Override
-comment|//      public<K extends Comparable<K>, V> Map<K, V> create(Map<K, V> map) {
-comment|//        Map<K, V> result = CompactHashMap.createWithExpectedSize(map.size());
-comment|//        result.putAll(map);
-comment|//        return result;
-comment|//      }
-comment|//    },
-comment|//    @GoogleInternal
-comment|//    CompactLinkedHashmapImpl {
-comment|//      @Override
-comment|//      public<K extends Comparable<K>, V> Map<K, V> create(Map<K, V> map) {
-comment|//        Map<K, V> result = CompactLinkedHashMap.createWithExpectedSize(map.size());
-comment|//        result.putAll(map);
-comment|//        return result;
-comment|//      }
-comment|//    },
 DECL|enumConstant|ImmutableMapImpl
 name|ImmutableMapImpl
 block|{

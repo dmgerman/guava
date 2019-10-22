@@ -639,7 +639,7 @@ argument_list|)
 operator|.
 name|hasLength
 argument_list|(
-name|CompactHashMap
+name|CompactHashing
 operator|.
 name|DEFAULT_SIZE
 argument_list|)
@@ -653,7 +653,7 @@ argument_list|)
 operator|.
 name|hasLength
 argument_list|(
-name|CompactHashMap
+name|CompactHashing
 operator|.
 name|DEFAULT_SIZE
 argument_list|)
@@ -667,7 +667,7 @@ argument_list|)
 operator|.
 name|hasLength
 argument_list|(
-name|CompactHashMap
+name|CompactHashing
 operator|.
 name|DEFAULT_SIZE
 argument_list|)
@@ -688,7 +688,7 @@ literal|0
 init|;
 name|i
 operator|<=
-name|CompactHashMap
+name|CompactHashing
 operator|.
 name|DEFAULT_SIZE
 condition|;
