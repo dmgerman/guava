@@ -225,7 +225,7 @@ name|T
 argument_list|>
 name|comparator
 decl_stmt|;
-comment|/**    * The type of ordering that this object specifies.    *    *<ul>    *<li>UNORDERED: no order is guaranteed.    *<li>INSERTION: insertion ordering is guaranteed.    *<li>SORTED: ordering according to a supplied comparator is guaranteed.    *</ul>    */
+comment|/**    * The type of ordering that this object specifies.    *    *<ul>    *<li>UNORDERED: no order is guaranteed.    *<li>STABLE: ordering is guaranteed to follow a pattern that won't change between releases.    *       Some methods may have stronger guarantees.    *<li>INSERTION: insertion ordering is guaranteed.    *<li>SORTED: ordering according to a supplied comparator is guaranteed.    *</ul>    */
 DECL|enum|Type
 specifier|public
 enum|enum
@@ -233,6 +233,9 @@ name|Type
 block|{
 DECL|enumConstant|UNORDERED
 name|UNORDERED
+block|,
+DECL|enumConstant|STABLE
+name|STABLE
 block|,
 DECL|enumConstant|INSERTION
 name|INSERTION
@@ -313,6 +316,35 @@ argument_list|(
 name|Type
 operator|.
 name|UNORDERED
+argument_list|,
+literal|null
+argument_list|)
+return|;
+block|}
+comment|/**    * Returns an instance which specifies that ordering is guaranteed to be always be the same across    * iterations, and across releases. Some methods may have stronger guarantees.    *    *<p>This instance is only useful in combination with {@code incidentEdgeOrder}, e.g. {@code    * graphBuilder.incidentEdgeOrder(ElementOrder.stable())}.    *    *<h3>In combination with {@code incidentEdgeOrder}</h3>    *    *<p>{@code incidentEdgeOrder(ElementOrder.stable())} guarantees the ordering of the returned    * collections of the following methods:    *    *<ul>    *<li>For {@link Graph} and {@link ValueGraph}:    *<ul>    *<li>{@code edges()}: Stable order    *<li>{@code adjacentNodes(node)}: Connecting edge insertion order    *<li>{@code predecessors(node)}: Connecting edge insertion order    *<li>{@code successors(node)}: Connecting edge insertion order    *<li>{@code incidentEdges(node)}: Stable order    *</ul>    *<li>For {@link Network}:    *<ul>    *<li>{@code adjacentNodes(node)}: Stable order    *<li>{@code predecessors(node)}: Connecting edge insertion order    *<li>{@code successors(node)}: Connecting edge insertion order    *<li>{@code incidentEdges(node)}: Stable order    *<li>{@code inEdges(node)}: Edge insertion order    *<li>{@code outEdges(node)}: Edge insertion order    *<li>{@code adjacentEdges(edge)}: Stable order    *<li>{@code edgesConnecting(nodeU, nodeV)}: Edge insertion order    *</ul>    *</ul>    */
+comment|// TODO(b/142723300): Make this method public
+DECL|method|stable ()
+specifier|static
+parameter_list|<
+name|S
+parameter_list|>
+name|ElementOrder
+argument_list|<
+name|S
+argument_list|>
+name|stable
+parameter_list|()
+block|{
+return|return
+operator|new
+name|ElementOrder
+argument_list|<
+name|S
+argument_list|>
+argument_list|(
+name|Type
+operator|.
+name|STABLE
 argument_list|,
 literal|null
 argument_list|)
@@ -644,6 +676,9 @@ argument_list|)
 return|;
 case|case
 name|INSERTION
+case|:
+case|case
+name|STABLE
 case|:
 return|return
 name|Maps
