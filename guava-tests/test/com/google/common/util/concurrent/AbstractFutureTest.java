@@ -1551,9 +1551,9 @@ argument_list|)
 operator|.
 name|matches
 argument_list|(
-literal|"[^\\[]+\\[status=PENDING, info=\\[setFuture="
+literal|"[^\\[]+\\[status=PENDING, setFuture=\\[[^\\[]+\\[status=PENDING,"
 operator|+
-literal|"\\[[^\\[]+\\[status=PENDING, info=\\[cause=\\[Someday...\\]\\]\\]\\]\\]\\]"
+literal|" info=\\[cause=\\[Someday...]]]]]"
 argument_list|)
 expr_stmt|;
 name|testFuture2
@@ -4722,7 +4722,7 @@ argument_list|)
 operator|.
 name|contains
 argument_list|(
-literal|"[status=PENDING, info=[setFuture=[this future]]]"
+literal|"[status=PENDING, setFuture=[this future]]"
 argument_list|)
 expr_stmt|;
 block|}

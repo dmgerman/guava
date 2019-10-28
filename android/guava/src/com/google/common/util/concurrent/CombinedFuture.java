@@ -502,6 +502,10 @@ condition|(
 name|thrownByExecute
 condition|)
 block|{
+name|CombinedFuture
+operator|.
+name|this
+operator|.
 name|setException
 argument_list|(
 name|e
@@ -547,6 +551,10 @@ operator|instanceof
 name|ExecutionException
 condition|)
 block|{
+name|CombinedFuture
+operator|.
+name|this
+operator|.
 name|setException
 argument_list|(
 name|error
@@ -572,6 +580,10 @@ expr_stmt|;
 block|}
 else|else
 block|{
+name|CombinedFuture
+operator|.
+name|this
+operator|.
 name|setException
 argument_list|(
 name|error
@@ -704,6 +716,10 @@ argument_list|>
 name|value
 parameter_list|)
 block|{
+name|CombinedFuture
+operator|.
+name|this
+operator|.
 name|setFuture
 argument_list|(
 name|value

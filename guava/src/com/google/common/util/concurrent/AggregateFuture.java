@@ -484,15 +484,16 @@ literal|null
 condition|)
 block|{
 return|return
-literal|"futures=["
+literal|"futures="
 operator|+
 name|localFutures
-operator|+
-literal|"]"
 return|;
 block|}
 return|return
-literal|null
+name|super
+operator|.
+name|pendingToString
+argument_list|()
 return|;
 block|}
 comment|/**    * Must be called at the end of each subclass's constructor. This method performs the "real"    * initialization; we can't put this in the constructor because, in the case where futures are    * already complete, we would not initialize the subclass before calling {@link    * #collectValueFromNonCancelledFuture}. As this is called after the subclass is constructed,    * we're guaranteed to have properly initialized the subclass.    */
