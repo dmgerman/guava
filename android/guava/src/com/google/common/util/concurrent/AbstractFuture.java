@@ -3933,7 +3933,66 @@ name|StringBuilder
 name|builder
 parameter_list|)
 block|{
-comment|// Be careful not to append to the builder with anything that might be invalidated
+comment|// Capture current builder length so it can be truncated if this future ends up completing while
+comment|// the toString is being calculated
+name|int
+name|truncateLength
+init|=
+name|builder
+operator|.
+name|length
+argument_list|()
+decl_stmt|;
+name|builder
+operator|.
+name|append
+argument_list|(
+literal|"PENDING"
+argument_list|)
+expr_stmt|;
+name|Object
+name|localValue
+init|=
+name|value
+decl_stmt|;
+if|if
+condition|(
+name|localValue
+operator|instanceof
+name|SetFuture
+condition|)
+block|{
+name|builder
+operator|.
+name|append
+argument_list|(
+literal|", setFuture=["
+argument_list|)
+expr_stmt|;
+name|appendUserObject
+argument_list|(
+name|builder
+argument_list|,
+operator|(
+operator|(
+name|SetFuture
+operator|)
+name|localValue
+operator|)
+operator|.
+name|future
+argument_list|)
+expr_stmt|;
+name|builder
+operator|.
+name|append
+argument_list|(
+literal|"]"
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
 name|String
 name|pendingDescription
 decl_stmt|;
@@ -3953,6 +4012,8 @@ block|}
 catch|catch
 parameter_list|(
 name|RuntimeException
+decl||
+name|StackOverflowError
 name|e
 parameter_list|)
 block|{
@@ -3968,60 +4029,6 @@ name|getClass
 argument_list|()
 expr_stmt|;
 block|}
-name|String
-name|setFutureString
-init|=
-literal|null
-decl_stmt|;
-name|Object
-name|localValue
-init|=
-name|value
-decl_stmt|;
-if|if
-condition|(
-name|localValue
-operator|instanceof
-name|SetFuture
-condition|)
-block|{
-name|setFutureString
-operator|=
-name|userObjectToString
-argument_list|(
-operator|(
-operator|(
-name|SetFuture
-operator|)
-name|localValue
-operator|)
-operator|.
-name|future
-argument_list|)
-expr_stmt|;
-block|}
-comment|// The future may complete before we reach this point, so we check once more to see if the
-comment|// future is done
-if|if
-condition|(
-name|isDone
-argument_list|()
-condition|)
-block|{
-name|addDoneString
-argument_list|(
-name|builder
-argument_list|)
-expr_stmt|;
-return|return;
-block|}
-name|builder
-operator|.
-name|append
-argument_list|(
-literal|"PENDING"
-argument_list|)
-expr_stmt|;
 if|if
 condition|(
 name|pendingDescription
@@ -4047,28 +4054,31 @@ literal|"]"
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+comment|// The future may complete while calculating the toString, so we check once more to see if the
+comment|// future is done
 if|if
 condition|(
-name|setFutureString
-operator|!=
-literal|null
+name|isDone
+argument_list|()
 condition|)
 block|{
+comment|// Truncate anything that was appended before realizing this future is done
 name|builder
 operator|.
-name|append
+name|delete
 argument_list|(
-literal|", setFuture=["
-argument_list|)
+name|truncateLength
+argument_list|,
+name|builder
 operator|.
-name|append
-argument_list|(
-name|setFutureString
+name|length
+argument_list|()
 argument_list|)
-operator|.
-name|append
+expr_stmt|;
+name|addDoneString
 argument_list|(
-literal|"]"
+name|builder
 argument_list|)
 expr_stmt|;
 block|}
@@ -4098,14 +4108,15 @@ name|append
 argument_list|(
 literal|"SUCCESS, result=["
 argument_list|)
-operator|.
-name|append
+expr_stmt|;
+name|appendUserObject
 argument_list|(
-name|userObjectToString
-argument_list|(
+name|builder
+argument_list|,
 name|value
 argument_list|)
-argument_list|)
+expr_stmt|;
+name|builder
 operator|.
 name|append
 argument_list|(
@@ -4184,19 +4195,24 @@ expr_stmt|;
 block|}
 block|}
 comment|/** Helper for printing user supplied objects into our toString method. */
-DECL|method|userObjectToString (Object o)
+DECL|method|appendUserObject (StringBuilder builder, Object o)
 specifier|private
-name|String
-name|userObjectToString
+name|void
+name|appendUserObject
 parameter_list|(
+name|StringBuilder
+name|builder
+parameter_list|,
 name|Object
 name|o
 parameter_list|)
 block|{
-comment|// This is some basic recursion detection for when people create cycles via set/setFuture
-comment|// This is however only partial protection though since it only detects self loops.  We could
-comment|// detect arbitrary cycles using a thread local or possibly by catching StackOverflowExceptions
-comment|// but this should be a good enough solution (it is also what jdk collections do in these cases)
+comment|// This is some basic recursion detection for when people create cycles via set/setFuture or
+comment|// when deep chains of futures exist resulting in a StackOverflowException. We could detect
+comment|// arbitrary cycles using a thread local but this should be a good enough solution (it is also
+comment|// what jdk collections do in these cases)
+try|try
+block|{
 if|if
 condition|(
 name|o
@@ -4204,37 +4220,50 @@ operator|==
 name|this
 condition|)
 block|{
-return|return
-literal|"this future"
-return|;
-block|}
-try|try
-block|{
-return|return
-name|String
+name|builder
 operator|.
-name|valueOf
+name|append
+argument_list|(
+literal|"this future"
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
+name|builder
+operator|.
+name|append
 argument_list|(
 name|o
 argument_list|)
-return|;
+expr_stmt|;
+block|}
 block|}
 catch|catch
 parameter_list|(
 name|RuntimeException
+decl||
+name|StackOverflowError
 name|e
 parameter_list|)
 block|{
 comment|// Don't call getMessage or toString() on the exception, in case the exception thrown by the
 comment|// user object is implemented with bugs similar to the user object.
-return|return
+name|builder
+operator|.
+name|append
+argument_list|(
 literal|"Exception thrown from implementation: "
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 name|e
 operator|.
 name|getClass
 argument_list|()
-return|;
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 comment|/**    * Submits the given runnable to the given {@link Executor} catching and logging all {@linkplain    * RuntimeException runtime exceptions} thrown by the executor.    */
