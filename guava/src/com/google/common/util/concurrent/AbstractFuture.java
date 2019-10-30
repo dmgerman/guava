@@ -4208,6 +4208,8 @@ return|return
 literal|"this future"
 return|;
 block|}
+try|try
+block|{
 return|return
 name|String
 operator|.
@@ -4216,6 +4218,24 @@ argument_list|(
 name|o
 argument_list|)
 return|;
+block|}
+catch|catch
+parameter_list|(
+name|RuntimeException
+name|e
+parameter_list|)
+block|{
+comment|// Don't call getMessage or toString() on the exception, in case the exception thrown by the
+comment|// user object is implemented with bugs similar to the user object.
+return|return
+literal|"Exception thrown from implementation: "
+operator|+
+name|e
+operator|.
+name|getClass
+argument_list|()
+return|;
+block|}
 block|}
 comment|/**    * Submits the given runnable to the given {@link Executor} catching and logging all {@linkplain    * RuntimeException runtime exceptions} thrown by the executor.    */
 DECL|method|executeListener (Runnable runnable, Executor executor)
