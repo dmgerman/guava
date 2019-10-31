@@ -338,7 +338,7 @@ name|b
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the least value present in {@code array}.    *    * @param array a<i>nonempty</i> array of {@code byte} values    * @return the value present in {@code array} that is less than or equal to every other value in    *     the array    * @throws IllegalArgumentException if {@code array} is empty    */
+comment|/**    * Returns the least value present in {@code array}, treating values as unsigned.    *    * @param array a<i>nonempty</i> array of {@code byte} values    * @return the value present in {@code array} that is less than or equal to every other value in    *     the array according to {@link #compare}    * @throws IllegalArgumentException if {@code array} is empty    */
 DECL|method|min (byte... array)
 specifier|public
 specifier|static
@@ -418,7 +418,7 @@ operator|)
 name|min
 return|;
 block|}
-comment|/**    * Returns the greatest value present in {@code array}.    *    * @param array a<i>nonempty</i> array of {@code byte} values    * @return the value present in {@code array} that is greater than or equal to every other value    *     in the array    * @throws IllegalArgumentException if {@code array} is empty    */
+comment|/**    * Returns the greatest value present in {@code array}, treating values as unsigned.    *    * @param array a<i>nonempty</i> array of {@code byte} values    * @return the value present in {@code array} that is greater than or equal to every other value    *     in the array according to {@link #compare}    * @throws IllegalArgumentException if {@code array} is empty    */
 DECL|method|max (byte... array)
 specifier|public
 specifier|static
