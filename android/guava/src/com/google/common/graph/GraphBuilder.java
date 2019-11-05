@@ -28,6 +28,22 @@ name|base
 operator|.
 name|Preconditions
 operator|.
+name|checkArgument
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Preconditions
+operator|.
 name|checkNotNull
 import|;
 end_import
@@ -201,6 +217,7 @@ name|nodeOrder
 argument_list|()
 argument_list|)
 return|;
+comment|// TODO(b/142723300): Add incidentEdgeOrder
 block|}
 comment|/**    * Returns an {@link ImmutableGraph.Builder} with the properties of this {@link GraphBuilder}.    *    *<p>The returned builder can be used for populating an {@link ImmutableGraph}.    *    * @since 28.0    */
 DECL|method|immutable ()
@@ -330,6 +347,80 @@ operator|=
 name|checkNotNull
 argument_list|(
 name|nodeOrder
+argument_list|)
+expr_stmt|;
+return|return
+name|newBuilder
+return|;
+block|}
+comment|/**    * Specifies the order of iteration for the elements of {@link Graph#edges()}, {@link    * Graph#adjacentNodes(Object)}, {@link Graph#predecessors(Object)}, {@link    * Graph#successors(Object)} and {@link Graph#incidentEdges(Object)}.    *    *<p>The default value is {@link ElementOrder#unordered() unordered} for mutable graphs. For    * immutable graphs, this value is ignored; they always have a {@link ElementOrder#stable()    * stable} order.    *    * @throws IllegalArgumentException if {@code incidentEdgeOrder} is not either {@code    *     ElementOrder.unordered()} or {@code ElementOrder.stable()}.    */
+comment|// TODO(b/142723300): Make this method public
+DECL|method|incidentEdgeOrder (ElementOrder<N1> incidentEdgeOrder)
+parameter_list|<
+name|N1
+extends|extends
+name|N
+parameter_list|>
+name|GraphBuilder
+argument_list|<
+name|N1
+argument_list|>
+name|incidentEdgeOrder
+parameter_list|(
+name|ElementOrder
+argument_list|<
+name|N1
+argument_list|>
+name|incidentEdgeOrder
+parameter_list|)
+block|{
+name|checkArgument
+argument_list|(
+name|incidentEdgeOrder
+operator|.
+name|type
+argument_list|()
+operator|==
+name|ElementOrder
+operator|.
+name|Type
+operator|.
+name|UNORDERED
+operator|||
+name|incidentEdgeOrder
+operator|.
+name|type
+argument_list|()
+operator|==
+name|ElementOrder
+operator|.
+name|Type
+operator|.
+name|STABLE
+argument_list|,
+literal|"The given elementOrder (%s) is unsupported. incidentEdgeOrder() only supports"
+operator|+
+literal|" ElementOrder.unordered() and ElementOrder.stable()."
+argument_list|,
+name|incidentEdgeOrder
+argument_list|)
+expr_stmt|;
+name|GraphBuilder
+argument_list|<
+name|N1
+argument_list|>
+name|newBuilder
+init|=
+name|cast
+argument_list|()
+decl_stmt|;
+name|newBuilder
+operator|.
+name|incidentEdgeOrder
+operator|=
+name|checkNotNull
+argument_list|(
+name|incidentEdgeOrder
 argument_list|)
 expr_stmt|;
 return|return
