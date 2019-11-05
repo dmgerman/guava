@@ -219,7 +219,7 @@ argument_list|)
 return|;
 comment|// TODO(b/142723300): Add incidentEdgeOrder
 block|}
-comment|/**    * Returns an {@link ImmutableGraph.Builder} with the properties of this {@link GraphBuilder}.    *    *<p>The returned builder can be used for populating an {@link ImmutableGraph}.    *    * @since 28.0    */
+comment|/**    * Returns an {@link ImmutableGraph.Builder} with the properties of this {@link GraphBuilder}.    *    *<p>The returned builder can be used for populating an {@link ImmutableGraph}.    *    *<p>Note that the returned builder will always have {@link #incidentEdgeOrder} set to {@link    * ElementOrder#stable()}, regardless of the value that was set in this builder.    *    * @since 28.0    */
 DECL|method|immutable ()
 specifier|public
 parameter_list|<
@@ -451,6 +451,55 @@ argument_list|>
 argument_list|(
 name|this
 argument_list|)
+return|;
+block|}
+DECL|method|copy ()
+name|GraphBuilder
+argument_list|<
+name|N
+argument_list|>
+name|copy
+parameter_list|()
+block|{
+name|GraphBuilder
+argument_list|<
+name|N
+argument_list|>
+name|newBuilder
+init|=
+operator|new
+name|GraphBuilder
+argument_list|<>
+argument_list|(
+name|directed
+argument_list|)
+decl_stmt|;
+name|newBuilder
+operator|.
+name|allowsSelfLoops
+operator|=
+name|allowsSelfLoops
+expr_stmt|;
+name|newBuilder
+operator|.
+name|nodeOrder
+operator|=
+name|nodeOrder
+expr_stmt|;
+name|newBuilder
+operator|.
+name|expectedNodeCount
+operator|=
+name|expectedNodeCount
+expr_stmt|;
+name|newBuilder
+operator|.
+name|incidentEdgeOrder
+operator|=
+name|incidentEdgeOrder
+expr_stmt|;
+return|return
+name|newBuilder
 return|;
 block|}
 annotation|@
