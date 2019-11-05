@@ -1280,8 +1280,12 @@ comment|// entirely numeric whereas local classes have the user supplied name as
 return|return
 name|CharMatcher
 operator|.
-name|digit
-argument_list|()
+name|inRange
+argument_list|(
+literal|'0'
+argument_list|,
+literal|'9'
+argument_list|)
 operator|.
 name|trimLeadingFrom
 argument_list|(
