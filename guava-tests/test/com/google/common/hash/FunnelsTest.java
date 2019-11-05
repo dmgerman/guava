@@ -512,10 +512,15 @@ name|void
 name|testSequential
 parameter_list|()
 block|{
+comment|// go/do-not-mock-common-types-lsc
 annotation|@
 name|SuppressWarnings
 argument_list|(
+block|{
 literal|"unchecked"
+block|,
+literal|"DoNotMock"
+block|}
 argument_list|)
 name|Funnel
 argument_list|<

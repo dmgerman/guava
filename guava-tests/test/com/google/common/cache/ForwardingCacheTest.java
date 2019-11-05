@@ -134,10 +134,15 @@ name|Boolean
 argument_list|>
 name|mock
 decl_stmt|;
+comment|// go/do-not-mock-common-types-lsc
 annotation|@
 name|SuppressWarnings
 argument_list|(
+block|{
 literal|"unchecked"
+block|,
+literal|"DoNotMock"
+block|}
 argument_list|)
 comment|// mock
 annotation|@
