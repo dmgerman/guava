@@ -86,9 +86,9 @@ name|org
 operator|.
 name|mockito
 operator|.
-name|Mockito
+name|ArgumentMatchers
 operator|.
-name|eq
+name|isA
 import|;
 end_import
 
@@ -100,7 +100,7 @@ name|mockito
 operator|.
 name|Mockito
 operator|.
-name|isA
+name|eq
 import|;
 end_import
 

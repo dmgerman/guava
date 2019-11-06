@@ -36,9 +36,9 @@ name|org
 operator|.
 name|mockito
 operator|.
-name|Mockito
+name|ArgumentMatchers
 operator|.
-name|anyObject
+name|any
 import|;
 end_import
 
@@ -1275,7 +1275,7 @@ argument_list|)
 operator|.
 name|containsKey
 argument_list|(
-name|anyObject
+name|any
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -1291,7 +1291,7 @@ argument_list|)
 operator|.
 name|get
 argument_list|(
-name|anyObject
+name|any
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -1320,7 +1320,7 @@ argument_list|)
 operator|.
 name|remove
 argument_list|(
-name|anyObject
+name|any
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -1468,7 +1468,7 @@ argument_list|)
 operator|.
 name|containsKey
 argument_list|(
-name|anyObject
+name|any
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -1497,7 +1497,7 @@ argument_list|)
 operator|.
 name|remove
 argument_list|(
-name|anyObject
+name|any
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -1658,7 +1658,7 @@ argument_list|)
 operator|.
 name|containsValue
 argument_list|(
-name|anyObject
+name|any
 argument_list|()
 argument_list|)
 expr_stmt|;
