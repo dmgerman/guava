@@ -1482,7 +1482,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/**    * Creates a new {@code ListenableFuture} whose value is a list containing the values of all its    * input futures, if all succeed.    *    *<p>The list of results is in the same order as the input list.    *    *<p>Canceling this future will attempt to cancel all the component futures, and if any of the    * provided futures fails or is canceled, this one is, too.    *    * @param futures futures to combine    * @return a future that provides a list of the results of the component futures    * @since 10.0    */
+comment|/**    * Creates a new {@code ListenableFuture} whose value is a list containing the values of all its    * input futures, if all succeed.    *    *<p>The list of results is in the same order as the input list.    *    *<p>This differs from {@link #successfulAsList(ListenableFuture[])} in that it will return a    * failed future if any of the items fails.    *    *<p>Canceling this future will attempt to cancel all the component futures, and if any of the    * provided futures fails or is canceled, this one is, too.    *    * @param futures futures to combine    * @return a future that provides a list of the results of the component futures    * @since 10.0    */
 annotation|@
 name|Beta
 annotation|@
@@ -1530,7 +1530,7 @@ literal|true
 argument_list|)
 return|;
 block|}
-comment|/**    * Creates a new {@code ListenableFuture} whose value is a list containing the values of all its    * input futures, if all succeed.    *    *<p>The list of results is in the same order as the input list.    *    *<p>Canceling this future will attempt to cancel all the component futures, and if any of the    * provided futures fails or is canceled, this one is, too.    *    * @param futures futures to combine    * @return a future that provides a list of the results of the component futures    * @since 10.0    */
+comment|/**    * Creates a new {@code ListenableFuture} whose value is a list containing the values of all its    * input futures, if all succeed.    *    *<p>The list of results is in the same order as the input list.    *    *<p>This differs from {@link #successfulAsList(Iterable)} in that it will return a failed future    * if any of the items fails.    *    *<p>Canceling this future will attempt to cancel all the component futures, and if any of the    * provided futures fails or is canceled, this one is, too.    *    * @param futures futures to combine    * @return a future that provides a list of the results of the component futures    * @since 10.0    */
 annotation|@
 name|Beta
 DECL|method|allAsList ( Iterable<? extends ListenableFuture<? extends V>> futures)
@@ -2155,7 +2155,7 @@ literal|null
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Creates a new {@code ListenableFuture} whose value is a list containing the values of all its    * successful input futures. The list of results is in the same order as the input list, and if    * any of the provided futures fails or is canceled, its corresponding position will contain    * {@code null} (which is indistinguishable from the future having a successful value of {@code    * null}).    *    *<p>Canceling this future will attempt to cancel all the component futures.    *    * @param futures futures to combine    * @return a future that provides a list of the results of the component futures    * @since 10.0    */
+comment|/**    * Creates a new {@code ListenableFuture} whose value is a list containing the values of all its    * successful input futures. The list of results is in the same order as the input list, and if    * any of the provided futures fails or is canceled, its corresponding position will contain    * {@code null} (which is indistinguishable from the future having a successful value of {@code    * null}).    *    *<p>The list of results is in the same order as the input list.    *    *<p>This differs from {@link #allAsList(ListenableFuture[])} in that it's tolerant of failed    * futures for any of the items, representing them as {@code null} in the result list.    *    *<p>Canceling this future will attempt to cancel all the component futures.    *    * @param futures futures to combine    * @return a future that provides a list of the results of the component futures    * @since 10.0    */
 annotation|@
 name|Beta
 annotation|@
@@ -2203,7 +2203,7 @@ literal|false
 argument_list|)
 return|;
 block|}
-comment|/**    * Creates a new {@code ListenableFuture} whose value is a list containing the values of all its    * successful input futures. The list of results is in the same order as the input list, and if    * any of the provided futures fails or is canceled, its corresponding position will contain    * {@code null} (which is indistinguishable from the future having a successful value of {@code    * null}).    *    *<p>Canceling this future will attempt to cancel all the component futures.    *    * @param futures futures to combine    * @return a future that provides a list of the results of the component futures    * @since 10.0    */
+comment|/**    * Creates a new {@code ListenableFuture} whose value is a list containing the values of all its    * successful input futures. The list of results is in the same order as the input list, and if    * any of the provided futures fails or is canceled, its corresponding position will contain    * {@code null} (which is indistinguishable from the future having a successful value of {@code    * null}).    *    *<p>The list of results is in the same order as the input list.    *    *<p>This differs from {@link #allAsList(Iterable)} in that it's tolerant of failed futures for    * any of the items, representing them as {@code null} in the result list.    *    *<p>Canceling this future will attempt to cancel all the component futures.    *    * @param futures futures to combine    * @return a future that provides a list of the results of the component futures    * @since 10.0    */
 annotation|@
 name|Beta
 DECL|method|successfulAsList ( Iterable<? extends ListenableFuture<? extends V>> futures)
