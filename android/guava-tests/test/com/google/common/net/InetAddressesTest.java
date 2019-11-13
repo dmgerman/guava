@@ -388,21 +388,17 @@ name|ipStr
 init|=
 literal|"192.168.0.1"
 decl_stmt|;
+comment|// Shouldn't hit DNS, because it's an IP string literal.
 name|InetAddress
 name|ipv4Addr
 init|=
-literal|null
-decl_stmt|;
-comment|// Shouldn't hit DNS, because it's an IP string literal.
-name|ipv4Addr
-operator|=
 name|InetAddress
 operator|.
 name|getByName
 argument_list|(
 name|ipStr
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|assertEquals
 argument_list|(
 name|ipv4Addr
@@ -439,21 +435,17 @@ name|ipStr
 init|=
 literal|"3ffe::1"
 decl_stmt|;
+comment|// Shouldn't hit DNS, because it's an IP string literal.
 name|InetAddress
 name|ipv6Addr
 init|=
-literal|null
-decl_stmt|;
-comment|// Shouldn't hit DNS, because it's an IP string literal.
-name|ipv6Addr
-operator|=
 name|InetAddress
 operator|.
 name|getByName
 argument_list|(
 name|ipStr
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|assertEquals
 argument_list|(
 name|ipv6Addr
@@ -512,21 +504,17 @@ range|:
 name|eightColons
 control|)
 block|{
+comment|// Shouldn't hit DNS, because it's an IP string literal.
 name|InetAddress
 name|ipv6Addr
 init|=
-literal|null
-decl_stmt|;
-comment|// Shouldn't hit DNS, because it's an IP string literal.
-name|ipv6Addr
-operator|=
 name|InetAddress
 operator|.
 name|getByName
 argument_list|(
 name|ipString
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|assertEquals
 argument_list|(
 name|ipv6Addr
