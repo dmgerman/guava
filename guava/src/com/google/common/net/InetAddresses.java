@@ -412,7 +412,7 @@ name|bytes
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the {@link InetAddress} having the given string representation.    *    *<p>This deliberately avoids all nameservice lookups (e.g. no DNS).    *    * @param ipString {@code String} containing an IPv4 or IPv6 string literal, e.g. {@code    *     "192.168.0.1"} or {@code "2001:db8::1"}    * @return {@link InetAddress} representing the argument    * @throws IllegalArgumentException if the argument is not a valid IP string literal    */
+comment|/**    * Returns the {@link InetAddress} having the given string representation.    *    *<p>This deliberately avoids all nameservice lookups (e.g. no DNS).    *    *<p>Anything after a {@code %} in an IPv6 address is ignored (assumed to be a Scope ID).    *    * @param ipString {@code String} containing an IPv4 or IPv6 string literal, e.g. {@code    *     "192.168.0.1"} or {@code "2001:db8::1"}    * @return {@link InetAddress} representing the argument    * @throws IllegalArgumentException if the argument is not a valid IP string literal    */
 DECL|method|forString (String ipString)
 specifier|public
 specifier|static
@@ -476,6 +476,7 @@ operator|!=
 literal|null
 return|;
 block|}
+comment|/** Returns {@code null} if unable to parse into a {@code byte[]}. */
 DECL|method|ipStringToBytes (String ipString)
 specifier|private
 specifier|static
@@ -499,6 +500,12 @@ name|boolean
 name|hasDot
 init|=
 literal|false
+decl_stmt|;
+name|int
+name|percentIndex
+init|=
+operator|-
+literal|1
 decl_stmt|;
 for|for
 control|(
@@ -566,6 +573,21 @@ block|}
 elseif|else
 if|if
 condition|(
+name|c
+operator|==
+literal|'%'
+condition|)
+block|{
+name|percentIndex
+operator|=
+name|i
+expr_stmt|;
+break|break;
+comment|// everything after a '%' is ignored (it's a Scope ID): http://superuser.com/a/99753
+block|}
+elseif|else
+if|if
+condition|(
 name|Character
 operator|.
 name|digit
@@ -614,6 +636,26 @@ return|return
 literal|null
 return|;
 block|}
+block|}
+if|if
+condition|(
+name|percentIndex
+operator|!=
+operator|-
+literal|1
+condition|)
+block|{
+name|ipString
+operator|=
+name|ipString
+operator|.
+name|substring
+argument_list|(
+literal|0
+argument_list|,
+name|percentIndex
+argument_list|)
+expr_stmt|;
 block|}
 return|return
 name|textToNumericFormatV6
