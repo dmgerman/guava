@@ -3402,18 +3402,18 @@ name|i
 operator|++
 control|)
 block|{
-name|checkArgument
-argument_list|(
+if|if
+condition|(
 name|addressBytes
 index|[
 name|i
 index|]
-operator|==
+operator|!=
 literal|0x00
-argument_list|,
-name|String
-operator|.
-name|format
+condition|)
+block|{
+throw|throw
+name|formatIllegalArgumentException
 argument_list|(
 literal|"BigInteger cannot be converted to InetAddress because it has more than %d"
 operator|+
@@ -3423,8 +3423,8 @@ name|numBytes
 argument_list|,
 name|address
 argument_list|)
-argument_list|)
-expr_stmt|;
+throw|;
+block|}
 block|}
 comment|// Copy the bytes into the least significant positions.
 name|System
