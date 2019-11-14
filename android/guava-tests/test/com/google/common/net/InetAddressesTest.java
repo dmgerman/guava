@@ -2930,33 +2930,34 @@ name|testGetCoercedIPv4Address
 parameter_list|()
 block|{
 comment|// Check that a coerced IPv4 address is unaltered.
-name|InetAddress
-name|localHost4
-init|=
+name|assertThat
+argument_list|(
+name|InetAddresses
+operator|.
+name|getCoercedIPv4Address
+argument_list|(
 name|InetAddresses
 operator|.
 name|forString
 argument_list|(
 literal|"127.0.0.1"
 argument_list|)
-decl_stmt|;
-name|assertEquals
+argument_list|)
+argument_list|)
+operator|.
+name|isEqualTo
 argument_list|(
-name|localHost4
-argument_list|,
 name|InetAddresses
 operator|.
-name|getCoercedIPv4Address
+name|forString
 argument_list|(
-name|localHost4
+literal|"127.0.0.1"
 argument_list|)
 argument_list|)
 expr_stmt|;
 comment|// ::1 special case
-name|assertEquals
+name|assertThat
 argument_list|(
-name|localHost4
-argument_list|,
 name|InetAddresses
 operator|.
 name|getCoercedIPv4Address
@@ -2969,17 +2970,20 @@ literal|"::1"
 argument_list|)
 argument_list|)
 argument_list|)
-expr_stmt|;
-comment|// :: special case
-name|assertEquals
+operator|.
+name|isEqualTo
 argument_list|(
 name|InetAddresses
 operator|.
 name|forString
 argument_list|(
-literal|"0.0.0.0"
+literal|"127.0.0.1"
 argument_list|)
-argument_list|,
+argument_list|)
+expr_stmt|;
+comment|// :: special case
+name|assertThat
+argument_list|(
 name|InetAddresses
 operator|.
 name|getCoercedIPv4Address
@@ -2992,17 +2996,20 @@ literal|"::"
 argument_list|)
 argument_list|)
 argument_list|)
-expr_stmt|;
-comment|// test compat address (should be hashed)
-name|assertTrue
+operator|.
+name|isEqualTo
 argument_list|(
 name|InetAddresses
 operator|.
 name|forString
 argument_list|(
-literal|"1.2.3.4"
+literal|"0.0.0.0"
 argument_list|)
-operator|!=
+argument_list|)
+expr_stmt|;
+comment|// test compat address (should be hashed)
+name|assertThat
+argument_list|(
 name|InetAddresses
 operator|.
 name|getCoercedIPv4Address
@@ -3015,9 +3022,8 @@ literal|"::1.2.3.4"
 argument_list|)
 argument_list|)
 argument_list|)
-expr_stmt|;
-comment|// test 6to4 address (should be hashed)
-name|assertTrue
+operator|.
+name|isNotEqualTo
 argument_list|(
 name|InetAddresses
 operator|.
@@ -3025,7 +3031,11 @@ name|forString
 argument_list|(
 literal|"1.2.3.4"
 argument_list|)
-operator|!=
+argument_list|)
+expr_stmt|;
+comment|// test 6to4 address (should be hashed)
+name|assertThat
+argument_list|(
 name|InetAddresses
 operator|.
 name|getCoercedIPv4Address
@@ -3036,12 +3046,22 @@ name|forString
 argument_list|(
 literal|"2002:0102:0304::1"
 argument_list|)
+argument_list|)
+argument_list|)
+operator|.
+name|isNotEqualTo
+argument_list|(
+name|InetAddresses
+operator|.
+name|forString
+argument_list|(
+literal|"1.2.3.4"
 argument_list|)
 argument_list|)
 expr_stmt|;
 comment|// 2 6to4 addresses differing in the embedded IPv4 address should
 comment|// hash to the different values.
-name|assertTrue
+name|assertThat
 argument_list|(
 name|InetAddresses
 operator|.
@@ -3054,7 +3074,10 @@ argument_list|(
 literal|"2002:0102:0304::1"
 argument_list|)
 argument_list|)
-operator|!=
+argument_list|)
+operator|.
+name|isNotEqualTo
+argument_list|(
 name|InetAddresses
 operator|.
 name|getCoercedIPv4Address
@@ -3070,7 +3093,7 @@ argument_list|)
 expr_stmt|;
 comment|// 2 6to4 addresses NOT differing in the embedded IPv4 address should
 comment|// hash to the same value.
-name|assertTrue
+name|assertThat
 argument_list|(
 name|InetAddresses
 operator|.
@@ -3083,7 +3106,10 @@ argument_list|(
 literal|"2002:0102:0304::1"
 argument_list|)
 argument_list|)
-operator|!=
+argument_list|)
+operator|.
+name|isEqualTo
+argument_list|(
 name|InetAddresses
 operator|.
 name|getCoercedIPv4Address
@@ -3098,7 +3124,22 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 comment|// test Teredo address (should be hashed)
-name|assertTrue
+name|assertThat
+argument_list|(
+name|InetAddresses
+operator|.
+name|getCoercedIPv4Address
+argument_list|(
+name|InetAddresses
+operator|.
+name|forString
+argument_list|(
+literal|"2001:0000:4136:e378:8000:63bf:3fff:fdd2"
+argument_list|)
+argument_list|)
+argument_list|)
+operator|.
+name|isNotEqualTo
 argument_list|(
 name|InetAddresses
 operator|.
@@ -3106,7 +3147,12 @@ name|forString
 argument_list|(
 literal|"192.0.2.45"
 argument_list|)
-operator|!=
+argument_list|)
+expr_stmt|;
+comment|// 2 Teredo addresses differing in their embedded IPv4 addresses should hash to different
+comment|// values.
+name|assertThat
+argument_list|(
 name|InetAddresses
 operator|.
 name|getCoercedIPv4Address
@@ -3116,13 +3162,28 @@ operator|.
 name|forString
 argument_list|(
 literal|"2001:0000:4136:e378:8000:63bf:3fff:fdd2"
+argument_list|)
+argument_list|)
+argument_list|)
+operator|.
+name|isNotEqualTo
+argument_list|(
+name|InetAddresses
+operator|.
+name|getCoercedIPv4Address
+argument_list|(
+name|InetAddresses
+operator|.
+name|forString
+argument_list|(
+literal|"2001:0000:4136:e378:8000:63bf:3fff:fdd3"
 argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|// 2 Teredo addresses differing in the embedded IPv4 address should
-comment|// hash to the different values.
-name|assertTrue
+comment|// 2 Teredo addresses NOT differing in the their embedded IPv4 addresses should hash to the same
+comment|// value.
+name|assertThat
 argument_list|(
 name|InetAddresses
 operator|.
@@ -3135,23 +3196,9 @@ argument_list|(
 literal|"2001:0000:4136:e378:8000:63bf:3fff:fdd2"
 argument_list|)
 argument_list|)
-operator|!=
-name|InetAddresses
+argument_list|)
 operator|.
-name|getCoercedIPv4Address
-argument_list|(
-name|InetAddresses
-operator|.
-name|forString
-argument_list|(
-literal|"2001:0000:4136:e379:8000:63bf:3fff:fdd2"
-argument_list|)
-argument_list|)
-argument_list|)
-expr_stmt|;
-comment|// 2 Teredo addresses NOT differing in the embedded IPv4 address should
-comment|// hash to the same value.
-name|assertEquals
+name|isEqualTo
 argument_list|(
 name|InetAddresses
 operator|.
@@ -3161,27 +3208,19 @@ name|InetAddresses
 operator|.
 name|forString
 argument_list|(
-literal|"2001:0000:4136:e378:8000:63bf:3fff:fdd2"
-argument_list|)
-argument_list|)
-argument_list|,
-name|InetAddresses
-operator|.
-name|getCoercedIPv4Address
-argument_list|(
-name|InetAddresses
-operator|.
-name|forString
-argument_list|(
-literal|"2001:0000:4136:e378:9000:63bf:3fff:fdd2"
+literal|"2001:0000:5136:f378:9000:73bf:3fff:fdd2"
 argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
 comment|// Test that an address hashes in to the 224.0.0.0/3 number-space.
-name|InetAddress
-name|coerced
+name|int
+name|coercedInt
 init|=
+name|InetAddresses
+operator|.
+name|coerceToInteger
+argument_list|(
 name|InetAddresses
 operator|.
 name|getCoercedIPv4Address
@@ -3193,58 +3232,53 @@ argument_list|(
 literal|"2001:4860::1"
 argument_list|)
 argument_list|)
+argument_list|)
 decl_stmt|;
-name|assertTrue
+name|assertThat
+argument_list|(
+name|coercedInt
+argument_list|)
+operator|.
+name|isAtLeast
 argument_list|(
 literal|0xe0000000
-operator|<=
-name|InetAddresses
-operator|.
-name|coerceToInteger
-argument_list|(
-name|coerced
-argument_list|)
 argument_list|)
 expr_stmt|;
-name|assertTrue
+name|assertThat
 argument_list|(
-name|InetAddresses
-operator|.
-name|coerceToInteger
-argument_list|(
-name|coerced
+name|coercedInt
 argument_list|)
-operator|<=
+operator|.
+name|isAtMost
+argument_list|(
 literal|0xfffffffe
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|testToInteger ()
+DECL|method|testCoerceToInteger ()
 specifier|public
 name|void
-name|testToInteger
+name|testCoerceToInteger
 parameter_list|()
 block|{
-name|InetAddress
-name|ipv4Addr
-init|=
+name|assertThat
+argument_list|(
+name|InetAddresses
+operator|.
+name|coerceToInteger
+argument_list|(
 name|InetAddresses
 operator|.
 name|forString
 argument_list|(
 literal|"127.0.0.1"
 argument_list|)
-decl_stmt|;
-name|assertEquals
+argument_list|)
+argument_list|)
+operator|.
+name|isEqualTo
 argument_list|(
 literal|0x7f000001
-argument_list|,
-name|InetAddresses
-operator|.
-name|coerceToInteger
-argument_list|(
-name|ipv4Addr
-argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -3254,7 +3288,7 @@ name|void
 name|testFromInteger
 parameter_list|()
 block|{
-name|assertEquals
+name|assertThat
 argument_list|(
 name|InetAddresses
 operator|.
@@ -3262,7 +3296,10 @@ name|fromInteger
 argument_list|(
 literal|0x7f000001
 argument_list|)
-argument_list|,
+argument_list|)
+operator|.
+name|isEqualTo
+argument_list|(
 name|InetAddresses
 operator|.
 name|forString
