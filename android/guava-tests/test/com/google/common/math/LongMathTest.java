@@ -172,7 +172,7 @@ name|truth
 operator|.
 name|Truth
 operator|.
-name|assert_
+name|assertWithMessage
 import|;
 end_import
 
@@ -5159,15 +5159,15 @@ modifier|...
 name|args
 parameter_list|)
 block|{
-name|assert_
-argument_list|()
-operator|.
-name|fail
+name|assertWithMessage
 argument_list|(
 name|template
 argument_list|,
 name|args
 argument_list|)
+operator|.
+name|fail
+argument_list|()
 expr_stmt|;
 block|}
 block|}
