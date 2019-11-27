@@ -155,6 +155,15 @@ argument_list|,
 name|V
 argument_list|>
 block|{
+DECL|field|incidentEdgeOrder
+specifier|private
+specifier|final
+name|ElementOrder
+argument_list|<
+name|N
+argument_list|>
+name|incidentEdgeOrder
+decl_stmt|;
 comment|/** Constructs a mutable graph with the properties specified in {@code builder}. */
 DECL|method|ConfigurableMutableValueGraph (AbstractGraphBuilder<? super N> builder)
 name|ConfigurableMutableValueGraph
@@ -172,6 +181,15 @@ name|super
 argument_list|(
 name|builder
 argument_list|)
+expr_stmt|;
+name|incidentEdgeOrder
+operator|=
+name|builder
+operator|.
+name|incidentEdgeOrder
+operator|.
+name|cast
+argument_list|()
 expr_stmt|;
 block|}
 annotation|@
@@ -793,7 +811,9 @@ operator|,
 name|V
 operator|>
 name|of
-argument_list|()
+argument_list|(
+name|incidentEdgeOrder
+argument_list|)
 operator|:
 name|UndirectedGraphConnections
 operator|.
