@@ -72,6 +72,16 @@ name|JsMethod
 import|;
 end_import
 
+begin_import
+import|import
+name|jsinterop
+operator|.
+name|annotations
+operator|.
+name|JsOptional
+import|;
+end_import
+
 begin_comment
 comment|/**  * Java super source for ListenableFuture, implementing a structural thenable via a default method.  * For restrictions, please refer to the documentation of the then() method.  *  *<p>This class is not (explicitly) implementing IThenable<V> because "then" is overloaded there  * and the single parameter version would need to be marked native, which does not seem to be  * feasible in interfaces (see "subclassing a class with overloaded methods" in jsinterop  * documentation).  */
 end_comment
@@ -111,7 +121,7 @@ annotation|@
 name|JsMethod
 annotation|@
 name|Override
-DECL|method|then ( IThenable.ThenOnFulfilledCallbackFn<? super V, ? extends R> onFulfilled, IThenable.ThenOnRejectedCallbackFn<? extends R> onRejected)
+DECL|method|then ( IThenable.ThenOnFulfilledCallbackFn<? super V, ? extends R> onFulfilled, @JsOptional IThenable.ThenOnRejectedCallbackFn<? extends R> onRejected)
 specifier|default
 parameter_list|<
 name|R
@@ -136,6 +146,8 @@ name|R
 argument_list|>
 name|onFulfilled
 parameter_list|,
+annotation|@
+name|JsOptional
 name|IThenable
 operator|.
 name|ThenOnRejectedCallbackFn

@@ -34,6 +34,16 @@ name|jsinterop
 operator|.
 name|annotations
 operator|.
+name|JsOptional
+import|;
+end_import
+
+begin_import
+import|import
+name|jsinterop
+operator|.
+name|annotations
+operator|.
 name|JsPackage
 import|;
 end_import
@@ -73,7 +83,7 @@ parameter_list|<
 name|T
 parameter_list|>
 block|{
-DECL|method|then ( IThenable.ThenOnFulfilledCallbackFn<? super T, ? extends V> onFulfilled, IThenable.ThenOnRejectedCallbackFn<? extends V> onRejected)
+DECL|method|then ( IThenable.ThenOnFulfilledCallbackFn<? super T, ? extends V> onFulfilled, @JsOptional IThenable.ThenOnRejectedCallbackFn<? extends V> onRejected)
 parameter_list|<
 name|V
 parameter_list|>
@@ -97,6 +107,8 @@ name|V
 argument_list|>
 name|onFulfilled
 parameter_list|,
+annotation|@
+name|JsOptional
 name|IThenable
 operator|.
 name|ThenOnRejectedCallbackFn
