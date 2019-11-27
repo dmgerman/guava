@@ -218,6 +218,33 @@ return|;
 block|}
 annotation|@
 name|Override
+DECL|method|incidentEdges (N node)
+specifier|public
+name|Set
+argument_list|<
+name|EndpointPair
+argument_list|<
+name|N
+argument_list|>
+argument_list|>
+name|incidentEdges
+parameter_list|(
+name|N
+name|node
+parameter_list|)
+block|{
+return|return
+name|delegate
+argument_list|()
+operator|.
+name|incidentEdges
+argument_list|(
+name|node
+argument_list|)
+return|;
+block|}
+annotation|@
+name|Override
 DECL|method|degree (N node)
 specifier|public
 name|int

@@ -312,10 +312,10 @@ comment|// Note: Stable order means that the ordering doesn't change between ite
 comment|// Ideally, the ordering in test should never be updated.
 annotation|@
 name|Test
-DECL|method|incidentEdges_returnsInStableOrder ()
+DECL|method|incidentEdges_returnsInEdgeInsertionOrder ()
 specifier|public
 name|void
-name|incidentEdges_returnsInStableOrder
+name|incidentEdges_returnsInEdgeInsertionOrder
 parameter_list|()
 block|{
 name|populateStarShapedGraph
@@ -348,24 +348,6 @@ name|EndpointPair
 operator|.
 name|ordered
 argument_list|(
-literal|5
-argument_list|,
-literal|1
-argument_list|)
-argument_list|,
-name|EndpointPair
-operator|.
-name|ordered
-argument_list|(
-literal|3
-argument_list|,
-literal|1
-argument_list|)
-argument_list|,
-name|EndpointPair
-operator|.
-name|ordered
-argument_list|(
 literal|1
 argument_list|,
 literal|4
@@ -384,9 +366,27 @@ name|EndpointPair
 operator|.
 name|ordered
 argument_list|(
+literal|5
+argument_list|,
+literal|1
+argument_list|)
+argument_list|,
+name|EndpointPair
+operator|.
+name|ordered
+argument_list|(
 literal|1
 argument_list|,
 literal|2
+argument_list|)
+argument_list|,
+name|EndpointPair
+operator|.
+name|ordered
+argument_list|(
+literal|3
+argument_list|,
+literal|1
 argument_list|)
 argument_list|)
 operator|.

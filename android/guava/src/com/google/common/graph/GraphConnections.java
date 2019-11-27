@@ -36,6 +36,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|Iterator
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|Set
 import|;
 end_import
@@ -93,6 +103,21 @@ name|N
 argument_list|>
 name|successors
 parameter_list|()
+function_decl|;
+comment|/**    * Returns an iterator over the incident edges.    *    * @param thisNode The node that this all of the connections in this class are connected to.    */
+DECL|method|incidentEdgeIterator (N thisNode)
+name|Iterator
+argument_list|<
+name|EndpointPair
+argument_list|<
+name|N
+argument_list|>
+argument_list|>
+name|incidentEdgeIterator
+parameter_list|(
+name|N
+name|thisNode
+parameter_list|)
 function_decl|;
 comment|/**    * Returns the value associated with the edge connecting the origin node to {@code node}, or null    * if there is no such edge.    */
 annotation|@
