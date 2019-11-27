@@ -983,6 +983,13 @@ name|Throwable
 name|tryInternalFastPathGetFailure
 parameter_list|()
 block|{
+if|if
+condition|(
+name|this
+operator|instanceof
+name|Trusted
+condition|)
+block|{
 return|return
 name|state
 operator|==
@@ -992,6 +999,10 @@ name|FAILURE
 condition|?
 name|throwable
 else|:
+literal|null
+return|;
+block|}
+return|return
 literal|null
 return|;
 block|}
