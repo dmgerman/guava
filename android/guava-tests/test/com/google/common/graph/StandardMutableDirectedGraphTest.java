@@ -115,7 +115,7 @@ name|Parameters
 argument_list|(
 name|name
 operator|=
-literal|"[allowsSelfLoops={0}, incidentEdgeOrder={1}]"
+literal|"allowsSelfLoops={0}, incidentEdgeOrder={1}"
 argument_list|)
 DECL|method|parameters ()
 specifier|public

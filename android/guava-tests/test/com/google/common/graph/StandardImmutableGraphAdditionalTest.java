@@ -67,7 +67,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Tests for {@link ImmutableGraph}. */
+comment|/**  * Tests for {@link ImmutableGraph} and {@link ImmutableGraph.Builder} that are not ready covered by  * {@link StandardImmutableDirectedGraphTest}.  */
 end_comment
 
 begin_class
@@ -78,10 +78,10 @@ name|JUnit4
 operator|.
 name|class
 argument_list|)
-DECL|class|ImmutableGraphTest
+DECL|class|StandardImmutableGraphAdditionalTest
 specifier|public
 class|class
-name|ImmutableGraphTest
+name|StandardImmutableGraphAdditionalTest
 block|{
 annotation|@
 name|Test
