@@ -112,6 +112,11 @@ name|AbstractStandardDirectedGraphTest
 block|{
 annotation|@
 name|Parameters
+argument_list|(
+name|name
+operator|=
+literal|"[allowsSelfLoops={0}, incidentEdgeOrder={1}]"
+argument_list|)
 DECL|method|parameters ()
 specifier|public
 specifier|static
@@ -135,10 +140,38 @@ index|[]
 block|{
 block|{
 literal|false
+block|,
+name|ElementOrder
+operator|.
+name|unordered
+argument_list|()
 block|}
 block|,
 block|{
 literal|true
+block|,
+name|ElementOrder
+operator|.
+name|unordered
+argument_list|()
+block|}
+block|,
+block|{
+literal|false
+block|,
+name|ElementOrder
+operator|.
+name|stable
+argument_list|()
+block|}
+block|,
+block|{
+literal|true
+block|,
+name|ElementOrder
+operator|.
+name|stable
+argument_list|()
 block|}
 block|,         }
 argument_list|)
@@ -150,12 +183,27 @@ specifier|final
 name|boolean
 name|allowsSelfLoops
 decl_stmt|;
-DECL|method|StandardMutableDirectedGraphTest (boolean allowsSelfLoops)
+DECL|field|incidentEdgeOrder
+specifier|private
+specifier|final
+name|ElementOrder
+argument_list|<
+name|Integer
+argument_list|>
+name|incidentEdgeOrder
+decl_stmt|;
+DECL|method|StandardMutableDirectedGraphTest ( boolean allowsSelfLoops, ElementOrder<Integer> incidentEdgeOrder)
 specifier|public
 name|StandardMutableDirectedGraphTest
 parameter_list|(
 name|boolean
 name|allowsSelfLoops
+parameter_list|,
+name|ElementOrder
+argument_list|<
+name|Integer
+argument_list|>
+name|incidentEdgeOrder
 parameter_list|)
 block|{
 name|this
@@ -163,6 +211,12 @@ operator|.
 name|allowsSelfLoops
 operator|=
 name|allowsSelfLoops
+expr_stmt|;
+name|this
+operator|.
+name|incidentEdgeOrder
+operator|=
+name|incidentEdgeOrder
 expr_stmt|;
 block|}
 annotation|@
@@ -174,6 +228,20 @@ parameter_list|()
 block|{
 return|return
 name|allowsSelfLoops
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|incidentEdgeOrder ()
+name|ElementOrder
+argument_list|<
+name|Integer
+argument_list|>
+name|incidentEdgeOrder
+parameter_list|()
+block|{
+return|return
+name|incidentEdgeOrder
 return|;
 block|}
 annotation|@
@@ -197,6 +265,11 @@ name|allowsSelfLoops
 argument_list|(
 name|allowsSelfLoops
 argument_list|()
+argument_list|)
+operator|.
+name|incidentEdgeOrder
+argument_list|(
+name|incidentEdgeOrder
 argument_list|)
 operator|.
 name|build

@@ -111,6 +111,11 @@ name|AbstractStandardUndirectedGraphTest
 block|{
 annotation|@
 name|Parameters
+argument_list|(
+name|name
+operator|=
+literal|"[allowsSelfLoops={0}]"
+argument_list|)
 DECL|method|parameters ()
 specifier|public
 specifier|static
