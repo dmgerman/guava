@@ -50,6 +50,22 @@ end_import
 
 begin_import
 import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|truth
+operator|.
+name|TruthJUnit
+operator|.
+name|assume
+import|;
+end_import
+
+begin_import
+import|import static
 name|org
 operator|.
 name|junit
@@ -465,6 +481,18 @@ name|void
 name|putEdge_existingNodes
 parameter_list|()
 block|{
+name|assume
+argument_list|()
+operator|.
+name|that
+argument_list|(
+name|graphIsMutable
+argument_list|()
+argument_list|)
+operator|.
+name|isTrue
+argument_list|()
+expr_stmt|;
 comment|// Adding nodes initially for safety (insulating from possible future
 comment|// modifications to proxy methods)
 name|addNode
@@ -499,6 +527,18 @@ name|void
 name|putEdge_existingEdgeBetweenSameNodes
 parameter_list|()
 block|{
+name|assume
+argument_list|()
+operator|.
+name|that
+argument_list|(
+name|graphIsMutable
+argument_list|()
+argument_list|)
+operator|.
+name|isTrue
+argument_list|()
+expr_stmt|;
 name|assertThat
 argument_list|(
 name|putEdge
@@ -534,6 +574,18 @@ name|void
 name|putEdge_orderMismatch
 parameter_list|()
 block|{
+name|assume
+argument_list|()
+operator|.
+name|that
+argument_list|(
+name|graphIsMutable
+argument_list|()
+argument_list|)
+operator|.
+name|isTrue
+argument_list|()
+expr_stmt|;
 name|EndpointPair
 argument_list|<
 name|Integer
@@ -551,6 +603,8 @@ argument_list|)
 decl_stmt|;
 try|try
 block|{
+name|graphAsMutableGraph
+operator|.
 name|putEdge
 argument_list|(
 name|endpoints
@@ -591,6 +645,18 @@ name|void
 name|removeEdge_antiparallelEdges
 parameter_list|()
 block|{
+name|assume
+argument_list|()
+operator|.
+name|that
+argument_list|(
+name|graphIsMutable
+argument_list|()
+argument_list|)
+operator|.
+name|isTrue
+argument_list|()
+expr_stmt|;
 name|putEdge
 argument_list|(
 name|N1
@@ -607,7 +673,7 @@ argument_list|)
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|graph
+name|graphAsMutableGraph
 operator|.
 name|removeEdge
 argument_list|(
@@ -663,7 +729,7 @@ argument_list|)
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|graph
+name|graphAsMutableGraph
 operator|.
 name|removeEdge
 argument_list|(
@@ -722,6 +788,18 @@ name|void
 name|removeEdge_orderMismatch
 parameter_list|()
 block|{
+name|assume
+argument_list|()
+operator|.
+name|that
+argument_list|(
+name|graphIsMutable
+argument_list|()
+argument_list|)
+operator|.
+name|isTrue
+argument_list|()
+expr_stmt|;
 name|putEdge
 argument_list|(
 name|N1
@@ -746,7 +824,7 @@ argument_list|)
 decl_stmt|;
 try|try
 block|{
-name|graph
+name|graphAsMutableGraph
 operator|.
 name|removeEdge
 argument_list|(

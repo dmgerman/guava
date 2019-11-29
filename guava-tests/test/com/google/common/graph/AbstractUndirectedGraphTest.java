@@ -33,6 +33,22 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|truth
+operator|.
+name|TruthJUnit
+operator|.
+name|assume
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -497,6 +513,18 @@ name|void
 name|addEdge_existingNodes
 parameter_list|()
 block|{
+name|assume
+argument_list|()
+operator|.
+name|that
+argument_list|(
+name|graphIsMutable
+argument_list|()
+argument_list|)
+operator|.
+name|isTrue
+argument_list|()
+expr_stmt|;
 comment|// Adding nodes initially for safety (insulating from possible future
 comment|// modifications to proxy methods)
 name|addNode
@@ -531,6 +559,18 @@ name|void
 name|addEdge_existingEdgeBetweenSameNodes
 parameter_list|()
 block|{
+name|assume
+argument_list|()
+operator|.
+name|that
+argument_list|(
+name|graphIsMutable
+argument_list|()
+argument_list|)
+operator|.
+name|isTrue
+argument_list|()
+expr_stmt|;
 name|putEdge
 argument_list|(
 name|N1
@@ -560,6 +600,18 @@ name|void
 name|removeEdge_antiparallelEdges
 parameter_list|()
 block|{
+name|assume
+argument_list|()
+operator|.
+name|that
+argument_list|(
+name|graphIsMutable
+argument_list|()
+argument_list|)
+operator|.
+name|isTrue
+argument_list|()
+expr_stmt|;
 name|putEdge
 argument_list|(
 name|N1
@@ -577,7 +629,7 @@ expr_stmt|;
 comment|// no-op
 name|assertThat
 argument_list|(
-name|graph
+name|graphAsMutableGraph
 operator|.
 name|removeEdge
 argument_list|(
@@ -616,7 +668,7 @@ argument_list|()
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|graph
+name|graphAsMutableGraph
 operator|.
 name|removeEdge
 argument_list|(

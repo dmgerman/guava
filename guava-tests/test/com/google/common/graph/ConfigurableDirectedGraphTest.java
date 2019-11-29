@@ -601,7 +601,7 @@ argument_list|)
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|graph
+name|graphAsMutableGraph
 operator|.
 name|removeNode
 argument_list|(
@@ -641,7 +641,7 @@ argument_list|)
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|graph
+name|graphAsMutableGraph
 operator|.
 name|removeEdge
 argument_list|(

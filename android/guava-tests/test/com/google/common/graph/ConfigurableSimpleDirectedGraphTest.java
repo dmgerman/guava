@@ -34,6 +34,22 @@ end_import
 
 begin_import
 import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|truth
+operator|.
+name|TruthJUnit
+operator|.
+name|assume
+import|;
+end_import
+
+begin_import
+import|import static
 name|org
 operator|.
 name|junit
@@ -53,6 +69,20 @@ operator|.
 name|Assert
 operator|.
 name|fail
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
 import|;
 end_import
 
@@ -143,6 +173,55 @@ argument_list|)
 operator|.
 name|build
 argument_list|()
+return|;
+block|}
+annotation|@
+name|CanIgnoreReturnValue
+annotation|@
+name|Override
+DECL|method|addNode (Integer n)
+specifier|final
+name|boolean
+name|addNode
+parameter_list|(
+name|Integer
+name|n
+parameter_list|)
+block|{
+return|return
+name|graphAsMutableGraph
+operator|.
+name|addNode
+argument_list|(
+name|n
+argument_list|)
+return|;
+block|}
+annotation|@
+name|CanIgnoreReturnValue
+annotation|@
+name|Override
+DECL|method|putEdge (Integer n1, Integer n2)
+specifier|final
+name|boolean
+name|putEdge
+parameter_list|(
+name|Integer
+name|n1
+parameter_list|,
+name|Integer
+name|n2
+parameter_list|)
+block|{
+return|return
+name|graphAsMutableGraph
+operator|.
+name|putEdge
+argument_list|(
+name|n1
+argument_list|,
+name|n2
+argument_list|)
 return|;
 block|}
 annotation|@
@@ -518,6 +597,18 @@ name|void
 name|addEdge_selfLoop
 parameter_list|()
 block|{
+name|assume
+argument_list|()
+operator|.
+name|that
+argument_list|(
+name|graphIsMutable
+argument_list|()
+argument_list|)
+operator|.
+name|isTrue
+argument_list|()
+expr_stmt|;
 try|try
 block|{
 name|putEdge
@@ -554,7 +645,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * This test checks an implementation dependent feature. It tests that the method {@code addEdge}    * will silently add the missing nodes to the graph, then add the edge connecting them. We are not    * using the proxy methods here as we want to test {@code addEdge} when the end-points are not    * elements of the graph.    */
+comment|/**    * Tests that the method {@code addEdge} will silently add the missing nodes to the graph, then    * add the edge connecting them. We are not using the proxy methods here as we want to test {@code    * addEdge} when the end-points are not elements of the graph.    */
 annotation|@
 name|Test
 DECL|method|addEdge_nodesNotInGraph ()
@@ -563,7 +654,19 @@ name|void
 name|addEdge_nodesNotInGraph
 parameter_list|()
 block|{
-name|graph
+name|assume
+argument_list|()
+operator|.
+name|that
+argument_list|(
+name|graphIsMutable
+argument_list|()
+argument_list|)
+operator|.
+name|isTrue
+argument_list|()
+expr_stmt|;
+name|graphAsMutableGraph
 operator|.
 name|addNode
 argument_list|(
@@ -572,7 +675,7 @@ argument_list|)
 expr_stmt|;
 name|assertTrue
 argument_list|(
-name|graph
+name|graphAsMutableGraph
 operator|.
 name|putEdge
 argument_list|(
@@ -584,7 +687,7 @@ argument_list|)
 expr_stmt|;
 name|assertTrue
 argument_list|(
-name|graph
+name|graphAsMutableGraph
 operator|.
 name|putEdge
 argument_list|(
@@ -596,7 +699,7 @@ argument_list|)
 expr_stmt|;
 name|assertTrue
 argument_list|(
-name|graph
+name|graphAsMutableGraph
 operator|.
 name|putEdge
 argument_list|(

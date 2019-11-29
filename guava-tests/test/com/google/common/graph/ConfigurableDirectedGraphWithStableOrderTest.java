@@ -126,7 +126,7 @@ parameter_list|()
 block|{
 name|populateStarShapedGraph
 argument_list|(
-name|graph
+name|graphAsMutableGraph
 argument_list|)
 expr_stmt|;
 name|assertThat
@@ -208,7 +208,7 @@ parameter_list|()
 block|{
 name|populateStarShapedGraph
 argument_list|(
-name|graph
+name|graphAsMutableGraph
 argument_list|)
 expr_stmt|;
 name|assertThat
@@ -246,7 +246,7 @@ parameter_list|()
 block|{
 name|populateStarShapedGraph
 argument_list|(
-name|graph
+name|graphAsMutableGraph
 argument_list|)
 expr_stmt|;
 name|assertThat
@@ -282,7 +282,7 @@ parameter_list|()
 block|{
 name|populateStarShapedGraph
 argument_list|(
-name|graph
+name|graphAsMutableGraph
 argument_list|)
 expr_stmt|;
 name|assertThat
@@ -320,7 +320,7 @@ parameter_list|()
 block|{
 name|populateStarShapedGraph
 argument_list|(
-name|graph
+name|graphAsMutableGraph
 argument_list|)
 expr_stmt|;
 name|assertThat
