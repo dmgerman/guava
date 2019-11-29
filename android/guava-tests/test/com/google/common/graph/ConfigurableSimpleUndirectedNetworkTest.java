@@ -926,10 +926,10 @@ block|{
 name|assertThat
 argument_list|(
 name|e
-operator|.
-name|getMessage
-argument_list|()
 argument_list|)
+operator|.
+name|hasMessageThat
+argument_list|()
 operator|.
 name|contains
 argument_list|(
