@@ -4075,7 +4075,7 @@ try|try
 block|{
 name|InetAddresses
 operator|.
-name|fromIpv4BigInteger
+name|fromIPv4BigInteger
 argument_list|(
 name|BigInteger
 operator|.
@@ -4118,7 +4118,7 @@ try|try
 block|{
 name|InetAddresses
 operator|.
-name|fromIpv6BigInteger
+name|fromIPv6BigInteger
 argument_list|(
 name|BigInteger
 operator|.
@@ -4340,7 +4340,7 @@ try|try
 block|{
 name|InetAddresses
 operator|.
-name|fromIpv4BigInteger
+name|fromIPv4BigInteger
 argument_list|(
 name|BigInteger
 operator|.
@@ -4393,7 +4393,7 @@ try|try
 block|{
 name|InetAddresses
 operator|.
-name|fromIpv6BigInteger
+name|fromIPv6BigInteger
 argument_list|(
 name|BigInteger
 operator|.
@@ -4487,14 +4487,14 @@ name|isIpv6
 condition|?
 name|InetAddresses
 operator|.
-name|fromIpv6BigInteger
+name|fromIPv6BigInteger
 argument_list|(
 name|bigIntegerIp
 argument_list|)
 else|:
 name|InetAddresses
 operator|.
-name|fromIpv4BigInteger
+name|fromIPv4BigInteger
 argument_list|(
 name|bigIntegerIp
 argument_list|)

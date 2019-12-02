@@ -3255,11 +3255,11 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns the {@code Inet4Address} corresponding to a given {@code BigInteger}.    *    * @param address BigInteger representing the IPv4 address    * @return Inet4Address representation of the given BigInteger    * @throws IllegalArgumentException if the BigInteger is not between 0 and 2^32-1    * @since NEXT    */
-DECL|method|fromIpv4BigInteger (BigInteger address)
+DECL|method|fromIPv4BigInteger (BigInteger address)
 specifier|public
 specifier|static
 name|Inet4Address
-name|fromIpv4BigInteger
+name|fromIPv4BigInteger
 parameter_list|(
 name|BigInteger
 name|address
@@ -3278,11 +3278,11 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns the {@code Inet6Address} corresponding to a given {@code BigInteger}.    *    * @param address BigInteger representing the IPv6 address    * @return Inet6Address representation of the given BigInteger    * @throws IllegalArgumentException if the BigInteger is not between 0 and 2^128-1    * @since NEXT    */
-DECL|method|fromIpv6BigInteger (BigInteger address)
+DECL|method|fromIPv6BigInteger (BigInteger address)
 specifier|public
 specifier|static
 name|Inet6Address
-name|fromIpv6BigInteger
+name|fromIPv6BigInteger
 parameter_list|(
 name|BigInteger
 name|address
