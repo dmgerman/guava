@@ -1329,6 +1329,11 @@ operator|||
 name|expireAccess
 return|;
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"GoodTime"
+argument_list|)
 DECL|method|currentTimeNanos ()
 specifier|private
 name|long
