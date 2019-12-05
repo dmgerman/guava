@@ -342,18 +342,6 @@ name|Integer
 name|n2
 parameter_list|)
 function_decl|;
-DECL|method|graphIsMutable ()
-specifier|final
-name|boolean
-name|graphIsMutable
-parameter_list|()
-block|{
-return|return
-name|graphAsMutableGraph
-operator|!=
-literal|null
-return|;
-block|}
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|putEdge (EndpointPair<Integer> endpoints)
@@ -381,6 +369,18 @@ operator|.
 name|nodeV
 argument_list|()
 argument_list|)
+return|;
+block|}
+DECL|method|graphIsMutable ()
+specifier|final
+name|boolean
+name|graphIsMutable
+parameter_list|()
+block|{
+return|return
+name|graphAsMutableGraph
+operator|!=
+literal|null
 return|;
 block|}
 annotation|@
