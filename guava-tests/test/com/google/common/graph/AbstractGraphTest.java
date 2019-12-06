@@ -140,20 +140,6 @@ end_import
 
 begin_import
 import|import
-name|com
-operator|.
-name|google
-operator|.
-name|errorprone
-operator|.
-name|annotations
-operator|.
-name|CanIgnoreReturnValue
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|util
@@ -315,24 +301,20 @@ argument_list|>
 name|createGraph
 parameter_list|()
 function_decl|;
-comment|/**    * A proxy method that adds the node {@code n} to the graph being tested. In case of Immutable    * graph implementations, this method should replace {@link #graph} with a new graph that includes    * this node.    *    * @return {@code true} iff the graph was modified as a result of this call    */
-annotation|@
-name|CanIgnoreReturnValue
+comment|/**    * A proxy method that adds the node {@code n} to the graph being tested. In case of Immutable    * graph implementations, this method should replace {@link #graph} with a new graph that includes    * this node.    */
 DECL|method|addNode (Integer n)
 specifier|abstract
-name|boolean
+name|void
 name|addNode
 parameter_list|(
 name|Integer
 name|n
 parameter_list|)
 function_decl|;
-comment|/**    * A proxy method that adds the edge {@code e} to the graph being tested. In case of Immutable    * graph implementations, this method should replace {@link #graph} with a new graph that includes    * this edge.    *    * @return {@code true} iff the graph was modified as a result of this call    */
-annotation|@
-name|CanIgnoreReturnValue
+comment|/**    * A proxy method that adds the edge {@code e} to the graph being tested. In case of Immutable    * graph implementations, this method should replace {@link #graph} with a new graph that includes    * this edge.    */
 DECL|method|putEdge (Integer n1, Integer n2)
 specifier|abstract
-name|boolean
+name|void
 name|putEdge
 parameter_list|(
 name|Integer
@@ -342,11 +324,9 @@ name|Integer
 name|n2
 parameter_list|)
 function_decl|;
-annotation|@
-name|CanIgnoreReturnValue
 DECL|method|putEdge (EndpointPair<Integer> endpoints)
 specifier|final
-name|boolean
+name|void
 name|putEdge
 parameter_list|(
 name|EndpointPair
@@ -356,7 +336,6 @@ argument_list|>
 name|endpoints
 parameter_list|)
 block|{
-return|return
 name|putEdge
 argument_list|(
 name|endpoints
@@ -369,7 +348,7 @@ operator|.
 name|nodeV
 argument_list|()
 argument_list|)
-return|;
+expr_stmt|;
 block|}
 DECL|method|graphIsMutable ()
 specifier|final

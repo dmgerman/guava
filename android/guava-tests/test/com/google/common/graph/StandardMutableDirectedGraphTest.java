@@ -18,20 +18,6 @@ end_package
 
 begin_import
 import|import
-name|com
-operator|.
-name|google
-operator|.
-name|errorprone
-operator|.
-name|annotations
-operator|.
-name|CanIgnoreReturnValue
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|util
@@ -277,34 +263,29 @@ argument_list|()
 return|;
 block|}
 annotation|@
-name|CanIgnoreReturnValue
-annotation|@
 name|Override
 DECL|method|addNode (Integer n)
 specifier|final
-name|boolean
+name|void
 name|addNode
 parameter_list|(
 name|Integer
 name|n
 parameter_list|)
 block|{
-return|return
 name|graphAsMutableGraph
 operator|.
 name|addNode
 argument_list|(
 name|n
 argument_list|)
-return|;
+expr_stmt|;
 block|}
-annotation|@
-name|CanIgnoreReturnValue
 annotation|@
 name|Override
 DECL|method|putEdge (Integer n1, Integer n2)
 specifier|final
-name|boolean
+name|void
 name|putEdge
 parameter_list|(
 name|Integer
@@ -314,7 +295,6 @@ name|Integer
 name|n2
 parameter_list|)
 block|{
-return|return
 name|graphAsMutableGraph
 operator|.
 name|putEdge
@@ -323,7 +303,7 @@ name|n1
 argument_list|,
 name|n2
 argument_list|)
-return|;
+expr_stmt|;
 block|}
 block|}
 end_class
