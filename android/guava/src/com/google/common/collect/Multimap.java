@@ -60,6 +60,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|DoNotMock
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -131,6 +145,11 @@ comment|/**  * A collection that maps keys to values, similar to {@link Map}, bu
 end_comment
 
 begin_interface
+annotation|@
+name|DoNotMock
+argument_list|(
+literal|"Use ImmutableMultimap, HashMultimap, or another implementation"
+argument_list|)
 annotation|@
 name|GwtCompatible
 DECL|interface|Multimap

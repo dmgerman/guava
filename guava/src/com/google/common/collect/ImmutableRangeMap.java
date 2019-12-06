@@ -140,6 +140,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|DoNotMock
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -697,6 +711,8 @@ argument_list|()
 return|;
 block|}
 comment|/**    * A builder for immutable range maps. Overlapping ranges are prohibited.    *    * @since 14.0    */
+annotation|@
+name|DoNotMock
 DECL|class|Builder
 specifier|public
 specifier|static

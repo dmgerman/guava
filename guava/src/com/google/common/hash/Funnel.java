@@ -32,6 +32,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|DoNotMock
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -47,6 +61,11 @@ end_comment
 begin_interface
 annotation|@
 name|Beta
+annotation|@
+name|DoNotMock
+argument_list|(
+literal|"Implement with a lambda"
+argument_list|)
 DECL|interface|Funnel
 specifier|public
 interface|interface

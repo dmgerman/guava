@@ -46,6 +46,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|DoNotMock
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -75,6 +89,11 @@ comment|/**  * A map, each entry of which maps a Java<a href="http://tinyurl.com
 end_comment
 
 begin_interface
+annotation|@
+name|DoNotMock
+argument_list|(
+literal|"Use ImmutableClassToInstanceMap or MutableClassToInstanceMap"
+argument_list|)
 annotation|@
 name|GwtCompatible
 DECL|interface|ClassToInstanceMap

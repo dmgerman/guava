@@ -74,6 +74,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|DoNotMock
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -123,6 +137,11 @@ comment|/**  * A collection that associates an ordered pair of keys, called a ro
 end_comment
 
 begin_interface
+annotation|@
+name|DoNotMock
+argument_list|(
+literal|"Use ImmutableTable, HashBasedTable, or another implementation"
+argument_list|)
 annotation|@
 name|GwtCompatible
 DECL|interface|Table

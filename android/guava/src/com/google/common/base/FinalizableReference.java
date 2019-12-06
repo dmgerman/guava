@@ -30,11 +30,30 @@ name|GwtIncompatible
 import|;
 end_import
 
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|DoNotMock
+import|;
+end_import
+
 begin_comment
 comment|/**  * Implemented by references that have code to run after garbage collection of their referents.  *  * @see FinalizableReferenceQueue  * @author Bob Lee  * @since 2.0  */
 end_comment
 
 begin_interface
+annotation|@
+name|DoNotMock
+argument_list|(
+literal|"Use an instance of one of the Finalizable*Reference classes"
+argument_list|)
 annotation|@
 name|GwtIncompatible
 DECL|interface|FinalizableReference

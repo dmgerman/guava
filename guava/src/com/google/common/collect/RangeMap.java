@@ -46,6 +46,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|DoNotMock
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -121,6 +135,11 @@ end_comment
 begin_interface
 annotation|@
 name|Beta
+annotation|@
+name|DoNotMock
+argument_list|(
+literal|"Use ImmutableRangeMap or TreeRangeMap"
+argument_list|)
 annotation|@
 name|GwtIncompatible
 DECL|interface|RangeMap

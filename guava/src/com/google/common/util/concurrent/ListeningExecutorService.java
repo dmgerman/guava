@@ -34,6 +34,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|DoNotMock
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -117,6 +131,13 @@ comment|/**  * An {@link ExecutorService} that returns {@link ListenableFuture} 
 end_comment
 
 begin_interface
+annotation|@
+name|DoNotMock
+argument_list|(
+literal|"Use TestingExecutors.sameThreadScheduledExecutor, or wrap a real Executor from "
+operator|+
+literal|"java.util.concurrent.Executors with MoreExecutors.listeningDecorator"
+argument_list|)
 annotation|@
 name|GwtIncompatible
 DECL|interface|ListeningExecutorService

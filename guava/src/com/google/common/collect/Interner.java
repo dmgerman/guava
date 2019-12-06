@@ -58,6 +58,20 @@ name|CanIgnoreReturnValue
 import|;
 end_import
 
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|DoNotMock
+import|;
+end_import
+
 begin_comment
 comment|/**  * Provides equivalent behavior to {@link String#intern} for other immutable types. Common  * implementations are available from the {@link Interners} class.  *  * @author Kevin Bourrillion  * @since 3.0  */
 end_comment
@@ -65,6 +79,11 @@ end_comment
 begin_interface
 annotation|@
 name|Beta
+annotation|@
+name|DoNotMock
+argument_list|(
+literal|"Use Interners.new*Interner"
+argument_list|)
 annotation|@
 name|GwtIncompatible
 DECL|interface|Interner

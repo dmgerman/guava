@@ -46,6 +46,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|DoNotMock
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -69,6 +83,11 @@ comment|/**  * An iterator that supports a one-element lookahead while iterating
 end_comment
 
 begin_interface
+annotation|@
+name|DoNotMock
+argument_list|(
+literal|"Use Iterators.peekingIterator"
+argument_list|)
 annotation|@
 name|GwtCompatible
 DECL|interface|PeekingIterator

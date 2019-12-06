@@ -32,6 +32,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|DoNotMock
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -61,6 +75,11 @@ comment|/**  * An object representing the differences between two maps.  *  * @a
 end_comment
 
 begin_interface
+annotation|@
+name|DoNotMock
+argument_list|(
+literal|"Use Maps.difference"
+argument_list|)
 annotation|@
 name|GwtCompatible
 DECL|interface|MapDifference
@@ -148,6 +167,11 @@ name|hashCode
 parameter_list|()
 function_decl|;
 comment|/**    * A difference between the mappings from two maps with the same key. The {@link #leftValue} and    * {@link #rightValue} are not equal, and one but not both of them may be null.    *    * @since 2.0    */
+annotation|@
+name|DoNotMock
+argument_list|(
+literal|"Use Maps.difference"
+argument_list|)
 DECL|interface|ValueDifference
 interface|interface
 name|ValueDifference

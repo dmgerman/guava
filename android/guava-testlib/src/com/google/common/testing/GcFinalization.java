@@ -64,6 +64,20 @@ name|com
 operator|.
 name|google
 operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|DoNotMock
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
 name|j2objc
 operator|.
 name|annotations
@@ -629,6 +643,11 @@ block|}
 expr_stmt|;
 block|}
 comment|/**    * A predicate that is expected to return true subsequent to<em>finalization</em>, that is, one    * of the following actions taken by the garbage collector when performing a full collection in    * response to {@link System#gc()}:    *    *<ul>    *<li>invoking the {@code finalize} methods of unreachable objects    *<li>clearing weak references to unreachable referents    *<li>enqueuing weak references to unreachable referents in their reference queue    *</ul>    */
+annotation|@
+name|DoNotMock
+argument_list|(
+literal|"Implement with a lambda"
+argument_list|)
 DECL|interface|FinalizationPredicate
 specifier|public
 interface|interface

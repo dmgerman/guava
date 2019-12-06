@@ -94,6 +94,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|DoNotMock
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -193,6 +207,11 @@ comment|/**  * A {@link Collection} whose contents will never change, and which 
 end_comment
 
 begin_class
+annotation|@
+name|DoNotMock
+argument_list|(
+literal|"Use ImmutableList.of or another implementation"
+argument_list|)
 annotation|@
 name|GwtCompatible
 argument_list|(
@@ -667,6 +686,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Abstract base class for builders of {@link ImmutableCollection} types.    *    * @since 10.0    */
+annotation|@
+name|DoNotMock
 DECL|class|Builder
 specifier|public
 specifier|abstract

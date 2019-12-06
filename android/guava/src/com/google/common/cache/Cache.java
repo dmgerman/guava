@@ -92,6 +92,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|DoNotMock
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -157,6 +171,11 @@ comment|/**  * A semi-persistent mapping from keys to values. Cache entries are 
 end_comment
 
 begin_interface
+annotation|@
+name|DoNotMock
+argument_list|(
+literal|"Use CacheBuilder.newBuilder().build()"
+argument_list|)
 annotation|@
 name|GwtCompatible
 DECL|interface|Cache

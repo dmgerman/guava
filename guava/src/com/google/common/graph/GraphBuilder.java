@@ -92,6 +92,20 @@ name|Optional
 import|;
 end_import
 
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|DoNotMock
+import|;
+end_import
+
 begin_comment
 comment|/**  * A builder for constructing instances of {@link MutableGraph} or {@link ImmutableGraph} with  * user-defined properties.  *  *<p>A graph built by this class will have the following properties by default:  *  *<ul>  *<li>does not allow self-loops  *<li>orders {@link Graph#nodes()} in the order in which the elements were added  *</ul>  *  *<p>Examples of use:  *  *<pre>{@code  * // Building a mutable graph  * MutableGraph<String> graph = GraphBuilder.undirected().allowsSelfLoops(true).build();  * graph.putEdge("bread", "bread");  * graph.putEdge("chocolate", "peanut butter");  * graph.putEdge("peanut butter", "jelly");  *  * // Building an immutable graph  * ImmutableGraph<String> immutableGraph =  *     GraphBuilder.undirected()  *         .allowsSelfLoops(true)  *         .<String>immutable()  *         .putEdge("bread", "bread")  *         .putEdge("chocolate", "peanut butter")  *         .putEdge("peanut butter", "jelly")  *         .build();  * }</pre>  *  * @author James Sexton  * @author Joshua O'Madadhain  * @param<N> The most general node type this builder will support. This is normally {@code Object}  *     unless it is constrained by using a method like {@link #nodeOrder}, or the builder is  *     constructed based on an existing {@code Graph} using {@link #from(Graph)}.  * @since 20.0  */
 end_comment
@@ -99,6 +113,8 @@ end_comment
 begin_class
 annotation|@
 name|Beta
+annotation|@
+name|DoNotMock
 DECL|class|GraphBuilder
 specifier|public
 specifier|final
