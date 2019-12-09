@@ -605,6 +605,8 @@ argument_list|()
 operator|+
 literal|4
 operator|*
+name|format
+operator|.
 name|wordSeparator
 operator|.
 name|length
