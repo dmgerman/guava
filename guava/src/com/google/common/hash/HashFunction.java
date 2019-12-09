@@ -54,20 +54,6 @@ name|errorprone
 operator|.
 name|annotations
 operator|.
-name|DoNotMock
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|errorprone
-operator|.
-name|annotations
-operator|.
 name|Immutable
 import|;
 end_import
@@ -101,11 +87,6 @@ end_comment
 begin_interface
 annotation|@
 name|Beta
-annotation|@
-name|DoNotMock
-argument_list|(
-literal|"Use a real instance from Hashing"
-argument_list|)
 annotation|@
 name|Immutable
 DECL|interface|HashFunction
