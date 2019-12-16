@@ -65,6 +65,22 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Preconditions
+operator|.
+name|checkPositionIndexes
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -3359,7 +3375,7 @@ name|getResult
 argument_list|()
 return|;
 block|}
-comment|/**    * Reads some bytes from an input stream and stores them into the buffer array {@code b}. This    * method blocks until {@code len} bytes of input data have been read into the array, or end of    * file is detected. The number of bytes read is returned, possibly zero. Does not close the    * stream.    *    *<p>A caller can detect EOF if the number of bytes read is less than {@code len}. All subsequent    * calls on the same stream will return zero.    *    *<p>If {@code b} is null, a {@code NullPointerException} is thrown. If {@code off} is negative,    * or {@code len} is negative, or {@code off+len} is greater than the length of the array {@code    * b}, then an {@code IndexOutOfBoundsException} is thrown. If {@code len} is zero, then no bytes    * are read. Otherwise, the first byte read is stored into element {@code b[off]}, the next one    * into {@code b[off+1]}, and so on. The number of bytes read is, at most, equal to {@code len}.    *    * @param in the input stream to read from    * @param b the buffer into which the data is read    * @param off an int specifying the offset into the data    * @param len an int specifying the number of bytes to read    * @return the number of bytes read    * @throws IOException if an I/O error occurs    */
+comment|/**    * Reads some bytes from an input stream and stores them into the buffer array {@code b}. This    * method blocks until {@code len} bytes of input data have been read into the array, or end of    * file is detected. The number of bytes read is returned, possibly zero. Does not close the    * stream.    *    *<p>A caller can detect EOF if the number of bytes read is less than {@code len}. All subsequent    * calls on the same stream will return zero.    *    *<p>If {@code b} is null, a {@code NullPointerException} is thrown. If {@code off} is negative,    * or {@code len} is negative, or {@code off+len} is greater than the length of the array {@code    * b}, then an {@code IndexOutOfBoundsException} is thrown. If {@code len} is zero, then no bytes    * are read. Otherwise, the first byte read is stored into element {@code b[off]}, the next one    * into {@code b[off+1]}, and so on. The number of bytes read is, at most, equal to {@code len}.    *    * @param in the input stream to read from    * @param b the buffer into which the data is read    * @param off an int specifying the offset into the data    * @param len an int specifying the number of bytes to read    * @return the number of bytes read    * @throws IOException if an I/O error occurs    * @throws IndexOutOfBoundsException if {@code off} is negative, if {@code len} is negative, or if    *     {@code off + len} is greater than {@code b.length}    */
 annotation|@
 name|Beta
 annotation|@
@@ -3409,10 +3425,30 @@ throw|throw
 operator|new
 name|IndexOutOfBoundsException
 argument_list|(
-literal|"len is negative"
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"len (%s) cannot be negative"
+argument_list|,
+name|len
+argument_list|)
 argument_list|)
 throw|;
 block|}
+name|checkPositionIndexes
+argument_list|(
+name|off
+argument_list|,
+name|off
+operator|+
+name|len
+argument_list|,
+name|b
+operator|.
+name|length
+argument_list|)
+expr_stmt|;
 name|int
 name|total
 init|=
