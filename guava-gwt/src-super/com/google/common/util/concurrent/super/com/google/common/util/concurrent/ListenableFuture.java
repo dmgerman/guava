@@ -121,7 +121,7 @@ annotation|@
 name|JsMethod
 annotation|@
 name|Override
-DECL|method|then ( IThenable.ThenOnFulfilledCallbackFn<? super V, ? extends R> onFulfilled, @JsOptional IThenable.ThenOnRejectedCallbackFn<? extends R> onRejected)
+DECL|method|then ( @sOptional ThenOnFulfilledCallbackFn<? super V, ? extends R> onFulfilled, @JsOptional ThenOnRejectedCallbackFn<? extends R> onRejected)
 specifier|default
 parameter_list|<
 name|R
@@ -132,8 +132,8 @@ name|R
 argument_list|>
 name|then
 parameter_list|(
-name|IThenable
-operator|.
+annotation|@
+name|JsOptional
 name|ThenOnFulfilledCallbackFn
 argument_list|<
 name|?
@@ -148,8 +148,6 @@ name|onFulfilled
 parameter_list|,
 annotation|@
 name|JsOptional
-name|IThenable
-operator|.
 name|ThenOnRejectedCallbackFn
 argument_list|<
 name|?
@@ -238,8 +236,18 @@ argument_list|)
 operator|.
 name|then
 argument_list|(
+operator|(
+name|IThenable
+operator|.
+name|ThenOnFulfilledCallbackFn
+operator|)
 name|onFulfilled
 argument_list|,
+operator|(
+name|IThenable
+operator|.
+name|ThenOnRejectedCallbackFn
+operator|)
 name|onRejected
 argument_list|)
 return|;

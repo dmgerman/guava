@@ -34,6 +34,16 @@ name|jsinterop
 operator|.
 name|annotations
 operator|.
+name|JsFunction
+import|;
+end_import
+
+begin_import
+import|import
+name|jsinterop
+operator|.
+name|annotations
+operator|.
 name|JsOptional
 import|;
 end_import
@@ -75,6 +85,10 @@ operator|=
 name|JsPackage
 operator|.
 name|GLOBAL
+argument_list|,
+name|name
+operator|=
+literal|"IThenable"
 argument_list|)
 DECL|interface|Thenable
 interface|interface
@@ -83,7 +97,7 @@ parameter_list|<
 name|T
 parameter_list|>
 block|{
-DECL|method|then ( IThenable.ThenOnFulfilledCallbackFn<? super T, ? extends V> onFulfilled, @JsOptional IThenable.ThenOnRejectedCallbackFn<? extends V> onRejected)
+DECL|method|then ( @sOptional ThenOnFulfilledCallbackFn<? super T, ? extends V> onFulfilled, @JsOptional ThenOnRejectedCallbackFn<? extends V> onRejected)
 parameter_list|<
 name|V
 parameter_list|>
@@ -93,8 +107,8 @@ name|V
 argument_list|>
 name|then
 parameter_list|(
-name|IThenable
-operator|.
+annotation|@
+name|JsOptional
 name|ThenOnFulfilledCallbackFn
 argument_list|<
 name|?
@@ -109,8 +123,6 @@ name|onFulfilled
 parameter_list|,
 annotation|@
 name|JsOptional
-name|IThenable
-operator|.
 name|ThenOnRejectedCallbackFn
 argument_list|<
 name|?
@@ -120,6 +132,44 @@ argument_list|>
 name|onRejected
 parameter_list|)
 function_decl|;
+annotation|@
+name|JsFunction
+DECL|interface|ThenOnFulfilledCallbackFn
+interface|interface
+name|ThenOnFulfilledCallbackFn
+parameter_list|<
+name|T
+parameter_list|,
+name|V
+parameter_list|>
+block|{
+DECL|method|onInvoke (T p0)
+name|V
+name|onInvoke
+parameter_list|(
+name|T
+name|p0
+parameter_list|)
+function_decl|;
+block|}
+annotation|@
+name|JsFunction
+DECL|interface|ThenOnRejectedCallbackFn
+interface|interface
+name|ThenOnRejectedCallbackFn
+parameter_list|<
+name|V
+parameter_list|>
+block|{
+DECL|method|onInvoke (Object p0)
+name|V
+name|onInvoke
+parameter_list|(
+name|Object
+name|p0
+parameter_list|)
+function_decl|;
+block|}
 block|}
 end_interface
 
