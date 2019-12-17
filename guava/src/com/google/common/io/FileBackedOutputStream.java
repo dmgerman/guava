@@ -60,6 +60,22 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|concurrent
+operator|.
+name|GuardedBy
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -155,7 +171,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An {@link OutputStream} that starts buffering to a byte array, but switches to file buffering  * once the data reaches a configurable size.  *  *<p>This class is thread-safe.  *  * @author Chris Nokleberg  * @since 1.0  */
+comment|/**  * An {@link OutputStream} that starts buffering to a byte array, but switches to file buffering  * once the data reaches a configurable size.  *  *<p>Temporary files created by this stream may live in the local filesystem until either:  *  *<ul>  *<li>{@link #reset} is called (removing the data in this stream and deleting the file), or...  *<li>this stream (or, more precisely, its {@link #asByteSource} view) is finalized during  *       garbage collection,<strong>AND</strong> this stream was not constructed with {@linkplain  *       #FileBackedOutputStream(int) the 1-arg constructor} or the {@linkplain  *       #FileBackedOutputStream(int, boolean) 2-arg constructor} passing {@code false} in the  *       second parameter.  *</ul>  *  *<p>This class is thread-safe.  *  * @author Chris Nokleberg  * @since 1.0  */
 end_comment
 
 begin_class
@@ -189,20 +205,43 @@ specifier|final
 name|ByteSource
 name|source
 decl_stmt|;
+DECL|field|parentDirectory
+annotation|@
+name|Nullable
+specifier|private
+specifier|final
+name|File
+name|parentDirectory
+decl_stmt|;
+annotation|@
+name|GuardedBy
+argument_list|(
+literal|"this"
+argument_list|)
 DECL|field|out
 specifier|private
 name|OutputStream
 name|out
 decl_stmt|;
+annotation|@
+name|GuardedBy
+argument_list|(
+literal|"this"
+argument_list|)
 DECL|field|memory
 specifier|private
 name|MemoryOutput
 name|memory
 decl_stmt|;
-DECL|field|file
-specifier|private
+annotation|@
+name|GuardedBy
+argument_list|(
+literal|"this"
+argument_list|)
 annotation|@
 name|Nullable
+DECL|field|file
+specifier|private
 name|File
 name|file
 decl_stmt|;
@@ -265,7 +304,7 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates a new instance that uses the given file threshold, and optionally resets the data when    * the {@link ByteSource} returned by {@link #asByteSource} is finalized.    *    * @param fileThreshold the number of bytes before the stream should switch to buffering to a file    * @param resetOnFinalize if true, the {@link #reset} method will be called when the {@link    *     ByteSource} returned by {@link #asByteSource} is finalized    */
+comment|/**    * Creates a new instance that uses the given file threshold, and optionally resets the data when    * the {@link ByteSource} returned by {@link #asByteSource} is finalized.    *    * @param fileThreshold the number of bytes before the stream should switch to buffering to a file    * @param resetOnFinalize if true, the {@link #reset} method will be called when the {@link    *     ByteSource} returned by {@link #asByteSource} is finalized.    */
 DECL|method|FileBackedOutputStream (int fileThreshold, boolean resetOnFinalize)
 specifier|public
 name|FileBackedOutputStream
@@ -275,6 +314,32 @@ name|fileThreshold
 parameter_list|,
 name|boolean
 name|resetOnFinalize
+parameter_list|)
+block|{
+name|this
+argument_list|(
+name|fileThreshold
+argument_list|,
+name|resetOnFinalize
+argument_list|,
+literal|null
+argument_list|)
+expr_stmt|;
+block|}
+DECL|method|FileBackedOutputStream ( int fileThreshold, boolean resetOnFinalize, @Nullable File parentDirectory)
+specifier|private
+name|FileBackedOutputStream
+parameter_list|(
+name|int
+name|fileThreshold
+parameter_list|,
+name|boolean
+name|resetOnFinalize
+parameter_list|,
+annotation|@
+name|Nullable
+name|File
+name|parentDirectory
 parameter_list|)
 block|{
 name|this
@@ -288,6 +353,12 @@ operator|.
 name|resetOnFinalize
 operator|=
 name|resetOnFinalize
+expr_stmt|;
+name|this
+operator|.
+name|parentDirectory
+operator|=
+name|parentDirectory
 expr_stmt|;
 name|memory
 operator|=
@@ -648,6 +719,11 @@ argument_list|()
 expr_stmt|;
 block|}
 comment|/**    * Checks if writing {@code len} bytes would go over threshold, and switches to file buffering if    * so.    */
+annotation|@
+name|GuardedBy
+argument_list|(
+literal|"this"
+argument_list|)
 DECL|method|update (int len)
 specifier|private
 name|void
@@ -687,6 +763,8 @@ argument_list|(
 literal|"FileBackedOutputStream"
 argument_list|,
 literal|null
+argument_list|,
+name|parentDirectory
 argument_list|)
 decl_stmt|;
 if|if
