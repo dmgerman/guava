@@ -275,7 +275,8 @@ literal|"ConcurrentHashMapImpl"
 block|,
 literal|"CompactHashMapImpl"
 block|,
-comment|// "CompactLinkedHashMapImpl",
+literal|"CompactLinkedHashMapImpl"
+block|,
 literal|"ImmutableMapImpl"
 block|,
 literal|"TreeMapImpl"
