@@ -511,7 +511,7 @@ name|HASH_FLOODING_FPP
 init|=
 literal|0.001
 decl_stmt|;
-comment|/**    * Maximum allowed length of a hash table bucket before falling back to a j.u.HashMap based    * implementation. Experimentally determined.    */
+comment|/**    * Maximum allowed length of a hash table bucket before falling back to a j.u.LinkedHashMap-based    * implementation. Experimentally determined.    */
 DECL|field|MAX_HASH_BUCKET_LENGTH
 specifier|private
 specifier|static

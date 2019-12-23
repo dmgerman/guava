@@ -4031,6 +4031,13 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/** No-op test so that the class has at least one method, making Maven's test runner happy. */
+DECL|method|testNoop ()
+specifier|public
+name|void
+name|testNoop
+parameter_list|()
+block|{}
 block|}
 end_class
 

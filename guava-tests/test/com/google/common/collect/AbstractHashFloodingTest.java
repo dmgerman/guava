@@ -185,6 +185,7 @@ annotation|@
 name|GwtCompatible
 DECL|class|AbstractHashFloodingTest
 specifier|public
+specifier|abstract
 class|class
 name|AbstractHashFloodingTest
 parameter_list|<
@@ -224,7 +225,6 @@ argument_list|>
 name|queries
 decl_stmt|;
 DECL|method|AbstractHashFloodingTest ( List<Construction<T>> constructions, IntToDoubleFunction constructionAsymptotics, List<QueryOp<T>> queries)
-specifier|public
 name|AbstractHashFloodingTest
 parameter_list|(
 name|List
