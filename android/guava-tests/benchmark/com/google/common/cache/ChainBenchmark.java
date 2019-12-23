@@ -130,6 +130,11 @@ argument_list|>
 name|chain
 decl_stmt|;
 annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"GuardedBy"
+argument_list|)
+annotation|@
 name|BeforeExperiment
 DECL|method|setUp ()
 name|void
@@ -196,6 +201,8 @@ operator|new
 name|Object
 argument_list|()
 decl_stmt|;
+comment|// TODO(b/145386688): This access should be guarded by 'this.segment', which is not currently
+comment|// held
 name|chain
 operator|=
 name|segment
@@ -229,6 +236,11 @@ block|}
 block|}
 block|}
 annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"GuardedBy"
+argument_list|)
+annotation|@
 name|Benchmark
 DECL|method|time (int reps)
 name|int
@@ -258,6 +270,8 @@ name|i
 operator|++
 control|)
 block|{
+comment|// TODO(b/145386688): This access should be guarded by 'this.segment', which is not currently
+comment|// held
 name|segment
 operator|.
 name|removeEntryFromChain

@@ -4674,6 +4674,11 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"GuardedBy"
+argument_list|)
 DECL|method|testExpand ()
 specifier|public
 name|void
@@ -4892,6 +4897,8 @@ operator|>
 literal|1
 condition|)
 block|{
+comment|// TODO(b/145386688): This access should be guarded by 'segment', which is not currently
+comment|// held
 name|segment
 operator|.
 name|expand
@@ -5325,6 +5332,11 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"GuardedBy"
+argument_list|)
 DECL|method|testExpand_cleanup ()
 specifier|public
 name|void
@@ -5591,6 +5603,8 @@ operator|>
 literal|1
 condition|)
 block|{
+comment|// TODO(b/145386688): This access should be guarded by 'segment', which is not currently
+comment|// held
 name|segment
 operator|.
 name|expand

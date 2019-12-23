@@ -261,6 +261,11 @@ argument_list|)
 expr_stmt|;
 block|}
 annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"GuardedBy"
+argument_list|)
+annotation|@
 name|Benchmark
 DECL|method|time (int reps)
 name|int
@@ -305,6 +310,8 @@ name|i
 operator|++
 control|)
 block|{
+comment|// TODO(b/145386688): This access should be guarded by 'this.segment', which is not currently
+comment|// held
 name|segment
 operator|.
 name|expand
