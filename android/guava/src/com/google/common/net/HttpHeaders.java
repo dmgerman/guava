@@ -773,7 +773,7 @@ name|X_WEBKIT_CSP_REPORT_ONLY
 init|=
 literal|"X-WebKit-CSP-Report-Only"
 decl_stmt|;
-comment|/**    * The HTTP Cross-Origin-Opener-Policy header field name.    *    * @since NEXT    */
+comment|/**    * The HTTP Cross-Origin-Opener-Policy header field name.    *    * @since 28.2    */
 DECL|field|CROSS_ORIGIN_OPENER_POLICY
 specifier|public
 specifier|static

@@ -510,7 +510,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Adds the given statistics to the dataset, as if the individual values used to compute the    * statistics had been added directly.    *    * @since NEXT    */
+comment|/**    * Adds the given statistics to the dataset, as if the individual values used to compute the    * statistics had been added directly.    *    * @since 28.2    */
 DECL|method|addAll (StatsAccumulator values)
 specifier|public
 name|void

@@ -495,7 +495,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Adds the given values to the dataset. The stream will be completely consumed by this method.    *    * @param values a series of values    * @since NEXT    */
+comment|/**    * Adds the given values to the dataset. The stream will be completely consumed by this method.    *    * @param values a series of values    * @since 28.2    */
 DECL|method|addAll (DoubleStream values)
 specifier|public
 name|void
@@ -526,7 +526,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Adds the given values to the dataset. The stream will be completely consumed by this method.    *    * @param values a series of values    * @since NEXT    */
+comment|/**    * Adds the given values to the dataset. The stream will be completely consumed by this method.    *    * @param values a series of values    * @since 28.2    */
 DECL|method|addAll (IntStream values)
 specifier|public
 name|void
@@ -557,7 +557,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Adds the given values to the dataset. The stream will be completely consumed by this method.    *    * @param values a series of values, which will be converted to {@code double} values (this may    *     cause loss of precision for longs of magnitude over 2^53 (slightly over 9e15))    * @since NEXT    */
+comment|/**    * Adds the given values to the dataset. The stream will be completely consumed by this method.    *    * @param values a series of values, which will be converted to {@code double} values (this may    *     cause loss of precision for longs of magnitude over 2^53 (slightly over 9e15))    * @since 28.2    */
 DECL|method|addAll (LongStream values)
 specifier|public
 name|void
@@ -639,7 +639,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Adds the given statistics to the dataset, as if the individual values used to compute the    * statistics had been added directly.    *    * @since NEXT    */
+comment|/**    * Adds the given statistics to the dataset, as if the individual values used to compute the    * statistics had been added directly.    *    * @since 28.2    */
 DECL|method|addAll (StatsAccumulator values)
 specifier|public
 name|void

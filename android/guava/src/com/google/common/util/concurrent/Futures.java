@@ -632,7 +632,7 @@ argument_list|>
 argument_list|()
 return|;
 block|}
-comment|/**    * Executes {@code callable} on the specified {@code executor}, returning a {@code Future}.    *    * @throws RejectedExecutionException if the task cannot be scheduled for execution    * @since NEXT    */
+comment|/**    * Executes {@code callable} on the specified {@code executor}, returning a {@code Future}.    *    * @throws RejectedExecutionException if the task cannot be scheduled for execution    * @since 28.2    */
 annotation|@
 name|Beta
 DECL|method|submit (Callable<O> callable, Executor executor)
@@ -681,7 +681,7 @@ return|return
 name|task
 return|;
 block|}
-comment|/**    * Executes {@code runnable} on the specified {@code executor}, returning a {@code Future} that    * will complete after execution.    *    * @throws RejectedExecutionException if the task cannot be scheduled for execution    * @since NEXT    */
+comment|/**    * Executes {@code runnable} on the specified {@code executor}, returning a {@code Future} that    * will complete after execution.    *    * @throws RejectedExecutionException if the task cannot be scheduled for execution    * @since 28.2    */
 annotation|@
 name|Beta
 DECL|method|submit (Runnable runnable, Executor executor)

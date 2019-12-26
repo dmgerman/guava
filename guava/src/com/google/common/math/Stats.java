@@ -579,7 +579,7 @@ name|snapshot
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns statistics over a dataset containing the given values. The stream will be completely    * consumed by this method.    *    *<p>If you have a {@code Stream<Double>} rather than a {@code DoubleStream}, you should collect    * the values using {@link #toStats()} instead.    *    * @param values a series of values    * @since NEXT    */
+comment|/**    * Returns statistics over a dataset containing the given values. The stream will be completely    * consumed by this method.    *    *<p>If you have a {@code Stream<Double>} rather than a {@code DoubleStream}, you should collect    * the values using {@link #toStats()} instead.    *    * @param values a series of values    * @since 28.2    */
 DECL|method|of (DoubleStream values)
 specifier|public
 specifier|static
@@ -612,7 +612,7 @@ name|snapshot
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns statistics over a dataset containing the given values. The stream will be completely    * consumed by this method.    *    *<p>If you have a {@code Stream<Integer>} rather than an {@code IntStream}, you should collect    * the values using {@link #toStats()} instead.    *    * @param values a series of values    * @since NEXT    */
+comment|/**    * Returns statistics over a dataset containing the given values. The stream will be completely    * consumed by this method.    *    *<p>If you have a {@code Stream<Integer>} rather than an {@code IntStream}, you should collect    * the values using {@link #toStats()} instead.    *    * @param values a series of values    * @since 28.2    */
 DECL|method|of (IntStream values)
 specifier|public
 specifier|static
@@ -645,7 +645,7 @@ name|snapshot
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns statistics over a dataset containing the given values. The stream will be completely    * consumed by this method.    *    *<p>If you have a {@code Stream<Long>} rather than a {@code LongStream}, you should collect the    * values using {@link #toStats()} instead.    *    * @param values a series of values, which will be converted to {@code double} values (this may    *     cause loss of precision for longs of magnitude over 2^53 (slightly over 9e15))    * @since NEXT    */
+comment|/**    * Returns statistics over a dataset containing the given values. The stream will be completely    * consumed by this method.    *    *<p>If you have a {@code Stream<Long>} rather than a {@code LongStream}, you should collect the    * values using {@link #toStats()} instead.    *    * @param values a series of values, which will be converted to {@code double} values (this may    *     cause loss of precision for longs of magnitude over 2^53 (slightly over 9e15))    * @since 28.2    */
 DECL|method|of (LongStream values)
 specifier|public
 specifier|static
@@ -678,7 +678,7 @@ name|snapshot
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns a {@link Collector} which accumulates statistics from a {@link java.util.stream.Stream}    * of any type of boxed {@link Number} into a {@link Stats}. Use by calling {@code    * boxedNumericStream.collect(toStats())}. The numbers will be converted to {@code double} values    * (which may cause loss of precision).    *    *<p>If you have any of the primitive streams {@code DoubleStream}, {@code IntStream}, or {@code    * LongStream}, you should use the factory method {@link #of} instead.    *    * @since NEXT    */
+comment|/**    * Returns a {@link Collector} which accumulates statistics from a {@link java.util.stream.Stream}    * of any type of boxed {@link Number} into a {@link Stats}. Use by calling {@code    * boxedNumericStream.collect(toStats())}. The numbers will be converted to {@code double} values    * (which may cause loss of precision).    *    *<p>If you have any of the primitive streams {@code DoubleStream}, {@code IntStream}, or {@code    * LongStream}, you should use the factory method {@link #of} instead.    *    * @since 28.2    */
 DECL|method|toStats ()
 specifier|public
 specifier|static

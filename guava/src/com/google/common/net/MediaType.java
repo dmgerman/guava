@@ -1912,7 +1912,7 @@ argument_list|,
 literal|"msword"
 argument_list|)
 decl_stmt|;
-comment|/**    * Media type for<a    * href="https://en.wikipedia.org/wiki/Dynamic_Adaptive_Streaming_over_HTTP">Dynamic Adaptive    * Streaming over HTTP (DASH)</a>. This is<a    * href="https://www.iana.org/assignments/media-types/application/dash+xml">registered</a> with    * the IANA.    *    * @since NEXT    */
+comment|/**    * Media type for<a    * href="https://en.wikipedia.org/wiki/Dynamic_Adaptive_Streaming_over_HTTP">Dynamic Adaptive    * Streaming over HTTP (DASH)</a>. This is<a    * href="https://www.iana.org/assignments/media-types/application/dash+xml">registered</a> with    * the IANA.    *    * @since 28.2    */
 DECL|field|MEDIA_PRESENTATION_DESCRIPTION
 specifier|public
 specifier|static
@@ -2098,7 +2098,7 @@ argument_list|,
 literal|"vnd.oasis.opendocument.text"
 argument_list|)
 decl_stmt|;
-comment|/**    *<a href="https://tools.ietf.org/id/draft-ellermann-opensearch-01.html">OpenSearch</a>    * Description files are XML files that describe how a website can be used as a search engine by    * consumers (e.g. web browsers).    *    * @since NEXT    */
+comment|/**    *<a href="https://tools.ietf.org/id/draft-ellermann-opensearch-01.html">OpenSearch</a>    * Description files are XML files that describe how a website can be used as a search engine by    * consumers (e.g. web browsers).    *    * @since 28.2    */
 DECL|field|OPENSEARCH_DESCRIPTION_UTF_8
 specifier|public
 specifier|static

@@ -3207,7 +3207,7 @@ name|readInt
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns a BigInteger representing the address.    *    *<p>Unlike {@code coerceToInteger}, IPv6 addresses are not coerced to IPv4 addresses.    *    * @param address {@link InetAddress} to convert    * @return {@code BigInteger} representation of the address    * @since NEXT    */
+comment|/**    * Returns a BigInteger representing the address.    *    *<p>Unlike {@code coerceToInteger}, IPv6 addresses are not coerced to IPv4 addresses.    *    * @param address {@link InetAddress} to convert    * @return {@code BigInteger} representation of the address    * @since 28.2    */
 DECL|method|toBigInteger (InetAddress address)
 specifier|public
 specifier|static
@@ -3254,7 +3254,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the {@code Inet4Address} corresponding to a given {@code BigInteger}.    *    * @param address BigInteger representing the IPv4 address    * @return Inet4Address representation of the given BigInteger    * @throws IllegalArgumentException if the BigInteger is not between 0 and 2^32-1    * @since NEXT    */
+comment|/**    * Returns the {@code Inet4Address} corresponding to a given {@code BigInteger}.    *    * @param address BigInteger representing the IPv4 address    * @return Inet4Address representation of the given BigInteger    * @throws IllegalArgumentException if the BigInteger is not between 0 and 2^32-1    * @since 28.2    */
 DECL|method|fromIPv4BigInteger (BigInteger address)
 specifier|public
 specifier|static
@@ -3277,7 +3277,7 @@ literal|false
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the {@code Inet6Address} corresponding to a given {@code BigInteger}.    *    * @param address BigInteger representing the IPv6 address    * @return Inet6Address representation of the given BigInteger    * @throws IllegalArgumentException if the BigInteger is not between 0 and 2^128-1    * @since NEXT    */
+comment|/**    * Returns the {@code Inet6Address} corresponding to a given {@code BigInteger}.    *    * @param address BigInteger representing the IPv6 address    * @return Inet6Address representation of the given BigInteger    * @throws IllegalArgumentException if the BigInteger is not between 0 and 2^128-1    * @since 28.2    */
 DECL|method|fromIPv6BigInteger (BigInteger address)
 specifier|public
 specifier|static
