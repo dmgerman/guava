@@ -1222,6 +1222,9 @@ operator|.
 name|clear
 argument_list|()
 expr_stmt|;
+name|boolean
+name|unused
+init|=
 name|create
 argument_list|()
 operator|.
@@ -1229,7 +1232,10 @@ name|contains
 argument_list|(
 literal|"foo"
 argument_list|)
-expr_stmt|;
+decl_stmt|;
+name|boolean
+name|unused2
+init|=
 name|create
 argument_list|()
 operator|.
@@ -1242,7 +1248,7 @@ argument_list|(
 literal|"foo"
 argument_list|)
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|create
 argument_list|()
 operator|.
