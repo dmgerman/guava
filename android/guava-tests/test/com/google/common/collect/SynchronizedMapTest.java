@@ -829,6 +829,9 @@ name|void
 name|testContainsKey
 parameter_list|()
 block|{
+name|boolean
+name|unused
+init|=
 name|create
 argument_list|()
 operator|.
@@ -836,7 +839,7 @@ name|containsKey
 argument_list|(
 literal|null
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 block|}
 DECL|method|testContainsValue ()
 specifier|public
@@ -844,6 +847,9 @@ name|void
 name|testContainsValue
 parameter_list|()
 block|{
+name|boolean
+name|unused
+init|=
 name|create
 argument_list|()
 operator|.
@@ -851,7 +857,7 @@ name|containsValue
 argument_list|(
 literal|null
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 block|}
 DECL|method|testGet ()
 specifier|public
