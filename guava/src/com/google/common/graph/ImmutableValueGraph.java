@@ -543,11 +543,27 @@ argument_list|>
 name|graphBuilder
 parameter_list|)
 block|{
+comment|// The incidentEdgeOrder for immutable graphs is always stable. However, we don't want to
+comment|// modify this builder, so we make a copy instead.
 name|this
 operator|.
 name|mutableValueGraph
 operator|=
 name|graphBuilder
+operator|.
+name|copy
+argument_list|()
+operator|.
+name|incidentEdgeOrder
+argument_list|(
+name|ElementOrder
+operator|.
+expr|<
+name|N
+operator|>
+name|stable
+argument_list|()
+argument_list|)
 operator|.
 name|build
 argument_list|()
