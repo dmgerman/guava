@@ -1220,8 +1220,8 @@ init|=
 literal|0
 init|;
 name|i
-operator|<=
-literal|9
+operator|<
+literal|10
 condition|;
 name|i
 operator|++
@@ -1248,7 +1248,7 @@ init|=
 literal|0
 init|;
 name|i
-operator|<=
+operator|<
 literal|26
 condition|;
 name|i
