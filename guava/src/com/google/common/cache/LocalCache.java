@@ -7581,6 +7581,11 @@ block|}
 comment|/**    * This method is a convenience for testing. Code should call {@link Segment#copyEntry} directly.    */
 comment|// Guarded By Segment.this
 annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"GuardedBy"
+argument_list|)
+annotation|@
 name|VisibleForTesting
 DECL|method|copyEntry (ReferenceEntry<K, V> original, ReferenceEntry<K, V> newNext)
 name|ReferenceEntry
