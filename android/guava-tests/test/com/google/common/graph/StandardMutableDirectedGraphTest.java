@@ -250,7 +250,6 @@ operator|.
 name|allowsSelfLoops
 argument_list|(
 name|allowsSelfLoops
-argument_list|()
 argument_list|)
 operator|.
 name|incidentEdgeOrder
