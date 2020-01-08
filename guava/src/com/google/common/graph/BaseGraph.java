@@ -96,6 +96,15 @@ argument_list|>
 name|nodeOrder
 parameter_list|()
 function_decl|;
+comment|/**    * Returns an {@link ElementOrder} that specifies the order of iteration for the elements of    * {@link #edges()}, {@link #adjacentNodes(Object)}, {@link #predecessors(Object)}, {@link    * #successors(Object)} and {@link #incidentEdges(Object)}.    */
+DECL|method|incidentEdgeOrder ()
+name|ElementOrder
+argument_list|<
+name|N
+argument_list|>
+name|incidentEdgeOrder
+parameter_list|()
+function_decl|;
 comment|//
 comment|// Element-level accessors
 comment|//

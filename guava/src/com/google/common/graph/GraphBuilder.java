@@ -232,8 +232,15 @@ operator|.
 name|nodeOrder
 argument_list|()
 argument_list|)
+operator|.
+name|incidentEdgeOrder
+argument_list|(
+name|graph
+operator|.
+name|incidentEdgeOrder
+argument_list|()
+argument_list|)
 return|;
-comment|// TODO(b/142723300): Add incidentEdgeOrder
 block|}
 comment|/**    * Returns an {@link ImmutableGraph.Builder} with the properties of this {@link GraphBuilder}.    *    *<p>The returned builder can be used for populating an {@link ImmutableGraph}.    *    *<p>Note that the returned builder will always have {@link #incidentEdgeOrder} set to {@link    * ElementOrder#stable()}, regardless of the value that was set in this builder.    *    * @since 28.0    */
 DECL|method|immutable ()

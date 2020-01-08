@@ -194,6 +194,21 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
+DECL|method|incidentEdgeOrder ()
+specifier|public
+name|ElementOrder
+argument_list|<
+name|N
+argument_list|>
+name|incidentEdgeOrder
+parameter_list|()
+block|{
+return|return
+name|incidentEdgeOrder
+return|;
+block|}
+annotation|@
+name|Override
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|addNode (N node)

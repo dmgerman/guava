@@ -129,21 +129,6 @@ name|AbstractStandardUndirectedGraphTest
 extends|extends
 name|AbstractGraphTest
 block|{
-DECL|method|allowsSelfLoops ()
-specifier|abstract
-name|boolean
-name|allowsSelfLoops
-parameter_list|()
-function_decl|;
-DECL|method|incidentEdgeOrder ()
-specifier|abstract
-name|ElementOrder
-argument_list|<
-name|Integer
-argument_list|>
-name|incidentEdgeOrder
-parameter_list|()
-function_decl|;
 annotation|@
 name|After
 DECL|method|validateUndirectedEdges ()

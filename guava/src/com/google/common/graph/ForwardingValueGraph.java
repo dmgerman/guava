@@ -178,6 +178,25 @@ return|;
 block|}
 annotation|@
 name|Override
+DECL|method|incidentEdgeOrder ()
+specifier|public
+name|ElementOrder
+argument_list|<
+name|N
+argument_list|>
+name|incidentEdgeOrder
+parameter_list|()
+block|{
+return|return
+name|delegate
+argument_list|()
+operator|.
+name|incidentEdgeOrder
+argument_list|()
+return|;
+block|}
+annotation|@
+name|Override
 DECL|method|adjacentNodes (N node)
 specifier|public
 name|Set

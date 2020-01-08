@@ -555,6 +555,25 @@ block|}
 annotation|@
 name|Override
 specifier|public
+name|ElementOrder
+argument_list|<
+name|N
+argument_list|>
+name|incidentEdgeOrder
+parameter_list|()
+block|{
+comment|// TODO(b/142723300): Return AbstractNetwork.this.incidentEdgeOrder() once Network has that
+comment|//   method.
+return|return
+name|ElementOrder
+operator|.
+name|unordered
+argument_list|()
+return|;
+block|}
+annotation|@
+name|Override
+specifier|public
 name|boolean
 name|isDirected
 parameter_list|()

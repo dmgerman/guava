@@ -308,6 +308,24 @@ name|graph
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|incidentEdgeOrder ()
+specifier|public
+name|ElementOrder
+argument_list|<
+name|N
+argument_list|>
+name|incidentEdgeOrder
+parameter_list|()
+block|{
+return|return
+name|ElementOrder
+operator|.
+name|stable
+argument_list|()
+return|;
+block|}
 DECL|method|getNodeConnections ( Graph<N> graph)
 specifier|private
 specifier|static

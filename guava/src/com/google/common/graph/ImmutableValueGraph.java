@@ -287,6 +287,24 @@ return|;
 block|}
 annotation|@
 name|Override
+DECL|method|incidentEdgeOrder ()
+specifier|public
+name|ElementOrder
+argument_list|<
+name|N
+argument_list|>
+name|incidentEdgeOrder
+parameter_list|()
+block|{
+return|return
+name|ElementOrder
+operator|.
+name|stable
+argument_list|()
+return|;
+block|}
+annotation|@
+name|Override
 DECL|method|asGraph ()
 specifier|public
 name|ImmutableGraph
