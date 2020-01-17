@@ -602,6 +602,9 @@ name|url
 return|;
 block|}
 comment|/**    * Given a {@code resourceName} that is relative to {@code contextClass}, returns a {@code URL}    * pointing to the named resource.    *    * @throws IllegalArgumentException if the resource is not found    */
+annotation|@
+name|CanIgnoreReturnValue
+comment|// being used to check if a resource exists
 DECL|method|getResource (Class<?> contextClass, String resourceName)
 specifier|public
 specifier|static
