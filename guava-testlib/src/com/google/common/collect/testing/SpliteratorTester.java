@@ -1091,14 +1091,14 @@ name|consumer
 parameter_list|)
 function_decl|;
 block|}
-annotation|@
-name|Nullable
-DECL|method|trySplitTestingSize (GeneralSpliterator<E> spliterator)
+DECL|method|trySplitTestingSize ( GeneralSpliterator<E> spliterator)
 specifier|private
 specifier|static
 parameter_list|<
 name|E
 parameter_list|>
+annotation|@
+name|Nullable
 name|GeneralSpliterator
 argument_list|<
 name|E

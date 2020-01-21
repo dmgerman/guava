@@ -3230,14 +3230,14 @@ argument_list|(
 literal|"unchecked"
 argument_list|)
 comment|// it's a subtype map
-annotation|@
-name|Nullable
 DECL|method|getImplementation (Class<T> type)
 specifier|private
 specifier|static
 parameter_list|<
 name|T
 parameter_list|>
+annotation|@
+name|Nullable
 name|Class
 argument_list|<
 name|?
@@ -3290,14 +3290,14 @@ argument_list|()
 argument_list|)
 decl_stmt|;
 comment|/**    * Returns an arbitrary instance for {@code type}, or {@code null} if no arbitrary instance can be    * determined.    */
-annotation|@
-name|Nullable
 DECL|method|get (Class<T> type)
 specifier|public
 specifier|static
 parameter_list|<
 name|T
 parameter_list|>
+annotation|@
+name|Nullable
 name|T
 name|get
 parameter_list|(
@@ -3589,14 +3589,14 @@ argument_list|)
 return|;
 block|}
 block|}
-annotation|@
-name|Nullable
 DECL|method|arbitraryConstantInstanceOrNull (Class<T> type)
 specifier|private
 specifier|static
 parameter_list|<
 name|T
 parameter_list|>
+annotation|@
+name|Nullable
 name|T
 name|arbitraryConstantInstanceOrNull
 parameter_list|(

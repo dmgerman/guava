@@ -430,13 +430,13 @@ name|other
 return|;
 block|}
 comment|/** If this collection is backed by an array of its elements in insertion order, returns it. */
-annotation|@
-name|Nullable
 DECL|method|internalArray ()
 name|Object
-index|[]
+annotation|@
+name|Nullable
+type|[]
 name|internalArray
-parameter_list|()
+function|()
 block|{
 return|return
 literal|null

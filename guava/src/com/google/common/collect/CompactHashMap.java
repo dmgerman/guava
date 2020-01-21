@@ -4137,11 +4137,11 @@ literal|"unchecked"
 argument_list|)
 comment|// known to be a V
 annotation|@
-name|Nullable
-annotation|@
 name|Override
 DECL|method|getValue ()
 specifier|public
+annotation|@
+name|Nullable
 name|V
 name|getValue
 parameter_list|()

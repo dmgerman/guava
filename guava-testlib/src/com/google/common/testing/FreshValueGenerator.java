@@ -1589,10 +1589,10 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Returns a fresh instance for {@code type} if possible. The returned instance could be:    *    *<ul>    *<li>exactly of the given type, including generic type parameters, such as {@code    *       ImmutableList<String>};    *<li>of the raw type;    *<li>null if no value can be generated.    *</ul>    */
-annotation|@
-name|Nullable
 DECL|method|generateFresh (TypeToken<?> type)
 specifier|final
+annotation|@
+name|Nullable
 name|Object
 name|generateFresh
 parameter_list|(
@@ -1628,13 +1628,13 @@ return|return
 name|generated
 return|;
 block|}
-annotation|@
-name|Nullable
 DECL|method|generateFresh (Class<T> type)
 specifier|final
 parameter_list|<
 name|T
 parameter_list|>
+annotation|@
+name|Nullable
 name|T
 name|generateFresh
 parameter_list|(

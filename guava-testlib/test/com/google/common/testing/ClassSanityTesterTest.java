@@ -1259,11 +1259,11 @@ specifier|static
 class|class
 name|FactoryThatReturnsNullAndAnnotated
 block|{
-annotation|@
-name|Nullable
 DECL|method|bad ()
 specifier|public
 specifier|static
+annotation|@
+name|Nullable
 name|Object
 name|bad
 parameter_list|()
@@ -3372,11 +3372,11 @@ name|SuppressWarnings
 argument_list|(
 literal|"unused"
 argument_list|)
-annotation|@
-name|Nullable
 DECL|method|createMayReturnNull (int a, int b)
 specifier|public
 specifier|static
+annotation|@
+name|Nullable
 name|GoodEquals
 name|createMayReturnNull
 parameter_list|(
@@ -5019,11 +5019,11 @@ specifier|private
 name|FactoryMethodReturnsNullAndAnnotated
 parameter_list|()
 block|{}
-annotation|@
-name|Nullable
 DECL|method|returnsNull ()
 specifier|public
 specifier|static
+annotation|@
+name|Nullable
 name|FactoryMethodReturnsNullAndAnnotated
 name|returnsNull
 parameter_list|()

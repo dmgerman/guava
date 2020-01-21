@@ -103,11 +103,11 @@ name|firstOrNull
 expr_stmt|;
 block|}
 comment|/**    * Returns the element that follows {@code previous}, or returns {@code null} if no elements    * remain. This method is invoked during each call to {@link #next()} in order to compute the    * result of a<i>future</i> call to {@code next()}.    */
-annotation|@
-name|Nullable
 DECL|method|computeNext (T previous)
 specifier|protected
 specifier|abstract
+annotation|@
+name|Nullable
 name|T
 name|computeNext
 parameter_list|(

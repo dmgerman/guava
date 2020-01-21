@@ -238,10 +238,10 @@ name|GuardedBy
 argument_list|(
 literal|"this"
 argument_list|)
-annotation|@
-name|Nullable
 DECL|field|file
 specifier|private
+annotation|@
+name|Nullable
 name|File
 name|file
 decl_stmt|;

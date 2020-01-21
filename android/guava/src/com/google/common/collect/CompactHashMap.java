@@ -3530,9 +3530,9 @@ literal|"unchecked"
 argument_list|)
 comment|// known to be a V
 annotation|@
-name|NullableDecl
-annotation|@
 name|Override
+annotation|@
+name|NullableDecl
 DECL|method|getValue ()
 specifier|public
 name|V
