@@ -206,6 +206,22 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|concurrent
+operator|.
+name|LazyInit
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -3391,6 +3407,8 @@ return|;
 block|}
 DECL|field|upperCase
 annotation|@
+name|LazyInit
+annotation|@
 name|MonotonicNonNullDecl
 specifier|private
 specifier|transient
@@ -3398,6 +3416,8 @@ name|BaseEncoding
 name|upperCase
 decl_stmt|;
 DECL|field|lowerCase
+annotation|@
+name|LazyInit
 annotation|@
 name|MonotonicNonNullDecl
 specifier|private
