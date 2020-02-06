@@ -430,7 +430,17 @@ specifier|static
 specifier|final
 name|boolean
 name|GENERATE_CANCELLATION_CAUSES
-init|=
+decl_stmt|;
+static|static
+block|{
+comment|// System.getProperty may throw if the security policy does not permit access.
+name|boolean
+name|generateCancellationCauses
+decl_stmt|;
+try|try
+block|{
+name|generateCancellationCauses
+operator|=
 name|Boolean
 operator|.
 name|parseBoolean
@@ -444,7 +454,24 @@ argument_list|,
 literal|"false"
 argument_list|)
 argument_list|)
-decl_stmt|;
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|SecurityException
+name|e
+parameter_list|)
+block|{
+name|generateCancellationCauses
+operator|=
+literal|false
+expr_stmt|;
+block|}
+name|GENERATE_CANCELLATION_CAUSES
+operator|=
+name|generateCancellationCauses
+expr_stmt|;
+block|}
 comment|/**    * Tag interface marking trusted subclasses. This enables some optimizations. The implementation    * of this interface must also be an AbstractFuture and must not override or expose for overriding    * any of the public methods of ListenableFuture.    */
 DECL|interface|Trusted
 interface|interface
