@@ -37,10 +37,10 @@ comment|/**  * Configurable implementation of {@link MutableGraph} that supports
 end_comment
 
 begin_class
-DECL|class|ConfigurableMutableGraph
+DECL|class|StandardMutableGraph
 specifier|final
 class|class
-name|ConfigurableMutableGraph
+name|StandardMutableGraph
 parameter_list|<
 name|N
 parameter_list|>
@@ -67,8 +67,8 @@ argument_list|>
 name|backingValueGraph
 decl_stmt|;
 comment|/** Constructs a {@link MutableGraph} with the properties specified in {@code builder}. */
-DECL|method|ConfigurableMutableGraph (AbstractGraphBuilder<? super N> builder)
-name|ConfigurableMutableGraph
+DECL|method|StandardMutableGraph (AbstractGraphBuilder<? super N> builder)
+name|StandardMutableGraph
 parameter_list|(
 name|AbstractGraphBuilder
 argument_list|<
@@ -84,7 +84,7 @@ operator|.
 name|backingValueGraph
 operator|=
 operator|new
-name|ConfigurableMutableValueGraph
+name|StandardMutableValueGraph
 argument_list|<>
 argument_list|(
 name|builder

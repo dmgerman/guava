@@ -207,7 +207,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Tests for {@link ConfigurableMutableValueGraph} and related functionality. */
+comment|/** Tests for {@link StandardMutableValueGraph} and related functionality. */
 end_comment
 
 begin_comment

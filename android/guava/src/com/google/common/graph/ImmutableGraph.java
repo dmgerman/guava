@@ -249,7 +249,7 @@ name|N
 argument_list|>
 argument_list|(
 operator|new
-name|ConfigurableValueGraph
+name|StandardValueGraph
 argument_list|<
 name|N
 argument_list|,

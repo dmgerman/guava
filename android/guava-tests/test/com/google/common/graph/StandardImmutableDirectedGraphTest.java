@@ -75,7 +75,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Tests for a directed {@link ConfigurableMutableGraph}. */
+comment|/** Tests for a directed {@link StandardMutableGraph}. */
 end_comment
 
 begin_class

@@ -114,9 +114,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -125,9 +125,9 @@ comment|/**  * Configurable implementation of {@link ValueGraph} that supports t
 end_comment
 
 begin_class
-DECL|class|ConfigurableValueGraph
+DECL|class|StandardValueGraph
 class|class
-name|ConfigurableValueGraph
+name|StandardValueGraph
 parameter_list|<
 name|N
 parameter_list|,
@@ -185,8 +185,8 @@ name|edgeCount
 decl_stmt|;
 comment|// must be updated when edges are added or removed
 comment|/** Constructs a graph with the properties specified in {@code builder}. */
-DECL|method|ConfigurableValueGraph (AbstractGraphBuilder<? super N> builder)
-name|ConfigurableValueGraph
+DECL|method|StandardValueGraph (AbstractGraphBuilder<? super N> builder)
+name|StandardValueGraph
 parameter_list|(
 name|AbstractGraphBuilder
 argument_list|<
@@ -232,8 +232,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Constructs a graph with the properties specified in {@code builder}, initialized with the given    * node map.    */
-DECL|method|ConfigurableValueGraph ( AbstractGraphBuilder<? super N> builder, Map<N, GraphConnections<N, V>> nodeConnections, long edgeCount)
-name|ConfigurableValueGraph
+DECL|method|StandardValueGraph ( AbstractGraphBuilder<? super N> builder, Map<N, GraphConnections<N, V>> nodeConnections, long edgeCount)
+name|StandardValueGraph
 parameter_list|(
 name|AbstractGraphBuilder
 argument_list|<
@@ -607,10 +607,10 @@ return|;
 block|}
 annotation|@
 name|Override
-annotation|@
-name|NullableDecl
-DECL|method|edgeValueOrDefault (N nodeU, N nodeV, @NullableDecl V defaultValue)
+DECL|method|edgeValueOrDefault (N nodeU, N nodeV, @Nullable V defaultValue)
 specifier|public
+annotation|@
+name|Nullable
 name|V
 name|edgeValueOrDefault
 parameter_list|(
@@ -621,7 +621,7 @@ name|N
 name|nodeV
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|V
 name|defaultValue
 parameter_list|)
@@ -645,10 +645,10 @@ return|;
 block|}
 annotation|@
 name|Override
-annotation|@
-name|NullableDecl
-DECL|method|edgeValueOrDefault (EndpointPair<N> endpoints, @NullableDecl V defaultValue)
+DECL|method|edgeValueOrDefault (EndpointPair<N> endpoints, @Nullable V defaultValue)
 specifier|public
+annotation|@
+name|Nullable
 name|V
 name|edgeValueOrDefault
 parameter_list|(
@@ -659,7 +659,7 @@ argument_list|>
 name|endpoints
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|V
 name|defaultValue
 parameter_list|)
@@ -756,14 +756,14 @@ return|return
 name|connections
 return|;
 block|}
-DECL|method|containsNode (@ullableDecl N node)
+DECL|method|containsNode (@ullable N node)
 specifier|protected
 specifier|final
 name|boolean
 name|containsNode
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|N
 name|node
 parameter_list|)

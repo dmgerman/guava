@@ -131,17 +131,17 @@ comment|/**  * Configurable implementation of {@link MutableValueGraph} that sup
 end_comment
 
 begin_class
-DECL|class|ConfigurableMutableValueGraph
+DECL|class|StandardMutableValueGraph
 specifier|final
 class|class
-name|ConfigurableMutableValueGraph
+name|StandardMutableValueGraph
 parameter_list|<
 name|N
 parameter_list|,
 name|V
 parameter_list|>
 extends|extends
-name|ConfigurableValueGraph
+name|StandardValueGraph
 argument_list|<
 name|N
 argument_list|,
@@ -165,8 +165,8 @@ argument_list|>
 name|incidentEdgeOrder
 decl_stmt|;
 comment|/** Constructs a mutable graph with the properties specified in {@code builder}. */
-DECL|method|ConfigurableMutableValueGraph (AbstractGraphBuilder<? super N> builder)
-name|ConfigurableMutableValueGraph
+DECL|method|StandardMutableValueGraph (AbstractGraphBuilder<? super N> builder)
+name|StandardMutableValueGraph
 parameter_list|(
 name|AbstractGraphBuilder
 argument_list|<

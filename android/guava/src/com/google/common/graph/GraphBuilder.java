@@ -467,7 +467,7 @@ parameter_list|()
 block|{
 return|return
 operator|new
-name|ConfigurableMutableGraph
+name|StandardMutableGraph
 argument_list|<
 name|N1
 argument_list|>

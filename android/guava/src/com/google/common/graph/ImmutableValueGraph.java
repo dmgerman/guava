@@ -151,7 +151,7 @@ parameter_list|,
 name|V
 parameter_list|>
 extends|extends
-name|ConfigurableValueGraph
+name|StandardValueGraph
 argument_list|<
 name|N
 argument_list|,
