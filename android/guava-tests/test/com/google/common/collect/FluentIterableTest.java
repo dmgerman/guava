@@ -499,7 +499,11 @@ block|}
 annotation|@
 name|SuppressWarnings
 argument_list|(
+block|{
 literal|"deprecation"
+block|,
+literal|"DoNotCall"
+block|}
 argument_list|)
 comment|// test of deprecated method
 DECL|method|testFrom_alreadyFluentIterable ()
