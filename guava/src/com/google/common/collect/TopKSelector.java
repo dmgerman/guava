@@ -179,7 +179,7 @@ parameter_list|<
 name|T
 parameter_list|>
 block|{
-comment|/**    * Returns a {@code TopKSelector} that collects the lowest {@code k} elements added to it,    * relative to the natural ordering of the elements, and returns them via {@link #topK} in    * ascending order.    *    * @throws IllegalArgumentException if {@code k< 0}    */
+comment|/**    * Returns a {@code TopKSelector} that collects the lowest {@code k} elements added to it,    * relative to the natural ordering of the elements, and returns them via {@link #topK} in    * ascending order.    *    * @throws IllegalArgumentException if {@code k< 0} or {@code k> Integer.MAX_VALUE / 2}    */
 DECL|method|least (int k)
 specifier|public
 specifier|static
@@ -215,7 +215,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a {@code TopKSelector} that collects the lowest {@code k} elements added to it,    * relative to the specified comparator, and returns them via {@link #topK} in ascending order.    *    * @throws IllegalArgumentException if {@code k< 0}    */
+comment|/**    * Returns a {@code TopKSelector} that collects the lowest {@code k} elements added to it,    * relative to the specified comparator, and returns them via {@link #topK} in ascending order.    *    * @throws IllegalArgumentException if {@code k< 0} or {@code k> Integer.MAX_VALUE / 2}    */
 DECL|method|least (int k, Comparator<? super T> comparator)
 specifier|public
 specifier|static
@@ -253,7 +253,7 @@ name|k
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a {@code TopKSelector} that collects the greatest {@code k} elements added to it,    * relative to the natural ordering of the elements, and returns them via {@link #topK} in    * descending order.    *    * @throws IllegalArgumentException if {@code k< 0}    */
+comment|/**    * Returns a {@code TopKSelector} that collects the greatest {@code k} elements added to it,    * relative to the natural ordering of the elements, and returns them via {@link #topK} in    * descending order.    *    * @throws IllegalArgumentException if {@code k< 0} or {@code k> Integer.MAX_VALUE / 2}    */
 DECL|method|greatest (int k)
 specifier|public
 specifier|static
@@ -289,7 +289,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a {@code TopKSelector} that collects the greatest {@code k} elements added to it,    * relative to the specified comparator, and returns them via {@link #topK} in descending order.    *    * @throws IllegalArgumentException if {@code k< 0}    */
+comment|/**    * Returns a {@code TopKSelector} that collects the greatest {@code k} elements added to it,    * relative to the specified comparator, and returns them via {@link #topK} in descending order.    *    * @throws IllegalArgumentException if {@code k< 0} or {@code k> Integer.MAX_VALUE / 2}    */
 DECL|method|greatest (int k, Comparator<? super T> comparator)
 specifier|public
 specifier|static
@@ -412,7 +412,22 @@ name|k
 operator|>=
 literal|0
 argument_list|,
-literal|"k must be nonnegative, was %s"
+literal|"k (%s) must be>= 0"
+argument_list|,
+name|k
+argument_list|)
+expr_stmt|;
+name|checkArgument
+argument_list|(
+name|k
+operator|<=
+name|Integer
+operator|.
+name|MAX_VALUE
+operator|/
+literal|2
+argument_list|,
+literal|"k (%s) must be<= Integer.MAX_VALUE / 2"
 argument_list|,
 name|k
 argument_list|)
@@ -428,9 +443,14 @@ operator|)
 operator|new
 name|Object
 index|[
+name|IntMath
+operator|.
+name|checkedMultiply
+argument_list|(
 name|k
-operator|*
+argument_list|,
 literal|2
+argument_list|)
 index|]
 expr_stmt|;
 name|this
