@@ -5098,6 +5098,12 @@ operator|.
 name|MAX_SIZE
 argument_list|)
 expr_stmt|;
+name|delegate
+operator|.
+name|clear
+argument_list|()
+expr_stmt|;
+comment|// invalidate any iterators left over!
 name|table
 operator|=
 literal|null
