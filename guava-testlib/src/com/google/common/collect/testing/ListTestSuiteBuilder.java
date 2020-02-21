@@ -1164,15 +1164,10 @@ init|=
 operator|new
 name|HashSet
 argument_list|<>
-argument_list|()
-decl_stmt|;
-name|derivedFeatures
-operator|.
-name|addAll
 argument_list|(
 name|features
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|derivedFeatures
 operator|.
 name|remove

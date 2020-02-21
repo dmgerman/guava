@@ -135,15 +135,10 @@ init|=
 operator|new
 name|ArrayList
 argument_list|<>
-argument_list|()
-decl_stmt|;
-name|temp
-operator|.
-name|addAll
 argument_list|(
 name|exceptions
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|this
 operator|.
 name|exceptions

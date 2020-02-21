@@ -1015,11 +1015,6 @@ init|=
 operator|new
 name|ArrayList
 argument_list|<>
-argument_list|()
-decl_stmt|;
-name|expectedList
-operator|.
-name|addAll
 argument_list|(
 name|Arrays
 operator|.
@@ -1028,7 +1023,7 @@ argument_list|(
 name|expected
 argument_list|)
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 for|for
 control|(
 name|Object
