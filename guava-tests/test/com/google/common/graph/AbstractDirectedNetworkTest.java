@@ -66,6 +66,22 @@ end_import
 
 begin_import
 import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|truth
+operator|.
+name|TruthJUnit
+operator|.
+name|assume
+import|;
+end_import
+
+begin_import
+import|import static
 name|org
 operator|.
 name|junit
@@ -1190,6 +1206,18 @@ name|void
 name|addEdge_existingNodes
 parameter_list|()
 block|{
+name|assume
+argument_list|()
+operator|.
+name|that
+argument_list|(
+name|graphIsMutable
+argument_list|()
+argument_list|)
+operator|.
+name|isTrue
+argument_list|()
+expr_stmt|;
 comment|// Adding nodes initially for safety (insulating from possible future
 comment|// modifications to proxy methods)
 name|addNode
@@ -1204,6 +1232,8 @@ argument_list|)
 expr_stmt|;
 name|assertThat
 argument_list|(
+name|networkAsMutableNetwork
+operator|.
 name|addEdge
 argument_list|(
 name|N1
@@ -1272,6 +1302,18 @@ name|void
 name|addEdge_existingEdgeBetweenSameNodes
 parameter_list|()
 block|{
+name|assume
+argument_list|()
+operator|.
+name|that
+argument_list|(
+name|graphIsMutable
+argument_list|()
+argument_list|)
+operator|.
+name|isTrue
+argument_list|()
+expr_stmt|;
 name|addEdge
 argument_list|(
 name|N1
@@ -1299,6 +1341,8 @@ argument_list|)
 decl_stmt|;
 name|assertThat
 argument_list|(
+name|networkAsMutableNetwork
+operator|.
 name|addEdge
 argument_list|(
 name|N1
@@ -1334,6 +1378,18 @@ name|void
 name|addEdge_existingEdgeBetweenDifferentNodes
 parameter_list|()
 block|{
+name|assume
+argument_list|()
+operator|.
+name|that
+argument_list|(
+name|graphIsMutable
+argument_list|()
+argument_list|)
+operator|.
+name|isTrue
+argument_list|()
+expr_stmt|;
 name|addEdge
 argument_list|(
 name|N1
@@ -1346,6 +1402,8 @@ expr_stmt|;
 try|try
 block|{
 comment|// Edge between totally different nodes
+name|networkAsMutableNetwork
+operator|.
 name|addEdge
 argument_list|(
 name|N4
@@ -1428,6 +1486,18 @@ name|void
 name|addEdge_parallelEdge
 parameter_list|()
 block|{
+name|assume
+argument_list|()
+operator|.
+name|that
+argument_list|(
+name|graphIsMutable
+argument_list|()
+argument_list|)
+operator|.
+name|isTrue
+argument_list|()
+expr_stmt|;
 name|addEdge
 argument_list|(
 name|N1
@@ -1439,6 +1509,8 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+name|networkAsMutableNetwork
+operator|.
 name|addEdge
 argument_list|(
 name|N1
@@ -1483,6 +1555,18 @@ name|void
 name|addEdge_orderMismatch
 parameter_list|()
 block|{
+name|assume
+argument_list|()
+operator|.
+name|that
+argument_list|(
+name|graphIsMutable
+argument_list|()
+argument_list|)
+operator|.
+name|isTrue
+argument_list|()
+expr_stmt|;
 name|EndpointPair
 argument_list|<
 name|Integer
@@ -1500,6 +1584,8 @@ argument_list|)
 decl_stmt|;
 try|try
 block|{
+name|networkAsMutableNetwork
+operator|.
 name|addEdge
 argument_list|(
 name|endpoints
