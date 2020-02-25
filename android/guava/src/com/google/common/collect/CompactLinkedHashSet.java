@@ -32,6 +32,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -62,17 +76,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|java
 operator|.
-name|checkerframework
+name|util
 operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|compatqual
-operator|.
-name|MonotonicNonNullDecl
+name|Set
 import|;
 end_import
 
@@ -268,7 +276,7 @@ comment|// entry in a *single* long[], though that reduces the maximum size of t
 comment|/**    * Pointer to the predecessor of an entry in insertion order. ENDPOINT indicates a node is the    * first node in insertion order; all values at indices â¥ {@link #size()} are UNSET.    */
 DECL|field|predecessor
 annotation|@
-name|MonotonicNonNullDecl
+name|NullableDecl
 specifier|private
 specifier|transient
 name|int
@@ -278,7 +286,7 @@ decl_stmt|;
 comment|/**    * Pointer to the successor of an entry in insertion order. ENDPOINT indicates a node is the last    * node in insertion order; all values at indices â¥ {@link #size()} are UNSET.    */
 DECL|field|successor
 annotation|@
-name|MonotonicNonNullDecl
+name|NullableDecl
 specifier|private
 specifier|transient
 name|int
@@ -387,6 +395,45 @@ index|]
 expr_stmt|;
 return|return
 name|expectedSize
+return|;
+block|}
+annotation|@
+name|Override
+annotation|@
+name|CanIgnoreReturnValue
+DECL|method|convertToHashFloodingResistantImplementation ()
+name|Set
+argument_list|<
+name|E
+argument_list|>
+name|convertToHashFloodingResistantImplementation
+parameter_list|()
+block|{
+name|Set
+argument_list|<
+name|E
+argument_list|>
+name|result
+init|=
+name|super
+operator|.
+name|convertToHashFloodingResistantImplementation
+argument_list|()
+decl_stmt|;
+name|this
+operator|.
+name|predecessor
+operator|=
+literal|null
+expr_stmt|;
+name|this
+operator|.
+name|successor
+operator|=
+literal|null
+expr_stmt|;
+return|return
+name|result
 return|;
 block|}
 DECL|method|getPredecessor (int entry)
@@ -812,6 +859,13 @@ name|lastEntry
 operator|=
 name|ENDPOINT
 expr_stmt|;
+if|if
+condition|(
+name|predecessor
+operator|!=
+literal|null
+condition|)
+block|{
 name|Arrays
 operator|.
 name|fill
@@ -840,6 +894,7 @@ argument_list|,
 literal|0
 argument_list|)
 expr_stmt|;
+block|}
 name|super
 operator|.
 name|clear
