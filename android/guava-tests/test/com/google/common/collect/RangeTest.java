@@ -114,6 +114,20 @@ name|google
 operator|.
 name|common
 operator|.
+name|annotations
+operator|.
+name|GwtIncompatible
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
 name|base
 operator|.
 name|Predicate
@@ -207,6 +221,11 @@ end_comment
 begin_class
 annotation|@
 name|GwtCompatible
+argument_list|(
+name|emulated
+operator|=
+literal|true
+argument_list|)
 DECL|class|RangeTest
 specifier|public
 class|class
@@ -4607,6 +4626,9 @@ name|testEquals
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+comment|// TODO(b/148207871): Restore once Eclipse compiler no longer flakes for this.
 DECL|method|testLegacyComparable ()
 specifier|public
 name|void
