@@ -166,9 +166,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|qual
+name|compatqual
 operator|.
-name|Nullable
+name|NullableDecl
 import|;
 end_import
 
@@ -177,9 +177,9 @@ comment|/**  * Configurable implementation of {@link Network} that supports the 
 end_comment
 
 begin_class
-DECL|class|ConfigurableNetwork
+DECL|class|StandardNetwork
 class|class
-name|ConfigurableNetwork
+name|StandardNetwork
 parameter_list|<
 name|N
 parameter_list|,
@@ -260,8 +260,8 @@ name|edgeToReferenceNode
 decl_stmt|;
 comment|// referenceNode == source if directed
 comment|/** Constructs a graph with the properties specified in {@code builder}. */
-DECL|method|ConfigurableNetwork (NetworkBuilder<? super N, ? super E> builder)
-name|ConfigurableNetwork
+DECL|method|StandardNetwork (NetworkBuilder<? super N, ? super E> builder)
+name|StandardNetwork
 parameter_list|(
 name|NetworkBuilder
 argument_list|<
@@ -330,8 +330,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Constructs a graph with the properties specified in {@code builder}, initialized with the given    * node and edge maps.    */
-DECL|method|ConfigurableNetwork ( NetworkBuilder<? super N, ? super E> builder, Map<N, NetworkConnections<N, E>> nodeConnections, Map<E, N> edgeToReferenceNode)
-name|ConfigurableNetwork
+DECL|method|StandardNetwork ( NetworkBuilder<? super N, ? super E> builder, Map<N, NetworkConnections<N, E>> nodeConnections, Map<E, N> edgeToReferenceNode)
+name|StandardNetwork
 parameter_list|(
 name|NetworkBuilder
 argument_list|<
@@ -946,14 +946,14 @@ return|return
 name|referenceNode
 return|;
 block|}
-DECL|method|containsNode (@ullable N node)
+DECL|method|containsNode (@ullableDecl N node)
 specifier|protected
 specifier|final
 name|boolean
 name|containsNode
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|N
 name|node
 parameter_list|)
@@ -967,14 +967,14 @@ name|node
 argument_list|)
 return|;
 block|}
-DECL|method|containsEdge (@ullable E edge)
+DECL|method|containsEdge (@ullableDecl E edge)
 specifier|protected
 specifier|final
 name|boolean
 name|containsEdge
 parameter_list|(
 annotation|@
-name|Nullable
+name|NullableDecl
 name|E
 name|edge
 parameter_list|)

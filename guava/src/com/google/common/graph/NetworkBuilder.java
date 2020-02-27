@@ -542,7 +542,7 @@ parameter_list|()
 block|{
 return|return
 operator|new
-name|ConfigurableMutableNetwork
+name|StandardMutableNetwork
 argument_list|<>
 argument_list|(
 name|this

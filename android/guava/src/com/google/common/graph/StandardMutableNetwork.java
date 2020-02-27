@@ -145,17 +145,17 @@ comment|/**  * Configurable implementation of {@link MutableNetwork} that suppor
 end_comment
 
 begin_class
-DECL|class|ConfigurableMutableNetwork
+DECL|class|StandardMutableNetwork
 specifier|final
 class|class
-name|ConfigurableMutableNetwork
+name|StandardMutableNetwork
 parameter_list|<
 name|N
 parameter_list|,
 name|E
 parameter_list|>
 extends|extends
-name|ConfigurableNetwork
+name|StandardNetwork
 argument_list|<
 name|N
 argument_list|,
@@ -170,8 +170,8 @@ name|E
 argument_list|>
 block|{
 comment|/** Constructs a mutable graph with the properties specified in {@code builder}. */
-DECL|method|ConfigurableMutableNetwork (NetworkBuilder<? super N, ? super E> builder)
-name|ConfigurableMutableNetwork
+DECL|method|StandardMutableNetwork (NetworkBuilder<? super N, ? super E> builder)
+name|StandardMutableNetwork
 parameter_list|(
 name|NetworkBuilder
 argument_list|<

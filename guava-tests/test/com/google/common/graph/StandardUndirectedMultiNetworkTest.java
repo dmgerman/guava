@@ -95,7 +95,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests for an undirected {@link ConfigurableMutableNetwork} allowing parallel edges and  * self-loops.  */
+comment|/**  * Tests for an undirected {@link StandardMutableNetwork} allowing parallel edges and self-loops.  */
 end_comment
 
 begin_class
@@ -106,12 +106,12 @@ name|JUnit4
 operator|.
 name|class
 argument_list|)
-DECL|class|ConfigurableUndirectedMultiNetworkTest
+DECL|class|StandardUndirectedMultiNetworkTest
 specifier|public
 class|class
-name|ConfigurableUndirectedMultiNetworkTest
+name|StandardUndirectedMultiNetworkTest
 extends|extends
-name|ConfigurableUndirectedNetworkTest
+name|StandardUndirectedNetworkTest
 block|{
 annotation|@
 name|Override

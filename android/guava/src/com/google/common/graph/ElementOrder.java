@@ -452,7 +452,10 @@ name|Type
 operator|.
 name|SORTED
 argument_list|,
+name|checkNotNull
+argument_list|(
 name|comparator
+argument_list|)
 argument_list|)
 return|;
 block|}

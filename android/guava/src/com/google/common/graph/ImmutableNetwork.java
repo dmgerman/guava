@@ -149,7 +149,7 @@ name|SuppressWarnings
 argument_list|(
 literal|"Immutable"
 argument_list|)
-comment|// Extends ConfigurableNetwork but uses ImmutableMaps.
+comment|// Extends StandardNetwork but uses ImmutableMaps.
 DECL|class|ImmutableNetwork
 specifier|public
 specifier|final
@@ -161,7 +161,7 @@ parameter_list|,
 name|E
 parameter_list|>
 extends|extends
-name|ConfigurableNetwork
+name|StandardNetwork
 argument_list|<
 name|N
 argument_list|,

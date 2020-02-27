@@ -117,7 +117,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests for a directed {@link ConfigurableMutableNetwork}, creating a simple directed graph  * (parallel and self-loop edges are not allowed).  */
+comment|/**  * Tests for a directed {@link StandardMutableNetwork}, creating a simple directed graph (parallel  * and self-loop edges are not allowed).  */
 end_comment
 
 begin_class
@@ -128,10 +128,10 @@ name|JUnit4
 operator|.
 name|class
 argument_list|)
-DECL|class|ConfigurableSimpleDirectedNetworkTest
+DECL|class|StandardSimpleDirectedNetworkTest
 specifier|public
 class|class
-name|ConfigurableSimpleDirectedNetworkTest
+name|StandardSimpleDirectedNetworkTest
 extends|extends
 name|AbstractDirectedNetworkTest
 block|{

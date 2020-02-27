@@ -117,7 +117,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests for an undirected {@link ConfigurableMutableNetwork}, creating a simple undirected graph  * (parallel and self-loop edges are not allowed).  */
+comment|/**  * Tests for an undirected {@link StandardMutableNetwork}, creating a simple undirected graph  * (parallel and self-loop edges are not allowed).  */
 end_comment
 
 begin_class
@@ -128,10 +128,10 @@ name|JUnit4
 operator|.
 name|class
 argument_list|)
-DECL|class|ConfigurableSimpleUndirectedNetworkTest
+DECL|class|StandardSimpleUndirectedNetworkTest
 specifier|public
 class|class
-name|ConfigurableSimpleUndirectedNetworkTest
+name|StandardSimpleUndirectedNetworkTest
 extends|extends
 name|AbstractUndirectedNetworkTest
 block|{

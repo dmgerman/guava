@@ -71,7 +71,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests for a directed {@link ConfigurableMutableNetwork}, creating a simple directed sorted graph  * (parallel and self-loop edges are not allowed).  *  *<p>The main purpose of this class is to run the inherited {@link #concurrentIteration} test  * against a sorted graph so as to cover {@link MapRetrievalCache}.  */
+comment|/**  * Tests for a directed {@link StandardMutableNetwork}, creating a simple directed sorted graph  * (parallel and self-loop edges are not allowed).  *  *<p>The main purpose of this class is to run the inherited {@link #concurrentIteration} test  * against a sorted graph so as to cover {@link MapRetrievalCache}.  */
 end_comment
 
 begin_class
@@ -82,12 +82,12 @@ name|JUnit4
 operator|.
 name|class
 argument_list|)
-DECL|class|ConfigurableSimpleDirectedSortedNetworkTest
+DECL|class|StandardSimpleDirectedSortedNetworkTest
 specifier|public
 class|class
-name|ConfigurableSimpleDirectedSortedNetworkTest
+name|StandardSimpleDirectedSortedNetworkTest
 extends|extends
-name|ConfigurableSimpleDirectedNetworkTest
+name|StandardSimpleDirectedNetworkTest
 block|{
 annotation|@
 name|Override
