@@ -339,32 +339,6 @@ name|Integer
 name|n2
 parameter_list|)
 function_decl|;
-DECL|method|putEdge (EndpointPair<Integer> endpoints)
-specifier|final
-name|void
-name|putEdge
-parameter_list|(
-name|EndpointPair
-argument_list|<
-name|Integer
-argument_list|>
-name|endpoints
-parameter_list|)
-block|{
-name|putEdge
-argument_list|(
-name|endpoints
-operator|.
-name|nodeU
-argument_list|()
-argument_list|,
-name|endpoints
-operator|.
-name|nodeV
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
 DECL|method|graphIsMutable ()
 specifier|final
 name|boolean
