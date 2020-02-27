@@ -141,7 +141,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Configurable implementation of {@link MutableNetwork} that supports both directed and undirected  * graphs. Instances of this class should be constructed with {@link NetworkBuilder}.  *  *<p>Time complexities for mutation methods are all O(1) except for {@code removeNode(N node)},  * which is in O(d_node) where d_node is the degree of {@code node}.  *  * @author James Sexton  * @author Joshua O'Madadhain  * @author Omar Darwish  * @param<N> Node parameter type  * @param<E> Edge parameter type  */
+comment|/**  * Standard implementation of {@link MutableNetwork} that supports both directed and undirected  * graphs. Instances of this class should be constructed with {@link NetworkBuilder}.  *  *<p>Time complexities for mutation methods are all O(1) except for {@code removeNode(N node)},  * which is in O(d_node) where d_node is the degree of {@code node}.  *  * @author James Sexton  * @author Joshua O'Madadhain  * @author Omar Darwish  * @param<N> Node parameter type  * @param<E> Edge parameter type  */
 end_comment
 
 begin_class

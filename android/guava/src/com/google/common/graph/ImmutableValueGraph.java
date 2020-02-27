@@ -139,7 +139,7 @@ name|SuppressWarnings
 argument_list|(
 literal|"Immutable"
 argument_list|)
-comment|// Extends ConfigurableValueGraph but uses ImmutableMaps.
+comment|// Extends StandardValueGraph but uses ImmutableMaps.
 DECL|class|ImmutableValueGraph
 specifier|public
 specifier|final
