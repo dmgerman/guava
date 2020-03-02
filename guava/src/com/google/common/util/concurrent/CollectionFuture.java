@@ -68,20 +68,6 @@ name|google
 operator|.
 name|common
 operator|.
-name|base
-operator|.
-name|Optional
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
 name|collect
 operator|.
 name|ImmutableCollection
@@ -123,6 +109,18 @@ operator|.
 name|util
 operator|.
 name|List
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|Future
 import|;
 end_import
 
@@ -175,7 +173,7 @@ DECL|field|values
 specifier|private
 name|List
 argument_list|<
-name|Optional
+name|Present
 argument_list|<
 name|V
 argument_list|>
@@ -223,7 +221,7 @@ condition|?
 name|ImmutableList
 operator|.
 expr|<
-name|Optional
+name|Present
 argument_list|<
 name|V
 argument_list|>
@@ -234,7 +232,7 @@ else|:
 name|Lists
 operator|.
 expr|<
-name|Optional
+name|Present
 argument_list|<
 name|V
 argument_list|>
@@ -293,7 +291,7 @@ parameter_list|)
 block|{
 name|List
 argument_list|<
-name|Optional
+name|Present
 argument_list|<
 name|V
 argument_list|>
@@ -315,9 +313,9 @@ name|set
 argument_list|(
 name|index
 argument_list|,
-name|Optional
-operator|.
-name|fromNullable
+operator|new
+name|Present
+argument_list|<>
 argument_list|(
 name|returnValue
 argument_list|)
@@ -335,7 +333,7 @@ parameter_list|()
 block|{
 name|List
 argument_list|<
-name|Optional
+name|Present
 argument_list|<
 name|V
 argument_list|>
@@ -385,14 +383,14 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
-DECL|method|combine (List<Optional<V>> values)
+DECL|method|combine (List<Present<V>> values)
 specifier|abstract
 name|C
 name|combine
 parameter_list|(
 name|List
 argument_list|<
-name|Optional
+name|Present
 argument_list|<
 name|V
 argument_list|>
@@ -453,7 +451,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|combine (List<Optional<V>> values)
+DECL|method|combine (List<Present<V>> values)
 specifier|public
 name|List
 argument_list|<
@@ -463,7 +461,7 @@ name|combine
 parameter_list|(
 name|List
 argument_list|<
-name|Optional
+name|Present
 argument_list|<
 name|V
 argument_list|>
@@ -487,7 +485,7 @@ argument_list|)
 decl_stmt|;
 for|for
 control|(
-name|Optional
+name|Present
 argument_list|<
 name|V
 argument_list|>
@@ -506,8 +504,7 @@ literal|null
 condition|?
 name|element
 operator|.
-name|orNull
-argument_list|()
+name|value
 else|:
 literal|null
 argument_list|)
@@ -519,6 +516,36 @@ argument_list|(
 name|result
 argument_list|)
 return|;
+block|}
+block|}
+comment|/** The result of a successful {@code Future}. */
+DECL|class|Present
+specifier|private
+specifier|static
+specifier|final
+class|class
+name|Present
+parameter_list|<
+name|V
+parameter_list|>
+block|{
+DECL|field|value
+name|V
+name|value
+decl_stmt|;
+DECL|method|Present (V value)
+name|Present
+parameter_list|(
+name|V
+name|value
+parameter_list|)
+block|{
+name|this
+operator|.
+name|value
+operator|=
+name|value
+expr_stmt|;
 block|}
 block|}
 block|}
