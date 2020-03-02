@@ -352,7 +352,7 @@ name|nullness
 operator|.
 name|compatqual
 operator|.
-name|MonotonicNonNullDecl
+name|NullableDecl
 import|;
 end_import
 
@@ -719,7 +719,7 @@ name|UNSET_INT
 decl_stmt|;
 DECL|field|weigher
 annotation|@
-name|MonotonicNonNullDecl
+name|NullableDecl
 name|Weigher
 argument_list|<
 name|?
@@ -734,13 +734,13 @@ name|weigher
 decl_stmt|;
 DECL|field|keyStrength
 annotation|@
-name|MonotonicNonNullDecl
+name|NullableDecl
 name|Strength
 name|keyStrength
 decl_stmt|;
 DECL|field|valueStrength
 annotation|@
-name|MonotonicNonNullDecl
+name|NullableDecl
 name|Strength
 name|valueStrength
 decl_stmt|;
@@ -782,7 +782,7 @@ name|UNSET_INT
 decl_stmt|;
 DECL|field|keyEquivalence
 annotation|@
-name|MonotonicNonNullDecl
+name|NullableDecl
 name|Equivalence
 argument_list|<
 name|Object
@@ -791,7 +791,7 @@ name|keyEquivalence
 decl_stmt|;
 DECL|field|valueEquivalence
 annotation|@
-name|MonotonicNonNullDecl
+name|NullableDecl
 name|Equivalence
 argument_list|<
 name|Object
@@ -800,7 +800,7 @@ name|valueEquivalence
 decl_stmt|;
 DECL|field|removalListener
 annotation|@
-name|MonotonicNonNullDecl
+name|NullableDecl
 name|RemovalListener
 argument_list|<
 name|?
@@ -815,7 +815,7 @@ name|removalListener
 decl_stmt|;
 DECL|field|ticker
 annotation|@
-name|MonotonicNonNullDecl
+name|NullableDecl
 name|Ticker
 name|ticker
 decl_stmt|;

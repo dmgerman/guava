@@ -182,7 +182,7 @@ name|nullness
 operator|.
 name|qual
 operator|.
-name|MonotonicNonNull
+name|Nullable
 import|;
 end_import
 
@@ -882,7 +882,7 @@ DECL|field|asMap
 specifier|private
 specifier|transient
 annotation|@
-name|MonotonicNonNull
+name|Nullable
 name|Map
 argument_list|<
 name|K

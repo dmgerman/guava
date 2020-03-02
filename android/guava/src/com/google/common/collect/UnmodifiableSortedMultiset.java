@@ -78,7 +78,7 @@ name|nullness
 operator|.
 name|compatqual
 operator|.
-name|MonotonicNonNullDecl
+name|NullableDecl
 import|;
 end_import
 
@@ -222,7 +222,7 @@ return|;
 block|}
 DECL|field|descendingMultiset
 annotation|@
-name|MonotonicNonNullDecl
+name|NullableDecl
 specifier|private
 specifier|transient
 name|UnmodifiableSortedMultiset

@@ -422,22 +422,6 @@ name|nullness
 operator|.
 name|compatqual
 operator|.
-name|MonotonicNonNullDecl
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|checkerframework
-operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|compatqual
-operator|.
 name|NullableDecl
 import|;
 end_import
@@ -5534,7 +5518,7 @@ decl_stmt|;
 comment|/** The per-segment table. */
 DECL|field|table
 annotation|@
-name|MonotonicNonNullDecl
+name|NullableDecl
 specifier|volatile
 name|AtomicReferenceArray
 argument_list|<
@@ -11845,7 +11829,7 @@ block|}
 block|}
 DECL|field|keySet
 annotation|@
-name|MonotonicNonNullDecl
+name|NullableDecl
 specifier|transient
 name|Set
 argument_list|<
@@ -11892,7 +11876,7 @@ return|;
 block|}
 DECL|field|values
 annotation|@
-name|MonotonicNonNullDecl
+name|NullableDecl
 specifier|transient
 name|Collection
 argument_list|<
@@ -11939,7 +11923,7 @@ return|;
 block|}
 DECL|field|entrySet
 annotation|@
-name|MonotonicNonNullDecl
+name|NullableDecl
 specifier|transient
 name|Set
 argument_list|<
@@ -12023,7 +12007,7 @@ name|nextTableIndex
 decl_stmt|;
 DECL|field|currentSegment
 annotation|@
-name|MonotonicNonNullDecl
+name|NullableDecl
 name|Segment
 argument_list|<
 name|K
@@ -12038,7 +12022,7 @@ name|currentSegment
 decl_stmt|;
 DECL|field|currentTable
 annotation|@
-name|MonotonicNonNullDecl
+name|NullableDecl
 name|AtomicReferenceArray
 argument_list|<
 name|E

@@ -96,7 +96,7 @@ name|nullness
 operator|.
 name|qual
 operator|.
-name|MonotonicNonNull
+name|Nullable
 import|;
 end_import
 
@@ -143,7 +143,7 @@ DECL|field|comparator
 specifier|private
 specifier|transient
 annotation|@
-name|MonotonicNonNull
+name|Nullable
 name|Comparator
 argument_list|<
 name|?
@@ -211,7 +211,7 @@ DECL|field|elementSet
 specifier|private
 specifier|transient
 annotation|@
-name|MonotonicNonNull
+name|Nullable
 name|NavigableSet
 argument_list|<
 name|E
@@ -493,7 +493,7 @@ DECL|field|entrySet
 specifier|private
 specifier|transient
 annotation|@
-name|MonotonicNonNull
+name|Nullable
 name|Set
 argument_list|<
 name|Entry

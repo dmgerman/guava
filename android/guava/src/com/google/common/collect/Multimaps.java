@@ -404,22 +404,6 @@ name|nullness
 operator|.
 name|compatqual
 operator|.
-name|MonotonicNonNullDecl
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|checkerframework
-operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|compatqual
-operator|.
 name|NullableDecl
 import|;
 end_import
@@ -2379,7 +2363,7 @@ name|delegate
 decl_stmt|;
 DECL|field|entries
 annotation|@
-name|MonotonicNonNullDecl
+name|NullableDecl
 specifier|transient
 name|Collection
 argument_list|<
@@ -2394,7 +2378,7 @@ name|entries
 decl_stmt|;
 DECL|field|keys
 annotation|@
-name|MonotonicNonNullDecl
+name|NullableDecl
 specifier|transient
 name|Multiset
 argument_list|<
@@ -2404,7 +2388,7 @@ name|keys
 decl_stmt|;
 DECL|field|keySet
 annotation|@
-name|MonotonicNonNullDecl
+name|NullableDecl
 specifier|transient
 name|Set
 argument_list|<
@@ -2414,7 +2398,7 @@ name|keySet
 decl_stmt|;
 DECL|field|values
 annotation|@
-name|MonotonicNonNullDecl
+name|NullableDecl
 specifier|transient
 name|Collection
 argument_list|<
@@ -2424,7 +2408,7 @@ name|values
 decl_stmt|;
 DECL|field|map
 annotation|@
-name|MonotonicNonNullDecl
+name|NullableDecl
 specifier|transient
 name|Map
 argument_list|<

@@ -968,22 +968,6 @@ name|nullness
 operator|.
 name|qual
 operator|.
-name|MonotonicNonNull
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|checkerframework
-operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|qual
-operator|.
 name|Nullable
 import|;
 end_import
@@ -8378,7 +8362,7 @@ comment|/** The per-segment table. */
 DECL|field|table
 specifier|volatile
 annotation|@
-name|MonotonicNonNull
+name|Nullable
 name|AtomicReferenceArray
 argument_list|<
 name|ReferenceEntry
@@ -20660,7 +20644,7 @@ block|}
 block|}
 DECL|field|keySet
 annotation|@
-name|MonotonicNonNull
+name|Nullable
 name|Set
 argument_list|<
 name|K
@@ -20709,7 +20693,7 @@ return|;
 block|}
 DECL|field|values
 annotation|@
-name|MonotonicNonNull
+name|Nullable
 name|Collection
 argument_list|<
 name|V
@@ -20758,7 +20742,7 @@ return|;
 block|}
 DECL|field|entrySet
 annotation|@
-name|MonotonicNonNull
+name|Nullable
 name|Set
 argument_list|<
 name|Entry
@@ -20847,7 +20831,7 @@ name|nextTableIndex
 decl_stmt|;
 DECL|field|currentSegment
 annotation|@
-name|MonotonicNonNull
+name|Nullable
 name|Segment
 argument_list|<
 name|K
@@ -20858,7 +20842,7 @@ name|currentSegment
 decl_stmt|;
 DECL|field|currentTable
 annotation|@
-name|MonotonicNonNull
+name|Nullable
 name|AtomicReferenceArray
 argument_list|<
 name|ReferenceEntry
@@ -22543,7 +22527,7 @@ decl_stmt|;
 DECL|field|delegate
 specifier|transient
 annotation|@
-name|MonotonicNonNull
+name|Nullable
 name|Cache
 argument_list|<
 name|K
@@ -23045,7 +23029,7 @@ decl_stmt|;
 DECL|field|autoDelegate
 specifier|transient
 annotation|@
-name|MonotonicNonNull
+name|Nullable
 name|LoadingCache
 argument_list|<
 name|K

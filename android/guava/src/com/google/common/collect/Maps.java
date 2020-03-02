@@ -570,22 +570,6 @@ name|nullness
 operator|.
 name|compatqual
 operator|.
-name|MonotonicNonNullDecl
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|checkerframework
-operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|compatqual
-operator|.
 name|NullableDecl
 import|;
 end_import
@@ -6306,9 +6290,9 @@ name|delegate
 decl_stmt|;
 DECL|field|inverse
 annotation|@
-name|MonotonicNonNullDecl
-annotation|@
 name|RetainedWith
+annotation|@
+name|NullableDecl
 name|BiMap
 argument_list|<
 name|V
@@ -6319,7 +6303,7 @@ name|inverse
 decl_stmt|;
 DECL|field|values
 annotation|@
-name|MonotonicNonNullDecl
+name|NullableDecl
 specifier|transient
 name|Set
 argument_list|<
@@ -13461,7 +13445,7 @@ throw|;
 block|}
 DECL|field|descendingMap
 annotation|@
-name|MonotonicNonNullDecl
+name|NullableDecl
 specifier|private
 specifier|transient
 name|UnmodifiableNavigableMap
@@ -13855,7 +13839,7 @@ parameter_list|()
 function_decl|;
 DECL|field|entrySet
 annotation|@
-name|MonotonicNonNullDecl
+name|NullableDecl
 specifier|private
 specifier|transient
 name|Set
@@ -13915,7 +13899,7 @@ return|;
 block|}
 DECL|field|keySet
 annotation|@
-name|MonotonicNonNullDecl
+name|NullableDecl
 specifier|private
 specifier|transient
 name|Set
@@ -13977,7 +13961,7 @@ return|;
 block|}
 DECL|field|values
 annotation|@
-name|MonotonicNonNullDecl
+name|NullableDecl
 specifier|private
 specifier|transient
 name|Collection
@@ -16544,7 +16528,7 @@ return|;
 block|}
 DECL|field|comparator
 annotation|@
-name|MonotonicNonNullDecl
+name|NullableDecl
 specifier|private
 specifier|transient
 name|Comparator
@@ -16992,7 +16976,7 @@ return|;
 block|}
 DECL|field|entrySet
 annotation|@
-name|MonotonicNonNullDecl
+name|NullableDecl
 specifier|private
 specifier|transient
 name|Set
@@ -17151,7 +17135,7 @@ return|;
 block|}
 DECL|field|navigableKeySet
 annotation|@
-name|MonotonicNonNullDecl
+name|NullableDecl
 specifier|private
 specifier|transient
 name|NavigableSet

@@ -424,22 +424,6 @@ name|nullness
 operator|.
 name|compatqual
 operator|.
-name|MonotonicNonNullDecl
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|checkerframework
-operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|compatqual
-operator|.
 name|NullableDecl
 import|;
 end_import
@@ -482,7 +466,7 @@ decl_stmt|;
 comment|/** Resolver for resolving parameter and field types with {@link #runtimeType} as context. */
 DECL|field|invariantTypeResolver
 annotation|@
-name|MonotonicNonNullDecl
+name|NullableDecl
 specifier|private
 specifier|transient
 name|TypeResolver
@@ -491,7 +475,7 @@ decl_stmt|;
 comment|/** Resolver for resolving covariant types with {@link #runtimeType} as context. */
 DECL|field|covariantTypeResolver
 annotation|@
-name|MonotonicNonNullDecl
+name|NullableDecl
 specifier|private
 specifier|transient
 name|TypeResolver
@@ -2446,7 +2430,7 @@ name|Serializable
 block|{
 DECL|field|types
 annotation|@
-name|MonotonicNonNullDecl
+name|NullableDecl
 specifier|private
 specifier|transient
 name|ImmutableSet
@@ -2678,7 +2662,7 @@ name|allTypes
 decl_stmt|;
 DECL|field|interfaces
 annotation|@
-name|MonotonicNonNullDecl
+name|NullableDecl
 specifier|private
 specifier|transient
 name|ImmutableSet
@@ -2933,7 +2917,7 @@ name|TypeSet
 block|{
 DECL|field|classes
 annotation|@
-name|MonotonicNonNullDecl
+name|NullableDecl
 specifier|private
 specifier|transient
 name|ImmutableSet

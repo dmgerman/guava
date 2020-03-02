@@ -194,7 +194,7 @@ name|nullness
 operator|.
 name|compatqual
 operator|.
-name|MonotonicNonNullDecl
+name|NullableDecl
 import|;
 end_import
 
@@ -1226,7 +1226,7 @@ return|;
 block|}
 DECL|field|asMap
 annotation|@
-name|MonotonicNonNullDecl
+name|NullableDecl
 specifier|private
 specifier|transient
 name|Map

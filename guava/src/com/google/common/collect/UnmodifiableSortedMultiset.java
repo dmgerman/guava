@@ -78,7 +78,7 @@ name|nullness
 operator|.
 name|qual
 operator|.
-name|MonotonicNonNull
+name|Nullable
 import|;
 end_import
 
@@ -224,7 +224,7 @@ DECL|field|descendingMultiset
 specifier|private
 specifier|transient
 annotation|@
-name|MonotonicNonNull
+name|Nullable
 name|UnmodifiableSortedMultiset
 argument_list|<
 name|E

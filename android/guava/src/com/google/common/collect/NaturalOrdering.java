@@ -68,7 +68,7 @@ name|nullness
 operator|.
 name|compatqual
 operator|.
-name|MonotonicNonNullDecl
+name|NullableDecl
 import|;
 end_import
 
@@ -118,7 +118,7 @@ argument_list|()
 decl_stmt|;
 DECL|field|nullsFirst
 annotation|@
-name|MonotonicNonNullDecl
+name|NullableDecl
 specifier|private
 specifier|transient
 name|Ordering
@@ -129,7 +129,7 @@ name|nullsFirst
 decl_stmt|;
 DECL|field|nullsLast
 annotation|@
-name|MonotonicNonNullDecl
+name|NullableDecl
 specifier|private
 specifier|transient
 name|Ordering

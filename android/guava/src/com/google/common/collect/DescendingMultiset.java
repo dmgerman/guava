@@ -96,7 +96,7 @@ name|nullness
 operator|.
 name|compatqual
 operator|.
-name|MonotonicNonNullDecl
+name|NullableDecl
 import|;
 end_import
 
@@ -141,7 +141,7 @@ parameter_list|()
 function_decl|;
 DECL|field|comparator
 annotation|@
-name|MonotonicNonNullDecl
+name|NullableDecl
 specifier|private
 specifier|transient
 name|Comparator
@@ -209,7 +209,7 @@ return|;
 block|}
 DECL|field|elementSet
 annotation|@
-name|MonotonicNonNullDecl
+name|NullableDecl
 specifier|private
 specifier|transient
 name|NavigableSet
@@ -491,7 +491,7 @@ parameter_list|()
 function_decl|;
 DECL|field|entrySet
 annotation|@
-name|MonotonicNonNullDecl
+name|NullableDecl
 specifier|private
 specifier|transient
 name|Set

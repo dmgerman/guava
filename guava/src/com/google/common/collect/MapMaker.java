@@ -232,7 +232,7 @@ name|nullness
 operator|.
 name|qual
 operator|.
-name|MonotonicNonNull
+name|Nullable
 import|;
 end_import
 
@@ -300,19 +300,19 @@ name|UNSET_INT
 decl_stmt|;
 DECL|field|keyStrength
 annotation|@
-name|MonotonicNonNull
+name|Nullable
 name|Strength
 name|keyStrength
 decl_stmt|;
 DECL|field|valueStrength
 annotation|@
-name|MonotonicNonNull
+name|Nullable
 name|Strength
 name|valueStrength
 decl_stmt|;
 DECL|field|keyEquivalence
 annotation|@
-name|MonotonicNonNull
+name|Nullable
 name|Equivalence
 argument_list|<
 name|Object

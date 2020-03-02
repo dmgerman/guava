@@ -230,7 +230,7 @@ name|nullness
 operator|.
 name|compatqual
 operator|.
-name|MonotonicNonNullDecl
+name|NullableDecl
 import|;
 end_import
 
@@ -431,7 +431,7 @@ decl_stmt|;
 comment|// Can't be initialized in the constructor because mocks don't call the constructor.
 DECL|field|mutexDoNotUseDirectly
 annotation|@
-name|MonotonicNonNullDecl
+name|NullableDecl
 specifier|private
 specifier|volatile
 name|Object

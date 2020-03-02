@@ -258,7 +258,7 @@ name|nullness
 operator|.
 name|qual
 operator|.
-name|MonotonicNonNull
+name|Nullable
 import|;
 end_import
 
@@ -488,10 +488,10 @@ name|stopwatch
 decl_stmt|;
 comment|// Can't be initialized in the constructor because mocks don't call the constructor.
 DECL|field|mutexDoNotUseDirectly
-annotation|@
-name|MonotonicNonNull
 specifier|private
 specifier|volatile
+annotation|@
+name|Nullable
 name|Object
 name|mutexDoNotUseDirectly
 decl_stmt|;
