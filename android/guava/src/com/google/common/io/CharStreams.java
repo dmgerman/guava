@@ -170,22 +170,6 @@ name|List
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|checkerframework
-operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|compatqual
-operator|.
-name|NullableDecl
-import|;
-end_import
-
 begin_comment
 comment|/**  * Provides utility methods for working with character streams.  *  *<p>All method parameters must be non-null unless documented otherwise.  *  *<p>Some of the methods in this class take arguments with a generic type of {@code Readable&  * Closeable}. A {@link java.io.Reader} implements both of those interfaces. Similarly for {@code  * Appendable& Closeable} and {@link java.io.Writer}.  *  * @author Chris Nokleberg  * @author Bin Zhu  * @author Colin Decker  * @since 1.0  */
 end_comment
@@ -1026,30 +1010,31 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|append (@ullableDecl CharSequence csq)
+DECL|method|append (CharSequence csq)
 specifier|public
 name|Writer
 name|append
 parameter_list|(
-annotation|@
-name|NullableDecl
 name|CharSequence
 name|csq
 parameter_list|)
 block|{
+name|checkNotNull
+argument_list|(
+name|csq
+argument_list|)
+expr_stmt|;
 return|return
 name|this
 return|;
 block|}
 annotation|@
 name|Override
-DECL|method|append (@ullableDecl CharSequence csq, int start, int end)
+DECL|method|append (CharSequence csq, int start, int end)
 specifier|public
 name|Writer
 name|append
 parameter_list|(
-annotation|@
-name|NullableDecl
 name|CharSequence
 name|csq
 parameter_list|,
@@ -1066,15 +1051,6 @@ name|start
 argument_list|,
 name|end
 argument_list|,
-name|csq
-operator|==
-literal|null
-condition|?
-literal|"null"
-operator|.
-name|length
-argument_list|()
-else|:
 name|csq
 operator|.
 name|length
