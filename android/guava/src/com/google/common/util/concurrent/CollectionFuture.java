@@ -169,6 +169,7 @@ argument_list|,
 name|C
 argument_list|>
 block|{
+comment|/*    * We access this field racily but safely. For discussion of a similar situation, see the comments    * on the fields of TimeoutFuture. This field is slightly different than the fields discussed    * there: cancel() never reads this field, only writes to it. That makes the race here completely    * harmless, rather than just 99.99% harmless.    */
 DECL|field|values
 specifier|private
 name|List
