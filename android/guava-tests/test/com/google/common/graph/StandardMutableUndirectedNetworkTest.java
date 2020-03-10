@@ -120,12 +120,12 @@ name|JUnit4
 operator|.
 name|class
 argument_list|)
-DECL|class|StandardUndirectedNetworkTest
+DECL|class|StandardMutableUndirectedNetworkTest
 specifier|public
 class|class
-name|StandardUndirectedNetworkTest
+name|StandardMutableUndirectedNetworkTest
 extends|extends
-name|StandardSimpleUndirectedNetworkTest
+name|AbstractStandardUndirectedNetworkTest
 block|{
 annotation|@
 name|Override

@@ -606,37 +606,6 @@ name|String
 name|e
 parameter_list|)
 function_decl|;
-DECL|method|addEdge (EndpointPair<Integer> endpoints, String e)
-specifier|final
-name|void
-name|addEdge
-parameter_list|(
-name|EndpointPair
-argument_list|<
-name|Integer
-argument_list|>
-name|endpoints
-parameter_list|,
-name|String
-name|e
-parameter_list|)
-block|{
-name|addEdge
-argument_list|(
-name|endpoints
-operator|.
-name|nodeU
-argument_list|()
-argument_list|,
-name|endpoints
-operator|.
-name|nodeV
-argument_list|()
-argument_list|,
-name|e
-argument_list|)
-expr_stmt|;
-block|}
 DECL|method|graphIsMutable ()
 specifier|final
 name|boolean
