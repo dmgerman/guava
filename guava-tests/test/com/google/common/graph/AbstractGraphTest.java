@@ -301,21 +301,6 @@ argument_list|>
 name|createGraph
 parameter_list|()
 function_decl|;
-DECL|method|allowsSelfLoops ()
-specifier|abstract
-name|boolean
-name|allowsSelfLoops
-parameter_list|()
-function_decl|;
-DECL|method|incidentEdgeOrder ()
-specifier|abstract
-name|ElementOrder
-argument_list|<
-name|Integer
-argument_list|>
-name|incidentEdgeOrder
-parameter_list|()
-function_decl|;
 comment|/**    * A proxy method that adds the node {@code n} to the graph being tested. In case of Immutable    * graph implementations, this method should replace {@link #graph} with a new graph that includes    * this node.    */
 DECL|method|addNode (Integer n)
 specifier|abstract
@@ -1195,29 +1180,6 @@ argument_list|)
 operator|.
 name|isEmpty
 argument_list|()
-expr_stmt|;
-block|}
-annotation|@
-name|Test
-DECL|method|incidentEdgeOrder_matchesTheValueAtConstruction ()
-specifier|public
-name|void
-name|incidentEdgeOrder_matchesTheValueAtConstruction
-parameter_list|()
-block|{
-name|assertThat
-argument_list|(
-name|graph
-operator|.
-name|incidentEdgeOrder
-argument_list|()
-argument_list|)
-operator|.
-name|isEqualTo
-argument_list|(
-name|incidentEdgeOrder
-argument_list|()
-argument_list|)
 expr_stmt|;
 block|}
 annotation|@

@@ -168,34 +168,6 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|allowsSelfLoops ()
-name|boolean
-name|allowsSelfLoops
-parameter_list|()
-block|{
-return|return
-name|allowsSelfLoops
-return|;
-block|}
-annotation|@
-name|Override
-DECL|method|incidentEdgeOrder ()
-name|ElementOrder
-argument_list|<
-name|Integer
-argument_list|>
-name|incidentEdgeOrder
-parameter_list|()
-block|{
-return|return
-name|ElementOrder
-operator|.
-name|stable
-argument_list|()
-return|;
-block|}
-annotation|@
-name|Override
 DECL|method|createGraph ()
 specifier|public
 name|Graph
@@ -215,7 +187,6 @@ operator|.
 name|allowsSelfLoops
 argument_list|(
 name|allowsSelfLoops
-argument_list|()
 argument_list|)
 operator|.
 name|immutable

@@ -975,6 +975,8 @@ argument_list|()
 operator|.
 name|that
 argument_list|(
+name|graph
+operator|.
 name|allowsSelfLoops
 argument_list|()
 argument_list|)
@@ -1027,6 +1029,8 @@ argument_list|()
 operator|.
 name|that
 argument_list|(
+name|graph
+operator|.
 name|allowsSelfLoops
 argument_list|()
 argument_list|)
@@ -1094,6 +1098,8 @@ argument_list|()
 operator|.
 name|that
 argument_list|(
+name|graph
+operator|.
 name|allowsSelfLoops
 argument_list|()
 argument_list|)
@@ -1161,6 +1167,8 @@ argument_list|()
 operator|.
 name|that
 argument_list|(
+name|graph
+operator|.
 name|allowsSelfLoops
 argument_list|()
 argument_list|)
@@ -1249,6 +1257,8 @@ argument_list|()
 operator|.
 name|that
 argument_list|(
+name|graph
+operator|.
 name|allowsSelfLoops
 argument_list|()
 argument_list|)
@@ -1314,6 +1324,8 @@ argument_list|()
 operator|.
 name|that
 argument_list|(
+name|graph
+operator|.
 name|allowsSelfLoops
 argument_list|()
 argument_list|)
@@ -1379,6 +1391,8 @@ argument_list|()
 operator|.
 name|that
 argument_list|(
+name|graph
+operator|.
 name|allowsSelfLoops
 argument_list|()
 argument_list|)
@@ -1447,6 +1461,8 @@ argument_list|()
 operator|.
 name|that
 argument_list|(
+name|graph
+operator|.
 name|incidentEdgeOrder
 argument_list|()
 operator|.
@@ -1530,6 +1546,8 @@ argument_list|()
 operator|.
 name|that
 argument_list|(
+name|graph
+operator|.
 name|incidentEdgeOrder
 argument_list|()
 operator|.
@@ -1585,6 +1603,8 @@ argument_list|()
 operator|.
 name|that
 argument_list|(
+name|graph
+operator|.
 name|incidentEdgeOrder
 argument_list|()
 operator|.
@@ -1640,6 +1660,8 @@ argument_list|()
 operator|.
 name|that
 argument_list|(
+name|graph
+operator|.
 name|incidentEdgeOrder
 argument_list|()
 operator|.
@@ -1695,6 +1717,8 @@ argument_list|()
 operator|.
 name|that
 argument_list|(
+name|graph
+operator|.
 name|incidentEdgeOrder
 argument_list|()
 operator|.
@@ -1771,6 +1795,8 @@ argument_list|()
 operator|.
 name|that
 argument_list|(
+name|graph
+operator|.
 name|incidentEdgeOrder
 argument_list|()
 operator|.
@@ -1792,6 +1818,8 @@ argument_list|()
 operator|.
 name|that
 argument_list|(
+name|graph
+operator|.
 name|allowsSelfLoops
 argument_list|()
 argument_list|)
@@ -2191,6 +2219,8 @@ argument_list|()
 operator|.
 name|that
 argument_list|(
+name|graph
+operator|.
 name|allowsSelfLoops
 argument_list|()
 argument_list|)
@@ -2259,6 +2289,8 @@ argument_list|()
 operator|.
 name|that
 argument_list|(
+name|graph
+operator|.
 name|allowsSelfLoops
 argument_list|()
 argument_list|)
@@ -2322,6 +2354,8 @@ argument_list|()
 operator|.
 name|that
 argument_list|(
+name|graph
+operator|.
 name|allowsSelfLoops
 argument_list|()
 argument_list|)
@@ -2467,6 +2501,8 @@ argument_list|()
 operator|.
 name|that
 argument_list|(
+name|graph
+operator|.
 name|allowsSelfLoops
 argument_list|()
 argument_list|)
@@ -2536,6 +2572,8 @@ argument_list|()
 operator|.
 name|that
 argument_list|(
+name|graph
+operator|.
 name|allowsSelfLoops
 argument_list|()
 argument_list|)
