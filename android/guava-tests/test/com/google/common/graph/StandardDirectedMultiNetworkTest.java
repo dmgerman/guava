@@ -111,7 +111,7 @@ specifier|public
 class|class
 name|StandardDirectedMultiNetworkTest
 extends|extends
-name|StandardMutableDirectedNetworkTest
+name|AbstractStandardDirectedNetworkTest
 block|{
 annotation|@
 name|Override
