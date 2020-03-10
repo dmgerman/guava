@@ -92,7 +92,6 @@ block|{
 annotation|@
 name|Override
 DECL|method|createGraph ()
-specifier|public
 name|MutableNetwork
 argument_list|<
 name|Integer

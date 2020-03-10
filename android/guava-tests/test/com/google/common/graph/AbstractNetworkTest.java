@@ -569,7 +569,6 @@ literal|"Reusing an existing edge to connect different nodes succeeded"
 decl_stmt|;
 comment|/** Creates and returns an instance of the graph to be tested. */
 DECL|method|createGraph ()
-specifier|public
 specifier|abstract
 name|Network
 argument_list|<
