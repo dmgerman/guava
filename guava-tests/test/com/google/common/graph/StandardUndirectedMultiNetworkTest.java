@@ -111,7 +111,7 @@ specifier|public
 class|class
 name|StandardUndirectedMultiNetworkTest
 extends|extends
-name|StandardMutableUndirectedNetworkTest
+name|AbstractStandardUndirectedNetworkTest
 block|{
 annotation|@
 name|Override
