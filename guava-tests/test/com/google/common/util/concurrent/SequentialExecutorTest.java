@@ -858,9 +858,6 @@ name|assertThat
 argument_list|(
 name|Thread
 operator|.
-name|currentThread
-argument_list|()
-operator|.
 name|interrupted
 argument_list|()
 argument_list|)
@@ -951,9 +948,6 @@ comment|// test case.
 name|assertThat
 argument_list|(
 name|Thread
-operator|.
-name|currentThread
-argument_list|()
 operator|.
 name|interrupted
 argument_list|()
