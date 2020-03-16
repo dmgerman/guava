@@ -115,6 +115,18 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|java
+operator|.
+name|lang
+operator|.
+name|System
+operator|.
+name|identityHashCode
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -778,6 +790,29 @@ expr_stmt|;
 block|}
 block|}
 block|}
+block|}
+annotation|@
+name|Override
+DECL|method|toString ()
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+literal|"SequentialExecutor@"
+operator|+
+name|identityHashCode
+argument_list|(
+name|this
+argument_list|)
+operator|+
+literal|"{"
+operator|+
+name|executor
+operator|+
+literal|"}"
+return|;
 block|}
 block|}
 end_class
