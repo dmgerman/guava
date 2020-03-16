@@ -210,10 +210,15 @@ argument_list|,
 literal|true
 argument_list|)
 expr_stmt|;
-name|this
-operator|.
+name|List
+argument_list|<
+name|Present
+argument_list|<
+name|V
+argument_list|>
+argument_list|>
 name|values
-operator|=
+init|=
 name|futures
 operator|.
 name|isEmpty
@@ -245,7 +250,7 @@ operator|.
 name|size
 argument_list|()
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 comment|// Populate the results list with null initially.
 for|for
 control|(
@@ -273,6 +278,12 @@ literal|null
 argument_list|)
 expr_stmt|;
 block|}
+name|this
+operator|.
+name|values
+operator|=
+name|values
+expr_stmt|;
 block|}
 annotation|@
 name|Override
