@@ -1788,6 +1788,15 @@ operator|-
 name|offset
 decl_stmt|;
 return|return
+name|maxLength
+operator|<=
+literal|0
+condition|?
+name|ByteSource
+operator|.
+name|empty
+argument_list|()
+else|:
 name|ByteSource
 operator|.
 name|this

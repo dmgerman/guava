@@ -2692,6 +2692,37 @@ block|}
 block|}
 block|}
 block|}
+DECL|method|testSlice_returnEmptySource ()
+specifier|public
+name|void
+name|testSlice_returnEmptySource
+parameter_list|()
+block|{
+name|assertEquals
+argument_list|(
+name|ByteSource
+operator|.
+name|empty
+argument_list|()
+argument_list|,
+name|source
+operator|.
+name|slice
+argument_list|(
+literal|0
+argument_list|,
+literal|3
+argument_list|)
+operator|.
+name|slice
+argument_list|(
+literal|4
+argument_list|,
+literal|3
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
 DECL|method|getAndResetRecords (TestLogHandler logHandler)
 specifier|private
 specifier|static
