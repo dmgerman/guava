@@ -604,6 +604,34 @@ name|value
 argument_list|)
 return|;
 block|}
+comment|/**    * Returns a successful {@code ListenableFuture<Void>}. This method is equivalent to {@code    * immediateFuture(null)} except that it is restricted to produce futures of type {@code Void}.    *    * @since NEXT    */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
+DECL|method|immediateVoidFuture ()
+specifier|public
+specifier|static
+name|ListenableFuture
+argument_list|<
+name|Void
+argument_list|>
+name|immediateVoidFuture
+parameter_list|()
+block|{
+return|return
+operator|(
+name|ListenableFuture
+argument_list|<
+name|Void
+argument_list|>
+operator|)
+name|ImmediateFuture
+operator|.
+name|NULL
+return|;
+block|}
 comment|/**    * Returns a {@code ListenableFuture} which has an exception set immediately upon construction.    *    *<p>The returned {@code Future} can't be cancelled, and its {@code isDone()} method always    * returns {@code true}. Calling {@code get()} will immediately throw the provided {@code    * Throwable} wrapped in an {@code ExecutionException}.    */
 DECL|method|immediateFailedFuture (Throwable throwable)
 specifier|public
