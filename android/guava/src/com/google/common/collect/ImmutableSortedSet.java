@@ -1990,9 +1990,6 @@ return|;
 block|}
 comment|/** @since 12.0 */
 annotation|@
-name|GwtIncompatible
-comment|// NavigableSet
-annotation|@
 name|Override
 DECL|method|headSet (E toElement, boolean inclusive)
 specifier|public
@@ -2141,9 +2138,6 @@ argument_list|)
 return|;
 block|}
 comment|/** @since 12.0 */
-annotation|@
-name|GwtIncompatible
-comment|// NavigableSet
 annotation|@
 name|Override
 DECL|method|tailSet (E fromElement, boolean inclusive)

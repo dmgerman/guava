@@ -2036,6 +2036,7 @@ literal|null
 return|;
 block|}
 DECL|method|headSet (E toElement, boolean inclusive)
+specifier|public
 name|ImmutableSortedSet
 argument_list|<
 name|E
@@ -2274,6 +2275,7 @@ return|;
 block|}
 block|}
 DECL|method|tailSet (E fromElement, boolean inclusive)
+specifier|public
 name|ImmutableSortedSet
 argument_list|<
 name|E
