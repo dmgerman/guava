@@ -2261,9 +2261,6 @@ return|;
 block|}
 comment|/** @since 12.0 */
 annotation|@
-name|GwtIncompatible
-comment|// NavigableSet
-annotation|@
 name|Override
 DECL|method|floor (E e)
 specifier|public
@@ -2294,9 +2291,6 @@ argument_list|)
 return|;
 block|}
 comment|/** @since 12.0 */
-annotation|@
-name|GwtIncompatible
-comment|// NavigableSet
 annotation|@
 name|Override
 DECL|method|ceiling (E e)
