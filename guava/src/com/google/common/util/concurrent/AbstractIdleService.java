@@ -92,6 +92,16 @@ begin_import
 import|import
 name|java
 operator|.
+name|time
+operator|.
+name|Duration
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|util
 operator|.
 name|concurrent
@@ -562,6 +572,31 @@ name|awaitRunning
 argument_list|()
 expr_stmt|;
 block|}
+comment|/** @since 28.0 */
+annotation|@
+name|Override
+DECL|method|awaitRunning (Duration timeout)
+specifier|public
+specifier|final
+name|void
+name|awaitRunning
+parameter_list|(
+name|Duration
+name|timeout
+parameter_list|)
+throws|throws
+name|TimeoutException
+block|{
+name|Service
+operator|.
+name|super
+operator|.
+name|awaitRunning
+argument_list|(
+name|timeout
+argument_list|)
+expr_stmt|;
+block|}
 comment|/** @since 15.0 */
 annotation|@
 name|Override
@@ -604,6 +639,31 @@ name|delegate
 operator|.
 name|awaitTerminated
 argument_list|()
+expr_stmt|;
+block|}
+comment|/** @since 28.0 */
+annotation|@
+name|Override
+DECL|method|awaitTerminated (Duration timeout)
+specifier|public
+specifier|final
+name|void
+name|awaitTerminated
+parameter_list|(
+name|Duration
+name|timeout
+parameter_list|)
+throws|throws
+name|TimeoutException
+block|{
+name|Service
+operator|.
+name|super
+operator|.
+name|awaitTerminated
+argument_list|(
+name|timeout
+argument_list|)
 expr_stmt|;
 block|}
 comment|/** @since 15.0 */
