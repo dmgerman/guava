@@ -448,7 +448,7 @@ name|threadPool
 operator|.
 name|awaitTermination
 argument_list|(
-literal|1
+literal|10
 argument_list|,
 name|SECONDS
 argument_list|)
