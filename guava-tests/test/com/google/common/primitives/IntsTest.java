@@ -1526,6 +1526,8 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
 DECL|method|testMax_noArgs ()
 specifier|public
 name|void
@@ -1629,6 +1631,8 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
 DECL|method|testMin_noArgs ()
 specifier|public
 name|void

@@ -116,6 +116,20 @@ name|google
 operator|.
 name|common
 operator|.
+name|annotations
+operator|.
+name|GwtIncompatible
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
 name|base
 operator|.
 name|Converter
@@ -225,11 +239,18 @@ end_comment
 begin_class
 annotation|@
 name|GwtCompatible
+argument_list|(
+name|emulated
+operator|=
+literal|true
+argument_list|)
 DECL|class|Ints
 specifier|public
 specifier|final
 class|class
 name|Ints
+extends|extends
+name|IntsMethodsForWeb
 block|{
 DECL|method|Ints ()
 specifier|private
@@ -732,6 +753,11 @@ literal|1
 return|;
 block|}
 comment|/**    * Returns the least value present in {@code array}.    *    * @param array a<i>nonempty</i> array of {@code int} values    * @return the value present in {@code array} that is less than or equal to every other value in    *     the array    * @throws IllegalArgumentException if {@code array} is empty    */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"Available in GWT! Annotation is to avoid conflict with GWT specialization of base class."
+argument_list|)
 DECL|method|min (int... array)
 specifier|public
 specifier|static
@@ -801,6 +827,11 @@ name|min
 return|;
 block|}
 comment|/**    * Returns the greatest value present in {@code array}.    *    * @param array a<i>nonempty</i> array of {@code int} values    * @return the value present in {@code array} that is greater than or equal to every other value    *     in the array    * @throws IllegalArgumentException if {@code array} is empty    */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"Available in GWT! Annotation is to avoid conflict with GWT specialization of base class."
+argument_list|)
 DECL|method|max (int... array)
 specifier|public
 specifier|static

@@ -293,6 +293,8 @@ specifier|public
 specifier|final
 class|class
 name|Doubles
+extends|extends
+name|DoublesMethodsForWeb
 block|{
 DECL|method|Doubles ()
 specifier|private
@@ -715,6 +717,11 @@ literal|1
 return|;
 block|}
 comment|/**    * Returns the least value present in {@code array}, using the same rules of comparison as {@link    * Math#min(double, double)}.    *    * @param array a<i>nonempty</i> array of {@code double} values    * @return the value present in {@code array} that is less than or equal to every other value in    *     the array    * @throws IllegalArgumentException if {@code array} is empty    */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"Available in GWT! Annotation is to avoid conflict with GWT specialization of base class."
+argument_list|)
 DECL|method|min (double... array)
 specifier|public
 specifier|static
@@ -780,6 +787,11 @@ name|min
 return|;
 block|}
 comment|/**    * Returns the greatest value present in {@code array}, using the same rules of comparison as    * {@link Math#max(double, double)}.    *    * @param array a<i>nonempty</i> array of {@code double} values    * @return the value present in {@code array} that is greater than or equal to every other value    *     in the array    * @throws IllegalArgumentException if {@code array} is empty    */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"Available in GWT! Annotation is to avoid conflict with GWT specialization of base class."
+argument_list|)
 DECL|method|max (double... array)
 specifier|public
 specifier|static
