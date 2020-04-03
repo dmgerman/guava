@@ -418,20 +418,6 @@ name|common
 operator|.
 name|collect
 operator|.
-name|ImmutableMultimap
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|collect
-operator|.
 name|ImmutableSet
 import|;
 end_import
@@ -748,6 +734,8 @@ specifier|public
 specifier|final
 class|class
 name|ServiceManager
+implements|implements
+name|ServiceManagerBridge
 block|{
 DECL|field|logger
 specifier|private
@@ -1357,10 +1345,12 @@ return|return
 literal|true
 return|;
 block|}
-comment|/**    * Provides a snapshot of the current state of all the services under management.    *    *<p>N.B. This snapshot is guaranteed to be consistent, i.e. the set of states returned will    * correspond to a point in time view of the services.    */
+comment|/**    * Provides a snapshot of the current state of all the services under management.    *    *<p>N.B. This snapshot is guaranteed to be consistent, i.e. the set of states returned will    * correspond to a point in time view of the services.    *    * @since NEXT (present with return type {@code ImmutableMultimap} since 14.0)    */
+annotation|@
+name|Override
 DECL|method|servicesByState ()
 specifier|public
-name|ImmutableMultimap
+name|ImmutableSetMultimap
 argument_list|<
 name|State
 argument_list|,
@@ -2114,7 +2104,7 @@ expr_stmt|;
 block|}
 block|}
 DECL|method|servicesByState ()
-name|ImmutableMultimap
+name|ImmutableSetMultimap
 argument_list|<
 name|State
 argument_list|,
