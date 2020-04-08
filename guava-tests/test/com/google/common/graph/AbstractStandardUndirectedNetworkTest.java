@@ -3196,9 +3196,6 @@ name|N2
 argument_list|,
 name|N3
 argument_list|)
-operator|.
-name|inOrder
-argument_list|()
 expr_stmt|;
 name|assertThat
 argument_list|(
@@ -3216,9 +3213,6 @@ name|E41
 argument_list|,
 name|E23
 argument_list|)
-operator|.
-name|inOrder
-argument_list|()
 expr_stmt|;
 name|assertThat
 argument_list|(
