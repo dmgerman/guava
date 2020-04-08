@@ -114,7 +114,7 @@ name|Parameters
 argument_list|(
 name|name
 operator|=
-literal|"allowsSelfLoops={0}, nodeOrder={1}, edgeOrder={2}"
+literal|"allowsSelfLoops={0}, allowsParallelEdges={1}, nodeOrder={2}, edgeOrder={3}"
 argument_list|)
 DECL|method|parameters ()
 specifier|public
@@ -127,6 +127,22 @@ argument_list|>
 name|parameters
 parameter_list|()
 block|{
+name|ElementOrder
+argument_list|<
+name|?
+argument_list|>
+name|naturalElementOrder
+init|=
+name|ElementOrder
+operator|.
+name|sorted
+argument_list|(
+name|Ordering
+operator|.
+name|natural
+argument_list|()
+argument_list|)
+decl_stmt|;
 return|return
 name|Arrays
 operator|.
@@ -138,6 +154,8 @@ index|[]
 index|[]
 block|{
 block|{
+literal|false
+block|,
 literal|false
 block|,
 name|ElementOrder
@@ -154,6 +172,8 @@ block|,
 block|{
 literal|true
 block|,
+literal|false
+block|,
 name|ElementOrder
 operator|.
 name|insertion
@@ -168,25 +188,27 @@ block|,
 block|{
 literal|false
 block|,
-name|ElementOrder
-operator|.
-name|sorted
-argument_list|(
-name|Ordering
-operator|.
-name|natural
-argument_list|()
-argument_list|)
+literal|false
+block|,
+name|naturalElementOrder
+block|,
+name|naturalElementOrder
+block|}
+block|,
+block|{
+literal|true
+block|,
+literal|true
 block|,
 name|ElementOrder
 operator|.
-name|sorted
-argument_list|(
-name|Ordering
-operator|.
-name|natural
+name|insertion
 argument_list|()
-argument_list|)
+block|,
+name|ElementOrder
+operator|.
+name|insertion
+argument_list|()
 block|}
 block|,         }
 argument_list|)
@@ -197,6 +219,12 @@ specifier|private
 specifier|final
 name|boolean
 name|allowsSelfLoops
+decl_stmt|;
+DECL|field|allowsParallelEdges
+specifier|private
+specifier|final
+name|boolean
+name|allowsParallelEdges
 decl_stmt|;
 DECL|field|nodeOrder
 specifier|private
@@ -216,12 +244,15 @@ name|String
 argument_list|>
 name|edgeOrder
 decl_stmt|;
-DECL|method|StandardMutableDirectedNetworkTest ( boolean allowsSelfLoops, ElementOrder<Integer> nodeOrder, ElementOrder<String> edgeOrder)
+DECL|method|StandardMutableDirectedNetworkTest ( boolean allowsSelfLoops, boolean allowsParallelEdges, ElementOrder<Integer> nodeOrder, ElementOrder<String> edgeOrder)
 specifier|public
 name|StandardMutableDirectedNetworkTest
 parameter_list|(
 name|boolean
 name|allowsSelfLoops
+parameter_list|,
+name|boolean
+name|allowsParallelEdges
 parameter_list|,
 name|ElementOrder
 argument_list|<
@@ -241,6 +272,12 @@ operator|.
 name|allowsSelfLoops
 operator|=
 name|allowsSelfLoops
+expr_stmt|;
+name|this
+operator|.
+name|allowsParallelEdges
+operator|=
+name|allowsParallelEdges
 expr_stmt|;
 name|this
 operator|.
@@ -276,6 +313,11 @@ operator|.
 name|allowsSelfLoops
 argument_list|(
 name|allowsSelfLoops
+argument_list|)
+operator|.
+name|allowsParallelEdges
+argument_list|(
+name|allowsParallelEdges
 argument_list|)
 operator|.
 name|nodeOrder
