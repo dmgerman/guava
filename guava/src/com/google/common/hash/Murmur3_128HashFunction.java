@@ -823,7 +823,7 @@ block|}
 annotation|@
 name|Override
 DECL|method|makeHash ()
-specifier|public
+specifier|protected
 name|HashCode
 name|makeHash
 parameter_list|()
