@@ -466,20 +466,6 @@ name|util
 operator|.
 name|concurrent
 operator|.
-name|ThreadPoolExecutor
-operator|.
-name|CallerRunsPolicy
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|concurrent
-operator|.
 name|TimeUnit
 import|;
 end_import
@@ -497,7 +483,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Factory and utility methods for {@link java.util.concurrent.Executor}, {@link ExecutorService},  * and {@link ThreadFactory}.  *  * @author Eric Fellheimer  * @author Kyle Littlefield  * @author Justin Mahoney  * @since 3.0  */
+comment|/**  * Factory and utility methods for {@link java.util.concurrent.Executor}, {@link ExecutorService},  * and {@link java.util.concurrent.ThreadFactory}.  *  * @author Eric Fellheimer  * @author Kyle Littlefield  * @author Justin Mahoney  * @since 3.0  */
 end_comment
 
 begin_class
@@ -1424,7 +1410,7 @@ block|}
 block|}
 block|}
 block|}
-comment|/**    * Creates an executor service that runs each task in the thread that invokes {@code    * execute/submit}, as in {@link CallerRunsPolicy} This applies both to individually submitted    * tasks and to collections of tasks submitted via {@code invokeAll} or {@code invokeAny}. In the    * latter case, tasks will run serially on the calling thread. Tasks are run to completion before    * a {@code Future} is returned to the caller (unless the executor has been shutdown).    *    *<p>Although all tasks are immediately executed in the thread that submitted the task, this    * {@code ExecutorService} imposes a small locking overhead on each task submission in order to    * implement shutdown and termination behavior.    *    *<p>The implementation deviates from the {@code ExecutorService} specification with regards to    * the {@code shutdownNow} method. First, "best-effort" with regards to canceling running tasks is    * implemented as "no-effort". No interrupts or other attempts are made to stop threads executing    * tasks. Second, the returned list will always be empty, as any submitted task is considered to    * have started execution. This applies also to tasks given to {@code invokeAll} or {@code    * invokeAny} which are pending serial execution, even the subset of the tasks that have not yet    * started execution. It is unclear from the {@code ExecutorService} specification if these should    * be included, and it's much easier to implement the interpretation that they not be. Finally, a    * call to {@code shutdown} or {@code shutdownNow} may result in concurrent calls to {@code    * invokeAll/invokeAny} throwing RejectedExecutionException, although a subset of the tasks may    * already have been executed.    *    * @since 18.0 (present as MoreExecutors.sameThreadExecutor() since 10.0)    */
+comment|/**    * Creates an executor service that runs each task in the thread that invokes {@code    * execute/submit}, as in {@code ThreadPoolExecutor.CallerRunsPolicy}. This applies both to    * individually submitted tasks and to collections of tasks submitted via {@code invokeAll} or    * {@code invokeAny}. In the latter case, tasks will run serially on the calling thread. Tasks are    * run to completion before a {@code Future} is returned to the caller (unless the executor has    * been shutdown).    *    *<p>Although all tasks are immediately executed in the thread that submitted the task, this    * {@code ExecutorService} imposes a small locking overhead on each task submission in order to    * implement shutdown and termination behavior.    *    *<p>The implementation deviates from the {@code ExecutorService} specification with regards to    * the {@code shutdownNow} method. First, "best-effort" with regards to canceling running tasks is    * implemented as "no-effort". No interrupts or other attempts are made to stop threads executing    * tasks. Second, the returned list will always be empty, as any submitted task is considered to    * have started execution. This applies also to tasks given to {@code invokeAll} or {@code    * invokeAny} which are pending serial execution, even the subset of the tasks that have not yet    * started execution. It is unclear from the {@code ExecutorService} specification if these should    * be included, and it's much easier to implement the interpretation that they not be. Finally, a    * call to {@code shutdown} or {@code shutdownNow} may result in concurrent calls to {@code    * invokeAll/invokeAny} throwing RejectedExecutionException, although a subset of the tasks may    * already have been executed.    *    * @since 18.0 (present as MoreExecutors.sameThreadExecutor() since 10.0)    */
 annotation|@
 name|GwtIncompatible
 comment|// TODO
@@ -1441,7 +1427,7 @@ name|DirectExecutorService
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns an {@link Executor} that runs each task in the thread that invokes {@link    * Executor#execute execute}, as in {@link CallerRunsPolicy}.    *    *<p>This instance is equivalent to:    *    *<pre>{@code    * final class DirectExecutor implements Executor {    *   public void execute(Runnable r) {    *     r.run();    *   }    * }    * }</pre>    *    *<p>This should be preferred to {@link #newDirectExecutorService()} because implementing the    * {@link ExecutorService} subinterface necessitates significant performance overhead.    *    *    * @since 18.0    */
+comment|/**    * Returns an {@link Executor} that runs each task in the thread that invokes {@link    * Executor#execute execute}, as in {@code ThreadPoolExecutor.CallerRunsPolicy}.    *    *<p>This instance is equivalent to:    *    *<pre>{@code    * final class DirectExecutor implements Executor {    *   public void execute(Runnable r) {    *     r.run();    *   }    * }    * }</pre>    *    *<p>This should be preferred to {@link #newDirectExecutorService()} because implementing the    * {@link ExecutorService} subinterface necessitates significant performance overhead.    *    *    * @since 18.0    */
 DECL|method|directExecutor ()
 specifier|public
 specifier|static
