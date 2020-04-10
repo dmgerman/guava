@@ -46,34 +46,6 @@ name|common
 operator|.
 name|annotations
 operator|.
-name|Beta
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|errorprone
-operator|.
-name|annotations
-operator|.
-name|DoNotMock
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|annotations
-operator|.
 name|GwtIncompatible
 import|;
 end_import
@@ -89,6 +61,20 @@ operator|.
 name|annotations
 operator|.
 name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|DoNotMock
 import|;
 end_import
 
@@ -143,8 +129,6 @@ comment|/**  * An object with an operational state, plus asynchronous {@link #st
 end_comment
 
 begin_interface
-annotation|@
-name|Beta
 annotation|@
 name|DoNotMock
 argument_list|(
@@ -306,9 +290,6 @@ name|executor
 parameter_list|)
 function_decl|;
 comment|/**    * The lifecycle states of a service.    *    *<p>The ordering of the {@link State} enum is defined such that if there is a state transition    * from {@code A -> B} then {@code A.compareTo(B)< 0}. N.B. The converse is not true, i.e. if    * {@code A.compareTo(B)< 0} then there is<b>not</b> guaranteed to be a valid state transition    * {@code A -> B}.    *    * @since 9.0 (in 1.0 as {@code com.google.common.base.Service.State})    */
-annotation|@
-name|Beta
-comment|// should come out of Beta when Service does
 DECL|enum|State
 enum|enum
 name|State
@@ -418,9 +399,6 @@ parameter_list|()
 function_decl|;
 block|}
 comment|/**    * A listener for the various state changes that a {@link Service} goes through in its lifecycle.    *    *<p>All methods are no-ops by default, implementors should override the ones they care about.    *    * @author Luke Sandberg    * @since 15.0 (present as an interface in 13.0)    */
-annotation|@
-name|Beta
-comment|// should come out of Beta when Service does
 DECL|class|Listener
 specifier|abstract
 class|class

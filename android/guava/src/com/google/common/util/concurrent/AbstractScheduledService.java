@@ -78,20 +78,6 @@ name|common
 operator|.
 name|annotations
 operator|.
-name|Beta
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|annotations
-operator|.
 name|GwtIncompatible
 import|;
 end_import
@@ -309,8 +295,6 @@ comment|/**  * Base class for services that can implement {@link #startUp} and {
 end_comment
 
 begin_class
-annotation|@
-name|Beta
 annotation|@
 name|GwtIncompatible
 DECL|class|AbstractScheduledService
@@ -1331,8 +1315,6 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * A {@link Scheduler} that provides a convenient way for the {@link AbstractScheduledService} to    * use a dynamically changing schedule. After every execution of the task, assuming it hasn't been    * cancelled, the {@link #getNextSchedule} method will be called.    *    * @author Luke Sandberg    * @since 11.0    */
-annotation|@
-name|Beta
 DECL|class|CustomScheduler
 specifier|public
 specifier|abstract
@@ -1723,8 +1705,6 @@ name|task
 return|;
 block|}
 comment|/**      * A value object that represents an absolute delay until a task should be invoked.      *      * @author Luke Sandberg      * @since 11.0      */
-annotation|@
-name|Beta
 DECL|class|Schedule
 specifier|protected
 specifier|static

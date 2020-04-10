@@ -140,8 +140,6 @@ end_comment
 
 begin_class
 annotation|@
-name|Beta
-annotation|@
 name|GwtIncompatible
 DECL|class|AbstractExecutionThreadService
 specifier|public
@@ -393,7 +391,9 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{}
-comment|/**    * Invoked to request the service to stop.    *    *<p>By default this method does nothing.    */
+comment|/**    * Invoked to request the service to stop.    *    *<p>By default this method does nothing.    *    *<p>Currently, this method is invoked while holding a lock. If an implementation of this method    * blocks, it can prevent this service from changing state. If you need to performing a blocking    * operation in order to trigger shutdown, consider instead registering a listener and    * implementing {@code stopping}. Note, however, that {@code stopping} does not run at exactly the    * same times as {@code triggerShutdown}.    */
+annotation|@
+name|Beta
 DECL|method|triggerShutdown ()
 specifier|protected
 name|void

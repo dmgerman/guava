@@ -726,8 +726,6 @@ end_comment
 
 begin_class
 annotation|@
-name|Beta
-annotation|@
 name|GwtIncompatible
 DECL|class|ServiceManager
 specifier|public
@@ -857,9 +855,6 @@ block|}
 block|}
 decl_stmt|;
 comment|/**    * A listener for the aggregate state changes of the services that are under management. Users    * that need to listen to more fine-grained events (such as when each particular {@linkplain    * Service service} starts, or terminates), should attach {@linkplain Service.Listener service    * listeners} to each individual service.    *    * @author Luke Sandberg    * @since 15.0 (present as an interface in 14.0)    */
-annotation|@
-name|Beta
-comment|// Should come out of Beta when ServiceManager does
 DECL|class|Listener
 specifier|public
 specifier|abstract
@@ -1081,7 +1076,6 @@ block|}
 comment|/**    * Registers a {@link Listener} to be run when this {@link ServiceManager} changes state. The    * listener will not have previous state changes replayed, so it is suggested that listeners are    * added before any of the managed services are {@linkplain Service#startAsync started}.    *    *<p>{@code addListener} guarantees execution ordering across calls to a given listener but not    * across calls to multiple listeners. Specifically, a given listener will have its callbacks    * invoked in the same order as the underlying service enters those states. Additionally, at most    * one of the listener's callbacks will execute at once. However, multiple listeners' callbacks    * may execute concurrently, and listeners may execute in an order different from the one in which    * they were registered.    *    *<p>RuntimeExceptions thrown by a listener will be caught and logged.    *    * @param listener the listener to run when the manager changes state    * @since 15.0    * @deprecated Use {@linkplain #addListener(Listener, Executor) the overload that accepts an    *     executor}. For equivalent behavior, pass {@link MoreExecutors#directExecutor}. However,    *     consider whether another executor would be more appropriate, as discussed in the docs for    *     {@link ListenableFuture#addListener ListenableFuture.addListener}. This method is scheduled    *     for deletion in October 2020.    */
 annotation|@
 name|Beta
-comment|// currently redundant, but ensures we keep this @Beta when we gradate the class!
 annotation|@
 name|Deprecated
 DECL|method|addListener (Listener listener)

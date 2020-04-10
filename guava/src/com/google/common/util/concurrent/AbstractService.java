@@ -380,8 +380,6 @@ end_comment
 
 begin_class
 annotation|@
-name|Beta
-annotation|@
 name|GwtIncompatible
 DECL|class|AbstractService
 specifier|public
@@ -993,6 +991,8 @@ name|doStop
 parameter_list|()
 function_decl|;
 comment|/**    * This method is called by {@link #stopAsync} when the service is still starting (i.e. {@link    * #startAsync} has been called but {@link #notifyStarted} has not). Subclasses can override the    * method to cancel pending work and then call {@link #notifyStopped} to stop the service.    *    *<p>This method should return promptly; prefer to do work on a different thread where it is    * convenient. It is invoked exactly once on service shutdown, even when {@link #stopAsync} is    * called multiple times.    *    *<p>When this method is called {@link #state()} will return {@link State#STOPPING}, which is the    * external state observable by the caller of {@link #stopAsync}.    *    * @since 27.0    */
+annotation|@
+name|Beta
 annotation|@
 name|ForOverride
 DECL|method|doCancelStart ()
