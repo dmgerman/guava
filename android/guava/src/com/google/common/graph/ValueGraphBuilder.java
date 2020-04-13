@@ -390,7 +390,7 @@ return|return
 name|newBuilder
 return|;
 block|}
-comment|/**    * Specifies the order of iteration for the elements of {@link ValueGraph#edges()}, {@link    * ValueGraph#adjacentNodes(Object)}, {@link ValueGraph#predecessors(Object)}, {@link    * ValueGraph#successors(Object)} and {@link ValueGraph#incidentEdges(Object)}.    *    *<p>The default value is {@link ElementOrder#unordered() unordered} for mutable graphs. For    * immutable graphs, this value is ignored; they always have a {@link ElementOrder#stable()    * stable} order.    *    * @throws IllegalArgumentException if {@code incidentEdgeOrder} is not either {@code    *     ElementOrder.unordered()} or {@code ElementOrder.stable()}.    */
+comment|/**    * Specifies the order of iteration for the elements of {@link ValueGraph#edges()}, {@link    * ValueGraph#adjacentNodes(Object)}, {@link ValueGraph#predecessors(Object)}, {@link    * ValueGraph#successors(Object)} and {@link ValueGraph#incidentEdges(Object)}.    *    *<p>The default value is {@link ElementOrder#unordered() unordered} for mutable graphs. For    * immutable graphs, this value is ignored; they always have a {@link ElementOrder#stable()    * stable} order.    *    * @throws IllegalArgumentException if {@code incidentEdgeOrder} is not either {@code    *     ElementOrder.unordered()} or {@code ElementOrder.stable()}.    * @since NEXT    */
 DECL|method|incidentEdgeOrder ( ElementOrder<N1> incidentEdgeOrder)
 specifier|public
 parameter_list|<

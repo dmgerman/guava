@@ -155,7 +155,7 @@ argument_list|>
 name|nodeOrder
 parameter_list|()
 function_decl|;
-comment|/**    * Returns an {@link ElementOrder} that specifies the order of iteration for the elements of    * {@link #edges()}, {@link #adjacentNodes(Object)}, {@link #predecessors(Object)}, {@link    * #successors(Object)} and {@link #incidentEdges(Object)}.    */
+comment|/**    * Returns an {@link ElementOrder} that specifies the order of iteration for the elements of    * {@link #edges()}, {@link #adjacentNodes(Object)}, {@link #predecessors(Object)}, {@link    * #successors(Object)} and {@link #incidentEdges(Object)}.    *    * @since NEXT    */
 annotation|@
 name|Override
 DECL|method|incidentEdgeOrder ()
