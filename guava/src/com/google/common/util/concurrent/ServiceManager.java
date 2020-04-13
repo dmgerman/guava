@@ -1417,7 +1417,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/**    * Provides a snapshot of the current state of all the services under management.    *    *<p>N.B. This snapshot is guaranteed to be consistent, i.e. the set of states returned will    * correspond to a point in time view of the services.    *    * @since NEXT (present with return type {@code ImmutableMultimap} since 14.0)    */
+comment|/**    * Provides a snapshot of the current state of all the services under management.    *    *<p>N.B. This snapshot is guaranteed to be consistent, i.e. the set of states returned will    * correspond to a point in time view of the services.    *    * @since 29.0 (present with return type {@code ImmutableMultimap} since 14.0)    */
 annotation|@
 name|Override
 DECL|method|servicesByState ()

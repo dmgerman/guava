@@ -132,7 +132,7 @@ name|TimeUnit
 name|unit
 parameter_list|)
 function_decl|;
-comment|/**    * Duration-based overload of {@link #schedule(Runnable, long, TimeUnit)}.    *    * @since NEXT    */
+comment|/**    * Duration-based overload of {@link #schedule(Runnable, long, TimeUnit)}.    *    * @since 29.0    */
 DECL|method|schedule (Runnable command, Duration delay)
 specifier|default
 name|ListenableScheduledFuture
@@ -190,7 +190,7 @@ name|TimeUnit
 name|unit
 parameter_list|)
 function_decl|;
-comment|/**    * Duration-based overload of {@link #schedule(Callable, long, TimeUnit)}.    *    * @since NEXT    */
+comment|/**    * Duration-based overload of {@link #schedule(Callable, long, TimeUnit)}.    *    * @since 29.0    */
 DECL|method|schedule (Callable<V> callable, Duration delay)
 specifier|default
 parameter_list|<
@@ -251,7 +251,7 @@ name|TimeUnit
 name|unit
 parameter_list|)
 function_decl|;
-comment|/**    * Duration-based overload of {@link #scheduleAtFixedRate(Runnable, long, long, TimeUnit)}.    *    * @since NEXT    */
+comment|/**    * Duration-based overload of {@link #scheduleAtFixedRate(Runnable, long, long, TimeUnit)}.    *    * @since 29.0    */
 DECL|method|scheduleAtFixedRate ( Runnable command, Duration initialDelay, Duration period)
 specifier|default
 name|ListenableScheduledFuture
@@ -314,7 +314,7 @@ name|TimeUnit
 name|unit
 parameter_list|)
 function_decl|;
-comment|/**    * Duration-based overload of {@link #scheduleWithFixedDelay(Runnable, long, long, TimeUnit)}.    *    * @since NEXT    */
+comment|/**    * Duration-based overload of {@link #scheduleWithFixedDelay(Runnable, long, long, TimeUnit)}.    *    * @since 29.0    */
 DECL|method|scheduleWithFixedDelay ( Runnable command, Duration initialDelay, Duration delay)
 specifier|default
 name|ListenableScheduledFuture

@@ -604,7 +604,7 @@ name|value
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a successful {@code ListenableFuture<Void>}. This method is equivalent to {@code    * immediateFuture(null)} except that it is restricted to produce futures of type {@code Void}.    *    * @since NEXT    */
+comment|/**    * Returns a successful {@code ListenableFuture<Void>}. This method is equivalent to {@code    * immediateFuture(null)} except that it is restricted to produce futures of type {@code Void}.    *    * @since 29.0    */
 annotation|@
 name|SuppressWarnings
 argument_list|(
