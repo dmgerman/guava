@@ -459,7 +459,7 @@ name|Deprecated
 annotation|@
 name|DoNotCall
 argument_list|(
-literal|"instances of FluentIterable don't need to be converetd to a FluentIterable"
+literal|"instances of FluentIterable don't need to be converted to a FluentIterable"
 argument_list|)
 DECL|method|from (FluentIterable<E> iterable)
 specifier|public
