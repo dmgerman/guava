@@ -84,6 +84,11 @@ comment|/**  * Refaster rules to rewrite usages of {@code com.google.common.coll
 end_comment
 
 begin_class
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"DefaultPackage"
+argument_list|)
 DECL|class|TraverserRewrite
 specifier|public
 class|class
