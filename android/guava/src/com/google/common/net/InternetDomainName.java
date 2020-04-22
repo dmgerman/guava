@@ -253,6 +253,11 @@ annotation|@
 name|Beta
 annotation|@
 name|GwtCompatible
+argument_list|(
+name|emulated
+operator|=
+literal|true
+argument_list|)
 annotation|@
 name|Immutable
 DECL|class|InternetDomainName
