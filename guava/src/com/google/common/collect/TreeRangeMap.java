@@ -3030,11 +3030,6 @@ operator|.
 name|isEmpty
 argument_list|()
 operator|||
-name|range
-operator|.
-name|isEmpty
-argument_list|()
-operator|||
 operator|!
 name|subRange
 operator|.
