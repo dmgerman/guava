@@ -702,7 +702,6 @@ name|V
 name|value
 parameter_list|)
 block|{
-comment|// don't short-circuit if the range is empty - it may be between two ranges we can coalesce.
 if|if
 condition|(
 operator|!
@@ -763,6 +762,7 @@ name|V
 name|value
 parameter_list|)
 block|{
+comment|// don't short-circuit if the range is empty - it may be between two ranges we can coalesce.
 if|if
 condition|(
 name|entriesByLowerBound
