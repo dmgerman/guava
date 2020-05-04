@@ -5234,11 +5234,17 @@ decl_stmt|;
 return|return
 name|inputSet
 operator|.
+name|keySet
+argument_list|()
+operator|.
 name|equals
 argument_list|(
 name|that
 operator|.
 name|inputSet
+operator|.
+name|keySet
+argument_list|()
 argument_list|)
 return|;
 block|}
