@@ -773,6 +773,26 @@ name|X_WEBKIT_CSP_REPORT_ONLY
 init|=
 literal|"X-WebKit-CSP-Report-Only"
 decl_stmt|;
+comment|/**    * The HTTP<a href="https://wicg.github.io/cross-origin-embedder-policy/#COEP">{@code    * Cross-Origin-Embedder-Policy}</a> header field name.    *    * @since NEXT    */
+DECL|field|CROSS_ORIGIN_EMBEDDER_POLICY
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|CROSS_ORIGIN_EMBEDDER_POLICY
+init|=
+literal|"Cross-Origin-Embedder-Policy"
+decl_stmt|;
+comment|/**    * The HTTP<a href="https://wicg.github.io/cross-origin-embedder-policy/#COEP-RO">{@code    * Cross-Origin-Embedder-Policy-Report-Only}</a> header field name.    *    * @since NEXT    */
+DECL|field|CROSS_ORIGIN_EMBEDDER_POLICY_REPORT_ONLY
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|CROSS_ORIGIN_EMBEDDER_POLICY_REPORT_ONLY
+init|=
+literal|"Cross-Origin-Embedder-Policy-Report-Only"
+decl_stmt|;
 comment|/**    * The HTTP Cross-Origin-Opener-Policy header field name.    *    * @since 28.2    */
 DECL|field|CROSS_ORIGIN_OPENER_POLICY
 specifier|public
