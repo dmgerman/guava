@@ -180,7 +180,7 @@ name|j2objc
 operator|.
 name|annotations
 operator|.
-name|WeakOuter
+name|RetainedWith
 import|;
 end_import
 
@@ -357,6 +357,8 @@ init|=
 literal|0
 decl_stmt|;
 DECL|field|worker
+annotation|@
+name|RetainedWith
 specifier|private
 specifier|final
 name|QueueWorker
@@ -590,8 +592,6 @@ block|}
 block|}
 block|}
 comment|/** Worker that runs tasks from {@link #queue} until it is empty. */
-annotation|@
-name|WeakOuter
 DECL|class|QueueWorker
 specifier|private
 specifier|final
