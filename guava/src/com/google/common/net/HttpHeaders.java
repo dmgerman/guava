@@ -1252,6 +1252,16 @@ name|X_MOZ
 init|=
 literal|"X-Moz"
 decl_stmt|;
+comment|/**    * The HTTP<a href="https://wicg.github.io/ua-client-hints/#sec-ch-ua">{@code Sec-CH-UA}</a>    * header field name.    *    * @since NEXT    */
+DECL|field|SEC_CH_UA
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|SEC_CH_UA
+init|=
+literal|"Sec-CH-UA"
+decl_stmt|;
 comment|/**    * The HTTP<a href="https://w3c.github.io/webappsec-fetch-metadata/">{@code Sec-Fetch-Dest}</a>    * header field name.    *    * @since 27.1    */
 DECL|field|SEC_FETCH_DEST
 specifier|public

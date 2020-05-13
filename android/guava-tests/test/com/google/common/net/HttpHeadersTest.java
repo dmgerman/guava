@@ -254,6 +254,8 @@ name|ImmutableSet
 operator|.
 name|of
 argument_list|(
+literal|"CH"
+argument_list|,
 literal|"ID"
 argument_list|,
 literal|"DNT"
@@ -269,6 +271,8 @@ argument_list|,
 literal|"P3P"
 argument_list|,
 literal|"TE"
+argument_list|,
+literal|"UA"
 argument_list|,
 literal|"UID"
 argument_list|,
