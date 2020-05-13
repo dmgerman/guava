@@ -72,6 +72,12 @@ name|TestCase
 block|{
 comment|// The next two tests verify that map entries are not accessed after they're
 comment|// removed, since IdentityHashMap throws an exception when that occurs.
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"IdentityHashMapBoxing"
+argument_list|)
+comment|// explicitly testing IdentityHashMap
 DECL|method|testIdentityKeySetIteratorRemove ()
 specifier|public
 name|void
@@ -204,6 +210,12 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"IdentityHashMapBoxing"
+argument_list|)
+comment|// explicitly testing IdentityHashMap
 DECL|method|testIdentityEntrySetIteratorRemove ()
 specifier|public
 name|void
