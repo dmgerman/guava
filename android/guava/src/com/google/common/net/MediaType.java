@@ -628,6 +628,15 @@ name|VIDEO_TYPE
 init|=
 literal|"video"
 decl_stmt|;
+DECL|field|FONT_TYPE
+specifier|private
+specifier|static
+specifier|final
+name|String
+name|FONT_TYPE
+init|=
+literal|"font"
+decl_stmt|;
 DECL|field|WILDCARD
 specifier|private
 specifier|static
@@ -856,6 +865,21 @@ argument_list|,
 name|WILDCARD
 argument_list|)
 decl_stmt|;
+comment|/**    * Wildcard matching any "font" top-level media type.    *    * @since NEXT    */
+DECL|field|ANY_FONT_TYPE
+specifier|public
+specifier|static
+specifier|final
+name|MediaType
+name|ANY_FONT_TYPE
+init|=
+name|createConstant
+argument_list|(
+name|FONT_TYPE
+argument_list|,
+name|WILDCARD
+argument_list|)
+decl_stmt|;
 comment|/* text types */
 DECL|field|CACHE_MANIFEST_UTF_8
 specifier|public
@@ -1030,6 +1054,7 @@ argument_list|,
 literal|"vtt"
 argument_list|)
 decl_stmt|;
+comment|/* image types */
 comment|/**    *<a href="https://en.wikipedia.org/wiki/BMP_file_format">Bitmap file format</a> ({@code bmp}    * files).    *    * @since 13.0    */
 DECL|field|BMP
 specifier|public
@@ -2185,7 +2210,7 @@ argument_list|,
 literal|"rtf"
 argument_list|)
 decl_stmt|;
-comment|/**    * SFNT fonts (which includes<a href="http://en.wikipedia.org/wiki/TrueType/">TrueType</a> and<a    * href="http://en.wikipedia.org/wiki/OpenType/">OpenType</a> fonts). This is<a    * href="http://www.iana.org/assignments/media-types/application/font-sfnt">registered</a> with    * the IANA.    *    * @since 17.0    */
+comment|/**    *<a href="https://tools.ietf.org/html/rfc8081">RFC 8081</a> declares {@link #FONT_SFNT    * font/sfnt} to be the correct media type for SFNT, but this may be necessary in certain    * situations for compatibility.    *    * @since 17.0    */
 DECL|field|SFNT
 specifier|public
 specifier|static
@@ -2258,7 +2283,7 @@ argument_list|,
 literal|"x-tar"
 argument_list|)
 decl_stmt|;
-comment|/**    *<a href="http://en.wikipedia.org/wiki/Web_Open_Font_Format">Web Open Font Format</a> (WOFF)<a    * href="http://www.w3.org/TR/WOFF/">defined</a> by the W3C. This is<a    * href="http://www.iana.org/assignments/media-types/application/font-woff">registered</a> with    * the IANA.    *    * @since 17.0    */
+comment|/**    *<a href="https://tools.ietf.org/html/rfc8081">RFC 8081</a> declares {@link #FONT_WOFF    * font/woff} to be the correct media type for WOFF, but this may be necessary in certain    * situations for compatibility.    *    * @since 17.0    */
 DECL|field|WOFF
 specifier|public
 specifier|static
@@ -2273,7 +2298,7 @@ argument_list|,
 literal|"font-woff"
 argument_list|)
 decl_stmt|;
-comment|/**    *<a href="http://en.wikipedia.org/wiki/Web_Open_Font_Format">Web Open Font Format</a> (WOFF)    * version 2<a href="https://www.w3.org/TR/WOFF2/">defined</a> by the W3C.    *    * @since 20.0    */
+comment|/**    *<a href="https://tools.ietf.org/html/rfc8081">RFC 8081</a> declares {@link #FONT_WOFF2    * font/woff2} to be the correct media type for WOFF2, but this may be necessary in certain    * situations for compatibility.    *    * @since 20.0    */
 DECL|field|WOFF2
 specifier|public
 specifier|static
@@ -2329,6 +2354,97 @@ argument_list|(
 name|APPLICATION_TYPE
 argument_list|,
 literal|"zip"
+argument_list|)
+decl_stmt|;
+comment|/* font types */
+comment|/**    * A collection of font outlines as defined by<a href="https://tools.ietf.org/html/rfc8081">RFC    * 8081</a>.    *    * @since NEXT    */
+DECL|field|FONT_COLLECTION
+specifier|public
+specifier|static
+specifier|final
+name|MediaType
+name|FONT_COLLECTION
+init|=
+name|createConstant
+argument_list|(
+name|FONT_TYPE
+argument_list|,
+literal|"collection"
+argument_list|)
+decl_stmt|;
+comment|/**    *<a href="https://en.wikipedia.org/wiki/OpenType">Open Type Font Format</a> (OTF) as defined by    *<a href="https://tools.ietf.org/html/rfc8081">RFC 8081</a>.    *    * @since NEXT    */
+DECL|field|FONT_OTF
+specifier|public
+specifier|static
+specifier|final
+name|MediaType
+name|FONT_OTF
+init|=
+name|createConstant
+argument_list|(
+name|FONT_TYPE
+argument_list|,
+literal|"otf"
+argument_list|)
+decl_stmt|;
+comment|/**    *<a href="https://en.wikipedia.org/wiki/SFNT">Spline or Scalable Font Format</a> (SFNT).<a    * href="https://tools.ietf.org/html/rfc8081">RFC 8081</a> declares this to be the correct media    * type for SFNT, but {@link #SFNT application/font-sfnt} may be necessary in certain situations    * for compatibility.    *    * @since NEXT    */
+DECL|field|FONT_SFNT
+specifier|public
+specifier|static
+specifier|final
+name|MediaType
+name|FONT_SFNT
+init|=
+name|createConstant
+argument_list|(
+name|FONT_TYPE
+argument_list|,
+literal|"sfnt"
+argument_list|)
+decl_stmt|;
+comment|/**    *<a href="https://en.wikipedia.org/wiki/TrueType">True Type Font Format</a> (TTF) as defined by    *<a href="https://tools.ietf.org/html/rfc8081">RFC 8081</a>.    *    * @since NEXT    */
+DECL|field|FONT_TTF
+specifier|public
+specifier|static
+specifier|final
+name|MediaType
+name|FONT_TTF
+init|=
+name|createConstant
+argument_list|(
+name|FONT_TYPE
+argument_list|,
+literal|"ttf"
+argument_list|)
+decl_stmt|;
+comment|/**    *<a href="http://en.wikipedia.org/wiki/Web_Open_Font_Format">Web Open Font Format</a> (WOFF).<a    * href="https://tools.ietf.org/html/rfc8081">RFC 8081</a> declares this to be the correct media    * type for SFNT, but {@link #WOFF application/font-woff} may be necessary in certain situations    * for compatibility.    *    * @since NEXT    */
+DECL|field|FONT_WOFF
+specifier|public
+specifier|static
+specifier|final
+name|MediaType
+name|FONT_WOFF
+init|=
+name|createConstant
+argument_list|(
+name|FONT_TYPE
+argument_list|,
+literal|"woff"
+argument_list|)
+decl_stmt|;
+comment|/**    *<a href="http://en.wikipedia.org/wiki/Web_Open_Font_Format">Web Open Font Format</a> (WOFF2).    *<a href="https://tools.ietf.org/html/rfc8081">RFC 8081</a> declares this to be the correct    * media type for SFNT, but {@link #WOFF2 application/font-woff2} may be necessary in certain    * situations for compatibility.    *    * @since NEXT    */
+DECL|field|FONT_WOFF2
+specifier|public
+specifier|static
+specifier|final
+name|MediaType
+name|FONT_WOFF2
+init|=
+name|createConstant
+argument_list|(
+name|FONT_TYPE
+argument_list|,
+literal|"woff2"
 argument_list|)
 decl_stmt|;
 DECL|field|type
@@ -3271,6 +3387,25 @@ return|return
 name|create
 argument_list|(
 name|AUDIO_TYPE
+argument_list|,
+name|subtype
+argument_list|)
+return|;
+block|}
+comment|/**    * Creates a media type with the "font" type and the given subtype.    *    * @throws IllegalArgumentException if subtype is invalid    */
+DECL|method|createFontType (String subtype)
+specifier|static
+name|MediaType
+name|createFontType
+parameter_list|(
+name|String
+name|subtype
+parameter_list|)
+block|{
+return|return
+name|create
+argument_list|(
+name|FONT_TYPE
 argument_list|,
 name|subtype
 argument_list|)
