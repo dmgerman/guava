@@ -146,20 +146,6 @@ end_import
 
 begin_import
 import|import
-name|com
-operator|.
-name|google
-operator|.
-name|errorprone
-operator|.
-name|annotations
-operator|.
-name|DoNotCall
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|util
@@ -456,11 +442,6 @@ block|}
 comment|/**    * Construct a fluent iterable from another fluent iterable. This is obviously never necessary,    * but is intended to help call out cases where one migration from {@code Iterable} to {@code    * FluentIterable} has obviated the need to explicitly convert to a {@code FluentIterable}.    *    * @deprecated instances of {@code FluentIterable} don't need to be converted to {@code    *     FluentIterable}    */
 annotation|@
 name|Deprecated
-annotation|@
-name|DoNotCall
-argument_list|(
-literal|"instances of FluentIterable don't need to be converted to a FluentIterable"
-argument_list|)
 DECL|method|from (FluentIterable<E> iterable)
 specifier|public
 specifier|static
