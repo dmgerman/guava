@@ -1286,7 +1286,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the lesser of the two values according to this ordering. If the values compare as 0,    * the first is returned.    *    *<p><b>Implementation note:</b> this method is invoked by the default implementations of the    * other {@code min} overloads, so overriding it will affect their behavior.    *    *<p><b>Java 8 users:</b> Use {@code Collections.min(Arrays.asList(a, b), thisComparator)}    * instead (but note that it does not guarantee which tied minimum element is returned).    *    * @param a value to compare, returned if less than or equal to b.    * @param b value to compare.    * @throws ClassCastException if the parameters are not<i>mutually comparable</i> under this    *     ordering.    */
+comment|/**    * Returns the lesser of the two values according to this ordering. If the values compare as 0,    * the first is returned.    *    *<p><b>Implementation note:</b> this method is invoked by the default implementations of the    * other {@code min} overloads, so overriding it will affect their behavior.    *    *<p><b>Note:</b> Consider using {@code Comparators.min(a, b, thisComparator)} instead. If {@code    * thisComparator} is {@link Ordering#natural}, then use {@code Comparators.min(a, b)}.    *    * @param a value to compare, returned if less than or equal to b.    * @param b value to compare.    * @throws ClassCastException if the parameters are not<i>mutually comparable</i> under this    *     ordering.    */
 DECL|method|min (@ullableDecl E a, @NullableDecl E b)
 specifier|public
 parameter_list|<
@@ -1473,7 +1473,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the greater of the two values according to this ordering. If the values compare as 0,    * the first is returned.    *    *<p><b>Implementation note:</b> this method is invoked by the default implementations of the    * other {@code max} overloads, so overriding it will affect their behavior.    *    *<p><b>Java 8 users:</b> Use {@code Collections.max(Arrays.asList(a, b), thisComparator)}    * instead (but note that it does not guarantee which tied maximum element is returned).    *    * @param a value to compare, returned if greater than or equal to b.    * @param b value to compare.    * @throws ClassCastException if the parameters are not<i>mutually comparable</i> under this    *     ordering.    */
+comment|/**    * Returns the greater of the two values according to this ordering. If the values compare as 0,    * the first is returned.    *    *<p><b>Implementation note:</b> this method is invoked by the default implementations of the    * other {@code max} overloads, so overriding it will affect their behavior.    *    *<p><b>Note:</b> Consider using {@code Comparators.max(a, b, thisComparator)} instead. If {@code    * thisComparator} is {@link Ordering#natural}, then use {@code Comparators.max(a, b)}.    *    * @param a value to compare, returned if greater than or equal to b.    * @param b value to compare.    * @throws ClassCastException if the parameters are not<i>mutually comparable</i> under this    *     ordering.    */
 DECL|method|max (@ullableDecl E a, @NullableDecl E b)
 specifier|public
 parameter_list|<
