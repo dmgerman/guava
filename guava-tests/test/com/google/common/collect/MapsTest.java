@@ -1582,6 +1582,12 @@ name|map
 argument_list|)
 expr_stmt|;
 block|}
+comment|// Intentionally using IdentityHashMap to test creation.
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"IdentityHashMapBoxing"
+argument_list|)
 DECL|method|testIdentityHashMap ()
 specifier|public
 name|void
