@@ -92,6 +92,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|j2objc
+operator|.
+name|annotations
+operator|.
+name|RetainedWith
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -524,6 +538,8 @@ implements|implements
 name|Serializable
 block|{
 DECL|field|original
+annotation|@
+name|RetainedWith
 specifier|final
 name|Converter
 argument_list|<
