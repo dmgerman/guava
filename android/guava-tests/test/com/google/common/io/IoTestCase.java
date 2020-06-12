@@ -550,6 +550,48 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+comment|/**    * Creates a new temp file in the temp directory returned by {@link #getTempDir()}. The file will    * be deleted in the tear-down for this test.    *    * @param content which should be written to the file    */
+DECL|method|createTempFile (byte[] content)
+specifier|protected
+specifier|final
+name|File
+name|createTempFile
+parameter_list|(
+name|byte
+index|[]
+name|content
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+name|File
+name|file
+init|=
+name|File
+operator|.
+name|createTempFile
+argument_list|(
+literal|"test"
+argument_list|,
+literal|null
+argument_list|,
+name|getTempDir
+argument_list|()
+argument_list|)
+decl_stmt|;
+name|Files
+operator|.
+name|write
+argument_list|(
+name|content
+argument_list|,
+name|file
+argument_list|)
+expr_stmt|;
+return|return
+name|file
+return|;
+block|}
 comment|/** Returns a byte array of length size that has values 0 .. size - 1. */
 DECL|method|newPreFilledByteArray (int size)
 specifier|static
