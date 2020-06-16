@@ -366,7 +366,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/**    * Returns the minimum of the two values. If the values compare as 0, the first is returned.    *    *<p>To find the minimum of more than two values, use {@code Collections.min(Arrays.asList(a, b,    * c))} (static imports recommended).    *    * @param a first value to compare, returned if less than or equal to b.    * @param b second value to compare.    * @throws ClassCastException if the parameters are not<i>mutually comparable</i>.    * @since NEXT    */
+comment|/**    * Returns the minimum of the two values. If the values compare as 0, the first is returned.    *    *<p>The recommended solution for finding the {@code minimum} of some values depends on the type    * of your data and the number of elements you have. Read more in the Guava User Guide article on    *<a href="https://github.com/google/guava/wiki/CollectionUtilitiesExplained#comparators">{@code    * Comparators}</a>.    *    * @param a first value to compare, returned if less than or equal to b.    * @param b second value to compare.    * @throws ClassCastException if the parameters are not<i>mutually comparable</i>.    * @since NEXT    */
 annotation|@
 name|Beta
 DECL|method|min (T a, T b)
@@ -409,7 +409,7 @@ else|:
 name|b
 return|;
 block|}
-comment|/**    * Returns the minimum of the two values, according to the given comparator. If the values compare    * as equal, the first is returned.    *    *<p>To find the minimum of more than two values, use {@code Collections.min(Arrays.asList(a, b,    * c), comparator)} (static imports recommended).    *    * @param a first value to compare, returned if less than or equal to b    * @param b second value to compare.    * @throws ClassCastException if the parameters are not<i>mutually comparable</i> using the given    *     comparator.    * @since NEXT    */
+comment|/**    * Returns the minimum of the two values, according to the given comparator. If the values compare    * as equal, the first is returned.    *    *<p>The recommended solution for finding the {@code minimum} of some values depends on the type    * of your data and the number of elements you have. Read more in the Guava User Guide article on    *<a href="https://github.com/google/guava/wiki/CollectionUtilitiesExplained#comparators">{@code    * Comparators}</a>.    *    * @param a first value to compare, returned if less than or equal to b    * @param b second value to compare.    * @throws ClassCastException if the parameters are not<i>mutually comparable</i> using the given    *     comparator.    * @since NEXT    */
 annotation|@
 name|Beta
 DECL|method|min (@ullableDecl T a, @NullableDecl T b, Comparator<T> comparator)
@@ -457,7 +457,7 @@ else|:
 name|b
 return|;
 block|}
-comment|/**    * Returns the maximum of the two values. If the values compare as 0, the first is returned.    *    *<p>To find the maximum of more than two values, use {@code Collections.max(Arrays.asList(a, b,    * c))} (static imports recommended).    *    * @param a first value to compare, returned if greater than or equal to b.    * @param b second value to compare.    * @throws ClassCastException if the parameters are not<i>mutually comparable</i>.    * @since NEXT    */
+comment|/**    * Returns the maximum of the two values. If the values compare as 0, the first is returned.    *    *<p>The recommended solution for finding the {@code maximum} of some values depends on the type    * of your data and the number of elements you have. Read more in the Guava User Guide article on    *<a href="https://github.com/google/guava/wiki/CollectionUtilitiesExplained#comparators">{@code    * Comparators}</a>.    *    * @param a first value to compare, returned if greater than or equal to b.    * @param b second value to compare.    * @throws ClassCastException if the parameters are not<i>mutually comparable</i>.    * @since NEXT    */
 annotation|@
 name|Beta
 DECL|method|max (T a, T b)
@@ -500,7 +500,7 @@ else|:
 name|b
 return|;
 block|}
-comment|/**    * Returns the maximum of the two values, according to the given comparator. If the values compare    * as equal, the first is returned.    *    *<p>To find the maximum of more than two values, use {@code Collections.max(Arrays.asList(a, b,    * c), comparator)} (static imports recommended).    *    * @param a first value to compare, returned if greater than or equal to b.    * @param b second value to compare.    * @throws ClassCastException if the parameters are not<i>mutually comparable</i> using the given    *     comparator.    * @since NEXT    */
+comment|/**    * Returns the maximum of the two values, according to the given comparator. If the values compare    * as equal, the first is returned.    *    *<p>The recommended solution for finding the {@code maximum} of some values depends on the type    * of your data and the number of elements you have. Read more in the Guava User Guide article on    *<a href="https://github.com/google/guava/wiki/CollectionUtilitiesExplained#comparators">{@code    * Comparators}</a>.    *    * @param a first value to compare, returned if greater than or equal to b.    * @param b second value to compare.    * @throws ClassCastException if the parameters are not<i>mutually comparable</i> using the given    *     comparator.    * @since NEXT    */
 annotation|@
 name|Beta
 DECL|method|max (@ullableDecl T a, @NullableDecl T b, Comparator<T> comparator)
