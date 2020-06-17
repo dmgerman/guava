@@ -42,22 +42,6 @@ name|google
 operator|.
 name|common
 operator|.
-name|base
-operator|.
-name|Preconditions
-operator|.
-name|checkState
-import|;
-end_import
-
-begin_import
-import|import static
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
 name|util
 operator|.
 name|concurrent
@@ -284,15 +268,6 @@ literal|null
 argument_list|)
 argument_list|)
 decl_stmt|;
-DECL|field|threadAndTask
-specifier|private
-name|ThreadAndTask
-name|threadAndTask
-init|=
-operator|new
-name|ThreadAndTask
-argument_list|()
-decl_stmt|;
 comment|/**    * Enqueues a task to run when the previous task (if any) completes.    *    *<p>Cancellation does not propagate from the output future to a callable that has begun to    * execute, but if the output future is cancelled before {@link Callable#call()} is invoked,    * {@link Callable#call()} will not be invoked.    */
 DECL|method|submit (final Callable<T> callable, Executor executor)
 specifier|public
@@ -319,11 +294,6 @@ block|{
 name|checkNotNull
 argument_list|(
 name|callable
-argument_list|)
-expr_stmt|;
-name|checkNotNull
-argument_list|(
-name|executor
 argument_list|)
 expr_stmt|;
 return|return
@@ -405,11 +375,6 @@ block|{
 name|checkNotNull
 argument_list|(
 name|callable
-argument_list|)
-expr_stmt|;
-name|checkNotNull
-argument_list|(
-name|executor
 argument_list|)
 expr_stmt|;
 specifier|final
@@ -554,11 +519,7 @@ name|addListener
 argument_list|(
 name|runnable
 argument_list|,
-operator|new
-name|NonReentrantExecutor
-argument_list|(
 name|executor
-argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -664,253 +625,6 @@ expr_stmt|;
 return|return
 name|outputFuture
 return|;
-block|}
-comment|/**    * This object is unsafely published, but avoids problematic races by relying exclusively on the    * identity equality of its Thread field so that the task field is only accessed by a single    * thread.    */
-DECL|class|ThreadAndTask
-specifier|private
-specifier|static
-specifier|final
-class|class
-name|ThreadAndTask
-block|{
-comment|/**      * This field is only used for identity comparisons with the current thread. Field assignments      * are atomic, but do not provide happens-before ordering; however:      *      *<ul>      *<li>If this field's value == currentThread, we know that it's up to date, because write      *       operations in a thread always happen-before subsequent read operations in the same      *       thread      *<li>If this field's value == null because of unsafe publication, we know that it isn't the      *       object associated with our thread, because if it was the publication wouldn't have been      *       unsafe and we'd have seen our thread as the value. This state is also why a new      *       ThreadAndTask object must be created for each inline execution, because observing a      *       null thread does not mean the object is safe to reuse.      *<li>If this field's value is some other thread object, we know that it's not our thread.      *<li>If this field's value == null because it originally belonged to another thread and that      *       thread cleared it, we still know that it's not associated with our thread      *<li>If this field's value == null because it was associated with our thread and was      *       cleared, we know that we're not executing inline any more      *</ul>      *      * All the states where thread != currentThread are identical for our purposes, and so even      * though it's racy, we don't care which of those values we get, so no need to synchronize.      */
-DECL|field|thread
-name|Thread
-name|thread
-decl_stmt|;
-comment|/** Only used by the thread associated with this object */
-DECL|field|task
-name|Runnable
-name|task
-decl_stmt|;
-block|}
-comment|/**    * This class helps avoid a StackOverflowError when large numbers of tasks are submitted with    * {@link MoreExecutors#directExecutor}. Normally, when the first future completes, all the other    * tasks would be called recursively. Here, we detect that the delegate executor is executing    * inline, and maintain a queue to dispatch tasks iteratively.    *    *<p>This class would certainly be simpler and easier to reason about if it were built with    * ThreadLocal; however, ThreadLocal is not well optimized for the case where the ThreadLocal is    * non-static, and is initialized/removed frequently - this causes churn in the Thread specific    * hashmaps. Using a static ThreadLocal to avoid that overhead would mean that different    * ExecutionSequencer objects interfere with each other, which would be undesirable, in addition    * to increasing the memory footprint of every thread that interacted with it. In order to release    * entries in thread-specific maps when the ThreadLocal object itself is no longer referenced,    * ThreadLocal is usually implemented with a WeakReference, which can have negative performance    * properties; for example, calling WeakReference.get() on Android will block during an    * otherwise-concurrent GC cycle.    */
-DECL|class|NonReentrantExecutor
-specifier|private
-specifier|final
-class|class
-name|NonReentrantExecutor
-implements|implements
-name|Executor
-block|{
-DECL|field|delegate
-specifier|final
-name|Executor
-name|delegate
-decl_stmt|;
-DECL|method|NonReentrantExecutor (Executor delegate)
-specifier|private
-name|NonReentrantExecutor
-parameter_list|(
-name|Executor
-name|delegate
-parameter_list|)
-block|{
-name|this
-operator|.
-name|delegate
-operator|=
-name|delegate
-expr_stmt|;
-block|}
-annotation|@
-name|Override
-DECL|method|execute (final Runnable task)
-specifier|public
-name|void
-name|execute
-parameter_list|(
-specifier|final
-name|Runnable
-name|task
-parameter_list|)
-block|{
-specifier|final
-name|Thread
-name|submitting
-init|=
-name|Thread
-operator|.
-name|currentThread
-argument_list|()
-decl_stmt|;
-specifier|final
-name|ThreadAndTask
-name|submittingThreadAndTask
-init|=
-name|threadAndTask
-decl_stmt|;
-if|if
-condition|(
-name|submittingThreadAndTask
-operator|.
-name|thread
-operator|==
-name|submitting
-condition|)
-block|{
-comment|// Submit from inside a reentrant submit. We don't know if this one will be reentrant (and
-comment|// can't know without submitting something to the executor) so queue to run iteratively.
-comment|// Task must be null, since each execution on this executor can only produce one more
-comment|// execution.
-name|checkState
-argument_list|(
-name|submittingThreadAndTask
-operator|.
-name|task
-operator|==
-literal|null
-argument_list|)
-expr_stmt|;
-name|submittingThreadAndTask
-operator|.
-name|task
-operator|=
-operator|new
-name|Runnable
-argument_list|()
-block|{
-annotation|@
-name|Override
-specifier|public
-name|void
-name|run
-parameter_list|()
-block|{
-name|delegate
-operator|.
-name|execute
-argument_list|(
-name|task
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-expr_stmt|;
-block|}
-else|else
-block|{
-name|delegate
-operator|.
-name|execute
-argument_list|(
-operator|new
-name|Runnable
-argument_list|()
-block|{
-annotation|@
-name|Override
-specifier|public
-name|void
-name|run
-parameter_list|()
-block|{
-name|Thread
-name|executingThread
-init|=
-name|Thread
-operator|.
-name|currentThread
-argument_list|()
-decl_stmt|;
-if|if
-condition|(
-name|executingThread
-operator|!=
-name|submitting
-condition|)
-block|{
-name|task
-operator|.
-name|run
-argument_list|()
-expr_stmt|;
-return|return;
-block|}
-comment|// Executor called reentrantly! Make sure that further calls don't overflow stack.
-comment|// Further reentrant calls will see that their current thread is the same as the
-comment|// one set in threadAndTask, and queue rather than calling execute() directly.
-name|ThreadAndTask
-name|executingThreadAndTask
-init|=
-operator|new
-name|ThreadAndTask
-argument_list|()
-decl_stmt|;
-name|executingThreadAndTask
-operator|.
-name|thread
-operator|=
-name|executingThread
-expr_stmt|;
-comment|// Unconditionally set; there is no risk of throwing away a queued task from
-comment|// another thread, because in order for the current task to run on this executor
-comment|// the previous task must have already started execution. Because each task on a
-comment|// NonReentrantExecutor can only produce one execute() call to another instance
-comment|// from the same ExecutionSequencer, we know by induction that the task that
-comment|// launched this one must not have added any other runnables to that thread's
-comment|// queue, and thus we cannot be replacing a TaskAndThread object that would
-comment|// otherwise have another task queued on to it.
-name|threadAndTask
-operator|=
-name|executingThreadAndTask
-expr_stmt|;
-try|try
-block|{
-name|task
-operator|.
-name|run
-argument_list|()
-expr_stmt|;
-comment|// Now check if our task attempted to reentrantly execute the next task.
-name|Runnable
-name|queuedTask
-decl_stmt|;
-while|while
-condition|(
-operator|(
-name|queuedTask
-operator|=
-name|executingThreadAndTask
-operator|.
-name|task
-operator|)
-operator|!=
-literal|null
-condition|)
-block|{
-name|executingThreadAndTask
-operator|.
-name|task
-operator|=
-literal|null
-expr_stmt|;
-name|queuedTask
-operator|.
-name|run
-argument_list|()
-expr_stmt|;
-block|}
-block|}
-finally|finally
-block|{
-comment|// Null out the thread field, so that we don't leak a reference to Thread, and
-comment|// so that future `thread == currentThread()` calls from this thread don't
-comment|// incorrectly queue instead of executing. Don't null out the threadAndTask
-comment|// field, because it might not be ours any more.
-name|executingThreadAndTask
-operator|.
-name|thread
-operator|=
-literal|null
-expr_stmt|;
-block|}
-block|}
-block|}
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 block|}
 block|}
 end_class
