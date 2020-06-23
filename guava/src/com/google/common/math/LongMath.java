@@ -5072,7 +5072,7 @@ name|RoundingMode
 name|mode
 parameter_list|)
 block|{
-comment|// Logic copied from ToDoubleRounder.  The repeated logic isn't ideal, but this doesn't box.
+comment|// Logic adapted from ToDoubleRounder.
 name|double
 name|roundArbitrarily
 init|=
@@ -5091,7 +5091,27 @@ name|roundArbitrarily
 decl_stmt|;
 name|int
 name|cmpXToRoundArbitrarily
-init|=
+decl_stmt|;
+if|if
+condition|(
+name|roundArbitrarilyAsLong
+operator|==
+name|Long
+operator|.
+name|MAX_VALUE
+condition|)
+block|{
+comment|/*        * For most values, the conversion from roundArbitrarily to roundArbitrarilyAsLong is        * lossless. In that case we can compare x to roundArbitrarily using Longs.compare(x,        * roundArbitrarilyAsLong). The exception is for values where the conversion to double rounds        * up to give roundArbitrarily equal to 2^63, so the conversion back to long overflows and        * roundArbitrarilyAsLong is Long.MAX_VALUE. (This is the only way this condition can occur as        * otherwise the conversion back to long pads with zero bits.) In this case we know that        * roundArbitrarily> x. (This is important when x == Long.MAX_VALUE ==        * roundArbitrarilyAsLong.)        */
+name|cmpXToRoundArbitrarily
+operator|=
+operator|-
+literal|1
+expr_stmt|;
+block|}
+else|else
+block|{
+name|cmpXToRoundArbitrarily
+operator|=
 name|Longs
 operator|.
 name|compare
@@ -5100,7 +5120,8 @@ name|x
 argument_list|,
 name|roundArbitrarilyAsLong
 argument_list|)
-decl_stmt|;
+expr_stmt|;
+block|}
 switch|switch
 condition|(
 name|mode
@@ -5354,6 +5375,21 @@ name|roundCeiling
 operator|-
 name|x
 decl_stmt|;
+if|if
+condition|(
+name|roundCeiling
+operator|==
+name|Long
+operator|.
+name|MAX_VALUE
+condition|)
+block|{
+comment|// correct for Long.MAX_VALUE as discussed above: roundCeilingAsDouble must be 2^63, but
+comment|// roundCeiling is 2^63-1.
+name|deltaToCeiling
+operator|++
+expr_stmt|;
+block|}
 name|int
 name|diff
 init|=
