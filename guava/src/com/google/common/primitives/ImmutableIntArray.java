@@ -1149,8 +1149,6 @@ operator|.
 name|length
 condition|)
 block|{
-name|this
-operator|.
 name|array
 operator|=
 name|Arrays
