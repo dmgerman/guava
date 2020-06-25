@@ -1382,7 +1382,6 @@ name|BigInteger
 argument_list|>
 block|{
 DECL|field|INSTANCE
-specifier|private
 specifier|static
 specifier|final
 name|BigIntegerToDoubleRounder
@@ -1392,6 +1391,11 @@ operator|new
 name|BigIntegerToDoubleRounder
 argument_list|()
 decl_stmt|;
+DECL|method|BigIntegerToDoubleRounder ()
+specifier|private
+name|BigIntegerToDoubleRounder
+parameter_list|()
+block|{}
 annotation|@
 name|Override
 DECL|method|roundToDoubleArbitrarily (BigInteger bigInteger)

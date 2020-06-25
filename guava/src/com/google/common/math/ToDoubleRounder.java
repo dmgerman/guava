@@ -628,12 +628,14 @@ block|{
 case|case
 name|HALF_EVEN
 case|:
+comment|// roundFloorAsDouble and roundCeilingAsDouble are neighbors, so precisely
+comment|// one of them should have an even long representation
 return|return
 operator|(
 operator|(
-name|DoubleUtils
+name|Double
 operator|.
-name|getSignificand
+name|doubleToRawLongBits
 argument_list|(
 name|roundFloorAsDouble
 argument_list|)
