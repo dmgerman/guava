@@ -176,6 +176,8 @@ DECL|field|reverse
 annotation|@
 name|LazyInit
 annotation|@
+name|RetainedWith
+annotation|@
 name|NullableDecl
 specifier|private
 specifier|transient
@@ -538,8 +540,6 @@ implements|implements
 name|Serializable
 block|{
 DECL|field|original
-annotation|@
-name|RetainedWith
 specifier|final
 name|Converter
 argument_list|<

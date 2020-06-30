@@ -175,6 +175,8 @@ comment|// We lazily cache the reverse view to avoid allocating on every call to
 DECL|field|reverse
 annotation|@
 name|LazyInit
+annotation|@
+name|RetainedWith
 specifier|private
 specifier|transient
 annotation|@
@@ -538,8 +540,6 @@ implements|implements
 name|Serializable
 block|{
 DECL|field|original
-annotation|@
-name|RetainedWith
 specifier|final
 name|Converter
 argument_list|<
