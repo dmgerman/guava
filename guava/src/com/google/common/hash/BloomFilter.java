@@ -589,7 +589,6 @@ name|double
 name|expectedFpp
 parameter_list|()
 block|{
-comment|// You down with FPP? (Yeah you know me!) Who's down with FPP? (Every last homie!)
 return|return
 name|Math
 operator|.
