@@ -158,6 +158,24 @@ name|util
 operator|.
 name|concurrent
 operator|.
+name|Futures
+operator|.
+name|immediateVoidFuture
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
 name|MoreExecutors
 operator|.
 name|directExecutor
@@ -256,7 +274,7 @@ name|AtomicReference
 argument_list|<
 name|ListenableFuture
 argument_list|<
-name|Object
+name|Void
 argument_list|>
 argument_list|>
 name|ref
@@ -265,10 +283,8 @@ operator|new
 name|AtomicReference
 argument_list|<>
 argument_list|(
-name|immediateFuture
-argument_list|(
-literal|null
-argument_list|)
+name|immediateVoidFuture
+argument_list|()
 argument_list|)
 decl_stmt|;
 DECL|field|latestTaskQueue
@@ -502,7 +518,7 @@ comment|/*      * Four futures are at play here:      * taskFuture is the future
 specifier|final
 name|SettableFuture
 argument_list|<
-name|Object
+name|Void
 argument_list|>
 name|newFuture
 init|=
@@ -514,7 +530,7 @@ decl_stmt|;
 specifier|final
 name|ListenableFuture
 argument_list|<
-name|?
+name|Void
 argument_list|>
 name|oldFuture
 init|=
