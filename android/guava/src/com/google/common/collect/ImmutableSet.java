@@ -1879,9 +1879,9 @@ block|}
 block|}
 comment|/**      * Adds each element of {@code elements} to the {@code ImmutableSet}, ignoring duplicate      * elements (only the first duplicate element is added).      *      * @param elements the elements to add      * @return this {@code Builder} object      * @throws NullPointerException if {@code elements} is null or contains a null element      */
 annotation|@
-name|CanIgnoreReturnValue
-annotation|@
 name|Override
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|add (E... elements)
 specifier|public
 name|Builder
