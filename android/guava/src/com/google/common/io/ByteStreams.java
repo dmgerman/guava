@@ -318,7 +318,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|Deque
+name|Queue
 import|;
 end_import
 
@@ -655,7 +655,7 @@ init|=
 literal|20
 decl_stmt|;
 comment|/**    * Returns a byte array containing the bytes from the buffers already in {@code bufs} (which have    * a total combined length of {@code totalLen} bytes) followed by all bytes remaining in the given    * input stream.    */
-DECL|method|toByteArrayInternal (InputStream in, Deque<byte[]> bufs, int totalLen)
+DECL|method|toByteArrayInternal (InputStream in, Queue<byte[]> bufs, int totalLen)
 specifier|private
 specifier|static
 name|byte
@@ -665,7 +665,7 @@ parameter_list|(
 name|InputStream
 name|in
 parameter_list|,
-name|Deque
+name|Queue
 argument_list|<
 name|byte
 index|[]
@@ -823,14 +823,14 @@ argument_list|)
 throw|;
 block|}
 block|}
-DECL|method|combineBuffers (Deque<byte[]> bufs, int totalLen)
+DECL|method|combineBuffers (Queue<byte[]> bufs, int totalLen)
 specifier|private
 specifier|static
 name|byte
 index|[]
 name|combineBuffers
 parameter_list|(
-name|Deque
+name|Queue
 argument_list|<
 name|byte
 index|[]
@@ -869,7 +869,7 @@ name|buf
 init|=
 name|bufs
 operator|.
-name|removeFirst
+name|remove
 argument_list|()
 decl_stmt|;
 name|int
@@ -1099,7 +1099,7 @@ name|bytes
 return|;
 block|}
 comment|// the stream was longer, so read the rest normally
-name|Deque
+name|Queue
 argument_list|<
 name|byte
 index|[]
