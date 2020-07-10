@@ -2923,8 +2923,6 @@ argument_list|,
 literal|'a'
 argument_list|,
 literal|'b'
-argument_list|,
-literal|'d'
 argument_list|)
 expr_stmt|;
 comment|// Iterate again to see if calculation is done again
@@ -2960,10 +2958,6 @@ argument_list|,
 literal|'b'
 argument_list|,
 literal|'b'
-argument_list|,
-literal|'d'
-argument_list|,
-literal|'d'
 argument_list|)
 expr_stmt|;
 block|}
@@ -3035,8 +3029,6 @@ argument_list|,
 literal|'b'
 argument_list|,
 literal|'c'
-argument_list|,
-literal|'d'
 argument_list|)
 expr_stmt|;
 comment|// Iterate again to see if calculation is done again
@@ -3074,10 +3066,6 @@ argument_list|,
 literal|'b'
 argument_list|,
 literal|'c'
-argument_list|,
-literal|'d'
-argument_list|,
-literal|'d'
 argument_list|)
 expr_stmt|;
 block|}
@@ -6302,8 +6290,6 @@ argument_list|,
 literal|'h'
 argument_list|,
 literal|'d'
-argument_list|,
-literal|'a'
 argument_list|)
 expr_stmt|;
 comment|// Iterate again to see if calculation is done again
@@ -6339,10 +6325,6 @@ argument_list|,
 literal|'d'
 argument_list|,
 literal|'d'
-argument_list|,
-literal|'a'
-argument_list|,
-literal|'a'
 argument_list|)
 expr_stmt|;
 block|}
