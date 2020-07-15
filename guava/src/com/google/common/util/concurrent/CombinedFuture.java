@@ -435,12 +435,6 @@ specifier|final
 name|Executor
 name|listenerExecutor
 decl_stmt|;
-DECL|field|thrownByExecute
-name|boolean
-name|thrownByExecute
-init|=
-literal|true
-decl_stmt|;
 DECL|method|CombinedFutureInterruptibleTask (Executor listenerExecutor)
 name|CombinedFutureInterruptibleTask
 parameter_list|(
@@ -497,11 +491,6 @@ name|RejectedExecutionException
 name|e
 parameter_list|)
 block|{
-if|if
-condition|(
-name|thrownByExecute
-condition|)
-block|{
 name|CombinedFuture
 operator|.
 name|this
@@ -511,7 +500,6 @@ argument_list|(
 name|e
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 block|}
 annotation|@
@@ -675,10 +663,6 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|thrownByExecute
-operator|=
-literal|false
-expr_stmt|;
 name|ListenableFuture
 argument_list|<
 name|V
@@ -800,10 +784,6 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|thrownByExecute
-operator|=
-literal|false
-expr_stmt|;
 return|return
 name|callable
 operator|.
