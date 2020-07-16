@@ -1956,7 +1956,7 @@ argument_list|)
 argument_list|)
 argument_list|)
 operator|.
-name|breadthFirst
+name|depthFirstPreOrder
 argument_list|(
 literal|0
 argument_list|)
@@ -1969,7 +1969,7 @@ name|limit
 argument_list|(
 name|result
 argument_list|,
-literal|2
+literal|3
 argument_list|)
 argument_list|)
 operator|.
@@ -1978,6 +1978,8 @@ argument_list|(
 literal|0
 argument_list|,
 literal|1
+argument_list|,
+literal|2
 argument_list|)
 operator|.
 name|inOrder

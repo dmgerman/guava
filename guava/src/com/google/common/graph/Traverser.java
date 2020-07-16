@@ -92,6 +92,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|DoNotMock
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -163,6 +177,13 @@ end_comment
 begin_class
 annotation|@
 name|Beta
+annotation|@
+name|DoNotMock
+argument_list|(
+literal|"Call forGraph or forTree, passing a lambda or a Graph with the desired edges (built with"
+operator|+
+literal|" GraphBuilder)"
+argument_list|)
 DECL|class|Traverser
 specifier|public
 specifier|abstract
