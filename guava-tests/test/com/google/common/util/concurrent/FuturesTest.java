@@ -14769,11 +14769,11 @@ argument_list|)
 operator|.
 name|matches
 argument_list|(
-literal|"\\S+CombinedFuture@\\w+\\[status=PENDING,"
+literal|"CombinedFuture@\\w+\\[status=PENDING,"
 operator|+
-literal|" info=\\[futures=\\[\\S+SettableFuture@\\w+\\[status=PENDING],"
+literal|" info=\\[futures=\\[SettableFuture@\\w+\\[status=PENDING],"
 operator|+
-literal|" \\S+SettableFuture@\\w+\\[status=PENDING]]]]"
+literal|" SettableFuture@\\w+\\[status=PENDING]]]]"
 argument_list|)
 expr_stmt|;
 name|Integer
@@ -14798,11 +14798,11 @@ argument_list|)
 operator|.
 name|matches
 argument_list|(
-literal|"\\S+CombinedFuture@\\w+\\[status=PENDING,"
+literal|"CombinedFuture@\\w+\\[status=PENDING,"
 operator|+
-literal|" info=\\[futures=\\[\\S+SettableFuture@\\w+\\[status=SUCCESS, result=\\[1]],"
+literal|" info=\\[futures=\\[SettableFuture@\\w+\\[status=SUCCESS, result=\\[1]],"
 operator|+
-literal|" \\S+SettableFuture@\\w+\\[status=PENDING]]]]"
+literal|" SettableFuture@\\w+\\[status=PENDING]]]]"
 argument_list|)
 expr_stmt|;
 comment|// Backing futures complete
@@ -14829,7 +14829,7 @@ argument_list|)
 operator|.
 name|matches
 argument_list|(
-literal|"\\S+CombinedFuture@\\w+\\[status=PENDING]"
+literal|"CombinedFuture@\\w+\\[status=PENDING]"
 argument_list|)
 expr_stmt|;
 name|callableBlocking
@@ -14861,9 +14861,9 @@ argument_list|)
 operator|.
 name|matches
 argument_list|(
-literal|"\\S+CombinedFuture@\\w+\\[status=PENDING,"
+literal|"CombinedFuture@\\w+\\[status=PENDING,"
 operator|+
-literal|" setFuture=\\[\\S+SettableFuture@\\w+\\[status=PENDING]]]"
+literal|" setFuture=\\[SettableFuture@\\w+\\[status=PENDING]]]"
 argument_list|)
 expr_stmt|;
 comment|// Future complete
@@ -14915,7 +14915,7 @@ argument_list|)
 operator|.
 name|matches
 argument_list|(
-literal|"\\S+CombinedFuture@\\w+\\[status=SUCCESS, result=\\["
+literal|"CombinedFuture@\\w+\\[status=SUCCESS, result=\\["
 operator|+
 name|expectedResult
 operator|+
