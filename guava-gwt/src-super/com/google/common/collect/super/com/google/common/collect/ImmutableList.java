@@ -54,20 +54,6 @@ name|com
 operator|.
 name|google
 operator|.
-name|common
-operator|.
-name|annotations
-operator|.
-name|Beta
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
 name|errorprone
 operator|.
 name|annotations
@@ -241,8 +227,6 @@ DECL|method|ImmutableList ()
 name|ImmutableList
 parameter_list|()
 block|{}
-annotation|@
-name|Beta
 DECL|method|toImmutableList ()
 specifier|public
 specifier|static

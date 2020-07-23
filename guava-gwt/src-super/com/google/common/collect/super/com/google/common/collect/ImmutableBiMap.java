@@ -34,20 +34,6 @@ end_import
 
 begin_import
 import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|annotations
-operator|.
-name|Beta
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|util
@@ -132,8 +118,6 @@ argument_list|,
 name|V
 argument_list|>
 block|{
-annotation|@
-name|Beta
 DECL|method|toImmutableBiMap ( Function<? super T, ? extends K> keyFunction, Function<? super T, ? extends V> valueFunction)
 specifier|public
 specifier|static
