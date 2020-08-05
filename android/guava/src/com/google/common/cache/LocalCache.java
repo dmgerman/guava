@@ -562,7 +562,7 @@ name|j2objc
 operator|.
 name|annotations
 operator|.
-name|Weak
+name|RetainedWith
 import|;
 end_import
 
@@ -576,7 +576,7 @@ name|j2objc
 operator|.
 name|annotations
 operator|.
-name|WeakOuter
+name|Weak
 import|;
 end_import
 
@@ -4720,6 +4720,8 @@ expr_stmt|;
 block|}
 comment|// Guarded By Segment.this
 DECL|field|nextAccess
+annotation|@
+name|Weak
 name|ReferenceEntry
 argument_list|<
 name|K
@@ -4773,6 +4775,8 @@ expr_stmt|;
 block|}
 comment|// Guarded By Segment.this
 DECL|field|previousAccess
+annotation|@
+name|Weak
 name|ReferenceEntry
 argument_list|<
 name|K
@@ -4915,6 +4919,8 @@ expr_stmt|;
 block|}
 comment|// Guarded By Segment.this
 DECL|field|nextWrite
+annotation|@
+name|Weak
 name|ReferenceEntry
 argument_list|<
 name|K
@@ -4968,6 +4974,8 @@ expr_stmt|;
 block|}
 comment|// Guarded By Segment.this
 DECL|field|previousWrite
+annotation|@
+name|Weak
 name|ReferenceEntry
 argument_list|<
 name|K
@@ -5110,6 +5118,8 @@ expr_stmt|;
 block|}
 comment|// Guarded By Segment.this
 DECL|field|nextAccess
+annotation|@
+name|Weak
 name|ReferenceEntry
 argument_list|<
 name|K
@@ -5163,6 +5173,8 @@ expr_stmt|;
 block|}
 comment|// Guarded By Segment.this
 DECL|field|previousAccess
+annotation|@
+name|Weak
 name|ReferenceEntry
 argument_list|<
 name|K
@@ -5256,6 +5268,8 @@ expr_stmt|;
 block|}
 comment|// Guarded By Segment.this
 DECL|field|nextWrite
+annotation|@
+name|Weak
 name|ReferenceEntry
 argument_list|<
 name|K
@@ -5309,6 +5323,8 @@ expr_stmt|;
 block|}
 comment|// Guarded By Segment.this
 DECL|field|previousWrite
+annotation|@
+name|Weak
 name|ReferenceEntry
 argument_list|<
 name|K
@@ -5871,6 +5887,8 @@ expr_stmt|;
 block|}
 comment|// Guarded By Segment.this
 DECL|field|nextAccess
+annotation|@
+name|Weak
 name|ReferenceEntry
 argument_list|<
 name|K
@@ -5924,6 +5942,8 @@ expr_stmt|;
 block|}
 comment|// Guarded By Segment.this
 DECL|field|previousAccess
+annotation|@
+name|Weak
 name|ReferenceEntry
 argument_list|<
 name|K
@@ -6074,6 +6094,8 @@ expr_stmt|;
 block|}
 comment|// Guarded By Segment.this
 DECL|field|nextWrite
+annotation|@
+name|Weak
 name|ReferenceEntry
 argument_list|<
 name|K
@@ -6127,6 +6149,8 @@ expr_stmt|;
 block|}
 comment|// Guarded By Segment.this
 DECL|field|previousWrite
+annotation|@
+name|Weak
 name|ReferenceEntry
 argument_list|<
 name|K
@@ -6277,6 +6301,8 @@ expr_stmt|;
 block|}
 comment|// Guarded By Segment.this
 DECL|field|nextAccess
+annotation|@
+name|Weak
 name|ReferenceEntry
 argument_list|<
 name|K
@@ -6330,6 +6356,8 @@ expr_stmt|;
 block|}
 comment|// Guarded By Segment.this
 DECL|field|previousAccess
+annotation|@
+name|Weak
 name|ReferenceEntry
 argument_list|<
 name|K
@@ -6423,6 +6451,8 @@ expr_stmt|;
 block|}
 comment|// Guarded By Segment.this
 DECL|field|nextWrite
+annotation|@
+name|Weak
 name|ReferenceEntry
 argument_list|<
 name|K
@@ -6476,6 +6506,8 @@ expr_stmt|;
 block|}
 comment|// Guarded By Segment.this
 DECL|field|previousWrite
+annotation|@
+name|Weak
 name|ReferenceEntry
 argument_list|<
 name|K
@@ -16597,6 +16629,8 @@ name|long
 name|time
 parameter_list|)
 block|{}
+annotation|@
+name|Weak
 name|ReferenceEntry
 argument_list|<
 name|K
@@ -16645,6 +16679,8 @@ operator|=
 name|next
 expr_stmt|;
 block|}
+annotation|@
+name|Weak
 name|ReferenceEntry
 argument_list|<
 name|K
@@ -17233,6 +17269,8 @@ name|long
 name|time
 parameter_list|)
 block|{}
+annotation|@
+name|Weak
 name|ReferenceEntry
 argument_list|<
 name|K
@@ -17281,6 +17319,8 @@ operator|=
 name|next
 expr_stmt|;
 block|}
+annotation|@
+name|Weak
 name|ReferenceEntry
 argument_list|<
 name|K
@@ -19767,6 +19807,8 @@ block|}
 block|}
 DECL|field|keySet
 annotation|@
+name|RetainedWith
+annotation|@
 name|NullableDecl
 name|Set
 argument_list|<
@@ -19808,13 +19850,13 @@ name|keySet
 operator|=
 operator|new
 name|KeySet
-argument_list|(
-name|this
-argument_list|)
+argument_list|()
 operator|)
 return|;
 block|}
 DECL|field|values
+annotation|@
+name|RetainedWith
 annotation|@
 name|NullableDecl
 name|Collection
@@ -19857,13 +19899,13 @@ name|values
 operator|=
 operator|new
 name|Values
-argument_list|(
-name|this
-argument_list|)
+argument_list|()
 operator|)
 return|;
 block|}
 DECL|field|entrySet
+annotation|@
+name|RetainedWith
 annotation|@
 name|NullableDecl
 name|Set
@@ -19924,9 +19966,7 @@ name|entrySet
 operator|=
 operator|new
 name|EntrySet
-argument_list|(
-name|this
-argument_list|)
+argument_list|()
 operator|)
 return|;
 block|}
@@ -20672,37 +20712,6 @@ argument_list|<
 name|T
 argument_list|>
 block|{
-DECL|field|map
-annotation|@
-name|Weak
-specifier|final
-name|ConcurrentMap
-argument_list|<
-name|?
-argument_list|,
-name|?
-argument_list|>
-name|map
-decl_stmt|;
-DECL|method|AbstractCacheSet (ConcurrentMap<?, ?> map)
-name|AbstractCacheSet
-parameter_list|(
-name|ConcurrentMap
-argument_list|<
-name|?
-argument_list|,
-name|?
-argument_list|>
-name|map
-parameter_list|)
-block|{
-name|this
-operator|.
-name|map
-operator|=
-name|map
-expr_stmt|;
-block|}
 annotation|@
 name|Override
 DECL|method|size ()
@@ -20712,7 +20721,9 @@ name|size
 parameter_list|()
 block|{
 return|return
-name|map
+name|LocalCache
+operator|.
+name|this
 operator|.
 name|size
 argument_list|()
@@ -20727,7 +20738,9 @@ name|isEmpty
 parameter_list|()
 block|{
 return|return
-name|map
+name|LocalCache
+operator|.
+name|this
 operator|.
 name|isEmpty
 argument_list|()
@@ -20741,7 +20754,9 @@ name|void
 name|clear
 parameter_list|()
 block|{
-name|map
+name|LocalCache
+operator|.
+name|this
 operator|.
 name|clear
 argument_list|()
@@ -20851,8 +20866,6 @@ return|return
 name|result
 return|;
 block|}
-annotation|@
-name|WeakOuter
 DECL|class|KeySet
 specifier|final
 class|class
@@ -20863,24 +20876,6 @@ argument_list|<
 name|K
 argument_list|>
 block|{
-DECL|method|KeySet (ConcurrentMap<?, ?> map)
-name|KeySet
-parameter_list|(
-name|ConcurrentMap
-argument_list|<
-name|?
-argument_list|,
-name|?
-argument_list|>
-name|map
-parameter_list|)
-block|{
-name|super
-argument_list|(
-name|map
-argument_list|)
-expr_stmt|;
-block|}
 annotation|@
 name|Override
 DECL|method|iterator ()
@@ -20910,7 +20905,9 @@ name|o
 parameter_list|)
 block|{
 return|return
-name|map
+name|LocalCache
+operator|.
+name|this
 operator|.
 name|containsKey
 argument_list|(
@@ -20930,7 +20927,9 @@ name|o
 parameter_list|)
 block|{
 return|return
-name|map
+name|LocalCache
+operator|.
+name|this
 operator|.
 name|remove
 argument_list|(
@@ -20941,8 +20940,6 @@ literal|null
 return|;
 block|}
 block|}
-annotation|@
-name|WeakOuter
 DECL|class|Values
 specifier|final
 class|class
@@ -20953,36 +20950,6 @@ argument_list|<
 name|V
 argument_list|>
 block|{
-DECL|field|map
-specifier|private
-specifier|final
-name|ConcurrentMap
-argument_list|<
-name|?
-argument_list|,
-name|?
-argument_list|>
-name|map
-decl_stmt|;
-DECL|method|Values (ConcurrentMap<?, ?> map)
-name|Values
-parameter_list|(
-name|ConcurrentMap
-argument_list|<
-name|?
-argument_list|,
-name|?
-argument_list|>
-name|map
-parameter_list|)
-block|{
-name|this
-operator|.
-name|map
-operator|=
-name|map
-expr_stmt|;
-block|}
 annotation|@
 name|Override
 DECL|method|size ()
@@ -20992,7 +20959,9 @@ name|size
 parameter_list|()
 block|{
 return|return
-name|map
+name|LocalCache
+operator|.
+name|this
 operator|.
 name|size
 argument_list|()
@@ -21007,7 +20976,9 @@ name|isEmpty
 parameter_list|()
 block|{
 return|return
-name|map
+name|LocalCache
+operator|.
+name|this
 operator|.
 name|isEmpty
 argument_list|()
@@ -21021,7 +20992,9 @@ name|void
 name|clear
 parameter_list|()
 block|{
-name|map
+name|LocalCache
+operator|.
+name|this
 operator|.
 name|clear
 argument_list|()
@@ -21056,7 +21029,9 @@ name|o
 parameter_list|)
 block|{
 return|return
-name|map
+name|LocalCache
+operator|.
+name|this
 operator|.
 name|containsValue
 argument_list|(
@@ -21114,8 +21089,6 @@ argument_list|)
 return|;
 block|}
 block|}
-annotation|@
-name|WeakOuter
 DECL|class|EntrySet
 specifier|final
 class|class
@@ -21131,24 +21104,6 @@ name|V
 argument_list|>
 argument_list|>
 block|{
-DECL|method|EntrySet (ConcurrentMap<?, ?> map)
-name|EntrySet
-parameter_list|(
-name|ConcurrentMap
-argument_list|<
-name|?
-argument_list|,
-name|?
-argument_list|>
-name|map
-parameter_list|)
-block|{
-name|super
-argument_list|(
-name|map
-argument_list|)
-expr_stmt|;
-block|}
 annotation|@
 name|Override
 DECL|method|iterator ()
