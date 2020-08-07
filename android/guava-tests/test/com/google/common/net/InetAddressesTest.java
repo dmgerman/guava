@@ -211,6 +211,8 @@ literal|"42.42.42.42..."
 argument_list|,
 literal|".42.42.42.42"
 argument_list|,
+literal|".42.42.42"
+argument_list|,
 literal|"...42.42.42.42"
 argument_list|,
 literal|"42.42.42.-0"
