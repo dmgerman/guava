@@ -233,6 +233,8 @@ literal|"257.0.0.0"
 argument_list|,
 literal|"42.42.42.-42"
 argument_list|,
+literal|"42.42.42.ab"
+argument_list|,
 literal|"3ffe::1.net"
 argument_list|,
 literal|"3ffe::1::1"
