@@ -82,6 +82,22 @@ end_import
 
 begin_import
 import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Strings
+operator|.
+name|lenientFormat
+import|;
+end_import
+
+begin_import
+import|import static
 name|java
 operator|.
 name|lang
@@ -853,19 +869,15 @@ name|float
 name|max
 parameter_list|)
 block|{
-name|checkArgument
-argument_list|(
+comment|// avoid auto-boxing by not using Preconditions.checkArgument(); see Guava issue 3984
+comment|// Reject NaN by testing for the good case (min<= max) instead of the bad (min> max).
+if|if
+condition|(
 name|min
 operator|<=
 name|max
-argument_list|,
-literal|"min (%s) must be less than or equal to max (%s)"
-argument_list|,
-name|min
-argument_list|,
-name|max
-argument_list|)
-expr_stmt|;
+condition|)
+block|{
 return|return
 name|Math
 operator|.
@@ -883,6 +895,21 @@ argument_list|,
 name|max
 argument_list|)
 return|;
+block|}
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+name|lenientFormat
+argument_list|(
+literal|"min (%s) must be less than or equal to max (%s)"
+argument_list|,
+name|min
+argument_list|,
+name|max
+argument_list|)
+argument_list|)
+throw|;
 block|}
 comment|/**    * Returns the values from each provided array combined into a single array. For example, {@code    * concat(new float[] {a, b}, new float[] {}, new float[] {c}} returns the array {@code {a, b,    * c}}.    *    * @param arrays zero or more {@code float} arrays    * @return a single array containing all the values from the source arrays, in order    */
 DECL|method|concat (float[]... arrays)
