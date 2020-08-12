@@ -257,6 +257,9 @@ literal|"+1.+2.+3.4"
 argument_list|,
 literal|"1.2.3.4e0"
 argument_list|,
+literal|"6:5:4:3:2:1:0"
+argument_list|,
+comment|// too few parts
 literal|"::7:6:5:4:3:2:1:0"
 argument_list|,
 comment|// too many parts
