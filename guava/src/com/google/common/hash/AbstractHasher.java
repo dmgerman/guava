@@ -364,10 +364,12 @@ name|remaining
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|b
+name|Java8Compatibility
 operator|.
 name|position
 argument_list|(
+name|b
+argument_list|,
 name|b
 operator|.
 name|limit

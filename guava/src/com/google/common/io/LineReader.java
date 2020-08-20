@@ -311,10 +311,12 @@ operator|==
 literal|null
 condition|)
 block|{
-name|cbuf
+name|Java8Compatibility
 operator|.
 name|clear
-argument_list|()
+argument_list|(
+name|cbuf
+argument_list|)
 expr_stmt|;
 comment|// The default implementation of Reader#read(CharBuffer) allocates a
 comment|// temporary char[], so we call Reader#read(char[], int, int) instead.

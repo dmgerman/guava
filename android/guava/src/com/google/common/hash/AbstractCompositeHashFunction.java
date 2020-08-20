@@ -424,10 +424,12 @@ range|:
 name|hashers
 control|)
 block|{
-name|bytes
+name|Java8Compatibility
 operator|.
 name|position
 argument_list|(
+name|bytes
+argument_list|,
 name|pos
 argument_list|)
 expr_stmt|;
