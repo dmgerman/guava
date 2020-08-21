@@ -1710,7 +1710,7 @@ condition|(
 literal|true
 condition|)
 block|{
-name|LockSupport
+name|OverflowAvoidingLockSupport
 operator|.
 name|parkNanos
 argument_list|(
