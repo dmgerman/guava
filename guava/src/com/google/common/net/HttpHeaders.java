@@ -1262,6 +1262,16 @@ name|SEC_CH_UA
 init|=
 literal|"Sec-CH-UA"
 decl_stmt|;
+comment|/**    * The HTTP<a href="https://wicg.github.io/ua-client-hints/#sec-ch-arch">{@code    * Sec-CH-UA-Arch}</a> header field name.    *    * @since NEXT    */
+DECL|field|SEC_CH_UA_ARCH
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|SEC_CH_UA_ARCH
+init|=
+literal|"Sec-CH-UA-Arch"
+decl_stmt|;
 comment|/**    * The HTTP<a href="https://wicg.github.io/ua-client-hints/#sec-ch-model">{@code    * Sec-CH-UA-Model}</a> header field name.    *    * @since NEXT    */
 DECL|field|SEC_CH_UA_MODEL
 specifier|public
