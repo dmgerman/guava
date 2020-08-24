@@ -1436,6 +1436,50 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+DECL|method|testPrimitiveSubscribeFails ()
+specifier|public
+name|void
+name|testPrimitiveSubscribeFails
+parameter_list|()
+block|{
+class|class
+name|SubscribesToPrimitive
+block|{
+annotation|@
+name|Subscribe
+specifier|public
+name|void
+name|toInt
+parameter_list|(
+name|int
+name|i
+parameter_list|)
+block|{}
+block|}
+try|try
+block|{
+name|bus
+operator|.
+name|register
+argument_list|(
+operator|new
+name|SubscribesToPrimitive
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|fail
+argument_list|(
+literal|"should have thrown"
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|IllegalArgumentException
+name|expected
+parameter_list|)
+block|{     }
+block|}
 comment|/** Records thrown exception information. */
 DECL|class|RecordingSubscriberExceptionHandler
 specifier|private

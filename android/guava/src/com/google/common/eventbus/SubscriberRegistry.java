@@ -49,6 +49,22 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Throwables
+operator|.
+name|throwIfUnchecked
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -241,6 +257,20 @@ operator|.
 name|collect
 operator|.
 name|Multimap
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|primitives
+operator|.
+name|Primitives
 import|;
 end_import
 
@@ -1063,6 +1093,8 @@ argument_list|>
 name|clazz
 parameter_list|)
 block|{
+try|try
+block|{
 return|return
 name|subscriberMethodsCache
 operator|.
@@ -1071,6 +1103,25 @@ argument_list|(
 name|clazz
 argument_list|)
 return|;
+block|}
+catch|catch
+parameter_list|(
+name|UncheckedExecutionException
+name|e
+parameter_list|)
+block|{
+name|throwIfUnchecked
+argument_list|(
+name|e
+operator|.
+name|getCause
+argument_list|()
+argument_list|)
+expr_stmt|;
+throw|throw
+name|e
+throw|;
+block|}
 block|}
 end_function
 
@@ -1189,7 +1240,7 @@ name|length
 operator|==
 literal|1
 argument_list|,
-literal|"Method %s has @Subscribe annotation but has %s parameters."
+literal|"Method %s has @Subscribe annotation but has %s parameters. "
 operator|+
 literal|"Subscriber methods must have exactly 1 parameter."
 argument_list|,
@@ -1198,6 +1249,47 @@ argument_list|,
 name|parameterTypes
 operator|.
 name|length
+argument_list|)
+expr_stmt|;
+name|checkArgument
+argument_list|(
+operator|!
+name|parameterTypes
+index|[
+literal|0
+index|]
+operator|.
+name|isPrimitive
+argument_list|()
+argument_list|,
+literal|"@Subscribe method %s's parameter is %s. "
+operator|+
+literal|"Subscriber methods cannot accept primitives. "
+operator|+
+literal|"Consider changing the parameter to %s."
+argument_list|,
+name|method
+argument_list|,
+name|parameterTypes
+index|[
+literal|0
+index|]
+operator|.
+name|getName
+argument_list|()
+argument_list|,
+name|Primitives
+operator|.
+name|wrap
+argument_list|(
+name|parameterTypes
+index|[
+literal|0
+index|]
+argument_list|)
+operator|.
+name|getSimpleName
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|MethodIdentifier
