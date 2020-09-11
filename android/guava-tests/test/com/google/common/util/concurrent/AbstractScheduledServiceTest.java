@@ -587,7 +587,7 @@ name|CancellationException
 name|expected
 parameter_list|)
 block|{     }
-comment|// An execution exception holds a runtime exception (from throwables.propogate) that holds our
+comment|// An execution exception holds a runtime exception (from throwables.propagate) that holds our
 comment|// original exception.
 name|assertEquals
 argument_list|(

@@ -2481,7 +2481,7 @@ name|rValue
 operator|=
 literal|true
 expr_stmt|;
-comment|// We call interuptTask before calling complete(), which is consistent with
+comment|// We call interruptTask before calling complete(), which is consistent with
 comment|// FutureTask
 if|if
 condition|(
