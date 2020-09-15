@@ -496,20 +496,6 @@ name|com
 operator|.
 name|google
 operator|.
-name|errorprone
-operator|.
-name|annotations
-operator|.
-name|DoNotMock
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
 name|j2objc
 operator|.
 name|annotations
@@ -3282,11 +3268,6 @@ comment|/**    * A builder of a {@link ClosingFuture} step that is derived from 
 end_comment
 
 begin_class
-annotation|@
-name|DoNotMock
-argument_list|(
-literal|"Use ClosingFuture.whenAllSucceed() or .whenAllComplete() instead."
-argument_list|)
 DECL|class|Combiner
 specifier|public
 specifier|static
