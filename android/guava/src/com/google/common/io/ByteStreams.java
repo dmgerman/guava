@@ -682,7 +682,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|// Starting with an 8k buffer, double the size of each sucessive buffer. Buffers are retained
+comment|// Starting with an 8k buffer, double the size of each successive buffer. Buffers are retained
 comment|// in a deque so that there's no copying between buffers while reading and so all of the bytes
 comment|// in each new allocated buffer are available for reading from the stream.
 for|for

@@ -2044,7 +2044,7 @@ name|Callable
 argument_list|<
 name|Void
 argument_list|>
-name|completeSucessFullyRunnable
+name|completeSuccessfullyRunnable
 init|=
 operator|new
 name|Callable
@@ -2203,7 +2203,7 @@ name|Callable
 argument_list|<
 name|Void
 argument_list|>
-name|setFutureCompleteSucessFullyRunnable
+name|setFutureCompleteSuccessfullyRunnable
 init|=
 operator|new
 name|Callable
@@ -2615,7 +2615,7 @@ name|allTasks
 operator|.
 name|add
 argument_list|(
-name|completeSucessFullyRunnable
+name|completeSuccessfullyRunnable
 argument_list|)
 expr_stmt|;
 name|allTasks
@@ -2636,7 +2636,7 @@ name|allTasks
 operator|.
 name|add
 argument_list|(
-name|setFutureCompleteSucessFullyRunnable
+name|setFutureCompleteSuccessfullyRunnable
 argument_list|)
 expr_stmt|;
 name|allTasks
@@ -3034,7 +3034,7 @@ argument_list|()
 decl_stmt|;
 specifier|final
 name|AtomicBoolean
-name|setFutureSetSucess
+name|setFutureSetSuccess
 init|=
 operator|new
 name|AtomicBoolean
@@ -3042,7 +3042,7 @@ argument_list|()
 decl_stmt|;
 specifier|final
 name|AtomicBoolean
-name|setFutureCompletionSucess
+name|setFutureCompletionSuccess
 init|=
 operator|new
 name|AtomicBoolean
@@ -3050,7 +3050,7 @@ argument_list|()
 decl_stmt|;
 specifier|final
 name|AtomicBoolean
-name|cancellationSucess
+name|cancellationSuccess
 init|=
 operator|new
 name|AtomicBoolean
@@ -3070,7 +3070,7 @@ name|void
 name|run
 parameter_list|()
 block|{
-name|cancellationSucess
+name|cancellationSuccess
 operator|.
 name|set
 argument_list|(
@@ -3094,7 +3094,7 @@ block|}
 block|}
 decl_stmt|;
 name|Runnable
-name|setFutureCompleteSucessFullyRunnable
+name|setFutureCompleteSuccessfullyRunnable
 init|=
 operator|new
 name|Runnable
@@ -3118,7 +3118,7 @@ operator|.
 name|get
 argument_list|()
 decl_stmt|;
-name|setFutureSetSucess
+name|setFutureSetSuccess
 operator|.
 name|set
 argument_list|(
@@ -3133,7 +3133,7 @@ name|future
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|setFutureCompletionSucess
+name|setFutureCompletionSuccess
 operator|.
 name|set
 argument_list|(
@@ -3382,7 +3382,7 @@ name|allTasks
 operator|.
 name|add
 argument_list|(
-name|setFutureCompleteSucessFullyRunnable
+name|setFutureCompleteSuccessfullyRunnable
 argument_list|)
 expr_stmt|;
 for|for
@@ -3601,7 +3601,7 @@ argument_list|)
 expr_stmt|;
 name|assertTrue
 argument_list|(
-name|cancellationSucess
+name|cancellationSuccess
 operator|.
 name|get
 argument_list|()
@@ -3614,13 +3614,13 @@ comment|// 3. after setFuture and set() are called but before the listener compl
 if|if
 condition|(
 operator|!
-name|setFutureSetSucess
+name|setFutureSetSuccess
 operator|.
 name|get
 argument_list|()
 operator|||
 operator|!
-name|setFutureCompletionSucess
+name|setFutureCompletionSuccess
 operator|.
 name|get
 argument_list|()
@@ -3652,7 +3652,7 @@ block|{
 comment|// set on the future completed
 name|assertFalse
 argument_list|(
-name|cancellationSucess
+name|cancellationSuccess
 operator|.
 name|get
 argument_list|()
@@ -3660,7 +3660,7 @@ argument_list|)
 expr_stmt|;
 name|assertTrue
 argument_list|(
-name|setFutureSetSucess
+name|setFutureSetSuccess
 operator|.
 name|get
 argument_list|()
@@ -3668,7 +3668,7 @@ argument_list|)
 expr_stmt|;
 name|assertTrue
 argument_list|(
-name|setFutureCompletionSucess
+name|setFutureCompletionSuccess
 operator|.
 name|get
 argument_list|()
@@ -3676,21 +3676,21 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// reset for next iteration
-name|setFutureSetSucess
+name|setFutureSetSuccess
 operator|.
 name|set
 argument_list|(
 literal|false
 argument_list|)
 expr_stmt|;
-name|setFutureCompletionSucess
+name|setFutureCompletionSuccess
 operator|.
 name|set
 argument_list|(
 literal|false
 argument_list|)
 expr_stmt|;
-name|cancellationSucess
+name|cancellationSuccess
 operator|.
 name|set
 argument_list|(
@@ -3773,7 +3773,7 @@ argument_list|()
 decl_stmt|;
 specifier|final
 name|AtomicBoolean
-name|cancellationSucess
+name|cancellationSuccess
 init|=
 operator|new
 name|AtomicBoolean
@@ -3799,7 +3799,7 @@ name|Void
 name|call
 parameter_list|()
 block|{
-name|cancellationSucess
+name|cancellationSuccess
 operator|.
 name|set
 argument_list|(
@@ -3829,7 +3829,7 @@ name|Callable
 argument_list|<
 name|Void
 argument_list|>
-name|setFutureCompleteSucessFullyRunnable
+name|setFutureCompleteSuccessfullyRunnable
 init|=
 operator|new
 name|Callable
@@ -4009,7 +4009,7 @@ name|allTasks
 operator|.
 name|add
 argument_list|(
-name|setFutureCompleteSucessFullyRunnable
+name|setFutureCompleteSuccessfullyRunnable
 argument_list|)
 expr_stmt|;
 name|allTasks
@@ -4162,7 +4162,7 @@ argument_list|)
 expr_stmt|;
 name|assertTrue
 argument_list|(
-name|cancellationSucess
+name|cancellationSuccess
 operator|.
 name|get
 argument_list|()
@@ -4189,7 +4189,7 @@ argument_list|)
 expr_stmt|;
 name|assertFalse
 argument_list|(
-name|cancellationSucess
+name|cancellationSuccess
 operator|.
 name|get
 argument_list|()
@@ -4204,7 +4204,7 @@ argument_list|(
 literal|false
 argument_list|)
 expr_stmt|;
-name|cancellationSucess
+name|cancellationSuccess
 operator|.
 name|set
 argument_list|(

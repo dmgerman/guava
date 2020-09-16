@@ -538,7 +538,7 @@ name|isEmpty
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|/*      * TODO(jlevy): Support only one of rowKey / columnKey being empty? If we      * do, when columnKeys is empty but rowKeys isn't, rowKeyList() can contain      * elements but rowKeySet() will be empty and containsRow() won't      * acknolwedge them.      */
+comment|/*      * TODO(jlevy): Support only one of rowKey / columnKey being empty? If we      * do, when columnKeys is empty but rowKeys isn't, rowKeyList() can contain      * elements but rowKeySet() will be empty and containsRow() won't      * acknowledge them.      */
 name|rowKeyToIndex
 operator|=
 name|Maps

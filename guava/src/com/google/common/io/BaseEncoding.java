@@ -4834,7 +4834,7 @@ parameter_list|)
 block|{
 specifier|final
 name|Appendable
-name|seperatingAppendable
+name|separatingAppendable
 init|=
 name|separatingAppendable
 argument_list|(
@@ -4862,7 +4862,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|seperatingAppendable
+name|separatingAppendable
 operator|.
 name|append
 argument_list|(
