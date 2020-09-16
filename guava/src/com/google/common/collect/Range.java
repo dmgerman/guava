@@ -1840,6 +1840,46 @@ argument_list|>
 name|otherRange
 parameter_list|)
 block|{
+comment|/*      * For an explanation of the basic principle behind this check, see      * https://stackoverflow.com/a/35754308/28465      *      * In that explanation's notation, our `overlap` check would be `x1< y2&& y1< x2`. We've      * flipped one part of the check so that we're using "less than" in both cases (rather than a      * mix of "less than" and "greater than"). We've also switched to "strictly less than" rather      * than "less than or equal to" because of *handwave* the difference between "endpoints of      * inclusive ranges" and "Cuts."      */
+if|if
+condition|(
+name|lowerBound
+operator|.
+name|compareTo
+argument_list|(
+name|otherRange
+operator|.
+name|upperBound
+argument_list|)
+operator|<
+literal|0
+operator|&&
+name|otherRange
+operator|.
+name|lowerBound
+operator|.
+name|compareTo
+argument_list|(
+name|upperBound
+argument_list|)
+operator|<
+literal|0
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"Ranges have a nonempty intersection: "
+operator|+
+name|this
+operator|+
+literal|", "
+operator|+
+name|otherRange
+argument_list|)
+throw|;
+block|}
 name|boolean
 name|isThisFirst
 init|=
