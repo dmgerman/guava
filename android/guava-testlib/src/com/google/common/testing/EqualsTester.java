@@ -423,6 +423,35 @@ name|hashCode
 argument_list|()
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+operator|!
+operator|(
+name|item
+operator|instanceof
+name|String
+operator|)
+condition|)
+block|{
+name|assertTrue
+argument_list|(
+name|item
+operator|+
+literal|" must not be Object#equals to its Object#toString representation"
+argument_list|,
+operator|!
+name|item
+operator|.
+name|equals
+argument_list|(
+name|item
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 block|}
 comment|/**    * Class used to test whether equals() correctly handles an instance of an incompatible class.    * Since it is a private inner class, the invoker can never pass in an instance to the tester    */
