@@ -496,6 +496,20 @@ name|com
 operator|.
 name|google
 operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|DoNotMock
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
 name|j2objc
 operator|.
 name|annotations
@@ -672,6 +686,11 @@ begin_class
 annotation|@
 name|Beta
 comment|// @Beta for one release.
+annotation|@
+name|DoNotMock
+argument_list|(
+literal|"Use ClosingFuture.from(Futures.immediate*Future)"
+argument_list|)
 comment|// TODO(dpb): GWT compatibility.
 DECL|class|ClosingFuture
 specifier|public
@@ -3267,7 +3286,24 @@ unit|}   }
 comment|/**    * A builder of a {@link ClosingFuture} step that is derived from more than one input step.    *    *<p>See {@link #whenAllComplete(Iterable)} and {@link #whenAllSucceed(Iterable)} for how to    * instantiate this class.    *    *<p>Example:    *    *<pre>{@code    * final ClosingFuture<BufferedReader> file1ReaderFuture = ...;    * final ClosingFuture<BufferedReader> file2ReaderFuture = ...;    * ListenableFuture<Integer> numberOfDifferentLines =    *       ClosingFuture.whenAllSucceed(file1ReaderFuture, file2ReaderFuture)    *           .call(    *               (closer, peeker) -> {    *                 BufferedReader file1Reader = peeker.getDone(file1ReaderFuture);    *                 BufferedReader file2Reader = peeker.getDone(file2ReaderFuture);    *                 return countDifferentLines(file1Reader, file2Reader);    *               },    *               executor)    *           .closing(executor);    * }</pre>    */
 end_comment
 
+begin_comment
+comment|// TODO(cpovirk): Use simple name instead of fully qualified after we stop building with JDK 8.
+end_comment
+
 begin_class
+annotation|@
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|DoNotMock
+argument_list|(
+literal|"Use ClosingFuture.whenAllSucceed() or .whenAllComplete() instead."
+argument_list|)
 DECL|class|Combiner
 specifier|public
 specifier|static
