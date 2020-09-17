@@ -5590,7 +5590,9 @@ argument_list|,
 name|restriction
 argument_list|)
 expr_stmt|;
-name|super
+name|TreeRangeSet
+operator|.
+name|this
 operator|.
 name|add
 argument_list|(
