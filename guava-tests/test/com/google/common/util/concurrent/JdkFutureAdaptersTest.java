@@ -1121,6 +1121,12 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"IsInstanceIncompatibleType"
+argument_list|)
+comment|// intentional.
 DECL|method|testListenInPoolThreadRunsListenerAfterRuntimeException ()
 specifier|public
 name|void
