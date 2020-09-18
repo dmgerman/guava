@@ -212,13 +212,13 @@ annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
-DECL|method|remove (Object object)
+DECL|method|remove (Object key)
 specifier|public
 name|V
 name|remove
 parameter_list|(
 name|Object
-name|object
+name|key
 parameter_list|)
 block|{
 return|return
@@ -227,7 +227,7 @@ argument_list|()
 operator|.
 name|remove
 argument_list|(
-name|object
+name|key
 argument_list|)
 return|;
 block|}
