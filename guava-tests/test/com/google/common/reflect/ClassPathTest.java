@@ -605,6 +605,19 @@ name|getName
 argument_list|()
 argument_list|)
 decl_stmt|;
+DECL|field|FILE
+specifier|private
+specifier|static
+specifier|final
+name|File
+name|FILE
+init|=
+operator|new
+name|File
+argument_list|(
+literal|"."
+argument_list|)
+decl_stmt|;
 DECL|method|testEquals ()
 specifier|public
 name|void
@@ -660,6 +673,8 @@ argument_list|(
 operator|new
 name|ResourceInfo
 argument_list|(
+name|FILE
+argument_list|,
 literal|"a/b/c.txt"
 argument_list|,
 name|getClass
@@ -672,6 +687,8 @@ argument_list|,
 operator|new
 name|ResourceInfo
 argument_list|(
+name|FILE
+argument_list|,
 literal|"a/b/c.txt"
 argument_list|,
 name|getClass
@@ -687,6 +704,8 @@ argument_list|(
 operator|new
 name|ResourceInfo
 argument_list|(
+name|FILE
+argument_list|,
 literal|"x.txt"
 argument_list|,
 name|getClass
@@ -1808,6 +1827,8 @@ argument_list|(
 operator|new
 name|ResourceInfo
 argument_list|(
+name|FILE
+argument_list|,
 literal|"left/some.txt"
 argument_list|,
 name|loader
@@ -1816,6 +1837,8 @@ argument_list|,
 operator|new
 name|ResourceInfo
 argument_list|(
+name|FILE
+argument_list|,
 literal|"left/sibling/another.txt"
 argument_list|,
 name|loader
@@ -1824,6 +1847,8 @@ argument_list|,
 operator|new
 name|ResourceInfo
 argument_list|(
+name|FILE
+argument_list|,
 literal|"right/another.txt"
 argument_list|,
 name|loader
@@ -1832,6 +1857,8 @@ argument_list|,
 operator|new
 name|ResourceInfo
 argument_list|(
+name|FILE
+argument_list|,
 literal|"right/sibling/some.txt"
 argument_list|,
 name|loader
@@ -1968,6 +1995,8 @@ argument_list|(
 operator|new
 name|ResourceInfo
 argument_list|(
+name|FILE
+argument_list|,
 literal|"some.txt"
 argument_list|,
 name|loader
@@ -2965,6 +2994,8 @@ argument_list|,
 operator|new
 name|ClassInfo
 argument_list|(
+name|FILE
+argument_list|,
 literal|"Foo.class"
 argument_list|,
 name|classLoader
@@ -2981,6 +3012,8 @@ argument_list|,
 operator|new
 name|ClassInfo
 argument_list|(
+name|FILE
+argument_list|,
 literal|"a/b/Foo.class"
 argument_list|,
 name|classLoader
@@ -2997,6 +3030,8 @@ argument_list|,
 operator|new
 name|ClassInfo
 argument_list|(
+name|FILE
+argument_list|,
 literal|"a/b/Bar$Foo.class"
 argument_list|,
 name|classLoader
@@ -3013,6 +3048,8 @@ argument_list|,
 operator|new
 name|ClassInfo
 argument_list|(
+name|FILE
+argument_list|,
 literal|"a/b/Bar$1.class"
 argument_list|,
 name|classLoader
@@ -3029,6 +3066,8 @@ argument_list|,
 operator|new
 name|ClassInfo
 argument_list|(
+name|FILE
+argument_list|,
 literal|"a/b/Bar$Foo.class"
 argument_list|,
 name|classLoader
@@ -3045,6 +3084,8 @@ argument_list|,
 operator|new
 name|ClassInfo
 argument_list|(
+name|FILE
+argument_list|,
 literal|"a/b/Bar$1.class"
 argument_list|,
 name|classLoader
@@ -3061,6 +3102,8 @@ argument_list|,
 operator|new
 name|ClassInfo
 argument_list|(
+name|FILE
+argument_list|,
 literal|"a/b/Bar$1Local.class"
 argument_list|,
 name|classLoader
@@ -3084,6 +3127,8 @@ argument_list|,
 operator|new
 name|ClassInfo
 argument_list|(
+name|FILE
+argument_list|,
 literal|"Foo.class"
 argument_list|,
 name|getClass
@@ -3104,6 +3149,8 @@ argument_list|,
 operator|new
 name|ClassInfo
 argument_list|(
+name|FILE
+argument_list|,
 literal|"a/b/Foo.class"
 argument_list|,
 name|getClass
@@ -3838,6 +3885,8 @@ name|ResourceInfo
 operator|.
 name|of
 argument_list|(
+name|FILE
+argument_list|,
 name|resource
 argument_list|,
 name|loader
@@ -3906,6 +3955,8 @@ return|return
 operator|new
 name|ClassInfo
 argument_list|(
+name|FILE
+argument_list|,
 name|resource
 argument_list|,
 name|classLoader
