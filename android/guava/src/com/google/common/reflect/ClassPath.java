@@ -427,8 +427,6 @@ operator|.
 name|util
 operator|.
 name|Map
-operator|.
-name|Entry
 import|;
 end_import
 
@@ -1465,6 +1463,8 @@ name|IOException
 block|{
 for|for
 control|(
+name|Map
+operator|.
 name|Entry
 argument_list|<
 name|File
@@ -1535,34 +1535,15 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** Called when a directory is scanned for resource files. */
-DECL|method|scanDirectory (ClassLoader loader, File directory)
+comment|/**      * Called each time a resource (uniqueness not guaranteed if the class path includes redundant      * entries)      */
+DECL|method|scanResource (ResourceInfo resource)
 specifier|protected
 specifier|abstract
 name|void
-name|scanDirectory
+name|scanResource
 parameter_list|(
-name|ClassLoader
-name|loader
-parameter_list|,
-name|File
-name|directory
-parameter_list|)
-throws|throws
-name|IOException
-function_decl|;
-comment|/** Called when a jar file is scanned for resource entries. */
-DECL|method|scanJarFile (ClassLoader loader, JarFile file)
-specifier|protected
-specifier|abstract
-name|void
-name|scanJarFile
-parameter_list|(
-name|ClassLoader
-name|loader
-parameter_list|,
-name|JarFile
-name|file
+name|ResourceInfo
+name|resource
 parameter_list|)
 throws|throws
 name|IOException
@@ -2232,34 +2213,8 @@ name|path
 argument_list|)
 return|;
 block|}
-block|}
-comment|/** Scans {@link ResourceInfo resources} in the class path of a class loader. */
-DECL|class|ResourceScanner
-specifier|abstract
-specifier|static
-class|class
-name|ResourceScanner
-extends|extends
-name|Scanner
-block|{
-comment|/**      * Called each time a resource (uniqueness not guaranteed if the class path includes redundant      * entries)      */
-DECL|method|scanResource (ResourceInfo resource)
-specifier|protected
-specifier|abstract
-name|void
-name|scanResource
-parameter_list|(
-name|ResourceInfo
-name|resource
-parameter_list|)
-throws|throws
-name|IOException
-function_decl|;
-annotation|@
-name|Override
 DECL|method|scanJarFile (ClassLoader classloader, JarFile file)
-specifier|protected
-specifier|final
+specifier|private
 name|void
 name|scanJarFile
 parameter_list|(
@@ -2347,11 +2302,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-annotation|@
-name|Override
 DECL|method|scanDirectory (ClassLoader classloader, File directory)
-specifier|protected
-specifier|final
+specifier|private
 name|void
 name|scanDirectory
 parameter_list|(
@@ -2564,7 +2516,7 @@ specifier|final
 class|class
 name|DefaultScanner
 extends|extends
-name|ResourceScanner
+name|Scanner
 block|{
 DECL|field|resources
 specifier|private
@@ -2621,15 +2573,12 @@ parameter_list|)
 block|{
 name|resources
 operator|.
-name|get
+name|put
 argument_list|(
 name|resource
 operator|.
 name|loader
-argument_list|)
-operator|.
-name|add
-argument_list|(
+argument_list|,
 name|resource
 argument_list|)
 expr_stmt|;
