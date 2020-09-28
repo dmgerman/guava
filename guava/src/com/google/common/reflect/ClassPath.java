@@ -2213,8 +2213,9 @@ name|path
 argument_list|)
 return|;
 block|}
+annotation|@
+name|VisibleForTesting
 DECL|method|scanJarFile (ClassLoader classloader, JarFile file)
-specifier|private
 name|void
 name|scanJarFile
 parameter_list|(
