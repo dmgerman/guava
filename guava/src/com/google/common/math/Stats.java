@@ -1055,15 +1055,12 @@ operator|)
 name|obj
 decl_stmt|;
 return|return
-operator|(
 name|count
 operator|==
 name|other
 operator|.
 name|count
-operator|)
 operator|&&
-operator|(
 name|doubleToLongBits
 argument_list|(
 name|mean
@@ -1075,9 +1072,7 @@ name|other
 operator|.
 name|mean
 argument_list|)
-operator|)
 operator|&&
-operator|(
 name|doubleToLongBits
 argument_list|(
 name|sumOfSquaresOfDeltas
@@ -1089,9 +1084,7 @@ name|other
 operator|.
 name|sumOfSquaresOfDeltas
 argument_list|)
-operator|)
 operator|&&
-operator|(
 name|doubleToLongBits
 argument_list|(
 name|min
@@ -1103,9 +1096,7 @@ name|other
 operator|.
 name|min
 argument_list|)
-operator|)
 operator|&&
-operator|(
 name|doubleToLongBits
 argument_list|(
 name|max
@@ -1117,7 +1108,6 @@ name|other
 operator|.
 name|max
 argument_list|)
-operator|)
 return|;
 block|}
 end_function
