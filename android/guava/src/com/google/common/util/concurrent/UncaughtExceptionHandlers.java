@@ -196,7 +196,6 @@ parameter_list|)
 block|{
 try|try
 block|{
-comment|// cannot use FormattingLogger due to a dependency loop
 name|logger
 operator|.
 name|log

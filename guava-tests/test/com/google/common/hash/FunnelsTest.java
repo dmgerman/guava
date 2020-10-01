@@ -512,7 +512,6 @@ name|void
 name|testSequential
 parameter_list|()
 block|{
-comment|// go/do-not-mock-common-types-lsc
 annotation|@
 name|SuppressWarnings
 argument_list|(

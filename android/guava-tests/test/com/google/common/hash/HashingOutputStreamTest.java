@@ -130,7 +130,6 @@ operator|new
 name|ByteArrayOutputStream
 argument_list|()
 decl_stmt|;
-comment|// go/do-not-mock-common-types-lsc
 annotation|@
 name|SuppressWarnings
 argument_list|(
