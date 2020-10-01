@@ -166,20 +166,6 @@ name|common
 operator|.
 name|annotations
 operator|.
-name|GwtCompatible
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|annotations
-operator|.
 name|GwtIncompatible
 import|;
 end_import
@@ -256,12 +242,7 @@ end_import
 
 begin_class
 annotation|@
-name|GwtCompatible
-argument_list|(
-name|emulated
-operator|=
-literal|true
-argument_list|)
+name|GwtIncompatible
 DECL|class|BigDecimalMathTest
 specifier|public
 class|class
@@ -269,8 +250,6 @@ name|BigDecimalMathTest
 extends|extends
 name|TestCase
 block|{
-annotation|@
-name|GwtIncompatible
 DECL|class|RoundToDoubleTester
 specifier|private
 specifier|static
@@ -539,8 +518,6 @@ block|}
 block|}
 block|}
 block|}
-annotation|@
-name|GwtIncompatible
 DECL|method|testRoundToDouble_zero ()
 specifier|public
 name|void
@@ -567,8 +544,6 @@ name|test
 argument_list|()
 expr_stmt|;
 block|}
-annotation|@
-name|GwtIncompatible
 DECL|method|testRoundToDouble_oneThird ()
 specifier|public
 name|void
@@ -632,8 +607,6 @@ name|test
 argument_list|()
 expr_stmt|;
 block|}
-annotation|@
-name|GwtIncompatible
 DECL|method|testRoundToDouble_halfMinDouble ()
 specifier|public
 name|void
@@ -705,8 +678,6 @@ name|test
 argument_list|()
 expr_stmt|;
 block|}
-annotation|@
-name|GwtIncompatible
 DECL|method|testRoundToDouble_halfNegativeMinDouble ()
 specifier|public
 name|void
@@ -781,8 +752,6 @@ name|test
 argument_list|()
 expr_stmt|;
 block|}
-annotation|@
-name|GwtIncompatible
 DECL|method|testRoundToDouble_smallPositive ()
 specifier|public
 name|void
@@ -812,8 +781,6 @@ name|test
 argument_list|()
 expr_stmt|;
 block|}
-annotation|@
-name|GwtIncompatible
 DECL|method|testRoundToDouble_maxPreciselyRepresentable ()
 specifier|public
 name|void
@@ -852,8 +819,6 @@ name|test
 argument_list|()
 expr_stmt|;
 block|}
-annotation|@
-name|GwtIncompatible
 DECL|method|testRoundToDouble_maxPreciselyRepresentablePlusOne ()
 specifier|public
 name|void
@@ -927,8 +892,6 @@ name|test
 argument_list|()
 expr_stmt|;
 block|}
-annotation|@
-name|GwtIncompatible
 DECL|method|testRoundToDouble_twoToThe54PlusOne ()
 specifier|public
 name|void
@@ -1002,8 +965,6 @@ name|test
 argument_list|()
 expr_stmt|;
 block|}
-annotation|@
-name|GwtIncompatible
 DECL|method|testRoundToDouble_twoToThe54PlusOneHalf ()
 specifier|public
 name|void
@@ -1082,8 +1043,6 @@ name|test
 argument_list|()
 expr_stmt|;
 block|}
-annotation|@
-name|GwtIncompatible
 DECL|method|testRoundToDouble_twoToThe54PlusThree ()
 specifier|public
 name|void
@@ -1157,8 +1116,6 @@ name|test
 argument_list|()
 expr_stmt|;
 block|}
-annotation|@
-name|GwtIncompatible
 DECL|method|testRoundToDouble_twoToThe54PlusFour ()
 specifier|public
 name|void
@@ -1203,8 +1160,6 @@ name|test
 argument_list|()
 expr_stmt|;
 block|}
-annotation|@
-name|GwtIncompatible
 DECL|method|testRoundToDouble_maxDouble ()
 specifier|public
 name|void
@@ -1242,8 +1197,6 @@ name|test
 argument_list|()
 expr_stmt|;
 block|}
-annotation|@
-name|GwtIncompatible
 DECL|method|testRoundToDouble_maxDoublePlusOne ()
 specifier|public
 name|void
@@ -1309,8 +1262,6 @@ name|test
 argument_list|()
 expr_stmt|;
 block|}
-annotation|@
-name|GwtIncompatible
 DECL|method|testRoundToDouble_wayTooBig ()
 specifier|public
 name|void
@@ -1377,8 +1328,6 @@ name|test
 argument_list|()
 expr_stmt|;
 block|}
-annotation|@
-name|GwtIncompatible
 DECL|method|testRoundToDouble_smallNegative ()
 specifier|public
 name|void
@@ -1410,8 +1359,6 @@ name|test
 argument_list|()
 expr_stmt|;
 block|}
-annotation|@
-name|GwtIncompatible
 DECL|method|testRoundToDouble_minPreciselyRepresentable ()
 specifier|public
 name|void
@@ -1452,8 +1399,6 @@ name|test
 argument_list|()
 expr_stmt|;
 block|}
-annotation|@
-name|GwtIncompatible
 DECL|method|testRoundToDouble_minPreciselyRepresentableMinusOne ()
 specifier|public
 name|void
@@ -1532,8 +1477,6 @@ name|test
 argument_list|()
 expr_stmt|;
 block|}
-annotation|@
-name|GwtIncompatible
 DECL|method|testRoundToDouble_negativeTwoToThe54MinusOne ()
 specifier|public
 name|void
@@ -1610,8 +1553,6 @@ name|test
 argument_list|()
 expr_stmt|;
 block|}
-annotation|@
-name|GwtIncompatible
 DECL|method|testRoundToDouble_negativeTwoToThe54MinusThree ()
 specifier|public
 name|void
@@ -1688,8 +1629,6 @@ name|test
 argument_list|()
 expr_stmt|;
 block|}
-annotation|@
-name|GwtIncompatible
 DECL|method|testRoundToDouble_negativeTwoToThe54MinusFour ()
 specifier|public
 name|void
@@ -1736,8 +1675,6 @@ name|test
 argument_list|()
 expr_stmt|;
 block|}
-annotation|@
-name|GwtIncompatible
 DECL|method|testRoundToDouble_minDouble ()
 specifier|public
 name|void
@@ -1777,8 +1714,6 @@ name|test
 argument_list|()
 expr_stmt|;
 block|}
-annotation|@
-name|GwtIncompatible
 DECL|method|testRoundToDouble_minDoubleMinusOne ()
 specifier|public
 name|void
@@ -1846,8 +1781,6 @@ name|test
 argument_list|()
 expr_stmt|;
 block|}
-annotation|@
-name|GwtIncompatible
 DECL|method|testRoundToDouble_negativeWayTooBig ()
 specifier|public
 name|void
