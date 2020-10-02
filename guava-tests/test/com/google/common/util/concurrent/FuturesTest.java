@@ -18028,7 +18028,7 @@ operator|.
 name|shutdownNow
 argument_list|()
 expr_stmt|;
-comment|// TODO(cpovirk: assertTrue(awaitTerminationUninterruptibly(executor, 10, SECONDS));
+comment|// TODO(cpovirk): assertTrue(awaitTerminationUninterruptibly(executor, 10, SECONDS));
 block|}
 block|}
 comment|/**    * For each possible pair of futures from {@link TestFutureBatch}, for each possible completion    * order of those futures, test that various get calls (timed before future completion, untimed    * before future completion, and untimed after future completion) return or throw the proper    * values.    */

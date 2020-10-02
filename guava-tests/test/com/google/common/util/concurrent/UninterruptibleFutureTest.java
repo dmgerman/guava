@@ -217,7 +217,7 @@ import|;
 end_import
 
 begin_comment
-comment|// TODO(azana/cpovirk): Should this be merged into UninterruptiblesTest?
+comment|// TODO(cpovirk): Should this be merged into UninterruptiblesTest?
 end_comment
 
 begin_comment

@@ -431,7 +431,7 @@ comment|/**  * The concurrent hash map implementation built by {@link MapMaker}.
 end_comment
 
 begin_comment
-comment|// TODO(kak/cpovirk): Consider removing @CanIgnoreReturnValue from this class.
+comment|// TODO(kak): Consider removing @CanIgnoreReturnValue from this class.
 end_comment
 
 begin_class
