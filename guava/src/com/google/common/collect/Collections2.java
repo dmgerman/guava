@@ -1574,35 +1574,6 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/** Used to avoid http://bugs.sun.com/view_bug.do?bug_id=6558557 */
-DECL|method|cast (Iterable<T> iterable)
-specifier|static
-parameter_list|<
-name|T
-parameter_list|>
-name|Collection
-argument_list|<
-name|T
-argument_list|>
-name|cast
-parameter_list|(
-name|Iterable
-argument_list|<
-name|T
-argument_list|>
-name|iterable
-parameter_list|)
-block|{
-return|return
-operator|(
-name|Collection
-argument_list|<
-name|T
-argument_list|>
-operator|)
-name|iterable
-return|;
-block|}
 comment|/**    * Returns a {@link Collection} of all the permutations of the specified {@link Iterable}.    *    *<p><i>Notes:</i> This is an implementation of the algorithm for Lexicographical Permutations    * Generation, described in Knuth's "The Art of Computer Programming", Volume 4, Chapter 7,    * Section 7.2.1.2. The iteration order follows the lexicographical order. This means that the    * first permutation will be in ascending order, and the last will be in descending order.    *    *<p>Duplicate elements are considered equal. For example, the list [1, 1] will have only one    * permutation, instead of two. This is why the elements have to implement {@link Comparable}.    *    *<p>An empty iterable has only one permutation, which is an empty list.    *    *<p>This method is equivalent to {@code Collections2.orderedPermutations(list,    * Ordering.natural())}.    *    * @param elements the original iterable whose elements have to be permuted.    * @return an immutable {@link Collection} containing all the different permutations of the    *     original iterable.    * @throws NullPointerException if the specified iterable is null or has any null elements.    * @since 12.0    */
 annotation|@
 name|Beta
