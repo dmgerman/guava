@@ -14800,9 +14800,9 @@ name|matches
 argument_list|(
 literal|"CombinedFuture@\\w+\\[status=PENDING,"
 operator|+
-literal|" info=\\[futures=\\[SettableFuture@\\w+\\[status=SUCCESS, result=\\[1]],"
+literal|" info=\\[futures=\\[SettableFuture@\\w+\\[status=SUCCESS,"
 operator|+
-literal|" SettableFuture@\\w+\\[status=PENDING]]]]"
+literal|" result=\\[java.lang.Integer@\\w+]], SettableFuture@\\w+\\[status=PENDING]]]]"
 argument_list|)
 expr_stmt|;
 comment|// Backing futures complete
@@ -14915,11 +14915,7 @@ argument_list|)
 operator|.
 name|matches
 argument_list|(
-literal|"CombinedFuture@\\w+\\[status=SUCCESS, result=\\["
-operator|+
-name|expectedResult
-operator|+
-literal|"]]"
+literal|"CombinedFuture@\\w+\\[status=SUCCESS, result=\\[java.lang.String@\\w+]]"
 argument_list|)
 expr_stmt|;
 block|}
