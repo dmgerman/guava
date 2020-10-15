@@ -2861,6 +2861,8 @@ comment|/**    * Attempts to cancel execution of this step. This attempt will fa
 end_comment
 
 begin_function
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|cancel (boolean mayInterruptIfRunning)
 specifier|public
 name|boolean

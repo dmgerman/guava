@@ -2684,6 +2684,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Attempts to cancel execution of this step. This attempt will fail if the step has already    * completed, has already been cancelled, or could not be cancelled for some other reason. If    * successful, and this step has not started when {@code cancel} is called, this step should never    * run.    *    *<p>If successful, causes the objects captured by this step (if already started) and its input    * step(s) for later closing to be closed on their respective {@link Executor}s. If any such calls    * specified {@link MoreExecutors#directExecutor()}, those objects will be closed synchronously.    *    * @param mayInterruptIfRunning {@code true} if the thread executing this task should be    *     interrupted; otherwise, in-progress tasks are allowed to complete, but the step will be    *     cancelled regardless    * @return {@code false} if the step could not be cancelled, typically because it has already    *     completed normally; {@code true} otherwise    */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|cancel (boolean mayInterruptIfRunning)
 specifier|public
 name|boolean
