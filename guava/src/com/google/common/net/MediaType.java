@@ -865,7 +865,7 @@ argument_list|,
 name|WILDCARD
 argument_list|)
 decl_stmt|;
-comment|/**    * Wildcard matching any "font" top-level media type.    *    * @since NEXT    */
+comment|/**    * Wildcard matching any "font" top-level media type.    *    * @since 30.0    */
 DECL|field|ANY_FONT_TYPE
 specifier|public
 specifier|static
@@ -2357,7 +2357,7 @@ literal|"zip"
 argument_list|)
 decl_stmt|;
 comment|/* font types */
-comment|/**    * A collection of font outlines as defined by<a href="https://tools.ietf.org/html/rfc8081">RFC    * 8081</a>.    *    * @since NEXT    */
+comment|/**    * A collection of font outlines as defined by<a href="https://tools.ietf.org/html/rfc8081">RFC    * 8081</a>.    *    * @since 30.0    */
 DECL|field|FONT_COLLECTION
 specifier|public
 specifier|static
@@ -2372,7 +2372,7 @@ argument_list|,
 literal|"collection"
 argument_list|)
 decl_stmt|;
-comment|/**    *<a href="https://en.wikipedia.org/wiki/OpenType">Open Type Font Format</a> (OTF) as defined by    *<a href="https://tools.ietf.org/html/rfc8081">RFC 8081</a>.    *    * @since NEXT    */
+comment|/**    *<a href="https://en.wikipedia.org/wiki/OpenType">Open Type Font Format</a> (OTF) as defined by    *<a href="https://tools.ietf.org/html/rfc8081">RFC 8081</a>.    *    * @since 30.0    */
 DECL|field|FONT_OTF
 specifier|public
 specifier|static
@@ -2387,7 +2387,7 @@ argument_list|,
 literal|"otf"
 argument_list|)
 decl_stmt|;
-comment|/**    *<a href="https://en.wikipedia.org/wiki/SFNT">Spline or Scalable Font Format</a> (SFNT).<a    * href="https://tools.ietf.org/html/rfc8081">RFC 8081</a> declares this to be the correct media    * type for SFNT, but {@link #SFNT application/font-sfnt} may be necessary in certain situations    * for compatibility.    *    * @since NEXT    */
+comment|/**    *<a href="https://en.wikipedia.org/wiki/SFNT">Spline or Scalable Font Format</a> (SFNT).<a    * href="https://tools.ietf.org/html/rfc8081">RFC 8081</a> declares this to be the correct media    * type for SFNT, but {@link #SFNT application/font-sfnt} may be necessary in certain situations    * for compatibility.    *    * @since 30.0    */
 DECL|field|FONT_SFNT
 specifier|public
 specifier|static
@@ -2402,7 +2402,7 @@ argument_list|,
 literal|"sfnt"
 argument_list|)
 decl_stmt|;
-comment|/**    *<a href="https://en.wikipedia.org/wiki/TrueType">True Type Font Format</a> (TTF) as defined by    *<a href="https://tools.ietf.org/html/rfc8081">RFC 8081</a>.    *    * @since NEXT    */
+comment|/**    *<a href="https://en.wikipedia.org/wiki/TrueType">True Type Font Format</a> (TTF) as defined by    *<a href="https://tools.ietf.org/html/rfc8081">RFC 8081</a>.    *    * @since 30.0    */
 DECL|field|FONT_TTF
 specifier|public
 specifier|static
@@ -2417,7 +2417,7 @@ argument_list|,
 literal|"ttf"
 argument_list|)
 decl_stmt|;
-comment|/**    *<a href="http://en.wikipedia.org/wiki/Web_Open_Font_Format">Web Open Font Format</a> (WOFF).<a    * href="https://tools.ietf.org/html/rfc8081">RFC 8081</a> declares this to be the correct media    * type for SFNT, but {@link #WOFF application/font-woff} may be necessary in certain situations    * for compatibility.    *    * @since NEXT    */
+comment|/**    *<a href="http://en.wikipedia.org/wiki/Web_Open_Font_Format">Web Open Font Format</a> (WOFF).<a    * href="https://tools.ietf.org/html/rfc8081">RFC 8081</a> declares this to be the correct media    * type for SFNT, but {@link #WOFF application/font-woff} may be necessary in certain situations    * for compatibility.    *    * @since 30.0    */
 DECL|field|FONT_WOFF
 specifier|public
 specifier|static
@@ -2432,7 +2432,7 @@ argument_list|,
 literal|"woff"
 argument_list|)
 decl_stmt|;
-comment|/**    *<a href="http://en.wikipedia.org/wiki/Web_Open_Font_Format">Web Open Font Format</a> (WOFF2).    *<a href="https://tools.ietf.org/html/rfc8081">RFC 8081</a> declares this to be the correct    * media type for SFNT, but {@link #WOFF2 application/font-woff2} may be necessary in certain    * situations for compatibility.    *    * @since NEXT    */
+comment|/**    *<a href="http://en.wikipedia.org/wiki/Web_Open_Font_Format">Web Open Font Format</a> (WOFF2).    *<a href="https://tools.ietf.org/html/rfc8081">RFC 8081</a> declares this to be the correct    * media type for SFNT, but {@link #WOFF2 application/font-woff2} may be necessary in certain    * situations for compatibility.    *    * @since 30.0    */
 DECL|field|FONT_WOFF2
 specifier|public
 specifier|static

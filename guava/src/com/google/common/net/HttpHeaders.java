@@ -773,7 +773,7 @@ name|X_WEBKIT_CSP_REPORT_ONLY
 init|=
 literal|"X-WebKit-CSP-Report-Only"
 decl_stmt|;
-comment|/**    * The HTTP<a href="https://wicg.github.io/cross-origin-embedder-policy/#COEP">{@code    * Cross-Origin-Embedder-Policy}</a> header field name.    *    * @since NEXT    */
+comment|/**    * The HTTP<a href="https://wicg.github.io/cross-origin-embedder-policy/#COEP">{@code    * Cross-Origin-Embedder-Policy}</a> header field name.    *    * @since 30.0    */
 DECL|field|CROSS_ORIGIN_EMBEDDER_POLICY
 specifier|public
 specifier|static
@@ -783,7 +783,7 @@ name|CROSS_ORIGIN_EMBEDDER_POLICY
 init|=
 literal|"Cross-Origin-Embedder-Policy"
 decl_stmt|;
-comment|/**    * The HTTP<a href="https://wicg.github.io/cross-origin-embedder-policy/#COEP-RO">{@code    * Cross-Origin-Embedder-Policy-Report-Only}</a> header field name.    *    * @since NEXT    */
+comment|/**    * The HTTP<a href="https://wicg.github.io/cross-origin-embedder-policy/#COEP-RO">{@code    * Cross-Origin-Embedder-Policy-Report-Only}</a> header field name.    *    * @since 30.0    */
 DECL|field|CROSS_ORIGIN_EMBEDDER_POLICY_REPORT_ONLY
 specifier|public
 specifier|static
@@ -1252,7 +1252,7 @@ name|X_MOZ
 init|=
 literal|"X-Moz"
 decl_stmt|;
-comment|/**    * The HTTP<a href="https://wicg.github.io/ua-client-hints/#sec-ch-ua">{@code Sec-CH-UA}</a>    * header field name.    *    * @since NEXT    */
+comment|/**    * The HTTP<a href="https://wicg.github.io/ua-client-hints/#sec-ch-ua">{@code Sec-CH-UA}</a>    * header field name.    *    * @since 30.0    */
 DECL|field|SEC_CH_UA
 specifier|public
 specifier|static
@@ -1262,7 +1262,7 @@ name|SEC_CH_UA
 init|=
 literal|"Sec-CH-UA"
 decl_stmt|;
-comment|/**    * The HTTP<a href="https://wicg.github.io/ua-client-hints/#sec-ch-arch">{@code    * Sec-CH-UA-Arch}</a> header field name.    *    * @since NEXT    */
+comment|/**    * The HTTP<a href="https://wicg.github.io/ua-client-hints/#sec-ch-arch">{@code    * Sec-CH-UA-Arch}</a> header field name.    *    * @since 30.0    */
 DECL|field|SEC_CH_UA_ARCH
 specifier|public
 specifier|static
@@ -1272,7 +1272,7 @@ name|SEC_CH_UA_ARCH
 init|=
 literal|"Sec-CH-UA-Arch"
 decl_stmt|;
-comment|/**    * The HTTP<a href="https://wicg.github.io/ua-client-hints/#sec-ch-model">{@code    * Sec-CH-UA-Model}</a> header field name.    *    * @since NEXT    */
+comment|/**    * The HTTP<a href="https://wicg.github.io/ua-client-hints/#sec-ch-model">{@code    * Sec-CH-UA-Model}</a> header field name.    *    * @since 30.0    */
 DECL|field|SEC_CH_UA_MODEL
 specifier|public
 specifier|static
@@ -1282,7 +1282,7 @@ name|SEC_CH_UA_MODEL
 init|=
 literal|"Sec-CH-UA-Model"
 decl_stmt|;
-comment|/**    * The HTTP<a href="https://wicg.github.io/ua-client-hints/#sec-ch-platform">{@code    * Sec-CH-UA-Platform}</a> header field name.    *    * @since NEXT    */
+comment|/**    * The HTTP<a href="https://wicg.github.io/ua-client-hints/#sec-ch-platform">{@code    * Sec-CH-UA-Platform}</a> header field name.    *    * @since 30.0    */
 DECL|field|SEC_CH_UA_PLATFORM
 specifier|public
 specifier|static
@@ -1292,7 +1292,7 @@ name|SEC_CH_UA_PLATFORM
 init|=
 literal|"Sec-CH-UA-Platform"
 decl_stmt|;
-comment|/**    * The HTTP<a href="https://wicg.github.io/ua-client-hints/#sec-ch-platform-version">{@code    * Sec-CH-UA-Platform-Version}</a> header field name.    *    * @since NEXT    */
+comment|/**    * The HTTP<a href="https://wicg.github.io/ua-client-hints/#sec-ch-platform-version">{@code    * Sec-CH-UA-Platform-Version}</a> header field name.    *    * @since 30.0    */
 DECL|field|SEC_CH_UA_PLATFORM_VERSION
 specifier|public
 specifier|static
@@ -1302,7 +1302,7 @@ name|SEC_CH_UA_PLATFORM_VERSION
 init|=
 literal|"Sec-CH-UA-Platform-Version"
 decl_stmt|;
-comment|/**    * The HTTP<a href="https://wicg.github.io/ua-client-hints/#sec-ch-full-version">{@code    * Sec-CH-UA-Full-Version}</a> header field name.    *    * @since NEXT    */
+comment|/**    * The HTTP<a href="https://wicg.github.io/ua-client-hints/#sec-ch-full-version">{@code    * Sec-CH-UA-Full-Version}</a> header field name.    *    * @since 30.0    */
 DECL|field|SEC_CH_UA_FULL_VERSION
 specifier|public
 specifier|static
@@ -1312,7 +1312,7 @@ name|SEC_CH_UA_FULL_VERSION
 init|=
 literal|"Sec-CH-UA-Full-Version"
 decl_stmt|;
-comment|/**    * The HTTP<a href="https://wicg.github.io/ua-client-hints/#sec-ch-mobile">{@code    * Sec-CH-UA-Mobile}</a> header field name.    *    * @since NEXT    */
+comment|/**    * The HTTP<a href="https://wicg.github.io/ua-client-hints/#sec-ch-mobile">{@code    * Sec-CH-UA-Mobile}</a> header field name.    *    * @since 30.0    */
 DECL|field|SEC_CH_UA_MOBILE
 specifier|public
 specifier|static

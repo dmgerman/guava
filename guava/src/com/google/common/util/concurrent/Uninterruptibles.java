@@ -1648,7 +1648,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**    * Invokes {@code lock.}{@link Lock#tryLock(long, TimeUnit) tryLock(timeout, unit)}    * uninterruptibly.    *    * @since NEXT    */
+comment|/**    * Invokes {@code lock.}{@link Lock#tryLock(long, TimeUnit) tryLock(timeout, unit)}    * uninterruptibly.    *    * @since 30.0    */
 annotation|@
 name|GwtIncompatible
 comment|// concurrency
@@ -1683,7 +1683,7 @@ name|NANOSECONDS
 argument_list|)
 return|;
 block|}
-comment|/**    * Invokes {@code lock.}{@link Lock#tryLock(long, TimeUnit) tryLock(timeout, unit)}    * uninterruptibly.    *    * @since NEXT    */
+comment|/**    * Invokes {@code lock.}{@link Lock#tryLock(long, TimeUnit) tryLock(timeout, unit)}    * uninterruptibly.    *    * @since 30.0    */
 annotation|@
 name|GwtIncompatible
 comment|// concurrency
@@ -1794,7 +1794,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**    * Invokes {@code executor.}{@link ExecutorService#awaitTermination(long, TimeUnit)    * awaitTermination(long, TimeUnit)} uninterruptibly with no timeout.    *    * @since NEXT    */
+comment|/**    * Invokes {@code executor.}{@link ExecutorService#awaitTermination(long, TimeUnit)    * awaitTermination(long, TimeUnit)} uninterruptibly with no timeout.    *    * @since 30.0    */
 annotation|@
 name|Beta
 annotation|@
@@ -1826,7 +1826,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Invokes {@code executor.}{@link ExecutorService#awaitTermination(long, TimeUnit)    * awaitTermination(long, TimeUnit)} uninterruptibly.    *    * @since NEXT    */
+comment|/**    * Invokes {@code executor.}{@link ExecutorService#awaitTermination(long, TimeUnit)    * awaitTermination(long, TimeUnit)} uninterruptibly.    *    * @since 30.0    */
 annotation|@
 name|Beta
 annotation|@
@@ -1859,7 +1859,7 @@ name|NANOSECONDS
 argument_list|)
 return|;
 block|}
-comment|/**    * Invokes {@code executor.}{@link ExecutorService#awaitTermination(long, TimeUnit)    * awaitTermination(long, TimeUnit)} uninterruptibly.    *    * @since NEXT    */
+comment|/**    * Invokes {@code executor.}{@link ExecutorService#awaitTermination(long, TimeUnit)    * awaitTermination(long, TimeUnit)} uninterruptibly.    *    * @since 30.0    */
 annotation|@
 name|Beta
 annotation|@

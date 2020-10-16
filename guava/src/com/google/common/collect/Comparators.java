@@ -671,7 +671,7 @@ block|}
 end_function
 
 begin_comment
-comment|/**    * Returns the minimum of the two values. If the values compare as 0, the first is returned.    *    *<p>The recommended solution for finding the {@code minimum} of some values depends on the type    * of your data and the number of elements you have. Read more in the Guava User Guide article on    *<a href="https://github.com/google/guava/wiki/CollectionUtilitiesExplained#comparators">{@code    * Comparators}</a>.    *    * @param a first value to compare, returned if less than or equal to b.    * @param b second value to compare.    * @throws ClassCastException if the parameters are not<i>mutually comparable</i>.    * @since NEXT    */
+comment|/**    * Returns the minimum of the two values. If the values compare as 0, the first is returned.    *    *<p>The recommended solution for finding the {@code minimum} of some values depends on the type    * of your data and the number of elements you have. Read more in the Guava User Guide article on    *<a href="https://github.com/google/guava/wiki/CollectionUtilitiesExplained#comparators">{@code    * Comparators}</a>.    *    * @param a first value to compare, returned if less than or equal to b.    * @param b second value to compare.    * @throws ClassCastException if the parameters are not<i>mutually comparable</i>.    * @since 30.0    */
 end_comment
 
 begin_function
@@ -720,7 +720,7 @@ block|}
 end_function
 
 begin_comment
-comment|/**    * Returns the minimum of the two values, according to the given comparator. If the values compare    * as equal, the first is returned.    *    *<p>The recommended solution for finding the {@code minimum} of some values depends on the type    * of your data and the number of elements you have. Read more in the Guava User Guide article on    *<a href="https://github.com/google/guava/wiki/CollectionUtilitiesExplained#comparators">{@code    * Comparators}</a>.    *    * @param a first value to compare, returned if less than or equal to b    * @param b second value to compare.    * @throws ClassCastException if the parameters are not<i>mutually comparable</i> using the given    *     comparator.    * @since NEXT    */
+comment|/**    * Returns the minimum of the two values, according to the given comparator. If the values compare    * as equal, the first is returned.    *    *<p>The recommended solution for finding the {@code minimum} of some values depends on the type    * of your data and the number of elements you have. Read more in the Guava User Guide article on    *<a href="https://github.com/google/guava/wiki/CollectionUtilitiesExplained#comparators">{@code    * Comparators}</a>.    *    * @param a first value to compare, returned if less than or equal to b    * @param b second value to compare.    * @throws ClassCastException if the parameters are not<i>mutually comparable</i> using the given    *     comparator.    * @since 30.0    */
 end_comment
 
 begin_function
@@ -774,7 +774,7 @@ block|}
 end_function
 
 begin_comment
-comment|/**    * Returns the maximum of the two values. If the values compare as 0, the first is returned.    *    *<p>The recommended solution for finding the {@code maximum} of some values depends on the type    * of your data and the number of elements you have. Read more in the Guava User Guide article on    *<a href="https://github.com/google/guava/wiki/CollectionUtilitiesExplained#comparators">{@code    * Comparators}</a>.    *    * @param a first value to compare, returned if greater than or equal to b.    * @param b second value to compare.    * @throws ClassCastException if the parameters are not<i>mutually comparable</i>.    * @since NEXT    */
+comment|/**    * Returns the maximum of the two values. If the values compare as 0, the first is returned.    *    *<p>The recommended solution for finding the {@code maximum} of some values depends on the type    * of your data and the number of elements you have. Read more in the Guava User Guide article on    *<a href="https://github.com/google/guava/wiki/CollectionUtilitiesExplained#comparators">{@code    * Comparators}</a>.    *    * @param a first value to compare, returned if greater than or equal to b.    * @param b second value to compare.    * @throws ClassCastException if the parameters are not<i>mutually comparable</i>.    * @since 30.0    */
 end_comment
 
 begin_function
@@ -823,7 +823,7 @@ block|}
 end_function
 
 begin_comment
-comment|/**    * Returns the maximum of the two values, according to the given comparator. If the values compare    * as equal, the first is returned.    *    *<p>The recommended solution for finding the {@code maximum} of some values depends on the type    * of your data and the number of elements you have. Read more in the Guava User Guide article on    *<a href="https://github.com/google/guava/wiki/CollectionUtilitiesExplained#comparators">{@code    * Comparators}</a>.    *    * @param a first value to compare, returned if greater than or equal to b.    * @param b second value to compare.    * @throws ClassCastException if the parameters are not<i>mutually comparable</i> using the given    *     comparator.    * @since NEXT    */
+comment|/**    * Returns the maximum of the two values, according to the given comparator. If the values compare    * as equal, the first is returned.    *    *<p>The recommended solution for finding the {@code maximum} of some values depends on the type    * of your data and the number of elements you have. Read more in the Guava User Guide article on    *<a href="https://github.com/google/guava/wiki/CollectionUtilitiesExplained#comparators">{@code    * Comparators}</a>.    *    * @param a first value to compare, returned if greater than or equal to b.    * @param b second value to compare.    * @throws ClassCastException if the parameters are not<i>mutually comparable</i> using the given    *     comparator.    * @since 30.0    */
 end_comment
 
 begin_function
