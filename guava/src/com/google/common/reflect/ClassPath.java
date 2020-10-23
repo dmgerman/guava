@@ -558,49 +558,6 @@ name|getName
 argument_list|()
 argument_list|)
 decl_stmt|;
-DECL|field|IS_TOP_LEVEL
-specifier|private
-specifier|static
-specifier|final
-name|Predicate
-argument_list|<
-name|ClassInfo
-argument_list|>
-name|IS_TOP_LEVEL
-init|=
-operator|new
-name|Predicate
-argument_list|<
-name|ClassInfo
-argument_list|>
-argument_list|()
-block|{
-annotation|@
-name|Override
-specifier|public
-name|boolean
-name|apply
-parameter_list|(
-name|ClassInfo
-name|info
-parameter_list|)
-block|{
-return|return
-name|info
-operator|.
-name|className
-operator|.
-name|indexOf
-argument_list|(
-literal|'$'
-argument_list|)
-operator|==
-operator|-
-literal|1
-return|;
-block|}
-block|}
-decl_stmt|;
 comment|/** Separator for the Class-Path manifest attribute value in jar files. */
 DECL|field|CLASS_PATH_ATTRIBUTE_SEPARATOR
 specifier|private
@@ -736,7 +693,7 @@ name|toSet
 argument_list|()
 return|;
 block|}
-comment|/** Returns all top level classes loadable from the current class path. */
+comment|/**    * Returns all top level classes loadable from the current class path. Note that "top-level-ness"    * is determined heuristically by class name (see {@link ClassInfo#isTopLevel}).    */
 DECL|method|getTopLevelClasses ()
 specifier|public
 name|ImmutableSet
@@ -763,7 +720,31 @@ argument_list|)
 operator|.
 name|filter
 argument_list|(
-name|IS_TOP_LEVEL
+operator|new
+name|Predicate
+argument_list|<
+name|ClassInfo
+argument_list|>
+argument_list|()
+block|{
+annotation|@
+name|Override
+specifier|public
+name|boolean
+name|apply
+parameter_list|(
+name|ClassInfo
+name|info
+parameter_list|)
+block|{
+return|return
+name|info
+operator|.
+name|isTopLevel
+argument_list|()
+return|;
+block|}
+block|}
 argument_list|)
 operator|.
 name|toSet
@@ -1376,6 +1357,25 @@ return|return
 name|className
 return|;
 block|}
+comment|/**      * Returns true if the class name "looks to be" top level (not nested), that is, it includes no      * '$' in the name, This method may return false for a top-level class that's intentionally      * named with the '$' character. If ths is a concern, you could use {@link #load} and then check      * on the loaded {@link Class} object instead.      *      * @since NEXT      */
+DECL|method|isTopLevel ()
+specifier|public
+name|boolean
+name|isTopLevel
+parameter_list|()
+block|{
+return|return
+name|className
+operator|.
+name|indexOf
+argument_list|(
+literal|'$'
+argument_list|)
+operator|==
+operator|-
+literal|1
+return|;
+block|}
 comment|/**      * Loads (but doesn't link or initialize) the class.      *      * @throws LinkageError when there were errors in loading classes that this class depends on.      *     For example, {@link NoClassDefFoundError}.      */
 DECL|method|load ()
 specifier|public
@@ -1711,7 +1711,9 @@ parameter_list|(
 name|IOException
 name|ignored
 parameter_list|)
-block|{         }
+block|{
+comment|// similar to try-with-resources, but don't fail scanning
+block|}
 block|}
 block|}
 comment|/**      * Returns the class path URIs specified by the {@code Class-Path} manifest attribute, according      * to<a      * href="http://docs.oracle.com/javase/8/docs/technotes/guides/jar/jar.html#Main_Attributes">JAR      * File Specification</a>. If {@code manifest} is null, it means the jar file has no manifest,      * and an empty set will be returned.      */
