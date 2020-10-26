@@ -1357,7 +1357,7 @@ return|return
 name|className
 return|;
 block|}
-comment|/**      * Returns true if the class name "looks to be" top level (not nested), that is, it includes no      * '$' in the name, This method may return false for a top-level class that's intentionally      * named with the '$' character. If ths is a concern, you could use {@link #load} and then check      * on the loaded {@link Class} object instead.      *      * @since NEXT      */
+comment|/**      * Returns true if the class name "looks to be" top level (not nested), that is, it includes no      * '$' in the name. This method may return false for a top-level class that's intentionally      * named with the '$' character. If this is a concern, you could use {@link #load} and then      * check on the loaded {@link Class} object instead.      *      * @since NEXT      */
 DECL|method|isTopLevel ()
 specifier|public
 name|boolean
