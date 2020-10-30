@@ -627,6 +627,7 @@ specifier|private
 name|int
 name|crc
 init|=
+operator|~
 literal|0
 decl_stmt|;
 annotation|@
@@ -640,15 +641,9 @@ name|byte
 name|b
 parameter_list|)
 block|{
-name|crc
-operator|^=
-literal|0xFFFFFFFF
-expr_stmt|;
 comment|// See Hacker's Delight 2nd Edition, Figure 14-7.
 name|crc
 operator|=
-operator|~
-operator|(
 operator|(
 name|crc
 operator|>>>
@@ -665,7 +660,6 @@ operator|)
 operator|&
 literal|0xFF
 index|]
-operator|)
 expr_stmt|;
 block|}
 annotation|@
@@ -681,6 +675,7 @@ name|HashCode
 operator|.
 name|fromInt
 argument_list|(
+operator|~
 name|crc
 argument_list|)
 return|;
