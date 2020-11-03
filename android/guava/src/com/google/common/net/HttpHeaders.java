@@ -386,6 +386,16 @@ name|ORIGIN
 init|=
 literal|"Origin"
 decl_stmt|;
+comment|/**    * The HTTP<a href="https://github.com/WICG/origin-isolation">{@code Origin-Isolation}</a> header    * field name.    *    * @since NEXT    */
+DECL|field|ORIGIN_ISOLATION
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|ORIGIN_ISOLATION
+init|=
+literal|"Origin-Isolation"
+decl_stmt|;
 comment|/** The HTTP {@code Proxy-Authorization} header field name. */
 DECL|field|PROXY_AUTHORIZATION
 specifier|public
