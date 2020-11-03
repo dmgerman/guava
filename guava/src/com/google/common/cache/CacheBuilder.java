@@ -1310,12 +1310,6 @@ operator|.
 name|maximumSize
 argument_list|)
 expr_stmt|;
-name|this
-operator|.
-name|maximumWeight
-operator|=
-name|maximumWeight
-expr_stmt|;
 name|checkArgument
 argument_list|(
 name|maximumWeight
@@ -1324,6 +1318,12 @@ literal|0
 argument_list|,
 literal|"maximum weight must not be negative"
 argument_list|)
+expr_stmt|;
+name|this
+operator|.
+name|maximumWeight
+operator|=
+name|maximumWeight
 expr_stmt|;
 return|return
 name|this
