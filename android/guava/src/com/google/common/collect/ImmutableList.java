@@ -3128,6 +3128,37 @@ return|return
 name|this
 return|;
 block|}
+annotation|@
+name|CanIgnoreReturnValue
+DECL|method|combine (Builder<E> other)
+name|Builder
+argument_list|<
+name|E
+argument_list|>
+name|combine
+parameter_list|(
+name|Builder
+argument_list|<
+name|E
+argument_list|>
+name|other
+parameter_list|)
+block|{
+name|addAll
+argument_list|(
+name|other
+operator|.
+name|contents
+argument_list|,
+name|other
+operator|.
+name|size
+argument_list|)
+expr_stmt|;
+return|return
+name|this
+return|;
+block|}
 comment|/**      * Returns a newly-created {@code ImmutableList} based on the contents of the {@code Builder}.      */
 annotation|@
 name|Override
