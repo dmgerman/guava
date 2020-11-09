@@ -1160,6 +1160,16 @@ name|PUBLIC_KEY_PINS_REPORT_ONLY
 init|=
 literal|"Public-Key-Pins-Report-Only"
 decl_stmt|;
+comment|/**    * The HTTP {@code X-Request-ID} header field name.    *    * @since NEXT    */
+DECL|field|X_REQUEST_ID
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|X_REQUEST_ID
+init|=
+literal|"X-Request-ID"
+decl_stmt|;
 comment|/** The HTTP {@code X-Requested-With} header field name. */
 DECL|field|X_REQUESTED_WITH
 specifier|public
