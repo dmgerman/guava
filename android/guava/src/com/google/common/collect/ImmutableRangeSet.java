@@ -3415,6 +3415,33 @@ return|return
 name|this
 return|;
 block|}
+annotation|@
+name|CanIgnoreReturnValue
+DECL|method|combine (Builder<C> builder)
+name|Builder
+argument_list|<
+name|C
+argument_list|>
+name|combine
+parameter_list|(
+name|Builder
+argument_list|<
+name|C
+argument_list|>
+name|builder
+parameter_list|)
+block|{
+name|addAll
+argument_list|(
+name|builder
+operator|.
+name|ranges
+argument_list|)
+expr_stmt|;
+return|return
+name|this
+return|;
+block|}
 comment|/**      * Returns an {@code ImmutableRangeSet} containing the ranges added to this builder.      *      * @throws IllegalArgumentException if any input ranges have nonempty overlap      */
 DECL|method|build ()
 specifier|public

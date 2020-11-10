@@ -786,6 +786,39 @@ return|return
 name|this
 return|;
 block|}
+annotation|@
+name|CanIgnoreReturnValue
+DECL|method|combine (Builder<K, V> builder)
+name|Builder
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|combine
+parameter_list|(
+name|Builder
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|builder
+parameter_list|)
+block|{
+name|entries
+operator|.
+name|addAll
+argument_list|(
+name|builder
+operator|.
+name|entries
+argument_list|)
+expr_stmt|;
+return|return
+name|this
+return|;
+block|}
 comment|/**      * Returns an {@code ImmutableRangeMap} containing the associations previously added to this      * builder.      *      * @throws IllegalArgumentException if any two ranges inserted into this builder overlap      */
 DECL|method|build ()
 specifier|public

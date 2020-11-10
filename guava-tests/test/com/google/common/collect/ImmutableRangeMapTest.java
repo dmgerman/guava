@@ -1776,10 +1776,10 @@ name|nonEmptyRangeMap
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|testToImmutableRangeSet ()
+DECL|method|testToImmutableRangeMap ()
 specifier|public
 name|void
-name|testToImmutableRangeSet
+name|testToImmutableRangeMap
 parameter_list|()
 block|{
 name|Range
