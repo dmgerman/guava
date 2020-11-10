@@ -1766,6 +1766,37 @@ return|return
 name|this
 return|;
 block|}
+annotation|@
+name|CanIgnoreReturnValue
+annotation|@
+name|Override
+DECL|method|combine (ImmutableSet.Builder<E> builder)
+name|Builder
+argument_list|<
+name|E
+argument_list|>
+name|combine
+parameter_list|(
+name|ImmutableSet
+operator|.
+name|Builder
+argument_list|<
+name|E
+argument_list|>
+name|builder
+parameter_list|)
+block|{
+name|super
+operator|.
+name|combine
+argument_list|(
+name|builder
+argument_list|)
+expr_stmt|;
+return|return
+name|this
+return|;
+block|}
 comment|/**      * Returns a newly-created {@code ImmutableSortedSet} based on the contents of the {@code      * Builder} and its comparator.      */
 annotation|@
 name|Override
