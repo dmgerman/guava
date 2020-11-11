@@ -208,7 +208,7 @@ name|j2objc
 operator|.
 name|annotations
 operator|.
-name|WeakOuter
+name|Weak
 import|;
 end_import
 
@@ -534,6 +534,8 @@ name|valueHash
 decl_stmt|;
 DECL|field|nextInKToVBucket
 annotation|@
+name|Weak
+annotation|@
 name|Nullable
 name|BiEntry
 argument_list|<
@@ -544,6 +546,8 @@ argument_list|>
 name|nextInKToVBucket
 decl_stmt|;
 DECL|field|nextInVToKBucket
+annotation|@
+name|Weak
 annotation|@
 name|Nullable
 name|BiEntry
@@ -556,6 +560,8 @@ name|nextInVToKBucket
 decl_stmt|;
 DECL|field|nextInKeyInsertionOrder
 annotation|@
+name|Weak
+annotation|@
 name|Nullable
 name|BiEntry
 argument_list|<
@@ -566,6 +572,8 @@ argument_list|>
 name|nextInKeyInsertionOrder
 decl_stmt|;
 DECL|field|prevInKeyInsertionOrder
+annotation|@
+name|Weak
 annotation|@
 name|Nullable
 name|BiEntry
@@ -647,6 +655,8 @@ index|[]
 name|hashTableVToK
 decl_stmt|;
 DECL|field|firstInKeyInsertionOrder
+annotation|@
+name|Weak
 specifier|private
 specifier|transient
 annotation|@
@@ -660,6 +670,8 @@ argument_list|>
 name|firstInKeyInsertionOrder
 decl_stmt|;
 DECL|field|lastInKeyInsertionOrder
+annotation|@
+name|Weak
 specifier|private
 specifier|transient
 annotation|@
@@ -2417,8 +2429,6 @@ name|KeySet
 argument_list|()
 return|;
 block|}
-annotation|@
-name|WeakOuter
 DECL|class|KeySet
 specifier|private
 specifier|final
@@ -3324,8 +3334,6 @@ name|InverseKeySet
 argument_list|()
 return|;
 block|}
-annotation|@
-name|WeakOuter
 DECL|class|InverseKeySet
 specifier|private
 specifier|final
