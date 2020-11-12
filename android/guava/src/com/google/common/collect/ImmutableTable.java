@@ -930,6 +930,45 @@ return|return
 name|this
 return|;
 block|}
+annotation|@
+name|CanIgnoreReturnValue
+DECL|method|combine (Builder<R, C, V> other)
+name|Builder
+argument_list|<
+name|R
+argument_list|,
+name|C
+argument_list|,
+name|V
+argument_list|>
+name|combine
+parameter_list|(
+name|Builder
+argument_list|<
+name|R
+argument_list|,
+name|C
+argument_list|,
+name|V
+argument_list|>
+name|other
+parameter_list|)
+block|{
+name|this
+operator|.
+name|cells
+operator|.
+name|addAll
+argument_list|(
+name|other
+operator|.
+name|cells
+argument_list|)
+expr_stmt|;
+return|return
+name|this
+return|;
+block|}
 comment|/**      * Returns a newly-created immutable table.      *      * @throws IllegalArgumentException if duplicate key pairs were added      */
 DECL|method|build ()
 specifier|public

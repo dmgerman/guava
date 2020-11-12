@@ -1758,6 +1758,8 @@ return|return
 name|this
 return|;
 block|}
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|combine (Builder<R, C, V> other)
 name|Builder
 argument_list|<
