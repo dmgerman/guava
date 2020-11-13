@@ -293,6 +293,8 @@ name|toImmutableMultiset
 parameter_list|()
 block|{
 return|return
+name|CollectCollectors
+operator|.
 name|toImmutableMultiset
 argument_list|(
 name|Function
@@ -349,97 +351,19 @@ argument_list|>
 name|countFunction
 parameter_list|)
 block|{
-name|checkNotNull
-argument_list|(
-name|elementFunction
-argument_list|)
-expr_stmt|;
-name|checkNotNull
-argument_list|(
-name|countFunction
-argument_list|)
-expr_stmt|;
 return|return
-name|Collector
+name|CollectCollectors
 operator|.
-name|of
-argument_list|(
-name|LinkedHashMultiset
-operator|::
-name|create
-argument_list|,
-parameter_list|(
-name|multiset
-parameter_list|,
-name|t
-parameter_list|)
-lambda|->
-name|multiset
-operator|.
-name|add
-argument_list|(
-name|checkNotNull
+name|toImmutableMultiset
 argument_list|(
 name|elementFunction
-operator|.
-name|apply
-argument_list|(
-name|t
-argument_list|)
-argument_list|)
 argument_list|,
 name|countFunction
-operator|.
-name|applyAsInt
-argument_list|(
-name|t
 argument_list|)
-argument_list|)
-argument_list|,
-parameter_list|(
-name|multiset1
-parameter_list|,
-name|multiset2
-parameter_list|)
-lambda|->
-block|{
-name|multiset1
-operator|.
-name|addAll
-argument_list|(
-name|multiset2
-argument_list|)
-argument_list|;           return
-name|multiset1
-argument_list|;
+return|;
 block|}
-operator|,
-parameter_list|(
-name|Multiset
-argument_list|<
-name|E
-argument_list|>
-name|multiset
-parameter_list|)
-lambda|->
-name|copyFromEntries
-argument_list|(
-name|multiset
-operator|.
-name|entrySet
-argument_list|()
-argument_list|)
-block|)
-class|;
-end_class
-
-begin_comment
-unit|}
 comment|/** Returns the empty immutable multiset. */
-end_comment
-
-begin_expr_stmt
-unit|@
+annotation|@
 name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
@@ -448,15 +372,15 @@ comment|// all supported methods are covariant
 DECL|method|of ()
 specifier|public
 specifier|static
-operator|<
+parameter_list|<
 name|E
-operator|>
+parameter_list|>
 name|ImmutableMultiset
 argument_list|<
 name|E
 argument_list|>
 name|of
-argument_list|()
+parameter_list|()
 block|{
 return|return
 operator|(
@@ -470,13 +394,7 @@ operator|.
 name|EMPTY
 return|;
 block|}
-end_expr_stmt
-
-begin_comment
 comment|/**    * Returns an immutable multiset containing a single element.    *    * @throws NullPointerException if {@code element} is null    * @since 6.0 (source-compatible since 2.0)    */
-end_comment
-
-begin_function
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -506,13 +424,7 @@ name|element
 argument_list|)
 return|;
 block|}
-end_function
-
-begin_comment
 comment|/**    * Returns an immutable multiset containing the given elements, in order.    *    * @throws NullPointerException if any element is null    * @since 6.0 (source-compatible since 2.0)    */
-end_comment
-
-begin_function
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -547,13 +459,7 @@ name|e2
 argument_list|)
 return|;
 block|}
-end_function
-
-begin_comment
 comment|/**    * Returns an immutable multiset containing the given elements, in the "grouped iteration order"    * described in the class documentation.    *    * @throws NullPointerException if any element is null    * @since 6.0 (source-compatible since 2.0)    */
-end_comment
-
-begin_function
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -593,13 +499,7 @@ name|e3
 argument_list|)
 return|;
 block|}
-end_function
-
-begin_comment
 comment|/**    * Returns an immutable multiset containing the given elements, in the "grouped iteration order"    * described in the class documentation.    *    * @throws NullPointerException if any element is null    * @since 6.0 (source-compatible since 2.0)    */
-end_comment
-
-begin_function
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -644,13 +544,7 @@ name|e4
 argument_list|)
 return|;
 block|}
-end_function
-
-begin_comment
 comment|/**    * Returns an immutable multiset containing the given elements, in the "grouped iteration order"    * described in the class documentation.    *    * @throws NullPointerException if any element is null    * @since 6.0 (source-compatible since 2.0)    */
-end_comment
-
-begin_function
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -700,13 +594,7 @@ name|e5
 argument_list|)
 return|;
 block|}
-end_function
-
-begin_comment
 comment|/**    * Returns an immutable multiset containing the given elements, in the "grouped iteration order"    * described in the class documentation.    *    * @throws NullPointerException if any element is null    * @since 6.0 (source-compatible since 2.0)    */
-end_comment
-
-begin_function
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -795,13 +683,7 @@ name|build
 argument_list|()
 return|;
 block|}
-end_function
-
-begin_comment
 comment|/**    * Returns an immutable multiset containing the given elements, in the "grouped iteration order"    * described in the class documentation.    *    * @throws NullPointerException if any of {@code elements} is null    * @since 6.0    */
-end_comment
-
-begin_function
 DECL|method|copyOf (E[] elements)
 specifier|public
 specifier|static
@@ -826,13 +708,7 @@ name|elements
 argument_list|)
 return|;
 block|}
-end_function
-
-begin_comment
 comment|/**    * Returns an immutable multiset containing the given elements, in the "grouped iteration order"    * described in the class documentation.    *    * @throws NullPointerException if any of {@code elements} is null    */
-end_comment
-
-begin_function
 DECL|method|copyOf (Iterable<? extends E> elements)
 specifier|public
 specifier|static
@@ -933,13 +809,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-end_function
-
-begin_comment
 comment|/**    * Returns an immutable multiset containing the given elements, in the "grouped iteration order"    * described in the class documentation.    *    * @throws NullPointerException if any of {@code elements} is null    */
-end_comment
-
-begin_function
 DECL|method|copyOf (Iterator<? extends E> elements)
 specifier|public
 specifier|static
@@ -991,9 +861,6 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-end_function
-
-begin_function
 DECL|method|copyFromElements (E... elements)
 specifier|private
 specifier|static
@@ -1041,9 +908,6 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-end_function
-
-begin_function
 DECL|method|copyFromEntries ( Collection<? extends Entry<? extends E>> entries)
 specifier|static
 parameter_list|<
@@ -1094,14 +958,11 @@ argument_list|)
 return|;
 block|}
 block|}
-end_function
-
-begin_expr_stmt
 DECL|method|ImmutableMultiset ()
 name|ImmutableMultiset
-argument_list|()
+parameter_list|()
 block|{}
-expr|@
+annotation|@
 name|Override
 DECL|method|iterator ()
 specifier|public
@@ -1110,9 +971,9 @@ argument_list|<
 name|E
 argument_list|>
 name|iterator
-argument_list|()
+parameter_list|()
 block|{
-name|final
+specifier|final
 name|Iterator
 argument_list|<
 name|Entry
@@ -1121,13 +982,13 @@ name|E
 argument_list|>
 argument_list|>
 name|entryIterator
-operator|=
+init|=
 name|entrySet
 argument_list|()
 operator|.
 name|iterator
 argument_list|()
-block|;
+decl_stmt|;
 return|return
 operator|new
 name|UnmodifiableIterator
@@ -1164,12 +1025,12 @@ name|hasNext
 argument_list|()
 return|;
 block|}
-expr|@
+annotation|@
 name|Override
 specifier|public
 name|E
 name|next
-argument_list|()
+parameter_list|()
 block|{
 if|if
 condition|(
@@ -1207,22 +1068,15 @@ block|}
 name|remaining
 operator|--
 expr_stmt|;
-end_expr_stmt
-
-begin_return
 return|return
 name|element
 return|;
-end_return
-
-begin_empty_stmt
-unit|}     }
-empty_stmt|;
-end_empty_stmt
-
-begin_decl_stmt
-unit|}    @
+block|}
+block|}
+return|;
+block|}
 DECL|field|asList
+annotation|@
 name|LazyInit
 specifier|private
 specifier|transient
@@ -1232,9 +1086,6 @@ name|E
 argument_list|>
 name|asList
 decl_stmt|;
-end_decl_stmt
-
-begin_function
 annotation|@
 name|Override
 DECL|method|asList ()
@@ -1271,9 +1122,6 @@ else|:
 name|result
 return|;
 block|}
-end_function
-
-begin_function
 annotation|@
 name|Override
 DECL|method|contains (@ullable Object object)
@@ -1296,13 +1144,7 @@ operator|>
 literal|0
 return|;
 block|}
-end_function
-
-begin_comment
 comment|/**    * Guaranteed to throw an exception and leave the collection unmodified.    *    * @throws UnsupportedOperationException always    * @deprecated Unsupported operation.    */
-end_comment
-
-begin_function
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
@@ -1328,13 +1170,7 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
-end_function
-
-begin_comment
 comment|/**    * Guaranteed to throw an exception and leave the collection unmodified.    *    * @throws UnsupportedOperationException always    * @deprecated Unsupported operation.    */
-end_comment
-
-begin_function
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
@@ -1360,13 +1196,7 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
-end_function
-
-begin_comment
 comment|/**    * Guaranteed to throw an exception and leave the collection unmodified.    *    * @throws UnsupportedOperationException always    * @deprecated Unsupported operation.    */
-end_comment
-
-begin_function
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
@@ -1392,13 +1222,7 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
-end_function
-
-begin_comment
 comment|/**    * Guaranteed to throw an exception and leave the collection unmodified.    *    * @throws UnsupportedOperationException always    * @deprecated Unsupported operation.    */
-end_comment
-
-begin_function
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
@@ -1427,9 +1251,6 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
-end_function
-
-begin_function
 annotation|@
 name|GwtIncompatible
 comment|// not present in emulated superclass
@@ -1494,9 +1315,6 @@ return|return
 name|offset
 return|;
 block|}
-end_function
-
-begin_function
 annotation|@
 name|Override
 DECL|method|equals (@ullable Object object)
@@ -1521,9 +1339,6 @@ name|object
 argument_list|)
 return|;
 block|}
-end_function
-
-begin_function
 annotation|@
 name|Override
 DECL|method|hashCode ()
@@ -1542,9 +1357,6 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-end_function
-
-begin_function
 annotation|@
 name|Override
 DECL|method|toString ()
@@ -1561,13 +1373,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-end_function
-
-begin_comment
 comment|/** @since 21.0 (present with return type {@code Set} since 2.0) */
-end_comment
-
-begin_function_decl
 annotation|@
 name|Override
 DECL|method|elementSet ()
@@ -1580,9 +1386,6 @@ argument_list|>
 name|elementSet
 parameter_list|()
 function_decl|;
-end_function_decl
-
-begin_decl_stmt
 DECL|field|entrySet
 annotation|@
 name|LazyInit
@@ -1597,9 +1400,6 @@ argument_list|>
 argument_list|>
 name|entrySet
 decl_stmt|;
-end_decl_stmt
-
-begin_function
 annotation|@
 name|Override
 DECL|method|entrySet ()
@@ -1642,9 +1442,6 @@ else|:
 name|es
 return|;
 block|}
-end_function
-
-begin_function
 DECL|method|createEntrySet ()
 specifier|private
 name|ImmutableSet
@@ -1677,9 +1474,6 @@ name|EntrySet
 argument_list|()
 return|;
 block|}
-end_function
-
-begin_function_decl
 DECL|method|getEntry (int index)
 specifier|abstract
 name|Entry
@@ -1692,9 +1486,6 @@ name|int
 name|index
 parameter_list|)
 function_decl|;
-end_function_decl
-
-begin_class
 annotation|@
 name|WeakOuter
 DECL|class|EntrySet
@@ -1882,9 +1673,6 @@ init|=
 literal|0
 decl_stmt|;
 block|}
-end_class
-
-begin_class
 annotation|@
 name|GwtIncompatible
 DECL|class|EntrySetSerializedForm
@@ -1935,9 +1723,6 @@ argument_list|()
 return|;
 block|}
 block|}
-end_class
-
-begin_function
 annotation|@
 name|GwtIncompatible
 annotation|@
@@ -1955,13 +1740,7 @@ name|this
 argument_list|)
 return|;
 block|}
-end_function
-
-begin_comment
 comment|/**    * Returns a new builder. The generated builder is equivalent to the builder created by the {@link    * Builder} constructor.    */
-end_comment
-
-begin_function
 DECL|method|builder ()
 specifier|public
 specifier|static
@@ -1984,13 +1763,7 @@ argument_list|>
 argument_list|()
 return|;
 block|}
-end_function
-
-begin_comment
 comment|/**    * A builder for creating immutable multiset instances, especially {@code public static final}    * multisets ("constant multisets"). Example:    *    *<pre>{@code    * public static final ImmutableMultiset<Bean> BEANS =    *     new ImmutableMultiset.Builder<Bean>()    *         .addCopies(Bean.COCOA, 4)    *         .addCopies(Bean.GARDEN, 6)    *         .addCopies(Bean.RED, 8)    *         .addCopies(Bean.BLACK_EYED, 10)    *         .build();    * }</pre>    *    *<p>Builder instances can be reused; it is safe to call {@link #build} multiple times to build    * multiple multisets in series.    *    * @since 2.0    */
-end_comment
-
-begin_class
 DECL|class|Builder
 specifier|public
 specifier|static
@@ -2348,9 +2121,6 @@ argument_list|)
 return|;
 block|}
 block|}
-end_class
-
-begin_class
 DECL|class|ElementSet
 specifier|static
 specifier|final
@@ -2492,9 +2262,6 @@ argument_list|()
 return|;
 block|}
 block|}
-end_class
-
-begin_class
 DECL|class|SerializedForm
 specifier|static
 specifier|final
@@ -2668,8 +2435,8 @@ init|=
 literal|0
 decl_stmt|;
 block|}
+block|}
 end_class
 
-unit|}
 end_unit
 
