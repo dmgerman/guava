@@ -362,7 +362,6 @@ return|;
 block|}
 block|}
 DECL|method|copyOf ( Iterable<? extends Cell<? extends R, ? extends C, ? extends V>> cells)
-specifier|private
 specifier|static
 parameter_list|<
 name|R
