@@ -180,8 +180,6 @@ DECL|class|TableCollectorsTest
 specifier|public
 class|class
 name|TableCollectorsTest
-extends|extends
-name|TestCase
 block|{
 DECL|class|ToImmutableTableTest
 specifier|public
@@ -2097,6 +2095,11 @@ operator|::
 name|equivalent
 return|;
 block|}
+DECL|method|TableCollectorsTest ()
+specifier|private
+name|TableCollectorsTest
+parameter_list|()
+block|{}
 block|}
 end_class
 
