@@ -346,7 +346,7 @@ name|Spliterator
 operator|.
 name|SORTED
 decl_stmt|;
-comment|/**    * Returns a {@code Collector} that accumulates the input elements into a new {@code    * ImmutableSortedSet}, ordered by the specified comparator.    *    *<p>If the elements contain duplicates (according to the comparator), only the first duplicate    * in encounter order will appear in the result.    *    * @since 21.0    */
+comment|/**    * Returns a {@code Collector} that accumulates the input elements into a new {@code    * ImmutableSortedSet}, ordered by the specified comparator.    *    *<p>If the elements contain duplicates (according to the comparator), only the first duplicate    * in encounter order will appear in the result.    *    *    * @since 21.0    */
 DECL|method|toImmutableSortedSet ( Comparator<? super E> comparator)
 specifier|public
 specifier|static

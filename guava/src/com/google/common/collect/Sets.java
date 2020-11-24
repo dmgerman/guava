@@ -743,7 +743,7 @@ return|;
 block|}
 block|}
 block|}
-comment|/**    * Returns a {@code Collector} that accumulates the input elements into a new {@code ImmutableSet}    * with an implementation specialized for enums. Unlike {@link ImmutableSet#toImmutableSet}, the    * resulting set will iterate over elements in their enum definition order, not encounter order.    *    * @since 21.0    */
+comment|/**    * Returns a {@code Collector} that accumulates the input elements into a new {@code ImmutableSet}    * with an implementation specialized for enums. Unlike {@link ImmutableSet#toImmutableSet}, the    * resulting set will iterate over elements in their enum definition order, not encounter order.    *    *    * @since 21.0    */
 DECL|method|toImmutableEnumSet ()
 specifier|public
 specifier|static

@@ -271,7 +271,7 @@ argument_list|<
 name|E
 argument_list|>
 block|{
-comment|/**    * Returns a {@code Collector} that accumulates the input elements into a new {@code    * ImmutableMultiset}. Elements iterate in order by the<i>first</i> appearance of that element in    * encounter order.    *    * @since 21.0    */
+comment|/**    * Returns a {@code Collector} that accumulates the input elements into a new {@code    * ImmutableMultiset}. Elements iterate in order by the<i>first</i> appearance of that element in    * encounter order.    *    *    * @since 21.0    */
 DECL|method|toImmutableMultiset ()
 specifier|public
 specifier|static
@@ -308,7 +308,7 @@ literal|1
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a {@code Collector} that accumulates elements into an {@code ImmutableMultiset} whose    * elements are the result of applying {@code elementFunction} to the inputs, with counts equal to    * the result of applying {@code countFunction} to the inputs.    *    *<p>If the mapped elements contain duplicates (according to {@link Object#equals}), the first    * occurrence in encounter order appears in the resulting multiset, with count equal to the sum of    * the outputs of {@code countFunction.applyAsInt(t)} for each {@code t} mapped to that element.    *    * @since 22.0    */
+comment|/**    * Returns a {@code Collector} that accumulates elements into an {@code ImmutableMultiset} whose    * elements are the result of applying {@code elementFunction} to the inputs, with counts equal to    * the result of applying {@code countFunction} to the inputs.    *    *<p>If the mapped elements contain duplicates (according to {@link Object#equals}), the first    * occurrence in encounter order appears in the resulting multiset, with count equal to the sum of    * the outputs of {@code countFunction.applyAsInt(t)} for each {@code t} mapped to that element.    *    *    * @since 22.0    */
 DECL|method|toImmutableMultiset ( Function<? super T, ? extends E> elementFunction, ToIntFunction<? super T> countFunction)
 specifier|public
 specifier|static
