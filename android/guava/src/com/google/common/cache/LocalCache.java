@@ -18245,8 +18245,12 @@ return|return
 name|value
 return|;
 block|}
-comment|// Only becomes available in Java 8 when it's on the interface.
-comment|// @Override
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"MissingOverride"
+argument_list|)
+comment|// Supermethod will not exist if we build with --release 7.
 annotation|@
 name|NullableDecl
 DECL|method|getOrDefault (@ullableDecl Object key, @NullableDecl V defaultValue)

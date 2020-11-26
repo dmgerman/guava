@@ -753,8 +753,12 @@ argument_list|)
 return|;
 block|}
 comment|/*    * These methods perform most headSet, subSet, and tailSet logic, besides parameter validation.    */
-comment|// TODO(kevinb): we can probably make these real @Overrides now
-comment|/* @Override */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"MissingOverride"
+argument_list|)
+comment|// Supermethod does not exist under GWT.
 DECL|method|headSetImpl (C toElement, boolean inclusive)
 specifier|abstract
 name|ContiguousSet
@@ -770,7 +774,12 @@ name|boolean
 name|inclusive
 parameter_list|)
 function_decl|;
-comment|/* @Override */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"MissingOverride"
+argument_list|)
+comment|// Supermethod does not exist under GWT.
 DECL|method|subSetImpl ( C fromElement, boolean fromInclusive, C toElement, boolean toInclusive)
 specifier|abstract
 name|ContiguousSet
@@ -792,7 +801,12 @@ name|boolean
 name|toInclusive
 parameter_list|)
 function_decl|;
-comment|/* @Override */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"MissingOverride"
+argument_list|)
+comment|// Supermethod does not exist under GWT.
 DECL|method|tailSetImpl (C fromElement, boolean inclusive)
 specifier|abstract
 name|ContiguousSet
