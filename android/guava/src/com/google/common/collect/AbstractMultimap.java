@@ -66,6 +66,22 @@ name|com
 operator|.
 name|google
 operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|concurrent
+operator|.
+name|LazyInit
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
 name|j2objc
 operator|.
 name|annotations
@@ -592,6 +608,8 @@ return|;
 block|}
 DECL|field|entries
 annotation|@
+name|LazyInit
+annotation|@
 name|NullableDecl
 specifier|private
 specifier|transient
@@ -795,6 +813,8 @@ parameter_list|()
 function_decl|;
 DECL|field|keySet
 annotation|@
+name|LazyInit
+annotation|@
 name|NullableDecl
 specifier|private
 specifier|transient
@@ -849,6 +869,8 @@ parameter_list|()
 function_decl|;
 DECL|field|keys
 annotation|@
+name|LazyInit
+annotation|@
 name|NullableDecl
 specifier|private
 specifier|transient
@@ -902,6 +924,8 @@ name|createKeys
 parameter_list|()
 function_decl|;
 DECL|field|values
+annotation|@
+name|LazyInit
 annotation|@
 name|NullableDecl
 specifier|private
@@ -1062,6 +1086,8 @@ argument_list|)
 return|;
 block|}
 DECL|field|asMap
+annotation|@
+name|LazyInit
 annotation|@
 name|NullableDecl
 specifier|private

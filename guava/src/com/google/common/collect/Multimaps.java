@@ -198,6 +198,22 @@ name|com
 operator|.
 name|google
 operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|concurrent
+operator|.
+name|LazyInit
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
 name|j2objc
 operator|.
 name|annotations
@@ -2611,6 +2627,8 @@ argument_list|>
 name|delegate
 decl_stmt|;
 DECL|field|entries
+annotation|@
+name|LazyInit
 specifier|transient
 annotation|@
 name|Nullable
@@ -2626,6 +2644,8 @@ argument_list|>
 name|entries
 decl_stmt|;
 DECL|field|keys
+annotation|@
+name|LazyInit
 specifier|transient
 annotation|@
 name|Nullable
@@ -2636,6 +2656,8 @@ argument_list|>
 name|keys
 decl_stmt|;
 DECL|field|keySet
+annotation|@
+name|LazyInit
 specifier|transient
 annotation|@
 name|Nullable
@@ -2646,6 +2668,8 @@ argument_list|>
 name|keySet
 decl_stmt|;
 DECL|field|values
+annotation|@
+name|LazyInit
 specifier|transient
 annotation|@
 name|Nullable
@@ -2656,6 +2680,8 @@ argument_list|>
 name|values
 decl_stmt|;
 DECL|field|map
+annotation|@
+name|LazyInit
 specifier|transient
 annotation|@
 name|Nullable
