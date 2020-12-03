@@ -2803,9 +2803,6 @@ name|isAndroid
 init|=
 name|System
 operator|.
-name|getProperties
-argument_list|()
-operator|.
 name|getProperty
 argument_list|(
 literal|"java.runtime.name"
