@@ -182,23 +182,6 @@ name|code
 argument_list|)
 throw|;
 block|}
-DECL|method|fromIsPrivate (boolean isPrivate)
-specifier|static
-name|PublicSuffixType
-name|fromIsPrivate
-parameter_list|(
-name|boolean
-name|isPrivate
-parameter_list|)
-block|{
-return|return
-name|isPrivate
-condition|?
-name|PRIVATE
-else|:
-name|REGISTRY
-return|;
-block|}
 block|}
 end_enum
 
