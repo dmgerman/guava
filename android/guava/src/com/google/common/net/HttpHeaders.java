@@ -386,7 +386,7 @@ name|ORIGIN
 init|=
 literal|"Origin"
 decl_stmt|;
-comment|/**    * The HTTP<a href="https://github.com/WICG/origin-isolation">{@code Origin-Isolation}</a> header    * field name.    *    * @since NEXT    */
+comment|/**    * The HTTP<a href="https://github.com/WICG/origin-isolation">{@code Origin-Isolation}</a> header    * field name.    *    * @since 30.1    */
 DECL|field|ORIGIN_ISOLATION
 specifier|public
 specifier|static
@@ -1160,7 +1160,7 @@ name|PUBLIC_KEY_PINS_REPORT_ONLY
 init|=
 literal|"Public-Key-Pins-Report-Only"
 decl_stmt|;
-comment|/**    * The HTTP {@code X-Request-ID} header field name.    *    * @since NEXT    */
+comment|/**    * The HTTP {@code X-Request-ID} header field name.    *    * @since 30.1    */
 DECL|field|X_REQUEST_ID
 specifier|public
 specifier|static

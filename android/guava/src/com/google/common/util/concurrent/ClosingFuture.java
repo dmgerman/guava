@@ -839,7 +839,7 @@ throws|throws
 name|Exception
 function_decl|;
 block|}
-comment|/**    * An operation that computes a {@link ClosingFuture} of a result.    *    * @param<V> the type of the result    * @since NEXT    */
+comment|/**    * An operation that computes a {@link ClosingFuture} of a result.    *    * @param<V> the type of the result    * @since 30.1    */
 DECL|interface|AsyncClosingCallable
 specifier|public
 interface|interface
@@ -1068,7 +1068,7 @@ name|executor
 argument_list|)
 return|;
 block|}
-comment|/**    * Starts a {@link ClosingFuture} pipeline by submitting a callable block to an executor.    *    * @throws java.util.concurrent.RejectedExecutionException if the task cannot be scheduled for    *     execution    * @since NEXT    */
+comment|/**    * Starts a {@link ClosingFuture} pipeline by submitting a callable block to an executor.    *    * @throws java.util.concurrent.RejectedExecutionException if the task cannot be scheduled for    *     execution    * @since 30.1    */
 DECL|method|submitAsync ( AsyncClosingCallable<V> callable, Executor executor)
 specifier|public
 specifier|static
