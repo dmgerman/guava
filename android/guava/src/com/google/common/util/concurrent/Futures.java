@@ -3144,7 +3144,7 @@ parameter_list|)
 throws|throws
 name|ExecutionException
 block|{
-comment|/*      * We throw IllegalStateException, since the call could succeed later. Perhaps we "should" throw      * IllegalArgumentException, since the call could succeed with a different argument. Those      * exceptions' docs suggest that either is acceptable. Google's Java Practices page recommends      * IllegalArgumentException here, in part to keep its recommendation simple: Static methods      * should throw IllegalStateException only when they use static state.      *      *      * Why do we deviate here? The answer: We want for fluentFuture.getDone() to throw the same      * exception as Futures.getDone(fluentFuture).      */
+comment|/*      * We throw IllegalStateException, since the call could succeed later. Perhaps we "should" throw      * IllegalArgumentException, since the call could succeed with a different argument. Those      * exceptions' docs suggest that either is acceptable. Google's Java Practices page recommends      * IllegalArgumentException here, in part to keep its recommendation simple: Static methods      * should throw IllegalStateException only when they use static state.      *      * Why do we deviate here? The answer: We want for fluentFuture.getDone() to throw the same      * exception as Futures.getDone(fluentFuture).      */
 name|checkState
 argument_list|(
 name|future

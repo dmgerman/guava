@@ -403,7 +403,7 @@ argument_list|()
 argument_list|)
 argument_list|)
 decl_stmt|;
-comment|/**    * Returns a {@code Collector} that accumulates the input elements into a new {@code    * ImmutableRangeSet}. As in {@link Builder}, overlapping ranges are not permitted and adjacent    * ranges will be merged.    *    *    * @since 23.1    */
+comment|/**    * Returns a {@code Collector} that accumulates the input elements into a new {@code    * ImmutableRangeSet}. As in {@link Builder}, overlapping ranges are not permitted and adjacent    * ranges will be merged.    *    * @since 23.1    */
 specifier|public
 specifier|static
 parameter_list|<

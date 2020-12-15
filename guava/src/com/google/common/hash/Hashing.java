@@ -631,7 +631,7 @@ literal|"Hashing.sha512()"
 argument_list|)
 decl_stmt|;
 block|}
-comment|/**    * Returns a hash function implementing the Message Authentication Code (MAC) algorithm, using the    * MD5 (128 hash bits) hash function and the given secret key.    *    *    * @param key the secret key    * @throws IllegalArgumentException if the given key is inappropriate for initializing this MAC    * @since 20.0    */
+comment|/**    * Returns a hash function implementing the Message Authentication Code (MAC) algorithm, using the    * MD5 (128 hash bits) hash function and the given secret key.    *    * @param key the secret key    * @throws IllegalArgumentException if the given key is inappropriate for initializing this MAC    * @since 20.0    */
 DECL|method|hmacMd5 (Key key)
 specifier|public
 specifier|static
@@ -659,7 +659,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a hash function implementing the Message Authentication Code (MAC) algorithm, using the    * MD5 (128 hash bits) hash function and a {@link SecretKeySpec} created from the given byte array    * and the MD5 algorithm.    *    *    * @param key the key material of the secret key    * @since 20.0    */
+comment|/**    * Returns a hash function implementing the Message Authentication Code (MAC) algorithm, using the    * MD5 (128 hash bits) hash function and a {@link SecretKeySpec} created from the given byte array    * and the MD5 algorithm.    *    * @param key the key material of the secret key    * @since 20.0    */
 DECL|method|hmacMd5 (byte[] key)
 specifier|public
 specifier|static
@@ -687,7 +687,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a hash function implementing the Message Authentication Code (MAC) algorithm, using the    * SHA-1 (160 hash bits) hash function and the given secret key.    *    *    * @param key the secret key    * @throws IllegalArgumentException if the given key is inappropriate for initializing this MAC    * @since 20.0    */
+comment|/**    * Returns a hash function implementing the Message Authentication Code (MAC) algorithm, using the    * SHA-1 (160 hash bits) hash function and the given secret key.    *    * @param key the secret key    * @throws IllegalArgumentException if the given key is inappropriate for initializing this MAC    * @since 20.0    */
 DECL|method|hmacSha1 (Key key)
 specifier|public
 specifier|static
@@ -715,7 +715,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a hash function implementing the Message Authentication Code (MAC) algorithm, using the    * SHA-1 (160 hash bits) hash function and a {@link SecretKeySpec} created from the given byte    * array and the SHA-1 algorithm.    *    *    * @param key the key material of the secret key    * @since 20.0    */
+comment|/**    * Returns a hash function implementing the Message Authentication Code (MAC) algorithm, using the    * SHA-1 (160 hash bits) hash function and a {@link SecretKeySpec} created from the given byte    * array and the SHA-1 algorithm.    *    * @param key the key material of the secret key    * @since 20.0    */
 DECL|method|hmacSha1 (byte[] key)
 specifier|public
 specifier|static
@@ -743,7 +743,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a hash function implementing the Message Authentication Code (MAC) algorithm, using the    * SHA-256 (256 hash bits) hash function and the given secret key.    *    *    * @param key the secret key    * @throws IllegalArgumentException if the given key is inappropriate for initializing this MAC    * @since 20.0    */
+comment|/**    * Returns a hash function implementing the Message Authentication Code (MAC) algorithm, using the    * SHA-256 (256 hash bits) hash function and the given secret key.    *    * @param key the secret key    * @throws IllegalArgumentException if the given key is inappropriate for initializing this MAC    * @since 20.0    */
 DECL|method|hmacSha256 (Key key)
 specifier|public
 specifier|static
@@ -771,7 +771,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a hash function implementing the Message Authentication Code (MAC) algorithm, using the    * SHA-256 (256 hash bits) hash function and a {@link SecretKeySpec} created from the given byte    * array and the SHA-256 algorithm.    *    *    * @param key the key material of the secret key    * @since 20.0    */
+comment|/**    * Returns a hash function implementing the Message Authentication Code (MAC) algorithm, using the    * SHA-256 (256 hash bits) hash function and a {@link SecretKeySpec} created from the given byte    * array and the SHA-256 algorithm.    *    * @param key the key material of the secret key    * @since 20.0    */
 DECL|method|hmacSha256 (byte[] key)
 specifier|public
 specifier|static
@@ -799,7 +799,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a hash function implementing the Message Authentication Code (MAC) algorithm, using the    * SHA-512 (512 hash bits) hash function and the given secret key.    *    *    * @param key the secret key    * @throws IllegalArgumentException if the given key is inappropriate for initializing this MAC    * @since 20.0    */
+comment|/**    * Returns a hash function implementing the Message Authentication Code (MAC) algorithm, using the    * SHA-512 (512 hash bits) hash function and the given secret key.    *    * @param key the secret key    * @throws IllegalArgumentException if the given key is inappropriate for initializing this MAC    * @since 20.0    */
 DECL|method|hmacSha512 (Key key)
 specifier|public
 specifier|static
@@ -827,7 +827,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a hash function implementing the Message Authentication Code (MAC) algorithm, using the    * SHA-512 (512 hash bits) hash function and a {@link SecretKeySpec} created from the given byte    * array and the SHA-512 algorithm.    *    *    * @param key the key material of the secret key    * @since 20.0    */
+comment|/**    * Returns a hash function implementing the Message Authentication Code (MAC) algorithm, using the    * SHA-512 (512 hash bits) hash function and a {@link SecretKeySpec} created from the given byte    * array and the SHA-512 algorithm.    *    * @param key the key material of the secret key    * @since 20.0    */
 DECL|method|hmacSha512 (byte[] key)
 specifier|public
 specifier|static
@@ -1031,7 +1031,7 @@ operator|.
 name|FARMHASH_FINGERPRINT_64
 return|;
 block|}
-comment|/**    * Assigns to {@code hashCode} a "bucket" in the range {@code [0, buckets)}, in a uniform manner    * that minimizes the need for remapping as {@code buckets} grows. That is, {@code    * consistentHash(h, n)} equals:    *    *<ul>    *<li>{@code n - 1}, with approximate probability {@code 1/n}    *<li>{@code consistentHash(h, n - 1)}, otherwise (probability {@code 1 - 1/n})    *</ul>    *    *<p>This method is suitable for the common use case of dividing work among buckets that meet the    * following conditions:    *    *<ul>    *<li>You want to assign the same fraction of inputs to each bucket.    *<li>When you reduce the number of buckets, you can accept that the most recently added    *       buckets will be removed first. More concretely, if you are dividing traffic among tasks,    *       you can decrease the number of tasks from 15 and 10, killing off the final 5 tasks, and    *       {@code consistentHash} will handle it. If, however, you are dividing traffic among    *       servers {@code alpha}, {@code bravo}, and {@code charlie} and you occasionally need to    *       take each of the servers offline, {@code consistentHash} will be a poor fit: It provides    *       no way for you to specify which of the three buckets is disappearing. Thus, if your    *       buckets change from {@code [alpha, bravo, charlie]} to {@code [bravo, charlie]}, it will    *       assign all the old {@code alpha} traffic to {@code bravo} and all the old {@code bravo}    *       traffic to {@code charlie}, rather than letting {@code bravo} keep its traffic.    *</ul>    *    *    *<p>See the<a href="http://en.wikipedia.org/wiki/Consistent_hashing">Wikipedia article on    * consistent hashing</a> for more information.    */
+comment|/**    * Assigns to {@code hashCode} a "bucket" in the range {@code [0, buckets)}, in a uniform manner    * that minimizes the need for remapping as {@code buckets} grows. That is, {@code    * consistentHash(h, n)} equals:    *    *<ul>    *<li>{@code n - 1}, with approximate probability {@code 1/n}    *<li>{@code consistentHash(h, n - 1)}, otherwise (probability {@code 1 - 1/n})    *</ul>    *    *<p>This method is suitable for the common use case of dividing work among buckets that meet the    * following conditions:    *    *<ul>    *<li>You want to assign the same fraction of inputs to each bucket.    *<li>When you reduce the number of buckets, you can accept that the most recently added    *       buckets will be removed first. More concretely, if you are dividing traffic among tasks,    *       you can decrease the number of tasks from 15 and 10, killing off the final 5 tasks, and    *       {@code consistentHash} will handle it. If, however, you are dividing traffic among    *       servers {@code alpha}, {@code bravo}, and {@code charlie} and you occasionally need to    *       take each of the servers offline, {@code consistentHash} will be a poor fit: It provides    *       no way for you to specify which of the three buckets is disappearing. Thus, if your    *       buckets change from {@code [alpha, bravo, charlie]} to {@code [bravo, charlie]}, it will    *       assign all the old {@code alpha} traffic to {@code bravo} and all the old {@code bravo}    *       traffic to {@code charlie}, rather than letting {@code bravo} keep its traffic.    *</ul>    *    *<p>See the<a href="http://en.wikipedia.org/wiki/Consistent_hashing">Wikipedia article on    * consistent hashing</a> for more information.    */
 DECL|method|consistentHash (HashCode hashCode, int buckets)
 specifier|public
 specifier|static
@@ -1057,7 +1057,7 @@ name|buckets
 argument_list|)
 return|;
 block|}
-comment|/**    * Assigns to {@code input} a "bucket" in the range {@code [0, buckets)}, in a uniform manner that    * minimizes the need for remapping as {@code buckets} grows. That is, {@code consistentHash(h,    * n)} equals:    *    *<ul>    *<li>{@code n - 1}, with approximate probability {@code 1/n}    *<li>{@code consistentHash(h, n - 1)}, otherwise (probability {@code 1 - 1/n})    *</ul>    *    *<p>This method is suitable for the common use case of dividing work among buckets that meet the    * following conditions:    *    *<ul>    *<li>You want to assign the same fraction of inputs to each bucket.    *<li>When you reduce the number of buckets, you can accept that the most recently added    *       buckets will be removed first. More concretely, if you are dividing traffic among tasks,    *       you can decrease the number of tasks from 15 and 10, killing off the final 5 tasks, and    *       {@code consistentHash} will handle it. If, however, you are dividing traffic among    *       servers {@code alpha}, {@code bravo}, and {@code charlie} and you occasionally need to    *       take each of the servers offline, {@code consistentHash} will be a poor fit: It provides    *       no way for you to specify which of the three buckets is disappearing. Thus, if your    *       buckets change from {@code [alpha, bravo, charlie]} to {@code [bravo, charlie]}, it will    *       assign all the old {@code alpha} traffic to {@code bravo} and all the old {@code bravo}    *       traffic to {@code charlie}, rather than letting {@code bravo} keep its traffic.    *</ul>    *    *    *<p>See the<a href="http://en.wikipedia.org/wiki/Consistent_hashing">Wikipedia article on    * consistent hashing</a> for more information.    */
+comment|/**    * Assigns to {@code input} a "bucket" in the range {@code [0, buckets)}, in a uniform manner that    * minimizes the need for remapping as {@code buckets} grows. That is, {@code consistentHash(h,    * n)} equals:    *    *<ul>    *<li>{@code n - 1}, with approximate probability {@code 1/n}    *<li>{@code consistentHash(h, n - 1)}, otherwise (probability {@code 1 - 1/n})    *</ul>    *    *<p>This method is suitable for the common use case of dividing work among buckets that meet the    * following conditions:    *    *<ul>    *<li>You want to assign the same fraction of inputs to each bucket.    *<li>When you reduce the number of buckets, you can accept that the most recently added    *       buckets will be removed first. More concretely, if you are dividing traffic among tasks,    *       you can decrease the number of tasks from 15 and 10, killing off the final 5 tasks, and    *       {@code consistentHash} will handle it. If, however, you are dividing traffic among    *       servers {@code alpha}, {@code bravo}, and {@code charlie} and you occasionally need to    *       take each of the servers offline, {@code consistentHash} will be a poor fit: It provides    *       no way for you to specify which of the three buckets is disappearing. Thus, if your    *       buckets change from {@code [alpha, bravo, charlie]} to {@code [bravo, charlie]}, it will    *       assign all the old {@code alpha} traffic to {@code bravo} and all the old {@code bravo}    *       traffic to {@code charlie}, rather than letting {@code bravo} keep its traffic.    *</ul>    *    *<p>See the<a href="http://en.wikipedia.org/wiki/Consistent_hashing">Wikipedia article on    * consistent hashing</a> for more information.    */
 DECL|method|consistentHash (long input, int buckets)
 specifier|public
 specifier|static

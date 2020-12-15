@@ -123,7 +123,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Benchmark for the {@link CharMatcher} class.  *  *  * @author David Beaumont  * @author Kevin Bourrillion  * @author David Richter  */
+comment|/**  * Benchmark for the {@link CharMatcher} class.  *  * @author David Beaumont  * @author Kevin Bourrillion  * @author David Richter  */
 end_comment
 
 begin_class

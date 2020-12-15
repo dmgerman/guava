@@ -157,9 +157,9 @@ comment|/**  * An accumulator that selects the "top" {@code k} elements added to
 end_comment
 
 begin_class
-DECL|class|TopKSelector
 annotation|@
 name|GwtCompatible
+DECL|class|TopKSelector
 specifier|final
 class|class
 name|TopKSelector

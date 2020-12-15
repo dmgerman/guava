@@ -45,7 +45,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * {@code Escaper} instances suitable for strings to be included in particular sections of URLs.  *  *<p>If the resulting URLs are inserted into an HTML or XML document, they will require additional  * escaping with {@link com.google.common.html.HtmlEscapers} or {@link  * com.google.common.xml.XmlEscapers}.  *  *  * @author David Beaumont  * @author Chris Povirk  * @since 15.0  */
+comment|/**  * {@code Escaper} instances suitable for strings to be included in particular sections of URLs.  *  *<p>If the resulting URLs are inserted into an HTML or XML document, they will require additional  * escaping with {@link com.google.common.html.HtmlEscapers} or {@link  * com.google.common.xml.XmlEscapers}.  *  * @author David Beaumont  * @author Chris Povirk  * @since 15.0  */
 end_comment
 
 begin_class

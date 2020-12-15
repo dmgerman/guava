@@ -389,7 +389,7 @@ argument_list|>
 implements|,
 name|RandomAccess
 block|{
-comment|/**    * Returns a {@code Collector} that accumulates the input elements into a new {@code    * ImmutableList}, in encounter order.    *    *    * @since 21.0    */
+comment|/**    * Returns a {@code Collector} that accumulates the input elements into a new {@code    * ImmutableList}, in encounter order.    *    * @since 21.0    */
 DECL|method|toImmutableList ()
 specifier|public
 specifier|static

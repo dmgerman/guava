@@ -588,7 +588,7 @@ name|SuppressWarnings
 argument_list|(
 literal|"unused"
 argument_list|)
-comment|// go/futurereturn-lsc
+comment|// https://errorprone.info/bugpattern/FutureReturnValueIgnored
 name|Future
 argument_list|<
 name|?
@@ -613,7 +613,7 @@ name|SuppressWarnings
 argument_list|(
 literal|"unused"
 argument_list|)
-comment|// go/futurereturn-lsc
+comment|// https://errorprone.info/bugpattern/FutureReturnValueIgnored
 name|Future
 argument_list|<
 name|?
@@ -638,7 +638,7 @@ name|SuppressWarnings
 argument_list|(
 literal|"unused"
 argument_list|)
-comment|// go/futurereturn-lsc
+comment|// https://errorprone.info/bugpattern/FutureReturnValueIgnored
 name|Future
 argument_list|<
 name|?
@@ -663,7 +663,7 @@ name|SuppressWarnings
 argument_list|(
 literal|"unused"
 argument_list|)
-comment|// go/futurereturn-lsc
+comment|// https://errorprone.info/bugpattern/FutureReturnValueIgnored
 name|Future
 argument_list|<
 name|?
@@ -688,7 +688,7 @@ name|SuppressWarnings
 argument_list|(
 literal|"unused"
 argument_list|)
-comment|// go/futurereturn-lsc
+comment|// https://errorprone.info/bugpattern/FutureReturnValueIgnored
 name|Future
 argument_list|<
 name|?
@@ -1127,7 +1127,7 @@ name|SuppressWarnings
 argument_list|(
 literal|"unused"
 argument_list|)
-comment|// go/futurereturn-lsc
+comment|// https://errorprone.info/bugpattern/FutureReturnValueIgnored
 name|Future
 argument_list|<
 name|?
@@ -1241,7 +1241,7 @@ name|SuppressWarnings
 argument_list|(
 literal|"unused"
 argument_list|)
-comment|// go/futurereturn-lsc
+comment|// https://errorprone.info/bugpattern/FutureReturnValueIgnored
 name|Future
 argument_list|<
 name|?
@@ -1343,7 +1343,7 @@ name|SuppressWarnings
 argument_list|(
 literal|"unused"
 argument_list|)
-comment|// go/futurereturn-lsc
+comment|// https://errorprone.info/bugpattern/FutureReturnValueIgnored
 name|Future
 argument_list|<
 name|?
@@ -1669,7 +1669,7 @@ name|SuppressWarnings
 argument_list|(
 literal|"unused"
 argument_list|)
-comment|// go/futurereturn-lsc
+comment|// https://errorprone.info/bugpattern/FutureReturnValueIgnored
 name|Future
 argument_list|<
 name|?
@@ -1762,7 +1762,7 @@ name|SuppressWarnings
 argument_list|(
 literal|"unused"
 argument_list|)
-comment|// go/futurereturn-lsc
+comment|// https://errorprone.info/bugpattern/FutureReturnValueIgnored
 name|Future
 argument_list|<
 name|?

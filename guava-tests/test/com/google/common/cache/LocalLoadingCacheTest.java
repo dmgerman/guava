@@ -1218,7 +1218,7 @@ argument_list|,
 name|two
 argument_list|)
 expr_stmt|;
-comment|// TODO(cgruber): Confirm with fry@ that this is a reasonable substitute.
+comment|// TODO(user): Confirm with fry@ that this is a reasonable substitute.
 comment|// Set<Entry<Object, Object>> entries = map.entrySet();
 comment|// assertThat(entries).containsExactly(
 comment|//    Maps.immutableEntry(three, one), Maps.immutableEntry(one, two));

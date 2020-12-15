@@ -373,7 +373,7 @@ name|Spliterator
 operator|.
 name|DISTINCT
 decl_stmt|;
-comment|/**    * Returns a {@code Collector} that accumulates the input elements into a new {@code    * ImmutableSet}. Elements appear in the resulting set in the encounter order of the stream; if    * the stream contains duplicates (according to {@link Object#equals(Object)}), only the first    * duplicate in encounter order will appear in the result.    *    *    * @since 21.0    */
+comment|/**    * Returns a {@code Collector} that accumulates the input elements into a new {@code    * ImmutableSet}. Elements appear in the resulting set in the encounter order of the stream; if    * the stream contains duplicates (according to {@link Object#equals(Object)}), only the first    * duplicate in encounter order will appear in the result.    *    * @since 21.0    */
 DECL|method|toImmutableSet ()
 specifier|public
 specifier|static

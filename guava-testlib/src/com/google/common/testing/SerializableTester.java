@@ -65,7 +65,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests serialization and deserialization of an object, optionally asserting that the resulting  * object is equal to the original.  *  *<p><b>GWT warning:</b> Under GWT, both methods simply returns their input, as proper GWT  * serialization tests require more setup. This no-op behavior allows test authors to intersperse  * {@code SerializableTester} calls with other, GWT-compatible tests.  *  *  * @author Mike Bostock  * @since 10.0  */
+comment|/**  * Tests serialization and deserialization of an object, optionally asserting that the resulting  * object is equal to the original.  *  *<p><b>GWT warning:</b> Under GWT, both methods simply returns their input, as proper GWT  * serialization tests require more setup. This no-op behavior allows test authors to intersperse  * {@code SerializableTester} calls with other, GWT-compatible tests.  *  * @author Mike Bostock  * @since 10.0  */
 end_comment
 
 begin_class

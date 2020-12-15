@@ -1427,7 +1427,7 @@ name|DirectExecutorService
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns an {@link Executor} that runs each task in the thread that invokes {@link    * Executor#execute execute}, as in {@code ThreadPoolExecutor.CallerRunsPolicy}.    *    *<p>This executor is appropriate for tasks that are lightweight and not deeply chained.    * Inappropriate {@code directExecutor} usage can cause problems, and these problems can be    * difficult to reproduce because they depend on timing. For example:    *    *<ul>    *<li>A call like {@code future.transform(function, directExecutor())} may execute the function    *       immediately in the thread that is calling {@code transform}. (This specific case happens    *       if the future is already completed.) If {@code transform} call was made from a UI thread    *       or other latency-sensitive thread, a heavyweight function can harm responsiveness.    *<li>If the task will be executed later, consider which thread will trigger the execution --    *       since that thread will execute the task inline. If the thread is a shared system thread    *       like an RPC network thread, a heavyweight task can stall progress of the whole system or    *       even deadlock it.    *<li>If many tasks will be triggered by the same event, one heavyweight task may delay other    *       tasks -- even tasks that are not themselves {@code directExecutor} tasks.    *<li>If many such tasks are chained together (such as with {@code    *       future.transform(...).transform(...).transform(...)....}), they may overflow the stack.    *       (In simple cases, callers can avoid this by registering all tasks with the same {@link    *       MoreExecutors#newSequentialExecutor} wrapper around {@code directExecutor()}. More    *       complex cases may require using thread pools or making deeper changes.)    *</ul>    *    * Additionally, beware of executing tasks with {@code directExecutor} while holding a lock. Since    * the task you submit to the executor (or any other arbitrary work the executor does) may do slow    * work or acquire other locks, you risk deadlocks.    *    *<p>This instance is equivalent to:    *    *<pre>{@code    * final class DirectExecutor implements Executor {    *   public void execute(Runnable r) {    *     r.run();    *   }    * }    * }</pre>    *    *<p>This should be preferred to {@link #newDirectExecutorService()} because implementing the    * {@link ExecutorService} subinterface necessitates significant performance overhead.    *    *    * @since 18.0    */
+comment|/**    * Returns an {@link Executor} that runs each task in the thread that invokes {@link    * Executor#execute execute}, as in {@code ThreadPoolExecutor.CallerRunsPolicy}.    *    *<p>This executor is appropriate for tasks that are lightweight and not deeply chained.    * Inappropriate {@code directExecutor} usage can cause problems, and these problems can be    * difficult to reproduce because they depend on timing. For example:    *    *<ul>    *<li>A call like {@code future.transform(function, directExecutor())} may execute the function    *       immediately in the thread that is calling {@code transform}. (This specific case happens    *       if the future is already completed.) If {@code transform} call was made from a UI thread    *       or other latency-sensitive thread, a heavyweight function can harm responsiveness.    *<li>If the task will be executed later, consider which thread will trigger the execution --    *       since that thread will execute the task inline. If the thread is a shared system thread    *       like an RPC network thread, a heavyweight task can stall progress of the whole system or    *       even deadlock it.    *<li>If many tasks will be triggered by the same event, one heavyweight task may delay other    *       tasks -- even tasks that are not themselves {@code directExecutor} tasks.    *<li>If many such tasks are chained together (such as with {@code    *       future.transform(...).transform(...).transform(...)....}), they may overflow the stack.    *       (In simple cases, callers can avoid this by registering all tasks with the same {@link    *       MoreExecutors#newSequentialExecutor} wrapper around {@code directExecutor()}. More    *       complex cases may require using thread pools or making deeper changes.)    *</ul>    *    * Additionally, beware of executing tasks with {@code directExecutor} while holding a lock. Since    * the task you submit to the executor (or any other arbitrary work the executor does) may do slow    * work or acquire other locks, you risk deadlocks.    *    *<p>This instance is equivalent to:    *    *<pre>{@code    * final class DirectExecutor implements Executor {    *   public void execute(Runnable r) {    *     r.run();    *   }    * }    * }</pre>    *    *<p>This should be preferred to {@link #newDirectExecutorService()} because implementing the    * {@link ExecutorService} subinterface necessitates significant performance overhead.    *    * @since 18.0    */
 DECL|method|directExecutor ()
 specifier|public
 specifier|static
@@ -2219,9 +2219,9 @@ block|}
 block|}
 comment|/*    * This following method is a modified version of one found in    * http://gee.cs.oswego.edu/cgi-bin/viewcvs.cgi/jsr166/src/test/tck/AbstractExecutorServiceTest.java?revision=1.30    * which contained the following notice:    *    * Written by Doug Lea with assistance from members of JCP JSR-166 Expert Group and released to    * the public domain, as explained at http://creativecommons.org/publicdomain/zero/1.0/    *    * Other contributors include Andrew Wright, Jeffrey Hayes, Pat Fisher, Mike Judd.    */
 comment|/**    * An implementation of {@link ExecutorService#invokeAny} for {@link ListeningExecutorService}    * implementations.    */
-DECL|method|invokeAnyImpl ( ListeningExecutorService executorService, Collection<? extends Callable<T>> tasks, boolean timed, Duration timeout)
 annotation|@
 name|GwtIncompatible
+DECL|method|invokeAnyImpl ( ListeningExecutorService executorService, Collection<? extends Callable<T>> tasks, boolean timed, Duration timeout)
 specifier|static
 parameter_list|<
 name|T
@@ -2283,9 +2283,9 @@ argument_list|(
 literal|"GoodTime"
 argument_list|)
 comment|// should accept a java.time.Duration
-DECL|method|invokeAnyImpl ( ListeningExecutorService executorService, Collection<? extends Callable<T>> tasks, boolean timed, long timeout, TimeUnit unit)
 annotation|@
 name|GwtIncompatible
+DECL|method|invokeAnyImpl ( ListeningExecutorService executorService, Collection<? extends Callable<T>> tasks, boolean timed, long timeout, TimeUnit unit)
 specifier|static
 parameter_list|<
 name|T
@@ -3050,7 +3050,7 @@ block|}
 comment|// TODO(lukes): provide overloads for ListeningExecutorService? ListeningScheduledExecutorService?
 comment|// TODO(lukes): provide overloads that take constant strings? Function<Runnable, String>s to
 comment|// calculate names?
-comment|/**    * Creates an {@link Executor} that renames the {@link Thread threads} that its tasks run in.    *    *<p>The names are retrieved from the {@code nameSupplier} on the thread that is being renamed    * right before each task is run. The renaming is best effort, if a {@link SecurityManager}    * prevents the renaming then it will be skipped but the tasks will still execute.    *    *    * @param executor The executor to decorate    * @param nameSupplier The source of names for each task    */
+comment|/**    * Creates an {@link Executor} that renames the {@link Thread threads} that its tasks run in.    *    *<p>The names are retrieved from the {@code nameSupplier} on the thread that is being renamed    * right before each task is run. The renaming is best effort, if a {@link SecurityManager}    * prevents the renaming then it will be skipped but the tasks will still execute.    *    * @param executor The executor to decorate    * @param nameSupplier The source of names for each task    */
 annotation|@
 name|GwtIncompatible
 comment|// concurrency
@@ -3114,7 +3114,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/**    * Creates an {@link ExecutorService} that renames the {@link Thread threads} that its tasks run    * in.    *    *<p>The names are retrieved from the {@code nameSupplier} on the thread that is being renamed    * right before each task is run. The renaming is best effort, if a {@link SecurityManager}    * prevents the renaming then it will be skipped but the tasks will still execute.    *    *    * @param service The executor to decorate    * @param nameSupplier The source of names for each task    */
+comment|/**    * Creates an {@link ExecutorService} that renames the {@link Thread threads} that its tasks run    * in.    *    *<p>The names are retrieved from the {@code nameSupplier} on the thread that is being renamed    * right before each task is run. The renaming is best effort, if a {@link SecurityManager}    * prevents the renaming then it will be skipped but the tasks will still execute.    *    * @param service The executor to decorate    * @param nameSupplier The source of names for each task    */
 annotation|@
 name|GwtIncompatible
 comment|// concurrency
@@ -3206,7 +3206,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/**    * Creates a {@link ScheduledExecutorService} that renames the {@link Thread threads} that its    * tasks run in.    *    *<p>The names are retrieved from the {@code nameSupplier} on the thread that is being renamed    * right before each task is run. The renaming is best effort, if a {@link SecurityManager}    * prevents the renaming then it will be skipped but the tasks will still execute.    *    *    * @param service The executor to decorate    * @param nameSupplier The source of names for each task    */
+comment|/**    * Creates a {@link ScheduledExecutorService} that renames the {@link Thread threads} that its    * tasks run in.    *    *<p>The names are retrieved from the {@code nameSupplier} on the thread that is being renamed    * right before each task is run. The renaming is best effort, if a {@link SecurityManager}    * prevents the renaming then it will be skipped but the tasks will still execute.    *    * @param service The executor to decorate    * @param nameSupplier The source of names for each task    */
 annotation|@
 name|GwtIncompatible
 comment|// concurrency

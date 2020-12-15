@@ -137,9 +137,9 @@ end_comment
 begin_class
 annotation|@
 name|GwtCompatible
-DECL|class|SortedLists
 annotation|@
 name|Beta
+DECL|class|SortedLists
 specifier|final
 class|class
 name|SortedLists

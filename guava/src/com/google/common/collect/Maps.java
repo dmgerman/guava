@@ -1202,7 +1202,7 @@ name|enumMap
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a {@link Collector} that accumulates elements into an {@code ImmutableMap} whose keys    * and values are the result of applying the provided mapping functions to the input elements. The    * resulting implementation is specialized for enum key types. The returned map and its views will    * iterate over keys in their enum definition order, not encounter order.    *    *<p>If the mapped keys contain duplicates, an {@code IllegalArgumentException} is thrown when    * the collection operation is performed. (This differs from the {@code Collector} returned by    * {@link java.util.stream.Collectors#toMap(java.util.function.Function,    * java.util.function.Function) Collectors.toMap(Function, Function)}, which throws an {@code    * IllegalStateException}.)    *    *    * @since 21.0    */
+comment|/**    * Returns a {@link Collector} that accumulates elements into an {@code ImmutableMap} whose keys    * and values are the result of applying the provided mapping functions to the input elements. The    * resulting implementation is specialized for enum key types. The returned map and its views will    * iterate over keys in their enum definition order, not encounter order.    *    *<p>If the mapped keys contain duplicates, an {@code IllegalArgumentException} is thrown when    * the collection operation is performed. (This differs from the {@code Collector} returned by    * {@link java.util.stream.Collectors#toMap(java.util.function.Function,    * java.util.function.Function) Collectors.toMap(Function, Function)}, which throws an {@code    * IllegalStateException}.)    *    * @since 21.0    */
 DECL|method|toImmutableEnumMap ( java.util.function.Function<? super T, ? extends K> keyFunction, java.util.function.Function<? super T, ? extends V> valueFunction)
 specifier|public
 specifier|static
@@ -1281,7 +1281,7 @@ name|valueFunction
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a {@link Collector} that accumulates elements into an {@code ImmutableMap} whose keys    * and values are the result of applying the provided mapping functions to the input elements. The    * resulting implementation is specialized for enum key types. The returned map and its views will    * iterate over keys in their enum definition order, not encounter order.    *    *<p>If the mapped keys contain duplicates, the values are merged using the specified merging    * function.    *    *    * @since 21.0    */
+comment|/**    * Returns a {@link Collector} that accumulates elements into an {@code ImmutableMap} whose keys    * and values are the result of applying the provided mapping functions to the input elements. The    * resulting implementation is specialized for enum key types. The returned map and its views will    * iterate over keys in their enum definition order, not encounter order.    *    *<p>If the mapped keys contain duplicates, the values are merged using the specified merging    * function.    *    * @since 21.0    */
 DECL|method|toImmutableEnumMap ( java.util.function.Function<? super T, ? extends K> keyFunction, java.util.function.Function<? super T, ? extends V> valueFunction, BinaryOperator<V> mergeFunction)
 specifier|public
 specifier|static
