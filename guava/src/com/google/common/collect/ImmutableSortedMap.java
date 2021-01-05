@@ -1231,7 +1231,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an immutable map containing the given entries, with keys sorted by the provided    * comparator.    *    *<p>This method is not type-safe, as it may be called on a map with keys that are not mutually    * comparable.    *    * @throws NullPointerException if any key or value in {@code map} is null    * @throws IllegalArgumentException if any two keys are equal according to the comparator    * @since 19.0    */
+comment|/**    * Returns an immutable map containing the given entries, with keys sorted by their natural    * ordering.    *    *<p>This method is not type-safe, as it may be called on a map with keys that are not mutually    * comparable.    *    * @throws NullPointerException if any key or value in {@code map} is null    * @throws IllegalArgumentException if any two keys are equal according to the comparator    * @since 19.0    */
 annotation|@
 name|Beta
 DECL|method|copyOf ( Iterable<? extends Entry<? extends K, ? extends V>> entries)
