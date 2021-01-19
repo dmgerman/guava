@@ -72,20 +72,6 @@ name|google
 operator|.
 name|common
 operator|.
-name|annotations
-operator|.
-name|Beta
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
 name|base
 operator|.
 name|Preconditions
@@ -165,8 +151,6 @@ comment|/**  * An immutable hash code of arbitrary bit length.  *  * @author Dim
 end_comment
 
 begin_class
-annotation|@
-name|Beta
 DECL|class|HashCode
 specifier|public
 specifier|abstract
