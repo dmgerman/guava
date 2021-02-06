@@ -1716,6 +1716,11 @@ name|expected
 parameter_list|)
 block|{     }
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"ReturnValueIgnored"
+argument_list|)
 DECL|method|testTimeToLive_small ()
 specifier|public
 name|void
@@ -1833,6 +1838,11 @@ name|expected
 parameter_list|)
 block|{     }
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"ReturnValueIgnored"
+argument_list|)
 DECL|method|testTimeToIdle_small ()
 specifier|public
 name|void
@@ -1908,6 +1918,11 @@ name|expected
 parameter_list|)
 block|{     }
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"ReturnValueIgnored"
+argument_list|)
 DECL|method|testTimeToIdleAndToLive ()
 specifier|public
 name|void

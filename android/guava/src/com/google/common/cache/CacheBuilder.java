@@ -836,6 +836,8 @@ name|CacheBuilder
 parameter_list|()
 block|{}
 comment|/**    * Constructs a new {@code CacheBuilder} instance with default settings, including strong keys,    * strong values, and no automatic eviction of any kind.    *    *<p>Note that while this return type is {@code CacheBuilder<Object, Object>}, type parameters on    * the {@link #build} methods allow you to create a cache of any key and value type desired.    */
+annotation|@
+name|CheckReturnValue
 DECL|method|newBuilder ()
 specifier|public
 specifier|static
@@ -859,6 +861,8 @@ comment|/**    * Constructs a new {@code CacheBuilder} instance with the setting
 annotation|@
 name|GwtIncompatible
 comment|// To be supported
+annotation|@
+name|CheckReturnValue
 DECL|method|from (CacheBuilderSpec spec)
 specifier|public
 specifier|static
@@ -888,6 +892,8 @@ comment|/**    * Constructs a new {@code CacheBuilder} instance with the setting
 annotation|@
 name|GwtIncompatible
 comment|// To be supported
+annotation|@
+name|CheckReturnValue
 DECL|method|from (String spec)
 specifier|public
 specifier|static
@@ -2204,6 +2210,8 @@ name|statsCounterSupplier
 return|;
 block|}
 comment|/**    * Builds a cache, which either returns an already-loaded value for a given key or atomically    * computes or retrieves it using the supplied {@code CacheLoader}. If another thread is currently    * loading the value for this key, simply waits for that thread to finish and returns its loaded    * value. Note that multiple threads can concurrently load values for distinct keys.    *    *<p>This method does not alter the state of this {@code CacheBuilder} instance, so it can be    * invoked again to create multiple independent caches.    *    * @param loader the cache loader used to obtain new values    * @return a cache having the requested features    */
+annotation|@
+name|CheckReturnValue
 DECL|method|build ( CacheLoader<? super K1, V1> loader)
 specifier|public
 parameter_list|<
@@ -2251,6 +2259,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Builds a cache which does not automatically load values when keys are requested.    *    *<p>Consider {@link #build(CacheLoader)} instead, if it is feasible to implement a {@code    * CacheLoader}.    *    *<p>This method does not alter the state of this {@code CacheBuilder} instance, so it can be    * invoked again to create multiple independent caches.    *    * @return a cache having the requested features    * @since 11.0    */
+annotation|@
+name|CheckReturnValue
 DECL|method|build ()
 specifier|public
 parameter_list|<

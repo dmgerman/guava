@@ -468,11 +468,14 @@ argument_list|(
 literal|0L
 argument_list|)
 expr_stmt|;
+name|long
+name|unused
+init|=
 name|forward
 operator|.
 name|size
 argument_list|()
-expr_stmt|;
+decl_stmt|;
 block|}
 DECL|method|testStats ()
 specifier|public

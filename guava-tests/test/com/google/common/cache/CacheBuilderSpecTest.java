@@ -2645,6 +2645,11 @@ name|testEquals
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"ReturnValueIgnored"
+argument_list|)
 DECL|method|testMaximumWeight_withWeigher ()
 specifier|public
 name|void
@@ -2695,6 +2700,11 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"ReturnValueIgnored"
+argument_list|)
 DECL|method|testMaximumWeight_withoutWeigher ()
 specifier|public
 name|void
@@ -2749,6 +2759,11 @@ name|expected
 parameter_list|)
 block|{     }
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"ReturnValueIgnored"
+argument_list|)
 DECL|method|testMaximumSize_withWeigher ()
 specifier|public
 name|void
@@ -2799,6 +2814,11 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"ReturnValueIgnored"
+argument_list|)
 DECL|method|testMaximumSize_withoutWeigher ()
 specifier|public
 name|void

@@ -86,6 +86,20 @@ name|errorprone
 operator|.
 name|annotations
 operator|.
+name|CheckReturnValue
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
 name|CompatibleWith
 import|;
 end_import
@@ -303,18 +317,24 @@ name|invalidateAll
 parameter_list|()
 function_decl|;
 comment|/** Returns the approximate number of entries in this cache. */
+annotation|@
+name|CheckReturnValue
 DECL|method|size ()
 name|long
 name|size
 parameter_list|()
 function_decl|;
 comment|/**    * Returns a current snapshot of this cache's cumulative statistics, or a set of default values if    * the cache is not recording statistics. All statistics begin at zero and never decrease over the    * lifetime of the cache.    *    *<p><b>Warning:</b> this cache may not be recording statistical data. For example, a cache    * created using {@link CacheBuilder} only does so if the {@link CacheBuilder#recordStats} method    * was called. If statistics are not being recorded, a {@code CacheStats} instance with zero for    * all values is returned.    *    */
+annotation|@
+name|CheckReturnValue
 DECL|method|stats ()
 name|CacheStats
 name|stats
 parameter_list|()
 function_decl|;
 comment|/**    * Returns a view of the entries stored in this cache as a thread-safe map. Modifications made to    * the map directly affect the cache.    *    *<p>Iterators from the returned map are at least<i>weakly consistent</i>: they are safe for    * concurrent use, but if the cache is modified (including by eviction) after the iterator is    * created, it is undefined which of the changes (if any) will be reflected in that iterator.    *    *<p><b>Warning to users of Java 8+:</b> do not call any of the new<i>default methods</i> that    * have been newly added to {@link ConcurrentMap}! These are marked with "Since: 1.8" in the    * {@code ConcurrentMap} documentation. They will not function correctly and it is impossible for    * Guava to fix them until Guava is ready to<i>require</i> Java 8 for all users.    */
+annotation|@
+name|CheckReturnValue
 DECL|method|asMap ()
 name|ConcurrentMap
 argument_list|<
