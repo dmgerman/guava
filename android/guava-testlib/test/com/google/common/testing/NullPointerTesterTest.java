@@ -421,6 +421,11 @@ comment|/**  * Unit test for {@link NullPointerTester}.  *  * @author Kevin Bour
 end_comment
 
 begin_class
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"CheckReturnValue"
+argument_list|)
 DECL|class|NullPointerTesterTest
 specifier|public
 class|class
