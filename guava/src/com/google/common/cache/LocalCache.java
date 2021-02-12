@@ -10009,13 +10009,13 @@ name|valueReference
 init|=
 literal|null
 decl_stmt|;
-name|LoadingValueReference
+name|ComputingValueReference
 argument_list|<
 name|K
 argument_list|,
 name|V
 argument_list|>
-name|loadingValueReference
+name|computingValueReference
 init|=
 literal|null
 decl_stmt|;
@@ -10210,10 +10210,10 @@ block|}
 block|}
 comment|// note valueReference can be an existing value or even itself another loading value if
 comment|// the value for the key is already being computed.
-name|loadingValueReference
+name|computingValueReference
 operator|=
 operator|new
-name|LoadingValueReference
+name|ComputingValueReference
 argument_list|<>
 argument_list|(
 name|valueReference
@@ -10245,7 +10245,7 @@ name|e
 operator|.
 name|setValueReference
 argument_list|(
-name|loadingValueReference
+name|computingValueReference
 argument_list|)
 expr_stmt|;
 name|table
@@ -10264,13 +10264,13 @@ name|e
 operator|.
 name|setValueReference
 argument_list|(
-name|loadingValueReference
+name|computingValueReference
 argument_list|)
 expr_stmt|;
 block|}
 name|newValue
 operator|=
-name|loadingValueReference
+name|computingValueReference
 operator|.
 name|compute
 argument_list|(
@@ -10300,7 +10300,7 @@ name|get
 argument_list|()
 condition|)
 block|{
-name|loadingValueReference
+name|computingValueReference
 operator|.
 name|set
 argument_list|(
@@ -10337,7 +10337,7 @@ name|key
 argument_list|,
 name|hash
 argument_list|,
-name|loadingValueReference
+name|computingValueReference
 argument_list|,
 name|Futures
 operator|.
@@ -10367,6 +10367,11 @@ elseif|else
 if|if
 condition|(
 name|createNewEntry
+operator|||
+name|valueReference
+operator|.
+name|isLoading
+argument_list|()
 condition|)
 block|{
 name|removeLoadingValue
@@ -10375,7 +10380,7 @@ name|key
 argument_list|,
 name|hash
 argument_list|,
-name|loadingValueReference
+name|computingValueReference
 argument_list|)
 expr_stmt|;
 return|return
@@ -17175,6 +17180,54 @@ name|this
 return|;
 block|}
 block|}
+DECL|class|ComputingValueReference
+specifier|static
+class|class
+name|ComputingValueReference
+parameter_list|<
+name|K
+parameter_list|,
+name|V
+parameter_list|>
+extends|extends
+name|LoadingValueReference
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+block|{
+DECL|method|ComputingValueReference (ValueReference<K, V> oldValue)
+name|ComputingValueReference
+parameter_list|(
+name|ValueReference
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|oldValue
+parameter_list|)
+block|{
+name|super
+argument_list|(
+name|oldValue
+argument_list|)
+expr_stmt|;
+block|}
+annotation|@
+name|Override
+DECL|method|isLoading ()
+specifier|public
+name|boolean
+name|isLoading
+parameter_list|()
+block|{
+return|return
+literal|false
+return|;
+block|}
+block|}
 comment|// Queues
 comment|/**    * A custom queue for managing eviction order. Note that this is tightly integrated with {@code    * ReferenceEntry}, upon which it relies to perform its linking.    *    *<p>Note that this entire implementation makes the assumption that all elements which are in the    * map are also in this queue, and that all elements not in the queue are not in the map.    *    *<p>The benefits of creating our own queue are that (1) we can replace elements in the middle of    * the queue as part of copyWriteEntry, and (2) the contains method is highly optimized for the    * current model.    */
 DECL|class|WriteQueue
@@ -18657,21 +18710,13 @@ control|)
 block|{
 name|sum
 operator|+=
-name|Math
-operator|.
-name|max
-argument_list|(
-literal|0
-argument_list|,
 name|segments
 index|[
 name|i
 index|]
 operator|.
 name|count
-argument_list|)
 expr_stmt|;
-comment|// see https://github.com/google/guava/issues/2108
 block|}
 return|return
 name|sum
