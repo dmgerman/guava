@@ -490,6 +490,9 @@ argument_list|>
 argument_list|(
 name|sepFrqC
 operator|.
+name|getDeclaredConstructor
+argument_list|()
+operator|.
 name|newInstance
 argument_list|()
 argument_list|)
@@ -1169,6 +1172,9 @@ name|?
 argument_list|>
 operator|)
 name|sepFrqUserC
+operator|.
+name|getDeclaredConstructor
+argument_list|()
 operator|.
 name|newInstance
 argument_list|()
