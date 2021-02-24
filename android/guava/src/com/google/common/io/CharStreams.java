@@ -298,8 +298,6 @@ argument_list|)
 return|;
 block|}
 block|}
-else|else
-block|{
 name|checkNotNull
 argument_list|(
 name|from
@@ -366,7 +364,6 @@ block|}
 return|return
 name|total
 return|;
-block|}
 block|}
 comment|// TODO(lukes): consider allowing callers to pass in a buffer to use, some callers would be able
 comment|// to reuse buffers, others would be able to size them more appropriately than the constant

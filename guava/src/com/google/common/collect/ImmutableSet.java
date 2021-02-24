@@ -1362,7 +1362,6 @@ return|return
 literal|true
 return|;
 block|}
-elseif|else
 if|if
 condition|(
 name|object

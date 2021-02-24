@@ -548,8 +548,6 @@ return|return
 name|result
 return|;
 block|}
-else|else
-block|{
 name|byte
 index|[]
 name|trunc
@@ -578,7 +576,6 @@ expr_stmt|;
 return|return
 name|trunc
 return|;
-block|}
 block|}
 comment|/**    * Determines whether the specified character sequence is a valid encoded string according to this    * encoding.    *    * @since 20.0    */
 DECL|method|canDecode (CharSequence chars)
@@ -1574,8 +1571,6 @@ return|return
 name|this
 return|;
 block|}
-else|else
-block|{
 name|checkState
 argument_list|(
 operator|!
@@ -1642,7 +1637,6 @@ name|upperCased
 argument_list|)
 return|;
 block|}
-block|}
 DECL|method|lowerCase ()
 name|Alphabet
 name|lowerCase
@@ -1659,8 +1653,6 @@ return|return
 name|this
 return|;
 block|}
-else|else
-block|{
 name|checkState
 argument_list|(
 operator|!
@@ -1726,7 +1718,6 @@ argument_list|,
 name|lowerCased
 argument_list|)
 return|;
-block|}
 block|}
 DECL|method|matches (char c)
 specifier|public
