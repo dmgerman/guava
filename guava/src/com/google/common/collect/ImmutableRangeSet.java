@@ -216,6 +216,20 @@ name|errorprone
 operator|.
 name|annotations
 operator|.
+name|DoNotCall
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
 name|concurrent
 operator|.
 name|LazyInit
@@ -1199,6 +1213,11 @@ annotation|@
 name|Deprecated
 annotation|@
 name|Override
+annotation|@
+name|DoNotCall
+argument_list|(
+literal|"Always throws UnsupportedOperationException"
+argument_list|)
 DECL|method|add (Range<C> range)
 specifier|public
 name|void
@@ -1222,6 +1241,11 @@ annotation|@
 name|Deprecated
 annotation|@
 name|Override
+annotation|@
+name|DoNotCall
+argument_list|(
+literal|"Always throws UnsupportedOperationException"
+argument_list|)
 DECL|method|addAll (RangeSet<C> other)
 specifier|public
 name|void
@@ -1245,6 +1269,11 @@ annotation|@
 name|Deprecated
 annotation|@
 name|Override
+annotation|@
+name|DoNotCall
+argument_list|(
+literal|"Always throws UnsupportedOperationException"
+argument_list|)
 DECL|method|addAll (Iterable<Range<C>> other)
 specifier|public
 name|void
@@ -1271,6 +1300,11 @@ annotation|@
 name|Deprecated
 annotation|@
 name|Override
+annotation|@
+name|DoNotCall
+argument_list|(
+literal|"Always throws UnsupportedOperationException"
+argument_list|)
 DECL|method|remove (Range<C> range)
 specifier|public
 name|void
@@ -1294,6 +1328,11 @@ annotation|@
 name|Deprecated
 annotation|@
 name|Override
+annotation|@
+name|DoNotCall
+argument_list|(
+literal|"Always throws UnsupportedOperationException"
+argument_list|)
 DECL|method|removeAll (RangeSet<C> other)
 specifier|public
 name|void
@@ -1317,6 +1356,11 @@ annotation|@
 name|Deprecated
 annotation|@
 name|Override
+annotation|@
+name|DoNotCall
+argument_list|(
+literal|"Always throws UnsupportedOperationException"
+argument_list|)
 DECL|method|removeAll (Iterable<Range<C>> other)
 specifier|public
 name|void

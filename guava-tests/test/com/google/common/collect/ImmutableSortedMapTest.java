@@ -1890,6 +1890,11 @@ literal|2
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"DoNotCall"
+argument_list|)
 DECL|method|testBuilder_orderEntriesByValueFails ()
 specifier|public
 name|void

@@ -84,6 +84,20 @@ name|errorprone
 operator|.
 name|annotations
 operator|.
+name|DoNotCall
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
 name|DoNotMock
 import|;
 end_import
@@ -1663,6 +1677,11 @@ annotation|@
 name|Deprecated
 annotation|@
 name|Override
+annotation|@
+name|DoNotCall
+argument_list|(
+literal|"Always throws UnsupportedOperationException"
+argument_list|)
 DECL|method|clear ()
 specifier|public
 specifier|final
@@ -1683,6 +1702,11 @@ annotation|@
 name|Deprecated
 annotation|@
 name|Override
+annotation|@
+name|DoNotCall
+argument_list|(
+literal|"Always throws UnsupportedOperationException"
+argument_list|)
 DECL|method|put (R rowKey, C columnKey, V value)
 specifier|public
 specifier|final
@@ -1710,6 +1734,11 @@ annotation|@
 name|Deprecated
 annotation|@
 name|Override
+annotation|@
+name|DoNotCall
+argument_list|(
+literal|"Always throws UnsupportedOperationException"
+argument_list|)
 DECL|method|putAll (Table<? extends R, ? extends C, ? extends V> table)
 specifier|public
 specifier|final
@@ -1746,6 +1775,11 @@ annotation|@
 name|Deprecated
 annotation|@
 name|Override
+annotation|@
+name|DoNotCall
+argument_list|(
+literal|"Always throws UnsupportedOperationException"
+argument_list|)
 DECL|method|remove (Object rowKey, Object columnKey)
 specifier|public
 specifier|final

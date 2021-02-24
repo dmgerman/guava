@@ -116,6 +116,20 @@ name|errorprone
 operator|.
 name|annotations
 operator|.
+name|DoNotCall
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
 name|concurrent
 operator|.
 name|LazyInit
@@ -2416,6 +2430,11 @@ name|GwtIncompatible
 comment|// NavigableSet
 annotation|@
 name|Override
+annotation|@
+name|DoNotCall
+argument_list|(
+literal|"Always throws UnsupportedOperationException"
+argument_list|)
 DECL|method|pollFirst ()
 specifier|public
 specifier|final
@@ -2439,6 +2458,11 @@ name|GwtIncompatible
 comment|// NavigableSet
 annotation|@
 name|Override
+annotation|@
+name|DoNotCall
+argument_list|(
+literal|"Always throws UnsupportedOperationException"
+argument_list|)
 DECL|method|pollLast ()
 specifier|public
 specifier|final

@@ -84,6 +84,20 @@ name|errorprone
 operator|.
 name|annotations
 operator|.
+name|DoNotCall
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
 name|concurrent
 operator|.
 name|LazyInit
@@ -1011,6 +1025,11 @@ annotation|@
 name|Deprecated
 annotation|@
 name|Override
+annotation|@
+name|DoNotCall
+argument_list|(
+literal|"Always throws UnsupportedOperationException"
+argument_list|)
 DECL|method|add (E element, int occurrences)
 specifier|public
 specifier|final
@@ -1037,6 +1056,11 @@ annotation|@
 name|Deprecated
 annotation|@
 name|Override
+annotation|@
+name|DoNotCall
+argument_list|(
+literal|"Always throws UnsupportedOperationException"
+argument_list|)
 DECL|method|remove (Object element, int occurrences)
 specifier|public
 specifier|final
@@ -1063,6 +1087,11 @@ annotation|@
 name|Deprecated
 annotation|@
 name|Override
+annotation|@
+name|DoNotCall
+argument_list|(
+literal|"Always throws UnsupportedOperationException"
+argument_list|)
 DECL|method|setCount (E element, int count)
 specifier|public
 specifier|final
@@ -1089,6 +1118,11 @@ annotation|@
 name|Deprecated
 annotation|@
 name|Override
+annotation|@
+name|DoNotCall
+argument_list|(
+literal|"Always throws UnsupportedOperationException"
+argument_list|)
 DECL|method|setCount (E element, int oldCount, int newCount)
 specifier|public
 specifier|final

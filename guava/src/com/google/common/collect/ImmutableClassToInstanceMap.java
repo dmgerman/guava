@@ -84,6 +84,20 @@ name|errorprone
 operator|.
 name|annotations
 operator|.
+name|DoNotCall
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
 name|Immutable
 import|;
 end_import
@@ -776,6 +790,11 @@ annotation|@
 name|Deprecated
 annotation|@
 name|Override
+annotation|@
+name|DoNotCall
+argument_list|(
+literal|"Always throws UnsupportedOperationException"
+argument_list|)
 DECL|method|putInstance (Class<T> type, T value)
 specifier|public
 parameter_list|<

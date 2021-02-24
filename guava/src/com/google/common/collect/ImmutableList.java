@@ -186,6 +186,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|DoNotCall
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -2262,6 +2276,11 @@ annotation|@
 name|Deprecated
 annotation|@
 name|Override
+annotation|@
+name|DoNotCall
+argument_list|(
+literal|"Always throws UnsupportedOperationException"
+argument_list|)
 DECL|method|addAll (int index, Collection<? extends E> newElements)
 specifier|public
 specifier|final
@@ -2293,6 +2312,11 @@ annotation|@
 name|Deprecated
 annotation|@
 name|Override
+annotation|@
+name|DoNotCall
+argument_list|(
+literal|"Always throws UnsupportedOperationException"
+argument_list|)
 DECL|method|set (int index, E element)
 specifier|public
 specifier|final
@@ -2317,6 +2341,11 @@ annotation|@
 name|Deprecated
 annotation|@
 name|Override
+annotation|@
+name|DoNotCall
+argument_list|(
+literal|"Always throws UnsupportedOperationException"
+argument_list|)
 DECL|method|add (int index, E element)
 specifier|public
 specifier|final
@@ -2343,6 +2372,11 @@ annotation|@
 name|Deprecated
 annotation|@
 name|Override
+annotation|@
+name|DoNotCall
+argument_list|(
+literal|"Always throws UnsupportedOperationException"
+argument_list|)
 DECL|method|remove (int index)
 specifier|public
 specifier|final
@@ -2364,6 +2398,11 @@ annotation|@
 name|Deprecated
 annotation|@
 name|Override
+annotation|@
+name|DoNotCall
+argument_list|(
+literal|"Always throws UnsupportedOperationException"
+argument_list|)
 DECL|method|replaceAll (UnaryOperator<E> operator)
 specifier|public
 specifier|final
@@ -2388,6 +2427,11 @@ annotation|@
 name|Deprecated
 annotation|@
 name|Override
+annotation|@
+name|DoNotCall
+argument_list|(
+literal|"Always throws UnsupportedOperationException"
+argument_list|)
 DECL|method|sort (Comparator<? super E> c)
 specifier|public
 specifier|final

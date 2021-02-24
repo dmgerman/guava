@@ -148,6 +148,20 @@ name|errorprone
 operator|.
 name|annotations
 operator|.
+name|DoNotCall
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
 name|DoNotMock
 import|;
 end_import
@@ -1360,8 +1374,14 @@ annotation|@
 name|Deprecated
 annotation|@
 name|Override
+annotation|@
+name|DoNotCall
+argument_list|(
+literal|"Always throws UnsupportedOperationException"
+argument_list|)
 DECL|method|put (Range<K> range, V value)
 specifier|public
+specifier|final
 name|void
 name|put
 parameter_list|(
@@ -1386,8 +1406,14 @@ annotation|@
 name|Deprecated
 annotation|@
 name|Override
+annotation|@
+name|DoNotCall
+argument_list|(
+literal|"Always throws UnsupportedOperationException"
+argument_list|)
 DECL|method|putCoalescing (Range<K> range, V value)
 specifier|public
+specifier|final
 name|void
 name|putCoalescing
 parameter_list|(
@@ -1412,8 +1438,14 @@ annotation|@
 name|Deprecated
 annotation|@
 name|Override
+annotation|@
+name|DoNotCall
+argument_list|(
+literal|"Always throws UnsupportedOperationException"
+argument_list|)
 DECL|method|putAll (RangeMap<K, V> rangeMap)
 specifier|public
+specifier|final
 name|void
 name|putAll
 parameter_list|(
@@ -1437,8 +1469,14 @@ annotation|@
 name|Deprecated
 annotation|@
 name|Override
+annotation|@
+name|DoNotCall
+argument_list|(
+literal|"Always throws UnsupportedOperationException"
+argument_list|)
 DECL|method|clear ()
 specifier|public
+specifier|final
 name|void
 name|clear
 parameter_list|()
@@ -1454,8 +1492,14 @@ annotation|@
 name|Deprecated
 annotation|@
 name|Override
+annotation|@
+name|DoNotCall
+argument_list|(
+literal|"Always throws UnsupportedOperationException"
+argument_list|)
 DECL|method|remove (Range<K> range)
 specifier|public
+specifier|final
 name|void
 name|remove
 parameter_list|(

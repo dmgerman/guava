@@ -146,6 +146,20 @@ name|errorprone
 operator|.
 name|annotations
 operator|.
+name|DoNotCall
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
 name|DoNotMock
 import|;
 end_import
@@ -2353,6 +2367,11 @@ annotation|@
 name|Deprecated
 annotation|@
 name|Override
+annotation|@
+name|DoNotCall
+argument_list|(
+literal|"Always throws UnsupportedOperationException"
+argument_list|)
 DECL|method|put (K k, V v)
 specifier|public
 specifier|final
@@ -2379,6 +2398,11 @@ annotation|@
 name|Deprecated
 annotation|@
 name|Override
+annotation|@
+name|DoNotCall
+argument_list|(
+literal|"Always throws UnsupportedOperationException"
+argument_list|)
 DECL|method|putIfAbsent (K key, V value)
 specifier|public
 specifier|final
@@ -2403,6 +2427,11 @@ annotation|@
 name|Deprecated
 annotation|@
 name|Override
+annotation|@
+name|DoNotCall
+argument_list|(
+literal|"Always throws UnsupportedOperationException"
+argument_list|)
 DECL|method|replace (K key, V oldValue, V newValue)
 specifier|public
 specifier|final
@@ -2430,6 +2459,11 @@ annotation|@
 name|Deprecated
 annotation|@
 name|Override
+annotation|@
+name|DoNotCall
+argument_list|(
+literal|"Always throws UnsupportedOperationException"
+argument_list|)
 DECL|method|replace (K key, V value)
 specifier|public
 specifier|final
@@ -2454,6 +2488,11 @@ annotation|@
 name|Deprecated
 annotation|@
 name|Override
+annotation|@
+name|DoNotCall
+argument_list|(
+literal|"Always throws UnsupportedOperationException"
+argument_list|)
 DECL|method|computeIfAbsent (K key, Function<? super K, ? extends V> mappingFunction)
 specifier|public
 specifier|final
@@ -2487,6 +2526,11 @@ annotation|@
 name|Deprecated
 annotation|@
 name|Override
+annotation|@
+name|DoNotCall
+argument_list|(
+literal|"Always throws UnsupportedOperationException"
+argument_list|)
 DECL|method|computeIfPresent ( K key, BiFunction<? super K, ? super V, ? extends V> remappingFunction)
 specifier|public
 specifier|final
@@ -2524,6 +2568,11 @@ annotation|@
 name|Deprecated
 annotation|@
 name|Override
+annotation|@
+name|DoNotCall
+argument_list|(
+literal|"Always throws UnsupportedOperationException"
+argument_list|)
 DECL|method|compute (K key, BiFunction<? super K, ? super V, ? extends V> remappingFunction)
 specifier|public
 specifier|final
@@ -2561,6 +2610,11 @@ annotation|@
 name|Deprecated
 annotation|@
 name|Override
+annotation|@
+name|DoNotCall
+argument_list|(
+literal|"Always throws UnsupportedOperationException"
+argument_list|)
 DECL|method|merge ( K key, V value, BiFunction<? super V, ? super V, ? extends V> remappingFunction)
 specifier|public
 specifier|final
@@ -2601,6 +2655,11 @@ annotation|@
 name|Deprecated
 annotation|@
 name|Override
+annotation|@
+name|DoNotCall
+argument_list|(
+literal|"Always throws UnsupportedOperationException"
+argument_list|)
 DECL|method|putAll (Map<? extends K, ? extends V> map)
 specifier|public
 specifier|final
@@ -2631,6 +2690,11 @@ annotation|@
 name|Deprecated
 annotation|@
 name|Override
+annotation|@
+name|DoNotCall
+argument_list|(
+literal|"Always throws UnsupportedOperationException"
+argument_list|)
 DECL|method|replaceAll (BiFunction<? super K, ? super V, ? extends V> function)
 specifier|public
 specifier|final
@@ -2665,6 +2729,11 @@ annotation|@
 name|Deprecated
 annotation|@
 name|Override
+annotation|@
+name|DoNotCall
+argument_list|(
+literal|"Always throws UnsupportedOperationException"
+argument_list|)
 DECL|method|remove (Object o)
 specifier|public
 specifier|final
@@ -2686,6 +2755,11 @@ annotation|@
 name|Deprecated
 annotation|@
 name|Override
+annotation|@
+name|DoNotCall
+argument_list|(
+literal|"Always throws UnsupportedOperationException"
+argument_list|)
 DECL|method|remove (Object key, Object value)
 specifier|public
 specifier|final
@@ -2710,6 +2784,11 @@ annotation|@
 name|Deprecated
 annotation|@
 name|Override
+annotation|@
+name|DoNotCall
+argument_list|(
+literal|"Always throws UnsupportedOperationException"
+argument_list|)
 DECL|method|clear ()
 specifier|public
 specifier|final

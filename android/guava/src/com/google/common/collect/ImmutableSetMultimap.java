@@ -112,6 +112,20 @@ name|errorprone
 operator|.
 name|annotations
 operator|.
+name|DoNotCall
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
 name|concurrent
 operator|.
 name|LazyInit
@@ -1932,8 +1946,14 @@ annotation|@
 name|Deprecated
 annotation|@
 name|Override
+annotation|@
+name|DoNotCall
+argument_list|(
+literal|"Always throws UnsupportedOperationException"
+argument_list|)
 DECL|method|removeAll (Object key)
 specifier|public
+specifier|final
 name|ImmutableSet
 argument_list|<
 name|V
@@ -1957,8 +1977,14 @@ annotation|@
 name|Deprecated
 annotation|@
 name|Override
+annotation|@
+name|DoNotCall
+argument_list|(
+literal|"Always throws UnsupportedOperationException"
+argument_list|)
 DECL|method|replaceValues (K key, Iterable<? extends V> values)
 specifier|public
+specifier|final
 name|ImmutableSet
 argument_list|<
 name|V

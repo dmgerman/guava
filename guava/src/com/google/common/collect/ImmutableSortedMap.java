@@ -124,6 +124,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|DoNotCall
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -2488,8 +2502,14 @@ annotation|@
 name|Override
 annotation|@
 name|Deprecated
+annotation|@
+name|DoNotCall
+argument_list|(
+literal|"Always throws UnsupportedOperationException"
+argument_list|)
 DECL|method|orderEntriesByValue (Comparator<? super V> valueComparator)
 specifier|public
+specifier|final
 name|Builder
 argument_list|<
 name|K
@@ -3857,6 +3877,11 @@ annotation|@
 name|Deprecated
 annotation|@
 name|Override
+annotation|@
+name|DoNotCall
+argument_list|(
+literal|"Always throws UnsupportedOperationException"
+argument_list|)
 DECL|method|pollFirstEntry ()
 specifier|public
 specifier|final
@@ -3882,6 +3907,11 @@ annotation|@
 name|Deprecated
 annotation|@
 name|Override
+annotation|@
+name|DoNotCall
+argument_list|(
+literal|"Always throws UnsupportedOperationException"
+argument_list|)
 DECL|method|pollLastEntry ()
 specifier|public
 specifier|final
