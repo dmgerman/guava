@@ -92,6 +92,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|DoNotCall
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -911,6 +925,11 @@ block|}
 comment|/**    * Not supported. {@code ContiguousSet} instances are constructed with {@link #create}. This    * method exists only to hide {@link ImmutableSet#builder} from consumers of {@code    * ContiguousSet}.    *    * @throws UnsupportedOperationException always    * @deprecated Use {@link #create}.    */
 annotation|@
 name|Deprecated
+annotation|@
+name|DoNotCall
+argument_list|(
+literal|"Always throws UnsupportedOperationException"
+argument_list|)
 DECL|method|builder ()
 specifier|public
 specifier|static

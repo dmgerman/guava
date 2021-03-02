@@ -74,6 +74,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|DoNotCall
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -436,6 +450,11 @@ annotation|@
 name|Deprecated
 annotation|@
 name|Override
+annotation|@
+name|DoNotCall
+argument_list|(
+literal|"Always throws UnsupportedOperationException"
+argument_list|)
 DECL|method|putInstance (TypeToken<T> type, T value)
 specifier|public
 parameter_list|<
@@ -469,6 +488,11 @@ annotation|@
 name|Deprecated
 annotation|@
 name|Override
+annotation|@
+name|DoNotCall
+argument_list|(
+literal|"Always throws UnsupportedOperationException"
+argument_list|)
 DECL|method|putInstance (Class<T> type, T value)
 specifier|public
 parameter_list|<
@@ -502,6 +526,11 @@ annotation|@
 name|Deprecated
 annotation|@
 name|Override
+annotation|@
+name|DoNotCall
+argument_list|(
+literal|"Always throws UnsupportedOperationException"
+argument_list|)
 DECL|method|put (TypeToken<? extends B> key, B value)
 specifier|public
 name|B
@@ -530,6 +559,11 @@ annotation|@
 name|Deprecated
 annotation|@
 name|Override
+annotation|@
+name|DoNotCall
+argument_list|(
+literal|"Always throws UnsupportedOperationException"
+argument_list|)
 DECL|method|putAll (Map<? extends TypeToken<? extends B>, ? extends B> map)
 specifier|public
 name|void

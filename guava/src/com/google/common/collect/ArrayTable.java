@@ -156,6 +156,20 @@ name|com
 operator|.
 name|google
 operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|DoNotCall
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
 name|j2objc
 operator|.
 name|annotations
@@ -1488,6 +1502,11 @@ return|;
 block|}
 comment|/**    * Not supported. Use {@link #eraseAll} instead.    *    * @throws UnsupportedOperationException always    * @deprecated Use {@link #eraseAll}    */
 annotation|@
+name|DoNotCall
+argument_list|(
+literal|"Always throws UnsupportedOperationException"
+argument_list|)
+annotation|@
 name|Override
 annotation|@
 name|Deprecated
@@ -1863,6 +1882,11 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Not supported. Use {@link #erase} instead.    *    * @throws UnsupportedOperationException always    * @deprecated Use {@link #erase}    */
+annotation|@
+name|DoNotCall
+argument_list|(
+literal|"Always throws UnsupportedOperationException"
+argument_list|)
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
