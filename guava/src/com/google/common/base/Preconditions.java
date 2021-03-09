@@ -33,6 +33,20 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|java
+operator|.
+name|util
+operator|.
+name|logging
+operator|.
+name|Level
+operator|.
+name|WARNING
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -57,6 +71,18 @@ operator|.
 name|annotations
 operator|.
 name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|logging
+operator|.
+name|Logger
 import|;
 end_import
 
@@ -4391,6 +4417,61 @@ argument_list|)
 return|;
 block|}
 end_function
+
+begin_static
+static|static
+block|{
+try|try
+block|{
+name|Java8Usage
+operator|.
+name|performCheck
+argument_list|()
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|Throwable
+name|underlying
+parameter_list|)
+block|{
+name|Exception
+name|toLog
+init|=
+operator|new
+name|Exception
+argument_list|(
+literal|"Guava will drop support for Java 7 in 2021. Please let us know if this will cause"
+operator|+
+literal|" you problems: https://github.com/google/guava/issues/5269"
+argument_list|,
+name|underlying
+argument_list|)
+decl_stmt|;
+name|Logger
+operator|.
+name|getLogger
+argument_list|(
+name|Preconditions
+operator|.
+name|class
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+operator|.
+name|log
+argument_list|(
+name|WARNING
+argument_list|,
+literal|"Java 7 compatibility warning: See https://github.com/google/guava/issues/5269"
+argument_list|,
+name|toLog
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+end_static
 
 unit|}
 end_unit
