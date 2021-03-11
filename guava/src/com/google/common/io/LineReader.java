@@ -126,7 +126,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|LinkedList
+name|ArrayDeque
 import|;
 end_import
 
@@ -216,7 +216,7 @@ argument_list|>
 name|lines
 init|=
 operator|new
-name|LinkedList
+name|ArrayDeque
 argument_list|<>
 argument_list|()
 decl_stmt|;

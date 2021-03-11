@@ -68,7 +68,7 @@ name|common
 operator|.
 name|collect
 operator|.
-name|Lists
+name|Queues
 import|;
 end_import
 
@@ -78,7 +78,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|List
+name|Deque
 import|;
 end_import
 
@@ -162,12 +162,12 @@ name|idx
 operator|+=
 name|doParseTrieToBuilder
 argument_list|(
-name|Lists
+name|Queues
 operator|.
 expr|<
 name|CharSequence
 operator|>
-name|newLinkedList
+name|newArrayDeque
 argument_list|()
 argument_list|,
 name|encoded
@@ -186,13 +186,13 @@ argument_list|()
 return|;
 block|}
 comment|/**    * Parses a trie node and returns the number of characters consumed.    *    * @param stack The prefixes that precede the characters represented by this node. Each entry of    *     the stack is in reverse order.    * @param encoded The serialized trie.    * @param start An index in the encoded serialized trie to begin reading characters from.    * @param builder A map builder to which all entries will be added.    * @return The number of characters consumed from {@code encoded}.    */
-DECL|method|doParseTrieToBuilder ( List<CharSequence> stack, CharSequence encoded, int start, ImmutableMap.Builder<String, PublicSuffixType> builder)
+DECL|method|doParseTrieToBuilder ( Deque<CharSequence> stack, CharSequence encoded, int start, ImmutableMap.Builder<String, PublicSuffixType> builder)
 specifier|private
 specifier|static
 name|int
 name|doParseTrieToBuilder
 parameter_list|(
-name|List
+name|Deque
 argument_list|<
 name|CharSequence
 argument_list|>
@@ -282,10 +282,8 @@ block|}
 block|}
 name|stack
 operator|.
-name|add
+name|push
 argument_list|(
-literal|0
-argument_list|,
 name|reverse
 argument_list|(
 name|encoded
@@ -424,10 +422,8 @@ block|}
 block|}
 name|stack
 operator|.
-name|remove
-argument_list|(
-literal|0
-argument_list|)
+name|pop
+argument_list|()
 expr_stmt|;
 return|return
 name|idx

@@ -54,7 +54,7 @@ name|common
 operator|.
 name|collect
 operator|.
-name|Lists
+name|Queues
 import|;
 end_import
 
@@ -96,7 +96,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|LinkedList
+name|Deque
 import|;
 end_import
 
@@ -180,15 +180,16 @@ name|Executor
 block|{
 DECL|field|tasks
 specifier|private
-name|LinkedList
+specifier|final
+name|Deque
 argument_list|<
 name|Runnable
 argument_list|>
 name|tasks
 init|=
-name|Lists
+name|Queues
 operator|.
-name|newLinkedList
+name|newArrayDeque
 argument_list|()
 decl_stmt|;
 annotation|@
