@@ -776,7 +776,6 @@ block|}
 block|}
 DECL|method|log (Throwable throwable)
 specifier|private
-specifier|static
 name|void
 name|log
 parameter_list|(
@@ -795,7 +794,9 @@ operator|)
 condition|?
 literal|"Input Future failed with Error"
 else|:
-literal|"Got more than one input Future failure. Logging failures after the first"
+literal|"An additional input failed after the first. Logging it after adding the first"
+operator|+
+literal|" failure as a suppressed exception."
 decl_stmt|;
 name|logger
 operator|.
