@@ -325,6 +325,7 @@ name|isEmpty
 argument_list|()
 return|;
 block|}
+comment|/**    * Returns the string if it is not null, or an empty string otherwise.    *    * @param string the string to test and possibly return    * @return {@code string} if it is not null; {@code ""} otherwise    */
 DECL|method|nullToEmpty (@ullable String string)
 specifier|static
 name|String
@@ -348,6 +349,7 @@ else|:
 name|string
 return|;
 block|}
+comment|/**    * Returns the string if it is not empty, or a null string otherwise.    *    * @param string the string to test and possibly return    * @return {@code string} if it is not empty; {@code null} otherwise    */
 DECL|method|emptyToNull (@ullable String string)
 specifier|static
 name|String
