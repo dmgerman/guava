@@ -59,7 +59,6 @@ name|E
 argument_list|>
 block|{
 DECL|method|delegate ()
-specifier|protected
 specifier|abstract
 name|Network
 argument_list|<

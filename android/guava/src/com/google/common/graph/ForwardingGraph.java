@@ -45,7 +45,6 @@ name|N
 argument_list|>
 block|{
 DECL|method|delegate ()
-specifier|protected
 specifier|abstract
 name|BaseGraph
 argument_list|<

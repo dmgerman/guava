@@ -1184,7 +1184,6 @@ block|}
 annotation|@
 name|Override
 DECL|method|delegate ()
-specifier|protected
 name|Graph
 argument_list|<
 name|N
@@ -1514,7 +1513,6 @@ block|}
 annotation|@
 name|Override
 DECL|method|delegate ()
-specifier|protected
 name|ValueGraph
 argument_list|<
 name|N
@@ -1860,7 +1858,6 @@ block|}
 annotation|@
 name|Override
 DECL|method|delegate ()
-specifier|protected
 name|Network
 argument_list|<
 name|N

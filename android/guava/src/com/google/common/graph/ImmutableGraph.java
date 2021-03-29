@@ -507,7 +507,6 @@ block|}
 annotation|@
 name|Override
 DECL|method|delegate ()
-specifier|protected
 name|BaseGraph
 argument_list|<
 name|N

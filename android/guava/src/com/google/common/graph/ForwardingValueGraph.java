@@ -65,7 +65,6 @@ name|V
 argument_list|>
 block|{
 DECL|method|delegate ()
-specifier|protected
 specifier|abstract
 name|ValueGraph
 argument_list|<
