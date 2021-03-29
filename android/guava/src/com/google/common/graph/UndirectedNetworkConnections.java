@@ -127,7 +127,6 @@ name|E
 argument_list|>
 block|{
 DECL|method|UndirectedNetworkConnections (Map<E, N> incidentEdgeMap)
-specifier|protected
 name|UndirectedNetworkConnections
 parameter_list|(
 name|Map

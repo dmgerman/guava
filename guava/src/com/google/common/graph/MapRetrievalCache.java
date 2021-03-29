@@ -177,11 +177,10 @@ return|return
 name|value
 return|;
 block|}
-comment|// Internal methods ('protected' is still package-visible, but treat as only subclass-visible)
+comment|// Internal methods (package-visible, but treat as only subclass-visible)
 annotation|@
 name|Override
 DECL|method|getIfCached (@ullable Object key)
-specifier|protected
 name|V
 name|getIfCached
 parameter_list|(
@@ -283,7 +282,6 @@ block|}
 annotation|@
 name|Override
 DECL|method|clearCache ()
-specifier|protected
 name|void
 name|clearCache
 parameter_list|()

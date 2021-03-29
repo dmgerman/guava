@@ -489,9 +489,8 @@ block|}
 block|}
 return|;
 block|}
-comment|// Internal methods ('protected' is still package-visible, but treat as only subclass-visible)
+comment|// Internal methods (package-visible, but treat as only subclass-visible)
 DECL|method|getIfCached (@ullable Object key)
-specifier|protected
 name|V
 name|getIfCached
 parameter_list|(
@@ -539,7 +538,6 @@ literal|null
 return|;
 block|}
 DECL|method|clearCache ()
-specifier|protected
 name|void
 name|clearCache
 parameter_list|()

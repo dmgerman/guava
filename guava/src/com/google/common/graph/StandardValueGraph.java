@@ -163,7 +163,6 @@ argument_list|>
 name|nodeOrder
 decl_stmt|;
 DECL|field|nodeConnections
-specifier|protected
 specifier|final
 name|MapIteratorCache
 argument_list|<
@@ -179,7 +178,6 @@ argument_list|>
 name|nodeConnections
 decl_stmt|;
 DECL|field|edgeCount
-specifier|protected
 name|long
 name|edgeCount
 decl_stmt|;
@@ -699,7 +697,6 @@ name|edgeCount
 return|;
 block|}
 DECL|method|checkedConnections (N node)
-specifier|protected
 specifier|final
 name|GraphConnections
 argument_list|<
@@ -757,7 +754,6 @@ name|connections
 return|;
 block|}
 DECL|method|containsNode (@ullable N node)
-specifier|protected
 specifier|final
 name|boolean
 name|containsNode
@@ -778,7 +774,6 @@ argument_list|)
 return|;
 block|}
 DECL|method|hasEdgeConnecting_internal (N nodeU, N nodeV)
-specifier|protected
 specifier|final
 name|boolean
 name|hasEdgeConnecting_internal
@@ -824,7 +819,6 @@ argument_list|)
 return|;
 block|}
 DECL|method|edgeValueOrDefault_internal (N nodeU, N nodeV, V defaultValue)
-specifier|protected
 specifier|final
 name|V
 name|edgeValueOrDefault_internal

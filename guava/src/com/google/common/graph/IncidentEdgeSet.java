@@ -74,13 +74,11 @@ argument_list|>
 argument_list|>
 block|{
 DECL|field|node
-specifier|protected
 specifier|final
 name|N
 name|node
 decl_stmt|;
 DECL|field|graph
-specifier|protected
 specifier|final
 name|BaseGraph
 argument_list|<

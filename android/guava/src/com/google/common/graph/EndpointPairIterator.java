@@ -134,7 +134,6 @@ argument_list|>
 name|nodeIterator
 decl_stmt|;
 DECL|field|node
-specifier|protected
 name|N
 name|node
 init|=
@@ -142,7 +141,6 @@ literal|null
 decl_stmt|;
 comment|// null is safe as an initial value because graphs don't allow null nodes
 DECL|field|successorIterator
-specifier|protected
 name|Iterator
 argument_list|<
 name|N
@@ -235,7 +233,6 @@ expr_stmt|;
 block|}
 comment|/**    * Called after {@link #successorIterator} is exhausted. Advances {@link #node} to the next node    * and updates {@link #successorIterator} to iterate through the successors of {@link #node}.    */
 DECL|method|advance ()
-specifier|protected
 specifier|final
 name|boolean
 name|advance

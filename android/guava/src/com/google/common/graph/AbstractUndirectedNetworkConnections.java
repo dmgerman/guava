@@ -102,7 +102,6 @@ argument_list|>
 block|{
 comment|/** Keys are edges incident to the origin node, values are the node at the other end. */
 DECL|field|incidentEdgeMap
-specifier|protected
 specifier|final
 name|Map
 argument_list|<
@@ -113,7 +112,6 @@ argument_list|>
 name|incidentEdgeMap
 decl_stmt|;
 DECL|method|AbstractUndirectedNetworkConnections (Map<E, N> incidentEdgeMap)
-specifier|protected
 name|AbstractUndirectedNetworkConnections
 parameter_list|(
 name|Map

@@ -126,8 +126,7 @@ argument_list|,
 name|E
 argument_list|>
 block|{
-DECL|method|DirectedNetworkConnections ( Map<E, N> inEdgeMap, Map<E, N> outEdgeMap, int selfLoopCount)
-specifier|protected
+DECL|method|DirectedNetworkConnections (Map<E, N> inEdgeMap, Map<E, N> outEdgeMap, int selfLoopCount)
 name|DirectedNetworkConnections
 parameter_list|(
 name|Map

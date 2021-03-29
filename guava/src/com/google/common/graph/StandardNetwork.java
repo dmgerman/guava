@@ -230,7 +230,6 @@ argument_list|>
 name|edgeOrder
 decl_stmt|;
 DECL|field|nodeConnections
-specifier|protected
 specifier|final
 name|MapIteratorCache
 argument_list|<
@@ -248,7 +247,6 @@ decl_stmt|;
 comment|// We could make this a Map<E, EndpointPair<N>>. It would make incidentNodes(edge) slightly
 comment|// faster, but also make Networks consume 5 to 20+% (increasing with average degree) more memory.
 DECL|field|edgeToReferenceNode
-specifier|protected
 specifier|final
 name|MapIteratorCache
 argument_list|<
@@ -835,7 +833,6 @@ argument_list|()
 return|;
 block|}
 DECL|method|checkedConnections (N node)
-specifier|protected
 specifier|final
 name|NetworkConnections
 argument_list|<
@@ -896,7 +893,6 @@ name|connections
 return|;
 block|}
 DECL|method|checkedReferenceNode (E edge)
-specifier|protected
 specifier|final
 name|N
 name|checkedReferenceNode
@@ -947,7 +943,6 @@ name|referenceNode
 return|;
 block|}
 DECL|method|containsNode (@ullable N node)
-specifier|protected
 specifier|final
 name|boolean
 name|containsNode
@@ -968,7 +963,6 @@ argument_list|)
 return|;
 block|}
 DECL|method|containsEdge (@ullable E edge)
-specifier|protected
 specifier|final
 name|boolean
 name|containsEdge
