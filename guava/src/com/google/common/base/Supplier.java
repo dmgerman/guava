@@ -74,6 +74,11 @@ annotation|@
 name|FunctionalInterface
 end_annotation
 
+begin_annotation
+annotation|@
+name|ElementTypesAreNonnullByDefault
+end_annotation
+
 begin_expr_stmt
 DECL|interface|Supplier
 specifier|public

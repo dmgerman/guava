@@ -69,6 +69,11 @@ annotation|@
 name|GwtCompatible
 end_annotation
 
+begin_annotation
+annotation|@
+name|ElementTypesAreNonnullByDefault
+end_annotation
+
 begin_expr_stmt
 DECL|interface|Supplier
 specifier|public
@@ -84,6 +89,8 @@ block|{
 comment|/**    * Retrieves an instance of the appropriate type. The returned object may or may not be a new    * instance, depending on the implementation.    *    * @return an instance of the appropriate type    */
 block|@
 name|CanIgnoreReturnValue
+expr|@
+name|ParametricNullness
 DECL|method|get ()
 name|T
 name|get
