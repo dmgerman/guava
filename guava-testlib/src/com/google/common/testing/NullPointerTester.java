@@ -2483,6 +2483,8 @@ argument_list|,
 literal|"NullableDecl"
 argument_list|,
 literal|"NullableType"
+argument_list|,
+literal|"ParametricNullness"
 argument_list|)
 decl_stmt|;
 DECL|method|isNullable (Invokable<?, ?> invokable)
