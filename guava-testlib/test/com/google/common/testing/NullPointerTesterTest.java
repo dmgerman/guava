@@ -7165,6 +7165,198 @@ expr_stmt|;
 block|}
 end_function
 
+begin_expr_stmt
+DECL|class|NullBounds
+specifier|public
+specifier|static
+name|class
+name|NullBounds
+operator|<
+name|T
+expr|extends @
+name|Nullable
+name|Object
+operator|,
+name|U
+expr|extends
+name|T
+operator|,
+name|X
+operator|>
+block|{
+DECL|field|xWasCalled
+name|boolean
+name|xWasCalled
+block|;      @
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
+comment|// Called by reflection
+DECL|method|x (X x)
+specifier|public
+name|void
+name|x
+argument_list|(
+name|X
+name|x
+argument_list|)
+block|{
+name|xWasCalled
+operator|=
+literal|true
+block|;
+name|checkNotNull
+argument_list|(
+name|x
+argument_list|)
+block|;     }
+expr|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
+comment|// Called by reflection
+DECL|method|t (T t)
+specifier|public
+name|void
+name|t
+argument_list|(
+name|T
+name|t
+argument_list|)
+block|{
+name|fail
+argument_list|(
+literal|"Method with parameter<T extends @Nullable Object> should not be called"
+argument_list|)
+block|;     }
+expr|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
+comment|// Called by reflection
+DECL|method|u (U u)
+specifier|public
+name|void
+name|u
+argument_list|(
+name|U
+name|u
+argument_list|)
+block|{
+name|fail
+argument_list|(
+literal|"Method with parameter<U extends T> where<T extends @Nullable Object> should not be"
+operator|+
+literal|" called"
+argument_list|)
+block|;     }
+expr|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
+comment|// Called by reflection
+DECL|method|a (A a)
+specifier|public
+operator|<
+name|A
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+name|void
+name|a
+argument_list|(
+name|A
+name|a
+argument_list|)
+block|{
+name|fail
+argument_list|(
+literal|"Method with parameter<A extends @Nullable Object> should not be called"
+argument_list|)
+block|;     }
+expr|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
+comment|// Called by reflection
+DECL|method|b (A a)
+specifier|public
+operator|<
+name|A
+expr|extends
+name|B
+block|,
+name|B
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+name|void
+name|b
+argument_list|(
+name|A
+name|a
+argument_list|)
+block|{
+name|fail
+argument_list|(
+literal|"Method with parameter<A extends B> where<B extends @Nullable Object> should not be"
+operator|+
+literal|" called"
+argument_list|)
+block|;     }
+block|}
+DECL|method|testNullBounds ()
+specifier|public
+name|void
+name|testNullBounds
+argument_list|()
+block|{
+comment|// NullBounds has methods whose parameters are type variables that have
+comment|// "extends @Nullable Object" as a bound. This test ensures that NullPointerTester considers
+comment|// those parameters to be @Nullable, so it won't call the methods.
+name|NullBounds
+argument_list|<
+name|?
+argument_list|,
+name|?
+argument_list|,
+name|?
+argument_list|>
+name|nullBounds
+operator|=
+operator|new
+name|NullBounds
+argument_list|<>
+argument_list|()
+block|;
+operator|new
+name|NullPointerTester
+argument_list|()
+operator|.
+name|testAllPublicInstanceMethods
+argument_list|(
+name|nullBounds
+argument_list|)
+block|;
+name|assertThat
+argument_list|(
+name|nullBounds
+operator|.
+name|xWasCalled
+argument_list|)
+operator|.
+name|isTrue
+argument_list|()
+block|;   }
+end_expr_stmt
+
 unit|}
 end_unit
 
