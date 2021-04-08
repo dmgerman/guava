@@ -38,20 +38,6 @@ name|com
 operator|.
 name|google
 operator|.
-name|errorprone
-operator|.
-name|annotations
-operator|.
-name|DoNotMock
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
 name|common
 operator|.
 name|annotations
@@ -71,6 +57,20 @@ operator|.
 name|annotations
 operator|.
 name|GwtCompatible
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|DoNotMock
 import|;
 end_import
 
@@ -106,17 +106,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|javax
 operator|.
-name|checkerframework
+name|annotation
 operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|qual
-operator|.
-name|Nullable
+name|CheckForNull
 import|;
 end_import
 
@@ -137,6 +131,8 @@ name|serializable
 operator|=
 literal|true
 argument_list|)
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|Optional
 specifier|public
 specifier|abstract
@@ -201,7 +197,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * If {@code nullableReference} is non-null, returns an {@code Optional} instance containing that    * reference; otherwise returns {@link Optional#absent}.    *    *<p><b>Comparison to {@code java.util.Optional}:</b> this method is equivalent to Java 8's    * {@code Optional.ofNullable}.    */
-DECL|method|fromNullable (@ullable T nullableReference)
+DECL|method|fromNullable (@heckForNull T nullableReference)
 specifier|public
 specifier|static
 parameter_list|<
@@ -214,7 +210,7 @@ argument_list|>
 name|fromNullable
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|T
 name|nullableReference
 parameter_list|)
@@ -245,32 +241,32 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns the equivalent {@code com.google.common.base.Optional} value to the given {@code    * java.util.Optional}, or {@code null} if the argument is null.    *    * @since 21.0    */
-DECL|method|fromJavaUtil ( java.util.@ullable Optional<T> javaUtilOptional)
+annotation|@
+name|CheckForNull
+DECL|method|fromJavaUtil (@heckForNull java.util.Optional<T> javaUtilOptional)
 specifier|public
 specifier|static
-argument_list|<
+parameter_list|<
 name|T
-argument_list|>
-annotation|@
-name|Nullable
+parameter_list|>
 name|Optional
 argument_list|<
 name|T
 argument_list|>
 name|fromJavaUtil
-argument_list|(
+parameter_list|(
+annotation|@
+name|CheckForNull
 name|java
 operator|.
 name|util
 operator|.
-expr|@
-name|Nullable
 name|Optional
 argument_list|<
 name|T
 argument_list|>
 name|javaUtilOptional
-argument_list|)
+parameter_list|)
 block|{
 return|return
 operator|(
@@ -293,40 +289,40 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns the equivalent {@code java.util.Optional} value to the given {@code    * com.google.common.base.Optional}, or {@code null} if the argument is null.    *    *<p>If {@code googleOptional} is known to be non-null, use {@code googleOptional.toJavaUtil()}    * instead.    *    *<p>Unfortunately, the method reference {@code Optional::toJavaUtil} will not work, because it    * could refer to either the static or instance version of this method. Write out the lambda    * expression {@code o -> Optional.toJavaUtil(o)} instead.    *    * @since 21.0    */
-DECL|method|toJavaUtil ( @ullable Optional<T> googleOptional)
+annotation|@
+name|CheckForNull
+DECL|method|toJavaUtil (@heckForNull Optional<T> googleOptional)
 specifier|public
 specifier|static
-operator|<
+parameter_list|<
 name|T
-operator|>
+parameter_list|>
 name|java
 operator|.
 name|util
 operator|.
-expr|@
-name|Nullable
 name|Optional
 argument_list|<
 name|T
 argument_list|>
 name|toJavaUtil
-argument_list|(
+parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Optional
 argument_list|<
 name|T
 argument_list|>
 name|googleOptional
-argument_list|)
+parameter_list|)
 block|{
 return|return
 name|googleOptional
 operator|==
 literal|null
-operator|?
+condition|?
 literal|null
-operator|:
+else|:
 name|googleOptional
 operator|.
 name|toJavaUtil
@@ -430,11 +426,11 @@ name|supplier
 parameter_list|)
 function_decl|;
 comment|/**    * Returns the contained instance if it is present; {@code null} otherwise. If the instance is    * known to be present, use {@link #get()} instead.    *    *<p><b>Comparison to {@code java.util.Optional}:</b> this method is equivalent to Java 8's    * {@code Optional.orElse(null)}.    */
+annotation|@
+name|CheckForNull
 DECL|method|orNull ()
 specifier|public
 specifier|abstract
-annotation|@
-name|Nullable
 name|T
 name|orNull
 parameter_list|()
@@ -477,14 +473,14 @@ function_decl|;
 comment|/**    * Returns {@code true} if {@code object} is an {@code Optional} instance, and either the    * contained references are {@linkplain Object#equals equal} to each other or both are absent.    * Note that {@code Optional} instances of differing parameterized types can be equal.    *    *<p><b>Comparison to {@code java.util.Optional}:</b> no differences.    */
 annotation|@
 name|Override
-DECL|method|equals (@ullable Object object)
+DECL|method|equals (@heckForNull Object object)
 specifier|public
 specifier|abstract
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|object
 parameter_list|)

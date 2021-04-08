@@ -106,17 +106,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|javax
 operator|.
-name|checkerframework
+name|annotation
 operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|compatqual
-operator|.
-name|NullableDecl
+name|CheckForNull
 import|;
 end_import
 
@@ -137,6 +131,8 @@ name|serializable
 operator|=
 literal|true
 argument_list|)
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|Optional
 specifier|public
 specifier|abstract
@@ -201,7 +197,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * If {@code nullableReference} is non-null, returns an {@code Optional} instance containing that    * reference; otherwise returns {@link Optional#absent}.    *    *<p><b>Comparison to {@code java.util.Optional}:</b> this method is equivalent to Java 8's    * {@code Optional.ofNullable}.    */
-DECL|method|fromNullable (@ullableDecl T nullableReference)
+DECL|method|fromNullable (@heckForNull T nullableReference)
 specifier|public
 specifier|static
 parameter_list|<
@@ -214,7 +210,7 @@ argument_list|>
 name|fromNullable
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|T
 name|nullableReference
 parameter_list|)
@@ -314,7 +310,7 @@ parameter_list|)
 function_decl|;
 comment|/**    * Returns the contained instance if it is present; {@code null} otherwise. If the instance is    * known to be present, use {@link #get()} instead.    *    *<p><b>Comparison to {@code java.util.Optional}:</b> this method is equivalent to Java 8's    * {@code Optional.orElse(null)}.    */
 annotation|@
-name|NullableDecl
+name|CheckForNull
 DECL|method|orNull ()
 specifier|public
 specifier|abstract
@@ -360,14 +356,14 @@ function_decl|;
 comment|/**    * Returns {@code true} if {@code object} is an {@code Optional} instance, and either the    * contained references are {@linkplain Object#equals equal} to each other or both are absent.    * Note that {@code Optional} instances of differing parameterized types can be equal.    *    *<p><b>Comparison to {@code java.util.Optional}:</b> no differences.    */
 annotation|@
 name|Override
-DECL|method|equals (@ullableDecl Object object)
+DECL|method|equals (@heckForNull Object object)
 specifier|public
 specifier|abstract
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|object
 parameter_list|)
