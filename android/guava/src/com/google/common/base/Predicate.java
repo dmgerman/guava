@@ -46,6 +46,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|checkerframework
@@ -54,9 +64,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -64,45 +74,55 @@ begin_comment
 comment|/**  * Determines a true or false value for a given input; a pre-Java-8 version of {@link  * java.util.function.Predicate java.util.function.Predicate}.  *  *<p>The {@link Predicates} class provides common predicates and related utilities.  *  *<p>See the Guava User Guide article on<a  * href="https://github.com/google/guava/wiki/FunctionalExplained">the use of {@code Predicate}</a>.  *  *<h3>For Java 8+ users</h3>  *  *<p>This interface is now a legacy type. Use {@code java.util.function.Predicate} (or the  * appropriate primitive specialization such as {@code IntPredicate}) instead whenever possible.  * Otherwise, at least reduce<i>explicit</i> dependencies on this type by using lambda expressions  * or method references instead of classes, leaving your code easier to migrate in the future.  *  *<p>To use a reference of this type (say, named {@code guavaPredicate}) in a context where {@code  * java.util.function.Predicate} is expected, use the method reference {@code  * guavaPredicate::apply}. For the other direction, use {@code javaUtilPredicate::test}. A future  * version of this interface will be made to<i>extend</i> {@code java.util.function.Predicate}, so  * that conversion will be necessary in only one direction. At that time, this interface will be  * officially discouraged.  *  * @author Kevin Bourrillion  * @since 2.0  */
 end_comment
 
-begin_interface
+begin_annotation
 annotation|@
 name|GwtCompatible
+end_annotation
+
+begin_annotation
+annotation|@
+name|ElementTypesAreNonnullByDefault
+end_annotation
+
+begin_expr_stmt
 DECL|interface|Predicate
 specifier|public
-interface|interface
+expr|interface
 name|Predicate
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 block|{
 comment|/**    * Returns the result of applying this predicate to {@code input} (Java 8 users, see notes in the    * class documentation above). This method is<i>generally expected</i>, but not absolutely    * required, to have the following properties:    *    *<ul>    *<li>Its execution does not cause any observable side effects.    *<li>The computation is<i>consistent with equals</i>; that is, {@link Objects#equal    *       Objects.equal}{@code (a, b)} implies that {@code predicate.apply(a) ==    *       predicate.apply(b))}.    *</ul>    *    * @throws NullPointerException if {@code input} is null and this predicate does not accept null    *     arguments    */
-annotation|@
+block|@
 name|CanIgnoreReturnValue
-DECL|method|apply (@ullableDecl T input)
+DECL|method|apply (@arametricNullness T input)
 name|boolean
 name|apply
-parameter_list|(
+argument_list|(
 annotation|@
-name|NullableDecl
+name|ParametricNullness
 name|T
 name|input
-parameter_list|)
-function_decl|;
+argument_list|)
+block|;
 comment|/**    * Indicates whether another object is equal to this predicate.    *    *<p>Most implementations will have no reason to override the behavior of {@link Object#equals}.    * However, an implementation may also choose to return {@code true} whenever {@code object} is a    * {@link Predicate} that it considers<i>interchangeable</i> with this one. "Interchangeable"    *<i>typically</i> means that {@code this.apply(t) == that.apply(t)} for all {@code t} of type    * {@code T}). Note that a {@code false} result from this method does not imply that the    * predicates are known<i>not</i> to be interchangeable.    */
-annotation|@
+block|@
 name|Override
-DECL|method|equals (@ullableDecl Object object)
+DECL|method|equals (@heckForNull Object object)
 name|boolean
 name|equals
-parameter_list|(
+argument_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|object
-parameter_list|)
-function_decl|;
-block|}
-end_interface
+argument_list|)
+block|; }
+end_expr_stmt
 
 end_unit
 
