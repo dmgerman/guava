@@ -235,8 +235,7 @@ name|t
 parameter_list|)
 function_decl|;
 comment|/**    * Returns a new equivalence relation for {@code F} which evaluates equivalence by first applying    * {@code function} to the argument, then evaluating using {@code this}. That is, for any pair of    * non-null objects {@code x} and {@code y}, {@code equivalence.onResultOf(function).equivalent(a,    * b)} is true if and only if {@code equivalence.equivalent(function.apply(a), function.apply(b))}    * is true.    *    *<p>For example:    *    *<pre>{@code    * Equivalence<Person> SAME_AGE = Equivalence.equals().onResultOf(GET_PERSON_AGE);    * }</pre>    *    *<p>{@code function} will never be invoked with a null value.    *    *<p>Note that {@code function} must be consistent according to {@code this} equivalence    * relation. That is, invoking {@link Function#apply} multiple times for a given value must return    * equivalent results. For example, {@code    * Equivalence.identity().onResultOf(Functions.toStringFunction())} is broken because it's not    * guaranteed that {@link Object#toString}) always returns the same string instance.    *    * @since 10.0    */
-comment|/*    * We could consider changing the parameter type to Function<? super F, ...>. That would let this    * method accept a Function<@Nullable F, ...>. But this might not be worth the trouble, given that    * most Function types are inferred from lambdas or method reference nowadays.    */
-DECL|method|onResultOf (Function<F, ? extends @Nullable T> function)
+DECL|method|onResultOf (Function<? super F, ? extends @Nullable T> function)
 specifier|public
 specifier|final
 argument_list|<
@@ -250,6 +249,8 @@ name|onResultOf
 argument_list|(
 name|Function
 operator|<
+condition|?
+name|super
 name|F
 argument_list|,
 operator|?

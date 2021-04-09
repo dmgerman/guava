@@ -126,6 +126,8 @@ specifier|private
 specifier|final
 name|Function
 argument_list|<
+name|?
+super|super
 name|F
 argument_list|,
 name|?
@@ -143,11 +145,13 @@ name|T
 argument_list|>
 name|resultEquivalence
 decl_stmt|;
-DECL|method|FunctionalEquivalence (Function<F, ? extends T> function, Equivalence<T> resultEquivalence)
+DECL|method|FunctionalEquivalence ( Function<? super F, ? extends T> function, Equivalence<T> resultEquivalence)
 name|FunctionalEquivalence
 parameter_list|(
 name|Function
 argument_list|<
+name|?
+super|super
 name|F
 argument_list|,
 name|?
