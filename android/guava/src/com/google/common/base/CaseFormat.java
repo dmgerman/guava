@@ -33,6 +33,18 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|java
+operator|.
+name|util
+operator|.
+name|Objects
+operator|.
+name|requireNonNull
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -631,7 +643,10 @@ expr_stmt|;
 block|}
 else|else
 block|{
+name|requireNonNull
+argument_list|(
 name|out
+argument_list|)
 operator|.
 name|append
 argument_list|(
@@ -684,7 +699,10 @@ argument_list|(
 name|s
 argument_list|)
 else|:
+name|requireNonNull
+argument_list|(
 name|out
+argument_list|)
 operator|.
 name|append
 argument_list|(

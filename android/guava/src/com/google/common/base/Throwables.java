@@ -57,6 +57,18 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|java
+operator|.
+name|util
+operator|.
+name|Objects
+operator|.
+name|requireNonNull
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -782,6 +794,12 @@ name|Beta
 annotation|@
 name|GwtIncompatible
 comment|// Class.cast(Object)
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"nullness"
+argument_list|)
+comment|// TODO(cpovirk): Add @CheckForNull after updating callers.
 DECL|method|getCauseAs ( Throwable throwable, Class<X> expectedCauseType)
 specifier|public
 specifier|static
@@ -970,6 +988,7 @@ name|StackTraceElement
 argument_list|>
 argument_list|()
 block|{
+comment|/*        * The following requireNonNull calls are safe because we use jlaStackTrace() only if        * lazyStackTraceIsLazy() returns true.        */
 annotation|@
 name|Override
 specifier|public
@@ -986,9 +1005,15 @@ name|StackTraceElement
 operator|)
 name|invokeAccessibleNonThrowingMethod
 argument_list|(
+name|requireNonNull
+argument_list|(
 name|getStackTraceElementMethod
+argument_list|)
 argument_list|,
+name|requireNonNull
+argument_list|(
 name|jla
+argument_list|)
 argument_list|,
 name|t
 argument_list|,
@@ -1009,9 +1034,15 @@ name|Integer
 operator|)
 name|invokeAccessibleNonThrowingMethod
 argument_list|(
+name|requireNonNull
+argument_list|(
 name|getStackTraceDepthMethod
+argument_list|)
 argument_list|,
+name|requireNonNull
+argument_list|(
 name|jla
+argument_list|)
 argument_list|,
 name|t
 argument_list|)
@@ -1173,7 +1204,9 @@ condition|?
 literal|null
 else|:
 name|getSizeMethod
-argument_list|()
+argument_list|(
+name|jla
+argument_list|)
 decl_stmt|;
 comment|/**    * Returns the JavaLangAccess class that is present in all Sun JDKs. It is not allowed in    * AppEngine, and not present in non-Sun JDKs.    */
 annotation|@
@@ -1283,12 +1316,15 @@ name|GwtIncompatible
 comment|// java.lang.reflect
 annotation|@
 name|CheckForNull
-DECL|method|getSizeMethod ()
+DECL|method|getSizeMethod (Object jla)
 specifier|private
 specifier|static
 name|Method
 name|getSizeMethod
-parameter_list|()
+parameter_list|(
+name|Object
+name|jla
+parameter_list|)
 block|{
 try|try
 block|{
@@ -1319,8 +1355,7 @@ name|getStackTraceDepth
 operator|.
 name|invoke
 argument_list|(
-name|getJLA
-argument_list|()
+name|jla
 argument_list|,
 operator|new
 name|Throwable
