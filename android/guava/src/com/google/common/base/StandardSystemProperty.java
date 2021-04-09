@@ -32,17 +32,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|javax
 operator|.
-name|checkerframework
+name|annotation
 operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|compatqual
-operator|.
-name|NullableDecl
+name|CheckForNull
 import|;
 end_import
 
@@ -54,6 +48,8 @@ begin_enum
 annotation|@
 name|GwtIncompatible
 comment|// java.lang.System#getProperty
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|enum|StandardSystemProperty
 specifier|public
 enum|enum
@@ -291,7 +287,7 @@ return|;
 block|}
 comment|/**    * Returns the current value for this system property by delegating to {@link    * System#getProperty(String)}.    *    *<p>The value returned by this method is non-null except in rare circumstances:    *    *<ul>    *<li>{@link #JAVA_EXT_DIRS} was deprecated in Java 8 and removed in Java 9. We have not    *       confirmed whether it is available under older versions.    *<li>{@link #JAVA_COMPILER}, while still listed as required as of Java 15, is typically not    *       available even under older version.    *<li>Any property may be cleared through APIs like {@link System#clearProperty}.    *<li>Unusual environments like GWT may have their own special handling of system properties.    *</ul>    *    *<p>Note that {@code StandardSystemProperty} does not provide constants for more recently added    * properties, including:    *    *<ul>    *<li>{@code java.vendor.version} (added in Java 11, listed as optional as of Java 13)    *<li>{@code jdk.module.*} (added in Java 9, optional)    *</ul>    */
 annotation|@
-name|NullableDecl
+name|CheckForNull
 DECL|method|value ()
 specifier|public
 name|String

@@ -104,6 +104,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|checkerframework
@@ -125,6 +135,8 @@ end_comment
 begin_class
 annotation|@
 name|GwtCompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|Strings
 specifier|public
 specifier|final
@@ -137,14 +149,14 @@ name|Strings
 parameter_list|()
 block|{}
 comment|/**    * Returns the given string if it is non-null; the empty string otherwise.    *    * @param string the string to test and possibly return    * @return {@code string} itself if it is non-null; {@code ""} if it is null    */
-DECL|method|nullToEmpty (@ullable String string)
+DECL|method|nullToEmpty (@heckForNull String string)
 specifier|public
 specifier|static
 name|String
 name|nullToEmpty
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|String
 name|string
 parameter_list|)
@@ -159,16 +171,16 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns the given string if it is nonempty; {@code null} otherwise.    *    * @param string the string to test and possibly return    * @return {@code string} itself if it is nonempty; {@code null} if it is empty or null    */
-DECL|method|emptyToNull (@ullable String string)
+annotation|@
+name|CheckForNull
+DECL|method|emptyToNull (@heckForNull String string)
 specifier|public
 specifier|static
-annotation|@
-name|Nullable
 name|String
 name|emptyToNull
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|String
 name|string
 parameter_list|)
@@ -183,14 +195,14 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns {@code true} if the given string is null or is the empty string.    *    *<p>Consider normalizing your string references with {@link #nullToEmpty}. If you do, you can    * use {@link String#isEmpty()} instead of this method, and you won't need special null-safe forms    * of methods like {@link String#toUpperCase} either. Or, if you'd like to normalize "in the other    * direction," converting empty strings to {@code null}, you can use {@link #emptyToNull}.    *    * @param string a string reference to check    * @return {@code true} if the string is null or is the empty string    */
-DECL|method|isNullOrEmpty (@ullable String string)
+DECL|method|isNullOrEmpty (@heckForNull String string)
 specifier|public
 specifier|static
 name|boolean
 name|isNullOrEmpty
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|String
 name|string
 parameter_list|)
@@ -875,22 +887,22 @@ return|;
 block|}
 comment|/**    * Returns the given {@code template} string with each occurrence of {@code "%s"} replaced with    * the corresponding argument value from {@code args}; or, if the placeholder and argument counts    * do not match, returns a best-effort form of that string. Will not throw an exception under    * normal conditions.    *    *<p><b>Note:</b> For most string-formatting needs, use {@link String#format String.format},    * {@link java.io.PrintWriter#format PrintWriter.format}, and related methods. These support the    * full range of<a    * href="https://docs.oracle.com/javase/9/docs/api/java/util/Formatter.html#syntax">format    * specifiers</a>, and alert you to usage errors by throwing {@link    * java.util.IllegalFormatException}.    *    *<p>In certain cases, such as outputting debugging information or constructing a message to be    * used for another unchecked exception, an exception during string formatting would serve little    * purpose except to supplant the real information you were trying to provide. These are the cases    * this method is made for; it instead generates a best-effort string with all supplied argument    * values present. This method is also useful in environments such as GWT where {@code    * String.format} is not available. As an example, method implementations of the {@link    * Preconditions} class use this formatter, for both of the reasons just discussed.    *    *<p><b>Warning:</b> Only the exact two-character placeholder sequence {@code "%s"} is    * recognized.    *    * @param template a string containing zero or more {@code "%s"} placeholder sequences. {@code    *     null} is treated as the four-character string {@code "null"}.    * @param args the arguments to be substituted into the message template. The first argument    *     specified is substituted for the first occurrence of {@code "%s"} in the template, and so    *     forth. A {@code null} argument is converted to the four-character string {@code "null"};    *     non-null values are converted to strings using {@link Object#toString()}.    * @since 25.1    */
 comment|// TODO(diamondm) consider using Arrays.toString() for array parameters
-DECL|method|lenientFormat ( @ullable String template, @Nullable Object @Nullable ... args)
+DECL|method|lenientFormat ( @heckForNull String template, @CheckForNull @Nullable Object... args)
 specifier|public
 specifier|static
 name|String
 name|lenientFormat
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|String
 name|template
 parameter_list|,
 annotation|@
-name|Nullable
-name|Object
+name|CheckForNull
 annotation|@
 name|Nullable
+name|Object
 modifier|...
 name|args
 parameter_list|)
@@ -1130,14 +1142,14 @@ name|toString
 argument_list|()
 return|;
 block|}
-DECL|method|lenientToString (@ullable Object o)
+DECL|method|lenientToString (@heckForNull Object o)
 specifier|private
 specifier|static
 name|String
 name|lenientToString
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|o
 parameter_list|)

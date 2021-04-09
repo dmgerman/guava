@@ -222,17 +222,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|javax
 operator|.
-name|checkerframework
+name|annotation
 operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|qual
-operator|.
-name|Nullable
+name|CheckForNull
 import|;
 end_import
 
@@ -248,6 +242,8 @@ name|emulated
 operator|=
 literal|true
 argument_list|)
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|Throwables
 specifier|public
 specifier|final
@@ -317,7 +313,7 @@ name|Deprecated
 annotation|@
 name|GwtIncompatible
 comment|// throwIfInstanceOf
-DECL|method|propagateIfInstanceOf ( @ullable Throwable throwable, Class<X> declaredType)
+DECL|method|propagateIfInstanceOf ( @heckForNull Throwable throwable, Class<X> declaredType)
 specifier|public
 specifier|static
 parameter_list|<
@@ -329,7 +325,7 @@ name|void
 name|propagateIfInstanceOf
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Throwable
 name|throwable
 parameter_list|,
@@ -408,14 +404,14 @@ annotation|@
 name|Deprecated
 annotation|@
 name|GwtIncompatible
-DECL|method|propagateIfPossible (@ullable Throwable throwable)
+DECL|method|propagateIfPossible (@heckForNull Throwable throwable)
 specifier|public
 specifier|static
 name|void
 name|propagateIfPossible
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Throwable
 name|throwable
 parameter_list|)
@@ -438,7 +434,7 @@ comment|/**    * Propagates {@code throwable} exactly as-is, if and only if it i
 annotation|@
 name|GwtIncompatible
 comment|// propagateIfInstanceOf
-DECL|method|propagateIfPossible ( @ullable Throwable throwable, Class<X> declaredType)
+DECL|method|propagateIfPossible ( @heckForNull Throwable throwable, Class<X> declaredType)
 specifier|public
 specifier|static
 parameter_list|<
@@ -450,7 +446,7 @@ name|void
 name|propagateIfPossible
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Throwable
 name|throwable
 parameter_list|,
@@ -480,7 +476,7 @@ comment|/**    * Propagates {@code throwable} exactly as-is, if and only if it i
 annotation|@
 name|GwtIncompatible
 comment|// propagateIfInstanceOf
-DECL|method|propagateIfPossible ( @ullable Throwable throwable, Class<X1> declaredType1, Class<X2> declaredType2)
+DECL|method|propagateIfPossible ( @heckForNull Throwable throwable, Class<X1> declaredType1, Class<X2> declaredType2)
 specifier|public
 specifier|static
 parameter_list|<
@@ -496,7 +492,7 @@ name|void
 name|propagateIfPossible
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Throwable
 name|throwable
 parameter_list|,
@@ -1119,12 +1115,12 @@ comment|/** Access to some fancy internal JVM internals. */
 annotation|@
 name|GwtIncompatible
 comment|// java.lang.reflect
+annotation|@
+name|CheckForNull
 DECL|field|jla
 specifier|private
 specifier|static
 specifier|final
-annotation|@
-name|Nullable
 name|Object
 name|jla
 init|=
@@ -1135,12 +1131,12 @@ comment|/**    * The "getStackTraceElementMethod" method, only available on some
 annotation|@
 name|GwtIncompatible
 comment|// java.lang.reflect
+annotation|@
+name|CheckForNull
 DECL|field|getStackTraceElementMethod
 specifier|private
 specifier|static
 specifier|final
-annotation|@
-name|Nullable
 name|Method
 name|getStackTraceElementMethod
 init|=
@@ -1159,12 +1155,12 @@ comment|/**    * The "getStackTraceDepth" method, only available on some JDKs so
 annotation|@
 name|GwtIncompatible
 comment|// java.lang.reflect
+annotation|@
+name|CheckForNull
 DECL|field|getStackTraceDepthMethod
 specifier|private
 specifier|static
 specifier|final
-annotation|@
-name|Nullable
 name|Method
 name|getStackTraceDepthMethod
 init|=
@@ -1183,11 +1179,11 @@ comment|/**    * Returns the JavaLangAccess class that is present in all Sun JDK
 annotation|@
 name|GwtIncompatible
 comment|// java.lang.reflect
+annotation|@
+name|CheckForNull
 DECL|method|getJLA ()
 specifier|private
 specifier|static
-annotation|@
-name|Nullable
 name|Object
 name|getJLA
 parameter_list|()
@@ -1257,11 +1253,11 @@ comment|/**    * Returns the Method that can be used to resolve an individual St
 annotation|@
 name|GwtIncompatible
 comment|// java.lang.reflect
+annotation|@
+name|CheckForNull
 DECL|method|getGetMethod ()
 specifier|private
 specifier|static
-annotation|@
-name|Nullable
 name|Method
 name|getGetMethod
 parameter_list|()
@@ -1285,11 +1281,11 @@ comment|/**    * Returns the Method that can be used to return the size of a sta
 annotation|@
 name|GwtIncompatible
 comment|// java.lang.reflect
+annotation|@
+name|CheckForNull
 DECL|method|getSizeMethod ()
 specifier|private
 specifier|static
-annotation|@
-name|Nullable
 name|Method
 name|getSizeMethod
 parameter_list|()
@@ -1353,11 +1349,11 @@ block|}
 annotation|@
 name|GwtIncompatible
 comment|// java.lang.reflect
+annotation|@
+name|CheckForNull
 DECL|method|getJlaMethod (String name, Class<?>... parameterTypes)
 specifier|private
 specifier|static
-annotation|@
-name|Nullable
 name|Method
 name|getJlaMethod
 parameter_list|(

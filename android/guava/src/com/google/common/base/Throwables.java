@@ -222,17 +222,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|javax
 operator|.
-name|checkerframework
+name|annotation
 operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|compatqual
-operator|.
-name|NullableDecl
+name|CheckForNull
 import|;
 end_import
 
@@ -248,6 +242,8 @@ name|emulated
 operator|=
 literal|true
 argument_list|)
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|Throwables
 specifier|public
 specifier|final
@@ -317,7 +313,7 @@ name|Deprecated
 annotation|@
 name|GwtIncompatible
 comment|// throwIfInstanceOf
-DECL|method|propagateIfInstanceOf ( @ullableDecl Throwable throwable, Class<X> declaredType)
+DECL|method|propagateIfInstanceOf ( @heckForNull Throwable throwable, Class<X> declaredType)
 specifier|public
 specifier|static
 parameter_list|<
@@ -329,7 +325,7 @@ name|void
 name|propagateIfInstanceOf
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Throwable
 name|throwable
 parameter_list|,
@@ -408,14 +404,14 @@ annotation|@
 name|Deprecated
 annotation|@
 name|GwtIncompatible
-DECL|method|propagateIfPossible (@ullableDecl Throwable throwable)
+DECL|method|propagateIfPossible (@heckForNull Throwable throwable)
 specifier|public
 specifier|static
 name|void
 name|propagateIfPossible
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Throwable
 name|throwable
 parameter_list|)
@@ -438,7 +434,7 @@ comment|/**    * Propagates {@code throwable} exactly as-is, if and only if it i
 annotation|@
 name|GwtIncompatible
 comment|// propagateIfInstanceOf
-DECL|method|propagateIfPossible ( @ullableDecl Throwable throwable, Class<X> declaredType)
+DECL|method|propagateIfPossible ( @heckForNull Throwable throwable, Class<X> declaredType)
 specifier|public
 specifier|static
 parameter_list|<
@@ -450,7 +446,7 @@ name|void
 name|propagateIfPossible
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Throwable
 name|throwable
 parameter_list|,
@@ -480,7 +476,7 @@ comment|/**    * Propagates {@code throwable} exactly as-is, if and only if it i
 annotation|@
 name|GwtIncompatible
 comment|// propagateIfInstanceOf
-DECL|method|propagateIfPossible ( @ullableDecl Throwable throwable, Class<X1> declaredType1, Class<X2> declaredType2)
+DECL|method|propagateIfPossible ( @heckForNull Throwable throwable, Class<X1> declaredType1, Class<X2> declaredType2)
 specifier|public
 specifier|static
 parameter_list|<
@@ -496,7 +492,7 @@ name|void
 name|propagateIfPossible
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Throwable
 name|throwable
 parameter_list|,
@@ -1120,7 +1116,7 @@ annotation|@
 name|GwtIncompatible
 comment|// java.lang.reflect
 annotation|@
-name|NullableDecl
+name|CheckForNull
 DECL|field|jla
 specifier|private
 specifier|static
@@ -1136,7 +1132,7 @@ annotation|@
 name|GwtIncompatible
 comment|// java.lang.reflect
 annotation|@
-name|NullableDecl
+name|CheckForNull
 DECL|field|getStackTraceElementMethod
 specifier|private
 specifier|static
@@ -1160,7 +1156,7 @@ annotation|@
 name|GwtIncompatible
 comment|// java.lang.reflect
 annotation|@
-name|NullableDecl
+name|CheckForNull
 DECL|field|getStackTraceDepthMethod
 specifier|private
 specifier|static
@@ -1184,7 +1180,7 @@ annotation|@
 name|GwtIncompatible
 comment|// java.lang.reflect
 annotation|@
-name|NullableDecl
+name|CheckForNull
 DECL|method|getJLA ()
 specifier|private
 specifier|static
@@ -1258,7 +1254,7 @@ annotation|@
 name|GwtIncompatible
 comment|// java.lang.reflect
 annotation|@
-name|NullableDecl
+name|CheckForNull
 DECL|method|getGetMethod ()
 specifier|private
 specifier|static
@@ -1286,7 +1282,7 @@ annotation|@
 name|GwtIncompatible
 comment|// java.lang.reflect
 annotation|@
-name|NullableDecl
+name|CheckForNull
 DECL|method|getSizeMethod ()
 specifier|private
 specifier|static
@@ -1354,7 +1350,7 @@ annotation|@
 name|GwtIncompatible
 comment|// java.lang.reflect
 annotation|@
-name|NullableDecl
+name|CheckForNull
 DECL|method|getJlaMethod (String name, Class<?>... parameterTypes)
 specifier|private
 specifier|static
