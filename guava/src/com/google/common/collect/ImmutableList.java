@@ -2453,7 +2453,9 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
-comment|/**    * Returns this list instance.    *    * @since 2.0    */
+comment|/**    * Returns this list instance.    *    * @since 2.0    * @deprecated There is no reason to use this; it always returns {@code this}.    */
+annotation|@
+name|Deprecated
 annotation|@
 name|Override
 DECL|method|asList ()
