@@ -70,6 +70,8 @@ end_comment
 
 begin_class
 annotation|@
+name|ElementTypesAreNonnullByDefault
+annotation|@
 name|GwtIncompatible
 DECL|class|JdkPattern
 specifier|final

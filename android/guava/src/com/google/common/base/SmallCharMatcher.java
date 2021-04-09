@@ -78,6 +78,8 @@ begin_class
 annotation|@
 name|GwtIncompatible
 comment|// no precomputation is done in GWT
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|SmallCharMatcher
 specifier|final
 class|class

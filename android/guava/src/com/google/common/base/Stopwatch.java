@@ -199,6 +199,8 @@ argument_list|(
 literal|"GoodTime"
 argument_list|)
 comment|// lots of violations
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|Stopwatch
 specifier|public
 specifier|final

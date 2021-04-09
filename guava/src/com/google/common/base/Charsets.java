@@ -68,6 +68,8 @@ name|emulated
 operator|=
 literal|true
 argument_list|)
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|Charsets
 specifier|public
 specifier|final

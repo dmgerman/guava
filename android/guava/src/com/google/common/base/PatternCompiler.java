@@ -37,6 +37,8 @@ end_comment
 begin_interface
 annotation|@
 name|GwtIncompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|interface|PatternCompiler
 interface|interface
 name|PatternCompiler

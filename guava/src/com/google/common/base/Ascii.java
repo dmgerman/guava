@@ -69,6 +69,8 @@ end_comment
 begin_class
 annotation|@
 name|GwtCompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|Ascii
 specifier|public
 specifier|final
