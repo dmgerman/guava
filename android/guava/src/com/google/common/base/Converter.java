@@ -26,6 +26,22 @@ name|common
 operator|.
 name|base
 operator|.
+name|NullnessCasts
+operator|.
+name|uncheckedCastNullableTToT
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
 name|Preconditions
 operator|.
 name|checkNotNull
@@ -126,17 +142,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|javax
 operator|.
-name|checkerframework
+name|annotation
 operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|compatqual
-operator|.
-name|NullableDecl
+name|CheckForNull
 import|;
 end_import
 
@@ -147,6 +157,9 @@ end_comment
 begin_class
 annotation|@
 name|GwtCompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
+comment|/*  * 1. The type parameter is<T> rather than<T extends @Nullable> so that we can use T in the  * doForward and doBackward methods to indicate that the parameter cannot be null. (We also take  * advantage of that for convertAll, as discussed on that method.)  *  * 2. The supertype of this class could be `Function<@Nullable A, @Nullable B>`, since  * Converter.apply (like Converter.convert) is capable of accepting null inputs. However, a  * supertype of `Function<A, B>` turns out to be massively more useful to callers in practice: They  * want their output to be non-null in operations like `stream.map(myConverter)`, and we can  * guarantee that as long as we also require the input type to be non-null[*] (which is a  * requirement that existing callers already fulfill).  *  * Disclaimer: Part of the reason that callers are so well adapted to `Function<A, B>` may be that  * that is how the signature looked even prior to this comment! So naturally any change can break  * existing users, but it can't *fix* existing users because any users who needed  * `Function<@Nullable A, @Nullable B>` already had to find a workaround. Still, there is a *ton* of  * fallout from trying to switch. I would be shocked if the switch would offer benefits to anywhere  * near enough users to justify the costs.  *  * Fortunately, if anyone does want to use a Converter as a `Function<@Nullable A, @Nullable B>`,  * it's easy to get one: `converter::convert`.  *  * [*] In annotating this class, we're ignoring LegacyConverter.  */
 DECL|class|Converter
 specifier|public
 specifier|abstract
@@ -178,7 +191,7 @@ name|LazyInit
 annotation|@
 name|RetainedWith
 annotation|@
-name|NullableDecl
+name|CheckForNull
 specifier|private
 specifier|transient
 name|Converter
@@ -248,15 +261,15 @@ comment|/**    * Returns a representation of {@code a} as an instance of type {@
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
-name|NullableDecl
-DECL|method|convert (@ullableDecl A a)
+name|CheckForNull
+DECL|method|convert (@heckForNull A a)
 specifier|public
 specifier|final
 name|B
 name|convert
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|A
 name|a
 parameter_list|)
@@ -269,13 +282,13 @@ argument_list|)
 return|;
 block|}
 annotation|@
-name|NullableDecl
-DECL|method|correctedDoForward (@ullableDecl A a)
+name|CheckForNull
+DECL|method|correctedDoForward (@heckForNull A a)
 name|B
 name|correctedDoForward
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|A
 name|a
 parameter_list|)
@@ -305,7 +318,7 @@ block|}
 else|else
 block|{
 return|return
-name|doForward
+name|unsafeDoForward
 argument_list|(
 name|a
 argument_list|)
@@ -313,13 +326,13 @@ return|;
 block|}
 block|}
 annotation|@
-name|NullableDecl
-DECL|method|correctedDoBackward (@ullableDecl B b)
+name|CheckForNull
+DECL|method|correctedDoBackward (@heckForNull B b)
 name|A
 name|correctedDoBackward
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|B
 name|b
 parameter_list|)
@@ -349,16 +362,64 @@ block|}
 else|else
 block|{
 return|return
-name|doBackward
+name|unsafeDoBackward
 argument_list|(
 name|b
 argument_list|)
 return|;
 block|}
 block|}
+comment|/*    * LegacyConverter violates the contract of Converter by allowing its doForward and doBackward    * methods to accept null. We could avoid having unchecked casts in Converter.java itself if we    * could perform a cast to LegacyConverter, but we can't because it's an internal-only class.    *    * TODO(cpovirk): So make it part of the open-source build, albeit package-private there?    *    * So we use uncheckedCastNullableTToT here. This is a weird usage of that method: The method is    * documented as being for use with type parameters that have parametric nullness. But Converter's    * type parameters do not. Still, we use it here so that we can suppress a warning at a smaller    * level than the whole method but without performing a runtime null check. That way, we can still    * pass null inputs to LegacyConverter, and it can violate the contract of Converter.    *    * TODO(cpovirk): Could this be simplified if we modified implementations of LegacyConverter to    * override methods (probably called "unsafeDoForward" and "unsafeDoBackward") with the same    * signatures as the methods below, rather than overriding the same doForward and doBackward    * methods as implementations of normal converters do?    *    * But no matter what we do, it's worth remembering that the resulting code is going to be unsound    * in the presence of LegacyConverter, at least in the case of Converter.apply and convertAll (and    * for any checkers that apply @PolyNull-like semantics to Converter.convert). So maybe we don't    * want to think too hard about how to prevent our checkers from issuing errors related to    * LegacyConverter, since it turns out that LegacyConverter does violate the assumptions we make    * elsewhere.    */
+annotation|@
+name|CheckForNull
+DECL|method|unsafeDoForward (@heckForNull A a)
+specifier|private
+name|B
+name|unsafeDoForward
+parameter_list|(
+annotation|@
+name|CheckForNull
+name|A
+name|a
+parameter_list|)
+block|{
+return|return
+name|doForward
+argument_list|(
+name|uncheckedCastNullableTToT
+argument_list|(
+name|a
+argument_list|)
+argument_list|)
+return|;
+block|}
+annotation|@
+name|CheckForNull
+DECL|method|unsafeDoBackward (@heckForNull B b)
+specifier|private
+name|A
+name|unsafeDoBackward
+parameter_list|(
+annotation|@
+name|CheckForNull
+name|B
+name|b
+parameter_list|)
+block|{
+return|return
+name|doBackward
+argument_list|(
+name|uncheckedCastNullableTToT
+argument_list|(
+name|b
+argument_list|)
+argument_list|)
+return|;
+block|}
 comment|/**    * Returns an iterable that applies {@code convert} to each element of {@code fromIterable}. The    * conversion is done lazily.    *    *<p>The returned iterable's iterator supports {@code remove()} if the input iterator does. After    * a successful {@code remove()} call, {@code fromIterable} no longer contains the corresponding    * element.    */
 annotation|@
 name|CanIgnoreReturnValue
+comment|/*    * Just as Converter could implement `Function<@Nullable A, @Nullable B>` instead of `Function<A,    * B>`, convertAll could accept and return iterables with nullable element types. In both cases,    * we've chosen to instead use a signature that benefits existing users -- and is still safe.    *    * For convertAll, I haven't looked as closely at *how* much existing users benefit, so we should    * keep an eye out for problems that new users encounter. Note also that convertAll could support    * both use cases by using @PolyNull. (By contrast, we can't use @PolyNull for our superinterface    * (`implements Function<@PolyNull A, @PolyNull B>`), at least as far as I know.)    */
 DECL|method|convertAll (final Iterable<? extends A> fromIterable)
 specifier|public
 name|Iterable
@@ -441,6 +502,14 @@ return|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"nullness"
+argument_list|)
+comment|// See code comments on convertAll and Converter.apply.
+annotation|@
+name|CheckForNull
 specifier|public
 name|B
 name|next
@@ -606,13 +675,13 @@ block|}
 annotation|@
 name|Override
 annotation|@
-name|NullableDecl
-DECL|method|correctedDoForward (@ullableDecl B b)
+name|CheckForNull
+DECL|method|correctedDoForward (@heckForNull B b)
 name|A
 name|correctedDoForward
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|B
 name|b
 parameter_list|)
@@ -629,13 +698,13 @@ block|}
 annotation|@
 name|Override
 annotation|@
-name|NullableDecl
-DECL|method|correctedDoBackward (@ullableDecl A a)
+name|CheckForNull
+DECL|method|correctedDoBackward (@heckForNull A a)
 name|B
 name|correctedDoBackward
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|A
 name|a
 parameter_list|)
@@ -668,13 +737,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|equals (@ullableDecl Object object)
+DECL|method|equals (@heckForNull Object object)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|object
 parameter_list|)
@@ -942,13 +1011,13 @@ block|}
 annotation|@
 name|Override
 annotation|@
-name|NullableDecl
-DECL|method|correctedDoForward (@ullableDecl A a)
+name|CheckForNull
+DECL|method|correctedDoForward (@heckForNull A a)
 name|C
 name|correctedDoForward
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|A
 name|a
 parameter_list|)
@@ -970,13 +1039,13 @@ block|}
 annotation|@
 name|Override
 annotation|@
-name|NullableDecl
-DECL|method|correctedDoBackward (@ullableDecl C c)
+name|CheckForNull
+DECL|method|correctedDoBackward (@heckForNull C c)
 name|A
 name|correctedDoBackward
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|C
 name|c
 parameter_list|)
@@ -997,13 +1066,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|equals (@ullableDecl Object object)
+DECL|method|equals (@heckForNull Object object)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|object
 parameter_list|)
@@ -1122,16 +1191,22 @@ annotation|@
 name|Override
 annotation|@
 name|CanIgnoreReturnValue
+comment|/*    * Even though we implement `Function<A, B>` instead of `Function<@Nullable A, @Nullable B>` (as    * discussed in a code comment at the top of the class), we declare our override of Function.apply    * to accept and return null. This requires a suppression, but it's safe:    *    * - Callers who use Converter as a Function<A, B> will neither pass null nor have it returned to    *   them. (Or, if they're not using nullness checking, they might be able to pass null and thus    *   have null returned to them. But our signature isn't making their existing nullness type error    *   any worse.)    * - In the relatively unlikely event that anyone calls Converter.apply directly, that caller is    *   allowed to pass null but is also forced to deal with a potentially null return.    * - Perhaps more important than actual *callers* of this method are various tools that look at    *   bytecode. Notably, NullPointerTester expects a method to throw NPE when passed null unless it    *   is annotated in a way that identifies its parameter type as potentially including null. (And    *   this method does not throw NPE -- nor do we want to enact a dangerous change to make it begin    *   doing so.) We can even imagine tools that rewrite bytecode to insert null checks before and    *   after calling methods with allegedly non-nullable parameters[*]. If we didn't annotate the    *   parameter and return type here, then anyone who used such a tool (and managed to pass null to    *   this method, presumably because that user doesn't run a normal nullness checker) could see    *   NullPointerException.    *    * [*] Granted, such tools could conceivably be smart enough to recognize that the apply() method    * on a a Function<Foo, Bar> should never allow null inputs and never produce null outputs even if    * this specific subclass claims otherwise. Such tools might still produce NPE for calls to this    * method. And that is one reason that we should be nervous about "lying" by extending Function<A,    * B> in the first place. But for now, we're giving it a try, since extending Function<@Nullable    * A, @Nullable B> will cause issues *today*, whereas extending Function<A, B> causes problems in    * various hypothetical futures. (Plus, a tool that were that smart would likely already introduce    * problems with LegacyConverter.)    */
 annotation|@
-name|NullableDecl
-DECL|method|apply (@ullableDecl A a)
+name|SuppressWarnings
+argument_list|(
+literal|"nullness"
+argument_list|)
+annotation|@
+name|CheckForNull
+DECL|method|apply (@heckForNull A a)
 specifier|public
 specifier|final
 name|B
 name|apply
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|A
 name|a
 parameter_list|)
@@ -1146,13 +1221,13 @@ block|}
 comment|/**    * Indicates whether another object is equal to this converter.    *    *<p>Most implementations will have no reason to override the behavior of {@link Object#equals}.    * However, an implementation may also choose to return {@code true} whenever {@code object} is a    * {@link Converter} that it considers<i>interchangeable</i> with this one. "Interchangeable"    *<i>typically</i> means that {@code Objects.equal(this.convert(a), that.convert(a))} is true for    * all {@code a} of type {@code A} (and similarly for {@code reverse}). Note that a {@code false}    * result from this method does not imply that the converters are known<i>not</i> to be    * interchangeable.    */
 annotation|@
 name|Override
-DECL|method|equals (@ullableDecl Object object)
+DECL|method|equals (@heckForNull Object object)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|object
 parameter_list|)
@@ -1361,13 +1436,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|equals (@ullableDecl Object object)
+DECL|method|equals (@heckForNull Object object)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|object
 parameter_list|)
