@@ -187,6 +187,20 @@ operator|.
 name|builder
 argument_list|()
 decl_stmt|;
+comment|// The values here look like 111...11101...010 in binary, where the initial 111...1110 takes
+comment|// up exactly as many bits as can be represented in the significand (24 for float, 53 for
+comment|// double). That final 0 should be rounded up to 1 because the remaining bits make that number
+comment|// slightly nearer.
+name|long
+name|floatConversionTest
+init|=
+literal|0xfffffe8000000002L
+decl_stmt|;
+name|long
+name|doubleConversionTest
+init|=
+literal|0xfffffffffffff402L
+decl_stmt|;
 for|for
 control|(
 name|long
@@ -242,6 +256,20 @@ argument_list|(
 name|Integer
 operator|.
 name|MAX_VALUE
+operator|+
+name|i
+argument_list|)
+operator|.
+name|add
+argument_list|(
+name|floatConversionTest
+operator|+
+name|i
+argument_list|)
+operator|.
+name|add
+argument_list|(
+name|doubleConversionTest
 operator|+
 name|i
 argument_list|)
@@ -831,6 +859,9 @@ expr_stmt|;
 block|}
 block|}
 block|}
+annotation|@
+name|AndroidIncompatible
+comment|// b/28251030, re-enable when the fix is everywhere we run this test
 DECL|method|testFloatValue ()
 specifier|public
 name|void
@@ -857,6 +888,10 @@ argument_list|)
 decl_stmt|;
 name|assertEquals
 argument_list|(
+literal|"Float value of "
+operator|+
+name|unsignedValue
+argument_list|,
 name|unsignedValue
 operator|.
 name|bigIntegerValue
@@ -869,6 +904,8 @@ name|unsignedValue
 operator|.
 name|floatValue
 argument_list|()
+argument_list|,
+literal|0.0f
 argument_list|)
 expr_stmt|;
 block|}
@@ -899,6 +936,10 @@ argument_list|)
 decl_stmt|;
 name|assertEquals
 argument_list|(
+literal|"Double value of "
+operator|+
+name|unsignedValue
+argument_list|,
 name|unsignedValue
 operator|.
 name|bigIntegerValue
@@ -911,6 +952,8 @@ name|unsignedValue
 operator|.
 name|doubleValue
 argument_list|()
+argument_list|,
+literal|0.0
 argument_list|)
 expr_stmt|;
 block|}
