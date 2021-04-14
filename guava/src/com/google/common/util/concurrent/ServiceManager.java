@@ -1418,6 +1418,37 @@ name|startupTimes
 argument_list|()
 return|;
 block|}
+comment|/**    * Returns the service load times. This value will only return startup times for services that    * have finished starting.    *    * @return Map of services and their corresponding startup time, the map entries will be ordered    *     by startup time.    * @since NEXT    */
+DECL|method|startupDurations ()
+specifier|public
+name|ImmutableMap
+argument_list|<
+name|Service
+argument_list|,
+name|Duration
+argument_list|>
+name|startupDurations
+parameter_list|()
+block|{
+return|return
+name|ImmutableMap
+operator|.
+name|copyOf
+argument_list|(
+name|Maps
+operator|.
+name|transformValues
+argument_list|(
+name|startupTimes
+argument_list|()
+argument_list|,
+name|Duration
+operator|::
+name|ofMillis
+argument_list|)
+argument_list|)
+return|;
+block|}
 annotation|@
 name|Override
 DECL|method|toString ()
@@ -2288,7 +2319,7 @@ name|getKey
 argument_list|()
 decl_stmt|;
 name|Stopwatch
-name|stopWatch
+name|stopwatch
 init|=
 name|entry
 operator|.
@@ -2298,7 +2329,7 @@ decl_stmt|;
 if|if
 condition|(
 operator|!
-name|stopWatch
+name|stopwatch
 operator|.
 name|isRunning
 argument_list|()
@@ -2321,7 +2352,7 @@ name|immutableEntry
 argument_list|(
 name|service
 argument_list|,
-name|stopWatch
+name|stopwatch
 operator|.
 name|elapsed
 argument_list|(

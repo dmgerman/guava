@@ -2210,7 +2210,7 @@ name|getKey
 argument_list|()
 decl_stmt|;
 name|Stopwatch
-name|stopWatch
+name|stopwatch
 init|=
 name|entry
 operator|.
@@ -2220,7 +2220,7 @@ decl_stmt|;
 if|if
 condition|(
 operator|!
-name|stopWatch
+name|stopwatch
 operator|.
 name|isRunning
 argument_list|()
@@ -2243,7 +2243,7 @@ name|immutableEntry
 argument_list|(
 name|service
 argument_list|,
-name|stopWatch
+name|stopwatch
 operator|.
 name|elapsed
 argument_list|(
