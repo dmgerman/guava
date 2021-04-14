@@ -596,6 +596,20 @@ name|j2objc
 operator|.
 name|annotations
 operator|.
+name|J2ObjCIncompatible
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|j2objc
+operator|.
+name|annotations
+operator|.
 name|WeakOuter
 import|;
 end_import
@@ -1419,6 +1433,8 @@ argument_list|()
 return|;
 block|}
 comment|/**    * Returns the service load times. This value will only return startup times for services that    * have finished starting.    *    * @return Map of services and their corresponding startup time, the map entries will be ordered    *     by startup time.    * @since NEXT    */
+annotation|@
+name|J2ObjCIncompatible
 DECL|method|startupDurations ()
 specifier|public
 name|ImmutableMap
