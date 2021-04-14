@@ -103,6 +103,8 @@ annotation|@
 name|Beta
 annotation|@
 name|GwtCompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|ArrayBasedEscaperMap
 specifier|public
 specifier|final
@@ -243,7 +245,7 @@ index|[]
 decl_stmt|;
 for|for
 control|(
-name|char
+name|Character
 name|c
 range|:
 name|map

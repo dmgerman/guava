@@ -96,6 +96,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|checkerframework
@@ -104,9 +114,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -119,6 +129,8 @@ annotation|@
 name|Beta
 annotation|@
 name|GwtCompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|Escapers
 specifier|public
 specifier|final
@@ -174,6 +186,8 @@ return|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 specifier|protected
 name|char
 index|[]
@@ -249,6 +263,8 @@ operator|.
 name|MAX_VALUE
 decl_stmt|;
 DECL|field|unsafeReplacement
+annotation|@
+name|CheckForNull
 specifier|private
 name|String
 name|unsafeReplacement
@@ -295,13 +311,13 @@ block|}
 comment|/**      * Sets the replacement string for any characters outside the 'safe' range that have no explicit      * replacement. If {@code unsafeReplacement} is {@code null} then no replacement will occur, if      * it is {@code ""} then the unsafe characters are removed from the output.      *      * @param unsafeReplacement the string to replace unsafe characters      * @return the builder instance      */
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|setUnsafeReplacement (@ullableDecl String unsafeReplacement)
+DECL|method|setUnsafeReplacement (@ullable String unsafeReplacement)
 specifier|public
 name|Builder
 name|setUnsafeReplacement
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|Nullable
 name|String
 name|unsafeReplacement
 parameter_list|)
@@ -368,6 +384,8 @@ argument_list|,
 name|safeMax
 argument_list|)
 block|{
+annotation|@
+name|CheckForNull
 specifier|private
 specifier|final
 name|char
@@ -387,6 +405,8 @@ literal|null
 decl_stmt|;
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 specifier|protected
 name|char
 index|[]
@@ -470,6 +490,8 @@ argument_list|)
 throw|;
 block|}
 comment|/**    * Returns a string that would replace the given character in the specified escaper, or {@code    * null} if no replacement should be made. This method is intended for use in tests through the    * {@code EscaperAsserts} class; production users of {@link CharEscaper} should limit themselves    * to its public interface.    *    * @param c the character to escape if necessary    * @return the replacement string, or {@code null} if no escaping was needed    */
+annotation|@
+name|CheckForNull
 DECL|method|computeReplacement (CharEscaper escaper, char c)
 specifier|public
 specifier|static
@@ -496,6 +518,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns a string that would replace the given character in the specified escaper, or {@code    * null} if no replacement should be made. This method is intended for use in tests through the    * {@code EscaperAsserts} class; production users of {@link UnicodeEscaper} should limit    * themselves to its public interface.    *    * @param cp the Unicode code point to escape if necessary    * @return the replacement string, or {@code null} if no escaping was needed    */
+annotation|@
+name|CheckForNull
 DECL|method|computeReplacement (UnicodeEscaper escaper, int cp)
 specifier|public
 specifier|static
@@ -521,12 +545,16 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-DECL|method|stringOrNull (char[] in)
+annotation|@
+name|CheckForNull
+DECL|method|stringOrNull (@heckForNull char[] in)
 specifier|private
 specifier|static
 name|String
 name|stringOrNull
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|char
 index|[]
 name|in
@@ -567,6 +595,8 @@ argument_list|()
 block|{
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 specifier|protected
 name|char
 index|[]

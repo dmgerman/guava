@@ -70,6 +70,16 @@ name|Map
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
 begin_comment
 comment|/**  * A {@link CharEscaper} that uses an array to quickly look up replacement characters for a given  * {@code char} value. An additional safe range is provided that determines whether {@code char}  * values without specific replacements are to be considered safe and left unescaped or should be  * escaped in a general way.  *  *<p>A good example of usage of this class is for Java source code escaping where the replacement  * array contains information about special ASCII characters such as {@code \\t} and {@code \\n}  * while {@link #escapeUnsafe} is overridden to handle general escaping of the form {@code \\uxxxx}.  *  *<p>The size of the data structure used by {@link ArrayBasedCharEscaper} is proportional to the  * highest valued character that requires escaping. For example a replacement map containing the  * single character '{@code \}{@code u1000}' will require approximately 16K of memory. If you need  * to create multiple escaper instances that have the same character replacement mapping consider  * using {@link ArrayBasedEscaperMap}.  *  * @author Sven Mawson  * @author David Beaumont  * @since 15.0  */
 end_comment
@@ -79,6 +89,8 @@ annotation|@
 name|Beta
 annotation|@
 name|GwtCompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|ArrayBasedCharEscaper
 specifier|public
 specifier|abstract
@@ -310,9 +322,11 @@ return|return
 name|s
 return|;
 block|}
-comment|/**    * Escapes a single character using the replacement array and safe range values. If the given    * character does not have an explicit replacement and lies outside the safe range then {@link    * #escapeUnsafe} is called.    */
+comment|/**    * Escapes a single character using the replacement array and safe range values. If the given    * character does not have an explicit replacement and lies outside the safe range then {@link    * #escapeUnsafe} is called.    *    * @return the replacement characters, or {@code null} if no escaping was required    */
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|escape (char c)
 specifier|protected
 specifier|final
@@ -376,6 +390,8 @@ return|;
 block|}
 comment|/**    * Escapes a {@code char} value that has no direct explicit value in the replacement array and    * lies outside the stated safe range. Subclasses should override this method to provide    * generalized escaping for characters.    *    *<p>Note that arrays returned by this method must not be modified once they have been returned.    * However it is acceptable to return the same array multiple times (even for different input    * characters).    *    * @param c the character to escape    * @return the replacement characters, or {@code null} if no escaping was required    */
 comment|// TODO(dbeaumont,cpovirk): Rename this something better once refactoring done
+annotation|@
+name|CheckForNull
 DECL|method|escapeUnsafe (char c)
 specifier|protected
 specifier|abstract

@@ -60,6 +60,16 @@ name|GwtCompatible
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
 begin_comment
 comment|/**  * An {@link Escaper} that converts literal text into a format safe for inclusion in a particular  * context (such as an XML document). Typically (but not always), the inverse process of  * "unescaping" the text is performed automatically by the relevant parser.  *  *<p>For example, an XML escaper would convert the literal string {@code "Foo<Bar>"} into {@code  * "Foo&lt;Bar&gt;"} to prevent {@code "<Bar>"} from being confused with an XML tag. When the  * resulting XML document is parsed, the parser API will return this text as the original literal  * string {@code "Foo<Bar>"}.  *  *<p><b>Note:</b> This class is similar to {@link CharEscaper} but with one very important  * difference. A CharEscaper can only process Java<a  * href="http://en.wikipedia.org/wiki/UTF-16">UTF16</a> characters in isolation and may not cope  * when it encounters surrogate pairs. This class facilitates the correct escaping of all Unicode  * characters.  *  *<p>As there are important reasons, including potential security issues, to handle Unicode  * correctly if you are considering implementing a new escaper you should favor using UnicodeEscaper  * wherever possible.  *  *<p>A {@code UnicodeEscaper} instance is required to be stateless, and safe when used concurrently  * by multiple threads.  *  *<p>Popular escapers are defined as constants in classes like {@link  * com.google.common.html.HtmlEscapers} and {@link com.google.common.xml.XmlEscapers}. To create  * your own escapers extend this class and implement the {@link #escape(int)} method.  *  * @author David Beaumont  * @since 15.0  */
 end_comment
@@ -69,6 +79,8 @@ annotation|@
 name|Beta
 annotation|@
 name|GwtCompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|UnicodeEscaper
 specifier|public
 specifier|abstract
@@ -94,6 +106,8 @@ name|UnicodeEscaper
 parameter_list|()
 block|{}
 comment|/**    * Returns the escaped form of the given Unicode code point, or {@code null} if this code point    * does not need to be escaped. When called as part of an escaping operation, the given code point    * is guaranteed to be in the range {@code 0<= cp<= Character#MAX_CODE_POINT}.    *    *<p>If an empty array is returned, this effectively strips the input character from the    * resulting text.    *    *<p>If the character does not need to be escaped, this method should return {@code null}, rather    * than an array containing the character representation of the code point. This enables the    * escaping algorithm to perform more efficiently.    *    *<p>If the implementation of this method cannot correctly handle a particular code point then it    * should either throw an appropriate runtime exception or return a suitable replacement    * character. It must never silently discard invalid input as this may constitute a security risk.    *    * @param cp the Unicode code point to escape if necessary    * @return the replacement characters, or {@code null} if no escaping was needed    */
+annotation|@
+name|CheckForNull
 DECL|method|escape (int cp)
 specifier|protected
 specifier|abstract

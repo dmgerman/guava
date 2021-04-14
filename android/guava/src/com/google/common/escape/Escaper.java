@@ -70,6 +70,8 @@ literal|"Use Escapers.nullEscaper() or another methods from the *Escapers classe
 argument_list|)
 annotation|@
 name|GwtCompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|Escaper
 specifier|public
 specifier|abstract

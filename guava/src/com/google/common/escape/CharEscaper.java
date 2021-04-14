@@ -60,6 +60,16 @@ name|GwtCompatible
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
 begin_comment
 comment|/**  * An object that converts literal text into a format safe for inclusion in a particular context  * (such as an XML document). Typically (but not always), the inverse process of "unescaping" the  * text is performed automatically by the relevant parser.  *  *<p>For example, an XML escaper would convert the literal string {@code "Foo<Bar>"} into {@code  * "Foo&lt;Bar&gt;"} to prevent {@code "<Bar>"} from being confused with an XML tag. When the  * resulting XML document is parsed, the parser API will return this text as the original literal  * string {@code "Foo<Bar>"}.  *  *<p>A {@code CharEscaper} instance is required to be stateless, and safe when used concurrently by  * multiple threads.  *  *<p>Popular escapers are defined as constants in classes like {@link  * com.google.common.html.HtmlEscapers} and {@link com.google.common.xml.XmlEscapers}. To create  * your own escapers extend this class and implement the {@link #escape(char)} method.  *  * @author Sven Mawson  * @since 15.0  */
 end_comment
@@ -69,6 +79,8 @@ annotation|@
 name|Beta
 annotation|@
 name|GwtCompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|CharEscaper
 specifier|public
 specifier|abstract
@@ -155,6 +167,8 @@ name|string
 return|;
 block|}
 comment|/**    * Returns the escaped form of the given character, or {@code null} if this character does not    * need to be escaped. If an empty array is returned, this effectively strips the input character    * from the resulting text.    *    *<p>If the character does not need to be escaped, this method should return {@code null}, rather    * than a one-character array containing the character itself. This enables the escaping algorithm    * to perform more efficiently.    *    *<p>An escaper is expected to be able to deal with any {@code char} value, so this method should    * not throw any exceptions.    *    * @param c the character to escape if necessary    * @return the replacement characters, or {@code null} if no escaping was needed    */
+annotation|@
+name|CheckForNull
 DECL|method|escape (char c)
 specifier|protected
 specifier|abstract

@@ -72,6 +72,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|checkerframework
@@ -80,9 +90,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -95,6 +105,8 @@ annotation|@
 name|Beta
 annotation|@
 name|GwtCompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|ArrayBasedUnicodeEscaper
 specifier|public
 specifier|abstract
@@ -147,7 +159,7 @@ name|char
 name|safeMaxChar
 decl_stmt|;
 comment|/**    * Creates a new ArrayBasedUnicodeEscaper instance with the given replacement map and specified    * safe range. If {@code safeMax< safeMin} then no code points are considered safe.    *    *<p>If a code point has no mapped replacement then it is checked against the safe range. If it    * lies outside that, then {@link #escapeUnsafe} is called, otherwise no escaping is performed.    *    * @param replacementMap a map of characters to their escaped representations    * @param safeMin the lowest character value in the safe range    * @param safeMax the highest character value in the safe range    * @param unsafeReplacement the default replacement for unsafe characters or null if no default    *     replacement is required    */
-DECL|method|ArrayBasedUnicodeEscaper ( Map<Character, String> replacementMap, int safeMin, int safeMax, @NullableDecl String unsafeReplacement)
+DECL|method|ArrayBasedUnicodeEscaper ( Map<Character, String> replacementMap, int safeMin, int safeMax, @Nullable String unsafeReplacement)
 specifier|protected
 name|ArrayBasedUnicodeEscaper
 parameter_list|(
@@ -166,7 +178,7 @@ name|int
 name|safeMax
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|String
 name|unsafeReplacement
 parameter_list|)
@@ -189,7 +201,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Creates a new ArrayBasedUnicodeEscaper instance with the given replacement map and specified    * safe range. If {@code safeMax< safeMin} then no code points are considered safe. This    * initializer is useful when explicit instances of ArrayBasedEscaperMap are used to allow the    * sharing of large replacement mappings.    *    *<p>If a code point has no mapped replacement then it is checked against the safe range. If it    * lies outside that, then {@link #escapeUnsafe} is called, otherwise no escaping is performed.    *    * @param escaperMap the map of replacements    * @param safeMin the lowest character value in the safe range    * @param safeMax the highest character value in the safe range    * @param unsafeReplacement the default replacement for unsafe characters or null if no default    *     replacement is required    */
-DECL|method|ArrayBasedUnicodeEscaper ( ArrayBasedEscaperMap escaperMap, int safeMin, int safeMax, @NullableDecl String unsafeReplacement)
+DECL|method|ArrayBasedUnicodeEscaper ( ArrayBasedEscaperMap escaperMap, int safeMin, int safeMax, @Nullable String unsafeReplacement)
 specifier|protected
 name|ArrayBasedUnicodeEscaper
 parameter_list|(
@@ -203,7 +215,7 @@ name|int
 name|safeMax
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|Nullable
 name|String
 name|unsafeReplacement
 parameter_list|)
@@ -423,9 +435,11 @@ return|return
 name|s
 return|;
 block|}
-comment|/**    * Escapes a single Unicode code point using the replacement array and safe range values. If the    * given character does not have an explicit replacement and lies outside the safe range then    * {@link #escapeUnsafe} is called.    */
+comment|/**    * Escapes a single Unicode code point using the replacement array and safe range values. If the    * given character does not have an explicit replacement and lies outside the safe range then    * {@link #escapeUnsafe} is called.    *    * @return the replacement characters, or {@code null} if no escaping was required    */
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|escape (int cp)
 specifier|protected
 specifier|final
@@ -558,6 +572,8 @@ name|index
 return|;
 block|}
 comment|/**    * Escapes a code point that has no direct explicit value in the replacement array and lies    * outside the stated safe range. Subclasses should override this method to provide generalized    * escaping for code points if required.    *    *<p>Note that arrays returned by this method must not be modified once they have been returned.    * However it is acceptable to return the same array multiple times (even for different input    * characters).    *    * @param cp the Unicode code point to escape    * @return the replacement characters, or {@code null} if no escaping was required    */
+annotation|@
+name|CheckForNull
 DECL|method|escapeUnsafe (int cp)
 specifier|protected
 specifier|abstract

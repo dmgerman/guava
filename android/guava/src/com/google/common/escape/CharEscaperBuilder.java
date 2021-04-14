@@ -106,6 +106,32 @@ name|Entry
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|checkerframework
+operator|.
+name|checker
+operator|.
+name|nullness
+operator|.
+name|qual
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/**  * Simple helper class to build a "sparse" array of objects based on the indexes that were added to  * it. The array will be from 0 to the maximum index given. All non-set indexes will contain null  * (so it's not really a sparse array, just a pseudo sparse array). The builder can also return a  * CharEscaper based on the generated array.  *  * @author Sven Mawson  * @since 15.0  */
 end_comment
@@ -115,6 +141,8 @@ annotation|@
 name|Beta
 annotation|@
 name|GwtCompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|CharEscaperBuilder
 specifier|public
 specifier|final
@@ -135,7 +163,9 @@ specifier|private
 specifier|final
 name|char
 index|[]
-index|[]
+annotation|@
+name|Nullable
+type|[]
 name|replacements
 decl_stmt|;
 DECL|field|replaceLength
@@ -144,21 +174,23 @@ specifier|final
 name|int
 name|replaceLength
 decl_stmt|;
-DECL|method|CharArrayDecorator (char[][] replacements)
+DECL|method|CharArrayDecorator (char[] @Nullable [] replacements)
 name|CharArrayDecorator
-parameter_list|(
+argument_list|(
 name|char
 index|[]
+expr|@
+name|Nullable
 index|[]
 name|replacements
-parameter_list|)
+argument_list|)
 block|{
 name|this
 operator|.
 name|replacements
 operator|=
 name|replacements
-expr_stmt|;
+block|;
 name|this
 operator|.
 name|replaceLength
@@ -166,28 +198,27 @@ operator|=
 name|replacements
 operator|.
 name|length
-expr_stmt|;
-block|}
+block|;     }
 comment|/*      * Overriding escape method to be slightly faster for this decorator. We test the replacements      * array directly, saving a method call.      */
-annotation|@
+expr|@
 name|Override
 DECL|method|escape (String s)
 specifier|public
 name|String
 name|escape
-parameter_list|(
+argument_list|(
 name|String
 name|s
-parameter_list|)
+argument_list|)
 block|{
 name|int
 name|slen
-init|=
+operator|=
 name|s
 operator|.
 name|length
 argument_list|()
-decl_stmt|;
+block|;
 for|for
 control|(
 name|int
@@ -243,8 +274,13 @@ return|return
 name|s
 return|;
 block|}
+end_class
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|escape (char c)
 specifier|protected
 name|char
@@ -268,10 +304,16 @@ else|:
 literal|null
 return|;
 block|}
-block|}
+end_function
+
+begin_comment
+unit|}
 comment|// Replacement mappings.
+end_comment
+
+begin_decl_stmt
 DECL|field|map
-specifier|private
+unit|private
 specifier|final
 name|Map
 argument_list|<
@@ -281,7 +323,13 @@ name|String
 argument_list|>
 name|map
 decl_stmt|;
+end_decl_stmt
+
+begin_comment
 comment|// The highest index we've seen so far.
+end_comment
+
+begin_decl_stmt
 DECL|field|max
 specifier|private
 name|int
@@ -290,7 +338,13 @@ init|=
 operator|-
 literal|1
 decl_stmt|;
+end_decl_stmt
+
+begin_comment
 comment|/** Construct a new sparse array builder. */
+end_comment
+
+begin_constructor
 DECL|method|CharEscaperBuilder ()
 specifier|public
 name|CharEscaperBuilder
@@ -306,7 +360,13 @@ argument_list|<>
 argument_list|()
 expr_stmt|;
 block|}
+end_constructor
+
+begin_comment
 comment|/** Add a new mapping from an index to an object to the escaping. */
+end_comment
+
+begin_function
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|addEscape (char c, String r)
@@ -349,7 +409,13 @@ return|return
 name|this
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/** Add multiple mappings at once for a particular index. */
+end_comment
+
+begin_function
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|addEscapes (char[] cs, String r)
@@ -390,14 +456,22 @@ return|return
 name|this
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Convert this builder into an array of char[]s where the maximum index is the value of the    * highest character that has been seen. The array will be sparse in the sense that any unseen    * index will default to null.    *    * @return a "sparse" array that holds the replacement mappings.    */
+end_comment
+
+begin_function
 DECL|method|toArray ()
 specifier|public
 name|char
 index|[]
-index|[]
+annotation|@
+name|Nullable
+type|[]
 name|toArray
-parameter_list|()
+function|()
 block|{
 name|char
 index|[]
@@ -450,7 +524,13 @@ return|return
 name|result
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Convert this builder into a char escaper which is just a decorator around the underlying array    * of replacement char[]s.    *    * @return an escaper that escapes based on the underlying array.    */
+end_comment
+
+begin_function
 DECL|method|toEscaper ()
 specifier|public
 name|Escaper
@@ -466,8 +546,8 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-block|}
-end_class
+end_function
 
+unit|}
 end_unit
 
