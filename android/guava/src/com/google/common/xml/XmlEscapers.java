@@ -81,6 +81,8 @@ annotation|@
 name|Beta
 annotation|@
 name|GwtCompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|XmlEscapers
 specifier|public
 class|class
