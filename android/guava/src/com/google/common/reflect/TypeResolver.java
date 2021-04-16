@@ -274,17 +274,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|javax
 operator|.
-name|checkerframework
+name|annotation
 operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|compatqual
-operator|.
-name|NullableDecl
+name|CheckForNull
 import|;
 end_import
 
@@ -295,6 +289,8 @@ end_comment
 begin_class
 annotation|@
 name|Beta
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|TypeResolver
 specifier|public
 specifier|final
@@ -2581,13 +2577,15 @@ name|id
 argument_list|)
 return|;
 block|}
-DECL|method|captureNullable (@ullableDecl Type type)
+annotation|@
+name|CheckForNull
+DECL|method|captureNullable (@heckForNull Type type)
 specifier|private
 name|Type
 name|captureNullable
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Type
 name|type
 parameter_list|)
@@ -2674,11 +2672,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|equals (Object obj)
+DECL|method|equals (@heckForNull Object obj)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|obj
 parameter_list|)
@@ -2730,6 +2730,8 @@ argument_list|()
 return|;
 block|}
 comment|/** Wraps {@code t} in a {@code TypeVariableKey} if it's a type variable. */
+annotation|@
+name|CheckForNull
 DECL|method|forLookup (Type t)
 specifier|static
 name|TypeVariableKey

@@ -72,17 +72,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|javax
 operator|.
-name|checkerframework
+name|annotation
 operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|compatqual
-operator|.
-name|NullableDecl
+name|CheckForNull
 import|;
 end_import
 
@@ -93,6 +87,9 @@ end_comment
 begin_class
 annotation|@
 name|Beta
+annotation|@
+name|ElementTypesAreNonnullByDefault
+comment|/*  * A nullable bound would let users create a TypeParameter instance for a parameter with a nullable  * bound. However, it would also let them create `new TypeParameter<@Nullable T>() {}`, which  * wouldn't behave as users might expect. Additionally, it's not clear how the TypeToken API could  * support even a "normal" `TypeParameter<T>` when `<T>` has a nullable bound. (See the discussion  * on TypeToken.where.) So, in the interest of failing fast and encouraging the user to switch to a  * non-null bound if possible, let's require a non-null bound here.  *  * TODO(cpovirk): Elaborate on "wouldn't behave as users might expect."  */
 DECL|class|TypeParameter
 specifier|public
 specifier|abstract
@@ -168,14 +165,14 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|equals (@ullableDecl Object o)
+DECL|method|equals (@heckForNull Object o)
 specifier|public
 specifier|final
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|o
 parameter_list|)

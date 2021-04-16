@@ -61,6 +61,8 @@ comment|/**  * Captures the actual type of {@code T}.  *  * @author Ben Yu  */
 end_comment
 
 begin_class
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|TypeCapture
 specifier|abstract
 class|class

@@ -100,17 +100,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|javax
 operator|.
-name|checkerframework
+name|annotation
 operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|compatqual
-operator|.
-name|NullableDecl
+name|CheckForNull
 import|;
 end_import
 
@@ -121,6 +115,8 @@ end_comment
 begin_class
 annotation|@
 name|Beta
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|Parameter
 specifier|public
 specifier|final
@@ -277,7 +273,7 @@ block|}
 annotation|@
 name|Override
 annotation|@
-name|NullableDecl
+name|CheckForNull
 DECL|method|getAnnotation (Class<A> annotationType)
 specifier|public
 parameter_list|<
@@ -400,7 +396,7 @@ block|}
 comment|/** @since 18.0 */
 comment|// @Override on JDK8
 annotation|@
-name|NullableDecl
+name|CheckForNull
 DECL|method|getDeclaredAnnotation (Class<A> annotationType)
 specifier|public
 parameter_list|<
@@ -484,13 +480,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|equals (@ullableDecl Object obj)
+DECL|method|equals (@heckForNull Object obj)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|obj
 parameter_list|)

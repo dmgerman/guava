@@ -65,6 +65,18 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|java
+operator|.
+name|util
+operator|.
+name|Objects
+operator|.
+name|requireNonNull
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -414,17 +426,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|javax
 operator|.
-name|checkerframework
+name|annotation
 operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|compatqual
-operator|.
-name|NullableDecl
+name|CheckForNull
 import|;
 end_import
 
@@ -441,6 +447,8 @@ argument_list|(
 literal|"serial"
 argument_list|)
 comment|// SimpleTypeToken is the serialized form.
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|TypeToken
 specifier|public
 specifier|abstract
@@ -466,7 +474,7 @@ decl_stmt|;
 comment|/** Resolver for resolving parameter and field types with {@link #runtimeType} as context. */
 DECL|field|invariantTypeResolver
 annotation|@
-name|NullableDecl
+name|CheckForNull
 specifier|private
 specifier|transient
 name|TypeResolver
@@ -475,7 +483,7 @@ decl_stmt|;
 comment|/** Resolver for resolving covariant types with {@link #runtimeType} as context. */
 DECL|field|covariantTypeResolver
 annotation|@
-name|NullableDecl
+name|CheckForNull
 specifier|private
 specifier|transient
 name|TypeResolver
@@ -713,6 +721,7 @@ name|runtimeType
 return|;
 block|}
 comment|/**    * Returns a new {@code TypeToken} where type variables represented by {@code typeParam} are    * substituted by {@code typeArg}. For example, it can be used to construct {@code Map<K, V>} for    * any {@code K} and {@code V} type:    *    *<pre>{@code    * static<K, V> TypeToken<Map<K, V>> mapOf(    *     TypeToken<K> keyType, TypeToken<V> valueType) {    *   return new TypeToken<Map<K, V>>() {}    *       .where(new TypeParameter<K>() {}, keyType)    *       .where(new TypeParameter<V>() {}, valueType);    * }    * }</pre>    *    * @param<X> The parameter type    * @param typeParam the parameter type variable    * @param typeArg the actual type to substitute    */
+comment|/*    * TODO(cpovirk): Is there any way for us to support TypeParameter instances for type parameters    * that have nullable bounds? Unfortunately, if we change the parameter to TypeParameter<? extends    * @Nullable X>, then users might pass a TypeParameter<Y>, where Y is a subtype of X, while still    * passing a TypeToken<X>. This would be invalid. Maybe we could accept a TypeParameter<@PolyNull    * X> if we support such a thing? It would be weird or misleading for users to be able to pass    * `new TypeParameter<@Nullable T>() {}` and have it act as a plain `TypeParameter<T>`, but    * hopefully no one would do that, anyway. See also the comment on TypeParameter itself.    *    * TODO(cpovirk): Elaborate on this / merge with other comment?    */
 DECL|method|where (TypeParameter<X> typeParam, TypeToken<X> typeArg)
 specifier|public
 specifier|final
@@ -785,6 +794,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns a new {@code TypeToken} where type variables represented by {@code typeParam} are    * substituted by {@code typeArg}. For example, it can be used to construct {@code Map<K, V>} for    * any {@code K} and {@code V} type:    *    *<pre>{@code    * static<K, V> TypeToken<Map<K, V>> mapOf(    *     Class<K> keyType, Class<V> valueType) {    *   return new TypeToken<Map<K, V>>() {}    *       .where(new TypeParameter<K>() {}, keyType)    *       .where(new TypeParameter<V>() {}, valueType);    * }    * }</pre>    *    * @param<X> The parameter type    * @param typeParam the parameter type variable    * @param typeArg the actual type to substitute    */
+comment|/*    * TODO(cpovirk): Is there any way for us to support TypeParameter instances for type parameters    * that have nullable bounds? See discussion on the other overload of this method.    */
 DECL|method|where (TypeParameter<X> typeParam, Class<X> typeArg)
 specifier|public
 specifier|final
@@ -904,7 +914,7 @@ return|;
 block|}
 comment|/**    * Returns the generic superclass of this type or {@code null} if the type represents {@link    * Object} or an interface. This method is similar but different from {@link    * Class#getGenericSuperclass}. For example, {@code new TypeToken<StringArrayList>()    * {}.getGenericSuperclass()} will return {@code new TypeToken<ArrayList<String>>() {}}; while    * {@code StringArrayList.class.getGenericSuperclass()} will return {@code ArrayList<E>}, where    * {@code E} is the type variable declared by class {@code ArrayList}.    *    *<p>If this type is a type variable or wildcard, its first upper bound is examined and returned    * if the bound is a class or extends from a class. This means that the returned type could be a    * type variable too.    */
 annotation|@
-name|NullableDecl
+name|CheckForNull
 DECL|method|getGenericSuperclass ()
 specifier|final
 name|TypeToken
@@ -1023,7 +1033,7 @@ name|superToken
 return|;
 block|}
 annotation|@
-name|NullableDecl
+name|CheckForNull
 DECL|method|boundAsSuperclass (Type bound)
 specifier|private
 name|TypeToken
@@ -2071,7 +2081,7 @@ return|;
 block|}
 comment|/**    * Returns the array component type if this type represents an array ({@code int[]}, {@code T[]},    * {@code<? extends Map<String, Integer>[]>} etc.), or else {@code null} is returned.    */
 annotation|@
-name|NullableDecl
+name|CheckForNull
 DECL|method|getComponentType ()
 specifier|public
 specifier|final
@@ -2430,7 +2440,7 @@ name|Serializable
 block|{
 DECL|field|types
 annotation|@
-name|NullableDecl
+name|CheckForNull
 specifier|private
 specifier|transient
 name|ImmutableSet
@@ -2662,7 +2672,7 @@ name|allTypes
 decl_stmt|;
 DECL|field|interfaces
 annotation|@
-name|NullableDecl
+name|CheckForNull
 specifier|private
 specifier|transient
 name|ImmutableSet
@@ -2917,7 +2927,7 @@ name|TypeSet
 block|{
 DECL|field|classes
 annotation|@
-name|NullableDecl
+name|CheckForNull
 specifier|private
 specifier|transient
 name|ImmutableSet
@@ -3236,13 +3246,13 @@ end_comment
 begin_function
 annotation|@
 name|Override
-DECL|method|equals (@ullableDecl Object o)
+DECL|method|equals (@heckForNull Object o)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|o
 parameter_list|)
@@ -4772,7 +4782,7 @@ end_comment
 
 begin_function
 annotation|@
-name|NullableDecl
+name|CheckForNull
 DECL|method|getOwnerTypeIfPresent ()
 specifier|private
 name|Type
@@ -5351,18 +5361,29 @@ argument_list|)
 name|TypeToken
 name|componentType
 init|=
-name|checkNotNull
-argument_list|(
 name|getComponentType
 argument_list|()
-argument_list|,
-literal|"%s isn't a super type of %s"
-argument_list|,
+decl_stmt|;
+comment|// TODO(cpovirk): checkArgument?
+if|if
+condition|(
+name|componentType
+operator|==
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
 name|supertype
-argument_list|,
+operator|+
+literal|" isn't a super type of "
+operator|+
 name|this
 argument_list|)
-decl_stmt|;
+throw|;
+block|}
 comment|// array is covariant. component type is super type, so is the array type.
 annotation|@
 name|SuppressWarnings
@@ -5370,6 +5391,7 @@ argument_list|(
 literal|"unchecked"
 argument_list|)
 comment|// going from raw type back to generics
+comment|/*      * requireNonNull is safe because we call getArraySupertype only after checking      * supertype.isArray().      */
 name|TypeToken
 argument_list|<
 name|?
@@ -5380,10 +5402,13 @@ name|componentType
 operator|.
 name|getSupertype
 argument_list|(
+name|requireNonNull
+argument_list|(
 name|supertype
 operator|.
 name|getComponentType
 argument_list|()
+argument_list|)
 argument_list|)
 decl_stmt|;
 annotation|@
@@ -5443,22 +5468,53 @@ argument_list|>
 name|subclass
 parameter_list|)
 block|{
+name|Class
+argument_list|<
+name|?
+argument_list|>
+name|subclassComponentType
+init|=
+name|subclass
+operator|.
+name|getComponentType
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|subclassComponentType
+operator|==
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+name|subclass
+operator|+
+literal|" does not appear to be a subtype of "
+operator|+
+name|this
+argument_list|)
+throw|;
+block|}
 comment|// array is covariant. component type is subtype, so is the array type.
+comment|// requireNonNull is safe because we call getArraySubtype only when isArray().
 name|TypeToken
 argument_list|<
 name|?
 argument_list|>
 name|componentSubtype
 init|=
+name|requireNonNull
+argument_list|(
 name|getComponentType
 argument_list|()
+argument_list|)
 operator|.
 name|getSubtype
 argument_list|(
-name|subclass
-operator|.
-name|getComponentType
-argument_list|()
+name|subclassComponentType
 argument_list|)
 decl_stmt|;
 annotation|@
@@ -5779,7 +5835,7 @@ block|}
 annotation|@
 name|Override
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|TypeToken
 argument_list|<
 name|?
@@ -5878,7 +5934,7 @@ block|}
 annotation|@
 name|Override
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Class
 argument_list|<
 name|?
@@ -6298,10 +6354,13 @@ name|K
 name|right
 parameter_list|)
 block|{
+comment|// requireNonNull is safe because we are passing keys in the map.
 return|return
 name|valueComparator
 operator|.
 name|compare
+argument_list|(
+name|requireNonNull
 argument_list|(
 name|map
 operator|.
@@ -6309,12 +6368,16 @@ name|get
 argument_list|(
 name|left
 argument_list|)
+argument_list|)
 argument_list|,
+name|requireNonNull
+argument_list|(
 name|map
 operator|.
 name|get
 argument_list|(
 name|right
+argument_list|)
 argument_list|)
 argument_list|)
 return|;
@@ -6360,7 +6423,7 @@ name|type
 parameter_list|)
 function_decl|;
 annotation|@
-name|NullableDecl
+name|CheckForNull
 DECL|method|getSuperclass (K type)
 specifier|abstract
 name|K
@@ -6458,6 +6521,8 @@ return|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|getSuperclass (K type)
 name|K
 name|getSuperclass

@@ -65,6 +65,18 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|java
+operator|.
+name|util
+operator|.
+name|Objects
+operator|.
+name|requireNonNull
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -388,6 +400,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|checkerframework
@@ -407,6 +429,8 @@ comment|/**  * Utilities for working with {@link Type}.  *  * @author Ben Yu  */
 end_comment
 
 begin_class
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|Types
 specifier|final
 class|class
@@ -591,13 +615,13 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns a type where {@code rawType} is parameterized by {@code arguments} and is owned by    * {@code ownerType}.    */
-DECL|method|newParameterizedTypeWithOwner ( @ullable Type ownerType, Class<?> rawType, Type... arguments)
+DECL|method|newParameterizedTypeWithOwner ( @heckForNull Type ownerType, Class<?> rawType, Type... arguments)
 specifier|static
 name|ParameterizedType
 name|newParameterizedTypeWithOwner
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Type
 name|ownerType
 parameter_list|,
@@ -708,7 +732,7 @@ block|{
 annotation|@
 name|Override
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Class
 argument_list|<
 name|?
@@ -737,7 +761,7 @@ block|{
 annotation|@
 name|Override
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Class
 argument_list|<
 name|?
@@ -775,10 +799,10 @@ block|}
 block|}
 block|}
 block|;
+annotation|@
+name|CheckForNull
 DECL|method|getOwnerType (Class<?> rawType)
 specifier|abstract
-annotation|@
-name|Nullable
 name|Class
 argument_list|<
 name|?
@@ -831,9 +855,12 @@ operator|.
 name|getClass
 argument_list|()
 decl_stmt|;
+comment|// requireNonNull is safe because we're examining a type that's known to have a superclass.
 name|ParameterizedType
 name|parameterizedType
 init|=
+name|requireNonNull
+argument_list|(
 operator|(
 name|ParameterizedType
 operator|)
@@ -841,6 +868,7 @@ name|subclass
 operator|.
 name|getGenericSuperclass
 argument_list|()
+argument_list|)
 decl_stmt|;
 for|for
 control|(
@@ -1036,10 +1064,10 @@ name|toString
 argument_list|()
 return|;
 block|}
+annotation|@
+name|CheckForNull
 DECL|method|getComponentType (Type type)
 specifier|static
-annotation|@
-name|Nullable
 name|Type
 name|getComponentType
 parameter_list|(
@@ -1055,6 +1083,8 @@ expr_stmt|;
 specifier|final
 name|AtomicReference
 argument_list|<
+annotation|@
+name|Nullable
 name|Type
 argument_list|>
 name|result
@@ -1175,11 +1205,11 @@ argument_list|()
 return|;
 block|}
 comment|/**    * Returns {@code ? extends X} if any of {@code bounds} is a subtype of {@code X[]}; or null    * otherwise.    */
+annotation|@
+name|CheckForNull
 DECL|method|subtypeOfComponentType (Type[] bounds)
 specifier|private
 specifier|static
-annotation|@
-name|Nullable
 name|Type
 name|subtypeOfComponentType
 parameter_list|(
@@ -1345,11 +1375,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|equals (Object obj)
+DECL|method|equals (@heckForNull Object obj)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|obj
 parameter_list|)
@@ -1410,10 +1442,10 @@ implements|,
 name|Serializable
 block|{
 DECL|field|ownerType
+annotation|@
+name|CheckForNull
 specifier|private
 specifier|final
-annotation|@
-name|Nullable
 name|Type
 name|ownerType
 decl_stmt|;
@@ -1435,11 +1467,11 @@ name|?
 argument_list|>
 name|rawType
 decl_stmt|;
-DECL|method|ParameterizedTypeImpl (@ullable Type ownerType, Class<?> rawType, Type[] typeArguments)
+DECL|method|ParameterizedTypeImpl (@heckForNull Type ownerType, Class<?> rawType, Type[] typeArguments)
 name|ParameterizedTypeImpl
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Type
 name|ownerType
 parameter_list|,
@@ -1536,6 +1568,8 @@ return|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|getOwnerType ()
 specifier|public
 name|Type
@@ -1670,11 +1704,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|equals (Object other)
+DECL|method|equals (@heckForNull Object other)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|other
 parameter_list|)
@@ -1960,7 +1996,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|invoke (Object proxy, Method method, Object[] args)
+annotation|@
+name|CheckForNull
+DECL|method|invoke (Object proxy, Method method, @CheckForNull @Nullable Object[] args)
 specifier|public
 name|Object
 name|invoke
@@ -1971,6 +2009,10 @@ parameter_list|,
 name|Method
 name|method
 parameter_list|,
+annotation|@
+name|CheckForNull
+annotation|@
+name|Nullable
 name|Object
 index|[]
 name|args
@@ -2204,11 +2246,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|equals (Object obj)
+DECL|method|equals (@heckForNull Object obj)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|obj
 parameter_list|)
@@ -2472,11 +2516,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|equals (Object obj)
+DECL|method|equals (@heckForNull Object obj)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|obj
 parameter_list|)

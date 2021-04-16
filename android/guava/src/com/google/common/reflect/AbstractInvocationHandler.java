@@ -78,6 +78,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|checkerframework
@@ -86,9 +96,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -99,6 +109,9 @@ end_comment
 begin_class
 annotation|@
 name|Beta
+comment|// TODO(cpovirk): after adding @Nullable below
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|AbstractInvocationHandler
 specifier|public
 specifier|abstract
@@ -120,7 +133,9 @@ decl_stmt|;
 comment|/**    * {@inheritDoc}    *    *<ul>    *<li>{@code proxy.hashCode()} delegates to {@link AbstractInvocationHandler#hashCode}    *<li>{@code proxy.toString()} delegates to {@link AbstractInvocationHandler#toString}    *<li>{@code proxy.equals(argument)} returns true if:    *<ul>    *<li>{@code proxy} and {@code argument} are of the same type    *<li>and {@link AbstractInvocationHandler#equals} returns true for the {@link    *             InvocationHandler} of {@code argument}    *</ul>    *<li>other method calls are dispatched to {@link #handleInvocation}.    *</ul>    */
 annotation|@
 name|Override
-DECL|method|invoke (Object proxy, Method method, @NullableDecl Object[] args)
+annotation|@
+name|CheckForNull
+DECL|method|invoke (Object proxy, Method method, @CheckForNull @Nullable Object[] args)
 specifier|public
 specifier|final
 name|Object
@@ -133,7 +148,9 @@ name|Method
 name|method
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
+annotation|@
+name|Nullable
 name|Object
 index|[]
 name|args
@@ -296,7 +313,9 @@ argument_list|)
 return|;
 block|}
 comment|/**    * {@link #invoke} delegates to this method upon any method invocation on the proxy instance,    * except {@link Object#equals}, {@link Object#hashCode} and {@link Object#toString}. The result    * will be returned as the proxied method's return value.    *    *<p>Unlike {@link #invoke}, {@code args} will never be null. When the method has no parameter,    * an empty array is passed in.    */
-DECL|method|handleInvocation (Object proxy, Method method, Object[] args)
+annotation|@
+name|CheckForNull
+DECL|method|handleInvocation ( Object proxy, Method method, Object[] args)
 specifier|protected
 specifier|abstract
 name|Object
@@ -308,6 +327,7 @@ parameter_list|,
 name|Method
 name|method
 parameter_list|,
+comment|/* TODO(cpovirk): @Nullable */
 name|Object
 index|[]
 name|args
@@ -318,11 +338,13 @@ function_decl|;
 comment|/**    * By default delegates to {@link Object#equals} so instances are only equal if they are    * identical. {@code proxy.equals(argument)} returns true if:    *    *<ul>    *<li>{@code proxy} and {@code argument} are of the same type    *<li>and this method returns true for the {@link InvocationHandler} of {@code argument}    *</ul>    *    *<p>Subclasses can override this method to provide custom equality.    */
 annotation|@
 name|Override
-DECL|method|equals (Object obj)
+DECL|method|equals (@heckForNull Object obj)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|obj
 parameter_list|)

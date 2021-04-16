@@ -112,17 +112,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|javax
 operator|.
-name|checkerframework
+name|annotation
 operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|qual
-operator|.
-name|Nullable
+name|CheckForNull
 import|;
 end_import
 
@@ -133,6 +127,8 @@ end_comment
 begin_class
 annotation|@
 name|Beta
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|Parameter
 specifier|public
 specifier|final
@@ -303,6 +299,8 @@ return|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|getAnnotation (Class<A> annotationType)
 specifier|public
 parameter_list|<
@@ -310,8 +308,6 @@ name|A
 extends|extends
 name|Annotation
 parameter_list|>
-annotation|@
-name|Nullable
 name|A
 name|getAnnotation
 parameter_list|(
@@ -430,6 +426,8 @@ comment|/** @since 18.0 */
 comment|// @Override on JDK8
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|getDeclaredAnnotation (Class<A> annotationType)
 specifier|public
 parameter_list|<
@@ -437,8 +435,6 @@ name|A
 extends|extends
 name|Annotation
 parameter_list|>
-annotation|@
-name|Nullable
 name|A
 name|getDeclaredAnnotation
 parameter_list|(
@@ -529,13 +525,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|equals (@ullable Object obj)
+DECL|method|equals (@heckForNull Object obj)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|obj
 parameter_list|)

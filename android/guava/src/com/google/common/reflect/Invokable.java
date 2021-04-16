@@ -206,6 +206,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|checkerframework
@@ -214,9 +224,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -227,6 +237,8 @@ end_comment
 begin_class
 annotation|@
 name|Beta
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|Invokable
 specifier|public
 specifier|abstract
@@ -337,25 +349,33 @@ name|isVarArgs
 parameter_list|()
 function_decl|;
 comment|/**    * Invokes with {@code receiver} as 'this' and {@code args} passed to the underlying method and    * returns the return value; or calls the underlying constructor with {@code args} and returns the    * constructed instance.    *    * @throws IllegalAccessException if this {@code Constructor} object enforces Java language access    *     control and the underlying method or constructor is inaccessible.    * @throws IllegalArgumentException if the number of actual and formal parameters differ; if an    *     unwrapping conversion for primitive arguments fails; or if, after possible unwrapping, a    *     parameter value cannot be converted to the corresponding formal parameter type by a method    *     invocation conversion.    * @throws InvocationTargetException if the underlying method or constructor throws an exception.    */
-comment|// All subclasses are owned by us and we'll make sure to get the R type right.
+comment|// All subclasses are owned by us and we'll make sure to get the R type right, including nullness.
 annotation|@
 name|SuppressWarnings
 argument_list|(
+block|{
 literal|"unchecked"
+block|,
+literal|"nullness"
+block|}
 argument_list|)
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|invoke (@ullableDecl T receiver, Object... args)
+annotation|@
+name|CheckForNull
+DECL|method|invoke (@heckForNull T receiver, @Nullable Object... args)
 specifier|public
 specifier|final
 name|R
 name|invoke
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|T
 name|receiver
 parameter_list|,
+annotation|@
+name|Nullable
 name|Object
 modifier|...
 name|args
@@ -781,16 +801,20 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-DECL|method|invokeInternal (@ullableDecl Object receiver, Object[] args)
+annotation|@
+name|CheckForNull
+DECL|method|invokeInternal (@heckForNull Object receiver, @Nullable Object[] args)
 specifier|abstract
 name|Object
 name|invokeInternal
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|receiver
 parameter_list|,
+annotation|@
+name|Nullable
 name|Object
 index|[]
 name|args
@@ -870,16 +894,20 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|invokeInternal (@ullableDecl Object receiver, Object[] args)
+annotation|@
+name|CheckForNull
+DECL|method|invokeInternal (@heckForNull Object receiver, @Nullable Object[] args)
 specifier|final
 name|Object
 name|invokeInternal
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|receiver
 parameter_list|,
+annotation|@
+name|Nullable
 name|Object
 index|[]
 name|args
@@ -1079,16 +1107,18 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|invokeInternal (@ullableDecl Object receiver, Object[] args)
+DECL|method|invokeInternal (@heckForNull Object receiver, @Nullable Object[] args)
 specifier|final
 name|Object
 name|invokeInternal
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|receiver
 parameter_list|,
+annotation|@
+name|Nullable
 name|Object
 index|[]
 name|args

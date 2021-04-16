@@ -470,17 +470,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|javax
 operator|.
-name|checkerframework
+name|annotation
 operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|qual
-operator|.
-name|Nullable
+name|CheckForNull
 import|;
 end_import
 
@@ -491,6 +485,8 @@ end_comment
 begin_class
 annotation|@
 name|Beta
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|ClassPath
 specifier|public
 specifier|final
@@ -1155,11 +1151,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|equals (Object obj)
+DECL|method|equals (@heckForNull Object obj)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|obj
 parameter_list|)
@@ -1264,7 +1262,7 @@ name|resourceName
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Returns the package name of the class, without attempting to load the class.      *      *<p>Behaves identically to {@link Package#getName()} but does not require the class (or      * package) to be loaded.      */
+comment|/**      * Returns the package name of the class, without attempting to load the class.      *      *<p>Behaves similarly to {@code class.getPackage().}{@link Package#getName() getName()} but      * does not require the class (or package) to be loaded.      *      *<p>But note that this method may behave differently for a class in the default package: For      * such classes, this method always returns an empty string. But under some version of Java,      * {@code class.getPackage().getName()} produces a {@code NullPointerException} because {@code      * class.getPackage()} returns {@code null}.      */
 DECL|method|getPackageName ()
 specifier|public
 name|String
@@ -1280,7 +1278,7 @@ name|className
 argument_list|)
 return|;
 block|}
-comment|/**      * Returns the simple name of the underlying class as given in the source code.      *      *<p>Behaves identically to {@link Class#getSimpleName()} but does not require the class to be      * loaded.      */
+comment|/**      * Returns the simple name of the underlying class as given in the source code.      *      *<p>Behaves similarly to {@link Class#getSimpleName()} but does not require the class to be      * loaded.      *      *<p>But note that this class uses heuristics to identify the simple name. See a related      * discussion in<a href="https://github.com/google/guava/issues/3349">issue 3349</a>.      */
 DECL|method|getSimpleName ()
 specifier|public
 name|String
@@ -2182,11 +2180,13 @@ block|}
 block|}
 annotation|@
 name|Override
-DECL|method|equals (Object obj)
+DECL|method|equals (@heckForNull Object obj)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|obj
 parameter_list|)
@@ -2264,7 +2264,7 @@ block|}
 comment|/**    * Returns the class path URIs specified by the {@code Class-Path} manifest attribute, according    * to<a    * href="http://docs.oracle.com/javase/8/docs/technotes/guides/jar/jar.html#Main_Attributes">JAR    * File Specification</a>. If {@code manifest} is null, it means the jar file has no manifest, and    * an empty set will be returned.    */
 annotation|@
 name|VisibleForTesting
-DECL|method|getClassPathFromManifest (File jarFile, @Nullable Manifest manifest)
+DECL|method|getClassPathFromManifest ( File jarFile, @CheckForNull Manifest manifest)
 specifier|static
 name|ImmutableSet
 argument_list|<
@@ -2276,7 +2276,7 @@ name|File
 name|jarFile
 parameter_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Manifest
 name|manifest
 parameter_list|)
