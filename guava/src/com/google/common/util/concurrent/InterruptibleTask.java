@@ -38,6 +38,20 @@ name|com
 operator|.
 name|google
 operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|VisibleForTesting
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
 name|j2objc
 operator|.
 name|annotations
@@ -57,6 +71,20 @@ operator|.
 name|atomic
 operator|.
 name|AtomicReference
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|locks
+operator|.
+name|AbstractOwnableSynchronizer
 import|;
 end_import
 
@@ -175,17 +203,6 @@ specifier|static
 specifier|final
 name|Runnable
 name|DONE
-init|=
-operator|new
-name|DoNothingRunnable
-argument_list|()
-decl_stmt|;
-DECL|field|INTERRUPTING
-specifier|private
-specifier|static
-specifier|final
-name|Runnable
-name|INTERRUPTING
 init|=
 operator|new
 name|DoNothingRunnable
@@ -337,17 +354,37 @@ init|=
 name|get
 argument_list|()
 decl_stmt|;
+name|Blocker
+name|blocker
+init|=
+literal|null
+decl_stmt|;
 while|while
 condition|(
 name|state
-operator|==
-name|INTERRUPTING
+operator|instanceof
+name|Blocker
 operator|||
 name|state
 operator|==
 name|PARKED
 condition|)
 block|{
+if|if
+condition|(
+name|state
+operator|instanceof
+name|Blocker
+condition|)
+block|{
+name|blocker
+operator|=
+operator|(
+name|Blocker
+operator|)
+name|state
+expr_stmt|;
+block|}
 name|spinCount
 operator|++
 expr_stmt|;
@@ -362,7 +399,7 @@ comment|// If we have spun a lot just park ourselves.
 comment|// This will save CPU while we wait for a slow interrupting thread.  In theory
 comment|// interruptTask() should be very fast but due to InterruptibleChannel and
 comment|// JavaLangAccess.blockedOn(Thread, Interruptible), it isn't predictable what work might
-comment|// be done.  (e.g. close a file and flush buffers to disk).  To protect ourselve from
+comment|// be done.  (e.g. close a file and flush buffers to disk).  To protect ourselves from
 comment|// this we park ourselves and tell our interrupter that we did so.
 if|if
 condition|(
@@ -372,7 +409,7 @@ name|PARKED
 operator|||
 name|compareAndSet
 argument_list|(
-name|INTERRUPTING
+name|state
 argument_list|,
 name|PARKED
 argument_list|)
@@ -402,7 +439,7 @@ name|LockSupport
 operator|.
 name|park
 argument_list|(
-name|this
+name|blocker
 argument_list|)
 expr_stmt|;
 block|}
@@ -503,16 +540,38 @@ condition|(
 name|currentRunner
 operator|instanceof
 name|Thread
-operator|&&
+condition|)
+block|{
+name|Blocker
+name|blocker
+init|=
+operator|new
+name|Blocker
+argument_list|(
+name|this
+argument_list|)
+decl_stmt|;
+name|blocker
+operator|.
+name|setOwner
+argument_list|(
+name|Thread
+operator|.
+name|currentThread
+argument_list|()
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
 name|compareAndSet
 argument_list|(
 name|currentRunner
 argument_list|,
-name|INTERRUPTING
+name|blocker
 argument_list|)
 condition|)
 block|{
-comment|// Thread.interrupt can throw aribitrary exceptions due to the nio InterruptibleChannel API
+comment|// Thread.interrupt can throw arbitrary exceptions due to the nio InterruptibleChannel API
 comment|// This will make sure that tasks don't get stuck busy waiting.
 comment|// Some of this is fixed in jdk11 (see https://bugs.openjdk.java.net/browse/JDK-8198692) but
 comment|// not all.  See the test cases for examples on how this can happen.
@@ -560,6 +619,88 @@ block|}
 block|}
 block|}
 block|}
+block|}
+comment|/**    * Using this as the blocker object allows introspection and debugging tools to see that the    * currentRunner thread is blocked on the progress of the interruptor thread, which can help    * identify deadlocks.    */
+annotation|@
+name|VisibleForTesting
+DECL|class|Blocker
+specifier|static
+specifier|final
+class|class
+name|Blocker
+extends|extends
+name|AbstractOwnableSynchronizer
+implements|implements
+name|Runnable
+block|{
+DECL|field|task
+specifier|private
+specifier|final
+name|InterruptibleTask
+argument_list|<
+name|?
+argument_list|>
+name|task
+decl_stmt|;
+DECL|method|Blocker (InterruptibleTask<?> task)
+specifier|private
+name|Blocker
+parameter_list|(
+name|InterruptibleTask
+argument_list|<
+name|?
+argument_list|>
+name|task
+parameter_list|)
+block|{
+name|this
+operator|.
+name|task
+operator|=
+name|task
+expr_stmt|;
+block|}
+annotation|@
+name|Override
+DECL|method|run ()
+specifier|public
+name|void
+name|run
+parameter_list|()
+block|{}
+DECL|method|setOwner (Thread thread)
+specifier|private
+name|void
+name|setOwner
+parameter_list|(
+name|Thread
+name|thread
+parameter_list|)
+block|{
+name|super
+operator|.
+name|setExclusiveOwnerThread
+argument_list|(
+name|thread
+argument_list|)
+expr_stmt|;
+block|}
+annotation|@
+name|Override
+DECL|method|toString ()
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+name|task
+operator|.
+name|toString
+argument_list|()
+return|;
+block|}
+block|}
 annotation|@
 name|Override
 DECL|method|toString ()
@@ -595,8 +736,8 @@ elseif|else
 if|if
 condition|(
 name|state
-operator|==
-name|INTERRUPTING
+operator|instanceof
+name|Blocker
 condition|)
 block|{
 name|result
