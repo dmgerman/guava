@@ -78,6 +78,11 @@ end_comment
 
 begin_class
 annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"ShouldNotSubclass"
+argument_list|)
+annotation|@
 name|CanIgnoreReturnValue
 comment|// TODO(cpovirk): Consider being more strict.
 annotation|@

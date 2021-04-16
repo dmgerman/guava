@@ -120,6 +120,11 @@ end_import
 
 begin_class
 annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"ShouldNotSubclass"
+argument_list|)
+annotation|@
 name|GwtCompatible
 argument_list|(
 name|emulated

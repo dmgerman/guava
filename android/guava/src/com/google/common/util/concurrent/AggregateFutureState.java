@@ -262,9 +262,6 @@ name|AggregateFutureState
 operator|.
 name|class
 argument_list|,
-operator|(
-name|Class
-operator|)
 name|Set
 operator|.
 name|class
@@ -453,12 +450,15 @@ class|class
 name|AtomicHelper
 block|{
 comment|/** Atomic compare-and-set of the {@link AggregateFutureState#seenExceptions} field. */
-DECL|method|compareAndSetSeenExceptions ( AggregateFutureState state, Set<Throwable> expect, Set<Throwable> update)
+DECL|method|compareAndSetSeenExceptions ( AggregateFutureState<?> state, Set<Throwable> expect, Set<Throwable> update)
 specifier|abstract
 name|void
 name|compareAndSetSeenExceptions
 parameter_list|(
 name|AggregateFutureState
+argument_list|<
+name|?
+argument_list|>
 name|state
 parameter_list|,
 name|Set
@@ -475,12 +475,15 @@ name|update
 parameter_list|)
 function_decl|;
 comment|/** Atomic decrement-and-get of the {@link AggregateFutureState#remaining} field. */
-DECL|method|decrementAndGetRemainingCount (AggregateFutureState state)
+DECL|method|decrementAndGetRemainingCount (AggregateFutureState<?> state)
 specifier|abstract
 name|int
 name|decrementAndGetRemainingCount
 parameter_list|(
 name|AggregateFutureState
+argument_list|<
+name|?
+argument_list|>
 name|state
 parameter_list|)
 function_decl|;
@@ -494,17 +497,20 @@ name|SafeAtomicHelper
 extends|extends
 name|AtomicHelper
 block|{
-DECL|field|seenExceptionsUpdater
 specifier|final
 name|AtomicReferenceFieldUpdater
 argument_list|<
 name|AggregateFutureState
+argument_list|<
+name|?
+argument_list|>
 argument_list|,
 name|Set
 argument_list|<
 name|Throwable
 argument_list|>
 argument_list|>
+DECL|field|seenExceptionsUpdater
 name|seenExceptionsUpdater
 decl_stmt|;
 DECL|field|remainingCountUpdater
@@ -512,9 +518,22 @@ specifier|final
 name|AtomicIntegerFieldUpdater
 argument_list|<
 name|AggregateFutureState
+argument_list|<
+name|?
+argument_list|>
 argument_list|>
 name|remainingCountUpdater
 decl_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+block|{
+literal|"rawtypes"
+block|,
+literal|"unchecked"
+block|}
+argument_list|)
+comment|// Unavoidable with reflection API
 DECL|method|SafeAtomicHelper ( AtomicReferenceFieldUpdater seenExceptionsUpdater, AtomicIntegerFieldUpdater remainingCountUpdater)
 name|SafeAtomicHelper
 parameter_list|(
@@ -529,22 +548,48 @@ name|this
 operator|.
 name|seenExceptionsUpdater
 operator|=
+operator|(
+name|AtomicReferenceFieldUpdater
+argument_list|<
+name|AggregateFutureState
+argument_list|<
+name|?
+argument_list|>
+argument_list|,
+name|Set
+argument_list|<
+name|Throwable
+argument_list|>
+argument_list|>
+operator|)
 name|seenExceptionsUpdater
 expr_stmt|;
 name|this
 operator|.
 name|remainingCountUpdater
 operator|=
+operator|(
+name|AtomicIntegerFieldUpdater
+argument_list|<
+name|AggregateFutureState
+argument_list|<
+name|?
+argument_list|>
+argument_list|>
+operator|)
 name|remainingCountUpdater
 expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|compareAndSetSeenExceptions ( AggregateFutureState state, Set<Throwable> expect, Set<Throwable> update)
+DECL|method|compareAndSetSeenExceptions ( AggregateFutureState<?> state, Set<Throwable> expect, Set<Throwable> update)
 name|void
 name|compareAndSetSeenExceptions
 parameter_list|(
 name|AggregateFutureState
+argument_list|<
+name|?
+argument_list|>
 name|state
 parameter_list|,
 name|Set
@@ -574,11 +619,14 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|decrementAndGetRemainingCount (AggregateFutureState state)
+DECL|method|decrementAndGetRemainingCount (AggregateFutureState<?> state)
 name|int
 name|decrementAndGetRemainingCount
 parameter_list|(
 name|AggregateFutureState
+argument_list|<
+name|?
+argument_list|>
 name|state
 parameter_list|)
 block|{
@@ -603,11 +651,14 @@ name|AtomicHelper
 block|{
 annotation|@
 name|Override
-DECL|method|compareAndSetSeenExceptions ( AggregateFutureState state, Set<Throwable> expect, Set<Throwable> update)
+DECL|method|compareAndSetSeenExceptions ( AggregateFutureState<?> state, Set<Throwable> expect, Set<Throwable> update)
 name|void
 name|compareAndSetSeenExceptions
 parameter_list|(
 name|AggregateFutureState
+argument_list|<
+name|?
+argument_list|>
 name|state
 parameter_list|,
 name|Set
@@ -648,11 +699,14 @@ block|}
 block|}
 annotation|@
 name|Override
-DECL|method|decrementAndGetRemainingCount (AggregateFutureState state)
+DECL|method|decrementAndGetRemainingCount (AggregateFutureState<?> state)
 name|int
 name|decrementAndGetRemainingCount
 parameter_list|(
 name|AggregateFutureState
+argument_list|<
+name|?
+argument_list|>
 name|state
 parameter_list|)
 block|{

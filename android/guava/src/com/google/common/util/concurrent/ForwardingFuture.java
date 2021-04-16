@@ -132,6 +132,11 @@ name|CanIgnoreReturnValue
 comment|// TODO(cpovirk): Consider being more strict.
 annotation|@
 name|GwtCompatible
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"ShouldNotSubclass"
+argument_list|)
 DECL|class|ForwardingFuture
 specifier|public
 specifier|abstract

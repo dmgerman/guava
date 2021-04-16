@@ -150,6 +150,11 @@ begin_class
 annotation|@
 name|GwtCompatible
 comment|// TODO(cpovirk): Make this final (but that may break Mockito spy calls).
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"ShouldNotSubclass"
+argument_list|)
 DECL|class|ImmediateFuture
 class|class
 name|ImmediateFuture

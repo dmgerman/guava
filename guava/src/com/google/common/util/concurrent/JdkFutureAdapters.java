@@ -264,6 +264,11 @@ argument_list|)
 return|;
 block|}
 comment|/**    * An adapter to turn a {@link Future} into a {@link ListenableFuture}. This will wait on the    * future to finish, and when it completes, run the listeners. This implementation will wait on    * the source future indefinitely, so if the source future never completes, the adapter will never    * complete either.    *    *<p>If the delegate future is interrupted or throws an unexpected unchecked exception, the    * listeners will not be invoked.    */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"ShouldNotSubclass"
+argument_list|)
 DECL|class|ListenableFutureAdapter
 specifier|private
 specifier|static

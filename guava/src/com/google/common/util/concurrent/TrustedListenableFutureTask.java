@@ -298,6 +298,9 @@ name|run
 parameter_list|()
 block|{
 name|InterruptibleTask
+argument_list|<
+name|?
+argument_list|>
 name|localTask
 init|=
 name|task
@@ -343,6 +346,9 @@ argument_list|()
 condition|)
 block|{
 name|InterruptibleTask
+argument_list|<
+name|?
+argument_list|>
 name|localTask
 init|=
 name|task
@@ -377,6 +383,9 @@ name|pendingToString
 parameter_list|()
 block|{
 name|InterruptibleTask
+argument_list|<
+name|?
+argument_list|>
 name|localTask
 init|=
 name|task

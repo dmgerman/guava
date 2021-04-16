@@ -3278,6 +3278,11 @@ expr_stmt|;
 block|}
 block|}
 comment|/** This is never thrown but only used for logging. */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"ShouldNotSubclass"
+argument_list|)
 DECL|class|EmptyServiceManagerWarning
 specifier|private
 specifier|static
@@ -3287,6 +3292,11 @@ name|EmptyServiceManagerWarning
 extends|extends
 name|Throwable
 block|{}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"ShouldNotSubclass"
+argument_list|)
 DECL|class|FailedService
 specifier|private
 specifier|static

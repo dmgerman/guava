@@ -67,6 +67,11 @@ annotation|@
 name|Beta
 annotation|@
 name|GwtCompatible
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"ShouldNotSubclass"
+argument_list|)
 DECL|interface|ListenableScheduledFuture
 specifier|public
 interface|interface

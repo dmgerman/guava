@@ -406,13 +406,20 @@ begin_comment
 comment|/**  * An abstract implementation of {@link ListenableFuture}, intended for advanced users only. More  * common ways to create a {@code ListenableFuture} include instantiating a {@link SettableFuture},  * submitting a task to a {@link ListeningExecutorService}, and deriving a {@code Future} from an  * existing one, typically using methods like {@link Futures#transform(ListenableFuture,  * com.google.common.base.Function, java.util.concurrent.Executor) Futures.transform} and {@link  * Futures#catching(ListenableFuture, Class, com.google.common.base.Function,  * java.util.concurrent.Executor) Futures.catching}.  *  *<p>This class implements all methods in {@code ListenableFuture}. Subclasses should provide a way  * to set the result of the computation through the protected methods {@link #set(Object)}, {@link  * #setFuture(ListenableFuture)} and {@link #setException(Throwable)}. Subclasses may also override  * {@link #afterDone()}, which will be invoked automatically when the future completes. Subclasses  * should rarely override other methods.  *  * @author Sven Mawson  * @author Luke Sandberg  * @since 1.0  */
 end_comment
 
+begin_comment
+comment|// we use non-short circuiting comparisons intentionally
+end_comment
+
 begin_class
 annotation|@
 name|SuppressWarnings
 argument_list|(
+block|{
 literal|"ShortCircuitBoolean"
+block|,
+literal|"ShouldNotSubclass"
+block|}
 argument_list|)
-comment|// we use non-short circuiting comparisons intentionally
 annotation|@
 name|GwtCompatible
 argument_list|(
@@ -2958,6 +2965,9 @@ literal|false
 return|;
 block|}
 name|SetFuture
+argument_list|<
+name|V
+argument_list|>
 name|valueToSet
 init|=
 operator|new
@@ -4595,6 +4605,11 @@ parameter_list|)
 function_decl|;
 block|}
 comment|/**    * {@link AtomicHelper} based on {@link sun.misc.Unsafe}.    *    *<p>Static initialization of this class will fail if the {@link sun.misc.Unsafe} object cannot    * be accessed.    */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"sunapi"
+argument_list|)
 DECL|class|UnsafeAtomicHelper
 specifier|private
 specifier|static
@@ -5079,6 +5094,11 @@ return|;
 block|}
 block|}
 comment|/** {@link AtomicHelper} based on {@link AtomicReferenceFieldUpdater}. */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"rawtypes"
+argument_list|)
 DECL|class|SafeAtomicHelper
 specifier|private
 specifier|static
