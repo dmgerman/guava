@@ -225,7 +225,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A generator of {@code TestSuite} instances for testing {@code ByteSource} implementations.  * Generates tests of a all methods on a {@code ByteSource} given various inputs the source is  * expected to contain as well as as sub-suites for testing the {@code CharSource} view and {@code  * slice()} views in the same way.  *  * @author Colin Decker  */
+comment|/**  * A generator of {@code TestSuite} instances for testing {@code ByteSource} implementations.  * Generates tests of a all methods on a {@code ByteSource} given various inputs the source is  * expected to contain as well as sub-suites for testing the {@code CharSource} view and {@code  * slice()} views in the same way.  *  * @author Colin Decker  */
 end_comment
 
 begin_class

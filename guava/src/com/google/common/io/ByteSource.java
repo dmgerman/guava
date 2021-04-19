@@ -1339,7 +1339,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a view of the given byte array as a {@link ByteSource}. To view only a specific range    * in the array, use {@code ByteSource.wrap(b).slice(offset, length)}.    *    *<p>Note that the given byte array may be be passed directly to methods on, for example, {@code    * OutputStream} (when {@code copyTo(OutputStream)} is called on the resulting {@code    * ByteSource}). This could allow a malicious {@code OutputStream} implementation to modify the    * contents of the array, but provides better performance in the normal case.    *    * @since 15.0 (since 14.0 as {@code ByteStreams.asByteSource(byte[])}).    */
+comment|/**    * Returns a view of the given byte array as a {@link ByteSource}. To view only a specific range    * in the array, use {@code ByteSource.wrap(b).slice(offset, length)}.    *    *<p>Note that the given byte array may be passed directly to methods on, for example, {@code    * OutputStream} (when {@code copyTo(OutputStream)} is called on the resulting {@code    * ByteSource}). This could allow a malicious {@code OutputStream} implementation to modify the    * contents of the array, but provides better performance in the normal case.    *    * @since 15.0 (since 14.0 as {@code ByteStreams.asByteSource(byte[])}).    */
 DECL|method|wrap (byte[] b)
 specifier|public
 specifier|static

@@ -1560,7 +1560,7 @@ argument_list|,
 literal|"Cannot take mean of 0 values"
 argument_list|)
 expr_stmt|;
-comment|// The upper bound on the the length of an array and the bounds on the int values mean that, in
+comment|// The upper bound on the length of an array and the bounds on the int values mean that, in
 comment|// this case only, we can compute the sum as a long without risking overflow or loss of
 comment|// precision. So we do that, as it's slightly quicker than the Knuth algorithm.
 name|long

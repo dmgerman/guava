@@ -1403,7 +1403,7 @@ argument_list|(
 name|valueFunction
 argument_list|)
 expr_stmt|;
-comment|/*      * We will always fail if there are duplicate keys, and the keys are always sorted by      * the Comparator, so the entries can come in in arbitrary order -- so we report UNORDERED.      */
+comment|/*      * We will always fail if there are duplicate keys, and the keys are always sorted by      * the Comparator, so the entries can come in an arbitrary order -- so we report UNORDERED.      */
 return|return
 name|Collector
 operator|.
