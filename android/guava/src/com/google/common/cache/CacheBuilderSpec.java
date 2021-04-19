@@ -2003,7 +2003,7 @@ name|IllegalArgumentException
 argument_list|(
 name|format
 argument_list|(
-literal|"key %s invalid format.  was %s, must end with one of [dDhHmMsS]"
+literal|"key %s invalid unit: was %s, must end with one of [dhms]"
 argument_list|,
 name|key
 argument_list|,
