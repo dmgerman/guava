@@ -1866,7 +1866,7 @@ name|iterator
 parameter_list|()
 function_decl|;
 block|}
-comment|/**    * Returns an unmodifiable<b>view</b> of the union of two sets. The returned set contains all    * elements that are contained in either backing set. Iterating over the returned set iterates    * first over all the elements of {@code set1}, then over each element of {@code set2}, in order,    * that is not contained in {@code set1}.    *    *<p>Results are undefined if {@code set1} and {@code set2} are sets based on different    * equivalence relations (as {@link HashSet}, {@link TreeSet}, and the {@link Map#keySet} of an    * {@code IdentityHashMap} all are).    */
+comment|/**    * Returns an unmodifiable<b>view</b> of the union of two sets. The returned set contains all    * elements that are contained in either backing set. Iterating over the returned set iterates    * first over all the elements of {@code set1}, then over each element of {@code set2}, in order,    * that is not contained in {@code set1}.    *    *<p>Results are undefined if {@code set1} and {@code set2} are sets based on different    * equivalence relations, for example if {@code set1} is a {@link HashSet} and {@code set2} is a    * {@link TreeSet} or the {@link Map#keySet} of an {@code IdentityHashMap}.    */
 DECL|method|union (final Set<? extends E> set1, final Set<? extends E> set2)
 specifier|public
 specifier|static
@@ -2189,7 +2189,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/**    * Returns an unmodifiable<b>view</b> of the intersection of two sets. The returned set contains    * all elements that are contained by both backing sets. The iteration order of the returned set    * matches that of {@code set1}.    *    *<p>Results are undefined if {@code set1} and {@code set2} are sets based on different    * equivalence relations (as {@code HashSet}, {@code TreeSet}, and the keySet of an {@code    * IdentityHashMap} all are).    *    *<p><b>Note:</b> The returned view performs slightly better when {@code set1} is the smaller of    * the two sets. If you have reason to believe one of your sets will generally be smaller than the    * other, pass it first. Unfortunately, since this method sets the generic type of the returned    * set based on the type of the first set passed, this could in rare cases force you to make a    * cast, for example:    *    *<pre>{@code    * Set<Object> aFewBadObjects = ...    * Set<String> manyBadStrings = ...    *    * // impossible for a non-String to be in the intersection    * SuppressWarnings("unchecked")    * Set<String> badStrings = (Set) Sets.intersection(    *     aFewBadObjects, manyBadStrings);    * }</pre>    *    *<p>This is unfortunate, but should come up only very rarely.    */
+comment|/**    * Returns an unmodifiable<b>view</b> of the intersection of two sets. The returned set contains    * all elements that are contained by both backing sets. The iteration order of the returned set    * matches that of {@code set1}.    *    *<p>Results are undefined if {@code set1} and {@code set2} are sets based on different    * equivalence relations, for example if {@code set1} is a {@link HashSet} and {@code set2} is a    * {@link TreeSet} or the {@link Map#keySet} of an {@code IdentityHashMap}.    *    *<p><b>Note:</b> The returned view performs slightly better when {@code set1} is the smaller of    * the two sets. If you have reason to believe one of your sets will generally be smaller than the    * other, pass it first. Unfortunately, since this method sets the generic type of the returned    * set based on the type of the first set passed, this could in rare cases force you to make a    * cast, for example:    *    *<pre>{@code    * Set<Object> aFewBadObjects = ...    * Set<String> manyBadStrings = ...    *    * // impossible for a non-String to be in the intersection    * SuppressWarnings("unchecked")    * Set<String> badStrings = (Set) Sets.intersection(    *     aFewBadObjects, manyBadStrings);    * }</pre>    *    *<p>This is unfortunate, but should come up only very rarely.    */
 DECL|method|intersection (final Set<E> set1, final Set<?> set2)
 specifier|public
 specifier|static
@@ -2430,7 +2430,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/**    * Returns an unmodifiable<b>view</b> of the difference of two sets. The returned set contains    * all elements that are contained by {@code set1} and not contained by {@code set2}. {@code set2}    * may also contain elements not present in {@code set1}; these are simply ignored. The iteration    * order of the returned set matches that of {@code set1}.    *    *<p>Results are undefined if {@code set1} and {@code set2} are sets based on different    * equivalence relations (as {@code HashSet}, {@code TreeSet}, and the keySet of an {@code    * IdentityHashMap} all are).    */
+comment|/**    * Returns an unmodifiable<b>view</b> of the difference of two sets. The returned set contains    * all elements that are contained by {@code set1} and not contained by {@code set2}. {@code set2}    * may also contain elements not present in {@code set1}; these are simply ignored. The iteration    * order of the returned set matches that of {@code set1}.    *    *<p>Results are undefined if {@code set1} and {@code set2} are sets based on different    * equivalence relations, for example if {@code set1} is a {@link HashSet} and {@code set2} is a    * {@link TreeSet} or the {@link Map#keySet} of an {@code IdentityHashMap}.    */
 DECL|method|difference (final Set<E> set1, final Set<?> set2)
 specifier|public
 specifier|static
@@ -2643,7 +2643,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/**    * Returns an unmodifiable<b>view</b> of the symmetric difference of two sets. The returned set    * contains all elements that are contained in either {@code set1} or {@code set2} but not in    * both. The iteration order of the returned set is undefined.    *    *<p>Results are undefined if {@code set1} and {@code set2} are sets based on different    * equivalence relations (as {@code HashSet}, {@code TreeSet}, and the keySet of an {@code    * IdentityHashMap} all are).    *    * @since 3.0    */
+comment|/**    * Returns an unmodifiable<b>view</b> of the symmetric difference of two sets. The returned set    * contains all elements that are contained in either {@code set1} or {@code set2} but not in    * both. The iteration order of the returned set is undefined.    *    *<p>Results are undefined if {@code set1} and {@code set2} are sets based on different    * equivalence relations, for example if {@code set1} is a {@link HashSet} and {@code set2} is a    * {@link TreeSet} or the {@link Map#keySet} of an {@code IdentityHashMap}.    *    * @since 3.0    */
 DECL|method|symmetricDifference ( final Set<? extends E> set1, final Set<? extends E> set2)
 specifier|public
 specifier|static
