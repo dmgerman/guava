@@ -2395,8 +2395,12 @@ name|delegatesBuilder
 init|=
 name|ImmutableList
 operator|.
-name|builder
-argument_list|()
+name|builderWithExpectedSize
+argument_list|(
+name|copy
+operator|.
+name|length
+argument_list|)
 decl_stmt|;
 for|for
 control|(
