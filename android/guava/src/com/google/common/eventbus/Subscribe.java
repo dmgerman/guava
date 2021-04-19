@@ -18,20 +18,6 @@ end_package
 
 begin_import
 import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|annotations
-operator|.
-name|Beta
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|lang
@@ -97,8 +83,6 @@ name|ElementType
 operator|.
 name|METHOD
 argument_list|)
-annotation|@
-name|Beta
 DECL|annotation|Subscribe
 specifier|public
 annotation_defn|@interface
