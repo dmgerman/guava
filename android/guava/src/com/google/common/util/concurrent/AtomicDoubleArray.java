@@ -263,7 +263,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Sets the element at position {@code i} to the given value.    *    * @param i the index    * @param newValue the new value    */
+comment|/**    * Atomically sets the element at position {@code i} to the given value.    *    * @param i the index    * @param newValue the new value    */
 DECL|method|set (int i, double newValue)
 specifier|public
 specifier|final
