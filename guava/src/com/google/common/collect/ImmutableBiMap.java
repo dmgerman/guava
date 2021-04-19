@@ -287,7 +287,7 @@ name|valueFunction
 argument_list|)
 return|;
 block|}
-comment|/** Returns the empty bimap. */
+comment|/**    * Returns the empty bimap.    *    *<p><b>Performance note:</b> the instance returned is a singleton.    */
 comment|// Casting to any type is safe because the set will never hold any elements.
 annotation|@
 name|SuppressWarnings

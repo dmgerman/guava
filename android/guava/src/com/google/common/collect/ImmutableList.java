@@ -359,7 +359,7 @@ argument_list|>
 implements|,
 name|RandomAccess
 block|{
-comment|/**    * Returns the empty immutable list. This list behaves and performs comparably to {@link    * Collections#emptyList}, and is preferable mainly for consistency and maintainability of your    * code.    */
+comment|/**    * Returns the empty immutable list. This list behaves and performs comparably to {@link    * Collections#emptyList}, and is preferable mainly for consistency and maintainability of your    * code.    *    *<p><b>Performance note:</b> the instance returned is a singleton.    */
 comment|// Casting to any type is safe because the list will never hold any elements.
 annotation|@
 name|SuppressWarnings

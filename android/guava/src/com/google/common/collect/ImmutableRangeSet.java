@@ -405,7 +405,7 @@ argument_list|()
 argument_list|)
 argument_list|)
 decl_stmt|;
-comment|/** Returns an empty immutable range set. */
+comment|/**    * Returns an empty immutable range set.    *    *<p><b>Performance note:</b> the instance returned is a singleton.    */
 annotation|@
 name|SuppressWarnings
 argument_list|(

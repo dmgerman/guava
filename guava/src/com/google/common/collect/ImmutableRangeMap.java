@@ -423,7 +423,7 @@ name|valueFunction
 argument_list|)
 return|;
 block|}
-comment|/** Returns an empty immutable range map. */
+comment|/**    * Returns an empty immutable range map.    *    *<p><b>Performance note:</b> the instance returned is a singleton.    */
 annotation|@
 name|SuppressWarnings
 argument_list|(

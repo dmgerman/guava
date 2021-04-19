@@ -615,7 +615,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/** Returns the empty sorted map. */
+comment|/**    * Returns the empty sorted map.    *    *<p><b>Performance note:</b> the instance returned is a singleton.    */
 annotation|@
 name|SuppressWarnings
 argument_list|(

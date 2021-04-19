@@ -583,7 +583,7 @@ name|mergeFunction
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the empty map. This map behaves and performs comparably to {@link    * Collections#emptyMap}, and is preferable mainly for consistency and maintainability of your    * code.    */
+comment|/**    * Returns the empty map. This map behaves and performs comparably to {@link    * Collections#emptyMap}, and is preferable mainly for consistency and maintainability of your    * code.    *    *<p><b>Performance note:</b> the instance returned is a singleton.    */
 annotation|@
 name|SuppressWarnings
 argument_list|(

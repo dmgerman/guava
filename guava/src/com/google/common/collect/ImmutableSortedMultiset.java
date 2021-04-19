@@ -434,7 +434,7 @@ end_class
 
 begin_comment
 unit|}
-comment|/** Returns the empty immutable sorted multiset. */
+comment|/**    * Returns the empty immutable sorted multiset.    *    *<p><b>Performance note:</b> the instance returned is a singleton.    */
 end_comment
 
 begin_expr_stmt

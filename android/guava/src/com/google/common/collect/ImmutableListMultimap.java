@@ -254,7 +254,7 @@ argument_list|,
 name|V
 argument_list|>
 block|{
-comment|/** Returns the empty multimap. */
+comment|/**    * Returns the empty multimap.    *    *<p><b>Performance note:</b> the instance returned is a singleton.    */
 comment|// Casting is safe because the multimap will never hold any elements.
 annotation|@
 name|SuppressWarnings

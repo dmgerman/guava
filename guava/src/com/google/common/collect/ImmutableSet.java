@@ -401,7 +401,7 @@ name|toImmutableSet
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns the empty immutable set. Preferred over {@link Collections#emptySet} for code    * consistency, and because the return type conveys the immutability guarantee.    */
+comment|/**    * Returns the empty immutable set. Preferred over {@link Collections#emptySet} for code    * consistency, and because the return type conveys the immutability guarantee.    *    *<p><b>Performance note:</b> the instance returned is a singleton.    */
 annotation|@
 name|SuppressWarnings
 argument_list|(

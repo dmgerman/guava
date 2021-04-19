@@ -308,7 +308,7 @@ argument_list|>
 implements|implements
 name|Serializable
 block|{
-comment|/** Returns an empty multimap. */
+comment|/**    * Returns an empty multimap.    *    *<p><b>Performance note:</b> the instance returned is a singleton.    */
 DECL|method|of ()
 specifier|public
 specifier|static

@@ -232,7 +232,7 @@ name|E
 argument_list|>
 block|{
 comment|// TODO(lowasser): GWT compatibility
-comment|/** Returns the empty immutable sorted multiset. */
+comment|/**    * Returns the empty immutable sorted multiset.    *    *<p><b>Performance note:</b> the instance returned is a singleton.    */
 annotation|@
 name|SuppressWarnings
 argument_list|(

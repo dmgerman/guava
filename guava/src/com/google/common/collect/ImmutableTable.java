@@ -413,7 +413,7 @@ name|mergeFunction
 argument_list|)
 return|;
 block|}
-comment|/** Returns an empty immutable table. */
+comment|/**    * Returns an empty immutable table.    *    *<p><b>Performance note:</b> the instance returned is a singleton.    */
 annotation|@
 name|SuppressWarnings
 argument_list|(

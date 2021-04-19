@@ -465,7 +465,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/** Returns the empty immutable sorted set. */
+comment|/**    * Returns the empty immutable sorted set.    *    *<p><b>Performance note:</b> the instance returned is a singleton.    */
 DECL|method|of ()
 specifier|public
 specifier|static

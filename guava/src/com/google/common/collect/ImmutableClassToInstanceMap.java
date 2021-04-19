@@ -208,7 +208,7 @@ name|of
 argument_list|()
 argument_list|)
 decl_stmt|;
-comment|/**    * Returns an empty {@code ImmutableClassToInstanceMap}.    *    * @since 19.0    */
+comment|/**    * Returns an empty {@code ImmutableClassToInstanceMap}.    *    *<p><b>Performance note:</b> the instance returned is a singleton.    *    * @since 19.0    */
 annotation|@
 name|SuppressWarnings
 argument_list|(

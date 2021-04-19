@@ -199,7 +199,7 @@ argument_list|>
 implements|implements
 name|Serializable
 block|{
-comment|/** Returns an empty immutable table. */
+comment|/**    * Returns an empty immutable table.    *    *<p><b>Performance note:</b> the instance returned is a singleton.    */
 annotation|@
 name|SuppressWarnings
 argument_list|(
