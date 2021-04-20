@@ -55,6 +55,8 @@ comment|/**  * Utility functions for loading and storing values from a byte arra
 end_comment
 
 begin_class
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|LittleEndianByteArray
 specifier|final
 class|class

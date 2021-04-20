@@ -79,6 +79,8 @@ comment|/**  * One or more variables that together maintain an initially zero {@
 end_comment
 
 begin_class
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|LongAdder
 specifier|final
 class|class

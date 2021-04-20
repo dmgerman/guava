@@ -78,6 +78,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|checkerframework
@@ -99,6 +109,8 @@ end_comment
 begin_class
 annotation|@
 name|Beta
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|Funnels
 specifier|public
 specifier|final
@@ -348,13 +360,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|equals (@ullable Object o)
+DECL|method|equals (@heckForNull Object o)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|o
 parameter_list|)
@@ -552,12 +564,15 @@ return|;
 block|}
 block|}
 comment|/**    * Returns a funnel that processes an {@code Iterable} by funneling its elements in iteration    * order with the specified funnel. No separators are added between the elements.    *    * @since 15.0    */
-DECL|method|sequentialFunnel (Funnel<E> elementFunnel)
+DECL|method|sequentialFunnel ( Funnel<E> elementFunnel)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|Funnel
 argument_list|<
 name|Iterable
@@ -568,13 +583,13 @@ name|E
 argument_list|>
 argument_list|>
 name|sequentialFunnel
-parameter_list|(
+argument_list|(
 name|Funnel
 argument_list|<
 name|E
 argument_list|>
 name|elementFunnel
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|new
@@ -590,12 +605,15 @@ block|}
 DECL|class|SequentialFunnel
 specifier|private
 specifier|static
-class|class
+name|class
 name|SequentialFunnel
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
-implements|implements
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|implements
 name|Funnel
 argument_list|<
 name|Iterable
@@ -605,7 +623,7 @@ extends|extends
 name|E
 argument_list|>
 argument_list|>
-implements|,
+operator|,
 name|Serializable
 block|{
 DECL|field|elementFunnel
@@ -619,13 +637,13 @@ name|elementFunnel
 decl_stmt|;
 DECL|method|SequentialFunnel (Funnel<E> elementFunnel)
 name|SequentialFunnel
-parameter_list|(
+argument_list|(
 name|Funnel
 argument_list|<
 name|E
 argument_list|>
 name|elementFunnel
-parameter_list|)
+argument_list|)
 block|{
 name|this
 operator|.
@@ -637,15 +655,14 @@ name|checkNotNull
 argument_list|(
 name|elementFunnel
 argument_list|)
-expr_stmt|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|Override
 DECL|method|funnel (Iterable<? extends E> from, PrimitiveSink into)
 specifier|public
 name|void
 name|funnel
-parameter_list|(
+argument_list|(
 name|Iterable
 argument_list|<
 name|?
@@ -653,10 +670,10 @@ extends|extends
 name|E
 argument_list|>
 name|from
-parameter_list|,
+operator|,
 name|PrimitiveSink
 name|into
-parameter_list|)
+argument_list|)
 block|{
 for|for
 control|(
@@ -695,13 +712,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|equals (@ullable Object o)
+DECL|method|equals (@heckForNull Object o)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|o
 parameter_list|)
@@ -765,7 +782,13 @@ argument_list|()
 return|;
 block|}
 block|}
+end_class
+
+begin_comment
 comment|/**    * Returns a funnel for longs.    *    * @since 13.0    */
+end_comment
+
+begin_function
 DECL|method|longFunnel ()
 specifier|public
 specifier|static
@@ -782,6 +805,9 @@ operator|.
 name|INSTANCE
 return|;
 block|}
+end_function
+
+begin_enum
 DECL|enum|LongFunnel
 specifier|private
 enum|enum
@@ -830,7 +856,13 @@ literal|"Funnels.longFunnel()"
 return|;
 block|}
 block|}
+end_enum
+
+begin_comment
 comment|/**    * Wraps a {@code PrimitiveSink} as an {@link OutputStream}, so it is easy to {@link Funnel#funnel    * funnel} an object to a {@code PrimitiveSink} if there is already a way to write the contents of    * the object to an {@code OutputStream}.    *    *<p>The {@code close} and {@code flush} methods of the returned {@code OutputStream} do nothing,    * and no method throws {@code IOException}.    *    * @since 13.0    */
+end_comment
+
+begin_function
 DECL|method|asOutputStream (PrimitiveSink sink)
 specifier|public
 specifier|static
@@ -849,6 +881,9 @@ name|sink
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_class
 DECL|class|SinkAsStream
 specifier|private
 specifier|static
@@ -970,8 +1005,8 @@ literal|")"
 return|;
 block|}
 block|}
-block|}
 end_class
 
+unit|}
 end_unit
 

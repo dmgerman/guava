@@ -91,6 +91,8 @@ end_comment
 begin_class
 annotation|@
 name|Immutable
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|ChecksumHashFunction
 specifier|final
 class|class

@@ -83,6 +83,8 @@ end_comment
 begin_class
 annotation|@
 name|Beta
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|HashingOutputStream
 specifier|public
 specifier|final

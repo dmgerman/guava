@@ -84,6 +84,22 @@ name|Charset
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|checkerframework
+operator|.
+name|checker
+operator|.
+name|nullness
+operator|.
+name|qual
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/**  * An abstract composition of multiple hash functions. {@linkplain #newHasher()} delegates to the  * {@code Hasher} objects of the delegate hash functions, and in the end, they are used by  * {@linkplain #makeHash(Hasher[])} that constructs the final {@code HashCode}.  *  * @author Dimitris Andreou  */
 end_comment
@@ -91,6 +107,8 @@ end_comment
 begin_class
 annotation|@
 name|Immutable
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|AbstractCompositeHashFunction
 specifier|abstract
 class|class
@@ -723,15 +741,20 @@ block|}
 annotation|@
 name|Override
 specifier|public
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|Hasher
 name|putObject
-parameter_list|(
+argument_list|(
+annotation|@
+name|ParametricNullness
 name|T
 name|instance
-parameter_list|,
+argument_list|,
 name|Funnel
 argument_list|<
 name|?
@@ -739,7 +762,7 @@ super|super
 name|T
 argument_list|>
 name|funnel
-parameter_list|)
+argument_list|)
 block|{
 for|for
 control|(
@@ -763,12 +786,12 @@ return|return
 name|this
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
 specifier|public
 name|HashCode
 name|hash
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|makeHash
@@ -778,8 +801,11 @@ argument_list|)
 return|;
 block|}
 block|}
-return|;
+empty_stmt|;
 block|}
+end_class
+
+begin_decl_stmt
 DECL|field|serialVersionUID
 specifier|private
 specifier|static
@@ -789,8 +815,8 @@ name|serialVersionUID
 init|=
 literal|0L
 decl_stmt|;
-block|}
-end_class
+end_decl_stmt
 
+unit|}
 end_unit
 

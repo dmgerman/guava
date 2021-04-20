@@ -77,6 +77,8 @@ end_comment
 begin_class
 annotation|@
 name|CanIgnoreReturnValue
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|AbstractStreamingHasher
 specifier|abstract
 class|class

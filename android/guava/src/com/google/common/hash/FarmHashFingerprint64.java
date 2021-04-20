@@ -95,6 +95,8 @@ comment|/**  * Implementation of FarmHash Fingerprint64, an open-source fingerpr
 end_comment
 
 begin_class
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|FarmHashFingerprint64
 specifier|final
 class|class

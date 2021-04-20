@@ -49,6 +49,8 @@ comment|/**  * Source of {@link LongAddable} objects that deals with GWT, Unsafe
 end_comment
 
 begin_class
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|LongAddables
 specifier|final
 class|class

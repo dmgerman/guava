@@ -135,6 +135,8 @@ end_comment
 begin_class
 annotation|@
 name|Immutable
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|MessageDigestHashFunction
 specifier|final
 class|class

@@ -119,6 +119,8 @@ end_comment
 begin_class
 annotation|@
 name|Immutable
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|MacHashFunction
 specifier|final
 class|class

@@ -47,6 +47,8 @@ end_comment
 begin_class
 annotation|@
 name|GwtIncompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|Java8Compatibility
 specifier|final
 class|class

@@ -54,42 +54,73 @@ name|Serializable
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|checkerframework
+operator|.
+name|checker
+operator|.
+name|nullness
+operator|.
+name|qual
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/**  * An object which can send data from an object of type {@code T} into a {@code PrimitiveSink}.  * Implementations for common types can be found in {@link Funnels}.  *  *<p>Note that serialization of {@linkplain BloomFilter bloom filters} requires the proper  * serialization of funnels. When possible, it is recommended that funnels be implemented as a  * single-element enum to maintain serialization guarantees. See Effective Java (2nd Edition), Item  * 3: "Enforce the singleton property with a private constructor or an enum type". For example:  *  *<pre>{@code  * public enum PersonFunnel implements Funnel<Person> {  *   INSTANCE;  *   public void funnel(Person person, PrimitiveSink into) {  *     into.putUnencodedChars(person.getFirstName())  *         .putUnencodedChars(person.getLastName())  *         .putInt(person.getAge());  *   }  * }  * }</pre>  *  * @author Dimitris Andreou  * @since 11.0  */
 end_comment
 
-begin_interface
+begin_annotation
 annotation|@
 name|Beta
+end_annotation
+
+begin_annotation
 annotation|@
 name|DoNotMock
 argument_list|(
 literal|"Implement with a lambda"
 argument_list|)
+end_annotation
+
+begin_annotation
+annotation|@
+name|ElementTypesAreNonnullByDefault
+end_annotation
+
+begin_expr_stmt
 DECL|interface|Funnel
 specifier|public
-interface|interface
+expr|interface
 name|Funnel
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|Serializable
 block|{
 comment|/**    * Sends a stream of data from the {@code from} object into the sink {@code into}. There is no    * requirement that this data be complete enough to fully reconstitute the object later.    *    * @since 12.0 (in Guava 11.0, {@code PrimitiveSink} was named {@code Sink})    */
-DECL|method|funnel (T from, PrimitiveSink into)
+DECL|method|funnel (@arametricNullness T from, PrimitiveSink into)
 name|void
 name|funnel
-parameter_list|(
+argument_list|(
+annotation|@
+name|ParametricNullness
 name|T
 name|from
-parameter_list|,
+argument_list|,
 name|PrimitiveSink
 name|into
-parameter_list|)
-function_decl|;
-block|}
-end_interface
+argument_list|)
+block|; }
+end_expr_stmt
 
 end_unit
 

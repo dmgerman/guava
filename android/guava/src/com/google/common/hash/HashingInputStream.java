@@ -97,6 +97,8 @@ end_comment
 begin_class
 annotation|@
 name|Beta
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|HashingInputStream
 specifier|public
 specifier|final

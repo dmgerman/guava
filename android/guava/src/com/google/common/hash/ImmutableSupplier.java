@@ -48,9 +48,15 @@ begin_comment
 comment|/**  * Explicitly named subinterface of {@link Supplier} that can be marked {@literal @}{@link  * Immutable}.  */
 end_comment
 
+begin_comment
+comment|// TODO(cpovirk): Should we just use ChecksumType directly instead of defining this type?
+end_comment
+
 begin_interface
 annotation|@
 name|Immutable
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|interface|ImmutableSupplier
 interface|interface
 name|ImmutableSupplier

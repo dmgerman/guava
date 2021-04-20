@@ -103,6 +103,8 @@ end_comment
 begin_class
 annotation|@
 name|Immutable
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|AbstractNonStreamingHashFunction
 specifier|abstract
 class|class

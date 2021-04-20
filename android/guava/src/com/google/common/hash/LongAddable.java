@@ -21,6 +21,8 @@ comment|/**  * Abstract interface for objects that can concurrently add longs.  
 end_comment
 
 begin_interface
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|interface|LongAddable
 interface|interface
 name|LongAddable

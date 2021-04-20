@@ -46,6 +46,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|checkerframework
@@ -54,9 +64,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -67,6 +77,8 @@ end_comment
 begin_class
 annotation|@
 name|GwtIncompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|Striped64
 specifier|abstract
 class|class
@@ -244,19 +256,21 @@ block|}
 comment|/**    * ThreadLocal holding a single-slot int array holding hash code. Unlike the JDK8 version of this    * class, we use a suboptimal int[] representation to avoid introducing a new type that can impede    * class-unloading when ThreadLocals are not removed.    */
 DECL|field|threadHashCode
 specifier|static
-specifier|final
+name|final
 name|ThreadLocal
-argument_list|<
+operator|<
 name|int
+expr|@
+name|Nullable
 index|[]
-argument_list|>
+operator|>
 name|threadHashCode
-init|=
+operator|=
 operator|new
 name|ThreadLocal
 argument_list|<>
 argument_list|()
-decl_stmt|;
+expr_stmt|;
 comment|/** Generator of new random hash codes */
 DECL|field|rng
 specifier|static
@@ -286,7 +300,7 @@ decl_stmt|;
 comment|/** Table of cells. When non-null, size is a power of 2. */
 DECL|field|cells
 annotation|@
-name|NullableDecl
+name|CheckForNull
 specifier|transient
 specifier|volatile
 name|Cell
@@ -376,7 +390,7 @@ name|newValue
 parameter_list|)
 function_decl|;
 comment|/**    * Handles cases of updates involving initialization, resizing, creating new Cells, and/or    * contention. See above for explanation. This method suffers the usual non-modularity problems of    * optimistic retry code, relying on rechecked sets of reads.    *    * @param x the value    * @param hc the hash code holder    * @param wasUncontended false if CAS failed before call    */
-DECL|method|retryUpdate (long x, @NullableDecl int[] hc, boolean wasUncontended)
+DECL|method|retryUpdate (long x, @CheckForNull int[] hc, boolean wasUncontended)
 specifier|final
 name|void
 name|retryUpdate
@@ -385,7 +399,7 @@ name|long
 name|x
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|int
 index|[]
 name|hc

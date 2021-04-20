@@ -66,6 +66,22 @@ name|Charset
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|checkerframework
+operator|.
+name|checker
+operator|.
+name|nullness
+operator|.
+name|qual
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/**  * A {@link PrimitiveSink} that can compute a hash code after reading the input. Each hasher should  * translate all multibyte values ({@link #putInt(int)}, {@link #putLong(long)}, etc) to bytes in  * little-endian order.  *  *<p><b>Warning:</b> The result of calling any methods after calling {@link #hash} is undefined.  *  *<p><b>Warning:</b> Using a specific character encoding when hashing a {@link CharSequence} with  * {@link #putString(CharSequence, Charset)} is generally only useful for cross-language  * compatibility (otherwise prefer {@link #putUnencodedChars}). However, the character encodings  * must be identical across languages. Also beware that {@link Charset} definitions may occasionally  * change between Java releases.  *  *<p><b>Warning:</b> Chunks of data that are put into the {@link Hasher} are not delimited. The  * resulting {@link HashCode} is dependent only on the bytes inserted, and the order in which they  * were inserted, not how those bytes were chunked into discrete put() operations. For example, the  * following three expressions all generate colliding hash codes:  *  *<pre>{@code  * newHasher().putByte(b1).putByte(b2).putByte(b3).hash()  * newHasher().putByte(b1).putBytes(new byte[] { b2, b3 }).hash()  * newHasher().putBytes(new byte[] { b1, b2, b3 }).hash()  * }</pre>  *  *<p>If you wish to avoid this, you should either prepend or append the size of each chunk. Keep in  * mind that when dealing with char sequences, the encoded form of two concatenated char sequences  * is not equivalent to the concatenation of their encoded form. Therefore, {@link  * #putString(CharSequence, Charset)} should only be used consistently with<i>complete</i>  * sequences and not broken into chunks.  *  * @author Kevin Bourrillion  * @since 11.0  */
 end_comment
@@ -75,6 +91,8 @@ annotation|@
 name|Beta
 annotation|@
 name|CanIgnoreReturnValue
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|interface|Hasher
 specifier|public
 interface|interface
@@ -229,16 +247,21 @@ name|charset
 parameter_list|)
 function_decl|;
 comment|/** A simple convenience for {@code funnel.funnel(object, this)}. */
-DECL|method|putObject (T instance, Funnel<? super T> funnel)
-parameter_list|<
+DECL|method|putObject ( @arametricNullness T instance, Funnel<? super T> funnel)
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|Hasher
 name|putObject
-parameter_list|(
+argument_list|(
+annotation|@
+name|ParametricNullness
 name|T
 name|instance
-parameter_list|,
+argument_list|,
 name|Funnel
 argument_list|<
 name|?
@@ -246,8 +269,8 @@ super|super
 name|T
 argument_list|>
 name|funnel
-parameter_list|)
-function_decl|;
+argument_list|)
+expr_stmt|;
 comment|/**    * Computes a hash code based on the data that have been provided to this hasher. The result is    * unspecified if this method is called more than once on the same instance.    */
 DECL|method|hash ()
 name|HashCode

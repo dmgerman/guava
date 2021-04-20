@@ -66,6 +66,22 @@ name|Charset
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|checkerframework
+operator|.
+name|checker
+operator|.
+name|nullness
+operator|.
+name|qual
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/**  * An abstract implementation of {@link Hasher}, which only requires subtypes to implement {@link  * #putByte}. Subtypes may provide more efficient implementations, however.  *  * @author Dimitris Andreou  */
 end_comment
@@ -73,6 +89,8 @@ end_comment
 begin_class
 annotation|@
 name|CanIgnoreReturnValue
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|AbstractHasher
 specifier|abstract
 class|class
@@ -586,17 +604,22 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|putObject (T instance, Funnel<? super T> funnel)
+DECL|method|putObject ( @arametricNullness T instance, Funnel<? super T> funnel)
 specifier|public
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|Hasher
 name|putObject
-parameter_list|(
+argument_list|(
+annotation|@
+name|ParametricNullness
 name|T
 name|instance
-parameter_list|,
+argument_list|,
 name|Funnel
 argument_list|<
 name|?
@@ -604,7 +627,7 @@ super|super
 name|T
 argument_list|>
 name|funnel
-parameter_list|)
+argument_list|)
 block|{
 name|funnel
 operator|.
@@ -614,7 +637,7 @@ name|instance
 argument_list|,
 name|this
 argument_list|)
-expr_stmt|;
+block|;
 return|return
 name|this
 return|;

@@ -75,6 +75,8 @@ annotation|@
 name|Beta
 annotation|@
 name|CanIgnoreReturnValue
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|interface|PrimitiveSink
 specifier|public
 interface|interface
