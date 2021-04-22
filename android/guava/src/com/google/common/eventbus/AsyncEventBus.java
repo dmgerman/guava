@@ -33,6 +33,8 @@ comment|/**  * An {@link EventBus} that takes the Executor of your choice and us
 end_comment
 
 begin_class
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|AsyncEventBus
 specifier|public
 class|class

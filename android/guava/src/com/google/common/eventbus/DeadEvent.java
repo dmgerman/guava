@@ -51,6 +51,8 @@ comment|/**  * Wraps an event that was posted, but which had no subscribers and 
 end_comment
 
 begin_class
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|DeadEvent
 specifier|public
 class|class

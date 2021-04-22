@@ -135,6 +135,8 @@ comment|/**  * Dispatches events to listeners, and provides ways for listeners t
 end_comment
 
 begin_class
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|EventBus
 specifier|public
 class|class

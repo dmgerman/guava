@@ -21,6 +21,8 @@ comment|/**  * Handler for exceptions thrown by event subscribers.  *  * @since 
 end_comment
 
 begin_interface
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|interface|SubscriberExceptionHandler
 specifier|public
 interface|interface

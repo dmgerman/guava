@@ -49,6 +49,8 @@ comment|/**  * Context for an exception thrown by a subscriber.  *  * @since 16.
 end_comment
 
 begin_class
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|SubscriberExceptionContext
 specifier|public
 class|class

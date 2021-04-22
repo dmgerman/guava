@@ -83,6 +83,8 @@ comment|/**  * Handler for dispatching events to subscribers, providing differen
 end_comment
 
 begin_class
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|Dispatcher
 specifier|abstract
 class|class

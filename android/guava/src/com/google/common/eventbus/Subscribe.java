@@ -83,6 +83,8 @@ name|ElementType
 operator|.
 name|METHOD
 argument_list|)
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|annotation|Subscribe
 specifier|public
 annotation_defn|@interface
