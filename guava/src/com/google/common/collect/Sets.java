@@ -1048,19 +1048,10 @@ name|newConcurrentHashSet
 parameter_list|()
 block|{
 return|return
-name|Collections
+name|Platform
 operator|.
-name|newSetFromMap
-argument_list|(
-operator|new
-name|ConcurrentHashMap
-argument_list|<
-name|E
-argument_list|,
-name|Boolean
-argument_list|>
+name|newConcurrentHashSet
 argument_list|()
-argument_list|)
 return|;
 block|}
 comment|/**    * Creates a thread-safe set backed by a hash map and containing the given elements. The set is    * backed by a {@link ConcurrentHashMap} instance, and thus carries the same concurrency    * guarantees.    *    *<p>Unlike {@code HashSet}, this class does NOT allow {@code null} to be used as an element. The    * set is serializable.    *    * @param elements the elements that the set should contain    * @return a new thread-safe set containing those elements (minus duplicates)    * @throws NullPointerException if {@code elements} or any of its contents is null    * @since 15.0    */

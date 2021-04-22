@@ -32,6 +32,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|Collections
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|Map
 import|;
 end_import
@@ -43,6 +53,18 @@ operator|.
 name|util
 operator|.
 name|Set
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|ConcurrentHashMap
 import|;
 end_import
 
@@ -163,6 +185,38 @@ operator|.
 name|newHashSetWithExpectedSize
 argument_list|(
 name|expectedSize
+argument_list|)
+return|;
+block|}
+DECL|method|newConcurrentHashSet ()
+specifier|static
+parameter_list|<
+name|E
+parameter_list|>
+name|Set
+argument_list|<
+name|E
+argument_list|>
+name|newConcurrentHashSet
+parameter_list|()
+block|{
+comment|// GWT's ConcurrentHashMap is a wrapper around HashMap, but it rejects null keys, which matches
+comment|// the behaviour of the non-GWT implementation of newConcurrentHashSet().
+comment|// On the other hand HashSet might be better for code size if apps aren't
+comment|// already using Collections.newSetFromMap and ConcurrentHashMap.
+return|return
+name|Collections
+operator|.
+name|newSetFromMap
+argument_list|(
+operator|new
+name|ConcurrentHashMap
+argument_list|<
+name|E
+argument_list|,
+name|Boolean
+argument_list|>
+argument_list|()
 argument_list|)
 return|;
 block|}

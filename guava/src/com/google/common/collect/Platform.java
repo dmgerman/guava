@@ -72,6 +72,18 @@ name|Set
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|ConcurrentHashMap
+import|;
+end_import
+
 begin_comment
 comment|/**  * Methods factored out so that they can be emulated differently in GWT.  *  * @author Hayward Chan  */
 end_comment
@@ -201,6 +213,26 @@ name|newHashSetWithExpectedSize
 argument_list|(
 name|expectedSize
 argument_list|)
+return|;
+block|}
+comment|/** Returns the platform preferred implementation of a thread-safe hash set. */
+DECL|method|newConcurrentHashSet ()
+specifier|static
+parameter_list|<
+name|E
+parameter_list|>
+name|Set
+argument_list|<
+name|E
+argument_list|>
+name|newConcurrentHashSet
+parameter_list|()
+block|{
+return|return
+name|ConcurrentHashMap
+operator|.
+name|newKeySet
+argument_list|()
 return|;
 block|}
 comment|/**    * Returns the platform preferred implementation of an insertion ordered set based on a hash    * table.    */
