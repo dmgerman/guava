@@ -42,6 +42,8 @@ name|emulated
 operator|=
 literal|true
 argument_list|)
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|FloatsMethodsForWeb
 specifier|abstract
 class|class

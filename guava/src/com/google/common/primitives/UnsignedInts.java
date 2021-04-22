@@ -135,6 +135,8 @@ annotation|@
 name|Beta
 annotation|@
 name|GwtCompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|UnsignedInts
 specifier|public
 specifier|final

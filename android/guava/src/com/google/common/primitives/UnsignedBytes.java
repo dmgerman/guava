@@ -65,6 +65,18 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|java
+operator|.
+name|util
+operator|.
+name|Objects
+operator|.
+name|requireNonNull
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -167,6 +179,8 @@ end_comment
 begin_class
 annotation|@
 name|GwtIncompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|UnsignedBytes
 specifier|public
 specifier|final
@@ -1513,6 +1527,19 @@ argument_list|(
 name|UNSAFE_COMPARATOR_NAME
 argument_list|)
 decl_stmt|;
+comment|// requireNonNull is safe because the class is an enum.
+name|Object
+index|[]
+name|constants
+init|=
+name|requireNonNull
+argument_list|(
+name|theClass
+operator|.
+name|getEnumConstants
+argument_list|()
+argument_list|)
+decl_stmt|;
 comment|// yes, UnsafeComparator does implement Comparator<byte[]>
 annotation|@
 name|SuppressWarnings
@@ -1533,10 +1560,7 @@ name|byte
 index|[]
 argument_list|>
 operator|)
-name|theClass
-operator|.
-name|getEnumConstants
-argument_list|()
+name|constants
 index|[
 literal|0
 index|]

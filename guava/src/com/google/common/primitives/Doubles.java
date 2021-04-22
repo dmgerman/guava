@@ -278,17 +278,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|javax
 operator|.
-name|checkerframework
+name|annotation
 operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|qual
-operator|.
-name|Nullable
+name|CheckForNull
 import|;
 end_import
 
@@ -304,6 +298,8 @@ name|emulated
 operator|=
 literal|true
 argument_list|)
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|Doubles
 specifier|public
 specifier|final
@@ -1938,11 +1934,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|contains (Object target)
+DECL|method|contains (@heckForNull Object target)
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|target
 parameter_list|)
@@ -1977,11 +1975,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|indexOf (Object target)
+DECL|method|indexOf (@heckForNull Object target)
 specifier|public
 name|int
 name|indexOf
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|target
 parameter_list|)
@@ -2034,11 +2034,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|lastIndexOf (Object target)
+DECL|method|lastIndexOf (@heckForNull Object target)
 specifier|public
 name|int
 name|lastIndexOf
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|target
 parameter_list|)
@@ -2202,13 +2204,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|equals (@ullable Object object)
+DECL|method|equals (@heckForNull Object object)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|object
 parameter_list|)
@@ -2578,11 +2580,11 @@ name|Beta
 annotation|@
 name|GwtIncompatible
 comment|// regular expressions
+annotation|@
+name|CheckForNull
 DECL|method|tryParse (String string)
 specifier|public
 specifier|static
-annotation|@
-name|Nullable
 name|Double
 name|tryParse
 parameter_list|(

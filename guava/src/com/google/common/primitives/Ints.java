@@ -238,17 +238,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|javax
 operator|.
-name|checkerframework
+name|annotation
 operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|qual
-operator|.
-name|Nullable
+name|CheckForNull
 import|;
 end_import
 
@@ -264,6 +258,8 @@ name|emulated
 operator|=
 literal|true
 argument_list|)
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|Ints
 specifier|public
 specifier|final
@@ -2128,11 +2124,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|contains (Object target)
+DECL|method|contains (@heckForNull Object target)
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|target
 parameter_list|)
@@ -2167,11 +2165,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|indexOf (Object target)
+DECL|method|indexOf (@heckForNull Object target)
 specifier|public
 name|int
 name|indexOf
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|target
 parameter_list|)
@@ -2224,11 +2224,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|lastIndexOf (Object target)
+DECL|method|lastIndexOf (@heckForNull Object target)
 specifier|public
 name|int
 name|lastIndexOf
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|target
 parameter_list|)
@@ -2392,13 +2394,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|equals (@ullable Object object)
+DECL|method|equals (@heckForNull Object object)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|object
 parameter_list|)
@@ -2664,11 +2666,11 @@ block|}
 comment|/**    * Parses the specified string as a signed decimal integer value. The ASCII character {@code '-'}    * (<code>'&#92;u002D'</code>) is recognized as the minus sign.    *    *<p>Unlike {@link Integer#parseInt(String)}, this method returns {@code null} instead of    * throwing an exception if parsing fails. Additionally, this method only accepts ASCII digits,    * and returns {@code null} if non-ASCII digits are present in the string.    *    *<p>Note that strings prefixed with ASCII {@code '+'} are rejected, even under JDK 7, despite    * the change to {@link Integer#parseInt(String)} for that version.    *    * @param string the string representation of an integer value    * @return the integer value represented by {@code string}, or {@code null} if {@code string} has    *     a length of zero or cannot be parsed as an integer value    * @throws NullPointerException if {@code string} is {@code null}    * @since 11.0    */
 annotation|@
 name|Beta
+annotation|@
+name|CheckForNull
 DECL|method|tryParse (String string)
 specifier|public
 specifier|static
-annotation|@
-name|Nullable
 name|Integer
 name|tryParse
 parameter_list|(
@@ -2688,11 +2690,11 @@ block|}
 comment|/**    * Parses the specified string as a signed integer value using the specified radix. The ASCII    * character {@code '-'} (<code>'&#92;u002D'</code>) is recognized as the minus sign.    *    *<p>Unlike {@link Integer#parseInt(String, int)}, this method returns {@code null} instead of    * throwing an exception if parsing fails. Additionally, this method only accepts ASCII digits,    * and returns {@code null} if non-ASCII digits are present in the string.    *    *<p>Note that strings prefixed with ASCII {@code '+'} are rejected, even under JDK 7, despite    * the change to {@link Integer#parseInt(String, int)} for that version.    *    * @param string the string representation of an integer value    * @param radix the radix to use when parsing    * @return the integer value represented by {@code string} using {@code radix}, or {@code null} if    *     {@code string} has a length of zero or cannot be parsed as an integer value    * @throws IllegalArgumentException if {@code radix< Character.MIN_RADIX} or {@code radix>    *     Character.MAX_RADIX}    * @throws NullPointerException if {@code string} is {@code null}    * @since 19.0    */
 annotation|@
 name|Beta
+annotation|@
+name|CheckForNull
 DECL|method|tryParse (String string, int radix)
 specifier|public
 specifier|static
-annotation|@
-name|Nullable
 name|Integer
 name|tryParse
 parameter_list|(

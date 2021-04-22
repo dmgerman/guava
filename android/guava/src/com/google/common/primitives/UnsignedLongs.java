@@ -145,6 +145,8 @@ annotation|@
 name|Beta
 annotation|@
 name|GwtCompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|UnsignedLongs
 specifier|public
 specifier|final

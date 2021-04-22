@@ -93,6 +93,8 @@ end_comment
 begin_class
 annotation|@
 name|GwtIncompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|Primitives
 specifier|public
 specifier|final
