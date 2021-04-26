@@ -192,23 +192,28 @@ expr_stmt|;
 block|}
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|put (@ullableDecl K key, @NullableDecl V value)
-specifier|public
+DECL|method|put (K key, V value)
 specifier|final
 name|V
 name|put
 parameter_list|(
-annotation|@
-name|NullableDecl
 name|K
 name|key
 parameter_list|,
-annotation|@
-name|NullableDecl
 name|V
 name|value
 parameter_list|)
 block|{
+name|checkNotNull
+argument_list|(
+name|key
+argument_list|)
+expr_stmt|;
+name|checkNotNull
+argument_list|(
+name|value
+argument_list|)
+expr_stmt|;
 name|clearCache
 argument_list|()
 expr_stmt|;
@@ -225,18 +230,20 @@ return|;
 block|}
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|remove (@ullableDecl Object key)
-specifier|public
+DECL|method|remove (Object key)
 specifier|final
 name|V
 name|remove
 parameter_list|(
-annotation|@
-name|NullableDecl
 name|Object
 name|key
 parameter_list|)
 block|{
+name|checkNotNull
+argument_list|(
+name|key
+argument_list|)
+expr_stmt|;
 name|clearCache
 argument_list|()
 expr_stmt|;
@@ -250,7 +257,6 @@ argument_list|)
 return|;
 block|}
 DECL|method|clear ()
-specifier|public
 specifier|final
 name|void
 name|clear
@@ -265,17 +271,19 @@ name|clear
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|get (@ullableDecl Object key)
-specifier|public
+DECL|method|get (Object key)
 name|V
 name|get
 parameter_list|(
-annotation|@
-name|NullableDecl
 name|Object
 name|key
 parameter_list|)
 block|{
+name|checkNotNull
+argument_list|(
+name|key
+argument_list|)
+expr_stmt|;
 name|V
 name|value
 init|=
@@ -299,18 +307,20 @@ name|key
 argument_list|)
 return|;
 block|}
-DECL|method|getWithoutCaching (@ullableDecl Object key)
-specifier|public
+DECL|method|getWithoutCaching (Object key)
 specifier|final
 name|V
 name|getWithoutCaching
 parameter_list|(
-annotation|@
-name|NullableDecl
 name|Object
 name|key
 parameter_list|)
 block|{
+name|checkNotNull
+argument_list|(
+name|key
+argument_list|)
+expr_stmt|;
 return|return
 name|backingMap
 operator|.
@@ -321,7 +331,6 @@ argument_list|)
 return|;
 block|}
 DECL|method|containsKey (@ullableDecl Object key)
-specifier|public
 specifier|final
 name|boolean
 name|containsKey
@@ -349,7 +358,6 @@ argument_list|)
 return|;
 block|}
 DECL|method|unmodifiableKeySet ()
-specifier|public
 specifier|final
 name|Set
 argument_list|<

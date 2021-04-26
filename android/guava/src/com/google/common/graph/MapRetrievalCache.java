@@ -17,6 +17,22 @@ package|;
 end_package
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Preconditions
+operator|.
+name|checkNotNull
+import|;
+end_import
+
+begin_import
 import|import
 name|java
 operator|.
@@ -118,17 +134,19 @@ argument_list|)
 comment|// Safe because we only cast if key is found in map.
 annotation|@
 name|Override
-DECL|method|get (@ullableDecl Object key)
-specifier|public
+DECL|method|get (Object key)
 name|V
 name|get
 parameter_list|(
-annotation|@
-name|NullableDecl
 name|Object
 name|key
 parameter_list|)
 block|{
+name|checkNotNull
+argument_list|(
+name|key
+argument_list|)
+expr_stmt|;
 name|V
 name|value
 init|=
