@@ -37,6 +37,8 @@ comment|/**  * Standard implementation of {@link MutableGraph} that supports bot
 end_comment
 
 begin_class
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|StandardMutableGraph
 specifier|final
 class|class

@@ -52,17 +52,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|javax
 operator|.
-name|checkerframework
+name|annotation
 operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|qual
-operator|.
-name|Nullable
+name|CheckForNull
 import|;
 end_import
 
@@ -71,6 +65,8 @@ comment|/**  * An interface for representing and manipulating an origin node's a
 end_comment
 
 begin_interface
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|interface|GraphConnections
 interface|interface
 name|GraphConnections
@@ -121,7 +117,7 @@ parameter_list|)
 function_decl|;
 comment|/**    * Returns the value associated with the edge connecting the origin node to {@code node}, or null    * if there is no such edge.    */
 annotation|@
-name|Nullable
+name|CheckForNull
 DECL|method|value (N node)
 name|V
 name|value
@@ -142,6 +138,8 @@ function_decl|;
 comment|/**    * Remove {@code node} from the set of successors. Returns the value previously associated with    * the edge connecting the two nodes.    */
 annotation|@
 name|CanIgnoreReturnValue
+annotation|@
+name|CheckForNull
 DECL|method|removeSuccessor (N node)
 name|V
 name|removeSuccessor
@@ -165,6 +163,8 @@ function_decl|;
 comment|/**    * Add {@code node} as a successor to the origin node. In the case of an undirected graph, it also    * becomes a predecessor. Associates {@code value} with the edge connecting the two nodes. Returns    * the value previously associated with the edge connecting the two nodes.    */
 annotation|@
 name|CanIgnoreReturnValue
+annotation|@
+name|CheckForNull
 DECL|method|addSuccessor (N node, V value)
 name|V
 name|addSuccessor

@@ -170,17 +170,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|javax
 operator|.
-name|checkerframework
+name|annotation
 operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|qual
-operator|.
-name|Nullable
+name|CheckForNull
 import|;
 end_import
 
@@ -193,6 +187,8 @@ annotation|@
 name|Beta
 annotation|@
 name|Immutable
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|ElementOrder
 specifier|public
 specifier|final
@@ -214,11 +210,11 @@ argument_list|(
 literal|"Immutable"
 argument_list|)
 comment|// Hopefully the comparator provided is immutable!
+annotation|@
+name|CheckForNull
 DECL|field|comparator
 specifier|private
 specifier|final
-annotation|@
-name|Nullable
 name|Comparator
 argument_list|<
 name|T
@@ -243,7 +239,7 @@ block|,
 DECL|enumConstant|SORTED
 name|SORTED
 block|}
-DECL|method|ElementOrder (Type type, @Nullable Comparator<T> comparator)
+DECL|method|ElementOrder (Type type, @CheckForNull Comparator<T> comparator)
 specifier|private
 name|ElementOrder
 parameter_list|(
@@ -251,7 +247,7 @@ name|Type
 name|type
 parameter_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Comparator
 argument_list|<
 name|T
@@ -501,13 +497,13 @@ throw|;
 block|}
 annotation|@
 name|Override
-DECL|method|equals (@ullable Object obj)
+DECL|method|equals (@heckForNull Object obj)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|obj
 parameter_list|)

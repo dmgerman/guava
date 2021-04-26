@@ -188,17 +188,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|javax
 operator|.
-name|checkerframework
+name|annotation
 operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|compatqual
-operator|.
-name|NullableDecl
+name|CheckForNull
 import|;
 end_import
 
@@ -207,6 +201,8 @@ comment|/**  * An implementation of {@link NetworkConnections} for directed netw
 end_comment
 
 begin_class
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|DirectedMultiNetworkConnections
 specifier|final
 class|class
@@ -369,6 +365,8 @@ return|;
 block|}
 DECL|field|predecessorsReference
 annotation|@
+name|CheckForNull
+annotation|@
 name|LazyInit
 specifier|private
 specifier|transient
@@ -459,6 +457,8 @@ name|predecessors
 return|;
 block|}
 DECL|field|successorsReference
+annotation|@
+name|CheckForNull
 annotation|@
 name|LazyInit
 specifier|private
@@ -821,8 +821,8 @@ expr_stmt|;
 block|}
 block|}
 annotation|@
-name|NullableDecl
-DECL|method|getReference (@ullableDecl Reference<T> reference)
+name|CheckForNull
+DECL|method|getReference (@heckForNull Reference<T> reference)
 specifier|private
 specifier|static
 parameter_list|<
@@ -832,7 +832,7 @@ name|T
 name|getReference
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Reference
 argument_list|<
 name|T

@@ -31,6 +31,8 @@ comment|/**  * A class to allow {@link Graph} implementations to be backed by a 
 end_comment
 
 begin_class
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|ForwardingGraph
 specifier|abstract
 class|class

@@ -96,17 +96,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|javax
 operator|.
-name|checkerframework
+name|annotation
 operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|qual
-operator|.
-name|Nullable
+name|CheckForNull
 import|;
 end_import
 
@@ -115,6 +109,8 @@ comment|/**  * A class to represent the set of edges connecting an (implicit) or
 end_comment
 
 begin_class
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|EdgesConnecting
 specifier|final
 class|class
@@ -243,13 +239,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|contains (@ullable Object edge)
+DECL|method|contains (@heckForNull Object edge)
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|edge
 parameter_list|)
@@ -275,10 +271,10 @@ argument_list|)
 operator|)
 return|;
 block|}
+annotation|@
+name|CheckForNull
 DECL|method|getConnectingEdge ()
 specifier|private
-annotation|@
-name|Nullable
 name|E
 name|getConnectingEdge
 parameter_list|()

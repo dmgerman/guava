@@ -36,11 +36,23 @@ name|Set
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
 begin_comment
 comment|/**  * A class to allow {@link Network} implementations to be backed by a provided delegate. This is not  * currently planned to be released as a general-purpose forwarding class.  *  * @author James Sexton  * @author Joshua O'Madadhain  */
 end_comment
 
 begin_class
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|ForwardingNetwork
 specifier|abstract
 class|class
@@ -562,6 +574,8 @@ return|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|edgeConnectingOrNull (N nodeU, N nodeV)
 specifier|public
 name|E
@@ -588,6 +602,8 @@ return|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|edgeConnectingOrNull (EndpointPair<N> endpoints)
 specifier|public
 name|E

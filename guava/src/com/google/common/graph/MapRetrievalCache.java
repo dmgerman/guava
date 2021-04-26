@@ -44,17 +44,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|javax
 operator|.
-name|checkerframework
+name|annotation
 operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|qual
-operator|.
-name|Nullable
+name|CheckForNull
 import|;
 end_import
 
@@ -63,7 +57,10 @@ comment|/**  * A {@link MapIteratorCache} that adds additional caching. In addit
 end_comment
 
 begin_class
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|MapRetrievalCache
+specifier|final
 class|class
 name|MapRetrievalCache
 parameter_list|<
@@ -81,11 +78,11 @@ argument_list|>
 block|{
 comment|// See the note about volatile in the superclass.
 DECL|field|cacheEntry1
+annotation|@
+name|CheckForNull
 specifier|private
 specifier|transient
 specifier|volatile
-annotation|@
-name|Nullable
 name|CacheEntry
 argument_list|<
 name|K
@@ -95,11 +92,11 @@ argument_list|>
 name|cacheEntry1
 decl_stmt|;
 DECL|field|cacheEntry2
+annotation|@
+name|CheckForNull
 specifier|private
 specifier|transient
 specifier|volatile
-annotation|@
-name|Nullable
 name|CacheEntry
 argument_list|<
 name|K
@@ -134,6 +131,8 @@ argument_list|)
 comment|// Safe because we only cast if key is found in map.
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|get (Object key)
 name|V
 name|get
@@ -198,12 +197,14 @@ block|}
 comment|// Internal methods (package-visible, but treat as only subclass-visible)
 annotation|@
 name|Override
-DECL|method|getIfCached (@ullable Object key)
+annotation|@
+name|CheckForNull
+DECL|method|getIfCached (@heckForNull Object key)
 name|V
 name|getIfCached
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)

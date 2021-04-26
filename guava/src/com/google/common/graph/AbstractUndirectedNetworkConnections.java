@@ -49,6 +49,18 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|java
+operator|.
+name|util
+operator|.
+name|Objects
+operator|.
+name|requireNonNull
+import|;
+end_import
+
+begin_import
 import|import
 name|java
 operator|.
@@ -78,11 +90,23 @@ name|Set
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
 begin_comment
 comment|/**  * A base implementation of {@link NetworkConnections} for undirected networks.  *  * @author James Sexton  * @param<N> Node parameter type  * @param<E> Edge parameter type  */
 end_comment
 
 begin_class
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|AbstractUndirectedNetworkConnections
 specifier|abstract
 class|class
@@ -231,8 +255,9 @@ name|E
 name|edge
 parameter_list|)
 block|{
+comment|// We're relying on callers to call this method only with an edge that's in the graph.
 return|return
-name|checkNotNull
+name|requireNonNull
 argument_list|(
 name|incidentEdgeMap
 operator|.
@@ -245,6 +270,8 @@ return|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|removeInEdge (E edge, boolean isSelfLoop)
 specifier|public
 name|N
@@ -295,8 +322,9 @@ argument_list|(
 name|edge
 argument_list|)
 decl_stmt|;
+comment|// We're relying on callers to call this method only with an edge that's in the graph.
 return|return
-name|checkNotNull
+name|requireNonNull
 argument_list|(
 name|previousNode
 argument_list|)

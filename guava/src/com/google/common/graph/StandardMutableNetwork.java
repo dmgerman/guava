@@ -113,6 +113,18 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|java
+operator|.
+name|util
+operator|.
+name|Objects
+operator|.
+name|requireNonNull
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -145,6 +157,8 @@ comment|/**  * Standard implementation of {@link MutableNetwork} that supports b
 end_comment
 
 begin_class
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|StandardMutableNetwork
 specifier|final
 class|class
@@ -695,6 +709,7 @@ return|return
 literal|false
 return|;
 block|}
+comment|// requireNonNull is safe because of the edgeToReferenceNode check above.
 name|NetworkConnections
 argument_list|<
 name|N
@@ -703,11 +718,14 @@ name|E
 argument_list|>
 name|connectionsU
 init|=
+name|requireNonNull
+argument_list|(
 name|nodeConnections
 operator|.
 name|get
 argument_list|(
 name|nodeU
+argument_list|)
 argument_list|)
 decl_stmt|;
 name|N
@@ -728,11 +746,14 @@ name|E
 argument_list|>
 name|connectionsV
 init|=
+name|requireNonNull
+argument_list|(
 name|nodeConnections
 operator|.
 name|get
 argument_list|(
 name|nodeV
+argument_list|)
 argument_list|)
 decl_stmt|;
 name|connectionsU

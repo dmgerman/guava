@@ -166,11 +166,23 @@ name|Set
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
 begin_comment
 comment|/**  * An implementation of {@link GraphConnections} for undirected graphs.  *  * @author James Sexton  * @param<N> Node parameter type  * @param<V> Value parameter type  */
 end_comment
 
 begin_class
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|UndirectedGraphConnections
 specifier|final
 class|class
@@ -475,6 +487,8 @@ return|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|value (N node)
 specifier|public
 name|V
@@ -520,6 +534,8 @@ decl_stmt|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|removeSuccessor (N node)
 specifier|public
 name|V
@@ -570,6 +586,8 @@ decl_stmt|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|addSuccessor (N node, V value)
 specifier|public
 name|V

@@ -81,6 +81,18 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|java
+operator|.
+name|util
+operator|.
+name|Objects
+operator|.
+name|requireNonNull
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -192,17 +204,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|javax
 operator|.
-name|checkerframework
+name|annotation
 operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|compatqual
-operator|.
-name|NullableDecl
+name|CheckForNull
 import|;
 end_import
 
@@ -211,6 +217,8 @@ comment|/**  * A base implementation of {@link NetworkConnections} for directed 
 end_comment
 
 begin_class
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|AbstractDirectedNetworkConnections
 specifier|abstract
 class|class
@@ -463,7 +471,7 @@ name|boolean
 name|contains
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|obj
 parameter_list|)
@@ -546,8 +554,9 @@ parameter_list|)
 block|{
 comment|// Since the reference node is defined to be 'source' for directed graphs,
 comment|// we can assume this edge lives in the set of outgoing edges.
+comment|// (We're relying on callers to call this method only with an edge that's in the graph.)
 return|return
-name|checkNotNull
+name|requireNonNull
 argument_list|(
 name|outEdgeMap
 operator|.
@@ -594,8 +603,9 @@ argument_list|(
 name|edge
 argument_list|)
 decl_stmt|;
+comment|// We're relying on callers to call this method only with an edge that's in the graph.
 return|return
-name|checkNotNull
+name|requireNonNull
 argument_list|(
 name|previousNode
 argument_list|)
@@ -622,8 +632,9 @@ argument_list|(
 name|edge
 argument_list|)
 decl_stmt|;
+comment|// We're relying on callers to call this method only with an edge that's in the graph.
 return|return
-name|checkNotNull
+name|requireNonNull
 argument_list|(
 name|previousNode
 argument_list|)

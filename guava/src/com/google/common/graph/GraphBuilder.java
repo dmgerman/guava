@@ -115,6 +115,8 @@ annotation|@
 name|Beta
 annotation|@
 name|DoNotMock
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|GraphBuilder
 specifier|public
 specifier|final

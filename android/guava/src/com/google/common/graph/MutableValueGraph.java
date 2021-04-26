@@ -44,6 +44,16 @@ name|CanIgnoreReturnValue
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
 begin_comment
 comment|/**  * A subinterface of {@link ValueGraph} which adds mutation methods. When mutation is not required,  * users should prefer the {@link ValueGraph} interface.  *  * @author James Sexton  * @param<N> Node parameter type  * @param<V> Value parameter type  * @since 20.0  */
 end_comment
@@ -51,6 +61,8 @@ end_comment
 begin_interface
 annotation|@
 name|Beta
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|interface|MutableValueGraph
 specifier|public
 interface|interface
@@ -82,6 +94,8 @@ function_decl|;
 comment|/**    * Adds an edge connecting {@code nodeU} to {@code nodeV} if one is not already present, and sets    * a value for that edge to {@code value} (overwriting the existing value, if any).    *    *<p>If the graph is directed, the resultant edge will be directed; otherwise, it will be    * undirected.    *    *<p>Values do not have to be unique. However, values must be non-null.    *    *<p>If {@code nodeU} and {@code nodeV} are not already present in this graph, this method will    * silently {@link #addNode(Object) add} {@code nodeU} and {@code nodeV} to the graph.    *    * @return the value previously associated with the edge connecting {@code nodeU} to {@code    *     nodeV}, or null if there was no such edge.    * @throws IllegalArgumentException if the introduction of the edge would violate {@link    *     #allowsSelfLoops()}    */
 annotation|@
 name|CanIgnoreReturnValue
+annotation|@
+name|CheckForNull
 DECL|method|putEdgeValue (N nodeU, N nodeV, V value)
 name|V
 name|putEdgeValue
@@ -99,6 +113,8 @@ function_decl|;
 comment|/**    * Adds an edge connecting {@code endpoints} if one is not already present, and sets a value for    * that edge to {@code value} (overwriting the existing value, if any).    *    *<p>If the graph is directed, the resultant edge will be directed; otherwise, it will be    * undirected.    *    *<p>If this graph is directed, {@code endpoints} must be ordered.    *    *<p>Values do not have to be unique. However, values must be non-null.    *    *<p>If either or both endpoints are not already present in this graph, this method will silently    * {@link #addNode(Object) add} each missing endpoint to the graph.    *    * @return the value previously associated with the edge connecting {@code nodeU} to {@code    *     nodeV}, or null if there was no such edge.    * @throws IllegalArgumentException if the introduction of the edge would violate {@link    *     #allowsSelfLoops()}    * @throws IllegalArgumentException if the endpoints are unordered and the graph is directed    * @since 27.1    */
 annotation|@
 name|CanIgnoreReturnValue
+annotation|@
+name|CheckForNull
 DECL|method|putEdgeValue (EndpointPair<N> endpoints, V value)
 name|V
 name|putEdgeValue
@@ -127,6 +143,8 @@ function_decl|;
 comment|/**    * Removes the edge connecting {@code nodeU} to {@code nodeV}, if it is present.    *    * @return the value previously associated with the edge connecting {@code nodeU} to {@code    *     nodeV}, or null if there was no such edge.    */
 annotation|@
 name|CanIgnoreReturnValue
+annotation|@
+name|CheckForNull
 DECL|method|removeEdge (N nodeU, N nodeV)
 name|V
 name|removeEdge
@@ -141,6 +159,8 @@ function_decl|;
 comment|/**    * Removes the edge connecting {@code endpoints}, if it is present.    *    *<p>If this graph is directed, {@code endpoints} must be ordered.    *    * @return the value previously associated with the edge connecting {@code endpoints}, or null if    *     there was no such edge.    * @since 27.1    */
 annotation|@
 name|CanIgnoreReturnValue
+annotation|@
+name|CheckForNull
 DECL|method|removeEdge (EndpointPair<N> endpoints)
 name|V
 name|removeEdge

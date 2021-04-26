@@ -38,17 +38,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|javax
 operator|.
-name|checkerframework
+name|annotation
 operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|qual
-operator|.
-name|Nullable
+name|CheckForNull
 import|;
 end_import
 
@@ -57,6 +51,8 @@ comment|/**  * A class to allow {@link ValueGraph} implementations to be backed 
 end_comment
 
 begin_class
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|ForwardingValueGraph
 specifier|abstract
 class|class
@@ -437,10 +433,10 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|edgeValueOrDefault (N nodeU, N nodeV, @Nullable V defaultValue)
-specifier|public
 annotation|@
-name|Nullable
+name|CheckForNull
+DECL|method|edgeValueOrDefault (N nodeU, N nodeV, @CheckForNull V defaultValue)
+specifier|public
 name|V
 name|edgeValueOrDefault
 parameter_list|(
@@ -451,7 +447,7 @@ name|N
 name|nodeV
 parameter_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|V
 name|defaultValue
 parameter_list|)
@@ -472,10 +468,10 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|edgeValueOrDefault (EndpointPair<N> endpoints, @Nullable V defaultValue)
-specifier|public
 annotation|@
-name|Nullable
+name|CheckForNull
+DECL|method|edgeValueOrDefault (EndpointPair<N> endpoints, @CheckForNull V defaultValue)
+specifier|public
 name|V
 name|edgeValueOrDefault
 parameter_list|(
@@ -486,7 +482,7 @@ argument_list|>
 name|endpoints
 parameter_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|V
 name|defaultValue
 parameter_list|)

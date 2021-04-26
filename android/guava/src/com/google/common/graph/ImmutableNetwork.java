@@ -150,6 +150,8 @@ argument_list|(
 literal|"Immutable"
 argument_list|)
 comment|// Extends StandardNetwork but uses ImmutableMaps.
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|ImmutableNetwork
 specifier|public
 specifier|final

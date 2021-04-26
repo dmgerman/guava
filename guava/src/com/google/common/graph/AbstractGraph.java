@@ -32,17 +32,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|javax
 operator|.
-name|checkerframework
+name|annotation
 operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|qual
-operator|.
-name|Nullable
+name|CheckForNull
 import|;
 end_import
 
@@ -53,6 +47,8 @@ end_comment
 begin_class
 annotation|@
 name|Beta
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|AbstractGraph
 specifier|public
 specifier|abstract
@@ -74,14 +70,14 @@ argument_list|>
 block|{
 annotation|@
 name|Override
-DECL|method|equals (@ullable Object obj)
+DECL|method|equals (@heckForNull Object obj)
 specifier|public
 specifier|final
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|obj
 parameter_list|)

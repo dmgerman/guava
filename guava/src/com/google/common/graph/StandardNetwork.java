@@ -113,6 +113,18 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|java
+operator|.
+name|util
+operator|.
+name|Objects
+operator|.
+name|requireNonNull
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -156,27 +168,13 @@ name|TreeMap
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|checkerframework
-operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|qual
-operator|.
-name|Nullable
-import|;
-end_import
-
 begin_comment
 comment|/**  * Standard implementation of {@link Network} that supports the options supplied by {@link  * NetworkBuilder}.  *  *<p>This class maintains a map of nodes to {@link NetworkConnections}. This class also maintains a  * map of edges to reference nodes. The reference node is defined to be the edge's source node on  * directed graphs, and an arbitrary endpoint of the edge on undirected graphs.  *  *<p>Collection-returning accessors return unmodifiable views: the view returned will reflect  * changes to the graph (if the graph is mutable) but may not be modified by the user.  *  *<p>The time complexity of all collection-returning accessors is O(1), since views are returned.  *  * @author James Sexton  * @author Joshua O'Madadhain  * @author Omar Darwish  * @param<N> Node parameter type  * @param<E> Edge parameter type  */
 end_comment
 
 begin_class
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|StandardNetwork
 class|class
 name|StandardNetwork
@@ -615,14 +613,18 @@ argument_list|(
 name|edge
 argument_list|)
 decl_stmt|;
+comment|// requireNonNull is safe because checkedReferenceNode made sure the edge is in the network.
 name|N
 name|nodeV
 init|=
+name|requireNonNull
+argument_list|(
 name|nodeConnections
 operator|.
 name|get
 argument_list|(
 name|nodeU
+argument_list|)
 argument_list|)
 operator|.
 name|adjacentNode
@@ -942,13 +944,11 @@ return|return
 name|referenceNode
 return|;
 block|}
-DECL|method|containsNode (@ullable N node)
+DECL|method|containsNode (N node)
 specifier|final
 name|boolean
 name|containsNode
 parameter_list|(
-annotation|@
-name|Nullable
 name|N
 name|node
 parameter_list|)
@@ -962,13 +962,11 @@ name|node
 argument_list|)
 return|;
 block|}
-DECL|method|containsEdge (@ullable E edge)
+DECL|method|containsEdge (E edge)
 specifier|final
 name|boolean
 name|containsEdge
 parameter_list|(
-annotation|@
-name|Nullable
 name|E
 name|edge
 parameter_list|)

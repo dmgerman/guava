@@ -162,6 +162,8 @@ block|{
 literal|"N"
 block|}
 argument_list|)
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|ImmutableGraph
 specifier|public
 class|class

@@ -56,6 +56,8 @@ name|DoNotMock
 argument_list|(
 literal|"Implement with a lambda, or use GraphBuilder to build a Graph with the desired edges"
 argument_list|)
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|interface|PredecessorsFunction
 specifier|public
 interface|interface

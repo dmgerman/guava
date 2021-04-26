@@ -35,6 +35,8 @@ comment|/**  * A base class for builders that construct graphs with user-defined
 end_comment
 
 begin_class
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|AbstractGraphBuilder
 specifier|abstract
 class|class

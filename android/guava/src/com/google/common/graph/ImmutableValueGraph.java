@@ -33,6 +33,18 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|java
+operator|.
+name|util
+operator|.
+name|Objects
+operator|.
+name|requireNonNull
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -140,6 +152,8 @@ argument_list|(
 literal|"Immutable"
 argument_list|)
 comment|// Extends StandardValueGraph but uses ImmutableMaps.
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|ImmutableValueGraph
 specifier|public
 specifier|final
@@ -469,7 +483,10 @@ name|N
 name|successorNode
 parameter_list|)
 block|{
+comment|// requireNonNull is safe because the endpoint pair comes from the graph.
 return|return
+name|requireNonNull
+argument_list|(
 name|graph
 operator|.
 name|edgeValueOrDefault
@@ -479,6 +496,7 @@ argument_list|,
 name|successorNode
 argument_list|,
 literal|null
+argument_list|)
 argument_list|)
 return|;
 block|}

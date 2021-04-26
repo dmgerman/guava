@@ -40,11 +40,23 @@ name|Set
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
 begin_comment
 comment|/**  * An interface for representing and manipulating an origin node's adjacent nodes and incident edges  * in a {@link Network}.  *  * @author James Sexton  * @param<N> Node parameter type  * @param<E> Edge parameter type  */
 end_comment
 
 begin_interface
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|interface|NetworkConnections
 interface|interface
 name|NetworkConnections
@@ -126,6 +138,8 @@ function_decl|;
 comment|/**    * Remove {@code edge} from the set of incoming edges. Returns the former predecessor node.    *    *<p>In the undirected case, returns {@code null} if {@code isSelfLoop} is true.    */
 annotation|@
 name|CanIgnoreReturnValue
+annotation|@
+name|CheckForNull
 DECL|method|removeInEdge (E edge, boolean isSelfLoop)
 name|N
 name|removeInEdge

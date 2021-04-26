@@ -114,17 +114,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|javax
 operator|.
-name|checkerframework
+name|annotation
 operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|qual
-operator|.
-name|Nullable
+name|CheckForNull
 import|;
 end_import
 
@@ -133,6 +127,8 @@ comment|/**  * A map-like data structure that wraps a backing map and caches val
 end_comment
 
 begin_class
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|MapIteratorCache
 class|class
 name|MapIteratorCache
@@ -155,11 +151,11 @@ name|backingMap
 decl_stmt|;
 comment|/*    * Per JDK: "the behavior of a map entry is undefined if the backing map has been modified after    * the entry was returned by the iterator, except through the setValue operation on the map entry"    * As such, this field must be cleared before every map mutation.    *    * Note about volatile: volatile doesn't make it safe to read from a mutable graph in one thread    * while writing to it in another. All it does is help with _reading_ from multiple threads    * concurrently. For more information, see AbstractNetworkTest.concurrentIteration.    */
 DECL|field|cacheEntry
+annotation|@
+name|CheckForNull
 specifier|private
 specifier|transient
 specifier|volatile
-annotation|@
-name|Nullable
 name|Entry
 argument_list|<
 name|K
@@ -192,6 +188,8 @@ expr_stmt|;
 block|}
 annotation|@
 name|CanIgnoreReturnValue
+annotation|@
+name|CheckForNull
 DECL|method|put (K key, V value)
 specifier|final
 name|V
@@ -230,6 +228,8 @@ return|;
 block|}
 annotation|@
 name|CanIgnoreReturnValue
+annotation|@
+name|CheckForNull
 DECL|method|remove (Object key)
 specifier|final
 name|V
@@ -271,6 +271,8 @@ name|clear
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|CheckForNull
 DECL|method|get (Object key)
 name|V
 name|get
@@ -292,21 +294,30 @@ argument_list|(
 name|key
 argument_list|)
 decl_stmt|;
-return|return
-operator|(
+comment|// TODO(cpovirk): Switch back to a ternary once our checker allows it.
+if|if
+condition|(
 name|value
-operator|!=
+operator|==
 literal|null
-operator|)
-condition|?
-name|value
-else|:
+condition|)
+block|{
+return|return
 name|getWithoutCaching
 argument_list|(
 name|key
 argument_list|)
 return|;
 block|}
+else|else
+block|{
+return|return
+name|value
+return|;
+block|}
+block|}
+annotation|@
+name|CheckForNull
 DECL|method|getWithoutCaching (Object key)
 specifier|final
 name|V
@@ -330,13 +341,13 @@ name|key
 argument_list|)
 return|;
 block|}
-DECL|method|containsKey (@ullable Object key)
+DECL|method|containsKey (@heckForNull Object key)
 specifier|final
 name|boolean
 name|containsKey
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
@@ -482,7 +493,7 @@ name|boolean
 name|contains
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
@@ -498,12 +509,14 @@ block|}
 return|;
 block|}
 comment|// Internal methods (package-visible, but treat as only subclass-visible)
-DECL|method|getIfCached (@ullable Object key)
+annotation|@
+name|CheckForNull
+DECL|method|getIfCached (@heckForNull Object key)
 name|V
 name|getIfCached
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)

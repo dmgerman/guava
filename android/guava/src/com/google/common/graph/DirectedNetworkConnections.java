@@ -109,6 +109,8 @@ comment|/**  * An implementation of {@link NetworkConnections} for directed netw
 end_comment
 
 begin_class
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|DirectedNetworkConnections
 specifier|final
 class|class

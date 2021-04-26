@@ -109,6 +109,8 @@ comment|/**  * An implementation of {@link NetworkConnections} for undirected ne
 end_comment
 
 begin_class
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|UndirectedNetworkConnections
 specifier|final
 class|class

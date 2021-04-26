@@ -113,6 +113,18 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|java
+operator|.
+name|util
+operator|.
+name|Objects
+operator|.
+name|requireNonNull
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -126,11 +138,23 @@ name|CanIgnoreReturnValue
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
 begin_comment
 comment|/**  * Standard implementation of {@link MutableValueGraph} that supports both directed and undirected  * graphs. Instances of this class should be constructed with {@link ValueGraphBuilder}.  *  *<p>Time complexities for mutation methods are all O(1) except for {@code removeNode(N node)},  * which is in O(d_node) where d_node is the degree of {@code node}.  *  * @author James Sexton  * @author Joshua O'Madadhain  * @author Omar Darwish  * @param<N> Node parameter type  * @param<V> Value parameter type  */
 end_comment
 
 begin_class
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|StandardMutableValueGraph
 specifier|final
 class|class
@@ -298,6 +322,8 @@ annotation|@
 name|Override
 annotation|@
 name|CanIgnoreReturnValue
+annotation|@
+name|CheckForNull
 DECL|method|putEdgeValue (N nodeU, N nodeV, V value)
 specifier|public
 name|V
@@ -460,6 +486,8 @@ annotation|@
 name|Override
 annotation|@
 name|CanIgnoreReturnValue
+annotation|@
+name|CheckForNull
 DECL|method|putEdgeValue (EndpointPair<N> endpoints, V value)
 specifier|public
 name|V
@@ -585,11 +613,15 @@ name|successors
 argument_list|()
 control|)
 block|{
+comment|// requireNonNull is safe because the node is a successor.
+name|requireNonNull
+argument_list|(
 name|nodeConnections
 operator|.
 name|getWithoutCaching
 argument_list|(
 name|successor
+argument_list|)
 argument_list|)
 operator|.
 name|removePredecessor
@@ -619,13 +651,17 @@ name|predecessors
 argument_list|()
 control|)
 block|{
+comment|// requireNonNull is safe because the node is a predecessor.
 name|checkState
+argument_list|(
+name|requireNonNull
 argument_list|(
 name|nodeConnections
 operator|.
 name|getWithoutCaching
 argument_list|(
 name|predecessor
+argument_list|)
 argument_list|)
 operator|.
 name|removeSuccessor
@@ -661,6 +697,8 @@ annotation|@
 name|Override
 annotation|@
 name|CanIgnoreReturnValue
+annotation|@
+name|CheckForNull
 DECL|method|removeEdge (N nodeU, N nodeV)
 specifier|public
 name|V
@@ -771,6 +809,8 @@ annotation|@
 name|Override
 annotation|@
 name|CanIgnoreReturnValue
+annotation|@
+name|CheckForNull
 DECL|method|removeEdge (EndpointPair<N> endpoints)
 specifier|public
 name|V

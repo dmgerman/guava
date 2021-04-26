@@ -49,6 +49,18 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|java
+operator|.
+name|util
+operator|.
+name|Objects
+operator|.
+name|requireNonNull
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -222,17 +234,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|javax
 operator|.
-name|checkerframework
+name|annotation
 operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|qual
-operator|.
-name|Nullable
+name|CheckForNull
 import|;
 end_import
 
@@ -243,6 +249,8 @@ end_comment
 begin_class
 annotation|@
 name|Beta
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|Graphs
 specifier|public
 specifier|final
@@ -440,7 +448,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Performs a traversal of the nodes reachable from {@code node}. If we ever reach a node we've    * already visited (following only outgoing edges and without reusing edges), we know there's a    * cycle in the graph.    */
-DECL|method|subgraphHasCycle ( Graph<N> graph, Map<Object, NodeVisitState> visitedNodes, N node, @Nullable N previousNode)
+DECL|method|subgraphHasCycle ( Graph<N> graph, Map<Object, NodeVisitState> visitedNodes, N node, @CheckForNull N previousNode)
 specifier|private
 specifier|static
 parameter_list|<
@@ -467,7 +475,7 @@ name|N
 name|node
 parameter_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|N
 name|previousNode
 parameter_list|)
@@ -576,7 +584,7 @@ literal|false
 return|;
 block|}
 comment|/**    * Determines whether an edge has already been used during traversal. In the directed case a cycle    * is always detected before reusing an edge, so no special logic is required. In the undirected    * case, we must take care not to "backtrack" over an edge (i.e. going from A to B and then going    * from B to A).    */
-DECL|method|canTraverseWithoutReusingEdge ( Graph<?> graph, Object nextNode, @Nullable Object previousNode)
+DECL|method|canTraverseWithoutReusingEdge ( Graph<?> graph, Object nextNode, @CheckForNull Object previousNode)
 specifier|private
 specifier|static
 name|boolean
@@ -592,7 +600,7 @@ name|Object
 name|nextNode
 parameter_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|previousNode
 parameter_list|)
@@ -1736,10 +1744,10 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|edgeValueOrDefault (N nodeU, N nodeV, @Nullable V defaultValue)
-specifier|public
 annotation|@
-name|Nullable
+name|CheckForNull
+DECL|method|edgeValueOrDefault (N nodeU, N nodeV, @CheckForNull V defaultValue)
+specifier|public
 name|V
 name|edgeValueOrDefault
 parameter_list|(
@@ -1750,7 +1758,7 @@ name|N
 name|nodeV
 parameter_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|V
 name|defaultValue
 parameter_list|)
@@ -1772,10 +1780,10 @@ comment|// transpose
 block|}
 annotation|@
 name|Override
-DECL|method|edgeValueOrDefault (EndpointPair<N> endpoints, @Nullable V defaultValue)
-specifier|public
 annotation|@
-name|Nullable
+name|CheckForNull
+DECL|method|edgeValueOrDefault (EndpointPair<N> endpoints, @CheckForNull V defaultValue)
+specifier|public
 name|V
 name|edgeValueOrDefault
 parameter_list|(
@@ -1786,7 +1794,7 @@ argument_list|>
 name|endpoints
 parameter_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|V
 name|defaultValue
 parameter_list|)
@@ -2185,6 +2193,8 @@ return|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|edgeConnectingOrNull (N nodeU, N nodeV)
 specifier|public
 name|E
@@ -2212,6 +2222,8 @@ comment|// transpose
 block|}
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|edgeConnectingOrNull (EndpointPair<N> endpoints)
 specifier|public
 name|E
@@ -2569,6 +2581,7 @@ name|successorNode
 argument_list|)
 condition|)
 block|{
+comment|// requireNonNull is safe because the endpoint pair comes from the graph.
 name|subgraph
 operator|.
 name|putEdgeValue
@@ -2577,6 +2590,8 @@ name|node
 argument_list|,
 name|successorNode
 argument_list|,
+name|requireNonNull
+argument_list|(
 name|graph
 operator|.
 name|edgeValueOrDefault
@@ -2586,6 +2601,7 @@ argument_list|,
 name|successorNode
 argument_list|,
 literal|null
+argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -2951,6 +2967,7 @@ name|edges
 argument_list|()
 control|)
 block|{
+comment|// requireNonNull is safe because the endpoint pair comes from the graph.
 name|copy
 operator|.
 name|putEdgeValue
@@ -2965,6 +2982,8 @@ operator|.
 name|nodeV
 argument_list|()
 argument_list|,
+name|requireNonNull
+argument_list|(
 name|graph
 operator|.
 name|edgeValueOrDefault
@@ -2980,6 +2999,7 @@ name|nodeV
 argument_list|()
 argument_list|,
 literal|null
+argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;

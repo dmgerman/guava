@@ -49,6 +49,18 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|java
+operator|.
+name|util
+operator|.
+name|Objects
+operator|.
+name|requireNonNull
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -156,17 +168,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|javax
 operator|.
-name|checkerframework
+name|annotation
 operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|compatqual
-operator|.
-name|NullableDecl
+name|CheckForNull
 import|;
 end_import
 
@@ -184,6 +190,8 @@ literal|"Call forGraph or forTree, passing a lambda or a Graph with the desired 
 operator|+
 literal|" GraphBuilder)"
 argument_list|)
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|Traverser
 specifier|public
 specifier|abstract
@@ -797,6 +805,8 @@ argument_list|)
 block|{
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 name|N
 name|visitNext
 parameter_list|(
@@ -836,14 +846,18 @@ block|{
 name|N
 name|element
 init|=
-name|checkNotNull
-argument_list|(
 name|top
 operator|.
 name|next
 argument_list|()
-argument_list|)
 decl_stmt|;
+comment|// requireNonNull is safe because horizon contains only graph nodes.
+comment|/*              * TODO(cpovirk): Replace these two statements with one (`N element =              * requireNonNull(top.next())`) once our checker supports it.              *              * (The problem is likely              * https://github.com/jspecify/nullness-checker-for-checker-framework/blob/61aafa4ae52594830cfc2d61c8b113009dbdb045/src/main/java/com/google/jspecify/nullness/NullSpecAnnotatedTypeFactory.java#L896)              */
+name|requireNonNull
+argument_list|(
+name|element
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|visited
@@ -899,6 +913,8 @@ argument_list|(
 name|tree
 argument_list|)
 block|{
+annotation|@
+name|CheckForNull
 annotation|@
 name|Override
 name|N
@@ -1071,6 +1087,8 @@ argument_list|()
 block|{
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 specifier|protected
 name|N
 name|computeNext
@@ -1216,6 +1234,8 @@ argument_list|()
 block|{
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 specifier|protected
 name|N
 name|computeNext
@@ -1309,7 +1329,7 @@ return|;
 block|}
 comment|/**      * Visits the next node from the top iterator of {@code horizon} and returns the visited node.      * Null is returned to indicate reaching the end of the top iterator.      *      *<p>For example, if horizon is {@code [[a, b], [c, d], [e]]}, {@code visitNext()} will return      * {@code [a, b, null, c, d, null, e, null]} sequentially, encoding the topological structure.      * (Note, however, that the callers of {@code visitNext()} often insert additional iterators      * into {@code horizon} between calls to {@code visitNext()}. This causes them to receive      * additional values interleaved with those shown above.)      */
 annotation|@
-name|NullableDecl
+name|CheckForNull
 DECL|method|visitNext (Deque<Iterator<? extends N>> horizon)
 specifier|abstract
 name|N

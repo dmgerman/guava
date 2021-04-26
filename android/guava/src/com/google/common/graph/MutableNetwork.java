@@ -51,6 +51,8 @@ end_comment
 begin_interface
 annotation|@
 name|Beta
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|interface|MutableNetwork
 specifier|public
 interface|interface

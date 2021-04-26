@@ -21,6 +21,8 @@ comment|/** A utility class to hold various constants used by the Guava Graph li
 end_comment
 
 begin_class
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|GraphConstants
 specifier|final
 class|class

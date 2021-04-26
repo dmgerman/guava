@@ -106,17 +106,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|javax
 operator|.
-name|checkerframework
+name|annotation
 operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|compatqual
-operator|.
-name|NullableDecl
+name|CheckForNull
 import|;
 end_import
 
@@ -125,6 +119,8 @@ comment|/**  * Standard implementation of {@link ValueGraph} that supports the o
 end_comment
 
 begin_class
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|StandardValueGraph
 class|class
 name|StandardValueGraph
@@ -550,7 +546,7 @@ name|nodeV
 parameter_list|)
 block|{
 return|return
-name|hasEdgeConnecting_internal
+name|hasEdgeConnectingInternal
 argument_list|(
 name|checkNotNull
 argument_list|(
@@ -589,7 +585,7 @@ argument_list|(
 name|endpoints
 argument_list|)
 operator|&&
-name|hasEdgeConnecting_internal
+name|hasEdgeConnectingInternal
 argument_list|(
 name|endpoints
 operator|.
@@ -606,8 +602,8 @@ block|}
 annotation|@
 name|Override
 annotation|@
-name|NullableDecl
-DECL|method|edgeValueOrDefault (N nodeU, N nodeV, @NullableDecl V defaultValue)
+name|CheckForNull
+DECL|method|edgeValueOrDefault (N nodeU, N nodeV, @CheckForNull V defaultValue)
 specifier|public
 name|V
 name|edgeValueOrDefault
@@ -619,13 +615,13 @@ name|N
 name|nodeV
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|V
 name|defaultValue
 parameter_list|)
 block|{
 return|return
-name|edgeValueOrDefault_internal
+name|edgeValueOrDefaultInternal
 argument_list|(
 name|checkNotNull
 argument_list|(
@@ -644,8 +640,8 @@ block|}
 annotation|@
 name|Override
 annotation|@
-name|NullableDecl
-DECL|method|edgeValueOrDefault (EndpointPair<N> endpoints, @NullableDecl V defaultValue)
+name|CheckForNull
+DECL|method|edgeValueOrDefault (EndpointPair<N> endpoints, @CheckForNull V defaultValue)
 specifier|public
 name|V
 name|edgeValueOrDefault
@@ -657,7 +653,7 @@ argument_list|>
 name|endpoints
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|V
 name|defaultValue
 parameter_list|)
@@ -668,7 +664,7 @@ name|endpoints
 argument_list|)
 expr_stmt|;
 return|return
-name|edgeValueOrDefault_internal
+name|edgeValueOrDefaultInternal
 argument_list|(
 name|endpoints
 operator|.
@@ -697,6 +693,7 @@ name|edgeCount
 return|;
 block|}
 DECL|method|checkedConnections (N node)
+specifier|private
 specifier|final
 name|GraphConnections
 argument_list|<
@@ -753,13 +750,13 @@ return|return
 name|connections
 return|;
 block|}
-DECL|method|containsNode (@ullableDecl N node)
+DECL|method|containsNode (@heckForNull N node)
 specifier|final
 name|boolean
 name|containsNode
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|N
 name|node
 parameter_list|)
@@ -773,10 +770,11 @@ name|node
 argument_list|)
 return|;
 block|}
-DECL|method|hasEdgeConnecting_internal (N nodeU, N nodeV)
+DECL|method|hasEdgeConnectingInternal (N nodeU, N nodeV)
+specifier|private
 specifier|final
 name|boolean
-name|hasEdgeConnecting_internal
+name|hasEdgeConnectingInternal
 parameter_list|(
 name|N
 name|nodeU
@@ -818,10 +816,13 @@ name|nodeV
 argument_list|)
 return|;
 block|}
-DECL|method|edgeValueOrDefault_internal (N nodeU, N nodeV, V defaultValue)
+annotation|@
+name|CheckForNull
+DECL|method|edgeValueOrDefaultInternal (N nodeU, N nodeV, @CheckForNull V defaultValue)
+specifier|private
 specifier|final
 name|V
-name|edgeValueOrDefault_internal
+name|edgeValueOrDefaultInternal
 parameter_list|(
 name|N
 name|nodeU
@@ -829,6 +830,8 @@ parameter_list|,
 name|N
 name|nodeV
 parameter_list|,
+annotation|@
+name|CheckForNull
 name|V
 name|defaultValue
 parameter_list|)
@@ -866,15 +869,24 @@ argument_list|(
 name|nodeV
 argument_list|)
 decl_stmt|;
-return|return
+comment|// TODO(cpovirk): Switch back to a ternary once our checker allows it.
+if|if
+condition|(
 name|value
 operator|==
 literal|null
-condition|?
+condition|)
+block|{
+return|return
 name|defaultValue
-else|:
+return|;
+block|}
+else|else
+block|{
+return|return
 name|value
 return|;
+block|}
 block|}
 block|}
 end_class

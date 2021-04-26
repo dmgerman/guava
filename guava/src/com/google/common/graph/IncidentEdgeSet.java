@@ -38,17 +38,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|javax
 operator|.
-name|checkerframework
+name|annotation
 operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|qual
-operator|.
-name|Nullable
+name|CheckForNull
 import|;
 end_import
 
@@ -57,6 +51,8 @@ comment|/**  * Abstract base class for an incident edges set that allows differe
 end_comment
 
 begin_class
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|IncidentEdgeSet
 specifier|abstract
 class|class
@@ -114,11 +110,13 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|remove (Object o)
+DECL|method|remove (@heckForNull Object o)
 specifier|public
 name|boolean
 name|remove
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|o
 parameter_list|)
@@ -196,13 +194,13 @@ block|}
 block|}
 annotation|@
 name|Override
-DECL|method|contains (@ullable Object obj)
+DECL|method|contains (@heckForNull Object obj)
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|obj
 parameter_list|)

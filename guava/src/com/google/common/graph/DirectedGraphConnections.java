@@ -316,17 +316,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|javax
 operator|.
-name|checkerframework
+name|annotation
 operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|qual
-operator|.
-name|Nullable
+name|CheckForNull
 import|;
 end_import
 
@@ -335,6 +329,8 @@ comment|/**  * An implementation of {@link GraphConnections} for directed graphs
 end_comment
 
 begin_class
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|DirectedGraphConnections
 specifier|final
 class|class
@@ -443,11 +439,13 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|equals (Object that)
+DECL|method|equals (@heckForNull Object that)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|that
 parameter_list|)
@@ -540,11 +538,13 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|equals (Object that)
+DECL|method|equals (@heckForNull Object that)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|that
 parameter_list|)
@@ -636,7 +636,7 @@ decl_stmt|;
 comment|/**    * All node connections in this graph, in edge insertion order.    *    *<p>Note: This field and {@link #adjacentNodeValues} cannot be combined into a single    * LinkedHashMap because one target node may be mapped to both a predecessor and a successor. A    * LinkedHashMap combines two such edges into a single node-value pair, even though the edges may    * not have been inserted consecutively.    */
 DECL|field|orderedNodeConnections
 annotation|@
-name|Nullable
+name|CheckForNull
 specifier|private
 specifier|final
 name|List
@@ -658,7 +658,7 @@ specifier|private
 name|int
 name|successorCount
 decl_stmt|;
-DECL|method|DirectedGraphConnections ( Map<N, Object> adjacentNodeValues, @Nullable List<NodeConnection<N>> orderedNodeConnections, int predecessorCount, int successorCount)
+DECL|method|DirectedGraphConnections ( Map<N, Object> adjacentNodeValues, @CheckForNull List<NodeConnection<N>> orderedNodeConnections, int predecessorCount, int successorCount)
 specifier|private
 name|DirectedGraphConnections
 parameter_list|(
@@ -671,7 +671,7 @@ argument_list|>
 name|adjacentNodeValues
 parameter_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|List
 argument_list|<
 name|NodeConnection
@@ -1377,7 +1377,7 @@ name|boolean
 name|contains
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|obj
 parameter_list|)
@@ -1608,7 +1608,7 @@ name|boolean
 name|contains
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|obj
 parameter_list|)
@@ -1841,7 +1841,7 @@ name|boolean
 name|contains
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|obj
 parameter_list|)
@@ -2197,6 +2197,8 @@ literal|"unchecked"
 argument_list|)
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|value (N node)
 specifier|public
 name|V
@@ -2394,6 +2396,8 @@ literal|"unchecked"
 argument_list|)
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|removeSuccessor (Object node)
 specifier|public
 name|V
@@ -2523,7 +2527,14 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/*      * TODO(cpovirk): `return (V) removedValue` once our checker permits that.      *      * (We promoted a class of warnings into errors because sometimes they indicate real problems.      * But now we need to "undo" some instance of spurious errors, as discussed in      * https://github.com/jspecify/checker-framework/issues/8.)      */
 return|return
+name|removedValue
+operator|==
+literal|null
+condition|?
+literal|null
+else|:
 operator|(
 name|V
 operator|)
@@ -2671,6 +2682,8 @@ literal|"unchecked"
 argument_list|)
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|addSuccessor (N node, V value)
 specifier|public
 name|V
@@ -2813,21 +2826,28 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|// See the comment on the similar cast in removeSuccessor.
 return|return
+name|previousSuccessor
+operator|==
+literal|null
+condition|?
+literal|null
+else|:
 operator|(
 name|V
 operator|)
 name|previousSuccessor
 return|;
 block|}
-DECL|method|isPredecessor (@ullable Object value)
+DECL|method|isPredecessor (@heckForNull Object value)
 specifier|private
 specifier|static
 name|boolean
 name|isPredecessor
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|value
 parameter_list|)
@@ -2846,14 +2866,14 @@ name|PredAndSucc
 operator|)
 return|;
 block|}
-DECL|method|isSuccessor (@ullable Object value)
+DECL|method|isSuccessor (@heckForNull Object value)
 specifier|private
 specifier|static
 name|boolean
 name|isSuccessor
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|value
 parameter_list|)

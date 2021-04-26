@@ -31,6 +31,8 @@ comment|/**  * A non-public interface for the methods shared between {@link Grap
 end_comment
 
 begin_interface
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|interface|BaseGraph
 interface|interface
 name|BaseGraph

@@ -33,6 +33,18 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|java
+operator|.
+name|util
+operator|.
+name|Objects
+operator|.
+name|requireNonNull
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -94,11 +106,39 @@ name|Set
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|checkerframework
+operator|.
+name|checker
+operator|.
+name|nullness
+operator|.
+name|qual
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/**  * A class to facilitate the set returned by {@link Graph#edges()}.  *  * @author James Sexton  */
 end_comment
 
 begin_class
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|EndpointPairIterator
 specifier|abstract
 class|class
@@ -133,6 +173,8 @@ name|N
 argument_list|>
 name|nodeIterator
 decl_stmt|;
+annotation|@
+name|CheckForNull
 DECL|field|node
 name|N
 name|node
@@ -340,12 +382,16 @@ name|hasNext
 argument_list|()
 condition|)
 block|{
+comment|// requireNonNull is safe because successorIterator is empty until we set this.node.
 return|return
 name|EndpointPair
 operator|.
 name|ordered
 argument_list|(
+name|requireNonNull
+argument_list|(
 name|node
+argument_list|)
 argument_list|,
 name|successorIterator
 operator|.
@@ -385,10 +431,15 @@ argument_list|<
 name|N
 argument_list|>
 block|{
+comment|// It's a little weird that we add `null` to this set, but it makes for slightly simpler code.
 DECL|field|visitedNodes
+annotation|@
+name|CheckForNull
 specifier|private
 name|Set
 argument_list|<
+annotation|@
+name|Nullable
 name|N
 argument_list|>
 name|visitedNodes
@@ -424,6 +475,8 @@ argument_list|()
 operator|.
 name|size
 argument_list|()
+operator|+
+literal|1
 argument_list|)
 expr_stmt|;
 block|}
@@ -443,6 +496,12 @@ condition|(
 literal|true
 condition|)
 block|{
+comment|/*          * requireNonNull is safe because visitedNodes isn't cleared until this method calls          * endOfData() (after which this method is never called again).          */
+name|requireNonNull
+argument_list|(
+name|visitedNodes
+argument_list|)
+expr_stmt|;
 while|while
 condition|(
 name|successorIterator
@@ -470,12 +529,16 @@ name|otherNode
 argument_list|)
 condition|)
 block|{
+comment|// requireNonNull is safe because successorIterator is empty until we set node.
 return|return
 name|EndpointPair
 operator|.
 name|unordered
 argument_list|(
+name|requireNonNull
+argument_list|(
 name|node
+argument_list|)
 argument_list|,
 name|otherNode
 argument_list|)

@@ -120,17 +120,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|javax
 operator|.
-name|checkerframework
+name|annotation
 operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|qual
-operator|.
-name|Nullable
+name|CheckForNull
 import|;
 end_import
 
@@ -150,6 +144,8 @@ block|{
 literal|"N"
 block|}
 argument_list|)
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|EndpointPair
 specifier|public
 specifier|abstract
@@ -499,14 +495,14 @@ block|}
 comment|/**    * Two ordered {@link EndpointPair}s are equal if their {@link #source()} and {@link #target()}    * are equal. Two unordered {@link EndpointPair}s are equal if they contain the same nodes. An    * ordered {@link EndpointPair} is never equal to an unordered {@link EndpointPair}.    */
 annotation|@
 name|Override
-DECL|method|equals (@ullable Object obj)
+DECL|method|equals (@heckForNull Object obj)
 specifier|public
 specifier|abstract
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|obj
 parameter_list|)
@@ -595,13 +591,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|equals (@ullable Object obj)
+DECL|method|equals (@heckForNull Object obj)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|obj
 parameter_list|)
@@ -808,13 +804,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|equals (@ullable Object obj)
+DECL|method|equals (@heckForNull Object obj)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|obj
 parameter_list|)

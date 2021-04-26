@@ -17,6 +17,18 @@ package|;
 end_package
 
 begin_import
+import|import static
+name|java
+operator|.
+name|util
+operator|.
+name|Objects
+operator|.
+name|requireNonNull
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -80,17 +92,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|javax
 operator|.
-name|checkerframework
+name|annotation
 operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|compatqual
-operator|.
-name|NullableDecl
+name|CheckForNull
 import|;
 end_import
 
@@ -101,6 +107,8 @@ end_comment
 begin_class
 annotation|@
 name|Beta
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|AbstractValueGraph
 specifier|public
 specifier|abstract
@@ -394,14 +402,14 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|equals (@ullableDecl Object obj)
+DECL|method|equals (@heckForNull Object obj)
 specifier|public
 specifier|final
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|obj
 parameter_list|)
@@ -600,7 +608,10 @@ argument_list|>
 name|edge
 parameter_list|)
 block|{
+comment|// requireNonNull is safe because the endpoint pair comes from the graph.
 return|return
+name|requireNonNull
+argument_list|(
 name|graph
 operator|.
 name|edgeValueOrDefault
@@ -616,6 +627,7 @@ name|nodeV
 argument_list|()
 argument_list|,
 literal|null
+argument_list|)
 argument_list|)
 return|;
 block|}

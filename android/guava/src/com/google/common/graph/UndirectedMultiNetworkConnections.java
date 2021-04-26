@@ -188,17 +188,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|javax
 operator|.
-name|checkerframework
+name|annotation
 operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|compatqual
-operator|.
-name|NullableDecl
+name|CheckForNull
 import|;
 end_import
 
@@ -207,6 +201,8 @@ comment|/**  * An implementation of {@link NetworkConnections} for undirected ne
 end_comment
 
 begin_class
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|UndirectedMultiNetworkConnections
 specifier|final
 class|class
@@ -318,6 +314,8 @@ argument_list|)
 return|;
 block|}
 DECL|field|adjacentNodesReference
+annotation|@
+name|CheckForNull
 annotation|@
 name|LazyInit
 specifier|private
@@ -457,6 +455,8 @@ return|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|removeInEdge (E edge, boolean isSelfLoop)
 specifier|public
 name|N
@@ -626,8 +626,8 @@ expr_stmt|;
 block|}
 block|}
 annotation|@
-name|NullableDecl
-DECL|method|getReference (@ullableDecl Reference<T> reference)
+name|CheckForNull
+DECL|method|getReference (@heckForNull Reference<T> reference)
 specifier|private
 specifier|static
 parameter_list|<
@@ -637,7 +637,7 @@ name|T
 name|getReference
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Reference
 argument_list|<
 name|T
