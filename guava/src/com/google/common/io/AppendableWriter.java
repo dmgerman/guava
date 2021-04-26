@@ -216,19 +216,22 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|write (@ullable String str)
+DECL|method|write (String str)
 specifier|public
 name|void
 name|write
 parameter_list|(
-annotation|@
-name|Nullable
 name|String
 name|str
 parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|checkNotNull
+argument_list|(
+name|str
+argument_list|)
+expr_stmt|;
 name|checkNotClosed
 argument_list|()
 expr_stmt|;
@@ -242,13 +245,11 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|write (@ullable String str, int off, int len)
+DECL|method|write (String str, int off, int len)
 specifier|public
 name|void
 name|write
 parameter_list|(
-annotation|@
-name|Nullable
 name|String
 name|str
 parameter_list|,
@@ -261,6 +262,11 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|checkNotNull
+argument_list|(
+name|str
+argument_list|)
+expr_stmt|;
 name|checkNotClosed
 argument_list|()
 expr_stmt|;
