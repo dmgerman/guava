@@ -1034,7 +1034,7 @@ argument_list|(
 literal|128
 argument_list|)
 argument_list|,
-literal|250
+literal|500
 argument_list|,
 literal|0.17
 argument_list|)
@@ -1110,7 +1110,7 @@ argument_list|(
 literal|256
 argument_list|)
 argument_list|,
-literal|250
+literal|500
 argument_list|,
 literal|0.17
 argument_list|)
