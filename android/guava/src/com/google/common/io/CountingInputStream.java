@@ -99,6 +99,8 @@ annotation|@
 name|Beta
 annotation|@
 name|GwtIncompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|CountingInputStream
 specifier|public
 specifier|final

@@ -84,17 +84,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|javax
 operator|.
-name|checkerframework
+name|annotation
 operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|qual
-operator|.
-name|Nullable
+name|CheckForNull
 import|;
 end_import
 
@@ -110,6 +104,8 @@ name|GwtIncompatible
 annotation|@
 name|J2ObjCIncompatible
 comment|// java.nio.file
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|InsecureRecursiveDeleteException
 specifier|public
 specifier|final
@@ -118,12 +114,12 @@ name|InsecureRecursiveDeleteException
 extends|extends
 name|FileSystemException
 block|{
-DECL|method|InsecureRecursiveDeleteException (@ullable String file)
+DECL|method|InsecureRecursiveDeleteException (@heckForNull String file)
 specifier|public
 name|InsecureRecursiveDeleteException
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|String
 name|file
 parameter_list|)

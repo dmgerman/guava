@@ -332,6 +332,22 @@ name|Iterator
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|checkerframework
+operator|.
+name|checker
+operator|.
+name|nullness
+operator|.
+name|qual
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/**  * A readable source of bytes, such as a file. Unlike an {@link InputStream}, a {@code ByteSource}  * is not an open, stateful stream for input that can be read and closed. Instead, it is an  * immutable<i>supplier</i> of {@code InputStream} instances.  *  *<p>{@code ByteSource} provides two kinds of methods:  *  *<ul>  *<li><b>Methods that return a stream:</b> These methods should return a<i>new</i>, independent  *       instance each time they are called. The caller is responsible for ensuring that the  *       returned stream is closed.  *<li><b>Convenience methods:</b> These are implementations of common operations that are  *       typically implemented by opening a stream using one of the methods in the first category,  *       doing something and finally closing the stream that was opened.  *</ul>  *  *<p><b>Note:</b> In general, {@code ByteSource} is intended to be used for "file-like" sources  * that provide streams that are:  *  *<ul>  *<li><b>Finite:</b> Many operations, such as {@link #size()} and {@link #read()}, will either  *       block indefinitely or fail if the source creates an infinite stream.  *<li><b>Non-destructive:</b> A<i>destructive</i> stream will consume or otherwise alter the  *       bytes of the source as they are read from it. A source that provides such streams will not  *       be reusable, and operations that read from the stream (including {@link #size()}, in some  *       implementations) will prevent further operations from completing as expected.  *</ul>  *  * @since 14.0  * @author Colin Decker  */
 end_comment
@@ -339,6 +355,8 @@ end_comment
 begin_class
 annotation|@
 name|GwtIncompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|ByteSource
 specifier|public
 specifier|abstract
@@ -983,18 +1001,21 @@ name|CanIgnoreReturnValue
 comment|// some processors won't return a useful result
 DECL|method|read (ByteProcessor<T> processor)
 specifier|public
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|T
 name|read
-parameter_list|(
+argument_list|(
 name|ByteProcessor
 argument_list|<
 name|T
 argument_list|>
 name|processor
-parameter_list|)
+argument_list|)
 throws|throws
 name|IOException
 block|{
@@ -1059,7 +1080,13 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+end_class
+
+begin_comment
 comment|/**    * Hashes the contents of this byte source using the given hash function.    *    * @throws IOException if an I/O error occurs while reading from this source    */
+end_comment
+
+begin_function
 DECL|method|hash (HashFunction hashFunction)
 specifier|public
 name|HashCode
@@ -1096,7 +1123,13 @@ name|hash
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Checks that the contents of this byte source are equal to the contents of the given byte    * source.    *    * @throws IOException if an I/O error occurs while reading from this source or {@code other}    */
+end_comment
+
+begin_function
 DECL|method|contentEquals (ByteSource other)
 specifier|public
 name|boolean
@@ -1263,7 +1296,13 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+end_function
+
+begin_comment
 comment|/**    * Concatenates multiple {@link ByteSource} instances into a single source. Streams returned from    * the source will contain the concatenated data from the streams of the underlying sources.    *    *<p>Only one underlying stream will be open at a time. Closing the concatenated stream will    * close the open underlying stream.    *    * @param sources the sources to concatenate    * @return a {@code ByteSource} containing the concatenated data    * @since 15.0    */
+end_comment
+
+begin_function
 DECL|method|concat (Iterable<? extends ByteSource> sources)
 specifier|public
 specifier|static
@@ -1287,7 +1326,13 @@ name|sources
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Concatenates multiple {@link ByteSource} instances into a single source. Streams returned from    * the source will contain the concatenated data from the streams of the underlying sources.    *    *<p>Only one underlying stream will be open at a time. Closing the concatenated stream will    * close the open underlying stream.    *    *<p>Note: The input {@code Iterator} will be copied to an {@code ImmutableList} when this method    * is called. This will fail if the iterator is infinite and may cause problems if the iterator    * eagerly fetches data for each source when iterated (rather than producing sources that only    * load data through their streams). Prefer using the {@link #concat(Iterable)} overload if    * possible.    *    * @param sources the sources to concatenate    * @return a {@code ByteSource} containing the concatenated data    * @throws NullPointerException if any of {@code sources} is {@code null}    * @since 15.0    */
+end_comment
+
+begin_function
 DECL|method|concat (Iterator<? extends ByteSource> sources)
 specifier|public
 specifier|static
@@ -1315,7 +1360,13 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Concatenates multiple {@link ByteSource} instances into a single source. Streams returned from    * the source will contain the concatenated data from the streams of the underlying sources.    *    *<p>Only one underlying stream will be open at a time. Closing the concatenated stream will    * close the open underlying stream.    *    * @param sources the sources to concatenate    * @return a {@code ByteSource} containing the concatenated data    * @throws NullPointerException if any of {@code sources} is {@code null}    * @since 15.0    */
+end_comment
+
+begin_function
 DECL|method|concat (ByteSource... sources)
 specifier|public
 specifier|static
@@ -1339,7 +1390,13 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Returns a view of the given byte array as a {@link ByteSource}. To view only a specific range    * in the array, use {@code ByteSource.wrap(b).slice(offset, length)}.    *    *<p>Note that the given byte array may be passed directly to methods on, for example, {@code    * OutputStream} (when {@code copyTo(OutputStream)} is called on the resulting {@code    * ByteSource}). This could allow a malicious {@code OutputStream} implementation to modify the    * contents of the array, but provides better performance in the normal case.    *    * @since 15.0 (since 14.0 as {@code ByteStreams.asByteSource(byte[])}).    */
+end_comment
+
+begin_function
 DECL|method|wrap (byte[] b)
 specifier|public
 specifier|static
@@ -1359,7 +1416,13 @@ name|b
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Returns an immutable {@link ByteSource} that contains no bytes.    *    * @since 15.0    */
+end_comment
+
+begin_function
 DECL|method|empty ()
 specifier|public
 specifier|static
@@ -1373,7 +1436,13 @@ operator|.
 name|INSTANCE
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * A char source that reads bytes from this source and decodes them as characters using a charset.    */
+end_comment
+
+begin_class
 DECL|class|AsCharSource
 class|class
 name|AsCharSource
@@ -1521,7 +1590,13 @@ literal|")"
 return|;
 block|}
 block|}
+end_class
+
+begin_comment
 comment|/** A view of a subsection of the containing byte source. */
+end_comment
+
+begin_class
 DECL|class|SlicedByteSource
 specifier|private
 specifier|final
@@ -1946,6 +2021,9 @@ literal|")"
 return|;
 block|}
 block|}
+end_class
+
+begin_class
 DECL|class|ByteArrayByteSource
 specifier|private
 specifier|static
@@ -2140,20 +2218,25 @@ argument_list|)
 comment|// it doesn't matter what processBytes returns here
 annotation|@
 name|Override
+annotation|@
+name|ParametricNullness
 DECL|method|read (ByteProcessor<T> processor)
 specifier|public
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|T
 name|read
-parameter_list|(
+argument_list|(
 name|ByteProcessor
 argument_list|<
 name|T
 argument_list|>
 name|processor
-parameter_list|)
+argument_list|)
 throws|throws
 name|IOException
 block|{
@@ -2175,6 +2258,9 @@ name|getResult
 argument_list|()
 return|;
 block|}
+end_class
+
+begin_function
 annotation|@
 name|Override
 DECL|method|copyTo (OutputStream output)
@@ -2203,6 +2289,9 @@ return|return
 name|length
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|hash (HashFunction hashFunction)
@@ -2229,6 +2318,9 @@ name|length
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|slice (long offset, long length)
@@ -2320,6 +2412,9 @@ name|length
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|toString ()
@@ -2357,9 +2452,11 @@ operator|+
 literal|")"
 return|;
 block|}
-block|}
+end_function
+
+begin_class
+unit|}    private
 DECL|class|EmptyByteSource
-specifier|private
 specifier|static
 specifier|final
 class|class
@@ -2441,6 +2538,9 @@ literal|"ByteSource.empty()"
 return|;
 block|}
 block|}
+end_class
+
+begin_class
 DECL|class|ConcatenatedByteSource
 specifier|private
 specifier|static
@@ -2722,8 +2822,8 @@ literal|")"
 return|;
 block|}
 block|}
-block|}
 end_class
 
+unit|}
 end_unit
 

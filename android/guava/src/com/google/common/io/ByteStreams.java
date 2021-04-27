@@ -322,6 +322,32 @@ name|Queue
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|checkerframework
+operator|.
+name|checker
+operator|.
+name|nullness
+operator|.
+name|qual
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/**  * Provides utility methods for working with byte arrays and I/O streams.  *  * @author Chris Nokleberg  * @author Colin Decker  * @since 1.0  */
 end_comment
@@ -329,6 +355,8 @@ end_comment
 begin_class
 annotation|@
 name|GwtIncompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|ByteStreams
 specifier|public
 specifier|final
@@ -1799,6 +1827,8 @@ block|}
 block|}
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|readLine ()
 specifier|public
 name|String
@@ -3300,24 +3330,29 @@ name|Beta
 annotation|@
 name|CanIgnoreReturnValue
 comment|// some processors won't return a useful result
-DECL|method|readBytes (InputStream input, ByteProcessor<T> processor)
+annotation|@
+name|ParametricNullness
+DECL|method|readBytes ( InputStream input, ByteProcessor<T> processor)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|T
 name|readBytes
-parameter_list|(
+argument_list|(
 name|InputStream
 name|input
-parameter_list|,
+argument_list|,
 name|ByteProcessor
 argument_list|<
 name|T
 argument_list|>
 name|processor
-parameter_list|)
+argument_list|)
 throws|throws
 name|IOException
 block|{
@@ -3327,10 +3362,10 @@ name|input
 argument_list|)
 expr_stmt|;
 name|checkNotNull
-argument_list|(
+parameter_list|(
 name|processor
-argument_list|)
-expr_stmt|;
+parameter_list|)
+constructor_decl|;
 name|byte
 index|[]
 name|buf
@@ -3379,7 +3414,13 @@ name|getResult
 argument_list|()
 return|;
 block|}
+end_class
+
+begin_comment
 comment|/**    * Reads some bytes from an input stream and stores them into the buffer array {@code b}. This    * method blocks until {@code len} bytes of input data have been read into the array, or end of    * file is detected. The number of bytes read is returned, possibly zero. Does not close the    * stream.    *    *<p>A caller can detect EOF if the number of bytes read is less than {@code len}. All subsequent    * calls on the same stream will return zero.    *    *<p>If {@code b} is null, a {@code NullPointerException} is thrown. If {@code off} is negative,    * or {@code len} is negative, or {@code off+len} is greater than the length of the array {@code    * b}, then an {@code IndexOutOfBoundsException} is thrown. If {@code len} is zero, then no bytes    * are read. Otherwise, the first byte read is stored into element {@code b[off]}, the next one    * into {@code b[off+1]}, and so on. The number of bytes read is, at most, equal to {@code len}.    *    * @param in the input stream to read from    * @param b the buffer into which the data is read    * @param off an int specifying the offset into the data    * @param len an int specifying the number of bytes to read    * @return the number of bytes read    * @throws IOException if an I/O error occurs    * @throws IndexOutOfBoundsException if {@code off} is negative, if {@code len} is negative, or if    *     {@code off + len} is greater than {@code b.length}    */
+end_comment
+
+begin_function
 annotation|@
 name|Beta
 annotation|@
@@ -3502,8 +3543,8 @@ return|return
 name|total
 return|;
 block|}
-block|}
-end_class
+end_function
 
+unit|}
 end_unit
 

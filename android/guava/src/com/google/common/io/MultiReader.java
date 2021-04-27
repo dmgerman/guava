@@ -17,6 +17,22 @@ package|;
 end_package
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Preconditions
+operator|.
+name|checkNotNull
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -76,17 +92,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|javax
 operator|.
-name|checkerframework
+name|annotation
 operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|compatqual
-operator|.
-name|NullableDecl
+name|CheckForNull
 import|;
 end_import
 
@@ -97,6 +107,8 @@ end_comment
 begin_class
 annotation|@
 name|GwtIncompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|MultiReader
 class|class
 name|MultiReader
@@ -116,7 +128,7 @@ name|it
 decl_stmt|;
 DECL|field|current
 annotation|@
-name|NullableDecl
+name|CheckForNull
 specifier|private
 name|Reader
 name|current
@@ -179,13 +191,11 @@ block|}
 block|}
 annotation|@
 name|Override
-DECL|method|read (@ullableDecl char[] cbuf, int off, int len)
+DECL|method|read (char[] cbuf, int off, int len)
 specifier|public
 name|int
 name|read
 parameter_list|(
-annotation|@
-name|NullableDecl
 name|char
 index|[]
 name|cbuf
@@ -199,6 +209,11 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|checkNotNull
+argument_list|(
+name|cbuf
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|current

@@ -17,6 +17,18 @@ package|;
 end_package
 
 begin_import
+import|import static
+name|java
+operator|.
+name|util
+operator|.
+name|Objects
+operator|.
+name|requireNonNull
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -156,17 +168,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|javax
 operator|.
-name|checkerframework
+name|annotation
 operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|qual
-operator|.
-name|Nullable
+name|CheckForNull
 import|;
 end_import
 
@@ -179,6 +185,8 @@ annotation|@
 name|Beta
 annotation|@
 name|GwtIncompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|FileBackedOutputStream
 specifier|public
 specifier|final
@@ -207,7 +215,7 @@ name|source
 decl_stmt|;
 DECL|field|parentDirectory
 annotation|@
-name|Nullable
+name|CheckForNull
 specifier|private
 specifier|final
 name|File
@@ -228,6 +236,8 @@ name|GuardedBy
 argument_list|(
 literal|"this"
 argument_list|)
+annotation|@
+name|CheckForNull
 DECL|field|memory
 specifier|private
 name|MemoryOutput
@@ -238,10 +248,10 @@ name|GuardedBy
 argument_list|(
 literal|"this"
 argument_list|)
+annotation|@
+name|CheckForNull
 DECL|field|file
 specifier|private
-annotation|@
-name|Nullable
 name|File
 name|file
 decl_stmt|;
@@ -277,6 +287,8 @@ block|}
 comment|/** Returns the file holding the data (possibly null). */
 annotation|@
 name|VisibleForTesting
+annotation|@
+name|CheckForNull
 DECL|method|getFile ()
 specifier|synchronized
 name|File
@@ -326,7 +338,7 @@ literal|null
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|FileBackedOutputStream ( int fileThreshold, boolean resetOnFinalize, @Nullable File parentDirectory)
+DECL|method|FileBackedOutputStream ( int fileThreshold, boolean resetOnFinalize, @CheckForNull File parentDirectory)
 specifier|private
 name|FileBackedOutputStream
 parameter_list|(
@@ -337,7 +349,7 @@ name|boolean
 name|resetOnFinalize
 parameter_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|File
 name|parentDirectory
 parameter_list|)
@@ -491,6 +503,12 @@ return|;
 block|}
 else|else
 block|{
+comment|// requireNonNull is safe because we always have either `file` or `memory`.
+name|requireNonNull
+argument_list|(
+name|memory
+argument_list|)
+expr_stmt|;
 return|return
 operator|new
 name|ByteArrayInputStream
@@ -737,8 +755,8 @@ name|IOException
 block|{
 if|if
 condition|(
-name|file
-operator|==
+name|memory
+operator|!=
 literal|null
 operator|&&
 operator|(

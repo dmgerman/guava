@@ -78,17 +78,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|javax
 operator|.
-name|checkerframework
+name|annotation
 operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|compatqual
-operator|.
-name|NullableDecl
+name|CheckForNull
 import|;
 end_import
 
@@ -99,6 +93,8 @@ end_comment
 begin_class
 annotation|@
 name|GwtIncompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|MultiInputStream
 specifier|final
 class|class
@@ -118,7 +114,7 @@ name|it
 decl_stmt|;
 DECL|field|in
 annotation|@
-name|NullableDecl
+name|CheckForNull
 specifier|private
 name|InputStream
 name|in
@@ -306,13 +302,11 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|read (@ullableDecl byte[] b, int off, int len)
+DECL|method|read (byte[] b, int off, int len)
 specifier|public
 name|int
 name|read
 parameter_list|(
-annotation|@
-name|NullableDecl
 name|byte
 index|[]
 name|b
@@ -326,6 +320,11 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|checkNotNull
+argument_list|(
+name|b
+argument_list|)
+expr_stmt|;
 while|while
 condition|(
 name|in

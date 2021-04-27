@@ -168,6 +168,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|checkerframework
@@ -176,9 +186,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -195,6 +205,8 @@ annotation|@
 name|Beta
 annotation|@
 name|GwtIncompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|Closer
 specifier|public
 specifier|final
@@ -210,20 +222,30 @@ specifier|static
 specifier|final
 name|Suppressor
 name|SUPPRESSOR
+decl_stmt|;
+static|static
+block|{
+name|SuppressingSuppressor
+name|suppressingSuppressor
 init|=
 name|SuppressingSuppressor
 operator|.
-name|isAvailable
+name|tryCreate
 argument_list|()
+decl_stmt|;
+name|SUPPRESSOR
+operator|=
+name|suppressingSuppressor
+operator|==
+literal|null
 condition|?
-name|SuppressingSuppressor
-operator|.
-name|INSTANCE
-else|:
 name|LoggingSuppressor
 operator|.
 name|INSTANCE
-decl_stmt|;
+else|:
+name|suppressingSuppressor
+expr_stmt|;
+block|}
 comment|/** Creates a new {@link Closer}. */
 DECL|method|create ()
 specifier|public
@@ -266,7 +288,7 @@ argument_list|)
 decl_stmt|;
 DECL|field|thrown
 annotation|@
-name|NullableDecl
+name|CheckForNull
 specifier|private
 name|Throwable
 name|thrown
@@ -295,21 +317,31 @@ comment|/**    * Registers the given {@code closeable} to be closed when this {@
 comment|// close. this word no longer has any meaning to me.
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|register (@ullableDecl C closeable)
+annotation|@
+name|ParametricNullness
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"nullness"
+argument_list|)
+comment|// TODO(cpovirk): Remove with change to @ParametricNullness.
+DECL|method|register ( @heckForNull C closeable)
 specifier|public
-parameter_list|<
+operator|<
 name|C
-extends|extends
+expr|extends @
+name|Nullable
 name|Closeable
-parameter_list|>
+operator|>
 name|C
 name|register
-parameter_list|(
+argument_list|(
+comment|/* TODO(cpovirk): change to @ParametricNullness */
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|C
 name|closeable
-parameter_list|)
+argument_list|)
 block|{
 if|if
 condition|(
@@ -330,7 +362,13 @@ return|return
 name|closeable
 return|;
 block|}
+end_class
+
+begin_comment
 comment|/**    * Stores the given throwable and rethrows it. It will be rethrown as is if it is an {@code    * IOException}, {@code RuntimeException} or {@code Error}. Otherwise, it will be rethrown wrapped    * in a {@code RuntimeException}.<b>Note:</b> Be sure to declare all of the checked exception    * types your try block can throw when calling an overload of this method so as to avoid losing    * the original exception type.    *    *<p>This method always throws, and as such should be called as {@code throw closer.rethrow(e);}    * to ensure the compiler knows that it will throw.    *    * @return this method does not return; it always throws    * @throws IOException when the given throwable is an IOException    */
+end_comment
+
+begin_function
 DECL|method|rethrow (Throwable e)
 specifier|public
 name|RuntimeException
@@ -370,7 +408,13 @@ name|e
 argument_list|)
 throw|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Stores the given throwable and rethrows it. It will be rethrown as is if it is an {@code    * IOException}, {@code RuntimeException}, {@code Error} or a checked exception of the given type.    * Otherwise, it will be rethrown wrapped in a {@code RuntimeException}.<b>Note:</b> Be sure to    * declare all of the checked exception types your try block can throw when calling an overload of    * this method so as to avoid losing the original exception type.    *    *<p>This method always throws, and as such should be called as {@code throw closer.rethrow(e,    * ...);} to ensure the compiler knows that it will throw.    *    * @return this method does not return; it always throws    * @throws IOException when the given throwable is an IOException    * @throws X when the given throwable is of the declared type X    */
+end_comment
+
+begin_function
 DECL|method|rethrow (Throwable e, Class<X> declaredType)
 specifier|public
 parameter_list|<
@@ -432,7 +476,13 @@ name|e
 argument_list|)
 throw|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Stores the given throwable and rethrows it. It will be rethrown as is if it is an {@code    * IOException}, {@code RuntimeException}, {@code Error} or a checked exception of either of the    * given types. Otherwise, it will be rethrown wrapped in a {@code RuntimeException}.<b>Note:</b>    * Be sure to declare all of the checked exception types your try block can throw when calling an    * overload of this method so as to avoid losing the original exception type.    *    *<p>This method always throws, and as such should be called as {@code throw closer.rethrow(e,    * ...);} to ensure the compiler knows that it will throw.    *    * @return this method does not return; it always throws    * @throws IOException when the given throwable is an IOException    * @throws X1 when the given throwable is of the declared type X1    * @throws X2 when the given throwable is of the declared type X2    */
+end_comment
+
+begin_function
 DECL|method|rethrow ( Throwable e, Class<X1> declaredType1, Class<X2> declaredType2)
 specifier|public
 parameter_list|<
@@ -508,7 +558,13 @@ name|e
 argument_list|)
 throw|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Closes all {@code Closeable} instances that have been added to this {@code Closer}. If an    * exception was thrown in the try block and passed to one of the {@code exceptionThrown} methods,    * any exceptions thrown when attempting to close a closeable will be suppressed. Otherwise, the    *<i>first</i> exception to be thrown from an attempt to close a closeable will be thrown and any    * additional exceptions that are thrown after that will be suppressed.    */
+end_comment
+
+begin_function
 annotation|@
 name|Override
 DECL|method|close ()
@@ -616,7 +672,13 @@ throw|;
 comment|// not possible
 block|}
 block|}
+end_function
+
+begin_comment
 comment|/** Suppression strategy interface. */
+end_comment
+
+begin_interface
 annotation|@
 name|VisibleForTesting
 DECL|interface|Suppressor
@@ -639,7 +701,13 @@ name|suppressed
 parameter_list|)
 function_decl|;
 block|}
+end_interface
+
+begin_comment
 comment|/** Suppresses exceptions by logging them. */
+end_comment
+
+begin_class
 annotation|@
 name|VisibleForTesting
 DECL|class|LoggingSuppressor
@@ -697,7 +765,13 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+end_class
+
+begin_comment
 comment|/**    * Suppresses exceptions by adding them to the exception that will be thrown using JDK7's    * addSuppressed(Throwable) mechanism.    */
+end_comment
+
+begin_class
 annotation|@
 name|VisibleForTesting
 DECL|class|SuppressingSuppressor
@@ -708,47 +782,21 @@ name|SuppressingSuppressor
 implements|implements
 name|Suppressor
 block|{
-DECL|field|INSTANCE
+annotation|@
+name|CheckForNull
+DECL|method|tryCreate ()
 specifier|static
-specifier|final
 name|SuppressingSuppressor
-name|INSTANCE
-init|=
-operator|new
-name|SuppressingSuppressor
-argument_list|()
-decl_stmt|;
-DECL|method|isAvailable ()
-specifier|static
-name|boolean
-name|isAvailable
+name|tryCreate
 parameter_list|()
 block|{
-return|return
-name|addSuppressed
-operator|!=
-literal|null
-return|;
-block|}
-DECL|field|addSuppressed
-specifier|static
-specifier|final
 name|Method
 name|addSuppressed
-init|=
-name|addSuppressedMethodOrNull
-argument_list|()
 decl_stmt|;
-DECL|method|addSuppressedMethodOrNull ()
-specifier|private
-specifier|static
-name|Method
-name|addSuppressedMethodOrNull
-parameter_list|()
-block|{
 try|try
 block|{
-return|return
+name|addSuppressed
+operator|=
 name|Throwable
 operator|.
 name|class
@@ -761,7 +809,7 @@ name|Throwable
 operator|.
 name|class
 argument_list|)
-return|;
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -773,6 +821,34 @@ return|return
 literal|null
 return|;
 block|}
+return|return
+operator|new
+name|SuppressingSuppressor
+argument_list|(
+name|addSuppressed
+argument_list|)
+return|;
+block|}
+DECL|field|addSuppressed
+specifier|private
+specifier|final
+name|Method
+name|addSuppressed
+decl_stmt|;
+DECL|method|SuppressingSuppressor (Method addSuppressed)
+specifier|private
+name|SuppressingSuppressor
+parameter_list|(
+name|Method
+name|addSuppressed
+parameter_list|)
+block|{
+name|this
+operator|.
+name|addSuppressed
+operator|=
+name|addSuppressed
+expr_stmt|;
 block|}
 annotation|@
 name|Override
@@ -836,8 +912,8 @@ expr_stmt|;
 block|}
 block|}
 block|}
-block|}
 end_class
 
+unit|}
 end_unit
 

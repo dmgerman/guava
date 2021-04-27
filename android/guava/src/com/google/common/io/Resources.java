@@ -194,6 +194,22 @@ name|List
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|checkerframework
+operator|.
+name|checker
+operator|.
+name|nullness
+operator|.
+name|qual
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/**  * Provides utility methods for working with resources in the classpath. Note that even though these  * methods use {@link URL} parameters, they are usually not appropriate for HTTP or other  * non-classpath resources.  *  *<p>All method parameters must be non-null unless documented otherwise.  *  * @author Chris Nokleberg  * @author Ben Yu  * @author Colin Decker  * @since 1.0  */
 end_comment
@@ -203,6 +219,8 @@ annotation|@
 name|Beta
 annotation|@
 name|GwtIncompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|Resources
 specifier|public
 specifier|final
@@ -383,27 +401,32 @@ comment|/**    * Streams lines from a URL, stopping when our callback returns fa
 annotation|@
 name|CanIgnoreReturnValue
 comment|// some processors won't return a useful result
-DECL|method|readLines (URL url, Charset charset, LineProcessor<T> callback)
+annotation|@
+name|ParametricNullness
+DECL|method|readLines ( URL url, Charset charset, LineProcessor<T> callback)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|T
 name|readLines
-parameter_list|(
+argument_list|(
 name|URL
 name|url
-parameter_list|,
+argument_list|,
 name|Charset
 name|charset
-parameter_list|,
+argument_list|,
 name|LineProcessor
 argument_list|<
 name|T
 argument_list|>
 name|callback
-parameter_list|)
+argument_list|)
 throws|throws
 name|IOException
 block|{
@@ -421,7 +444,13 @@ name|callback
 argument_list|)
 return|;
 block|}
+end_class
+
+begin_comment
 comment|/**    * Reads all of the lines from a URL. The lines do not include line-termination characters, but do    * include other leading and trailing whitespace.    *    *<p>This method returns a mutable {@code List}. For an {@code ImmutableList}, use {@code    * Resources.asCharSource(url, charset).readLines()}.    *    * @param url the URL to read from    * @param charset the charset used to decode the input stream; see {@link Charsets} for helpful    *     predefined constants    * @return a mutable {@link List} containing all the lines    * @throws IOException if an I/O error occurs    */
+end_comment
+
+begin_function
 DECL|method|readLines (URL url, Charset charset)
 specifier|public
 specifier|static
@@ -510,7 +539,13 @@ block|}
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Copies all bytes from a URL to an output stream.    *    * @param from the URL to read from    * @param to the output stream    * @throws IOException if an I/O error occurs    */
+end_comment
+
+begin_function
 DECL|method|copy (URL from, OutputStream to)
 specifier|public
 specifier|static
@@ -537,7 +572,13 @@ name|to
 argument_list|)
 expr_stmt|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Returns a {@code URL} pointing to {@code resourceName} if the resource is found using the    * {@linkplain Thread#getContextClassLoader() context class loader}. In simple environments, the    * context class loader will find resources from the class path. In environments where different    * threads can have different class loaders, for example app servers, the context class loader    * will typically have been set to an appropriate loader for the current thread.    *    *<p>In the unusual case where the context class loader is null, the class loader that loaded    * this class ({@code Resources}) will be used instead.    *    * @throws IllegalArgumentException if the resource is not found    */
+end_comment
+
+begin_function
 annotation|@
 name|CanIgnoreReturnValue
 comment|// being used to check if a resource exists
@@ -601,7 +642,13 @@ return|return
 name|url
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Given a {@code resourceName} that is relative to {@code contextClass}, returns a {@code URL}    * pointing to the named resource.    *    * @throws IllegalArgumentException if the resource is not found    */
+end_comment
+
+begin_function
 annotation|@
 name|CanIgnoreReturnValue
 comment|// being used to check if a resource exists
@@ -651,8 +698,8 @@ return|return
 name|url
 return|;
 block|}
-block|}
-end_class
+end_function
 
+unit|}
 end_unit
 

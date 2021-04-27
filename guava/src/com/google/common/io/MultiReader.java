@@ -17,6 +17,22 @@ package|;
 end_package
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Preconditions
+operator|.
+name|checkNotNull
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -76,17 +92,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|javax
 operator|.
-name|checkerframework
+name|annotation
 operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|qual
-operator|.
-name|Nullable
+name|CheckForNull
 import|;
 end_import
 
@@ -97,6 +107,8 @@ end_comment
 begin_class
 annotation|@
 name|GwtIncompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|MultiReader
 class|class
 name|MultiReader
@@ -115,9 +127,9 @@ argument_list|>
 name|it
 decl_stmt|;
 DECL|field|current
-specifier|private
 annotation|@
-name|Nullable
+name|CheckForNull
+specifier|private
 name|Reader
 name|current
 decl_stmt|;
@@ -179,32 +191,35 @@ block|}
 block|}
 annotation|@
 name|Override
-DECL|method|read (char @Nullable [] cbuf, int off, int len)
+DECL|method|read (char[] cbuf, int off, int len)
 specifier|public
 name|int
 name|read
-argument_list|(
+parameter_list|(
 name|char
-expr|@
-name|Nullable
 index|[]
 name|cbuf
-argument_list|,
+parameter_list|,
 name|int
 name|off
-argument_list|,
+parameter_list|,
 name|int
 name|len
-argument_list|)
+parameter_list|)
 throws|throws
 name|IOException
 block|{
-decl|if
+name|checkNotNull
 argument_list|(
+name|cbuf
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
 name|current
 operator|==
 literal|null
-argument_list|)
+condition|)
 block|{
 return|return
 operator|-
@@ -251,9 +266,6 @@ return|return
 name|result
 return|;
 block|}
-end_class
-
-begin_function
 annotation|@
 name|Override
 DECL|method|skip (long n)
@@ -322,9 +334,6 @@ return|return
 literal|0
 return|;
 block|}
-end_function
-
-begin_function
 annotation|@
 name|Override
 DECL|method|ready ()
@@ -348,9 +357,6 @@ name|ready
 argument_list|()
 return|;
 block|}
-end_function
-
-begin_function
 annotation|@
 name|Override
 DECL|method|close ()
@@ -385,8 +391,8 @@ expr_stmt|;
 block|}
 block|}
 block|}
-end_function
+block|}
+end_class
 
-unit|}
 end_unit
 

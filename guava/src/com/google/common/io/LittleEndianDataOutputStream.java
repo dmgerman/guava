@@ -131,6 +131,8 @@ annotation|@
 name|Beta
 annotation|@
 name|GwtIncompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|LittleEndianDataOutputStream
 specifier|public
 specifier|final

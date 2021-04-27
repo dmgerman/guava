@@ -88,17 +88,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|javax
 operator|.
-name|checkerframework
+name|annotation
 operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|compatqual
-operator|.
-name|NullableDecl
+name|CheckForNull
 import|;
 end_import
 
@@ -109,6 +103,8 @@ end_comment
 begin_class
 annotation|@
 name|GwtIncompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|AppendableWriter
 class|class
 name|AppendableWriter
@@ -381,13 +377,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|append (@ullableDecl CharSequence charSeq)
+DECL|method|append (@heckForNull CharSequence charSeq)
 specifier|public
 name|Writer
 name|append
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|CharSequence
 name|charSeq
 parameter_list|)
@@ -410,13 +406,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|append (@ullableDecl CharSequence charSeq, int start, int end)
+DECL|method|append (@heckForNull CharSequence charSeq, int start, int end)
 specifier|public
 name|Writer
 name|append
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|CharSequence
 name|charSeq
 parameter_list|,

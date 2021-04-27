@@ -78,17 +78,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|javax
 operator|.
-name|checkerframework
+name|annotation
 operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|qual
-operator|.
-name|Nullable
+name|CheckForNull
 import|;
 end_import
 
@@ -99,6 +93,8 @@ end_comment
 begin_class
 annotation|@
 name|GwtIncompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|MultiInputStream
 specifier|final
 class|class
@@ -117,9 +113,9 @@ argument_list|>
 name|it
 decl_stmt|;
 DECL|field|in
-specifier|private
 annotation|@
-name|Nullable
+name|CheckForNull
+specifier|private
 name|InputStream
 name|in
 decl_stmt|;
@@ -306,32 +302,35 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|read (byte @Nullable [] b, int off, int len)
+DECL|method|read (byte[] b, int off, int len)
 specifier|public
 name|int
 name|read
-argument_list|(
+parameter_list|(
 name|byte
-expr|@
-name|Nullable
 index|[]
 name|b
-argument_list|,
+parameter_list|,
 name|int
 name|off
-argument_list|,
+parameter_list|,
 name|int
 name|len
-argument_list|)
+parameter_list|)
 throws|throws
 name|IOException
 block|{
-decl|while
+name|checkNotNull
 argument_list|(
+name|b
+argument_list|)
+expr_stmt|;
+while|while
+condition|(
 name|in
 operator|!=
 literal|null
-argument_list|)
+condition|)
 block|{
 name|int
 name|result
@@ -368,9 +367,6 @@ operator|-
 literal|1
 return|;
 block|}
-end_class
-
-begin_function
 annotation|@
 name|Override
 DECL|method|skip (long n)
@@ -446,8 +442,8 @@ literal|1
 argument_list|)
 return|;
 block|}
-end_function
+block|}
+end_class
 
-unit|}
 end_unit
 

@@ -83,6 +83,8 @@ end_comment
 begin_class
 annotation|@
 name|GwtIncompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|CountingOutputStream
 specifier|public
 specifier|final

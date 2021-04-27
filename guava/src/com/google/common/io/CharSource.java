@@ -314,6 +314,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|checkerframework
@@ -335,6 +345,8 @@ end_comment
 begin_class
 annotation|@
 name|GwtIncompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|CharSource
 specifier|public
 specifier|abstract
@@ -849,10 +861,10 @@ expr_stmt|;
 block|}
 block|}
 comment|/**    * Reads the first line of this source as a string. Returns {@code null} if this source is empty.    *    *<p>Like {@link BufferedReader#readLine()}, this method considers a line to be a sequence of    * text that is terminated by (but does not include) one of {@code \r\n}, {@code \r} or {@code    * \n}. If the source's content does not end in a line termination sequence, it is treated as if    * it does.    *    * @throws IOException if an I/O error occurs while reading from this source    */
+annotation|@
+name|CheckForNull
 DECL|method|readFirstLine ()
 specifier|public
-annotation|@
-name|Nullable
 name|String
 name|readFirstLine
 parameter_list|()
@@ -1019,20 +1031,25 @@ name|Beta
 annotation|@
 name|CanIgnoreReturnValue
 comment|// some processors won't return a useful result
+annotation|@
+name|ParametricNullness
 DECL|method|readLines (LineProcessor<T> processor)
 specifier|public
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|T
 name|readLines
-parameter_list|(
+argument_list|(
 name|LineProcessor
 argument_list|<
 name|T
 argument_list|>
 name|processor
-parameter_list|)
+argument_list|)
 throws|throws
 name|IOException
 block|{
@@ -1097,7 +1114,13 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+end_class
+
+begin_comment
 comment|/**    * Reads all lines of text from this source, running the given {@code action} for each line as it    * is read.    *    *<p>Like {@link BufferedReader#readLine()}, this method considers a line to be a sequence of    * text that is terminated by (but does not include) one of {@code \r\n}, {@code \r} or {@code    * \n}. If the source's content does not end in a line termination sequence, it is treated as if    * it does.    *    * @throws IOException if an I/O error occurs while reading from this source or if {@code action}    *     throws an {@code UncheckedIOException}    * @since 22.0    */
+end_comment
+
+begin_function
 annotation|@
 name|Beta
 DECL|method|forEachLine (Consumer<? super String> action)
@@ -1151,7 +1174,13 @@ argument_list|()
 throw|;
 block|}
 block|}
+end_function
+
+begin_comment
 comment|/**    * Returns whether the source has zero chars. The default implementation first checks {@link    * #lengthIfKnown}, returning true if it's known to be zero and false if it's known to be    * non-zero. If the length is not known, it falls back to opening a stream and checking for EOF.    *    *<p>Note that, in cases where {@code lengthIfKnown} returns zero, it is<i>possible</i> that    * chars are actually available for reading. This means that a source may return {@code true} from    * {@code isEmpty()} despite having readable content.    *    * @throws IOException if an I/O error occurs    * @since 15.0    */
+end_comment
+
+begin_function
 DECL|method|isEmpty ()
 specifier|public
 name|boolean
@@ -1241,7 +1270,13 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+end_function
+
+begin_comment
 comment|/**    * Concatenates multiple {@link CharSource} instances into a single source. Streams returned from    * the source will contain the concatenated data from the streams of the underlying sources.    *    *<p>Only one underlying stream will be open at a time. Closing the concatenated stream will    * close the open underlying stream.    *    * @param sources the sources to concatenate    * @return a {@code CharSource} containing the concatenated data    * @since 15.0    */
+end_comment
+
+begin_function
 DECL|method|concat (Iterable<? extends CharSource> sources)
 specifier|public
 specifier|static
@@ -1265,7 +1300,13 @@ name|sources
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Concatenates multiple {@link CharSource} instances into a single source. Streams returned from    * the source will contain the concatenated data from the streams of the underlying sources.    *    *<p>Only one underlying stream will be open at a time. Closing the concatenated stream will    * close the open underlying stream.    *    *<p>Note: The input {@code Iterator} will be copied to an {@code ImmutableList} when this method    * is called. This will fail if the iterator is infinite and may cause problems if the iterator    * eagerly fetches data for each source when iterated (rather than producing sources that only    * load data through their streams). Prefer using the {@link #concat(Iterable)} overload if    * possible.    *    * @param sources the sources to concatenate    * @return a {@code CharSource} containing the concatenated data    * @throws NullPointerException if any of {@code sources} is {@code null}    * @since 15.0    */
+end_comment
+
+begin_function
 DECL|method|concat (Iterator<? extends CharSource> sources)
 specifier|public
 specifier|static
@@ -1293,7 +1334,13 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Concatenates multiple {@link CharSource} instances into a single source. Streams returned from    * the source will contain the concatenated data from the streams of the underlying sources.    *    *<p>Only one underlying stream will be open at a time. Closing the concatenated stream will    * close the open underlying stream.    *    * @param sources the sources to concatenate    * @return a {@code CharSource} containing the concatenated data    * @throws NullPointerException if any of {@code sources} is {@code null}    * @since 15.0    */
+end_comment
+
+begin_function
 DECL|method|concat (CharSource... sources)
 specifier|public
 specifier|static
@@ -1317,7 +1364,13 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Returns a view of the given character sequence as a {@link CharSource}. The behavior of the    * returned {@code CharSource} and any {@code Reader} instances created by it is unspecified if    * the {@code charSequence} is mutated while it is being read, so don't do that.    *    * @since 15.0 (since 14.0 as {@code CharStreams.asCharSource(String)})    */
+end_comment
+
+begin_function
 DECL|method|wrap (CharSequence charSequence)
 specifier|public
 specifier|static
@@ -1349,7 +1402,13 @@ name|charSequence
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Returns an immutable {@link CharSource} that contains no characters.    *    * @since 15.0    */
+end_comment
+
+begin_function
 DECL|method|empty ()
 specifier|public
 specifier|static
@@ -1363,7 +1422,13 @@ operator|.
 name|INSTANCE
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/** A byte source that reads chars from this source and encodes them as bytes using a charset. */
+end_comment
+
+begin_class
 DECL|class|AsByteSource
 specifier|private
 specifier|final
@@ -1483,6 +1548,9 @@ literal|")"
 return|;
 block|}
 block|}
+end_class
+
+begin_class
 DECL|class|CharSequenceCharSource
 specifier|private
 specifier|static
@@ -1726,6 +1794,8 @@ return|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|readFirstLine ()
 specifier|public
 name|String
@@ -1778,20 +1848,25 @@ return|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|ParametricNullness
 DECL|method|readLines (LineProcessor<T> processor)
 specifier|public
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|T
 name|readLines
-parameter_list|(
+argument_list|(
 name|LineProcessor
 argument_list|<
 name|T
 argument_list|>
 name|processor
-parameter_list|)
+argument_list|)
 throws|throws
 name|IOException
 block|{
@@ -1800,10 +1875,10 @@ argument_list|<
 name|String
 argument_list|>
 name|lines
-init|=
+operator|=
 name|linesIterator
 argument_list|()
-decl_stmt|;
+expr_stmt|;
 while|while
 condition|(
 name|lines
@@ -1836,6 +1911,9 @@ name|getResult
 argument_list|()
 return|;
 block|}
+end_class
+
+begin_function
 annotation|@
 name|Override
 DECL|method|toString ()
@@ -1861,10 +1939,16 @@ operator|+
 literal|")"
 return|;
 block|}
-block|}
+end_function
+
+begin_comment
+unit|}
 comment|/**    * Subclass specialized for string instances.    *    *<p>Since Strings are immutable and built into the jdk we can optimize some operations    *    *<ul>    *<li>use {@link StringReader} instead of {@link CharSequenceReader}. It is faster since it can    *       use {@link String#getChars(int, int, char[], int)} instead of copying characters one by    *       one with {@link CharSequence#charAt(int)}.    *<li>use {@link Appendable#append(CharSequence)} in {@link #copyTo(Appendable)} and {@link    *       #copyTo(CharSink)}. We know this is correct since strings are immutable and so the length    *       can't change, and it is faster because many writers and appendables are optimized for    *       appending string instances.    *</ul>    */
+end_comment
+
+begin_class
 DECL|class|StringCharSource
-specifier|private
+unit|private
 specifier|static
 class|class
 name|StringCharSource
@@ -2014,6 +2098,9 @@ expr_stmt|;
 block|}
 block|}
 block|}
+end_class
+
+begin_class
 DECL|class|EmptyCharSource
 specifier|private
 specifier|static
@@ -2058,6 +2145,9 @@ literal|"CharSource.empty()"
 return|;
 block|}
 block|}
+end_class
+
+begin_class
 DECL|class|ConcatenatedCharSource
 specifier|private
 specifier|static
@@ -2277,8 +2367,8 @@ literal|")"
 return|;
 block|}
 block|}
-block|}
 end_class
 
+unit|}
 end_unit
 

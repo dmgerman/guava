@@ -65,6 +65,18 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|java
+operator|.
+name|util
+operator|.
+name|Objects
+operator|.
+name|requireNonNull
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -108,6 +120,16 @@ name|CharBuffer
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
 begin_comment
 comment|/**  * A {@link Reader} that reads the characters in a {@link CharSequence}. Like {@code StringReader},  * but works with any {@link CharSequence}.  *  * @author Colin Decker  */
 end_comment
@@ -119,6 +141,8 @@ end_comment
 begin_class
 annotation|@
 name|GwtIncompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|CharSequenceReader
 specifier|final
 class|class
@@ -127,6 +151,8 @@ extends|extends
 name|Reader
 block|{
 DECL|field|seq
+annotation|@
+name|CheckForNull
 specifier|private
 name|CharSequence
 name|seq
@@ -203,6 +229,12 @@ name|int
 name|remaining
 parameter_list|()
 block|{
+name|requireNonNull
+argument_list|(
+name|seq
+argument_list|)
+expr_stmt|;
+comment|// safe as long as we call this only after checkOpen
 return|return
 name|seq
 operator|.
@@ -212,6 +244,7 @@ operator|-
 name|pos
 return|;
 block|}
+comment|/*    * To avoid the need to call requireNonNull so much, we could consider more clever approaches,    * such as:    *    * - Make checkOpen return the non-null `seq`. Then callers can assign that to a local variable or    *   even back to `this.seq`. However, that may suggest that we're defending against concurrent    *   mutation, which is not an actual risk because we use `synchronized`.    * - Make `remaining` require a non-null `seq` argument. But this is a bit weird because the    *   method, while it would avoid the instance field `seq` would still access the instance field    *   `pos`.    */
 annotation|@
 name|Override
 DECL|method|read (CharBuffer target)
@@ -234,6 +267,12 @@ expr_stmt|;
 name|checkOpen
 argument_list|()
 expr_stmt|;
+name|requireNonNull
+argument_list|(
+name|seq
+argument_list|)
+expr_stmt|;
+comment|// safe because of checkOpen
 if|if
 condition|(
 operator|!
@@ -309,6 +348,12 @@ block|{
 name|checkOpen
 argument_list|()
 expr_stmt|;
+name|requireNonNull
+argument_list|(
+name|seq
+argument_list|)
+expr_stmt|;
+comment|// safe because of checkOpen
 return|return
 name|hasRemaining
 argument_list|()
@@ -362,6 +407,12 @@ expr_stmt|;
 name|checkOpen
 argument_list|()
 expr_stmt|;
+name|requireNonNull
+argument_list|(
+name|seq
+argument_list|)
+expr_stmt|;
+comment|// safe because of checkOpen
 if|if
 condition|(
 operator|!

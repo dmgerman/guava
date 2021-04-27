@@ -172,6 +172,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|checkerframework
@@ -193,6 +203,8 @@ end_comment
 begin_class
 annotation|@
 name|GwtIncompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|CharStreams
 specifier|public
 specifier|final
@@ -680,24 +692,29 @@ name|Beta
 annotation|@
 name|CanIgnoreReturnValue
 comment|// some processors won't return a useful result
-DECL|method|readLines (Readable readable, LineProcessor<T> processor)
+annotation|@
+name|ParametricNullness
+DECL|method|readLines ( Readable readable, LineProcessor<T> processor)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|T
 name|readLines
-parameter_list|(
+argument_list|(
 name|Readable
 name|readable
-parameter_list|,
+argument_list|,
 name|LineProcessor
 argument_list|<
 name|T
 argument_list|>
 name|processor
-parameter_list|)
+argument_list|)
 throws|throws
 name|IOException
 block|{
@@ -707,10 +724,10 @@ name|readable
 argument_list|)
 expr_stmt|;
 name|checkNotNull
-argument_list|(
+parameter_list|(
 name|processor
-argument_list|)
-expr_stmt|;
+parameter_list|)
+constructor_decl|;
 name|LineReader
 name|lineReader
 init|=
@@ -758,7 +775,13 @@ name|getResult
 argument_list|()
 return|;
 block|}
+end_class
+
+begin_comment
 comment|/**    * Reads and discards data from the given {@code Readable} until the end of the stream is reached.    * Returns the total number of chars read. Does not close the stream.    *    * @since 20.0    */
+end_comment
+
+begin_function
 annotation|@
 name|Beta
 annotation|@
@@ -822,7 +845,13 @@ return|return
 name|total
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Discards {@code n} characters of data from the reader. This method will block until the full    * amount has been skipped. Does not close the reader.    *    * @param reader the reader to read from    * @param n the number of characters to skip    * @throws EOFException if this stream reaches the end before skipping all the characters    * @throws IOException if an I/O error occurs    */
+end_comment
+
+begin_function
 annotation|@
 name|Beta
 DECL|method|skipFully (Reader reader, long n)
@@ -881,7 +910,13 @@ name|amt
 expr_stmt|;
 block|}
 block|}
+end_function
+
+begin_comment
 comment|/**    * Returns a {@link Writer} that simply discards written chars.    *    * @since 15.0    */
+end_comment
+
+begin_function
 annotation|@
 name|Beta
 DECL|method|nullWriter ()
@@ -897,6 +932,9 @@ operator|.
 name|INSTANCE
 return|;
 block|}
+end_function
+
+begin_class
 DECL|class|NullWriter
 specifier|private
 specifier|static
@@ -1029,13 +1067,13 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|append (@ullable CharSequence csq)
+DECL|method|append (@heckForNull CharSequence csq)
 specifier|public
 name|Writer
 name|append
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|CharSequence
 name|csq
 parameter_list|)
@@ -1046,13 +1084,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|append (@ullable CharSequence csq, int start, int end)
+DECL|method|append (@heckForNull CharSequence csq, int start, int end)
 specifier|public
 name|Writer
 name|append
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|CharSequence
 name|csq
 parameter_list|,
@@ -1132,7 +1170,13 @@ literal|"CharStreams.nullWriter()"
 return|;
 block|}
 block|}
+end_class
+
+begin_comment
 comment|/**    * Returns a Writer that sends all output to the given {@link Appendable} target. Closing the    * writer will close the target if it is {@link Closeable}, and flushing the writer will flush the    * target if it is {@link java.io.Flushable}.    *    * @param target the object to which output will be sent    * @return a new Writer object, unless target is a Writer, in which case the target is returned    */
+end_comment
+
+begin_function
 annotation|@
 name|Beta
 DECL|method|asWriter (Appendable target)
@@ -1167,8 +1211,8 @@ name|target
 argument_list|)
 return|;
 block|}
-block|}
-end_class
+end_function
 
+unit|}
 end_unit
 

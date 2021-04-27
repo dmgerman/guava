@@ -484,17 +484,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|javax
 operator|.
-name|checkerframework
+name|annotation
 operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|qual
-operator|.
-name|Nullable
+name|CheckForNull
 import|;
 end_import
 
@@ -510,6 +504,8 @@ name|GwtIncompatible
 annotation|@
 name|J2ObjCIncompatible
 comment|// java.nio.file
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|MoreFiles
 specifier|public
 specifier|final
@@ -2281,11 +2277,11 @@ expr_stmt|;
 block|}
 block|}
 comment|/**    * Secure recursive delete using {@code SecureDirectoryStream}. Returns a collection of exceptions    * that occurred or null if no exceptions were thrown.    */
+annotation|@
+name|CheckForNull
 DECL|method|deleteRecursivelySecure ( SecureDirectoryStream<Path> dir, Path path)
 specifier|private
 specifier|static
-annotation|@
-name|Nullable
 name|Collection
 argument_list|<
 name|IOException
@@ -2399,11 +2395,11 @@ return|;
 block|}
 block|}
 comment|/**    * Secure method for deleting the contents of a directory using {@code SecureDirectoryStream}.    * Returns a collection of exceptions that occurred or null if no exceptions were thrown.    */
+annotation|@
+name|CheckForNull
 DECL|method|deleteDirectoryContentsSecure ( SecureDirectoryStream<Path> dir)
 specifier|private
 specifier|static
-annotation|@
-name|Nullable
 name|Collection
 argument_list|<
 name|IOException
@@ -2477,11 +2473,11 @@ return|;
 block|}
 block|}
 comment|/**    * Insecure recursive delete for file systems that don't support {@code SecureDirectoryStream}.    * Returns a collection of exceptions that occurred or null if no exceptions were thrown.    */
+annotation|@
+name|CheckForNull
 DECL|method|deleteRecursivelyInsecure (Path path)
 specifier|private
 specifier|static
-annotation|@
-name|Nullable
 name|Collection
 argument_list|<
 name|IOException
@@ -2577,11 +2573,11 @@ return|;
 block|}
 block|}
 comment|/**    * Simple, insecure method for deleting the contents of a directory for file systems that don't    * support {@code SecureDirectoryStream}. Returns a collection of exceptions that occurred or null    * if no exceptions were thrown.    */
+annotation|@
+name|CheckForNull
 DECL|method|deleteDirectoryContentsInsecure ( DirectoryStream<Path> dir)
 specifier|private
 specifier|static
-annotation|@
-name|Nullable
 name|Collection
 argument_list|<
 name|IOException
@@ -2650,11 +2646,11 @@ return|;
 block|}
 block|}
 comment|/**    * Returns a path to the parent directory of the given path. If the path actually has a parent    * path, this is simple. Otherwise, we need to do some trickier things. Returns null if the path    * is a root or is the empty path.    */
+annotation|@
+name|CheckForNull
 DECL|method|getParentPath (Path path)
 specifier|private
 specifier|static
-annotation|@
-name|Nullable
 name|Path
 name|getParentPath
 parameter_list|(
@@ -2777,7 +2773,7 @@ throw|;
 block|}
 block|}
 comment|/**    * Adds the given exception to the given collection, creating the collection if it's null. Returns    * the collection.    */
-DECL|method|addException ( @ullable Collection<IOException> exceptions, IOException e)
+DECL|method|addException ( @heckForNull Collection<IOException> exceptions, IOException e)
 specifier|private
 specifier|static
 name|Collection
@@ -2787,7 +2783,7 @@ argument_list|>
 name|addException
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Collection
 argument_list|<
 name|IOException
@@ -2826,11 +2822,11 @@ name|exceptions
 return|;
 block|}
 comment|/**    * Concatenates the contents of the two given collections of exceptions. If either collection is    * null, the other collection is returned. Otherwise, the elements of {@code other} are added to    * {@code exceptions} and {@code exceptions} is returned.    */
-DECL|method|concat ( @ullable Collection<IOException> exceptions, @Nullable Collection<IOException> other)
+annotation|@
+name|CheckForNull
+DECL|method|concat ( @heckForNull Collection<IOException> exceptions, @CheckForNull Collection<IOException> other)
 specifier|private
 specifier|static
-annotation|@
-name|Nullable
 name|Collection
 argument_list|<
 name|IOException
@@ -2838,7 +2834,7 @@ argument_list|>
 name|concat
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Collection
 argument_list|<
 name|IOException
@@ -2846,7 +2842,7 @@ argument_list|>
 name|exceptions
 parameter_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Collection
 argument_list|<
 name|IOException
@@ -2964,11 +2960,11 @@ throw|throw
 name|deleteFailed
 throw|;
 block|}
-DECL|method|pathNotFound ( Path path, Collection<IOException> exceptions)
+annotation|@
+name|CheckForNull
+DECL|method|pathNotFound (Path path, Collection<IOException> exceptions)
 specifier|private
 specifier|static
-annotation|@
-name|Nullable
 name|NoSuchFileException
 name|pathNotFound
 parameter_list|(
@@ -3061,7 +3057,7 @@ operator|==
 literal|null
 condition|)
 block|{
-comment|/*        * This is probably impossible:        *        * - In deleteRecursively, we require the path argument to have a parent.        *        * - In deleteDirectoryContents, the path argument may have no parent. Fortunately, all the        *   *other* paths we process will be descendants of that. That leaves only the original path        *   argument for us to consider. And the only place we call pathNotFound is from        *   throwDeleteFailed, and the other place that we call throwDeleteFailed inside        *   deleteDirectoryContents is when an exception is thrown during the recusive steps. Any        *   failure during the initial lookup of the path argument itself is rethrown directly. So        *   any exception that we're seeing here is from a descendant, which naturally has a parent.        *   I think.        *        * Still, if this can happen somehow (a weird filesystem implementation that lets callers        * change its working directly concurrently with a call to deleteDirectoryContents?), it makes        * more sense for us to fall back to a generic FileSystemException (by returning null here)        * than to dereference parentPath and end up producing NullPointerException.        */
+comment|/*        * This is probably impossible:        *        * - In deleteRecursively, we require the path argument to have a parent.        *        * - In deleteDirectoryContents, the path argument may have no parent. Fortunately, all the        *   *other* paths we process will be descendants of that. That leaves only the original path        *   argument for us to consider. And the only place we call pathNotFound is from        *   throwDeleteFailed, and the other place that we call throwDeleteFailed inside        *   deleteDirectoryContents is when an exception is thrown during the recursive steps. Any        *   failure during the initial lookup of the path argument itself is rethrown directly. So        *   any exception that we're seeing here is from a descendant, which naturally has a parent.        *   I think.        *        * Still, if this can happen somehow (a weird filesystem implementation that lets callers        * change its working directly concurrently with a call to deleteDirectoryContents?), it makes        * more sense for us to fall back to a generic FileSystemException (by returning null here)        * than to dereference parentPath and end up producing NullPointerException.        */
 return|return
 literal|null
 return|;

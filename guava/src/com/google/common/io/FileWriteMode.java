@@ -37,6 +37,8 @@ end_comment
 begin_enum
 annotation|@
 name|GwtIncompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|enum|FileWriteMode
 specifier|public
 enum|enum

@@ -470,6 +470,32 @@ name|List
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|checkerframework
+operator|.
+name|checker
+operator|.
+name|nullness
+operator|.
+name|qual
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/**  * Provides utility methods for working with {@linkplain File files}.  *  *<p>{@link java.nio.file.Path} users will find similar utilities in {@link MoreFiles} and the  * JDK's {@link java.nio.file.Files} class.  *  * @author Chris Nokleberg  * @author Colin Decker  * @since 1.0  */
 end_comment
@@ -477,6 +503,8 @@ end_comment
 begin_class
 annotation|@
 name|GwtIncompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|Files
 specifier|public
 specifier|final
@@ -1729,6 +1757,8 @@ annotation|@
 name|Beta
 annotation|@
 name|Deprecated
+annotation|@
+name|CheckForNull
 specifier|public
 DECL|method|readFirstLine (File file, Charset charset)
 specifier|static
@@ -1858,27 +1888,32 @@ name|Deprecated
 annotation|@
 name|CanIgnoreReturnValue
 comment|// some processors won't return a useful result
+annotation|@
+name|ParametricNullness
 specifier|public
-DECL|method|readLines (File file, Charset charset, LineProcessor<T> callback)
+DECL|method|readLines ( File file, Charset charset, LineProcessor<T> callback)
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|T
 name|readLines
-parameter_list|(
+argument_list|(
 name|File
 name|file
-parameter_list|,
+argument_list|,
 name|Charset
 name|charset
-parameter_list|,
+argument_list|,
 name|LineProcessor
 argument_list|<
 name|T
 argument_list|>
 name|callback
-parameter_list|)
+argument_list|)
 throws|throws
 name|IOException
 block|{
@@ -1896,35 +1931,64 @@ name|callback
 argument_list|)
 return|;
 block|}
+end_class
+
+begin_comment
 comment|/**    * Process the bytes of a file.    *    *<p>(If this seems too complicated, maybe you're looking for {@link #toByteArray}.)    *    * @param file the file to read    * @param processor the object to which the bytes of the file are passed.    * @return the result of the byte processor    * @throws IOException if an I/O error occurs    * @deprecated Prefer {@code asByteSource(file).read(processor)}. This method is scheduled to be    *     removed in October 2019.    */
+end_comment
+
+begin_annotation
 annotation|@
 name|Beta
+end_annotation
+
+begin_annotation
 annotation|@
 name|Deprecated
+end_annotation
+
+begin_annotation
 annotation|@
 name|CanIgnoreReturnValue
+end_annotation
+
+begin_comment
 comment|// some processors won't return a useful result
+end_comment
+
+begin_annotation
+annotation|@
+name|ParametricNullness
+end_annotation
+
+begin_expr_stmt
 specifier|public
 DECL|method|readBytes (File file, ByteProcessor<T> processor)
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|T
 name|readBytes
-parameter_list|(
+argument_list|(
 name|File
 name|file
-parameter_list|,
+argument_list|,
 name|ByteProcessor
 argument_list|<
 name|T
 argument_list|>
 name|processor
-parameter_list|)
+argument_list|)
 throws|throws
 name|IOException
 block|{
+end_expr_stmt
+
+begin_return
 return|return
 name|asByteSource
 argument_list|(
@@ -1936,9 +2000,15 @@ argument_list|(
 name|processor
 argument_list|)
 return|;
-block|}
+end_return
+
+begin_comment
+unit|}
 comment|/**    * Computes the hash code of the {@code file} using {@code hashFunction}.    *    * @param file the file to read    * @param hashFunction the hash function to use to hash the data    * @return the {@link HashCode} of all of the bytes in the file    * @throws IOException if an I/O error occurs    * @since 12.0    * @deprecated Prefer {@code asByteSource(file).hash(hashFunction)}. This method is scheduled to    *     be removed in October 2019.    */
-annotation|@
+end_comment
+
+begin_function
+unit|@
 name|Beta
 annotation|@
 name|Deprecated
@@ -1969,7 +2039,13 @@ name|hashFunction
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Fully maps a file read-only in to memory as per {@link    * FileChannel#map(java.nio.channels.FileChannel.MapMode, long, long)}.    *    *<p>Files are mapped from offset 0 to its length.    *    *<p>This only works for files â¤ {@link Integer#MAX_VALUE} bytes.    *    * @param file the file to map    * @return a read-only buffer reflecting {@code file}    * @throws FileNotFoundException if the {@code file} does not exist    * @throws IOException if an I/O error occurs    * @see FileChannel#map(MapMode, long, long)    * @since 2.0    */
+end_comment
+
+begin_function
 annotation|@
 name|Beta
 DECL|method|map (File file)
@@ -2000,7 +2076,13 @@ name|READ_ONLY
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Fully maps a file in to memory as per {@link    * FileChannel#map(java.nio.channels.FileChannel.MapMode, long, long)} using the requested {@link    * MapMode}.    *    *<p>Files are mapped from offset 0 to its length.    *    *<p>This only works for files â¤ {@link Integer#MAX_VALUE} bytes.    *    * @param file the file to map    * @param mode the mode to use when mapping {@code file}    * @return a buffer reflecting {@code file}    * @throws FileNotFoundException if the {@code file} does not exist    * @throws IOException if an I/O error occurs    * @see FileChannel#map(MapMode, long, long)    * @since 2.0    */
+end_comment
+
+begin_function
 annotation|@
 name|Beta
 DECL|method|map (File file, MapMode mode)
@@ -2030,7 +2112,13 @@ literal|1
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Maps a file in to memory as per {@link FileChannel#map(java.nio.channels.FileChannel.MapMode,    * long, long)} using the requested {@link MapMode}.    *    *<p>Files are mapped from offset 0 to {@code size}.    *    *<p>If the mode is {@link MapMode#READ_WRITE} and the file does not exist, it will be created    * with the requested {@code size}. Thus this method is useful for creating memory mapped files    * which do not yet exist.    *    *<p>This only works for files â¤ {@link Integer#MAX_VALUE} bytes.    *    * @param file the file to map    * @param mode the mode to use when mapping {@code file}    * @return a buffer reflecting {@code file}    * @throws IOException if an I/O error occurs    * @see FileChannel#map(MapMode, long, long)    * @since 2.0    */
+end_comment
+
+begin_function
 annotation|@
 name|Beta
 DECL|method|map (File file, MapMode mode, long size)
@@ -2073,6 +2161,9 @@ name|size
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 DECL|method|mapInternal (File file, MapMode mode, long size)
 specifier|private
 specifier|static
@@ -2195,7 +2286,13 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+end_function
+
+begin_comment
 comment|/**    * Returns the lexically cleaned form of the path name,<i>usually</i> (but not always) equivalent    * to the original. The following heuristics are used:    *    *<ul>    *<li>empty string becomes .    *<li>. stays as .    *<li>fold out ./    *<li>fold out ../ when possible    *<li>collapse multiple slashes    *<li>delete trailing slashes (unless the path is just "/")    *</ul>    *    *<p>These heuristics do not always match the behavior of the filesystem. In particular, consider    * the path {@code a/../b}, which {@code simplifyPath} will change to {@code b}. If {@code a} is a    * symlink to {@code x}, {@code a/../b} may refer to a sibling of {@code x}, rather than the    * sibling of {@code a} referred to by {@code b}.    *    * @since 11.0    */
+end_comment
+
+begin_function
 annotation|@
 name|Beta
 DECL|method|simplifyPath (String pathname)
@@ -2434,7 +2531,13 @@ return|return
 name|result
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Returns the<a href="http://en.wikipedia.org/wiki/Filename_extension">file extension</a> for    * the given file name, or the empty string if the file has no extension. The result does not    * include the '{@code .}'.    *    *<p><b>Note:</b> This method simply returns everything after the last '{@code .}' in the file's    * name as determined by {@link File#getName}. It does not account for any filesystem-specific    * behavior that the {@link File} API does not already account for. For example, on NTFS it will    * report {@code "txt"} as the extension for the filename {@code "foo.exe:.txt"} even though NTFS    * will drop the {@code ":.txt"} part of the name when the file is actually created on the    * filesystem due to NTFS's<a href="https://goo.gl/vTpJi4">Alternate Data Streams</a>.    *    * @since 11.0    */
+end_comment
+
+begin_function
 annotation|@
 name|Beta
 DECL|method|getFileExtension (String fullName)
@@ -2494,7 +2597,13 @@ literal|1
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Returns the file name without its<a    * href="http://en.wikipedia.org/wiki/Filename_extension">file extension</a> or path. This is    * similar to the {@code basename} unix command. The result does not include the '{@code .}'.    *    * @param file The name of the file to trim the extension from. This can be either a fully    *     qualified file name (including a path) or just a file name.    * @return The file name without its path or extension.    * @since 14.0    */
+end_comment
+
+begin_function
 annotation|@
 name|Beta
 DECL|method|getNameWithoutExtension (String file)
@@ -2554,7 +2663,13 @@ name|dotIndex
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Returns a {@link Traverser} instance for the file and directory tree. The returned traverser    * starts from a {@link File} and will return all files and directories it encounters.    *    *<p><b>Warning:</b> {@code File} provides no support for symbolic links, and as such there is no    * way to ensure that a symbolic link to a directory is not followed when traversing the tree. In    * this case, iterables created by this traverser could contain files that are outside of the    * given directory or even be infinite if there is a symbolic link loop.    *    *<p>If available, consider using {@link MoreFiles#fileTraverser()} instead. It behaves the same    * except that it doesn't follow symbolic links and returns {@code Path} instances.    *    *<p>If the {@link File} passed to one of the {@link Traverser} methods does not exist or is not    * a directory, no exception will be thrown and the returned {@link Iterable} will contain a    * single element: that file.    *    *<p>Example: {@code Files.fileTraverser().depthFirstPreOrder(new File("/"))} may return files    * with the following paths: {@code ["/", "/etc", "/etc/config.txt", "/etc/fonts", "/home",    * "/home/alice", ...]}    *    * @since 23.5    */
+end_comment
+
+begin_function
 annotation|@
 name|Beta
 DECL|method|fileTraverser ()
@@ -2576,6 +2691,9 @@ name|FILE_TREE
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_decl_stmt
 DECL|field|FILE_TREE
 specifier|private
 specifier|static
@@ -2655,7 +2773,13 @@ return|;
 block|}
 block|}
 decl_stmt|;
+end_decl_stmt
+
+begin_comment
 comment|/**    * Returns a predicate that returns the result of {@link File#isDirectory} on input files.    *    * @since 15.0    */
+end_comment
+
+begin_function
 annotation|@
 name|Beta
 DECL|method|isDirectory ()
@@ -2674,7 +2798,13 @@ operator|.
 name|IS_DIRECTORY
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Returns a predicate that returns the result of {@link File#isFile} on input files.    *    * @since 15.0    */
+end_comment
+
+begin_function
 annotation|@
 name|Beta
 DECL|method|isFile ()
@@ -2693,6 +2823,9 @@ operator|.
 name|IS_FILE
 return|;
 block|}
+end_function
+
+begin_enum
 DECL|enum|FilePredicate
 specifier|private
 enum|enum
@@ -2769,8 +2902,8 @@ return|;
 block|}
 block|}
 block|}
-block|}
-end_class
+end_enum
 
+unit|}
 end_unit
 

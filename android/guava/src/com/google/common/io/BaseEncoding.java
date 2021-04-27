@@ -282,17 +282,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|javax
 operator|.
-name|checkerframework
+name|annotation
 operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|compatqual
-operator|.
-name|NullableDecl
+name|CheckForNull
 import|;
 end_import
 
@@ -308,6 +302,8 @@ name|emulated
 operator|=
 literal|true
 argument_list|)
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|BaseEncoding
 specifier|public
 specifier|abstract
@@ -1758,13 +1754,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|equals (@ullableDecl Object other)
+DECL|method|equals (@heckForNull Object other)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|other
 parameter_list|)
@@ -1836,12 +1832,12 @@ name|alphabet
 decl_stmt|;
 DECL|field|paddingChar
 annotation|@
-name|NullableDecl
+name|CheckForNull
 specifier|final
 name|Character
 name|paddingChar
 decl_stmt|;
-DECL|method|StandardBaseEncoding (String name, String alphabetChars, @NullableDecl Character paddingChar)
+DECL|method|StandardBaseEncoding (String name, String alphabetChars, @CheckForNull Character paddingChar)
 name|StandardBaseEncoding
 parameter_list|(
 name|String
@@ -1851,7 +1847,7 @@ name|String
 name|alphabetChars
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Character
 name|paddingChar
 parameter_list|)
@@ -1873,14 +1869,14 @@ name|paddingChar
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|StandardBaseEncoding (Alphabet alphabet, @NullableDecl Character paddingChar)
+DECL|method|StandardBaseEncoding (Alphabet alphabet, @CheckForNull Character paddingChar)
 name|StandardBaseEncoding
 parameter_list|(
 name|Alphabet
 name|alphabet
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Character
 name|paddingChar
 parameter_list|)
@@ -3384,7 +3380,7 @@ DECL|field|upperCase
 annotation|@
 name|LazyInit
 annotation|@
-name|NullableDecl
+name|CheckForNull
 specifier|private
 specifier|transient
 name|BaseEncoding
@@ -3394,7 +3390,7 @@ DECL|field|lowerCase
 annotation|@
 name|LazyInit
 annotation|@
-name|NullableDecl
+name|CheckForNull
 specifier|private
 specifier|transient
 name|BaseEncoding
@@ -3504,7 +3500,7 @@ return|return
 name|result
 return|;
 block|}
-DECL|method|newInstance (Alphabet alphabet, @NullableDecl Character paddingChar)
+DECL|method|newInstance (Alphabet alphabet, @CheckForNull Character paddingChar)
 name|BaseEncoding
 name|newInstance
 parameter_list|(
@@ -3512,7 +3508,7 @@ name|Alphabet
 name|alphabet
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Character
 name|paddingChar
 parameter_list|)
@@ -3610,13 +3606,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|equals (@ullableDecl Object other)
+DECL|method|equals (@heckForNull Object other)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|other
 parameter_list|)
@@ -4017,7 +4013,7 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|newInstance (Alphabet alphabet, @NullableDecl Character paddingChar)
+DECL|method|newInstance (Alphabet alphabet, @CheckForNull Character paddingChar)
 name|BaseEncoding
 name|newInstance
 parameter_list|(
@@ -4025,7 +4021,7 @@ name|Alphabet
 name|alphabet
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Character
 name|paddingChar
 parameter_list|)
@@ -4047,7 +4043,7 @@ name|Base64Encoding
 extends|extends
 name|StandardBaseEncoding
 block|{
-DECL|method|Base64Encoding (String name, String alphabetChars, @NullableDecl Character paddingChar)
+DECL|method|Base64Encoding (String name, String alphabetChars, @CheckForNull Character paddingChar)
 name|Base64Encoding
 parameter_list|(
 name|String
@@ -4057,7 +4053,7 @@ name|String
 name|alphabetChars
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Character
 name|paddingChar
 parameter_list|)
@@ -4079,7 +4075,7 @@ name|paddingChar
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|Base64Encoding (Alphabet alphabet, @NullableDecl Character paddingChar)
+DECL|method|Base64Encoding (Alphabet alphabet, @CheckForNull Character paddingChar)
 specifier|private
 name|Base64Encoding
 parameter_list|(
@@ -4087,7 +4083,7 @@ name|Alphabet
 name|alphabet
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Character
 name|paddingChar
 parameter_list|)
@@ -4519,7 +4515,7 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|newInstance (Alphabet alphabet, @NullableDecl Character paddingChar)
+DECL|method|newInstance (Alphabet alphabet, @CheckForNull Character paddingChar)
 name|BaseEncoding
 name|newInstance
 parameter_list|(
@@ -4527,7 +4523,7 @@ name|Alphabet
 name|alphabet
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Character
 name|paddingChar
 parameter_list|)
@@ -4760,7 +4756,7 @@ name|Appendable
 name|append
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|CharSequence
 name|chars
 parameter_list|,
@@ -4770,8 +4766,6 @@ parameter_list|,
 name|int
 name|len
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 throw|throw
 operator|new
@@ -4786,12 +4780,10 @@ name|Appendable
 name|append
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|CharSequence
 name|chars
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 throw|throw
 operator|new

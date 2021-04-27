@@ -82,6 +82,8 @@ name|GwtIncompatible
 annotation|@
 name|J2ObjCIncompatible
 comment|// java.nio.file
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|enum|RecursiveDeleteOption
 specifier|public
 enum|enum

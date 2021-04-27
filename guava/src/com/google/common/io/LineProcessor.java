@@ -68,45 +68,76 @@ name|IOException
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|checkerframework
+operator|.
+name|checker
+operator|.
+name|nullness
+operator|.
+name|qual
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/**  * A callback to be used with the streaming {@code readLines} methods.  *  *<p>{@link #processLine} will be called for each line that is read, and should return {@code  * false} when you want to stop processing.  *  * @author Miles Barr  * @since 1.0  */
 end_comment
 
-begin_interface
+begin_annotation
 annotation|@
 name|Beta
+end_annotation
+
+begin_annotation
 annotation|@
 name|GwtIncompatible
+end_annotation
+
+begin_annotation
+annotation|@
+name|ElementTypesAreNonnullByDefault
+end_annotation
+
+begin_expr_stmt
 DECL|interface|LineProcessor
 specifier|public
-interface|interface
+expr|interface
 name|LineProcessor
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 block|{
 comment|/**    * This method will be called once for each line.    *    * @param line the line read from the input, without delimiter    * @return true to continue processing, false to stop    */
-annotation|@
+block|@
 name|CanIgnoreReturnValue
 comment|// some uses know that their processor never returns false
 DECL|method|processLine (String line)
 name|boolean
 name|processLine
-parameter_list|(
+argument_list|(
 name|String
 name|line
-parameter_list|)
+argument_list|)
 throws|throws
 name|IOException
-function_decl|;
+block|;
 comment|/** Return the result of processing all the lines. */
+block|@
+name|ParametricNullness
 DECL|method|getResult ()
 name|T
 name|getResult
-parameter_list|()
-function_decl|;
-block|}
-end_interface
+argument_list|()
+block|; }
+end_expr_stmt
 
 end_unit
 

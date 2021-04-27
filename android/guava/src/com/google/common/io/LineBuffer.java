@@ -61,6 +61,8 @@ end_comment
 begin_class
 annotation|@
 name|GwtIncompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|LineBuffer
 specifier|abstract
 class|class

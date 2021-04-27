@@ -57,6 +57,8 @@ end_comment
 begin_interface
 annotation|@
 name|GwtIncompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|interface|ByteArrayDataOutput
 specifier|public
 interface|interface

@@ -82,57 +82,91 @@ name|IOException
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|checkerframework
+operator|.
+name|checker
+operator|.
+name|nullness
+operator|.
+name|qual
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/**  * A callback interface to process bytes from a stream.  *  *<p>{@link #processBytes} will be called for each chunk of data that is read, and should return  * {@code false} when you want to stop processing.  *  * @author Chris Nokleberg  * @since 1.0  */
 end_comment
 
-begin_interface
+begin_annotation
 annotation|@
 name|Beta
+end_annotation
+
+begin_annotation
 annotation|@
 name|DoNotMock
 argument_list|(
 literal|"Implement it normally"
 argument_list|)
+end_annotation
+
+begin_annotation
 annotation|@
 name|GwtIncompatible
+end_annotation
+
+begin_annotation
+annotation|@
+name|ElementTypesAreNonnullByDefault
+end_annotation
+
+begin_expr_stmt
 DECL|interface|ByteProcessor
 specifier|public
-interface|interface
+expr|interface
 name|ByteProcessor
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 block|{
 comment|/**    * This method will be called for each chunk of bytes in an input stream. The implementation    * should process the bytes from {@code buf[off]} through {@code buf[off + len - 1]} (inclusive).    *    * @param buf the byte array containing the data to process    * @param off the initial offset into the array    * @param len the length of data to be processed    * @return true to continue processing, false to stop    */
-annotation|@
+block|@
 name|CanIgnoreReturnValue
 comment|// some uses know that their processor never returns false
 DECL|method|processBytes (byte[] buf, int off, int len)
 name|boolean
 name|processBytes
-parameter_list|(
+argument_list|(
 name|byte
 index|[]
 name|buf
-parameter_list|,
+argument_list|,
 name|int
 name|off
-parameter_list|,
+argument_list|,
 name|int
 name|len
-parameter_list|)
+argument_list|)
 throws|throws
 name|IOException
-function_decl|;
+block|;
 comment|/** Return the result of processing all the bytes. */
+block|@
+name|ParametricNullness
 DECL|method|getResult ()
 name|T
 name|getResult
-parameter_list|()
-function_decl|;
-block|}
-end_interface
+argument_list|()
+block|; }
+end_expr_stmt
 
 end_unit
 

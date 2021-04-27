@@ -142,17 +142,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|javax
 operator|.
-name|checkerframework
+name|annotation
 operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|qual
-operator|.
-name|Nullable
+name|CheckForNull
 import|;
 end_import
 
@@ -165,6 +159,8 @@ annotation|@
 name|Beta
 annotation|@
 name|GwtIncompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|LineReader
 specifier|public
 specifier|final
@@ -178,10 +174,10 @@ name|Readable
 name|readable
 decl_stmt|;
 DECL|field|reader
+annotation|@
+name|CheckForNull
 specifier|private
 specifier|final
-annotation|@
-name|Nullable
 name|Reader
 name|reader
 decl_stmt|;
@@ -293,6 +289,13 @@ comment|/**    * Reads a line of text. A line is considered to be terminated by 
 annotation|@
 name|CanIgnoreReturnValue
 comment|// to skip a line
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"nullness"
+argument_list|)
+comment|// TODO(cpovirk): Remove with change to @CheckForNull.
+comment|// TODO(cpovirk): @CheckForNull
 DECL|method|readLine ()
 specifier|public
 name|String

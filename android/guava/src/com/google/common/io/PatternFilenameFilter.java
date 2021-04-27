@@ -104,17 +104,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|javax
 operator|.
-name|checkerframework
+name|annotation
 operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|compatqual
-operator|.
-name|NullableDecl
+name|CheckForNull
 import|;
 end_import
 
@@ -127,6 +121,8 @@ annotation|@
 name|Beta
 annotation|@
 name|GwtIncompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|PatternFilenameFilter
 specifier|public
 specifier|final
@@ -182,15 +178,23 @@ name|pattern
 argument_list|)
 expr_stmt|;
 block|}
+comment|/*    * Our implementation works fine with a null `dir`. However, there's nothing in the documentation    * of the supertype that suggests that implementations are expected to tolerate null. That said, I    * see calls in Google code that pass a null `dir` to a FilenameFilter.... So let's declare the    * parameter as non-nullable (since passing null to a FilenameFilter is unsafe in general), but if    * someone still manages to pass null, let's continue to have the method work.    *    * (OK, I haven't done that yet, but I will when I follow through on the TODO below after updating    * callers.)    *    * (PatternFilenameFilter is of course one of those classes that shouldn't be a publicly visible    * class to begin with but rather something returned from a static factory method whose declared    * return type is plain FilenameFilter. If we made such a change, then the annotation we choose    * here would have no significance to end users, who would be forced to conform to the signature    * used in FilenameFilter.)    */
 annotation|@
 name|Override
-DECL|method|accept (@ullableDecl File dir, String fileName)
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"nullness"
+argument_list|)
+comment|// TODO(cpovirk): Remove with removal of @CheckForNull.
+DECL|method|accept ( @heckForNull File dir, String fileName)
 specifier|public
 name|boolean
 name|accept
 parameter_list|(
+comment|/* TODO(cpovirk): remove */
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|File
 name|dir
 parameter_list|,
