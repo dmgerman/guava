@@ -228,17 +228,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|javax
 operator|.
-name|checkerframework
+name|annotation
 operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|compatqual
-operator|.
-name|NullableDecl
+name|CheckForNull
 import|;
 end_import
 
@@ -251,6 +245,8 @@ annotation|@
 name|Beta
 annotation|@
 name|GwtIncompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|InetAddresses
 specifier|public
 specifier|final
@@ -460,8 +456,8 @@ return|;
 block|}
 comment|/** Returns {@code null} if unable to parse into a {@code byte[]}. */
 annotation|@
-name|NullableDecl
-DECL|method|ipStringToBytes (String ipString)
+name|CheckForNull
+DECL|method|ipStringToBytes (String ipStringParam)
 specifier|private
 specifier|static
 name|byte
@@ -469,9 +465,14 @@ index|[]
 name|ipStringToBytes
 parameter_list|(
 name|String
-name|ipString
+name|ipStringParam
 parameter_list|)
 block|{
+name|String
+name|ipString
+init|=
+name|ipStringParam
+decl_stmt|;
 comment|// Make a first pass to categorize the characters in this string.
 name|boolean
 name|hasColon
@@ -677,7 +678,7 @@ literal|null
 return|;
 block|}
 annotation|@
-name|NullableDecl
+name|CheckForNull
 DECL|method|textToNumericFormatV4 (String ipString)
 specifier|private
 specifier|static
@@ -807,7 +808,7 @@ name|bytes
 return|;
 block|}
 annotation|@
-name|NullableDecl
+name|CheckForNull
 DECL|method|textToNumericFormatV6 (String ipString)
 specifier|private
 specifier|static
@@ -1209,7 +1210,7 @@ argument_list|()
 return|;
 block|}
 annotation|@
-name|NullableDecl
+name|CheckForNull
 DECL|method|convertDottedQuadToHex (String ipString)
 specifier|private
 specifier|static
@@ -2084,7 +2085,7 @@ name|addr
 return|;
 block|}
 annotation|@
-name|NullableDecl
+name|CheckForNull
 DECL|method|forUriStringNoThrow (String hostAddr)
 specifier|private
 specifier|static
@@ -2473,17 +2474,17 @@ name|flags
 decl_stmt|;
 comment|/**      * Constructs a TeredoInfo instance.      *      *<p>Both server and client can be {@code null}, in which case the value {@code "0.0.0.0"} will      * be assumed.      *      * @throws IllegalArgumentException if either of the {@code port} or the {@code flags} arguments      *     are out of range of an unsigned short      */
 comment|// TODO: why is this public?
-DECL|method|TeredoInfo ( @ullableDecl Inet4Address server, @NullableDecl Inet4Address client, int port, int flags)
+DECL|method|TeredoInfo ( @heckForNull Inet4Address server, @CheckForNull Inet4Address client, int port, int flags)
 specifier|public
 name|TeredoInfo
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Inet4Address
 name|server
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Inet4Address
 name|client
 parameter_list|,

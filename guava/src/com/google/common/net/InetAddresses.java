@@ -228,17 +228,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|javax
 operator|.
-name|checkerframework
+name|annotation
 operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|qual
-operator|.
-name|Nullable
+name|CheckForNull
 import|;
 end_import
 
@@ -251,6 +245,8 @@ annotation|@
 name|Beta
 annotation|@
 name|GwtIncompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|InetAddresses
 specifier|public
 specifier|final
@@ -459,19 +455,24 @@ literal|null
 return|;
 block|}
 comment|/** Returns {@code null} if unable to parse into a {@code byte[]}. */
-DECL|method|ipStringToBytes (String ipString)
+annotation|@
+name|CheckForNull
+DECL|method|ipStringToBytes (String ipStringParam)
 specifier|private
 specifier|static
 name|byte
-annotation|@
-name|Nullable
-type|[]
+index|[]
 name|ipStringToBytes
-function|(
+parameter_list|(
+name|String
+name|ipStringParam
+parameter_list|)
+block|{
 name|String
 name|ipString
-function|)
-block|{
+init|=
+name|ipStringParam
+decl_stmt|;
 comment|// Make a first pass to categorize the characters in this string.
 name|boolean
 name|hasColon
@@ -676,18 +677,18 @@ return|return
 literal|null
 return|;
 block|}
+annotation|@
+name|CheckForNull
 DECL|method|textToNumericFormatV4 (String ipString)
 specifier|private
 specifier|static
 name|byte
-annotation|@
-name|Nullable
-type|[]
+index|[]
 name|textToNumericFormatV4
-function|(
+parameter_list|(
 name|String
 name|ipString
-function|)
+parameter_list|)
 block|{
 if|if
 condition|(
@@ -806,18 +807,18 @@ return|return
 name|bytes
 return|;
 block|}
+annotation|@
+name|CheckForNull
 DECL|method|textToNumericFormatV6 (String ipString)
 specifier|private
 specifier|static
 name|byte
-annotation|@
-name|Nullable
-type|[]
+index|[]
 name|textToNumericFormatV6
-function|(
+parameter_list|(
 name|String
 name|ipString
-function|)
+parameter_list|)
 block|{
 comment|// An address can have [2..8] colons.
 name|int
@@ -1208,11 +1209,11 @@ name|array
 argument_list|()
 return|;
 block|}
+annotation|@
+name|CheckForNull
 DECL|method|convertDottedQuadToHex (String ipString)
 specifier|private
 specifier|static
-annotation|@
-name|Nullable
 name|String
 name|convertDottedQuadToHex
 parameter_list|(
@@ -2083,11 +2084,11 @@ return|return
 name|addr
 return|;
 block|}
+annotation|@
+name|CheckForNull
 DECL|method|forUriStringNoThrow (String hostAddr)
 specifier|private
 specifier|static
-annotation|@
-name|Nullable
 name|InetAddress
 name|forUriStringNoThrow
 parameter_list|(
@@ -2473,17 +2474,17 @@ name|flags
 decl_stmt|;
 comment|/**      * Constructs a TeredoInfo instance.      *      *<p>Both server and client can be {@code null}, in which case the value {@code "0.0.0.0"} will      * be assumed.      *      * @throws IllegalArgumentException if either of the {@code port} or the {@code flags} arguments      *     are out of range of an unsigned short      */
 comment|// TODO: why is this public?
-DECL|method|TeredoInfo ( @ullable Inet4Address server, @Nullable Inet4Address client, int port, int flags)
+DECL|method|TeredoInfo ( @heckForNull Inet4Address server, @CheckForNull Inet4Address client, int port, int flags)
 specifier|public
 name|TeredoInfo
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Inet4Address
 name|server
 parameter_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Inet4Address
 name|client
 parameter_list|,

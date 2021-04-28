@@ -51,6 +51,8 @@ end_comment
 begin_class
 annotation|@
 name|GwtCompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|HttpHeaders
 specifier|public
 specifier|final

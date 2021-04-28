@@ -74,6 +74,16 @@ name|UnicodeEscaper
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
 begin_comment
 comment|/**  * A {@code UnicodeEscaper} that escapes some set of Java characters using a UTF-8 based percent  * encoding scheme. The set of safe characters (those which remain unescaped) can be specified on  * construction.  *  *<p>This class is primarily used for creating URI escapers in {@link UrlEscapers} but can be used  * directly if required. While URI escapers impose specific semantics on which characters are  * considered 'safe', this class has a minimal set of restrictions.  *  *<p>When escaping a String, the following rules apply:  *  *<ul>  *<li>All specified safe characters remain unchanged.  *<li>If {@code plusForSpace} was specified, the space character " " is converted into a plus  *       sign {@code "+"}.  *<li>All other characters are converted into one or more bytes using UTF-8 encoding and each  *       byte is then represented by the 3-character string "%XX", where "XX" is the two-digit,  *       uppercase, hexadecimal representation of the byte value.  *</ul>  *  *<p>For performance reasons the only currently supported character encoding of this class is  * UTF-8.  *  *<p><b>Note:</b> This escaper produces<a  * href="https://url.spec.whatwg.org/#percent-encode">uppercase</a> hexadecimal sequences.  *  * @author David Beaumont  * @since 15.0  */
 end_comment
@@ -83,6 +93,8 @@ annotation|@
 name|Beta
 annotation|@
 name|GwtCompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|PercentEscaper
 specifier|public
 specifier|final
@@ -441,6 +453,8 @@ block|}
 comment|/** Escapes the given Unicode code point in UTF-8. */
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|escape (int cp)
 specifier|protected
 name|char

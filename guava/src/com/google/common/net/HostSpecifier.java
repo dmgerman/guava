@@ -80,17 +80,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|javax
 operator|.
-name|checkerframework
+name|annotation
 operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|qual
-operator|.
-name|Nullable
+name|CheckForNull
 import|;
 end_import
 
@@ -103,6 +97,8 @@ annotation|@
 name|Beta
 annotation|@
 name|GwtIncompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|HostSpecifier
 specifier|public
 specifier|final
@@ -356,13 +352,13 @@ block|}
 block|}
 annotation|@
 name|Override
-DECL|method|equals (@ullable Object other)
+DECL|method|equals (@heckForNull Object other)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|other
 parameter_list|)

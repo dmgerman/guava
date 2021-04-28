@@ -230,17 +230,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|javax
 operator|.
-name|checkerframework
+name|annotation
 operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|qual
-operator|.
-name|Nullable
+name|CheckForNull
 import|;
 end_import
 
@@ -260,6 +254,7 @@ literal|true
 argument_list|)
 annotation|@
 name|Immutable
+comment|// TODO(b/147136275): After adding @CheckForNull below, add @ElementTypesAreNonnullByDefault.
 DECL|class|InternetDomainName
 specifier|public
 specifier|final
@@ -1008,6 +1003,12 @@ name|NO_SUFFIX_FOUND
 return|;
 block|}
 comment|/**    * Returns the {@linkplain #isPublicSuffix() public suffix} portion of the domain name, or {@code    * null} if no public suffix is present.    *    * @since 6.0    */
+comment|// TODO(b/147136275): After updating callers, add @CheckForNull, and remove @SuppressWarnings.
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"nullness"
+argument_list|)
 DECL|method|publicSuffix ()
 specifier|public
 name|InternetDomainName
@@ -1115,6 +1116,12 @@ name|NO_SUFFIX_FOUND
 return|;
 block|}
 comment|/**    * Returns the {@linkplain #isRegistrySuffix() registry suffix} portion of the domain name, or    * {@code null} if no registry suffix is present.    *    * @since 23.3    */
+comment|// TODO(b/147136275): After updating callers, add @CheckForNull, and remove @SuppressWarnings.
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"nullness"
+argument_list|)
 DECL|method|registrySuffix ()
 specifier|public
 name|InternetDomainName
@@ -1447,13 +1454,13 @@ block|}
 comment|/**    * Equality testing is based on the text supplied by the caller, after normalization as described    * in the class documentation. For example, a non-ASCII Unicode domain name and the Punycode    * version of the same domain name would not be considered equal.    */
 annotation|@
 name|Override
-DECL|method|equals (@ullable Object object)
+DECL|method|equals (@heckForNull Object object)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|object
 parameter_list|)

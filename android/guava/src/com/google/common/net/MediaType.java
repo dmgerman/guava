@@ -438,17 +438,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|javax
 operator|.
-name|checkerframework
+name|annotation
 operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|compatqual
-operator|.
-name|NullableDecl
+name|CheckForNull
 import|;
 end_import
 
@@ -463,6 +457,8 @@ annotation|@
 name|GwtCompatible
 annotation|@
 name|Immutable
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|MediaType
 specifier|public
 specifier|final
@@ -2473,6 +2469,8 @@ decl_stmt|;
 DECL|field|toString
 annotation|@
 name|LazyInit
+annotation|@
+name|CheckForNull
 specifier|private
 name|String
 name|toString
@@ -2487,6 +2485,8 @@ decl_stmt|;
 DECL|field|parsedCharset
 annotation|@
 name|LazyInit
+annotation|@
+name|CheckForNull
 specifier|private
 name|Optional
 argument_list|<
@@ -4059,13 +4059,13 @@ block|}
 block|}
 annotation|@
 name|Override
-DECL|method|equals (@ullableDecl Object obj)
+DECL|method|equals (@heckForNull Object obj)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|obj
 parameter_list|)

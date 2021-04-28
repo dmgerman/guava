@@ -146,17 +146,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|javax
 operator|.
-name|checkerframework
+name|annotation
 operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|compatqual
-operator|.
-name|NullableDecl
+name|CheckForNull
 import|;
 end_import
 
@@ -171,6 +165,8 @@ annotation|@
 name|Immutable
 annotation|@
 name|GwtCompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|HostAndPort
 specifier|public
 specifier|final
@@ -638,16 +634,6 @@ name|String
 name|hostPortString
 parameter_list|)
 block|{
-name|int
-name|colonIndex
-init|=
-literal|0
-decl_stmt|;
-name|int
-name|closeBracketIndex
-init|=
-literal|0
-decl_stmt|;
 name|checkArgument
 argument_list|(
 name|hostPortString
@@ -664,24 +650,26 @@ argument_list|,
 name|hostPortString
 argument_list|)
 expr_stmt|;
+name|int
 name|colonIndex
-operator|=
+init|=
 name|hostPortString
 operator|.
 name|indexOf
 argument_list|(
 literal|':'
 argument_list|)
-expr_stmt|;
+decl_stmt|;
+name|int
 name|closeBracketIndex
-operator|=
+init|=
 name|hostPortString
 operator|.
 name|lastIndexOf
 argument_list|(
 literal|']'
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|checkArgument
 argument_list|(
 name|colonIndex
@@ -875,13 +863,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|equals (@ullableDecl Object other)
+DECL|method|equals (@heckForNull Object other)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|other
 parameter_list|)
