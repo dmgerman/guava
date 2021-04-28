@@ -64,22 +64,6 @@ name|RoundingMode
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|checkerframework
-operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|qual
-operator|.
-name|Nullable
-import|;
-end_import
-
 begin_comment
 comment|/**  * A collection of preconditions for math functions.  *  * @author Louis Wasserman  */
 end_comment
@@ -89,18 +73,18 @@ annotation|@
 name|GwtCompatible
 annotation|@
 name|CanIgnoreReturnValue
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|MathPreconditions
 specifier|final
 class|class
 name|MathPreconditions
 block|{
-DECL|method|checkPositive (@ullable String role, int x)
+DECL|method|checkPositive (String role, int x)
 specifier|static
 name|int
 name|checkPositive
 parameter_list|(
-annotation|@
-name|Nullable
 name|String
 name|role
 parameter_list|,
@@ -133,13 +117,11 @@ return|return
 name|x
 return|;
 block|}
-DECL|method|checkPositive (@ullable String role, long x)
+DECL|method|checkPositive (String role, long x)
 specifier|static
 name|long
 name|checkPositive
 parameter_list|(
-annotation|@
-name|Nullable
 name|String
 name|role
 parameter_list|,
@@ -172,13 +154,11 @@ return|return
 name|x
 return|;
 block|}
-DECL|method|checkPositive (@ullable String role, BigInteger x)
+DECL|method|checkPositive (String role, BigInteger x)
 specifier|static
 name|BigInteger
 name|checkPositive
 parameter_list|(
-annotation|@
-name|Nullable
 name|String
 name|role
 parameter_list|,
@@ -214,13 +194,11 @@ return|return
 name|x
 return|;
 block|}
-DECL|method|checkNonNegative (@ullable String role, int x)
+DECL|method|checkNonNegative (String role, int x)
 specifier|static
 name|int
 name|checkNonNegative
 parameter_list|(
-annotation|@
-name|Nullable
 name|String
 name|role
 parameter_list|,
@@ -253,13 +231,11 @@ return|return
 name|x
 return|;
 block|}
-DECL|method|checkNonNegative (@ullable String role, long x)
+DECL|method|checkNonNegative (String role, long x)
 specifier|static
 name|long
 name|checkNonNegative
 parameter_list|(
-annotation|@
-name|Nullable
 name|String
 name|role
 parameter_list|,
@@ -292,13 +268,11 @@ return|return
 name|x
 return|;
 block|}
-DECL|method|checkNonNegative (@ullable String role, BigInteger x)
+DECL|method|checkNonNegative (String role, BigInteger x)
 specifier|static
 name|BigInteger
 name|checkNonNegative
 parameter_list|(
-annotation|@
-name|Nullable
 name|String
 name|role
 parameter_list|,
@@ -334,13 +308,11 @@ return|return
 name|x
 return|;
 block|}
-DECL|method|checkNonNegative (@ullable String role, double x)
+DECL|method|checkNonNegative (String role, double x)
 specifier|static
 name|double
 name|checkNonNegative
 parameter_list|(
-annotation|@
-name|Nullable
 name|String
 name|role
 parameter_list|,

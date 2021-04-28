@@ -1139,6 +1139,14 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+DECL|method|testNulls ()
+specifier|public
+name|void
+name|testNulls
+parameter_list|()
+block|{
+comment|/*      * Don't bother testing. All non-primitive parameters are used only to construct error messages.      * We never want to pass null for them, so we haven't annotated them to say that null is      * allowed. But at the same time, it seems wasteful to bother inserting the checkNotNull calls      * that NullPointerTester wants.      *      * (This empty method disables the automatic null testing provided by PackageSanityTests.)      */
+block|}
 block|}
 end_class
 

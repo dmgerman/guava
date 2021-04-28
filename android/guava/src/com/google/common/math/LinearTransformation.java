@@ -104,6 +104,16 @@ name|LazyInit
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
 begin_comment
 comment|/**  * The representation of a linear transformation between real numbers {@code x} and {@code y}.  * Graphically, this is the specification of a straight line on a plane. The transformation can be  * expressed as {@code y = m * x + c} for finite {@code m} and {@code c}, unless it is a vertical  * transformation in which case {@code x} has a constant value for all {@code y}. In the  * non-vertical case, {@code m} is the slope of the transformation (and a horizontal transformation  * has zero slope).  *  * @author Pete Gillin  * @since 20.0  */
 end_comment
@@ -113,6 +123,8 @@ annotation|@
 name|Beta
 annotation|@
 name|GwtIncompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|LinearTransformation
 specifier|public
 specifier|abstract
@@ -467,6 +479,8 @@ name|yIntercept
 decl_stmt|;
 DECL|field|inverse
 annotation|@
+name|CheckForNull
+annotation|@
 name|LazyInit
 name|LinearTransformation
 name|inverse
@@ -702,6 +716,8 @@ name|double
 name|x
 decl_stmt|;
 DECL|field|inverse
+annotation|@
+name|CheckForNull
 annotation|@
 name|LazyInit
 name|LinearTransformation

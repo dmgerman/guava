@@ -79,6 +79,8 @@ end_comment
 begin_class
 annotation|@
 name|GwtIncompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|ToDoubleRounder
 specifier|abstract
 class|class

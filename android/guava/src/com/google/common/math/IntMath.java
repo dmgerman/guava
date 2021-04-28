@@ -262,6 +262,8 @@ name|emulated
 operator|=
 literal|true
 argument_list|)
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|IntMath
 specifier|public
 specifier|final

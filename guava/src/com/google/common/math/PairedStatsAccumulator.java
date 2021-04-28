@@ -123,6 +123,8 @@ annotation|@
 name|Beta
 annotation|@
 name|GwtIncompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|PairedStatsAccumulator
 specifier|public
 specifier|final

@@ -135,6 +135,8 @@ annotation|@
 name|Beta
 annotation|@
 name|GwtIncompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|StatsAccumulator
 specifier|public
 specifier|final
