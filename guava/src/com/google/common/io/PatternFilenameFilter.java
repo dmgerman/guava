@@ -186,13 +186,12 @@ name|SuppressWarnings
 argument_list|(
 literal|"nullness"
 argument_list|)
-comment|// TODO(cpovirk): Remove with removal of @CheckForNull.
 DECL|method|accept ( @heckForNull File dir, String fileName)
 specifier|public
 name|boolean
 name|accept
 parameter_list|(
-comment|/* TODO(cpovirk): remove */
+comment|// TODO(b/147136275): Remove @CheckForNull, and remove suppression.
 annotation|@
 name|CheckForNull
 name|File

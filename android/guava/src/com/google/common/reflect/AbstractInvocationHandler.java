@@ -109,7 +109,7 @@ end_comment
 begin_class
 annotation|@
 name|Beta
-comment|// TODO(cpovirk): after adding @Nullable below
+comment|// TODO(b/147136275): After adding @Nullable below, add .
 annotation|@
 name|ElementTypesAreNonnullByDefault
 DECL|class|AbstractInvocationHandler
@@ -327,7 +327,7 @@ parameter_list|,
 name|Method
 name|method
 parameter_list|,
-comment|/* TODO(cpovirk): @Nullable */
+comment|/* TODO(b/147136275): Add @Nullable. */
 name|Object
 index|[]
 name|args

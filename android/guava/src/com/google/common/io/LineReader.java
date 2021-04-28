@@ -159,8 +159,7 @@ annotation|@
 name|Beta
 annotation|@
 name|GwtIncompatible
-annotation|@
-name|ElementTypesAreNonnullByDefault
+comment|// TODO(b/147136275): After adding @CheckForNull below, add @ElementTypesAreNonnullByDefault.
 DECL|class|LineReader
 specifier|public
 specifier|final
@@ -294,8 +293,7 @@ name|SuppressWarnings
 argument_list|(
 literal|"nullness"
 argument_list|)
-comment|// TODO(cpovirk): Remove with change to @CheckForNull.
-comment|// TODO(cpovirk): @CheckForNull
+comment|// TODO(b/147136275): After updating callers, add @CheckForNull, and remove @SuppressWarnings.
 DECL|method|readLine ()
 specifier|public
 name|String

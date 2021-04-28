@@ -254,8 +254,7 @@ name|emulated
 operator|=
 literal|true
 argument_list|)
-annotation|@
-name|ElementTypesAreNonnullByDefault
+comment|// TODO(b/147136275): After adding @CheckForNull below, add @ElementTypesAreNonnullByDefault.
 DECL|class|Throwables
 specifier|public
 specifier|final
@@ -799,7 +798,7 @@ name|SuppressWarnings
 argument_list|(
 literal|"nullness"
 argument_list|)
-comment|// TODO(cpovirk): Add @CheckForNull after updating callers.
+comment|// TODO(b/147136275): After updating callers, add @CheckForNull, and remove @SuppressWarnings.
 DECL|method|getCauseAs ( Throwable throwable, Class<X> expectedCauseType)
 specifier|public
 specifier|static

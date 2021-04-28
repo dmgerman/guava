@@ -324,7 +324,6 @@ name|SuppressWarnings
 argument_list|(
 literal|"nullness"
 argument_list|)
-comment|// TODO(cpovirk): Remove with change to @ParametricNullness.
 DECL|method|register ( @heckForNull C closeable)
 specifier|public
 operator|<
@@ -336,7 +335,7 @@ operator|>
 name|C
 name|register
 argument_list|(
-comment|/* TODO(cpovirk): change to @ParametricNullness */
+comment|// TODO(b/147136275): Replace @CheckForNull with @ParametricNullness, and remove suppression.
 annotation|@
 name|CheckForNull
 name|C
