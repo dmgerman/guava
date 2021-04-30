@@ -404,13 +404,13 @@ name|nodeV
 return|;
 block|}
 comment|/**    * Returns the node that is adjacent to {@code node} along the origin edge.    *    * @throws IllegalArgumentException if this {@link EndpointPair} does not contain {@code node}    */
-DECL|method|adjacentNode (Object node)
+DECL|method|adjacentNode (N node)
 specifier|public
 specifier|final
 name|N
 name|adjacentNode
 parameter_list|(
-name|Object
+name|N
 name|node
 parameter_list|)
 block|{
