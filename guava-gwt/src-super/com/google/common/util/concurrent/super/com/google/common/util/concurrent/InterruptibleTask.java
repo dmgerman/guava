@@ -28,7 +28,7 @@ specifier|abstract
 class|class
 name|InterruptibleTask
 parameter_list|<
-name|V
+name|T
 parameter_list|>
 implements|implements
 name|Runnable
@@ -41,7 +41,7 @@ name|void
 name|run
 parameter_list|()
 block|{
-name|V
+name|T
 name|result
 init|=
 literal|null
@@ -78,13 +78,27 @@ operator|=
 name|t
 expr_stmt|;
 block|}
-name|afterRanInterruptibly
+if|if
+condition|(
+name|error
+operator|==
+literal|null
+condition|)
+block|{
+name|afterRanInterruptiblySuccess
 argument_list|(
 name|result
-argument_list|,
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
+name|afterRanInterruptiblyFailure
+argument_list|(
 name|error
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 DECL|method|isDone ()
 specifier|abstract
@@ -94,20 +108,26 @@ parameter_list|()
 function_decl|;
 DECL|method|runInterruptibly ()
 specifier|abstract
-name|V
+name|T
 name|runInterruptibly
 parameter_list|()
 throws|throws
 name|Exception
 function_decl|;
-DECL|method|afterRanInterruptibly (V result, Throwable error)
+DECL|method|afterRanInterruptiblySuccess (T result)
 specifier|abstract
 name|void
-name|afterRanInterruptibly
+name|afterRanInterruptiblySuccess
 parameter_list|(
-name|V
+name|T
 name|result
-parameter_list|,
+parameter_list|)
+function_decl|;
+DECL|method|afterRanInterruptiblyFailure (Throwable error)
+specifier|abstract
+name|void
+name|afterRanInterruptiblyFailure
+parameter_list|(
 name|Throwable
 name|error
 parameter_list|)

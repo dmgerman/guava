@@ -489,23 +489,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|afterRanInterruptibly (V result, Throwable error)
+DECL|method|afterRanInterruptiblySuccess (V result)
 name|void
-name|afterRanInterruptibly
+name|afterRanInterruptiblySuccess
 parameter_list|(
 name|V
 name|result
-parameter_list|,
-name|Throwable
-name|error
 parameter_list|)
-block|{
-if|if
-condition|(
-name|error
-operator|==
-literal|null
-condition|)
 block|{
 name|TrustedListenableFutureTask
 operator|.
@@ -517,14 +507,21 @@ name|result
 argument_list|)
 expr_stmt|;
 block|}
-else|else
+annotation|@
+name|Override
+DECL|method|afterRanInterruptiblyFailure (Throwable error)
+name|void
+name|afterRanInterruptiblyFailure
+parameter_list|(
+name|Throwable
+name|error
+parameter_list|)
 block|{
 name|setException
 argument_list|(
 name|error
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 annotation|@
 name|Override
@@ -633,26 +630,16 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|afterRanInterruptibly (ListenableFuture<V> result, Throwable error)
+DECL|method|afterRanInterruptiblySuccess (ListenableFuture<V> result)
 name|void
-name|afterRanInterruptibly
+name|afterRanInterruptiblySuccess
 parameter_list|(
 name|ListenableFuture
 argument_list|<
 name|V
 argument_list|>
 name|result
-parameter_list|,
-name|Throwable
-name|error
 parameter_list|)
-block|{
-if|if
-condition|(
-name|error
-operator|==
-literal|null
-condition|)
 block|{
 name|setFuture
 argument_list|(
@@ -660,14 +647,21 @@ name|result
 argument_list|)
 expr_stmt|;
 block|}
-else|else
+annotation|@
+name|Override
+DECL|method|afterRanInterruptiblyFailure (Throwable error)
+name|void
+name|afterRanInterruptiblyFailure
+parameter_list|(
+name|Throwable
+name|error
+parameter_list|)
 block|{
 name|setException
 argument_list|(
 name|error
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 annotation|@
 name|Override

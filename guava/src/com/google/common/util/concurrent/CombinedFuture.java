@@ -504,16 +504,13 @@ block|}
 block|}
 annotation|@
 name|Override
-DECL|method|afterRanInterruptibly (T result, Throwable error)
+DECL|method|afterRanInterruptiblySuccess (T result)
 specifier|final
 name|void
-name|afterRanInterruptibly
+name|afterRanInterruptiblySuccess
 parameter_list|(
 name|T
 name|result
-parameter_list|,
-name|Throwable
-name|error
 parameter_list|)
 block|{
 comment|/*        * The future no longer needs to interrupt this task, so it no longer needs a reference to it.        *        * TODO(cpovirk): It might be nice for our InterruptibleTask subclasses to null out their        *  `callable` fields automatically. That would make it less important for us to null out the        * reference to `task` here (though it's still nice to do so in case our reference to the        * executor keeps it alive). Ideally, nulling out `callable` would be the responsibility of        * InterruptibleTask itself so that its other subclasses also benefit. (Handling `callable` in        * InterruptibleTask itself might also eliminate some of the existing boilerplate for, e.g.,        * pendingToString().)        */
@@ -525,13 +522,32 @@ name|task
 operator|=
 literal|null
 expr_stmt|;
-if|if
-condition|(
+name|setValue
+argument_list|(
+name|result
+argument_list|)
+expr_stmt|;
+block|}
+annotation|@
+name|Override
+DECL|method|afterRanInterruptiblyFailure (Throwable error)
+specifier|final
+name|void
+name|afterRanInterruptiblyFailure
+parameter_list|(
+name|Throwable
 name|error
-operator|!=
-literal|null
-condition|)
+parameter_list|)
 block|{
+comment|// See afterRanInterruptiblySuccess.
+name|CombinedFuture
+operator|.
+name|this
+operator|.
+name|task
+operator|=
+literal|null
+expr_stmt|;
 if|if
 condition|(
 name|error
@@ -575,15 +591,6 @@ operator|.
 name|setException
 argument_list|(
 name|error
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-else|else
-block|{
-name|setValue
-argument_list|(
-name|result
 argument_list|)
 expr_stmt|;
 block|}

@@ -102,22 +102,6 @@ name|LockSupport
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|checkerframework
-operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|qual
-operator|.
-name|Nullable
-import|;
-end_import
-
 begin_class
 annotation|@
 name|SuppressWarnings
@@ -328,12 +312,51 @@ name|DONE
 argument_list|)
 condition|)
 block|{
-comment|// If we were interrupted, it is possible that the interrupted bit hasn't been set yet. Wait
-comment|// for the interrupting thread to set DONE. See interruptTask().
-comment|// We want to wait so that we don't interrupt the _next_ thing run on the thread.
-comment|// Note: We don't reset the interrupted bit, just wait for it to be set.
-comment|// If this is a thread pool thread, the thread pool will reset it for us. Otherwise, the
-comment|// interrupted bit may have been intended for something else, so don't clear it.
+name|waitForInterrupt
+argument_list|(
+name|currentThread
+argument_list|)
+expr_stmt|;
+block|}
+if|if
+condition|(
+name|run
+condition|)
+block|{
+if|if
+condition|(
+name|error
+operator|==
+literal|null
+condition|)
+block|{
+name|afterRanInterruptiblySuccess
+argument_list|(
+name|result
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
+name|afterRanInterruptiblyFailure
+argument_list|(
+name|error
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+block|}
+block|}
+DECL|method|waitForInterrupt (Thread currentThread)
+specifier|private
+name|void
+name|waitForInterrupt
+parameter_list|(
+name|Thread
+name|currentThread
+parameter_list|)
+block|{
+comment|/*      * If someone called cancel(true), it is possible that the interrupted bit hasn't been set yet.      * Wait for the interrupting thread to set DONE. (See interruptTask().) We want to wait so that      * the interrupting thread doesn't interrupt the _next_ thing to run on this thread.      *      * Note: We don't reset the interrupted bit, just wait for it to be set. If this is a thread      * pool thread, the thread pool will reset it for us. Otherwise, the interrupted bit may have      * been intended for something else, so don't clear it.      */
 name|boolean
 name|restoreInterruptedBit
 init|=
@@ -400,12 +423,7 @@ operator|>
 name|MAX_BUSY_WAIT_SPINS
 condition|)
 block|{
-comment|// If we have spun a lot just park ourselves.
-comment|// This will save CPU while we wait for a slow interrupting thread.  In theory
-comment|// interruptTask() should be very fast but due to InterruptibleChannel and
-comment|// JavaLangAccess.blockedOn(Thread, Interruptible), it isn't predictable what work might
-comment|// be done.  (e.g. close a file and flush buffers to disk).  To protect ourselves from
-comment|// this we park ourselves and tell our interrupter that we did so.
+comment|/*          * If we have spun a lot, just park ourselves. This will save CPU while we wait for a slow          * interrupting thread. In theory, interruptTask() should be very fast, but due to          * InterruptibleChannel and JavaLangAccess.blockedOn(Thread, Interruptible), it isn't          * predictable what work might be done. (e.g., close a file and flush buffers to disk). To          * protect ourselves from this, we park ourselves and tell our interrupter that we did so.          */
 if|if
 condition|(
 name|state
@@ -429,8 +447,8 @@ comment|//         \  (oo)\_______
 comment|//            (__)\       )\/\
 comment|//                ||----w |
 comment|//                ||     ||
-comment|// We need to clear the interrupted bit prior to calling park and maintain it in case
-comment|// we wake up spuriously.
+comment|// We need to clear the interrupted bit prior to calling park and maintain it in case we
+comment|// wake up spuriously.
 name|restoreInterruptedBit
 operator|=
 name|Thread
@@ -474,22 +492,7 @@ name|interrupt
 argument_list|()
 expr_stmt|;
 block|}
-comment|/*          * TODO(cpovirk): Clear interrupt status here? We currently don't, which means that an          * interrupt before, during, or after runInterruptibly() (unless it produced an          * InterruptedException caught above) can linger and affect listeners.          */
-block|}
-if|if
-condition|(
-name|run
-condition|)
-block|{
-name|afterRanInterruptibly
-argument_list|(
-name|result
-argument_list|,
-name|error
-argument_list|)
-expr_stmt|;
-block|}
-block|}
+comment|/*      * TODO(cpovirk): Clear interrupt status here? We currently don't, which means that an interrupt      * before, during, or after runInterruptibly() (unless it produced an InterruptedException      * caught above) can linger and affect listeners.      */
 block|}
 comment|/**    * Called before runInterruptibly - if true, runInterruptibly and afterRanInterruptibly will not    * be called.    */
 DECL|method|isDone ()
@@ -508,18 +511,21 @@ throws|throws
 name|Exception
 function_decl|;
 comment|/**    * Any interruption that happens as a result of calling interruptTask will arrive before this    * method is called. Complete Futures here.    */
-DECL|method|afterRanInterruptibly (@ullable T result, @Nullable Throwable error)
+DECL|method|afterRanInterruptiblySuccess (T result)
 specifier|abstract
 name|void
-name|afterRanInterruptibly
+name|afterRanInterruptiblySuccess
 parameter_list|(
-annotation|@
-name|Nullable
 name|T
 name|result
-parameter_list|,
-annotation|@
-name|Nullable
+parameter_list|)
+function_decl|;
+comment|/**    * Any interruption that happens as a result of calling interruptTask will arrive before this    * method is called. Complete Futures here.    */
+DECL|method|afterRanInterruptiblyFailure (Throwable error)
+specifier|abstract
+name|void
+name|afterRanInterruptiblyFailure
+parameter_list|(
 name|Throwable
 name|error
 parameter_list|)
