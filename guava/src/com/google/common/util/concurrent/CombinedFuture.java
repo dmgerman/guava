@@ -158,6 +158,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|checkerframework
@@ -176,35 +186,49 @@ begin_comment
 comment|/** Aggregate future that computes its value by calling a callable. */
 end_comment
 
-begin_class
+begin_annotation
 annotation|@
 name|GwtCompatible
+end_annotation
+
+begin_annotation
+annotation|@
+name|ElementTypesAreNonnullByDefault
+end_annotation
+
+begin_expr_stmt
 DECL|class|CombinedFuture
-specifier|final
-class|class
+name|final
+name|class
 name|CombinedFuture
-parameter_list|<
+operator|<
 name|V
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|AggregateFuture
 argument_list|<
+annotation|@
+name|Nullable
 name|Object
 argument_list|,
 name|V
 argument_list|>
-block|{
+block|{   @
 DECL|field|task
+name|CheckForNull
 specifier|private
 name|CombinedFutureInterruptibleTask
 argument_list|<
 name|?
 argument_list|>
 name|task
-decl_stmt|;
+block|;
 DECL|method|CombinedFuture ( ImmutableCollection<? extends ListenableFuture<?>> futures, boolean allMustSucceed, Executor listenerExecutor, AsyncCallable<V> callable)
 name|CombinedFuture
-parameter_list|(
+argument_list|(
 name|ImmutableCollection
 argument_list|<
 name|?
@@ -215,19 +239,19 @@ name|?
 argument_list|>
 argument_list|>
 name|futures
-parameter_list|,
+operator|,
 name|boolean
 name|allMustSucceed
-parameter_list|,
+operator|,
 name|Executor
 name|listenerExecutor
-parameter_list|,
+operator|,
 name|AsyncCallable
 argument_list|<
 name|V
 argument_list|>
 name|callable
-parameter_list|)
+argument_list|)
 block|{
 name|super
 argument_list|(
@@ -237,7 +261,7 @@ name|allMustSucceed
 argument_list|,
 literal|false
 argument_list|)
-expr_stmt|;
+block|;
 name|this
 operator|.
 name|task
@@ -249,14 +273,13 @@ name|callable
 argument_list|,
 name|listenerExecutor
 argument_list|)
-expr_stmt|;
+block|;
 name|init
 argument_list|()
-expr_stmt|;
-block|}
+block|;   }
 DECL|method|CombinedFuture ( ImmutableCollection<? extends ListenableFuture<?>> futures, boolean allMustSucceed, Executor listenerExecutor, Callable<V> callable)
 name|CombinedFuture
-parameter_list|(
+argument_list|(
 name|ImmutableCollection
 argument_list|<
 name|?
@@ -267,19 +290,19 @@ name|?
 argument_list|>
 argument_list|>
 name|futures
-parameter_list|,
+operator|,
 name|boolean
 name|allMustSucceed
-parameter_list|,
+operator|,
 name|Executor
 name|listenerExecutor
-parameter_list|,
+operator|,
 name|Callable
 argument_list|<
 name|V
 argument_list|>
 name|callable
-parameter_list|)
+argument_list|)
 block|{
 name|super
 argument_list|(
@@ -289,7 +312,7 @@ name|allMustSucceed
 argument_list|,
 literal|false
 argument_list|)
-expr_stmt|;
+block|;
 name|this
 operator|.
 name|task
@@ -301,41 +324,40 @@ name|callable
 argument_list|,
 name|listenerExecutor
 argument_list|)
-expr_stmt|;
+block|;
 name|init
 argument_list|()
-expr_stmt|;
-block|}
-annotation|@
+block|;   }
+expr|@
 name|Override
-DECL|method|collectOneValue (int index, @Nullable Object returnValue)
+DECL|method|collectOneValue (int index, @CheckForNull Object returnValue)
 name|void
 name|collectOneValue
-parameter_list|(
+argument_list|(
 name|int
 name|index
-parameter_list|,
+argument_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|returnValue
-parameter_list|)
+argument_list|)
 block|{}
-annotation|@
+expr|@
 name|Override
 DECL|method|handleAllCompleted ()
 name|void
 name|handleAllCompleted
-parameter_list|()
+argument_list|()
 block|{
 name|CombinedFutureInterruptibleTask
 argument_list|<
 name|?
 argument_list|>
 name|localTask
-init|=
+operator|=
 name|task
-decl_stmt|;
+block|;
 if|if
 condition|(
 name|localTask
@@ -350,15 +372,15 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-annotation|@
+expr|@
 name|Override
 DECL|method|releaseResources (ReleaseResourcesReason reason)
 name|void
 name|releaseResources
-parameter_list|(
+argument_list|(
 name|ReleaseResourcesReason
 name|reason
-parameter_list|)
+argument_list|)
 block|{
 name|super
 operator|.
@@ -366,7 +388,7 @@ name|releaseResources
 argument_list|(
 name|reason
 argument_list|)
-expr_stmt|;
+block|;
 comment|/*      * If the output future is done, then it won't need to interrupt the task later, so it can clear      * its reference to it.      *      * If the output future is *not* done, then the task field will be cleared after the task runs      * or after the output future is done, whichever comes first.      */
 if|if
 condition|(
@@ -382,8 +404,10 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
-block|}
-annotation|@
+end_expr_stmt
+
+begin_function
+unit|}    @
 name|Override
 DECL|method|interruptTask ()
 specifier|protected
@@ -413,17 +437,26 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+end_function
+
+begin_annotation
 annotation|@
 name|WeakOuter
+end_annotation
+
+begin_expr_stmt
 DECL|class|CombinedFutureInterruptibleTask
 specifier|private
 specifier|abstract
-class|class
+name|class
 name|CombinedFutureInterruptibleTask
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|InterruptibleTask
 argument_list|<
 name|T
@@ -431,16 +464,16 @@ argument_list|>
 block|{
 DECL|field|listenerExecutor
 specifier|private
-specifier|final
+name|final
 name|Executor
 name|listenerExecutor
-decl_stmt|;
+block|;
 DECL|method|CombinedFutureInterruptibleTask (Executor listenerExecutor)
 name|CombinedFutureInterruptibleTask
-parameter_list|(
+argument_list|(
 name|Executor
 name|listenerExecutor
-parameter_list|)
+argument_list|)
 block|{
 name|this
 operator|.
@@ -450,15 +483,14 @@ name|checkNotNull
 argument_list|(
 name|listenerExecutor
 argument_list|)
-expr_stmt|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|Override
 DECL|method|isDone ()
-specifier|final
+name|final
 name|boolean
 name|isDone
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|CombinedFuture
@@ -470,10 +502,10 @@ argument_list|()
 return|;
 block|}
 DECL|method|execute ()
-specifier|final
+name|final
 name|void
 name|execute
-parameter_list|()
+argument_list|()
 block|{
 try|try
 block|{
@@ -485,6 +517,9 @@ name|this
 argument_list|)
 expr_stmt|;
 block|}
+end_expr_stmt
+
+begin_catch
 catch|catch
 parameter_list|(
 name|RejectedExecutionException
@@ -501,14 +536,18 @@ name|e
 argument_list|)
 expr_stmt|;
 block|}
-block|}
-annotation|@
+end_catch
+
+begin_function
+unit|}      @
 name|Override
-DECL|method|afterRanInterruptiblySuccess (T result)
+DECL|method|afterRanInterruptiblySuccess (@arametricNullness T result)
 specifier|final
 name|void
 name|afterRanInterruptiblySuccess
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|T
 name|result
 parameter_list|)
@@ -528,6 +567,9 @@ name|result
 argument_list|)
 expr_stmt|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|afterRanInterruptiblyFailure (Throwable error)
@@ -555,13 +597,19 @@ operator|instanceof
 name|ExecutionException
 condition|)
 block|{
+comment|/*          * Cast to ExecutionException to satisfy our nullness checker, which (unsoundly but          * *usually* safely) assumes that getCause() returns non-null on an ExecutionException.          */
 name|CombinedFuture
 operator|.
 name|this
 operator|.
 name|setException
 argument_list|(
+operator|(
+operator|(
+name|ExecutionException
+operator|)
 name|error
+operator|)
 operator|.
 name|getCause
 argument_list|()
@@ -595,24 +643,31 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-DECL|method|setValue (T value)
+end_function
+
+begin_function_decl
+DECL|method|setValue (@arametricNullness T value)
 specifier|abstract
 name|void
 name|setValue
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|T
 name|value
 parameter_list|)
 function_decl|;
-block|}
-annotation|@
+end_function_decl
+
+begin_expr_stmt
+unit|}    @
 name|WeakOuter
 DECL|class|AsyncCallableInterruptibleTask
 specifier|private
-specifier|final
-class|class
+name|final
+name|class
 name|AsyncCallableInterruptibleTask
-extends|extends
+expr|extends
 name|CombinedFutureInterruptibleTask
 argument_list|<
 name|ListenableFuture
@@ -623,31 +678,31 @@ argument_list|>
 block|{
 DECL|field|callable
 specifier|private
-specifier|final
+name|final
 name|AsyncCallable
 argument_list|<
 name|V
 argument_list|>
 name|callable
-decl_stmt|;
+block|;
 DECL|method|AsyncCallableInterruptibleTask (AsyncCallable<V> callable, Executor listenerExecutor)
 name|AsyncCallableInterruptibleTask
-parameter_list|(
+argument_list|(
 name|AsyncCallable
 argument_list|<
 name|V
 argument_list|>
 name|callable
-parameter_list|,
+argument_list|,
 name|Executor
 name|listenerExecutor
-parameter_list|)
+argument_list|)
 block|{
 name|super
 argument_list|(
 name|listenerExecutor
 argument_list|)
-expr_stmt|;
+block|;
 name|this
 operator|.
 name|callable
@@ -656,9 +711,8 @@ name|checkNotNull
 argument_list|(
 name|callable
 argument_list|)
-expr_stmt|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|Override
 DECL|method|runInterruptibly ()
 name|ListenableFuture
@@ -666,7 +720,7 @@ argument_list|<
 name|V
 argument_list|>
 name|runInterruptibly
-parameter_list|()
+argument_list|()
 throws|throws
 name|Exception
 block|{
@@ -675,12 +729,12 @@ argument_list|<
 name|V
 argument_list|>
 name|result
-init|=
+operator|=
 name|callable
 operator|.
 name|call
 argument_list|()
-decl_stmt|;
+block|;
 return|return
 name|checkNotNull
 argument_list|(
@@ -694,6 +748,9 @@ name|callable
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_function
 annotation|@
 name|Override
 DECL|method|setValue (ListenableFuture<V> value)
@@ -717,6 +774,9 @@ name|value
 argument_list|)
 expr_stmt|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|toPendingString ()
@@ -731,15 +791,17 @@ name|toString
 argument_list|()
 return|;
 block|}
-block|}
-annotation|@
+end_function
+
+begin_expr_stmt
+unit|}    @
 name|WeakOuter
 DECL|class|CallableInterruptibleTask
 specifier|private
-specifier|final
-class|class
+name|final
+name|class
 name|CallableInterruptibleTask
-extends|extends
+expr|extends
 name|CombinedFutureInterruptibleTask
 argument_list|<
 name|V
@@ -747,31 +809,31 @@ argument_list|>
 block|{
 DECL|field|callable
 specifier|private
-specifier|final
+name|final
 name|Callable
 argument_list|<
 name|V
 argument_list|>
 name|callable
-decl_stmt|;
+block|;
 DECL|method|CallableInterruptibleTask (Callable<V> callable, Executor listenerExecutor)
 name|CallableInterruptibleTask
-parameter_list|(
+argument_list|(
 name|Callable
 argument_list|<
 name|V
 argument_list|>
 name|callable
-parameter_list|,
+argument_list|,
 name|Executor
 name|listenerExecutor
-parameter_list|)
+argument_list|)
 block|{
 name|super
 argument_list|(
 name|listenerExecutor
 argument_list|)
-expr_stmt|;
+block|;
 name|this
 operator|.
 name|callable
@@ -780,14 +842,15 @@ name|checkNotNull
 argument_list|(
 name|callable
 argument_list|)
-expr_stmt|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|Override
+expr|@
+name|ParametricNullness
 DECL|method|runInterruptibly ()
 name|V
 name|runInterruptibly
-parameter_list|()
+argument_list|()
 throws|throws
 name|Exception
 block|{
@@ -798,12 +861,17 @@ name|call
 argument_list|()
 return|;
 block|}
+end_expr_stmt
+
+begin_function
 annotation|@
 name|Override
-DECL|method|setValue (V value)
+DECL|method|setValue (@arametricNullness V value)
 name|void
 name|setValue
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|V
 name|value
 parameter_list|)
@@ -818,6 +886,9 @@ name|value
 argument_list|)
 expr_stmt|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|toPendingString ()
@@ -832,9 +903,8 @@ name|toString
 argument_list|()
 return|;
 block|}
-block|}
-block|}
-end_class
+end_function
 
+unit|} }
 end_unit
 

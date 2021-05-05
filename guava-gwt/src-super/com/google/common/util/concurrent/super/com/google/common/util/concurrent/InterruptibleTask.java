@@ -18,6 +18,24 @@ name|concurrent
 package|;
 end_package
 
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|NullnessCasts
+operator|.
+name|uncheckedCastNullableTToT
+import|;
+end_import
+
 begin_comment
 comment|/** Emulation for InterruptibleTask in GWT. */
 end_comment
@@ -85,9 +103,13 @@ operator|==
 literal|null
 condition|)
 block|{
+comment|// The cast is safe because of the `run` and `error` checks.
 name|afterRanInterruptiblySuccess
 argument_list|(
+name|uncheckedCastNullableTToT
+argument_list|(
 name|result
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}

@@ -175,6 +175,8 @@ end_comment
 begin_class
 annotation|@
 name|GwtIncompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|ListenerCallQueue
 specifier|final
 class|class

@@ -172,17 +172,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|javax
 operator|.
-name|checkerframework
+name|annotation
 operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|qual
-operator|.
-name|Nullable
+name|CheckForNull
 import|;
 end_import
 
@@ -193,6 +187,8 @@ end_comment
 begin_class
 annotation|@
 name|GwtCompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|AtomicLongMap
 specifier|public
 specifier|final
@@ -879,10 +875,10 @@ argument_list|()
 return|;
 block|}
 DECL|field|asMap
+annotation|@
+name|CheckForNull
 specifier|private
 specifier|transient
-annotation|@
-name|Nullable
 name|Map
 argument_list|<
 name|K

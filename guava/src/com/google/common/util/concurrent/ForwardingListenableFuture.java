@@ -72,35 +72,71 @@ name|Executor
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|checkerframework
+operator|.
+name|checker
+operator|.
+name|nullness
+operator|.
+name|qual
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/**  * A {@link ListenableFuture} which forwards all its method calls to another future. Subclasses  * should override one or more methods to modify the behavior of the backing future as desired per  * the<a href="http://en.wikipedia.org/wiki/Decorator_pattern">decorator pattern</a>.  *  *<p>Most subclasses can just use {@link SimpleForwardingListenableFuture}.  *  * @author Shardul Deo  * @since 4.0  */
 end_comment
 
-begin_class
+begin_annotation
 annotation|@
 name|SuppressWarnings
 argument_list|(
 literal|"ShouldNotSubclass"
 argument_list|)
+end_annotation
+
+begin_annotation
 annotation|@
 name|CanIgnoreReturnValue
+end_annotation
+
+begin_comment
 comment|// TODO(cpovirk): Consider being more strict.
+end_comment
+
+begin_annotation
 annotation|@
 name|GwtCompatible
+end_annotation
+
+begin_annotation
+annotation|@
+name|ElementTypesAreNonnullByDefault
+end_annotation
+
+begin_expr_stmt
 DECL|class|ForwardingListenableFuture
 specifier|public
 specifier|abstract
-class|class
+name|class
 name|ForwardingListenableFuture
-parameter_list|<
+operator|<
 name|V
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|ForwardingFuture
 argument_list|<
 name|V
 argument_list|>
-implements|implements
+expr|implements
 name|ListenableFuture
 argument_list|<
 name|V
@@ -110,9 +146,9 @@ comment|/** Constructor for use by subclasses. */
 DECL|method|ForwardingListenableFuture ()
 specifier|protected
 name|ForwardingListenableFuture
-parameter_list|()
+argument_list|()
 block|{}
-annotation|@
+expr|@
 name|Override
 DECL|method|delegate ()
 specifier|protected
@@ -124,21 +160,20 @@ extends|extends
 name|V
 argument_list|>
 name|delegate
-parameter_list|()
-function_decl|;
-annotation|@
+argument_list|()
+block|;    @
 name|Override
 DECL|method|addListener (Runnable listener, Executor exec)
 specifier|public
 name|void
 name|addListener
-parameter_list|(
+argument_list|(
 name|Runnable
 name|listener
-parameter_list|,
+argument_list|,
 name|Executor
 name|exec
-parameter_list|)
+argument_list|)
 block|{
 name|delegate
 argument_list|()
@@ -149,20 +184,22 @@ name|listener
 argument_list|,
 name|exec
 argument_list|)
-expr_stmt|;
-block|}
+block|;   }
 comment|// TODO(cpovirk): Use standard Javadoc form for SimpleForwarding* class and constructor
 comment|/**    * A simplified version of {@link ForwardingListenableFuture} where subclasses can pass in an    * already constructed {@link ListenableFuture} as the delegate.    *    * @since 9.0    */
 DECL|class|SimpleForwardingListenableFuture
 specifier|public
 specifier|abstract
 specifier|static
-class|class
+name|class
 name|SimpleForwardingListenableFuture
-parameter_list|<
+operator|<
 name|V
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|ForwardingListenableFuture
 argument_list|<
 name|V
@@ -170,23 +207,23 @@ argument_list|>
 block|{
 DECL|field|delegate
 specifier|private
-specifier|final
+name|final
 name|ListenableFuture
 argument_list|<
 name|V
 argument_list|>
 name|delegate
-decl_stmt|;
+block|;
 DECL|method|SimpleForwardingListenableFuture (ListenableFuture<V> delegate)
 specifier|protected
 name|SimpleForwardingListenableFuture
-parameter_list|(
+argument_list|(
 name|ListenableFuture
 argument_list|<
 name|V
 argument_list|>
 name|delegate
-parameter_list|)
+argument_list|)
 block|{
 name|this
 operator|.
@@ -198,27 +235,26 @@ name|checkNotNull
 argument_list|(
 name|delegate
 argument_list|)
-expr_stmt|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|Override
 DECL|method|delegate ()
 specifier|protected
-specifier|final
+name|final
 name|ListenableFuture
 argument_list|<
 name|V
 argument_list|>
 name|delegate
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|delegate
 return|;
 block|}
 block|}
-block|}
-end_class
+end_expr_stmt
 
+unit|}
 end_unit
 

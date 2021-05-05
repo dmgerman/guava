@@ -50,6 +50,8 @@ begin_class
 annotation|@
 name|GwtIncompatible
 comment|// java.time.Duration
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|Internal
 specifier|final
 class|class

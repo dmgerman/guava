@@ -51,6 +51,8 @@ end_comment
 begin_enum
 annotation|@
 name|GwtCompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|enum|DirectExecutor
 enum|enum
 name|DirectExecutor

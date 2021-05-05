@@ -220,17 +220,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|javax
 operator|.
-name|checkerframework
+name|annotation
 operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|compatqual
-operator|.
-name|NullableDecl
+name|CheckForNull
 import|;
 end_import
 
@@ -251,6 +245,8 @@ annotation|@
 name|Beta
 annotation|@
 name|GwtIncompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|RateLimiter
 specifier|public
 specifier|abstract
@@ -431,7 +427,7 @@ decl_stmt|;
 comment|// Can't be initialized in the constructor because mocks don't call the constructor.
 DECL|field|mutexDoNotUseDirectly
 annotation|@
-name|NullableDecl
+name|CheckForNull
 specifier|private
 specifier|volatile
 name|Object

@@ -151,6 +151,8 @@ end_comment
 begin_class
 annotation|@
 name|GwtIncompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|AbstractExecutionThreadService
 specifier|public
 specifier|abstract

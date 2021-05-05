@@ -59,6 +59,8 @@ comment|/** Forwarding wrapper around a {@code Condition}. */
 end_comment
 
 begin_class
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|ForwardingCondition
 specifier|abstract
 class|class

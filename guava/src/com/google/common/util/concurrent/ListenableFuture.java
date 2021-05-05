@@ -68,29 +68,62 @@ name|RejectedExecutionException
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|checkerframework
+operator|.
+name|checker
+operator|.
+name|nullness
+operator|.
+name|qual
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/**  * A {@link Future} that accepts completion listeners. Each listener has an associated executor, and  * it is invoked using this executor once the future's computation is {@linkplain Future#isDone()  * complete}. If the computation has already completed when the listener is added, the listener will  * execute immediately.  *  *<p>See the Guava User Guide article on<a  * href="https://github.com/google/guava/wiki/ListenableFutureExplained">{@code  * ListenableFuture}</a>.  *  *<p>This class is GWT-compatible.  *  *<h3>Purpose</h3>  *  *<p>The main purpose of {@code ListenableFuture} is to help you chain together a graph of  * asynchronous operations. You can chain them together manually with calls to methods like {@link  * Futures#transform(ListenableFuture, com.google.common.base.Function, Executor)  * Futures.transform}, but you will often find it easier to use a framework. Frameworks automate the  * process, often adding features like monitoring, debugging, and cancellation. Examples of  * frameworks include:  *  *<ul>  *<li><a href="https://dagger.dev/producers.html">Dagger Producers</a>  *</ul>  *  *<p>The main purpose of {@link #addListener addListener} is to support this chaining. You will  * rarely use it directly, in part because it does not provide direct access to the {@code Future}  * result. (If you want such access, you may prefer {@link Futures#addCallback  * Futures.addCallback}.) Still, direct {@code addListener} calls are occasionally useful:  *  *<pre>{@code  * final String name = ...;  * inFlight.add(name);  * ListenableFuture<Result> future = service.query(name);  * future.addListener(new Runnable() {  *   public void run() {  *     processedCount.incrementAndGet();  *     inFlight.remove(name);  *     lastProcessed.set(name);  *     logger.info("Done with {0}", name);  *   }  * }, executor);  * }</pre>  *  *<h3>How to get an instance</h3>  *  *<p>We encourage you to return {@code ListenableFuture} from your methods so that your users can  * take advantage of the {@linkplain Futures utilities built atop the class}. The way that you will  * create {@code ListenableFuture} instances depends on how you currently create {@code Future}  * instances:  *  *<ul>  *<li>If you receive them from an {@code java.util.concurrent.ExecutorService}, convert that  *       service to a {@link ListeningExecutorService}, usually by calling {@link  *       MoreExecutors#listeningDecorator(java.util.concurrent.ExecutorService)  *       MoreExecutors.listeningDecorator}.  *<li>If you manually call {@link java.util.concurrent.FutureTask#set} or a similar method,  *       create a {@link SettableFuture} instead. (If your needs are more complex, you may prefer  *       {@link AbstractFuture}.)  *</ul>  *  *<p><b>Test doubles</b>: If you need a {@code ListenableFuture} for your test, try a {@link  * SettableFuture} or one of the methods in the {@link Futures#immediateFuture Futures.immediate*}  * family.<b>Avoid</b> creating a mock or stub {@code Future}. Mock and stub implementations are  * fragile because they assume that only certain methods will be called and because they often  * implement subtleties of the API improperly.  *  *<p><b>Custom implementation</b>: Avoid implementing {@code ListenableFuture} from scratch. If you  * can't get by with the standard implementations, prefer to derive a new {@code Future} instance  * with the methods in {@link Futures} or, if necessary, to extend {@link AbstractFuture}.  *  *<p>Occasionally, an API will return a plain {@code Future} and it will be impossible to change  * the return type. For this case, we provide a more expensive workaround in {@code  * JdkFutureAdapters}. However, when possible, it is more efficient and reliable to create a {@code  * ListenableFuture} directly.  *  * @author Sven Mawson  * @author Nishant Thakkar  * @since 1.0  */
 end_comment
 
-begin_interface
+begin_comment
+comment|/*  * Some of the annotations below were added after we released our separate  * com.google.guava:listenablefuture:1.0 artifact. (For more on that artifact, see  * https://github.com/google/guava/releases/tag/v27.0) This means that the copy of ListenableFuture  * in com.google.guava:guava differs from the "frozen" copy in the listenablefuture artifact. This  * could in principle cause problems for some users. Still, we expect that the benefits of the  * nullness annotations in particular will outweigh the costs. (And it's worth noting that we have  * released multiple ListenableFuture.class files that are not byte-for-byte compatible even from  * the beginning, thanks to using different `-source -target` values for compiling our `-jre` and  * `-android` "flavors.")  *  * (We could consider releasing a listenablefuture:1.0.1 someday. But we would want to look into how  * that affects users, especially users of the Android Gradle Plugin, since the plugin developers  * put in a special hack for us: https://issuetracker.google.com/issues/131431257)  */
+end_comment
+
+begin_annotation
 annotation|@
 name|SuppressWarnings
 argument_list|(
 literal|"ShouldNotSubclass"
 argument_list|)
+end_annotation
+
+begin_annotation
 annotation|@
 name|DoNotMock
 argument_list|(
 literal|"Use the methods in Futures (like immediateFuture) or SettableFuture"
 argument_list|)
+end_annotation
+
+begin_comment
+comment|/*  * It would make sense to also annotate this class with @ElementTypesAreNonnullByDefault. However,  * it makes no difference because this class is already covered by the package-level  * @ParametersAreNonnullByDefault, and this class declares only parameters, not return types or  * fields. (Not to mention that we'll be removing all @*AreNonnullByDefault annotations after tools  * understand .) And it's fortunate that the annotation makes no difference, because  * we're seeing a breakage internally when we add that annotation :)  *  */
+end_comment
+
+begin_expr_stmt
 DECL|interface|ListenableFuture
 specifier|public
-interface|interface
+expr|interface
 name|ListenableFuture
-parameter_list|<
+operator|<
 name|V
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|Future
 argument_list|<
 name|V
@@ -100,16 +133,15 @@ comment|/**    * Registers a listener to be {@linkplain Executor#execute(Runnabl
 DECL|method|addListener (Runnable listener, Executor executor)
 name|void
 name|addListener
-parameter_list|(
+argument_list|(
 name|Runnable
 name|listener
-parameter_list|,
+argument_list|,
 name|Executor
 name|executor
-parameter_list|)
-function_decl|;
-block|}
-end_interface
+argument_list|)
+block|; }
+end_expr_stmt
 
 end_unit
 

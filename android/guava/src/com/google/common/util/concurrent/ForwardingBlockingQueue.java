@@ -94,6 +94,16 @@ name|TimeUnit
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
 begin_comment
 comment|/**  * A {@link BlockingQueue} which forwards all its method calls to another {@link BlockingQueue}.  * Subclasses should override one or more methods to modify the behavior of the backing collection  * as desired per the<a href="http://en.wikipedia.org/wiki/Decorator_pattern">decorator  * pattern</a>.  *  *<p><b>{@code default} method warning:</b> This class does<i>not</i> forward calls to {@code  * default} methods. Instead, it inherits their default implementations. When those implementations  * invoke methods, they invoke methods on the {@code ForwardingBlockingQueue}.  *  * @author Raimundo Mirisola  * @param<E> the type of elements held in this collection  * @since 4.0  */
 end_comment
@@ -104,6 +114,8 @@ name|CanIgnoreReturnValue
 comment|// TODO(cpovirk): Consider being more strict.
 annotation|@
 name|GwtIncompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|ForwardingBlockingQueue
 specifier|public
 specifier|abstract
@@ -233,6 +245,8 @@ return|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|poll (long timeout, TimeUnit unit)
 specifier|public
 name|E

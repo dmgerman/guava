@@ -34,17 +34,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|javax
 operator|.
-name|checkerframework
+name|annotation
 operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|qual
-operator|.
-name|Nullable
+name|CheckForNull
 import|;
 end_import
 
@@ -60,18 +54,20 @@ name|emulated
 operator|=
 literal|true
 argument_list|)
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|Platform
 specifier|final
 class|class
 name|Platform
 block|{
-DECL|method|isInstanceOfThrowableClass ( @ullable Throwable t, Class<? extends Throwable> expectedClass)
+DECL|method|isInstanceOfThrowableClass ( @heckForNull Throwable t, Class<? extends Throwable> expectedClass)
 specifier|static
 name|boolean
 name|isInstanceOfThrowableClass
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Throwable
 name|t
 parameter_list|,

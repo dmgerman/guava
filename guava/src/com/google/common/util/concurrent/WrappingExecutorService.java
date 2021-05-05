@@ -196,6 +196,22 @@ name|TimeoutException
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|checkerframework
+operator|.
+name|checker
+operator|.
+name|nullness
+operator|.
+name|qual
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/**  * An abstract {@code ExecutorService} that allows subclasses to {@linkplain #wrapTask(Callable)  * wrap} tasks before they are submitted to the underlying executor.  *  *<p>Note that task wrapping may occur even if the task is never executed.  *  *<p>For delegation without task-wrapping, see {@link ForwardingExecutorService}.  *  * @author Chris Nokleberg  */
 end_comment
@@ -206,6 +222,8 @@ name|CanIgnoreReturnValue
 comment|// TODO(cpovirk): Consider being more strict.
 annotation|@
 name|GwtIncompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|WrappingExecutorService
 specifier|abstract
 class|class
@@ -241,22 +259,25 @@ comment|/**    * Wraps a {@code Callable} for submission to the underlying execu
 DECL|method|wrapTask (Callable<T> callable)
 specifier|protected
 specifier|abstract
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|Callable
 argument_list|<
 name|T
 argument_list|>
 name|wrapTask
-parameter_list|(
+argument_list|(
 name|Callable
 argument_list|<
 name|T
 argument_list|>
 name|callable
-parameter_list|)
-function_decl|;
+argument_list|)
+expr_stmt|;
 comment|/**    * Wraps a {@code Runnable} for submission to the underlying executor. The default implementation    * delegates to {@link #wrapTask(Callable)}.    */
 DECL|method|wrapTask (Runnable command)
 specifier|protected
@@ -330,11 +351,14 @@ block|}
 return|;
 block|}
 comment|/**    * Wraps a collection of tasks.    *    * @throws NullPointerException if any element of {@code tasks} is null    */
-DECL|method|wrapTasks (Collection<? extends Callable<T>> tasks)
+DECL|method|wrapTasks ( Collection<? extends Callable<T>> tasks)
 specifier|private
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|ImmutableList
 argument_list|<
 name|Callable
@@ -343,7 +367,7 @@ name|T
 argument_list|>
 argument_list|>
 name|wrapTasks
-parameter_list|(
+argument_list|(
 name|Collection
 argument_list|<
 name|?
@@ -354,7 +378,7 @@ name|T
 argument_list|>
 argument_list|>
 name|tasks
-parameter_list|)
+argument_list|)
 block|{
 name|ImmutableList
 operator|.
@@ -366,12 +390,12 @@ name|T
 argument_list|>
 argument_list|>
 name|builder
-init|=
+operator|=
 name|ImmutableList
 operator|.
 name|builder
 argument_list|()
-decl_stmt|;
+block|;
 for|for
 control|(
 name|Callable
@@ -401,7 +425,13 @@ name|build
 argument_list|()
 return|;
 block|}
+end_class
+
+begin_comment
 comment|// These methods wrap before delegating.
+end_comment
+
+begin_function
 annotation|@
 name|Override
 DECL|method|execute (Runnable command)
@@ -425,26 +455,35 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+end_function
+
+begin_annotation
 annotation|@
 name|Override
+end_annotation
+
+begin_expr_stmt
 DECL|method|submit (Callable<T> task)
 specifier|public
-specifier|final
-parameter_list|<
+name|final
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|Future
 argument_list|<
 name|T
 argument_list|>
 name|submit
-parameter_list|(
+argument_list|(
 name|Callable
 argument_list|<
 name|T
 argument_list|>
 name|task
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|delegate
@@ -461,6 +500,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_function
 annotation|@
 name|Override
 DECL|method|submit (Runnable task)
@@ -488,26 +530,37 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_annotation
 annotation|@
 name|Override
-DECL|method|submit (Runnable task, T result)
+end_annotation
+
+begin_expr_stmt
+DECL|method|submit ( Runnable task, @ParametricNullness T result)
 specifier|public
-specifier|final
-parameter_list|<
+name|final
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|Future
 argument_list|<
 name|T
 argument_list|>
 name|submit
-parameter_list|(
+argument_list|(
 name|Runnable
 name|task
-parameter_list|,
+argument_list|,
+annotation|@
+name|ParametricNullness
 name|T
 name|result
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|delegate
@@ -523,14 +576,23 @@ name|result
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_annotation
 annotation|@
 name|Override
-DECL|method|invokeAll (Collection<? extends Callable<T>> tasks)
+end_annotation
+
+begin_expr_stmt
+DECL|method|invokeAll ( Collection<? extends Callable<T>> tasks)
 specifier|public
-specifier|final
-parameter_list|<
+name|final
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|List
 argument_list|<
 name|Future
@@ -539,7 +601,7 @@ name|T
 argument_list|>
 argument_list|>
 name|invokeAll
-parameter_list|(
+argument_list|(
 name|Collection
 argument_list|<
 name|?
@@ -550,10 +612,13 @@ name|T
 argument_list|>
 argument_list|>
 name|tasks
-parameter_list|)
+argument_list|)
 throws|throws
 name|InterruptedException
 block|{
+end_expr_stmt
+
+begin_return
 return|return
 name|delegate
 operator|.
@@ -565,15 +630,20 @@ name|tasks
 argument_list|)
 argument_list|)
 return|;
-block|}
-annotation|@
+end_return
+
+begin_expr_stmt
+unit|}    @
 name|Override
 DECL|method|invokeAll ( Collection<? extends Callable<T>> tasks, long timeout, TimeUnit unit)
 specifier|public
-specifier|final
-parameter_list|<
+name|final
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|List
 argument_list|<
 name|Future
@@ -582,7 +652,7 @@ name|T
 argument_list|>
 argument_list|>
 name|invokeAll
-parameter_list|(
+argument_list|(
 name|Collection
 argument_list|<
 name|?
@@ -593,16 +663,19 @@ name|T
 argument_list|>
 argument_list|>
 name|tasks
-parameter_list|,
+operator|,
 name|long
 name|timeout
-parameter_list|,
+operator|,
 name|TimeUnit
 name|unit
-parameter_list|)
+argument_list|)
 throws|throws
 name|InterruptedException
 block|{
+end_expr_stmt
+
+begin_return
 return|return
 name|delegate
 operator|.
@@ -618,18 +691,23 @@ argument_list|,
 name|unit
 argument_list|)
 return|;
-block|}
-annotation|@
+end_return
+
+begin_expr_stmt
+unit|}    @
 name|Override
 DECL|method|invokeAny (Collection<? extends Callable<T>> tasks)
 specifier|public
-specifier|final
-parameter_list|<
+name|final
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|T
 name|invokeAny
-parameter_list|(
+argument_list|(
 name|Collection
 argument_list|<
 name|?
@@ -640,12 +718,15 @@ name|T
 argument_list|>
 argument_list|>
 name|tasks
-parameter_list|)
+argument_list|)
 throws|throws
 name|InterruptedException
 throws|,
 name|ExecutionException
 block|{
+end_expr_stmt
+
+begin_return
 return|return
 name|delegate
 operator|.
@@ -657,18 +738,23 @@ name|tasks
 argument_list|)
 argument_list|)
 return|;
-block|}
-annotation|@
+end_return
+
+begin_expr_stmt
+unit|}    @
 name|Override
-DECL|method|invokeAny (Collection<? extends Callable<T>> tasks, long timeout, TimeUnit unit)
+DECL|method|invokeAny ( Collection<? extends Callable<T>> tasks, long timeout, TimeUnit unit)
 specifier|public
-specifier|final
-parameter_list|<
+name|final
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|T
 name|invokeAny
-parameter_list|(
+argument_list|(
 name|Collection
 argument_list|<
 name|?
@@ -679,13 +765,13 @@ name|T
 argument_list|>
 argument_list|>
 name|tasks
-parameter_list|,
+operator|,
 name|long
 name|timeout
-parameter_list|,
+operator|,
 name|TimeUnit
 name|unit
-parameter_list|)
+argument_list|)
 throws|throws
 name|InterruptedException
 throws|,
@@ -693,6 +779,9 @@ name|ExecutionException
 throws|,
 name|TimeoutException
 block|{
+end_expr_stmt
+
+begin_return
 return|return
 name|delegate
 operator|.
@@ -708,9 +797,15 @@ argument_list|,
 name|unit
 argument_list|)
 return|;
-block|}
+end_return
+
+begin_comment
+unit|}
 comment|// The remaining methods just delegate.
-annotation|@
+end_comment
+
+begin_function
+unit|@
 name|Override
 DECL|method|shutdown ()
 specifier|public
@@ -725,6 +820,9 @@ name|shutdown
 argument_list|()
 expr_stmt|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|shutdownNow ()
@@ -744,6 +842,9 @@ name|shutdownNow
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|isShutdown ()
@@ -760,6 +861,9 @@ name|isShutdown
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|isTerminated ()
@@ -776,6 +880,9 @@ name|isTerminated
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|awaitTermination (long timeout, TimeUnit unit)
@@ -804,8 +911,8 @@ name|unit
 argument_list|)
 return|;
 block|}
-block|}
-end_class
+end_function
 
+unit|}
 end_unit
 

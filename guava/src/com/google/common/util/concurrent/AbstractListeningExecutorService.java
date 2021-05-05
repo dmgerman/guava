@@ -123,6 +123,8 @@ annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|GwtIncompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|AbstractListeningExecutorService
 specifier|public
 specifier|abstract
@@ -136,24 +138,29 @@ block|{
 comment|/** @since 19.0 (present with return type {@code ListenableFutureTask} since 14.0) */
 annotation|@
 name|Override
-DECL|method|newTaskFor (Runnable runnable, T value)
+DECL|method|newTaskFor ( Runnable runnable, @ParametricNullness T value)
 specifier|protected
-specifier|final
-parameter_list|<
+name|final
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|RunnableFuture
 argument_list|<
 name|T
 argument_list|>
 name|newTaskFor
-parameter_list|(
+argument_list|(
 name|Runnable
 name|runnable
-parameter_list|,
+argument_list|,
+annotation|@
+name|ParametricNullness
 name|T
 name|value
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|TrustedListenableFutureTask
@@ -171,22 +178,25 @@ annotation|@
 name|Override
 DECL|method|newTaskFor (Callable<T> callable)
 specifier|protected
-specifier|final
-parameter_list|<
+name|final
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|RunnableFuture
 argument_list|<
 name|T
 argument_list|>
 name|newTaskFor
-parameter_list|(
+argument_list|(
 name|Callable
 argument_list|<
 name|T
 argument_list|>
 name|callable
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|TrustedListenableFutureTask
@@ -228,25 +238,28 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|submit (Runnable task, @Nullable T result)
+DECL|method|submit ( Runnable task, @ParametricNullness T result)
 specifier|public
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|ListenableFuture
 argument_list|<
 name|T
 argument_list|>
 name|submit
-parameter_list|(
+argument_list|(
 name|Runnable
 name|task
-parameter_list|,
+argument_list|,
 annotation|@
-name|Nullable
+name|ParametricNullness
 name|T
 name|result
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|(
@@ -269,21 +282,24 @@ annotation|@
 name|Override
 DECL|method|submit (Callable<T> task)
 specifier|public
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|ListenableFuture
 argument_list|<
 name|T
 argument_list|>
 name|submit
-parameter_list|(
+argument_list|(
 name|Callable
 argument_list|<
 name|T
 argument_list|>
 name|task
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|(

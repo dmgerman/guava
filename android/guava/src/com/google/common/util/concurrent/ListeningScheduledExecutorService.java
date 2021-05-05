@@ -68,6 +68,22 @@ name|TimeUnit
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|checkerframework
+operator|.
+name|checker
+operator|.
+name|nullness
+operator|.
+name|qual
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/**  * A {@link ScheduledExecutorService} that returns {@link ListenableFuture} instances from its  * {@code ExecutorService} methods. To create an instance from an existing {@link  * ScheduledExecutorService}, call {@link  * MoreExecutors#listeningDecorator(ScheduledExecutorService)}.  *  * @author Chris Povirk  * @since 10.0  */
 end_comment
@@ -75,6 +91,8 @@ end_comment
 begin_interface
 annotation|@
 name|GwtIncompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|interface|ListeningScheduledExecutorService
 specifier|public
 interface|interface
@@ -107,29 +125,32 @@ function_decl|;
 comment|/** @since 15.0 (previously returned ScheduledFuture) */
 annotation|@
 name|Override
-DECL|method|schedule (Callable<V> callable, long delay, TimeUnit unit)
-argument_list|<
+DECL|method|schedule ( Callable<V> callable, long delay, TimeUnit unit)
+operator|<
 name|V
-argument_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|ListenableScheduledFuture
 argument_list|<
 name|V
 argument_list|>
 name|schedule
-parameter_list|(
+argument_list|(
 name|Callable
 argument_list|<
 name|V
 argument_list|>
 name|callable
-parameter_list|,
+argument_list|,
 name|long
 name|delay
-parameter_list|,
+argument_list|,
 name|TimeUnit
 name|unit
-parameter_list|)
-function_decl|;
+argument_list|)
+expr_stmt|;
 comment|/** @since 15.0 (previously returned ScheduledFuture) */
 annotation|@
 name|Override

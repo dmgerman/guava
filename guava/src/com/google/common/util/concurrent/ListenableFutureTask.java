@@ -164,27 +164,41 @@ begin_comment
 comment|/**  * A {@link FutureTask} that also implements the {@link ListenableFuture} interface. Unlike {@code  * FutureTask}, {@code ListenableFutureTask} does not provide an overrideable {@link  * FutureTask#done() done()} method. For similar functionality, call {@link #addListener}.  *  *<p>Few users should use this class. It is intended primarily for those who are implementing an  * {@code ExecutorService}. Most users should call {@link ListeningExecutorService#submit(Callable)  * ListeningExecutorService.submit} on a service obtained from {@link  * MoreExecutors#listeningDecorator}.  *  * @author Sven Mawson  * @since 1.0  */
 end_comment
 
-begin_class
+begin_annotation
 annotation|@
 name|SuppressWarnings
 argument_list|(
 literal|"ShouldNotSubclass"
 argument_list|)
+end_annotation
+
+begin_annotation
 annotation|@
 name|GwtIncompatible
+end_annotation
+
+begin_annotation
+annotation|@
+name|ElementTypesAreNonnullByDefault
+end_annotation
+
+begin_expr_stmt
 DECL|class|ListenableFutureTask
 specifier|public
-class|class
+name|class
 name|ListenableFutureTask
-parameter_list|<
+operator|<
 name|V
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|FutureTask
 argument_list|<
 name|V
 argument_list|>
-implements|implements
+expr|implements
 name|ListenableFuture
 argument_list|<
 name|V
@@ -196,33 +210,36 @@ comment|// avoid unintended usage.
 comment|// The execution list to hold our listeners.
 DECL|field|executionList
 specifier|private
-specifier|final
+name|final
 name|ExecutionList
 name|executionList
-init|=
+operator|=
 operator|new
 name|ExecutionList
 argument_list|()
-decl_stmt|;
+block|;
 comment|/**    * Creates a {@code ListenableFutureTask} that will upon running, execute the given {@code    * Callable}.    *    * @param callable the callable task    * @since 10.0    */
 DECL|method|create (Callable<V> callable)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|ListenableFutureTask
 argument_list|<
 name|V
 argument_list|>
 name|create
-parameter_list|(
+argument_list|(
 name|Callable
 argument_list|<
 name|V
 argument_list|>
 name|callable
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|new
@@ -236,26 +253,29 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Creates a {@code ListenableFutureTask} that will upon running, execute the given {@code    * Runnable}, and arrange that {@code get} will return the given result on successful completion.    *    * @param runnable the runnable task    * @param result the result to return on successful completion. If you don't need a particular    *     result, consider using constructions of the form: {@code ListenableFuture<?> f =    *     ListenableFutureTask.create(runnable, null)}    * @since 10.0    */
-DECL|method|create (Runnable runnable, @Nullable V result)
+DECL|method|create ( Runnable runnable, @ParametricNullness V result)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|ListenableFutureTask
 argument_list|<
 name|V
 argument_list|>
 name|create
-parameter_list|(
+argument_list|(
 name|Runnable
 name|runnable
-parameter_list|,
+argument_list|,
 annotation|@
-name|Nullable
+name|ParametricNullness
 name|V
 name|result
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|new
@@ -270,33 +290,35 @@ name|result
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_expr_stmt
 DECL|method|ListenableFutureTask (Callable<V> callable)
 name|ListenableFutureTask
-parameter_list|(
+argument_list|(
 name|Callable
 argument_list|<
 name|V
 argument_list|>
 name|callable
-parameter_list|)
+argument_list|)
 block|{
 name|super
 argument_list|(
 name|callable
 argument_list|)
-expr_stmt|;
-block|}
-DECL|method|ListenableFutureTask (Runnable runnable, @Nullable V result)
+block|;   }
+DECL|method|ListenableFutureTask (Runnable runnable, @ParametricNullness V result)
 name|ListenableFutureTask
-parameter_list|(
+argument_list|(
 name|Runnable
 name|runnable
-parameter_list|,
+argument_list|,
 annotation|@
-name|Nullable
+name|ParametricNullness
 name|V
 name|result
-parameter_list|)
+argument_list|)
 block|{
 name|super
 argument_list|(
@@ -304,21 +326,20 @@ name|runnable
 argument_list|,
 name|result
 argument_list|)
-expr_stmt|;
-block|}
-annotation|@
+block|;   }
+expr|@
 name|Override
 DECL|method|addListener (Runnable listener, Executor exec)
 specifier|public
 name|void
 name|addListener
-parameter_list|(
+argument_list|(
 name|Runnable
 name|listener
-parameter_list|,
+argument_list|,
 name|Executor
 name|exec
-parameter_list|)
+argument_list|)
 block|{
 name|executionList
 operator|.
@@ -328,23 +349,24 @@ name|listener
 argument_list|,
 name|exec
 argument_list|)
-expr_stmt|;
-block|}
-annotation|@
+block|;   }
+expr|@
 name|CanIgnoreReturnValue
-annotation|@
+expr|@
 name|Override
+expr|@
+name|ParametricNullness
 DECL|method|get (long timeout, TimeUnit unit)
 specifier|public
 name|V
 name|get
-parameter_list|(
+argument_list|(
 name|long
 name|timeout
-parameter_list|,
+argument_list|,
 name|TimeUnit
 name|unit
-parameter_list|)
+argument_list|)
 throws|throws
 name|TimeoutException
 throws|,
@@ -354,14 +376,17 @@ name|ExecutionException
 block|{
 name|long
 name|timeoutNanos
-init|=
+operator|=
 name|unit
 operator|.
 name|toNanos
 argument_list|(
 name|timeout
 argument_list|)
-decl_stmt|;
+expr_stmt|;
+end_expr_stmt
+
+begin_if
 if|if
 condition|(
 name|timeoutNanos
@@ -382,7 +407,13 @@ name|unit
 argument_list|)
 return|;
 block|}
+end_if
+
+begin_comment
 comment|// Waiting 68 years should be enough for any program.
+end_comment
+
+begin_return
 return|return
 name|super
 operator|.
@@ -400,9 +431,15 @@ argument_list|,
 name|NANOSECONDS
 argument_list|)
 return|;
-block|}
+end_return
+
+begin_comment
+unit|}
 comment|/** Internal implementation detail used to invoke the listeners. */
-annotation|@
+end_comment
+
+begin_function
+unit|@
 name|Override
 DECL|method|done ()
 specifier|protected
@@ -416,8 +453,8 @@ name|execute
 argument_list|()
 expr_stmt|;
 block|}
-block|}
-end_class
+end_function
 
+unit|}
 end_unit
 

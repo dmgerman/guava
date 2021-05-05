@@ -34,17 +34,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|javax
 operator|.
-name|checkerframework
+name|annotation
 operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|compatqual
-operator|.
-name|NullableDecl
+name|CheckForNull
 import|;
 end_import
 
@@ -55,6 +49,8 @@ end_comment
 begin_class
 annotation|@
 name|GwtCompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|UncheckedExecutionException
 specifier|public
 class|class
@@ -62,6 +58,7 @@ name|UncheckedExecutionException
 extends|extends
 name|RuntimeException
 block|{
+comment|/*    * Ideally, this class would have exposed only constructors that require a non-null cause. We    * might try to move in that direction, but there are complications. See    * https://github.com/jspecify/nullness-checker-for-checker-framework/blob/61aafa4ae52594830cfc2d61c8b113009dbdb045/src/main/java/com/google/jspecify/nullness/NullSpecTransfer.java#L789    */
 comment|/** Creates a new instance with {@code null} as its detail message. */
 DECL|method|UncheckedExecutionException ()
 specifier|protected
@@ -69,12 +66,12 @@ name|UncheckedExecutionException
 parameter_list|()
 block|{}
 comment|/** Creates a new instance with the given detail message. */
-DECL|method|UncheckedExecutionException (@ullableDecl String message)
+DECL|method|UncheckedExecutionException (@heckForNull String message)
 specifier|protected
 name|UncheckedExecutionException
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|String
 name|message
 parameter_list|)
@@ -86,17 +83,17 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** Creates a new instance with the given detail message and cause. */
-DECL|method|UncheckedExecutionException (@ullableDecl String message, @NullableDecl Throwable cause)
+DECL|method|UncheckedExecutionException (@heckForNull String message, @CheckForNull Throwable cause)
 specifier|public
 name|UncheckedExecutionException
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|String
 name|message
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Throwable
 name|cause
 parameter_list|)
@@ -110,12 +107,12 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** Creates a new instance with the given cause. */
-DECL|method|UncheckedExecutionException (@ullableDecl Throwable cause)
+DECL|method|UncheckedExecutionException (@heckForNull Throwable cause)
 specifier|public
 name|UncheckedExecutionException
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Throwable
 name|cause
 parameter_list|)

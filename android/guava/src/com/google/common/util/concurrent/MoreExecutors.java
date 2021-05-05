@@ -454,6 +454,22 @@ name|TimeoutException
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|checkerframework
+operator|.
+name|checker
+operator|.
+name|nullness
+operator|.
+name|qual
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/**  * Factory and utility methods for {@link java.util.concurrent.Executor}, {@link ExecutorService},  * and {@link java.util.concurrent.ThreadFactory}.  *  * @author Eric Fellheimer  * @author Kyle Littlefield  * @author Justin Mahoney  * @since 3.0  */
 end_comment
@@ -466,6 +482,8 @@ name|emulated
 operator|=
 literal|true
 argument_list|)
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|MoreExecutors
 specifier|public
 specifier|final
@@ -1630,6 +1648,8 @@ parameter_list|)
 block|{
 name|TrustedListenableFutureTask
 argument_list|<
+annotation|@
+name|Nullable
 name|Void
 argument_list|>
 name|task
@@ -1663,7 +1683,11 @@ decl_stmt|;
 return|return
 operator|new
 name|ListenableScheduledTask
-argument_list|<>
+argument_list|<
+annotation|@
+name|Nullable
+name|Void
+argument_list|>
 argument_list|(
 name|task
 argument_list|,
@@ -1675,47 +1699,50 @@ annotation|@
 name|Override
 DECL|method|schedule ( Callable<V> callable, long delay, TimeUnit unit)
 specifier|public
-parameter_list|<
+operator|<
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|ListenableScheduledFuture
 argument_list|<
 name|V
 argument_list|>
 name|schedule
-parameter_list|(
+argument_list|(
 name|Callable
 argument_list|<
 name|V
 argument_list|>
 name|callable
-parameter_list|,
+argument_list|,
 name|long
 name|delay
-parameter_list|,
+argument_list|,
 name|TimeUnit
 name|unit
-parameter_list|)
+argument_list|)
 block|{
 name|TrustedListenableFutureTask
 argument_list|<
 name|V
 argument_list|>
 name|task
-init|=
+operator|=
 name|TrustedListenableFutureTask
 operator|.
 name|create
 argument_list|(
 name|callable
 argument_list|)
-decl_stmt|;
+block|;
 name|ScheduledFuture
 argument_list|<
 name|?
 argument_list|>
 name|scheduled
-init|=
+operator|=
 name|delegate
 operator|.
 name|schedule
@@ -1726,7 +1753,7 @@ name|delay
 argument_list|,
 name|unit
 argument_list|)
-decl_stmt|;
+block|;
 return|return
 operator|new
 name|ListenableScheduledTask
@@ -1794,7 +1821,11 @@ decl_stmt|;
 return|return
 operator|new
 name|ListenableScheduledTask
-argument_list|<>
+argument_list|<
+annotation|@
+name|Nullable
+name|Void
+argument_list|>
 argument_list|(
 name|task
 argument_list|,
@@ -1856,7 +1887,11 @@ decl_stmt|;
 return|return
 operator|new
 name|ListenableScheduledTask
-argument_list|<>
+argument_list|<
+annotation|@
+name|Nullable
+name|Void
+argument_list|>
 argument_list|(
 name|task
 argument_list|,
@@ -1867,18 +1902,21 @@ block|}
 DECL|class|ListenableScheduledTask
 specifier|private
 specifier|static
-specifier|final
-class|class
+name|final
+name|class
 name|ListenableScheduledTask
-parameter_list|<
+operator|<
 name|V
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|SimpleForwardingListenableFuture
 argument_list|<
 name|V
 argument_list|>
-implements|implements
+expr|implements
 name|ListenableScheduledFuture
 argument_list|<
 name|V
@@ -1886,63 +1924,62 @@ argument_list|>
 block|{
 DECL|field|scheduledDelegate
 specifier|private
-specifier|final
+name|final
 name|ScheduledFuture
 argument_list|<
 name|?
 argument_list|>
 name|scheduledDelegate
-decl_stmt|;
+block|;
 DECL|method|ListenableScheduledTask ( ListenableFuture<V> listenableDelegate, ScheduledFuture<?> scheduledDelegate)
 specifier|public
 name|ListenableScheduledTask
-parameter_list|(
+argument_list|(
 name|ListenableFuture
 argument_list|<
 name|V
 argument_list|>
 name|listenableDelegate
-parameter_list|,
+argument_list|,
 name|ScheduledFuture
 argument_list|<
 name|?
 argument_list|>
 name|scheduledDelegate
-parameter_list|)
+argument_list|)
 block|{
 name|super
 argument_list|(
 name|listenableDelegate
 argument_list|)
-expr_stmt|;
+block|;
 name|this
 operator|.
 name|scheduledDelegate
 operator|=
 name|scheduledDelegate
-expr_stmt|;
-block|}
-annotation|@
+block|;       }
+expr|@
 name|Override
 DECL|method|cancel (boolean mayInterruptIfRunning)
 specifier|public
 name|boolean
 name|cancel
-parameter_list|(
+argument_list|(
 name|boolean
 name|mayInterruptIfRunning
-parameter_list|)
+argument_list|)
 block|{
 name|boolean
 name|cancelled
-init|=
+operator|=
 name|super
 operator|.
 name|cancel
 argument_list|(
 name|mayInterruptIfRunning
 argument_list|)
-decl_stmt|;
+block|;
 if|if
 condition|(
 name|cancelled
@@ -2017,6 +2054,8 @@ name|AbstractFuture
 operator|.
 name|TrustedFuture
 argument_list|<
+annotation|@
+name|Nullable
 name|Void
 argument_list|>
 implements|implements
@@ -2085,27 +2124,53 @@ block|}
 block|}
 block|}
 block|}
+end_class
+
+begin_comment
 comment|/*    * This following method is a modified version of one found in    * http://gee.cs.oswego.edu/cgi-bin/viewcvs.cgi/jsr166/src/test/tck/AbstractExecutorServiceTest.java?revision=1.30    * which contained the following notice:    *    * Written by Doug Lea with assistance from members of JCP JSR-166 Expert Group and released to    * the public domain, as explained at http://creativecommons.org/publicdomain/zero/1.0/    *    * Other contributors include Andrew Wright, Jeffrey Hayes, Pat Fisher, Mike Judd.    */
+end_comment
+
+begin_comment
 comment|/**    * An implementation of {@link ExecutorService#invokeAny} for {@link ListeningExecutorService}    * implementations.    */
+end_comment
+
+begin_annotation
 annotation|@
 name|SuppressWarnings
 argument_list|(
 literal|"GoodTime"
 argument_list|)
+end_annotation
+
+begin_comment
 comment|// should accept a java.time.Duration
+end_comment
+
+begin_annotation
 annotation|@
 name|GwtIncompatible
+end_annotation
+
+begin_annotation
+annotation|@
+name|ParametricNullness
+end_annotation
+
+begin_expr_stmt
 DECL|method|invokeAnyImpl ( ListeningExecutorService executorService, Collection<? extends Callable<T>> tasks, boolean timed, long timeout, TimeUnit unit)
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|T
 name|invokeAnyImpl
-parameter_list|(
+argument_list|(
 name|ListeningExecutorService
 name|executorService
-parameter_list|,
+argument_list|,
 name|Collection
 argument_list|<
 name|?
@@ -2116,16 +2181,16 @@ name|T
 argument_list|>
 argument_list|>
 name|tasks
-parameter_list|,
+operator|,
 name|boolean
 name|timed
-parameter_list|,
+operator|,
 name|long
 name|timeout
-parameter_list|,
+operator|,
 name|TimeUnit
 name|unit
-parameter_list|)
+argument_list|)
 throws|throws
 name|InterruptedException
 throws|,
@@ -2138,11 +2203,17 @@ argument_list|(
 name|executorService
 argument_list|)
 expr_stmt|;
+end_expr_stmt
+
+begin_expr_stmt
 name|checkNotNull
 argument_list|(
 name|unit
 argument_list|)
 expr_stmt|;
+end_expr_stmt
+
+begin_decl_stmt
 name|int
 name|ntasks
 init|=
@@ -2151,6 +2222,9 @@ operator|.
 name|size
 argument_list|()
 decl_stmt|;
+end_decl_stmt
+
+begin_expr_stmt
 name|checkArgument
 argument_list|(
 name|ntasks
@@ -2158,6 +2232,9 @@ operator|>
 literal|0
 argument_list|)
 expr_stmt|;
+end_expr_stmt
+
+begin_decl_stmt
 name|List
 argument_list|<
 name|Future
@@ -2174,6 +2251,9 @@ argument_list|(
 name|ntasks
 argument_list|)
 decl_stmt|;
+end_decl_stmt
+
+begin_decl_stmt
 name|BlockingQueue
 argument_list|<
 name|Future
@@ -2188,6 +2268,9 @@ operator|.
 name|newLinkedBlockingQueue
 argument_list|()
 decl_stmt|;
+end_decl_stmt
+
+begin_decl_stmt
 name|long
 name|timeoutNanos
 init|=
@@ -2198,11 +2281,29 @@ argument_list|(
 name|timeout
 argument_list|)
 decl_stmt|;
+end_decl_stmt
+
+begin_comment
 comment|// For efficiency, especially in executors with limited
+end_comment
+
+begin_comment
 comment|// parallelism, check to see if previously submitted tasks are
+end_comment
+
+begin_comment
 comment|// done before submitting more of them. This interleaving
+end_comment
+
+begin_comment
 comment|// plus the exception mechanics account for messiness of main
+end_comment
+
+begin_comment
 comment|// loop.
+end_comment
+
+begin_try
 try|try
 block|{
 comment|// Record exceptions so that if we fail to obtain any
@@ -2480,33 +2581,42 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-block|}
+end_try
+
+begin_comment
+unit|}
 comment|/**    * Submits the task and adds a listener that adds the future to {@code queue} when it completes.    */
-annotation|@
+end_comment
+
+begin_expr_stmt
+unit|@
 name|GwtIncompatible
 comment|// TODO
 DECL|method|submitAndAddQueueListener ( ListeningExecutorService executorService, Callable<T> task, final BlockingQueue<Future<T>> queue)
 specifier|private
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|ListenableFuture
 argument_list|<
 name|T
 argument_list|>
 name|submitAndAddQueueListener
-parameter_list|(
+argument_list|(
 name|ListeningExecutorService
 name|executorService
-parameter_list|,
+argument_list|,
 name|Callable
 argument_list|<
 name|T
 argument_list|>
 name|task
-parameter_list|,
-specifier|final
+argument_list|,
+name|final
 name|BlockingQueue
 argument_list|<
 name|Future
@@ -2515,22 +2625,22 @@ name|T
 argument_list|>
 argument_list|>
 name|queue
-parameter_list|)
+argument_list|)
 block|{
-specifier|final
+name|final
 name|ListenableFuture
 argument_list|<
 name|T
 argument_list|>
 name|future
-init|=
+operator|=
 name|executorService
 operator|.
 name|submit
 argument_list|(
 name|task
 argument_list|)
-decl_stmt|;
+block|;
 name|future
 operator|.
 name|addListener
@@ -2554,18 +2664,32 @@ name|future
 argument_list|)
 expr_stmt|;
 block|}
-block|}
-argument_list|,
+end_expr_stmt
+
+begin_expr_stmt
+unit|},
 name|directExecutor
 argument_list|()
-argument_list|)
-expr_stmt|;
+end_expr_stmt
+
+begin_empty_stmt
+unit|)
+empty_stmt|;
+end_empty_stmt
+
+begin_return
 return|return
 name|future
 return|;
-block|}
+end_return
+
+begin_comment
+unit|}
 comment|/**    * Returns a default thread factory used to create new threads.    *    *<p>When running on AppEngine with access to<a    * href="https://cloud.google.com/appengine/docs/standard/java/javadoc/">AppEngine legacy    * APIs</a>, this method returns {@code ThreadManager.currentRequestThreadFactory()}. Otherwise,    * it returns {@link Executors#defaultThreadFactory()}.    *    * @since 14.0    */
-annotation|@
+end_comment
+
+begin_function
+unit|@
 name|Beta
 annotation|@
 name|GwtIncompatible
@@ -2683,6 +2807,9 @@ argument_list|)
 throw|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|GwtIncompatible
 comment|// TODO
@@ -2798,7 +2925,13 @@ literal|false
 return|;
 block|}
 block|}
+end_function
+
+begin_comment
 comment|/**    * Creates a thread using {@link #platformThreadFactory}, and sets its name to {@code name} unless    * changing the name is forbidden by the security manager.    */
+end_comment
+
+begin_function
 annotation|@
 name|GwtIncompatible
 comment|// concurrency
@@ -2857,10 +2990,25 @@ return|return
 name|result
 return|;
 block|}
+end_function
+
+begin_comment
 comment|// TODO(lukes): provide overloads for ListeningExecutorService? ListeningScheduledExecutorService?
+end_comment
+
+begin_comment
 comment|// TODO(lukes): provide overloads that take constant strings? Function<Runnable, String>s to
+end_comment
+
+begin_comment
 comment|// calculate names?
+end_comment
+
+begin_comment
 comment|/**    * Creates an {@link Executor} that renames the {@link Thread threads} that its tasks run in.    *    *<p>The names are retrieved from the {@code nameSupplier} on the thread that is being renamed    * right before each task is run. The renaming is best effort, if a {@link SecurityManager}    * prevents the renaming then it will be skipped but the tasks will still execute.    *    * @param executor The executor to decorate    * @param nameSupplier The source of names for each task    */
+end_comment
+
+begin_function
 annotation|@
 name|GwtIncompatible
 comment|// concurrency
@@ -2924,7 +3072,13 @@ block|}
 block|}
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Creates an {@link ExecutorService} that renames the {@link Thread threads} that its tasks run    * in.    *    *<p>The names are retrieved from the {@code nameSupplier} on the thread that is being renamed    * right before each task is run. The renaming is best effort, if a {@link SecurityManager}    * prevents the renaming then it will be skipped but the tasks will still execute.    *    * @param service The executor to decorate    * @param nameSupplier The source of names for each task    */
+end_comment
+
+begin_function
 annotation|@
 name|GwtIncompatible
 comment|// concurrency
@@ -2965,21 +3119,24 @@ block|{
 annotation|@
 name|Override
 specifier|protected
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|Callable
 argument_list|<
 name|T
 argument_list|>
 name|wrapTask
-parameter_list|(
+argument_list|(
 name|Callable
 argument_list|<
 name|T
 argument_list|>
 name|callable
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|Callables
@@ -3016,7 +3173,13 @@ block|}
 block|}
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Creates a {@link ScheduledExecutorService} that renames the {@link Thread threads} that its    * tasks run in.    *    *<p>The names are retrieved from the {@code nameSupplier} on the thread that is being renamed    * right before each task is run. The renaming is best effort, if a {@link SecurityManager}    * prevents the renaming then it will be skipped but the tasks will still execute.    *    * @param service The executor to decorate    * @param nameSupplier The source of names for each task    */
+end_comment
+
+begin_function
 annotation|@
 name|GwtIncompatible
 comment|// concurrency
@@ -3057,21 +3220,24 @@ block|{
 annotation|@
 name|Override
 specifier|protected
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|Callable
 argument_list|<
 name|T
 argument_list|>
 name|wrapTask
-parameter_list|(
+argument_list|(
 name|Callable
 argument_list|<
 name|T
 argument_list|>
 name|callable
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|Callables
@@ -3108,7 +3274,13 @@ block|}
 block|}
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Shuts down the given executor service gradually, first disabling new submissions and later, if    * necessary, cancelling remaining tasks.    *    *<p>The method takes the following steps:    *    *<ol>    *<li>calls {@link ExecutorService#shutdown()}, disabling acceptance of new submitted tasks.    *<li>awaits executor service termination for half of the specified timeout.    *<li>if the timeout expires, it calls {@link ExecutorService#shutdownNow()}, cancelling    *       pending tasks and interrupting running tasks.    *<li>awaits executor service termination for the other half of the specified timeout.    *</ol>    *    *<p>If, at any step of the process, the calling thread is interrupted, the method calls {@link    * ExecutorService#shutdownNow()} and returns.    *    * @param service the {@code ExecutorService} to shut down    * @param timeout the maximum time to wait for the {@code ExecutorService} to terminate    * @param unit the time unit of the timeout argument    * @return {@code true} if the {@code ExecutorService} was terminated successfully, {@code false}    *     if the call timed out or was interrupted    * @since 17.0    */
+end_comment
+
+begin_function
 annotation|@
 name|Beta
 annotation|@
@@ -3223,7 +3395,13 @@ name|isTerminated
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Returns an Executor that will propagate {@link RejectedExecutionException} from the delegate    * executor to the given {@code future}.    *    *<p>Note, the returned executor can only be used once.    */
+end_comment
+
+begin_function
 DECL|method|rejectionPropagatingExecutor ( final Executor delegate, final AbstractFuture<?> future)
 specifier|static
 name|Executor
@@ -3307,8 +3485,8 @@ block|}
 block|}
 return|;
 block|}
-block|}
-end_class
+end_function
 
+unit|}
 end_unit
 

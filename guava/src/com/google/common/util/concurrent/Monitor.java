@@ -188,17 +188,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|javax
 operator|.
-name|checkerframework
+name|annotation
 operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|qual
-operator|.
-name|Nullable
+name|CheckForNull
 import|;
 end_import
 
@@ -217,6 +211,8 @@ argument_list|(
 literal|"GuardedBy"
 argument_list|)
 comment|// TODO(b/35466881): Fix or suppress.
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|Monitor
 specifier|public
 specifier|final
@@ -309,7 +305,7 @@ argument_list|(
 literal|"monitor.lock"
 argument_list|)
 annotation|@
-name|Nullable
+name|CheckForNull
 DECL|field|next
 name|Guard
 name|next
@@ -374,6 +370,8 @@ name|GuardedBy
 argument_list|(
 literal|"lock"
 argument_list|)
+annotation|@
+name|CheckForNull
 DECL|field|activeGuards
 specifier|private
 name|Guard

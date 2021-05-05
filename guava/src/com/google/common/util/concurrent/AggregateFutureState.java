@@ -40,6 +40,18 @@ name|java
 operator|.
 name|util
 operator|.
+name|Objects
+operator|.
+name|requireNonNull
+import|;
+end_import
+
+begin_import
+import|import static
+name|java
+operator|.
+name|util
+operator|.
 name|concurrent
 operator|.
 name|atomic
@@ -156,11 +168,37 @@ name|Logger
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|checkerframework
+operator|.
+name|checker
+operator|.
+name|nullness
+operator|.
+name|qual
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/**  * A helper which does some thread-safe operations for aggregate futures, which must be implemented  * differently in GWT. Namely:  *  *<ul>  *<li>Lazily initializes a set of seen exceptions  *<li>Decrements a counter atomically  *</ul>  */
 end_comment
 
-begin_class
+begin_annotation
 annotation|@
 name|GwtCompatible
 argument_list|(
@@ -168,6 +206,9 @@ name|emulated
 operator|=
 literal|true
 argument_list|)
+end_annotation
+
+begin_annotation
 annotation|@
 name|ReflectionSupport
 argument_list|(
@@ -179,14 +220,25 @@ name|Level
 operator|.
 name|FULL
 argument_list|)
+end_annotation
+
+begin_annotation
+annotation|@
+name|ElementTypesAreNonnullByDefault
+end_annotation
+
+begin_expr_stmt
 DECL|class|AggregateFutureState
 specifier|abstract
-class|class
+name|class
 name|AggregateFutureState
-parameter_list|<
+operator|<
 name|OutputT
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|AbstractFuture
 operator|.
 name|TrustedFuture
@@ -197,6 +249,8 @@ block|{
 comment|// Lazily initialized the first time we see an exception; not released until all the input futures
 comment|// have completed and we have processed them all.
 DECL|field|seenExceptions
+block|@
+name|CheckForNull
 specifier|private
 specifier|volatile
 name|Set
@@ -204,29 +258,29 @@ argument_list|<
 name|Throwable
 argument_list|>
 name|seenExceptions
-init|=
+operator|=
 literal|null
-decl_stmt|;
+block|;
 DECL|field|remaining
 specifier|private
 specifier|volatile
 name|int
 name|remaining
-decl_stmt|;
+block|;
 DECL|field|ATOMIC_HELPER
 specifier|private
 specifier|static
-specifier|final
+name|final
 name|AtomicHelper
 name|ATOMIC_HELPER
-decl_stmt|;
+block|;
 DECL|field|log
 specifier|private
 specifier|static
-specifier|final
+name|final
 name|Logger
 name|log
-init|=
+operator|=
 name|Logger
 operator|.
 name|getLogger
@@ -238,17 +292,17 @@ operator|.
 name|getName
 argument_list|()
 argument_list|)
-decl_stmt|;
-static|static
+block|;
+specifier|static
 block|{
 name|AtomicHelper
 name|helper
-decl_stmt|;
+block|;
 name|Throwable
 name|thrownReflectionFailure
-init|=
+operator|=
 literal|null
-decl_stmt|;
+block|;
 try|try
 block|{
 name|helper
@@ -305,8 +359,17 @@ name|ATOMIC_HELPER
 operator|=
 name|helper
 expr_stmt|;
+end_expr_stmt
+
+begin_comment
 comment|// Log after all static init is finished; if an installed logger uses any Futures methods, it
+end_comment
+
+begin_comment
 comment|// shouldn't break in cases where reflection is missing/broken.
+end_comment
+
+begin_if
 if|if
 condition|(
 name|thrownReflectionFailure
@@ -328,29 +391,30 @@ name|thrownReflectionFailure
 argument_list|)
 expr_stmt|;
 block|}
-block|}
+end_if
+
+begin_expr_stmt
+unit|}    AggregateFutureState
 DECL|method|AggregateFutureState (int remainingFutures)
-name|AggregateFutureState
-parameter_list|(
+operator|(
 name|int
 name|remainingFutures
-parameter_list|)
+operator|)
 block|{
 name|this
 operator|.
 name|remaining
 operator|=
 name|remainingFutures
-expr_stmt|;
-block|}
+block|;   }
 DECL|method|getOrInitSeenExceptions ()
-specifier|final
+name|final
 name|Set
 argument_list|<
 name|Throwable
 argument_list|>
 name|getOrInitSeenExceptions
-parameter_list|()
+argument_list|()
 block|{
 comment|/*      * The initialization of seenExceptions has to be more complicated than we'd like. The simple      * approach would be for each caller CAS it from null to a Set populated with its exception. But      * there's another race: If the first thread fails with an exception and a second thread      * immediately fails with the same exception:      *      * Thread1: calls setException(), which returns true, context switch before it can CAS      * seenExceptions to its exception      *      * Thread2: calls setException(), which returns false, CASes seenExceptions to its exception,      * and wrongly believes that its exception is new (leading it to logging it when it shouldn't)      *      * Our solution is for threads to CAS seenExceptions from null to a Set populated with _the      * initial exception_, no matter which thread does the work. This ensures that seenExceptions      * always contains not just the current thread's exception but also the initial thread's.      */
 name|Set
@@ -358,9 +422,9 @@ argument_list|<
 name|Throwable
 argument_list|>
 name|seenExceptionsLocal
-init|=
+operator|=
 name|seenExceptions
-decl_stmt|;
+block|;
 if|if
 condition|(
 name|seenExceptionsLocal
@@ -393,19 +457,31 @@ argument_list|,
 name|seenExceptionsLocal
 argument_list|)
 expr_stmt|;
-comment|/*        * If another handleException() caller created the set, we need to use that copy in case yet        * other callers have added to it.        *        * This read is guaranteed to get us the right value because we only set this once (here).        */
+comment|/*        * If another handleException() caller created the set, we need to use that copy in case yet        * other callers have added to it.        *        * This read is guaranteed to get us the right value because we only set this once (here).        *        * requireNonNull is safe because either our compareAndSet succeeded or it failed because        * another thread did it for us.        */
 name|seenExceptionsLocal
 operator|=
+name|requireNonNull
+argument_list|(
 name|seenExceptions
+argument_list|)
 expr_stmt|;
 block|}
+end_expr_stmt
+
+begin_return
 return|return
 name|seenExceptionsLocal
 return|;
-block|}
+end_return
+
+begin_comment
+unit|}
 comment|/** Populates {@code seen} with the exception that was passed to {@code setException}. */
+end_comment
+
+begin_function_decl
 DECL|method|addInitialException (Set<Throwable> seen)
-specifier|abstract
+unit|abstract
 name|void
 name|addInitialException
 parameter_list|(
@@ -416,6 +492,9 @@ argument_list|>
 name|seen
 parameter_list|)
 function_decl|;
+end_function_decl
+
+begin_function
 DECL|method|decrementRemainingAndGet ()
 specifier|final
 name|int
@@ -431,6 +510,9 @@ name|this
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 DECL|method|clearSeenExceptions ()
 specifier|final
 name|void
@@ -442,6 +524,9 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
+end_function
+
+begin_class
 DECL|class|AtomicHelper
 specifier|private
 specifier|abstract
@@ -450,7 +535,7 @@ class|class
 name|AtomicHelper
 block|{
 comment|/** Atomic compare-and-set of the {@link AggregateFutureState#seenExceptions} field. */
-DECL|method|compareAndSetSeenExceptions ( AggregateFutureState<?> state, Set<Throwable> expect, Set<Throwable> update)
+DECL|method|compareAndSetSeenExceptions ( AggregateFutureState<?> state, @CheckForNull Set<Throwable> expect, Set<Throwable> update)
 specifier|abstract
 name|void
 name|compareAndSetSeenExceptions
@@ -461,6 +546,8 @@ name|?
 argument_list|>
 name|state
 parameter_list|,
+annotation|@
+name|CheckForNull
 name|Set
 argument_list|<
 name|Throwable
@@ -488,6 +575,9 @@ name|state
 parameter_list|)
 function_decl|;
 block|}
+end_class
+
+begin_class
 DECL|class|SafeAtomicHelper
 specifier|private
 specifier|static
@@ -582,7 +672,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|compareAndSetSeenExceptions ( AggregateFutureState<?> state, Set<Throwable> expect, Set<Throwable> update)
+DECL|method|compareAndSetSeenExceptions ( AggregateFutureState<?> state, @CheckForNull Set<Throwable> expect, Set<Throwable> update)
 name|void
 name|compareAndSetSeenExceptions
 parameter_list|(
@@ -592,6 +682,8 @@ name|?
 argument_list|>
 name|state
 parameter_list|,
+annotation|@
+name|CheckForNull
 name|Set
 argument_list|<
 name|Throwable
@@ -640,6 +732,9 @@ argument_list|)
 return|;
 block|}
 block|}
+end_class
+
+begin_class
 DECL|class|SynchronizedAtomicHelper
 specifier|private
 specifier|static
@@ -651,7 +746,7 @@ name|AtomicHelper
 block|{
 annotation|@
 name|Override
-DECL|method|compareAndSetSeenExceptions ( AggregateFutureState<?> state, Set<Throwable> expect, Set<Throwable> update)
+DECL|method|compareAndSetSeenExceptions ( AggregateFutureState<?> state, @CheckForNull Set<Throwable> expect, Set<Throwable> update)
 name|void
 name|compareAndSetSeenExceptions
 parameter_list|(
@@ -661,6 +756,8 @@ name|?
 argument_list|>
 name|state
 parameter_list|,
+annotation|@
+name|CheckForNull
 name|Set
 argument_list|<
 name|Throwable
@@ -724,8 +821,8 @@ return|;
 block|}
 block|}
 block|}
-block|}
 end_class
 
+unit|}
 end_unit
 

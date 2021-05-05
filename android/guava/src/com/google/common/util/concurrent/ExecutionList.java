@@ -102,17 +102,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|javax
 operator|.
-name|checkerframework
+name|annotation
 operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|compatqual
-operator|.
-name|NullableDecl
+name|CheckForNull
 import|;
 end_import
 
@@ -123,6 +117,8 @@ end_comment
 begin_class
 annotation|@
 name|GwtIncompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|ExecutionList
 specifier|public
 specifier|final
@@ -156,7 +152,7 @@ argument_list|(
 literal|"this"
 argument_list|)
 annotation|@
-name|NullableDecl
+name|CheckForNull
 DECL|field|runnables
 specifier|private
 name|RunnableExecutorPair
@@ -427,11 +423,11 @@ name|executor
 decl_stmt|;
 DECL|field|next
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|RunnableExecutorPair
 name|next
 decl_stmt|;
-DECL|method|RunnableExecutorPair (Runnable runnable, Executor executor, RunnableExecutorPair next)
+DECL|method|RunnableExecutorPair ( Runnable runnable, Executor executor, @CheckForNull RunnableExecutorPair next)
 name|RunnableExecutorPair
 parameter_list|(
 name|Runnable
@@ -440,6 +436,8 @@ parameter_list|,
 name|Executor
 name|executor
 parameter_list|,
+annotation|@
+name|CheckForNull
 name|RunnableExecutorPair
 name|next
 parameter_list|)

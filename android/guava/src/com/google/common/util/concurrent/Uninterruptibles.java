@@ -254,6 +254,22 @@ name|Lock
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|checkerframework
+operator|.
+name|checker
+operator|.
+name|nullness
+operator|.
+name|qual
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/**  * Utilities for treating interruptible operations as uninterruptible. In all cases, if a thread is  * interrupted during such a call, the call continues to block until the result is available or the  * timeout elapses, and only then re-interrupts the thread.  *  * @author Anthony Zana  * @since 10.0  */
 end_comment
@@ -266,6 +282,8 @@ name|emulated
 operator|=
 literal|true
 argument_list|)
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|Uninterruptibles
 specifier|public
 specifier|final
@@ -754,29 +772,34 @@ block|}
 comment|/**    * Invokes {@code future.}{@link Future#get() get()} uninterruptibly.    *    *<p>Similar methods:    *    *<ul>    *<li>To retrieve a result from a {@code Future} that is already done, use {@link    *       Futures#getDone Futures.getDone}.    *<li>To treat {@link InterruptedException} uniformly with other exceptions, use {@link    *       Futures#getChecked(Future, Class) Futures.getChecked}.    *<li>To get uninterruptibility and remove checked exceptions, use {@link    *       Futures#getUnchecked}.    *</ul>    *    * @throws ExecutionException if the computation threw an exception    * @throws CancellationException if the computation was cancelled    */
 annotation|@
 name|CanIgnoreReturnValue
+annotation|@
+name|ParametricNullness
 DECL|method|getUninterruptibly (Future<V> future)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|V
 name|getUninterruptibly
-parameter_list|(
+argument_list|(
 name|Future
 argument_list|<
 name|V
 argument_list|>
 name|future
-parameter_list|)
+argument_list|)
 throws|throws
 name|ExecutionException
 block|{
 name|boolean
 name|interrupted
-init|=
+operator|=
 literal|false
-decl_stmt|;
+expr_stmt|;
 try|try
 block|{
 while|while
@@ -824,39 +847,68 @@ expr_stmt|;
 block|}
 block|}
 block|}
+end_class
+
+begin_comment
 comment|/**    * Invokes {@code future.}{@link Future#get(long, TimeUnit) get(timeout, unit)} uninterruptibly.    *    *<p>Similar methods:    *    *<ul>    *<li>To retrieve a result from a {@code Future} that is already done, use {@link    *       Futures#getDone Futures.getDone}.    *<li>To treat {@link InterruptedException} uniformly with other exceptions, use {@link    *       Futures#getChecked(Future, Class, long, TimeUnit) Futures.getChecked}.    *<li>To get uninterruptibility and remove checked exceptions, use {@link    *       Futures#getUnchecked}.    *</ul>    *    * @throws ExecutionException if the computation threw an exception    * @throws CancellationException if the computation was cancelled    * @throws TimeoutException if the wait timed out    */
+end_comment
+
+begin_annotation
 annotation|@
 name|CanIgnoreReturnValue
+end_annotation
+
+begin_annotation
 annotation|@
 name|GwtIncompatible
+end_annotation
+
+begin_comment
 comment|// TODO
+end_comment
+
+begin_annotation
 annotation|@
 name|SuppressWarnings
 argument_list|(
 literal|"GoodTime"
 argument_list|)
+end_annotation
+
+begin_comment
 comment|// should accept a java.time.Duration
-DECL|method|getUninterruptibly (Future<V> future, long timeout, TimeUnit unit)
+end_comment
+
+begin_annotation
+annotation|@
+name|ParametricNullness
+end_annotation
+
+begin_expr_stmt
+DECL|method|getUninterruptibly ( Future<V> future, long timeout, TimeUnit unit)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|V
 name|getUninterruptibly
-parameter_list|(
+argument_list|(
 name|Future
 argument_list|<
 name|V
 argument_list|>
 name|future
-parameter_list|,
+argument_list|,
 name|long
 name|timeout
-parameter_list|,
+argument_list|,
 name|TimeUnit
 name|unit
-parameter_list|)
+argument_list|)
 throws|throws
 name|ExecutionException
 throws|,
@@ -864,9 +916,12 @@ name|TimeoutException
 block|{
 name|boolean
 name|interrupted
-init|=
+operator|=
 literal|false
-decl_stmt|;
+expr_stmt|;
+end_expr_stmt
+
+begin_try
 try|try
 block|{
 name|long
@@ -947,17 +1002,23 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-block|}
+end_try
+
+begin_comment
+unit|}
 comment|/** Invokes {@code queue.}{@link BlockingQueue#take() take()} uninterruptibly. */
-annotation|@
+end_comment
+
+begin_function
+unit|@
 name|GwtIncompatible
 comment|// concurrency
 DECL|method|takeUninterruptibly (BlockingQueue<E> queue)
 specifier|public
 specifier|static
-parameter_list|<
+argument_list|<
 name|E
-parameter_list|>
+argument_list|>
 name|E
 name|takeUninterruptibly
 parameter_list|(
@@ -1020,7 +1081,13 @@ expr_stmt|;
 block|}
 block|}
 block|}
+end_function
+
+begin_comment
 comment|/**    * Invokes {@code queue.}{@link BlockingQueue#put(Object) put(element)} uninterruptibly.    *    * @throws ClassCastException if the class of the specified element prevents it from being added    *     to the given queue    * @throws IllegalArgumentException if some property of the specified element prevents it from    *     being added to the given queue    */
+end_comment
+
+begin_function
 annotation|@
 name|GwtIncompatible
 comment|// concurrency
@@ -1097,8 +1164,17 @@ expr_stmt|;
 block|}
 block|}
 block|}
+end_function
+
+begin_comment
 comment|// TODO(user): Support Sleeper somehow (wrapper or interface method)?
+end_comment
+
+begin_comment
 comment|/** Invokes {@code unit.}{@link TimeUnit#sleep(long) sleep(sleepFor)} uninterruptibly. */
+end_comment
+
+begin_function
 annotation|@
 name|GwtIncompatible
 comment|// concurrency
@@ -1205,7 +1281,13 @@ expr_stmt|;
 block|}
 block|}
 block|}
+end_function
+
+begin_comment
 comment|/**    * Invokes {@code semaphore.}{@link Semaphore#tryAcquire(int, long, TimeUnit) tryAcquire(1,    * timeout, unit)} uninterruptibly.    *    * @since 18.0    */
+end_comment
+
+begin_function
 annotation|@
 name|GwtIncompatible
 comment|// concurrency
@@ -1244,7 +1326,13 @@ name|unit
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Invokes {@code semaphore.}{@link Semaphore#tryAcquire(int, long, TimeUnit) tryAcquire(permits,    * timeout, unit)} uninterruptibly.    *    * @since 18.0    */
+end_comment
+
+begin_function
 annotation|@
 name|GwtIncompatible
 comment|// concurrency
@@ -1361,7 +1449,13 @@ expr_stmt|;
 block|}
 block|}
 block|}
+end_function
+
+begin_comment
 comment|/**    * Invokes {@code lock.}{@link Lock#tryLock(long, TimeUnit) tryLock(timeout, unit)}    * uninterruptibly.    *    * @since 30.0    */
+end_comment
+
+begin_function
 annotation|@
 name|GwtIncompatible
 comment|// concurrency
@@ -1472,7 +1566,13 @@ expr_stmt|;
 block|}
 block|}
 block|}
+end_function
+
+begin_comment
 comment|/**    * Invokes {@code executor.}{@link ExecutorService#awaitTermination(long, TimeUnit)    * awaitTermination(long, TimeUnit)} uninterruptibly with no timeout.    *    * @since 30.0    */
+end_comment
+
+begin_function
 annotation|@
 name|Beta
 annotation|@
@@ -1504,7 +1604,13 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Invokes {@code executor.}{@link ExecutorService#awaitTermination(long, TimeUnit)    * awaitTermination(long, TimeUnit)} uninterruptibly.    *    * @since 30.0    */
+end_comment
+
+begin_function
 annotation|@
 name|Beta
 annotation|@
@@ -1616,14 +1722,20 @@ expr_stmt|;
 block|}
 block|}
 block|}
+end_function
+
+begin_comment
 comment|// TODO(user): Add support for waitUninterruptibly.
+end_comment
+
+begin_constructor
 DECL|method|Uninterruptibles ()
 specifier|private
 name|Uninterruptibles
 parameter_list|()
 block|{}
-block|}
-end_class
+end_constructor
 
+unit|}
 end_unit
 

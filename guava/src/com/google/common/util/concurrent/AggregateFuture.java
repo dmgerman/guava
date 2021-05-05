@@ -132,6 +132,18 @@ name|java
 operator|.
 name|util
 operator|.
+name|Objects
+operator|.
+name|requireNonNull
+import|;
+end_import
+
+begin_import
+import|import static
+name|java
+operator|.
+name|util
+operator|.
 name|logging
 operator|.
 name|Level
@@ -244,6 +256,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|checkerframework
@@ -262,19 +284,33 @@ begin_comment
 comment|/**  * A future whose value is derived from a collection of input futures.  *  * @param<InputT> the type of the individual inputs  * @param<OutputT> the type of the output (i.e. this) future  */
 end_comment
 
-begin_class
+begin_annotation
 annotation|@
 name|GwtCompatible
+end_annotation
+
+begin_annotation
+annotation|@
+name|ElementTypesAreNonnullByDefault
+end_annotation
+
+begin_expr_stmt
 DECL|class|AggregateFuture
 specifier|abstract
-class|class
+name|class
 name|AggregateFuture
-parameter_list|<
+operator|<
 name|InputT
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|OutputT
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|AggregateFutureState
 argument_list|<
 name|OutputT
@@ -283,10 +319,10 @@ block|{
 DECL|field|logger
 specifier|private
 specifier|static
-specifier|final
+name|final
 name|Logger
 name|logger
-init|=
+operator|=
 name|Logger
 operator|.
 name|getLogger
@@ -298,13 +334,13 @@ operator|.
 name|getName
 argument_list|()
 argument_list|)
-decl_stmt|;
+block|;
 comment|/**    * The input futures. After {@link #init}, this field is read only by {@link #afterDone()} (to    * propagate cancellation) and {@link #toString()}. To access the futures'<i>values</i>, {@code    * AggregateFuture} attaches listeners that hold references to one or more inputs. And in the case    * of {@link CombinedFuture}, the user-supplied callback usually has its own references to inputs.    */
 comment|/*    * In certain circumstances, this field might theoretically not be visible to an afterDone() call    * triggered by cancel(). For details, see the comments on the fields of TimeoutFuture.    */
 DECL|field|futures
+block|@
+name|CheckForNull
 specifier|private
-annotation|@
-name|Nullable
 name|ImmutableCollection
 argument_list|<
 name|?
@@ -317,22 +353,22 @@ name|InputT
 argument_list|>
 argument_list|>
 name|futures
-decl_stmt|;
+block|;
 DECL|field|allMustSucceed
 specifier|private
-specifier|final
+name|final
 name|boolean
 name|allMustSucceed
-decl_stmt|;
+block|;
 DECL|field|collectsValues
 specifier|private
-specifier|final
+name|final
 name|boolean
 name|collectsValues
-decl_stmt|;
+block|;
 DECL|method|AggregateFuture ( ImmutableCollection<? extends ListenableFuture<? extends InputT>> futures, boolean allMustSucceed, boolean collectsValues)
 name|AggregateFuture
-parameter_list|(
+argument_list|(
 name|ImmutableCollection
 argument_list|<
 name|?
@@ -345,13 +381,13 @@ name|InputT
 argument_list|>
 argument_list|>
 name|futures
-parameter_list|,
+operator|,
 name|boolean
 name|allMustSucceed
-parameter_list|,
+operator|,
 name|boolean
 name|collectsValues
-parameter_list|)
+argument_list|)
 block|{
 name|super
 argument_list|(
@@ -360,7 +396,7 @@ operator|.
 name|size
 argument_list|()
 argument_list|)
-expr_stmt|;
+block|;
 name|this
 operator|.
 name|futures
@@ -369,34 +405,33 @@ name|checkNotNull
 argument_list|(
 name|futures
 argument_list|)
-expr_stmt|;
+block|;
 name|this
 operator|.
 name|allMustSucceed
 operator|=
 name|allMustSucceed
-expr_stmt|;
+block|;
 name|this
 operator|.
 name|collectsValues
 operator|=
 name|collectsValues
-expr_stmt|;
-block|}
-annotation|@
+block|;   }
+expr|@
 name|Override
 DECL|method|afterDone ()
 specifier|protected
-specifier|final
+name|final
 name|void
 name|afterDone
-parameter_list|()
+argument_list|()
 block|{
 name|super
 operator|.
 name|afterDone
 argument_list|()
-expr_stmt|;
+block|;
 name|ImmutableCollection
 argument_list|<
 name|?
@@ -407,14 +442,14 @@ name|?
 argument_list|>
 argument_list|>
 name|localFutures
-init|=
+operator|=
 name|futures
-decl_stmt|;
+block|;
 name|releaseResources
 argument_list|(
 name|OUTPUT_FUTURE_DONE
 argument_list|)
-expr_stmt|;
+block|;
 comment|// nulls out `futures`
 if|if
 condition|(
@@ -452,10 +487,17 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/*      * We don't call clearSeenExceptions() until processCompleted(). Prior to that, it may be needed      * again if some outstanding input fails.      */
-block|}
-annotation|@
+end_comment
+
+begin_function
+unit|}    @
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|pendingToString ()
 specifier|protected
 specifier|final
@@ -496,13 +538,25 @@ name|pendingToString
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Must be called at the end of each subclass's constructor. This method performs the "real"    * initialization; we can't put this in the constructor because, in the case where futures are    * already complete, we would not initialize the subclass before calling {@link    * #collectValueFromNonCancelledFuture}. As this is called after the subclass is constructed,    * we're guaranteed to have properly initialized the subclass.    */
+end_comment
+
+begin_function
 DECL|method|init ()
 specifier|final
 name|void
 name|init
 parameter_list|()
 block|{
+comment|/*      * requireNonNull is safe because this is called from the constructor after `futures` is set but      * before releaseResources could be called (because we have not yet set up any of the listeners      * that could call it, nor exposed this Future for users to call cancel() on).      */
+name|requireNonNull
+argument_list|(
+name|futures
+argument_list|)
+expr_stmt|;
 comment|// Corner case: List is empty.
 if|if
 condition|(
@@ -695,7 +749,13 @@ expr_stmt|;
 block|}
 block|}
 block|}
+end_function
+
+begin_comment
 comment|/**    * Fails this future with the given Throwable if {@link #allMustSucceed} is true. Also, logs the    * throwable if it is an {@link Error} or if {@link #allMustSucceed} is {@code true}, the    * throwable did not cause this future to fail, and it is the first time we've seen that    * particular Throwable.    */
+end_comment
+
+begin_function
 DECL|method|handleException (Throwable throwable)
 specifier|private
 name|void
@@ -774,6 +834,9 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+end_function
+
+begin_function
 DECL|method|log (Throwable throwable)
 specifier|private
 specifier|static
@@ -809,6 +872,9 @@ name|throwable
 argument_list|)
 expr_stmt|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|addInitialException (Set<Throwable> seen)
@@ -835,7 +901,7 @@ name|isCancelled
 argument_list|()
 condition|)
 block|{
-comment|// TODO(cpovirk): Think about whether we could/should use Verify to check this.
+comment|/*        * requireNonNull is safe because this is a TrustedFuture, and we're calling this method only        * if it has failed.        *        * TODO(cpovirk): Think about whether we could/should use Verify to check the return value of        * addCausalChain.        */
 name|boolean
 name|unused
 init|=
@@ -843,13 +909,22 @@ name|addCausalChain
 argument_list|(
 name|seen
 argument_list|,
+name|requireNonNull
+argument_list|(
 name|tryInternalFastPathGetFailure
 argument_list|()
+argument_list|)
 argument_list|)
 decl_stmt|;
 block|}
 block|}
+end_function
+
+begin_comment
 comment|/**    * Collects the result (success or failure) of one input future. The input must not have been    * cancelled. For details on when this is called, see {@link #collectOneValue}.    */
+end_comment
+
+begin_function
 DECL|method|collectValueFromNonCancelledFuture (int index, Future<? extends InputT> future)
 specifier|private
 name|void
@@ -909,13 +984,16 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-DECL|method|decrementCountAndMaybeComplete ( @ullable ImmutableCollection<? extends Future<? extends InputT>> futuresIfNeedToCollectAtCompletion)
+end_function
+
+begin_function
+DECL|method|decrementCountAndMaybeComplete ( @heckForNull ImmutableCollection<? extends Future<? extends InputT>> futuresIfNeedToCollectAtCompletion)
 specifier|private
 name|void
 name|decrementCountAndMaybeComplete
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|ImmutableCollection
 argument_list|<
 name|?
@@ -959,13 +1037,16 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-DECL|method|processCompleted ( @ullable ImmutableCollection<? extends Future<? extends InputT>> futuresIfNeedToCollectAtCompletion)
+end_function
+
+begin_function
+DECL|method|processCompleted ( @heckForNull ImmutableCollection<? extends Future<? extends InputT>> futuresIfNeedToCollectAtCompletion)
 specifier|private
 name|void
 name|processCompleted
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|ImmutableCollection
 argument_list|<
 name|?
@@ -1040,8 +1121,17 @@ name|ALL_INPUT_FUTURES_PROCESSED
 argument_list|)
 expr_stmt|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Clears fields that are no longer needed after this future has completed -- or at least all its    * inputs have completed (more precisely, after {@link #handleAllCompleted()} has been called).    * Often called multiple times (that is, both when the inputs complete and when the output    * completes).    *    *<p>This is similar to our proposed {@code afterCommit} method but not quite the same. See the    * description of CL 265462958.    */
+end_comment
+
+begin_comment
 comment|// TODO(user): Write more tests for memory retention.
+end_comment
+
+begin_function
 annotation|@
 name|ForOverride
 annotation|@
@@ -1067,6 +1157,9 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
+end_function
+
+begin_enum
 DECL|enum|ReleaseResourcesReason
 enum|enum
 name|ReleaseResourcesReason
@@ -1077,8 +1170,14 @@ block|,
 DECL|enumConstant|ALL_INPUT_FUTURES_PROCESSED
 name|ALL_INPUT_FUTURES_PROCESSED
 block|,   }
+end_enum
+
+begin_comment
 comment|/**    * If {@code allMustSucceed} is true, called as each future completes; otherwise, if {@code    * collectsValues} is true, called for each future when all futures complete.    */
-DECL|method|collectOneValue (int index, @Nullable InputT returnValue)
+end_comment
+
+begin_function_decl
+DECL|method|collectOneValue (int index, @ParametricNullness InputT returnValue)
 specifier|abstract
 name|void
 name|collectOneValue
@@ -1087,19 +1186,28 @@ name|int
 name|index
 parameter_list|,
 annotation|@
-name|Nullable
+name|ParametricNullness
 name|InputT
 name|returnValue
 parameter_list|)
 function_decl|;
+end_function_decl
+
+begin_function_decl
 DECL|method|handleAllCompleted ()
 specifier|abstract
 name|void
 name|handleAllCompleted
 parameter_list|()
 function_decl|;
+end_function_decl
+
+begin_comment
 comment|/** Adds the chain to the seen set, and returns whether all the chain was new to us. */
-DECL|method|addCausalChain (Set<Throwable> seen, Throwable t)
+end_comment
+
+begin_function
+DECL|method|addCausalChain (Set<Throwable> seen, Throwable param)
 specifier|private
 specifier|static
 name|boolean
@@ -1112,9 +1220,15 @@ argument_list|>
 name|seen
 parameter_list|,
 name|Throwable
-name|t
+name|param
 parameter_list|)
 block|{
+comment|// Declare a "true" local variable so that the Checker Framework will infer nullness.
+name|Throwable
+name|t
+init|=
+name|param
+decl_stmt|;
 for|for
 control|(
 init|;
@@ -1156,8 +1270,8 @@ return|return
 literal|true
 return|;
 block|}
-block|}
-end_class
+end_function
 
+unit|}
 end_unit
 

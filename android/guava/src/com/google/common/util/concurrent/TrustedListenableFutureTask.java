@@ -100,6 +100,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|checkerframework
@@ -108,9 +118,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -118,45 +128,59 @@ begin_comment
 comment|/**  * A {@link RunnableFuture} that also implements the {@link ListenableFuture} interface.  *  *<p>This should be used in preference to {@link ListenableFutureTask} when possible for  * performance reasons.  */
 end_comment
 
-begin_class
+begin_annotation
 annotation|@
 name|GwtCompatible
+end_annotation
+
+begin_annotation
+annotation|@
+name|ElementTypesAreNonnullByDefault
+end_annotation
+
+begin_expr_stmt
 DECL|class|TrustedListenableFutureTask
-class|class
+name|class
 name|TrustedListenableFutureTask
-parameter_list|<
+operator|<
 name|V
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|FluentFuture
 operator|.
 name|TrustedFuture
 argument_list|<
 name|V
 argument_list|>
-implements|implements
+expr|implements
 name|RunnableFuture
 argument_list|<
 name|V
 argument_list|>
 block|{
-DECL|method|create (AsyncCallable<V> callable)
+DECL|method|create ( AsyncCallable<V> callable)
 specifier|static
-parameter_list|<
+operator|<
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|TrustedListenableFutureTask
 argument_list|<
 name|V
 argument_list|>
 name|create
-parameter_list|(
+argument_list|(
 name|AsyncCallable
 argument_list|<
 name|V
 argument_list|>
 name|callable
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|new
@@ -171,21 +195,24 @@ return|;
 block|}
 DECL|method|create (Callable<V> callable)
 specifier|static
-parameter_list|<
+operator|<
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|TrustedListenableFutureTask
 argument_list|<
 name|V
 argument_list|>
 name|create
-parameter_list|(
+argument_list|(
 name|Callable
 argument_list|<
 name|V
 argument_list|>
 name|callable
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|new
@@ -198,26 +225,35 @@ name|callable
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/**    * Creates a {@code ListenableFutureTask} that will upon running, execute the given {@code    * Runnable}, and arrange that {@code get} will return the given result on successful completion.    *    * @param runnable the runnable task    * @param result the result to return on successful completion. If you don't need a particular    *     result, consider using constructions of the form: {@code ListenableFuture<?> f =    *     ListenableFutureTask.create(runnable, null)}    */
-DECL|method|create (Runnable runnable, @NullableDecl V result)
+end_comment
+
+begin_expr_stmt
+DECL|method|create ( Runnable runnable, @ParametricNullness V result)
 specifier|static
-parameter_list|<
+operator|<
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|TrustedListenableFutureTask
 argument_list|<
 name|V
 argument_list|>
 name|create
-parameter_list|(
+argument_list|(
 name|Runnable
 name|runnable
-parameter_list|,
+argument_list|,
 annotation|@
-name|NullableDecl
+name|ParametricNullness
 name|V
 name|result
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|new
@@ -237,8 +273,16 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/*    * In certain circumstances, this field might theoretically not be visible to an afterDone() call    * triggered by cancel(). For details, see the comments on the fields of TimeoutFuture.    *    *<p>{@code volatile} is required for j2objc transpiling:    * https://developers.google.com/j2objc/guides/j2objc-memory-model#atomicity    */
+end_comment
+
+begin_decl_stmt
 DECL|field|task
+annotation|@
+name|CheckForNull
 specifier|private
 specifier|volatile
 name|InterruptibleTask
@@ -247,15 +291,18 @@ name|?
 argument_list|>
 name|task
 decl_stmt|;
+end_decl_stmt
+
+begin_expr_stmt
 DECL|method|TrustedListenableFutureTask (Callable<V> callable)
 name|TrustedListenableFutureTask
-parameter_list|(
+argument_list|(
 name|Callable
 argument_list|<
 name|V
 argument_list|>
 name|callable
-parameter_list|)
+argument_list|)
 block|{
 name|this
 operator|.
@@ -266,17 +313,16 @@ name|TrustedFutureInterruptibleTask
 argument_list|(
 name|callable
 argument_list|)
-expr_stmt|;
-block|}
+block|;   }
 DECL|method|TrustedListenableFutureTask (AsyncCallable<V> callable)
 name|TrustedListenableFutureTask
-parameter_list|(
+argument_list|(
 name|AsyncCallable
 argument_list|<
 name|V
 argument_list|>
 name|callable
-parameter_list|)
+argument_list|)
 block|{
 name|this
 operator|.
@@ -287,24 +333,23 @@ name|TrustedFutureInterruptibleAsyncTask
 argument_list|(
 name|callable
 argument_list|)
-expr_stmt|;
-block|}
-annotation|@
+block|;   }
+expr|@
 name|Override
 DECL|method|run ()
 specifier|public
 name|void
 name|run
-parameter_list|()
+argument_list|()
 block|{
 name|InterruptibleTask
 argument_list|<
 name|?
 argument_list|>
 name|localTask
-init|=
+operator|=
 name|task
-decl_stmt|;
+block|;
 if|if
 condition|(
 name|localTask
@@ -325,8 +370,10 @@ name|task
 operator|=
 literal|null
 expr_stmt|;
-block|}
-annotation|@
+end_expr_stmt
+
+begin_function
+unit|}    @
 name|Override
 DECL|method|afterDone ()
 specifier|protected
@@ -374,8 +421,13 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|pendingToString ()
 specifier|protected
 name|String
@@ -412,6 +464,9 @@ name|pendingToString
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_class
 annotation|@
 name|WeakOuter
 DECL|class|TrustedFutureInterruptibleTask
@@ -473,6 +528,8 @@ return|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|ParametricNullness
 DECL|method|runInterruptibly ()
 name|V
 name|runInterruptibly
@@ -489,10 +546,12 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|afterRanInterruptiblySuccess (V result)
+DECL|method|afterRanInterruptiblySuccess (@arametricNullness V result)
 name|void
 name|afterRanInterruptiblySuccess
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|V
 name|result
 parameter_list|)
@@ -538,6 +597,9 @@ argument_list|()
 return|;
 block|}
 block|}
+end_class
+
+begin_class
 annotation|@
 name|WeakOuter
 DECL|class|TrustedFutureInterruptibleAsyncTask
@@ -678,8 +740,8 @@ argument_list|()
 return|;
 block|}
 block|}
-block|}
 end_class
 
+unit|}
 end_unit
 

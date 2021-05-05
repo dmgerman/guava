@@ -130,6 +130,8 @@ name|emulated
 operator|=
 literal|true
 argument_list|)
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|Callables
 specifier|public
 specifier|final
@@ -142,24 +144,27 @@ name|Callables
 parameter_list|()
 block|{}
 comment|/** Creates a {@code Callable} which immediately returns a preset value each time it is called. */
-DECL|method|returning (final @Nullable T value)
+DECL|method|returning ( @arametricNullness final T value)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|Callable
 argument_list|<
 name|T
 argument_list|>
 name|returning
-parameter_list|(
-specifier|final
+argument_list|(
 annotation|@
-name|Nullable
+name|ParametricNullness
+name|final
 name|T
 name|value
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|new
@@ -171,6 +176,8 @@ argument_list|()
 block|{
 annotation|@
 name|Override
+annotation|@
+name|ParametricNullness
 specifier|public
 name|T
 name|call
@@ -181,47 +188,59 @@ name|value
 return|;
 block|}
 block|}
-return|;
-block|}
+end_class
+
+begin_empty_stmt
+empty_stmt|;
+end_empty_stmt
+
+begin_comment
+unit|}
 comment|/**    * Creates an {@link AsyncCallable} from a {@link Callable}.    *    *<p>The {@link AsyncCallable} returns the {@link ListenableFuture} resulting from {@link    * ListeningExecutorService#submit(Callable)}.    *    * @since 20.0    */
-annotation|@
+end_comment
+
+begin_expr_stmt
+unit|@
 name|Beta
-annotation|@
+expr|@
 name|GwtIncompatible
 DECL|method|asAsyncCallable ( final Callable<T> callable, final ListeningExecutorService listeningExecutorService)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|AsyncCallable
 argument_list|<
 name|T
 argument_list|>
 name|asAsyncCallable
-parameter_list|(
-specifier|final
+argument_list|(
+name|final
 name|Callable
 argument_list|<
 name|T
 argument_list|>
 name|callable
-parameter_list|,
-specifier|final
+argument_list|,
+name|final
 name|ListeningExecutorService
 name|listeningExecutorService
-parameter_list|)
+argument_list|)
 block|{
 name|checkNotNull
 argument_list|(
 name|callable
 argument_list|)
-expr_stmt|;
+block|;
 name|checkNotNull
 argument_list|(
 name|listeningExecutorService
 argument_list|)
-expr_stmt|;
+block|;
 return|return
 operator|new
 name|AsyncCallable
@@ -251,49 +270,56 @@ name|callable
 argument_list|)
 return|;
 block|}
-block|}
-return|;
-block|}
+end_expr_stmt
+
+begin_comment
+unit|};   }
 comment|/**    * Wraps the given callable such that for the duration of {@link Callable#call} the thread that is    * running will have the given name.    *    * @param callable The callable to wrap    * @param nameSupplier The supplier of thread names, {@link Supplier#get get} will be called once    *     for each invocation of the wrapped callable.    */
-annotation|@
+end_comment
+
+begin_expr_stmt
+unit|@
 name|GwtIncompatible
 comment|// threads
 DECL|method|threadRenaming ( final Callable<T> callable, final Supplier<String> nameSupplier)
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|Callable
 argument_list|<
 name|T
 argument_list|>
 name|threadRenaming
-parameter_list|(
-specifier|final
+argument_list|(
+name|final
 name|Callable
 argument_list|<
 name|T
 argument_list|>
 name|callable
-parameter_list|,
-specifier|final
+argument_list|,
+name|final
 name|Supplier
 argument_list|<
 name|String
 argument_list|>
 name|nameSupplier
-parameter_list|)
+argument_list|)
 block|{
 name|checkNotNull
 argument_list|(
 name|nameSupplier
 argument_list|)
-expr_stmt|;
+block|;
 name|checkNotNull
 argument_list|(
 name|callable
 argument_list|)
-expr_stmt|;
+block|;
 return|return
 operator|new
 name|Callable
@@ -304,6 +330,8 @@ argument_list|()
 block|{
 annotation|@
 name|Override
+annotation|@
+name|ParametricNullness
 specifier|public
 name|T
 name|call
@@ -349,6 +377,9 @@ name|call
 argument_list|()
 return|;
 block|}
+end_expr_stmt
+
+begin_finally
 finally|finally
 block|{
 if|if
@@ -368,12 +399,20 @@ argument_list|)
 decl_stmt|;
 block|}
 block|}
-block|}
-block|}
-return|;
-block|}
+end_finally
+
+begin_empty_stmt
+unit|}     }
+empty_stmt|;
+end_empty_stmt
+
+begin_comment
+unit|}
 comment|/**    * Wraps the given runnable such that for the duration of {@link Runnable#run} the thread that is    * running with have the given name.    *    * @param task The Runnable to wrap    * @param nameSupplier The supplier of thread names, {@link Supplier#get get} will be called once    *     for each invocation of the wrapped callable.    */
-annotation|@
+end_comment
+
+begin_function
+unit|@
 name|GwtIncompatible
 comment|// threads
 DECL|method|threadRenaming (final Runnable task, final Supplier<String> nameSupplier)
@@ -475,7 +514,13 @@ block|}
 block|}
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/** Tries to set name of the given {@link Thread}, returns true if successful. */
+end_comment
+
+begin_function
 annotation|@
 name|GwtIncompatible
 comment|// threads
@@ -518,8 +563,8 @@ literal|false
 return|;
 block|}
 block|}
-block|}
-end_class
+end_function
 
+unit|}
 end_unit
 

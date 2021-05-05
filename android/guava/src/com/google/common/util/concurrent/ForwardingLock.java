@@ -63,6 +63,8 @@ comment|/** Forwarding wrapper around a {@code Lock}. */
 end_comment
 
 begin_class
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|ForwardingLock
 specifier|abstract
 class|class

@@ -150,6 +150,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|checkerframework
@@ -158,9 +168,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -168,51 +178,74 @@ begin_comment
 comment|/** Implementations of {@code Futures.transform*}. */
 end_comment
 
-begin_class
+begin_annotation
 annotation|@
 name|GwtCompatible
+end_annotation
+
+begin_annotation
+annotation|@
+name|ElementTypesAreNonnullByDefault
+end_annotation
+
+begin_expr_stmt
 DECL|class|AbstractTransformFuture
 specifier|abstract
-class|class
+name|class
 name|AbstractTransformFuture
-parameter_list|<
+operator|<
 name|I
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|O
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|F
-parameter_list|,
+operator|,
 name|T
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|FluentFuture
 operator|.
 name|TrustedFuture
 argument_list|<
 name|O
 argument_list|>
-implements|implements
+expr|implements
 name|Runnable
 block|{
 DECL|method|create ( ListenableFuture<I> input, AsyncFunction<? super I, ? extends O> function, Executor executor)
 specifier|static
-parameter_list|<
+operator|<
 name|I
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+block|,
 name|O
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|ListenableFuture
 argument_list|<
 name|O
 argument_list|>
 name|create
-parameter_list|(
+argument_list|(
 name|ListenableFuture
 argument_list|<
 name|I
 argument_list|>
 name|input
-parameter_list|,
+argument_list|,
 name|AsyncFunction
 argument_list|<
 name|?
@@ -224,16 +257,16 @@ extends|extends
 name|O
 argument_list|>
 name|function
-parameter_list|,
+argument_list|,
 name|Executor
 name|executor
-parameter_list|)
+argument_list|)
 block|{
 name|checkNotNull
 argument_list|(
 name|executor
 argument_list|)
-expr_stmt|;
+block|;
 name|AsyncTransformFuture
 argument_list|<
 name|I
@@ -241,7 +274,7 @@ argument_list|,
 name|O
 argument_list|>
 name|output
-init|=
+operator|=
 operator|new
 name|AsyncTransformFuture
 argument_list|<>
@@ -250,7 +283,7 @@ name|input
 argument_list|,
 name|function
 argument_list|)
-decl_stmt|;
+block|;
 name|input
 operator|.
 name|addListener
@@ -264,30 +297,36 @@ argument_list|,
 name|output
 argument_list|)
 argument_list|)
-expr_stmt|;
+block|;
 return|return
 name|output
 return|;
 block|}
 DECL|method|create ( ListenableFuture<I> input, Function<? super I, ? extends O> function, Executor executor)
 specifier|static
-parameter_list|<
+operator|<
 name|I
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|O
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|ListenableFuture
 argument_list|<
 name|O
 argument_list|>
 name|create
-parameter_list|(
+argument_list|(
 name|ListenableFuture
 argument_list|<
 name|I
 argument_list|>
 name|input
-parameter_list|,
+argument_list|,
 name|Function
 argument_list|<
 name|?
@@ -299,16 +338,16 @@ extends|extends
 name|O
 argument_list|>
 name|function
-parameter_list|,
+operator|,
 name|Executor
 name|executor
-parameter_list|)
+argument_list|)
 block|{
 name|checkNotNull
 argument_list|(
 name|function
 argument_list|)
-expr_stmt|;
+block|;
 name|TransformFuture
 argument_list|<
 name|I
@@ -316,7 +355,7 @@ argument_list|,
 name|O
 argument_list|>
 name|output
-init|=
+operator|=
 operator|new
 name|TransformFuture
 argument_list|<>
@@ -325,7 +364,7 @@ name|input
 argument_list|,
 name|function
 argument_list|)
-decl_stmt|;
+block|;
 name|input
 operator|.
 name|addListener
@@ -339,15 +378,21 @@ argument_list|,
 name|output
 argument_list|)
 argument_list|)
-expr_stmt|;
+block|;
 return|return
 name|output
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/*    * In certain circumstances, this field might theoretically not be visible to an afterDone() call    * triggered by cancel(). For details, see the comments on the fields of TimeoutFuture.    */
+end_comment
+
+begin_decl_stmt
 DECL|field|inputFuture
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|ListenableFuture
 argument_list|<
 name|?
@@ -356,15 +401,21 @@ name|I
 argument_list|>
 name|inputFuture
 decl_stmt|;
+end_decl_stmt
+
+begin_decl_stmt
 DECL|field|function
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|F
 name|function
 decl_stmt|;
+end_decl_stmt
+
+begin_expr_stmt
 DECL|method|AbstractTransformFuture (ListenableFuture<? extends I> inputFuture, F function)
 name|AbstractTransformFuture
-parameter_list|(
+argument_list|(
 name|ListenableFuture
 argument_list|<
 name|?
@@ -372,10 +423,10 @@ extends|extends
 name|I
 argument_list|>
 name|inputFuture
-parameter_list|,
+operator|,
 name|F
 name|function
-parameter_list|)
+argument_list|)
 block|{
 name|this
 operator|.
@@ -385,7 +436,7 @@ name|checkNotNull
 argument_list|(
 name|inputFuture
 argument_list|)
-expr_stmt|;
+block|;
 name|this
 operator|.
 name|function
@@ -394,16 +445,15 @@ name|checkNotNull
 argument_list|(
 name|function
 argument_list|)
-expr_stmt|;
-block|}
-annotation|@
+block|;   }
+expr|@
 name|Override
 DECL|method|run ()
 specifier|public
-specifier|final
+name|final
 name|void
 name|run
-parameter_list|()
+argument_list|()
 block|{
 name|ListenableFuture
 argument_list|<
@@ -412,14 +462,14 @@ extends|extends
 name|I
 argument_list|>
 name|localInputFuture
-init|=
+operator|=
 name|inputFuture
-decl_stmt|;
+block|;
 name|F
 name|localFunction
-init|=
+operator|=
 name|function
-decl_stmt|;
+block|;
 if|if
 condition|(
 name|isCancelled
@@ -440,6 +490,9 @@ name|inputFuture
 operator|=
 literal|null
 expr_stmt|;
+end_expr_stmt
+
+begin_if
 if|if
 condition|(
 name|localInputFuture
@@ -470,10 +523,19 @@ decl_stmt|;
 comment|// Respects cancellation cause setting
 return|return;
 block|}
+end_if
+
+begin_comment
 comment|/*      * Any of the setException() calls below can fail if the output Future is cancelled between now      * and then. This means that we're silently swallowing an exception -- maybe even an Error. But      * this is no worse than what FutureTask does in that situation. Additionally, because the      * Future was cancelled, its listeners have been run, so its consumers will not hang.      *      * Contrast this to the situation we have if setResult() throws, a situation described below.      */
+end_comment
+
+begin_decl_stmt
 name|I
 name|sourceResult
 decl_stmt|;
+end_decl_stmt
+
+begin_try
 try|try
 block|{
 name|sourceResult
@@ -547,9 +609,15 @@ argument_list|)
 expr_stmt|;
 return|return;
 block|}
+end_try
+
+begin_decl_stmt
 name|T
 name|transformResult
 decl_stmt|;
+end_decl_stmt
+
+begin_try
 try|try
 block|{
 name|transformResult
@@ -583,19 +651,31 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
+end_try
+
+begin_comment
 comment|/*      * If set()/setValue() throws an Error, we let it propagate. Why? The most likely Error is a      * StackOverflowError (from deep transform(..., directExecutor()) nesting), and calling      * setException(stackOverflowError) would fail:      *      * - If the stack overflowed before set()/setValue() could even store the result in the output      * Future, then a call setException() would likely also overflow.      *      * - If the stack overflowed after set()/setValue() stored its result, then a call to      * setException() will be a no-op because the Future is already done.      *      * Both scenarios are bad: The output Future might never complete, or, if it does complete, it      * might not run some of its listeners. The likely result is that the app will hang. (And of      * course stack overflows are bad news in general. For example, we may have overflowed in the      * middle of defining a class. If so, that class will never be loadable in this process.) The      * best we can do (since logging may overflow the stack) is to let the error propagate. Because      * it is an Error, it won't be caught and logged by AbstractFuture.executeListener. Instead, it      * can propagate through many layers of AbstractTransformFuture up to the root call to set().      *      * https://github.com/google/guava/issues/2254      *      * Other kinds of Errors are possible:      *      * - OutOfMemoryError from allocations in setFuture(): The calculus here is similar to      * StackOverflowError: We can't reliably call setException(error).      *      * - Any kind of Error from a listener. Even if we could distinguish that case (by exposing some      * extra state from AbstractFuture), our options are limited: A call to setException() would be      * a no-op. We could log, but if that's what we really want, we should modify      * AbstractFuture.executeListener to do so, since that method would have the ability to continue      * to execute other listeners.      *      * What about RuntimeException? If there is a bug in set()/setValue() that produces one, it will      * propagate, too, but only as far as AbstractFuture.executeListener, which will catch and log      * it.      */
+end_comment
+
+begin_expr_stmt
 name|setResult
 argument_list|(
 name|transformResult
 argument_list|)
 expr_stmt|;
-block|}
+end_expr_stmt
+
+begin_comment
+unit|}
 comment|/** Template method for subtypes to actually run the transform. */
-annotation|@
+end_comment
+
+begin_function_decl
+unit|@
 name|ForOverride
 annotation|@
-name|NullableDecl
-DECL|method|doTransform (F function, @NullableDecl I result)
+name|ParametricNullness
+DECL|method|doTransform (F function, @ParametricNullness I result)
 specifier|abstract
 name|T
 name|doTransform
@@ -604,27 +684,36 @@ name|F
 name|function
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|ParametricNullness
 name|I
 name|result
 parameter_list|)
 throws|throws
 name|Exception
 function_decl|;
+end_function_decl
+
+begin_comment
 comment|/** Template method for subtypes to actually set the result. */
+end_comment
+
+begin_function_decl
 annotation|@
 name|ForOverride
-DECL|method|setResult (@ullableDecl T result)
+DECL|method|setResult (@arametricNullness T result)
 specifier|abstract
 name|void
 name|setResult
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|ParametricNullness
 name|T
 name|result
 parameter_list|)
 function_decl|;
+end_function_decl
+
+begin_function
 annotation|@
 name|Override
 DECL|method|afterDone ()
@@ -652,8 +741,13 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|pendingToString ()
 specifier|protected
 name|String
@@ -739,19 +833,31 @@ return|return
 literal|null
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * An {@link AbstractTransformFuture} that delegates to an {@link AsyncFunction} and {@link    * #setFuture(ListenableFuture)}.    */
+end_comment
+
+begin_expr_stmt
 DECL|class|AsyncTransformFuture
 specifier|private
 specifier|static
-specifier|final
-class|class
+name|final
+name|class
 name|AsyncTransformFuture
-parameter_list|<
+operator|<
 name|I
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|O
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|AbstractTransformFuture
 argument_list|<
 name|I
@@ -779,7 +885,7 @@ argument_list|>
 block|{
 DECL|method|AsyncTransformFuture ( ListenableFuture<? extends I> inputFuture, AsyncFunction<? super I, ? extends O> function)
 name|AsyncTransformFuture
-parameter_list|(
+argument_list|(
 name|ListenableFuture
 argument_list|<
 name|?
@@ -787,7 +893,7 @@ extends|extends
 name|I
 argument_list|>
 name|inputFuture
-parameter_list|,
+argument_list|,
 name|AsyncFunction
 argument_list|<
 name|?
@@ -799,7 +905,7 @@ extends|extends
 name|O
 argument_list|>
 name|function
-parameter_list|)
+argument_list|)
 block|{
 name|super
 argument_list|(
@@ -807,11 +913,10 @@ name|inputFuture
 argument_list|,
 name|function
 argument_list|)
-expr_stmt|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|Override
-DECL|method|doTransform ( AsyncFunction<? super I, ? extends O> function, @NullableDecl I input)
+DECL|method|doTransform ( AsyncFunction<? super I, ? extends O> function, @ParametricNullness I input)
 name|ListenableFuture
 argument_list|<
 name|?
@@ -819,7 +924,7 @@ extends|extends
 name|O
 argument_list|>
 name|doTransform
-parameter_list|(
+argument_list|(
 name|AsyncFunction
 argument_list|<
 name|?
@@ -831,12 +936,12 @@ extends|extends
 name|O
 argument_list|>
 name|function
-parameter_list|,
-annotation|@
-name|NullableDecl
+operator|,
+condition|@
+name|ParametricNullness
 name|I
 name|input
-parameter_list|)
+argument_list|)
 throws|throws
 name|Exception
 block|{
@@ -847,14 +952,14 @@ extends|extends
 name|O
 argument_list|>
 name|outputFuture
-init|=
+operator|=
 name|function
 operator|.
 name|apply
 argument_list|(
 name|input
 argument_list|)
-decl_stmt|;
+block|;
 name|checkNotNull
 argument_list|(
 name|outputFuture
@@ -865,11 +970,14 @@ literal|"Did you mean to return immediateFuture(null)? %s"
 argument_list|,
 name|function
 argument_list|)
-expr_stmt|;
+block|;
 return|return
 name|outputFuture
 return|;
 block|}
+end_expr_stmt
+
+begin_function
 annotation|@
 name|Override
 DECL|method|setResult (ListenableFuture<? extends O> result)
@@ -891,20 +999,32 @@ name|result
 argument_list|)
 expr_stmt|;
 block|}
-block|}
+end_function
+
+begin_comment
+unit|}
 comment|/**    * An {@link AbstractTransformFuture} that delegates to a {@link Function} and {@link    * #set(Object)}.    */
+end_comment
+
+begin_expr_stmt
 DECL|class|TransformFuture
-specifier|private
+unit|private
 specifier|static
-specifier|final
-class|class
+name|final
+name|class
 name|TransformFuture
-parameter_list|<
+operator|<
 name|I
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|O
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|AbstractTransformFuture
 argument_list|<
 name|I
@@ -927,7 +1047,7 @@ argument_list|>
 block|{
 DECL|method|TransformFuture ( ListenableFuture<? extends I> inputFuture, Function<? super I, ? extends O> function)
 name|TransformFuture
-parameter_list|(
+argument_list|(
 name|ListenableFuture
 argument_list|<
 name|?
@@ -935,7 +1055,7 @@ extends|extends
 name|I
 argument_list|>
 name|inputFuture
-parameter_list|,
+argument_list|,
 name|Function
 argument_list|<
 name|?
@@ -947,7 +1067,7 @@ extends|extends
 name|O
 argument_list|>
 name|function
-parameter_list|)
+argument_list|)
 block|{
 name|super
 argument_list|(
@@ -955,16 +1075,15 @@ name|inputFuture
 argument_list|,
 name|function
 argument_list|)
-expr_stmt|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|Override
-annotation|@
-name|NullableDecl
-DECL|method|doTransform (Function<? super I, ? extends O> function, @NullableDecl I input)
+expr|@
+name|ParametricNullness
+DECL|method|doTransform (Function<? super I, ? extends O> function, @ParametricNullness I input)
 name|O
 name|doTransform
-parameter_list|(
+argument_list|(
 name|Function
 argument_list|<
 name|?
@@ -976,12 +1095,12 @@ extends|extends
 name|O
 argument_list|>
 name|function
-parameter_list|,
-annotation|@
-name|NullableDecl
+operator|,
+condition|@
+name|ParametricNullness
 name|I
 name|input
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|function
@@ -992,27 +1111,25 @@ name|input
 argument_list|)
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
-DECL|method|setResult (@ullableDecl O result)
+DECL|method|setResult (@arametricNullness O result)
 name|void
 name|setResult
-parameter_list|(
+argument_list|(
 annotation|@
-name|NullableDecl
+name|ParametricNullness
 name|O
 name|result
-parameter_list|)
+argument_list|)
 block|{
 name|set
 argument_list|(
 name|result
 argument_list|)
-expr_stmt|;
-block|}
-block|}
-block|}
-end_class
+block|;     }
+end_expr_stmt
 
+unit|} }
 end_unit
 

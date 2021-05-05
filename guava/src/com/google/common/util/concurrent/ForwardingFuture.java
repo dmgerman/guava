@@ -122,32 +122,68 @@ name|TimeoutException
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|checkerframework
+operator|.
+name|checker
+operator|.
+name|nullness
+operator|.
+name|qual
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/**  * A {@link Future} which forwards all its method calls to another future. Subclasses should  * override one or more methods to modify the behavior of the backing future as desired per the<a  * href="http://en.wikipedia.org/wiki/Decorator_pattern">decorator pattern</a>.  *  *<p>Most subclasses can just use {@link SimpleForwardingFuture}.  *  * @author Sven Mawson  * @since 1.0  */
 end_comment
 
-begin_class
+begin_annotation
 annotation|@
 name|CanIgnoreReturnValue
+end_annotation
+
+begin_comment
 comment|// TODO(cpovirk): Consider being more strict.
+end_comment
+
+begin_annotation
 annotation|@
 name|GwtCompatible
+end_annotation
+
+begin_annotation
 annotation|@
 name|SuppressWarnings
 argument_list|(
 literal|"ShouldNotSubclass"
 argument_list|)
+end_annotation
+
+begin_annotation
+annotation|@
+name|ElementTypesAreNonnullByDefault
+end_annotation
+
+begin_expr_stmt
 DECL|class|ForwardingFuture
 specifier|public
 specifier|abstract
-class|class
+name|class
 name|ForwardingFuture
-parameter_list|<
+operator|<
 name|V
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|ForwardingObject
-implements|implements
+expr|implements
 name|Future
 argument_list|<
 name|V
@@ -157,9 +193,9 @@ comment|/** Constructor for use by subclasses. */
 DECL|method|ForwardingFuture ()
 specifier|protected
 name|ForwardingFuture
-parameter_list|()
+argument_list|()
 block|{}
-annotation|@
+expr|@
 name|Override
 DECL|method|delegate ()
 specifier|protected
@@ -171,18 +207,17 @@ extends|extends
 name|V
 argument_list|>
 name|delegate
-parameter_list|()
-function_decl|;
-annotation|@
+argument_list|()
+block|;    @
 name|Override
 DECL|method|cancel (boolean mayInterruptIfRunning)
 specifier|public
 name|boolean
 name|cancel
-parameter_list|(
+argument_list|(
 name|boolean
 name|mayInterruptIfRunning
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|delegate
@@ -194,13 +229,13 @@ name|mayInterruptIfRunning
 argument_list|)
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
 DECL|method|isCancelled ()
 specifier|public
 name|boolean
 name|isCancelled
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|delegate
@@ -210,6 +245,9 @@ name|isCancelled
 argument_list|()
 return|;
 block|}
+end_expr_stmt
+
+begin_function
 annotation|@
 name|Override
 DECL|method|isDone ()
@@ -226,8 +264,13 @@ name|isDone
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|ParametricNullness
 DECL|method|get ()
 specifier|public
 name|V
@@ -246,8 +289,13 @@ name|get
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|ParametricNullness
 DECL|method|get (long timeout, TimeUnit unit)
 specifier|public
 name|V
@@ -278,18 +326,30 @@ name|unit
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|// TODO(cpovirk): Use standard Javadoc form for SimpleForwarding* class and constructor
+end_comment
+
+begin_comment
 comment|/**    * A simplified version of {@link ForwardingFuture} where subclasses can pass in an already    * constructed {@link Future} as the delegate.    *    * @since 9.0    */
+end_comment
+
+begin_expr_stmt
 DECL|class|SimpleForwardingFuture
 specifier|public
 specifier|abstract
 specifier|static
-class|class
+name|class
 name|SimpleForwardingFuture
-parameter_list|<
+operator|<
 name|V
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|ForwardingFuture
 argument_list|<
 name|V
@@ -297,23 +357,23 @@ argument_list|>
 block|{
 DECL|field|delegate
 specifier|private
-specifier|final
+name|final
 name|Future
 argument_list|<
 name|V
 argument_list|>
 name|delegate
-decl_stmt|;
+block|;
 DECL|method|SimpleForwardingFuture (Future<V> delegate)
 specifier|protected
 name|SimpleForwardingFuture
-parameter_list|(
+argument_list|(
 name|Future
 argument_list|<
 name|V
 argument_list|>
 name|delegate
-parameter_list|)
+argument_list|)
 block|{
 name|this
 operator|.
@@ -325,27 +385,25 @@ name|checkNotNull
 argument_list|(
 name|delegate
 argument_list|)
-expr_stmt|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|Override
 DECL|method|delegate ()
 specifier|protected
-specifier|final
+name|final
 name|Future
 argument_list|<
 name|V
 argument_list|>
 name|delegate
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|delegate
 return|;
 block|}
-block|}
-block|}
-end_class
+end_expr_stmt
 
+unit|} }
 end_unit
 

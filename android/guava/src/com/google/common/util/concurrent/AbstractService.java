@@ -187,6 +187,18 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|java
+operator|.
+name|util
+operator|.
+name|Objects
+operator|.
+name|requireNonNull
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -350,17 +362,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|javax
 operator|.
-name|checkerframework
+name|annotation
 operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|compatqual
-operator|.
-name|NullableDecl
+name|CheckForNull
 import|;
 end_import
 
@@ -371,6 +377,8 @@ end_comment
 begin_class
 annotation|@
 name|GwtIncompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|AbstractService
 specifier|public
 specifier|abstract
@@ -2140,7 +2148,7 @@ decl_stmt|;
 comment|/**      * The exception that caused this service to fail. This will be {@code null} unless the service      * has failed.      */
 DECL|field|failure
 annotation|@
-name|NullableDecl
+name|CheckForNull
 specifier|final
 name|Throwable
 name|failure
@@ -2162,7 +2170,7 @@ literal|null
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|StateSnapshot ( State internalState, boolean shutdownWhenStartupFinishes, @NullableDecl Throwable failure)
+DECL|method|StateSnapshot ( State internalState, boolean shutdownWhenStartupFinishes, @CheckForNull Throwable failure)
 name|StateSnapshot
 parameter_list|(
 name|State
@@ -2172,7 +2180,7 @@ name|boolean
 name|shutdownWhenStartupFinishes
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Throwable
 name|failure
 parameter_list|)
@@ -2193,12 +2201,13 @@ argument_list|)
 expr_stmt|;
 name|checkArgument
 argument_list|(
-operator|!
 operator|(
 name|failure
 operator|!=
 literal|null
-operator|^
+operator|)
+operator|==
+operator|(
 name|internalState
 operator|==
 name|FAILED
@@ -2275,8 +2284,12 @@ argument_list|,
 name|state
 argument_list|)
 expr_stmt|;
+comment|// requireNonNull is safe because the constructor requires a non-null cause with state=FAILED.
 return|return
+name|requireNonNull
+argument_list|(
 name|failure
+argument_list|)
 return|;
 block|}
 block|}

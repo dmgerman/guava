@@ -136,9 +136,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -146,22 +146,39 @@ begin_comment
 comment|/** Implementation of {@link Futures#immediateFuture}. */
 end_comment
 
-begin_class
+begin_annotation
 annotation|@
 name|GwtCompatible
+end_annotation
+
+begin_annotation
+annotation|@
+name|ElementTypesAreNonnullByDefault
+end_annotation
+
+begin_comment
 comment|// TODO(cpovirk): Make this final (but that may break Mockito spy calls).
+end_comment
+
+begin_annotation
 annotation|@
 name|SuppressWarnings
 argument_list|(
 literal|"ShouldNotSubclass"
 argument_list|)
+end_annotation
+
+begin_expr_stmt
 DECL|class|ImmediateFuture
-class|class
+name|class
 name|ImmediateFuture
-parameter_list|<
+operator|<
 name|V
-parameter_list|>
-implements|implements
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|implements
 name|ListenableFuture
 argument_list|<
 name|V
@@ -169,27 +186,31 @@ argument_list|>
 block|{
 DECL|field|NULL
 specifier|static
-specifier|final
+name|final
 name|ListenableFuture
 argument_list|<
 name|?
 argument_list|>
 name|NULL
-init|=
+operator|=
 operator|new
 name|ImmediateFuture
-argument_list|<>
+argument_list|<
+annotation|@
+name|Nullable
+name|Object
+argument_list|>
 argument_list|(
 literal|null
 argument_list|)
-decl_stmt|;
+block|;
 DECL|field|log
 specifier|private
 specifier|static
-specifier|final
+name|final
 name|Logger
 name|log
-init|=
+operator|=
 name|Logger
 operator|.
 name|getLogger
@@ -201,44 +222,42 @@ operator|.
 name|getName
 argument_list|()
 argument_list|)
-decl_stmt|;
+block|;    @
 DECL|field|value
-annotation|@
-name|NullableDecl
+name|ParametricNullness
 specifier|private
-specifier|final
+name|final
 name|V
 name|value
-decl_stmt|;
-DECL|method|ImmediateFuture (@ullableDecl V value)
+block|;
+DECL|method|ImmediateFuture (@arametricNullness V value)
 name|ImmediateFuture
-parameter_list|(
+argument_list|(
 annotation|@
-name|NullableDecl
+name|ParametricNullness
 name|V
 name|value
-parameter_list|)
+argument_list|)
 block|{
 name|this
 operator|.
 name|value
 operator|=
 name|value
-expr_stmt|;
-block|}
-annotation|@
+block|;   }
+expr|@
 name|Override
 DECL|method|addListener (Runnable listener, Executor executor)
 specifier|public
 name|void
 name|addListener
-parameter_list|(
+argument_list|(
 name|Runnable
 name|listener
-parameter_list|,
+argument_list|,
 name|Executor
 name|executor
-parameter_list|)
+argument_list|)
 block|{
 name|checkNotNull
 argument_list|(
@@ -246,14 +265,14 @@ name|listener
 argument_list|,
 literal|"Runnable was null."
 argument_list|)
-expr_stmt|;
+block|;
 name|checkNotNull
 argument_list|(
 name|executor
 argument_list|,
 literal|"Executor was null."
 argument_list|)
-expr_stmt|;
+block|;
 try|try
 block|{
 name|executor
@@ -292,8 +311,10 @@ name|e
 argument_list|)
 expr_stmt|;
 block|}
-block|}
-annotation|@
+end_expr_stmt
+
+begin_function
+unit|}    @
 name|Override
 DECL|method|cancel (boolean mayInterruptIfRunning)
 specifier|public
@@ -308,9 +329,17 @@ return|return
 literal|false
 return|;
 block|}
+end_function
+
+begin_comment
 comment|// TODO(lukes): Consider throwing InterruptedException when appropriate.
+end_comment
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|ParametricNullness
 DECL|method|get ()
 specifier|public
 name|V
@@ -321,8 +350,13 @@ return|return
 name|value
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|ParametricNullness
 DECL|method|get (long timeout, TimeUnit unit)
 specifier|public
 name|V
@@ -347,6 +381,9 @@ name|get
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|isCancelled ()
@@ -359,6 +396,9 @@ return|return
 literal|false
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|isDone ()
@@ -371,6 +411,9 @@ return|return
 literal|true
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|toString ()
@@ -393,15 +436,21 @@ operator|+
 literal|"]]"
 return|;
 block|}
+end_function
+
+begin_expr_stmt
 DECL|class|ImmediateFailedFuture
 specifier|static
-specifier|final
-class|class
+name|final
+name|class
 name|ImmediateFailedFuture
-parameter_list|<
+operator|<
 name|V
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|TrustedFuture
 argument_list|<
 name|V
@@ -409,27 +458,29 @@ argument_list|>
 block|{
 DECL|method|ImmediateFailedFuture (Throwable thrown)
 name|ImmediateFailedFuture
-parameter_list|(
+argument_list|(
 name|Throwable
 name|thrown
-parameter_list|)
+argument_list|)
 block|{
 name|setException
 argument_list|(
 name|thrown
 argument_list|)
-expr_stmt|;
-block|}
+block|;     }
 block|}
 DECL|class|ImmediateCancelledFuture
 specifier|static
-specifier|final
-class|class
+name|final
+name|class
 name|ImmediateCancelledFuture
-parameter_list|<
+operator|<
 name|V
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|TrustedFuture
 argument_list|<
 name|V
@@ -437,17 +488,16 @@ argument_list|>
 block|{
 DECL|method|ImmediateCancelledFuture ()
 name|ImmediateCancelledFuture
-parameter_list|()
+argument_list|()
 block|{
 name|cancel
 argument_list|(
 literal|false
 argument_list|)
-expr_stmt|;
+block|;     }
 block|}
-block|}
-block|}
-end_class
+end_expr_stmt
 
+unit|}
 end_unit
 

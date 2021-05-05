@@ -79,6 +79,8 @@ comment|/**  * A {@code double} value that may be updated atomically. See the {@
 end_comment
 
 begin_class
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|AtomicDouble
 specifier|public
 class|class

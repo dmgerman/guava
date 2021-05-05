@@ -46,17 +46,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|javax
 operator|.
-name|checkerframework
+name|annotation
 operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|compatqual
-operator|.
-name|NullableDecl
+name|CheckForNull
 import|;
 end_import
 
@@ -65,6 +59,8 @@ comment|/**  * Works around an android bug, where parking for more than INT_MAX 
 end_comment
 
 begin_class
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|OverflowAvoidingLockSupport
 specifier|final
 class|class
@@ -94,13 +90,13 @@ specifier|private
 name|OverflowAvoidingLockSupport
 parameter_list|()
 block|{}
-DECL|method|parkNanos (@ullableDecl Object blocker, long nanos)
+DECL|method|parkNanos (@heckForNull Object blocker, long nanos)
 specifier|static
 name|void
 name|parkNanos
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|blocker
 parameter_list|,

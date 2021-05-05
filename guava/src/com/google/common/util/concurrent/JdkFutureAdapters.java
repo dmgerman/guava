@@ -142,6 +142,22 @@ name|AtomicBoolean
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|checkerframework
+operator|.
+name|checker
+operator|.
+name|nullness
+operator|.
+name|qual
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/**  * Utilities necessary for working with libraries that supply plain {@link Future} instances. Note  * that, whenever possible, it is strongly preferred to modify those libraries to return {@code  * ListenableFuture} directly.  *  * @author Sven Mawson  * @since 10.0 (replacing {@code Futures.makeListenable}, which existed in 1.0)  */
 end_comment
@@ -151,6 +167,8 @@ annotation|@
 name|Beta
 annotation|@
 name|GwtIncompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|JdkFutureAdapters
 specifier|public
 specifier|final
@@ -158,24 +176,27 @@ class|class
 name|JdkFutureAdapters
 block|{
 comment|/**    * Assigns a thread to the given {@link Future} to provide {@link ListenableFuture} functionality.    *    *<p><b>Warning:</b> If the input future does not already implement {@code ListenableFuture}, the    * returned future will emulate {@link ListenableFuture#addListener} by taking a thread from an    * internal, unbounded pool at the first call to {@code addListener} and holding it until the    * future is {@linkplain Future#isDone() done}.    *    *<p>Prefer to create {@code ListenableFuture} instances with {@link SettableFuture}, {@link    * MoreExecutors#listeningDecorator( java.util.concurrent.ExecutorService)}, {@link    * ListenableFutureTask}, {@link AbstractFuture}, and other utilities over creating plain {@code    * Future} instances to be upgraded to {@code ListenableFuture} after the fact.    */
-DECL|method|listenInPoolThread (Future<V> future)
+DECL|method|listenInPoolThread ( Future<V> future)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|ListenableFuture
 argument_list|<
 name|V
 argument_list|>
 name|listenInPoolThread
-parameter_list|(
+argument_list|(
 name|Future
 argument_list|<
 name|V
 argument_list|>
 name|future
-parameter_list|)
+argument_list|)
 block|{
 if|if
 condition|(
@@ -205,34 +226,43 @@ name|future
 argument_list|)
 return|;
 block|}
+end_class
+
+begin_comment
 comment|/**    * Submits a blocking task for the given {@link Future} to provide {@link ListenableFuture}    * functionality.    *    *<p><b>Warning:</b> If the input future does not already implement {@code ListenableFuture}, the    * returned future will emulate {@link ListenableFuture#addListener} by submitting a task to the    * given executor at the first call to {@code addListener}. The task must be started by the    * executor promptly, or else the returned {@code ListenableFuture} may fail to work. The task's    * execution consists of blocking until the input future is {@linkplain Future#isDone() done}, so    * each call to this method may claim and hold a thread for an arbitrary length of time. Use of    * bounded executors or other executors that may fail to execute a task promptly may result in    * deadlocks.    *    *<p>Prefer to create {@code ListenableFuture} instances with {@link SettableFuture}, {@link    * MoreExecutors#listeningDecorator( java.util.concurrent.ExecutorService)}, {@link    * ListenableFutureTask}, {@link AbstractFuture}, and other utilities over creating plain {@code    * Future} instances to be upgraded to {@code ListenableFuture} after the fact.    *    * @since 12.0    */
-DECL|method|listenInPoolThread (Future<V> future, Executor executor)
+end_comment
+
+begin_expr_stmt
+DECL|method|listenInPoolThread ( Future<V> future, Executor executor)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|ListenableFuture
 argument_list|<
 name|V
 argument_list|>
 name|listenInPoolThread
-parameter_list|(
+argument_list|(
 name|Future
 argument_list|<
 name|V
 argument_list|>
 name|future
-parameter_list|,
+argument_list|,
 name|Executor
 name|executor
-parameter_list|)
+argument_list|)
 block|{
 name|checkNotNull
 argument_list|(
 name|executor
 argument_list|)
-expr_stmt|;
+block|;
 if|if
 condition|(
 name|future
@@ -250,6 +280,9 @@ operator|)
 name|future
 return|;
 block|}
+end_expr_stmt
+
+begin_return
 return|return
 operator|new
 name|ListenableFutureAdapter
@@ -262,9 +295,15 @@ argument_list|,
 name|executor
 argument_list|)
 return|;
-block|}
+end_return
+
+begin_comment
+unit|}
 comment|/**    * An adapter to turn a {@link Future} into a {@link ListenableFuture}. This will wait on the    * future to finish, and when it completes, run the listeners. This implementation will wait on    * the source future indefinitely, so if the source future never completes, the adapter will never    * complete either.    *    *<p>If the delegate future is interrupted or throws an unexpected unchecked exception, the    * listeners will not be invoked.    */
-annotation|@
+end_comment
+
+begin_expr_stmt
+unit|@
 name|SuppressWarnings
 argument_list|(
 literal|"ShouldNotSubclass"
@@ -272,17 +311,20 @@ argument_list|)
 DECL|class|ListenableFutureAdapter
 specifier|private
 specifier|static
-class|class
+name|class
 name|ListenableFutureAdapter
-parameter_list|<
+operator|<
 name|V
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|ForwardingFuture
 argument_list|<
 name|V
 argument_list|>
-implements|implements
+expr|implements
 name|ListenableFuture
 argument_list|<
 name|V
@@ -291,10 +333,10 @@ block|{
 DECL|field|threadFactory
 specifier|private
 specifier|static
-specifier|final
+name|final
 name|ThreadFactory
 name|threadFactory
-init|=
+operator|=
 operator|new
 name|ThreadFactoryBuilder
 argument_list|()
@@ -311,71 +353,71 @@ argument_list|)
 operator|.
 name|build
 argument_list|()
-decl_stmt|;
+block|;
 DECL|field|defaultAdapterExecutor
 specifier|private
 specifier|static
-specifier|final
+name|final
 name|Executor
 name|defaultAdapterExecutor
-init|=
+operator|=
 name|Executors
 operator|.
 name|newCachedThreadPool
 argument_list|(
 name|threadFactory
 argument_list|)
-decl_stmt|;
+block|;
 DECL|field|adapterExecutor
 specifier|private
-specifier|final
+name|final
 name|Executor
 name|adapterExecutor
-decl_stmt|;
+block|;
 comment|// The execution list to hold our listeners.
 DECL|field|executionList
 specifier|private
-specifier|final
+name|final
 name|ExecutionList
 name|executionList
-init|=
+operator|=
 operator|new
 name|ExecutionList
 argument_list|()
-decl_stmt|;
+block|;
 comment|// This allows us to only start up a thread waiting on the delegate future when the first
 comment|// listener is added.
 DECL|field|hasListeners
 specifier|private
-specifier|final
+name|final
 name|AtomicBoolean
 name|hasListeners
-init|=
+operator|=
 operator|new
 name|AtomicBoolean
 argument_list|(
 literal|false
 argument_list|)
-decl_stmt|;
+block|;
 comment|// The delegate future.
 DECL|field|delegate
 specifier|private
-specifier|final
+name|final
 name|Future
 argument_list|<
 name|V
 argument_list|>
 name|delegate
-decl_stmt|;
+block|;
 DECL|method|ListenableFutureAdapter (Future<V> delegate)
 name|ListenableFutureAdapter
-parameter_list|(
+argument_list|(
 name|Future
 argument_list|<
 name|V
 argument_list|>
 name|delegate
-parameter_list|)
+argument_list|)
 block|{
 name|this
 argument_list|(
@@ -383,20 +425,19 @@ name|delegate
 argument_list|,
 name|defaultAdapterExecutor
 argument_list|)
-expr_stmt|;
-block|}
+block|;     }
 DECL|method|ListenableFutureAdapter (Future<V> delegate, Executor adapterExecutor)
 name|ListenableFutureAdapter
-parameter_list|(
+argument_list|(
 name|Future
 argument_list|<
 name|V
 argument_list|>
 name|delegate
-parameter_list|,
+argument_list|,
 name|Executor
 name|adapterExecutor
-parameter_list|)
+argument_list|)
 block|{
 name|this
 operator|.
@@ -406,7 +447,7 @@ name|checkNotNull
 argument_list|(
 name|delegate
 argument_list|)
-expr_stmt|;
+block|;
 name|this
 operator|.
 name|adapterExecutor
@@ -415,9 +456,8 @@ name|checkNotNull
 argument_list|(
 name|adapterExecutor
 argument_list|)
-expr_stmt|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|Override
 DECL|method|delegate ()
 specifier|protected
@@ -426,25 +466,25 @@ argument_list|<
 name|V
 argument_list|>
 name|delegate
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|delegate
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
 DECL|method|addListener (Runnable listener, Executor exec)
 specifier|public
 name|void
 name|addListener
-parameter_list|(
+argument_list|(
 name|Runnable
 name|listener
-parameter_list|,
+argument_list|,
 name|Executor
 name|exec
-parameter_list|)
+argument_list|)
 block|{
 name|executionList
 operator|.
@@ -454,7 +494,7 @@ name|listener
 argument_list|,
 name|exec
 argument_list|)
-expr_stmt|;
+block|;
 comment|// When a listener is first added, we run a task that will wait for the delegate to finish,
 comment|// and when it is done will run the listeners.
 if|if
@@ -529,16 +569,16 @@ block|}
 block|}
 argument_list|)
 expr_stmt|;
-block|}
-block|}
-block|}
-DECL|method|JdkFutureAdapters ()
-specifier|private
-name|JdkFutureAdapters
-parameter_list|()
-block|{}
-block|}
-end_class
+end_expr_stmt
 
+begin_expr_stmt
+unit|}     }   }    private
+DECL|method|JdkFutureAdapters ()
+name|JdkFutureAdapters
+argument_list|()
+block|{}
+end_expr_stmt
+
+unit|}
 end_unit
 

@@ -270,6 +270,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|checkerframework
@@ -291,6 +301,8 @@ end_comment
 begin_class
 annotation|@
 name|GwtIncompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|FuturesGetChecked
 specifier|final
 class|class
@@ -298,30 +310,35 @@ name|FuturesGetChecked
 block|{
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|getChecked (Future<V> future, Class<X> exceptionClass)
+annotation|@
+name|ParametricNullness
+DECL|method|getChecked ( Future<V> future, Class<X> exceptionClass)
 specifier|static
-parameter_list|<
+operator|<
 name|V
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|X
-extends|extends
+expr|extends
 name|Exception
-parameter_list|>
+operator|>
 name|V
 name|getChecked
-parameter_list|(
+argument_list|(
 name|Future
 argument_list|<
 name|V
 argument_list|>
 name|future
-parameter_list|,
+argument_list|,
 name|Class
 argument_list|<
 name|X
 argument_list|>
 name|exceptionClass
-parameter_list|)
+argument_list|)
 throws|throws
 name|X
 block|{
@@ -337,38 +354,58 @@ name|exceptionClass
 argument_list|)
 return|;
 block|}
+end_class
+
+begin_comment
 comment|/** Implementation of {@link Futures#getChecked(Future, Class)}. */
+end_comment
+
+begin_annotation
 annotation|@
 name|CanIgnoreReturnValue
+end_annotation
+
+begin_annotation
 annotation|@
 name|VisibleForTesting
+end_annotation
+
+begin_annotation
+annotation|@
+name|ParametricNullness
+end_annotation
+
+begin_expr_stmt
 DECL|method|getChecked ( GetCheckedTypeValidator validator, Future<V> future, Class<X> exceptionClass)
 specifier|static
-parameter_list|<
+operator|<
 name|V
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|X
-extends|extends
+expr|extends
 name|Exception
-parameter_list|>
+operator|>
 name|V
 name|getChecked
-parameter_list|(
+argument_list|(
 name|GetCheckedTypeValidator
 name|validator
-parameter_list|,
+argument_list|,
 name|Future
 argument_list|<
 name|V
 argument_list|>
 name|future
-parameter_list|,
+argument_list|,
 name|Class
 argument_list|<
 name|X
 argument_list|>
 name|exceptionClass
-parameter_list|)
+argument_list|)
 throws|throws
 name|X
 block|{
@@ -379,6 +416,9 @@ argument_list|(
 name|exceptionClass
 argument_list|)
 expr_stmt|;
+end_expr_stmt
+
+begin_try
 try|try
 block|{
 return|return
@@ -431,40 +471,51 @@ name|AssertionError
 argument_list|()
 throw|;
 block|}
-block|}
+end_try
+
+begin_comment
+unit|}
 comment|/** Implementation of {@link Futures#getChecked(Future, Class, long, TimeUnit)}. */
-annotation|@
+end_comment
+
+begin_expr_stmt
+unit|@
 name|CanIgnoreReturnValue
+expr|@
+name|ParametricNullness
 DECL|method|getChecked ( Future<V> future, Class<X> exceptionClass, long timeout, TimeUnit unit)
 specifier|static
-parameter_list|<
+operator|<
 name|V
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|X
-extends|extends
+expr|extends
 name|Exception
-parameter_list|>
+operator|>
 name|V
 name|getChecked
-parameter_list|(
+argument_list|(
 name|Future
 argument_list|<
 name|V
 argument_list|>
 name|future
-parameter_list|,
+argument_list|,
 name|Class
 argument_list|<
 name|X
 argument_list|>
 name|exceptionClass
-parameter_list|,
+argument_list|,
 name|long
 name|timeout
-parameter_list|,
+argument_list|,
 name|TimeUnit
 name|unit
-parameter_list|)
+argument_list|)
 throws|throws
 name|X
 block|{
@@ -477,6 +528,9 @@ argument_list|(
 name|exceptionClass
 argument_list|)
 expr_stmt|;
+end_expr_stmt
+
+begin_try
 try|try
 block|{
 return|return
@@ -548,17 +602,19 @@ name|AssertionError
 argument_list|()
 throw|;
 block|}
-block|}
-annotation|@
+end_try
+
+begin_expr_stmt
+unit|}    @
 name|VisibleForTesting
 DECL|interface|GetCheckedTypeValidator
-interface|interface
+expr|interface
 name|GetCheckedTypeValidator
 block|{
 DECL|method|validateClass (Class<? extends Exception> exceptionClass)
 name|void
 name|validateClass
-parameter_list|(
+argument_list|(
 name|Class
 argument_list|<
 name|?
@@ -566,15 +622,14 @@ extends|extends
 name|Exception
 argument_list|>
 name|exceptionClass
-parameter_list|)
-function_decl|;
-block|}
+argument_list|)
+block|;   }
 DECL|method|bestGetCheckedTypeValidator ()
 specifier|private
 specifier|static
 name|GetCheckedTypeValidator
 name|bestGetCheckedTypeValidator
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|GetCheckedTypeValidatorHolder
@@ -582,6 +637,9 @@ operator|.
 name|BEST_VALIDATOR
 return|;
 block|}
+end_expr_stmt
+
+begin_function
 annotation|@
 name|VisibleForTesting
 DECL|method|weakSetValidator ()
@@ -598,6 +656,9 @@ operator|.
 name|INSTANCE
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|J2ObjCIncompatible
 comment|// ClassValue
@@ -617,7 +678,13 @@ operator|.
 name|INSTANCE
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Provides a check of whether an exception type is valid for use with {@link    * FuturesGetChecked#getChecked(Future, Class)}, possibly using caching.    *    *<p>Uses reflection to gracefully fall back to when certain implementations aren't available.    */
+end_comment
+
+begin_class
 annotation|@
 name|VisibleForTesting
 DECL|class|GetCheckedTypeValidatorHolder
@@ -877,6 +944,8 @@ block|{
 name|Class
 argument_list|<
 name|?
+extends|extends
+name|Enum
 argument_list|>
 name|theClass
 init|=
@@ -885,6 +954,13 @@ operator|.
 name|forName
 argument_list|(
 name|CLASS_VALUE_VALIDATOR_NAME
+argument_list|)
+operator|.
+name|asSubclass
+argument_list|(
+name|Enum
+operator|.
+name|class
 argument_list|)
 decl_stmt|;
 return|return
@@ -914,7 +990,13 @@ return|;
 block|}
 block|}
 block|}
+end_class
+
+begin_comment
 comment|// TODO(cpovirk): change parameter order to match other helper methods (Class, Throwable)?
+end_comment
+
+begin_function
 DECL|method|wrapAndThrowExceptionOrError ( Throwable cause, Class<X> exceptionClass)
 specifier|private
 specifier|static
@@ -980,7 +1062,13 @@ name|cause
 argument_list|)
 throw|;
 block|}
+end_function
+
+begin_comment
 comment|/*    * TODO(user): FutureChecker interface for these to be static methods on? If so, refer to it in    * the (static-method) Futures.getChecked documentation    */
+end_comment
+
+begin_function
 DECL|method|hasConstructorUsableByGetChecked ( Class<? extends Exception> exceptionClass)
 specifier|private
 specifier|static
@@ -1025,6 +1113,9 @@ literal|false
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 DECL|method|newWithCause (Class<X> exceptionClass, Throwable cause)
 specifier|private
 specifier|static
@@ -1092,8 +1183,6 @@ name|constructors
 argument_list|)
 control|)
 block|{
-annotation|@
-name|Nullable
 name|X
 name|instance
 init|=
@@ -1148,6 +1237,9 @@ name|cause
 argument_list|)
 throw|;
 block|}
+end_function
+
+begin_function
 DECL|method|preferringStrings ( List<Constructor<X>> constructors)
 specifier|private
 specifier|static
@@ -1184,6 +1276,9 @@ name|constructors
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_decl_stmt
 DECL|field|WITH_STRING_PARAM_FIRST
 specifier|private
 specifier|static
@@ -1247,22 +1342,25 @@ argument_list|)
 return|;
 block|}
 block|}
-block|)
+end_decl_stmt
+
+begin_expr_stmt
+unit|)
 operator|.
 name|reverse
 argument_list|()
 expr_stmt|;
-end_class
+end_expr_stmt
 
 begin_function
+annotation|@
+name|CheckForNull
 DECL|method|newFromConstructor (Constructor<X> constructor, Throwable cause)
 specifier|private
 specifier|static
 parameter_list|<
 name|X
 parameter_list|>
-annotation|@
-name|Nullable
 name|X
 name|newFromConstructor
 parameter_list|(

@@ -112,6 +112,22 @@ name|TimeUnit
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|checkerframework
+operator|.
+name|checker
+operator|.
+name|nullness
+operator|.
+name|qual
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/**  * A TimeLimiter implementation which actually does not attempt to limit time at all. This may be  * desirable to use in some unit tests. More importantly, attempting to debug a call which is  * time-limited would be extremely annoying, so this gives you a time-limiter you can easily swap in  * for your real time-limiter while you're debugging.  *  * @author Kevin Bourrillion  * @author Jens Nyman  * @since 1.0  */
 end_comment
@@ -123,6 +139,8 @@ annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|GwtIncompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|FakeTimeLimiter
 specifier|public
 specifier|final
@@ -179,26 +197,31 @@ comment|// ha ha
 block|}
 annotation|@
 name|Override
-DECL|method|callWithTimeout (Callable<T> callable, long timeoutDuration, TimeUnit timeoutUnit)
+annotation|@
+name|ParametricNullness
+DECL|method|callWithTimeout ( Callable<T> callable, long timeoutDuration, TimeUnit timeoutUnit)
 specifier|public
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|T
 name|callWithTimeout
-parameter_list|(
+argument_list|(
 name|Callable
 argument_list|<
 name|T
 argument_list|>
 name|callable
-parameter_list|,
+argument_list|,
 name|long
 name|timeoutDuration
-parameter_list|,
+argument_list|,
 name|TimeUnit
 name|timeoutUnit
-parameter_list|)
+argument_list|)
 throws|throws
 name|ExecutionException
 block|{
@@ -208,10 +231,10 @@ name|callable
 argument_list|)
 expr_stmt|;
 name|checkNotNull
-argument_list|(
+parameter_list|(
 name|timeoutUnit
-argument_list|)
-expr_stmt|;
+parameter_list|)
+constructor_decl|;
 try|try
 block|{
 return|return
@@ -280,31 +303,48 @@ argument_list|)
 throw|;
 block|}
 block|}
+end_class
+
+begin_annotation
 annotation|@
 name|Override
+end_annotation
+
+begin_annotation
+annotation|@
+name|ParametricNullness
+end_annotation
+
+begin_expr_stmt
 DECL|method|callUninterruptiblyWithTimeout ( Callable<T> callable, long timeoutDuration, TimeUnit timeoutUnit)
 specifier|public
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|T
 name|callUninterruptiblyWithTimeout
-parameter_list|(
+argument_list|(
 name|Callable
 argument_list|<
 name|T
 argument_list|>
 name|callable
-parameter_list|,
+argument_list|,
 name|long
 name|timeoutDuration
-parameter_list|,
+argument_list|,
 name|TimeUnit
 name|timeoutUnit
-parameter_list|)
+argument_list|)
 throws|throws
 name|ExecutionException
 block|{
+end_expr_stmt
+
+begin_return
 return|return
 name|callWithTimeout
 argument_list|(
@@ -315,8 +355,10 @@ argument_list|,
 name|timeoutUnit
 argument_list|)
 return|;
-block|}
-annotation|@
+end_return
+
+begin_function
+unit|}    @
 name|Override
 DECL|method|runWithTimeout (Runnable runnable, long timeoutDuration, TimeUnit timeoutUnit)
 specifier|public
@@ -396,6 +438,9 @@ argument_list|)
 throw|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|runUninterruptiblyWithTimeout ( Runnable runnable, long timeoutDuration, TimeUnit timeoutUnit)
@@ -423,8 +468,8 @@ name|timeoutUnit
 argument_list|)
 expr_stmt|;
 block|}
-block|}
-end_class
+end_function
 
+unit|}
 end_unit
 

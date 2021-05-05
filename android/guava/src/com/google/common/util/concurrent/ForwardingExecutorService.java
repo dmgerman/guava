@@ -152,6 +152,22 @@ name|TimeoutException
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|checkerframework
+operator|.
+name|checker
+operator|.
+name|nullness
+operator|.
+name|qual
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/**  * An executor service which forwards all its method calls to another executor service. Subclasses  * should override one or more methods to modify the behavior of the backing executor service as  * desired per the<a href="http://en.wikipedia.org/wiki/Decorator_pattern">decorator pattern</a>.  *  * @author Kurt Alfred Kluever  * @since 10.0  */
 end_comment
@@ -162,6 +178,8 @@ name|CanIgnoreReturnValue
 comment|// TODO(cpovirk): Consider being more strict.
 annotation|@
 name|GwtIncompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|ForwardingExecutorService
 specifier|public
 specifier|abstract
@@ -217,11 +235,14 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|invokeAll (Collection<? extends Callable<T>> tasks)
+DECL|method|invokeAll ( Collection<? extends Callable<T>> tasks)
 specifier|public
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|List
 argument_list|<
 name|Future
@@ -230,7 +251,7 @@ name|T
 argument_list|>
 argument_list|>
 name|invokeAll
-parameter_list|(
+argument_list|(
 name|Collection
 argument_list|<
 name|?
@@ -241,7 +262,7 @@ name|T
 argument_list|>
 argument_list|>
 name|tasks
-parameter_list|)
+argument_list|)
 throws|throws
 name|InterruptedException
 block|{
@@ -255,13 +276,22 @@ name|tasks
 argument_list|)
 return|;
 block|}
+end_class
+
+begin_annotation
 annotation|@
 name|Override
+end_annotation
+
+begin_expr_stmt
 DECL|method|invokeAll ( Collection<? extends Callable<T>> tasks, long timeout, TimeUnit unit)
 specifier|public
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|List
 argument_list|<
 name|Future
@@ -270,7 +300,7 @@ name|T
 argument_list|>
 argument_list|>
 name|invokeAll
-parameter_list|(
+argument_list|(
 name|Collection
 argument_list|<
 name|?
@@ -281,16 +311,19 @@ name|T
 argument_list|>
 argument_list|>
 name|tasks
-parameter_list|,
+operator|,
 name|long
 name|timeout
-parameter_list|,
+operator|,
 name|TimeUnit
 name|unit
-parameter_list|)
+argument_list|)
 throws|throws
 name|InterruptedException
 block|{
+end_expr_stmt
+
+begin_return
 return|return
 name|delegate
 argument_list|()
@@ -304,17 +337,22 @@ argument_list|,
 name|unit
 argument_list|)
 return|;
-block|}
-annotation|@
+end_return
+
+begin_expr_stmt
+unit|}    @
 name|Override
 DECL|method|invokeAny (Collection<? extends Callable<T>> tasks)
 specifier|public
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|T
 name|invokeAny
-parameter_list|(
+argument_list|(
 name|Collection
 argument_list|<
 name|?
@@ -325,12 +363,15 @@ name|T
 argument_list|>
 argument_list|>
 name|tasks
-parameter_list|)
+argument_list|)
 throws|throws
 name|InterruptedException
 throws|,
 name|ExecutionException
 block|{
+end_expr_stmt
+
+begin_return
 return|return
 name|delegate
 argument_list|()
@@ -340,17 +381,22 @@ argument_list|(
 name|tasks
 argument_list|)
 return|;
-block|}
-annotation|@
+end_return
+
+begin_expr_stmt
+unit|}    @
 name|Override
-DECL|method|invokeAny (Collection<? extends Callable<T>> tasks, long timeout, TimeUnit unit)
+DECL|method|invokeAny ( Collection<? extends Callable<T>> tasks, long timeout, TimeUnit unit)
 specifier|public
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|T
 name|invokeAny
-parameter_list|(
+argument_list|(
 name|Collection
 argument_list|<
 name|?
@@ -361,13 +407,13 @@ name|T
 argument_list|>
 argument_list|>
 name|tasks
-parameter_list|,
+operator|,
 name|long
 name|timeout
-parameter_list|,
+operator|,
 name|TimeUnit
 name|unit
-parameter_list|)
+argument_list|)
 throws|throws
 name|InterruptedException
 throws|,
@@ -375,6 +421,9 @@ name|ExecutionException
 throws|,
 name|TimeoutException
 block|{
+end_expr_stmt
+
+begin_return
 return|return
 name|delegate
 argument_list|()
@@ -388,8 +437,10 @@ argument_list|,
 name|unit
 argument_list|)
 return|;
-block|}
-annotation|@
+end_return
+
+begin_function
+unit|}    @
 name|Override
 DECL|method|isShutdown ()
 specifier|public
@@ -405,6 +456,9 @@ name|isShutdown
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|isTerminated ()
@@ -421,6 +475,9 @@ name|isTerminated
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|shutdown ()
@@ -436,6 +493,9 @@ name|shutdown
 argument_list|()
 expr_stmt|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|shutdownNow ()
@@ -455,6 +515,9 @@ name|shutdownNow
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|execute (Runnable command)
@@ -475,25 +538,34 @@ name|command
 argument_list|)
 expr_stmt|;
 block|}
+end_function
+
+begin_annotation
 annotation|@
 name|Override
+end_annotation
+
+begin_expr_stmt
 DECL|method|submit (Callable<T> task)
 specifier|public
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|Future
 argument_list|<
 name|T
 argument_list|>
 name|submit
-parameter_list|(
+argument_list|(
 name|Callable
 argument_list|<
 name|T
 argument_list|>
 name|task
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|delegate
@@ -505,6 +577,9 @@ name|task
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_function
 annotation|@
 name|Override
 DECL|method|submit (Runnable task)
@@ -529,25 +604,36 @@ name|task
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_annotation
 annotation|@
 name|Override
-DECL|method|submit (Runnable task, T result)
+end_annotation
+
+begin_expr_stmt
+DECL|method|submit ( Runnable task, @ParametricNullness T result)
 specifier|public
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|Future
 argument_list|<
 name|T
 argument_list|>
 name|submit
-parameter_list|(
+argument_list|(
 name|Runnable
 name|task
-parameter_list|,
+argument_list|,
+annotation|@
+name|ParametricNullness
 name|T
 name|result
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|delegate
@@ -561,8 +647,8 @@ name|result
 argument_list|)
 return|;
 block|}
-block|}
-end_class
+end_expr_stmt
 
+unit|}
 end_unit
 

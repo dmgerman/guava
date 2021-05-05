@@ -82,6 +82,24 @@ name|util
 operator|.
 name|concurrent
 operator|.
+name|NullnessCasts
+operator|.
+name|uncheckedCastNullableTToT
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
 name|Platform
 operator|.
 name|isInstanceOfThrowableClass
@@ -192,6 +210,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|checkerframework
@@ -200,9 +228,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -210,49 +238,66 @@ begin_comment
 comment|/** Implementations of {@code Futures.catching*}. */
 end_comment
 
-begin_class
+begin_annotation
 annotation|@
 name|GwtCompatible
+end_annotation
+
+begin_annotation
+annotation|@
+name|ElementTypesAreNonnullByDefault
+end_annotation
+
+begin_expr_stmt
 DECL|class|AbstractCatchingFuture
 specifier|abstract
-class|class
+name|class
 name|AbstractCatchingFuture
-parameter_list|<
+operator|<
 name|V
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|X
-extends|extends
+expr|extends
 name|Throwable
-parameter_list|,
+operator|,
 name|F
-parameter_list|,
+operator|,
 name|T
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|FluentFuture
 operator|.
 name|TrustedFuture
 argument_list|<
 name|V
 argument_list|>
-implements|implements
+expr|implements
 name|Runnable
 block|{
 DECL|method|create ( ListenableFuture<? extends V> input, Class<X> exceptionType, Function<? super X, ? extends V> fallback, Executor executor)
 specifier|static
-parameter_list|<
+operator|<
 name|V
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+block|,
 name|X
-extends|extends
+expr|extends
 name|Throwable
-parameter_list|>
+operator|>
 name|ListenableFuture
 argument_list|<
 name|V
 argument_list|>
 name|create
-parameter_list|(
+argument_list|(
 name|ListenableFuture
 argument_list|<
 name|?
@@ -260,13 +305,13 @@ extends|extends
 name|V
 argument_list|>
 name|input
-parameter_list|,
+argument_list|,
 name|Class
 argument_list|<
 name|X
 argument_list|>
 name|exceptionType
-parameter_list|,
+argument_list|,
 name|Function
 argument_list|<
 name|?
@@ -278,10 +323,10 @@ extends|extends
 name|V
 argument_list|>
 name|fallback
-parameter_list|,
+argument_list|,
 name|Executor
 name|executor
-parameter_list|)
+argument_list|)
 block|{
 name|CatchingFuture
 argument_list|<
@@ -290,7 +335,7 @@ argument_list|,
 name|X
 argument_list|>
 name|future
-init|=
+operator|=
 operator|new
 name|CatchingFuture
 argument_list|<>
@@ -301,7 +346,7 @@ name|exceptionType
 argument_list|,
 name|fallback
 argument_list|)
-decl_stmt|;
+block|;
 name|input
 operator|.
 name|addListener
@@ -315,26 +360,29 @@ argument_list|,
 name|future
 argument_list|)
 argument_list|)
-expr_stmt|;
+block|;
 return|return
 name|future
 return|;
 block|}
 DECL|method|create ( ListenableFuture<? extends V> input, Class<X> exceptionType, AsyncFunction<? super X, ? extends V> fallback, Executor executor)
 specifier|static
-parameter_list|<
+operator|<
 name|X
-extends|extends
+expr|extends
 name|Throwable
-parameter_list|,
+operator|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|ListenableFuture
 argument_list|<
 name|V
 argument_list|>
 name|create
-parameter_list|(
+argument_list|(
 name|ListenableFuture
 argument_list|<
 name|?
@@ -342,13 +390,13 @@ extends|extends
 name|V
 argument_list|>
 name|input
-parameter_list|,
+operator|,
 name|Class
 argument_list|<
 name|X
 argument_list|>
 name|exceptionType
-parameter_list|,
+operator|,
 name|AsyncFunction
 argument_list|<
 name|?
@@ -360,10 +408,10 @@ extends|extends
 name|V
 argument_list|>
 name|fallback
-parameter_list|,
+operator|,
 name|Executor
 name|executor
-parameter_list|)
+argument_list|)
 block|{
 name|AsyncCatchingFuture
 argument_list|<
@@ -372,7 +420,7 @@ argument_list|,
 name|X
 argument_list|>
 name|future
-init|=
+operator|=
 operator|new
 name|AsyncCatchingFuture
 argument_list|<>
@@ -383,7 +431,7 @@ name|exceptionType
 argument_list|,
 name|fallback
 argument_list|)
-decl_stmt|;
+block|;
 name|input
 operator|.
 name|addListener
@@ -397,15 +445,21 @@ argument_list|,
 name|future
 argument_list|)
 argument_list|)
-expr_stmt|;
+block|;
 return|return
 name|future
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/*    * In certain circumstances, this field might theoretically not be visible to an afterDone() call    * triggered by cancel(). For details, see the comments on the fields of TimeoutFuture.    */
+end_comment
+
+begin_decl_stmt
 DECL|field|inputFuture
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|ListenableFuture
 argument_list|<
 name|?
@@ -414,24 +468,33 @@ name|V
 argument_list|>
 name|inputFuture
 decl_stmt|;
+end_decl_stmt
+
+begin_decl_stmt
 DECL|field|exceptionType
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Class
 argument_list|<
 name|X
 argument_list|>
 name|exceptionType
 decl_stmt|;
+end_decl_stmt
+
+begin_decl_stmt
 DECL|field|fallback
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|F
 name|fallback
 decl_stmt|;
+end_decl_stmt
+
+begin_expr_stmt
 DECL|method|AbstractCatchingFuture ( ListenableFuture<? extends V> inputFuture, Class<X> exceptionType, F fallback)
 name|AbstractCatchingFuture
-parameter_list|(
+argument_list|(
 name|ListenableFuture
 argument_list|<
 name|?
@@ -439,16 +502,16 @@ extends|extends
 name|V
 argument_list|>
 name|inputFuture
-parameter_list|,
+operator|,
 name|Class
 argument_list|<
 name|X
 argument_list|>
 name|exceptionType
-parameter_list|,
+operator|,
 name|F
 name|fallback
-parameter_list|)
+argument_list|)
 block|{
 name|this
 operator|.
@@ -458,7 +521,7 @@ name|checkNotNull
 argument_list|(
 name|inputFuture
 argument_list|)
-expr_stmt|;
+block|;
 name|this
 operator|.
 name|exceptionType
@@ -467,7 +530,7 @@ name|checkNotNull
 argument_list|(
 name|exceptionType
 argument_list|)
-expr_stmt|;
+block|;
 name|this
 operator|.
 name|fallback
@@ -476,16 +539,15 @@ name|checkNotNull
 argument_list|(
 name|fallback
 argument_list|)
-expr_stmt|;
-block|}
-annotation|@
+block|;   }
+expr|@
 name|Override
 DECL|method|run ()
 specifier|public
-specifier|final
+name|final
 name|void
 name|run
-parameter_list|()
+argument_list|()
 block|{
 name|ListenableFuture
 argument_list|<
@@ -494,22 +556,22 @@ extends|extends
 name|V
 argument_list|>
 name|localInputFuture
-init|=
+operator|=
 name|inputFuture
-decl_stmt|;
+block|;
 name|Class
 argument_list|<
 name|X
 argument_list|>
 name|localExceptionType
-init|=
+operator|=
 name|exceptionType
-decl_stmt|;
+block|;
 name|F
 name|localFallback
-init|=
+operator|=
 name|fallback
-decl_stmt|;
+block|;
 if|if
 condition|(
 name|localInputFuture
@@ -535,17 +597,29 @@ name|inputFuture
 operator|=
 literal|null
 expr_stmt|;
+end_expr_stmt
+
+begin_comment
 comment|// For an explanation of the cases here, see the comments on AbstractTransformFuture.run.
+end_comment
+
+begin_decl_stmt
 name|V
 name|sourceResult
 init|=
 literal|null
 decl_stmt|;
+end_decl_stmt
+
+begin_decl_stmt
 name|Throwable
 name|throwable
 init|=
 literal|null
 decl_stmt|;
+end_decl_stmt
+
+begin_try
 try|try
 block|{
 if|if
@@ -640,6 +714,9 @@ operator|=
 name|e
 expr_stmt|;
 block|}
+end_try
+
+begin_if
 if|if
 condition|(
 name|throwable
@@ -647,13 +724,20 @@ operator|==
 literal|null
 condition|)
 block|{
+comment|/*        * The cast is safe: There was no exception, so the assignment from getDone must have        * succeeded.        */
 name|set
 argument_list|(
+name|uncheckedCastNullableTToT
+argument_list|(
 name|sourceResult
+argument_list|)
 argument_list|)
 expr_stmt|;
 return|return;
 block|}
+end_if
+
+begin_if
 if|if
 condition|(
 operator|!
@@ -673,6 +757,9 @@ expr_stmt|;
 comment|// TODO(cpovirk): Test that fallback is not run in this case.
 return|return;
 block|}
+end_if
+
+begin_decl_stmt
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -687,9 +774,15 @@ name|X
 operator|)
 name|throwable
 decl_stmt|;
+end_decl_stmt
+
+begin_decl_stmt
 name|T
 name|fallbackResult
 decl_stmt|;
+end_decl_stmt
+
+begin_try
 try|try
 block|{
 name|fallbackResult
@@ -726,14 +819,21 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
+end_try
+
+begin_expr_stmt
 name|setResult
 argument_list|(
 name|fallbackResult
 argument_list|)
 expr_stmt|;
-block|}
-annotation|@
+end_expr_stmt
+
+begin_function
+unit|}    @
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|pendingToString ()
 specifier|protected
 name|String
@@ -835,11 +935,17 @@ return|return
 literal|null
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/** Template method for subtypes to actually run the fallback. */
+end_comment
+
+begin_function_decl
 annotation|@
 name|ForOverride
 annotation|@
-name|NullableDecl
+name|ParametricNullness
 DECL|method|doFallback (F fallback, X throwable)
 specifier|abstract
 name|T
@@ -854,20 +960,29 @@ parameter_list|)
 throws|throws
 name|Exception
 function_decl|;
+end_function_decl
+
+begin_comment
 comment|/** Template method for subtypes to actually set the result. */
+end_comment
+
+begin_function_decl
 annotation|@
 name|ForOverride
-DECL|method|setResult (@ullableDecl T result)
+DECL|method|setResult (@arametricNullness T result)
 specifier|abstract
 name|void
 name|setResult
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|ParametricNullness
 name|T
 name|result
 parameter_list|)
 function_decl|;
+end_function_decl
+
+begin_function
 annotation|@
 name|Override
 DECL|method|afterDone ()
@@ -901,21 +1016,30 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * An {@link AbstractCatchingFuture} that delegates to an {@link AsyncFunction} and {@link    * #setFuture(ListenableFuture)}.    */
+end_comment
+
+begin_expr_stmt
 DECL|class|AsyncCatchingFuture
 specifier|private
 specifier|static
-specifier|final
-class|class
+name|final
+name|class
 name|AsyncCatchingFuture
-parameter_list|<
+operator|<
 name|V
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|X
-extends|extends
+expr|extends
 name|Throwable
-parameter_list|>
-extends|extends
+operator|>
+expr|extends
 name|AbstractCatchingFuture
 argument_list|<
 name|V
@@ -943,7 +1067,7 @@ argument_list|>
 block|{
 DECL|method|AsyncCatchingFuture ( ListenableFuture<? extends V> input, Class<X> exceptionType, AsyncFunction<? super X, ? extends V> fallback)
 name|AsyncCatchingFuture
-parameter_list|(
+argument_list|(
 name|ListenableFuture
 argument_list|<
 name|?
@@ -951,13 +1075,13 @@ extends|extends
 name|V
 argument_list|>
 name|input
-parameter_list|,
+argument_list|,
 name|Class
 argument_list|<
 name|X
 argument_list|>
 name|exceptionType
-parameter_list|,
+argument_list|,
 name|AsyncFunction
 argument_list|<
 name|?
@@ -969,7 +1093,7 @@ extends|extends
 name|V
 argument_list|>
 name|fallback
-parameter_list|)
+argument_list|)
 block|{
 name|super
 argument_list|(
@@ -979,9 +1103,8 @@ name|exceptionType
 argument_list|,
 name|fallback
 argument_list|)
-expr_stmt|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|Override
 DECL|method|doFallback ( AsyncFunction<? super X, ? extends V> fallback, X cause)
 name|ListenableFuture
@@ -991,7 +1114,7 @@ extends|extends
 name|V
 argument_list|>
 name|doFallback
-parameter_list|(
+argument_list|(
 name|AsyncFunction
 argument_list|<
 name|?
@@ -1003,10 +1126,10 @@ extends|extends
 name|V
 argument_list|>
 name|fallback
-parameter_list|,
+operator|,
 name|X
 name|cause
-parameter_list|)
+argument_list|)
 throws|throws
 name|Exception
 block|{
@@ -1017,14 +1140,14 @@ extends|extends
 name|V
 argument_list|>
 name|replacement
-init|=
+operator|=
 name|fallback
 operator|.
 name|apply
 argument_list|(
 name|cause
 argument_list|)
-decl_stmt|;
+block|;
 name|checkNotNull
 argument_list|(
 name|replacement
@@ -1035,11 +1158,14 @@ literal|"Did you mean to return immediateFuture(null)? %s"
 argument_list|,
 name|fallback
 argument_list|)
-expr_stmt|;
+block|;
 return|return
 name|replacement
 return|;
 block|}
+end_expr_stmt
+
+begin_function
 annotation|@
 name|Override
 DECL|method|setResult (ListenableFuture<? extends V> result)
@@ -1061,22 +1187,31 @@ name|result
 argument_list|)
 expr_stmt|;
 block|}
-block|}
+end_function
+
+begin_comment
+unit|}
 comment|/**    * An {@link AbstractCatchingFuture} that delegates to a {@link Function} and {@link    * #set(Object)}.    */
+end_comment
+
+begin_expr_stmt
 DECL|class|CatchingFuture
-specifier|private
+unit|private
 specifier|static
-specifier|final
-class|class
+name|final
+name|class
 name|CatchingFuture
-parameter_list|<
+operator|<
 name|V
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|X
-extends|extends
+expr|extends
 name|Throwable
-parameter_list|>
-extends|extends
+operator|>
+expr|extends
 name|AbstractCatchingFuture
 argument_list|<
 name|V
@@ -1099,7 +1234,7 @@ argument_list|>
 block|{
 DECL|method|CatchingFuture ( ListenableFuture<? extends V> input, Class<X> exceptionType, Function<? super X, ? extends V> fallback)
 name|CatchingFuture
-parameter_list|(
+argument_list|(
 name|ListenableFuture
 argument_list|<
 name|?
@@ -1107,13 +1242,13 @@ extends|extends
 name|V
 argument_list|>
 name|input
-parameter_list|,
+argument_list|,
 name|Class
 argument_list|<
 name|X
 argument_list|>
 name|exceptionType
-parameter_list|,
+argument_list|,
 name|Function
 argument_list|<
 name|?
@@ -1125,7 +1260,7 @@ extends|extends
 name|V
 argument_list|>
 name|fallback
-parameter_list|)
+argument_list|)
 block|{
 name|super
 argument_list|(
@@ -1135,16 +1270,15 @@ name|exceptionType
 argument_list|,
 name|fallback
 argument_list|)
-expr_stmt|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|Override
-annotation|@
-name|NullableDecl
+expr|@
+name|ParametricNullness
 DECL|method|doFallback (Function<? super X, ? extends V> fallback, X cause)
 name|V
 name|doFallback
-parameter_list|(
+argument_list|(
 name|Function
 argument_list|<
 name|?
@@ -1156,10 +1290,10 @@ extends|extends
 name|V
 argument_list|>
 name|fallback
-parameter_list|,
+operator|,
 name|X
 name|cause
-parameter_list|)
+argument_list|)
 throws|throws
 name|Exception
 block|{
@@ -1172,14 +1306,17 @@ name|cause
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_function
 annotation|@
 name|Override
-DECL|method|setResult (@ullableDecl V result)
+DECL|method|setResult (@arametricNullness V result)
 name|void
 name|setResult
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|ParametricNullness
 name|V
 name|result
 parameter_list|)
@@ -1190,9 +1327,8 @@ name|result
 argument_list|)
 expr_stmt|;
 block|}
-block|}
-block|}
-end_class
+end_function
 
+unit|} }
 end_unit
 

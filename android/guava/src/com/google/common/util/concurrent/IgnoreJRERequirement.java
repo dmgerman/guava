@@ -84,6 +84,8 @@ block|,
 name|TYPE
 block|}
 argument_list|)
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|annotation|IgnoreJRERequirement
 annotation_defn|@interface
 name|IgnoreJRERequirement

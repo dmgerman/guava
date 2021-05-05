@@ -252,6 +252,16 @@ name|Logger
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
 begin_comment
 comment|/**  * Executor ensuring that all Runnables submitted are executed in order, using the provided  * Executor, and sequentially such that no two will ever be running at the same time.  *  *<p>Tasks submitted to {@link #execute(Runnable)} are executed in FIFO order.  *  *<p>The execution of tasks is done by one thread as long as there are tasks left in the queue.  * When a task is {@linkplain Thread#interrupt interrupted}, execution of subsequent tasks  * continues. See {@link QueueWorker#workOnQueue} for details.  *  *<p>{@code RuntimeException}s thrown by tasks are simply logged and the executor keeps trucking.  * If an {@code Error} is thrown, the error will propagate and execution will stop until it is  * restarted by a call to {@link #execute}.  */
 end_comment
@@ -259,6 +269,8 @@ end_comment
 begin_class
 annotation|@
 name|GwtIncompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|SequentialExecutor
 specifier|final
 class|class
@@ -615,6 +627,8 @@ implements|implements
 name|Runnable
 block|{
 DECL|field|task
+annotation|@
+name|CheckForNull
 name|Runnable
 name|task
 decl_stmt|;

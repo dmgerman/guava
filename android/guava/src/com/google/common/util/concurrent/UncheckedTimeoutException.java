@@ -34,17 +34,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|javax
 operator|.
-name|checkerframework
+name|annotation
 operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|compatqual
-operator|.
-name|NullableDecl
+name|CheckForNull
 import|;
 end_import
 
@@ -55,6 +49,8 @@ end_comment
 begin_class
 annotation|@
 name|GwtIncompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|UncheckedTimeoutException
 specifier|public
 class|class
@@ -67,12 +63,12 @@ specifier|public
 name|UncheckedTimeoutException
 parameter_list|()
 block|{}
-DECL|method|UncheckedTimeoutException (@ullableDecl String message)
+DECL|method|UncheckedTimeoutException (@heckForNull String message)
 specifier|public
 name|UncheckedTimeoutException
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|String
 name|message
 parameter_list|)
@@ -83,12 +79,12 @@ name|message
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|UncheckedTimeoutException (@ullableDecl Throwable cause)
+DECL|method|UncheckedTimeoutException (@heckForNull Throwable cause)
 specifier|public
 name|UncheckedTimeoutException
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Throwable
 name|cause
 parameter_list|)
@@ -99,17 +95,17 @@ name|cause
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|UncheckedTimeoutException (@ullableDecl String message, @NullableDecl Throwable cause)
+DECL|method|UncheckedTimeoutException (@heckForNull String message, @CheckForNull Throwable cause)
 specifier|public
 name|UncheckedTimeoutException
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|String
 name|message
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Throwable
 name|cause
 parameter_list|)

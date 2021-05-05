@@ -108,6 +108,8 @@ literal|"Create an AbstractIdleService"
 argument_list|)
 annotation|@
 name|GwtIncompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|interface|Service
 specifier|public
 interface|interface

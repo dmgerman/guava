@@ -19,6 +19,24 @@ package|;
 end_package
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|NullnessCasts
+operator|.
+name|uncheckedCastNullableTToT
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -102,12 +120,31 @@ name|LockSupport
 import|;
 end_import
 
-begin_class
+begin_import
+import|import
+name|org
+operator|.
+name|checkerframework
+operator|.
+name|checker
+operator|.
+name|nullness
+operator|.
+name|qual
+operator|.
+name|Nullable
+import|;
+end_import
+
+begin_annotation
 annotation|@
 name|SuppressWarnings
 argument_list|(
 literal|"ShouldNotSubclass"
 argument_list|)
+end_annotation
+
+begin_annotation
 annotation|@
 name|GwtCompatible
 argument_list|(
@@ -115,6 +152,9 @@ name|emulated
 operator|=
 literal|true
 argument_list|)
+end_annotation
+
+begin_annotation
 annotation|@
 name|ReflectionSupport
 argument_list|(
@@ -126,31 +166,59 @@ name|Level
 operator|.
 name|FULL
 argument_list|)
+end_annotation
+
+begin_annotation
+annotation|@
+name|ElementTypesAreNonnullByDefault
+end_annotation
+
+begin_comment
 comment|// Some Android 5.0.x Samsung devices have bugs in JDK reflection APIs that cause
+end_comment
+
+begin_comment
 comment|// getDeclaredField to throw a NoSuchFieldException when the field is definitely there.
+end_comment
+
+begin_comment
 comment|// Since this class only needs CAS on one field, we can avoid this bug by extending AtomicReference
+end_comment
+
+begin_comment
 comment|// instead of using an AtomicReferenceFieldUpdater. This reference stores Thread instances
+end_comment
+
+begin_comment
 comment|// and DONE/INTERRUPTED - they have a common ancestor of Runnable.
+end_comment
+
+begin_expr_stmt
 DECL|class|InterruptibleTask
 specifier|abstract
-class|class
+name|class
 name|InterruptibleTask
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|AtomicReference
 argument_list|<
+annotation|@
+name|Nullable
 name|Runnable
 argument_list|>
-implements|implements
+expr|implements
 name|Runnable
 block|{
-static|static
+specifier|static
 block|{
 comment|// Prevent rare disastrous classloading in first call to LockSupport.park.
 comment|// See: https://bugs.openjdk.java.net/browse/JDK-8074773
-annotation|@
+block|@
 name|SuppressWarnings
 argument_list|(
 literal|"unused"
@@ -160,28 +228,26 @@ argument_list|<
 name|?
 argument_list|>
 name|ensureLoaded
-init|=
+operator|=
 name|LockSupport
 operator|.
 name|class
-decl_stmt|;
-block|}
+block|;   }
 DECL|class|DoNothingRunnable
 specifier|private
 specifier|static
-specifier|final
-class|class
+name|final
+name|class
 name|DoNothingRunnable
-implements|implements
+expr|implements
 name|Runnable
-block|{
-annotation|@
+block|{     @
 name|Override
 DECL|method|run ()
 specifier|public
 name|void
 name|run
-parameter_list|()
+argument_list|()
 block|{}
 block|}
 comment|// The thread executing the task publishes itself to the superclass' reference and the thread
@@ -189,59 +255,58 @@ comment|// interrupting sets DONE when it has finished interrupting.
 DECL|field|DONE
 specifier|private
 specifier|static
-specifier|final
+name|final
 name|Runnable
 name|DONE
-init|=
+operator|=
 operator|new
 name|DoNothingRunnable
 argument_list|()
-decl_stmt|;
+block|;
 DECL|field|PARKED
 specifier|private
 specifier|static
-specifier|final
+name|final
 name|Runnable
 name|PARKED
-init|=
+operator|=
 operator|new
 name|DoNothingRunnable
 argument_list|()
-decl_stmt|;
+block|;
 comment|// Why 1000?  WHY NOT!
 DECL|field|MAX_BUSY_WAIT_SPINS
 specifier|private
 specifier|static
-specifier|final
+name|final
 name|int
 name|MAX_BUSY_WAIT_SPINS
-init|=
+operator|=
 literal|1000
-decl_stmt|;
-annotation|@
+block|;    @
 name|SuppressWarnings
 argument_list|(
 literal|"ThreadPriorityCheck"
 argument_list|)
 comment|// The cow told me to
-annotation|@
+expr|@
 name|Override
 DECL|method|run ()
 specifier|public
-specifier|final
+name|final
 name|void
 name|run
-parameter_list|()
+argument_list|()
 block|{
 comment|/*      * Set runner thread before checking isDone(). If we were to check isDone() first, the task      * might be cancelled before we set the runner thread. That would make it impossible to      * interrupt, yet it will still run, since interruptTask will leave the runner value null,      * allowing the CAS below to succeed.      */
 name|Thread
 name|currentThread
-init|=
+operator|=
 name|Thread
 operator|.
 name|currentThread
 argument_list|()
-decl_stmt|;
+block|;
 if|if
 condition|(
 operator|!
@@ -258,21 +323,21 @@ comment|// someone else has run or is running.
 block|}
 name|boolean
 name|run
-init|=
+operator|=
 operator|!
 name|isDone
 argument_list|()
-decl_stmt|;
+block|;
 name|T
 name|result
-init|=
+operator|=
 literal|null
-decl_stmt|;
+block|;
 name|Throwable
 name|error
-init|=
+operator|=
 literal|null
-decl_stmt|;
+block|;
 try|try
 block|{
 if|if
@@ -286,18 +351,22 @@ name|runInterruptibly
 argument_list|()
 expr_stmt|;
 block|}
-block|}
-catch|catch
-parameter_list|(
+end_expr_stmt
+
+begin_expr_stmt
+unit|} catch
+operator|(
 name|Throwable
 name|t
-parameter_list|)
+operator|)
 block|{
 name|error
 operator|=
 name|t
-expr_stmt|;
-block|}
+block|;     }
+end_expr_stmt
+
+begin_finally
 finally|finally
 block|{
 comment|// Attempt to set the task as done so that further attempts to interrupt will fail.
@@ -330,9 +399,13 @@ operator|==
 literal|null
 condition|)
 block|{
+comment|// The cast is safe because of the `run` and `error` checks.
 name|afterRanInterruptiblySuccess
 argument_list|(
+name|uncheckedCastNullableTToT
+argument_list|(
 name|result
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -346,9 +419,11 @@ expr_stmt|;
 block|}
 block|}
 block|}
-block|}
+end_finally
+
+begin_function
+unit|}    private
 DECL|method|waitForInterrupt (Thread currentThread)
-specifier|private
 name|void
 name|waitForInterrupt
 parameter_list|(
@@ -494,14 +569,28 @@ expr_stmt|;
 block|}
 comment|/*      * TODO(cpovirk): Clear interrupt status here? We currently don't, which means that an interrupt      * before, during, or after runInterruptibly() (unless it produced an InterruptedException      * caught above) can linger and affect listeners.      */
 block|}
+end_function
+
+begin_comment
 comment|/**    * Called before runInterruptibly - if true, runInterruptibly and afterRanInterruptibly will not    * be called.    */
+end_comment
+
+begin_function_decl
 DECL|method|isDone ()
 specifier|abstract
 name|boolean
 name|isDone
 parameter_list|()
 function_decl|;
+end_function_decl
+
+begin_comment
 comment|/**    * Do interruptible work here - do not complete Futures here, as their listeners could be    * interrupted.    */
+end_comment
+
+begin_function_decl
+annotation|@
+name|ParametricNullness
 DECL|method|runInterruptibly ()
 specifier|abstract
 name|T
@@ -510,17 +599,31 @@ parameter_list|()
 throws|throws
 name|Exception
 function_decl|;
+end_function_decl
+
+begin_comment
 comment|/**    * Any interruption that happens as a result of calling interruptTask will arrive before this    * method is called. Complete Futures here.    */
-DECL|method|afterRanInterruptiblySuccess (T result)
+end_comment
+
+begin_function_decl
+DECL|method|afterRanInterruptiblySuccess (@arametricNullness T result)
 specifier|abstract
 name|void
 name|afterRanInterruptiblySuccess
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|T
 name|result
 parameter_list|)
 function_decl|;
+end_function_decl
+
+begin_comment
 comment|/**    * Any interruption that happens as a result of calling interruptTask will arrive before this    * method is called. Complete Futures here.    */
+end_comment
+
+begin_function_decl
 DECL|method|afterRanInterruptiblyFailure (Throwable error)
 specifier|abstract
 name|void
@@ -530,7 +633,13 @@ name|Throwable
 name|error
 parameter_list|)
 function_decl|;
+end_function_decl
+
+begin_comment
 comment|/**    * Interrupts the running task. Because this internally calls {@link Thread#interrupt()} which can    * in turn invoke arbitrary code it is not safe to call while holding a lock.    */
+end_comment
+
+begin_function
 DECL|method|interruptTask ()
 specifier|final
 name|void
@@ -631,7 +740,13 @@ block|}
 block|}
 block|}
 block|}
+end_function
+
+begin_comment
 comment|/**    * Using this as the blocker object allows introspection and debugging tools to see that the    * currentRunner thread is blocked on the progress of the interruptor thread, which can help    * identify deadlocks.    */
+end_comment
+
+begin_class
 annotation|@
 name|VisibleForTesting
 DECL|class|Blocker
@@ -712,6 +827,9 @@ argument_list|()
 return|;
 block|}
 block|}
+end_class
+
+begin_function
 annotation|@
 name|Override
 DECL|method|toString ()
@@ -798,14 +916,17 @@ name|toPendingString
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function_decl
 DECL|method|toPendingString ()
 specifier|abstract
 name|String
 name|toPendingString
 parameter_list|()
 function_decl|;
-block|}
-end_class
+end_function_decl
 
+unit|}
 end_unit
 

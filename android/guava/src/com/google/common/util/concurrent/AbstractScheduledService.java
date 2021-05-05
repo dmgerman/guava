@@ -87,6 +87,18 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|java
+operator|.
+name|util
+operator|.
+name|Objects
+operator|.
+name|requireNonNull
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -111,24 +123,6 @@ operator|.
 name|base
 operator|.
 name|Supplier
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|util
-operator|.
-name|concurrent
-operator|.
-name|ForwardingFuture
-operator|.
-name|SimpleForwardingFuture
 import|;
 end_import
 
@@ -324,6 +318,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|checkerframework
@@ -332,9 +336,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -345,6 +349,8 @@ end_comment
 begin_class
 annotation|@
 name|GwtIncompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|AbstractScheduledService
 specifier|public
 specifier|abstract
@@ -446,7 +452,6 @@ block|{
 return|return
 operator|new
 name|FutureAsCancellable
-argument_list|<>
 argument_list|(
 name|executor
 operator|.
@@ -532,7 +537,6 @@ block|{
 return|return
 operator|new
 name|FutureAsCancellable
-argument_list|<>
 argument_list|(
 name|executor
 operator|.
@@ -599,7 +603,7 @@ comment|// A handle to the running task so that we can stop it when a shutdown h
 comment|// These two fields are volatile because their values will be accessed from multiple threads.
 DECL|field|runningTask
 annotation|@
-name|NullableDecl
+name|CheckForNull
 specifier|private
 specifier|volatile
 name|Cancellable
@@ -607,7 +611,7 @@ name|runningTask
 decl_stmt|;
 DECL|field|executorService
 annotation|@
-name|NullableDecl
+name|CheckForNull
 specifier|private
 specifier|volatile
 name|ScheduledExecutorService
@@ -650,9 +654,13 @@ argument_list|()
 expr_stmt|;
 try|try
 block|{
+comment|/*            * requireNonNull is safe because Task isn't run (or at least it doesn't succeed in taking            * the lock) until after it's scheduled and the runningTask field is set.            */
 if|if
 condition|(
+name|requireNonNull
+argument_list|(
 name|runningTask
+argument_list|)
 operator|.
 name|isCancelled
 argument_list|()
@@ -706,7 +714,11 @@ argument_list|(
 name|t
 argument_list|)
 expr_stmt|;
+comment|// requireNonNull is safe now, just as it was above.
+name|requireNonNull
+argument_list|(
 name|runningTask
+argument_list|)
 operator|.
 name|cancel
 argument_list|(
@@ -873,6 +885,17 @@ name|void
 name|doStop
 parameter_list|()
 block|{
+comment|// Both requireNonNull calls are safe because doStop can run only after a successful doStart.
+name|requireNonNull
+argument_list|(
+name|runningTask
+argument_list|)
+expr_stmt|;
+name|requireNonNull
+argument_list|(
+name|executorService
+argument_list|)
+expr_stmt|;
 name|runningTask
 operator|.
 name|cancel
@@ -1364,10 +1387,8 @@ DECL|interface|Cancellable
 interface|interface
 name|Cancellable
 block|{
-annotation|@
-name|CanIgnoreReturnValue
 DECL|method|cancel (boolean mayInterruptIfRunning)
-name|boolean
+name|void
 name|cancel
 parameter_list|(
 name|boolean
@@ -1386,32 +1407,68 @@ specifier|static
 specifier|final
 class|class
 name|FutureAsCancellable
-parameter_list|<
-name|V
-parameter_list|>
-extends|extends
-name|SimpleForwardingFuture
-argument_list|<
-name|V
-argument_list|>
 implements|implements
 name|Cancellable
 block|{
-DECL|method|FutureAsCancellable (Future<V> delegate)
+DECL|field|delegate
+specifier|private
+specifier|final
+name|Future
+argument_list|<
+name|?
+argument_list|>
+name|delegate
+decl_stmt|;
+DECL|method|FutureAsCancellable (Future<?> delegate)
 name|FutureAsCancellable
 parameter_list|(
 name|Future
 argument_list|<
-name|V
+name|?
 argument_list|>
 name|delegate
 parameter_list|)
 block|{
-name|super
-argument_list|(
+name|this
+operator|.
 name|delegate
+operator|=
+name|delegate
+expr_stmt|;
+block|}
+annotation|@
+name|Override
+DECL|method|cancel (boolean mayInterruptIfRunning)
+specifier|public
+name|void
+name|cancel
+parameter_list|(
+name|boolean
+name|mayInterruptIfRunning
+parameter_list|)
+block|{
+name|delegate
+operator|.
+name|cancel
+argument_list|(
+name|mayInterruptIfRunning
 argument_list|)
 expr_stmt|;
+block|}
+annotation|@
+name|Override
+DECL|method|isCancelled ()
+specifier|public
+name|boolean
+name|isCancelled
+parameter_list|()
+block|{
+return|return
+name|delegate
+operator|.
+name|isCancelled
+argument_list|()
+return|;
 block|}
 block|}
 comment|/**    * A {@link Scheduler} that provides a convenient way for the {@link AbstractScheduledService} to    * use a dynamically changing schedule. After every execution of the task, assuming it hasn't been    * cancelled, the {@link #getNextSchedule} method will be called.    *    * @author Luke Sandberg    * @since 11.0    */
@@ -1433,6 +1490,8 @@ name|ReschedulableCallable
 implements|implements
 name|Callable
 argument_list|<
+annotation|@
+name|Nullable
 name|Void
 argument_list|>
 block|{
@@ -1475,7 +1534,7 @@ argument_list|(
 literal|"lock"
 argument_list|)
 annotation|@
-name|NullableDecl
+name|CheckForNull
 DECL|field|cancellationDelegate
 specifier|private
 name|SupplantableFuture
@@ -1515,6 +1574,8 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|call ()
 specifier|public
 name|Void
@@ -1576,7 +1637,6 @@ expr_stmt|;
 return|return
 operator|new
 name|FutureAsCancellable
-argument_list|<>
 argument_list|(
 name|immediateCancelledFuture
 argument_list|()
@@ -1632,7 +1692,6 @@ name|toReturn
 operator|=
 operator|new
 name|FutureAsCancellable
-argument_list|<>
 argument_list|(
 name|immediateCancelledFuture
 argument_list|()
@@ -1738,6 +1797,8 @@ DECL|method|submitToExecutor (Schedule schedule)
 specifier|private
 name|ScheduledFuture
 argument_list|<
+annotation|@
+name|Nullable
 name|Void
 argument_list|>
 name|submitToExecutor
@@ -1789,11 +1850,13 @@ DECL|field|currentFuture
 specifier|private
 name|Future
 argument_list|<
+annotation|@
+name|Nullable
 name|Void
 argument_list|>
 name|currentFuture
 decl_stmt|;
-DECL|method|SupplantableFuture (ReentrantLock lock, Future<Void> currentFuture)
+DECL|method|SupplantableFuture (ReentrantLock lock, Future<@Nullable Void> currentFuture)
 name|SupplantableFuture
 parameter_list|(
 name|ReentrantLock
@@ -1801,6 +1864,8 @@ name|lock
 parameter_list|,
 name|Future
 argument_list|<
+annotation|@
+name|Nullable
 name|Void
 argument_list|>
 name|currentFuture
@@ -1823,7 +1888,7 @@ annotation|@
 name|Override
 DECL|method|cancel (boolean mayInterruptIfRunning)
 specifier|public
-name|boolean
+name|void
 name|cancel
 parameter_list|(
 name|boolean
@@ -1838,14 +1903,13 @@ argument_list|()
 expr_stmt|;
 try|try
 block|{
-return|return
 name|currentFuture
 operator|.
 name|cancel
 argument_list|(
 name|mayInterruptIfRunning
 argument_list|)
-return|;
+expr_stmt|;
 block|}
 finally|finally
 block|{

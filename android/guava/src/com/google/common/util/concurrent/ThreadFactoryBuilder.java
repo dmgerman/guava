@@ -51,6 +51,18 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|java
+operator|.
+name|util
+operator|.
+name|Objects
+operator|.
+name|requireNonNull
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -152,6 +164,16 @@ name|AtomicLong
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
 begin_comment
 comment|/**  * A ThreadFactory builder, providing any combination of these features:  *  *<ul>  *<li>whether threads should be marked as {@linkplain Thread#setDaemon daemon} threads  *<li>a {@linkplain ThreadFactoryBuilder#setNameFormat naming format}  *<li>a {@linkplain Thread#setPriority thread priority}  *<li>an {@linkplain Thread#setUncaughtExceptionHandler uncaught exception handler}  *<li>a {@linkplain ThreadFactory#newThread backing thread factory}  *</ul>  *  *<p>If no backing thread factory is provided, a default backing thread factory is used as if by  * calling {@code setThreadFactory(}{@link Executors#defaultThreadFactory()}{@code )}.  *  * @author Kurt Alfred Kluever  * @since 4.0  */
 end_comment
@@ -161,6 +183,8 @@ annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|GwtIncompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|ThreadFactoryBuilder
 specifier|public
 specifier|final
@@ -168,6 +192,8 @@ class|class
 name|ThreadFactoryBuilder
 block|{
 DECL|field|nameFormat
+annotation|@
+name|CheckForNull
 specifier|private
 name|String
 name|nameFormat
@@ -175,6 +201,8 @@ init|=
 literal|null
 decl_stmt|;
 DECL|field|daemon
+annotation|@
+name|CheckForNull
 specifier|private
 name|Boolean
 name|daemon
@@ -182,6 +210,8 @@ init|=
 literal|null
 decl_stmt|;
 DECL|field|priority
+annotation|@
+name|CheckForNull
 specifier|private
 name|Integer
 name|priority
@@ -189,6 +219,8 @@ init|=
 literal|null
 decl_stmt|;
 DECL|field|uncaughtExceptionHandler
+annotation|@
+name|CheckForNull
 specifier|private
 name|UncaughtExceptionHandler
 name|uncaughtExceptionHandler
@@ -196,6 +228,8 @@ init|=
 literal|null
 decl_stmt|;
 DECL|field|backingThreadFactory
+annotation|@
+name|CheckForNull
 specifier|private
 name|ThreadFactory
 name|backingThreadFactory
@@ -492,6 +526,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+comment|// requireNonNull is safe because we create `count` if (and only if) we have a nameFormat.
 name|thread
 operator|.
 name|setName
@@ -500,7 +535,10 @@ name|format
 argument_list|(
 name|nameFormat
 argument_list|,
+name|requireNonNull
+argument_list|(
 name|count
+argument_list|)
 operator|.
 name|getAndIncrement
 argument_list|()

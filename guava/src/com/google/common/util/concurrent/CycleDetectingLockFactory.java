@@ -35,6 +35,18 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|java
+operator|.
+name|util
+operator|.
+name|Objects
+operator|.
+name|requireNonNull
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -362,17 +374,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|javax
 operator|.
-name|checkerframework
+name|annotation
 operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|qual
-operator|.
-name|Nullable
+name|CheckForNull
 import|;
 end_import
 
@@ -388,6 +394,8 @@ name|CanIgnoreReturnValue
 comment|// TODO(cpovirk): Consider being more strict.
 annotation|@
 name|GwtIncompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|CycleDetectingLockFactory
 specifier|public
 class|class
@@ -1191,15 +1199,20 @@ name|ReentrantLock
 argument_list|(
 name|fair
 argument_list|)
+comment|// requireNonNull is safe because createNodes inserts an entry for every E.
+comment|// (If the caller passes `null` for the `rank` parameter, this will throw, but that's OK.)
 else|:
 operator|new
 name|CycleDetectingReentrantLock
+argument_list|(
+name|requireNonNull
 argument_list|(
 name|lockGraphNodes
 operator|.
 name|get
 argument_list|(
 name|rank
+argument_list|)
 argument_list|)
 argument_list|,
 name|fair
@@ -1250,15 +1263,20 @@ name|ReentrantReadWriteLock
 argument_list|(
 name|fair
 argument_list|)
+comment|// requireNonNull is safe because createNodes inserts an entry for every E.
+comment|// (If the caller passes `null` for the `rank` parameter, this will throw, but that's OK.)
 else|:
 operator|new
 name|CycleDetectingReentrantReadWriteLock
+argument_list|(
+name|requireNonNull
 argument_list|(
 name|lockGraphNodes
 operator|.
 name|get
 argument_list|(
 name|rank
+argument_list|)
 argument_list|)
 argument_list|,
 name|fair
@@ -1604,16 +1622,20 @@ name|String
 name|getMessage
 parameter_list|()
 block|{
+comment|// requireNonNull is safe because ExampleStackTrace sets a non-null message.
 name|StringBuilder
 name|message
 init|=
 operator|new
 name|StringBuilder
 argument_list|(
+name|requireNonNull
+argument_list|(
 name|super
 operator|.
 name|getMessage
 argument_list|()
+argument_list|)
 argument_list|)
 decl_stmt|;
 for|for
@@ -1977,10 +1999,10 @@ expr_stmt|;
 block|}
 block|}
 comment|/**      * Performs a depth-first traversal of the graph edges defined by each node's {@code      * allowedPriorLocks} to find a path between {@code this} and the specified {@code lock}.      *      * @return If a path was found, a chained {@link ExampleStackTrace} illustrating the path to the      *     {@code lock}, or {@code null} if no path was found.      */
+annotation|@
+name|CheckForNull
 DECL|method|findPathTo (LockGraphNode node, Set<LockGraphNode> seen)
 specifier|private
-annotation|@
-name|Nullable
 name|ExampleStackTrace
 name|findPathTo
 parameter_list|(

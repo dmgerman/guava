@@ -96,21 +96,48 @@ name|TimeoutException
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|checkerframework
+operator|.
+name|checker
+operator|.
+name|nullness
+operator|.
+name|qual
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/**  * {@link FluentFuture} that forwards all calls to a delegate.  *  *<h3>Extension</h3>  *  * If you want a class like {@code FluentFuture} but with extra methods, we recommend declaring your  * own subclass of {@link ListenableFuture}, complete with a method like {@link #from} to adapt an  * existing {@code ListenableFuture}, implemented atop a {@link ForwardingListenableFuture} that  * forwards to that future and adds the desired methods.  */
 end_comment
 
-begin_class
+begin_annotation
 annotation|@
 name|GwtCompatible
+end_annotation
+
+begin_annotation
+annotation|@
+name|ElementTypesAreNonnullByDefault
+end_annotation
+
+begin_expr_stmt
 DECL|class|ForwardingFluentFuture
-specifier|final
-class|class
+name|final
+name|class
 name|ForwardingFluentFuture
-parameter_list|<
+operator|<
 name|V
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|FluentFuture
 argument_list|<
 name|V
@@ -118,22 +145,22 @@ argument_list|>
 block|{
 DECL|field|delegate
 specifier|private
-specifier|final
+name|final
 name|ListenableFuture
 argument_list|<
 name|V
 argument_list|>
 name|delegate
-decl_stmt|;
+block|;
 DECL|method|ForwardingFluentFuture (ListenableFuture<V> delegate)
 name|ForwardingFluentFuture
-parameter_list|(
+argument_list|(
 name|ListenableFuture
 argument_list|<
 name|V
 argument_list|>
 name|delegate
-parameter_list|)
+argument_list|)
 block|{
 name|this
 operator|.
@@ -143,21 +170,20 @@ name|checkNotNull
 argument_list|(
 name|delegate
 argument_list|)
-expr_stmt|;
-block|}
-annotation|@
+block|;   }
+expr|@
 name|Override
 DECL|method|addListener (Runnable listener, Executor executor)
 specifier|public
 name|void
 name|addListener
-parameter_list|(
+argument_list|(
 name|Runnable
 name|listener
-parameter_list|,
+argument_list|,
 name|Executor
 name|executor
-parameter_list|)
+argument_list|)
 block|{
 name|delegate
 operator|.
@@ -167,18 +193,17 @@ name|listener
 argument_list|,
 name|executor
 argument_list|)
-expr_stmt|;
-block|}
-annotation|@
+block|;   }
+expr|@
 name|Override
 DECL|method|cancel (boolean mayInterruptIfRunning)
 specifier|public
 name|boolean
 name|cancel
-parameter_list|(
+argument_list|(
 name|boolean
 name|mayInterruptIfRunning
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|delegate
@@ -189,13 +214,13 @@ name|mayInterruptIfRunning
 argument_list|)
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
 DECL|method|isCancelled ()
 specifier|public
 name|boolean
 name|isCancelled
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|delegate
@@ -204,6 +229,9 @@ name|isCancelled
 argument_list|()
 return|;
 block|}
+end_expr_stmt
+
+begin_function
 annotation|@
 name|Override
 DECL|method|isDone ()
@@ -219,8 +247,13 @@ name|isDone
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|ParametricNullness
 DECL|method|get ()
 specifier|public
 name|V
@@ -238,8 +271,13 @@ name|get
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|ParametricNullness
 DECL|method|get (long timeout, TimeUnit unit)
 specifier|public
 name|V
@@ -269,6 +307,9 @@ name|unit
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|toString ()
@@ -284,8 +325,8 @@ name|toString
 argument_list|()
 return|;
 block|}
-block|}
-end_class
+end_function
 
+unit|}
 end_unit
 

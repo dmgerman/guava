@@ -76,39 +76,49 @@ begin_comment
 comment|/**  * A callback for accepting the results of a {@link java.util.concurrent.Future} computation  * asynchronously.  *  *<p>To attach to a {@link ListenableFuture} use {@link Futures#addCallback}.  *  * @author Anthony Zana  * @since 10.0  */
 end_comment
 
-begin_interface
+begin_annotation
 annotation|@
 name|GwtCompatible
+end_annotation
+
+begin_annotation
+annotation|@
+name|ElementTypesAreNonnullByDefault
+end_annotation
+
+begin_expr_stmt
 DECL|interface|FutureCallback
 specifier|public
-interface|interface
+expr|interface
 name|FutureCallback
-parameter_list|<
+operator|<
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 block|{
 comment|/** Invoked with the result of the {@code Future} computation when it is successful. */
-DECL|method|onSuccess (@ullable V result)
+DECL|method|onSuccess (@arametricNullness V result)
 name|void
 name|onSuccess
-parameter_list|(
+argument_list|(
 annotation|@
-name|Nullable
+name|ParametricNullness
 name|V
 name|result
-parameter_list|)
-function_decl|;
+argument_list|)
+block|;
 comment|/**    * Invoked when a {@code Future} computation fails or is canceled.    *    *<p>If the future's {@link Future#get() get} method throws an {@link ExecutionException}, then    * the cause is passed to this method. Any other thrown object is passed unaltered.    */
 DECL|method|onFailure (Throwable t)
 name|void
 name|onFailure
-parameter_list|(
+argument_list|(
 name|Throwable
 name|t
-parameter_list|)
-function_decl|;
-block|}
-end_interface
+argument_list|)
+block|; }
+end_expr_stmt
 
 end_unit
 

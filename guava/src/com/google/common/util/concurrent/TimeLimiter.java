@@ -150,6 +150,22 @@ name|TimeoutException
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|checkerframework
+operator|.
+name|checker
+operator|.
+name|nullness
+operator|.
+name|qual
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/**  * Imposes a time limit on method calls.  *  * @author Kevin Bourrillion  * @author Jens Nyman  * @since 1.0  */
 end_comment
@@ -164,6 +180,8 @@ literal|"Use FakeTimeLimiter"
 argument_list|)
 annotation|@
 name|GwtIncompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|interface|TimeLimiter
 specifier|public
 interface|interface
@@ -248,52 +266,58 @@ argument_list|)
 comment|// should accept a java.time.Duration
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|callWithTimeout (Callable<T> callable, long timeoutDuration, TimeUnit timeoutUnit)
-argument_list|<
+DECL|method|callWithTimeout ( Callable<T> callable, long timeoutDuration, TimeUnit timeoutUnit)
+operator|<
 name|T
-argument_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|T
 name|callWithTimeout
-parameter_list|(
+argument_list|(
 name|Callable
 argument_list|<
 name|T
 argument_list|>
 name|callable
-parameter_list|,
+argument_list|,
 name|long
 name|timeoutDuration
-parameter_list|,
+argument_list|,
 name|TimeUnit
 name|timeoutUnit
-parameter_list|)
+argument_list|)
 throws|throws
 name|TimeoutException
 throws|,
 name|InterruptedException
 throws|,
 name|ExecutionException
-function_decl|;
+expr_stmt|;
 comment|/**    * Invokes a specified Callable, timing out after the specified time limit. If the target method    * call finishes before the limit is reached, the return value or a wrapped exception is    * propagated. If, on the other hand, the time limit is reached, we attempt to abort the call to    * the target, and throw a {@link TimeoutException} to the caller.    *    * @param callable the Callable to execute    * @param timeout the maximum length of time to wait    * @return the result returned by the Callable    * @throws TimeoutException if the time limit is reached    * @throws InterruptedException if the current thread was interrupted during execution    * @throws ExecutionException if {@code callable} throws a checked exception    * @throws UncheckedExecutionException if {@code callable} throws a {@code RuntimeException}    * @throws ExecutionError if {@code callable} throws an {@code Error}    * @since 28.0    */
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|callWithTimeout (Callable<T> callable, Duration timeout)
-specifier|default
-parameter_list|<
+expr|default
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|T
 name|callWithTimeout
-parameter_list|(
+argument_list|(
 name|Callable
 argument_list|<
 name|T
 argument_list|>
 name|callable
-parameter_list|,
+argument_list|,
 name|Duration
 name|timeout
-parameter_list|)
+argument_list|)
 throws|throws
 name|TimeoutException
 throws|,
@@ -317,64 +341,97 @@ name|NANOSECONDS
 argument_list|)
 return|;
 block|}
+end_interface
+
+begin_comment
 comment|/**    * Invokes a specified Callable, timing out after the specified time limit. If the target method    * call finishes before the limit is reached, the return value or a wrapped exception is    * propagated. If, on the other hand, the time limit is reached, we attempt to abort the call to    * the target, and throw a {@link TimeoutException} to the caller.    *    *<p>The difference with {@link #callWithTimeout(Callable, long, TimeUnit)} is that this method    * will ignore interrupts on the current thread.    *    * @param callable the Callable to execute    * @param timeoutDuration with timeoutUnit, the maximum length of time to wait    * @param timeoutUnit with timeoutDuration, the maximum length of time to wait    * @return the result returned by the Callable    * @throws TimeoutException if the time limit is reached    * @throws ExecutionException if {@code callable} throws a checked exception    * @throws UncheckedExecutionException if {@code callable} throws a {@code RuntimeException}    * @throws ExecutionError if {@code callable} throws an {@code Error}    * @since 22.0    */
+end_comment
+
+begin_annotation
 annotation|@
 name|SuppressWarnings
 argument_list|(
 literal|"GoodTime"
 argument_list|)
+end_annotation
+
+begin_comment
 comment|// should accept a java.time.Duration
+end_comment
+
+begin_annotation
 annotation|@
 name|CanIgnoreReturnValue
+end_annotation
+
+begin_expr_stmt
 DECL|method|callUninterruptiblyWithTimeout ( Callable<T> callable, long timeoutDuration, TimeUnit timeoutUnit)
-argument_list|<
+operator|<
 name|T
-argument_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|T
 name|callUninterruptiblyWithTimeout
-parameter_list|(
+argument_list|(
 name|Callable
 argument_list|<
 name|T
 argument_list|>
 name|callable
-parameter_list|,
+argument_list|,
 name|long
 name|timeoutDuration
-parameter_list|,
+argument_list|,
 name|TimeUnit
 name|timeoutUnit
-parameter_list|)
+argument_list|)
 throws|throws
 name|TimeoutException
 throws|,
 name|ExecutionException
-function_decl|;
+expr_stmt|;
+end_expr_stmt
+
+begin_comment
 comment|/**    * Invokes a specified Callable, timing out after the specified time limit. If the target method    * call finishes before the limit is reached, the return value or a wrapped exception is    * propagated. If, on the other hand, the time limit is reached, we attempt to abort the call to    * the target, and throw a {@link TimeoutException} to the caller.    *    *<p>The difference with {@link #callWithTimeout(Callable, Duration)} is that this method will    * ignore interrupts on the current thread.    *    * @param callable the Callable to execute    * @param timeout the maximum length of time to wait    * @return the result returned by the Callable    * @throws TimeoutException if the time limit is reached    * @throws ExecutionException if {@code callable} throws a checked exception    * @throws UncheckedExecutionException if {@code callable} throws a {@code RuntimeException}    * @throws ExecutionError if {@code callable} throws an {@code Error}    * @since 28.0    */
+end_comment
+
+begin_annotation
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|callUninterruptiblyWithTimeout (Callable<T> callable, Duration timeout)
-specifier|default
-parameter_list|<
+end_annotation
+
+begin_expr_stmt
+DECL|method|callUninterruptiblyWithTimeout ( Callable<T> callable, Duration timeout)
+expr|default
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|T
 name|callUninterruptiblyWithTimeout
-parameter_list|(
+argument_list|(
 name|Callable
 argument_list|<
 name|T
 argument_list|>
 name|callable
-parameter_list|,
+argument_list|,
 name|Duration
 name|timeout
-parameter_list|)
+argument_list|)
 throws|throws
 name|TimeoutException
 throws|,
 name|ExecutionException
 block|{
+end_expr_stmt
+
+begin_return
 return|return
 name|callUninterruptiblyWithTimeout
 argument_list|(
@@ -390,9 +447,15 @@ operator|.
 name|NANOSECONDS
 argument_list|)
 return|;
-block|}
+end_return
+
+begin_comment
+unit|}
 comment|/**    * Invokes a specified Runnable, timing out after the specified time limit. If the target method    * run finishes before the limit is reached, this method returns or a wrapped exception is    * propagated. If, on the other hand, the time limit is reached, we attempt to abort the run, and    * throw a {@link TimeoutException} to the caller.    *    * @param runnable the Runnable to execute    * @param timeoutDuration with timeoutUnit, the maximum length of time to wait    * @param timeoutUnit with timeoutDuration, the maximum length of time to wait    * @throws TimeoutException if the time limit is reached    * @throws InterruptedException if the current thread was interrupted during execution    * @throws UncheckedExecutionException if {@code runnable} throws a {@code RuntimeException}    * @throws ExecutionError if {@code runnable} throws an {@code Error}    * @since 22.0    */
-annotation|@
+end_comment
+
+begin_expr_stmt
+unit|@
 name|SuppressWarnings
 argument_list|(
 literal|"GoodTime"
@@ -401,22 +464,28 @@ comment|// should accept a java.time.Duration
 DECL|method|runWithTimeout (Runnable runnable, long timeoutDuration, TimeUnit timeoutUnit)
 name|void
 name|runWithTimeout
-parameter_list|(
+argument_list|(
 name|Runnable
 name|runnable
-parameter_list|,
+argument_list|,
 name|long
 name|timeoutDuration
-parameter_list|,
+argument_list|,
 name|TimeUnit
 name|timeoutUnit
-parameter_list|)
+argument_list|)
 throws|throws
 name|TimeoutException
 throws|,
 name|InterruptedException
-function_decl|;
+expr_stmt|;
+end_expr_stmt
+
+begin_comment
 comment|/**    * Invokes a specified Runnable, timing out after the specified time limit. If the target method    * run finishes before the limit is reached, this method returns or a wrapped exception is    * propagated. If, on the other hand, the time limit is reached, we attempt to abort the run, and    * throw a {@link TimeoutException} to the caller.    *    * @param runnable the Runnable to execute    * @param timeout the maximum length of time to wait    * @throws TimeoutException if the time limit is reached    * @throws InterruptedException if the current thread was interrupted during execution    * @throws UncheckedExecutionException if {@code runnable} throws a {@code RuntimeException}    * @throws ExecutionError if {@code runnable} throws an {@code Error}    * @since 28.0    */
+end_comment
+
+begin_function
 DECL|method|runWithTimeout (Runnable runnable, Duration timeout)
 specifier|default
 name|void
@@ -448,7 +517,13 @@ name|NANOSECONDS
 argument_list|)
 expr_stmt|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Invokes a specified Runnable, timing out after the specified time limit. If the target method    * run finishes before the limit is reached, this method returns or a wrapped exception is    * propagated. If, on the other hand, the time limit is reached, we attempt to abort the run, and    * throw a {@link TimeoutException} to the caller.    *    *<p>The difference with {@link #runWithTimeout(Runnable, long, TimeUnit)} is that this method    * will ignore interrupts on the current thread.    *    * @param runnable the Runnable to execute    * @param timeoutDuration with timeoutUnit, the maximum length of time to wait    * @param timeoutUnit with timeoutDuration, the maximum length of time to wait    * @throws TimeoutException if the time limit is reached    * @throws UncheckedExecutionException if {@code runnable} throws a {@code RuntimeException}    * @throws ExecutionError if {@code runnable} throws an {@code Error}    * @since 22.0    */
+end_comment
+
+begin_function_decl
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -471,7 +546,13 @@ parameter_list|)
 throws|throws
 name|TimeoutException
 function_decl|;
+end_function_decl
+
+begin_comment
 comment|/**    * Invokes a specified Runnable, timing out after the specified time limit. If the target method    * run finishes before the limit is reached, this method returns or a wrapped exception is    * propagated. If, on the other hand, the time limit is reached, we attempt to abort the run, and    * throw a {@link TimeoutException} to the caller.    *    *<p>The difference with {@link #runWithTimeout(Runnable, Duration)} is that this method will    * ignore interrupts on the current thread.    *    * @param runnable the Runnable to execute    * @param timeout the maximum length of time to wait    * @throws TimeoutException if the time limit is reached    * @throws UncheckedExecutionException if {@code runnable} throws a {@code RuntimeException}    * @throws ExecutionError if {@code runnable} throws an {@code Error}    * @since 28.0    */
+end_comment
+
+begin_function
 DECL|method|runUninterruptiblyWithTimeout (Runnable runnable, Duration timeout)
 specifier|default
 name|void
@@ -501,8 +582,8 @@ name|NANOSECONDS
 argument_list|)
 expr_stmt|;
 block|}
-block|}
-end_interface
+end_function
 
+unit|}
 end_unit
 

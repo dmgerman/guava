@@ -34,17 +34,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|javax
 operator|.
-name|checkerframework
+name|annotation
 operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|qual
-operator|.
-name|Nullable
+name|CheckForNull
 import|;
 end_import
 
@@ -55,6 +49,8 @@ end_comment
 begin_class
 annotation|@
 name|GwtCompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|ExecutionError
 specifier|public
 class|class
@@ -62,6 +58,7 @@ name|ExecutionError
 extends|extends
 name|Error
 block|{
+comment|/*    * Ideally, this class would have exposed only constructors that require a non-null cause. We    * might try to move in that direction, but there are complications. See    * https://github.com/jspecify/nullness-checker-for-checker-framework/blob/61aafa4ae52594830cfc2d61c8b113009dbdb045/src/main/java/com/google/jspecify/nullness/NullSpecTransfer.java#L789    */
 comment|/** Creates a new instance with {@code null} as its detail message. */
 DECL|method|ExecutionError ()
 specifier|protected
@@ -69,12 +66,12 @@ name|ExecutionError
 parameter_list|()
 block|{}
 comment|/** Creates a new instance with the given detail message. */
-DECL|method|ExecutionError (@ullable String message)
+DECL|method|ExecutionError (@heckForNull String message)
 specifier|protected
 name|ExecutionError
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|String
 name|message
 parameter_list|)
@@ -86,17 +83,17 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** Creates a new instance with the given detail message and cause. */
-DECL|method|ExecutionError (@ullable String message, @Nullable Error cause)
+DECL|method|ExecutionError (@heckForNull String message, @CheckForNull Error cause)
 specifier|public
 name|ExecutionError
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|String
 name|message
 parameter_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Error
 name|cause
 parameter_list|)
@@ -110,12 +107,12 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** Creates a new instance with the given cause. */
-DECL|method|ExecutionError (@ullable Error cause)
+DECL|method|ExecutionError (@heckForNull Error cause)
 specifier|public
 name|ExecutionError
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Error
 name|cause
 parameter_list|)

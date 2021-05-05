@@ -94,6 +94,22 @@ name|TimeUnit
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|checkerframework
+operator|.
+name|checker
+operator|.
+name|nullness
+operator|.
+name|qual
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/**  * An abstract {@code ScheduledExecutorService} that allows subclasses to {@linkplain  * #wrapTask(Callable) wrap} tasks before they are submitted to the underlying executor.  *  *<p>Note that task wrapping may occur even if the task is never executed.  *  * @author Luke Sandberg  */
 end_comment
@@ -104,6 +120,8 @@ name|CanIgnoreReturnValue
 comment|// TODO(cpovirk): Consider being more strict.
 annotation|@
 name|GwtIncompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|WrappingScheduledExecutorService
 specifier|abstract
 class|class
@@ -177,30 +195,33 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|schedule (Callable<V> task, long delay, TimeUnit unit)
+DECL|method|schedule ( Callable<V> task, long delay, TimeUnit unit)
 specifier|public
-specifier|final
-parameter_list|<
+name|final
+operator|<
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|ScheduledFuture
 argument_list|<
 name|V
 argument_list|>
 name|schedule
-parameter_list|(
+argument_list|(
 name|Callable
 argument_list|<
 name|V
 argument_list|>
 name|task
-parameter_list|,
+argument_list|,
 name|long
 name|delay
-parameter_list|,
+argument_list|,
 name|TimeUnit
 name|unit
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|delegate

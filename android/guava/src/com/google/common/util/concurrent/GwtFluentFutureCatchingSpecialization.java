@@ -32,11 +32,27 @@ name|GwtCompatible
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|checkerframework
+operator|.
+name|checker
+operator|.
+name|nullness
+operator|.
+name|qual
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/**  * Hidden superclass of {@link FluentFuture} that provides us a place to declare special GWT  * versions of the {@link FluentFuture#catching(Class, com.google.common.base.Function)  * FluentFuture.catching} family of methods. Those versions have slightly different signatures.  */
 end_comment
 
-begin_class
+begin_annotation
 annotation|@
 name|GwtCompatible
 argument_list|(
@@ -44,14 +60,25 @@ name|emulated
 operator|=
 literal|true
 argument_list|)
+end_annotation
+
+begin_annotation
+annotation|@
+name|ElementTypesAreNonnullByDefault
+end_annotation
+
+begin_expr_stmt
 DECL|class|GwtFluentFutureCatchingSpecialization
 specifier|abstract
-class|class
+name|class
 name|GwtFluentFutureCatchingSpecialization
-parameter_list|<
+operator|<
 name|V
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|AbstractFuture
 argument_list|<
 name|V
@@ -59,7 +86,7 @@ argument_list|>
 block|{
 comment|/*    * This server copy of the class is empty. The corresponding GWT copy contains alternative    * versions of catching() and catchingAsync() with slightly different signatures from the ones    * found in FluentFuture.java.    */
 block|}
-end_class
+end_expr_stmt
 
 end_unit
 

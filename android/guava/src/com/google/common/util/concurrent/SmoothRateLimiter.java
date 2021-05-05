@@ -87,6 +87,8 @@ end_import
 begin_class
 annotation|@
 name|GwtIncompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|SmoothRateLimiter
 specifier|abstract
 class|class

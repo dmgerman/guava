@@ -120,6 +120,8 @@ name|Level
 operator|.
 name|FULL
 argument_list|)
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|AtomicDouble
 specifier|public
 class|class

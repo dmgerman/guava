@@ -58,6 +58,22 @@ name|Callable
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|checkerframework
+operator|.
+name|checker
+operator|.
+name|nullness
+operator|.
+name|qual
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/**  * A listening executor service which forwards all its method calls to another listening executor  * service. Subclasses should override one or more methods to modify the behavior of the backing  * executor service as desired per the<a  * href="http://en.wikipedia.org/wiki/Decorator_pattern">decorator pattern</a>.  *  * @author Isaac Shum  * @since 10.0  */
 end_comment
@@ -68,6 +84,8 @@ name|CanIgnoreReturnValue
 comment|// TODO(cpovirk): Consider being more strict.
 annotation|@
 name|GwtIncompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|ForwardingListeningExecutorService
 specifier|public
 specifier|abstract
@@ -97,21 +115,24 @@ annotation|@
 name|Override
 DECL|method|submit (Callable<T> task)
 specifier|public
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|ListenableFuture
 argument_list|<
 name|T
 argument_list|>
 name|submit
-parameter_list|(
+argument_list|(
 name|Callable
 argument_list|<
 name|T
 argument_list|>
 name|task
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|delegate
@@ -149,23 +170,28 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|submit (Runnable task, T result)
+DECL|method|submit ( Runnable task, @ParametricNullness T result)
 specifier|public
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|ListenableFuture
 argument_list|<
 name|T
 argument_list|>
 name|submit
-parameter_list|(
+argument_list|(
 name|Runnable
 name|task
-parameter_list|,
+argument_list|,
+annotation|@
+name|ParametricNullness
 name|T
 name|result
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|delegate
