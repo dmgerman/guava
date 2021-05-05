@@ -63,6 +63,18 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|java
+operator|.
+name|util
+operator|.
+name|Objects
+operator|.
+name|requireNonNull
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -2069,10 +2081,14 @@ argument_list|>
 operator|)
 name|parent
 argument_list|,
+comment|/*                    * requireNonNull is safe because paths have file names when they have parents,                    * and we checked for a parent at the beginning of the method.                    */
+name|requireNonNull
+argument_list|(
 name|path
 operator|.
 name|getFileName
 argument_list|()
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -3062,21 +3078,30 @@ return|return
 literal|null
 return|;
 block|}
-if|if
-condition|(
-name|exceptionFile
-operator|.
-name|equals
-argument_list|(
+comment|// requireNonNull is safe because paths have file names when they have parents.
+name|Path
+name|pathResolvedFromParent
+init|=
 name|parentPath
 operator|.
 name|resolve
+argument_list|(
+name|requireNonNull
 argument_list|(
 name|path
 operator|.
 name|getFileName
 argument_list|()
 argument_list|)
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|exceptionFile
+operator|.
+name|equals
+argument_list|(
+name|pathResolvedFromParent
 operator|.
 name|toString
 argument_list|()
