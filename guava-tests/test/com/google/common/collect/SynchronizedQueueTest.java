@@ -693,6 +693,11 @@ init|=
 literal|0
 decl_stmt|;
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"CheckReturnValue"
+argument_list|)
 DECL|method|testHoldsLockOnAllOperations ()
 specifier|public
 name|void
@@ -758,9 +763,6 @@ operator|.
 name|clear
 argument_list|()
 expr_stmt|;
-name|boolean
-name|unused
-init|=
 name|create
 argument_list|()
 operator|.
@@ -768,10 +770,7 @@ name|contains
 argument_list|(
 literal|"foo"
 argument_list|)
-decl_stmt|;
-name|boolean
-name|unused2
-init|=
+expr_stmt|;
 name|create
 argument_list|()
 operator|.
@@ -784,7 +783,7 @@ argument_list|(
 literal|"foo"
 argument_list|)
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|create
 argument_list|()
 operator|.

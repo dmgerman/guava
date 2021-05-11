@@ -2731,9 +2731,12 @@ operator|==
 literal|null
 condition|)
 block|{
+name|boolean
+name|unused
+init|=
 name|hasNext
 argument_list|()
-expr_stmt|;
+decl_stmt|;
 if|if
 condition|(
 name|nextEntry
