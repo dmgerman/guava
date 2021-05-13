@@ -2528,7 +2528,6 @@ block|{}
 annotation|@
 name|Generates
 DECL|method|generateClass ()
-specifier|private
 name|Class
 argument_list|<
 name|?
@@ -2578,7 +2577,6 @@ block|}
 annotation|@
 name|Generates
 DECL|method|generateObject ()
-specifier|private
 name|Object
 name|generateObject
 parameter_list|()
@@ -2591,7 +2589,6 @@ block|}
 annotation|@
 name|Generates
 DECL|method|generateNumber ()
-specifier|private
 name|Number
 name|generateNumber
 parameter_list|()
@@ -2604,7 +2601,6 @@ block|}
 annotation|@
 name|Generates
 DECL|method|generateInt ()
-specifier|private
 name|int
 name|generateInt
 parameter_list|()
@@ -2619,7 +2615,6 @@ block|}
 annotation|@
 name|Generates
 DECL|method|generateInteger ()
-specifier|private
 name|Integer
 name|generateInteger
 parameter_list|()
@@ -2636,7 +2631,6 @@ block|}
 annotation|@
 name|Generates
 DECL|method|generateLong ()
-specifier|private
 name|long
 name|generateLong
 parameter_list|()
@@ -2649,7 +2643,6 @@ block|}
 annotation|@
 name|Generates
 DECL|method|generateLongObject ()
-specifier|private
 name|Long
 name|generateLongObject
 parameter_list|()
@@ -2666,7 +2659,6 @@ block|}
 annotation|@
 name|Generates
 DECL|method|generateFloat ()
-specifier|private
 name|float
 name|generateFloat
 parameter_list|()
@@ -2679,7 +2671,6 @@ block|}
 annotation|@
 name|Generates
 DECL|method|generateFloatObject ()
-specifier|private
 name|Float
 name|generateFloatObject
 parameter_list|()
@@ -2696,7 +2687,6 @@ block|}
 annotation|@
 name|Generates
 DECL|method|generateDouble ()
-specifier|private
 name|double
 name|generateDouble
 parameter_list|()
@@ -2709,7 +2699,6 @@ block|}
 annotation|@
 name|Generates
 DECL|method|generateDoubleObject ()
-specifier|private
 name|Double
 name|generateDoubleObject
 parameter_list|()
@@ -2726,7 +2715,6 @@ block|}
 annotation|@
 name|Generates
 DECL|method|generateShort ()
-specifier|private
 name|short
 name|generateShort
 parameter_list|()
@@ -2742,7 +2730,6 @@ block|}
 annotation|@
 name|Generates
 DECL|method|generateShortObject ()
-specifier|private
 name|Short
 name|generateShortObject
 parameter_list|()
@@ -2759,7 +2746,6 @@ block|}
 annotation|@
 name|Generates
 DECL|method|generateByte ()
-specifier|private
 name|byte
 name|generateByte
 parameter_list|()
@@ -2775,7 +2761,6 @@ block|}
 annotation|@
 name|Generates
 DECL|method|generateByteObject ()
-specifier|private
 name|Byte
 name|generateByteObject
 parameter_list|()
@@ -2792,7 +2777,6 @@ block|}
 annotation|@
 name|Generates
 DECL|method|generateChar ()
-specifier|private
 name|char
 name|generateChar
 parameter_list|()
@@ -2810,7 +2794,6 @@ block|}
 annotation|@
 name|Generates
 DECL|method|generateCharacter ()
-specifier|private
 name|Character
 name|generateCharacter
 parameter_list|()
@@ -2827,7 +2810,6 @@ block|}
 annotation|@
 name|Generates
 DECL|method|generateBoolean ()
-specifier|private
 name|boolean
 name|generateBoolean
 parameter_list|()
@@ -2844,7 +2826,6 @@ block|}
 annotation|@
 name|Generates
 DECL|method|generateBooleanObject ()
-specifier|private
 name|Boolean
 name|generateBooleanObject
 parameter_list|()
@@ -2861,7 +2842,6 @@ block|}
 annotation|@
 name|Generates
 DECL|method|generateUnsignedInteger ()
-specifier|private
 name|UnsignedInteger
 name|generateUnsignedInteger
 parameter_list|()
@@ -2879,7 +2859,6 @@ block|}
 annotation|@
 name|Generates
 DECL|method|generateUnsignedLong ()
-specifier|private
 name|UnsignedLong
 name|generateUnsignedLong
 parameter_list|()
@@ -2897,7 +2876,6 @@ block|}
 annotation|@
 name|Generates
 DECL|method|generateBigInteger ()
-specifier|private
 name|BigInteger
 name|generateBigInteger
 parameter_list|()
@@ -2915,7 +2893,6 @@ block|}
 annotation|@
 name|Generates
 DECL|method|generateBigDecimal ()
-specifier|private
 name|BigDecimal
 name|generateBigDecimal
 parameter_list|()
@@ -2933,7 +2910,6 @@ block|}
 annotation|@
 name|Generates
 DECL|method|generateCharSequence ()
-specifier|private
 name|CharSequence
 name|generateCharSequence
 parameter_list|()
@@ -2946,7 +2922,6 @@ block|}
 annotation|@
 name|Generates
 DECL|method|generateString ()
-specifier|private
 name|String
 name|generateString
 parameter_list|()
@@ -2964,7 +2939,6 @@ block|}
 annotation|@
 name|Generates
 DECL|method|generateComparable ()
-specifier|private
 name|Comparable
 argument_list|<
 name|?
@@ -2980,7 +2954,6 @@ block|}
 annotation|@
 name|Generates
 DECL|method|generatePattern ()
-specifier|private
 name|Pattern
 name|generatePattern
 parameter_list|()
@@ -2998,7 +2971,6 @@ block|}
 annotation|@
 name|Generates
 DECL|method|generateCharset ()
-specifier|private
 name|Charset
 name|generateCharset
 parameter_list|()
@@ -3023,7 +2995,6 @@ block|}
 annotation|@
 name|Generates
 DECL|method|generateLocale ()
-specifier|private
 name|Locale
 name|generateLocale
 parameter_list|()
@@ -3045,7 +3016,6 @@ block|}
 annotation|@
 name|Generates
 DECL|method|generateCurrency ()
-specifier|private
 name|Currency
 name|generateCurrency
 parameter_list|()
@@ -3223,10 +3193,9 @@ block|}
 annotation|@
 name|Empty
 DECL|method|generateJavaOptional ()
-specifier|private
-parameter_list|<
+argument_list|<
 name|T
-parameter_list|>
+argument_list|>
 name|Optional
 argument_list|<
 name|T
@@ -3244,10 +3213,9 @@ block|}
 annotation|@
 name|Generates
 DECL|method|generateJavaOptional (T value)
-specifier|private
-parameter_list|<
+argument_list|<
 name|T
-parameter_list|>
+argument_list|>
 name|Optional
 argument_list|<
 name|T
@@ -3270,7 +3238,6 @@ block|}
 annotation|@
 name|Generates
 DECL|method|generateOptionalInt ()
-specifier|private
 name|OptionalInt
 name|generateOptionalInt
 parameter_list|()
@@ -3288,7 +3255,6 @@ block|}
 annotation|@
 name|Generates
 DECL|method|generateOptionalLong ()
-specifier|private
 name|OptionalLong
 name|generateOptionalLong
 parameter_list|()
@@ -3306,7 +3272,6 @@ block|}
 annotation|@
 name|Generates
 DECL|method|generateOptionalDouble ()
-specifier|private
 name|OptionalDouble
 name|generateOptionalDouble
 parameter_list|()
@@ -3325,10 +3290,9 @@ comment|// common.base
 annotation|@
 name|Empty
 DECL|method|generateGoogleOptional ()
-specifier|private
-parameter_list|<
+argument_list|<
 name|T
-parameter_list|>
+argument_list|>
 name|com
 operator|.
 name|google
@@ -3362,10 +3326,9 @@ block|}
 annotation|@
 name|Generates
 DECL|method|generateGoogleOptional (T value)
-specifier|private
-parameter_list|<
+argument_list|<
 name|T
-parameter_list|>
+argument_list|>
 name|com
 operator|.
 name|google
@@ -3404,7 +3367,6 @@ block|}
 annotation|@
 name|Generates
 DECL|method|generateJoiner ()
-specifier|private
 name|Joiner
 name|generateJoiner
 parameter_list|()
@@ -3422,7 +3384,6 @@ block|}
 annotation|@
 name|Generates
 DECL|method|generateSplitter ()
-specifier|private
 name|Splitter
 name|generateSplitter
 parameter_list|()
@@ -3440,10 +3401,9 @@ block|}
 annotation|@
 name|Generates
 DECL|method|generateEquivalence ()
-specifier|private
-parameter_list|<
+argument_list|<
 name|T
-parameter_list|>
+argument_list|>
 name|Equivalence
 argument_list|<
 name|T
@@ -3521,7 +3481,6 @@ block|}
 annotation|@
 name|Generates
 DECL|method|generateCharMatcher ()
-specifier|private
 name|CharMatcher
 name|generateCharMatcher
 parameter_list|()
@@ -3576,7 +3535,6 @@ block|}
 annotation|@
 name|Generates
 DECL|method|generateTicker ()
-specifier|private
 name|Ticker
 name|generateTicker
 parameter_list|()
@@ -3629,10 +3587,9 @@ comment|// collect
 annotation|@
 name|Generates
 DECL|method|generateComparator ()
-specifier|private
-parameter_list|<
+argument_list|<
 name|T
-parameter_list|>
+argument_list|>
 name|Comparator
 argument_list|<
 name|T
@@ -3648,10 +3605,9 @@ block|}
 annotation|@
 name|Generates
 DECL|method|generateOrdering ()
-specifier|private
-parameter_list|<
+argument_list|<
 name|T
-parameter_list|>
+argument_list|>
 name|Ordering
 argument_list|<
 name|T
@@ -3715,7 +3671,6 @@ block|}
 annotation|@
 name|Empty
 DECL|method|generateRange ()
-specifier|private
 specifier|static
 parameter_list|<
 name|C
@@ -3742,7 +3697,6 @@ block|}
 annotation|@
 name|Generates
 DECL|method|generateRange (C freshElement)
-specifier|private
 specifier|static
 parameter_list|<
 name|C
@@ -3773,8 +3727,7 @@ return|;
 block|}
 annotation|@
 name|Generates
-DECL|method|generateIterable (E freshElement)
-specifier|private
+DECL|method|generateIterable (@ullable E freshElement)
 specifier|static
 parameter_list|<
 name|E
@@ -3785,6 +3738,8 @@ name|E
 argument_list|>
 name|generateIterable
 parameter_list|(
+annotation|@
+name|Nullable
 name|E
 name|freshElement
 parameter_list|)
@@ -3798,8 +3753,7 @@ return|;
 block|}
 annotation|@
 name|Generates
-DECL|method|generateCollection (E freshElement)
-specifier|private
+DECL|method|generateCollection (@ullable E freshElement)
 specifier|static
 parameter_list|<
 name|E
@@ -3810,6 +3764,8 @@ name|E
 argument_list|>
 name|generateCollection
 parameter_list|(
+annotation|@
+name|Nullable
 name|E
 name|freshElement
 parameter_list|)
@@ -3823,8 +3779,7 @@ return|;
 block|}
 annotation|@
 name|Generates
-DECL|method|generateList (E freshElement)
-specifier|private
+DECL|method|generateList (@ullable E freshElement)
 specifier|static
 parameter_list|<
 name|E
@@ -3835,6 +3790,8 @@ name|E
 argument_list|>
 name|generateList
 parameter_list|(
+annotation|@
+name|Nullable
 name|E
 name|freshElement
 parameter_list|)
@@ -3848,8 +3805,7 @@ return|;
 block|}
 annotation|@
 name|Generates
-DECL|method|generateArrayList (E freshElement)
-specifier|private
+DECL|method|generateArrayList (@ullable E freshElement)
 specifier|static
 parameter_list|<
 name|E
@@ -3860,6 +3816,8 @@ name|E
 argument_list|>
 name|generateArrayList
 parameter_list|(
+annotation|@
+name|Nullable
 name|E
 name|freshElement
 parameter_list|)
@@ -3888,8 +3846,7 @@ return|;
 block|}
 annotation|@
 name|Generates
-DECL|method|generateLinkedList (E freshElement)
-specifier|private
+DECL|method|generateLinkedList (@ullable E freshElement)
 specifier|static
 parameter_list|<
 name|E
@@ -3900,6 +3857,8 @@ name|E
 argument_list|>
 name|generateLinkedList
 parameter_list|(
+annotation|@
+name|Nullable
 name|E
 name|freshElement
 parameter_list|)
@@ -3929,7 +3888,6 @@ block|}
 annotation|@
 name|Generates
 DECL|method|generateImmutableList (E freshElement)
-specifier|private
 specifier|static
 parameter_list|<
 name|E
@@ -3956,7 +3914,6 @@ block|}
 annotation|@
 name|Generates
 DECL|method|generateImmutableCollection (E freshElement)
-specifier|private
 specifier|static
 parameter_list|<
 name|E
@@ -3980,8 +3937,7 @@ return|;
 block|}
 annotation|@
 name|Generates
-DECL|method|generateSet (E freshElement)
-specifier|private
+DECL|method|generateSet (@ullable E freshElement)
 specifier|static
 parameter_list|<
 name|E
@@ -3992,6 +3948,8 @@ name|E
 argument_list|>
 name|generateSet
 parameter_list|(
+annotation|@
+name|Nullable
 name|E
 name|freshElement
 parameter_list|)
@@ -4005,8 +3963,7 @@ return|;
 block|}
 annotation|@
 name|Generates
-DECL|method|generateHashSet (E freshElement)
-specifier|private
+DECL|method|generateHashSet (@ullable E freshElement)
 specifier|static
 parameter_list|<
 name|E
@@ -4017,6 +3974,8 @@ name|E
 argument_list|>
 name|generateHashSet
 parameter_list|(
+annotation|@
+name|Nullable
 name|E
 name|freshElement
 parameter_list|)
@@ -4030,8 +3989,7 @@ return|;
 block|}
 annotation|@
 name|Generates
-DECL|method|generateLinkedHashSet (E freshElement)
-specifier|private
+DECL|method|generateLinkedHashSet (@ullable E freshElement)
 specifier|static
 parameter_list|<
 name|E
@@ -4042,6 +4000,8 @@ name|E
 argument_list|>
 name|generateLinkedHashSet
 parameter_list|(
+annotation|@
+name|Nullable
 name|E
 name|freshElement
 parameter_list|)
@@ -4071,7 +4031,6 @@ block|}
 annotation|@
 name|Generates
 DECL|method|generateImmutableSet (E freshElement)
-specifier|private
 specifier|static
 parameter_list|<
 name|E
@@ -4098,7 +4057,6 @@ block|}
 annotation|@
 name|Generates
 DECL|method|generateSortedSet (E freshElement)
-specifier|private
 specifier|static
 parameter_list|<
 name|E
@@ -4129,8 +4087,7 @@ return|;
 block|}
 annotation|@
 name|Generates
-DECL|method|generateNavigableSet ( E freshElement)
-specifier|private
+DECL|method|generateNavigableSet (E freshElement)
 specifier|static
 parameter_list|<
 name|E
@@ -4162,7 +4119,6 @@ block|}
 annotation|@
 name|Generates
 DECL|method|generateTreeSet (E freshElement)
-specifier|private
 specifier|static
 parameter_list|<
 name|E
@@ -4209,7 +4165,6 @@ block|}
 annotation|@
 name|Generates
 DECL|method|generateImmutableSortedSet ( E freshElement)
-specifier|private
 specifier|static
 parameter_list|<
 name|E
@@ -4242,8 +4197,7 @@ return|;
 block|}
 annotation|@
 name|Generates
-DECL|method|generateMultiset (E freshElement)
-specifier|private
+DECL|method|generateMultiset (@ullable E freshElement)
 specifier|static
 parameter_list|<
 name|E
@@ -4254,6 +4208,8 @@ name|E
 argument_list|>
 name|generateMultiset
 parameter_list|(
+annotation|@
+name|Nullable
 name|E
 name|freshElement
 parameter_list|)
@@ -4267,8 +4223,7 @@ return|;
 block|}
 annotation|@
 name|Generates
-DECL|method|generateHashMultiset (E freshElement)
-specifier|private
+DECL|method|generateHashMultiset (@ullable E freshElement)
 specifier|static
 parameter_list|<
 name|E
@@ -4279,6 +4234,8 @@ name|E
 argument_list|>
 name|generateHashMultiset
 parameter_list|(
+annotation|@
+name|Nullable
 name|E
 name|freshElement
 parameter_list|)
@@ -4307,8 +4264,7 @@ return|;
 block|}
 annotation|@
 name|Generates
-DECL|method|generateLinkedHashMultiset (E freshElement)
-specifier|private
+DECL|method|generateLinkedHashMultiset (@ullable E freshElement)
 specifier|static
 parameter_list|<
 name|E
@@ -4319,6 +4275,8 @@ name|E
 argument_list|>
 name|generateLinkedHashMultiset
 parameter_list|(
+annotation|@
+name|Nullable
 name|E
 name|freshElement
 parameter_list|)
@@ -4348,7 +4306,6 @@ block|}
 annotation|@
 name|Generates
 DECL|method|generateImmutableMultiset (E freshElement)
-specifier|private
 specifier|static
 parameter_list|<
 name|E
@@ -4374,8 +4331,7 @@ return|;
 block|}
 annotation|@
 name|Generates
-DECL|method|generateSortedMultiset ( E freshElement)
-specifier|private
+DECL|method|generateSortedMultiset (E freshElement)
 specifier|static
 parameter_list|<
 name|E
@@ -4405,7 +4361,6 @@ block|}
 annotation|@
 name|Generates
 DECL|method|generateTreeMultiset (E freshElement)
-specifier|private
 specifier|static
 parameter_list|<
 name|E
@@ -4449,7 +4404,7 @@ return|;
 block|}
 annotation|@
 name|Generates
-specifier|private
+DECL|method|generateImmutableSortedMultiset ( E freshElement)
 specifier|static
 parameter_list|<
 name|E
@@ -4459,7 +4414,6 @@ argument_list|<
 name|E
 argument_list|>
 parameter_list|>
-DECL|method|generateImmutableSortedMultiset (E freshElement)
 name|ImmutableSortedMultiset
 argument_list|<
 name|E
@@ -4481,8 +4435,7 @@ return|;
 block|}
 annotation|@
 name|Generates
-DECL|method|generateMap (K key, V value)
-specifier|private
+DECL|method|generateMap (@ullable K key, @Nullable V value)
 specifier|static
 parameter_list|<
 name|K
@@ -4497,9 +4450,13 @@ name|V
 argument_list|>
 name|generateMap
 parameter_list|(
+annotation|@
+name|Nullable
 name|K
 name|key
 parameter_list|,
+annotation|@
+name|Nullable
 name|V
 name|value
 parameter_list|)
@@ -4515,8 +4472,7 @@ return|;
 block|}
 annotation|@
 name|Generates
-DECL|method|generateHashdMap (K key, V value)
-specifier|private
+DECL|method|generateHashdMap (@ullable K key, @Nullable V value)
 specifier|static
 parameter_list|<
 name|K
@@ -4531,9 +4487,13 @@ name|V
 argument_list|>
 name|generateHashdMap
 parameter_list|(
+annotation|@
+name|Nullable
 name|K
 name|key
 parameter_list|,
+annotation|@
+name|Nullable
 name|V
 name|value
 parameter_list|)
@@ -4549,8 +4509,7 @@ return|;
 block|}
 annotation|@
 name|Generates
-DECL|method|generateLinkedHashMap (K key, V value)
-specifier|private
+DECL|method|generateLinkedHashMap (@ullable K key, @Nullable V value)
 specifier|static
 parameter_list|<
 name|K
@@ -4565,9 +4524,13 @@ name|V
 argument_list|>
 name|generateLinkedHashMap
 parameter_list|(
+annotation|@
+name|Nullable
 name|K
 name|key
 parameter_list|,
+annotation|@
+name|Nullable
 name|V
 name|value
 parameter_list|)
@@ -4601,7 +4564,6 @@ block|}
 annotation|@
 name|Generates
 DECL|method|generateImmutableMap (K key, V value)
-specifier|private
 specifier|static
 parameter_list|<
 name|K
@@ -4637,7 +4599,6 @@ block|}
 annotation|@
 name|Empty
 DECL|method|generateConcurrentMap ()
-specifier|private
 specifier|static
 parameter_list|<
 name|K
@@ -4663,7 +4624,6 @@ block|}
 annotation|@
 name|Generates
 DECL|method|generateConcurrentMap (K key, V value)
-specifier|private
 specifier|static
 parameter_list|<
 name|K
@@ -4713,8 +4673,7 @@ return|;
 block|}
 annotation|@
 name|Generates
-DECL|method|generateSortedMap ( K key, V value)
-specifier|private
+DECL|method|generateSortedMap ( K key, @Nullable V value)
 specifier|static
 parameter_list|<
 name|K
@@ -4739,6 +4698,8 @@ parameter_list|(
 name|K
 name|key
 parameter_list|,
+annotation|@
+name|Nullable
 name|V
 name|value
 parameter_list|)
@@ -4754,8 +4715,7 @@ return|;
 block|}
 annotation|@
 name|Generates
-DECL|method|generateNavigableMap ( K key, V value)
-specifier|private
+DECL|method|generateNavigableMap ( K key, @Nullable V value)
 specifier|static
 parameter_list|<
 name|K
@@ -4780,6 +4740,8 @@ parameter_list|(
 name|K
 name|key
 parameter_list|,
+annotation|@
+name|Nullable
 name|V
 name|value
 parameter_list|)
@@ -4795,8 +4757,7 @@ return|;
 block|}
 annotation|@
 name|Generates
-DECL|method|generateTreeMap ( K key, V value)
-specifier|private
+DECL|method|generateTreeMap ( K key, @Nullable V value)
 specifier|static
 parameter_list|<
 name|K
@@ -4821,6 +4782,8 @@ parameter_list|(
 name|K
 name|key
 parameter_list|,
+annotation|@
+name|Nullable
 name|V
 name|value
 parameter_list|)
@@ -4853,7 +4816,7 @@ return|;
 block|}
 annotation|@
 name|Generates
-specifier|private
+DECL|method|generateImmutableSortedMap ( K key, V value)
 specifier|static
 parameter_list|<
 name|K
@@ -4867,7 +4830,6 @@ argument_list|>
 parameter_list|,
 name|V
 parameter_list|>
-DECL|method|generateImmutableSortedMap (K key, V value)
 name|ImmutableSortedMap
 argument_list|<
 name|K
@@ -4896,8 +4858,7 @@ return|;
 block|}
 annotation|@
 name|Generates
-DECL|method|generateMultimap (K key, V value)
-specifier|private
+DECL|method|generateMultimap (@ullable K key, @Nullable V value)
 specifier|static
 parameter_list|<
 name|K
@@ -4912,9 +4873,13 @@ name|V
 argument_list|>
 name|generateMultimap
 parameter_list|(
+annotation|@
+name|Nullable
 name|K
 name|key
 parameter_list|,
+annotation|@
+name|Nullable
 name|V
 name|value
 parameter_list|)
@@ -4931,7 +4896,6 @@ block|}
 annotation|@
 name|Generates
 DECL|method|generateImmutableMultimap (K key, V value)
-specifier|private
 specifier|static
 parameter_list|<
 name|K
@@ -4966,8 +4930,7 @@ return|;
 block|}
 annotation|@
 name|Generates
-DECL|method|generateListMultimap (K key, V value)
-specifier|private
+DECL|method|generateListMultimap (@ullable K key, @Nullable V value)
 specifier|static
 parameter_list|<
 name|K
@@ -4982,9 +4945,13 @@ name|V
 argument_list|>
 name|generateListMultimap
 parameter_list|(
+annotation|@
+name|Nullable
 name|K
 name|key
 parameter_list|,
+annotation|@
+name|Nullable
 name|V
 name|value
 parameter_list|)
@@ -5000,8 +4967,7 @@ return|;
 block|}
 annotation|@
 name|Generates
-DECL|method|generateArrayListMultimap (K key, V value)
-specifier|private
+DECL|method|generateArrayListMultimap ( @ullable K key, @Nullable V value)
 specifier|static
 parameter_list|<
 name|K
@@ -5016,9 +4982,13 @@ name|V
 argument_list|>
 name|generateArrayListMultimap
 parameter_list|(
+annotation|@
+name|Nullable
 name|K
 name|key
 parameter_list|,
+annotation|@
+name|Nullable
 name|V
 name|value
 parameter_list|)
@@ -5052,7 +5022,6 @@ block|}
 annotation|@
 name|Generates
 DECL|method|generateImmutableListMultimap (K key, V value)
-specifier|private
 specifier|static
 parameter_list|<
 name|K
@@ -5087,8 +5056,7 @@ return|;
 block|}
 annotation|@
 name|Generates
-DECL|method|generateSetMultimap (K key, V value)
-specifier|private
+DECL|method|generateSetMultimap (@ullable K key, @Nullable V value)
 specifier|static
 parameter_list|<
 name|K
@@ -5103,9 +5071,13 @@ name|V
 argument_list|>
 name|generateSetMultimap
 parameter_list|(
+annotation|@
+name|Nullable
 name|K
 name|key
 parameter_list|,
+annotation|@
+name|Nullable
 name|V
 name|value
 parameter_list|)
@@ -5121,8 +5093,7 @@ return|;
 block|}
 annotation|@
 name|Generates
-DECL|method|generateHashMultimap (K key, V value)
-specifier|private
+DECL|method|generateHashMultimap (@ullable K key, @Nullable V value)
 specifier|static
 parameter_list|<
 name|K
@@ -5137,9 +5108,13 @@ name|V
 argument_list|>
 name|generateHashMultimap
 parameter_list|(
+annotation|@
+name|Nullable
 name|K
 name|key
 parameter_list|,
+annotation|@
+name|Nullable
 name|V
 name|value
 parameter_list|)
@@ -5172,8 +5147,7 @@ return|;
 block|}
 annotation|@
 name|Generates
-DECL|method|generateLinkedHashMultimap (K key, V value)
-specifier|private
+DECL|method|generateLinkedHashMultimap ( @ullable K key, @Nullable V value)
 specifier|static
 parameter_list|<
 name|K
@@ -5188,9 +5162,13 @@ name|V
 argument_list|>
 name|generateLinkedHashMultimap
 parameter_list|(
+annotation|@
+name|Nullable
 name|K
 name|key
 parameter_list|,
+annotation|@
+name|Nullable
 name|V
 name|value
 parameter_list|)
@@ -5224,7 +5202,6 @@ block|}
 annotation|@
 name|Generates
 DECL|method|generateImmutableSetMultimap (K key, V value)
-specifier|private
 specifier|static
 parameter_list|<
 name|K
@@ -5259,8 +5236,7 @@ return|;
 block|}
 annotation|@
 name|Generates
-DECL|method|generateBimap (K key, V value)
-specifier|private
+DECL|method|generateBimap (@ullable K key, @Nullable V value)
 specifier|static
 parameter_list|<
 name|K
@@ -5275,9 +5251,13 @@ name|V
 argument_list|>
 name|generateBimap
 parameter_list|(
+annotation|@
+name|Nullable
 name|K
 name|key
 parameter_list|,
+annotation|@
+name|Nullable
 name|V
 name|value
 parameter_list|)
@@ -5293,8 +5273,7 @@ return|;
 block|}
 annotation|@
 name|Generates
-DECL|method|generateHashBiMap (K key, V value)
-specifier|private
+DECL|method|generateHashBiMap (@ullable K key, @Nullable V value)
 specifier|static
 parameter_list|<
 name|K
@@ -5309,9 +5288,13 @@ name|V
 argument_list|>
 name|generateHashBiMap
 parameter_list|(
+annotation|@
+name|Nullable
 name|K
 name|key
 parameter_list|,
+annotation|@
+name|Nullable
 name|V
 name|value
 parameter_list|)
@@ -5345,7 +5328,6 @@ block|}
 annotation|@
 name|Generates
 DECL|method|generateImmutableBimap (K key, V value)
-specifier|private
 specifier|static
 parameter_list|<
 name|K
@@ -5380,8 +5362,7 @@ return|;
 block|}
 annotation|@
 name|Generates
-DECL|method|generateTable (R row, C column, V value)
-specifier|private
+DECL|method|generateTable ( @ullable R row, @Nullable C column, @Nullable V value)
 specifier|static
 parameter_list|<
 name|R
@@ -5400,12 +5381,18 @@ name|V
 argument_list|>
 name|generateTable
 parameter_list|(
+annotation|@
+name|Nullable
 name|R
 name|row
 parameter_list|,
+annotation|@
+name|Nullable
 name|C
 name|column
 parameter_list|,
+annotation|@
+name|Nullable
 name|V
 name|value
 parameter_list|)
@@ -5423,8 +5410,7 @@ return|;
 block|}
 annotation|@
 name|Generates
-DECL|method|generateHashBasedTable ( R row, C column, V value)
-specifier|private
+DECL|method|generateHashBasedTable ( @ullable R row, @Nullable C column, @Nullable V value)
 specifier|static
 parameter_list|<
 name|R
@@ -5443,12 +5429,18 @@ name|V
 argument_list|>
 name|generateHashBasedTable
 parameter_list|(
+annotation|@
+name|Nullable
 name|R
 name|row
 parameter_list|,
+annotation|@
+name|Nullable
 name|C
 name|column
 parameter_list|,
+annotation|@
+name|Nullable
 name|V
 name|value
 parameter_list|)
@@ -5491,7 +5483,6 @@ argument_list|)
 comment|// TreeBasedTable.create() is defined as such
 annotation|@
 name|Generates
-specifier|private
 specifier|static
 parameter_list|<
 name|R
@@ -5544,7 +5535,6 @@ argument_list|)
 comment|// TreeBasedTable.create() is defined as such
 annotation|@
 name|Generates
-specifier|private
 specifier|static
 parameter_list|<
 name|R
@@ -5610,8 +5600,7 @@ return|;
 block|}
 annotation|@
 name|Generates
-DECL|method|generateImmutableTable ( R row, C column, V value)
-specifier|private
+DECL|method|generateImmutableTable (R row, C column, V value)
 specifier|static
 parameter_list|<
 name|R
@@ -5657,7 +5646,6 @@ comment|// common.reflect
 annotation|@
 name|Generates
 DECL|method|generateTypeToken ()
-specifier|private
 name|TypeToken
 argument_list|<
 name|?
@@ -5679,7 +5667,6 @@ comment|// io types
 annotation|@
 name|Generates
 DECL|method|generateFile ()
-specifier|private
 name|File
 name|generateFile
 parameter_list|()
@@ -5696,7 +5683,6 @@ block|}
 annotation|@
 name|Generates
 DECL|method|generateByteArrayInputStream ()
-specifier|private
 specifier|static
 name|ByteArrayInputStream
 name|generateByteArrayInputStream
@@ -5717,7 +5703,6 @@ block|}
 annotation|@
 name|Generates
 DECL|method|generateInputStream ()
-specifier|private
 specifier|static
 name|InputStream
 name|generateInputStream
@@ -5731,7 +5716,6 @@ block|}
 annotation|@
 name|Generates
 DECL|method|generateStringReader ()
-specifier|private
 name|StringReader
 name|generateStringReader
 parameter_list|()
@@ -5748,7 +5732,6 @@ block|}
 annotation|@
 name|Generates
 DECL|method|generateReader ()
-specifier|private
 name|Reader
 name|generateReader
 parameter_list|()
@@ -5761,7 +5744,6 @@ block|}
 annotation|@
 name|Generates
 DECL|method|generateReadable ()
-specifier|private
 name|Readable
 name|generateReadable
 parameter_list|()
@@ -5774,7 +5756,6 @@ block|}
 annotation|@
 name|Generates
 DECL|method|generateBuffer ()
-specifier|private
 name|Buffer
 name|generateBuffer
 parameter_list|()
@@ -5787,7 +5768,6 @@ block|}
 annotation|@
 name|Generates
 DECL|method|generateCharBuffer ()
-specifier|private
 name|CharBuffer
 name|generateCharBuffer
 parameter_list|()
@@ -5805,7 +5785,6 @@ block|}
 annotation|@
 name|Generates
 DECL|method|generateByteBuffer ()
-specifier|private
 name|ByteBuffer
 name|generateByteBuffer
 parameter_list|()
@@ -5823,7 +5802,6 @@ block|}
 annotation|@
 name|Generates
 DECL|method|generateShortBuffer ()
-specifier|private
 name|ShortBuffer
 name|generateShortBuffer
 parameter_list|()
@@ -5841,7 +5819,6 @@ block|}
 annotation|@
 name|Generates
 DECL|method|generateIntBuffer ()
-specifier|private
 name|IntBuffer
 name|generateIntBuffer
 parameter_list|()
@@ -5859,7 +5836,6 @@ block|}
 annotation|@
 name|Generates
 DECL|method|generateLongBuffer ()
-specifier|private
 name|LongBuffer
 name|generateLongBuffer
 parameter_list|()
@@ -5877,7 +5853,6 @@ block|}
 annotation|@
 name|Generates
 DECL|method|generateFloatBuffer ()
-specifier|private
 name|FloatBuffer
 name|generateFloatBuffer
 parameter_list|()
@@ -5895,7 +5870,6 @@ block|}
 annotation|@
 name|Generates
 DECL|method|generateDoubleBuffer ()
-specifier|private
 name|DoubleBuffer
 name|generateDoubleBuffer
 parameter_list|()
