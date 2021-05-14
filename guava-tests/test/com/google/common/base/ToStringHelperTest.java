@@ -563,7 +563,7 @@ parameter_list|()
 block|{
 comment|// The nth anonymous class has a name ending like "Outer.$n"
 name|Object
-name|o1
+name|unused1
 init|=
 operator|new
 name|Object
@@ -571,7 +571,7 @@ argument_list|()
 block|{}
 decl_stmt|;
 name|Object
-name|o2
+name|unused2
 init|=
 operator|new
 name|Object
@@ -579,7 +579,7 @@ argument_list|()
 block|{}
 decl_stmt|;
 name|Object
-name|o3
+name|unused3
 init|=
 operator|new
 name|Object
@@ -587,7 +587,7 @@ argument_list|()
 block|{}
 decl_stmt|;
 name|Object
-name|o4
+name|unused4
 init|=
 operator|new
 name|Object
@@ -595,7 +595,7 @@ argument_list|()
 block|{}
 decl_stmt|;
 name|Object
-name|o5
+name|unused5
 init|=
 operator|new
 name|Object
@@ -603,7 +603,7 @@ argument_list|()
 block|{}
 decl_stmt|;
 name|Object
-name|o6
+name|unused6
 init|=
 operator|new
 name|Object
@@ -611,7 +611,7 @@ argument_list|()
 block|{}
 decl_stmt|;
 name|Object
-name|o7
+name|unused7
 init|=
 operator|new
 name|Object
@@ -619,7 +619,7 @@ argument_list|()
 block|{}
 decl_stmt|;
 name|Object
-name|o8
+name|unused8
 init|=
 operator|new
 name|Object
@@ -627,7 +627,7 @@ argument_list|()
 block|{}
 decl_stmt|;
 name|Object
-name|o9
+name|unused9
 init|=
 operator|new
 name|Object
@@ -671,7 +671,7 @@ parameter_list|()
 block|{
 comment|// The nth anonymous class has a name ending like "Outer.$n"
 name|Object
-name|o1
+name|unused1
 init|=
 operator|new
 name|Object
@@ -679,7 +679,7 @@ argument_list|()
 block|{}
 decl_stmt|;
 name|Object
-name|o2
+name|unused2
 init|=
 operator|new
 name|Object
@@ -687,7 +687,7 @@ argument_list|()
 block|{}
 decl_stmt|;
 name|Object
-name|o3
+name|unused3
 init|=
 operator|new
 name|Object
@@ -695,7 +695,7 @@ argument_list|()
 block|{}
 decl_stmt|;
 name|Object
-name|o4
+name|unused4
 init|=
 operator|new
 name|Object
@@ -703,7 +703,7 @@ argument_list|()
 block|{}
 decl_stmt|;
 name|Object
-name|o5
+name|unused5
 init|=
 operator|new
 name|Object
@@ -711,7 +711,7 @@ argument_list|()
 block|{}
 decl_stmt|;
 name|Object
-name|o6
+name|unused6
 init|=
 operator|new
 name|Object
@@ -719,7 +719,7 @@ argument_list|()
 block|{}
 decl_stmt|;
 name|Object
-name|o7
+name|unused7
 init|=
 operator|new
 name|Object
@@ -727,7 +727,7 @@ argument_list|()
 block|{}
 decl_stmt|;
 name|Object
-name|o8
+name|unused8
 init|=
 operator|new
 name|Object
@@ -735,7 +735,7 @@ argument_list|()
 block|{}
 decl_stmt|;
 name|Object
-name|o9
+name|unused9
 init|=
 operator|new
 name|Object
@@ -1930,10 +1930,10 @@ block|}
 annotation|@
 name|GwtIncompatible
 comment|// Class names are obfuscated in GWT
-DECL|method|testToStringOmitNullValues_oneValue ()
+DECL|method|testToStringOmitEmptyValues_oneValue ()
 specifier|public
 name|void
-name|testToStringOmitNullValues_oneValue
+name|testToStringOmitEmptyValues_oneValue
 parameter_list|()
 block|{
 name|String

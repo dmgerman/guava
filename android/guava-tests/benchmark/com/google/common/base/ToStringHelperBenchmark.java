@@ -766,6 +766,7 @@ return|return
 name|dummy
 return|;
 block|}
+comment|// When omitEmptyValues() is released, remove this method and add a new @Param "omitEmptyValues".
 block|}
 end_class
 
