@@ -1442,11 +1442,13 @@ DECL|method|forSupplier (Supplier<T> supplier)
 specifier|public
 specifier|static
 parameter_list|<
+name|F
+parameter_list|,
 name|T
 parameter_list|>
 name|Function
 argument_list|<
-name|Object
+name|F
 argument_list|,
 name|T
 argument_list|>
@@ -1462,9 +1464,7 @@ block|{
 return|return
 operator|new
 name|SupplierFunction
-argument_list|<
-name|T
-argument_list|>
+argument_list|<>
 argument_list|(
 name|supplier
 argument_list|)
@@ -1477,12 +1477,14 @@ specifier|static
 class|class
 name|SupplierFunction
 parameter_list|<
+name|F
+parameter_list|,
 name|T
 parameter_list|>
 implements|implements
 name|Function
 argument_list|<
-name|Object
+name|F
 argument_list|,
 name|T
 argument_list|>
@@ -1521,14 +1523,14 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|apply (@ullableDecl Object input)
+DECL|method|apply (@ullableDecl F input)
 specifier|public
 name|T
 name|apply
 parameter_list|(
 annotation|@
 name|NullableDecl
-name|Object
+name|F
 name|input
 parameter_list|)
 block|{
@@ -1562,12 +1564,16 @@ block|{
 name|SupplierFunction
 argument_list|<
 name|?
+argument_list|,
+name|?
 argument_list|>
 name|that
 init|=
 operator|(
 name|SupplierFunction
 argument_list|<
+name|?
+argument_list|,
 name|?
 argument_list|>
 operator|)

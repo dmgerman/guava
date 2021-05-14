@@ -653,9 +653,12 @@ comment|// Class.isInstance
 DECL|method|instanceOf (Class<?> clazz)
 specifier|public
 specifier|static
+parameter_list|<
+name|T
+parameter_list|>
 name|Predicate
 argument_list|<
-name|Object
+name|T
 argument_list|>
 name|instanceOf
 parameter_list|(
@@ -669,6 +672,9 @@ block|{
 return|return
 operator|new
 name|InstanceOfPredicate
+argument_list|<
+name|T
+argument_list|>
 argument_list|(
 name|clazz
 argument_list|)
@@ -1835,10 +1841,13 @@ specifier|private
 specifier|static
 class|class
 name|InstanceOfPredicate
+parameter_list|<
+name|T
+parameter_list|>
 implements|implements
 name|Predicate
 argument_list|<
-name|Object
+name|T
 argument_list|>
 implements|,
 name|Serializable
@@ -1875,14 +1884,14 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|apply (@ullable Object o)
+DECL|method|apply (@ullable T o)
 specifier|public
 name|boolean
 name|apply
 parameter_list|(
 annotation|@
 name|Nullable
-name|Object
+name|T
 name|o
 parameter_list|)
 block|{
@@ -1931,10 +1940,16 @@ name|InstanceOfPredicate
 condition|)
 block|{
 name|InstanceOfPredicate
+argument_list|<
+name|?
+argument_list|>
 name|that
 init|=
 operator|(
 name|InstanceOfPredicate
+argument_list|<
+name|?
+argument_list|>
 operator|)
 name|obj
 decl_stmt|;
