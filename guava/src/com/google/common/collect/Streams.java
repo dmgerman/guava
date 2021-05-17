@@ -92,6 +92,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|InlineMe
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -433,6 +447,13 @@ annotation|@
 name|Beta
 annotation|@
 name|Deprecated
+annotation|@
+name|InlineMe
+argument_list|(
+name|replacement
+operator|=
+literal|"collection.stream()"
+argument_list|)
 DECL|method|stream (Collection<T> collection)
 specifier|public
 specifier|static

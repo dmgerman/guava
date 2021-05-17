@@ -200,6 +200,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|InlineMe
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -2454,6 +2468,13 @@ argument_list|()
 throw|;
 block|}
 comment|/**    * Returns this list instance.    *    * @since 2.0    * @deprecated There is no reason to use this; it always returns {@code this}.    */
+annotation|@
+name|InlineMe
+argument_list|(
+name|replacement
+operator|=
+literal|"this"
+argument_list|)
 annotation|@
 name|Deprecated
 annotation|@
