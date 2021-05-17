@@ -775,12 +775,15 @@ name|void
 name|testSize
 parameter_list|()
 block|{
+name|int
+name|unused
+init|=
 name|create
 argument_list|()
 operator|.
 name|size
 argument_list|()
-expr_stmt|;
+decl_stmt|;
 block|}
 DECL|method|testIsEmpty ()
 specifier|public
@@ -788,12 +791,15 @@ name|void
 name|testIsEmpty
 parameter_list|()
 block|{
+name|boolean
+name|unused
+init|=
 name|create
 argument_list|()
 operator|.
 name|isEmpty
 argument_list|()
-expr_stmt|;
+decl_stmt|;
 block|}
 DECL|method|testRemove ()
 specifier|public
