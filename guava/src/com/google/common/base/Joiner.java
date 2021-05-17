@@ -33,6 +33,18 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|java
+operator|.
+name|util
+operator|.
+name|Objects
+operator|.
+name|requireNonNull
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -138,6 +150,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|checkerframework
@@ -159,6 +181,8 @@ end_comment
 begin_class
 annotation|@
 name|GwtCompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|Joiner
 specifier|public
 class|class
@@ -373,7 +397,7 @@ block|}
 comment|/**    * Appends the string representation of each of {@code parts}, using the previously configured    * separator between each, to {@code appendable}.    */
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|appendTo (A appendable, Object[] parts)
+DECL|method|appendTo (A appendable, @Nullable Object[] parts)
 specifier|public
 specifier|final
 parameter_list|<
@@ -387,6 +411,8 @@ parameter_list|(
 name|A
 name|appendable
 parameter_list|,
+annotation|@
+name|Nullable
 name|Object
 index|[]
 name|parts
@@ -411,7 +437,7 @@ block|}
 comment|/** Appends to {@code appendable} the string representation of each of the remaining arguments. */
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|appendTo ( A appendable, @Nullable Object first, @Nullable Object second, Object... rest)
+DECL|method|appendTo ( A appendable, @CheckForNull Object first, @CheckForNull Object second, @Nullable Object... rest)
 specifier|public
 specifier|final
 parameter_list|<
@@ -426,15 +452,17 @@ name|A
 name|appendable
 parameter_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|first
 parameter_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|second
 parameter_list|,
+annotation|@
+name|Nullable
 name|Object
 modifier|...
 name|rest
@@ -542,7 +570,7 @@ block|}
 comment|/**    * Appends the string representation of each of {@code parts}, using the previously configured    * separator between each, to {@code builder}. Identical to {@link #appendTo(Appendable,    * Iterable)}, except that it does not throw {@link IOException}.    */
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|appendTo (StringBuilder builder, Object[] parts)
+DECL|method|appendTo (StringBuilder builder, @Nullable Object[] parts)
 specifier|public
 specifier|final
 name|StringBuilder
@@ -551,6 +579,8 @@ parameter_list|(
 name|StringBuilder
 name|builder
 parameter_list|,
+annotation|@
+name|Nullable
 name|Object
 index|[]
 name|parts
@@ -573,7 +603,7 @@ block|}
 comment|/**    * Appends to {@code builder} the string representation of each of the remaining arguments.    * Identical to {@link #appendTo(Appendable, Object, Object, Object...)}, except that it does not    * throw {@link IOException}.    */
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|appendTo ( StringBuilder builder, @Nullable Object first, @Nullable Object second, Object... rest)
+DECL|method|appendTo ( StringBuilder builder, @CheckForNull Object first, @CheckForNull Object second, @Nullable Object... rest)
 specifier|public
 specifier|final
 name|StringBuilder
@@ -583,15 +613,17 @@ name|StringBuilder
 name|builder
 parameter_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|first
 parameter_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|second
 parameter_list|,
+annotation|@
+name|Nullable
 name|Object
 modifier|...
 name|rest
@@ -666,12 +698,14 @@ argument_list|()
 return|;
 block|}
 comment|/**    * Returns a string containing the string representation of each of {@code parts}, using the    * previously configured separator between each.    */
-DECL|method|join (Object[] parts)
+DECL|method|join (@ullable Object[] parts)
 specifier|public
 specifier|final
 name|String
 name|join
 parameter_list|(
+annotation|@
+name|Nullable
 name|Object
 index|[]
 name|parts
@@ -690,22 +724,24 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns a string containing the string representation of each argument, using the previously    * configured separator between each.    */
-DECL|method|join (@ullable Object first, @Nullable Object second, Object... rest)
+DECL|method|join ( @heckForNull Object first, @CheckForNull Object second, @Nullable Object... rest)
 specifier|public
 specifier|final
 name|String
 name|join
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|first
 parameter_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|second
 parameter_list|,
+annotation|@
+name|Nullable
 name|Object
 modifier|...
 name|rest
@@ -754,7 +790,7 @@ name|CharSequence
 name|toString
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|part
 parameter_list|)
@@ -1587,20 +1623,22 @@ argument_list|)
 return|;
 block|}
 block|}
-DECL|method|toString (Object part)
+DECL|method|toString (@heckForNull Object part)
 name|CharSequence
 name|toString
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|part
 parameter_list|)
 block|{
-name|checkNotNull
+comment|/*      * requireNonNull is not safe: Joiner.on(...).join(somethingThatContainsNull) will indeed throw.      * However, Joiner.on(...).useForNull(...).join(somethingThatContainsNull) *is* safe -- because      * it returns a subclass of Joiner that overrides this method to tolerate null inputs.      *      * Unfortunately, we don't distinguish between these two cases in our public API: Joiner.on(...)      * and Joiner.on(...).useForNull(...) both declare the same return type: plain Joiner. To ensure      * that users *can* pass null arguments to Joiner, we annotate it as if it always tolerates null      * inputs, rather than as if it never tolerates them.      *      * We rely on checkers to implement special cases to catch dangerous calls to join(), etc. based      * on what they know about the particular Joiner instances the calls are performed on.      *      * (In addition to useForNull, we also offer skipNulls. It, too, tolerates null inputs, but its      * tolerance is implemented differently: Its implementation avoids calling this toString(Object)      * method in the first place.)      */
+name|requireNonNull
 argument_list|(
 name|part
 argument_list|)
 expr_stmt|;
-comment|// checkNotNull for GWT (do not optimize).
 return|return
 operator|(
 name|part
@@ -1619,24 +1657,32 @@ name|toString
 argument_list|()
 return|;
 block|}
-DECL|method|iterable ( final Object first, final Object second, final Object[] rest)
+DECL|method|iterable ( @heckForNull final Object first, @CheckForNull final Object second, final @Nullable Object[] rest)
 specifier|private
 specifier|static
 name|Iterable
 argument_list|<
+annotation|@
+name|Nullable
 name|Object
 argument_list|>
 name|iterable
 parameter_list|(
+annotation|@
+name|CheckForNull
 specifier|final
 name|Object
 name|first
 parameter_list|,
+annotation|@
+name|CheckForNull
 specifier|final
 name|Object
 name|second
 parameter_list|,
 specifier|final
+annotation|@
+name|Nullable
 name|Object
 index|[]
 name|rest
@@ -1651,6 +1697,8 @@ return|return
 operator|new
 name|AbstractList
 argument_list|<
+annotation|@
+name|Nullable
 name|Object
 argument_list|>
 argument_list|()
@@ -1672,6 +1720,8 @@ return|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 specifier|public
 name|Object
 name|get

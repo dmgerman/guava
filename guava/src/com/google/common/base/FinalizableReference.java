@@ -56,6 +56,8 @@ literal|"Use an instance of one of the Finalizable*Reference classes"
 argument_list|)
 annotation|@
 name|GwtIncompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|interface|FinalizableReference
 specifier|public
 interface|interface

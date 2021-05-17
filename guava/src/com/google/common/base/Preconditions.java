@@ -62,17 +62,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|javax
 operator|.
-name|checkerframework
+name|annotation
 operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|qual
-operator|.
-name|NonNull
+name|CheckForNull
 import|;
 end_import
 
@@ -99,6 +93,8 @@ end_comment
 begin_class
 annotation|@
 name|GwtCompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|Preconditions
 specifier|public
 specifier|final
@@ -110,6 +106,7 @@ specifier|private
 name|Preconditions
 parameter_list|()
 block|{}
+comment|// TODO(cpovirk): Standardize parameter names (expression vs. b, reference vs. obj).
 comment|/**    * Ensures the truth of an expression involving one or more parameters to the calling method.    *    * @param expression a boolean expression    * @throws IllegalArgumentException if {@code expression} is false    */
 DECL|method|checkArgument (boolean expression)
 specifier|public
@@ -135,7 +132,7 @@ throw|;
 block|}
 block|}
 comment|/**    * Ensures the truth of an expression involving one or more parameters to the calling method.    *    * @param expression a boolean expression    * @param errorMessage the exception message to use if the check fails; will be converted to a    *     string using {@link String#valueOf(Object)}    * @throws IllegalArgumentException if {@code expression} is false    */
-DECL|method|checkArgument (boolean expression, @Nullable Object errorMessage)
+DECL|method|checkArgument (boolean expression, @CheckForNull Object errorMessage)
 specifier|public
 specifier|static
 name|void
@@ -145,7 +142,7 @@ name|boolean
 name|expression
 parameter_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|errorMessage
 parameter_list|)
@@ -171,7 +168,7 @@ throw|;
 block|}
 block|}
 comment|/**    * Ensures the truth of an expression involving one or more parameters to the calling method.    *    * @param expression a boolean expression    * @param errorMessageTemplate a template for the exception message should the check fail. The    *     message is formed by replacing each {@code %s} placeholder in the template with an    *     argument. These are matched by position - the first {@code %s} gets {@code    *     errorMessageArgs[0]}, etc. Unmatched arguments will be appended to the formatted message in    *     square braces. Unmatched placeholders will be left as-is.    * @param errorMessageArgs the arguments to be substituted into the message template. Arguments    *     are converted to strings using {@link String#valueOf(Object)}.    * @throws IllegalArgumentException if {@code expression} is false    */
-DECL|method|checkArgument ( boolean expression, @Nullable String errorMessageTemplate, @Nullable Object @Nullable ... errorMessageArgs)
+DECL|method|checkArgument ( boolean expression, String errorMessageTemplate, @CheckForNull @Nullable Object... errorMessageArgs)
 specifier|public
 specifier|static
 name|void
@@ -180,16 +177,14 @@ parameter_list|(
 name|boolean
 name|expression
 parameter_list|,
-annotation|@
-name|Nullable
 name|String
 name|errorMessageTemplate
 parameter_list|,
 annotation|@
-name|Nullable
-name|Object
+name|CheckForNull
 annotation|@
 name|Nullable
+name|Object
 modifier|...
 name|errorMessageArgs
 parameter_list|)
@@ -215,7 +210,7 @@ throw|;
 block|}
 block|}
 comment|/**    * Ensures the truth of an expression involving one or more parameters to the calling method.    *    *<p>See {@link #checkArgument(boolean, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
-DECL|method|checkArgument (boolean b, @Nullable String errorMessageTemplate, char p1)
+DECL|method|checkArgument (boolean b, String errorMessageTemplate, char p1)
 specifier|public
 specifier|static
 name|void
@@ -224,8 +219,6 @@ parameter_list|(
 name|boolean
 name|b
 parameter_list|,
-annotation|@
-name|Nullable
 name|String
 name|errorMessageTemplate
 parameter_list|,
@@ -254,7 +247,7 @@ throw|;
 block|}
 block|}
 comment|/**    * Ensures the truth of an expression involving one or more parameters to the calling method.    *    *<p>See {@link #checkArgument(boolean, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
-DECL|method|checkArgument (boolean b, @Nullable String errorMessageTemplate, int p1)
+DECL|method|checkArgument (boolean b, String errorMessageTemplate, int p1)
 specifier|public
 specifier|static
 name|void
@@ -263,8 +256,6 @@ parameter_list|(
 name|boolean
 name|b
 parameter_list|,
-annotation|@
-name|Nullable
 name|String
 name|errorMessageTemplate
 parameter_list|,
@@ -293,7 +284,7 @@ throw|;
 block|}
 block|}
 comment|/**    * Ensures the truth of an expression involving one or more parameters to the calling method.    *    *<p>See {@link #checkArgument(boolean, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
-DECL|method|checkArgument (boolean b, @Nullable String errorMessageTemplate, long p1)
+DECL|method|checkArgument (boolean b, String errorMessageTemplate, long p1)
 specifier|public
 specifier|static
 name|void
@@ -302,8 +293,6 @@ parameter_list|(
 name|boolean
 name|b
 parameter_list|,
-annotation|@
-name|Nullable
 name|String
 name|errorMessageTemplate
 parameter_list|,
@@ -332,7 +321,7 @@ throw|;
 block|}
 block|}
 comment|/**    * Ensures the truth of an expression involving one or more parameters to the calling method.    *    *<p>See {@link #checkArgument(boolean, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
-DECL|method|checkArgument ( boolean b, @Nullable String errorMessageTemplate, @Nullable Object p1)
+DECL|method|checkArgument ( boolean b, String errorMessageTemplate, @CheckForNull Object p1)
 specifier|public
 specifier|static
 name|void
@@ -341,13 +330,11 @@ parameter_list|(
 name|boolean
 name|b
 parameter_list|,
-annotation|@
-name|Nullable
 name|String
 name|errorMessageTemplate
 parameter_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|p1
 parameter_list|)
@@ -373,7 +360,7 @@ throw|;
 block|}
 block|}
 comment|/**    * Ensures the truth of an expression involving one or more parameters to the calling method.    *    *<p>See {@link #checkArgument(boolean, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
-DECL|method|checkArgument ( boolean b, @Nullable String errorMessageTemplate, char p1, char p2)
+DECL|method|checkArgument (boolean b, String errorMessageTemplate, char p1, char p2)
 specifier|public
 specifier|static
 name|void
@@ -382,8 +369,6 @@ parameter_list|(
 name|boolean
 name|b
 parameter_list|,
-annotation|@
-name|Nullable
 name|String
 name|errorMessageTemplate
 parameter_list|,
@@ -417,7 +402,7 @@ throw|;
 block|}
 block|}
 comment|/**    * Ensures the truth of an expression involving one or more parameters to the calling method.    *    *<p>See {@link #checkArgument(boolean, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
-DECL|method|checkArgument ( boolean b, @Nullable String errorMessageTemplate, char p1, int p2)
+DECL|method|checkArgument (boolean b, String errorMessageTemplate, char p1, int p2)
 specifier|public
 specifier|static
 name|void
@@ -426,8 +411,6 @@ parameter_list|(
 name|boolean
 name|b
 parameter_list|,
-annotation|@
-name|Nullable
 name|String
 name|errorMessageTemplate
 parameter_list|,
@@ -461,7 +444,7 @@ throw|;
 block|}
 block|}
 comment|/**    * Ensures the truth of an expression involving one or more parameters to the calling method.    *    *<p>See {@link #checkArgument(boolean, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
-DECL|method|checkArgument ( boolean b, @Nullable String errorMessageTemplate, char p1, long p2)
+DECL|method|checkArgument (boolean b, String errorMessageTemplate, char p1, long p2)
 specifier|public
 specifier|static
 name|void
@@ -470,8 +453,6 @@ parameter_list|(
 name|boolean
 name|b
 parameter_list|,
-annotation|@
-name|Nullable
 name|String
 name|errorMessageTemplate
 parameter_list|,
@@ -505,7 +486,7 @@ throw|;
 block|}
 block|}
 comment|/**    * Ensures the truth of an expression involving one or more parameters to the calling method.    *    *<p>See {@link #checkArgument(boolean, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
-DECL|method|checkArgument ( boolean b, @Nullable String errorMessageTemplate, char p1, @Nullable Object p2)
+DECL|method|checkArgument ( boolean b, String errorMessageTemplate, char p1, @CheckForNull Object p2)
 specifier|public
 specifier|static
 name|void
@@ -514,8 +495,6 @@ parameter_list|(
 name|boolean
 name|b
 parameter_list|,
-annotation|@
-name|Nullable
 name|String
 name|errorMessageTemplate
 parameter_list|,
@@ -523,7 +502,7 @@ name|char
 name|p1
 parameter_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|p2
 parameter_list|)
@@ -551,7 +530,7 @@ throw|;
 block|}
 block|}
 comment|/**    * Ensures the truth of an expression involving one or more parameters to the calling method.    *    *<p>See {@link #checkArgument(boolean, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
-DECL|method|checkArgument ( boolean b, @Nullable String errorMessageTemplate, int p1, char p2)
+DECL|method|checkArgument (boolean b, String errorMessageTemplate, int p1, char p2)
 specifier|public
 specifier|static
 name|void
@@ -560,8 +539,6 @@ parameter_list|(
 name|boolean
 name|b
 parameter_list|,
-annotation|@
-name|Nullable
 name|String
 name|errorMessageTemplate
 parameter_list|,
@@ -595,7 +572,7 @@ throw|;
 block|}
 block|}
 comment|/**    * Ensures the truth of an expression involving one or more parameters to the calling method.    *    *<p>See {@link #checkArgument(boolean, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
-DECL|method|checkArgument ( boolean b, @Nullable String errorMessageTemplate, int p1, int p2)
+DECL|method|checkArgument (boolean b, String errorMessageTemplate, int p1, int p2)
 specifier|public
 specifier|static
 name|void
@@ -604,8 +581,6 @@ parameter_list|(
 name|boolean
 name|b
 parameter_list|,
-annotation|@
-name|Nullable
 name|String
 name|errorMessageTemplate
 parameter_list|,
@@ -639,7 +614,7 @@ throw|;
 block|}
 block|}
 comment|/**    * Ensures the truth of an expression involving one or more parameters to the calling method.    *    *<p>See {@link #checkArgument(boolean, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
-DECL|method|checkArgument ( boolean b, @Nullable String errorMessageTemplate, int p1, long p2)
+DECL|method|checkArgument (boolean b, String errorMessageTemplate, int p1, long p2)
 specifier|public
 specifier|static
 name|void
@@ -648,8 +623,6 @@ parameter_list|(
 name|boolean
 name|b
 parameter_list|,
-annotation|@
-name|Nullable
 name|String
 name|errorMessageTemplate
 parameter_list|,
@@ -683,7 +656,7 @@ throw|;
 block|}
 block|}
 comment|/**    * Ensures the truth of an expression involving one or more parameters to the calling method.    *    *<p>See {@link #checkArgument(boolean, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
-DECL|method|checkArgument ( boolean b, @Nullable String errorMessageTemplate, int p1, @Nullable Object p2)
+DECL|method|checkArgument ( boolean b, String errorMessageTemplate, int p1, @CheckForNull Object p2)
 specifier|public
 specifier|static
 name|void
@@ -692,8 +665,6 @@ parameter_list|(
 name|boolean
 name|b
 parameter_list|,
-annotation|@
-name|Nullable
 name|String
 name|errorMessageTemplate
 parameter_list|,
@@ -701,7 +672,7 @@ name|int
 name|p1
 parameter_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|p2
 parameter_list|)
@@ -729,7 +700,7 @@ throw|;
 block|}
 block|}
 comment|/**    * Ensures the truth of an expression involving one or more parameters to the calling method.    *    *<p>See {@link #checkArgument(boolean, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
-DECL|method|checkArgument ( boolean b, @Nullable String errorMessageTemplate, long p1, char p2)
+DECL|method|checkArgument (boolean b, String errorMessageTemplate, long p1, char p2)
 specifier|public
 specifier|static
 name|void
@@ -738,8 +709,6 @@ parameter_list|(
 name|boolean
 name|b
 parameter_list|,
-annotation|@
-name|Nullable
 name|String
 name|errorMessageTemplate
 parameter_list|,
@@ -773,7 +742,7 @@ throw|;
 block|}
 block|}
 comment|/**    * Ensures the truth of an expression involving one or more parameters to the calling method.    *    *<p>See {@link #checkArgument(boolean, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
-DECL|method|checkArgument ( boolean b, @Nullable String errorMessageTemplate, long p1, int p2)
+DECL|method|checkArgument (boolean b, String errorMessageTemplate, long p1, int p2)
 specifier|public
 specifier|static
 name|void
@@ -782,8 +751,6 @@ parameter_list|(
 name|boolean
 name|b
 parameter_list|,
-annotation|@
-name|Nullable
 name|String
 name|errorMessageTemplate
 parameter_list|,
@@ -817,7 +784,7 @@ throw|;
 block|}
 block|}
 comment|/**    * Ensures the truth of an expression involving one or more parameters to the calling method.    *    *<p>See {@link #checkArgument(boolean, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
-DECL|method|checkArgument ( boolean b, @Nullable String errorMessageTemplate, long p1, long p2)
+DECL|method|checkArgument (boolean b, String errorMessageTemplate, long p1, long p2)
 specifier|public
 specifier|static
 name|void
@@ -826,8 +793,6 @@ parameter_list|(
 name|boolean
 name|b
 parameter_list|,
-annotation|@
-name|Nullable
 name|String
 name|errorMessageTemplate
 parameter_list|,
@@ -861,7 +826,7 @@ throw|;
 block|}
 block|}
 comment|/**    * Ensures the truth of an expression involving one or more parameters to the calling method.    *    *<p>See {@link #checkArgument(boolean, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
-DECL|method|checkArgument ( boolean b, @Nullable String errorMessageTemplate, long p1, @Nullable Object p2)
+DECL|method|checkArgument ( boolean b, String errorMessageTemplate, long p1, @CheckForNull Object p2)
 specifier|public
 specifier|static
 name|void
@@ -870,8 +835,6 @@ parameter_list|(
 name|boolean
 name|b
 parameter_list|,
-annotation|@
-name|Nullable
 name|String
 name|errorMessageTemplate
 parameter_list|,
@@ -879,7 +842,7 @@ name|long
 name|p1
 parameter_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|p2
 parameter_list|)
@@ -907,7 +870,7 @@ throw|;
 block|}
 block|}
 comment|/**    * Ensures the truth of an expression involving one or more parameters to the calling method.    *    *<p>See {@link #checkArgument(boolean, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
-DECL|method|checkArgument ( boolean b, @Nullable String errorMessageTemplate, @Nullable Object p1, char p2)
+DECL|method|checkArgument ( boolean b, String errorMessageTemplate, @CheckForNull Object p1, char p2)
 specifier|public
 specifier|static
 name|void
@@ -916,13 +879,11 @@ parameter_list|(
 name|boolean
 name|b
 parameter_list|,
-annotation|@
-name|Nullable
 name|String
 name|errorMessageTemplate
 parameter_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|p1
 parameter_list|,
@@ -953,7 +914,7 @@ throw|;
 block|}
 block|}
 comment|/**    * Ensures the truth of an expression involving one or more parameters to the calling method.    *    *<p>See {@link #checkArgument(boolean, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
-DECL|method|checkArgument ( boolean b, @Nullable String errorMessageTemplate, @Nullable Object p1, int p2)
+DECL|method|checkArgument ( boolean b, String errorMessageTemplate, @CheckForNull Object p1, int p2)
 specifier|public
 specifier|static
 name|void
@@ -962,13 +923,11 @@ parameter_list|(
 name|boolean
 name|b
 parameter_list|,
-annotation|@
-name|Nullable
 name|String
 name|errorMessageTemplate
 parameter_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|p1
 parameter_list|,
@@ -999,7 +958,7 @@ throw|;
 block|}
 block|}
 comment|/**    * Ensures the truth of an expression involving one or more parameters to the calling method.    *    *<p>See {@link #checkArgument(boolean, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
-DECL|method|checkArgument ( boolean b, @Nullable String errorMessageTemplate, @Nullable Object p1, long p2)
+DECL|method|checkArgument ( boolean b, String errorMessageTemplate, @CheckForNull Object p1, long p2)
 specifier|public
 specifier|static
 name|void
@@ -1008,13 +967,11 @@ parameter_list|(
 name|boolean
 name|b
 parameter_list|,
-annotation|@
-name|Nullable
 name|String
 name|errorMessageTemplate
 parameter_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|p1
 parameter_list|,
@@ -1045,7 +1002,7 @@ throw|;
 block|}
 block|}
 comment|/**    * Ensures the truth of an expression involving one or more parameters to the calling method.    *    *<p>See {@link #checkArgument(boolean, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
-DECL|method|checkArgument ( boolean b, @Nullable String errorMessageTemplate, @Nullable Object p1, @Nullable Object p2)
+DECL|method|checkArgument ( boolean b, String errorMessageTemplate, @CheckForNull Object p1, @CheckForNull Object p2)
 specifier|public
 specifier|static
 name|void
@@ -1054,18 +1011,16 @@ parameter_list|(
 name|boolean
 name|b
 parameter_list|,
-annotation|@
-name|Nullable
 name|String
 name|errorMessageTemplate
 parameter_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|p1
 parameter_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|p2
 parameter_list|)
@@ -1093,7 +1048,7 @@ throw|;
 block|}
 block|}
 comment|/**    * Ensures the truth of an expression involving one or more parameters to the calling method.    *    *<p>See {@link #checkArgument(boolean, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
-DECL|method|checkArgument ( boolean b, @Nullable String errorMessageTemplate, @Nullable Object p1, @Nullable Object p2, @Nullable Object p3)
+DECL|method|checkArgument ( boolean b, String errorMessageTemplate, @CheckForNull Object p1, @CheckForNull Object p2, @CheckForNull Object p3)
 specifier|public
 specifier|static
 name|void
@@ -1102,23 +1057,21 @@ parameter_list|(
 name|boolean
 name|b
 parameter_list|,
-annotation|@
-name|Nullable
 name|String
 name|errorMessageTemplate
 parameter_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|p1
 parameter_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|p2
 parameter_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|p3
 parameter_list|)
@@ -1148,7 +1101,7 @@ throw|;
 block|}
 block|}
 comment|/**    * Ensures the truth of an expression involving one or more parameters to the calling method.    *    *<p>See {@link #checkArgument(boolean, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
-DECL|method|checkArgument ( boolean b, @Nullable String errorMessageTemplate, @Nullable Object p1, @Nullable Object p2, @Nullable Object p3, @Nullable Object p4)
+DECL|method|checkArgument ( boolean b, String errorMessageTemplate, @CheckForNull Object p1, @CheckForNull Object p2, @CheckForNull Object p3, @CheckForNull Object p4)
 specifier|public
 specifier|static
 name|void
@@ -1157,28 +1110,26 @@ parameter_list|(
 name|boolean
 name|b
 parameter_list|,
-annotation|@
-name|Nullable
 name|String
 name|errorMessageTemplate
 parameter_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|p1
 parameter_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|p2
 parameter_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|p3
 parameter_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|p4
 parameter_list|)
@@ -1234,7 +1185,7 @@ throw|;
 block|}
 block|}
 comment|/**    * Ensures the truth of an expression involving the state of the calling instance, but not    * involving any parameters to the calling method.    *    * @param expression a boolean expression    * @param errorMessage the exception message to use if the check fails; will be converted to a    *     string using {@link String#valueOf(Object)}    * @throws IllegalStateException if {@code expression} is false    * @see Verify#verify Verify.verify()    */
-DECL|method|checkState (boolean expression, @Nullable Object errorMessage)
+DECL|method|checkState (boolean expression, @CheckForNull Object errorMessage)
 specifier|public
 specifier|static
 name|void
@@ -1244,7 +1195,7 @@ name|boolean
 name|expression
 parameter_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|errorMessage
 parameter_list|)
@@ -1270,7 +1221,7 @@ throw|;
 block|}
 block|}
 comment|/**    * Ensures the truth of an expression involving the state of the calling instance, but not    * involving any parameters to the calling method.    *    * @param expression a boolean expression    * @param errorMessageTemplate a template for the exception message should the check fail. The    *     message is formed by replacing each {@code %s} placeholder in the template with an    *     argument. These are matched by position - the first {@code %s} gets {@code    *     errorMessageArgs[0]}, etc. Unmatched arguments will be appended to the formatted message in    *     square braces. Unmatched placeholders will be left as-is.    * @param errorMessageArgs the arguments to be substituted into the message template. Arguments    *     are converted to strings using {@link String#valueOf(Object)}.    * @throws IllegalStateException if {@code expression} is false    * @see Verify#verify Verify.verify()    */
-DECL|method|checkState ( boolean expression, @Nullable String errorMessageTemplate, @Nullable Object @Nullable ... errorMessageArgs)
+DECL|method|checkState ( boolean expression, @CheckForNull String errorMessageTemplate, @CheckForNull @Nullable Object... errorMessageArgs)
 specifier|public
 specifier|static
 name|void
@@ -1279,16 +1230,17 @@ parameter_list|(
 name|boolean
 name|expression
 parameter_list|,
+comment|/*        * TODO(cpovirk): Consider removing @CheckForNull here, as we've done with the other methods'        * errorMessageTemplate parameters: It it unlikely that callers intend for their string        * template to be null (though we do handle that case gracefully at runtime). I've left this        * one as it is because one of our users has defined a wrapper API around Preconditions,        * declaring a checkState method that accepts a possibly null template. So we'd need to update        * that user first.        */
 annotation|@
-name|Nullable
+name|CheckForNull
 name|String
 name|errorMessageTemplate
 parameter_list|,
 annotation|@
-name|Nullable
-name|Object
+name|CheckForNull
 annotation|@
 name|Nullable
+name|Object
 modifier|...
 name|errorMessageArgs
 parameter_list|)
@@ -1314,7 +1266,7 @@ throw|;
 block|}
 block|}
 comment|/**    * Ensures the truth of an expression involving the state of the calling instance, but not    * involving any parameters to the calling method.    *    *<p>See {@link #checkState(boolean, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
-DECL|method|checkState (boolean b, @Nullable String errorMessageTemplate, char p1)
+DECL|method|checkState (boolean b, String errorMessageTemplate, char p1)
 specifier|public
 specifier|static
 name|void
@@ -1323,8 +1275,6 @@ parameter_list|(
 name|boolean
 name|b
 parameter_list|,
-annotation|@
-name|Nullable
 name|String
 name|errorMessageTemplate
 parameter_list|,
@@ -1353,7 +1303,7 @@ throw|;
 block|}
 block|}
 comment|/**    * Ensures the truth of an expression involving the state of the calling instance, but not    * involving any parameters to the calling method.    *    *<p>See {@link #checkState(boolean, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
-DECL|method|checkState (boolean b, @Nullable String errorMessageTemplate, int p1)
+DECL|method|checkState (boolean b, String errorMessageTemplate, int p1)
 specifier|public
 specifier|static
 name|void
@@ -1362,8 +1312,6 @@ parameter_list|(
 name|boolean
 name|b
 parameter_list|,
-annotation|@
-name|Nullable
 name|String
 name|errorMessageTemplate
 parameter_list|,
@@ -1392,7 +1340,7 @@ throw|;
 block|}
 block|}
 comment|/**    * Ensures the truth of an expression involving the state of the calling instance, but not    * involving any parameters to the calling method.    *    *<p>See {@link #checkState(boolean, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
-DECL|method|checkState (boolean b, @Nullable String errorMessageTemplate, long p1)
+DECL|method|checkState (boolean b, String errorMessageTemplate, long p1)
 specifier|public
 specifier|static
 name|void
@@ -1401,8 +1349,6 @@ parameter_list|(
 name|boolean
 name|b
 parameter_list|,
-annotation|@
-name|Nullable
 name|String
 name|errorMessageTemplate
 parameter_list|,
@@ -1431,7 +1377,7 @@ throw|;
 block|}
 block|}
 comment|/**    * Ensures the truth of an expression involving the state of the calling instance, but not    * involving any parameters to the calling method.    *    *<p>See {@link #checkState(boolean, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
-DECL|method|checkState ( boolean b, @Nullable String errorMessageTemplate, @Nullable Object p1)
+DECL|method|checkState (boolean b, String errorMessageTemplate, @CheckForNull Object p1)
 specifier|public
 specifier|static
 name|void
@@ -1440,13 +1386,11 @@ parameter_list|(
 name|boolean
 name|b
 parameter_list|,
-annotation|@
-name|Nullable
 name|String
 name|errorMessageTemplate
 parameter_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|p1
 parameter_list|)
@@ -1472,7 +1416,7 @@ throw|;
 block|}
 block|}
 comment|/**    * Ensures the truth of an expression involving the state of the calling instance, but not    * involving any parameters to the calling method.    *    *<p>See {@link #checkState(boolean, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
-DECL|method|checkState ( boolean b, @Nullable String errorMessageTemplate, char p1, char p2)
+DECL|method|checkState (boolean b, String errorMessageTemplate, char p1, char p2)
 specifier|public
 specifier|static
 name|void
@@ -1481,8 +1425,6 @@ parameter_list|(
 name|boolean
 name|b
 parameter_list|,
-annotation|@
-name|Nullable
 name|String
 name|errorMessageTemplate
 parameter_list|,
@@ -1516,7 +1458,7 @@ throw|;
 block|}
 block|}
 comment|/**    * Ensures the truth of an expression involving the state of the calling instance, but not    * involving any parameters to the calling method.    *    *<p>See {@link #checkState(boolean, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
-DECL|method|checkState (boolean b, @Nullable String errorMessageTemplate, char p1, int p2)
+DECL|method|checkState (boolean b, String errorMessageTemplate, char p1, int p2)
 specifier|public
 specifier|static
 name|void
@@ -1525,8 +1467,6 @@ parameter_list|(
 name|boolean
 name|b
 parameter_list|,
-annotation|@
-name|Nullable
 name|String
 name|errorMessageTemplate
 parameter_list|,
@@ -1560,7 +1500,7 @@ throw|;
 block|}
 block|}
 comment|/**    * Ensures the truth of an expression involving the state of the calling instance, but not    * involving any parameters to the calling method.    *    *<p>See {@link #checkState(boolean, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
-DECL|method|checkState ( boolean b, @Nullable String errorMessageTemplate, char p1, long p2)
+DECL|method|checkState (boolean b, String errorMessageTemplate, char p1, long p2)
 specifier|public
 specifier|static
 name|void
@@ -1569,8 +1509,6 @@ parameter_list|(
 name|boolean
 name|b
 parameter_list|,
-annotation|@
-name|Nullable
 name|String
 name|errorMessageTemplate
 parameter_list|,
@@ -1604,7 +1542,7 @@ throw|;
 block|}
 block|}
 comment|/**    * Ensures the truth of an expression involving the state of the calling instance, but not    * involving any parameters to the calling method.    *    *<p>See {@link #checkState(boolean, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
-DECL|method|checkState ( boolean b, @Nullable String errorMessageTemplate, char p1, @Nullable Object p2)
+DECL|method|checkState ( boolean b, String errorMessageTemplate, char p1, @CheckForNull Object p2)
 specifier|public
 specifier|static
 name|void
@@ -1613,8 +1551,6 @@ parameter_list|(
 name|boolean
 name|b
 parameter_list|,
-annotation|@
-name|Nullable
 name|String
 name|errorMessageTemplate
 parameter_list|,
@@ -1622,7 +1558,7 @@ name|char
 name|p1
 parameter_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|p2
 parameter_list|)
@@ -1650,7 +1586,7 @@ throw|;
 block|}
 block|}
 comment|/**    * Ensures the truth of an expression involving the state of the calling instance, but not    * involving any parameters to the calling method.    *    *<p>See {@link #checkState(boolean, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
-DECL|method|checkState (boolean b, @Nullable String errorMessageTemplate, int p1, char p2)
+DECL|method|checkState (boolean b, String errorMessageTemplate, int p1, char p2)
 specifier|public
 specifier|static
 name|void
@@ -1659,8 +1595,6 @@ parameter_list|(
 name|boolean
 name|b
 parameter_list|,
-annotation|@
-name|Nullable
 name|String
 name|errorMessageTemplate
 parameter_list|,
@@ -1694,7 +1628,7 @@ throw|;
 block|}
 block|}
 comment|/**    * Ensures the truth of an expression involving the state of the calling instance, but not    * involving any parameters to the calling method.    *    *<p>See {@link #checkState(boolean, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
-DECL|method|checkState (boolean b, @Nullable String errorMessageTemplate, int p1, int p2)
+DECL|method|checkState (boolean b, String errorMessageTemplate, int p1, int p2)
 specifier|public
 specifier|static
 name|void
@@ -1703,8 +1637,6 @@ parameter_list|(
 name|boolean
 name|b
 parameter_list|,
-annotation|@
-name|Nullable
 name|String
 name|errorMessageTemplate
 parameter_list|,
@@ -1738,7 +1670,7 @@ throw|;
 block|}
 block|}
 comment|/**    * Ensures the truth of an expression involving the state of the calling instance, but not    * involving any parameters to the calling method.    *    *<p>See {@link #checkState(boolean, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
-DECL|method|checkState (boolean b, @Nullable String errorMessageTemplate, int p1, long p2)
+DECL|method|checkState (boolean b, String errorMessageTemplate, int p1, long p2)
 specifier|public
 specifier|static
 name|void
@@ -1747,8 +1679,6 @@ parameter_list|(
 name|boolean
 name|b
 parameter_list|,
-annotation|@
-name|Nullable
 name|String
 name|errorMessageTemplate
 parameter_list|,
@@ -1782,7 +1712,7 @@ throw|;
 block|}
 block|}
 comment|/**    * Ensures the truth of an expression involving the state of the calling instance, but not    * involving any parameters to the calling method.    *    *<p>See {@link #checkState(boolean, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
-DECL|method|checkState ( boolean b, @Nullable String errorMessageTemplate, int p1, @Nullable Object p2)
+DECL|method|checkState ( boolean b, String errorMessageTemplate, int p1, @CheckForNull Object p2)
 specifier|public
 specifier|static
 name|void
@@ -1791,8 +1721,6 @@ parameter_list|(
 name|boolean
 name|b
 parameter_list|,
-annotation|@
-name|Nullable
 name|String
 name|errorMessageTemplate
 parameter_list|,
@@ -1800,7 +1728,7 @@ name|int
 name|p1
 parameter_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|p2
 parameter_list|)
@@ -1828,7 +1756,7 @@ throw|;
 block|}
 block|}
 comment|/**    * Ensures the truth of an expression involving the state of the calling instance, but not    * involving any parameters to the calling method.    *    *<p>See {@link #checkState(boolean, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
-DECL|method|checkState ( boolean b, @Nullable String errorMessageTemplate, long p1, char p2)
+DECL|method|checkState (boolean b, String errorMessageTemplate, long p1, char p2)
 specifier|public
 specifier|static
 name|void
@@ -1837,8 +1765,6 @@ parameter_list|(
 name|boolean
 name|b
 parameter_list|,
-annotation|@
-name|Nullable
 name|String
 name|errorMessageTemplate
 parameter_list|,
@@ -1872,7 +1798,7 @@ throw|;
 block|}
 block|}
 comment|/**    * Ensures the truth of an expression involving the state of the calling instance, but not    * involving any parameters to the calling method.    *    *<p>See {@link #checkState(boolean, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
-DECL|method|checkState (boolean b, @Nullable String errorMessageTemplate, long p1, int p2)
+DECL|method|checkState (boolean b, String errorMessageTemplate, long p1, int p2)
 specifier|public
 specifier|static
 name|void
@@ -1881,8 +1807,6 @@ parameter_list|(
 name|boolean
 name|b
 parameter_list|,
-annotation|@
-name|Nullable
 name|String
 name|errorMessageTemplate
 parameter_list|,
@@ -1916,7 +1840,7 @@ throw|;
 block|}
 block|}
 comment|/**    * Ensures the truth of an expression involving the state of the calling instance, but not    * involving any parameters to the calling method.    *    *<p>See {@link #checkState(boolean, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
-DECL|method|checkState ( boolean b, @Nullable String errorMessageTemplate, long p1, long p2)
+DECL|method|checkState (boolean b, String errorMessageTemplate, long p1, long p2)
 specifier|public
 specifier|static
 name|void
@@ -1925,8 +1849,6 @@ parameter_list|(
 name|boolean
 name|b
 parameter_list|,
-annotation|@
-name|Nullable
 name|String
 name|errorMessageTemplate
 parameter_list|,
@@ -1960,7 +1882,7 @@ throw|;
 block|}
 block|}
 comment|/**    * Ensures the truth of an expression involving the state of the calling instance, but not    * involving any parameters to the calling method.    *    *<p>See {@link #checkState(boolean, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
-DECL|method|checkState ( boolean b, @Nullable String errorMessageTemplate, long p1, @Nullable Object p2)
+DECL|method|checkState ( boolean b, String errorMessageTemplate, long p1, @CheckForNull Object p2)
 specifier|public
 specifier|static
 name|void
@@ -1969,8 +1891,6 @@ parameter_list|(
 name|boolean
 name|b
 parameter_list|,
-annotation|@
-name|Nullable
 name|String
 name|errorMessageTemplate
 parameter_list|,
@@ -1978,7 +1898,7 @@ name|long
 name|p1
 parameter_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|p2
 parameter_list|)
@@ -2006,7 +1926,7 @@ throw|;
 block|}
 block|}
 comment|/**    * Ensures the truth of an expression involving the state of the calling instance, but not    * involving any parameters to the calling method.    *    *<p>See {@link #checkState(boolean, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
-DECL|method|checkState ( boolean b, @Nullable String errorMessageTemplate, @Nullable Object p1, char p2)
+DECL|method|checkState ( boolean b, String errorMessageTemplate, @CheckForNull Object p1, char p2)
 specifier|public
 specifier|static
 name|void
@@ -2015,13 +1935,11 @@ parameter_list|(
 name|boolean
 name|b
 parameter_list|,
-annotation|@
-name|Nullable
 name|String
 name|errorMessageTemplate
 parameter_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|p1
 parameter_list|,
@@ -2052,7 +1970,7 @@ throw|;
 block|}
 block|}
 comment|/**    * Ensures the truth of an expression involving the state of the calling instance, but not    * involving any parameters to the calling method.    *    *<p>See {@link #checkState(boolean, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
-DECL|method|checkState ( boolean b, @Nullable String errorMessageTemplate, @Nullable Object p1, int p2)
+DECL|method|checkState ( boolean b, String errorMessageTemplate, @CheckForNull Object p1, int p2)
 specifier|public
 specifier|static
 name|void
@@ -2061,13 +1979,11 @@ parameter_list|(
 name|boolean
 name|b
 parameter_list|,
-annotation|@
-name|Nullable
 name|String
 name|errorMessageTemplate
 parameter_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|p1
 parameter_list|,
@@ -2098,7 +2014,7 @@ throw|;
 block|}
 block|}
 comment|/**    * Ensures the truth of an expression involving the state of the calling instance, but not    * involving any parameters to the calling method.    *    *<p>See {@link #checkState(boolean, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
-DECL|method|checkState ( boolean b, @Nullable String errorMessageTemplate, @Nullable Object p1, long p2)
+DECL|method|checkState ( boolean b, String errorMessageTemplate, @CheckForNull Object p1, long p2)
 specifier|public
 specifier|static
 name|void
@@ -2107,13 +2023,11 @@ parameter_list|(
 name|boolean
 name|b
 parameter_list|,
-annotation|@
-name|Nullable
 name|String
 name|errorMessageTemplate
 parameter_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|p1
 parameter_list|,
@@ -2144,7 +2058,7 @@ throw|;
 block|}
 block|}
 comment|/**    * Ensures the truth of an expression involving the state of the calling instance, but not    * involving any parameters to the calling method.    *    *<p>See {@link #checkState(boolean, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
-DECL|method|checkState ( boolean b, @Nullable String errorMessageTemplate, @Nullable Object p1, @Nullable Object p2)
+DECL|method|checkState ( boolean b, String errorMessageTemplate, @CheckForNull Object p1, @CheckForNull Object p2)
 specifier|public
 specifier|static
 name|void
@@ -2153,18 +2067,16 @@ parameter_list|(
 name|boolean
 name|b
 parameter_list|,
-annotation|@
-name|Nullable
 name|String
 name|errorMessageTemplate
 parameter_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|p1
 parameter_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|p2
 parameter_list|)
@@ -2192,7 +2104,7 @@ throw|;
 block|}
 block|}
 comment|/**    * Ensures the truth of an expression involving the state of the calling instance, but not    * involving any parameters to the calling method.    *    *<p>See {@link #checkState(boolean, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
-DECL|method|checkState ( boolean b, @Nullable String errorMessageTemplate, @Nullable Object p1, @Nullable Object p2, @Nullable Object p3)
+DECL|method|checkState ( boolean b, String errorMessageTemplate, @CheckForNull Object p1, @CheckForNull Object p2, @CheckForNull Object p3)
 specifier|public
 specifier|static
 name|void
@@ -2201,23 +2113,21 @@ parameter_list|(
 name|boolean
 name|b
 parameter_list|,
-annotation|@
-name|Nullable
 name|String
 name|errorMessageTemplate
 parameter_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|p1
 parameter_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|p2
 parameter_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|p3
 parameter_list|)
@@ -2247,7 +2157,7 @@ throw|;
 block|}
 block|}
 comment|/**    * Ensures the truth of an expression involving the state of the calling instance, but not    * involving any parameters to the calling method.    *    *<p>See {@link #checkState(boolean, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
-DECL|method|checkState ( boolean b, @Nullable String errorMessageTemplate, @Nullable Object p1, @Nullable Object p2, @Nullable Object p3, @Nullable Object p4)
+DECL|method|checkState ( boolean b, String errorMessageTemplate, @CheckForNull Object p1, @CheckForNull Object p2, @CheckForNull Object p3, @CheckForNull Object p4)
 specifier|public
 specifier|static
 name|void
@@ -2256,28 +2166,26 @@ parameter_list|(
 name|boolean
 name|b
 parameter_list|,
-annotation|@
-name|Nullable
 name|String
 name|errorMessageTemplate
 parameter_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|p1
 parameter_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|p2
 parameter_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|p3
 parameter_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|p4
 parameter_list|)
@@ -2308,24 +2216,24 @@ argument_list|)
 throw|;
 block|}
 block|}
+comment|/*    * Preconditions.checkNotNull is *intended* for performing eager null checks on parameters that a    * nullness checker can already "prove" are non-null. That means that the first parameter to    * checkNotNull *should* be annotated to require it to be non-null.    *    * However, for a variety of reasons, Google developers have written a ton of code over the past    * decade that assumes that they can use checkNotNull for non-precondition checks. I had hoped to    * take a principled stand on this, but the amount of such code is simply overwhelming. To avoid    * creating a lot of compile errors that users would not find to be informative, we're giving in    * and allowing callers to pass arguments that a nullness checker believes could be null.    *    * We still encourage people to use requireNonNull over checkNotNull for non-precondition checks.    */
 comment|/**    * Ensures that an object reference passed as a parameter to the calling method is not null.    *    * @param reference an object reference    * @return the non-null reference that was validated    * @throws NullPointerException if {@code reference} is null    * @see Verify#verifyNotNull Verify.verifyNotNull()    */
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|checkNotNull (T reference)
+DECL|method|checkNotNull (@heckForNull T reference)
 specifier|public
 specifier|static
-operator|<
+parameter_list|<
 name|T
-expr|extends @
-name|NonNull
-name|Object
-operator|>
+parameter_list|>
 name|T
 name|checkNotNull
-argument_list|(
+parameter_list|(
+annotation|@
+name|CheckForNull
 name|T
 name|reference
-argument_list|)
+parameter_list|)
 block|{
 if|if
 condition|(
@@ -2344,38 +2252,28 @@ return|return
 name|reference
 return|;
 block|}
-end_class
-
-begin_comment
 comment|/**    * Ensures that an object reference passed as a parameter to the calling method is not null.    *    * @param reference an object reference    * @param errorMessage the exception message to use if the check fails; will be converted to a    *     string using {@link String#valueOf(Object)}    * @return the non-null reference that was validated    * @throws NullPointerException if {@code reference} is null    * @see Verify#verifyNotNull Verify.verifyNotNull()    */
-end_comment
-
-begin_annotation
 annotation|@
 name|CanIgnoreReturnValue
-end_annotation
-
-begin_expr_stmt
-DECL|method|checkNotNull ( T reference, @Nullable Object errorMessage)
+DECL|method|checkNotNull (@heckForNull T reference, @CheckForNull Object errorMessage)
 specifier|public
 specifier|static
-operator|<
+parameter_list|<
 name|T
-expr|extends @
-name|NonNull
-name|Object
-operator|>
+parameter_list|>
 name|T
 name|checkNotNull
-argument_list|(
+parameter_list|(
+annotation|@
+name|CheckForNull
 name|T
 name|reference
-argument_list|,
+parameter_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|errorMessage
-argument_list|)
+parameter_list|)
 block|{
 if|if
 condition|(
@@ -2397,50 +2295,38 @@ argument_list|)
 argument_list|)
 throw|;
 block|}
-end_expr_stmt
-
-begin_return
 return|return
 name|reference
 return|;
-end_return
-
-begin_comment
-unit|}
+block|}
 comment|/**    * Ensures that an object reference passed as a parameter to the calling method is not null.    *    * @param reference an object reference    * @param errorMessageTemplate a template for the exception message should the check fail. The    *     message is formed by replacing each {@code %s} placeholder in the template with an    *     argument. These are matched by position - the first {@code %s} gets {@code    *     errorMessageArgs[0]}, etc. Unmatched arguments will be appended to the formatted message in    *     square braces. Unmatched placeholders will be left as-is.    * @param errorMessageArgs the arguments to be substituted into the message template. Arguments    *     are converted to strings using {@link String#valueOf(Object)}.    * @return the non-null reference that was validated    * @throws NullPointerException if {@code reference} is null    * @see Verify#verifyNotNull Verify.verifyNotNull()    */
-end_comment
-
-begin_expr_stmt
-unit|@
+annotation|@
 name|CanIgnoreReturnValue
-DECL|method|checkNotNull ( T reference, @Nullable String errorMessageTemplate, @Nullable Object @Nullable ... errorMessageArgs)
+DECL|method|checkNotNull ( @heckForNull T reference, String errorMessageTemplate, @CheckForNull @Nullable Object... errorMessageArgs)
 specifier|public
 specifier|static
-operator|<
+parameter_list|<
 name|T
-expr|extends @
-name|NonNull
-name|Object
-operator|>
+parameter_list|>
 name|T
 name|checkNotNull
-argument_list|(
+parameter_list|(
+annotation|@
+name|CheckForNull
 name|T
 name|reference
-argument_list|,
-annotation|@
-name|Nullable
+parameter_list|,
 name|String
 name|errorMessageTemplate
-argument_list|,
+parameter_list|,
+annotation|@
+name|CheckForNull
 annotation|@
 name|Nullable
 name|Object
-expr|@
-name|Nullable
-operator|...
+modifier|...
 name|errorMessageArgs
-argument_list|)
+parameter_list|)
 block|{
 if|if
 condition|(
@@ -2462,45 +2348,33 @@ argument_list|)
 argument_list|)
 throw|;
 block|}
-end_expr_stmt
-
-begin_return
 return|return
 name|reference
 return|;
-end_return
-
-begin_comment
-unit|}
+block|}
 comment|/**    * Ensures that an object reference passed as a parameter to the calling method is not null.    *    *<p>See {@link #checkNotNull(Object, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
-end_comment
-
-begin_expr_stmt
-unit|@
+annotation|@
 name|CanIgnoreReturnValue
-DECL|method|checkNotNull ( T obj, @Nullable String errorMessageTemplate, char p1)
+DECL|method|checkNotNull (@heckForNull T obj, String errorMessageTemplate, char p1)
 specifier|public
 specifier|static
-operator|<
+parameter_list|<
 name|T
-expr|extends @
-name|NonNull
-name|Object
-operator|>
+parameter_list|>
 name|T
 name|checkNotNull
-argument_list|(
+parameter_list|(
+annotation|@
+name|CheckForNull
 name|T
 name|obj
-argument_list|,
-annotation|@
-name|Nullable
+parameter_list|,
 name|String
 name|errorMessageTemplate
-argument_list|,
+parameter_list|,
 name|char
 name|p1
-argument_list|)
+parameter_list|)
 block|{
 if|if
 condition|(
@@ -2522,45 +2396,33 @@ argument_list|)
 argument_list|)
 throw|;
 block|}
-end_expr_stmt
-
-begin_return
 return|return
 name|obj
 return|;
-end_return
-
-begin_comment
-unit|}
+block|}
 comment|/**    * Ensures that an object reference passed as a parameter to the calling method is not null.    *    *<p>See {@link #checkNotNull(Object, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
-end_comment
-
-begin_expr_stmt
-unit|@
+annotation|@
 name|CanIgnoreReturnValue
-DECL|method|checkNotNull ( T obj, @Nullable String errorMessageTemplate, int p1)
+DECL|method|checkNotNull (@heckForNull T obj, String errorMessageTemplate, int p1)
 specifier|public
 specifier|static
-operator|<
+parameter_list|<
 name|T
-expr|extends @
-name|NonNull
-name|Object
-operator|>
+parameter_list|>
 name|T
 name|checkNotNull
-argument_list|(
+parameter_list|(
+annotation|@
+name|CheckForNull
 name|T
 name|obj
-argument_list|,
-annotation|@
-name|Nullable
+parameter_list|,
 name|String
 name|errorMessageTemplate
-argument_list|,
+parameter_list|,
 name|int
 name|p1
-argument_list|)
+parameter_list|)
 block|{
 if|if
 condition|(
@@ -2582,45 +2444,33 @@ argument_list|)
 argument_list|)
 throw|;
 block|}
-end_expr_stmt
-
-begin_return
 return|return
 name|obj
 return|;
-end_return
-
-begin_comment
-unit|}
+block|}
 comment|/**    * Ensures that an object reference passed as a parameter to the calling method is not null.    *    *<p>See {@link #checkNotNull(Object, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
-end_comment
-
-begin_expr_stmt
-unit|@
+annotation|@
 name|CanIgnoreReturnValue
-DECL|method|checkNotNull ( T obj, @Nullable String errorMessageTemplate, long p1)
+DECL|method|checkNotNull (@heckForNull T obj, String errorMessageTemplate, long p1)
 specifier|public
 specifier|static
-operator|<
+parameter_list|<
 name|T
-expr|extends @
-name|NonNull
-name|Object
-operator|>
+parameter_list|>
 name|T
 name|checkNotNull
-argument_list|(
+parameter_list|(
+annotation|@
+name|CheckForNull
 name|T
 name|obj
-argument_list|,
-annotation|@
-name|Nullable
+parameter_list|,
 name|String
 name|errorMessageTemplate
-argument_list|,
+parameter_list|,
 name|long
 name|p1
-argument_list|)
+parameter_list|)
 block|{
 if|if
 condition|(
@@ -2642,47 +2492,35 @@ argument_list|)
 argument_list|)
 throw|;
 block|}
-end_expr_stmt
-
-begin_return
 return|return
 name|obj
 return|;
-end_return
-
-begin_comment
-unit|}
+block|}
 comment|/**    * Ensures that an object reference passed as a parameter to the calling method is not null.    *    *<p>See {@link #checkNotNull(Object, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
-end_comment
-
-begin_expr_stmt
-unit|@
+annotation|@
 name|CanIgnoreReturnValue
-DECL|method|checkNotNull ( T obj, @Nullable String errorMessageTemplate, @Nullable Object p1)
+DECL|method|checkNotNull ( @heckForNull T obj, String errorMessageTemplate, @CheckForNull Object p1)
 specifier|public
 specifier|static
-operator|<
+parameter_list|<
 name|T
-expr|extends @
-name|NonNull
-name|Object
-operator|>
+parameter_list|>
 name|T
 name|checkNotNull
-argument_list|(
+parameter_list|(
+annotation|@
+name|CheckForNull
 name|T
 name|obj
-argument_list|,
-annotation|@
-name|Nullable
+parameter_list|,
 name|String
 name|errorMessageTemplate
-argument_list|,
+parameter_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|p1
-argument_list|)
+parameter_list|)
 block|{
 if|if
 condition|(
@@ -2704,48 +2542,36 @@ argument_list|)
 argument_list|)
 throw|;
 block|}
-end_expr_stmt
-
-begin_return
 return|return
 name|obj
 return|;
-end_return
-
-begin_comment
-unit|}
+block|}
 comment|/**    * Ensures that an object reference passed as a parameter to the calling method is not null.    *    *<p>See {@link #checkNotNull(Object, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
-end_comment
-
-begin_expr_stmt
-unit|@
+annotation|@
 name|CanIgnoreReturnValue
-DECL|method|checkNotNull ( T obj, @Nullable String errorMessageTemplate, char p1, char p2)
+DECL|method|checkNotNull ( @heckForNull T obj, String errorMessageTemplate, char p1, char p2)
 specifier|public
 specifier|static
-operator|<
+parameter_list|<
 name|T
-expr|extends @
-name|NonNull
-name|Object
-operator|>
+parameter_list|>
 name|T
 name|checkNotNull
-argument_list|(
+parameter_list|(
+annotation|@
+name|CheckForNull
 name|T
 name|obj
-argument_list|,
-annotation|@
-name|Nullable
+parameter_list|,
 name|String
 name|errorMessageTemplate
-argument_list|,
+parameter_list|,
 name|char
 name|p1
-argument_list|,
+parameter_list|,
 name|char
 name|p2
-argument_list|)
+parameter_list|)
 block|{
 if|if
 condition|(
@@ -2769,48 +2595,36 @@ argument_list|)
 argument_list|)
 throw|;
 block|}
-end_expr_stmt
-
-begin_return
 return|return
 name|obj
 return|;
-end_return
-
-begin_comment
-unit|}
+block|}
 comment|/**    * Ensures that an object reference passed as a parameter to the calling method is not null.    *    *<p>See {@link #checkNotNull(Object, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
-end_comment
-
-begin_expr_stmt
-unit|@
+annotation|@
 name|CanIgnoreReturnValue
-DECL|method|checkNotNull ( T obj, @Nullable String errorMessageTemplate, char p1, int p2)
+DECL|method|checkNotNull ( @heckForNull T obj, String errorMessageTemplate, char p1, int p2)
 specifier|public
 specifier|static
-operator|<
+parameter_list|<
 name|T
-expr|extends @
-name|NonNull
-name|Object
-operator|>
+parameter_list|>
 name|T
 name|checkNotNull
-argument_list|(
+parameter_list|(
+annotation|@
+name|CheckForNull
 name|T
 name|obj
-argument_list|,
-annotation|@
-name|Nullable
+parameter_list|,
 name|String
 name|errorMessageTemplate
-argument_list|,
+parameter_list|,
 name|char
 name|p1
-argument_list|,
+parameter_list|,
 name|int
 name|p2
-argument_list|)
+parameter_list|)
 block|{
 if|if
 condition|(
@@ -2834,48 +2648,36 @@ argument_list|)
 argument_list|)
 throw|;
 block|}
-end_expr_stmt
-
-begin_return
 return|return
 name|obj
 return|;
-end_return
-
-begin_comment
-unit|}
+block|}
 comment|/**    * Ensures that an object reference passed as a parameter to the calling method is not null.    *    *<p>See {@link #checkNotNull(Object, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
-end_comment
-
-begin_expr_stmt
-unit|@
+annotation|@
 name|CanIgnoreReturnValue
-DECL|method|checkNotNull ( T obj, @Nullable String errorMessageTemplate, char p1, long p2)
+DECL|method|checkNotNull ( @heckForNull T obj, String errorMessageTemplate, char p1, long p2)
 specifier|public
 specifier|static
-operator|<
+parameter_list|<
 name|T
-expr|extends @
-name|NonNull
-name|Object
-operator|>
+parameter_list|>
 name|T
 name|checkNotNull
-argument_list|(
+parameter_list|(
+annotation|@
+name|CheckForNull
 name|T
 name|obj
-argument_list|,
-annotation|@
-name|Nullable
+parameter_list|,
 name|String
 name|errorMessageTemplate
-argument_list|,
+parameter_list|,
 name|char
 name|p1
-argument_list|,
+parameter_list|,
 name|long
 name|p2
-argument_list|)
+parameter_list|)
 block|{
 if|if
 condition|(
@@ -2899,50 +2701,38 @@ argument_list|)
 argument_list|)
 throw|;
 block|}
-end_expr_stmt
-
-begin_return
 return|return
 name|obj
 return|;
-end_return
-
-begin_comment
-unit|}
+block|}
 comment|/**    * Ensures that an object reference passed as a parameter to the calling method is not null.    *    *<p>See {@link #checkNotNull(Object, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
-end_comment
-
-begin_expr_stmt
-unit|@
+annotation|@
 name|CanIgnoreReturnValue
-DECL|method|checkNotNull ( T obj, @Nullable String errorMessageTemplate, char p1, @Nullable Object p2)
+DECL|method|checkNotNull ( @heckForNull T obj, String errorMessageTemplate, char p1, @CheckForNull Object p2)
 specifier|public
 specifier|static
-operator|<
+parameter_list|<
 name|T
-expr|extends @
-name|NonNull
-name|Object
-operator|>
+parameter_list|>
 name|T
 name|checkNotNull
-argument_list|(
+parameter_list|(
+annotation|@
+name|CheckForNull
 name|T
 name|obj
-argument_list|,
-annotation|@
-name|Nullable
+parameter_list|,
 name|String
 name|errorMessageTemplate
-argument_list|,
+parameter_list|,
 name|char
 name|p1
-argument_list|,
+parameter_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|p2
-argument_list|)
+parameter_list|)
 block|{
 if|if
 condition|(
@@ -2966,48 +2756,36 @@ argument_list|)
 argument_list|)
 throw|;
 block|}
-end_expr_stmt
-
-begin_return
 return|return
 name|obj
 return|;
-end_return
-
-begin_comment
-unit|}
+block|}
 comment|/**    * Ensures that an object reference passed as a parameter to the calling method is not null.    *    *<p>See {@link #checkNotNull(Object, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
-end_comment
-
-begin_expr_stmt
-unit|@
+annotation|@
 name|CanIgnoreReturnValue
-DECL|method|checkNotNull ( T obj, @Nullable String errorMessageTemplate, int p1, char p2)
+DECL|method|checkNotNull ( @heckForNull T obj, String errorMessageTemplate, int p1, char p2)
 specifier|public
 specifier|static
-operator|<
+parameter_list|<
 name|T
-expr|extends @
-name|NonNull
-name|Object
-operator|>
+parameter_list|>
 name|T
 name|checkNotNull
-argument_list|(
+parameter_list|(
+annotation|@
+name|CheckForNull
 name|T
 name|obj
-argument_list|,
-annotation|@
-name|Nullable
+parameter_list|,
 name|String
 name|errorMessageTemplate
-argument_list|,
+parameter_list|,
 name|int
 name|p1
-argument_list|,
+parameter_list|,
 name|char
 name|p2
-argument_list|)
+parameter_list|)
 block|{
 if|if
 condition|(
@@ -3031,48 +2809,36 @@ argument_list|)
 argument_list|)
 throw|;
 block|}
-end_expr_stmt
-
-begin_return
 return|return
 name|obj
 return|;
-end_return
-
-begin_comment
-unit|}
+block|}
 comment|/**    * Ensures that an object reference passed as a parameter to the calling method is not null.    *    *<p>See {@link #checkNotNull(Object, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
-end_comment
-
-begin_expr_stmt
-unit|@
+annotation|@
 name|CanIgnoreReturnValue
-DECL|method|checkNotNull ( T obj, @Nullable String errorMessageTemplate, int p1, int p2)
+DECL|method|checkNotNull ( @heckForNull T obj, String errorMessageTemplate, int p1, int p2)
 specifier|public
 specifier|static
-operator|<
+parameter_list|<
 name|T
-expr|extends @
-name|NonNull
-name|Object
-operator|>
+parameter_list|>
 name|T
 name|checkNotNull
-argument_list|(
+parameter_list|(
+annotation|@
+name|CheckForNull
 name|T
 name|obj
-argument_list|,
-annotation|@
-name|Nullable
+parameter_list|,
 name|String
 name|errorMessageTemplate
-argument_list|,
+parameter_list|,
 name|int
 name|p1
-argument_list|,
+parameter_list|,
 name|int
 name|p2
-argument_list|)
+parameter_list|)
 block|{
 if|if
 condition|(
@@ -3096,48 +2862,36 @@ argument_list|)
 argument_list|)
 throw|;
 block|}
-end_expr_stmt
-
-begin_return
 return|return
 name|obj
 return|;
-end_return
-
-begin_comment
-unit|}
+block|}
 comment|/**    * Ensures that an object reference passed as a parameter to the calling method is not null.    *    *<p>See {@link #checkNotNull(Object, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
-end_comment
-
-begin_expr_stmt
-unit|@
+annotation|@
 name|CanIgnoreReturnValue
-DECL|method|checkNotNull ( T obj, @Nullable String errorMessageTemplate, int p1, long p2)
+DECL|method|checkNotNull ( @heckForNull T obj, String errorMessageTemplate, int p1, long p2)
 specifier|public
 specifier|static
-operator|<
+parameter_list|<
 name|T
-expr|extends @
-name|NonNull
-name|Object
-operator|>
+parameter_list|>
 name|T
 name|checkNotNull
-argument_list|(
+parameter_list|(
+annotation|@
+name|CheckForNull
 name|T
 name|obj
-argument_list|,
-annotation|@
-name|Nullable
+parameter_list|,
 name|String
 name|errorMessageTemplate
-argument_list|,
+parameter_list|,
 name|int
 name|p1
-argument_list|,
+parameter_list|,
 name|long
 name|p2
-argument_list|)
+parameter_list|)
 block|{
 if|if
 condition|(
@@ -3161,50 +2915,38 @@ argument_list|)
 argument_list|)
 throw|;
 block|}
-end_expr_stmt
-
-begin_return
 return|return
 name|obj
 return|;
-end_return
-
-begin_comment
-unit|}
+block|}
 comment|/**    * Ensures that an object reference passed as a parameter to the calling method is not null.    *    *<p>See {@link #checkNotNull(Object, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
-end_comment
-
-begin_expr_stmt
-unit|@
+annotation|@
 name|CanIgnoreReturnValue
-DECL|method|checkNotNull ( T obj, @Nullable String errorMessageTemplate, int p1, @Nullable Object p2)
+DECL|method|checkNotNull ( @heckForNull T obj, String errorMessageTemplate, int p1, @CheckForNull Object p2)
 specifier|public
 specifier|static
-operator|<
+parameter_list|<
 name|T
-expr|extends @
-name|NonNull
-name|Object
-operator|>
+parameter_list|>
 name|T
 name|checkNotNull
-argument_list|(
+parameter_list|(
+annotation|@
+name|CheckForNull
 name|T
 name|obj
-argument_list|,
-annotation|@
-name|Nullable
+parameter_list|,
 name|String
 name|errorMessageTemplate
-argument_list|,
+parameter_list|,
 name|int
 name|p1
-argument_list|,
+parameter_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|p2
-argument_list|)
+parameter_list|)
 block|{
 if|if
 condition|(
@@ -3228,48 +2970,36 @@ argument_list|)
 argument_list|)
 throw|;
 block|}
-end_expr_stmt
-
-begin_return
 return|return
 name|obj
 return|;
-end_return
-
-begin_comment
-unit|}
+block|}
 comment|/**    * Ensures that an object reference passed as a parameter to the calling method is not null.    *    *<p>See {@link #checkNotNull(Object, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
-end_comment
-
-begin_expr_stmt
-unit|@
+annotation|@
 name|CanIgnoreReturnValue
-DECL|method|checkNotNull ( T obj, @Nullable String errorMessageTemplate, long p1, char p2)
+DECL|method|checkNotNull ( @heckForNull T obj, String errorMessageTemplate, long p1, char p2)
 specifier|public
 specifier|static
-operator|<
+parameter_list|<
 name|T
-expr|extends @
-name|NonNull
-name|Object
-operator|>
+parameter_list|>
 name|T
 name|checkNotNull
-argument_list|(
+parameter_list|(
+annotation|@
+name|CheckForNull
 name|T
 name|obj
-argument_list|,
-annotation|@
-name|Nullable
+parameter_list|,
 name|String
 name|errorMessageTemplate
-argument_list|,
+parameter_list|,
 name|long
 name|p1
-argument_list|,
+parameter_list|,
 name|char
 name|p2
-argument_list|)
+parameter_list|)
 block|{
 if|if
 condition|(
@@ -3293,48 +3023,36 @@ argument_list|)
 argument_list|)
 throw|;
 block|}
-end_expr_stmt
-
-begin_return
 return|return
 name|obj
 return|;
-end_return
-
-begin_comment
-unit|}
+block|}
 comment|/**    * Ensures that an object reference passed as a parameter to the calling method is not null.    *    *<p>See {@link #checkNotNull(Object, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
-end_comment
-
-begin_expr_stmt
-unit|@
+annotation|@
 name|CanIgnoreReturnValue
-DECL|method|checkNotNull ( T obj, @Nullable String errorMessageTemplate, long p1, int p2)
+DECL|method|checkNotNull ( @heckForNull T obj, String errorMessageTemplate, long p1, int p2)
 specifier|public
 specifier|static
-operator|<
+parameter_list|<
 name|T
-expr|extends @
-name|NonNull
-name|Object
-operator|>
+parameter_list|>
 name|T
 name|checkNotNull
-argument_list|(
+parameter_list|(
+annotation|@
+name|CheckForNull
 name|T
 name|obj
-argument_list|,
-annotation|@
-name|Nullable
+parameter_list|,
 name|String
 name|errorMessageTemplate
-argument_list|,
+parameter_list|,
 name|long
 name|p1
-argument_list|,
+parameter_list|,
 name|int
 name|p2
-argument_list|)
+parameter_list|)
 block|{
 if|if
 condition|(
@@ -3358,48 +3076,36 @@ argument_list|)
 argument_list|)
 throw|;
 block|}
-end_expr_stmt
-
-begin_return
 return|return
 name|obj
 return|;
-end_return
-
-begin_comment
-unit|}
+block|}
 comment|/**    * Ensures that an object reference passed as a parameter to the calling method is not null.    *    *<p>See {@link #checkNotNull(Object, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
-end_comment
-
-begin_expr_stmt
-unit|@
+annotation|@
 name|CanIgnoreReturnValue
-DECL|method|checkNotNull ( T obj, @Nullable String errorMessageTemplate, long p1, long p2)
+DECL|method|checkNotNull ( @heckForNull T obj, String errorMessageTemplate, long p1, long p2)
 specifier|public
 specifier|static
-operator|<
+parameter_list|<
 name|T
-expr|extends @
-name|NonNull
-name|Object
-operator|>
+parameter_list|>
 name|T
 name|checkNotNull
-argument_list|(
+parameter_list|(
+annotation|@
+name|CheckForNull
 name|T
 name|obj
-argument_list|,
-annotation|@
-name|Nullable
+parameter_list|,
 name|String
 name|errorMessageTemplate
-argument_list|,
+parameter_list|,
 name|long
 name|p1
-argument_list|,
+parameter_list|,
 name|long
 name|p2
-argument_list|)
+parameter_list|)
 block|{
 if|if
 condition|(
@@ -3423,50 +3129,38 @@ argument_list|)
 argument_list|)
 throw|;
 block|}
-end_expr_stmt
-
-begin_return
 return|return
 name|obj
 return|;
-end_return
-
-begin_comment
-unit|}
+block|}
 comment|/**    * Ensures that an object reference passed as a parameter to the calling method is not null.    *    *<p>See {@link #checkNotNull(Object, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
-end_comment
-
-begin_expr_stmt
-unit|@
+annotation|@
 name|CanIgnoreReturnValue
-DECL|method|checkNotNull ( T obj, @Nullable String errorMessageTemplate, long p1, @Nullable Object p2)
+DECL|method|checkNotNull ( @heckForNull T obj, String errorMessageTemplate, long p1, @CheckForNull Object p2)
 specifier|public
 specifier|static
-operator|<
+parameter_list|<
 name|T
-expr|extends @
-name|NonNull
-name|Object
-operator|>
+parameter_list|>
 name|T
 name|checkNotNull
-argument_list|(
+parameter_list|(
+annotation|@
+name|CheckForNull
 name|T
 name|obj
-argument_list|,
-annotation|@
-name|Nullable
+parameter_list|,
 name|String
 name|errorMessageTemplate
-argument_list|,
+parameter_list|,
 name|long
 name|p1
-argument_list|,
+parameter_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|p2
-argument_list|)
+parameter_list|)
 block|{
 if|if
 condition|(
@@ -3490,50 +3184,38 @@ argument_list|)
 argument_list|)
 throw|;
 block|}
-end_expr_stmt
-
-begin_return
 return|return
 name|obj
 return|;
-end_return
-
-begin_comment
-unit|}
+block|}
 comment|/**    * Ensures that an object reference passed as a parameter to the calling method is not null.    *    *<p>See {@link #checkNotNull(Object, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
-end_comment
-
-begin_expr_stmt
-unit|@
+annotation|@
 name|CanIgnoreReturnValue
-DECL|method|checkNotNull ( T obj, @Nullable String errorMessageTemplate, @Nullable Object p1, char p2)
+DECL|method|checkNotNull ( @heckForNull T obj, String errorMessageTemplate, @CheckForNull Object p1, char p2)
 specifier|public
 specifier|static
-operator|<
+parameter_list|<
 name|T
-expr|extends @
-name|NonNull
-name|Object
-operator|>
+parameter_list|>
 name|T
 name|checkNotNull
-argument_list|(
+parameter_list|(
+annotation|@
+name|CheckForNull
 name|T
 name|obj
-argument_list|,
-annotation|@
-name|Nullable
+parameter_list|,
 name|String
 name|errorMessageTemplate
-argument_list|,
+parameter_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|p1
-argument_list|,
+parameter_list|,
 name|char
 name|p2
-argument_list|)
+parameter_list|)
 block|{
 if|if
 condition|(
@@ -3557,50 +3239,38 @@ argument_list|)
 argument_list|)
 throw|;
 block|}
-end_expr_stmt
-
-begin_return
 return|return
 name|obj
 return|;
-end_return
-
-begin_comment
-unit|}
+block|}
 comment|/**    * Ensures that an object reference passed as a parameter to the calling method is not null.    *    *<p>See {@link #checkNotNull(Object, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
-end_comment
-
-begin_expr_stmt
-unit|@
+annotation|@
 name|CanIgnoreReturnValue
-DECL|method|checkNotNull ( T obj, @Nullable String errorMessageTemplate, @Nullable Object p1, int p2)
+DECL|method|checkNotNull ( @heckForNull T obj, String errorMessageTemplate, @CheckForNull Object p1, int p2)
 specifier|public
 specifier|static
-operator|<
+parameter_list|<
 name|T
-expr|extends @
-name|NonNull
-name|Object
-operator|>
+parameter_list|>
 name|T
 name|checkNotNull
-argument_list|(
+parameter_list|(
+annotation|@
+name|CheckForNull
 name|T
 name|obj
-argument_list|,
-annotation|@
-name|Nullable
+parameter_list|,
 name|String
 name|errorMessageTemplate
-argument_list|,
+parameter_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|p1
-argument_list|,
+parameter_list|,
 name|int
 name|p2
-argument_list|)
+parameter_list|)
 block|{
 if|if
 condition|(
@@ -3624,50 +3294,38 @@ argument_list|)
 argument_list|)
 throw|;
 block|}
-end_expr_stmt
-
-begin_return
 return|return
 name|obj
 return|;
-end_return
-
-begin_comment
-unit|}
+block|}
 comment|/**    * Ensures that an object reference passed as a parameter to the calling method is not null.    *    *<p>See {@link #checkNotNull(Object, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
-end_comment
-
-begin_expr_stmt
-unit|@
+annotation|@
 name|CanIgnoreReturnValue
-DECL|method|checkNotNull ( T obj, @Nullable String errorMessageTemplate, @Nullable Object p1, long p2)
+DECL|method|checkNotNull ( @heckForNull T obj, String errorMessageTemplate, @CheckForNull Object p1, long p2)
 specifier|public
 specifier|static
-operator|<
+parameter_list|<
 name|T
-expr|extends @
-name|NonNull
-name|Object
-operator|>
+parameter_list|>
 name|T
 name|checkNotNull
-argument_list|(
+parameter_list|(
+annotation|@
+name|CheckForNull
 name|T
 name|obj
-argument_list|,
-annotation|@
-name|Nullable
+parameter_list|,
 name|String
 name|errorMessageTemplate
-argument_list|,
+parameter_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|p1
-argument_list|,
+parameter_list|,
 name|long
 name|p2
-argument_list|)
+parameter_list|)
 block|{
 if|if
 condition|(
@@ -3691,52 +3349,40 @@ argument_list|)
 argument_list|)
 throw|;
 block|}
-end_expr_stmt
-
-begin_return
 return|return
 name|obj
 return|;
-end_return
-
-begin_comment
-unit|}
+block|}
 comment|/**    * Ensures that an object reference passed as a parameter to the calling method is not null.    *    *<p>See {@link #checkNotNull(Object, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
-end_comment
-
-begin_expr_stmt
-unit|@
+annotation|@
 name|CanIgnoreReturnValue
-DECL|method|checkNotNull ( T obj, @Nullable String errorMessageTemplate, @Nullable Object p1, @Nullable Object p2)
+DECL|method|checkNotNull ( @heckForNull T obj, String errorMessageTemplate, @CheckForNull Object p1, @CheckForNull Object p2)
 specifier|public
 specifier|static
-operator|<
+parameter_list|<
 name|T
-expr|extends @
-name|NonNull
-name|Object
-operator|>
+parameter_list|>
 name|T
 name|checkNotNull
-argument_list|(
+parameter_list|(
+annotation|@
+name|CheckForNull
 name|T
 name|obj
-argument_list|,
-annotation|@
-name|Nullable
+parameter_list|,
 name|String
 name|errorMessageTemplate
-argument_list|,
+parameter_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|p1
-argument_list|,
+parameter_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|p2
-argument_list|)
+parameter_list|)
 block|{
 if|if
 condition|(
@@ -3760,57 +3406,45 @@ argument_list|)
 argument_list|)
 throw|;
 block|}
-end_expr_stmt
-
-begin_return
 return|return
 name|obj
 return|;
-end_return
-
-begin_comment
-unit|}
+block|}
 comment|/**    * Ensures that an object reference passed as a parameter to the calling method is not null.    *    *<p>See {@link #checkNotNull(Object, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
-end_comment
-
-begin_expr_stmt
-unit|@
+annotation|@
 name|CanIgnoreReturnValue
-DECL|method|checkNotNull ( T obj, @Nullable String errorMessageTemplate, @Nullable Object p1, @Nullable Object p2, @Nullable Object p3)
+DECL|method|checkNotNull ( @heckForNull T obj, String errorMessageTemplate, @CheckForNull Object p1, @CheckForNull Object p2, @CheckForNull Object p3)
 specifier|public
 specifier|static
-operator|<
+parameter_list|<
 name|T
-expr|extends @
-name|NonNull
-name|Object
-operator|>
+parameter_list|>
 name|T
 name|checkNotNull
-argument_list|(
+parameter_list|(
+annotation|@
+name|CheckForNull
 name|T
 name|obj
-argument_list|,
-annotation|@
-name|Nullable
+parameter_list|,
 name|String
 name|errorMessageTemplate
-argument_list|,
+parameter_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|p1
-argument_list|,
+parameter_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|p2
-argument_list|,
+parameter_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|p3
-argument_list|)
+parameter_list|)
 block|{
 if|if
 condition|(
@@ -3836,62 +3470,50 @@ argument_list|)
 argument_list|)
 throw|;
 block|}
-end_expr_stmt
-
-begin_return
 return|return
 name|obj
 return|;
-end_return
-
-begin_comment
-unit|}
+block|}
 comment|/**    * Ensures that an object reference passed as a parameter to the calling method is not null.    *    *<p>See {@link #checkNotNull(Object, String, Object...)} for details.    *    * @since 20.0 (varargs overload since 2.0)    */
-end_comment
-
-begin_expr_stmt
-unit|@
+annotation|@
 name|CanIgnoreReturnValue
-DECL|method|checkNotNull ( T obj, @Nullable String errorMessageTemplate, @Nullable Object p1, @Nullable Object p2, @Nullable Object p3, @Nullable Object p4)
+DECL|method|checkNotNull ( @heckForNull T obj, String errorMessageTemplate, @CheckForNull Object p1, @CheckForNull Object p2, @CheckForNull Object p3, @CheckForNull Object p4)
 specifier|public
 specifier|static
-operator|<
+parameter_list|<
 name|T
-expr|extends @
-name|NonNull
-name|Object
-operator|>
+parameter_list|>
 name|T
 name|checkNotNull
-argument_list|(
+parameter_list|(
+annotation|@
+name|CheckForNull
 name|T
 name|obj
-argument_list|,
-annotation|@
-name|Nullable
+parameter_list|,
 name|String
 name|errorMessageTemplate
-argument_list|,
+parameter_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|p1
-argument_list|,
+parameter_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|p2
-argument_list|,
+parameter_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|p3
-argument_list|,
+parameter_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|p4
-argument_list|)
+parameter_list|)
 block|{
 if|if
 condition|(
@@ -3919,25 +3541,13 @@ argument_list|)
 argument_list|)
 throw|;
 block|}
-end_expr_stmt
-
-begin_return
 return|return
 name|obj
 return|;
-end_return
-
-begin_comment
-unit|}
+block|}
 comment|/*    * All recent hotspots (as of 2009) *really* like to have the natural code    *    * if (guardExpression) {    *    throw new BadException(messageExpression);    * }    *    * refactored so that messageExpression is moved to a separate String-returning method.    *    * if (guardExpression) {    *    throw new BadException(badMsg(...));    * }    *    * The alternative natural refactorings into void or Exception-returning methods are much slower.    * This is a big deal - we're talking factors of 2-8 in microbenchmarks, not just 10-20%. (This is    * a hotspot optimizer bug, which should be fixed, but that's a separate, big project).    *    * The coding pattern above is heavily used in java.util, e.g. in ArrayList. There is a    * RangeCheckMicroBenchmark in the JDK that was used to test this.    *    * But the methods in this class want to throw different exceptions, depending on the args, so it    * appears that this pattern is not directly applicable. But we can use the ridiculous, devious    * trick of throwing an exception in the middle of the construction of another exception. Hotspot    * is fine with that.    */
-end_comment
-
-begin_comment
 comment|/**    * Ensures that {@code index} specifies a valid<i>element</i> in an array, list or string of size    * {@code size}. An element index may range from zero, inclusive, to {@code size}, exclusive.    *    * @param index a user-supplied index identifying an element of an array, list or string    * @param size the size of that array, list or string    * @return the value of {@code index}    * @throws IndexOutOfBoundsException if {@code index} is negative or is not less than {@code size}    * @throws IllegalArgumentException if {@code size} is negative    */
-end_comment
-
-begin_function
-unit|@
+annotation|@
 name|CanIgnoreReturnValue
 DECL|method|checkElementIndex (int index, int size)
 specifier|public
@@ -3963,16 +3573,10 @@ literal|"index"
 argument_list|)
 return|;
 block|}
-end_function
-
-begin_comment
 comment|/**    * Ensures that {@code index} specifies a valid<i>element</i> in an array, list or string of size    * {@code size}. An element index may range from zero, inclusive, to {@code size}, exclusive.    *    * @param index a user-supplied index identifying an element of an array, list or string    * @param size the size of that array, list or string    * @param desc the text to use to describe this index in an error message    * @return the value of {@code index}    * @throws IndexOutOfBoundsException if {@code index} is negative or is not less than {@code size}    * @throws IllegalArgumentException if {@code size} is negative    */
-end_comment
-
-begin_function
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|checkElementIndex (int index, int size, @Nullable String desc)
+DECL|method|checkElementIndex (int index, int size, String desc)
 specifier|public
 specifier|static
 name|int
@@ -3984,8 +3588,6 @@ parameter_list|,
 name|int
 name|size
 parameter_list|,
-annotation|@
-name|Nullable
 name|String
 name|desc
 parameter_list|)
@@ -4021,10 +3623,7 @@ return|return
 name|index
 return|;
 block|}
-end_function
-
-begin_function
-DECL|method|badElementIndex (int index, int size, @Nullable String desc)
+DECL|method|badElementIndex (int index, int size, String desc)
 specifier|private
 specifier|static
 name|String
@@ -4036,8 +3635,6 @@ parameter_list|,
 name|int
 name|size
 parameter_list|,
-annotation|@
-name|Nullable
 name|String
 name|desc
 parameter_list|)
@@ -4095,13 +3692,7 @@ argument_list|)
 return|;
 block|}
 block|}
-end_function
-
-begin_comment
 comment|/**    * Ensures that {@code index} specifies a valid<i>position</i> in an array, list or string of    * size {@code size}. A position index may range from zero to {@code size}, inclusive.    *    * @param index a user-supplied index identifying a position in an array, list or string    * @param size the size of that array, list or string    * @return the value of {@code index}    * @throws IndexOutOfBoundsException if {@code index} is negative or is greater than {@code size}    * @throws IllegalArgumentException if {@code size} is negative    */
-end_comment
-
-begin_function
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|checkPositionIndex (int index, int size)
@@ -4128,16 +3719,10 @@ literal|"index"
 argument_list|)
 return|;
 block|}
-end_function
-
-begin_comment
 comment|/**    * Ensures that {@code index} specifies a valid<i>position</i> in an array, list or string of    * size {@code size}. A position index may range from zero to {@code size}, inclusive.    *    * @param index a user-supplied index identifying a position in an array, list or string    * @param size the size of that array, list or string    * @param desc the text to use to describe this index in an error message    * @return the value of {@code index}    * @throws IndexOutOfBoundsException if {@code index} is negative or is greater than {@code size}    * @throws IllegalArgumentException if {@code size} is negative    */
-end_comment
-
-begin_function
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|checkPositionIndex (int index, int size, @Nullable String desc)
+DECL|method|checkPositionIndex (int index, int size, String desc)
 specifier|public
 specifier|static
 name|int
@@ -4149,8 +3734,6 @@ parameter_list|,
 name|int
 name|size
 parameter_list|,
-annotation|@
-name|Nullable
 name|String
 name|desc
 parameter_list|)
@@ -4186,10 +3769,7 @@ return|return
 name|index
 return|;
 block|}
-end_function
-
-begin_function
-DECL|method|badPositionIndex (int index, int size, @Nullable String desc)
+DECL|method|badPositionIndex (int index, int size, String desc)
 specifier|private
 specifier|static
 name|String
@@ -4201,8 +3781,6 @@ parameter_list|,
 name|int
 name|size
 parameter_list|,
-annotation|@
-name|Nullable
 name|String
 name|desc
 parameter_list|)
@@ -4260,13 +3838,7 @@ argument_list|)
 return|;
 block|}
 block|}
-end_function
-
-begin_comment
 comment|/**    * Ensures that {@code start} and {@code end} specify valid<i>positions</i> in an array, list or    * string of size {@code size}, and are in order. A position index may range from zero to {@code    * size}, inclusive.    *    * @param start a user-supplied index identifying a starting position in an array, list or string    * @param end a user-supplied index identifying an ending position in an array, list or string    * @param size the size of that array, list or string    * @throws IndexOutOfBoundsException if either index is negative or is greater than {@code size},    *     or if {@code end} is less than {@code start}    * @throws IllegalArgumentException if {@code size} is negative    */
-end_comment
-
-begin_function
 DECL|method|checkPositionIndexes (int start, int end, int size)
 specifier|public
 specifier|static
@@ -4315,9 +3887,6 @@ argument_list|)
 throw|;
 block|}
 block|}
-end_function
-
-begin_function
 DECL|method|badPositionIndexes (int start, int end, int size)
 specifier|private
 specifier|static
@@ -4390,8 +3959,8 @@ name|start
 argument_list|)
 return|;
 block|}
-end_function
+block|}
+end_class
 
-unit|}
 end_unit
 

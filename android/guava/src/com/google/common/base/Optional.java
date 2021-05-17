@@ -474,6 +474,8 @@ argument_list|)
 decl_stmt|;
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 specifier|protected
 name|T
 name|computeNext

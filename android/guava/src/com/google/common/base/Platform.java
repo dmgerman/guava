@@ -100,17 +100,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|javax
 operator|.
-name|checkerframework
+name|annotation
 operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|compatqual
-operator|.
-name|NullableDecl
+name|CheckForNull
 import|;
 end_import
 
@@ -126,6 +120,8 @@ name|emulated
 operator|=
 literal|true
 argument_list|)
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|Platform
 specifier|final
 class|class
@@ -303,13 +299,13 @@ name|value
 argument_list|)
 return|;
 block|}
-DECL|method|stringIsNullOrEmpty (@ullableDecl String string)
+DECL|method|stringIsNullOrEmpty (@heckForNull String string)
 specifier|static
 name|boolean
 name|stringIsNullOrEmpty
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|String
 name|string
 parameter_list|)
@@ -326,13 +322,13 @@ argument_list|()
 return|;
 block|}
 comment|/**    * Returns the string if it is not null, or an empty string otherwise.    *    * @param string the string to test and possibly return    * @return {@code string} if it is not null; {@code ""} otherwise    */
-DECL|method|nullToEmpty (@ullableDecl String string)
+DECL|method|nullToEmpty (@heckForNull String string)
 specifier|static
 name|String
 name|nullToEmpty
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|String
 name|string
 parameter_list|)
@@ -350,13 +346,15 @@ name|string
 return|;
 block|}
 comment|/**    * Returns the string if it is not empty, or a null string otherwise.    *    * @param string the string to test and possibly return    * @return {@code string} if it is not empty; {@code null} otherwise    */
-DECL|method|emptyToNull (@ullableDecl String string)
+annotation|@
+name|CheckForNull
+DECL|method|emptyToNull (@heckForNull String string)
 specifier|static
 name|String
 name|emptyToNull
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|String
 name|string
 parameter_list|)

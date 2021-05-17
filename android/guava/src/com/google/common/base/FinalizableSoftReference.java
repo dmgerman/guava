@@ -54,6 +54,16 @@ name|SoftReference
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
 begin_comment
 comment|/**  * Soft reference with a {@code finalizeReferent()} method which a background thread invokes after  * the garbage collector reclaims the referent. This is a simpler alternative to using a {@link  * ReferenceQueue}.  *  * @author Bob Lee  * @since 2.0  */
 end_comment
@@ -61,6 +71,8 @@ end_comment
 begin_class
 annotation|@
 name|GwtIncompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|FinalizableSoftReference
 specifier|public
 specifier|abstract
@@ -78,10 +90,12 @@ implements|implements
 name|FinalizableReference
 block|{
 comment|/**    * Constructs a new finalizable soft reference.    *    * @param referent to softly reference    * @param queue that should finalize the referent    */
-DECL|method|FinalizableSoftReference (T referent, FinalizableReferenceQueue queue)
+DECL|method|FinalizableSoftReference (@heckForNull T referent, FinalizableReferenceQueue queue)
 specifier|protected
 name|FinalizableSoftReference
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|T
 name|referent
 parameter_list|,

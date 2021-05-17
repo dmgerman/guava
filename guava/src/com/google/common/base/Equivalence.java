@@ -644,9 +644,7 @@ comment|// the need for this is so rare that it's not worth making callers deal 
 return|return
 operator|new
 name|PairwiseEquivalence
-argument_list|<
-name|S
-argument_list|>
+argument_list|<>
 argument_list|(
 name|this
 argument_list|)

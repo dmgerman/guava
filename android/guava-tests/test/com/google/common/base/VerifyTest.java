@@ -80,6 +80,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|GwtIncompatible
+import|;
+end_import
+
+begin_import
+import|import
 name|junit
 operator|.
 name|framework
@@ -105,6 +119,11 @@ end_comment
 begin_class
 annotation|@
 name|GwtCompatible
+argument_list|(
+name|emulated
+operator|=
+literal|true
+argument_list|)
 DECL|class|VerifyTest
 specifier|public
 class|class
@@ -366,6 +385,17 @@ name|expected
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+annotation|@
+name|GwtIncompatible
+comment|// NullPointerTester
+DECL|method|testNullPointers ()
+specifier|public
+name|void
+name|testNullPointers
+parameter_list|()
+block|{
+comment|// Don't bother testing: Verify is like Preconditions. See the discussion on that class.
 block|}
 DECL|field|IGNORE_ME
 specifier|private

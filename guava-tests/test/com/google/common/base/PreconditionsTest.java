@@ -118,20 +118,6 @@ end_import
 
 begin_import
 import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|testing
-operator|.
-name|NullPointerTester
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|lang
@@ -2828,22 +2814,7 @@ name|void
 name|testNullPointers
 parameter_list|()
 block|{
-name|NullPointerTester
-name|tester
-init|=
-operator|new
-name|NullPointerTester
-argument_list|()
-decl_stmt|;
-name|tester
-operator|.
-name|testAllPublicStaticMethods
-argument_list|(
-name|Preconditions
-operator|.
-name|class
-argument_list|)
-expr_stmt|;
+comment|/*      * Don't bother testing: Preconditions defines a bunch of methods that accept a template (or      * even entire message) that simultaneously:      *      * - _shouldn't_ be null, so we don't annotate it with @Nullable      *      * - _can_ be null without causing a runtime failure (because we don't want the interesting      *   details of precondition failure to be hidden by an exception we throw about an unexpectedly      *   null _failure message_)      *      * That combination upsets NullPointerTester, which wants any call that passes null for a      * non-@Nullable parameter to trigger a NullPointerException.      *      * (We still define this empty method to keep PackageSanityTests from generating its own      * automated nullness tests, which would fail.)      */
 block|}
 end_function
 

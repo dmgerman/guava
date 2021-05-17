@@ -134,17 +134,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|javax
 operator|.
-name|checkerframework
+name|annotation
 operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|qual
-operator|.
-name|Nullable
+name|CheckForNull
 import|;
 end_import
 
@@ -155,6 +149,8 @@ end_comment
 begin_class
 annotation|@
 name|GwtCompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|MoreObjects
 specifier|public
 specifier|final
@@ -162,7 +158,8 @@ class|class
 name|MoreObjects
 block|{
 comment|/**    * Returns the first of two given parameters that is not {@code null}, if either is, or otherwise    * throws a {@link NullPointerException}.    *    *<p>To find the first non-null element in an iterable, use {@code Iterables.find(iterable,    * Predicates.notNull())}. For varargs, use {@code Iterables.find(Arrays.asList(a, b, c, ...),    * Predicates.notNull())}, static importing as necessary.    *    *<p><b>Note:</b> if {@code first} is represented as an {@link Optional}, this can be    * accomplished with {@link Optional#or(Object) first.or(second)}. That approach also allows for    * lazy evaluation of the fallback instance, using {@link Optional#or(Supplier)    * first.or(supplier)}.    *    *<p><b>Java 9 users:</b> use {@code java.util.Objects.requireNonNullElse(first, second)}    * instead.    *    * @return {@code first} if it is non-null; otherwise {@code second} if it is non-null    * @throws NullPointerException if both {@code first} and {@code second} are null    * @since 18.0 (since 3.0 as {@code Objects.firstNonNull()}).    */
-DECL|method|firstNonNull (@ullable T first, @Nullable T second)
+comment|/*    * We annotate firstNonNull in a way that protects against NullPointerException at the cost of    * forbidding some reasonable calls.    *    * The more permissive signature would be to accept (@CheckForNull T first, @CheckForNull T    * second), since it's OK for `second` to be null as long as `first` is not also null. But we    * expect for that flexibility to be useful relatively rarely: The more common use case is to    * supply a clearly non-null default, like `firstNonNull(someString, "")`. And users who really    * know that `first` is guaranteed non-null when `second` is null can write the logic out    * longhand, including a requireNonNull call, which calls attention to the fact that the static    * analyzer can't prove that the operation is safe.    *    * This matches the signature we currently have for requireNonNullElse in our own checker. (And    * that in turn matches that method's signature under the Checker Framework.) As always, we could    * consider the more flexible signature if we judge it worth the risks. If we do, we would likely    * update both methods so that they continue to match.    */
+DECL|method|firstNonNull (@heckForNull T first, T second)
 specifier|public
 specifier|static
 parameter_list|<
@@ -172,12 +169,10 @@ name|T
 name|firstNonNull
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|T
 name|first
 parameter_list|,
-annotation|@
-name|Nullable
 name|T
 name|second
 parameter_list|)
@@ -365,7 +360,7 @@ block|}
 comment|/**      * Adds a name/value pair to the formatted output in {@code name=value} format. If {@code value}      * is {@code null}, the string {@code "null"} is used, unless {@link #omitNullValues()} is      * called, in which case this name/value pair will not be added.      */
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|add (String name, @Nullable Object value)
+DECL|method|add (String name, @CheckForNull Object value)
 specifier|public
 name|ToStringHelper
 name|add
@@ -374,7 +369,7 @@ name|String
 name|name
 parameter_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|value
 parameter_list|)
@@ -565,13 +560,13 @@ block|}
 comment|/**      * Adds an unnamed value to the formatted output.      *      *<p>It is strongly encouraged to use {@link #add(String, Object)} instead and give value a      * readable name.      */
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|addValue (@ullable Object value)
+DECL|method|addValue (@heckForNull Object value)
 specifier|public
 name|ToStringHelper
 name|addValue
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|value
 parameter_list|)
@@ -1182,13 +1177,13 @@ return|return
 name|valueHolder
 return|;
 block|}
-DECL|method|addHolder (@ullable Object value)
+DECL|method|addHolder (@heckForNull Object value)
 specifier|private
 name|ToStringHelper
 name|addHolder
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|value
 parameter_list|)
@@ -1209,7 +1204,7 @@ return|return
 name|this
 return|;
 block|}
-DECL|method|addHolder (String name, @Nullable Object value)
+DECL|method|addHolder (String name, @CheckForNull Object value)
 specifier|private
 name|ToStringHelper
 name|addHolder
@@ -1218,7 +1213,7 @@ name|String
 name|name
 parameter_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|value
 parameter_list|)
@@ -1344,19 +1339,19 @@ name|ValueHolder
 block|{
 DECL|field|name
 annotation|@
-name|Nullable
+name|CheckForNull
 name|String
 name|name
 decl_stmt|;
 DECL|field|value
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|value
 decl_stmt|;
 DECL|field|next
 annotation|@
-name|Nullable
+name|CheckForNull
 name|ValueHolder
 name|next
 decl_stmt|;

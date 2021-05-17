@@ -48,17 +48,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|javax
 operator|.
-name|checkerframework
+name|annotation
 operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|compatqual
-operator|.
-name|NullableDecl
+name|CheckForNull
 import|;
 end_import
 
@@ -69,6 +63,8 @@ end_comment
 begin_class
 annotation|@
 name|GwtIncompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|Defaults
 specifier|public
 specifier|final
@@ -115,7 +111,7 @@ argument_list|(
 literal|"unchecked"
 argument_list|)
 annotation|@
-name|NullableDecl
+name|CheckForNull
 DECL|method|defaultValue (Class<T> type)
 specifier|public
 specifier|static

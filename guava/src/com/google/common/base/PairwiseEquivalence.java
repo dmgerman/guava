@@ -52,6 +52,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|checkerframework
@@ -66,7 +76,7 @@ name|Nullable
 import|;
 end_import
 
-begin_class
+begin_annotation
 annotation|@
 name|GwtCompatible
 argument_list|(
@@ -74,14 +84,27 @@ name|serializable
 operator|=
 literal|true
 argument_list|)
+end_annotation
+
+begin_annotation
+annotation|@
+name|ElementTypesAreNonnullByDefault
+end_annotation
+
+begin_expr_stmt
 DECL|class|PairwiseEquivalence
-specifier|final
-class|class
+name|final
+name|class
 name|PairwiseEquivalence
-parameter_list|<
+operator|<
+name|E
+operator|,
 name|T
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|E
+operator|>
+expr|extends
 name|Equivalence
 argument_list|<
 name|Iterable
@@ -89,30 +112,26 @@ argument_list|<
 name|T
 argument_list|>
 argument_list|>
-implements|implements
+expr|implements
 name|Serializable
 block|{
 DECL|field|elementEquivalence
-specifier|final
+name|final
 name|Equivalence
 argument_list|<
-name|?
-super|super
-name|T
+name|E
 argument_list|>
 name|elementEquivalence
-decl_stmt|;
-DECL|method|PairwiseEquivalence (Equivalence<? super T> elementEquivalence)
+block|;
+DECL|method|PairwiseEquivalence (Equivalence<E> elementEquivalence)
 name|PairwiseEquivalence
-parameter_list|(
+argument_list|(
 name|Equivalence
 argument_list|<
-name|?
-super|super
-name|T
+name|E
 argument_list|>
 name|elementEquivalence
-parameter_list|)
+argument_list|)
 block|{
 name|this
 operator|.
@@ -124,50 +143,49 @@ name|checkNotNull
 argument_list|(
 name|elementEquivalence
 argument_list|)
-expr_stmt|;
-block|}
-annotation|@
+block|;   }
+expr|@
 name|Override
 DECL|method|doEquivalent (Iterable<T> iterableA, Iterable<T> iterableB)
 specifier|protected
 name|boolean
 name|doEquivalent
-parameter_list|(
+argument_list|(
 name|Iterable
 argument_list|<
 name|T
 argument_list|>
 name|iterableA
-parameter_list|,
+argument_list|,
 name|Iterable
 argument_list|<
 name|T
 argument_list|>
 name|iterableB
-parameter_list|)
+argument_list|)
 block|{
 name|Iterator
 argument_list|<
 name|T
 argument_list|>
 name|iteratorA
-init|=
+operator|=
 name|iterableA
 operator|.
 name|iterator
 argument_list|()
-decl_stmt|;
+block|;
 name|Iterator
 argument_list|<
 name|T
 argument_list|>
 name|iteratorB
-init|=
+operator|=
 name|iterableB
 operator|.
 name|iterator
 argument_list|()
-decl_stmt|;
+block|;
 while|while
 condition|(
 name|iteratorA
@@ -205,6 +223,9 @@ literal|false
 return|;
 block|}
 block|}
+end_expr_stmt
+
+begin_return
 return|return
 operator|!
 name|iteratorA
@@ -218,8 +239,10 @@ operator|.
 name|hasNext
 argument_list|()
 return|;
-block|}
-annotation|@
+end_return
+
+begin_function
+unit|}    @
 name|Override
 DECL|method|doHash (Iterable<T> iterable)
 specifier|protected
@@ -264,15 +287,18 @@ return|return
 name|hash
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|equals (@ullable Object object)
+DECL|method|equals (@heckForNull Object object)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|object
 parameter_list|)
@@ -287,12 +313,16 @@ block|{
 name|PairwiseEquivalence
 argument_list|<
 name|?
+argument_list|,
+name|?
 argument_list|>
 name|that
 init|=
 operator|(
 name|PairwiseEquivalence
 argument_list|<
+name|?
+argument_list|,
 name|?
 argument_list|>
 operator|)
@@ -315,6 +345,9 @@ return|return
 literal|false
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|hashCode ()
@@ -332,6 +365,9 @@ operator|^
 literal|0x46a3eb07
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|toString ()
@@ -346,6 +382,9 @@ operator|+
 literal|".pairwise()"
 return|;
 block|}
+end_function
+
+begin_decl_stmt
 DECL|field|serialVersionUID
 specifier|private
 specifier|static
@@ -355,8 +394,8 @@ name|serialVersionUID
 init|=
 literal|1
 decl_stmt|;
-block|}
-end_class
+end_decl_stmt
 
+unit|}
 end_unit
 

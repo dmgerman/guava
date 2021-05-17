@@ -32,17 +32,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|javax
 operator|.
-name|checkerframework
+name|annotation
 operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|compatqual
-operator|.
-name|NullableDecl
+name|CheckForNull
 import|;
 end_import
 
@@ -53,6 +47,8 @@ end_comment
 begin_class
 annotation|@
 name|GwtCompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|VerifyException
 specifier|public
 class|class
@@ -67,12 +63,12 @@ name|VerifyException
 parameter_list|()
 block|{}
 comment|/** Constructs a {@code VerifyException} with the message {@code message}. */
-DECL|method|VerifyException (@ullableDecl String message)
+DECL|method|VerifyException (@heckForNull String message)
 specifier|public
 name|VerifyException
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|String
 name|message
 parameter_list|)
@@ -84,12 +80,12 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Constructs a {@code VerifyException} with the cause {@code cause} and a message that is {@code    * null} if {@code cause} is null, and {@code cause.toString()} otherwise.    *    * @since 19.0    */
-DECL|method|VerifyException (@ullableDecl Throwable cause)
+DECL|method|VerifyException (@heckForNull Throwable cause)
 specifier|public
 name|VerifyException
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Throwable
 name|cause
 parameter_list|)
@@ -101,17 +97,17 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Constructs a {@code VerifyException} with the message {@code message} and the cause {@code    * cause}.    *    * @since 19.0    */
-DECL|method|VerifyException (@ullableDecl String message, @NullableDecl Throwable cause)
+DECL|method|VerifyException (@heckForNull String message, @CheckForNull Throwable cause)
 specifier|public
 name|VerifyException
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|String
 name|message
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Throwable
 name|cause
 parameter_list|)

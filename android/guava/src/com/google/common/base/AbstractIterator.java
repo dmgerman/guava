@@ -26,6 +26,22 @@ name|common
 operator|.
 name|base
 operator|.
+name|NullnessCasts
+operator|.
+name|uncheckedCastNullableTToT
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
 name|Preconditions
 operator|.
 name|checkState
@@ -82,6 +98,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|checkerframework
@@ -90,9 +116,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -100,17 +126,28 @@ begin_comment
 comment|/**  * Note this class is a copy of {@link com.google.common.collect.AbstractIterator} (for dependency  * reasons).  */
 end_comment
 
-begin_class
+begin_annotation
 annotation|@
 name|GwtCompatible
+end_annotation
+
+begin_annotation
+annotation|@
+name|ElementTypesAreNonnullByDefault
+end_annotation
+
+begin_expr_stmt
 DECL|class|AbstractIterator
 specifier|abstract
-class|class
+name|class
 name|AbstractIterator
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
-implements|implements
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|implements
 name|Iterator
 argument_list|<
 name|T
@@ -120,19 +157,19 @@ DECL|field|state
 specifier|private
 name|State
 name|state
-init|=
+operator|=
 name|State
 operator|.
 name|NOT_READY
-decl_stmt|;
+block|;
 DECL|method|AbstractIterator ()
 specifier|protected
 name|AbstractIterator
-parameter_list|()
+argument_list|()
 block|{}
 DECL|enum|State
 specifier|private
-enum|enum
+expr|enum
 name|State
 block|{
 DECL|enumConstant|READY
@@ -148,48 +185,48 @@ DECL|enumConstant|FAILED
 name|FAILED
 block|,   }
 DECL|field|next
-annotation|@
-name|NullableDecl
+expr|@
+name|CheckForNull
 specifier|private
 name|T
 name|next
-decl_stmt|;
+block|;    @
+name|CheckForNull
 DECL|method|computeNext ()
 specifier|protected
 specifier|abstract
 name|T
 name|computeNext
-parameter_list|()
-function_decl|;
-annotation|@
+argument_list|()
+block|;    @
 name|CanIgnoreReturnValue
-annotation|@
-name|NullableDecl
+expr|@
+name|CheckForNull
 DECL|method|endOfData ()
 specifier|protected
-specifier|final
+name|final
 name|T
 name|endOfData
-parameter_list|()
+argument_list|()
 block|{
 name|state
 operator|=
 name|State
 operator|.
 name|DONE
-expr_stmt|;
+block|;
 return|return
 literal|null
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
 DECL|method|hasNext ()
 specifier|public
-specifier|final
+name|final
 name|boolean
 name|hasNext
-parameter_list|()
+argument_list|()
 block|{
 name|checkState
 argument_list|(
@@ -199,7 +236,7 @@ name|State
 operator|.
 name|FAILED
 argument_list|)
-expr_stmt|;
+block|;
 switch|switch
 condition|(
 name|state
@@ -219,13 +256,18 @@ literal|true
 return|;
 default|default:
 block|}
+end_expr_stmt
+
+begin_return
 return|return
 name|tryToComputeNext
 argument_list|()
 return|;
-block|}
+end_return
+
+begin_function
+unit|}    private
 DECL|method|tryToComputeNext ()
-specifier|private
 name|boolean
 name|tryToComputeNext
 parameter_list|()
@@ -265,6 +307,9 @@ return|return
 literal|false
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|next ()
@@ -293,10 +338,14 @@ name|State
 operator|.
 name|NOT_READY
 expr_stmt|;
+comment|// Safe because hasNext() ensures that tryToComputeNext() has put a T into `next`.
 name|T
 name|result
 init|=
+name|uncheckedCastNullableTToT
+argument_list|(
 name|next
+argument_list|)
 decl_stmt|;
 name|next
 operator|=
@@ -306,6 +355,9 @@ return|return
 name|result
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|remove ()
@@ -321,8 +373,8 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
-block|}
-end_class
+end_function
 
+unit|}
 end_unit
 

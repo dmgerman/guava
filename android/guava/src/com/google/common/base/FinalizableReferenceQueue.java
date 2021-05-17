@@ -168,17 +168,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|javax
 operator|.
-name|checkerframework
+name|annotation
 operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|compatqual
-operator|.
-name|NullableDecl
+name|CheckForNull
 import|;
 end_import
 
@@ -189,6 +183,8 @@ end_comment
 begin_class
 annotation|@
 name|GwtIncompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|FinalizableReferenceQueue
 specifier|public
 class|class
@@ -535,7 +531,7 @@ name|FinalizerLoader
 block|{
 comment|/**      * Returns Finalizer.class or null if this loader shouldn't or can't load it.      *      * @throws SecurityException if we don't have the appropriate privileges      */
 annotation|@
-name|NullableDecl
+name|CheckForNull
 DECL|method|loadFinalizer ()
 name|Class
 argument_list|<
@@ -565,7 +561,7 @@ decl_stmt|;
 annotation|@
 name|Override
 annotation|@
-name|NullableDecl
+name|CheckForNull
 DECL|method|loadFinalizer ()
 specifier|public
 name|Class
@@ -678,7 +674,7 @@ decl_stmt|;
 annotation|@
 name|Override
 annotation|@
-name|NullableDecl
+name|CheckForNull
 DECL|method|loadFinalizer ()
 specifier|public
 name|Class
