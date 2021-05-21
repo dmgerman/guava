@@ -83,12 +83,7 @@ specifier|final
 name|Double
 name|DOUBLE_DEFAULT
 init|=
-name|Double
-operator|.
-name|valueOf
-argument_list|(
 literal|0d
-argument_list|)
 decl_stmt|;
 DECL|field|FLOAT_DEFAULT
 specifier|private
@@ -97,12 +92,7 @@ specifier|final
 name|Float
 name|FLOAT_DEFAULT
 init|=
-name|Float
-operator|.
-name|valueOf
-argument_list|(
 literal|0f
-argument_list|)
 decl_stmt|;
 comment|/**    * Returns the default value of {@code type} as defined by JLS --- {@code 0} for numbers, {@code    * false} for {@code boolean} and {@code '\0'} for {@code char}. For non-primitive types and    * {@code void}, {@code null} is returned.    */
 annotation|@
@@ -133,6 +123,14 @@ argument_list|(
 name|type
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|type
+operator|.
+name|isPrimitive
+argument_list|()
+condition|)
+block|{
 if|if
 condition|(
 name|type
@@ -301,12 +299,10 @@ operator|)
 name|DOUBLE_DEFAULT
 return|;
 block|}
-else|else
-block|{
+block|}
 return|return
 literal|null
 return|;
-block|}
 block|}
 block|}
 end_class
