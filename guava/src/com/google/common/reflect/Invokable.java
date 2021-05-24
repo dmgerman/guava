@@ -106,6 +106,18 @@ name|lang
 operator|.
 name|reflect
 operator|.
+name|AnnotatedElement
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|lang
+operator|.
+name|reflect
+operator|.
 name|AnnotatedType
 import|;
 end_import
@@ -119,18 +131,6 @@ operator|.
 name|reflect
 operator|.
 name|Constructor
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|lang
-operator|.
-name|reflect
-operator|.
-name|GenericDeclaration
 import|;
 end_import
 
@@ -243,7 +243,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Wrapper around either a {@link Method} or a {@link Constructor}. Convenience API is provided to  * make common reflective operation easier to deal with, such as {@link #isPublic}, {@link  * #getParameters} etc.  *  *<p>In addition to convenience methods, {@link TypeToken#method} and {@link TypeToken#constructor}  * will resolve the type parameters of the method or constructor in the context of the owner type,  * which may be a subtype of the declaring class. For example:  *  *<pre>{@code  * Method getMethod = List.class.getMethod("get", int.class);  * Invokable<List<String>, ?> invokable = new TypeToken<List<String>>() {}.method(getMethod);  * assertEquals(TypeToken.of(String.class), invokable.getReturnType()); // Not Object.class!  * assertEquals(new TypeToken<List<String>>() {}, invokable.getOwnerType());  * }</pre>  *  * @param<T> the type that owns this method or constructor.  * @param<R> the return type of (or supertype thereof) the method or the declaring type of the  *     constructor.  * @author Ben Yu  * @since 14.0  */
+comment|/**  * Wrapper around either a {@link Method} or a {@link Constructor}. Convenience API is provided to  * make common reflective operation easier to deal with, such as {@link #isPublic}, {@link  * #getParameters} etc.  *  *<p>In addition to convenience methods, {@link TypeToken#method} and {@link TypeToken#constructor}  * will resolve the type parameters of the method or constructor in the context of the owner type,  * which may be a subtype of the declaring class. For example:  *  *<pre>{@code  * Method getMethod = List.class.getMethod("get", int.class);  * Invokable<List<String>, ?> invokable = new TypeToken<List<String>>() {}.method(getMethod);  * assertEquals(TypeToken.of(String.class), invokable.getReturnType()); // Not Object.class!  * assertEquals(new TypeToken<List<String>>() {}, invokable.getOwnerType());  * }</pre>  *  *<p><b>Note:</b> earlier versions of this class inherited from {@link  * java.lang.reflect.AccessibleObject AccessibleObject} and {@link  * java.lang.reflect.GenericDeclaration GenericDeclaration}. Since version 31.0 that is no longer  * the case. However, most methods from those types are present with the same signature in this  * class.  *  * @param<T> the type that owns this method or constructor.  * @param<R> the return type of (or supertype thereof) the method or the declaring type of the  *     constructor.  * @author Ben Yu  * @since 14.0 (no longer implements {@link AccessibleObject} or {@code GenericDeclaration} since  *     31.0)  */
 end_comment
 
 begin_class
@@ -261,11 +261,23 @@ name|T
 parameter_list|,
 name|R
 parameter_list|>
-extends|extends
-name|Element
 implements|implements
-name|GenericDeclaration
+name|AnnotatedElement
+implements|,
+name|Member
 block|{
+DECL|field|accessibleObject
+specifier|private
+specifier|final
+name|AccessibleObject
+name|accessibleObject
+decl_stmt|;
+DECL|field|member
+specifier|private
+specifier|final
+name|Member
+name|member
+decl_stmt|;
 DECL|method|Invokable (M member)
 parameter_list|<
 name|M
@@ -280,10 +292,22 @@ name|M
 name|member
 parameter_list|)
 block|{
-name|super
+name|checkNotNull
 argument_list|(
 name|member
 argument_list|)
+expr_stmt|;
+name|this
+operator|.
+name|accessibleObject
+operator|=
+name|member
+expr_stmt|;
+name|this
+operator|.
+name|member
+operator|=
+name|member
 expr_stmt|;
 block|}
 comment|/** Returns {@link Invokable} of {@code method}. */
@@ -342,6 +366,523 @@ argument_list|>
 argument_list|(
 name|constructor
 argument_list|)
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|isAnnotationPresent (Class<? extends Annotation> annotationClass)
+specifier|public
+specifier|final
+name|boolean
+name|isAnnotationPresent
+parameter_list|(
+name|Class
+argument_list|<
+name|?
+extends|extends
+name|Annotation
+argument_list|>
+name|annotationClass
+parameter_list|)
+block|{
+return|return
+name|accessibleObject
+operator|.
+name|isAnnotationPresent
+argument_list|(
+name|annotationClass
+argument_list|)
+return|;
+block|}
+annotation|@
+name|Override
+annotation|@
+name|CheckForNull
+DECL|method|getAnnotation (Class<A> annotationClass)
+specifier|public
+specifier|final
+parameter_list|<
+name|A
+extends|extends
+name|Annotation
+parameter_list|>
+name|A
+name|getAnnotation
+parameter_list|(
+name|Class
+argument_list|<
+name|A
+argument_list|>
+name|annotationClass
+parameter_list|)
+block|{
+return|return
+name|accessibleObject
+operator|.
+name|getAnnotation
+argument_list|(
+name|annotationClass
+argument_list|)
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|getAnnotations ()
+specifier|public
+specifier|final
+name|Annotation
+index|[]
+name|getAnnotations
+parameter_list|()
+block|{
+return|return
+name|accessibleObject
+operator|.
+name|getAnnotations
+argument_list|()
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|getDeclaredAnnotations ()
+specifier|public
+specifier|final
+name|Annotation
+index|[]
+name|getDeclaredAnnotations
+parameter_list|()
+block|{
+return|return
+name|accessibleObject
+operator|.
+name|getDeclaredAnnotations
+argument_list|()
+return|;
+block|}
+comment|// We ought to be able to implement GenericDeclaration instead its parent AnnotatedElement.
+comment|// That would give us this method declaration. But for some reason, implementing
+comment|// GenericDeclaration leads to weird errors in Android tests:
+comment|// IncompatibleClassChangeError: interface not implemented
+comment|/** See {@link java.lang.reflect.GenericDeclaration#getTypeParameters()}. */
+DECL|method|getTypeParameters ()
+specifier|public
+specifier|abstract
+name|TypeVariable
+argument_list|<
+name|?
+argument_list|>
+index|[]
+name|getTypeParameters
+parameter_list|()
+function_decl|;
+comment|/** See {@link java.lang.reflect.AccessibleObject#setAccessible(boolean)}. */
+DECL|method|setAccessible (boolean flag)
+specifier|public
+specifier|final
+name|void
+name|setAccessible
+parameter_list|(
+name|boolean
+name|flag
+parameter_list|)
+block|{
+name|accessibleObject
+operator|.
+name|setAccessible
+argument_list|(
+name|flag
+argument_list|)
+expr_stmt|;
+block|}
+comment|/** See {@link java.lang.reflect.AccessibleObject#trySetAccessible()}. */
+DECL|method|trySetAccessible ()
+specifier|public
+specifier|final
+name|boolean
+name|trySetAccessible
+parameter_list|()
+block|{
+comment|// We can't call accessibleObject.trySetAccessible since that was added in Java 9 and this code
+comment|// should work on Java 8. So we emulate it this way.
+try|try
+block|{
+name|accessibleObject
+operator|.
+name|setAccessible
+argument_list|(
+literal|true
+argument_list|)
+expr_stmt|;
+return|return
+literal|true
+return|;
+block|}
+catch|catch
+parameter_list|(
+name|RuntimeException
+name|e
+parameter_list|)
+block|{
+return|return
+literal|false
+return|;
+block|}
+block|}
+comment|/** See {@link java.lang.reflect.AccessibleObject#isAccessible()}. */
+DECL|method|isAccessible ()
+specifier|public
+specifier|final
+name|boolean
+name|isAccessible
+parameter_list|()
+block|{
+return|return
+name|accessibleObject
+operator|.
+name|isAccessible
+argument_list|()
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|getName ()
+specifier|public
+specifier|final
+name|String
+name|getName
+parameter_list|()
+block|{
+return|return
+name|member
+operator|.
+name|getName
+argument_list|()
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|getModifiers ()
+specifier|public
+specifier|final
+name|int
+name|getModifiers
+parameter_list|()
+block|{
+return|return
+name|member
+operator|.
+name|getModifiers
+argument_list|()
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|isSynthetic ()
+specifier|public
+specifier|final
+name|boolean
+name|isSynthetic
+parameter_list|()
+block|{
+return|return
+name|member
+operator|.
+name|isSynthetic
+argument_list|()
+return|;
+block|}
+comment|/** Returns true if the element is public. */
+DECL|method|isPublic ()
+specifier|public
+specifier|final
+name|boolean
+name|isPublic
+parameter_list|()
+block|{
+return|return
+name|Modifier
+operator|.
+name|isPublic
+argument_list|(
+name|getModifiers
+argument_list|()
+argument_list|)
+return|;
+block|}
+comment|/** Returns true if the element is protected. */
+DECL|method|isProtected ()
+specifier|public
+specifier|final
+name|boolean
+name|isProtected
+parameter_list|()
+block|{
+return|return
+name|Modifier
+operator|.
+name|isProtected
+argument_list|(
+name|getModifiers
+argument_list|()
+argument_list|)
+return|;
+block|}
+comment|/** Returns true if the element is package-private. */
+DECL|method|isPackagePrivate ()
+specifier|public
+specifier|final
+name|boolean
+name|isPackagePrivate
+parameter_list|()
+block|{
+return|return
+operator|!
+name|isPrivate
+argument_list|()
+operator|&&
+operator|!
+name|isPublic
+argument_list|()
+operator|&&
+operator|!
+name|isProtected
+argument_list|()
+return|;
+block|}
+comment|/** Returns true if the element is private. */
+DECL|method|isPrivate ()
+specifier|public
+specifier|final
+name|boolean
+name|isPrivate
+parameter_list|()
+block|{
+return|return
+name|Modifier
+operator|.
+name|isPrivate
+argument_list|(
+name|getModifiers
+argument_list|()
+argument_list|)
+return|;
+block|}
+comment|/** Returns true if the element is static. */
+DECL|method|isStatic ()
+specifier|public
+specifier|final
+name|boolean
+name|isStatic
+parameter_list|()
+block|{
+return|return
+name|Modifier
+operator|.
+name|isStatic
+argument_list|(
+name|getModifiers
+argument_list|()
+argument_list|)
+return|;
+block|}
+comment|/**    * Returns {@code true} if this method is final, per {@code Modifier.isFinal(getModifiers())}.    *    *<p>Note that a method may still be effectively "final", or non-overridable when it has no    * {@code final} keyword. For example, it could be private, or it could be declared by a final    * class. To tell whether a method is overridable, use {@link Invokable#isOverridable}.    */
+DECL|method|isFinal ()
+specifier|public
+specifier|final
+name|boolean
+name|isFinal
+parameter_list|()
+block|{
+return|return
+name|Modifier
+operator|.
+name|isFinal
+argument_list|(
+name|getModifiers
+argument_list|()
+argument_list|)
+return|;
+block|}
+comment|/** Returns true if the method is abstract. */
+DECL|method|isAbstract ()
+specifier|public
+specifier|final
+name|boolean
+name|isAbstract
+parameter_list|()
+block|{
+return|return
+name|Modifier
+operator|.
+name|isAbstract
+argument_list|(
+name|getModifiers
+argument_list|()
+argument_list|)
+return|;
+block|}
+comment|/** Returns true if the element is native. */
+DECL|method|isNative ()
+specifier|public
+specifier|final
+name|boolean
+name|isNative
+parameter_list|()
+block|{
+return|return
+name|Modifier
+operator|.
+name|isNative
+argument_list|(
+name|getModifiers
+argument_list|()
+argument_list|)
+return|;
+block|}
+comment|/** Returns true if the method is synchronized. */
+DECL|method|isSynchronized ()
+specifier|public
+specifier|final
+name|boolean
+name|isSynchronized
+parameter_list|()
+block|{
+return|return
+name|Modifier
+operator|.
+name|isSynchronized
+argument_list|(
+name|getModifiers
+argument_list|()
+argument_list|)
+return|;
+block|}
+comment|/** Returns true if the field is volatile. */
+DECL|method|isVolatile ()
+specifier|final
+name|boolean
+name|isVolatile
+parameter_list|()
+block|{
+return|return
+name|Modifier
+operator|.
+name|isVolatile
+argument_list|(
+name|getModifiers
+argument_list|()
+argument_list|)
+return|;
+block|}
+comment|/** Returns true if the field is transient. */
+DECL|method|isTransient ()
+specifier|final
+name|boolean
+name|isTransient
+parameter_list|()
+block|{
+return|return
+name|Modifier
+operator|.
+name|isTransient
+argument_list|(
+name|getModifiers
+argument_list|()
+argument_list|)
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|equals (@heckForNull Object obj)
+specifier|public
+name|boolean
+name|equals
+parameter_list|(
+annotation|@
+name|CheckForNull
+name|Object
+name|obj
+parameter_list|)
+block|{
+if|if
+condition|(
+name|obj
+operator|instanceof
+name|Invokable
+condition|)
+block|{
+name|Invokable
+argument_list|<
+name|?
+argument_list|,
+name|?
+argument_list|>
+name|that
+init|=
+operator|(
+name|Invokable
+argument_list|<
+name|?
+argument_list|,
+name|?
+argument_list|>
+operator|)
+name|obj
+decl_stmt|;
+return|return
+name|getOwnerType
+argument_list|()
+operator|.
+name|equals
+argument_list|(
+name|that
+operator|.
+name|getOwnerType
+argument_list|()
+argument_list|)
+operator|&&
+name|member
+operator|.
+name|equals
+argument_list|(
+name|that
+operator|.
+name|member
+argument_list|)
+return|;
+block|}
+return|return
+literal|false
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|hashCode ()
+specifier|public
+name|int
+name|hashCode
+parameter_list|()
+block|{
+return|return
+name|member
+operator|.
+name|hashCode
+argument_list|()
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|toString ()
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+name|member
+operator|.
+name|toString
+argument_list|()
 return|;
 block|}
 comment|/**    * Returns {@code true} if this is an overridable method. Constructors, private, static or final    * methods, or methods declared by final classes are not overridable.    */
@@ -784,7 +1325,7 @@ super|super
 name|T
 argument_list|>
 operator|)
-name|super
+name|member
 operator|.
 name|getDeclaringClass
 argument_list|()
@@ -798,8 +1339,6 @@ argument_list|(
 literal|"unchecked"
 argument_list|)
 comment|// The declaring class is T.
-annotation|@
-name|Override
 DECL|method|getOwnerType ()
 specifier|public
 name|TypeToken
