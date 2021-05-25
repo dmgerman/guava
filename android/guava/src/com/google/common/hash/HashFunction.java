@@ -24,20 +24,6 @@ name|google
 operator|.
 name|common
 operator|.
-name|annotations
-operator|.
-name|Beta
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
 name|primitives
 operator|.
 name|Ints
@@ -101,8 +87,6 @@ comment|/**  * A hash function is a collision-averse pure function that maps an 
 end_comment
 
 begin_interface
-annotation|@
-name|Beta
 annotation|@
 name|Immutable
 annotation|@
