@@ -761,7 +761,7 @@ return|;
 block|}
 comment|// LinkedList: see {@link com.google.common.collect.Lists}
 comment|// PriorityBlockingQueue
-comment|/**    * Creates an empty {@code PriorityBlockingQueue} with the ordering given by its elements' natural    * ordering.    *    * @since 11.0 (requires that {@code E} be {@code Comparable} since 15.0).    */
+comment|/**    * Creates an empty {@code PriorityBlockingQueue} with the ordering given by its elements' natural    * ordering.    *    * @since 11.0 (but the bound of {@code E} was changed from {@code Object} to {@code Comparable}    *     in 15.0)    */
 annotation|@
 name|GwtIncompatible
 comment|// PriorityBlockingQueue
@@ -789,7 +789,7 @@ argument_list|>
 argument_list|()
 return|;
 block|}
-comment|/**    * Creates a {@code PriorityBlockingQueue} containing the given elements.    *    *<p><b>Note:</b> If the specified iterable is a {@code SortedSet} or a {@code PriorityQueue},    * this priority queue will be ordered according to the same ordering.    *    * @since 11.0 (requires that {@code E} be {@code Comparable} since 15.0).    */
+comment|/**    * Creates a {@code PriorityBlockingQueue} containing the given elements.    *    *<p><b>Note:</b> If the specified iterable is a {@code SortedSet} or a {@code PriorityQueue},    * this priority queue will be ordered according to the same ordering.    *    * @since 11.0 (but the bound of {@code E} was changed from {@code Object} to {@code Comparable}    *     in 15.0)    */
 annotation|@
 name|GwtIncompatible
 comment|// PriorityBlockingQueue
@@ -869,7 +869,7 @@ name|queue
 return|;
 block|}
 comment|// PriorityQueue
-comment|/**    * Creates an empty {@code PriorityQueue} with the ordering given by its elements' natural    * ordering.    *    * @since 11.0 (requires that {@code E} be {@code Comparable} since 15.0).    */
+comment|/**    * Creates an empty {@code PriorityQueue} with the ordering given by its elements' natural    * ordering.    *    * @since 11.0 (but the bound of {@code E} was changed from {@code Object} to {@code Comparable}    *     in 15.0)    */
 DECL|method|newPriorityQueue ()
 specifier|public
 specifier|static
@@ -894,7 +894,7 @@ argument_list|>
 argument_list|()
 return|;
 block|}
-comment|/**    * Creates a {@code PriorityQueue} containing the given elements.    *    *<p><b>Note:</b> If the specified iterable is a {@code SortedSet} or a {@code PriorityQueue},    * this priority queue will be ordered according to the same ordering.    *    * @since 11.0 (requires that {@code E} be {@code Comparable} since 15.0).    */
+comment|/**    * Creates a {@code PriorityQueue} containing the given elements.    *    *<p><b>Note:</b> If the specified iterable is a {@code SortedSet} or a {@code PriorityQueue},    * this priority queue will be ordered according to the same ordering.    *    * @since 11.0 (but the bound of {@code E} was changed from {@code Object} to {@code Comparable}    *     in 15.0)    */
 DECL|method|newPriorityQueue ( Iterable<? extends E> elements)
 specifier|public
 specifier|static
