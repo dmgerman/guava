@@ -1284,7 +1284,7 @@ name|SEC_CH_UA
 init|=
 literal|"Sec-CH-UA"
 decl_stmt|;
-comment|/**    * The HTTP<a href="https://wicg.github.io/ua-client-hints/#sec-ch-arch">{@code    * Sec-CH-UA-Arch}</a> header field name.    *    * @since 30.0    */
+comment|/**    * The HTTP<a href="https://wicg.github.io/ua-client-hints/#sec-ch-ua-arch">{@code    * Sec-CH-UA-Arch}</a> header field name.    *    * @since 30.0    */
 DECL|field|SEC_CH_UA_ARCH
 specifier|public
 specifier|static
@@ -1294,7 +1294,7 @@ name|SEC_CH_UA_ARCH
 init|=
 literal|"Sec-CH-UA-Arch"
 decl_stmt|;
-comment|/**    * The HTTP<a href="https://wicg.github.io/ua-client-hints/#sec-ch-model">{@code    * Sec-CH-UA-Model}</a> header field name.    *    * @since 30.0    */
+comment|/**    * The HTTP<a href="https://wicg.github.io/ua-client-hints/#sec-ch-ua-model">{@code    * Sec-CH-UA-Model}</a> header field name.    *    * @since 30.0    */
 DECL|field|SEC_CH_UA_MODEL
 specifier|public
 specifier|static
@@ -1304,7 +1304,7 @@ name|SEC_CH_UA_MODEL
 init|=
 literal|"Sec-CH-UA-Model"
 decl_stmt|;
-comment|/**    * The HTTP<a href="https://wicg.github.io/ua-client-hints/#sec-ch-platform">{@code    * Sec-CH-UA-Platform}</a> header field name.    *    * @since 30.0    */
+comment|/**    * The HTTP<a href="https://wicg.github.io/ua-client-hints/#sec-ch-ua-platform">{@code    * Sec-CH-UA-Platform}</a> header field name.    *    * @since 30.0    */
 DECL|field|SEC_CH_UA_PLATFORM
 specifier|public
 specifier|static
@@ -1314,7 +1314,7 @@ name|SEC_CH_UA_PLATFORM
 init|=
 literal|"Sec-CH-UA-Platform"
 decl_stmt|;
-comment|/**    * The HTTP<a href="https://wicg.github.io/ua-client-hints/#sec-ch-platform-version">{@code    * Sec-CH-UA-Platform-Version}</a> header field name.    *    * @since 30.0    */
+comment|/**    * The HTTP<a href="https://wicg.github.io/ua-client-hints/#sec-ch-ua-platform-version">{@code    * Sec-CH-UA-Platform-Version}</a> header field name.    *    * @since 30.0    */
 DECL|field|SEC_CH_UA_PLATFORM_VERSION
 specifier|public
 specifier|static
@@ -1324,7 +1324,7 @@ name|SEC_CH_UA_PLATFORM_VERSION
 init|=
 literal|"Sec-CH-UA-Platform-Version"
 decl_stmt|;
-comment|/**    * The HTTP<a href="https://wicg.github.io/ua-client-hints/#sec-ch-full-version">{@code    * Sec-CH-UA-Full-Version}</a> header field name.    *    * @since 30.0    */
+comment|/**    * The HTTP<a href="https://wicg.github.io/ua-client-hints/#sec-ch-ua-full-version">{@code    * Sec-CH-UA-Full-Version}</a> header field name.    *    * @since 30.0    */
 DECL|field|SEC_CH_UA_FULL_VERSION
 specifier|public
 specifier|static
@@ -1334,7 +1334,7 @@ name|SEC_CH_UA_FULL_VERSION
 init|=
 literal|"Sec-CH-UA-Full-Version"
 decl_stmt|;
-comment|/**    * The HTTP<a href="https://wicg.github.io/ua-client-hints/#sec-ch-mobile">{@code    * Sec-CH-UA-Mobile}</a> header field name.    *    * @since 30.0    */
+comment|/**    * The HTTP<a href="https://wicg.github.io/ua-client-hints/#sec-ch-ua-mobile">{@code    * Sec-CH-UA-Mobile}</a> header field name.    *    * @since 30.0    */
 DECL|field|SEC_CH_UA_MOBILE
 specifier|public
 specifier|static
@@ -1343,6 +1343,16 @@ name|String
 name|SEC_CH_UA_MOBILE
 init|=
 literal|"Sec-CH-UA-Mobile"
+decl_stmt|;
+comment|/**    * The HTTP<a href="https://wicg.github.io/ua-client-hints/#sec-ch-ua-bitness">{@code    * Sec-CH-UA-Bitness}</a> header field name.    *    * @since NEXT    */
+DECL|field|SEC_CH_UA_BITNESS
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|SEC_CH_UA_BITNESS
+init|=
+literal|"Sec-CH-UA-Bitness"
 decl_stmt|;
 comment|/**    * The HTTP<a href="https://w3c.github.io/webappsec-fetch-metadata/">{@code Sec-Fetch-Dest}</a>    * header field name.    *    * @since 27.1    */
 DECL|field|SEC_FETCH_DEST
