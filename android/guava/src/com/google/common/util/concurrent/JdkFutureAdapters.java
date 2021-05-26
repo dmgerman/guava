@@ -303,13 +303,8 @@ comment|/**    * An adapter to turn a {@link Future} into a {@link ListenableFut
 end_comment
 
 begin_expr_stmt
-unit|@
-name|SuppressWarnings
-argument_list|(
-literal|"ShouldNotSubclass"
-argument_list|)
 DECL|class|ListenableFutureAdapter
-specifier|private
+unit|private
 specifier|static
 name|class
 name|ListenableFutureAdapter

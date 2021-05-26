@@ -138,14 +138,6 @@ end_import
 
 begin_annotation
 annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"ShouldNotSubclass"
-argument_list|)
-end_annotation
-
-begin_annotation
-annotation|@
 name|GwtCompatible
 argument_list|(
 name|emulated

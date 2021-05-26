@@ -3119,11 +3119,6 @@ expr_stmt|;
 block|}
 block|}
 comment|/** This is never thrown but only used for logging. */
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"ShouldNotSubclass"
-argument_list|)
 DECL|class|EmptyServiceManagerWarning
 specifier|private
 specifier|static

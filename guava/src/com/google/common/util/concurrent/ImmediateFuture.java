@@ -160,14 +160,6 @@ begin_comment
 comment|// TODO(cpovirk): Make this final (but that may break Mockito spy calls).
 end_comment
 
-begin_annotation
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"ShouldNotSubclass"
-argument_list|)
-end_annotation
-
 begin_expr_stmt
 DECL|class|ImmediateFuture
 name|class

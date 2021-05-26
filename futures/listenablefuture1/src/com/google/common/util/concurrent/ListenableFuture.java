@@ -94,14 +94,6 @@ end_comment
 
 begin_annotation
 annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"ShouldNotSubclass"
-argument_list|)
-end_annotation
-
-begin_annotation
-annotation|@
 name|DoNotMock
 argument_list|(
 literal|"Use the methods in Futures (like immediateFuture) or SettableFuture"

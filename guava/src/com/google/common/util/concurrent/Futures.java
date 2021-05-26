@@ -1353,11 +1353,6 @@ name|Beta
 annotation|@
 name|GwtIncompatible
 comment|// TODO
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"ShouldNotSubclass"
-argument_list|)
 DECL|method|lazyTransform ( final Future<I> input, final Function<? super I, ? extends O> function)
 specifier|public
 specifier|static

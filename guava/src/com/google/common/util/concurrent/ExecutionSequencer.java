@@ -841,12 +841,6 @@ DECL|enumConstant|STARTED
 name|STARTED
 block|,   }
 comment|/**    * This class helps avoid a StackOverflowError when large numbers of tasks are submitted with    * {@link MoreExecutors#directExecutor}. Normally, when the first future completes, all the other    * tasks would be called recursively. Here, we detect that the delegate executor is executing    * inline, and maintain a queue to dispatch tasks iteratively. There is one instance of this class    * per call to submit() or submitAsync(), and each instance supports only one call to execute().    *    *<p>This class would certainly be simpler and easier to reason about if it were built with    * ThreadLocal; however, ThreadLocal is not well optimized for the case where the ThreadLocal is    * non-static, and is initialized/removed frequently - this causes churn in the Thread specific    * hashmaps. Using a static ThreadLocal to avoid that overhead would mean that different    * ExecutionSequencer objects interfere with each other, which would be undesirable, in addition    * to increasing the memory footprint of every thread that interacted with it. In order to release    * entries in thread-specific maps when the ThreadLocal object itself is no longer referenced,    * ThreadLocal is usually implemented with a WeakReference, which can have negative performance    * properties; for example, calling WeakReference.get() on Android will block during an    * otherwise-concurrent GC cycle.    */
-expr|@
-name|SuppressWarnings
-argument_list|(
-literal|"ShouldNotSubclass"
-argument_list|)
-comment|// Saving an allocation here is worth it
 DECL|class|TaskNonReentrantExecutor
 specifier|private
 specifier|static

@@ -414,11 +414,7 @@ begin_class
 annotation|@
 name|SuppressWarnings
 argument_list|(
-block|{
 literal|"ShortCircuitBoolean"
-block|,
-literal|"ShouldNotSubclass"
-block|}
 argument_list|)
 annotation|@
 name|GwtCompatible
