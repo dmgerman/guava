@@ -98,6 +98,16 @@ name|Consumer
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
 begin_comment
 comment|/**  * Implementation of {@link ImmutableSet} backed by a non-empty {@link java.util.EnumSet}.  *  * @author Jared Levy  */
 end_comment
@@ -120,6 +130,8 @@ argument_list|(
 literal|"serial"
 argument_list|)
 comment|// we're overriding default serialization
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|ImmutableEnumSet
 specifier|final
 class|class
@@ -318,11 +330,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|contains (Object object)
+DECL|method|contains (@heckForNull Object object)
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|object
 parameter_list|)
@@ -401,11 +415,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|equals (Object object)
+DECL|method|equals (@heckForNull Object object)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|object
 parameter_list|)

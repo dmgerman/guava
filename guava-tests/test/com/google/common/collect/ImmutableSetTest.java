@@ -2534,6 +2534,16 @@ name|testEquals
 argument_list|()
 expr_stmt|;
 block|}
+comment|/**    * The maximum allowed probability of falsely detecting a hash flooding attack if the input is    * randomly generated.    */
+DECL|field|HASH_FLOODING_FPP
+specifier|private
+specifier|static
+specifier|final
+name|double
+name|HASH_FLOODING_FPP
+init|=
+literal|0.001
+decl_stmt|;
 DECL|method|testReuseBuilderReducingHashTableSizeWithPowerOfTwoTotalElements ()
 specifier|public
 name|void

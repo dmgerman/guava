@@ -74,6 +74,16 @@ name|Serializable
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
 begin_comment
 comment|/**  * List returned by {@link ImmutableCollection#asList} that delegates {@code contains} checks to the  * backing collection.  *  * @author Jared Levy  * @author Louis Wasserman  */
 end_comment
@@ -95,6 +105,8 @@ name|SuppressWarnings
 argument_list|(
 literal|"serial"
 argument_list|)
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|ImmutableAsList
 specifier|abstract
 class|class
@@ -119,11 +131,13 @@ parameter_list|()
 function_decl|;
 annotation|@
 name|Override
-DECL|method|contains (Object target)
+DECL|method|contains (@heckForNull Object target)
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|target
 parameter_list|)

@@ -192,6 +192,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|checkerframework
@@ -229,6 +239,8 @@ argument_list|(
 literal|"serial"
 argument_list|)
 comment|// we're overriding default serialization
+annotation|@
+name|ElementTypesAreNonnullByDefault
 comment|// TODO(kevinb): I think we should push everything down to "BaseImmutableCollection" or something,
 comment|// just to do everything we can to emphasize the "practically an interface" nature of this class.
 DECL|class|ImmutableCollection
@@ -336,32 +348,41 @@ annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
+comment|/*    * This suppression is here for two reasons:    *    * 1. Our checker says "found: T[]; required: T[]." That sounds bogus. I discuss a possible reason    * for this error in https://github.com/jspecify/checker-framework/issues/10.    *    * 2. `other[size] = null` is unsound. We could "fix" this by requiring callers to pass in an    * array with a nullable element type. But probably they usually want an array with a non-nullable    * type. That said, we could *accept* a `@Nullable T[]` (which, given that we treat arrays as    * covariant, would still permit a plain `T[]`) and return a plain `T[]`. But of course that would    * require its own suppression, since it is also unsound. toArray(T[]) is just a mess from a    * nullness perspective. The signature below at least has the virtue of being relatively simple.    */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"nullness"
+argument_list|)
 DECL|method|toArray (T[] other)
 specifier|public
-specifier|final
-parameter_list|<
+name|final
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|T
 index|[]
 name|toArray
-parameter_list|(
+argument_list|(
 name|T
 index|[]
 name|other
-parameter_list|)
+argument_list|)
 block|{
 name|checkNotNull
 argument_list|(
 name|other
 argument_list|)
-expr_stmt|;
+block|;
 name|int
 name|size
-init|=
+operator|=
 name|size
 argument_list|()
-decl_stmt|;
+block|;
 if|if
 condition|(
 name|other
@@ -414,6 +435,9 @@ name|size
 argument_list|)
 expr_stmt|;
 block|}
+end_class
+
+begin_elseif
 elseif|else
 if|if
 condition|(
@@ -432,6 +456,9 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
+end_elseif
+
+begin_expr_stmt
 name|copyIntoArray
 argument_list|(
 name|other
@@ -439,24 +466,39 @@ argument_list|,
 literal|0
 argument_list|)
 expr_stmt|;
+end_expr_stmt
+
+begin_return
 return|return
 name|other
 return|;
-block|}
+end_return
+
+begin_comment
+unit|}
 comment|/** If this collection is backed by an array of its elements in insertion order, returns it. */
+end_comment
+
+begin_function
+unit|@
+name|CheckForNull
 DECL|method|internalArray ()
 name|Object
-annotation|@
-name|Nullable
-type|[]
+index|[]
 name|internalArray
-function|()
+parameter_list|()
 block|{
 return|return
 literal|null
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * If this collection is backed by an array of its elements in insertion order, returns the offset    * where this collection's elements start.    */
+end_comment
+
+begin_function
 DECL|method|internalArrayStart ()
 name|int
 name|internalArrayStart
@@ -468,7 +510,13 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * If this collection is backed by an array of its elements in insertion order, returns the offset    * where this collection's elements end.    */
+end_comment
+
+begin_function
 DECL|method|internalArrayEnd ()
 name|int
 name|internalArrayEnd
@@ -480,21 +528,30 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
+end_function
+
+begin_function_decl
 annotation|@
 name|Override
-DECL|method|contains (@ullable Object object)
+DECL|method|contains (@heckForNull Object object)
 specifier|public
 specifier|abstract
 name|boolean
 name|contains
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|object
 parameter_list|)
 function_decl|;
+end_function_decl
+
+begin_comment
 comment|/**    * Guaranteed to throw an exception and leave the collection unmodified.    *    * @throws UnsupportedOperationException always    * @deprecated Unsupported operation.    */
+end_comment
+
+begin_function
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
@@ -522,7 +579,13 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Guaranteed to throw an exception and leave the collection unmodified.    *    * @throws UnsupportedOperationException always    * @deprecated Unsupported operation.    */
+end_comment
+
+begin_function
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
@@ -534,12 +597,14 @@ name|DoNotCall
 argument_list|(
 literal|"Always throws UnsupportedOperationException"
 argument_list|)
-DECL|method|remove (Object object)
+DECL|method|remove (@heckForNull Object object)
 specifier|public
 specifier|final
 name|boolean
 name|remove
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|object
 parameter_list|)
@@ -550,7 +615,13 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Guaranteed to throw an exception and leave the collection unmodified.    *    * @throws UnsupportedOperationException always    * @deprecated Unsupported operation.    */
+end_comment
+
+begin_function
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
@@ -583,7 +654,13 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Guaranteed to throw an exception and leave the collection unmodified.    *    * @throws UnsupportedOperationException always    * @deprecated Unsupported operation.    */
+end_comment
+
+begin_function
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
@@ -614,7 +691,13 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Guaranteed to throw an exception and leave the collection unmodified.    *    * @throws UnsupportedOperationException always    * @deprecated Unsupported operation.    */
+end_comment
+
+begin_function
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
@@ -647,7 +730,13 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Guaranteed to throw an exception and leave the collection unmodified.    *    * @throws UnsupportedOperationException always    * @deprecated Unsupported operation.    */
+end_comment
+
+begin_function
 annotation|@
 name|Deprecated
 annotation|@
@@ -676,7 +765,13 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Guaranteed to throw an exception and leave the collection unmodified.    *    * @throws UnsupportedOperationException always    * @deprecated Unsupported operation.    */
+end_comment
+
+begin_function
 annotation|@
 name|Deprecated
 annotation|@
@@ -699,7 +794,13 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Returns an {@code ImmutableList} containing the same elements, in the same order, as this    * collection.    *    *<p><b>Performance note:</b> in most cases this method can return quickly without actually    * copying anything. The exact circumstances under which the copy is performed are undefined and    * subject to change.    *    * @since 2.0    */
+end_comment
+
+begin_function
 DECL|method|asList ()
 specifier|public
 name|ImmutableList
@@ -755,20 +856,34 @@ argument_list|)
 return|;
 block|}
 block|}
+end_function
+
+begin_comment
 comment|/**    * Returns {@code true} if this immutable collection's implementation contains references to    * user-created objects that aren't accessible via this collection's methods. This is generally    * used to determine whether {@code copyOf} implementations should make an explicit copy to avoid    * memory leaks.    */
+end_comment
+
+begin_function_decl
 DECL|method|isPartialView ()
 specifier|abstract
 name|boolean
 name|isPartialView
 parameter_list|()
 function_decl|;
+end_function_decl
+
+begin_comment
 comment|/**    * Copies the contents of this immutable collection into the specified array at the specified    * offset. Returns {@code offset + size()}.    */
+end_comment
+
+begin_function
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|copyIntoArray (Object[] dst, int offset)
+DECL|method|copyIntoArray (@ullable Object[] dst, int offset)
 name|int
 name|copyIntoArray
 parameter_list|(
+annotation|@
+name|Nullable
 name|Object
 index|[]
 name|dst
@@ -798,6 +913,9 @@ return|return
 name|offset
 return|;
 block|}
+end_function
+
+begin_function
 DECL|method|writeReplace ()
 name|Object
 name|writeReplace
@@ -815,7 +933,13 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Abstract base class for builders of {@link ImmutableCollection} types.    *    * @since 10.0    */
+end_comment
+
+begin_class
 annotation|@
 name|DoNotMock
 DECL|class|Builder
@@ -1062,8 +1186,8 @@ name|build
 parameter_list|()
 function_decl|;
 block|}
-block|}
 end_class
 
+unit|}
 end_unit
 

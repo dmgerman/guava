@@ -102,6 +102,8 @@ argument_list|(
 literal|"serial"
 argument_list|)
 comment|// uses writeReplace(), not default serialization
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|SingletonImmutableList
 specifier|final
 class|class

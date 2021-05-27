@@ -33,6 +33,18 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|java
+operator|.
+name|util
+operator|.
+name|Objects
+operator|.
+name|requireNonNull
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -60,6 +72,22 @@ name|VisibleForTesting
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|checkerframework
+operator|.
+name|checker
+operator|.
+name|nullness
+operator|.
+name|qual
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/**  * Implementation of {@link ImmutableList} backed by a simple array.  *  * @author Kevin Bourrillion  */
 end_comment
@@ -82,6 +110,8 @@ argument_list|(
 literal|"serial"
 argument_list|)
 comment|// uses writeReplace(), not default serialization
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|RegularImmutableList
 class|class
 name|RegularImmutableList
@@ -116,11 +146,14 @@ argument_list|,
 literal|0
 argument_list|)
 decl_stmt|;
+comment|// The first `size` elements are non-null.
 DECL|field|array
 annotation|@
 name|VisibleForTesting
 specifier|final
 specifier|transient
+annotation|@
+name|Nullable
 name|Object
 index|[]
 name|array
@@ -132,9 +165,11 @@ specifier|transient
 name|int
 name|size
 decl_stmt|;
-DECL|method|RegularImmutableList (Object[] array, int size)
+DECL|method|RegularImmutableList (@ullable Object[] array, int size)
 name|RegularImmutableList
 parameter_list|(
+annotation|@
+name|Nullable
 name|Object
 index|[]
 name|array
@@ -181,6 +216,8 @@ return|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|Nullable
 DECL|method|internalArray ()
 name|Object
 index|[]
@@ -215,10 +252,12 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|copyIntoArray (Object[] dst, int dstOff)
+DECL|method|copyIntoArray (@ullable Object[] dst, int dstOff)
 name|int
 name|copyIntoArray
 parameter_list|(
+annotation|@
+name|Nullable
 name|Object
 index|[]
 name|dst
@@ -272,14 +311,18 @@ argument_list|,
 name|size
 argument_list|)
 expr_stmt|;
+comment|// requireNonNull is safe because we guarantee that the first `size` elements are non-null.
 return|return
 operator|(
 name|E
 operator|)
+name|requireNonNull
+argument_list|(
 name|array
 index|[
 name|index
 index|]
+argument_list|)
 return|;
 block|}
 comment|// TODO(lowasser): benchmark optimizations for equals() and see if they're worthwhile

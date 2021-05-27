@@ -81,6 +81,18 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|java
+operator|.
+name|util
+operator|.
+name|Objects
+operator|.
+name|requireNonNull
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -252,6 +264,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|checkerframework
@@ -260,9 +282,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -288,6 +310,8 @@ argument_list|(
 literal|"serial"
 argument_list|)
 comment|// we're overriding default serialization
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|ImmutableSet
 specifier|public
 specifier|abstract
@@ -668,7 +692,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Constructs an {@code ImmutableSet} from the first {@code n} elements of the specified array. If    * {@code k} is the size of the returned {@code ImmutableSet}, then the unique elements of {@code    * elements} will be in the first {@code k} positions, and {@code elements[i] == null} for {@code    * k<= i< n}.    *    *<p>After this method returns, {@code elements} will contain no duplicates, but {@code elements}    * may be the real array backing the returned set, so do not modify it further.    *    *<p>{@code elements} may contain only values of type {@code E}.    *    * @throws NullPointerException if any of the first {@code n} elements of {@code elements} is null    */
-DECL|method|construct (int n, Object... elements)
+DECL|method|construct (int n, @Nullable Object... elements)
 specifier|private
 specifier|static
 parameter_list|<
@@ -683,6 +707,8 @@ parameter_list|(
 name|int
 name|n
 parameter_list|,
+annotation|@
+name|Nullable
 name|Object
 modifier|...
 name|elements
@@ -709,16 +735,20 @@ argument_list|(
 literal|"unchecked"
 argument_list|)
 comment|// safe; elements contains only E's
+comment|// requireNonNull is safe because the first `n` elements are non-null.
 name|E
 name|elem
 init|=
 operator|(
 name|E
 operator|)
+name|requireNonNull
+argument_list|(
 name|elements
 index|[
 literal|0
 index|]
+argument_list|)
 decl_stmt|;
 return|return
 name|of
@@ -903,16 +933,20 @@ argument_list|(
 literal|"unchecked"
 argument_list|)
 comment|// we are careful to only pass in E
+comment|// requireNonNull is safe because the first `uniques` elements are non-null.
 name|E
 name|element
 init|=
 operator|(
 name|E
 operator|)
+name|requireNonNull
+argument_list|(
 name|elements
 index|[
 literal|0
 index|]
+argument_list|)
 decl_stmt|;
 return|return
 operator|new
@@ -952,6 +986,8 @@ return|;
 block|}
 else|else
 block|{
+annotation|@
+name|Nullable
 name|Object
 index|[]
 name|uniqueElements
@@ -1448,13 +1484,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|equals (@ullableDecl Object object)
+DECL|method|equals (@heckForNull Object object)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|object
 parameter_list|)
@@ -1553,7 +1589,7 @@ name|LazyInit
 annotation|@
 name|RetainedWith
 annotation|@
-name|NullableDecl
+name|CheckForNull
 specifier|private
 specifier|transient
 name|ImmutableList
@@ -1761,9 +1797,11 @@ argument_list|>
 block|{
 DECL|field|hashTable
 annotation|@
-name|NullableDecl
-annotation|@
 name|VisibleForTesting
+annotation|@
+name|CheckForNull
+annotation|@
+name|Nullable
 name|Object
 index|[]
 name|hashTable
@@ -1802,6 +1840,8 @@ operator|.
 name|hashTable
 operator|=
 operator|new
+expr|@
+name|Nullable
 name|Object
 index|[
 name|chooseTableSize
@@ -1939,6 +1979,12 @@ name|E
 name|element
 parameter_list|)
 block|{
+name|requireNonNull
+argument_list|(
+name|hashTable
+argument_list|)
+expr_stmt|;
+comment|// safe because we check for null before calling this method
 name|int
 name|mask
 init|=
@@ -2184,17 +2230,21 @@ operator|++
 name|i
 control|)
 block|{
+comment|// requireNonNull is safe because the first `size` elements are non-null.
 name|add
 argument_list|(
 operator|(
 name|E
 operator|)
+name|requireNonNull
+argument_list|(
 name|other
 operator|.
 name|contents
 index|[
 name|i
 index|]
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -2249,6 +2299,7 @@ return|;
 case|case
 literal|1
 case|:
+comment|/*            * requireNonNull is safe because we ensure that the first `size` elements have been            * populated.            */
 return|return
 operator|(
 name|ImmutableSet
@@ -2258,10 +2309,13 @@ argument_list|>
 operator|)
 name|of
 argument_list|(
+name|requireNonNull
+argument_list|(
 name|contents
 index|[
 literal|0
 index|]
+argument_list|)
 argument_list|)
 return|;
 default|default:
@@ -2287,6 +2341,8 @@ operator|.
 name|length
 condition|)
 block|{
+annotation|@
+name|Nullable
 name|Object
 index|[]
 name|uniqueElements

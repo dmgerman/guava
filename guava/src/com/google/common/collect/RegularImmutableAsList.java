@@ -56,6 +56,32 @@ name|Consumer
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|checkerframework
+operator|.
+name|checker
+operator|.
+name|nullness
+operator|.
+name|qual
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/**  * An {@link ImmutableAsList} implementation specialized for when the delegate collection is already  * backed by an {@code ImmutableList} or array.  *  * @author Louis Wasserman  */
 end_comment
@@ -74,6 +100,8 @@ argument_list|(
 literal|"serial"
 argument_list|)
 comment|// uses writeReplace, not default serialization
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|RegularImmutableAsList
 class|class
 name|RegularImmutableAsList
@@ -262,10 +290,12 @@ name|GwtIncompatible
 comment|// not present in emulated superclass
 annotation|@
 name|Override
-DECL|method|copyIntoArray (Object[] dst, int offset)
+DECL|method|copyIntoArray (@ullable Object[] dst, int offset)
 name|int
 name|copyIntoArray
 parameter_list|(
+annotation|@
+name|Nullable
 name|Object
 index|[]
 name|dst
@@ -287,6 +317,8 @@ return|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|internalArray ()
 name|Object
 index|[]

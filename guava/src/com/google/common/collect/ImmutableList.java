@@ -129,6 +129,18 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|java
+operator|.
+name|util
+operator|.
+name|Objects
+operator|.
+name|requireNonNull
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -360,6 +372,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|checkerframework
@@ -396,6 +418,8 @@ argument_list|(
 literal|"serial"
 argument_list|)
 comment|// we're overriding default serialization
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|ImmutableList
 specifier|public
 specifier|abstract
@@ -1710,7 +1734,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Views the array as an immutable list. Copies if the specified range does not cover the complete    * array. Does not check for nulls.    */
-DECL|method|asImmutableList (Object[] elements, int length)
+DECL|method|asImmutableList (@ullable Object[] elements, int length)
 specifier|static
 parameter_list|<
 name|E
@@ -1721,6 +1745,8 @@ name|E
 argument_list|>
 name|asImmutableList
 parameter_list|(
+annotation|@
+name|Nullable
 name|Object
 index|[]
 name|elements
@@ -1744,30 +1770,50 @@ return|;
 case|case
 literal|1
 case|:
-return|return
-name|of
+comment|/*          * requireNonNull is safe because the callers promise to put non-null objects in the first          * `length` array elements.          */
+annotation|@
+name|SuppressWarnings
 argument_list|(
+literal|"unchecked"
+argument_list|)
+comment|// our callers put only E instances into the array
+name|E
+name|onlyElement
+init|=
 operator|(
 name|E
 operator|)
+name|requireNonNull
+argument_list|(
 name|elements
 index|[
 literal|0
 index|]
 argument_list|)
+decl_stmt|;
+return|return
+name|of
+argument_list|(
+name|onlyElement
+argument_list|)
 return|;
 default|default:
-if|if
-condition|(
+comment|/*          * The suppression is safe because the callers promise to put non-null objects in the first          * `length` array elements.          */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"nullness"
+argument_list|)
+name|Object
+index|[]
+name|elementsWithoutTrailingNulls
+init|=
 name|length
 operator|<
 name|elements
 operator|.
 name|length
-condition|)
-block|{
-name|elements
-operator|=
+condition|?
 name|Arrays
 operator|.
 name|copyOf
@@ -1776,8 +1822,9 @@ name|elements
 argument_list|,
 name|length
 argument_list|)
-expr_stmt|;
-block|}
+else|:
+name|elements
+decl_stmt|;
 return|return
 operator|new
 name|RegularImmutableList
@@ -1785,7 +1832,7 @@ argument_list|<
 name|E
 argument_list|>
 argument_list|(
-name|elements
+name|elementsWithoutTrailingNulls
 argument_list|)
 return|;
 block|}
@@ -1937,13 +1984,13 @@ block|}
 block|}
 annotation|@
 name|Override
-DECL|method|indexOf (@ullable Object object)
+DECL|method|indexOf (@heckForNull Object object)
 specifier|public
 name|int
 name|indexOf
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|object
 parameter_list|)
@@ -1970,13 +2017,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|lastIndexOf (@ullable Object object)
+DECL|method|lastIndexOf (@heckForNull Object object)
 specifier|public
 name|int
 name|lastIndexOf
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|object
 parameter_list|)
@@ -2003,13 +2050,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|contains (@ullable Object object)
+DECL|method|contains (@heckForNull Object object)
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|object
 parameter_list|)
@@ -2522,10 +2569,12 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|copyIntoArray (Object[] dst, int offset)
+DECL|method|copyIntoArray (@ullable Object[] dst, int offset)
 name|int
 name|copyIntoArray
 parameter_list|(
+annotation|@
+name|Nullable
 name|Object
 index|[]
 name|dst
@@ -2699,13 +2748,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|contains (@ullable Object object)
+DECL|method|contains (@heckForNull Object object)
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|object
 parameter_list|)
@@ -2721,13 +2770,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|indexOf (@ullable Object object)
+DECL|method|indexOf (@heckForNull Object object)
 specifier|public
 name|int
 name|indexOf
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|object
 parameter_list|)
@@ -2760,13 +2809,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|lastIndexOf (@ullable Object object)
+DECL|method|lastIndexOf (@heckForNull Object object)
 specifier|public
 name|int
 name|lastIndexOf
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|object
 parameter_list|)
@@ -2907,13 +2956,13 @@ block|}
 block|}
 annotation|@
 name|Override
-DECL|method|equals (@ullable Object obj)
+DECL|method|equals (@heckForNull Object obj)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|obj
 parameter_list|)
@@ -3155,9 +3204,12 @@ argument_list|<
 name|E
 argument_list|>
 block|{
+comment|// The first `size` elements are non-null.
 DECL|field|contents
 annotation|@
 name|VisibleForTesting
+annotation|@
+name|Nullable
 name|Object
 index|[]
 name|contents
@@ -3196,6 +3248,8 @@ operator|.
 name|contents
 operator|=
 operator|new
+expr|@
+name|Nullable
 name|Object
 index|[
 name|capacity
@@ -3353,11 +3407,13 @@ return|return
 name|this
 return|;
 block|}
-DECL|method|add (Object[] elements, int n)
+DECL|method|add (@ullable Object[] elements, int n)
 specifier|private
 name|void
 name|add
 parameter_list|(
+annotation|@
+name|Nullable
 name|Object
 index|[]
 name|elements
@@ -3373,6 +3429,7 @@ operator|+
 name|n
 argument_list|)
 expr_stmt|;
+comment|/*        * The following call is not statically checked, since arraycopy accepts plain Object for its        * parameters. If it were statically checked, the checker would still be OK with it, since        * we're copying into a `contents` array whose type allows it to contain nulls. Still, it's        * worth noting that we promise not to put nulls into the array in the first `size` elements.        * We uphold that promise here because our callers promise that `elements` will not contain        * nulls in its first `n` elements.        */
 name|System
 operator|.
 name|arraycopy

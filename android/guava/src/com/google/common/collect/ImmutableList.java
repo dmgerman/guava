@@ -316,6 +316,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|checkerframework
@@ -324,9 +334,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -352,6 +362,8 @@ argument_list|(
 literal|"serial"
 argument_list|)
 comment|// we're overriding default serialization
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|ImmutableList
 specifier|public
 specifier|abstract
@@ -1627,7 +1639,7 @@ argument_list|)
 return|;
 block|}
 comment|/** Views the array as an immutable list. Does not check for nulls. */
-DECL|method|asImmutableList (Object[] elements, int length)
+DECL|method|asImmutableList (@ullable Object[] elements, int length)
 specifier|static
 parameter_list|<
 name|E
@@ -1638,6 +1650,8 @@ name|E
 argument_list|>
 name|asImmutableList
 parameter_list|(
+annotation|@
+name|Nullable
 name|Object
 index|[]
 name|elements
@@ -1869,13 +1883,13 @@ block|}
 block|}
 annotation|@
 name|Override
-DECL|method|indexOf (@ullableDecl Object object)
+DECL|method|indexOf (@heckForNull Object object)
 specifier|public
 name|int
 name|indexOf
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|object
 parameter_list|)
@@ -1902,13 +1916,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|lastIndexOf (@ullableDecl Object object)
+DECL|method|lastIndexOf (@heckForNull Object object)
 specifier|public
 name|int
 name|lastIndexOf
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|object
 parameter_list|)
@@ -1935,13 +1949,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|contains (@ullableDecl Object object)
+DECL|method|contains (@heckForNull Object object)
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|object
 parameter_list|)
@@ -2113,6 +2127,10 @@ return|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
+annotation|@
+name|Nullable
 DECL|method|internalArray ()
 name|Object
 index|[]
@@ -2404,10 +2422,12 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|copyIntoArray (Object[] dst, int offset)
+DECL|method|copyIntoArray (@ullable Object[] dst, int offset)
 name|int
 name|copyIntoArray
 parameter_list|(
+annotation|@
+name|Nullable
 name|Object
 index|[]
 name|dst
@@ -2581,13 +2601,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|contains (@ullableDecl Object object)
+DECL|method|contains (@heckForNull Object object)
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|object
 parameter_list|)
@@ -2603,13 +2623,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|indexOf (@ullableDecl Object object)
+DECL|method|indexOf (@heckForNull Object object)
 specifier|public
 name|int
 name|indexOf
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|object
 parameter_list|)
@@ -2642,13 +2662,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|lastIndexOf (@ullableDecl Object object)
+DECL|method|lastIndexOf (@heckForNull Object object)
 specifier|public
 name|int
 name|lastIndexOf
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|object
 parameter_list|)
@@ -2789,13 +2809,13 @@ block|}
 block|}
 annotation|@
 name|Override
-DECL|method|equals (@ullableDecl Object obj)
+DECL|method|equals (@heckForNull Object obj)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|obj
 parameter_list|)

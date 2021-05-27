@@ -82,6 +82,22 @@ name|Consumer
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|checkerframework
+operator|.
+name|checker
+operator|.
+name|nullness
+operator|.
+name|qual
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_class
 annotation|@
 name|GwtCompatible
@@ -90,6 +106,8 @@ name|emulated
 operator|=
 literal|true
 argument_list|)
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|IndexedImmutableSet
 specifier|abstract
 class|class
@@ -216,10 +234,12 @@ annotation|@
 name|Override
 annotation|@
 name|GwtIncompatible
-DECL|method|copyIntoArray (Object[] dst, int offset)
+DECL|method|copyIntoArray (@ullable Object[] dst, int offset)
 name|int
 name|copyIntoArray
 parameter_list|(
+annotation|@
+name|Nullable
 name|Object
 index|[]
 name|dst

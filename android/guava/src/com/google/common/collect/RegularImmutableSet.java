@@ -46,6 +46,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|checkerframework
@@ -54,9 +64,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -82,6 +92,8 @@ argument_list|(
 literal|"serial"
 argument_list|)
 comment|// uses writeReplace(), not default serialization
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|RegularImmutableSet
 specifier|final
 class|class
@@ -95,6 +107,20 @@ argument_list|<
 name|E
 argument_list|>
 block|{
+DECL|field|EMPTY_ARRAY
+specifier|private
+specifier|static
+specifier|final
+name|Object
+index|[]
+name|EMPTY_ARRAY
+init|=
+operator|new
+name|Object
+index|[
+literal|0
+index|]
+decl_stmt|;
 DECL|field|EMPTY
 specifier|static
 specifier|final
@@ -108,36 +134,44 @@ operator|new
 name|RegularImmutableSet
 argument_list|<>
 argument_list|(
-operator|new
-name|Object
-index|[
-literal|0
-index|]
+name|EMPTY_ARRAY
 argument_list|,
 literal|0
 argument_list|,
-literal|null
+name|EMPTY_ARRAY
 argument_list|,
 literal|0
 argument_list|,
 literal|0
 argument_list|)
 decl_stmt|;
+comment|// The first `size` elements are non-null.
 DECL|field|elements
 annotation|@
 name|VisibleForTesting
 specifier|final
 specifier|transient
+annotation|@
+name|Nullable
 name|Object
 index|[]
 name|elements
 decl_stmt|;
-comment|// the same elements in hashed positions (plus nulls)
+DECL|field|hashCode
+specifier|private
+specifier|final
+specifier|transient
+name|int
+name|hashCode
+decl_stmt|;
+comment|// the same values as `elements` in hashed positions (plus nulls)
 DECL|field|table
 annotation|@
 name|VisibleForTesting
 specifier|final
 specifier|transient
+annotation|@
+name|Nullable
 name|Object
 index|[]
 name|table
@@ -150,13 +184,6 @@ specifier|transient
 name|int
 name|mask
 decl_stmt|;
-DECL|field|hashCode
-specifier|private
-specifier|final
-specifier|transient
-name|int
-name|hashCode
-decl_stmt|;
 DECL|field|size
 specifier|private
 specifier|final
@@ -164,9 +191,11 @@ specifier|transient
 name|int
 name|size
 decl_stmt|;
-DECL|method|RegularImmutableSet (Object[] elements, int hashCode, Object[] table, int mask, int size)
+DECL|method|RegularImmutableSet ( @ullable Object[] elements, int hashCode, @Nullable Object[] table, int mask, int size)
 name|RegularImmutableSet
 parameter_list|(
+annotation|@
+name|Nullable
 name|Object
 index|[]
 name|elements
@@ -174,6 +203,8 @@ parameter_list|,
 name|int
 name|hashCode
 parameter_list|,
+annotation|@
+name|Nullable
 name|Object
 index|[]
 name|table
@@ -193,6 +224,12 @@ name|elements
 expr_stmt|;
 name|this
 operator|.
+name|hashCode
+operator|=
+name|hashCode
+expr_stmt|;
+name|this
+operator|.
 name|table
 operator|=
 name|table
@@ -202,12 +239,6 @@ operator|.
 name|mask
 operator|=
 name|mask
-expr_stmt|;
-name|this
-operator|.
-name|hashCode
-operator|=
-name|hashCode
 expr_stmt|;
 name|this
 operator|.
@@ -218,17 +249,19 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|contains (@ullableDecl Object target)
+DECL|method|contains (@heckForNull Object target)
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|target
 parameter_list|)
 block|{
+annotation|@
+name|Nullable
 name|Object
 index|[]
 name|table
@@ -244,8 +277,10 @@ operator|==
 literal|null
 operator|||
 name|table
+operator|.
+name|length
 operator|==
-literal|null
+literal|0
 condition|)
 block|{
 return|return
@@ -342,6 +377,8 @@ return|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|Nullable
 DECL|method|internalArray ()
 name|Object
 index|[]
@@ -376,10 +413,12 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|copyIntoArray (Object[] dst, int offset)
+DECL|method|copyIntoArray (@ullable Object[] dst, int offset)
 name|int
 name|copyIntoArray
 parameter_list|(
+annotation|@
+name|Nullable
 name|Object
 index|[]
 name|dst
