@@ -299,107 +299,27 @@ block|{
 comment|/** A service in this state is inactive. It does minimal work and consumes minimal resources. */
 DECL|enumConstant|NEW
 name|NEW
-block|{
-annotation|@
-name|Override
-name|boolean
-name|isTerminal
-parameter_list|()
-block|{
-return|return
-literal|false
-return|;
-block|}
-block|}
 block|,
 comment|/** A service in this state is transitioning to {@link #RUNNING}. */
 DECL|enumConstant|STARTING
 name|STARTING
-block|{
-annotation|@
-name|Override
-name|boolean
-name|isTerminal
-parameter_list|()
-block|{
-return|return
-literal|false
-return|;
-block|}
-block|}
 block|,
 comment|/** A service in this state is operational. */
 DECL|enumConstant|RUNNING
 name|RUNNING
-block|{
-annotation|@
-name|Override
-name|boolean
-name|isTerminal
-parameter_list|()
-block|{
-return|return
-literal|false
-return|;
-block|}
-block|}
 block|,
 comment|/** A service in this state is transitioning to {@link #TERMINATED}. */
 DECL|enumConstant|STOPPING
 name|STOPPING
-block|{
-annotation|@
-name|Override
-name|boolean
-name|isTerminal
-parameter_list|()
-block|{
-return|return
-literal|false
-return|;
-block|}
-block|}
 block|,
 comment|/**      * A service in this state has completed execution normally. It does minimal work and consumes      * minimal resources.      */
 DECL|enumConstant|TERMINATED
 name|TERMINATED
-block|{
-annotation|@
-name|Override
-name|boolean
-name|isTerminal
-parameter_list|()
-block|{
-return|return
-literal|true
-return|;
-block|}
-block|}
 block|,
 comment|/**      * A service in this state has encountered a problem and may not be operational. It cannot be      * started nor stopped.      */
 DECL|enumConstant|FAILED
 name|FAILED
-block|{
-annotation|@
-name|Override
-name|boolean
-name|isTerminal
-parameter_list|()
-block|{
-return|return
-literal|true
-return|;
-block|}
-block|}
-block|;
-comment|/** Returns true if this state is terminal. */
-DECL|method|isTerminal ()
-specifier|abstract
-name|boolean
-name|isTerminal
-parameter_list|()
-function_decl|;
-block|}
+block|,   }
 comment|/**    * A listener for the various state changes that a {@link Service} goes through in its lifecycle.    *    *<p>All methods are no-ops by default, implementors should override the ones they care about.    *    * @author Luke Sandberg    * @since 15.0 (present as an interface in 13.0)    */
 DECL|class|Listener
 specifier|abstract

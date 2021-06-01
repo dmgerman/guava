@@ -929,8 +929,12 @@ return|return
 name|state
 argument_list|()
 operator|.
-name|isTerminal
-argument_list|()
+name|compareTo
+argument_list|(
+name|TERMINATED
+argument_list|)
+operator|>=
+literal|0
 return|;
 block|}
 block|}
