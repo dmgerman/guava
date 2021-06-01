@@ -74,9 +74,21 @@ name|common
 operator|.
 name|collect
 operator|.
-name|CollectPreconditions
+name|NullnessCasts
 operator|.
-name|checkRemove
+name|uncheckedCastNullableTToT
+import|;
+end_import
+
+begin_import
+import|import static
+name|java
+operator|.
+name|util
+operator|.
+name|Objects
+operator|.
+name|requireNonNull
 import|;
 end_import
 
@@ -232,6 +244,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|checkerframework
@@ -240,9 +262,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -250,7 +272,7 @@ begin_comment
 comment|/**  * A multiset which maintains the ordering of its elements, according to either their natural order  * or an explicit {@link Comparator}. In all cases, this implementation uses {@link  * Comparable#compareTo} or {@link Comparator#compare} instead of {@link Object#equals} to determine  * equivalence of instances.  *  *<p><b>Warning:</b> The comparison must be<i>consistent with equals</i> as explained by the  * {@link Comparable} class specification. Otherwise, the resulting multiset will violate the {@link  * java.util.Collection} contract, which is specified in terms of {@link Object#equals}.  *  *<p>See the Guava User Guide article on<a href=  * "https://github.com/google/guava/wiki/NewCollectionTypesExplained#multiset"> {@code  * Multiset}</a>.  *  * @author Louis Wasserman  * @author Jared Levy  * @since 2.0  */
 end_comment
 
-begin_class
+begin_annotation
 annotation|@
 name|GwtCompatible
 argument_list|(
@@ -258,37 +280,48 @@ name|emulated
 operator|=
 literal|true
 argument_list|)
+end_annotation
+
+begin_annotation
+annotation|@
+name|ElementTypesAreNonnullByDefault
+end_annotation
+
+begin_expr_stmt
 DECL|class|TreeMultiset
 specifier|public
-specifier|final
-class|class
+name|final
+name|class
 name|TreeMultiset
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|AbstractSortedMultiset
 argument_list|<
 name|E
 argument_list|>
-implements|implements
+expr|implements
 name|Serializable
 block|{
 comment|/**    * Creates a new, empty multiset, sorted according to the elements' natural order. All elements    * inserted into the multiset must implement the {@code Comparable} interface. Furthermore, all    * such elements must be<i>mutually comparable</i>: {@code e1.compareTo(e2)} must not throw a    * {@code ClassCastException} for any elements {@code e1} and {@code e2} in the multiset. If the    * user attempts to add an element to the multiset that violates this constraint (for example, the    * user attempts to add a string element to a set whose elements are integers), the {@code    * add(Object)} call will throw a {@code ClassCastException}.    *    *<p>The type specification is {@code<E extends Comparable>}, instead of the more specific    * {@code<E extends Comparable<? super E>>}, to support classes defined without generics.    */
 DECL|method|create ()
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|E
-extends|extends
+expr|extends
 name|Comparable
-parameter_list|>
+operator|>
 name|TreeMultiset
 argument_list|<
 name|E
 argument_list|>
 name|create
-parameter_list|()
+argument_list|()
 block|{
 return|return
 operator|new
@@ -305,25 +338,28 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Creates a new, empty multiset, sorted according to the specified comparator. All elements    * inserted into the multiset must be<i>mutually comparable</i> by the specified comparator:    * {@code comparator.compare(e1, e2)} must not throw a {@code ClassCastException} for any elements    * {@code e1} and {@code e2} in the multiset. If the user attempts to add an element to the    * multiset that violates this constraint, the {@code add(Object)} call will throw a {@code    * ClassCastException}.    *    * @param comparator the comparator that will be used to sort this multiset. A null value    *     indicates that the elements'<i>natural ordering</i> should be used.    */
-annotation|@
+expr|@
 name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
-DECL|method|create (@ullableDecl Comparator<? super E> comparator)
+DECL|method|create ( @heckForNull Comparator<? super E> comparator)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|TreeMultiset
 argument_list|<
 name|E
 argument_list|>
 name|create
-parameter_list|(
+argument_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Comparator
 argument_list|<
 name|?
@@ -331,7 +367,7 @@ super|super
 name|E
 argument_list|>
 name|comparator
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|(
@@ -365,7 +401,13 @@ name|comparator
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/**    * Creates an empty multiset containing the given initial elements, sorted according to the    * elements' natural order.    *    *<p>This implementation is highly efficient when {@code elements} is itself a {@link Multiset}.    *    *<p>The type specification is {@code<E extends Comparable>}, instead of the more specific    * {@code<E extends Comparable<? super E>>}, to support classes defined without generics.    */
+end_comment
+
+begin_function
 DECL|method|create (Iterable<? extends E> elements)
 specifier|public
 specifier|static
@@ -411,6 +453,9 @@ return|return
 name|multiset
 return|;
 block|}
+end_function
+
+begin_decl_stmt
 DECL|field|rootReference
 specifier|private
 specifier|final
@@ -424,6 +469,9 @@ argument_list|>
 argument_list|>
 name|rootReference
 decl_stmt|;
+end_decl_stmt
+
+begin_decl_stmt
 DECL|field|range
 specifier|private
 specifier|final
@@ -434,6 +482,9 @@ name|E
 argument_list|>
 name|range
 decl_stmt|;
+end_decl_stmt
+
+begin_decl_stmt
 DECL|field|header
 specifier|private
 specifier|final
@@ -444,9 +495,12 @@ name|E
 argument_list|>
 name|header
 decl_stmt|;
+end_decl_stmt
+
+begin_expr_stmt
 DECL|method|TreeMultiset (Reference<AvlNode<E>> rootReference, GeneralRange<E> range, AvlNode<E> endLink)
 name|TreeMultiset
-parameter_list|(
+argument_list|(
 name|Reference
 argument_list|<
 name|AvlNode
@@ -455,19 +509,19 @@ name|E
 argument_list|>
 argument_list|>
 name|rootReference
-parameter_list|,
+argument_list|,
 name|GeneralRange
 argument_list|<
 name|E
 argument_list|>
 name|range
-parameter_list|,
+argument_list|,
 name|AvlNode
 argument_list|<
 name|E
 argument_list|>
 name|endLink
-parameter_list|)
+argument_list|)
 block|{
 name|super
 argument_list|(
@@ -476,29 +530,28 @@ operator|.
 name|comparator
 argument_list|()
 argument_list|)
-expr_stmt|;
+block|;
 name|this
 operator|.
 name|rootReference
 operator|=
 name|rootReference
-expr_stmt|;
+block|;
 name|this
 operator|.
 name|range
 operator|=
 name|range
-expr_stmt|;
+block|;
 name|this
 operator|.
 name|header
 operator|=
 name|endLink
-expr_stmt|;
-block|}
+block|;   }
 DECL|method|TreeMultiset (Comparator<? super E> comparator)
 name|TreeMultiset
-parameter_list|(
+argument_list|(
 name|Comparator
 argument_list|<
 name|?
@@ -506,13 +559,13 @@ super|super
 name|E
 argument_list|>
 name|comparator
-parameter_list|)
+argument_list|)
 block|{
 name|super
 argument_list|(
 name|comparator
 argument_list|)
-expr_stmt|;
+block|;
 name|this
 operator|.
 name|range
@@ -523,29 +576,23 @@ name|all
 argument_list|(
 name|comparator
 argument_list|)
-expr_stmt|;
+block|;
 name|this
 operator|.
 name|header
 operator|=
 operator|new
 name|AvlNode
-argument_list|<
-name|E
-argument_list|>
-argument_list|(
-literal|null
-argument_list|,
-literal|1
-argument_list|)
-expr_stmt|;
+argument_list|<>
+argument_list|()
+block|;
 name|successor
 argument_list|(
 name|header
 argument_list|,
 name|header
 argument_list|)
-expr_stmt|;
+block|;
 name|this
 operator|.
 name|rootReference
@@ -554,28 +601,26 @@ operator|new
 name|Reference
 argument_list|<>
 argument_list|()
-expr_stmt|;
-block|}
+block|;   }
 comment|/** A function which can be summed across a subtree. */
 DECL|enum|Aggregate
 specifier|private
-enum|enum
+expr|enum
 name|Aggregate
 block|{
 DECL|enumConstant|SIZE
 name|SIZE
-block|{
-annotation|@
+block|{       @
 name|Override
 name|int
 name|nodeAggregate
-parameter_list|(
+argument_list|(
 name|AvlNode
 argument_list|<
 name|?
 argument_list|>
 name|node
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|node
@@ -583,19 +628,19 @@ operator|.
 name|elemCount
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
 name|long
 name|treeAggregate
-parameter_list|(
+argument_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|AvlNode
 argument_list|<
 name|?
 argument_list|>
 name|root
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|(
@@ -611,40 +656,41 @@ operator|.
 name|totalCount
 return|;
 block|}
-block|}
-block|,
+end_expr_stmt
+
+begin_expr_stmt
+unit|},
 DECL|enumConstant|DISTINCT
 name|DISTINCT
-block|{
-annotation|@
+block|{       @
 name|Override
 name|int
 name|nodeAggregate
-parameter_list|(
+argument_list|(
 name|AvlNode
 argument_list|<
 name|?
 argument_list|>
 name|node
-parameter_list|)
+argument_list|)
 block|{
 return|return
 literal|1
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
 name|long
 name|treeAggregate
-parameter_list|(
+argument_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|AvlNode
 argument_list|<
 name|?
 argument_list|>
 name|root
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|(
@@ -660,8 +706,10 @@ operator|.
 name|distinctElements
 return|;
 block|}
-block|}
-block|;
+end_expr_stmt
+
+begin_function_decl
+unit|};
 DECL|method|nodeAggregate (AvlNode<?> node)
 specifier|abstract
 name|int
@@ -674,13 +722,16 @@ argument_list|>
 name|node
 parameter_list|)
 function_decl|;
-DECL|method|treeAggregate (@ullableDecl AvlNode<?> root)
+end_function_decl
+
+begin_function_decl
+DECL|method|treeAggregate (@heckForNull AvlNode<?> root)
 specifier|abstract
 name|long
 name|treeAggregate
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|AvlNode
 argument_list|<
 name|?
@@ -688,9 +739,11 @@ argument_list|>
 name|root
 parameter_list|)
 function_decl|;
-block|}
+end_function_decl
+
+begin_function
+unit|}    private
 DECL|method|aggregateForEntries (Aggregate aggr)
-specifier|private
 name|long
 name|aggregateForEntries
 parameter_list|(
@@ -759,7 +812,10 @@ return|return
 name|total
 return|;
 block|}
-DECL|method|aggregateBelowRange (Aggregate aggr, @NullableDecl AvlNode<E> node)
+end_function
+
+begin_function
+DECL|method|aggregateBelowRange (Aggregate aggr, @CheckForNull AvlNode<E> node)
 specifier|private
 name|long
 name|aggregateBelowRange
@@ -768,7 +824,7 @@ name|Aggregate
 name|aggr
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|AvlNode
 argument_list|<
 name|E
@@ -787,6 +843,7 @@ return|return
 literal|0
 return|;
 block|}
+comment|// The cast is safe because we call this method only if hasLowerBound().
 name|int
 name|cmp
 init|=
@@ -795,14 +852,18 @@ argument_list|()
 operator|.
 name|compare
 argument_list|(
+name|uncheckedCastNullableTToT
+argument_list|(
 name|range
 operator|.
 name|getLowerEndpoint
 argument_list|()
+argument_list|)
 argument_list|,
 name|node
 operator|.
-name|elem
+name|getElement
+argument_list|()
 argument_list|)
 decl_stmt|;
 if|if
@@ -910,7 +971,10 @@ argument_list|)
 return|;
 block|}
 block|}
-DECL|method|aggregateAboveRange (Aggregate aggr, @NullableDecl AvlNode<E> node)
+end_function
+
+begin_function
+DECL|method|aggregateAboveRange (Aggregate aggr, @CheckForNull AvlNode<E> node)
 specifier|private
 name|long
 name|aggregateAboveRange
@@ -919,7 +983,7 @@ name|Aggregate
 name|aggr
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|AvlNode
 argument_list|<
 name|E
@@ -938,6 +1002,7 @@ return|return
 literal|0
 return|;
 block|}
+comment|// The cast is safe because we call this method only if hasUpperBound().
 name|int
 name|cmp
 init|=
@@ -946,14 +1011,18 @@ argument_list|()
 operator|.
 name|compare
 argument_list|(
+name|uncheckedCastNullableTToT
+argument_list|(
 name|range
 operator|.
 name|getUpperEndpoint
 argument_list|()
+argument_list|)
 argument_list|,
 name|node
 operator|.
-name|elem
+name|getElement
+argument_list|()
 argument_list|)
 decl_stmt|;
 if|if
@@ -1061,6 +1130,9 @@ argument_list|)
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|size ()
@@ -1083,6 +1155,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|distinctElements ()
@@ -1104,13 +1179,16 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-DECL|method|distinctElements (@ullableDecl AvlNode<?> node)
+end_function
+
+begin_function
+DECL|method|distinctElements (@heckForNull AvlNode<?> node)
 specifier|static
 name|int
 name|distinctElements
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|AvlNode
 argument_list|<
 name|?
@@ -1132,15 +1210,18 @@ operator|.
 name|distinctElements
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|count (@ullableDecl Object element)
+DECL|method|count (@heckForNull Object element)
 specifier|public
 name|int
 name|count
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|element
 parameter_list|)
@@ -1215,17 +1296,20 @@ literal|0
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
-DECL|method|add (@ullableDecl E element, int occurrences)
+DECL|method|add (@arametricNullness E element, int occurrences)
 specifier|public
 name|int
 name|add
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|ParametricNullness
 name|E
 name|element
 parameter_list|,
@@ -1378,17 +1462,20 @@ literal|0
 index|]
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
-DECL|method|remove (@ullableDecl Object element, int occurrences)
+DECL|method|remove (@heckForNull Object element, int occurrences)
 specifier|public
 name|int
 name|remove
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|element
 parameter_list|,
@@ -1524,17 +1611,20 @@ literal|0
 index|]
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
-DECL|method|setCount (@ullableDecl E element, int count)
+DECL|method|setCount (@arametricNullness E element, int count)
 specifier|public
 name|int
 name|setCount
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|ParametricNullness
 name|E
 name|element
 parameter_list|,
@@ -1655,17 +1745,20 @@ literal|0
 index|]
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
-DECL|method|setCount (@ullableDecl E element, int oldCount, int newCount)
+DECL|method|setCount (@arametricNullness E element, int oldCount, int newCount)
 specifier|public
 name|boolean
 name|setCount
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|ParametricNullness
 name|E
 name|element
 parameter_list|,
@@ -1802,6 +1895,9 @@ operator|==
 name|oldCount
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|clear ()
@@ -1837,6 +1933,7 @@ init|=
 name|header
 operator|.
 name|succ
+argument_list|()
 init|;
 name|current
 operator|!=
@@ -1853,6 +1950,7 @@ init|=
 name|current
 operator|.
 name|succ
+argument_list|()
 decl_stmt|;
 name|current
 operator|.
@@ -1916,6 +2014,9 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+end_function
+
+begin_function
 DECL|method|wrapEntry (final AvlNode<E> baseEntry)
 specifier|private
 name|Entry
@@ -1944,6 +2045,8 @@ argument_list|()
 block|{
 annotation|@
 name|Override
+annotation|@
+name|ParametricNullness
 specifier|public
 name|E
 name|getElement
@@ -1996,9 +2099,15 @@ block|}
 block|}
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/** Returns the first node in the tree that is in range. */
+end_comment
+
+begin_function
 annotation|@
-name|NullableDecl
+name|CheckForNull
 DECL|method|firstNode ()
 specifier|private
 name|AvlNode
@@ -2044,20 +2153,21 @@ name|hasLowerBound
 argument_list|()
 condition|)
 block|{
+comment|// The cast is safe because of the hasLowerBound check.
 name|E
 name|endpoint
 init|=
+name|uncheckedCastNullableTToT
+argument_list|(
 name|range
 operator|.
 name|getLowerEndpoint
 argument_list|()
+argument_list|)
 decl_stmt|;
 name|node
 operator|=
-name|rootReference
-operator|.
-name|get
-argument_list|()
+name|root
 operator|.
 name|ceiling
 argument_list|(
@@ -2110,6 +2220,7 @@ operator|=
 name|node
 operator|.
 name|succ
+argument_list|()
 expr_stmt|;
 block|}
 block|}
@@ -2120,6 +2231,7 @@ operator|=
 name|header
 operator|.
 name|succ
+argument_list|()
 expr_stmt|;
 block|}
 return|return
@@ -2145,8 +2257,11 @@ else|:
 name|node
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
-name|NullableDecl
+name|CheckForNull
 DECL|method|lastNode ()
 specifier|private
 name|AvlNode
@@ -2192,20 +2307,21 @@ name|hasUpperBound
 argument_list|()
 condition|)
 block|{
+comment|// The cast is safe because of the hasUpperBound check.
 name|E
 name|endpoint
 init|=
+name|uncheckedCastNullableTToT
+argument_list|(
 name|range
 operator|.
 name|getUpperEndpoint
 argument_list|()
+argument_list|)
 decl_stmt|;
 name|node
 operator|=
-name|rootReference
-operator|.
-name|get
-argument_list|()
+name|root
 operator|.
 name|floor
 argument_list|(
@@ -2258,6 +2374,7 @@ operator|=
 name|node
 operator|.
 name|pred
+argument_list|()
 expr_stmt|;
 block|}
 block|}
@@ -2268,6 +2385,7 @@ operator|=
 name|header
 operator|.
 name|pred
+argument_list|()
 expr_stmt|;
 block|}
 return|return
@@ -2293,6 +2411,9 @@ else|:
 name|node
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|elementIterator ()
@@ -2313,6 +2434,9 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|entryIterator ()
@@ -2337,6 +2461,8 @@ argument_list|>
 argument_list|>
 argument_list|()
 block|{
+annotation|@
+name|CheckForNull
 name|AvlNode
 argument_list|<
 name|E
@@ -2347,7 +2473,7 @@ name|firstNode
 argument_list|()
 decl_stmt|;
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Entry
 argument_list|<
 name|E
@@ -2424,6 +2550,7 @@ name|NoSuchElementException
 argument_list|()
 throw|;
 block|}
+comment|// requireNonNull is safe because current is only nulled out after iteration is complete.
 name|Entry
 argument_list|<
 name|E
@@ -2432,7 +2559,10 @@ name|result
 init|=
 name|wrapEntry
 argument_list|(
+name|requireNonNull
+argument_list|(
 name|current
+argument_list|)
 argument_list|)
 decl_stmt|;
 name|prevEntry
@@ -2444,6 +2574,7 @@ condition|(
 name|current
 operator|.
 name|succ
+argument_list|()
 operator|==
 name|header
 condition|)
@@ -2460,6 +2591,7 @@ operator|=
 name|current
 operator|.
 name|succ
+argument_list|()
 expr_stmt|;
 block|}
 return|return
@@ -2473,11 +2605,13 @@ name|void
 name|remove
 parameter_list|()
 block|{
-name|checkRemove
+name|checkState
 argument_list|(
 name|prevEntry
 operator|!=
 literal|null
+argument_list|,
+literal|"no calls to next() since the last call to remove()"
 argument_list|)
 expr_stmt|;
 name|setCount
@@ -2498,6 +2632,9 @@ block|}
 block|}
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|descendingEntryIterator ()
@@ -2522,6 +2659,8 @@ argument_list|>
 argument_list|>
 argument_list|()
 block|{
+annotation|@
+name|CheckForNull
 name|AvlNode
 argument_list|<
 name|E
@@ -2531,6 +2670,8 @@ init|=
 name|lastNode
 argument_list|()
 decl_stmt|;
+annotation|@
+name|CheckForNull
 name|Entry
 argument_list|<
 name|E
@@ -2609,6 +2750,12 @@ name|NoSuchElementException
 argument_list|()
 throw|;
 block|}
+comment|// requireNonNull is safe because current is only nulled out after iteration is complete.
+name|requireNonNull
+argument_list|(
+name|current
+argument_list|)
+expr_stmt|;
 name|Entry
 argument_list|<
 name|E
@@ -2629,6 +2776,7 @@ condition|(
 name|current
 operator|.
 name|pred
+argument_list|()
 operator|==
 name|header
 condition|)
@@ -2645,6 +2793,7 @@ operator|=
 name|current
 operator|.
 name|pred
+argument_list|()
 expr_stmt|;
 block|}
 return|return
@@ -2658,11 +2807,13 @@ name|void
 name|remove
 parameter_list|()
 block|{
-name|checkRemove
+name|checkState
 argument_list|(
 name|prevEntry
 operator|!=
 literal|null
+argument_list|,
+literal|"no calls to next() since the last call to remove()"
 argument_list|)
 expr_stmt|;
 name|setCount
@@ -2683,6 +2834,9 @@ block|}
 block|}
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|iterator ()
@@ -2703,9 +2857,12 @@ name|this
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|headMultiset (@ullableDecl E upperBound, BoundType boundType)
+DECL|method|headMultiset (@arametricNullness E upperBound, BoundType boundType)
 specifier|public
 name|SortedMultiset
 argument_list|<
@@ -2714,7 +2871,7 @@ argument_list|>
 name|headMultiset
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|ParametricNullness
 name|E
 name|upperBound
 parameter_list|,
@@ -2752,9 +2909,12 @@ name|header
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|tailMultiset (@ullableDecl E lowerBound, BoundType boundType)
+DECL|method|tailMultiset (@arametricNullness E lowerBound, BoundType boundType)
 specifier|public
 name|SortedMultiset
 argument_list|<
@@ -2763,7 +2923,7 @@ argument_list|>
 name|tailMultiset
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|ParametricNullness
 name|E
 name|lowerBound
 parameter_list|,
@@ -2801,6 +2961,9 @@ name|header
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_class
 DECL|class|Reference
 specifier|private
 specifier|static
@@ -2813,13 +2976,13 @@ parameter_list|>
 block|{
 DECL|field|value
 annotation|@
-name|NullableDecl
+name|CheckForNull
 specifier|private
 name|T
 name|value
 decl_stmt|;
 annotation|@
-name|NullableDecl
+name|CheckForNull
 DECL|method|get ()
 specifier|public
 name|T
@@ -2830,16 +2993,18 @@ return|return
 name|value
 return|;
 block|}
-DECL|method|checkAndSet (@ullableDecl T expected, T newValue)
+DECL|method|checkAndSet (@heckForNull T expected, @CheckForNull T newValue)
 specifier|public
 name|void
 name|checkAndSet
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|T
 name|expected
 parameter_list|,
+annotation|@
+name|CheckForNull
 name|T
 name|newValue
 parameter_list|)
@@ -2873,96 +3038,101 @@ literal|null
 expr_stmt|;
 block|}
 block|}
+end_class
+
+begin_expr_stmt
 DECL|class|AvlNode
 specifier|private
 specifier|static
-specifier|final
-class|class
+name|final
+name|class
 name|AvlNode
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 block|{
+comment|/*      * For "normal" nodes, the type of this field is `E`, not `@Nullable E` (though note that E is a      * type that can include null, as in a TreeMultiset<@Nullable String>).      *      * For the header node, though, this field contains `null`, regardless of the type of the      * multiset.      *      * Most code that operates on an AvlNode never operates on the header node. Such code can access      * the elem field without a null check by calling getElement().      */
 DECL|field|elem
-annotation|@
-name|NullableDecl
+block|@
+name|CheckForNull
 specifier|private
-specifier|final
+name|final
 name|E
 name|elem
-decl_stmt|;
+block|;
 comment|// elemCount is 0 iff this node has been deleted.
 DECL|field|elemCount
 specifier|private
 name|int
 name|elemCount
-decl_stmt|;
+block|;
 DECL|field|distinctElements
 specifier|private
 name|int
 name|distinctElements
-decl_stmt|;
+block|;
 DECL|field|totalCount
 specifier|private
 name|long
 name|totalCount
-decl_stmt|;
+block|;
 DECL|field|height
 specifier|private
 name|int
 name|height
-decl_stmt|;
+block|;     @
 DECL|field|left
-annotation|@
-name|NullableDecl
+name|CheckForNull
 specifier|private
 name|AvlNode
 argument_list|<
 name|E
 argument_list|>
 name|left
-decl_stmt|;
+block|;     @
 DECL|field|right
-annotation|@
-name|NullableDecl
+name|CheckForNull
 specifier|private
 name|AvlNode
 argument_list|<
 name|E
 argument_list|>
 name|right
-decl_stmt|;
+block|;
+comment|/*      * pred and succ are nullable after construction, but we always call successor() to initialize      * them immediately thereafter.      *      * They may be subsequently nulled out by TreeMultiset.clear(). I think that the only place that      * we can reference a node whose fields have been cleared is inside the iterator (and presumably      * only under concurrent modification).      *      * To access these fields when you know that they are not null, call the pred() and succ()      * methods, which perform null checks before returning the fields.      */
 DECL|field|pred
-annotation|@
-name|NullableDecl
+block|@
+name|CheckForNull
 specifier|private
 name|AvlNode
 argument_list|<
 name|E
 argument_list|>
 name|pred
-decl_stmt|;
+block|;     @
 DECL|field|succ
-annotation|@
-name|NullableDecl
+name|CheckForNull
 specifier|private
 name|AvlNode
 argument_list|<
 name|E
 argument_list|>
 name|succ
-decl_stmt|;
-DECL|method|AvlNode (@ullableDecl E elem, int elemCount)
+block|;
+DECL|method|AvlNode (@arametricNullness E elem, int elemCount)
 name|AvlNode
-parameter_list|(
+argument_list|(
 annotation|@
-name|NullableDecl
+name|ParametricNullness
 name|E
 name|elem
-parameter_list|,
+argument_list|,
 name|int
 name|elemCount
-parameter_list|)
+argument_list|)
 block|{
 name|checkArgument
 argument_list|(
@@ -2970,52 +3140,103 @@ name|elemCount
 operator|>
 literal|0
 argument_list|)
-expr_stmt|;
+block|;
 name|this
 operator|.
 name|elem
 operator|=
 name|elem
-expr_stmt|;
+block|;
 name|this
 operator|.
 name|elemCount
 operator|=
 name|elemCount
-expr_stmt|;
+block|;
 name|this
 operator|.
 name|totalCount
 operator|=
 name|elemCount
-expr_stmt|;
+block|;
 name|this
 operator|.
 name|distinctElements
 operator|=
 literal|1
-expr_stmt|;
+block|;
 name|this
 operator|.
 name|height
 operator|=
 literal|1
-expr_stmt|;
+block|;
 name|this
 operator|.
 name|left
 operator|=
 literal|null
-expr_stmt|;
+block|;
 name|this
 operator|.
 name|right
 operator|=
 literal|null
-expr_stmt|;
+block|;     }
+comment|/** Constructor for the header node. */
+DECL|method|AvlNode ()
+name|AvlNode
+argument_list|()
+block|{
+name|this
+operator|.
+name|elem
+operator|=
+literal|null
+block|;
+name|this
+operator|.
+name|elemCount
+operator|=
+literal|1
+block|;     }
+comment|// For discussion of pred() and succ(), see the comment on the pred and succ fields.
+DECL|method|pred ()
+specifier|private
+name|AvlNode
+argument_list|<
+name|E
+argument_list|>
+name|pred
+argument_list|()
+block|{
+return|return
+name|requireNonNull
+argument_list|(
+name|pred
+argument_list|)
+return|;
 block|}
-DECL|method|count (Comparator<? super E> comparator, E e)
-specifier|public
+DECL|method|succ ()
+specifier|private
+name|AvlNode
+argument_list|<
+name|E
+argument_list|>
+name|succ
+argument_list|()
+block|{
+return|return
+name|requireNonNull
+argument_list|(
+name|succ
+argument_list|)
+return|;
+block|}
+end_expr_stmt
+
+begin_function
+DECL|method|count (Comparator<? super E> comparator, @ParametricNullness E e)
 name|int
 name|count
 parameter_list|(
@@ -3027,6 +3248,8 @@ name|E
 argument_list|>
 name|comparator
 parameter_list|,
+annotation|@
+name|ParametricNullness
 name|E
 name|e
 parameter_list|)
@@ -3040,7 +3263,8 @@ name|compare
 argument_list|(
 name|e
 argument_list|,
-name|elem
+name|getElement
+argument_list|()
 argument_list|)
 decl_stmt|;
 if|if
@@ -3103,7 +3327,10 @@ name|elemCount
 return|;
 block|}
 block|}
-DECL|method|addRightChild (E e, int count)
+end_function
+
+begin_function
+DECL|method|addRightChild (@arametricNullness E e, int count)
 specifier|private
 name|AvlNode
 argument_list|<
@@ -3111,6 +3338,8 @@ name|E
 argument_list|>
 name|addRightChild
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|E
 name|e
 parameter_list|,
@@ -3138,6 +3367,7 @@ argument_list|,
 name|right
 argument_list|,
 name|succ
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|height
@@ -3162,7 +3392,10 @@ return|return
 name|this
 return|;
 block|}
-DECL|method|addLeftChild (E e, int count)
+end_function
+
+begin_function
+DECL|method|addLeftChild (@arametricNullness E e, int count)
 specifier|private
 name|AvlNode
 argument_list|<
@@ -3170,6 +3403,8 @@ name|E
 argument_list|>
 name|addLeftChild
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|E
 name|e
 parameter_list|,
@@ -3193,6 +3428,7 @@ expr_stmt|;
 name|successor
 argument_list|(
 name|pred
+argument_list|()
 argument_list|,
 name|left
 argument_list|,
@@ -3221,7 +3457,10 @@ return|return
 name|this
 return|;
 block|}
-DECL|method|add (Comparator<? super E> comparator, @NullableDecl E e, int count, int[] result)
+end_function
+
+begin_function
+DECL|method|add ( Comparator<? super E> comparator, @ParametricNullness E e, int count, int[] result)
 name|AvlNode
 argument_list|<
 name|E
@@ -3237,7 +3476,7 @@ argument_list|>
 name|comparator
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|ParametricNullness
 name|E
 name|e
 parameter_list|,
@@ -3259,7 +3498,8 @@ name|compare
 argument_list|(
 name|e
 argument_list|,
-name|elem
+name|getElement
+argument_list|()
 argument_list|)
 decl_stmt|;
 if|if
@@ -3496,7 +3736,12 @@ return|return
 name|this
 return|;
 block|}
-DECL|method|remove ( Comparator<? super E> comparator, @NullableDecl E e, int count, int[] result)
+end_function
+
+begin_function
+annotation|@
+name|CheckForNull
+DECL|method|remove ( Comparator<? super E> comparator, @ParametricNullness E e, int count, int[] result)
 name|AvlNode
 argument_list|<
 name|E
@@ -3512,7 +3757,7 @@ argument_list|>
 name|comparator
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|ParametricNullness
 name|E
 name|e
 parameter_list|,
@@ -3533,7 +3778,8 @@ name|compare
 argument_list|(
 name|e
 argument_list|,
-name|elem
+name|getElement
+argument_list|()
 argument_list|)
 decl_stmt|;
 if|if
@@ -3783,7 +4029,12 @@ name|this
 return|;
 block|}
 block|}
-DECL|method|setCount ( Comparator<? super E> comparator, @NullableDecl E e, int count, int[] result)
+end_function
+
+begin_function
+annotation|@
+name|CheckForNull
+DECL|method|setCount ( Comparator<? super E> comparator, @ParametricNullness E e, int count, int[] result)
 name|AvlNode
 argument_list|<
 name|E
@@ -3799,7 +4050,7 @@ argument_list|>
 name|comparator
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|ParametricNullness
 name|E
 name|e
 parameter_list|,
@@ -3820,7 +4071,8 @@ name|compare
 argument_list|(
 name|e
 argument_list|,
-name|elem
+name|getElement
+argument_list|()
 argument_list|)
 decl_stmt|;
 if|if
@@ -4098,7 +4350,12 @@ return|return
 name|this
 return|;
 block|}
-DECL|method|setCount ( Comparator<? super E> comparator, @NullableDecl E e, int expectedCount, int newCount, int[] result)
+end_function
+
+begin_function
+annotation|@
+name|CheckForNull
+DECL|method|setCount ( Comparator<? super E> comparator, @ParametricNullness E e, int expectedCount, int newCount, int[] result)
 name|AvlNode
 argument_list|<
 name|E
@@ -4114,7 +4371,7 @@ argument_list|>
 name|comparator
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|ParametricNullness
 name|E
 name|e
 parameter_list|,
@@ -4138,7 +4395,8 @@ name|compare
 argument_list|(
 name|e
 argument_list|,
-name|elem
+name|getElement
+argument_list|()
 argument_list|)
 decl_stmt|;
 if|if
@@ -4464,6 +4722,11 @@ return|return
 name|this
 return|;
 block|}
+end_function
+
+begin_function
+annotation|@
+name|CheckForNull
 DECL|method|deleteMe ()
 specifier|private
 name|AvlNode
@@ -4489,8 +4752,10 @@ expr_stmt|;
 name|successor
 argument_list|(
 name|pred
+argument_list|()
 argument_list|,
 name|succ
+argument_list|()
 argument_list|)
 expr_stmt|;
 if|if
@@ -4535,6 +4800,7 @@ argument_list|>
 name|newTop
 init|=
 name|pred
+argument_list|()
 decl_stmt|;
 comment|// newTop is the maximum node in my left subtree
 name|newTop
@@ -4586,6 +4852,7 @@ argument_list|>
 name|newTop
 init|=
 name|succ
+argument_list|()
 decl_stmt|;
 name|newTop
 operator|.
@@ -4628,7 +4895,15 @@ argument_list|()
 return|;
 block|}
 block|}
+end_function
+
+begin_comment
 comment|// Removes the minimum node from this subtree to be reused elsewhere
+end_comment
+
+begin_function
+annotation|@
+name|CheckForNull
 DECL|method|removeMin (AvlNode<E> node)
 specifier|private
 name|AvlNode
@@ -4681,7 +4956,15 @@ argument_list|()
 return|;
 block|}
 block|}
+end_function
+
+begin_comment
 comment|// Removes the maximum node from this subtree to be reused elsewhere
+end_comment
+
+begin_function
+annotation|@
+name|CheckForNull
 DECL|method|removeMax (AvlNode<E> node)
 specifier|private
 name|AvlNode
@@ -4734,6 +5017,9 @@ argument_list|()
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 DECL|method|recomputeMultiset ()
 specifier|private
 name|void
@@ -4777,6 +5063,9 @@ name|right
 argument_list|)
 expr_stmt|;
 block|}
+end_function
+
+begin_function
 DECL|method|recomputeHeight ()
 specifier|private
 name|void
@@ -4805,6 +5094,9 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+end_function
+
+begin_function
 DECL|method|recompute ()
 specifier|private
 name|void
@@ -4818,6 +5110,9 @@ name|recomputeHeight
 argument_list|()
 expr_stmt|;
 block|}
+end_function
+
+begin_function
 DECL|method|rebalance ()
 specifier|private
 name|AvlNode
@@ -4837,6 +5132,12 @@ case|case
 operator|-
 literal|2
 case|:
+comment|// requireNonNull is safe because right must exist in order to get a negative factor.
+name|requireNonNull
+argument_list|(
+name|right
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|right
@@ -4862,6 +5163,12 @@ return|;
 case|case
 literal|2
 case|:
+comment|// requireNonNull is safe because left must exist in order to get a positive factor.
+name|requireNonNull
+argument_list|(
+name|left
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|left
@@ -4893,6 +5200,9 @@ name|this
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 DECL|method|balanceFactor ()
 specifier|private
 name|int
@@ -4911,6 +5221,9 @@ name|right
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 DECL|method|rotateLeft ()
 specifier|private
 name|AvlNode
@@ -4979,6 +5292,9 @@ return|return
 name|newTop
 return|;
 block|}
+end_function
+
+begin_function
 DECL|method|rotateRight ()
 specifier|private
 name|AvlNode
@@ -5047,14 +5363,17 @@ return|return
 name|newTop
 return|;
 block|}
-DECL|method|totalCount (@ullableDecl AvlNode<?> node)
+end_function
+
+begin_function
+DECL|method|totalCount (@heckForNull AvlNode<?> node)
 specifier|private
 specifier|static
 name|long
 name|totalCount
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|AvlNode
 argument_list|<
 name|?
@@ -5076,14 +5395,17 @@ operator|.
 name|totalCount
 return|;
 block|}
-DECL|method|height (@ullableDecl AvlNode<?> node)
+end_function
+
+begin_function
+DECL|method|height (@heckForNull AvlNode<?> node)
 specifier|private
 specifier|static
 name|int
 name|height
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|AvlNode
 argument_list|<
 name|?
@@ -5105,9 +5427,12 @@ operator|.
 name|height
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
-name|NullableDecl
-DECL|method|ceiling (Comparator<? super E> comparator, E e)
+name|CheckForNull
+DECL|method|ceiling (Comparator<? super E> comparator, @ParametricNullness E e)
 specifier|private
 name|AvlNode
 argument_list|<
@@ -5123,6 +5448,8 @@ name|E
 argument_list|>
 name|comparator
 parameter_list|,
+annotation|@
+name|ParametricNullness
 name|E
 name|e
 parameter_list|)
@@ -5136,7 +5463,8 @@ name|compare
 argument_list|(
 name|e
 argument_list|,
-name|elem
+name|getElement
+argument_list|()
 argument_list|)
 decl_stmt|;
 if|if
@@ -5206,9 +5534,12 @@ argument_list|)
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
-name|NullableDecl
-DECL|method|floor (Comparator<? super E> comparator, E e)
+name|CheckForNull
+DECL|method|floor (Comparator<? super E> comparator, @ParametricNullness E e)
 specifier|private
 name|AvlNode
 argument_list|<
@@ -5224,6 +5555,8 @@ name|E
 argument_list|>
 name|comparator
 parameter_list|,
+annotation|@
+name|ParametricNullness
 name|E
 name|e
 parameter_list|)
@@ -5237,7 +5570,8 @@ name|compare
 argument_list|(
 name|e
 argument_list|,
-name|elem
+name|getElement
+argument_list|()
 argument_list|)
 decl_stmt|;
 if|if
@@ -5307,15 +5641,27 @@ argument_list|)
 return|;
 block|}
 block|}
+end_function
+
+begin_function
+annotation|@
+name|ParametricNullness
 DECL|method|getElement ()
 name|E
 name|getElement
 parameter_list|()
 block|{
+comment|// For discussion of this cast, see the comment on the elem field.
 return|return
+name|uncheckedCastNullableTToT
+argument_list|(
 name|elem
+argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 DECL|method|getCount ()
 name|int
 name|getCount
@@ -5325,6 +5671,9 @@ return|return
 name|elemCount
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|toString ()
@@ -5349,69 +5698,76 @@ name|toString
 argument_list|()
 return|;
 block|}
-block|}
+end_function
+
+begin_expr_stmt
+unit|}    private
 DECL|method|successor (AvlNode<T> a, AvlNode<T> b)
-specifier|private
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|void
 name|successor
-parameter_list|(
+argument_list|(
 name|AvlNode
 argument_list|<
 name|T
 argument_list|>
 name|a
-parameter_list|,
+argument_list|,
 name|AvlNode
 argument_list|<
 name|T
 argument_list|>
 name|b
-parameter_list|)
+argument_list|)
 block|{
 name|a
 operator|.
 name|succ
 operator|=
 name|b
-expr_stmt|;
+block|;
 name|b
 operator|.
 name|pred
 operator|=
 name|a
-expr_stmt|;
-block|}
-DECL|method|successor (AvlNode<T> a, AvlNode<T> b, AvlNode<T> c)
+block|;   }
+DECL|method|successor ( AvlNode<T> a, AvlNode<T> b, AvlNode<T> c)
 specifier|private
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|void
 name|successor
-parameter_list|(
+argument_list|(
 name|AvlNode
 argument_list|<
 name|T
 argument_list|>
 name|a
-parameter_list|,
+argument_list|,
 name|AvlNode
 argument_list|<
 name|T
 argument_list|>
 name|b
-parameter_list|,
+argument_list|,
 name|AvlNode
 argument_list|<
 name|T
 argument_list|>
 name|c
-parameter_list|)
+argument_list|)
 block|{
 name|successor
 argument_list|(
@@ -5419,28 +5775,27 @@ name|a
 argument_list|,
 name|b
 argument_list|)
-expr_stmt|;
+block|;
 name|successor
 argument_list|(
 name|b
 argument_list|,
 name|c
 argument_list|)
-expr_stmt|;
-block|}
+block|;   }
 comment|/*    * TODO(jlevy): Decide whether entrySet() should return entries with an equals() method that    * calls the comparator to compare the two keys. If that change is made,    * AbstractMultiset.equals() can simply check whether two multisets have equal entry sets.    */
 comment|/**    * @serialData the comparator, the number of distinct elements, the first element, its count, the    *     second element, its count, and so on    */
-annotation|@
+expr|@
 name|GwtIncompatible
 comment|// java.io.ObjectOutputStream
 DECL|method|writeObject (ObjectOutputStream stream)
 specifier|private
 name|void
 name|writeObject
-parameter_list|(
+argument_list|(
 name|ObjectOutputStream
 name|stream
-parameter_list|)
+argument_list|)
 throws|throws
 name|IOException
 block|{
@@ -5449,6 +5804,9 @@ operator|.
 name|defaultWriteObject
 argument_list|()
 expr_stmt|;
+end_expr_stmt
+
+begin_expr_stmt
 name|stream
 operator|.
 name|writeObject
@@ -5460,6 +5818,9 @@ name|comparator
 argument_list|()
 argument_list|)
 expr_stmt|;
+end_expr_stmt
+
+begin_expr_stmt
 name|Serialization
 operator|.
 name|writeMultiset
@@ -5469,8 +5830,10 @@ argument_list|,
 name|stream
 argument_list|)
 expr_stmt|;
-block|}
-annotation|@
+end_expr_stmt
+
+begin_function
+unit|}    @
 name|GwtIncompatible
 comment|// java.io.ObjectInputStream
 DECL|method|readObject (ObjectInputStream stream)
@@ -5593,14 +5956,8 @@ name|header
 init|=
 operator|new
 name|AvlNode
-argument_list|<
-name|E
-argument_list|>
-argument_list|(
-literal|null
-argument_list|,
-literal|1
-argument_list|)
+argument_list|<>
+argument_list|()
 decl_stmt|;
 name|Serialization
 operator|.
@@ -5637,6 +5994,9 @@ name|stream
 argument_list|)
 expr_stmt|;
 block|}
+end_function
+
+begin_decl_stmt
 annotation|@
 name|GwtIncompatible
 comment|// not needed in emulated source
@@ -5649,8 +6009,8 @@ name|serialVersionUID
 init|=
 literal|1
 decl_stmt|;
-block|}
-end_class
+end_decl_stmt
 
+unit|}
 end_unit
 

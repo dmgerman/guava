@@ -44,11 +44,27 @@ name|GwtIncompatible
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|checkerframework
+operator|.
+name|checker
+operator|.
+name|nullness
+operator|.
+name|qual
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/**  * Multiset implementation that uses hashing for key and entry access.  *  * @author Kevin Bourrillion  * @author Jared Levy  * @since 2.0  */
 end_comment
 
-begin_class
+begin_annotation
 annotation|@
 name|GwtCompatible
 argument_list|(
@@ -60,14 +76,26 @@ name|emulated
 operator|=
 literal|true
 argument_list|)
+end_annotation
+
+begin_annotation
+annotation|@
+name|ElementTypesAreNonnullByDefault
+end_annotation
+
+begin_expr_stmt
 DECL|class|HashMultiset
 specifier|public
-class|class
+name|final
+name|class
 name|HashMultiset
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|AbstractMapBasedMultiset
 argument_list|<
 name|E
@@ -77,15 +105,18 @@ comment|/** Creates a new, empty {@code HashMultiset} using the default initial 
 DECL|method|create ()
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|HashMultiset
 argument_list|<
 name|E
 argument_list|>
 name|create
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|create
@@ -100,18 +131,21 @@ comment|/**    * Creates a new, empty {@code HashMultiset} with the specified ex
 DECL|method|create (int distinctElements)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|HashMultiset
 argument_list|<
 name|E
 argument_list|>
 name|create
-parameter_list|(
+argument_list|(
 name|int
 name|distinctElements
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|new
@@ -124,19 +158,28 @@ name|distinctElements
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/**    * Creates a new {@code HashMultiset} containing the specified elements.    *    *<p>This implementation is highly efficient when {@code elements} is itself a {@link Multiset}.    *    * @param elements the elements that the multiset should contain    */
-DECL|method|create (Iterable<? extends E> elements)
+end_comment
+
+begin_expr_stmt
+DECL|method|create ( Iterable<? extends E> elements)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|HashMultiset
 argument_list|<
 name|E
 argument_list|>
 name|create
-parameter_list|(
+argument_list|(
 name|Iterable
 argument_list|<
 name|?
@@ -144,14 +187,14 @@ extends|extends
 name|E
 argument_list|>
 name|elements
-parameter_list|)
+argument_list|)
 block|{
 name|HashMultiset
 argument_list|<
 name|E
 argument_list|>
 name|multiset
-init|=
+operator|=
 name|create
 argument_list|(
 name|Multisets
@@ -161,7 +204,7 @@ argument_list|(
 name|elements
 argument_list|)
 argument_list|)
-decl_stmt|;
+block|;
 name|Iterables
 operator|.
 name|addAll
@@ -170,44 +213,51 @@ name|multiset
 argument_list|,
 name|elements
 argument_list|)
-expr_stmt|;
+block|;
 return|return
 name|multiset
 return|;
 block|}
+end_expr_stmt
+
+begin_expr_stmt
 DECL|method|HashMultiset (int distinctElements)
 name|HashMultiset
-parameter_list|(
+argument_list|(
 name|int
 name|distinctElements
-parameter_list|)
+argument_list|)
 block|{
 name|super
 argument_list|(
 name|distinctElements
 argument_list|)
-expr_stmt|;
-block|}
-annotation|@
+block|;   }
+expr|@
 name|Override
-DECL|method|init (int distinctElements)
-name|void
-name|init
-parameter_list|(
+DECL|method|newBackingMap (int distinctElements)
+name|ObjectCountHashMap
+argument_list|<
+name|E
+argument_list|>
+name|newBackingMap
+argument_list|(
 name|int
 name|distinctElements
-parameter_list|)
+argument_list|)
 block|{
-name|backingMap
-operator|=
+return|return
 operator|new
 name|ObjectCountHashMap
 argument_list|<>
 argument_list|(
 name|distinctElements
 argument_list|)
-expr_stmt|;
+return|;
 block|}
+end_expr_stmt
+
+begin_decl_stmt
 annotation|@
 name|GwtIncompatible
 comment|// Not needed in emulated source.
@@ -220,8 +270,8 @@ name|serialVersionUID
 init|=
 literal|0
 decl_stmt|;
-block|}
-end_class
+end_decl_stmt
 
+unit|}
 end_unit
 

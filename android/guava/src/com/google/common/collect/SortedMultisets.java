@@ -158,6 +158,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|checkerframework
@@ -166,9 +176,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -184,6 +194,8 @@ name|emulated
 operator|=
 literal|true
 argument_list|)
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|SortedMultisets
 specifier|final
 class|class
@@ -195,70 +207,77 @@ name|SortedMultisets
 parameter_list|()
 block|{}
 comment|/** A skeleton implementation for {@link SortedMultiset#elementSet}. */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"JdkObsolete"
+argument_list|)
+comment|// TODO(b/6160855): Switch GWT emulations to NavigableSet.
 DECL|class|ElementSet
 specifier|static
-class|class
+name|class
 name|ElementSet
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|Multisets
 operator|.
 name|ElementSet
 argument_list|<
 name|E
 argument_list|>
-implements|implements
+expr|implements
 name|SortedSet
 argument_list|<
 name|E
 argument_list|>
-block|{
+block|{     @
 DECL|field|multiset
-annotation|@
 name|Weak
 specifier|private
-specifier|final
+name|final
 name|SortedMultiset
 argument_list|<
 name|E
 argument_list|>
 name|multiset
-decl_stmt|;
+block|;
 DECL|method|ElementSet (SortedMultiset<E> multiset)
 name|ElementSet
-parameter_list|(
+argument_list|(
 name|SortedMultiset
 argument_list|<
 name|E
 argument_list|>
 name|multiset
-parameter_list|)
+argument_list|)
 block|{
 name|this
 operator|.
 name|multiset
 operator|=
 name|multiset
-expr_stmt|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|Override
 DECL|method|multiset ()
-specifier|final
+name|final
 name|SortedMultiset
 argument_list|<
 name|E
 argument_list|>
 name|multiset
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|multiset
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
 DECL|method|iterator ()
 specifier|public
@@ -267,7 +286,7 @@ argument_list|<
 name|E
 argument_list|>
 name|iterator
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|Multisets
@@ -308,7 +327,7 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|subSet (E fromElement, E toElement)
+DECL|method|subSet (@arametricNullness E fromElement, @ParametricNullness E toElement)
 specifier|public
 name|SortedSet
 argument_list|<
@@ -316,9 +335,13 @@ name|E
 argument_list|>
 name|subSet
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|E
 name|fromElement
 parameter_list|,
+annotation|@
+name|ParametricNullness
 name|E
 name|toElement
 parameter_list|)
@@ -344,7 +367,7 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|headSet (E toElement)
+DECL|method|headSet (@arametricNullness E toElement)
 specifier|public
 name|SortedSet
 argument_list|<
@@ -352,6 +375,8 @@ name|E
 argument_list|>
 name|headSet
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|E
 name|toElement
 parameter_list|)
@@ -373,7 +398,7 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|tailSet (E fromElement)
+DECL|method|tailSet (@arametricNullness E fromElement)
 specifier|public
 name|SortedSet
 argument_list|<
@@ -381,6 +406,8 @@ name|E
 argument_list|>
 name|tailSet
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|E
 name|fromElement
 parameter_list|)
@@ -402,6 +429,8 @@ return|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|ParametricNullness
 DECL|method|first ()
 specifier|public
 name|E
@@ -421,6 +450,8 @@ return|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|ParametricNullness
 DECL|method|last ()
 specifier|public
 name|E
@@ -439,23 +470,38 @@ argument_list|)
 return|;
 block|}
 block|}
+end_class
+
+begin_comment
 comment|/** A skeleton navigable implementation for {@link SortedMultiset#elementSet}. */
+end_comment
+
+begin_annotation
 annotation|@
 name|GwtIncompatible
+end_annotation
+
+begin_comment
 comment|// Navigable
+end_comment
+
+begin_expr_stmt
 DECL|class|NavigableElementSet
 specifier|static
-class|class
+name|class
 name|NavigableElementSet
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|ElementSet
 argument_list|<
 name|E
 argument_list|>
-implements|implements
+expr|implements
 name|NavigableSet
 argument_list|<
 name|E
@@ -463,30 +509,33 @@ argument_list|>
 block|{
 DECL|method|NavigableElementSet (SortedMultiset<E> multiset)
 name|NavigableElementSet
-parameter_list|(
+argument_list|(
 name|SortedMultiset
 argument_list|<
 name|E
 argument_list|>
 name|multiset
-parameter_list|)
+argument_list|)
 block|{
 name|super
 argument_list|(
 name|multiset
 argument_list|)
-expr_stmt|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|Override
-DECL|method|lower (E e)
+expr|@
+name|CheckForNull
+DECL|method|lower (@arametricNullness E e)
 specifier|public
 name|E
 name|lower
-parameter_list|(
+argument_list|(
+annotation|@
+name|ParametricNullness
 name|E
 name|e
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|getElementOrNull
@@ -506,16 +555,20 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
-DECL|method|floor (E e)
+expr|@
+name|CheckForNull
+DECL|method|floor (@arametricNullness E e)
 specifier|public
 name|E
 name|floor
-parameter_list|(
+argument_list|(
+annotation|@
+name|ParametricNullness
 name|E
 name|e
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|getElementOrNull
@@ -535,13 +588,20 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_function
 annotation|@
 name|Override
-DECL|method|ceiling (E e)
+annotation|@
+name|CheckForNull
+DECL|method|ceiling (@arametricNullness E e)
 specifier|public
 name|E
 name|ceiling
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|E
 name|e
 parameter_list|)
@@ -564,13 +624,20 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|higher (E e)
+annotation|@
+name|CheckForNull
+DECL|method|higher (@arametricNullness E e)
 specifier|public
 name|E
 name|higher
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|E
 name|e
 parameter_list|)
@@ -593,6 +660,9 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|descendingSet ()
@@ -619,6 +689,9 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|descendingIterator ()
@@ -638,8 +711,13 @@ name|iterator
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|pollFirst ()
 specifier|public
 name|E
@@ -657,8 +735,13 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|pollLast ()
 specifier|public
 name|E
@@ -676,9 +759,12 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|subSet ( E fromElement, boolean fromInclusive, E toElement, boolean toInclusive)
+DECL|method|subSet ( @arametricNullness E fromElement, boolean fromInclusive, @ParametricNullness E toElement, boolean toInclusive)
 specifier|public
 name|NavigableSet
 argument_list|<
@@ -686,12 +772,16 @@ name|E
 argument_list|>
 name|subSet
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|E
 name|fromElement
 parameter_list|,
 name|boolean
 name|fromInclusive
 parameter_list|,
+annotation|@
+name|ParametricNullness
 name|E
 name|toElement
 parameter_list|,
@@ -732,9 +822,12 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|headSet (E toElement, boolean inclusive)
+DECL|method|headSet (@arametricNullness E toElement, boolean inclusive)
 specifier|public
 name|NavigableSet
 argument_list|<
@@ -742,6 +835,8 @@ name|E
 argument_list|>
 name|headSet
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|E
 name|toElement
 parameter_list|,
@@ -773,9 +868,12 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|tailSet (E fromElement, boolean inclusive)
+DECL|method|tailSet (@arametricNullness E fromElement, boolean inclusive)
 specifier|public
 name|NavigableSet
 argument_list|<
@@ -783,6 +881,8 @@ name|E
 argument_list|>
 name|tailSet
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|E
 name|fromElement
 parameter_list|,
@@ -814,22 +914,29 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-block|}
-DECL|method|getElementOrThrow (Entry<E> entry)
-specifier|private
+end_function
+
+begin_expr_stmt
+unit|}    private
+DECL|method|getElementOrThrow (@heckForNull Entry<E> entry)
 specifier|static
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|E
 name|getElementOrThrow
-parameter_list|(
+argument_list|(
+annotation|@
+name|CheckForNull
 name|Entry
 argument_list|<
 name|E
 argument_list|>
 name|entry
-parameter_list|)
+argument_list|)
 block|{
 if|if
 condition|(
@@ -844,30 +951,40 @@ name|NoSuchElementException
 argument_list|()
 throw|;
 block|}
+end_expr_stmt
+
+begin_return
 return|return
 name|entry
 operator|.
 name|getElement
 argument_list|()
 return|;
-block|}
-DECL|method|getElementOrNull (@ullableDecl Entry<E> entry)
+end_return
+
+begin_expr_stmt
+unit|}    @
+name|CheckForNull
+DECL|method|getElementOrNull (@heckForNull Entry<E> entry)
 specifier|private
 specifier|static
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|E
 name|getElementOrNull
-parameter_list|(
+argument_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Entry
 argument_list|<
 name|E
 argument_list|>
 name|entry
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|(
@@ -875,17 +992,17 @@ name|entry
 operator|==
 literal|null
 operator|)
-condition|?
+operator|?
 literal|null
-else|:
+operator|:
 name|entry
 operator|.
 name|getElement
 argument_list|()
 return|;
 block|}
-block|}
-end_class
+end_expr_stmt
 
+unit|}
 end_unit
 

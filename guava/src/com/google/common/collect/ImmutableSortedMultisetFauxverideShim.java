@@ -32,6 +32,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|DoNotCall
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -66,6 +80,22 @@ name|Collector
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|checkerframework
+operator|.
+name|checker
+operator|.
+name|nullness
+operator|.
+name|qual
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/**  * "Overrides" the {@link ImmutableMultiset} static methods that lack {@link  * ImmutableSortedMultiset} equivalents with deprecated, exception-throwing versions. This prevents  * accidents like the following:  *  *<pre>{@code  * List<Object> objects = ...;  * // Sort them:  * Set<Object> sorted = ImmutableSortedMultiset.copyOf(objects);  * // BAD CODE! The returned multiset is actually an unsorted ImmutableMultiset!  * }</pre>  *  *<p>While we could put the overrides in {@link ImmutableSortedMultiset} itself, it seems clearer  * to separate these "do not call" methods from those intended for normal use.  *  * @author Louis Wasserman  */
 end_comment
@@ -73,6 +103,8 @@ end_comment
 begin_class
 annotation|@
 name|GwtIncompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|ImmutableSortedMultisetFauxverideShim
 specifier|abstract
 class|class
@@ -87,6 +119,11 @@ name|E
 argument_list|>
 block|{
 comment|/**    * Not supported. Use {@link ImmutableSortedMultiset#toImmutableSortedMultiset} instead. This    * method exists only to hide {@link ImmutableMultiset#toImmutableMultiset} from consumers of    * {@code ImmutableSortedMultiset}.    *    * @throws UnsupportedOperationException always    * @deprecated Use {@link ImmutableSortedMultiset#toImmutableSortedMultiset}.    * @since 21.0    */
+annotation|@
+name|DoNotCall
+argument_list|(
+literal|"Use toImmutableSortedMultiset."
+argument_list|)
 annotation|@
 name|Deprecated
 DECL|method|toImmutableMultiset ()
@@ -117,15 +154,23 @@ throw|;
 block|}
 comment|/**    * Not supported. Use {@link ImmutableSortedMultiset#toImmutableSortedMultiset} instead. This    * method exists only to hide {@link ImmutableMultiset#toImmutableMultiset} from consumers of    * {@code ImmutableSortedMultiset}.    *    * @throws UnsupportedOperationException always    * @deprecated Use {@link ImmutableSortedMultiset#toImmutableSortedMultiset}.    * @since 22.0    */
 annotation|@
+name|DoNotCall
+argument_list|(
+literal|"Use toImmutableSortedMultiset."
+argument_list|)
+annotation|@
 name|Deprecated
-DECL|method|toImmutableMultiset ( Function<? super T, ? extends E> elementFunction, ToIntFunction<? super T> countFunction)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|E
-parameter_list|>
+operator|>
+DECL|method|toImmutableMultiset ( Function<? super T, ? extends E> elementFunction, ToIntFunction<? super T> countFunction)
 name|Collector
 argument_list|<
 name|T
@@ -138,7 +183,7 @@ name|E
 argument_list|>
 argument_list|>
 name|toImmutableMultiset
-parameter_list|(
+argument_list|(
 name|Function
 argument_list|<
 name|?
@@ -150,7 +195,7 @@ extends|extends
 name|E
 argument_list|>
 name|elementFunction
-parameter_list|,
+operator|,
 name|ToIntFunction
 argument_list|<
 name|?
@@ -158,23 +203,27 @@ super|super
 name|T
 argument_list|>
 name|countFunction
-parameter_list|)
+argument_list|)
 block|{
 throw|throw
-operator|new
+argument_list|new
 name|UnsupportedOperationException
 argument_list|()
-throw|;
-block|}
+block|;   }
 comment|/**    * Not supported. Use {@link ImmutableSortedMultiset#naturalOrder}, which offers better    * type-safety, instead. This method exists only to hide {@link ImmutableMultiset#builder} from    * consumers of {@code ImmutableSortedMultiset}.    *    * @throws UnsupportedOperationException always    * @deprecated Use {@link ImmutableSortedMultiset#naturalOrder}, which offers better type-safety.    */
-annotation|@
+expr|@
+name|DoNotCall
+argument_list|(
+literal|"Use naturalOrder."
+argument_list|)
+expr|@
 name|Deprecated
 DECL|method|builder ()
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
+operator|>
 name|ImmutableSortedMultiset
 operator|.
 name|Builder
@@ -182,239 +231,266 @@ argument_list|<
 name|E
 argument_list|>
 name|builder
-parameter_list|()
+argument_list|()
 block|{
 throw|throw
-operator|new
+argument_list|new
 name|UnsupportedOperationException
 argument_list|()
-throw|;
-block|}
+block|;   }
 comment|/**    * Not supported.<b>You are attempting to create a multiset that may contain a non-{@code    * Comparable} element.</b> Proper calls will resolve to the version in {@code    * ImmutableSortedMultiset}, not this dummy version.    *    * @throws UnsupportedOperationException always    * @deprecated<b>Pass a parameter of type {@code Comparable} to use {@link    *     ImmutableSortedMultiset#of(Comparable)}.</b>    */
-annotation|@
+expr|@
+name|DoNotCall
+argument_list|(
+literal|"Elements must be Comparable. (Or, pass a Comparator to orderedBy or copyOf.)"
+argument_list|)
+expr|@
 name|Deprecated
 DECL|method|of (E element)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
+operator|>
 name|ImmutableSortedMultiset
 argument_list|<
 name|E
 argument_list|>
 name|of
-parameter_list|(
+argument_list|(
 name|E
 name|element
-parameter_list|)
+argument_list|)
 block|{
 throw|throw
-operator|new
+argument_list|new
 name|UnsupportedOperationException
 argument_list|()
-throw|;
-block|}
+block|;   }
 comment|/**    * Not supported.<b>You are attempting to create a multiset that may contain a non-{@code    * Comparable} element.</b> Proper calls will resolve to the version in {@code    * ImmutableSortedMultiset}, not this dummy version.    *    * @throws UnsupportedOperationException always    * @deprecated<b>Pass the parameters of type {@code Comparable} to use {@link    *     ImmutableSortedMultiset#of(Comparable, Comparable)}.</b>    */
-annotation|@
+expr|@
+name|DoNotCall
+argument_list|(
+literal|"Elements must be Comparable. (Or, pass a Comparator to orderedBy or copyOf.)"
+argument_list|)
+expr|@
 name|Deprecated
 DECL|method|of (E e1, E e2)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
+operator|>
 name|ImmutableSortedMultiset
 argument_list|<
 name|E
 argument_list|>
 name|of
-parameter_list|(
+argument_list|(
 name|E
 name|e1
-parameter_list|,
+argument_list|,
 name|E
 name|e2
-parameter_list|)
+argument_list|)
 block|{
 throw|throw
-operator|new
+argument_list|new
 name|UnsupportedOperationException
 argument_list|()
-throw|;
-block|}
+block|;   }
 comment|/**    * Not supported.<b>You are attempting to create a multiset that may contain a non-{@code    * Comparable} element.</b> Proper calls will resolve to the version in {@code    * ImmutableSortedMultiset}, not this dummy version.    *    * @throws UnsupportedOperationException always    * @deprecated<b>Pass the parameters of type {@code Comparable} to use {@link    *     ImmutableSortedMultiset#of(Comparable, Comparable, Comparable)}.</b>    */
-annotation|@
+expr|@
+name|DoNotCall
+argument_list|(
+literal|"Elements must be Comparable. (Or, pass a Comparator to orderedBy or copyOf.)"
+argument_list|)
+expr|@
 name|Deprecated
 DECL|method|of (E e1, E e2, E e3)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
+operator|>
 name|ImmutableSortedMultiset
 argument_list|<
 name|E
 argument_list|>
 name|of
-parameter_list|(
+argument_list|(
 name|E
 name|e1
-parameter_list|,
+argument_list|,
 name|E
 name|e2
-parameter_list|,
+argument_list|,
 name|E
 name|e3
-parameter_list|)
+argument_list|)
 block|{
 throw|throw
-operator|new
+argument_list|new
 name|UnsupportedOperationException
 argument_list|()
-throw|;
-block|}
+block|;   }
 comment|/**    * Not supported.<b>You are attempting to create a multiset that may contain a non-{@code    * Comparable} element.</b> Proper calls will resolve to the version in {@code    * ImmutableSortedMultiset}, not this dummy version.    *    * @throws UnsupportedOperationException always    * @deprecated<b>Pass the parameters of type {@code Comparable} to use {@link    *     ImmutableSortedMultiset#of(Comparable, Comparable, Comparable, Comparable)}.</b>    */
-annotation|@
+expr|@
+name|DoNotCall
+argument_list|(
+literal|"Elements must be Comparable. (Or, pass a Comparator to orderedBy or copyOf.)"
+argument_list|)
+expr|@
 name|Deprecated
 DECL|method|of (E e1, E e2, E e3, E e4)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
+operator|>
 name|ImmutableSortedMultiset
 argument_list|<
 name|E
 argument_list|>
 name|of
-parameter_list|(
+argument_list|(
 name|E
 name|e1
-parameter_list|,
+argument_list|,
 name|E
 name|e2
-parameter_list|,
+argument_list|,
 name|E
 name|e3
-parameter_list|,
+argument_list|,
 name|E
 name|e4
-parameter_list|)
+argument_list|)
 block|{
 throw|throw
-operator|new
+argument_list|new
 name|UnsupportedOperationException
 argument_list|()
-throw|;
-block|}
+block|;   }
 comment|/**    * Not supported.<b>You are attempting to create a multiset that may contain a non-{@code    * Comparable} element.</b> Proper calls will resolve to the version in {@code    * ImmutableSortedMultiset}, not this dummy version.    *    * @throws UnsupportedOperationException always    * @deprecated<b>Pass the parameters of type {@code Comparable} to use {@link    *     ImmutableSortedMultiset#of(Comparable, Comparable, Comparable, Comparable, Comparable)} .    *</b>    */
-annotation|@
+expr|@
+name|DoNotCall
+argument_list|(
+literal|"Elements must be Comparable. (Or, pass a Comparator to orderedBy or copyOf.)"
+argument_list|)
+expr|@
 name|Deprecated
 DECL|method|of (E e1, E e2, E e3, E e4, E e5)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
+operator|>
 name|ImmutableSortedMultiset
 argument_list|<
 name|E
 argument_list|>
 name|of
-parameter_list|(
+argument_list|(
 name|E
 name|e1
-parameter_list|,
+argument_list|,
 name|E
 name|e2
-parameter_list|,
+argument_list|,
 name|E
 name|e3
-parameter_list|,
+argument_list|,
 name|E
 name|e4
-parameter_list|,
+argument_list|,
 name|E
 name|e5
-parameter_list|)
+argument_list|)
 block|{
 throw|throw
-operator|new
+argument_list|new
 name|UnsupportedOperationException
 argument_list|()
-throw|;
-block|}
+block|;   }
 comment|/**    * Not supported.<b>You are attempting to create a multiset that may contain a non-{@code    * Comparable} element.</b> Proper calls will resolve to the version in {@code    * ImmutableSortedMultiset}, not this dummy version.    *    * @throws UnsupportedOperationException always    * @deprecated<b>Pass the parameters of type {@code Comparable} to use {@link    *     ImmutableSortedMultiset#of(Comparable, Comparable, Comparable, Comparable, Comparable,    *     Comparable, Comparable...)} .</b>    */
-annotation|@
+expr|@
+name|DoNotCall
+argument_list|(
+literal|"Elements must be Comparable. (Or, pass a Comparator to orderedBy or copyOf.)"
+argument_list|)
+expr|@
 name|Deprecated
 DECL|method|of ( E e1, E e2, E e3, E e4, E e5, E e6, E... remaining)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
+operator|>
 name|ImmutableSortedMultiset
 argument_list|<
 name|E
 argument_list|>
 name|of
-parameter_list|(
+argument_list|(
 name|E
 name|e1
-parameter_list|,
+argument_list|,
 name|E
 name|e2
-parameter_list|,
+argument_list|,
 name|E
 name|e3
-parameter_list|,
+argument_list|,
 name|E
 name|e4
-parameter_list|,
+argument_list|,
 name|E
 name|e5
-parameter_list|,
+argument_list|,
 name|E
 name|e6
-parameter_list|,
+argument_list|,
 name|E
-modifier|...
+operator|...
 name|remaining
-parameter_list|)
+argument_list|)
 block|{
 throw|throw
-operator|new
+argument_list|new
 name|UnsupportedOperationException
 argument_list|()
-throw|;
-block|}
+block|;   }
 comment|/**    * Not supported.<b>You are attempting to create a multiset that may contain non-{@code    * Comparable} elements.</b> Proper calls will resolve to the version in {@code    * ImmutableSortedMultiset}, not this dummy version.    *    * @throws UnsupportedOperationException always    * @deprecated<b>Pass parameters of type {@code Comparable} to use {@link    *     ImmutableSortedMultiset#copyOf(Comparable[])}.</b>    */
-annotation|@
+expr|@
+name|DoNotCall
+argument_list|(
+literal|"Elements must be Comparable. (Or, pass a Comparator to orderedBy or copyOf.)"
+argument_list|)
+expr|@
 name|Deprecated
 DECL|method|copyOf (E[] elements)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
+operator|>
 name|ImmutableSortedMultiset
 argument_list|<
 name|E
 argument_list|>
 name|copyOf
-parameter_list|(
+argument_list|(
 name|E
 index|[]
 name|elements
-parameter_list|)
+argument_list|)
 block|{
 throw|throw
-operator|new
+argument_list|new
 name|UnsupportedOperationException
 argument_list|()
-throw|;
-block|}
+block|;   }
 comment|/*    * We would like to include an unsupported "<E> copyOf(Iterable<E>)" here, providing only the    * properly typed "<E extends Comparable<E>> copyOf(Iterable<E>)" in ImmutableSortedMultiset (and    * likewise for the Iterator equivalent). However, due to a change in Sun's interpretation of the    * JLS (as described at http://bugs.sun.com/view_bug.do?bug_id=6182950), the OpenJDK 7 compiler    * available as of this writing rejects our attempts. To maintain compatibility with that version    * and with any other compilers that interpret the JLS similarly, there is no definition of    * copyOf() here, and the definition in ImmutableSortedMultiset matches that in    * ImmutableMultiset.    *    * The result is that ImmutableSortedMultiset.copyOf() may be called on non-Comparable elements.    * We have not discovered a better solution. In retrospect, the static factory methods should    * have gone in a separate class so that ImmutableSortedMultiset wouldn't "inherit"    * too-permissive factory methods from ImmutableMultiset.    */
 block|}
 end_class

@@ -192,6 +192,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|checkerframework
@@ -200,17 +210,17 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
 begin_comment
-comment|/**  * Basic implementation of {@code Multiset<E>} backed by an instance of {@code  * AbstractObjectCountMap<E>}.  *  *<p>For serialization to work, the subclass must specify explicit {@code readObject} and {@code  * writeObject} methods.  *  * @author Kevin Bourrillion  */
+comment|/**  * Basic implementation of {@code Multiset<E>} backed by an instance of {@code  * ObjectCountHashMap<E>}.  *  *<p>For serialization to work, the subclass must specify explicit {@code readObject} and {@code  * writeObject} methods.  *  * @author Kevin Bourrillion  */
 end_comment
 
-begin_class
+begin_annotation
 annotation|@
 name|GwtCompatible
 argument_list|(
@@ -218,19 +228,30 @@ name|emulated
 operator|=
 literal|true
 argument_list|)
+end_annotation
+
+begin_annotation
+annotation|@
+name|ElementTypesAreNonnullByDefault
+end_annotation
+
+begin_expr_stmt
 DECL|class|AbstractMapBasedMultiset
 specifier|abstract
-class|class
+name|class
 name|AbstractMapBasedMultiset
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|AbstractMultiset
 argument_list|<
 name|E
 argument_list|>
-implements|implements
+expr|implements
 name|Serializable
 block|{
 DECL|field|backingMap
@@ -240,47 +261,50 @@ argument_list|<
 name|E
 argument_list|>
 name|backingMap
-decl_stmt|;
+block|;
 DECL|field|size
 specifier|transient
 name|long
 name|size
-decl_stmt|;
+block|;
 DECL|method|AbstractMapBasedMultiset (int distinctElements)
 name|AbstractMapBasedMultiset
-parameter_list|(
+argument_list|(
 name|int
 name|distinctElements
-parameter_list|)
+argument_list|)
 block|{
-name|init
+name|backingMap
+operator|=
+name|newBackingMap
 argument_list|(
 name|distinctElements
 argument_list|)
-expr_stmt|;
-block|}
-DECL|method|init (int distinctElements)
+block|;   }
+DECL|method|newBackingMap (int distinctElements)
 specifier|abstract
-name|void
-name|init
-parameter_list|(
+name|ObjectCountHashMap
+argument_list|<
+name|E
+argument_list|>
+name|newBackingMap
+argument_list|(
 name|int
 name|distinctElements
-parameter_list|)
-function_decl|;
-annotation|@
+argument_list|)
+block|;    @
 name|Override
-DECL|method|count (@ullableDecl Object element)
+DECL|method|count (@heckForNull Object element)
 specifier|public
-specifier|final
+name|final
 name|int
 name|count
-parameter_list|(
+argument_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|element
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|backingMap
@@ -293,24 +317,24 @@ return|;
 block|}
 comment|// Optional Operations - Modification Operations
 comment|/**    * {@inheritDoc}    *    * @throws IllegalArgumentException if the call would result in more than {@link    *     Integer#MAX_VALUE} occurrences of {@code element} in this multiset.    */
-annotation|@
+expr|@
 name|CanIgnoreReturnValue
-annotation|@
+expr|@
 name|Override
-DECL|method|add (@ullableDecl E element, int occurrences)
+DECL|method|add (@arametricNullness E element, int occurrences)
 specifier|public
-specifier|final
+name|final
 name|int
 name|add
-parameter_list|(
+argument_list|(
 annotation|@
-name|NullableDecl
+name|ParametricNullness
 name|E
 name|element
-parameter_list|,
+argument_list|,
 name|int
 name|occurrences
-parameter_list|)
+argument_list|)
 block|{
 if|if
 condition|(
@@ -337,6 +361,9 @@ argument_list|,
 name|occurrences
 argument_list|)
 expr_stmt|;
+end_expr_stmt
+
+begin_decl_stmt
 name|int
 name|entryIndex
 init|=
@@ -347,6 +374,9 @@ argument_list|(
 name|element
 argument_list|)
 decl_stmt|;
+end_decl_stmt
+
+begin_if
 if|if
 condition|(
 name|entryIndex
@@ -372,6 +402,9 @@ return|return
 literal|0
 return|;
 block|}
+end_if
+
+begin_decl_stmt
 name|int
 name|oldCount
 init|=
@@ -382,6 +415,9 @@ argument_list|(
 name|entryIndex
 argument_list|)
 decl_stmt|;
+end_decl_stmt
+
+begin_decl_stmt
 name|long
 name|newCount
 init|=
@@ -395,6 +431,9 @@ name|long
 operator|)
 name|occurrences
 decl_stmt|;
+end_decl_stmt
+
+begin_expr_stmt
 name|checkArgument
 argument_list|(
 name|newCount
@@ -408,6 +447,9 @@ argument_list|,
 name|newCount
 argument_list|)
 expr_stmt|;
+end_expr_stmt
+
+begin_expr_stmt
 name|backingMap
 operator|.
 name|setValue
@@ -420,26 +462,34 @@ operator|)
 name|newCount
 argument_list|)
 expr_stmt|;
+end_expr_stmt
+
+begin_expr_stmt
 name|size
 operator|+=
 name|occurrences
 expr_stmt|;
+end_expr_stmt
+
+begin_return
 return|return
 name|oldCount
 return|;
-block|}
-annotation|@
+end_return
+
+begin_function
+unit|}    @
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
-DECL|method|remove (@ullableDecl Object element, int occurrences)
+DECL|method|remove (@heckForNull Object element, int occurrences)
 specifier|public
 specifier|final
 name|int
 name|remove
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|element
 parameter_list|,
@@ -552,18 +602,21 @@ return|return
 name|oldCount
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
-DECL|method|setCount (@ullableDecl E element, int count)
+DECL|method|setCount (@arametricNullness E element, int count)
 specifier|public
 specifier|final
 name|int
 name|setCount
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|ParametricNullness
 name|E
 name|element
 parameter_list|,
@@ -615,16 +668,19 @@ return|return
 name|oldCount
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|setCount (@ullableDecl E element, int oldCount, int newCount)
+DECL|method|setCount (@arametricNullness E element, int oldCount, int newCount)
 specifier|public
 specifier|final
 name|boolean
 name|setCount
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|ParametricNullness
 name|E
 name|element
 parameter_list|,
@@ -765,6 +821,9 @@ return|return
 literal|true
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|clear ()
@@ -784,15 +843,24 @@ operator|=
 literal|0
 expr_stmt|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Skeleton of per-entry iterators. We could push this down and win a few bytes, but it's complex    * enough it's not especially worth it.    */
+end_comment
+
+begin_expr_stmt
 DECL|class|Itr
 specifier|abstract
-class|class
+name|class
 name|Itr
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
-implements|implements
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|implements
 name|Iterator
 argument_list|<
 name|T
@@ -801,41 +869,42 @@ block|{
 DECL|field|entryIndex
 name|int
 name|entryIndex
-init|=
+operator|=
 name|backingMap
 operator|.
 name|firstIndex
 argument_list|()
-decl_stmt|;
+block|;
 DECL|field|toRemove
 name|int
 name|toRemove
-init|=
+operator|=
 operator|-
 literal|1
-decl_stmt|;
+block|;
 DECL|field|expectedModCount
 name|int
 name|expectedModCount
-init|=
+operator|=
 name|backingMap
 operator|.
 name|modCount
-decl_stmt|;
+block|;      @
+name|ParametricNullness
 DECL|method|result (int entryIndex)
 specifier|abstract
 name|T
 name|result
-parameter_list|(
+argument_list|(
 name|int
 name|entryIndex
-parameter_list|)
-function_decl|;
+argument_list|)
+block|;
 DECL|method|checkForConcurrentModification ()
 specifier|private
 name|void
 name|checkForConcurrentModification
-parameter_list|()
+argument_list|()
 block|{
 if|if
 condition|(
@@ -853,25 +922,30 @@ argument_list|()
 throw|;
 block|}
 block|}
-annotation|@
+expr|@
 name|Override
 DECL|method|hasNext ()
 specifier|public
 name|boolean
 name|hasNext
-parameter_list|()
+argument_list|()
 block|{
 name|checkForConcurrentModification
 argument_list|()
-expr_stmt|;
+block|;
 return|return
 name|entryIndex
 operator|>=
 literal|0
 return|;
 block|}
+end_expr_stmt
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|ParametricNullness
 DECL|method|next ()
 specifier|public
 name|T
@@ -916,6 +990,9 @@ return|return
 name|result
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|remove ()
@@ -969,8 +1046,10 @@ operator|.
 name|modCount
 expr_stmt|;
 block|}
-block|}
-annotation|@
+end_function
+
+begin_function
+unit|}    @
 name|Override
 DECL|method|elementIterator ()
 specifier|final
@@ -991,6 +1070,8 @@ argument_list|()
 block|{
 annotation|@
 name|Override
+annotation|@
+name|ParametricNullness
 name|E
 name|result
 parameter_list|(
@@ -1010,6 +1091,9 @@ block|}
 block|}
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|entryIterator ()
@@ -1059,7 +1143,13 @@ block|}
 block|}
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/** Allocation-free implementation of {@code target.addAll(this)}. */
+end_comment
+
+begin_function
 DECL|method|addTo (Multiset<? super E> target)
 name|void
 name|addTo
@@ -1123,6 +1213,9 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|distinctElements ()
@@ -1138,6 +1231,9 @@ name|size
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|iterator ()
@@ -1159,6 +1255,9 @@ name|this
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|size ()
@@ -1177,7 +1276,13 @@ name|size
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * @serialData the number of distinct elements, the first element, its count, the second element,    *     its count, and so on    */
+end_comment
+
+begin_function
 annotation|@
 name|GwtIncompatible
 comment|// java.io.ObjectOutputStream
@@ -1207,6 +1312,9 @@ name|stream
 argument_list|)
 expr_stmt|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|GwtIncompatible
 comment|// java.io.ObjectInputStream
@@ -1238,7 +1346,9 @@ argument_list|(
 name|stream
 argument_list|)
 decl_stmt|;
-name|init
+name|backingMap
+operator|=
+name|newBackingMap
 argument_list|(
 name|ObjectCountHashMap
 operator|.
@@ -1257,6 +1367,9 @@ name|distinctElements
 argument_list|)
 expr_stmt|;
 block|}
+end_function
+
+begin_decl_stmt
 annotation|@
 name|GwtIncompatible
 comment|// Not needed in emulated source.
@@ -1269,8 +1382,8 @@ name|serialVersionUID
 init|=
 literal|0
 decl_stmt|;
-block|}
-end_class
+end_decl_stmt
 
+unit|}
 end_unit
 

@@ -92,6 +92,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|checkerframework
@@ -110,7 +120,7 @@ begin_comment
 comment|/**  * This class provides a skeletal implementation of the {@link SortedMultiset} interface.  *  *<p>The {@link #count} and {@link #size} implementations all iterate across the set returned by  * {@link Multiset#entrySet()}, as do many methods acting on the set returned by {@link  * #elementSet()}. Override those methods for better performance.  *  * @author Louis Wasserman  */
 end_comment
 
-begin_class
+begin_annotation
 annotation|@
 name|GwtCompatible
 argument_list|(
@@ -118,28 +128,38 @@ name|emulated
 operator|=
 literal|true
 argument_list|)
+end_annotation
+
+begin_annotation
+annotation|@
+name|ElementTypesAreNonnullByDefault
+end_annotation
+
+begin_expr_stmt
 DECL|class|AbstractSortedMultiset
 specifier|abstract
-class|class
+name|class
 name|AbstractSortedMultiset
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|AbstractMultiset
 argument_list|<
 name|E
 argument_list|>
-implements|implements
+expr|implements
 name|SortedMultiset
 argument_list|<
 name|E
 argument_list|>
-block|{
+block|{   @
 DECL|field|comparator
-annotation|@
 name|GwtTransient
-specifier|final
+name|final
 name|Comparator
 argument_list|<
 name|?
@@ -147,16 +167,16 @@ super|super
 name|E
 argument_list|>
 name|comparator
-decl_stmt|;
+block|;
 comment|// needed for serialization
-annotation|@
+block|@
 name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
 DECL|method|AbstractSortedMultiset ()
 name|AbstractSortedMultiset
-parameter_list|()
+argument_list|()
 block|{
 name|this
 argument_list|(
@@ -168,11 +188,10 @@ operator|.
 name|natural
 argument_list|()
 argument_list|)
-expr_stmt|;
-block|}
+block|;   }
 DECL|method|AbstractSortedMultiset (Comparator<? super E> comparator)
 name|AbstractSortedMultiset
-parameter_list|(
+argument_list|(
 name|Comparator
 argument_list|<
 name|?
@@ -180,7 +199,7 @@ super|super
 name|E
 argument_list|>
 name|comparator
-parameter_list|)
+argument_list|)
 block|{
 name|this
 operator|.
@@ -190,9 +209,8 @@ name|checkNotNull
 argument_list|(
 name|comparator
 argument_list|)
-expr_stmt|;
-block|}
-annotation|@
+block|;   }
+expr|@
 name|Override
 DECL|method|elementSet ()
 specifier|public
@@ -201,7 +219,7 @@ argument_list|<
 name|E
 argument_list|>
 name|elementSet
-parameter_list|()
+argument_list|()
 block|{
 return|return
 operator|(
@@ -216,7 +234,7 @@ name|elementSet
 argument_list|()
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
 DECL|method|createElementSet ()
 name|NavigableSet
@@ -224,7 +242,7 @@ argument_list|<
 name|E
 argument_list|>
 name|createElementSet
-parameter_list|()
+argument_list|()
 block|{
 return|return
 operator|new
@@ -239,6 +257,9 @@ name|this
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_function
 annotation|@
 name|Override
 DECL|method|comparator ()
@@ -256,8 +277,13 @@ return|return
 name|comparator
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|firstEntry ()
 specifier|public
 name|Entry
@@ -293,8 +319,13 @@ else|:
 literal|null
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|lastEntry ()
 specifier|public
 name|Entry
@@ -330,8 +361,13 @@ else|:
 literal|null
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|pollFirstEntry ()
 specifier|public
 name|Entry
@@ -402,8 +438,13 @@ return|return
 literal|null
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|pollLastEntry ()
 specifier|public
 name|Entry
@@ -474,9 +515,12 @@ return|return
 literal|null
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|subMultiset ( @ullable E fromElement, BoundType fromBoundType, @Nullable E toElement, BoundType toBoundType)
+DECL|method|subMultiset ( @arametricNullness E fromElement, BoundType fromBoundType, @ParametricNullness E toElement, BoundType toBoundType)
 specifier|public
 name|SortedMultiset
 argument_list|<
@@ -485,7 +529,7 @@ argument_list|>
 name|subMultiset
 parameter_list|(
 annotation|@
-name|Nullable
+name|ParametricNullness
 name|E
 name|fromElement
 parameter_list|,
@@ -493,7 +537,7 @@ name|BoundType
 name|fromBoundType
 parameter_list|,
 annotation|@
-name|Nullable
+name|ParametricNullness
 name|E
 name|toElement
 parameter_list|,
@@ -528,6 +572,9 @@ name|toBoundType
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function_decl
 DECL|method|descendingEntryIterator ()
 specifier|abstract
 name|Iterator
@@ -540,6 +587,9 @@ argument_list|>
 name|descendingEntryIterator
 parameter_list|()
 function_decl|;
+end_function_decl
+
+begin_function
 DECL|method|descendingIterator ()
 name|Iterator
 argument_list|<
@@ -558,17 +608,23 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_decl_stmt
 DECL|field|descendingMultiset
+annotation|@
+name|CheckForNull
 specifier|private
 specifier|transient
-annotation|@
-name|Nullable
 name|SortedMultiset
 argument_list|<
 name|E
 argument_list|>
 name|descendingMultiset
 decl_stmt|;
+end_decl_stmt
+
+begin_function
 annotation|@
 name|Override
 DECL|method|descendingMultiset ()
@@ -603,6 +659,9 @@ else|:
 name|result
 return|;
 block|}
+end_function
+
+begin_function
 DECL|method|createDescendingMultiset ()
 name|SortedMultiset
 argument_list|<
@@ -675,8 +734,8 @@ name|DescendingMultisetImpl
 argument_list|()
 return|;
 block|}
-block|}
-end_class
+end_function
 
+unit|}
 end_unit
 

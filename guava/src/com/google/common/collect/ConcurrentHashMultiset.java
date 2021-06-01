@@ -56,11 +56,11 @@ name|google
 operator|.
 name|common
 operator|.
-name|collect
+name|base
 operator|.
-name|CollectPreconditions
+name|Preconditions
 operator|.
-name|checkNonnegative
+name|checkState
 import|;
 end_import
 
@@ -76,7 +76,7 @@ name|collect
 operator|.
 name|CollectPreconditions
 operator|.
-name|checkRemove
+name|checkNonnegative
 import|;
 end_import
 
@@ -324,6 +324,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|checkerframework
@@ -345,6 +355,8 @@ end_comment
 begin_class
 annotation|@
 name|GwtIncompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|ConcurrentHashMultiset
 specifier|public
 specifier|final
@@ -557,13 +569,13 @@ comment|// Query Operations
 comment|/**    * Returns the number of occurrences of {@code element} in this multiset.    *    * @param element the element to look for    * @return the nonnegative number of occurrences of the element    */
 annotation|@
 name|Override
-DECL|method|count (@ullable Object element)
+DECL|method|count (@heckForNull Object element)
 specifier|public
 name|int
 name|count
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|element
 parameter_list|)
@@ -657,19 +669,28 @@ return|;
 block|}
 annotation|@
 name|Override
+comment|/*    * Our checker says "found: T[]; required: T[]." That sounds bogus. I discuss a possible reason    * for this error in https://github.com/jspecify/checker-framework/issues/10.    */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"nullness"
+argument_list|)
 DECL|method|toArray (T[] array)
 specifier|public
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|T
 index|[]
 name|toArray
-parameter_list|(
+argument_list|(
 name|T
 index|[]
 name|array
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|snapshot
@@ -986,13 +1007,13 @@ annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
-DECL|method|remove (@ullable Object element, int occurrences)
+DECL|method|remove (@heckForNull Object element, int occurrences)
 specifier|public
 name|int
 name|remove
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|element
 parameter_list|,
@@ -1127,13 +1148,13 @@ block|}
 comment|/**    * Removes exactly the specified number of occurrences of {@code element}, or makes no change if    * this is not possible.    *    *<p>This method, in contrast to {@link #remove(Object, int)}, has no effect when the element    * count is smaller than {@code occurrences}.    *    * @param element the element to remove    * @param occurrences the number of occurrences of {@code element} to remove    * @return {@code true} if the removal was possible (including if {@code occurrences} is zero)    * @throws IllegalArgumentException if {@code occurrences} is negative    */
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|removeExactly (@ullable Object element, int occurrences)
+DECL|method|removeExactly (@heckForNull Object element, int occurrences)
 specifier|public
 name|boolean
 name|removeExactly
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|element
 parameter_list|,
@@ -1742,7 +1763,7 @@ name|boolean
 name|contains
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|object
 parameter_list|)
@@ -1788,6 +1809,8 @@ specifier|public
 name|boolean
 name|remove
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|object
 parameter_list|)
@@ -2051,9 +2074,9 @@ argument_list|>
 argument_list|>
 argument_list|()
 block|{
-specifier|private
 annotation|@
-name|Nullable
+name|CheckForNull
+specifier|private
 name|Entry
 argument_list|<
 name|E
@@ -2105,11 +2128,13 @@ name|void
 name|remove
 parameter_list|()
 block|{
-name|checkRemove
+name|checkState
 argument_list|(
 name|last
 operator|!=
 literal|null
+argument_list|,
+literal|"no calls to next() since the last call to remove()"
 argument_list|)
 expr_stmt|;
 name|ConcurrentHashMultiset
@@ -2218,19 +2243,28 @@ return|;
 block|}
 annotation|@
 name|Override
+comment|/*      * Our checker says "found: T[]; required: T[]." That sounds bogus. I discuss a possible reason      * for this error in https://github.com/jspecify/checker-framework/issues/10.      */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"nullness"
+argument_list|)
 DECL|method|toArray (T[] array)
 specifier|public
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|T
 index|[]
 name|toArray
-parameter_list|(
+argument_list|(
 name|T
 index|[]
 name|array
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|snapshot

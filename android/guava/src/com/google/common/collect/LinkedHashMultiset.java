@@ -30,11 +30,27 @@ name|GwtCompatible
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|checkerframework
+operator|.
+name|checker
+operator|.
+name|nullness
+operator|.
+name|qual
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/**  * A {@code Multiset} implementation with predictable iteration order. Its iterator orders elements  * according to when the first occurrence of the element was added. When the multiset contains  * multiple instances of an element, those instances are consecutive in the iteration order. If all  * occurrences of an element are removed, after which that element is added to the multiset, the  * element will appear at the end of the iteration.  *  *<p>See the Guava User Guide article on<a href=  * "https://github.com/google/guava/wiki/NewCollectionTypesExplained#multiset"> {@code  * Multiset}</a>.  *  * @author Kevin Bourrillion  * @author Jared Levy  * @since 2.0  */
 end_comment
 
-begin_class
+begin_annotation
 annotation|@
 name|GwtCompatible
 argument_list|(
@@ -46,15 +62,26 @@ name|emulated
 operator|=
 literal|true
 argument_list|)
+end_annotation
+
+begin_annotation
+annotation|@
+name|ElementTypesAreNonnullByDefault
+end_annotation
+
+begin_expr_stmt
 DECL|class|LinkedHashMultiset
 specifier|public
-specifier|final
-class|class
+name|final
+name|class
 name|LinkedHashMultiset
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|AbstractMapBasedMultiset
 argument_list|<
 name|E
@@ -64,15 +91,18 @@ comment|/** Creates a new, empty {@code LinkedHashMultiset} using the default in
 DECL|method|create ()
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|LinkedHashMultiset
 argument_list|<
 name|E
 argument_list|>
 name|create
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|create
@@ -87,18 +117,21 @@ comment|/**    * Creates a new, empty {@code LinkedHashMultiset} with the specif
 DECL|method|create (int distinctElements)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|LinkedHashMultiset
 argument_list|<
 name|E
 argument_list|>
 name|create
-parameter_list|(
+argument_list|(
 name|int
 name|distinctElements
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|new
@@ -111,19 +144,28 @@ name|distinctElements
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/**    * Creates a new {@code LinkedHashMultiset} containing the specified elements.    *    *<p>This implementation is highly efficient when {@code elements} is itself a {@link Multiset}.    *    * @param elements the elements that the multiset should contain    */
-DECL|method|create (Iterable<? extends E> elements)
+end_comment
+
+begin_expr_stmt
+DECL|method|create ( Iterable<? extends E> elements)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|LinkedHashMultiset
 argument_list|<
 name|E
 argument_list|>
 name|create
-parameter_list|(
+argument_list|(
 name|Iterable
 argument_list|<
 name|?
@@ -131,14 +173,14 @@ extends|extends
 name|E
 argument_list|>
 name|elements
-parameter_list|)
+argument_list|)
 block|{
 name|LinkedHashMultiset
 argument_list|<
 name|E
 argument_list|>
 name|multiset
-init|=
+operator|=
 name|create
 argument_list|(
 name|Multisets
@@ -148,7 +190,7 @@ argument_list|(
 name|elements
 argument_list|)
 argument_list|)
-decl_stmt|;
+block|;
 name|Iterables
 operator|.
 name|addAll
@@ -157,46 +199,50 @@ name|multiset
 argument_list|,
 name|elements
 argument_list|)
-expr_stmt|;
+block|;
 return|return
 name|multiset
 return|;
 block|}
+end_expr_stmt
+
+begin_expr_stmt
 DECL|method|LinkedHashMultiset (int distinctElements)
 name|LinkedHashMultiset
-parameter_list|(
+argument_list|(
 name|int
 name|distinctElements
-parameter_list|)
+argument_list|)
 block|{
 name|super
 argument_list|(
 name|distinctElements
 argument_list|)
-expr_stmt|;
-block|}
-annotation|@
+block|;   }
+expr|@
 name|Override
-DECL|method|init (int distinctElements)
-name|void
-name|init
-parameter_list|(
+DECL|method|newBackingMap (int distinctElements)
+name|ObjectCountHashMap
+argument_list|<
+name|E
+argument_list|>
+name|newBackingMap
+argument_list|(
 name|int
 name|distinctElements
-parameter_list|)
+argument_list|)
 block|{
-name|backingMap
-operator|=
+return|return
 operator|new
 name|ObjectCountLinkedHashMap
 argument_list|<>
 argument_list|(
 name|distinctElements
 argument_list|)
-expr_stmt|;
+return|;
 block|}
-block|}
-end_class
+end_expr_stmt
 
+unit|}
 end_unit
 

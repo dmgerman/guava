@@ -40,26 +40,52 @@ name|SortedSet
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|checkerframework
+operator|.
+name|checker
+operator|.
+name|nullness
+operator|.
+name|qual
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/**  * Superinterface of {@link SortedMultiset} to introduce a bridge method for {@code elementSet()},  * to ensure binary compatibility with older Guava versions that specified {@code elementSet()} to  * return {@code SortedSet}.  *  * @author Louis Wasserman  */
 end_comment
 
-begin_interface
+begin_annotation
 annotation|@
 name|GwtIncompatible
+end_annotation
+
+begin_annotation
+annotation|@
+name|ElementTypesAreNonnullByDefault
+end_annotation
+
+begin_expr_stmt
 DECL|interface|SortedMultisetBridge
-interface|interface
+unit|interface
 name|SortedMultisetBridge
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|Multiset
 argument_list|<
 name|E
 argument_list|>
-block|{
-annotation|@
+block|{   @
 name|Override
 DECL|method|elementSet ()
 name|SortedSet
@@ -67,10 +93,9 @@ argument_list|<
 name|E
 argument_list|>
 name|elementSet
-parameter_list|()
-function_decl|;
-block|}
-end_interface
+argument_list|()
+block|; }
+end_expr_stmt
 
 end_unit
 

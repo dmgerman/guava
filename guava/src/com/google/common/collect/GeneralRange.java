@@ -81,6 +81,22 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|collect
+operator|.
+name|NullnessCasts
+operator|.
+name|uncheckedCastNullableTToT
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -130,6 +146,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|checkerframework
@@ -148,7 +174,7 @@ begin_comment
 comment|/**  * A generalized interval on any ordering, for internal use. Supports {@code null}. Unlike {@link  * Range}, this allows the use of an arbitrary comparator. This is designed for use in the  * implementation of subcollections of sorted collection types.  *  *<p>Whenever possible, use {@code Range} instead, which is better supported.  *  * @author Louis Wasserman  */
 end_comment
 
-begin_class
+begin_annotation
 annotation|@
 name|GwtCompatible
 argument_list|(
@@ -156,57 +182,66 @@ name|serializable
 operator|=
 literal|true
 argument_list|)
+end_annotation
+
+begin_annotation
+annotation|@
+name|ElementTypesAreNonnullByDefault
+end_annotation
+
+begin_expr_stmt
 DECL|class|GeneralRange
-specifier|final
-class|class
+name|final
+name|class
 name|GeneralRange
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
-implements|implements
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|implements
 name|Serializable
 block|{
 comment|/** Converts a Range to a GeneralRange. */
 DECL|method|from (Range<T> range)
 specifier|static
-parameter_list|<
+operator|<
 name|T
-extends|extends
+expr|extends
 name|Comparable
-parameter_list|>
+operator|>
 name|GeneralRange
 argument_list|<
 name|T
 argument_list|>
 name|from
-parameter_list|(
+argument_list|(
 name|Range
 argument_list|<
 name|T
 argument_list|>
 name|range
-parameter_list|)
+argument_list|)
 block|{
-annotation|@
-name|Nullable
 name|T
 name|lowerEndpoint
-init|=
+operator|=
 name|range
 operator|.
 name|hasLowerBound
 argument_list|()
-condition|?
+operator|?
 name|range
 operator|.
 name|lowerEndpoint
 argument_list|()
-else|:
+operator|:
 literal|null
-decl_stmt|;
+block|;
 name|BoundType
 name|lowerBoundType
-init|=
+operator|=
 name|range
 operator|.
 name|hasLowerBound
@@ -218,12 +253,10 @@ name|lowerBoundType
 argument_list|()
 else|:
 name|OPEN
-decl_stmt|;
-annotation|@
-name|Nullable
+block|;
 name|T
 name|upperEndpoint
-init|=
+operator|=
 name|range
 operator|.
 name|hasUpperBound
@@ -235,10 +268,10 @@ name|upperEndpoint
 argument_list|()
 else|:
 literal|null
-decl_stmt|;
+block|;
 name|BoundType
 name|upperBoundType
-init|=
+operator|=
 name|range
 operator|.
 name|hasUpperBound
@@ -250,7 +283,7 @@ name|upperBoundType
 argument_list|()
 else|:
 name|OPEN
-decl_stmt|;
+block|;
 return|return
 operator|new
 name|GeneralRange
@@ -286,15 +319,18 @@ block|}
 comment|/** Returns the whole range relative to the specified comparator. */
 DECL|method|all (Comparator<? super T> comparator)
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|GeneralRange
 argument_list|<
 name|T
 argument_list|>
 name|all
-parameter_list|(
+argument_list|(
 name|Comparator
 argument_list|<
 name|?
@@ -302,7 +338,7 @@ super|super
 name|T
 argument_list|>
 name|comparator
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|new
@@ -327,18 +363,27 @@ name|OPEN
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/**    * Returns everything above the endpoint relative to the specified comparator, with the specified    * endpoint behavior.    */
-DECL|method|downTo ( Comparator<? super T> comparator, @Nullable T endpoint, BoundType boundType)
+end_comment
+
+begin_expr_stmt
+DECL|method|downTo ( Comparator<? super T> comparator, @ParametricNullness T endpoint, BoundType boundType)
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|GeneralRange
 argument_list|<
 name|T
 argument_list|>
 name|downTo
-parameter_list|(
+argument_list|(
 name|Comparator
 argument_list|<
 name|?
@@ -346,15 +391,15 @@ super|super
 name|T
 argument_list|>
 name|comparator
-parameter_list|,
-annotation|@
-name|Nullable
+operator|,
+condition|@
+name|ParametricNullness
 name|T
 name|endpoint
-parameter_list|,
+operator|,
 name|BoundType
 name|boundType
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|new
@@ -379,18 +424,27 @@ name|OPEN
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/**    * Returns everything below the endpoint relative to the specified comparator, with the specified    * endpoint behavior.    */
-DECL|method|upTo ( Comparator<? super T> comparator, @Nullable T endpoint, BoundType boundType)
+end_comment
+
+begin_expr_stmt
+DECL|method|upTo ( Comparator<? super T> comparator, @ParametricNullness T endpoint, BoundType boundType)
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|GeneralRange
 argument_list|<
 name|T
 argument_list|>
 name|upTo
-parameter_list|(
+argument_list|(
 name|Comparator
 argument_list|<
 name|?
@@ -398,15 +452,15 @@ super|super
 name|T
 argument_list|>
 name|comparator
-parameter_list|,
-annotation|@
-name|Nullable
+operator|,
+condition|@
+name|ParametricNullness
 name|T
 name|endpoint
-parameter_list|,
+operator|,
 name|BoundType
 name|boundType
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|new
@@ -431,18 +485,27 @@ name|boundType
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/**    * Returns everything between the endpoints relative to the specified comparator, with the    * specified endpoint behavior.    */
-DECL|method|range ( Comparator<? super T> comparator, @Nullable T lower, BoundType lowerType, @Nullable T upper, BoundType upperType)
+end_comment
+
+begin_expr_stmt
+DECL|method|range ( Comparator<? super T> comparator, @ParametricNullness T lower, BoundType lowerType, @ParametricNullness T upper, BoundType upperType)
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|GeneralRange
 argument_list|<
 name|T
 argument_list|>
 name|range
-parameter_list|(
+argument_list|(
 name|Comparator
 argument_list|<
 name|?
@@ -450,23 +513,23 @@ super|super
 name|T
 argument_list|>
 name|comparator
-parameter_list|,
-annotation|@
-name|Nullable
+operator|,
+condition|@
+name|ParametricNullness
 name|T
 name|lower
-parameter_list|,
+operator|,
 name|BoundType
 name|lowerType
-parameter_list|,
-annotation|@
-name|Nullable
+operator|,
+condition|@
+name|ParametricNullness
 name|T
 name|upper
-parameter_list|,
+operator|,
 name|BoundType
 name|upperType
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|new
@@ -491,6 +554,9 @@ name|upperType
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_decl_stmt
 DECL|field|comparator
 specifier|private
 specifier|final
@@ -502,47 +568,68 @@ name|T
 argument_list|>
 name|comparator
 decl_stmt|;
+end_decl_stmt
+
+begin_decl_stmt
 DECL|field|hasLowerBound
 specifier|private
 specifier|final
 name|boolean
 name|hasLowerBound
 decl_stmt|;
+end_decl_stmt
+
+begin_decl_stmt
 DECL|field|lowerEndpoint
+annotation|@
+name|CheckForNull
 specifier|private
 specifier|final
-annotation|@
-name|Nullable
 name|T
 name|lowerEndpoint
 decl_stmt|;
+end_decl_stmt
+
+begin_decl_stmt
 DECL|field|lowerBoundType
 specifier|private
 specifier|final
 name|BoundType
 name|lowerBoundType
 decl_stmt|;
+end_decl_stmt
+
+begin_decl_stmt
 DECL|field|hasUpperBound
 specifier|private
 specifier|final
 name|boolean
 name|hasUpperBound
 decl_stmt|;
+end_decl_stmt
+
+begin_decl_stmt
 DECL|field|upperEndpoint
+annotation|@
+name|CheckForNull
 specifier|private
 specifier|final
-annotation|@
-name|Nullable
 name|T
 name|upperEndpoint
 decl_stmt|;
+end_decl_stmt
+
+begin_decl_stmt
 DECL|field|upperBoundType
 specifier|private
 specifier|final
 name|BoundType
 name|upperBoundType
 decl_stmt|;
-DECL|method|GeneralRange ( Comparator<? super T> comparator, boolean hasLowerBound, @Nullable T lowerEndpoint, BoundType lowerBoundType, boolean hasUpperBound, @Nullable T upperEndpoint, BoundType upperBoundType)
+end_decl_stmt
+
+begin_constructor
+DECL|method|GeneralRange ( Comparator<? super T> comparator, boolean hasLowerBound, @CheckForNull T lowerEndpoint, BoundType lowerBoundType, boolean hasUpperBound, @CheckForNull T upperEndpoint, BoundType upperBoundType)
 specifier|private
 name|GeneralRange
 parameter_list|(
@@ -558,7 +645,7 @@ name|boolean
 name|hasLowerBound
 parameter_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|T
 name|lowerEndpoint
 parameter_list|,
@@ -569,7 +656,7 @@ name|boolean
 name|hasUpperBound
 parameter_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|T
 name|upperEndpoint
 parameter_list|,
@@ -628,6 +715,8 @@ argument_list|(
 name|upperBoundType
 argument_list|)
 expr_stmt|;
+comment|// Trigger any exception that the comparator would throw for the endpoints.
+comment|/*      * uncheckedCastNullableTToT is safe as long as the callers are careful to pass a "real" T      * whenever they pass `true` for the matching `has*Bound` parameter.      */
 if|if
 condition|(
 name|hasLowerBound
@@ -637,9 +726,15 @@ name|comparator
 operator|.
 name|compare
 argument_list|(
+name|uncheckedCastNullableTToT
+argument_list|(
 name|lowerEndpoint
+argument_list|)
 argument_list|,
+name|uncheckedCastNullableTToT
+argument_list|(
 name|lowerEndpoint
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -652,9 +747,15 @@ name|comparator
 operator|.
 name|compare
 argument_list|(
+name|uncheckedCastNullableTToT
+argument_list|(
 name|upperEndpoint
+argument_list|)
 argument_list|,
+name|uncheckedCastNullableTToT
+argument_list|(
 name|upperEndpoint
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -672,9 +773,15 @@ name|comparator
 operator|.
 name|compare
 argument_list|(
+name|uncheckedCastNullableTToT
+argument_list|(
 name|lowerEndpoint
+argument_list|)
 argument_list|,
+name|uncheckedCastNullableTToT
+argument_list|(
 name|upperEndpoint
+argument_list|)
 argument_list|)
 decl_stmt|;
 comment|// be consistent with Range
@@ -712,6 +819,9 @@ expr_stmt|;
 block|}
 block|}
 block|}
+end_constructor
+
+begin_function
 DECL|method|comparator ()
 name|Comparator
 argument_list|<
@@ -726,6 +836,9 @@ return|return
 name|comparator
 return|;
 block|}
+end_function
+
+begin_function
 DECL|method|hasLowerBound ()
 name|boolean
 name|hasLowerBound
@@ -735,6 +848,9 @@ return|return
 name|hasLowerBound
 return|;
 block|}
+end_function
+
+begin_function
 DECL|method|hasUpperBound ()
 name|boolean
 name|hasUpperBound
@@ -744,11 +860,15 @@ return|return
 name|hasUpperBound
 return|;
 block|}
+end_function
+
+begin_function
 DECL|method|isEmpty ()
 name|boolean
 name|isEmpty
 parameter_list|()
 block|{
+comment|// The casts are safe because of the has*Bound() checks.
 return|return
 operator|(
 name|hasUpperBound
@@ -756,8 +876,11 @@ argument_list|()
 operator|&&
 name|tooLow
 argument_list|(
+name|uncheckedCastNullableTToT
+argument_list|(
 name|getUpperEndpoint
 argument_list|()
+argument_list|)
 argument_list|)
 operator|)
 operator|||
@@ -767,18 +890,24 @@ argument_list|()
 operator|&&
 name|tooHigh
 argument_list|(
+name|uncheckedCastNullableTToT
+argument_list|(
 name|getLowerEndpoint
 argument_list|()
+argument_list|)
 argument_list|)
 operator|)
 return|;
 block|}
-DECL|method|tooLow (@ullable T t)
+end_function
+
+begin_function
+DECL|method|tooLow (@arametricNullness T t)
 name|boolean
 name|tooLow
 parameter_list|(
 annotation|@
-name|Nullable
+name|ParametricNullness
 name|T
 name|t
 parameter_list|)
@@ -794,11 +923,15 @@ return|return
 literal|false
 return|;
 block|}
+comment|// The cast is safe because of the hasLowerBound() check.
 name|T
 name|lbound
 init|=
+name|uncheckedCastNullableTToT
+argument_list|(
 name|getLowerEndpoint
 argument_list|()
+argument_list|)
 decl_stmt|;
 name|int
 name|cmp
@@ -829,12 +962,15 @@ name|OPEN
 operator|)
 return|;
 block|}
-DECL|method|tooHigh (@ullable T t)
+end_function
+
+begin_function
+DECL|method|tooHigh (@arametricNullness T t)
 name|boolean
 name|tooHigh
 parameter_list|(
 annotation|@
-name|Nullable
+name|ParametricNullness
 name|T
 name|t
 parameter_list|)
@@ -850,11 +986,15 @@ return|return
 literal|false
 return|;
 block|}
+comment|// The cast is safe because of the hasUpperBound() check.
 name|T
 name|ubound
 init|=
+name|uncheckedCastNullableTToT
+argument_list|(
 name|getUpperEndpoint
 argument_list|()
+argument_list|)
 decl_stmt|;
 name|int
 name|cmp
@@ -885,12 +1025,15 @@ name|OPEN
 operator|)
 return|;
 block|}
-DECL|method|contains (@ullable T t)
+end_function
+
+begin_function
+DECL|method|contains (@arametricNullness T t)
 name|boolean
 name|contains
 parameter_list|(
 annotation|@
-name|Nullable
+name|ParametricNullness
 name|T
 name|t
 parameter_list|)
@@ -909,7 +1052,19 @@ name|t
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Returns the intersection of the two ranges, or an empty range if their intersection is empty.    */
+end_comment
+
+begin_function
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"nullness"
+argument_list|)
+comment|// TODO(cpovirk): Add casts as needed. Will be noisy and annoying...
 DECL|method|intersect (GeneralRange<T> other)
 name|GeneralRange
 argument_list|<
@@ -948,8 +1103,6 @@ name|this
 operator|.
 name|hasLowerBound
 decl_stmt|;
-annotation|@
-name|Nullable
 name|T
 name|lowEnd
 init|=
@@ -1058,8 +1211,6 @@ name|this
 operator|.
 name|hasUpperBound
 decl_stmt|;
-annotation|@
-name|Nullable
 name|T
 name|upEnd
 init|=
@@ -1239,15 +1390,18 @@ name|upType
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|equals (@ullable Object obj)
+DECL|method|equals (@heckForNull Object obj)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|obj
 parameter_list|)
@@ -1348,6 +1502,9 @@ return|return
 literal|false
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|hashCode ()
@@ -1377,18 +1534,27 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_decl_stmt
 DECL|field|reverse
+annotation|@
+name|CheckForNull
 specifier|private
 specifier|transient
-annotation|@
-name|Nullable
 name|GeneralRange
 argument_list|<
 name|T
 argument_list|>
 name|reverse
 decl_stmt|;
+end_decl_stmt
+
+begin_comment
 comment|/** Returns the same range relative to the reversed comparator. */
+end_comment
+
+begin_function
 DECL|method|reverse ()
 name|GeneralRange
 argument_list|<
@@ -1465,6 +1631,9 @@ return|return
 name|result
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|toString ()
@@ -1517,6 +1686,11 @@ literal|')'
 operator|)
 return|;
 block|}
+end_function
+
+begin_function
+annotation|@
+name|CheckForNull
 DECL|method|getLowerEndpoint ()
 name|T
 name|getLowerEndpoint
@@ -1526,6 +1700,9 @@ return|return
 name|lowerEndpoint
 return|;
 block|}
+end_function
+
+begin_function
 DECL|method|getLowerBoundType ()
 name|BoundType
 name|getLowerBoundType
@@ -1535,6 +1712,11 @@ return|return
 name|lowerBoundType
 return|;
 block|}
+end_function
+
+begin_function
+annotation|@
+name|CheckForNull
 DECL|method|getUpperEndpoint ()
 name|T
 name|getUpperEndpoint
@@ -1544,6 +1726,9 @@ return|return
 name|upperEndpoint
 return|;
 block|}
+end_function
+
+begin_function
 DECL|method|getUpperBoundType ()
 name|BoundType
 name|getUpperBoundType
@@ -1553,8 +1738,8 @@ return|return
 name|upperBoundType
 return|;
 block|}
-block|}
-end_class
+end_function
 
+unit|}
 end_unit
 

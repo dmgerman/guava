@@ -33,6 +33,18 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|java
+operator|.
+name|util
+operator|.
+name|Objects
+operator|.
+name|requireNonNull
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -170,17 +182,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|javax
 operator|.
-name|checkerframework
+name|annotation
 operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|compatqual
-operator|.
-name|NullableDecl
+name|CheckForNull
 import|;
 end_import
 
@@ -206,6 +212,8 @@ argument_list|(
 literal|"serial"
 argument_list|)
 comment|// we're overriding default serialization
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|ImmutableMultiset
 specifier|public
 specifier|abstract
@@ -258,12 +266,6 @@ name|EMPTY
 return|;
 block|}
 comment|/**    * Returns an immutable multiset containing a single element.    *    * @throws NullPointerException if {@code element} is null    * @since 6.0 (source-compatible since 2.0)    */
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
-comment|// generic array created but never written
 DECL|method|of (E element)
 specifier|public
 specifier|static
@@ -288,12 +290,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns an immutable multiset containing the given elements, in order.    *    * @throws NullPointerException if any element is null    * @since 6.0 (source-compatible since 2.0)    */
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
-comment|//
 DECL|method|of (E e1, E e2)
 specifier|public
 specifier|static
@@ -323,12 +319,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns an immutable multiset containing the given elements, in the "grouped iteration order"    * described in the class documentation.    *    * @throws NullPointerException if any element is null    * @since 6.0 (source-compatible since 2.0)    */
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
-comment|//
 DECL|method|of (E e1, E e2, E e3)
 specifier|public
 specifier|static
@@ -363,12 +353,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns an immutable multiset containing the given elements, in the "grouped iteration order"    * described in the class documentation.    *    * @throws NullPointerException if any element is null    * @since 6.0 (source-compatible since 2.0)    */
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
-comment|//
 DECL|method|of (E e1, E e2, E e3, E e4)
 specifier|public
 specifier|static
@@ -408,12 +392,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns an immutable multiset containing the given elements, in the "grouped iteration order"    * described in the class documentation.    *    * @throws NullPointerException if any element is null    * @since 6.0 (source-compatible since 2.0)    */
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
-comment|//
 DECL|method|of (E e1, E e2, E e3, E e4, E e5)
 specifier|public
 specifier|static
@@ -458,12 +436,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns an immutable multiset containing the given elements, in the "grouped iteration order"    * described in the class documentation.    *    * @throws NullPointerException if any element is null    * @since 6.0 (source-compatible since 2.0)    */
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
-comment|//
 DECL|method|of (E e1, E e2, E e3, E e4, E e5, E e6, E... others)
 specifier|public
 specifier|static
@@ -875,7 +847,7 @@ name|int
 name|remaining
 decl_stmt|;
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|E
 name|element
 decl_stmt|;
@@ -942,8 +914,12 @@ block|}
 name|remaining
 operator|--
 expr_stmt|;
+comment|/*          * requireNonNull is safe because `remaining` starts at 0, forcing us to initialize          * `element` above. After that, we never clear it.          */
 return|return
+name|requireNonNull
+argument_list|(
 name|element
+argument_list|)
 return|;
 block|}
 block|}
@@ -952,6 +928,8 @@ block|}
 DECL|field|asList
 annotation|@
 name|LazyInit
+annotation|@
+name|CheckForNull
 specifier|private
 specifier|transient
 name|ImmutableList
@@ -998,13 +976,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|contains (@ullableDecl Object object)
+DECL|method|contains (@heckForNull Object object)
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|object
 parameter_list|)
@@ -1061,12 +1039,14 @@ name|DoNotCall
 argument_list|(
 literal|"Always throws UnsupportedOperationException"
 argument_list|)
-DECL|method|remove (Object element, int occurrences)
+DECL|method|remove (@heckForNull Object element, int occurrences)
 specifier|public
 specifier|final
 name|int
 name|remove
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|element
 parameter_list|,
@@ -1211,13 +1191,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|equals (@ullableDecl Object object)
+DECL|method|equals (@heckForNull Object object)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|object
 parameter_list|)
@@ -1283,6 +1263,8 @@ function_decl|;
 DECL|field|entrySet
 annotation|@
 name|LazyInit
+annotation|@
+name|CheckForNull
 specifier|private
 specifier|transient
 name|ImmutableSet
@@ -1450,11 +1432,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|contains (Object o)
+DECL|method|contains (@heckForNull Object o)
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|o
 parameter_list|)
@@ -1667,7 +1651,10 @@ argument_list|<
 name|E
 argument_list|>
 block|{
+comment|/*      * `contents` is null only for instances of the subclass, ImmutableSortedMultiset.Builder. That      * subclass overrides all the methods that access it here. Thus, all the methods here can safely      * assume that this field is non-null.      */
 DECL|field|contents
+annotation|@
+name|CheckForNull
 name|ObjectCountHashMap
 argument_list|<
 name|E
@@ -1807,6 +1794,12 @@ name|int
 name|occurrences
 parameter_list|)
 block|{
+name|requireNonNull
+argument_list|(
+name|contents
+argument_list|)
+expr_stmt|;
+comment|// see the comment on the field
 if|if
 condition|(
 name|occurrences
@@ -1886,6 +1879,12 @@ name|int
 name|count
 parameter_list|)
 block|{
+name|requireNonNull
+argument_list|(
+name|contents
+argument_list|)
+expr_stmt|;
+comment|// see the comment on the field
 if|if
 condition|(
 name|count
@@ -2001,6 +2000,12 @@ argument_list|>
 name|elements
 parameter_list|)
 block|{
+name|requireNonNull
+argument_list|(
+name|contents
+argument_list|)
+expr_stmt|;
+comment|// see the comment on the field
 if|if
 condition|(
 name|elements
@@ -2228,7 +2233,7 @@ return|;
 block|}
 comment|/**      * If the specified collection is backed by an ObjectCountHashMap, it will be much more      * efficient to iterate over it by index rather than an entry iterator, which will need to      * allocate an object for each entry, so we check for that.      */
 annotation|@
-name|NullableDecl
+name|CheckForNull
 DECL|method|tryGetMap (Iterable<T> multiset)
 specifier|static
 parameter_list|<
@@ -2309,6 +2314,12 @@ argument_list|>
 name|build
 parameter_list|()
 block|{
+name|requireNonNull
+argument_list|(
+name|contents
+argument_list|)
+expr_stmt|;
+comment|// see the comment on the field
 if|if
 condition|(
 name|contents

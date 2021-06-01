@@ -86,6 +86,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|checkerframework
@@ -104,7 +114,7 @@ begin_comment
 comment|/**  * A skeleton implementation of a descending multiset. Only needs {@code forwardMultiset()} and  * {@code entryIterator()}.  *  * @author Louis Wasserman  */
 end_comment
 
-begin_class
+begin_annotation
 annotation|@
 name|GwtCompatible
 argument_list|(
@@ -112,19 +122,30 @@ name|emulated
 operator|=
 literal|true
 argument_list|)
+end_annotation
+
+begin_annotation
+annotation|@
+name|ElementTypesAreNonnullByDefault
+end_annotation
+
+begin_expr_stmt
 DECL|class|DescendingMultiset
 specifier|abstract
-class|class
+name|class
 name|DescendingMultiset
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|ForwardingMultiset
 argument_list|<
 name|E
 argument_list|>
-implements|implements
+expr|implements
 name|SortedMultiset
 argument_list|<
 name|E
@@ -137,13 +158,12 @@ argument_list|<
 name|E
 argument_list|>
 name|forwardMultiset
-parameter_list|()
-function_decl|;
+argument_list|()
+block|;    @
 DECL|field|comparator
+name|CheckForNull
 specifier|private
 specifier|transient
-annotation|@
-name|Nullable
 name|Comparator
 argument_list|<
 name|?
@@ -151,8 +171,7 @@ super|super
 name|E
 argument_list|>
 name|comparator
-decl_stmt|;
-annotation|@
+block|;    @
 name|Override
 DECL|method|comparator ()
 specifier|public
@@ -163,7 +182,7 @@ super|super
 name|E
 argument_list|>
 name|comparator
-parameter_list|()
+argument_list|()
 block|{
 name|Comparator
 argument_list|<
@@ -203,21 +222,29 @@ name|reverse
 argument_list|()
 return|;
 block|}
+end_expr_stmt
+
+begin_return
 return|return
 name|result
 return|;
-block|}
+end_return
+
+begin_decl_stmt
+unit|}    @
 DECL|field|elementSet
+name|CheckForNull
 specifier|private
 specifier|transient
-annotation|@
-name|Nullable
 name|NavigableSet
 argument_list|<
 name|E
 argument_list|>
 name|elementSet
 decl_stmt|;
+end_decl_stmt
+
+begin_function
 annotation|@
 name|Override
 DECL|method|elementSet ()
@@ -263,8 +290,13 @@ return|return
 name|result
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|pollFirstEntry ()
 specifier|public
 name|Entry
@@ -282,8 +314,13 @@ name|pollLastEntry
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|pollLastEntry ()
 specifier|public
 name|Entry
@@ -301,9 +338,12 @@ name|pollFirstEntry
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|headMultiset (E toElement, BoundType boundType)
+DECL|method|headMultiset (@arametricNullness E toElement, BoundType boundType)
 specifier|public
 name|SortedMultiset
 argument_list|<
@@ -311,6 +351,8 @@ name|E
 argument_list|>
 name|headMultiset
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|E
 name|toElement
 parameter_list|,
@@ -333,9 +375,12 @@ name|descendingMultiset
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|subMultiset ( E fromElement, BoundType fromBoundType, E toElement, BoundType toBoundType)
+DECL|method|subMultiset ( @arametricNullness E fromElement, BoundType fromBoundType, @ParametricNullness E toElement, BoundType toBoundType)
 specifier|public
 name|SortedMultiset
 argument_list|<
@@ -343,12 +388,16 @@ name|E
 argument_list|>
 name|subMultiset
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|E
 name|fromElement
 parameter_list|,
 name|BoundType
 name|fromBoundType
 parameter_list|,
+annotation|@
+name|ParametricNullness
 name|E
 name|toElement
 parameter_list|,
@@ -375,9 +424,12 @@ name|descendingMultiset
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|tailMultiset (E fromElement, BoundType boundType)
+DECL|method|tailMultiset (@arametricNullness E fromElement, BoundType boundType)
 specifier|public
 name|SortedMultiset
 argument_list|<
@@ -385,6 +437,8 @@ name|E
 argument_list|>
 name|tailMultiset
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|E
 name|fromElement
 parameter_list|,
@@ -407,6 +461,9 @@ name|descendingMultiset
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|delegate ()
@@ -423,6 +480,9 @@ name|forwardMultiset
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|descendingMultiset ()
@@ -439,8 +499,13 @@ name|forwardMultiset
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|firstEntry ()
 specifier|public
 name|Entry
@@ -458,8 +523,13 @@ name|lastEntry
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|lastEntry ()
 specifier|public
 name|Entry
@@ -477,6 +547,9 @@ name|firstEntry
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function_decl
 DECL|method|entryIterator ()
 specifier|abstract
 name|Iterator
@@ -489,11 +562,14 @@ argument_list|>
 name|entryIterator
 parameter_list|()
 function_decl|;
+end_function_decl
+
+begin_decl_stmt
 DECL|field|entrySet
+annotation|@
+name|CheckForNull
 specifier|private
 specifier|transient
-annotation|@
-name|Nullable
 name|Set
 argument_list|<
 name|Entry
@@ -503,6 +579,9 @@ argument_list|>
 argument_list|>
 name|entrySet
 decl_stmt|;
+end_decl_stmt
+
+begin_function
 annotation|@
 name|Override
 DECL|method|entrySet ()
@@ -543,6 +622,9 @@ else|:
 name|result
 return|;
 block|}
+end_function
+
+begin_function
 DECL|method|createEntrySet ()
 name|Set
 argument_list|<
@@ -624,6 +706,9 @@ name|EntrySetImpl
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|iterator ()
@@ -644,10 +729,15 @@ name|this
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|toArray ()
 specifier|public
+annotation|@
+name|Nullable
 name|Object
 index|[]
 name|toArray
@@ -658,21 +748,42 @@ name|standardToArray
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_annotation
 annotation|@
 name|Override
+end_annotation
+
+begin_comment
+comment|/*    * Our checker says "found: T[]; required: T[]." That sounds bogus. I discuss a possible reason    * for this error in https://github.com/jspecify/checker-framework/issues/10.    */
+end_comment
+
+begin_annotation
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"nullness"
+argument_list|)
+end_annotation
+
+begin_expr_stmt
 DECL|method|toArray (T[] array)
 specifier|public
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|T
 index|[]
 name|toArray
-parameter_list|(
+argument_list|(
 name|T
 index|[]
 name|array
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|standardToArray
@@ -681,6 +792,9 @@ name|array
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_function
 annotation|@
 name|Override
 DECL|method|toString ()
@@ -697,8 +811,8 @@ name|toString
 argument_list|()
 return|;
 block|}
-block|}
-end_class
+end_function
 
+unit|}
 end_unit
 

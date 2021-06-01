@@ -82,17 +82,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|javax
 operator|.
-name|checkerframework
+name|annotation
 operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|qual
-operator|.
-name|Nullable
+name|CheckForNull
 import|;
 end_import
 
@@ -103,6 +97,8 @@ end_comment
 begin_class
 annotation|@
 name|GwtCompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|JdkBackedImmutableMultiset
 specifier|final
 class|class
@@ -367,13 +363,13 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|count (@ullable Object element)
+DECL|method|count (@heckForNull Object element)
 specifier|public
 name|int
 name|count
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|element
 parameter_list|)
@@ -390,6 +386,8 @@ argument_list|)
 return|;
 block|}
 DECL|field|elementSet
+annotation|@
+name|CheckForNull
 specifier|private
 specifier|transient
 name|ImmutableSet

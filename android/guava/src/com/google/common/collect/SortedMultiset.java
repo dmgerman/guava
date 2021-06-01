@@ -80,11 +80,37 @@ name|Set
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|checkerframework
+operator|.
+name|checker
+operator|.
+name|nullness
+operator|.
+name|qual
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/**  * A {@link Multiset} which maintains the ordering of its elements, according to either their  * natural order or an explicit {@link Comparator}. This order is reflected when iterating over the  * sorted multiset, either directly, or through its {@code elementSet} or {@code entrySet} views. In  * all cases, this implementation uses {@link Comparable#compareTo} or {@link Comparator#compare}  * instead of {@link Object#equals} to determine equivalence of instances.  *  *<p><b>Warning:</b> The comparison must be<i>consistent with equals</i> as explained by the  * {@link Comparable} class specification. Otherwise, the resulting multiset will violate the {@link  * Collection} contract, which is specified in terms of {@link Object#equals}.  *  *<p>See the Guava User Guide article on<a href=  * "https://github.com/google/guava/wiki/NewCollectionTypesExplained#multiset"> {@code  * Multiset}</a>.  *  * @author Louis Wasserman  * @since 11.0  */
 end_comment
 
-begin_interface
+begin_annotation
 annotation|@
 name|GwtCompatible
 argument_list|(
@@ -92,26 +118,36 @@ name|emulated
 operator|=
 literal|true
 argument_list|)
+end_annotation
+
+begin_comment
+comment|// TODO(cpovirk): // TODO(cpovirk): @ElementTypesAreNonnullByDefault
+end_comment
+
+begin_expr_stmt
 DECL|interface|SortedMultiset
 specifier|public
-interface|interface
+expr|interface
 name|SortedMultiset
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|SortedMultisetBridge
 argument_list|<
 name|E
 argument_list|>
-extends|,
+operator|,
 name|SortedIterable
 argument_list|<
 name|E
 argument_list|>
 block|{
 comment|/**    * Returns the comparator that orders this multiset, or {@link Ordering#natural()} if the natural    * ordering of the elements is used.    */
-annotation|@
+block|@
 name|Override
 DECL|method|comparator ()
 name|Comparator
@@ -121,46 +157,52 @@ super|super
 name|E
 argument_list|>
 name|comparator
-parameter_list|()
-function_decl|;
+argument_list|()
+block|;
 comment|/**    * Returns the entry of the first element in this multiset, or {@code null} if this multiset is    * empty.    */
+comment|// TODO(cpovirk): @CheckForNull
 DECL|method|firstEntry ()
 name|Entry
 argument_list|<
 name|E
 argument_list|>
 name|firstEntry
-parameter_list|()
-function_decl|;
+argument_list|()
+block|;
 comment|/**    * Returns the entry of the last element in this multiset, or {@code null} if this multiset is    * empty.    */
+comment|// TODO(cpovirk): @CheckForNull
 DECL|method|lastEntry ()
 name|Entry
 argument_list|<
 name|E
 argument_list|>
 name|lastEntry
-parameter_list|()
-function_decl|;
+argument_list|()
+block|;
 comment|/**    * Returns and removes the entry associated with the lowest element in this multiset, or returns    * {@code null} if this multiset is empty.    */
+block|@
+name|CheckForNull
 DECL|method|pollFirstEntry ()
 name|Entry
 argument_list|<
 name|E
 argument_list|>
 name|pollFirstEntry
-parameter_list|()
-function_decl|;
+argument_list|()
+block|;
 comment|/**    * Returns and removes the entry associated with the greatest element in this multiset, or returns    * {@code null} if this multiset is empty.    */
+block|@
+name|CheckForNull
 DECL|method|pollLastEntry ()
 name|Entry
 argument_list|<
 name|E
 argument_list|>
 name|pollLastEntry
-parameter_list|()
-function_decl|;
+argument_list|()
+block|;
 comment|/**    * Returns a {@link NavigableSet} view of the distinct elements in this multiset.    *    * @since 14.0 (present with return type {@code SortedSet} since 11.0)    */
-annotation|@
+block|@
 name|Override
 DECL|method|elementSet ()
 name|NavigableSet
@@ -168,10 +210,10 @@ argument_list|<
 name|E
 argument_list|>
 name|elementSet
-parameter_list|()
-function_decl|;
+argument_list|()
+block|;
 comment|/**    * {@inheritDoc}    *    *<p>The {@code entrySet}'s iterator returns entries in ascending element order according to the    * this multiset's comparator.    */
-annotation|@
+block|@
 name|Override
 DECL|method|entrySet ()
 name|Set
@@ -182,10 +224,10 @@ name|E
 argument_list|>
 argument_list|>
 name|entrySet
-parameter_list|()
-function_decl|;
+argument_list|()
+block|;
 comment|/**    * {@inheritDoc}    *    *<p>The iterator returns the elements in ascending order according to this multiset's    * comparator.    */
-annotation|@
+block|@
 name|Override
 DECL|method|iterator ()
 name|Iterator
@@ -193,8 +235,8 @@ argument_list|<
 name|E
 argument_list|>
 name|iterator
-parameter_list|()
-function_decl|;
+argument_list|()
+block|;
 comment|/**    * Returns a descending view of this multiset. Modifications made to either map will be reflected    * in the other.    */
 DECL|method|descendingMultiset ()
 name|SortedMultiset
@@ -202,61 +244,68 @@ argument_list|<
 name|E
 argument_list|>
 name|descendingMultiset
-parameter_list|()
-function_decl|;
+argument_list|()
+block|;
 comment|/**    * Returns a view of this multiset restricted to the elements less than {@code upperBound},    * optionally including {@code upperBound} itself. The returned multiset is a view of this    * multiset, so changes to one will be reflected in the other. The returned multiset supports all    * operations that this multiset supports.    *    *<p>The returned multiset will throw an {@link IllegalArgumentException} on attempts to add    * elements outside its range.    */
-DECL|method|headMultiset (E upperBound, BoundType boundType)
+DECL|method|headMultiset (@arametricNullness E upperBound, BoundType boundType)
 name|SortedMultiset
 argument_list|<
 name|E
 argument_list|>
 name|headMultiset
-parameter_list|(
+argument_list|(
+annotation|@
+name|ParametricNullness
 name|E
 name|upperBound
-parameter_list|,
+argument_list|,
 name|BoundType
 name|boundType
-parameter_list|)
-function_decl|;
+argument_list|)
+block|;
 comment|/**    * Returns a view of this multiset restricted to the range between {@code lowerBound} and {@code    * upperBound}. The returned multiset is a view of this multiset, so changes to one will be    * reflected in the other. The returned multiset supports all operations that this multiset    * supports.    *    *<p>The returned multiset will throw an {@link IllegalArgumentException} on attempts to add    * elements outside its range.    *    *<p>This method is equivalent to {@code tailMultiset(lowerBound,    * lowerBoundType).headMultiset(upperBound, upperBoundType)}.    */
-DECL|method|subMultiset ( E lowerBound, BoundType lowerBoundType, E upperBound, BoundType upperBoundType)
+DECL|method|subMultiset ( @arametricNullness E lowerBound, BoundType lowerBoundType, @ParametricNullness E upperBound, BoundType upperBoundType)
 name|SortedMultiset
 argument_list|<
 name|E
 argument_list|>
 name|subMultiset
-parameter_list|(
+argument_list|(
+annotation|@
+name|ParametricNullness
 name|E
 name|lowerBound
-parameter_list|,
+argument_list|,
 name|BoundType
 name|lowerBoundType
-parameter_list|,
+argument_list|,
+annotation|@
+name|ParametricNullness
 name|E
 name|upperBound
-parameter_list|,
+argument_list|,
 name|BoundType
 name|upperBoundType
-parameter_list|)
-function_decl|;
+argument_list|)
+block|;
 comment|/**    * Returns a view of this multiset restricted to the elements greater than {@code lowerBound},    * optionally including {@code lowerBound} itself. The returned multiset is a view of this    * multiset, so changes to one will be reflected in the other. The returned multiset supports all    * operations that this multiset supports.    *    *<p>The returned multiset will throw an {@link IllegalArgumentException} on attempts to add    * elements outside its range.    */
-DECL|method|tailMultiset (E lowerBound, BoundType boundType)
+DECL|method|tailMultiset (@arametricNullness E lowerBound, BoundType boundType)
 name|SortedMultiset
 argument_list|<
 name|E
 argument_list|>
 name|tailMultiset
-parameter_list|(
+argument_list|(
+annotation|@
+name|ParametricNullness
 name|E
 name|lowerBound
-parameter_list|,
+argument_list|,
 name|BoundType
 name|boundType
-parameter_list|)
-function_decl|;
-block|}
-end_interface
+argument_list|)
+block|; }
+end_expr_stmt
 
 end_unit
 

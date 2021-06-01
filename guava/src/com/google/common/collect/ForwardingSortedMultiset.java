@@ -74,13 +74,42 @@ name|NavigableSet
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|checkerframework
+operator|.
+name|checker
+operator|.
+name|nullness
+operator|.
+name|qual
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/**  * A sorted multiset which forwards all its method calls to another sorted multiset. Subclasses  * should override one or more methods to modify the behavior of the backing multiset as desired per  * the<a href="http://en.wikipedia.org/wiki/Decorator_pattern">decorator pattern</a>.  *  *<p><b>Warning:</b> The methods of {@code ForwardingSortedMultiset} forward  *<b>indiscriminately</b> to the methods of the delegate. For example, overriding {@link  * #add(Object, int)} alone<b>will not</b> change the behavior of {@link #add(Object)}, which can  * lead to unexpected behavior. In this case, you should override {@code add(Object)} as well,  * either providing your own implementation, or delegating to the provided {@code standardAdd}  * method.  *  *<p><b>{@code default} method warning:</b> This class does<i>not</i> forward calls to {@code  * default} methods. Instead, it inherits their default implementations. When those implementations  * invoke methods, they invoke methods on the {@code ForwardingSortedMultiset}.  *  *<p>The {@code standard} methods and any collection views they return are not guaranteed to be  * thread-safe, even when all of the methods that they depend on are thread-safe.  *  * @author Louis Wasserman  * @since 15.0  */
 end_comment
 
-begin_class
+begin_annotation
 annotation|@
 name|Beta
+end_annotation
+
+begin_annotation
 annotation|@
 name|GwtCompatible
 argument_list|(
@@ -88,20 +117,31 @@ name|emulated
 operator|=
 literal|true
 argument_list|)
+end_annotation
+
+begin_annotation
+annotation|@
+name|ElementTypesAreNonnullByDefault
+end_annotation
+
+begin_expr_stmt
 DECL|class|ForwardingSortedMultiset
 specifier|public
 specifier|abstract
-class|class
+name|class
 name|ForwardingSortedMultiset
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|ForwardingMultiset
 argument_list|<
 name|E
 argument_list|>
-implements|implements
+expr|implements
 name|SortedMultiset
 argument_list|<
 name|E
@@ -111,9 +151,9 @@ comment|/** Constructor for use by subclasses. */
 DECL|method|ForwardingSortedMultiset ()
 specifier|protected
 name|ForwardingSortedMultiset
-parameter_list|()
+argument_list|()
 block|{}
-annotation|@
+expr|@
 name|Override
 DECL|method|delegate ()
 specifier|protected
@@ -123,9 +163,8 @@ argument_list|<
 name|E
 argument_list|>
 name|delegate
-parameter_list|()
-function_decl|;
-annotation|@
+argument_list|()
+block|;    @
 name|Override
 DECL|method|elementSet ()
 specifier|public
@@ -134,7 +173,7 @@ argument_list|<
 name|E
 argument_list|>
 name|elementSet
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|delegate
@@ -147,9 +186,9 @@ block|}
 comment|/**    * A sensible implementation of {@link SortedMultiset#elementSet} in terms of the following    * methods: {@link SortedMultiset#clear}, {@link SortedMultiset#comparator}, {@link    * SortedMultiset#contains}, {@link SortedMultiset#containsAll}, {@link SortedMultiset#count},    * {@link SortedMultiset#firstEntry} {@link SortedMultiset#headMultiset}, {@link    * SortedMultiset#isEmpty}, {@link SortedMultiset#lastEntry}, {@link SortedMultiset#subMultiset},    * {@link SortedMultiset#tailMultiset}, the {@code size()} and {@code iterator()} methods of    * {@link SortedMultiset#entrySet}, and {@link SortedMultiset#remove(Object, int)}. In many    * situations, you may wish to override {@link SortedMultiset#elementSet} to forward to this    * implementation or a subclass thereof.    *    * @since 15.0    */
 DECL|class|StandardElementSet
 specifier|protected
-class|class
+name|class
 name|StandardElementSet
-extends|extends
+expr|extends
 name|SortedMultisets
 operator|.
 name|NavigableElementSet
@@ -161,7 +200,7 @@ comment|/** Constructor for use by subclasses. */
 DECL|method|StandardElementSet ()
 specifier|public
 name|StandardElementSet
-parameter_list|()
+argument_list|()
 block|{
 name|super
 argument_list|(
@@ -169,10 +208,9 @@ name|ForwardingSortedMultiset
 operator|.
 name|this
 argument_list|)
-expr_stmt|;
+block|;     }
 block|}
-block|}
-annotation|@
+expr|@
 name|Override
 DECL|method|comparator ()
 specifier|public
@@ -183,7 +221,7 @@ super|super
 name|E
 argument_list|>
 name|comparator
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|delegate
@@ -193,6 +231,9 @@ name|comparator
 argument_list|()
 return|;
 block|}
+end_expr_stmt
+
+begin_function
 annotation|@
 name|Override
 DECL|method|descendingMultiset ()
@@ -212,7 +253,13 @@ name|descendingMultiset
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * A skeleton implementation of a descending multiset view. Normally, {@link    * #descendingMultiset()} will not reflect any changes you make to the behavior of methods such as    * {@link #add(Object)} or {@link #pollFirstEntry}. This skeleton implementation correctly    * delegates each of its operations to the appropriate methods of this {@code    * ForwardingSortedMultiset}.    *    *<p>In many cases, you may wish to override {@link #descendingMultiset()} to return an instance    * of a subclass of {@code StandardDescendingMultiset}.    *    * @since 15.0    */
+end_comment
+
+begin_class
 DECL|class|StandardDescendingMultiset
 specifier|protected
 specifier|abstract
@@ -247,8 +294,13 @@ name|this
 return|;
 block|}
 block|}
+end_class
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|firstEntry ()
 specifier|public
 name|Entry
@@ -266,7 +318,15 @@ name|firstEntry
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * A sensible definition of {@link #firstEntry()} in terms of {@code entrySet().iterator()}.    *    *<p>If you override {@link #entrySet()}, you may wish to override {@link #firstEntry()} to    * forward to this implementation.    */
+end_comment
+
+begin_function
+annotation|@
+name|CheckForNull
 DECL|method|standardFirstEntry ()
 specifier|protected
 name|Entry
@@ -332,8 +392,13 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|lastEntry ()
 specifier|public
 name|Entry
@@ -351,7 +416,15 @@ name|lastEntry
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * A sensible definition of {@link #lastEntry()} in terms of {@code    * descendingMultiset().entrySet().iterator()}.    *    *<p>If you override {@link #descendingMultiset} or {@link #entrySet()}, you may wish to override    * {@link #firstEntry()} to forward to this implementation.    */
+end_comment
+
+begin_function
+annotation|@
+name|CheckForNull
 DECL|method|standardLastEntry ()
 specifier|protected
 name|Entry
@@ -420,8 +493,13 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|pollFirstEntry ()
 specifier|public
 name|Entry
@@ -439,7 +517,15 @@ name|pollFirstEntry
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * A sensible definition of {@link #pollFirstEntry()} in terms of {@code entrySet().iterator()}.    *    *<p>If you override {@link #entrySet()}, you may wish to override {@link #pollFirstEntry()} to    * forward to this implementation.    */
+end_comment
+
+begin_function
+annotation|@
+name|CheckForNull
 DECL|method|standardPollFirstEntry ()
 specifier|protected
 name|Entry
@@ -514,8 +600,13 @@ return|return
 name|entry
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|pollLastEntry ()
 specifier|public
 name|Entry
@@ -533,7 +624,15 @@ name|pollLastEntry
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * A sensible definition of {@link #pollLastEntry()} in terms of {@code    * descendingMultiset().entrySet().iterator()}.    *    *<p>If you override {@link #descendingMultiset()} or {@link #entrySet()}, you may wish to    * override {@link #pollLastEntry()} to forward to this implementation.    */
+end_comment
+
+begin_function
+annotation|@
+name|CheckForNull
 DECL|method|standardPollLastEntry ()
 specifier|protected
 name|Entry
@@ -611,9 +710,12 @@ return|return
 name|entry
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|headMultiset (E upperBound, BoundType boundType)
+DECL|method|headMultiset (@arametricNullness E upperBound, BoundType boundType)
 specifier|public
 name|SortedMultiset
 argument_list|<
@@ -621,6 +723,8 @@ name|E
 argument_list|>
 name|headMultiset
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|E
 name|upperBound
 parameter_list|,
@@ -640,9 +744,12 @@ name|boundType
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|subMultiset ( E lowerBound, BoundType lowerBoundType, E upperBound, BoundType upperBoundType)
+DECL|method|subMultiset ( @arametricNullness E lowerBound, BoundType lowerBoundType, @ParametricNullness E upperBound, BoundType upperBoundType)
 specifier|public
 name|SortedMultiset
 argument_list|<
@@ -650,12 +757,16 @@ name|E
 argument_list|>
 name|subMultiset
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|E
 name|lowerBound
 parameter_list|,
 name|BoundType
 name|lowerBoundType
 parameter_list|,
+annotation|@
+name|ParametricNullness
 name|E
 name|upperBound
 parameter_list|,
@@ -679,8 +790,14 @@ name|upperBoundType
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * A sensible definition of {@link #subMultiset(Object, BoundType, Object, BoundType)} in terms of    * {@link #headMultiset(Object, BoundType) headMultiset} and {@link #tailMultiset(Object,    * BoundType) tailMultiset}.    *    *<p>If you override either of these methods, you may wish to override {@link    * #subMultiset(Object, BoundType, Object, BoundType)} to forward to this implementation.    */
-DECL|method|standardSubMultiset ( E lowerBound, BoundType lowerBoundType, E upperBound, BoundType upperBoundType)
+end_comment
+
+begin_function
+DECL|method|standardSubMultiset ( @arametricNullness E lowerBound, BoundType lowerBoundType, @ParametricNullness E upperBound, BoundType upperBoundType)
 specifier|protected
 name|SortedMultiset
 argument_list|<
@@ -688,12 +805,16 @@ name|E
 argument_list|>
 name|standardSubMultiset
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|E
 name|lowerBound
 parameter_list|,
 name|BoundType
 name|lowerBoundType
 parameter_list|,
+annotation|@
+name|ParametricNullness
 name|E
 name|upperBound
 parameter_list|,
@@ -717,9 +838,12 @@ name|upperBoundType
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|tailMultiset (E lowerBound, BoundType boundType)
+DECL|method|tailMultiset (@arametricNullness E lowerBound, BoundType boundType)
 specifier|public
 name|SortedMultiset
 argument_list|<
@@ -727,6 +851,8 @@ name|E
 argument_list|>
 name|tailMultiset
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|E
 name|lowerBound
 parameter_list|,
@@ -746,8 +872,8 @@ name|boundType
 argument_list|)
 return|;
 block|}
-block|}
-end_class
+end_function
 
+unit|}
 end_unit
 

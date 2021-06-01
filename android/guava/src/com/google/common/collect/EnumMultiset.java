@@ -208,17 +208,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|javax
 operator|.
-name|checkerframework
+name|annotation
 operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|compatqual
-operator|.
-name|NullableDecl
+name|CheckForNull
 import|;
 end_import
 
@@ -234,6 +228,8 @@ name|emulated
 operator|=
 literal|true
 argument_list|)
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|EnumMultiset
 specifier|public
 specifier|final
@@ -507,13 +503,13 @@ name|length
 index|]
 expr_stmt|;
 block|}
-DECL|method|isActuallyE (@ullableDecl Object o)
+DECL|method|isActuallyE (@heckForNull Object o)
 specifier|private
 name|boolean
 name|isActuallyE
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|o
 parameter_list|)
@@ -567,12 +563,11 @@ literal|false
 return|;
 block|}
 comment|/**    * Returns {@code element} cast to {@code E}, if it actually is a nonnull E. Otherwise, throws    * either a NullPointerException or a ClassCastException as appropriate.    */
-DECL|method|checkIsE (@ullableDecl Object element)
+DECL|method|checkIsE (Object element)
+specifier|private
 name|void
 name|checkIsE
 parameter_list|(
-annotation|@
-name|NullableDecl
 name|Object
 name|element
 parameter_list|)
@@ -636,19 +631,24 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|count (@ullableDecl Object element)
+DECL|method|count (@heckForNull Object element)
 specifier|public
 name|int
 name|count
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|element
 parameter_list|)
 block|{
+comment|// isActuallyE checks for null, but we check explicitly to help nullness checkers.
 if|if
 condition|(
+name|element
+operator|==
+literal|null
+operator|||
 operator|!
 name|isActuallyE
 argument_list|(
@@ -800,13 +800,13 @@ annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
-DECL|method|remove (@ullableDecl Object element, int occurrences)
+DECL|method|remove (@heckForNull Object element, int occurrences)
 specifier|public
 name|int
 name|remove
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|element
 parameter_list|,
@@ -814,8 +814,13 @@ name|int
 name|occurrences
 parameter_list|)
 block|{
+comment|// isActuallyE checks for null, but we check explicitly to help nullness checkers.
 if|if
 condition|(
+name|element
+operator|==
+literal|null
+operator|||
 operator|!
 name|isActuallyE
 argument_list|(

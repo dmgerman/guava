@@ -56,6 +56,22 @@ name|google
 operator|.
 name|common
 operator|.
+name|base
+operator|.
+name|Preconditions
+operator|.
+name|checkState
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
 name|collect
 operator|.
 name|CollectPreconditions
@@ -77,6 +93,18 @@ operator|.
 name|CollectPreconditions
 operator|.
 name|checkRemove
+import|;
+end_import
+
+begin_import
+import|import static
+name|java
+operator|.
+name|util
+operator|.
+name|Objects
+operator|.
+name|requireNonNull
 import|;
 end_import
 
@@ -220,6 +248,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|checkerframework
@@ -238,7 +276,7 @@ begin_comment
 comment|/**  * Basic implementation of {@code Multiset<E>} backed by an instance of {@code Map<E, Count>}.  *  *<p>For serialization to work, the subclass must specify explicit {@code readObject} and {@code  * writeObject} methods.  *  * @author Kevin Bourrillion  */
 end_comment
 
-begin_class
+begin_annotation
 annotation|@
 name|GwtCompatible
 argument_list|(
@@ -246,19 +284,30 @@ name|emulated
 operator|=
 literal|true
 argument_list|)
+end_annotation
+
+begin_annotation
+annotation|@
+name|ElementTypesAreNonnullByDefault
+end_annotation
+
+begin_expr_stmt
 DECL|class|AbstractMapBasedMultiset
 specifier|abstract
-class|class
+name|class
 name|AbstractMapBasedMultiset
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|AbstractMultiset
 argument_list|<
 name|E
 argument_list|>
-implements|implements
+expr|implements
 name|Serializable
 block|{
 comment|// TODO(lowasser): consider overhauling this back to Map<E, Integer>
@@ -272,19 +321,19 @@ argument_list|,
 name|Count
 argument_list|>
 name|backingMap
-decl_stmt|;
+block|;
 comment|/*    * Cache the size for efficiency. Using a long lets us avoid the need for    * overflow checking and ensures that size() will function correctly even if    * the multiset had once been larger than Integer.MAX_VALUE.    */
 DECL|field|size
 specifier|private
 specifier|transient
 name|long
 name|size
-decl_stmt|;
+block|;
 comment|/** Standard constructor. */
 DECL|method|AbstractMapBasedMultiset (Map<E, Count> backingMap)
 specifier|protected
 name|AbstractMapBasedMultiset
-parameter_list|(
+argument_list|(
 name|Map
 argument_list|<
 name|E
@@ -292,7 +341,7 @@ argument_list|,
 name|Count
 argument_list|>
 name|backingMap
-parameter_list|)
+argument_list|)
 block|{
 name|checkArgument
 argument_list|(
@@ -301,19 +350,18 @@ operator|.
 name|isEmpty
 argument_list|()
 argument_list|)
-expr_stmt|;
+block|;
 name|this
 operator|.
 name|backingMap
 operator|=
 name|backingMap
-expr_stmt|;
-block|}
+block|;   }
 comment|/** Used during deserialization only. The backing map must be empty. */
 DECL|method|setBackingMap (Map<E, Count> backingMap)
 name|void
 name|setBackingMap
-parameter_list|(
+argument_list|(
 name|Map
 argument_list|<
 name|E
@@ -321,18 +369,17 @@ argument_list|,
 name|Count
 argument_list|>
 name|backingMap
-parameter_list|)
+argument_list|)
 block|{
 name|this
 operator|.
 name|backingMap
 operator|=
 name|backingMap
-expr_stmt|;
-block|}
+block|;   }
 comment|// Required Implementations
 comment|/**    * {@inheritDoc}    *    *<p>Invoking {@link Multiset.Entry#getCount} on an entry in the returned set always returns the    * current count of that element in the multiset, as opposed to the count at the time the entry    * was retrieved.    */
-annotation|@
+expr|@
 name|Override
 DECL|method|entrySet ()
 specifier|public
@@ -346,7 +393,7 @@ name|E
 argument_list|>
 argument_list|>
 name|entrySet
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|super
@@ -355,7 +402,7 @@ name|entrySet
 argument_list|()
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
 DECL|method|elementIterator ()
 name|Iterator
@@ -363,9 +410,9 @@ argument_list|<
 name|E
 argument_list|>
 name|elementIterator
-parameter_list|()
+argument_list|()
 block|{
-specifier|final
+name|final
 name|Iterator
 argument_list|<
 name|Map
@@ -378,7 +425,7 @@ name|Count
 argument_list|>
 argument_list|>
 name|backingEntries
-init|=
+operator|=
 name|backingMap
 operator|.
 name|entrySet
@@ -386,7 +433,7 @@ argument_list|()
 operator|.
 name|iterator
 argument_list|()
-decl_stmt|;
+block|;
 return|return
 operator|new
 name|Iterator
@@ -395,10 +442,10 @@ name|E
 argument_list|>
 argument_list|()
 block|{
+annotation|@
+name|CheckForNull
 name|Map
 operator|.
-expr|@
-name|Nullable
 name|Entry
 argument_list|<
 name|E
@@ -406,7 +453,7 @@ argument_list|,
 name|Count
 argument_list|>
 name|toRemove
-expr_stmt|;
+decl_stmt|;
 annotation|@
 name|Override
 specifier|public
@@ -421,14 +468,16 @@ name|hasNext
 argument_list|()
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
+expr|@
+name|ParametricNullness
 specifier|public
 name|E
 name|next
-parameter_list|()
+argument_list|()
 block|{
-specifier|final
+name|final
 name|Map
 operator|.
 name|Entry
@@ -438,16 +487,16 @@ argument_list|,
 name|Count
 argument_list|>
 name|mapEntry
-init|=
+operator|=
 name|backingEntries
 operator|.
 name|next
 argument_list|()
-decl_stmt|;
+block|;
 name|toRemove
 operator|=
 name|mapEntry
-expr_stmt|;
+block|;
 return|return
 name|mapEntry
 operator|.
@@ -455,6 +504,9 @@ name|getKey
 argument_list|()
 return|;
 block|}
+end_expr_stmt
+
+begin_function
 annotation|@
 name|Override
 specifier|public
@@ -462,11 +514,13 @@ name|void
 name|remove
 parameter_list|()
 block|{
-name|checkRemove
+name|checkState
 argument_list|(
 name|toRemove
 operator|!=
 literal|null
+argument_list|,
+literal|"no calls to next() since the last call to remove()"
 argument_list|)
 expr_stmt|;
 name|size
@@ -491,10 +545,10 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
-block|}
-return|;
-block|}
-annotation|@
+end_function
+
+begin_function
+unit|};   }    @
 name|Override
 DECL|method|entryIterator ()
 name|Iterator
@@ -542,10 +596,10 @@ argument_list|>
 argument_list|>
 argument_list|()
 block|{
+annotation|@
+name|CheckForNull
 name|Map
 operator|.
-expr|@
-name|Nullable
 name|Entry
 argument_list|<
 name|E
@@ -553,7 +607,7 @@ argument_list|,
 name|Count
 argument_list|>
 name|toRemove
-expr_stmt|;
+decl_stmt|;
 annotation|@
 name|Override
 specifier|public
@@ -612,6 +666,8 @@ argument_list|()
 block|{
 annotation|@
 name|Override
+annotation|@
+name|ParametricNullness
 specifier|public
 name|E
 name|getElement
@@ -704,11 +760,13 @@ name|void
 name|remove
 parameter_list|()
 block|{
-name|checkRemove
+name|checkState
 argument_list|(
 name|toRemove
 operator|!=
 literal|null
+argument_list|,
+literal|"no calls to next() since the last call to remove()"
 argument_list|)
 expr_stmt|;
 name|size
@@ -736,6 +794,9 @@ block|}
 block|}
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|forEachEntry (ObjIntConsumer<? super E> action)
@@ -781,6 +842,9 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|clear ()
@@ -818,6 +882,9 @@ operator|=
 literal|0L
 expr_stmt|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|distinctElements ()
@@ -832,7 +899,13 @@ name|size
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_comment
 comment|// Optimizations - Query Operations
+end_comment
+
+begin_function
 annotation|@
 name|Override
 DECL|method|size ()
@@ -850,6 +923,9 @@ name|size
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|iterator ()
@@ -867,7 +943,13 @@ name|MapBasedMultisetIterator
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/*    * Not subclassing AbstractMultiset$MultisetIterator because next() needs to    * retrieve the Map.Entry<E, Count> entry, which can then be used for    * a more efficient remove() call.    */
+end_comment
+
+begin_class
 DECL|class|MapBasedMultisetIterator
 specifier|private
 class|class
@@ -894,10 +976,10 @@ argument_list|>
 name|entryIterator
 decl_stmt|;
 DECL|field|currentEntry
+annotation|@
+name|CheckForNull
 name|Map
 operator|.
-expr|@
-name|Nullable
 name|Entry
 argument_list|<
 name|E
@@ -905,7 +987,7 @@ argument_list|,
 name|Count
 argument_list|>
 name|currentEntry
-expr_stmt|;
+decl_stmt|;
 DECL|field|occurrencesLeft
 name|int
 name|occurrencesLeft
@@ -952,6 +1034,8 @@ return|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|ParametricNullness
 DECL|method|next ()
 specifier|public
 name|E
@@ -990,8 +1074,12 @@ name|canRemove
 operator|=
 literal|true
 expr_stmt|;
+comment|/*        * requireNonNull is safe because occurrencesLeft starts at 0, forcing us to initialize        * currentEntry above. After that, we never clear it.        */
 return|return
+name|requireNonNull
+argument_list|(
 name|currentEntry
+argument_list|)
 operator|.
 name|getKey
 argument_list|()
@@ -1010,10 +1098,14 @@ argument_list|(
 name|canRemove
 argument_list|)
 expr_stmt|;
+comment|/*        * requireNonNull is safe because canRemove is set to true only after we initialize        * currentEntry (which we never subsequently clear).        */
 name|int
 name|frequency
 init|=
+name|requireNonNull
+argument_list|(
 name|currentEntry
+argument_list|)
 operator|.
 name|getValue
 argument_list|()
@@ -1065,15 +1157,18 @@ literal|false
 expr_stmt|;
 block|}
 block|}
+end_class
+
+begin_function
 annotation|@
 name|Override
-DECL|method|count (@ullable Object element)
+DECL|method|count (@heckForNull Object element)
 specifier|public
 name|int
 name|count
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|element
 parameter_list|)
@@ -1105,19 +1200,28 @@ name|get
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_comment
 comment|// Optional Operations - Modification Operations
+end_comment
+
+begin_comment
 comment|/**    * {@inheritDoc}    *    * @throws IllegalArgumentException if the call would result in more than {@link    *     Integer#MAX_VALUE} occurrences of {@code element} in this multiset.    */
+end_comment
+
+begin_function
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
-DECL|method|add (@ullable E element, int occurrences)
+DECL|method|add (@arametricNullness E element, int occurrences)
 specifier|public
 name|int
 name|add
 parameter_list|(
 annotation|@
-name|Nullable
+name|ParametricNullness
 name|E
 name|element
 parameter_list|,
@@ -1239,17 +1343,20 @@ return|return
 name|oldCount
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
-DECL|method|remove (@ullable Object element, int occurrences)
+DECL|method|remove (@heckForNull Object element, int occurrences)
 specifier|public
 name|int
 name|remove
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|element
 parameter_list|,
@@ -1356,18 +1463,24 @@ return|return
 name|oldCount
 return|;
 block|}
+end_function
+
+begin_comment
 comment|// Roughly a 33% performance improvement over AbstractMultiset.setCount().
+end_comment
+
+begin_function
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
-DECL|method|setCount (@ullable E element, int count)
+DECL|method|setCount (@arametricNullness E element, int count)
 specifier|public
 name|int
 name|setCount
 parameter_list|(
 annotation|@
-name|Nullable
+name|ParametricNullness
 name|E
 name|element
 parameter_list|,
@@ -1468,14 +1581,17 @@ return|return
 name|oldCount
 return|;
 block|}
-DECL|method|getAndSet (@ullable Count i, int count)
+end_function
+
+begin_function
+DECL|method|getAndSet (@heckForNull Count i, int count)
 specifier|private
 specifier|static
 name|int
 name|getAndSet
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Count
 name|i
 parameter_list|,
@@ -1503,7 +1619,13 @@ name|count
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|// Don't allow default serialization.
+end_comment
+
+begin_function
 annotation|@
 name|GwtIncompatible
 comment|// java.io.ObjectStreamException
@@ -1523,6 +1645,9 @@ literal|"Stream data required"
 argument_list|)
 throw|;
 block|}
+end_function
+
+begin_decl_stmt
 annotation|@
 name|GwtIncompatible
 comment|// not needed in emulated source.
@@ -1536,8 +1661,8 @@ init|=
 operator|-
 literal|2250766705698539974L
 decl_stmt|;
-block|}
-end_class
+end_decl_stmt
 
+unit|}
 end_unit
 

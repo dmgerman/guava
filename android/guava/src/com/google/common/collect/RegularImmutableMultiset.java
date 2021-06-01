@@ -116,17 +116,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|javax
 operator|.
-name|checkerframework
+name|annotation
 operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|compatqual
-operator|.
-name|NullableDecl
+name|CheckForNull
 import|;
 end_import
 
@@ -152,6 +146,8 @@ argument_list|(
 literal|"serial"
 argument_list|)
 comment|// uses writeReplace(), not default serialization
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|RegularImmutableMultiset
 class|class
 name|RegularImmutableMultiset
@@ -202,6 +198,8 @@ decl_stmt|;
 DECL|field|elementSet
 annotation|@
 name|LazyInit
+annotation|@
+name|CheckForNull
 specifier|private
 specifier|transient
 name|ImmutableSet
@@ -284,13 +282,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|count (@ullableDecl Object element)
+DECL|method|count (@heckForNull Object element)
 specifier|public
 name|int
 name|count
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|element
 parameter_list|)
@@ -385,13 +383,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|contains (@ullableDecl Object object)
+DECL|method|contains (@heckForNull Object object)
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|object
 parameter_list|)
@@ -478,12 +476,15 @@ name|int
 index|[]
 name|counts
 decl_stmt|;
-DECL|method|SerializedForm (Multiset<?> multiset)
+comment|// "extends Object" works around https://github.com/typetools/checker-framework/issues/3013
+DECL|method|SerializedForm (Multiset<? extends Object> multiset)
 name|SerializedForm
 parameter_list|(
 name|Multiset
 argument_list|<
 name|?
+extends|extends
+name|Object
 argument_list|>
 name|multiset
 parameter_list|)
@@ -525,6 +526,8 @@ control|(
 name|Entry
 argument_list|<
 name|?
+extends|extends
+name|Object
 argument_list|>
 name|entry
 range|:

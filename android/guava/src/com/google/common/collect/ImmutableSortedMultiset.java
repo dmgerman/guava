@@ -204,6 +204,16 @@ name|List
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
 begin_comment
 comment|/**  * A {@link SortedMultiset} whose contents will never change, with many other important properties  * detailed at {@link ImmutableCollection}.  *  *<p><b>Warning:</b> as with any sorted collection, you are strongly advised not to use a {@link  * Comparator} or {@link Comparable} type whose comparison behavior is<i>inconsistent with  * equals</i>. That is, {@code a.compareTo(b)} or {@code comparator.compare(a, b)} should equal zero  *<i>if and only if</i> {@code a.equals(b)}. If this advice is not followed, the resulting  * collection will not correctly obey its specification.  *  *<p>See the Guava User Guide article on<a href=  * "https://github.com/google/guava/wiki/ImmutableCollectionsExplained"> immutable collections</a>.  *  * @author Louis Wasserman  * @since 12.0  */
 end_comment
@@ -212,6 +222,8 @@ begin_class
 annotation|@
 name|GwtIncompatible
 comment|// hasn't been tested yet
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|ImmutableSortedMultiset
 specifier|public
 specifier|abstract
@@ -331,11 +343,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns an immutable sorted multiset containing the given elements sorted by their natural    * ordering.    *    * @throws NullPointerException if any element is null    */
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
 DECL|method|of (E e1, E e2)
 specifier|public
 specifier|static
@@ -382,11 +389,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns an immutable sorted multiset containing the given elements sorted by their natural    * ordering.    *    * @throws NullPointerException if any element is null    */
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
 DECL|method|of (E e1, E e2, E e3)
 specifier|public
 specifier|static
@@ -438,11 +440,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns an immutable sorted multiset containing the given elements sorted by their natural    * ordering.    *    * @throws NullPointerException if any element is null    */
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
 DECL|method|of ( E e1, E e2, E e3, E e4)
 specifier|public
 specifier|static
@@ -499,11 +496,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns an immutable sorted multiset containing the given elements sorted by their natural    * ordering.    *    * @throws NullPointerException if any element is null    */
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
 DECL|method|of ( E e1, E e2, E e3, E e4, E e5)
 specifier|public
 specifier|static
@@ -565,11 +557,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns an immutable sorted multiset containing the given elements sorted by their natural    * ordering.    *    * @throws NullPointerException if any element is null    */
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
 DECL|method|of ( E e1, E e2, E e3, E e4, E e5, E e6, E... remaining)
 specifier|public
 specifier|static
@@ -1319,6 +1306,8 @@ function_decl|;
 DECL|field|descendingMultiset
 annotation|@
 name|LazyInit
+annotation|@
+name|CheckForNull
 specifier|transient
 name|ImmutableSortedMultiset
 argument_list|<
@@ -1400,6 +1389,8 @@ name|DoNotCall
 argument_list|(
 literal|"Always throws UnsupportedOperationException"
 argument_list|)
+annotation|@
+name|CheckForNull
 DECL|method|pollFirstEntry ()
 specifier|public
 specifier|final
@@ -1428,6 +1419,8 @@ name|DoNotCall
 argument_list|(
 literal|"Always throws UnsupportedOperationException"
 argument_list|)
+annotation|@
+name|CheckForNull
 DECL|method|pollLastEntry ()
 specifier|public
 specifier|final

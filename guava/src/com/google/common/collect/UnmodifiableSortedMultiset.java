@@ -68,6 +68,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|checkerframework
@@ -86,7 +96,7 @@ begin_comment
 comment|/**  * Implementation of {@link Multisets#unmodifiableSortedMultiset(SortedMultiset)}, split out into  * its own file so it can be GWT emulated (to deal with the differing elementSet() types in GWT and  * non-GWT).  *  * @author Louis Wasserman  */
 end_comment
 
-begin_class
+begin_annotation
 annotation|@
 name|GwtCompatible
 argument_list|(
@@ -94,19 +104,30 @@ name|emulated
 operator|=
 literal|true
 argument_list|)
+end_annotation
+
+begin_annotation
+annotation|@
+name|ElementTypesAreNonnullByDefault
+end_annotation
+
+begin_expr_stmt
 DECL|class|UnmodifiableSortedMultiset
-specifier|final
-class|class
+name|final
+name|class
 name|UnmodifiableSortedMultiset
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|UnmodifiableMultiset
 argument_list|<
 name|E
 argument_list|>
-implements|implements
+expr|implements
 name|SortedMultiset
 argument_list|<
 name|E
@@ -114,21 +135,20 @@ argument_list|>
 block|{
 DECL|method|UnmodifiableSortedMultiset (SortedMultiset<E> delegate)
 name|UnmodifiableSortedMultiset
-parameter_list|(
+argument_list|(
 name|SortedMultiset
 argument_list|<
 name|E
 argument_list|>
 name|delegate
-parameter_list|)
+argument_list|)
 block|{
 name|super
 argument_list|(
 name|delegate
 argument_list|)
-expr_stmt|;
-block|}
-annotation|@
+block|;   }
+expr|@
 name|Override
 DECL|method|delegate ()
 specifier|protected
@@ -137,7 +157,7 @@ argument_list|<
 name|E
 argument_list|>
 name|delegate
-parameter_list|()
+argument_list|()
 block|{
 return|return
 operator|(
@@ -152,7 +172,7 @@ name|delegate
 argument_list|()
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
 DECL|method|comparator ()
 specifier|public
@@ -163,7 +183,7 @@ super|super
 name|E
 argument_list|>
 name|comparator
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|delegate
@@ -173,6 +193,9 @@ name|comparator
 argument_list|()
 return|;
 block|}
+end_expr_stmt
+
+begin_function
 annotation|@
 name|Override
 DECL|method|createElementSet ()
@@ -196,6 +219,9 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|elementSet ()
@@ -220,17 +246,23 @@ name|elementSet
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_decl_stmt
 DECL|field|descendingMultiset
+annotation|@
+name|CheckForNull
 specifier|private
 specifier|transient
-annotation|@
-name|Nullable
 name|UnmodifiableSortedMultiset
 argument_list|<
 name|E
 argument_list|>
 name|descendingMultiset
 decl_stmt|;
+end_decl_stmt
+
+begin_function
 annotation|@
 name|Override
 DECL|method|descendingMultiset ()
@@ -288,8 +320,13 @@ return|return
 name|result
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|firstEntry ()
 specifier|public
 name|Entry
@@ -307,8 +344,13 @@ name|firstEntry
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|lastEntry ()
 specifier|public
 name|Entry
@@ -326,8 +368,13 @@ name|lastEntry
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|pollFirstEntry ()
 specifier|public
 name|Entry
@@ -343,8 +390,13 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|pollLastEntry ()
 specifier|public
 name|Entry
@@ -360,9 +412,12 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|headMultiset (E upperBound, BoundType boundType)
+DECL|method|headMultiset (@arametricNullness E upperBound, BoundType boundType)
 specifier|public
 name|SortedMultiset
 argument_list|<
@@ -370,6 +425,8 @@ name|E
 argument_list|>
 name|headMultiset
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|E
 name|upperBound
 parameter_list|,
@@ -394,9 +451,12 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|subMultiset ( E lowerBound, BoundType lowerBoundType, E upperBound, BoundType upperBoundType)
+DECL|method|subMultiset ( @arametricNullness E lowerBound, BoundType lowerBoundType, @ParametricNullness E upperBound, BoundType upperBoundType)
 specifier|public
 name|SortedMultiset
 argument_list|<
@@ -404,12 +464,16 @@ name|E
 argument_list|>
 name|subMultiset
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|E
 name|lowerBound
 parameter_list|,
 name|BoundType
 name|lowerBoundType
 parameter_list|,
+annotation|@
+name|ParametricNullness
 name|E
 name|upperBound
 parameter_list|,
@@ -438,9 +502,12 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|tailMultiset (E lowerBound, BoundType boundType)
+DECL|method|tailMultiset (@arametricNullness E lowerBound, BoundType boundType)
 specifier|public
 name|SortedMultiset
 argument_list|<
@@ -448,6 +515,8 @@ name|E
 argument_list|>
 name|tailMultiset
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|E
 name|lowerBound
 parameter_list|,
@@ -472,6 +541,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_decl_stmt
 DECL|field|serialVersionUID
 specifier|private
 specifier|static
@@ -481,8 +553,8 @@ name|serialVersionUID
 init|=
 literal|0
 decl_stmt|;
-block|}
-end_class
+end_decl_stmt
 
+unit|}
 end_unit
 

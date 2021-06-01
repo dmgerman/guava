@@ -212,6 +212,32 @@ name|Collector
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|checkerframework
+operator|.
+name|checker
+operator|.
+name|nullness
+operator|.
+name|qual
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/**  * A {@link SortedMultiset} whose contents will never change, with many other important properties  * detailed at {@link ImmutableCollection}.  *  *<p><b>Warning:</b> as with any sorted collection, you are strongly advised not to use a {@link  * Comparator} or {@link Comparable} type whose comparison behavior is<i>inconsistent with  * equals</i>. That is, {@code a.compareTo(b)} or {@code comparator.compare(a, b)} should equal zero  *<i>if and only if</i> {@code a.equals(b)}. If this advice is not followed, the resulting  * collection will not correctly obey its specification.  *  *<p>See the Guava User Guide article on<a href=  * "https://github.com/google/guava/wiki/ImmutableCollectionsExplained"> immutable collections</a>.  *  * @author Louis Wasserman  * @since 12.0  */
 end_comment
@@ -220,6 +246,8 @@ begin_class
 annotation|@
 name|GwtIncompatible
 comment|// hasn't been tested yet
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|ImmutableSortedMultiset
 specifier|public
 specifier|abstract
@@ -286,14 +314,17 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns a {@code Collector} that accumulates elements into an {@code ImmutableSortedMultiset}    * whose elements are the result of applying {@code elementFunction} to the inputs, with counts    * equal to the result of applying {@code countFunction} to the inputs.    *    *<p>If the mapped elements contain duplicates (according to {@code comparator}), the first    * occurrence in encounter order appears in the resulting multiset, with count equal to the sum of    * the outputs of {@code countFunction.applyAsInt(t)} for each {@code t} mapped to that element.    *    * @since 22.0    */
-DECL|method|toImmutableSortedMultiset ( Comparator<? super E> comparator, Function<? super T, ? extends E> elementFunction, ToIntFunction<? super T> countFunction)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|E
-parameter_list|>
+operator|>
+DECL|method|toImmutableSortedMultiset ( Comparator<? super E> comparator, Function<? super T, ? extends E> elementFunction, ToIntFunction<? super T> countFunction)
 name|Collector
 argument_list|<
 name|T
@@ -306,7 +337,7 @@ name|E
 argument_list|>
 argument_list|>
 name|toImmutableSortedMultiset
-parameter_list|(
+argument_list|(
 name|Comparator
 argument_list|<
 name|?
@@ -314,7 +345,7 @@ super|super
 name|E
 argument_list|>
 name|comparator
-parameter_list|,
+operator|,
 name|Function
 argument_list|<
 name|?
@@ -326,7 +357,7 @@ extends|extends
 name|E
 argument_list|>
 name|elementFunction
-parameter_list|,
+operator|,
 name|ToIntFunction
 argument_list|<
 name|?
@@ -334,23 +365,23 @@ super|super
 name|T
 argument_list|>
 name|countFunction
-parameter_list|)
+argument_list|)
 block|{
 name|checkNotNull
 argument_list|(
 name|comparator
 argument_list|)
-expr_stmt|;
+block|;
 name|checkNotNull
 argument_list|(
 name|elementFunction
 argument_list|)
-expr_stmt|;
+block|;
 name|checkNotNull
 argument_list|(
 name|countFunction
 argument_list|)
-expr_stmt|;
+block|;
 return|return
 name|Collector
 operator|.
@@ -408,8 +439,7 @@ name|multiset2
 argument_list|)
 argument_list|;           return
 name|multiset1
-argument_list|;
-block|}
+argument_list|;         }
 operator|,
 parameter_list|(
 name|Multiset
@@ -429,16 +459,16 @@ name|entrySet
 argument_list|()
 argument_list|)
 block|)
-class|;
+expr_stmt|;
+block|}
 end_class
 
 begin_comment
-unit|}
 comment|/**    * Returns the empty immutable sorted multiset.    *    *<p><b>Performance note:</b> the instance returned is a singleton.    */
 end_comment
 
-begin_expr_stmt
-unit|@
+begin_function
+annotation|@
 name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
@@ -446,15 +476,15 @@ argument_list|)
 DECL|method|of ()
 specifier|public
 specifier|static
-operator|<
+parameter_list|<
 name|E
-operator|>
+parameter_list|>
 name|ImmutableSortedMultiset
 argument_list|<
 name|E
 argument_list|>
 name|of
-argument_list|()
+parameter_list|()
 block|{
 return|return
 operator|(
@@ -465,7 +495,7 @@ operator|.
 name|NATURAL_EMPTY_MULTISET
 return|;
 block|}
-end_expr_stmt
+end_function
 
 begin_comment
 comment|/** Returns an immutable sorted multiset containing a single element. */
@@ -548,11 +578,6 @@ comment|/**    * Returns an immutable sorted multiset containing the given eleme
 end_comment
 
 begin_function
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
 DECL|method|of (E e1, E e2)
 specifier|public
 specifier|static
@@ -605,11 +630,6 @@ comment|/**    * Returns an immutable sorted multiset containing the given eleme
 end_comment
 
 begin_function
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
 DECL|method|of (E e1, E e2, E e3)
 specifier|public
 specifier|static
@@ -667,11 +687,6 @@ comment|/**    * Returns an immutable sorted multiset containing the given eleme
 end_comment
 
 begin_function
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
 DECL|method|of ( E e1, E e2, E e3, E e4)
 specifier|public
 specifier|static
@@ -734,11 +749,6 @@ comment|/**    * Returns an immutable sorted multiset containing the given eleme
 end_comment
 
 begin_function
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
 DECL|method|of ( E e1, E e2, E e3, E e4, E e5)
 specifier|public
 specifier|static
@@ -806,11 +816,6 @@ comment|/**    * Returns an immutable sorted multiset containing the given eleme
 end_comment
 
 begin_function
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
 DECL|method|of ( E e1, E e2, E e3, E e4, E e5, E e6, E... remaining)
 specifier|public
 specifier|static
@@ -1632,6 +1637,8 @@ begin_decl_stmt
 DECL|field|descendingMultiset
 annotation|@
 name|LazyInit
+annotation|@
+name|CheckForNull
 specifier|transient
 name|ImmutableSortedMultiset
 argument_list|<
@@ -1722,6 +1729,8 @@ name|DoNotCall
 argument_list|(
 literal|"Always throws UnsupportedOperationException"
 argument_list|)
+annotation|@
+name|CheckForNull
 DECL|method|pollFirstEntry ()
 specifier|public
 specifier|final
@@ -1756,6 +1765,8 @@ name|DoNotCall
 argument_list|(
 literal|"Always throws UnsupportedOperationException"
 argument_list|)
+annotation|@
+name|CheckForNull
 DECL|method|pollLastEntry ()
 specifier|public
 specifier|final

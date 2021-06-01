@@ -33,6 +33,18 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|java
+operator|.
+name|util
+operator|.
+name|Objects
+operator|.
+name|requireNonNull
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -230,6 +242,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|checkerframework
@@ -266,6 +288,8 @@ argument_list|(
 literal|"serial"
 argument_list|)
 comment|// we're overriding default serialization
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|ImmutableMultiset
 specifier|public
 specifier|abstract
@@ -323,14 +347,17 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns a {@code Collector} that accumulates elements into an {@code ImmutableMultiset} whose    * elements are the result of applying {@code elementFunction} to the inputs, with counts equal to    * the result of applying {@code countFunction} to the inputs.    *    *<p>If the mapped elements contain duplicates (according to {@link Object#equals}), the first    * occurrence in encounter order appears in the resulting multiset, with count equal to the sum of    * the outputs of {@code countFunction.applyAsInt(t)} for each {@code t} mapped to that element.    *    * @since 22.0    */
-DECL|method|toImmutableMultiset ( Function<? super T, ? extends E> elementFunction, ToIntFunction<? super T> countFunction)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|E
-parameter_list|>
+operator|>
+DECL|method|toImmutableMultiset ( Function<? super T, ? extends E> elementFunction, ToIntFunction<? super T> countFunction)
 name|Collector
 argument_list|<
 name|T
@@ -343,7 +370,7 @@ name|E
 argument_list|>
 argument_list|>
 name|toImmutableMultiset
-parameter_list|(
+argument_list|(
 name|Function
 argument_list|<
 name|?
@@ -355,7 +382,7 @@ extends|extends
 name|E
 argument_list|>
 name|elementFunction
-parameter_list|,
+operator|,
 name|ToIntFunction
 argument_list|<
 name|?
@@ -363,7 +390,7 @@ super|super
 name|T
 argument_list|>
 name|countFunction
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|CollectCollectors
@@ -409,12 +436,6 @@ name|EMPTY
 return|;
 block|}
 comment|/**    * Returns an immutable multiset containing a single element.    *    * @throws NullPointerException if {@code element} is null    * @since 6.0 (source-compatible since 2.0)    */
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
-comment|// generic array created but never written
 DECL|method|of (E element)
 specifier|public
 specifier|static
@@ -439,12 +460,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns an immutable multiset containing the given elements, in order.    *    * @throws NullPointerException if any element is null    * @since 6.0 (source-compatible since 2.0)    */
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
-comment|//
 DECL|method|of (E e1, E e2)
 specifier|public
 specifier|static
@@ -474,12 +489,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns an immutable multiset containing the given elements, in the "grouped iteration order"    * described in the class documentation.    *    * @throws NullPointerException if any element is null    * @since 6.0 (source-compatible since 2.0)    */
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
-comment|//
 DECL|method|of (E e1, E e2, E e3)
 specifier|public
 specifier|static
@@ -514,12 +523,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns an immutable multiset containing the given elements, in the "grouped iteration order"    * described in the class documentation.    *    * @throws NullPointerException if any element is null    * @since 6.0 (source-compatible since 2.0)    */
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
-comment|//
 DECL|method|of (E e1, E e2, E e3, E e4)
 specifier|public
 specifier|static
@@ -559,12 +562,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns an immutable multiset containing the given elements, in the "grouped iteration order"    * described in the class documentation.    *    * @throws NullPointerException if any element is null    * @since 6.0 (source-compatible since 2.0)    */
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
-comment|//
 DECL|method|of (E e1, E e2, E e3, E e4, E e5)
 specifier|public
 specifier|static
@@ -609,12 +606,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns an immutable multiset containing the given elements, in the "grouped iteration order"    * described in the class documentation.    *    * @throws NullPointerException if any element is null    * @since 6.0 (source-compatible since 2.0)    */
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
-comment|//
 DECL|method|of (E e1, E e2, E e3, E e4, E e5, E e6, E... others)
 specifier|public
 specifier|static
@@ -1015,7 +1006,7 @@ name|int
 name|remaining
 decl_stmt|;
 annotation|@
-name|Nullable
+name|CheckForNull
 name|E
 name|element
 decl_stmt|;
@@ -1082,8 +1073,12 @@ block|}
 name|remaining
 operator|--
 expr_stmt|;
+comment|/*          * requireNonNull is safe because `remaining` starts at 0, forcing us to initialize          * `element` above. After that, we never clear it.          */
 return|return
+name|requireNonNull
+argument_list|(
 name|element
+argument_list|)
 return|;
 block|}
 block|}
@@ -1092,6 +1087,8 @@ block|}
 DECL|field|asList
 annotation|@
 name|LazyInit
+annotation|@
+name|CheckForNull
 specifier|private
 specifier|transient
 name|ImmutableList
@@ -1138,13 +1135,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|contains (@ullable Object object)
+DECL|method|contains (@heckForNull Object object)
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|object
 parameter_list|)
@@ -1201,12 +1198,14 @@ name|DoNotCall
 argument_list|(
 literal|"Always throws UnsupportedOperationException"
 argument_list|)
-DECL|method|remove (Object element, int occurrences)
+DECL|method|remove (@heckForNull Object element, int occurrences)
 specifier|public
 specifier|final
 name|int
 name|remove
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|element
 parameter_list|,
@@ -1351,13 +1350,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|equals (@ullable Object object)
+DECL|method|equals (@heckForNull Object object)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|object
 parameter_list|)
@@ -1423,6 +1422,8 @@ function_decl|;
 DECL|field|entrySet
 annotation|@
 name|LazyInit
+annotation|@
+name|CheckForNull
 specifier|private
 specifier|transient
 name|ImmutableSet
@@ -1590,11 +1591,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|contains (Object o)
+DECL|method|contains (@heckForNull Object o)
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|o
 parameter_list|)
@@ -2249,13 +2252,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|contains (@ullable Object object)
+DECL|method|contains (@heckForNull Object object)
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|object
 parameter_list|)
@@ -2316,12 +2319,15 @@ name|int
 index|[]
 name|counts
 decl_stmt|;
-DECL|method|SerializedForm (Multiset<?> multiset)
+comment|// "extends Object" works around https://github.com/typetools/checker-framework/issues/3013
+DECL|method|SerializedForm (Multiset<? extends Object> multiset)
 name|SerializedForm
 parameter_list|(
 name|Multiset
 argument_list|<
 name|?
+extends|extends
+name|Object
 argument_list|>
 name|multiset
 parameter_list|)
@@ -2363,6 +2369,8 @@ control|(
 name|Entry
 argument_list|<
 name|?
+extends|extends
+name|Object
 argument_list|>
 name|entry
 range|:

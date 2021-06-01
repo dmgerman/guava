@@ -30,6 +30,20 @@ name|GwtIncompatible
 import|;
 end_import
 
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|DoNotCall
+import|;
+end_import
+
 begin_comment
 comment|/**  * "Overrides" the {@link ImmutableMultiset} static methods that lack {@link  * ImmutableSortedMultiset} equivalents with deprecated, exception-throwing versions. This prevents  * accidents like the following:  *  *<pre>{@code  * List<Object> objects = ...;  * // Sort them:  * Set<Object> sorted = ImmutableSortedMultiset.copyOf(objects);  * // BAD CODE! The returned multiset is actually an unsorted ImmutableMultiset!  * }</pre>  *  *<p>While we could put the overrides in {@link ImmutableSortedMultiset} itself, it seems clearer  * to separate these "do not call" methods from those intended for normal use.  *  * @author Louis Wasserman  */
 end_comment
@@ -37,6 +51,8 @@ end_comment
 begin_class
 annotation|@
 name|GwtIncompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|ImmutableSortedMultisetFauxverideShim
 specifier|abstract
 class|class
@@ -51,6 +67,11 @@ name|E
 argument_list|>
 block|{
 comment|/**    * Not supported. Use {@link ImmutableSortedMultiset#naturalOrder}, which offers better    * type-safety, instead. This method exists only to hide {@link ImmutableMultiset#builder} from    * consumers of {@code ImmutableSortedMultiset}.    *    * @throws UnsupportedOperationException always    * @deprecated Use {@link ImmutableSortedMultiset#naturalOrder}, which offers better type-safety.    */
+annotation|@
+name|DoNotCall
+argument_list|(
+literal|"Use naturalOrder."
+argument_list|)
 annotation|@
 name|Deprecated
 DECL|method|builder ()
@@ -76,6 +97,11 @@ throw|;
 block|}
 comment|/**    * Not supported.<b>You are attempting to create a multiset that may contain a non-{@code    * Comparable} element.</b> Proper calls will resolve to the version in {@code    * ImmutableSortedMultiset}, not this dummy version.    *    * @throws UnsupportedOperationException always    * @deprecated<b>Pass a parameter of type {@code Comparable} to use {@link    *     ImmutableSortedMultiset#of(Comparable)}.</b>    */
 annotation|@
+name|DoNotCall
+argument_list|(
+literal|"Elements must be Comparable. (Or, pass a Comparator to orderedBy or copyOf.)"
+argument_list|)
+annotation|@
 name|Deprecated
 DECL|method|of (E element)
 specifier|public
@@ -100,6 +126,11 @@ argument_list|()
 throw|;
 block|}
 comment|/**    * Not supported.<b>You are attempting to create a multiset that may contain a non-{@code    * Comparable} element.</b> Proper calls will resolve to the version in {@code    * ImmutableSortedMultiset}, not this dummy version.    *    * @throws UnsupportedOperationException always    * @deprecated<b>Pass the parameters of type {@code Comparable} to use {@link    *     ImmutableSortedMultiset#of(Comparable, Comparable)}.</b>    */
+annotation|@
+name|DoNotCall
+argument_list|(
+literal|"Elements must be Comparable. (Or, pass a Comparator to orderedBy or copyOf.)"
+argument_list|)
 annotation|@
 name|Deprecated
 DECL|method|of (E e1, E e2)
@@ -128,6 +159,11 @@ argument_list|()
 throw|;
 block|}
 comment|/**    * Not supported.<b>You are attempting to create a multiset that may contain a non-{@code    * Comparable} element.</b> Proper calls will resolve to the version in {@code    * ImmutableSortedMultiset}, not this dummy version.    *    * @throws UnsupportedOperationException always    * @deprecated<b>Pass the parameters of type {@code Comparable} to use {@link    *     ImmutableSortedMultiset#of(Comparable, Comparable, Comparable)}.</b>    */
+annotation|@
+name|DoNotCall
+argument_list|(
+literal|"Elements must be Comparable. (Or, pass a Comparator to orderedBy or copyOf.)"
+argument_list|)
 annotation|@
 name|Deprecated
 DECL|method|of (E e1, E e2, E e3)
@@ -159,6 +195,11 @@ argument_list|()
 throw|;
 block|}
 comment|/**    * Not supported.<b>You are attempting to create a multiset that may contain a non-{@code    * Comparable} element.</b> Proper calls will resolve to the version in {@code    * ImmutableSortedMultiset}, not this dummy version.    *    * @throws UnsupportedOperationException always    * @deprecated<b>Pass the parameters of type {@code Comparable} to use {@link    *     ImmutableSortedMultiset#of(Comparable, Comparable, Comparable, Comparable)}.</b>    */
+annotation|@
+name|DoNotCall
+argument_list|(
+literal|"Elements must be Comparable. (Or, pass a Comparator to orderedBy or copyOf.)"
+argument_list|)
 annotation|@
 name|Deprecated
 DECL|method|of (E e1, E e2, E e3, E e4)
@@ -193,6 +234,11 @@ argument_list|()
 throw|;
 block|}
 comment|/**    * Not supported.<b>You are attempting to create a multiset that may contain a non-{@code    * Comparable} element.</b> Proper calls will resolve to the version in {@code    * ImmutableSortedMultiset}, not this dummy version.    *    * @throws UnsupportedOperationException always    * @deprecated<b>Pass the parameters of type {@code Comparable} to use {@link    *     ImmutableSortedMultiset#of(Comparable, Comparable, Comparable, Comparable, Comparable)} .    *</b>    */
+annotation|@
+name|DoNotCall
+argument_list|(
+literal|"Elements must be Comparable. (Or, pass a Comparator to orderedBy or copyOf.)"
+argument_list|)
 annotation|@
 name|Deprecated
 DECL|method|of (E e1, E e2, E e3, E e4, E e5)
@@ -230,6 +276,11 @@ argument_list|()
 throw|;
 block|}
 comment|/**    * Not supported.<b>You are attempting to create a multiset that may contain a non-{@code    * Comparable} element.</b> Proper calls will resolve to the version in {@code    * ImmutableSortedMultiset}, not this dummy version.    *    * @throws UnsupportedOperationException always    * @deprecated<b>Pass the parameters of type {@code Comparable} to use {@link    *     ImmutableSortedMultiset#of(Comparable, Comparable, Comparable, Comparable, Comparable,    *     Comparable, Comparable...)} .</b>    */
+annotation|@
+name|DoNotCall
+argument_list|(
+literal|"Elements must be Comparable. (Or, pass a Comparator to orderedBy or copyOf.)"
+argument_list|)
 annotation|@
 name|Deprecated
 DECL|method|of ( E e1, E e2, E e3, E e4, E e5, E e6, E... remaining)
@@ -274,6 +325,11 @@ argument_list|()
 throw|;
 block|}
 comment|/**    * Not supported.<b>You are attempting to create a multiset that may contain non-{@code    * Comparable} elements.</b> Proper calls will resolve to the version in {@code    * ImmutableSortedMultiset}, not this dummy version.    *    * @throws UnsupportedOperationException always    * @deprecated<b>Pass parameters of type {@code Comparable} to use {@link    *     ImmutableSortedMultiset#copyOf(Comparable[])}.</b>    */
+annotation|@
+name|DoNotCall
+argument_list|(
+literal|"Elements must be Comparable. (Or, pass a Comparator to orderedBy or copyOf.)"
+argument_list|)
 annotation|@
 name|Deprecated
 DECL|method|copyOf (E[] elements)

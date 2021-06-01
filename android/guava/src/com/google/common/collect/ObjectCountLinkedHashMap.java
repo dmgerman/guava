@@ -54,11 +54,27 @@ name|Arrays
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|checkerframework
+operator|.
+name|checker
+operator|.
+name|nullness
+operator|.
+name|qual
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
-comment|/**  * ObjectCountLinkedHashMap is an implementation of {@code AbstractObjectCountMap} with insertion  * iteration order, and uses arrays to store key objects and count values. Comparing to using a  * traditional {@code LinkedHashMap} implementation which stores keys and count values as map  * entries, {@code ObjectCountLinkedHashMap} minimizes object allocation and reduces memory  * footprint.  */
+comment|/**  * {@code ObjectCountLinkedHashMap} is a subclass of {@code ObjectCountHashMap} with insertion  * iteration order, and uses arrays to store key objects and count values. Comparing to using a  * traditional {@code LinkedHashMap} implementation which stores keys and count values as map  * entries, {@code ObjectCountLinkedHashMap} minimizes object allocation and reduces memory  * footprint.  */
 end_comment
 
-begin_class
+begin_annotation
 annotation|@
 name|GwtCompatible
 argument_list|(
@@ -70,13 +86,24 @@ name|emulated
 operator|=
 literal|true
 argument_list|)
+end_annotation
+
+begin_annotation
+annotation|@
+name|ElementTypesAreNonnullByDefault
+end_annotation
+
+begin_expr_stmt
 DECL|class|ObjectCountLinkedHashMap
-class|class
+name|class
 name|ObjectCountLinkedHashMap
-parameter_list|<
+operator|<
 name|K
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|ObjectCountHashMap
 argument_list|<
 name|K
@@ -84,17 +111,19 @@ argument_list|>
 block|{
 comment|/** Creates an empty {@code ObjectCountLinkedHashMap} instance. */
 DECL|method|create ()
-specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|K
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|ObjectCountLinkedHashMap
 argument_list|<
 name|K
 argument_list|>
 name|create
-parameter_list|()
+argument_list|()
 block|{
 return|return
 operator|new
@@ -106,21 +135,23 @@ argument_list|()
 return|;
 block|}
 comment|/**    * Creates a {@code ObjectCountLinkedHashMap} instance, with a high enough "initial capacity" that    * it<i>should</i> hold {@code expectedSize} elements without growth.    *    * @param expectedSize the number of elements you expect to add to the returned set    * @return a new, empty {@code ObjectCountLinkedHashMap} with enough capacity to hold {@code    *     expectedSize} elements without resizing    * @throws IllegalArgumentException if {@code expectedSize} is negative    */
-DECL|method|createWithExpectedSize (int expectedSize)
-specifier|public
+DECL|method|createWithExpectedSize ( int expectedSize)
 specifier|static
-parameter_list|<
+operator|<
 name|K
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|ObjectCountLinkedHashMap
 argument_list|<
 name|K
 argument_list|>
 name|createWithExpectedSize
-parameter_list|(
+argument_list|(
 name|int
 name|expectedSize
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|new
@@ -133,6 +164,9 @@ name|expectedSize
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_decl_stmt
 DECL|field|ENDPOINT
 specifier|private
 specifier|static
@@ -143,7 +177,17 @@ init|=
 operator|-
 literal|2
 decl_stmt|;
+end_decl_stmt
+
+begin_comment
+comment|/*    * The links field is not initialized directly in the constructor, but it's initialized by init(),    * which the superconstructor calls.    */
+end_comment
+
+begin_comment
 comment|/**    * Contains the link pointers corresponding with the entries, in the range of [0, size()). The    * high 32 bits of each long is the "prev" pointer, whereas the low 32 bits is the "succ" pointer    * (pointing to the nextEntry entry in the linked list). The pointers in [size(), entries.length)    * are all "null" (UNSET).    *    *<p>A node with "prev" pointer equal to {@code ENDPOINT} is the first node in the linked list,    * and a node with "nextEntry" pointer equal to {@code ENDPOINT} is the last node.    */
+end_comment
+
+begin_decl_stmt
 DECL|field|links
 annotation|@
 name|VisibleForTesting
@@ -152,36 +196,50 @@ name|long
 index|[]
 name|links
 decl_stmt|;
+end_decl_stmt
+
+begin_comment
 comment|/** Pointer to the first node in the linked list, or {@code ENDPOINT} if there are no entries. */
+end_comment
+
+begin_decl_stmt
 DECL|field|firstEntry
 specifier|private
 specifier|transient
 name|int
 name|firstEntry
 decl_stmt|;
+end_decl_stmt
+
+begin_comment
 comment|/** Pointer to the last node in the linked list, or {@code ENDPOINT} if there are no entries. */
+end_comment
+
+begin_decl_stmt
 DECL|field|lastEntry
 specifier|private
 specifier|transient
 name|int
 name|lastEntry
 decl_stmt|;
+end_decl_stmt
+
+begin_expr_stmt
 DECL|method|ObjectCountLinkedHashMap ()
 name|ObjectCountLinkedHashMap
-parameter_list|()
+argument_list|()
 block|{
 name|this
 argument_list|(
 name|DEFAULT_SIZE
 argument_list|)
-expr_stmt|;
-block|}
+block|;   }
 DECL|method|ObjectCountLinkedHashMap (int expectedSize)
 name|ObjectCountLinkedHashMap
-parameter_list|(
+argument_list|(
 name|int
 name|expectedSize
-parameter_list|)
+argument_list|)
 block|{
 name|this
 argument_list|(
@@ -189,17 +247,16 @@ name|expectedSize
 argument_list|,
 name|DEFAULT_LOAD_FACTOR
 argument_list|)
-expr_stmt|;
-block|}
+block|;   }
 DECL|method|ObjectCountLinkedHashMap (int expectedSize, float loadFactor)
 name|ObjectCountLinkedHashMap
-parameter_list|(
+argument_list|(
 name|int
 name|expectedSize
-parameter_list|,
+argument_list|,
 name|float
 name|loadFactor
-parameter_list|)
+argument_list|)
 block|{
 name|super
 argument_list|(
@@ -207,17 +264,16 @@ name|expectedSize
 argument_list|,
 name|loadFactor
 argument_list|)
-expr_stmt|;
-block|}
+block|;   }
 DECL|method|ObjectCountLinkedHashMap (ObjectCountHashMap<K> map)
 name|ObjectCountLinkedHashMap
-parameter_list|(
+argument_list|(
 name|ObjectCountHashMap
 argument_list|<
 name|K
 argument_list|>
 name|map
-parameter_list|)
+argument_list|)
 block|{
 name|init
 argument_list|(
@@ -228,7 +284,7 @@ argument_list|()
 argument_list|,
 name|DEFAULT_LOAD_FACTOR
 argument_list|)
-expr_stmt|;
+block|;
 for|for
 control|(
 name|int
@@ -272,8 +328,10 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-block|}
-annotation|@
+end_expr_stmt
+
+begin_function
+unit|}    @
 name|Override
 DECL|method|init (int expectedSize, float loadFactor)
 name|void
@@ -321,6 +379,9 @@ name|UNSET
 argument_list|)
 expr_stmt|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|firstIndex ()
@@ -341,6 +402,9 @@ else|:
 name|firstEntry
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|nextIndex (int index)
@@ -372,6 +436,9 @@ else|:
 name|result
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|nextIndexAfterRemove (int oldNextIndex, int removedIndex)
@@ -398,6 +465,9 @@ else|:
 name|oldNextIndex
 return|;
 block|}
+end_function
+
+begin_function
 DECL|method|getPredecessor (int entry)
 specifier|private
 name|int
@@ -421,6 +491,9 @@ literal|32
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 DECL|method|getSuccessor (int entry)
 specifier|private
 name|int
@@ -440,6 +513,9 @@ name|entry
 index|]
 return|;
 block|}
+end_function
+
+begin_function
 DECL|method|setSuccessor (int entry, int succ)
 specifier|private
 name|void
@@ -484,6 +560,9 @@ name|succMask
 operator|)
 expr_stmt|;
 block|}
+end_function
+
+begin_function
 DECL|method|setPredecessor (int entry, int pred)
 specifier|private
 name|void
@@ -531,6 +610,9 @@ literal|32
 operator|)
 expr_stmt|;
 block|}
+end_function
+
+begin_function
 DECL|method|setSucceeds (int pred, int succ)
 specifier|private
 name|void
@@ -588,15 +670,20 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|insertEntry (int entryIndex, K key, int value, int hash)
+DECL|method|insertEntry (int entryIndex, @ParametricNullness K key, int value, int hash)
 name|void
 name|insertEntry
 parameter_list|(
 name|int
 name|entryIndex
 parameter_list|,
+annotation|@
+name|ParametricNullness
 name|K
 name|key
 parameter_list|,
@@ -635,6 +722,9 @@ name|ENDPOINT
 argument_list|)
 expr_stmt|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|moveLastEntry (int dstIndex)
@@ -702,6 +792,9 @@ name|dstIndex
 argument_list|)
 expr_stmt|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|resizeEntries (int newCapacity)
@@ -751,6 +844,9 @@ name|UNSET
 argument_list|)
 expr_stmt|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|clear ()
@@ -777,8 +873,8 @@ operator|=
 name|ENDPOINT
 expr_stmt|;
 block|}
-block|}
-end_class
+end_function
 
+unit|}
 end_unit
 

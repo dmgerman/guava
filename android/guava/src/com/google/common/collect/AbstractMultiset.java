@@ -132,6 +132,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|checkerframework
@@ -140,9 +150,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -150,35 +160,46 @@ begin_comment
 comment|/**  * This class provides a skeletal implementation of the {@link Multiset} interface. A new multiset  * implementation can be created easily by extending this class and implementing the {@link  * Multiset#entrySet()} method, plus optionally overriding {@link #add(Object, int)} and {@link  * #remove(Object, int)} to enable modifications to the multiset.  *  *<p>The {@link #count} and {@link #size} implementations all iterate across the set returned by  * {@link Multiset#entrySet()}, as do many methods acting on the set returned by {@link  * #elementSet()}. Override those methods for better performance.  *  * @author Kevin Bourrillion  * @author Louis Wasserman  */
 end_comment
 
-begin_class
+begin_annotation
 annotation|@
 name|GwtCompatible
+end_annotation
+
+begin_annotation
+annotation|@
+name|ElementTypesAreNonnullByDefault
+end_annotation
+
+begin_expr_stmt
 DECL|class|AbstractMultiset
 specifier|abstract
-class|class
+name|class
 name|AbstractMultiset
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|AbstractCollection
 argument_list|<
 name|E
 argument_list|>
-implements|implements
+expr|implements
 name|Multiset
 argument_list|<
 name|E
 argument_list|>
 block|{
 comment|// Query Operations
-annotation|@
+block|@
 name|Override
 DECL|method|isEmpty ()
 specifier|public
 name|boolean
 name|isEmpty
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|entrySet
@@ -188,18 +209,18 @@ name|isEmpty
 argument_list|()
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
-DECL|method|contains (@ullableDecl Object element)
+DECL|method|contains (@heckForNull Object element)
 specifier|public
 name|boolean
 name|contains
-parameter_list|(
+argument_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|element
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|count
@@ -210,19 +231,25 @@ operator|>
 literal|0
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|// Modification Operations
+end_comment
+
+begin_function
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
-DECL|method|add (@ullableDecl E element)
+DECL|method|add (@arametricNullness E element)
 specifier|public
 specifier|final
 name|boolean
 name|add
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|ParametricNullness
 name|E
 name|element
 parameter_list|)
@@ -238,17 +265,20 @@ return|return
 literal|true
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
-DECL|method|add (@ullableDecl E element, int occurrences)
+DECL|method|add (@arametricNullness E element, int occurrences)
 specifier|public
 name|int
 name|add
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|ParametricNullness
 name|E
 name|element
 parameter_list|,
@@ -262,18 +292,21 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
-DECL|method|remove (@ullableDecl Object element)
+DECL|method|remove (@heckForNull Object element)
 specifier|public
 specifier|final
 name|boolean
 name|remove
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|element
 parameter_list|)
@@ -289,17 +322,20 @@ operator|>
 literal|0
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
-DECL|method|remove (@ullableDecl Object element, int occurrences)
+DECL|method|remove (@heckForNull Object element, int occurrences)
 specifier|public
 name|int
 name|remove
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|element
 parameter_list|,
@@ -313,17 +349,20 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
-DECL|method|setCount (@ullableDecl E element, int count)
+DECL|method|setCount (@arametricNullness E element, int count)
 specifier|public
 name|int
 name|setCount
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|ParametricNullness
 name|E
 name|element
 parameter_list|,
@@ -342,17 +381,20 @@ name|count
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
-DECL|method|setCount (@ullableDecl E element, int oldCount, int newCount)
+DECL|method|setCount (@arametricNullness E element, int oldCount, int newCount)
 specifier|public
 name|boolean
 name|setCount
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|ParametricNullness
 name|E
 name|element
 parameter_list|,
@@ -376,8 +418,17 @@ name|newCount
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|// Bulk Operations
+end_comment
+
+begin_comment
 comment|/**    * {@inheritDoc}    *    *<p>This implementation is highly efficient when {@code elementsToAdd} is itself a {@link    * Multiset}.    */
+end_comment
+
+begin_function
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
@@ -408,6 +459,9 @@ name|elementsToAdd
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
@@ -436,6 +490,9 @@ name|elementsToRemove
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
@@ -464,6 +521,9 @@ name|elementsToRetain
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function_decl
 annotation|@
 name|Override
 DECL|method|clear ()
@@ -473,12 +533,18 @@ name|void
 name|clear
 parameter_list|()
 function_decl|;
+end_function_decl
+
+begin_comment
 comment|// Views
+end_comment
+
+begin_decl_stmt
 DECL|field|elementSet
 annotation|@
 name|LazyInit
 annotation|@
-name|NullableDecl
+name|CheckForNull
 specifier|private
 specifier|transient
 name|Set
@@ -487,6 +553,9 @@ name|E
 argument_list|>
 name|elementSet
 decl_stmt|;
+end_decl_stmt
+
+begin_function
 annotation|@
 name|Override
 DECL|method|elementSet ()
@@ -525,7 +594,13 @@ return|return
 name|result
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Creates a new instance of this multiset's element set, which will be returned by {@link    * #elementSet()}.    */
+end_comment
+
+begin_function
 DECL|method|createElementSet ()
 name|Set
 argument_list|<
@@ -540,6 +615,9 @@ name|ElementSet
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_class
 annotation|@
 name|WeakOuter
 DECL|class|ElementSet
@@ -586,6 +664,9 @@ argument_list|()
 return|;
 block|}
 block|}
+end_class
+
+begin_function_decl
 DECL|method|elementIterator ()
 specifier|abstract
 name|Iterator
@@ -595,11 +676,14 @@ argument_list|>
 name|elementIterator
 parameter_list|()
 function_decl|;
+end_function_decl
+
+begin_decl_stmt
 DECL|field|entrySet
 annotation|@
 name|LazyInit
 annotation|@
-name|NullableDecl
+name|CheckForNull
 specifier|private
 specifier|transient
 name|Set
@@ -611,6 +695,9 @@ argument_list|>
 argument_list|>
 name|entrySet
 decl_stmt|;
+end_decl_stmt
+
+begin_function
 annotation|@
 name|Override
 DECL|method|entrySet ()
@@ -655,6 +742,9 @@ return|return
 name|result
 return|;
 block|}
+end_function
+
+begin_class
 annotation|@
 name|WeakOuter
 DECL|class|EntrySet
@@ -717,6 +807,9 @@ argument_list|()
 return|;
 block|}
 block|}
+end_class
+
+begin_function
 DECL|method|createEntrySet ()
 name|Set
 argument_list|<
@@ -734,6 +827,9 @@ name|EntrySet
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function_decl
 DECL|method|entryIterator ()
 specifier|abstract
 name|Iterator
@@ -746,24 +842,36 @@ argument_list|>
 name|entryIterator
 parameter_list|()
 function_decl|;
+end_function_decl
+
+begin_function_decl
 DECL|method|distinctElements ()
 specifier|abstract
 name|int
 name|distinctElements
 parameter_list|()
 function_decl|;
+end_function_decl
+
+begin_comment
 comment|// Object methods
+end_comment
+
+begin_comment
 comment|/**    * {@inheritDoc}    *    *<p>This implementation returns {@code true} if {@code object} is a multiset of the same size    * and if, for each element, the two multisets have the same count.    */
+end_comment
+
+begin_function
 annotation|@
 name|Override
-DECL|method|equals (@ullableDecl Object object)
+DECL|method|equals (@heckForNull Object object)
 specifier|public
 specifier|final
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|object
 parameter_list|)
@@ -779,7 +887,13 @@ name|object
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * {@inheritDoc}    *    *<p>This implementation returns the hash code of {@link Multiset#entrySet()}.    */
+end_comment
+
+begin_function
 annotation|@
 name|Override
 DECL|method|hashCode ()
@@ -797,7 +911,13 @@ name|hashCode
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * {@inheritDoc}    *    *<p>This implementation returns the result of invoking {@code toString} on {@link    * Multiset#entrySet()}.    */
+end_comment
+
+begin_function
 annotation|@
 name|Override
 DECL|method|toString ()
@@ -815,8 +935,8 @@ name|toString
 argument_list|()
 return|;
 block|}
-block|}
-end_class
+end_function
 
+unit|}
 end_unit
 

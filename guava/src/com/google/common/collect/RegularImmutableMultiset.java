@@ -142,6 +142,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|checkerframework
@@ -178,6 +188,8 @@ argument_list|(
 literal|"serial"
 argument_list|)
 comment|// uses writeReplace(), not default serialization
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|RegularImmutableMultiset
 class|class
 name|RegularImmutableMultiset
@@ -190,6 +202,26 @@ argument_list|<
 name|E
 argument_list|>
 block|{
+DECL|field|EMPTY_ARRAY
+specifier|private
+specifier|static
+specifier|final
+name|ImmutableEntry
+argument_list|<
+name|?
+argument_list|>
+index|[]
+name|EMPTY_ARRAY
+init|=
+operator|new
+name|ImmutableEntry
+argument_list|<
+name|?
+argument_list|>
+index|[
+literal|0
+index|]
+decl_stmt|;
 DECL|field|EMPTY
 specifier|static
 specifier|final
@@ -249,10 +281,12 @@ decl_stmt|;
 annotation|@
 name|SuppressWarnings
 argument_list|(
+block|{
 literal|"unchecked"
+block|,
+literal|"rawtypes"
+block|}
 argument_list|)
-name|Multisets
-operator|.
 name|ImmutableEntry
 argument_list|<
 name|E
@@ -261,8 +295,6 @@ index|[]
 name|entryArray
 init|=
 operator|new
-name|Multisets
-operator|.
 name|ImmutableEntry
 index|[
 name|distinct
@@ -282,7 +314,7 @@ argument_list|<>
 argument_list|(
 name|entryArray
 argument_list|,
-literal|null
+name|EMPTY_ARRAY
 argument_list|,
 literal|0
 argument_list|,
@@ -317,10 +349,14 @@ decl_stmt|;
 annotation|@
 name|SuppressWarnings
 argument_list|(
+block|{
 literal|"unchecked"
+block|,
+literal|"rawtypes"
+block|}
 argument_list|)
-name|Multisets
-operator|.
+annotation|@
+name|Nullable
 name|ImmutableEntry
 argument_list|<
 name|E
@@ -329,8 +365,8 @@ index|[]
 name|hashTable
 init|=
 operator|new
-name|Multisets
-operator|.
+expr|@
+name|Nullable
 name|ImmutableEntry
 index|[
 name|tableSize
@@ -359,11 +395,31 @@ name|?
 extends|extends
 name|E
 argument_list|>
-name|entry
+name|entryWithWildcard
 range|:
 name|entries
 control|)
 block|{
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
+comment|// safe because we only read from it
+name|Entry
+argument_list|<
+name|E
+argument_list|>
+name|entry
+init|=
+operator|(
+name|Entry
+argument_list|<
+name|E
+argument_list|>
+operator|)
+name|entryWithWildcard
+decl_stmt|;
 name|E
 name|element
 init|=
@@ -403,8 +459,6 @@ argument_list|)
 operator|&
 name|mask
 decl_stmt|;
-name|Multisets
-operator|.
 name|ImmutableEntry
 argument_list|<
 name|E
@@ -416,8 +470,6 @@ index|[
 name|bucket
 index|]
 decl_stmt|;
-name|Multisets
-operator|.
 name|ImmutableEntry
 argument_list|<
 name|E
@@ -436,8 +488,6 @@ name|canReuseEntry
 init|=
 name|entry
 operator|instanceof
-name|Multisets
-operator|.
 name|ImmutableEntry
 operator|&&
 operator|!
@@ -452,8 +502,6 @@ operator|=
 name|canReuseEntry
 condition|?
 operator|(
-name|Multisets
-operator|.
 name|ImmutableEntry
 argument_list|<
 name|E
@@ -462,8 +510,6 @@ operator|)
 name|entry
 else|:
 operator|new
-name|Multisets
-operator|.
 name|ImmutableEntry
 argument_list|<
 name|E
@@ -560,14 +606,14 @@ literal|null
 argument_list|)
 return|;
 block|}
-DECL|method|hashFloodingDetected (Multisets.ImmutableEntry<?>[] hashTable)
+DECL|method|hashFloodingDetected (@ullable ImmutableEntry<?>[] hashTable)
 specifier|private
 specifier|static
 name|boolean
 name|hashFloodingDetected
 parameter_list|(
-name|Multisets
-operator|.
+annotation|@
+name|Nullable
 name|ImmutableEntry
 argument_list|<
 name|?
@@ -600,8 +646,6 @@ literal|0
 decl_stmt|;
 for|for
 control|(
-name|Multisets
-operator|.
 name|ImmutableEntry
 argument_list|<
 name|?
@@ -682,8 +726,6 @@ DECL|field|entries
 specifier|private
 specifier|final
 specifier|transient
-name|Multisets
-operator|.
 name|ImmutableEntry
 argument_list|<
 name|E
@@ -695,15 +737,13 @@ DECL|field|hashTable
 specifier|private
 specifier|final
 specifier|transient
-name|Multisets
-operator|.
-name|ImmutableEntry
-argument_list|<
-name|E
-argument_list|>
 annotation|@
 name|Nullable
-type|[]
+name|ImmutableEntry
+argument_list|<
+name|?
+argument_list|>
+index|[]
 name|hashTable
 decl_stmt|;
 DECL|field|size
@@ -723,6 +763,8 @@ decl_stmt|;
 DECL|field|elementSet
 annotation|@
 name|LazyInit
+annotation|@
+name|CheckForNull
 specifier|private
 specifier|transient
 name|ImmutableSet
@@ -731,7 +773,7 @@ name|E
 argument_list|>
 name|elementSet
 decl_stmt|;
-DECL|method|RegularImmutableMultiset ( ImmutableEntry<E>[] entries, ImmutableEntry<E>[] hashTable, int size, int hashCode, ImmutableSet<E> elementSet)
+DECL|method|RegularImmutableMultiset ( ImmutableEntry<E>[] entries, @Nullable ImmutableEntry<?>[] hashTable, int size, int hashCode, @CheckForNull ImmutableSet<E> elementSet)
 specifier|private
 name|RegularImmutableMultiset
 parameter_list|(
@@ -742,9 +784,11 @@ argument_list|>
 index|[]
 name|entries
 parameter_list|,
+annotation|@
+name|Nullable
 name|ImmutableEntry
 argument_list|<
-name|E
+name|?
 argument_list|>
 index|[]
 name|hashTable
@@ -755,6 +799,8 @@ parameter_list|,
 name|int
 name|hashCode
 parameter_list|,
+annotation|@
+name|CheckForNull
 name|ImmutableSet
 argument_list|<
 name|E
@@ -803,8 +849,6 @@ parameter_list|<
 name|E
 parameter_list|>
 extends|extends
-name|Multisets
-operator|.
 name|ImmutableEntry
 argument_list|<
 name|E
@@ -813,8 +857,6 @@ block|{
 DECL|field|nextInBucket
 specifier|private
 specifier|final
-name|Multisets
-operator|.
 name|ImmutableEntry
 argument_list|<
 name|E
@@ -880,22 +922,22 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|count (@ullable Object element)
+DECL|method|count (@heckForNull Object element)
 specifier|public
 name|int
 name|count
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|element
 parameter_list|)
 block|{
-name|Multisets
-operator|.
+annotation|@
+name|Nullable
 name|ImmutableEntry
 argument_list|<
-name|E
+name|?
 argument_list|>
 index|[]
 name|hashTable
@@ -911,8 +953,10 @@ operator|==
 literal|null
 operator|||
 name|hashTable
+operator|.
+name|length
 operator|==
-literal|null
+literal|0
 condition|)
 block|{
 return|return
@@ -940,11 +984,9 @@ literal|1
 decl_stmt|;
 for|for
 control|(
-name|Multisets
-operator|.
 name|ImmutableEntry
 argument_list|<
-name|E
+name|?
 argument_list|>
 name|entry
 init|=

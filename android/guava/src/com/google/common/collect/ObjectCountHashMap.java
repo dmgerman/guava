@@ -178,6 +178,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|checkerframework
@@ -186,17 +196,17 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
 begin_comment
-comment|/**  * ObjectCountHashMap is an implementation of {@code AbstractObjectCountMap} that uses arrays to  * store key objects and count values. Comparing to using a traditional {@code HashMap}  * implementation which stores keys and count values as map entries, {@code ObjectCountHashMap}  * minimizes object allocation and reduces memory footprint.  *  *<p>In the absence of element deletions, this will iterate over elements in insertion order.  */
+comment|/**  * {@code ObjectCountHashMap} uses arrays to store key objects and count values. Comparing to using  * a traditional {@code HashMap} implementation which stores keys and count values as map entries,  * {@code ObjectCountHashMap} minimizes object allocation and reduces memory footprint.  *  *<p>In the absence of element deletions, this will iterate over elements in insertion order.  */
 end_comment
 
-begin_class
+begin_annotation
 annotation|@
 name|GwtCompatible
 argument_list|(
@@ -208,26 +218,39 @@ name|emulated
 operator|=
 literal|true
 argument_list|)
+end_annotation
+
+begin_annotation
+annotation|@
+name|ElementTypesAreNonnullByDefault
+end_annotation
+
+begin_expr_stmt
 DECL|class|ObjectCountHashMap
-class|class
+name|class
 name|ObjectCountHashMap
-parameter_list|<
+operator|<
 name|K
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 block|{
 comment|/** Creates an empty {@code ObjectCountHashMap} instance. */
 DECL|method|create ()
-specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|K
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|ObjectCountHashMap
 argument_list|<
 name|K
 argument_list|>
 name|create
-parameter_list|()
+argument_list|()
 block|{
 return|return
 operator|new
@@ -239,21 +262,23 @@ argument_list|()
 return|;
 block|}
 comment|/**    * Creates a {@code ObjectCountHashMap} instance, with a high enough "initial capacity" that it    *<i>should</i> hold {@code expectedSize} elements without growth.    *    * @param expectedSize the number of elements you expect to add to the returned set    * @return a new, empty {@code ObjectCountHashMap} with enough capacity to hold {@code    *     expectedSize} elements without resizing    * @throws IllegalArgumentException if {@code expectedSize} is negative    */
-DECL|method|createWithExpectedSize (int expectedSize)
-specifier|public
+DECL|method|createWithExpectedSize ( int expectedSize)
 specifier|static
-parameter_list|<
+operator|<
 name|K
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|ObjectCountHashMap
 argument_list|<
 name|K
 argument_list|>
 name|createWithExpectedSize
-parameter_list|(
+argument_list|(
 name|int
 name|expectedSize
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|new
@@ -266,6 +291,9 @@ name|expectedSize
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_decl_stmt
 DECL|field|MAXIMUM_CAPACITY
 specifier|private
 specifier|static
@@ -277,6 +305,9 @@ literal|1
 operator|<<
 literal|30
 decl_stmt|;
+end_decl_stmt
+
+begin_decl_stmt
 DECL|field|DEFAULT_LOAD_FACTOR
 specifier|static
 specifier|final
@@ -285,7 +316,13 @@ name|DEFAULT_LOAD_FACTOR
 init|=
 literal|1.0f
 decl_stmt|;
+end_decl_stmt
+
+begin_comment
 comment|/** Bitmask that selects the low 32 bits. */
+end_comment
+
+begin_decl_stmt
 DECL|field|NEXT_MASK
 specifier|private
 specifier|static
@@ -301,7 +338,13 @@ operator|)
 operator|-
 literal|1
 decl_stmt|;
+end_decl_stmt
+
+begin_comment
 comment|/** Bitmask that selects the high 32 bits. */
+end_comment
+
+begin_decl_stmt
 DECL|field|HASH_MASK
 specifier|private
 specifier|static
@@ -312,6 +355,9 @@ init|=
 operator|~
 name|NEXT_MASK
 decl_stmt|;
+end_decl_stmt
+
+begin_decl_stmt
 DECL|field|DEFAULT_SIZE
 specifier|static
 specifier|final
@@ -320,7 +366,13 @@ name|DEFAULT_SIZE
 init|=
 literal|3
 decl_stmt|;
+end_decl_stmt
+
+begin_comment
 comment|// used to indicate blank table entries
+end_comment
+
+begin_decl_stmt
 DECL|field|UNSET
 specifier|static
 specifier|final
@@ -330,31 +382,61 @@ init|=
 operator|-
 literal|1
 decl_stmt|;
+end_decl_stmt
+
+begin_comment
+comment|/*    * The array fields below are not initialized directly in the constructor, but they're initialized    * by init(), which the constructor calls.    */
+end_comment
+
+begin_comment
 comment|/** The keys of the entries in the map. */
+end_comment
+
+begin_decl_stmt
 DECL|field|keys
 specifier|transient
+annotation|@
+name|Nullable
 name|Object
 index|[]
 name|keys
 decl_stmt|;
+end_decl_stmt
+
+begin_comment
 comment|/** The values of the entries in the map. */
+end_comment
+
+begin_decl_stmt
 DECL|field|values
 specifier|transient
 name|int
 index|[]
 name|values
 decl_stmt|;
+end_decl_stmt
+
+begin_decl_stmt
 DECL|field|size
 specifier|transient
 name|int
 name|size
 decl_stmt|;
+end_decl_stmt
+
+begin_decl_stmt
 DECL|field|modCount
 specifier|transient
 name|int
 name|modCount
 decl_stmt|;
+end_decl_stmt
+
+begin_comment
 comment|/**    * The hashtable. Its values are indexes to the keys, values, and entries arrays.    *    *<p>Currently, the UNSET value means "null pointer", and any non negative value x is the actual    * index.    *    *<p>Its size must be a power of two.    */
+end_comment
+
+begin_decl_stmt
 DECL|field|table
 specifier|private
 specifier|transient
@@ -362,7 +444,13 @@ name|int
 index|[]
 name|table
 decl_stmt|;
+end_decl_stmt
+
+begin_comment
 comment|/**    * Contains the logical entries, in the range of [0, size()). The high 32 bits of each long is the    * smeared hash of the element, whereas the low 32 bits is the "next" pointer (pointing to the    * next entry in the bucket chain). The pointers in [size(), entries.length) are all "null"    * (UNSET).    */
+end_comment
+
+begin_decl_stmt
 DECL|field|entries
 annotation|@
 name|VisibleForTesting
@@ -371,24 +459,42 @@ name|long
 index|[]
 name|entries
 decl_stmt|;
+end_decl_stmt
+
+begin_comment
 comment|/** The load factor. */
+end_comment
+
+begin_decl_stmt
 DECL|field|loadFactor
 specifier|private
 specifier|transient
 name|float
 name|loadFactor
 decl_stmt|;
+end_decl_stmt
+
+begin_comment
 comment|/** When we have this many elements, resize the hashtable. */
+end_comment
+
+begin_decl_stmt
 DECL|field|threshold
 specifier|private
 specifier|transient
 name|int
 name|threshold
 decl_stmt|;
+end_decl_stmt
+
+begin_comment
 comment|/** Constructs a new empty instance of {@code ObjectCountHashMap}. */
+end_comment
+
+begin_expr_stmt
 DECL|method|ObjectCountHashMap ()
 name|ObjectCountHashMap
-parameter_list|()
+argument_list|()
 block|{
 name|init
 argument_list|(
@@ -396,11 +502,10 @@ name|DEFAULT_SIZE
 argument_list|,
 name|DEFAULT_LOAD_FACTOR
 argument_list|)
-expr_stmt|;
-block|}
+block|;   }
 DECL|method|ObjectCountHashMap (ObjectCountHashMap<? extends K> map)
 name|ObjectCountHashMap
-parameter_list|(
+argument_list|(
 name|ObjectCountHashMap
 argument_list|<
 name|?
@@ -408,7 +513,7 @@ extends|extends
 name|K
 argument_list|>
 name|map
-parameter_list|)
+argument_list|)
 block|{
 name|init
 argument_list|(
@@ -419,7 +524,7 @@ argument_list|()
 argument_list|,
 name|DEFAULT_LOAD_FACTOR
 argument_list|)
-expr_stmt|;
+block|;
 for|for
 control|(
 name|int
@@ -463,14 +568,20 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-block|}
+end_expr_stmt
+
+begin_comment
+unit|}
 comment|/**    * Constructs a new instance of {@code ObjectCountHashMap} with the specified capacity.    *    * @param capacity the initial capacity of this {@code ObjectCountHashMap}.    */
+end_comment
+
+begin_expr_stmt
 DECL|method|ObjectCountHashMap (int capacity)
-name|ObjectCountHashMap
-parameter_list|(
+unit|ObjectCountHashMap
+operator|(
 name|int
 name|capacity
-parameter_list|)
+operator|)
 block|{
 name|this
 argument_list|(
@@ -478,17 +589,16 @@ name|capacity
 argument_list|,
 name|DEFAULT_LOAD_FACTOR
 argument_list|)
-expr_stmt|;
-block|}
+block|;   }
 DECL|method|ObjectCountHashMap (int expectedSize, float loadFactor)
 name|ObjectCountHashMap
-parameter_list|(
+argument_list|(
 name|int
 name|expectedSize
-parameter_list|,
+argument_list|,
 name|float
 name|loadFactor
-parameter_list|)
+argument_list|)
 block|{
 name|init
 argument_list|(
@@ -496,18 +606,17 @@ name|expectedSize
 argument_list|,
 name|loadFactor
 argument_list|)
-expr_stmt|;
-block|}
+block|;   }
 DECL|method|init (int expectedSize, float loadFactor)
 name|void
 name|init
-parameter_list|(
+argument_list|(
 name|int
 name|expectedSize
-parameter_list|,
+argument_list|,
 name|float
 name|loadFactor
-parameter_list|)
+argument_list|)
 block|{
 name|Preconditions
 operator|.
@@ -519,7 +628,7 @@ literal|0
 argument_list|,
 literal|"Initial capacity must be non-negative"
 argument_list|)
-expr_stmt|;
+block|;
 name|Preconditions
 operator|.
 name|checkArgument
@@ -530,10 +639,10 @@ literal|0
 argument_list|,
 literal|"Illegal load factor"
 argument_list|)
-expr_stmt|;
+block|;
 name|int
 name|buckets
-init|=
+operator|=
 name|Hashing
 operator|.
 name|closedTableSize
@@ -542,7 +651,7 @@ name|expectedSize
 argument_list|,
 name|loadFactor
 argument_list|)
-decl_stmt|;
+block|;
 name|this
 operator|.
 name|table
@@ -551,23 +660,25 @@ name|newTable
 argument_list|(
 name|buckets
 argument_list|)
-expr_stmt|;
+block|;
 name|this
 operator|.
 name|loadFactor
 operator|=
 name|loadFactor
-expr_stmt|;
+block|;
 name|this
 operator|.
 name|keys
 operator|=
 operator|new
+expr|@
+name|Nullable
 name|Object
 index|[
 name|expectedSize
 index|]
-expr_stmt|;
+block|;
 name|this
 operator|.
 name|values
@@ -577,7 +688,7 @@ name|int
 index|[
 name|expectedSize
 index|]
-expr_stmt|;
+block|;
 name|this
 operator|.
 name|entries
@@ -586,7 +697,7 @@ name|newEntries
 argument_list|(
 name|expectedSize
 argument_list|)
-expr_stmt|;
+block|;
 name|this
 operator|.
 name|threshold
@@ -606,29 +717,28 @@ operator|*
 name|loadFactor
 argument_list|)
 argument_list|)
-expr_stmt|;
-block|}
+block|;   }
 DECL|method|newTable (int size)
 specifier|private
 specifier|static
 name|int
 index|[]
 name|newTable
-parameter_list|(
+argument_list|(
 name|int
 name|size
-parameter_list|)
+argument_list|)
 block|{
 name|int
 index|[]
 name|array
-init|=
+operator|=
 operator|new
 name|int
 index|[
 name|size
 index|]
-decl_stmt|;
+block|;
 name|Arrays
 operator|.
 name|fill
@@ -637,11 +747,14 @@ name|array
 argument_list|,
 name|UNSET
 argument_list|)
-expr_stmt|;
+block|;
 return|return
 name|array
 return|;
 block|}
+end_expr_stmt
+
+begin_function
 DECL|method|newEntries (int size)
 specifier|private
 specifier|static
@@ -676,6 +789,9 @@ return|return
 name|array
 return|;
 block|}
+end_function
+
+begin_function
 DECL|method|hashTableMask ()
 specifier|private
 name|int
@@ -690,6 +806,9 @@ operator|-
 literal|1
 return|;
 block|}
+end_function
+
+begin_function
 DECL|method|firstIndex ()
 name|int
 name|firstIndex
@@ -708,6 +827,9 @@ else|:
 literal|0
 return|;
 block|}
+end_function
+
+begin_function
 DECL|method|nextIndex (int index)
 name|int
 name|nextIndex
@@ -733,6 +855,9 @@ operator|-
 literal|1
 return|;
 block|}
+end_function
+
+begin_function
 DECL|method|nextIndexAfterRemove (int oldNextIndex, @SuppressWarnings(R) int removedIndex)
 name|int
 name|nextIndexAfterRemove
@@ -755,6 +880,9 @@ operator|-
 literal|1
 return|;
 block|}
+end_function
+
+begin_function
 DECL|method|size ()
 name|int
 name|size
@@ -764,11 +892,16 @@ return|return
 name|size
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
+annotation|@
+name|ParametricNullness
 DECL|method|getKey (int index)
 name|K
 name|getKey
@@ -794,6 +927,9 @@ name|index
 index|]
 return|;
 block|}
+end_function
+
+begin_function
 DECL|method|getValue (int index)
 name|int
 name|getValue
@@ -816,6 +952,9 @@ name|index
 index|]
 return|;
 block|}
+end_function
+
+begin_function
 DECL|method|setValue (int index, int newValue)
 name|void
 name|setValue
@@ -842,6 +981,9 @@ operator|=
 name|newValue
 expr_stmt|;
 block|}
+end_function
+
+begin_function
 DECL|method|getEntry (int index)
 name|Entry
 argument_list|<
@@ -868,6 +1010,9 @@ name|index
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_class
 DECL|class|MapEntry
 class|class
 name|MapEntry
@@ -879,7 +1024,7 @@ argument_list|>
 block|{
 DECL|field|key
 annotation|@
-name|NullableDecl
+name|ParametricNullness
 specifier|final
 name|K
 name|key
@@ -922,6 +1067,8 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|ParametricNullness
 DECL|method|getElement ()
 specifier|public
 name|K
@@ -1067,6 +1214,9 @@ return|;
 block|}
 block|}
 block|}
+end_class
+
+begin_function
 DECL|method|getHash (long entry)
 specifier|private
 specifier|static
@@ -1088,7 +1238,13 @@ literal|32
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/** Returns the index, or UNSET if the pointer is "null" */
+end_comment
+
+begin_function
 DECL|method|getNext (long entry)
 specifier|private
 specifier|static
@@ -1106,7 +1262,13 @@ operator|)
 name|entry
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/** Returns a new entry value by changing the "next" index of an existing entry */
+end_comment
+
+begin_function
 DECL|method|swapNext (long entry, int newNext)
 specifier|private
 specifier|static
@@ -1134,6 +1296,9 @@ name|newNext
 operator|)
 return|;
 block|}
+end_function
+
+begin_function
 DECL|method|ensureCapacity (int minCapacity)
 name|void
 name|ensureCapacity
@@ -1192,15 +1357,18 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|put (@ullableDecl K key, int value)
+DECL|method|put (@arametricNullness K key, int value)
 specifier|public
 name|int
 name|put
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|ParametricNullness
 name|K
 name|key
 parameter_list|,
@@ -1223,6 +1391,8 @@ name|this
 operator|.
 name|entries
 decl_stmt|;
+annotation|@
+name|Nullable
 name|Object
 index|[]
 name|keys
@@ -1446,8 +1616,14 @@ return|return
 literal|0
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Creates a fresh entry with the specified object at the specified position in the entry array.    */
-DECL|method|insertEntry (int entryIndex, @NullableDecl K key, int value, int hash)
+end_comment
+
+begin_function
+DECL|method|insertEntry (int entryIndex, @ParametricNullness K key, int value, int hash)
 name|void
 name|insertEntry
 parameter_list|(
@@ -1455,7 +1631,7 @@ name|int
 name|entryIndex
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|ParametricNullness
 name|K
 name|key
 parameter_list|,
@@ -1507,7 +1683,13 @@ operator|=
 name|value
 expr_stmt|;
 block|}
+end_function
+
+begin_comment
 comment|/** Returns currentSize + 1, after resizing the entries storage if necessary. */
+end_comment
+
+begin_function
 DECL|method|resizeMeMaybe (int newSize)
 specifier|private
 name|void
@@ -1576,7 +1758,13 @@ expr_stmt|;
 block|}
 block|}
 block|}
+end_function
+
+begin_comment
 comment|/**    * Resizes the internal entries array to the specified capacity, which may be greater or less than    * the current capacity.    */
+end_comment
+
+begin_function
 DECL|method|resizeEntries (int newCapacity)
 name|void
 name|resizeEntries
@@ -1665,6 +1853,9 @@ operator|=
 name|entries
 expr_stmt|;
 block|}
+end_function
+
+begin_function
 DECL|method|resizeTable (int newCapacity)
 specifier|private
 name|void
@@ -1830,12 +2021,15 @@ operator|=
 name|newTable
 expr_stmt|;
 block|}
-DECL|method|indexOf (@ullableDecl Object key)
+end_function
+
+begin_function
+DECL|method|indexOf (@heckForNull Object key)
 name|int
 name|indexOf
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
@@ -1913,13 +2107,16 @@ operator|-
 literal|1
 return|;
 block|}
-DECL|method|containsKey (@ullableDecl Object key)
+end_function
+
+begin_function
+DECL|method|containsKey (@heckForNull Object key)
 specifier|public
 name|boolean
 name|containsKey
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
@@ -1934,13 +2131,16 @@ operator|-
 literal|1
 return|;
 block|}
-DECL|method|get (@ullableDecl Object key)
+end_function
+
+begin_function
+DECL|method|get (@heckForNull Object key)
 specifier|public
 name|int
 name|get
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
@@ -1969,15 +2169,18 @@ name|index
 index|]
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|remove (@ullableDecl Object key)
+DECL|method|remove (@heckForNull Object key)
 specifier|public
 name|int
 name|remove
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
@@ -1994,13 +2197,16 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-DECL|method|remove (@ullableDecl Object key, int hash)
+end_function
+
+begin_function
+DECL|method|remove (@heckForNull Object key, int hash)
 specifier|private
 name|int
 name|remove
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|key
 parameter_list|,
@@ -2168,6 +2374,9 @@ return|return
 literal|0
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|removeEntry (int entryIndex)
@@ -2196,7 +2405,13 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Moves the last entry in the entry array into {@code dstIndex}, and nulls out its old position.    */
+end_comment
+
+begin_function
 DECL|method|moveLastEntry (int dstIndex)
 name|void
 name|moveLastEntry
@@ -2390,6 +2605,9 @@ name|UNSET
 expr_stmt|;
 block|}
 block|}
+end_function
+
+begin_function
 DECL|method|clear ()
 specifier|public
 name|void
@@ -2450,8 +2668,8 @@ operator|=
 literal|0
 expr_stmt|;
 block|}
-block|}
-end_class
+end_function
 
+unit|}
 end_unit
 
