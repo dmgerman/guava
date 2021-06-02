@@ -272,32 +272,36 @@ operator|.
 name|separator
 expr_stmt|;
 block|}
+comment|/*    * In this file, we use<? extends @Nullable Object> instead of<?> to work around a Kotlin bug    * (see b/189937072 until we file a bug against Kotlin itself). (The two should be equivalent, so    * we normally prefer the shorter one.)    */
 comment|/**    * Appends the string representation of each of {@code parts}, using the previously configured    * separator between each, to {@code appendable}.    */
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|appendTo (A appendable, Iterable<?> parts)
+DECL|method|appendTo (A appendable, Iterable<? extends @Nullable Object> parts)
 specifier|public
-parameter_list|<
+argument_list|<
 name|A
 extends|extends
 name|Appendable
-parameter_list|>
+argument_list|>
 name|A
 name|appendTo
-parameter_list|(
+argument_list|(
 name|A
 name|appendable
-parameter_list|,
+argument_list|,
 name|Iterable
-argument_list|<
-name|?
-argument_list|>
+operator|<
+condition|?
+then|extends @
+name|Nullable
+name|Object
+operator|>
 name|parts
-parameter_list|)
+argument_list|)
 throws|throws
 name|IOException
 block|{
-return|return
+decl|return
 name|appendTo
 argument_list|(
 name|appendable
@@ -307,30 +311,39 @@ operator|.
 name|iterator
 argument_list|()
 argument_list|)
-return|;
+decl_stmt|;
 block|}
+end_class
+
+begin_comment
 comment|/**    * Appends the string representation of each of {@code parts}, using the previously configured    * separator between each, to {@code appendable}.    *    * @since 11.0    */
+end_comment
+
+begin_decl_stmt
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|appendTo (A appendable, Iterator<?> parts)
+DECL|method|appendTo (A appendable, Iterator<? extends @Nullable Object> parts)
 specifier|public
-parameter_list|<
+argument_list|<
 name|A
 extends|extends
 name|Appendable
-parameter_list|>
+argument_list|>
 name|A
 name|appendTo
-parameter_list|(
+argument_list|(
 name|A
 name|appendable
-parameter_list|,
+argument_list|,
 name|Iterator
-argument_list|<
-name|?
-argument_list|>
+operator|<
+condition|?
+then|extends @
+name|Nullable
+name|Object
+operator|>
 name|parts
-parameter_list|)
+argument_list|)
 throws|throws
 name|IOException
 block|{
@@ -338,7 +351,10 @@ name|checkNotNull
 argument_list|(
 name|appendable
 argument_list|)
-expr_stmt|;
+decl_stmt|;
+end_decl_stmt
+
+begin_if
 if|if
 condition|(
 name|parts
@@ -390,21 +406,30 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+end_if
+
+begin_return
 return|return
 name|appendable
 return|;
-block|}
+end_return
+
+begin_comment
+unit|}
 comment|/**    * Appends the string representation of each of {@code parts}, using the previously configured    * separator between each, to {@code appendable}.    */
-annotation|@
+end_comment
+
+begin_function
+unit|@
 name|CanIgnoreReturnValue
 DECL|method|appendTo (A appendable, @Nullable Object[] parts)
 specifier|public
 specifier|final
-parameter_list|<
+argument_list|<
 name|A
 extends|extends
 name|Appendable
-parameter_list|>
+argument_list|>
 name|A
 name|appendTo
 parameter_list|(
@@ -434,7 +459,13 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/** Appends to {@code appendable} the string representation of each of the remaining arguments. */
+end_comment
+
+begin_function
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|appendTo ( A appendable, @CheckForNull Object first, @CheckForNull Object second, @Nullable Object... rest)
@@ -486,24 +517,33 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Appends the string representation of each of {@code parts}, using the previously configured    * separator between each, to {@code builder}. Identical to {@link #appendTo(Appendable,    * Iterable)}, except that it does not throw {@link IOException}.    */
+end_comment
+
+begin_decl_stmt
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|appendTo (StringBuilder builder, Iterable<?> parts)
+DECL|method|appendTo ( StringBuilder builder, Iterable<? extends @Nullable Object> parts)
 specifier|public
 specifier|final
 name|StringBuilder
 name|appendTo
-parameter_list|(
+argument_list|(
 name|StringBuilder
 name|builder
-parameter_list|,
+argument_list|,
 name|Iterable
-argument_list|<
-name|?
-argument_list|>
+operator|<
+condition|?
+then|extends @
+name|Nullable
+name|Object
+operator|>
 name|parts
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|appendTo
@@ -517,24 +557,33 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+end_decl_stmt
+
+begin_comment
 comment|/**    * Appends the string representation of each of {@code parts}, using the previously configured    * separator between each, to {@code builder}. Identical to {@link #appendTo(Appendable,    * Iterable)}, except that it does not throw {@link IOException}.    *    * @since 11.0    */
+end_comment
+
+begin_decl_stmt
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|appendTo (StringBuilder builder, Iterator<?> parts)
+DECL|method|appendTo ( StringBuilder builder, Iterator<? extends @Nullable Object> parts)
 specifier|public
 specifier|final
 name|StringBuilder
 name|appendTo
-parameter_list|(
+argument_list|(
 name|StringBuilder
 name|builder
-parameter_list|,
+argument_list|,
 name|Iterator
-argument_list|<
-name|?
-argument_list|>
+operator|<
+condition|?
+then|extends @
+name|Nullable
+name|Object
+operator|>
 name|parts
-parameter_list|)
+argument_list|)
 block|{
 try|try
 block|{
@@ -567,7 +616,13 @@ return|return
 name|builder
 return|;
 block|}
+end_decl_stmt
+
+begin_comment
 comment|/**    * Appends the string representation of each of {@code parts}, using the previously configured    * separator between each, to {@code builder}. Identical to {@link #appendTo(Appendable,    * Iterable)}, except that it does not throw {@link IOException}.    */
+end_comment
+
+begin_function
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|appendTo (StringBuilder builder, @Nullable Object[] parts)
@@ -600,7 +655,13 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Appends to {@code builder} the string representation of each of the remaining arguments.    * Identical to {@link #appendTo(Appendable, Object, Object, Object...)}, except that it does not    * throw {@link IOException}.    */
+end_comment
+
+begin_function
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|appendTo ( StringBuilder builder, @CheckForNull Object first, @CheckForNull Object second, @Nullable Object... rest)
@@ -645,19 +706,28 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Returns a string containing the string representation of each of {@code parts}, using the    * previously configured separator between each.    */
-DECL|method|join (Iterable<?> parts)
+end_comment
+
+begin_decl_stmt
+DECL|method|join (Iterable<? extends @Nullable Object> parts)
 specifier|public
 specifier|final
 name|String
 name|join
-parameter_list|(
+argument_list|(
 name|Iterable
-argument_list|<
-name|?
-argument_list|>
+operator|<
+condition|?
+then|extends @
+name|Nullable
+name|Object
+operator|>
 name|parts
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|join
@@ -669,19 +739,28 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+end_decl_stmt
+
+begin_comment
 comment|/**    * Returns a string containing the string representation of each of {@code parts}, using the    * previously configured separator between each.    *    * @since 11.0    */
-DECL|method|join (Iterator<?> parts)
+end_comment
+
+begin_decl_stmt
+DECL|method|join (Iterator<? extends @Nullable Object> parts)
 specifier|public
 specifier|final
 name|String
 name|join
-parameter_list|(
+argument_list|(
 name|Iterator
-argument_list|<
-name|?
-argument_list|>
+operator|<
+condition|?
+then|extends @
+name|Nullable
+name|Object
+operator|>
 name|parts
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|appendTo
@@ -697,7 +776,13 @@ name|toString
 argument_list|()
 return|;
 block|}
+end_decl_stmt
+
+begin_comment
 comment|/**    * Returns a string containing the string representation of each of {@code parts}, using the    * previously configured separator between each.    */
+end_comment
+
+begin_function
 DECL|method|join (@ullable Object[] parts)
 specifier|public
 specifier|final
@@ -723,7 +808,13 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Returns a string containing the string representation of each argument, using the previously    * configured separator between each.    */
+end_comment
+
+begin_function
 DECL|method|join ( @heckForNull Object first, @CheckForNull Object second, @Nullable Object... rest)
 specifier|public
 specifier|final
@@ -761,7 +852,13 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Returns a joiner with the same behavior as this one, except automatically substituting {@code    * nullText} for any provided null elements.    */
+end_comment
+
+begin_function
 DECL|method|useForNull (final String nullText)
 specifier|public
 name|Joiner
@@ -850,7 +947,13 @@ block|}
 block|}
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Returns a joiner with the same behavior as this joiner, except automatically skipping over any    * provided null elements.    */
+end_comment
+
+begin_function
 DECL|method|skipNulls ()
 specifier|public
 name|Joiner
@@ -867,23 +970,26 @@ block|{
 annotation|@
 name|Override
 specifier|public
-parameter_list|<
+argument_list|<
 name|A
 extends|extends
 name|Appendable
-parameter_list|>
+argument_list|>
 name|A
 name|appendTo
-parameter_list|(
+argument_list|(
 name|A
 name|appendable
-parameter_list|,
+argument_list|,
 name|Iterator
-argument_list|<
-name|?
-argument_list|>
+operator|<
+condition|?
+then|extends @
+name|Nullable
+name|Object
+operator|>
 name|parts
-parameter_list|)
+argument_list|)
 throws|throws
 name|IOException
 block|{
@@ -893,7 +999,7 @@ name|appendable
 argument_list|,
 literal|"appendable"
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|checkNotNull
 argument_list|(
 name|parts
@@ -991,48 +1097,55 @@ return|return
 name|appendable
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
 specifier|public
 name|Joiner
 name|useForNull
-parameter_list|(
+argument_list|(
 name|String
 name|nullText
-parameter_list|)
+argument_list|)
 block|{
 throw|throw
-operator|new
+argument_list|new
 name|UnsupportedOperationException
 argument_list|(
 literal|"already specified skipNulls"
 argument_list|)
-throw|;
-block|}
-annotation|@
+block|;       }
+expr|@
 name|Override
 specifier|public
 name|MapJoiner
 name|withKeyValueSeparator
-parameter_list|(
+argument_list|(
 name|String
 name|kvs
-parameter_list|)
+argument_list|)
 block|{
 throw|throw
-operator|new
+argument_list|new
 name|UnsupportedOperationException
 argument_list|(
 literal|"can't use .skipNulls() with maps"
 argument_list|)
-throw|;
+block|;       }
 block|}
-block|}
-return|;
-block|}
+end_function
+
+begin_empty_stmt
+empty_stmt|;
+end_empty_stmt
+
+begin_comment
+unit|}
 comment|/**    * Returns a {@code MapJoiner} using the given key-value separator, and the same configuration as    * this {@code Joiner} otherwise.    *    * @since 20.0    */
+end_comment
+
+begin_function
 DECL|method|withKeyValueSeparator (char keyValueSeparator)
-specifier|public
+unit|public
 name|MapJoiner
 name|withKeyValueSeparator
 parameter_list|(
@@ -1052,7 +1165,13 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Returns a {@code MapJoiner} using the given key-value separator, and the same configuration as    * this {@code Joiner} otherwise.    */
+end_comment
+
+begin_function
 DECL|method|withKeyValueSeparator (String keyValueSeparator)
 specifier|public
 name|MapJoiner
@@ -1072,7 +1191,13 @@ name|keyValueSeparator
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * An object that joins map entries in the same manner as {@code Joiner} joins iterables and    * arrays. Like {@code Joiner}, it is thread-safe and immutable.    *    *<p>In addition to operating on {@code Map} instances, {@code MapJoiner} can operate on {@code    * Multimap} entries in two distinct modes:    *    *<ul>    *<li>To output a separate entry for each key-value pair, pass {@code multimap.entries()} to a    *       {@code MapJoiner} method that accepts entries as input, and receive output of the form    *       {@code key1=A&key1=B&key2=C}.    *<li>To output a single entry for each key, pass {@code multimap.asMap()} to a {@code    *       MapJoiner} method that accepts a map as input, and receive output of the form {@code    *       key1=[A, B]&key2=C}.    *</ul>    *    * @since 2.0    */
+end_comment
+
+begin_class
 DECL|class|MapJoiner
 specifier|public
 specifier|static
@@ -1623,6 +1748,9 @@ argument_list|)
 return|;
 block|}
 block|}
+end_class
+
+begin_function
 DECL|method|toString (@heckForNull Object part)
 name|CharSequence
 name|toString
@@ -1657,6 +1785,9 @@ name|toString
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 DECL|method|iterable ( @heckForNull final Object first, @CheckForNull final Object second, final @Nullable Object[] rest)
 specifier|private
 specifier|static
@@ -1761,8 +1892,8 @@ block|}
 block|}
 return|;
 block|}
-block|}
-end_class
+end_function
 
+unit|}
 end_unit
 
