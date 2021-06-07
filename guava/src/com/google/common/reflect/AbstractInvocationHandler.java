@@ -109,7 +109,6 @@ end_comment
 begin_class
 annotation|@
 name|Beta
-comment|// TODO(b/147136275): After adding @Nullable below, add .
 annotation|@
 name|ElementTypesAreNonnullByDefault
 DECL|class|AbstractInvocationHandler
@@ -315,7 +314,7 @@ block|}
 comment|/**    * {@link #invoke} delegates to this method upon any method invocation on the proxy instance,    * except {@link Object#equals}, {@link Object#hashCode} and {@link Object#toString}. The result    * will be returned as the proxied method's return value.    *    *<p>Unlike {@link #invoke}, {@code args} will never be null. When the method has no parameter,    * an empty array is passed in.    */
 annotation|@
 name|CheckForNull
-DECL|method|handleInvocation ( Object proxy, Method method, Object[] args)
+DECL|method|handleInvocation (Object proxy, Method method, @Nullable Object[] args)
 specifier|protected
 specifier|abstract
 name|Object
@@ -327,7 +326,8 @@ parameter_list|,
 name|Method
 name|method
 parameter_list|,
-comment|/* TODO(b/147136275): Add @Nullable. */
+annotation|@
+name|Nullable
 name|Object
 index|[]
 name|args
