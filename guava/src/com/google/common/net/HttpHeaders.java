@@ -865,6 +865,16 @@ name|LOCATION
 init|=
 literal|"Location"
 decl_stmt|;
+comment|/**    * The HTTP {@code Keep-Alive} header field name.    *    * @since NEXT    */
+DECL|field|KEEP_ALIVE
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|KEEP_ALIVE
+init|=
+literal|"Keep-Alive"
+decl_stmt|;
 comment|/**    * The HTTP<a href="https://googlechrome.github.io/OriginTrials/#header">{@code Origin-Trial}</a>    * header field name.    *    * @since 27.1    */
 DECL|field|ORIGIN_TRIAL
 specifier|public
