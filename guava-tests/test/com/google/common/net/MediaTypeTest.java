@@ -448,18 +448,6 @@ name|nio
 operator|.
 name|charset
 operator|.
-name|IllegalCharsetNameException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|nio
-operator|.
-name|charset
-operator|.
 name|UnsupportedCharsetException
 import|;
 end_import
@@ -3023,7 +3011,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|IllegalCharsetNameException
+name|IllegalArgumentException
 name|expected
 parameter_list|)
 block|{     }
