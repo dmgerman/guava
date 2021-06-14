@@ -42,20 +42,6 @@ name|common
 operator|.
 name|annotations
 operator|.
-name|Beta
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|annotations
-operator|.
 name|GwtIncompatible
 import|;
 end_import
@@ -139,8 +125,6 @@ comment|/**  * Contains static methods pertaining to instances of {@link Interne
 end_comment
 
 begin_class
-annotation|@
-name|Beta
 annotation|@
 name|GwtIncompatible
 DECL|class|Interners
