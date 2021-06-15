@@ -208,6 +208,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|checkerframework
@@ -2893,6 +2903,8 @@ return|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|get (@ullableDecl Object key)
 specifier|public
 name|V
@@ -3598,6 +3610,8 @@ return|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|lowerEntry (K key)
 specifier|public
 name|Entry
@@ -3626,6 +3640,8 @@ return|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|lowerKey (K key)
 specifier|public
 name|K
@@ -3647,6 +3663,8 @@ return|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|floorEntry (K key)
 specifier|public
 name|Entry
@@ -3675,6 +3693,8 @@ return|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|floorKey (K key)
 specifier|public
 name|K
@@ -3696,6 +3716,8 @@ return|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|ceilingEntry (K key)
 specifier|public
 name|Entry
@@ -3724,6 +3746,8 @@ return|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|ceilingKey (K key)
 specifier|public
 name|K
@@ -3745,6 +3769,8 @@ return|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|higherEntry (K key)
 specifier|public
 name|Entry
@@ -3773,6 +3799,8 @@ return|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|higherKey (K key)
 specifier|public
 name|K
@@ -3794,6 +3822,8 @@ return|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|firstEntry ()
 specifier|public
 name|Entry
@@ -3825,6 +3855,8 @@ return|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|lastEntry ()
 specifier|public
 name|Entry

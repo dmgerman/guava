@@ -106,6 +106,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|checkerframework
@@ -549,6 +559,8 @@ return|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|get (@ullable Object rowKey, @Nullable Object columnKey)
 specifier|public
 name|V
@@ -602,6 +614,8 @@ annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|remove (@ullable Object rowKey, @Nullable Object columnKey)
 specifier|public
 name|V

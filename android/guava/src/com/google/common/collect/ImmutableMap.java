@@ -298,6 +298,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|checkerframework
@@ -2243,6 +2253,8 @@ block|}
 comment|// Overriding to mark it Nullable
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|get (@ullableDecl Object key)
 specifier|public
 specifier|abstract

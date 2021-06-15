@@ -74,6 +74,16 @@ name|Set
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
 begin_comment
 comment|/**  * A table which forwards all its method calls to another table. Subclasses should override one or  * more methods to modify the behavior of the backing map as desired per the<a  * href="http://en.wikipedia.org/wiki/Decorator_pattern">decorator pattern</a>.  *  * @author Gregory Kick  * @since 7.0  */
 end_comment
@@ -330,6 +340,8 @@ return|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|get (Object rowKey, Object columnKey)
 specifier|public
 name|V
@@ -374,6 +386,8 @@ annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|put (R rowKey, C columnKey, V value)
 specifier|public
 name|V
@@ -440,6 +454,8 @@ annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|remove (Object rowKey, Object columnKey)
 specifier|public
 name|V

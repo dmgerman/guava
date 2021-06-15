@@ -252,6 +252,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|checkerframework
@@ -1248,6 +1258,8 @@ name|columnList
 return|;
 block|}
 comment|/**    * Returns the value corresponding to the specified row and column indices. The same value is    * returned by {@code get(rowKeyList().get(rowIndex), columnKeyList().get(columnIndex))}, but this    * method runs more quickly.    *    * @param rowIndex position of the row key in {@link #rowKeyList()}    * @param columnIndex position of the row key in {@link #columnKeyList()}    * @return the value with the specified row and column    * @throws IndexOutOfBoundsException if either index is negative, {@code rowIndex} is greater than    *     or equal to the number of allowed row keys, or {@code columnIndex} is greater than or equal    *     to the number of allowed column keys    */
+annotation|@
+name|CheckForNull
 DECL|method|at (int rowIndex, int columnIndex)
 specifier|public
 name|V
@@ -1294,6 +1306,8 @@ block|}
 comment|/**    * Associates {@code value} with the specified row and column indices. The logic {@code    * put(rowKeyList().get(rowIndex), columnKeyList().get(columnIndex), value)} has the same    * behavior, but this method runs more quickly.    *    * @param rowIndex position of the row key in {@link #rowKeyList()}    * @param columnIndex position of the row key in {@link #columnKeyList()}    * @param value value to store in the table    * @return the previous value with the specified row and column    * @throws IndexOutOfBoundsException if either index is negative, {@code rowIndex} is greater than    *     or equal to the number of allowed row keys, or {@code columnIndex} is greater than or equal    *     to the number of allowed column keys    */
 annotation|@
 name|CanIgnoreReturnValue
+annotation|@
+name|CheckForNull
 DECL|method|set (int rowIndex, int columnIndex, @NullableDecl V value)
 specifier|public
 name|V
@@ -1637,6 +1651,8 @@ return|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|get (@ullableDecl Object rowKey, @NullableDecl Object columnKey)
 specifier|public
 name|V
@@ -1720,6 +1736,8 @@ annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|put (R rowKey, C columnKey, @NullableDecl V value)
 specifier|public
 name|V
@@ -1871,6 +1889,8 @@ block|}
 comment|/**    * Associates the value {@code null} with the specified keys, assuming both keys are valid. If    * either key is null or isn't among the keys provided during construction, this method has no    * effect.    *    *<p>This method is equivalent to {@code put(rowKey, columnKey, null)} when both provided keys    * are valid.    *    * @param rowKey row key of mapping to be erased    * @param columnKey column key of mapping to be erased    * @return the value previously associated with the keys, or {@code null} if no mapping existed    *     for the keys    */
 annotation|@
 name|CanIgnoreReturnValue
+annotation|@
+name|CheckForNull
 DECL|method|erase (@ullableDecl Object rowKey, @NullableDecl Object columnKey)
 specifier|public
 name|V

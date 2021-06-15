@@ -230,6 +230,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|checkerframework
@@ -1102,7 +1112,7 @@ block|}
 annotation|@
 name|Override
 annotation|@
-name|NullableDecl
+name|CheckForNull
 DECL|method|get (K key)
 specifier|public
 name|V
@@ -1194,7 +1204,7 @@ block|}
 annotation|@
 name|Override
 annotation|@
-name|NullableDecl
+name|CheckForNull
 DECL|method|getEntry (K key)
 specifier|public
 name|Entry

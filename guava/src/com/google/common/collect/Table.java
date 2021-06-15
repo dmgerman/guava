@@ -118,6 +118,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|checkerframework
@@ -234,7 +244,7 @@ parameter_list|)
 function_decl|;
 comment|/**    * Returns the value corresponding to the given row and column keys, or {@code null} if no such    * mapping exists.    *    * @param rowKey key of row to search for    * @param columnKey key of column to search for    */
 annotation|@
-name|Nullable
+name|CheckForNull
 DECL|method|get ( @ullable @ompatibleWithR) Object rowKey, @Nullable @CompatibleWith(R) Object columnKey)
 name|V
 name|get
@@ -304,7 +314,7 @@ comment|/**    * Associates the specified value with the specified keys. If the 
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
-name|Nullable
+name|CheckForNull
 DECL|method|put (R rowKey, C columnKey, V value)
 name|V
 name|put
@@ -345,7 +355,7 @@ comment|/**    * Removes the mapping, if any, associated with the given keys.   
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
-name|Nullable
+name|CheckForNull
 DECL|method|remove ( @ullable @ompatibleWithR) Object rowKey, @Nullable @CompatibleWith(R) Object columnKey)
 name|V
 name|remove
