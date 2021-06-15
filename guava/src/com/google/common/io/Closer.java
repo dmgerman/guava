@@ -319,12 +319,7 @@ annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|ParametricNullness
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"nullness"
-argument_list|)
-DECL|method|register ( @heckForNull C closeable)
+DECL|method|register (@arametricNullness C closeable)
 specifier|public
 operator|<
 name|C
@@ -335,9 +330,8 @@ operator|>
 name|C
 name|register
 argument_list|(
-comment|// TODO(b/147136275): Replace @CheckForNull with @ParametricNullness, and remove suppression.
 annotation|@
-name|CheckForNull
+name|ParametricNullness
 name|C
 name|closeable
 argument_list|)

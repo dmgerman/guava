@@ -159,7 +159,8 @@ annotation|@
 name|Beta
 annotation|@
 name|GwtIncompatible
-comment|// TODO(b/147136275): After adding @CheckForNull below, add @ElementTypesAreNonnullByDefault.
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|LineReader
 specifier|public
 specifier|final
@@ -289,11 +290,7 @@ annotation|@
 name|CanIgnoreReturnValue
 comment|// to skip a line
 annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"nullness"
-argument_list|)
-comment|// TODO(b/147136275): After updating callers, add @CheckForNull, and remove @SuppressWarnings.
+name|CheckForNull
 DECL|method|readLine ()
 specifier|public
 name|String
