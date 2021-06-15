@@ -120,9 +120,10 @@ literal|true
 argument_list|)
 end_annotation
 
-begin_comment
-comment|// TODO(cpovirk): // TODO(cpovirk): @ElementTypesAreNonnullByDefault
-end_comment
+begin_annotation
+annotation|@
+name|ElementTypesAreNonnullByDefault
+end_annotation
 
 begin_expr_stmt
 DECL|interface|SortedMultiset
@@ -160,7 +161,8 @@ name|comparator
 argument_list|()
 block|;
 comment|/**    * Returns the entry of the first element in this multiset, or {@code null} if this multiset is    * empty.    */
-comment|// TODO(cpovirk): @CheckForNull
+block|@
+name|CheckForNull
 DECL|method|firstEntry ()
 name|Entry
 argument_list|<
@@ -170,7 +172,8 @@ name|firstEntry
 argument_list|()
 block|;
 comment|/**    * Returns the entry of the last element in this multiset, or {@code null} if this multiset is    * empty.    */
-comment|// TODO(cpovirk): @CheckForNull
+block|@
+name|CheckForNull
 DECL|method|lastEntry ()
 name|Entry
 argument_list|<
