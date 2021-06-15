@@ -26,6 +26,22 @@ name|common
 operator|.
 name|base
 operator|.
+name|NullnessCasts
+operator|.
+name|uncheckedCastNullableTToT
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
 name|Preconditions
 operator|.
 name|checkArgument
@@ -84,6 +100,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|checkerframework
@@ -92,9 +118,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -105,6 +131,8 @@ end_comment
 begin_class
 annotation|@
 name|GwtCompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|Functions
 specifier|public
 specifier|final
@@ -198,9 +226,12 @@ argument_list|)
 DECL|method|identity ()
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|Function
 argument_list|<
 name|E
@@ -208,7 +239,7 @@ argument_list|,
 name|E
 argument_list|>
 name|identity
-parameter_list|()
+argument_list|()
 block|{
 return|return
 operator|(
@@ -232,8 +263,12 @@ name|IdentityFunction
 implements|implements
 name|Function
 argument_list|<
+annotation|@
+name|Nullable
 name|Object
 argument_list|,
+annotation|@
+name|Nullable
 name|Object
 argument_list|>
 block|{
@@ -243,14 +278,14 @@ block|;
 annotation|@
 name|Override
 annotation|@
-name|NullableDecl
-DECL|method|apply (@ullableDecl Object o)
+name|CheckForNull
+DECL|method|apply (@heckForNull Object o)
 specifier|public
 name|Object
 name|apply
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|o
 parameter_list|)
@@ -273,14 +308,20 @@ return|;
 block|}
 block|}
 comment|/**    * Returns a function which performs a map lookup. The returned function throws an {@link    * IllegalArgumentException} if given a key that does not exist in the map. See also {@link    * #forMap(Map, Object)}, which returns a default value in this case.    *    *<p>Note: if {@code map} is a {@link com.google.common.collect.BiMap BiMap} (or can be one), you    * can use {@link com.google.common.collect.Maps#asConverter Maps.asConverter} instead to get a    * function that also supports reverse conversion.    *    *<p><b>Java 8 users:</b> if you are okay with {@code null} being returned for an unrecognized    * key (instead of an exception being thrown), you can use the method reference {@code map::get}    * instead.    */
-DECL|method|forMap (Map<K, V> map)
+DECL|method|forMap ( Map<K, V> map)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|Function
 argument_list|<
 name|K
@@ -288,7 +329,7 @@ argument_list|,
 name|V
 argument_list|>
 name|forMap
-parameter_list|(
+argument_list|(
 name|Map
 argument_list|<
 name|K
@@ -296,7 +337,7 @@ argument_list|,
 name|V
 argument_list|>
 name|map
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|new
@@ -308,14 +349,20 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns a function which performs a map lookup with a default value. The function created by    * this method returns {@code defaultValue} for all inputs that do not belong to the map's key    * set. See also {@link #forMap(Map)}, which throws an exception in this case.    *    *<p><b>Java 8 users:</b> you can just write the lambda expression {@code k ->    * map.getOrDefault(k, defaultValue)} instead.    *    * @param map source map that determines the function behavior    * @param defaultValue the value to return for inputs that aren't map keys    * @return function that returns {@code map.get(a)} when {@code a} is a key, or {@code    *     defaultValue} otherwise    */
-DECL|method|forMap ( Map<K, ? extends V> map, @NullableDecl V defaultValue)
+DECL|method|forMap ( Map<K, ? extends V> map, @ParametricNullness V defaultValue)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|Function
 argument_list|<
 name|K
@@ -323,7 +370,7 @@ argument_list|,
 name|V
 argument_list|>
 name|forMap
-parameter_list|(
+argument_list|(
 name|Map
 argument_list|<
 name|K
@@ -333,12 +380,12 @@ extends|extends
 name|V
 argument_list|>
 name|map
-parameter_list|,
+argument_list|,
 annotation|@
-name|NullableDecl
+name|ParametricNullness
 name|V
 name|defaultValue
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|new
@@ -354,25 +401,31 @@ block|}
 DECL|class|FunctionForMapNoDefault
 specifier|private
 specifier|static
-class|class
+name|class
 name|FunctionForMapNoDefault
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
-implements|implements
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|implements
 name|Function
 argument_list|<
 name|K
 argument_list|,
 name|V
 argument_list|>
-implements|,
+operator|,
 name|Serializable
 block|{
 DECL|field|map
-specifier|final
+name|final
 name|Map
 argument_list|<
 name|K
@@ -380,10 +433,10 @@ argument_list|,
 name|V
 argument_list|>
 name|map
-decl_stmt|;
+block|;
 DECL|method|FunctionForMapNoDefault (Map<K, V> map)
 name|FunctionForMapNoDefault
-parameter_list|(
+argument_list|(
 name|Map
 argument_list|<
 name|K
@@ -391,7 +444,7 @@ argument_list|,
 name|V
 argument_list|>
 name|map
-parameter_list|)
+argument_list|)
 block|{
 name|this
 operator|.
@@ -401,31 +454,32 @@ name|checkNotNull
 argument_list|(
 name|map
 argument_list|)
-expr_stmt|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|Override
-DECL|method|apply (@ullableDecl K key)
+expr|@
+name|ParametricNullness
+DECL|method|apply (@arametricNullness K key)
 specifier|public
 name|V
 name|apply
-parameter_list|(
+argument_list|(
 annotation|@
-name|NullableDecl
+name|ParametricNullness
 name|K
 name|key
-parameter_list|)
+argument_list|)
 block|{
 name|V
 name|result
-init|=
+operator|=
 name|map
 operator|.
 name|get
 argument_list|(
 name|key
 argument_list|)
-decl_stmt|;
+block|;
 name|checkArgument
 argument_list|(
 name|result
@@ -443,23 +497,27 @@ literal|"Key '%s' not present in map"
 argument_list|,
 name|key
 argument_list|)
-expr_stmt|;
+block|;
+comment|// The unchecked cast is safe because of the containsKey check.
 return|return
+name|uncheckedCastNullableTToT
+argument_list|(
 name|result
+argument_list|)
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
-DECL|method|equals (@ullableDecl Object o)
+DECL|method|equals (@heckForNull Object o)
 specifier|public
 name|boolean
 name|equals
-parameter_list|(
+argument_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|o
-parameter_list|)
+argument_list|)
 block|{
 if|if
 condition|(
@@ -501,6 +559,9 @@ return|return
 literal|false
 return|;
 block|}
+end_class
+
+begin_function
 annotation|@
 name|Override
 DECL|method|hashCode ()
@@ -516,6 +577,9 @@ name|hashCode
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|toString ()
@@ -532,6 +596,9 @@ operator|+
 literal|")"
 return|;
 block|}
+end_function
+
+begin_decl_stmt
 DECL|field|serialVersionUID
 specifier|private
 specifier|static
@@ -541,29 +608,37 @@ name|serialVersionUID
 init|=
 literal|0
 decl_stmt|;
-block|}
+end_decl_stmt
+
+begin_expr_stmt
+unit|}    private
 DECL|class|ForMapWithDefault
-specifier|private
 specifier|static
-class|class
+name|class
 name|ForMapWithDefault
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
-implements|implements
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|implements
 name|Function
 argument_list|<
 name|K
 argument_list|,
 name|V
 argument_list|>
-implements|,
+operator|,
 name|Serializable
 block|{
 DECL|field|map
-specifier|final
+name|final
 name|Map
 argument_list|<
 name|K
@@ -573,17 +648,16 @@ extends|extends
 name|V
 argument_list|>
 name|map
-decl_stmt|;
+block|;     @
 DECL|field|defaultValue
-annotation|@
-name|NullableDecl
-specifier|final
+name|ParametricNullness
+name|final
 name|V
 name|defaultValue
-decl_stmt|;
-DECL|method|ForMapWithDefault (Map<K, ? extends V> map, @NullableDecl V defaultValue)
+block|;
+DECL|method|ForMapWithDefault (Map<K, ? extends V> map, @ParametricNullness V defaultValue)
 name|ForMapWithDefault
-parameter_list|(
+argument_list|(
 name|Map
 argument_list|<
 name|K
@@ -593,12 +667,12 @@ extends|extends
 name|V
 argument_list|>
 name|map
-parameter_list|,
+argument_list|,
 annotation|@
-name|NullableDecl
+name|ParametricNullness
 name|V
 name|defaultValue
-parameter_list|)
+argument_list|)
 block|{
 name|this
 operator|.
@@ -608,37 +682,39 @@ name|checkNotNull
 argument_list|(
 name|map
 argument_list|)
-expr_stmt|;
+block|;
 name|this
 operator|.
 name|defaultValue
 operator|=
 name|defaultValue
-expr_stmt|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|Override
-DECL|method|apply (@ullableDecl K key)
+expr|@
+name|ParametricNullness
+DECL|method|apply (@arametricNullness K key)
 specifier|public
 name|V
 name|apply
-parameter_list|(
+argument_list|(
 annotation|@
-name|NullableDecl
+name|ParametricNullness
 name|K
 name|key
-parameter_list|)
+argument_list|)
 block|{
 name|V
 name|result
-init|=
+operator|=
 name|map
 operator|.
 name|get
 argument_list|(
 name|key
 argument_list|)
-decl_stmt|;
+block|;
+comment|// The unchecked cast is safe because of the containsKey check.
 return|return
 operator|(
 name|result
@@ -653,23 +729,26 @@ name|key
 argument_list|)
 operator|)
 condition|?
+name|uncheckedCastNullableTToT
+argument_list|(
 name|result
+argument_list|)
 else|:
 name|defaultValue
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
-DECL|method|equals (@ullableDecl Object o)
+DECL|method|equals (@heckForNull Object o)
 specifier|public
 name|boolean
 name|equals
-parameter_list|(
+argument_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|o
-parameter_list|)
+argument_list|)
 block|{
 if|if
 condition|(
@@ -718,11 +797,16 @@ name|defaultValue
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_return
 return|return
 literal|false
 return|;
-block|}
-annotation|@
+end_return
+
+begin_function
+unit|}      @
 name|Override
 DECL|method|hashCode ()
 specifier|public
@@ -741,6 +825,9 @@ name|defaultValue
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|toString ()
@@ -762,6 +849,9 @@ operator|+
 literal|")"
 return|;
 block|}
+end_function
+
+begin_decl_stmt
 DECL|field|serialVersionUID
 specifier|private
 specifier|static
@@ -771,18 +861,33 @@ name|serialVersionUID
 init|=
 literal|0
 decl_stmt|;
-block|}
+end_decl_stmt
+
+begin_comment
+unit|}
 comment|/**    * Returns the composition of two functions. For {@code f: A->B} and {@code g: B->C}, composition    * is defined as the function h such that {@code h(a) == g(f(a))} for each {@code a}.    *    *<p><b>Java 8 users:</b> use {@code g.compose(f)} or (probably clearer) {@code f.andThen(g)}    * instead.    *    * @param g the second function to apply    * @param f the first function to apply    * @return the composition of {@code f} and {@code g}    * @see<a href="//en.wikipedia.org/wiki/Function_composition">function composition</a>    */
-DECL|method|compose (Function<B, C> g, Function<A, ? extends B> f)
-specifier|public
+end_comment
+
+begin_expr_stmt
+unit|public
 specifier|static
-parameter_list|<
+operator|<
 name|A
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|B
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|C
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+DECL|method|compose (Function<B, C> g, Function<A, ? extends B> f)
 name|Function
 argument_list|<
 name|A
@@ -790,7 +895,7 @@ argument_list|,
 name|C
 argument_list|>
 name|compose
-parameter_list|(
+argument_list|(
 name|Function
 argument_list|<
 name|B
@@ -798,7 +903,7 @@ argument_list|,
 name|C
 argument_list|>
 name|g
-parameter_list|,
+argument_list|,
 name|Function
 argument_list|<
 name|A
@@ -808,7 +913,7 @@ extends|extends
 name|B
 argument_list|>
 name|f
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|new
@@ -821,31 +926,43 @@ name|f
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_expr_stmt
 DECL|class|FunctionComposition
 specifier|private
 specifier|static
-class|class
+name|class
 name|FunctionComposition
-parameter_list|<
+operator|<
 name|A
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|B
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|C
-parameter_list|>
-implements|implements
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|implements
 name|Function
 argument_list|<
 name|A
 argument_list|,
 name|C
 argument_list|>
-implements|,
+operator|,
 name|Serializable
 block|{
 DECL|field|g
 specifier|private
-specifier|final
+name|final
 name|Function
 argument_list|<
 name|B
@@ -853,10 +970,10 @@ argument_list|,
 name|C
 argument_list|>
 name|g
-decl_stmt|;
+block|;
 DECL|field|f
 specifier|private
-specifier|final
+name|final
 name|Function
 argument_list|<
 name|A
@@ -866,11 +983,11 @@ extends|extends
 name|B
 argument_list|>
 name|f
-decl_stmt|;
+block|;
 DECL|method|FunctionComposition (Function<B, C> g, Function<A, ? extends B> f)
 specifier|public
 name|FunctionComposition
-parameter_list|(
+argument_list|(
 name|Function
 argument_list|<
 name|B
@@ -878,7 +995,7 @@ argument_list|,
 name|C
 argument_list|>
 name|g
-parameter_list|,
+argument_list|,
 name|Function
 argument_list|<
 name|A
@@ -888,7 +1005,7 @@ extends|extends
 name|B
 argument_list|>
 name|f
-parameter_list|)
+argument_list|)
 block|{
 name|this
 operator|.
@@ -898,7 +1015,7 @@ name|checkNotNull
 argument_list|(
 name|g
 argument_list|)
-expr_stmt|;
+block|;
 name|this
 operator|.
 name|f
@@ -907,20 +1024,21 @@ name|checkNotNull
 argument_list|(
 name|f
 argument_list|)
-expr_stmt|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|Override
-DECL|method|apply (@ullableDecl A a)
+expr|@
+name|ParametricNullness
+DECL|method|apply (@arametricNullness A a)
 specifier|public
 name|C
 name|apply
-parameter_list|(
+argument_list|(
 annotation|@
-name|NullableDecl
+name|ParametricNullness
 name|A
 name|a
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|g
@@ -936,18 +1054,18 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
-DECL|method|equals (@ullableDecl Object obj)
+DECL|method|equals (@heckForNull Object obj)
 specifier|public
 name|boolean
 name|equals
-parameter_list|(
+argument_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|obj
-parameter_list|)
+argument_list|)
 block|{
 if|if
 condition|(
@@ -998,11 +1116,16 @@ name|g
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_return
 return|return
 literal|false
 return|;
-block|}
-annotation|@
+end_return
+
+begin_function
+unit|}      @
 name|Override
 DECL|method|hashCode ()
 specifier|public
@@ -1022,6 +1145,9 @@ name|hashCode
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|toString ()
@@ -1041,6 +1167,9 @@ operator|+
 literal|")"
 return|;
 block|}
+end_function
+
+begin_decl_stmt
 DECL|field|serialVersionUID
 specifier|private
 specifier|static
@@ -1050,14 +1179,23 @@ name|serialVersionUID
 init|=
 literal|0
 decl_stmt|;
-block|}
+end_decl_stmt
+
+begin_comment
+unit|}
 comment|/**    * Creates a function that returns the same boolean output as the given predicate for all inputs.    *    *<p>The returned function is<i>consistent with equals</i> (as documented at {@link    * Function#apply}) if and only if {@code predicate} is itself consistent with equals.    *    *<p><b>Java 8 users:</b> use the method reference {@code predicate::test} instead.    */
-DECL|method|forPredicate (Predicate<T> predicate)
-specifier|public
+end_comment
+
+begin_expr_stmt
+DECL|method|forPredicate ( Predicate<T> predicate)
+unit|public
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|Function
 argument_list|<
 name|T
@@ -1065,13 +1203,13 @@ argument_list|,
 name|Boolean
 argument_list|>
 name|forPredicate
-parameter_list|(
+argument_list|(
 name|Predicate
 argument_list|<
 name|T
 argument_list|>
 name|predicate
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|new
@@ -1084,44 +1222,53 @@ name|predicate
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/** @see Functions#forPredicate */
+end_comment
+
+begin_expr_stmt
 DECL|class|PredicateFunction
 specifier|private
 specifier|static
-class|class
+name|class
 name|PredicateFunction
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
-implements|implements
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|implements
 name|Function
 argument_list|<
 name|T
 argument_list|,
 name|Boolean
 argument_list|>
-implements|,
+operator|,
 name|Serializable
 block|{
 DECL|field|predicate
 specifier|private
-specifier|final
+name|final
 name|Predicate
 argument_list|<
 name|T
 argument_list|>
 name|predicate
-decl_stmt|;
+block|;
 DECL|method|PredicateFunction (Predicate<T> predicate)
 specifier|private
 name|PredicateFunction
-parameter_list|(
+argument_list|(
 name|Predicate
 argument_list|<
 name|T
 argument_list|>
 name|predicate
-parameter_list|)
+argument_list|)
 block|{
 name|this
 operator|.
@@ -1131,20 +1278,19 @@ name|checkNotNull
 argument_list|(
 name|predicate
 argument_list|)
-expr_stmt|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|Override
-DECL|method|apply (@ullableDecl T t)
+DECL|method|apply (@arametricNullness T t)
 specifier|public
 name|Boolean
 name|apply
-parameter_list|(
+argument_list|(
 annotation|@
-name|NullableDecl
+name|ParametricNullness
 name|T
 name|t
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|predicate
@@ -1155,18 +1301,18 @@ name|t
 argument_list|)
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
-DECL|method|equals (@ullableDecl Object obj)
+DECL|method|equals (@heckForNull Object obj)
 specifier|public
 name|boolean
 name|equals
-parameter_list|(
+argument_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|obj
-parameter_list|)
+argument_list|)
 block|{
 if|if
 condition|(
@@ -1200,11 +1346,16 @@ name|predicate
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_return
 return|return
 literal|false
 return|;
-block|}
-annotation|@
+end_return
+
+begin_function
+unit|}      @
 name|Override
 DECL|method|hashCode ()
 specifier|public
@@ -1219,6 +1370,9 @@ name|hashCode
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|toString ()
@@ -1235,6 +1389,9 @@ operator|+
 literal|")"
 return|;
 block|}
+end_function
+
+begin_decl_stmt
 DECL|field|serialVersionUID
 specifier|private
 specifier|static
@@ -1244,111 +1401,128 @@ name|serialVersionUID
 init|=
 literal|0
 decl_stmt|;
-block|}
+end_decl_stmt
+
+begin_comment
+unit|}
 comment|/**    * Returns a function that ignores its input and always returns {@code value}.    *    *<p><b>Java 8 users:</b> use the lambda expression {@code o -> value} instead.    *    * @param value the constant value for the function to return    * @return a function that always returns {@code value}    */
-DECL|method|constant (@ullableDecl E value)
-specifier|public
+end_comment
+
+begin_expr_stmt
+DECL|method|constant ( @arametricNullness E value)
+unit|public
 specifier|static
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|Function
 argument_list|<
+annotation|@
+name|Nullable
 name|Object
 argument_list|,
 name|E
 argument_list|>
 name|constant
-parameter_list|(
+argument_list|(
 annotation|@
-name|NullableDecl
+name|ParametricNullness
 name|E
 name|value
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|new
 name|ConstantFunction
-argument_list|<
-name|E
-argument_list|>
+argument_list|<>
 argument_list|(
 name|value
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_expr_stmt
 DECL|class|ConstantFunction
 specifier|private
 specifier|static
-class|class
+name|class
 name|ConstantFunction
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
-implements|implements
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|implements
 name|Function
 argument_list|<
+annotation|@
+name|Nullable
 name|Object
 argument_list|,
 name|E
 argument_list|>
-implements|,
+operator|,
 name|Serializable
-block|{
+block|{     @
 DECL|field|value
-annotation|@
-name|NullableDecl
+name|ParametricNullness
 specifier|private
-specifier|final
+name|final
 name|E
 name|value
-decl_stmt|;
-DECL|method|ConstantFunction (@ullableDecl E value)
+block|;
+DECL|method|ConstantFunction (@arametricNullness E value)
 specifier|public
 name|ConstantFunction
-parameter_list|(
+argument_list|(
 annotation|@
-name|NullableDecl
+name|ParametricNullness
 name|E
 name|value
-parameter_list|)
+argument_list|)
 block|{
 name|this
 operator|.
 name|value
 operator|=
 name|value
-expr_stmt|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|Override
-DECL|method|apply (@ullableDecl Object from)
+expr|@
+name|ParametricNullness
+DECL|method|apply (@heckForNull Object from)
 specifier|public
 name|E
 name|apply
-parameter_list|(
+argument_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|from
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|value
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
-DECL|method|equals (@ullableDecl Object obj)
+DECL|method|equals (@heckForNull Object obj)
 specifier|public
 name|boolean
 name|equals
-parameter_list|(
+argument_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|obj
-parameter_list|)
+argument_list|)
 block|{
 if|if
 condition|(
@@ -1384,11 +1558,16 @@ name|value
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_return
 return|return
 literal|false
 return|;
-block|}
-annotation|@
+end_return
+
+begin_function
+unit|}      @
 name|Override
 DECL|method|hashCode ()
 specifier|public
@@ -1411,6 +1590,9 @@ name|hashCode
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|toString ()
@@ -1427,6 +1609,9 @@ operator|+
 literal|")"
 return|;
 block|}
+end_function
+
+begin_decl_stmt
 DECL|field|serialVersionUID
 specifier|private
 specifier|static
@@ -1436,16 +1621,28 @@ name|serialVersionUID
 init|=
 literal|0
 decl_stmt|;
-block|}
+end_decl_stmt
+
+begin_comment
+unit|}
 comment|/**    * Returns a function that ignores its input and returns the result of {@code supplier.get()}.    *    *<p><b>Java 8 users:</b> use the lambda expression {@code o -> supplier.get()} instead.    *    * @since 10.0    */
-DECL|method|forSupplier (Supplier<T> supplier)
-specifier|public
+end_comment
+
+begin_expr_stmt
+DECL|method|forSupplier ( Supplier<T> supplier)
+unit|public
 specifier|static
-parameter_list|<
+operator|<
 name|F
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|Function
 argument_list|<
 name|F
@@ -1453,13 +1650,13 @@ argument_list|,
 name|T
 argument_list|>
 name|forSupplier
-parameter_list|(
+argument_list|(
 name|Supplier
 argument_list|<
 name|T
 argument_list|>
 name|supplier
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|new
@@ -1470,46 +1667,58 @@ name|supplier
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/** @see Functions#forSupplier */
+end_comment
+
+begin_expr_stmt
 DECL|class|SupplierFunction
 specifier|private
 specifier|static
-class|class
+name|class
 name|SupplierFunction
-parameter_list|<
+operator|<
 name|F
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|T
-parameter_list|>
-implements|implements
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|implements
 name|Function
 argument_list|<
 name|F
 argument_list|,
 name|T
 argument_list|>
-implements|,
+operator|,
 name|Serializable
 block|{
 DECL|field|supplier
 specifier|private
-specifier|final
+name|final
 name|Supplier
 argument_list|<
 name|T
 argument_list|>
 name|supplier
-decl_stmt|;
+block|;
 DECL|method|SupplierFunction (Supplier<T> supplier)
 specifier|private
 name|SupplierFunction
-parameter_list|(
+argument_list|(
 name|Supplier
 argument_list|<
 name|T
 argument_list|>
 name|supplier
-parameter_list|)
+argument_list|)
 block|{
 name|this
 operator|.
@@ -1519,20 +1728,21 @@ name|checkNotNull
 argument_list|(
 name|supplier
 argument_list|)
-expr_stmt|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|Override
-DECL|method|apply (@ullableDecl F input)
+expr|@
+name|ParametricNullness
+DECL|method|apply (@arametricNullness F input)
 specifier|public
 name|T
 name|apply
-parameter_list|(
+argument_list|(
 annotation|@
-name|NullableDecl
+name|ParametricNullness
 name|F
 name|input
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|supplier
@@ -1541,18 +1751,18 @@ name|get
 argument_list|()
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
-DECL|method|equals (@ullableDecl Object obj)
+DECL|method|equals (@heckForNull Object obj)
 specifier|public
 name|boolean
 name|equals
-parameter_list|(
+argument_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|obj
-parameter_list|)
+argument_list|)
 block|{
 if|if
 condition|(
@@ -1592,11 +1802,16 @@ name|supplier
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_return
 return|return
 literal|false
 return|;
-block|}
-annotation|@
+end_return
+
+begin_function
+unit|}      @
 name|Override
 DECL|method|hashCode ()
 specifier|public
@@ -1611,6 +1826,9 @@ name|hashCode
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|toString ()
@@ -1627,6 +1845,9 @@ operator|+
 literal|")"
 return|;
 block|}
+end_function
+
+begin_decl_stmt
 DECL|field|serialVersionUID
 specifier|private
 specifier|static
@@ -1636,9 +1857,8 @@ name|serialVersionUID
 init|=
 literal|0
 decl_stmt|;
-block|}
-block|}
-end_class
+end_decl_stmt
 
+unit|} }
 end_unit
 

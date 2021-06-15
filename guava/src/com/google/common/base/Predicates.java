@@ -138,6 +138,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|checkerframework
@@ -164,6 +174,8 @@ name|emulated
 operator|=
 literal|true
 argument_list|)
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|Predicates
 specifier|public
 specifier|final
@@ -188,15 +200,18 @@ argument_list|)
 DECL|method|alwaysTrue ()
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|Predicate
 argument_list|<
 name|T
 argument_list|>
 name|alwaysTrue
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|ObjectPredicate
@@ -218,15 +233,18 @@ argument_list|)
 DECL|method|alwaysFalse ()
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|Predicate
 argument_list|<
 name|T
 argument_list|>
 name|alwaysFalse
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|ObjectPredicate
@@ -248,15 +266,18 @@ argument_list|)
 DECL|method|isNull ()
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|Predicate
 argument_list|<
 name|T
 argument_list|>
 name|isNull
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|ObjectPredicate
@@ -278,15 +299,18 @@ argument_list|)
 DECL|method|notNull ()
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|Predicate
 argument_list|<
 name|T
 argument_list|>
 name|notNull
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|ObjectPredicate
@@ -301,21 +325,24 @@ comment|/**    * Returns a predicate that evaluates to {@code true} if the given
 DECL|method|not (Predicate<T> predicate)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|Predicate
 argument_list|<
 name|T
 argument_list|>
 name|not
-parameter_list|(
+argument_list|(
 name|Predicate
 argument_list|<
 name|T
 argument_list|>
 name|predicate
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|new
@@ -329,18 +356,21 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns a predicate that evaluates to {@code true} if each of its components evaluates to    * {@code true}. The components are evaluated in order, and evaluation will be "short-circuited"    * as soon as a false predicate is found. It defensively copies the iterable passed in, so future    * changes to it won't alter the behavior of this predicate. If {@code components} is empty, the    * returned predicate will always evaluate to {@code true}.    */
-DECL|method|and (Iterable<? extends Predicate<? super T>> components)
+DECL|method|and ( Iterable<? extends Predicate<? super T>> components)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|Predicate
 argument_list|<
 name|T
 argument_list|>
 name|and
-parameter_list|(
+argument_list|(
 name|Iterable
 argument_list|<
 name|?
@@ -353,7 +383,7 @@ name|T
 argument_list|>
 argument_list|>
 name|components
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|new
@@ -375,24 +405,27 @@ name|SafeVarargs
 DECL|method|and (Predicate<? super T>.... components)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|Predicate
 argument_list|<
 name|T
 argument_list|>
 name|and
-parameter_list|(
+argument_list|(
 name|Predicate
 argument_list|<
 name|?
 super|super
 name|T
 argument_list|>
-modifier|...
+operator|...
 name|components
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|new
@@ -409,18 +442,21 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns a predicate that evaluates to {@code true} if both of its components evaluate to {@code    * true}. The components are evaluated in order, and evaluation will be "short-circuited" as soon    * as a false predicate is found.    */
-DECL|method|and (Predicate<? super T> first, Predicate<? super T> second)
+DECL|method|and ( Predicate<? super T> first, Predicate<? super T> second)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|Predicate
 argument_list|<
 name|T
 argument_list|>
 name|and
-parameter_list|(
+argument_list|(
 name|Predicate
 argument_list|<
 name|?
@@ -428,7 +464,7 @@ super|super
 name|T
 argument_list|>
 name|first
-parameter_list|,
+operator|,
 name|Predicate
 argument_list|<
 name|?
@@ -436,7 +472,7 @@ super|super
 name|T
 argument_list|>
 name|second
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|new
@@ -466,18 +502,21 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns a predicate that evaluates to {@code true} if any one of its components evaluates to    * {@code true}. The components are evaluated in order, and evaluation will be "short-circuited"    * as soon as a true predicate is found. It defensively copies the iterable passed in, so future    * changes to it won't alter the behavior of this predicate. If {@code components} is empty, the    * returned predicate will always evaluate to {@code false}.    */
-DECL|method|or (Iterable<? extends Predicate<? super T>> components)
+DECL|method|or ( Iterable<? extends Predicate<? super T>> components)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|Predicate
 argument_list|<
 name|T
 argument_list|>
 name|or
-parameter_list|(
+argument_list|(
 name|Iterable
 argument_list|<
 name|?
@@ -490,7 +529,7 @@ name|T
 argument_list|>
 argument_list|>
 name|components
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|new
@@ -512,24 +551,27 @@ name|SafeVarargs
 DECL|method|or (Predicate<? super T>.... components)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|Predicate
 argument_list|<
 name|T
 argument_list|>
 name|or
-parameter_list|(
+argument_list|(
 name|Predicate
 argument_list|<
 name|?
 super|super
 name|T
 argument_list|>
-modifier|...
+operator|...
 name|components
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|new
@@ -546,18 +588,21 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns a predicate that evaluates to {@code true} if either of its components evaluates to    * {@code true}. The components are evaluated in order, and evaluation will be "short-circuited"    * as soon as a true predicate is found.    */
-DECL|method|or (Predicate<? super T> first, Predicate<? super T> second)
+DECL|method|or ( Predicate<? super T> first, Predicate<? super T> second)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|Predicate
 argument_list|<
 name|T
 argument_list|>
 name|or
-parameter_list|(
+argument_list|(
 name|Predicate
 argument_list|<
 name|?
@@ -565,7 +610,7 @@ super|super
 name|T
 argument_list|>
 name|first
-parameter_list|,
+operator|,
 name|Predicate
 argument_list|<
 name|?
@@ -573,7 +618,7 @@ super|super
 name|T
 argument_list|>
 name|second
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|new
@@ -603,23 +648,26 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns a predicate that evaluates to {@code true} if the object being tested {@code equals()}    * the given target or both are null.    */
-DECL|method|equalTo (@ullable T target)
+DECL|method|equalTo (@arametricNullness T target)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|Predicate
 argument_list|<
 name|T
 argument_list|>
 name|equalTo
-parameter_list|(
+argument_list|(
 annotation|@
-name|Nullable
+name|ParametricNullness
 name|T
 name|target
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|(
@@ -627,7 +675,7 @@ name|target
 operator|==
 literal|null
 operator|)
-condition|?
+operator|?
 name|Predicates
 operator|.
 expr|<
@@ -635,15 +683,15 @@ name|T
 operator|>
 name|isNull
 argument_list|()
-else|:
+operator|:
 operator|new
 name|IsEqualToPredicate
-argument_list|<
-name|T
-argument_list|>
 argument_list|(
 name|target
 argument_list|)
+operator|.
+name|withNarrowedType
+argument_list|()
 return|;
 block|}
 comment|/**    * Returns a predicate that evaluates to {@code true} if the object being tested is an instance of    * the given class. If the object being tested is {@code null} this predicate evaluates to {@code    * false}.    *    *<p>If you want to filter an {@code Iterable} to narrow its type, consider using {@link    * com.google.common.collect.Iterables#filter(Iterable, Class)} in preference.    *    *<p><b>Warning:</b> contrary to the typical assumptions about predicates (as documented at    * {@link Predicate#apply}), the returned predicate may not be<i>consistent with equals</i>. For    * example, {@code instanceOf(ArrayList.class)} will yield different results for the two equal    * instances {@code Lists.newArrayList(1)} and {@code Arrays.asList(1)}.    */
@@ -653,28 +701,29 @@ comment|// Class.isInstance
 DECL|method|instanceOf (Class<?> clazz)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|Predicate
 argument_list|<
 name|T
 argument_list|>
 name|instanceOf
-parameter_list|(
+argument_list|(
 name|Class
 argument_list|<
 name|?
 argument_list|>
 name|clazz
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|new
 name|InstanceOfPredicate
-argument_list|<
-name|T
-argument_list|>
+argument_list|<>
 argument_list|(
 name|clazz
 argument_list|)
@@ -717,15 +766,18 @@ comment|/**    * Returns a predicate that evaluates to {@code true} if the objec
 DECL|method|in (Collection<? extends T> target)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|Predicate
 argument_list|<
 name|T
 argument_list|>
 name|in
-parameter_list|(
+argument_list|(
 name|Collection
 argument_list|<
 name|?
@@ -733,7 +785,7 @@ extends|extends
 name|T
 argument_list|>
 name|target
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|new
@@ -750,23 +802,29 @@ comment|/**    * Returns the composition of a function and a predicate. For ever
 DECL|method|compose ( Predicate<B> predicate, Function<A, ? extends B> function)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|A
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|B
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|Predicate
 argument_list|<
 name|A
 argument_list|>
 name|compose
-parameter_list|(
+argument_list|(
 name|Predicate
 argument_list|<
 name|B
 argument_list|>
 name|predicate
-parameter_list|,
+argument_list|,
 name|Function
 argument_list|<
 name|A
@@ -776,7 +834,7 @@ extends|extends
 name|B
 argument_list|>
 name|function
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|new
@@ -855,6 +913,8 @@ name|ObjectPredicate
 implements|implements
 name|Predicate
 argument_list|<
+annotation|@
+name|Nullable
 name|Object
 argument_list|>
 block|{
@@ -869,7 +929,7 @@ name|boolean
 name|apply
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|o
 parameter_list|)
@@ -902,7 +962,7 @@ name|boolean
 name|apply
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|o
 parameter_list|)
@@ -935,7 +995,7 @@ name|boolean
 name|apply
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|o
 parameter_list|)
@@ -970,7 +1030,7 @@ name|boolean
 name|apply
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|o
 parameter_list|)
@@ -1001,15 +1061,19 @@ literal|"unchecked"
 argument_list|)
 comment|// safe contravariant cast
 DECL|method|withNarrowedType ()
-parameter_list|<
+argument_list|<
 name|T
-parameter_list|>
+extends|extends
+decl|@
+name|Nullable
+name|Object
+decl|>
 name|Predicate
 argument_list|<
 name|T
 argument_list|>
 name|withNarrowedType
-parameter_list|()
+argument_list|()
 block|{
 return|return
 operator|(
@@ -1026,36 +1090,39 @@ comment|/** @see Predicates#not(Predicate) */
 DECL|class|NotPredicate
 specifier|private
 specifier|static
-class|class
+name|class
 name|NotPredicate
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
-implements|implements
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|implements
 name|Predicate
 argument_list|<
 name|T
 argument_list|>
-implements|,
+operator|,
 name|Serializable
 block|{
 DECL|field|predicate
-specifier|final
+name|final
 name|Predicate
 argument_list|<
 name|T
 argument_list|>
 name|predicate
-decl_stmt|;
+block|;
 DECL|method|NotPredicate (Predicate<T> predicate)
 name|NotPredicate
-parameter_list|(
+argument_list|(
 name|Predicate
 argument_list|<
 name|T
 argument_list|>
 name|predicate
-parameter_list|)
+argument_list|)
 block|{
 name|this
 operator|.
@@ -1065,20 +1132,19 @@ name|checkNotNull
 argument_list|(
 name|predicate
 argument_list|)
-expr_stmt|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|Override
-DECL|method|apply (@ullable T t)
+DECL|method|apply (@arametricNullness T t)
 specifier|public
 name|boolean
 name|apply
-parameter_list|(
+argument_list|(
 annotation|@
-name|Nullable
+name|ParametricNullness
 name|T
 name|t
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|!
@@ -1090,13 +1156,13 @@ name|t
 argument_list|)
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
 DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
-parameter_list|()
+argument_list|()
 block|{
 return|return
 operator|~
@@ -1108,13 +1174,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|equals (@ullable Object obj)
+DECL|method|equals (@heckForNull Object obj)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|obj
 parameter_list|)
@@ -1181,26 +1247,35 @@ init|=
 literal|0
 decl_stmt|;
 block|}
+end_class
+
+begin_comment
 comment|/** @see Predicates#and(Iterable) */
+end_comment
+
+begin_expr_stmt
 DECL|class|AndPredicate
 specifier|private
 specifier|static
-class|class
+name|class
 name|AndPredicate
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
-implements|implements
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|implements
 name|Predicate
 argument_list|<
 name|T
 argument_list|>
-implements|,
+operator|,
 name|Serializable
 block|{
 DECL|field|components
 specifier|private
-specifier|final
+name|final
 name|List
 argument_list|<
 name|?
@@ -1213,11 +1288,11 @@ name|T
 argument_list|>
 argument_list|>
 name|components
-decl_stmt|;
+block|;
 DECL|method|AndPredicate (List<? extends Predicate<? super T>> components)
 specifier|private
 name|AndPredicate
-parameter_list|(
+argument_list|(
 name|List
 argument_list|<
 name|?
@@ -1230,27 +1305,26 @@ name|T
 argument_list|>
 argument_list|>
 name|components
-parameter_list|)
+argument_list|)
 block|{
 name|this
 operator|.
 name|components
 operator|=
 name|components
-expr_stmt|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|Override
-DECL|method|apply (@ullable T t)
+DECL|method|apply (@arametricNullness T t)
 specifier|public
 name|boolean
 name|apply
-parameter_list|(
+argument_list|(
 annotation|@
-name|Nullable
+name|ParametricNullness
 name|T
 name|t
-parameter_list|)
+argument_list|)
 block|{
 comment|// Avoid using the Iterator to avoid generating garbage (issue 820).
 for|for
@@ -1292,11 +1366,16 @@ literal|false
 return|;
 block|}
 block|}
+end_expr_stmt
+
+begin_return
 return|return
 literal|true
 return|;
-block|}
-annotation|@
+end_return
+
+begin_function
+unit|}      @
 name|Override
 DECL|method|hashCode ()
 specifier|public
@@ -1314,15 +1393,18 @@ operator|+
 literal|0x12472c2c
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|equals (@ullable Object obj)
+DECL|method|equals (@heckForNull Object obj)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|obj
 parameter_list|)
@@ -1363,6 +1445,9 @@ return|return
 literal|false
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|toString ()
@@ -1380,6 +1465,9 @@ name|components
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_decl_stmt
 DECL|field|serialVersionUID
 specifier|private
 specifier|static
@@ -1389,27 +1477,36 @@ name|serialVersionUID
 init|=
 literal|0
 decl_stmt|;
-block|}
+end_decl_stmt
+
+begin_comment
+unit|}
 comment|/** @see Predicates#or(Iterable) */
+end_comment
+
+begin_expr_stmt
 DECL|class|OrPredicate
-specifier|private
+unit|private
 specifier|static
-class|class
+name|class
 name|OrPredicate
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
-implements|implements
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|implements
 name|Predicate
 argument_list|<
 name|T
 argument_list|>
-implements|,
+operator|,
 name|Serializable
 block|{
 DECL|field|components
 specifier|private
-specifier|final
+name|final
 name|List
 argument_list|<
 name|?
@@ -1422,11 +1519,11 @@ name|T
 argument_list|>
 argument_list|>
 name|components
-decl_stmt|;
+block|;
 DECL|method|OrPredicate (List<? extends Predicate<? super T>> components)
 specifier|private
 name|OrPredicate
-parameter_list|(
+argument_list|(
 name|List
 argument_list|<
 name|?
@@ -1439,27 +1536,26 @@ name|T
 argument_list|>
 argument_list|>
 name|components
-parameter_list|)
+argument_list|)
 block|{
 name|this
 operator|.
 name|components
 operator|=
 name|components
-expr_stmt|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|Override
-DECL|method|apply (@ullable T t)
+DECL|method|apply (@arametricNullness T t)
 specifier|public
 name|boolean
 name|apply
-parameter_list|(
+argument_list|(
 annotation|@
-name|Nullable
+name|ParametricNullness
 name|T
 name|t
-parameter_list|)
+argument_list|)
 block|{
 comment|// Avoid using the Iterator to avoid generating garbage (issue 820).
 for|for
@@ -1500,11 +1596,16 @@ literal|true
 return|;
 block|}
 block|}
+end_expr_stmt
+
+begin_return
 return|return
 literal|false
 return|;
-block|}
-annotation|@
+end_return
+
+begin_function
+unit|}      @
 name|Override
 DECL|method|hashCode ()
 specifier|public
@@ -1522,15 +1623,18 @@ operator|+
 literal|0x053c91cf
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|equals (@ullable Object obj)
+DECL|method|equals (@heckForNull Object obj)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|obj
 parameter_list|)
@@ -1571,6 +1675,9 @@ return|return
 literal|false
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|toString ()
@@ -1588,6 +1695,9 @@ name|components
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_decl_stmt
 DECL|field|serialVersionUID
 specifier|private
 specifier|static
@@ -1597,9 +1707,11 @@ name|serialVersionUID
 init|=
 literal|0
 decl_stmt|;
-block|}
+end_decl_stmt
+
+begin_function
+unit|}    private
 DECL|method|toStringHelper (String methodName, Iterable<?> components)
-specifier|private
 specifier|static
 name|String
 name|toStringHelper
@@ -1684,19 +1796,24 @@ name|toString
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/** @see Predicates#equalTo(Object) */
+end_comment
+
+begin_class
 DECL|class|IsEqualToPredicate
 specifier|private
 specifier|static
 class|class
 name|IsEqualToPredicate
-parameter_list|<
-name|T
-parameter_list|>
 implements|implements
 name|Predicate
 argument_list|<
-name|T
+annotation|@
+name|Nullable
+name|Object
 argument_list|>
 implements|,
 name|Serializable
@@ -1704,14 +1821,14 @@ block|{
 DECL|field|target
 specifier|private
 specifier|final
-name|T
+name|Object
 name|target
 decl_stmt|;
-DECL|method|IsEqualToPredicate (T target)
+DECL|method|IsEqualToPredicate (Object target)
 specifier|private
 name|IsEqualToPredicate
 parameter_list|(
-name|T
+name|Object
 name|target
 parameter_list|)
 block|{
@@ -1724,13 +1841,15 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|apply (T t)
+DECL|method|apply (@heckForNull Object o)
 specifier|public
 name|boolean
 name|apply
 parameter_list|(
-name|T
-name|t
+annotation|@
+name|CheckForNull
+name|Object
+name|o
 parameter_list|)
 block|{
 return|return
@@ -1738,7 +1857,7 @@ name|target
 operator|.
 name|equals
 argument_list|(
-name|t
+name|o
 argument_list|)
 return|;
 block|}
@@ -1759,13 +1878,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|equals (@ullable Object obj)
+DECL|method|equals (@heckForNull Object obj)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|obj
 parameter_list|)
@@ -1778,16 +1897,10 @@ name|IsEqualToPredicate
 condition|)
 block|{
 name|IsEqualToPredicate
-argument_list|<
-name|?
-argument_list|>
 name|that
 init|=
 operator|(
 name|IsEqualToPredicate
-argument_list|<
-name|?
-argument_list|>
 operator|)
 name|obj
 decl_stmt|;
@@ -1831,46 +1944,91 @@ name|serialVersionUID
 init|=
 literal|0
 decl_stmt|;
-block|}
-comment|/** @see Predicates#instanceOf(Class) */
 annotation|@
-name|GwtIncompatible
-comment|// Class.isInstance
-DECL|class|InstanceOfPredicate
-specifier|private
-specifier|static
-class|class
-name|InstanceOfPredicate
-parameter_list|<
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
+comment|// safe contravariant cast
+DECL|method|withNarrowedType ()
+operator|<
 name|T
-parameter_list|>
-implements|implements
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|Predicate
 argument_list|<
 name|T
 argument_list|>
-implements|,
+name|withNarrowedType
+argument_list|()
+block|{
+return|return
+operator|(
+name|Predicate
+argument_list|<
+name|T
+argument_list|>
+operator|)
+name|this
+return|;
+block|}
+block|}
+end_class
+
+begin_comment
+comment|/** @see Predicates#instanceOf(Class) */
+end_comment
+
+begin_annotation
+annotation|@
+name|GwtIncompatible
+end_annotation
+
+begin_comment
+comment|// Class.isInstance
+end_comment
+
+begin_expr_stmt
+DECL|class|InstanceOfPredicate
+specifier|private
+specifier|static
+name|class
+name|InstanceOfPredicate
+operator|<
+name|T
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|implements
+name|Predicate
+argument_list|<
+name|T
+argument_list|>
+operator|,
 name|Serializable
 block|{
 DECL|field|clazz
 specifier|private
-specifier|final
+name|final
 name|Class
 argument_list|<
 name|?
 argument_list|>
 name|clazz
-decl_stmt|;
+block|;
 DECL|method|InstanceOfPredicate (Class<?> clazz)
 specifier|private
 name|InstanceOfPredicate
-parameter_list|(
+argument_list|(
 name|Class
 argument_list|<
 name|?
 argument_list|>
 name|clazz
-parameter_list|)
+argument_list|)
 block|{
 name|this
 operator|.
@@ -1880,20 +2038,19 @@ name|checkNotNull
 argument_list|(
 name|clazz
 argument_list|)
-expr_stmt|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|Override
-DECL|method|apply (@ullable T o)
+DECL|method|apply (@arametricNullness T o)
 specifier|public
 name|boolean
 name|apply
-parameter_list|(
+argument_list|(
 annotation|@
-name|Nullable
+name|ParametricNullness
 name|T
 name|o
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|clazz
@@ -1904,13 +2061,13 @@ name|o
 argument_list|)
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
 DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|clazz
@@ -1919,15 +2076,18 @@ name|hashCode
 argument_list|()
 return|;
 block|}
+end_expr_stmt
+
+begin_function
 annotation|@
 name|Override
-DECL|method|equals (@ullable Object obj)
+DECL|method|equals (@heckForNull Object obj)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|obj
 parameter_list|)
@@ -1965,6 +2125,9 @@ return|return
 literal|false
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|toString ()
@@ -1984,6 +2147,9 @@ operator|+
 literal|")"
 return|;
 block|}
+end_function
+
+begin_decl_stmt
 DECL|field|serialVersionUID
 specifier|private
 specifier|static
@@ -1993,17 +2159,23 @@ name|serialVersionUID
 init|=
 literal|0
 decl_stmt|;
-block|}
+end_decl_stmt
+
+begin_comment
+unit|}
 comment|/** @see Predicates#subtypeOf(Class) */
-annotation|@
+end_comment
+
+begin_expr_stmt
+unit|@
 name|GwtIncompatible
 comment|// Class.isAssignableFrom
 DECL|class|SubtypeOfPredicate
 specifier|private
 specifier|static
-class|class
+name|class
 name|SubtypeOfPredicate
-implements|implements
+expr|implements
 name|Predicate
 argument_list|<
 name|Class
@@ -2011,7 +2183,7 @@ argument_list|<
 name|?
 argument_list|>
 argument_list|>
-implements|,
+operator|,
 name|Serializable
 block|{
 DECL|field|clazz
@@ -2084,13 +2256,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|equals (@ullable Object obj)
+DECL|method|equals (@heckForNull Object obj)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|obj
 parameter_list|)
@@ -2151,42 +2323,51 @@ init|=
 literal|0
 decl_stmt|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/** @see Predicates#in(Collection) */
+end_comment
+
+begin_expr_stmt
 DECL|class|InPredicate
 specifier|private
 specifier|static
-class|class
+name|class
 name|InPredicate
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
-implements|implements
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|implements
 name|Predicate
 argument_list|<
 name|T
 argument_list|>
-implements|,
+operator|,
 name|Serializable
 block|{
 DECL|field|target
 specifier|private
-specifier|final
+name|final
 name|Collection
 argument_list|<
 name|?
 argument_list|>
 name|target
-decl_stmt|;
+block|;
 DECL|method|InPredicate (Collection<?> target)
 specifier|private
 name|InPredicate
-parameter_list|(
+argument_list|(
 name|Collection
 argument_list|<
 name|?
 argument_list|>
 name|target
-parameter_list|)
+argument_list|)
 block|{
 name|this
 operator|.
@@ -2196,20 +2377,19 @@ name|checkNotNull
 argument_list|(
 name|target
 argument_list|)
-expr_stmt|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|Override
-DECL|method|apply (@ullable T t)
+DECL|method|apply (@arametricNullness T t)
 specifier|public
 name|boolean
 name|apply
-parameter_list|(
+argument_list|(
 annotation|@
-name|Nullable
+name|ParametricNullness
 name|T
 name|t
-parameter_list|)
+argument_list|)
 block|{
 try|try
 block|{
@@ -2234,16 +2414,18 @@ return|return
 literal|false
 return|;
 block|}
-block|}
-annotation|@
+end_expr_stmt
+
+begin_function
+unit|}      @
 name|Override
-DECL|method|equals (@ullable Object obj)
+DECL|method|equals (@heckForNull Object obj)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|obj
 parameter_list|)
@@ -2284,6 +2466,9 @@ return|return
 literal|false
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|hashCode ()
@@ -2299,6 +2484,9 @@ name|hashCode
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|toString ()
@@ -2315,6 +2503,9 @@ operator|+
 literal|")"
 return|;
 block|}
+end_function
+
+begin_decl_stmt
 DECL|field|serialVersionUID
 specifier|private
 specifier|static
@@ -2324,36 +2515,48 @@ name|serialVersionUID
 init|=
 literal|0
 decl_stmt|;
-block|}
+end_decl_stmt
+
+begin_comment
+unit|}
 comment|/** @see Predicates#compose(Predicate, Function) */
+end_comment
+
+begin_expr_stmt
 DECL|class|CompositionPredicate
-specifier|private
+unit|private
 specifier|static
-class|class
+name|class
 name|CompositionPredicate
-parameter_list|<
+operator|<
 name|A
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|B
-parameter_list|>
-implements|implements
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|implements
 name|Predicate
 argument_list|<
 name|A
 argument_list|>
-implements|,
+operator|,
 name|Serializable
 block|{
 DECL|field|p
-specifier|final
+name|final
 name|Predicate
 argument_list|<
 name|B
 argument_list|>
 name|p
-decl_stmt|;
+block|;
 DECL|field|f
-specifier|final
+name|final
 name|Function
 argument_list|<
 name|A
@@ -2363,17 +2566,17 @@ extends|extends
 name|B
 argument_list|>
 name|f
-decl_stmt|;
+block|;
 DECL|method|CompositionPredicate (Predicate<B> p, Function<A, ? extends B> f)
 specifier|private
 name|CompositionPredicate
-parameter_list|(
+argument_list|(
 name|Predicate
 argument_list|<
 name|B
 argument_list|>
 name|p
-parameter_list|,
+argument_list|,
 name|Function
 argument_list|<
 name|A
@@ -2383,7 +2586,7 @@ extends|extends
 name|B
 argument_list|>
 name|f
-parameter_list|)
+argument_list|)
 block|{
 name|this
 operator|.
@@ -2393,7 +2596,7 @@ name|checkNotNull
 argument_list|(
 name|p
 argument_list|)
-expr_stmt|;
+block|;
 name|this
 operator|.
 name|f
@@ -2402,20 +2605,19 @@ name|checkNotNull
 argument_list|(
 name|f
 argument_list|)
-expr_stmt|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|Override
-DECL|method|apply (@ullable A a)
+DECL|method|apply (@arametricNullness A a)
 specifier|public
 name|boolean
 name|apply
-parameter_list|(
+argument_list|(
 annotation|@
-name|Nullable
+name|ParametricNullness
 name|A
 name|a
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|p
@@ -2431,18 +2633,18 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
-DECL|method|equals (@ullable Object obj)
+DECL|method|equals (@heckForNull Object obj)
 specifier|public
 name|boolean
 name|equals
-parameter_list|(
+argument_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|obj
-parameter_list|)
+argument_list|)
 block|{
 if|if
 condition|(
@@ -2489,11 +2691,16 @@ name|p
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_return
 return|return
 literal|false
 return|;
-block|}
-annotation|@
+end_return
+
+begin_function
+unit|}      @
 name|Override
 DECL|method|hashCode ()
 specifier|public
@@ -2513,6 +2720,9 @@ name|hashCode
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|toString ()
@@ -2532,6 +2742,9 @@ operator|+
 literal|")"
 return|;
 block|}
+end_function
+
+begin_decl_stmt
 DECL|field|serialVersionUID
 specifier|private
 specifier|static
@@ -2541,35 +2754,41 @@ name|serialVersionUID
 init|=
 literal|0
 decl_stmt|;
-block|}
+end_decl_stmt
+
+begin_comment
+unit|}
 comment|/** @see Predicates#contains(Pattern) */
-annotation|@
+end_comment
+
+begin_expr_stmt
+unit|@
 name|GwtIncompatible
 comment|// Only used by other GWT-incompatible code.
 DECL|class|ContainsPatternPredicate
 specifier|private
 specifier|static
-class|class
+name|class
 name|ContainsPatternPredicate
-implements|implements
+expr|implements
 name|Predicate
 argument_list|<
 name|CharSequence
 argument_list|>
-implements|,
+operator|,
 name|Serializable
 block|{
 DECL|field|pattern
-specifier|final
+name|final
 name|CommonPattern
 name|pattern
-decl_stmt|;
+block|;
 DECL|method|ContainsPatternPredicate (CommonPattern pattern)
 name|ContainsPatternPredicate
-parameter_list|(
+argument_list|(
 name|CommonPattern
 name|pattern
-parameter_list|)
+argument_list|)
 block|{
 name|this
 operator|.
@@ -2579,18 +2798,17 @@ name|checkNotNull
 argument_list|(
 name|pattern
 argument_list|)
-expr_stmt|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|Override
 DECL|method|apply (CharSequence t)
 specifier|public
 name|boolean
 name|apply
-parameter_list|(
+argument_list|(
 name|CharSequence
 name|t
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|pattern
@@ -2604,13 +2822,13 @@ name|find
 argument_list|()
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
 DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
-parameter_list|()
+argument_list|()
 block|{
 comment|// Pattern uses Object.hashCode, so we have to reach
 comment|// inside to build a hashCode consistent with equals.
@@ -2631,15 +2849,18 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_function
 annotation|@
 name|Override
-DECL|method|equals (@ullable Object obj)
+DECL|method|equals (@heckForNull Object obj)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|obj
 parameter_list|)
@@ -2696,6 +2917,9 @@ return|return
 literal|false
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|toString ()
@@ -2745,6 +2969,9 @@ operator|+
 literal|")"
 return|;
 block|}
+end_function
+
+begin_decl_stmt
 DECL|field|serialVersionUID
 specifier|private
 specifier|static
@@ -2754,25 +2981,31 @@ name|serialVersionUID
 init|=
 literal|0
 decl_stmt|;
-block|}
+end_decl_stmt
+
+begin_comment
+unit|}
 comment|/** @see Predicates#containsPattern(String) */
-annotation|@
+end_comment
+
+begin_expr_stmt
+unit|@
 name|GwtIncompatible
 comment|// Only used by other GWT-incompatible code.
 DECL|class|ContainsPatternFromStringPredicate
 specifier|private
 specifier|static
-class|class
+name|class
 name|ContainsPatternFromStringPredicate
-extends|extends
+expr|extends
 name|ContainsPatternPredicate
 block|{
 DECL|method|ContainsPatternFromStringPredicate (String string)
 name|ContainsPatternFromStringPredicate
-parameter_list|(
+argument_list|(
 name|String
 name|string
-parameter_list|)
+argument_list|)
 block|{
 name|super
 argument_list|(
@@ -2783,15 +3016,14 @@ argument_list|(
 name|string
 argument_list|)
 argument_list|)
-expr_stmt|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|Override
 DECL|method|toString ()
 specifier|public
 name|String
 name|toString
-parameter_list|()
+argument_list|()
 block|{
 return|return
 literal|"Predicates.containsPattern("
@@ -2807,19 +3039,24 @@ block|}
 DECL|field|serialVersionUID
 specifier|private
 specifier|static
-specifier|final
+name|final
 name|long
 name|serialVersionUID
-init|=
+operator|=
 literal|0
-decl_stmt|;
-block|}
+expr_stmt|;
+end_expr_stmt
+
+begin_expr_stmt
+unit|}    private
 DECL|method|asList ( Predicate<? super T> first, Predicate<? super T> second)
-specifier|private
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|List
 argument_list|<
 name|Predicate
@@ -2830,7 +3067,7 @@ name|T
 argument_list|>
 argument_list|>
 name|asList
-parameter_list|(
+argument_list|(
 name|Predicate
 argument_list|<
 name|?
@@ -2838,7 +3075,7 @@ super|super
 name|T
 argument_list|>
 name|first
-parameter_list|,
+operator|,
 name|Predicate
 argument_list|<
 name|?
@@ -2846,7 +3083,7 @@ super|super
 name|T
 argument_list|>
 name|second
-parameter_list|)
+argument_list|)
 block|{
 comment|// TODO(kevinb): understand why we still get a warning despite @SafeVarargs!
 return|return
@@ -2868,6 +3105,9 @@ name|second
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_function
 DECL|method|defensiveCopy (T... array)
 specifier|private
 specifier|static
@@ -2897,6 +3137,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 DECL|method|defensiveCopy (Iterable<T> iterable)
 specifier|static
 parameter_list|<
@@ -2951,8 +3194,8 @@ return|return
 name|list
 return|;
 block|}
-block|}
-end_class
+end_function
 
+unit|}
 end_unit
 

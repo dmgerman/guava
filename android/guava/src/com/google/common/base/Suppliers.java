@@ -26,6 +26,22 @@ name|common
 operator|.
 name|base
 operator|.
+name|NullnessCasts
+operator|.
+name|uncheckedCastNullableTToT
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
 name|Preconditions
 operator|.
 name|checkArgument
@@ -45,6 +61,18 @@ operator|.
 name|Preconditions
 operator|.
 name|checkNotNull
+import|;
+end_import
+
+begin_import
+import|import static
+name|java
+operator|.
+name|util
+operator|.
+name|Objects
+operator|.
+name|requireNonNull
 import|;
 end_import
 
@@ -100,6 +128,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|checkerframework
@@ -108,9 +146,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -121,6 +159,8 @@ end_comment
 begin_class
 annotation|@
 name|GwtCompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|Suppliers
 specifier|public
 specifier|final
@@ -133,20 +173,26 @@ name|Suppliers
 parameter_list|()
 block|{}
 comment|/**    * Returns a new supplier which is the composition of the provided function and supplier. In other    * words, the new supplier's value will be computed by retrieving the value from {@code supplier},    * and then applying {@code function} to that value. Note that the resulting supplier will not    * call {@code supplier} or invoke {@code function} until it is called.    */
-DECL|method|compose (Function<? super F, T> function, Supplier<F> supplier)
+DECL|method|compose ( Function<? super F, T> function, Supplier<F> supplier)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|F
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|Supplier
 argument_list|<
 name|T
 argument_list|>
 name|compose
-parameter_list|(
+argument_list|(
 name|Function
 argument_list|<
 name|?
@@ -156,13 +202,13 @@ argument_list|,
 name|T
 argument_list|>
 name|function
-parameter_list|,
+operator|,
 name|Supplier
 argument_list|<
 name|F
 argument_list|>
 name|supplier
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|new
@@ -178,23 +224,29 @@ block|}
 DECL|class|SupplierComposition
 specifier|private
 specifier|static
-class|class
+name|class
 name|SupplierComposition
-parameter_list|<
+operator|<
 name|F
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|T
-parameter_list|>
-implements|implements
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|implements
 name|Supplier
 argument_list|<
 name|T
 argument_list|>
-implements|,
+operator|,
 name|Serializable
 block|{
 DECL|field|function
-specifier|final
+name|final
 name|Function
 argument_list|<
 name|?
@@ -204,18 +256,18 @@ argument_list|,
 name|T
 argument_list|>
 name|function
-decl_stmt|;
+block|;
 DECL|field|supplier
-specifier|final
+name|final
 name|Supplier
 argument_list|<
 name|F
 argument_list|>
 name|supplier
-decl_stmt|;
+block|;
 DECL|method|SupplierComposition (Function<? super F, T> function, Supplier<F> supplier)
 name|SupplierComposition
-parameter_list|(
+argument_list|(
 name|Function
 argument_list|<
 name|?
@@ -225,13 +277,13 @@ argument_list|,
 name|T
 argument_list|>
 name|function
-parameter_list|,
+operator|,
 name|Supplier
 argument_list|<
 name|F
 argument_list|>
 name|supplier
-parameter_list|)
+argument_list|)
 block|{
 name|this
 operator|.
@@ -241,7 +293,7 @@ name|checkNotNull
 argument_list|(
 name|function
 argument_list|)
-expr_stmt|;
+block|;
 name|this
 operator|.
 name|supplier
@@ -250,15 +302,16 @@ name|checkNotNull
 argument_list|(
 name|supplier
 argument_list|)
-expr_stmt|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|Override
+expr|@
+name|ParametricNullness
 DECL|method|get ()
 specifier|public
 name|T
 name|get
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|function
@@ -272,18 +325,18 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
-DECL|method|equals (@ullableDecl Object obj)
+DECL|method|equals (@heckForNull Object obj)
 specifier|public
 name|boolean
 name|equals
-parameter_list|(
+argument_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|obj
-parameter_list|)
+argument_list|)
 block|{
 if|if
 condition|(
@@ -334,6 +387,9 @@ return|return
 literal|false
 return|;
 block|}
+end_class
+
+begin_function
 annotation|@
 name|Override
 DECL|method|hashCode ()
@@ -353,6 +409,9 @@ name|supplier
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|toString ()
@@ -373,6 +432,9 @@ operator|+
 literal|")"
 return|;
 block|}
+end_function
+
+begin_decl_stmt
 DECL|field|serialVersionUID
 specifier|private
 specifier|static
@@ -382,26 +444,35 @@ name|serialVersionUID
 init|=
 literal|0
 decl_stmt|;
-block|}
+end_decl_stmt
+
+begin_comment
+unit|}
 comment|/**    * Returns a supplier which caches the instance retrieved during the first call to {@code get()}    * and returns that value on subsequent calls to {@code get()}. See:<a    * href="http://en.wikipedia.org/wiki/Memoization">memoization</a>    *    *<p>The returned supplier is thread-safe. The delegate's {@code get()} method will be invoked at    * most once unless the underlying {@code get()} throws an exception. The supplier's serialized    * form does not contain the cached value, which will be recalculated when {@code get()} is called    * on the reserialized instance.    *    *<p>When the underlying delegate throws an exception then this memoizing supplier will keep    * delegating calls until it returns valid data.    *    *<p>If {@code delegate} is an instance created by an earlier call to {@code memoize}, it is    * returned directly.    */
+end_comment
+
+begin_expr_stmt
 DECL|method|memoize (Supplier<T> delegate)
-specifier|public
+unit|public
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|Supplier
 argument_list|<
 name|T
 argument_list|>
 name|memoize
-parameter_list|(
+argument_list|(
 name|Supplier
 argument_list|<
 name|T
 argument_list|>
 name|delegate
-parameter_list|)
+argument_list|)
 block|{
 if|if
 condition|(
@@ -418,6 +489,9 @@ return|return
 name|delegate
 return|;
 block|}
+end_expr_stmt
+
+begin_return
 return|return
 name|delegate
 operator|instanceof
@@ -441,56 +515,61 @@ argument_list|(
 name|delegate
 argument_list|)
 return|;
-block|}
-annotation|@
+end_return
+
+begin_expr_stmt
+unit|}    @
 name|VisibleForTesting
 DECL|class|MemoizingSupplier
 specifier|static
-class|class
+name|class
 name|MemoizingSupplier
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
-implements|implements
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|implements
 name|Supplier
 argument_list|<
 name|T
 argument_list|>
-implements|,
+operator|,
 name|Serializable
 block|{
 DECL|field|delegate
-specifier|final
+name|final
 name|Supplier
 argument_list|<
 name|T
 argument_list|>
 name|delegate
-decl_stmt|;
+block|;
 DECL|field|initialized
 specifier|transient
 specifier|volatile
 name|boolean
 name|initialized
-decl_stmt|;
+block|;
 comment|// "value" does not need to be volatile; visibility piggy-backs
 comment|// on volatile read of "initialized".
 DECL|field|value
-annotation|@
-name|NullableDecl
+block|@
+name|CheckForNull
 specifier|transient
 name|T
 name|value
-decl_stmt|;
+block|;
 DECL|method|MemoizingSupplier (Supplier<T> delegate)
 name|MemoizingSupplier
-parameter_list|(
+argument_list|(
 name|Supplier
 argument_list|<
 name|T
 argument_list|>
 name|delegate
-parameter_list|)
+argument_list|)
 block|{
 name|this
 operator|.
@@ -500,15 +579,16 @@ name|checkNotNull
 argument_list|(
 name|delegate
 argument_list|)
-expr_stmt|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|Override
+expr|@
+name|ParametricNullness
 DECL|method|get ()
 specifier|public
 name|T
 name|get
-parameter_list|()
+argument_list|()
 block|{
 comment|// A 2-field variant of Double Checked Locking.
 if|if
@@ -549,12 +629,24 @@ name|t
 return|;
 block|}
 block|}
-block|}
-return|return
+end_expr_stmt
+
+begin_comment
+unit|}
+comment|// This is safe because we checked `initialized.`
+end_comment
+
+begin_expr_stmt
+unit|return
+name|uncheckedCastNullableTToT
+argument_list|(
 name|value
-return|;
-block|}
-annotation|@
+argument_list|)
+expr_stmt|;
+end_expr_stmt
+
+begin_function
+unit|}      @
 name|Override
 DECL|method|toString ()
 specifier|public
@@ -580,6 +672,9 @@ operator|+
 literal|")"
 return|;
 block|}
+end_function
+
+begin_decl_stmt
 DECL|field|serialVersionUID
 specifier|private
 specifier|static
@@ -589,52 +684,58 @@ name|serialVersionUID
 init|=
 literal|0
 decl_stmt|;
-block|}
-annotation|@
+end_decl_stmt
+
+begin_expr_stmt
+unit|}    @
 name|VisibleForTesting
 DECL|class|NonSerializableMemoizingSupplier
 specifier|static
-class|class
+name|class
 name|NonSerializableMemoizingSupplier
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
-implements|implements
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|implements
 name|Supplier
 argument_list|<
 name|T
 argument_list|>
-block|{
+block|{     @
 DECL|field|delegate
+name|CheckForNull
 specifier|volatile
 name|Supplier
 argument_list|<
 name|T
 argument_list|>
 name|delegate
-decl_stmt|;
+block|;
 DECL|field|initialized
 specifier|volatile
 name|boolean
 name|initialized
-decl_stmt|;
+block|;
 comment|// "value" does not need to be volatile; visibility piggy-backs
 comment|// on volatile read of "initialized".
 DECL|field|value
-annotation|@
-name|NullableDecl
+block|@
+name|CheckForNull
 name|T
 name|value
-decl_stmt|;
+block|;
 DECL|method|NonSerializableMemoizingSupplier (Supplier<T> delegate)
 name|NonSerializableMemoizingSupplier
-parameter_list|(
+argument_list|(
 name|Supplier
 argument_list|<
 name|T
 argument_list|>
 name|delegate
-parameter_list|)
+argument_list|)
 block|{
 name|this
 operator|.
@@ -644,15 +745,16 @@ name|checkNotNull
 argument_list|(
 name|delegate
 argument_list|)
-expr_stmt|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|Override
+expr|@
+name|ParametricNullness
 DECL|method|get ()
 specifier|public
 name|T
 name|get
-parameter_list|()
+argument_list|()
 block|{
 comment|// A 2-field variant of Double Checked Locking.
 if|if
@@ -672,10 +774,14 @@ operator|!
 name|initialized
 condition|)
 block|{
+comment|/*              * requireNonNull is safe because we read and write `delegate` under synchronization.              *              * TODO(cpovirk): To avoid having to check for null, replace `delegate` with a singleton              * `Supplier` that always throws an exception.              */
 name|T
 name|t
 init|=
+name|requireNonNull
+argument_list|(
 name|delegate
+argument_list|)
 operator|.
 name|get
 argument_list|()
@@ -698,12 +804,24 @@ name|t
 return|;
 block|}
 block|}
-block|}
-return|return
+end_expr_stmt
+
+begin_comment
+unit|}
+comment|// This is safe because we checked `initialized.`
+end_comment
+
+begin_expr_stmt
+unit|return
+name|uncheckedCastNullableTToT
+argument_list|(
 name|value
-return|;
-block|}
-annotation|@
+argument_list|)
+expr_stmt|;
+end_expr_stmt
+
+begin_function
+unit|}      @
 name|Override
 DECL|method|toString ()
 specifier|public
@@ -741,9 +859,15 @@ operator|+
 literal|")"
 return|;
 block|}
-block|}
+end_function
+
+begin_comment
+unit|}
 comment|/**    * Returns a supplier that caches the instance supplied by the delegate and removes the cached    * value after the specified time has passed. Subsequent calls to {@code get()} return the cached    * value if the expiration time has not passed. After the expiration time, a new value is    * retrieved, cached, and returned. See:<a    * href="http://en.wikipedia.org/wiki/Memoization">memoization</a>    *    *<p>The returned supplier is thread-safe. The supplier's serialized form does not contain the    * cached value, which will be recalculated when {@code get()} is called on the reserialized    * instance. The actual memoization does not happen when the underlying delegate throws an    * exception.    *    *<p>When the underlying delegate throws an exception then this memoizing supplier will keep    * delegating calls until it returns valid data.    *    * @param duration the length of time after a value is created that it should stop being returned    *     by subsequent {@code get()} calls    * @param unit the unit that {@code duration} is expressed in    * @throws IllegalArgumentException if {@code duration} is not positive    * @since 2.0    */
-annotation|@
+end_comment
+
+begin_expr_stmt
+unit|@
 name|SuppressWarnings
 argument_list|(
 literal|"GoodTime"
@@ -752,27 +876,30 @@ comment|// should accept a java.time.Duration
 DECL|method|memoizeWithExpiration ( Supplier<T> delegate, long duration, TimeUnit unit)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|Supplier
 argument_list|<
 name|T
 argument_list|>
 name|memoizeWithExpiration
-parameter_list|(
+argument_list|(
 name|Supplier
 argument_list|<
 name|T
 argument_list|>
 name|delegate
-parameter_list|,
+argument_list|,
 name|long
 name|duration
-parameter_list|,
+argument_list|,
 name|TimeUnit
 name|unit
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|new
@@ -789,72 +916,86 @@ name|unit
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_annotation
 annotation|@
 name|VisibleForTesting
+end_annotation
+
+begin_annotation
 annotation|@
 name|SuppressWarnings
 argument_list|(
 literal|"GoodTime"
 argument_list|)
+end_annotation
+
+begin_comment
 comment|// lots of violations
+end_comment
+
+begin_expr_stmt
 DECL|class|ExpiringMemoizingSupplier
 specifier|static
-class|class
+name|class
 name|ExpiringMemoizingSupplier
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
-implements|implements
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|implements
 name|Supplier
 argument_list|<
 name|T
 argument_list|>
-implements|,
+operator|,
 name|Serializable
 block|{
 DECL|field|delegate
-specifier|final
+name|final
 name|Supplier
 argument_list|<
 name|T
 argument_list|>
 name|delegate
-decl_stmt|;
+block|;
 DECL|field|durationNanos
-specifier|final
+name|final
 name|long
 name|durationNanos
-decl_stmt|;
+block|;     @
 DECL|field|value
-annotation|@
-name|NullableDecl
+name|CheckForNull
 specifier|transient
 specifier|volatile
 name|T
 name|value
-decl_stmt|;
+block|;
 comment|// The special value 0 means "not yet initialized".
 DECL|field|expirationNanos
 specifier|transient
 specifier|volatile
 name|long
 name|expirationNanos
-decl_stmt|;
+block|;
 DECL|method|ExpiringMemoizingSupplier (Supplier<T> delegate, long duration, TimeUnit unit)
 name|ExpiringMemoizingSupplier
-parameter_list|(
+argument_list|(
 name|Supplier
 argument_list|<
 name|T
 argument_list|>
 name|delegate
-parameter_list|,
+argument_list|,
 name|long
 name|duration
-parameter_list|,
+argument_list|,
 name|TimeUnit
 name|unit
-parameter_list|)
+argument_list|)
 block|{
 name|this
 operator|.
@@ -864,7 +1005,7 @@ name|checkNotNull
 argument_list|(
 name|delegate
 argument_list|)
-expr_stmt|;
+block|;
 name|this
 operator|.
 name|durationNanos
@@ -875,7 +1016,7 @@ name|toNanos
 argument_list|(
 name|duration
 argument_list|)
-expr_stmt|;
+block|;
 name|checkArgument
 argument_list|(
 name|duration
@@ -888,15 +1029,16 @@ name|duration
 argument_list|,
 name|unit
 argument_list|)
-expr_stmt|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|Override
+expr|@
+name|ParametricNullness
 DECL|method|get ()
 specifier|public
 name|T
 name|get
-parameter_list|()
+argument_list|()
 block|{
 comment|// Another variant of Double Checked Locking.
 comment|//
@@ -906,17 +1048,17 @@ comment|// the extra memory consumption and indirection are more
 comment|// expensive than the extra volatile reads.
 name|long
 name|nanos
-init|=
+operator|=
 name|expirationNanos
-decl_stmt|;
+block|;
 name|long
 name|now
-init|=
+operator|=
 name|Platform
 operator|.
 name|systemNanoTime
 argument_list|()
-decl_stmt|;
+block|;
 if|if
 condition|(
 name|nanos
@@ -980,12 +1122,24 @@ name|t
 return|;
 block|}
 block|}
-block|}
-return|return
+end_expr_stmt
+
+begin_comment
+unit|}
+comment|// This is safe because we checked `expirationNanos.`
+end_comment
+
+begin_expr_stmt
+unit|return
+name|uncheckedCastNullableTToT
+argument_list|(
 name|value
-return|;
-block|}
-annotation|@
+argument_list|)
+expr_stmt|;
+end_expr_stmt
+
+begin_function
+unit|}      @
 name|Override
 DECL|method|toString ()
 specifier|public
@@ -1007,6 +1161,9 @@ operator|+
 literal|", NANOS)"
 return|;
 block|}
+end_function
+
+begin_decl_stmt
 DECL|field|serialVersionUID
 specifier|private
 specifier|static
@@ -1016,25 +1173,34 @@ name|serialVersionUID
 init|=
 literal|0
 decl_stmt|;
-block|}
+end_decl_stmt
+
+begin_comment
+unit|}
 comment|/** Returns a supplier that always supplies {@code instance}. */
-DECL|method|ofInstance (@ullableDecl T instance)
-specifier|public
+end_comment
+
+begin_expr_stmt
+DECL|method|ofInstance ( @arametricNullness T instance)
+unit|public
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|Supplier
 argument_list|<
 name|T
 argument_list|>
 name|ofInstance
-parameter_list|(
+argument_list|(
 annotation|@
-name|NullableDecl
+name|ParametricNullness
 name|T
 name|instance
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|new
@@ -1047,69 +1213,75 @@ name|instance
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_expr_stmt
 DECL|class|SupplierOfInstance
 specifier|private
 specifier|static
-class|class
+name|class
 name|SupplierOfInstance
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
-implements|implements
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|implements
 name|Supplier
 argument_list|<
 name|T
 argument_list|>
-implements|,
+operator|,
 name|Serializable
-block|{
+block|{     @
 DECL|field|instance
-annotation|@
-name|NullableDecl
-specifier|final
+name|ParametricNullness
+name|final
 name|T
 name|instance
-decl_stmt|;
-DECL|method|SupplierOfInstance (@ullableDecl T instance)
+block|;
+DECL|method|SupplierOfInstance (@arametricNullness T instance)
 name|SupplierOfInstance
-parameter_list|(
+argument_list|(
 annotation|@
-name|NullableDecl
+name|ParametricNullness
 name|T
 name|instance
-parameter_list|)
+argument_list|)
 block|{
 name|this
 operator|.
 name|instance
 operator|=
 name|instance
-expr_stmt|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|Override
+expr|@
+name|ParametricNullness
 DECL|method|get ()
 specifier|public
 name|T
 name|get
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|instance
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
-DECL|method|equals (@ullableDecl Object obj)
+DECL|method|equals (@heckForNull Object obj)
 specifier|public
 name|boolean
 name|equals
-parameter_list|(
+argument_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|obj
-parameter_list|)
+argument_list|)
 block|{
 if|if
 condition|(
@@ -1145,11 +1317,16 @@ name|instance
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_return
 return|return
 literal|false
 return|;
-block|}
-annotation|@
+end_return
+
+begin_function
+unit|}      @
 name|Override
 DECL|method|hashCode ()
 specifier|public
@@ -1166,6 +1343,9 @@ name|instance
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|toString ()
@@ -1182,6 +1362,9 @@ operator|+
 literal|")"
 return|;
 block|}
+end_function
+
+begin_decl_stmt
 DECL|field|serialVersionUID
 specifier|private
 specifier|static
@@ -1191,26 +1374,35 @@ name|serialVersionUID
 init|=
 literal|0
 decl_stmt|;
-block|}
+end_decl_stmt
+
+begin_comment
+unit|}
 comment|/**    * Returns a supplier whose {@code get()} method synchronizes on {@code delegate} before calling    * it, making it thread-safe.    */
-DECL|method|synchronizedSupplier (Supplier<T> delegate)
-specifier|public
+end_comment
+
+begin_expr_stmt
+DECL|method|synchronizedSupplier ( Supplier<T> delegate)
+unit|public
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|Supplier
 argument_list|<
 name|T
 argument_list|>
 name|synchronizedSupplier
-parameter_list|(
+argument_list|(
 name|Supplier
 argument_list|<
 name|T
 argument_list|>
 name|delegate
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|new
@@ -1223,39 +1415,45 @@ name|delegate
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_expr_stmt
 DECL|class|ThreadSafeSupplier
 specifier|private
 specifier|static
-class|class
+name|class
 name|ThreadSafeSupplier
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
-implements|implements
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|implements
 name|Supplier
 argument_list|<
 name|T
 argument_list|>
-implements|,
+operator|,
 name|Serializable
 block|{
 DECL|field|delegate
-specifier|final
+name|final
 name|Supplier
 argument_list|<
 name|T
 argument_list|>
 name|delegate
-decl_stmt|;
+block|;
 DECL|method|ThreadSafeSupplier (Supplier<T> delegate)
 name|ThreadSafeSupplier
-parameter_list|(
+argument_list|(
 name|Supplier
 argument_list|<
 name|T
 argument_list|>
 name|delegate
-parameter_list|)
+argument_list|)
 block|{
 name|this
 operator|.
@@ -1265,15 +1463,16 @@ name|checkNotNull
 argument_list|(
 name|delegate
 argument_list|)
-expr_stmt|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|Override
+expr|@
+name|ParametricNullness
 DECL|method|get ()
 specifier|public
 name|T
 name|get
-parameter_list|()
+argument_list|()
 block|{
 synchronized|synchronized
 init|(
@@ -1288,13 +1487,13 @@ argument_list|()
 return|;
 block|}
 block|}
-annotation|@
+expr|@
 name|Override
 DECL|method|toString ()
 specifier|public
 name|String
 name|toString
-parameter_list|()
+argument_list|()
 block|{
 return|return
 literal|"Suppliers.synchronizedSupplier("
@@ -1304,6 +1503,9 @@ operator|+
 literal|")"
 return|;
 block|}
+end_expr_stmt
+
+begin_decl_stmt
 DECL|field|serialVersionUID
 specifier|private
 specifier|static
@@ -1313,14 +1515,23 @@ name|serialVersionUID
 init|=
 literal|0
 decl_stmt|;
-block|}
+end_decl_stmt
+
+begin_comment
+unit|}
 comment|/**    * Returns a function that accepts a supplier and returns the result of invoking {@link    * Supplier#get} on that supplier.    *    *<p><b>Java 8 users:</b> use the method reference {@code Supplier::get} instead.    *    * @since 8.0    */
+end_comment
+
+begin_expr_stmt
 DECL|method|supplierFunction ()
-specifier|public
+unit|public
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|Function
 argument_list|<
 name|Supplier
@@ -1331,9 +1542,8 @@ argument_list|,
 name|T
 argument_list|>
 name|supplierFunction
-parameter_list|()
-block|{
-annotation|@
+argument_list|()
+block|{     @
 name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
@@ -1344,7 +1554,7 @@ argument_list|<
 name|T
 argument_list|>
 name|sf
-init|=
+operator|=
 operator|(
 name|SupplierFunction
 argument_list|<
@@ -1354,19 +1564,25 @@ operator|)
 name|SupplierFunctionImpl
 operator|.
 name|INSTANCE
-decl_stmt|;
+block|;
 return|return
 name|sf
 return|;
 block|}
+end_expr_stmt
+
+begin_expr_stmt
 DECL|interface|SupplierFunction
 specifier|private
-interface|interface
+expr|interface
 name|SupplierFunction
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|Function
 argument_list|<
 name|Supplier
@@ -1379,11 +1595,13 @@ argument_list|>
 block|{}
 DECL|enum|SupplierFunctionImpl
 specifier|private
-enum|enum
+expr|enum
 name|SupplierFunctionImpl
-implements|implements
+expr|implements
 name|SupplierFunction
 argument_list|<
+annotation|@
+name|Nullable
 name|Object
 argument_list|>
 block|{
@@ -1391,19 +1609,23 @@ DECL|enumConstant|INSTANCE
 name|INSTANCE
 block|;
 comment|// Note: This makes T a "pass-through type"
-annotation|@
+block|@
 name|Override
-DECL|method|apply (Supplier<Object> input)
+expr|@
+name|CheckForNull
+DECL|method|apply (Supplier<@Nullable Object> input)
 specifier|public
 name|Object
 name|apply
-parameter_list|(
+argument_list|(
 name|Supplier
 argument_list|<
+annotation|@
+name|Nullable
 name|Object
 argument_list|>
 name|input
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|input
@@ -1412,21 +1634,20 @@ name|get
 argument_list|()
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
 DECL|method|toString ()
 specifier|public
 name|String
 name|toString
-parameter_list|()
+argument_list|()
 block|{
 return|return
 literal|"Suppliers.supplierFunction()"
 return|;
 block|}
-block|}
-block|}
-end_class
+end_expr_stmt
 
+unit|} }
 end_unit
 
