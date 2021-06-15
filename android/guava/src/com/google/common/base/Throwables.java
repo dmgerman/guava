@@ -254,7 +254,8 @@ name|emulated
 operator|=
 literal|true
 argument_list|)
-comment|// TODO(b/147136275): After adding @CheckForNull below, add @ElementTypesAreNonnullByDefault.
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|Throwables
 specifier|public
 specifier|final
@@ -794,11 +795,7 @@ annotation|@
 name|GwtIncompatible
 comment|// Class.cast(Object)
 annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"nullness"
-argument_list|)
-comment|// TODO(b/147136275): After updating callers, add @CheckForNull, and remove @SuppressWarnings.
+name|CheckForNull
 DECL|method|getCauseAs ( Throwable throwable, Class<X> expectedCauseType)
 specifier|public
 specifier|static
