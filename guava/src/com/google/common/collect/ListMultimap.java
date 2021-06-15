@@ -76,6 +76,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|checkerframework
@@ -94,19 +104,33 @@ begin_comment
 comment|/**  * A {@code Multimap} that can hold duplicate key-value pairs and that maintains the insertion  * ordering of values for a given key. See the {@link Multimap} documentation for information common  * to all multimaps.  *  *<p>The {@link #get}, {@link #removeAll}, and {@link #replaceValues} methods each return a {@link  * List} of values. Though the method signature doesn't say so explicitly, the map returned by  * {@link #asMap} has {@code List} values.  *  *<p>See the Guava User Guide article on<a href=  * "https://github.com/google/guava/wiki/NewCollectionTypesExplained#multimap"> {@code  * Multimap}</a>.  *  * @author Jared Levy  * @since 2.0  */
 end_comment
 
-begin_interface
+begin_annotation
 annotation|@
 name|GwtCompatible
+end_annotation
+
+begin_annotation
+annotation|@
+name|ElementTypesAreNonnullByDefault
+end_annotation
+
+begin_expr_stmt
 DECL|interface|ListMultimap
 specifier|public
-interface|interface
+expr|interface
 name|ListMultimap
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|Multimap
 argument_list|<
 name|K
@@ -115,54 +139,56 @@ name|V
 argument_list|>
 block|{
 comment|/**    * {@inheritDoc}    *    *<p>Because the values for a given key may have duplicates and follow the insertion ordering,    * this method returns a {@link List}, instead of the {@link java.util.Collection} specified in    * the {@link Multimap} interface.    */
-annotation|@
+block|@
 name|Override
-DECL|method|get (@ullable K key)
+DECL|method|get (@arametricNullness K key)
 name|List
 argument_list|<
 name|V
 argument_list|>
 name|get
-parameter_list|(
+argument_list|(
 annotation|@
-name|Nullable
+name|ParametricNullness
 name|K
 name|key
-parameter_list|)
-function_decl|;
+argument_list|)
+block|;
 comment|/**    * {@inheritDoc}    *    *<p>Because the values for a given key may have duplicates and follow the insertion ordering,    * this method returns a {@link List}, instead of the {@link java.util.Collection} specified in    * the {@link Multimap} interface.    */
-annotation|@
+block|@
 name|CanIgnoreReturnValue
-annotation|@
+expr|@
 name|Override
-DECL|method|removeAll (@ullable Object key)
+DECL|method|removeAll (@heckForNull Object key)
 name|List
 argument_list|<
 name|V
 argument_list|>
 name|removeAll
-parameter_list|(
+argument_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|key
-parameter_list|)
-function_decl|;
+argument_list|)
+block|;
 comment|/**    * {@inheritDoc}    *    *<p>Because the values for a given key may have duplicates and follow the insertion ordering,    * this method returns a {@link List}, instead of the {@link java.util.Collection} specified in    * the {@link Multimap} interface.    */
-annotation|@
+block|@
 name|CanIgnoreReturnValue
-annotation|@
+expr|@
 name|Override
-DECL|method|replaceValues (K key, Iterable<? extends V> values)
+DECL|method|replaceValues (@arametricNullness K key, Iterable<? extends V> values)
 name|List
 argument_list|<
 name|V
 argument_list|>
 name|replaceValues
-parameter_list|(
+argument_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|key
-parameter_list|,
+argument_list|,
 name|Iterable
 argument_list|<
 name|?
@@ -170,10 +196,10 @@ extends|extends
 name|V
 argument_list|>
 name|values
-parameter_list|)
-function_decl|;
+argument_list|)
+block|;
 comment|/**    * {@inheritDoc}    *    *<p><b>Note:</b> The returned map's values are guaranteed to be of type {@link List}. To obtain    * this map with the more specific generic type {@code Map<K, List<V>>}, call {@link    * Multimaps#asMap(ListMultimap)} instead.    */
-annotation|@
+block|@
 name|Override
 DECL|method|asMap ()
 name|Map
@@ -186,23 +212,22 @@ name|V
 argument_list|>
 argument_list|>
 name|asMap
-parameter_list|()
-function_decl|;
+argument_list|()
+block|;
 comment|/**    * Compares the specified object to this multimap for equality.    *    *<p>Two {@code ListMultimap} instances are equal if, for each key, they contain the same values    * in the same order. If the value orderings disagree, the multimaps will not be considered equal.    *    *<p>An empty {@code ListMultimap} is equal to any other empty {@code Multimap}, including an    * empty {@code SetMultimap}.    */
-annotation|@
+block|@
 name|Override
-DECL|method|equals (@ullable Object obj)
+DECL|method|equals (@heckForNull Object obj)
 name|boolean
 name|equals
-parameter_list|(
+argument_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|obj
-parameter_list|)
-function_decl|;
-block|}
-end_interface
+argument_list|)
+block|; }
+end_expr_stmt
 
 end_unit
 

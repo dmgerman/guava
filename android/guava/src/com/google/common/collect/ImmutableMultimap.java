@@ -49,6 +49,34 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|collect
+operator|.
+name|Maps
+operator|.
+name|immutableEntry
+import|;
+end_import
+
+begin_import
+import|import static
+name|java
+operator|.
+name|util
+operator|.
+name|Objects
+operator|.
+name|requireNonNull
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -240,6 +268,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|checkerframework
@@ -248,9 +286,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -266,6 +304,8 @@ name|emulated
 operator|=
 literal|true
 argument_list|)
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|ImmutableMultimap
 specifier|public
 specifier|abstract
@@ -627,6 +667,7 @@ name|V
 parameter_list|>
 block|{
 DECL|field|builderMap
+specifier|final
 name|Map
 argument_list|<
 name|K
@@ -640,7 +681,7 @@ name|builderMap
 decl_stmt|;
 DECL|field|keyComparator
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Comparator
 argument_list|<
 name|?
@@ -651,7 +692,7 @@ name|keyComparator
 decl_stmt|;
 DECL|field|valueComparator
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Comparator
 argument_list|<
 name|?
@@ -1592,7 +1633,7 @@ annotation|@
 name|Deprecated
 annotation|@
 name|Override
-DECL|method|removeAll (Object key)
+DECL|method|removeAll (@heckForNull Object key)
 specifier|public
 name|ImmutableCollection
 argument_list|<
@@ -1600,6 +1641,8 @@ name|V
 argument_list|>
 name|removeAll
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
@@ -1782,14 +1825,18 @@ annotation|@
 name|Deprecated
 annotation|@
 name|Override
-DECL|method|remove (Object key, Object value)
+DECL|method|remove (@heckForNull Object key, @CheckForNull Object value)
 specifier|public
 name|boolean
 name|remove
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|key
 parameter_list|,
+annotation|@
+name|CheckForNull
 name|Object
 name|value
 parameter_list|)
@@ -1816,13 +1863,13 @@ block|}
 comment|// accessors
 annotation|@
 name|Override
-DECL|method|containsKey (@ullableDecl Object key)
+DECL|method|containsKey (@heckForNull Object key)
 specifier|public
 name|boolean
 name|containsKey
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
@@ -1838,13 +1885,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|containsValue (@ullableDecl Object value)
+DECL|method|containsValue (@heckForNull Object value)
 specifier|public
 name|boolean
 name|containsValue
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|value
 parameter_list|)
@@ -2130,11 +2177,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|contains (Object object)
+DECL|method|contains (@heckForNull Object object)
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|object
 parameter_list|)
@@ -2250,6 +2299,8 @@ operator|.
 name|iterator
 argument_list|()
 decl_stmt|;
+annotation|@
+name|CheckForNull
 name|K
 name|currentKey
 init|=
@@ -2342,12 +2393,14 @@ name|iterator
 argument_list|()
 expr_stmt|;
 block|}
+comment|/*          * requireNonNull is safe: The first call to this method always enters the !hasNext() case          * and populates currentKey, after which it's never cleared.          */
 return|return
-name|Maps
-operator|.
 name|immutableEntry
 argument_list|(
+name|requireNonNull
+argument_list|(
 name|currentKey
+argument_list|)
 argument_list|,
 name|valueItr
 operator|.
@@ -2419,13 +2472,13 @@ argument_list|>
 block|{
 annotation|@
 name|Override
-DECL|method|contains (@ullableDecl Object object)
+DECL|method|contains (@heckForNull Object object)
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|object
 parameter_list|)
@@ -2439,13 +2492,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|count (@ullableDecl Object element)
+DECL|method|count (@heckForNull Object element)
 specifier|public
 name|int
 name|count
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|element
 parameter_list|)
@@ -2858,13 +2911,13 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|contains (@ullableDecl Object object)
+DECL|method|contains (@heckForNull Object object)
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|object
 parameter_list|)
@@ -2901,10 +2954,12 @@ name|GwtIncompatible
 comment|// not present in emulated superclass
 annotation|@
 name|Override
-DECL|method|copyIntoArray (Object[] dst, int offset)
+DECL|method|copyIntoArray (@ullable Object[] dst, int offset)
 name|int
 name|copyIntoArray
 parameter_list|(
+annotation|@
+name|Nullable
 name|Object
 index|[]
 name|dst

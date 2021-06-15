@@ -30,37 +30,66 @@ name|GwtCompatible
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|checkerframework
+operator|.
+name|checker
+operator|.
+name|nullness
+operator|.
+name|qual
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/**  * A supertype for filtered {@link SetMultimap} implementations.  *  * @author Louis Wasserman  */
 end_comment
 
-begin_interface
+begin_annotation
 annotation|@
 name|GwtCompatible
+end_annotation
+
+begin_annotation
+annotation|@
+name|ElementTypesAreNonnullByDefault
+end_annotation
+
+begin_expr_stmt
 DECL|interface|FilteredSetMultimap
-interface|interface
+unit|interface
 name|FilteredSetMultimap
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|FilteredMultimap
 argument_list|<
 name|K
 argument_list|,
 name|V
 argument_list|>
-extends|,
+operator|,
 name|SetMultimap
 argument_list|<
 name|K
 argument_list|,
 name|V
 argument_list|>
-block|{
-annotation|@
+block|{   @
 name|Override
 DECL|method|unfiltered ()
 name|SetMultimap
@@ -70,10 +99,9 @@ argument_list|,
 name|V
 argument_list|>
 name|unfiltered
-parameter_list|()
-function_decl|;
-block|}
-end_interface
+argument_list|()
+block|; }
+end_expr_stmt
 
 end_unit
 

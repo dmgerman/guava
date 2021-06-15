@@ -66,30 +66,70 @@ name|Set
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|checkerframework
+operator|.
+name|checker
+operator|.
+name|nullness
+operator|.
+name|qual
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/**  * Implementation of {@link Multimaps#filterEntries(SetMultimap, Predicate)}.  *  * @author Louis Wasserman  */
 end_comment
 
-begin_class
+begin_annotation
 annotation|@
 name|GwtCompatible
+end_annotation
+
+begin_annotation
+annotation|@
+name|ElementTypesAreNonnullByDefault
+end_annotation
+
+begin_expr_stmt
 DECL|class|FilteredEntrySetMultimap
-specifier|final
-class|class
+name|final
+name|class
 name|FilteredEntrySetMultimap
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|FilteredEntryMultimap
 argument_list|<
 name|K
 argument_list|,
 name|V
 argument_list|>
-implements|implements
+expr|implements
 name|FilteredSetMultimap
 argument_list|<
 name|K
@@ -99,7 +139,7 @@ argument_list|>
 block|{
 DECL|method|FilteredEntrySetMultimap (SetMultimap<K, V> unfiltered, Predicate<? super Entry<K, V>> predicate)
 name|FilteredEntrySetMultimap
-parameter_list|(
+argument_list|(
 name|SetMultimap
 argument_list|<
 name|K
@@ -107,7 +147,7 @@ argument_list|,
 name|V
 argument_list|>
 name|unfiltered
-parameter_list|,
+argument_list|,
 name|Predicate
 argument_list|<
 name|?
@@ -120,7 +160,7 @@ name|V
 argument_list|>
 argument_list|>
 name|predicate
-parameter_list|)
+argument_list|)
 block|{
 name|super
 argument_list|(
@@ -128,9 +168,8 @@ name|unfiltered
 argument_list|,
 name|predicate
 argument_list|)
-expr_stmt|;
-block|}
-annotation|@
+block|;   }
+expr|@
 name|Override
 DECL|method|unfiltered ()
 specifier|public
@@ -141,7 +180,7 @@ argument_list|,
 name|V
 argument_list|>
 name|unfiltered
-parameter_list|()
+argument_list|()
 block|{
 return|return
 operator|(
@@ -155,19 +194,21 @@ operator|)
 name|unfiltered
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
-DECL|method|get (K key)
+DECL|method|get (@arametricNullness K key)
 specifier|public
 name|Set
 argument_list|<
 name|V
 argument_list|>
 name|get
-parameter_list|(
+argument_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|key
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|(
@@ -184,9 +225,12 @@ name|key
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_function
 annotation|@
 name|Override
-DECL|method|removeAll (Object key)
+DECL|method|removeAll (@heckForNull Object key)
 specifier|public
 name|Set
 argument_list|<
@@ -194,6 +238,8 @@ name|V
 argument_list|>
 name|removeAll
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
@@ -213,9 +259,12 @@ name|key
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|replaceValues (K key, Iterable<? extends V> values)
+DECL|method|replaceValues (@arametricNullness K key, Iterable<? extends V> values)
 specifier|public
 name|Set
 argument_list|<
@@ -223,6 +272,8 @@ name|V
 argument_list|>
 name|replaceValues
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|key
 parameter_list|,
@@ -252,6 +303,9 @@ name|values
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|createEntries ()
@@ -283,6 +337,9 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|entries ()
@@ -317,8 +374,8 @@ name|entries
 argument_list|()
 return|;
 block|}
-block|}
-end_class
+end_function
 
+unit|}
 end_unit
 

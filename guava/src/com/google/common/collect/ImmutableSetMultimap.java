@@ -290,6 +290,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|checkerframework
@@ -320,6 +330,8 @@ name|emulated
 operator|=
 literal|true
 argument_list|)
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|ImmutableSetMultimap
 specifier|public
 class|class
@@ -345,16 +357,19 @@ name|V
 argument_list|>
 block|{
 comment|/**    * Returns a {@link Collector} that accumulates elements into an {@code ImmutableSetMultimap}    * whose keys and values are the result of applying the provided mapping functions to the input    * elements.    *    *<p>For streams with defined encounter order (as defined in the Ordering section of the {@link    * java.util.stream} Javadoc), that order is preserved, but entries are<a    * href="ImmutableMultimap.html#iteration">grouped by key</a>.    *    *<p>Example:    *    *<pre>{@code    * static final Multimap<Character, String> FIRST_LETTER_MULTIMAP =    *     Stream.of("banana", "apple", "carrot", "asparagus", "cherry")    *         .collect(toImmutableSetMultimap(str -> str.charAt(0), str -> str.substring(1)));    *    * // is equivalent to    *    * static final Multimap<Character, String> FIRST_LETTER_MULTIMAP =    *     new ImmutableSetMultimap.Builder<Character, String>()    *         .put('b', "anana")    *         .putAll('a', "pple", "sparagus")    *         .putAll('c', "arrot", "herry")    *         .build();    * }</pre>    *    * @since 21.0    */
-DECL|method|toImmutableSetMultimap ( Function<? super T, ? extends K> keyFunction, Function<? super T, ? extends V> valueFunction)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|K
-parameter_list|,
+operator|,
 name|V
-parameter_list|>
+operator|>
+DECL|method|toImmutableSetMultimap ( Function<? super T, ? extends K> keyFunction, Function<? super T, ? extends V> valueFunction)
 name|Collector
 argument_list|<
 name|T
@@ -369,7 +384,7 @@ name|V
 argument_list|>
 argument_list|>
 name|toImmutableSetMultimap
-parameter_list|(
+argument_list|(
 name|Function
 argument_list|<
 name|?
@@ -381,7 +396,7 @@ extends|extends
 name|K
 argument_list|>
 name|keyFunction
-parameter_list|,
+operator|,
 name|Function
 argument_list|<
 name|?
@@ -393,7 +408,7 @@ extends|extends
 name|V
 argument_list|>
 name|valueFunction
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|CollectCollectors
@@ -409,13 +424,16 @@ block|}
 comment|/**    * Returns a {@code Collector} accumulating entries into an {@code ImmutableSetMultimap}. Each    * input element is mapped to a key and a stream of values, each of which are put into the    * resulting {@code Multimap}, in the encounter order of the stream and the encounter order of the    * streams of values.    *    *<p>Example:    *    *<pre>{@code    * static final ImmutableSetMultimap<Character, Character> FIRST_LETTER_MULTIMAP =    *     Stream.of("banana", "apple", "carrot", "asparagus", "cherry")    *         .collect(    *             flatteningToImmutableSetMultimap(    *                  str -> str.charAt(0),    *                  str -> str.substring(1).chars().mapToObj(c -> (char) c));    *    * // is equivalent to    *    * static final ImmutableSetMultimap<Character, Character> FIRST_LETTER_MULTIMAP =    *     ImmutableSetMultimap.<Character, Character>builder()    *         .putAll('b', Arrays.asList('a', 'n', 'a', 'n', 'a'))    *         .putAll('a', Arrays.asList('p', 'p', 'l', 'e'))    *         .putAll('c', Arrays.asList('a', 'r', 'r', 'o', 't'))    *         .putAll('a', Arrays.asList('s', 'p', 'a', 'r', 'a', 'g', 'u', 's'))    *         .putAll('c', Arrays.asList('h', 'e', 'r', 'r', 'y'))    *         .build();    *    * // after deduplication, the resulting multimap is equivalent to    *    * static final ImmutableSetMultimap<Character, Character> FIRST_LETTER_MULTIMAP =    *     ImmutableSetMultimap.<Character, Character>builder()    *         .putAll('b', Arrays.asList('a', 'n'))    *         .putAll('a', Arrays.asList('p', 'l', 'e', 's', 'a', 'r', 'g', 'u'))    *         .putAll('c', Arrays.asList('a', 'r', 'o', 't', 'h', 'e', 'y'))    *         .build();    * }    * }</pre>    *    * @since 21.0    */
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|K
-parameter_list|,
+operator|,
 name|V
-parameter_list|>
+operator|>
 DECL|method|flatteningToImmutableSetMultimap ( Function<? super T, ? extends K> keyFunction, Function<? super T, ? extends Stream<? extends V>> valuesFunction)
 name|Collector
 argument_list|<
@@ -431,7 +449,7 @@ name|V
 argument_list|>
 argument_list|>
 name|flatteningToImmutableSetMultimap
-parameter_list|(
+argument_list|(
 name|Function
 argument_list|<
 name|?
@@ -443,7 +461,7 @@ extends|extends
 name|K
 argument_list|>
 name|keyFunction
-parameter_list|,
+operator|,
 name|Function
 argument_list|<
 name|?
@@ -460,7 +478,7 @@ name|V
 argument_list|>
 argument_list|>
 name|valuesFunction
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|CollectCollectors
@@ -1497,7 +1515,7 @@ literal|null
 argument_list|)
 return|;
 block|}
-DECL|method|copyOf ( Multimap<? extends K, ? extends V> multimap, Comparator<? super V> valueComparator)
+DECL|method|copyOf ( Multimap<? extends K, ? extends V> multimap, @CheckForNull Comparator<? super V> valueComparator)
 specifier|private
 specifier|static
 parameter_list|<
@@ -1525,6 +1543,8 @@ name|V
 argument_list|>
 name|multimap
 parameter_list|,
+annotation|@
+name|CheckForNull
 name|Comparator
 argument_list|<
 name|?
@@ -1674,7 +1694,7 @@ argument_list|()
 return|;
 block|}
 comment|/** Creates an ImmutableSetMultimap from an asMap.entrySet. */
-DECL|method|fromMapEntries ( Collection<? extends Map.Entry<? extends K, ? extends Collection<? extends V>>> mapEntries, @Nullable Comparator<? super V> valueComparator)
+DECL|method|fromMapEntries ( Collection<? extends Map.Entry<? extends K, ? extends Collection<? extends V>>> mapEntries, @CheckForNull Comparator<? super V> valueComparator)
 specifier|static
 parameter_list|<
 name|K
@@ -1714,7 +1734,7 @@ argument_list|>
 name|mapEntries
 parameter_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Comparator
 argument_list|<
 name|?
@@ -1877,7 +1897,7 @@ name|V
 argument_list|>
 name|emptySet
 decl_stmt|;
-DECL|method|ImmutableSetMultimap ( ImmutableMap<K, ImmutableSet<V>> map, int size, @Nullable Comparator<? super V> valueComparator)
+DECL|method|ImmutableSetMultimap ( ImmutableMap<K, ImmutableSet<V>> map, int size, @CheckForNull Comparator<? super V> valueComparator)
 name|ImmutableSetMultimap
 parameter_list|(
 name|ImmutableMap
@@ -1895,7 +1915,7 @@ name|int
 name|size
 parameter_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Comparator
 argument_list|<
 name|?
@@ -1926,7 +1946,7 @@ comment|// views
 comment|/**    * Returns an immutable set of the values for the given key. If no mappings in the multimap have    * the provided key, an empty immutable set is returned. The values are in the same order as the    * parameters used to build this multimap.    */
 annotation|@
 name|Override
-DECL|method|get (@ullable K key)
+DECL|method|get (K key)
 specifier|public
 name|ImmutableSet
 argument_list|<
@@ -1934,8 +1954,6 @@ name|V
 argument_list|>
 name|get
 parameter_list|(
-annotation|@
-name|Nullable
 name|K
 name|key
 parameter_list|)
@@ -1976,10 +1994,10 @@ annotation|@
 name|LazyInit
 annotation|@
 name|RetainedWith
+annotation|@
+name|CheckForNull
 specifier|private
 specifier|transient
-annotation|@
-name|Nullable
 name|ImmutableSetMultimap
 argument_list|<
 name|V
@@ -2116,7 +2134,7 @@ name|DoNotCall
 argument_list|(
 literal|"Always throws UnsupportedOperationException"
 argument_list|)
-DECL|method|removeAll (Object key)
+DECL|method|removeAll (@heckForNull Object key)
 specifier|public
 specifier|final
 name|ImmutableSet
@@ -2125,6 +2143,8 @@ name|V
 argument_list|>
 name|removeAll
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
@@ -2179,10 +2199,10 @@ annotation|@
 name|LazyInit
 annotation|@
 name|RetainedWith
+annotation|@
+name|CheckForNull
 specifier|private
 specifier|transient
-annotation|@
-name|Nullable
 name|ImmutableSet
 argument_list|<
 name|Entry
@@ -2300,13 +2320,13 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|contains (@ullable Object object)
+DECL|method|contains (@heckForNull Object object)
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|object
 parameter_list|)
@@ -2407,7 +2427,7 @@ literal|false
 return|;
 block|}
 block|}
-DECL|method|valueSet ( @ullable Comparator<? super V> valueComparator, Collection<? extends V> values)
+DECL|method|valueSet ( @heckForNull Comparator<? super V> valueComparator, Collection<? extends V> values)
 specifier|private
 specifier|static
 parameter_list|<
@@ -2420,7 +2440,7 @@ argument_list|>
 name|valueSet
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Comparator
 argument_list|<
 name|?
@@ -2462,7 +2482,7 @@ name|values
 argument_list|)
 return|;
 block|}
-DECL|method|emptySet (@ullable Comparator<? super V> valueComparator)
+DECL|method|emptySet (@heckForNull Comparator<? super V> valueComparator)
 specifier|private
 specifier|static
 parameter_list|<
@@ -2475,7 +2495,7 @@ argument_list|>
 name|emptySet
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Comparator
 argument_list|<
 name|?
@@ -2511,7 +2531,7 @@ name|valueComparator
 argument_list|)
 return|;
 block|}
-DECL|method|valuesBuilder ( @ullable Comparator<? super V> valueComparator)
+DECL|method|valuesBuilder ( @heckForNull Comparator<? super V> valueComparator)
 specifier|private
 specifier|static
 parameter_list|<
@@ -2526,7 +2546,7 @@ argument_list|>
 name|valuesBuilder
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Comparator
 argument_list|<
 name|?
@@ -2603,7 +2623,7 @@ argument_list|)
 expr_stmt|;
 block|}
 annotation|@
-name|Nullable
+name|CheckForNull
 DECL|method|valueComparator ()
 name|Comparator
 argument_list|<

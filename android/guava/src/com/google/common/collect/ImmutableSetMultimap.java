@@ -254,17 +254,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|javax
 operator|.
-name|checkerframework
+name|annotation
 operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|compatqual
-operator|.
-name|NullableDecl
+name|CheckForNull
 import|;
 end_import
 
@@ -284,6 +278,8 @@ name|emulated
 operator|=
 literal|true
 argument_list|)
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|ImmutableSetMultimap
 specifier|public
 class|class
@@ -1332,7 +1328,7 @@ literal|null
 argument_list|)
 return|;
 block|}
-DECL|method|copyOf ( Multimap<? extends K, ? extends V> multimap, Comparator<? super V> valueComparator)
+DECL|method|copyOf ( Multimap<? extends K, ? extends V> multimap, @CheckForNull Comparator<? super V> valueComparator)
 specifier|private
 specifier|static
 parameter_list|<
@@ -1360,6 +1356,8 @@ name|V
 argument_list|>
 name|multimap
 parameter_list|,
+annotation|@
+name|CheckForNull
 name|Comparator
 argument_list|<
 name|?
@@ -1509,7 +1507,7 @@ argument_list|()
 return|;
 block|}
 comment|/** Creates an ImmutableSetMultimap from an asMap.entrySet. */
-DECL|method|fromMapEntries ( Collection<? extends Map.Entry<? extends K, ? extends Collection<? extends V>>> mapEntries, @NullableDecl Comparator<? super V> valueComparator)
+DECL|method|fromMapEntries ( Collection<? extends Map.Entry<? extends K, ? extends Collection<? extends V>>> mapEntries, @CheckForNull Comparator<? super V> valueComparator)
 specifier|static
 parameter_list|<
 name|K
@@ -1549,7 +1547,7 @@ argument_list|>
 name|mapEntries
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Comparator
 argument_list|<
 name|?
@@ -1712,7 +1710,7 @@ name|V
 argument_list|>
 name|emptySet
 decl_stmt|;
-DECL|method|ImmutableSetMultimap ( ImmutableMap<K, ImmutableSet<V>> map, int size, @NullableDecl Comparator<? super V> valueComparator)
+DECL|method|ImmutableSetMultimap ( ImmutableMap<K, ImmutableSet<V>> map, int size, @CheckForNull Comparator<? super V> valueComparator)
 name|ImmutableSetMultimap
 parameter_list|(
 name|ImmutableMap
@@ -1730,7 +1728,7 @@ name|int
 name|size
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Comparator
 argument_list|<
 name|?
@@ -1761,7 +1759,7 @@ comment|// views
 comment|/**    * Returns an immutable set of the values for the given key. If no mappings in the multimap have    * the provided key, an empty immutable set is returned. The values are in the same order as the    * parameters used to build this multimap.    */
 annotation|@
 name|Override
-DECL|method|get (@ullableDecl K key)
+DECL|method|get (K key)
 specifier|public
 name|ImmutableSet
 argument_list|<
@@ -1769,8 +1767,6 @@ name|V
 argument_list|>
 name|get
 parameter_list|(
-annotation|@
-name|NullableDecl
 name|K
 name|key
 parameter_list|)
@@ -1812,7 +1808,7 @@ name|LazyInit
 annotation|@
 name|RetainedWith
 annotation|@
-name|NullableDecl
+name|CheckForNull
 specifier|private
 specifier|transient
 name|ImmutableSetMultimap
@@ -1951,7 +1947,7 @@ name|DoNotCall
 argument_list|(
 literal|"Always throws UnsupportedOperationException"
 argument_list|)
-DECL|method|removeAll (Object key)
+DECL|method|removeAll (@heckForNull Object key)
 specifier|public
 specifier|final
 name|ImmutableSet
@@ -1960,6 +1956,8 @@ name|V
 argument_list|>
 name|removeAll
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
@@ -2015,7 +2013,7 @@ name|LazyInit
 annotation|@
 name|RetainedWith
 annotation|@
-name|NullableDecl
+name|CheckForNull
 specifier|private
 specifier|transient
 name|ImmutableSet
@@ -2135,13 +2133,13 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|contains (@ullableDecl Object object)
+DECL|method|contains (@heckForNull Object object)
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|object
 parameter_list|)
@@ -2242,7 +2240,7 @@ literal|false
 return|;
 block|}
 block|}
-DECL|method|valueSet ( @ullableDecl Comparator<? super V> valueComparator, Collection<? extends V> values)
+DECL|method|valueSet ( @heckForNull Comparator<? super V> valueComparator, Collection<? extends V> values)
 specifier|private
 specifier|static
 parameter_list|<
@@ -2255,7 +2253,7 @@ argument_list|>
 name|valueSet
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Comparator
 argument_list|<
 name|?
@@ -2297,7 +2295,7 @@ name|values
 argument_list|)
 return|;
 block|}
-DECL|method|emptySet (@ullableDecl Comparator<? super V> valueComparator)
+DECL|method|emptySet (@heckForNull Comparator<? super V> valueComparator)
 specifier|private
 specifier|static
 parameter_list|<
@@ -2310,7 +2308,7 @@ argument_list|>
 name|emptySet
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Comparator
 argument_list|<
 name|?
@@ -2346,7 +2344,7 @@ name|valueComparator
 argument_list|)
 return|;
 block|}
-DECL|method|valuesBuilder ( @ullableDecl Comparator<? super V> valueComparator)
+DECL|method|valuesBuilder ( @heckForNull Comparator<? super V> valueComparator)
 specifier|private
 specifier|static
 parameter_list|<
@@ -2361,7 +2359,7 @@ argument_list|>
 name|valuesBuilder
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Comparator
 argument_list|<
 name|?
@@ -2438,7 +2436,7 @@ argument_list|)
 expr_stmt|;
 block|}
 annotation|@
-name|NullableDecl
+name|CheckForNull
 DECL|method|valueComparator ()
 name|Comparator
 argument_list|<

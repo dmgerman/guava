@@ -42,6 +42,8 @@ name|serializable
 operator|=
 literal|true
 argument_list|)
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|EmptyImmutableSetMultimap
 class|class
 name|EmptyImmutableSetMultimap

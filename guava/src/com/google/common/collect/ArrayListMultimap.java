@@ -154,11 +154,27 @@ name|Map
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|checkerframework
+operator|.
+name|checker
+operator|.
+name|nullness
+operator|.
+name|qual
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/**  * Implementation of {@code Multimap} that uses an {@code ArrayList} to store the values for a given  * key. A {@link HashMap} associates each key with an {@link ArrayList} of values.  *  *<p>When iterating through the collections supplied by this class, the ordering of values for a  * given key agrees with the order in which the values were added.  *  *<p>This multimap allows duplicate key-value pairs. After adding a new key-value pair equal to an  * existing key-value pair, the {@code ArrayListMultimap} will contain entries for both the new  * value and the old value.  *  *<p>Keys and values may be null. All optional multimap methods are supported, and all returned  * views are modifiable.  *  *<p>The lists returned by {@link #get}, {@link #removeAll}, and {@link #replaceValues} all  * implement {@link java.util.RandomAccess}.  *  *<p>This class is not threadsafe when any concurrent operations update the multimap. Concurrent  * read operations will work correctly. To allow concurrent update operations, wrap your multimap  * with a call to {@link Multimaps#synchronizedListMultimap}.  *  *<p>See the Guava User Guide article on<a href=  * "https://github.com/google/guava/wiki/NewCollectionTypesExplained#multimap"> {@code  * Multimap}</a>.  *  * @author Jared Levy  * @since 2.0  */
 end_comment
 
-begin_class
+begin_annotation
 annotation|@
 name|GwtCompatible
 argument_list|(
@@ -170,17 +186,31 @@ name|emulated
 operator|=
 literal|true
 argument_list|)
+end_annotation
+
+begin_annotation
+annotation|@
+name|ElementTypesAreNonnullByDefault
+end_annotation
+
+begin_expr_stmt
 DECL|class|ArrayListMultimap
 specifier|public
-specifier|final
-class|class
+name|final
+name|class
 name|ArrayListMultimap
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|ArrayListMultimapGwtSerializationDependencies
 argument_list|<
 name|K
@@ -192,28 +222,33 @@ comment|// Default from ArrayList
 DECL|field|DEFAULT_VALUES_PER_KEY
 specifier|private
 specifier|static
-specifier|final
+name|final
 name|int
 name|DEFAULT_VALUES_PER_KEY
-init|=
+operator|=
 literal|3
-decl_stmt|;
+block|;    @
 DECL|field|expectedValuesPerKey
-annotation|@
 name|VisibleForTesting
 specifier|transient
 name|int
 name|expectedValuesPerKey
-decl_stmt|;
+block|;
 comment|/**    * Creates a new, empty {@code ArrayListMultimap} with the default initial capacities.    *    *<p>This method will soon be deprecated in favor of {@code    * MultimapBuilder.hashKeys().arrayListValues().build()}.    */
-DECL|method|create ()
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+block|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+DECL|method|create ()
 name|ArrayListMultimap
 argument_list|<
 name|K
@@ -221,7 +256,7 @@ argument_list|,
 name|V
 argument_list|>
 name|create
-parameter_list|()
+argument_list|()
 block|{
 return|return
 operator|new
@@ -231,14 +266,20 @@ argument_list|()
 return|;
 block|}
 comment|/**    * Constructs an empty {@code ArrayListMultimap} with enough capacity to hold the specified    * numbers of keys and values without resizing.    *    *<p>This method will soon be deprecated in favor of {@code    * MultimapBuilder.hashKeys(expectedKeys).arrayListValues(expectedValuesPerKey).build()}.    *    * @param expectedKeys the expected number of distinct keys    * @param expectedValuesPerKey the expected average number of values per key    * @throws IllegalArgumentException if {@code expectedKeys} or {@code expectedValuesPerKey} is    *     negative    */
-DECL|method|create (int expectedKeys, int expectedValuesPerKey)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+DECL|method|create (int expectedKeys, int expectedValuesPerKey)
 name|ArrayListMultimap
 argument_list|<
 name|K
@@ -246,13 +287,13 @@ argument_list|,
 name|V
 argument_list|>
 name|create
-parameter_list|(
+argument_list|(
 name|int
 name|expectedKeys
-parameter_list|,
+argument_list|,
 name|int
 name|expectedValuesPerKey
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|new
@@ -265,15 +306,27 @@ name|expectedValuesPerKey
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/**    * Constructs an {@code ArrayListMultimap} with the same mappings as the specified multimap.    *    *<p>This method will soon be deprecated in favor of {@code    * MultimapBuilder.hashKeys().arrayListValues().build(multimap)}.    *    * @param multimap the multimap whose contents are copied to this multimap    */
-DECL|method|create (Multimap<? extends K, ? extends V> multimap)
+end_comment
+
+begin_expr_stmt
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+DECL|method|create (Multimap<? extends K, ? extends V> multimap)
 name|ArrayListMultimap
 argument_list|<
 name|K
@@ -281,7 +334,7 @@ argument_list|,
 name|V
 argument_list|>
 name|create
-parameter_list|(
+argument_list|(
 name|Multimap
 argument_list|<
 name|?
@@ -293,7 +346,7 @@ extends|extends
 name|V
 argument_list|>
 name|multimap
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|new
@@ -304,6 +357,9 @@ name|multimap
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_constructor
 DECL|method|ArrayListMultimap ()
 specifier|private
 name|ArrayListMultimap
@@ -317,6 +373,9 @@ name|DEFAULT_VALUES_PER_KEY
 argument_list|)
 expr_stmt|;
 block|}
+end_constructor
+
+begin_constructor
 DECL|method|ArrayListMultimap (int expectedKeys, int expectedValuesPerKey)
 specifier|private
 name|ArrayListMultimap
@@ -360,6 +419,9 @@ operator|=
 name|expectedValuesPerKey
 expr_stmt|;
 block|}
+end_constructor
+
+begin_constructor
 DECL|method|ArrayListMultimap (Multimap<? extends K, ? extends V> multimap)
 specifier|private
 name|ArrayListMultimap
@@ -416,7 +478,13 @@ name|multimap
 argument_list|)
 expr_stmt|;
 block|}
+end_constructor
+
+begin_comment
 comment|/**    * Creates a new, empty {@code ArrayList} to hold the collection of values for an arbitrary key.    */
+end_comment
+
+begin_function
 annotation|@
 name|Override
 DECL|method|createCollection ()
@@ -438,7 +506,13 @@ name|expectedValuesPerKey
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Reduces the memory used by this {@code ArrayListMultimap}, if feasible.    *    * @deprecated For a {@link ListMultimap} that automatically trims to size, use {@link    *     ImmutableListMultimap}. If you need a mutable collection, remove the {@code trimToSize}    *     call, or switch to a {@code HashMap<K, ArrayList<V>>}.    */
+end_comment
+
+begin_function
 annotation|@
 name|Deprecated
 DECL|method|trimToSize ()
@@ -483,7 +557,13 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+end_function
+
+begin_comment
 comment|/**    * @serialData expectedValuesPerKey, number of distinct keys, and then for each distinct key: the    *     key, number of values for that key, and the key's values    */
+end_comment
+
+begin_function
 annotation|@
 name|GwtIncompatible
 comment|// java.io.ObjectOutputStream
@@ -513,6 +593,9 @@ name|stream
 argument_list|)
 expr_stmt|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|GwtIncompatible
 comment|// java.io.ObjectOutputStream
@@ -581,6 +664,9 @@ name|distinctKeys
 argument_list|)
 expr_stmt|;
 block|}
+end_function
+
+begin_decl_stmt
 annotation|@
 name|GwtIncompatible
 comment|// Not needed in emulated source.
@@ -593,8 +679,8 @@ name|serialVersionUID
 init|=
 literal|0
 decl_stmt|;
-block|}
-end_class
+end_decl_stmt
 
+unit|}
 end_unit
 

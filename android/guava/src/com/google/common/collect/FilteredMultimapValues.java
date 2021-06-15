@@ -146,6 +146,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|checkerframework
@@ -154,9 +164,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -164,29 +174,42 @@ begin_comment
 comment|/**  * Implementation for {@link FilteredMultimap#values()}.  *  * @author Louis Wasserman  */
 end_comment
 
-begin_class
+begin_annotation
 annotation|@
 name|GwtCompatible
+end_annotation
+
+begin_annotation
+annotation|@
+name|ElementTypesAreNonnullByDefault
+end_annotation
+
+begin_expr_stmt
 DECL|class|FilteredMultimapValues
-specifier|final
-class|class
+name|final
+name|class
 name|FilteredMultimapValues
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|AbstractCollection
 argument_list|<
 name|V
 argument_list|>
-block|{
+block|{   @
 DECL|field|multimap
-annotation|@
 name|Weak
 specifier|private
-specifier|final
+name|final
 name|FilteredMultimap
 argument_list|<
 name|K
@@ -194,10 +217,10 @@ argument_list|,
 name|V
 argument_list|>
 name|multimap
-decl_stmt|;
+block|;
 DECL|method|FilteredMultimapValues (FilteredMultimap<K, V> multimap)
 name|FilteredMultimapValues
-parameter_list|(
+argument_list|(
 name|FilteredMultimap
 argument_list|<
 name|K
@@ -205,7 +228,7 @@ argument_list|,
 name|V
 argument_list|>
 name|multimap
-parameter_list|)
+argument_list|)
 block|{
 name|this
 operator|.
@@ -215,9 +238,8 @@ name|checkNotNull
 argument_list|(
 name|multimap
 argument_list|)
-expr_stmt|;
-block|}
-annotation|@
+block|;   }
+expr|@
 name|Override
 DECL|method|iterator ()
 specifier|public
@@ -226,7 +248,7 @@ argument_list|<
 name|V
 argument_list|>
 name|iterator
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|Maps
@@ -243,18 +265,18 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
-DECL|method|contains (@ullableDecl Object o)
+DECL|method|contains (@heckForNull Object o)
 specifier|public
 name|boolean
 name|contains
-parameter_list|(
+argument_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|o
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|multimap
@@ -265,6 +287,9 @@ name|o
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_function
 annotation|@
 name|Override
 DECL|method|size ()
@@ -280,15 +305,18 @@ name|size
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|remove (@ullableDecl Object o)
+DECL|method|remove (@heckForNull Object o)
 specifier|public
 name|boolean
 name|remove
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|o
 parameter_list|)
@@ -391,6 +419,9 @@ return|return
 literal|false
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|removeAll (Collection<?> c)
@@ -454,6 +485,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|retainAll (Collection<?> c)
@@ -522,6 +556,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|clear ()
@@ -536,8 +573,8 @@ name|clear
 argument_list|()
 expr_stmt|;
 block|}
-block|}
-end_class
+end_function
 
+unit|}
 end_unit
 

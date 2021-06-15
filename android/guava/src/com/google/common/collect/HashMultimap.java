@@ -132,11 +132,27 @@ name|Set
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|checkerframework
+operator|.
+name|checker
+operator|.
+name|nullness
+operator|.
+name|qual
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/**  * Implementation of {@link Multimap} using hash tables.  *  *<p>The multimap does not store duplicate key-value pairs. Adding a new key-value pair equal to an  * existing key-value pair has no effect.  *  *<p>Keys and values may be null. All optional multimap methods are supported, and all returned  * views are modifiable.  *  *<p>This class is not threadsafe when any concurrent operations update the multimap. Concurrent  * read operations will work correctly if the last write<i>happens-before</i> any reads. To allow  * concurrent update operations, wrap your multimap with a call to {@link  * Multimaps#synchronizedSetMultimap}.  *  *<p><b>Warning:</b> Do not modify either a key<i>or a value</i> of a {@code HashMultimap} in a  * way that affects its {@link Object#equals} behavior. Undefined behavior and bugs will result.  *  * @author Jared Levy  * @since 2.0  */
 end_comment
 
-begin_class
+begin_annotation
 annotation|@
 name|GwtCompatible
 argument_list|(
@@ -148,17 +164,31 @@ name|emulated
 operator|=
 literal|true
 argument_list|)
+end_annotation
+
+begin_annotation
+annotation|@
+name|ElementTypesAreNonnullByDefault
+end_annotation
+
+begin_expr_stmt
 DECL|class|HashMultimap
 specifier|public
-specifier|final
-class|class
+name|final
+name|class
 name|HashMultimap
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|HashMultimapGwtSerializationDependencies
 argument_list|<
 name|K
@@ -169,30 +199,35 @@ block|{
 DECL|field|DEFAULT_VALUES_PER_KEY
 specifier|private
 specifier|static
-specifier|final
+name|final
 name|int
 name|DEFAULT_VALUES_PER_KEY
-init|=
+operator|=
 literal|2
-decl_stmt|;
+block|;    @
 DECL|field|expectedValuesPerKey
-annotation|@
 name|VisibleForTesting
 specifier|transient
 name|int
 name|expectedValuesPerKey
-init|=
+operator|=
 name|DEFAULT_VALUES_PER_KEY
-decl_stmt|;
+block|;
 comment|/**    * Creates a new, empty {@code HashMultimap} with the default initial capacities.    *    *<p>This method will soon be deprecated in favor of {@code    * MultimapBuilder.hashKeys().hashSetValues().build()}.    */
-DECL|method|create ()
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+block|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+DECL|method|create ()
 name|HashMultimap
 argument_list|<
 name|K
@@ -200,7 +235,7 @@ argument_list|,
 name|V
 argument_list|>
 name|create
-parameter_list|()
+argument_list|()
 block|{
 return|return
 operator|new
@@ -210,14 +245,20 @@ argument_list|()
 return|;
 block|}
 comment|/**    * Constructs an empty {@code HashMultimap} with enough capacity to hold the specified numbers of    * keys and values without rehashing.    *    *<p>This method will soon be deprecated in favor of {@code    * MultimapBuilder.hashKeys(expectedKeys).hashSetValues(expectedValuesPerKey).build()}.    *    * @param expectedKeys the expected number of distinct keys    * @param expectedValuesPerKey the expected average number of values per key    * @throws IllegalArgumentException if {@code expectedKeys} or {@code expectedValuesPerKey} is    *     negative    */
-DECL|method|create (int expectedKeys, int expectedValuesPerKey)
+DECL|method|create ( int expectedKeys, int expectedValuesPerKey)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|HashMultimap
 argument_list|<
 name|K
@@ -225,13 +266,13 @@ argument_list|,
 name|V
 argument_list|>
 name|create
-parameter_list|(
+argument_list|(
 name|int
 name|expectedKeys
-parameter_list|,
+argument_list|,
 name|int
 name|expectedValuesPerKey
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|new
@@ -244,15 +285,27 @@ name|expectedValuesPerKey
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/**    * Constructs a {@code HashMultimap} with the same mappings as the specified multimap. If a    * key-value mapping appears multiple times in the input multimap, it only appears once in the    * constructed multimap.    *    *<p>This method will soon be deprecated in favor of {@code    * MultimapBuilder.hashKeys().hashSetValues().build(multimap)}.    *    * @param multimap the multimap whose contents are copied to this multimap    */
-DECL|method|create (Multimap<? extends K, ? extends V> multimap)
+end_comment
+
+begin_expr_stmt
+DECL|method|create ( Multimap<? extends K, ? extends V> multimap)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|HashMultimap
 argument_list|<
 name|K
@@ -260,7 +313,7 @@ argument_list|,
 name|V
 argument_list|>
 name|create
-parameter_list|(
+argument_list|(
 name|Multimap
 argument_list|<
 name|?
@@ -272,7 +325,7 @@ extends|extends
 name|V
 argument_list|>
 name|multimap
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|new
@@ -283,6 +336,9 @@ name|multimap
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_constructor
 DECL|method|HashMultimap ()
 specifier|private
 name|HashMultimap
@@ -296,6 +352,9 @@ name|DEFAULT_VALUES_PER_KEY
 argument_list|)
 expr_stmt|;
 block|}
+end_constructor
+
+begin_constructor
 DECL|method|HashMultimap (int expectedKeys, int expectedValuesPerKey)
 specifier|private
 name|HashMultimap
@@ -341,6 +400,9 @@ operator|=
 name|expectedValuesPerKey
 expr_stmt|;
 block|}
+end_constructor
+
+begin_constructor
 DECL|method|HashMultimap (Multimap<? extends K, ? extends V> multimap)
 specifier|private
 name|HashMultimap
@@ -388,7 +450,13 @@ name|multimap
 argument_list|)
 expr_stmt|;
 block|}
+end_constructor
+
+begin_comment
 comment|/**    * {@inheritDoc}    *    *<p>Creates an empty {@code HashSet} for a collection of values for one key.    *    * @return a new {@code HashSet} containing a collection of values for one key    */
+end_comment
+
+begin_function
 annotation|@
 name|Override
 DECL|method|createCollection ()
@@ -411,7 +479,13 @@ name|expectedValuesPerKey
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * @serialData expectedValuesPerKey, number of distinct keys, and then for each distinct key: the    *     key, number of values for that key, and the key's values    */
+end_comment
+
+begin_function
 annotation|@
 name|GwtIncompatible
 comment|// java.io.ObjectOutputStream
@@ -441,6 +515,9 @@ name|stream
 argument_list|)
 expr_stmt|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|GwtIncompatible
 comment|// java.io.ObjectInputStream
@@ -511,6 +588,9 @@ name|distinctKeys
 argument_list|)
 expr_stmt|;
 block|}
+end_function
+
+begin_decl_stmt
 annotation|@
 name|GwtIncompatible
 comment|// Not needed in emulated source
@@ -523,8 +603,8 @@ name|serialVersionUID
 init|=
 literal|0
 decl_stmt|;
-block|}
-end_class
+end_decl_stmt
 
+unit|}
 end_unit
 

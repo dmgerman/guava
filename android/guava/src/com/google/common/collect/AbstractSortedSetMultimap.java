@@ -96,6 +96,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|checkerframework
@@ -104,9 +114,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -114,26 +124,40 @@ begin_comment
 comment|/**  * Basic implementation of the {@link SortedSetMultimap} interface. It's a wrapper around {@link  * AbstractMapBasedMultimap} that converts the returned collections into sorted sets. The {@link  * #createCollection} method must return a {@code SortedSet}.  *  * @author Jared Levy  */
 end_comment
 
-begin_class
+begin_annotation
 annotation|@
 name|GwtCompatible
+end_annotation
+
+begin_annotation
+annotation|@
+name|ElementTypesAreNonnullByDefault
+end_annotation
+
+begin_expr_stmt
 DECL|class|AbstractSortedSetMultimap
 specifier|abstract
-class|class
+name|class
 name|AbstractSortedSetMultimap
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|AbstractSetMultimap
 argument_list|<
 name|K
 argument_list|,
 name|V
 argument_list|>
-implements|implements
+expr|implements
 name|SortedSetMultimap
 argument_list|<
 name|K
@@ -145,7 +169,7 @@ comment|/**    * Creates a new multimap that uses the provided map.    *    * @p
 DECL|method|AbstractSortedSetMultimap (Map<K, Collection<V>> map)
 specifier|protected
 name|AbstractSortedSetMultimap
-parameter_list|(
+argument_list|(
 name|Map
 argument_list|<
 name|K
@@ -156,15 +180,14 @@ name|V
 argument_list|>
 argument_list|>
 name|map
-parameter_list|)
+argument_list|)
 block|{
 name|super
 argument_list|(
 name|map
 argument_list|)
-expr_stmt|;
-block|}
-annotation|@
+block|;   }
+expr|@
 name|Override
 DECL|method|createCollection ()
 specifier|abstract
@@ -173,9 +196,8 @@ argument_list|<
 name|V
 argument_list|>
 name|createCollection
-parameter_list|()
-function_decl|;
-annotation|@
+argument_list|()
+block|;    @
 name|Override
 DECL|method|createUnmodifiableEmptyCollection ()
 name|SortedSet
@@ -183,7 +205,7 @@ argument_list|<
 name|V
 argument_list|>
 name|createUnmodifiableEmptyCollection
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|unmodifiableCollectionSubclass
@@ -193,24 +215,27 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
-DECL|method|unmodifiableCollectionSubclass (Collection<E> collection)
-argument_list|<
+DECL|method|unmodifiableCollectionSubclass ( Collection<E> collection)
+operator|<
 name|E
-argument_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|SortedSet
 argument_list|<
 name|E
 argument_list|>
 name|unmodifiableCollectionSubclass
-parameter_list|(
+argument_list|(
 name|Collection
 argument_list|<
 name|E
 argument_list|>
 name|collection
-parameter_list|)
+argument_list|)
 block|{
 if|if
 condition|(
@@ -234,6 +259,9 @@ name|collection
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_else
 else|else
 block|{
 return|return
@@ -251,16 +279,20 @@ name|collection
 argument_list|)
 return|;
 block|}
-block|}
-annotation|@
+end_else
+
+begin_function
+unit|}    @
 name|Override
-DECL|method|wrapCollection (K key, Collection<V> collection)
+DECL|method|wrapCollection (@arametricNullness K key, Collection<V> collection)
 name|Collection
 argument_list|<
 name|V
 argument_list|>
 name|wrapCollection
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|key
 parameter_list|,
@@ -317,11 +349,20 @@ argument_list|)
 return|;
 block|}
 block|}
+end_function
+
+begin_comment
 comment|// Following Javadoc copied from Multimap and SortedSetMultimap.
+end_comment
+
+begin_comment
 comment|/**    * Returns a collection view of all values associated with a key. If no mappings in the multimap    * have the provided key, an empty collection is returned.    *    *<p>Changes to the returned collection will update the underlying multimap, and vice versa.    *    *<p>Because a {@code SortedSetMultimap} has unique sorted values for a given key, this method    * returns a {@link SortedSet}, instead of the {@link Collection} specified in the {@link    * Multimap} interface.    */
+end_comment
+
+begin_function
 annotation|@
 name|Override
-DECL|method|get (@ullableDecl K key)
+DECL|method|get (@arametricNullness K key)
 specifier|public
 name|SortedSet
 argument_list|<
@@ -330,7 +371,7 @@ argument_list|>
 name|get
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|ParametricNullness
 name|K
 name|key
 parameter_list|)
@@ -350,12 +391,18 @@ name|key
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Removes all values associated with a given key. The returned collection is immutable.    *    *<p>Because a {@code SortedSetMultimap} has unique sorted values for a given key, this method    * returns a {@link SortedSet}, instead of the {@link Collection} specified in the {@link    * Multimap} interface.    */
+end_comment
+
+begin_function
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
-DECL|method|removeAll (@ullableDecl Object key)
+DECL|method|removeAll (@heckForNull Object key)
 specifier|public
 name|SortedSet
 argument_list|<
@@ -364,7 +411,7 @@ argument_list|>
 name|removeAll
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
@@ -384,12 +431,18 @@ name|key
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Stores a collection of values with the same key, replacing any existing values for that key.    * The returned collection is immutable.    *    *<p>Because a {@code SortedSetMultimap} has unique sorted values for a given key, this method    * returns a {@link SortedSet}, instead of the {@link Collection} specified in the {@link    * Multimap} interface.    *    *<p>Any duplicates in {@code values} will be stored in the multimap once.    */
+end_comment
+
+begin_function
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
-DECL|method|replaceValues (@ullableDecl K key, Iterable<? extends V> values)
+DECL|method|replaceValues (@arametricNullness K key, Iterable<? extends V> values)
 specifier|public
 name|SortedSet
 argument_list|<
@@ -398,7 +451,7 @@ argument_list|>
 name|replaceValues
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|ParametricNullness
 name|K
 name|key
 parameter_list|,
@@ -428,7 +481,13 @@ name|values
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Returns a map view that associates each key with the corresponding values in the multimap.    * Changes to the returned map, such as element removal, will update the underlying multimap. The    * map does not support {@code setValue} on its entries, {@code put}, or {@code putAll}.    *    *<p>When passed a key that is present in the map, {@code asMap().get(Object)} has the same    * behavior as {@link #get}, returning a live collection. When passed a key that is not present,    * however, {@code asMap().get(Object)} returns {@code null} instead of an empty collection.    *    *<p>Though the method signature doesn't say so explicitly, the returned map has {@link    * SortedSet} values.    */
+end_comment
+
+begin_function
 annotation|@
 name|Override
 DECL|method|asMap ()
@@ -452,7 +511,13 @@ name|asMap
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * {@inheritDoc}    *    *<p>Consequently, the values do not follow their natural ordering or the ordering of the value    * comparator.    */
+end_comment
+
+begin_function
 annotation|@
 name|Override
 DECL|method|values ()
@@ -471,6 +536,9 @@ name|values
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_decl_stmt
 DECL|field|serialVersionUID
 specifier|private
 specifier|static
@@ -480,8 +548,8 @@ name|serialVersionUID
 init|=
 literal|430848587173315748L
 decl_stmt|;
-block|}
-end_class
+end_decl_stmt
 
+unit|}
 end_unit
 

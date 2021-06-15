@@ -226,6 +226,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|checkerframework
@@ -234,9 +244,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -244,25 +254,39 @@ begin_comment
 comment|/**  * Implementation of {@link Multimaps#filterEntries(Multimap, Predicate)}.  *  * @author Jared Levy  * @author Louis Wasserman  */
 end_comment
 
-begin_class
+begin_annotation
 annotation|@
 name|GwtCompatible
+end_annotation
+
+begin_annotation
+annotation|@
+name|ElementTypesAreNonnullByDefault
+end_annotation
+
+begin_expr_stmt
 DECL|class|FilteredEntryMultimap
-class|class
+name|class
 name|FilteredEntryMultimap
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|AbstractMultimap
 argument_list|<
 name|K
 argument_list|,
 name|V
 argument_list|>
-implements|implements
+expr|implements
 name|FilteredMultimap
 argument_list|<
 name|K
@@ -271,7 +295,7 @@ name|V
 argument_list|>
 block|{
 DECL|field|unfiltered
-specifier|final
+name|final
 name|Multimap
 argument_list|<
 name|K
@@ -279,9 +303,9 @@ argument_list|,
 name|V
 argument_list|>
 name|unfiltered
-decl_stmt|;
+block|;
 DECL|field|predicate
-specifier|final
+name|final
 name|Predicate
 argument_list|<
 name|?
@@ -294,10 +318,10 @@ name|V
 argument_list|>
 argument_list|>
 name|predicate
-decl_stmt|;
+block|;
 DECL|method|FilteredEntryMultimap (Multimap<K, V> unfiltered, Predicate<? super Entry<K, V>> predicate)
 name|FilteredEntryMultimap
-parameter_list|(
+argument_list|(
 name|Multimap
 argument_list|<
 name|K
@@ -305,7 +329,7 @@ argument_list|,
 name|V
 argument_list|>
 name|unfiltered
-parameter_list|,
+argument_list|,
 name|Predicate
 argument_list|<
 name|?
@@ -318,7 +342,7 @@ name|V
 argument_list|>
 argument_list|>
 name|predicate
-parameter_list|)
+argument_list|)
 block|{
 name|this
 operator|.
@@ -328,7 +352,7 @@ name|checkNotNull
 argument_list|(
 name|unfiltered
 argument_list|)
-expr_stmt|;
+block|;
 name|this
 operator|.
 name|predicate
@@ -337,9 +361,8 @@ name|checkNotNull
 argument_list|(
 name|predicate
 argument_list|)
-expr_stmt|;
-block|}
-annotation|@
+block|;   }
+expr|@
 name|Override
 DECL|method|unfiltered ()
 specifier|public
@@ -350,13 +373,13 @@ argument_list|,
 name|V
 argument_list|>
 name|unfiltered
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|unfiltered
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
 DECL|method|entryPredicate ()
 specifier|public
@@ -372,12 +395,15 @@ name|V
 argument_list|>
 argument_list|>
 name|entryPredicate
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|predicate
 return|;
 block|}
+end_expr_stmt
+
+begin_function
 annotation|@
 name|Override
 DECL|method|size ()
@@ -394,14 +420,21 @@ name|size
 argument_list|()
 return|;
 block|}
-DECL|method|satisfies (K key, V value)
+end_function
+
+begin_function
+DECL|method|satisfies (@arametricNullness K key, @ParametricNullness V value)
 specifier|private
 name|boolean
 name|satisfies
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|key
 parameter_list|,
+annotation|@
+name|ParametricNullness
 name|V
 name|value
 parameter_list|)
@@ -422,6 +455,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_class
 DECL|class|ValuePredicate
 specifier|final
 class|class
@@ -433,14 +469,18 @@ name|V
 argument_list|>
 block|{
 DECL|field|key
+annotation|@
+name|ParametricNullness
 specifier|private
 specifier|final
 name|K
 name|key
 decl_stmt|;
-DECL|method|ValuePredicate (K key)
+DECL|method|ValuePredicate (@arametricNullness K key)
 name|ValuePredicate
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|key
 parameter_list|)
@@ -454,13 +494,13 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|apply (@ullableDecl V value)
+DECL|method|apply (@arametricNullness V value)
 specifier|public
 name|boolean
 name|apply
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|ParametricNullness
 name|V
 name|value
 parameter_list|)
@@ -475,23 +515,29 @@ argument_list|)
 return|;
 block|}
 block|}
+end_class
+
+begin_expr_stmt
 DECL|method|filterCollection ( Collection<E> collection, Predicate<? super E> predicate)
 specifier|static
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|Collection
 argument_list|<
 name|E
 argument_list|>
 name|filterCollection
-parameter_list|(
+argument_list|(
 name|Collection
 argument_list|<
 name|E
 argument_list|>
 name|collection
-parameter_list|,
+argument_list|,
 name|Predicate
 argument_list|<
 name|?
@@ -499,7 +545,7 @@ super|super
 name|E
 argument_list|>
 name|predicate
-parameter_list|)
+argument_list|)
 block|{
 if|if
 condition|(
@@ -525,6 +571,9 @@ name|predicate
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_else
 else|else
 block|{
 return|return
@@ -538,16 +587,18 @@ name|predicate
 argument_list|)
 return|;
 block|}
-block|}
-annotation|@
+end_else
+
+begin_function
+unit|}    @
 name|Override
-DECL|method|containsKey (@ullableDecl Object key)
+DECL|method|containsKey (@heckForNull Object key)
 specifier|public
 name|boolean
 name|containsKey
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
@@ -564,9 +615,12 @@ operator|!=
 literal|null
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|removeAll (@ullableDecl Object key)
+DECL|method|removeAll (@heckForNull Object key)
 specifier|public
 name|Collection
 argument_list|<
@@ -575,7 +629,7 @@ argument_list|>
 name|removeAll
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
@@ -598,6 +652,9 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 DECL|method|unmodifiableEmptyCollection ()
 name|Collection
 argument_list|<
@@ -631,6 +688,9 @@ name|emptyList
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|clear ()
@@ -646,9 +706,12 @@ name|clear
 argument_list|()
 expr_stmt|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|get (final K key)
+DECL|method|get (@arametricNullness final K key)
 specifier|public
 name|Collection
 argument_list|<
@@ -656,6 +719,8 @@ name|V
 argument_list|>
 name|get
 parameter_list|(
+annotation|@
+name|ParametricNullness
 specifier|final
 name|K
 name|key
@@ -679,6 +744,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|createEntries ()
@@ -706,6 +774,9 @@ name|predicate
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|createValues ()
@@ -725,6 +796,9 @@ name|this
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|entryIterator ()
@@ -748,6 +822,9 @@ literal|"should never be called"
 argument_list|)
 throw|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|createAsMap ()
@@ -769,6 +846,9 @@ name|AsMap
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|createKeySet ()
@@ -787,6 +867,9 @@ name|keySet
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 DECL|method|removeEntriesIf (Predicate<? super Entry<K, Collection<V>>> predicate)
 name|boolean
 name|removeEntriesIf
@@ -953,6 +1036,9 @@ return|return
 name|changed
 return|;
 block|}
+end_function
+
+begin_class
 annotation|@
 name|WeakOuter
 DECL|class|AsMap
@@ -971,13 +1057,13 @@ argument_list|>
 block|{
 annotation|@
 name|Override
-DECL|method|containsKey (@ullableDecl Object key)
+DECL|method|containsKey (@heckForNull Object key)
 specifier|public
 name|boolean
 name|containsKey
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
@@ -1009,7 +1095,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|get (@ullableDecl Object key)
+annotation|@
+name|CheckForNull
+DECL|method|get (@heckForNull Object key)
 specifier|public
 name|Collection
 argument_list|<
@@ -1018,7 +1106,7 @@ argument_list|>
 name|get
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
@@ -1090,7 +1178,9 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|remove (@ullableDecl Object key)
+annotation|@
+name|CheckForNull
+DECL|method|remove (@heckForNull Object key)
 specifier|public
 name|Collection
 argument_list|<
@@ -1099,7 +1189,7 @@ argument_list|>
 name|remove
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
@@ -1363,7 +1453,7 @@ name|boolean
 name|remove
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|o
 parameter_list|)
@@ -1505,6 +1595,8 @@ argument_list|()
 decl_stmt|;
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 specifier|protected
 name|Entry
 argument_list|<
@@ -1720,7 +1812,7 @@ name|boolean
 name|remove
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|o
 parameter_list|)
@@ -1958,6 +2050,9 @@ argument_list|()
 return|;
 block|}
 block|}
+end_class
+
+begin_function
 annotation|@
 name|Override
 DECL|method|createKeys ()
@@ -1974,6 +2069,9 @@ name|Keys
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_class
 annotation|@
 name|WeakOuter
 DECL|class|Keys
@@ -2003,13 +2101,13 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|remove (@ullableDecl Object key, int occurrences)
+DECL|method|remove (@heckForNull Object key, int occurrences)
 specifier|public
 name|int
 name|remove
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|key
 parameter_list|,
@@ -2372,8 +2470,8 @@ block|}
 return|;
 block|}
 block|}
-block|}
 end_class
 
+unit|}
 end_unit
 

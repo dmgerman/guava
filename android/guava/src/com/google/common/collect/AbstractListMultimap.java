@@ -86,6 +86,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|checkerframework
@@ -94,9 +104,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -104,26 +114,40 @@ begin_comment
 comment|/**  * Basic implementation of the {@link ListMultimap} interface. It's a wrapper around {@link  * AbstractMapBasedMultimap} that converts the returned collections into {@code Lists}. The {@link  * #createCollection} method must return a {@code List}.  *  * @author Jared Levy  * @since 2.0  */
 end_comment
 
-begin_class
+begin_annotation
 annotation|@
 name|GwtCompatible
+end_annotation
+
+begin_annotation
+annotation|@
+name|ElementTypesAreNonnullByDefault
+end_annotation
+
+begin_expr_stmt
 DECL|class|AbstractListMultimap
 specifier|abstract
-class|class
+name|class
 name|AbstractListMultimap
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|AbstractMapBasedMultimap
 argument_list|<
 name|K
 argument_list|,
 name|V
 argument_list|>
-implements|implements
+expr|implements
 name|ListMultimap
 argument_list|<
 name|K
@@ -135,7 +159,7 @@ comment|/**    * Creates a new multimap that uses the provided map.    *    * @p
 DECL|method|AbstractListMultimap (Map<K, Collection<V>> map)
 specifier|protected
 name|AbstractListMultimap
-parameter_list|(
+argument_list|(
 name|Map
 argument_list|<
 name|K
@@ -146,15 +170,14 @@ name|V
 argument_list|>
 argument_list|>
 name|map
-parameter_list|)
+argument_list|)
 block|{
 name|super
 argument_list|(
 name|map
 argument_list|)
-expr_stmt|;
-block|}
-annotation|@
+block|;   }
+expr|@
 name|Override
 DECL|method|createCollection ()
 specifier|abstract
@@ -163,9 +186,8 @@ argument_list|<
 name|V
 argument_list|>
 name|createCollection
-parameter_list|()
-function_decl|;
-annotation|@
+argument_list|()
+block|;    @
 name|Override
 DECL|method|createUnmodifiableEmptyCollection ()
 name|List
@@ -173,7 +195,7 @@ argument_list|<
 name|V
 argument_list|>
 name|createUnmodifiableEmptyCollection
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|Collections
@@ -182,24 +204,27 @@ name|emptyList
 argument_list|()
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
-DECL|method|unmodifiableCollectionSubclass (Collection<E> collection)
-argument_list|<
+DECL|method|unmodifiableCollectionSubclass ( Collection<E> collection)
+operator|<
 name|E
-argument_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|Collection
 argument_list|<
 name|E
 argument_list|>
 name|unmodifiableCollectionSubclass
-parameter_list|(
+argument_list|(
 name|Collection
 argument_list|<
 name|E
 argument_list|>
 name|collection
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|Collections
@@ -216,15 +241,20 @@ name|collection
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_function
 annotation|@
 name|Override
-DECL|method|wrapCollection (K key, Collection<V> collection)
+DECL|method|wrapCollection (@arametricNullness K key, Collection<V> collection)
 name|Collection
 argument_list|<
 name|V
 argument_list|>
 name|wrapCollection
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|key
 parameter_list|,
@@ -252,11 +282,20 @@ literal|null
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|// Following Javadoc copied from ListMultimap.
+end_comment
+
+begin_comment
 comment|/**    * {@inheritDoc}    *    *<p>Because the values for a given key may have duplicates and follow the insertion ordering,    * this method returns a {@link List}, instead of the {@link Collection} specified in the {@link    * Multimap} interface.    */
+end_comment
+
+begin_function
 annotation|@
 name|Override
-DECL|method|get (@ullableDecl K key)
+DECL|method|get (@arametricNullness K key)
 specifier|public
 name|List
 argument_list|<
@@ -265,7 +304,7 @@ argument_list|>
 name|get
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|ParametricNullness
 name|K
 name|key
 parameter_list|)
@@ -285,12 +324,18 @@ name|key
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * {@inheritDoc}    *    *<p>Because the values for a given key may have duplicates and follow the insertion ordering,    * this method returns a {@link List}, instead of the {@link Collection} specified in the {@link    * Multimap} interface.    */
+end_comment
+
+begin_function
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
-DECL|method|removeAll (@ullableDecl Object key)
+DECL|method|removeAll (@heckForNull Object key)
 specifier|public
 name|List
 argument_list|<
@@ -299,7 +344,7 @@ argument_list|>
 name|removeAll
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
@@ -319,12 +364,18 @@ name|key
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * {@inheritDoc}    *    *<p>Because the values for a given key may have duplicates and follow the insertion ordering,    * this method returns a {@link List}, instead of the {@link Collection} specified in the {@link    * Multimap} interface.    */
+end_comment
+
+begin_function
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
-DECL|method|replaceValues (@ullableDecl K key, Iterable<? extends V> values)
+DECL|method|replaceValues (@arametricNullness K key, Iterable<? extends V> values)
 specifier|public
 name|List
 argument_list|<
@@ -333,7 +384,7 @@ argument_list|>
 name|replaceValues
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|ParametricNullness
 name|K
 name|key
 parameter_list|,
@@ -363,23 +414,29 @@ name|values
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Stores a key-value pair in the multimap.    *    * @param key key to store in the multimap    * @param value value to store in the multimap    * @return {@code true} always    */
+end_comment
+
+begin_function
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
-DECL|method|put (@ullableDecl K key, @NullableDecl V value)
+DECL|method|put (@arametricNullness K key, @ParametricNullness V value)
 specifier|public
 name|boolean
 name|put
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|ParametricNullness
 name|K
 name|key
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|ParametricNullness
 name|V
 name|value
 parameter_list|)
@@ -395,7 +452,13 @@ name|value
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * {@inheritDoc}    *    *<p>Though the method signature doesn't say so explicitly, the returned map has {@link List}    * values.    */
+end_comment
+
+begin_function
 annotation|@
 name|Override
 DECL|method|asMap ()
@@ -419,16 +482,22 @@ name|asMap
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Compares the specified object to this multimap for equality.    *    *<p>Two {@code ListMultimap} instances are equal if, for each key, they contain the same values    * in the same order. If the value orderings disagree, the multimaps will not be considered equal.    */
+end_comment
+
+begin_function
 annotation|@
 name|Override
-DECL|method|equals (@ullableDecl Object object)
+DECL|method|equals (@heckForNull Object object)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|object
 parameter_list|)
@@ -442,6 +511,9 @@ name|object
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_decl_stmt
 DECL|field|serialVersionUID
 specifier|private
 specifier|static
@@ -451,8 +523,8 @@ name|serialVersionUID
 init|=
 literal|6588350623831699109L
 decl_stmt|;
-block|}
-end_class
+end_decl_stmt
 
+unit|}
 end_unit
 

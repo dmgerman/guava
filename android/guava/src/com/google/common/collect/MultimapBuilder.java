@@ -206,49 +206,81 @@ name|TreeSet
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|checkerframework
+operator|.
+name|checker
+operator|.
+name|nullness
+operator|.
+name|qual
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/**  * A builder for a multimap implementation that allows customization of the backing map and value  * collection implementations used in a particular multimap.  *  *<p>This can be used to easily configure multimap data structure implementations not provided  * explicitly in {@code com.google.common.collect}, for example:  *  *<pre>{@code  * ListMultimap<String, Integer> treeListMultimap =  *     MultimapBuilder.treeKeys().arrayListValues().build();  * SetMultimap<Integer, MyEnum> hashEnumMultimap =  *     MultimapBuilder.hashKeys().enumSetValues(MyEnum.class).build();  * }</pre>  *  *<p>{@code MultimapBuilder} instances are immutable. Invoking a configuration method has no effect  * on the receiving instance; you must store and use the new builder instance it returns instead.  *  *<p>The generated multimaps are serializable if the key and value types are serializable, unless  * stated otherwise in one of the configuration methods.  *  * @author Louis Wasserman  * @param<K0> An upper bound on the key type of the generated multimap.  * @param<V0> An upper bound on the value type of the generated multimap.  * @since 16.0  */
 end_comment
 
-begin_class
+begin_annotation
 annotation|@
 name|GwtCompatible
+end_annotation
+
+begin_annotation
+annotation|@
+name|ElementTypesAreNonnullByDefault
+end_annotation
+
+begin_expr_stmt
 DECL|class|MultimapBuilder
 specifier|public
 specifier|abstract
-class|class
+name|class
 name|MultimapBuilder
-parameter_list|<
+operator|<
 name|K0
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V0
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 block|{
 comment|/*    * Leaving K and V as upper bounds rather than the actual key and value types allows type    * parameters to be left implicit more often. CacheBuilder uses the same technique.    */
 DECL|method|MultimapBuilder ()
 specifier|private
 name|MultimapBuilder
-parameter_list|()
+argument_list|()
 block|{}
 DECL|field|DEFAULT_EXPECTED_KEYS
 specifier|private
 specifier|static
-specifier|final
+name|final
 name|int
 name|DEFAULT_EXPECTED_KEYS
-init|=
+operator|=
 literal|8
-decl_stmt|;
+block|;
 comment|/** Uses a hash table to map keys to value collections. */
 DECL|method|hashKeys ()
 specifier|public
 specifier|static
 name|MultimapBuilderWithKeys
 argument_list|<
+annotation|@
+name|Nullable
 name|Object
 argument_list|>
 name|hashKeys
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|hashKeys
@@ -263,14 +295,16 @@ specifier|public
 specifier|static
 name|MultimapBuilderWithKeys
 argument_list|<
+annotation|@
+name|Nullable
 name|Object
 argument_list|>
 name|hashKeys
-parameter_list|(
-specifier|final
+argument_list|(
+name|final
 name|int
 name|expectedKeys
-parameter_list|)
+argument_list|)
 block|{
 name|checkNonnegative
 argument_list|(
@@ -278,22 +312,30 @@ name|expectedKeys
 argument_list|,
 literal|"expectedKeys"
 argument_list|)
-expr_stmt|;
+block|;
 return|return
 operator|new
 name|MultimapBuilderWithKeys
 argument_list|<
+annotation|@
+name|Nullable
 name|Object
 argument_list|>
 argument_list|()
 block|{
 annotation|@
 name|Override
-argument_list|<
+operator|<
 name|K
-argument_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-argument_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|Map
 argument_list|<
 name|K
@@ -304,7 +346,7 @@ name|V
 argument_list|>
 argument_list|>
 name|createMap
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|Platform
@@ -315,15 +357,21 @@ name|expectedKeys
 argument_list|)
 return|;
 block|}
-block|}
-return|;
-block|}
+end_expr_stmt
+
+begin_comment
+unit|};   }
 comment|/**    * Uses a hash table to map keys to value collections.    *    *<p>The collections returned by {@link Multimap#keySet()}, {@link Multimap#keys()}, and {@link    * Multimap#asMap()} will iterate through the keys in the order that they were first added to the    * multimap, save that if all values associated with a key are removed and then the key is added    * back into the multimap, that key will come last in the key iteration order.    */
+end_comment
+
+begin_function
 DECL|method|linkedHashKeys ()
-specifier|public
+unit|public
 specifier|static
 name|MultimapBuilderWithKeys
 argument_list|<
+annotation|@
+name|Nullable
 name|Object
 argument_list|>
 name|linkedHashKeys
@@ -336,12 +384,20 @@ name|DEFAULT_EXPECTED_KEYS
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Uses an hash table to map keys to value collections, initialized to expect the specified number    * of keys.    *    *<p>The collections returned by {@link Multimap#keySet()}, {@link Multimap#keys()}, and {@link    * Multimap#asMap()} will iterate through the keys in the order that they were first added to the    * multimap, save that if all values associated with a key are removed and then the key is added    * back into the multimap, that key will come last in the key iteration order.    */
+end_comment
+
+begin_function
 DECL|method|linkedHashKeys (final int expectedKeys)
 specifier|public
 specifier|static
 name|MultimapBuilderWithKeys
 argument_list|<
+annotation|@
+name|Nullable
 name|Object
 argument_list|>
 name|linkedHashKeys
@@ -362,17 +418,25 @@ return|return
 operator|new
 name|MultimapBuilderWithKeys
 argument_list|<
+annotation|@
+name|Nullable
 name|Object
 argument_list|>
 argument_list|()
 block|{
 annotation|@
 name|Override
-argument_list|<
+operator|<
 name|K
-argument_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-argument_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|Map
 argument_list|<
 name|K
@@ -383,7 +447,7 @@ name|V
 argument_list|>
 argument_list|>
 name|createMap
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|Platform
@@ -397,7 +461,13 @@ block|}
 block|}
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Uses a naturally-ordered {@link TreeMap} to map keys to value collections.    *    *<p>The collections returned by {@link Multimap#keySet()}, {@link Multimap#keys()}, and {@link    * Multimap#asMap()} will iterate through the keys in sorted order.    *    *<p>For all multimaps generated by the resulting builder, the {@link Multimap#keySet()} can be    * safely cast to a {@link java.util.SortedSet}, and the {@link Multimap#asMap()} can safely be    * cast to a {@link java.util.SortedMap}.    */
+end_comment
+
+begin_function
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -423,32 +493,41 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Uses a {@link TreeMap} sorted by the specified comparator to map keys to value collections.    *    *<p>The collections returned by {@link Multimap#keySet()}, {@link Multimap#keys()}, and {@link    * Multimap#asMap()} will iterate through the keys in sorted order.    *    *<p>For all multimaps generated by the resulting builder, the {@link Multimap#keySet()} can be    * safely cast to a {@link java.util.SortedSet}, and the {@link Multimap#asMap()} can safely be    * cast to a {@link java.util.SortedMap}.    *    *<p>Multimaps generated by the resulting builder will not be serializable if {@code comparator}    * is not serializable.    */
-DECL|method|treeKeys (final Comparator<K0> comparator)
+end_comment
+
+begin_expr_stmt
+DECL|method|treeKeys ( final Comparator<K0> comparator)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|K0
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|MultimapBuilderWithKeys
 argument_list|<
 name|K0
 argument_list|>
 name|treeKeys
-parameter_list|(
-specifier|final
+argument_list|(
+name|final
 name|Comparator
 argument_list|<
 name|K0
 argument_list|>
 name|comparator
-parameter_list|)
+argument_list|)
 block|{
 name|checkNotNull
 argument_list|(
 name|comparator
 argument_list|)
-expr_stmt|;
+block|;
 return|return
 operator|new
 name|MultimapBuilderWithKeys
@@ -459,13 +538,16 @@ argument_list|()
 block|{
 annotation|@
 name|Override
-argument_list|<
+operator|<
 name|K
-extends|extends
+expr|extends
 name|K0
-argument_list|,
+operator|,
 name|V
-argument_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|Map
 argument_list|<
 name|K
@@ -476,7 +558,7 @@ name|V
 argument_list|>
 argument_list|>
 name|createMap
-parameter_list|()
+argument_list|()
 block|{
 return|return
 operator|new
@@ -487,12 +569,16 @@ name|comparator
 argument_list|)
 return|;
 block|}
-block|}
-return|;
-block|}
+end_expr_stmt
+
+begin_comment
+unit|};   }
 comment|/**    * Uses an {@link EnumMap} to map keys to value collections.    *    * @since 16.0    */
+end_comment
+
+begin_function
 DECL|method|enumKeys ( final Class<K0> keyClass)
-specifier|public
+unit|public
 specifier|static
 parameter_list|<
 name|K0
@@ -536,13 +622,16 @@ literal|"unchecked"
 argument_list|)
 annotation|@
 name|Override
-argument_list|<
+operator|<
 name|K
-extends|extends
+expr|extends
 name|K0
-argument_list|,
+operator|,
 name|V
-argument_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|Map
 argument_list|<
 name|K
@@ -553,7 +642,7 @@ name|V
 argument_list|>
 argument_list|>
 name|createMap
-parameter_list|()
+argument_list|()
 block|{
 comment|// K must actually be K0, since enums are effectively final
 comment|// (their subclasses are inaccessible)
@@ -587,16 +676,22 @@ block|}
 block|}
 return|;
 block|}
+end_function
+
+begin_expr_stmt
 DECL|class|ArrayListSupplier
 specifier|private
 specifier|static
-specifier|final
-class|class
+name|final
+name|class
 name|ArrayListSupplier
-parameter_list|<
+operator|<
 name|V
-parameter_list|>
-implements|implements
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|implements
 name|Supplier
 argument_list|<
 name|List
@@ -604,21 +699,21 @@ argument_list|<
 name|V
 argument_list|>
 argument_list|>
-implements|,
+operator|,
 name|Serializable
 block|{
 DECL|field|expectedValuesPerKey
 specifier|private
-specifier|final
+name|final
 name|int
 name|expectedValuesPerKey
-decl_stmt|;
+block|;
 DECL|method|ArrayListSupplier (int expectedValuesPerKey)
 name|ArrayListSupplier
-parameter_list|(
+argument_list|(
 name|int
 name|expectedValuesPerKey
-parameter_list|)
+argument_list|)
 block|{
 name|this
 operator|.
@@ -630,9 +725,8 @@ name|expectedValuesPerKey
 argument_list|,
 literal|"expectedValuesPerKey"
 argument_list|)
-expr_stmt|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|Override
 DECL|method|get ()
 specifier|public
@@ -641,7 +735,7 @@ argument_list|<
 name|V
 argument_list|>
 name|get
-parameter_list|()
+argument_list|()
 block|{
 return|return
 operator|new
@@ -654,9 +748,11 @@ name|expectedValuesPerKey
 argument_list|)
 return|;
 block|}
-block|}
+end_expr_stmt
+
+begin_enum
+unit|}    private
 DECL|enum|LinkedListSupplier
-specifier|private
 enum|enum
 name|LinkedListSupplier
 implements|implements
@@ -664,7 +760,7 @@ name|Supplier
 argument_list|<
 name|List
 argument_list|<
-name|Object
+name|?
 argument_list|>
 argument_list|>
 block|{
@@ -674,9 +770,12 @@ block|;
 DECL|method|instance ()
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|Supplier
 argument_list|<
 name|List
@@ -685,10 +784,10 @@ name|V
 argument_list|>
 argument_list|>
 name|instance
-parameter_list|()
+argument_list|()
 block|{
 comment|// Each call generates a fresh LinkedList, which can serve as a List<V> for any V.
-annotation|@
+block|@
 name|SuppressWarnings
 argument_list|(
 block|{
@@ -705,12 +804,12 @@ name|V
 argument_list|>
 argument_list|>
 name|result
-init|=
+operator|=
 operator|(
 name|Supplier
 operator|)
 name|INSTANCE
-decl_stmt|;
+block|;
 return|return
 name|result
 return|;
@@ -721,7 +820,7 @@ DECL|method|get ()
 specifier|public
 name|List
 argument_list|<
-name|Object
+name|?
 argument_list|>
 name|get
 parameter_list|()
@@ -734,16 +833,22 @@ argument_list|()
 return|;
 block|}
 block|}
+end_enum
+
+begin_expr_stmt
 DECL|class|HashSetSupplier
 specifier|private
 specifier|static
-specifier|final
-class|class
+name|final
+name|class
 name|HashSetSupplier
-parameter_list|<
+operator|<
 name|V
-parameter_list|>
-implements|implements
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|implements
 name|Supplier
 argument_list|<
 name|Set
@@ -751,21 +856,21 @@ argument_list|<
 name|V
 argument_list|>
 argument_list|>
-implements|,
+operator|,
 name|Serializable
 block|{
 DECL|field|expectedValuesPerKey
 specifier|private
-specifier|final
+name|final
 name|int
 name|expectedValuesPerKey
-decl_stmt|;
+block|;
 DECL|method|HashSetSupplier (int expectedValuesPerKey)
 name|HashSetSupplier
-parameter_list|(
+argument_list|(
 name|int
 name|expectedValuesPerKey
-parameter_list|)
+argument_list|)
 block|{
 name|this
 operator|.
@@ -777,9 +882,8 @@ name|expectedValuesPerKey
 argument_list|,
 literal|"expectedValuesPerKey"
 argument_list|)
-expr_stmt|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|Override
 DECL|method|get ()
 specifier|public
@@ -788,7 +892,7 @@ argument_list|<
 name|V
 argument_list|>
 name|get
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|Platform
@@ -799,17 +903,22 @@ name|expectedValuesPerKey
 argument_list|)
 return|;
 block|}
-block|}
+end_expr_stmt
+
+begin_expr_stmt
+unit|}    private
 DECL|class|LinkedHashSetSupplier
-specifier|private
 specifier|static
-specifier|final
-class|class
+name|final
+name|class
 name|LinkedHashSetSupplier
-parameter_list|<
+operator|<
 name|V
-parameter_list|>
-implements|implements
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|implements
 name|Supplier
 argument_list|<
 name|Set
@@ -817,21 +926,21 @@ argument_list|<
 name|V
 argument_list|>
 argument_list|>
-implements|,
+operator|,
 name|Serializable
 block|{
 DECL|field|expectedValuesPerKey
 specifier|private
-specifier|final
+name|final
 name|int
 name|expectedValuesPerKey
-decl_stmt|;
+block|;
 DECL|method|LinkedHashSetSupplier (int expectedValuesPerKey)
 name|LinkedHashSetSupplier
-parameter_list|(
+argument_list|(
 name|int
 name|expectedValuesPerKey
-parameter_list|)
+argument_list|)
 block|{
 name|this
 operator|.
@@ -843,9 +952,8 @@ name|expectedValuesPerKey
 argument_list|,
 literal|"expectedValuesPerKey"
 argument_list|)
-expr_stmt|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|Override
 DECL|method|get ()
 specifier|public
@@ -854,7 +962,7 @@ argument_list|<
 name|V
 argument_list|>
 name|get
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|Platform
@@ -865,17 +973,22 @@ name|expectedValuesPerKey
 argument_list|)
 return|;
 block|}
-block|}
+end_expr_stmt
+
+begin_expr_stmt
+unit|}    private
 DECL|class|TreeSetSupplier
-specifier|private
 specifier|static
-specifier|final
-class|class
+name|final
+name|class
 name|TreeSetSupplier
-parameter_list|<
+operator|<
 name|V
-parameter_list|>
-implements|implements
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|implements
 name|Supplier
 argument_list|<
 name|SortedSet
@@ -883,12 +996,12 @@ argument_list|<
 name|V
 argument_list|>
 argument_list|>
-implements|,
+operator|,
 name|Serializable
 block|{
 DECL|field|comparator
 specifier|private
-specifier|final
+name|final
 name|Comparator
 argument_list|<
 name|?
@@ -896,10 +1009,10 @@ super|super
 name|V
 argument_list|>
 name|comparator
-decl_stmt|;
+block|;
 DECL|method|TreeSetSupplier (Comparator<? super V> comparator)
 name|TreeSetSupplier
-parameter_list|(
+argument_list|(
 name|Comparator
 argument_list|<
 name|?
@@ -907,7 +1020,7 @@ super|super
 name|V
 argument_list|>
 name|comparator
-parameter_list|)
+argument_list|)
 block|{
 name|this
 operator|.
@@ -917,9 +1030,8 @@ name|checkNotNull
 argument_list|(
 name|comparator
 argument_list|)
-expr_stmt|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|Override
 DECL|method|get ()
 specifier|public
@@ -928,7 +1040,7 @@ argument_list|<
 name|V
 argument_list|>
 name|get
-parameter_list|()
+argument_list|()
 block|{
 return|return
 operator|new
@@ -941,9 +1053,11 @@ name|comparator
 argument_list|)
 return|;
 block|}
-block|}
+end_expr_stmt
+
+begin_class
+unit|}    private
 DECL|class|EnumSetSupplier
-specifier|private
 specifier|static
 specifier|final
 class|class
@@ -1017,39 +1131,51 @@ argument_list|)
 return|;
 block|}
 block|}
+end_class
+
+begin_comment
 comment|/**    * An intermediate stage in a {@link MultimapBuilder} in which the key-value collection map    * implementation has been specified, but the value collection implementation has not.    *    * @param<K0> The upper bound on the key type of the generated multimap.    * @since 16.0    */
+end_comment
+
+begin_expr_stmt
 DECL|class|MultimapBuilderWithKeys
 specifier|public
 specifier|abstract
 specifier|static
-class|class
+name|class
 name|MultimapBuilderWithKeys
-parameter_list|<
+operator|<
 name|K0
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 block|{
 DECL|field|DEFAULT_EXPECTED_VALUES_PER_KEY
 specifier|private
 specifier|static
-specifier|final
+name|final
 name|int
 name|DEFAULT_EXPECTED_VALUES_PER_KEY
-init|=
+operator|=
 literal|2
-decl_stmt|;
+block|;
 DECL|method|MultimapBuilderWithKeys ()
 name|MultimapBuilderWithKeys
-parameter_list|()
+argument_list|()
 block|{}
 DECL|method|createMap ()
 specifier|abstract
-parameter_list|<
+operator|<
 name|K
-extends|extends
+expr|extends
 name|K0
-parameter_list|,
+block|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|Map
 argument_list|<
 name|K
@@ -1060,8 +1186,8 @@ name|V
 argument_list|>
 argument_list|>
 name|createMap
-parameter_list|()
-function_decl|;
+argument_list|()
+block|;
 comment|/** Uses an {@link ArrayList} to store value collections. */
 DECL|method|arrayListValues ()
 specifier|public
@@ -1069,10 +1195,12 @@ name|ListMultimapBuilder
 argument_list|<
 name|K0
 argument_list|,
+annotation|@
+name|Nullable
 name|Object
 argument_list|>
 name|arrayListValues
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|arrayListValues
@@ -1082,20 +1210,22 @@ argument_list|)
 return|;
 block|}
 comment|/**      * Uses an {@link ArrayList} to store value collections, initialized to expect the specified      * number of values per key.      *      * @throws IllegalArgumentException if {@code expectedValuesPerKey< 0}      */
-DECL|method|arrayListValues (final int expectedValuesPerKey)
+DECL|method|arrayListValues ( final int expectedValuesPerKey)
 specifier|public
 name|ListMultimapBuilder
 argument_list|<
 name|K0
 argument_list|,
+annotation|@
+name|Nullable
 name|Object
 argument_list|>
 name|arrayListValues
-parameter_list|(
-specifier|final
+argument_list|(
+name|final
 name|int
 name|expectedValuesPerKey
-parameter_list|)
+argument_list|)
 block|{
 name|checkNonnegative
 argument_list|(
@@ -1103,13 +1233,15 @@ name|expectedValuesPerKey
 argument_list|,
 literal|"expectedValuesPerKey"
 argument_list|)
-expr_stmt|;
+block|;
 return|return
 operator|new
 name|ListMultimapBuilder
 argument_list|<
 name|K0
 argument_list|,
+annotation|@
+name|Nullable
 name|Object
 argument_list|>
 argument_list|()
@@ -1117,13 +1249,16 @@ block|{
 annotation|@
 name|Override
 specifier|public
-parameter_list|<
+operator|<
 name|K
-extends|extends
+expr|extends
 name|K0
-parameter_list|,
+operator|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|ListMultimap
 argument_list|<
 name|K
@@ -1131,7 +1266,7 @@ argument_list|,
 name|V
 argument_list|>
 name|build
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|Multimaps
@@ -1161,16 +1296,22 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-block|}
-return|;
-block|}
+end_expr_stmt
+
+begin_comment
+unit|};     }
 comment|/** Uses a {@link LinkedList} to store value collections. */
+end_comment
+
+begin_function
 DECL|method|linkedListValues ()
-specifier|public
+unit|public
 name|ListMultimapBuilder
 argument_list|<
 name|K0
 argument_list|,
+annotation|@
+name|Nullable
 name|Object
 argument_list|>
 name|linkedListValues
@@ -1182,6 +1323,8 @@ name|ListMultimapBuilder
 argument_list|<
 name|K0
 argument_list|,
+annotation|@
+name|Nullable
 name|Object
 argument_list|>
 argument_list|()
@@ -1189,13 +1332,16 @@ block|{
 annotation|@
 name|Override
 specifier|public
-parameter_list|<
+operator|<
 name|K
-extends|extends
+expr|extends
 name|K0
-parameter_list|,
+operator|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|ListMultimap
 argument_list|<
 name|K
@@ -1203,7 +1349,7 @@ argument_list|,
 name|V
 argument_list|>
 name|build
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|Multimaps
@@ -1235,13 +1381,21 @@ block|}
 block|}
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/** Uses a hash-based {@code Set} to store value collections. */
+end_comment
+
+begin_function
 DECL|method|hashSetValues ()
 specifier|public
 name|SetMultimapBuilder
 argument_list|<
 name|K0
 argument_list|,
+annotation|@
+name|Nullable
 name|Object
 argument_list|>
 name|hashSetValues
@@ -1254,13 +1408,21 @@ name|DEFAULT_EXPECTED_VALUES_PER_KEY
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**      * Uses a hash-based {@code Set} to store value collections, initialized to expect the specified      * number of values per key.      *      * @throws IllegalArgumentException if {@code expectedValuesPerKey< 0}      */
+end_comment
+
+begin_function
 DECL|method|hashSetValues (final int expectedValuesPerKey)
 specifier|public
 name|SetMultimapBuilder
 argument_list|<
 name|K0
 argument_list|,
+annotation|@
+name|Nullable
 name|Object
 argument_list|>
 name|hashSetValues
@@ -1283,6 +1445,8 @@ name|SetMultimapBuilder
 argument_list|<
 name|K0
 argument_list|,
+annotation|@
+name|Nullable
 name|Object
 argument_list|>
 argument_list|()
@@ -1290,13 +1454,16 @@ block|{
 annotation|@
 name|Override
 specifier|public
-parameter_list|<
+operator|<
 name|K
-extends|extends
+expr|extends
 name|K0
-parameter_list|,
+operator|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|SetMultimap
 argument_list|<
 name|K
@@ -1304,7 +1471,7 @@ argument_list|,
 name|V
 argument_list|>
 name|build
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|Multimaps
@@ -1337,13 +1504,21 @@ block|}
 block|}
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/** Uses an insertion-ordered hash-based {@code Set} to store value collections. */
+end_comment
+
+begin_function
 DECL|method|linkedHashSetValues ()
 specifier|public
 name|SetMultimapBuilder
 argument_list|<
 name|K0
 argument_list|,
+annotation|@
+name|Nullable
 name|Object
 argument_list|>
 name|linkedHashSetValues
@@ -1356,13 +1531,21 @@ name|DEFAULT_EXPECTED_VALUES_PER_KEY
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**      * Uses an insertion-ordered hash-based {@code Set} to store value collections, initialized to      * expect the specified number of values per key.      *      * @throws IllegalArgumentException if {@code expectedValuesPerKey< 0}      */
-DECL|method|linkedHashSetValues (final int expectedValuesPerKey)
+end_comment
+
+begin_function
+DECL|method|linkedHashSetValues ( final int expectedValuesPerKey)
 specifier|public
 name|SetMultimapBuilder
 argument_list|<
 name|K0
 argument_list|,
+annotation|@
+name|Nullable
 name|Object
 argument_list|>
 name|linkedHashSetValues
@@ -1385,6 +1568,8 @@ name|SetMultimapBuilder
 argument_list|<
 name|K0
 argument_list|,
+annotation|@
+name|Nullable
 name|Object
 argument_list|>
 argument_list|()
@@ -1392,13 +1577,16 @@ block|{
 annotation|@
 name|Override
 specifier|public
-parameter_list|<
+operator|<
 name|K
-extends|extends
+expr|extends
 name|K0
-parameter_list|,
+operator|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|SetMultimap
 argument_list|<
 name|K
@@ -1406,7 +1594,7 @@ argument_list|,
 name|V
 argument_list|>
 name|build
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|Multimaps
@@ -1439,7 +1627,13 @@ block|}
 block|}
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/** Uses a naturally-ordered {@link TreeSet} to store value collections. */
+end_comment
+
+begin_function
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -1466,12 +1660,21 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**      * Uses a {@link TreeSet} ordered by the specified comparator to store value collections.      *      *<p>Multimaps generated by the resulting builder will not be serializable if {@code      * comparator} is not serializable.      */
-DECL|method|treeSetValues (final Comparator<V0> comparator)
+end_comment
+
+begin_expr_stmt
+DECL|method|treeSetValues ( final Comparator<V0> comparator)
 specifier|public
-parameter_list|<
+operator|<
 name|V0
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|SortedSetMultimapBuilder
 argument_list|<
 name|K0
@@ -1479,14 +1682,14 @@ argument_list|,
 name|V0
 argument_list|>
 name|treeSetValues
-parameter_list|(
-specifier|final
+argument_list|(
+name|final
 name|Comparator
 argument_list|<
 name|V0
 argument_list|>
 name|comparator
-parameter_list|)
+argument_list|)
 block|{
 name|checkNotNull
 argument_list|(
@@ -1494,7 +1697,7 @@ name|comparator
 argument_list|,
 literal|"comparator"
 argument_list|)
-expr_stmt|;
+block|;
 return|return
 operator|new
 name|SortedSetMultimapBuilder
@@ -1554,12 +1757,16 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-block|}
-return|;
-block|}
+end_expr_stmt
+
+begin_comment
+unit|};     }
 comment|/** Uses an {@link EnumSet} to store value collections. */
+end_comment
+
+begin_function
 DECL|method|enumSetValues ( final Class<V0> valueClass)
-specifier|public
+unit|public
 parameter_list|<
 name|V0
 extends|extends
@@ -1678,10 +1885,16 @@ block|}
 block|}
 return|;
 block|}
-block|}
+end_function
+
+begin_comment
+unit|}
 comment|/** Returns a new, empty {@code Multimap} with the specified implementation. */
+end_comment
+
+begin_function_decl
 DECL|method|build ()
-specifier|public
+unit|public
 specifier|abstract
 parameter_list|<
 name|K
@@ -1701,7 +1914,13 @@ argument_list|>
 name|build
 parameter_list|()
 function_decl|;
+end_function_decl
+
+begin_comment
 comment|/**    * Returns a {@code Multimap} with the specified implementation, initialized with the entries of    * {@code multimap}.    */
+end_comment
+
+begin_function
 DECL|method|build ( Multimap<? extends K, ? extends V> multimap)
 specifier|public
 parameter_list|<
@@ -1756,19 +1975,31 @@ return|return
 name|result
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * A specialization of {@link MultimapBuilder} that generates {@link ListMultimap} instances.    *    * @since 16.0    */
+end_comment
+
+begin_expr_stmt
 DECL|class|ListMultimapBuilder
 specifier|public
 specifier|abstract
 specifier|static
-class|class
+name|class
 name|ListMultimapBuilder
-parameter_list|<
+operator|<
 name|K0
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V0
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|MultimapBuilder
 argument_list|<
 name|K0
@@ -1778,22 +2009,22 @@ argument_list|>
 block|{
 DECL|method|ListMultimapBuilder ()
 name|ListMultimapBuilder
-parameter_list|()
+argument_list|()
 block|{}
-annotation|@
+expr|@
 name|Override
 DECL|method|build ()
 specifier|public
 specifier|abstract
-parameter_list|<
+operator|<
 name|K
-extends|extends
+expr|extends
 name|K0
-parameter_list|,
+block|,
 name|V
-extends|extends
+expr|extends
 name|V0
-parameter_list|>
+operator|>
 name|ListMultimap
 argument_list|<
 name|K
@@ -1801,21 +2032,20 @@ argument_list|,
 name|V
 argument_list|>
 name|build
-parameter_list|()
-function_decl|;
-annotation|@
+argument_list|()
+block|;      @
 name|Override
 DECL|method|build ( Multimap<? extends K, ? extends V> multimap)
 specifier|public
-parameter_list|<
+operator|<
 name|K
-extends|extends
+expr|extends
 name|K0
-parameter_list|,
+block|,
 name|V
-extends|extends
+expr|extends
 name|V0
-parameter_list|>
+operator|>
 name|ListMultimap
 argument_list|<
 name|K
@@ -1823,7 +2053,7 @@ argument_list|,
 name|V
 argument_list|>
 name|build
-parameter_list|(
+argument_list|(
 name|Multimap
 argument_list|<
 name|?
@@ -1835,7 +2065,7 @@ extends|extends
 name|V
 argument_list|>
 name|multimap
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|(
@@ -1854,20 +2084,32 @@ name|multimap
 argument_list|)
 return|;
 block|}
-block|}
+end_expr_stmt
+
+begin_comment
+unit|}
 comment|/**    * A specialization of {@link MultimapBuilder} that generates {@link SetMultimap} instances.    *    * @since 16.0    */
+end_comment
+
+begin_expr_stmt
 DECL|class|SetMultimapBuilder
-specifier|public
+unit|public
 specifier|abstract
 specifier|static
-class|class
+name|class
 name|SetMultimapBuilder
-parameter_list|<
+operator|<
 name|K0
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V0
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|MultimapBuilder
 argument_list|<
 name|K0
@@ -1877,22 +2119,22 @@ argument_list|>
 block|{
 DECL|method|SetMultimapBuilder ()
 name|SetMultimapBuilder
-parameter_list|()
+argument_list|()
 block|{}
-annotation|@
+expr|@
 name|Override
 DECL|method|build ()
 specifier|public
 specifier|abstract
-parameter_list|<
+operator|<
 name|K
-extends|extends
+expr|extends
 name|K0
-parameter_list|,
+block|,
 name|V
-extends|extends
+expr|extends
 name|V0
-parameter_list|>
+operator|>
 name|SetMultimap
 argument_list|<
 name|K
@@ -1900,21 +2142,20 @@ argument_list|,
 name|V
 argument_list|>
 name|build
-parameter_list|()
-function_decl|;
-annotation|@
+argument_list|()
+block|;      @
 name|Override
 DECL|method|build ( Multimap<? extends K, ? extends V> multimap)
 specifier|public
-parameter_list|<
+operator|<
 name|K
-extends|extends
+expr|extends
 name|K0
-parameter_list|,
+block|,
 name|V
-extends|extends
+expr|extends
 name|V0
-parameter_list|>
+operator|>
 name|SetMultimap
 argument_list|<
 name|K
@@ -1922,7 +2163,7 @@ argument_list|,
 name|V
 argument_list|>
 name|build
-parameter_list|(
+argument_list|(
 name|Multimap
 argument_list|<
 name|?
@@ -1934,7 +2175,7 @@ extends|extends
 name|V
 argument_list|>
 name|multimap
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|(
@@ -1953,20 +2194,32 @@ name|multimap
 argument_list|)
 return|;
 block|}
-block|}
+end_expr_stmt
+
+begin_comment
+unit|}
 comment|/**    * A specialization of {@link MultimapBuilder} that generates {@link SortedSetMultimap} instances.    *    * @since 16.0    */
+end_comment
+
+begin_expr_stmt
 DECL|class|SortedSetMultimapBuilder
-specifier|public
+unit|public
 specifier|abstract
 specifier|static
-class|class
+name|class
 name|SortedSetMultimapBuilder
-parameter_list|<
+operator|<
 name|K0
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V0
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|SetMultimapBuilder
 argument_list|<
 name|K0
@@ -1976,22 +2229,22 @@ argument_list|>
 block|{
 DECL|method|SortedSetMultimapBuilder ()
 name|SortedSetMultimapBuilder
-parameter_list|()
+argument_list|()
 block|{}
-annotation|@
+expr|@
 name|Override
 DECL|method|build ()
 specifier|public
 specifier|abstract
-parameter_list|<
+operator|<
 name|K
-extends|extends
+expr|extends
 name|K0
-parameter_list|,
+block|,
 name|V
-extends|extends
+expr|extends
 name|V0
-parameter_list|>
+operator|>
 name|SortedSetMultimap
 argument_list|<
 name|K
@@ -1999,21 +2252,20 @@ argument_list|,
 name|V
 argument_list|>
 name|build
-parameter_list|()
-function_decl|;
-annotation|@
+argument_list|()
+block|;      @
 name|Override
 DECL|method|build ( Multimap<? extends K, ? extends V> multimap)
 specifier|public
-parameter_list|<
+operator|<
 name|K
-extends|extends
+expr|extends
 name|K0
-parameter_list|,
+block|,
 name|V
-extends|extends
+expr|extends
 name|V0
-parameter_list|>
+operator|>
 name|SortedSetMultimap
 argument_list|<
 name|K
@@ -2021,7 +2273,7 @@ argument_list|,
 name|V
 argument_list|>
 name|build
-parameter_list|(
+argument_list|(
 name|Multimap
 argument_list|<
 name|?
@@ -2033,7 +2285,7 @@ extends|extends
 name|V
 argument_list|>
 name|multimap
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|(
@@ -2052,9 +2304,8 @@ name|multimap
 argument_list|)
 return|;
 block|}
-block|}
-block|}
-end_class
+end_expr_stmt
 
+unit|} }
 end_unit
 

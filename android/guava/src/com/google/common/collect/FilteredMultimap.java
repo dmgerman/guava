@@ -56,22 +56,52 @@ name|Entry
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|checkerframework
+operator|.
+name|checker
+operator|.
+name|nullness
+operator|.
+name|qual
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/**  * An interface for all filtered multimap types.  *  * @author Louis Wasserman  */
 end_comment
 
-begin_interface
+begin_annotation
 annotation|@
 name|GwtCompatible
+end_annotation
+
+begin_annotation
+annotation|@
+name|ElementTypesAreNonnullByDefault
+end_annotation
+
+begin_expr_stmt
 DECL|interface|FilteredMultimap
-interface|interface
+unit|interface
 name|FilteredMultimap
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|Multimap
 argument_list|<
 name|K
@@ -87,8 +117,8 @@ argument_list|,
 name|V
 argument_list|>
 name|unfiltered
-parameter_list|()
-function_decl|;
+argument_list|()
+block|;
 DECL|method|entryPredicate ()
 name|Predicate
 argument_list|<
@@ -102,10 +132,9 @@ name|V
 argument_list|>
 argument_list|>
 name|entryPredicate
-parameter_list|()
-function_decl|;
-block|}
-end_interface
+argument_list|()
+block|; }
+end_expr_stmt
 
 end_unit
 

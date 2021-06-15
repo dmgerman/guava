@@ -65,6 +65,34 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|collect
+operator|.
+name|NullnessCasts
+operator|.
+name|uncheckedCastNullableTToT
+import|;
+end_import
+
+begin_import
+import|import static
+name|java
+operator|.
+name|util
+operator|.
+name|Objects
+operator|.
+name|requireNonNull
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -410,6 +438,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|checkerframework
@@ -418,9 +456,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -436,6 +474,8 @@ name|emulated
 operator|=
 literal|true
 argument_list|)
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|Multimaps
 specifier|public
 specifier|final
@@ -451,11 +491,17 @@ comment|/**    * Creates a new {@code Multimap} backed by {@code map}, whose int
 DECL|method|newMultimap ( Map<K, Collection<V>> map, final Supplier<? extends Collection<V>> factory)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|Multimap
 argument_list|<
 name|K
@@ -463,7 +509,7 @@ argument_list|,
 name|V
 argument_list|>
 name|newMultimap
-parameter_list|(
+argument_list|(
 name|Map
 argument_list|<
 name|K
@@ -474,8 +520,8 @@ name|V
 argument_list|>
 argument_list|>
 name|map
-parameter_list|,
-specifier|final
+argument_list|,
+name|final
 name|Supplier
 argument_list|<
 name|?
@@ -486,7 +532,7 @@ name|V
 argument_list|>
 argument_list|>
 name|factory
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|new
@@ -502,14 +548,20 @@ block|}
 DECL|class|CustomMultimap
 specifier|private
 specifier|static
-class|class
+name|class
 name|CustomMultimap
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|AbstractMapBasedMultimap
 argument_list|<
 name|K
@@ -529,10 +581,10 @@ name|V
 argument_list|>
 argument_list|>
 name|factory
-decl_stmt|;
+block|;
 DECL|method|CustomMultimap (Map<K, Collection<V>> map, Supplier<? extends Collection<V>> factory)
 name|CustomMultimap
-parameter_list|(
+argument_list|(
 name|Map
 argument_list|<
 name|K
@@ -543,7 +595,7 @@ name|V
 argument_list|>
 argument_list|>
 name|map
-parameter_list|,
+argument_list|,
 name|Supplier
 argument_list|<
 name|?
@@ -554,13 +606,13 @@ name|V
 argument_list|>
 argument_list|>
 name|factory
-parameter_list|)
+argument_list|)
 block|{
 name|super
 argument_list|(
 name|map
 argument_list|)
-expr_stmt|;
+block|;
 name|this
 operator|.
 name|factory
@@ -569,9 +621,8 @@ name|checkNotNull
 argument_list|(
 name|factory
 argument_list|)
-expr_stmt|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|Override
 DECL|method|createKeySet ()
 name|Set
@@ -579,14 +630,14 @@ argument_list|<
 name|K
 argument_list|>
 name|createKeySet
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|createMaybeNavigableKeySet
 argument_list|()
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
 DECL|method|createAsMap ()
 name|Map
@@ -599,7 +650,7 @@ name|V
 argument_list|>
 argument_list|>
 name|createAsMap
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|createMaybeNavigableAsMap
@@ -626,22 +677,25 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|unmodifiableCollectionSubclass (Collection<E> collection)
-argument_list|<
+DECL|method|unmodifiableCollectionSubclass ( Collection<E> collection)
+operator|<
 name|E
-argument_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|Collection
 argument_list|<
 name|E
 argument_list|>
 name|unmodifiableCollectionSubclass
-parameter_list|(
+argument_list|(
 name|Collection
 argument_list|<
 name|E
 argument_list|>
 name|collection
-parameter_list|)
+argument_list|)
 block|{
 if|if
 condition|(
@@ -746,15 +800,20 @@ argument_list|)
 return|;
 block|}
 block|}
+end_class
+
+begin_function
 annotation|@
 name|Override
-DECL|method|wrapCollection (K key, Collection<V> collection)
+DECL|method|wrapCollection (@arametricNullness K key, Collection<V> collection)
 name|Collection
 argument_list|<
 name|V
 argument_list|>
 name|wrapCollection
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|key
 parameter_list|,
@@ -880,9 +939,21 @@ argument_list|)
 return|;
 block|}
 block|}
+end_function
+
+begin_comment
 comment|// can't use Serialization writeMultimap and populateMultimap methods since
+end_comment
+
+begin_comment
 comment|// there's no way to generate the empty backing map.
+end_comment
+
+begin_comment
 comment|/** @serialData the factory and the backing map */
+end_comment
+
+begin_function
 annotation|@
 name|GwtIncompatible
 comment|// java.io.ObjectOutputStream
@@ -918,6 +989,9 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|GwtIncompatible
 comment|// java.io.ObjectInputStream
@@ -996,6 +1070,9 @@ name|map
 argument_list|)
 expr_stmt|;
 block|}
+end_function
+
+begin_decl_stmt
 annotation|@
 name|GwtIncompatible
 comment|// java serialization not supported
@@ -1008,16 +1085,28 @@ name|serialVersionUID
 init|=
 literal|0
 decl_stmt|;
-block|}
+end_decl_stmt
+
+begin_comment
+unit|}
 comment|/**    * Creates a new {@code ListMultimap} that uses the provided map and factory. It can generate a    * multimap based on arbitrary {@link Map} and {@link List} classes.    *    *<p>The {@code factory}-generated and {@code map} classes determine the multimap iteration    * order. They also specify the behavior of the {@code equals}, {@code hashCode}, and {@code    * toString} methods for the multimap and its returned views. The multimap's {@code get}, {@code    * removeAll}, and {@code replaceValues} methods return {@code RandomAccess} lists if the factory    * does. However, the multimap's {@code get} method returns instances of a different class than    * does {@code factory.get()}.    *    *<p>The multimap is serializable if {@code map}, {@code factory}, the lists generated by {@code    * factory}, and the multimap contents are all serializable.    *    *<p>The multimap is not threadsafe when any concurrent operations update the multimap, even if    * {@code map} and the instances generated by {@code factory} are. Concurrent read operations will    * work correctly. To allow concurrent update operations, wrap the multimap with a call to {@link    * #synchronizedListMultimap}.    *    *<p>Call this method only when the simpler methods {@link ArrayListMultimap#create()} and {@link    * LinkedListMultimap#create()} won't suffice.    *    *<p>Note: the multimap assumes complete ownership over of {@code map} and the lists returned by    * {@code factory}. Those objects should not be manually updated, they should be empty when    * provided, and they should not use soft, weak, or phantom references.    *    * @param map place to store the mapping from each key to its corresponding values    * @param factory supplier of new, empty lists that will each hold all values for a given key    * @throws IllegalArgumentException if {@code map} is not empty    */
-DECL|method|newListMultimap ( Map<K, Collection<V>> map, final Supplier<? extends List<V>> factory)
-specifier|public
+end_comment
+
+begin_expr_stmt
+unit|public
 specifier|static
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+DECL|method|newListMultimap ( Map<K, Collection<V>> map, final Supplier<? extends List<V>> factory)
 name|ListMultimap
 argument_list|<
 name|K
@@ -1025,7 +1114,7 @@ argument_list|,
 name|V
 argument_list|>
 name|newListMultimap
-parameter_list|(
+argument_list|(
 name|Map
 argument_list|<
 name|K
@@ -1036,8 +1125,8 @@ name|V
 argument_list|>
 argument_list|>
 name|map
-parameter_list|,
-specifier|final
+argument_list|,
+name|final
 name|Supplier
 argument_list|<
 name|?
@@ -1048,7 +1137,7 @@ name|V
 argument_list|>
 argument_list|>
 name|factory
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|new
@@ -1061,17 +1150,26 @@ name|factory
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_expr_stmt
 DECL|class|CustomListMultimap
 specifier|private
 specifier|static
-class|class
+name|class
 name|CustomListMultimap
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|AbstractListMultimap
 argument_list|<
 name|K
@@ -1091,10 +1189,10 @@ name|V
 argument_list|>
 argument_list|>
 name|factory
-decl_stmt|;
+block|;
 DECL|method|CustomListMultimap (Map<K, Collection<V>> map, Supplier<? extends List<V>> factory)
 name|CustomListMultimap
-parameter_list|(
+argument_list|(
 name|Map
 argument_list|<
 name|K
@@ -1105,7 +1203,7 @@ name|V
 argument_list|>
 argument_list|>
 name|map
-parameter_list|,
+argument_list|,
 name|Supplier
 argument_list|<
 name|?
@@ -1116,13 +1214,13 @@ name|V
 argument_list|>
 argument_list|>
 name|factory
-parameter_list|)
+argument_list|)
 block|{
 name|super
 argument_list|(
 name|map
 argument_list|)
-expr_stmt|;
+block|;
 name|this
 operator|.
 name|factory
@@ -1131,9 +1229,8 @@ name|checkNotNull
 argument_list|(
 name|factory
 argument_list|)
-expr_stmt|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|Override
 DECL|method|createKeySet ()
 name|Set
@@ -1141,14 +1238,14 @@ argument_list|<
 name|K
 argument_list|>
 name|createKeySet
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|createMaybeNavigableKeySet
 argument_list|()
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
 DECL|method|createAsMap ()
 name|Map
@@ -1161,13 +1258,16 @@ name|V
 argument_list|>
 argument_list|>
 name|createAsMap
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|createMaybeNavigableAsMap
 argument_list|()
 return|;
 block|}
+end_expr_stmt
+
+begin_function
 annotation|@
 name|Override
 DECL|method|createCollection ()
@@ -1186,7 +1286,13 @@ name|get
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/** @serialData the factory and the backing map */
+end_comment
+
+begin_function
 annotation|@
 name|GwtIncompatible
 comment|// java.io.ObjectOutputStream
@@ -1222,6 +1328,9 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|GwtIncompatible
 comment|// java.io.ObjectInputStream
@@ -1300,6 +1409,9 @@ name|map
 argument_list|)
 expr_stmt|;
 block|}
+end_function
+
+begin_decl_stmt
 annotation|@
 name|GwtIncompatible
 comment|// java serialization not supported
@@ -1312,16 +1424,28 @@ name|serialVersionUID
 init|=
 literal|0
 decl_stmt|;
-block|}
+end_decl_stmt
+
+begin_comment
+unit|}
 comment|/**    * Creates a new {@code SetMultimap} that uses the provided map and factory. It can generate a    * multimap based on arbitrary {@link Map} and {@link Set} classes.    *    *<p>The {@code factory}-generated and {@code map} classes determine the multimap iteration    * order. They also specify the behavior of the {@code equals}, {@code hashCode}, and {@code    * toString} methods for the multimap and its returned views. However, the multimap's {@code get}    * method returns instances of a different class than {@code factory.get()} does.    *    *<p>The multimap is serializable if {@code map}, {@code factory}, the sets generated by {@code    * factory}, and the multimap contents are all serializable.    *    *<p>The multimap is not threadsafe when any concurrent operations update the multimap, even if    * {@code map} and the instances generated by {@code factory} are. Concurrent read operations will    * work correctly. To allow concurrent update operations, wrap the multimap with a call to {@link    * #synchronizedSetMultimap}.    *    *<p>Call this method only when the simpler methods {@link HashMultimap#create()}, {@link    * LinkedHashMultimap#create()}, {@link TreeMultimap#create()}, and {@link    * TreeMultimap#create(Comparator, Comparator)} won't suffice.    *    *<p>Note: the multimap assumes complete ownership over of {@code map} and the sets returned by    * {@code factory}. Those objects should not be manually updated and they should not use soft,    * weak, or phantom references.    *    * @param map place to store the mapping from each key to its corresponding values    * @param factory supplier of new, empty sets that will each hold all values for a given key    * @throws IllegalArgumentException if {@code map} is not empty    */
-DECL|method|newSetMultimap ( Map<K, Collection<V>> map, final Supplier<? extends Set<V>> factory)
-specifier|public
+end_comment
+
+begin_expr_stmt
+unit|public
 specifier|static
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+DECL|method|newSetMultimap ( Map<K, Collection<V>> map, final Supplier<? extends Set<V>> factory)
 name|SetMultimap
 argument_list|<
 name|K
@@ -1329,7 +1453,7 @@ argument_list|,
 name|V
 argument_list|>
 name|newSetMultimap
-parameter_list|(
+argument_list|(
 name|Map
 argument_list|<
 name|K
@@ -1340,8 +1464,8 @@ name|V
 argument_list|>
 argument_list|>
 name|map
-parameter_list|,
-specifier|final
+argument_list|,
+name|final
 name|Supplier
 argument_list|<
 name|?
@@ -1352,7 +1476,7 @@ name|V
 argument_list|>
 argument_list|>
 name|factory
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|new
@@ -1365,17 +1489,26 @@ name|factory
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_expr_stmt
 DECL|class|CustomSetMultimap
 specifier|private
 specifier|static
-class|class
+name|class
 name|CustomSetMultimap
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|AbstractSetMultimap
 argument_list|<
 name|K
@@ -1395,10 +1528,10 @@ name|V
 argument_list|>
 argument_list|>
 name|factory
-decl_stmt|;
+block|;
 DECL|method|CustomSetMultimap (Map<K, Collection<V>> map, Supplier<? extends Set<V>> factory)
 name|CustomSetMultimap
-parameter_list|(
+argument_list|(
 name|Map
 argument_list|<
 name|K
@@ -1409,7 +1542,7 @@ name|V
 argument_list|>
 argument_list|>
 name|map
-parameter_list|,
+argument_list|,
 name|Supplier
 argument_list|<
 name|?
@@ -1420,13 +1553,13 @@ name|V
 argument_list|>
 argument_list|>
 name|factory
-parameter_list|)
+argument_list|)
 block|{
 name|super
 argument_list|(
 name|map
 argument_list|)
-expr_stmt|;
+block|;
 name|this
 operator|.
 name|factory
@@ -1435,9 +1568,8 @@ name|checkNotNull
 argument_list|(
 name|factory
 argument_list|)
-expr_stmt|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|Override
 DECL|method|createKeySet ()
 name|Set
@@ -1445,14 +1577,14 @@ argument_list|<
 name|K
 argument_list|>
 name|createKeySet
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|createMaybeNavigableKeySet
 argument_list|()
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
 DECL|method|createAsMap ()
 name|Map
@@ -1465,13 +1597,16 @@ name|V
 argument_list|>
 argument_list|>
 name|createAsMap
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|createMaybeNavigableAsMap
 argument_list|()
 return|;
 block|}
+end_expr_stmt
+
+begin_function
 annotation|@
 name|Override
 DECL|method|createCollection ()
@@ -1490,24 +1625,33 @@ name|get
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_annotation
 annotation|@
 name|Override
-DECL|method|unmodifiableCollectionSubclass (Collection<E> collection)
-argument_list|<
+end_annotation
+
+begin_expr_stmt
+DECL|method|unmodifiableCollectionSubclass ( Collection<E> collection)
+operator|<
 name|E
-argument_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|Collection
 argument_list|<
 name|E
 argument_list|>
 name|unmodifiableCollectionSubclass
-parameter_list|(
+argument_list|(
 name|Collection
 argument_list|<
 name|E
 argument_list|>
 name|collection
-parameter_list|)
+argument_list|)
 block|{
 if|if
 condition|(
@@ -1531,6 +1675,9 @@ name|collection
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_elseif
 elseif|else
 if|if
 condition|(
@@ -1554,6 +1701,9 @@ name|collection
 argument_list|)
 return|;
 block|}
+end_elseif
+
+begin_else
 else|else
 block|{
 return|return
@@ -1571,16 +1721,20 @@ name|collection
 argument_list|)
 return|;
 block|}
-block|}
-annotation|@
+end_else
+
+begin_function
+unit|}      @
 name|Override
-DECL|method|wrapCollection (K key, Collection<V> collection)
+DECL|method|wrapCollection (@arametricNullness K key, Collection<V> collection)
 name|Collection
 argument_list|<
 name|V
 argument_list|>
 name|wrapCollection
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|key
 parameter_list|,
@@ -1661,7 +1815,13 @@ argument_list|)
 return|;
 block|}
 block|}
+end_function
+
+begin_comment
 comment|/** @serialData the factory and the backing map */
+end_comment
+
+begin_function
 annotation|@
 name|GwtIncompatible
 comment|// java.io.ObjectOutputStream
@@ -1697,6 +1857,9 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|GwtIncompatible
 comment|// java.io.ObjectInputStream
@@ -1775,6 +1938,9 @@ name|map
 argument_list|)
 expr_stmt|;
 block|}
+end_function
+
+begin_decl_stmt
 annotation|@
 name|GwtIncompatible
 comment|// not needed in emulated source
@@ -1787,16 +1953,28 @@ name|serialVersionUID
 init|=
 literal|0
 decl_stmt|;
-block|}
+end_decl_stmt
+
+begin_comment
+unit|}
 comment|/**    * Creates a new {@code SortedSetMultimap} that uses the provided map and factory. It can generate    * a multimap based on arbitrary {@link Map} and {@link SortedSet} classes.    *    *<p>The {@code factory}-generated and {@code map} classes determine the multimap iteration    * order. They also specify the behavior of the {@code equals}, {@code hashCode}, and {@code    * toString} methods for the multimap and its returned views. However, the multimap's {@code get}    * method returns instances of a different class than {@code factory.get()} does.    *    *<p>The multimap is serializable if {@code map}, {@code factory}, the sets generated by {@code    * factory}, and the multimap contents are all serializable.    *    *<p>The multimap is not threadsafe when any concurrent operations update the multimap, even if    * {@code map} and the instances generated by {@code factory} are. Concurrent read operations will    * work correctly. To allow concurrent update operations, wrap the multimap with a call to {@link    * #synchronizedSortedSetMultimap}.    *    *<p>Call this method only when the simpler methods {@link TreeMultimap#create()} and {@link    * TreeMultimap#create(Comparator, Comparator)} won't suffice.    *    *<p>Note: the multimap assumes complete ownership over of {@code map} and the sets returned by    * {@code factory}. Those objects should not be manually updated and they should not use soft,    * weak, or phantom references.    *    * @param map place to store the mapping from each key to its corresponding values    * @param factory supplier of new, empty sorted sets that will each hold all values for a given    *     key    * @throws IllegalArgumentException if {@code map} is not empty    */
-DECL|method|newSortedSetMultimap ( Map<K, Collection<V>> map, final Supplier<? extends SortedSet<V>> factory)
-specifier|public
+end_comment
+
+begin_expr_stmt
+unit|public
 specifier|static
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+DECL|method|newSortedSetMultimap ( Map<K, Collection<V>> map, final Supplier<? extends SortedSet<V>> factory)
 name|SortedSetMultimap
 argument_list|<
 name|K
@@ -1804,7 +1982,7 @@ argument_list|,
 name|V
 argument_list|>
 name|newSortedSetMultimap
-parameter_list|(
+argument_list|(
 name|Map
 argument_list|<
 name|K
@@ -1815,8 +1993,8 @@ name|V
 argument_list|>
 argument_list|>
 name|map
-parameter_list|,
-specifier|final
+argument_list|,
+name|final
 name|Supplier
 argument_list|<
 name|?
@@ -1827,7 +2005,7 @@ name|V
 argument_list|>
 argument_list|>
 name|factory
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|new
@@ -1840,17 +2018,26 @@ name|factory
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_expr_stmt
 DECL|class|CustomSortedSetMultimap
 specifier|private
 specifier|static
-class|class
+name|class
 name|CustomSortedSetMultimap
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|AbstractSortedSetMultimap
 argument_list|<
 name|K
@@ -1870,8 +2057,9 @@ name|V
 argument_list|>
 argument_list|>
 name|factory
-decl_stmt|;
+block|;     @
 DECL|field|valueComparator
+name|CheckForNull
 specifier|transient
 name|Comparator
 argument_list|<
@@ -1880,10 +2068,10 @@ super|super
 name|V
 argument_list|>
 name|valueComparator
-decl_stmt|;
+block|;
 DECL|method|CustomSortedSetMultimap (Map<K, Collection<V>> map, Supplier<? extends SortedSet<V>> factory)
 name|CustomSortedSetMultimap
-parameter_list|(
+argument_list|(
 name|Map
 argument_list|<
 name|K
@@ -1894,7 +2082,7 @@ name|V
 argument_list|>
 argument_list|>
 name|map
-parameter_list|,
+argument_list|,
 name|Supplier
 argument_list|<
 name|?
@@ -1905,13 +2093,13 @@ name|V
 argument_list|>
 argument_list|>
 name|factory
-parameter_list|)
+argument_list|)
 block|{
 name|super
 argument_list|(
 name|map
 argument_list|)
-expr_stmt|;
+block|;
 name|this
 operator|.
 name|factory
@@ -1920,7 +2108,7 @@ name|checkNotNull
 argument_list|(
 name|factory
 argument_list|)
-expr_stmt|;
+block|;
 name|valueComparator
 operator|=
 name|factory
@@ -1930,9 +2118,8 @@ argument_list|()
 operator|.
 name|comparator
 argument_list|()
-expr_stmt|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|Override
 DECL|method|createKeySet ()
 name|Set
@@ -1940,14 +2127,14 @@ argument_list|<
 name|K
 argument_list|>
 name|createKeySet
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|createMaybeNavigableKeySet
 argument_list|()
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
 DECL|method|createAsMap ()
 name|Map
@@ -1960,13 +2147,16 @@ name|V
 argument_list|>
 argument_list|>
 name|createAsMap
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|createMaybeNavigableAsMap
 argument_list|()
 return|;
 block|}
+end_expr_stmt
+
+begin_function
 annotation|@
 name|Override
 DECL|method|createCollection ()
@@ -1985,8 +2175,13 @@ name|get
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|valueComparator ()
 specifier|public
 name|Comparator
@@ -2002,7 +2197,13 @@ return|return
 name|valueComparator
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/** @serialData the factory and the backing map */
+end_comment
+
+begin_function
 annotation|@
 name|GwtIncompatible
 comment|// java.io.ObjectOutputStream
@@ -2038,6 +2239,9 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|GwtIncompatible
 comment|// java.io.ObjectInputStream
@@ -2126,6 +2330,9 @@ name|map
 argument_list|)
 expr_stmt|;
 block|}
+end_function
+
+begin_decl_stmt
 annotation|@
 name|GwtIncompatible
 comment|// not needed in emulated source
@@ -2138,30 +2345,42 @@ name|serialVersionUID
 init|=
 literal|0
 decl_stmt|;
-block|}
+end_decl_stmt
+
+begin_comment
+unit|}
 comment|/**    * Copies each key-value mapping in {@code source} into {@code dest}, with its key and value    * reversed.    *    *<p>If {@code source} is an {@link ImmutableMultimap}, consider using {@link    * ImmutableMultimap#inverse} instead.    *    * @param source any multimap    * @param dest the multimap to copy into; usually empty    * @return {@code dest}    */
-annotation|@
+end_comment
+
+begin_expr_stmt
+unit|@
 name|CanIgnoreReturnValue
-DECL|method|invertFrom ( Multimap<? extends V, ? extends K> source, M dest)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|M
-extends|extends
+expr|extends
 name|Multimap
 argument_list|<
 name|K
 argument_list|,
 name|V
 argument_list|>
-parameter_list|>
+operator|>
+DECL|method|invertFrom (Multimap<? extends V, ? extends K> source, M dest)
 name|M
 name|invertFrom
-parameter_list|(
+argument_list|(
 name|Multimap
 argument_list|<
 name|?
@@ -2173,16 +2392,16 @@ extends|extends
 name|K
 argument_list|>
 name|source
-parameter_list|,
+operator|,
 name|M
 name|dest
-parameter_list|)
+argument_list|)
 block|{
 name|checkNotNull
 argument_list|(
 name|dest
 argument_list|)
-expr_stmt|;
+block|;
 for|for
 control|(
 name|Map
@@ -2221,19 +2440,34 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+end_expr_stmt
+
+begin_return
 return|return
 name|dest
 return|;
-block|}
+end_return
+
+begin_comment
+unit|}
 comment|/**    * Returns a synchronized (thread-safe) multimap backed by the specified multimap. In order to    * guarantee serial access, it is critical that<b>all</b> access to the backing multimap is    * accomplished through the returned multimap.    *    *<p>It is imperative that the user manually synchronize on the returned multimap when accessing    * any of its collection views:    *    *<pre>{@code    * Multimap<K, V> multimap = Multimaps.synchronizedMultimap(    *     HashMultimap.<K, V>create());    * ...    * Collection<V> values = multimap.get(key);  // Needn't be in synchronized block    * ...    * synchronized (multimap) {  // Synchronizing on multimap, not values!    *   Iterator<V> i = values.iterator(); // Must be in synchronized block    *   while (i.hasNext()) {    *     foo(i.next());    *   }    * }    * }</pre>    *    *<p>Failure to follow this advice may result in non-deterministic behavior.    *    *<p>Note that the generated multimap's {@link Multimap#removeAll} and {@link    * Multimap#replaceValues} methods return collections that aren't synchronized.    *    *<p>The returned multimap will be serializable if the specified multimap is serializable.    *    * @param multimap the multimap to be wrapped in a synchronized view    * @return a synchronized view of the specified multimap    */
-DECL|method|synchronizedMultimap (Multimap<K, V> multimap)
-specifier|public
+end_comment
+
+begin_expr_stmt
+unit|public
 specifier|static
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+DECL|method|synchronizedMultimap (Multimap<K, V> multimap)
 name|Multimap
 argument_list|<
 name|K
@@ -2241,7 +2475,7 @@ argument_list|,
 name|V
 argument_list|>
 name|synchronizedMultimap
-parameter_list|(
+argument_list|(
 name|Multimap
 argument_list|<
 name|K
@@ -2249,7 +2483,7 @@ argument_list|,
 name|V
 argument_list|>
 name|multimap
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|Synchronized
@@ -2262,15 +2496,27 @@ literal|null
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/**    * Returns an unmodifiable view of the specified multimap. Query operations on the returned    * multimap "read through" to the specified multimap, and attempts to modify the returned    * multimap, either directly or through the multimap's views, result in an {@code    * UnsupportedOperationException}.    *    *<p>The returned multimap will be serializable if the specified multimap is serializable.    *    * @param delegate the multimap for which an unmodifiable view is to be returned    * @return an unmodifiable view of the specified multimap    */
-DECL|method|unmodifiableMultimap (Multimap<K, V> delegate)
+end_comment
+
+begin_expr_stmt
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+DECL|method|unmodifiableMultimap (Multimap<K, V> delegate)
 name|Multimap
 argument_list|<
 name|K
@@ -2278,7 +2524,7 @@ argument_list|,
 name|V
 argument_list|>
 name|unmodifiableMultimap
-parameter_list|(
+argument_list|(
 name|Multimap
 argument_list|<
 name|K
@@ -2286,7 +2532,7 @@ argument_list|,
 name|V
 argument_list|>
 name|delegate
-parameter_list|)
+argument_list|)
 block|{
 if|if
 condition|(
@@ -2303,6 +2549,9 @@ return|return
 name|delegate
 return|;
 block|}
+end_expr_stmt
+
+begin_return
 return|return
 operator|new
 name|UnmodifiableMultimap
@@ -2311,18 +2560,24 @@ argument_list|(
 name|delegate
 argument_list|)
 return|;
-block|}
+end_return
+
+begin_comment
+unit|}
 comment|/**    * Simply returns its argument.    *    * @deprecated no need to use this    * @since 10.0    */
-annotation|@
+end_comment
+
+begin_function
+unit|@
 name|Deprecated
 DECL|method|unmodifiableMultimap (ImmutableMultimap<K, V> delegate)
 specifier|public
 specifier|static
-parameter_list|<
+argument_list|<
 name|K
-parameter_list|,
+argument_list|,
 name|V
-parameter_list|>
+argument_list|>
 name|Multimap
 argument_list|<
 name|K
@@ -2347,28 +2602,37 @@ name|delegate
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_expr_stmt
 DECL|class|UnmodifiableMultimap
 specifier|private
 specifier|static
-class|class
+name|class
 name|UnmodifiableMultimap
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|ForwardingMultimap
 argument_list|<
 name|K
 argument_list|,
 name|V
 argument_list|>
-implements|implements
+expr|implements
 name|Serializable
 block|{
 DECL|field|delegate
-specifier|final
+name|final
 name|Multimap
 argument_list|<
 name|K
@@ -2376,12 +2640,11 @@ argument_list|,
 name|V
 argument_list|>
 name|delegate
-decl_stmt|;
+block|;     @
 DECL|field|entries
-annotation|@
 name|LazyInit
-annotation|@
-name|NullableDecl
+expr|@
+name|CheckForNull
 specifier|transient
 name|Collection
 argument_list|<
@@ -2393,48 +2656,44 @@ name|V
 argument_list|>
 argument_list|>
 name|entries
-decl_stmt|;
+block|;     @
 DECL|field|keys
-annotation|@
 name|LazyInit
-annotation|@
-name|NullableDecl
+expr|@
+name|CheckForNull
 specifier|transient
 name|Multiset
 argument_list|<
 name|K
 argument_list|>
 name|keys
-decl_stmt|;
+block|;     @
 DECL|field|keySet
-annotation|@
 name|LazyInit
-annotation|@
-name|NullableDecl
+expr|@
+name|CheckForNull
 specifier|transient
 name|Set
 argument_list|<
 name|K
 argument_list|>
 name|keySet
-decl_stmt|;
+block|;     @
 DECL|field|values
-annotation|@
 name|LazyInit
-annotation|@
-name|NullableDecl
+expr|@
+name|CheckForNull
 specifier|transient
 name|Collection
 argument_list|<
 name|V
 argument_list|>
 name|values
-decl_stmt|;
+block|;     @
 DECL|field|map
-annotation|@
 name|LazyInit
-annotation|@
-name|NullableDecl
+expr|@
+name|CheckForNull
 specifier|transient
 name|Map
 argument_list|<
@@ -2446,11 +2705,11 @@ name|V
 argument_list|>
 argument_list|>
 name|map
-decl_stmt|;
+block|;
 DECL|method|UnmodifiableMultimap (final Multimap<K, V> delegate)
 name|UnmodifiableMultimap
-parameter_list|(
-specifier|final
+argument_list|(
+name|final
 name|Multimap
 argument_list|<
 name|K
@@ -2458,7 +2717,7 @@ argument_list|,
 name|V
 argument_list|>
 name|delegate
-parameter_list|)
+argument_list|)
 block|{
 name|this
 operator|.
@@ -2468,9 +2727,8 @@ name|checkNotNull
 argument_list|(
 name|delegate
 argument_list|)
-expr_stmt|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|Override
 DECL|method|delegate ()
 specifier|protected
@@ -2481,27 +2739,26 @@ argument_list|,
 name|V
 argument_list|>
 name|delegate
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|delegate
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
 DECL|method|clear ()
 specifier|public
 name|void
 name|clear
-parameter_list|()
+argument_list|()
 block|{
 throw|throw
-operator|new
+argument_list|new
 name|UnsupportedOperationException
 argument_list|()
-throw|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|Override
 DECL|method|asMap ()
 specifier|public
@@ -2515,7 +2772,7 @@ name|V
 argument_list|>
 argument_list|>
 name|asMap
-parameter_list|()
+argument_list|()
 block|{
 name|Map
 argument_list|<
@@ -2527,9 +2784,9 @@ name|V
 argument_list|>
 argument_list|>
 name|result
-init|=
+operator|=
 name|map
-decl_stmt|;
+block|;
 if|if
 condition|(
 name|result
@@ -2592,16 +2849,21 @@ name|collection
 argument_list|)
 return|;
 block|}
-block|}
-argument_list|)
-argument_list|)
-expr_stmt|;
-block|}
-return|return
+end_expr_stmt
+
+begin_empty_stmt
+unit|}))
+empty_stmt|;
+end_empty_stmt
+
+begin_expr_stmt
+unit|}       return
 name|result
-return|;
-block|}
-annotation|@
+expr_stmt|;
+end_expr_stmt
+
+begin_function
+unit|}      @
 name|Override
 DECL|method|entries ()
 specifier|public
@@ -2654,9 +2916,12 @@ return|return
 name|result
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|get (K key)
+DECL|method|get (@arametricNullness K key)
 specifier|public
 name|Collection
 argument_list|<
@@ -2664,6 +2929,8 @@ name|V
 argument_list|>
 name|get
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|key
 parameter_list|)
@@ -2680,6 +2947,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|keys ()
@@ -2725,6 +2995,9 @@ return|return
 name|result
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|keySet ()
@@ -2770,16 +3043,23 @@ return|return
 name|result
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|put (K key, V value)
+DECL|method|put (@arametricNullness K key, @ParametricNullness V value)
 specifier|public
 name|boolean
 name|put
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|key
 parameter_list|,
+annotation|@
+name|ParametricNullness
 name|V
 name|value
 parameter_list|)
@@ -2790,13 +3070,18 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|putAll (K key, Iterable<? extends V> values)
+DECL|method|putAll (@arametricNullness K key, Iterable<? extends V> values)
 specifier|public
 name|boolean
 name|putAll
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|key
 parameter_list|,
@@ -2815,6 +3100,9 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|putAll (Multimap<? extends K, ? extends V> multimap)
@@ -2841,16 +3129,23 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|remove (Object key, Object value)
+DECL|method|remove (@heckForNull Object key, @CheckForNull Object value)
 specifier|public
 name|boolean
 name|remove
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|key
 parameter_list|,
+annotation|@
+name|CheckForNull
 name|Object
 name|value
 parameter_list|)
@@ -2861,9 +3156,12 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|removeAll (Object key)
+DECL|method|removeAll (@heckForNull Object key)
 specifier|public
 name|Collection
 argument_list|<
@@ -2871,6 +3169,8 @@ name|V
 argument_list|>
 name|removeAll
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
@@ -2881,9 +3181,12 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|replaceValues (K key, Iterable<? extends V> values)
+DECL|method|replaceValues (@arametricNullness K key, Iterable<? extends V> values)
 specifier|public
 name|Collection
 argument_list|<
@@ -2891,6 +3194,8 @@ name|V
 argument_list|>
 name|replaceValues
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|key
 parameter_list|,
@@ -2909,6 +3214,9 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|values ()
@@ -2954,6 +3262,9 @@ return|return
 name|result
 return|;
 block|}
+end_function
+
+begin_decl_stmt
 DECL|field|serialVersionUID
 specifier|private
 specifier|static
@@ -2963,25 +3274,33 @@ name|serialVersionUID
 init|=
 literal|0
 decl_stmt|;
-block|}
+end_decl_stmt
+
+begin_expr_stmt
+unit|}    private
 DECL|class|UnmodifiableListMultimap
-specifier|private
 specifier|static
-class|class
+name|class
 name|UnmodifiableListMultimap
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|UnmodifiableMultimap
 argument_list|<
 name|K
 argument_list|,
 name|V
 argument_list|>
-implements|implements
+expr|implements
 name|ListMultimap
 argument_list|<
 name|K
@@ -2991,7 +3310,7 @@ argument_list|>
 block|{
 DECL|method|UnmodifiableListMultimap (ListMultimap<K, V> delegate)
 name|UnmodifiableListMultimap
-parameter_list|(
+argument_list|(
 name|ListMultimap
 argument_list|<
 name|K
@@ -2999,15 +3318,14 @@ argument_list|,
 name|V
 argument_list|>
 name|delegate
-parameter_list|)
+argument_list|)
 block|{
 name|super
 argument_list|(
 name|delegate
 argument_list|)
-expr_stmt|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|Override
 DECL|method|delegate ()
 specifier|public
@@ -3018,7 +3336,7 @@ argument_list|,
 name|V
 argument_list|>
 name|delegate
-parameter_list|()
+argument_list|()
 block|{
 return|return
 operator|(
@@ -3035,19 +3353,21 @@ name|delegate
 argument_list|()
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
-DECL|method|get (K key)
+DECL|method|get (@arametricNullness K key)
 specifier|public
 name|List
 argument_list|<
 name|V
 argument_list|>
 name|get
-parameter_list|(
+argument_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|key
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|Collections
@@ -3064,9 +3384,12 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_function
 annotation|@
 name|Override
-DECL|method|removeAll (Object key)
+DECL|method|removeAll (@heckForNull Object key)
 specifier|public
 name|List
 argument_list|<
@@ -3074,6 +3397,8 @@ name|V
 argument_list|>
 name|removeAll
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
@@ -3084,9 +3409,12 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|replaceValues (K key, Iterable<? extends V> values)
+DECL|method|replaceValues (@arametricNullness K key, Iterable<? extends V> values)
 specifier|public
 name|List
 argument_list|<
@@ -3094,6 +3422,8 @@ name|V
 argument_list|>
 name|replaceValues
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|key
 parameter_list|,
@@ -3112,6 +3442,9 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
+end_function
+
+begin_decl_stmt
 DECL|field|serialVersionUID
 specifier|private
 specifier|static
@@ -3121,25 +3454,33 @@ name|serialVersionUID
 init|=
 literal|0
 decl_stmt|;
-block|}
+end_decl_stmt
+
+begin_expr_stmt
+unit|}    private
 DECL|class|UnmodifiableSetMultimap
-specifier|private
 specifier|static
-class|class
+name|class
 name|UnmodifiableSetMultimap
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|UnmodifiableMultimap
 argument_list|<
 name|K
 argument_list|,
 name|V
 argument_list|>
-implements|implements
+expr|implements
 name|SetMultimap
 argument_list|<
 name|K
@@ -3149,7 +3490,7 @@ argument_list|>
 block|{
 DECL|method|UnmodifiableSetMultimap (SetMultimap<K, V> delegate)
 name|UnmodifiableSetMultimap
-parameter_list|(
+argument_list|(
 name|SetMultimap
 argument_list|<
 name|K
@@ -3157,15 +3498,14 @@ argument_list|,
 name|V
 argument_list|>
 name|delegate
-parameter_list|)
+argument_list|)
 block|{
 name|super
 argument_list|(
 name|delegate
 argument_list|)
-expr_stmt|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|Override
 DECL|method|delegate ()
 specifier|public
@@ -3176,7 +3516,7 @@ argument_list|,
 name|V
 argument_list|>
 name|delegate
-parameter_list|()
+argument_list|()
 block|{
 return|return
 operator|(
@@ -3193,19 +3533,21 @@ name|delegate
 argument_list|()
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
-DECL|method|get (K key)
+DECL|method|get (@arametricNullness K key)
 specifier|public
 name|Set
 argument_list|<
 name|V
 argument_list|>
 name|get
-parameter_list|(
+argument_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|key
-parameter_list|)
+argument_list|)
 block|{
 comment|/*        * Note that this doesn't return a SortedSet when delegate is a        * SortedSetMultiset, unlike (SortedSet<V>) super.get().        */
 return|return
@@ -3223,6 +3565,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_function
 annotation|@
 name|Override
 DECL|method|entries ()
@@ -3254,9 +3599,12 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|removeAll (Object key)
+DECL|method|removeAll (@heckForNull Object key)
 specifier|public
 name|Set
 argument_list|<
@@ -3264,6 +3612,8 @@ name|V
 argument_list|>
 name|removeAll
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
@@ -3274,9 +3624,12 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|replaceValues (K key, Iterable<? extends V> values)
+DECL|method|replaceValues (@arametricNullness K key, Iterable<? extends V> values)
 specifier|public
 name|Set
 argument_list|<
@@ -3284,6 +3637,8 @@ name|V
 argument_list|>
 name|replaceValues
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|key
 parameter_list|,
@@ -3302,6 +3657,9 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
+end_function
+
+begin_decl_stmt
 DECL|field|serialVersionUID
 specifier|private
 specifier|static
@@ -3311,25 +3669,33 @@ name|serialVersionUID
 init|=
 literal|0
 decl_stmt|;
-block|}
+end_decl_stmt
+
+begin_expr_stmt
+unit|}    private
 DECL|class|UnmodifiableSortedSetMultimap
-specifier|private
 specifier|static
-class|class
+name|class
 name|UnmodifiableSortedSetMultimap
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|UnmodifiableSetMultimap
 argument_list|<
 name|K
 argument_list|,
 name|V
 argument_list|>
-implements|implements
+expr|implements
 name|SortedSetMultimap
 argument_list|<
 name|K
@@ -3339,7 +3705,7 @@ argument_list|>
 block|{
 DECL|method|UnmodifiableSortedSetMultimap (SortedSetMultimap<K, V> delegate)
 name|UnmodifiableSortedSetMultimap
-parameter_list|(
+argument_list|(
 name|SortedSetMultimap
 argument_list|<
 name|K
@@ -3347,15 +3713,14 @@ argument_list|,
 name|V
 argument_list|>
 name|delegate
-parameter_list|)
+argument_list|)
 block|{
 name|super
 argument_list|(
 name|delegate
 argument_list|)
-expr_stmt|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|Override
 DECL|method|delegate ()
 specifier|public
@@ -3366,7 +3731,7 @@ argument_list|,
 name|V
 argument_list|>
 name|delegate
-parameter_list|()
+argument_list|()
 block|{
 return|return
 operator|(
@@ -3383,19 +3748,21 @@ name|delegate
 argument_list|()
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
-DECL|method|get (K key)
+DECL|method|get (@arametricNullness K key)
 specifier|public
 name|SortedSet
 argument_list|<
 name|V
 argument_list|>
 name|get
-parameter_list|(
+argument_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|key
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|Collections
@@ -3412,9 +3779,12 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_function
 annotation|@
 name|Override
-DECL|method|removeAll (Object key)
+DECL|method|removeAll (@heckForNull Object key)
 specifier|public
 name|SortedSet
 argument_list|<
@@ -3422,6 +3792,8 @@ name|V
 argument_list|>
 name|removeAll
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
@@ -3432,9 +3804,12 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|replaceValues (K key, Iterable<? extends V> values)
+DECL|method|replaceValues (@arametricNullness K key, Iterable<? extends V> values)
 specifier|public
 name|SortedSet
 argument_list|<
@@ -3442,6 +3817,8 @@ name|V
 argument_list|>
 name|replaceValues
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|key
 parameter_list|,
@@ -3460,8 +3837,13 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|valueComparator ()
 specifier|public
 name|Comparator
@@ -3481,6 +3863,9 @@ name|valueComparator
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_decl_stmt
 DECL|field|serialVersionUID
 specifier|private
 specifier|static
@@ -3490,16 +3875,28 @@ name|serialVersionUID
 init|=
 literal|0
 decl_stmt|;
-block|}
+end_decl_stmt
+
+begin_comment
+unit|}
 comment|/**    * Returns a synchronized (thread-safe) {@code SetMultimap} backed by the specified multimap.    *    *<p>You must follow the warnings described in {@link #synchronizedMultimap}.    *    *<p>The returned multimap will be serializable if the specified multimap is serializable.    *    * @param multimap the multimap to be wrapped    * @return a synchronized view of the specified multimap    */
-DECL|method|synchronizedSetMultimap (SetMultimap<K, V> multimap)
-specifier|public
+end_comment
+
+begin_expr_stmt
+unit|public
 specifier|static
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+DECL|method|synchronizedSetMultimap (SetMultimap<K, V> multimap)
 name|SetMultimap
 argument_list|<
 name|K
@@ -3507,7 +3904,7 @@ argument_list|,
 name|V
 argument_list|>
 name|synchronizedSetMultimap
-parameter_list|(
+argument_list|(
 name|SetMultimap
 argument_list|<
 name|K
@@ -3515,7 +3912,7 @@ argument_list|,
 name|V
 argument_list|>
 name|multimap
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|Synchronized
@@ -3528,15 +3925,27 @@ literal|null
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/**    * Returns an unmodifiable view of the specified {@code SetMultimap}. Query operations on the    * returned multimap "read through" to the specified multimap, and attempts to modify the returned    * multimap, either directly or through the multimap's views, result in an {@code    * UnsupportedOperationException}.    *    *<p>The returned multimap will be serializable if the specified multimap is serializable.    *    * @param delegate the multimap for which an unmodifiable view is to be returned    * @return an unmodifiable view of the specified multimap    */
-DECL|method|unmodifiableSetMultimap (SetMultimap<K, V> delegate)
+end_comment
+
+begin_expr_stmt
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+DECL|method|unmodifiableSetMultimap (SetMultimap<K, V> delegate)
 name|SetMultimap
 argument_list|<
 name|K
@@ -3544,7 +3953,7 @@ argument_list|,
 name|V
 argument_list|>
 name|unmodifiableSetMultimap
-parameter_list|(
+argument_list|(
 name|SetMultimap
 argument_list|<
 name|K
@@ -3552,7 +3961,7 @@ argument_list|,
 name|V
 argument_list|>
 name|delegate
-parameter_list|)
+argument_list|)
 block|{
 if|if
 condition|(
@@ -3569,6 +3978,9 @@ return|return
 name|delegate
 return|;
 block|}
+end_expr_stmt
+
+begin_return
 return|return
 operator|new
 name|UnmodifiableSetMultimap
@@ -3577,18 +3989,24 @@ argument_list|(
 name|delegate
 argument_list|)
 return|;
-block|}
+end_return
+
+begin_comment
+unit|}
 comment|/**    * Simply returns its argument.    *    * @deprecated no need to use this    * @since 10.0    */
-annotation|@
+end_comment
+
+begin_function
+unit|@
 name|Deprecated
 DECL|method|unmodifiableSetMultimap ( ImmutableSetMultimap<K, V> delegate)
 specifier|public
 specifier|static
-parameter_list|<
+argument_list|<
 name|K
-parameter_list|,
+argument_list|,
 name|V
-parameter_list|>
+argument_list|>
 name|SetMultimap
 argument_list|<
 name|K
@@ -3613,15 +4031,27 @@ name|delegate
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Returns a synchronized (thread-safe) {@code SortedSetMultimap} backed by the specified    * multimap.    *    *<p>You must follow the warnings described in {@link #synchronizedMultimap}.    *    *<p>The returned multimap will be serializable if the specified multimap is serializable.    *    * @param multimap the multimap to be wrapped    * @return a synchronized view of the specified multimap    */
-DECL|method|synchronizedSortedSetMultimap ( SortedSetMultimap<K, V> multimap)
+end_comment
+
+begin_expr_stmt
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+DECL|method|synchronizedSortedSetMultimap (SortedSetMultimap<K, V> multimap)
 name|SortedSetMultimap
 argument_list|<
 name|K
@@ -3629,7 +4059,7 @@ argument_list|,
 name|V
 argument_list|>
 name|synchronizedSortedSetMultimap
-parameter_list|(
+argument_list|(
 name|SortedSetMultimap
 argument_list|<
 name|K
@@ -3637,7 +4067,7 @@ argument_list|,
 name|V
 argument_list|>
 name|multimap
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|Synchronized
@@ -3650,15 +4080,27 @@ literal|null
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/**    * Returns an unmodifiable view of the specified {@code SortedSetMultimap}. Query operations on    * the returned multimap "read through" to the specified multimap, and attempts to modify the    * returned multimap, either directly or through the multimap's views, result in an {@code    * UnsupportedOperationException}.    *    *<p>The returned multimap will be serializable if the specified multimap is serializable.    *    * @param delegate the multimap for which an unmodifiable view is to be returned    * @return an unmodifiable view of the specified multimap    */
-DECL|method|unmodifiableSortedSetMultimap ( SortedSetMultimap<K, V> delegate)
+end_comment
+
+begin_expr_stmt
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+DECL|method|unmodifiableSortedSetMultimap (SortedSetMultimap<K, V> delegate)
 name|SortedSetMultimap
 argument_list|<
 name|K
@@ -3666,7 +4108,7 @@ argument_list|,
 name|V
 argument_list|>
 name|unmodifiableSortedSetMultimap
-parameter_list|(
+argument_list|(
 name|SortedSetMultimap
 argument_list|<
 name|K
@@ -3674,7 +4116,7 @@ argument_list|,
 name|V
 argument_list|>
 name|delegate
-parameter_list|)
+argument_list|)
 block|{
 if|if
 condition|(
@@ -3687,6 +4129,9 @@ return|return
 name|delegate
 return|;
 block|}
+end_expr_stmt
+
+begin_return
 return|return
 operator|new
 name|UnmodifiableSortedSetMultimap
@@ -3695,16 +4140,28 @@ argument_list|(
 name|delegate
 argument_list|)
 return|;
-block|}
+end_return
+
+begin_comment
+unit|}
 comment|/**    * Returns a synchronized (thread-safe) {@code ListMultimap} backed by the specified multimap.    *    *<p>You must follow the warnings described in {@link #synchronizedMultimap}.    *    * @param multimap the multimap to be wrapped    * @return a synchronized view of the specified multimap    */
-DECL|method|synchronizedListMultimap (ListMultimap<K, V> multimap)
-specifier|public
+end_comment
+
+begin_expr_stmt
+unit|public
 specifier|static
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+DECL|method|synchronizedListMultimap (ListMultimap<K, V> multimap)
 name|ListMultimap
 argument_list|<
 name|K
@@ -3712,7 +4169,7 @@ argument_list|,
 name|V
 argument_list|>
 name|synchronizedListMultimap
-parameter_list|(
+argument_list|(
 name|ListMultimap
 argument_list|<
 name|K
@@ -3720,7 +4177,7 @@ argument_list|,
 name|V
 argument_list|>
 name|multimap
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|Synchronized
@@ -3733,15 +4190,27 @@ literal|null
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/**    * Returns an unmodifiable view of the specified {@code ListMultimap}. Query operations on the    * returned multimap "read through" to the specified multimap, and attempts to modify the returned    * multimap, either directly or through the multimap's views, result in an {@code    * UnsupportedOperationException}.    *    *<p>The returned multimap will be serializable if the specified multimap is serializable.    *    * @param delegate the multimap for which an unmodifiable view is to be returned    * @return an unmodifiable view of the specified multimap    */
-DECL|method|unmodifiableListMultimap (ListMultimap<K, V> delegate)
+end_comment
+
+begin_expr_stmt
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+DECL|method|unmodifiableListMultimap (ListMultimap<K, V> delegate)
 name|ListMultimap
 argument_list|<
 name|K
@@ -3749,7 +4218,7 @@ argument_list|,
 name|V
 argument_list|>
 name|unmodifiableListMultimap
-parameter_list|(
+argument_list|(
 name|ListMultimap
 argument_list|<
 name|K
@@ -3757,7 +4226,7 @@ argument_list|,
 name|V
 argument_list|>
 name|delegate
-parameter_list|)
+argument_list|)
 block|{
 if|if
 condition|(
@@ -3774,6 +4243,9 @@ return|return
 name|delegate
 return|;
 block|}
+end_expr_stmt
+
+begin_return
 return|return
 operator|new
 name|UnmodifiableListMultimap
@@ -3782,18 +4254,24 @@ argument_list|(
 name|delegate
 argument_list|)
 return|;
-block|}
+end_return
+
+begin_comment
+unit|}
 comment|/**    * Simply returns its argument.    *    * @deprecated no need to use this    * @since 10.0    */
-annotation|@
+end_comment
+
+begin_function
+unit|@
 name|Deprecated
 DECL|method|unmodifiableListMultimap ( ImmutableListMultimap<K, V> delegate)
 specifier|public
 specifier|static
-parameter_list|<
+argument_list|<
 name|K
-parameter_list|,
+argument_list|,
 name|V
-parameter_list|>
+argument_list|>
 name|ListMultimap
 argument_list|<
 name|K
@@ -3818,25 +4296,34 @@ name|delegate
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Returns an unmodifiable view of the specified collection, preserving the interface for    * instances of {@code SortedSet}, {@code Set}, {@code List} and {@code Collection}, in that order    * of preference.    *    * @param collection the collection for which to return an unmodifiable view    * @return an unmodifiable view of the collection    */
-DECL|method|unmodifiableValueCollection (Collection<V> collection)
+end_comment
+
+begin_expr_stmt
+DECL|method|unmodifiableValueCollection ( Collection<V> collection)
 specifier|private
 specifier|static
-parameter_list|<
+operator|<
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|Collection
 argument_list|<
 name|V
 argument_list|>
 name|unmodifiableValueCollection
-parameter_list|(
+argument_list|(
 name|Collection
 argument_list|<
 name|V
 argument_list|>
 name|collection
-parameter_list|)
+argument_list|)
 block|{
 if|if
 condition|(
@@ -3860,6 +4347,9 @@ name|collection
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_elseif
 elseif|else
 if|if
 condition|(
@@ -3883,6 +4373,9 @@ name|collection
 argument_list|)
 return|;
 block|}
+end_elseif
+
+begin_elseif
 elseif|else
 if|if
 condition|(
@@ -3906,6 +4399,9 @@ name|collection
 argument_list|)
 return|;
 block|}
+end_elseif
+
+begin_return
 return|return
 name|Collections
 operator|.
@@ -3914,16 +4410,28 @@ argument_list|(
 name|collection
 argument_list|)
 return|;
-block|}
+end_return
+
+begin_comment
+unit|}
 comment|/**    * Returns an unmodifiable view of the specified collection of entries. The {@link Entry#setValue}    * operation throws an {@link UnsupportedOperationException}. If the specified collection is a    * {@code Set}, the returned collection is also a {@code Set}.    *    * @param entries the entries for which to return an unmodifiable view    * @return an unmodifiable view of the entries    */
-DECL|method|unmodifiableEntries ( Collection<Entry<K, V>> entries)
-specifier|private
+end_comment
+
+begin_expr_stmt
+unit|private
 specifier|static
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+DECL|method|unmodifiableEntries (Collection<Entry<K, V>> entries)
 name|Collection
 argument_list|<
 name|Entry
@@ -3934,7 +4442,7 @@ name|V
 argument_list|>
 argument_list|>
 name|unmodifiableEntries
-parameter_list|(
+argument_list|(
 name|Collection
 argument_list|<
 name|Entry
@@ -3945,7 +4453,7 @@ name|V
 argument_list|>
 argument_list|>
 name|entries
-parameter_list|)
+argument_list|)
 block|{
 if|if
 condition|(
@@ -3974,6 +4482,9 @@ name|entries
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_return
 return|return
 operator|new
 name|Maps
@@ -3989,24 +4500,36 @@ name|entries
 argument_list|)
 argument_list|)
 return|;
-block|}
+end_return
+
+begin_comment
+unit|}
 comment|/**    * Returns {@link ListMultimap#asMap multimap.asMap()}, with its type corrected from {@code Map<K,    * Collection<V>>} to {@code Map<K, List<V>>}.    *    * @since 15.0    */
-annotation|@
+end_comment
+
+begin_expr_stmt
+unit|@
 name|Beta
-annotation|@
+expr|@
 name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
 comment|// safe by specification of ListMultimap.asMap()
-DECL|method|asMap (ListMultimap<K, V> multimap)
+DECL|method|asMap ( ListMultimap<K, V> multimap)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|Map
 argument_list|<
 name|K
@@ -4017,7 +4540,7 @@ name|V
 argument_list|>
 argument_list|>
 name|asMap
-parameter_list|(
+argument_list|(
 name|ListMultimap
 argument_list|<
 name|K
@@ -4025,7 +4548,7 @@ argument_list|,
 name|V
 argument_list|>
 name|multimap
-parameter_list|)
+argument_list|)
 block|{
 return|return
 call|(
@@ -4053,23 +4576,44 @@ name|asMap
 argument_list|()
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/**    * Returns {@link SetMultimap#asMap multimap.asMap()}, with its type corrected from {@code Map<K,    * Collection<V>>} to {@code Map<K, Set<V>>}.    *    * @since 15.0    */
+end_comment
+
+begin_annotation
 annotation|@
 name|Beta
+end_annotation
+
+begin_annotation
 annotation|@
 name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
+end_annotation
+
+begin_comment
 comment|// safe by specification of SetMultimap.asMap()
-DECL|method|asMap (SetMultimap<K, V> multimap)
+end_comment
+
+begin_expr_stmt
+DECL|method|asMap ( SetMultimap<K, V> multimap)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|Map
 argument_list|<
 name|K
@@ -4080,7 +4624,7 @@ name|V
 argument_list|>
 argument_list|>
 name|asMap
-parameter_list|(
+argument_list|(
 name|SetMultimap
 argument_list|<
 name|K
@@ -4088,7 +4632,7 @@ argument_list|,
 name|V
 argument_list|>
 name|multimap
-parameter_list|)
+argument_list|)
 block|{
 return|return
 call|(
@@ -4116,23 +4660,44 @@ name|asMap
 argument_list|()
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/**    * Returns {@link SortedSetMultimap#asMap multimap.asMap()}, with its type corrected from {@code    * Map<K, Collection<V>>} to {@code Map<K, SortedSet<V>>}.    *    * @since 15.0    */
+end_comment
+
+begin_annotation
 annotation|@
 name|Beta
+end_annotation
+
+begin_annotation
 annotation|@
 name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
+end_annotation
+
+begin_comment
 comment|// safe by specification of SortedSetMultimap.asMap()
-DECL|method|asMap (SortedSetMultimap<K, V> multimap)
+end_comment
+
+begin_expr_stmt
+DECL|method|asMap ( SortedSetMultimap<K, V> multimap)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|Map
 argument_list|<
 name|K
@@ -4143,7 +4708,7 @@ name|V
 argument_list|>
 argument_list|>
 name|asMap
-parameter_list|(
+argument_list|(
 name|SortedSetMultimap
 argument_list|<
 name|K
@@ -4151,7 +4716,7 @@ argument_list|,
 name|V
 argument_list|>
 name|multimap
-parameter_list|)
+argument_list|)
 block|{
 return|return
 call|(
@@ -4179,17 +4744,32 @@ name|asMap
 argument_list|()
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/**    * Returns {@link Multimap#asMap multimap.asMap()}. This is provided for parity with the other    * more strongly-typed {@code asMap()} implementations.    *    * @since 15.0    */
+end_comment
+
+begin_annotation
 annotation|@
 name|Beta
-DECL|method|asMap (Multimap<K, V> multimap)
+end_annotation
+
+begin_expr_stmt
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+DECL|method|asMap (Multimap<K, V> multimap)
 name|Map
 argument_list|<
 name|K
@@ -4200,7 +4780,7 @@ name|V
 argument_list|>
 argument_list|>
 name|asMap
-parameter_list|(
+argument_list|(
 name|Multimap
 argument_list|<
 name|K
@@ -4208,7 +4788,7 @@ argument_list|,
 name|V
 argument_list|>
 name|multimap
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|multimap
@@ -4217,15 +4797,27 @@ name|asMap
 argument_list|()
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/**    * Returns a multimap view of the specified map. The multimap is backed by the map, so changes to    * the map are reflected in the multimap, and vice versa. If the map is modified while an    * iteration over one of the multimap's collection views is in progress (except through the    * iterator's own {@code remove} operation, or through the {@code setValue} operation on a map    * entry returned by the iterator), the results of the iteration are undefined.    *    *<p>The multimap supports mapping removal, which removes the corresponding mapping from the map.    * It does not support any operations which might add mappings, such as {@code put}, {@code    * putAll} or {@code replaceValues}.    *    *<p>The returned multimap will be serializable if the specified map is serializable.    *    * @param map the backing map for the returned multimap view    */
-DECL|method|forMap (Map<K, V> map)
+end_comment
+
+begin_expr_stmt
+DECL|method|forMap ( Map<K, V> map)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|SetMultimap
 argument_list|<
 name|K
@@ -4233,7 +4825,7 @@ argument_list|,
 name|V
 argument_list|>
 name|forMap
-parameter_list|(
+argument_list|(
 name|Map
 argument_list|<
 name|K
@@ -4241,7 +4833,7 @@ argument_list|,
 name|V
 argument_list|>
 name|map
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|new
@@ -4252,36 +4844,48 @@ name|map
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/** @see Multimaps#forMap */
+end_comment
+
+begin_expr_stmt
 DECL|class|MapMultimap
 specifier|private
 specifier|static
-class|class
+name|class
 name|MapMultimap
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|AbstractMultimap
 argument_list|<
 name|K
 argument_list|,
 name|V
 argument_list|>
-implements|implements
+expr|implements
 name|SetMultimap
 argument_list|<
 name|K
 argument_list|,
 name|V
 argument_list|>
-implements|,
+operator|,
 name|Serializable
 block|{
 DECL|field|map
-specifier|final
+name|final
 name|Map
 argument_list|<
 name|K
@@ -4289,10 +4893,10 @@ argument_list|,
 name|V
 argument_list|>
 name|map
-decl_stmt|;
+block|;
 DECL|method|MapMultimap (Map<K, V> map)
 name|MapMultimap
-parameter_list|(
+argument_list|(
 name|Map
 argument_list|<
 name|K
@@ -4300,7 +4904,7 @@ argument_list|,
 name|V
 argument_list|>
 name|map
-parameter_list|)
+argument_list|)
 block|{
 name|this
 operator|.
@@ -4310,15 +4914,14 @@ name|checkNotNull
 argument_list|(
 name|map
 argument_list|)
-expr_stmt|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|Override
 DECL|method|size ()
 specifier|public
 name|int
 name|size
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|map
@@ -4327,16 +4930,18 @@ name|size
 argument_list|()
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
-DECL|method|containsKey (Object key)
+DECL|method|containsKey (@heckForNull Object key)
 specifier|public
 name|boolean
 name|containsKey
-parameter_list|(
+argument_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|key
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|map
@@ -4347,13 +4952,18 @@ name|key
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_function
 annotation|@
 name|Override
-DECL|method|containsValue (Object value)
+DECL|method|containsValue (@heckForNull Object value)
 specifier|public
 name|boolean
 name|containsValue
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|value
 parameter_list|)
@@ -4367,16 +4977,23 @@ name|value
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|containsEntry (Object key, Object value)
+DECL|method|containsEntry (@heckForNull Object key, @CheckForNull Object value)
 specifier|public
 name|boolean
 name|containsEntry
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|key
 parameter_list|,
+annotation|@
+name|CheckForNull
 name|Object
 name|value
 parameter_list|)
@@ -4400,6 +5017,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|get (final K key)
@@ -4491,12 +5111,16 @@ block|}
 name|i
 operator|++
 expr_stmt|;
+comment|/*                * The cast is safe because of the containsKey check in hasNext(). (That means it's                * unsafe under concurrent modification, but all bets are off then, anyway.)                */
 return|return
+name|uncheckedCastNullableTToT
+argument_list|(
 name|map
 operator|.
 name|get
 argument_list|(
 name|key
+argument_list|)
 argument_list|)
 return|;
 block|}
@@ -4553,16 +5177,23 @@ block|}
 block|}
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|put (K key, V value)
+DECL|method|put (@arametricNullness K key, @ParametricNullness V value)
 specifier|public
 name|boolean
 name|put
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|key
 parameter_list|,
+annotation|@
+name|ParametricNullness
 name|V
 name|value
 parameter_list|)
@@ -4573,13 +5204,18 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|putAll (K key, Iterable<? extends V> values)
+DECL|method|putAll (@arametricNullness K key, Iterable<? extends V> values)
 specifier|public
 name|boolean
 name|putAll
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|key
 parameter_list|,
@@ -4598,6 +5234,9 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|putAll (Multimap<? extends K, ? extends V> multimap)
@@ -4624,9 +5263,12 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|replaceValues (K key, Iterable<? extends V> values)
+DECL|method|replaceValues (@arametricNullness K key, Iterable<? extends V> values)
 specifier|public
 name|Set
 argument_list|<
@@ -4634,6 +5276,8 @@ name|V
 argument_list|>
 name|replaceValues
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|key
 parameter_list|,
@@ -4652,16 +5296,23 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|remove (Object key, Object value)
+DECL|method|remove (@heckForNull Object key, @CheckForNull Object value)
 specifier|public
 name|boolean
 name|remove
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|key
 parameter_list|,
+annotation|@
+name|CheckForNull
 name|Object
 name|value
 parameter_list|)
@@ -4685,9 +5336,12 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|removeAll (Object key)
+DECL|method|removeAll (@heckForNull Object key)
 specifier|public
 name|Set
 argument_list|<
@@ -4695,6 +5349,8 @@ name|V
 argument_list|>
 name|removeAll
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
@@ -4745,6 +5401,9 @@ return|return
 name|values
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|clear ()
@@ -4759,6 +5418,9 @@ name|clear
 argument_list|()
 expr_stmt|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|createKeySet ()
@@ -4776,6 +5438,9 @@ name|keySet
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|createValues ()
@@ -4793,6 +5458,9 @@ name|values
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|entries ()
@@ -4816,6 +5484,9 @@ name|entrySet
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|createEntries ()
@@ -4839,6 +5510,9 @@ literal|"unreachable"
 argument_list|)
 throw|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|createKeys ()
@@ -4864,6 +5538,9 @@ name|this
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|entryIterator ()
@@ -4889,6 +5566,9 @@ name|iterator
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|createAsMap ()
@@ -4913,6 +5593,9 @@ name|this
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|hashCode ()
@@ -4928,6 +5611,9 @@ name|hashCode
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_decl_stmt
 DECL|field|serialVersionUID
 specifier|private
 specifier|static
@@ -4937,18 +5623,33 @@ name|serialVersionUID
 init|=
 literal|7845222491160860175L
 decl_stmt|;
-block|}
+end_decl_stmt
+
+begin_comment
+unit|}
 comment|/**    * Returns a view of a multimap where each value is transformed by a function. All other    * properties of the multimap, such as iteration order, are left intact. For example, the code:    *    *<pre>{@code    * Multimap<String, Integer> multimap =    *     ImmutableSetMultimap.of("a", 2, "b", -3, "b", -3, "a", 4, "c", 6);    * Function<Integer, String> square = new Function<Integer, String>() {    *     public String apply(Integer in) {    *       return Integer.toString(in * in);    *     }    * };    * Multimap<String, String> transformed =    *     Multimaps.transformValues(multimap, square);    *   System.out.println(transformed);    * }</pre>    *    * ... prints {@code {a=[4, 16], b=[9, 9], c=[36]}}.    *    *<p>Changes in the underlying multimap are reflected in this view. Conversely, this view    * supports removal operations, and these are reflected in the underlying multimap.    *    *<p>It's acceptable for the underlying multimap to contain null keys, and even null values    * provided that the function is capable of accepting null input. The transformed multimap might    * contain null values, if the function sometimes gives a null result.    *    *<p>The returned multimap is not thread-safe or serializable, even if the underlying multimap    * is. The {@code equals} and {@code hashCode} methods of the returned multimap are meaningless,    * since there is not a definition of {@code equals} or {@code hashCode} for general collections,    * and {@code get()} will return a general {@code Collection} as opposed to a {@code List} or a    * {@code Set}.    *    *<p>The function is applied lazily, invoked when needed. This is necessary for the returned    * multimap to be a view, but it means that the function will be applied many times for bulk    * operations like {@link Multimap#containsValue} and {@code Multimap.toString()}. For this to    * perform well, {@code function} should be fast. To avoid lazy evaluation when the returned    * multimap doesn't need to be a view, copy the returned multimap into a new multimap of your    * choosing.    *    * @since 7.0    */
+end_comment
+
+begin_expr_stmt
+unit|public
+specifier|static
+operator|<
+name|K
+expr|extends @
+name|Nullable
+name|Object
+operator|,
+name|V1
+expr|extends @
+name|Nullable
+name|Object
+operator|,
+name|V2
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 DECL|method|transformValues ( Multimap<K, V1> fromMultimap, final Function<? super V1, V2> function)
-specifier|public
-specifier|static
-parameter_list|<
-name|K
-parameter_list|,
-name|V1
-parameter_list|,
-name|V2
-parameter_list|>
 name|Multimap
 argument_list|<
 name|K
@@ -4956,7 +5657,7 @@ argument_list|,
 name|V2
 argument_list|>
 name|transformValues
-parameter_list|(
+argument_list|(
 name|Multimap
 argument_list|<
 name|K
@@ -4964,8 +5665,8 @@ argument_list|,
 name|V1
 argument_list|>
 name|fromMultimap
-parameter_list|,
-specifier|final
+argument_list|,
+name|final
 name|Function
 argument_list|<
 name|?
@@ -4975,13 +5676,13 @@ argument_list|,
 name|V2
 argument_list|>
 name|function
-parameter_list|)
+argument_list|)
 block|{
 name|checkNotNull
 argument_list|(
 name|function
 argument_list|)
-expr_stmt|;
+block|;
 name|EntryTransformer
 argument_list|<
 name|K
@@ -4991,14 +5692,14 @@ argument_list|,
 name|V2
 argument_list|>
 name|transformer
-init|=
+operator|=
 name|Maps
 operator|.
 name|asEntryTransformer
 argument_list|(
 name|function
 argument_list|)
-decl_stmt|;
+block|;
 return|return
 name|transformEntries
 argument_list|(
@@ -5008,17 +5709,32 @@ name|transformer
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/**    * Returns a view of a {@code ListMultimap} where each value is transformed by a function. All    * other properties of the multimap, such as iteration order, are left intact. For example, the    * code:    *    *<pre>{@code    * ListMultimap<String, Integer> multimap    *      = ImmutableListMultimap.of("a", 4, "a", 16, "b", 9);    * Function<Integer, Double> sqrt =    *     new Function<Integer, Double>() {    *       public Double apply(Integer in) {    *         return Math.sqrt((int) in);    *       }    *     };    * ListMultimap<String, Double> transformed = Multimaps.transformValues(map,    *     sqrt);    * System.out.println(transformed);    * }</pre>    *    * ... prints {@code {a=[2.0, 4.0], b=[3.0]}}.    *    *<p>Changes in the underlying multimap are reflected in this view. Conversely, this view    * supports removal operations, and these are reflected in the underlying multimap.    *    *<p>It's acceptable for the underlying multimap to contain null keys, and even null values    * provided that the function is capable of accepting null input. The transformed multimap might    * contain null values, if the function sometimes gives a null result.    *    *<p>The returned multimap is not thread-safe or serializable, even if the underlying multimap    * is.    *    *<p>The function is applied lazily, invoked when needed. This is necessary for the returned    * multimap to be a view, but it means that the function will be applied many times for bulk    * operations like {@link Multimap#containsValue} and {@code Multimap.toString()}. For this to    * perform well, {@code function} should be fast. To avoid lazy evaluation when the returned    * multimap doesn't need to be a view, copy the returned multimap into a new multimap of your    * choosing.    *    * @since 7.0    */
-DECL|method|transformValues ( ListMultimap<K, V1> fromMultimap, final Function<? super V1, V2> function)
+end_comment
+
+begin_expr_stmt
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V1
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V2
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+DECL|method|transformValues ( ListMultimap<K, V1> fromMultimap, final Function<? super V1, V2> function)
 name|ListMultimap
 argument_list|<
 name|K
@@ -5026,7 +5742,7 @@ argument_list|,
 name|V2
 argument_list|>
 name|transformValues
-parameter_list|(
+argument_list|(
 name|ListMultimap
 argument_list|<
 name|K
@@ -5034,8 +5750,8 @@ argument_list|,
 name|V1
 argument_list|>
 name|fromMultimap
-parameter_list|,
-specifier|final
+argument_list|,
+name|final
 name|Function
 argument_list|<
 name|?
@@ -5045,13 +5761,13 @@ argument_list|,
 name|V2
 argument_list|>
 name|function
-parameter_list|)
+argument_list|)
 block|{
 name|checkNotNull
 argument_list|(
 name|function
 argument_list|)
-expr_stmt|;
+block|;
 name|EntryTransformer
 argument_list|<
 name|K
@@ -5061,14 +5777,14 @@ argument_list|,
 name|V2
 argument_list|>
 name|transformer
-init|=
+operator|=
 name|Maps
 operator|.
 name|asEntryTransformer
 argument_list|(
 name|function
 argument_list|)
-decl_stmt|;
+block|;
 return|return
 name|transformEntries
 argument_list|(
@@ -5078,17 +5794,32 @@ name|transformer
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/**    * Returns a view of a multimap whose values are derived from the original multimap's entries. In    * contrast to {@link #transformValues}, this method's entry-transformation logic may depend on    * the key as well as the value.    *    *<p>All other properties of the transformed multimap, such as iteration order, are left intact.    * For example, the code:    *    *<pre>{@code    * SetMultimap<String, Integer> multimap =    *     ImmutableSetMultimap.of("a", 1, "a", 4, "b", -6);    * EntryTransformer<String, Integer, String> transformer =    *     new EntryTransformer<String, Integer, String>() {    *       public String transformEntry(String key, Integer value) {    *          return (value>= 0) ? key : "no" + key;    *       }    *     };    * Multimap<String, String> transformed =    *     Multimaps.transformEntries(multimap, transformer);    * System.out.println(transformed);    * }</pre>    *    * ... prints {@code {a=[a, a], b=[nob]}}.    *    *<p>Changes in the underlying multimap are reflected in this view. Conversely, this view    * supports removal operations, and these are reflected in the underlying multimap.    *    *<p>It's acceptable for the underlying multimap to contain null keys and null values provided    * that the transformer is capable of accepting null inputs. The transformed multimap might    * contain null values if the transformer sometimes gives a null result.    *    *<p>The returned multimap is not thread-safe or serializable, even if the underlying multimap    * is. The {@code equals} and {@code hashCode} methods of the returned multimap are meaningless,    * since there is not a definition of {@code equals} or {@code hashCode} for general collections,    * and {@code get()} will return a general {@code Collection} as opposed to a {@code List} or a    * {@code Set}.    *    *<p>The transformer is applied lazily, invoked when needed. This is necessary for the returned    * multimap to be a view, but it means that the transformer will be applied many times for bulk    * operations like {@link Multimap#containsValue} and {@link Object#toString}. For this to perform    * well, {@code transformer} should be fast. To avoid lazy evaluation when the returned multimap    * doesn't need to be a view, copy the returned multimap into a new multimap of your choosing.    *    *<p><b>Warning:</b> This method assumes that for any instance {@code k} of {@code    * EntryTransformer} key type {@code K}, {@code k.equals(k2)} implies that {@code k2} is also of    * type {@code K}. Using an {@code EntryTransformer} key type for which this may not hold, such as    * {@code ArrayList}, may risk a {@code ClassCastException} when calling methods on the    * transformed multimap.    *    * @since 7.0    */
-DECL|method|transformEntries ( Multimap<K, V1> fromMap, EntryTransformer<? super K, ? super V1, V2> transformer)
+end_comment
+
+begin_expr_stmt
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V1
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V2
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+DECL|method|transformEntries ( Multimap<K, V1> fromMap, EntryTransformer<? super K, ? super V1, V2> transformer)
 name|Multimap
 argument_list|<
 name|K
@@ -5096,7 +5827,7 @@ argument_list|,
 name|V2
 argument_list|>
 name|transformEntries
-parameter_list|(
+argument_list|(
 name|Multimap
 argument_list|<
 name|K
@@ -5104,7 +5835,7 @@ argument_list|,
 name|V1
 argument_list|>
 name|fromMap
-parameter_list|,
+argument_list|,
 name|EntryTransformer
 argument_list|<
 name|?
@@ -5118,7 +5849,7 @@ argument_list|,
 name|V2
 argument_list|>
 name|transformer
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|new
@@ -5131,17 +5862,32 @@ name|transformer
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/**    * Returns a view of a {@code ListMultimap} whose values are derived from the original multimap's    * entries. In contrast to {@link #transformValues(ListMultimap, Function)}, this method's    * entry-transformation logic may depend on the key as well as the value.    *    *<p>All other properties of the transformed multimap, such as iteration order, are left intact.    * For example, the code:    *    *<pre>{@code    * Multimap<String, Integer> multimap =    *     ImmutableMultimap.of("a", 1, "a", 4, "b", 6);    * EntryTransformer<String, Integer, String> transformer =    *     new EntryTransformer<String, Integer, String>() {    *       public String transformEntry(String key, Integer value) {    *         return key + value;    *       }    *     };    * Multimap<String, String> transformed =    *     Multimaps.transformEntries(multimap, transformer);    * System.out.println(transformed);    * }</pre>    *    * ... prints {@code {"a"=["a1", "a4"], "b"=["b6"]}}.    *    *<p>Changes in the underlying multimap are reflected in this view. Conversely, this view    * supports removal operations, and these are reflected in the underlying multimap.    *    *<p>It's acceptable for the underlying multimap to contain null keys and null values provided    * that the transformer is capable of accepting null inputs. The transformed multimap might    * contain null values if the transformer sometimes gives a null result.    *    *<p>The returned multimap is not thread-safe or serializable, even if the underlying multimap    * is.    *    *<p>The transformer is applied lazily, invoked when needed. This is necessary for the returned    * multimap to be a view, but it means that the transformer will be applied many times for bulk    * operations like {@link Multimap#containsValue} and {@link Object#toString}. For this to perform    * well, {@code transformer} should be fast. To avoid lazy evaluation when the returned multimap    * doesn't need to be a view, copy the returned multimap into a new multimap of your choosing.    *    *<p><b>Warning:</b> This method assumes that for any instance {@code k} of {@code    * EntryTransformer} key type {@code K}, {@code k.equals(k2)} implies that {@code k2} is also of    * type {@code K}. Using an {@code EntryTransformer} key type for which this may not hold, such as    * {@code ArrayList}, may risk a {@code ClassCastException} when calling methods on the    * transformed multimap.    *    * @since 7.0    */
-DECL|method|transformEntries ( ListMultimap<K, V1> fromMap, EntryTransformer<? super K, ? super V1, V2> transformer)
+end_comment
+
+begin_expr_stmt
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V1
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V2
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+DECL|method|transformEntries ( ListMultimap<K, V1> fromMap, EntryTransformer<? super K, ? super V1, V2> transformer)
 name|ListMultimap
 argument_list|<
 name|K
@@ -5149,7 +5895,7 @@ argument_list|,
 name|V2
 argument_list|>
 name|transformEntries
-parameter_list|(
+argument_list|(
 name|ListMultimap
 argument_list|<
 name|K
@@ -5157,7 +5903,7 @@ argument_list|,
 name|V1
 argument_list|>
 name|fromMap
-parameter_list|,
+argument_list|,
 name|EntryTransformer
 argument_list|<
 name|?
@@ -5171,7 +5917,7 @@ argument_list|,
 name|V2
 argument_list|>
 name|transformer
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|new
@@ -5184,19 +5930,31 @@ name|transformer
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_expr_stmt
 DECL|class|TransformedEntriesMultimap
 specifier|private
 specifier|static
-class|class
+name|class
 name|TransformedEntriesMultimap
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V1
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V2
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|AbstractMultimap
 argument_list|<
 name|K
@@ -5205,7 +5963,7 @@ name|V2
 argument_list|>
 block|{
 DECL|field|fromMultimap
-specifier|final
+name|final
 name|Multimap
 argument_list|<
 name|K
@@ -5213,9 +5971,9 @@ argument_list|,
 name|V1
 argument_list|>
 name|fromMultimap
-decl_stmt|;
+block|;
 DECL|field|transformer
-specifier|final
+name|final
 name|EntryTransformer
 argument_list|<
 name|?
@@ -5229,10 +5987,10 @@ argument_list|,
 name|V2
 argument_list|>
 name|transformer
-decl_stmt|;
+block|;
 DECL|method|TransformedEntriesMultimap ( Multimap<K, V1> fromMultimap, final EntryTransformer<? super K, ? super V1, V2> transformer)
 name|TransformedEntriesMultimap
-parameter_list|(
+argument_list|(
 name|Multimap
 argument_list|<
 name|K
@@ -5240,8 +5998,8 @@ argument_list|,
 name|V1
 argument_list|>
 name|fromMultimap
-parameter_list|,
-specifier|final
+argument_list|,
+name|final
 name|EntryTransformer
 argument_list|<
 name|?
@@ -5255,7 +6013,7 @@ argument_list|,
 name|V2
 argument_list|>
 name|transformer
-parameter_list|)
+argument_list|)
 block|{
 name|this
 operator|.
@@ -5265,7 +6023,7 @@ name|checkNotNull
 argument_list|(
 name|fromMultimap
 argument_list|)
-expr_stmt|;
+block|;
 name|this
 operator|.
 name|transformer
@@ -5274,24 +6032,25 @@ name|checkNotNull
 argument_list|(
 name|transformer
 argument_list|)
-expr_stmt|;
-block|}
-DECL|method|transform (K key, Collection<V1> values)
+block|;     }
+DECL|method|transform (@arametricNullness K key, Collection<V1> values)
 name|Collection
 argument_list|<
 name|V2
 argument_list|>
 name|transform
-parameter_list|(
+argument_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|key
-parameter_list|,
+argument_list|,
 name|Collection
 argument_list|<
 name|V1
 argument_list|>
 name|values
-parameter_list|)
+argument_list|)
 block|{
 name|Function
 argument_list|<
@@ -5302,7 +6061,7 @@ argument_list|,
 name|V2
 argument_list|>
 name|function
-init|=
+operator|=
 name|Maps
 operator|.
 name|asValueToValueFunction
@@ -5311,7 +6070,7 @@ name|transformer
 argument_list|,
 name|key
 argument_list|)
-decl_stmt|;
+block|;
 if|if
 condition|(
 name|values
@@ -5349,8 +6108,10 @@ name|function
 argument_list|)
 return|;
 block|}
-block|}
-annotation|@
+end_expr_stmt
+
+begin_function
+unit|}      @
 name|Override
 DECL|method|createAsMap ()
 name|Map
@@ -5401,6 +6162,8 @@ name|V2
 argument_list|>
 name|transformEntry
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|key
 parameter_list|,
@@ -5424,6 +6187,9 @@ block|}
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|clear ()
@@ -5438,13 +6204,18 @@ name|clear
 argument_list|()
 expr_stmt|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|containsKey (Object key)
+DECL|method|containsKey (@heckForNull Object key)
 specifier|public
 name|boolean
 name|containsKey
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
@@ -5458,6 +6229,9 @@ name|key
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|createEntries ()
@@ -5479,6 +6253,9 @@ name|Entries
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|entryIterator ()
@@ -5523,6 +6300,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|get (final K key)
@@ -5552,6 +6332,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|isEmpty ()
@@ -5567,6 +6350,9 @@ name|isEmpty
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|createKeySet ()
@@ -5584,6 +6370,9 @@ name|keySet
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|createKeys ()
@@ -5601,13 +6390,18 @@ name|keys
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|put (K key, V2 value)
+DECL|method|put (@arametricNullness K key, V2 value)
 specifier|public
 name|boolean
 name|put
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|key
 parameter_list|,
@@ -5621,13 +6415,18 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|putAll (K key, Iterable<? extends V2> values)
+DECL|method|putAll (@arametricNullness K key, Iterable<? extends V2> values)
 specifier|public
 name|boolean
 name|putAll
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|key
 parameter_list|,
@@ -5646,6 +6445,9 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|putAll (Multimap<? extends K, ? extends V2> multimap)
@@ -5672,6 +6474,9 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -5679,14 +6484,18 @@ literal|"unchecked"
 argument_list|)
 annotation|@
 name|Override
-DECL|method|remove (Object key, Object value)
+DECL|method|remove (@heckForNull Object key, @CheckForNull Object value)
 specifier|public
 name|boolean
 name|remove
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|key
 parameter_list|,
+annotation|@
+name|CheckForNull
 name|Object
 name|value
 parameter_list|)
@@ -5706,6 +6515,9 @@ name|value
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -5713,7 +6525,7 @@ literal|"unchecked"
 argument_list|)
 annotation|@
 name|Override
-DECL|method|removeAll (Object key)
+DECL|method|removeAll (@heckForNull Object key)
 specifier|public
 name|Collection
 argument_list|<
@@ -5721,6 +6533,8 @@ name|V2
 argument_list|>
 name|removeAll
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
@@ -5742,9 +6556,12 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|replaceValues (K key, Iterable<? extends V2> values)
+DECL|method|replaceValues (@arametricNullness K key, Iterable<? extends V2> values)
 specifier|public
 name|Collection
 argument_list|<
@@ -5752,6 +6569,8 @@ name|V2
 argument_list|>
 name|replaceValues
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|key
 parameter_list|,
@@ -5770,6 +6589,9 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|size ()
@@ -5785,6 +6607,9 @@ name|size
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|createValues ()
@@ -5821,21 +6646,32 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-block|}
+end_function
+
+begin_expr_stmt
+unit|}    private
 DECL|class|TransformedEntriesListMultimap
-specifier|private
 specifier|static
-specifier|final
-class|class
+name|final
+name|class
 name|TransformedEntriesListMultimap
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V1
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V2
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|TransformedEntriesMultimap
 argument_list|<
 name|K
@@ -5844,7 +6680,7 @@ name|V1
 argument_list|,
 name|V2
 argument_list|>
-implements|implements
+expr|implements
 name|ListMultimap
 argument_list|<
 name|K
@@ -5854,7 +6690,7 @@ argument_list|>
 block|{
 DECL|method|TransformedEntriesListMultimap ( ListMultimap<K, V1> fromMultimap, EntryTransformer<? super K, ? super V1, V2> transformer)
 name|TransformedEntriesListMultimap
-parameter_list|(
+argument_list|(
 name|ListMultimap
 argument_list|<
 name|K
@@ -5862,7 +6698,7 @@ argument_list|,
 name|V1
 argument_list|>
 name|fromMultimap
-parameter_list|,
+argument_list|,
 name|EntryTransformer
 argument_list|<
 name|?
@@ -5876,7 +6712,7 @@ argument_list|,
 name|V2
 argument_list|>
 name|transformer
-parameter_list|)
+argument_list|)
 block|{
 name|super
 argument_list|(
@@ -5884,26 +6720,27 @@ name|fromMultimap
 argument_list|,
 name|transformer
 argument_list|)
-expr_stmt|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|Override
-DECL|method|transform (K key, Collection<V1> values)
+DECL|method|transform (@arametricNullness K key, Collection<V1> values)
 name|List
 argument_list|<
 name|V2
 argument_list|>
 name|transform
-parameter_list|(
+argument_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|key
-parameter_list|,
+argument_list|,
 name|Collection
 argument_list|<
 name|V1
 argument_list|>
 name|values
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|Lists
@@ -5929,19 +6766,21 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
-DECL|method|get (K key)
+DECL|method|get (@arametricNullness K key)
 specifier|public
 name|List
 argument_list|<
 name|V2
 argument_list|>
 name|get
-parameter_list|(
+argument_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|key
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|transform
@@ -5957,6 +6796,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_function
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -5964,7 +6806,7 @@ literal|"unchecked"
 argument_list|)
 annotation|@
 name|Override
-DECL|method|removeAll (Object key)
+DECL|method|removeAll (@heckForNull Object key)
 specifier|public
 name|List
 argument_list|<
@@ -5972,6 +6814,8 @@ name|V2
 argument_list|>
 name|removeAll
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
@@ -5993,9 +6837,12 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|replaceValues (K key, Iterable<? extends V2> values)
+DECL|method|replaceValues (@arametricNullness K key, Iterable<? extends V2> values)
 specifier|public
 name|List
 argument_list|<
@@ -6003,6 +6850,8 @@ name|V2
 argument_list|>
 name|replaceValues
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|key
 parameter_list|,
@@ -6021,10 +6870,16 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
-block|}
+end_function
+
+begin_comment
+unit|}
 comment|/**    * Creates an index {@code ImmutableListMultimap} that contains the results of applying a    * specified function to each item in an {@code Iterable} of values. Each value will be stored as    * a value in the resulting multimap, yielding a multimap with the same size as the input    * iterable. The key used to store that value in the multimap will be the result of calling the    * function on that value. The resulting multimap is created as an immutable snapshot. In the    * returned multimap, keys appear in the order they are first encountered, and the values    * corresponding to each key appear in the same order as they are encountered.    *    *<p>For example,    *    *<pre>{@code    * List<String> badGuys =    *     Arrays.asList("Inky", "Blinky", "Pinky", "Pinky", "Clyde");    * Function<String, Integer> stringLengthFunction = ...;    * Multimap<Integer, String> index =    *     Multimaps.index(badGuys, stringLengthFunction);    * System.out.println(index);    * }</pre>    *    *<p>prints    *    *<pre>{@code    * {4=[Inky], 6=[Blinky], 5=[Pinky, Pinky, Clyde]}    * }</pre>    *    *<p>The returned multimap is serializable if its keys and values are all serializable.    *    * @param values the values to use when constructing the {@code ImmutableListMultimap}    * @param keyFunction the function used to produce the key for each value    * @return {@code ImmutableListMultimap} mapping the result of evaluating the function {@code    *     keyFunction} on each value in the input collection to that value    * @throws NullPointerException if any element of {@code values} is {@code null}, or if {@code    *     keyFunction} produces {@code null} for any key    */
+end_comment
+
+begin_function
 DECL|method|index ( Iterable<V> values, Function<? super V, K> keyFunction)
-specifier|public
+unit|public
 specifier|static
 parameter_list|<
 name|K
@@ -6068,7 +6923,13 @@ name|keyFunction
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Creates an index {@code ImmutableListMultimap} that contains the results of applying a    * specified function to each item in an {@code Iterator} of values. Each value will be stored as    * a value in the resulting multimap, yielding a multimap with the same size as the input    * iterator. The key used to store that value in the multimap will be the result of calling the    * function on that value. The resulting multimap is created as an immutable snapshot. In the    * returned multimap, keys appear in the order they are first encountered, and the values    * corresponding to each key appear in the same order as they are encountered.    *    *<p>For example,    *    *<pre>{@code    * List<String> badGuys =    *     Arrays.asList("Inky", "Blinky", "Pinky", "Pinky", "Clyde");    * Function<String, Integer> stringLengthFunction = ...;    * Multimap<Integer, String> index =    *     Multimaps.index(badGuys.iterator(), stringLengthFunction);    * System.out.println(index);    * }</pre>    *    *<p>prints    *    *<pre>{@code    * {4=[Inky], 6=[Blinky], 5=[Pinky, Pinky, Clyde]}    * }</pre>    *    *<p>The returned multimap is serializable if its keys and values are all serializable.    *    * @param values the values to use when constructing the {@code ImmutableListMultimap}    * @param keyFunction the function used to produce the key for each value    * @return {@code ImmutableListMultimap} mapping the result of evaluating the function {@code    *     keyFunction} on each value in the input collection to that value    * @throws NullPointerException if any element of {@code values} is {@code null}, or if {@code    *     keyFunction} produces {@code null} for any key    * @since 10.0    */
+end_comment
+
+begin_function
 DECL|method|index ( Iterator<V> values, Function<? super V, K> keyFunction)
 specifier|public
 specifier|static
@@ -6167,25 +7028,33 @@ name|build
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_expr_stmt
 DECL|class|Keys
 specifier|static
-class|class
+name|class
 name|Keys
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|AbstractMultiset
 argument_list|<
 name|K
 argument_list|>
-block|{
+block|{     @
 DECL|field|multimap
-annotation|@
 name|Weak
-specifier|final
+name|final
 name|Multimap
 argument_list|<
 name|K
@@ -6193,10 +7062,10 @@ argument_list|,
 name|V
 argument_list|>
 name|multimap
-decl_stmt|;
+block|;
 DECL|method|Keys (Multimap<K, V> multimap)
 name|Keys
-parameter_list|(
+argument_list|(
 name|Multimap
 argument_list|<
 name|K
@@ -6204,16 +7073,15 @@ argument_list|,
 name|V
 argument_list|>
 name|multimap
-parameter_list|)
+argument_list|)
 block|{
 name|this
 operator|.
 name|multimap
 operator|=
 name|multimap
-expr_stmt|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|Override
 DECL|method|entryIterator ()
 name|Iterator
@@ -6226,7 +7094,7 @@ name|K
 argument_list|>
 argument_list|>
 name|entryIterator
-parameter_list|()
+argument_list|()
 block|{
 return|return
 operator|new
@@ -6313,12 +7181,12 @@ name|getKey
 argument_list|()
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
 specifier|public
 name|int
 name|getCount
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|backingEntry
@@ -6330,13 +7198,15 @@ name|size
 argument_list|()
 return|;
 block|}
-block|}
-return|;
-block|}
-block|}
-return|;
-block|}
-annotation|@
+end_expr_stmt
+
+begin_empty_stmt
+unit|};         }       }
+empty_stmt|;
+end_empty_stmt
+
+begin_function
+unit|}      @
 name|Override
 DECL|method|distinctElements ()
 name|int
@@ -6353,6 +7223,9 @@ name|size
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|size ()
@@ -6368,15 +7241,18 @@ name|size
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|contains (@ullableDecl Object element)
+DECL|method|contains (@heckForNull Object element)
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|element
 parameter_list|)
@@ -6390,6 +7266,9 @@ name|element
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|iterator ()
@@ -6416,15 +7295,18 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|count (@ullableDecl Object element)
+DECL|method|count (@heckForNull Object element)
 specifier|public
 name|int
 name|count
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|element
 parameter_list|)
@@ -6462,15 +7344,18 @@ name|size
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|remove (@ullableDecl Object element, int occurrences)
+DECL|method|remove (@heckForNull Object element, int occurrences)
 specifier|public
 name|int
 name|remove
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|element
 parameter_list|,
@@ -6593,6 +7478,9 @@ return|return
 name|oldCount
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|clear ()
@@ -6607,6 +7495,9 @@ name|clear
 argument_list|()
 expr_stmt|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|elementSet ()
@@ -6625,6 +7516,9 @@ name|keySet
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|elementIterator ()
@@ -6643,19 +7537,31 @@ literal|"should never be called"
 argument_list|)
 throw|;
 block|}
-block|}
+end_function
+
+begin_comment
+unit|}
 comment|/** A skeleton implementation of {@link Multimap#entries()}. */
+end_comment
+
+begin_expr_stmt
 DECL|class|Entries
-specifier|abstract
+unit|abstract
 specifier|static
-class|class
+name|class
 name|Entries
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|AbstractCollection
 argument_list|<
 name|Map
@@ -6677,15 +7583,14 @@ argument_list|,
 name|V
 argument_list|>
 name|multimap
-parameter_list|()
-function_decl|;
-annotation|@
+argument_list|()
+block|;      @
 name|Override
 DECL|method|size ()
 specifier|public
 name|int
 name|size
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|multimap
@@ -6695,18 +7600,18 @@ name|size
 argument_list|()
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
-DECL|method|contains (@ullableDecl Object o)
+DECL|method|contains (@heckForNull Object o)
 specifier|public
 name|boolean
 name|contains
-parameter_list|(
+argument_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|o
-parameter_list|)
+argument_list|)
 block|{
 if|if
 condition|(
@@ -6757,19 +7662,24 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_return
 return|return
 literal|false
 return|;
-block|}
-annotation|@
+end_return
+
+begin_function
+unit|}      @
 name|Override
-DECL|method|remove (@ullableDecl Object o)
+DECL|method|remove (@heckForNull Object o)
 specifier|public
 name|boolean
 name|remove
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|o
 parameter_list|)
@@ -6827,6 +7737,9 @@ return|return
 literal|false
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|clear ()
@@ -6842,19 +7755,31 @@ name|clear
 argument_list|()
 expr_stmt|;
 block|}
-block|}
+end_function
+
+begin_comment
+unit|}
 comment|/** A skeleton implementation of {@link Multimap#asMap()}. */
+end_comment
+
+begin_expr_stmt
 DECL|class|AsMap
-specifier|static
-specifier|final
-class|class
+unit|static
+name|final
+name|class
 name|AsMap
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|Maps
 operator|.
 name|ViewCachingAbstractMap
@@ -6866,12 +7791,11 @@ argument_list|<
 name|V
 argument_list|>
 argument_list|>
-block|{
+block|{     @
 DECL|field|multimap
-annotation|@
 name|Weak
 specifier|private
-specifier|final
+name|final
 name|Multimap
 argument_list|<
 name|K
@@ -6879,10 +7803,10 @@ argument_list|,
 name|V
 argument_list|>
 name|multimap
-decl_stmt|;
+block|;
 DECL|method|AsMap (Multimap<K, V> multimap)
 name|AsMap
-parameter_list|(
+argument_list|(
 name|Multimap
 argument_list|<
 name|K
@@ -6890,7 +7814,7 @@ argument_list|,
 name|V
 argument_list|>
 name|multimap
-parameter_list|)
+argument_list|)
 block|{
 name|this
 operator|.
@@ -6900,15 +7824,14 @@ name|checkNotNull
 argument_list|(
 name|multimap
 argument_list|)
-expr_stmt|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|Override
 DECL|method|size ()
 specifier|public
 name|int
 name|size
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|multimap
@@ -6920,7 +7843,7 @@ name|size
 argument_list|()
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
 DECL|method|createEntrySet ()
 specifier|protected
@@ -6937,7 +7860,7 @@ argument_list|>
 argument_list|>
 argument_list|>
 name|createEntrySet
-parameter_list|()
+argument_list|()
 block|{
 return|return
 operator|new
@@ -6945,10 +7868,15 @@ name|EntrySet
 argument_list|()
 return|;
 block|}
-DECL|method|removeValuesForKey (Object key)
+end_expr_stmt
+
+begin_function
+DECL|method|removeValuesForKey (@heckForNull Object key)
 name|void
 name|removeValuesForKey
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
@@ -6964,6 +7892,9 @@ name|key
 argument_list|)
 expr_stmt|;
 block|}
+end_function
+
+begin_class
 annotation|@
 name|WeakOuter
 DECL|class|EntrySet
@@ -7053,6 +7984,8 @@ name|V
 argument_list|>
 name|apply
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|key
 parameter_list|)
@@ -7072,11 +8005,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|remove (Object o)
+DECL|method|remove (@heckForNull Object o)
 specifier|public
 name|boolean
 name|remove
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|o
 parameter_list|)
@@ -7094,6 +8029,7 @@ return|return
 literal|false
 return|;
 block|}
+comment|// requireNonNull is safe because of the contains check.
 name|Map
 operator|.
 name|Entry
@@ -7104,6 +8040,8 @@ name|?
 argument_list|>
 name|entry
 init|=
+name|requireNonNull
+argument_list|(
 operator|(
 name|Map
 operator|.
@@ -7115,6 +8053,7 @@ name|?
 argument_list|>
 operator|)
 name|o
+argument_list|)
 decl_stmt|;
 name|removeValuesForKey
 argument_list|(
@@ -7129,6 +8068,9 @@ literal|true
 return|;
 block|}
 block|}
+end_class
+
+begin_function
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -7136,7 +8078,9 @@ literal|"unchecked"
 argument_list|)
 annotation|@
 name|Override
-DECL|method|get (Object key)
+annotation|@
+name|CheckForNull
+DECL|method|get (@heckForNull Object key)
 specifier|public
 name|Collection
 argument_list|<
@@ -7144,6 +8088,8 @@ name|V
 argument_list|>
 name|get
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
@@ -7167,9 +8113,14 @@ else|:
 literal|null
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|remove (Object key)
+annotation|@
+name|CheckForNull
+DECL|method|remove (@heckForNull Object key)
 specifier|public
 name|Collection
 argument_list|<
@@ -7177,6 +8128,8 @@ name|V
 argument_list|>
 name|remove
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
@@ -7197,6 +8150,9 @@ else|:
 literal|null
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|keySet ()
@@ -7215,6 +8171,9 @@ name|keySet
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|isEmpty ()
@@ -7230,13 +8189,18 @@ name|isEmpty
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|containsKey (Object key)
+DECL|method|containsKey (@heckForNull Object key)
 specifier|public
 name|boolean
 name|containsKey
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
@@ -7250,6 +8214,9 @@ name|key
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|clear ()
@@ -7264,16 +8231,28 @@ name|clear
 argument_list|()
 expr_stmt|;
 block|}
-block|}
+end_function
+
+begin_comment
+unit|}
 comment|/**    * Returns a multimap containing the mappings in {@code unfiltered} whose keys satisfy a    * predicate. The returned multimap is a live view of {@code unfiltered}; changes to one affect    * the other.    *    *<p>The resulting multimap's views have iterators that don't support {@code remove()}, but all    * other methods are supported by the multimap and its views. When adding a key that doesn't    * satisfy the predicate, the multimap's {@code put()}, {@code putAll()}, and {@code    * replaceValues()} methods throw an {@link IllegalArgumentException}.    *    *<p>When methods such as {@code removeAll()} and {@code clear()} are called on the filtered    * multimap or its views, only mappings whose keys satisfy the filter will be removed from the    * underlying multimap.    *    *<p>The returned multimap isn't threadsafe or serializable, even if {@code unfiltered} is.    *    *<p>Many of the filtered multimap's methods, such as {@code size()}, iterate across every    * key/value mapping in the underlying multimap and determine which satisfy the filter. When a    * live view is<i>not</i> needed, it may be faster to copy the filtered multimap and use the    * copy.    *    *<p><b>Warning:</b> {@code keyPredicate} must be<i>consistent with equals</i>, as documented at    * {@link Predicate#apply}. Do not provide a predicate such as {@code    * Predicates.instanceOf(ArrayList.class)}, which is inconsistent with equals.    *    * @since 11.0    */
+end_comment
+
+begin_expr_stmt
 DECL|method|filterKeys ( Multimap<K, V> unfiltered, final Predicate<? super K> keyPredicate)
-specifier|public
+unit|public
 specifier|static
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|Multimap
 argument_list|<
 name|K
@@ -7281,7 +8260,7 @@ argument_list|,
 name|V
 argument_list|>
 name|filterKeys
-parameter_list|(
+argument_list|(
 name|Multimap
 argument_list|<
 name|K
@@ -7289,8 +8268,8 @@ argument_list|,
 name|V
 argument_list|>
 name|unfiltered
-parameter_list|,
-specifier|final
+argument_list|,
+name|final
 name|Predicate
 argument_list|<
 name|?
@@ -7298,7 +8277,7 @@ super|super
 name|K
 argument_list|>
 name|keyPredicate
-parameter_list|)
+argument_list|)
 block|{
 if|if
 condition|(
@@ -7324,6 +8303,9 @@ name|keyPredicate
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_elseif
 elseif|else
 if|if
 condition|(
@@ -7349,6 +8331,9 @@ name|keyPredicate
 argument_list|)
 return|;
 block|}
+end_elseif
+
+begin_elseif
 elseif|else
 if|if
 condition|(
@@ -7400,6 +8385,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_elseif
+
+begin_elseif
 elseif|else
 if|if
 condition|(
@@ -7443,6 +8431,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_elseif
+
+begin_else
 else|else
 block|{
 return|return
@@ -7456,16 +8447,28 @@ name|keyPredicate
 argument_list|)
 return|;
 block|}
-block|}
+end_else
+
+begin_comment
+unit|}
 comment|/**    * Returns a multimap containing the mappings in {@code unfiltered} whose keys satisfy a    * predicate. The returned multimap is a live view of {@code unfiltered}; changes to one affect    * the other.    *    *<p>The resulting multimap's views have iterators that don't support {@code remove()}, but all    * other methods are supported by the multimap and its views. When adding a key that doesn't    * satisfy the predicate, the multimap's {@code put()}, {@code putAll()}, and {@code    * replaceValues()} methods throw an {@link IllegalArgumentException}.    *    *<p>When methods such as {@code removeAll()} and {@code clear()} are called on the filtered    * multimap or its views, only mappings whose keys satisfy the filter will be removed from the    * underlying multimap.    *    *<p>The returned multimap isn't threadsafe or serializable, even if {@code unfiltered} is.    *    *<p>Many of the filtered multimap's methods, such as {@code size()}, iterate across every    * key/value mapping in the underlying multimap and determine which satisfy the filter. When a    * live view is<i>not</i> needed, it may be faster to copy the filtered multimap and use the    * copy.    *    *<p><b>Warning:</b> {@code keyPredicate} must be<i>consistent with equals</i>, as documented at    * {@link Predicate#apply}. Do not provide a predicate such as {@code    * Predicates.instanceOf(ArrayList.class)}, which is inconsistent with equals.    *    * @since 14.0    */
+end_comment
+
+begin_expr_stmt
+unit|public
+specifier|static
+operator|<
+name|K
+expr|extends @
+name|Nullable
+name|Object
+operator|,
+name|V
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 DECL|method|filterKeys ( SetMultimap<K, V> unfiltered, final Predicate<? super K> keyPredicate)
-specifier|public
-specifier|static
-parameter_list|<
-name|K
-parameter_list|,
-name|V
-parameter_list|>
 name|SetMultimap
 argument_list|<
 name|K
@@ -7473,7 +8476,7 @@ argument_list|,
 name|V
 argument_list|>
 name|filterKeys
-parameter_list|(
+argument_list|(
 name|SetMultimap
 argument_list|<
 name|K
@@ -7481,8 +8484,8 @@ argument_list|,
 name|V
 argument_list|>
 name|unfiltered
-parameter_list|,
-specifier|final
+argument_list|,
+name|final
 name|Predicate
 argument_list|<
 name|?
@@ -7490,7 +8493,7 @@ super|super
 name|K
 argument_list|>
 name|keyPredicate
-parameter_list|)
+argument_list|)
 block|{
 if|if
 condition|(
@@ -7543,6 +8546,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_elseif
 elseif|else
 if|if
 condition|(
@@ -7586,6 +8592,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_elseif
+
+begin_else
 else|else
 block|{
 return|return
@@ -7599,16 +8608,28 @@ name|keyPredicate
 argument_list|)
 return|;
 block|}
-block|}
+end_else
+
+begin_comment
+unit|}
 comment|/**    * Returns a multimap containing the mappings in {@code unfiltered} whose keys satisfy a    * predicate. The returned multimap is a live view of {@code unfiltered}; changes to one affect    * the other.    *    *<p>The resulting multimap's views have iterators that don't support {@code remove()}, but all    * other methods are supported by the multimap and its views. When adding a key that doesn't    * satisfy the predicate, the multimap's {@code put()}, {@code putAll()}, and {@code    * replaceValues()} methods throw an {@link IllegalArgumentException}.    *    *<p>When methods such as {@code removeAll()} and {@code clear()} are called on the filtered    * multimap or its views, only mappings whose keys satisfy the filter will be removed from the    * underlying multimap.    *    *<p>The returned multimap isn't threadsafe or serializable, even if {@code unfiltered} is.    *    *<p>Many of the filtered multimap's methods, such as {@code size()}, iterate across every    * key/value mapping in the underlying multimap and determine which satisfy the filter. When a    * live view is<i>not</i> needed, it may be faster to copy the filtered multimap and use the    * copy.    *    *<p><b>Warning:</b> {@code keyPredicate} must be<i>consistent with equals</i>, as documented at    * {@link Predicate#apply}. Do not provide a predicate such as {@code    * Predicates.instanceOf(ArrayList.class)}, which is inconsistent with equals.    *    * @since 14.0    */
-DECL|method|filterKeys ( ListMultimap<K, V> unfiltered, final Predicate<? super K> keyPredicate)
-specifier|public
+end_comment
+
+begin_expr_stmt
+unit|public
 specifier|static
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+DECL|method|filterKeys ( ListMultimap<K, V> unfiltered, final Predicate<? super K> keyPredicate)
 name|ListMultimap
 argument_list|<
 name|K
@@ -7616,7 +8637,7 @@ argument_list|,
 name|V
 argument_list|>
 name|filterKeys
-parameter_list|(
+argument_list|(
 name|ListMultimap
 argument_list|<
 name|K
@@ -7624,8 +8645,8 @@ argument_list|,
 name|V
 argument_list|>
 name|unfiltered
-parameter_list|,
-specifier|final
+argument_list|,
+name|final
 name|Predicate
 argument_list|<
 name|?
@@ -7633,7 +8654,7 @@ super|super
 name|K
 argument_list|>
 name|keyPredicate
-parameter_list|)
+argument_list|)
 block|{
 if|if
 condition|(
@@ -7686,6 +8707,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_else
 else|else
 block|{
 return|return
@@ -7699,16 +8723,28 @@ name|keyPredicate
 argument_list|)
 return|;
 block|}
-block|}
+end_else
+
+begin_comment
+unit|}
 comment|/**    * Returns a multimap containing the mappings in {@code unfiltered} whose values satisfy a    * predicate. The returned multimap is a live view of {@code unfiltered}; changes to one affect    * the other.    *    *<p>The resulting multimap's views have iterators that don't support {@code remove()}, but all    * other methods are supported by the multimap and its views. When adding a value that doesn't    * satisfy the predicate, the multimap's {@code put()}, {@code putAll()}, and {@code    * replaceValues()} methods throw an {@link IllegalArgumentException}.    *    *<p>When methods such as {@code removeAll()} and {@code clear()} are called on the filtered    * multimap or its views, only mappings whose value satisfy the filter will be removed from the    * underlying multimap.    *    *<p>The returned multimap isn't threadsafe or serializable, even if {@code unfiltered} is.    *    *<p>Many of the filtered multimap's methods, such as {@code size()}, iterate across every    * key/value mapping in the underlying multimap and determine which satisfy the filter. When a    * live view is<i>not</i> needed, it may be faster to copy the filtered multimap and use the    * copy.    *    *<p><b>Warning:</b> {@code valuePredicate} must be<i>consistent with equals</i>, as documented    * at {@link Predicate#apply}. Do not provide a predicate such as {@code    * Predicates.instanceOf(ArrayList.class)}, which is inconsistent with equals.    *    * @since 11.0    */
+end_comment
+
+begin_expr_stmt
+unit|public
+specifier|static
+operator|<
+name|K
+expr|extends @
+name|Nullable
+name|Object
+operator|,
+name|V
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 DECL|method|filterValues ( Multimap<K, V> unfiltered, final Predicate<? super V> valuePredicate)
-specifier|public
-specifier|static
-parameter_list|<
-name|K
-parameter_list|,
-name|V
-parameter_list|>
 name|Multimap
 argument_list|<
 name|K
@@ -7716,7 +8752,7 @@ argument_list|,
 name|V
 argument_list|>
 name|filterValues
-parameter_list|(
+argument_list|(
 name|Multimap
 argument_list|<
 name|K
@@ -7724,8 +8760,8 @@ argument_list|,
 name|V
 argument_list|>
 name|unfiltered
-parameter_list|,
-specifier|final
+argument_list|,
+name|final
 name|Predicate
 argument_list|<
 name|?
@@ -7733,7 +8769,7 @@ super|super
 name|V
 argument_list|>
 name|valuePredicate
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|filterEntries
@@ -7752,15 +8788,27 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/**    * Returns a multimap containing the mappings in {@code unfiltered} whose values satisfy a    * predicate. The returned multimap is a live view of {@code unfiltered}; changes to one affect    * the other.    *    *<p>The resulting multimap's views have iterators that don't support {@code remove()}, but all    * other methods are supported by the multimap and its views. When adding a value that doesn't    * satisfy the predicate, the multimap's {@code put()}, {@code putAll()}, and {@code    * replaceValues()} methods throw an {@link IllegalArgumentException}.    *    *<p>When methods such as {@code removeAll()} and {@code clear()} are called on the filtered    * multimap or its views, only mappings whose value satisfy the filter will be removed from the    * underlying multimap.    *    *<p>The returned multimap isn't threadsafe or serializable, even if {@code unfiltered} is.    *    *<p>Many of the filtered multimap's methods, such as {@code size()}, iterate across every    * key/value mapping in the underlying multimap and determine which satisfy the filter. When a    * live view is<i>not</i> needed, it may be faster to copy the filtered multimap and use the    * copy.    *    *<p><b>Warning:</b> {@code valuePredicate} must be<i>consistent with equals</i>, as documented    * at {@link Predicate#apply}. Do not provide a predicate such as {@code    * Predicates.instanceOf(ArrayList.class)}, which is inconsistent with equals.    *    * @since 14.0    */
-DECL|method|filterValues ( SetMultimap<K, V> unfiltered, final Predicate<? super V> valuePredicate)
+end_comment
+
+begin_expr_stmt
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+DECL|method|filterValues ( SetMultimap<K, V> unfiltered, final Predicate<? super V> valuePredicate)
 name|SetMultimap
 argument_list|<
 name|K
@@ -7768,7 +8816,7 @@ argument_list|,
 name|V
 argument_list|>
 name|filterValues
-parameter_list|(
+argument_list|(
 name|SetMultimap
 argument_list|<
 name|K
@@ -7776,8 +8824,8 @@ argument_list|,
 name|V
 argument_list|>
 name|unfiltered
-parameter_list|,
-specifier|final
+argument_list|,
+name|final
 name|Predicate
 argument_list|<
 name|?
@@ -7785,7 +8833,7 @@ super|super
 name|V
 argument_list|>
 name|valuePredicate
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|filterEntries
@@ -7804,15 +8852,27 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/**    * Returns a multimap containing the mappings in {@code unfiltered} that satisfy a predicate. The    * returned multimap is a live view of {@code unfiltered}; changes to one affect the other.    *    *<p>The resulting multimap's views have iterators that don't support {@code remove()}, but all    * other methods are supported by the multimap and its views. When adding a key/value pair that    * doesn't satisfy the predicate, multimap's {@code put()}, {@code putAll()}, and {@code    * replaceValues()} methods throw an {@link IllegalArgumentException}.    *    *<p>When methods such as {@code removeAll()} and {@code clear()} are called on the filtered    * multimap or its views, only mappings whose keys satisfy the filter will be removed from the    * underlying multimap.    *    *<p>The returned multimap isn't threadsafe or serializable, even if {@code unfiltered} is.    *    *<p>Many of the filtered multimap's methods, such as {@code size()}, iterate across every    * key/value mapping in the underlying multimap and determine which satisfy the filter. When a    * live view is<i>not</i> needed, it may be faster to copy the filtered multimap and use the    * copy.    *    *<p><b>Warning:</b> {@code entryPredicate} must be<i>consistent with equals</i>, as documented    * at {@link Predicate#apply}.    *    * @since 11.0    */
-DECL|method|filterEntries ( Multimap<K, V> unfiltered, Predicate<? super Entry<K, V>> entryPredicate)
+end_comment
+
+begin_expr_stmt
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+DECL|method|filterEntries ( Multimap<K, V> unfiltered, Predicate<? super Entry<K, V>> entryPredicate)
 name|Multimap
 argument_list|<
 name|K
@@ -7820,7 +8880,7 @@ argument_list|,
 name|V
 argument_list|>
 name|filterEntries
-parameter_list|(
+argument_list|(
 name|Multimap
 argument_list|<
 name|K
@@ -7828,7 +8888,7 @@ argument_list|,
 name|V
 argument_list|>
 name|unfiltered
-parameter_list|,
+argument_list|,
 name|Predicate
 argument_list|<
 name|?
@@ -7841,13 +8901,13 @@ name|V
 argument_list|>
 argument_list|>
 name|entryPredicate
-parameter_list|)
+argument_list|)
 block|{
 name|checkNotNull
 argument_list|(
 name|entryPredicate
 argument_list|)
-expr_stmt|;
+block|;
 if|if
 condition|(
 name|unfiltered
@@ -7872,6 +8932,9 @@ name|entryPredicate
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_return
 return|return
 operator|(
 name|unfiltered
@@ -7910,16 +8973,28 @@ argument_list|,
 name|entryPredicate
 argument_list|)
 return|;
-block|}
+end_return
+
+begin_comment
+unit|}
 comment|/**    * Returns a multimap containing the mappings in {@code unfiltered} that satisfy a predicate. The    * returned multimap is a live view of {@code unfiltered}; changes to one affect the other.    *    *<p>The resulting multimap's views have iterators that don't support {@code remove()}, but all    * other methods are supported by the multimap and its views. When adding a key/value pair that    * doesn't satisfy the predicate, multimap's {@code put()}, {@code putAll()}, and {@code    * replaceValues()} methods throw an {@link IllegalArgumentException}.    *    *<p>When methods such as {@code removeAll()} and {@code clear()} are called on the filtered    * multimap or its views, only mappings whose keys satisfy the filter will be removed from the    * underlying multimap.    *    *<p>The returned multimap isn't threadsafe or serializable, even if {@code unfiltered} is.    *    *<p>Many of the filtered multimap's methods, such as {@code size()}, iterate across every    * key/value mapping in the underlying multimap and determine which satisfy the filter. When a    * live view is<i>not</i> needed, it may be faster to copy the filtered multimap and use the    * copy.    *    *<p><b>Warning:</b> {@code entryPredicate} must be<i>consistent with equals</i>, as documented    * at {@link Predicate#apply}.    *    * @since 14.0    */
-DECL|method|filterEntries ( SetMultimap<K, V> unfiltered, Predicate<? super Entry<K, V>> entryPredicate)
-specifier|public
+end_comment
+
+begin_expr_stmt
+unit|public
 specifier|static
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+DECL|method|filterEntries ( SetMultimap<K, V> unfiltered, Predicate<? super Entry<K, V>> entryPredicate)
 name|SetMultimap
 argument_list|<
 name|K
@@ -7927,7 +9002,7 @@ argument_list|,
 name|V
 argument_list|>
 name|filterEntries
-parameter_list|(
+argument_list|(
 name|SetMultimap
 argument_list|<
 name|K
@@ -7935,7 +9010,7 @@ argument_list|,
 name|V
 argument_list|>
 name|unfiltered
-parameter_list|,
+argument_list|,
 name|Predicate
 argument_list|<
 name|?
@@ -7948,13 +9023,13 @@ name|V
 argument_list|>
 argument_list|>
 name|entryPredicate
-parameter_list|)
+argument_list|)
 block|{
 name|checkNotNull
 argument_list|(
 name|entryPredicate
 argument_list|)
-expr_stmt|;
+block|;
 return|return
 operator|(
 name|unfiltered
@@ -7994,15 +9069,27 @@ name|entryPredicate
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/**    * Support removal operations when filtering a filtered multimap. Since a filtered multimap has    * iterators that don't support remove, passing one to the FilteredEntryMultimap constructor would    * lead to a multimap whose removal operations would fail. This method combines the predicates to    * avoid that problem.    */
-DECL|method|filterFiltered ( FilteredMultimap<K, V> multimap, Predicate<? super Entry<K, V>> entryPredicate)
+end_comment
+
+begin_expr_stmt
 specifier|private
 specifier|static
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+DECL|method|filterFiltered ( FilteredMultimap<K, V> multimap, Predicate<? super Entry<K, V>> entryPredicate)
 name|Multimap
 argument_list|<
 name|K
@@ -8010,7 +9097,7 @@ argument_list|,
 name|V
 argument_list|>
 name|filterFiltered
-parameter_list|(
+argument_list|(
 name|FilteredMultimap
 argument_list|<
 name|K
@@ -8018,7 +9105,7 @@ argument_list|,
 name|V
 argument_list|>
 name|multimap
-parameter_list|,
+argument_list|,
 name|Predicate
 argument_list|<
 name|?
@@ -8031,7 +9118,7 @@ name|V
 argument_list|>
 argument_list|>
 name|entryPredicate
-parameter_list|)
+argument_list|)
 block|{
 name|Predicate
 argument_list|<
@@ -8043,7 +9130,7 @@ name|V
 argument_list|>
 argument_list|>
 name|predicate
-init|=
+operator|=
 name|Predicates
 operator|.
 expr|<
@@ -8063,7 +9150,7 @@ argument_list|()
 argument_list|,
 name|entryPredicate
 argument_list|)
-decl_stmt|;
+block|;
 return|return
 operator|new
 name|FilteredEntryMultimap
@@ -8078,15 +9165,27 @@ name|predicate
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/**    * Support removal operations when filtering a filtered multimap. Since a filtered multimap has    * iterators that don't support remove, passing one to the FilteredEntryMultimap constructor would    * lead to a multimap whose removal operations would fail. This method combines the predicates to    * avoid that problem.    */
-DECL|method|filterFiltered ( FilteredSetMultimap<K, V> multimap, Predicate<? super Entry<K, V>> entryPredicate)
+end_comment
+
+begin_expr_stmt
 specifier|private
 specifier|static
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+DECL|method|filterFiltered ( FilteredSetMultimap<K, V> multimap, Predicate<? super Entry<K, V>> entryPredicate)
 name|SetMultimap
 argument_list|<
 name|K
@@ -8094,7 +9193,7 @@ argument_list|,
 name|V
 argument_list|>
 name|filterFiltered
-parameter_list|(
+argument_list|(
 name|FilteredSetMultimap
 argument_list|<
 name|K
@@ -8102,7 +9201,7 @@ argument_list|,
 name|V
 argument_list|>
 name|multimap
-parameter_list|,
+argument_list|,
 name|Predicate
 argument_list|<
 name|?
@@ -8115,7 +9214,7 @@ name|V
 argument_list|>
 argument_list|>
 name|entryPredicate
-parameter_list|)
+argument_list|)
 block|{
 name|Predicate
 argument_list|<
@@ -8127,7 +9226,7 @@ name|V
 argument_list|>
 argument_list|>
 name|predicate
-init|=
+operator|=
 name|Predicates
 operator|.
 expr|<
@@ -8147,7 +9246,7 @@ argument_list|()
 argument_list|,
 name|entryPredicate
 argument_list|)
-decl_stmt|;
+block|;
 return|return
 operator|new
 name|FilteredEntrySetMultimap
@@ -8162,7 +9261,10 @@ name|predicate
 argument_list|)
 return|;
 block|}
-DECL|method|equalsImpl (Multimap<?, ?> multimap, @NullableDecl Object object)
+end_expr_stmt
+
+begin_function
+DECL|method|equalsImpl (Multimap<?, ?> multimap, @CheckForNull Object object)
 specifier|static
 name|boolean
 name|equalsImpl
@@ -8176,7 +9278,7 @@ argument_list|>
 name|multimap
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|object
 parameter_list|)
@@ -8236,9 +9338,12 @@ return|return
 literal|false
 return|;
 block|}
-comment|// TODO(jlevy): Create methods that filter a SortedSetMultimap.
-block|}
-end_class
+end_function
 
+begin_comment
+comment|// TODO(jlevy): Create methods that filter a SortedSetMultimap.
+end_comment
+
+unit|}
 end_unit
 

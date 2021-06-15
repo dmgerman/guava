@@ -154,6 +154,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|checkerframework
@@ -162,9 +172,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -172,33 +182,46 @@ begin_comment
 comment|/**  * A skeleton {@code Multimap} implementation, not necessarily in terms of a {@code Map}.  *  * @author Louis Wasserman  */
 end_comment
 
-begin_class
+begin_annotation
 annotation|@
 name|GwtCompatible
+end_annotation
+
+begin_annotation
+annotation|@
+name|ElementTypesAreNonnullByDefault
+end_annotation
+
+begin_expr_stmt
 DECL|class|AbstractMultimap
 specifier|abstract
-class|class
+name|class
 name|AbstractMultimap
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
-implements|implements
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|implements
 name|Multimap
 argument_list|<
 name|K
 argument_list|,
 name|V
 argument_list|>
-block|{
-annotation|@
+block|{   @
 name|Override
 DECL|method|isEmpty ()
 specifier|public
 name|boolean
 name|isEmpty
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|size
@@ -207,18 +230,18 @@ operator|==
 literal|0
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
-DECL|method|containsValue (@ullableDecl Object value)
+DECL|method|containsValue (@heckForNull Object value)
 specifier|public
 name|boolean
 name|containsValue
-parameter_list|(
+argument_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|value
-parameter_list|)
+argument_list|)
 block|{
 for|for
 control|(
@@ -249,25 +272,29 @@ return|return
 literal|true
 return|;
 block|}
-block|}
-return|return
+end_expr_stmt
+
+begin_expr_stmt
+unit|}      return
 literal|false
-return|;
-block|}
-annotation|@
+expr_stmt|;
+end_expr_stmt
+
+begin_function
+unit|}    @
 name|Override
-DECL|method|containsEntry (@ullableDecl Object key, @NullableDecl Object value)
+DECL|method|containsEntry (@heckForNull Object key, @CheckForNull Object value)
 specifier|public
 name|boolean
 name|containsEntry
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|key
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|value
 parameter_list|)
@@ -299,22 +326,25 @@ name|value
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
-DECL|method|remove (@ullableDecl Object key, @NullableDecl Object value)
+DECL|method|remove (@heckForNull Object key, @CheckForNull Object value)
 specifier|public
 name|boolean
 name|remove
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|key
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|value
 parameter_list|)
@@ -346,22 +376,25 @@ name|value
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
-DECL|method|put (@ullableDecl K key, @NullableDecl V value)
+DECL|method|put (@arametricNullness K key, @ParametricNullness V value)
 specifier|public
 name|boolean
 name|put
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|ParametricNullness
 name|K
 name|key
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|ParametricNullness
 name|V
 name|value
 parameter_list|)
@@ -378,17 +411,20 @@ name|value
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
-DECL|method|putAll (@ullableDecl K key, Iterable<? extends V> values)
+DECL|method|putAll (@arametricNullness K key, Iterable<? extends V> values)
 specifier|public
 name|boolean
 name|putAll
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|ParametricNullness
 name|K
 name|key
 parameter_list|,
@@ -486,6 +522,9 @@ argument_list|)
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
@@ -553,11 +592,14 @@ return|return
 name|changed
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
-DECL|method|replaceValues (@ullableDecl K key, Iterable<? extends V> values)
+DECL|method|replaceValues (@arametricNullness K key, Iterable<? extends V> values)
 specifier|public
 name|Collection
 argument_list|<
@@ -566,7 +608,7 @@ argument_list|>
 name|replaceValues
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|ParametricNullness
 name|K
 name|key
 parameter_list|,
@@ -606,11 +648,14 @@ return|return
 name|result
 return|;
 block|}
+end_function
+
+begin_decl_stmt
 DECL|field|entries
 annotation|@
 name|LazyInit
 annotation|@
-name|NullableDecl
+name|CheckForNull
 specifier|private
 specifier|transient
 name|Collection
@@ -624,6 +669,9 @@ argument_list|>
 argument_list|>
 name|entries
 decl_stmt|;
+end_decl_stmt
+
+begin_function
 annotation|@
 name|Override
 DECL|method|entries ()
@@ -668,6 +716,9 @@ else|:
 name|result
 return|;
 block|}
+end_function
+
+begin_function_decl
 DECL|method|createEntries ()
 specifier|abstract
 name|Collection
@@ -682,6 +733,9 @@ argument_list|>
 name|createEntries
 parameter_list|()
 function_decl|;
+end_function_decl
+
+begin_class
 annotation|@
 name|WeakOuter
 DECL|class|Entries
@@ -737,6 +791,9 @@ argument_list|()
 return|;
 block|}
 block|}
+end_class
+
+begin_class
 annotation|@
 name|WeakOuter
 DECL|class|EntrySet
@@ -774,13 +831,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|equals (@ullableDecl Object obj)
+DECL|method|equals (@heckForNull Object obj)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|obj
 parameter_list|)
@@ -797,6 +854,9 @@ argument_list|)
 return|;
 block|}
 block|}
+end_class
+
+begin_function_decl
 DECL|method|entryIterator ()
 specifier|abstract
 name|Iterator
@@ -811,11 +871,14 @@ argument_list|>
 name|entryIterator
 parameter_list|()
 function_decl|;
+end_function_decl
+
+begin_decl_stmt
 DECL|field|keySet
 annotation|@
 name|LazyInit
 annotation|@
-name|NullableDecl
+name|CheckForNull
 specifier|private
 specifier|transient
 name|Set
@@ -824,6 +887,9 @@ name|K
 argument_list|>
 name|keySet
 decl_stmt|;
+end_decl_stmt
+
+begin_function
 annotation|@
 name|Override
 DECL|method|keySet ()
@@ -858,6 +924,9 @@ else|:
 name|result
 return|;
 block|}
+end_function
+
+begin_function_decl
 DECL|method|createKeySet ()
 specifier|abstract
 name|Set
@@ -867,11 +936,14 @@ argument_list|>
 name|createKeySet
 parameter_list|()
 function_decl|;
+end_function_decl
+
+begin_decl_stmt
 DECL|field|keys
 annotation|@
 name|LazyInit
 annotation|@
-name|NullableDecl
+name|CheckForNull
 specifier|private
 specifier|transient
 name|Multiset
@@ -880,6 +952,9 @@ name|K
 argument_list|>
 name|keys
 decl_stmt|;
+end_decl_stmt
+
+begin_function
 annotation|@
 name|Override
 DECL|method|keys ()
@@ -914,6 +989,9 @@ else|:
 name|result
 return|;
 block|}
+end_function
+
+begin_function_decl
 DECL|method|createKeys ()
 specifier|abstract
 name|Multiset
@@ -923,11 +1001,14 @@ argument_list|>
 name|createKeys
 parameter_list|()
 function_decl|;
+end_function_decl
+
+begin_decl_stmt
 DECL|field|values
 annotation|@
 name|LazyInit
 annotation|@
-name|NullableDecl
+name|CheckForNull
 specifier|private
 specifier|transient
 name|Collection
@@ -936,6 +1017,9 @@ name|V
 argument_list|>
 name|values
 decl_stmt|;
+end_decl_stmt
+
+begin_function
 annotation|@
 name|Override
 DECL|method|values ()
@@ -970,6 +1054,9 @@ else|:
 name|result
 return|;
 block|}
+end_function
+
+begin_function_decl
 DECL|method|createValues ()
 specifier|abstract
 name|Collection
@@ -979,6 +1066,9 @@ argument_list|>
 name|createValues
 parameter_list|()
 function_decl|;
+end_function_decl
+
+begin_class
 annotation|@
 name|WeakOuter
 DECL|class|Values
@@ -1025,13 +1115,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|contains (@ullableDecl Object o)
+DECL|method|contains (@heckForNull Object o)
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|o
 parameter_list|)
@@ -1064,6 +1154,9 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+end_class
+
+begin_function
 DECL|method|valueIterator ()
 name|Iterator
 argument_list|<
@@ -1085,11 +1178,14 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_decl_stmt
 DECL|field|asMap
 annotation|@
 name|LazyInit
 annotation|@
-name|NullableDecl
+name|CheckForNull
 specifier|private
 specifier|transient
 name|Map
@@ -1103,6 +1199,9 @@ argument_list|>
 argument_list|>
 name|asMap
 decl_stmt|;
+end_decl_stmt
+
+begin_function
 annotation|@
 name|Override
 DECL|method|asMap ()
@@ -1147,6 +1246,9 @@ else|:
 name|result
 return|;
 block|}
+end_function
+
+begin_function_decl
 DECL|method|createAsMap ()
 specifier|abstract
 name|Map
@@ -1161,16 +1263,22 @@ argument_list|>
 name|createAsMap
 parameter_list|()
 function_decl|;
+end_function_decl
+
+begin_comment
 comment|// Comparison and hashing
+end_comment
+
+begin_function
 annotation|@
 name|Override
-DECL|method|equals (@ullableDecl Object object)
+DECL|method|equals (@heckForNull Object object)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|object
 parameter_list|)
@@ -1186,7 +1294,13 @@ name|object
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Returns the hash code for this multimap.    *    *<p>The hash code of a multimap is defined as the hash code of the map view, as returned by    * {@link Multimap#asMap}.    *    * @see Map#hashCode    */
+end_comment
+
+begin_function
 annotation|@
 name|Override
 DECL|method|hashCode ()
@@ -1203,7 +1317,13 @@ name|hashCode
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Returns a string representation of the multimap, generated by calling {@code toString} on the    * map returned by {@link Multimap#asMap}.    *    * @return a string representation of the multimap    */
+end_comment
+
+begin_function
 annotation|@
 name|Override
 DECL|method|toString ()
@@ -1220,8 +1340,8 @@ name|toString
 argument_list|()
 return|;
 block|}
-block|}
-end_class
+end_function
 
+unit|}
 end_unit
 

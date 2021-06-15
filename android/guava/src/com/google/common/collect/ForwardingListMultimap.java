@@ -56,6 +56,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|checkerframework
@@ -64,9 +74,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -74,27 +84,41 @@ begin_comment
 comment|/**  * A list multimap which forwards all its method calls to another list multimap. Subclasses should  * override one or more methods to modify the behavior of the backing multimap as desired per the<a  * href="http://en.wikipedia.org/wiki/Decorator_pattern">decorator pattern</a>.  *  *<p><b>{@code default} method warning:</b> This class does<i>not</i> forward calls to {@code  * default} methods. Instead, it inherits their default implementations. When those implementations  * invoke methods, they invoke methods on the {@code ForwardingListMultimap}.  *  * @author Kurt Alfred Kluever  * @since 3.0  */
 end_comment
 
-begin_class
+begin_annotation
 annotation|@
 name|GwtCompatible
+end_annotation
+
+begin_annotation
+annotation|@
+name|ElementTypesAreNonnullByDefault
+end_annotation
+
+begin_expr_stmt
 DECL|class|ForwardingListMultimap
 specifier|public
 specifier|abstract
-class|class
+name|class
 name|ForwardingListMultimap
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|ForwardingMultimap
 argument_list|<
 name|K
 argument_list|,
 name|V
 argument_list|>
-implements|implements
+expr|implements
 name|ListMultimap
 argument_list|<
 name|K
@@ -106,9 +130,9 @@ comment|/** Constructor for use by subclasses. */
 DECL|method|ForwardingListMultimap ()
 specifier|protected
 name|ForwardingListMultimap
-parameter_list|()
+argument_list|()
 block|{}
-annotation|@
+expr|@
 name|Override
 DECL|method|delegate ()
 specifier|protected
@@ -120,23 +144,22 @@ argument_list|,
 name|V
 argument_list|>
 name|delegate
-parameter_list|()
-function_decl|;
-annotation|@
+argument_list|()
+block|;    @
 name|Override
-DECL|method|get (@ullableDecl K key)
+DECL|method|get (@arametricNullness K key)
 specifier|public
 name|List
 argument_list|<
 name|V
 argument_list|>
 name|get
-parameter_list|(
+argument_list|(
 annotation|@
-name|NullableDecl
+name|ParametricNullness
 name|K
 name|key
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|delegate
@@ -148,23 +171,23 @@ name|key
 argument_list|)
 return|;
 block|}
-annotation|@
+expr|@
 name|CanIgnoreReturnValue
-annotation|@
+expr|@
 name|Override
-DECL|method|removeAll (@ullableDecl Object key)
+DECL|method|removeAll (@heckForNull Object key)
 specifier|public
 name|List
 argument_list|<
 name|V
 argument_list|>
 name|removeAll
-parameter_list|(
+argument_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|key
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|delegate
@@ -176,11 +199,14 @@ name|key
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_function
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
-DECL|method|replaceValues (K key, Iterable<? extends V> values)
+DECL|method|replaceValues (@arametricNullness K key, Iterable<? extends V> values)
 specifier|public
 name|List
 argument_list|<
@@ -188,6 +214,8 @@ name|V
 argument_list|>
 name|replaceValues
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|key
 parameter_list|,
@@ -212,8 +240,8 @@ name|values
 argument_list|)
 return|;
 block|}
-block|}
-end_class
+end_function
 
+unit|}
 end_unit
 
