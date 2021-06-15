@@ -166,22 +166,16 @@ end_import
 
 begin_import
 import|import
-name|org
+name|javax
 operator|.
-name|checkerframework
+name|annotation
 operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|compatqual
-operator|.
-name|NullableDecl
+name|CheckForNull
 import|;
 end_import
 
 begin_comment
-comment|/**  * A semi-persistent mapping from keys to values. Cache entries are manually added using {@link  * #get(Object, Callable)} or {@link #put(Object, Object)}, and are stored in the cache until either  * evicted or manually invalidated. The common way to build instances is using {@link CacheBuilder}.  *  *<p>Implementations of this interface are expected to be thread-safe, and can be safely accessed  * by multiple concurrent threads.  *  * @author Charles Fry  * @since 10.0  */
+comment|/**  * A semi-persistent mapping from keys to values. Cache entries are manually added using {@link  * #get(Object, Callable)} or {@link #put(Object, Object)}, and are stored in the cache until either  * evicted or manually invalidated. The common way to build instances is using {@link CacheBuilder}.  *  *<p>Implementations of this interface are expected to be thread-safe, and can be safely accessed  * by multiple concurrent threads.  *  * @param<K> the type of the cache's keys, which are not permitted to be null  * @param<V> the type of the cache's values, which are not permitted to be null  * @author Charles Fry  * @since 10.0  */
 end_comment
 
 begin_interface
@@ -192,6 +186,8 @@ literal|"Use CacheBuilder.newBuilder().build()"
 argument_list|)
 annotation|@
 name|GwtCompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|interface|Cache
 specifier|public
 interface|interface
@@ -204,7 +200,7 @@ parameter_list|>
 block|{
 comment|/**    * Returns the value associated with {@code key} in this cache, or {@code null} if there is no    * cached value for {@code key}.    *    * @since 11.0    */
 annotation|@
-name|NullableDecl
+name|CheckForNull
 DECL|method|getIfPresent (@ompatibleWithR) Object key)
 name|V
 name|getIfPresent
@@ -238,7 +234,8 @@ throws|throws
 name|ExecutionException
 function_decl|;
 comment|/**    * Returns a map of the values associated with {@code keys} in this cache. The returned map will    * only contain entries which are already present in the cache.    *    * @since 11.0    */
-DECL|method|getAllPresent (Iterable<?> keys)
+comment|/*    *<? extends Object> is mostly the same as<?> to plain Java. But to nullness checkers, they    * differ:<? extends Object> means "non-null types," while<?> means "all types."    */
+DECL|method|getAllPresent (Iterable<? extends Object> keys)
 name|ImmutableMap
 argument_list|<
 name|K
@@ -250,6 +247,8 @@ parameter_list|(
 name|Iterable
 argument_list|<
 name|?
+extends|extends
+name|Object
 argument_list|>
 name|keys
 parameter_list|)
@@ -299,13 +298,16 @@ name|key
 parameter_list|)
 function_decl|;
 comment|/**    * Discards any cached values for keys {@code keys}.    *    * @since 11.0    */
-DECL|method|invalidateAll (Iterable<?> keys)
+comment|// For discussion of<? extends Object>, see getAllPresent.
+DECL|method|invalidateAll (Iterable<? extends Object> keys)
 name|void
 name|invalidateAll
 parameter_list|(
 name|Iterable
 argument_list|<
 name|?
+extends|extends
+name|Object
 argument_list|>
 name|keys
 parameter_list|)

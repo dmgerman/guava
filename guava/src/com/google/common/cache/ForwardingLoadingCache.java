@@ -77,6 +77,8 @@ end_comment
 begin_class
 annotation|@
 name|GwtIncompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|ForwardingLoadingCache
 specifier|public
 specifier|abstract

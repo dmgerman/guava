@@ -33,6 +33,22 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Strings
+operator|.
+name|isNullOrEmpty
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -180,6 +196,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|checkerframework
@@ -188,9 +214,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -207,6 +233,8 @@ argument_list|)
 comment|// lots of violations (nanosecond math)
 annotation|@
 name|GwtIncompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|CacheBuilderSpec
 specifier|public
 specifier|final
@@ -219,7 +247,7 @@ specifier|private
 interface|interface
 name|ValueParser
 block|{
-DECL|method|parse (CacheBuilderSpec spec, String key, @NullableDecl String value)
+DECL|method|parse (CacheBuilderSpec spec, String key, @CheckForNull String value)
 name|void
 name|parse
 parameter_list|(
@@ -230,7 +258,7 @@ name|String
 name|key
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|String
 name|value
 parameter_list|)
@@ -422,7 +450,7 @@ DECL|field|initialCapacity
 annotation|@
 name|VisibleForTesting
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Integer
 name|initialCapacity
 decl_stmt|;
@@ -430,7 +458,7 @@ DECL|field|maximumSize
 annotation|@
 name|VisibleForTesting
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Long
 name|maximumSize
 decl_stmt|;
@@ -438,7 +466,7 @@ DECL|field|maximumWeight
 annotation|@
 name|VisibleForTesting
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Long
 name|maximumWeight
 decl_stmt|;
@@ -446,7 +474,7 @@ DECL|field|concurrencyLevel
 annotation|@
 name|VisibleForTesting
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Integer
 name|concurrencyLevel
 decl_stmt|;
@@ -454,7 +482,7 @@ DECL|field|keyStrength
 annotation|@
 name|VisibleForTesting
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Strength
 name|keyStrength
 decl_stmt|;
@@ -462,7 +490,7 @@ DECL|field|valueStrength
 annotation|@
 name|VisibleForTesting
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Strength
 name|valueStrength
 decl_stmt|;
@@ -470,7 +498,7 @@ DECL|field|recordStats
 annotation|@
 name|VisibleForTesting
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Boolean
 name|recordStats
 decl_stmt|;
@@ -484,7 +512,7 @@ DECL|field|writeExpirationTimeUnit
 annotation|@
 name|VisibleForTesting
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|TimeUnit
 name|writeExpirationTimeUnit
 decl_stmt|;
@@ -498,7 +526,7 @@ DECL|field|accessExpirationTimeUnit
 annotation|@
 name|VisibleForTesting
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|TimeUnit
 name|accessExpirationTimeUnit
 decl_stmt|;
@@ -512,7 +540,7 @@ DECL|field|refreshTimeUnit
 annotation|@
 name|VisibleForTesting
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|TimeUnit
 name|refreshTimeUnit
 decl_stmt|;
@@ -1020,13 +1048,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|equals (@ullableDecl Object obj)
+DECL|method|equals (@heckForNull Object obj)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|obj
 parameter_list|)
@@ -1214,8 +1242,8 @@ return|;
 block|}
 comment|/**    * Converts an expiration duration/unit pair into a single Long for hashing and equality. Uses    * nanos to match CacheBuilder implementation.    */
 annotation|@
-name|NullableDecl
-DECL|method|durationInNanos (long duration, @NullableDecl TimeUnit unit)
+name|CheckForNull
+DECL|method|durationInNanos (long duration, @CheckForNull TimeUnit unit)
 specifier|private
 specifier|static
 name|Long
@@ -1225,7 +1253,7 @@ name|long
 name|duration
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|TimeUnit
 name|unit
 parameter_list|)
@@ -1271,7 +1299,7 @@ parameter_list|)
 function_decl|;
 annotation|@
 name|Override
-DECL|method|parse (CacheBuilderSpec spec, String key, String value)
+DECL|method|parse (CacheBuilderSpec spec, String key, @Nullable String value)
 specifier|public
 name|void
 name|parse
@@ -1282,27 +1310,32 @@ parameter_list|,
 name|String
 name|key
 parameter_list|,
+annotation|@
+name|Nullable
 name|String
 name|value
 parameter_list|)
 block|{
-name|checkArgument
+if|if
+condition|(
+name|isNullOrEmpty
 argument_list|(
 name|value
-operator|!=
-literal|null
-operator|&&
-operator|!
-name|value
-operator|.
-name|isEmpty
-argument_list|()
-argument_list|,
-literal|"value of key %s omitted"
-argument_list|,
-name|key
 argument_list|)
-expr_stmt|;
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"value of key "
+operator|+
+name|key
+operator|+
+literal|" omitted"
+argument_list|)
+throw|;
+block|}
 try|try
 block|{
 name|parseInteger
@@ -1367,7 +1400,7 @@ parameter_list|)
 function_decl|;
 annotation|@
 name|Override
-DECL|method|parse (CacheBuilderSpec spec, String key, String value)
+DECL|method|parse (CacheBuilderSpec spec, String key, @Nullable String value)
 specifier|public
 name|void
 name|parse
@@ -1378,27 +1411,32 @@ parameter_list|,
 name|String
 name|key
 parameter_list|,
+annotation|@
+name|Nullable
 name|String
 name|value
 parameter_list|)
 block|{
-name|checkArgument
+if|if
+condition|(
+name|isNullOrEmpty
 argument_list|(
 name|value
-operator|!=
-literal|null
-operator|&&
-operator|!
-name|value
-operator|.
-name|isEmpty
-argument_list|()
-argument_list|,
-literal|"value of key %s omitted"
-argument_list|,
-name|key
 argument_list|)
-expr_stmt|;
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"value of key "
+operator|+
+name|key
+operator|+
+literal|" omitted"
+argument_list|)
+throw|;
+block|}
 try|try
 block|{
 name|parseLong
@@ -1680,7 +1718,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|parse (CacheBuilderSpec spec, String key, @NullableDecl String value)
+DECL|method|parse (CacheBuilderSpec spec, String key, @CheckForNull String value)
 specifier|public
 name|void
 name|parse
@@ -1692,7 +1730,7 @@ name|String
 name|key
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|String
 name|value
 parameter_list|)
@@ -1764,7 +1802,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|parse (CacheBuilderSpec spec, String key, @NullableDecl String value)
+DECL|method|parse (CacheBuilderSpec spec, String key, @CheckForNull String value)
 specifier|public
 name|void
 name|parse
@@ -1776,7 +1814,7 @@ name|String
 name|key
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|String
 name|value
 parameter_list|)
@@ -1827,7 +1865,7 @@ name|ValueParser
 block|{
 annotation|@
 name|Override
-DECL|method|parse (CacheBuilderSpec spec, String key, @NullableDecl String value)
+DECL|method|parse (CacheBuilderSpec spec, String key, @CheckForNull String value)
 specifier|public
 name|void
 name|parse
@@ -1839,7 +1877,7 @@ name|String
 name|key
 parameter_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|String
 name|value
 parameter_list|)
@@ -1899,7 +1937,7 @@ parameter_list|)
 function_decl|;
 annotation|@
 name|Override
-DECL|method|parse (CacheBuilderSpec spec, String key, String value)
+DECL|method|parse (CacheBuilderSpec spec, String key, @CheckForNull String value)
 specifier|public
 name|void
 name|parse
@@ -1910,27 +1948,32 @@ parameter_list|,
 name|String
 name|key
 parameter_list|,
+annotation|@
+name|CheckForNull
 name|String
 name|value
 parameter_list|)
 block|{
-name|checkArgument
+if|if
+condition|(
+name|isNullOrEmpty
 argument_list|(
 name|value
-operator|!=
-literal|null
-operator|&&
-operator|!
-name|value
-operator|.
-name|isEmpty
-argument_list|()
-argument_list|,
-literal|"value of key %s omitted"
-argument_list|,
-name|key
 argument_list|)
-expr_stmt|;
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"value of key "
+operator|+
+name|key
+operator|+
+literal|" omitted"
+argument_list|)
+throw|;
+block|}
 try|try
 block|{
 name|char

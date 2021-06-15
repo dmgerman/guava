@@ -123,6 +123,8 @@ end_comment
 begin_class
 annotation|@
 name|GwtCompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|AbstractCache
 specifier|public
 specifier|abstract
@@ -176,9 +178,10 @@ argument_list|()
 throw|;
 block|}
 comment|/**    * {@inheritDoc}    *    *<p>This implementation of {@code getAllPresent} lacks any insight into the internal cache data    * structure, and is thus forced to return the query keys instead of the cached keys. This is only    * possible with an unsafe cast which requires {@code keys} to actually be of type {@code K}.    *    * @since 11.0    */
+comment|/*    *<? extends Object> is mostly the same as<?> to plain Java. But to nullness checkers, they    * differ:<? extends Object> means "non-null types," while<?> means "all types."    */
 annotation|@
 name|Override
-DECL|method|getAllPresent (Iterable<?> keys)
+DECL|method|getAllPresent (Iterable<? extends Object> keys)
 specifier|public
 name|ImmutableMap
 argument_list|<
@@ -191,6 +194,8 @@ parameter_list|(
 name|Iterable
 argument_list|<
 name|?
+extends|extends
+name|Object
 argument_list|>
 name|keys
 parameter_list|)
@@ -395,7 +400,8 @@ block|}
 comment|/** @since 11.0 */
 annotation|@
 name|Override
-DECL|method|invalidateAll (Iterable<?> keys)
+comment|// For discussion of<? extends Object>, see getAllPresent.
+DECL|method|invalidateAll (Iterable<? extends Object> keys)
 specifier|public
 name|void
 name|invalidateAll
@@ -403,6 +409,8 @@ parameter_list|(
 name|Iterable
 argument_list|<
 name|?
+extends|extends
+name|Object
 argument_list|>
 name|keys
 parameter_list|)

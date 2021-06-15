@@ -69,6 +69,8 @@ end_comment
 begin_enum
 annotation|@
 name|GwtCompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|enum|RemovalCause
 specifier|public
 enum|enum

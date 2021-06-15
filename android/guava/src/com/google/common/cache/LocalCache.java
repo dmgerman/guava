@@ -940,6 +940,7 @@ name|emulated
 operator|=
 literal|true
 argument_list|)
+comment|// TODO(cpovirk): Annotate for nullness.
 DECL|class|LocalCache
 class|class
 name|LocalCache

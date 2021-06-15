@@ -120,17 +120,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|javax
 operator|.
-name|checkerframework
+name|annotation
 operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|qual
-operator|.
-name|Nullable
+name|CheckForNull
 import|;
 end_import
 
@@ -141,6 +135,8 @@ end_comment
 begin_class
 annotation|@
 name|GwtIncompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|ForwardingCache
 specifier|public
 specifier|abstract
@@ -184,10 +180,10 @@ function_decl|;
 comment|/** @since 11.0 */
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|getIfPresent (Object key)
 specifier|public
-annotation|@
-name|Nullable
 name|V
 name|getIfPresent
 parameter_list|(
@@ -242,7 +238,8 @@ block|}
 comment|/** @since 11.0 */
 annotation|@
 name|Override
-DECL|method|getAllPresent (Iterable<?> keys)
+comment|/*    *<? extends Object> is mostly the same as<?> to plain Java. But to nullness checkers, they    * differ:<? extends Object> means "non-null types," while<?> means "all types."    */
+DECL|method|getAllPresent (Iterable<? extends Object> keys)
 specifier|public
 name|ImmutableMap
 argument_list|<
@@ -255,6 +252,8 @@ parameter_list|(
 name|Iterable
 argument_list|<
 name|?
+extends|extends
+name|Object
 argument_list|>
 name|keys
 parameter_list|)
@@ -348,7 +347,8 @@ block|}
 comment|/** @since 11.0 */
 annotation|@
 name|Override
-DECL|method|invalidateAll (Iterable<?> keys)
+comment|// For discussion of<? extends Object>, see getAllPresent.
+DECL|method|invalidateAll (Iterable<? extends Object> keys)
 specifier|public
 name|void
 name|invalidateAll
@@ -356,6 +356,8 @@ parameter_list|(
 name|Iterable
 argument_list|<
 name|?
+extends|extends
+name|Object
 argument_list|>
 name|keys
 parameter_list|)

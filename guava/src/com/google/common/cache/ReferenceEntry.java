@@ -48,17 +48,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|javax
 operator|.
-name|checkerframework
+name|annotation
 operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|qual
-operator|.
-name|Nullable
+name|CheckForNull
 import|;
 end_import
 
@@ -69,6 +63,8 @@ end_comment
 begin_interface
 annotation|@
 name|GwtIncompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|interface|ReferenceEntry
 interface|interface
 name|ReferenceEntry
@@ -79,6 +75,8 @@ name|V
 parameter_list|>
 block|{
 comment|/** Returns the value reference from this entry. */
+annotation|@
+name|CheckForNull
 DECL|method|getValueReference ()
 name|ValueReference
 argument_list|<
@@ -105,7 +103,7 @@ parameter_list|)
 function_decl|;
 comment|/** Returns the next entry in the chain. */
 annotation|@
-name|Nullable
+name|CheckForNull
 DECL|method|getNext ()
 name|ReferenceEntry
 argument_list|<
@@ -124,7 +122,7 @@ parameter_list|()
 function_decl|;
 comment|/** Returns the key for this entry. */
 annotation|@
-name|Nullable
+name|CheckForNull
 DECL|method|getKey ()
 name|K
 name|getKey

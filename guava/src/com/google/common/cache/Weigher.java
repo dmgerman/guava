@@ -39,6 +39,8 @@ annotation|@
 name|GwtCompatible
 annotation|@
 name|FunctionalInterface
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|interface|Weigher
 specifier|public
 interface|interface

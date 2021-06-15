@@ -37,6 +37,8 @@ end_comment
 begin_interface
 annotation|@
 name|GwtCompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|interface|RemovalListener
 specifier|public
 interface|interface

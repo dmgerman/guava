@@ -37,6 +37,8 @@ end_comment
 begin_interface
 annotation|@
 name|GwtCompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|interface|LongAddable
 interface|interface
 name|LongAddable

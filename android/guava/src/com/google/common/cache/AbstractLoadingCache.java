@@ -115,6 +115,8 @@ end_comment
 begin_class
 annotation|@
 name|GwtIncompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|AbstractLoadingCache
 specifier|public
 specifier|abstract
