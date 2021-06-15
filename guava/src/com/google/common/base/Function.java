@@ -46,6 +46,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|checkerframework
@@ -64,21 +74,38 @@ begin_comment
 comment|/**  * Legacy version of {@link java.util.function.Function java.util.function.Function}.  *  *<p>The {@link Functions} class provides common functions and related utilities.  *  *<p>As this interface extends {@code java.util.function.Function}, an instance of this type can be  * used as a {@code java.util.function.Function} directly. To use a {@code  * java.util.function.Function} in a context where a {@code com.google.common.base.Function} is  * needed, use {@code function::apply}.  *  *<p>This interface is now a legacy type. Use {@code java.util.function.Function} (or the  * appropriate primitive specialization such as {@code ToIntFunction}) instead whenever possible.  * Otherwise, at least reduce<i>explicit</i> dependencies on this type by using lambda expressions  * or method references instead of classes, leaving your code easier to migrate in the future.  *  *<p>See the Guava User Guide article on<a  * href="https://github.com/google/guava/wiki/FunctionalExplained">the use of {@code Function}</a>.  *  * @author Kevin Bourrillion  * @since 2.0  */
 end_comment
 
-begin_interface
+begin_annotation
 annotation|@
 name|GwtCompatible
+end_annotation
+
+begin_annotation
 annotation|@
 name|FunctionalInterface
+end_annotation
+
+begin_annotation
+annotation|@
+name|ElementTypesAreNonnullByDefault
+end_annotation
+
+begin_expr_stmt
 DECL|interface|Function
 specifier|public
-interface|interface
+expr|interface
 name|Function
-parameter_list|<
+operator|<
 name|F
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|T
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|java
 operator|.
 name|util
@@ -91,39 +118,37 @@ name|F
 argument_list|,
 name|T
 argument_list|>
-block|{
-annotation|@
+block|{   @
 name|Override
-annotation|@
+expr|@
 name|CanIgnoreReturnValue
 comment|// TODO(kevinb): remove this
-annotation|@
-name|Nullable
-DECL|method|apply (@ullable F input)
+expr|@
+name|ParametricNullness
+DECL|method|apply (@arametricNullness F input)
 name|T
 name|apply
-parameter_list|(
+argument_list|(
 annotation|@
-name|Nullable
+name|ParametricNullness
 name|F
 name|input
-parameter_list|)
-function_decl|;
+argument_list|)
+block|;
 comment|/**    *<i>May</i> return {@code true} if {@code object} is a {@code Function} that behaves identically    * to this function.    *    *<p><b>Warning: do not depend</b> on the behavior of this method.    *    *<p>Historically, {@code Function} instances in this library have implemented this method to    * recognize certain cases where distinct {@code Function} instances would in fact behave    * identically. However, as code migrates to {@code java.util.function}, that behavior will    * disappear. It is best not to depend on it.    */
-annotation|@
+block|@
 name|Override
-DECL|method|equals (@ullable Object object)
+DECL|method|equals (@heckForNull Object object)
 name|boolean
 name|equals
-parameter_list|(
+argument_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|object
-parameter_list|)
-function_decl|;
-block|}
-end_interface
+argument_list|)
+block|; }
+end_expr_stmt
 
 end_unit
 
