@@ -198,17 +198,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|javax
 operator|.
-name|checkerframework
+name|annotation
 operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|qual
-operator|.
-name|Nullable
+name|CheckForNull
 import|;
 end_import
 
@@ -222,6 +216,8 @@ name|Beta
 annotation|@
 name|GwtIncompatible
 comment|// uses NavigableMap
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|TreeRangeSet
 specifier|public
 class|class
@@ -423,10 +419,10 @@ name|rangesByLowerCut
 expr_stmt|;
 block|}
 DECL|field|asRanges
+annotation|@
+name|CheckForNull
 specifier|private
 specifier|transient
-annotation|@
-name|Nullable
 name|Set
 argument_list|<
 name|Range
@@ -437,10 +433,10 @@ argument_list|>
 name|asRanges
 decl_stmt|;
 DECL|field|asDescendingSetOfRanges
+annotation|@
+name|CheckForNull
 specifier|private
 specifier|transient
-annotation|@
-name|Nullable
 name|Set
 argument_list|<
 name|Range
@@ -634,13 +630,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|equals (@ullable Object o)
+DECL|method|equals (@heckForNull Object o)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|o
 parameter_list|)
@@ -659,10 +655,10 @@ block|}
 block|}
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|rangeContaining (C value)
 specifier|public
-annotation|@
-name|Nullable
 name|Range
 argument_list|<
 name|C
@@ -924,10 +920,10 @@ name|range
 argument_list|)
 return|;
 block|}
+annotation|@
+name|CheckForNull
 DECL|method|rangeEnclosing (Range<C> range)
 specifier|private
-annotation|@
-name|Nullable
 name|Range
 argument_list|<
 name|C
@@ -1048,8 +1044,13 @@ condition|(
 name|firstEntry
 operator|==
 literal|null
+operator|||
+name|lastEntry
+operator|==
+literal|null
 condition|)
 block|{
+comment|/*        * Either both are null or neither is: Either the set is empty, or it's not. But we check both        * to make the nullness checker happy.        */
 throw|throw
 operator|new
 name|NoSuchElementException
@@ -1595,10 +1596,10 @@ expr_stmt|;
 block|}
 block|}
 DECL|field|complement
+annotation|@
+name|CheckForNull
 specifier|private
 specifier|transient
-annotation|@
-name|Nullable
 name|RangeSet
 argument_list|<
 name|C
@@ -2028,13 +2029,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|containsKey (@ullable Object key)
+DECL|method|containsKey (@heckForNull Object key)
 specifier|public
 name|boolean
 name|containsKey
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
@@ -2050,7 +2051,9 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|get (@ullable Object key)
+annotation|@
+name|CheckForNull
+DECL|method|get (@heckForNull Object key)
 specifier|public
 name|Range
 argument_list|<
@@ -2059,7 +2062,7 @@ argument_list|>
 name|get
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
@@ -3920,16 +3923,18 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|get (Object key)
-specifier|public
 annotation|@
-name|Nullable
+name|CheckForNull
+DECL|method|get (@heckForNull Object key)
+specifier|public
 name|Range
 argument_list|<
 name|C
 argument_list|>
 name|get
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
@@ -4029,11 +4034,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|containsKey (Object key)
+DECL|method|containsKey (@heckForNull Object key)
 specifier|public
 name|boolean
 name|containsKey
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
@@ -4586,13 +4593,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|containsKey (@ullable Object key)
+DECL|method|containsKey (@heckForNull Object key)
 specifier|public
 name|boolean
 name|containsKey
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
@@ -4608,10 +4615,10 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|get (@ullable Object key)
-specifier|public
 annotation|@
-name|Nullable
+name|CheckForNull
+DECL|method|get (@heckForNull Object key)
+specifier|public
 name|Range
 argument_list|<
 name|C
@@ -4619,7 +4626,7 @@ argument_list|>
 name|get
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
@@ -5499,10 +5506,10 @@ return|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|rangeContaining (C value)
 specifier|public
-annotation|@
-name|Nullable
 name|Range
 argument_list|<
 name|C

@@ -80,17 +80,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|javax
 operator|.
-name|checkerframework
+name|annotation
 operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|compatqual
-operator|.
-name|NullableDecl
+name|CheckForNull
 import|;
 end_import
 
@@ -108,6 +102,8 @@ literal|"Use ImmutableRangeSet or TreeRangeSet"
 argument_list|)
 annotation|@
 name|GwtIncompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|interface|RangeSet
 specifier|public
 interface|interface
@@ -129,6 +125,8 @@ name|value
 parameter_list|)
 function_decl|;
 comment|/**    * Returns the unique range from this range set that {@linkplain Range#contains contains} {@code    * value}, or {@code null} if this range set does not contain {@code value}.    */
+annotation|@
+name|CheckForNull
 DECL|method|rangeContaining (C value)
 name|Range
 argument_list|<
@@ -344,12 +342,12 @@ comment|// Object methods
 comment|/**    * Returns {@code true} if {@code obj} is another {@code RangeSet} that contains the same ranges    * according to {@link Range#equals(Object)}.    */
 annotation|@
 name|Override
-DECL|method|equals (@ullableDecl Object obj)
+DECL|method|equals (@heckForNull Object obj)
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|obj
 parameter_list|)

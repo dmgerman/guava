@@ -119,6 +119,18 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|java
+operator|.
+name|util
+operator|.
+name|Objects
+operator|.
+name|requireNonNull
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -310,17 +322,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|javax
 operator|.
-name|checkerframework
+name|annotation
 operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|qual
-operator|.
-name|Nullable
+name|CheckForNull
 import|;
 end_import
 
@@ -333,6 +339,8 @@ annotation|@
 name|Beta
 annotation|@
 name|GwtIncompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|ImmutableRangeSet
 specifier|public
 specifier|final
@@ -1054,6 +1062,8 @@ return|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|rangeContaining (C value)
 specifier|public
 name|Range
@@ -1483,6 +1493,8 @@ block|}
 DECL|field|complement
 annotation|@
 name|LazyInit
+annotation|@
+name|CheckForNull
 specifier|private
 specifier|transient
 name|ImmutableRangeSet
@@ -2500,10 +2512,10 @@ name|domain
 expr_stmt|;
 block|}
 DECL|field|size
+annotation|@
+name|CheckForNull
 specifier|private
 specifier|transient
-annotation|@
-name|Nullable
 name|Integer
 name|size
 decl_stmt|;
@@ -2982,13 +2994,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|contains (@ullable Object o)
+DECL|method|contains (@heckForNull Object o)
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|o
 parameter_list|)
@@ -3044,10 +3056,12 @@ block|}
 block|}
 annotation|@
 name|Override
-DECL|method|indexOf (Object target)
+DECL|method|indexOf (@heckForNull Object target)
 name|int
 name|indexOf
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|target
 parameter_list|)
@@ -3072,7 +3086,10 @@ init|=
 operator|(
 name|C
 operator|)
+name|requireNonNull
+argument_list|(
 name|target
+argument_list|)
 decl_stmt|;
 name|long
 name|total
