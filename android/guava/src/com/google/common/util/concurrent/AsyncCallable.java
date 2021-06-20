@@ -58,22 +58,52 @@ name|Future
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|checkerframework
+operator|.
+name|checker
+operator|.
+name|nullness
+operator|.
+name|qual
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/**  * Computes a value, possibly asynchronously. For an example usage and more information, see {@link  * Futures.FutureCombiner#callAsync(AsyncCallable, java.util.concurrent.Executor)}.  *  *<p>Much like {@link java.util.concurrent.Callable}, but returning a {@link ListenableFuture}  * result.  *  * @since 20.0  */
 end_comment
 
-begin_interface
+begin_annotation
 annotation|@
 name|Beta
+end_annotation
+
+begin_annotation
 annotation|@
 name|GwtCompatible
+end_annotation
+
+begin_annotation
+annotation|@
+name|ElementTypesAreNonnullByDefault
+end_annotation
+
+begin_expr_stmt
 DECL|interface|AsyncCallable
 specifier|public
-interface|interface
+expr|interface
 name|AsyncCallable
-parameter_list|<
+operator|<
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 block|{
 comment|/**    * Computes a result {@code Future}. The output {@code Future} need not be {@linkplain    * Future#isDone done}, making {@code AsyncCallable} suitable for asynchronous derivations.    *    *<p>Throwing an exception from this method is equivalent to returning a failing {@link    * ListenableFuture}.    */
 DECL|method|call ()
@@ -82,12 +112,11 @@ argument_list|<
 name|V
 argument_list|>
 name|call
-parameter_list|()
+argument_list|()
 throws|throws
 name|Exception
-function_decl|;
-block|}
-end_interface
+block|; }
+end_expr_stmt
 
 end_unit
 

@@ -660,6 +660,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|checkerframework
@@ -682,32 +692,52 @@ begin_comment
 comment|// TODO(dpb): Consider reusing one CloseableList for the entire pipeline, modulo combinations.
 end_comment
 
-begin_class
+begin_annotation
 annotation|@
 name|Beta
+end_annotation
+
+begin_comment
 comment|// @Beta for one release.
+end_comment
+
+begin_annotation
 annotation|@
 name|DoNotMock
 argument_list|(
 literal|"Use ClosingFuture.from(Futures.immediate*Future)"
 argument_list|)
+end_annotation
+
+begin_annotation
+annotation|@
+name|ElementTypesAreNonnullByDefault
+end_annotation
+
+begin_comment
 comment|// TODO(dpb): GWT compatibility.
+end_comment
+
+begin_expr_stmt
 DECL|class|ClosingFuture
 specifier|public
-specifier|final
-class|class
+name|final
+name|class
 name|ClosingFuture
-parameter_list|<
+operator|<
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 block|{
 DECL|field|logger
 specifier|private
 specifier|static
-specifier|final
+name|final
 name|Logger
 name|logger
-init|=
+operator|=
 name|Logger
 operator|.
 name|getLogger
@@ -719,41 +749,41 @@ operator|.
 name|getName
 argument_list|()
 argument_list|)
-decl_stmt|;
+block|;
 comment|/**    * An object that can capture objects to be closed later, when a {@link ClosingFuture} pipeline is    * done.    */
 DECL|class|DeferredCloser
 specifier|public
 specifier|static
-specifier|final
-class|class
+name|final
+name|class
 name|DeferredCloser
-block|{
+block|{     @
 DECL|field|list
-annotation|@
 name|RetainedWith
 specifier|private
-specifier|final
+name|final
 name|CloseableList
 name|list
-decl_stmt|;
+block|;
 DECL|method|DeferredCloser (CloseableList list)
 name|DeferredCloser
-parameter_list|(
+argument_list|(
 name|CloseableList
 name|list
-parameter_list|)
+argument_list|)
 block|{
 name|this
 operator|.
 name|list
 operator|=
 name|list
-expr_stmt|;
-block|}
+block|;     }
 comment|/**      * Captures an object to be closed when a {@link ClosingFuture} pipeline is done.      *      *<p>For users of the {@code -jre} flavor of Guava, the object can be any {@code      * AutoCloseable}. For users of the {@code -android} flavor, the object must be a {@code      * Closeable}. (For more about the flavors, see<a      * href="https://github.com/google/guava#adding-guava-to-your-build">Adding Guava to your      * build</a>.)      *      *<p>Be careful when targeting an older SDK than you are building against (most commonly when      * building for Android): Ensure that any object you pass implements the interface not just in      * your current SDK version but also at the oldest version you support. For example,<a      * href="https://developer.android.com/sdk/api_diff/16/">API Level 16</a> is the first version      * in which {@code Cursor} is {@code Closeable}. To support older versions, pass a wrapper      * {@code Closeable} with a method reference like {@code cursor::close}.      *      *<p>Note that this method is still binary-compatible between flavors because the erasure of      * its parameter type is {@code Object}, not {@code AutoCloseable} or {@code Closeable}.      *      * @param closeable the object to be closed (see notes above)      * @param closingExecutor the object will be closed on this executor      * @return the first argument      */
-annotation|@
+expr|@
 name|CanIgnoreReturnValue
-DECL|method|eventuallyClose ( C closeable, Executor closingExecutor)
+expr|@
+name|ParametricNullness
+DECL|method|eventuallyClose ( @arametricNullness C closeable, Executor closingExecutor)
 specifier|public
 operator|<
 name|C
@@ -768,6 +798,8 @@ operator|>
 name|C
 name|eventuallyClose
 argument_list|(
+annotation|@
+name|ParametricNullness
 name|C
 name|closeable
 argument_list|,
@@ -801,19 +833,16 @@ return|return
 name|closeable
 return|;
 block|}
-block|}
-end_class
+end_expr_stmt
 
 begin_comment
+unit|}
 comment|/**    * An operation that computes a result.    *    * @param<V> the type of the result    */
 end_comment
 
-begin_annotation
-annotation|@
-name|FunctionalInterface
-end_annotation
-
 begin_expr_stmt
+unit|@
+name|FunctionalInterface
 DECL|interface|ClosingCallable
 specifier|public
 expr|interface
@@ -826,6 +855,8 @@ name|Object
 operator|>
 block|{
 comment|/**      * Computes a result, or throws an exception if unable to do so.      *      *<p>Any objects that are passed to {@link DeferredCloser#eventuallyClose(Closeable, Executor)      * closer.eventuallyClose()} will be closed when the {@link ClosingFuture} pipeline is done (but      * not before this method completes), even if this method throws or the pipeline is cancelled.      */
+block|@
+name|ParametricNullness
 DECL|method|call (DeferredCloser closer)
 name|V
 name|call
@@ -884,13 +915,17 @@ name|Object
 operator|>
 block|{
 comment|/**      * Applies this function to an input, or throws an exception if unable to do so.      *      *<p>Any objects that are passed to {@link DeferredCloser#eventuallyClose(Closeable, Executor)      * closer.eventuallyClose()} will be closed when the {@link ClosingFuture} pipeline is done (but      * not before this method completes), even if this method throws or the pipeline is cancelled.      */
-DECL|method|apply (DeferredCloser closer, T input)
+block|@
+name|ParametricNullness
+DECL|method|apply (DeferredCloser closer, @ParametricNullness T input)
 name|U
 name|apply
 argument_list|(
 name|DeferredCloser
 name|closer
 argument_list|,
+annotation|@
+name|ParametricNullness
 name|T
 name|input
 argument_list|)
@@ -917,7 +952,7 @@ name|Object
 operator|>
 block|{
 comment|/**      * Applies this function to an input, or throws an exception if unable to do so.      *      *<p>Any objects that are passed to {@link DeferredCloser#eventuallyClose(Closeable, Executor)      * closer.eventuallyClose()} will be closed when the {@link ClosingFuture} pipeline is done (but      * not before this method completes), even if this method throws or the pipeline is cancelled.      */
-DECL|method|apply (DeferredCloser closer, T input)
+DECL|method|apply (DeferredCloser closer, @ParametricNullness T input)
 name|ClosingFuture
 argument_list|<
 name|U
@@ -927,6 +962,8 @@ argument_list|(
 name|DeferredCloser
 name|closer
 argument_list|,
+annotation|@
+name|ParametricNullness
 name|T
 name|input
 argument_list|)
@@ -940,9 +977,12 @@ specifier|static
 name|final
 name|class
 name|ValueAndCloser
-argument_list|<
+operator|<
 name|V
-argument_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 block|{
 DECL|field|closingFuture
 specifier|private
@@ -978,7 +1018,7 @@ argument_list|)
 block|;     }
 comment|/**      * Returns the final value of the associated {@link ClosingFuture}, or throws an exception as      * {@link Future#get()} would.      *      *<p>Because the asynchronous operation has already completed, this method is synchronous and      * returns immediately.      *      * @throws CancellationException if the computation was cancelled      * @throws ExecutionException if the computation threw an exception      */
 expr|@
-name|Nullable
+name|ParametricNullness
 DECL|method|get ()
 specifier|public
 name|V
@@ -1029,9 +1069,12 @@ DECL|interface|ValueAndCloserConsumer
 specifier|public
 expr|interface
 name|ValueAndCloserConsumer
-argument_list|<
+operator|<
 name|V
-argument_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 block|{
 comment|/** Accepts a {@link ValueAndCloser} for the last step in a {@link ClosingFuture} pipeline. */
 DECL|method|accept (ValueAndCloser<V> valueAndCloser)
@@ -1046,11 +1089,14 @@ name|valueAndCloser
 argument_list|)
 block|;   }
 comment|/**    * Starts a {@link ClosingFuture} pipeline by submitting a callable block to an executor.    *    * @throws java.util.concurrent.RejectedExecutionException if the task cannot be scheduled for    *     execution    */
-DECL|method|submit (ClosingCallable<V> callable, Executor executor)
+DECL|method|submit ( ClosingCallable<V> callable, Executor executor)
 specifier|public
 specifier|static
 operator|<
 name|V
+expr|extends @
+name|Nullable
+name|Object
 operator|>
 name|ClosingFuture
 argument_list|<
@@ -1085,28 +1131,31 @@ begin_comment
 comment|/**    * Starts a {@link ClosingFuture} pipeline by submitting a callable block to an executor.    *    * @throws java.util.concurrent.RejectedExecutionException if the task cannot be scheduled for    *     execution    * @since 30.1    */
 end_comment
 
-begin_function
+begin_expr_stmt
 DECL|method|submitAsync ( AsyncClosingCallable<V> callable, Executor executor)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|ClosingFuture
 argument_list|<
 name|V
 argument_list|>
 name|submitAsync
-parameter_list|(
+argument_list|(
 name|AsyncClosingCallable
 argument_list|<
 name|V
 argument_list|>
 name|callable
-parameter_list|,
+argument_list|,
 name|Executor
 name|executor
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|new
@@ -1119,31 +1168,34 @@ name|executor
 argument_list|)
 return|;
 block|}
-end_function
+end_expr_stmt
 
 begin_comment
 comment|/**    * Starts a {@link ClosingFuture} pipeline with a {@link ListenableFuture}.    *    *<p>{@code future}'s value will not be closed when the pipeline is done even if {@code V}    * implements {@link Closeable}. In order to start a pipeline with a value that will be closed    * when the pipeline is done, use {@link #submit(ClosingCallable, Executor)} instead.    */
 end_comment
 
-begin_function
+begin_expr_stmt
 DECL|method|from (ListenableFuture<V> future)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|ClosingFuture
 argument_list|<
 name|V
 argument_list|>
 name|from
-parameter_list|(
+argument_list|(
 name|ListenableFuture
 argument_list|<
 name|V
 argument_list|>
 name|future
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|new
@@ -1156,7 +1208,7 @@ name|future
 argument_list|)
 return|;
 block|}
-end_function
+end_expr_stmt
 
 begin_comment
 comment|/**    * Starts a {@link ClosingFuture} pipeline with a {@link ListenableFuture}.    *    *<p>If {@code future} succeeds, its value will be closed (using {@code closingExecutor)} when    * the pipeline is done, even if the pipeline is canceled or fails.    *    *<p>Cancelling the pipeline will not cancel {@code future}, so that the pipeline can access its    * value in order to close it.    *    * @param future the future to create the {@code ClosingFuture} from. For discussion of the    *     future's result type {@code C}, see {@link DeferredCloser#eventuallyClose(Closeable,    *     Executor)}.    * @param closingExecutor the future's result will be closed on this executor    * @deprecated Creating {@link Future}s of closeable types is dangerous in general because the    *     underlying value may never be closed if the {@link Future} is canceled after its operation    *     begins. Consider replacing code that creates {@link ListenableFuture}s of closeable types,    *     including those that pass them to this method, with {@link #submit(ClosingCallable,    *     Executor)} in order to ensure that resources do not leak. Or, to start a pipeline with a    *     {@link ListenableFuture} that doesn't create values that should be closed, use {@link    *     ClosingFuture#from}.    */
@@ -1242,7 +1294,7 @@ name|void
 name|onSuccess
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|AutoCloseable
 name|result
 parameter_list|)
@@ -1404,15 +1456,21 @@ begin_comment
 comment|/**    * Starts specifying how to combine two {@link ClosingFuture}s into a single pipeline, assuming    * they all succeed. If any fail, the resulting pipeline will fail.    *    *<p>Calling this method allows you to use lambdas or method references typed with the types of    * the input {@link ClosingFuture}s.    *    * @throws IllegalStateException if a {@code ClosingFuture} has already been derived from any of    *     the arguments, or if any has already been {@linkplain #finishToFuture() finished}    */
 end_comment
 
-begin_function
-DECL|method|whenAllSucceed ( ClosingFuture<V1> future1, ClosingFuture<V2> future2)
+begin_expr_stmt
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|V1
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V2
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+DECL|method|whenAllSucceed (ClosingFuture<V1> future1, ClosingFuture<V2> future2)
 name|Combiner2
 argument_list|<
 name|V1
@@ -1420,19 +1478,19 @@ argument_list|,
 name|V2
 argument_list|>
 name|whenAllSucceed
-parameter_list|(
+argument_list|(
 name|ClosingFuture
 argument_list|<
 name|V1
 argument_list|>
 name|future1
-parameter_list|,
+argument_list|,
 name|ClosingFuture
 argument_list|<
 name|V2
 argument_list|>
 name|future2
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|new
@@ -1445,23 +1503,32 @@ name|future2
 argument_list|)
 return|;
 block|}
-end_function
+end_expr_stmt
 
 begin_comment
 comment|/**    * Starts specifying how to combine three {@link ClosingFuture}s into a single pipeline, assuming    * they all succeed. If any fail, the resulting pipeline will fail.    *    *<p>Calling this method allows you to use lambdas or method references typed with the types of    * the input {@link ClosingFuture}s.    *    * @throws IllegalStateException if a {@code ClosingFuture} has already been derived from any of    *     the arguments, or if any has already been {@linkplain #finishToFuture() finished}    */
 end_comment
 
-begin_function
-DECL|method|whenAllSucceed ( ClosingFuture<V1> future1, ClosingFuture<V2> future2, ClosingFuture<V3> future3)
+begin_expr_stmt
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|V1
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V2
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V3
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+DECL|method|whenAllSucceed ( ClosingFuture<V1> future1, ClosingFuture<V2> future2, ClosingFuture<V3> future3)
 name|Combiner3
 argument_list|<
 name|V1
@@ -1471,25 +1538,25 @@ argument_list|,
 name|V3
 argument_list|>
 name|whenAllSucceed
-parameter_list|(
+argument_list|(
 name|ClosingFuture
 argument_list|<
 name|V1
 argument_list|>
 name|future1
-parameter_list|,
+argument_list|,
 name|ClosingFuture
 argument_list|<
 name|V2
 argument_list|>
 name|future2
-parameter_list|,
+argument_list|,
 name|ClosingFuture
 argument_list|<
 name|V3
 argument_list|>
 name|future3
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|new
@@ -1504,25 +1571,37 @@ name|future3
 argument_list|)
 return|;
 block|}
-end_function
+end_expr_stmt
 
 begin_comment
 comment|/**    * Starts specifying how to combine four {@link ClosingFuture}s into a single pipeline, assuming    * they all succeed. If any fail, the resulting pipeline will fail.    *    *<p>Calling this method allows you to use lambdas or method references typed with the types of    * the input {@link ClosingFuture}s.    *    * @throws IllegalStateException if a {@code ClosingFuture} has already been derived from any of    *     the arguments, or if any has already been {@linkplain #finishToFuture() finished}    */
 end_comment
 
-begin_function
-DECL|method|whenAllSucceed ( ClosingFuture<V1> future1, ClosingFuture<V2> future2, ClosingFuture<V3> future3, ClosingFuture<V4> future4)
+begin_expr_stmt
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|V1
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V2
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V3
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V4
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+DECL|method|whenAllSucceed ( ClosingFuture<V1> future1, ClosingFuture<V2> future2, ClosingFuture<V3> future3, ClosingFuture<V4> future4)
 name|Combiner4
 argument_list|<
 name|V1
@@ -1534,31 +1613,31 @@ argument_list|,
 name|V4
 argument_list|>
 name|whenAllSucceed
-parameter_list|(
+argument_list|(
 name|ClosingFuture
 argument_list|<
 name|V1
 argument_list|>
 name|future1
-parameter_list|,
+argument_list|,
 name|ClosingFuture
 argument_list|<
 name|V2
 argument_list|>
 name|future2
-parameter_list|,
+argument_list|,
 name|ClosingFuture
 argument_list|<
 name|V3
 argument_list|>
 name|future3
-parameter_list|,
+argument_list|,
 name|ClosingFuture
 argument_list|<
 name|V4
 argument_list|>
 name|future4
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|new
@@ -1575,27 +1654,42 @@ name|future4
 argument_list|)
 return|;
 block|}
-end_function
+end_expr_stmt
 
 begin_comment
 comment|/**    * Starts specifying how to combine five {@link ClosingFuture}s into a single pipeline, assuming    * they all succeed. If any fail, the resulting pipeline will fail.    *    *<p>Calling this method allows you to use lambdas or method references typed with the types of    * the input {@link ClosingFuture}s.    *    * @throws IllegalStateException if a {@code ClosingFuture} has already been derived from any of    *     the arguments, or if any has already been {@linkplain #finishToFuture() finished}    */
 end_comment
 
-begin_function
-DECL|method|whenAllSucceed ( ClosingFuture<V1> future1, ClosingFuture<V2> future2, ClosingFuture<V3> future3, ClosingFuture<V4> future4, ClosingFuture<V5> future5)
+begin_expr_stmt
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|V1
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V2
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V3
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V4
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V5
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+DECL|method|whenAllSucceed ( ClosingFuture<V1> future1, ClosingFuture<V2> future2, ClosingFuture<V3> future3, ClosingFuture<V4> future4, ClosingFuture<V5> future5)
 name|Combiner5
 argument_list|<
 name|V1
@@ -1609,37 +1703,37 @@ argument_list|,
 name|V5
 argument_list|>
 name|whenAllSucceed
-parameter_list|(
+argument_list|(
 name|ClosingFuture
 argument_list|<
 name|V1
 argument_list|>
 name|future1
-parameter_list|,
+argument_list|,
 name|ClosingFuture
 argument_list|<
 name|V2
 argument_list|>
 name|future2
-parameter_list|,
+argument_list|,
 name|ClosingFuture
 argument_list|<
 name|V3
 argument_list|>
 name|future3
-parameter_list|,
+argument_list|,
 name|ClosingFuture
 argument_list|<
 name|V4
 argument_list|>
 name|future4
-parameter_list|,
+argument_list|,
 name|ClosingFuture
 argument_list|<
 name|V5
 argument_list|>
 name|future5
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|new
@@ -1658,7 +1752,7 @@ name|future5
 argument_list|)
 return|;
 block|}
-end_function
+end_expr_stmt
 
 begin_comment
 comment|/**    * Starts specifying how to combine {@link ClosingFuture}s into a single pipeline, assuming they    * all succeed. If any fail, the resulting pipeline will fail.    *    * @throws IllegalStateException if a {@code ClosingFuture} has already been derived from any of    *     the arguments, or if any has already been {@linkplain #finishToFuture() finished}    */
@@ -1854,6 +1948,8 @@ argument_list|()
 block|{
 annotation|@
 name|Override
+annotation|@
+name|ParametricNullness
 specifier|public
 name|V
 name|call
@@ -2077,19 +2173,22 @@ begin_comment
 comment|/**    * Returns a new {@code ClosingFuture} pipeline step derived from this one by applying a function    * to its value. The function can use a {@link DeferredCloser} to capture objects to be closed    * when the pipeline is done.    *    *<p>If this {@code ClosingFuture} fails, the function will not be called, and the derived {@code    * ClosingFuture} will be equivalent to this one.    *    *<p>If the function throws an exception, that exception is used as the result of the derived    * {@code ClosingFuture}.    *    *<p>Example usage:    *    *<pre>{@code    * ClosingFuture<List<Row>> rowsFuture =    *     queryFuture.transform((closer, result) -> result.getRows(), executor);    * }</pre>    *    *<p>When selecting an executor, note that {@code directExecutor} is dangerous in some cases. See    * the discussion in the {@link ListenableFuture#addListener} documentation. All its warnings    * about heavyweight listeners are also applicable to heavyweight functions passed to this method.    *    *<p>After calling this method, you may not call {@link #finishToFuture()}, {@link    * #finishToValueAndCloser(ValueAndCloserConsumer, Executor)}, or any other derivation method on    * this {@code ClosingFuture}.    *    * @param function transforms the value of this step to the value of the derived step    * @param executor executor to run the function in    * @return the derived step    * @throws IllegalStateException if a {@code ClosingFuture} has already been derived from this    *     one, or if this {@code ClosingFuture} has already been {@linkplain #finishToFuture()    *     finished}    */
 end_comment
 
-begin_function
+begin_expr_stmt
 DECL|method|transform ( final ClosingFunction<? super V, U> function, Executor executor)
 specifier|public
-parameter_list|<
+operator|<
 name|U
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|ClosingFuture
 argument_list|<
 name|U
 argument_list|>
 name|transform
-parameter_list|(
-specifier|final
+argument_list|(
+name|final
 name|ClosingFunction
 argument_list|<
 name|?
@@ -2099,16 +2198,16 @@ argument_list|,
 name|U
 argument_list|>
 name|function
-parameter_list|,
+operator|,
 name|Executor
 name|executor
-parameter_list|)
+argument_list|)
 block|{
 name|checkNotNull
 argument_list|(
 name|function
 argument_list|)
-expr_stmt|;
+block|;
 name|AsyncFunction
 argument_list|<
 name|V
@@ -2116,7 +2215,7 @@ argument_list|,
 name|U
 argument_list|>
 name|applyFunction
-init|=
+operator|=
 operator|new
 name|AsyncFunction
 argument_list|<
@@ -2152,12 +2251,12 @@ name|input
 argument_list|)
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
 specifier|public
 name|String
 name|toString
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|function
@@ -2166,9 +2265,14 @@ name|toString
 argument_list|()
 return|;
 block|}
-block|}
-decl_stmt|;
+end_expr_stmt
+
+begin_comment
+unit|};
 comment|// TODO(dpb): Switch to future.transformSync when that exists (passing a throwing function).
+end_comment
+
+begin_return
 return|return
 name|derive
 argument_list|(
@@ -2182,26 +2286,29 @@ name|executor
 argument_list|)
 argument_list|)
 return|;
-block|}
-end_function
+end_return
 
 begin_comment
+unit|}
 comment|/**    * Returns a new {@code ClosingFuture} pipeline step derived from this one by applying a function    * that returns a {@code ClosingFuture} to its value. The function can use a {@link    * DeferredCloser} to capture objects to be closed when the pipeline is done (other than those    * captured by the returned {@link ClosingFuture}).    *    *<p>If this {@code ClosingFuture} succeeds, the derived one will be equivalent to the one    * returned by the function.    *    *<p>If this {@code ClosingFuture} fails, the function will not be called, and the derived {@code    * ClosingFuture} will be equivalent to this one.    *    *<p>If the function throws an exception, that exception is used as the result of the derived    * {@code ClosingFuture}. But if the exception is thrown after the function creates a {@code    * ClosingFuture}, then none of the closeable objects in that {@code ClosingFuture} will be    * closed.    *    *<p>Usage guidelines for this method:    *    *<ul>    *<li>Use this method only when calling an API that returns a {@link ListenableFuture} or a    *       {@code ClosingFuture}. If possible, prefer calling {@link #transform(ClosingFunction,    *       Executor)} instead, with a function that returns the next value directly.    *<li>Call {@link DeferredCloser#eventuallyClose(Closeable, Executor) closer.eventuallyClose()}    *       for every closeable object this step creates in order to capture it for later closing.    *<li>Return a {@code ClosingFuture}. To turn a {@link ListenableFuture} into a {@code    *       ClosingFuture} call {@link #from(ListenableFuture)}.    *<li>In case this step doesn't create new closeables, you can adapt an API that returns a    *       {@link ListenableFuture} to return a {@code ClosingFuture} by wrapping it with a call to    *       {@link #withoutCloser(AsyncFunction)}    *</ul>    *    *<p>Example usage:    *    *<pre>{@code    * // Result.getRowsClosingFuture() returns a ClosingFuture.    * ClosingFuture<List<Row>> rowsFuture =    *     queryFuture.transformAsync((closer, result) -> result.getRowsClosingFuture(), executor);    *    * // Result.writeRowsToOutputStreamFuture() returns a ListenableFuture that resolves to the    * // number of written rows. openOutputFile() returns a FileOutputStream (which implements    * // Closeable).    * ClosingFuture<Integer> rowsFuture2 =    *     queryFuture.transformAsync(    *         (closer, result) -> {    *           FileOutputStream fos = closer.eventuallyClose(openOutputFile(), closingExecutor);    *           return ClosingFuture.from(result.writeRowsToOutputStreamFuture(fos));    *      },    *      executor);    *    * // Result.getRowsFuture() returns a ListenableFuture (no new closeables are created).    * ClosingFuture<List<Row>> rowsFuture3 =    *     queryFuture.transformAsync(withoutCloser(Result::getRowsFuture), executor);    *    * }</pre>    *    *<p>When selecting an executor, note that {@code directExecutor} is dangerous in some cases. See    * the discussion in the {@link ListenableFuture#addListener} documentation. All its warnings    * about heavyweight listeners are also applicable to heavyweight functions passed to this method.    * (Specifically, {@code directExecutor} functions should avoid heavyweight operations inside    * {@code AsyncClosingFunction.apply}. Any heavyweight operations should occur in other threads    * responsible for completing the returned {@code ClosingFuture}.)    *    *<p>After calling this method, you may not call {@link #finishToFuture()}, {@link    * #finishToValueAndCloser(ValueAndCloserConsumer, Executor)}, or any other derivation method on    * this {@code ClosingFuture}.    *    * @param function transforms the value of this step to a {@code ClosingFuture} with the value of    *     the derived step    * @param executor executor to run the function in    * @return the derived step    * @throws IllegalStateException if a {@code ClosingFuture} has already been derived from this    *     one, or if this {@code ClosingFuture} has already been {@linkplain #finishToFuture()    *     finished}    */
 end_comment
 
-begin_function
+begin_expr_stmt
 DECL|method|transformAsync ( final AsyncClosingFunction<? super V, U> function, Executor executor)
-specifier|public
-parameter_list|<
+unit|public
+operator|<
 name|U
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|ClosingFuture
 argument_list|<
 name|U
 argument_list|>
 name|transformAsync
-parameter_list|(
-specifier|final
+argument_list|(
+name|final
 name|AsyncClosingFunction
 argument_list|<
 name|?
@@ -2211,16 +2318,16 @@ argument_list|,
 name|U
 argument_list|>
 name|function
-parameter_list|,
+operator|,
 name|Executor
 name|executor
-parameter_list|)
+argument_list|)
 block|{
 name|checkNotNull
 argument_list|(
 name|function
 argument_list|)
-expr_stmt|;
+block|;
 name|AsyncFunction
 argument_list|<
 name|V
@@ -2228,7 +2335,7 @@ argument_list|,
 name|U
 argument_list|>
 name|applyFunction
-init|=
+operator|=
 operator|new
 name|AsyncFunction
 argument_list|<
@@ -2264,12 +2371,12 @@ name|input
 argument_list|)
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
 specifier|public
 name|String
 name|toString
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|function
@@ -2278,8 +2385,10 @@ name|toString
 argument_list|()
 return|;
 block|}
-block|}
-decl_stmt|;
+end_expr_stmt
+
+begin_return
+unit|};
 return|return
 name|derive
 argument_list|(
@@ -2293,22 +2402,28 @@ name|executor
 argument_list|)
 argument_list|)
 return|;
-block|}
-end_function
+end_return
 
 begin_comment
+unit|}
 comment|/**    * Returns an {@link AsyncClosingFunction} that applies an {@link AsyncFunction} to an input,    * ignoring the DeferredCloser and returning a {@code ClosingFuture} derived from the returned    * {@link ListenableFuture}.    *    *<p>Use this method to pass a transformation to {@link #transformAsync(AsyncClosingFunction,    * Executor)} or to {@link #catchingAsync(Class, AsyncClosingFunction, Executor)} as long as it    * meets these conditions:    *    *<ul>    *<li>It does not need to capture any {@link Closeable} objects by calling {@link    *       DeferredCloser#eventuallyClose(Closeable, Executor)}.    *<li>It returns a {@link ListenableFuture}.    *</ul>    *    *<p>Example usage:    *    *<pre>{@code    * // Result.getRowsFuture() returns a ListenableFuture.    * ClosingFuture<List<Row>> rowsFuture =    *     queryFuture.transformAsync(withoutCloser(Result::getRowsFuture), executor);    * }</pre>    *    * @param function transforms the value of a {@code ClosingFuture} step to a {@link    *     ListenableFuture} with the value of a derived step    */
 end_comment
 
-begin_function
-DECL|method|withoutCloser ( final AsyncFunction<V, U> function)
-specifier|public
+begin_expr_stmt
+unit|public
 specifier|static
-parameter_list|<
+operator|<
 name|V
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|U
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+DECL|method|withoutCloser (final AsyncFunction<V, U> function)
 name|AsyncClosingFunction
 argument_list|<
 name|V
@@ -2316,8 +2431,8 @@ argument_list|,
 name|U
 argument_list|>
 name|withoutCloser
-parameter_list|(
-specifier|final
+argument_list|(
+name|final
 name|AsyncFunction
 argument_list|<
 name|V
@@ -2325,13 +2440,13 @@ argument_list|,
 name|U
 argument_list|>
 name|function
-parameter_list|)
+argument_list|)
 block|{
 name|checkNotNull
 argument_list|(
 name|function
 argument_list|)
-expr_stmt|;
+block|;
 return|return
 operator|new
 name|AsyncClosingFunction
@@ -2374,18 +2489,16 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-block|}
-return|;
-block|}
-end_function
+end_expr_stmt
 
 begin_comment
+unit|};   }
 comment|/**    * Returns a new {@code ClosingFuture} pipeline step derived from this one by applying a function    * to its exception if it is an instance of a given exception type. The function can use a {@link    * DeferredCloser} to capture objects to be closed when the pipeline is done.    *    *<p>If this {@code ClosingFuture} succeeds or fails with a different exception type, the    * function will not be called, and the derived {@code ClosingFuture} will be equivalent to this    * one.    *    *<p>If the function throws an exception, that exception is used as the result of the derived    * {@code ClosingFuture}.    *    *<p>Example usage:    *    *<pre>{@code    * ClosingFuture<QueryResult> queryFuture =    *     queryFuture.catching(    *         QueryException.class, (closer, x) -> Query.emptyQueryResult(), executor);    * }</pre>    *    *<p>When selecting an executor, note that {@code directExecutor} is dangerous in some cases. See    * the discussion in the {@link ListenableFuture#addListener} documentation. All its warnings    * about heavyweight listeners are also applicable to heavyweight functions passed to this method.    *    *<p>After calling this method, you may not call {@link #finishToFuture()}, {@link    * #finishToValueAndCloser(ValueAndCloserConsumer, Executor)}, or any other derivation method on    * this {@code ClosingFuture}.    *    * @param exceptionType the exception type that triggers use of {@code fallback}. The exception    *     type is matched against this step's exception. "This step's exception" means the cause of    *     the {@link ExecutionException} thrown by {@link Future#get()} on the {@link Future}    *     underlying this step or, if {@code get()} throws a different kind of exception, that    *     exception itself. To avoid hiding bugs and other unrecoverable errors, callers should    *     prefer more specific types, avoiding {@code Throwable.class} in particular.    * @param fallback the function to be called if this step fails with the expected exception type.    *     The function's argument is this step's exception. "This step's exception" means the cause    *     of the {@link ExecutionException} thrown by {@link Future#get()} on the {@link Future}    *     underlying this step or, if {@code get()} throws a different kind of exception, that    *     exception itself.    * @param executor the executor that runs {@code fallback} if the input fails    */
 end_comment
 
 begin_function
 DECL|method|catching ( Class<X> exceptionType, ClosingFunction<? super X, ? extends V> fallback, Executor executor)
-specifier|public
+unit|public
 parameter_list|<
 name|X
 extends|extends
@@ -3010,32 +3123,35 @@ expr_stmt|;
 block|}
 end_function
 
-begin_function
+begin_expr_stmt
 DECL|method|provideValueAndCloser ( ValueAndCloserConsumer<C> consumer, ClosingFuture<V> closingFuture)
 specifier|private
 specifier|static
-parameter_list|<
+operator|<
 name|C
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-extends|extends
+expr|extends
 name|C
-parameter_list|>
+operator|>
 name|void
 name|provideValueAndCloser
-parameter_list|(
+argument_list|(
 name|ValueAndCloserConsumer
 argument_list|<
 name|C
 argument_list|>
 name|consumer
-parameter_list|,
+argument_list|,
 name|ClosingFuture
 argument_list|<
 name|V
 argument_list|>
 name|closingFuture
-parameter_list|)
+argument_list|)
 block|{
 name|consumer
 operator|.
@@ -3050,25 +3166,18 @@ argument_list|(
 name|closingFuture
 argument_list|)
 argument_list|)
-expr_stmt|;
-block|}
-end_function
-
-begin_comment
+block|;   }
 comment|/**    * Attempts to cancel execution of this step. This attempt will fail if the step has already    * completed, has already been cancelled, or could not be cancelled for some other reason. If    * successful, and this step has not started when {@code cancel} is called, this step should never    * run.    *    *<p>If successful, causes the objects captured by this step (if already started) and its input    * step(s) for later closing to be closed on their respective {@link Executor}s. If any such calls    * specified {@link MoreExecutors#directExecutor()}, those objects will be closed synchronously.    *    * @param mayInterruptIfRunning {@code true} if the thread executing this task should be    *     interrupted; otherwise, in-progress tasks are allowed to complete, but the step will be    *     cancelled regardless    * @return {@code false} if the step could not be cancelled, typically because it has already    *     completed normally; {@code true} otherwise    */
-end_comment
-
-begin_function
-annotation|@
+expr|@
 name|CanIgnoreReturnValue
 DECL|method|cancel (boolean mayInterruptIfRunning)
 specifier|public
 name|boolean
 name|cancel
-parameter_list|(
+argument_list|(
 name|boolean
 name|mayInterruptIfRunning
-parameter_list|)
+argument_list|)
 block|{
 name|logger
 operator|.
@@ -3080,17 +3189,17 @@ literal|"cancelling {0}"
 argument_list|,
 name|this
 argument_list|)
-expr_stmt|;
+block|;
 name|boolean
 name|cancelled
-init|=
+operator|=
 name|future
 operator|.
 name|cancel
 argument_list|(
 name|mayInterruptIfRunning
 argument_list|)
-decl_stmt|;
+block|;
 if|if
 condition|(
 name|cancelled
@@ -3100,15 +3209,17 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
+end_expr_stmt
+
+begin_return
 return|return
 name|cancelled
 return|;
-block|}
-end_function
+end_return
 
 begin_function
+unit|}    private
 DECL|method|close ()
-specifier|private
 name|void
 name|close
 parameter_list|()
@@ -3132,50 +3243,53 @@ expr_stmt|;
 block|}
 end_function
 
-begin_function
+begin_expr_stmt
 DECL|method|derive (FluentFuture<U> future)
 specifier|private
-parameter_list|<
+operator|<
 name|U
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|ClosingFuture
 argument_list|<
 name|U
 argument_list|>
 name|derive
-parameter_list|(
+argument_list|(
 name|FluentFuture
 argument_list|<
 name|U
 argument_list|>
 name|future
-parameter_list|)
+argument_list|)
 block|{
 name|ClosingFuture
 argument_list|<
 name|U
 argument_list|>
 name|derived
-init|=
+operator|=
 operator|new
 name|ClosingFuture
 argument_list|<>
 argument_list|(
 name|future
 argument_list|)
-decl_stmt|;
+block|;
 name|becomeSubsumedInto
 argument_list|(
 name|derived
 operator|.
 name|closeables
 argument_list|)
-expr_stmt|;
+block|;
 return|return
 name|derived
 return|;
 block|}
-end_function
+end_expr_stmt
 
 begin_function
 DECL|method|becomeSubsumedInto (CloseableList otherCloseables)
@@ -3262,6 +3376,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**      * Returns the value of {@code closingFuture}.      *      * @throws ExecutionException if {@code closingFuture} is a failed step      * @throws CancellationException if the {@code closingFuture}'s future was cancelled      * @throws IllegalArgumentException if {@code closingFuture} is not one of the futures passed to      *     {@link #whenAllComplete(Iterable)} or {@link #whenAllComplete(Iterable)}      * @throws IllegalStateException if called outside of a call to {@link      *     CombiningCallable#call(DeferredCloser, Peeker)} or {@link      *     AsyncCombiningCallable#call(DeferredCloser, Peeker)}      */
+annotation|@
+name|ParametricNullness
 DECL|method|getDone (ClosingFuture<D> closingFuture)
 specifier|public
 name|final
@@ -3310,6 +3426,11 @@ argument_list|)
 return|;
 block|}
 end_class
+
+begin_annotation
+annotation|@
+name|ParametricNullness
+end_annotation
 
 begin_expr_stmt
 DECL|method|call ( CombiningCallable<V> combiner, CloseableList closeables)
@@ -3535,6 +3656,8 @@ name|Object
 operator|>
 block|{
 comment|/**        * Computes a result, or throws an exception if unable to do so.        *        *<p>Any objects that are passed to {@link DeferredCloser#eventuallyClose(Closeable,        * Executor) closer.eventuallyClose()} will be closed when the {@link ClosingFuture} pipeline        * is done (but not before this method completes), even if this method throws or the pipeline        * is cancelled.        *        * @param peeker used to get the value of any of the input futures        */
+block|@
+name|ParametricNullness
 DECL|method|call (DeferredCloser closer, Peeker peeker)
 name|V
 name|call
@@ -3656,32 +3779,35 @@ block|}
 comment|/**      * Returns a new {@code ClosingFuture} pipeline step derived from the inputs by applying a      * combining function to their values. The function can use a {@link DeferredCloser} to capture      * objects to be closed when the pipeline is done.      *      *<p>If this combiner was returned by a {@link #whenAllSucceed} method and any of the inputs      * fail, so will the returned step.      *      *<p>If the combiningCallable throws a {@code CancellationException}, the pipeline will be      * cancelled.      *      *<p>If the combiningCallable throws an {@code ExecutionException}, the cause of the thrown      * {@code ExecutionException} will be extracted and used as the failure of the derived step.      */
 DECL|method|call ( final CombiningCallable<V> combiningCallable, Executor executor)
 specifier|public
-parameter_list|<
+operator|<
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|ClosingFuture
 argument_list|<
 name|V
 argument_list|>
 name|call
-parameter_list|(
-specifier|final
+argument_list|(
+name|final
 name|CombiningCallable
 argument_list|<
 name|V
 argument_list|>
 name|combiningCallable
-parameter_list|,
+argument_list|,
 name|Executor
 name|executor
-parameter_list|)
+argument_list|)
 block|{
 name|Callable
 argument_list|<
 name|V
 argument_list|>
 name|callable
-init|=
+operator|=
 operator|new
 name|Callable
 argument_list|<
@@ -3691,6 +3817,8 @@ argument_list|()
 block|{
 annotation|@
 name|Override
+annotation|@
+name|ParametricNullness
 specifier|public
 name|V
 name|call
@@ -3713,12 +3841,12 @@ name|closeables
 argument_list|)
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
 specifier|public
 name|String
 name|toString
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|combiningCallable
@@ -3728,7 +3856,13 @@ argument_list|()
 return|;
 block|}
 block|}
-decl_stmt|;
+end_class
+
+begin_empty_stmt
+empty_stmt|;
+end_empty_stmt
+
+begin_decl_stmt
 name|ClosingFuture
 argument_list|<
 name|V
@@ -3750,6 +3884,9 @@ name|executor
 argument_list|)
 argument_list|)
 decl_stmt|;
+end_decl_stmt
+
+begin_expr_stmt
 name|derived
 operator|.
 name|closeables
@@ -3762,39 +3899,51 @@ name|directExecutor
 argument_list|()
 argument_list|)
 expr_stmt|;
+end_expr_stmt
+
+begin_return
 return|return
 name|derived
 return|;
-block|}
+end_return
+
+begin_comment
+unit|}
 comment|/**      * Returns a new {@code ClosingFuture} pipeline step derived from the inputs by applying a      * {@code ClosingFuture}-returning function to their values. The function can use a {@link      * DeferredCloser} to capture objects to be closed when the pipeline is done (other than those      * captured by the returned {@link ClosingFuture}).      *      *<p>If this combiner was returned by a {@link #whenAllSucceed} method and any of the inputs      * fail, so will the returned step.      *      *<p>If the combiningCallable throws a {@code CancellationException}, the pipeline will be      * cancelled.      *      *<p>If the combiningCallable throws an {@code ExecutionException}, the cause of the thrown      * {@code ExecutionException} will be extracted and used as the failure of the derived step.      *      *<p>If the combiningCallable throws any other exception, it will be used as the failure of the      * derived step.      *      *<p>If an exception is thrown after the combiningCallable creates a {@code ClosingFuture},      * then none of the closeable objects in that {@code ClosingFuture} will be closed.      *      *<p>Usage guidelines for this method:      *      *<ul>      *<li>Use this method only when calling an API that returns a {@link ListenableFuture} or a      *       {@code ClosingFuture}. If possible, prefer calling {@link #call(CombiningCallable,      *       Executor)} instead, with a function that returns the next value directly.      *<li>Call {@link DeferredCloser#eventuallyClose(Closeable, Executor)      *       closer.eventuallyClose()} for every closeable object this step creates in order to      *       capture it for later closing.      *<li>Return a {@code ClosingFuture}. To turn a {@link ListenableFuture} into a {@code      *       ClosingFuture} call {@link #from(ListenableFuture)}.      *</ul>      *      *<p>The same warnings about doing heavyweight operations within {@link      * ClosingFuture#transformAsync(AsyncClosingFunction, Executor)} apply here.      */
+end_comment
+
+begin_expr_stmt
 DECL|method|callAsync ( final AsyncCombiningCallable<V> combiningCallable, Executor executor)
-specifier|public
-parameter_list|<
+unit|public
+operator|<
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|ClosingFuture
 argument_list|<
 name|V
 argument_list|>
 name|callAsync
-parameter_list|(
-specifier|final
+argument_list|(
+name|final
 name|AsyncCombiningCallable
 argument_list|<
 name|V
 argument_list|>
 name|combiningCallable
-parameter_list|,
+argument_list|,
 name|Executor
 name|executor
-parameter_list|)
+argument_list|)
 block|{
 name|AsyncCallable
 argument_list|<
 name|V
 argument_list|>
 name|asyncCallable
-init|=
+operator|=
 operator|new
 name|AsyncCallable
 argument_list|<
@@ -3829,12 +3978,12 @@ name|closeables
 argument_list|)
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
 specifier|public
 name|String
 name|toString
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|combiningCallable
@@ -3843,8 +3992,10 @@ name|toString
 argument_list|()
 return|;
 block|}
-block|}
-decl_stmt|;
+end_expr_stmt
+
+begin_decl_stmt
+unit|};
 name|ClosingFuture
 argument_list|<
 name|V
@@ -3866,6 +4017,9 @@ name|executor
 argument_list|)
 argument_list|)
 decl_stmt|;
+end_decl_stmt
+
+begin_expr_stmt
 name|derived
 operator|.
 name|closeables
@@ -3878,14 +4032,21 @@ name|directExecutor
 argument_list|()
 argument_list|)
 expr_stmt|;
+end_expr_stmt
+
+begin_return
 return|return
 name|derived
 return|;
-block|}
+end_return
+
+begin_function
+unit|}      private
 DECL|method|futureCombiner ()
-specifier|private
 name|FutureCombiner
 argument_list|<
+annotation|@
+name|Nullable
 name|Object
 argument_list|>
 name|futureCombiner
@@ -3911,6 +4072,9 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_decl_stmt
 DECL|field|INNER_FUTURE
 specifier|private
 specifier|static
@@ -3967,7 +4131,13 @@ name|future
 return|;
 block|}
 block|}
+end_decl_stmt
+
+begin_empty_stmt
 empty_stmt|;
+end_empty_stmt
+
+begin_function
 DECL|method|inputFutures ()
 specifier|private
 name|ImmutableList
@@ -3997,16 +4167,16 @@ name|toList
 argument_list|()
 return|;
 block|}
-block|}
-end_class
+end_function
 
 begin_comment
+unit|}
 comment|/**    * A generic {@link Combiner} that lets you use a lambda or method reference to combine two {@link    * ClosingFuture}s. Use {@link #whenAllSucceed(ClosingFuture, ClosingFuture)} to start this    * combination.    *    * @param<V1> the type returned by the first future    * @param<V2> the type returned by the second future    */
 end_comment
 
 begin_expr_stmt
 DECL|class|Combiner2
-specifier|public
+unit|public
 specifier|static
 name|final
 name|class
@@ -4050,16 +4220,22 @@ name|Object
 operator|>
 block|{
 comment|/**        * Applies this function to two inputs, or throws an exception if unable to do so.        *        *<p>Any objects that are passed to {@link DeferredCloser#eventuallyClose(Closeable,        * Executor) closer.eventuallyClose()} will be closed when the {@link ClosingFuture} pipeline        * is done (but not before this method completes), even if this method throws or the pipeline        * is cancelled.        */
-DECL|method|apply (DeferredCloser closer, V1 value1, V2 value2)
+block|@
+name|ParametricNullness
+DECL|method|apply (DeferredCloser closer, @ParametricNullness V1 value1, @ParametricNullness V2 value2)
 name|U
 name|apply
 argument_list|(
 name|DeferredCloser
 name|closer
 argument_list|,
+annotation|@
+name|ParametricNullness
 name|V1
 name|value1
 argument_list|,
+annotation|@
+name|ParametricNullness
 name|V2
 name|value2
 argument_list|)
@@ -4091,7 +4267,7 @@ name|Object
 operator|>
 block|{
 comment|/**        * Applies this function to two inputs, or throws an exception if unable to do so.        *        *<p>Any objects that are passed to {@link DeferredCloser#eventuallyClose(Closeable,        * Executor) closer.eventuallyClose()} will be closed when the {@link ClosingFuture} pipeline        * is done (but not before this method completes), even if this method throws or the pipeline        * is cancelled.        */
-DECL|method|apply (DeferredCloser closer, V1 value1, V2 value2)
+DECL|method|apply ( DeferredCloser closer, @ParametricNullness V1 value1, @ParametricNullness V2 value2)
 name|ClosingFuture
 argument_list|<
 name|U
@@ -4101,9 +4277,13 @@ argument_list|(
 name|DeferredCloser
 name|closer
 argument_list|,
+annotation|@
+name|ParametricNullness
 name|V1
 name|value1
 argument_list|,
+annotation|@
+name|ParametricNullness
 name|V2
 name|value2
 argument_list|)
@@ -4213,6 +4393,8 @@ argument_list|()
 block|{
 annotation|@
 name|Override
+annotation|@
+name|ParametricNullness
 specifier|public
 name|U
 name|call
@@ -4448,21 +4630,29 @@ name|Object
 operator|>
 block|{
 comment|/**        * Applies this function to three inputs, or throws an exception if unable to do so.        *        *<p>Any objects that are passed to {@link DeferredCloser#eventuallyClose(Closeable,        * Executor) closer.eventuallyClose()} will be closed when the {@link ClosingFuture} pipeline        * is done (but not before this method completes), even if this method throws or the pipeline        * is cancelled.        */
-DECL|method|apply (DeferredCloser closer, V1 value1, V2 value2, V3 v3)
+block|@
+name|ParametricNullness
+DECL|method|apply ( DeferredCloser closer, @ParametricNullness V1 value1, @ParametricNullness V2 value2, @ParametricNullness V3 value3)
 name|U
 name|apply
 argument_list|(
 name|DeferredCloser
 name|closer
 argument_list|,
+annotation|@
+name|ParametricNullness
 name|V1
 name|value1
 argument_list|,
+annotation|@
+name|ParametricNullness
 name|V2
 name|value2
 argument_list|,
+annotation|@
+name|ParametricNullness
 name|V3
-name|v3
+name|value3
 argument_list|)
 throws|throws
 name|Exception
@@ -4497,7 +4687,7 @@ name|Object
 operator|>
 block|{
 comment|/**        * Applies this function to three inputs, or throws an exception if unable to do so.        *        *<p>Any objects that are passed to {@link DeferredCloser#eventuallyClose(Closeable,        * Executor) closer.eventuallyClose()} will be closed when the {@link ClosingFuture} pipeline        * is done (but not before this method completes), even if this method throws or the pipeline        * is cancelled.        */
-DECL|method|apply (DeferredCloser closer, V1 value1, V2 value2, V3 value3)
+DECL|method|apply ( DeferredCloser closer, @ParametricNullness V1 value1, @ParametricNullness V2 value2, @ParametricNullness V3 value3)
 name|ClosingFuture
 argument_list|<
 name|U
@@ -4507,12 +4697,18 @@ argument_list|(
 name|DeferredCloser
 name|closer
 argument_list|,
+annotation|@
+name|ParametricNullness
 name|V1
 name|value1
 argument_list|,
+annotation|@
+name|ParametricNullness
 name|V2
 name|value2
 argument_list|,
+annotation|@
+name|ParametricNullness
 name|V3
 name|value3
 argument_list|)
@@ -4647,6 +4843,8 @@ argument_list|()
 block|{
 annotation|@
 name|Override
+annotation|@
+name|ParametricNullness
 specifier|public
 name|U
 name|call
@@ -4908,22 +5106,32 @@ name|Object
 operator|>
 block|{
 comment|/**        * Applies this function to four inputs, or throws an exception if unable to do so.        *        *<p>Any objects that are passed to {@link DeferredCloser#eventuallyClose(Closeable,        * Executor) closer.eventuallyClose()} will be closed when the {@link ClosingFuture} pipeline        * is done (but not before this method completes), even if this method throws or the pipeline        * is cancelled.        */
-DECL|method|apply (DeferredCloser closer, V1 value1, V2 value2, V3 value3, V4 value4)
+block|@
+name|ParametricNullness
+DECL|method|apply ( DeferredCloser closer, @ParametricNullness V1 value1, @ParametricNullness V2 value2, @ParametricNullness V3 value3, @ParametricNullness V4 value4)
 name|U
 name|apply
 argument_list|(
 name|DeferredCloser
 name|closer
 argument_list|,
+annotation|@
+name|ParametricNullness
 name|V1
 name|value1
 argument_list|,
+annotation|@
+name|ParametricNullness
 name|V2
 name|value2
 argument_list|,
+annotation|@
+name|ParametricNullness
 name|V3
 name|value3
 argument_list|,
+annotation|@
+name|ParametricNullness
 name|V4
 name|value4
 argument_list|)
@@ -4965,7 +5173,7 @@ name|Object
 operator|>
 block|{
 comment|/**        * Applies this function to four inputs, or throws an exception if unable to do so.        *        *<p>Any objects that are passed to {@link DeferredCloser#eventuallyClose(Closeable,        * Executor) closer.eventuallyClose()} will be closed when the {@link ClosingFuture} pipeline        * is done (but not before this method completes), even if this method throws or the pipeline        * is cancelled.        */
-DECL|method|apply (DeferredCloser closer, V1 value1, V2 value2, V3 value3, V4 value4)
+DECL|method|apply ( DeferredCloser closer, @ParametricNullness V1 value1, @ParametricNullness V2 value2, @ParametricNullness V3 value3, @ParametricNullness V4 value4)
 name|ClosingFuture
 argument_list|<
 name|U
@@ -4975,15 +5183,23 @@ argument_list|(
 name|DeferredCloser
 name|closer
 argument_list|,
+annotation|@
+name|ParametricNullness
 name|V1
 name|value1
 argument_list|,
+annotation|@
+name|ParametricNullness
 name|V2
 name|value2
 argument_list|,
+annotation|@
+name|ParametricNullness
 name|V3
 name|value3
 argument_list|,
+annotation|@
+name|ParametricNullness
 name|V4
 name|value4
 argument_list|)
@@ -5143,6 +5359,8 @@ argument_list|()
 block|{
 annotation|@
 name|Override
+annotation|@
+name|ParametricNullness
 specifier|public
 name|U
 name|call
@@ -5430,25 +5648,37 @@ name|Object
 operator|>
 block|{
 comment|/**        * Applies this function to five inputs, or throws an exception if unable to do so.        *        *<p>Any objects that are passed to {@link DeferredCloser#eventuallyClose(Closeable,        * Executor) closer.eventuallyClose()} will be closed when the {@link ClosingFuture} pipeline        * is done (but not before this method completes), even if this method throws or the pipeline        * is cancelled.        */
-DECL|method|apply (DeferredCloser closer, V1 value1, V2 value2, V3 value3, V4 value4, V5 value5)
+block|@
+name|ParametricNullness
+DECL|method|apply ( DeferredCloser closer, @ParametricNullness V1 value1, @ParametricNullness V2 value2, @ParametricNullness V3 value3, @ParametricNullness V4 value4, @ParametricNullness V5 value5)
 name|U
 name|apply
 argument_list|(
 name|DeferredCloser
 name|closer
 argument_list|,
+annotation|@
+name|ParametricNullness
 name|V1
 name|value1
 argument_list|,
+annotation|@
+name|ParametricNullness
 name|V2
 name|value2
 argument_list|,
+annotation|@
+name|ParametricNullness
 name|V3
 name|value3
 argument_list|,
+annotation|@
+name|ParametricNullness
 name|V4
 name|value4
 argument_list|,
+annotation|@
+name|ParametricNullness
 name|V5
 name|value5
 argument_list|)
@@ -5495,7 +5725,7 @@ name|Object
 operator|>
 block|{
 comment|/**        * Applies this function to five inputs, or throws an exception if unable to do so.        *        *<p>Any objects that are passed to {@link DeferredCloser#eventuallyClose(Closeable,        * Executor) closer.eventuallyClose()} will be closed when the {@link ClosingFuture} pipeline        * is done (but not before this method completes), even if this method throws or the pipeline        * is cancelled.        */
-DECL|method|apply ( DeferredCloser closer, V1 value1, V2 value2, V3 value3, V4 value4, V5 value5)
+DECL|method|apply ( DeferredCloser closer, @ParametricNullness V1 value1, @ParametricNullness V2 value2, @ParametricNullness V3 value3, @ParametricNullness V4 value4, @ParametricNullness V5 value5)
 name|ClosingFuture
 argument_list|<
 name|U
@@ -5505,18 +5735,28 @@ argument_list|(
 name|DeferredCloser
 name|closer
 argument_list|,
+annotation|@
+name|ParametricNullness
 name|V1
 name|value1
 argument_list|,
+annotation|@
+name|ParametricNullness
 name|V2
 name|value2
 argument_list|,
+annotation|@
+name|ParametricNullness
 name|V3
 name|value3
 argument_list|,
+annotation|@
+name|ParametricNullness
 name|V4
 name|value4
 argument_list|,
+annotation|@
+name|ParametricNullness
 name|V5
 name|value5
 argument_list|)
@@ -5701,6 +5941,8 @@ argument_list|()
 block|{
 annotation|@
 name|Override
+annotation|@
+name|ParametricNullness
 specifier|public
 name|U
 name|call
@@ -6008,12 +6250,14 @@ block|}
 end_function
 
 begin_function
-DECL|method|closeQuietly (final AutoCloseable closeable, Executor executor)
+DECL|method|closeQuietly (@heckForNull final AutoCloseable closeable, Executor executor)
 specifier|private
 specifier|static
 name|void
 name|closeQuietly
 parameter_list|(
+annotation|@
+name|CheckForNull
 specifier|final
 name|AutoCloseable
 name|closeable
@@ -6224,23 +6468,31 @@ name|boolean
 name|closed
 decl_stmt|;
 DECL|field|whenClosed
+annotation|@
+name|CheckForNull
 specifier|private
 specifier|volatile
 name|CountDownLatch
 name|whenClosed
 decl_stmt|;
-DECL|method|applyClosingFunction ( ClosingFunction<? super V, U> transformation, V input)
-parameter_list|<
+operator|<
 name|V
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|U
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+DECL|method|applyClosingFunction ( ClosingFunction<? super V, U> transformation, @ParametricNullness V input)
 name|ListenableFuture
 argument_list|<
 name|U
 argument_list|>
 name|applyClosingFunction
-parameter_list|(
+argument_list|(
 name|ClosingFunction
 argument_list|<
 name|?
@@ -6250,21 +6502,23 @@ argument_list|,
 name|U
 argument_list|>
 name|transformation
-parameter_list|,
+operator|,
+condition|@
+name|ParametricNullness
 name|V
 name|input
-parameter_list|)
+argument_list|)
 throws|throws
 name|Exception
 block|{
 comment|// TODO(dpb): Consider ways to defer closing without creating a separate CloseableList.
 name|CloseableList
 name|newCloseables
-init|=
+operator|=
 operator|new
 name|CloseableList
 argument_list|()
-decl_stmt|;
+expr_stmt|;
 try|try
 block|{
 return|return
@@ -6295,18 +6549,27 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-DECL|method|applyAsyncClosingFunction ( AsyncClosingFunction<V, U> transformation, V input)
-parameter_list|<
+end_class
+
+begin_expr_stmt
+operator|<
 name|V
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|U
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+DECL|method|applyAsyncClosingFunction ( AsyncClosingFunction<V, U> transformation, @ParametricNullness V input)
 name|FluentFuture
 argument_list|<
 name|U
 argument_list|>
 name|applyAsyncClosingFunction
-parameter_list|(
+argument_list|(
 name|AsyncClosingFunction
 argument_list|<
 name|V
@@ -6314,21 +6577,26 @@ argument_list|,
 name|U
 argument_list|>
 name|transformation
-parameter_list|,
+argument_list|,
+annotation|@
+name|ParametricNullness
 name|V
 name|input
-parameter_list|)
+argument_list|)
 throws|throws
 name|Exception
 block|{
 comment|// TODO(dpb): Consider ways to defer closing without creating a separate CloseableList.
 name|CloseableList
 name|newCloseables
-init|=
+operator|=
 operator|new
 name|CloseableList
 argument_list|()
-decl_stmt|;
+expr_stmt|;
+end_expr_stmt
+
+begin_try
 try|try
 block|{
 name|ClosingFuture
@@ -6372,8 +6640,10 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-block|}
-annotation|@
+end_try
+
+begin_function
+unit|}      @
 name|Override
 DECL|method|close ()
 specifier|public
@@ -6452,12 +6722,15 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-DECL|method|add (@ullable AutoCloseable closeable, Executor executor)
+end_function
+
+begin_function
+DECL|method|add (@heckForNull AutoCloseable closeable, Executor executor)
 name|void
 name|add
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|AutoCloseable
 name|closeable
 parameter_list|,
@@ -6508,7 +6781,13 @@ name|executor
 argument_list|)
 expr_stmt|;
 block|}
+end_function
+
+begin_comment
 comment|/**      * Returns a latch that reaches zero when this objects' deferred closeables have been closed.      */
+end_comment
+
+begin_function
 DECL|method|whenClosedCountDown ()
 name|CountDownLatch
 name|whenClosedCountDown
@@ -6563,15 +6842,15 @@ argument_list|)
 return|;
 block|}
 block|}
-block|}
-end_class
+end_function
 
 begin_comment
+unit|}
 comment|/**    * Returns an object that can be used to wait until this objects' deferred closeables have all had    * {@link Runnable}s that close them submitted to each one's closing {@link Executor}.    */
 end_comment
 
 begin_function
-annotation|@
+unit|@
 name|VisibleForTesting
 DECL|method|whenClosedCountDown ()
 name|CountDownLatch

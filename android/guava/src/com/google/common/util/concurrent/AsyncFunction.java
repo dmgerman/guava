@@ -54,9 +54,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -64,37 +64,50 @@ begin_comment
 comment|/**  * Transforms a value, possibly asynchronously. For an example usage and more information, see  * {@link Futures#transformAsync(ListenableFuture, AsyncFunction, Executor)}.  *  * @author Chris Povirk  * @since 11.0  */
 end_comment
 
-begin_interface
+begin_annotation
 annotation|@
 name|GwtCompatible
+end_annotation
+
+begin_annotation
+annotation|@
+name|ElementTypesAreNonnullByDefault
+end_annotation
+
+begin_expr_stmt
 DECL|interface|AsyncFunction
 specifier|public
-interface|interface
+expr|interface
 name|AsyncFunction
-parameter_list|<
+operator|<
 name|I
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|O
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 block|{
 comment|/**    * Returns an output {@code Future} to use in place of the given {@code input}. The output {@code    * Future} need not be {@linkplain Future#isDone done}, making {@code AsyncFunction} suitable for    * asynchronous derivations.    *    *<p>Throwing an exception from this method is equivalent to returning a failing {@code Future}.    */
-DECL|method|apply (@ullableDecl I input)
+DECL|method|apply (@arametricNullness I input)
 name|ListenableFuture
 argument_list|<
 name|O
 argument_list|>
 name|apply
-parameter_list|(
+argument_list|(
 annotation|@
-name|NullableDecl
+name|ParametricNullness
 name|I
 name|input
-parameter_list|)
+argument_list|)
 throws|throws
 name|Exception
-function_decl|;
-block|}
-end_interface
+block|; }
+end_expr_stmt
 
 end_unit
 

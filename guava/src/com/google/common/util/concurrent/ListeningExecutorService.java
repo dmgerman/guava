@@ -126,6 +126,22 @@ name|TimeUnit
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|checkerframework
+operator|.
+name|checker
+operator|.
+name|nullness
+operator|.
+name|qual
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/**  * An {@link ExecutorService} that returns {@link ListenableFuture} instances. To create an instance  * from an existing {@link ExecutorService}, call {@link  * MoreExecutors#listeningDecorator(ExecutorService)}.  *  * @author Chris Povirk  * @since 10.0  */
 end_comment
@@ -140,6 +156,8 @@ literal|"java.util.concurrent.Executors with MoreExecutors.listeningDecorator"
 argument_list|)
 annotation|@
 name|GwtIncompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|interface|ListeningExecutorService
 specifier|public
 interface|interface
@@ -151,22 +169,25 @@ comment|/**    * @return a {@code ListenableFuture} representing pending complet
 annotation|@
 name|Override
 DECL|method|submit (Callable<T> task)
-argument_list|<
+operator|<
 name|T
-argument_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|ListenableFuture
 argument_list|<
 name|T
 argument_list|>
 name|submit
-parameter_list|(
+argument_list|(
 name|Callable
 argument_list|<
 name|T
 argument_list|>
 name|task
-parameter_list|)
-function_decl|;
+argument_list|)
+expr_stmt|;
 comment|/**    * @return a {@code ListenableFuture} representing pending completion of the task    * @throws RejectedExecutionException {@inheritDoc}    */
 annotation|@
 name|Override
@@ -184,30 +205,38 @@ function_decl|;
 comment|/**    * @return a {@code ListenableFuture} representing pending completion of the task    * @throws RejectedExecutionException {@inheritDoc}    */
 annotation|@
 name|Override
-DECL|method|submit (Runnable task, T result)
-argument_list|<
+DECL|method|submit ( Runnable task, @ParametricNullness T result)
+operator|<
 name|T
-argument_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|ListenableFuture
 argument_list|<
 name|T
 argument_list|>
 name|submit
-parameter_list|(
+argument_list|(
 name|Runnable
 name|task
-parameter_list|,
+argument_list|,
+annotation|@
+name|ParametricNullness
 name|T
 name|result
-parameter_list|)
-function_decl|;
+argument_list|)
+expr_stmt|;
 comment|/**    * {@inheritDoc}    *    *<p>All elements in the returned list must be {@link ListenableFuture} instances. The easiest    * way to obtain a {@code List<ListenableFuture<T>>} from this method is an unchecked (but safe)    * cast:    *    *<pre>    *   {@code @SuppressWarnings("unchecked") // guaranteed by invokeAll contract}    *   {@code List<ListenableFuture<T>> futures = (List) executor.invokeAll(tasks);}    *</pre>    *    * @return A list of {@code ListenableFuture} instances representing the tasks, in the same    *     sequential order as produced by the iterator for the given task list, each of which has    *     completed.    * @throws RejectedExecutionException {@inheritDoc}    * @throws NullPointerException if any task is null    */
 annotation|@
 name|Override
 DECL|method|invokeAll (Collection<? extends Callable<T>> tasks)
-argument_list|<
+operator|<
 name|T
-argument_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|List
 argument_list|<
 name|Future
@@ -216,7 +245,7 @@ name|T
 argument_list|>
 argument_list|>
 name|invokeAll
-parameter_list|(
+argument_list|(
 name|Collection
 argument_list|<
 name|?
@@ -227,17 +256,20 @@ name|T
 argument_list|>
 argument_list|>
 name|tasks
-parameter_list|)
+argument_list|)
 throws|throws
 name|InterruptedException
-function_decl|;
+expr_stmt|;
 comment|/**    * {@inheritDoc}    *    *<p>All elements in the returned list must be {@link ListenableFuture} instances. The easiest    * way to obtain a {@code List<ListenableFuture<T>>} from this method is an unchecked (but safe)    * cast:    *    *<pre>    *   {@code @SuppressWarnings("unchecked") // guaranteed by invokeAll contract}    *   {@code List<ListenableFuture<T>> futures = (List) executor.invokeAll(tasks, timeout, unit);}    *</pre>    *    * @return a list of {@code ListenableFuture} instances representing the tasks, in the same    *     sequential order as produced by the iterator for the given task list. If the operation did    *     not time out, each task will have completed. If it did time out, some of these tasks will    *     not have completed.    * @throws RejectedExecutionException {@inheritDoc}    * @throws NullPointerException if any task is null    */
 annotation|@
 name|Override
 DECL|method|invokeAll ( Collection<? extends Callable<T>> tasks, long timeout, TimeUnit unit)
-argument_list|<
+operator|<
 name|T
-argument_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|List
 argument_list|<
 name|Future
@@ -246,7 +278,7 @@ name|T
 argument_list|>
 argument_list|>
 name|invokeAll
-parameter_list|(
+argument_list|(
 name|Collection
 argument_list|<
 name|?
@@ -257,16 +289,16 @@ name|T
 argument_list|>
 argument_list|>
 name|tasks
-parameter_list|,
+operator|,
 name|long
 name|timeout
-parameter_list|,
+operator|,
 name|TimeUnit
 name|unit
-parameter_list|)
+argument_list|)
 throws|throws
 name|InterruptedException
-function_decl|;
+expr_stmt|;
 block|}
 end_interface
 

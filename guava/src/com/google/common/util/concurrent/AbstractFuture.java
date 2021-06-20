@@ -52,6 +52,24 @@ end_import
 
 begin_import
 import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|NullnessCasts
+operator|.
+name|uncheckedNull
+import|;
+end_import
+
+begin_import
+import|import static
 name|java
 operator|.
 name|lang
@@ -71,6 +89,18 @@ operator|.
 name|System
 operator|.
 name|identityHashCode
+import|;
+end_import
+
+begin_import
+import|import static
+name|java
+operator|.
+name|util
+operator|.
+name|Objects
+operator|.
+name|requireNonNull
 import|;
 end_import
 
@@ -388,6 +418,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|checkerframework
@@ -410,12 +450,15 @@ begin_comment
 comment|// we use non-short circuiting comparisons intentionally
 end_comment
 
-begin_class
+begin_annotation
 annotation|@
 name|SuppressWarnings
 argument_list|(
 literal|"ShortCircuitBoolean"
 argument_list|)
+end_annotation
+
+begin_annotation
 annotation|@
 name|GwtCompatible
 argument_list|(
@@ -423,6 +466,9 @@ name|emulated
 operator|=
 literal|true
 argument_list|)
+end_annotation
+
+begin_annotation
 annotation|@
 name|ReflectionSupport
 argument_list|(
@@ -434,17 +480,28 @@ name|Level
 operator|.
 name|FULL
 argument_list|)
+end_annotation
+
+begin_annotation
+annotation|@
+name|ElementTypesAreNonnullByDefault
+end_annotation
+
+begin_expr_stmt
 DECL|class|AbstractFuture
 specifier|public
 specifier|abstract
-class|class
+name|class
 name|AbstractFuture
-parameter_list|<
+operator|<
 name|V
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|InternalFutureFailureAccess
-implements|implements
+expr|implements
 name|ListenableFuture
 argument_list|<
 name|V
@@ -454,16 +511,16 @@ comment|// NOTE: Whenever both tests are cheap and functional, it's faster to us
 DECL|field|GENERATE_CANCELLATION_CAUSES
 specifier|private
 specifier|static
-specifier|final
+name|final
 name|boolean
 name|GENERATE_CANCELLATION_CAUSES
-decl_stmt|;
-static|static
+block|;
+specifier|static
 block|{
 comment|// System.getProperty may throw if the security policy does not permit access.
 name|boolean
 name|generateCancellationCauses
-decl_stmt|;
+block|;
 try|try
 block|{
 name|generateCancellationCauses
@@ -498,15 +555,24 @@ name|GENERATE_CANCELLATION_CAUSES
 operator|=
 name|generateCancellationCauses
 expr_stmt|;
-block|}
+end_expr_stmt
+
+begin_comment
+unit|}
 comment|/**    * Tag interface marking trusted subclasses. This enables some optimizations. The implementation    * of this interface must also be an AbstractFuture and must not override or expose for overriding    * any of the public methods of ListenableFuture.    */
+end_comment
+
+begin_expr_stmt
 DECL|interface|Trusted
-interface|interface
+unit|interface
 name|Trusted
-parameter_list|<
+operator|<
 name|V
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|ListenableFuture
 argument_list|<
 name|V
@@ -516,32 +582,36 @@ comment|/**    * A less abstract subclass of AbstractFuture. This can be used to
 DECL|class|TrustedFuture
 specifier|abstract
 specifier|static
-class|class
+name|class
 name|TrustedFuture
-parameter_list|<
+operator|<
 name|V
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|AbstractFuture
 argument_list|<
 name|V
 argument_list|>
-implements|implements
+expr|implements
 name|Trusted
 argument_list|<
 name|V
 argument_list|>
-block|{
-annotation|@
+block|{     @
 name|CanIgnoreReturnValue
-annotation|@
+expr|@
 name|Override
+expr|@
+name|ParametricNullness
 DECL|method|get ()
 specifier|public
-specifier|final
+name|final
 name|V
 name|get
-parameter_list|()
+argument_list|()
 throws|throws
 name|InterruptedException
 throws|,
@@ -554,10 +624,15 @@ name|get
 argument_list|()
 return|;
 block|}
+end_expr_stmt
+
+begin_function
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
+annotation|@
+name|ParametricNullness
 DECL|method|get (long timeout, TimeUnit unit)
 specifier|public
 specifier|final
@@ -588,6 +663,9 @@ name|unit
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|isDone ()
@@ -604,6 +682,9 @@ name|isDone
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|isCancelled ()
@@ -620,6 +701,9 @@ name|isCancelled
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|addListener (Runnable listener, Executor executor)
@@ -645,6 +729,9 @@ name|executor
 argument_list|)
 expr_stmt|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
@@ -668,10 +755,16 @@ name|mayInterruptIfRunning
 argument_list|)
 return|;
 block|}
-block|}
+end_function
+
+begin_comment
+unit|}
 comment|// Logger to log exceptions caught when running listeners.
+end_comment
+
+begin_decl_stmt
 DECL|field|log
-specifier|private
+unit|private
 specifier|static
 specifier|final
 name|Logger
@@ -689,8 +782,17 @@ name|getName
 argument_list|()
 argument_list|)
 decl_stmt|;
+end_decl_stmt
+
+begin_comment
 comment|// A heuristic for timed gets. If the remaining timeout is less than this, spin instead of
+end_comment
+
+begin_comment
 comment|// blocking. This value is what AbstractQueuedSynchronizer uses.
+end_comment
+
+begin_decl_stmt
 DECL|field|SPIN_THRESHOLD_NANOS
 specifier|private
 specifier|static
@@ -700,6 +802,9 @@ name|SPIN_THRESHOLD_NANOS
 init|=
 literal|1000L
 decl_stmt|;
+end_decl_stmt
+
+begin_decl_stmt
 DECL|field|ATOMIC_HELPER
 specifier|private
 specifier|static
@@ -707,6 +812,9 @@ specifier|final
 name|AtomicHelper
 name|ATOMIC_HELPER
 decl_stmt|;
+end_decl_stmt
+
+begin_static
 static|static
 block|{
 name|AtomicHelper
@@ -898,7 +1006,13 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+end_static
+
+begin_comment
 comment|/** Waiter links form a Treiber stack, in the {@link #waiters} field. */
+end_comment
+
+begin_class
 DECL|class|Waiter
 specifier|private
 specifier|static
@@ -920,16 +1034,16 @@ comment|/* ignored param */
 argument_list|)
 decl_stmt|;
 DECL|field|thread
-specifier|volatile
 annotation|@
-name|Nullable
+name|CheckForNull
+specifier|volatile
 name|Thread
 name|thread
 decl_stmt|;
 DECL|field|next
-specifier|volatile
 annotation|@
-name|Nullable
+name|CheckForNull
+specifier|volatile
 name|Waiter
 name|next
 decl_stmt|;
@@ -961,10 +1075,12 @@ expr_stmt|;
 block|}
 comment|// non-volatile write to the next field. Should be made visible by subsequent CAS on waiters
 comment|// field.
-DECL|method|setNext (Waiter next)
+DECL|method|setNext (@heckForNull Waiter next)
 name|void
 name|setNext
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Waiter
 name|next
 parameter_list|)
@@ -1013,7 +1129,13 @@ expr_stmt|;
 block|}
 block|}
 block|}
+end_class
+
+begin_comment
 comment|/**    * Marks the given node as 'deleted' (null waiter) and then scans the list to unlink all deleted    * nodes. This is an O(n) operation in the common case (and O(n^2) in the worst), but we are saved    * by two things.    *    *<ul>    *<li>This is only called when a waiting thread times out or is interrupted. Both of which    *       should be rare.    *<li>The waiters list should be very short.    *</ul>    */
+end_comment
+
+begin_function
 DECL|method|removeWaiter (Waiter node)
 specifier|private
 name|void
@@ -1150,7 +1272,13 @@ block|}
 break|break;
 block|}
 block|}
+end_function
+
+begin_comment
 comment|/** Listeners also form a stack through the {@link #listeners} field. */
+end_comment
+
+begin_class
 DECL|class|Listener
 specifier|private
 specifier|static
@@ -1166,17 +1294,19 @@ name|TOMBSTONE
 init|=
 operator|new
 name|Listener
-argument_list|(
-literal|null
-argument_list|,
-literal|null
-argument_list|)
+argument_list|()
 decl_stmt|;
+annotation|@
+name|CheckForNull
+comment|// null only for TOMBSTONE
 DECL|field|task
 specifier|final
 name|Runnable
 name|task
 decl_stmt|;
+annotation|@
+name|CheckForNull
+comment|// null only for TOMBSTONE
 DECL|field|executor
 specifier|final
 name|Executor
@@ -1185,7 +1315,7 @@ decl_stmt|;
 comment|// writes to next are made visible by subsequent CAS's on the listeners field
 DECL|field|next
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Listener
 name|next
 decl_stmt|;
@@ -1212,8 +1342,31 @@ operator|=
 name|executor
 expr_stmt|;
 block|}
+DECL|method|Listener ()
+name|Listener
+parameter_list|()
+block|{
+name|this
+operator|.
+name|task
+operator|=
+literal|null
+expr_stmt|;
+name|this
+operator|.
+name|executor
+operator|=
+literal|null
+expr_stmt|;
 block|}
+block|}
+end_class
+
+begin_comment
 comment|/** A special value to represent {@code null}. */
+end_comment
+
+begin_decl_stmt
 DECL|field|NULL
 specifier|private
 specifier|static
@@ -1225,7 +1378,13 @@ operator|new
 name|Object
 argument_list|()
 decl_stmt|;
+end_decl_stmt
+
+begin_comment
 comment|/** A special value to represent failure, when {@link #setException} is called successfully. */
+end_comment
+
+begin_class
 DECL|class|Failure
 specifier|private
 specifier|static
@@ -1287,7 +1446,13 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+end_class
+
+begin_comment
 comment|/** A special value to represent cancellation and the 'wasInterrupted' bit. */
+end_comment
+
+begin_class
 DECL|class|Cancellation
 specifier|private
 specifier|static
@@ -1297,12 +1462,16 @@ name|Cancellation
 block|{
 comment|// constants to use when GENERATE_CANCELLATION_CAUSES = false
 DECL|field|CAUSELESS_INTERRUPTED
+annotation|@
+name|CheckForNull
 specifier|static
 specifier|final
 name|Cancellation
 name|CAUSELESS_INTERRUPTED
 decl_stmt|;
 DECL|field|CAUSELESS_CANCELLED
+annotation|@
+name|CheckForNull
 specifier|static
 specifier|final
 name|Cancellation
@@ -1354,20 +1523,20 @@ name|boolean
 name|wasInterrupted
 decl_stmt|;
 DECL|field|cause
-specifier|final
 annotation|@
-name|Nullable
+name|CheckForNull
+specifier|final
 name|Throwable
 name|cause
 decl_stmt|;
-DECL|method|Cancellation (boolean wasInterrupted, @Nullable Throwable cause)
+DECL|method|Cancellation (boolean wasInterrupted, @CheckForNull Throwable cause)
 name|Cancellation
 parameter_list|(
 name|boolean
 name|wasInterrupted
 parameter_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Throwable
 name|cause
 parameter_list|)
@@ -1386,29 +1555,38 @@ name|cause
 expr_stmt|;
 block|}
 block|}
+end_class
+
+begin_comment
 comment|/** A special value that encodes the 'setFuture' state. */
+end_comment
+
+begin_expr_stmt
 DECL|class|SetFuture
 specifier|private
 specifier|static
-specifier|final
-class|class
+name|final
+name|class
 name|SetFuture
-parameter_list|<
+operator|<
 name|V
-parameter_list|>
-implements|implements
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|implements
 name|Runnable
 block|{
 DECL|field|owner
-specifier|final
+name|final
 name|AbstractFuture
 argument_list|<
 name|V
 argument_list|>
 name|owner
-decl_stmt|;
+block|;
 DECL|field|future
-specifier|final
+name|final
 name|ListenableFuture
 argument_list|<
 name|?
@@ -1416,16 +1594,16 @@ extends|extends
 name|V
 argument_list|>
 name|future
-decl_stmt|;
+block|;
 DECL|method|SetFuture (AbstractFuture<V> owner, ListenableFuture<? extends V> future)
 name|SetFuture
-parameter_list|(
+argument_list|(
 name|AbstractFuture
 argument_list|<
 name|V
 argument_list|>
 name|owner
-parameter_list|,
+argument_list|,
 name|ListenableFuture
 argument_list|<
 name|?
@@ -1433,28 +1611,27 @@ extends|extends
 name|V
 argument_list|>
 name|future
-parameter_list|)
+argument_list|)
 block|{
 name|this
 operator|.
 name|owner
 operator|=
 name|owner
-expr_stmt|;
+block|;
 name|this
 operator|.
 name|future
 operator|=
 name|future
-expr_stmt|;
-block|}
-annotation|@
+block|;     }
+expr|@
 name|Override
 DECL|method|run ()
 specifier|public
 name|void
 name|run
-parameter_list|()
+argument_list|()
 block|{
 if|if
 condition|(
@@ -1470,12 +1647,12 @@ return|return;
 block|}
 name|Object
 name|valueToSet
-init|=
+operator|=
 name|getFutureValue
 argument_list|(
 name|future
 argument_list|)
-decl_stmt|;
+block|;
 if|if
 condition|(
 name|ATOMIC_HELPER
@@ -1496,70 +1673,173 @@ name|owner
 argument_list|)
 expr_stmt|;
 block|}
-block|}
-block|}
+end_expr_stmt
+
+begin_comment
+unit|}   }
 comment|// TODO(lukes): investigate using the @Contended annotation on these fields when jdk8 is
+end_comment
+
+begin_comment
 comment|// available.
+end_comment
+
+begin_comment
 comment|/**    * This field encodes the current state of the future.    *    *<p>The valid values are:    *    *<ul>    *<li>{@code null} initial state, nothing has happened.    *<li>{@link Cancellation} terminal state, {@code cancel} was called.    *<li>{@link Failure} terminal state, {@code setException} was called.    *<li>{@link SetFuture} intermediate state, {@code setFuture} was called.    *<li>{@link #NULL} terminal state, {@code set(null)} was called.    *<li>Any other non-null value, terminal state, {@code set} was called with a non-null    *       argument.    *</ul>    */
+end_comment
+
+begin_decl_stmt
 DECL|field|value
+annotation|@
+name|CheckForNull
 specifier|private
 specifier|volatile
-annotation|@
-name|Nullable
 name|Object
 name|value
 decl_stmt|;
+end_decl_stmt
+
+begin_comment
 comment|/** All listeners. */
+end_comment
+
+begin_decl_stmt
 DECL|field|listeners
+annotation|@
+name|CheckForNull
 specifier|private
 specifier|volatile
-annotation|@
-name|Nullable
 name|Listener
 name|listeners
 decl_stmt|;
+end_decl_stmt
+
+begin_comment
 comment|/** All waiting threads. */
+end_comment
+
+begin_decl_stmt
 DECL|field|waiters
+annotation|@
+name|CheckForNull
 specifier|private
 specifier|volatile
-annotation|@
-name|Nullable
 name|Waiter
 name|waiters
 decl_stmt|;
+end_decl_stmt
+
+begin_comment
 comment|/** Constructor for use by subclasses. */
+end_comment
+
+begin_constructor
 DECL|method|AbstractFuture ()
 specifier|protected
 name|AbstractFuture
 parameter_list|()
 block|{}
+end_constructor
+
+begin_comment
 comment|// Gets and Timed Gets
+end_comment
+
+begin_comment
 comment|//
+end_comment
+
+begin_comment
 comment|// * Be responsive to interruption
+end_comment
+
+begin_comment
 comment|// * Don't create Waiter nodes if you aren't going to park, this helps reduce contention on the
+end_comment
+
+begin_comment
 comment|//   waiters field.
+end_comment
+
+begin_comment
 comment|// * Future completion is defined by when #value becomes non-null/non SetFuture
+end_comment
+
+begin_comment
 comment|// * Future completion can be observed if the waiters field contains a TOMBSTONE
+end_comment
+
+begin_comment
 comment|// Timed Get
+end_comment
+
+begin_comment
 comment|// There are a few design constraints to consider
+end_comment
+
+begin_comment
 comment|// * We want to be responsive to small timeouts, unpark() has non trivial latency overheads (I
+end_comment
+
+begin_comment
 comment|//   have observed 12 micros on 64 bit linux systems to wake up a parked thread). So if the
+end_comment
+
+begin_comment
 comment|//   timeout is small we shouldn't park(). This needs to be traded off with the cpu overhead of
+end_comment
+
+begin_comment
 comment|//   spinning, so we use SPIN_THRESHOLD_NANOS which is what AbstractQueuedSynchronizer uses for
+end_comment
+
+begin_comment
 comment|//   similar purposes.
+end_comment
+
+begin_comment
 comment|// * We want to behave reasonably for timeouts of 0
+end_comment
+
+begin_comment
 comment|// * We are more responsive to completion than timeouts. This is because parkNanos depends on
+end_comment
+
+begin_comment
 comment|//   system scheduling and as such we could either miss our deadline, or unpark() could be delayed
+end_comment
+
+begin_comment
 comment|//   so that it looks like we timed out even though we didn't. For comparison FutureTask respects
+end_comment
+
+begin_comment
 comment|//   completion preferably and AQS is non-deterministic (depends on where in the queue the waiter
+end_comment
+
+begin_comment
 comment|//   is). If we wanted to be strict about it, we could store the unpark() time in the Waiter node
+end_comment
+
+begin_comment
 comment|//   and we could use that to make a decision about whether or not we timed out prior to being
+end_comment
+
+begin_comment
 comment|//   unparked.
+end_comment
+
+begin_comment
 comment|/**    * {@inheritDoc}    *    *<p>The default {@link AbstractFuture} implementation throws {@code InterruptedException} if the    * current thread is interrupted during the call, even if the value is already available.    *    * @throws CancellationException {@inheritDoc}    */
+end_comment
+
+begin_function
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
+annotation|@
+name|ParametricNullness
 DECL|method|get (long timeout, TimeUnit unit)
 specifier|public
 name|V
@@ -1817,10 +2097,14 @@ do|;
 block|}
 comment|// re-read value, if we get here then we must have observed a TOMBSTONE while trying to add a
 comment|// waiter.
+comment|// requireNonNull is safe because value is always set before TOMBSTONE.
 return|return
 name|getDoneValue
 argument_list|(
+name|requireNonNull
+argument_list|(
 name|value
+argument_list|)
 argument_list|)
 return|;
 block|}
@@ -2061,11 +2345,19 @@ name|futureToString
 argument_list|)
 throw|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * {@inheritDoc}    *    *<p>The default {@link AbstractFuture} implementation throws {@code InterruptedException} if the    * current thread is interrupted during the call, even if the value is already available.    *    * @throws CancellationException {@inheritDoc}    */
+end_comment
+
+begin_function
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
+annotation|@
+name|ParametricNullness
 DECL|method|get ()
 specifier|public
 name|V
@@ -2240,14 +2532,26 @@ do|;
 block|}
 comment|// re-read value, if we get here then we must have observed a TOMBSTONE while trying to add a
 comment|// waiter.
+comment|// requireNonNull is safe because value is always set before TOMBSTONE.
 return|return
 name|getDoneValue
 argument_list|(
+name|requireNonNull
+argument_list|(
 name|value
+argument_list|)
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/** Unboxes {@code obj}. Assumes that obj is not {@code null} or a {@link SetFuture}. */
+end_comment
+
+begin_function
+annotation|@
+name|ParametricNullness
 DECL|method|getDoneValue (Object obj)
 specifier|private
 name|V
@@ -2315,8 +2619,10 @@ operator|==
 name|NULL
 condition|)
 block|{
+comment|/*        * It's safe to return null because we would only have stored it in the first place if it were        * a valid value for V.        */
 return|return
-literal|null
+name|uncheckedNull
+argument_list|()
 return|;
 block|}
 else|else
@@ -2340,6 +2646,9 @@ name|asV
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|isDone ()
@@ -2367,6 +2676,9 @@ name|SetFuture
 operator|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|isCancelled ()
@@ -2387,7 +2699,13 @@ operator|instanceof
 name|Cancellation
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * {@inheritDoc}    *    *<p>If a cancellation attempt succeeds on a {@code Future} that had previously been {@linkplain    * #setFuture set asynchronously}, then the cancellation will also be propagated to the delegate    * {@code Future} that was supplied in the {@code setFuture} call.    *    *<p>Rather than override this method to perform additional cancellation work or cleanup,    * subclasses should override {@link #afterDone}, consulting {@link #isCancelled} and {@link    * #wasInterrupted} as necessary. This ensures that the work is done even if the future is    * cancelled without a call to {@code cancel}, such as by calling {@code    * setFuture(cancelledFuture)}.    *    *<p>Beware of completing a future while holding a lock. Its listeners may do slow work or    * acquire other locks, risking deadlocks.    */
+end_comment
+
+begin_function
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
@@ -2440,8 +2758,10 @@ argument_list|(
 literal|"Future.cancel() was called."
 argument_list|)
 argument_list|)
+comment|/*                * requireNonNull is safe because we've initialized these if                * !GENERATE_CANCELLATION_CAUSES.                *                * TODO(cpovirk): Maybe it would be cleaner to define a CancellationSupplier interface                * with two implementations, one that contains causeless Cancellation instances and                * the other of which creates new Cancellation instances each time it's called? Yet                * another alternative is to fill in a non-null value for each of the fields no matter                * what and to just not use it if !GENERATE_CANCELLATION_CAUSES.                */
 else|:
-operator|(
+name|requireNonNull
+argument_list|(
 name|mayInterruptIfRunning
 condition|?
 name|Cancellation
@@ -2451,7 +2771,7 @@ else|:
 name|Cancellation
 operator|.
 name|CAUSELESS_CANCELLED
-operator|)
+argument_list|)
 decl_stmt|;
 name|AbstractFuture
 argument_list|<
@@ -2621,14 +2941,26 @@ return|return
 name|rValue
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Subclasses can override this method to implement interruption of the future's computation. The    * method is invoked automatically by a successful call to {@link #cancel(boolean) cancel(true)}.    *    *<p>The default implementation does nothing.    *    *<p>This method is likely to be deprecated. Prefer to override {@link #afterDone}, checking    * {@link #wasInterrupted} to decide whether to interrupt your task.    *    * @since 10.0    */
+end_comment
+
+begin_function
 DECL|method|interruptTask ()
 specifier|protected
 name|void
 name|interruptTask
 parameter_list|()
 block|{}
+end_function
+
+begin_comment
 comment|/**    * Returns true if this future was cancelled with {@code mayInterruptIfRunning} set to {@code    * true}.    *    * @since 14.0    */
+end_comment
+
+begin_function
 DECL|method|wasInterrupted ()
 specifier|protected
 specifier|final
@@ -2659,7 +2991,13 @@ operator|.
 name|wasInterrupted
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * {@inheritDoc}    *    * @since 10.0    */
+end_comment
+
+begin_function
 annotation|@
 name|Override
 DECL|method|addListener (Runnable listener, Executor executor)
@@ -2780,16 +3118,22 @@ name|executor
 argument_list|)
 expr_stmt|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Sets the result of this {@code Future} unless this {@code Future} has already been cancelled or    * set (including {@linkplain #setFuture set asynchronously}). When a call to this method returns,    * the {@code Future} is guaranteed to be {@linkplain #isDone done}<b>only if</b> the call was    * accepted (in which case it returns {@code true}). If it returns {@code false}, the {@code    * Future} may have previously been set asynchronously, in which case its result may not be known    * yet. That result, though not yet known, cannot be overridden by a call to a {@code set*}    * method, only by a call to {@link #cancel}.    *    *<p>Beware of completing a future while holding a lock. Its listeners may do slow work or    * acquire other locks, risking deadlocks.    *    * @param value the value to be used as the result    * @return true if the attempt was accepted, completing the {@code Future}    */
+end_comment
+
+begin_function
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|set (@ullable V value)
+DECL|method|set (@arametricNullness V value)
 specifier|protected
 name|boolean
 name|set
 parameter_list|(
 annotation|@
-name|Nullable
+name|ParametricNullness
 name|V
 name|value
 parameter_list|)
@@ -2832,7 +3176,13 @@ return|return
 literal|false
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Sets the failed result of this {@code Future} unless this {@code Future} has already been    * cancelled or set (including {@linkplain #setFuture set asynchronously}). When a call to this    * method returns, the {@code Future} is guaranteed to be {@linkplain #isDone done}<b>only if</b>    * the call was accepted (in which case it returns {@code true}). If it returns {@code false}, the    * {@code Future} may have previously been set asynchronously, in which case its result may not be    * known yet. That result, though not yet known, cannot be overridden by a call to a {@code set*}    * method, only by a call to {@link #cancel}.    *    *<p>Beware of completing a future while holding a lock. Its listeners may do slow work or    * acquire other locks, risking deadlocks.    *    * @param throwable the exception to be used as the failed result    * @return true if the attempt was accepted, completing the {@code Future}    */
+end_comment
+
+begin_function
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|setException (Throwable throwable)
@@ -2883,7 +3233,13 @@ return|return
 literal|false
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Sets the result of this {@code Future} to match the supplied input {@code Future} once the    * supplied {@code Future} is done, unless this {@code Future} has already been cancelled or set    * (including "set asynchronously," defined below).    *    *<p>If the supplied future is {@linkplain #isDone done} when this method is called and the call    * is accepted, then this future is guaranteed to have been completed with the supplied future by    * the time this method returns. If the supplied future is not done and the call is accepted, then    * the future will be<i>set asynchronously</i>. Note that such a result, though not yet known,    * cannot be overridden by a call to a {@code set*} method, only by a call to {@link #cancel}.    *    *<p>If the call {@code setFuture(delegate)} is accepted and this {@code Future} is later    * cancelled, cancellation will be propagated to {@code delegate}. Additionally, any call to    * {@code setFuture} after any cancellation will propagate cancellation to the supplied {@code    * Future}.    *    *<p>Note that, even if the supplied future is cancelled and it causes this future to complete,    * it will never trigger interruption behavior. In particular, it will not cause this future to    * invoke the {@link #interruptTask} method, and the {@link #wasInterrupted} method will not    * return {@code true}.    *    *<p>Beware of completing a future while holding a lock. Its listeners may do slow work or    * acquire other locks, risking deadlocks.    *    * @param future the future to delegate to    * @return true if the attempt was accepted, indicating that the {@code Future} was not previously    *     cancelled or set.    * @since 19.0    */
+end_comment
+
+begin_function
 annotation|@
 name|CanIgnoreReturnValue
 DECL|method|setFuture (ListenableFuture<? extends V> future)
@@ -3098,7 +3454,13 @@ return|return
 literal|false
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Returns a value that satisfies the contract of the {@link #value} field based on the state of    * given future.    *    *<p>This is approximately the inverse of {@link #getDoneValue(Object)}    */
+end_comment
+
+begin_function
 DECL|method|getFutureValue (ListenableFuture<?> future)
 specifier|private
 specifier|static
@@ -3188,8 +3550,12 @@ name|CAUSELESS_CANCELLED
 expr_stmt|;
 block|}
 block|}
+comment|// requireNonNull is safe as long as we call this method only on completed futures.
 return|return
+name|requireNonNull
+argument_list|(
 name|v
+argument_list|)
 return|;
 block|}
 if|if
@@ -3245,10 +3611,14 @@ operator|&
 name|wasCancelled
 condition|)
 block|{
+comment|/*        * requireNonNull is safe because we've initialized CAUSELESS_CANCELLED if        * !GENERATE_CANCELLATION_CAUSES.        */
 return|return
+name|requireNonNull
+argument_list|(
 name|Cancellation
 operator|.
 name|CAUSELESS_CANCELLED
+argument_list|)
 return|;
 block|}
 comment|// Otherwise calculate the value by calling .get()
@@ -3390,30 +3760,47 @@ argument_list|)
 return|;
 block|}
 block|}
+end_function
+
+begin_comment
 comment|/**    * An inlined private copy of {@link Uninterruptibles#getUninterruptibly} used to break an    * internal dependency on other /util/concurrent classes.    */
+end_comment
+
+begin_annotation
+annotation|@
+name|ParametricNullness
+end_annotation
+
+begin_expr_stmt
 DECL|method|getUninterruptibly (Future<V> future)
 specifier|private
 specifier|static
-parameter_list|<
+operator|<
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|V
 name|getUninterruptibly
-parameter_list|(
+argument_list|(
 name|Future
 argument_list|<
 name|V
 argument_list|>
 name|future
-parameter_list|)
+argument_list|)
 throws|throws
 name|ExecutionException
 block|{
 name|boolean
 name|interrupted
-init|=
+operator|=
 literal|false
-decl_stmt|;
+expr_stmt|;
+end_expr_stmt
+
+begin_try
 try|try
 block|{
 while|while
@@ -3460,10 +3847,16 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-block|}
+end_try
+
+begin_comment
+unit|}
 comment|/** Unblocks all threads and runs all listeners. */
-DECL|method|complete (AbstractFuture<?> future)
-specifier|private
+end_comment
+
+begin_function
+DECL|method|complete (AbstractFuture<?> param)
+unit|private
 specifier|static
 name|void
 name|complete
@@ -3472,9 +3865,18 @@ name|AbstractFuture
 argument_list|<
 name|?
 argument_list|>
-name|future
+name|param
 parameter_list|)
 block|{
+comment|// Declare a "true" local variable so that the Checker Framework will infer nullness.
+name|AbstractFuture
+argument_list|<
+name|?
+argument_list|>
+name|future
+init|=
+name|param
+decl_stmt|;
 name|Listener
 name|next
 init|=
@@ -3534,12 +3936,16 @@ name|next
 operator|.
 name|next
 expr_stmt|;
+comment|/*          * requireNonNull is safe because the listener stack never contains TOMBSTONE until after          * clearListeners.          */
 name|Runnable
 name|task
 init|=
+name|requireNonNull
+argument_list|(
 name|curr
 operator|.
 name|task
+argument_list|)
 decl_stmt|;
 if|if
 condition|(
@@ -3615,13 +4021,17 @@ comment|// other wise the future we were trying to set is already done.
 block|}
 else|else
 block|{
+comment|/*            * requireNonNull is safe because the listener stack never contains TOMBSTONE until after            * clearListeners.            */
 name|executeListener
 argument_list|(
 name|task
 argument_list|,
+name|requireNonNull
+argument_list|(
 name|curr
 operator|.
 name|executor
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -3629,7 +4039,13 @@ block|}
 break|break;
 block|}
 block|}
+end_function
+
+begin_comment
 comment|/**    * Callback method that is called exactly once after the future is completed.    *    *<p>If {@link #interruptTask} is also run during completion, {@link #afterDone} runs after it.    *    *<p>The default implementation of this method in {@code AbstractFuture} does nothing. This is    * intended for very lightweight cleanup work, for example, timing statistics or clearing fields.    * If your task does anything heavier consider, just using a listener with an executor.    *    * @since 20.0    */
+end_comment
+
+begin_function
 annotation|@
 name|Beta
 annotation|@
@@ -3640,15 +4056,30 @@ name|void
 name|afterDone
 parameter_list|()
 block|{}
+end_function
+
+begin_comment
 comment|// TODO(b/114236866): Inherit doc from InternalFutureFailureAccess. Also, -link to its URL.
+end_comment
+
+begin_comment
 comment|/**    * Usually returns {@code null} but, if this {@code Future} has failed, may<i>optionally</i>    * return the cause of the failure. "Failure" means specifically "completed with an exception"; it    * does not include "was cancelled." To be explicit: If this method returns a non-null value,    * then:    *    *<ul>    *<li>{@code isDone()} must return {@code true}    *<li>{@code isCancelled()} must return {@code false}    *<li>{@code get()} must not block, and it must throw an {@code ExecutionException} with the    *       return value of this method as its cause    *</ul>    *    *<p>This method is {@code protected} so that classes like {@code    * com.google.common.util.concurrent.SettableFuture} do not expose it to their users as an    * instance method. In the unlikely event that you need to call this method, call {@link    * InternalFutures#tryInternalFastPathGetFailure(InternalFutureFailureAccess)}.    *    * @since 27.0    */
+end_comment
+
+begin_function
 annotation|@
 name|Override
+comment|/*    * We should annotate the superclass, InternalFutureFailureAccess, to say that its copy of this    * method returns @Nullable, too. However, we're not sure if we want to make any changes to that    * class, since it's in a separate artifact that we planned to release only a single version of.    */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"nullness"
+argument_list|)
+annotation|@
+name|CheckForNull
 DECL|method|tryInternalFastPathGetFailure ()
 specifier|protected
 specifier|final
-annotation|@
-name|Nullable
 name|Throwable
 name|tryInternalFastPathGetFailure
 parameter_list|()
@@ -3688,14 +4119,20 @@ return|return
 literal|null
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * If this future has been cancelled (and possibly interrupted), cancels (and possibly interrupts)    * the given future (if available).    */
-DECL|method|maybePropagateCancellationTo (@ullable Future<?> related)
+end_comment
+
+begin_function
+DECL|method|maybePropagateCancellationTo (@heckForNull Future<?> related)
 specifier|final
 name|void
 name|maybePropagateCancellationTo
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Future
 argument_list|<
 name|?
@@ -3723,7 +4160,13 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+end_function
+
+begin_comment
 comment|/** Releases all threads in the {@link #waiters} list, and clears the list. */
+end_comment
+
+begin_function
 DECL|method|releaseWaiters ()
 specifier|private
 name|void
@@ -3782,12 +4225,22 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+end_function
+
+begin_comment
 comment|/**    * Clears the {@link #listeners} list and prepends its contents to {@code onto}, least recently    * added first.    */
-DECL|method|clearListeners (Listener onto)
+end_comment
+
+begin_function
+annotation|@
+name|CheckForNull
+DECL|method|clearListeners (@heckForNull Listener onto)
 specifier|private
 name|Listener
 name|clearListeners
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Listener
 name|onto
 parameter_list|)
@@ -3863,7 +4316,13 @@ return|return
 name|reversedList
 return|;
 block|}
+end_function
+
+begin_comment
 comment|// TODO(user): move parts into a default method on ListenableFuture?
+end_comment
+
+begin_function
 annotation|@
 name|Override
 DECL|method|toString ()
@@ -3991,11 +4450,17 @@ name|toString
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Provide a human-readable explanation of why this future has not yet completed.    *    * @return null if an explanation cannot be provided (e.g. because the future is done).    * @since 23.0    */
+end_comment
+
+begin_function
+annotation|@
+name|CheckForNull
 DECL|method|pendingToString ()
 specifier|protected
-annotation|@
-name|Nullable
 name|String
 name|pendingToString
 parameter_list|()
@@ -4032,6 +4497,9 @@ return|return
 literal|null
 return|;
 block|}
+end_function
+
+begin_function
 DECL|method|addPendingString (StringBuilder builder)
 specifier|private
 name|void
@@ -4191,6 +4659,9 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+end_function
+
+begin_function
 DECL|method|addDoneString (StringBuilder builder)
 specifier|private
 name|void
@@ -4302,8 +4773,14 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+end_function
+
+begin_comment
 comment|/**    * Any object can be the result of a Future, and not every object has a reasonable toString()    * implementation. Using a reconstruction of the default Object.toString() prevents OOMs and stack    * overflows, and helps avoid sensitive data inadvertently ending up in exception messages.    */
-DECL|method|appendResultObject (StringBuilder builder, Object o)
+end_comment
+
+begin_function
+DECL|method|appendResultObject (StringBuilder builder, @CheckForNull Object o)
 specifier|private
 name|void
 name|appendResultObject
@@ -4311,6 +4788,8 @@ parameter_list|(
 name|StringBuilder
 name|builder
 parameter_list|,
+annotation|@
+name|CheckForNull
 name|Object
 name|o
 parameter_list|)
@@ -4383,8 +4862,14 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+end_function
+
+begin_comment
 comment|/** Helper for printing user supplied objects into our toString method. */
-DECL|method|appendUserObject (StringBuilder builder, Object o)
+end_comment
+
+begin_function
+DECL|method|appendUserObject (StringBuilder builder, @CheckForNull Object o)
 specifier|private
 name|void
 name|appendUserObject
@@ -4392,6 +4877,8 @@ parameter_list|(
 name|StringBuilder
 name|builder
 parameter_list|,
+annotation|@
+name|CheckForNull
 name|Object
 name|o
 parameter_list|)
@@ -4455,7 +4942,13 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+end_function
+
+begin_comment
 comment|/**    * Submits the given runnable to the given {@link Executor} catching and logging all {@linkplain    * RuntimeException runtime exceptions} thrown by the executor.    */
+end_comment
+
+begin_function
 DECL|method|executeListener (Runnable runnable, Executor executor)
 specifier|private
 specifier|static
@@ -4509,6 +5002,9 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+end_function
+
+begin_class
 DECL|class|AtomicHelper
 specifier|private
 specifier|abstract
@@ -4530,7 +5026,7 @@ name|newValue
 parameter_list|)
 function_decl|;
 comment|/** Non volatile write of the waiter to the {@link Waiter#next} field. */
-DECL|method|putNext (Waiter waiter, Waiter newValue)
+DECL|method|putNext (Waiter waiter, @CheckForNull Waiter newValue)
 specifier|abstract
 name|void
 name|putNext
@@ -4538,12 +5034,14 @@ parameter_list|(
 name|Waiter
 name|waiter
 parameter_list|,
+annotation|@
+name|CheckForNull
 name|Waiter
 name|newValue
 parameter_list|)
 function_decl|;
 comment|/** Performs a CAS operation on the {@link #waiters} field. */
-DECL|method|casWaiters (AbstractFuture<?> future, Waiter expect, Waiter update)
+DECL|method|casWaiters ( AbstractFuture<?> future, @CheckForNull Waiter expect, @CheckForNull Waiter update)
 specifier|abstract
 name|boolean
 name|casWaiters
@@ -4554,15 +5052,19 @@ name|?
 argument_list|>
 name|future
 parameter_list|,
+annotation|@
+name|CheckForNull
 name|Waiter
 name|expect
 parameter_list|,
+annotation|@
+name|CheckForNull
 name|Waiter
 name|update
 parameter_list|)
 function_decl|;
 comment|/** Performs a CAS operation on the {@link #listeners} field. */
-DECL|method|casListeners (AbstractFuture<?> future, Listener expect, Listener update)
+DECL|method|casListeners ( AbstractFuture<?> future, @CheckForNull Listener expect, Listener update)
 specifier|abstract
 name|boolean
 name|casListeners
@@ -4573,6 +5075,8 @@ name|?
 argument_list|>
 name|future
 parameter_list|,
+annotation|@
+name|CheckForNull
 name|Listener
 name|expect
 parameter_list|,
@@ -4581,7 +5085,7 @@ name|update
 parameter_list|)
 function_decl|;
 comment|/** Performs a CAS operation on the {@link #value} field. */
-DECL|method|casValue (AbstractFuture<?> future, Object expect, Object update)
+DECL|method|casValue (AbstractFuture<?> future, @CheckForNull Object expect, Object update)
 specifier|abstract
 name|boolean
 name|casValue
@@ -4592,6 +5096,8 @@ name|?
 argument_list|>
 name|future
 parameter_list|,
+annotation|@
+name|CheckForNull
 name|Object
 name|expect
 parameter_list|,
@@ -4600,7 +5106,13 @@ name|update
 parameter_list|)
 function_decl|;
 block|}
+end_class
+
+begin_comment
 comment|/**    * {@link AtomicHelper} based on {@link sun.misc.Unsafe}.    *    *<p>Static initialization of this class will fail if the {@link sun.misc.Unsafe} object cannot    * be accessed.    */
+end_comment
+
+begin_class
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -4960,13 +5472,15 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|putNext (Waiter waiter, Waiter newValue)
+DECL|method|putNext (Waiter waiter, @CheckForNull Waiter newValue)
 name|void
 name|putNext
 parameter_list|(
 name|Waiter
 name|waiter
 parameter_list|,
+annotation|@
+name|CheckForNull
 name|Waiter
 name|newValue
 parameter_list|)
@@ -4986,7 +5500,7 @@ block|}
 comment|/** Performs a CAS operation on the {@link #waiters} field. */
 annotation|@
 name|Override
-DECL|method|casWaiters (AbstractFuture<?> future, Waiter expect, Waiter update)
+DECL|method|casWaiters ( AbstractFuture<?> future, @CheckForNull Waiter expect, @CheckForNull Waiter update)
 name|boolean
 name|casWaiters
 parameter_list|(
@@ -4996,9 +5510,13 @@ name|?
 argument_list|>
 name|future
 parameter_list|,
+annotation|@
+name|CheckForNull
 name|Waiter
 name|expect
 parameter_list|,
+annotation|@
+name|CheckForNull
 name|Waiter
 name|update
 parameter_list|)
@@ -5021,7 +5539,7 @@ block|}
 comment|/** Performs a CAS operation on the {@link #listeners} field. */
 annotation|@
 name|Override
-DECL|method|casListeners (AbstractFuture<?> future, Listener expect, Listener update)
+DECL|method|casListeners (AbstractFuture<?> future, @CheckForNull Listener expect, Listener update)
 name|boolean
 name|casListeners
 parameter_list|(
@@ -5031,6 +5549,8 @@ name|?
 argument_list|>
 name|future
 parameter_list|,
+annotation|@
+name|CheckForNull
 name|Listener
 name|expect
 parameter_list|,
@@ -5056,7 +5576,7 @@ block|}
 comment|/** Performs a CAS operation on the {@link #value} field. */
 annotation|@
 name|Override
-DECL|method|casValue (AbstractFuture<?> future, Object expect, Object update)
+DECL|method|casValue (AbstractFuture<?> future, @CheckForNull Object expect, Object update)
 name|boolean
 name|casValue
 parameter_list|(
@@ -5066,6 +5586,8 @@ name|?
 argument_list|>
 name|future
 parameter_list|,
+annotation|@
+name|CheckForNull
 name|Object
 name|expect
 parameter_list|,
@@ -5089,7 +5611,13 @@ argument_list|)
 return|;
 block|}
 block|}
+end_class
+
+begin_comment
 comment|/** {@link AtomicHelper} based on {@link AtomicReferenceFieldUpdater}. */
+end_comment
+
+begin_class
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -5254,13 +5782,15 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|putNext (Waiter waiter, Waiter newValue)
+DECL|method|putNext (Waiter waiter, @CheckForNull Waiter newValue)
 name|void
 name|putNext
 parameter_list|(
 name|Waiter
 name|waiter
 parameter_list|,
+annotation|@
+name|CheckForNull
 name|Waiter
 name|newValue
 parameter_list|)
@@ -5277,7 +5807,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|casWaiters (AbstractFuture<?> future, Waiter expect, Waiter update)
+DECL|method|casWaiters ( AbstractFuture<?> future, @CheckForNull Waiter expect, @CheckForNull Waiter update)
 name|boolean
 name|casWaiters
 parameter_list|(
@@ -5287,9 +5817,13 @@ name|?
 argument_list|>
 name|future
 parameter_list|,
+annotation|@
+name|CheckForNull
 name|Waiter
 name|expect
 parameter_list|,
+annotation|@
+name|CheckForNull
 name|Waiter
 name|update
 parameter_list|)
@@ -5309,7 +5843,7 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|casListeners (AbstractFuture<?> future, Listener expect, Listener update)
+DECL|method|casListeners (AbstractFuture<?> future, @CheckForNull Listener expect, Listener update)
 name|boolean
 name|casListeners
 parameter_list|(
@@ -5319,6 +5853,8 @@ name|?
 argument_list|>
 name|future
 parameter_list|,
+annotation|@
+name|CheckForNull
 name|Listener
 name|expect
 parameter_list|,
@@ -5341,7 +5877,7 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|casValue (AbstractFuture<?> future, Object expect, Object update)
+DECL|method|casValue (AbstractFuture<?> future, @CheckForNull Object expect, Object update)
 name|boolean
 name|casValue
 parameter_list|(
@@ -5351,6 +5887,8 @@ name|?
 argument_list|>
 name|future
 parameter_list|,
+annotation|@
+name|CheckForNull
 name|Object
 name|expect
 parameter_list|,
@@ -5372,7 +5910,13 @@ argument_list|)
 return|;
 block|}
 block|}
+end_class
+
+begin_comment
 comment|/**    * {@link AtomicHelper} based on {@code synchronized} and volatile writes.    *    *<p>This is an implementation of last resort for when certain basic VM features are broken (like    * AtomicReferenceFieldUpdater).    */
+end_comment
+
+begin_class
 DECL|class|SynchronizedHelper
 specifier|private
 specifier|static
@@ -5404,13 +5948,15 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|putNext (Waiter waiter, Waiter newValue)
+DECL|method|putNext (Waiter waiter, @CheckForNull Waiter newValue)
 name|void
 name|putNext
 parameter_list|(
 name|Waiter
 name|waiter
 parameter_list|,
+annotation|@
+name|CheckForNull
 name|Waiter
 name|newValue
 parameter_list|)
@@ -5424,7 +5970,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|casWaiters (AbstractFuture<?> future, Waiter expect, Waiter update)
+DECL|method|casWaiters ( AbstractFuture<?> future, @CheckForNull Waiter expect, @CheckForNull Waiter update)
 name|boolean
 name|casWaiters
 parameter_list|(
@@ -5434,9 +5980,13 @@ name|?
 argument_list|>
 name|future
 parameter_list|,
+annotation|@
+name|CheckForNull
 name|Waiter
 name|expect
 parameter_list|,
+annotation|@
+name|CheckForNull
 name|Waiter
 name|update
 parameter_list|)
@@ -5472,7 +6022,7 @@ block|}
 block|}
 annotation|@
 name|Override
-DECL|method|casListeners (AbstractFuture<?> future, Listener expect, Listener update)
+DECL|method|casListeners (AbstractFuture<?> future, @CheckForNull Listener expect, Listener update)
 name|boolean
 name|casListeners
 parameter_list|(
@@ -5482,6 +6032,8 @@ name|?
 argument_list|>
 name|future
 parameter_list|,
+annotation|@
+name|CheckForNull
 name|Listener
 name|expect
 parameter_list|,
@@ -5520,7 +6072,7 @@ block|}
 block|}
 annotation|@
 name|Override
-DECL|method|casValue (AbstractFuture<?> future, Object expect, Object update)
+DECL|method|casValue (AbstractFuture<?> future, @CheckForNull Object expect, Object update)
 name|boolean
 name|casValue
 parameter_list|(
@@ -5530,6 +6082,8 @@ name|?
 argument_list|>
 name|future
 parameter_list|,
+annotation|@
+name|CheckForNull
 name|Object
 name|expect
 parameter_list|,
@@ -5567,19 +6121,20 @@ return|;
 block|}
 block|}
 block|}
-DECL|method|cancellationExceptionWithCause ( @ullable String message, @Nullable Throwable cause)
+end_class
+
+begin_function
+DECL|method|cancellationExceptionWithCause ( String message, @CheckForNull Throwable cause)
 specifier|private
 specifier|static
 name|CancellationException
 name|cancellationExceptionWithCause
 parameter_list|(
-annotation|@
-name|Nullable
 name|String
 name|message
 parameter_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Throwable
 name|cause
 parameter_list|)
@@ -5604,8 +6159,8 @@ return|return
 name|exception
 return|;
 block|}
-block|}
-end_class
+end_function
 
+unit|}
 end_unit
 

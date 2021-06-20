@@ -66,18 +66,29 @@ begin_comment
 comment|/**  * A {@link ListenableFuture} whose result can be set by a {@link #set(Object)}, {@link  * #setException(Throwable)} or {@link #setFuture(ListenableFuture)} call. It can also, like any  * other {@code Future}, be {@linkplain #cancel cancelled}.  *  *<p>{@code SettableFuture} is the recommended {@code ListenableFuture} implementation when your  * task cannot be implemented with {@link ListeningExecutorService}, the various {@link Futures}  * utility methods, or {@link ListenableFutureTask}. Those APIs have less opportunity for developer  * error. If your needs are more complex than {@code SettableFuture} supports, use {@link  * AbstractFuture}, which offers an extensible version of the API.  *  * @author Sven Mawson  * @since 9.0 (in 1.0 as {@code ValueFuture})  */
 end_comment
 
-begin_class
+begin_annotation
 annotation|@
 name|GwtCompatible
+end_annotation
+
+begin_annotation
+annotation|@
+name|ElementTypesAreNonnullByDefault
+end_annotation
+
+begin_expr_stmt
 DECL|class|SettableFuture
 specifier|public
-specifier|final
-class|class
+name|final
+name|class
 name|SettableFuture
-parameter_list|<
+operator|<
 name|V
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|AbstractFuture
 operator|.
 name|TrustedFuture
@@ -89,15 +100,18 @@ comment|/**    * Creates a new {@code SettableFuture} that can be completed or c
 DECL|method|create ()
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|SettableFuture
 argument_list|<
 name|V
 argument_list|>
 name|create
-parameter_list|()
+argument_list|()
 block|{
 return|return
 operator|new
@@ -108,20 +122,20 @@ argument_list|>
 argument_list|()
 return|;
 block|}
-annotation|@
+expr|@
 name|CanIgnoreReturnValue
-annotation|@
+expr|@
 name|Override
-DECL|method|set (@ullable V value)
+DECL|method|set (@arametricNullness V value)
 specifier|public
 name|boolean
 name|set
-parameter_list|(
+argument_list|(
 annotation|@
-name|Nullable
+name|ParametricNullness
 name|V
 name|value
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|super
@@ -132,6 +146,9 @@ name|value
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_function
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
@@ -154,6 +171,9 @@ name|throwable
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
@@ -181,13 +201,16 @@ name|future
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_constructor
 DECL|method|SettableFuture ()
 specifier|private
 name|SettableFuture
 parameter_list|()
 block|{}
-block|}
-end_class
+end_constructor
 
+unit|}
 end_unit
 

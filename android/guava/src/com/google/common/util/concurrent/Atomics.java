@@ -70,9 +70,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -83,6 +83,8 @@ end_comment
 begin_class
 annotation|@
 name|GwtIncompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|Atomics
 specifier|public
 specifier|final
@@ -103,6 +105,8 @@ name|V
 parameter_list|>
 name|AtomicReference
 argument_list|<
+annotation|@
+name|Nullable
 name|V
 argument_list|>
 name|newReference
@@ -111,37 +115,36 @@ block|{
 return|return
 operator|new
 name|AtomicReference
-argument_list|<
-name|V
-argument_list|>
+argument_list|<>
 argument_list|()
 return|;
 block|}
 comment|/**    * Creates an {@code AtomicReference} instance with the given initial value.    *    * @param initialValue the initial value    * @return a new {@code AtomicReference} with the given initial value    */
-DECL|method|newReference (@ullableDecl V initialValue)
+DECL|method|newReference ( @arametricNullness V initialValue)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|AtomicReference
 argument_list|<
 name|V
 argument_list|>
 name|newReference
-parameter_list|(
+argument_list|(
 annotation|@
-name|NullableDecl
+name|ParametricNullness
 name|V
 name|initialValue
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|new
 name|AtomicReference
-argument_list|<
-name|V
-argument_list|>
+argument_list|<>
 argument_list|(
 name|initialValue
 argument_list|)
@@ -156,6 +159,8 @@ name|E
 parameter_list|>
 name|AtomicReferenceArray
 argument_list|<
+annotation|@
+name|Nullable
 name|E
 argument_list|>
 name|newReferenceArray
@@ -167,9 +172,7 @@ block|{
 return|return
 operator|new
 name|AtomicReferenceArray
-argument_list|<
-name|E
-argument_list|>
+argument_list|<>
 argument_list|(
 name|length
 argument_list|)
@@ -179,26 +182,27 @@ comment|/**    * Creates an {@code AtomicReferenceArray} instance with the same 
 DECL|method|newReferenceArray (E[] array)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|AtomicReferenceArray
 argument_list|<
 name|E
 argument_list|>
 name|newReferenceArray
-parameter_list|(
+argument_list|(
 name|E
 index|[]
 name|array
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|new
 name|AtomicReferenceArray
-argument_list|<
-name|E
-argument_list|>
+argument_list|<>
 argument_list|(
 name|array
 argument_list|)
