@@ -52,6 +52,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|checkerframework
@@ -78,6 +88,8 @@ name|serializable
 operator|=
 literal|true
 argument_list|)
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|AllEqualOrdering
 specifier|final
 class|class
@@ -85,6 +97,8 @@ name|AllEqualOrdering
 extends|extends
 name|Ordering
 argument_list|<
+annotation|@
+name|Nullable
 name|Object
 argument_list|>
 implements|implements
@@ -102,18 +116,18 @@ argument_list|()
 decl_stmt|;
 annotation|@
 name|Override
-DECL|method|compare (@ullable Object left, @Nullable Object right)
+DECL|method|compare (@heckForNull Object left, @CheckForNull Object right)
 specifier|public
 name|int
 name|compare
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|left
 parameter_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|right
 parameter_list|)
@@ -126,21 +140,24 @@ annotation|@
 name|Override
 DECL|method|sortedCopy (Iterable<E> iterable)
 specifier|public
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|List
 argument_list|<
 name|E
 argument_list|>
 name|sortedCopy
-parameter_list|(
+argument_list|(
 name|Iterable
 argument_list|<
 name|E
 argument_list|>
 name|iterable
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|Lists
@@ -153,23 +170,32 @@ return|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"nullness"
+argument_list|)
+comment|// unsafe: see supertype
 DECL|method|immutableSortedCopy (Iterable<E> iterable)
 specifier|public
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|ImmutableList
 argument_list|<
 name|E
 argument_list|>
 name|immutableSortedCopy
-parameter_list|(
+argument_list|(
 name|Iterable
 argument_list|<
 name|E
 argument_list|>
 name|iterable
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|ImmutableList
@@ -189,15 +215,18 @@ annotation|@
 name|Override
 DECL|method|reverse ()
 specifier|public
-parameter_list|<
+operator|<
 name|S
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|Ordering
 argument_list|<
 name|S
 argument_list|>
 name|reverse
-parameter_list|()
+argument_list|()
 block|{
 return|return
 operator|(

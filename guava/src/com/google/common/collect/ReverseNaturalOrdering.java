@@ -88,6 +88,8 @@ literal|"rawtypes"
 block|}
 argument_list|)
 comment|// TODO(kevinb): the right way to explain this??
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|ReverseNaturalOrdering
 specifier|final
 class|class
@@ -96,6 +98,9 @@ extends|extends
 name|Ordering
 argument_list|<
 name|Comparable
+argument_list|<
+name|?
+argument_list|>
 argument_list|>
 implements|implements
 name|Serializable
@@ -112,15 +117,21 @@ argument_list|()
 decl_stmt|;
 annotation|@
 name|Override
-DECL|method|compare (Comparable left, Comparable right)
+DECL|method|compare (Comparable<?> left, Comparable<?> right)
 specifier|public
 name|int
 name|compare
 parameter_list|(
 name|Comparable
+argument_list|<
+name|?
+argument_list|>
 name|left
 parameter_list|,
 name|Comparable
+argument_list|<
+name|?
+argument_list|>
 name|right
 parameter_list|)
 block|{
@@ -142,7 +153,15 @@ literal|0
 return|;
 block|}
 return|return
+operator|(
+operator|(
+name|Comparable
+argument_list|<
+name|Object
+argument_list|>
+operator|)
 name|right
+operator|)
 operator|.
 name|compareTo
 argument_list|(
@@ -158,6 +177,9 @@ parameter_list|<
 name|S
 extends|extends
 name|Comparable
+argument_list|<
+name|?
+argument_list|>
 parameter_list|>
 name|Ordering
 argument_list|<
@@ -182,6 +204,9 @@ parameter_list|<
 name|E
 extends|extends
 name|Comparable
+argument_list|<
+name|?
+argument_list|>
 parameter_list|>
 name|E
 name|min
@@ -214,6 +239,9 @@ parameter_list|<
 name|E
 extends|extends
 name|Comparable
+argument_list|<
+name|?
+argument_list|>
 parameter_list|>
 name|E
 name|min
@@ -257,6 +285,9 @@ parameter_list|<
 name|E
 extends|extends
 name|Comparable
+argument_list|<
+name|?
+argument_list|>
 parameter_list|>
 name|E
 name|min
@@ -287,6 +318,9 @@ parameter_list|<
 name|E
 extends|extends
 name|Comparable
+argument_list|<
+name|?
+argument_list|>
 parameter_list|>
 name|E
 name|min
@@ -317,6 +351,9 @@ parameter_list|<
 name|E
 extends|extends
 name|Comparable
+argument_list|<
+name|?
+argument_list|>
 parameter_list|>
 name|E
 name|max
@@ -349,6 +386,9 @@ parameter_list|<
 name|E
 extends|extends
 name|Comparable
+argument_list|<
+name|?
+argument_list|>
 parameter_list|>
 name|E
 name|max
@@ -392,6 +432,9 @@ parameter_list|<
 name|E
 extends|extends
 name|Comparable
+argument_list|<
+name|?
+argument_list|>
 parameter_list|>
 name|E
 name|max
@@ -422,6 +465,9 @@ parameter_list|<
 name|E
 extends|extends
 name|Comparable
+argument_list|<
+name|?
+argument_list|>
 parameter_list|>
 name|E
 name|max

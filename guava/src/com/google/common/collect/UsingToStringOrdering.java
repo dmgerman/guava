@@ -52,6 +52,8 @@ name|serializable
 operator|=
 literal|true
 argument_list|)
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|UsingToStringOrdering
 specifier|final
 class|class

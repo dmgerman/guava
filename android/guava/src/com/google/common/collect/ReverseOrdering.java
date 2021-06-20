@@ -68,6 +68,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|checkerframework
@@ -76,9 +86,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -86,7 +96,7 @@ begin_comment
 comment|/** An ordering that uses the reverse of a given order. */
 end_comment
 
-begin_class
+begin_annotation
 annotation|@
 name|GwtCompatible
 argument_list|(
@@ -94,23 +104,34 @@ name|serializable
 operator|=
 literal|true
 argument_list|)
+end_annotation
+
+begin_annotation
+annotation|@
+name|ElementTypesAreNonnullByDefault
+end_annotation
+
+begin_expr_stmt
 DECL|class|ReverseOrdering
-specifier|final
-class|class
+name|final
+name|class
 name|ReverseOrdering
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|Ordering
 argument_list|<
 name|T
 argument_list|>
-implements|implements
+expr|implements
 name|Serializable
 block|{
 DECL|field|forwardOrder
-specifier|final
+name|final
 name|Ordering
 argument_list|<
 name|?
@@ -118,10 +139,10 @@ super|super
 name|T
 argument_list|>
 name|forwardOrder
-decl_stmt|;
+block|;
 DECL|method|ReverseOrdering (Ordering<? super T> forwardOrder)
 name|ReverseOrdering
-parameter_list|(
+argument_list|(
 name|Ordering
 argument_list|<
 name|?
@@ -129,7 +150,7 @@ super|super
 name|T
 argument_list|>
 name|forwardOrder
-parameter_list|)
+argument_list|)
 block|{
 name|this
 operator|.
@@ -139,21 +160,24 @@ name|checkNotNull
 argument_list|(
 name|forwardOrder
 argument_list|)
-expr_stmt|;
-block|}
-annotation|@
+block|;   }
+expr|@
 name|Override
-DECL|method|compare (T a, T b)
+DECL|method|compare (@arametricNullness T a, @ParametricNullness T b)
 specifier|public
 name|int
 name|compare
-parameter_list|(
+argument_list|(
+annotation|@
+name|ParametricNullness
 name|T
 name|a
-parameter_list|,
+argument_list|,
+annotation|@
+name|ParametricNullness
 name|T
 name|b
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|forwardOrder
@@ -166,27 +190,27 @@ name|a
 argument_list|)
 return|;
 block|}
-annotation|@
+expr|@
 name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
 comment|// how to explain?
-annotation|@
+expr|@
 name|Override
 DECL|method|reverse ()
 specifier|public
-parameter_list|<
+operator|<
 name|S
-extends|extends
+expr|extends
 name|T
-parameter_list|>
+operator|>
 name|Ordering
 argument_list|<
 name|S
 argument_list|>
 name|reverse
-parameter_list|()
+argument_list|()
 block|{
 return|return
 operator|(
@@ -198,10 +222,16 @@ operator|)
 name|forwardOrder
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|// Override the min/max methods to "hoist" delegation outside loops
+end_comment
+
+begin_function
 annotation|@
 name|Override
-DECL|method|min (E a, E b)
+DECL|method|min (@arametricNullness E a, @ParametricNullness E b)
 specifier|public
 parameter_list|<
 name|E
@@ -211,9 +241,13 @@ parameter_list|>
 name|E
 name|min
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|E
 name|a
 parameter_list|,
+annotation|@
+name|ParametricNullness
 name|E
 name|b
 parameter_list|)
@@ -229,9 +263,12 @@ name|b
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|min (E a, E b, E c, E... rest)
+DECL|method|min ( @arametricNullness E a, @ParametricNullness E b, @ParametricNullness E c, E... rest)
 specifier|public
 parameter_list|<
 name|E
@@ -241,12 +278,18 @@ parameter_list|>
 name|E
 name|min
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|E
 name|a
 parameter_list|,
+annotation|@
+name|ParametricNullness
 name|E
 name|b
 parameter_list|,
+annotation|@
+name|ParametricNullness
 name|E
 name|c
 parameter_list|,
@@ -270,6 +313,9 @@ name|rest
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|min (Iterator<E> iterator)
@@ -298,6 +344,9 @@ name|iterator
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|min (Iterable<E> iterable)
@@ -326,9 +375,12 @@ name|iterable
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|max (E a, E b)
+DECL|method|max (@arametricNullness E a, @ParametricNullness E b)
 specifier|public
 parameter_list|<
 name|E
@@ -338,9 +390,13 @@ parameter_list|>
 name|E
 name|max
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|E
 name|a
 parameter_list|,
+annotation|@
+name|ParametricNullness
 name|E
 name|b
 parameter_list|)
@@ -356,9 +412,12 @@ name|b
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|max (E a, E b, E c, E... rest)
+DECL|method|max ( @arametricNullness E a, @ParametricNullness E b, @ParametricNullness E c, E... rest)
 specifier|public
 parameter_list|<
 name|E
@@ -368,12 +427,18 @@ parameter_list|>
 name|E
 name|max
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|E
 name|a
 parameter_list|,
+annotation|@
+name|ParametricNullness
 name|E
 name|b
 parameter_list|,
+annotation|@
+name|ParametricNullness
 name|E
 name|c
 parameter_list|,
@@ -397,6 +462,9 @@ name|rest
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|max (Iterator<E> iterator)
@@ -425,6 +493,9 @@ name|iterator
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|max (Iterable<E> iterable)
@@ -453,6 +524,9 @@ name|iterable
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|hashCode ()
@@ -469,15 +543,18 @@ name|hashCode
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|equals (@ullableDecl Object object)
+DECL|method|equals (@heckForNull Object object)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|object
 parameter_list|)
@@ -531,6 +608,9 @@ return|return
 literal|false
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|toString ()
@@ -545,6 +625,9 @@ operator|+
 literal|".reverse()"
 return|;
 block|}
+end_function
+
+begin_decl_stmt
 DECL|field|serialVersionUID
 specifier|private
 specifier|static
@@ -554,8 +637,8 @@ name|serialVersionUID
 init|=
 literal|0
 decl_stmt|;
-block|}
-end_class
+end_decl_stmt
 
+unit|}
 end_unit
 

@@ -42,6 +42,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|checkerframework
@@ -50,9 +60,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -60,7 +70,7 @@ begin_comment
 comment|/** An ordering that treats {@code null} as greater than all other values. */
 end_comment
 
-begin_class
+begin_annotation
 annotation|@
 name|GwtCompatible
 argument_list|(
@@ -68,23 +78,36 @@ name|serializable
 operator|=
 literal|true
 argument_list|)
+end_annotation
+
+begin_annotation
+annotation|@
+name|ElementTypesAreNonnullByDefault
+end_annotation
+
+begin_expr_stmt
 DECL|class|NullsLastOrdering
-specifier|final
-class|class
+name|final
+name|class
 name|NullsLastOrdering
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|Ordering
 argument_list|<
+annotation|@
+name|Nullable
 name|T
 argument_list|>
-implements|implements
+expr|implements
 name|Serializable
 block|{
 DECL|field|ordering
-specifier|final
+name|final
 name|Ordering
 argument_list|<
 name|?
@@ -92,10 +115,10 @@ super|super
 name|T
 argument_list|>
 name|ordering
-decl_stmt|;
+block|;
 DECL|method|NullsLastOrdering (Ordering<? super T> ordering)
 name|NullsLastOrdering
-parameter_list|(
+argument_list|(
 name|Ordering
 argument_list|<
 name|?
@@ -103,32 +126,31 @@ super|super
 name|T
 argument_list|>
 name|ordering
-parameter_list|)
+argument_list|)
 block|{
 name|this
 operator|.
 name|ordering
 operator|=
 name|ordering
-expr_stmt|;
-block|}
-annotation|@
+block|;   }
+expr|@
 name|Override
-DECL|method|compare (@ullableDecl T left, @NullableDecl T right)
+DECL|method|compare (@heckForNull T left, @CheckForNull T right)
 specifier|public
 name|int
 name|compare
-parameter_list|(
+argument_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|T
 name|left
-parameter_list|,
+argument_list|,
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|T
 name|right
-parameter_list|)
+argument_list|)
 block|{
 if|if
 condition|(
@@ -152,6 +174,9 @@ return|return
 name|LEFT_IS_GREATER
 return|;
 block|}
+end_expr_stmt
+
+begin_if
 if|if
 condition|(
 name|right
@@ -163,6 +188,9 @@ return|return
 name|RIGHT_IS_GREATER
 return|;
 block|}
+end_if
+
+begin_return
 return|return
 name|ordering
 operator|.
@@ -173,22 +201,31 @@ argument_list|,
 name|right
 argument_list|)
 return|;
-block|}
-annotation|@
+end_return
+
+begin_expr_stmt
+unit|}    @
 name|Override
+expr|@
+name|SuppressWarnings
+argument_list|(
+literal|"nullness"
+argument_list|)
+comment|// should be safe, but not sure if we can avoid the warning
 DECL|method|reverse ()
 specifier|public
-parameter_list|<
+operator|<
 name|S
-extends|extends
+expr|extends @
+name|Nullable
 name|T
-parameter_list|>
+operator|>
 name|Ordering
 argument_list|<
 name|S
 argument_list|>
 name|reverse
-parameter_list|()
+argument_list|()
 block|{
 comment|// ordering.reverse() might be optimized, so let it do its thing
 return|return
@@ -201,6 +238,9 @@ name|nullsFirst
 argument_list|()
 return|;
 block|}
+end_expr_stmt
+
+begin_function
 annotation|@
 name|Override
 DECL|method|nullsFirst ()
@@ -212,6 +252,8 @@ name|T
 parameter_list|>
 name|Ordering
 argument_list|<
+annotation|@
+name|Nullable
 name|S
 argument_list|>
 name|nullsFirst
@@ -220,10 +262,16 @@ block|{
 return|return
 name|ordering
 operator|.
+expr|<
+name|S
+operator|>
 name|nullsFirst
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -241,6 +289,8 @@ name|T
 parameter_list|>
 name|Ordering
 argument_list|<
+annotation|@
+name|Nullable
 name|S
 argument_list|>
 name|nullsLast
@@ -250,21 +300,26 @@ return|return
 operator|(
 name|Ordering
 argument_list|<
+annotation|@
+name|Nullable
 name|S
 argument_list|>
 operator|)
 name|this
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|equals (@ullableDecl Object object)
+DECL|method|equals (@heckForNull Object object)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|object
 parameter_list|)
@@ -318,6 +373,9 @@ return|return
 literal|false
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|hashCode ()
@@ -337,6 +395,9 @@ literal|921210296
 return|;
 comment|// meaningless
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|toString ()
@@ -351,6 +412,9 @@ operator|+
 literal|".nullsLast()"
 return|;
 block|}
+end_function
+
+begin_decl_stmt
 DECL|field|serialVersionUID
 specifier|private
 specifier|static
@@ -360,8 +424,8 @@ name|serialVersionUID
 init|=
 literal|0
 decl_stmt|;
-block|}
-end_class
+end_decl_stmt
 
+unit|}
 end_unit
 

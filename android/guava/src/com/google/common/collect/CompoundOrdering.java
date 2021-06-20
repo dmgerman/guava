@@ -60,11 +60,37 @@ name|Comparator
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|checkerframework
+operator|.
+name|checker
+operator|.
+name|nullness
+operator|.
+name|qual
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/** An ordering that tries several comparators in order. */
 end_comment
 
-begin_class
+begin_annotation
 annotation|@
 name|GwtCompatible
 argument_list|(
@@ -72,23 +98,34 @@ name|serializable
 operator|=
 literal|true
 argument_list|)
+end_annotation
+
+begin_annotation
+annotation|@
+name|ElementTypesAreNonnullByDefault
+end_annotation
+
+begin_expr_stmt
 DECL|class|CompoundOrdering
-specifier|final
-class|class
+name|final
+name|class
 name|CompoundOrdering
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|Ordering
 argument_list|<
 name|T
 argument_list|>
-implements|implements
+expr|implements
 name|Serializable
 block|{
 DECL|field|comparators
-specifier|final
+name|final
 name|Comparator
 argument_list|<
 name|?
@@ -97,10 +134,10 @@ name|T
 argument_list|>
 index|[]
 name|comparators
-decl_stmt|;
+block|;
 DECL|method|CompoundOrdering (Comparator<? super T> primary, Comparator<? super T> secondary)
 name|CompoundOrdering
-parameter_list|(
+argument_list|(
 name|Comparator
 argument_list|<
 name|?
@@ -108,7 +145,7 @@ super|super
 name|T
 argument_list|>
 name|primary
-parameter_list|,
+operator|,
 name|Comparator
 argument_list|<
 name|?
@@ -116,7 +153,7 @@ super|super
 name|T
 argument_list|>
 name|secondary
-parameter_list|)
+argument_list|)
 block|{
 name|this
 operator|.
@@ -139,11 +176,10 @@ name|primary
 block|,
 name|secondary
 block|}
-expr_stmt|;
-block|}
+block|;   }
 DECL|method|CompoundOrdering (Iterable<? extends Comparator<? super T>> comparators)
 name|CompoundOrdering
-parameter_list|(
+argument_list|(
 name|Iterable
 argument_list|<
 name|?
@@ -156,7 +192,7 @@ name|T
 argument_list|>
 argument_list|>
 name|comparators
-parameter_list|)
+argument_list|)
 block|{
 name|this
 operator|.
@@ -174,21 +210,24 @@ index|[
 literal|0
 index|]
 argument_list|)
-expr_stmt|;
-block|}
-annotation|@
+block|;   }
+expr|@
 name|Override
-DECL|method|compare (T left, T right)
+DECL|method|compare (@arametricNullness T left, @ParametricNullness T right)
 specifier|public
 name|int
 name|compare
-parameter_list|(
+argument_list|(
+annotation|@
+name|ParametricNullness
 name|T
 name|left
-parameter_list|,
+argument_list|,
+annotation|@
+name|ParametricNullness
 name|T
 name|right
-parameter_list|)
+argument_list|)
 block|{
 for|for
 control|(
@@ -234,17 +273,24 @@ name|result
 return|;
 block|}
 block|}
+end_expr_stmt
+
+begin_return
 return|return
 literal|0
 return|;
-block|}
-annotation|@
+end_return
+
+begin_function
+unit|}    @
 name|Override
-DECL|method|equals (Object object)
+DECL|method|equals (@heckForNull Object object)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|object
 parameter_list|)
@@ -300,6 +346,9 @@ return|return
 literal|false
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|hashCode ()
@@ -317,6 +366,9 @@ name|comparators
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|toString ()
@@ -338,6 +390,9 @@ operator|+
 literal|")"
 return|;
 block|}
+end_function
+
+begin_decl_stmt
 DECL|field|serialVersionUID
 specifier|private
 specifier|static
@@ -347,8 +402,8 @@ name|serialVersionUID
 init|=
 literal|0
 decl_stmt|;
-block|}
-end_class
+end_decl_stmt
 
+unit|}
 end_unit
 

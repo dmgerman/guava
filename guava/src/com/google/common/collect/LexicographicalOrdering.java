@@ -62,6 +62,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|checkerframework
@@ -80,7 +90,7 @@ begin_comment
 comment|/** An ordering which sorts iterables by comparing corresponding elements pairwise. */
 end_comment
 
-begin_class
+begin_annotation
 annotation|@
 name|GwtCompatible
 argument_list|(
@@ -88,14 +98,25 @@ name|serializable
 operator|=
 literal|true
 argument_list|)
+end_annotation
+
+begin_annotation
+annotation|@
+name|ElementTypesAreNonnullByDefault
+end_annotation
+
+begin_expr_stmt
 DECL|class|LexicographicalOrdering
-specifier|final
-class|class
+name|final
+name|class
 name|LexicographicalOrdering
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|Ordering
 argument_list|<
 name|Iterable
@@ -103,11 +124,11 @@ argument_list|<
 name|T
 argument_list|>
 argument_list|>
-implements|implements
+expr|implements
 name|Serializable
 block|{
 DECL|field|elementOrder
-specifier|final
+name|final
 name|Comparator
 argument_list|<
 name|?
@@ -115,10 +136,10 @@ super|super
 name|T
 argument_list|>
 name|elementOrder
-decl_stmt|;
+block|;
 DECL|method|LexicographicalOrdering (Comparator<? super T> elementOrder)
 name|LexicographicalOrdering
-parameter_list|(
+argument_list|(
 name|Comparator
 argument_list|<
 name|?
@@ -126,57 +147,56 @@ super|super
 name|T
 argument_list|>
 name|elementOrder
-parameter_list|)
+argument_list|)
 block|{
 name|this
 operator|.
 name|elementOrder
 operator|=
 name|elementOrder
-expr_stmt|;
-block|}
-annotation|@
+block|;   }
+expr|@
 name|Override
 DECL|method|compare (Iterable<T> leftIterable, Iterable<T> rightIterable)
 specifier|public
 name|int
 name|compare
-parameter_list|(
+argument_list|(
 name|Iterable
 argument_list|<
 name|T
 argument_list|>
 name|leftIterable
-parameter_list|,
+argument_list|,
 name|Iterable
 argument_list|<
 name|T
 argument_list|>
 name|rightIterable
-parameter_list|)
+argument_list|)
 block|{
 name|Iterator
 argument_list|<
 name|T
 argument_list|>
 name|left
-init|=
+operator|=
 name|leftIterable
 operator|.
 name|iterator
 argument_list|()
-decl_stmt|;
+block|;
 name|Iterator
 argument_list|<
 name|T
 argument_list|>
 name|right
-init|=
+operator|=
 name|rightIterable
 operator|.
 name|iterator
 argument_list|()
-decl_stmt|;
+block|;
 while|while
 condition|(
 name|left
@@ -201,7 +221,7 @@ comment|// because it's longer
 block|}
 name|int
 name|result
-init|=
+operator|=
 name|elementOrder
 operator|.
 name|compare
@@ -216,7 +236,7 @@ operator|.
 name|next
 argument_list|()
 argument_list|)
-decl_stmt|;
+block|;
 if|if
 condition|(
 name|result
@@ -228,33 +248,40 @@ return|return
 name|result
 return|;
 block|}
-block|}
-if|if
-condition|(
+end_expr_stmt
+
+begin_expr_stmt
+unit|}     if
+operator|(
 name|right
 operator|.
 name|hasNext
 argument_list|()
-condition|)
+operator|)
 block|{
 return|return
 name|RIGHT_IS_GREATER
 return|;
 comment|// because it's longer
 block|}
+end_expr_stmt
+
+begin_return
 return|return
 literal|0
 return|;
-block|}
-annotation|@
+end_return
+
+begin_function
+unit|}    @
 name|Override
-DECL|method|equals (@ullable Object object)
+DECL|method|equals (@heckForNull Object object)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|object
 parameter_list|)
@@ -308,6 +335,9 @@ return|return
 literal|false
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|hashCode ()
@@ -326,6 +356,9 @@ literal|2075626741
 return|;
 comment|// meaningless
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|toString ()
@@ -340,6 +373,9 @@ operator|+
 literal|".lexicographical()"
 return|;
 block|}
+end_function
+
+begin_decl_stmt
 DECL|field|serialVersionUID
 specifier|private
 specifier|static
@@ -349,8 +385,8 @@ name|serialVersionUID
 init|=
 literal|0
 decl_stmt|;
-block|}
-end_class
+end_decl_stmt
 
+unit|}
 end_unit
 
