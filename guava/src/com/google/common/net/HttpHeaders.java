@@ -1284,6 +1284,16 @@ name|X_MOZ
 init|=
 literal|"X-Moz"
 decl_stmt|;
+comment|/**    * The HTTP<a    * href="https://wicg.github.io/user-preference-media-features-headers/#sec-ch-prefers-color-scheme">{@code    * Sec-CH-Prefers-Color-Scheme}</a> header field name.    *    *<p>This header is experimental.    *    * @since NEXT    */
+DECL|field|SEC_CH_PREFERS_COLOR_SCHEME
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|SEC_CH_PREFERS_COLOR_SCHEME
+init|=
+literal|"Sec-CH-Prefers-Color-Scheme"
+decl_stmt|;
 comment|/**    * The HTTP<a href="https://wicg.github.io/ua-client-hints/#sec-ch-ua">{@code Sec-CH-UA}</a>    * header field name.    *    * @since 30.0    */
 DECL|field|SEC_CH_UA
 specifier|public
