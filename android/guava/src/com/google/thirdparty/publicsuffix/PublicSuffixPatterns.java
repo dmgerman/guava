@@ -63,7 +63,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<b>Do not use this class directly. For access to public-suffix information, use {@link  * com.google.common.net.InternetDomainName}.</b>  *  *<p>A generated static class containing public members which provide domain name patterns used in  * determining whether a given domain name is an effective top-level domain (public suffix).  *  *<p>Because this class is used in GWT, the data members are stored in a space-efficient manner.  * {@see TrieParser}.  *  * @since 16.0  */
+comment|/**  *<b>Do not use this class directly. For access to public-suffix information, use {@link  * com.google.common.net.InternetDomainName}.</b>  *  *<p>A generated static class containing public members which provide domain name patterns used in  * determining whether a given domain name is an effective top-level domain (public suffix).  *  *<p>Because this class is used in GWT, the data members are stored in a space-efficient manner.  * See {@link TrieParser}.  *  * @since 16.0  */
 end_comment
 
 begin_class
