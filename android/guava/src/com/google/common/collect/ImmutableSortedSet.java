@@ -238,6 +238,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|checkerframework
@@ -246,9 +256,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -278,6 +288,8 @@ argument_list|(
 literal|"serial"
 argument_list|)
 comment|// we're overriding default serialization
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|ImmutableSortedSet
 specifier|public
 specifier|abstract
@@ -1875,13 +1887,15 @@ name|result
 return|;
 block|}
 block|}
-DECL|method|unsafeCompare (Object a, Object b)
+DECL|method|unsafeCompare (Object a, @CheckForNull Object b)
 name|int
 name|unsafeCompare
 parameter_list|(
 name|Object
 name|a
 parameter_list|,
+annotation|@
+name|CheckForNull
 name|Object
 name|b
 parameter_list|)
@@ -1897,7 +1911,7 @@ name|b
 argument_list|)
 return|;
 block|}
-DECL|method|unsafeCompare (Comparator<?> comparator, Object a, Object b)
+DECL|method|unsafeCompare (Comparator<?> comparator, Object a, @CheckForNull Object b)
 specifier|static
 name|int
 name|unsafeCompare
@@ -1911,20 +1925,28 @@ parameter_list|,
 name|Object
 name|a
 parameter_list|,
+annotation|@
+name|CheckForNull
 name|Object
 name|b
 parameter_list|)
 block|{
 comment|// Pretend the comparator can compare anything. If it turns out it can't
-comment|// compare a and b, we should get a CCE on the subsequent line. Only methods
-comment|// that are spec'd to throw CCE should call this.
+comment|// compare a and b, we should get a CCE or NPE on the subsequent line. Only methods
+comment|// that are spec'd to throw CCE and NPE should call this.
 annotation|@
 name|SuppressWarnings
 argument_list|(
+block|{
 literal|"unchecked"
+block|,
+literal|"nullness"
+block|}
 argument_list|)
 name|Comparator
 argument_list|<
+annotation|@
+name|Nullable
 name|Object
 argument_list|>
 name|unsafeComparator
@@ -1932,6 +1954,8 @@ init|=
 operator|(
 name|Comparator
 argument_list|<
+annotation|@
+name|Nullable
 name|Object
 argument_list|>
 operator|)
@@ -2270,6 +2294,8 @@ name|GwtIncompatible
 comment|// NavigableSet
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|lower (E e)
 specifier|public
 name|E
@@ -2301,6 +2327,8 @@ block|}
 comment|/** @since 12.0 */
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|floor (E e)
 specifier|public
 name|E
@@ -2332,6 +2360,8 @@ block|}
 comment|/** @since 12.0 */
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|ceiling (E e)
 specifier|public
 name|E
@@ -2363,6 +2393,8 @@ name|GwtIncompatible
 comment|// NavigableSet
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|higher (E e)
 specifier|public
 name|E
@@ -2435,6 +2467,8 @@ name|DoNotCall
 argument_list|(
 literal|"Always throws UnsupportedOperationException"
 argument_list|)
+annotation|@
+name|CheckForNull
 DECL|method|pollFirst ()
 specifier|public
 specifier|final
@@ -2463,6 +2497,8 @@ name|DoNotCall
 argument_list|(
 literal|"Always throws UnsupportedOperationException"
 argument_list|)
+annotation|@
+name|CheckForNull
 DECL|method|pollLast ()
 specifier|public
 specifier|final
@@ -2481,6 +2517,8 @@ name|GwtIncompatible
 comment|// NavigableSet
 annotation|@
 name|LazyInit
+annotation|@
+name|CheckForNull
 DECL|field|descendingSet
 specifier|transient
 name|ImmutableSortedSet
@@ -2570,13 +2608,13 @@ name|descendingIterator
 parameter_list|()
 function_decl|;
 comment|/** Returns the position of an element within the set, or -1 if not present. */
-DECL|method|indexOf (@ullableDecl Object target)
+DECL|method|indexOf (@heckForNull Object target)
 specifier|abstract
 name|int
 name|indexOf
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|target
 parameter_list|)

@@ -216,22 +216,6 @@ name|CheckForNull
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|checkerframework
-operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|compatqual
-operator|.
-name|NullableDecl
-import|;
-end_import
-
 begin_comment
 comment|/**  * A {@link NavigableMap} whose contents will never change, with many other important properties  * detailed at {@link ImmutableCollection}.  *  *<p><b>Warning:</b> as with any sorted collection, you are strongly advised not to use a {@link  * Comparator} or {@link Comparable} type whose comparison behavior is<i>inconsistent with  * equals</i>. That is, {@code a.compareTo(b)} or {@code comparator.compare(a, b)} should equal zero  *<i>if and only if</i> {@code a.equals(b)}. If this advice is not followed, the resulting map will  * not correctly obey its specification.  *  *<p>See the Guava User Guide article on<a href=  * "https://github.com/google/guava/wiki/ImmutableCollectionsExplained"> immutable collections</a>.  *  * @author Jared Levy  * @author Louis Wasserman  * @since 2.0 (implements {@code NavigableMap} since 12.0)  */
 end_comment
@@ -248,6 +232,8 @@ name|emulated
 operator|=
 literal|true
 argument_list|)
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|ImmutableSortedMap
 specifier|public
 specifier|final
@@ -2807,6 +2793,8 @@ argument_list|>
 name|valueList
 decl_stmt|;
 DECL|field|descendingMap
+annotation|@
+name|CheckForNull
 specifier|private
 specifier|transient
 name|ImmutableSortedMap
@@ -2843,7 +2831,7 @@ literal|null
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|ImmutableSortedMap ( RegularImmutableSortedSet<K> keySet, ImmutableList<V> valueList, ImmutableSortedMap<K, V> descendingMap)
+DECL|method|ImmutableSortedMap ( RegularImmutableSortedSet<K> keySet, ImmutableList<V> valueList, @CheckForNull ImmutableSortedMap<K, V> descendingMap)
 name|ImmutableSortedMap
 parameter_list|(
 name|RegularImmutableSortedSet
@@ -2858,6 +2846,8 @@ name|V
 argument_list|>
 name|valueList
 parameter_list|,
+annotation|@
+name|CheckForNull
 name|ImmutableSortedMap
 argument_list|<
 name|K
@@ -2905,13 +2895,13 @@ annotation|@
 name|Override
 annotation|@
 name|CheckForNull
-DECL|method|get (@ullableDecl Object key)
+DECL|method|get (@heckForNull Object key)
 specifier|public
 name|V
 name|get
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
@@ -3901,6 +3891,8 @@ name|DoNotCall
 argument_list|(
 literal|"Always throws UnsupportedOperationException"
 argument_list|)
+annotation|@
+name|CheckForNull
 DECL|method|pollFirstEntry ()
 specifier|public
 specifier|final
@@ -3931,6 +3923,8 @@ name|DoNotCall
 argument_list|(
 literal|"Always throws UnsupportedOperationException"
 argument_list|)
+annotation|@
+name|CheckForNull
 DECL|method|pollLastEntry ()
 specifier|public
 specifier|final

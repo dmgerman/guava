@@ -50,20 +50,47 @@ name|Iterator
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|checkerframework
+operator|.
+name|checker
+operator|.
+name|nullness
+operator|.
+name|qual
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/**  * An {@code Iterable} whose elements are sorted relative to a {@code Comparator}, typically  * provided at creation time.  *  * @author Louis Wasserman  */
 end_comment
 
-begin_interface
+begin_annotation
 annotation|@
 name|GwtCompatible
+end_annotation
+
+begin_annotation
+annotation|@
+name|ElementTypesAreNonnullByDefault
+end_annotation
+
+begin_expr_stmt
 DECL|interface|SortedIterable
-interface|interface
+unit|interface
 name|SortedIterable
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|Iterable
 argument_list|<
 name|T
@@ -78,10 +105,10 @@ super|super
 name|T
 argument_list|>
 name|comparator
-parameter_list|()
-function_decl|;
+argument_list|()
+block|;
 comment|/**    * Returns an iterator over elements of type {@code T}. The elements are returned in nondecreasing    * order according to the associated {@link #comparator}.    */
-annotation|@
+block|@
 name|Override
 DECL|method|iterator ()
 name|Iterator
@@ -89,10 +116,9 @@ argument_list|<
 name|T
 argument_list|>
 name|iterator
-parameter_list|()
-function_decl|;
-block|}
-end_interface
+argument_list|()
+block|; }
+end_expr_stmt
 
 end_unit
 

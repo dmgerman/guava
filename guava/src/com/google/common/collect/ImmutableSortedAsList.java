@@ -66,17 +66,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|javax
 operator|.
-name|checkerframework
+name|annotation
 operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|qual
-operator|.
-name|Nullable
+name|CheckForNull
 import|;
 end_import
 
@@ -97,6 +91,8 @@ name|SuppressWarnings
 argument_list|(
 literal|"serial"
 argument_list|)
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|ImmutableSortedAsList
 specifier|final
 class|class
@@ -190,13 +186,13 @@ comment|// ImmutableSortedSet.indexOf
 comment|// TODO(cpovirk): consider manual binary search under GWT to preserve O(log N) lookup
 annotation|@
 name|Override
-DECL|method|indexOf (@ullable Object target)
+DECL|method|indexOf (@heckForNull Object target)
 specifier|public
 name|int
 name|indexOf
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|target
 parameter_list|)
@@ -244,13 +240,13 @@ name|GwtIncompatible
 comment|// ImmutableSortedSet.indexOf
 annotation|@
 name|Override
-DECL|method|lastIndexOf (@ullable Object target)
+DECL|method|lastIndexOf (@heckForNull Object target)
 specifier|public
 name|int
 name|lastIndexOf
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|target
 parameter_list|)
@@ -264,11 +260,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|contains (Object target)
+DECL|method|contains (@heckForNull Object target)
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|target
 parameter_list|)

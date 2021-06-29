@@ -330,6 +330,8 @@ name|emulated
 operator|=
 literal|true
 argument_list|)
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|ImmutableSortedMap
 specifier|public
 specifier|final
@@ -356,16 +358,19 @@ name|V
 argument_list|>
 block|{
 comment|/**    * Returns a {@link Collector} that accumulates elements into an {@code ImmutableSortedMap} whose    * keys and values are the result of applying the provided mapping functions to the input    * elements. The generated map is sorted by the specified comparator.    *    *<p>If the mapped keys contain duplicates (according to the specified comparator), an {@code    * IllegalArgumentException} is thrown when the collection operation is performed. (This differs    * from the {@code Collector} returned by {@link Collectors#toMap(Function, Function)}, which    * throws an {@code IllegalStateException}.)    *    * @since 21.0    */
-DECL|method|toImmutableSortedMap ( Comparator<? super K> comparator, Function<? super T, ? extends K> keyFunction, Function<? super T, ? extends V> valueFunction)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|K
-parameter_list|,
+operator|,
 name|V
-parameter_list|>
+operator|>
+DECL|method|toImmutableSortedMap ( Comparator<? super K> comparator, Function<? super T, ? extends K> keyFunction, Function<? super T, ? extends V> valueFunction)
 name|Collector
 argument_list|<
 name|T
@@ -380,7 +385,7 @@ name|V
 argument_list|>
 argument_list|>
 name|toImmutableSortedMap
-parameter_list|(
+argument_list|(
 name|Comparator
 argument_list|<
 name|?
@@ -388,7 +393,7 @@ super|super
 name|K
 argument_list|>
 name|comparator
-parameter_list|,
+operator|,
 name|Function
 argument_list|<
 name|?
@@ -400,7 +405,7 @@ extends|extends
 name|K
 argument_list|>
 name|keyFunction
-parameter_list|,
+operator|,
 name|Function
 argument_list|<
 name|?
@@ -412,7 +417,7 @@ extends|extends
 name|V
 argument_list|>
 name|valueFunction
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|CollectCollectors
@@ -428,16 +433,19 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns a {@link Collector} that accumulates elements into an {@code ImmutableSortedMap} whose    * keys and values are the result of applying the provided mapping functions to the input    * elements.    *    *<p>If the mapped keys contain duplicates (according to the comparator), the the values are    * merged using the specified merging function. Entries will appear in the encounter order of the    * first occurrence of the key.    *    * @since 21.0    */
-DECL|method|toImmutableSortedMap ( Comparator<? super K> comparator, Function<? super T, ? extends K> keyFunction, Function<? super T, ? extends V> valueFunction, BinaryOperator<V> mergeFunction)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|K
-parameter_list|,
+operator|,
 name|V
-parameter_list|>
+operator|>
+DECL|method|toImmutableSortedMap ( Comparator<? super K> comparator, Function<? super T, ? extends K> keyFunction, Function<? super T, ? extends V> valueFunction, BinaryOperator<V> mergeFunction)
 name|Collector
 argument_list|<
 name|T
@@ -452,7 +460,7 @@ name|V
 argument_list|>
 argument_list|>
 name|toImmutableSortedMap
-parameter_list|(
+argument_list|(
 name|Comparator
 argument_list|<
 name|?
@@ -460,7 +468,7 @@ super|super
 name|K
 argument_list|>
 name|comparator
-parameter_list|,
+operator|,
 name|Function
 argument_list|<
 name|?
@@ -472,7 +480,7 @@ extends|extends
 name|K
 argument_list|>
 name|keyFunction
-parameter_list|,
+operator|,
 name|Function
 argument_list|<
 name|?
@@ -484,13 +492,13 @@ extends|extends
 name|V
 argument_list|>
 name|valueFunction
-parameter_list|,
+operator|,
 name|BinaryOperator
 argument_list|<
 name|V
 argument_list|>
 name|mergeFunction
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|CollectCollectors
@@ -2668,6 +2676,8 @@ argument_list|>
 name|valueList
 decl_stmt|;
 DECL|field|descendingMap
+annotation|@
+name|CheckForNull
 specifier|private
 specifier|transient
 name|ImmutableSortedMap
@@ -2704,7 +2714,7 @@ literal|null
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|ImmutableSortedMap ( RegularImmutableSortedSet<K> keySet, ImmutableList<V> valueList, ImmutableSortedMap<K, V> descendingMap)
+DECL|method|ImmutableSortedMap ( RegularImmutableSortedSet<K> keySet, ImmutableList<V> valueList, @CheckForNull ImmutableSortedMap<K, V> descendingMap)
 name|ImmutableSortedMap
 parameter_list|(
 name|RegularImmutableSortedSet
@@ -2719,6 +2729,8 @@ name|V
 argument_list|>
 name|valueList
 parameter_list|,
+annotation|@
+name|CheckForNull
 name|ImmutableSortedMap
 argument_list|<
 name|K
@@ -2839,13 +2851,13 @@ annotation|@
 name|Override
 annotation|@
 name|CheckForNull
-DECL|method|get (@ullable Object key)
+DECL|method|get (@heckForNull Object key)
 specifier|public
 name|V
 name|get
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
@@ -3914,6 +3926,8 @@ name|DoNotCall
 argument_list|(
 literal|"Always throws UnsupportedOperationException"
 argument_list|)
+annotation|@
+name|CheckForNull
 DECL|method|pollFirstEntry ()
 specifier|public
 specifier|final
@@ -3944,6 +3958,8 @@ name|DoNotCall
 argument_list|(
 literal|"Always throws UnsupportedOperationException"
 argument_list|)
+annotation|@
+name|CheckForNull
 DECL|method|pollLastEntry ()
 specifier|public
 specifier|final

@@ -7459,6 +7459,8 @@ block|{
 literal|"deprecation"
 block|,
 literal|"static-access"
+block|,
+literal|"DoNotCall"
 block|}
 argument_list|)
 DECL|method|testBuilderMethod ()

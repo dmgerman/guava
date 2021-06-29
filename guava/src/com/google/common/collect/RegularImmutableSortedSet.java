@@ -144,17 +144,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|javax
 operator|.
-name|checkerframework
+name|annotation
 operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|qual
-operator|.
-name|Nullable
+name|CheckForNull
 import|;
 end_import
 
@@ -183,6 +177,8 @@ block|,
 literal|"rawtypes"
 block|}
 argument_list|)
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|RegularImmutableSortedSet
 specifier|final
 class|class
@@ -265,6 +261,8 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|internalArray ()
 name|Object
 index|[]
@@ -408,13 +406,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|contains (@ullable Object o)
+DECL|method|contains (@heckForNull Object o)
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|o
 parameter_list|)
@@ -736,13 +734,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|equals (@ullable Object object)
+DECL|method|equals (@heckForNull Object object)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|object
 parameter_list|)
@@ -987,6 +985,8 @@ return|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|lower (E element)
 specifier|public
 name|E
@@ -1028,6 +1028,8 @@ return|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|floor (E element)
 specifier|public
 name|E
@@ -1069,6 +1071,8 @@ return|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|ceiling (E element)
 specifier|public
 name|E
@@ -1108,6 +1112,8 @@ return|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|higher (E element)
 specifier|public
 name|E
@@ -1448,12 +1454,12 @@ block|}
 block|}
 annotation|@
 name|Override
-DECL|method|indexOf (@ullable Object target)
+DECL|method|indexOf (@heckForNull Object target)
 name|int
 name|indexOf
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|target
 parameter_list|)

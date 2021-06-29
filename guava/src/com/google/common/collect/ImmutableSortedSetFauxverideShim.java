@@ -32,6 +32,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|DoNotCall
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -49,6 +63,8 @@ end_comment
 begin_class
 annotation|@
 name|GwtIncompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|ImmutableSortedSetFauxverideShim
 specifier|abstract
 class|class
@@ -63,6 +79,11 @@ name|E
 argument_list|>
 block|{
 comment|/**    * Not supported. Use {@link ImmutableSortedSet#toImmutableSortedSet} instead. This method exists    * only to hide {@link ImmutableSet#toImmutableSet} from consumers of {@code ImmutableSortedSet}.    *    * @throws UnsupportedOperationException always    * @deprecated Use {@link ImmutableSortedSet#toImmutableSortedSet}.    * @since 21.0    */
+annotation|@
+name|DoNotCall
+argument_list|(
+literal|"Use toImmutableSortedSet"
+argument_list|)
 annotation|@
 name|Deprecated
 DECL|method|toImmutableSet ()
@@ -93,6 +114,11 @@ throw|;
 block|}
 comment|/**    * Not supported. Use {@link ImmutableSortedSet#naturalOrder}, which offers better type-safety,    * instead. This method exists only to hide {@link ImmutableSet#builder} from consumers of {@code    * ImmutableSortedSet}.    *    * @throws UnsupportedOperationException always    * @deprecated Use {@link ImmutableSortedSet#naturalOrder}, which offers better type-safety.    */
 annotation|@
+name|DoNotCall
+argument_list|(
+literal|"Use naturalOrder"
+argument_list|)
+annotation|@
 name|Deprecated
 DECL|method|builder ()
 specifier|public
@@ -116,6 +142,11 @@ argument_list|()
 throw|;
 block|}
 comment|/**    * Not supported. This method exists only to hide {@link ImmutableSet#builderWithExpectedSize}    * from consumers of {@code ImmutableSortedSet}.    *    * @throws UnsupportedOperationException always    * @deprecated Not supported by ImmutableSortedSet.    */
+annotation|@
+name|DoNotCall
+argument_list|(
+literal|"Use naturalOrder (which does not accept an expected size)"
+argument_list|)
 annotation|@
 name|Deprecated
 DECL|method|builderWithExpectedSize (int expectedSize)
@@ -144,6 +175,11 @@ throw|;
 block|}
 comment|/**    * Not supported.<b>You are attempting to create a set that may contain a non-{@code Comparable}    * element.</b> Proper calls will resolve to the version in {@code ImmutableSortedSet}, not this    * dummy version.    *    * @throws UnsupportedOperationException always    * @deprecated<b>Pass a parameter of type {@code Comparable} to use {@link    *     ImmutableSortedSet#of(Comparable)}.</b>    */
 annotation|@
+name|DoNotCall
+argument_list|(
+literal|"Pass a parameter of type Comparable"
+argument_list|)
+annotation|@
 name|Deprecated
 DECL|method|of (E element)
 specifier|public
@@ -168,6 +204,11 @@ argument_list|()
 throw|;
 block|}
 comment|/**    * Not supported.<b>You are attempting to create a set that may contain a non-{@code Comparable}    * element.</b> Proper calls will resolve to the version in {@code ImmutableSortedSet}, not this    * dummy version.    *    * @throws UnsupportedOperationException always    * @deprecated<b>Pass the parameters of type {@code Comparable} to use {@link    *     ImmutableSortedSet#of(Comparable, Comparable)}.</b>    */
+annotation|@
+name|DoNotCall
+argument_list|(
+literal|"Pass parameters of type Comparable"
+argument_list|)
 annotation|@
 name|Deprecated
 DECL|method|of (E e1, E e2)
@@ -196,6 +237,11 @@ argument_list|()
 throw|;
 block|}
 comment|/**    * Not supported.<b>You are attempting to create a set that may contain a non-{@code Comparable}    * element.</b> Proper calls will resolve to the version in {@code ImmutableSortedSet}, not this    * dummy version.    *    * @throws UnsupportedOperationException always    * @deprecated<b>Pass the parameters of type {@code Comparable} to use {@link    *     ImmutableSortedSet#of(Comparable, Comparable, Comparable)}.</b>    */
+annotation|@
+name|DoNotCall
+argument_list|(
+literal|"Pass parameters of type Comparable"
+argument_list|)
 annotation|@
 name|Deprecated
 DECL|method|of (E e1, E e2, E e3)
@@ -227,6 +273,11 @@ argument_list|()
 throw|;
 block|}
 comment|/**    * Not supported.<b>You are attempting to create a set that may contain a non-{@code Comparable}    * element.</b> Proper calls will resolve to the version in {@code ImmutableSortedSet}, not this    * dummy version.    *    * @throws UnsupportedOperationException always    * @deprecated<b>Pass the parameters of type {@code Comparable} to use {@link    *     ImmutableSortedSet#of(Comparable, Comparable, Comparable, Comparable)}.</b>    */
+annotation|@
+name|DoNotCall
+argument_list|(
+literal|"Pass parameters of type Comparable"
+argument_list|)
 annotation|@
 name|Deprecated
 DECL|method|of (E e1, E e2, E e3, E e4)
@@ -261,6 +312,11 @@ argument_list|()
 throw|;
 block|}
 comment|/**    * Not supported.<b>You are attempting to create a set that may contain a non-{@code Comparable}    * element.</b> Proper calls will resolve to the version in {@code ImmutableSortedSet}, not this    * dummy version.    *    * @throws UnsupportedOperationException always    * @deprecated<b>Pass the parameters of type {@code Comparable} to use {@link    *     ImmutableSortedSet#of( Comparable, Comparable, Comparable, Comparable, Comparable)}.</b>    */
+annotation|@
+name|DoNotCall
+argument_list|(
+literal|"Pass parameters of type Comparable"
+argument_list|)
 annotation|@
 name|Deprecated
 DECL|method|of (E e1, E e2, E e3, E e4, E e5)
@@ -298,6 +354,11 @@ argument_list|()
 throw|;
 block|}
 comment|/**    * Not supported.<b>You are attempting to create a set that may contain a non-{@code Comparable}    * element.</b> Proper calls will resolve to the version in {@code ImmutableSortedSet}, not this    * dummy version.    *    * @throws UnsupportedOperationException always    * @deprecated<b>Pass the parameters of type {@code Comparable} to use {@link    *     ImmutableSortedSet#of(Comparable, Comparable, Comparable, Comparable, Comparable,    *     Comparable, Comparable...)}.</b>    */
+annotation|@
+name|DoNotCall
+argument_list|(
+literal|"Pass parameters of type Comparable"
+argument_list|)
 annotation|@
 name|Deprecated
 DECL|method|of (E e1, E e2, E e3, E e4, E e5, E e6, E... remaining)
@@ -342,6 +403,11 @@ argument_list|()
 throw|;
 block|}
 comment|/**    * Not supported.<b>You are attempting to create a set that may contain non-{@code Comparable}    * elements.</b> Proper calls will resolve to the version in {@code ImmutableSortedSet}, not this    * dummy version.    *    * @throws UnsupportedOperationException always    * @deprecated<b>Pass parameters of type {@code Comparable} to use {@link    *     ImmutableSortedSet#copyOf(Comparable[])}.</b>    */
+annotation|@
+name|DoNotCall
+argument_list|(
+literal|"Pass parameters of type Comparable"
+argument_list|)
 annotation|@
 name|Deprecated
 DECL|method|copyOf (E[] elements)

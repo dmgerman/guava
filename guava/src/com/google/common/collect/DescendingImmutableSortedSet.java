@@ -32,17 +32,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|javax
 operator|.
-name|checkerframework
+name|annotation
 operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|qual
-operator|.
-name|Nullable
+name|CheckForNull
 import|;
 end_import
 
@@ -53,6 +47,8 @@ end_comment
 begin_class
 annotation|@
 name|GwtIncompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|DescendingImmutableSortedSet
 specifier|final
 class|class
@@ -110,13 +106,13 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|contains (@ullable Object object)
+DECL|method|contains (@heckForNull Object object)
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|object
 parameter_list|)
@@ -331,6 +327,8 @@ throw|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|lower (E element)
 specifier|public
 name|E
@@ -351,6 +349,8 @@ return|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|floor (E element)
 specifier|public
 name|E
@@ -371,6 +371,8 @@ return|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|ceiling (E element)
 specifier|public
 name|E
@@ -391,6 +393,8 @@ return|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|higher (E element)
 specifier|public
 name|E
@@ -411,12 +415,12 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|indexOf (@ullable Object target)
+DECL|method|indexOf (@heckForNull Object target)
 name|int
 name|indexOf
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|target
 parameter_list|)
