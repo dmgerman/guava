@@ -56,6 +56,16 @@ name|ConcurrentMap
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
 begin_comment
 comment|/**  * A concurrent map which forwards all its method calls to another concurrent map. Subclasses should  * override one or more methods to modify the behavior of the backing map as desired per the<a  * href="http://en.wikipedia.org/wiki/Decorator_pattern">decorator pattern</a>.  *  *<p><b>{@code default} method warning:</b> This class forwards calls to<i>only some</i> {@code  * default} methods. Specifically, it forwards calls only for methods that existed<a  * href="https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/ConcurrentMap.html">before  * {@code default} methods were introduced</a>. For newer methods, like {@code forEach}, it inherits  * their default implementations. When those implementations invoke methods, they invoke methods on  * the {@code ForwardingConcurrentMap}.  *  * @author Charles Fry  * @since 2.0  */
 end_comment
@@ -63,6 +73,8 @@ end_comment
 begin_class
 annotation|@
 name|GwtCompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|ForwardingConcurrentMap
 specifier|public
 specifier|abstract
@@ -112,6 +124,8 @@ annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|putIfAbsent (K key, V value)
 specifier|public
 name|V
@@ -140,14 +154,18 @@ annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
-DECL|method|remove (Object key, Object value)
+DECL|method|remove (@heckForNull Object key, @CheckForNull Object value)
 specifier|public
 name|boolean
 name|remove
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|key
 parameter_list|,
+annotation|@
+name|CheckForNull
 name|Object
 name|value
 parameter_list|)
@@ -168,6 +186,8 @@ annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|replace (K key, V value)
 specifier|public
 name|V

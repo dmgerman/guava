@@ -92,6 +92,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|checkerframework
@@ -100,9 +110,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -110,27 +120,41 @@ begin_comment
 comment|/**  * A sorted map which forwards all its method calls to another sorted map. Subclasses should  * override one or more methods to modify the behavior of the backing sorted map as desired per the  *<a href="http://en.wikipedia.org/wiki/Decorator_pattern">decorator pattern</a>.  *  *<p><b>Warning:</b> The methods of {@code ForwardingSortedMap} forward<i>indiscriminately</i> to  * the methods of the delegate. For example, overriding {@link #put} alone<i>will not</i> change  * the behavior of {@link #putAll}, which can lead to unexpected behavior. In this case, you should  * override {@code putAll} as well, either providing your own implementation, or delegating to the  * provided {@code standardPutAll} method.  *  *<p><b>{@code default} method warning:</b> This class does<i>not</i> forward calls to {@code  * default} methods. Instead, it inherits their default implementations. When those implementations  * invoke methods, they invoke methods on the {@code ForwardingSortedMap}.  *  *<p>Each of the {@code standard} methods, where appropriate, use the comparator of the map to test  * equality for both keys and values, unlike {@code ForwardingMap}.  *  *<p>The {@code standard} methods and the collection views they return are not guaranteed to be  * thread-safe, even when all of the methods that they depend on are thread-safe.  *  * @author Mike Bostock  * @author Louis Wasserman  * @since 2.0  */
 end_comment
 
-begin_class
+begin_annotation
 annotation|@
 name|GwtCompatible
+end_annotation
+
+begin_annotation
+annotation|@
+name|ElementTypesAreNonnullByDefault
+end_annotation
+
+begin_expr_stmt
 DECL|class|ForwardingSortedMap
 specifier|public
 specifier|abstract
-class|class
+name|class
 name|ForwardingSortedMap
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|ForwardingMap
 argument_list|<
 name|K
 argument_list|,
 name|V
 argument_list|>
-implements|implements
+expr|implements
 name|SortedMap
 argument_list|<
 name|K
@@ -143,9 +167,9 @@ comment|/** Constructor for use by subclasses. */
 DECL|method|ForwardingSortedMap ()
 specifier|protected
 name|ForwardingSortedMap
-parameter_list|()
+argument_list|()
 block|{}
-annotation|@
+expr|@
 name|Override
 DECL|method|delegate ()
 specifier|protected
@@ -157,10 +181,11 @@ argument_list|,
 name|V
 argument_list|>
 name|delegate
-parameter_list|()
-function_decl|;
-annotation|@
+argument_list|()
+block|;    @
 name|Override
+expr|@
+name|CheckForNull
 DECL|method|comparator ()
 specifier|public
 name|Comparator
@@ -170,7 +195,7 @@ super|super
 name|K
 argument_list|>
 name|comparator
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|delegate
@@ -180,13 +205,15 @@ name|comparator
 argument_list|()
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
+expr|@
+name|ParametricNullness
 DECL|method|firstKey ()
 specifier|public
 name|K
 name|firstKey
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|delegate
@@ -196,9 +223,12 @@ name|firstKey
 argument_list|()
 return|;
 block|}
+end_expr_stmt
+
+begin_function
 annotation|@
 name|Override
-DECL|method|headMap (K toKey)
+DECL|method|headMap (@arametricNullness K toKey)
 specifier|public
 name|SortedMap
 argument_list|<
@@ -208,6 +238,8 @@ name|V
 argument_list|>
 name|headMap
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|toKey
 parameter_list|)
@@ -222,8 +254,13 @@ name|toKey
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|ParametricNullness
 DECL|method|lastKey ()
 specifier|public
 name|K
@@ -238,9 +275,12 @@ name|lastKey
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|subMap (K fromKey, K toKey)
+DECL|method|subMap (@arametricNullness K fromKey, @ParametricNullness K toKey)
 specifier|public
 name|SortedMap
 argument_list|<
@@ -250,9 +290,13 @@ name|V
 argument_list|>
 name|subMap
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|fromKey
 parameter_list|,
+annotation|@
+name|ParametricNullness
 name|K
 name|toKey
 parameter_list|)
@@ -269,9 +313,12 @@ name|toKey
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|tailMap (K fromKey)
+DECL|method|tailMap (@arametricNullness K fromKey)
 specifier|public
 name|SortedMap
 argument_list|<
@@ -281,6 +328,8 @@ name|V
 argument_list|>
 name|tailMap
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|fromKey
 parameter_list|)
@@ -295,7 +344,13 @@ name|fromKey
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * A sensible implementation of {@link SortedMap#keySet} in terms of the methods of {@code    * ForwardingSortedMap}. In many cases, you may wish to override {@link    * ForwardingSortedMap#keySet} to forward to this implementation or a subclass thereof.    *    * @since 15.0    */
+end_comment
+
+begin_class
 annotation|@
 name|Beta
 DECL|class|StandardKeySet
@@ -327,35 +382,46 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|// unsafe, but worst case is a CCE is thrown, which callers will be expecting
+end_class
+
+begin_comment
+comment|// unsafe, but worst case is a CCE or NPE is thrown, which callers will be expecting
+end_comment
+
+begin_function
 annotation|@
 name|SuppressWarnings
 argument_list|(
+block|{
 literal|"unchecked"
+block|,
+literal|"nullness"
+block|}
 argument_list|)
-DECL|method|unsafeCompare (Object k1, Object k2)
-specifier|private
+DECL|method|unsafeCompare ( @heckForNull Comparator<?> comparator, @CheckForNull Object o1, @CheckForNull Object o2)
+specifier|static
 name|int
 name|unsafeCompare
 parameter_list|(
-name|Object
-name|k1
-parameter_list|,
-name|Object
-name|k2
-parameter_list|)
-block|{
+annotation|@
+name|CheckForNull
 name|Comparator
 argument_list|<
 name|?
-super|super
-name|K
 argument_list|>
 name|comparator
-init|=
-name|comparator
-argument_list|()
-decl_stmt|;
+parameter_list|,
+annotation|@
+name|CheckForNull
+name|Object
+name|o1
+parameter_list|,
+annotation|@
+name|CheckForNull
+name|Object
+name|o2
+parameter_list|)
+block|{
 if|if
 condition|(
 name|comparator
@@ -368,15 +434,17 @@ operator|(
 operator|(
 name|Comparable
 argument_list|<
+annotation|@
+name|Nullable
 name|Object
 argument_list|>
 operator|)
-name|k1
+name|o1
 operator|)
 operator|.
 name|compareTo
 argument_list|(
-name|k2
+name|o2
 argument_list|)
 return|;
 block|}
@@ -387,6 +455,8 @@ operator|(
 operator|(
 name|Comparator
 argument_list|<
+annotation|@
+name|Nullable
 name|Object
 argument_list|>
 operator|)
@@ -395,39 +465,51 @@ operator|)
 operator|.
 name|compare
 argument_list|(
-name|k1
+name|o1
 argument_list|,
-name|k2
+name|o2
 argument_list|)
 return|;
 block|}
 block|}
+end_function
+
+begin_comment
 comment|/**    * A sensible definition of {@link #containsKey} in terms of the {@code firstKey()} method of    * {@link #tailMap}. If you override {@link #tailMap}, you may wish to override {@link    * #containsKey} to forward to this implementation.    *    * @since 7.0    */
+end_comment
+
+begin_function
 annotation|@
 name|Override
 annotation|@
 name|Beta
-DECL|method|standardContainsKey (@ullableDecl Object key)
+DECL|method|standardContainsKey (@heckForNull Object key)
 specifier|protected
 name|boolean
 name|standardContainsKey
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
 block|{
 try|try
 block|{
-comment|// any CCE will be caught
+comment|// any CCE or NPE will be caught
 annotation|@
 name|SuppressWarnings
 argument_list|(
+block|{
 literal|"unchecked"
+block|,
+literal|"nullness"
+block|}
 argument_list|)
 name|SortedMap
 argument_list|<
+annotation|@
+name|Nullable
 name|Object
 argument_list|,
 name|V
@@ -437,6 +519,8 @@ init|=
 operator|(
 name|SortedMap
 argument_list|<
+annotation|@
+name|Nullable
 name|Object
 argument_list|,
 name|V
@@ -460,6 +544,9 @@ decl_stmt|;
 return|return
 name|unsafeCompare
 argument_list|(
+name|comparator
+argument_list|()
+argument_list|,
 name|ceilingKey
 argument_list|,
 name|key
@@ -483,7 +570,13 @@ literal|false
 return|;
 block|}
 block|}
+end_function
+
+begin_comment
 comment|/**    * A sensible default implementation of {@link #subMap(Object, Object)} in terms of {@link    * #headMap(Object)} and {@link #tailMap(Object)}. In some situations, you may wish to override    * {@link #subMap(Object, Object)} to forward to this implementation.    *    * @since 7.0    */
+end_comment
+
+begin_function
 annotation|@
 name|Beta
 DECL|method|standardSubMap (K fromKey, K toKey)
@@ -507,6 +600,9 @@ name|checkArgument
 argument_list|(
 name|unsafeCompare
 argument_list|(
+name|comparator
+argument_list|()
+argument_list|,
 name|fromKey
 argument_list|,
 name|toKey
@@ -529,8 +625,8 @@ name|toKey
 argument_list|)
 return|;
 block|}
-block|}
-end_class
+end_function
 
+unit|}
 end_unit
 

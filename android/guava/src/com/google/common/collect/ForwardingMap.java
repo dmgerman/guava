@@ -114,6 +114,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|checkerframework
@@ -122,9 +132,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -132,22 +142,36 @@ begin_comment
 comment|/**  * A map which forwards all its method calls to another map. Subclasses should override one or more  * methods to modify the behavior of the backing map as desired per the<a  * href="http://en.wikipedia.org/wiki/Decorator_pattern">decorator pattern</a>.  *  *<p><b>Warning:</b> The methods of {@code ForwardingMap} forward<i>indiscriminately</i> to the  * methods of the delegate. For example, overriding {@link #put} alone<i>will not</i> change the  * behavior of {@link #putAll}, which can lead to unexpected behavior. In this case, you should  * override {@code putAll} as well, either providing your own implementation, or delegating to the  * provided {@code standardPutAll} method.  *  *<p><b>{@code default} method warning:</b> This class does<i>not</i> forward calls to {@code  * default} methods. Instead, it inherits their default implementations. When those implementations  * invoke methods, they invoke methods on the {@code ForwardingMap}.  *  *<p>Each of the {@code standard} methods, where appropriate, use {@link Objects#equal} to test  * equality for both keys and values. This may not be the desired behavior for map implementations  * that use non-standard notions of key equality, such as a {@code SortedMap} whose comparator is  * not consistent with {@code equals}.  *  *<p>The {@code standard} methods and the collection views they return are not guaranteed to be  * thread-safe, even when all of the methods that they depend on are thread-safe.  *  * @author Kevin Bourrillion  * @author Jared Levy  * @author Louis Wasserman  * @since 2.0  */
 end_comment
 
-begin_class
+begin_annotation
 annotation|@
 name|GwtCompatible
+end_annotation
+
+begin_annotation
+annotation|@
+name|ElementTypesAreNonnullByDefault
+end_annotation
+
+begin_expr_stmt
 DECL|class|ForwardingMap
 specifier|public
 specifier|abstract
-class|class
+name|class
 name|ForwardingMap
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|ForwardingObject
-implements|implements
+expr|implements
 name|Map
 argument_list|<
 name|K
@@ -160,9 +184,9 @@ comment|/** Constructor for use by subclasses. */
 DECL|method|ForwardingMap ()
 specifier|protected
 name|ForwardingMap
-parameter_list|()
+argument_list|()
 block|{}
-annotation|@
+expr|@
 name|Override
 DECL|method|delegate ()
 specifier|protected
@@ -174,15 +198,14 @@ argument_list|,
 name|V
 argument_list|>
 name|delegate
-parameter_list|()
-function_decl|;
-annotation|@
+argument_list|()
+block|;    @
 name|Override
 DECL|method|size ()
 specifier|public
 name|int
 name|size
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|delegate
@@ -192,13 +215,13 @@ name|size
 argument_list|()
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
 DECL|method|isEmpty ()
 specifier|public
 name|boolean
 name|isEmpty
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|delegate
@@ -208,15 +231,22 @@ name|isEmpty
 argument_list|()
 return|;
 block|}
+end_expr_stmt
+
+begin_function
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
-DECL|method|remove (Object key)
+annotation|@
+name|CheckForNull
+DECL|method|remove (@heckForNull Object key)
 specifier|public
 name|V
 name|remove
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
@@ -231,6 +261,9 @@ name|key
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|clear ()
@@ -246,15 +279,18 @@ name|clear
 argument_list|()
 expr_stmt|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|containsKey (@ullableDecl Object key)
+DECL|method|containsKey (@heckForNull Object key)
 specifier|public
 name|boolean
 name|containsKey
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
@@ -269,15 +305,18 @@ name|key
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|containsValue (@ullableDecl Object value)
+DECL|method|containsValue (@heckForNull Object value)
 specifier|public
 name|boolean
 name|containsValue
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|value
 parameter_list|)
@@ -292,15 +331,20 @@ name|value
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|get (@ullableDecl Object key)
+annotation|@
+name|CheckForNull
+DECL|method|get (@heckForNull Object key)
 specifier|public
 name|V
 name|get
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
@@ -315,18 +359,27 @@ name|key
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
-DECL|method|put (K key, V value)
+annotation|@
+name|CheckForNull
+DECL|method|put (@arametricNullness K key, @ParametricNullness V value)
 specifier|public
 name|V
 name|put
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|key
 parameter_list|,
+annotation|@
+name|ParametricNullness
 name|V
 name|value
 parameter_list|)
@@ -343,6 +396,9 @@ name|value
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|putAll (Map<? extends K, ? extends V> map)
@@ -372,6 +428,9 @@ name|map
 argument_list|)
 expr_stmt|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|keySet ()
@@ -391,6 +450,9 @@ name|keySet
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|values ()
@@ -410,6 +472,9 @@ name|values
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|entrySet ()
@@ -434,15 +499,18 @@ name|entrySet
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|equals (@ullableDecl Object object)
+DECL|method|equals (@heckForNull Object object)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|object
 parameter_list|)
@@ -461,6 +529,9 @@ name|object
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|hashCode ()
@@ -477,7 +548,13 @@ name|hashCode
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * A sensible definition of {@link #putAll(Map)} in terms of {@link #put(Object, Object)}. If you    * override {@link #put(Object, Object)}, you may wish to override {@link #putAll(Map)} to forward    * to this implementation.    *    * @since 7.0    */
+end_comment
+
+begin_function
 DECL|method|standardPutAll (Map<? extends K, ? extends V> map)
 specifier|protected
 name|void
@@ -506,16 +583,24 @@ name|map
 argument_list|)
 expr_stmt|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * A sensible, albeit inefficient, definition of {@link #remove} in terms of the {@code iterator}    * method of {@link #entrySet}. If you override {@link #entrySet}, you may wish to override {@link    * #remove} to forward to this implementation.    *    *<p>Alternately, you may wish to override {@link #remove} with {@code keySet().remove}, assuming    * that approach would not lead to an infinite loop.    *    * @since 7.0    */
+end_comment
+
+begin_function
 annotation|@
 name|Beta
-DECL|method|standardRemove (@ullableDecl Object key)
+annotation|@
+name|CheckForNull
+DECL|method|standardRemove (@heckForNull Object key)
 specifier|protected
 name|V
 name|standardRemove
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
@@ -595,7 +680,13 @@ return|return
 literal|null
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * A sensible definition of {@link #clear} in terms of the {@code iterator} method of {@link    * #entrySet}. In many cases, you may wish to override {@link #clear} to forward to this    * implementation.    *    * @since 7.0    */
+end_comment
+
+begin_function
 DECL|method|standardClear ()
 specifier|protected
 name|void
@@ -614,7 +705,13 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * A sensible implementation of {@link Map#keySet} in terms of the following methods: {@link    * ForwardingMap#clear}, {@link ForwardingMap#containsKey}, {@link ForwardingMap#isEmpty}, {@link    * ForwardingMap#remove}, {@link ForwardingMap#size}, and the {@link Set#iterator} method of    * {@link ForwardingMap#entrySet}. In many cases, you may wish to override {@link    * ForwardingMap#keySet} to forward to this implementation or a subclass thereof.    *    * @since 10.0    */
+end_comment
+
+begin_class
 annotation|@
 name|Beta
 DECL|class|StandardKeySet
@@ -646,16 +743,22 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+end_class
+
+begin_comment
 comment|/**    * A sensible, albeit inefficient, definition of {@link #containsKey} in terms of the {@code    * iterator} method of {@link #entrySet}. If you override {@link #entrySet}, you may wish to    * override {@link #containsKey} to forward to this implementation.    *    * @since 7.0    */
+end_comment
+
+begin_function
 annotation|@
 name|Beta
-DECL|method|standardContainsKey (@ullableDecl Object key)
+DECL|method|standardContainsKey (@heckForNull Object key)
 specifier|protected
 name|boolean
 name|standardContainsKey
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
@@ -671,7 +774,13 @@ name|key
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * A sensible implementation of {@link Map#values} in terms of the following methods: {@link    * ForwardingMap#clear}, {@link ForwardingMap#containsValue}, {@link ForwardingMap#isEmpty},    * {@link ForwardingMap#size}, and the {@link Set#iterator} method of {@link    * ForwardingMap#entrySet}. In many cases, you may wish to override {@link ForwardingMap#values}    * to forward to this implementation or a subclass thereof.    *    * @since 10.0    */
+end_comment
+
+begin_class
 annotation|@
 name|Beta
 DECL|class|StandardValues
@@ -703,14 +812,20 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+end_class
+
+begin_comment
 comment|/**    * A sensible definition of {@link #containsValue} in terms of the {@code iterator} method of    * {@link #entrySet}. If you override {@link #entrySet}, you may wish to override {@link    * #containsValue} to forward to this implementation.    *    * @since 7.0    */
-DECL|method|standardContainsValue (@ullableDecl Object value)
+end_comment
+
+begin_function
+DECL|method|standardContainsValue (@heckForNull Object value)
 specifier|protected
 name|boolean
 name|standardContainsValue
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|value
 parameter_list|)
@@ -726,7 +841,13 @@ name|value
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * A sensible implementation of {@link Map#entrySet} in terms of the following methods: {@link    * ForwardingMap#clear}, {@link ForwardingMap#containsKey}, {@link ForwardingMap#get}, {@link    * ForwardingMap#isEmpty}, {@link ForwardingMap#remove}, and {@link ForwardingMap#size}. In many    * cases, you may wish to override {@link #entrySet} to forward to this implementation or a    * subclass thereof.    *    * @since 10.0    */
+end_comment
+
+begin_class
 annotation|@
 name|Beta
 DECL|class|StandardEntrySet
@@ -769,7 +890,13 @@ name|this
 return|;
 block|}
 block|}
+end_class
+
+begin_comment
 comment|/**    * A sensible definition of {@link #isEmpty} in terms of the {@code iterator} method of {@link    * #entrySet}. If you override {@link #entrySet}, you may wish to override {@link #isEmpty} to    * forward to this implementation.    *    * @since 7.0    */
+end_comment
+
+begin_function
 DECL|method|standardIsEmpty ()
 specifier|protected
 name|boolean
@@ -788,14 +915,20 @@ name|hasNext
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * A sensible definition of {@link #equals} in terms of the {@code equals} method of {@link    * #entrySet}. If you override {@link #entrySet}, you may wish to override {@link #equals} to    * forward to this implementation.    *    * @since 7.0    */
-DECL|method|standardEquals (@ullableDecl Object object)
+end_comment
+
+begin_function
+DECL|method|standardEquals (@heckForNull Object object)
 specifier|protected
 name|boolean
 name|standardEquals
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|object
 parameter_list|)
@@ -811,7 +944,13 @@ name|object
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * A sensible definition of {@link #hashCode} in terms of the {@code iterator} method of {@link    * #entrySet}. If you override {@link #entrySet}, you may wish to override {@link #hashCode} to    * forward to this implementation.    *    * @since 7.0    */
+end_comment
+
+begin_function
 DECL|method|standardHashCode ()
 specifier|protected
 name|int
@@ -828,7 +967,13 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * A sensible definition of {@link #toString} in terms of the {@code iterator} method of {@link    * #entrySet}. If you override {@link #entrySet}, you may wish to override {@link #toString} to    * forward to this implementation.    *    * @since 7.0    */
+end_comment
+
+begin_function
 DECL|method|standardToString ()
 specifier|protected
 name|String
@@ -844,8 +989,8 @@ name|this
 argument_list|)
 return|;
 block|}
-block|}
-end_class
+end_function
 
+unit|}
 end_unit
 

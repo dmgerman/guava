@@ -64,27 +64,64 @@ name|Iterator
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|checkerframework
+operator|.
+name|checker
+operator|.
+name|nullness
+operator|.
+name|qual
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/**  * A deque which forwards all its method calls to another deque. Subclasses should override one or  * more methods to modify the behavior of the backing deque as desired per the<a  * href="http://en.wikipedia.org/wiki/Decorator_pattern">decorator pattern</a>.  *  *<p><b>Warning:</b> The methods of {@code ForwardingDeque} forward<b>indiscriminately</b> to the  * methods of the delegate. For example, overriding {@link #add} alone<b>will not</b> change the  * behavior of {@link #offer} which can lead to unexpected behavior. In this case, you should  * override {@code offer} as well.  *  *<p><b>{@code default} method warning:</b> This class does<i>not</i> forward calls to {@code  * default} methods. Instead, it inherits their default implementations. When those implementations  * invoke methods, they invoke methods on the {@code ForwardingDeque}.  *  * @author Kurt Alfred Kluever  * @since 12.0  */
 end_comment
 
-begin_class
+begin_annotation
 annotation|@
 name|GwtIncompatible
+end_annotation
+
+begin_annotation
+annotation|@
+name|ElementTypesAreNonnullByDefault
+end_annotation
+
+begin_expr_stmt
 DECL|class|ForwardingDeque
 specifier|public
 specifier|abstract
-class|class
+name|class
 name|ForwardingDeque
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|ForwardingQueue
 argument_list|<
 name|E
 argument_list|>
-implements|implements
+expr|implements
 name|Deque
 argument_list|<
 name|E
@@ -94,9 +131,9 @@ comment|/** Constructor for use by subclasses. */
 DECL|method|ForwardingDeque ()
 specifier|protected
 name|ForwardingDeque
-parameter_list|()
+argument_list|()
 block|{}
-annotation|@
+expr|@
 name|Override
 DECL|method|delegate ()
 specifier|protected
@@ -106,18 +143,19 @@ argument_list|<
 name|E
 argument_list|>
 name|delegate
-parameter_list|()
-function_decl|;
-annotation|@
+argument_list|()
+block|;    @
 name|Override
-DECL|method|addFirst (E e)
+DECL|method|addFirst (@arametricNullness E e)
 specifier|public
 name|void
 name|addFirst
-parameter_list|(
+argument_list|(
+annotation|@
+name|ParametricNullness
 name|E
 name|e
-parameter_list|)
+argument_list|)
 block|{
 name|delegate
 argument_list|()
@@ -126,18 +164,19 @@ name|addFirst
 argument_list|(
 name|e
 argument_list|)
-expr_stmt|;
-block|}
-annotation|@
+block|;   }
+expr|@
 name|Override
-DECL|method|addLast (E e)
+DECL|method|addLast (@arametricNullness E e)
 specifier|public
 name|void
 name|addLast
-parameter_list|(
+argument_list|(
+annotation|@
+name|ParametricNullness
 name|E
 name|e
-parameter_list|)
+argument_list|)
 block|{
 name|delegate
 argument_list|()
@@ -146,9 +185,8 @@ name|addLast
 argument_list|(
 name|e
 argument_list|)
-expr_stmt|;
-block|}
-annotation|@
+block|;   }
+expr|@
 name|Override
 DECL|method|descendingIterator ()
 specifier|public
@@ -157,7 +195,7 @@ argument_list|<
 name|E
 argument_list|>
 name|descendingIterator
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|delegate
@@ -167,13 +205,15 @@ name|descendingIterator
 argument_list|()
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
+expr|@
+name|ParametricNullness
 DECL|method|getFirst ()
 specifier|public
 name|E
 name|getFirst
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|delegate
@@ -183,8 +223,13 @@ name|getFirst
 argument_list|()
 return|;
 block|}
+end_expr_stmt
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|ParametricNullness
 DECL|method|getLast ()
 specifier|public
 name|E
@@ -199,16 +244,21 @@ name|getLast
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|CanIgnoreReturnValue
 comment|// TODO(cpovirk): Consider removing this?
 annotation|@
 name|Override
-DECL|method|offerFirst (E e)
+DECL|method|offerFirst (@arametricNullness E e)
 specifier|public
 name|boolean
 name|offerFirst
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|E
 name|e
 parameter_list|)
@@ -223,16 +273,21 @@ name|e
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|CanIgnoreReturnValue
 comment|// TODO(cpovirk): Consider removing this?
 annotation|@
 name|Override
-DECL|method|offerLast (E e)
+DECL|method|offerLast (@arametricNullness E e)
 specifier|public
 name|boolean
 name|offerLast
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|E
 name|e
 parameter_list|)
@@ -247,8 +302,13 @@ name|e
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|peekFirst ()
 specifier|public
 name|E
@@ -263,8 +323,13 @@ name|peekFirst
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|peekLast ()
 specifier|public
 name|E
@@ -279,11 +344,16 @@ name|peekLast
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|CanIgnoreReturnValue
 comment|// TODO(cpovirk): Consider removing this?
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|pollFirst ()
 specifier|public
 name|E
@@ -298,11 +368,16 @@ name|pollFirst
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|CanIgnoreReturnValue
 comment|// TODO(cpovirk): Consider removing this?
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|pollLast ()
 specifier|public
 name|E
@@ -317,10 +392,15 @@ name|pollLast
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
+annotation|@
+name|ParametricNullness
 DECL|method|pop ()
 specifier|public
 name|E
@@ -335,13 +415,18 @@ name|pop
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|push (E e)
+DECL|method|push (@arametricNullness E e)
 specifier|public
 name|void
 name|push
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|E
 name|e
 parameter_list|)
@@ -355,10 +440,15 @@ name|e
 argument_list|)
 expr_stmt|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
+annotation|@
+name|ParametricNullness
 DECL|method|removeFirst ()
 specifier|public
 name|E
@@ -373,10 +463,15 @@ name|removeFirst
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
+annotation|@
+name|ParametricNullness
 DECL|method|removeLast ()
 specifier|public
 name|E
@@ -391,54 +486,64 @@ name|removeLast
 argument_list|()
 return|;
 block|}
-annotation|@
-name|CanIgnoreReturnValue
-annotation|@
-name|Override
-DECL|method|removeFirstOccurrence (Object o)
-specifier|public
-name|boolean
-name|removeFirstOccurrence
-parameter_list|(
-name|Object
-name|o
-parameter_list|)
-block|{
-return|return
-name|delegate
-argument_list|()
-operator|.
-name|removeFirstOccurrence
-argument_list|(
-name|o
-argument_list|)
-return|;
-block|}
-annotation|@
-name|CanIgnoreReturnValue
-annotation|@
-name|Override
-DECL|method|removeLastOccurrence (Object o)
-specifier|public
-name|boolean
-name|removeLastOccurrence
-parameter_list|(
-name|Object
-name|o
-parameter_list|)
-block|{
-return|return
-name|delegate
-argument_list|()
-operator|.
-name|removeLastOccurrence
-argument_list|(
-name|o
-argument_list|)
-return|;
-block|}
-block|}
-end_class
+end_function
 
+begin_function
+annotation|@
+name|CanIgnoreReturnValue
+annotation|@
+name|Override
+DECL|method|removeFirstOccurrence (@heckForNull Object o)
+specifier|public
+name|boolean
+name|removeFirstOccurrence
+parameter_list|(
+annotation|@
+name|CheckForNull
+name|Object
+name|o
+parameter_list|)
+block|{
+return|return
+name|delegate
+argument_list|()
+operator|.
+name|removeFirstOccurrence
+argument_list|(
+name|o
+argument_list|)
+return|;
+block|}
+end_function
+
+begin_function
+annotation|@
+name|CanIgnoreReturnValue
+annotation|@
+name|Override
+DECL|method|removeLastOccurrence (@heckForNull Object o)
+specifier|public
+name|boolean
+name|removeLastOccurrence
+parameter_list|(
+annotation|@
+name|CheckForNull
+name|Object
+name|o
+parameter_list|)
+block|{
+return|return
+name|delegate
+argument_list|()
+operator|.
+name|removeLastOccurrence
+argument_list|(
+name|o
+argument_list|)
+return|;
+block|}
+end_function
+
+unit|}
 end_unit
 

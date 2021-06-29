@@ -54,27 +54,54 @@ name|ListIterator
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|checkerframework
+operator|.
+name|checker
+operator|.
+name|nullness
+operator|.
+name|qual
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/**  * A list iterator which forwards all its method calls to another list iterator. Subclasses should  * override one or more methods to modify the behavior of the backing iterator as desired per the<a  * href="http://en.wikipedia.org/wiki/Decorator_pattern">decorator pattern</a>.  *  *<p><b>{@code default} method warning:</b> This class forwards calls to<i>only some</i> {@code  * default} methods. Specifically, it forwards calls only for methods that existed<a  * href="https://docs.oracle.com/javase/7/docs/api/java/util/ListIterator.html">before {@code  * default} methods were introduced</a>. For newer methods, like {@code forEachRemaining}, it  * inherits their default implementations. When those implementations invoke methods, they invoke  * methods on the {@code ForwardingListIterator}.  *  * @author Mike Bostock  * @since 2.0  */
 end_comment
 
-begin_class
+begin_annotation
 annotation|@
 name|GwtCompatible
+end_annotation
+
+begin_annotation
+annotation|@
+name|ElementTypesAreNonnullByDefault
+end_annotation
+
+begin_expr_stmt
 DECL|class|ForwardingListIterator
 specifier|public
 specifier|abstract
-class|class
+name|class
 name|ForwardingListIterator
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|ForwardingIterator
 argument_list|<
 name|E
 argument_list|>
-implements|implements
+expr|implements
 name|ListIterator
 argument_list|<
 name|E
@@ -84,9 +111,9 @@ comment|/** Constructor for use by subclasses. */
 DECL|method|ForwardingListIterator ()
 specifier|protected
 name|ForwardingListIterator
-parameter_list|()
+argument_list|()
 block|{}
-annotation|@
+expr|@
 name|Override
 DECL|method|delegate ()
 specifier|protected
@@ -96,18 +123,19 @@ argument_list|<
 name|E
 argument_list|>
 name|delegate
-parameter_list|()
-function_decl|;
-annotation|@
+argument_list|()
+block|;    @
 name|Override
-DECL|method|add (E element)
+DECL|method|add (@arametricNullness E element)
 specifier|public
 name|void
 name|add
-parameter_list|(
+argument_list|(
+annotation|@
+name|ParametricNullness
 name|E
 name|element
-parameter_list|)
+argument_list|)
 block|{
 name|delegate
 argument_list|()
@@ -116,15 +144,14 @@ name|add
 argument_list|(
 name|element
 argument_list|)
-expr_stmt|;
-block|}
-annotation|@
+block|;   }
+expr|@
 name|Override
 DECL|method|hasPrevious ()
 specifier|public
 name|boolean
 name|hasPrevious
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|delegate
@@ -134,13 +161,13 @@ name|hasPrevious
 argument_list|()
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
 DECL|method|nextIndex ()
 specifier|public
 name|int
 name|nextIndex
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|delegate
@@ -150,10 +177,15 @@ name|nextIndex
 argument_list|()
 return|;
 block|}
+end_expr_stmt
+
+begin_function
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
+annotation|@
+name|ParametricNullness
 DECL|method|previous ()
 specifier|public
 name|E
@@ -168,6 +200,9 @@ name|previous
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|previousIndex ()
@@ -184,13 +219,18 @@ name|previousIndex
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|set (E element)
+DECL|method|set (@arametricNullness E element)
 specifier|public
 name|void
 name|set
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|E
 name|element
 parameter_list|)
@@ -204,8 +244,8 @@ name|element
 argument_list|)
 expr_stmt|;
 block|}
-block|}
-end_class
+end_function
 
+unit|}
 end_unit
 

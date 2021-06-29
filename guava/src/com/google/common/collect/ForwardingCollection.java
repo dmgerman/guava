@@ -80,6 +80,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|checkerframework
@@ -98,20 +108,31 @@ begin_comment
 comment|/**  * A collection which forwards all its method calls to another collection. Subclasses should  * override one or more methods to modify the behavior of the backing collection as desired per the  *<a href="http://en.wikipedia.org/wiki/Decorator_pattern">decorator pattern</a>.  *  *<p><b>Warning:</b> The methods of {@code ForwardingCollection} forward<b>indiscriminately</b> to  * the methods of the delegate. For example, overriding {@link #add} alone<b>will not</b> change  * the behavior of {@link #addAll}, which can lead to unexpected behavior. In this case, you should  * override {@code addAll} as well, either providing your own implementation, or delegating to the  * provided {@code standardAddAll} method.  *  *<p><b>{@code default} method warning:</b> This class does<i>not</i> forward calls to {@code  * default} methods. Instead, it inherits their default implementations. When those implementations  * invoke methods, they invoke methods on the {@code ForwardingCollection}.  *  *<p>The {@code standard} methods are not guaranteed to be thread-safe, even when all of the  * methods that they depend on are thread-safe.  *  * @author Kevin Bourrillion  * @author Louis Wasserman  * @since 2.0  */
 end_comment
 
-begin_class
+begin_annotation
 annotation|@
 name|GwtCompatible
+end_annotation
+
+begin_annotation
+annotation|@
+name|ElementTypesAreNonnullByDefault
+end_annotation
+
+begin_expr_stmt
 DECL|class|ForwardingCollection
 specifier|public
 specifier|abstract
-class|class
+name|class
 name|ForwardingCollection
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|ForwardingObject
-implements|implements
+expr|implements
 name|Collection
 argument_list|<
 name|E
@@ -122,9 +143,9 @@ comment|/** Constructor for use by subclasses. */
 DECL|method|ForwardingCollection ()
 specifier|protected
 name|ForwardingCollection
-parameter_list|()
+argument_list|()
 block|{}
-annotation|@
+expr|@
 name|Override
 DECL|method|delegate ()
 specifier|protected
@@ -134,9 +155,8 @@ argument_list|<
 name|E
 argument_list|>
 name|delegate
-parameter_list|()
-function_decl|;
-annotation|@
+argument_list|()
+block|;    @
 name|Override
 DECL|method|iterator ()
 specifier|public
@@ -145,7 +165,7 @@ argument_list|<
 name|E
 argument_list|>
 name|iterator
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|delegate
@@ -155,13 +175,13 @@ name|iterator
 argument_list|()
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
 DECL|method|size ()
 specifier|public
 name|int
 name|size
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|delegate
@@ -171,6 +191,9 @@ name|size
 argument_list|()
 return|;
 block|}
+end_expr_stmt
+
+begin_function
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
@@ -197,6 +220,9 @@ name|collection
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|isEmpty ()
@@ -213,13 +239,18 @@ name|isEmpty
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|contains (Object object)
+DECL|method|contains (@heckForNull Object object)
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|object
 parameter_list|)
@@ -234,15 +265,20 @@ name|object
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
-DECL|method|add (E element)
+DECL|method|add (@arametricNullness E element)
 specifier|public
 name|boolean
 name|add
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|E
 name|element
 parameter_list|)
@@ -257,15 +293,20 @@ name|element
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
-DECL|method|remove (Object object)
+DECL|method|remove (@heckForNull Object object)
 specifier|public
 name|boolean
 name|remove
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|object
 parameter_list|)
@@ -280,6 +321,9 @@ name|object
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|containsAll (Collection<?> collection)
@@ -304,6 +348,9 @@ name|collection
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
@@ -332,6 +379,9 @@ name|collection
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
@@ -358,6 +408,9 @@ name|collection
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|clear ()
@@ -373,10 +426,15 @@ name|clear
 argument_list|()
 expr_stmt|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|toArray ()
 specifier|public
+annotation|@
+name|Nullable
 name|Object
 index|[]
 name|toArray
@@ -390,23 +448,47 @@ name|toArray
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_annotation
 annotation|@
 name|CanIgnoreReturnValue
+end_annotation
+
+begin_annotation
 annotation|@
 name|Override
+end_annotation
+
+begin_annotation
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"nullness"
+argument_list|)
+end_annotation
+
+begin_comment
+comment|// b/192354773 in our checker affects toArray declarations
+end_comment
+
+begin_expr_stmt
 DECL|method|toArray (T[] array)
 specifier|public
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|T
 index|[]
 name|toArray
-parameter_list|(
+argument_list|(
 name|T
 index|[]
 name|array
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|delegate
@@ -418,14 +500,20 @@ name|array
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/**    * A sensible definition of {@link #contains} in terms of {@link #iterator}. If you override    * {@link #iterator}, you may wish to override {@link #contains} to forward to this    * implementation.    *    * @since 7.0    */
-DECL|method|standardContains (@ullable Object object)
+end_comment
+
+begin_function
+DECL|method|standardContains (@heckForNull Object object)
 specifier|protected
 name|boolean
 name|standardContains
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|object
 parameter_list|)
@@ -442,7 +530,13 @@ name|object
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * A sensible definition of {@link #containsAll} in terms of {@link #contains} . If you override    * {@link #contains}, you may wish to override {@link #containsAll} to forward to this    * implementation.    *    * @since 7.0    */
+end_comment
+
+begin_function
 DECL|method|standardContainsAll (Collection<?> collection)
 specifier|protected
 name|boolean
@@ -466,7 +560,13 @@ name|collection
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * A sensible definition of {@link #addAll} in terms of {@link #add}. If you override {@link    * #add}, you may wish to override {@link #addAll} to forward to this implementation.    *    * @since 7.0    */
+end_comment
+
+begin_function
 DECL|method|standardAddAll (Collection<? extends E> collection)
 specifier|protected
 name|boolean
@@ -495,14 +595,20 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * A sensible definition of {@link #remove} in terms of {@link #iterator}, using the iterator's    * {@code remove} method. If you override {@link #iterator}, you may wish to override {@link    * #remove} to forward to this implementation.    *    * @since 7.0    */
-DECL|method|standardRemove (@ullable Object object)
+end_comment
+
+begin_function
+DECL|method|standardRemove (@heckForNull Object object)
 specifier|protected
 name|boolean
 name|standardRemove
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|object
 parameter_list|)
@@ -553,7 +659,13 @@ return|return
 literal|false
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * A sensible definition of {@link #removeAll} in terms of {@link #iterator}, using the iterator's    * {@code remove} method. If you override {@link #iterator}, you may wish to override {@link    * #removeAll} to forward to this implementation.    *    * @since 7.0    */
+end_comment
+
+begin_function
 DECL|method|standardRemoveAll (Collection<?> collection)
 specifier|protected
 name|boolean
@@ -578,7 +690,13 @@ name|collection
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * A sensible definition of {@link #retainAll} in terms of {@link #iterator}, using the iterator's    * {@code remove} method. If you override {@link #iterator}, you may wish to override {@link    * #retainAll} to forward to this implementation.    *    * @since 7.0    */
+end_comment
+
+begin_function
 DECL|method|standardRetainAll (Collection<?> collection)
 specifier|protected
 name|boolean
@@ -603,7 +721,13 @@ name|collection
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * A sensible definition of {@link #clear} in terms of {@link #iterator}, using the iterator's    * {@code remove} method. If you override {@link #iterator}, you may wish to override {@link    * #clear} to forward to this implementation.    *    * @since 7.0    */
+end_comment
+
+begin_function
 DECL|method|standardClear ()
 specifier|protected
 name|void
@@ -619,7 +743,13 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * A sensible definition of {@link #isEmpty} as {@code !iterator().hasNext}. If you override    * {@link #isEmpty}, you may wish to override {@link #isEmpty} to forward to this implementation.    * Alternately, it may be more efficient to implement {@code isEmpty} as {@code size() == 0}.    *    * @since 7.0    */
+end_comment
+
+begin_function
 DECL|method|standardIsEmpty ()
 specifier|protected
 name|boolean
@@ -635,7 +765,13 @@ name|hasNext
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * A sensible definition of {@link #toString} in terms of {@link #iterator}. If you override    * {@link #iterator}, you may wish to override {@link #toString} to forward to this    * implementation.    *    * @since 7.0    */
+end_comment
+
+begin_function
 DECL|method|standardToString ()
 specifier|protected
 name|String
@@ -651,19 +787,31 @@ name|this
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * A sensible definition of {@link #toArray()} in terms of {@link #toArray(Object[])}. If you    * override {@link #toArray(Object[])}, you may wish to override {@link #toArray} to forward to    * this implementation.    *    * @since 7.0    */
+end_comment
+
+begin_function
 DECL|method|standardToArray ()
 specifier|protected
+annotation|@
+name|Nullable
 name|Object
 index|[]
 name|standardToArray
 parameter_list|()
 block|{
+annotation|@
+name|Nullable
 name|Object
 index|[]
 name|newArray
 init|=
 operator|new
+expr|@
+name|Nullable
 name|Object
 index|[
 name|size
@@ -677,20 +825,29 @@ name|newArray
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * A sensible definition of {@link #toArray(Object[])} in terms of {@link #size} and {@link    * #iterator}. If you override either of these methods, you may wish to override {@link #toArray}    * to forward to this implementation.    *    * @since 7.0    */
+end_comment
+
+begin_expr_stmt
 DECL|method|standardToArray (T[] array)
 specifier|protected
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|T
 index|[]
 name|standardToArray
-parameter_list|(
+argument_list|(
 name|T
 index|[]
 name|array
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|ObjectArrays
@@ -703,8 +860,8 @@ name|array
 argument_list|)
 return|;
 block|}
-block|}
-end_class
+end_expr_stmt
 
+unit|}
 end_unit
 

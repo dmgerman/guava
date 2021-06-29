@@ -100,6 +100,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|checkerframework
@@ -118,23 +128,34 @@ begin_comment
 comment|/**  * A list which forwards all its method calls to another list. Subclasses should override one or  * more methods to modify the behavior of the backing list as desired per the<a  * href="http://en.wikipedia.org/wiki/Decorator_pattern">decorator pattern</a>.  *  *<p>This class does not implement {@link java.util.RandomAccess}. If the delegate supports random  * access, the {@code ForwardingList} subclass should implement the {@code RandomAccess} interface.  *  *<p><b>Warning:</b> The methods of {@code ForwardingList} forward<b>indiscriminately</b> to the  * methods of the delegate. For example, overriding {@link #add} alone<b>will not</b> change the  * behavior of {@link #addAll}, which can lead to unexpected behavior. In this case, you should  * override {@code addAll} as well, either providing your own implementation, or delegating to the  * provided {@code standardAddAll} method.  *  *<p><b>{@code default} method warning:</b> This class does<i>not</i> forward calls to {@code  * default} methods. Instead, it inherits their default implementations. When those implementations  * invoke methods, they invoke methods on the {@code ForwardingList}.  *  *<p>The {@code standard} methods and any collection views they return are not guaranteed to be  * thread-safe, even when all of the methods that they depend on are thread-safe.  *  * @author Mike Bostock  * @author Louis Wasserman  * @since 2.0  */
 end_comment
 
-begin_class
+begin_annotation
 annotation|@
 name|GwtCompatible
+end_annotation
+
+begin_annotation
+annotation|@
+name|ElementTypesAreNonnullByDefault
+end_annotation
+
+begin_expr_stmt
 DECL|class|ForwardingList
 specifier|public
 specifier|abstract
-class|class
+name|class
 name|ForwardingList
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|ForwardingCollection
 argument_list|<
 name|E
 argument_list|>
-implements|implements
+expr|implements
 name|List
 argument_list|<
 name|E
@@ -145,9 +166,9 @@ comment|/** Constructor for use by subclasses. */
 DECL|method|ForwardingList ()
 specifier|protected
 name|ForwardingList
-parameter_list|()
+argument_list|()
 block|{}
-annotation|@
+expr|@
 name|Override
 DECL|method|delegate ()
 specifier|protected
@@ -157,21 +178,22 @@ argument_list|<
 name|E
 argument_list|>
 name|delegate
-parameter_list|()
-function_decl|;
-annotation|@
+argument_list|()
+block|;    @
 name|Override
-DECL|method|add (int index, E element)
+DECL|method|add (int index, @ParametricNullness E element)
 specifier|public
 name|void
 name|add
-parameter_list|(
+argument_list|(
 name|int
 name|index
-parameter_list|,
+argument_list|,
+annotation|@
+name|ParametricNullness
 name|E
 name|element
-parameter_list|)
+argument_list|)
 block|{
 name|delegate
 argument_list|()
@@ -182,20 +204,19 @@ name|index
 argument_list|,
 name|element
 argument_list|)
-expr_stmt|;
-block|}
-annotation|@
+block|;   }
+expr|@
 name|CanIgnoreReturnValue
-annotation|@
+expr|@
 name|Override
 DECL|method|addAll (int index, Collection<? extends E> elements)
 specifier|public
 name|boolean
 name|addAll
-parameter_list|(
+argument_list|(
 name|int
 name|index
-parameter_list|,
+argument_list|,
 name|Collection
 argument_list|<
 name|?
@@ -203,7 +224,7 @@ extends|extends
 name|E
 argument_list|>
 name|elements
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|delegate
@@ -217,16 +238,18 @@ name|elements
 argument_list|)
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
+expr|@
+name|ParametricNullness
 DECL|method|get (int index)
 specifier|public
 name|E
 name|get
-parameter_list|(
+argument_list|(
 name|int
 name|index
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|delegate
@@ -238,13 +261,18 @@ name|index
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_function
 annotation|@
 name|Override
-DECL|method|indexOf (Object element)
+DECL|method|indexOf (@heckForNull Object element)
 specifier|public
 name|int
 name|indexOf
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|element
 parameter_list|)
@@ -259,13 +287,18 @@ name|element
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|lastIndexOf (Object element)
+DECL|method|lastIndexOf (@heckForNull Object element)
 specifier|public
 name|int
 name|lastIndexOf
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|element
 parameter_list|)
@@ -280,6 +313,9 @@ name|element
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|listIterator ()
@@ -299,6 +335,9 @@ name|listIterator
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|listIterator (int index)
@@ -323,10 +362,15 @@ name|index
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
+annotation|@
+name|ParametricNullness
 DECL|method|remove (int index)
 specifier|public
 name|E
@@ -346,11 +390,16 @@ name|index
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
-DECL|method|set (int index, E element)
+annotation|@
+name|ParametricNullness
+DECL|method|set (int index, @ParametricNullness E element)
 specifier|public
 name|E
 name|set
@@ -358,6 +407,8 @@ parameter_list|(
 name|int
 name|index
 parameter_list|,
+annotation|@
+name|ParametricNullness
 name|E
 name|element
 parameter_list|)
@@ -374,6 +425,9 @@ name|element
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|subList (int fromIndex, int toIndex)
@@ -403,15 +457,18 @@ name|toIndex
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|equals (@ullable Object object)
+DECL|method|equals (@heckForNull Object object)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|object
 parameter_list|)
@@ -430,6 +487,9 @@ name|object
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|hashCode ()
@@ -446,12 +506,20 @@ name|hashCode
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * A sensible default implementation of {@link #add(Object)}, in terms of {@link #add(int,    * Object)}. If you override {@link #add(int, Object)}, you may wish to override {@link    * #add(Object)} to forward to this implementation.    *    * @since 7.0    */
-DECL|method|standardAdd (E element)
+end_comment
+
+begin_function
+DECL|method|standardAdd (@arametricNullness E element)
 specifier|protected
 name|boolean
 name|standardAdd
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|E
 name|element
 parameter_list|)
@@ -468,7 +536,13 @@ return|return
 literal|true
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * A sensible default implementation of {@link #addAll(int, Collection)}, in terms of the {@code    * add} method of {@link #listIterator(int)}. If you override {@link #listIterator(int)}, you may    * wish to override {@link #addAll(int, Collection)} to forward to this implementation.    *    * @since 7.0    */
+end_comment
+
+begin_function
 DECL|method|standardAddAll (int index, Iterable<? extends E> elements)
 specifier|protected
 name|boolean
@@ -499,14 +573,20 @@ name|elements
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * A sensible default implementation of {@link #indexOf}, in terms of {@link #listIterator()}. If    * you override {@link #listIterator()}, you may wish to override {@link #indexOf} to forward to    * this implementation.    *    * @since 7.0    */
-DECL|method|standardIndexOf (@ullable Object element)
+end_comment
+
+begin_function
+DECL|method|standardIndexOf (@heckForNull Object element)
 specifier|protected
 name|int
 name|standardIndexOf
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|element
 parameter_list|)
@@ -522,14 +602,20 @@ name|element
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * A sensible default implementation of {@link #lastIndexOf}, in terms of {@link    * #listIterator(int)}. If you override {@link #listIterator(int)}, you may wish to override    * {@link #lastIndexOf} to forward to this implementation.    *    * @since 7.0    */
-DECL|method|standardLastIndexOf (@ullable Object element)
+end_comment
+
+begin_function
+DECL|method|standardLastIndexOf (@heckForNull Object element)
 specifier|protected
 name|int
 name|standardLastIndexOf
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|element
 parameter_list|)
@@ -545,7 +631,13 @@ name|element
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * A sensible default implementation of {@link #iterator}, in terms of {@link #listIterator()}. If    * you override {@link #listIterator()}, you may wish to override {@link #iterator} to forward to    * this implementation.    *    * @since 7.0    */
+end_comment
+
+begin_function
 DECL|method|standardIterator ()
 specifier|protected
 name|Iterator
@@ -560,7 +652,13 @@ name|listIterator
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * A sensible default implementation of {@link #listIterator()}, in terms of {@link    * #listIterator(int)}. If you override {@link #listIterator(int)}, you may wish to override    * {@link #listIterator()} to forward to this implementation.    *    * @since 7.0    */
+end_comment
+
+begin_function
 DECL|method|standardListIterator ()
 specifier|protected
 name|ListIterator
@@ -577,7 +675,13 @@ literal|0
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * A sensible default implementation of {@link #listIterator(int)}, in terms of {@link #size},    * {@link #get(int)}, {@link #set(int, Object)}, {@link #add(int, Object)}, and {@link    * #remove(int)}. If you override any of these methods, you may wish to override {@link    * #listIterator(int)} to forward to this implementation.    *    * @since 7.0    */
+end_comment
+
+begin_function
 annotation|@
 name|Beta
 DECL|method|standardListIterator (int start)
@@ -603,7 +707,13 @@ name|start
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * A sensible default implementation of {@link #subList(int, int)}. If you override any other    * methods, you may wish to override {@link #subList(int, int)} to forward to this implementation.    *    * @since 7.0    */
+end_comment
+
+begin_function
 annotation|@
 name|Beta
 DECL|method|standardSubList (int fromIndex, int toIndex)
@@ -634,16 +744,22 @@ name|toIndex
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * A sensible definition of {@link #equals(Object)} in terms of {@link #size} and {@link    * #iterator}. If you override either of those methods, you may wish to override {@link    * #equals(Object)} to forward to this implementation.    *    * @since 7.0    */
+end_comment
+
+begin_function
 annotation|@
 name|Beta
-DECL|method|standardEquals (@ullable Object object)
+DECL|method|standardEquals (@heckForNull Object object)
 specifier|protected
 name|boolean
 name|standardEquals
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|object
 parameter_list|)
@@ -659,7 +775,13 @@ name|object
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * A sensible definition of {@link #hashCode} in terms of {@link #iterator}. If you override    * {@link #iterator}, you may wish to override {@link #hashCode} to forward to this    * implementation.    *    * @since 7.0    */
+end_comment
+
+begin_function
 annotation|@
 name|Beta
 DECL|method|standardHashCode ()
@@ -677,8 +799,8 @@ name|this
 argument_list|)
 return|;
 block|}
-block|}
-end_class
+end_function
 
+unit|}
 end_unit
 

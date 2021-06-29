@@ -317,7 +317,7 @@ annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
-comment|/*    * This suppression is here for two reasons:    *    * 1. Our checker says "found: T[]; required: T[]." That sounds bogus. I discuss a possible reason    * for this error in https://github.com/jspecify/checker-framework/issues/10.    *    * 2. `other[size] = null` is unsound. We could "fix" this by requiring callers to pass in an    * array with a nullable element type. But probably they usually want an array with a non-nullable    * type. That said, we could *accept* a `@Nullable T[]` (which, given that we treat arrays as    * covariant, would still permit a plain `T[]`) and return a plain `T[]`. But of course that would    * require its own suppression, since it is also unsound. toArray(T[]) is just a mess from a    * nullness perspective. The signature below at least has the virtue of being relatively simple.    */
+comment|/*    * This suppression is here for two reasons:    *    * 1. b/192354773 in our checker affects toArray declarations.    *    * 2. `other[size] = null` is unsound. We could "fix" this by requiring callers to pass in an    * array with a nullable element type. But probably they usually want an array with a non-nullable    * type. That said, we could *accept* a `@Nullable T[]` (which, given that we treat arrays as    * covariant, would still permit a plain `T[]`) and return a plain `T[]`. But of course that would    * require its own suppression, since it is also unsound. toArray(T[]) is just a mess from a    * nullness perspective. The signature below at least has the virtue of being relatively simple.    */
 annotation|@
 name|SuppressWarnings
 argument_list|(

@@ -84,28 +84,61 @@ name|CheckForNull
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|checkerframework
+operator|.
+name|checker
+operator|.
+name|nullness
+operator|.
+name|qual
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/**  * A table which forwards all its method calls to another table. Subclasses should override one or  * more methods to modify the behavior of the backing map as desired per the<a  * href="http://en.wikipedia.org/wiki/Decorator_pattern">decorator pattern</a>.  *  * @author Gregory Kick  * @since 7.0  */
 end_comment
 
-begin_class
+begin_annotation
 annotation|@
 name|GwtCompatible
+end_annotation
+
+begin_annotation
+annotation|@
+name|ElementTypesAreNonnullByDefault
+end_annotation
+
+begin_expr_stmt
 DECL|class|ForwardingTable
 specifier|public
 specifier|abstract
-class|class
+name|class
 name|ForwardingTable
-parameter_list|<
+operator|<
 name|R
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|C
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|ForwardingObject
-implements|implements
+expr|implements
 name|Table
 argument_list|<
 name|R
@@ -119,9 +152,9 @@ comment|/** Constructor for use by subclasses. */
 DECL|method|ForwardingTable ()
 specifier|protected
 name|ForwardingTable
-parameter_list|()
+argument_list|()
 block|{}
-annotation|@
+expr|@
 name|Override
 DECL|method|delegate ()
 specifier|protected
@@ -135,9 +168,8 @@ argument_list|,
 name|V
 argument_list|>
 name|delegate
-parameter_list|()
-function_decl|;
-annotation|@
+argument_list|()
+block|;    @
 name|Override
 DECL|method|cellSet ()
 specifier|public
@@ -153,7 +185,7 @@ name|V
 argument_list|>
 argument_list|>
 name|cellSet
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|delegate
@@ -163,24 +195,23 @@ name|cellSet
 argument_list|()
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
 DECL|method|clear ()
 specifier|public
 name|void
 name|clear
-parameter_list|()
+argument_list|()
 block|{
 name|delegate
 argument_list|()
 operator|.
 name|clear
 argument_list|()
-expr_stmt|;
-block|}
-annotation|@
+block|;   }
+expr|@
 name|Override
-DECL|method|column (C columnKey)
+DECL|method|column (@arametricNullness C columnKey)
 specifier|public
 name|Map
 argument_list|<
@@ -189,10 +220,12 @@ argument_list|,
 name|V
 argument_list|>
 name|column
-parameter_list|(
+argument_list|(
+annotation|@
+name|ParametricNullness
 name|C
 name|columnKey
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|delegate
@@ -204,6 +237,9 @@ name|columnKey
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_function
 annotation|@
 name|Override
 DECL|method|columnKeySet ()
@@ -223,6 +259,9 @@ name|columnKeySet
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|columnMap ()
@@ -249,16 +288,23 @@ name|columnMap
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|contains (Object rowKey, Object columnKey)
+DECL|method|contains (@heckForNull Object rowKey, @CheckForNull Object columnKey)
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|rowKey
 parameter_list|,
+annotation|@
+name|CheckForNull
 name|Object
 name|columnKey
 parameter_list|)
@@ -275,13 +321,18 @@ name|columnKey
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|containsColumn (Object columnKey)
+DECL|method|containsColumn (@heckForNull Object columnKey)
 specifier|public
 name|boolean
 name|containsColumn
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|columnKey
 parameter_list|)
@@ -296,13 +347,18 @@ name|columnKey
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|containsRow (Object rowKey)
+DECL|method|containsRow (@heckForNull Object rowKey)
 specifier|public
 name|boolean
 name|containsRow
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|rowKey
 parameter_list|)
@@ -317,13 +373,18 @@ name|rowKey
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|containsValue (Object value)
+DECL|method|containsValue (@heckForNull Object value)
 specifier|public
 name|boolean
 name|containsValue
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|value
 parameter_list|)
@@ -338,18 +399,25 @@ name|value
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 annotation|@
 name|CheckForNull
-DECL|method|get (Object rowKey, Object columnKey)
+DECL|method|get (@heckForNull Object rowKey, @CheckForNull Object columnKey)
 specifier|public
 name|V
 name|get
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|rowKey
 parameter_list|,
+annotation|@
+name|CheckForNull
 name|Object
 name|columnKey
 parameter_list|)
@@ -366,6 +434,9 @@ name|columnKey
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|isEmpty ()
@@ -382,23 +453,32 @@ name|isEmpty
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
 annotation|@
 name|CheckForNull
-DECL|method|put (R rowKey, C columnKey, V value)
+DECL|method|put ( @arametricNullness R rowKey, @ParametricNullness C columnKey, @ParametricNullness V value)
 specifier|public
 name|V
 name|put
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|R
 name|rowKey
 parameter_list|,
+annotation|@
+name|ParametricNullness
 name|C
 name|columnKey
 parameter_list|,
+annotation|@
+name|ParametricNullness
 name|V
 name|value
 parameter_list|)
@@ -417,6 +497,9 @@ name|value
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|putAll (Table<? extends R, ? extends C, ? extends V> table)
@@ -450,20 +533,27 @@ name|table
 argument_list|)
 expr_stmt|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
 annotation|@
 name|CheckForNull
-DECL|method|remove (Object rowKey, Object columnKey)
+DECL|method|remove (@heckForNull Object rowKey, @CheckForNull Object columnKey)
 specifier|public
 name|V
 name|remove
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|rowKey
 parameter_list|,
+annotation|@
+name|CheckForNull
 name|Object
 name|columnKey
 parameter_list|)
@@ -480,9 +570,12 @@ name|columnKey
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|row (R rowKey)
+DECL|method|row (@arametricNullness R rowKey)
 specifier|public
 name|Map
 argument_list|<
@@ -492,6 +585,8 @@ name|V
 argument_list|>
 name|row
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|R
 name|rowKey
 parameter_list|)
@@ -506,6 +601,9 @@ name|rowKey
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|rowKeySet ()
@@ -525,6 +623,9 @@ name|rowKeySet
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|rowMap ()
@@ -551,6 +652,9 @@ name|rowMap
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|size ()
@@ -567,6 +671,9 @@ name|size
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|values ()
@@ -586,13 +693,18 @@ name|values
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|equals (Object obj)
+DECL|method|equals (@heckForNull Object obj)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|obj
 parameter_list|)
@@ -613,6 +725,9 @@ name|obj
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|hashCode ()
@@ -629,8 +744,8 @@ name|hashCode
 argument_list|()
 return|;
 block|}
-block|}
-end_class
+end_function
 
+unit|}
 end_unit
 

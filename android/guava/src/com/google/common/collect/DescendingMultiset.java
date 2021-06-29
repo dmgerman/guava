@@ -755,10 +755,6 @@ annotation|@
 name|Override
 end_annotation
 
-begin_comment
-comment|/*    * Our checker says "found: T[]; required: T[]." That sounds bogus. I discuss a possible reason    * for this error in https://github.com/jspecify/checker-framework/issues/10.    */
-end_comment
-
 begin_annotation
 annotation|@
 name|SuppressWarnings
@@ -766,6 +762,10 @@ argument_list|(
 literal|"nullness"
 argument_list|)
 end_annotation
+
+begin_comment
+comment|// b/192354773 in our checker affects toArray declarations
+end_comment
 
 begin_expr_stmt
 DECL|method|toArray (T[] array)

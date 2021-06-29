@@ -82,6 +82,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|checkerframework
@@ -90,9 +100,9 @@ name|checker
 operator|.
 name|nullness
 operator|.
-name|compatqual
+name|qual
 operator|.
-name|NullableDecl
+name|Nullable
 import|;
 end_import
 
@@ -100,22 +110,36 @@ begin_comment
 comment|/**  * A map entry which forwards all its method calls to another map entry. Subclasses should override  * one or more methods to modify the behavior of the backing map entry as desired per the<a  * href="http://en.wikipedia.org/wiki/Decorator_pattern">decorator pattern</a>.  *  *<p><b>Warning:</b> The methods of {@code ForwardingMapEntry} forward<i>indiscriminately</i> to  * the methods of the delegate. For example, overriding {@link #getValue} alone<i>will not</i>  * change the behavior of {@link #equals}, which can lead to unexpected behavior. In this case, you  * should override {@code equals} as well, either providing your own implementation, or delegating  * to the provided {@code standardEquals} method.  *  *<p>Each of the {@code standard} methods, where appropriate, use {@link Objects#equal} to test  * equality for both keys and values. This may not be the desired behavior for map implementations  * that use non-standard notions of key equality, such as the entry of a {@code SortedMap} whose  * comparator is not consistent with {@code equals}.  *  *<p>The {@code standard} methods are not guaranteed to be thread-safe, even when all of the  * methods that they depend on are thread-safe.  *  * @author Mike Bostock  * @author Louis Wasserman  * @since 2.0  */
 end_comment
 
-begin_class
+begin_annotation
 annotation|@
 name|GwtCompatible
+end_annotation
+
+begin_annotation
+annotation|@
+name|ElementTypesAreNonnullByDefault
+end_annotation
+
+begin_expr_stmt
 DECL|class|ForwardingMapEntry
 specifier|public
 specifier|abstract
-class|class
+name|class
 name|ForwardingMapEntry
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|ForwardingObject
-implements|implements
+expr|implements
 name|Map
 operator|.
 name|Entry
@@ -130,9 +154,9 @@ comment|/** Constructor for use by subclasses. */
 DECL|method|ForwardingMapEntry ()
 specifier|protected
 name|ForwardingMapEntry
-parameter_list|()
+argument_list|()
 block|{}
-annotation|@
+expr|@
 name|Override
 DECL|method|delegate ()
 specifier|protected
@@ -144,15 +168,16 @@ argument_list|,
 name|V
 argument_list|>
 name|delegate
-parameter_list|()
-function_decl|;
-annotation|@
+argument_list|()
+block|;    @
 name|Override
+expr|@
+name|ParametricNullness
 DECL|method|getKey ()
 specifier|public
 name|K
 name|getKey
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|delegate
@@ -162,13 +187,15 @@ name|getKey
 argument_list|()
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
+expr|@
+name|ParametricNullness
 DECL|method|getValue ()
 specifier|public
 name|V
 name|getValue
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|delegate
@@ -178,13 +205,20 @@ name|getValue
 argument_list|()
 return|;
 block|}
+end_expr_stmt
+
+begin_function
 annotation|@
 name|Override
-DECL|method|setValue (V value)
+annotation|@
+name|ParametricNullness
+DECL|method|setValue (@arametricNullness V value)
 specifier|public
 name|V
 name|setValue
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|V
 name|value
 parameter_list|)
@@ -199,15 +233,18 @@ name|value
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|equals (@ullableDecl Object object)
+DECL|method|equals (@heckForNull Object object)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|object
 parameter_list|)
@@ -222,6 +259,9 @@ name|object
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|hashCode ()
@@ -238,14 +278,20 @@ name|hashCode
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * A sensible definition of {@link #equals(Object)} in terms of {@link #getKey()} and {@link    * #getValue()}. If you override either of these methods, you may wish to override {@link    * #equals(Object)} to forward to this implementation.    *    * @since 7.0    */
-DECL|method|standardEquals (@ullableDecl Object object)
+end_comment
+
+begin_function
+DECL|method|standardEquals (@heckForNull Object object)
 specifier|protected
 name|boolean
 name|standardEquals
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|object
 parameter_list|)
@@ -311,7 +357,13 @@ return|return
 literal|false
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * A sensible definition of {@link #hashCode()} in terms of {@link #getKey()} and {@link    * #getValue()}. If you override either of these methods, you may wish to override {@link    * #hashCode()} to forward to this implementation.    *    * @since 7.0    */
+end_comment
+
+begin_function
 DECL|method|standardHashCode ()
 specifier|protected
 name|int
@@ -362,7 +414,13 @@ argument_list|()
 operator|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * A sensible definition of {@link #toString} in terms of {@link #getKey} and {@link #getValue}.    * If you override either of these methods, you may wish to override {@link #equals} to forward to    * this implementation.    *    * @since 7.0    */
+end_comment
+
+begin_function
 annotation|@
 name|Beta
 DECL|method|standardToString ()
@@ -381,8 +439,8 @@ name|getValue
 argument_list|()
 return|;
 block|}
-block|}
-end_class
+end_function
 
+unit|}
 end_unit
 

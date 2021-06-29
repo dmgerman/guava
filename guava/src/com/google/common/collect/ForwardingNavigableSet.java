@@ -74,27 +74,64 @@ name|SortedSet
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|checkerframework
+operator|.
+name|checker
+operator|.
+name|nullness
+operator|.
+name|qual
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/**  * A navigable set which forwards all its method calls to another navigable set. Subclasses should  * override one or more methods to modify the behavior of the backing set as desired per the<a  * href="http://en.wikipedia.org/wiki/Decorator_pattern">decorator pattern</a>.  *  *<p><b>Warning:</b> The methods of {@code ForwardingNavigableSet} forward<i>indiscriminately</i>  * to the methods of the delegate. For example, overriding {@link #add} alone<i>will not</i> change  * the behavior of {@link #addAll}, which can lead to unexpected behavior. In this case, you should  * override {@code addAll} as well, either providing your own implementation, or delegating to the  * provided {@code standardAddAll} method.  *  *<p><b>{@code default} method warning:</b> This class does<i>not</i> forward calls to {@code  * default} methods. Instead, it inherits their default implementations. When those implementations  * invoke methods, they invoke methods on the {@code ForwardingNavigableSet}.  *  *<p>Each of the {@code standard} methods uses the set's comparator (or the natural ordering of the  * elements, if there is no comparator) to test element equality. As a result, if the comparator is  * not consistent with equals, some of the standard implementations may violate the {@code Set}  * contract.  *  *<p>The {@code standard} methods and the collection views they return are not guaranteed to be  * thread-safe, even when all of the methods that they depend on are thread-safe.  *  * @author Louis Wasserman  * @since 12.0  */
 end_comment
 
-begin_class
+begin_annotation
 annotation|@
 name|GwtIncompatible
+end_annotation
+
+begin_annotation
+annotation|@
+name|ElementTypesAreNonnullByDefault
+end_annotation
+
+begin_expr_stmt
 DECL|class|ForwardingNavigableSet
 specifier|public
 specifier|abstract
-class|class
+name|class
 name|ForwardingNavigableSet
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|ForwardingSortedSet
 argument_list|<
 name|E
 argument_list|>
-implements|implements
+expr|implements
 name|NavigableSet
 argument_list|<
 name|E
@@ -104,9 +141,9 @@ comment|/** Constructor for use by subclasses. */
 DECL|method|ForwardingNavigableSet ()
 specifier|protected
 name|ForwardingNavigableSet
-parameter_list|()
+argument_list|()
 block|{}
-annotation|@
+expr|@
 name|Override
 DECL|method|delegate ()
 specifier|protected
@@ -116,18 +153,21 @@ argument_list|<
 name|E
 argument_list|>
 name|delegate
-parameter_list|()
-function_decl|;
-annotation|@
+argument_list|()
+block|;    @
 name|Override
-DECL|method|lower (E e)
+expr|@
+name|CheckForNull
+DECL|method|lower (@arametricNullness E e)
 specifier|public
 name|E
 name|lower
-parameter_list|(
+argument_list|(
+annotation|@
+name|ParametricNullness
 name|E
 name|e
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|delegate
@@ -140,14 +180,18 @@ argument_list|)
 return|;
 block|}
 comment|/**    * A sensible definition of {@link #lower} in terms of the {@code descendingIterator} method of    * {@link #headSet(Object, boolean)}. If you override {@link #headSet(Object, boolean)}, you may    * wish to override {@link #lower} to forward to this implementation.    */
-DECL|method|standardLower (E e)
+expr|@
+name|CheckForNull
+DECL|method|standardLower (@arametricNullness E e)
 specifier|protected
 name|E
 name|standardLower
-parameter_list|(
+argument_list|(
+annotation|@
+name|ParametricNullness
 name|E
 name|e
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|Iterators
@@ -168,13 +212,20 @@ literal|null
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_function
 annotation|@
 name|Override
-DECL|method|floor (E e)
+annotation|@
+name|CheckForNull
+DECL|method|floor (@arametricNullness E e)
 specifier|public
 name|E
 name|floor
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|E
 name|e
 parameter_list|)
@@ -189,12 +240,22 @@ name|e
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * A sensible definition of {@link #floor} in terms of the {@code descendingIterator} method of    * {@link #headSet(Object, boolean)}. If you override {@link #headSet(Object, boolean)}, you may    * wish to override {@link #floor} to forward to this implementation.    */
-DECL|method|standardFloor (E e)
+end_comment
+
+begin_function
+annotation|@
+name|CheckForNull
+DECL|method|standardFloor (@arametricNullness E e)
 specifier|protected
 name|E
 name|standardFloor
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|E
 name|e
 parameter_list|)
@@ -218,13 +279,20 @@ literal|null
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|ceiling (E e)
+annotation|@
+name|CheckForNull
+DECL|method|ceiling (@arametricNullness E e)
 specifier|public
 name|E
 name|ceiling
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|E
 name|e
 parameter_list|)
@@ -239,12 +307,22 @@ name|e
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * A sensible definition of {@link #ceiling} in terms of the {@code iterator} method of {@link    * #tailSet(Object, boolean)}. If you override {@link #tailSet(Object, boolean)}, you may wish to    * override {@link #ceiling} to forward to this implementation.    */
-DECL|method|standardCeiling (E e)
+end_comment
+
+begin_function
+annotation|@
+name|CheckForNull
+DECL|method|standardCeiling (@arametricNullness E e)
 specifier|protected
 name|E
 name|standardCeiling
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|E
 name|e
 parameter_list|)
@@ -268,13 +346,20 @@ literal|null
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|higher (E e)
+annotation|@
+name|CheckForNull
+DECL|method|higher (@arametricNullness E e)
 specifier|public
 name|E
 name|higher
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|E
 name|e
 parameter_list|)
@@ -289,12 +374,22 @@ name|e
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * A sensible definition of {@link #higher} in terms of the {@code iterator} method of {@link    * #tailSet(Object, boolean)}. If you override {@link #tailSet(Object, boolean)}, you may wish to    * override {@link #higher} to forward to this implementation.    */
-DECL|method|standardHigher (E e)
+end_comment
+
+begin_function
+annotation|@
+name|CheckForNull
+DECL|method|standardHigher (@arametricNullness E e)
 specifier|protected
 name|E
 name|standardHigher
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|E
 name|e
 parameter_list|)
@@ -318,8 +413,13 @@ literal|null
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|pollFirst ()
 specifier|public
 name|E
@@ -334,7 +434,15 @@ name|pollFirst
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * A sensible definition of {@link #pollFirst} in terms of the {@code iterator} method. If you    * override {@link #iterator} you may wish to override {@link #pollFirst} to forward to this    * implementation.    */
+end_comment
+
+begin_function
+annotation|@
+name|CheckForNull
 DECL|method|standardPollFirst ()
 specifier|protected
 name|E
@@ -351,8 +459,13 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|pollLast ()
 specifier|public
 name|E
@@ -367,7 +480,15 @@ name|pollLast
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * A sensible definition of {@link #pollLast} in terms of the {@code descendingIterator} method.    * If you override {@link #descendingIterator} you may wish to override {@link #pollLast} to    * forward to this implementation.    */
+end_comment
+
+begin_function
+annotation|@
+name|CheckForNull
 DECL|method|standardPollLast ()
 specifier|protected
 name|E
@@ -384,6 +505,11 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
+annotation|@
+name|ParametricNullness
 DECL|method|standardFirst ()
 specifier|protected
 name|E
@@ -398,6 +524,11 @@ name|next
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
+annotation|@
+name|ParametricNullness
 DECL|method|standardLast ()
 specifier|protected
 name|E
@@ -412,6 +543,9 @@ name|next
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|descendingSet ()
@@ -431,7 +565,13 @@ name|descendingSet
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * A sensible implementation of {@link NavigableSet#descendingSet} in terms of the other methods    * of {@link NavigableSet}, notably including {@link NavigableSet#descendingIterator}.    *    *<p>In many cases, you may wish to override {@link ForwardingNavigableSet#descendingSet} to    * forward to this implementation or a subclass thereof.    *    * @since 12.0    */
+end_comment
+
+begin_class
 annotation|@
 name|Beta
 DECL|class|StandardDescendingSet
@@ -461,6 +601,9 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+end_class
+
+begin_function
 annotation|@
 name|Override
 DECL|method|descendingIterator ()
@@ -480,9 +623,12 @@ name|descendingIterator
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|subSet ( E fromElement, boolean fromInclusive, E toElement, boolean toInclusive)
+DECL|method|subSet ( @arametricNullness E fromElement, boolean fromInclusive, @ParametricNullness E toElement, boolean toInclusive)
 specifier|public
 name|NavigableSet
 argument_list|<
@@ -490,12 +636,16 @@ name|E
 argument_list|>
 name|subSet
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|E
 name|fromElement
 parameter_list|,
 name|boolean
 name|fromInclusive
 parameter_list|,
+annotation|@
+name|ParametricNullness
 name|E
 name|toElement
 parameter_list|,
@@ -519,10 +669,16 @@ name|toInclusive
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * A sensible definition of {@link #subSet(Object, boolean, Object, boolean)} in terms of the    * {@code headSet} and {@code tailSet} methods. In many cases, you may wish to override {@link    * #subSet(Object, boolean, Object, boolean)} to forward to this implementation.    */
+end_comment
+
+begin_function
 annotation|@
 name|Beta
-DECL|method|standardSubSet ( E fromElement, boolean fromInclusive, E toElement, boolean toInclusive)
+DECL|method|standardSubSet ( @arametricNullness E fromElement, boolean fromInclusive, @ParametricNullness E toElement, boolean toInclusive)
 specifier|protected
 name|NavigableSet
 argument_list|<
@@ -530,12 +686,16 @@ name|E
 argument_list|>
 name|standardSubSet
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|E
 name|fromElement
 parameter_list|,
 name|boolean
 name|fromInclusive
 parameter_list|,
+annotation|@
+name|ParametricNullness
 name|E
 name|toElement
 parameter_list|,
@@ -559,10 +719,16 @@ name|toInclusive
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * A sensible definition of {@link #subSet(Object, Object)} in terms of the {@link #subSet(Object,    * boolean, Object, boolean)} method. If you override {@link #subSet(Object, boolean, Object,    * boolean)}, you may wish to override {@link #subSet(Object, Object)} to forward to this    * implementation.    */
+end_comment
+
+begin_function
 annotation|@
 name|Override
-DECL|method|standardSubSet (E fromElement, E toElement)
+DECL|method|standardSubSet ( @arametricNullness E fromElement, @ParametricNullness E toElement)
 specifier|protected
 name|SortedSet
 argument_list|<
@@ -570,9 +736,13 @@ name|E
 argument_list|>
 name|standardSubSet
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|E
 name|fromElement
 parameter_list|,
+annotation|@
+name|ParametricNullness
 name|E
 name|toElement
 parameter_list|)
@@ -590,9 +760,12 @@ literal|false
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|headSet (E toElement, boolean inclusive)
+DECL|method|headSet (@arametricNullness E toElement, boolean inclusive)
 specifier|public
 name|NavigableSet
 argument_list|<
@@ -600,6 +773,8 @@ name|E
 argument_list|>
 name|headSet
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|E
 name|toElement
 parameter_list|,
@@ -619,8 +794,14 @@ name|inclusive
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * A sensible definition of {@link #headSet(Object)} in terms of the {@link #headSet(Object,    * boolean)} method. If you override {@link #headSet(Object, boolean)}, you may wish to override    * {@link #headSet(Object)} to forward to this implementation.    */
-DECL|method|standardHeadSet (E toElement)
+end_comment
+
+begin_function
+DECL|method|standardHeadSet (@arametricNullness E toElement)
 specifier|protected
 name|SortedSet
 argument_list|<
@@ -628,6 +809,8 @@ name|E
 argument_list|>
 name|standardHeadSet
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|E
 name|toElement
 parameter_list|)
@@ -641,9 +824,12 @@ literal|false
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|tailSet (E fromElement, boolean inclusive)
+DECL|method|tailSet (@arametricNullness E fromElement, boolean inclusive)
 specifier|public
 name|NavigableSet
 argument_list|<
@@ -651,6 +837,8 @@ name|E
 argument_list|>
 name|tailSet
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|E
 name|fromElement
 parameter_list|,
@@ -670,8 +858,14 @@ name|inclusive
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * A sensible definition of {@link #tailSet(Object)} in terms of the {@link #tailSet(Object,    * boolean)} method. If you override {@link #tailSet(Object, boolean)}, you may wish to override    * {@link #tailSet(Object)} to forward to this implementation.    */
-DECL|method|standardTailSet (E fromElement)
+end_comment
+
+begin_function
+DECL|method|standardTailSet (@arametricNullness E fromElement)
 specifier|protected
 name|SortedSet
 argument_list|<
@@ -679,6 +873,8 @@ name|E
 argument_list|>
 name|standardTailSet
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|E
 name|fromElement
 parameter_list|)
@@ -692,8 +888,8 @@ literal|true
 argument_list|)
 return|;
 block|}
-block|}
-end_class
+end_function
 
+unit|}
 end_unit
 

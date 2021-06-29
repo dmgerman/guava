@@ -47,6 +47,8 @@ end_comment
 begin_class
 annotation|@
 name|GwtCompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|ForwardingObject
 specifier|public
 specifier|abstract

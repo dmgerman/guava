@@ -669,12 +669,12 @@ return|;
 block|}
 annotation|@
 name|Override
-comment|/*    * Our checker says "found: T[]; required: T[]." That sounds bogus. I discuss a possible reason    * for this error in https://github.com/jspecify/checker-framework/issues/10.    */
 annotation|@
 name|SuppressWarnings
 argument_list|(
 literal|"nullness"
 argument_list|)
+comment|// b/192354773 in our checker affects toArray declarations
 DECL|method|toArray (T[] array)
 specifier|public
 operator|<
@@ -2243,12 +2243,12 @@ return|;
 block|}
 annotation|@
 name|Override
-comment|/*      * Our checker says "found: T[]; required: T[]." That sounds bogus. I discuss a possible reason      * for this error in https://github.com/jspecify/checker-framework/issues/10.      */
 annotation|@
 name|SuppressWarnings
 argument_list|(
 literal|"nullness"
 argument_list|)
+comment|// b/192354773 in our checker affects toArray declarations
 DECL|method|toArray (T[] array)
 specifier|public
 operator|<

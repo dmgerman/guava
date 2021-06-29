@@ -26,22 +26,6 @@ name|common
 operator|.
 name|collect
 operator|.
-name|CollectPreconditions
-operator|.
-name|checkRemove
-import|;
-end_import
-
-begin_import
-import|import static
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|collect
-operator|.
 name|Maps
 operator|.
 name|keyOrNull
@@ -126,31 +110,71 @@ name|SortedMap
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|checkerframework
+operator|.
+name|checker
+operator|.
+name|nullness
+operator|.
+name|qual
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/**  * A navigable map which forwards all its method calls to another navigable map. Subclasses should  * override one or more methods to modify the behavior of the backing map as desired per the<a  * href="http://en.wikipedia.org/wiki/Decorator_pattern">decorator pattern</a>.  *  *<p><b>Warning:</b> The methods of {@code ForwardingNavigableMap} forward<i>indiscriminately</i>  * to the methods of the delegate. For example, overriding {@link #put} alone<i>will not</i> change  * the behavior of {@link #putAll}, which can lead to unexpected behavior. In this case, you should  * override {@code putAll} as well, either providing your own implementation, or delegating to the  * provided {@code standardPutAll} method.  *  *<p><b>{@code default} method warning:</b> This class does<i>not</i> forward calls to {@code  * default} methods. Instead, it inherits their default implementations. When those implementations  * invoke methods, they invoke methods on the {@code ForwardingNavigableMap}.  *  *<p>Each of the {@code standard} methods uses the map's comparator (or the natural ordering of the  * elements, if there is no comparator) to test element equality. As a result, if the comparator is  * not consistent with equals, some of the standard implementations may violate the {@code Map}  * contract.  *  *<p>The {@code standard} methods and the collection views they return are not guaranteed to be  * thread-safe, even when all of the methods that they depend on are thread-safe.  *  * @author Louis Wasserman  * @since 12.0  */
 end_comment
 
-begin_class
+begin_annotation
 annotation|@
 name|GwtIncompatible
+end_annotation
+
+begin_annotation
+annotation|@
+name|ElementTypesAreNonnullByDefault
+end_annotation
+
+begin_expr_stmt
 DECL|class|ForwardingNavigableMap
 specifier|public
 specifier|abstract
-class|class
+name|class
 name|ForwardingNavigableMap
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|ForwardingSortedMap
 argument_list|<
 name|K
 argument_list|,
 name|V
 argument_list|>
-implements|implements
+expr|implements
 name|NavigableMap
 argument_list|<
 name|K
@@ -162,9 +186,9 @@ comment|/** Constructor for use by subclasses. */
 DECL|method|ForwardingNavigableMap ()
 specifier|protected
 name|ForwardingNavigableMap
-parameter_list|()
+argument_list|()
 block|{}
-annotation|@
+expr|@
 name|Override
 DECL|method|delegate ()
 specifier|protected
@@ -176,11 +200,12 @@ argument_list|,
 name|V
 argument_list|>
 name|delegate
-parameter_list|()
-function_decl|;
-annotation|@
+argument_list|()
+block|;    @
 name|Override
-DECL|method|lowerEntry (K key)
+expr|@
+name|CheckForNull
+DECL|method|lowerEntry (@arametricNullness K key)
 specifier|public
 name|Entry
 argument_list|<
@@ -189,10 +214,12 @@ argument_list|,
 name|V
 argument_list|>
 name|lowerEntry
-parameter_list|(
+argument_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|key
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|delegate
@@ -205,7 +232,9 @@ argument_list|)
 return|;
 block|}
 comment|/**    * A sensible definition of {@link #lowerEntry} in terms of the {@code lastEntry()} of {@link    * #headMap(Object, boolean)}. If you override {@code headMap}, you may wish to override {@code    * lowerEntry} to forward to this implementation.    */
-DECL|method|standardLowerEntry (K key)
+expr|@
+name|CheckForNull
+DECL|method|standardLowerEntry (@arametricNullness K key)
 specifier|protected
 name|Entry
 argument_list|<
@@ -214,10 +243,12 @@ argument_list|,
 name|V
 argument_list|>
 name|standardLowerEntry
-parameter_list|(
+argument_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|key
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|headMap
@@ -231,13 +262,20 @@ name|lastEntry
 argument_list|()
 return|;
 block|}
+end_expr_stmt
+
+begin_function
 annotation|@
 name|Override
-DECL|method|lowerKey (K key)
+annotation|@
+name|CheckForNull
+DECL|method|lowerKey (@arametricNullness K key)
 specifier|public
 name|K
 name|lowerKey
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|key
 parameter_list|)
@@ -252,12 +290,22 @@ name|key
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * A sensible definition of {@link #lowerKey} in terms of {@code lowerEntry}. If you override    * {@link #lowerEntry}, you may wish to override {@code lowerKey} to forward to this    * implementation.    */
-DECL|method|standardLowerKey (K key)
+end_comment
+
+begin_function
+annotation|@
+name|CheckForNull
+DECL|method|standardLowerKey (@arametricNullness K key)
 specifier|protected
 name|K
 name|standardLowerKey
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|key
 parameter_list|)
@@ -272,9 +320,14 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|floorEntry (K key)
+annotation|@
+name|CheckForNull
+DECL|method|floorEntry (@arametricNullness K key)
 specifier|public
 name|Entry
 argument_list|<
@@ -284,6 +337,8 @@ name|V
 argument_list|>
 name|floorEntry
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|key
 parameter_list|)
@@ -298,8 +353,16 @@ name|key
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * A sensible definition of {@link #floorEntry} in terms of the {@code lastEntry()} of {@link    * #headMap(Object, boolean)}. If you override {@code headMap}, you may wish to override {@code    * floorEntry} to forward to this implementation.    */
-DECL|method|standardFloorEntry (K key)
+end_comment
+
+begin_function
+annotation|@
+name|CheckForNull
+DECL|method|standardFloorEntry (@arametricNullness K key)
 specifier|protected
 name|Entry
 argument_list|<
@@ -309,6 +372,8 @@ name|V
 argument_list|>
 name|standardFloorEntry
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|key
 parameter_list|)
@@ -325,13 +390,20 @@ name|lastEntry
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|floorKey (K key)
+annotation|@
+name|CheckForNull
+DECL|method|floorKey (@arametricNullness K key)
 specifier|public
 name|K
 name|floorKey
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|key
 parameter_list|)
@@ -346,12 +418,22 @@ name|key
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * A sensible definition of {@link #floorKey} in terms of {@code floorEntry}. If you override    * {@code floorEntry}, you may wish to override {@code floorKey} to forward to this    * implementation.    */
-DECL|method|standardFloorKey (K key)
+end_comment
+
+begin_function
+annotation|@
+name|CheckForNull
+DECL|method|standardFloorKey (@arametricNullness K key)
 specifier|protected
 name|K
 name|standardFloorKey
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|key
 parameter_list|)
@@ -366,9 +448,14 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|ceilingEntry (K key)
+annotation|@
+name|CheckForNull
+DECL|method|ceilingEntry (@arametricNullness K key)
 specifier|public
 name|Entry
 argument_list|<
@@ -378,6 +465,8 @@ name|V
 argument_list|>
 name|ceilingEntry
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|key
 parameter_list|)
@@ -392,8 +481,16 @@ name|key
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * A sensible definition of {@link #ceilingEntry} in terms of the {@code firstEntry()} of {@link    * #tailMap(Object, boolean)}. If you override {@code tailMap}, you may wish to override {@code    * ceilingEntry} to forward to this implementation.    */
-DECL|method|standardCeilingEntry (K key)
+end_comment
+
+begin_function
+annotation|@
+name|CheckForNull
+DECL|method|standardCeilingEntry (@arametricNullness K key)
 specifier|protected
 name|Entry
 argument_list|<
@@ -403,6 +500,8 @@ name|V
 argument_list|>
 name|standardCeilingEntry
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|key
 parameter_list|)
@@ -419,13 +518,20 @@ name|firstEntry
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|ceilingKey (K key)
+annotation|@
+name|CheckForNull
+DECL|method|ceilingKey (@arametricNullness K key)
 specifier|public
 name|K
 name|ceilingKey
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|key
 parameter_list|)
@@ -440,12 +546,22 @@ name|key
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * A sensible definition of {@link #ceilingKey} in terms of {@code ceilingEntry}. If you override    * {@code ceilingEntry}, you may wish to override {@code ceilingKey} to forward to this    * implementation.    */
-DECL|method|standardCeilingKey (K key)
+end_comment
+
+begin_function
+annotation|@
+name|CheckForNull
+DECL|method|standardCeilingKey (@arametricNullness K key)
 specifier|protected
 name|K
 name|standardCeilingKey
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|key
 parameter_list|)
@@ -460,9 +576,14 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|higherEntry (K key)
+annotation|@
+name|CheckForNull
+DECL|method|higherEntry (@arametricNullness K key)
 specifier|public
 name|Entry
 argument_list|<
@@ -472,6 +593,8 @@ name|V
 argument_list|>
 name|higherEntry
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|key
 parameter_list|)
@@ -486,8 +609,16 @@ name|key
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * A sensible definition of {@link #higherEntry} in terms of the {@code firstEntry()} of {@link    * #tailMap(Object, boolean)}. If you override {@code tailMap}, you may wish to override {@code    * higherEntry} to forward to this implementation.    */
-DECL|method|standardHigherEntry (K key)
+end_comment
+
+begin_function
+annotation|@
+name|CheckForNull
+DECL|method|standardHigherEntry (@arametricNullness K key)
 specifier|protected
 name|Entry
 argument_list|<
@@ -497,6 +628,8 @@ name|V
 argument_list|>
 name|standardHigherEntry
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|key
 parameter_list|)
@@ -513,13 +646,20 @@ name|firstEntry
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|higherKey (K key)
+annotation|@
+name|CheckForNull
+DECL|method|higherKey (@arametricNullness K key)
 specifier|public
 name|K
 name|higherKey
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|key
 parameter_list|)
@@ -534,12 +674,22 @@ name|key
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * A sensible definition of {@link #higherKey} in terms of {@code higherEntry}. If you override    * {@code higherEntry}, you may wish to override {@code higherKey} to forward to this    * implementation.    */
-DECL|method|standardHigherKey (K key)
+end_comment
+
+begin_function
+annotation|@
+name|CheckForNull
+DECL|method|standardHigherKey (@arametricNullness K key)
 specifier|protected
 name|K
 name|standardHigherKey
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|key
 parameter_list|)
@@ -554,8 +704,13 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|firstEntry ()
 specifier|public
 name|Entry
@@ -575,7 +730,15 @@ name|firstEntry
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * A sensible definition of {@link #firstEntry} in terms of the {@code iterator()} of {@link    * #entrySet}. If you override {@code entrySet}, you may wish to override {@code firstEntry} to    * forward to this implementation.    */
+end_comment
+
+begin_function
+annotation|@
+name|CheckForNull
 DECL|method|standardFirstEntry ()
 specifier|protected
 name|Entry
@@ -599,7 +762,13 @@ literal|null
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * A sensible definition of {@link #firstKey} in terms of {@code firstEntry}. If you override    * {@code firstEntry}, you may wish to override {@code firstKey} to forward to this    * implementation.    */
+end_comment
+
+begin_function
 DECL|method|standardFirstKey ()
 specifier|protected
 name|K
@@ -640,8 +809,13 @@ argument_list|()
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|lastEntry ()
 specifier|public
 name|Entry
@@ -661,7 +835,15 @@ name|lastEntry
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * A sensible definition of {@link #lastEntry} in terms of the {@code iterator()} of the {@link    * #entrySet} of {@link #descendingMap}. If you override {@code descendingMap}, you may wish to    * override {@code lastEntry} to forward to this implementation.    */
+end_comment
+
+begin_function
+annotation|@
+name|CheckForNull
 DECL|method|standardLastEntry ()
 specifier|protected
 name|Entry
@@ -688,7 +870,13 @@ literal|null
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * A sensible definition of {@link #lastKey} in terms of {@code lastEntry}. If you override {@code    * lastEntry}, you may wish to override {@code lastKey} to forward to this implementation.    */
+end_comment
+
+begin_function
 DECL|method|standardLastKey ()
 specifier|protected
 name|K
@@ -729,8 +917,13 @@ argument_list|()
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|pollFirstEntry ()
 specifier|public
 name|Entry
@@ -750,7 +943,15 @@ name|pollFirstEntry
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * A sensible definition of {@link #pollFirstEntry} in terms of the {@code iterator} of {@code    * entrySet}. If you override {@code entrySet}, you may wish to override {@code pollFirstEntry} to    * forward to this implementation.    */
+end_comment
+
+begin_function
+annotation|@
+name|CheckForNull
 DECL|method|standardPollFirstEntry ()
 specifier|protected
 name|Entry
@@ -775,8 +976,13 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|pollLastEntry ()
 specifier|public
 name|Entry
@@ -796,7 +1002,15 @@ name|pollLastEntry
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * A sensible definition of {@link #pollFirstEntry} in terms of the {@code iterator} of the {@code    * entrySet} of {@code descendingMap}. If you override {@code descendingMap}, you may wish to    * override {@code pollFirstEntry} to forward to this implementation.    */
+end_comment
+
+begin_function
+annotation|@
+name|CheckForNull
 DECL|method|standardPollLastEntry ()
 specifier|protected
 name|Entry
@@ -824,6 +1038,9 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|descendingMap ()
@@ -845,7 +1062,13 @@ name|descendingMap
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * A sensible implementation of {@link NavigableMap#descendingMap} in terms of the methods of this    * {@code NavigableMap}. In many cases, you may wish to override {@link    * ForwardingNavigableMap#descendingMap} to forward to this implementation or a subclass thereof.    *    *<p>In particular, this map iterates over entries with repeated calls to {@link    * NavigableMap#lowerEntry}. If a more efficient means of iteration is available, you may wish to    * override the {@code entryIterator()} method of this class.    *    * @since 12.0    */
+end_comment
+
+begin_class
 annotation|@
 name|Beta
 DECL|class|StandardDescendingMap
@@ -915,6 +1138,8 @@ argument_list|>
 argument_list|>
 argument_list|()
 block|{
+annotation|@
+name|CheckForNull
 specifier|private
 name|Entry
 argument_list|<
@@ -926,6 +1151,8 @@ name|toRemove
 init|=
 literal|null
 decl_stmt|;
+annotation|@
+name|CheckForNull
 specifier|private
 name|Entry
 argument_list|<
@@ -974,9 +1201,9 @@ parameter_list|()
 block|{
 if|if
 condition|(
-operator|!
-name|hasNext
-argument_list|()
+name|nextOrNull
+operator|==
+literal|null
 condition|)
 block|{
 throw|throw
@@ -1019,13 +1246,21 @@ name|void
 name|remove
 parameter_list|()
 block|{
-name|checkRemove
-argument_list|(
+if|if
+condition|(
 name|toRemove
-operator|!=
+operator|==
 literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalStateException
+argument_list|(
+literal|"no calls to next() since the last call to remove()"
 argument_list|)
-expr_stmt|;
+throw|;
+block|}
 name|forward
 argument_list|()
 operator|.
@@ -1046,6 +1281,9 @@ block|}
 return|;
 block|}
 block|}
+end_class
+
+begin_function
 annotation|@
 name|Override
 DECL|method|navigableKeySet ()
@@ -1065,7 +1303,13 @@ name|navigableKeySet
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * A sensible implementation of {@link NavigableMap#navigableKeySet} in terms of the methods of    * this {@code NavigableMap}. In many cases, you may wish to override {@link    * ForwardingNavigableMap#navigableKeySet} to forward to this implementation or a subclass    * thereof.    *    * @since 12.0    */
+end_comment
+
+begin_class
 annotation|@
 name|Beta
 DECL|class|StandardNavigableKeySet
@@ -1097,6 +1341,9 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+end_class
+
+begin_function
 annotation|@
 name|Override
 DECL|method|descendingKeySet ()
@@ -1116,7 +1363,13 @@ name|descendingKeySet
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * A sensible definition of {@link #descendingKeySet} as the {@code navigableKeySet} of {@link    * #descendingMap}. (The {@link StandardDescendingMap} implementation implements {@code    * navigableKeySet} on its own, so as not to cause an infinite loop.) If you override {@code    * descendingMap}, you may wish to override {@code descendingKeySet} to forward to this    * implementation.    */
+end_comment
+
+begin_function
 annotation|@
 name|Beta
 DECL|method|standardDescendingKeySet ()
@@ -1136,10 +1389,16 @@ name|navigableKeySet
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * A sensible definition of {@link #subMap(Object, Object)} in terms of {@link #subMap(Object,    * boolean, Object, boolean)}. If you override {@code subMap(K, boolean, K, boolean)}, you may    * wish to override {@code subMap} to forward to this implementation.    */
+end_comment
+
+begin_function
 annotation|@
 name|Override
-DECL|method|standardSubMap (K fromKey, K toKey)
+DECL|method|standardSubMap ( @arametricNullness K fromKey, @ParametricNullness K toKey)
 specifier|protected
 name|SortedMap
 argument_list|<
@@ -1149,9 +1408,13 @@ name|V
 argument_list|>
 name|standardSubMap
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|fromKey
 parameter_list|,
+annotation|@
+name|ParametricNullness
 name|K
 name|toKey
 parameter_list|)
@@ -1169,9 +1432,12 @@ literal|false
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|subMap (K fromKey, boolean fromInclusive, K toKey, boolean toInclusive)
+DECL|method|subMap ( @arametricNullness K fromKey, boolean fromInclusive, @ParametricNullness K toKey, boolean toInclusive)
 specifier|public
 name|NavigableMap
 argument_list|<
@@ -1181,12 +1447,16 @@ name|V
 argument_list|>
 name|subMap
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|fromKey
 parameter_list|,
 name|boolean
 name|fromInclusive
 parameter_list|,
+annotation|@
+name|ParametricNullness
 name|K
 name|toKey
 parameter_list|,
@@ -1210,9 +1480,12 @@ name|toInclusive
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|headMap (K toKey, boolean inclusive)
+DECL|method|headMap (@arametricNullness K toKey, boolean inclusive)
 specifier|public
 name|NavigableMap
 argument_list|<
@@ -1222,6 +1495,8 @@ name|V
 argument_list|>
 name|headMap
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|toKey
 parameter_list|,
@@ -1241,9 +1516,12 @@ name|inclusive
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|tailMap (K fromKey, boolean inclusive)
+DECL|method|tailMap (@arametricNullness K fromKey, boolean inclusive)
 specifier|public
 name|NavigableMap
 argument_list|<
@@ -1253,6 +1531,8 @@ name|V
 argument_list|>
 name|tailMap
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|fromKey
 parameter_list|,
@@ -1272,8 +1552,14 @@ name|inclusive
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * A sensible definition of {@link #headMap(Object)} in terms of {@link #headMap(Object,    * boolean)}. If you override {@code headMap(K, boolean)}, you may wish to override {@code    * headMap} to forward to this implementation.    */
-DECL|method|standardHeadMap (K toKey)
+end_comment
+
+begin_function
+DECL|method|standardHeadMap (@arametricNullness K toKey)
 specifier|protected
 name|SortedMap
 argument_list|<
@@ -1283,6 +1569,8 @@ name|V
 argument_list|>
 name|standardHeadMap
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|toKey
 parameter_list|)
@@ -1296,8 +1584,14 @@ literal|false
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * A sensible definition of {@link #tailMap(Object)} in terms of {@link #tailMap(Object,    * boolean)}. If you override {@code tailMap(K, boolean)}, you may wish to override {@code    * tailMap} to forward to this implementation.    */
-DECL|method|standardTailMap (K fromKey)
+end_comment
+
+begin_function
+DECL|method|standardTailMap (@arametricNullness K fromKey)
 specifier|protected
 name|SortedMap
 argument_list|<
@@ -1307,6 +1601,8 @@ name|V
 argument_list|>
 name|standardTailMap
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|fromKey
 parameter_list|)
@@ -1320,8 +1616,8 @@ literal|true
 argument_list|)
 return|;
 block|}
-block|}
-end_class
+end_function
 
+unit|}
 end_unit
 

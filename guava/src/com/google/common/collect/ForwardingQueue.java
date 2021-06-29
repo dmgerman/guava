@@ -64,27 +64,64 @@ name|Queue
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|checkerframework
+operator|.
+name|checker
+operator|.
+name|nullness
+operator|.
+name|qual
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/**  * A queue which forwards all its method calls to another queue. Subclasses should override one or  * more methods to modify the behavior of the backing queue as desired per the<a  * href="http://en.wikipedia.org/wiki/Decorator_pattern">decorator pattern</a>.  *  *<p><b>Warning:</b> The methods of {@code ForwardingQueue} forward<b>indiscriminately</b> to the  * methods of the delegate. For example, overriding {@link #add} alone<b>will not</b> change the  * behavior of {@link #offer} which can lead to unexpected behavior. In this case, you should  * override {@code offer} as well, either providing your own implementation, or delegating to the  * provided {@code standardOffer} method.  *  *<p><b>{@code default} method warning:</b> This class does<i>not</i> forward calls to {@code  * default} methods. Instead, it inherits their default implementations. When those implementations  * invoke methods, they invoke methods on the {@code ForwardingQueue}.  *  *<p>The {@code standard} methods are not guaranteed to be thread-safe, even when all of the  * methods that they depend on are thread-safe.  *  * @author Mike Bostock  * @author Louis Wasserman  * @since 2.0  */
 end_comment
 
-begin_class
+begin_annotation
 annotation|@
 name|GwtCompatible
+end_annotation
+
+begin_annotation
+annotation|@
+name|ElementTypesAreNonnullByDefault
+end_annotation
+
+begin_expr_stmt
 DECL|class|ForwardingQueue
 specifier|public
 specifier|abstract
-class|class
+name|class
 name|ForwardingQueue
-parameter_list|<
+operator|<
 name|E
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|ForwardingCollection
 argument_list|<
 name|E
 argument_list|>
-implements|implements
+expr|implements
 name|Queue
 argument_list|<
 name|E
@@ -94,9 +131,9 @@ comment|/** Constructor for use by subclasses. */
 DECL|method|ForwardingQueue ()
 specifier|protected
 name|ForwardingQueue
-parameter_list|()
+argument_list|()
 block|{}
-annotation|@
+expr|@
 name|Override
 DECL|method|delegate ()
 specifier|protected
@@ -106,21 +143,22 @@ argument_list|<
 name|E
 argument_list|>
 name|delegate
-parameter_list|()
-function_decl|;
-annotation|@
+argument_list|()
+block|;    @
 name|CanIgnoreReturnValue
 comment|// TODO(cpovirk): Consider removing this?
-annotation|@
+expr|@
 name|Override
-DECL|method|offer (E o)
+DECL|method|offer (@arametricNullness E o)
 specifier|public
 name|boolean
 name|offer
-parameter_list|(
+argument_list|(
+annotation|@
+name|ParametricNullness
 name|E
 name|o
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|delegate
@@ -132,16 +170,18 @@ name|o
 argument_list|)
 return|;
 block|}
-annotation|@
+expr|@
 name|CanIgnoreReturnValue
 comment|// TODO(cpovirk): Consider removing this?
-annotation|@
+expr|@
 name|Override
+expr|@
+name|CheckForNull
 DECL|method|poll ()
 specifier|public
 name|E
 name|poll
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|delegate
@@ -151,10 +191,15 @@ name|poll
 argument_list|()
 return|;
 block|}
+end_expr_stmt
+
+begin_function
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
+annotation|@
+name|ParametricNullness
 DECL|method|remove ()
 specifier|public
 name|E
@@ -169,8 +214,13 @@ name|remove
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|CheckForNull
 DECL|method|peek ()
 specifier|public
 name|E
@@ -185,8 +235,13 @@ name|peek
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
+annotation|@
+name|ParametricNullness
 DECL|method|element ()
 specifier|public
 name|E
@@ -201,12 +256,20 @@ name|element
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * A sensible definition of {@link #offer} in terms of {@link #add}. If you override {@link #add},    * you may wish to override {@link #offer} to forward to this implementation.    *    * @since 7.0    */
-DECL|method|standardOffer (E e)
+end_comment
+
+begin_function
+DECL|method|standardOffer (@arametricNullness E e)
 specifier|protected
 name|boolean
 name|standardOffer
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|E
 name|e
 parameter_list|)
@@ -231,7 +294,15 @@ literal|false
 return|;
 block|}
 block|}
+end_function
+
+begin_comment
 comment|/**    * A sensible definition of {@link #peek} in terms of {@link #element}. If you override {@link    * #element}, you may wish to override {@link #peek} to forward to this implementation.    *    * @since 7.0    */
+end_comment
+
+begin_function
+annotation|@
+name|CheckForNull
 DECL|method|standardPeek ()
 specifier|protected
 name|E
@@ -256,7 +327,15 @@ literal|null
 return|;
 block|}
 block|}
+end_function
+
+begin_comment
 comment|/**    * A sensible definition of {@link #poll} in terms of {@link #remove}. If you override {@link    * #remove}, you may wish to override {@link #poll} to forward to this implementation.    *    * @since 7.0    */
+end_comment
+
+begin_function
+annotation|@
+name|CheckForNull
 DECL|method|standardPoll ()
 specifier|protected
 name|E
@@ -281,8 +360,8 @@ literal|null
 return|;
 block|}
 block|}
-block|}
-end_class
+end_function
 
+unit|}
 end_unit
 
