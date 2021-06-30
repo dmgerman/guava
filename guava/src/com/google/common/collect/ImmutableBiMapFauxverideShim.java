@@ -32,6 +32,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|DoNotCall
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -66,6 +80,22 @@ name|Collector
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|checkerframework
+operator|.
+name|checker
+operator|.
+name|nullness
+operator|.
+name|qual
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/**  * "Overrides" the {@link ImmutableMap} static methods that lack {@link ImmutableBiMap} equivalents  * with deprecated, exception-throwing versions. See {@link ImmutableSortedSetFauxverideShim} for  * details.  *  * @author Louis Wasserman  */
 end_comment
@@ -73,6 +103,8 @@ end_comment
 begin_class
 annotation|@
 name|GwtIncompatible
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|ImmutableBiMapFauxverideShim
 specifier|abstract
 class|class
@@ -93,16 +125,24 @@ block|{
 comment|/**    * Not supported. Use {@link ImmutableBiMap#toImmutableBiMap} instead. This method exists only to    * hide {@link ImmutableMap#toImmutableMap(Function, Function)} from consumers of {@code    * ImmutableBiMap}.    *    * @throws UnsupportedOperationException always    * @deprecated Use {@link ImmutableBiMap#toImmutableBiMap}.    */
 annotation|@
 name|Deprecated
-DECL|method|toImmutableMap ( Function<? super T, ? extends K> keyFunction, Function<? super T, ? extends V> valueFunction)
+annotation|@
+name|DoNotCall
+argument_list|(
+literal|"Use toImmutableBiMap"
+argument_list|)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|K
-parameter_list|,
+operator|,
 name|V
-parameter_list|>
+operator|>
+DECL|method|toImmutableMap ( Function<? super T, ? extends K> keyFunction, Function<? super T, ? extends V> valueFunction)
 name|Collector
 argument_list|<
 name|T
@@ -117,7 +157,7 @@ name|V
 argument_list|>
 argument_list|>
 name|toImmutableMap
-parameter_list|(
+argument_list|(
 name|Function
 argument_list|<
 name|?
@@ -129,7 +169,7 @@ extends|extends
 name|K
 argument_list|>
 name|keyFunction
-parameter_list|,
+operator|,
 name|Function
 argument_list|<
 name|?
@@ -141,27 +181,34 @@ extends|extends
 name|V
 argument_list|>
 name|valueFunction
-parameter_list|)
+argument_list|)
 block|{
 throw|throw
-operator|new
+argument_list|new
 name|UnsupportedOperationException
 argument_list|()
-throw|;
-block|}
+block|;   }
 comment|/**    * Not supported. This method does not make sense for {@code BiMap}. This method exists only to    * hide {@link ImmutableMap#toImmutableMap(Function, Function, BinaryOperator)} from consumers of    * {@code ImmutableBiMap}.    *    * @throws UnsupportedOperationException always    * @deprecated    */
-annotation|@
+expr|@
 name|Deprecated
-DECL|method|toImmutableMap ( Function<? super T, ? extends K> keyFunction, Function<? super T, ? extends V> valueFunction, BinaryOperator<V> mergeFunction)
+expr|@
+name|DoNotCall
+argument_list|(
+literal|"Use toImmutableBiMap"
+argument_list|)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|K
-parameter_list|,
+operator|,
 name|V
-parameter_list|>
+operator|>
+DECL|method|toImmutableMap ( Function<? super T, ? extends K> keyFunction, Function<? super T, ? extends V> valueFunction, BinaryOperator<V> mergeFunction)
 name|Collector
 argument_list|<
 name|T
@@ -176,7 +223,7 @@ name|V
 argument_list|>
 argument_list|>
 name|toImmutableMap
-parameter_list|(
+argument_list|(
 name|Function
 argument_list|<
 name|?
@@ -188,7 +235,7 @@ extends|extends
 name|K
 argument_list|>
 name|keyFunction
-parameter_list|,
+operator|,
 name|Function
 argument_list|<
 name|?
@@ -200,20 +247,19 @@ extends|extends
 name|V
 argument_list|>
 name|valueFunction
-parameter_list|,
+operator|,
 name|BinaryOperator
 argument_list|<
 name|V
 argument_list|>
 name|mergeFunction
-parameter_list|)
+argument_list|)
 block|{
 throw|throw
-operator|new
+argument_list|new
 name|UnsupportedOperationException
 argument_list|()
-throw|;
-block|}
+block|;   }
 block|}
 end_class
 

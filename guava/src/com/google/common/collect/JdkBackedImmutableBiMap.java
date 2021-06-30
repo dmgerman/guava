@@ -100,17 +100,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|javax
 operator|.
-name|checkerframework
+name|annotation
 operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|qual
-operator|.
-name|Nullable
+name|CheckForNull
 import|;
 end_import
 
@@ -126,6 +120,8 @@ name|emulated
 operator|=
 literal|true
 argument_list|)
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|JdkBackedImmutableBiMap
 specifier|final
 class|class
@@ -477,6 +473,8 @@ annotation|@
 name|LazyInit
 annotation|@
 name|RetainedWith
+annotation|@
+name|CheckForNull
 specifier|private
 specifier|transient
 name|JdkBackedImmutableBiMap
@@ -644,13 +642,15 @@ block|}
 block|}
 annotation|@
 name|Override
-DECL|method|get (@ullable Object key)
+annotation|@
+name|CheckForNull
+DECL|method|get (@heckForNull Object key)
 specifier|public
 name|V
 name|get
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)

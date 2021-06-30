@@ -136,6 +136,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|checkerframework
@@ -154,7 +164,7 @@ begin_comment
 comment|/**  * A {@code BiMap} backed by an {@code EnumMap} instance for keys-to-values, and a {@code HashMap}  * instance for values-to-keys. Null keys are not permitted, but null values are. An {@code  * EnumHashBiMap} and its inverse are both serializable.  *  *<p>See the Guava User Guide article on<a href=  * "https://github.com/google/guava/wiki/NewCollectionTypesExplained#bimap"> {@code BiMap}</a>.  *  * @author Mike Bostock  * @since 2.0  */
 end_comment
 
-begin_class
+begin_annotation
 annotation|@
 name|GwtCompatible
 argument_list|(
@@ -162,22 +172,33 @@ name|emulated
 operator|=
 literal|true
 argument_list|)
+end_annotation
+
+begin_annotation
+annotation|@
+name|ElementTypesAreNonnullByDefault
+end_annotation
+
+begin_expr_stmt
 DECL|class|EnumHashBiMap
 specifier|public
-specifier|final
-class|class
+name|final
+name|class
 name|EnumHashBiMap
-parameter_list|<
+operator|<
 name|K
-extends|extends
+expr|extends
 name|Enum
-parameter_list|<
+argument_list|<
 name|K
-parameter_list|>
-parameter_list|,
+argument_list|>
+operator|,
 name|V
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|AbstractBiMap
 argument_list|<
 name|K
@@ -193,21 +214,24 @@ argument_list|<
 name|K
 argument_list|>
 name|keyType
-decl_stmt|;
+block|;
 comment|/**    * Returns a new, empty {@code EnumHashBiMap} using the specified key type.    *    * @param keyType the key type    */
-DECL|method|create (Class<K> keyType)
+DECL|method|create ( Class<K> keyType)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|K
-extends|extends
+expr|extends
 name|Enum
 argument_list|<
 name|K
 argument_list|>
-parameter_list|,
+block|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|EnumHashBiMap
 argument_list|<
 name|K
@@ -215,13 +239,13 @@ argument_list|,
 name|V
 argument_list|>
 name|create
-parameter_list|(
+argument_list|(
 name|Class
 argument_list|<
 name|K
 argument_list|>
 name|keyType
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|new
@@ -233,19 +257,22 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Constructs a new bimap with the same mappings as the specified map. If the specified map is an    * {@code EnumHashBiMap} or an {@link EnumBiMap}, the new bimap has the same key type as the input    * bimap. Otherwise, the specified map must contain at least one mapping, in order to determine    * the key type.    *    * @param map the map whose mappings are to be placed in this map    * @throws IllegalArgumentException if map is not an {@code EnumBiMap} or an {@code EnumHashBiMap}    *     instance and contains no mappings    */
-DECL|method|create (Map<K, ? extends V> map)
+DECL|method|create ( Map<K, ? extends V> map)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|K
-extends|extends
+expr|extends
 name|Enum
 argument_list|<
 name|K
 argument_list|>
-parameter_list|,
+operator|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|EnumHashBiMap
 argument_list|<
 name|K
@@ -253,7 +280,7 @@ argument_list|,
 name|V
 argument_list|>
 name|create
-parameter_list|(
+argument_list|(
 name|Map
 argument_list|<
 name|K
@@ -263,7 +290,7 @@ extends|extends
 name|V
 argument_list|>
 name|map
-parameter_list|)
+argument_list|)
 block|{
 name|EnumHashBiMap
 argument_list|<
@@ -272,7 +299,7 @@ argument_list|,
 name|V
 argument_list|>
 name|bimap
-init|=
+operator|=
 name|create
 argument_list|(
 name|EnumBiMap
@@ -282,18 +309,21 @@ argument_list|(
 name|map
 argument_list|)
 argument_list|)
-decl_stmt|;
+block|;
 name|bimap
 operator|.
 name|putAll
 argument_list|(
 name|map
 argument_list|)
-expr_stmt|;
+block|;
 return|return
 name|bimap
 return|;
 block|}
+end_expr_stmt
+
+begin_constructor
 DECL|method|EnumHashBiMap (Class<K> keyType)
 specifier|private
 name|EnumHashBiMap
@@ -343,7 +373,13 @@ operator|=
 name|keyType
 expr_stmt|;
 block|}
+end_constructor
+
+begin_comment
 comment|// Overriding these 3 methods to show that values may be null (but not keys)
+end_comment
+
+begin_function
 annotation|@
 name|Override
 DECL|method|checkKey (K key)
@@ -361,11 +397,23 @@ name|key
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
-DECL|method|put (K key, @Nullable V value)
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"RedundantOverride"
+argument_list|)
+comment|// b/192446478: RedundantOverride ignores some annotations.
+comment|// TODO(b/192446998): Remove this override after tools understand nullness better.
+annotation|@
+name|CheckForNull
+DECL|method|put (K key, @ParametricNullness V value)
 specifier|public
 name|V
 name|put
@@ -374,7 +422,7 @@ name|K
 name|key
 parameter_list|,
 annotation|@
-name|Nullable
+name|ParametricNullness
 name|V
 name|value
 parameter_list|)
@@ -390,11 +438,23 @@ name|value
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
-DECL|method|forcePut (K key, @Nullable V value)
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"RedundantOverride"
+argument_list|)
+comment|// b/192446478: RedundantOverride ignores some annotations.
+comment|// TODO(b/192446998): Remove this override after tools understand nullness better.
+annotation|@
+name|CheckForNull
+DECL|method|forcePut (K key, @ParametricNullness V value)
 specifier|public
 name|V
 name|forcePut
@@ -403,7 +463,7 @@ name|K
 name|key
 parameter_list|,
 annotation|@
-name|Nullable
+name|ParametricNullness
 name|V
 name|value
 parameter_list|)
@@ -419,7 +479,13 @@ name|value
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/** Returns the associated key type. */
+end_comment
+
+begin_function
 DECL|method|keyType ()
 specifier|public
 name|Class
@@ -433,7 +499,13 @@ return|return
 name|keyType
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * @serialData the key class, number of entries, first key, first value, second key, second value,    *     and so on.    */
+end_comment
+
+begin_function
 annotation|@
 name|GwtIncompatible
 comment|// java.io.ObjectOutputStream
@@ -470,6 +542,9 @@ name|stream
 argument_list|)
 expr_stmt|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -554,6 +629,9 @@ name|stream
 argument_list|)
 expr_stmt|;
 block|}
+end_function
+
+begin_decl_stmt
 annotation|@
 name|GwtIncompatible
 comment|// only needed in emulated source.
@@ -566,8 +644,8 @@ name|serialVersionUID
 init|=
 literal|0
 decl_stmt|;
-block|}
-end_class
+end_decl_stmt
 
+unit|}
 end_unit
 

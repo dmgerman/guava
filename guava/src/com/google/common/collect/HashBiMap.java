@@ -74,25 +74,21 @@ name|common
 operator|.
 name|collect
 operator|.
-name|CollectPreconditions
+name|Hashing
 operator|.
-name|checkRemove
+name|smearedHash
 import|;
 end_import
 
 begin_import
 import|import static
-name|com
+name|java
 operator|.
-name|google
+name|util
 operator|.
-name|common
+name|Objects
 operator|.
-name|collect
-operator|.
-name|Hashing
-operator|.
-name|smearedHash
+name|requireNonNull
 import|;
 end_import
 
@@ -338,6 +334,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|checkerframework
@@ -356,7 +362,7 @@ begin_comment
 comment|/**  * A {@link BiMap} backed by two hash tables. This implementation allows null keys and values. A  * {@code HashBiMap} and its inverse are both serializable.  *  *<p>This implementation guarantees insertion-based iteration order of its keys.  *  *<p>See the Guava User Guide article on<a href=  * "https://github.com/google/guava/wiki/NewCollectionTypesExplained#bimap"> {@code BiMap}</a>.  *  * @author Louis Wasserman  * @author Mike Bostock  * @since 2.0  */
 end_comment
 
-begin_class
+begin_annotation
 annotation|@
 name|GwtCompatible
 argument_list|(
@@ -364,42 +370,62 @@ name|emulated
 operator|=
 literal|true
 argument_list|)
+end_annotation
+
+begin_annotation
+annotation|@
+name|ElementTypesAreNonnullByDefault
+end_annotation
+
+begin_expr_stmt
 DECL|class|HashBiMap
 specifier|public
-specifier|final
-class|class
+name|final
+name|class
 name|HashBiMap
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|IteratorBasedAbstractMap
 argument_list|<
 name|K
 argument_list|,
 name|V
 argument_list|>
-implements|implements
+expr|implements
 name|BiMap
 argument_list|<
 name|K
 argument_list|,
 name|V
 argument_list|>
-implements|,
+operator|,
 name|Serializable
 block|{
 comment|/** Returns a new, empty {@code HashBiMap} with the default initial capacity (16). */
 DECL|method|create ()
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+block|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|HashBiMap
 argument_list|<
 name|K
@@ -407,7 +433,7 @@ argument_list|,
 name|V
 argument_list|>
 name|create
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|create
@@ -417,14 +443,20 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Constructs a new, empty bimap with the specified expected size.    *    * @param expectedSize the expected number of entries    * @throws IllegalArgumentException if the specified expected size is negative    */
-DECL|method|create (int expectedSize)
+DECL|method|create ( int expectedSize)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|HashBiMap
 argument_list|<
 name|K
@@ -432,10 +464,10 @@ argument_list|,
 name|V
 argument_list|>
 name|create
-parameter_list|(
+argument_list|(
 name|int
 name|expectedSize
-parameter_list|)
+argument_list|)
 block|{
 return|return
 operator|new
@@ -446,15 +478,27 @@ name|expectedSize
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/**    * Constructs a new bimap containing initial values from {@code map}. The bimap is created with an    * initial capacity sufficient to hold the mappings in the specified map.    */
-DECL|method|create (Map<? extends K, ? extends V> map)
+end_comment
+
+begin_expr_stmt
+DECL|method|create ( Map<? extends K, ? extends V> map)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|HashBiMap
 argument_list|<
 name|K
@@ -462,7 +506,7 @@ argument_list|,
 name|V
 argument_list|>
 name|create
-parameter_list|(
+argument_list|(
 name|Map
 argument_list|<
 name|?
@@ -474,7 +518,7 @@ extends|extends
 name|V
 argument_list|>
 name|map
-parameter_list|)
+argument_list|)
 block|{
 name|HashBiMap
 argument_list|<
@@ -483,7 +527,7 @@ argument_list|,
 name|V
 argument_list|>
 name|bimap
-init|=
+operator|=
 name|create
 argument_list|(
 name|map
@@ -491,30 +535,39 @@ operator|.
 name|size
 argument_list|()
 argument_list|)
-decl_stmt|;
+block|;
 name|bimap
 operator|.
 name|putAll
 argument_list|(
 name|map
 argument_list|)
-expr_stmt|;
+block|;
 return|return
 name|bimap
 return|;
 block|}
+end_expr_stmt
+
+begin_expr_stmt
 DECL|class|BiEntry
 specifier|private
 specifier|static
-specifier|final
-class|class
+name|final
+name|class
 name|BiEntry
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|ImmutableEntry
 argument_list|<
 name|K
@@ -523,15 +576,15 @@ name|V
 argument_list|>
 block|{
 DECL|field|keyHash
-specifier|final
+name|final
 name|int
 name|keyHash
-decl_stmt|;
+block|;
 DECL|field|valueHash
-specifier|final
+name|final
 name|int
 name|valueHash
-decl_stmt|;
+block|;
 comment|// All BiEntry instances are strongly reachable from owning HashBiMap through
 comment|// "HashBiMap.hashTableKToV" and "BiEntry.nextInKToVBucket" references.
 comment|// Under that assumption, the remaining references can be safely marked as @Weak.
@@ -539,8 +592,8 @@ comment|// Using @Weak is necessary to avoid retain-cycles between BiEntry insta
 comment|// which would cause memory leaks when non-empty HashBiMap with cyclic BiEntry
 comment|// instances is deallocated.
 DECL|field|nextInKToVBucket
-annotation|@
-name|Nullable
+block|@
+name|CheckForNull
 name|BiEntry
 argument_list|<
 name|K
@@ -548,12 +601,11 @@ argument_list|,
 name|V
 argument_list|>
 name|nextInKToVBucket
-decl_stmt|;
+block|;     @
 DECL|field|nextInVToKBucket
-annotation|@
 name|Weak
-annotation|@
-name|Nullable
+expr|@
+name|CheckForNull
 name|BiEntry
 argument_list|<
 name|K
@@ -561,12 +613,11 @@ argument_list|,
 name|V
 argument_list|>
 name|nextInVToKBucket
-decl_stmt|;
+block|;      @
 DECL|field|nextInKeyInsertionOrder
-annotation|@
 name|Weak
-annotation|@
-name|Nullable
+expr|@
+name|CheckForNull
 name|BiEntry
 argument_list|<
 name|K
@@ -574,12 +625,11 @@ argument_list|,
 name|V
 argument_list|>
 name|nextInKeyInsertionOrder
-decl_stmt|;
+block|;     @
 DECL|field|prevInKeyInsertionOrder
-annotation|@
 name|Weak
-annotation|@
-name|Nullable
+expr|@
+name|CheckForNull
 name|BiEntry
 argument_list|<
 name|K
@@ -587,22 +637,26 @@ argument_list|,
 name|V
 argument_list|>
 name|prevInKeyInsertionOrder
-decl_stmt|;
-DECL|method|BiEntry (K key, int keyHash, V value, int valueHash)
+block|;
+DECL|method|BiEntry (@arametricNullness K key, int keyHash, @ParametricNullness V value, int valueHash)
 name|BiEntry
-parameter_list|(
+argument_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|key
-parameter_list|,
+argument_list|,
 name|int
 name|keyHash
-parameter_list|,
+argument_list|,
+annotation|@
+name|ParametricNullness
 name|V
 name|value
-parameter_list|,
+argument_list|,
 name|int
 name|valueHash
-parameter_list|)
+argument_list|)
 block|{
 name|super
 argument_list|(
@@ -610,33 +664,41 @@ name|key
 argument_list|,
 name|value
 argument_list|)
-expr_stmt|;
+block|;
 name|this
 operator|.
 name|keyHash
 operator|=
 name|keyHash
-expr_stmt|;
+block|;
 name|this
 operator|.
 name|valueHash
 operator|=
 name|valueHash
-expr_stmt|;
-block|}
+block|;     }
 block|}
 DECL|field|LOAD_FACTOR
 specifier|private
 specifier|static
-specifier|final
+name|final
 name|double
 name|LOAD_FACTOR
-init|=
+operator|=
 literal|1.0
-decl_stmt|;
+expr_stmt|;
+end_expr_stmt
+
+begin_comment
+comment|/*    * The following two arrays may *contain* nulls, but they are never *themselves* null: Even though    * they are not initialized inline in the constructor, they are initialized from init(), which the    * constructor calls (as does readObject()).    */
+end_comment
+
+begin_decl_stmt
 DECL|field|hashTableKToV
 specifier|private
 specifier|transient
+annotation|@
+name|Nullable
 name|BiEntry
 argument_list|<
 name|K
@@ -646,9 +708,14 @@ argument_list|>
 index|[]
 name|hashTableKToV
 decl_stmt|;
+end_decl_stmt
+
+begin_decl_stmt
 DECL|field|hashTableVToK
 specifier|private
 specifier|transient
+annotation|@
+name|Nullable
 name|BiEntry
 argument_list|<
 name|K
@@ -658,13 +725,16 @@ argument_list|>
 index|[]
 name|hashTableVToK
 decl_stmt|;
+end_decl_stmt
+
+begin_decl_stmt
 DECL|field|firstInKeyInsertionOrder
 annotation|@
 name|Weak
+annotation|@
+name|CheckForNull
 specifier|private
 specifier|transient
-annotation|@
-name|Nullable
 name|BiEntry
 argument_list|<
 name|K
@@ -673,13 +743,16 @@ name|V
 argument_list|>
 name|firstInKeyInsertionOrder
 decl_stmt|;
+end_decl_stmt
+
+begin_decl_stmt
 DECL|field|lastInKeyInsertionOrder
 annotation|@
 name|Weak
+annotation|@
+name|CheckForNull
 specifier|private
 specifier|transient
-annotation|@
-name|Nullable
 name|BiEntry
 argument_list|<
 name|K
@@ -688,24 +761,36 @@ name|V
 argument_list|>
 name|lastInKeyInsertionOrder
 decl_stmt|;
+end_decl_stmt
+
+begin_decl_stmt
 DECL|field|size
 specifier|private
 specifier|transient
 name|int
 name|size
 decl_stmt|;
+end_decl_stmt
+
+begin_decl_stmt
 DECL|field|mask
 specifier|private
 specifier|transient
 name|int
 name|mask
 decl_stmt|;
+end_decl_stmt
+
+begin_decl_stmt
 DECL|field|modCount
 specifier|private
 specifier|transient
 name|int
 name|modCount
 decl_stmt|;
+end_decl_stmt
+
+begin_constructor
 DECL|method|HashBiMap (int expectedSize)
 specifier|private
 name|HashBiMap
@@ -720,6 +805,9 @@ name|expectedSize
 argument_list|)
 expr_stmt|;
 block|}
+end_constructor
+
+begin_function
 DECL|method|init (int expectedSize)
 specifier|private
 name|void
@@ -799,7 +887,13 @@ operator|=
 literal|0
 expr_stmt|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Finds and removes {@code entry} from the bucket linked lists in both the key-to-value direction    * and the value-to-key direction.    */
+end_comment
+
+begin_function
 DECL|method|delete (BiEntry<K, V> entry)
 specifier|private
 name|void
@@ -1043,7 +1137,10 @@ name|modCount
 operator|++
 expr_stmt|;
 block|}
-DECL|method|insert (BiEntry<K, V> entry, @Nullable BiEntry<K, V> oldEntryForKey)
+end_function
+
+begin_function
+DECL|method|insert (BiEntry<K, V> entry, @CheckForNull BiEntry<K, V> oldEntryForKey)
 specifier|private
 name|void
 name|insert
@@ -1057,7 +1154,7 @@ argument_list|>
 name|entry
 parameter_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|BiEntry
 argument_list|<
 name|K
@@ -1238,7 +1335,12 @@ name|modCount
 operator|++
 expr_stmt|;
 block|}
-DECL|method|seekByKey (@ullable Object key, int keyHash)
+end_function
+
+begin_function
+annotation|@
+name|CheckForNull
+DECL|method|seekByKey (@heckForNull Object key, int keyHash)
 specifier|private
 name|BiEntry
 argument_list|<
@@ -1249,7 +1351,7 @@ argument_list|>
 name|seekByKey
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|key
 parameter_list|,
@@ -1314,7 +1416,12 @@ return|return
 literal|null
 return|;
 block|}
-DECL|method|seekByValue (@ullable Object value, int valueHash)
+end_function
+
+begin_function
+annotation|@
+name|CheckForNull
+DECL|method|seekByValue (@heckForNull Object value, int valueHash)
 specifier|private
 name|BiEntry
 argument_list|<
@@ -1325,7 +1432,7 @@ argument_list|>
 name|seekByValue
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|value
 parameter_list|,
@@ -1390,15 +1497,18 @@ return|return
 literal|null
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|containsKey (@ullable Object key)
+DECL|method|containsKey (@heckForNull Object key)
 specifier|public
 name|boolean
 name|containsKey
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
@@ -1417,16 +1527,22 @@ operator|!=
 literal|null
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Returns {@code true} if this BiMap contains an entry whose value is equal to {@code value} (or,    * equivalently, if this inverse view contains a key that is equal to {@code value}).    *    *<p>Due to the property that values in a BiMap are unique, this will tend to execute in    * faster-than-linear time.    *    * @param value the object to search for in the values of this BiMap    * @return true if a mapping exists from a key to the specified value    */
+end_comment
+
+begin_function
 annotation|@
 name|Override
-DECL|method|containsValue (@ullable Object value)
+DECL|method|containsValue (@heckForNull Object value)
 specifier|public
 name|boolean
 name|containsValue
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|value
 parameter_list|)
@@ -1445,17 +1561,20 @@ operator|!=
 literal|null
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
-DECL|method|get (@ullable Object key)
-specifier|public
 annotation|@
-name|Nullable
+name|CheckForNull
+DECL|method|get (@heckForNull Object key)
+specifier|public
 name|V
 name|get
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
@@ -1477,22 +1596,27 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
-DECL|method|put (@ullable K key, @Nullable V value)
+annotation|@
+name|CheckForNull
+DECL|method|put (@arametricNullness K key, @ParametricNullness V value)
 specifier|public
 name|V
 name|put
 parameter_list|(
 annotation|@
-name|Nullable
+name|ParametricNullness
 name|K
 name|key
 parameter_list|,
 annotation|@
-name|Nullable
+name|ParametricNullness
 name|V
 name|value
 parameter_list|)
@@ -1508,18 +1632,23 @@ literal|false
 argument_list|)
 return|;
 block|}
-DECL|method|put (@ullable K key, @Nullable V value, boolean force)
+end_function
+
+begin_function
+annotation|@
+name|CheckForNull
+DECL|method|put (@arametricNullness K key, @ParametricNullness V value, boolean force)
 specifier|private
 name|V
 name|put
 parameter_list|(
 annotation|@
-name|Nullable
+name|ParametricNullness
 name|K
 name|key
 parameter_list|,
 annotation|@
-name|Nullable
+name|ParametricNullness
 name|V
 name|value
 parameter_list|,
@@ -1707,24 +1836,27 @@ literal|null
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
-DECL|method|forcePut (@ullable K key, @Nullable V value)
-specifier|public
 annotation|@
-name|Nullable
+name|CheckForNull
+DECL|method|forcePut (@arametricNullness K key, @ParametricNullness V value)
+specifier|public
 name|V
 name|forcePut
 parameter_list|(
 annotation|@
-name|Nullable
+name|ParametricNullness
 name|K
 name|key
 parameter_list|,
 annotation|@
-name|Nullable
+name|ParametricNullness
 name|V
 name|value
 parameter_list|)
@@ -1740,20 +1872,23 @@ literal|true
 argument_list|)
 return|;
 block|}
-DECL|method|putInverse (@ullable V value, @Nullable K key, boolean force)
-specifier|private
+end_function
+
+begin_function
 annotation|@
-name|Nullable
+name|CheckForNull
+DECL|method|putInverse (@arametricNullness V value, @ParametricNullness K key, boolean force)
+specifier|private
 name|K
 name|putInverse
 parameter_list|(
 annotation|@
-name|Nullable
+name|ParametricNullness
 name|V
 name|value
 parameter_list|,
 annotation|@
-name|Nullable
+name|ParametricNullness
 name|K
 name|key
 parameter_list|,
@@ -1963,12 +2098,17 @@ name|oldEntryForValue
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 DECL|method|rehashIfNecessary ()
 specifier|private
 name|void
 name|rehashIfNecessary
 parameter_list|()
 block|{
+annotation|@
+name|Nullable
 name|BiEntry
 argument_list|<
 name|K
@@ -2075,13 +2215,22 @@ operator|++
 expr_stmt|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|SuppressWarnings
 argument_list|(
+block|{
 literal|"unchecked"
+block|,
+literal|"rawtypes"
+block|}
 argument_list|)
 DECL|method|createTable (int length)
 specifier|private
+annotation|@
+name|Nullable
 name|BiEntry
 argument_list|<
 name|K
@@ -2097,25 +2246,30 @@ parameter_list|)
 block|{
 return|return
 operator|new
+expr|@
+name|Nullable
 name|BiEntry
 index|[
 name|length
 index|]
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
-DECL|method|remove (@ullable Object key)
-specifier|public
 annotation|@
-name|Nullable
+name|CheckForNull
+DECL|method|remove (@heckForNull Object key)
+specifier|public
 name|V
 name|remove
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
@@ -2175,6 +2329,9 @@ name|value
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|clear ()
@@ -2217,6 +2374,9 @@ name|modCount
 operator|++
 expr_stmt|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|size ()
@@ -2229,20 +2389,27 @@ return|return
 name|size
 return|;
 block|}
+end_function
+
+begin_expr_stmt
 DECL|class|Itr
 specifier|abstract
-class|class
+name|class
 name|Itr
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
-implements|implements
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|implements
 name|Iterator
 argument_list|<
 name|T
 argument_list|>
-block|{
+block|{     @
 DECL|field|next
+name|CheckForNull
 name|BiEntry
 argument_list|<
 name|K
@@ -2250,10 +2417,11 @@ argument_list|,
 name|V
 argument_list|>
 name|next
-init|=
+operator|=
 name|firstInKeyInsertionOrder
-decl_stmt|;
+block|;     @
 DECL|field|toRemove
+name|CheckForNull
 name|BiEntry
 argument_list|<
 name|K
@@ -2261,29 +2429,28 @@ argument_list|,
 name|V
 argument_list|>
 name|toRemove
-init|=
+operator|=
 literal|null
-decl_stmt|;
+block|;
 DECL|field|expectedModCount
 name|int
 name|expectedModCount
-init|=
+operator|=
 name|modCount
-decl_stmt|;
+block|;
 DECL|field|remaining
 name|int
 name|remaining
-init|=
+operator|=
 name|size
 argument_list|()
-decl_stmt|;
-annotation|@
+block|;      @
 name|Override
 DECL|method|hasNext ()
 specifier|public
 name|boolean
 name|hasNext
-parameter_list|()
+argument_list|()
 block|{
 if|if
 condition|(
@@ -2308,6 +2475,9 @@ operator|>
 literal|0
 return|;
 block|}
+end_expr_stmt
+
+begin_function
 annotation|@
 name|Override
 DECL|method|next ()
@@ -2329,6 +2499,7 @@ name|NoSuchElementException
 argument_list|()
 throw|;
 block|}
+comment|// requireNonNull is safe because of the hasNext check.
 name|BiEntry
 argument_list|<
 name|K
@@ -2337,7 +2508,10 @@ name|V
 argument_list|>
 name|entry
 init|=
+name|requireNonNull
+argument_list|(
 name|next
+argument_list|)
 decl_stmt|;
 name|next
 operator|=
@@ -2359,6 +2533,9 @@ name|entry
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|remove ()
@@ -2380,13 +2557,21 @@ name|ConcurrentModificationException
 argument_list|()
 throw|;
 block|}
-name|checkRemove
-argument_list|(
+if|if
+condition|(
 name|toRemove
-operator|!=
+operator|==
 literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalStateException
+argument_list|(
+literal|"no calls to next() since the last call to remove()"
 argument_list|)
-expr_stmt|;
+throw|;
+block|}
 name|delete
 argument_list|(
 name|toRemove
@@ -2401,6 +2586,9 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
+end_function
+
+begin_function_decl
 DECL|method|output (BiEntry<K, V> entry)
 specifier|abstract
 name|T
@@ -2415,8 +2603,10 @@ argument_list|>
 name|entry
 parameter_list|)
 function_decl|;
-block|}
-annotation|@
+end_function_decl
+
+begin_function
+unit|}    @
 name|Override
 DECL|method|keySet ()
 specifier|public
@@ -2433,6 +2623,9 @@ name|KeySet
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_class
 DECL|class|KeySet
 specifier|private
 specifier|final
@@ -2504,13 +2697,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|remove (@ullable Object o)
+DECL|method|remove (@heckForNull Object o)
 specifier|public
 name|boolean
 name|remove
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|o
 parameter_list|)
@@ -2569,6 +2762,9 @@ return|;
 block|}
 block|}
 block|}
+end_class
+
+begin_function
 annotation|@
 name|Override
 DECL|method|values ()
@@ -2588,6 +2784,9 @@ name|keySet
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|entryIterator ()
@@ -2845,6 +3044,9 @@ block|}
 block|}
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|forEach (BiConsumer<? super K, ? super V> action)
@@ -2908,6 +3110,9 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|replaceAll (BiFunction<? super K, ? super V, ? extends V> function)
@@ -2995,15 +3200,18 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+end_function
+
+begin_decl_stmt
 DECL|field|inverse
 annotation|@
 name|LazyInit
 annotation|@
 name|RetainedWith
+annotation|@
+name|CheckForNull
 specifier|private
 specifier|transient
-annotation|@
-name|Nullable
 name|BiMap
 argument_list|<
 name|V
@@ -3012,6 +3220,9 @@ name|K
 argument_list|>
 name|inverse
 decl_stmt|;
+end_decl_stmt
+
+begin_function
 annotation|@
 name|Override
 DECL|method|inverse ()
@@ -3051,6 +3262,9 @@ else|:
 name|result
 return|;
 block|}
+end_function
+
+begin_class
 DECL|class|Inverse
 specifier|private
 specifier|final
@@ -3118,13 +3332,13 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|containsKey (@ullable Object value)
+DECL|method|containsKey (@heckForNull Object value)
 specifier|public
 name|boolean
 name|containsKey
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|value
 parameter_list|)
@@ -3141,13 +3355,15 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|get (@ullable Object value)
+annotation|@
+name|CheckForNull
+DECL|method|get (@heckForNull Object value)
 specifier|public
 name|K
 name|get
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|value
 parameter_list|)
@@ -3173,20 +3389,20 @@ annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
-DECL|method|put (@ullable V value, @Nullable K key)
-specifier|public
 annotation|@
-name|Nullable
+name|CheckForNull
+DECL|method|put (@arametricNullness V value, @ParametricNullness K key)
+specifier|public
 name|K
 name|put
 parameter_list|(
 annotation|@
-name|Nullable
+name|ParametricNullness
 name|V
 name|value
 parameter_list|,
 annotation|@
-name|Nullable
+name|ParametricNullness
 name|K
 name|key
 parameter_list|)
@@ -3204,20 +3420,20 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|forcePut (@ullable V value, @Nullable K key)
-specifier|public
 annotation|@
-name|Nullable
+name|CheckForNull
+DECL|method|forcePut (@arametricNullness V value, @ParametricNullness K key)
+specifier|public
 name|K
 name|forcePut
 parameter_list|(
 annotation|@
-name|Nullable
+name|ParametricNullness
 name|V
 name|value
 parameter_list|,
 annotation|@
-name|Nullable
+name|ParametricNullness
 name|K
 name|key
 parameter_list|)
@@ -3235,15 +3451,15 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|remove (@ullable Object value)
-specifier|public
 annotation|@
-name|Nullable
+name|CheckForNull
+DECL|method|remove (@heckForNull Object value)
+specifier|public
 name|K
 name|remove
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|value
 parameter_list|)
@@ -3367,13 +3583,13 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|remove (@ullable Object o)
+DECL|method|remove (@heckForNull Object o)
 specifier|public
 name|boolean
 name|remove
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|o
 parameter_list|)
@@ -3866,23 +4082,32 @@ argument_list|)
 return|;
 block|}
 block|}
+end_class
+
+begin_expr_stmt
 DECL|class|InverseSerializedForm
 specifier|private
 specifier|static
-specifier|final
-class|class
+name|final
+name|class
 name|InverseSerializedForm
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
-implements|implements
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|implements
 name|Serializable
 block|{
 DECL|field|bimap
 specifier|private
-specifier|final
+name|final
 name|HashBiMap
 argument_list|<
 name|K
@@ -3890,10 +4115,10 @@ argument_list|,
 name|V
 argument_list|>
 name|bimap
-decl_stmt|;
+block|;
 DECL|method|InverseSerializedForm (HashBiMap<K, V> bimap)
 name|InverseSerializedForm
-parameter_list|(
+argument_list|(
 name|HashBiMap
 argument_list|<
 name|K
@@ -3901,19 +4126,18 @@ argument_list|,
 name|V
 argument_list|>
 name|bimap
-parameter_list|)
+argument_list|)
 block|{
 name|this
 operator|.
 name|bimap
 operator|=
 name|bimap
-expr_stmt|;
-block|}
+block|;     }
 DECL|method|readResolve ()
 name|Object
 name|readResolve
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|bimap
@@ -3922,9 +4146,15 @@ name|inverse
 argument_list|()
 return|;
 block|}
-block|}
+end_expr_stmt
+
+begin_comment
+unit|}
 comment|/**    * @serialData the number of entries, first key, first value, second key, second value, and so on.    */
-annotation|@
+end_comment
+
+begin_function
+unit|@
 name|GwtIncompatible
 comment|// java.io.ObjectOutputStream
 DECL|method|writeObject (ObjectOutputStream stream)
@@ -3953,6 +4183,9 @@ name|stream
 argument_list|)
 expr_stmt|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|GwtIncompatible
 comment|// java.io.ObjectInputStream
@@ -4002,6 +4235,9 @@ name|size
 argument_list|)
 expr_stmt|;
 block|}
+end_function
+
+begin_decl_stmt
 annotation|@
 name|GwtIncompatible
 comment|// Not needed in emulated source
@@ -4014,8 +4250,8 @@ name|serialVersionUID
 init|=
 literal|0
 decl_stmt|;
-block|}
-end_class
+end_decl_stmt
 
+unit|}
 end_unit
 

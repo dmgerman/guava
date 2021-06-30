@@ -184,6 +184,32 @@ name|Collectors
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|checkerframework
+operator|.
+name|checker
+operator|.
+name|nullness
+operator|.
+name|qual
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/**  * A {@link BiMap} whose contents will never change, with many other important properties detailed  * at {@link ImmutableCollection}.  *  * @author Jared Levy  * @since 2.0  */
 end_comment
@@ -200,6 +226,8 @@ name|emulated
 operator|=
 literal|true
 argument_list|)
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|ImmutableBiMap
 specifier|public
 specifier|abstract
@@ -226,16 +254,19 @@ name|V
 argument_list|>
 block|{
 comment|/**    * Returns a {@link Collector} that accumulates elements into an {@code ImmutableBiMap} whose keys    * and values are the result of applying the provided mapping functions to the input elements.    * Entries appear in the result {@code ImmutableBiMap} in encounter order.    *    *<p>If the mapped keys or values contain duplicates (according to {@link Object#equals(Object)},    * an {@code IllegalArgumentException} is thrown when the collection operation is performed. (This    * differs from the {@code Collector} returned by {@link Collectors#toMap(Function, Function)},    * which throws an {@code IllegalStateException}.)    *    * @since 21.0    */
-DECL|method|toImmutableBiMap ( Function<? super T, ? extends K> keyFunction, Function<? super T, ? extends V> valueFunction)
 specifier|public
 specifier|static
-parameter_list|<
+operator|<
 name|T
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|K
-parameter_list|,
+operator|,
 name|V
-parameter_list|>
+operator|>
+DECL|method|toImmutableBiMap ( Function<? super T, ? extends K> keyFunction, Function<? super T, ? extends V> valueFunction)
 name|Collector
 argument_list|<
 name|T
@@ -250,7 +281,7 @@ name|V
 argument_list|>
 argument_list|>
 name|toImmutableBiMap
-parameter_list|(
+argument_list|(
 name|Function
 argument_list|<
 name|?
@@ -262,7 +293,7 @@ extends|extends
 name|K
 argument_list|>
 name|keyFunction
-parameter_list|,
+operator|,
 name|Function
 argument_list|<
 name|?
@@ -274,7 +305,7 @@ extends|extends
 name|V
 argument_list|>
 name|valueFunction
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|CollectCollectors
@@ -1459,6 +1490,8 @@ name|DoNotCall
 argument_list|(
 literal|"Always throws UnsupportedOperationException"
 argument_list|)
+annotation|@
+name|CheckForNull
 DECL|method|forcePut (K key, V value)
 specifier|public
 specifier|final

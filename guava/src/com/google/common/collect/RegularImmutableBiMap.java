@@ -220,6 +220,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|checkerframework
@@ -256,6 +266,8 @@ argument_list|(
 literal|"serial"
 argument_list|)
 comment|// uses writeReplace(), not default serialization
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|RegularImmutableBiMap
 class|class
 name|RegularImmutableBiMap
@@ -318,9 +330,13 @@ init|=
 literal|1.2
 decl_stmt|;
 DECL|field|keyTable
+annotation|@
+name|CheckForNull
 specifier|private
 specifier|final
 specifier|transient
+annotation|@
+name|Nullable
 name|ImmutableMapEntry
 argument_list|<
 name|K
@@ -331,9 +347,13 @@ index|[]
 name|keyTable
 decl_stmt|;
 DECL|field|valueTable
+annotation|@
+name|CheckForNull
 specifier|private
 specifier|final
 specifier|transient
+annotation|@
+name|Nullable
 name|ImmutableMapEntry
 argument_list|<
 name|K
@@ -463,6 +483,8 @@ name|tableSize
 operator|-
 literal|1
 decl_stmt|;
+annotation|@
+name|Nullable
 name|ImmutableMapEntry
 argument_list|<
 name|K
@@ -477,6 +499,8 @@ argument_list|(
 name|tableSize
 argument_list|)
 decl_stmt|;
+annotation|@
+name|Nullable
 name|ImmutableMapEntry
 argument_list|<
 name|K
@@ -544,11 +568,6 @@ name|i
 operator|++
 control|)
 block|{
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
 name|Entry
 argument_list|<
 name|K
@@ -788,10 +807,14 @@ name|hashCode
 argument_list|)
 return|;
 block|}
-DECL|method|RegularImmutableBiMap ( ImmutableMapEntry<K, V>[] keyTable, ImmutableMapEntry<K, V>[] valueTable, Entry<K, V>[] entries, int mask, int hashCode)
+DECL|method|RegularImmutableBiMap ( @heckForNull @ullable ImmutableMapEntry<K, V>[] keyTable, @CheckForNull @Nullable ImmutableMapEntry<K, V>[] valueTable, Entry<K, V>[] entries, int mask, int hashCode)
 specifier|private
 name|RegularImmutableBiMap
 parameter_list|(
+annotation|@
+name|CheckForNull
+annotation|@
+name|Nullable
 name|ImmutableMapEntry
 argument_list|<
 name|K
@@ -801,6 +824,10 @@ argument_list|>
 index|[]
 name|keyTable
 parameter_list|,
+annotation|@
+name|CheckForNull
+annotation|@
+name|Nullable
 name|ImmutableMapEntry
 argument_list|<
 name|K
@@ -861,7 +888,7 @@ comment|// checkNoConflictInKeyBucket is static imported from RegularImmutableMa
 comment|/**    * @return number of entries in this bucket    * @throws IllegalArgumentException if another entry in the bucket has the same key    */
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|checkNoConflictInValueBucket ( Object value, Entry<?, ?> entry, @Nullable ImmutableMapEntry<?, ?> valueBucketHead)
+DECL|method|checkNoConflictInValueBucket ( Object value, Entry<?, ?> entry, @CheckForNull ImmutableMapEntry<?, ?> valueBucketHead)
 specifier|private
 specifier|static
 name|int
@@ -879,7 +906,7 @@ argument_list|>
 name|entry
 parameter_list|,
 annotation|@
-name|Nullable
+name|CheckForNull
 name|ImmutableMapEntry
 argument_list|<
 name|?
@@ -939,28 +966,20 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|get (@ullable Object key)
-specifier|public
 annotation|@
-name|Nullable
+name|CheckForNull
+DECL|method|get (@heckForNull Object key)
+specifier|public
 name|V
 name|get
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
 block|{
 return|return
-operator|(
-name|keyTable
-operator|==
-literal|null
-operator|)
-condition|?
-literal|null
-else|:
 name|RegularImmutableMap
 operator|.
 name|get
@@ -1148,6 +1167,8 @@ annotation|@
 name|LazyInit
 annotation|@
 name|RetainedWith
+annotation|@
+name|CheckForNull
 specifier|private
 specifier|transient
 name|ImmutableBiMap
@@ -1308,13 +1329,15 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|get (@ullable Object value)
+annotation|@
+name|CheckForNull
+DECL|method|get (@heckForNull Object value)
 specifier|public
 name|K
 name|get
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|value
 parameter_list|)

@@ -134,6 +134,16 @@ name|Map
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
 begin_comment
 comment|/**  * A {@link BiMap} whose contents will never change, with many other important properties detailed  * at {@link ImmutableCollection}.  *  * @author Jared Levy  * @since 2.0  */
 end_comment
@@ -150,6 +160,8 @@ name|emulated
 operator|=
 literal|true
 argument_list|)
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|ImmutableBiMap
 specifier|public
 specifier|abstract
@@ -1277,6 +1289,8 @@ name|DoNotCall
 argument_list|(
 literal|"Always throws UnsupportedOperationException"
 argument_list|)
+annotation|@
+name|CheckForNull
 DECL|method|forcePut (K key, V value)
 specifier|public
 specifier|final

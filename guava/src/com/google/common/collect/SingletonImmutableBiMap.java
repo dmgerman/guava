@@ -106,17 +106,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|javax
 operator|.
-name|checkerframework
+name|annotation
 operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|qual
-operator|.
-name|Nullable
+name|CheckForNull
 import|;
 end_import
 
@@ -142,6 +136,8 @@ argument_list|(
 literal|"serial"
 argument_list|)
 comment|// uses writeReplace(), not default serialization
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|SingletonImmutableBiMap
 specifier|final
 class|class
@@ -247,13 +243,15 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|get (@ullable Object key)
+annotation|@
+name|CheckForNull
+DECL|method|get (@heckForNull Object key)
 specifier|public
 name|V
 name|get
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
@@ -318,13 +316,13 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|containsKey (@ullable Object key)
+DECL|method|containsKey (@heckForNull Object key)
 specifier|public
 name|boolean
 name|containsKey
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
@@ -340,13 +338,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|containsValue (@ullable Object value)
+DECL|method|containsValue (@heckForNull Object value)
 specifier|public
 name|boolean
 name|containsValue
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|value
 parameter_list|)
@@ -422,11 +420,11 @@ argument_list|)
 return|;
 block|}
 DECL|field|inverse
+annotation|@
+name|CheckForNull
 specifier|private
 specifier|final
 specifier|transient
-annotation|@
-name|Nullable
 name|ImmutableBiMap
 argument_list|<
 name|V
@@ -440,10 +438,10 @@ annotation|@
 name|LazyInit
 annotation|@
 name|RetainedWith
+annotation|@
+name|CheckForNull
 specifier|private
 specifier|transient
-annotation|@
-name|Nullable
 name|ImmutableBiMap
 argument_list|<
 name|V

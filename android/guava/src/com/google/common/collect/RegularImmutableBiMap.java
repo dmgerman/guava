@@ -46,17 +46,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|javax
 operator|.
-name|checkerframework
+name|annotation
 operator|.
-name|checker
-operator|.
-name|nullness
-operator|.
-name|compatqual
-operator|.
-name|NullableDecl
+name|CheckForNull
 import|;
 end_import
 
@@ -82,6 +76,8 @@ argument_list|(
 literal|"serial"
 argument_list|)
 comment|// uses writeReplace(), not default serialization
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|RegularImmutableBiMap
 specifier|final
 class|class
@@ -116,6 +112,8 @@ argument_list|<>
 argument_list|()
 decl_stmt|;
 DECL|field|keyHashTable
+annotation|@
+name|CheckForNull
 specifier|private
 specifier|final
 specifier|transient
@@ -406,13 +404,15 @@ literal|"unchecked"
 argument_list|)
 annotation|@
 name|Override
-DECL|method|get (@ullableDecl Object key)
+annotation|@
+name|CheckForNull
+DECL|method|get (@heckForNull Object key)
 specifier|public
 name|V
 name|get
 parameter_list|(
 annotation|@
-name|NullableDecl
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)

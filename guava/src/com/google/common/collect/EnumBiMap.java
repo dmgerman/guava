@@ -138,6 +138,8 @@ name|emulated
 operator|=
 literal|true
 argument_list|)
+annotation|@
+name|ElementTypesAreNonnullByDefault
 DECL|class|EnumBiMap
 specifier|public
 specifier|final

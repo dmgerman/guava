@@ -58,9 +58,9 @@ name|common
 operator|.
 name|collect
 operator|.
-name|CollectPreconditions
+name|NullnessCasts
 operator|.
-name|checkRemove
+name|uncheckedCastNullableTToT
 import|;
 end_import
 
@@ -242,6 +242,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|checkerframework
@@ -260,7 +270,7 @@ begin_comment
 comment|/**  * A general-purpose bimap implementation using any two backing {@code Map} instances.  *  *<p>Note that this class contains {@code equals()} calls that keep it from supporting {@code  * IdentityHashMap} backing maps.  *  * @author Kevin Bourrillion  * @author Mike Bostock  */
 end_comment
 
-begin_class
+begin_annotation
 annotation|@
 name|GwtCompatible
 argument_list|(
@@ -268,37 +278,49 @@ name|emulated
 operator|=
 literal|true
 argument_list|)
+end_annotation
+
+begin_annotation
+annotation|@
+name|ElementTypesAreNonnullByDefault
+end_annotation
+
+begin_expr_stmt
 DECL|class|AbstractBiMap
 specifier|abstract
-class|class
+name|class
 name|AbstractBiMap
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|ForwardingMap
 argument_list|<
 name|K
 argument_list|,
 name|V
 argument_list|>
-implements|implements
+expr|implements
 name|BiMap
 argument_list|<
 name|K
 argument_list|,
 name|V
 argument_list|>
-implements|,
+operator|,
 name|Serializable
 block|{
 DECL|field|delegate
 specifier|private
 specifier|transient
-annotation|@
-name|Nullable
 name|Map
 argument_list|<
 name|K
@@ -306,13 +328,10 @@ argument_list|,
 name|V
 argument_list|>
 name|delegate
-decl_stmt|;
+block|;   @
 DECL|field|inverse
-annotation|@
 name|RetainedWith
 specifier|transient
-annotation|@
-name|Nullable
 name|AbstractBiMap
 argument_list|<
 name|V
@@ -320,11 +339,11 @@ argument_list|,
 name|K
 argument_list|>
 name|inverse
-decl_stmt|;
+block|;
 comment|/** Package-private constructor for creating a map-backed bimap. */
 DECL|method|AbstractBiMap (Map<K, V> forward, Map<V, K> backward)
 name|AbstractBiMap
-parameter_list|(
+argument_list|(
 name|Map
 argument_list|<
 name|K
@@ -332,7 +351,7 @@ argument_list|,
 name|V
 argument_list|>
 name|forward
-parameter_list|,
+argument_list|,
 name|Map
 argument_list|<
 name|V
@@ -340,7 +359,7 @@ argument_list|,
 name|K
 argument_list|>
 name|backward
-parameter_list|)
+argument_list|)
 block|{
 name|setDelegates
 argument_list|(
@@ -348,13 +367,12 @@ name|forward
 argument_list|,
 name|backward
 argument_list|)
-expr_stmt|;
-block|}
+block|;   }
 comment|/** Private constructor for inverse bimap. */
 DECL|method|AbstractBiMap (Map<K, V> backward, AbstractBiMap<V, K> forward)
 specifier|private
 name|AbstractBiMap
-parameter_list|(
+argument_list|(
 name|Map
 argument_list|<
 name|K
@@ -362,7 +380,7 @@ argument_list|,
 name|V
 argument_list|>
 name|backward
-parameter_list|,
+argument_list|,
 name|AbstractBiMap
 argument_list|<
 name|V
@@ -370,18 +388,17 @@ argument_list|,
 name|K
 argument_list|>
 name|forward
-parameter_list|)
+argument_list|)
 block|{
 name|delegate
 operator|=
 name|backward
-expr_stmt|;
+block|;
 name|inverse
 operator|=
 name|forward
-expr_stmt|;
-block|}
-annotation|@
+block|;   }
+expr|@
 name|Override
 DECL|method|delegate ()
 specifier|protected
@@ -392,38 +409,48 @@ argument_list|,
 name|V
 argument_list|>
 name|delegate
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|delegate
 return|;
 block|}
 comment|/** Returns its input, or throws an exception if this is not a valid key. */
-annotation|@
+expr|@
 name|CanIgnoreReturnValue
-DECL|method|checkKey (@ullable K key)
+expr|@
+name|ParametricNullness
+DECL|method|checkKey (@arametricNullness K key)
 name|K
 name|checkKey
-parameter_list|(
+argument_list|(
 annotation|@
-name|Nullable
+name|ParametricNullness
 name|K
 name|key
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|key
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/** Returns its input, or throws an exception if this is not a valid value. */
+end_comment
+
+begin_function
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|checkValue (@ullable V value)
+annotation|@
+name|ParametricNullness
+DECL|method|checkValue (@arametricNullness V value)
 name|V
 name|checkValue
 parameter_list|(
 annotation|@
-name|Nullable
+name|ParametricNullness
 name|V
 name|value
 parameter_list|)
@@ -432,7 +459,13 @@ return|return
 name|value
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Specifies the delegate maps going in each direction. Called by the constructor and by    * subclasses during deserialization.    */
+end_comment
+
+begin_function
 DECL|method|setDelegates (Map<K, V> forward, Map<V, K> backward)
 name|void
 name|setDelegates
@@ -503,6 +536,9 @@ name|backward
 argument_list|)
 expr_stmt|;
 block|}
+end_function
+
+begin_function
 DECL|method|makeInverse (Map<V, K> backward)
 name|AbstractBiMap
 argument_list|<
@@ -532,6 +568,9 @@ name|this
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 DECL|method|setInverse (AbstractBiMap<V, K> inverse)
 name|void
 name|setInverse
@@ -552,16 +591,22 @@ operator|=
 name|inverse
 expr_stmt|;
 block|}
+end_function
+
+begin_comment
 comment|// Query Operations (optimizations)
+end_comment
+
+begin_function
 annotation|@
 name|Override
-DECL|method|containsValue (@ullable Object value)
+DECL|method|containsValue (@heckForNull Object value)
 specifier|public
 name|boolean
 name|containsValue
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|value
 parameter_list|)
@@ -575,23 +620,31 @@ name|value
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|// Modification Operations
+end_comment
+
+begin_function
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
-DECL|method|put (@ullable K key, @Nullable V value)
+annotation|@
+name|CheckForNull
+DECL|method|put (@arametricNullness K key, @ParametricNullness V value)
 specifier|public
 name|V
 name|put
 parameter_list|(
 annotation|@
-name|Nullable
+name|ParametricNullness
 name|K
 name|key
 parameter_list|,
 annotation|@
-name|Nullable
+name|ParametricNullness
 name|V
 name|value
 parameter_list|)
@@ -607,22 +660,27 @@ literal|false
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
-DECL|method|forcePut (@ullable K key, @Nullable V value)
+annotation|@
+name|CheckForNull
+DECL|method|forcePut (@arametricNullness K key, @ParametricNullness V value)
 specifier|public
 name|V
 name|forcePut
 parameter_list|(
 annotation|@
-name|Nullable
+name|ParametricNullness
 name|K
 name|key
 parameter_list|,
 annotation|@
-name|Nullable
+name|ParametricNullness
 name|V
 name|value
 parameter_list|)
@@ -638,18 +696,23 @@ literal|true
 argument_list|)
 return|;
 block|}
-DECL|method|putInBothMaps (@ullable K key, @Nullable V value, boolean force)
+end_function
+
+begin_function
+annotation|@
+name|CheckForNull
+DECL|method|putInBothMaps (@arametricNullness K key, @ParametricNullness V value, boolean force)
 specifier|private
 name|V
 name|putInBothMaps
 parameter_list|(
 annotation|@
-name|Nullable
+name|ParametricNullness
 name|K
 name|key
 parameter_list|,
 annotation|@
-name|Nullable
+name|ParametricNullness
 name|V
 name|value
 parameter_list|,
@@ -753,20 +816,29 @@ return|return
 name|oldValue
 return|;
 block|}
-DECL|method|updateInverseMap (K key, boolean containedKey, V oldValue, V newValue)
+end_function
+
+begin_function
+DECL|method|updateInverseMap ( @arametricNullness K key, boolean containedKey, @CheckForNull V oldValue, @ParametricNullness V newValue)
 specifier|private
 name|void
 name|updateInverseMap
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|key
 parameter_list|,
 name|boolean
 name|containedKey
 parameter_list|,
+annotation|@
+name|CheckForNull
 name|V
 name|oldValue
 parameter_list|,
+annotation|@
+name|ParametricNullness
 name|V
 name|newValue
 parameter_list|)
@@ -776,9 +848,13 @@ condition|(
 name|containedKey
 condition|)
 block|{
+comment|// The cast is safe because of the containedKey check.
 name|removeFromInverseMap
 argument_list|(
+name|uncheckedCastNullableTToT
+argument_list|(
 name|oldValue
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -794,17 +870,22 @@ name|key
 argument_list|)
 expr_stmt|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|CanIgnoreReturnValue
 annotation|@
 name|Override
-DECL|method|remove (@ullable Object key)
+annotation|@
+name|CheckForNull
+DECL|method|remove (@heckForNull Object key)
 specifier|public
 name|V
 name|remove
 parameter_list|(
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
@@ -823,25 +904,36 @@ else|:
 literal|null
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|CanIgnoreReturnValue
-DECL|method|removeFromBothMaps (Object key)
+annotation|@
+name|ParametricNullness
+DECL|method|removeFromBothMaps (@heckForNull Object key)
 specifier|private
 name|V
 name|removeFromBothMaps
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
 block|{
+comment|// The cast is safe because the callers of this method first check that the key is present.
 name|V
 name|oldValue
 init|=
+name|uncheckedCastNullableTToT
+argument_list|(
 name|delegate
 operator|.
 name|remove
 argument_list|(
 name|key
+argument_list|)
 argument_list|)
 decl_stmt|;
 name|removeFromInverseMap
@@ -853,11 +945,16 @@ return|return
 name|oldValue
 return|;
 block|}
-DECL|method|removeFromInverseMap (V oldValue)
+end_function
+
+begin_function
+DECL|method|removeFromInverseMap (@arametricNullness V oldValue)
 specifier|private
 name|void
 name|removeFromInverseMap
 parameter_list|(
+annotation|@
+name|ParametricNullness
 name|V
 name|oldValue
 parameter_list|)
@@ -872,7 +969,13 @@ name|oldValue
 argument_list|)
 expr_stmt|;
 block|}
+end_function
+
+begin_comment
 comment|// Bulk Operations
+end_comment
+
+begin_function
 annotation|@
 name|Override
 DECL|method|putAll (Map<? extends K, ? extends V> map)
@@ -928,6 +1031,9 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|replaceAll (BiFunction<? super K, ? super V, ? extends V> function)
@@ -1091,6 +1197,9 @@ argument_list|)
 throw|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|clear ()
@@ -1112,7 +1221,13 @@ name|clear
 argument_list|()
 expr_stmt|;
 block|}
+end_function
+
+begin_comment
 comment|// Views
+end_comment
+
+begin_function
 annotation|@
 name|Override
 DECL|method|inverse ()
@@ -1130,17 +1245,23 @@ return|return
 name|inverse
 return|;
 block|}
+end_function
+
+begin_decl_stmt
 DECL|field|keySet
+annotation|@
+name|CheckForNull
 specifier|private
 specifier|transient
-annotation|@
-name|Nullable
 name|Set
 argument_list|<
 name|K
 argument_list|>
 name|keySet
 decl_stmt|;
+end_decl_stmt
+
+begin_function
 annotation|@
 name|Override
 DECL|method|keySet ()
@@ -1176,6 +1297,9 @@ else|:
 name|result
 return|;
 block|}
+end_function
+
+begin_class
 annotation|@
 name|WeakOuter
 DECL|class|KeySet
@@ -1224,11 +1348,13 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|remove (Object key)
+DECL|method|remove (@heckForNull Object key)
 specifier|public
 name|boolean
 name|remove
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|key
 parameter_list|)
@@ -1322,17 +1448,23 @@ argument_list|)
 return|;
 block|}
 block|}
+end_class
+
+begin_decl_stmt
 DECL|field|valueSet
+annotation|@
+name|CheckForNull
 specifier|private
 specifier|transient
-annotation|@
-name|Nullable
 name|Set
 argument_list|<
 name|V
 argument_list|>
 name|valueSet
 decl_stmt|;
+end_decl_stmt
+
+begin_function
 annotation|@
 name|Override
 DECL|method|values ()
@@ -1369,6 +1501,9 @@ else|:
 name|result
 return|;
 block|}
+end_function
+
+begin_class
 annotation|@
 name|WeakOuter
 DECL|class|ValueSet
@@ -1437,6 +1572,8 @@ annotation|@
 name|Override
 DECL|method|toArray ()
 specifier|public
+annotation|@
+name|Nullable
 name|Object
 index|[]
 name|toArray
@@ -1449,19 +1586,28 @@ return|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"nullness"
+argument_list|)
+comment|// bug in our checker's handling of toArray signatures
 DECL|method|toArray (T[] array)
 specifier|public
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|T
 index|[]
 name|toArray
-parameter_list|(
+argument_list|(
 name|T
 index|[]
 name|array
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|standardToArray
@@ -1484,11 +1630,14 @@ argument_list|()
 return|;
 block|}
 block|}
+end_class
+
+begin_decl_stmt
 DECL|field|entrySet
+annotation|@
+name|CheckForNull
 specifier|private
 specifier|transient
-annotation|@
-name|Nullable
 name|Set
 argument_list|<
 name|Entry
@@ -1500,6 +1649,9 @@ argument_list|>
 argument_list|>
 name|entrySet
 decl_stmt|;
+end_decl_stmt
+
+begin_function
 annotation|@
 name|Override
 DECL|method|entrySet ()
@@ -1545,6 +1697,9 @@ else|:
 name|result
 return|;
 block|}
+end_function
+
+begin_class
 DECL|class|BiMapEntry
 class|class
 name|BiMapEntry
@@ -1709,6 +1864,9 @@ name|oldValue
 return|;
 block|}
 block|}
+end_class
+
+begin_function
 DECL|method|entrySetIterator ()
 name|Iterator
 argument_list|<
@@ -1756,7 +1914,7 @@ argument_list|>
 argument_list|()
 block|{
 annotation|@
-name|Nullable
+name|CheckForNull
 name|Entry
 argument_list|<
 name|K
@@ -1813,13 +1971,21 @@ name|void
 name|remove
 parameter_list|()
 block|{
-name|checkRemove
-argument_list|(
+if|if
+condition|(
 name|entry
-operator|!=
+operator|==
 literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalStateException
+argument_list|(
+literal|"no calls to next() since the last call to remove()"
 argument_list|)
-expr_stmt|;
+throw|;
+block|}
 name|V
 name|value
 init|=
@@ -1846,6 +2012,9 @@ block|}
 block|}
 return|;
 block|}
+end_function
+
+begin_class
 annotation|@
 name|WeakOuter
 DECL|class|EntrySet
@@ -1919,15 +2088,18 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|remove (Object object)
+DECL|method|remove (@heckForNull Object object)
 specifier|public
 name|boolean
 name|remove
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|object
 parameter_list|)
 block|{
+comment|/*        * The instanceof check is redundant because esDelegate.contains(object), but we include it to        * satisfy our nullness checker.        */
 if|if
 condition|(
 operator|!
@@ -1937,13 +2109,19 @@ name|contains
 argument_list|(
 name|object
 argument_list|)
+operator|||
+operator|!
+operator|(
+name|object
+operator|instanceof
+name|Entry
+operator|)
 condition|)
 block|{
 return|return
 literal|false
 return|;
 block|}
-comment|// safe because esDelegate.contains(object).
 name|Entry
 argument_list|<
 name|?
@@ -2017,26 +2195,47 @@ index|[]
 name|toArray
 parameter_list|()
 block|{
-return|return
+comment|/*        * standardToArray returns `@Nullable Object[]` rather than `Object[]` but only because it can        * be used with collections that may contain null. This collection never contains nulls, so we        * can treat it as a plain `Object[]`.        */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"nullness"
+argument_list|)
+name|Object
+index|[]
+name|result
+init|=
 name|standardToArray
 argument_list|()
+decl_stmt|;
+return|return
+name|result
 return|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"nullness"
+argument_list|)
+comment|// bug in our checker's handling of toArray signatures
 DECL|method|toArray (T[] array)
 specifier|public
-parameter_list|<
+operator|<
 name|T
-parameter_list|>
+expr|extends @
+name|Nullable
+name|Object
+operator|>
 name|T
 index|[]
 name|toArray
-parameter_list|(
+argument_list|(
 name|T
 index|[]
 name|array
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|standardToArray
@@ -2047,11 +2246,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|contains (Object o)
+DECL|method|contains (@heckForNull Object o)
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
+annotation|@
+name|CheckForNull
 name|Object
 name|o
 parameter_list|)
@@ -2132,17 +2333,29 @@ argument_list|)
 return|;
 block|}
 block|}
+end_class
+
+begin_comment
 comment|/** The inverse of any other {@code AbstractBiMap} subclass. */
+end_comment
+
+begin_expr_stmt
 DECL|class|Inverse
 specifier|static
-class|class
+name|class
 name|Inverse
-parameter_list|<
+operator|<
 name|K
-parameter_list|,
+expr|extends @
+name|Nullable
+name|Object
+operator|,
 name|V
-parameter_list|>
-extends|extends
+expr|extends @
+name|Nullable
+name|Object
+operator|>
+expr|extends
 name|AbstractBiMap
 argument_list|<
 name|K
@@ -2152,7 +2365,7 @@ argument_list|>
 block|{
 DECL|method|Inverse (Map<K, V> backward, AbstractBiMap<V, K> forward)
 name|Inverse
-parameter_list|(
+argument_list|(
 name|Map
 argument_list|<
 name|K
@@ -2160,7 +2373,7 @@ argument_list|,
 name|V
 argument_list|>
 name|backward
-parameter_list|,
+argument_list|,
 name|AbstractBiMap
 argument_list|<
 name|V
@@ -2168,7 +2381,7 @@ argument_list|,
 name|K
 argument_list|>
 name|forward
-parameter_list|)
+argument_list|)
 block|{
 name|super
 argument_list|(
@@ -2176,18 +2389,21 @@ name|backward
 argument_list|,
 name|forward
 argument_list|)
-expr_stmt|;
-block|}
+block|;     }
 comment|/*      * Serialization stores the forward bimap, the inverse of this inverse.      * Deserialization calls inverse() on the forward bimap and returns that      * inverse.      *      * If a bimap and its inverse are serialized together, the deserialized      * instances have inverse() methods that return the other.      */
-annotation|@
+expr|@
 name|Override
-DECL|method|checkKey (K key)
+expr|@
+name|ParametricNullness
+DECL|method|checkKey (@arametricNullness K key)
 name|K
 name|checkKey
-parameter_list|(
+argument_list|(
+annotation|@
+name|ParametricNullness
 name|K
 name|key
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|inverse
@@ -2198,15 +2414,19 @@ name|key
 argument_list|)
 return|;
 block|}
-annotation|@
+expr|@
 name|Override
-DECL|method|checkValue (V value)
+expr|@
+name|ParametricNullness
+DECL|method|checkValue (@arametricNullness V value)
 name|V
 name|checkValue
-parameter_list|(
+argument_list|(
+annotation|@
+name|ParametricNullness
 name|V
 name|value
-parameter_list|)
+argument_list|)
 block|{
 return|return
 name|inverse
@@ -2217,7 +2437,13 @@ name|value
 argument_list|)
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|/** @serialData the forward bimap */
+end_comment
+
+begin_function
 annotation|@
 name|GwtIncompatible
 comment|// java.io.ObjectOutputStream
@@ -2246,6 +2472,9 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|GwtIncompatible
 comment|// java.io.ObjectInputStream
@@ -2290,6 +2519,9 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|GwtIncompatible
 comment|// Not needed in the emulated source.
@@ -2306,33 +2538,38 @@ name|inverse
 argument_list|()
 return|;
 block|}
-annotation|@
-name|GwtIncompatible
-comment|// Not needed in emulated source.
-DECL|field|serialVersionUID
-specifier|private
-specifier|static
-specifier|final
-name|long
-name|serialVersionUID
-init|=
-literal|0
-decl_stmt|;
-block|}
-annotation|@
-name|GwtIncompatible
-comment|// Not needed in emulated source.
-DECL|field|serialVersionUID
-specifier|private
-specifier|static
-specifier|final
-name|long
-name|serialVersionUID
-init|=
-literal|0
-decl_stmt|;
-block|}
-end_class
+end_function
 
+begin_decl_stmt
+annotation|@
+name|GwtIncompatible
+comment|// Not needed in emulated source.
+DECL|field|serialVersionUID
+specifier|private
+specifier|static
+specifier|final
+name|long
+name|serialVersionUID
+init|=
+literal|0
+decl_stmt|;
+end_decl_stmt
+
+begin_decl_stmt
+unit|}    @
+name|GwtIncompatible
+comment|// Not needed in emulated source.
+DECL|field|serialVersionUID
+specifier|private
+specifier|static
+specifier|final
+name|long
+name|serialVersionUID
+init|=
+literal|0
+decl_stmt|;
+end_decl_stmt
+
+unit|}
 end_unit
 
